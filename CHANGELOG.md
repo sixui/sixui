@@ -1,3 +1,15 @@
+# v0.0.4 (Fri Jan 26 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Github actions: update `actions/setup-node` from v3 to v4 ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.3 (Fri Jan 26 2024)
 
 #### ⚠️ Pushed to `main`
