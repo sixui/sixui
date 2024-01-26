@@ -11,6 +11,7 @@
   - stateLayerColor$dragged
 
 - don't include .storybook/ in the final package
+- check if tree shaking is working
 
 - use React.forwardRef & React.useImperativeHandle?
 - Prepend "use-client" directive (o components/hooks) exported from core librairies + add docs and examples for using MUI libraries with Next.js App Router
