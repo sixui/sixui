@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "esnext",
+    "lib": ["es2021", "dom"],
+    "types": ["node", "./node_modules/vite-plugin-svgr/client.d.ts"],
+    "strict": true,
+    "declaration": true,
+    "declarationDir": "./dist",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "outDir": "./dist",
+    "noFallthroughCasesInSwitch": true,
+    "incremental": true,
+    "moduleResolution": "node",
+    "jsx": "react-jsx",
+    "allowJs": false,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+    },
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+}

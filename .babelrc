@@ -1,0 +1,26 @@
+{
+  "comments": false,
+  "ignore": ["node_modules/**/*"],
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false,
+        "targets": "defaults"
+      }
+    ],
+    ["@babel/preset-typescript"],
+    ["@babel/preset-react"]
+  ],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "@": "./src"
+        }
+      }
+    ],
+    ["inline-react-svg"]
+  ]
+}

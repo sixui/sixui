@@ -1,0 +1,9 @@
+{
+  "plugins": [
+    "npm"
+  ],
+  "owner": "sixui",
+  "repo": "ui",
+  "name": "Olivier Pascal",
+  "email": "olivier@pascal.re"
+}
