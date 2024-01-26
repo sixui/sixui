@@ -45,7 +45,7 @@ $ git commit -m "My commit message [skip ci]"
 $ git checkout -b button-color
 ```
 
-Edit code, ie. src/Button/Button.jsx.
+Edit code, ie. `src/components/atoms/Button/Button.tsx`.
 
 ```sh
 $ git add .
