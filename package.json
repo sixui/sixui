@@ -22,7 +22,7 @@
   "license": "MIT",
   "scripts": {
     "clean": "rimraf ./dist",
-    "prepare": "husky install",
+    "prepare": "husky",
     "prebuild": "yarn clean",
     "build:ts": "babel src --out-dir dist --config-file ./.babelrc --extensions '.ts,.tsx' --delete-dir-on-start --copy-files",
     "build:dts": "tsc --declaration --emitDeclarationOnly --declarationMap && tsc-alias",
