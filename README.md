@@ -1,6 +1,6 @@
 # sixui/ui
 
-![npm bundle size](https://img.shields.io/bundlephobia/minzip/%sixui%2Fui)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/@sixui/ui)
 
 [Scan with Bundlephobia](https://bundlephobia.com/package/@sixui/ui@latest)
 
