@@ -1,3 +1,15 @@
+# v0.0.6 (Fri Jan 26 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Enhanced README.md ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.5 (Fri Jan 26 2024)
 
 #### ⚠️ Pushed to `main`
