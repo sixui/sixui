@@ -186,7 +186,7 @@ const eslintConfig = {
             format: [
               'camelCase',
               'PascalCase', // for React components
-              'UPPER_CASE', // for onstants
+              'UPPER_CASE', // for constants
             ],
             leadingUnderscore: 'forbid',
             trailingUnderscore: 'forbid',
