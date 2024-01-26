@@ -27,7 +27,7 @@
     "build:ts": "babel src --out-dir dist --config-file ./.babelrc --extensions '.ts,.tsx' --delete-dir-on-start --copy-files",
     "build:dts": "tsc --declaration --emitDeclarationOnly --declarationMap && tsc-alias",
     "build": "run-s build:ts build:dts",
-    "release": "yarn build && auto shipit",
+    "release": "auto shipit",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "BROWSER=none storybook dev -p 6006 --no-open --disable-telemetry",
     "build:sb": "storybook build",
