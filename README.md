@@ -37,7 +37,7 @@ $ git commit -m "My commit message [skip ci]"
 
 ## Chromatic
 
-[Chromatic Library](https://www.chromatic.com/library?appId=654748f3cf3eb41a49f84e2a)
+[Chromatic Library](https://www.chromatic.com/library?appId=65b3729830a9a664ba7336f5)
 
 ## Workflow
 
