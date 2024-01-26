@@ -17,8 +17,7 @@ import {
 // import { colorPaletteTheme } from '@/themes/variant/vars/colorPalettes.stylex';
 // import { shapeTheme } from '@/themes/variant/vars/shape.stylex';
 
-import '../node_modules/modern-normalize/modern-normalize.css';
-// import '../node_modules/.cache/storybook/public/stylex.css';
+import 'modern-normalize/modern-normalize.css';
 import '@/styles.css';
 
 const preview: Preview = {
