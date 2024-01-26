@@ -1,8 +1,12 @@
 # sixui/ui
 
-![npm bundle size](https://img.shields.io/bundlephobia/minzip/@sixui/ui)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@sixui/ui)](https://bundlephobia.com/package/@sixui/ui@latest)
 
-[Scan with Bundlephobia](https://bundlephobia.com/package/@sixui/ui@latest)
+Ready-to-use foundational React components.
+- Implements Google's [Material Design 3](https://m3.material.io/).
+- Leverage Meta's [StyleX](https://github.com/facebook/stylex/) for zero-runtime style injection.
+- Fully themable through CSS styles or CSS vars.
+- Type-safe APIs, styles and themes.
 
 ## Prepare
 
