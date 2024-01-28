@@ -22,6 +22,10 @@ const vars: Partial<IStyleVars<ITabStyleVarKey>> = {
   containerElevation: elevationVars.boxShadow$level0,
   containerHeight: '48px',
   containerShape: shapeVars.corner$none,
+  // &:disabled
+  containerElevation$disabled: elevationVars.boxShadow$level0,
+  containerColor$disabled: colorRolesVars.surface,
+  containerOpacity$disabled: stateVars.opacity$disabled,
 
   // stateLayer
   // &:hover
@@ -33,6 +37,9 @@ const vars: Partial<IStyleVars<ITabStyleVarKey>> = {
 
   // icon
   iconColor: colorRolesVars.onSurfaceVariant,
+  // &:disabled
+  iconColor$disabled: colorRolesVars.onSurface,
+  iconOpacity$disabled: stateVars.opacity$disabled,
   // &:focus
   iconColor$focus: colorRolesVars.onSurface,
   // &:hover
@@ -47,6 +54,9 @@ const vars: Partial<IStyleVars<ITabStyleVarKey>> = {
   labelTextSize: typescaleVars.titleSize$sm,
   labelTextLetterSpacing: typescaleVars.titleTracking$sm,
   labelTextWeight: typescaleVars.titleWeight$sm,
+  // &:disabled
+  labelTextColor$disabled: colorRolesVars.onSurface,
+  labelTextOpacity$disabled: stateVars.opacity$disabled,
   // &:focus
   labelTextColor$focus: colorRolesVars.onSurface,
   // &:hover
@@ -56,9 +66,6 @@ const vars: Partial<IStyleVars<ITabStyleVarKey>> = {
 
   // icon
   iconSize: '24px',
-
-  // activeIcon
-  activeIconColor: colorRolesVars.primary,
 };
 
 export const componentVars = stylex.defineVars(

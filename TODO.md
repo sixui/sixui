@@ -29,7 +29,9 @@
 - Separate the core and the Storybook app.
 - check monorepo usage
 - remove heroicicons dependency
-- remove lodash dependency
+
+- use postcss Autoprefixr on the generated CSS file
+  https://github.com/facebook/stylex/discussions/223
 
 ## FIX ME
 
@@ -74,7 +76,6 @@
 
 ## Refactoring
 
-- use postcss Autoprefixr on the generated CSS file
 - remove 'px' from css attributes values?
 - use `const { current: xxx } = React.useRef();` instead of `const xxxRef = React.useRef(); const xxx = xxxRef.current;` (use `useForkRef` and `setRef`)
 - do not export vars from theme (as they should not be used directly, but from *.stylex.ts)

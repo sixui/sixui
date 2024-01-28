@@ -26,6 +26,7 @@ const vars: Partial<IStyleVars<ITabStyleVarKey>> = {
   withIconAndLabelTextContainerHeight: '64px',
 
   // activeIcon
+  activeIconColor: colorRolesVars.primary,
   // &:focus
   activeIconColor$focus: colorRolesVars.primary,
   // &:hover

@@ -12,6 +12,8 @@ import { componentVars as elevationVars } from '../Elevation/Elevation.stylex';
 import { componentVars as focusRingVars } from '../FocusRing/FocusRing.stylex';
 import { componentVars as rippleVars } from '../Ripple/Ripple.stylex';
 
+// https://github.com/material-components/material-web/blob/main/tabs/internal/_tab.scss
+
 type ITabStyles = IStyles<ITabStyleKey>;
 export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
   host: {
@@ -31,11 +33,9 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
     letterSpacing: vars.labelTextLetterSpacing,
     zIndex: 0, // Ensure this is a stacking context so the indicator displays
     whiteSpace: 'nowrap',
-    color: {
-      default: vars.labelTextColor,
-      ':is([data-focused])': vars.labelTextColor$focus,
-      ':is([data-hovered])': vars.labelTextColor$hover,
-      ':is([data-pressed])': vars.labelTextColor$pressed,
+    cursor: {
+      default: 'default',
+      ':is([data-hovered])': 'pointer',
     },
 
     // eslint-disable-next-line @stylexjs/valid-styles
@@ -50,6 +50,12 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
     // eslint-disable-next-line @stylexjs/valid-styles
     [tabStateVars.focusRingMarginBottom]: 'unset',
   },
+  host$disabled: {
+    cursor: 'default',
+    pointerEvents: 'none',
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [tabStateVars.elevation]: vars.containerElevation$disabled,
+  },
   host$active: {
     color: {
       default: vars.activeLabelTextColor,
@@ -61,29 +67,40 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
     // eslint-disable-next-line @stylexjs/valid-styles
     [tabStateVars.stateLayerColor$hover]: vars.activeStateLayerColor$hover,
     // eslint-disable-next-line @stylexjs/valid-styles
-    [tabStateVars.stateLayerOpacity$hover]: vars.activeStateLayerColor$hover,
+    [tabStateVars.stateLayerOpacity$hover]: vars.activeStateLayerOpacity$hover,
     // eslint-disable-next-line @stylexjs/valid-styles
     [tabStateVars.stateLayerColor$pressed]: vars.activeStateLayerColor$pressed,
     // eslint-disable-next-line @stylexjs/valid-styles
     [tabStateVars.stateLayerOpacity$pressed]:
-      vars.activeStateLayerColor$pressed,
+      vars.activeStateLayerOpacity$pressed,
 
     // eslint-disable-next-line @stylexjs/valid-styles
     [tabStateVars.focusRingMarginBottom]: `calc(${vars.activeIndicatorHeight} + 1px)`,
   },
-  host$hover: {
-    cursor: 'pointer',
+  background: {
+    backgroundColor: vars.containerColor,
+    inset: 0,
+    position: 'absolute',
+    zIndex: -1,
+    borderRadius: 'inherit',
   },
-  button: {
-    '::before': {
-      background: vars.containerColor,
-      content: '',
-      inset: 0,
-      position: 'absolute',
-      zIndex: -1,
-      borderRadius: vars.containerShape,
+  background$disabled: {
+    backgroundColor: vars.containerColor$disabled,
+    opacity: vars.containerOpacity$disabled,
+  },
+  label: {
+    color: {
+      default: vars.labelTextColor,
+      ':is([data-focused])': vars.labelTextColor$focus,
+      ':is([data-hovered])': vars.labelTextColor$hover,
+      ':is([data-pressed])': vars.labelTextColor$pressed,
     },
   },
+  label$disabled: {
+    color: vars.labelTextColor$disabled,
+    opacity: vars.labelTextOpacity$disabled,
+  },
+  button: {},
   content: {
     position: 'relative',
     boxSizing: 'border-box',
@@ -99,7 +116,7 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
     boxSizing: 'border-box',
     zIndex: -1,
     transformOrigin: 'bottom left',
-    background: vars.activeIndicatorColor,
+    backgroundColor: vars.activeIndicatorColor,
     borderRadius: vars.activeIndicatorShape,
     height: vars.activeIndicatorHeight,
     inset: 'auto 0 0 0',
@@ -123,6 +140,10 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
       ':is([data-hovered])': vars.iconColor$hover,
       ':is([data-pressed])': vars.iconColor$pressed,
     },
+  },
+  icon$disabled: {
+    color: vars.iconColor$disabled,
+    opacity: vars.iconOpacity$disabled,
   },
   icon$active: {
     color: {

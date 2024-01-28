@@ -11,9 +11,35 @@ import { colorRolesVars } from '../vars/colorRoles.stylex';
 const vars: Partial<IStyleVars<ITabStyleVarKey>> = {
   // activeIndicator
   activeIndicatorHeight: '2px',
+  activeIndicatorShape: '0',
 
   // activeLabelText
   activeLabelTextColor: colorRolesVars.onSurface,
+
+  // activeIcon
+  activeIconColor: baseComponentVars.iconColor,
+  // &:focus
+  activeIconColor$focus: baseComponentVars.iconColor$focus,
+  // &:hover
+  activeIconColor$hover: baseComponentVars.iconColor$hover,
+  // &:pressed
+  activeIconColor$pressed: baseComponentVars.iconColor$pressed,
+
+  // activeLabelText
+  // &:focus
+  activeLabelTextColor$focus: baseComponentVars.labelTextColor$focus,
+  // &:hover
+  activeLabelTextColor$hover: baseComponentVars.labelTextColor$hover,
+  // &:pressed
+  activeLabelTextColor$pressed: baseComponentVars.labelTextColor$pressed,
+
+  // activeStateLayer
+  // &:hover
+  activeStateLayerColor$hover: baseComponentVars.stateLayerColor$hover,
+  activeStateLayerOpacity$hover: baseComponentVars.stateLayerOpacity$hover,
+  // &:pressed
+  activeStateLayerColor$pressed: baseComponentVars.stateLayerColor$pressed,
+  activeStateLayerOpacity$pressed: baseComponentVars.stateLayerOpacity$pressed,
 };
 
 export const componentTheme = stylex.createTheme(baseComponentVars, vars);

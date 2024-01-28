@@ -1,8 +1,11 @@
 import React from 'react';
 import { type ITabProps, Tab } from './Tab';
 
-export interface ISecondaryTabProps extends Omit<ITabProps, 'variant'> {}
+// https://github.com/material-components/material-web/blob/main/tabs/internal/secondary-tab.ts
+
+export interface ISecondaryTabProps
+  extends Omit<ITabProps, 'variant' | 'fullWidthIndicator' | 'inlineIcon'> {}
 
 export const SecondaryTab: React.FC<ISecondaryTabProps> = (props) => (
-  <Tab {...props} variant='secondary' />
+  <Tab {...props} variant='secondary' fullWidthIndicator />
 );

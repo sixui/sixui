@@ -5,8 +5,11 @@ import type { ITabStyleStateVarKey } from '@/components/atoms/Tab';
 
 const vars: IStyleVars<ITabStyleStateVarKey> = {
   focusRingMarginBottom: 'unset',
+  elevation: 'unset',
 
   // stateLayer
+  // &:disabled
+  stateLayerColor$disabled: 'unset',
   // &:hover
   stateLayerColor$hover: 'unset',
   stateLayerOpacity$hover: 'unset',

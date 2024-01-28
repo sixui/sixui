@@ -1,21 +1,30 @@
-export const TabVariants = ['primary', 'secondary'] as const;
-export type ITabVariant = (typeof TabVariants)[number];
+export const tabVariants = ['primary', 'secondary'] as const;
+export type ITabVariant = (typeof tabVariants)[number];
 
 export type ITabStyleKey =
   | 'host'
+  | 'host$disabled'
   | 'host$active'
   | 'host$hover'
+  | 'background'
+  | 'background$disabled'
   | 'button'
+  | 'label'
+  | 'label$disabled'
   | 'content'
   | 'content$stacked'
   | 'content$stacked$hasIcon$hasLabel'
   | 'indicator'
   | 'indicator$active'
   | 'icon'
+  | 'icon$disabled'
   | 'icon$active';
 
 export type ITabStyleVarKey =
   | 'containerColor'
+  | 'containerElevation$disabled'
+  | 'containerColor$disabled'
+  | 'containerOpacity$disabled'
   | 'containerElevation'
   | 'containerHeight'
   | 'containerShape'
@@ -32,6 +41,8 @@ export type ITabStyleVarKey =
   | 'activeStateLayerOpacity$pressed'
   | 'withIconAndLabelTextContainerHeight'
   | 'iconColor'
+  | 'iconColor$disabled'
+  | 'iconOpacity$disabled'
   | 'iconSize'
   | 'iconColor$focus'
   | 'iconColor$hover'
@@ -46,6 +57,8 @@ export type ITabStyleVarKey =
   | 'labelTextSize'
   | 'labelTextLetterSpacing'
   | 'labelTextWeight'
+  | 'labelTextColor$disabled'
+  | 'labelTextOpacity$disabled'
   | 'labelTextColor$focus'
   | 'labelTextColor$hover'
   | 'labelTextColor$pressed'
@@ -56,6 +69,8 @@ export type ITabStyleVarKey =
 
 export type ITabStyleStateVarKey =
   | 'focusRingMarginBottom'
+  | 'elevation'
+  | 'stateLayerColor$disabled'
   | 'stateLayerColor$hover'
   | 'stateLayerOpacity$hover'
   | 'stateLayerColor$pressed'
