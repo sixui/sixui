@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { CalendarDaysIcon } from '@heroicons/react/20/solid';
 
+import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPropsWithLegend,
   ComponentShowcase,
@@ -22,6 +23,7 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   icon: CalendarDaysIcon,
+  onClick: (args) => sbHandleEvent('click', args),
 } satisfies Partial<ITabProps>;
 
 const statesProps: IComponentPropsWithLegend<ITabProps> = [

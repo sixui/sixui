@@ -220,6 +220,9 @@ import { componentTheme as primaryTabTheme } from './Tab/PrimaryTab.stylex';
 import { styles as primaryTabStyles } from './Tab/PrimaryTab.styles';
 import { componentTheme as secondaryTabTheme } from './Tab/SecondaryTab.stylex';
 
+import { componentTheme as tabsTheme } from './Tabs/Tabs.stylex';
+import { styles as tabsStyles } from './Tabs/Tabs.styles';
+
 export const theme: ITheme = {
   name: 'Material Design 3',
   components: {
@@ -423,5 +426,9 @@ export const theme: ITheme = {
     },
     PrimaryTab: { theme: primaryTabTheme, styles: primaryTabStyles },
     SecondaryTab: { theme: secondaryTabTheme },
+    Tabs: {
+      theme: tabsTheme,
+      styles: tabsStyles,
+    },
   },
 };
