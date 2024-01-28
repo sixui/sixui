@@ -209,6 +209,17 @@ import { componentTheme as filledCardTheme } from './Card/FilledCard.stylex';
 import { componentTheme as outlinedCardTheme } from './Card/OutlinedCard.stylex';
 import { styles as outlinedCardStyles } from './Card/OutlinedCard.styles';
 
+import { componentTheme as tabTheme } from './Tab/Tab.stylex';
+import {
+  styles as tabStyles,
+  rippleStyles as tabRippleStyles,
+  elevationStyles as tabElevationStyles,
+  focusRingStyles as tabFocusRingStyles,
+} from './Tab/Tab.styles';
+import { componentTheme as primaryTabTheme } from './Tab/PrimaryTab.stylex';
+import { styles as primaryTabStyles } from './Tab/PrimaryTab.styles';
+import { componentTheme as secondaryTabTheme } from './Tab/SecondaryTab.stylex';
+
 export const theme: ITheme = {
   name: 'Material Design 3',
   components: {
@@ -403,5 +414,14 @@ export const theme: ITheme = {
       theme: outlinedCardTheme,
       styles: outlinedCardStyles,
     },
+    Tab: {
+      theme: tabTheme,
+      styles: tabStyles,
+      rippleStyles: tabRippleStyles,
+      focusRingStyles: tabFocusRingStyles,
+      elevationStyles: tabElevationStyles,
+    },
+    PrimaryTab: { theme: primaryTabTheme, styles: primaryTabStyles },
+    SecondaryTab: { theme: secondaryTabTheme },
   },
 };

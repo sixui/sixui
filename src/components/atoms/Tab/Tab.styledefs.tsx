@@ -1,0 +1,62 @@
+export const TabVariants = ['primary', 'secondary'] as const;
+export type ITabVariant = (typeof TabVariants)[number];
+
+export type ITabStyleKey =
+  | 'host'
+  | 'host$active'
+  | 'host$hover'
+  | 'button'
+  | 'content'
+  | 'content$stacked'
+  | 'content$stacked$hasIcon$hasLabel'
+  | 'indicator'
+  | 'indicator$active'
+  | 'icon'
+  | 'icon$active';
+
+export type ITabStyleVarKey =
+  | 'containerColor'
+  | 'containerElevation'
+  | 'containerHeight'
+  | 'containerShape'
+  | 'activeIndicatorColor'
+  | 'activeIndicatorHeight'
+  | 'activeIndicatorShape'
+  | 'stateLayerColor$hover'
+  | 'stateLayerOpacity$hover'
+  | 'stateLayerColor$pressed'
+  | 'stateLayerOpacity$pressed'
+  | 'activeStateLayerColor$hover'
+  | 'activeStateLayerOpacity$hover'
+  | 'activeStateLayerColor$pressed'
+  | 'activeStateLayerOpacity$pressed'
+  | 'withIconAndLabelTextContainerHeight'
+  | 'iconColor'
+  | 'iconSize'
+  | 'iconColor$focus'
+  | 'iconColor$hover'
+  | 'iconColor$pressed'
+  | 'activeIconColor'
+  | 'activeIconColor$focus'
+  | 'activeIconColor$hover'
+  | 'activeIconColor$pressed'
+  | 'labelTextColor'
+  | 'labelTextFont'
+  | 'labelTextLineHeight'
+  | 'labelTextSize'
+  | 'labelTextLetterSpacing'
+  | 'labelTextWeight'
+  | 'labelTextColor$focus'
+  | 'labelTextColor$hover'
+  | 'labelTextColor$pressed'
+  | 'activeLabelTextColor'
+  | 'activeLabelTextColor$focus'
+  | 'activeLabelTextColor$hover'
+  | 'activeLabelTextColor$pressed';
+
+export type ITabStyleStateVarKey =
+  | 'focusRingMarginBottom'
+  | 'stateLayerColor$hover'
+  | 'stateLayerOpacity$hover'
+  | 'stateLayerColor$pressed'
+  | 'stateLayerOpacity$pressed';

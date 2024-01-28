@@ -80,6 +80,7 @@
 - do not export vars from theme (as they should not be used directly, but from *.stylex.ts)
 - use useHover hook?
   https://react-spectrum.adobe.com/blog/building-a-button-part-2.html
+- uniformize letterSpacing -> tracking (or tracking -> letterSpacing)
 
 ## Check
 
