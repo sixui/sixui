@@ -3,7 +3,7 @@ import * as React from 'react';
 import type { IAny, IMaybeAsync } from '@/helpers/types';
 import type { ITabVariant } from '../Tab/Tab.styledefs';
 
-export interface ITabsContextValue {
+export interface ITabContextValue {
   id?: string;
   anchor?: string;
   onTabActivated: (activeTab: HTMLElement, indicator: HTMLElement) => void;
@@ -11,6 +11,6 @@ export interface ITabsContextValue {
   variant?: ITabVariant;
 }
 
-export const TabsContext = React.createContext<ITabsContextValue | undefined>(
+export const TabContext = React.createContext<ITabContextValue | undefined>(
   undefined,
 );

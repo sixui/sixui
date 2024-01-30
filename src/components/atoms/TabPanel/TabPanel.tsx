@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useTabsContext } from '../Tabs/useTabsContext';
+import { useTabContext } from '../Tabs/useTabContext';
 
 export interface ITabPanelProps {
   anchor: string;
@@ -8,13 +8,13 @@ export interface ITabPanelProps {
 }
 
 export const TabPanel: React.FC<ITabPanelProps> = ({ anchor, children }) => {
-  const tabsContext = useTabsContext();
+  const tabContext = useTabContext();
 
-  if (tabsContext?.anchor !== anchor) {
+  if (tabContext?.anchor !== anchor) {
     return null;
   }
 
-  const id = tabsContext && anchor ? `${tabsContext.id}-${anchor}` : undefined;
+  const id = tabContext && anchor ? `${tabContext.id}-${anchor}` : undefined;
 
   return (
     <div role='tabpanel' aria-labelledby={id}>

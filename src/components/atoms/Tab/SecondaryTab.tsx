@@ -7,5 +7,5 @@ export interface ISecondaryTabProps
   extends Omit<ITabProps, 'variant' | 'fullWidthIndicator' | 'inlineIcon'> {}
 
 export const SecondaryTab: React.FC<ISecondaryTabProps> = (props) => (
-  <Tab {...props} variant='secondary' fullWidthIndicator />
+  <Tab {...props} variant='secondary' />
 );

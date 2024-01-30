@@ -4,11 +4,11 @@ import type { IAny, IMaybeAsync } from '@/helpers/types';
 import { useControlled } from '@/hooks/useControlled';
 import { EASING } from '@/helpers/animation';
 import { shouldReduceMotion } from '@/helpers/shouldReduceAnimations';
-import { type ITabsContextValue, TabsContext } from './TabsContext';
+import { type ITabContextValue, TabContext } from './TabContext';
 import { useId } from '@/hooks/useId';
 
 export interface ITabsProps
-  extends Omit<ITabsContextValue, 'onChange'>,
+  extends Omit<ITabContextValue, 'onChange'>,
     Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, 'aria-label'> {
   onChange?: (anchor: string | undefined) => IMaybeAsync<IAny>;
   defaultAnchor?: string;
@@ -18,6 +18,7 @@ export interface ITabsProps
 export const Tabs: React.FC<ITabsProps> = ({
   children,
   onChange,
+  variant,
   ...props
 }) => {
   const [anchor, setAnchor] = useControlled({
@@ -68,6 +69,7 @@ export const Tabs: React.FC<ITabsProps> = ({
       ({
         id,
         anchor,
+        variant,
         onTabActivated(activeTab, indicator) {
           if (!previousTabRef.current) {
             previousTabRef.current = activeTab;
@@ -96,11 +98,11 @@ export const Tabs: React.FC<ITabsProps> = ({
           setAnchor(anchor);
           onChange?.(anchor);
         },
-      }) satisfies ITabsContextValue,
-    [id, anchor, getIndicatorKeyframes, setAnchor, onChange],
+      }) satisfies ITabContextValue,
+    [id, variant, anchor, getIndicatorKeyframes, setAnchor, onChange],
   );
 
   return (
-    <TabsContext.Provider value={contextValue}>{children}</TabsContext.Provider>
+    <TabContext.Provider value={contextValue}>{children}</TabContext.Provider>
   );
 };

@@ -16,7 +16,7 @@ import { useVisualState } from '@/hooks/useVisualState';
 import { Elevation } from '@/components/utils/Elevation';
 import { FocusRing } from '@/components/utils/FocusRing';
 import { Ripple } from '@/components/utils/Ripple';
-import { useTabsContext } from '../Tabs/useTabsContext';
+import { useTabContext } from '../Tabs/useTabContext';
 
 // https://github.com/material-components/material-web/blob/main/tabs/internal/tab.ts
 
@@ -35,7 +35,6 @@ export interface ITabProps extends IContainer<ITabStyleKey, ITabStyleVarKey> {
 
   icon?: IIcon;
   activeIcon?: IIcon;
-  fullWidthIndicator?: boolean;
   onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
   label?: string;
   anchor?: string;
@@ -57,7 +56,6 @@ const variantMap: ITabVariantMap = {
 export const Tab: React.FC<ITabProps> = ({
   icon: Icon,
   activeIcon: ActiveIcon,
-  fullWidthIndicator,
   inlineIcon,
   onClick,
   label,
@@ -65,8 +63,8 @@ export const Tab: React.FC<ITabProps> = ({
   disabled,
   ...props
 }) => {
-  const tabsContext = useTabsContext();
-  const variant = tabsContext?.variant ?? props.variant ?? 'primary';
+  const tabContext = useTabContext();
+  const variant = props.variant ?? tabContext?.variant ?? 'primary';
 
   const { theme, styles, focusRingStyles, rippleStyles, elevationStyles } =
     useComponentTheme('Tab');
@@ -87,26 +85,27 @@ export const Tab: React.FC<ITabProps> = ({
     [styles, variantStyles, props.styles, visualState],
   );
 
+  const fullWidthIndicator = variant === 'secondary';
   const stacked = !inlineIcon;
   const hasLabel = !!label;
   const active = !disabled
-    ? tabsContext
-      ? tabsContext.anchor !== undefined && tabsContext.anchor === anchor
+    ? tabContext
+      ? tabContext.anchor !== undefined && tabContext.anchor === anchor
       : props.active
     : false;
   const hasIcon = active ? !!ActiveIcon || !!Icon : !!Icon;
-  const id = tabsContext && anchor ? `${tabsContext.id}-${anchor}` : undefined;
+  const id = tabContext && anchor ? `${tabContext.id}-${anchor}` : undefined;
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> =
     React.useCallback(
       (event) => {
-        tabsContext?.onChange(anchor);
+        tabContext?.onChange(anchor);
 
         Promise.resolve(onClick?.(event)).catch((error: Error) => {
           throw error;
         });
       },
-      [onClick, tabsContext, anchor],
+      [onClick, tabContext, anchor],
     );
 
   const indicator = React.useMemo(
@@ -122,10 +121,10 @@ export const Tab: React.FC<ITabProps> = ({
   React.useEffect(() => {
     const activeTab = actionRef.current;
     const indicator = indicatorRef.current;
-    if (tabsContext && active && activeTab && indicator) {
-      tabsContext.onTabActivated(activeTab, indicator);
+    if (tabContext && active && activeTab && indicator) {
+      tabContext.onTabActivated(activeTab, indicator);
     }
-  }, [active, anchor, tabsContext]);
+  }, [active, anchor, tabContext]);
 
   return (
     <button

@@ -25,15 +25,15 @@
 - Elevation
   use visualState?
 - Tab
-  navigate with keys
+  Navigate with arrow keys
     https://m3.material.io/components/tabs/accessibility
-  scrollable
-  vertical
-  navigable
-  icon position
-  export TabContext?
-  badges
-  test with reduced motion
+  Scrollable
+  Vertical
+  Navigable
+  Icon position
+  Export TabContext?
+  Badges
+  Test with reduced motion
 
 - Separate the core and the Storybook app.
 - check monorepo usage
