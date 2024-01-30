@@ -1,3 +1,15 @@
+# v0.0.7 (Tue Jan 30 2024)
+
+#### 🐛 Bug Fix
+
+- Tabs [#1](https://github.com/sixui/ui/pull/1) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.6 (Fri Jan 26 2024)
 
 #### ⚠️ Pushed to `main`
