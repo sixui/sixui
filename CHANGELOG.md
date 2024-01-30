@@ -1,3 +1,15 @@
+# v0.0.8 (Tue Jan 30 2024)
+
+#### 🐛 Bug Fix
+
+- Typography working [#2](https://github.com/sixui/ui/pull/2) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.7 (Tue Jan 30 2024)
 
 #### 🐛 Bug Fix
