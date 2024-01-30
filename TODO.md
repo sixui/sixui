@@ -34,6 +34,7 @@
   Export TabContext?
   Badges
   Test with reduced motion
+  Tab Panel typography in stories
 
 - Separate the core and the Storybook app.
 - check monorepo usage
@@ -107,7 +108,6 @@
 *What that the team is currently working on.*
 
 Components
-- [ ] Tabs
 - [ ] Select
 - [ ] CardActionArea
 - [ ] CardActions
@@ -190,6 +190,7 @@ Components
 - [x] Radio
 - [x] Ripple
 - [x] Switch
+- [x] Tabs
 - [x] Text field
 
 ### Not planned

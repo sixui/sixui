@@ -28,11 +28,6 @@ export interface ITabProps extends IContainer<ITabStyleKey, ITabStyleVarKey> {
    **/
   active?: boolean;
 
-  /**
-   * Whether or not the icon renders inline with label or stacked vertically.
-   */
-  inlineIcon?: boolean;
-
   icon?: IIcon;
   activeIcon?: IIcon;
   onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
@@ -56,7 +51,6 @@ const variantMap: ITabVariantMap = {
 export const Tab: React.FC<ITabProps> = ({
   icon: Icon,
   activeIcon: ActiveIcon,
-  inlineIcon,
   onClick,
   label,
   anchor,
@@ -86,7 +80,7 @@ export const Tab: React.FC<ITabProps> = ({
   );
 
   const fullWidthIndicator = variant === 'secondary';
-  const stacked = !inlineIcon;
+  const stacked = variant === 'primary';
   const hasLabel = !!label;
   const active = !disabled
     ? tabContext
