@@ -123,9 +123,26 @@ Features
 - [ ] Docs and examples
 
 Components
+- [ ] App Bar
+- [ ] Backdrop
+- [ ] Box
+- [ ] Badge
+- [ ] Breadcrumbs
+- [ ] Container
 - [ ] Dialog
+- [ ] Drawer
+- [ ] Grid
+- [ ] Image List
 - [ ] Linear Progress Indicator
+- [ ] Paper
+- [ ] Pagination
 - [ ] Slider
+- [ ] Snackbar
+- [ ] Skeleton
+- [ ] Stack
+- [ ] Stepper
+- [ ] Treeview
+- [ ] Tooltip
 
 ### Future
 
@@ -141,7 +158,6 @@ Features
 
 Components
 - [ ] Autocomplete
-- [ ] Badge
 - [ ] Banner
 - [ ] Bottom sheet
 - [ ] Data table
