@@ -5,10 +5,7 @@ import type { ITabVariant } from '../Tab/Tab.styledefs';
 
 export interface ITabsContextValue {
   anchor?: string;
-  onTabActivated: (
-    activeTab: HTMLDivElement,
-    indicator: HTMLDivElement,
-  ) => void;
+  onTabActivated: (activeTab: HTMLElement, indicator: HTMLElement) => void;
   onChange: (anchor: string | undefined) => IMaybeAsync<IAny>;
   variant?: ITabVariant;
 }

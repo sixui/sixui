@@ -19,7 +19,7 @@ export const styles: MapNamespaces<ITabListStyles> =
         '::-webkit-scrollbar': 'none',
       },
     },
-    TabList: {
+    tabList: {
       alignItems: 'end',
       display: 'flex',
       height: '100%',
@@ -27,13 +27,4 @@ export const styles: MapNamespaces<ITabListStyles> =
       justifyContent: 'space-between',
       width: '100%',
     },
-    // TODO
-    // ::slotted(*) {
-    //   flex: 1;
-    // }
-    // // draw selected on top so its indicator can be transitioned from the
-    // // previously selected tab, on top of it
-    // ::slotted([active]) {
-    //   z-index: 1;
-    // }
   });

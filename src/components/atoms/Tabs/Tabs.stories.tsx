@@ -24,6 +24,7 @@ const ControlledTabs: React.FC<ITabsProps> = (props) => {
         <PrimaryTab label='Item two' anchor='tab-2' />
         <PrimaryTab label='Item three' anchor='tab-3' />
       </TabList>
+      {/* TODO: tab panels */}
     </Tabs>
   );
 };

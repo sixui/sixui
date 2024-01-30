@@ -17,27 +17,9 @@ import { componentVars as rippleVars } from '../Ripple/Ripple.stylex';
 type ITabStyles = IStyles<ITabStyleKey>;
 export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
   host: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    outline: 'none',
-    padding: '0 16px',
-    position: 'relative',
-    WebkitTapHighlightColor: 'transparent',
-    verticalAlign: 'middle',
-    userSelect: 'none',
-    fontFamily: vars.labelTextFont,
-    fontSize: vars.labelTextSize,
-    fontWeight: vars.labelTextWeight,
-    overflow: 'visible',
-    lineHeight: vars.labelTextLineHeight,
-    letterSpacing: vars.labelTextLetterSpacing,
-    zIndex: 0, // Ensure this is a stacking context so the indicator displays
-    whiteSpace: 'nowrap',
-    cursor: {
-      default: 'default',
-      ':is([data-hovered])': 'pointer',
-    },
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 0,
 
     // eslint-disable-next-line @stylexjs/valid-styles
     [tabStateVars.stateLayerColor$hover]: vars.stateLayerColor$hover,
@@ -58,6 +40,10 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
     [tabStateVars.elevation]: vars.containerElevation$disabled,
   },
   host$active: {
+    // Draw selected on top so its indicator can be transitioned from the previously selected tab,
+    // on top of it.
+    zIndex: 1,
+
     // eslint-disable-next-line @stylexjs/valid-styles
     [tabStateVars.stateLayerColor$hover]: vars.activeStateLayerColor$hover,
     // eslint-disable-next-line @stylexjs/valid-styles
@@ -71,17 +57,37 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
     // eslint-disable-next-line @stylexjs/valid-styles
     [tabStateVars.focusRingMarginBottom]: `calc(${vars.activeIndicatorHeight} + 1px)`,
   },
-  background: {
-    backgroundColor: vars.containerColor,
-    inset: 0,
-    position: 'absolute',
+  button: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    outline: 'none',
+    padding: '0 16px',
+    position: 'relative',
+    WebkitTapHighlightColor: 'transparent',
+    verticalAlign: 'middle',
+    userSelect: 'none',
+    overflow: 'visible',
+    zIndex: 0, // Ensure this is a stacking context so the indicator displays
+    whiteSpace: 'nowrap',
+    cursor: {
+      default: 'default',
+      ':is([data-hovered])': 'pointer',
+    },
+
     borderRadius: 'inherit',
-  },
-  background$disabled: {
-    backgroundColor: vars.containerColor$disabled,
-    opacity: vars.containerOpacity$disabled,
+    borderStyle: 'unset',
+    backgroundColor: 'unset',
+    textDecoration: 'none',
+    paddingBlock: 0,
   },
   label: {
+    fontFamily: vars.labelTextFont,
+    fontSize: vars.labelTextSize,
+    fontWeight: vars.labelTextWeight,
+    lineHeight: vars.labelTextLineHeight,
+    letterSpacing: vars.labelTextLetterSpacing,
+
     color: {
       default: vars.labelTextColor,
       ':is([data-focused])': vars.labelTextColor$focus,
@@ -101,18 +107,16 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
     color: vars.labelTextColor$disabled,
     opacity: vars.labelTextOpacity$disabled,
   },
-  button: {
+  background: {
+    backgroundColor: vars.containerColor,
+    inset: 0,
+    position: 'absolute',
+    zIndex: -1,
     borderRadius: 'inherit',
-    cursor: 'inherit',
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderStyle: 'unset',
-    outline: 'none',
-    verticalAlign: 'middle',
-    backgroundColor: 'unset',
-    textDecoration: 'none',
-    padding: 0,
+  },
+  background$disabled: {
+    backgroundColor: vars.containerColor$disabled,
+    opacity: vars.containerOpacity$disabled,
   },
   content: {
     position: 'relative',
@@ -127,8 +131,8 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
   indicator: {
     position: 'absolute',
     boxSizing: 'border-box',
-    zIndex: 1,
-    transformOrigin: 'bottom left',
+    zIndex: -1,
+    transformOrigin: 'left bottom',
     backgroundColor: vars.activeIndicatorColor,
     borderRadius: vars.activeIndicatorShape,
     height: vars.activeIndicatorHeight,

@@ -59,8 +59,18 @@ export const Variants: IStory = {
     <ComponentShowcase
       component={() => (
         <React.Fragment>
-          <PrimaryTab {...props} label='Primary' />
-          <SecondaryTab {...props} label='Secondary' />
+          <PrimaryTab
+            {...props}
+            icon={CalendarDaysIcon}
+            activeIcon={ActiveCalendarDaysIcon}
+            label='Primary'
+          />
+          <SecondaryTab
+            {...props}
+            icon={CalendarDaysIcon}
+            activeIcon={ActiveCalendarDaysIcon}
+            label='Secondary'
+          />
         </React.Fragment>
       )}
       props={props}

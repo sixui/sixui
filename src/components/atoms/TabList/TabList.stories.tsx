@@ -16,7 +16,7 @@ import {
   ComponentShowcase,
 } from '@/components/molecules/ComponentShowcase';
 import { TabList, type ITabListProps } from './TabList';
-import { type ITabProps, Tab } from '../Tab/Tab';
+import { PrimaryTab, SecondaryTab } from '../Tab';
 
 const meta = {
   component: TabList,
@@ -24,11 +24,11 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-type IExtendedTabListProps = ITabListProps &
-  Pick<ITabProps, 'variant'> & {
-    hasIcon?: boolean;
-    hasLabel?: boolean;
-  };
+type IExtendedTabListProps = ITabListProps & {
+  hasIcon?: boolean;
+  hasLabel?: boolean;
+  tab: typeof PrimaryTab | typeof SecondaryTab;
+};
 
 const defaultArgs = {} satisfies Partial<ITabListProps>;
 
@@ -51,7 +51,7 @@ const rowsProps: IComponentPropsWithLegend<IExtendedTabListProps> = [
 const TabListDemo: React.FC<IExtendedTabListProps> = ({
   hasIcon,
   hasLabel,
-  variant,
+  tab: Tab,
   ...props
 }) => (
   <TabList {...props}>
@@ -59,20 +59,17 @@ const TabListDemo: React.FC<IExtendedTabListProps> = ({
       label={hasLabel ? 'Item one' : undefined}
       icon={hasIcon ? CalendarDaysIcon : undefined}
       activeIcon={hasIcon ? ActiveCalendarDaysIcon : undefined}
-      variant={variant}
       active
     />
     <Tab
       label={hasLabel ? 'Item two' : undefined}
       icon={hasIcon ? PhotoIcon : undefined}
       activeIcon={hasIcon ? ActivePhotoIcon : undefined}
-      variant={variant}
     />
     <Tab
       label={hasLabel ? 'Item three' : undefined}
       icon={hasIcon ? Cog6ToothIcon : undefined}
       activeIcon={hasIcon ? ActiveCog6ToothIcon : undefined}
-      variant={variant}
       disabled
     />
   </TabList>
@@ -81,7 +78,7 @@ const TabListDemo: React.FC<IExtendedTabListProps> = ({
 export const Primary: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={(props) => <TabListDemo variant='primary' {...props} />}
+      component={(props) => <TabListDemo tab={PrimaryTab} {...props} />}
       props={props}
       rowsProps={rowsProps}
       align='start'
@@ -93,7 +90,7 @@ export const Primary: IStory = {
 export const Secondary: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={(props) => <TabListDemo variant='secondary' {...props} />}
+      component={(props) => <TabListDemo tab={SecondaryTab} {...props} />}
       props={props}
       rowsProps={rowsProps}
       align='start'

@@ -1,1 +1,1 @@
-export type ITabListStyleKey = 'host' | 'host$hidden' | 'TabList';
+export type ITabListStyleKey = 'host' | 'host$hidden' | 'tabList';

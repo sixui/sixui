@@ -111,9 +111,6 @@ export const styles: MapNamespaces<IButtonStyles> =
       height: '100%',
       gap: 'inherit',
     },
-    button$disabled: {
-      pointerEvents: 'none',
-    },
     touchTarget: {
       position: 'absolute',
       top: '50%',

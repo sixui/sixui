@@ -27,7 +27,7 @@ export const TabList: React.FC<ITabListProps> = ({ children, ...props }) => {
 
   return (
     <div {...styleProps(['host'])} role='tablist'>
-      <div {...styleProps(['TabList'])}>{children}</div>
+      <div {...styleProps(['tabList'])}>{children}</div>
       <Divider />
     </div>
   );
