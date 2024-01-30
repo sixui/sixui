@@ -12,6 +12,7 @@ export interface ITypographyProps
   size?: 'lg' | 'md' | 'sm';
   children?: React.ReactNode;
   noMargin?: boolean;
+  component?: React.ElementType;
 }
 
 const tagMap = {
@@ -37,6 +38,7 @@ export const Typography: React.FC<ITypographyProps> = ({
   size = 'md',
   children,
   noMargin,
+  component,
   ...props
 }) => {
   const { styles } = useComponentTheme('Typography');
@@ -49,7 +51,7 @@ export const Typography: React.FC<ITypographyProps> = ({
     [styles, props.styles],
   );
 
-  const Tag = tagMap[`${variant}$${size}`];
+  const Tag = component ?? tagMap[`${variant}$${size}`];
 
   return (
     <Tag
