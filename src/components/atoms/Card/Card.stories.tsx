@@ -44,7 +44,7 @@ const cardContentStyles = stylex.create({
     fontSize: typescaleVars.bodySize$md,
     fontWeight: typescaleVars.bodyWeight$md,
     lineHeight: typescaleVars.bodyLineHeight$md,
-    letterSpacing: typescaleVars.bodyTracking$md,
+    letterSpacing: typescaleVars.bodyLetterSpacing$md,
   },
 });
 

@@ -13,7 +13,7 @@ const vars: Partial<IStyleVars<IComponentShowcaseStyleVarKey>> = {
   legendTextFont: typescaleVars.labelFont$md,
   legendTextLineHeight: typescaleVars.labelLineHeight$md,
   legendTextSize: typescaleVars.labelSize$md,
-  legendTextTracking: typescaleVars.labelTracking$md,
+  legendTextTracking: typescaleVars.labelLetterSpacing$md,
   legendTextWeight: typescaleVars.labelWeight$md,
 
   // groupBorder

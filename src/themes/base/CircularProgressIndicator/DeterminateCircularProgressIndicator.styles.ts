@@ -67,7 +67,7 @@ export const styles: MapNamespaces<IDeterminateCircularProgressIndicatorStyles> 
       fontSize: typescaleVars.labelSize$sm,
       fontWeight: typescaleVars.labelWeight$sm,
       lineHeight: typescaleVars.labelLineHeight$sm,
-      letterSpacing: typescaleVars.labelTracking$sm,
+      letterSpacing: typescaleVars.labelLetterSpacing$sm,
     },
     label$disabled: {
       opacity: stateVars.opacity$disabled,

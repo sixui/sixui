@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
+import * as stylex from '@stylexjs/stylex';
 import {
   CalendarDaysIcon,
   PhotoIcon,
@@ -13,10 +14,12 @@ import {
   Cog6ToothIcon as ActiveCog6ToothIcon,
 } from '@heroicons/react/24/solid';
 
+import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { type ITabsProps, Tabs } from './Tabs';
 import { Tab } from '../Tab';
 import { TabList } from '../TabList';
 import { type ITabPanelProps, TabPanel } from '../TabPanel';
+import { Typography } from '../Typography';
 
 const meta = {
   component: Tabs,
@@ -26,9 +29,18 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {} satisfies Partial<ITabsProps>;
 
+const styles = stylex.create({
+  tabPanel: {
+    padding: '16px',
+    color: colorRolesVars.onSurface,
+  },
+});
+
 const TabPanelDemo: React.FC<ITabPanelProps> = ({ children, ...props }) => (
   <TabPanel {...props}>
-    <div style={{ padding: '16px' }}>{children}</div>
+    <div {...stylex.props(styles.tabPanel)}>
+      <Typography>{children}</Typography>
+    </div>
   </TabPanel>
 );
 

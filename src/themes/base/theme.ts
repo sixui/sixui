@@ -222,6 +222,8 @@ import { componentTheme as secondaryTabTheme } from './Tab/SecondaryTab.stylex';
 
 import { styles as tabListStyles } from './TabList/TabList.styles';
 
+import { styles as typographyStyles } from './Typography/Typography.styles';
+
 export const theme: ITheme = {
   name: 'Material Design 3',
   components: {
@@ -427,6 +429,9 @@ export const theme: ITheme = {
     SecondaryTab: { theme: secondaryTabTheme },
     TabList: {
       styles: tabListStyles,
+    },
+    Typography: {
+      styles: typographyStyles,
     },
   },
 };

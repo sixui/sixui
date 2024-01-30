@@ -78,7 +78,7 @@ const vars: Partial<IStyleVars<IChipStyleVarKey>> = {
   labelTextFont: typescaleVars.labelFont$lg,
   labelTextLineHeight: typescaleVars.labelLineHeight$lg,
   labelTextSize: typescaleVars.labelSize$lg,
-  labelTextTracking: typescaleVars.labelTracking$lg,
+  labelTextTracking: typescaleVars.labelLetterSpacing$lg,
   labelTextWeight: typescaleVars.labelWeight$lg,
   // &:disabled
   labelTextColor$disabled: colorRolesVars.onSurface,
