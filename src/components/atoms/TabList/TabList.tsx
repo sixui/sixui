@@ -5,7 +5,6 @@ import type { ITabListStyleKey } from './TabList.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { Divider } from '../Divider';
 
 export interface ITabListProps
   extends Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, 'aria-label'>,
@@ -28,7 +27,6 @@ export const TabList: React.FC<ITabListProps> = ({ children, ...props }) => {
   return (
     <div {...styleProps(['host'])} role='tablist'>
       <div {...styleProps(['tabList'])}>{children}</div>
-      <Divider />
     </div>
   );
 };

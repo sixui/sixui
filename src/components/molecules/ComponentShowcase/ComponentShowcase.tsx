@@ -24,6 +24,7 @@ export interface IComponentShowcaseProps<IComponentProps>
   colsProps?: IComponentPropsWithLegend<IComponentProps>;
   rowsProps?: IComponentPropsWithLegend<IComponentProps>;
   align?: 'start' | 'center';
+  fullWidth?: boolean;
 }
 
 const DUMMY_TEXT = '.';
@@ -35,6 +36,7 @@ export const ComponentShowcase = <IComponentProps extends object>({
   colsProps = [{}],
   rowsProps = [{}],
   align = 'center',
+  fullWidth,
   ...props
 }: IComponentShowcaseProps<IComponentProps>): React.ReactNode => {
   const { theme, styles } = useComponentTheme('ComponentShowcase');
@@ -89,9 +91,12 @@ export const ComponentShowcase = <IComponentProps extends object>({
         </div>
       ) : null}
 
-      <div {...styleProps(['cols', 'itemsStart'])}>
+      <div {...styleProps(['cols', 'itemsStart', fullWidth && 'flex'])}>
         {colsProps.map(({ $legend: colLegend, ...colProps }, colIndex) => (
-          <div {...styleProps(['groupRows'])} key={colIndex}>
+          <div
+            {...styleProps(['groupRows', fullWidth && 'flex'])}
+            key={colIndex}
+          >
             {groupsProps.map((groupProps, groupIndex) => (
               <div
                 key={`${colIndex}-${groupIndex}`}
@@ -110,7 +115,12 @@ export const ComponentShowcase = <IComponentProps extends object>({
                 {rowsProps.map((rowProps, rowIndex) => (
                   <div
                     key={`${colIndex}-${groupIndex}-${rowIndex}`}
-                    {...styleProps(['flex', 'cols', 'itemsEnd'])}
+                    {...styleProps([
+                      'flex',
+                      'cols',
+                      'itemsEnd',
+                      fullWidth && 'w100',
+                    ])}
                   >
                     <Component
                       {...componentProps}

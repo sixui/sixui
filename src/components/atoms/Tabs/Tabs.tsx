@@ -9,7 +9,7 @@ import { type ITabsContextValue, TabsContext } from './TabsContext';
 export interface ITabsProps
   extends Omit<ITabsContextValue, 'onChange'>,
     Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, 'aria-label'> {
-  onChange: (anchor: string | undefined) => IMaybeAsync<IAny>;
+  onChange?: (anchor: string | undefined) => IMaybeAsync<IAny>;
   defaultAnchor?: string;
   children?: React.ReactNode;
 }

@@ -71,4 +71,7 @@ export const styles: MapNamespaces<IComponentShowcaseStyles> =
     invisible: {
       visibility: 'hidden',
     },
+    w100: {
+      width: '100%',
+    },
   });

@@ -59,17 +59,14 @@ export const styles: MapNamespaces<IFabStyles> = stylex.create<IFabStyles>({
   host$sm: {
     // eslint-disable-next-line @stylexjs/valid-styles
     [fabStateVars.containerShape]: vars.containerShape$sm,
-    margin: `max(0px, 48px - ${vars.containerHeight$sm})`,
   },
   host$md: {
     // eslint-disable-next-line @stylexjs/valid-styles
     [fabStateVars.containerShape]: vars.containerShape$md,
-    margin: `max(0px, 48px - ${vars.containerHeight$md})`,
   },
   host$lg: {
     // eslint-disable-next-line @stylexjs/valid-styles
     [fabStateVars.containerShape]: vars.containerShape$lg,
-    margin: `max(0px, 48px - ${vars.containerHeight$lg})`,
   },
   fab: {
     borderRadius: 'inherit',

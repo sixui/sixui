@@ -25,7 +25,6 @@
 - Elevation
   use visualState?
 - Tab
-  indicator animation
   navigate with keys
   scrollable
   vertical

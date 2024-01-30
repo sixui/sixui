@@ -13,7 +13,8 @@ export type IComponentShowcaseStyleKey =
   | 'legend'
   | 'legendRow'
   | 'leftBorder'
-  | 'invisible';
+  | 'invisible'
+  | 'w100';
 
 export type IComponentShowcaseStyleVarKey =
   | 'textColor'

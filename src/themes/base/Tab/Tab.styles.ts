@@ -20,6 +20,11 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: 0,
+    display: 'inline-flex',
+    alignContent: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    justifyItems: 'center',
 
     // eslint-disable-next-line @stylexjs/valid-styles
     [tabStateVars.stateLayerColor$hover]: vars.stateLayerColor$hover,
@@ -58,6 +63,10 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
     [tabStateVars.focusRingMarginBottom]: `calc(${vars.activeIndicatorHeight} + 1px)`,
   },
   button: {
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 0,
+
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
