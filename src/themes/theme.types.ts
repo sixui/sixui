@@ -69,6 +69,8 @@ import type {
   IDividerStyleVarKey,
 } from '@/components/atoms/Divider';
 import type { ICardStyleKey, ICardStyleVarKey } from '@/components/atoms/Card';
+import type { ITabStyleKey, ITabStyleVarKey } from '@/components/atoms/Tab';
+import type { ITabListStyleKey } from '@/components/atoms/TabList';
 
 export interface ITemplateTheme {
   theme?: IStyleVarsTheme<ITemplateStyleVarKey>;
@@ -116,6 +118,11 @@ export interface ITextFieldTheme {
 export interface ICardTheme {
   theme?: IStyleVarsTheme<ICardStyleVarKey>;
   styles?: ICompiledStyles<ICardStyleKey>;
+}
+
+export interface ITabTheme {
+  theme?: IStyleVarsTheme<ITabStyleVarKey>;
+  styles?: ICompiledStyles<ITabStyleKey>;
 }
 
 export interface ITheme {
@@ -279,6 +286,16 @@ export interface ITheme {
     FilledCard: ICardTheme;
     OutlinedCard: ICardTheme & {
       styles?: ICompiledStyles<ICardStyleKey>;
+    };
+    Tab: ITabTheme & {
+      rippleStyles: ICompiledStyles<IRippleStyleKey>;
+      focusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
+      elevationStyles: ICompiledStyles<IElevationStyleKey>;
+    };
+    PrimaryTab: ITabTheme;
+    SecondaryTab: ITabTheme;
+    TabList: {
+      styles?: ICompiledStyles<ITabListStyleKey>;
     };
   };
 }

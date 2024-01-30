@@ -52,15 +52,16 @@ export const RadioGroup = React.forwardRef(function RadioGroup(
   const handleElRef = useForkRef(ref, hostElRef);
   const name = useId();
 
-  const contextValue: IRadioGroupContextValue = React.useMemo(
-    () => ({
-      name,
-      onChange(value: string | undefined) {
-        setValue(value);
-        onChange?.(value);
-      },
-      value,
-    }),
+  const contextValue = React.useMemo(
+    () =>
+      ({
+        name,
+        onChange(value: string | undefined) {
+          setValue(value);
+          onChange?.(value);
+        },
+        value,
+      }) satisfies IRadioGroupContextValue,
     [name, onChange, value, setValue],
   );
 

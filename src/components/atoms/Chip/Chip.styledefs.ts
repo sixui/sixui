@@ -35,6 +35,7 @@ export type IChipStyleKey =
   | 'icon$avatar'
   | 'icon$disabled'
   | 'label'
+  | 'label$selected'
   | 'label$disabled'
   | 'touchTarget'
   | 'outline'

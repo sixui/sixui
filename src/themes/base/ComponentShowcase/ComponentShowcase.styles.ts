@@ -25,6 +25,9 @@ export const styles: MapNamespaces<IComponentShowcaseStyles> =
     itemsStart: {
       alignItems: 'start',
     },
+    itemsCenter: {
+      alignItems: 'center',
+    },
     itemsEnd: {
       alignItems: 'end',
     },
@@ -44,9 +47,6 @@ export const styles: MapNamespaces<IComponentShowcaseStyles> =
       display: 'flex',
       flexDirection: 'column',
       gap: '2.5rem',
-    },
-    rows$aligned: {
-      alignItems: 'center',
     },
     legend: {
       fontFamily: vars.legendTextFont,
@@ -70,5 +70,8 @@ export const styles: MapNamespaces<IComponentShowcaseStyles> =
     },
     invisible: {
       visibility: 'hidden',
+    },
+    w100: {
+      width: '100%',
     },
   });

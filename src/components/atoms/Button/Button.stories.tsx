@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import { PlusIcon } from '@heroicons/react/20/solid';
+import { PlusIcon } from '@heroicons/react/24/solid';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
@@ -10,6 +10,7 @@ import {
 } from '@/components/molecules/ComponentShowcase';
 import { buttonVariants } from './Button.styledefs';
 import { type IButtonProps, Button } from './Button';
+import { ElevatedButton } from './ElevatedButton';
 
 // https://m3.material.io/components/buttons/overview
 // https://material-web.dev/components/button/
@@ -68,7 +69,7 @@ export const Variants: IStory = {
 export const Elevated: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={Button}
+      component={ElevatedButton}
       props={props}
       colsProps={statesProps}
       rowsProps={rowsProps}

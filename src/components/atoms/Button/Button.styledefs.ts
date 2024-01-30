@@ -15,7 +15,6 @@ export type IButtonStyleKey =
   | 'outline'
   | 'outline$disabled'
   | 'button'
-  | 'button$disabled'
   | 'touchTarget'
   | 'icon'
   | 'icon$disabled'

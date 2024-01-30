@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import * as stylex from '@stylexjs/stylex';
-import { LinkIcon, CalendarDaysIcon } from '@heroicons/react/20/solid';
+import { LinkIcon, CalendarDaysIcon } from '@heroicons/react/24/solid';
 
 import { ComponentShowcase } from '@/components/molecules/ComponentShowcase';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';

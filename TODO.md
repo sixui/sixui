@@ -16,7 +16,6 @@
 - use React.forwardRef & React.useImperativeHandle?
 - Prepend "use-client" directive (o components/hooks) exported from core librairies + add docs and examples for using MUI libraries with Next.js App Router
   see https://github.com/mui/material-ui/pull/37656
-- change __LIBNAME by the real definitive lib name
 
 - Chip
   - animate width change on select / unselect
@@ -25,11 +24,25 @@
   - switch elements with up and down keys
 - Elevation
   use visualState?
+- Tab
+  Navigate with arrow keys
+    https://m3.material.io/components/tabs/accessibility
+  Scrollable
+  Vertical
+  Navigable
+  Icon position
+  Export TabContext?
+  Badges
+  Test with reduced motion
+  Tab Panel typography in stories
 
 - Separate the core and the Storybook app.
 - check monorepo usage
 - remove heroicicons dependency
-- remove lodash dependency
+
+- use postcss Autoprefixr on the generated CSS file
+  https://github.com/facebook/stylex/discussions/223
+- use hooks like useButton, useTab, useTabs, ... like mui or adobe
 
 ## FIX ME
 
@@ -74,12 +87,13 @@
 
 ## Refactoring
 
-- use postcss Autoprefixr on the generated CSS file
 - remove 'px' from css attributes values?
 - use `const { current: xxx } = React.useRef();` instead of `const xxxRef = React.useRef(); const xxx = xxxRef.current;` (use `useForkRef` and `setRef`)
 - do not export vars from theme (as they should not be used directly, but from *.stylex.ts)
 - use useHover hook?
   https://react-spectrum.adobe.com/blog/building-a-button-part-2.html
+- uniformize letterSpacing -> tracking (or tracking -> letterSpacing)
+- suffix El/ElRef -> ''/Ref
 
 ## Check
 
@@ -139,7 +153,6 @@ Components
 - [ ] Search
 - [ ] Segmented button
 - [ ] Snackbar
-- [ ] Tabs
 - [ ] Time picker
 - [ ] Tooltip
 
@@ -177,6 +190,7 @@ Components
 - [x] Radio
 - [x] Ripple
 - [x] Switch
+- [x] Tabs
 - [x] Text field
 
 ### Not planned

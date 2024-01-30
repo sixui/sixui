@@ -26,6 +26,9 @@ export * from './components/atoms/List';
 export * from './components/atoms/Icon';
 export * from './components/atoms/Divider';
 export * from './components/atoms/Card';
+export * from './components/atoms/Tab';
+export * from './components/atoms/TabList';
+export * from './components/atoms/Tabs';
 
 export { theme as baseTheme } from './themes/base';
 export { theme as variantTheme } from './themes/variant';

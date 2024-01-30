@@ -116,7 +116,7 @@ export const Chip: React.FC<IChipProps> = ({
   const [selectedValue, setSelectedValue] = useControlled({
     controlled: props.selected,
     default: !!props.defaultSelected,
-    name: 'Checkbox',
+    name: 'Chip',
   });
 
   const Component: React.ElementType = href ? 'a' : props.component ?? 'button';
@@ -328,6 +328,7 @@ export const Chip: React.FC<IChipProps> = ({
             <span
               {...styleProps([
                 'label',
+                selected && 'label$selected',
                 disabled && 'label$disabled',
                 hasOverlay ? 'invisible' : null,
               ])}

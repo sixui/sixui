@@ -87,10 +87,10 @@ export const styles: MapNamespaces<IIconButtonStyles> =
       verticalAlign: 'middle',
       backgroundColor: 'unset',
       textDecoration: 'none',
-      // Place content on top of elevation and ripple
-      zIndex: 0,
       font: 'inherit',
       padding: 0,
+      // Place content on top of elevation and ripple
+      zIndex: 0,
       gap: 'inherit',
 
       [iconButtonStateVars.iconColor]: {

@@ -221,6 +221,14 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
       ':is([data-pressed])': vars.labelTextColor$pressed,
     },
   },
+  label$selected: {
+    color: {
+      default: vars.selectedLabelTextColor,
+      ':is([data-focused])': vars.selectedLabelTextColor$focus,
+      ':is([data-hovered])': vars.selectedLabelTextColor$hover,
+      ':is([data-pressed])': vars.selectedLabelTextColor$pressed,
+    },
+  },
   label$disabled: {
     color: vars.labelTextColor$disabled,
     opacity: vars.labelTextOpacity$disabled,
@@ -230,7 +238,6 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     zIndex: 1,
     alignSelf: 'center',
     display: 'flex',
-    fill: 'currentColor',
     position: 'relative',
     justifyContent: 'center',
     alignItems: 'center',

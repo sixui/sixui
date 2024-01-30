@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import { CalendarDaysIcon, PhotoIcon } from '@heroicons/react/20/solid';
+import { CalendarDaysIcon, PhotoIcon } from '@heroicons/react/24/solid';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {

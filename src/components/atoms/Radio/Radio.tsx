@@ -11,7 +11,7 @@ import { useId } from '@/hooks/useId';
 import { useVisualState } from '@/hooks/useVisualState';
 import { Ripple } from '@/components/utils/Ripple';
 import { FocusRing } from '@/components/utils/FocusRing';
-import { useRadioGroup } from '../RadioGroup/useRadioGroup';
+import { useRadioGroupContext } from '../RadioGroup/useRadioGroupContext';
 
 export interface IRadioProps
   extends IContainer<IRadioStyleKey, IRadioStyleVarKey>,
@@ -38,7 +38,7 @@ export const Radio: React.FC<IRadioProps> = ({
   const hostElRef = React.useRef<HTMLDivElement>(null);
   const inputElRef = React.useRef<HTMLInputElement>(null);
   const visualState = accumulate(useVisualState(hostElRef), props.visualState);
-  const radioGroup = useRadioGroup();
+  const radioGroupContext = useRadioGroupContext();
 
   // Unique maskId is required because of a Safari bug that fail to persist
   // reference to the mask. This should be removed once the bug is fixed.
@@ -56,20 +56,23 @@ export const Radio: React.FC<IRadioProps> = ({
     React.useCallback(
       (event) => {
         Promise.resolve(
-          radioGroup
-            ? radioGroup?.onChange(value)
+          radioGroupContext
+            ? radioGroupContext?.onChange(value)
             : onChange?.(event.target.checked),
         ).catch((error: Error) => {
           throw error;
         });
       },
-      [onChange, radioGroup, value],
+      [onChange, radioGroupContext, value],
     );
 
-  const name = radioGroup?.name ?? props.name;
-  const checked = radioGroup
-    ? radioGroup.value !== undefined && radioGroup.value === value
-    : props.checked;
+  const name = radioGroupContext?.name ?? props.name;
+  const checked = !disabled
+    ? radioGroupContext
+      ? radioGroupContext.value !== undefined &&
+        radioGroupContext.value === value
+      : props.checked
+    : false;
 
   return (
     <div

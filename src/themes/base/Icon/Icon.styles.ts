@@ -36,7 +36,6 @@ export const styles: MapNamespaces<IIconStyles> = stylex.create<IIconStyles>({
     MozOsxFontSmoothing: 'grayscale',
   },
   svg: {
-    fill: 'currentColor',
     width: '100%',
     height: '100%',
   },

@@ -4,16 +4,17 @@ export type IComponentShowcaseStyleKey =
   | 'justifyStart'
   | 'justifyEnd'
   | 'itemsStart'
+  | 'itemsCenter'
   | 'itemsEnd'
   | 'textRight'
   | 'groupRows'
   | 'cols'
   | 'rows'
-  | 'rows$aligned'
   | 'legend'
   | 'legendRow'
   | 'leftBorder'
-  | 'invisible';
+  | 'invisible'
+  | 'w100';
 
 export type IComponentShowcaseStyleVarKey =
   | 'textColor'
