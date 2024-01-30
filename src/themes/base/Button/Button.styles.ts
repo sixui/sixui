@@ -103,12 +103,12 @@ export const styles: MapNamespaces<IButtonStyles> =
       verticalAlign: 'middle',
       backgroundColor: 'unset',
       textDecoration: 'none',
-      width: '100%',
-      height: '100%',
-      // Place content on top of elevation and ripple
-      zIndex: 0,
       font: 'inherit',
       padding: 0,
+      // Place content on top of elevation and ripple
+      zIndex: 0,
+      width: '100%',
+      height: '100%',
       gap: 'inherit',
     },
     button$disabled: {
@@ -152,7 +152,6 @@ export const styles: MapNamespaces<IButtonStyles> =
       display: 'inline-flex',
       position: 'relative',
       writingMode: 'horizontal-tb',
-      fill: 'currentColor',
       flexShrink: 0,
       color: buttonStateVars.iconColor,
 

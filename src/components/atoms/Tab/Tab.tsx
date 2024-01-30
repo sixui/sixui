@@ -16,6 +16,7 @@ import { useVisualState } from '@/hooks/useVisualState';
 import { Elevation } from '@/components/utils/Elevation';
 import { FocusRing } from '@/components/utils/FocusRing';
 import { Ripple } from '@/components/utils/Ripple';
+import { useTabsContext } from '../Tabs/useTabsContext';
 
 // https://github.com/material-components/material-web/blob/main/tabs/internal/tab.ts
 
@@ -33,9 +34,11 @@ export interface ITabProps extends IContainer<ITabStyleKey, ITabStyleVarKey> {
   inlineIcon?: boolean;
 
   icon?: IIcon;
+  activeIcon?: IIcon;
   fullWidthIndicator?: boolean;
   onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
-  children?: React.ReactNode;
+  label?: string;
+  anchor?: string;
   disabled?: boolean;
 }
 
@@ -52,26 +55,32 @@ const variantMap: ITabVariantMap = {
 };
 
 export const Tab: React.FC<ITabProps> = ({
-  variant = 'primary',
   icon: Icon,
+  activeIcon: ActiveIcon,
   fullWidthIndicator,
   inlineIcon,
   onClick,
-  children,
+  label,
+  anchor,
   disabled,
   ...props
 }) => {
+  const tabsContext = useTabsContext();
+  const variant = tabsContext?.variant ?? props.variant ?? 'primary';
+
   const { theme, styles, focusRingStyles, rippleStyles, elevationStyles } =
     useComponentTheme('Tab');
   const { theme: variantTheme, styles: variantStyles } = useComponentTheme(
     variantMap[variant],
   );
 
-  const actionElRef = React.useRef<HTMLDivElement>(null);
+  const hostRef = React.useRef<HTMLDivElement>(null);
+  const actionElRef = React.useRef<HTMLButtonElement>(null);
   const visualState = accumulate(
     useVisualState(actionElRef),
     props.visualState,
   );
+  const indicatorRef = React.useRef<HTMLDivElement>(null);
 
   const styleProps = React.useMemo(
     () =>
@@ -82,15 +91,44 @@ export const Tab: React.FC<ITabProps> = ({
     [styles, variantStyles, props.styles, visualState],
   );
 
-  const active = !disabled ? props.active : false;
   const stacked = !inlineIcon;
-  const hasIcon = !!Icon;
-  const hasLabel = !!children;
+  const hasLabel = !!label;
+  const active = !disabled
+    ? tabsContext
+      ? tabsContext.anchor !== undefined && tabsContext.anchor === anchor
+      : props.active
+    : false;
+  const hasIcon = active ? !!ActiveIcon || !!Icon : !!Icon;
+
+  const handleClick: React.MouseEventHandler<HTMLButtonElement> =
+    React.useCallback(
+      (event) => {
+        tabsContext?.onChange(anchor);
+
+        Promise.resolve(onClick?.(event)).catch((error: Error) => {
+          throw error;
+        });
+      },
+      [onClick, tabsContext, anchor],
+    );
 
   const indicator = React.useMemo(
-    () => <div {...styleProps(['indicator', active && 'indicator$active'])} />,
+    () => (
+      <div
+        {...styleProps(['indicator', active && 'indicator$active'])}
+        ref={indicatorRef}
+      />
+    ),
     [styleProps, active],
   );
+
+  React.useEffect(() => {
+    const activeTab = hostRef.current;
+    const indicator = indicatorRef.current;
+    if (tabsContext && active && activeTab && indicator) {
+      tabsContext.onTabActivated(activeTab, indicator);
+    }
+  }, [active, anchor, tabsContext]);
 
   return (
     <div
@@ -98,12 +136,16 @@ export const Tab: React.FC<ITabProps> = ({
         ['host', active && 'host$active', disabled && 'host$disabled'],
         [theme, variantTheme, props.theme],
       )}
+      ref={hostRef}
     >
-      <div
+      <button
         {...styleProps(['button'])}
         ref={actionElRef}
-        role='presentation'
-        onClick={onClick}
+        role='tab'
+        // TODO: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tab_role#associated_roles_and_attributes
+        aria-controls=''
+        aria-selected={active}
+        onClick={handleClick}
       >
         <div
           {...styleProps(['background', disabled && 'background$disabled'])}
@@ -132,7 +174,16 @@ export const Tab: React.FC<ITabProps> = ({
           ])}
           role='presentation'
         >
-          {Icon ? (
+          {active && ActiveIcon ? (
+            <ActiveIcon
+              {...styleProps([
+                'icon',
+                'icon$active',
+                disabled && 'icon$disabled',
+              ])}
+              aria-hidden='true'
+            />
+          ) : Icon ? (
             <Icon
               {...styleProps([
                 'icon',
@@ -142,13 +193,23 @@ export const Tab: React.FC<ITabProps> = ({
               aria-hidden='true'
             />
           ) : null}
-          <div {...styleProps(['label', disabled && 'label$disabled'])}>
-            {children}
-          </div>
+
+          {label ? (
+            <div
+              {...styleProps([
+                'label',
+                active && 'label$active',
+                disabled && 'label$disabled',
+              ])}
+            >
+              {label}
+            </div>
+          ) : null}
+
           {fullWidthIndicator ? null : indicator}
         </div>
         {fullWidthIndicator ? indicator : null}
-      </div>
+      </button>
     </div>
   );
 };

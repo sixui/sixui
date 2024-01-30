@@ -70,7 +70,7 @@ import type {
 } from '@/components/atoms/Divider';
 import type { ICardStyleKey, ICardStyleVarKey } from '@/components/atoms/Card';
 import type { ITabStyleKey, ITabStyleVarKey } from '@/components/atoms/Tab';
-import type { ITabsStyleKey, ITabsStyleVarKey } from '@/components/atoms/Tabs';
+import type { ITabListStyleKey } from '@/components/atoms/TabList';
 
 export interface ITemplateTheme {
   theme?: IStyleVarsTheme<ITemplateStyleVarKey>;
@@ -294,9 +294,8 @@ export interface ITheme {
     };
     PrimaryTab: ITabTheme;
     SecondaryTab: ITabTheme;
-    Tabs: {
-      theme?: IStyleVarsTheme<ITabsStyleVarKey>;
-      styles?: ICompiledStyles<ITabsStyleKey>;
+    TabList: {
+      styles?: ICompiledStyles<ITabListStyleKey>;
     };
   };
 }

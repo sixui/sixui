@@ -16,7 +16,6 @@
 - use React.forwardRef & React.useImperativeHandle?
 - Prepend "use-client" directive (o components/hooks) exported from core librairies + add docs and examples for using MUI libraries with Next.js App Router
   see https://github.com/mui/material-ui/pull/37656
-- change __LIBNAME by the real definitive lib name
 
 - Chip
   - animate width change on select / unselect
@@ -25,6 +24,16 @@
   - switch elements with up and down keys
 - Elevation
   use visualState?
+- Tab
+  indicator animation
+  navigate with keys
+  scrollable
+  vertical
+  navigable
+  icon position
+  export TabContext?
+  badges
+  test with reduced motion
 
 - Separate the core and the Storybook app.
 - check monorepo usage
@@ -32,6 +41,7 @@
 
 - use postcss Autoprefixr on the generated CSS file
   https://github.com/facebook/stylex/discussions/223
+- use hooks like useButton, useTab, useTabs, ... like mui or adobe
 
 ## FIX ME
 
@@ -82,6 +92,7 @@
 - use useHover hook?
   https://react-spectrum.adobe.com/blog/building-a-button-part-2.html
 - uniformize letterSpacing -> tracking (or tracking -> letterSpacing)
+- suffix El/ElRef -> ''/Ref
 
 ## Check
 
@@ -96,6 +107,7 @@
 *What that the team is currently working on.*
 
 Components
+- [ ] Tabs
 - [ ] Select
 - [ ] CardActionArea
 - [ ] CardActions
@@ -141,7 +153,6 @@ Components
 - [ ] Search
 - [ ] Segmented button
 - [ ] Snackbar
-- [ ] Tabs
 - [ ] Time picker
 - [ ] Tooltip
 

@@ -10,6 +10,7 @@ export type ITabStyleKey =
   | 'background$disabled'
   | 'button'
   | 'label'
+  | 'label$active'
   | 'label$disabled'
   | 'content'
   | 'content$stacked'

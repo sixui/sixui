@@ -50,7 +50,7 @@ export const useControlled = <TValue>({
         // eslint-disable-next-line no-console
         console.error(
           [
-            `__LIBNAME: A component is changing the ${fromState} ${state} state of ${name} to be ${toState}.`,
+            `sixui: A component is changing the ${fromState} ${state} state of ${name} to be ${toState}.`,
             'Elements should not switch from uncontrolled to controlled (or vice versa).',
             `Decide between using a controlled or uncontrolled ${name} element for the lifetime of the component.`,
             "The nature of the state is determined during the first render. It's considered controlled if the value is not `undefined`.",
@@ -69,7 +69,7 @@ export const useControlled = <TValue>({
         // eslint-disable-next-line no-console
         console.error(
           [
-            `__LIBNAME: A component is changing the default ${state} state of an uncontrolled ${name} after being initialized. ` +
+            `sixui: A component is changing the default ${state} state of an uncontrolled ${name} after being initialized. ` +
               `To suppress this warning opt to use a controlled ${name}.`,
           ].join('\n'),
         );

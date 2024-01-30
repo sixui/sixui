@@ -1,7 +1,7 @@
 import React from 'react';
 import * as stylex from '@stylexjs/stylex';
 import type { Meta, StoryObj } from '@storybook/react';
-import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/20/solid';
+import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/solid';
 
 import type { ITextFieldStyleKey } from './TextField.styledefs';
 import type { IStyles } from '@/helpers/types';

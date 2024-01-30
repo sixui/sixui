@@ -29,6 +29,7 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
     fontFamily: vars.labelTextFont,
     fontSize: vars.labelTextSize,
     fontWeight: vars.labelTextWeight,
+    overflow: 'visible',
     lineHeight: vars.labelTextLineHeight,
     letterSpacing: vars.labelTextLetterSpacing,
     zIndex: 0, // Ensure this is a stacking context so the indicator displays
@@ -57,13 +58,6 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
     [tabStateVars.elevation]: vars.containerElevation$disabled,
   },
   host$active: {
-    color: {
-      default: vars.activeLabelTextColor,
-      ':is([data-focused])': vars.activeLabelTextColor$focus,
-      ':is([data-hovered])': vars.activeLabelTextColor$hover,
-      ':is([data-pressed])': vars.activeLabelTextColor$pressed,
-    },
-
     // eslint-disable-next-line @stylexjs/valid-styles
     [tabStateVars.stateLayerColor$hover]: vars.activeStateLayerColor$hover,
     // eslint-disable-next-line @stylexjs/valid-styles
@@ -81,7 +75,6 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
     backgroundColor: vars.containerColor,
     inset: 0,
     position: 'absolute',
-    zIndex: -1,
     borderRadius: 'inherit',
   },
   background$disabled: {
@@ -96,11 +89,31 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
       ':is([data-pressed])': vars.labelTextColor$pressed,
     },
   },
+  label$active: {
+    color: {
+      default: vars.activeLabelTextColor,
+      ':is([data-focused])': vars.activeLabelTextColor$focus,
+      ':is([data-hovered])': vars.activeLabelTextColor$hover,
+      ':is([data-pressed])': vars.activeLabelTextColor$pressed,
+    },
+  },
   label$disabled: {
     color: vars.labelTextColor$disabled,
     opacity: vars.labelTextOpacity$disabled,
   },
-  button: {},
+  button: {
+    borderRadius: 'inherit',
+    cursor: 'inherit',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderStyle: 'unset',
+    outline: 'none',
+    verticalAlign: 'middle',
+    backgroundColor: 'unset',
+    textDecoration: 'none',
+    padding: 0,
+  },
   content: {
     position: 'relative',
     boxSizing: 'border-box',
@@ -114,7 +127,7 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
   indicator: {
     position: 'absolute',
     boxSizing: 'border-box',
-    zIndex: -1,
+    zIndex: 1,
     transformOrigin: 'bottom left',
     backgroundColor: vars.activeIndicatorColor,
     borderRadius: vars.activeIndicatorShape,
@@ -130,7 +143,6 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
     display: 'inline-flex',
     position: 'relative',
     writingMode: 'horizontal-tb',
-    fill: 'currentColor',
     fontSize: vars.iconSize,
     width: vars.iconSize,
     height: vars.iconSize,

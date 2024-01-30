@@ -23,6 +23,7 @@ export interface IComponentShowcaseProps<IComponentProps>
   groupsProps?: IComponentPropsWithLegend<IComponentProps>;
   colsProps?: IComponentPropsWithLegend<IComponentProps>;
   rowsProps?: IComponentPropsWithLegend<IComponentProps>;
+  align?: 'start' | 'center';
 }
 
 const DUMMY_TEXT = '.';
@@ -33,6 +34,7 @@ export const ComponentShowcase = <IComponentProps extends object>({
   groupsProps = [{}],
   colsProps = [{}],
   rowsProps = [{}],
+  align = 'center',
   ...props
 }: IComponentShowcaseProps<IComponentProps>): React.ReactNode => {
   const { theme, styles } = useComponentTheme('ComponentShowcase');
@@ -54,9 +56,11 @@ export const ComponentShowcase = <IComponentProps extends object>({
     <div {...styleProps(['host', 'cols'], [theme, props.theme])}>
       {shouldShowRowLegends ? (
         <div {...styleProps(['rows'])}>
-          <div {...styleProps(['legend', 'invisible'])} aria-hidden='true'>
-            {DUMMY_TEXT}
-          </div>
+          {shouldShowColLegends ? (
+            <div {...styleProps(['legend', 'invisible'])} aria-hidden='true'>
+              {DUMMY_TEXT}
+            </div>
+          ) : null}
 
           <div {...styleProps(['flex', 'groupRows'])}>
             {groupsProps.map((groupProps, groupIndex) => (
@@ -91,7 +95,11 @@ export const ComponentShowcase = <IComponentProps extends object>({
             {groupsProps.map((groupProps, groupIndex) => (
               <div
                 key={`${colIndex}-${groupIndex}`}
-                {...styleProps(['rows', 'rows$aligned', 'flex'])}
+                {...styleProps([
+                  'rows',
+                  align === 'start' ? 'itemsStart' : 'itemsCenter',
+                  'flex',
+                ])}
               >
                 {shouldShowColLegends && groupIndex === 0 ? (
                   <div {...styleProps(['legend', !colLegend && 'invisible'])}>
