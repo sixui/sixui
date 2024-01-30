@@ -1,3 +1,15 @@
+# v0.0.9 (Tue Jan 30 2024)
+
+#### ⚠️ Pushed to `main`
+
+- TODO.md updated ; node modules updated ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.8 (Tue Jan 30 2024)
 
 #### 🐛 Bug Fix
