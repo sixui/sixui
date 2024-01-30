@@ -71,6 +71,7 @@ import type {
 import type { ICardStyleKey, ICardStyleVarKey } from '@/components/atoms/Card';
 import type { ITabStyleKey, ITabStyleVarKey } from '@/components/atoms/Tab';
 import type { ITabListStyleKey } from '@/components/atoms/TabList';
+import type { ITypographyStyleKey } from '@/components/atoms/Typography';
 
 export interface ITemplateTheme {
   theme?: IStyleVarsTheme<ITemplateStyleVarKey>;
@@ -296,6 +297,9 @@ export interface ITheme {
     SecondaryTab: ITabTheme;
     TabList: {
       styles?: ICompiledStyles<ITabListStyleKey>;
+    };
+    Typography: {
+      styles?: ICompiledStyles<ITypographyStyleKey>;
     };
   };
 }

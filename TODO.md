@@ -192,6 +192,7 @@ Components
 - [x] Switch
 - [x] Tabs
 - [x] Text field
+- [x] Typography
 
 ### Not planned
 

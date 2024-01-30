@@ -91,7 +91,7 @@ const vars: Partial<IStyleVars<IItemStyleVarKey>> = {
   leadingAvatarLabelFont: typescaleVars.titleFont$md,
   leadingAvatarLabelLineHeight: typescaleVars.titleLineHeight$md,
   leadingAvatarLabelSize: typescaleVars.titleSize$md,
-  leadingAvatarLabelTracking: typescaleVars.titleTracking$md,
+  leadingAvatarLabelTracking: typescaleVars.titleLetterSpacing$md,
   leadingAvatarLabelWeight: typescaleVars.titleWeight$md,
   leadingAvatarColor: colorRolesVars.primaryContainer,
   leadingAvatarShape: shapeVars.corner$full,

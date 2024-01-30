@@ -52,7 +52,7 @@ const vars: Partial<IStyleVars<ITabStyleVarKey>> = {
   labelTextFont: typescaleVars.titleFont$sm,
   labelTextLineHeight: typescaleVars.titleLineHeight$sm,
   labelTextSize: typescaleVars.titleSize$sm,
-  labelTextLetterSpacing: typescaleVars.titleTracking$sm,
+  labelTextLetterSpacing: typescaleVars.titleLetterSpacing$sm,
   labelTextWeight: typescaleVars.titleWeight$sm,
   // &:disabled
   labelTextColor$disabled: colorRolesVars.onSurface,

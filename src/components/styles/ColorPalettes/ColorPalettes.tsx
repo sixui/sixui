@@ -18,7 +18,7 @@ const styles = stylex.create({
     fontSize: typescaleVars.labelSize$lg,
     fontWeight: typescaleVars.labelWeight$lg,
     lineHeight: typescaleVars.labelLineHeight$lg,
-    letterSpacing: typescaleVars.labelTracking$lg,
+    letterSpacing: typescaleVars.labelLetterSpacing$lg,
   },
   title: {
     color: colorRolesVars.onSurface,

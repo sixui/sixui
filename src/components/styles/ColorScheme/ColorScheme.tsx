@@ -14,7 +14,7 @@ const styles = stylex.create({
     fontSize: typescaleVars.labelSize$sm,
     fontWeight: typescaleVars.labelWeight$sm,
     lineHeight: typescaleVars.labelLineHeight$sm,
-    letterSpacing: typescaleVars.labelTracking$sm,
+    letterSpacing: typescaleVars.labelLetterSpacing$sm,
   },
   flex: {
     display: 'flex',
