@@ -5,6 +5,7 @@ import { useControlled } from '@/hooks/useControlled';
 import { EASING } from '@/helpers/animation';
 import { shouldReduceMotion } from '@/helpers/shouldReduceAnimations';
 import { type ITabsContextValue, TabsContext } from './TabsContext';
+import { useId } from '@/hooks/useId';
 
 export interface ITabsProps
   extends Omit<ITabsContextValue, 'onChange'>,
@@ -25,6 +26,7 @@ export const Tabs: React.FC<ITabsProps> = ({
     name: 'Tabs',
   });
 
+  const id = useId(props.id);
   const previousTabRef = React.useRef<HTMLElement | null>(null);
   const indicatorAnimationRef = React.useRef<Animation>();
 
@@ -64,6 +66,7 @@ export const Tabs: React.FC<ITabsProps> = ({
   const contextValue = React.useMemo(
     () =>
       ({
+        id,
         anchor,
         onTabActivated(activeTab, indicator) {
           if (!previousTabRef.current) {
@@ -94,7 +97,7 @@ export const Tabs: React.FC<ITabsProps> = ({
           onChange?.(anchor);
         },
       }) satisfies ITabsContextValue,
-    [onChange, anchor, setAnchor, getIndicatorKeyframes],
+    [id, anchor, getIndicatorKeyframes, setAnchor, onChange],
   );
 
   return (

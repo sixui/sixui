@@ -25,7 +25,7 @@ export const TabList: React.FC<ITabListProps> = ({ children, ...props }) => {
   );
 
   return (
-    <div {...styleProps(['host'])} role='tablist'>
+    <div {...styleProps(['host'])} role='tablist' aria-orientation='horizontal'>
       <div {...styleProps(['tabList'])}>{children}</div>
     </div>
   );

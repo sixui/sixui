@@ -10,7 +10,7 @@ export const styles: MapNamespaces<ITabListStyles> =
     host: {
       boxSizing: 'border-box',
       flexDirection: 'column',
-      overflow: 'auto',
+      // overflow: 'auto',
       scrollBehavior: 'smooth',
       scrollbarWidth: 'none',
       position: 'relative',

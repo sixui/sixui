@@ -14,12 +14,10 @@ export const TabPanel: React.FC<ITabPanelProps> = ({ anchor, children }) => {
     return null;
   }
 
+  const id = tabsContext && anchor ? `${tabsContext.id}-${anchor}` : undefined;
+
   return (
-    <div
-      role='tabpanel'
-      // TODO: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby
-      aria-labelledby=''
-    >
+    <div role='tabpanel' aria-labelledby={id}>
       {children}
     </div>
   );

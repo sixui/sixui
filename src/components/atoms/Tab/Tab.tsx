@@ -74,12 +74,8 @@ export const Tab: React.FC<ITabProps> = ({
     variantMap[variant],
   );
 
-  const hostRef = React.useRef<HTMLDivElement>(null);
-  const actionElRef = React.useRef<HTMLButtonElement>(null);
-  const visualState = accumulate(
-    useVisualState(actionElRef),
-    props.visualState,
-  );
+  const actionRef = React.useRef<HTMLButtonElement>(null);
+  const visualState = accumulate(useVisualState(actionRef), props.visualState);
   const indicatorRef = React.useRef<HTMLDivElement>(null);
 
   const styleProps = React.useMemo(
@@ -99,6 +95,7 @@ export const Tab: React.FC<ITabProps> = ({
       : props.active
     : false;
   const hasIcon = active ? !!ActiveIcon || !!Icon : !!Icon;
+  const id = tabsContext && anchor ? `${tabsContext.id}-${anchor}` : undefined;
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> =
     React.useCallback(
@@ -123,7 +120,7 @@ export const Tab: React.FC<ITabProps> = ({
   );
 
   React.useEffect(() => {
-    const activeTab = hostRef.current;
+    const activeTab = actionRef.current;
     const indicator = indicatorRef.current;
     if (tabsContext && active && activeTab && indicator) {
       tabsContext.onTabActivated(activeTab, indicator);
@@ -131,85 +128,73 @@ export const Tab: React.FC<ITabProps> = ({
   }, [active, anchor, tabsContext]);
 
   return (
-    <div
+    <button
       {...styleProps(
         ['host', active && 'host$active', disabled && 'host$disabled'],
         [theme, variantTheme, props.theme],
       )}
-      ref={hostRef}
+      ref={actionRef}
+      role='tab'
+      aria-controls={id}
+      aria-selected={active}
+      onClick={handleClick}
     >
-      <button
-        {...styleProps(['button'])}
-        ref={actionElRef}
-        role='tab'
-        // TODO: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tab_role#associated_roles_and_attributes
-        aria-controls=''
-        aria-selected={active}
-        onClick={handleClick}
+      <Elevation styles={elevationStyles} disabled={disabled} />
+      <div {...styleProps(['background', disabled && 'background$disabled'])} />
+      <FocusRing
+        styles={focusRingStyles}
+        for={actionRef}
+        visualState={visualState}
+      />
+      <Ripple
+        styles={rippleStyles}
+        for={actionRef}
+        disabled={disabled}
+        visualState={visualState}
+      />
+      <div
+        {...styleProps([
+          'content',
+          stacked && 'content$stacked',
+          stacked && hasIcon && hasLabel && 'content$stacked$hasIcon$hasLabel',
+        ])}
+        role='presentation'
       >
-        <div
-          {...styleProps(['background', disabled && 'background$disabled'])}
-        />
-        <FocusRing
-          styles={focusRingStyles}
-          for={actionElRef}
-          visualState={visualState}
-          inward
-        />
-        <Elevation styles={elevationStyles} disabled={disabled} />
-        <Ripple
-          styles={rippleStyles}
-          for={actionElRef}
-          disabled={disabled}
-          visualState={visualState}
-        />
-        <div
-          {...styleProps([
-            'content',
-            stacked && 'content$stacked',
-            stacked &&
-              hasIcon &&
-              hasLabel &&
-              'content$stacked$hasIcon$hasLabel',
-          ])}
-          role='presentation'
-        >
-          {active && ActiveIcon ? (
-            <ActiveIcon
-              {...styleProps([
-                'icon',
-                'icon$active',
-                disabled && 'icon$disabled',
-              ])}
-              aria-hidden='true'
-            />
-          ) : Icon ? (
-            <Icon
-              {...styleProps([
-                'icon',
-                active && 'icon$active',
-                disabled && 'icon$disabled',
-              ])}
-              aria-hidden='true'
-            />
-          ) : null}
+        {active && ActiveIcon ? (
+          <ActiveIcon
+            {...styleProps([
+              'icon',
+              'icon$active',
+              disabled && 'icon$disabled',
+            ])}
+            aria-hidden='true'
+          />
+        ) : Icon ? (
+          <Icon
+            {...styleProps([
+              'icon',
+              active && 'icon$active',
+              disabled && 'icon$disabled',
+            ])}
+            aria-hidden='true'
+          />
+        ) : null}
 
-          {label ? (
-            <div
-              {...styleProps([
-                'label',
-                active && 'label$active',
-                disabled && 'label$disabled',
-              ])}
-            >
-              {label}
-            </div>
-          ) : null}
+        {label ? (
+          <div
+            {...styleProps([
+              'label',
+              active && 'label$active',
+              disabled && 'label$disabled',
+            ])}
+          >
+            {label}
+          </div>
+        ) : null}
 
-          {fullWidthIndicator ? null : indicator}
-        </div>
-        {fullWidthIndicator ? indicator : null}
-      </button>
-    </div>
+        {fullWidthIndicator ? null : indicator}
+      </div>
+      {fullWidthIndicator ? indicator : null}
+    </button>
   );
 };

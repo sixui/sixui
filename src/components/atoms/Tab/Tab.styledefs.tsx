@@ -8,7 +8,6 @@ export type ITabStyleKey =
   | 'host$hover'
   | 'background'
   | 'background$disabled'
-  | 'button'
   | 'label'
   | 'label$active'
   | 'label$disabled'
@@ -69,7 +68,6 @@ export type ITabStyleVarKey =
   | 'activeLabelTextColor$pressed';
 
 export type ITabStyleStateVarKey =
-  | 'focusRingMarginBottom'
   | 'elevation'
   | 'stateLayerColor$disabled'
   | 'stateLayerColor$hover'

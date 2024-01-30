@@ -20,52 +20,6 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: 0,
-    display: 'inline-flex',
-    alignContent: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    justifyItems: 'center',
-
-    // eslint-disable-next-line @stylexjs/valid-styles
-    [tabStateVars.stateLayerColor$hover]: vars.stateLayerColor$hover,
-    // eslint-disable-next-line @stylexjs/valid-styles
-    [tabStateVars.stateLayerOpacity$hover]: vars.stateLayerOpacity$hover,
-    // eslint-disable-next-line @stylexjs/valid-styles
-    [tabStateVars.stateLayerColor$pressed]: vars.stateLayerColor$pressed,
-    // eslint-disable-next-line @stylexjs/valid-styles
-    [tabStateVars.stateLayerOpacity$pressed]: vars.stateLayerOpacity$pressed,
-
-    // eslint-disable-next-line @stylexjs/valid-styles
-    [tabStateVars.focusRingMarginBottom]: 'unset',
-  },
-  host$disabled: {
-    cursor: 'default',
-    pointerEvents: 'none',
-    // eslint-disable-next-line @stylexjs/valid-styles
-    [tabStateVars.elevation]: vars.containerElevation$disabled,
-  },
-  host$active: {
-    // Draw selected on top so its indicator can be transitioned from the previously selected tab,
-    // on top of it.
-    zIndex: 1,
-
-    // eslint-disable-next-line @stylexjs/valid-styles
-    [tabStateVars.stateLayerColor$hover]: vars.activeStateLayerColor$hover,
-    // eslint-disable-next-line @stylexjs/valid-styles
-    [tabStateVars.stateLayerOpacity$hover]: vars.activeStateLayerOpacity$hover,
-    // eslint-disable-next-line @stylexjs/valid-styles
-    [tabStateVars.stateLayerColor$pressed]: vars.activeStateLayerColor$pressed,
-    // eslint-disable-next-line @stylexjs/valid-styles
-    [tabStateVars.stateLayerOpacity$pressed]:
-      vars.activeStateLayerOpacity$pressed,
-
-    // eslint-disable-next-line @stylexjs/valid-styles
-    [tabStateVars.focusRingMarginBottom]: `calc(${vars.activeIndicatorHeight} + 1px)`,
-  },
-  button: {
-    flexGrow: 1,
-    flexShrink: 1,
-    flexBasis: 0,
 
     display: 'inline-flex',
     alignItems: 'center',
@@ -76,8 +30,6 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
     WebkitTapHighlightColor: 'transparent',
     verticalAlign: 'middle',
     userSelect: 'none',
-    overflow: 'visible',
-    zIndex: 0, // Ensure this is a stacking context so the indicator displays
     whiteSpace: 'nowrap',
     cursor: {
       default: 'default',
@@ -89,6 +41,32 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
     backgroundColor: 'unset',
     textDecoration: 'none',
     paddingBlock: 0,
+
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [tabStateVars.stateLayerColor$hover]: vars.stateLayerColor$hover,
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [tabStateVars.stateLayerOpacity$hover]: vars.stateLayerOpacity$hover,
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [tabStateVars.stateLayerColor$pressed]: vars.stateLayerColor$pressed,
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [tabStateVars.stateLayerOpacity$pressed]: vars.stateLayerOpacity$pressed,
+  },
+  host$disabled: {
+    cursor: 'default',
+    pointerEvents: 'none',
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [tabStateVars.elevation]: vars.containerElevation$disabled,
+  },
+  host$active: {
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [tabStateVars.stateLayerColor$hover]: vars.activeStateLayerColor$hover,
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [tabStateVars.stateLayerOpacity$hover]: vars.activeStateLayerOpacity$hover,
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [tabStateVars.stateLayerColor$pressed]: vars.activeStateLayerColor$pressed,
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [tabStateVars.stateLayerOpacity$pressed]:
+      vars.activeStateLayerOpacity$pressed,
   },
   label: {
     fontFamily: vars.labelTextFont,
@@ -140,7 +118,6 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
   indicator: {
     position: 'absolute',
     boxSizing: 'border-box',
-    zIndex: -1,
     transformOrigin: 'left bottom',
     backgroundColor: vars.activeIndicatorColor,
     borderRadius: vars.activeIndicatorShape,
@@ -205,7 +182,10 @@ export const focusRingStyles: MapNamespaces<IFocusRingStyles> = stylex.create<
   host: {
     // eslint-disable-next-line @stylexjs/valid-styles
     [focusRingVars.shape]: '8px',
-    marginBottom: tabStateVars.focusRingMarginBottom,
+    zIndex: 1,
+  },
+  host$outward: {
+    inset: '-1px',
   },
 });
 

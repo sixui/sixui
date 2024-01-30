@@ -26,6 +26,7 @@
   use visualState?
 - Tab
   navigate with keys
+    https://m3.material.io/components/tabs/accessibility
   scrollable
   vertical
   navigable
