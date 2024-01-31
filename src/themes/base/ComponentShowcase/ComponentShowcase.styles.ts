@@ -41,12 +41,16 @@ export const styles: MapNamespaces<IComponentShowcaseStyles> =
     },
     cols: {
       display: 'flex',
+    },
+    gap$md: {
       gap: '2rem',
+    },
+    gap$lg: {
+      gap: '2.5rem',
     },
     rows: {
       display: 'flex',
       flexDirection: 'column',
-      gap: '2.5rem',
     },
     legend: {
       fontFamily: vars.legendTextFont,

@@ -3,8 +3,10 @@ import React from 'react';
 import * as stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import {
+  type IComponentPropsWithLegend,
+  ComponentShowcase,
+} from '@/components/molecules/ComponentShowcase';
 import { type ITypographyProps, Typography } from './Typography';
 
 // https://m3.material.io/styles/typography/overview
@@ -18,139 +20,128 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {} satisfies Partial<ITypographyProps>;
 
-const styles = stylex.create({
+const LOREM$XS = 'Lorem ipsum dolor sit amet.';
+const LOREM$SM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+const LOREM$MD =
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc faucibus pharetra urna in porttitor.';
+const LOREM$LG =
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lacinia ante et enim tempor pretium. Proin sed sem vehicula, dignissim velit vel, varius turpis. Ut vel ex non lectus iaculis pretium. Nunc at tempus enim. Donec commodo placerat libero.';
+
+const rowsProps: IComponentPropsWithLegend<ITypographyProps> = [
+  {
+    $legend: 'Display (lg) • span',
+    variant: 'display',
+    size: 'lg',
+    children: LOREM$SM,
+  },
+  {
+    $legend: 'Display (md) • span',
+    variant: 'display',
+    size: 'md',
+    children: LOREM$SM,
+  },
+  {
+    $legend: 'Display (sm) • span',
+    variant: 'display',
+    size: 'sm',
+    children: LOREM$SM,
+  },
+  {
+    $legend: 'Headline (lg) • h1',
+    variant: 'headline',
+    size: 'lg',
+    children: LOREM$MD,
+  },
+  {
+    $legend: 'Headline (md) • h2',
+    variant: 'headline',
+    size: 'md',
+    children: LOREM$MD,
+  },
+  {
+    $legend: 'Headline (sm) • h3',
+    variant: 'headline',
+    size: 'sm',
+    children: LOREM$MD,
+  },
+  {
+    $legend: 'Title (lg) • h4',
+    variant: 'title',
+    size: 'lg',
+    children: LOREM$MD,
+  },
+  {
+    $legend: 'Title (md) • h5',
+    variant: 'title',
+    size: 'md',
+    children: LOREM$MD,
+  },
+  {
+    $legend: 'Title (sm) • h6',
+    variant: 'title',
+    size: 'sm',
+    children: LOREM$MD,
+  },
+  {
+    $legend: 'Body (lg) • p',
+    variant: 'body',
+    size: 'lg',
+    children: LOREM$LG,
+  },
+  {
+    $legend: 'Body (md) • p',
+    variant: 'body',
+    size: 'md',
+    children: LOREM$LG,
+  },
+  {
+    $legend: 'Body (sm) • p',
+    variant: 'body',
+    size: 'sm',
+    children: LOREM$LG,
+  },
+  {
+    $legend: 'Label (lg) • span',
+    variant: 'label',
+    size: 'lg',
+    children: LOREM$XS,
+  },
+  {
+    $legend: 'Label (md) • span',
+    variant: 'label',
+    size: 'md',
+    children: LOREM$XS,
+  },
+  {
+    $legend: 'Label (sm) • span',
+    variant: 'label',
+    size: 'sm',
+    children: LOREM$XS,
+  },
+];
+
+const componentShowcaseStyles = stylex.create({
   host: {
-    width: '800px',
-  },
-  flex: {
-    display: 'flex',
-  },
-  flexCol: {
-    flexDirection: 'column',
-  },
-  grow: {
-    flexGrow: 1,
-    flexBasis: 0,
-  },
-  gapX: {
-    columnGap: '0.75rem',
-  },
-  gapY: {
-    rowGap: '0.75rem',
+    maxWidth: '600px',
   },
 });
-
-const variantStyles = stylex.create({
-  host: {
-    backgroundColor: colorRolesVars.onSecondary,
-    color: colorRolesVars.secondary,
-    borderWidth: '1px',
-    borderStyle: 'solid',
-    borderColor: colorRolesVars.outline,
-    borderRadius: shapeVars.corner$sm,
-    padding: '0.5rem',
-  },
-  sizeLabel: {
-    width: '1.4rem',
-    height: '1.4rem',
-    backgroundColor: colorRolesVars.tertiaryContainer,
-    color: colorRolesVars.onTertiaryContainer,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: shapeVars.corner$xs,
-  },
-  flex: {
-    display: 'flex',
-  },
-  flexCol: {
-    flexDirection: 'column',
-  },
-  itemsCenter: {
-    alignItems: 'center',
-  },
-  itemsStart: {
-    alignItems: 'flex-start',
-  },
-  gapX: {
-    columnGap: '0.5rem',
-  },
-  gapY: {
-    columnGap: '1rem',
-  },
-});
-
-const sizes: Required<Array<ITypographyProps['size']>> = ['lg', 'md', 'sm'];
-
-const Variant: React.FC<ITypographyProps> = (props) => (
-  <div {...stylex.props(variantStyles.host)}>
-    <div
-      {...stylex.props(
-        variantStyles.flex,
-        variantStyles.flexCol,
-        variantStyles.itemsStart,
-        variantStyles.gapY,
-      )}
-    >
-      <div
-        {...stylex.props(
-          variantStyles.flex,
-          variantStyles.itemsCenter,
-          variantStyles.gapX,
-        )}
-      >
-        <Typography {...props}>
-          {props?.variant ? capitalizeFirstLetter(props.variant) : null}
-        </Typography>
-
-        <div {...stylex.props(variantStyles.sizeLabel)}>
-          <Typography variant='label' size='md' noMargin>
-            {props.size?.toUpperCase()}
-          </Typography>
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
-const Variants: React.FC<ITypographyProps> = (props) =>
-  sizes.map((size) => <Variant key={size} {...props} size={size} />);
-
-const TypeScaleDemo: React.FC<ITypographyProps> = (props) => (
-  <div {...stylex.props(styles.host)}>
-    <div {...stylex.props(styles.flex, styles.gapX)}>
-      <div
-        {...stylex.props(styles.flex, styles.flexCol, styles.grow, styles.gapY)}
-      >
-        <Variants {...props} variant='display' />
-      </div>
-      <div
-        {...stylex.props(styles.flex, styles.flexCol, styles.grow, styles.gapY)}
-      >
-        <Variants {...props} variant='headline' />
-      </div>
-
-      <div
-        {...stylex.props(styles.flex, styles.flexCol, styles.grow, styles.gapY)}
-      >
-        <Variants {...props} variant='title' />
-      </div>
-      <div
-        {...stylex.props(styles.flex, styles.flexCol, styles.grow, styles.gapY)}
-      >
-        <Variants {...props} variant='body' />
-      </div>
-      <div
-        {...stylex.props(styles.flex, styles.flexCol, styles.grow, styles.gapY)}
-      >
-        <Variants {...props} variant='label' />
-      </div>
-    </div>
-  </div>
-);
 
 export const TypeScale: IStory = {
-  render: (props) => <TypeScaleDemo {...props} />,
+  render: (props) => (
+    <ComponentShowcase
+      styles={componentShowcaseStyles}
+      component={(props) => (
+        <Typography {...props}>
+          {props.children ??
+            (props.variant ? capitalizeFirstLetter(props.variant) : null)}
+        </Typography>
+      )}
+      props={props}
+      rowsProps={rowsProps}
+      align='start'
+      rowLegendPosition='top'
+    />
+  ),
   args: {
     ...defaultArgs,
     noMargin: true,

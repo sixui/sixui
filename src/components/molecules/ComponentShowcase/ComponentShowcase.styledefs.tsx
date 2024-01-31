@@ -10,6 +10,8 @@ export type IComponentShowcaseStyleKey =
   | 'groupRows'
   | 'cols'
   | 'rows'
+  | 'gap$md'
+  | 'gap$lg'
   | 'legend'
   | 'legendRow'
   | 'leftBorder'
