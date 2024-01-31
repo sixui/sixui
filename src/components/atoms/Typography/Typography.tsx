@@ -11,7 +11,7 @@ export interface ITypographyProps
   variant?: 'display' | 'headline' | 'title' | 'body' | 'label';
   size?: 'lg' | 'md' | 'sm';
   children?: React.ReactNode;
-  noMargin?: boolean;
+  gutterBottom?: boolean;
   component?: React.ElementType;
 }
 
@@ -37,7 +37,7 @@ export const Typography: React.FC<ITypographyProps> = ({
   variant = 'body',
   size = 'md',
   children,
-  noMargin,
+  gutterBottom,
   component,
   ...props
 }) => {
@@ -57,7 +57,7 @@ export const Typography: React.FC<ITypographyProps> = ({
     <Tag
       {...styleProps([
         'host',
-        noMargin && 'host$noMargin',
+        gutterBottom && 'host$gutterBottom',
         `${variant}$${size}`,
       ])}
     >

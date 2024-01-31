@@ -1,6 +1,6 @@
 export type ITypographyStyleKey =
   | 'host'
-  | 'host$noMargin'
+  | 'host$gutterBottom'
   | 'display$lg'
   | 'display$md'
   | 'display$sm'

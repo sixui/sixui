@@ -9,10 +9,10 @@ type ITypographyStyles = IStyles<ITypographyStyleKey>;
 export const styles: MapNamespaces<ITypographyStyles> =
   stylex.create<ITypographyStyles>({
     host: {
-      margin: '0 0 0.35em',
-    },
-    host$noMargin: {
       margin: 0,
+    },
+    host$gutterBottom: {
+      marginBottom: '0.35em',
     },
     display$lg: {
       fontFamily: typescaleVars.displayFont$lg,

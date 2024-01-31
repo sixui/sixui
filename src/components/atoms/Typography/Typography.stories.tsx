@@ -142,10 +142,7 @@ export const TypeScale: IStory = {
       rowLegendPosition='top'
     />
   ),
-  args: {
-    ...defaultArgs,
-    noMargin: true,
-  },
+  args: defaultArgs,
 };
 
 export default meta;
