@@ -10,7 +10,7 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
 export type IComponentPropsWithLegend<IComponentProps> = Array<
-  Partial<IComponentProps> & { $legend?: string }
+  Partial<IComponentProps> & { $legend?: React.ReactNode }
 >;
 
 export interface IComponentShowcaseProps<IComponentProps>
