@@ -9,7 +9,6 @@ type IDividerStyles = IStyles<IDividerStyleKey>;
 export const styles: MapNamespaces<IDividerStyles> =
   stylex.create<IDividerStyles>({
     host: {
-      boxSizing: 'border-box',
       color: vars.color,
       display: 'flex',
       width: '100%',

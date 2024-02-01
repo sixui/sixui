@@ -167,6 +167,7 @@ export interface ITheme {
       styles: ICompiledStyles<IFocusRingStyleKey>;
     };
     Button: IButtonTheme;
+    ButtonBase: IButtonTheme;
     ElevatedButton: IButtonTheme;
     FilledButton: IButtonTheme;
     FilledTonalButton: IButtonTheme;
@@ -306,6 +307,7 @@ export interface ITheme {
     Breadcrumbs: {
       theme?: IStyleVarsTheme<IBreadcrumbsStyleVarKey>;
       styles?: ICompiledStyles<IBreadcrumbsStyleKey>;
+      expandButtonStyles?: ICompiledStyles<IButtonStyleKey>;
     };
   };
 }

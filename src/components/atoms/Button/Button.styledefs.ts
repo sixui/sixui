@@ -14,7 +14,6 @@ export type IButtonStyleKey =
   | 'host$withTrailingIcon'
   | 'outline'
   | 'outline$disabled'
-  | 'button'
   | 'touchTarget'
   | 'icon'
   | 'icon$disabled'

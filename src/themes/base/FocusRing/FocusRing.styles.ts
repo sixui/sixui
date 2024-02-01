@@ -32,7 +32,6 @@ export const styles: MapNamespaces<IFocusRingStyles> =
       animationDelay: `0s, calc(${vars.duration} * 0.25)`,
       animationDuration: `calc(${vars.duration} * 0.25), calc(${vars.duration} * 0.75)`,
       animationTimingFunction: motionVars.easing$emphasized,
-      boxSizing: 'border-box',
       color: vars.color,
       display: 'none',
       pointerEvents: 'none',

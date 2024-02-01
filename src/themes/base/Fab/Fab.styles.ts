@@ -20,7 +20,6 @@ type IFabStyles = IStyles<IFabStyleKey>;
 export const styles: MapNamespaces<IFabStyles> = stylex.create<IFabStyles>({
   host: {
     borderRadius: fabStateVars.containerShape,
-    boxSizing: 'border-box',
     cursor: 'pointer',
     display: 'inline-flex',
     outline: 'none',
@@ -101,7 +100,6 @@ export const styles: MapNamespaces<IFabStyles> = stylex.create<IFabStyles>({
   },
   fab$extended: {
     width: 'inherit',
-    boxSizing: 'border-box',
     paddingInlineStart: '16px',
     paddingInlineEnd: '16px',
   },

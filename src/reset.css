@@ -1,0 +1,43 @@
+*,
+*::before,
+*::after {
+  box-sizing:border-box;
+}
+
+button {
+  border: none;
+  borderRadius: inherit;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  appearance: none;
+  text-align: inherit;
+  outline: none;
+  WebkitTapHighlightColor: transparent;
+
+  /* Override vertical-align with shortest value "top". Vertical-align's
+  default "baseline" value causes buttons to be misaligned next to each
+  other if one button has an icon and the other does not. */
+  vertical-align: top;
+}
+
+:focus {
+  outline: none;
+}
+
+/* Remove Firefox's dotted outline */
+::-moz-focus-inner {
+  border: 0;
+}
+
+/* Remove autofill backgrounds */
+:-webkit-autofill,
+:-webkit-autofill:hover,
+:-webkit-autofill:focus {
+  transition: background-color 5000s ease-in-out 0s;
+}

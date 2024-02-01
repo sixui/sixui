@@ -46,6 +46,7 @@ import {
   focusRingStyles as buttonFocusRingStyles,
   circularProgressIndicatorStyles as buttonCircularProgressIndicatorStyles,
 } from './Button/Button.styles';
+import { styles as buttonBaseStyles } from './Button/ButtonBase.styles';
 import { componentTheme as elevatedButtonTheme } from './Button/ElevatedButton.stylex';
 import { componentTheme as filledButtonTheme } from './Button/FilledButton.stylex';
 import { componentTheme as filledTonalButtonTheme } from './Button/FilledTonalButton.stylex';
@@ -222,7 +223,10 @@ import { styles as tabListStyles } from './TabList/TabList.styles';
 import { styles as typographyStyles } from './Typography/Typography.styles';
 
 import { componentTheme as breadcrumbsTheme } from './Breadcrumbs/Breadcrumbs.stylex';
-import { styles as breadcrumbsStyles } from './Breadcrumbs/Breadcrumbs.styles';
+import {
+  styles as breadcrumbsStyles,
+  expandButtonStyles as breadcrumbExpandButtonStyles,
+} from './Breadcrumbs/Breadcrumbs.styles';
 
 export const theme: ITheme = {
   name: 'Material Design 3',
@@ -268,6 +272,9 @@ export const theme: ITheme = {
       focusRingStyles: buttonFocusRingStyles,
       elevationStyles: buttonElevationStyles,
       circularProgressIndicatorStyles: buttonCircularProgressIndicatorStyles,
+    },
+    ButtonBase: {
+      styles: buttonBaseStyles,
     },
     ElevatedButton: { theme: elevatedButtonTheme },
     FilledButton: { theme: filledButtonTheme },
@@ -435,6 +442,7 @@ export const theme: ITheme = {
     Breadcrumbs: {
       theme: breadcrumbsTheme,
       styles: breadcrumbsStyles,
+      expandButtonStyles: breadcrumbExpandButtonStyles,
     },
   },
 };

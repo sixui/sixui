@@ -1,7 +1,12 @@
 import React from 'react';
-import { accumulate, asArray, filterUndefineds } from '@olivierpascal/helpers';
+import { accumulate, asArray } from '@olivierpascal/helpers';
 
-import type { ICompiledStyles, IAny, IMaybeAsync } from '@/helpers/types';
+import type {
+  IZeroOrMore,
+  IAny,
+  IMaybeAsync,
+  ICompiledStyles,
+} from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
 import type { IButtonStyleKey, IButtonStyleVarKey } from '../Button';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
@@ -25,14 +30,18 @@ export interface IButtonBaseProps
       'type' | 'disabled' | 'aria-label' | 'aria-haspopup' | 'aria-expanded'
     >,
     Pick<React.LinkHTMLAttributes<HTMLLinkElement>, 'href'> {
-  rippleStyles?: ICompiledStyles<IRippleStyleKey>;
-  focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
-  elevationStyles?: ICompiledStyles<IElevationStyleKey>;
+  withLeadingIcon?: boolean;
+  withTrailingIcon?: boolean;
+  rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+  focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+  elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
   children?: React.ReactNode;
   onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
 }
 
 export const ButtonBase: React.FC<IButtonBaseProps> = ({
+  withLeadingIcon,
+  withTrailingIcon,
   type,
   disabled,
   href,
@@ -40,8 +49,7 @@ export const ButtonBase: React.FC<IButtonBaseProps> = ({
   children,
   ...props
 }) => {
-  const { theme, styles, rippleStyles, focusRingStyles, elevationStyles } =
-    useComponentTheme('Button');
+  const theme = useComponentTheme('ButtonBase');
 
   const actionElRef = React.useRef(null);
   const visualState = accumulate(
@@ -52,26 +60,42 @@ export const ButtonBase: React.FC<IButtonBaseProps> = ({
   const styleProps = React.useMemo(
     () =>
       stylePropsFactory<IButtonStyleKey, IButtonStyleVarKey>(
-        stylesCombinatorFactory(styles, props.styles),
+        stylesCombinatorFactory(theme.styles, props.styles),
         visualState,
       ),
-    [styles, props.styles, visualState],
+    [theme.styles, props.styles, visualState],
   );
 
   const Component: React.ElementType = href ? 'a' : 'button';
   const hasOutline =
-    styles?.outline ||
-    filterUndefineds(asArray(props.styles)).some((styles) => !!styles?.outline);
+    theme.styles?.outline ||
+    asArray(props.styles).some((styles) => !!styles?.outline);
 
   return (
-    <div
+    <Component
       {...styleProps(
-        ['host', disabled && 'host$disabled'],
-        [theme, props.theme],
+        [
+          'host',
+          disabled && 'host$disabled',
+          withLeadingIcon && 'host$withLeadingIcon',
+          withTrailingIcon && 'host$withTrailingIcon',
+        ],
+        [theme.theme, props.theme],
       )}
+      ref={actionElRef}
+      href={href}
+      onClick={onClick}
+      role='button'
+      tabIndex={disabled ? -1 : 0}
+      aria-label={props['aria-label']}
+      aria-haspopup={props['aria-haspopup']}
+      aria-expanded={props['aria-expanded']}
+      type={type}
     >
+      <span {...styleProps(['touchTarget'])} />
+
       <Elevation
-        styles={[elevationStyles, props.elevationStyles]}
+        styles={[theme.elevationStyles, ...asArray(props.elevationStyles)]}
         disabled={disabled}
       />
       {hasOutline ? (
@@ -79,33 +103,18 @@ export const ButtonBase: React.FC<IButtonBaseProps> = ({
       ) : null}
       <div {...styleProps(['background', disabled && 'background$disabled'])} />
       <FocusRing
-        styles={[focusRingStyles, props.focusRingStyles]}
+        styles={[theme.focusRingStyles, ...asArray(props.focusRingStyles)]}
         for={actionElRef}
         visualState={visualState}
       />
       <Ripple
-        styles={[rippleStyles, props.rippleStyles]}
+        styles={[theme.rippleStyles, ...asArray(props.rippleStyles)]}
         for={actionElRef}
         disabled={disabled}
         visualState={visualState}
       />
 
-      <Component
-        {...styleProps(['button'])}
-        ref={actionElRef}
-        href={href}
-        onClick={onClick}
-        role='button'
-        tabIndex={disabled ? -1 : 0}
-        aria-label={props['aria-label']}
-        aria-haspopup={props['aria-haspopup']}
-        aria-expanded={props['aria-expanded']}
-        type={type}
-      >
-        <span {...styleProps(['touchTarget'])} />
-
-        {children}
-      </Component>
-    </div>
+      {children}
+    </Component>
   );
 };

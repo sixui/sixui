@@ -96,7 +96,6 @@ export const styles: MapNamespaces<ICheckboxStyles> =
     outline: {
       borderRadius: 'inherit',
       borderStyle: 'solid',
-      boxSizing: 'border-box',
 
       borderColor: {
         default: vars.outlineColor,

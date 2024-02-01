@@ -107,7 +107,6 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
   },
   content: {
     position: 'relative',
-    boxSizing: 'border-box',
     display: 'inline-flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -117,7 +116,6 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
   },
   indicator: {
     position: 'absolute',
-    boxSizing: 'border-box',
     transformOrigin: 'left bottom',
     backgroundColor: vars.activeIndicatorColor,
     borderRadius: vars.activeIndicatorShape,

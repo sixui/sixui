@@ -30,7 +30,6 @@ export const styles: MapNamespaces<IButtonStyles> =
   stylex.create<IButtonStyles>({
     host: {
       borderRadius: vars.containerShape,
-      boxSizing: 'border-box',
       cursor: 'pointer',
       display: 'inline-flex',
       outline: 'none',
@@ -93,54 +92,18 @@ export const styles: MapNamespaces<IButtonStyles> =
       paddingInlineStart: vars.trailingIconLeadingSpace,
       paddingInlineEnd: vars.trailingIconTrailingSpace,
     },
-    button: {
-      // Reset button
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      WebkitTapHighlightColor: 'transparent',
-      backgroundColor: 'transparent',
-      // We disable the focus ring for mouse, touch and keyboard users.
-      outline: '0',
-      borderWidth: '0',
-      margin: 0, // Remove the margin in Safari
-      borderRadius: 'inherit',
-      padding: 0,
-      cursor: 'pointer',
-      verticalAlign: 'middle',
-      appearance: 'none', // Reset,
-      textDecoration: 'none',
-      font: 'inherit',
-      // So we take precedent over the style of a native <a /> element.
-      color: 'inherit',
-
-      // Place content on top of elevation and ripple
-      zIndex: 0,
-      width: '100%',
-      height: '100%',
-      gap: 'inherit',
-    },
     touchTarget: {
-      position: 'absolute',
-      top: '50%',
-      left: 0,
-      right: 0,
-      transform: 'translateY(-50%)',
-
       height: vars.touchHeight,
     },
     background: {
-      // Background color. Separate node for disabled opacity styles.
       backgroundColor: vars.containerColor,
-      borderRadius: 'inherit',
-      inset: 0,
-      position: 'absolute',
     },
     background$disabled: {
       backgroundColor: vars.containerColor$disabled,
       opacity: vars.containerOpacity$disabled,
     },
     label: {
+      position: 'relative',
       overflow: 'hidden',
 
       color: {

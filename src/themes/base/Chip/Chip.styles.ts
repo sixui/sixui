@@ -43,7 +43,6 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
   },
   container: {
     borderRadius: 'inherit',
-    boxSizing: 'border-box',
     display: 'flex',
     height: '100%',
     position: 'relative',

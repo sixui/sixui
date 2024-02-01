@@ -16,7 +16,6 @@ export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
     lineHeight: vars.labelTextLineHeight,
     letterSpacing: vars.labelTextLetterSpacing,
     alignItems: 'center',
-    boxSizing: 'border-box',
     display: 'flex',
     gap: '16px',
     minHeight: '56px',

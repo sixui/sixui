@@ -1,6 +1,8 @@
 import React from 'react';
 import { isFragment } from 'react-is';
+import { asArray } from '@olivierpascal/helpers';
 
+import type { ICompiledStyles, IZeroOrMore } from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
 import type {
   IBreadcrumbsStyleKey,
@@ -11,7 +13,7 @@ import { isProduction } from '@/helpers/isProduction';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { ReactComponent as EllipsisHorizontal } from '@/assets/EllipsisHorizontal.svg';
-import { ButtonBase } from '../ButtonBase';
+import { ButtonBase } from '../Button';
 
 export interface IBreadcrumbsProps
   extends IContainer<IBreadcrumbsStyleKey, IBreadcrumbsStyleVarKey>,
@@ -22,6 +24,7 @@ export interface IBreadcrumbsProps
   itemCountAfterCollapse?: number;
   maxItems?: number;
   separator?: React.ReactNode;
+  expandButtonStyles?: IZeroOrMore<ICompiledStyles<IBreadcrumbsStyleKey>>;
 }
 
 export const Breadcrumbs: React.FC<IBreadcrumbsProps> = ({
@@ -33,16 +36,16 @@ export const Breadcrumbs: React.FC<IBreadcrumbsProps> = ({
   separator = '/',
   ...props
 }) => {
-  const { theme, styles } = useComponentTheme('Breadcrumbs');
+  const theme = useComponentTheme('Breadcrumbs');
 
   const [expanded, setExpanded] = React.useState(false);
 
   const styleProps = React.useMemo(
     () =>
       stylePropsFactory<IBreadcrumbsStyleKey, IBreadcrumbsStyleVarKey>(
-        stylesCombinatorFactory(styles, props.styles),
+        stylesCombinatorFactory(theme.styles, props.styles),
       ),
-    [styles, props.styles],
+    [theme.styles, props.styles],
   );
 
   const insertSeparators = React.useCallback(
@@ -96,12 +99,15 @@ export const Breadcrumbs: React.FC<IBreadcrumbsProps> = ({
       ...items.slice(0, itemCountBeforeCollapse),
       <li key='ellipsis' {...styleProps(['item'])}>
         <ButtonBase
+          styles={[
+            theme.expandButtonStyles,
+            ...asArray(props.expandButtonStyles),
+          ]}
           aria-label={expandText}
           key='ellipsis'
           onClick={handleClickExpand}
-          // TODO: style
         >
-          <EllipsisHorizontal aria-hidden />
+          <EllipsisHorizontal {...styleProps(['icon'])} aria-hidden />
         </ButtonBase>
       </li>,
       ...items.slice(items.length - itemCountAfterCollapse, items.length),
@@ -132,7 +138,7 @@ export const Breadcrumbs: React.FC<IBreadcrumbsProps> = ({
 
   return (
     <nav
-      {...styleProps(['host'], [theme, props.theme])}
+      {...styleProps(['host'], [theme.theme, props.theme])}
       aria-label={props['aria-label']}
     >
       <ol {...styleProps(['list'])}>

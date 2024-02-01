@@ -13,7 +13,7 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useVisualState } from '@/hooks/useVisualState';
 import { IndeterminateCircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
-import { ButtonBase, type IButtonBaseProps } from '../ButtonBase';
+import { ButtonBase, type IButtonBaseProps } from './ButtonBase';
 
 export interface IButtonProps extends IButtonBaseProps {
   variant?: IButtonVariant;
@@ -61,7 +61,7 @@ export const Button: React.FC<IButtonProps> = ({
   href,
   ...props
 }) => {
-  const { styles } = useComponentTheme('Button');
+  const theme = useComponentTheme('Button');
   const variantTheme = useComponentTheme(variantMap[variant]);
 
   const actionElRef = React.useRef<HTMLButtonElement | HTMLLinkElement>(null);
@@ -75,10 +75,14 @@ export const Button: React.FC<IButtonProps> = ({
   const styleProps = React.useMemo(
     () =>
       stylePropsFactory<IButtonStyleKey, IButtonStyleVarKey>(
-        stylesCombinatorFactory(styles, variantTheme.styles, props.styles),
+        stylesCombinatorFactory(
+          theme.styles,
+          variantTheme.styles,
+          props.styles,
+        ),
         visualState,
       ),
-    [styles, variantTheme.styles, props.styles, visualState],
+    [theme.styles, variantTheme.styles, props.styles, visualState],
   );
 
   const handleAnimationIteration = (): void => setAnimating(handlingClick);
@@ -105,7 +109,8 @@ export const Button: React.FC<IButtonProps> = ({
     loadingAnimation === 'progressIndicator';
   const disabled = props.disabled || loading;
   const hasIcon = !!Icon;
-  const hasLeading = hasIcon && !trailingIcon;
+  const hasLeadingIcon = hasIcon && !trailingIcon;
+  const hasTrailingIcon = hasIcon && !!trailingIcon;
   const hasOverlay = loading && (!!loadingText || !hasIcon);
   const iconAnimation =
     (animating || props.loading || handlingClick) &&
@@ -117,11 +122,23 @@ export const Button: React.FC<IButtonProps> = ({
 
   return (
     <ButtonBase
-      theme={variantTheme.theme}
-      styles={[variantTheme.styles, ...asArray(props.styles)]}
-      rippleStyles={variantTheme.rippleStyles}
-      focusRingStyles={variantTheme.focusRingStyles}
-      elevationStyles={variantTheme.elevationStyles}
+      theme={[theme.theme, variantTheme.theme, ...asArray(props.theme)]}
+      styles={[theme.styles, variantTheme.styles, ...asArray(props.styles)]}
+      rippleStyles={[
+        theme.rippleStyles,
+        variantTheme.rippleStyles,
+        ...asArray(props.rippleStyles),
+      ]}
+      focusRingStyles={[
+        theme.focusRingStyles,
+        variantTheme.focusRingStyles,
+        ...asArray(props.focusRingStyles),
+      ]}
+      elevationStyles={[
+        theme.elevationStyles,
+        variantTheme.elevationStyles,
+        ...asArray(props.elevationStyles),
+      ]}
       visualState={visualState}
       type={type}
       disabled={disabled}
@@ -130,8 +147,10 @@ export const Button: React.FC<IButtonProps> = ({
       aria-expanded={props['aria-expanded']}
       href={href}
       onClick={handleClick}
+      withLeadingIcon={hasLeadingIcon}
+      withTrailingIcon={hasTrailingIcon}
     >
-      {hasLeading ? (
+      {hasLeadingIcon ? (
         <div
           {...styleProps([
             'icon',
@@ -141,7 +160,10 @@ export const Button: React.FC<IButtonProps> = ({
         >
           {loading ? (
             <IndeterminateCircularProgressIndicator
-              styles={variantTheme.circularProgressIndicatorStyles}
+              styles={[
+                theme.circularProgressIndicatorStyles,
+                variantTheme.circularProgressIndicatorStyles,
+              ]}
             />
           ) : Icon ? (
             <Icon
@@ -172,7 +194,10 @@ export const Button: React.FC<IButtonProps> = ({
           ) : (
             <div {...styleProps([disabled && 'icon$disabled'])}>
               <IndeterminateCircularProgressIndicator
-                styles={variantTheme.circularProgressIndicatorStyles}
+                styles={[
+                  theme.circularProgressIndicatorStyles,
+                  variantTheme.circularProgressIndicatorStyles,
+                ]}
               />
             </div>
           )}
@@ -188,7 +213,10 @@ export const Button: React.FC<IButtonProps> = ({
             ])}
           >
             <IndeterminateCircularProgressIndicator
-              styles={variantTheme.circularProgressIndicatorStyles}
+              styles={[
+                theme.circularProgressIndicatorStyles,
+                variantTheme.circularProgressIndicatorStyles,
+              ]}
             />
           </div>
         ) : (

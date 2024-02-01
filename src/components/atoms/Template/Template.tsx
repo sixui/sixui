@@ -28,21 +28,25 @@ export const Template: React.FC<ITemplateProps> = ({
   variant = 'variant',
   ...props
 }) => {
-  const { theme, styles } = useComponentTheme('Template');
-  const { theme: variantTheme, styles: variantStyles } = useComponentTheme(
-    variantMap[variant],
-  );
+  const theme = useComponentTheme('Template');
+  const variantTheme = useComponentTheme(variantMap[variant]);
 
   const styleProps = React.useMemo(
     () =>
       stylePropsFactory<ITemplateStyleKey, ITemplateStyleVarKey>(
-        stylesCombinatorFactory(styles, variantStyles, props.styles),
+        stylesCombinatorFactory(
+          theme.styles,
+          variantTheme.styles,
+          props.styles,
+        ),
       ),
-    [styles, variantStyles, props.styles],
+    [theme.styles, variantTheme.styles, props.styles],
   );
 
   return (
-    <div {...styleProps(['host'], [theme, variantTheme, props.theme])}>
+    <div
+      {...styleProps(['host'], [theme.theme, variantTheme.theme, props.theme])}
+    >
       Template
     </div>
   );

@@ -78,7 +78,6 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
   // https://github.com/material-components/material-web/blob/main/field/internal/_content.scss
   section: {
     display: 'flex',
-    boxSizing: 'border-box',
     height: '100%',
     // Relative position for absolutely positioned labels (to avoid interfering
     // with baseline alignment).
@@ -249,7 +248,6 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
     textAlign: 'initial',
   },
   label: {
-    boxSizing: 'border-box',
     overflow: 'hidden',
     maxWidth: '100%',
     // Check with design, should there be any transition from resting to

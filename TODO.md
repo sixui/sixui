@@ -97,8 +97,9 @@
 - uniformize letterSpacing -> tracking (or tracking -> letterSpacing)
 - suffix El/ElRef -> ''/Ref
 - css: host -> root?
-- Button styles -> ButtonBase styles?
-- take inner styles (focusRingStyles, rippleStyles, elevationStyles, ...) from props
+- Chip inherit from ButtonBase
+- take inner styles (focusRingStyles, rippleStyles, elevationStyles, ...) from props as IZeroOrMore<>
+- .theme -> .themeVars
 
 ## Check
 

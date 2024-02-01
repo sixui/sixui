@@ -16,6 +16,23 @@ const vars: Partial<IStyleVars<IBreadcrumbsStyleVarKey>> = {
 
   // separator
   separatorColor: colorRolesVars.onSurface,
+
+  // expandButton
+  expandButtonContainerShape: '2px',
+  expandButtonContainerColor: colorRolesVars.surfaceContainer,
+  expandButtonContainerWidth: '24px',
+  expandButtonContainerHeight: '16px',
+  expandButtonLeadingSpace: '4px',
+  expandButtonTrailingSpace: '4px',
+
+  // expandButtonLabelText
+  expandButtonLabelTextColor: colorRolesVars.onSurface,
+  // &:hover
+  expandButtonLabelTextColor$hover: colorRolesVars.onSurface,
+  // &:focus
+  expandButtonLabelTextColor$focus: colorRolesVars.onSurface,
+  // &:pressed
+  expandButtonLabelTextColor$pressed: colorRolesVars.onSurface,
 };
 
 export const componentVars = stylex.defineVars(

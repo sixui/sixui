@@ -99,7 +99,6 @@ export const styles: MapNamespaces<IIndeterminateCircularProgressIndicatorStyles
       inset: '0 0 0 50%',
     },
     circle: {
-      boxSizing: 'border-box',
       borderRadius: '50%',
       // match size to svg stroke width, which is a fraction of the overall
       // padding box width.

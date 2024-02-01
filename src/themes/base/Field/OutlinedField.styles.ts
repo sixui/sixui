@@ -76,7 +76,6 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
     borderStyle: 'inherit',
     borderColor: 'inherit',
     borderRadius: 'inherit',
-    boxSizing: 'border-box',
     position: 'relative',
   },
   outlineSection$startEnd$disabled: {

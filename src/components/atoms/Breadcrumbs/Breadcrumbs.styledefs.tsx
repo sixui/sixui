@@ -3,7 +3,8 @@ export type IBreadcrumbsStyleKey =
   | 'list'
   | 'item'
   | 'separator'
-  | 'collapsedButton';
+  | 'collapsedButton'
+  | 'icon';
 
 export type IBreadcrumbsStyleVarKey =
   | 'itemColor'
@@ -12,4 +13,14 @@ export type IBreadcrumbsStyleVarKey =
   | 'itemTextSize'
   | 'itemTextLetterSpacing'
   | 'itemTextWeight'
-  | 'separatorColor';
+  | 'separatorColor'
+  | 'expandButtonContainerColor'
+  | 'expandButtonContainerShape'
+  | 'expandButtonContainerWidth'
+  | 'expandButtonContainerHeight'
+  | 'expandButtonLeadingSpace'
+  | 'expandButtonTrailingSpace'
+  | 'expandButtonLabelTextColor'
+  | 'expandButtonLabelTextColor$hover'
+  | 'expandButtonLabelTextColor$focus'
+  | 'expandButtonLabelTextColor$pressed';
