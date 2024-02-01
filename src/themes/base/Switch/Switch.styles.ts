@@ -257,6 +257,7 @@ export const styles: MapNamespaces<ISwitchStyles> =
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      fill: 'currentColor',
       transform: switchStateVars.selectedIconTransform$on,
 
       transitionProperty: 'fill, opacity, transform',

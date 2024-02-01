@@ -41,8 +41,9 @@ export const styles: MapNamespaces<IButtonStyles> =
       position: 'relative',
       fontFamily: vars.labelTextFont,
       fontSize: vars.labelTextSize,
-      lineHeight: vars.labelTextLineHeight,
       fontWeight: vars.labelTextWeight,
+      lineHeight: vars.labelTextLineHeight,
+      letterSpacing: vars.labelTextLetterSpacing,
       // Long labels are cut off with ellipsis by default. `text-overflow` and
       // `text-wrap` can customize this.
       textOverflow: 'ellipsis',
@@ -93,18 +94,26 @@ export const styles: MapNamespaces<IButtonStyles> =
       paddingInlineEnd: vars.trailingIconTrailingSpace,
     },
     button: {
-      borderRadius: 'inherit',
-      cursor: 'inherit',
+      // Reset button
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
-      borderStyle: 'unset',
-      outline: 'none',
+      WebkitTapHighlightColor: 'transparent',
+      backgroundColor: 'transparent',
+      // We disable the focus ring for mouse, touch and keyboard users.
+      outline: '0',
+      borderWidth: '0',
+      margin: 0, // Remove the margin in Safari
+      borderRadius: 'inherit',
+      padding: 0,
+      cursor: 'pointer',
       verticalAlign: 'middle',
-      backgroundColor: 'unset',
+      appearance: 'none', // Reset,
       textDecoration: 'none',
       font: 'inherit',
-      padding: 0,
+      // So we take precedent over the style of a native <a /> element.
+      color: 'inherit',
+
       // Place content on top of elevation and ripple
       zIndex: 0,
       width: '100%',

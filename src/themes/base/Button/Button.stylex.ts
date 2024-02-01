@@ -45,7 +45,7 @@ const vars: Partial<IStyleVars<IButtonStyleVarKey>> = {
   labelTextFont: typescaleVars.labelFont$lg,
   labelTextLineHeight: typescaleVars.labelLineHeight$lg,
   labelTextSize: typescaleVars.labelSize$lg,
-  labelTextTracking: typescaleVars.labelLetterSpacing$lg,
+  labelTextLetterSpacing: typescaleVars.labelLetterSpacing$lg,
   labelTextWeight: typescaleVars.labelWeight$lg,
   // &:disabled
   labelTextColor$disabled: colorRolesVars.onSurface,
@@ -55,6 +55,12 @@ const vars: Partial<IStyleVars<IButtonStyleVarKey>> = {
   iconSize: '18px',
   // &:disabled
   iconOpacity$disabled: stateVars.opacity$disabled,
+
+  // stateLayer
+  // &:hover
+  stateLayerColor$hover: colorRolesVars.primary,
+  // &:pressed
+  stateLayerColor$pressed: colorRolesVars.primary,
 };
 
 export const componentVars = stylex.defineVars(

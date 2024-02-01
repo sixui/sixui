@@ -72,6 +72,10 @@ import type { ICardStyleKey, ICardStyleVarKey } from '@/components/atoms/Card';
 import type { ITabStyleKey, ITabStyleVarKey } from '@/components/atoms/Tab';
 import type { ITabListStyleKey } from '@/components/atoms/TabList';
 import type { ITypographyStyleKey } from '@/components/atoms/Typography';
+import type {
+  IBreadcrumbsStyleKey,
+  IBreadcrumbsStyleVarKey,
+} from '@/components/atoms/Breadcrumbs';
 
 export interface ITemplateTheme {
   theme?: IStyleVarsTheme<ITemplateStyleVarKey>;
@@ -81,6 +85,10 @@ export interface ITemplateTheme {
 export interface IButtonTheme {
   theme?: IStyleVarsTheme<IButtonStyleVarKey>;
   styles?: ICompiledStyles<IButtonStyleKey>;
+  rippleStyles?: ICompiledStyles<IRippleStyleKey>;
+  focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
+  elevationStyles?: ICompiledStyles<IElevationStyleKey>;
+  circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
 }
 
 export interface IChipTheme {
@@ -158,13 +166,7 @@ export interface ITheme {
       vars: IStyleVarGroup<IFocusRingStyleVarKey>;
       styles: ICompiledStyles<IFocusRingStyleKey>;
     };
-    Button: IButtonTheme & {
-      vars: IStyleVarGroup<IButtonStyleVarKey>;
-      rippleStyles: ICompiledStyles<IRippleStyleKey>;
-      focusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
-      elevationStyles: ICompiledStyles<IElevationStyleKey>;
-      circularProgressIndicatorStyles: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
-    };
+    Button: IButtonTheme;
     ElevatedButton: IButtonTheme;
     FilledButton: IButtonTheme;
     FilledTonalButton: IButtonTheme;
@@ -300,6 +302,10 @@ export interface ITheme {
     };
     Typography: {
       styles?: ICompiledStyles<ITypographyStyleKey>;
+    };
+    Breadcrumbs: {
+      theme?: IStyleVarsTheme<IBreadcrumbsStyleVarKey>;
+      styles?: ICompiledStyles<IBreadcrumbsStyleKey>;
     };
   };
 }

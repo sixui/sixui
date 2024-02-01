@@ -16,7 +16,7 @@ const vars: IStyleVars<IPlaceholderStyleVarKey> = {
   labelTextFont: typescaleVars.labelFont$sm,
   labelTextSize: typescaleVars.labelSize$sm,
   labelTextLineHeight: typescaleVars.labelLineHeight$sm,
-  labelTextTracking: typescaleVars.labelLetterSpacing$sm,
+  labelTextLetterSpacing: typescaleVars.labelLetterSpacing$sm,
   labelTextWeight: typescaleVars.labelWeight$sm,
 };
 

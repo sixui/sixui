@@ -52,7 +52,7 @@ export const styles: MapNamespaces<IPlaceholderStyles> =
       fontFamily: vars.labelTextFont,
       fontSize: vars.labelTextSize,
       lineHeight: vars.labelTextLineHeight,
-      letterSpacing: vars.labelTextTracking,
+      letterSpacing: vars.labelTextLetterSpacing,
       fontWeight: vars.labelTextWeight,
       zIndex: 1,
     },

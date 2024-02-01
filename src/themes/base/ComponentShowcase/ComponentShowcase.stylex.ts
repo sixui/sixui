@@ -6,14 +6,12 @@ import { typescaleVars } from '@/themes/base/vars/typo.stylex';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 
 const vars: Partial<IStyleVars<IComponentShowcaseStyleVarKey>> = {
-  textColor: colorRolesVars.onSurface,
-
   // legend
   legendTextColor: colorRolesVars.onSurface,
   legendTextFont: typescaleVars.labelFont$md,
   legendTextLineHeight: typescaleVars.labelLineHeight$md,
   legendTextSize: typescaleVars.labelSize$md,
-  legendTextTracking: typescaleVars.labelLetterSpacing$md,
+  legendTextLetterSpacing: typescaleVars.labelLetterSpacing$md,
   legendTextWeight: typescaleVars.labelWeight$md,
 
   // groupBorder

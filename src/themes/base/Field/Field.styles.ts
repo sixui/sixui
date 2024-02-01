@@ -212,7 +212,7 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
     fontSize: vars.contentSize,
     fontWeight: vars.contentWeight,
     lineHeight: vars.contentLineHeight,
-    letterSpacing: vars.contentTracking,
+    letterSpacing: vars.contentLetterSpacing,
     width: '100%',
     // Reverting values before "all: unset"
     overflowWrap: 'revert', // Neceded to break words in textarea
@@ -262,7 +262,7 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
     fontSize: vars.labelTextSize,
     lineHeight: vars.labelTextLineHeight,
     fontWeight: vars.labelTextWeight,
-    letterSpacing: vars.labelTextTracking,
+    letterSpacing: vars.labelTextLetterSpacing,
     width: 'min-content',
 
     color: {
@@ -303,7 +303,7 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
     fontSize: vars.supportingTextSize,
     fontWeight: vars.supportingTextWeight,
     lineHeight: vars.supportingTextLineHeight,
-    letterSpacing: vars.supportingTextTracking,
+    letterSpacing: vars.supportingTextLetterSpacing,
     gap: '16px',
     justifyContent: 'space-between',
     paddingInlineStart: vars.supportingTextLeadingSpace,

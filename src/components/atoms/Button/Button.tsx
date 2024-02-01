@@ -1,8 +1,7 @@
 import React from 'react';
-import { accumulate } from '@olivierpascal/helpers';
+import { accumulate, asArray } from '@olivierpascal/helpers';
 
-import type { IAny, IMaybeAsync, IIcon } from '@/helpers/types';
-import type { IContainer } from '@/helpers/Container';
+import type { IIcon } from '@/helpers/types';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type {
   IButtonStyleKey,
@@ -13,27 +12,16 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useVisualState } from '@/hooks/useVisualState';
-import { Elevation } from '@/components/utils/Elevation';
-import { FocusRing } from '@/components/utils/FocusRing';
-import { Ripple } from '@/components/utils/Ripple';
 import { IndeterminateCircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
+import { ButtonBase, type IButtonBaseProps } from '../ButtonBase';
 
-export interface IButtonProps
-  extends IContainer<IButtonStyleKey, IButtonStyleVarKey>,
-    Pick<
-      React.ButtonHTMLAttributes<HTMLButtonElement>,
-      'type' | 'disabled' | 'aria-label' | 'aria-haspopup' | 'aria-expanded'
-    >,
-    Pick<React.LinkHTMLAttributes<HTMLLinkElement>, 'href'> {
-  children: React.ReactNode;
-  onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
+export interface IButtonProps extends IButtonBaseProps {
   variant?: IButtonVariant;
   icon?: IIcon;
   trailingIcon?: boolean;
   loading?: boolean;
   loadingAnimation?: 'progressIndicator' | 'halfSpin' | 'none';
   loadingText?: string;
-  component?: React.ElementType;
 }
 
 type IButtonVariantMap = {
@@ -73,17 +61,8 @@ export const Button: React.FC<IButtonProps> = ({
   href,
   ...props
 }) => {
-  const {
-    theme,
-    styles,
-    rippleStyles,
-    elevationStyles,
-    focusRingStyles,
-    circularProgressIndicatorStyles,
-  } = useComponentTheme('Button');
-  const { theme: variantTheme, styles: variantStyles } = useComponentTheme(
-    variantMap[variant],
-  );
+  const { styles } = useComponentTheme('Button');
+  const variantTheme = useComponentTheme(variantMap[variant]);
 
   const actionElRef = React.useRef<HTMLButtonElement | HTMLLinkElement>(null);
   const [handlingClick, setHandlingClick] = React.useState(false);
@@ -96,10 +75,10 @@ export const Button: React.FC<IButtonProps> = ({
   const styleProps = React.useMemo(
     () =>
       stylePropsFactory<IButtonStyleKey, IButtonStyleVarKey>(
-        stylesCombinatorFactory(styles, variantStyles, props.styles),
+        stylesCombinatorFactory(styles, variantTheme.styles, props.styles),
         visualState,
       ),
-    [styles, variantStyles, props.styles, visualState],
+    [styles, variantTheme.styles, props.styles, visualState],
   );
 
   const handleAnimationIteration = (): void => setAnimating(handlingClick);
@@ -136,125 +115,94 @@ export const Button: React.FC<IButtonProps> = ({
       ? loadingAnimation
       : undefined;
 
-  const Component: React.ElementType = href ? 'a' : props.component ?? 'button';
-
   return (
-    <div
-      {...styleProps(
-        [
-          'host',
-          disabled && 'host$disabled',
-          Icon &&
-            (trailingIcon ? 'host$withTrailingIcon' : 'host$withLeadingIcon'),
-        ],
-        [theme, variantTheme, props.theme],
-      )}
+    <ButtonBase
+      theme={variantTheme.theme}
+      styles={[variantTheme.styles, ...asArray(props.styles)]}
+      rippleStyles={variantTheme.rippleStyles}
+      focusRingStyles={variantTheme.focusRingStyles}
+      elevationStyles={variantTheme.elevationStyles}
+      visualState={visualState}
+      type={type}
+      disabled={disabled}
+      aria-label={props['aria-label']}
+      aria-haspopup={props['aria-haspopup']}
+      aria-expanded={props['aria-expanded']}
+      href={href}
+      onClick={handleClick}
     >
-      <Elevation styles={elevationStyles} disabled={disabled} />
-      {variantStyles?.outline ? (
-        <div {...styleProps(['outline', disabled && 'outline$disabled'])} />
-      ) : null}
-      <div {...styleProps(['background', disabled && 'background$disabled'])} />
-      <FocusRing
-        styles={focusRingStyles}
-        for={actionElRef}
-        visualState={visualState}
-      />
-      <Ripple
-        styles={rippleStyles}
-        for={actionElRef}
-        disabled={disabled}
-        visualState={visualState}
-      />
-
-      <Component
-        {...styleProps(['button'])}
-        ref={actionElRef}
-        href={href}
-        onClick={handleClick}
-        role='button'
-        readOnly={disabled}
-        tabIndex={disabled ? -1 : 0}
-        aria-label={props['aria-label']}
-        aria-haspopup={props['aria-haspopup']}
-        aria-expanded={props['aria-expanded']}
-        type={type}
-      >
-        <span {...styleProps(['touchTarget'])} />
-
-        {hasLeading ? (
-          <div
-            {...styleProps([
-              'icon',
-              disabled && 'icon$disabled',
-              hasOverlay ? 'invisible' : null,
-            ])}
-          >
-            {loading ? (
-              <IndeterminateCircularProgressIndicator
-                styles={circularProgressIndicatorStyles}
-              />
-            ) : Icon ? (
-              <Icon
-                {...styleProps([iconAnimation && `icon$${iconAnimation}`])}
-                aria-hidden='true'
-                onAnimationIteration={handleAnimationIteration}
-              />
-            ) : null}
-          </div>
-        ) : null}
-
-        <span
+      {hasLeading ? (
+        <div
           {...styleProps([
-            'label',
-            disabled && 'label$disabled',
+            'icon',
+            disabled && 'icon$disabled',
             hasOverlay ? 'invisible' : null,
           ])}
         >
-          {children}
-        </span>
-
-        {hasOverlay ? (
-          <div {...styleProps(['overlay'])}>
-            {loadingText ? (
-              <span {...styleProps(['label', disabled && 'label$disabled'])}>
-                {loadingText}
-              </span>
-            ) : (
-              <div {...styleProps([disabled && 'icon$disabled'])}>
-                <IndeterminateCircularProgressIndicator
-                  styles={circularProgressIndicatorStyles}
-                />
-              </div>
-            )}
-          </div>
-        ) : null}
-
-        {Icon && trailingIcon ? (
-          loading ? (
-            <div
-              {...styleProps([
-                hasOverlay ? 'invisible' : null,
-                disabled && 'icon$disabled',
-              ])}
-            >
-              <IndeterminateCircularProgressIndicator
-                styles={circularProgressIndicatorStyles}
-              />
-            </div>
-          ) : (
+          {loading ? (
+            <IndeterminateCircularProgressIndicator
+              styles={variantTheme.circularProgressIndicatorStyles}
+            />
+          ) : Icon ? (
             <Icon
-              {...styleProps([
-                'icon',
-                disabled && 'icon$disabled',
-                iconAnimation && `icon$${iconAnimation}`,
-              ])}
-              aria-hidden='true'
+              {...styleProps([iconAnimation && `icon$${iconAnimation}`])}
+              aria-hidden
               onAnimationIteration={handleAnimationIteration}
             />
-          )
-        ) : null}
-      </Component>
-    </div>
+          ) : null}
+        </div>
+      ) : null}
+
+      <span
+        {...styleProps([
+          'label',
+          disabled && 'label$disabled',
+          hasOverlay ? 'invisible' : null,
+        ])}
+      >
+        {children}
+      </span>
+
+      {hasOverlay ? (
+        <div {...styleProps(['overlay'])}>
+          {loadingText ? (
+            <span {...styleProps(['label', disabled && 'label$disabled'])}>
+              {loadingText}
+            </span>
+          ) : (
+            <div {...styleProps([disabled && 'icon$disabled'])}>
+              <IndeterminateCircularProgressIndicator
+                styles={variantTheme.circularProgressIndicatorStyles}
+              />
+            </div>
+          )}
+        </div>
+      ) : null}
+
+      {Icon && trailingIcon ? (
+        loading ? (
+          <div
+            {...styleProps([
+              hasOverlay ? 'invisible' : null,
+              disabled && 'icon$disabled',
+            ])}
+          >
+            <IndeterminateCircularProgressIndicator
+              styles={variantTheme.circularProgressIndicatorStyles}
+            />
+          </div>
+        ) : (
+          <Icon
+            {...styleProps([
+              'icon',
+              disabled && 'icon$disabled',
+              iconAnimation && `icon$${iconAnimation}`,
+            ])}
+            aria-hidden
+            onAnimationIteration={handleAnimationIteration}
+          />
+        )
+      ) : null}
+    </ButtonBase>
   );
 };

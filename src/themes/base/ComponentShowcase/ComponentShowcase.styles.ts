@@ -8,9 +8,7 @@ import { componentVars as vars } from './ComponentShowcase.stylex';
 type IComponentShowcaseStyles = IStyles<IComponentShowcaseStyleKey>;
 export const styles: MapNamespaces<IComponentShowcaseStyles> =
   stylex.create<IComponentShowcaseStyles>({
-    host: {
-      color: vars.textColor,
-    },
+    host: {},
     flex: {
       flexGrow: 1,
       flexShrink: 1,
@@ -57,7 +55,7 @@ export const styles: MapNamespaces<IComponentShowcaseStyles> =
       fontSize: vars.legendTextSize,
       fontWeight: vars.legendTextWeight,
       lineHeight: vars.legendTextLineHeight,
-      letterSpacing: vars.legendTextTracking,
+      letterSpacing: vars.legendTextLetterSpacing,
       color: vars.legendTextColor,
       opacity: '0.5',
     },

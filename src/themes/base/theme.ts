@@ -38,10 +38,7 @@ import {
   componentVars as focusRingVars,
 } from './FocusRing/FocusRing.stylex';
 
-import {
-  componentTheme as buttonTheme,
-  componentVars as buttonVars,
-} from './Button/Button.stylex';
+import { componentTheme as buttonTheme } from './Button/Button.stylex';
 import {
   styles as buttonStyles,
   rippleStyles as buttonRippleStyles,
@@ -224,6 +221,9 @@ import { styles as tabListStyles } from './TabList/TabList.styles';
 
 import { styles as typographyStyles } from './Typography/Typography.styles';
 
+import { componentTheme as breadcrumbsTheme } from './Breadcrumbs/Breadcrumbs.stylex';
+import { styles as breadcrumbsStyles } from './Breadcrumbs/Breadcrumbs.styles';
+
 export const theme: ITheme = {
   name: 'Material Design 3',
   components: {
@@ -264,7 +264,6 @@ export const theme: ITheme = {
     Button: {
       theme: buttonTheme,
       styles: buttonStyles,
-      vars: buttonVars,
       rippleStyles: buttonRippleStyles,
       focusRingStyles: buttonFocusRingStyles,
       elevationStyles: buttonElevationStyles,
@@ -432,6 +431,10 @@ export const theme: ITheme = {
     },
     Typography: {
       styles: typographyStyles,
+    },
+    Breadcrumbs: {
+      theme: breadcrumbsTheme,
+      styles: breadcrumbsStyles,
     },
   },
 };

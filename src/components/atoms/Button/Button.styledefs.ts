@@ -62,7 +62,7 @@ type ILabelStyleVarKey =
   | 'labelTextFont'
   | 'labelTextLineHeight'
   | 'labelTextSize'
-  | 'labelTextTracking'
+  | 'labelTextLetterSpacing'
   | 'labelTextWeight';
 
 type IIconStyleVarKey =

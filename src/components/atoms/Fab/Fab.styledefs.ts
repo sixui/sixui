@@ -81,7 +81,7 @@ export type IFabStyleVarKey =
   | 'labelTextFont'
   | 'labelTextLineHeight'
   | 'labelTextSize'
-  | 'labelTextTracking'
+  | 'labelTextLetterSpacing'
   | 'labelTextWeight'
   | 'labelTextOpacity$disabled';
 

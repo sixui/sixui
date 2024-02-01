@@ -14,7 +14,7 @@ export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
     fontSize: vars.labelTextSize,
     fontWeight: vars.labelTextWeight,
     lineHeight: vars.labelTextLineHeight,
-    letterSpacing: vars.labelTextTracking,
+    letterSpacing: vars.labelTextLetterSpacing,
     alignItems: 'center',
     boxSizing: 'border-box',
     display: 'flex',
@@ -34,7 +34,7 @@ export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
     fontSize: vars.overlineSize,
     fontWeight: vars.overlineWeight,
     lineHeight: vars.overlineLineHeight,
-    letterSpacing: vars.overlineTracking,
+    letterSpacing: vars.overlineLetterSpacing,
   },
   supportingText: {
     color: vars.supportingTextColor,
@@ -42,7 +42,7 @@ export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
     fontSize: vars.supportingTextSize,
     fontWeight: vars.supportingTextWeight,
     lineHeight: vars.supportingTextLineHeight,
-    letterSpacing: vars.supportingTextTracking,
+    letterSpacing: vars.supportingTextLetterSpacing,
   },
   trailingSupportingText: {
     color: vars.trailingSupportingTextColor,
@@ -50,7 +50,7 @@ export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
     fontSize: vars.trailingSupportingTextSize,
     fontWeight: vars.trailingSupportingTextWeight,
     lineHeight: vars.trailingSupportingTextLineHeight,
-    letterSpacing: vars.trailingSupportingTextTracking,
+    letterSpacing: vars.trailingSupportingTextLetterSpacing,
   },
   // A slot for background container elements, such as ripples and focus rings.
   container: {
