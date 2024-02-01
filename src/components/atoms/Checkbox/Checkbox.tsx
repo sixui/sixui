@@ -162,7 +162,7 @@ export const Checkbox: React.FC<ICheckboxProps> = ({
             selected && 'backgroundAndIcon$selected',
           ])}
           viewBox='0 0 18 18'
-          aria-hidden='true'
+          aria-hidden
         >
           <rect
             {...styleProps([

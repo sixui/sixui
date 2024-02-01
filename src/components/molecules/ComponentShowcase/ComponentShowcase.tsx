@@ -61,7 +61,7 @@ export const ComponentShowcase = <IComponentProps extends object>({
       {shouldShowRowLegends && rowLegendPosition === 'start' ? (
         <div {...styleProps(['rows', 'gap$lg'])}>
           {shouldShowColLegends ? (
-            <div {...styleProps(['legend', 'invisible'])} aria-hidden='true'>
+            <div {...styleProps(['legend', 'invisible'])} aria-hidden>
               {DUMMY_TEXT}
             </div>
           ) : null}
@@ -148,7 +148,7 @@ export const ComponentShowcase = <IComponentProps extends object>({
 
       {shouldShowGroupLegends ? (
         <div {...styleProps(['rows', 'gap$lg'])}>
-          <div {...styleProps(['legend', 'invisible'])} aria-hidden='true'>
+          <div {...styleProps(['legend', 'invisible'])} aria-hidden>
             {DUMMY_TEXT}
           </div>
 

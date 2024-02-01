@@ -38,7 +38,7 @@ const itemStyles = stylex.create({
   },
 });
 
-export const Standard: IStory = {
+export const Basic: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={ListItem}

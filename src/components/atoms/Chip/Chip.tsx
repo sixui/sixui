@@ -311,7 +311,7 @@ export const Chip: React.FC<IChipProps> = ({
                   />
                 ) : null
               ) : selected && variant === 'filter' ? (
-                <CheckMark aria-hidden='true' />
+                <CheckMark aria-hidden />
               ) : imageUrl ? (
                 <img
                   {...styleProps(['image', avatar && 'image$avatar'])}
@@ -319,7 +319,7 @@ export const Chip: React.FC<IChipProps> = ({
                   alt=''
                 />
               ) : Icon ? (
-                <Icon aria-hidden='true' />
+                <Icon aria-hidden />
               ) : null}
             </div>
           ) : null}
@@ -382,7 +382,7 @@ export const Chip: React.FC<IChipProps> = ({
                   ? 'icon$disabled'
                   : selected && 'icon$trailing$selected',
               ])}
-              aria-hidden='true'
+              aria-hidden
             >
               {deleting ? (
                 <div {...styleProps(['overlay'])}>
@@ -391,7 +391,7 @@ export const Chip: React.FC<IChipProps> = ({
                   />
                 </div>
               ) : (
-                <XMark aria-hidden='true' />
+                <XMark aria-hidden />
               )}
             </span>
             <span {...styleProps(['touchTarget'])}></span>

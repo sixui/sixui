@@ -26,7 +26,7 @@ export const Icon: React.FC<IIconProps> = ({ icon: Icon, ...props }) => {
 
   return (
     <div {...styleProps(['host'], [theme, props.theme])}>
-      <Icon {...styleProps(['svg'])} aria-hidden='true' />
+      <Icon {...styleProps(['svg'])} aria-hidden />
     </div>
   );
 };

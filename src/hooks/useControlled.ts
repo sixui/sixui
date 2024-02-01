@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { isProduction } from '@/helpers/isProduction';
+
 interface IUseControlledProps<T> {
   /**
    * Holds the component value when it's controlled.
@@ -38,7 +40,7 @@ export const useControlled = <TValue>({
   const [valueState, setValue] = React.useState(props.default);
   const value = isControlled ? props.controlled : valueState;
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (!isProduction()) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (isControlled !== (props.controlled !== undefined)) {

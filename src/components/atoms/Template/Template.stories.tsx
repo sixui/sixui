@@ -17,8 +17,8 @@ const defaultArgs = {} satisfies Partial<ITemplateProps>;
 
 const statesProps: IComponentPropsWithLegend<ITemplateProps> = [
   { $legend: 'Enabled' },
-  { $legend: 'Focused', visualState: { focused: true } },
   { $legend: 'Hovered', visualState: { hovered: true } },
+  { $legend: 'Focused', visualState: { focused: true } },
   { $legend: 'Pressed', visualState: { pressed: true } },
 ];
 

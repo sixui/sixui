@@ -187,7 +187,7 @@ export const IconButton: React.FC<IIconButtonProps> = ({
                 : null,
             hasOverlay ? 'invisible' : null,
           ])}
-          aria-hidden='true'
+          aria-hidden
         />
 
         {hasOverlay ? (

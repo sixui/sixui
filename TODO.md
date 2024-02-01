@@ -10,6 +10,8 @@
   - stateLayerColor$focus
   - stateLayerColor$dragged
 
+- better reset styles, especially for buttons
+
 - don't include .storybook/ in the final package
 - check if tree shaking is working
 
@@ -87,13 +89,16 @@
 
 ## Refactoring
 
-- remove 'px' from css attributes values?
+- remove 'px' from css attributes values
 - use `const { current: xxx } = React.useRef();` instead of `const xxxRef = React.useRef(); const xxx = xxxRef.current;` (use `useForkRef` and `setRef`)
 - do not export vars from theme (as they should not be used directly, but from *.stylex.ts)
 - use useHover hook?
   https://react-spectrum.adobe.com/blog/building-a-button-part-2.html
 - uniformize letterSpacing -> tracking (or tracking -> letterSpacing)
 - suffix El/ElRef -> ''/Ref
+- css: host -> root?
+- Button styles -> ButtonBase styles?
+- take inner styles (focusRingStyles, rippleStyles, elevationStyles, ...) from props
 
 ## Check
 
@@ -108,6 +113,7 @@
 *What that the team is currently working on.*
 
 Components
+- [ ] Breadcrumbs
 - [ ] Select
 - [ ] CardActionArea
 - [ ] CardActions
@@ -127,7 +133,6 @@ Components
 - [ ] Backdrop
 - [ ] Box
 - [ ] Badge
-- [ ] Breadcrumbs
 - [ ] Container
 - [ ] Dialog
 - [ ] Drawer

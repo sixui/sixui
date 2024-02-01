@@ -40,7 +40,7 @@ export const Elevation: React.FC<IElevationProps> = ({
         ],
         [theme, props.theme],
       )}
-      aria-hidden='true'
+      aria-hidden
     />
   );
 };

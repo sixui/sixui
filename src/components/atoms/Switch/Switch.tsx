@@ -205,9 +205,9 @@ export const Switch: React.FC<ISwitchProps> = ({
                         styles={circularProgressIndicatorStyles}
                       />
                     ) : SelectedIcon ? (
-                      <SelectedIcon aria-hidden='true' />
+                      <SelectedIcon aria-hidden />
                     ) : (
-                      <CheckMark aria-hidden='true' />
+                      <CheckMark aria-hidden />
                     )}
                   </div>
 
@@ -226,9 +226,9 @@ export const Switch: React.FC<ISwitchProps> = ({
                           styles={circularProgressIndicatorStyles}
                         />
                       ) : Icon ? (
-                        <Icon aria-hidden='true' />
+                        <Icon aria-hidden />
                       ) : (
-                        <XMark aria-hidden='true' />
+                        <XMark aria-hidden />
                       )}
                     </div>
                   )}

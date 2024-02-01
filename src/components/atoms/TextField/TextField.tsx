@@ -444,7 +444,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
       start ??
       (LeadingIcon ? (
         <span {...styleProps(['icon', 'icon$leading'])}>
-          <LeadingIcon aria-hidden='true' />
+          <LeadingIcon aria-hidden />
         </span>
       ) : null),
     [styleProps, start, LeadingIcon],
@@ -455,7 +455,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
       end ??
       (TrailingIcon ? (
         <span {...styleProps(['icon', 'icon$trailing'])}>
-          <TrailingIcon aria-hidden='true' />
+          <TrailingIcon aria-hidden />
         </span>
       ) : null),
     [styleProps, end, TrailingIcon],

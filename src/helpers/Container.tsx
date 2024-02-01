@@ -6,6 +6,8 @@ export interface IContainer<
   IStyleVarKey extends string = never,
 > {
   visualState?: IVisualState;
-  styles?: ICompiledStyles<IStyleKey> | Array<ICompiledStyles<IStyleKey>>;
+  styles?:
+    | ICompiledStyles<IStyleKey>
+    | Array<ICompiledStyles<IStyleKey> | undefined>;
   theme?: IStyleVarsTheme<IStyleVarKey>;
 }

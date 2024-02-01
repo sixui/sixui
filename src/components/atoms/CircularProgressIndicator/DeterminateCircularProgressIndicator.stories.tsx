@@ -22,7 +22,7 @@ const defaultArgs = {
   value: 0.75,
 } satisfies Partial<IDeterminateCircularProgressIndicatorProps>;
 
-export const Standard: IStory = {
+export const Basic: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={DeterminateCircularProgressIndicator}

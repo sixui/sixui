@@ -184,7 +184,7 @@ export const Fab: React.FC<IFabProps> = ({
             ) : hasChildren ? (
               children
             ) : Icon ? (
-              <Icon aria-hidden='true' />
+              <Icon aria-hidden />
             ) : null}
           </div>
         ) : null}

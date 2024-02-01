@@ -49,7 +49,7 @@ const List: React.FC<IDividerProps> = (props) => (
   </ul>
 );
 
-export const Standard: IStory = {
+export const Basic: IStory = {
   render: (props) => <List {...props} />,
   args: defaultArgs,
 };

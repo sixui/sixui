@@ -160,7 +160,7 @@ export const Tab: React.FC<ITabProps> = ({
               'icon$active',
               disabled && 'icon$disabled',
             ])}
-            aria-hidden='true'
+            aria-hidden
           />
         ) : Icon ? (
           <Icon
@@ -169,7 +169,7 @@ export const Tab: React.FC<ITabProps> = ({
               active && 'icon$active',
               disabled && 'icon$disabled',
             ])}
-            aria-hidden='true'
+            aria-hidden
           />
         ) : null}
 
