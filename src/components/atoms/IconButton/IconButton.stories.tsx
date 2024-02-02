@@ -53,7 +53,7 @@ export const Variants: IStory = {
   args: defaultArgs,
 };
 
-export const Basic: IStory = {
+export const Standard: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={IconButton}

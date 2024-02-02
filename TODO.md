@@ -41,6 +41,8 @@ Production
 
 - ButtonBase: exemple in story
 - Stories: customized components
+- IconButton
+  - Controled when selectable
 
 - use postcss Autoprefixr on the generated CSS file
   https://github.com/facebook/stylex/discussions/223

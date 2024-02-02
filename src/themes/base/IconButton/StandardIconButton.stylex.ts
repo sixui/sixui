@@ -22,6 +22,15 @@ const vars: Partial<IStyleVars<IIconButtonStyleVarKey>> = {
   // &:pressed
   iconColor$pressed: colorRolesVars.onSurfaceVariant,
 
+  // toggleIcon
+  toggleIconColor: colorRolesVars.onSurfaceVariant,
+  // &:focus
+  toggleIconColor$focus: colorRolesVars.onSurfaceVariant,
+  // &:hover
+  toggleIconColor$hover: colorRolesVars.onSurfaceVariant,
+  // &:pressed
+  toggleIconColor$pressed: colorRolesVars.onSurfaceVariant,
+
   // toggleSelectedIcon
   toggleSelectedIconColor: colorRolesVars.primary,
   // &:focus
