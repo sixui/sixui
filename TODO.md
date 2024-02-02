@@ -117,7 +117,6 @@
 *What that the team is currently working on.*
 
 Components
-- [ ] Breadcrumbs
 - [ ] Select
 - [ ] CardActionArea
 - [ ] CardActions
@@ -198,6 +197,7 @@ Features
 - [x] Catalog
 
 Components
+- [x] Breadcrumbs
 - [x] Button
 - [x] Card
 - [x] Checkbox
