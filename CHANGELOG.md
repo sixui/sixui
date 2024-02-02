@@ -1,3 +1,16 @@
+# v0.0.12 (Fri Feb 02 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Trying to fix css reset layer priority in build ([@olivierpascal](https://github.com/olivierpascal))
+- Trying to fix css reset layer priority ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.11 (Fri Feb 02 2024)
 
 #### ⚠️ Pushed to `main`
