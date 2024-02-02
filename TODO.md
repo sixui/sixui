@@ -51,13 +51,14 @@ Production
 ## FIX ME
 
 - Button / Chip / Fab / ... : adapt attributes if that's a button or a link (ie. type is just for buttons)
-- DeterminateCircularProgressIndicator does not work
 - FIXME: Chromatic
   - radio not selectable/tabbable with keyboard
   - custom themes not applied (ie. Checkbox/Custom story)
     to fix, do not define themes in stylex.ts (only vars), but define themes in styles.ts
     the problem is that by defining the theme in styles.ts, dark color scheme is not applied
     find another solution
+    - https://github.com/facebook/stylex/issues/162
+    - https://github.com/facebook/stylex/issues/281
 
 ## Waiting for a fix
 
