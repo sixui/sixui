@@ -1,3 +1,15 @@
+# v0.0.14 (Fri Feb 02 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Fix StandardIconButton toggleIcon styles ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.13 (Fri Feb 02 2024)
 
 #### ⚠️ Pushed to `main`
