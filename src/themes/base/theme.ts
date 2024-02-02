@@ -109,8 +109,8 @@ import {
   rippleStyles as radioRippleStyles,
   focusRingStyles as radioFocusRingStyles,
 } from './Radio/Radio.styles';
+import { componentTheme as checkboxTheme } from './Checkbox/Checkbox.stylex';
 import {
-  componentTheme as checkboxTheme,
   styles as checkboxStyles,
   rippleStyles as checkboxRippleStyles,
   focusRingStyles as checkboxFocusRingStyles,

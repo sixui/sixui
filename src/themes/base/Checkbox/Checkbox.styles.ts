@@ -12,10 +12,6 @@ import { componentVars as focusRingVars } from '../FocusRing/FocusRing.stylex';
 import { motionVars } from '../vars/motion.stylex';
 import { shapeVars } from '../vars/shape.stylex';
 
-// This is a workaround to allow reaplying vars at the component level so that it can uses themed
-// vars. See https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
-export const componentTheme = stylex.createTheme(vars, vars);
-
 // The stroke width of the icon marks.
 const markStroke = '2px';
 // The coordinates in an 18px viewBox of the bottom left corner of the
