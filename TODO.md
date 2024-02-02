@@ -51,7 +51,6 @@ Production
 ## FIX ME
 
 - Button / Chip / Fab / ... : adapt attributes if that's a button or a link (ie. type is just for buttons)
-- DeterminateCircularProgressIndicator does not work
 - FIXME: Chromatic
   - radio not selectable/tabbable with keyboard
   - custom themes not applied (ie. Checkbox/Custom story)
