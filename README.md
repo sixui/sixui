@@ -67,7 +67,7 @@ $ git commit -m "My commit message [skip ci]"
 $ npx npm-check-updates -i
 ```
 
-## Importing this Design System as a third-party module
+## Importing @sixui/ui as a third-party module
 
 ### Setup
 

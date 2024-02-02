@@ -63,6 +63,22 @@
 - Chip/Fab/IconButton inherit from ButtonBase
 - Use hooks like useButton, useTab, useTabs, ... like mui or adobe
 - Use React.forwardRef & React.useImperativeHandle?
+- Helper to merge styles:
+
+```tsx
+<X
+  elevationStyles={[
+    theme.elevationStyles,
+    variantTheme.elevationStyles,
+    ...asArray(props.elevationStyles),
+  ]}
+/>
+
+// to:
+
+<X elevationStyles={combineStyles('elevationStyles')} />
+```
+
 
 ## FIX ME
 
