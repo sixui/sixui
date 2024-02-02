@@ -1,3 +1,15 @@
+# v0.0.11 (Fri Feb 02 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Hotfix: OutlinedIconButton has now outline ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.10 (Fri Feb 02 2024)
 
 #### 🐛 Bug Fix
