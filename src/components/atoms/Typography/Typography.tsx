@@ -41,14 +41,14 @@ export const Typography: React.FC<ITypographyProps> = ({
   component,
   ...props
 }) => {
-  const { styles } = useComponentTheme('Typography');
+  const theme = useComponentTheme('Typography');
 
   const styleProps = React.useMemo(
     () =>
       stylePropsFactory<ITypographyStyleKey>(
-        stylesCombinatorFactory(styles, props.styles),
+        stylesCombinatorFactory(theme.styles, props.styles),
       ),
-    [styles, props.styles],
+    [theme.styles, props.styles],
   );
 
   const Tag = component ?? tagMap[`${variant}$${size}`];

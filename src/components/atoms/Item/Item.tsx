@@ -30,24 +30,24 @@ export const Item: React.FC<IItemProps> = ({
   trailingSupportingText,
   ...props
 }) => {
-  const { theme, styles } = useComponentTheme('Item');
+  const theme = useComponentTheme('Item');
 
   const styleProps = React.useMemo(
     () =>
       stylePropsFactory<IItemStyleKey, IItemStyleVarKey>(
-        stylesCombinatorFactory(styles, props.styles),
+        stylesCombinatorFactory(theme.styles, props.styles),
       ),
-    [styles, props.styles],
+    [theme.styles, props.styles],
   );
 
-  const textElRef = React.useRef<HTMLDivElement>(null);
+  const textRef = React.useRef<HTMLDivElement>(null);
 
   return (
-    <div {...styleProps(['host'], [theme, props.theme])}>
+    <div {...styleProps(['host'], [theme.vars, props.theme])}>
       {container ? <div {...styleProps(['container'])}>{container}</div> : null}
       {start ? <div {...styleProps(['nonText'])}>{start}</div> : null}
 
-      <div {...styleProps(['text'])} ref={textElRef}>
+      <div {...styleProps(['text'])} ref={textRef}>
         {overline ? <div {...styleProps(['overline'])}>{overline}</div> : null}
         <div {...styleProps(['children'])}>{children}</div>
         {headline ? <div {...styleProps(['headline'])}>{headline}</div> : null}

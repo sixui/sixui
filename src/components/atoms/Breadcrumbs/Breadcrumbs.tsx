@@ -2,29 +2,34 @@ import React from 'react';
 import { isFragment } from 'react-is';
 import { asArray } from '@olivierpascal/helpers';
 
-import type { ICompiledStyles, IZeroOrMore } from '@/helpers/types';
+import type { IZeroOrMore, ICompiledStyles } from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
 import type {
   IBreadcrumbsStyleKey,
   IBreadcrumbsStyleVarKey,
 } from './Breadcrumbs.styledefs';
+import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { isProduction } from '@/helpers/isProduction';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
+
 import { ReactComponent as EllipsisHorizontal } from '@/assets/EllipsisHorizontal.svg';
 import { ButtonBase } from '../Button';
 
 export interface IBreadcrumbsProps
   extends IContainer<IBreadcrumbsStyleKey, IBreadcrumbsStyleVarKey>,
     Pick<React.ButtonHTMLAttributes<HTMLElement>, 'aria-label'> {
+  innerStyles?: {
+    expandButton?: IZeroOrMore<ICompiledStyles<IBreadcrumbsStyleKey>>;
+    expandButtonFocusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+  };
   children: React.ReactNode;
   expandText?: string;
   itemCountBeforeCollapse?: number;
   itemCountAfterCollapse?: number;
   maxItems?: number;
   separator?: React.ReactNode;
-  expandButtonStyles?: IZeroOrMore<ICompiledStyles<IBreadcrumbsStyleKey>>;
 }
 
 export const Breadcrumbs: React.FC<IBreadcrumbsProps> = ({
@@ -101,7 +106,11 @@ export const Breadcrumbs: React.FC<IBreadcrumbsProps> = ({
         <ButtonBase
           styles={[
             theme.expandButtonStyles,
-            ...asArray(props.expandButtonStyles),
+            ...asArray(props.innerStyles?.expandButton),
+          ]}
+          focusRingStyles={[
+            theme.expandButtonFocusRingStyles,
+            ...asArray(props.innerStyles?.expandButtonFocusRing),
           ]}
           aria-label={expandText}
           key='ellipsis'
@@ -138,7 +147,7 @@ export const Breadcrumbs: React.FC<IBreadcrumbsProps> = ({
 
   return (
     <nav
-      {...styleProps(['host'], [theme.theme, props.theme])}
+      {...styleProps(['host'], [theme.vars, props.theme])}
       aria-label={props['aria-label']}
     >
       <ol {...styleProps(['list'])}>

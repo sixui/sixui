@@ -12,15 +12,17 @@ export interface IListProps
 }
 
 export const List: React.FC<IListProps> = ({ children, ...props }) => {
-  const { theme, styles } = useComponentTheme('List');
+  const theme = useComponentTheme('List');
 
   const styleProps = React.useMemo(
     () =>
       stylePropsFactory<IListStyleKey, IListStyleVarKey>(
-        stylesCombinatorFactory(styles, props.styles),
+        stylesCombinatorFactory(theme.styles, props.styles),
       ),
-    [styles, props.styles],
+    [theme.styles, props.styles],
   );
 
-  return <div {...styleProps(['host'], [theme, props.theme])}>{children}</div>;
+  return (
+    <div {...styleProps(['host'], [theme.vars, props.theme])}>{children}</div>
+  );
 };

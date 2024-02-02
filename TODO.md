@@ -42,6 +42,9 @@
 - check monorepo usage
 - remove heroicicons dependency
 
+- ButtonBase: exemple in story
+- Stories: customized components
+
 - use postcss Autoprefixr on the generated CSS file
   https://github.com/facebook/stylex/discussions/223
 - use hooks like useButton, useTab, useTabs, ... like mui or adobe
@@ -86,20 +89,22 @@
 - [webpack] Improving the Webpack plugin
   - https://github.com/facebook/stylex/issues/297
   - https://github.com/facebook/stylex/issues/288
+- [@stylexjs/eslint-plugin] "@stylexjs/sort-keys" severity invalid
+  - https://github.com/facebook/stylex/issues/414
+  - Then, replace 1 by 'warning' in .eslintrc.cjs
+- [@stylexjs/eslint-plugin] autofix
+  - https://github.com/facebook/stylex/issues/415
+  - Then, enable rule in .eslintrc.cjs
 
 ## Refactoring
 
-- remove 'px' from css attributes values
+- remove 'px' from css attributes values (hum, finalement non, au cas où cette var est utilisée dans un calc(), il faut les unités)
 - use `const { current: xxx } = React.useRef();` instead of `const xxxRef = React.useRef(); const xxx = xxxRef.current;` (use `useForkRef` and `setRef`)
 - do not export vars from theme (as they should not be used directly, but from *.stylex.ts)
 - use useHover hook?
   https://react-spectrum.adobe.com/blog/building-a-button-part-2.html
 - uniformize letterSpacing -> tracking (or tracking -> letterSpacing)
-- suffix El/ElRef -> ''/Ref
-- css: host -> root?
-- Chip inherit from ButtonBase
-- take inner styles (focusRingStyles, rippleStyles, elevationStyles, ...) from props as IZeroOrMore<>
-- .theme -> .themeVars
+- Chip/Fab/IconButton inherit from ButtonBase
 
 ## Check
 

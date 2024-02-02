@@ -28,7 +28,7 @@ export interface IIndeterminateCircularProgressIndicatorProps
 export const IndeterminateCircularProgressIndicator: React.FC<
   IIndeterminateCircularProgressIndicatorProps
 > = ({ size = 'md', disabled, ...props }) => {
-  const { styles, theme } = useComponentTheme('CircularProgressIndicator');
+  const theme = useComponentTheme('CircularProgressIndicator');
   const { styles: variantStyles } = useComponentTheme(
     'IndeterminateCircularProgressIndicator',
   );
@@ -38,14 +38,14 @@ export const IndeterminateCircularProgressIndicator: React.FC<
       stylesCombinatorFactory<
         | ICircularProgressIndicatorStyleKey
         | IIndeterminateCircularProgressIndicatorStyleKey
-      >(styles, variantStyles, props.styles),
-    [styles, variantStyles, props.styles],
+      >(theme.styles, variantStyles, props.styles),
+    [theme.styles, variantStyles, props.styles],
   );
 
   return (
     <div
       {...stylex.props(
-        theme,
+        theme.vars,
         props.theme,
         combineStyles('host', `host$${size}`),
       )}

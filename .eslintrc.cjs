@@ -47,6 +47,13 @@ const eslintConfig = {
   },
   rules: {
     '@stylexjs/valid-styles': 'error',
+    // '@stylexjs/sort-keys': [
+    //   1,
+    //   {
+    //     minKeys: 3,
+    //     allowLineSeparatedGroups: true,
+    //   },
+    // ],
     'lines-between-class-members': [
       'error',
       'always',

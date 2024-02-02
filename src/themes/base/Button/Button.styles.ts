@@ -29,11 +29,11 @@ type IButtonStyles = IStyles<IButtonStyleKey>;
 export const styles: MapNamespaces<IButtonStyles> =
   stylex.create<IButtonStyles>({
     host: {
+      alignContent: 'center',
       borderRadius: vars.containerShape,
       cursor: 'pointer',
       display: 'inline-flex',
       outline: 'none',
-      alignContent: 'center',
       justifyContent: 'center',
       alignItems: 'center',
       justifyItems: 'center',

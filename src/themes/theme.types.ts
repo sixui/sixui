@@ -1,8 +1,4 @@
-import type {
-  ICompiledStyles,
-  IStyleVarGroup,
-  IStyleVarsTheme,
-} from '@/helpers/types';
+import type { ICompiledStyles, IStyleVarsTheme } from '@/helpers/types';
 import type {
   ITemplateStyleKey,
   ITemplateStyleVarKey,
@@ -78,12 +74,12 @@ import type {
 } from '@/components/atoms/Breadcrumbs';
 
 export interface ITemplateTheme {
-  theme?: IStyleVarsTheme<ITemplateStyleVarKey>;
+  vars?: IStyleVarsTheme<ITemplateStyleVarKey>;
   styles?: ICompiledStyles<ITemplateStyleKey>;
 }
 
 export interface IButtonTheme {
-  theme?: IStyleVarsTheme<IButtonStyleVarKey>;
+  vars?: IStyleVarsTheme<IButtonStyleVarKey>;
   styles?: ICompiledStyles<IButtonStyleKey>;
   rippleStyles?: ICompiledStyles<IRippleStyleKey>;
   focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
@@ -92,8 +88,14 @@ export interface IButtonTheme {
 }
 
 export interface IChipTheme {
-  theme?: IStyleVarsTheme<IChipStyleVarKey>;
+  vars?: IStyleVarsTheme<IChipStyleVarKey>;
   styles?: ICompiledStyles<IChipStyleKey>;
+  rippleStyles?: ICompiledStyles<IRippleStyleKey>;
+  focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
+  elevationStyles?: ICompiledStyles<IElevationStyleKey>;
+  trailingActionFocusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
+  trailingActionRippleStyles?: ICompiledStyles<IRippleStyleKey>;
+  circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
 }
 
 export interface IChipVariantTheme extends IChipTheme {
@@ -101,81 +103,85 @@ export interface IChipVariantTheme extends IChipTheme {
 }
 
 export interface IFabTheme {
-  theme?: IStyleVarsTheme<IFabStyleVarKey>;
+  vars?: IStyleVarsTheme<IFabStyleVarKey>;
   styles?: ICompiledStyles<IFabStyleKey>;
+  rippleStyles?: ICompiledStyles<IRippleStyleKey>;
+  focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
+  elevationStyles?: ICompiledStyles<IElevationStyleKey>;
+  circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
 }
 
 export interface IFabVariantTheme extends IFabTheme {}
 
 export interface IIconButtonTheme {
-  theme?: IStyleVarsTheme<IIconButtonStyleVarKey>;
+  vars?: IStyleVarsTheme<IIconButtonStyleVarKey>;
   styles?: ICompiledStyles<IIconButtonStyleKey>;
+  rippleStyles?: ICompiledStyles<IRippleStyleKey>;
+  focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
+  circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
 }
 
-export interface IIconButtonVariantTheme extends IIconButtonTheme {}
-
 export interface IFieldTheme {
-  theme?: IStyleVarsTheme<ITextFieldStyleVarKey>;
+  vars?: IStyleVarsTheme<ITextFieldStyleVarKey>;
   styles?: ICompiledStyles<IFieldStyleKey>;
 }
 
 export interface ITextFieldTheme {
-  theme?: IStyleVarsTheme<ITextFieldStyleVarKey>;
+  vars?: IStyleVarsTheme<ITextFieldStyleVarKey>;
   styles?: ICompiledStyles<ITextFieldStyleKey>;
+  fieldStyles?: ICompiledStyles<IFieldStyleKey>;
 }
 
 export interface ICardTheme {
-  theme?: IStyleVarsTheme<ICardStyleVarKey>;
+  vars?: IStyleVarsTheme<ICardStyleVarKey>;
   styles?: ICompiledStyles<ICardStyleKey>;
+  rippleStyles?: ICompiledStyles<IRippleStyleKey>;
+  focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
+  elevationStyles?: ICompiledStyles<IElevationStyleKey>;
 }
 
 export interface ITabTheme {
-  theme?: IStyleVarsTheme<ITabStyleVarKey>;
+  vars?: IStyleVarsTheme<ITabStyleVarKey>;
   styles?: ICompiledStyles<ITabStyleKey>;
+  rippleStyles?: ICompiledStyles<IRippleStyleKey>;
+  focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
+  elevationStyles?: ICompiledStyles<IElevationStyleKey>;
 }
 
 export interface ITheme {
   name: string;
   components: {
-    Template: ITemplateTheme & {
-      vars: IStyleVarGroup<ITemplateStyleVarKey>;
-    };
+    Template: ITemplateTheme;
+    VariantTemplate: ITemplateTheme;
     ComponentShowcase: {
-      theme: IStyleVarsTheme<IComponentShowcaseStyleVarKey>;
-      vars: IStyleVarGroup<IComponentShowcaseStyleVarKey>;
+      vars: IStyleVarsTheme<IComponentShowcaseStyleVarKey>;
       styles: ICompiledStyles<IComponentShowcaseStyleKey>;
     };
-    VariantTemplate: ITemplateTheme;
     Placeholder: {
-      theme: IStyleVarsTheme<IPlaceholderStyleVarKey>;
-      vars: IStyleVarGroup<IPlaceholderStyleVarKey>;
+      vars: IStyleVarsTheme<IPlaceholderStyleVarKey>;
       styles: ICompiledStyles<IPlaceholderStyleKey>;
     };
     Ripple: {
-      theme?: IStyleVarsTheme<IRippleStyleVarKey>;
-      vars: IStyleVarGroup<IRippleStyleVarKey>;
+      vars: IStyleVarsTheme<IRippleStyleVarKey>;
       styles: ICompiledStyles<IRippleStyleKey>;
     };
     Elevation: {
-      theme: IStyleVarsTheme<IElevationStyleVarKey>;
-      vars: IStyleVarGroup<IElevationStyleVarKey>;
+      vars: IStyleVarsTheme<IElevationStyleVarKey>;
       styles: ICompiledStyles<IElevationStyleKey>;
     };
     FocusRing: {
-      theme: IStyleVarsTheme<IFocusRingStyleVarKey>;
-      vars: IStyleVarGroup<IFocusRingStyleVarKey>;
+      vars: IStyleVarsTheme<IFocusRingStyleVarKey>;
       styles: ICompiledStyles<IFocusRingStyleKey>;
     };
-    Button: IButtonTheme;
     ButtonBase: IButtonTheme;
+    Button: IButtonTheme;
     ElevatedButton: IButtonTheme;
     FilledButton: IButtonTheme;
     FilledTonalButton: IButtonTheme;
     OutlinedButton: IButtonTheme;
     TextButton: IButtonTheme;
     CircularProgressIndicator: {
-      theme: IStyleVarsTheme<ICircularProgressIndicatorStyleVarKey>;
-      vars: IStyleVarGroup<ICircularProgressIndicatorStyleVarKey>;
+      vars: IStyleVarsTheme<ICircularProgressIndicatorStyleVarKey>;
       styles: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
     };
     IndeterminateCircularProgressIndicator: {
@@ -184,44 +190,24 @@ export interface ITheme {
     DeterminateCircularProgressIndicator: {
       styles: ICompiledStyles<IDeterminateCircularProgressIndicatorStyleKey>;
     };
-    Chip: IChipTheme & {
-      vars: IStyleVarGroup<IChipStyleVarKey>;
-      rippleStyles?: ICompiledStyles<IRippleStyleKey>;
-      focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
-      elevationStyles?: ICompiledStyles<IElevationStyleKey>;
-      trailingActionFocusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
-      trailingActionRippleStyles?: ICompiledStyles<IRippleStyleKey>;
-      circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
-    };
-    AssistChip: IChipVariantTheme;
-    FilterChip: IChipVariantTheme;
-    InputChip: IChipVariantTheme;
-    SuggestionChip: IChipVariantTheme;
-    Fab: IFabTheme & {
-      vars: IStyleVarGroup<IFabStyleVarKey>;
-      rippleStyles?: ICompiledStyles<IRippleStyleKey>;
-      focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
-      elevationStyles?: ICompiledStyles<IElevationStyleKey>;
-      circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
-    };
-    SurfaceFab: IFabVariantTheme;
-    PrimaryFab: IFabVariantTheme;
-    SecondaryFab: IFabVariantTheme;
-    TertiaryFab: IFabVariantTheme;
-    BrandedFab: IFabVariantTheme;
-    IconButton: IIconButtonTheme & {
-      vars: IStyleVarGroup<IIconButtonStyleVarKey>;
-      rippleStyles?: ICompiledStyles<IRippleStyleKey>;
-      focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
-      circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
-    };
-    StandardIconButton: IIconButtonVariantTheme;
-    FilledIconButton: IIconButtonVariantTheme;
-    FilledTonalIconButton: IIconButtonVariantTheme;
-    OutlinedIconButton: IIconButtonVariantTheme;
+    Chip: IChipTheme;
+    AssistChip: IChipTheme;
+    FilterChip: IChipTheme;
+    InputChip: IChipTheme;
+    SuggestionChip: IChipTheme;
+    Fab: IFabTheme;
+    SurfaceFab: IFabTheme;
+    PrimaryFab: IFabTheme;
+    SecondaryFab: IFabTheme;
+    TertiaryFab: IFabTheme;
+    BrandedFab: IFabTheme;
+    IconButton: IIconButtonTheme;
+    StandardIconButton: IIconButtonTheme;
+    FilledIconButton: IIconButtonTheme;
+    FilledTonalIconButton: IIconButtonTheme;
+    OutlinedIconButton: IIconButtonTheme;
     Switch: {
-      theme: IStyleVarsTheme<ISwitchStyleVarKey>;
-      vars: IStyleVarGroup<ISwitchStyleVarKey>;
+      vars: IStyleVarsTheme<ISwitchStyleVarKey>;
       styles: ICompiledStyles<ISwitchStyleKey>;
       rippleStyles?: ICompiledStyles<IRippleStyleKey>;
       focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
@@ -230,72 +216,51 @@ export interface ITheme {
     Field: IFieldTheme;
     FilledField: IFieldTheme;
     OutlinedField: IFieldTheme;
-    TextField: ITextFieldTheme & {
-      vars: IStyleVarGroup<ITextFieldStyleVarKey>;
-      fieldStyles?: ICompiledStyles<IFieldStyleKey>;
-    };
+    TextField: ITextFieldTheme;
     FilledTextField: ITextFieldTheme;
     OutlinedTextField: ITextFieldTheme;
     Radio: {
-      theme?: IStyleVarsTheme<IRadioStyleVarKey>;
+      vars?: IStyleVarsTheme<IRadioStyleVarKey>;
       styles?: ICompiledStyles<IRadioStyleKey>;
-      vars: IStyleVarGroup<IRadioStyleVarKey>;
       rippleStyles: ICompiledStyles<IRippleStyleKey>;
       focusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
     };
     Checkbox: {
-      theme?: IStyleVarsTheme<ICheckboxStyleVarKey>;
+      vars?: IStyleVarsTheme<ICheckboxStyleVarKey>;
       styles?: ICompiledStyles<ICheckboxStyleKey>;
-      vars: IStyleVarGroup<ICheckboxStyleVarKey>;
       rippleStyles: ICompiledStyles<IRippleStyleKey>;
       focusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
     };
     Item: {
-      theme?: IStyleVarsTheme<IItemStyleVarKey>;
+      vars?: IStyleVarsTheme<IItemStyleVarKey>;
       styles?: ICompiledStyles<IItemStyleKey>;
-      vars: IStyleVarGroup<IItemStyleVarKey>;
     };
     ListItem: {
-      theme?: IStyleVarsTheme<IItemStyleVarKey>;
+      vars?: IStyleVarsTheme<IItemStyleVarKey>;
       styles?: ICompiledStyles<IListItemStyleKey>;
-      vars: IStyleVarGroup<IItemStyleVarKey>;
       itemStyles?: ICompiledStyles<IItemStyleKey>;
       rippleStyles: ICompiledStyles<IRippleStyleKey>;
       focusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
     };
     List: {
-      theme?: IStyleVarsTheme<IListStyleVarKey>;
+      vars?: IStyleVarsTheme<IListStyleVarKey>;
       styles?: ICompiledStyles<IListStyleKey>;
-      vars: IStyleVarGroup<IListStyleVarKey>;
     };
     Icon: {
-      theme?: IStyleVarsTheme<IIconStyleVarKey>;
+      vars?: IStyleVarsTheme<IIconStyleVarKey>;
       styles?: ICompiledStyles<IIconStyleKey>;
-      vars: IStyleVarGroup<IIconStyleVarKey>;
     };
     Divider: {
-      theme?: IStyleVarsTheme<IDividerStyleVarKey>;
+      vars?: IStyleVarsTheme<IDividerStyleVarKey>;
       styles?: ICompiledStyles<IDividerStyleKey>;
-      vars: IStyleVarGroup<IDividerStyleVarKey>;
     };
-    Card: ICardTheme & {
-      theme?: IStyleVarsTheme<ICardStyleVarKey>;
-      styles?: ICompiledStyles<ICardStyleKey>;
-      vars: IStyleVarGroup<ICardStyleVarKey>;
-      rippleStyles: ICompiledStyles<IRippleStyleKey>;
-      focusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
-      elevationStyles: ICompiledStyles<IElevationStyleKey>;
-    };
+    Card: ICardTheme;
     ElevatedCard: ICardTheme;
     FilledCard: ICardTheme;
     OutlinedCard: ICardTheme & {
       styles?: ICompiledStyles<ICardStyleKey>;
     };
-    Tab: ITabTheme & {
-      rippleStyles: ICompiledStyles<IRippleStyleKey>;
-      focusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
-      elevationStyles: ICompiledStyles<IElevationStyleKey>;
-    };
+    Tab: ITabTheme;
     PrimaryTab: ITabTheme;
     SecondaryTab: ITabTheme;
     TabList: {
@@ -305,9 +270,10 @@ export interface ITheme {
       styles?: ICompiledStyles<ITypographyStyleKey>;
     };
     Breadcrumbs: {
-      theme?: IStyleVarsTheme<IBreadcrumbsStyleVarKey>;
+      vars?: IStyleVarsTheme<IBreadcrumbsStyleVarKey>;
       styles?: ICompiledStyles<IBreadcrumbsStyleKey>;
       expandButtonStyles?: ICompiledStyles<IButtonStyleKey>;
+      expandButtonFocusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
     };
   };
 }

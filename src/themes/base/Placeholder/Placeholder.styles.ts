@@ -15,6 +15,7 @@ export const styles: MapNamespaces<IPlaceholderStyles> =
       justifyContent: 'center',
       borderRadius: vars.containerShape,
       backgroundColor: vars.containerColor,
+      color: vars.labelTextColor,
       fontFamily: vars.labelTextFont,
       lineHeight: vars.labelTextLineHeight,
       fontWeight: vars.labelTextWeight,

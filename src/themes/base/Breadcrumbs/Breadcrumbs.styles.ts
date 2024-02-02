@@ -4,7 +4,9 @@ import * as stylex from '@stylexjs/stylex';
 import type { IStyles } from '@/helpers/types';
 import type { IBreadcrumbsStyleKey } from '@/components/atoms/Breadcrumbs';
 import type { IButtonStyleKey } from '@/components/atoms/Button';
+import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import { componentVars as vars } from './Breadcrumbs.stylex';
+import { componentVars as focusRingVars } from '../FocusRing/FocusRing.stylex';
 
 type IBreadcrumbsStyles = IStyles<IBreadcrumbsStyleKey>;
 export const styles: MapNamespaces<IBreadcrumbsStyles> =
@@ -62,3 +64,12 @@ export const expandButtonStyles: MapNamespaces<IButtonStyles> = stylex.create<
     height: vars.expandButtonContainerHeight,
   },
 });
+
+type IFocusRingStyles = IStyles<IFocusRingStyleKey>;
+export const expandButtonFocusRingStyles: MapNamespaces<IFocusRingStyles> =
+  stylex.create<IStyles<IFocusRingStyleKey>>({
+    host: {
+      // eslint-disable-next-line @stylexjs/valid-styles
+      [focusRingVars.shape]: vars.expandButtonContainerShape,
+    },
+  });

@@ -15,14 +15,14 @@ export interface ITabListProps
 }
 
 export const TabList: React.FC<ITabListProps> = ({ children, ...props }) => {
-  const { styles } = useComponentTheme('TabList');
+  const theme = useComponentTheme('TabList');
 
   const styleProps = React.useMemo(
     () =>
       stylePropsFactory<ITabListStyleKey>(
-        stylesCombinatorFactory(styles, props.styles),
+        stylesCombinatorFactory(theme.styles, props.styles),
       ),
-    [styles, props.styles],
+    [theme.styles, props.styles],
   );
 
   return (

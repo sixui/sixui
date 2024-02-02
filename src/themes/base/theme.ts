@@ -1,42 +1,24 @@
 import type { ITheme } from '../theme.types';
 
-import {
-  componentTheme as templateTheme,
-  componentVars as templateVars,
-} from './Template/Template.stylex';
+import { componentTheme as templateTheme } from './Template/Template.stylex';
 import { styles as templateStyles } from './Template/Template.styles';
 import { componentTheme as variantTemplateTheme } from './Template/VariantTemplate.stylex';
 import { styles as variantTemplateStyles } from './Template/VariantTemplate.styles';
 
-import {
-  componentTheme as componentShowcaseTheme,
-  componentVars as componentShowcaseVars,
-} from './ComponentShowcase/ComponentShowcase.stylex';
+import { componentTheme as componentShowcaseTheme } from './ComponentShowcase/ComponentShowcase.stylex';
 import { styles as componentShowcaseStyles } from './ComponentShowcase/ComponentShowcase.styles';
 
 import { styles as placeholderStyles } from './Placeholder/Placeholder.styles';
-import {
-  componentTheme as placeholderTheme,
-  componentVars as placeholderVars,
-} from './Placeholder/Placeholder.stylex';
+import { componentTheme as placeholderTheme } from './Placeholder/Placeholder.stylex';
 
 import { styles as rippleStyles } from './Ripple/Ripple.styles';
-import {
-  componentTheme as rippleTheme,
-  componentVars as rippleVars,
-} from './Ripple/Ripple.stylex';
+import { componentTheme as rippleTheme } from './Ripple/Ripple.stylex';
 
 import { styles as elevationStyles } from './Elevation/Elevation.styles';
-import {
-  componentTheme as elevationTheme,
-  componentVars as elevationVars,
-} from './Elevation/Elevation.stylex';
+import { componentTheme as elevationTheme } from './Elevation/Elevation.stylex';
 
 import { styles as focusRingStyles } from './FocusRing/FocusRing.styles';
-import {
-  componentTheme as focusRingTheme,
-  componentVars as focusRingVars,
-} from './FocusRing/FocusRing.stylex';
+import { componentTheme as focusRingTheme } from './FocusRing/FocusRing.stylex';
 
 import { componentTheme as buttonTheme } from './Button/Button.stylex';
 import {
@@ -55,17 +37,11 @@ import { styles as outlinedButtonStyles } from './Button/OutlinedButton.styles';
 import { componentTheme as textButtonTheme } from './Button/TextButton.stylex';
 
 import { styles as circularProgressIndicatorStyles } from './CircularProgressIndicator/CircularProgressIndicator.styles';
-import {
-  componentTheme as circularProgressIndicatorTheme,
-  componentVars as circularProgressIndicatorVars,
-} from './CircularProgressIndicator/CircularProgressIndicator.stylex';
+import { componentTheme as circularProgressIndicatorTheme } from './CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { styles as indeterminateCircularProgressIndicatorStyles } from './CircularProgressIndicator/IndeterminateCircularProgressIndicator.styles';
 import { styles as determinateCircularProgressIndicatorStyles } from './CircularProgressIndicator/DeterminateCircularProgressIndicator.styles';
 
-import {
-  componentTheme as chipTheme,
-  componentVars as chipVars,
-} from './Chip/Chip.stylex';
+import { componentTheme as chipTheme } from './Chip/Chip.stylex';
 import {
   styles as chipStyles,
   rippleStyles as chipRippleStyles,
@@ -87,10 +63,7 @@ import {
   focusRingStyles as fabFocusRingStyles,
   circularProgressIndicatorStyles as fabCircularProgressIndicatorStyles,
 } from './Fab/Fab.styles';
-import {
-  componentTheme as fabTheme,
-  componentVars as fabVars,
-} from './Fab/Fab.stylex';
+import { componentTheme as fabTheme } from './Fab/Fab.stylex';
 import { componentTheme as surfaceFabTheme } from './Fab/SurfaceFab.stylex';
 import { componentTheme as primaryFabTheme } from './Fab/PrimaryFab.stylex';
 import { componentTheme as secondaryFabTheme } from './Fab/SecondaryFab.stylex';
@@ -103,10 +76,7 @@ import {
   focusRingStyles as iconButtonFocusRingStyles,
   circularProgressIndicatorStyles as iconButtonCircularProgressIndicatorStyles,
 } from './IconButton/IconButton.styles';
-import {
-  componentTheme as iconButtonTheme,
-  componentVars as iconButtonVars,
-} from './IconButton/IconButton.stylex';
+import { componentTheme as iconButtonTheme } from './IconButton/IconButton.stylex';
 import { componentTheme as standardIconButtonTheme } from './IconButton/StandardIconButton.stylex';
 import { componentTheme as filledIconButtonTheme } from './IconButton/FilledIconButton.stylex';
 import { componentTheme as filledTonalIconButtonTheme } from './IconButton/FilledTonalIconButton.stylex';
@@ -119,19 +89,13 @@ import {
   focusRingStyles as switchFocusRingStyles,
   circularProgressIndicatorStyles as switchCircularProgressIndicatorStyles,
 } from './Switch/Switch.styles';
-import {
-  componentTheme as switchTheme,
-  componentVars as switchVars,
-} from './Switch/Switch.stylex';
+import { componentTheme as switchTheme } from './Switch/Switch.stylex';
 
 import { styles as fieldSharedStyles } from './Field/Field.styles';
 import { styles as fieldFilledStyles } from './Field/FilledField.styles';
 import { styles as fieldOutlinedStyles } from './Field/OutlinedField.styles';
 
-import {
-  componentTheme as textFieldTheme,
-  componentVars as textFieldVars,
-} from './TextField/TextField.stylex';
+import { componentTheme as textFieldTheme } from './TextField/TextField.stylex';
 import {
   styles as textFieldStyles,
   fieldStyles as textFieldFieldStyles,
@@ -139,19 +103,13 @@ import {
 import { componentTheme as filledTextFieldTheme } from './TextField/FilledTextField.stylex';
 import { componentTheme as outlinedTextFieldTheme } from './TextField/OutlinedTextField.stylex';
 
-import {
-  componentTheme as radioTheme,
-  componentVars as radioVars,
-} from './Radio/Radio.stylex';
+import { componentTheme as radioTheme } from './Radio/Radio.stylex';
 import {
   styles as radioStyles,
   rippleStyles as radioRippleStyles,
   focusRingStyles as radioFocusRingStyles,
 } from './Radio/Radio.styles';
-import {
-  componentTheme as checkboxTheme,
-  componentVars as checkboxVars,
-} from './Checkbox/Checkbox.stylex';
+import { componentTheme as checkboxTheme } from './Checkbox/Checkbox.stylex';
 import {
   styles as checkboxStyles,
   rippleStyles as checkboxRippleStyles,
@@ -159,20 +117,11 @@ import {
 } from './Checkbox/Checkbox.styles';
 
 import { styles as itemStyles } from './Item/Item.styles';
-import {
-  componentTheme as itemTheme,
-  componentVars as itemVars,
-} from './Item/Item.stylex';
+import { componentTheme as itemTheme } from './Item/Item.stylex';
 
 import { styles as listStyles } from './List/List.styles';
-import {
-  componentTheme as listTheme,
-  componentVars as listVars,
-} from './List/List.stylex';
-import {
-  componentTheme as listItemTheme,
-  componentVars as listItemVars,
-} from './Item/ListItem.stylex';
+import { componentTheme as listTheme } from './List/List.stylex';
+import { componentTheme as listItemTheme } from './Item/ListItem.stylex';
 import {
   styles as listItemStyles,
   itemStyles as listItemItemStyles,
@@ -180,22 +129,13 @@ import {
   focusRingStyles as listItemFocusRingStyles,
 } from './Item/ListItem.styles';
 
-import {
-  componentTheme as iconTheme,
-  componentVars as iconVars,
-} from './Icon/Icon.stylex';
+import { componentTheme as iconTheme } from './Icon/Icon.stylex';
 import { styles as iconStyles } from './Icon/Icon.styles';
 
-import {
-  componentTheme as dividerTheme,
-  componentVars as dividerVars,
-} from './Divider/Divider.stylex';
+import { componentTheme as dividerTheme } from './Divider/Divider.stylex';
 import { styles as dividerStyles } from './Divider/Divider.styles';
 
-import {
-  componentTheme as cardTheme,
-  componentVars as cardVars,
-} from './Card/Card.stylex';
+import { componentTheme as cardTheme } from './Card/Card.stylex';
 import {
   styles as cardStyles,
   rippleStyles as cardRippleStyles,
@@ -225,68 +165,62 @@ import { styles as typographyStyles } from './Typography/Typography.styles';
 import { componentTheme as breadcrumbsTheme } from './Breadcrumbs/Breadcrumbs.stylex';
 import {
   styles as breadcrumbsStyles,
-  expandButtonStyles as breadcrumbExpandButtonStyles,
+  expandButtonStyles as breadcrumbsExpandButtonStyles,
+  expandButtonFocusRingStyles as breadcrumbsExpandButtonFocusRingStyles,
 } from './Breadcrumbs/Breadcrumbs.styles';
 
 export const theme: ITheme = {
   name: 'Material Design 3',
   components: {
     Template: {
-      theme: templateTheme,
-      vars: templateVars,
+      vars: templateTheme,
       styles: templateStyles,
     },
-    ComponentShowcase: {
-      theme: componentShowcaseTheme,
-      vars: componentShowcaseVars,
-      styles: componentShowcaseStyles,
-    },
     VariantTemplate: {
-      theme: variantTemplateTheme,
+      vars: variantTemplateTheme,
       styles: variantTemplateStyles,
     },
+    ComponentShowcase: {
+      vars: componentShowcaseTheme,
+      styles: componentShowcaseStyles,
+    },
     Placeholder: {
-      theme: placeholderTheme,
-      vars: placeholderVars,
+      vars: placeholderTheme,
       styles: placeholderStyles,
     },
     Ripple: {
-      theme: rippleTheme,
-      vars: rippleVars,
+      vars: rippleTheme,
       styles: rippleStyles,
     },
     Elevation: {
-      theme: elevationTheme,
-      vars: elevationVars,
+      vars: elevationTheme,
       styles: elevationStyles,
     },
     FocusRing: {
-      theme: focusRingTheme,
-      vars: focusRingVars,
+      vars: focusRingTheme,
       styles: focusRingStyles,
     },
+    ButtonBase: {
+      styles: buttonBaseStyles,
+    },
     Button: {
-      theme: buttonTheme,
+      vars: buttonTheme,
       styles: buttonStyles,
       rippleStyles: buttonRippleStyles,
       focusRingStyles: buttonFocusRingStyles,
       elevationStyles: buttonElevationStyles,
       circularProgressIndicatorStyles: buttonCircularProgressIndicatorStyles,
     },
-    ButtonBase: {
-      styles: buttonBaseStyles,
-    },
-    ElevatedButton: { theme: elevatedButtonTheme },
-    FilledButton: { theme: filledButtonTheme },
-    FilledTonalButton: { theme: filledTonalButtonTheme },
+    ElevatedButton: { vars: elevatedButtonTheme },
+    FilledButton: { vars: filledButtonTheme },
+    FilledTonalButton: { vars: filledTonalButtonTheme },
     OutlinedButton: {
-      theme: outlinedButtonTheme,
+      vars: outlinedButtonTheme,
       styles: outlinedButtonStyles,
     },
-    TextButton: { theme: textButtonTheme },
+    TextButton: { vars: textButtonTheme },
     CircularProgressIndicator: {
-      theme: circularProgressIndicatorTheme,
-      vars: circularProgressIndicatorVars,
+      vars: circularProgressIndicatorTheme,
       styles: circularProgressIndicatorStyles,
     },
     IndeterminateCircularProgressIndicator: {
@@ -296,8 +230,7 @@ export const theme: ITheme = {
       styles: determinateCircularProgressIndicatorStyles,
     },
     Chip: {
-      theme: chipTheme,
-      vars: chipVars,
+      vars: chipTheme,
       styles: chipStyles,
       rippleStyles: chipRippleStyles,
       focusRingStyles: chipFocusRingStyles,
@@ -306,133 +239,121 @@ export const theme: ITheme = {
       trailingActionRippleStyles: chipTrailingActionRippleStyles,
       circularProgressIndicatorStyles: chipCircularProgressIndicatorStyles,
     },
-    AssistChip: { theme: assistChipTheme },
-    FilterChip: { theme: filterChipTheme },
-    InputChip: { theme: inputChipTheme },
-    SuggestionChip: { theme: suggestionChipTheme },
+    AssistChip: { vars: assistChipTheme },
+    FilterChip: { vars: filterChipTheme },
+    InputChip: { vars: inputChipTheme },
+    SuggestionChip: { vars: suggestionChipTheme },
     Fab: {
-      theme: fabTheme,
-      vars: fabVars,
+      vars: fabTheme,
       styles: fabStyles,
       rippleStyles: fabRippleStyles,
       focusRingStyles: fabFocusRingStyles,
       elevationStyles: fabElevationStyles,
       circularProgressIndicatorStyles: fabCircularProgressIndicatorStyles,
     },
-    SurfaceFab: { theme: surfaceFabTheme },
-    PrimaryFab: { theme: primaryFabTheme },
-    SecondaryFab: { theme: secondaryFabTheme },
-    TertiaryFab: { theme: tertiaryFabTheme },
-    BrandedFab: { theme: brandedFabTheme },
+    SurfaceFab: { vars: surfaceFabTheme },
+    PrimaryFab: { vars: primaryFabTheme },
+    SecondaryFab: { vars: secondaryFabTheme },
+    TertiaryFab: { vars: tertiaryFabTheme },
+    BrandedFab: { vars: brandedFabTheme },
     IconButton: {
-      theme: iconButtonTheme,
-      vars: iconButtonVars,
+      vars: iconButtonTheme,
       styles: iconButtonStyles,
       rippleStyles: iconButtonRippleStyles,
       focusRingStyles: iconButtonFocusRingStyles,
       circularProgressIndicatorStyles:
         iconButtonCircularProgressIndicatorStyles,
     },
-    StandardIconButton: { theme: standardIconButtonTheme },
-    FilledIconButton: { theme: filledIconButtonTheme },
-    FilledTonalIconButton: { theme: filledTonalIconButtonTheme },
+    StandardIconButton: { vars: standardIconButtonTheme },
+    FilledIconButton: { vars: filledIconButtonTheme },
+    FilledTonalIconButton: { vars: filledTonalIconButtonTheme },
     OutlinedIconButton: {
-      theme: outlinedIconButtonTheme,
+      vars: outlinedIconButtonTheme,
       styles: outlinedIconButtonStyles,
     },
     Switch: {
-      theme: switchTheme,
-      vars: switchVars,
+      vars: switchTheme,
       styles: switchStyles,
       rippleStyles: switchRippleStyles,
       focusRingStyles: switchFocusRingStyles,
       circularProgressIndicatorStyles: switchCircularProgressIndicatorStyles,
     },
     Field: {
-      theme: textFieldTheme,
+      vars: textFieldTheme,
       styles: fieldSharedStyles,
     },
     FilledField: {
-      theme: filledTextFieldTheme,
+      vars: filledTextFieldTheme,
       styles: fieldFilledStyles,
     },
     OutlinedField: {
-      theme: outlinedTextFieldTheme,
+      vars: outlinedTextFieldTheme,
       styles: fieldOutlinedStyles,
     },
     TextField: {
-      theme: textFieldTheme,
-      vars: textFieldVars,
+      vars: textFieldTheme,
       styles: textFieldStyles,
       fieldStyles: textFieldFieldStyles,
     },
-    FilledTextField: { theme: filledTextFieldTheme },
-    OutlinedTextField: { theme: outlinedTextFieldTheme },
+    FilledTextField: { vars: filledTextFieldTheme },
+    OutlinedTextField: { vars: outlinedTextFieldTheme },
     Radio: {
-      theme: radioTheme,
+      vars: radioTheme,
       styles: radioStyles,
-      vars: radioVars,
       rippleStyles: radioRippleStyles,
       focusRingStyles: radioFocusRingStyles,
     },
     Checkbox: {
-      theme: checkboxTheme,
+      vars: checkboxTheme,
       styles: checkboxStyles,
-      vars: checkboxVars,
       rippleStyles: checkboxRippleStyles,
       focusRingStyles: checkboxFocusRingStyles,
     },
     Item: {
-      theme: itemTheme,
+      vars: itemTheme,
       styles: itemStyles,
-      vars: itemVars,
     },
     ListItem: {
-      theme: listItemTheme,
+      vars: listItemTheme,
       styles: listItemStyles,
-      vars: listItemVars,
       itemStyles: listItemItemStyles,
       rippleStyles: listItemRippleStyles,
       focusRingStyles: listItemFocusRingStyles,
     },
     List: {
-      theme: listTheme,
+      vars: listTheme,
       styles: listStyles,
-      vars: listVars,
     },
     Icon: {
-      theme: iconTheme,
+      vars: iconTheme,
       styles: iconStyles,
-      vars: iconVars,
     },
     Divider: {
-      theme: dividerTheme,
+      vars: dividerTheme,
       styles: dividerStyles,
-      vars: dividerVars,
     },
     Card: {
-      theme: cardTheme,
+      vars: cardTheme,
       styles: cardStyles,
-      vars: cardVars,
       rippleStyles: cardRippleStyles,
       focusRingStyles: cardFocusRingStyles,
       elevationStyles: cardElevationStyles,
     },
-    ElevatedCard: { theme: elevatedCardTheme },
-    FilledCard: { theme: filledCardTheme },
+    ElevatedCard: { vars: elevatedCardTheme },
+    FilledCard: { vars: filledCardTheme },
     OutlinedCard: {
-      theme: outlinedCardTheme,
+      vars: outlinedCardTheme,
       styles: outlinedCardStyles,
     },
     Tab: {
-      theme: tabTheme,
+      vars: tabTheme,
       styles: tabStyles,
       rippleStyles: tabRippleStyles,
       focusRingStyles: tabFocusRingStyles,
       elevationStyles: tabElevationStyles,
     },
-    PrimaryTab: { theme: primaryTabTheme, styles: primaryTabStyles },
-    SecondaryTab: { theme: secondaryTabTheme },
+    PrimaryTab: { vars: primaryTabTheme, styles: primaryTabStyles },
+    SecondaryTab: { vars: secondaryTabTheme },
     TabList: {
       styles: tabListStyles,
     },
@@ -440,9 +361,10 @@ export const theme: ITheme = {
       styles: typographyStyles,
     },
     Breadcrumbs: {
-      theme: breadcrumbsTheme,
+      vars: breadcrumbsTheme,
       styles: breadcrumbsStyles,
-      expandButtonStyles: breadcrumbExpandButtonStyles,
+      expandButtonStyles: breadcrumbsExpandButtonStyles,
+      expandButtonFocusRingStyles: breadcrumbsExpandButtonFocusRingStyles,
     },
   },
 };

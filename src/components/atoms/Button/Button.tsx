@@ -1,7 +1,7 @@
 import React from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
-import type { IIcon } from '@/helpers/types';
+import type { ICompiledStyles, IIcon } from '@/helpers/types';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type {
   IButtonStyleKey,
@@ -12,7 +12,10 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useVisualState } from '@/hooks/useVisualState';
-import { IndeterminateCircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
+import {
+  type ICircularProgressIndicatorStyleKey,
+  IndeterminateCircularProgressIndicator,
+} from '@/components/atoms/CircularProgressIndicator';
 import { ButtonBase, type IButtonBaseProps } from './ButtonBase';
 
 export interface IButtonProps extends IButtonBaseProps {
@@ -22,6 +25,7 @@ export interface IButtonProps extends IButtonBaseProps {
   loading?: boolean;
   loadingAnimation?: 'progressIndicator' | 'halfSpin' | 'none';
   loadingText?: string;
+  circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
 }
 
 type IButtonVariantMap = {
@@ -64,13 +68,10 @@ export const Button: React.FC<IButtonProps> = ({
   const theme = useComponentTheme('Button');
   const variantTheme = useComponentTheme(variantMap[variant]);
 
-  const actionElRef = React.useRef<HTMLButtonElement | HTMLLinkElement>(null);
+  const actionRef = React.useRef<HTMLButtonElement | HTMLLinkElement>(null);
   const [handlingClick, setHandlingClick] = React.useState(false);
   const [animating, setAnimating] = React.useState(false);
-  const visualState = accumulate(
-    useVisualState(actionElRef),
-    props.visualState,
-  );
+  const visualState = accumulate(useVisualState(actionRef), props.visualState);
 
   const styleProps = React.useMemo(
     () =>
@@ -122,7 +123,7 @@ export const Button: React.FC<IButtonProps> = ({
 
   return (
     <ButtonBase
-      theme={[theme.theme, variantTheme.theme, ...asArray(props.theme)]}
+      theme={[theme.vars, variantTheme.vars, ...asArray(props.theme)]}
       styles={[theme.styles, variantTheme.styles, ...asArray(props.styles)]}
       rippleStyles={[
         theme.rippleStyles,
@@ -163,6 +164,7 @@ export const Button: React.FC<IButtonProps> = ({
               styles={[
                 theme.circularProgressIndicatorStyles,
                 variantTheme.circularProgressIndicatorStyles,
+                ...asArray(props.circularProgressIndicatorStyles),
               ]}
             />
           ) : Icon ? (
@@ -197,6 +199,7 @@ export const Button: React.FC<IButtonProps> = ({
                 styles={[
                   theme.circularProgressIndicatorStyles,
                   variantTheme.circularProgressIndicatorStyles,
+                  ...asArray(props.circularProgressIndicatorStyles),
                 ]}
               />
             </div>
@@ -216,6 +219,7 @@ export const Button: React.FC<IButtonProps> = ({
               styles={[
                 theme.circularProgressIndicatorStyles,
                 variantTheme.circularProgressIndicatorStyles,
+                ...asArray(props.circularProgressIndicatorStyles),
               ]}
             />
           </div>

@@ -119,28 +119,26 @@ const ControlledTextField: React.FC<Omit<ITextFieldProps, 'onChange'>> = (
   props,
 ) => {
   const [value, setValue] = React.useState(props.defaultValue ?? '');
-  const iconButtonElRef = React.useRef<HTMLButtonElement | HTMLLinkElement>(
-    null,
-  );
-  const textFieldElRef = React.useRef<HTMLInputElement | HTMLTextAreaElement>(
+  const iconButtonRef = React.useRef<HTMLButtonElement | HTMLLinkElement>(null);
+  const textFieldRef = React.useRef<HTMLInputElement | HTMLTextAreaElement>(
     null,
   );
 
   const clearInput = React.useCallback(() => {
-    iconButtonElRef.current?.blur();
+    iconButtonRef.current?.blur();
     setValue('');
-    textFieldElRef.current?.focus();
+    textFieldRef.current?.focus();
   }, []);
 
   return (
     <TextField
       {...props}
-      forwardRef={textFieldElRef}
+      forwardRef={textFieldRef}
       value={value}
       onChange={(event, value) => setValue(value)}
       end={
         <IconButton
-          forwardRef={iconButtonElRef}
+          forwardRef={iconButtonRef}
           icon={XMarkIcon}
           onClick={clearInput}
         />

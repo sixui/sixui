@@ -21,7 +21,7 @@ export const RadioGroup = React.forwardRef(function RadioGroup(
   { actions, children, onChange, ...props }: IRadioGroupProps,
   ref: React.ForwardedRef<IAny> | null,
 ): React.ReactNode {
-  const hostElRef = React.useRef<HTMLElement>(null);
+  const hostRef = React.useRef<HTMLElement>(null);
   const [value, setValue] = useControlled({
     controlled: props.value,
     default: props.defaultValue,
@@ -32,12 +32,12 @@ export const RadioGroup = React.forwardRef(function RadioGroup(
     actions,
     () => ({
       focus: () => {
-        let input = hostElRef.current?.querySelector(
+        let input = hostRef.current?.querySelector(
           'input:not(:disabled):checked',
         );
 
         if (!input) {
-          input = hostElRef.current?.querySelector('input:not(:disabled)');
+          input = hostRef.current?.querySelector('input:not(:disabled)');
         }
 
         if (input) {
@@ -49,7 +49,7 @@ export const RadioGroup = React.forwardRef(function RadioGroup(
   );
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const handleElRef = useForkRef(ref, hostElRef);
+  const handleRef = useForkRef(ref, hostRef);
   const name = useId();
 
   const contextValue = React.useMemo(
@@ -67,7 +67,7 @@ export const RadioGroup = React.forwardRef(function RadioGroup(
 
   return (
     <RadioGroupContext.Provider value={contextValue}>
-      {/* TODO: <FormGroup ref={handleElRef} role='radiogroup'> */}
+      {/* TODO: <FormGroup ref={handleRef} role='radiogroup'> */}
       {children}
       {/* TODO: </FormGroup> */}
     </RadioGroupContext.Provider>

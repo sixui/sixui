@@ -1,7 +1,12 @@
 import React from 'react';
-import { accumulate } from '@olivierpascal/helpers';
+import { accumulate, asArray } from '@olivierpascal/helpers';
 
-import type { IAny, IMaybeAsync } from '@/helpers/types';
+import type {
+  IZeroOrMore,
+  ICompiledStyles,
+  IAny,
+  IMaybeAsync,
+} from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type {
@@ -13,9 +18,9 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useVisualState } from '@/hooks/useVisualState';
-import { Elevation } from '@/components/utils/Elevation';
-import { FocusRing } from '@/components/utils/FocusRing';
-import { Ripple } from '@/components/utils/Ripple';
+import { Elevation, IElevationStyleKey } from '@/components/utils/Elevation';
+import { FocusRing, IFocusRingStyleKey } from '@/components/utils/FocusRing';
+import { Ripple, type IRippleStyleKey } from '@/components/utils/Ripple';
 
 export interface ICardProps
   extends IContainer<ICardStyleKey, ICardStyleVarKey>,
@@ -27,6 +32,9 @@ export interface ICardProps
   variant?: ICardVariant;
   children: React.ReactNode;
   onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
+  rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+  focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+  elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
 }
 
 type ICardVariantMap = {
@@ -51,29 +59,31 @@ export const Card: React.FC<ICardProps> = ({
   href,
   ...props
 }) => {
-  const { theme, styles, rippleStyles, elevationStyles, focusRingStyles } =
-    useComponentTheme('Card');
-  const { theme: variantTheme, styles: variantStyles } = useComponentTheme(
-    variantMap[variant],
-  );
+  const theme = useComponentTheme('Card');
+  const variantTheme = useComponentTheme(variantMap[variant]);
 
-  const actionElRef = React.useRef(null);
-  const visualState = accumulate(
-    useVisualState(actionElRef),
-    props.visualState,
-  );
+  const actionRef = React.useRef(null);
+  const visualState = accumulate(useVisualState(actionRef), props.visualState);
 
   const styleProps = React.useMemo(
     () =>
       stylePropsFactory<ICardStyleKey, ICardStyleVarKey>(
-        stylesCombinatorFactory(styles, variantStyles, props.styles),
+        stylesCombinatorFactory(
+          theme.styles,
+          variantTheme.styles,
+          props.styles,
+        ),
         visualState,
       ),
-    [styles, variantStyles, props.styles, visualState],
+    [theme.styles, variantTheme.styles, props.styles, visualState],
   );
 
   const isInteractive = !disabled && (!!href || !!onClick);
   const Component: React.ElementType = href ? 'a' : onClick ? 'button' : 'div';
+  const hasOutline =
+    theme.styles?.outline ||
+    variantTheme.styles?.outline ||
+    asArray(props.styles).some((styles) => !!styles?.outline);
 
   return (
     <Component
@@ -83,9 +93,9 @@ export const Card: React.FC<ICardProps> = ({
           isInteractive && 'host$interactive',
           disabled && 'host$disabled',
         ],
-        [theme, variantTheme, props.theme],
+        [theme.vars, variantTheme.vars, props.theme],
       )}
-      ref={actionElRef}
+      ref={actionRef}
       href={href}
       onClick={onClick}
       role={isInteractive ? 'button' : undefined}
@@ -94,8 +104,15 @@ export const Card: React.FC<ICardProps> = ({
       aria-haspopup={props['aria-haspopup']}
       aria-expanded={props['aria-expanded']}
     >
-      <Elevation styles={elevationStyles} disabled={disabled} />
-      {variantStyles?.outline ? (
+      <Elevation
+        styles={[
+          theme.elevationStyles,
+          variantTheme.elevationStyles,
+          ...asArray(props.elevationStyles),
+        ]}
+        disabled={disabled}
+      />
+      {hasOutline ? (
         <div
           {...styleProps([
             'outline',
@@ -108,13 +125,21 @@ export const Card: React.FC<ICardProps> = ({
       {isInteractive ? (
         <React.Fragment>
           <FocusRing
-            styles={focusRingStyles}
-            for={actionElRef}
+            styles={[
+              theme.focusRingStyles,
+              variantTheme.focusRingStyles,
+              ...asArray(props.focusRingStyles),
+            ]}
+            for={actionRef}
             visualState={visualState}
           />
           <Ripple
-            styles={rippleStyles}
-            for={actionElRef}
+            styles={[
+              theme.rippleStyles,
+              variantTheme.rippleStyles,
+              ...asArray(props.rippleStyles),
+            ]}
+            for={actionRef}
             disabled={disabled}
             visualState={visualState}
           />

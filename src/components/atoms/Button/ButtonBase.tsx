@@ -3,9 +3,9 @@ import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type {
   IZeroOrMore,
+  ICompiledStyles,
   IAny,
   IMaybeAsync,
-  ICompiledStyles,
 } from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
 import type { IButtonStyleKey, IButtonStyleVarKey } from '../Button';
@@ -51,11 +51,8 @@ export const ButtonBase: React.FC<IButtonBaseProps> = ({
 }) => {
   const theme = useComponentTheme('ButtonBase');
 
-  const actionElRef = React.useRef(null);
-  const visualState = accumulate(
-    useVisualState(actionElRef),
-    props.visualState,
-  );
+  const actionRef = React.useRef(null);
+  const visualState = accumulate(useVisualState(actionRef), props.visualState);
 
   const styleProps = React.useMemo(
     () =>
@@ -80,9 +77,9 @@ export const ButtonBase: React.FC<IButtonBaseProps> = ({
           withLeadingIcon && 'host$withLeadingIcon',
           withTrailingIcon && 'host$withTrailingIcon',
         ],
-        [theme.theme, props.theme],
+        [theme.vars, props.theme],
       )}
-      ref={actionElRef}
+      ref={actionRef}
       href={href}
       onClick={onClick}
       role='button'
@@ -104,12 +101,12 @@ export const ButtonBase: React.FC<IButtonBaseProps> = ({
       <div {...styleProps(['background', disabled && 'background$disabled'])} />
       <FocusRing
         styles={[theme.focusRingStyles, ...asArray(props.focusRingStyles)]}
-        for={actionElRef}
+        for={actionRef}
         visualState={visualState}
       />
       <Ripple
         styles={[theme.rippleStyles, ...asArray(props.rippleStyles)]}
-        for={actionElRef}
+        for={actionRef}
         disabled={disabled}
         visualState={visualState}
       />

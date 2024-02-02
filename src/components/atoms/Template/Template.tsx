@@ -45,7 +45,7 @@ export const Template: React.FC<ITemplateProps> = ({
 
   return (
     <div
-      {...styleProps(['host'], [theme.theme, variantTheme.theme, props.theme])}
+      {...styleProps(['host'], [theme.vars, variantTheme.vars, props.theme])}
     >
       Template
     </div>

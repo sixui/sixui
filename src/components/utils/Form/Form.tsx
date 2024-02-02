@@ -12,7 +12,7 @@ export interface IFormProps
 }
 
 export const Form: React.FC<IFormProps> = ({ onSubmit, children, styles }) => {
-  const formElRef = React.useRef<HTMLFormElement>(null);
+  const formRef = React.useRef<HTMLFormElement>(null);
 
   const stylesCombinator = React.useMemo(
     () => stylesCombinatorFactory(styles),
@@ -22,7 +22,7 @@ export const Form: React.FC<IFormProps> = ({ onSubmit, children, styles }) => {
   // TODO: make this callback to be called only once on form validation.
   const handleInvalid: React.FormEventHandler<HTMLFormElement> =
     React.useCallback(() => {
-      const formEl = formElRef.current;
+      const formEl = formRef.current;
       if (!formEl) {
         return;
       }
@@ -43,7 +43,7 @@ export const Form: React.FC<IFormProps> = ({ onSubmit, children, styles }) => {
   return (
     <form
       {...stylex.props(stylesCombinator('host'))}
-      ref={formElRef}
+      ref={formRef}
       onSubmit={onSubmit}
       onInvalid={handleInvalid}
     >

@@ -1,15 +1,24 @@
 import React from 'react';
-import { accumulate } from '@olivierpascal/helpers';
+import { accumulate, asArray } from '@olivierpascal/helpers';
 
+import type { IZeroOrMore, ICompiledStyles } from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
 import type { IListItemStyleKey } from './ListItem.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useVisualState } from '@/hooks/useVisualState';
-import { Ripple } from '@/components/utils/Ripple';
-import { FocusRing } from '@/components/utils/FocusRing';
-import { type IItemProps, type IItemStyleVarKey, Item } from '../Item';
+import { Ripple, type IRippleStyleKey } from '@/components/utils/Ripple';
+import {
+  FocusRing,
+  type IFocusRingStyleKey,
+} from '@/components/utils/FocusRing';
+import {
+  type IItemProps,
+  type IItemStyleVarKey,
+  type IItemStyleKey,
+  Item,
+} from '../Item';
 
 export type IListItemType = 'text' | 'button' | 'link';
 
@@ -46,6 +55,9 @@ export interface IListItemProps
   type?: IListItemType;
 
   component?: React.ElementType;
+  itemStyles?: IZeroOrMore<ICompiledStyles<IItemStyleKey>>;
+  rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+  focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
 }
 
 // https://github.com/material-components/material-web/blob/main/list/internal/listitem/list-item.ts
@@ -60,27 +72,18 @@ export const ListItem: React.FC<IListItemProps> = ({
   end,
   ...props
 }) => {
-  const { theme } = useComponentTheme('Item');
-  const {
-    theme: variantTheme,
-    styles,
-    rippleStyles,
-    focusRingStyles,
-    itemStyles,
-  } = useComponentTheme('ListItem');
-  const actionElRef = React.useRef(null);
-  const visualState = accumulate(
-    useVisualState(actionElRef),
-    props.visualState,
-  );
+  const theme = useComponentTheme('ListItem');
+  const itemTheme = useComponentTheme('Item');
+  const actionRef = React.useRef(null);
+  const visualState = accumulate(useVisualState(actionRef), props.visualState);
 
   const styleProps = React.useMemo(
     () =>
       stylePropsFactory<IListItemStyleKey, IItemStyleVarKey>(
-        stylesCombinatorFactory(styles, props.styles),
+        stylesCombinatorFactory(theme.styles, props.styles),
         visualState,
       ),
-    [styles, props.styles, visualState],
+    [theme.styles, props.styles, visualState],
   );
 
   const type = href ? 'link' : props.type ?? 'text';
@@ -101,7 +104,7 @@ export const ListItem: React.FC<IListItemProps> = ({
     <div
       {...styleProps(
         ['host', disabled && 'host$disabled'],
-        [theme, variantTheme, props.theme],
+        [itemTheme.vars, theme.vars, props.theme],
       )}
     >
       <Component
@@ -110,7 +113,7 @@ export const ListItem: React.FC<IListItemProps> = ({
           isInteractive && 'listItem$interactive',
           disabled && 'listItem$disabled',
         ])}
-        ref={actionElRef}
+        ref={actionRef}
         tabIndex={disabled || !isInteractive ? -1 : 0}
         disabled={disabled}
         role={role}
@@ -122,19 +125,22 @@ export const ListItem: React.FC<IListItemProps> = ({
         target={target}
       >
         <Item
-          styles={itemStyles}
+          styles={[theme.itemStyles, ...asArray(props.itemStyles)]}
           container={
             isInteractive ? (
               <React.Fragment>
                 <Ripple
-                  styles={rippleStyles}
-                  for={actionElRef}
+                  styles={[theme.rippleStyles, ...asArray(props.rippleStyles)]}
+                  for={actionRef}
                   disabled={disabled}
                   visualState={visualState}
                 />
                 <FocusRing
-                  styles={focusRingStyles}
-                  for={actionElRef}
+                  styles={[
+                    theme.focusRingStyles,
+                    ...asArray(props.focusRingStyles),
+                  ]}
+                  for={actionRef}
                   visualState={visualState}
                   inward
                 />

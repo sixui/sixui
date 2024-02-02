@@ -1,7 +1,13 @@
 import React from 'react';
-import { accumulate } from '@olivierpascal/helpers';
+import { accumulate, asArray } from '@olivierpascal/helpers';
 
-import type { IAny, IMaybeAsync, IIcon } from '@/helpers/types';
+import type {
+  IZeroOrMore,
+  ICompiledStyles,
+  IAny,
+  IMaybeAsync,
+  IIcon,
+} from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
 import type {
   IIconButtonStyleKey,
@@ -12,10 +18,16 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useVisualState } from '@/hooks/useVisualState';
-import { FocusRing } from '@/components/utils/FocusRing';
-import { Ripple } from '@/components/utils/Ripple';
+import {
+  FocusRing,
+  type IFocusRingStyleKey,
+} from '@/components/utils/FocusRing';
+import { Ripple, type IRippleStyleKey } from '@/components/utils/Ripple';
 import { IThemeComponents } from '@/helpers/ThemeContext';
-import { IndeterminateCircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
+import {
+  IndeterminateCircularProgressIndicator,
+  type ICircularProgressIndicatorStyleKey,
+} from '@/components/atoms/CircularProgressIndicator';
 
 export interface IIconButtonProps
   extends IContainer<IIconButtonStyleKey, IIconButtonStyleVarKey>,
@@ -34,6 +46,9 @@ export interface IIconButtonProps
   selectedIcon?: IIcon;
   component?: React.ElementType;
   'aria-label-selected'?: React.AriaAttributes['aria-label'];
+  rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+  focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+  circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
 }
 
 type IIconButtonVariantMap = {
@@ -63,34 +78,27 @@ export const IconButton: React.FC<IIconButtonProps> = ({
   href,
   ...props
 }) => {
-  const {
-    theme,
-    styles,
-    rippleStyles,
-    focusRingStyles,
-    circularProgressIndicatorStyles,
-  } = useComponentTheme('IconButton');
-  const { theme: variantTheme, styles: variantStyles } = useComponentTheme(
-    variantMap[variant],
-  );
+  const theme = useComponentTheme('IconButton');
+  const variantTheme = useComponentTheme(variantMap[variant]);
 
   const actionElInternalRef = React.useRef<HTMLButtonElement | HTMLLinkElement>(
     null,
   );
-  const actionElRef = forwardRef ?? actionElInternalRef;
+  const actionRef = forwardRef ?? actionElInternalRef;
   const [handlingClick, setHandlingClick] = React.useState(false);
-  const visualState = accumulate(
-    useVisualState(actionElRef),
-    props.visualState,
-  );
+  const visualState = accumulate(useVisualState(actionRef), props.visualState);
 
   const styleProps = React.useMemo(
     () =>
       stylePropsFactory<IIconButtonStyleKey, IIconButtonStyleVarKey>(
-        stylesCombinatorFactory(styles, variantStyles, props.styles),
+        stylesCombinatorFactory(
+          theme.styles,
+          variantTheme.styles,
+          props.styles,
+        ),
         visualState,
       ),
-    [styles, variantStyles, props.styles, visualState],
+    [theme.styles, variantTheme.styles, props.styles, visualState],
   );
 
   const handleClick: React.MouseEventHandler<HTMLElement> | undefined = onClick
@@ -112,6 +120,9 @@ export const IconButton: React.FC<IIconButtonProps> = ({
   const loading = props.loading || handlingClick;
   const disabled = props.disabled || loading;
   const hasOverlay = loading;
+  const hasOutline =
+    theme.styles?.outline ||
+    asArray(props.styles).some((styles) => !!styles?.outline);
 
   const Component: React.ElementType = href ? 'a' : props.component ?? 'button';
   const Icon =
@@ -129,10 +140,10 @@ export const IconButton: React.FC<IIconButtonProps> = ({
               : 'host$selected'
             : null,
         ],
-        [theme, variantTheme, props.theme],
+        [theme.vars, variantTheme.vars, props.theme],
       )}
     >
-      {variantStyles?.outline ? (
+      {hasOutline ? (
         <div {...styleProps(['outline', disabled && 'outline$disabled'])} />
       ) : null}
       <div
@@ -148,20 +159,28 @@ export const IconButton: React.FC<IIconButtonProps> = ({
         ])}
       />
       <FocusRing
-        styles={focusRingStyles}
-        for={actionElRef}
+        styles={[
+          theme.focusRingStyles,
+          variantTheme.focusRingStyles,
+          ...asArray(props.focusRingStyles),
+        ]}
+        for={actionRef}
         visualState={visualState}
       />
       <Ripple
-        styles={rippleStyles}
-        for={actionElRef}
+        styles={[
+          theme.rippleStyles,
+          variantTheme.rippleStyles,
+          ...asArray(props.rippleStyles),
+        ]}
+        for={actionRef}
         disabled={disabled}
         visualState={visualState}
       />
 
       <Component
         {...styleProps(['button'])}
-        ref={actionElRef}
+        ref={actionRef}
         onClick={handleClick}
         readOnly={disabled}
         tabIndex={disabled ? -1 : 0}
@@ -194,7 +213,11 @@ export const IconButton: React.FC<IIconButtonProps> = ({
           <div {...styleProps(['overlay'])}>
             <div {...styleProps([disabled && 'icon$disabled'])}>
               <IndeterminateCircularProgressIndicator
-                styles={circularProgressIndicatorStyles}
+                styles={[
+                  theme.circularProgressIndicatorStyles,
+                  variantTheme.circularProgressIndicatorStyles,
+                  ...asArray(props.circularProgressIndicatorStyles),
+                ]}
               />
             </div>
           </div>

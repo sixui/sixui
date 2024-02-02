@@ -1,7 +1,13 @@
 import React from 'react';
-import { accumulate } from '@olivierpascal/helpers';
+import { accumulate, asArray } from '@olivierpascal/helpers';
 
-import type { IAny, IIcon, IMaybeAsync } from '@/helpers/types';
+import type {
+  IZeroOrMore,
+  ICompiledStyles,
+  IAny,
+  IIcon,
+  IMaybeAsync,
+} from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type {
@@ -13,9 +19,9 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useVisualState } from '@/hooks/useVisualState';
-import { Elevation } from '@/components/utils/Elevation';
-import { FocusRing } from '@/components/utils/FocusRing';
-import { Ripple } from '@/components/utils/Ripple';
+import { Elevation, IElevationStyleKey } from '@/components/utils/Elevation';
+import { FocusRing, IFocusRingStyleKey } from '@/components/utils/FocusRing';
+import { Ripple, type IRippleStyleKey } from '@/components/utils/Ripple';
 import { useTabContext } from '../Tabs/useTabContext';
 
 // https://github.com/material-components/material-web/blob/main/tabs/internal/tab.ts
@@ -34,6 +40,9 @@ export interface ITabProps extends IContainer<ITabStyleKey, ITabStyleVarKey> {
   label?: string;
   anchor?: string;
   disabled?: boolean;
+  rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+  focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+  elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
 }
 
 type ITabVariantMap = {
@@ -60,11 +69,8 @@ export const Tab: React.FC<ITabProps> = ({
   const tabContext = useTabContext();
   const variant = props.variant ?? tabContext?.variant ?? 'primary';
 
-  const { theme, styles, focusRingStyles, rippleStyles, elevationStyles } =
-    useComponentTheme('Tab');
-  const { theme: variantTheme, styles: variantStyles } = useComponentTheme(
-    variantMap[variant],
-  );
+  const theme = useComponentTheme('Tab');
+  const variantTheme = useComponentTheme(variantMap[variant]);
 
   const actionRef = React.useRef<HTMLButtonElement>(null);
   const visualState = accumulate(useVisualState(actionRef), props.visualState);
@@ -73,10 +79,14 @@ export const Tab: React.FC<ITabProps> = ({
   const styleProps = React.useMemo(
     () =>
       stylePropsFactory<ITabStyleKey, ITabStyleVarKey>(
-        stylesCombinatorFactory(styles, variantStyles, props.styles),
+        stylesCombinatorFactory(
+          theme.styles,
+          variantTheme.styles,
+          props.styles,
+        ),
         visualState,
       ),
-    [styles, variantStyles, props.styles, visualState],
+    [theme.styles, variantTheme.styles, props.styles, visualState],
   );
 
   const fullWidthIndicator = variant === 'secondary';
@@ -124,7 +134,7 @@ export const Tab: React.FC<ITabProps> = ({
     <button
       {...styleProps(
         ['host', active && 'host$active', disabled && 'host$disabled'],
-        [theme, variantTheme, props.theme],
+        [theme.vars, variantTheme.vars, props.theme],
       )}
       ref={actionRef}
       role='tab'
@@ -132,15 +142,30 @@ export const Tab: React.FC<ITabProps> = ({
       aria-selected={active}
       onClick={handleClick}
     >
-      <Elevation styles={elevationStyles} disabled={disabled} />
+      <Elevation
+        styles={[
+          theme.elevationStyles,
+          variantTheme.elevationStyles,
+          ...asArray(props.elevationStyles),
+        ]}
+        disabled={disabled}
+      />
       <div {...styleProps(['background', disabled && 'background$disabled'])} />
       <FocusRing
-        styles={focusRingStyles}
+        styles={[
+          theme.focusRingStyles,
+          variantTheme.focusRingStyles,
+          ...asArray(props.focusRingStyles),
+        ]}
         for={actionRef}
         visualState={visualState}
       />
       <Ripple
-        styles={rippleStyles}
+        styles={[
+          theme.rippleStyles,
+          variantTheme.rippleStyles,
+          ...asArray(props.rippleStyles),
+        ]}
         for={actionRef}
         disabled={disabled}
         visualState={visualState}
