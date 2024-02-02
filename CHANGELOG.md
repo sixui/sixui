@@ -1,3 +1,15 @@
+# v0.0.16 (Fri Feb 02 2024)
+
+#### 🐛 Bug Fix
+
+- Fix deteterminate circular progress indicator [#5](https://github.com/sixui/ui/pull/5) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.15 (Fri Feb 02 2024)
 
 #### 🐛 Bug Fix
