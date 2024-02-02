@@ -1,3 +1,15 @@
+# v0.0.10 (Fri Feb 02 2024)
+
+#### 🐛 Bug Fix
+
+- Breadcrumbs [#3](https://github.com/sixui/ui/pull/3) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.9 (Tue Jan 30 2024)
 
 #### ⚠️ Pushed to `main`
