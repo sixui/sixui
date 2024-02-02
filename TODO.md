@@ -52,8 +52,10 @@ Production
 
 - Button / Chip / Fab / ... : adapt attributes if that's a button or a link (ie. type is just for buttons)
 - DeterminateCircularProgressIndicator does not work
-- icons not displayed in Chromatic
-- radio not selectable/tabbable with keyboard
+- Chromatic
+  - radio not selectable/tabbable with keyboard
+  - custom themes not applied (ie. Checkbox/Custom story)
+    to fix, do not define themes in stylex.ts (only vars), but define themes in styles.ts
 
 ## Waiting for a fix
 
