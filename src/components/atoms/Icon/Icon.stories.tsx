@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import * as stylex from '@stylexjs/stylex';
 import React from 'react';
 import {
   XMarkIcon,
@@ -10,6 +11,7 @@ import {
 } from '@heroicons/react/24/solid';
 
 import { ComponentShowcase } from '@/components/molecules/ComponentShowcase';
+import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { Icon, type IIconProps } from './Icon';
 
 const meta = {
@@ -20,10 +22,20 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {} satisfies Partial<IIconProps>;
 
+const styles = stylex.create({
+  host: {
+    color: colorRolesVars.onSurface,
+  },
+});
+
 export const Basic: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={Icon}
+      component={(props) => (
+        <div {...stylex.props(styles.host)}>
+          <Icon {...props} />
+        </div>
+      )}
       props={props}
       colsProps={[
         { icon: PlusIcon },
