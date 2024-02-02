@@ -1,59 +1,76 @@
 # TO DO
 
-- Generate colors from
-  https://github.com/material-foundation/material-color-utilities
-  https://m3.material.io/styles/color/system/how-the-system-works
-- check react server components
+- SSR
+  - Check compatibility with react server components
 
-- be able to customize:
-  - shadowColor
-  - stateLayerColor$focus
-  - stateLayerColor$dragged
+- Tools
+  - Generate colors
+    - https://github.com/material-foundation/material-color-utilities
+    - https://m3.material.io/styles/color/system/how-the-system-works
 
-Production
-- don't include .storybook/ in the final package
-- check if tree shaking is working
-
-- use React.forwardRef & React.useImperativeHandle?
-- Prepend "use-client" directive (o components/hooks) exported from core librairies + add docs and examples for using MUI libraries with Next.js App Router
-  see https://github.com/mui/material-ui/pull/37656
+- All components
+  - Be able to customize:
+    - shadowColor
+    - stateLayerColor$focus
+    - stateLayerColor$dragged
+  - Prepend "use-client" directive (o components/hooks) exported from core librairies + add docs and examples for using MUI libraries with Next.js App Router
+    - https://github.com/mui/material-ui/pull/37656
 
 - Chip
-  - animate width change on select / unselect
-  - délai minimum avant d'afficher le loading indicator. d'abord pour ne pas afficher d'animation super rapide, mais aussi pour avoir le temps d'afficher le ripple effect
+  - Animate width change on switching between selected and unselected states
+  - Add a minimum delay betweel showing the circular progress indicator. First, to avoid showing it for a very short time, but also to have time to show the ripple effect.
+
 - ListItem
-  - switch elements with up and down keys
+  - Navigate with arrow keys
+
 - Elevation
-  use visualState?
+  - Use visualState instead of relying on state vars
+
 - Tab
-  Navigate with arrow keys
+  - Navigate with arrow keys
     https://m3.material.io/components/tabs/accessibility
-  Scrollable
-  Vertical
-  Navigable
-  Icon position
-  Export TabContext?
-  Badges
-  Test with reduced motion
-  Tab Panel typography in stories
+  - Scrollable
+  - Vertical
+  - Navigable with links
+  - Icon position
+  - Should we export TabContext?
+  - Badges
+  - Test with reduced motion
 
-- Separate the core and the Storybook app.
+- Build
+  - Separate the core and the Storybook app
+  - Use PostCSS Autoprefixr plugin on the generated CSS file
+    https://github.com/facebook/stylex/discussions/223
+  - Do not include .storybook/ in the final package
+  - Check if tree shaking is working
 
-- ButtonBase: exemple in story
-- Stories: customized components
+- ButtonBase
+  - Example in stories
+
+- Stories
+  - Add examples for customized components
+
 - IconButton
-  - Controled when selectable
+  - Controlled/uncontrolled modes (if selectable)
 
-- use postcss Autoprefixr on the generated CSS file
-  https://github.com/facebook/stylex/discussions/223
-- use hooks like useButton, useTab, useTabs, ... like mui or adobe
+- CircularProgressIndicator
+  - Use component showcase
+
+## Refactoring
+
+- Use useHover hook?
+  https://react-spectrum.adobe.com/blog/building-a-button-part-2.html
+- Chip/Fab/IconButton inherit from ButtonBase
+- Use hooks like useButton, useTab, useTabs, ... like mui or adobe
+- Use React.forwardRef & React.useImperativeHandle?
 
 ## FIX ME
 
-- Button / Chip / Fab / ... : adapt attributes if that's a button or a link (ie. type is just for buttons)
-- FIXME: Chromatic
-  - radio not selectable/tabbable with keyboard
-  - custom themes not applied (ie. Checkbox/Custom story)
+- Button / Chip / Fab / ...
+  - Adapt attributes if that's a button or a link (ie. type is just for buttons)
+- Chromatic
+  - Radio not selectable/tabbable with keyboard
+  - Custom themes not applied (ie. Checkbox/Custom story)
     to fix, do not define themes in stylex.ts (only vars), but define themes in styles.ts
     the problem is that by defining the theme in styles.ts, dark color scheme is not applied
     find another solution
@@ -98,13 +115,6 @@ Production
   - https://github.com/facebook/stylex/issues/415
   - Then, enable rule in .eslintrc.cjs
 
-## Refactoring
-
-- use `const { current: xxx } = React.useRef();` instead of `const xxxRef = React.useRef(); const xxx = xxxRef.current;` (use `useForkRef` and `setRef`)
-- use useHover hook?
-  https://react-spectrum.adobe.com/blog/building-a-button-part-2.html
-- Chip/Fab/IconButton inherit from ButtonBase
-
 ## Check
 
 - implémenter https://react-spectrum.adobe.com/react-stately/index.html ?
@@ -118,12 +128,20 @@ Production
 *What that the team is currently working on.*
 
 Components
-- [ ] Select
+- [ ] Paper
+- [ ] Avatar
+- [ ] Badge
+- [ ] App Bar
+- [ ] Grid
+- [ ] Tooltip
+- [ ] Stack
+- [ ] Pagination
 - [ ] CardActionArea
 - [ ] CardActions
 - [ ] CardContent
 - [ ] CardHeader
 - [ ] CardMedia
+- [ ] Select
 
 ### Planned
 
@@ -133,25 +151,18 @@ Features
 - [ ] Docs and examples
 
 Components
-- [ ] App Bar
 - [ ] Backdrop
 - [ ] Box
-- [ ] Badge
 - [ ] Container
 - [ ] Dialog
 - [ ] Drawer
-- [ ] Grid
 - [ ] Image List
 - [ ] Linear Progress Indicator
-- [ ] Paper
-- [ ] Pagination
 - [ ] Slider
 - [ ] Snackbar
 - [ ] Skeleton
-- [ ] Stack
 - [ ] Stepper
 - [ ] Treeview
-- [ ] Tooltip
 
 ### Future
 
