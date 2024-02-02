@@ -58,6 +58,8 @@ Production
     to fix, do not define themes in stylex.ts (only vars), but define themes in styles.ts
     the problem is that by defining the theme in styles.ts, dark color scheme is not applied
     find another solution
+    - https://github.com/facebook/stylex/issues/162
+    - https://github.com/facebook/stylex/issues/281
 
 ## Waiting for a fix
 

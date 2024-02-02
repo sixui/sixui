@@ -87,7 +87,7 @@ export const DeterminateCircularProgressIndicator: React.FC<
         >
           <circle
             {...stylex.props(
-              combineStyles('layer', `svgCircle$${size}`, 'track'),
+              combineStyles('layer', 'svgCircle', `svgCircle$${size}`, 'track'),
             )}
             pathLength='100'
           />
@@ -95,6 +95,7 @@ export const DeterminateCircularProgressIndicator: React.FC<
             {...stylex.props(
               combineStyles(
                 'layer',
+                'svgCircle',
                 `svgCircle$${size}`,
                 'activeTrack',
                 disabled && 'activeTrack$disabled',
