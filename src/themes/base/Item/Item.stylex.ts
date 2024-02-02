@@ -12,7 +12,7 @@ const vars: Partial<IStyleVars<IItemStyleVarKey>> = {
   labelTextFont: typescaleVars.bodyFont$lg,
   labelTextLineHeight: typescaleVars.bodyLineHeight$lg,
   labelTextSize: typescaleVars.bodySize$lg,
-  labelTextTracking: typescaleVars.bodyLetterSpacing$lg,
+  labelTextLetterSpacing: typescaleVars.bodyLetterSpacing$lg,
   labelTextWeight: typescaleVars.bodyWeight$lg,
 
   // overline
@@ -20,7 +20,7 @@ const vars: Partial<IStyleVars<IItemStyleVarKey>> = {
   overlineFont: typescaleVars.labelFont$sm,
   overlineLineHeight: typescaleVars.labelLineHeight$sm,
   overlineSize: typescaleVars.labelSize$sm,
-  overlineTracking: typescaleVars.labelLetterSpacing$sm,
+  overlineLetterSpacing: typescaleVars.labelLetterSpacing$sm,
   overlineWeight: typescaleVars.labelWeight$sm,
 
   // supportingText
@@ -28,7 +28,7 @@ const vars: Partial<IStyleVars<IItemStyleVarKey>> = {
   supportingTextFont: typescaleVars.bodyFont$md,
   supportingTextLineHeight: typescaleVars.bodyLineHeight$md,
   supportingTextSize: typescaleVars.bodySize$md,
-  supportingTextTracking: typescaleVars.bodyLetterSpacing$md,
+  supportingTextLetterSpacing: typescaleVars.bodyLetterSpacing$md,
   supportingTextWeight: typescaleVars.bodyWeight$md,
 
   // trailingSupportingText
@@ -36,7 +36,7 @@ const vars: Partial<IStyleVars<IItemStyleVarKey>> = {
   trailingSupportingTextFont: typescaleVars.labelFont$sm,
   trailingSupportingTextLineHeight: typescaleVars.labelLineHeight$sm,
   trailingSupportingTextSize: typescaleVars.labelSize$sm,
-  trailingSupportingTextTracking: typescaleVars.labelLetterSpacing$sm,
+  trailingSupportingTextLetterSpacing: typescaleVars.labelLetterSpacing$sm,
   trailingSupportingTextWeight: typescaleVars.labelWeight$sm,
 };
 

@@ -43,7 +43,7 @@ export const DeterminateCircularProgressIndicator: React.FC<
   disabled,
   ...props
 }) => {
-  const { styles, theme } = useComponentTheme('CircularProgressIndicator');
+  const theme = useComponentTheme('CircularProgressIndicator');
   const { styles: variantStyles } = useComponentTheme(
     'DeterminateCircularProgressIndicator',
   );
@@ -53,8 +53,8 @@ export const DeterminateCircularProgressIndicator: React.FC<
       stylesCombinatorFactory<
         | ICircularProgressIndicatorStyleKey
         | IDeterminateCircularProgressIndicatorStyleKey
-      >(styles, variantStyles, props.styles),
-    [styles, variantStyles, props.styles],
+      >(theme.styles, variantStyles, props.styles),
+    [theme.styles, variantStyles, props.styles],
   );
 
   const value0 = zeroBased ? 0 : min;
@@ -64,7 +64,7 @@ export const DeterminateCircularProgressIndicator: React.FC<
   return (
     <div
       {...stylex.props(
-        theme,
+        theme.vars,
         props.theme,
         combineStyles('host', `host$${size}`),
       )}

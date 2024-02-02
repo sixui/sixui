@@ -20,7 +20,6 @@ type IFabStyles = IStyles<IFabStyleKey>;
 export const styles: MapNamespaces<IFabStyles> = stylex.create<IFabStyles>({
   host: {
     borderRadius: fabStateVars.containerShape,
-    boxSizing: 'border-box',
     cursor: 'pointer',
     display: 'inline-flex',
     outline: 'none',
@@ -101,9 +100,8 @@ export const styles: MapNamespaces<IFabStyles> = stylex.create<IFabStyles>({
   },
   fab$extended: {
     width: 'inherit',
-    boxSizing: 'border-box',
-    paddingInlineStart: '16px',
-    paddingInlineEnd: '16px',
+    paddingInlineStart: 16,
+    paddingInlineEnd: 16,
   },
   background: {
     // Background color. Separate node for disabled opacity styles.
@@ -141,7 +139,7 @@ export const styles: MapNamespaces<IFabStyles> = stylex.create<IFabStyles>({
     fontSize: vars.iconSize$lg,
   },
   icon$extended: {
-    marginInlineEnd: '12px',
+    marginInlineEnd: 12,
   },
   icon$disabled: {
     // eslint-disable-next-line @stylexjs/valid-styles
@@ -172,8 +170,8 @@ export const styles: MapNamespaces<IFabStyles> = stylex.create<IFabStyles>({
     position: 'absolute',
     top: '50%',
     left: '50%',
-    width: '48px',
-    height: '48px',
+    width: 48,
+    height: 48,
     transform: 'translate(-50%, -50%)',
   },
   invisible: {

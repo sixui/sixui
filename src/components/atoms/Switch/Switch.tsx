@@ -1,7 +1,13 @@
 import React from 'react';
-import { accumulate } from '@olivierpascal/helpers';
+import { accumulate, asArray } from '@olivierpascal/helpers';
 
-import type { IAny, IIcon, IMaybeAsync } from '@/helpers/types';
+import type {
+  IZeroOrMore,
+  ICompiledStyles,
+  IAny,
+  IIcon,
+  IMaybeAsync,
+} from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
 import type { ISwitchStyleKey, ISwitchStyleVarKey } from './Switch.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
@@ -9,11 +15,17 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useVisualState } from '@/hooks/useVisualState';
 import { useControlled } from '@/hooks/useControlled';
-import { FocusRing } from '@/components/utils/FocusRing';
-import { Ripple } from '@/components/utils/Ripple';
+import {
+  FocusRing,
+  type IFocusRingStyleKey,
+} from '@/components/utils/FocusRing';
+import { Ripple, type IRippleStyleKey } from '@/components/utils/Ripple';
+import {
+  IndeterminateCircularProgressIndicator,
+  type ICircularProgressIndicatorStyleKey,
+} from '@/components/atoms/CircularProgressIndicator';
 import { ReactComponent as CheckMark } from '@/assets/CheckMark.svg';
 import { ReactComponent as XMark } from '@/assets/XMark.svg';
-import { IndeterminateCircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
 
 // https://github.com/material-components/material-web/blob/main/switch/internal/switch.ts
 
@@ -49,6 +61,9 @@ export interface ISwitchProps
   ) => IMaybeAsync<IAny>;
   icon?: IIcon;
   selectedIcon?: IIcon;
+  rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+  focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+  circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
 }
 
 export const Switch: React.FC<ISwitchProps> = ({
@@ -59,25 +74,19 @@ export const Switch: React.FC<ISwitchProps> = ({
   selectedIcon: SelectedIcon,
   ...props
 }) => {
-  const {
-    theme,
-    styles,
-    rippleStyles,
-    focusRingStyles,
-    circularProgressIndicatorStyles,
-  } = useComponentTheme('Switch');
+  const theme = useComponentTheme('Switch');
 
-  const inputElRef = React.useRef<HTMLInputElement>(null);
+  const inputRef = React.useRef<HTMLInputElement>(null);
   const [handlingChange, setHandlingChange] = React.useState(false);
-  const visualState = accumulate(useVisualState(inputElRef), props.visualState);
+  const visualState = accumulate(useVisualState(inputRef), props.visualState);
 
   const styleProps = React.useMemo(
     () =>
       stylePropsFactory<ISwitchStyleKey, ISwitchStyleVarKey>(
-        stylesCombinatorFactory(styles, props.styles),
+        stylesCombinatorFactory(theme.styles, props.styles),
         visualState,
       ),
-    [styles, props.styles, visualState],
+    [theme.styles, props.styles, visualState],
   );
 
   const [selected, setSelected] = useControlled({
@@ -119,13 +128,13 @@ export const Switch: React.FC<ISwitchProps> = ({
     <div
       {...styleProps(
         ['host', disabled && 'host$disabled'],
-        [theme, props.theme],
+        [theme.vars, props.theme],
       )}
     >
       <div {...styleProps(['switch', selected && 'switch$selected'])}>
         <input
           {...styleProps(['input'])}
-          ref={inputElRef}
+          ref={inputRef}
           type='checkbox'
           role='switch'
           aria-label={props['aria-label']}
@@ -136,8 +145,8 @@ export const Switch: React.FC<ISwitchProps> = ({
           onChange={disabled ? undefined : handleChange}
         />
         <FocusRing
-          styles={focusRingStyles}
-          for={inputElRef}
+          styles={[theme.focusRingStyles, ...asArray(props.focusRingStyles)]}
+          for={inputRef}
           visualState={visualState}
         />
 
@@ -162,8 +171,8 @@ export const Switch: React.FC<ISwitchProps> = ({
             ])}
           >
             <Ripple
-              styles={rippleStyles}
-              for={inputElRef}
+              styles={[theme.rippleStyles, ...asArray(props.rippleStyles)]}
+              for={inputRef}
               disabled={disabled}
               visualState={visualState}
             />
@@ -202,12 +211,15 @@ export const Switch: React.FC<ISwitchProps> = ({
                   >
                     {loading ? (
                       <IndeterminateCircularProgressIndicator
-                        styles={circularProgressIndicatorStyles}
+                        styles={[
+                          theme.circularProgressIndicatorStyles,
+                          ...asArray(props.circularProgressIndicatorStyles),
+                        ]}
                       />
                     ) : SelectedIcon ? (
-                      <SelectedIcon aria-hidden='true' />
+                      <SelectedIcon aria-hidden />
                     ) : (
-                      <CheckMark aria-hidden='true' />
+                      <CheckMark aria-hidden />
                     )}
                   </div>
 
@@ -223,12 +235,15 @@ export const Switch: React.FC<ISwitchProps> = ({
                     >
                       {loading ? (
                         <IndeterminateCircularProgressIndicator
-                          styles={circularProgressIndicatorStyles}
+                          styles={[
+                            theme.circularProgressIndicatorStyles,
+                            ...asArray(props.circularProgressIndicatorStyles),
+                          ]}
                         />
                       ) : Icon ? (
-                        <Icon aria-hidden='true' />
+                        <Icon aria-hidden />
                       ) : (
-                        <XMark aria-hidden='true' />
+                        <XMark aria-hidden />
                       )}
                     </div>
                   )}

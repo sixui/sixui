@@ -19,7 +19,6 @@ export const styles: MapNamespaces<IIconButtonStyles> =
   stylex.create<IIconButtonStyles>({
     host: {
       borderRadius: vars.containerShape,
-      boxSizing: 'border-box',
       cursor: 'pointer',
       display: 'inline-flex',
       outline: 'none',

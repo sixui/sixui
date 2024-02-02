@@ -50,3 +50,8 @@ export type IStyleVars<TKey extends string> = {
 export type IStyleVarGroup<TKey extends string> = VarGroup<IStyleVars<TKey>>;
 
 export type IStyleVarsTheme<TKey extends string> = Theme<IStyleVarGroup<TKey>>;
+
+export type IZeroOrMore<T> = undefined | T | Array<T | undefined>;
+
+export type IArrayElement<TArray> =
+  TArray extends readonly (infer TElementType)[] ? TElementType : TArray;

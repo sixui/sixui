@@ -19,11 +19,10 @@ export type IComponentShowcaseStyleKey =
   | 'w100';
 
 export type IComponentShowcaseStyleVarKey =
-  | 'textColor'
   | 'legendTextColor'
   | 'legendTextFont'
   | 'legendTextLineHeight'
   | 'legendTextSize'
-  | 'legendTextTracking'
+  | 'legendTextLetterSpacing'
   | 'legendTextWeight'
   | 'groupBorderColor';

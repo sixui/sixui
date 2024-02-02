@@ -1,5 +1,4 @@
 import React from 'react';
-import * as stylex from '@stylexjs/stylex';
 
 import type { IPoint } from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
@@ -7,6 +6,7 @@ import type { IRippleStyleKey, IRippleStyleVarKey } from './Ripple.styledefs';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { EASING } from '@/helpers/animation';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 
 export interface IRippleProps
   extends IContainer<IRippleStyleKey, IRippleStyleVarKey> {
@@ -86,7 +86,15 @@ export const Ripple: React.FC<IRippleProps> = ({
   disabled,
   ...props
 }) => {
-  const { theme, styles } = useComponentTheme('Ripple');
+  const theme = useComponentTheme('Ripple');
+
+  const styleProps = React.useMemo(
+    () =>
+      stylePropsFactory<IRippleStyleKey>(
+        stylesCombinatorFactory(theme.styles, props.styles),
+      ),
+    [theme.styles, props.styles],
+  );
 
   const [hovered, setHovered] = React.useState(false);
   const [pressed, setPressed] = React.useState(false);
@@ -100,11 +108,6 @@ export const Ripple: React.FC<IRippleProps> = ({
   const surfaceRef = React.useRef<HTMLDivElement>(null);
   const checkBoundsAfterContextMenuRef = React.useRef(false);
   const growAnimationRef = React.useRef<Animation>();
-
-  const combineStyles = React.useMemo(
-    () => stylesCombinatorFactory(styles, props.styles),
-    [styles, props.styles],
-  );
 
   const getControl = React.useCallback(
     () => (forElementRef ? forElementRef.current : host?.parentElement),
@@ -482,21 +485,18 @@ export const Ripple: React.FC<IRippleProps> = ({
   return (
     <div
       ref={setHost}
-      {...stylex.props(
-        theme,
-        props.theme,
-        combineStyles('host', disabled && 'host$disabled'),
+      {...styleProps(
+        ['host', disabled && 'host$disabled'],
+        [theme.vars, props.theme],
       )}
     >
       <div
-        {...stylex.props(
-          combineStyles(
-            'surface',
-            (hovered || visualState?.hovered) && 'surface$hover',
-            pressed && 'surface$pressed',
-            !pressed && visualState?.pressed && 'surface$pressedStatic',
-          ),
-        )}
+        {...styleProps([
+          'surface',
+          (hovered || visualState?.hovered) && 'surface$hover',
+          pressed && 'surface$pressed',
+          !pressed && visualState?.pressed && 'surface$pressedStatic',
+        ])}
         ref={surfaceRef}
       />
     </div>

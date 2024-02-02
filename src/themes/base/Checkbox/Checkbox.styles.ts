@@ -23,7 +23,7 @@ const checkMarkBottomLeft = '7px, -14px';
 
 const prevUnselectedToCheckedKeyframes = stylex.keyframes({
   from: {
-    width: '0px',
+    width: 0,
   },
 });
 
@@ -80,8 +80,8 @@ export const styles: MapNamespaces<ICheckboxStyles> =
     },
     input: {
       appearance: 'none',
-      width: '48px',
-      height: '48px',
+      width: 48,
+      height: 48,
       margin: 0,
       opacity: 0,
       outline: 'none',
@@ -96,7 +96,6 @@ export const styles: MapNamespaces<ICheckboxStyles> =
     outline: {
       borderRadius: 'inherit',
       borderStyle: 'solid',
-      boxSizing: 'border-box',
 
       borderColor: {
         default: vars.outlineColor,
@@ -238,7 +237,7 @@ export const styles: MapNamespaces<ICheckboxStyles> =
     },
     mark$long: {
       // The long end of the checkmark. Initially the indeterminate mark.
-      width: '10px',
+      width: 10,
       height: markStroke,
       transitionProperty: 'transform, width',
     },
@@ -296,8 +295,8 @@ export const focusRingStyles: MapNamespaces<IFocusRingStyles> = stylex.create<
   IStyles<IFocusRingStyleKey>
 >({
   host: {
-    width: '44px',
-    height: '44px',
+    width: 44,
+    height: 44,
     // eslint-disable-next-line @stylexjs/valid-styles
     [focusRingVars.shape]: shapeVars.corner$full,
   },

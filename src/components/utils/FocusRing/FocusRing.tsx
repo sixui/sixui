@@ -27,7 +27,7 @@ export const FocusRing: React.FC<IFocusRingProps> = ({
   inward,
   ...props
 }) => {
-  const { theme, styles } = useComponentTheme('FocusRing');
+  const theme = useComponentTheme('FocusRing');
 
   const [visible, setVisible] = React.useState(false);
   const [actionEl, setActionEl] = React.useState<HTMLDivElement | null>();
@@ -35,9 +35,9 @@ export const FocusRing: React.FC<IFocusRingProps> = ({
   const styleProps = React.useMemo(
     () =>
       stylePropsFactory<IFocusRingStyleKey, IFocusRingStyleVarKey>(
-        stylesCombinatorFactory(styles, props.styles),
+        stylesCombinatorFactory(theme.styles, props.styles),
       ),
-    [styles, props.styles],
+    [theme.styles, props.styles],
   );
 
   const getControl = React.useCallback(
@@ -98,7 +98,7 @@ export const FocusRing: React.FC<IFocusRingProps> = ({
           (visible || visibleOnInit) && 'host$visible',
           inward ? 'host$inward' : 'host$outward',
         ],
-        [theme, props.theme],
+        [theme.vars, props.theme],
       )}
     />
   );

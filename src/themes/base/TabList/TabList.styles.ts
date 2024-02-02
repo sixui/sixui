@@ -8,7 +8,6 @@ type ITabListStyles = IStyles<ITabListStyleKey>;
 export const styles: MapNamespaces<ITabListStyles> =
   stylex.create<ITabListStyles>({
     host: {
-      boxSizing: 'border-box',
       flexDirection: 'column',
       // overflow: 'auto',
       scrollBehavior: 'smooth',

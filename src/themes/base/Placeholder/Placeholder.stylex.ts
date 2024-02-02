@@ -7,16 +7,19 @@ import { typescaleVars } from '../vars/typo.stylex';
 import { shapeVars } from '../vars/shape.stylex';
 
 const vars: IStyleVars<IPlaceholderStyleVarKey> = {
+  // container
   containerColor: colorRolesVars.surfaceContainer,
   containerShape: shapeVars.corner$md,
 
+  // crosshairs
   crosshairsColor: colorRolesVars.surfaceContainerHighest,
 
+  // labelText
   labelTextColor: colorRolesVars.onSurface,
   labelTextFont: typescaleVars.labelFont$sm,
   labelTextSize: typescaleVars.labelSize$sm,
   labelTextLineHeight: typescaleVars.labelLineHeight$sm,
-  labelTextTracking: typescaleVars.labelLetterSpacing$sm,
+  labelTextLetterSpacing: typescaleVars.labelLetterSpacing$sm,
   labelTextWeight: typescaleVars.labelWeight$sm,
 };
 

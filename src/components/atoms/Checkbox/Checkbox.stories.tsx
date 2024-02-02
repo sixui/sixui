@@ -1,5 +1,6 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import * as stylex from '@stylexjs/stylex';
+import React from 'react';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
@@ -73,7 +74,7 @@ export const Controlled: IStory = {
   args: defaultArgs,
 };
 
-export const Standard: IStory = {
+export const Basic: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={Checkbox}
@@ -87,6 +88,49 @@ export const Standard: IStory = {
     />
   ),
   args: defaultArgs,
+};
+
+import { componentVars as checkboxVars } from '@/themes/base/Checkbox/Checkbox.stylex';
+import { componentVars as focusRingVars } from '@/themes/base/FocusRing/FocusRing.stylex';
+import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+
+const customTheme = stylex.createTheme(checkboxVars, {
+  containerShape: '0',
+  containerSize: '12px',
+  iconSize: '12px',
+  stateLayerSize: '20px',
+  stateLayerShape: '0',
+  selectedContainerColor: colorRolesVars.error,
+  selectedIconColor: colorRolesVars.onError,
+});
+
+const customFocusRingStyles = stylex.create({
+  host: {
+    width: '22px',
+    height: '22px',
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [focusRingVars.shape]: '0',
+  },
+});
+
+export const Custom: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={Checkbox}
+      props={props}
+      colsProps={statesProps}
+      rowsProps={[
+        { $legend: 'Unchecked' },
+        { $legend: 'Checked', defaultChecked: true },
+        { $legend: 'Indeterminate', indeterminate: true },
+      ]}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    theme: customTheme,
+    focusRingStyles: customFocusRingStyles,
+  },
 };
 
 export default meta;

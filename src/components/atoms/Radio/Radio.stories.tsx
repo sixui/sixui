@@ -70,7 +70,7 @@ export const Demo: IStory = {
   args: defaultArgs,
 };
 
-export const Standard: IStory = {
+export const Basic: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={Radio}

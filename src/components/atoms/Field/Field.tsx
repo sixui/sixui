@@ -62,26 +62,28 @@ export const Field: React.FC<IFieldProps> = ({
   textarea,
   ...props
 }) => {
-  const { theme, styles } = useComponentTheme('Field');
-  const { theme: variantTheme, styles: variantStyles } = useComponentTheme(
-    variantMap[variant],
-  );
+  const theme = useComponentTheme('Field');
+  const variantTheme = useComponentTheme(variantMap[variant]);
 
   const [refreshErrorAlert, setRefreshErrorAlert] = React.useState(false);
   const labelAnimationRef = React.useRef<Animation>();
-  const floatingLabelElRef = React.useRef<HTMLSpanElement>(null);
-  const restingLabelElRef = React.useRef<HTMLSpanElement>(null);
-  const containerElRef = React.useRef<HTMLDivElement>(null);
+  const floatingLabelRef = React.useRef<HTMLSpanElement>(null);
+  const restingLabelRef = React.useRef<HTMLSpanElement>(null);
+  const containerRef = React.useRef<HTMLDivElement>(null);
   const [animating, setAnimating] = React.useState(false);
   const disableTransitionsRef = React.useRef(false);
 
   const styleProps = React.useMemo(
     () =>
       stylePropsFactory<IFieldStyleKey, ITextFieldStyleVarKey>(
-        stylesCombinatorFactory(styles, variantStyles, props.styles),
+        stylesCombinatorFactory(
+          theme.styles,
+          variantTheme.styles,
+          props.styles,
+        ),
         visualState,
       ),
-    [styles, variantStyles, props.styles, visualState],
+    [theme.styles, variantTheme.styles, props.styles, visualState],
   );
 
   const disabled = props.disabled;
@@ -97,8 +99,8 @@ export const Field: React.FC<IFieldProps> = ({
   const wasPopulated = usePrevious(populated);
 
   const getLabelKeyframes = React.useCallback(() => {
-    const floatingLabelEl = floatingLabelElRef.current;
-    const restingLabelEl = restingLabelElRef.current;
+    const floatingLabelEl = floatingLabelRef.current;
+    const restingLabelEl = restingLabelRef.current;
     if (!floatingLabelEl || !restingLabelEl) {
       return [];
     }
@@ -113,7 +115,7 @@ export const Field: React.FC<IFieldProps> = ({
       y: restingY,
       height: restingHeight,
     } = restingLabelEl.getBoundingClientRect();
-    const floatingScrollWidth = floatingLabelElRef.current.scrollWidth;
+    const floatingScrollWidth = floatingLabelRef.current.scrollWidth;
     const restingScrollWidth = restingLabelEl.scrollWidth;
     // Scale by width ratio instead of font size since letter-spacing will scale
     // incorrectly. Using the width we can better approximate the adjusted
@@ -184,7 +186,7 @@ export const Field: React.FC<IFieldProps> = ({
       // Re-calculating the animation each time will prevent any visual glitches
       // from appearing.
       // TODO(b/241113345): use animation tokens
-      labelAnimationRef.current = floatingLabelElRef.current?.animate(
+      labelAnimationRef.current = floatingLabelRef.current?.animate(
         getLabelKeyframes(),
         {
           duration: 150,
@@ -267,7 +269,7 @@ export const Field: React.FC<IFieldProps> = ({
             !visible && 'label$invisible',
           ])}
           aria-hidden={!visible}
-          ref={floating ? floatingLabelElRef : restingLabelElRef}
+          ref={floating ? floatingLabelRef : restingLabelRef}
         >
           {labelText}
         </span>
@@ -523,7 +525,7 @@ export const Field: React.FC<IFieldProps> = ({
           !!supportingOrErrorText && 'host$withSupportingText',
           disabled && 'host$disabled',
         ],
-        [theme, variantTheme, props.theme],
+        [theme.vars, variantTheme.vars, props.theme],
       )}
     >
       <div
@@ -545,7 +547,7 @@ export const Field: React.FC<IFieldProps> = ({
                   ? 'container$disabled$resizable'
                   : 'container$resizable'),
             ])}
-            ref={containerElRef}
+            ref={containerRef}
           >
             {start ? (
               <div

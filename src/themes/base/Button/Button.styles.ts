@@ -29,20 +29,20 @@ type IButtonStyles = IStyles<IButtonStyleKey>;
 export const styles: MapNamespaces<IButtonStyles> =
   stylex.create<IButtonStyles>({
     host: {
+      alignContent: 'center',
       borderRadius: vars.containerShape,
-      boxSizing: 'border-box',
       cursor: 'pointer',
       display: 'inline-flex',
       outline: 'none',
-      alignContent: 'center',
       justifyContent: 'center',
       alignItems: 'center',
       justifyItems: 'center',
       position: 'relative',
       fontFamily: vars.labelTextFont,
       fontSize: vars.labelTextSize,
-      lineHeight: vars.labelTextLineHeight,
       fontWeight: vars.labelTextWeight,
+      lineHeight: vars.labelTextLineHeight,
+      letterSpacing: vars.labelTextLetterSpacing,
       // Long labels are cut off with ellipsis by default. `text-overflow` and
       // `text-wrap` can customize this.
       textOverflow: 'ellipsis',
@@ -92,46 +92,18 @@ export const styles: MapNamespaces<IButtonStyles> =
       paddingInlineStart: vars.trailingIconLeadingSpace,
       paddingInlineEnd: vars.trailingIconTrailingSpace,
     },
-    button: {
-      borderRadius: 'inherit',
-      cursor: 'inherit',
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderStyle: 'unset',
-      outline: 'none',
-      verticalAlign: 'middle',
-      backgroundColor: 'unset',
-      textDecoration: 'none',
-      font: 'inherit',
-      padding: 0,
-      // Place content on top of elevation and ripple
-      zIndex: 0,
-      width: '100%',
-      height: '100%',
-      gap: 'inherit',
-    },
     touchTarget: {
-      position: 'absolute',
-      top: '50%',
-      left: 0,
-      right: 0,
-      transform: 'translateY(-50%)',
-
       height: vars.touchHeight,
     },
     background: {
-      // Background color. Separate node for disabled opacity styles.
       backgroundColor: vars.containerColor,
-      borderRadius: 'inherit',
-      inset: 0,
-      position: 'absolute',
     },
     background$disabled: {
       backgroundColor: vars.containerColor$disabled,
       opacity: vars.containerOpacity$disabled,
     },
     label: {
+      position: 'relative',
       overflow: 'hidden',
 
       color: {

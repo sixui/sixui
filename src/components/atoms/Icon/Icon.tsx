@@ -14,19 +14,19 @@ export interface IIconProps
 
 // https://github.com/material-components/material-web/blob/main/icon/internal/icon.ts
 export const Icon: React.FC<IIconProps> = ({ icon: Icon, ...props }) => {
-  const { theme, styles } = useComponentTheme('Icon');
+  const theme = useComponentTheme('Icon');
 
   const styleProps = React.useMemo(
     () =>
       stylePropsFactory<IIconStyleKey, IIconStyleVarKey>(
-        stylesCombinatorFactory(styles, props.styles),
+        stylesCombinatorFactory(theme.styles, props.styles),
       ),
-    [styles, props.styles],
+    [theme.styles, props.styles],
   );
 
   return (
-    <div {...styleProps(['host'], [theme, props.theme])}>
-      <Icon {...styleProps(['svg'])} aria-hidden='true' />
+    <div {...styleProps(['host'], [theme.vars, props.theme])}>
+      <Icon {...styleProps(['svg'])} aria-hidden />
     </div>
   );
 };

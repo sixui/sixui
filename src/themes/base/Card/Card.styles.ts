@@ -28,7 +28,6 @@ export const styles: MapNamespaces<ICardStyles> = stylex.create<ICardStyles>({
     WebkitTapHighlightColor: 'transparent',
 
     borderRadius: vars.containerShape,
-    boxSizing: 'border-box',
     position: 'relative',
     zIndex: 0,
 

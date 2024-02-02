@@ -10,6 +10,7 @@
   - stateLayerColor$focus
   - stateLayerColor$dragged
 
+Production
 - don't include .storybook/ in the final package
 - check if tree shaking is working
 
@@ -37,8 +38,9 @@
   Tab Panel typography in stories
 
 - Separate the core and the Storybook app.
-- check monorepo usage
-- remove heroicicons dependency
+
+- ButtonBase: exemple in story
+- Stories: customized components
 
 - use postcss Autoprefixr on the generated CSS file
   https://github.com/facebook/stylex/discussions/223
@@ -48,8 +50,6 @@
 
 - Button / Chip / Fab / ... : adapt attributes if that's a button or a link (ie. type is just for buttons)
 - DeterminateCircularProgressIndicator does not work
-- "The CJS build of Vite's Node API is deprecated. See https://vitejs.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details."
-- Firefox: remove dotted outline on focus elements
 - icons not displayed in Chromatic
 - radio not selectable/tabbable with keyboard
 
@@ -84,16 +84,19 @@
 - [webpack] Improving the Webpack plugin
   - https://github.com/facebook/stylex/issues/297
   - https://github.com/facebook/stylex/issues/288
+- [@stylexjs/eslint-plugin] "@stylexjs/sort-keys" severity invalid
+  - https://github.com/facebook/stylex/issues/414
+  - Then, replace 1 by 'warning' in .eslintrc.cjs
+- [@stylexjs/eslint-plugin] autofix
+  - https://github.com/facebook/stylex/issues/415
+  - Then, enable rule in .eslintrc.cjs
 
 ## Refactoring
 
-- remove 'px' from css attributes values?
 - use `const { current: xxx } = React.useRef();` instead of `const xxxRef = React.useRef(); const xxx = xxxRef.current;` (use `useForkRef` and `setRef`)
-- do not export vars from theme (as they should not be used directly, but from *.stylex.ts)
 - use useHover hook?
   https://react-spectrum.adobe.com/blog/building-a-button-part-2.html
-- uniformize letterSpacing -> tracking (or tracking -> letterSpacing)
-- suffix El/ElRef -> ''/Ref
+- Chip/Fab/IconButton inherit from ButtonBase
 
 ## Check
 
@@ -127,7 +130,6 @@ Components
 - [ ] Backdrop
 - [ ] Box
 - [ ] Badge
-- [ ] Breadcrumbs
 - [ ] Container
 - [ ] Dialog
 - [ ] Drawer
@@ -189,6 +191,7 @@ Features
 - [x] Catalog
 
 Components
+- [x] Breadcrumbs
 - [x] Button
 - [x] Card
 - [x] Checkbox

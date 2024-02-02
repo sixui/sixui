@@ -15,7 +15,6 @@ export const styles: MapNamespaces<IOutlinedCardStyles> =
       borderStyle: 'solid',
       borderWidth: vars.outlineWidth,
       position: 'absolute',
-      boxSizing: 'border-box',
       borderColor: vars.outlineColor,
       borderRadius: vars.containerShape,
     },

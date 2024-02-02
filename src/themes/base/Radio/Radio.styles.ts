@@ -71,8 +71,8 @@ export const styles: MapNamespaces<IRadioStyles> = stylex.create<IRadioStyles>({
   input: {
     // <input> is also the touch target
     appearance: 'none',
-    width: '48px',
-    height: '48px',
+    width: 48,
+    height: 48,
     margin: 0,
     position: 'absolute',
     cursor: 'inherit',
@@ -156,8 +156,8 @@ export const focusRingStyles: MapNamespaces<IFocusRingStyles> = stylex.create<
   IStyles<IFocusRingStyleKey>
 >({
   host: {
-    width: '44px',
-    height: '44px',
+    width: 44,
+    height: 44,
     // eslint-disable-next-line @stylexjs/valid-styles
     [focusRingVars.shape]: shapeVars.corner$full,
   },

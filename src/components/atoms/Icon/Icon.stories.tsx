@@ -20,7 +20,7 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {} satisfies Partial<IIconProps>;
 
-export const Standard: IStory = {
+export const Basic: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={Icon}

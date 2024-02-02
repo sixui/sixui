@@ -34,14 +34,14 @@ export const Divider: React.FC<IDividerProps> = ({
   insetEnd,
   ...props
 }) => {
-  const { theme, styles } = useComponentTheme('Divider');
+  const theme = useComponentTheme('Divider');
 
   const styleProps = React.useMemo(
     () =>
       stylePropsFactory<IDividerStyleKey, IDividerStyleVarKey>(
-        stylesCombinatorFactory(styles, props.styles),
+        stylesCombinatorFactory(theme.styles, props.styles),
       ),
-    [styles, props.styles],
+    [theme.styles, props.styles],
   );
 
   return (
@@ -53,7 +53,7 @@ export const Divider: React.FC<IDividerProps> = ({
           insetStart && 'host$insetStart',
           insetEnd && 'host$insetEnd',
         ],
-        [theme, props.theme],
+        [theme.vars, props.theme],
       )}
     />
   );

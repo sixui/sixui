@@ -20,11 +20,11 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
   host: {
     display: 'inline-flex',
     resize: 'inherit',
-    minHeight: '56px',
+    minHeight: 56,
     width: '100%',
   },
   host$withSupportingText: {
-    minHeight: '76px',
+    minHeight: 76,
   },
   host$disabled: {
     pointerEvents: 'none',
@@ -78,7 +78,6 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
   // https://github.com/material-components/material-web/blob/main/field/internal/_content.scss
   section: {
     display: 'flex',
-    boxSizing: 'border-box',
     height: '100%',
     // Relative position for absolutely positioned labels (to avoid interfering
     // with baseline alignment).
@@ -100,7 +99,7 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
   },
   section$start$withStart: {
     minWidth: vars.leadingContentMinWidth,
-    marginInlineEnd: '4px',
+    marginInlineEnd: 4,
   },
   section$start$error: {
     color: {
@@ -140,7 +139,7 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
   },
   section$end$withEnd: {
     minWidth: vars.trailingContentMinWidth,
-    marginInlineStart: '4px',
+    marginInlineStart: 4,
   },
   section$end$error: {
     color: {
@@ -212,7 +211,7 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
     fontSize: vars.contentSize,
     fontWeight: vars.contentWeight,
     lineHeight: vars.contentLineHeight,
-    letterSpacing: vars.contentTracking,
+    letterSpacing: vars.contentLetterSpacing,
     width: '100%',
     // Reverting values before "all: unset"
     overflowWrap: 'revert', // Neceded to break words in textarea
@@ -249,7 +248,6 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
     textAlign: 'initial',
   },
   label: {
-    boxSizing: 'border-box',
     overflow: 'hidden',
     maxWidth: '100%',
     // Check with design, should there be any transition from resting to
@@ -262,7 +260,7 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
     fontSize: vars.labelTextSize,
     lineHeight: vars.labelTextLineHeight,
     fontWeight: vars.labelTextWeight,
-    letterSpacing: vars.labelTextTracking,
+    letterSpacing: vars.labelTextLetterSpacing,
     width: 'min-content',
 
     color: {
@@ -303,8 +301,8 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
     fontSize: vars.supportingTextSize,
     fontWeight: vars.supportingTextWeight,
     lineHeight: vars.supportingTextLineHeight,
-    letterSpacing: vars.supportingTextTracking,
-    gap: '16px',
+    letterSpacing: vars.supportingTextLetterSpacing,
+    gap: 16,
     justifyContent: 'space-between',
     paddingInlineStart: vars.supportingTextLeadingSpace,
     paddingInlineEnd: vars.supportingTextTrailingSpace,

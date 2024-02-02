@@ -11,7 +11,7 @@ type ITabStyles = IStyles<ITabStyleKey>;
 export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
   content$stacked: {
     flexDirection: 'column',
-    gap: '2px',
+    gap: 2,
   },
   content$stacked$hasIcon$hasLabel: {
     height: vars.withIconAndLabelTextContainerHeight,

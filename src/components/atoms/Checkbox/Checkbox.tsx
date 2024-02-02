@@ -1,7 +1,12 @@
 import React from 'react';
-import { accumulate } from '@olivierpascal/helpers';
+import { accumulate, asArray } from '@olivierpascal/helpers';
 
-import type { IAny, IMaybeAsync } from '@/helpers/types';
+import type {
+  IZeroOrMore,
+  ICompiledStyles,
+  IAny,
+  IMaybeAsync,
+} from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
 import type {
   ICheckboxStyleKey,
@@ -13,8 +18,11 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useVisualState } from '@/hooks/useVisualState';
 import { usePrevious } from '@/hooks/usePrevious';
 import { useControlled } from '@/hooks/useControlled';
-import { Ripple } from '@/components/utils/Ripple';
-import { FocusRing } from '@/components/utils/FocusRing';
+import { Ripple, type IRippleStyleKey } from '@/components/utils/Ripple';
+import {
+  FocusRing,
+  type IFocusRingStyleKey,
+} from '@/components/utils/FocusRing';
 
 export interface ICheckboxProps
   extends IContainer<ICheckboxStyleKey, ICheckboxStyleVarKey>,
@@ -35,6 +43,8 @@ export interface ICheckboxProps
     event: React.ChangeEvent<HTMLInputElement>,
     checked: boolean,
   ) => IMaybeAsync<IAny>;
+  rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+  focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
 }
 
 // https://github.com/material-components/material-web/blob/main/checkbox/internal/checkbox.ts
@@ -46,19 +56,18 @@ export const Checkbox: React.FC<ICheckboxProps> = ({
   value,
   ...props
 }) => {
-  const { theme, styles, rippleStyles, focusRingStyles } =
-    useComponentTheme('Checkbox');
+  const theme = useComponentTheme('Checkbox');
 
-  const hostElRef = React.useRef<HTMLDivElement>(null);
-  const inputElRef = React.useRef<HTMLInputElement>(null);
-  const visualState = accumulate(useVisualState(hostElRef), props.visualState);
+  const hostRef = React.useRef<HTMLDivElement>(null);
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  const visualState = accumulate(useVisualState(hostRef), props.visualState);
 
   const styleProps = React.useMemo(
     () =>
       stylePropsFactory<ICheckboxStyleKey, ICheckboxStyleVarKey>(
-        stylesCombinatorFactory(styles, props.styles),
+        stylesCombinatorFactory(theme.styles, props.styles),
       ),
-    [styles, props.styles],
+    [theme.styles, props.styles],
   );
 
   const indeterminate = props.indeterminate;
@@ -99,13 +108,13 @@ export const Checkbox: React.FC<ICheckboxProps> = ({
     <div
       {...styleProps(
         ['host', selected && 'host$selected', disabled && 'host$disabled'],
-        [theme, props.theme],
+        [theme.vars, props.theme],
       )}
     >
       <div {...styleProps(['container'])}>
         <input
           {...styleProps(['input'])}
-          ref={inputElRef}
+          ref={inputRef}
           type='checkbox'
           aria-checked={indeterminate ? 'mixed' : undefined}
           aria-label={props['aria-label']}
@@ -141,13 +150,13 @@ export const Checkbox: React.FC<ICheckboxProps> = ({
         />
 
         <FocusRing
-          for={inputElRef}
-          styles={focusRingStyles}
+          for={inputRef}
+          styles={[theme.focusRingStyles, ...asArray(props.focusRingStyles)]}
           visualState={visualState}
         />
         <Ripple
-          for={inputElRef}
-          styles={rippleStyles}
+          for={inputRef}
+          styles={[theme.rippleStyles, ...asArray(props.rippleStyles)]}
           disabled={disabled}
           visualState={visualState}
         />
@@ -162,7 +171,7 @@ export const Checkbox: React.FC<ICheckboxProps> = ({
             selected && 'backgroundAndIcon$selected',
           ])}
           viewBox='0 0 18 18'
-          aria-hidden='true'
+          aria-hidden
         >
           <rect
             {...styleProps([

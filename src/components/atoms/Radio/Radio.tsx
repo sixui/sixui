@@ -1,7 +1,12 @@
 import React from 'react';
-import { accumulate } from '@olivierpascal/helpers';
+import { accumulate, asArray } from '@olivierpascal/helpers';
 
-import type { IAny, IMaybeAsync } from '@/helpers/types';
+import type {
+  IZeroOrMore,
+  ICompiledStyles,
+  IAny,
+  IMaybeAsync,
+} from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
 import type { IRadioStyleKey, IRadioStyleVarKey } from './Radio.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
@@ -9,8 +14,11 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useId } from '@/hooks/useId';
 import { useVisualState } from '@/hooks/useVisualState';
-import { Ripple } from '@/components/utils/Ripple';
-import { FocusRing } from '@/components/utils/FocusRing';
+import { Ripple, type IRippleStyleKey } from '@/components/utils/Ripple';
+import {
+  FocusRing,
+  type IFocusRingStyleKey,
+} from '@/components/utils/FocusRing';
 import { useRadioGroupContext } from '../RadioGroup/useRadioGroupContext';
 
 export interface IRadioProps
@@ -21,6 +29,8 @@ export interface IRadioProps
     > {
   value?: string;
   onChange?: (checked: boolean) => IMaybeAsync<IAny>;
+  rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+  focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
 }
 
 // https://github.com/material-components/material-web/blob/main/radio/internal/radio.ts
@@ -32,12 +42,11 @@ export const Radio: React.FC<IRadioProps> = ({
   id,
   ...props
 }) => {
-  const { theme, styles, rippleStyles, focusRingStyles } =
-    useComponentTheme('Radio');
+  const theme = useComponentTheme('Radio');
 
-  const hostElRef = React.useRef<HTMLDivElement>(null);
-  const inputElRef = React.useRef<HTMLInputElement>(null);
-  const visualState = accumulate(useVisualState(hostElRef), props.visualState);
+  const hostRef = React.useRef<HTMLDivElement>(null);
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  const visualState = accumulate(useVisualState(hostRef), props.visualState);
   const radioGroupContext = useRadioGroupContext();
 
   // Unique maskId is required because of a Safari bug that fail to persist
@@ -47,9 +56,9 @@ export const Radio: React.FC<IRadioProps> = ({
   const styleProps = React.useMemo(
     () =>
       stylePropsFactory<IRadioStyleKey, IRadioStyleVarKey>(
-        stylesCombinatorFactory(styles, props.styles),
+        stylesCombinatorFactory(theme.styles, props.styles),
       ),
-    [styles, props.styles],
+    [theme.styles, props.styles],
   );
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> =
@@ -78,20 +87,20 @@ export const Radio: React.FC<IRadioProps> = ({
     <div
       {...styleProps(
         ['host', disabled && 'host$disabled'],
-        [theme, props.theme],
+        [theme.vars, props.theme],
       )}
-      ref={hostElRef}
+      ref={hostRef}
     >
       <div {...styleProps(['container', checked && 'container$checked'])}>
         <Ripple
-          for={inputElRef}
-          styles={rippleStyles}
+          for={inputRef}
+          styles={[theme.rippleStyles, ...asArray(props.rippleStyles)]}
           disabled={disabled}
           visualState={visualState}
         />
         <FocusRing
-          for={inputElRef}
-          styles={focusRingStyles}
+          for={inputRef}
+          styles={[theme.focusRingStyles, ...asArray(props.focusRingStyles)]}
           visualState={visualState}
         />
         <svg
@@ -127,7 +136,7 @@ export const Radio: React.FC<IRadioProps> = ({
 
         <input
           {...styleProps(['input'])}
-          ref={inputElRef}
+          ref={inputRef}
           id={id}
           type='radio'
           checked={checked}

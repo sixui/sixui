@@ -43,7 +43,6 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
   },
   container: {
     borderRadius: 'inherit',
-    boxSizing: 'border-box',
     display: 'flex',
     height: '100%',
     position: 'relative',
@@ -167,12 +166,12 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     paddingInlineEnd: 0,
   },
   action$primary$avatar: {
-    paddingInlineStart: '4px',
+    paddingInlineStart: 4,
   },
   touchTarget: {
     // Place content above background elements
     zIndex: 1,
-    height: '48px',
+    height: 48,
     inset: '50% 0 0',
     position: 'absolute',
     transform: 'translateY(-50%)',
@@ -207,7 +206,7 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     fontFamily: vars.labelTextFont,
     fontSize: vars.labelTextSize,
     lineHeight: vars.labelTextLineHeight,
-    letterSpacing: vars.labelTextTracking,
+    letterSpacing: vars.labelTextLetterSpacing,
     fontWeight: vars.labelTextWeight,
     height: '100%',
     textOverflow: 'ellipsis',
@@ -238,6 +237,7 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     zIndex: 1,
     alignSelf: 'center',
     display: 'flex',
+    fill: 'currentColor',
     position: 'relative',
     justifyContent: 'center',
     alignItems: 'center',

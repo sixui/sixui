@@ -55,7 +55,7 @@ export const styles: MapNamespaces<ISwitchStyles> =
     // Input is also touch target
     input: {
       appearance: 'none',
-      height: '48px',
+      height: 48,
       outline: 'none',
       margin: 0,
       position: 'absolute',
@@ -67,7 +67,6 @@ export const styles: MapNamespaces<ISwitchStyles> =
       position: 'absolute',
       width: '100%',
       height: '100%',
-      boxSizing: 'border-box',
 
       borderRadius: 'inherit',
 
@@ -87,7 +86,6 @@ export const styles: MapNamespaces<ISwitchStyles> =
       display: 'flex',
       position: 'absolute',
       borderRadius: 'inherit',
-      boxSizing: 'border-box',
       transitionProperty: 'opacity, background-color',
       transitionTimingFunction: 'linear',
       transitionDuration: '67ms',
@@ -257,6 +255,7 @@ export const styles: MapNamespaces<ISwitchStyles> =
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      fill: 'currentColor',
       transform: switchStateVars.selectedIconTransform$on,
 
       transitionProperty: 'fill, opacity, transform',

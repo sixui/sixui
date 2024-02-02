@@ -1,14 +1,14 @@
 import React from 'react';
-import { accumulate } from '@olivierpascal/helpers';
+import { accumulate, asArray } from '@olivierpascal/helpers';
 
-import type { IIcon } from '@/helpers/types';
+import type { IZeroOrMore, ICompiledStyles, IIcon } from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type {
   ITextFieldStyleKey,
   ITextFieldStyleVarKey,
 } from './TextField.styledefs';
-import type { IFieldVariant } from '../Field';
+import type { IFieldStyleKey, IFieldVariant } from '../Field';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
@@ -160,6 +160,7 @@ export interface ITextFieldProps
     value: string,
   ) => void;
   reportOnBlur?: boolean;
+  fieldStyles?: IZeroOrMore<ICompiledStyles<IFieldStyleKey>>;
 }
 
 type ITextFieldVariantMap = {
@@ -208,23 +209,21 @@ export const TextField: React.FC<ITextFieldProps> = ({
   reportOnBlur,
   ...props
 }) => {
-  const { theme, styles, fieldStyles } = useComponentTheme('TextField');
-  const { theme: variantTheme, styles: variantStyles } = useComponentTheme(
-    variantMap[variant],
-  );
+  const theme = useComponentTheme('TextField');
+  const variantTheme = useComponentTheme(variantMap[variant]);
 
-  const hostElRef = React.useRef<HTMLDivElement>(null);
+  const hostRef = React.useRef<HTMLDivElement>(null);
   const inputOrTextareaElInternalRef = React.useRef<
     HTMLInputElement | HTMLTextAreaElement
   >(null);
-  const inputOrTextareaElRef = forwardRef ?? inputOrTextareaElInternalRef;
+  const inputOrTextareaRef = forwardRef ?? inputOrTextareaElInternalRef;
   const [value, setValue] = useControlled({
     controlled: props.value,
     default: props.defaultValue,
     name: 'TextField',
   });
   const { reportValidity, nativeErrorText } =
-    useValidationState(inputOrTextareaElRef);
+    useValidationState(inputOrTextareaRef);
 
   /**
    * true when the text field has been interacted with. Native validation errors only display in
@@ -232,8 +231,8 @@ export const TextField: React.FC<ITextFieldProps> = ({
    */
   const isDirtyRef = React.useRef(false);
 
-  const hostVisualState = useVisualState(hostElRef);
-  const inputOrTextareaVisualState = useVisualState(inputOrTextareaElRef, {
+  const hostVisualState = useVisualState(hostRef);
+  const inputOrTextareaVisualState = useVisualState(inputOrTextareaRef, {
     retainFocusAfterClick: true,
   });
   const hasBeenInteractedWithRef = React.useRef(false);
@@ -251,10 +250,14 @@ export const TextField: React.FC<ITextFieldProps> = ({
   const styleProps = React.useMemo(
     () =>
       stylePropsFactory<ITextFieldStyleKey, ITextFieldStyleVarKey>(
-        stylesCombinatorFactory(styles, variantStyles, props.styles),
+        stylesCombinatorFactory(
+          theme.styles,
+          variantTheme.styles,
+          props.styles,
+        ),
         visualState,
       ),
-    [styles, variantStyles, props.styles, visualState],
+    [theme.styles, variantTheme.styles, props.styles, visualState],
   );
 
   const isTextarea = type === 'textarea';
@@ -292,7 +295,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
     // loop of reporting validity.
     hasBeenInteractedWithRef.current = false;
 
-    const validity = inputOrTextareaElRef.current?.validity;
+    const validity = inputOrTextareaRef.current?.validity;
 
     // Report validity if one of the following is true:
     // - the text field is in a valid state (and clear the native error text) ;
@@ -309,7 +312,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
         reportValidity(),
       );
     }
-  }, [reportValidity, hasError, reportOnBlur, inputOrTextareaElRef]);
+  }, [reportValidity, hasError, reportOnBlur, inputOrTextareaRef]);
 
   const renderInputOrTextarea = React.useCallback(() => {
     const ariaLabel = props['aria-label'] ?? label;
@@ -328,7 +331,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
             hasError && 'input$error',
             disabled && 'input$disabled',
           ])}
-          ref={inputOrTextareaElRef as React.RefObject<HTMLTextAreaElement>}
+          ref={inputOrTextareaRef as React.RefObject<HTMLTextAreaElement>}
           name={name}
           // TODO: aria-describedby="description"
           aria-invalid={hasError}
@@ -371,7 +374,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
             noSpinner && 'input$noSpinner',
             type === 'number' && 'input$number',
           ])}
-          ref={inputOrTextareaElRef as React.RefObject<HTMLInputElement>}
+          ref={inputOrTextareaRef as React.RefObject<HTMLInputElement>}
           name={name}
           // TODO: aria-describedby="description"
           aria-invalid={hasError}
@@ -409,7 +412,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
     );
   }, [
     name,
-    inputOrTextareaElRef,
+    inputOrTextareaRef,
     isTextarea,
     styleProps,
     prefixText,
@@ -444,7 +447,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
       start ??
       (LeadingIcon ? (
         <span {...styleProps(['icon', 'icon$leading'])}>
-          <LeadingIcon aria-hidden='true' />
+          <LeadingIcon aria-hidden />
         </span>
       ) : null),
     [styleProps, start, LeadingIcon],
@@ -455,7 +458,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
       end ??
       (TrailingIcon ? (
         <span {...styleProps(['icon', 'icon$trailing'])}>
-          <TrailingIcon aria-hidden='true' />
+          <TrailingIcon aria-hidden />
         </span>
       ) : null),
     [styleProps, end, TrailingIcon],
@@ -463,16 +466,20 @@ export const TextField: React.FC<ITextFieldProps> = ({
 
   return (
     <div
-      {...styleProps(['host'], [theme, variantTheme, props.theme])}
-      ref={hostElRef}
-      onClick={() => inputOrTextareaElRef.current?.focus()}
+      {...styleProps(['host'], [theme.vars, variantTheme.vars, props.theme])}
+      ref={hostRef}
+      onClick={() => inputOrTextareaRef.current?.focus()}
       role='textbox'
       tabIndex={-1}
       onKeyDown={() => {}}
     >
       <span {...styleProps(['textField'])}>
         <Field
-          styles={fieldStyles}
+          styles={[
+            theme.fieldStyles,
+            variantTheme.fieldStyles,
+            ...asArray(props.fieldStyles),
+          ]}
           variant={variant}
           count={value?.length}
           disabled={disabled}

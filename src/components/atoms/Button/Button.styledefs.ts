@@ -14,7 +14,6 @@ export type IButtonStyleKey =
   | 'host$withTrailingIcon'
   | 'outline'
   | 'outline$disabled'
-  | 'button'
   | 'touchTarget'
   | 'icon'
   | 'icon$disabled'
@@ -62,7 +61,7 @@ type ILabelStyleVarKey =
   | 'labelTextFont'
   | 'labelTextLineHeight'
   | 'labelTextSize'
-  | 'labelTextTracking'
+  | 'labelTextLetterSpacing'
   | 'labelTextWeight';
 
 type IIconStyleVarKey =

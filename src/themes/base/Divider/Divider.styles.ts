@@ -9,7 +9,6 @@ type IDividerStyles = IStyles<IDividerStyleKey>;
 export const styles: MapNamespaces<IDividerStyles> =
   stylex.create<IDividerStyles>({
     host: {
-      boxSizing: 'border-box',
       color: vars.color,
       display: 'flex',
       width: '100%',
@@ -23,13 +22,13 @@ export const styles: MapNamespaces<IDividerStyles> =
       },
     },
     host$inset: {
-      paddingInlineStart: '16px',
-      paddingInlineEnd: '16px',
+      paddingInlineStart: 16,
+      paddingInlineEnd: 16,
     },
     host$insetStart: {
-      paddingInlineStart: '16px',
+      paddingInlineStart: 16,
     },
     host$insetEnd: {
-      paddingInlineEnd: '16px',
+      paddingInlineEnd: 16,
     },
   });

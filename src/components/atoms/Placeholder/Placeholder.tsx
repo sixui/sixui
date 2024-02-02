@@ -26,19 +26,19 @@ export const Placeholder: React.FC<IPlaceholderProps> = ({
   crosshairs,
   ...props
 }) => {
-  const { theme, styles } = useComponentTheme('Placeholder');
+  const theme = useComponentTheme('Placeholder');
 
   const styleProps = React.useMemo(
     () =>
       stylePropsFactory<IPlaceholderStyleKey>(
-        stylesCombinatorFactory(styles, props.styles),
+        stylesCombinatorFactory(theme.styles, props.styles),
       ),
-    [styles, props.styles],
+    [theme.styles, props.styles],
   );
 
   return (
     <div
-      {...styleProps(['host'], [theme, props.theme])}
+      {...styleProps(['host'], [theme.vars, props.theme])}
       role={role}
       tabIndex={tabIndex}
     >

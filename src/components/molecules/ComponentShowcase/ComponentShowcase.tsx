@@ -41,15 +41,15 @@ export const ComponentShowcase = <IComponentProps extends object>({
   fullWidth,
   ...props
 }: IComponentShowcaseProps<IComponentProps>): React.ReactNode => {
-  const { theme, styles } = useComponentTheme('ComponentShowcase');
+  const theme = useComponentTheme('ComponentShowcase');
 
   const styleProps = React.useMemo(
     () =>
       stylePropsFactory<
         IComponentShowcaseStyleKey,
         IComponentShowcaseStyleVarKey
-      >(stylesCombinatorFactory(styles, props.styles)),
-    [styles, props.styles],
+      >(stylesCombinatorFactory(theme.styles, props.styles)),
+    [theme.styles, props.styles],
   );
 
   const shouldShowRowLegends = rowsProps.some(({ $legend }) => !!$legend);
@@ -57,11 +57,11 @@ export const ComponentShowcase = <IComponentProps extends object>({
   const shouldShowGroupLegends = groupsProps.some(({ $legend }) => !!$legend);
 
   return (
-    <div {...styleProps(['host', 'cols', 'gap$md'], [theme, props.theme])}>
+    <div {...styleProps(['host', 'cols', 'gap$md'], [theme.vars, props.theme])}>
       {shouldShowRowLegends && rowLegendPosition === 'start' ? (
         <div {...styleProps(['rows', 'gap$lg'])}>
           {shouldShowColLegends ? (
-            <div {...styleProps(['legend', 'invisible'])} aria-hidden='true'>
+            <div {...styleProps(['legend', 'invisible'])} aria-hidden>
               {DUMMY_TEXT}
             </div>
           ) : null}
@@ -148,7 +148,7 @@ export const ComponentShowcase = <IComponentProps extends object>({
 
       {shouldShowGroupLegends ? (
         <div {...styleProps(['rows', 'gap$lg'])}>
-          <div {...styleProps(['legend', 'invisible'])} aria-hidden='true'>
+          <div {...styleProps(['legend', 'invisible'])} aria-hidden>
             {DUMMY_TEXT}
           </div>
 

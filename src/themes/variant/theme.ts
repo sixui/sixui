@@ -10,7 +10,7 @@ export const theme: ITheme = {
     FilledButton: {
       ...baseTheme.components.FilledButton,
       // TODO: I want that all buttons to my theme (larger height and smaller corners). But it's not yet possible, see: https://github.com/facebook/stylex/issues/242
-      theme: filledButtonTheme,
+      vars: filledButtonTheme,
     },
   },
 } satisfies typeof baseTheme;

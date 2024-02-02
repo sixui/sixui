@@ -15,7 +15,6 @@ export const styles: MapNamespaces<IButtonStyles> =
       borderStyle: 'solid',
       borderWidth: vars.outlineWidth,
       position: 'absolute',
-      boxSizing: 'border-box',
       borderColor: {
         default: vars.outlineColor,
         ':is([data-focused])': vars.outlineColor$focus,

@@ -1,7 +1,13 @@
 import React from 'react';
-import { accumulate } from '@olivierpascal/helpers';
+import { accumulate, asArray } from '@olivierpascal/helpers';
 
-import type { IAny, IMaybeAsync, IIcon } from '@/helpers/types';
+import type {
+  IZeroOrMore,
+  ICompiledStyles,
+  IAny,
+  IMaybeAsync,
+  IIcon,
+} from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
 import type {
   IFabSize,
@@ -13,11 +19,20 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useVisualState } from '@/hooks/useVisualState';
-import { Elevation } from '@/components/utils/Elevation';
-import { FocusRing } from '@/components/utils/FocusRing';
-import { Ripple } from '@/components/utils/Ripple';
+import {
+  Elevation,
+  type IElevationStyleKey,
+} from '@/components/utils/Elevation';
+import {
+  FocusRing,
+  type IFocusRingStyleKey,
+} from '@/components/utils/FocusRing';
+import { Ripple, type IRippleStyleKey } from '@/components/utils/Ripple';
 import { IThemeComponents } from '@/helpers/ThemeContext';
-import { IndeterminateCircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
+import {
+  IndeterminateCircularProgressIndicator,
+  type ICircularProgressIndicatorStyleKey,
+} from '@/components/atoms/CircularProgressIndicator';
 
 export interface IFabProps
   extends IContainer<IFabStyleKey, IFabStyleVarKey>,
@@ -36,6 +51,10 @@ export interface IFabProps
   icon?: IIcon;
   component?: React.ElementType;
   href?: string;
+  rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+  focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+  elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
+  circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
 }
 
 type IFabVariantMap = {
@@ -67,32 +86,24 @@ export const Fab: React.FC<IFabProps> = ({
   href,
   ...props
 }) => {
-  const {
-    theme,
-    styles,
-    rippleStyles,
-    elevationStyles,
-    focusRingStyles,
-    circularProgressIndicatorStyles,
-  } = useComponentTheme('Fab');
-  const { theme: variantTheme, styles: variantStyles } = useComponentTheme(
-    variantMap[variant],
-  );
+  const theme = useComponentTheme('Fab');
+  const variantTheme = useComponentTheme(variantMap[variant]);
 
-  const actionElRef = React.useRef<HTMLButtonElement | HTMLLinkElement>(null);
+  const actionRef = React.useRef<HTMLButtonElement | HTMLLinkElement>(null);
   const [handlingClick, setHandlingClick] = React.useState(false);
-  const visualState = accumulate(
-    useVisualState(actionElRef),
-    props.visualState,
-  );
+  const visualState = accumulate(useVisualState(actionRef), props.visualState);
 
   const styleProps = React.useMemo(
     () =>
       stylePropsFactory<IFabStyleKey, IFabStyleVarKey>(
-        stylesCombinatorFactory(styles, variantStyles, props.styles),
+        stylesCombinatorFactory(
+          theme.styles,
+          variantTheme.styles,
+          props.styles,
+        ),
         visualState,
       ),
-    [styles, variantStyles, props.styles, visualState],
+    [theme.styles, variantTheme.styles, props.styles, visualState],
   );
 
   const handleClick: React.MouseEventHandler<HTMLElement> | undefined = onClick
@@ -130,10 +141,17 @@ export const Fab: React.FC<IFabProps> = ({
           lowered && 'host$lowered',
           disabled && 'host$disabled',
         ],
-        [theme, variantTheme, props.theme],
+        [theme.vars, variantTheme.vars, props.theme],
       )}
     >
-      <Elevation styles={elevationStyles} disabled={disabled} />
+      <Elevation
+        styles={[
+          theme.elevationStyles,
+          variantTheme.elevationStyles,
+          ...asArray(props.elevationStyles),
+        ]}
+        disabled={disabled}
+      />
       <div
         {...styleProps([
           'background',
@@ -142,13 +160,21 @@ export const Fab: React.FC<IFabProps> = ({
         ])}
       />
       <FocusRing
-        styles={focusRingStyles}
-        for={actionElRef}
+        styles={[
+          theme.focusRingStyles,
+          variantTheme.focusRingStyles,
+          ...asArray(props.focusRingStyles),
+        ]}
+        for={actionRef}
         visualState={visualState}
       />
       <Ripple
-        styles={rippleStyles}
-        for={actionElRef}
+        for={actionRef}
+        styles={[
+          theme.rippleStyles,
+          variantTheme.rippleStyles,
+          ...asArray(props.rippleStyles),
+        ]}
         disabled={disabled}
         visualState={visualState}
       />
@@ -159,7 +185,7 @@ export const Fab: React.FC<IFabProps> = ({
           extended ? 'fab$md' : `fab$${size}`,
           extended && 'fab$extended',
         ])}
-        ref={actionElRef}
+        ref={actionRef}
         onClick={handleClick}
         readOnly={disabled}
         tabIndex={disabled ? -1 : 0}
@@ -179,12 +205,16 @@ export const Fab: React.FC<IFabProps> = ({
           >
             {loading ? (
               <IndeterminateCircularProgressIndicator
-                styles={circularProgressIndicatorStyles}
+                styles={[
+                  theme.circularProgressIndicatorStyles,
+                  variantTheme.circularProgressIndicatorStyles,
+                  ...asArray(props.circularProgressIndicatorStyles),
+                ]}
               />
             ) : hasChildren ? (
               children
             ) : Icon ? (
-              <Icon aria-hidden='true' />
+              <Icon aria-hidden />
             ) : null}
           </div>
         ) : null}
@@ -208,7 +238,11 @@ export const Fab: React.FC<IFabProps> = ({
             ) ?? (
               <div {...styleProps([disabled && 'icon$disabled'])}>
                 <IndeterminateCircularProgressIndicator
-                  styles={circularProgressIndicatorStyles}
+                  styles={[
+                    theme.circularProgressIndicatorStyles,
+                    variantTheme.circularProgressIndicatorStyles,
+                    ...asArray(props.circularProgressIndicatorStyles),
+                  ]}
                 />
               </div>
             )}

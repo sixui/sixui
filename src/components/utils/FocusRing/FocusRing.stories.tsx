@@ -119,12 +119,12 @@ export const Inward: IStory = {
 };
 
 const AttachedComponent: React.FC<IFocusRingProps> = (props) => {
-  const inputElRef = React.useRef<HTMLInputElement>(null);
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
   return (
     <Placeholder styles={dashedPlaceholderStyles}>
-      <FocusRing {...props} for={inputElRef} />
-      <input {...stylex.props(styles.input)} ref={inputElRef} />
+      <FocusRing {...props} for={inputRef} />
+      <input {...stylex.props(styles.input)} ref={inputRef} />
     </Placeholder>
   );
 };
@@ -143,14 +143,14 @@ export const Attached: IStory = {
 };
 
 const MultiActionComponent: React.FC<IFocusRingProps> = (props) => {
-  const secondaryActionElRef = React.useRef<HTMLInputElement>(null);
+  const secondaryActionRef = React.useRef<HTMLInputElement>(null);
 
   return (
     <Placeholder styles={placeholderStyles} role='button' tabIndex={0}>
       <FocusRing {...props} />
       <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-        <FocusRing {...props} for={secondaryActionElRef} />
-        <input {...stylex.props(styles.input)} ref={secondaryActionElRef} />
+        <FocusRing {...props} for={secondaryActionRef} />
+        <input {...stylex.props(styles.input)} ref={secondaryActionRef} />
       </div>
     </Placeholder>
   );

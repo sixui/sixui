@@ -20,14 +20,14 @@ export const Elevation: React.FC<IElevationProps> = ({
   disabled,
   ...props
 }) => {
-  const { theme, styles } = useComponentTheme('Elevation');
+  const theme = useComponentTheme('Elevation');
 
   const styleProps = React.useMemo(
     () =>
       stylePropsFactory<IElevationStyleKey, IElevationStyleVarKey>(
-        stylesCombinatorFactory(styles, props.styles),
+        stylesCombinatorFactory(theme.styles, props.styles),
       ),
-    [styles, props.styles],
+    [theme.styles, props.styles],
   );
 
   return (
@@ -38,9 +38,9 @@ export const Elevation: React.FC<IElevationProps> = ({
           level !== undefined && `host$level${level}`,
           disabled && 'host$disabled',
         ],
-        [theme, props.theme],
+        [theme.vars, props.theme],
       )}
-      aria-hidden='true'
+      aria-hidden
     />
   );
 };

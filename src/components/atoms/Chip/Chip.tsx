@@ -1,7 +1,13 @@
 import React from 'react';
-import { accumulate } from '@olivierpascal/helpers';
+import { accumulate, asArray } from '@olivierpascal/helpers';
 
-import type { IAny, IMaybeAsync, IIcon } from '@/helpers/types';
+import type {
+  IZeroOrMore,
+  ICompiledStyles,
+  IAny,
+  IMaybeAsync,
+  IIcon,
+} from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type {
@@ -14,10 +20,19 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useVisualState } from '@/hooks/useVisualState';
 import { useControlled } from '@/hooks/useControlled';
-import { Elevation } from '@/components/utils/Elevation';
-import { FocusRing } from '@/components/utils/FocusRing';
-import { Ripple } from '@/components/utils/Ripple';
-import { IndeterminateCircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
+import {
+  Elevation,
+  type IElevationStyleKey,
+} from '@/components/utils/Elevation';
+import {
+  FocusRing,
+  type IFocusRingStyleKey,
+} from '@/components/utils/FocusRing';
+import { Ripple, type IRippleStyleKey } from '@/components/utils/Ripple';
+import {
+  IndeterminateCircularProgressIndicator,
+  type ICircularProgressIndicatorStyleKey,
+} from '@/components/atoms/CircularProgressIndicator';
 import { ReactComponent as CheckMark } from '@/assets/CheckMark.svg';
 import { ReactComponent as XMark } from '@/assets/XMark.svg';
 
@@ -43,6 +58,14 @@ export interface IChipProps
   component?: React.ElementType;
   'aria-label-remove'?: React.AriaAttributes['aria-label'];
   avatar?: boolean;
+  rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+  focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+  elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
+  trailingActionFocusRingStyles?: IZeroOrMore<
+    ICompiledStyles<IFocusRingStyleKey>
+  >;
+  trailingActionRippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+  circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
 }
 
 type IChipVariantMap = {
@@ -75,42 +98,35 @@ export const Chip: React.FC<IChipProps> = ({
   href,
   ...props
 }) => {
-  const {
-    theme,
-    styles,
-    rippleStyles,
-    elevationStyles,
-    focusRingStyles,
-    trailingActionFocusRingStyles,
-    trailingActionRippleStyles,
-    circularProgressIndicatorStyles,
-  } = useComponentTheme('Chip');
-  const { theme: variantTheme, styles: variantStyles } = useComponentTheme(
-    variantMap[variant],
-  );
+  const theme = useComponentTheme('Chip');
+  const variantTheme = useComponentTheme(variantMap[variant]);
 
-  const primaryActionElRef = React.useRef<HTMLButtonElement | HTMLLinkElement>(
+  const primaryActionRef = React.useRef<HTMLButtonElement | HTMLLinkElement>(
     null,
   );
-  const trailingActionElRef = React.useRef<HTMLButtonElement>(null);
+  const trailingActionRef = React.useRef<HTMLButtonElement>(null);
   const [handlingClick, setHandlingClick] = React.useState(false);
   const [handlingDelete, setHandlingDelete] = React.useState(false);
   const visualState = accumulate(
-    useVisualState(primaryActionElRef),
+    useVisualState(primaryActionRef),
     props.visualState,
   );
   const trailingActionVisualState = accumulate(
-    useVisualState(trailingActionElRef),
+    useVisualState(trailingActionRef),
     props.visualState,
   );
 
   const styleProps = React.useMemo(
     () =>
       stylePropsFactory<IChipStyleKey, IChipStyleVarKey>(
-        stylesCombinatorFactory(styles, variantStyles, props.styles),
+        stylesCombinatorFactory(
+          theme.styles,
+          variantTheme.styles,
+          props.styles,
+        ),
         visualState,
       ),
-    [styles, variantStyles, props.styles, visualState],
+    [theme.styles, variantTheme.styles, props.styles, visualState],
   );
 
   const [selectedValue, setSelectedValue] = useControlled({
@@ -174,8 +190,8 @@ export const Chip: React.FC<IChipProps> = ({
   // https://github.com/material-components/material-web/blob/035d1553662812e2dcc12aea8d70ea8bf26b164b/chips/internal/multi-action-chip.ts#L74
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLElement>) => {
-      const primaryActionEl = primaryActionElRef.current;
-      const trailingActionEl = trailingActionElRef.current;
+      const primaryActionEl = primaryActionRef.current;
+      const trailingActionEl = trailingActionRef.current;
       if (!primaryActionEl || !trailingActionEl) {
         // Does not have multiple actions.
         return;
@@ -206,13 +222,13 @@ export const Chip: React.FC<IChipProps> = ({
       const actionToFocus = forwards ? trailingActionEl : primaryActionEl;
       actionToFocus.focus();
     },
-    [primaryActionElRef, trailingActionElRef],
+    [primaryActionRef, trailingActionRef],
   );
 
   // https://github.com/material-components/material-web/blob/035d1553662812e2dcc12aea8d70ea8bf26b164b/chips/internal/multi-action-chip.ts#L106
   const handleTrailingActionFocus = React.useCallback(() => {
-    const primaryActionEl = primaryActionElRef.current;
-    const trailingActionEl = trailingActionElRef.current;
+    const primaryActionEl = primaryActionRef.current;
+    const trailingActionEl = trailingActionRef.current;
     if (!primaryActionEl || !trailingActionEl) {
       return;
     }
@@ -228,7 +244,7 @@ export const Chip: React.FC<IChipProps> = ({
       },
       { once: true },
     );
-  }, [primaryActionElRef, trailingActionElRef]);
+  }, [primaryActionRef, trailingActionRef]);
 
   const containerStyle = isSelectable
     ? selected
@@ -246,7 +262,7 @@ export const Chip: React.FC<IChipProps> = ({
     <div
       {...styleProps(
         ['host', disabled && 'host$disabled', avatar && 'host$avatar'],
-        [theme, variantTheme, props.theme],
+        [theme.vars, variantTheme.vars, props.theme],
       )}
     >
       <div
@@ -256,7 +272,14 @@ export const Chip: React.FC<IChipProps> = ({
           disabled && `${containerStyle}$disabled`,
         ])}
       >
-        <Elevation styles={elevationStyles} disabled={disabled} />
+        <Elevation
+          styles={[
+            theme.elevationStyles,
+            variantTheme.elevationStyles,
+            ...asArray(props.elevationStyles),
+          ]}
+          disabled={disabled}
+        />
         {elevated ? null : (
           <span
             {...styleProps([
@@ -267,13 +290,21 @@ export const Chip: React.FC<IChipProps> = ({
           />
         )}
         <FocusRing
-          styles={focusRingStyles}
-          for={primaryActionElRef}
+          styles={[
+            theme.focusRingStyles,
+            variantTheme.focusRingStyles,
+            ...asArray(props.focusRingStyles),
+          ]}
+          for={primaryActionRef}
           visualState={visualState}
         />
         <Ripple
-          for={primaryActionElRef}
-          styles={rippleStyles}
+          for={primaryActionRef}
+          styles={[
+            theme.rippleStyles,
+            variantTheme.rippleStyles,
+            ...asArray(props.rippleStyles),
+          ]}
           disabled={disabled}
           visualState={visualState}
         />
@@ -287,7 +318,7 @@ export const Chip: React.FC<IChipProps> = ({
             avatar && 'action$primary$avatar',
           ])}
           href={href}
-          ref={primaryActionElRef}
+          ref={primaryActionRef}
           onClick={href ? undefined : handleClick}
           role='button'
           readOnly={disabled}
@@ -307,11 +338,15 @@ export const Chip: React.FC<IChipProps> = ({
               {loading ? (
                 !loadingText ? (
                   <IndeterminateCircularProgressIndicator
-                    styles={circularProgressIndicatorStyles}
+                    styles={[
+                      theme.circularProgressIndicatorStyles,
+                      variantTheme.circularProgressIndicatorStyles,
+                      ...asArray(props.circularProgressIndicatorStyles),
+                    ]}
                   />
                 ) : null
               ) : selected && variant === 'filter' ? (
-                <CheckMark aria-hidden='true' />
+                <CheckMark aria-hidden />
               ) : imageUrl ? (
                 <img
                   {...styleProps(['image', avatar && 'image$avatar'])}
@@ -319,7 +354,7 @@ export const Chip: React.FC<IChipProps> = ({
                   alt=''
                 />
               ) : Icon ? (
-                <Icon aria-hidden='true' />
+                <Icon aria-hidden />
               ) : null}
             </div>
           ) : null}
@@ -347,7 +382,11 @@ export const Chip: React.FC<IChipProps> = ({
                 ) : (
                   <div {...styleProps([disabled && 'icon$disabled'])}>
                     <IndeterminateCircularProgressIndicator
-                      styles={circularProgressIndicatorStyles}
+                      styles={[
+                        theme.circularProgressIndicatorStyles,
+                        variantTheme.circularProgressIndicatorStyles,
+                        ...asArray(props.circularProgressIndicatorStyles),
+                      ]}
                     />
                   </div>
                 )}
@@ -366,11 +405,21 @@ export const Chip: React.FC<IChipProps> = ({
             onClick={handleDelete}
             onKeyDown={handleKeyDown}
             onFocus={handleTrailingActionFocus}
-            ref={trailingActionElRef}
+            ref={trailingActionRef}
           >
-            <FocusRing styles={trailingActionFocusRingStyles} />
+            <FocusRing
+              styles={[
+                theme.trailingActionFocusRingStyles,
+                variantTheme.trailingActionFocusRingStyles,
+                ...asArray(props.trailingActionFocusRingStyles),
+              ]}
+            />
             <Ripple
-              styles={trailingActionRippleStyles}
+              styles={[
+                theme.trailingActionRippleStyles,
+                variantTheme.trailingActionRippleStyles,
+                ...asArray(props.trailingActionRippleStyles),
+              ]}
               disabled={disabled}
               visualState={trailingActionVisualState}
             />
@@ -382,16 +431,20 @@ export const Chip: React.FC<IChipProps> = ({
                   ? 'icon$disabled'
                   : selected && 'icon$trailing$selected',
               ])}
-              aria-hidden='true'
+              aria-hidden
             >
               {deleting ? (
                 <div {...styleProps(['overlay'])}>
                   <IndeterminateCircularProgressIndicator
-                    styles={circularProgressIndicatorStyles}
+                    styles={[
+                      theme.circularProgressIndicatorStyles,
+                      variantTheme.circularProgressIndicatorStyles,
+                      ...asArray(props.circularProgressIndicatorStyles),
+                    ]}
                   />
                 </div>
               ) : (
-                <XMark aria-hidden='true' />
+                <XMark aria-hidden />
               )}
             </span>
             <span {...styleProps(['touchTarget'])}></span>

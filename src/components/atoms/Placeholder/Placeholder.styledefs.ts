@@ -8,5 +8,5 @@ export type IPlaceholderStyleVarKey =
   | 'labelTextFont'
   | 'labelTextLineHeight'
   | 'labelTextSize'
-  | 'labelTextTracking'
+  | 'labelTextLetterSpacing'
   | 'labelTextWeight';

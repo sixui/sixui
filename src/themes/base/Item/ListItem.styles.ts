@@ -69,7 +69,7 @@ export const itemStyles: MapNamespaces<IItemStyles> = stylex.create<
     color: vars.labelTextColor,
     fontFamily: vars.labelTextFont,
     fontSize: vars.labelTextSize,
-    letterSpacing: vars.labelTextTracking,
+    letterSpacing: vars.labelTextLetterSpacing,
     lineHeight: vars.labelTextLineHeight,
     fontWeight: vars.labelTextWeight,
     minHeight: vars.containerHeight$oneLine,
@@ -93,7 +93,7 @@ export const itemStyles: MapNamespaces<IItemStyles> = stylex.create<
     fontSize: vars.supportingTextSize,
     fontWeight: vars.supportingTextWeight,
     lineHeight: vars.supportingTextLineHeight,
-    letterSpacing: vars.supportingTextTracking,
+    letterSpacing: vars.supportingTextLetterSpacing,
   },
   trailingSupportingText: {
     color: vars.trailingSupportingTextColor,
@@ -101,7 +101,7 @@ export const itemStyles: MapNamespaces<IItemStyles> = stylex.create<
     fontSize: vars.trailingSupportingTextSize,
     fontWeight: vars.trailingSupportingTextWeight,
     lineHeight: vars.trailingSupportingTextLineHeight,
-    letterSpacing: vars.trailingSupportingTextTracking,
+    letterSpacing: vars.trailingSupportingTextLetterSpacing,
   },
   children: {
     pointerEvents: 'none',
@@ -133,6 +133,6 @@ export const focusRingStyles: MapNamespaces<IFocusRingStyles> = stylex.create<
   host: {
     zIndex: 1,
     // eslint-disable-next-line @stylexjs/valid-styles
-    [focusRingVars.shape]: '8px',
+    [focusRingVars.shape]: 8,
   },
 });
