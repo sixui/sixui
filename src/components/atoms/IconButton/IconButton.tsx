@@ -122,6 +122,7 @@ export const IconButton: React.FC<IIconButtonProps> = ({
   const hasOverlay = loading;
   const hasOutline =
     theme.styles?.outline ||
+    variantTheme.styles?.outline ||
     asArray(props.styles).some((styles) => !!styles?.outline);
 
   const Component: React.ElementType = href ? 'a' : props.component ?? 'button';
