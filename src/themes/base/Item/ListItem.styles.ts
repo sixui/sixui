@@ -133,6 +133,6 @@ export const focusRingStyles: MapNamespaces<IFocusRingStyles> = stylex.create<
   host: {
     zIndex: 1,
     // eslint-disable-next-line @stylexjs/valid-styles
-    [focusRingVars.shape]: '8px',
+    [focusRingVars.shape]: 8,
   },
 });

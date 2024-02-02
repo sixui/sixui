@@ -98,9 +98,7 @@
 
 ## Refactoring
 
-- remove 'px' from css attributes values (hum, finalement non, au cas où cette var est utilisée dans un calc(), il faut les unités)
 - use `const { current: xxx } = React.useRef();` instead of `const xxxRef = React.useRef(); const xxx = xxxRef.current;` (use `useForkRef` and `setRef`)
-- do not export vars from theme (as they should not be used directly, but from *.stylex.ts)
 - use useHover hook?
   https://react-spectrum.adobe.com/blog/building-a-button-part-2.html
 - uniformize letterSpacing -> tracking (or tracking -> letterSpacing)

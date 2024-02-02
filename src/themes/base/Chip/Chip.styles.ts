@@ -166,12 +166,12 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     paddingInlineEnd: 0,
   },
   action$primary$avatar: {
-    paddingInlineStart: '4px',
+    paddingInlineStart: 4,
   },
   touchTarget: {
     // Place content above background elements
     zIndex: 1,
-    height: '48px',
+    height: 48,
     inset: '50% 0 0',
     position: 'absolute',
     transform: 'translateY(-50%)',

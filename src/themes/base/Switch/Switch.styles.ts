@@ -55,7 +55,7 @@ export const styles: MapNamespaces<ISwitchStyles> =
     // Input is also touch target
     input: {
       appearance: 'none',
-      height: '48px',
+      height: 48,
       outline: 'none',
       margin: 0,
       position: 'absolute',

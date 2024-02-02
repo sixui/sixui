@@ -17,15 +17,15 @@ export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
     letterSpacing: vars.labelTextLetterSpacing,
     alignItems: 'center',
     display: 'flex',
-    gap: '16px',
-    minHeight: '56px',
+    gap: 16,
+    minHeight: 56,
     padding: '12px 16px',
     position: 'relative',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
   },
   host$multiline: {
-    minHeight: '72px',
+    minHeight: 72,
   },
   overline: {
     color: vars.overlineColor,

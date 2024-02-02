@@ -20,11 +20,11 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
   host: {
     display: 'inline-flex',
     resize: 'inherit',
-    minHeight: '56px',
+    minHeight: 56,
     width: '100%',
   },
   host$withSupportingText: {
-    minHeight: '76px',
+    minHeight: 76,
   },
   host$disabled: {
     pointerEvents: 'none',
@@ -99,7 +99,7 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
   },
   section$start$withStart: {
     minWidth: vars.leadingContentMinWidth,
-    marginInlineEnd: '4px',
+    marginInlineEnd: 4,
   },
   section$start$error: {
     color: {
@@ -139,7 +139,7 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
   },
   section$end$withEnd: {
     minWidth: vars.trailingContentMinWidth,
-    marginInlineStart: '4px',
+    marginInlineStart: 4,
   },
   section$end$error: {
     color: {
@@ -302,7 +302,7 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
     fontWeight: vars.supportingTextWeight,
     lineHeight: vars.supportingTextLineHeight,
     letterSpacing: vars.supportingTextLetterSpacing,
-    gap: '16px',
+    gap: 16,
     justifyContent: 'space-between',
     paddingInlineStart: vars.supportingTextLeadingSpace,
     paddingInlineEnd: vars.supportingTextTrailingSpace,

@@ -62,10 +62,10 @@ export const styles: MapNamespaces<IComponentShowcaseStyles> =
     legendRow: {
       display: 'flex',
       alignItems: 'center',
-      maxWidth: '120px',
+      maxWidth: 120,
     },
     leftBorder: {
-      borderLeftWidth: '1px',
+      borderLeftWidth: 1,
       borderLeftStyle: 'solid',
       borderLeftColor: vars.groupBorderColor,
       paddingLeft: '2rem',

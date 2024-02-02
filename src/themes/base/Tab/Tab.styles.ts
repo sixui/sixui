@@ -112,7 +112,7 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
     alignItems: 'center',
     justifyContent: 'center',
     height: vars.containerHeight,
-    gap: '8px',
+    gap: 8,
   },
   indicator: {
     position: 'absolute',
@@ -179,7 +179,7 @@ export const focusRingStyles: MapNamespaces<IFocusRingStyles> = stylex.create<
 >({
   host: {
     // eslint-disable-next-line @stylexjs/valid-styles
-    [focusRingVars.shape]: '8px',
+    [focusRingVars.shape]: 8,
     zIndex: 1,
   },
   host$outward: {
