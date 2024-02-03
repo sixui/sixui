@@ -10,7 +10,7 @@ import {
   LinkIcon,
 } from '@heroicons/react/24/solid';
 
-import { ComponentShowcase } from '@/components/molecules/ComponentShowcase';
+import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { Icon, type IIconProps } from './Icon';
 

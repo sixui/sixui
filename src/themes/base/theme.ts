@@ -135,6 +135,15 @@ import { styles as iconStyles } from './Icon/Icon.styles';
 import { componentTheme as dividerTheme } from './Divider/Divider.stylex';
 import { styles as dividerStyles } from './Divider/Divider.styles';
 
+import { componentTheme as paperTheme } from './Paper/Paper.stylex';
+import {
+  styles as paperStyles,
+  elevationStyles as paperElevationStyles,
+} from './Paper/Paper.styles';
+import { componentTheme as filledPaperTheme } from './Paper/FilledPaper.stylex';
+import { componentTheme as outlinedPaperTheme } from './Paper/OutlinedPaper.stylex';
+import { styles as outlinedPaperStyles } from './Paper/OutlinedPaper.styles';
+
 import { componentTheme as cardTheme } from './Card/Card.stylex';
 import {
   styles as cardStyles,
@@ -331,6 +340,16 @@ export const theme: ITheme = {
     Divider: {
       vars: dividerTheme,
       styles: dividerStyles,
+    },
+    Paper: {
+      vars: paperTheme,
+      styles: paperStyles,
+      elevationStyles: paperElevationStyles,
+    },
+    FilledPaper: { vars: filledPaperTheme },
+    OutlinedPaper: {
+      vars: outlinedPaperTheme,
+      styles: outlinedPaperStyles,
     },
     Card: {
       vars: cardTheme,

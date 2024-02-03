@@ -7,7 +7,7 @@ import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPropsWithLegend,
   ComponentShowcase,
-} from '@/components/molecules/ComponentShowcase';
+} from '@/components/utils/ComponentShowcase';
 import { type ITabProps, Tab } from './Tab';
 import { PrimaryTab } from './PrimaryTab';
 import { SecondaryTab } from './SecondaryTab';

@@ -16,7 +16,7 @@ export const styles: MapNamespaces<IOutlinedCardStyles> =
       borderWidth: vars.outlineWidth,
       position: 'absolute',
       borderColor: vars.outlineColor,
-      borderRadius: vars.containerShape,
+      borderRadius: 'inherit',
     },
     outline$interactive: {
       borderColor: {

@@ -7,7 +7,7 @@ import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPropsWithLegend,
   ComponentShowcase,
-} from '@/components/molecules/ComponentShowcase';
+} from '@/components/utils/ComponentShowcase';
 import { Switch, type ISwitchProps } from './Switch';
 
 // https://m3.material.io/components/switch/overview

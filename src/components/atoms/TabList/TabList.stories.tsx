@@ -14,7 +14,7 @@ import {
 import {
   type IComponentPropsWithLegend,
   ComponentShowcase,
-} from '@/components/molecules/ComponentShowcase';
+} from '@/components/utils/ComponentShowcase';
 import { TabList, type ITabListProps } from './TabList';
 import { PrimaryTab, SecondaryTab } from '../Tab';
 

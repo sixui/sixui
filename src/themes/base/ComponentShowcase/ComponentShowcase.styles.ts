@@ -2,7 +2,7 @@ import type { MapNamespaces } from '@stylexjs/stylex/lib/StyleXTypes';
 import * as stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
-import type { IComponentShowcaseStyleKey } from '@/components/molecules/ComponentShowcase';
+import type { IComponentShowcaseStyleKey } from '@/components/utils/ComponentShowcase';
 import { componentVars as vars } from './ComponentShowcase.stylex';
 
 type IComponentShowcaseStyles = IStyles<IComponentShowcaseStyleKey>;

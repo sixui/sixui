@@ -7,7 +7,7 @@ import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPropsWithLegend,
   ComponentShowcase,
-} from '@/components/molecules/ComponentShowcase';
+} from '@/components/utils/ComponentShowcase';
 import { buttonVariants } from './Button.styledefs';
 import { type IButtonProps, Button } from './Button';
 import { ElevatedButton } from './ElevatedButton';

@@ -9,7 +9,7 @@ import type { IFormStyleKey } from '@/components/utils/Form/Form.styledefs';
 import {
   type IComponentPropsWithLegend,
   ComponentShowcase,
-} from '@/components/molecules/ComponentShowcase';
+} from '@/components/utils/ComponentShowcase';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { TextField, type ITextFieldProps } from './TextField';
 import { IconButton } from '../IconButton/IconButton';

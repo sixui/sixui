@@ -6,7 +6,7 @@ import type {
 import type {
   IComponentShowcaseStyleKey,
   IComponentShowcaseStyleVarKey,
-} from '@/components/molecules/ComponentShowcase';
+} from '@/components/utils/ComponentShowcase';
 import type {
   IPlaceholderStyleKey,
   IPlaceholderStyleVarKey,
@@ -64,6 +64,10 @@ import type {
   IDividerStyleKey,
   IDividerStyleVarKey,
 } from '@/components/atoms/Divider';
+import type {
+  IPaperStyleKey,
+  IPaperStyleVarKey,
+} from '@/components/atoms/Paper';
 import type { ICardStyleKey, ICardStyleVarKey } from '@/components/atoms/Card';
 import type { ITabStyleKey, ITabStyleVarKey } from '@/components/atoms/Tab';
 import type { ITabListStyleKey } from '@/components/atoms/TabList';
@@ -130,6 +134,12 @@ export interface ITextFieldTheme {
   vars?: IStyleVarsTheme<ITextFieldStyleVarKey>;
   styles?: ICompiledStyles<ITextFieldStyleKey>;
   fieldStyles?: ICompiledStyles<IFieldStyleKey>;
+}
+
+export interface IPaperTheme {
+  vars?: IStyleVarsTheme<IPaperStyleVarKey>;
+  styles?: ICompiledStyles<IPaperStyleKey>;
+  elevationStyles?: ICompiledStyles<IElevationStyleKey>;
 }
 
 export interface ICardTheme {
@@ -253,6 +263,11 @@ export interface ITheme {
     Divider: {
       vars?: IStyleVarsTheme<IDividerStyleVarKey>;
       styles?: ICompiledStyles<IDividerStyleKey>;
+    };
+    Paper: IPaperTheme;
+    FilledPaper: IPaperTheme;
+    OutlinedPaper: IPaperTheme & {
+      styles?: ICompiledStyles<IPaperStyleKey>;
     };
     Card: ICardTheme;
     ElevatedCard: ICardTheme;
