@@ -1,3 +1,15 @@
+# v0.0.17 (Sat Feb 03 2024)
+
+#### 🐛 Bug Fix
+
+- Paper working [#6](https://github.com/sixui/ui/pull/6) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.16 (Fri Feb 02 2024)
 
 #### 🐛 Bug Fix
