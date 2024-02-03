@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ComponentShowcase } from '@/components/molecules/ComponentShowcase';
+import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { type IRadioGroupProps, RadioGroup } from './RadioGroup';
 import { Radio } from '../Radio';
 

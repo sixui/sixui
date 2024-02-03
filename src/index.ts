@@ -7,6 +7,7 @@ export * from './components/utils/Elevation';
 export * from './components/utils/FocusRing';
 export * from './components/utils/Form';
 export * from './components/utils/Ripple';
+export * from './components/utils/ComponentShowcase';
 
 // atoms
 export * from './components/atoms/Button';
@@ -25,6 +26,7 @@ export * from './components/atoms/ListItem';
 export * from './components/atoms/List';
 export * from './components/atoms/Icon';
 export * from './components/atoms/Divider';
+export * from './components/atoms/Paper';
 export * from './components/atoms/Card';
 export * from './components/atoms/Tab';
 export * from './components/atoms/TabList';

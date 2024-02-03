@@ -7,7 +7,7 @@ import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPropsWithLegend,
   ComponentShowcase,
-} from '@/components/molecules/ComponentShowcase';
+} from '@/components/utils/ComponentShowcase';
 import { Card, type ICardProps } from './Card';
 import { cardVariants } from './Card.styledefs';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';

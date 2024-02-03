@@ -5,7 +5,7 @@ import * as stylex from '@stylexjs/stylex';
 import {
   type IComponentPropsWithLegend,
   ComponentShowcase,
-} from '@/components/molecules/ComponentShowcase';
+} from '@/components/utils/ComponentShowcase';
 import { Ripple, type IRippleProps } from './Ripple';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 

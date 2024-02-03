@@ -4,7 +4,7 @@ import React from 'react';
 import {
   type IComponentPropsWithLegend,
   ComponentShowcase,
-} from '@/components/molecules/ComponentShowcase';
+} from '@/components/utils/ComponentShowcase';
 import { Template, type ITemplateProps } from './Template';
 
 const meta = {

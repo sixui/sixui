@@ -1,7 +1,7 @@
 import * as stylex from '@stylexjs/stylex';
 
 import type { IStyleVars } from '@/helpers/types';
-import type { IComponentShowcaseStyleVarKey } from '@/components/molecules/ComponentShowcase';
+import type { IComponentShowcaseStyleVarKey } from '@/components/utils/ComponentShowcase';
 import { typescaleVars } from '@/themes/base/vars/typo.stylex';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 

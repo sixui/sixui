@@ -6,7 +6,7 @@ import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPropsWithLegend,
   ComponentShowcase,
-} from '@/components/molecules/ComponentShowcase';
+} from '@/components/utils/ComponentShowcase';
 import { Checkbox, type ICheckboxProps } from './Checkbox';
 
 // https://m3.material.io/components/checkbox/overview

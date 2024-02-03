@@ -16,6 +16,9 @@
   - Prepend "use-client" directive (o components/hooks) exported from core librairies + add docs and examples for using MUI libraries with Next.js App Router
     - https://github.com/mui/material-ui/pull/37656
 
+- Card
+  - Derivate from Paper
+
 - Chip
   - Animate width change on switching between selected and unselected states
   - Add a minimum delay betweel showing the circular progress indicator. First, to avoid showing it for a very short time, but also to have time to show the ripple effect.
@@ -144,7 +147,6 @@
 *What that the team is currently working on.*
 
 Components
-- [ ] Paper
 - [ ] Avatar
 - [ ] Badge
 - [ ] App Bar
@@ -240,6 +242,7 @@ Components
 - [x] IconButton
 - [x] Item
 - [x] List
+- [x] Paper
 - [x] Radio
 - [x] Ripple
 - [x] Switch

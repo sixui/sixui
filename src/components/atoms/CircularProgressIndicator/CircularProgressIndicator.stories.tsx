@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
-import { ComponentShowcase } from '@/components/molecules/ComponentShowcase';
+import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import {
   CircularProgressIndicator,
   type ICircularProgressIndicatorProps,

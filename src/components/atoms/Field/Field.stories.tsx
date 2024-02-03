@@ -8,7 +8,7 @@ import { type IFieldStyleKey, fieldVariants } from './Field.styledefs';
 import {
   type IComponentPropsWithLegend,
   ComponentShowcase,
-} from '@/components/molecules/ComponentShowcase';
+} from '@/components/utils/ComponentShowcase';
 import { Field, type IFieldProps } from './Field';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 

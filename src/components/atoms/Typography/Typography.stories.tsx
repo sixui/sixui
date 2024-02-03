@@ -6,7 +6,7 @@ import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 import {
   type IComponentPropsWithLegend,
   ComponentShowcase,
-} from '@/components/molecules/ComponentShowcase';
+} from '@/components/utils/ComponentShowcase';
 import { type ITypographyProps, Typography } from './Typography';
 
 // https://m3.material.io/styles/typography/overview

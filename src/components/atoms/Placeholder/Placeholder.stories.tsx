@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import * as stylex from '@stylexjs/stylex';
 
-import { ComponentShowcase } from '@/components/molecules/ComponentShowcase';
+import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { Placeholder, type IPlaceholderProps } from './Placeholder';
 
 const meta = {
