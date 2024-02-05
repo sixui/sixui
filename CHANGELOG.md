@@ -1,3 +1,15 @@
+# v0.0.18 (Mon Feb 05 2024)
+
+#### 🐛 Bug Fix
+
+- Anchored component [#7](https://github.com/sixui/ui/pull/7) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.17 (Sat Feb 03 2024)
 
 #### 🐛 Bug Fix
