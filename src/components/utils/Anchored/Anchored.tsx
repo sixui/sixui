@@ -7,19 +7,21 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
 export interface IAnchoredProps extends IContainer<IAnchoredStyleKey> {
-  horizontalOrigin?: 'start' | 'end';
   verticalOrigin?: 'top' | 'bottom';
-  overlap?: 'square' | 'circular';
+  horizontalOrigin?: 'left' | 'right';
+  overlap?: 'rectangular' | 'circular';
   children: React.ReactNode;
   content: React.ReactNode;
+  invisible?: boolean;
 }
 
 export const Anchored: React.FC<IAnchoredProps> = ({
-  horizontalOrigin = 'end',
+  horizontalOrigin = 'right',
   verticalOrigin = 'top',
-  overlap = 'square',
+  overlap = 'rectangular',
   children,
   content,
+  invisible,
   ...props
 }) => {
   const theme = useComponentTheme('Anchored');
@@ -32,6 +34,23 @@ export const Anchored: React.FC<IAnchoredProps> = ({
     [theme.styles, props.styles],
   );
 
+  const contentPositionClassname =
+    overlap === 'rectangular'
+      ? verticalOrigin === 'top'
+        ? horizontalOrigin === 'right'
+          ? 'content$rectangular$top$right'
+          : 'content$rectangular$top$left'
+        : horizontalOrigin === 'right'
+          ? 'content$rectangular$bottom$right'
+          : 'content$rectangular$bottom$left'
+      : verticalOrigin === 'top'
+        ? horizontalOrigin === 'right'
+          ? 'content$circular$top$right'
+          : 'content$circular$top$left'
+        : horizontalOrigin === 'right'
+          ? 'content$circular$bottom$right'
+          : 'content$circular$bottom$left';
+
   return (
     <div {...styleProps(['host'], [props.theme])}>
       {children}
@@ -39,20 +58,8 @@ export const Anchored: React.FC<IAnchoredProps> = ({
       <div
         {...styleProps([
           'content',
-          horizontalOrigin === 'start'
-            ? overlap === 'square'
-              ? 'content$start$square'
-              : 'content$start$circular'
-            : overlap === 'square'
-              ? 'content$end$square'
-              : 'content$end$circular',
-          verticalOrigin === 'top'
-            ? overlap === 'square'
-              ? 'content$top$square'
-              : 'content$top$circular'
-            : overlap === 'square'
-              ? 'content$bottom$square'
-              : 'content$bottom$circular',
+          contentPositionClassname,
+          invisible && `${contentPositionClassname}$invisible`,
         ])}
       >
         {content}

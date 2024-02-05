@@ -7,6 +7,7 @@ import { colorRolesVars } from '../vars/colorRoles.stylex';
 import { typescaleVars } from '../vars/typo.stylex';
 import { stateVars } from '../vars/state.stylex';
 import { componentVars as vars } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
+import { motionVars } from '../vars/motion.stylex';
 
 // https://github.com/material-components/material-web/blob/main/progress/internal/_circulardeterminate-progress.scss
 
@@ -49,7 +50,7 @@ export const styles: MapNamespaces<IDeterminateCircularProgressIndicatorStyles> 
     activeTrack: {
       // note, these value come from the m2 version but match current gm3 values.
       transitionProperty: 'stroke-dashoffset',
-      transitionDuration: '500ms',
+      transitionDuration: motionVars.duration$long2,
       transitionTimingFunction: 'cubic-bezier(0, 0, 0.2, 1)',
       stroke: vars.color,
     },

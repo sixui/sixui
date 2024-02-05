@@ -77,6 +77,10 @@ import type {
   IBreadcrumbsStyleVarKey,
 } from '@/components/atoms/Breadcrumbs';
 import type { IAnchoredStyleKey } from '@/components/utils/Anchored';
+import type {
+  IBadgeStyleKey,
+  IBadgeStyleVarKey,
+} from '@/components/atoms/Badge';
 
 export interface ITemplateTheme {
   vars?: IStyleVarsTheme<ITemplateStyleVarKey>;
@@ -293,6 +297,10 @@ export interface ITheme {
     };
     Anchored: {
       styles?: ICompiledStyles<IAnchoredStyleKey>;
+    };
+    Badge: {
+      vars?: IStyleVarsTheme<IBadgeStyleVarKey>;
+      styles?: ICompiledStyles<IBadgeStyleKey>;
     };
   };
 }

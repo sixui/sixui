@@ -4,6 +4,7 @@ import * as stylex from '@stylexjs/stylex';
 import type { IStyles } from '@/helpers/types';
 import type { IPlaceholderStyleKey } from '@/components/atoms/Placeholder';
 import { componentVars as vars } from './Placeholder.stylex';
+import { shapeVars } from '../vars/shape.stylex';
 
 type IPlaceholderStyles = IStyles<IPlaceholderStyleKey>;
 export const styles: MapNamespaces<IPlaceholderStyles> =
@@ -19,6 +20,14 @@ export const styles: MapNamespaces<IPlaceholderStyles> =
       fontFamily: vars.labelTextFont,
       lineHeight: vars.labelTextLineHeight,
       fontWeight: vars.labelTextWeight,
+      width: 64,
+      height: 64,
+    },
+    host$rectangular: {
+      borderRadius: shapeVars.corner$none,
+    },
+    host$circular: {
+      borderRadius: shapeVars.corner$full,
     },
     guides: {
       overflow: 'hidden',

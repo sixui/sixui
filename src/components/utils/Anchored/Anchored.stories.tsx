@@ -4,6 +4,7 @@ import * as stylex from '@stylexjs/stylex';
 
 import {
   type IComponentPropsWithLegend,
+  type IComponentShowcaseProps,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
 import { Placeholder } from '@/components/atoms/Placeholder';
@@ -18,32 +19,10 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {} satisfies Partial<IAnchoredProps>;
 
-const parentStyles$square = stylex.create({
-  host: {
-    width: '4rem',
-    height: '4rem',
-    borderRadius: 0,
-  },
-});
-
-const parentStyles$circular = stylex.create({
-  host: {
-    width: '4rem',
-    height: '4rem',
-    borderRadius: '999px',
-  },
-});
-
-const Parent: React.FC<{ shape: 'square' | 'circular' }> = ({ shape }) => (
-  <Placeholder
-    styles={shape === 'square' ? parentStyles$square : parentStyles$circular}
-  />
-);
-
 const badgeStyles$sm = stylex.create({
   host: {
-    height: '1rem',
-    width: '1rem',
+    height: 16,
+    width: 16,
     borderRadius: '999px',
     backgroundColor: colorRolesVars.primary,
   },
@@ -51,8 +30,8 @@ const badgeStyles$sm = stylex.create({
 
 const badgeStyles$lg = stylex.create({
   host: {
-    height: '1rem',
-    width: '3rem',
+    height: 16,
+    width: 32,
     borderRadius: '999px',
     backgroundColor: colorRolesVars.primary,
   },
@@ -63,15 +42,15 @@ const Badge: React.FC<{ size: 'sm' | 'lg' }> = ({ size }) => (
 );
 
 const anchorsProps: IComponentPropsWithLegend<IAnchoredProps> = [
-  { horizontalOrigin: 'start', verticalOrigin: 'top' },
-  { horizontalOrigin: 'start', verticalOrigin: 'bottom' },
-  { horizontalOrigin: 'end', verticalOrigin: 'bottom' },
-  { horizontalOrigin: 'end', verticalOrigin: 'top' },
+  { verticalOrigin: 'top', horizontalOrigin: 'right' },
+  { verticalOrigin: 'bottom', horizontalOrigin: 'right' },
+  { verticalOrigin: 'top', horizontalOrigin: 'left' },
+  { verticalOrigin: 'bottom', horizontalOrigin: 'left' },
 ];
 
 const contentProps: IComponentPropsWithLegend<IAnchoredProps> = [
-  { content: <Badge size='sm' /> },
-  { content: <Badge size='lg' /> },
+  { $legend: 'Short', content: <Badge size='sm' /> },
+  { $legend: 'Long', content: <Badge size='lg' /> },
 ];
 
 export const Variants: IStory = {
@@ -81,18 +60,18 @@ export const Variants: IStory = {
       props={props}
       colsProps={[
         {
-          overlap: 'square',
-          children: <Parent shape='square' />,
+          overlap: 'rectangular',
+          children: <Placeholder shape='rectangular' />,
           content: <Badge size='sm' />,
-          horizontalOrigin: 'end',
           verticalOrigin: 'top',
+          horizontalOrigin: 'right',
         },
         {
           overlap: 'circular',
-          children: <Parent shape='circular' />,
-          content: <Badge size='sm' />,
-          horizontalOrigin: 'end',
+          children: <Placeholder shape='circular' />,
+          content: <Badge size='lg' />,
           verticalOrigin: 'bottom',
+          horizontalOrigin: 'left',
         },
       ]}
     />
@@ -100,9 +79,26 @@ export const Variants: IStory = {
   args: defaultArgs as IAnchoredProps,
 };
 
-export const SquareOverlap: IStory = {
-  render: (props) => (
+const ComponentShowcaseAnimated: React.FC<
+  IComponentShowcaseProps<IAnchoredProps>
+> = (props) => {
+  const [invisible, setInvisible] = React.useState(true);
+
+  React.useEffect(() => {
+    setInterval(() => setInvisible((prev) => !prev), 2000);
+  }, []);
+
+  return (
     <ComponentShowcase
+      {...props}
+      groupsProps={[{ $legend: 'Static' }, { $legend: 'Animated', invisible }]}
+    />
+  );
+};
+
+export const RectangularOverlap: IStory = {
+  render: (props) => (
+    <ComponentShowcaseAnimated
       component={Anchored}
       props={props}
       rowsProps={contentProps}
@@ -111,14 +107,14 @@ export const SquareOverlap: IStory = {
   ),
   args: {
     ...defaultArgs,
-    overlap: 'square',
-    children: <Parent shape='square' />,
+    overlap: 'rectangular',
+    children: <Placeholder shape='rectangular' />,
   } as IAnchoredProps,
 };
 
 export const CircularOverlap: IStory = {
   render: (props) => (
-    <ComponentShowcase
+    <ComponentShowcaseAnimated
       component={Anchored}
       props={props}
       rowsProps={contentProps}
@@ -128,7 +124,7 @@ export const CircularOverlap: IStory = {
   args: {
     ...defaultArgs,
     overlap: 'circular',
-    children: <Parent shape='circular' />,
+    children: <Placeholder shape='circular' />,
   } as IAnchoredProps,
 };
 

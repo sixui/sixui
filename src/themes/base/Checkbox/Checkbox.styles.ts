@@ -153,13 +153,13 @@ export const styles: MapNamespaces<ICheckboxStyles> =
     backgroundAndIcon: {
       opacity: 0, // Background and icon fade in
       transitionProperty: 'transform, opacity',
-      transitionDuration: '150ms, 50ms', // Exit duration for scale and opacity
+      transitionDuration: `${motionVars.duration$short3}, ${motionVars.duration$short1}`, // Exit duration for scale and opacity
       transitionTimingFunction: `${motionVars.easing$emphasizedAccelerate}, linear`, // Exit easing function for scale, linear for opacity
       transform: 'scale(0.6)',
     },
     backgroundAndIcon$selected: {
       opacity: 1,
-      transitionDuration: '350ms, 50ms', // Enter duration for scale and opacity.
+      transitionDuration: `${motionVars.duration$medium3}, ${motionVars.duration$short1}`, // Enter duration for scale and opacity.
       transitionTimingFunction: `${motionVars.easing$emphasizedDecelerate}, linear`, // Enter easing function for scale, linear for opacity
       transform: 'scale(1)',
     },
@@ -199,14 +199,14 @@ export const styles: MapNamespaces<ICheckboxStyles> =
     },
     mark: {
       // Exit duration and easing.
-      animationDuration: '150ms',
+      animationDuration: motionVars.duration$short3,
       animationTimingFunction: motionVars.easing$emphasizedAccelerate,
-      transitionDuration: '150ms',
+      transitionDuration: motionVars.duration$short3,
       transitionTimingFunction: motionVars.easing$emphasizedAccelerate,
     },
     mark$selected: {
       // Enter duration and easing.
-      animationDuration: '350ms',
+      animationDuration: motionVars.duration$medium3,
       animationTimingFunction: motionVars.easing$emphasizedDecelerate,
     },
     mark$disabled: {

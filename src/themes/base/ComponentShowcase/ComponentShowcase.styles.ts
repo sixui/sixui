@@ -36,6 +36,7 @@ export const styles: MapNamespaces<IComponentShowcaseStyles> =
       display: 'flex',
       flexDirection: 'column',
       gap: '3.5rem',
+      alignSelf: 'stretch',
     },
     cols: {
       display: 'flex',

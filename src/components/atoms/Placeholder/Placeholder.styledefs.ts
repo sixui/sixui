@@ -1,4 +1,9 @@
-export type IPlaceholderStyleKey = 'host' | 'label' | 'guides';
+export type IPlaceholderStyleKey =
+  | 'host'
+  | 'host$rectangular'
+  | 'host$circular'
+  | 'label'
+  | 'guides';
 
 export type IPlaceholderStyleVarKey =
   | 'containerColor'

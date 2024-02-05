@@ -9,7 +9,7 @@ const color1 = `color-mix(in srgb, ${colorRolesVars.shadow} 30%, transparent)`;
 const color2 = `color-mix(in srgb, ${colorRolesVars.shadow} 15%, transparent)`;
 
 const vars: Partial<IStyleVars<IElevationStyleVarKey>> = {
-  transitionDuration: '280ms',
+  transitionDuration: motionVars.duration$medium2,
   transitionTimingFunction: motionVars.easing$emphasized,
   boxShadow: undefined,
   boxShadow$level0: 'none',

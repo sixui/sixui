@@ -16,6 +16,7 @@ export interface IPlaceholderProps
   role?: string;
   tabIndex?: number;
   crosshairs?: boolean;
+  shape?: 'rounded' | 'rectangular' | 'circular';
 }
 
 export const Placeholder: React.FC<IPlaceholderProps> = ({
@@ -24,6 +25,7 @@ export const Placeholder: React.FC<IPlaceholderProps> = ({
   role,
   tabIndex,
   crosshairs,
+  shape = 'rounded',
   ...props
 }) => {
   const theme = useComponentTheme('Placeholder');
@@ -38,7 +40,17 @@ export const Placeholder: React.FC<IPlaceholderProps> = ({
 
   return (
     <div
-      {...styleProps(['host'], [theme.vars, props.theme])}
+      {...styleProps(
+        [
+          'host',
+          shape === 'rectangular'
+            ? 'host$rectangular'
+            : shape === 'circular'
+              ? 'host$circular'
+              : null,
+        ],
+        [theme.vars, props.theme],
+      )}
       role={role}
       tabIndex={tabIndex}
     >
