@@ -178,6 +178,8 @@ import {
   expandButtonFocusRingStyles as breadcrumbsExpandButtonFocusRingStyles,
 } from './Breadcrumbs/Breadcrumbs.styles';
 
+import { styles as anchoredStyles } from './Anchored/Anchored.styles';
+
 export const theme: ITheme = {
   name: 'Material Design 3',
   components: {
@@ -384,6 +386,9 @@ export const theme: ITheme = {
       styles: breadcrumbsStyles,
       expandButtonStyles: breadcrumbsExpandButtonStyles,
       expandButtonFocusRingStyles: breadcrumbsExpandButtonFocusRingStyles,
+    },
+    Anchored: {
+      styles: anchoredStyles,
     },
   },
 };
