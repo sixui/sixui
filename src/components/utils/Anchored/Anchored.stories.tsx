@@ -63,10 +63,10 @@ const Badge: React.FC<{ size: 'sm' | 'lg' }> = ({ size }) => (
 );
 
 const anchorsProps: IComponentPropsWithLegend<IAnchoredProps> = [
-  { horizontalOrigin: 'end', verticalOrigin: 'top' },
-  { horizontalOrigin: 'end', verticalOrigin: 'bottom' },
-  { horizontalOrigin: 'start', verticalOrigin: 'bottom' },
   { horizontalOrigin: 'start', verticalOrigin: 'top' },
+  { horizontalOrigin: 'start', verticalOrigin: 'bottom' },
+  { horizontalOrigin: 'end', verticalOrigin: 'bottom' },
+  { horizontalOrigin: 'end', verticalOrigin: 'top' },
 ];
 
 const contentProps: IComponentPropsWithLegend<IAnchoredProps> = [
