@@ -147,7 +147,6 @@
 *What that the team is currently working on.*
 
 Components
-- [ ] Badge
 - [ ] Avatar
 - [ ] App Bar
 - [ ] Grid
@@ -228,6 +227,7 @@ Features
 
 Components
 - [x] Anchored
+- [x] Badge
 - [x] Breadcrumbs
 - [x] Button
 - [x] Card
