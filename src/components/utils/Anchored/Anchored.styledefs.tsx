@@ -1,15 +1,19 @@
 export type IAnchoredStyleKey =
   | 'host'
   | 'content'
-  | 'content$start$square'
-  | 'content$start$circular'
-  | 'content$end$square'
-  | 'content$end$circular'
-  | 'content$top$square'
-  | 'content$top$circular'
-  | 'content$bottom$square'
-  | 'content$bottom$circular';
-
-export type IAnchoredStyleStateVarKey =
-  | 'horizontalTransform'
-  | 'verticalTransform';
+  | 'content$rectangular$top$right'
+  | 'content$rectangular$bottom$right'
+  | 'content$rectangular$top$left'
+  | 'content$rectangular$bottom$left'
+  | 'content$circular$top$right'
+  | 'content$circular$bottom$right'
+  | 'content$circular$top$left'
+  | 'content$circular$bottom$left'
+  | 'content$rectangular$top$right$invisible'
+  | 'content$rectangular$bottom$right$invisible'
+  | 'content$rectangular$top$left$invisible'
+  | 'content$rectangular$bottom$left$invisible'
+  | 'content$circular$top$right$invisible'
+  | 'content$circular$bottom$right$invisible'
+  | 'content$circular$top$left$invisible'
+  | 'content$circular$bottom$left$invisible';

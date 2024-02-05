@@ -2,7 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import * as stylex from '@stylexjs/stylex';
 
-import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
+import {
+  ComponentShowcase,
+  type IComponentPropsWithLegend,
+} from '@/components/utils/ComponentShowcase';
 import { Placeholder, type IPlaceholderProps } from './Placeholder';
 
 const meta = {
@@ -14,11 +17,17 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   styles: stylex.create({
     host: {
-      width: '6rem',
-      height: '6rem',
+      width: 96,
+      height: 96,
     },
   }),
 } satisfies Partial<IPlaceholderProps>;
+
+const colsProps: IComponentPropsWithLegend<IPlaceholderProps> = [
+  { $legend: 'Basic' },
+  { $legend: 'Crosshairs', crosshairs: true },
+  { $legend: 'Label', label: 'Label' },
+];
 
 export const Variants: IStory = {
   render: (props) => (
@@ -26,16 +35,55 @@ export const Variants: IStory = {
       component={Placeholder}
       props={props}
       colsProps={[
-        { $legend: 'Basic' },
-        { $legend: 'With crosshairs', crosshairs: true },
-        {
-          $legend: 'With label',
-          label: 'Label',
-        },
+        { shape: 'rounded' },
+        { shape: 'rectangular', crosshairs: true },
+        { shape: 'circular', label: 'Label' },
       ]}
     />
   ),
   args: defaultArgs,
+};
+
+export const Rounded: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={Placeholder}
+      props={props}
+      colsProps={colsProps}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    shape: 'rounded',
+  },
+};
+
+export const Rectangular: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={Placeholder}
+      props={props}
+      colsProps={colsProps}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    shape: 'rectangular',
+  },
+};
+
+export const Circular: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={Placeholder}
+      props={props}
+      colsProps={colsProps}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    shape: 'circular',
+  },
 };
 
 export default meta;

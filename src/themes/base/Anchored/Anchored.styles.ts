@@ -3,7 +3,7 @@ import * as stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
 import type { IAnchoredStyleKey } from '@/components/utils/Anchored';
-import { componentVars as anchoredStateVars } from './Anchored.states.stylex';
+import { motionVars } from '../vars/motion.stylex';
 
 type IAnchoredStyles = IStyles<IAnchoredStyleKey>;
 export const styles: MapNamespaces<IAnchoredStyles> =
@@ -16,46 +16,80 @@ export const styles: MapNamespaces<IAnchoredStyles> =
     content: {
       position: 'absolute',
       display: 'flex',
-      transform: `${anchoredStateVars.horizontalTransform} ${anchoredStateVars.verticalTransform}`,
+      transitionProperty: 'transform',
+      transitionDuration: motionVars.duration$short3,
+      transitionTimingFunction: motionVars.easing$emphasized,
     },
-    content$start$square: {
-      left: 0,
-      // eslint-disable-next-line @stylexjs/valid-styles
-      [anchoredStateVars.horizontalTransform]: 'translateX(-25%)',
-    },
-    content$start$circular: {
-      left: '14%',
-      // eslint-disable-next-line @stylexjs/valid-styles
-      [anchoredStateVars.horizontalTransform]: 'translateX(-50%)',
-    },
-    content$end$square: {
-      right: 0,
-      // eslint-disable-next-line @stylexjs/valid-styles
-      [anchoredStateVars.horizontalTransform]: 'translateX(25%)',
-    },
-    content$end$circular: {
-      right: '14%',
-      // eslint-disable-next-line @stylexjs/valid-styles
-      [anchoredStateVars.horizontalTransform]: 'translateX(50%)',
-    },
-    content$top$square: {
+    content$rectangular$top$right: {
       top: 0,
-      // eslint-disable-next-line @stylexjs/valid-styles
-      [anchoredStateVars.verticalTransform]: 'translateY(-25%)',
+      right: 0,
+      transform: 'scale(1) translate(50%, -50%)',
+      transformOrigin: '100% 0%',
     },
-    content$top$circular: {
-      top: '14%',
-      // eslint-disable-next-line @stylexjs/valid-styles
-      [anchoredStateVars.verticalTransform]: 'translateY(-50%)',
+    content$rectangular$top$right$invisible: {
+      transform: 'scale(0) translate(50%, -50%)',
     },
-    content$bottom$square: {
+    content$rectangular$bottom$right: {
       bottom: 0,
-      // eslint-disable-next-line @stylexjs/valid-styles
-      [anchoredStateVars.verticalTransform]: 'translateY(25%)',
+      right: 0,
+      transform: 'scale(1) translate(50%, 50%)',
+      transformOrigin: '100% 100%',
     },
-    content$bottom$circular: {
+    content$rectangular$bottom$right$invisible: {
+      transform: 'scale(0) translate(50%, 50%)',
+    },
+    content$rectangular$top$left: {
+      top: 0,
+      left: 0,
+      transform: 'scale(1) translate(-50%, -50%)',
+      transformOrigin: '0% 0%',
+    },
+    content$rectangular$top$left$invisible: {
+      transform: 'scale(0) translate(-50%, -50%)',
+    },
+    content$rectangular$bottom$left: {
+      bottom: 0,
+      left: 0,
+      transform: 'scale(1) translate(-50%, 50%)',
+      transformOrigin: '0% 100%',
+    },
+    content$rectangular$bottom$left$invisible: {
+      transform: 'scale(0) translate(-50%, 50%)',
+    },
+    content$circular$top$right: {
+      top: '14%',
+      right: '14%',
+      transform: 'scale(1) translate(50%, -50%)',
+      transformOrigin: '100% 0%',
+    },
+    content$circular$top$right$invisible: {
+      transform: 'scale(0) translate(50%, -50%)',
+    },
+    content$circular$bottom$right: {
       bottom: '14%',
-      // eslint-disable-next-line @stylexjs/valid-styles
-      [anchoredStateVars.verticalTransform]: 'translateY(50%)',
+      right: '14%',
+      transform: 'scale(1) translate(50%, 50%)',
+      transformOrigin: '100% 100%',
+    },
+    content$circular$bottom$right$invisible: {
+      transform: 'scale(0) translate(50%, 50%)',
+    },
+    content$circular$top$left: {
+      top: '14%',
+      left: '14%',
+      transform: 'scale(1) translate(-50%, -50%)',
+      transformOrigin: '0% 0%',
+    },
+    content$circular$top$left$invisible: {
+      transform: 'scale(0) translate(-50%, -50%)',
+    },
+    content$circular$bottom$left: {
+      bottom: '14%',
+      left: '14%',
+      transform: 'scale(1) translate(-50%, 50%)',
+      transformOrigin: '0% 100%',
+    },
+    content$circular$bottom$left$invisible: {
+      transform: 'scale(0) translate(-50%, 50%)',
     },
   });

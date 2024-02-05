@@ -107,19 +107,19 @@ export const styles: MapNamespaces<IRadioStyles> = stylex.create<IRadioStyles>({
   circle$outer: {
     // Outline color enter/exit transition
     transitionProperty: 'fill',
-    transitionDuration: '50ms',
+    transitionDuration: motionVars.duration$short1,
     transitionTimingFunction: 'linear',
   },
   circle$inner: {
     opacity: 0,
     transformOrigin: 'center',
     transitionProperty: 'opacity',
-    transitionDuration: '50ms',
+    transitionDuration: motionVars.duration$short1,
     transitionTimingFunction: 'linear',
   },
   circle$inner$checked: {
     animationName: innerCircleGrowKeyframes,
-    animationDuration: '300ms',
+    animationDuration: motionVars.duration$medium2,
     animationTimingFunction: motionVars.easing$emphasizedDecelerate,
     opacity: 1,
   },

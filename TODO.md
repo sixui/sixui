@@ -147,8 +147,8 @@
 *What that the team is currently working on.*
 
 Components
-- [ ] Avatar
 - [ ] Badge
+- [ ] Avatar
 - [ ] App Bar
 - [ ] Grid
 - [ ] Tooltip
@@ -227,6 +227,7 @@ Features
 - [x] Catalog
 
 Components
+- [x] Anchored
 - [x] Breadcrumbs
 - [x] Button
 - [x] Card

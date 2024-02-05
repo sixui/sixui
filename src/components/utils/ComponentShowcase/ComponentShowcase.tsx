@@ -148,9 +148,11 @@ export const ComponentShowcase = <IComponentProps extends object>({
 
       {shouldShowGroupLegends ? (
         <div {...styleProps(['rows', 'gap$lg'])}>
-          <div {...styleProps(['legend', 'invisible'])} aria-hidden>
-            {DUMMY_TEXT}
-          </div>
+          {shouldShowColLegends ? (
+            <div {...styleProps(['legend', 'invisible'])} aria-hidden>
+              {DUMMY_TEXT}
+            </div>
+          ) : null}
 
           <div {...styleProps(['flex', 'groupRows'])}>
             {groupsProps.map(({ $legend: groupLegend }, groupIndex) => (

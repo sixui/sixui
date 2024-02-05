@@ -13,6 +13,7 @@ import { componentVars as elevationVars } from '../Elevation/Elevation.stylex';
 import { componentVars as focusRingVars } from '../FocusRing/FocusRing.stylex';
 import { componentVars as rippleVars } from '../Ripple/Ripple.stylex';
 import { componentVars as circularProgressIndicatorVars } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
+import { motionVars } from '../vars/motion.stylex';
 
 const halfSpinKeyframes = stylex.keyframes({
   '0%': {
@@ -135,7 +136,7 @@ export const styles: MapNamespaces<IButtonStyles> =
     },
     icon$halfSpin: {
       animationName: halfSpinKeyframes,
-      animationDuration: '0.5s',
+      animationDuration: motionVars.duration$long2,
       animationTimingFunction: 'linear',
       animationIterationCount: 'infinite',
     },
