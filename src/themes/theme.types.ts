@@ -76,6 +76,7 @@ import type {
   IBreadcrumbsStyleKey,
   IBreadcrumbsStyleVarKey,
 } from '@/components/atoms/Breadcrumbs';
+import type { IAnchoredStyleKey } from '@/components/utils/Anchored';
 
 export interface ITemplateTheme {
   vars?: IStyleVarsTheme<ITemplateStyleVarKey>;
@@ -289,6 +290,9 @@ export interface ITheme {
       styles?: ICompiledStyles<IBreadcrumbsStyleKey>;
       expandButtonStyles?: ICompiledStyles<IButtonStyleKey>;
       expandButtonFocusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
+    };
+    Anchored: {
+      styles?: ICompiledStyles<IAnchoredStyleKey>;
     };
   };
 }
