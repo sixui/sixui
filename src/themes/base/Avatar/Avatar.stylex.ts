@@ -11,15 +11,15 @@ const vars: Partial<IStyleVars<IAvatarStyleVarKey>> = {
   containerShape: shapeVars.corner$full,
   containerWidth: '40px',
   containerHeight: '40px',
-  containerColor: colorRolesVars.primaryContainer,
+  containerColor: colorRolesVars.secondaryContainer,
 
   // label
+  labelTextColor: colorRolesVars.onSecondaryContainer,
   labelTextFont: typescaleVars.bodyFont$lg,
   labelTextLineHeight: typescaleVars.bodyLineHeight$lg,
   labelTextSize: typescaleVars.bodySize$lg,
   labelTextLetterSpacing: typescaleVars.bodyLetterSpacing$lg,
   labelTextWeight: typescaleVars.bodyWeight$lg,
-  labelTextColor: colorRolesVars.onPrimaryContainer,
 };
 
 export const componentVars = stylex.defineVars(

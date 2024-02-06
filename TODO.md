@@ -69,7 +69,7 @@
 
 - Use useHover hook?
   https://react-spectrum.adobe.com/blog/building-a-button-part-2.html
-- Chip/Fab/IconButton inherit from ButtonBase
+- Chip/Fab/IconButton/ListItem inherit from ButtonBase
 - Use hooks like useButton, useTab, useTabs, ... like mui or adobe
 - Use React.forwardRef & React.useImperativeHandle?
 - Helper to merge styles:
@@ -181,6 +181,7 @@ Components
 - [ ] Drawer
 - [ ] Image List
 - [ ] Linear Progress Indicator
+- [ ] Loading Progress Bar
 - [ ] Slider
 - [ ] Snackbar
 - [ ] Skeleton
