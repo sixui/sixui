@@ -183,6 +183,9 @@ import { styles as anchoredStyles } from './Anchored/Anchored.styles';
 import { componentTheme as badgeTheme } from './Badge/Badge.stylex';
 import { styles as badgeStyles } from './Badge/Badge.styles';
 
+import { componentTheme as avatarTheme } from './Avatar/Avatar.stylex';
+import { styles as avatarStyles } from './Avatar/Avatar.styles';
+
 export const theme: ITheme = {
   name: 'Material Design 3',
   components: {
@@ -396,6 +399,10 @@ export const theme: ITheme = {
     Badge: {
       vars: badgeTheme,
       styles: badgeStyles,
+    },
+    Avatar: {
+      vars: avatarTheme,
+      styles: avatarStyles,
     },
   },
 };
