@@ -1,3 +1,15 @@
+# v0.0.20 (Tue Feb 06 2024)
+
+#### 🐛 Bug Fix
+
+- Tab with badge [#9](https://github.com/sixui/ui/pull/9) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.19 (Mon Feb 05 2024)
 
 #### 🐛 Bug Fix
