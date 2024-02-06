@@ -41,8 +41,12 @@ export const useLoaded = ({
       setHasLoadingError(true);
     };
     image.crossOrigin = crossOrigin ?? null;
-    image.referrerPolicy = referrerPolicy ?? '';
-    image.src = src ?? '';
+    if (src) {
+      image.src = src;
+    }
+    if (referrerPolicy) {
+      image.referrerPolicy = referrerPolicy;
+    }
     if (srcSet) {
       image.srcset = srcSet;
     }

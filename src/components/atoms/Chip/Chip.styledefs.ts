@@ -25,8 +25,6 @@ export type IChipStyleKey =
   | 'action$primary$hasLeading'
   | 'action$primary$hasTrailing'
   | 'action$primary$avatar'
-  | 'image'
-  | 'image$avatar'
   | 'icon'
   | 'icon$selected'
   | 'icon$leading'

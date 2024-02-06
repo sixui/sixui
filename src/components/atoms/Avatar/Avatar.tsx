@@ -43,18 +43,18 @@ export const Avatar: React.FC<IAvatarProps> = ({
   );
 
   // Use a hook instead of onError on the img element to support server-side rendering.
-  const { loaded } = useLoaded({
+  const { hasLoadingError } = useLoaded({
     crossOrigin,
     referrerPolicy,
     src,
     srcSet,
   });
-  const hasImage = src || srcSet;
-  const isImageLoaded = hasImage && loaded;
+  const hasImage = !!src || !!srcSet;
+  const hasImageNotFailing = hasImage && !hasLoadingError;
 
   return (
     <div {...styleProps(['host'], [theme.vars, props.theme])}>
-      {isImageLoaded ? (
+      {hasImageNotFailing ? (
         <img
           {...styleProps(['image'])}
           alt={alt}

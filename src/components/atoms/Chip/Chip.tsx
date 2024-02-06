@@ -1,5 +1,6 @@
 import React from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
+import * as stylex from '@stylexjs/stylex';
 
 import type {
   IZeroOrMore,
@@ -35,6 +36,7 @@ import {
 } from '@/components/atoms/CircularProgressIndicator';
 import { ReactComponent as CheckMark } from '@/assets/CheckMark.svg';
 import { ReactComponent as XMark } from '@/assets/XMark.svg';
+import { Avatar } from '../Avatar';
 
 export interface IChipProps
   extends IContainer<IChipStyleKey, IChipStyleVarKey>,
@@ -81,6 +83,13 @@ const variantMap: IChipVariantMap = {
   input: 'InputChip',
   suggestion: 'SuggestionChip',
 };
+
+const avatarStyles = stylex.create({
+  host: {
+    width: '100%',
+    height: '100%',
+  },
+});
 
 // https://github.com/material-components/material-web/blob/main/chips/internal/chip.ts
 // https://github.com/material-components/material-web/blob/main/chips/internal/assist-chip.ts
@@ -348,11 +357,7 @@ export const Chip: React.FC<IChipProps> = ({
               ) : selected && variant === 'filter' ? (
                 <CheckMark aria-hidden />
               ) : imageUrl ? (
-                <img
-                  {...styleProps(['image', avatar && 'image$avatar'])}
-                  src={imageUrl}
-                  alt=''
-                />
+                <Avatar src={imageUrl} styles={avatarStyles} />
               ) : Icon ? (
                 <Icon aria-hidden />
               ) : null}

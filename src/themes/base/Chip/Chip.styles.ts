@@ -287,13 +287,6 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     height: vars.avatarSize,
     width: vars.avatarSize,
   },
-  image: {
-    width: '100%',
-    height: '100%',
-  },
-  image$avatar: {
-    borderRadius: vars.avatarShape,
-  },
   invisible: {
     visibility: 'hidden',
   },
