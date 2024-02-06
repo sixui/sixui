@@ -81,6 +81,10 @@ import type {
   IBadgeStyleKey,
   IBadgeStyleVarKey,
 } from '@/components/atoms/Badge';
+import type {
+  IAvatarStyleKey,
+  IAvatarStyleVarKey,
+} from '@/components/atoms/Avatar';
 
 export interface ITemplateTheme {
   vars?: IStyleVarsTheme<ITemplateStyleVarKey>;
@@ -301,6 +305,10 @@ export interface ITheme {
     Badge: {
       vars?: IStyleVarsTheme<IBadgeStyleVarKey>;
       styles?: ICompiledStyles<IBadgeStyleKey>;
+    };
+    Avatar: {
+      vars?: IStyleVarsTheme<IAvatarStyleVarKey>;
+      styles?: ICompiledStyles<IAvatarStyleKey>;
     };
   };
 }

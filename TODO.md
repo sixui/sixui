@@ -19,6 +19,9 @@
 - Card
   - Derivate from Paper
 
+- Avatar
+  - Support SSR like the MUI version
+
 - Badge
   - Text is not perfecetly aligned inside
 
@@ -150,7 +153,7 @@
 *What that the team is currently working on.*
 
 Components
-- [ ] Avatar
+- [ ] AvatarGroup
 - [ ] App Bar
 - [ ] Grid
 - [ ] Tooltip
@@ -230,6 +233,7 @@ Features
 
 Components
 - [x] Anchored
+- [x] Avatar
 - [x] Badge
 - [x] Breadcrumbs
 - [x] Button
