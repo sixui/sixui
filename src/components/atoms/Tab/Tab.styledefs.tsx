@@ -8,6 +8,7 @@ export type ITabStyleKey =
   | 'host$hover'
   | 'background'
   | 'background$disabled'
+  | 'labelContainer'
   | 'label'
   | 'label$active'
   | 'label$disabled'

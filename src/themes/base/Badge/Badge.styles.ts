@@ -9,6 +9,7 @@ import { motionVars } from '../vars/motion.stylex';
 type IBadgeStyles = IStyles<IBadgeStyleKey>;
 export const styles: MapNamespaces<IBadgeStyles> = stylex.create<IBadgeStyles>({
   host: {
+    position: 'relative',
     display: 'inline-flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -16,11 +17,6 @@ export const styles: MapNamespaces<IBadgeStyles> = stylex.create<IBadgeStyles>({
     alignContent: 'center',
     alignItems: 'center',
     boxSizing: 'border-box',
-    fontFamily: vars.labelTextFont,
-    lineHeight: vars.labelTextLineHeight,
-    fontSize: vars.labelTextSize,
-    letterSpacing: vars.labelTextLetterSpacing,
-    fontWeight: vars.labelTextWeight,
     borderRadius: vars.containerShape,
     minWidth: vars.containerMinWidth,
     height: vars.containerHeight,
@@ -28,8 +24,16 @@ export const styles: MapNamespaces<IBadgeStyles> = stylex.create<IBadgeStyles>({
     transitionProperty: 'transform',
     transitionDuration: motionVars.duration$short3,
     transitionTimingFunction: motionVars.easing$emphasized,
+  },
+  background: {
+    position: 'absolute',
+    inset: 0,
+    borderRadius: 'inherit',
     backgroundColor: vars.containerColor,
-    color: vars.labelTextColor,
+  },
+  background$disabled: {
+    backgroundColor: vars.containerColor$disabled,
+    opacity: vars.containerOpacity$disabled,
   },
   host$dot: {
     borderRadius: vars.containerShape$dot,
@@ -39,5 +43,18 @@ export const styles: MapNamespaces<IBadgeStyles> = stylex.create<IBadgeStyles>({
   },
   host$invisible: {
     transform: 'scale(0)',
+  },
+  label: {
+    position: 'relative',
+    fontFamily: vars.labelTextFont,
+    lineHeight: vars.labelTextLineHeight,
+    fontSize: vars.labelTextSize,
+    letterSpacing: vars.labelTextLetterSpacing,
+    fontWeight: vars.labelTextWeight,
+    color: vars.labelTextColor,
+  },
+  label$disabled: {
+    color: vars.labelTextColor$disabled,
+    opacity: vars.labelTextOpacity$disabled,
   },
 });

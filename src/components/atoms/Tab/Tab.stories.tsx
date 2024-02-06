@@ -79,6 +79,7 @@ export const Variants: IStory = {
   args: {
     ...defaultArgs,
     active: true,
+    badge: { value: 3 },
   },
 };
 
@@ -95,6 +96,22 @@ export const Primary: IStory = {
   args: defaultArgs,
 };
 
+export const PrimaryWithBadge: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={PrimaryTab}
+      props={props}
+      colsProps={statesProps}
+      rowsProps={rowsProps}
+      groupsProps={groupsProps}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    badge: { value: 3 },
+  },
+};
+
 export const Secondary: IStory = {
   render: (props) => (
     <ComponentShowcase
@@ -106,6 +123,22 @@ export const Secondary: IStory = {
     />
   ),
   args: defaultArgs,
+};
+
+export const SecondaryWithBadge: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={SecondaryTab}
+      props={props}
+      colsProps={statesProps}
+      rowsProps={rowsProps}
+      groupsProps={groupsProps}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    badge: { value: 3 },
+  },
 };
 
 export default meta;

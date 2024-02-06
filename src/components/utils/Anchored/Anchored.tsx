@@ -11,7 +11,7 @@ export interface IAnchoredProps extends IContainer<IAnchoredStyleKey> {
   horizontalOrigin?: 'left' | 'right';
   overlap?: 'rectangular' | 'circular';
   children: React.ReactNode;
-  content: React.ReactNode;
+  content?: React.ReactNode;
   invisible?: boolean;
 }
 
@@ -21,7 +21,6 @@ export const Anchored: React.FC<IAnchoredProps> = ({
   overlap = 'rectangular',
   children,
   content,
-  invisible,
   ...props
 }) => {
   const theme = useComponentTheme('Anchored');
@@ -33,6 +32,8 @@ export const Anchored: React.FC<IAnchoredProps> = ({
       ),
     [theme.styles, props.styles],
   );
+
+  const invisible = props.invisible || !content;
 
   const contentPositionClassname =
     overlap === 'rectangular'

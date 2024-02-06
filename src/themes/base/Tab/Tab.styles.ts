@@ -68,6 +68,11 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
     [tabStateVars.stateLayerOpacity$pressed]:
       vars.activeStateLayerOpacity$pressed,
   },
+  labelContainer: {
+    display: 'flex',
+    gap: 4,
+    alignItems: 'center',
+  },
   label: {
     fontFamily: vars.labelTextFont,
     fontSize: vars.labelTextSize,

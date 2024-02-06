@@ -13,6 +13,7 @@ export interface IBadgeProps
   showZero?: boolean;
   dot?: boolean;
   invisible?: boolean;
+  disabled?: boolean;
 }
 
 export const Badge: React.FC<IBadgeProps> = ({
@@ -20,6 +21,7 @@ export const Badge: React.FC<IBadgeProps> = ({
   maxValue,
   showZero,
   dot,
+  disabled,
   ...props
 }) => {
   const theme = useComponentTheme('Badge');
@@ -56,7 +58,10 @@ export const Badge: React.FC<IBadgeProps> = ({
         [theme.vars, props.theme],
       )}
     >
-      {displayValue}
+      <div {...styleProps(['background', disabled && 'background$disabled'])} />
+      <div {...styleProps(['label', disabled && 'label$disabled'])}>
+        {displayValue}
+      </div>
     </div>
   );
 };
