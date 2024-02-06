@@ -1,3 +1,15 @@
+# v0.0.21 (Tue Feb 06 2024)
+
+#### 🐛 Bug Fix
+
+- Avatar component [#10](https://github.com/sixui/ui/pull/10) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.20 (Tue Feb 06 2024)
 
 #### 🐛 Bug Fix
