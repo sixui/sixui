@@ -1,3 +1,15 @@
+# v0.0.22 (Tue Feb 06 2024)
+
+#### ⚠️ Pushed to `main`
+
+- InputChip now use Avatar ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.21 (Tue Feb 06 2024)
 
 #### 🐛 Bug Fix
