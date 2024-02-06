@@ -5,6 +5,7 @@ import type { IBadgeStyleVarKey } from '@/components/atoms/Badge';
 import { colorRolesVars } from '../vars/colorRoles.stylex';
 import { typescaleVars } from '../vars/typo.stylex';
 import { shapeVars } from '../vars/shape.stylex';
+import { stateVars } from '../vars/state.stylex';
 
 const vars: Partial<IStyleVars<IBadgeStyleVarKey>> = {
   // container
@@ -16,6 +17,9 @@ const vars: Partial<IStyleVars<IBadgeStyleVarKey>> = {
   containerWidth$dot: '8px',
   containerHeight$dot: '8px',
   containerPadding: '4px',
+  // &:disabled
+  containerColor$disabled: colorRolesVars.onSurface,
+  containerOpacity$disabled: stateVars.containerOpacity$disabled,
 
   // label
   labelTextColor: colorRolesVars.onError,
@@ -24,6 +28,9 @@ const vars: Partial<IStyleVars<IBadgeStyleVarKey>> = {
   labelTextSize: typescaleVars.labelSize$sm,
   labelTextLetterSpacing: typescaleVars.labelLetterSpacing$sm,
   labelTextWeight: typescaleVars.labelWeight$sm,
+  // &:disabled
+  labelTextColor$disabled: colorRolesVars.onSurface,
+  labelTextOpacity$disabled: stateVars.opacity$disabled,
 };
 
 export const componentVars = stylex.defineVars(

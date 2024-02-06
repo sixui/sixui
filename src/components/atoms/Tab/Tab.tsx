@@ -15,6 +15,7 @@ import type {
   ITabStyleVarKey,
   ITabVariant,
 } from './Tab.styledefs';
+import { Badge, type IBadgeProps } from '../Badge';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
@@ -23,6 +24,7 @@ import { Elevation, IElevationStyleKey } from '@/components/utils/Elevation';
 import { FocusRing, IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import { Ripple, type IRippleStyleKey } from '@/components/utils/Ripple';
 import { useTabContext } from '../Tabs/useTabContext';
+import { Anchored } from '@/components/utils/Anchored';
 
 // https://github.com/material-components/material-web/blob/main/tabs/internal/tab.ts
 
@@ -43,6 +45,7 @@ export interface ITabProps extends IContainer<ITabStyleKey, ITabStyleVarKey> {
   rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
   focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
   elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
+  badge?: IBadgeProps;
 }
 
 type ITabVariantMap = {
@@ -64,6 +67,7 @@ export const Tab: React.FC<ITabProps> = ({
   label,
   anchor,
   disabled,
+  badge,
   ...props
 }) => {
   const tabContext = useTabContext();
@@ -130,6 +134,26 @@ export const Tab: React.FC<ITabProps> = ({
     }
   }, [active, anchor, tabContext]);
 
+  const renderIcon = React.useCallback(
+    () =>
+      active && ActiveIcon ? (
+        <ActiveIcon
+          {...styleProps(['icon', 'icon$active', disabled && 'icon$disabled'])}
+          aria-hidden
+        />
+      ) : Icon ? (
+        <Icon
+          {...styleProps([
+            'icon',
+            active && 'icon$active',
+            disabled && 'icon$disabled',
+          ])}
+          aria-hidden
+        />
+      ) : null,
+    [active, Icon, ActiveIcon, styleProps, disabled],
+  );
+
   return (
     <button
       {...styleProps(
@@ -178,35 +202,35 @@ export const Tab: React.FC<ITabProps> = ({
         ])}
         role='presentation'
       >
-        {active && ActiveIcon ? (
-          <ActiveIcon
-            {...styleProps([
-              'icon',
-              'icon$active',
-              disabled && 'icon$disabled',
-            ])}
-            aria-hidden
-          />
-        ) : Icon ? (
-          <Icon
-            {...styleProps([
-              'icon',
-              active && 'icon$active',
-              disabled && 'icon$disabled',
-            ])}
-            aria-hidden
-          />
+        {hasIcon ? (
+          badge && (variant === 'primary' || !hasLabel) ? (
+            <Anchored
+              content={
+                badge ? <Badge {...badge} disabled={disabled} /> : undefined
+              }
+            >
+              {renderIcon()}
+            </Anchored>
+          ) : (
+            renderIcon()
+          )
         ) : null}
 
         {label ? (
-          <div
-            {...styleProps([
-              'label',
-              active && 'label$active',
-              disabled && 'label$disabled',
-            ])}
-          >
-            {label}
+          <div {...styleProps(['labelContainer'])}>
+            <div
+              {...styleProps([
+                'label',
+                active && 'label$active',
+                disabled && 'label$disabled',
+              ])}
+            >
+              {label}
+            </div>
+
+            {!!badge && (!hasIcon || variant === 'secondary') ? (
+              <Badge {...badge} disabled={disabled} />
+            ) : null}
           </div>
         ) : null}
 

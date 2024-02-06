@@ -1,4 +1,11 @@
-export type IBadgeStyleKey = 'host' | 'host$dot' | 'host$invisible';
+export type IBadgeStyleKey =
+  | 'host'
+  | 'host$dot'
+  | 'host$invisible'
+  | 'background'
+  | 'background$disabled'
+  | 'label'
+  | 'label$disabled';
 
 export type IBadgeStyleVarKey =
   | 'containerColor'
@@ -9,9 +16,13 @@ export type IBadgeStyleVarKey =
   | 'containerWidth$dot'
   | 'containerHeight$dot'
   | 'containerPadding'
+  | 'containerColor$disabled'
+  | 'containerOpacity$disabled'
   | 'labelTextColor'
   | 'labelTextFont'
   | 'labelTextLineHeight'
   | 'labelTextSize'
   | 'labelTextLetterSpacing'
-  | 'labelTextWeight';
+  | 'labelTextWeight'
+  | 'labelTextColor$disabled'
+  | 'labelTextOpacity$disabled';

@@ -19,6 +19,9 @@
 - Card
   - Derivate from Paper
 
+- Badge
+  - Text is not perfecetly aligned inside
+
 - Chip
   - Animate width change on switching between selected and unselected states
   - Add a minimum delay betweel showing the circular progress indicator. First, to avoid showing it for a very short time, but also to have time to show the ripple effect.
