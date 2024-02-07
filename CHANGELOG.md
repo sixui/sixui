@@ -1,3 +1,15 @@
+# v0.0.23 (Wed Feb 07 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Simplified stylex import; Color schemes are now exported ; README.md updated for Vite ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.22 (Tue Feb 06 2024)
 
 #### ⚠️ Pushed to `main`
