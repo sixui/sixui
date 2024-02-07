@@ -1,4 +1,4 @@
-import * as stylex from '@stylexjs/stylex';
+import stylex from '@stylexjs/stylex';
 
 import type { IStyleVars } from '@/helpers/types';
 import type { ITextFieldStyleVarKey } from '@/components/atoms/TextField';

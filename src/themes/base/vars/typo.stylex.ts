@@ -1,4 +1,4 @@
-import * as stylex from '@stylexjs/stylex';
+import stylex from '@stylexjs/stylex';
 
 export type ITypescaleSize = 'sm' | 'md' | 'lg';
 export type ITypescaleUsage =

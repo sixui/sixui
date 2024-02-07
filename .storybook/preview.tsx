@@ -1,5 +1,5 @@
 import type { Decorator, Preview } from '@storybook/react';
-import * as stylex from '@stylexjs/stylex';
+import stylex from '@stylexjs/stylex';
 
 import { modes } from './modes';
 import { ThemeProvider } from '@/helpers/ThemeProvider';

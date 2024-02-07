@@ -1,4 +1,4 @@
-import * as stylex from '@stylexjs/stylex';
+import stylex from '@stylexjs/stylex';
 
 import { shapeVars as baseShapeVars } from '@/themes/base/vars/shape.stylex';
 

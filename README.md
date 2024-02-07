@@ -122,7 +122,7 @@ export default BasicExample;
 
 'use client';
 
-import * as stylex from '@stylexjs/stylex';
+import stylex from '@stylexjs/stylex';
 
 import React from 'react';
 import {
@@ -224,6 +224,37 @@ module.exports = withStylex({
 
 ```tsx
 // src/app/layout.tsx
+
+import '@sixui/ui/styles.css';
+
+// ...
+```
+
+### Notes with Vite
+
+```sh
+$ yarn add vite-plugin-stylex --dev
+```
+
+```js
+// vite.config.ts
+
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import styleX from 'vite-plugin-stylex';
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react(), styleX()],
+  optimizeDeps: {
+    exclude: ['@sixui/ui'],
+  },
+});
+
+```
+
+```tsx
+// src/main.tsx
 
 import '@sixui/ui/styles.css';
 

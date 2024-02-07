@@ -1,4 +1,4 @@
-import * as stylex from '@stylexjs/stylex';
+import stylex from '@stylexjs/stylex';
 import { asArray } from '@olivierpascal/helpers';
 
 import type { IStylesCombinator } from '@/helpers/stylesCombinatorFactory';

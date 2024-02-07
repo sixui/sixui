@@ -1,6 +1,6 @@
 import type { StyleXVar } from '@stylexjs/stylex/lib/StyleXTypes';
 import React from 'react';
-import * as stylex from '@stylexjs/stylex';
+import stylex from '@stylexjs/stylex';
 
 import type { IColorPalettes } from '@/themes/colorPalettes.types';
 import { typescaleVars } from '@/themes/base/vars/typo.stylex';

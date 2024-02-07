@@ -1,6 +1,6 @@
 import React from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
-import * as stylex from '@stylexjs/stylex';
+import stylex from '@stylexjs/stylex';
 
 import type {
   IZeroOrMore,

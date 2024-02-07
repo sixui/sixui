@@ -1,4 +1,5 @@
 import type { ICompiledStyles, IStyleVarsTheme } from '@/helpers/types';
+import type { IColorRoles } from './colorRoles.types';
 import type {
   ITemplateStyleKey,
   ITemplateStyleVarKey,
@@ -169,6 +170,9 @@ export interface ITabTheme {
 
 export interface ITheme {
   name: string;
+  colorSchemes: {
+    dark: IStyleVarsTheme<keyof IColorRoles>;
+  };
   components: {
     Template: ITemplateTheme;
     VariantTemplate: ITemplateTheme;

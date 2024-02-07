@@ -1,5 +1,7 @@
 import type { ITheme } from '../theme.types';
 
+import { darkColorRolesTheme } from './vars/darkColorsRoles';
+
 import { componentTheme as templateTheme } from './Template/Template.stylex';
 import { styles as templateStyles } from './Template/Template.styles';
 import { componentTheme as variantTemplateTheme } from './Template/VariantTemplate.stylex';
@@ -188,6 +190,9 @@ import { styles as avatarStyles } from './Avatar/Avatar.styles';
 
 export const theme: ITheme = {
   name: 'Material Design 3',
+  colorSchemes: {
+    dark: darkColorRolesTheme,
+  },
   components: {
     Template: {
       vars: templateTheme,

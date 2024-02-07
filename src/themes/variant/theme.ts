@@ -3,6 +3,7 @@ import { componentTheme as filledButtonTheme } from './Button/FilledButton.style
 import { theme as baseTheme } from '../base';
 
 export const theme: ITheme = {
+  ...baseTheme,
   name: 'Material Design 3 (variant)',
   components: {
     ...baseTheme.components,

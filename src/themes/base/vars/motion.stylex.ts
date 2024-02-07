@@ -1,4 +1,4 @@
-import * as stylex from '@stylexjs/stylex';
+import stylex from '@stylexjs/stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-sys-motion.scss
 export const motionVars = stylex.defineVars({

@@ -1,5 +1,5 @@
 import type { MapNamespaces } from '@stylexjs/stylex/lib/StyleXTypes';
-import * as stylex from '@stylexjs/stylex';
+import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
 import type { IRippleStyleKey } from '@/components/utils/Ripple';

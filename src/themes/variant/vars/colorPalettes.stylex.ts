@@ -1,4 +1,4 @@
-import * as stylex from '@stylexjs/stylex';
+import stylex from '@stylexjs/stylex';
 
 import { colorPalettesVars as baseColorPalettesVars } from '@/themes/base/vars/colorPalettes.stylex';
 import type { IColorPalettes } from '../../colorPalettes.types';
