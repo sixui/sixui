@@ -22,7 +22,5 @@ export const List: React.FC<IListProps> = ({ children, ...props }) => {
     [theme.styles, props.styles],
   );
 
-  return (
-    <div {...styleProps(['host'], [theme.vars, props.theme])}>{children}</div>
-  );
+  return <div {...styleProps(['host'], [props.theme])}>{children}</div>;
 };

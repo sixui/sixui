@@ -1,6 +1,3 @@
 export type IListStyleKey = 'host';
 
-export type IListStyleVarKey =
-  | 'containerColor'
-  | 'dividerLeadingSpace'
-  | 'dividerTrailingSpace';
+export type IListStyleVarKey = 'dividerLeadingSpace' | 'dividerTrailingSpace';

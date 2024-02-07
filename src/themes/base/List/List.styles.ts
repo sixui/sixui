@@ -3,13 +3,11 @@ import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
 import type { IListStyleKey } from '@/components/atoms/List';
-import { componentVars as vars } from './List.stylex';
 
 // https://github.com/material-components/material-web/blob/main/list/internal/_list.scss
 type IListStyles = IStyles<IListStyleKey>;
 export const styles: MapNamespaces<IListStyles> = stylex.create<IListStyles>({
   host: {
-    backgroundColor: vars.containerColor,
     color: 'unset',
     display: 'flex',
     flexDirection: 'column',

@@ -58,7 +58,7 @@ import type {
   ICheckboxStyleVarKey,
 } from '@/components/atoms/Checkbox';
 import type { IItemStyleKey, IItemStyleVarKey } from '@/components/atoms/Item';
-import type { IListStyleKey, IListStyleVarKey } from '@/components/atoms/List';
+import type { IListStyleKey } from '@/components/atoms/List';
 import type { IListItemStyleKey } from '@/components/atoms/ListItem';
 import type { IIconStyleKey, IIconStyleVarKey } from '@/components/atoms/Icon';
 import type {
@@ -266,7 +266,6 @@ export interface ITheme {
       focusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
     };
     List: {
-      vars?: IStyleVarsTheme<IListStyleVarKey>;
       styles?: ICompiledStyles<IListStyleKey>;
     };
     Icon: {

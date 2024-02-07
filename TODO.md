@@ -72,6 +72,8 @@
 - Chip/Fab/IconButton/ListItem inherit from ButtonBase
 - Use hooks like useButton, useTab, useTabs, ... like mui or adobe
 - Use React.forwardRef & React.useImperativeHandle?
+- Remove 'borderStyle': 'solid' (handled by reset css)?
+- List -> Stack
 - Helper to merge styles:
 
 ```tsx

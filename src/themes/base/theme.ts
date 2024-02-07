@@ -122,7 +122,6 @@ import { styles as itemStyles } from './Item/Item.styles';
 import { componentTheme as itemTheme } from './Item/Item.stylex';
 
 import { styles as listStyles } from './List/List.styles';
-import { componentTheme as listTheme } from './List/List.stylex';
 import { componentTheme as listItemTheme } from './Item/ListItem.stylex';
 import {
   styles as listItemStyles,
@@ -343,7 +342,6 @@ export const theme: ITheme = {
       focusRingStyles: listItemFocusRingStyles,
     },
     List: {
-      vars: listTheme,
       styles: listStyles,
     },
     Icon: {
