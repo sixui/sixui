@@ -1,3 +1,15 @@
+# v0.0.24 (Wed Feb 07 2024)
+
+#### ⚠️ Pushed to `main`
+
+- List have transparent background ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.23 (Wed Feb 07 2024)
 
 #### ⚠️ Pushed to `main`
