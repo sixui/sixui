@@ -9,23 +9,43 @@ import { componentVars as vars } from './Item.stylex';
 type IItemStyles = IStyles<IItemStyleKey>;
 export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
   host: {
-    color: vars.labelTextColor,
-    fontFamily: vars.labelTextFont,
-    fontSize: vars.labelTextSize,
-    fontWeight: vars.labelTextWeight,
-    lineHeight: vars.labelTextLineHeight,
-    letterSpacing: vars.labelTextLetterSpacing,
     alignItems: 'center',
     display: 'flex',
-    gap: 16,
+    gap: 12,
     minHeight: 56,
     padding: '12px 16px',
     position: 'relative',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
   },
+  nonText: {
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    color: vars.nonTextColor,
+  },
+  text: {
+    position: 'relative',
+    display: 'flex',
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 0,
+    flexDirection: 'column',
+    overflow: 'hidden',
+    color: vars.textColor,
+  },
+  center: {
+    display: 'flex',
+    alignItems: 'center',
+  },
   host$multiline: {
     minHeight: 72,
+  },
+  start: {
+    color: vars.startColor,
+  },
+  end: {
+    color: vars.endColor,
   },
   overline: {
     color: vars.overlineColor,
@@ -34,6 +54,14 @@ export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
     fontWeight: vars.overlineWeight,
     lineHeight: vars.overlineLineHeight,
     letterSpacing: vars.overlineLetterSpacing,
+  },
+  headline: {
+    color: vars.headlineColor,
+    fontFamily: vars.headlineFont,
+    fontSize: vars.headlineSize,
+    fontWeight: vars.headlineWeight,
+    lineHeight: vars.headlineLineHeight,
+    letterSpacing: vars.headlineLetterSpacing,
   },
   supportingText: {
     color: vars.supportingTextColor,
@@ -63,15 +91,12 @@ export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
 
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-  },
-  nonText: {},
-  text: {
-    display: 'flex',
-    flexGrow: 1,
-    flexShrink: 1,
-    flexBasis: 0,
-    flexDirection: 'column',
-    overflow: 'hidden',
+    color: vars.labelTextColor,
+    fontFamily: vars.labelTextFont,
+    fontSize: vars.labelTextSize,
+    fontWeight: vars.labelTextWeight,
+    lineHeight: vars.labelTextLineHeight,
+    letterSpacing: vars.labelTextLetterSpacing,
   },
   textSlot: {
     overflow: 'hidden',

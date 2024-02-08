@@ -122,13 +122,13 @@ import { styles as itemStyles } from './Item/Item.styles';
 import { componentTheme as itemTheme } from './Item/Item.stylex';
 
 import { styles as listStyles } from './List/List.styles';
-import { componentTheme as listItemTheme } from './Item/ListItem.stylex';
+import { componentTheme as listItemTheme } from './ListItem/ListItem.stylex';
 import {
   styles as listItemStyles,
   itemStyles as listItemItemStyles,
   rippleStyles as listItemRippleStyles,
   focusRingStyles as listItemFocusRingStyles,
-} from './Item/ListItem.styles';
+} from './ListItem/ListItem.styles';
 
 import { componentTheme as iconTheme } from './Icon/Icon.stylex';
 import { styles as iconStyles } from './Icon/Icon.styles';

@@ -31,6 +31,8 @@ export * from './components/atoms/Card';
 export * from './components/atoms/Tab';
 export * from './components/atoms/TabList';
 export * from './components/atoms/Tabs';
+export * from './components/atoms/Breadcrumbs';
+export * from './components/atoms/Typography';
 
 export { theme as baseTheme } from './themes/base';
 export { theme as variantTheme } from './themes/variant';

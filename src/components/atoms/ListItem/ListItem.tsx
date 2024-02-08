@@ -26,12 +26,7 @@ export interface IListItemProps
   extends IContainer<IListItemStyleKey, IItemStyleVarKey>,
     Pick<
       React.AnchorHTMLAttributes<HTMLAnchorElement>,
-      | 'href'
-      | 'target'
-      | 'aria-selected'
-      | 'aria-checked'
-      | 'aria-expanded'
-      | 'aria-haspopup'
+      'href' | 'target' | 'aria-expanded'
     >,
     Pick<
       IItemProps,
@@ -58,6 +53,7 @@ export interface IListItemProps
   itemStyles?: IZeroOrMore<ICompiledStyles<IItemStyleKey>>;
   rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
   focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+  selected?: boolean;
 }
 
 // https://github.com/material-components/material-web/blob/main/list/internal/listitem/list-item.ts
@@ -73,7 +69,6 @@ export const ListItem: React.FC<IListItemProps> = ({
   ...props
 }) => {
   const theme = useComponentTheme('ListItem');
-  const itemTheme = useComponentTheme('Item');
   const actionRef = React.useRef(null);
   const visualState = accumulate(useVisualState(actionRef), props.visualState);
 
@@ -88,6 +83,7 @@ export const ListItem: React.FC<IListItemProps> = ({
 
   const type = href ? 'link' : props.type ?? 'text';
   const disabled = props.disabled;
+  const selected = !disabled && props.selected;
   const Component: React.ElementType =
     props.component ?? type == 'link'
       ? 'a'
@@ -101,33 +97,38 @@ export const ListItem: React.FC<IListItemProps> = ({
   const target = isAnchor && props.target ? props.target : undefined;
 
   return (
-    <div
+    <Component
       {...styleProps(
-        ['host', disabled && 'host$disabled'],
-        [itemTheme.vars, theme.vars, props.theme],
+        [
+          'host',
+          isInteractive && 'host$interactive',
+          selected && 'host$selected',
+          disabled && 'host$disabled',
+        ],
+        [theme.vars, props.theme],
       )}
+      ref={actionRef}
+      tabIndex={disabled || !isInteractive ? -1 : 0}
+      disabled={disabled}
+      role={role}
+      aria-current={selected}
+      aria-expanded={props['aria-expanded']}
+      href={href}
+      target={target}
     >
-      <Component
-        {...styleProps([
-          'listItem',
-          isInteractive && 'listItem$interactive',
-          disabled && 'listItem$disabled',
-        ])}
-        ref={actionRef}
-        tabIndex={disabled || !isInteractive ? -1 : 0}
-        disabled={disabled}
-        role={role}
-        aria-selected={props['aria-selected']}
-        aria-checked={props['aria-checked']}
-        aria-expanded={props['aria-expanded']}
-        aria-haspopup={props['aria-haspopup']}
-        href={href}
-        target={target}
-      >
-        <Item
-          styles={[theme.itemStyles, ...asArray(props.itemStyles)]}
-          container={
-            isInteractive ? (
+      <Item
+        styles={[theme.itemStyles, ...asArray(props.itemStyles)]}
+        theme={theme.vars}
+        container={
+          <React.Fragment>
+            <div
+              {...styleProps([
+                'background',
+                selected && 'background$selected',
+                disabled && 'background$disabled',
+              ])}
+            />
+            {isInteractive ? (
               <React.Fragment>
                 <Ripple
                   styles={[theme.rippleStyles, ...asArray(props.rippleStyles)]}
@@ -145,18 +146,18 @@ export const ListItem: React.FC<IListItemProps> = ({
                   inward
                 />
               </React.Fragment>
-            ) : null
-          }
-          overline={overline}
-          start={start}
-          headline={headline}
-          supportingText={supportingText}
-          trailingSupportingText={trailingSupportingText}
-          end={end}
-        >
-          {children}
-        </Item>
-      </Component>
-    </div>
+            ) : null}
+          </React.Fragment>
+        }
+        overline={overline}
+        start={start}
+        headline={headline}
+        supportingText={supportingText}
+        trailingSupportingText={trailingSupportingText}
+        end={end}
+      >
+        {children}
+      </Item>
+    </Component>
   );
 };

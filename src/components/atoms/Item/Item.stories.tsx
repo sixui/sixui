@@ -55,7 +55,7 @@ export const Slots: IStory = {
     styles: [
       itemStyles,
       stylex.create<IStyles<IItemStyleKey>>({
-        host: { width: '400px' },
+        host: { width: '420px' },
       }),
     ],
     overline: '[overline]',

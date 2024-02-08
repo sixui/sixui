@@ -1,12 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import stylex from '@stylexjs/stylex';
+import { CalendarDaysIcon } from '@heroicons/react/24/solid';
+import { ChevronRightIcon } from '@heroicons/react/20/solid';
 
 import {
   type IComponentPropsWithLegend,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { componentVars as vars } from '@/themes/base/Item/Item.stylex';
+import { componentVars as vars } from '@/themes/base/ListItem/ListItem.stylex';
 import { ListItem, type IListItemProps } from './ListItem';
 
 // https://m3.material.io/components/items/overview
@@ -23,10 +25,23 @@ const defaultArgs = { children: undefined } satisfies Partial<IListItemProps>;
 
 const statesProps: IComponentPropsWithLegend<IListItemProps> = [
   { $legend: 'Enabled', children: 'Enabled' },
-  { $legend: 'Hovered', children: 'Hovered', visualState: { hovered: true } },
   { $legend: 'Focused', children: 'Focused', visualState: { focused: true } },
+  { $legend: 'Hovered', children: 'Hovered', visualState: { hovered: true } },
   { $legend: 'Pressed', children: 'Pressed', visualState: { pressed: true } },
+  { $legend: 'Selected', children: 'Selected', selected: true },
   { $legend: 'Disabled', children: 'Disabled', disabled: true },
+];
+
+const rowsProps: IComponentPropsWithLegend<IListItemProps> = [
+  { $legend: 'Text' },
+  { $legend: 'Button', type: 'button' },
+  { $legend: 'Link', type: 'link' },
+  {
+    $legend: 'Link with Icons',
+    type: 'link',
+    start: <CalendarDaysIcon style={{ width: 24, height: 24 }} aria-hidden />,
+    end: <ChevronRightIcon style={{ width: 20, height: 20 }} aria-hidden />,
+  },
 ];
 
 const itemStyles = stylex.create({
@@ -38,17 +53,15 @@ const itemStyles = stylex.create({
   },
 });
 
+// TODO: variants
+
 export const Basic: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={ListItem}
       props={props}
       colsProps={statesProps}
-      rowsProps={[
-        { $legend: 'Text' },
-        { $legend: 'Button', type: 'button' },
-        { $legend: 'Link', type: 'link' },
-      ]}
+      rowsProps={rowsProps}
     />
   ),
   args: {

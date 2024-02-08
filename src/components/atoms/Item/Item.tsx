@@ -36,18 +36,22 @@ export const Item: React.FC<IItemProps> = ({
     () =>
       stylePropsFactory<IItemStyleKey, IItemStyleVarKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
+        props.visualState,
       ),
-    [theme.styles, props.styles],
+    [theme.styles, props.styles, props.visualState],
   );
-
-  const textRef = React.useRef<HTMLDivElement>(null);
 
   return (
     <div {...styleProps(['host'], [theme.vars, props.theme])}>
       {container ? <div {...styleProps(['container'])}>{container}</div> : null}
-      {start ? <div {...styleProps(['nonText'])}>{start}</div> : null}
 
-      <div {...styleProps(['text'])} ref={textRef}>
+      {start ? (
+        <div {...styleProps(['nonText'])}>
+          <div {...styleProps(['center', 'start'])}>{start}</div>
+        </div>
+      ) : null}
+
+      <div {...styleProps(['text'])}>
         {overline ? <div {...styleProps(['overline'])}>{overline}</div> : null}
         <div {...styleProps(['children'])}>{children}</div>
         {headline ? <div {...styleProps(['headline'])}>{headline}</div> : null}
@@ -57,12 +61,18 @@ export const Item: React.FC<IItemProps> = ({
       </div>
 
       {trailingSupportingText ? (
-        <div {...styleProps(['nonText', 'trailingSupportingText'])}>
-          {trailingSupportingText}
+        <div {...styleProps(['text'])}>
+          <div {...styleProps(['center', 'trailingSupportingText'])}>
+            {trailingSupportingText}
+          </div>
         </div>
       ) : null}
 
-      {end ? <div {...styleProps(['nonText'])}>{end}</div> : null}
+      {end ? (
+        <div {...styleProps(['nonText'])}>
+          <div {...styleProps(['center', 'end'])}>{end}</div>
+        </div>
+      ) : null}
     </div>
   );
 };
