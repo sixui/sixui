@@ -1,3 +1,15 @@
+# v0.0.25 (Thu Feb 08 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Working on ListItem ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.24 (Wed Feb 07 2024)
 
 #### ⚠️ Pushed to `main`
