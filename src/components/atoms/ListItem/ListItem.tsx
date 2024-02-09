@@ -118,7 +118,7 @@ export const ListItem: React.FC<IListItemProps> = ({
     >
       <Item
         styles={[theme.itemStyles, ...asArray(props.itemStyles)]}
-        theme={theme.vars}
+        theme={theme.itemVars}
         container={
           <React.Fragment>
             <div

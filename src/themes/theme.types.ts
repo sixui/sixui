@@ -59,7 +59,10 @@ import type {
 } from '@/components/atoms/Checkbox';
 import type { IItemStyleKey, IItemStyleVarKey } from '@/components/atoms/Item';
 import type { IListStyleKey } from '@/components/atoms/List';
-import type { IListItemStyleKey } from '@/components/atoms/ListItem';
+import type {
+  IListItemStyleKey,
+  IListItemStyleVarKey,
+} from '@/components/atoms/ListItem';
 import type { IIconStyleKey, IIconStyleVarKey } from '@/components/atoms/Icon';
 import type {
   IDividerStyleKey,
@@ -259,7 +262,8 @@ export interface ITheme {
       styles?: ICompiledStyles<IItemStyleKey>;
     };
     ListItem: {
-      vars?: IStyleVarsTheme<IItemStyleVarKey>;
+      vars?: IStyleVarsTheme<IListItemStyleVarKey>;
+      itemVars?: IStyleVarsTheme<IItemStyleVarKey>;
       styles?: ICompiledStyles<IListItemStyleKey>;
       itemStyles?: ICompiledStyles<IItemStyleKey>;
       rippleStyles: ICompiledStyles<IRippleStyleKey>;

@@ -122,7 +122,10 @@ import { styles as itemStyles } from './Item/Item.styles';
 import { componentTheme as itemTheme } from './Item/Item.stylex';
 
 import { styles as listStyles } from './List/List.styles';
-import { componentTheme as listItemTheme } from './ListItem/ListItem.stylex';
+import {
+  componentTheme as listItemTheme,
+  itemComponentTheme as listItemItemTheme,
+} from './ListItem/ListItem.stylex';
 import {
   styles as listItemStyles,
   itemStyles as listItemItemStyles,
@@ -336,6 +339,7 @@ export const theme: ITheme = {
     },
     ListItem: {
       vars: listItemTheme,
+      itemVars: listItemItemTheme,
       styles: listItemStyles,
       itemStyles: listItemItemStyles,
       rippleStyles: listItemRippleStyles,

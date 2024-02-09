@@ -8,7 +8,6 @@ import {
   type IComponentPropsWithLegend,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { componentVars as vars } from '@/themes/base/ListItem/ListItem.stylex';
 import { ListItem, type IListItemProps } from './ListItem';
 
 // https://m3.material.io/components/items/overview
@@ -21,7 +20,16 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = { children: undefined } satisfies Partial<IListItemProps>;
+const listItemStyles = stylex.create({
+  host: {
+    width: '180px',
+  },
+});
+
+const defaultArgs = {
+  children: undefined,
+  styles: listItemStyles,
+} satisfies Partial<IListItemProps>;
 
 const statesProps: IComponentPropsWithLegend<IListItemProps> = [
   { $legend: 'Enabled', children: 'Enabled' },
@@ -44,16 +52,32 @@ const rowsProps: IComponentPropsWithLegend<IListItemProps> = [
   },
 ];
 
-const itemStyles = stylex.create({
-  host: {
-    borderRadius: '8px',
-    width: '200px',
-    // eslint-disable-next-line @stylexjs/valid-styles
-    [vars.containerShape]: '8px',
+export const Variants: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={ListItem}
+      props={props}
+      colsProps={[
+        {
+          children: 'One line item',
+        },
+        {
+          children: 'With Icons',
+          start: (
+            <CalendarDaysIcon style={{ width: 24, height: 24 }} aria-hidden />
+          ),
+          end: (
+            <ChevronRightIcon style={{ width: 20, height: 20 }} aria-hidden />
+          ),
+        },
+      ]}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    type: 'link',
   },
-});
-
-// TODO: variants
+};
 
 export const Basic: IStory = {
   render: (props) => (
@@ -64,10 +88,7 @@ export const Basic: IStory = {
       rowsProps={rowsProps}
     />
   ),
-  args: {
-    ...defaultArgs,
-    styles: itemStyles,
-  },
+  args: defaultArgs as IListItemProps,
 };
 
 export default meta;
