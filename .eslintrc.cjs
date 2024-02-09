@@ -1,19 +1,19 @@
+/** @type { import("eslint").Linter.Config } */
 const eslintConfig = {
   root: true,
   env: {
     browser: true,
-    node: false,
-    es6: true,
-    amd: true,
+    es2020: true,
   },
   parserOptions: {
-    ecmaVersion: 9,
+    ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  ignorePatterns: ['node_modules/*'],
+  plugins: ['@stylexjs/eslint-plugin'],
   extends: [
-    'eslint:recommended',
+    'prettier',
     'plugin:prettier/recommended',
+    'eslint:recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:react/recommended',
@@ -21,7 +21,6 @@ const eslintConfig = {
     'plugin:jsx-a11y/recommended',
     'plugin:storybook/recommended',
   ],
-  plugins: ['@stylexjs/eslint-plugin'],
   settings: {
     'import/extensions': 'always',
     'import/resolver': {
@@ -33,11 +32,8 @@ const eslintConfig = {
           '.styledefs.ts',
           '.styles.ts',
           '.stylex.ts',
-          '.jsx',
-          '.js',
           '.svg',
           '.json',
-          '.d.ts',
         ],
       },
     },
@@ -47,23 +43,14 @@ const eslintConfig = {
   },
   rules: {
     '@stylexjs/valid-styles': 'error',
-    // '@stylexjs/sort-keys': [
-    //   1,
-    //   {
-    //     minKeys: 3,
-    //     allowLineSeparatedGroups: true,
-    //   },
-    // ],
     'lines-between-class-members': [
       'error',
       'always',
-      {
-        exceptAfterSingleLine: true,
-      },
+      { exceptAfterSingleLine: true },
     ],
-    'no-console': ['error'],
-    'no-alert': ['error'],
-    'no-bitwise': 'off',
+    'no-console': 'error',
+    'no-alert': 'error',
+    'no-bitwise': 'error',
     'no-param-reassign': [
       'error',
       {
@@ -71,24 +58,8 @@ const eslintConfig = {
         ignorePropertyModificationsFor: ['draft'],
       },
     ],
-    'no-unused-expressions': [
-      'error',
-      {
-        allowTaggedTemplates: true,
-      },
-    ],
-    'no-underscore-dangle': [
-      'error',
-      {
-        allow: [
-          '_id',
-          '__WEBPACK_INITIAL_DATA__',
-          '__REDUX_DEVTOOLS_EXTENSION_COMPOSE__',
-          '__meta__',
-        ],
-      },
-    ],
-    'no-continue': 'off',
+    'no-unused-expressions': ['error', { allowTaggedTemplates: true }],
+    'no-continue': 'error',
     'no-warning-comments': [
       'error',
       {
@@ -116,12 +87,6 @@ const eslintConfig = {
     'react/jsx-one-expression-per-line': 'off',
     'react/no-array-index-key': 'off',
     'react/jsx-wrap-multilines': 'off',
-    'react/prefer-stateless-function': [
-      'warn',
-      {
-        ignorePureComponents: true,
-      },
-    ],
     'react/no-unescaped-entities': 'off',
     'react/jsx-curly-newline': 'off',
     'react-hooks/rules-of-hooks': 'error',
@@ -142,17 +107,11 @@ const eslintConfig = {
         project: './tsconfig.json',
       },
       extends: [
-        'plugin:@typescript-eslint/eslint-recommended',
         'plugin:@typescript-eslint/recommended',
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
       ],
       rules: {
-        'react/jsx-filename-extension': [
-          'error',
-          {
-            extensions: ['.tsx'],
-          },
-        ],
+        'react/jsx-filename-extension': ['error', { extensions: ['.tsx'] }],
         'react/prop-types': 'off',
         '@typescript-eslint/no-empty-interface': 'off',
         '@typescript-eslint/no-unused-vars': 'error',
