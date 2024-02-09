@@ -1,3 +1,16 @@
+# v0.0.26 (Fri Feb 09 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Upgrade yarn version to 4.1.0 ([@olivierpascal](https://github.com/olivierpascal))
+- Fixed error on ListItem theming ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.25 (Thu Feb 08 2024)
 
 #### ⚠️ Pushed to `main`
