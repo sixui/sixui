@@ -14,7 +14,7 @@ Ready-to-use foundational React components.
 
 ```sh
 $ nvm use 18
-$ yarn set version stable
+$ yarn set version 4.1.0
 $ yarn install
 ```
 
