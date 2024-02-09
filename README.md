@@ -3,6 +3,7 @@
 [![npm bundle size](https://img.shields.io/bundlephobia/minzip/@sixui/ui)](https://bundlephobia.com/package/@sixui/ui@latest)
 
 Ready-to-use foundational React components.
+
 - Implements Google's [Material Design 3](https://m3.material.io/).
 - Leverages Meta's [StyleX](https://github.com/facebook/stylex/) for near zero-runtime styling.
 - Fully themable through CSS styles or CSS vars.
@@ -102,15 +103,11 @@ See https://stylexjs.com/docs/learn/installation/.
 'use client';
 
 import React from 'react';
-import {
-  ThemeProvider,
-  baseTheme,
-  FilledTextField,
-} from '@sixui/ui';
+import { ThemeProvider, baseTheme, FilledTextField } from '@sixui/ui';
 
 const BasicExample: React.FC = () => (
   <ThemeProvider value={{ theme: baseTheme }}>
-    <FilledTextField label="Label" />
+    <FilledTextField label='Label' />
   </ThemeProvider>
 );
 
@@ -250,7 +247,6 @@ export default defineConfig({
     exclude: ['@sixui/ui'],
   },
 });
-
 ```
 
 ```tsx
