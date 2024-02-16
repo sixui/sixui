@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { isFragment } from 'react-is';
+import * as ReactIs from 'react-is';
 import { asArray } from '@olivierpascal/helpers';
 
 import type { IZeroOrMore, ICompiledStyles } from '@/helpers/types';
@@ -126,7 +126,7 @@ export const Breadcrumbs: React.FC<IBreadcrumbsProps> = ({
   const allItems = React.Children.toArray(children)
     .filter((child) => {
       if (!isProduction()) {
-        if (isFragment(child)) {
+        if (ReactIs.isFragment(child)) {
           // eslint-disable-next-line no-console
           console.error(
             [
