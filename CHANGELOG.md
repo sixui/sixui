@@ -1,3 +1,15 @@
+# v0.0.27 (Fri Feb 16 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Various updates related to lib usage ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.26 (Fri Feb 09 2024)
 
 #### ⚠️ Pushed to `main`
