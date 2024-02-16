@@ -66,7 +66,6 @@
     "@types/eslint": "^8",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@types/react-is": "^18",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "@vitejs/plugin-react": "^4.2.1",
@@ -104,8 +103,7 @@
   "packageManager": "yarn@4.1.0",
   "readme": "README.md",
   "dependencies": {
-    "@olivierpascal/helpers": "^0.0.67",
-    "react-is": "^18.2.0"
+    "@olivierpascal/helpers": "^0.0.67"
   },
   "resolutions": {
     "@stylexjs/babel-plugin": "0.5.0"

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as ReactIs from 'react-is';
 import { asArray } from '@olivierpascal/helpers';
 
 import type { IZeroOrMore, ICompiledStyles } from '@/helpers/types';
@@ -12,6 +11,7 @@ import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { isProduction } from '@/helpers/isProduction';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
+import { isFragment } from '@/helpers/isFragment';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
 import { ReactComponent as EllipsisHorizontal } from '@/assets/EllipsisHorizontal.svg';
@@ -126,7 +126,7 @@ export const Breadcrumbs: React.FC<IBreadcrumbsProps> = ({
   const allItems = React.Children.toArray(children)
     .filter((child) => {
       if (!isProduction()) {
-        if (ReactIs.isFragment(child)) {
+        if (isFragment(child)) {
           // eslint-disable-next-line no-console
           console.error(
             [
