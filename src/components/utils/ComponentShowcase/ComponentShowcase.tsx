@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import type { IContainer } from '@/helpers/Container';
 import type {
@@ -57,7 +57,12 @@ export const ComponentShowcase = <IComponentProps extends object>({
   const shouldShowGroupLegends = groupsProps.some(({ $legend }) => !!$legend);
 
   return (
-    <div {...styleProps(['host', 'cols', 'gap$md'], [theme.vars, props.theme])}>
+    <div
+      {...styleProps(
+        ['host', 'cols', 'gap$md', props.sx],
+        [theme.vars, props.theme],
+      )}
+    >
       {shouldShowRowLegends && rowLegendPosition === 'start' ? (
         <div {...styleProps(['rows', 'gap$lg'])}>
           {shouldShowColLegends ? (

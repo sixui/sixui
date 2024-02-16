@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
-import React from 'react';
+import * as React from 'react';
 import {
   XMarkIcon,
   PlusIcon,

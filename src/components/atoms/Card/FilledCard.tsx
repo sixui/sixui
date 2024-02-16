@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { type ICardProps, Card } from './Card';
 
 export interface IFilledCardProps extends Omit<ICardProps, 'variant'> {}

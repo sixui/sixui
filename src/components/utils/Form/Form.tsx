@@ -1,22 +1,27 @@
-import React from 'react';
-import stylex from '@stylexjs/stylex';
+import * as React from 'react';
 
 import type { IContainer } from '@/helpers/Container';
 import type { IFormStyleKey } from './Form.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 
 export interface IFormProps
-  extends IContainer<IFormStyleKey>,
+  extends Omit<IContainer<IFormStyleKey>, 'theme'>,
     Pick<React.FormHTMLAttributes<HTMLFormElement>, 'onSubmit'> {
   children: React.ReactNode;
 }
 
-export const Form: React.FC<IFormProps> = ({ onSubmit, children, styles }) => {
+export const Form: React.FC<IFormProps> = ({
+  onSubmit,
+  children,
+  ...props
+}) => {
   const formRef = React.useRef<HTMLFormElement>(null);
 
-  const stylesCombinator = React.useMemo(
-    () => stylesCombinatorFactory(styles),
-    [styles],
+  const styleProps = React.useMemo(
+    () =>
+      stylePropsFactory<IFormStyleKey>(stylesCombinatorFactory(props.styles)),
+    [props.styles],
   );
 
   // TODO: make this callback to be called only once on form validation.
@@ -42,7 +47,7 @@ export const Form: React.FC<IFormProps> = ({ onSubmit, children, styles }) => {
 
   return (
     <form
-      {...stylex.props(stylesCombinator('host'))}
+      {...styleProps(['host', props.sx])}
       ref={formRef}
       onSubmit={onSubmit}
       onInvalid={handleInvalid}

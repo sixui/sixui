@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -157,7 +157,12 @@ export const Tab: React.FC<ITabProps> = ({
   return (
     <button
       {...styleProps(
-        ['host', active && 'host$active', disabled && 'host$disabled'],
+        [
+          'host',
+          active && 'host$active',
+          disabled && 'host$disabled',
+          props.sx,
+        ],
         [theme.vars, variantTheme.vars, props.theme],
       )}
       ref={actionRef}

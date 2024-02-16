@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import type { IContainer } from '@/helpers/Container';
 import type {
@@ -52,6 +52,7 @@ export const Divider: React.FC<IDividerProps> = ({
           inset && 'host$inset',
           insetStart && 'host$insetStart',
           insetEnd && 'host$insetEnd',
+          props.sx,
         ],
         [theme.vars, props.theme],
       )}

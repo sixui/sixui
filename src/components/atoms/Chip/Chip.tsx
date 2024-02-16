@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 import stylex from '@stylexjs/stylex';
 
@@ -270,7 +270,12 @@ export const Chip: React.FC<IChipProps> = ({
   return (
     <div
       {...styleProps(
-        ['host', disabled && 'host$disabled', avatar && 'host$avatar'],
+        [
+          'host',
+          disabled && 'host$disabled',
+          avatar && 'host$avatar',
+          props.sx,
+        ],
         [theme.vars, variantTheme.vars, props.theme],
       )}
     >

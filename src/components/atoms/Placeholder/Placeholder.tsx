@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import type { IContainer } from '@/helpers/Container';
 import type {
@@ -48,6 +48,7 @@ export const Placeholder: React.FC<IPlaceholderProps> = ({
             : shape === 'circular'
               ? 'host$circular'
               : null,
+          props.sx,
         ],
         [theme.vars, props.theme],
       )}

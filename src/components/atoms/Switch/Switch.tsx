@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -127,7 +127,7 @@ export const Switch: React.FC<ISwitchProps> = ({
   return (
     <div
       {...styleProps(
-        ['host', disabled && 'host$disabled'],
+        ['host', disabled && 'host$disabled', props.sx],
         [theme.vars, props.theme],
       )}
     >

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -37,6 +37,7 @@ export interface IButtonBaseProps
   elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
   children?: React.ReactNode;
   onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
+  inwardFocusRing?: boolean;
 }
 
 export const ButtonBase: React.FC<IButtonBaseProps> = ({
@@ -47,6 +48,7 @@ export const ButtonBase: React.FC<IButtonBaseProps> = ({
   href,
   onClick,
   children,
+  inwardFocusRing,
   ...props
 }) => {
   const theme = useComponentTheme('ButtonBase');
@@ -76,6 +78,7 @@ export const ButtonBase: React.FC<IButtonBaseProps> = ({
           disabled && 'host$disabled',
           withLeadingIcon && 'host$withLeadingIcon',
           withTrailingIcon && 'host$withTrailingIcon',
+          props.sx,
         ],
         [theme.vars, props.theme],
       )}
@@ -103,6 +106,7 @@ export const ButtonBase: React.FC<IButtonBaseProps> = ({
         styles={[theme.focusRingStyles, ...asArray(props.focusRingStyles)]}
         for={actionRef}
         visualState={visualState}
+        inward={inwardFocusRing}
       />
       <Ripple
         styles={[theme.rippleStyles, ...asArray(props.rippleStyles)]}

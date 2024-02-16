@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import stylex from '@stylexjs/stylex';
 import type { Meta, StoryObj } from '@storybook/react';
 import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/solid';

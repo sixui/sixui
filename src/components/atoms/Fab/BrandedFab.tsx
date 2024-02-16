@@ -1,5 +1,5 @@
 import type { IMakeRequired } from '@/helpers/types';
-import React from 'react';
+import * as React from 'react';
 import { type IFabProps, Fab } from './Fab';
 
 export interface IBrandedFabProps

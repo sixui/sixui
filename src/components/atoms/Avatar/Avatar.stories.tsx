@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
+import * as React from 'react';
 import { StarIcon, BoltIcon, CloudIcon } from '@heroicons/react/24/solid';
 
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';

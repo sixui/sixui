@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import type { IPoint } from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
@@ -486,7 +486,7 @@ export const Ripple: React.FC<IRippleProps> = ({
     <div
       ref={setHost}
       {...styleProps(
-        ['host', disabled && 'host$disabled'],
+        ['host', disabled && 'host$disabled', props.sx],
         [theme.vars, props.theme],
       )}
     >

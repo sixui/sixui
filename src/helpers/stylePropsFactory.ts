@@ -1,11 +1,14 @@
 import stylex from '@stylexjs/stylex';
 import { asArray } from '@olivierpascal/helpers';
+import {
+  type CSSPropertiesWithExtras,
+  CompiledStyles,
+} from '@stylexjs/stylex/lib/StyleXTypes';
 
 import type { IStylesCombinator } from '@/helpers/stylesCombinatorFactory';
 import type { IVisualState } from '@/hooks/useVisualState';
 import type { IZeroOrMore, IStyleVarsTheme } from './types';
 import { dataProps } from '@/helpers/dataProps';
-import { CompiledStyles } from '@stylexjs/stylex/lib/StyleXTypes';
 
 type IClassName<IStyleKey extends string> =
   | IStyleKey
@@ -24,7 +27,11 @@ export type IStyleProps<
   IStyleKey extends string,
   IStyleVarKey extends string,
 > = (
-  classNames?: Array<IClassName<IStyleKey> | Array<IClassName<IStyleKey>>>,
+  classNames?: Array<
+    | IClassName<IStyleKey>
+    | Array<IClassName<IStyleKey>>
+    | CSSPropertiesWithExtras
+  >,
   styles?: Array<IZeroOrMore<IStyles<IStyleVarKey>>>,
 ) => ReturnType<typeof stylex.props> & {
   [key in `data-${keyof IVisualState}`]?: string;

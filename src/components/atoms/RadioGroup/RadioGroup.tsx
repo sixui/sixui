@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import type { IAny } from '@/helpers/types';
 import { useForkRef } from '@/hooks/useForkRef';

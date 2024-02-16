@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type { IZeroOrMore, ICompiledStyles } from '@/helpers/types';
@@ -104,6 +104,7 @@ export const ListItem: React.FC<IListItemProps> = ({
           isInteractive && 'host$interactive',
           selected && 'host$selected',
           disabled && 'host$disabled',
+          props.sx,
         ],
         [theme.vars, props.theme],
       )}

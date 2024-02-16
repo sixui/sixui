@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
 import { delay } from '@olivierpascal/helpers';

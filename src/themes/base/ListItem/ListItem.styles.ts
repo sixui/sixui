@@ -18,6 +18,7 @@ export const styles: MapNamespaces<IListItemStyles> =
     host: {
       listStyle: 'none',
       borderRadius: vars.containerShape,
+      textDecoration: 'none',
 
       // eslint-disable-next-line @stylexjs/valid-styles
       [listItemStatesVars.nonTextColor]: vars.nonTextColor,

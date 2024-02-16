@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -86,7 +86,7 @@ export const Radio: React.FC<IRadioProps> = ({
   return (
     <div
       {...styleProps(
-        ['host', disabled && 'host$disabled'],
+        ['host', disabled && 'host$disabled', props.sx],
         [theme.vars, props.theme],
       )}
       ref={hostRef}

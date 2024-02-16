@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -140,6 +140,7 @@ export const IconButton: React.FC<IIconButtonProps> = ({
               ? 'host$toggle$selected'
               : 'host$selected'
             : null,
+          props.sx,
         ],
         [theme.vars, variantTheme.vars, props.theme],
       )}

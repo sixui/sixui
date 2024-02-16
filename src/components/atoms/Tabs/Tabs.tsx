@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import type { IAny, IMaybeAsync } from '@/helpers/types';
 import { useControlled } from '@/hooks/useControlled';

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import type { IContainer } from '@/helpers/Container';
 import type { IAvatarStyleKey, IAvatarStyleVarKey } from './Avatar.styledefs';
@@ -53,7 +53,7 @@ export const Avatar: React.FC<IAvatarProps> = ({
   const hasImageNotFailing = hasImage && !hasLoadingError;
 
   return (
-    <div {...styleProps(['host'], [theme.vars, props.theme])}>
+    <div {...styleProps(['host', props.sx], [theme.vars, props.theme])}>
       {hasImageNotFailing ? (
         <img
           {...styleProps(['image'])}

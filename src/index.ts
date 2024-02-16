@@ -33,6 +33,7 @@ export * from './components/atoms/TabList';
 export * from './components/atoms/Tabs';
 export * from './components/atoms/Breadcrumbs';
 export * from './components/atoms/Typography';
+export * from './components/atoms/Avatar';
 
 export { theme as baseTheme } from './themes/base';
 export { theme as variantTheme } from './themes/variant';

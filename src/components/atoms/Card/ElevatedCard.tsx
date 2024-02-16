@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { type ICardProps, Card } from './Card';
 
 export interface IElevatedCardProps extends Omit<ICardProps, 'variant'> {}

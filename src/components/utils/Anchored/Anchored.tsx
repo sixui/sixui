@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import type { IContainer } from '@/helpers/Container';
 import type { IAnchoredStyleKey } from './Anchored.styledefs';
@@ -53,7 +53,7 @@ export const Anchored: React.FC<IAnchoredProps> = ({
           : 'content$circular$bottom$left';
 
   return (
-    <div {...styleProps(['host'], [props.theme])}>
+    <div {...styleProps(['host', props.sx], [props.theme])}>
       {children}
 
       <div

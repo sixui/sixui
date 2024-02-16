@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import type { IContainer } from '@/helpers/Container';
 import type {
@@ -97,6 +97,7 @@ export const FocusRing: React.FC<IFocusRingProps> = ({
           'host',
           (visible || visibleOnInit) && 'host$visible',
           inward ? 'host$inward' : 'host$outward',
+          props.sx,
         ],
         [theme.vars, props.theme],
       )}

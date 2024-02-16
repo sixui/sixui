@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { isFragment } from 'react-is';
 import { asArray } from '@olivierpascal/helpers';
 
@@ -147,7 +147,7 @@ export const Breadcrumbs: React.FC<IBreadcrumbsProps> = ({
 
   return (
     <nav
-      {...styleProps(['host'], [theme.vars, props.theme])}
+      {...styleProps(['host', props.sx], [theme.vars, props.theme])}
       aria-label={props['aria-label']}
     >
       <ol {...styleProps(['list'])}>

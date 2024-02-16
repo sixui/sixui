@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { type IPaperProps, Paper } from './Paper';
 
 export interface IFilledPaperProps extends Omit<IPaperProps, 'variant'> {}

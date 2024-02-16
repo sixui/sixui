@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type { IZeroOrMore, ICompiledStyles, IIcon } from '@/helpers/types';
@@ -466,7 +466,10 @@ export const TextField: React.FC<ITextFieldProps> = ({
 
   return (
     <div
-      {...styleProps(['host'], [theme.vars, variantTheme.vars, props.theme])}
+      {...styleProps(
+        ['host', props.sx],
+        [theme.vars, variantTheme.vars, props.theme],
+      )}
       ref={hostRef}
       onClick={() => inputOrTextareaRef.current?.focus()}
       role='textbox'

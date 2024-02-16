@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import type { IContainer } from '@/helpers/Container';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
@@ -524,6 +524,7 @@ export const Field: React.FC<IFieldProps> = ({
           'host',
           !!supportingOrErrorText && 'host$withSupportingText',
           disabled && 'host$disabled',
+          props.sx,
         ],
         [theme.vars, variantTheme.vars, props.theme],
       )}

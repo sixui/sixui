@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -107,7 +107,12 @@ export const Checkbox: React.FC<ICheckboxProps> = ({
   return (
     <div
       {...styleProps(
-        ['host', selected && 'host$selected', disabled && 'host$disabled'],
+        [
+          'host',
+          selected && 'host$selected',
+          disabled && 'host$disabled',
+          props.sx,
+        ],
         [theme.vars, props.theme],
       )}
     >

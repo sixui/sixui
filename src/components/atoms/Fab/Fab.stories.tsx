@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
+import * as React from 'react';
 import { PaperAirplaneIcon } from '@heroicons/react/24/outline';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';

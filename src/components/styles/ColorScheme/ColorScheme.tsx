@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import stylex from '@stylexjs/stylex';
 
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';

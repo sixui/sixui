@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import type { IContainer } from '@/helpers/Container';
 import type { ITabListStyleKey } from './TabList.styledefs';
@@ -26,7 +26,11 @@ export const TabList: React.FC<ITabListProps> = ({ children, ...props }) => {
   );
 
   return (
-    <div {...styleProps(['host'])} role='tablist' aria-orientation='horizontal'>
+    <div
+      {...styleProps(['host', props.sx])}
+      role='tablist'
+      aria-orientation='horizontal'
+    >
       <div {...styleProps(['tabList'])}>{children}</div>
       <Divider />
     </div>

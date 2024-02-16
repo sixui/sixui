@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import type { IContainer } from '@/helpers/Container';
 import type { IListStyleKey, IListStyleVarKey } from './List.styledefs';
@@ -22,5 +22,7 @@ export const List: React.FC<IListProps> = ({ children, ...props }) => {
     [theme.styles, props.styles],
   );
 
-  return <div {...styleProps(['host'], [props.theme])}>{children}</div>;
+  return (
+    <div {...styleProps(['host', props.sx], [props.theme])}>{children}</div>
+  );
 };

@@ -1,5 +1,5 @@
 import { type ITextFieldProps, TextField } from './TextField';
-import React from 'react';
+import * as React from 'react';
 
 export interface IFilledTextFieldProps
   extends Omit<ITextFieldProps, 'variant'> {}

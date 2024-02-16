@@ -20,8 +20,12 @@ export const stylesCombinatorFactory =
   (...classNames) =>
     classNames
       .map((className) =>
-        (
-          styles.flat() as Array<IOptionalCompiledStyles<IStyleKey> | undefined>
-        ).map((style) => (className ? style?.[className] : undefined)),
+        typeof className === 'string'
+          ? (
+              styles.flat() as Array<
+                IOptionalCompiledStyles<IStyleKey> | undefined
+              >
+            ).map((style) => (className ? style?.[className] : undefined))
+          : className,
       )
       .flat();

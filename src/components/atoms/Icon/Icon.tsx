@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import type { IContainer } from '@/helpers/Container';
 import type { IIconStyleKey, IIconStyleVarKey } from './Icon.styledefs';
@@ -25,7 +25,7 @@ export const Icon: React.FC<IIconProps> = ({ icon: Icon, ...props }) => {
   );
 
   return (
-    <div {...styleProps(['host'], [theme.vars, props.theme])}>
+    <div {...styleProps(['host', props.sx], [theme.vars, props.theme])}>
       <Icon {...styleProps(['svg'])} aria-hidden />
     </div>
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import type { IContainer } from '@/helpers/Container';
 import type {
@@ -37,6 +37,7 @@ export const Elevation: React.FC<IElevationProps> = ({
           'host',
           level !== undefined && `host$level${level}`,
           disabled && 'host$disabled',
+          props.sx,
         ],
         [theme.vars, props.theme],
       )}

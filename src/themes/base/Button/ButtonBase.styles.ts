@@ -18,6 +18,7 @@ export const styles: MapNamespaces<IButtonStyles> =
       textOverflow: 'ellipsis',
       textWrap: 'nowrap',
       userSelect: 'none',
+      textDecoration: 'none',
     },
     host$disabled: {
       cursor: 'default',

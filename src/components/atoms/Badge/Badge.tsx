@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import type { IContainer } from '@/helpers/Container';
 import type { IBadgeStyleKey, IBadgeStyleVarKey } from './Badge.styledefs';
@@ -54,7 +54,7 @@ export const Badge: React.FC<IBadgeProps> = ({
   return (
     <div
       {...styleProps(
-        ['host', invisible && 'host$invisible', dot && 'host$dot'],
+        ['host', invisible && 'host$invisible', dot && 'host$dot', props.sx],
         [theme.vars, props.theme],
       )}
     >

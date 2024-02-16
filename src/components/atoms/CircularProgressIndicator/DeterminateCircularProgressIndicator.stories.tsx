@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
+import * as React from 'react';
 
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import {

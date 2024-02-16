@@ -19,11 +19,11 @@ const vars: Partial<IStyleVars<IListItemStyleVarKey>> = {
   // container
   containerColor: 'transparent',
   containerShape: shapeVars.corner$none,
-  containerHeight$oneLine: '56px',
-  containerHeight$twoLine: '72px',
-  containerHeight$threeLine: '88px',
+  containerHeight$oneLine: '48px',
+  containerHeight$twoLine: '56px',
+  containerHeight$threeLine: '72px',
   // &:disabled
-  containerColor$disabled: colorRolesVars.surface,
+  containerColor$disabled: 'transparent',
   containerOpacity$disabled: stateVars.containerOpacity$disabled,
 
   // selectedContainer
@@ -92,11 +92,11 @@ const vars: Partial<IStyleVars<IListItemStyleVarKey>> = {
 
   // labelText
   labelTextColor: 'inherit',
-  labelTextFont: typescaleVars.bodyFont$lg,
-  labelTextLineHeight: typescaleVars.bodyLineHeight$lg,
-  labelTextSize: typescaleVars.bodySize$lg,
-  labelTextLetterSpacing: typescaleVars.bodyLetterSpacing$lg,
-  labelTextWeight: typescaleVars.bodyWeight$lg,
+  labelTextFont: typescaleVars.bodyFont$md,
+  labelTextLineHeight: typescaleVars.bodyLineHeight$md,
+  labelTextSize: typescaleVars.bodySize$md,
+  labelTextLetterSpacing: typescaleVars.bodyLetterSpacing$md,
+  labelTextWeight: typescaleVars.bodyWeight$md,
 
   // headline
   headlineColor: 'inherit',
@@ -108,11 +108,11 @@ const vars: Partial<IStyleVars<IListItemStyleVarKey>> = {
 
   // supportingText
   supportingTextColor: 'inherit',
-  supportingTextFont: typescaleVars.bodyFont$md,
-  supportingTextLineHeight: typescaleVars.bodyLineHeight$md,
-  supportingTextSize: typescaleVars.bodySize$md,
-  supportingTextLetterSpacing: typescaleVars.bodyLetterSpacing$md,
-  supportingTextWeight: typescaleVars.bodyWeight$md,
+  supportingTextFont: typescaleVars.bodyFont$sm,
+  supportingTextLineHeight: typescaleVars.bodyLineHeight$sm,
+  supportingTextSize: typescaleVars.bodySize$sm,
+  supportingTextLetterSpacing: typescaleVars.bodyLetterSpacing$sm,
+  supportingTextWeight: typescaleVars.bodyWeight$sm,
 
   // trailingSupportingText
   trailingSupportingTextColor: 'inherit',

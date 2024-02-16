@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -92,6 +92,7 @@ export const Card: React.FC<ICardProps> = ({
           'host',
           isInteractive && 'host$interactive',
           disabled && 'host$disabled',
+          props.sx,
         ],
         [theme.vars, variantTheme.vars, props.theme],
       )}

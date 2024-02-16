@@ -102,7 +102,7 @@ See https://stylexjs.com/docs/learn/installation/.
 
 'use client';
 
-import React from 'react';
+import * as React from 'react';
 import { ThemeProvider, baseTheme, FilledTextField } from '@sixui/ui';
 
 const BasicExample: React.FC = () => (
@@ -121,7 +121,7 @@ export default BasicExample;
 
 import stylex from '@stylexjs/stylex';
 
-import React from 'react';
+import * as React from 'react';
 import {
   ThemeProvider,
   baseTheme,

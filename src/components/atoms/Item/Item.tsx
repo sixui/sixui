@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import type { IContainer } from '@/helpers/Container';
 import type { IItemStyleKey, IItemStyleVarKey } from './Item.styledefs';
@@ -42,7 +42,7 @@ export const Item: React.FC<IItemProps> = ({
   );
 
   return (
-    <div {...styleProps(['host'], [theme.vars, props.theme])}>
+    <div {...styleProps(['host', props.sx], [theme.vars, props.theme])}>
       {container ? <div {...styleProps(['container'])}>{container}</div> : null}
 
       {start ? (

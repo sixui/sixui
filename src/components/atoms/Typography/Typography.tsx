@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import type { IContainer } from '@/helpers/Container';
 import type { ITypographyStyleKey } from './Typography.styledefs';
@@ -59,6 +59,7 @@ export const Typography: React.FC<ITypographyProps> = ({
         'host',
         gutterBottom && 'host$gutterBottom',
         `${variant}$${size}`,
+        props.sx,
       ])}
     >
       {children}

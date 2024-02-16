@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import type { IContainer } from '@/helpers/Container';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
@@ -45,7 +45,10 @@ export const Template: React.FC<ITemplateProps> = ({
 
   return (
     <div
-      {...styleProps(['host'], [theme.vars, variantTheme.vars, props.theme])}
+      {...styleProps(
+        ['host', props.sx],
+        [theme.vars, variantTheme.vars, props.theme],
+      )}
     >
       Template
     </div>

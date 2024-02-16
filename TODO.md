@@ -1,14 +1,18 @@
 # TO DO
 
 - SSR
+
   - Check compatibility with react server components
 
 - Tools
+
   - Generate colors
     - https://github.com/material-foundation/material-color-utilities
     - https://m3.material.io/styles/color/system/how-the-system-works
 
 - All components
+
+  - Add hostStyles (or sx) property
   - Be able to customize:
     - shadowColor
     - stateLayerColor$focus
@@ -17,28 +21,40 @@
     - https://github.com/mui/material-ui/pull/37656
 
 - Card
+
   - Derivate from Paper
 
 - Avatar
+
   - Support SSR like the MUI version
 
+- TextField
+
+  - attrs: id, autocapitalize
+
 - Badge
+
   - Text is not perfecetly aligned inside
 
 - Breadcrumbs
+
   - Be able to show the last separator
 
 - Chip
+
   - Animate width change on switching between selected and unselected states
   - Add a minimum delay betweel showing the circular progress indicator. First, to avoid showing it for a very short time, but also to have time to show the ripple effect.
 
 - ListItem
+
   - Navigate with arrow keys
 
 - Elevation
+
   - Use visualState instead of relying on state vars
 
 - Tab
+
   - Navigate with arrow keys
     https://m3.material.io/components/tabs/accessibility
   - Scrollable
@@ -50,6 +66,7 @@
   - Test with reduced motion
 
 - Build
+
   - Separate the core and the Storybook app
   - Use PostCSS Autoprefixr plugin on the generated CSS file
     https://github.com/facebook/stylex/discussions/223
@@ -57,12 +74,21 @@
   - Check if tree shaking is working
 
 - ButtonBase
+
   - Example in stories
+  - If this is an anchor link, text-decoration should be none?
+  - FIXME: on space key hit, should prevent default to not scroll the page
+
+- Button
+
+  - Icon should be anything, not only a svg component
 
 - Stories
+
   - Add examples for customized components
 
 - IconButton
+
   - Controlled/uncontrolled modes (if selectable)
 
 - CircularProgressIndicator
@@ -71,13 +97,16 @@
 ## Refactoring
 
 - Use useHover hook?
-  https://react-spectrum.adobe.com/blog/building-a-button-part-2.html
+  - https://react-spectrum.adobe.com/blog/building-a-button-part-2.html
 - Chip/Fab/IconButton/ListItem inherit from ButtonBase
 - Use hooks like useButton, useTab, useTabs, ... like mui or adobe
 - Use React.forwardRef & React.useImperativeHandle?
 - Remove 'borderStyle': 'solid' (handled by reset css)?
 - List -> Stack
 - All stylePropsFactory() must use props.visualState
+- use slots and slotProps
+  - https://mui.com/base-ui/getting-started/usage/#slots
+- IContainer -> IContainerProps (dans helpers -> utils)
 - Helper to merge styles:
 
 ```tsx
@@ -93,7 +122,6 @@
 
 <X elevationStyles={combineStyles('elevationStyles')} />
 ```
-
 
 ## FIX ME
 
@@ -115,7 +143,7 @@
   - remove unecessary types in `stylex.create<>()` calls
 - [stylex] "All variables in a variable group must be overridden when creating a theme."
   - https://github.com/facebook/stylex/issues/188#issuecomment-1857661215
-  - remove in *.styles.ts types like `Partial<IStyleVars<I...StyleVarKey>>` and `vars as IStyleVars<I..StyleVarKey>`
+  - remove in \*.styles.ts types like `Partial<IStyleVars<I...StyleVarKey>>` and `vars as IStyleVars<I..StyleVarKey>`
 - [stylex] @stylexjs/eslint-plugin: 'Computed key cannot be resolved' when overwriting var
   - https://github.com/facebook/stylex/issues/337
   - remove `// eslint-disable-next-line @stylexjs/valid-styles`
@@ -156,9 +184,10 @@
 
 ### In progress
 
-*What that the team is currently working on.*
+_What that the team is currently working on._
 
 Components
+
 - [ ] AvatarGroup
 - [ ] App Bar
 - [ ] Grid
@@ -174,12 +203,14 @@ Components
 
 ### Planned
 
-*What that the team is planning to work on after the current goal.*
+_What that the team is planning to work on after the current goal._
 
 Features
+
 - [ ] Docs and examples
 
 Components
+
 - [ ] Backdrop
 - [ ] Box
 - [ ] Container
@@ -196,9 +227,10 @@ Components
 
 ### Future
 
-*What is not yet organized into a planned goal.*
+_What is not yet organized into a planned goal._
 
 Features
+
 - [ ] Spacing tokens
 - [ ] Density
 - [ ] SSR
@@ -207,6 +239,7 @@ Features
 - [ ] Size tracking
 
 Components
+
 - [ ] Autocomplete
 - [ ] Banner
 - [ ] Bottom sheet
@@ -223,13 +256,14 @@ Components
 - [ ] Tooltip
 
 Check:
-  https://mui.com/material-ui/all-components/
+https://mui.com/material-ui/all-components/
 
 ### Complete
 
-*Completed goals and releases.*
+_Completed goals and releases._
 
 Features
+
 - [x] Catalog
 - [x] Color theming
 - [x] Typography theming
@@ -239,6 +273,7 @@ Features
 - [x] Catalog
 
 Components
+
 - [x] Anchored
 - [x] Avatar
 - [x] Badge
@@ -267,9 +302,10 @@ Components
 
 ### Not planned
 
-*What the team has decided not to work on.*
+_What the team has decided not to work on._
 
 Components
+
 - [ ] Bottom app bar
 - [ ] Top app bar
 

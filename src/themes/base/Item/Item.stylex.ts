@@ -26,11 +26,11 @@ const vars: Partial<IStyleVars<IItemStyleVarKey>> = {
 
   // labelText
   labelTextColor: 'inherit',
-  labelTextFont: typescaleVars.bodyFont$lg,
-  labelTextLineHeight: typescaleVars.bodyLineHeight$lg,
-  labelTextSize: typescaleVars.bodySize$lg,
-  labelTextLetterSpacing: typescaleVars.bodyLetterSpacing$lg,
-  labelTextWeight: typescaleVars.bodyWeight$lg,
+  labelTextFont: typescaleVars.bodyFont$md,
+  labelTextLineHeight: typescaleVars.bodyLineHeight$md,
+  labelTextSize: typescaleVars.bodySize$md,
+  labelTextLetterSpacing: typescaleVars.bodyLetterSpacing$md,
+  labelTextWeight: typescaleVars.bodyWeight$md,
 
   // headline
   headlineColor: 'inherit',
@@ -42,11 +42,11 @@ const vars: Partial<IStyleVars<IItemStyleVarKey>> = {
 
   // supportingText
   supportingTextColor: 'inherit',
-  supportingTextFont: typescaleVars.bodyFont$md,
-  supportingTextLineHeight: typescaleVars.bodyLineHeight$md,
-  supportingTextSize: typescaleVars.bodySize$md,
-  supportingTextLetterSpacing: typescaleVars.bodyLetterSpacing$md,
-  supportingTextWeight: typescaleVars.bodyWeight$md,
+  supportingTextFont: typescaleVars.bodyFont$sm,
+  supportingTextLineHeight: typescaleVars.bodyLineHeight$sm,
+  supportingTextSize: typescaleVars.bodySize$sm,
+  supportingTextLetterSpacing: typescaleVars.bodyLetterSpacing$sm,
+  supportingTextWeight: typescaleVars.bodyWeight$sm,
 
   // trailingSupportingText
   trailingSupportingTextColor: 'inherit',

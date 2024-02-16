@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type { IZeroOrMore, ICompiledStyles } from '@/helpers/types';
@@ -71,7 +71,12 @@ export const Paper: React.FC<IPaperProps> = ({
   return (
     <div
       {...styleProps(
-        ['host', `host$elevation${elevation}`, square && 'host$square'],
+        [
+          'host',
+          `host$elevation${elevation}`,
+          square && 'host$square',
+          props.sx,
+        ],
         [theme.vars, variantTheme.vars, props.theme],
       )}
     >
