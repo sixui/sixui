@@ -1,3 +1,15 @@
+# v0.0.29 (Fri Feb 16 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Internalize isFragment() and get rid of react-is package ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.28 (Fri Feb 16 2024)
 
 #### ⚠️ Pushed to `main`
