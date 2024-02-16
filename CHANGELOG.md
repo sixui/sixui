@@ -1,3 +1,15 @@
+# v0.0.28 (Fri Feb 16 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Trying to fix import issue with react-is ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.27 (Fri Feb 16 2024)
 
 #### ⚠️ Pushed to `main`
