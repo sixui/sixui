@@ -1,3 +1,15 @@
+# v0.0.30 (Sat Feb 17 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Fixed a typo in Badge stories; Better management of sx property ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.29 (Fri Feb 16 2024)
 
 #### ⚠️ Pushed to `main`
