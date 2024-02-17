@@ -1,3 +1,15 @@
+# v0.0.31 (Sat Feb 17 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Fixed: sx property propagated to buttons ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.30 (Sat Feb 17 2024)
 
 #### ⚠️ Pushed to `main`
