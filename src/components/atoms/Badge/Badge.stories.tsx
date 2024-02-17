@@ -35,7 +35,7 @@ const colsProps: IComponentPropsWithLegend<IExtendedBadgeProps> = [
 
 const rowsProps: IComponentPropsWithLegend<IExtendedBadgeProps> = [
   { $legend: 'Enabled' },
-  { $legend: 'Enabled', disabled: true },
+  { $legend: 'Disabled', disabled: true },
 ];
 
 const BadgeDemo: React.FC<IExtendedBadgeProps> = ({
