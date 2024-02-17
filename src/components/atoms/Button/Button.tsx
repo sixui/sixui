@@ -125,6 +125,7 @@ export const Button: React.FC<IButtonProps> = ({
     <ButtonBase
       theme={[theme.vars, variantTheme.vars, ...asArray(props.theme)]}
       styles={[theme.styles, variantTheme.styles, ...asArray(props.styles)]}
+      sx={props.sx}
       rippleStyles={[
         theme.rippleStyles,
         variantTheme.rippleStyles,

@@ -7,6 +7,7 @@ import {
   type IComponentPropsWithLegend,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
+import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { type ITypographyProps, Typography } from './Typography';
 
 // https://m3.material.io/styles/typography/overview
@@ -123,6 +124,7 @@ const rowsProps: IComponentPropsWithLegend<ITypographyProps> = [
 const componentShowcaseStyles = stylex.create({
   host: {
     maxWidth: '600px',
+    color: colorRolesVars.onSurface,
   },
 });
 
