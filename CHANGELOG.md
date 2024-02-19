@@ -1,3 +1,15 @@
+# v0.0.33 (Mon Feb 19 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Add custom components for all interactive components, and routing usage with `react-router-dom` in README.md ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.32 (Mon Feb 19 2024)
 
 #### ⚠️ Pushed to `main`
