@@ -84,8 +84,9 @@ export const ListItem: React.FC<IListItemProps> = ({
   const type = href ? 'link' : props.type ?? 'text';
   const disabled = props.disabled;
   const selected = !disabled && props.selected;
-  const Component: React.ElementType =
-    props.component ?? type == 'link'
+  const Component: React.ElementType = props.component
+    ? props.component
+    : type == 'link'
       ? 'a'
       : type === 'button'
         ? 'button'

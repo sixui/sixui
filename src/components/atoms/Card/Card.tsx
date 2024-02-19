@@ -29,6 +29,7 @@ export interface ICardProps
       'disabled' | 'aria-label' | 'aria-haspopup' | 'aria-expanded'
     >,
     Pick<React.LinkHTMLAttributes<HTMLLinkElement>, 'href'> {
+  component?: React.ElementType;
   variant?: ICardVariant;
   children: React.ReactNode;
   onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
@@ -79,7 +80,14 @@ export const Card: React.FC<ICardProps> = ({
   );
 
   const isInteractive = !disabled && (!!href || !!onClick);
-  const Component: React.ElementType = href ? 'a' : onClick ? 'button' : 'div';
+  const Component: React.ElementType = props.component
+    ? props.component
+    : href
+      ? 'a'
+      : onClick
+        ? 'button'
+        : 'div';
+
   const hasOutline =
     theme.styles?.outline ||
     variantTheme.styles?.outline ||

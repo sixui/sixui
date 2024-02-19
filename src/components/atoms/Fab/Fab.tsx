@@ -130,7 +130,11 @@ export const Fab: React.FC<IFabProps> = ({
   const hasLeading = hasIcon;
   const hasOverlay = loading && (!!loadingText || !hasIcon);
 
-  const Component: React.ElementType = href ? 'a' : props.component ?? 'button';
+  const Component: React.ElementType = props.component
+    ? props.component
+    : href
+      ? 'a'
+      : 'button';
 
   return (
     <div

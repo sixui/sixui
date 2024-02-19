@@ -239,7 +239,7 @@ const ThemingExample: React.FC = () => (
 export default ThemingExample;
 ```
 
-### Notes with Next.js
+#### Notes with Next.js
 
 ```js
 // next.config.js
@@ -271,7 +271,7 @@ import '@sixui/ui/styles.css';
 // ...
 ```
 
-### Notes with Vite
+#### Notes with Vite
 
 ```sh
 $ yarn add vite-plugin-stylex --dev
@@ -299,6 +299,33 @@ export default defineConfig({
 import '@sixui/ui/styles.css';
 
 // ...
+```
+
+#### Notes with `react-router-dom`
+
+```tsx
+import * as React from 'react';
+import {
+  Link as RouterLink,
+  LinkProps as RouterLinkProps,
+} from 'react-router-dom';
+import { FilledButton } from '@sixui/ui';
+
+export const LinkBehavior = React.forwardRef<
+  HTMLAnchorElement,
+  Omit<RouterLinkProps, 'to'> & { href: RouterLinkProps['to'] }
+>(function LinkBehavior(props, ref) {
+  const { href, ...other } = props;
+
+  // Map href (sixui) -> to (react-router)
+  return <RouterLink ref={ref} to={href} {...other} />;
+});
+
+export const Usage: React.FC = () => (
+  <FilledButton component={LinkBehavior} href='/login'>
+    Login
+  </FilledButton>
+);
 ```
 
 ### Setup Storybook (optional)

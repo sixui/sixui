@@ -110,9 +110,7 @@ export const Chip: React.FC<IChipProps> = ({
   const theme = useComponentTheme('Chip');
   const variantTheme = useComponentTheme(variantMap[variant]);
 
-  const primaryActionRef = React.useRef<HTMLButtonElement | HTMLLinkElement>(
-    null,
-  );
+  const primaryActionRef = React.useRef<HTMLElement>(null);
   const trailingActionRef = React.useRef<HTMLButtonElement>(null);
   const [handlingClick, setHandlingClick] = React.useState(false);
   const [handlingDelete, setHandlingDelete] = React.useState(false);
@@ -144,7 +142,11 @@ export const Chip: React.FC<IChipProps> = ({
     name: 'Chip',
   });
 
-  const Component: React.ElementType = href ? 'a' : props.component ?? 'button';
+  const Component: React.ElementType = props.component
+    ? props.component
+    : href
+      ? 'a'
+      : 'button';
 
   const elevated = variant !== 'input' && props.elevated;
   const loading = props.loading || handlingClick;

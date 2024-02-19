@@ -30,6 +30,7 @@ export interface IButtonBaseProps
       'type' | 'disabled' | 'aria-label' | 'aria-haspopup' | 'aria-expanded'
     >,
     Pick<React.LinkHTMLAttributes<HTMLLinkElement>, 'href'> {
+  component?: React.ElementType;
   withLeadingIcon?: boolean;
   withTrailingIcon?: boolean;
   rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
@@ -65,7 +66,11 @@ export const ButtonBase: React.FC<IButtonBaseProps> = ({
     [theme.styles, props.styles, visualState],
   );
 
-  const Component: React.ElementType = href ? 'a' : 'button';
+  const Component: React.ElementType = props.component
+    ? props.component
+    : href
+      ? 'a'
+      : 'button';
   const hasOutline =
     theme.styles?.outline ||
     asArray(props.styles).some((styles) => !!styles?.outline);

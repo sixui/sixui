@@ -125,7 +125,11 @@ export const IconButton: React.FC<IIconButtonProps> = ({
     variantTheme.styles?.outline ||
     asArray(props.styles).some((styles) => !!styles?.outline);
 
-  const Component: React.ElementType = href ? 'a' : props.component ?? 'button';
+  const Component: React.ElementType = props.component
+    ? props.component
+    : href
+      ? 'a'
+      : 'button';
   const Icon =
     toggle && selected ? props.selectedIcon ?? props.icon : props.icon;
 
