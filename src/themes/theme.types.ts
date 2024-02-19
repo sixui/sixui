@@ -176,6 +176,9 @@ export interface ITheme {
   colorSchemes: {
     dark: IStyleVarsTheme<keyof IColorRoles>;
   };
+  colorRoles: {
+    dark: IColorRoles;
+  };
   components: {
     Template: ITemplateTheme;
     VariantTemplate: ITemplateTheme;
