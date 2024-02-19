@@ -61,7 +61,7 @@ const ControlledSwitch: React.FC<Omit<ISwitchProps, 'onChange'>> = (props) => {
     <Switch
       {...props}
       selected={selected}
-      onChange={(event, state) => delay(300).then(() => setSelected(state))}
+      onChange={(_, state) => delay(300).then(() => setSelected(state))}
     />
   );
 };

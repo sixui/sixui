@@ -1,4 +1,5 @@
 import type { Decorator, Preview } from '@storybook/react';
+import * as React from 'react';
 import stylex from '@stylexjs/stylex';
 
 import { modes } from './modes';
@@ -97,4 +98,5 @@ export const decorators: Array<Decorator> = [
   },
 ];
 
+// eslint-disable-next-line import/no-default-export
 export default preview;

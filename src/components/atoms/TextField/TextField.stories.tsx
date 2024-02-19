@@ -93,7 +93,7 @@ const ControlledForm: React.FC<ITextFieldProps> = (props) => {
           label='First name'
           name='firstName'
           value={firstName}
-          onChange={(event, value) => setFirstName(value)}
+          onChange={(_, value) => setFirstName(value)}
           autoComplete='given-name'
           required
         />
@@ -102,7 +102,7 @@ const ControlledForm: React.FC<ITextFieldProps> = (props) => {
           label='Last name'
           name='lastName'
           value={lastName}
-          onChange={(event, value) => setLastName(value)}
+          onChange={(_, value) => setLastName(value)}
           autoComplete='family-name'
           required
         />
@@ -135,7 +135,7 @@ const ControlledTextField: React.FC<Omit<ITextFieldProps, 'onChange'>> = (
       {...props}
       forwardRef={textFieldRef}
       value={value}
-      onChange={(event, value) => setValue(value)}
+      onChange={(_, value) => setValue(value)}
       end={
         <IconButton
           forwardRef={iconButtonRef}

@@ -129,6 +129,25 @@
 <X elevationStyles={combineStyles('elevationStyles')} />
 ```
 
+- eslint rule:
+
+```js
+'no-restricted-imports': [
+  'error',
+  {
+    paths: [
+      {
+        name: 'react',
+        importNames: ['default'],
+        message: 'Please use named imports instead.',
+      },
+    ],
+  },
+],
+```
+
+- enable `"noUnusedLocals": true,` in `tsconfig.json`
+
 ## FIX ME
 
 - Button / Chip / Fab / ...

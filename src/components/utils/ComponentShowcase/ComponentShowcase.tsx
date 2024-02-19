@@ -72,7 +72,7 @@ export const ComponentShowcase = <IComponentProps extends object>({
           ) : null}
 
           <div {...styleProps(['flex', 'groupRows'])}>
-            {groupsProps.map((groupProps, groupIndex) => (
+            {groupsProps.map((_, groupIndex) => (
               <div
                 {...styleProps(['flex', 'rows', 'gap$lg'])}
                 key={`$legend-${groupIndex}`}

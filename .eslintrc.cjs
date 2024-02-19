@@ -100,33 +100,6 @@ const eslintConfig = {
     'jsx-a11y/no-autofocus': 'off',
     'jsx-a11y/img-redundant-alt': 'off',
     'prettier/prettier': ['error', {}, { usePrettierrc: true }],
-    '@typescript-eslint/naming-convention': [
-      'error',
-      {
-        selector: 'interface',
-        format: ['PascalCase'],
-        prefix: ['I'],
-      },
-      {
-        selector: 'typeLike',
-        format: ['PascalCase'],
-        prefix: ['I', 'T'],
-      },
-      {
-        selector: 'variable',
-        format: [
-          'camelCase',
-          'PascalCase', // for React components
-          'UPPER_CASE', // for constants
-        ],
-        leadingUnderscore: 'forbid',
-        trailingUnderscore: 'forbid',
-      },
-      {
-        selector: 'class',
-        format: ['PascalCase'],
-      },
-    ],
   },
   overrides: [
     {
@@ -168,6 +141,33 @@ const eslintConfig = {
           {
             allowExpressions: true,
             allowConciseArrowFunctionExpressionsStartingWithVoid: true,
+          },
+        ],
+        '@typescript-eslint/naming-convention': [
+          'error',
+          {
+            selector: 'interface',
+            format: ['PascalCase'],
+            prefix: ['I'],
+          },
+          {
+            selector: 'typeLike',
+            format: ['PascalCase'],
+            prefix: ['I', 'T'],
+          },
+          {
+            selector: 'variable',
+            format: [
+              'camelCase',
+              'PascalCase', // for React components
+              'UPPER_CASE', // for constants
+            ],
+            leadingUnderscore: 'forbid',
+            trailingUnderscore: 'forbid',
+          },
+          {
+            selector: 'class',
+            format: ['PascalCase'],
           },
         ],
       },

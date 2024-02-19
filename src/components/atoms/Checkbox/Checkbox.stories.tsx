@@ -54,7 +54,7 @@ const ControlledCheckbox: React.FC<Omit<ICheckboxProps, 'onChange'>> = (
     <Checkbox
       {...props}
       checked={checked}
-      onChange={(event, checked) => {
+      onChange={(_, checked) => {
         setIndeterminate(false);
         setChecked(!checked);
       }}

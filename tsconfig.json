@@ -4,24 +4,34 @@
     "target": "es2022",
     "lib": ["es2022", "dom", "dom.iterable"],
     "types": ["node", "vite/client", "vite-plugin-svgr/client"],
-    "strict": true,
     "declaration": true,
     "declarationDir": "./dist",
     "skipLibCheck": true,
+    "incremental": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+
+    /* Bundler mode */
+    "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "outDir": "./dist",
-    "noFallthroughCasesInSwitch": true,
-    "incremental": true,
-    "moduleResolution": "node",
     "jsx": "react-jsx",
     "allowJs": false,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"],
-    },
+
+    /* Linting */
+    "strict": true,
+    // "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    ".storybook/**/*.ts",
+    ".storybook/**/*.tsx"
+  ]
 }

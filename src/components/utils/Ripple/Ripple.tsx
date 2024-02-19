@@ -241,7 +241,7 @@ export const Ripple: React.FC<IRippleProps> = ({
 
   const startPressAnimation = React.useCallback(
     (
-      event: PointerEvent | MouseEvent,
+      _: PointerEvent | MouseEvent,
       positionEvent?: PointerEvent | MouseEvent,
     ): void => {
       if (!surfaceRef.current) {
