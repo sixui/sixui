@@ -1,3 +1,15 @@
+# v0.0.32 (Mon Feb 19 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Export dark color roles; npm modules updated ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.31 (Sat Feb 17 2024)
 
 #### ⚠️ Pushed to `main`
