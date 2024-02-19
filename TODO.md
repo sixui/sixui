@@ -1,5 +1,9 @@
 # TO DO
 
+- ESLint
+
+  - add eslint-plugin-fp
+
 - SSR
 
   - Check compatibility with react server components
@@ -12,6 +16,8 @@
 
 - All components
 
+  - Handle routing and default props
+    - https://mui.com/material-ui/integrations/routing/
   - Add hostStyles (or sx) property
   - Be able to customize:
     - shadowColor
@@ -257,48 +263,6 @@ Components
 
 Check:
 https://mui.com/material-ui/all-components/
-
-### Complete
-
-_Completed goals and releases._
-
-Features
-
-- [x] Catalog
-- [x] Color theming
-- [x] Typography theming
-- [x] Motion theming
-- [x] Shape theming
-- [x] Typescript-based theming
-- [x] Catalog
-
-Components
-
-- [x] Anchored
-- [x] Avatar
-- [x] Badge
-- [x] Breadcrumbs
-- [x] Button
-- [x] Card
-- [x] Checkbox
-- [x] Chip
-- [x] Circular Progress Indicator
-- [x] Divider
-- [x] Elevation
-- [x] FAB
-- [x] Field
-- [x] Focus ring
-- [x] Icon
-- [x] IconButton
-- [x] Item
-- [x] List
-- [x] Paper
-- [x] Radio
-- [x] Ripple
-- [x] Switch
-- [x] Tabs
-- [x] Text field
-- [x] Typography
 
 ### Not planned
 

@@ -26,6 +26,50 @@ $ yarn dev
 
 Open Storybook at http://localhost:6006.
 
+## Default Color Scheme
+
+![Default Color Scheme](doc/color-scheme.png)
+
+## Completed components
+
+Features
+
+- [x] Catalog
+- [x] Color theming
+- [x] Typography theming
+- [x] Motion theming
+- [x] Shape theming
+- [x] Typescript-based theming
+- [x] Catalog
+
+Components
+
+- [x] Anchored
+- [x] Avatar
+- [x] Badge
+- [x] Breadcrumbs
+- [x] Button
+- [x] Card
+- [x] Checkbox
+- [x] Chip
+- [x] Circular progress indicator
+- [x] Divider
+- [x] Elevation
+- [x] FAB
+- [x] Field
+- [x] Focus ring
+- [x] Icon
+- [x] Icon button
+- [x] Item
+- [x] List
+- [x] Paper
+- [x] Radio
+- [x] Ripple
+- [x] Switch
+- [x] Tabs
+- [x] Text field
+- [x] Typography
+
 ## Workflow
 
 Create a new branch.
