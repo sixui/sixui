@@ -6,6 +6,7 @@
     "types": ["node", "vite/client", "vite-plugin-svgr/client"],
     "declaration": true,
     "declarationDir": "./dist",
+    "declarationMap": true,
     "skipLibCheck": true,
     "incremental": true,
     "baseUrl": ".",
