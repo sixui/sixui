@@ -30,7 +30,7 @@
     "build-storybook": "yarn build:sb",
     "build:sb": "storybook build",
     "build:ts": "babel src --out-dir dist --config-file ./.babelrc --extensions '.ts,.tsx' --delete-dir-on-start --copy-files",
-    "build:dts": "tsc --declaration --emitDeclarationOnly --declarationMap && tsc-alias",
+    "build:dts": "tsc --emitDeclarationOnly && tsc-alias",
     "build": "run-s build:ts build:dts",
     "release": "auto shipit",
     "prettify:fix:file": "prettier --write",

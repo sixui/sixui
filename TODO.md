@@ -1,5 +1,9 @@
 # TO DO
 
+- CI
+
+  - check if .js and .d.ts has been correctly generated in /dist
+
 - ESLint
 
   - add eslint-plugin-fp
