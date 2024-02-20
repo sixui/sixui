@@ -1,3 +1,15 @@
+# v0.0.35 (Tue Feb 20 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Added declarationMap in tsconfig.json ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.34 (Tue Feb 20 2024)
 
 #### ⚠️ Pushed to `main`
