@@ -1,3 +1,16 @@
+# v0.0.34 (Tue Feb 20 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Fixed missing outDir ([@olivierpascal](https://github.com/olivierpascal))
+- Fixing a typo in reset.css ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.33 (Mon Feb 19 2024)
 
 #### ⚠️ Pushed to `main`
