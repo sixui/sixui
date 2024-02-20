@@ -21,6 +21,7 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "allowJs": false,
+    "outDir": "./dist",
 
     /* Linting */
     "strict": true,
