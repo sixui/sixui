@@ -160,6 +160,8 @@ import { componentTheme as filledCardTheme } from './Card/FilledCard.stylex';
 import { componentTheme as outlinedCardTheme } from './Card/OutlinedCard.stylex';
 import { styles as outlinedCardStyles } from './Card/OutlinedCard.styles';
 
+import { styles as cardContentStyles } from './CardContent/CardContent.styles';
+
 import { componentTheme as tabTheme } from './Tab/Tab.stylex';
 import {
   styles as tabStyles,
@@ -375,6 +377,9 @@ export const theme: ITheme = {
       rippleStyles: cardRippleStyles,
       focusRingStyles: cardFocusRingStyles,
       elevationStyles: cardElevationStyles,
+    },
+    CardContent: {
+      styles: cardContentStyles,
     },
     ElevatedCard: { vars: elevatedCardTheme },
     FilledCard: { vars: filledCardTheme },

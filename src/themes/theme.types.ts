@@ -73,6 +73,7 @@ import type {
   IPaperStyleVarKey,
 } from '@/components/atoms/Paper';
 import type { ICardStyleKey, ICardStyleVarKey } from '@/components/atoms/Card';
+import type { ICardContentStyleKey } from '@/components/atoms/CardContent';
 import type { ITabStyleKey, ITabStyleVarKey } from '@/components/atoms/Tab';
 import type { ITabListStyleKey } from '@/components/atoms/TabList';
 import type { ITypographyStyleKey } from '@/components/atoms/Typography';
@@ -289,6 +290,9 @@ export interface ITheme {
       styles?: ICompiledStyles<IPaperStyleKey>;
     };
     Card: ICardTheme;
+    CardContent: {
+      styles?: ICompiledStyles<ICardContentStyleKey>;
+    };
     ElevatedCard: ICardTheme;
     FilledCard: ICardTheme;
     OutlinedCard: ICardTheme & {

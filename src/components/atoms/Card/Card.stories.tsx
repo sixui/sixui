@@ -10,8 +10,7 @@ import {
 } from '@/components/utils/ComponentShowcase';
 import { Card, type ICardProps } from './Card';
 import { cardVariants } from './Card.styledefs';
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { typescaleVars } from '@/themes/base/vars/typo.stylex';
+import { Typography } from '../Typography';
 
 // https://m3.material.io/components/cards
 // https://github.com/material-components/material-web/blob/main/labs/card/demo/stories.ts
@@ -22,13 +21,10 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const cardStyles = stylex.create({
-  host: {
+const styles = stylex.create({
+  card: {
     width: '192px',
   },
-});
-
-const cardContentStyles = stylex.create({
   content: {
     minHeight: '128px',
     display: 'flex',
@@ -37,19 +33,11 @@ const cardContentStyles = stylex.create({
     flexShrink: 1,
     flexBasis: 0,
     justifyContent: 'flex-end',
-    padding: '16px',
     gap: '16px',
-    color: colorRolesVars.onSurface,
-    fontFamily: typescaleVars.bodyFont$md,
-    fontSize: typescaleVars.bodySize$md,
-    fontWeight: typescaleVars.bodyWeight$md,
-    lineHeight: typescaleVars.bodyLineHeight$md,
-    letterSpacing: typescaleVars.bodyLetterSpacing$md,
   },
 });
 
 const defaultArgs = {
-  styles: cardStyles,
   children: 'Card content',
 } satisfies Partial<ICardProps>;
 
@@ -71,13 +59,17 @@ const rowsProps: IComponentPropsWithLegend<ICardProps> = [
 ];
 
 const CardWithContent: React.FC<ICardProps> = ({ children, ...props }) => (
-  <Card {...props}>
+  <Card {...props} sx={styles.card}>
     {/* <img
       {...stylex.props(cardContentStyles.img)}
       src={MEDIA_IMAGE}
       alt='Placeholder image'
     /> */}
-    <div {...stylex.props(cardContentStyles.content)}>{children}</div>
+    <Card.Content sx={styles.content}>
+      <Typography variant='body' size='md'>
+        {children}
+      </Typography>
+    </Card.Content>
   </Card>
 );
 

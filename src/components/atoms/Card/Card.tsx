@@ -21,6 +21,7 @@ import { useVisualState } from '@/hooks/useVisualState';
 import { Elevation, IElevationStyleKey } from '@/components/utils/Elevation';
 import { FocusRing, IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import { Ripple, type IRippleStyleKey } from '@/components/utils/Ripple';
+import { CardContent } from '../CardContent';
 
 export interface ICardProps
   extends IContainer<ICardStyleKey, ICardStyleVarKey>,
@@ -38,6 +39,10 @@ export interface ICardProps
   elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
 }
 
+export interface ICardSubComponents {
+  Content: typeof CardContent;
+}
+
 type ICardVariantMap = {
   [key in ICardVariant]: keyof Pick<
     IThemeComponents,
@@ -52,7 +57,7 @@ const variantMap: ICardVariantMap = {
 };
 
 // https://github.com/material-components/material-web/blob/main/labs/card/internal/card.ts
-export const Card: React.FC<ICardProps> = ({
+export const Card: React.FC<ICardProps> & ICardSubComponents = ({
   variant = 'filled',
   disabled,
   children,
@@ -154,7 +159,9 @@ export const Card: React.FC<ICardProps> = ({
           />
         </React.Fragment>
       ) : null}
-      <div {...styleProps(['content'])}>{children}</div>
+      {children}
     </Component>
   );
 };
+
+Card.Content = CardContent;

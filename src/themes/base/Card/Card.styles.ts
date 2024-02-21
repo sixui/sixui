@@ -60,19 +60,8 @@ export const styles: MapNamespaces<ICardStyles> = stylex.create<ICardStyles>({
     backgroundColor: vars.containerColor$disabled,
     opacity: vars.containerOpacity$disabled,
   },
-  icon: {
-    color: vars.iconColor,
-    width: vars.iconSize,
-    height: vars.iconSize,
-  },
   outline: {
     zIndex: 1,
-  },
-  content: {
-    display: 'flex',
-    flexDirection: 'column',
-    borderRadius: 'inherit',
-    position: 'relative',
   },
 });
 

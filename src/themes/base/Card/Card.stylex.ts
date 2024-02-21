@@ -19,10 +19,6 @@ const vars: Partial<IStyleVars<ICardStyleVarKey>> = {
   // &:pressed
   stateLayerColor$pressed: colorRolesVars.onSurface,
   stateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
-
-  // icon
-  iconColor: colorRolesVars.primary,
-  iconSize: '24px',
 };
 
 export const componentVars = stylex.defineVars(
