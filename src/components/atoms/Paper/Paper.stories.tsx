@@ -9,7 +9,6 @@ import {
 } from '@/components/utils/ComponentShowcase';
 import { Paper, type IPaperProps } from './Paper';
 import { paperVariants } from './Paper.styledefs';
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { Typography } from '../Typography';
 
 // https://material.io/blog/tone-based-surface-color-m3
@@ -43,7 +42,6 @@ const paperContentStyles = stylex.create({
     justifyContent: 'flex-end',
     padding: '16px',
     gap: '16px',
-    color: colorRolesVars.onSurface,
   },
 });
 
