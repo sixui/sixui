@@ -2,8 +2,8 @@ import stylex from '@stylexjs/stylex';
 
 import type { IStyleVars } from '@/helpers/types';
 import type { ICardStyleVarKey } from '@/components/atoms/Card';
-import { shapeVars } from '../vars/shape.stylex';
 import { colorRolesVars } from '../vars/colorRoles.stylex';
+import { shapeVars } from '../vars/shape.stylex';
 import { stateVars } from '../vars/state.stylex';
 
 const vars: Partial<IStyleVars<ICardStyleVarKey>> = {

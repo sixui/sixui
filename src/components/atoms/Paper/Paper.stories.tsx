@@ -27,7 +27,7 @@ const variantsProps: IComponentPropsWithLegend<IPaperProps> = [
 
 const paperStyles = stylex.create({
   host: {
-    width: '192px',
+    width: 192,
   },
 });
 

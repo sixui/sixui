@@ -3,10 +3,10 @@ export type ICardVariant = (typeof cardVariants)[number];
 
 export type ICardStyleKey =
   | 'host'
-  | 'host$interactive'
+  | 'host$actionable'
   | 'host$disabled'
   | 'outline'
-  | 'outline$interactive'
+  | 'outline$actionable'
   | 'outline$disabled'
   | 'background'
   | 'background$disabled';

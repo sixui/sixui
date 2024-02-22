@@ -4,11 +4,11 @@ import type { IAny, IMaybeAsync } from '@/helpers/types';
 import { useControlled } from '@/hooks/useControlled';
 import { EASING } from '@/helpers/animation';
 import { shouldReduceMotion } from '@/helpers/shouldReduceAnimations';
-import { type ITabContextValue, TabContext } from './TabContext';
+import { type ITabContext, TabContext } from './TabContext';
 import { useId } from '@/hooks/useId';
 
 export interface ITabsProps
-  extends Omit<ITabContextValue, 'onChange'>,
+  extends Omit<ITabContext, 'onChange'>,
     Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, 'aria-label'> {
   onChange?: (anchor: string | undefined) => IMaybeAsync<IAny>;
   defaultAnchor?: string;
@@ -98,7 +98,7 @@ export const Tabs: React.FC<ITabsProps> = ({
           setAnchor(anchor);
           onChange?.(anchor);
         },
-      }) satisfies ITabContextValue,
+      }) satisfies ITabContext,
     [id, variant, anchor, getIndicatorKeyframes, setAnchor, onChange],
   );
 

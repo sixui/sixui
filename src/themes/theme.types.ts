@@ -73,7 +73,19 @@ import type {
   IPaperStyleVarKey,
 } from '@/components/atoms/Paper';
 import type { ICardStyleKey, ICardStyleVarKey } from '@/components/atoms/Card';
-import type { ICardContentStyleKey } from '@/components/atoms/CardContent';
+import type {
+  ICardMediaStyleKey,
+  ICardMediaStyleVarKey,
+} from '@/components/atoms/CardMedia';
+import type {
+  ICardContentStyleKey,
+  ICardContentStyleVarKey,
+} from '@/components/atoms/CardContent';
+import type {
+  ICardTitleStyleKey,
+  ICardTitleStyleVarKey,
+} from '@/components/atoms/CardTitle';
+import type { ICardActionsStyleKey } from '@/components/atoms/CardActions';
 import type { ITabStyleKey, ITabStyleVarKey } from '@/components/atoms/Tab';
 import type { ITabListStyleKey } from '@/components/atoms/TabList';
 import type { ITypographyStyleKey } from '@/components/atoms/Typography';
@@ -159,9 +171,6 @@ export interface IPaperTheme {
 export interface ICardTheme {
   vars?: IStyleVarsTheme<ICardStyleVarKey>;
   styles?: ICompiledStyles<ICardStyleKey>;
-  rippleStyles?: ICompiledStyles<IRippleStyleKey>;
-  focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
-  elevationStyles?: ICompiledStyles<IElevationStyleKey>;
 }
 
 export interface ITabTheme {
@@ -267,9 +276,9 @@ export interface ITheme {
     };
     ListItem: {
       vars?: IStyleVarsTheme<IListItemStyleVarKey>;
-      itemVars?: IStyleVarsTheme<IItemStyleVarKey>;
       styles?: ICompiledStyles<IListItemStyleKey>;
       itemStyles?: ICompiledStyles<IItemStyleKey>;
+      itemVars?: IStyleVarsTheme<IItemStyleVarKey>;
       rippleStyles: ICompiledStyles<IRippleStyleKey>;
       focusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
     };
@@ -289,9 +298,28 @@ export interface ITheme {
     OutlinedPaper: IPaperTheme & {
       styles?: ICompiledStyles<IPaperStyleKey>;
     };
-    Card: ICardTheme;
+    Card: ICardTheme & {
+      elevationStyles?: ICompiledStyles<IElevationStyleKey>;
+      rippleStyles?: ICompiledStyles<IRippleStyleKey>;
+      focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
+    };
+    CardHeader: {
+      vars?: IStyleVarsTheme<IItemStyleVarKey>;
+    };
+    CardMedia: {
+      vars: IStyleVarsTheme<ICardMediaStyleVarKey>;
+      styles?: ICompiledStyles<ICardMediaStyleKey>;
+    };
     CardContent: {
+      vars: IStyleVarsTheme<ICardContentStyleVarKey>;
       styles?: ICompiledStyles<ICardContentStyleKey>;
+    };
+    CardTitle: {
+      vars: IStyleVarsTheme<ICardTitleStyleVarKey>;
+      styles?: ICompiledStyles<ICardTitleStyleKey>;
+    };
+    CardActions: {
+      styles?: ICompiledStyles<ICardActionsStyleKey>;
     };
     ElevatedCard: ICardTheme;
     FilledCard: ICardTheme;

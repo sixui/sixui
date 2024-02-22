@@ -1,11 +1,11 @@
 import * as React from 'react';
 
 import {
-  type IRadioGroupContextValue,
+  type IRadioGroupContext,
   RadioGroupContext,
 } from './RadioGroupContext';
 
-export interface IRadioGroupState extends IRadioGroupContextValue {}
+export interface IRadioGroupState extends IRadioGroupContext {}
 
 export const useRadioGroupContext = (): IRadioGroupState | undefined =>
   React.useContext(RadioGroupContext);

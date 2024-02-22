@@ -18,7 +18,7 @@ export const styles: MapNamespaces<IOutlinedCardStyles> =
       borderColor: vars.outlineColor,
       borderRadius: 'inherit',
     },
-    outline$interactive: {
+    outline$actionable: {
       borderColor: {
         default: vars.outlineColor,
         ':is([data-focused])': vars.outlineColor$focus,
