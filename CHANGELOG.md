@@ -1,3 +1,15 @@
+# v0.0.39 (Thu Feb 22 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Exposing Card component ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.38 (Thu Feb 22 2024)
 
 #### ⚠️ Pushed to `main`
