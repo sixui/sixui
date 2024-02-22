@@ -4,8 +4,8 @@ import { accumulate, asArray } from '@olivierpascal/helpers';
 import type {
   IZeroOrMore,
   ICompiledStyles,
-  IAny,
   IMaybeAsync,
+  IAny,
 } from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
@@ -19,23 +19,40 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useVisualState } from '@/hooks/useVisualState';
 import { Elevation, IElevationStyleKey } from '@/components/utils/Elevation';
-import { FocusRing, IFocusRingStyleKey } from '@/components/utils/FocusRing';
+import {
+  FocusRing,
+  type IFocusRingStyleKey,
+} from '@/components/utils/FocusRing';
 import { Ripple, type IRippleStyleKey } from '@/components/utils/Ripple';
+import { CardContext, type ICardContext } from './CardContext';
+import { CardHeader } from '../CardHeader';
+import { CardMedia } from '../CardMedia';
+import { CardContent } from '../CardContent';
+import { CardTitle } from '../CardTitle';
+import { CardActions } from '../CardActions';
 
 export interface ICardProps
-  extends IContainer<ICardStyleKey, ICardStyleVarKey>,
-    Pick<
-      React.ButtonHTMLAttributes<HTMLButtonElement>,
-      'disabled' | 'aria-label' | 'aria-haspopup' | 'aria-expanded'
-    >,
-    Pick<React.LinkHTMLAttributes<HTMLLinkElement>, 'href'> {
-  component?: React.ElementType;
+  extends IContainer<ICardStyleKey, ICardStyleVarKey> {
   variant?: ICardVariant;
   children: React.ReactNode;
-  onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
+  elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
   rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
   focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-  elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
+  component?: React.ElementType;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
+  href?: string;
+  disabled?: boolean;
+  'aria-label'?: string;
+  'aria-haspopup'?: boolean;
+  'aria-expanded'?: boolean;
+}
+
+export interface ICardSubComponents {
+  Header: typeof CardHeader;
+  Media: typeof CardMedia;
+  Content: typeof CardContent;
+  Title: typeof CardTitle;
+  Actions: typeof CardActions;
 }
 
 type ICardVariantMap = {
@@ -52,9 +69,8 @@ const variantMap: ICardVariantMap = {
 };
 
 // https://github.com/material-components/material-web/blob/main/labs/card/internal/card.ts
-export const Card: React.FC<ICardProps> = ({
+export const Card: React.FC<ICardProps> & ICardSubComponents = ({
   variant = 'filled',
-  disabled,
   children,
   onClick,
   href,
@@ -79,82 +95,87 @@ export const Card: React.FC<ICardProps> = ({
     [theme.styles, variantTheme.styles, props.styles, visualState],
   );
 
-  const isInteractive = !disabled && (!!href || !!onClick);
+  const disabled = props.disabled;
+  const actionable = !disabled && (!!href || !!onClick);
+
+  const hasOutline =
+    !!theme.styles?.outline ||
+    !!variantTheme.styles?.outline ||
+    asArray(props.styles).some((styles) => !!styles?.outline);
+
   const Component: React.ElementType = props.component
     ? props.component
     : href
       ? 'a'
-      : onClick
-        ? 'button'
-        : 'div';
+      : 'div';
 
-  const hasOutline =
-    theme.styles?.outline ||
-    variantTheme.styles?.outline ||
-    asArray(props.styles).some((styles) => !!styles?.outline);
+  const context: ICardContext = {
+    actionable,
+  };
 
   return (
-    <Component
-      {...styleProps(
-        [
-          'host',
-          isInteractive && 'host$interactive',
-          disabled && 'host$disabled',
-          props.sx,
-        ],
-        [theme.vars, variantTheme.vars, props.theme],
-      )}
-      ref={actionRef}
-      href={href}
-      onClick={onClick}
-      role={isInteractive ? 'button' : undefined}
-      tabIndex={disabled || !isInteractive ? -1 : 0}
-      aria-label={props['aria-label']}
-      aria-haspopup={props['aria-haspopup']}
-      aria-expanded={props['aria-expanded']}
-    >
-      <Elevation
-        styles={[
-          theme.elevationStyles,
-          variantTheme.elevationStyles,
-          ...asArray(props.elevationStyles),
-        ]}
-        disabled={disabled}
-      />
-      {hasOutline ? (
-        <div
-          {...styleProps([
-            'outline',
-            isInteractive && 'outline$interactive',
-            disabled && 'outline$disabled',
-          ])}
+    <CardContext.Provider value={context}>
+      <Component
+        {...styleProps(
+          [
+            'host',
+            actionable && 'host$actionable',
+            disabled && 'host$disabled',
+            props.sx,
+          ],
+          [theme.vars, variantTheme.vars, props.theme],
+        )}
+        ref={actionRef}
+        href={href}
+        onClick={onClick}
+        role={actionable ? 'button' : undefined}
+        tabIndex={disabled || !actionable ? -1 : 0}
+        aria-label={props['aria-label']}
+        aria-haspopup={props['aria-haspopup']}
+        aria-expanded={props['aria-expanded']}
+      >
+        <Elevation
+          styles={[theme.elevationStyles, ...asArray(props.elevationStyles)]}
+          disabled={disabled}
         />
-      ) : null}
-      <div {...styleProps(['background', disabled && 'background$disabled'])} />
-      {isInteractive ? (
-        <React.Fragment>
-          <FocusRing
-            styles={[
-              theme.focusRingStyles,
-              variantTheme.focusRingStyles,
-              ...asArray(props.focusRingStyles),
-            ]}
-            for={actionRef}
-            visualState={visualState}
+        {actionable ? (
+          <React.Fragment>
+            <FocusRing
+              styles={[
+                theme.focusRingStyles,
+                ...asArray(props.focusRingStyles),
+              ]}
+              for={actionRef}
+              visualState={visualState}
+            />
+            <Ripple
+              styles={[theme.rippleStyles, ...asArray(props.rippleStyles)]}
+              for={actionRef}
+              disabled={disabled}
+              visualState={visualState}
+            />
+          </React.Fragment>
+        ) : null}
+        {hasOutline ? (
+          <div
+            {...styleProps([
+              'outline',
+              actionable && 'outline$actionable',
+              disabled && 'outline$disabled',
+            ])}
           />
-          <Ripple
-            styles={[
-              theme.rippleStyles,
-              variantTheme.rippleStyles,
-              ...asArray(props.rippleStyles),
-            ]}
-            for={actionRef}
-            disabled={disabled}
-            visualState={visualState}
-          />
-        </React.Fragment>
-      ) : null}
-      <div {...styleProps(['content'])}>{children}</div>
-    </Component>
+        ) : null}
+        <div
+          {...styleProps(['background', disabled && 'background$disabled'])}
+        />
+        {children}
+      </Component>
+    </CardContext.Provider>
   );
 };
+
+Card.Header = CardHeader;
+Card.Media = CardMedia;
+Card.Content = CardContent;
+Card.Title = CardTitle;
+Card.Actions = CardActions;

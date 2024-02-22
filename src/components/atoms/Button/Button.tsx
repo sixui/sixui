@@ -88,22 +88,26 @@ export const Button: React.FC<IButtonProps> = ({
 
   const handleAnimationIteration = (): void => setAnimating(handlingClick);
 
-  const handleClick: React.MouseEventHandler<HTMLElement> | undefined = onClick
-    ? (event) => {
-        if (handlingClick) {
-          return;
-        }
+  const handleClick: React.MouseEventHandler<HTMLElement> | undefined = (
+    event,
+  ) => {
+    if (handlingClick) {
+      return;
+    }
 
-        setHandlingClick(true);
-        setAnimating(true);
+    if (!onClick) {
+      return;
+    }
 
-        Promise.resolve(onClick(event))
-          .finally(() => setHandlingClick(false))
-          .catch((error: Error) => {
-            throw error;
-          });
-      }
-    : undefined;
+    setHandlingClick(true);
+    setAnimating(true);
+
+    Promise.resolve(onClick(event))
+      .finally(() => setHandlingClick(false))
+      .catch((error: Error) => {
+        throw error;
+      });
+  };
 
   const loading =
     (props.loading || handlingClick) &&

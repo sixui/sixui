@@ -3,15 +3,13 @@ export type ICardVariant = (typeof cardVariants)[number];
 
 export type ICardStyleKey =
   | 'host'
-  | 'host$interactive'
+  | 'host$actionable'
   | 'host$disabled'
   | 'outline'
-  | 'outline$interactive'
+  | 'outline$actionable'
   | 'outline$disabled'
   | 'background'
-  | 'background$disabled'
-  | 'icon'
-  | 'content';
+  | 'background$disabled';
 
 export type ICardStyleVarKey =
   | 'containerShape'
@@ -33,8 +31,6 @@ export type ICardStyleVarKey =
   | 'stateLayerColor$hover'
   | 'stateLayerOpacity$hover'
   | 'stateLayerColor$pressed'
-  | 'stateLayerOpacity$pressed'
-  | 'iconColor'
-  | 'iconSize';
+  | 'stateLayerOpacity$pressed';
 
 export type ICardStyleStateVarKey = 'elevation';

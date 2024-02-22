@@ -80,6 +80,7 @@ enum IState {
 const isTouch = ({ pointerType }: PointerEvent): boolean =>
   pointerType === 'touch';
 
+// https://github.com/material-components/material-web/blob/main/ripple/internal/ripple.ts
 export const Ripple: React.FC<IRippleProps> = ({
   visualState,
   for: forElementRef,
@@ -96,7 +97,6 @@ export const Ripple: React.FC<IRippleProps> = ({
     [theme.styles, props.styles],
   );
 
-  const [hovered, setHovered] = React.useState(false);
   const [pressed, setPressed] = React.useState(false);
   const [host, setHost] = React.useState<HTMLDivElement | null>();
 
@@ -156,8 +156,11 @@ export const Ripple: React.FC<IRippleProps> = ({
       }
 
       const isPrimaryButton = event.buttons === 1;
+      if (!isTouch(event) && !isPrimaryButton) {
+        return false;
+      }
 
-      return isTouch(event) || isPrimaryButton;
+      return true;
     },
     [disabled],
   );
@@ -215,7 +218,7 @@ export const Ripple: React.FC<IRippleProps> = ({
       }
 
       const { width, height } = host.getBoundingClientRect();
-      // end in the center
+      //Eend in the center
       const endPoint = {
         x: (width - initialSizeRef.current) / 2,
         y: (height - initialSizeRef.current) / 2,
@@ -228,7 +231,7 @@ export const Ripple: React.FC<IRippleProps> = ({
         y: height / 2,
       };
 
-      // center around start point
+      // Center around start point
       const centeredStartPoint = {
         x: startPoint.x - initialSizeRef.current / 2,
         y: startPoint.y - initialSizeRef.current / 2,
@@ -312,30 +315,11 @@ export const Ripple: React.FC<IRippleProps> = ({
     setPressed(false);
   }, []);
 
-  React.useEffect(() => {
-    if (!disabled && !getControl()?.matches(':hover')) {
-      setHovered(false);
-    }
-  }, [disabled, getControl]);
-
-  const handlePointerEnter = React.useCallback(
-    (event: PointerEvent) => {
-      if (!shouldReactToEvent(event)) {
-        return;
-      }
-
-      setHovered(true);
-    },
-    [shouldReactToEvent],
-  );
-
   const handlePointerLeave = React.useCallback(
     (event: PointerEvent) => {
       if (!shouldReactToEvent(event)) {
         return;
       }
-
-      setHovered(false);
 
       // Release a held mouse or pen press that moves outside the element.
       if (stateRef.current !== IState.Inactive) {
@@ -359,7 +343,7 @@ export const Ripple: React.FC<IRippleProps> = ({
         return;
       }
 
-      // after a longpress contextmenu event, an extra `pointerdown` can be
+      // After a longpress contextmenu event, an extra `pointerdown` can be
       // dispatched to the pressed element. Check that the down is within
       // bounds of the element in this case.
       if (checkBoundsAfterContextMenuRef.current && !inBounds(event)) {
@@ -424,6 +408,7 @@ export const Ripple: React.FC<IRippleProps> = ({
       if (disabled) {
         return;
       }
+
       if (stateRef.current === IState.WaitingForClick) {
         void endPressAnimation();
 
@@ -431,7 +416,7 @@ export const Ripple: React.FC<IRippleProps> = ({
       }
 
       if (stateRef.current === IState.Inactive) {
-        // keyboard synthesized click event
+        // Keyboard synthesized click event
         startPressAnimation(event);
         void endPressAnimation();
       }
@@ -454,7 +439,6 @@ export const Ripple: React.FC<IRippleProps> = ({
       return;
     }
 
-    control.addEventListener('pointerenter', handlePointerEnter);
     control.addEventListener('pointerleave', handlePointerLeave);
     control.addEventListener('pointerdown', handlePointerDown);
     control.addEventListener('pointerup', handlePointerUp);
@@ -463,7 +447,6 @@ export const Ripple: React.FC<IRippleProps> = ({
     control.addEventListener('contextmenu', handleContextMenu);
 
     return () => {
-      control.removeEventListener('pointerenter', handlePointerEnter);
       control.removeEventListener('pointerleave', handlePointerLeave);
       control.removeEventListener('pointerdown', handlePointerDown);
       control.removeEventListener('pointerup', handlePointerUp);
@@ -473,7 +456,6 @@ export const Ripple: React.FC<IRippleProps> = ({
     };
   }, [
     getControl,
-    handlePointerEnter,
     handlePointerLeave,
     handlePointerDown,
     handlePointerUp,
@@ -493,7 +475,7 @@ export const Ripple: React.FC<IRippleProps> = ({
       <div
         {...styleProps([
           'surface',
-          (hovered || visualState?.hovered) && 'surface$hover',
+          visualState?.hovered && 'surface$hover',
           pressed && 'surface$pressed',
           !pressed && visualState?.pressed && 'surface$pressedStatic',
         ])}

@@ -41,7 +41,7 @@ const vars: Partial<IStyleVars<IButtonStyleVarKey>> = {
   // touch
   touchHeight: '48px',
 
-  // label
+  // labelText
   labelTextFont: typescaleVars.labelFont$lg,
   labelTextLineHeight: typescaleVars.labelLineHeight$lg,
   labelTextSize: typescaleVars.labelSize$lg,

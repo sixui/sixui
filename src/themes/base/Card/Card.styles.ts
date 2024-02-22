@@ -3,19 +3,21 @@ import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
 import type { ICardStyleKey } from '@/components/atoms/Card';
-import type { IRippleStyleKey } from '@/components/utils/Ripple';
 import type { IElevationStyleKey } from '@/components/utils/Elevation';
+import type { IRippleStyleKey } from '@/components/utils/Ripple';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import { componentVars as vars } from './Card.stylex';
-import { componentVars as cardStateVars } from './Card.states.stylex';
-import { componentVars as elevationVars } from '../Elevation/Elevation.stylex';
 import { componentVars as focusRingVars } from '../FocusRing/FocusRing.stylex';
 import { componentVars as rippleVars } from '../Ripple/Ripple.stylex';
+import { componentVars as cardStateVars } from './Card.states.stylex';
+import { componentVars as elevationVars } from '../Elevation/Elevation.stylex';
 
 // https://github.com/material-components/material-web/blob/main/labs/card/internal/_shared.scss
 type ICardStyles = IStyles<ICardStyleKey>;
 export const styles: MapNamespaces<ICardStyles> = stylex.create<ICardStyles>({
   host: {
+    display: 'flex',
+    flexDirection: 'column',
     background: 'none',
     borderStyle: 'unset',
     cursor: 'inherit',
@@ -34,7 +36,7 @@ export const styles: MapNamespaces<ICardStyles> = stylex.create<ICardStyles>({
     // eslint-disable-next-line @stylexjs/valid-styles
     [cardStateVars.elevation]: vars.containerElevation,
   },
-  host$interactive: {
+  host$actionable: {
     cursor: 'pointer',
     [cardStateVars.elevation]: {
       default: vars.containerElevation,
@@ -60,19 +62,25 @@ export const styles: MapNamespaces<ICardStyles> = stylex.create<ICardStyles>({
     backgroundColor: vars.containerColor$disabled,
     opacity: vars.containerOpacity$disabled,
   },
-  icon: {
-    color: vars.iconColor,
-    width: vars.iconSize,
-    height: vars.iconSize,
-  },
   outline: {
     zIndex: 1,
   },
-  content: {
-    display: 'flex',
-    flexDirection: 'column',
+});
+
+type IElevationStyles = IStyles<IElevationStyleKey>;
+export const elevationStyles: MapNamespaces<IElevationStyles> = stylex.create<
+  IStyles<IElevationStyleKey>
+>({
+  host: {
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [elevationVars.boxShadow]: cardStateVars.elevation,
+
     borderRadius: 'inherit',
-    position: 'relative',
+    inset: 0,
+    pointerEvents: 'none',
+    position: 'absolute',
+
+    zIndex: -1,
   },
 });
 
@@ -101,22 +109,5 @@ export const focusRingStyles: MapNamespaces<IFocusRingStyles> = stylex.create<
   host: {
     // eslint-disable-next-line @stylexjs/valid-styles
     [focusRingVars.shape]: vars.containerShape,
-  },
-});
-
-type IElevationStyles = IStyles<IElevationStyleKey>;
-export const elevationStyles: MapNamespaces<IElevationStyles> = stylex.create<
-  IStyles<IElevationStyleKey>
->({
-  host: {
-    // eslint-disable-next-line @stylexjs/valid-styles
-    [elevationVars.boxShadow]: cardStateVars.elevation,
-
-    borderRadius: 'inherit',
-    inset: 0,
-    pointerEvents: 'none',
-    position: 'absolute',
-
-    zIndex: -1,
   },
 });

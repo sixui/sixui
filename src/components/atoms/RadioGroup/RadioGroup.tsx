@@ -5,11 +5,11 @@ import { useForkRef } from '@/hooks/useForkRef';
 import { useId } from '@/hooks/useId';
 import { useControlled } from '@/hooks/useControlled';
 import {
-  type IRadioGroupContextValue,
+  type IRadioGroupContext,
   RadioGroupContext,
 } from './RadioGroupContext';
 
-export interface IRadioGroupProps extends IRadioGroupContextValue {
+export interface IRadioGroupProps extends IRadioGroupContext {
   actions?: React.RefObject<unknown>;
   children?: React.ReactNode;
   defaultValue?: string;
@@ -61,7 +61,7 @@ export const RadioGroup = React.forwardRef(function RadioGroup(
           onChange?.(value);
         },
         value,
-      }) satisfies IRadioGroupContextValue,
+      }) satisfies IRadioGroupContext,
     [name, onChange, value, setValue],
   );
 

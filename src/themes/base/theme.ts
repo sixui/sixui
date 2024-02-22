@@ -151,14 +151,27 @@ import { styles as outlinedPaperStyles } from './Paper/OutlinedPaper.styles';
 import { componentTheme as cardTheme } from './Card/Card.stylex';
 import {
   styles as cardStyles,
-  rippleStyles as cardRippleStyles,
-  focusRingStyles as cardFocusRingStyles,
   elevationStyles as cardElevationStyles,
+  rippleStyles as cardActionAreaRippleStyles,
+  focusRingStyles as cardActionAreaFocusRingStyles,
 } from './Card/Card.styles';
 import { componentTheme as elevatedCardTheme } from './Card/ElevatedCard.stylex';
 import { componentTheme as filledCardTheme } from './Card/FilledCard.stylex';
 import { componentTheme as outlinedCardTheme } from './Card/OutlinedCard.stylex';
 import { styles as outlinedCardStyles } from './Card/OutlinedCard.styles';
+
+import { componentTheme as cardHeaderTheme } from './CardHeader/CardHeader.stylex';
+
+import { componentTheme as cardMediaTheme } from './CardMedia/CardMedia.stylex';
+import { styles as cardMediaStyles } from './CardMedia/CardMedia.styles';
+
+import { componentTheme as cardContentTheme } from './CardContent/CardContent.stylex';
+import { styles as cardContentStyles } from './CardContent/CardContent.styles';
+
+import { componentTheme as cardTitleTheme } from './CardTitle/CardTitle.stylex';
+import { styles as cardTitleStyles } from './CardTitle/CardTitle.styles';
+
+import { styles as cardActionsStyles } from './CardActions/CardActions.styles';
 
 import { componentTheme as tabTheme } from './Tab/Tab.stylex';
 import {
@@ -342,9 +355,9 @@ export const theme: ITheme = {
     },
     ListItem: {
       vars: listItemTheme,
-      itemVars: listItemItemTheme,
       styles: listItemStyles,
       itemStyles: listItemItemStyles,
+      itemVars: listItemItemTheme,
       rippleStyles: listItemRippleStyles,
       focusRingStyles: listItemFocusRingStyles,
     },
@@ -372,9 +385,27 @@ export const theme: ITheme = {
     Card: {
       vars: cardTheme,
       styles: cardStyles,
-      rippleStyles: cardRippleStyles,
-      focusRingStyles: cardFocusRingStyles,
       elevationStyles: cardElevationStyles,
+      rippleStyles: cardActionAreaRippleStyles,
+      focusRingStyles: cardActionAreaFocusRingStyles,
+    },
+    CardHeader: {
+      vars: cardHeaderTheme,
+    },
+    CardMedia: {
+      vars: cardMediaTheme,
+      styles: cardMediaStyles,
+    },
+    CardContent: {
+      vars: cardContentTheme,
+      styles: cardContentStyles,
+    },
+    CardTitle: {
+      vars: cardTitleTheme,
+      styles: cardTitleStyles,
+    },
+    CardActions: {
+      styles: cardActionsStyles,
     },
     ElevatedCard: { vars: elevatedCardTheme },
     FilledCard: { vars: filledCardTheme },

@@ -30,9 +30,21 @@
   - Prepend "use-client" directive (o components/hooks) exported from core librairies + add docs and examples for using MUI libraries with Next.js App Router
     - https://github.com/mui/material-ui/pull/37656
 
+- Paper
+
+  - Elevated
+
 - Card
 
+  - Orientation
   - Derivate from Paper
+  - Disabled state
+  - Video Media
+  - Loading state
+
+- CardMedia
+
+  - Support video
 
 - Avatar
 
@@ -74,6 +86,10 @@
   - Should we export TabContext?
   - Badges
   - Test with reduced motion
+
+- Ripple
+
+  - FIXME: no ripple effect on keyboard validation?
 
 - Build
 

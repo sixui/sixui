@@ -9,9 +9,9 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 export interface IItemProps
   extends IContainer<IItemStyleKey, IItemStyleVarKey> {
   container?: React.ReactNode;
-  overline?: React.ReactNode;
   start?: React.ReactNode;
-  children: React.ReactNode;
+  overline?: React.ReactNode;
+  children?: React.ReactNode;
   headline?: React.ReactNode;
   supportingText?: React.ReactNode;
   trailingSupportingText?: React.ReactNode;
@@ -20,14 +20,14 @@ export interface IItemProps
 
 // https://github.com/material-components/material-web/blob/main/labs/item/item.ts
 export const Item: React.FC<IItemProps> = ({
-  children,
   container,
   start,
-  end,
   overline,
+  children,
   headline,
   supportingText,
   trailingSupportingText,
+  end,
   ...props
 }) => {
   const theme = useComponentTheme('Item');

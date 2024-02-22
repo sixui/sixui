@@ -14,7 +14,6 @@ import {
   Cog6ToothIcon as ActiveCog6ToothIcon,
 } from '@heroicons/react/24/solid';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { type ITabsProps, Tabs } from './Tabs';
 import { Tab } from '../Tab';
 import { TabList } from '../TabList';
@@ -32,7 +31,6 @@ const defaultArgs = {} satisfies Partial<ITabsProps>;
 const styles = stylex.create({
   tabPanel: {
     padding: '16px',
-    color: colorRolesVars.onSurface,
   },
 });
 

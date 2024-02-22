@@ -3,6 +3,7 @@ import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
 import type { ITypographyStyleKey } from '@/components/atoms/Typography';
+import { colorRolesVars } from '../vars/colorRoles.stylex';
 import { typescaleVars } from '../vars/typo.stylex';
 
 type ITypographyStyles = IStyles<ITypographyStyleKey>;
@@ -10,6 +11,7 @@ export const styles: MapNamespaces<ITypographyStyles> =
   stylex.create<ITypographyStyles>({
     host: {
       margin: 0,
+      color: colorRolesVars.onSurface,
     },
     host$gutterBottom: {
       marginBottom: '0.35em',

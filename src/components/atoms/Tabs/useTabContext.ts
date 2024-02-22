@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import { type ITabContextValue, TabContext } from './TabContext';
+import { type ITabContext, TabContext } from './TabContext';
 
-export interface ITabsState extends ITabContextValue {}
+export interface ITabsState extends ITabContext {}
 
 export const useTabContext = (): ITabsState | undefined =>
   React.useContext(TabContext);
