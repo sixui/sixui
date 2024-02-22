@@ -1,3 +1,15 @@
+# v0.0.37 (Thu Feb 22 2024)
+
+#### 🐛 Bug Fix
+
+- Card [#11](https://github.com/sixui/ui/pull/11) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.36 (Tue Feb 20 2024)
 
 #### ⚠️ Pushed to `main`
