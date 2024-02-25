@@ -1,3 +1,15 @@
+# v0.0.41 (Sun Feb 25 2024)
+
+#### ⚠️ Pushed to `main`
+
+- hotfix: replacing margin with padding in CardContent ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.40 (Sun Feb 25 2024)
 
 #### ⚠️ Pushed to `main`
