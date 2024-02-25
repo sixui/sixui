@@ -108,7 +108,7 @@ export const typescaleVars = stylex.defineVars({
   labelWeight$sm: typefaceVars.weightRegular,
 
   // title-large
-  titleFont$lg: typefaceVars.plain,
+  titleFont$lg: typefaceVars.brand,
   titleLineHeight$lg: '1.75rem',
   titleSize$lg: '1.375rem',
   titleLetterSpacing$lg: '0',

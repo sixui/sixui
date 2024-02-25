@@ -13,8 +13,8 @@ export const styles: MapNamespaces<ICardContentStyles> =
       flexDirection: 'column',
       gap: 16,
 
-      marginTop: vars.topSpace,
-      marginBottom: vars.bottomSpace,
+      paddingTop: vars.topSpace,
+      paddingBottom: vars.bottomSpace,
       paddingLeft: vars.leadingSpace,
       paddingRight: vars.trailingSpace,
     },

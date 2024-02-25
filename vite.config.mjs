@@ -5,6 +5,8 @@ import styleX from 'vite-plugin-stylex';
 import svgr from 'vite-plugin-svgr';
 
 // https://vitejs.dev/config/
+
+// eslint-disable-next-line import/no-default-export
 export default defineConfig({
   resolve: {
     alias: [

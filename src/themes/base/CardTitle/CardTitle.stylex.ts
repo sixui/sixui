@@ -8,19 +8,19 @@ import { typescaleVars } from '../vars/typo.stylex';
 const vars: Partial<IStyleVars<ICardTitleStyleVarKey>> = {
   // headline
   headlineColor: colorRolesVars.onSurface,
-  headlineFont: typescaleVars.headlineFont$sm,
-  headlineLineHeight: typescaleVars.headlineLineHeight$sm,
-  headlineSize: typescaleVars.headlineSize$sm,
-  headlineLetterSpacing: typescaleVars.headlineLetterSpacing$sm,
-  headlineWeight: typescaleVars.headlineWeight$sm,
+  headlineFont: typescaleVars.titleFont$lg,
+  headlineLineHeight: typescaleVars.titleLineHeight$lg,
+  headlineSize: typescaleVars.titleSize$lg,
+  headlineLetterSpacing: typescaleVars.titleLetterSpacing$lg,
+  headlineWeight: typescaleVars.titleWeight$lg,
 
   // subhead
   subheadColor: colorRolesVars.onSurface,
-  subheadFont: typescaleVars.bodyFont$lg,
-  subheadLineHeight: typescaleVars.bodyLineHeight$lg,
-  subheadSize: typescaleVars.bodySize$lg,
-  subheadLetterSpacing: typescaleVars.bodyLetterSpacing$lg,
-  subheadWeight: typescaleVars.bodyWeight$lg,
+  subheadFont: typescaleVars.titleFont$md,
+  subheadLineHeight: typescaleVars.titleLineHeight$md,
+  subheadSize: typescaleVars.titleSize$md,
+  subheadLetterSpacing: typescaleVars.titleLetterSpacing$md,
+  subheadWeight: typescaleVars.titleWeight$md,
 
   // supportingText
   supportingTextColor: colorRolesVars.onSurfaceVariant,

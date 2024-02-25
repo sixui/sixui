@@ -1,8 +1,13 @@
 # TO DO
 
+- CONTRIBUTING.md
+
+- Thumb: like avatar but square and no fallback
+
 - CI
 
   - check if .js and .d.ts has been correctly generated in /dist
+  - standardize git commit messages using Husky
 
 - ESLint
 
@@ -36,11 +41,12 @@
 
 - Card
 
-  - Orientation
   - Derivate from Paper
   - Disabled state
   - Video Media
   - Loading state
+  - Color
+  - Title: truncate on x lines
 
 - CardMedia
 
@@ -53,6 +59,11 @@
 - TextField
 
   - attrs: id, autocapitalize
+  - password: eye button to show/hide password
+
+- CheckField
+
+  - attrs: id
 
 - Badge
 
@@ -122,6 +133,7 @@
 
 ## Refactoring
 
+- Prefer types over interfaces
 - Use useHover hook?
   - https://react-spectrum.adobe.com/blog/building-a-button-part-2.html
 - Chip/Fab/IconButton/ListItem inherit from ButtonBase
@@ -170,6 +182,7 @@
 
 ## FIX ME
 
+- Check why sx property cannot take undefined or boolean values
 - Button / Chip / Fab / ...
   - Adapt attributes if that's a button or a link (ie. type is just for buttons)
 - Chromatic
@@ -264,6 +277,7 @@ Components
 - [ ] Image List
 - [ ] Linear Progress Indicator
 - [ ] Loading Progress Bar
+- [ ] Password Strength Meter
 - [ ] Slider
 - [ ] Snackbar
 - [ ] Skeleton

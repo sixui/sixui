@@ -31,6 +31,26 @@ export const Basic: IStory = {
   },
 };
 
+export const WithTrailingSeparator: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={(props) => (
+        <Breadcrumbs {...props} aria-label='breadcrumb'>
+          <span>Item 1</span>
+          <span>Item 2</span>
+          <span>Item 3</span>
+        </Breadcrumbs>
+      )}
+      props={props}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    children: undefined,
+    trailing: true,
+  },
+};
+
 export const WithCustomSeparator: IStory = {
   render: (props) => (
     <ComponentShowcase

@@ -30,6 +30,7 @@ export interface IBreadcrumbsProps
   itemCountAfterCollapse?: number;
   maxItems?: number;
   separator?: React.ReactNode;
+  trailing?: boolean;
 }
 
 export const Breadcrumbs: React.FC<IBreadcrumbsProps> = ({
@@ -39,6 +40,7 @@ export const Breadcrumbs: React.FC<IBreadcrumbsProps> = ({
   itemCountAfterCollapse = 1,
   maxItems = 8,
   separator = '/',
+  trailing,
   ...props
 }) => {
   const theme = useComponentTheme('Breadcrumbs');
@@ -55,22 +57,24 @@ export const Breadcrumbs: React.FC<IBreadcrumbsProps> = ({
 
   const insertSeparators = React.useCallback(
     (items: Array<JSX.Element>): Array<JSX.Element> =>
-      items.reduce((acc, current, index) => {
-        return index < items.length - 1
-          ? [
-              ...acc,
-              current,
-              <li
-                aria-hidden
-                key={`separator-${index}`}
-                {...styleProps(['item', 'separator'])}
-              >
-                {separator}
-              </li>,
-            ]
-          : [...acc, current];
-      }, [] as Array<JSX.Element>),
-    [styleProps, separator],
+      items.reduce(
+        (acc, current, index) =>
+          index < items.length - (trailing ? 0 : 1)
+            ? [
+                ...acc,
+                current,
+                <li
+                  aria-hidden
+                  key={`separator-${index}`}
+                  {...styleProps(['item', 'separator'])}
+                >
+                  {separator}
+                </li>,
+              ]
+            : [...acc, current],
+        [] as Array<JSX.Element>,
+      ),
+    [styleProps, separator, trailing],
   );
 
   const renderItemsBeforeAndAfter = (

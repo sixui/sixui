@@ -157,7 +157,9 @@ export const Variants: IStory = {
         },
         {
           variant: 'filled',
-          children: <ActionableContent headline='Actionable' />,
+          children: (
+            <ActionableContent headline='Actionable qskljd qlsjdlqskjd lqskjdlqsjd lqsjdlqsjd lqs dqs kjqslkdj qslkdj lqsj dlqs' />
+          ),
           onClick: (args: React.MouseEvent<HTMLElement>) =>
             sbHandleEvent('click:card', args),
         },
