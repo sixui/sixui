@@ -11,8 +11,8 @@ const vars: Partial<IStyleVars<ICardContentStyleVarKey>> = {
   // &:actionable
   leadingSpace$actionable: '16px',
   trailingSpace$actionable: '16px',
-  topSpace$actionable: '24px',
-  bottomSpace$actionable: '24px',
+  topSpace$actionable: '16px',
+  bottomSpace$actionable: '16px',
 };
 
 export const componentVars = stylex.defineVars(
