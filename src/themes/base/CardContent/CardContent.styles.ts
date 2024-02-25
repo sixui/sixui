@@ -19,8 +19,8 @@ export const styles: MapNamespaces<ICardContentStyles> =
       paddingRight: vars.trailingSpace,
     },
     host$actionable: {
-      marginTop: vars.topSpace$actionable,
-      marginBottom: vars.bottomSpace$actionable,
+      paddingTop: vars.topSpace$actionable,
+      paddingBottom: vars.bottomSpace$actionable,
       paddingLeft: vars.leadingSpace$actionable,
       paddingRight: vars.trailingSpace$actionable,
     },
