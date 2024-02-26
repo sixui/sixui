@@ -38,7 +38,8 @@ button {
 /* Remove autofill backgrounds */
 :-webkit-autofill,
 :-webkit-autofill:hover,
-:-webkit-autofill:focus {
+:-webkit-autofill:focus,
+:-webkit-autofill:active {
   /* Chrome hack, see: https://stackoverflow.com/a/44923433/7628220 */
   transition: background-color 5000s ease-in-out 0s;
 }
