@@ -9,6 +9,7 @@
 
   - check if .js and .d.ts has been correctly generated in /dist
   - standardize git commit messages using Husky
+  - FIXME: when minor updates, the minor version is updated in package.json but on nomjs it's marked as major update
 
 - ESLint
 

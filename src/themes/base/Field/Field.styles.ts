@@ -158,6 +158,12 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
     transitionDuration: visibleDuration,
     transitionTimingFunction: motionVars.easing$emphasized,
 
+    // Used to set the color of autofilled text in Chrome.
+    WebkitTextFillColor: {
+      default: vars.contentColor,
+      ':is([data-focused])': vars.contentColor$focus,
+      ':is(:not([data-focused])[data-hovered])': vars.contentColor$hover,
+    },
     color: {
       default: vars.contentColor,
       ':is([data-focused])': vars.contentColor$focus,
