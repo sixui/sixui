@@ -27,7 +27,7 @@ export interface IRadioProps
   extends IContainer<IRadioStyleKey, IRadioStyleVarKey>,
     Pick<
       React.InputHTMLAttributes<HTMLInputElement>,
-      'required' | 'disabled' | 'checked' | 'id' | 'name' | 'aria-label'
+      'id' | 'name' | 'required' | 'disabled' | 'checked' | 'aria-label'
     > {
   value?: string;
   onChange?: (checked: boolean) => IMaybeAsync<IAny>;
@@ -139,13 +139,13 @@ export const Radio: React.FC<IRadioProps> = ({
           {...styleProps(['input'])}
           ref={inputRef}
           id={id}
+          name={name}
           type='radio'
           checked={checked}
           value={value}
           disabled={disabled}
           required={required}
           onChange={handleChange}
-          name={name}
           aria-label={props['aria-label']}
         />
       </div>

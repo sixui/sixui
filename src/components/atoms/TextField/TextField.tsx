@@ -64,6 +64,7 @@ export interface ITextFieldProps
       | React.TextareaHTMLAttributes<HTMLTextAreaElement>,
       | 'required'
       | 'inputMode'
+      | 'id'
       | 'name'
       | 'disabled'
       | 'aria-label'
@@ -181,9 +182,10 @@ const variantMap: ITextFieldVariantMap = {
 export const TextField: React.FC<ITextFieldProps> = ({
   variant = 'filled',
   forwardRef,
-  name,
   label,
   required,
+  id,
+  name,
   prefixText,
   suffixText,
   start,
@@ -335,6 +337,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
             disabled && 'input$disabled',
           ])}
           ref={inputOrTextareaRef as React.RefObject<HTMLTextAreaElement>}
+          id={id}
           name={name}
           // TODO: aria-describedby="description"
           aria-invalid={hasError}
@@ -379,6 +382,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
             type === 'number' && 'input$number',
           ])}
           ref={inputOrTextareaRef as React.RefObject<HTMLInputElement>}
+          id={id}
           name={name}
           // TODO: aria-describedby="description"
           aria-invalid={hasError}
@@ -416,6 +420,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
       </div>
     );
   }, [
+    id,
     name,
     inputOrTextareaRef,
     isTextarea,

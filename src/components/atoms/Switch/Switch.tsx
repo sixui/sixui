@@ -33,7 +33,7 @@ export interface ISwitchProps
   extends IContainer<ISwitchStyleKey, ISwitchStyleVarKey>,
     Pick<
       React.InputHTMLAttributes<HTMLInputElement>,
-      'disabled' | 'required' | 'aria-label'
+      'id' | 'name' | 'disabled' | 'required' | 'aria-label'
     > {
   /**
    * Puts the switch in the selected state.
@@ -67,6 +67,8 @@ export interface ISwitchProps
 }
 
 export const Switch: React.FC<ISwitchProps> = ({
+  id,
+  name,
   required,
   loadingAnimation = 'progressIndicator',
   onChange,
@@ -135,6 +137,8 @@ export const Switch: React.FC<ISwitchProps> = ({
         <input
           {...styleProps(['input'])}
           ref={inputRef}
+          id={id}
+          name={name}
           type='checkbox'
           role='switch'
           aria-label={props['aria-label']}

@@ -33,6 +33,7 @@ export interface ICheckboxProps
       | 'required'
       | 'disabled'
       | 'checked'
+      | 'id'
       | 'name'
       | 'value'
       | 'aria-label'
@@ -53,6 +54,7 @@ export const Checkbox: React.FC<ICheckboxProps> = ({
   disabled,
   required,
   onChange,
+  id,
   name,
   value,
   ...props
@@ -126,6 +128,7 @@ export const Checkbox: React.FC<ICheckboxProps> = ({
           aria-label={props['aria-label']}
           aria-invalid={props['aria-invalid']}
           disabled={disabled}
+          id={id}
           name={name}
           value={value}
           required={required}
