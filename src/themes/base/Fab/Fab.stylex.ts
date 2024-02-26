@@ -9,6 +9,7 @@ import { stateVars } from '../vars/state.stylex';
 import { typescaleVars } from '../vars/typo.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-fab-primary.scss
+
 const vars: Partial<IStyleVars<IFabStyleVarKey>> = {
   // container
   containerWidth$sm: '40px',

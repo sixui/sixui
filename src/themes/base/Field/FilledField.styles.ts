@@ -7,6 +7,7 @@ import { componentVars as vars } from '../TextField/TextField.stylex';
 import { motionVars } from '../vars/motion.stylex';
 
 // https://github.com/material-components/material-web/blob/main/field/internal/_filled-field.scss
+
 type IFieldStyles = IStyles<IFieldStyleKey>;
 export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
   container$resizable: {

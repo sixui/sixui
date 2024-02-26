@@ -15,6 +15,8 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useVisualState } from '@/hooks/useVisualState';
 import { Elevation, IElevationStyleKey } from '@/components/utils/Elevation';
 
+// https://github.com/material-components/material-web/blob/main/labs/paper/internal/paper.ts
+
 export interface IPaperProps
   extends IContainer<IPaperStyleKey, IPaperStyleVarKey> {
   variant?: IPaperVariant;
@@ -36,7 +38,6 @@ const variantMap: IPaperVariantMap = {
   outlined: 'OutlinedPaper',
 };
 
-// https://github.com/material-components/material-web/blob/main/labs/paper/internal/paper.ts
 export const Paper: React.FC<IPaperProps> = ({
   variant = 'filled',
   children,

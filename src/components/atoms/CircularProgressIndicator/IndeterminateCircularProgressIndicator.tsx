@@ -11,6 +11,9 @@ import type { IIndeterminateCircularProgressIndicatorStyleKey } from './Indeterm
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 
+// https://github.com/material-components/material-web/blob/main/progress/internal/progress.ts
+// https://github.com/material-components/material-web/blob/main/progress/internal/circular-progress.ts
+
 export interface IIndeterminateCircularProgressIndicatorProps
   extends IContainer<
       | ICircularProgressIndicatorStyleKey
@@ -23,8 +26,6 @@ export interface IIndeterminateCircularProgressIndicatorProps
   disabled?: boolean;
 }
 
-// https://github.com/material-components/material-web/blob/main/progress/internal/progress.ts
-// https://github.com/material-components/material-web/blob/main/progress/internal/circular-progress.ts
 export const IndeterminateCircularProgressIndicator: React.FC<
   IIndeterminateCircularProgressIndicatorProps
 > = ({ size = 'md', disabled, ...props }) => {

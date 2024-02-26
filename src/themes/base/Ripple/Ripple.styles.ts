@@ -6,6 +6,7 @@ import type { IRippleStyleKey } from '@/components/utils/Ripple';
 import { componentVars as vars } from './Ripple.stylex';
 
 // https://github.com/material-components/material-web/blob/main/ripple/internal/_ripple.scss
+
 type IRippleStyles = IStyles<IRippleStyleKey>;
 export const styles: MapNamespaces<IRippleStyles> =
   stylex.create<IRippleStyles>({

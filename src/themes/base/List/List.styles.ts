@@ -5,6 +5,7 @@ import type { IStyles } from '@/helpers/types';
 import type { IListStyleKey } from '@/components/atoms/List';
 
 // https://github.com/material-components/material-web/blob/main/list/internal/_list.scss
+
 type IListStyles = IStyles<IListStyleKey>;
 export const styles: MapNamespaces<IListStyles> = stylex.create<IListStyles>({
   host: {

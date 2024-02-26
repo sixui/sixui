@@ -6,6 +6,7 @@ import type { IElevationStyleKey } from '@/components/utils/Elevation';
 import { componentVars as vars } from './Elevation.stylex';
 
 // https://github.com/material-components/material-web/blob/main/elevation/internal/_elevation.scss
+
 type IElevationStyles = IStyles<IElevationStyleKey>;
 export const styles: MapNamespaces<IElevationStyles> =
   stylex.create<IElevationStyles>({

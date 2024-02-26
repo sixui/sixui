@@ -6,6 +6,7 @@ import type { IButtonStyleKey } from '@/components/atoms/Button';
 import { componentVars as vars } from './Button.stylex';
 
 // https://github.com/material-components/material-web/blob/main/button/internal/_outlined-button.scss
+
 type IButtonStyles = IStyles<IButtonStyleKey>;
 export const styles: MapNamespaces<IButtonStyles> =
   stylex.create<IButtonStyles>({

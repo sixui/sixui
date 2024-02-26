@@ -15,6 +15,9 @@ import { componentVars as rippleVars } from '../Ripple/Ripple.stylex';
 import { componentVars as circularProgressIndicatorVars } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { motionVars } from '../vars/motion.stylex';
 
+// https://github.com/material-components/material-web/blob/main/button/internal/_shared.scss
+// https://github.com/material-components/material-web/blob/main/button/internal/_elevation.scss
+
 const halfSpinKeyframes = stylex.keyframes({
   '0%': {
     transform: 'rotate(0deg)',
@@ -24,8 +27,6 @@ const halfSpinKeyframes = stylex.keyframes({
   },
 });
 
-// https://github.com/material-components/material-web/blob/main/button/internal/_shared.scss
-// https://github.com/material-components/material-web/blob/main/button/internal/_elevation.scss
 type IButtonStyles = IStyles<IButtonStyleKey>;
 export const styles: MapNamespaces<IButtonStyles> =
   stylex.create<IButtonStyles>({

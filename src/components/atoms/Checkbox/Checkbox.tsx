@@ -24,6 +24,8 @@ import {
   type IFocusRingStyleKey,
 } from '@/components/utils/FocusRing';
 
+// https://github.com/material-components/material-web/blob/main/checkbox/internal/checkbox.ts
+
 export interface ICheckboxProps
   extends IContainer<ICheckboxStyleKey, ICheckboxStyleVarKey>,
     Pick<
@@ -47,7 +49,6 @@ export interface ICheckboxProps
   focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
 }
 
-// https://github.com/material-components/material-web/blob/main/checkbox/internal/checkbox.ts
 export const Checkbox: React.FC<ICheckboxProps> = ({
   disabled,
   required,

@@ -13,6 +13,7 @@ import { componentVars as cardStateVars } from './Card.states.stylex';
 import { componentVars as elevationVars } from '../Elevation/Elevation.stylex';
 
 // https://github.com/material-components/material-web/blob/main/labs/card/internal/_shared.scss
+
 type ICardStyles = IStyles<ICardStyleKey>;
 export const styles: MapNamespaces<ICardStyles> = stylex.create<ICardStyles>({
   host: {

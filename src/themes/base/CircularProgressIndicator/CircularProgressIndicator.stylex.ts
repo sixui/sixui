@@ -4,18 +4,17 @@ import type { IStyleVars } from '@/helpers/types';
 import type { ICircularProgressIndicatorStyleVarKey } from '@/components/atoms/CircularProgressIndicator';
 import { colorRolesVars } from '../vars/colorRoles.stylex';
 
-// in px
-
-const width = 2;
-
-const size$md = 18;
-const containerPadding$md = 0;
-
-const size$lg = 40;
-const containerPadding$lg = 0;
-
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-circular-progress-indicator.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-circular-progress-indicator.scss
+
+const width = 2; // px
+
+const size$md = 18; // px
+const containerPadding$md = 0; // px
+
+const size$lg = 40; // px
+const containerPadding$lg = 0; // px
+
 const vars: IStyleVars<ICircularProgressIndicatorStyleVarKey> = {
   color: colorRolesVars.primary,
   color$disabled: colorRolesVars.onSurface,

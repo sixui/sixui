@@ -6,6 +6,7 @@ import type { IPaperStyleKey } from '@/components/atoms/Paper';
 import { componentVars as vars } from './Paper.stylex';
 
 // https://github.com/material-components/material-web/blob/main/labs/Paper/internal/_outlined-Paper.scss
+
 type IOutlinedPaperStyles = IStyles<IPaperStyleKey>;
 export const styles: MapNamespaces<IOutlinedPaperStyles> =
   stylex.create<IOutlinedPaperStyles>({

@@ -21,6 +21,8 @@ import {
 } from '@/components/utils/FocusRing';
 import { useRadioGroupContext } from '../RadioGroup/useRadioGroupContext';
 
+// https://github.com/material-components/material-web/blob/main/radio/internal/radio.ts
+
 export interface IRadioProps
   extends IContainer<IRadioStyleKey, IRadioStyleVarKey>,
     Pick<
@@ -33,7 +35,6 @@ export interface IRadioProps
   focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
 }
 
-// https://github.com/material-components/material-web/blob/main/radio/internal/radio.ts
 export const Radio: React.FC<IRadioProps> = ({
   required,
   value,

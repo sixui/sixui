@@ -6,6 +6,8 @@ import type { IFieldStyleKey } from '@/components/atoms/Field';
 import { componentVars as vars } from '../TextField/TextField.stylex';
 import { motionVars } from '../vars/motion.stylex';
 
+// https://github.com/material-components/material-web/blob/main/field/internal/_outlined-field.scss
+
 // Add padding that will grow to compensate for the outline's shape.
 // This is needed to prevent the outline border from clipping with the label
 // and is mirrored in the container padding to align the content and resting
@@ -13,7 +15,6 @@ import { motionVars } from '../vars/motion.stylex';
 const startSpace = `max(${vars.leadingSpace}, ${vars.outlineLabelPadding})`;
 const endSpace = `${vars.trailingSpace}`;
 
-// https://github.com/material-components/material-web/blob/main/field/internal/_outlined-field.scss
 type IFieldStyles = IStyles<IFieldStyleKey>;
 export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
   container$resizable: {

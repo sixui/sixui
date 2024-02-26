@@ -17,6 +17,8 @@ import { useVisualState } from '@/hooks/useVisualState';
 import { useControlled } from '@/hooks/useControlled';
 import { Field } from '../Field/Field';
 
+// https://github.com/material-components/material-web/blob/main/textfield/internal/text-field.ts
+
 /**
  * Input types that are compatible with the text field.
  */
@@ -175,7 +177,6 @@ const variantMap: ITextFieldVariantMap = {
   outlined: 'OutlinedTextField',
 };
 
-// https://github.com/material-components/material-web/blob/main/textfield/internal/text-field.ts
 export const TextField: React.FC<ITextFieldProps> = ({
   variant = 'filled',
   forwardRef,

@@ -10,6 +10,7 @@ import { typescaleVars } from '../vars/typo.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-list-item.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-list.scss
+
 const vars: Partial<IStyleVars<IListItemStyleVarKey>> = {
   leadingSpace: '16px',
   trailingSpace: '16px',

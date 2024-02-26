@@ -8,6 +8,7 @@ import { shapeVars } from '../vars/shape.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-input-chip.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-input-chip.scss
+
 const vars: Partial<IStyleVars<IChipStyleVarKey>> = {
   /**
    * Flat Container

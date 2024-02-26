@@ -7,6 +7,7 @@ import { motionVars } from '../vars/motion.stylex';
 import { shapeVars } from '../vars/shape.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-focus-ring.scss
+
 const vars: IStyleVars<IFocusRingStyleVarKey> = {
   activeWidth: '8px',
   color: colorRolesVars.secondary,

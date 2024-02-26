@@ -6,6 +6,7 @@ import { colorRolesVars } from '../vars/colorRoles.stylex';
 import { typescaleVars } from '../vars/typo.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-item.scss
+
 const vars: Partial<IStyleVars<IItemStyleVarKey>> = {
   // text
   textColor: colorRolesVars.onSurface,

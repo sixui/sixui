@@ -6,6 +6,7 @@ import type { IButtonStyleKey } from '@/components/atoms/Button';
 
 // https://github.com/material-components/material-web/blob/main/button/internal/_shared.scss
 // https://github.com/material-components/material-web/blob/main/button/internal/_elevation.scss
+
 type IButtonStyles = IStyles<IButtonStyleKey>;
 export const styles: MapNamespaces<IButtonStyles> =
   stylex.create<IButtonStyles>({

@@ -7,6 +7,7 @@ import { componentVars as baseComponentVars } from './Button.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-text-button.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-text-button.scss
+
 const vars: Partial<IStyleVars<IButtonStyleVarKey>> = {
   // stateLayer
   // &:hover

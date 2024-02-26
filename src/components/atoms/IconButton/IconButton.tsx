@@ -29,6 +29,8 @@ import {
   type ICircularProgressIndicatorStyleKey,
 } from '@/components/atoms/CircularProgressIndicator';
 
+// https://github.com/material-components/material-web/blob/main/iconbutton/internal/icon-button.ts
+
 export interface IIconButtonProps
   extends IContainer<IIconButtonStyleKey, IIconButtonStyleVarKey>,
     Pick<
@@ -68,7 +70,6 @@ const variantMap: IIconButtonVariantMap = {
   outlined: 'OutlinedIconButton',
 };
 
-// https://github.com/material-components/material-web/blob/main/iconbutton/internal/icon-button.ts
 export const IconButton: React.FC<IIconButtonProps> = ({
   forwardRef,
   onClick,

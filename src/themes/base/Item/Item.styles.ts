@@ -6,6 +6,7 @@ import type { IItemStyleKey } from '@/components/atoms/Item';
 import { componentVars as vars } from './Item.stylex';
 
 // https://github.com/material-components/material-web/blob/main/labs/item/internal/_item.scss
+
 type IItemStyles = IStyles<IItemStyleKey>;
 export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
   host: {

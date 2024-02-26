@@ -9,6 +9,7 @@ import { stateVars } from '../vars/state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-outlined-card.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-outlined-card.scss
+
 const vars: Partial<IStyleVars<ICardStyleVarKey>> = {
   // container
   containerColor: colorRolesVars.surface,

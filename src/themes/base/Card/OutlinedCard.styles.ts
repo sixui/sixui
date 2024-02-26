@@ -6,6 +6,7 @@ import type { ICardStyleKey } from '@/components/atoms/Card';
 import { componentVars as vars } from './Card.stylex';
 
 // https://github.com/material-components/material-web/blob/main/labs/card/internal/_outlined-card.scss
+
 type IOutlinedCardStyles = IStyles<ICardStyleKey>;
 export const styles: MapNamespaces<IOutlinedCardStyles> =
   stylex.create<IOutlinedCardStyles>({

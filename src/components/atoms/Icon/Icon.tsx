@@ -7,12 +7,13 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
+// https://github.com/material-components/material-web/blob/main/icon/internal/icon.ts
+
 export interface IIconProps
   extends IContainer<IIconStyleKey, IIconStyleVarKey> {
   icon: IIcon;
 }
 
-// https://github.com/material-components/material-web/blob/main/icon/internal/icon.ts
 export const Icon: React.FC<IIconProps> = ({ icon: Icon, ...props }) => {
   const theme = useComponentTheme('Icon');
 

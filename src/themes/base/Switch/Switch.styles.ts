@@ -17,6 +17,7 @@ import { componentVars as circularProgressIndicatorVars } from '../CircularProgr
 // https://github.com/material-components/material-web/blob/main/switch/internal/_track.scss
 // https://github.com/material-components/material-web/blob/main/switch/internal/_handle.scss
 // https://github.com/material-components/material-web/blob/main/switch/internal/_icon.scss
+
 type ISwitchStyles = IStyles<ISwitchStyleKey>;
 export const styles: MapNamespaces<ISwitchStyles> =
   stylex.create<ISwitchStyles>({

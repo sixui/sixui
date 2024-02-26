@@ -8,6 +8,7 @@ import { shapeVars } from '../vars/shape.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-checkbox.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-checkbox.scss
+
 const vars: Partial<IStyleVars<ICheckboxStyleVarKey>> = {
   // container
   containerShape: '2px',

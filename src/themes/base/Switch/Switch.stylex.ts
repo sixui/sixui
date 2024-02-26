@@ -8,6 +8,7 @@ import { stateVars } from '../vars/state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-switch.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-switch.scss
+
 const vars: Partial<IStyleVars<ISwitchStyleVarKey>> = {
   // track
   trackShape: shapeVars.corner$full,

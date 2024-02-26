@@ -8,6 +8,7 @@ import { componentVars as elevationVars } from '../Elevation/Elevation.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-filled-Paper.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-filled-Paper.scss
+
 const vars: Partial<IStyleVars<IPaperStyleVarKey>> = {
   // container
   containerColor: colorRolesVars.surfaceContainer,

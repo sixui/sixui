@@ -10,6 +10,7 @@ import { shapeVars } from '../vars/shape.stylex';
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-filled-text-field.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-filled-text-field.scss
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-filled-field.scss
+
 const vars: Partial<IStyleVars<ITextFieldStyleVarKey>> = {
   topSpace$withLabel: '8px',
   bottomSpace$withLabel: '8px',

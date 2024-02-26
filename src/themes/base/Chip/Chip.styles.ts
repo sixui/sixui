@@ -16,6 +16,7 @@ import { componentVars as circularProgressIndicatorVars } from '../CircularProgr
 
 // https://github.com/material-components/material-web/blob/main/chips/internal/_shared.scss
 // https://github.com/material-components/material-web/blob/main/chips/internal/_elevated.scss
+
 type IChipStyles = IStyles<IChipStyleKey>;
 export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
   host: {

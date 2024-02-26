@@ -34,6 +34,9 @@ import {
   type ICircularProgressIndicatorStyleKey,
 } from '@/components/atoms/CircularProgressIndicator';
 
+// https://github.com/material-components/material-web/blob/main/fab/internal/shared.ts
+// https://github.com/material-components/material-web/blob/main/fab/internal/fab.ts
+
 export interface IFabProps
   extends IContainer<IFabStyleKey, IFabStyleVarKey>,
     Pick<
@@ -72,8 +75,6 @@ const variantMap: IFabVariantMap = {
   branded: 'BrandedFab',
 };
 
-// https://github.com/material-components/material-web/blob/main/fab/internal/shared.ts
-// https://github.com/material-components/material-web/blob/main/fab/internal/fab.ts
 export const Fab: React.FC<IFabProps> = ({
   children,
   size = 'md',

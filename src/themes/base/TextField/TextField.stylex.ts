@@ -10,6 +10,7 @@ import { colorRolesVars } from '../vars/colorRoles.stylex';
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-filled-text-field.scss
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-outlined-text-field.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-outlined-text-field.scss
+
 const vars: Partial<IStyleVars<ITextFieldStyleVarKey>> = {
   leadingSpace: '16px',
   trailingSpace: '16px',

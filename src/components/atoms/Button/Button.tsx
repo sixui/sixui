@@ -18,6 +18,13 @@ import {
 } from '@/components/atoms/CircularProgressIndicator';
 import { ButtonBase, type IButtonBaseProps } from './ButtonBase';
 
+// https://github.com/material-components/material-web/blob/main/button/internal/button.ts
+// https://github.com/material-components/material-web/blob/main/button/internal/elevated-button.ts
+// https://github.com/material-components/material-web/blob/main/button/internal/filled-button.ts
+// https://github.com/material-components/material-web/blob/main/button/internal/filled-tonal-button.ts
+// https://github.com/material-components/material-web/blob/main/button/internal/outlined-button.ts
+// https://github.com/material-components/material-web/blob/main/button/internal/text-button.ts
+
 export interface IButtonProps extends IButtonBaseProps {
   variant?: IButtonVariant;
   icon?: IIcon;
@@ -47,12 +54,6 @@ const variantMap: IButtonVariantMap = {
   text: 'TextButton',
 };
 
-// https://github.com/material-components/material-web/blob/main/button/internal/button.ts
-// https://github.com/material-components/material-web/blob/main/button/internal/elevated-button.ts
-// https://github.com/material-components/material-web/blob/main/button/internal/filled-button.ts
-// https://github.com/material-components/material-web/blob/main/button/internal/filled-tonal-button.ts
-// https://github.com/material-components/material-web/blob/main/button/internal/outlined-button.ts
-// https://github.com/material-components/material-web/blob/main/button/internal/text-button.ts
 export const Button: React.FC<IButtonProps> = ({
   children,
   onClick,

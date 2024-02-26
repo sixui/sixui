@@ -9,6 +9,8 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
+// https://github.com/material-components/material-web/blob/main/divider/internal/divider.ts
+
 export interface IDividerProps
   extends IContainer<IDividerStyleKey, IDividerStyleVarKey> {
   /**
@@ -27,7 +29,6 @@ export interface IDividerProps
   insetEnd?: boolean;
 }
 
-// https://github.com/material-components/material-web/blob/main/divider/internal/divider.ts
 export const Divider: React.FC<IDividerProps> = ({
   inset,
   insetStart,

@@ -6,6 +6,8 @@ import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import { componentVars as vars } from './FocusRing.stylex';
 import { motionVars } from '../vars/motion.stylex';
 
+// https://github.com/material-components/material-web/blob/main/focus/internal/_focus-ring.scss
+
 const inwardGrowKeyframes = stylex.keyframes({
   '0%': { borderWidth: 0 },
   '100%': { borderWidth: vars.activeWidth },
@@ -24,7 +26,6 @@ const outwardShrinkKeyframes = stylex.keyframes({
   '0%': { outlineWidth: vars.activeWidth },
 });
 
-// https://github.com/material-components/material-web/blob/main/focus/internal/_focus-ring.scss
 type IFocusRingStyles = IStyles<IFocusRingStyleKey>;
 export const styles: MapNamespaces<IFocusRingStyles> =
   stylex.create<IFocusRingStyles>({

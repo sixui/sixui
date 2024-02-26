@@ -8,6 +8,8 @@ import { EASING } from '@/helpers/animation';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 
+// https://github.com/material-components/material-web/blob/main/ripple/internal/ripple.ts
+
 export interface IRippleProps
   extends IContainer<IRippleStyleKey, IRippleStyleVarKey> {
   for?: React.RefObject<HTMLElement>;
@@ -80,7 +82,6 @@ enum IState {
 const isTouch = ({ pointerType }: PointerEvent): boolean =>
   pointerType === 'touch';
 
-// https://github.com/material-components/material-web/blob/main/ripple/internal/ripple.ts
 export const Ripple: React.FC<IRippleProps> = ({
   visualState,
   for: forElementRef,

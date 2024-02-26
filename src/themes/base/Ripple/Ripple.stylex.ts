@@ -6,6 +6,7 @@ import { colorRolesVars } from '../vars/colorRoles.stylex';
 import { stateVars } from '../vars/state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-ripple.scss
+
 const vars: Partial<IStyleVars<IRippleStyleVarKey>> = {
   color$hover: colorRolesVars.onSurface,
   color$pressed: colorRolesVars.onSurface,

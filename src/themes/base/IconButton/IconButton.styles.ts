@@ -14,6 +14,7 @@ import { componentVars as circularProgressIndicatorVars } from '../CircularProgr
 
 // https://github.com/material-components/material-web/blob/main/iconbutton/internal/_shared.scss
 // https://github.com/material-components/material-web/blob/main/iconbutton/internal/_icon-button.scss
+
 type IIconButtonStyles = IStyles<IIconButtonStyleKey>;
 export const styles: MapNamespaces<IIconButtonStyles> =
   stylex.create<IIconButtonStyles>({

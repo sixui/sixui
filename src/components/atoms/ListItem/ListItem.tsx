@@ -20,6 +20,8 @@ import {
   Item,
 } from '../Item';
 
+// https://github.com/material-components/material-web/blob/main/list/internal/listitem/list-item.ts
+
 export type IListItemType = 'text' | 'button' | 'link';
 
 export interface IListItemProps
@@ -56,7 +58,6 @@ export interface IListItemProps
   selected?: boolean;
 }
 
-// https://github.com/material-components/material-web/blob/main/list/internal/listitem/list-item.ts
 export const ListItem: React.FC<IListItemProps> = ({
   href,
   overline,

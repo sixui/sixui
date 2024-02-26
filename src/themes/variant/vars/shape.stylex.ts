@@ -3,6 +3,7 @@ import stylex from '@stylexjs/stylex';
 import { shapeVars as baseShapeVars } from '@/themes/base/vars/shape.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-sys-shape.scss
+
 export const shapeVars = stylex.defineVars({
   corner$full: '999px',
 

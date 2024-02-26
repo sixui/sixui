@@ -12,6 +12,7 @@ import { componentVars as rippleVars } from '../Ripple/Ripple.stylex';
 import { componentVars as focusRingVars } from '../FocusRing/FocusRing.stylex';
 
 // https://github.com/material-components/material-web/blob/main/list/internal/listitem/_list-item.scss
+
 type IListItemStyles = IStyles<IListItemStyleKey>;
 export const styles: MapNamespaces<IListItemStyles> =
   stylex.create<IListItemStyles>({

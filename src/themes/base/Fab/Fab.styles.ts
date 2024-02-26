@@ -16,6 +16,7 @@ import { componentVars as circularProgressIndicatorVars } from '../CircularProgr
 
 // https://github.com/material-components/material-web/blob/main/fab/internal/_shared.scss
 // https://github.com/material-components/material-web/blob/main/fab/internal/_fab.scss
+
 type IFabStyles = IStyles<IFabStyleKey>;
 export const styles: MapNamespaces<IFabStyles> = stylex.create<IFabStyles>({
   host: {

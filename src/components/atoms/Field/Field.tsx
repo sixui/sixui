@@ -10,6 +10,10 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { EASING } from '@/helpers/animation';
 
+// https://github.com/material-components/material-web/blob/main/field/internal/filled-field.ts
+// https://github.com/material-components/material-web/blob/main/field/internal/outlined-field.ts
+// https://github.com/material-components/material-web/blob/main/field/internal/field.ts
+
 export interface IFieldProps
   extends IContainer<IFieldStyleKey, ITextFieldStyleVarKey>,
     Pick<
@@ -42,9 +46,6 @@ const variantMap: IFieldVariantMap = {
   outlined: 'OutlinedField',
 };
 
-// https://github.com/material-components/material-web/blob/main/field/internal/filled-field.ts
-// https://github.com/material-components/material-web/blob/main/field/internal/outlined-field.ts
-// https://github.com/material-components/material-web/blob/main/field/internal/field.ts
 export const Field: React.FC<IFieldProps> = ({
   visualState,
   variant = 'filled',

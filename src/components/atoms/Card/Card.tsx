@@ -31,6 +31,8 @@ import { CardContent } from '../CardContent';
 import { CardTitle } from '../CardTitle';
 import { CardActions } from '../CardActions';
 
+// https://github.com/material-components/material-web/blob/main/labs/card/internal/card.ts
+
 export interface ICardProps
   extends IContainer<ICardStyleKey, ICardStyleVarKey> {
   variant?: ICardVariant;
@@ -68,7 +70,6 @@ const variantMap: ICardVariantMap = {
   outlined: 'OutlinedCard',
 };
 
-// https://github.com/material-components/material-web/blob/main/labs/card/internal/card.ts
 export const Card: React.FC<ICardProps> & ICardSubComponents = ({
   variant = 'filled',
   children,

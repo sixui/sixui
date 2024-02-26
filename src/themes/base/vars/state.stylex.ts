@@ -1,6 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-sys-state.scss
+
 export const stateVars = stylex.defineVars({
   // statelayer
   stateLayerOpacity$hover: '0.08',

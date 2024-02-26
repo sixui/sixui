@@ -9,6 +9,7 @@ import { componentVars as paperStateVars } from './Paper.states.stylex';
 import { componentVars as elevationVars } from '../Elevation/Elevation.stylex';
 
 // https://github.com/material-components/material-web/blob/main/labs/Paper/internal/_shared.scss
+
 type IPaperStyles = IStyles<IPaperStyleKey>;
 export const styles: MapNamespaces<IPaperStyles> = stylex.create<IPaperStyles>({
   host: {

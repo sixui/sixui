@@ -4,6 +4,7 @@ import type { IStyleVars } from '@/helpers/types';
 import type { IIconStyleVarKey } from '@/components/atoms/Icon';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-icon.scss
+
 const vars: Partial<IStyleVars<IIconStyleVarKey>> = {
   size: '24px',
   font: 'unset',

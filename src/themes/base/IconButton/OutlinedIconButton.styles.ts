@@ -6,6 +6,7 @@ import type { IIconButtonStyleKey } from '@/components/atoms/IconButton';
 import { componentVars as vars } from './IconButton.stylex';
 
 // https://github.com/material-components/material-web/blob/main/button/internal/_outlined-button.scss
+
 type IIconButtonStyles = IStyles<IIconButtonStyleKey>;
 export const styles: MapNamespaces<IIconButtonStyles> =
   stylex.create<IIconButtonStyles>({

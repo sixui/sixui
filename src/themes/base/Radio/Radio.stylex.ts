@@ -7,6 +7,7 @@ import { stateVars } from '../vars/state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-radio.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-radio-button.scss
+
 const vars: Partial<IStyleVars<IRadioStyleVarKey>> = {
   // icon
   iconSize: '20px',

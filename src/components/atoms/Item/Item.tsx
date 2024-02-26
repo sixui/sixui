@@ -6,6 +6,8 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
+// https://github.com/material-components/material-web/blob/main/labs/item/item.ts
+
 export interface IItemProps
   extends IContainer<IItemStyleKey, IItemStyleVarKey> {
   container?: React.ReactNode;
@@ -18,7 +20,6 @@ export interface IItemProps
   end?: React.ReactNode;
 }
 
-// https://github.com/material-components/material-web/blob/main/labs/item/item.ts
 export const Item: React.FC<IItemProps> = ({
   container,
   start,

@@ -11,6 +11,9 @@ import type { IDeterminateCircularProgressIndicatorStyleKey } from './Determinat
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 
+// https://github.com/material-components/material-web/blob/main/progress/internal/progress.ts
+// https://github.com/material-components/material-web/blob/main/progress/internal/circulardeterminate-progress.ts
+
 export interface IDeterminateCircularProgressIndicatorProps
   extends IContainer<
       | ICircularProgressIndicatorStyleKey
@@ -28,8 +31,6 @@ export interface IDeterminateCircularProgressIndicatorProps
   disabled?: boolean;
 }
 
-// https://github.com/material-components/material-web/blob/main/progress/internal/progress.ts
-// https://github.com/material-components/material-web/blob/main/progress/internal/circulardeterminate-progress.ts
 export const DeterminateCircularProgressIndicator: React.FC<
   IDeterminateCircularProgressIndicatorProps
 > = ({

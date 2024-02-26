@@ -12,6 +12,8 @@ import { componentVars as focusRingVars } from '../FocusRing/FocusRing.stylex';
 import { motionVars } from '../vars/motion.stylex';
 import { shapeVars } from '../vars/shape.stylex';
 
+// https://github.com/material-components/material-web/blob/main/radio/internal/_radio.scss
+
 const innerCircleGrowKeyframes = stylex.keyframes({
   '0%': {
     transform: 'scale(0)',
@@ -21,7 +23,6 @@ const innerCircleGrowKeyframes = stylex.keyframes({
   },
 });
 
-// https://github.com/material-components/material-web/blob/main/radio/internal/_radio.scss
 type IRadioStyles = IStyles<IRadioStyleKey>;
 export const styles: MapNamespaces<IRadioStyles> = stylex.create<IRadioStyles>({
   host: {

@@ -2,6 +2,9 @@ import stylex from '@stylexjs/stylex';
 
 import type { IColorPalettes } from '../../colorPalettes.types';
 
+// https://github.com/material-components/material-components-android/blob/master/docs/theming/Color.md#color-theming
+// https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-ref-palette.scss
+
 // Generate a new color palette with Material Theme Builder:
 // https://m3.material.io/theme-builder#/custom
 // - Primary: #6750a4
@@ -24,9 +27,6 @@ import type { IColorPalettes } from '../../colorPalettes.types';
 // Find missing colors using HCT Color Picker from Material Theme Builder:
 // 1. Create an extended color from an existing color (ie. the neutral color from the core colors)
 // 2. Change the Tone to match the required tone
-
-// https://github.com/material-components/material-components-android/blob/master/docs/theming/Color.md#color-theming
-// https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-ref-palette.scss
 
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-ref-palette.scss#L68
 const primaryPalette = {

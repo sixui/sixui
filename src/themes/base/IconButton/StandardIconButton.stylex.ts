@@ -7,6 +7,7 @@ import { colorRolesVars } from '../vars/colorRoles.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-icon-button.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-icon-button.scss
+
 const vars: Partial<IStyleVars<IIconButtonStyleVarKey>> = {
   // container
   containerColor: 'transparent',

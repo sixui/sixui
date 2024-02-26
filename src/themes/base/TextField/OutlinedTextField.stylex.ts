@@ -10,6 +10,7 @@ import { shapeVars } from '../vars/shape.stylex';
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-outlined-text-field.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-outlined-text-field.scss
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-outlined-field.scss
+
 const vars: Partial<IStyleVars<ITextFieldStyleVarKey>> = {
   // container
   containerShape: shapeVars.corner$xs,
