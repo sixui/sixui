@@ -68,6 +68,7 @@ export interface ITextFieldProps
       | 'disabled'
       | 'aria-label'
       | 'autoComplete'
+      | 'autoCapitalize'
       | 'minLength'
       | 'maxLength'
       | 'placeholder'
@@ -205,6 +206,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
   step,
   type = 'text',
   autoComplete,
+  autoCapitalize,
   disabled,
   onChange,
   reportOnBlur,
@@ -338,6 +340,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
           aria-invalid={hasError}
           aria-label={ariaLabel}
           autoComplete={autoComplete}
+          autoCapitalize={autoCapitalize}
           disabled={disabled}
           minLength={hasMinLength ? minLength : undefined}
           maxLength={hasMaxLength ? maxLength : undefined}
@@ -381,6 +384,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
           aria-invalid={hasError}
           aria-label={ariaLabel}
           autoComplete={autoComplete}
+          autoCapitalize={autoCapitalize}
           disabled={disabled}
           inputMode={inputMode}
           min={min}
@@ -421,6 +425,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
     props,
     label,
     autoComplete,
+    autoCapitalize,
     disabled,
     inputMode,
     hasError,

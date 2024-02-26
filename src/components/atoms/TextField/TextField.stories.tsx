@@ -95,6 +95,7 @@ const ControlledForm: React.FC<ITextFieldProps> = (props) => {
           value={firstName}
           onChange={(_, value) => setFirstName(value)}
           autoComplete='given-name'
+          autoCapitalize='words'
           required
         />
         <TextField
@@ -104,6 +105,7 @@ const ControlledForm: React.FC<ITextFieldProps> = (props) => {
           value={lastName}
           onChange={(_, value) => setLastName(value)}
           autoComplete='family-name'
+          autoCapitalize='words'
           required
         />
         <div {...stylex.props(formStyles2.buttons)}>
