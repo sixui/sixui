@@ -5,6 +5,10 @@
 - Thumb: like avatar but square and no fallback
 - Do not export variant theme
 
+- Icons
+
+  - support any icon (JSX.Element?)
+
 - CI
 
   - check if .js and .d.ts has been correctly generated in /dist
@@ -54,6 +58,10 @@
 
   - Support video
 
+- New components
+
+  - Phone number
+
 - Avatar
 
   - Support SSR like the MUI version
@@ -63,9 +71,9 @@
   - attrs: id, autocapitalize
   - password: eye button to show/hide password
 
-- CheckField
+- CheckBox
 
-  - attrs: id
+  - hover effect?
 
 - Badge
 

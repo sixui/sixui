@@ -240,8 +240,8 @@ export const Field: React.FC<IFieldProps> = ({
   const getCounterText = React.useCallback(() => {
     const countAsNumber = count ?? -1;
     const maxAsNumber = Number(max) ?? -1;
-    // Counter does not show if count is negative, or max is negative or 0.
-    if (countAsNumber < 0 || maxAsNumber <= 0) {
+    // Counter does not show if count is negative or 0, or max is negative or 0.
+    if (countAsNumber <= 0 || maxAsNumber <= 0) {
       return '';
     }
 
