@@ -1,3 +1,15 @@
+# v0.0.45 (Mon Feb 26 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: autofilled text color in Chrome ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.44 (Mon Feb 26 2024)
 
 #### ⚠️ Pushed to `main`
