@@ -1,3 +1,15 @@
+# v0.0.43 (Mon Feb 26 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Breadcrumbs host is now a list ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.42 (Sun Feb 25 2024)
 
 #### ⚠️ Pushed to `main`
