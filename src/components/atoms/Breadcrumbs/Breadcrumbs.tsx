@@ -150,17 +150,15 @@ export const Breadcrumbs: React.FC<IBreadcrumbsProps> = ({
     ));
 
   return (
-    <nav
+    <ol
       {...styleProps(['host', props.sx], [theme.vars, props.theme])}
       aria-label={props['aria-label']}
     >
-      <ol {...styleProps(['list'])}>
-        {insertSeparators(
-          expanded || (maxItems !== undefined && allItems.length <= maxItems)
-            ? allItems
-            : renderItemsBeforeAndAfter(allItems),
-        )}
-      </ol>
-    </nav>
+      {insertSeparators(
+        expanded || (maxItems !== undefined && allItems.length <= maxItems)
+          ? allItems
+          : renderItemsBeforeAndAfter(allItems),
+      )}
+    </ol>
   );
 };

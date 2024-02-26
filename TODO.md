@@ -3,6 +3,7 @@
 - CONTRIBUTING.md
 
 - Thumb: like avatar but square and no fallback
+- Do not export variant theme
 
 - CI
 

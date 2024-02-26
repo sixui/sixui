@@ -11,14 +11,14 @@ import { componentVars as focusRingVars } from '../FocusRing/FocusRing.stylex';
 type IBreadcrumbsStyles = IStyles<IBreadcrumbsStyleKey>;
 export const styles: MapNamespaces<IBreadcrumbsStyles> =
   stylex.create<IBreadcrumbsStyles>({
-    host: {},
-    list: {
+    host: {
       display: 'flex',
       flexWrap: 'wrap',
       alignItems: 'center',
       padding: 0,
       margin: 0,
       listStyle: 'none',
+      gap: 8,
     },
     item: {
       color: vars.itemColor,
@@ -32,8 +32,6 @@ export const styles: MapNamespaces<IBreadcrumbsStyles> =
       color: vars.separatorColor,
       display: 'flex',
       userSelect: 'none',
-      marginLeft: 8,
-      marginRight: 8,
     },
     icon: {
       width: 24,

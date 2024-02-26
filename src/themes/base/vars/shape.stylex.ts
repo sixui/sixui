@@ -16,8 +16,8 @@ export const shapeVars = stylex.defineVars({
 
   corner$sm: '8px',
 
-  corner$xs: '4px',
-  cornerTop$xs: '4px 4px 0px 0px',
+  corner$xs: '6px',
+  cornerTop$xs: '6px 6px 0px 0px',
 
   corner$none: '0',
 });
