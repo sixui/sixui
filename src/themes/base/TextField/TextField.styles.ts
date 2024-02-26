@@ -9,6 +9,7 @@ import { componentVars as vars } from './TextField.stylex';
 // https://github.com/material-components/material-web/blob/main/textfield/internal/_shared.scss
 // https://github.com/material-components/material-web/blob/main/textfield/internal/_input.scss
 // https://github.com/material-components/material-web/blob/main/textfield/internal/_icon.scss
+
 type ITextFieldStyles = IStyles<ITextFieldStyleKey>;
 export const styles: MapNamespaces<ITextFieldStyles> =
   stylex.create<ITextFieldStyles>({
@@ -63,6 +64,7 @@ export const styles: MapNamespaces<ITextFieldStyles> =
         backgroundColor: vars.contentBackground$selection,
         color: vars.contentColor$selection,
       },
+      color: 'inherit',
 
       display: {
         default: 'block',
