@@ -1,3 +1,17 @@
+# v0.0.46 (Mon Feb 26 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: support for `id` prop in form elements ([@olivierpascal](https://github.com/olivierpascal))
+- feat: support for `autoCapitalize` prop for textfields ([@olivierpascal](https://github.com/olivierpascal))
+- fix: better support for autofilled text color in Chrome ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.45 (Mon Feb 26 2024)
 
 #### ⚠️ Pushed to `main`
