@@ -1,3 +1,16 @@
+# v0.0.44 (Mon Feb 26 2024)
+
+#### ⚠️ Pushed to `main`
+
+- chore: uniformize header comments with links ([@olivierpascal](https://github.com/olivierpascal))
+- fix: textfields text input color ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.43 (Mon Feb 26 2024)
 
 #### ⚠️ Pushed to `main`
