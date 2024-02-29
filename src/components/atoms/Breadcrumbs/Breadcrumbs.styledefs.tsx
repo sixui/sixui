@@ -14,6 +14,7 @@ export type IBreadcrumbsStyleVarKey =
   | 'itemTextLetterSpacing'
   | 'itemTextWeight'
   | 'separatorColor'
+  | 'separatorSize'
   | 'expandButtonContainerColor'
   | 'expandButtonContainerShape'
   | 'expandButtonContainerWidth'

@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { Breadcrumbs, type IBreadcrumbsProps } from './Breadcrumbs';
@@ -54,7 +56,11 @@ export const WithCustomSeparator: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={(props) => (
-        <Breadcrumbs {...props} aria-label='breadcrumb' separator='›'>
+        <Breadcrumbs
+          {...props}
+          aria-label='breadcrumb'
+          separator={<FontAwesomeIcon icon={faChevronRight} />}
+        >
           <span>Item 1</span>
           <span>Item 2</span>
           <span>Item 3</span>

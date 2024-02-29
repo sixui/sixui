@@ -32,6 +32,7 @@ export const styles: MapNamespaces<IBreadcrumbsStyles> =
       color: vars.separatorColor,
       display: 'flex',
       userSelect: 'none',
+      fontSize: vars.separatorSize,
     },
     icon: {
       width: 24,

@@ -16,6 +16,7 @@ const vars: Partial<IStyleVars<IBreadcrumbsStyleVarKey>> = {
 
   // separator
   separatorColor: colorRolesVars.onSurface,
+  separatorSize: '8px',
 
   // expandButton
   expandButtonContainerShape: '2px',
