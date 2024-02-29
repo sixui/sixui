@@ -41,4 +41,3 @@ export * from './components/atoms/CardMedia';
 export * from './components/atoms/CardTitle';
 
 export { theme as baseTheme } from './themes/base';
-export { theme as variantTheme } from './themes/variant';
