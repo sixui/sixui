@@ -11,21 +11,12 @@
 - CONTRIBUTING.md
 
 - Thumb: like avatar but square and no fallback
-- Do not export variant theme
-
-- Icons
-
-  - support any icon (JSX.Element?)
 
 - CI
 
   - check if .js and .d.ts has been correctly generated in /dist
   - standardize git commit messages using Husky
   - FIXME: when minor updates, the minor version is updated in package.json but on nomjs it's marked as major update
-
-- ESLint
-
-  - add eslint-plugin-fp
 
 - SSR
 
@@ -41,7 +32,6 @@
 
   - Handle routing and default props
     - https://mui.com/material-ui/integrations/routing/
-  - Add hostStyles (or sx) property
   - Be able to customize:
     - shadowColor
     - stateLayerColor$focus
@@ -135,10 +125,6 @@
   - If this is an anchor link, text-decoration should be none?
   - FIXME: on space key hit, should prevent default to not scroll the page
 
-- Button
-
-  - Icon should be anything, not only a svg component
-
 - Stories
 
   - Add examples for customized components
@@ -147,15 +133,11 @@
 
   - Controlled/uncontrolled modes (if selectable)
 
-- CircularProgressIndicator
-  - Use component showcase
-
 ## Refactoring
 
 - Field
   - error boolean -> hasError, ou:
   - suppimer error au profit de errorText
-- Prefer types over interfaces
 - Use useHover hook?
   - https://react-spectrum.adobe.com/blog/building-a-button-part-2.html
 - Chip/Fab/IconButton/ListItem inherit from ButtonBase
@@ -163,7 +145,6 @@
 - Use React.forwardRef & React.useImperativeHandle?
 - Remove 'borderStyle': 'solid' (handled by reset css)?
 - List -> Stack
-- All stylePropsFactory() must use props.visualState
 - use slots and slotProps
   - https://mui.com/base-ui/getting-started/usage/#slots
 - IContainer -> IContainerProps (dans helpers -> utils)

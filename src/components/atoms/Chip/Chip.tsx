@@ -37,37 +37,36 @@ import { ReactComponent as CheckMark } from '@/assets/CheckMark.svg';
 import { ReactComponent as XMark } from '@/assets/XMark.svg';
 import { Avatar } from '../Avatar';
 
-export interface IChipProps
-  extends IContainer<IChipStyleKey, IChipStyleVarKey>,
-    Pick<
-      React.ButtonHTMLAttributes<HTMLButtonElement>,
-      'disabled' | 'aria-label'
-    >,
-    Pick<React.LinkHTMLAttributes<HTMLLinkElement>, 'href'> {
-  onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
-  onDelete?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
-  variant?: IChipVariant;
-  label?: string;
-  elevated?: boolean;
-  selected?: boolean;
-  defaultSelected?: boolean;
-  icon?: React.ReactNode;
-  imageUrl?: string;
-  loading?: boolean;
-  loadingText?: string;
-  deleting?: boolean;
-  component?: React.ElementType;
-  'aria-label-remove'?: React.AriaAttributes['aria-label'];
-  avatar?: boolean;
-  rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
-  focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-  elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
-  trailingActionFocusRingStyles?: IZeroOrMore<
-    ICompiledStyles<IFocusRingStyleKey>
-  >;
-  trailingActionRippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
-  circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
-}
+export type IChipProps = IContainer<IChipStyleKey, IChipStyleVarKey> &
+  Pick<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    'disabled' | 'aria-label'
+  > &
+  Pick<React.LinkHTMLAttributes<HTMLLinkElement>, 'href'> & {
+    onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
+    onDelete?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
+    variant?: IChipVariant;
+    label?: string;
+    elevated?: boolean;
+    selected?: boolean;
+    defaultSelected?: boolean;
+    icon?: React.ReactNode;
+    imageUrl?: string;
+    loading?: boolean;
+    loadingText?: string;
+    deleting?: boolean;
+    component?: React.ElementType;
+    'aria-label-remove'?: React.AriaAttributes['aria-label'];
+    avatar?: boolean;
+    rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+    focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+    elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
+    trailingActionFocusRingStyles?: IZeroOrMore<
+      ICompiledStyles<IFocusRingStyleKey>
+    >;
+    trailingActionRippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+    circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
+  };
 
 type IChipVariantMap = {
   [key in IChipVariant]: keyof Pick<

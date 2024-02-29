@@ -23,23 +23,22 @@ import {
 } from '@/components/utils/FocusRing';
 import { Ripple, type IRippleStyleKey } from '@/components/utils/Ripple';
 
-export interface IButtonBaseProps
-  extends IContainer<IButtonStyleKey, IButtonStyleVarKey>,
-    Pick<
-      React.ButtonHTMLAttributes<HTMLButtonElement>,
-      'type' | 'disabled' | 'aria-label' | 'aria-haspopup' | 'aria-expanded'
-    >,
-    Pick<React.LinkHTMLAttributes<HTMLLinkElement>, 'href'> {
-  component?: React.ElementType;
-  withLeadingIcon?: boolean;
-  withTrailingIcon?: boolean;
-  rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
-  focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-  elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
-  children?: React.ReactNode;
-  onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
-  inwardFocusRing?: boolean;
-}
+export type IButtonBaseProps = IContainer<IButtonStyleKey, IButtonStyleVarKey> &
+  Pick<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    'type' | 'disabled' | 'aria-label' | 'aria-haspopup' | 'aria-expanded'
+  > &
+  Pick<React.LinkHTMLAttributes<HTMLLinkElement>, 'href'> & {
+    component?: React.ElementType;
+    withLeadingIcon?: boolean;
+    withTrailingIcon?: boolean;
+    rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+    focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+    elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
+    children?: React.ReactNode;
+    onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
+    inwardFocusRing?: boolean;
+  };
 
 export const ButtonBase: React.FC<IButtonBaseProps> = ({
   withLeadingIcon,

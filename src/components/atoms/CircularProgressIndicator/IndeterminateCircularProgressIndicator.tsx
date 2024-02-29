@@ -13,16 +13,15 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 // https://github.com/material-components/material-web/blob/main/progress/internal/progress.ts
 // https://github.com/material-components/material-web/blob/main/progress/internal/circular-progress.ts
 
-export interface IIndeterminateCircularProgressIndicatorProps
-  extends IContainer<
-      IIndeterminateCircularProgressIndicatorStyleKey,
-      ICircularProgressIndicatorStyleVarKey
-    >,
-    Pick<React.AriaAttributes, 'aria-label'> {
-  labelFormatter?: (value: number) => string;
-  size?: ICircularProgressIndicatorSize;
-  disabled?: boolean;
-}
+export type IIndeterminateCircularProgressIndicatorProps = IContainer<
+  IIndeterminateCircularProgressIndicatorStyleKey,
+  ICircularProgressIndicatorStyleVarKey
+> &
+  Pick<React.AriaAttributes, 'aria-label'> & {
+    labelFormatter?: (value: number) => string;
+    size?: ICircularProgressIndicatorSize;
+    disabled?: boolean;
+  };
 
 export const IndeterminateCircularProgressIndicator: React.FC<
   IIndeterminateCircularProgressIndicatorProps
@@ -43,8 +42,9 @@ export const IndeterminateCircularProgressIndicator: React.FC<
           variantTheme.styles,
           props.styles,
         ),
+        props.visualState,
       ),
-    [theme.styles, variantTheme.styles, props.styles],
+    [theme.styles, variantTheme.styles, props.styles, props.visualState],
   );
 
   return (

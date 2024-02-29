@@ -17,7 +17,7 @@ import {
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
 import { TabList, type ITabListProps } from './TabList';
-import { PrimaryTab, SecondaryTab } from '../Tab';
+import { Tab } from '../Tab';
 
 const meta = {
   component: TabList,
@@ -26,9 +26,10 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 type IExtendedTabListProps = ITabListProps & {
+  variant?: 'primary' | 'secondary';
   hasIcon?: boolean;
   hasLabel?: boolean;
-  tab: typeof PrimaryTab | typeof SecondaryTab;
+  tab: typeof Tab;
 };
 
 const defaultArgs = {} satisfies Partial<ITabListProps>;
@@ -50,6 +51,7 @@ const rowsProps: IComponentPropsWithLegend<IExtendedTabListProps> = [
 ];
 
 const TabListDemo: React.FC<IExtendedTabListProps> = ({
+  variant,
   hasIcon,
   hasLabel,
   tab: Tab,
@@ -57,6 +59,7 @@ const TabListDemo: React.FC<IExtendedTabListProps> = ({
 }) => (
   <TabList {...props}>
     <Tab
+      variant={variant}
       label={hasLabel ? 'Item one' : undefined}
       icon={hasIcon ? <FontAwesomeIcon icon={faEnvelope} /> : undefined}
       activeIcon={
@@ -65,11 +68,13 @@ const TabListDemo: React.FC<IExtendedTabListProps> = ({
       active
     />
     <Tab
+      variant={variant}
       label={hasLabel ? 'Item two' : undefined}
       icon={hasIcon ? <FontAwesomeIcon icon={faUser} /> : undefined}
       activeIcon={hasIcon ? <FontAwesomeIcon icon={faUserSolid} /> : undefined}
     />
     <Tab
+      variant={variant}
       label={hasLabel ? 'Item three' : undefined}
       icon={hasIcon ? <FontAwesomeIcon icon={faBookmark} /> : undefined}
       activeIcon={
@@ -83,7 +88,7 @@ const TabListDemo: React.FC<IExtendedTabListProps> = ({
 export const Primary: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={(props) => <TabListDemo tab={PrimaryTab} {...props} />}
+      component={(props) => <TabListDemo tab={Tab} {...props} />}
       props={props}
       rowsProps={rowsProps}
       align='start'
@@ -95,7 +100,9 @@ export const Primary: IStory = {
 export const Secondary: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={(props) => <TabListDemo tab={SecondaryTab} {...props} />}
+      component={(props) => (
+        <TabListDemo tab={Tab} variant='secondary' {...props} />
+      )}
       props={props}
       rowsProps={rowsProps}
       align='start'

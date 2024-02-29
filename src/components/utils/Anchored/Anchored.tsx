@@ -6,14 +6,14 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export interface IAnchoredProps extends IContainer<IAnchoredStyleKey> {
+export type IAnchoredProps = IContainer<IAnchoredStyleKey> & {
   verticalOrigin?: 'top' | 'bottom';
   horizontalOrigin?: 'left' | 'right';
   overlap?: 'rectangular' | 'circular';
   children: React.ReactNode;
   content?: React.ReactNode;
   invisible?: boolean;
-}
+};
 
 export const Anchored: React.FC<IAnchoredProps> = ({
   horizontalOrigin = 'right',
@@ -29,8 +29,9 @@ export const Anchored: React.FC<IAnchoredProps> = ({
     () =>
       stylePropsFactory<IAnchoredStyleKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
+        props.visualState,
       ),
-    [theme.styles, props.styles],
+    [theme.styles, props.styles, props.visualState],
   );
 
   const invisible = props.invisible || !content;

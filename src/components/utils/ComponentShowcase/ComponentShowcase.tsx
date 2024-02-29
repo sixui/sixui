@@ -13,11 +13,10 @@ export type IComponentPropsWithLegend<IComponentProps> = Array<
   Partial<IComponentProps> & { $legend?: React.ReactNode }
 >;
 
-export interface IComponentShowcaseProps<IComponentProps>
-  extends IContainer<
-    IComponentShowcaseStyleKey,
-    IComponentShowcaseStyleVarKey
-  > {
+export type IComponentShowcaseProps<IComponentProps> = IContainer<
+  IComponentShowcaseStyleKey,
+  IComponentShowcaseStyleVarKey
+> & {
   component: React.FC<IComponentProps>;
   props: IComponentProps;
   groupsProps?: IComponentPropsWithLegend<IComponentProps>;
@@ -26,7 +25,7 @@ export interface IComponentShowcaseProps<IComponentProps>
   align?: 'start' | 'center';
   rowLegendPosition?: 'start' | 'top' | 'bottom';
   fullWidth?: boolean;
-}
+};
 
 const DUMMY_TEXT = '.';
 
@@ -48,8 +47,8 @@ export const ComponentShowcase = <IComponentProps extends object>({
       stylePropsFactory<
         IComponentShowcaseStyleKey,
         IComponentShowcaseStyleVarKey
-      >(stylesCombinatorFactory(theme.styles, props.styles)),
-    [theme.styles, props.styles],
+      >(stylesCombinatorFactory(theme.styles, props.styles), props.visualState),
+    [theme.styles, props.styles, props.visualState],
   );
 
   const shouldShowRowLegends = rowsProps.some(({ $legend }) => !!$legend);

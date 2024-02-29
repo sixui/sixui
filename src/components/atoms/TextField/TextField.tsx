@@ -57,115 +57,117 @@ export type IInvalidTextFieldType =
   | 'reset'
   | 'submit';
 
-export interface ITextFieldProps
-  extends IContainer<ITextFieldStyleKey, ITextFieldStyleVarKey>,
-    Pick<
-      | React.InputHTMLAttributes<HTMLInputElement>
-      | React.TextareaHTMLAttributes<HTMLTextAreaElement>,
-      | 'required'
-      | 'inputMode'
-      | 'id'
-      | 'name'
-      | 'disabled'
-      | 'aria-label'
-      | 'autoComplete'
-      | 'autoCapitalize'
-      | 'minLength'
-      | 'maxLength'
-      | 'placeholder'
-      | 'readOnly'
-    >,
-    Pick<
-      React.InputHTMLAttributes<HTMLInputElement>,
-      'min' | 'max' | 'step' | 'pattern' | 'multiple'
-    >,
-    Pick<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'cols' | 'rows'> {
-  variant?: IFieldVariant;
-  forwardRef?: React.RefObject<HTMLInputElement | HTMLTextAreaElement>;
+export type ITextFieldProps = IContainer<
+  ITextFieldStyleKey,
+  ITextFieldStyleVarKey
+> &
+  Pick<
+    | React.InputHTMLAttributes<HTMLInputElement>
+    | React.TextareaHTMLAttributes<HTMLTextAreaElement>,
+    | 'required'
+    | 'inputMode'
+    | 'id'
+    | 'name'
+    | 'disabled'
+    | 'aria-label'
+    | 'autoComplete'
+    | 'autoCapitalize'
+    | 'minLength'
+    | 'maxLength'
+    | 'placeholder'
+    | 'readOnly'
+  > &
+  Pick<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    'min' | 'max' | 'step' | 'pattern' | 'multiple'
+  > &
+  Pick<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'cols' | 'rows'> & {
+    variant?: IFieldVariant;
+    forwardRef?: React.RefObject<HTMLInputElement | HTMLTextAreaElement>;
 
-  /**
-   * Gets or sets whether or not the text field is in a visually invalid state.
-   */
-  error?: boolean;
+    /**
+     * Gets or sets whether or not the text field is in a visually invalid state.
+     */
+    error?: boolean;
 
-  /**
-   * The error message that replaces supporting text when `error` is true. If
-   * `errorText` is an empty string, then the supporting text will continue to
-   * show.
-   */
-  errorText?: string;
+    /**
+     * The error message that replaces supporting text when `error` is true. If
+     * `errorText` is an empty string, then the supporting text will continue to
+     * show.
+     */
+    errorText?: string;
 
-  /**
-   * The floating Material label of the textfield component. It informs the user
-   * about what information is requested for a text field. It is aligned with
-   * the input text, is always visible, and it floats when focused or when text
-   * is entered into the textfield. This label also sets accessibilty labels,
-   * but the accessible label is overriden by `aria-label`.
-   *
-   * Learn more about floating labels from the Material Design guidelines:
-   * https://m3.material.io/components/text-fields/guidelines
-   */
-  label?: string;
+    /**
+     * The floating Material label of the textfield component. It informs the user
+     * about what information is requested for a text field. It is aligned with
+     * the input text, is always visible, and it floats when focused or when text
+     * is entered into the textfield. This label also sets accessibilty labels,
+     * but the accessible label is overriden by `aria-label`.
+     *
+     * Learn more about floating labels from the Material Design guidelines:
+     * https://m3.material.io/components/text-fields/guidelines
+     */
+    label?: string;
 
-  /**
-   * An optional prefix to display before the input value.
-   */
-  prefixText?: string;
+    /**
+     * An optional prefix to display before the input value.
+     */
+    prefixText?: string;
 
-  /**
-   * An optional suffix to display after the input value.
-   */
-  suffixText?: string;
+    /**
+     * An optional suffix to display after the input value.
+     */
+    suffixText?: string;
 
-  /**
-   * Conveys additional information below the text field, such as how it should
-   * be used.
-   */
-  supportingText?: string;
+    /**
+     * Conveys additional information below the text field, such as how it should
+     * be used.
+     */
+    supportingText?: string;
 
-  /**
-   * The `<input>` type to use, defaults to "text". The type greatly changes how
-   * the text field behaves.
-   *
-   * Text fields support a limited number of `<input>` types:
-   *
-   * - text
-   * - textarea
-   * - email
-   * - number
-   * - password
-   * - search
-   * - tel
-   * - url
-   *
-   * See
-   * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types
-   * for more details on each input type.
-   */
-  type?: ITextFieldType | IUnsupportedTextFieldType;
+    /**
+     * The `<input>` type to use, defaults to "text". The type greatly changes how
+     * the text field behaves.
+     *
+     * Text fields support a limited number of `<input>` types:
+     *
+     * - text
+     * - textarea
+     * - email
+     * - number
+     * - password
+     * - search
+     * - tel
+     * - url
+     *
+     * See
+     * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types
+     * for more details on each input type.
+     */
+    type?: ITextFieldType | IUnsupportedTextFieldType;
 
-  /**
-   * The current value of the text field. It is always a string.
-   */
-  value?: string;
-  defaultValue?: string;
+    /**
+     * The current value of the text field. It is always a string.
+     */
+    value?: string;
+    defaultValue?: string;
 
-  /**
-   * When true, hide the spinner for `type="number"` text fields.
-   */
-  noSpinner?: boolean;
+    /**
+     * When true, hide the spinner for `type="number"` text fields.
+     */
+    noSpinner?: boolean;
 
-  start?: React.ReactNode;
-  end?: React.ReactNode;
-  leadingIcon?: React.ReactNode;
-  trailingIcon?: React.ReactNode;
-  onChange?: (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    value: string,
-  ) => void;
-  reportOnBlur?: boolean;
-  fieldStyles?: IZeroOrMore<ICompiledStyles<IFieldStyleKey>>;
-}
+    start?: React.ReactNode;
+    end?: React.ReactNode;
+    leadingIcon?: React.ReactNode;
+    trailingIcon?: React.ReactNode;
+    onChange?: (
+      event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+      value: string,
+    ) => void;
+    reportOnBlur?: boolean;
+    fieldStyles?: IZeroOrMore<ICompiledStyles<IFieldStyleKey>>;
+  };
 
 type ITextFieldVariantMap = {
   [key in IFieldVariant]: keyof Pick<

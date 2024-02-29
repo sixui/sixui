@@ -7,7 +7,7 @@ import { typescaleVars } from '@/themes/base/vars/typo.stylex';
 import { colorPalettesVars } from '@/themes/base/vars/colorPalettes.stylex';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 
-export interface IColorPalettesProps {}
+export type IColorPalettesProps = Record<string, never>;
 
 const styles = stylex.create({
   host: {
@@ -58,10 +58,10 @@ const styles = stylex.create({
 
 type ITone = { luminance: number; key: keyof IColorPalettes };
 
-interface ITonalPalette {
+type ITonalPalette = {
   title: string;
   tones: Array<ITone>;
-}
+};
 
 const tonalPalettes: Array<ITonalPalette> = [
   {
@@ -187,33 +187,31 @@ const tonalPalettes: Array<ITonalPalette> = [
   },
 ];
 
-export const ColorPalettes: React.FC<IColorPalettesProps> = () => {
-  return (
-    <div {...stylex.props(styles.host)}>
-      {tonalPalettes.map((palette) => (
-        <div {...stylex.props(styles.tonalPalette)} key={palette.title}>
-          <div {...stylex.props(styles.title)}>{palette.title}</div>
-          <div {...stylex.props(styles.tonalRow)}>
-            {palette.tones.map(({ luminance, key }) => (
-              <div
-                {...stylex.props(
-                  styles.tone,
-                  styles.toneColor(
-                    colorPalettesVars[key],
-                    luminance > 50
-                      ? colorPalettesVars.black
-                      : colorPalettesVars.white,
-                  ),
-                )}
-                key={luminance}
-                title={`Luminance ${luminance}`}
-              >
-                <div {...stylex.props(styles.toneLabel)}>{luminance}</div>
-              </div>
-            ))}
-          </div>
+export const ColorPalettes: React.FC<IColorPalettesProps> = () => (
+  <div {...stylex.props(styles.host)}>
+    {tonalPalettes.map((palette) => (
+      <div {...stylex.props(styles.tonalPalette)} key={palette.title}>
+        <div {...stylex.props(styles.title)}>{palette.title}</div>
+        <div {...stylex.props(styles.tonalRow)}>
+          {palette.tones.map(({ luminance, key }) => (
+            <div
+              {...stylex.props(
+                styles.tone,
+                styles.toneColor(
+                  colorPalettesVars[key],
+                  luminance > 50
+                    ? colorPalettesVars.black
+                    : colorPalettesVars.white,
+                ),
+              )}
+              key={luminance}
+              title={`Luminance ${luminance}`}
+            >
+              <div {...stylex.props(styles.toneLabel)}>{luminance}</div>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
-  );
-};
+      </div>
+    ))}
+  </div>
+);

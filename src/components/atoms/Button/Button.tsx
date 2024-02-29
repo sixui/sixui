@@ -25,7 +25,7 @@ import { ButtonBase, type IButtonBaseProps } from './ButtonBase';
 // https://github.com/material-components/material-web/blob/main/button/internal/outlined-button.ts
 // https://github.com/material-components/material-web/blob/main/button/internal/text-button.ts
 
-export interface IButtonProps extends IButtonBaseProps {
+export type IButtonProps = IButtonBaseProps & {
   variant?: IButtonVariant;
   icon?: React.ReactNode;
   trailingIcon?: boolean;
@@ -33,7 +33,7 @@ export interface IButtonProps extends IButtonBaseProps {
   loadingAnimation?: 'progressIndicator' | 'halfSpin' | 'none';
   loadingText?: string;
   circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
-}
+};
 
 type IButtonVariantMap = {
   [key in IButtonVariant]: keyof Pick<

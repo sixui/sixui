@@ -23,10 +23,10 @@ export type IMakeOptional<TType, TKey extends keyof TType> = Omit<TType, TKey> &
 export type IMakeRequired<TType, TKey extends keyof TType> = Omit<TType, TKey> &
   Required<Pick<TType, TKey>>;
 
-export interface IPoint {
+export type IPoint = {
   x: number;
   y: number;
-}
+};
 
 export type IStyles<TKey extends string> = {
   [key in TKey]?: UserAuthoredStyles | ((...props: IAny) => UserAuthoredStyles);

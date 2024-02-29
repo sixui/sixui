@@ -10,10 +10,12 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useCardContext } from '../Card/useCardContext';
 
-export interface ICardContentProps
-  extends IContainer<ICardContentStyleKey, ICardContentStyleVarKey> {
+export type ICardContentProps = IContainer<
+  ICardContentStyleKey,
+  ICardContentStyleVarKey
+> & {
   children?: React.ReactNode;
-}
+};
 
 export const CardContent: React.FC<ICardContentProps> = ({
   children,
@@ -25,8 +27,9 @@ export const CardContent: React.FC<ICardContentProps> = ({
     () =>
       stylePropsFactory<ICardContentStyleKey, ICardContentStyleVarKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
+        props.visualState,
       ),
-    [theme.styles, props.styles],
+    [theme.styles, props.styles, props.visualState],
   );
 
   const context = useCardContext();

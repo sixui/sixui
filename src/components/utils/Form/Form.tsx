@@ -5,11 +5,10 @@ import type { IFormStyleKey } from './Form.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 
-export interface IFormProps
-  extends Omit<IContainer<IFormStyleKey>, 'theme'>,
-    Pick<React.FormHTMLAttributes<HTMLFormElement>, 'onSubmit'> {
-  children: React.ReactNode;
-}
+export type IFormProps = Omit<IContainer<IFormStyleKey>, 'theme'> &
+  Pick<React.FormHTMLAttributes<HTMLFormElement>, 'onSubmit'> & {
+    children: React.ReactNode;
+  };
 
 export const Form: React.FC<IFormProps> = ({
   onSubmit,
@@ -20,8 +19,11 @@ export const Form: React.FC<IFormProps> = ({
 
   const styleProps = React.useMemo(
     () =>
-      stylePropsFactory<IFormStyleKey>(stylesCombinatorFactory(props.styles)),
-    [props.styles],
+      stylePropsFactory<IFormStyleKey>(
+        stylesCombinatorFactory(props.styles),
+        props.visualState,
+      ),
+    [props.styles, props.visualState],
   );
 
   // TODO: make this callback to be called only once on form validation.

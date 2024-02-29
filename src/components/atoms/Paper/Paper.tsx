@@ -17,14 +17,13 @@ import { Elevation, IElevationStyleKey } from '@/components/utils/Elevation';
 
 // https://github.com/material-components/material-web/blob/main/labs/paper/internal/paper.ts
 
-export interface IPaperProps
-  extends IContainer<IPaperStyleKey, IPaperStyleVarKey> {
+export type IPaperProps = IContainer<IPaperStyleKey, IPaperStyleVarKey> & {
   variant?: IPaperVariant;
   children?: React.ReactNode;
   elevation?: 0 | 1 | 2 | 3 | 4 | 5;
   square?: boolean;
   elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
-}
+};
 
 type IPaperVariantMap = {
   [key in IPaperVariant]: keyof Pick<

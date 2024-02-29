@@ -36,28 +36,27 @@ import {
 // https://github.com/material-components/material-web/blob/main/fab/internal/shared.ts
 // https://github.com/material-components/material-web/blob/main/fab/internal/fab.ts
 
-export interface IFabProps
-  extends IContainer<IFabStyleKey, IFabStyleVarKey>,
-    Pick<
-      React.ButtonHTMLAttributes<HTMLButtonElement>,
-      'disabled' | 'aria-label'
-    > {
-  children?: React.ReactNode;
-  size?: IFabSize;
-  onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
-  variant?: IFabVariant;
-  lowered?: boolean;
-  loading?: boolean;
-  loadingText?: string;
-  label?: string;
-  icon?: React.ReactNode;
-  component?: React.ElementType;
-  href?: string;
-  rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
-  focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-  elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
-  circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
-}
+export type IFabProps = IContainer<IFabStyleKey, IFabStyleVarKey> &
+  Pick<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    'disabled' | 'aria-label'
+  > & {
+    children?: React.ReactNode;
+    size?: IFabSize;
+    onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
+    variant?: IFabVariant;
+    lowered?: boolean;
+    loading?: boolean;
+    loadingText?: string;
+    label?: string;
+    icon?: React.ReactNode;
+    component?: React.ElementType;
+    href?: string;
+    rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+    focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+    elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
+    circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
+  };
 
 type IFabVariantMap = {
   [key in IFabVariant]: keyof Pick<

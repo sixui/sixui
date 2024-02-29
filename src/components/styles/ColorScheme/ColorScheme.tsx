@@ -6,7 +6,7 @@ import { typescaleVars } from '@/themes/base/vars/typo.stylex';
 import { colorPalettesVars } from '@/themes/base/vars/colorPalettes.stylex';
 import { ColorBox } from './ColorBox';
 
-export interface IColorSchemeProps {}
+export type IColorSchemeProps = Record<string, never>;
 
 const styles = stylex.create({
   host: {

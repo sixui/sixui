@@ -6,10 +6,9 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export interface IListProps
-  extends IContainer<IListStyleKey, IListStyleVarKey> {
+export type IListProps = IContainer<IListStyleKey, IListStyleVarKey> & {
   children?: React.ReactNode;
-}
+};
 
 export const List: React.FC<IListProps> = ({ children, ...props }) => {
   const theme = useComponentTheme('List');
@@ -18,8 +17,9 @@ export const List: React.FC<IListProps> = ({ children, ...props }) => {
     () =>
       stylePropsFactory<IListStyleKey, IListStyleVarKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
+        props.visualState,
       ),
-    [theme.styles, props.styles],
+    [theme.styles, props.styles, props.visualState],
   );
 
   return (

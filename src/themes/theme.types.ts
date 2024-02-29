@@ -102,21 +102,21 @@ import type {
   IAvatarStyleVarKey,
 } from '@/components/atoms/Avatar';
 
-export interface ITemplateTheme {
+export type ITemplateTheme = {
   vars?: IStyleVarsTheme<ITemplateStyleVarKey>;
   styles?: ICompiledStyles<ITemplateStyleKey>;
-}
+};
 
-export interface IButtonTheme {
+export type IButtonTheme = {
   vars?: IStyleVarsTheme<IButtonStyleVarKey>;
   styles?: ICompiledStyles<IButtonStyleKey>;
   rippleStyles?: ICompiledStyles<IRippleStyleKey>;
   focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
   elevationStyles?: ICompiledStyles<IElevationStyleKey>;
   circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
-}
+};
 
-export interface IChipTheme {
+export type IChipTheme = {
   vars?: IStyleVarsTheme<IChipStyleVarKey>;
   styles?: ICompiledStyles<IChipStyleKey>;
   rippleStyles?: ICompiledStyles<IRippleStyleKey>;
@@ -125,62 +125,62 @@ export interface IChipTheme {
   trailingActionFocusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
   trailingActionRippleStyles?: ICompiledStyles<IRippleStyleKey>;
   circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
-}
+};
 
-export interface IChipVariantTheme extends IChipTheme {
+export type IChipVariantTheme = IChipTheme & {
   rippleTheme?: IStyleVarsTheme<IRippleStyleVarKey>;
-}
+};
 
-export interface IFabTheme {
+export type IFabTheme = {
   vars?: IStyleVarsTheme<IFabStyleVarKey>;
   styles?: ICompiledStyles<IFabStyleKey>;
   rippleStyles?: ICompiledStyles<IRippleStyleKey>;
   focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
   elevationStyles?: ICompiledStyles<IElevationStyleKey>;
   circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
-}
+};
 
-export interface IFabVariantTheme extends IFabTheme {}
+export type IFabVariantTheme = IFabTheme;
 
-export interface IIconButtonTheme {
+export type IIconButtonTheme = {
   vars?: IStyleVarsTheme<IIconButtonStyleVarKey>;
   styles?: ICompiledStyles<IIconButtonStyleKey>;
   rippleStyles?: ICompiledStyles<IRippleStyleKey>;
   focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
   circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
-}
+};
 
-export interface IFieldTheme {
+export type IFieldTheme = {
   vars?: IStyleVarsTheme<ITextFieldStyleVarKey>;
   styles?: ICompiledStyles<IFieldStyleKey>;
-}
+};
 
-export interface ITextFieldTheme {
+export type ITextFieldTheme = {
   vars?: IStyleVarsTheme<ITextFieldStyleVarKey>;
   styles?: ICompiledStyles<ITextFieldStyleKey>;
   fieldStyles?: ICompiledStyles<IFieldStyleKey>;
-}
+};
 
-export interface IPaperTheme {
+export type IPaperTheme = {
   vars?: IStyleVarsTheme<IPaperStyleVarKey>;
   styles?: ICompiledStyles<IPaperStyleKey>;
   elevationStyles?: ICompiledStyles<IElevationStyleKey>;
-}
+};
 
-export interface ICardTheme {
+export type ICardTheme = {
   vars?: IStyleVarsTheme<ICardStyleVarKey>;
   styles?: ICompiledStyles<ICardStyleKey>;
-}
+};
 
-export interface ITabTheme {
+export type ITabTheme = {
   vars?: IStyleVarsTheme<ITabStyleVarKey>;
   styles?: ICompiledStyles<ITabStyleKey>;
   rippleStyles?: ICompiledStyles<IRippleStyleKey>;
   focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
   elevationStyles?: ICompiledStyles<IElevationStyleKey>;
-}
+};
 
-export interface ITheme {
+export type ITheme = {
   name: string;
   colorSchemes: {
     dark: IStyleVarsTheme<keyof IColorRoles>;
@@ -348,4 +348,4 @@ export interface ITheme {
       styles?: ICompiledStyles<IAvatarStyleKey>;
     };
   };
-}
+};

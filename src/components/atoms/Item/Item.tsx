@@ -8,8 +8,7 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 
 // https://github.com/material-components/material-web/blob/main/labs/item/item.ts
 
-export interface IItemProps
-  extends IContainer<IItemStyleKey, IItemStyleVarKey> {
+export type IItemProps = IContainer<IItemStyleKey, IItemStyleVarKey> & {
   container?: React.ReactNode;
   start?: React.ReactNode;
   overline?: React.ReactNode;
@@ -18,7 +17,7 @@ export interface IItemProps
   supportingText?: React.ReactNode;
   trailingSupportingText?: React.ReactNode;
   end?: React.ReactNode;
-}
+};
 
 export const Item: React.FC<IItemProps> = ({
   container,

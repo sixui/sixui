@@ -26,29 +26,31 @@ import {
 
 // https://github.com/material-components/material-web/blob/main/checkbox/internal/checkbox.ts
 
-export interface ICheckboxProps
-  extends IContainer<ICheckboxStyleKey, ICheckboxStyleVarKey>,
-    Pick<
-      React.InputHTMLAttributes<HTMLInputElement>,
-      | 'required'
-      | 'disabled'
-      | 'checked'
-      | 'id'
-      | 'name'
-      | 'value'
-      | 'aria-label'
-      | 'aria-checked'
-      | 'aria-invalid'
-    > {
-  defaultChecked?: boolean;
-  indeterminate?: boolean;
-  onChange?: (
-    event: React.ChangeEvent<HTMLInputElement>,
-    checked: boolean,
-  ) => IMaybeAsync<IAny>;
-  rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
-  focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-}
+export type ICheckboxProps = IContainer<
+  ICheckboxStyleKey,
+  ICheckboxStyleVarKey
+> &
+  Pick<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    | 'required'
+    | 'disabled'
+    | 'checked'
+    | 'id'
+    | 'name'
+    | 'value'
+    | 'aria-label'
+    | 'aria-checked'
+    | 'aria-invalid'
+  > & {
+    defaultChecked?: boolean;
+    indeterminate?: boolean;
+    onChange?: (
+      event: React.ChangeEvent<HTMLInputElement>,
+      checked: boolean,
+    ) => IMaybeAsync<IAny>;
+    rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+    focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+  };
 
 export const Checkbox: React.FC<ICheckboxProps> = ({
   disabled,
@@ -69,8 +71,9 @@ export const Checkbox: React.FC<ICheckboxProps> = ({
     () =>
       stylePropsFactory<ICheckboxStyleKey, ICheckboxStyleVarKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
+        props.visualState,
       ),
-    [theme.styles, props.styles],
+    [theme.styles, props.styles, props.visualState],
   );
 
   const indeterminate = props.indeterminate;

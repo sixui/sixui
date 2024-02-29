@@ -10,8 +10,6 @@ import {
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
 import { type ITabProps, Tab } from './Tab';
-import { PrimaryTab } from './PrimaryTab';
-import { SecondaryTab } from './SecondaryTab';
 
 // https://m3.material.io/components/tabs/overview
 // https://material-web.dev/components/tabs/
@@ -60,14 +58,15 @@ export const Variants: IStory = {
     <ComponentShowcase
       component={() => (
         <React.Fragment>
-          <PrimaryTab
+          <Tab
             {...props}
             icon={<FontAwesomeIcon icon={faEnvelope} />}
             activeIcon={<FontAwesomeIcon icon={faEnvelopeSolid} />}
             label='Primary'
           />
-          <SecondaryTab
+          <Tab
             {...props}
+            variant='secondary'
             icon={<FontAwesomeIcon icon={faEnvelope} />}
             activeIcon={<FontAwesomeIcon icon={faEnvelopeSolid} />}
             label='Secondary'
@@ -87,7 +86,7 @@ export const Variants: IStory = {
 export const Primary: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={PrimaryTab}
+      component={Tab}
       props={props}
       colsProps={statesProps}
       rowsProps={rowsProps}
@@ -100,7 +99,7 @@ export const Primary: IStory = {
 export const PrimaryWithBadge: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={PrimaryTab}
+      component={Tab}
       props={props}
       colsProps={statesProps}
       rowsProps={rowsProps}
@@ -116,20 +115,7 @@ export const PrimaryWithBadge: IStory = {
 export const Secondary: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={SecondaryTab}
-      props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
-      groupsProps={groupsProps}
-    />
-  ),
-  args: defaultArgs,
-};
-
-export const SecondaryWithBadge: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={SecondaryTab}
+      component={Tab}
       props={props}
       colsProps={statesProps}
       rowsProps={rowsProps}
@@ -138,6 +124,23 @@ export const SecondaryWithBadge: IStory = {
   ),
   args: {
     ...defaultArgs,
+    variant: 'secondary',
+  },
+};
+
+export const SecondaryWithBadge: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={Tab}
+      props={props}
+      colsProps={statesProps}
+      rowsProps={rowsProps}
+      groupsProps={groupsProps}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'secondary',
     badge: { value: 3 },
   },
 };

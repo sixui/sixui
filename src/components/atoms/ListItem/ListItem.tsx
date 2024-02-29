@@ -24,39 +24,38 @@ import {
 
 export type IListItemType = 'text' | 'button' | 'link';
 
-export interface IListItemProps
-  extends IContainer<IListItemStyleKey, IItemStyleVarKey>,
-    Pick<
-      React.AnchorHTMLAttributes<HTMLAnchorElement>,
-      'href' | 'target' | 'aria-expanded'
-    >,
-    Pick<
-      IItemProps,
-      | 'overline'
-      | 'start'
-      | 'children'
-      | 'headline'
-      | 'supportingText'
-      | 'trailingSupportingText'
-      | 'end'
-    > {
-  /**
-   * Disables the item and makes it non-selectable and non-interactive.
-   */
-  disabled?: boolean;
+export type IListItemProps = IContainer<IListItemStyleKey, IItemStyleVarKey> &
+  Pick<
+    React.AnchorHTMLAttributes<HTMLAnchorElement>,
+    'href' | 'target' | 'aria-expanded'
+  > &
+  Pick<
+    IItemProps,
+    | 'overline'
+    | 'start'
+    | 'children'
+    | 'headline'
+    | 'supportingText'
+    | 'trailingSupportingText'
+    | 'end'
+  > & {
+    /**
+     * Disables the item and makes it non-selectable and non-interactive.
+     */
+    disabled?: boolean;
 
-  /**
-   * Sets the behavior of the list item, defaults to "text". Change to "link" or
-   * "button" for interactive items.
-   */
-  type?: IListItemType;
+    /**
+     * Sets the behavior of the list item, defaults to "text". Change to "link" or
+     * "button" for interactive items.
+     */
+    type?: IListItemType;
 
-  component?: React.ElementType;
-  itemStyles?: IZeroOrMore<ICompiledStyles<IItemStyleKey>>;
-  rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
-  focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-  selected?: boolean;
-}
+    component?: React.ElementType;
+    itemStyles?: IZeroOrMore<ICompiledStyles<IItemStyleKey>>;
+    rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+    focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+    selected?: boolean;
+  };
 
 export const ListItem: React.FC<IListItemProps> = ({
   href,

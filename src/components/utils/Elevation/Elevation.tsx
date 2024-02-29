@@ -9,11 +9,13 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export interface IElevationProps
-  extends IContainer<IElevationStyleKey, IElevationStyleVarKey> {
+export type IElevationProps = IContainer<
+  IElevationStyleKey,
+  IElevationStyleVarKey
+> & {
   level?: 0 | 1 | 2 | 3 | 4 | 5;
   disabled?: boolean;
-}
+};
 
 export const Elevation: React.FC<IElevationProps> = ({
   level,
@@ -26,8 +28,9 @@ export const Elevation: React.FC<IElevationProps> = ({
     () =>
       stylePropsFactory<IElevationStyleKey, IElevationStyleVarKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
+        props.visualState,
       ),
-    [theme.styles, props.styles],
+    [theme.styles, props.styles, props.visualState],
   );
 
   return (

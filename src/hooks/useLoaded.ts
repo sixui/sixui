@@ -1,10 +1,9 @@
 import * as React from 'react';
 
-interface IUseLoadedProps
-  extends Pick<
-    React.ImgHTMLAttributes<HTMLImageElement>,
-    'crossOrigin' | 'referrerPolicy' | 'src' | 'srcSet'
-  > {}
+type IUseLoadedProps = Pick<
+  React.ImgHTMLAttributes<HTMLImageElement>,
+  'crossOrigin' | 'referrerPolicy' | 'src' | 'srcSet'
+>;
 
 export const useLoaded = ({
   crossOrigin,

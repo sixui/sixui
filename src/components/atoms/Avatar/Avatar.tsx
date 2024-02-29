@@ -9,18 +9,17 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { ReactComponent as Person } from '@/assets/Person.svg';
 import { useLoaded } from '@/hooks/useLoaded';
 
-export interface IAvatarProps
-  extends IContainer<IAvatarStyleKey, IAvatarStyleVarKey>,
-    Pick<
-      React.ImgHTMLAttributes<HTMLImageElement>,
-      'alt' | 'crossOrigin' | 'referrerPolicy' | 'src' | 'srcSet' | 'sizes'
-    > {
-  /**
-   * Used to render icon or text elements inside the Avatar if `src` is not set. This can be an
-   * element, or just a string.
-   */
-  children?: React.ReactNode;
-}
+export type IAvatarProps = IContainer<IAvatarStyleKey, IAvatarStyleVarKey> &
+  Pick<
+    React.ImgHTMLAttributes<HTMLImageElement>,
+    'alt' | 'crossOrigin' | 'referrerPolicy' | 'src' | 'srcSet' | 'sizes'
+  > & {
+    /**
+     * Used to render icon or text elements inside the Avatar if `src` is not set. This can be an
+     * element, or just a string.
+     */
+    children?: React.ReactNode;
+  };
 
 export const Avatar: React.FC<IAvatarProps> = ({
   alt,
@@ -38,8 +37,9 @@ export const Avatar: React.FC<IAvatarProps> = ({
     () =>
       stylePropsFactory<IAvatarStyleKey, IAvatarStyleVarKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
+        props.visualState,
       ),
-    [theme.styles, props.styles],
+    [theme.styles, props.styles, props.visualState],
   );
 
   // Use a hook instead of onError on the img element to support server-side rendering.

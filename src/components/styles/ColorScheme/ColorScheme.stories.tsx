@@ -12,9 +12,7 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {
-  theme: 'light',
-} satisfies Partial<IColorSchemeProps>;
+const defaultArgs = {} satisfies Partial<IColorSchemeProps>;
 
 export const BaselineColors: IStory = {
   render: (props) => <ColorScheme {...props} />,

@@ -10,11 +10,10 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 
 // https://github.com/material-components/material-web/blob/main/ripple/internal/ripple.ts
 
-export interface IRippleProps
-  extends IContainer<IRippleStyleKey, IRippleStyleVarKey> {
+export type IRippleProps = IContainer<IRippleStyleKey, IRippleStyleVarKey> & {
   for?: React.RefObject<HTMLElement>;
   disabled?: boolean;
-}
+};
 
 const PRESS_GROW_MS = 450;
 const MINIMUM_PRESS_MS = 225;

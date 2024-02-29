@@ -9,15 +9,17 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export interface IPlaceholderProps
-  extends IContainer<IPlaceholderStyleKey, IPlaceholderStyleVarKey> {
+export type IPlaceholderProps = IContainer<
+  IPlaceholderStyleKey,
+  IPlaceholderStyleVarKey
+> & {
   label?: string;
   children?: React.ReactNode;
   role?: string;
   tabIndex?: number;
   crosshairs?: boolean;
   shape?: 'rounded' | 'rectangular' | 'circular';
-}
+};
 
 export const Placeholder: React.FC<IPlaceholderProps> = ({
   label,
@@ -34,8 +36,9 @@ export const Placeholder: React.FC<IPlaceholderProps> = ({
     () =>
       stylePropsFactory<IPlaceholderStyleKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
+        props.visualState,
       ),
-    [theme.styles, props.styles],
+    [theme.styles, props.styles, props.visualState],
   );
 
   return (

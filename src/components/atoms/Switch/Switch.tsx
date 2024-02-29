@@ -28,42 +28,41 @@ import { ReactComponent as XMark } from '@/assets/XMark.svg';
 
 // https://github.com/material-components/material-web/blob/main/switch/internal/switch.ts
 
-export interface ISwitchProps
-  extends IContainer<ISwitchStyleKey, ISwitchStyleVarKey>,
-    Pick<
-      React.InputHTMLAttributes<HTMLInputElement>,
-      'id' | 'name' | 'disabled' | 'required' | 'aria-label'
-    > {
-  /**
-   * Puts the switch in the selected state.
-   */
-  selected?: boolean;
+export type ISwitchProps = IContainer<ISwitchStyleKey, ISwitchStyleVarKey> &
+  Pick<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    'id' | 'name' | 'disabled' | 'required' | 'aria-label'
+  > & {
+    /**
+     * Puts the switch in the selected state.
+     */
+    selected?: boolean;
 
-  defaultSelected?: boolean;
+    defaultSelected?: boolean;
 
-  /**
-   * Shows both the selected and deselected icons.
-   */
-  icons?: boolean;
+    /**
+     * Shows both the selected and deselected icons.
+     */
+    icons?: boolean;
 
-  /**
-   * Shows only the selected icon, and not the deselected icon. If `true`,
-   * overrides the behavior of the `icons` property.
-   */
-  showOnlySelectedIcon?: boolean;
+    /**
+     * Shows only the selected icon, and not the deselected icon. If `true`,
+     * overrides the behavior of the `icons` property.
+     */
+    showOnlySelectedIcon?: boolean;
 
-  loading?: boolean;
-  loadingAnimation?: 'progressIndicator' | 'none';
-  onChange?: (
-    event: React.ChangeEvent<HTMLInputElement>,
-    enabled: boolean,
-  ) => IMaybeAsync<IAny>;
-  icon?: React.ReactNode;
-  selectedIcon?: React.ReactNode;
-  rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
-  focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-  circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
-}
+    loading?: boolean;
+    loadingAnimation?: 'progressIndicator' | 'none';
+    onChange?: (
+      event: React.ChangeEvent<HTMLInputElement>,
+      enabled: boolean,
+    ) => IMaybeAsync<IAny>;
+    icon?: React.ReactNode;
+    selectedIcon?: React.ReactNode;
+    rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+    focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+    circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
+  };
 
 export const Switch: React.FC<ISwitchProps> = ({
   id,

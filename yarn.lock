@@ -3419,6 +3419,7 @@ __metadata:
     eslint: "npm:^8.57.0"
     eslint-config-prettier: "npm:^9.1.0"
     eslint-import-resolver-alias: "npm:^1.1.2"
+    eslint-plugin-fp: "npm:^2.3.0"
     eslint-plugin-import: "npm:^2.29.1"
     eslint-plugin-jsx-a11y: "npm:^6.8.0"
     eslint-plugin-prettier: "npm:^5.1.3"
@@ -6474,6 +6475,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"create-eslint-index@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "create-eslint-index@npm:1.0.0"
+  dependencies:
+    lodash.get: "npm:^4.3.0"
+  checksum: 10/34c859910c6873381e795f22352522c23755856ce444e95eec5bf09b640cab50ff8bbc241c61fc0362f42bb713a85ef7aeaa49d0d73d0560bf43f0a0c20b54d6
+  languageName: node
+  linkType: hard
+
 "create-require@npm:^1.1.0":
   version: 1.1.1
   resolution: "create-require@npm:1.1.1"
@@ -7350,6 +7360,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-ast-utils@npm:^1.0.0":
+  version: 1.1.0
+  resolution: "eslint-ast-utils@npm:1.1.0"
+  dependencies:
+    lodash.get: "npm:^4.4.2"
+    lodash.zip: "npm:^4.2.0"
+  checksum: 10/dd009280535abfd639763915dac0e38cf6f5a95332895bce202f4b7f413e3e1eeeda5e0c3e4099a23cdc4e31981a41c49828474cbc8d0e74e172c41bcb7748e3
+  languageName: node
+  linkType: hard
+
 "eslint-config-prettier@npm:^9.1.0":
   version: 9.1.0
   resolution: "eslint-config-prettier@npm:9.1.0"
@@ -7390,6 +7410,20 @@ __metadata:
     eslint:
       optional: true
   checksum: 10/a9a7ed93eb858092e3cdc797357d4ead2b3ea06959b0eada31ab13862d46a59eb064b9cb82302214232e547980ce33618c2992f6821138a4934e65710ed9cc29
+  languageName: node
+  linkType: hard
+
+"eslint-plugin-fp@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "eslint-plugin-fp@npm:2.3.0"
+  dependencies:
+    create-eslint-index: "npm:^1.0.0"
+    eslint-ast-utils: "npm:^1.0.0"
+    lodash: "npm:^4.13.1"
+    req-all: "npm:^0.1.0"
+  peerDependencies:
+    eslint: ">=3"
+  checksum: 10/712776516dd89cbdd717652e65cafbf1f82b12f790983c2bd2d519930e476ee947e6aafc5788bcd2f922054e9c69a4aa260aa4d9625b7bd90a1b9ab9070f3031
   languageName: node
   linkType: hard
 
@@ -9704,7 +9738,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.get@npm:^4":
+"lodash.get@npm:^4, lodash.get@npm:^4.3.0, lodash.get@npm:^4.4.2":
   version: 4.4.2
   resolution: "lodash.get@npm:4.4.2"
   checksum: 10/2a4925f6e89bc2c010a77a802d1ba357e17ed1ea03c2ddf6a146429f2856a216663e694a6aa3549a318cbbba3fd8b7decb392db457e6ac0b83dc745ed0a17380
@@ -9725,7 +9759,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.15, lodash@npm:^4.17.21":
+"lodash.zip@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "lodash.zip@npm:4.2.0"
+  checksum: 10/cb06530d81b520e27f1a5dbd4ec91df22f14977b56c267fa0eea7177eb407a048e5eb9a6baadbb1346ba607503211c36d763a74f933832c224a88b8d984cb4f9
+  languageName: node
+  linkType: hard
+
+"lodash@npm:^4.13.1, lodash@npm:^4.17.15, lodash@npm:^4.17.21":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: 10/c08619c038846ea6ac754abd6dd29d2568aa705feb69339e836dfa8d8b09abbb2f859371e86863eda41848221f9af43714491467b5b0299122431e202bb0c532
@@ -11690,6 +11731,13 @@ __metadata:
   version: 0.3.0
   resolution: "remove-markdown@npm:0.3.0"
   checksum: 10/55c2690f6bcbabcd072a9fb7bf0d0d70e586ce7c26f941813b14a945885753eea35c874f9f1d77dd15844740f8cc5ca9c5c23542034d9bd933455d89cb12c239
+  languageName: node
+  linkType: hard
+
+"req-all@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "req-all@npm:0.1.0"
+  checksum: 10/16a6931b6a6024e4e33072ee3fdd87c9e84d75f228caadd21098e46f4825fddb934ce01d6a5af81daf95541bfd35be5b2fe82b78910fdf13a35297c042865984
   languageName: node
   linkType: hard
 

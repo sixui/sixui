@@ -23,17 +23,16 @@ import { useRadioGroupContext } from '../RadioGroup/useRadioGroupContext';
 
 // https://github.com/material-components/material-web/blob/main/radio/internal/radio.ts
 
-export interface IRadioProps
-  extends IContainer<IRadioStyleKey, IRadioStyleVarKey>,
-    Pick<
-      React.InputHTMLAttributes<HTMLInputElement>,
-      'id' | 'name' | 'required' | 'disabled' | 'checked' | 'aria-label'
-    > {
-  value?: string;
-  onChange?: (checked: boolean) => IMaybeAsync<IAny>;
-  rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
-  focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-}
+export type IRadioProps = IContainer<IRadioStyleKey, IRadioStyleVarKey> &
+  Pick<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    'id' | 'name' | 'required' | 'disabled' | 'checked' | 'aria-label'
+  > & {
+    value?: string;
+    onChange?: (checked: boolean) => IMaybeAsync<IAny>;
+    rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+    focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+  };
 
 export const Radio: React.FC<IRadioProps> = ({
   required,
@@ -58,8 +57,9 @@ export const Radio: React.FC<IRadioProps> = ({
     () =>
       stylePropsFactory<IRadioStyleKey, IRadioStyleVarKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
+        props.visualState,
       ),
-    [theme.styles, props.styles],
+    [theme.styles, props.styles, props.visualState],
   );
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> =

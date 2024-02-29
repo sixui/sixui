@@ -2,11 +2,11 @@ import * as React from 'react';
 
 import type { IAny, IMaybeAsync } from '@/helpers/types';
 
-export interface IRadioGroupContext {
+export type IRadioGroupContext = {
   name?: string;
   onChange: (value: string | undefined) => IMaybeAsync<IAny>;
   value?: string;
-}
+};
 
 export const RadioGroupContext = React.createContext<
   IRadioGroupContext | undefined

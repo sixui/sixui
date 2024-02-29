@@ -14,25 +14,24 @@ import { EASING } from '@/helpers/animation';
 // https://github.com/material-components/material-web/blob/main/field/internal/outlined-field.ts
 // https://github.com/material-components/material-web/blob/main/field/internal/field.ts
 
-export interface IFieldProps
-  extends IContainer<IFieldStyleKey, ITextFieldStyleVarKey>,
-    Pick<
-      React.InputHTMLAttributes<HTMLInputElement>,
-      'disabled' | 'required' | 'max'
-    > {
-  variant?: IFieldVariant;
-  children?: React.ReactNode;
-  start?: React.ReactNode;
-  end?: React.ReactNode;
-  error?: boolean;
-  label?: string;
-  populated?: boolean;
-  resizable?: boolean;
-  supportingText?: string;
-  errorText?: string;
-  count?: number;
-  textarea?: boolean;
-}
+export type IFieldProps = IContainer<IFieldStyleKey, ITextFieldStyleVarKey> &
+  Pick<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    'disabled' | 'required' | 'max'
+  > & {
+    variant?: IFieldVariant;
+    children?: React.ReactNode;
+    start?: React.ReactNode;
+    end?: React.ReactNode;
+    error?: boolean;
+    label?: string;
+    populated?: boolean;
+    resizable?: boolean;
+    supportingText?: string;
+    errorText?: string;
+    count?: number;
+    textarea?: boolean;
+  };
 
 type IFieldVariantMap = {
   [key in IFieldVariant]: keyof Pick<

@@ -30,27 +30,29 @@ import {
 
 // https://github.com/material-components/material-web/blob/main/iconbutton/internal/icon-button.ts
 
-export interface IIconButtonProps
-  extends IContainer<IIconButtonStyleKey, IIconButtonStyleVarKey>,
-    Pick<
-      React.ButtonHTMLAttributes<HTMLButtonElement>,
-      'disabled' | 'aria-label' | 'aria-haspopup' | 'aria-expanded'
-    >,
-    Pick<React.LinkHTMLAttributes<HTMLLinkElement>, 'href'> {
-  forwardRef?: React.RefObject<HTMLButtonElement | HTMLLinkElement>;
-  onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
-  variant?: IIconButtonVariant;
-  toggle?: boolean;
-  selected?: boolean;
-  loading?: boolean;
-  icon: React.ReactNode;
-  selectedIcon?: React.ReactNode;
-  component?: React.ElementType;
-  'aria-label-selected'?: React.AriaAttributes['aria-label'];
-  rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
-  focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-  circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
-}
+export type IIconButtonProps = IContainer<
+  IIconButtonStyleKey,
+  IIconButtonStyleVarKey
+> &
+  Pick<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    'disabled' | 'aria-label' | 'aria-haspopup' | 'aria-expanded'
+  > &
+  Pick<React.LinkHTMLAttributes<HTMLLinkElement>, 'href'> & {
+    forwardRef?: React.RefObject<HTMLButtonElement | HTMLLinkElement>;
+    onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
+    variant?: IIconButtonVariant;
+    toggle?: boolean;
+    selected?: boolean;
+    loading?: boolean;
+    icon: React.ReactNode;
+    selectedIcon?: React.ReactNode;
+    component?: React.ElementType;
+    'aria-label-selected'?: React.AriaAttributes['aria-label'];
+    rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+    focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+    circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
+  };
 
 type IIconButtonVariantMap = {
   [key in IIconButtonVariant]: keyof Pick<

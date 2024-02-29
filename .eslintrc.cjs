@@ -9,7 +9,7 @@ const eslintConfig = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['@stylexjs/eslint-plugin'],
+  plugins: ['@stylexjs/eslint-plugin', 'fp'],
   extends: [
     'prettier',
     'plugin:prettier/recommended',

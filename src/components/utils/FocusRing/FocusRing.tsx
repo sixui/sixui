@@ -9,17 +9,19 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export interface IFocusRingProps
-  extends IContainer<IFocusRingStyleKey, IFocusRingStyleVarKey> {
+export type IFocusRingProps = IContainer<
+  IFocusRingStyleKey,
+  IFocusRingStyleVarKey
+> & {
   for?: React.RefObject<HTMLElement>;
   inward?: boolean;
-}
+};
 
 const HANDLED_BY_FOCUS_RING = Symbol('handledByFocusRing');
 
-interface IFocusRingEvent extends Event {
+type IFocusRingEvent = Event & {
   [HANDLED_BY_FOCUS_RING]?: true;
-}
+};
 
 export const FocusRing: React.FC<IFocusRingProps> = ({
   visualState,

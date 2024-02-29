@@ -27,7 +27,7 @@ import { Anchored } from '@/components/utils/Anchored';
 
 // https://github.com/material-components/material-web/blob/main/tabs/internal/tab.ts
 
-export interface ITabProps extends IContainer<ITabStyleKey, ITabStyleVarKey> {
+export type ITabProps = IContainer<ITabStyleKey, ITabStyleVarKey> & {
   variant?: ITabVariant;
 
   /**
@@ -45,7 +45,7 @@ export interface ITabProps extends IContainer<ITabStyleKey, ITabStyleVarKey> {
   focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
   elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
   badge?: IBadgeProps;
-}
+};
 
 type ITabVariantMap = {
   [key in ITabVariant]: keyof Pick<

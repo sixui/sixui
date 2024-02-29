@@ -6,9 +6,9 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export interface ICardActionsProps extends IContainer<ICardActionsStyleKey> {
+export type ICardActionsProps = IContainer<ICardActionsStyleKey> & {
   children: React.ReactNode;
-}
+};
 
 export const CardActions: React.FC<ICardActionsProps> = ({
   children,
@@ -20,8 +20,9 @@ export const CardActions: React.FC<ICardActionsProps> = ({
     () =>
       stylePropsFactory<ICardActionsStyleKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
+        props.visualState,
       ),
-    [theme.styles, props.styles],
+    [theme.styles, props.styles, props.visualState],
   );
 
   return <div {...styleProps(['host', props.sx])}>{children}</div>;

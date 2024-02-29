@@ -11,10 +11,12 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export interface ITemplateProps
-  extends IContainer<ITemplateStyleKey, ITemplateStyleVarKey> {
+export type ITemplateProps = IContainer<
+  ITemplateStyleKey,
+  ITemplateStyleVarKey
+> & {
   variant?: ITemplateVariant;
-}
+};
 
 type ITemplateVariantMap = {
   [key in ITemplateVariant]: keyof Pick<IThemeComponents, 'VariantTemplate'>;
@@ -39,8 +41,9 @@ export const Template: React.FC<ITemplateProps> = ({
           variantTheme.styles,
           props.styles,
         ),
+        props.visualState,
       ),
-    [theme.styles, variantTheme.styles, props.styles],
+    [theme.styles, variantTheme.styles, props.styles, props.visualState],
   );
 
   return (

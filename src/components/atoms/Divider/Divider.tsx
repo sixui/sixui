@@ -11,8 +11,10 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 
 // https://github.com/material-components/material-web/blob/main/divider/internal/divider.ts
 
-export interface IDividerProps
-  extends IContainer<IDividerStyleKey, IDividerStyleVarKey> {
+export type IDividerProps = IContainer<
+  IDividerStyleKey,
+  IDividerStyleVarKey
+> & {
   /**
    * Indents the divider with equal padding on both sides.
    */
@@ -27,7 +29,7 @@ export interface IDividerProps
    * Indents the divider with padding on the trailing side.
    */
   insetEnd?: boolean;
-}
+};
 
 export const Divider: React.FC<IDividerProps> = ({
   inset,
@@ -41,8 +43,9 @@ export const Divider: React.FC<IDividerProps> = ({
     () =>
       stylePropsFactory<IDividerStyleKey, IDividerStyleVarKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
+        props.visualState,
       ),
-    [theme.styles, props.styles],
+    [theme.styles, props.styles, props.visualState],
   );
 
   return (

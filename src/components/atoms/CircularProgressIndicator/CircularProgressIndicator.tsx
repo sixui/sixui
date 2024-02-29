@@ -13,18 +13,17 @@ import {
   ICircularProgressIndicatorStyleVarKey,
 } from './CircularProgressIndicator.styledefs';
 
-export interface ICircularProgressIndicatorProps
-  extends IContainer<
-      | ICircularProgressIndicatorStyleKey
-      | IDeterminateCircularProgressIndicatorStyleKey
-      | IIndeterminateCircularProgressIndicatorStyleKey,
-      ICircularProgressIndicatorStyleVarKey
-    >,
-    IMakeOptional<
-      Omit<IDeterminateCircularProgressIndicatorProps, 'styles'>,
-      'value'
-    >,
-    Omit<IIndeterminateCircularProgressIndicatorProps, 'styles'> {}
+export type ICircularProgressIndicatorProps = IContainer<
+  | ICircularProgressIndicatorStyleKey
+  | IDeterminateCircularProgressIndicatorStyleKey
+  | IIndeterminateCircularProgressIndicatorStyleKey,
+  ICircularProgressIndicatorStyleVarKey
+> &
+  IMakeOptional<
+    Omit<IDeterminateCircularProgressIndicatorProps, 'styles'>,
+    'value'
+  > &
+  Omit<IIndeterminateCircularProgressIndicatorProps, 'styles'>;
 
 export const CircularProgressIndicator: React.FC<
   ICircularProgressIndicatorProps

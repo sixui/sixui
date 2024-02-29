@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { isProduction } from '@/helpers/isProduction';
 
-interface IUseControlledProps<T> {
+type IUseControlledProps<T> = {
   /**
    * Holds the component value when it's controlled.
    */
@@ -22,7 +22,7 @@ interface IUseControlledProps<T> {
    * The name of the state variable displayed in warnings.
    */
   state?: string;
-}
+};
 
 // https://github.com/mui/material-ui/blob/master/packages/mui-utils/src/useControlled/useControlled.js
 // https://github.com/mui/material-ui/blob/master/packages/mui-utils/src/useControlled/useControlled.d.ts

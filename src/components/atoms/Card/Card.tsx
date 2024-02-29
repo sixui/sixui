@@ -33,8 +33,7 @@ import { CardActions } from '../CardActions';
 
 // https://github.com/material-components/material-web/blob/main/labs/card/internal/card.ts
 
-export interface ICardProps
-  extends IContainer<ICardStyleKey, ICardStyleVarKey> {
+export type ICardProps = IContainer<ICardStyleKey, ICardStyleVarKey> & {
   variant?: ICardVariant;
   children: React.ReactNode;
   elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
@@ -47,15 +46,15 @@ export interface ICardProps
   'aria-label'?: string;
   'aria-haspopup'?: boolean;
   'aria-expanded'?: boolean;
-}
+};
 
-export interface ICardSubComponents {
+export type ICardSubComponents = {
   Header: typeof CardHeader;
   Media: typeof CardMedia;
   Content: typeof CardContent;
   Title: typeof CardTitle;
   Actions: typeof CardActions;
-}
+};
 
 type ICardVariantMap = {
   [key in ICardVariant]: keyof Pick<

@@ -6,15 +6,14 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export interface IBadgeProps
-  extends IContainer<IBadgeStyleKey, IBadgeStyleVarKey> {
+export type IBadgeProps = IContainer<IBadgeStyleKey, IBadgeStyleVarKey> & {
   value?: number;
   maxValue?: number;
   showZero?: boolean;
   dot?: boolean;
   invisible?: boolean;
   disabled?: boolean;
-}
+};
 
 export const Badge: React.FC<IBadgeProps> = ({
   value,
@@ -30,8 +29,9 @@ export const Badge: React.FC<IBadgeProps> = ({
     () =>
       stylePropsFactory<IBadgeStyleKey, IBadgeStyleVarKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
+        props.visualState,
       ),
-    [theme.styles, props.styles],
+    [theme.styles, props.styles, props.visualState],
   );
 
   const invisible =

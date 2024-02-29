@@ -7,13 +7,12 @@ import { shouldReduceMotion } from '@/helpers/shouldReduceAnimations';
 import { type ITabContext, TabContext } from './TabContext';
 import { useId } from '@/hooks/useId';
 
-export interface ITabsProps
-  extends Omit<ITabContext, 'onChange'>,
-    Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, 'aria-label'> {
-  onChange?: (anchor: string | undefined) => IMaybeAsync<IAny>;
-  defaultAnchor?: string;
-  children?: React.ReactNode;
-}
+export type ITabsProps = Omit<ITabContext, 'onChange'> &
+  Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, 'aria-label'> & {
+    onChange?: (anchor: string | undefined) => IMaybeAsync<IAny>;
+    defaultAnchor?: string;
+    children?: React.ReactNode;
+  };
 
 export const Tabs: React.FC<ITabsProps> = ({
   children,

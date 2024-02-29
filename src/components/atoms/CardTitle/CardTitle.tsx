@@ -9,12 +9,14 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export interface ICardTitleProps
-  extends IContainer<ICardTitleStyleKey, ICardTitleStyleVarKey> {
+export type ICardTitleProps = IContainer<
+  ICardTitleStyleKey,
+  ICardTitleStyleVarKey
+> & {
   headline?: React.ReactNode;
   subhead?: React.ReactNode;
   supportingText?: React.ReactNode;
-}
+};
 
 export const CardTitle: React.FC<ICardTitleProps> = ({
   headline,
@@ -28,8 +30,9 @@ export const CardTitle: React.FC<ICardTitleProps> = ({
     () =>
       stylePropsFactory<ICardTitleStyleKey, ICardTitleStyleVarKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
+        props.visualState,
       ),
-    [theme.styles, props.styles],
+    [theme.styles, props.styles, props.visualState],
   );
 
   return (

@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-export interface ICardContext {
+export type ICardContext = {
   actionable?: boolean;
-}
+};
 
 export const CardContext = React.createContext<ICardContext | undefined>(
   undefined,

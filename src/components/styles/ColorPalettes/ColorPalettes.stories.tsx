@@ -9,9 +9,7 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {
-  theme: 'light',
-} satisfies Partial<IColorPalettesProps>;
+const defaultArgs = {} satisfies Partial<IColorPalettesProps>;
 
 export const TonalPalettes: IStory = {
   render: (props) => <ColorPalettes {...props} />,

@@ -13,21 +13,20 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 // https://github.com/material-components/material-web/blob/main/progress/internal/progress.ts
 // https://github.com/material-components/material-web/blob/main/progress/internal/circulardeterminate-progress.ts
 
-export interface IDeterminateCircularProgressIndicatorProps
-  extends IContainer<
-      IDeterminateCircularProgressIndicatorStyleKey,
-      ICircularProgressIndicatorStyleVarKey
-    >,
-    Pick<React.AriaAttributes, 'aria-label'> {
-  value: number;
-  withLabel?: boolean;
-  min?: number;
-  max?: number;
-  zeroBased?: boolean;
-  labelFormatter?: (value: number) => string;
-  size?: ICircularProgressIndicatorSize;
-  disabled?: boolean;
-}
+export type IDeterminateCircularProgressIndicatorProps = IContainer<
+  IDeterminateCircularProgressIndicatorStyleKey,
+  ICircularProgressIndicatorStyleVarKey
+> &
+  Pick<React.AriaAttributes, 'aria-label'> & {
+    value: number;
+    withLabel?: boolean;
+    min?: number;
+    max?: number;
+    zeroBased?: boolean;
+    labelFormatter?: (value: number) => string;
+    size?: ICircularProgressIndicatorSize;
+    disabled?: boolean;
+  };
 
 export const DeterminateCircularProgressIndicator: React.FC<
   IDeterminateCircularProgressIndicatorProps
@@ -58,8 +57,9 @@ export const DeterminateCircularProgressIndicator: React.FC<
           variantTheme.styles,
           props.styles,
         ),
+        props.visualState,
       ),
-    [theme.styles, variantTheme.styles, props.styles],
+    [theme.styles, variantTheme.styles, props.styles, props.visualState],
   );
 
   const value0 = zeroBased ? 0 : min;

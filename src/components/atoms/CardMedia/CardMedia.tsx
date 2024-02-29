@@ -6,11 +6,10 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export interface ICardMediaProps
-  extends IContainer<ICardMediaStyleKey>,
-    Pick<React.ImgHTMLAttributes<HTMLImageElement>, 'src' | 'title'> {
-  children?: React.ReactNode;
-}
+export type ICardMediaProps = IContainer<ICardMediaStyleKey> &
+  Pick<React.ImgHTMLAttributes<HTMLImageElement>, 'src' | 'title'> & {
+    children?: React.ReactNode;
+  };
 
 export const CardMedia: React.FC<ICardMediaProps> = ({
   children,
@@ -24,8 +23,9 @@ export const CardMedia: React.FC<ICardMediaProps> = ({
     () =>
       stylePropsFactory<ICardMediaStyleKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
+        props.visualState,
       ),
-    [theme.styles, props.styles],
+    [theme.styles, props.styles, props.visualState],
   );
 
   return (

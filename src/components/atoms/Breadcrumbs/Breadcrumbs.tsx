@@ -17,21 +17,23 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { ReactComponent as EllipsisHorizontal } from '@/assets/EllipsisHorizontal.svg';
 import { ButtonBase } from '../Button';
 
-export interface IBreadcrumbsProps
-  extends IContainer<IBreadcrumbsStyleKey, IBreadcrumbsStyleVarKey>,
-    Pick<React.ButtonHTMLAttributes<HTMLElement>, 'aria-label'> {
-  innerStyles?: {
-    expandButton?: IZeroOrMore<ICompiledStyles<IBreadcrumbsStyleKey>>;
-    expandButtonFocusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+export type IBreadcrumbsProps = IContainer<
+  IBreadcrumbsStyleKey,
+  IBreadcrumbsStyleVarKey
+> &
+  Pick<React.ButtonHTMLAttributes<HTMLElement>, 'aria-label'> & {
+    innerStyles?: {
+      expandButton?: IZeroOrMore<ICompiledStyles<IBreadcrumbsStyleKey>>;
+      expandButtonFocusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+    };
+    children: React.ReactNode;
+    expandText?: string;
+    itemCountBeforeCollapse?: number;
+    itemCountAfterCollapse?: number;
+    maxItems?: number;
+    separator?: React.ReactNode;
+    trailing?: boolean;
   };
-  children: React.ReactNode;
-  expandText?: string;
-  itemCountBeforeCollapse?: number;
-  itemCountAfterCollapse?: number;
-  maxItems?: number;
-  separator?: React.ReactNode;
-  trailing?: boolean;
-}
 
 export const Breadcrumbs: React.FC<IBreadcrumbsProps> = ({
   children,
@@ -51,8 +53,9 @@ export const Breadcrumbs: React.FC<IBreadcrumbsProps> = ({
     () =>
       stylePropsFactory<IBreadcrumbsStyleKey, IBreadcrumbsStyleVarKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
+        props.visualState,
       ),
-    [theme.styles, props.styles],
+    [theme.styles, props.styles, props.visualState],
   );
 
   const insertSeparators = React.useCallback(

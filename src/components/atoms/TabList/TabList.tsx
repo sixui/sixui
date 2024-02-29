@@ -7,12 +7,14 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { Divider } from '../Divider';
 
-export interface ITabListProps
-  extends Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, 'aria-label'>,
-    Omit<IContainer<ITabListStyleKey>, 'theme'> {
-  children?: React.ReactNode;
-  defaultValue?: string;
-}
+export type ITabListProps = Pick<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  'aria-label'
+> &
+  Omit<IContainer<ITabListStyleKey>, 'theme'> & {
+    children?: React.ReactNode;
+    defaultValue?: string;
+  };
 
 export const TabList: React.FC<ITabListProps> = ({ children, ...props }) => {
   const theme = useComponentTheme('TabList');
@@ -21,8 +23,9 @@ export const TabList: React.FC<ITabListProps> = ({ children, ...props }) => {
     () =>
       stylePropsFactory<ITabListStyleKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
+        props.visualState,
       ),
-    [theme.styles, props.styles],
+    [theme.styles, props.styles, props.visualState],
   );
 
   return (

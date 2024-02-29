@@ -6,14 +6,16 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export interface ITypographyProps
-  extends Omit<IContainer<ITypographyStyleKey>, 'theme'> {
+export type ITypographyProps = Omit<
+  IContainer<ITypographyStyleKey>,
+  'theme'
+> & {
   variant?: 'display' | 'headline' | 'title' | 'body' | 'label';
   size?: 'lg' | 'md' | 'sm';
   children?: React.ReactNode;
   gutterBottom?: boolean;
   component?: React.ElementType;
-}
+};
 
 const tagMap = {
   display$lg: 'span',
@@ -47,8 +49,9 @@ export const Typography: React.FC<ITypographyProps> = ({
     () =>
       stylePropsFactory<ITypographyStyleKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
+        props.visualState,
       ),
-    [theme.styles, props.styles],
+    [theme.styles, props.styles, props.visualState],
   );
 
   const Tag = component ?? tagMap[`${variant}$${size}`];

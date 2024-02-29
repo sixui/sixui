@@ -9,11 +9,11 @@ import {
   RadioGroupContext,
 } from './RadioGroupContext';
 
-export interface IRadioGroupProps extends IRadioGroupContext {
+export type IRadioGroupProps = IRadioGroupContext & {
   actions?: React.RefObject<unknown>;
   children?: React.ReactNode;
   defaultValue?: string;
-}
+};
 
 // https://github.com/mui/material-ui/blob/master/packages/mui-material/src/RadioGroup/RadioGroup.js
 // https://github.com/mui/material-ui/blob/master/packages/mui-material/src/RadioGroup/RadioGroup.d.ts

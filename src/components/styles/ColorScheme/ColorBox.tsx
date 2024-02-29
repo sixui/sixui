@@ -2,12 +2,12 @@ import type { StyleXVar } from '@stylexjs/stylex/lib/StyleXTypes';
 import * as React from 'react';
 import stylex from '@stylexjs/stylex';
 
-export interface IColorBoxProps {
+export type IColorBoxProps = {
   label: string;
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   backgroundColor: string | StyleXVar<string>;
   textColor: string | StyleXVar<string>;
-}
+};
 
 const styles = stylex.create({
   host: {
