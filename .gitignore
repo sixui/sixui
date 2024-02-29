@@ -28,5 +28,7 @@ dist
 /storybook-static
 
 # custom
-.env*
+.env.local
 /_trash
+vite.config.ts.timestamp-*
+package-lock.json
