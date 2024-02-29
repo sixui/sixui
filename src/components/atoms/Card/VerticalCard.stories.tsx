@@ -70,6 +70,7 @@ const NonActionableContent: React.FC<{ headline?: string }> = ({
     </Card.Content>
     <Card.Actions>
       <Button
+        variant='filled'
         onClick={(args: React.MouseEvent<HTMLElement>) =>
           sbHandleEvent('click:primaryAction', args)
         }
@@ -105,6 +106,7 @@ const NonActionableContentVariant: React.FC<{ headline?: string }> = ({
     </Card.Content>
     <Card.Actions>
       <Button
+        variant='filled'
         onClick={(args: React.MouseEvent<HTMLElement>) =>
           sbHandleEvent('click:primaryAction', args)
         }

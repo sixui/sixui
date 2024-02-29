@@ -58,7 +58,7 @@ export const Button: React.FC<IButtonProps> = ({
   children,
   onClick,
   type,
-  variant = 'elevated',
+  variant = 'filled',
   icon,
   trailingIcon,
   loadingAnimation = 'progressIndicator',
