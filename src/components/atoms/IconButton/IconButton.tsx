@@ -6,7 +6,7 @@ import type {
   ICompiledStyles,
   IAny,
   IMaybeAsync,
-  IIcon,
+  ISvgIcon,
 } from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
 import type {
@@ -44,8 +44,8 @@ export interface IIconButtonProps
   toggle?: boolean;
   selected?: boolean;
   loading?: boolean;
-  icon: IIcon;
-  selectedIcon?: IIcon;
+  icon: ISvgIcon;
+  selectedIcon?: ISvgIcon;
   component?: React.ElementType;
   'aria-label-selected'?: React.AriaAttributes['aria-label'];
   rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;

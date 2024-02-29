@@ -3262,6 +3262,7 @@ __metadata:
     "@storybook/testing-library": "npm:^0.2.2"
     "@stylexjs/eslint-plugin": "npm:^0.5.1"
     "@stylexjs/stylex": "npm:^0.5.1"
+    "@tabler/icons-react": "npm:^2.47.0"
     "@types/eslint": "npm:^8"
     "@types/react": "npm:^18"
     "@types/react-dom": "npm:^18"
@@ -4223,6 +4224,25 @@ __metadata:
   peerDependencies:
     "@svgr/core": "*"
   checksum: 10/0418a9780753d3544912ee2dad5d2cf8d12e1ba74df8053651b3886aeda54d5f0f7d2dece0af5e0d838332c4f139a57f0dabaa3ca1afa4d1a765efce6a7656f2
+  languageName: node
+  linkType: hard
+
+"@tabler/icons-react@npm:^2.47.0":
+  version: 2.47.0
+  resolution: "@tabler/icons-react@npm:2.47.0"
+  dependencies:
+    "@tabler/icons": "npm:2.47.0"
+    prop-types: "npm:^15.7.2"
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0
+  checksum: 10/8e3cb9ff71d443f31569176f8d10c55bfdc53d5a762c8133472b8729d8d135380161a7af2cba6ac22b1416030326cf363e33467f5e314933526d8efa34feb222
+  languageName: node
+  linkType: hard
+
+"@tabler/icons@npm:2.47.0":
+  version: 2.47.0
+  resolution: "@tabler/icons@npm:2.47.0"
+  checksum: 10/1bf27e9c1fecdd6a80f8ff94e89c49890ae85ca0baf91fe3b28f9325a54a509281a5859beb0197f1833ba58a2af71c9ebaf025ad37f0e562d305982812d1de13
   languageName: node
   linkType: hard
 

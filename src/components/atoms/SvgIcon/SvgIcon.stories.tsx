@@ -12,15 +12,15 @@ import {
 
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { Icon, type IIconProps } from './Icon';
+import { SvgIcon, type ISvgIconProps } from './SvgIcon';
 
 const meta = {
-  component: Icon,
-} satisfies Meta<typeof Icon>;
+  component: SvgIcon,
+} satisfies Meta<typeof SvgIcon>;
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {} satisfies Partial<IIconProps>;
+const defaultArgs = {} satisfies Partial<ISvgIconProps>;
 
 const styles = stylex.create({
   host: {
@@ -33,7 +33,7 @@ export const Basic: IStory = {
     <ComponentShowcase
       component={(props) => (
         <div {...stylex.props(styles.host)}>
-          <Icon {...props} />
+          <SvgIcon {...props} />
         </div>
       )}
       props={props}

@@ -24,7 +24,7 @@ export * from './components/atoms/Checkbox';
 export * from './components/atoms/Item';
 export * from './components/atoms/ListItem';
 export * from './components/atoms/List';
-export * from './components/atoms/Icon';
+export * from './components/atoms/SvgIcon';
 export * from './components/atoms/Divider';
 export * from './components/atoms/Paper';
 export * from './components/atoms/Tab';

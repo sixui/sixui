@@ -19,7 +19,8 @@ import {
 // import { shapeTheme } from '@/themes/variant/vars/shape.stylex';
 
 import 'modern-normalize/modern-normalize.css';
-import '@/styles.css';
+import '@/styles/main.css';
+import '@/styles/preview.css';
 
 const preview: Preview = {
   parameters: {

@@ -1,5 +1,7 @@
 # TO DO
 
+- Remove heroicicons
+
 - Placeholder -> Skeleton
 
 - Doc

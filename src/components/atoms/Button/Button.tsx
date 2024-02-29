@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
-import type { ICompiledStyles, IIcon } from '@/helpers/types';
+import type { ICompiledStyles, ISvgIcon } from '@/helpers/types';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type {
   IButtonStyleKey,
@@ -27,7 +27,7 @@ import { ButtonBase, type IButtonBaseProps } from './ButtonBase';
 
 export interface IButtonProps extends IButtonBaseProps {
   variant?: IButtonVariant;
-  icon?: IIcon;
+  icon?: ISvgIcon;
   trailingIcon?: boolean;
   loading?: boolean;
   loadingAnimation?: 'progressIndicator' | 'halfSpin' | 'none';

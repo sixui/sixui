@@ -5,7 +5,7 @@
   "main": "./dist/index.js",
   "exports": {
     ".": "./dist/index.js",
-    "./styles.css": "./dist/styles.css",
+    "./styles.css": "./dist/styles/main.css",
     "./*.stylex": "./dist/*.stylex.js"
   },
   "types": "./dist/index.d.ts",
@@ -103,7 +103,8 @@
   "packageManager": "yarn@4.1.0",
   "readme": "README.md",
   "dependencies": {
-    "@olivierpascal/helpers": "^0.0.67"
+    "@olivierpascal/helpers": "^0.0.67",
+    "@tabler/icons-react": "^2.47.0"
   },
   "resolutions": {
     "@stylexjs/babel-plugin": "0.5.0"

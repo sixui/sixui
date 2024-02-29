@@ -1,25 +1,28 @@
 import * as React from 'react';
 
 import type { IContainer } from '@/helpers/Container';
-import type { IIconStyleKey, IIconStyleVarKey } from './Icon.styledefs';
-import type { IIcon } from '@/helpers/types';
+import type {
+  ISvgIconStyleKey,
+  ISvgIconStyleVarKey,
+} from './SvgIcon.styledefs';
+import type { ISvgIcon } from '@/helpers/types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
 // https://github.com/material-components/material-web/blob/main/icon/internal/icon.ts
 
-export interface IIconProps
-  extends IContainer<IIconStyleKey, IIconStyleVarKey> {
-  icon: IIcon;
+export interface ISvgIconProps
+  extends IContainer<ISvgIconStyleKey, ISvgIconStyleVarKey> {
+  icon: ISvgIcon;
 }
 
-export const Icon: React.FC<IIconProps> = ({ icon: Icon, ...props }) => {
-  const theme = useComponentTheme('Icon');
+export const SvgIcon: React.FC<ISvgIconProps> = ({ icon: Icon, ...props }) => {
+  const theme = useComponentTheme('SvgIcon');
 
   const styleProps = React.useMemo(
     () =>
-      stylePropsFactory<IIconStyleKey, IIconStyleVarKey>(
+      stylePropsFactory<ISvgIconStyleKey, ISvgIconStyleVarKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
       ),
     [theme.styles, props.styles],

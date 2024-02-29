@@ -7,7 +7,7 @@ import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { List, type IListProps } from './List';
 import { ListItem } from '../ListItem';
-import { Icon } from '../Icon';
+import { SvgIcon } from '../SvgIcon';
 
 // https://m3.material.io/components/lists/overview
 // https://material-web.dev/components/list/
@@ -39,7 +39,9 @@ export const NonInteractive: IStory = {
     <ComponentShowcase
       component={(args) => (
         <List {...args}>
-          <ListItem end={<Icon icon={LinkIcon} />}>Single line item</ListItem>
+          <ListItem end={<SvgIcon icon={LinkIcon} />}>
+            Single line item
+          </ListItem>
           <ListItem
             supportingText='Supporting text'
             trailingSupportingText='1/2'
@@ -49,7 +51,7 @@ export const NonInteractive: IStory = {
           <ListItem overline='Overline' supportingText='Supporting text'>
             Three line item
           </ListItem>
-          <ListItem start={<Icon icon={CalendarDaysIcon} />} disabled>
+          <ListItem start={<SvgIcon icon={CalendarDaysIcon} />} disabled>
             Disabled item
           </ListItem>
         </List>
@@ -72,7 +74,7 @@ export const Interactive: IStory = {
             type='link'
             href='https://google.com'
             target='_blank'
-            end={<Icon icon={LinkIcon} />}
+            end={<SvgIcon icon={LinkIcon} />}
           >
             Link item
           </ListItem>
@@ -86,7 +88,7 @@ export const Interactive: IStory = {
           <ListItem overline='Overline' supportingText='Supporting text'>
             Non-interactive item
           </ListItem>
-          <ListItem start={<Icon icon={CalendarDaysIcon} />} disabled>
+          <ListItem start={<SvgIcon icon={CalendarDaysIcon} />} disabled>
             Disabled item
           </ListItem>
         </List>

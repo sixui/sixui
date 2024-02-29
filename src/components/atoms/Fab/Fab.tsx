@@ -6,7 +6,7 @@ import type {
   ICompiledStyles,
   IAny,
   IMaybeAsync,
-  IIcon,
+  ISvgIcon,
 } from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
 import type {
@@ -51,7 +51,7 @@ export interface IFabProps
   loading?: boolean;
   loadingText?: string;
   label?: string;
-  icon?: IIcon;
+  icon?: ISvgIcon;
   component?: React.ElementType;
   href?: string;
   rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;

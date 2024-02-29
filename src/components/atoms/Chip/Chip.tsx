@@ -7,7 +7,7 @@ import type {
   ICompiledStyles,
   IAny,
   IMaybeAsync,
-  IIcon,
+  ISvgIcon,
 } from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
@@ -52,7 +52,7 @@ export interface IChipProps
   elevated?: boolean;
   selected?: boolean;
   defaultSelected?: boolean;
-  icon?: IIcon;
+  icon?: ISvgIcon;
   imageUrl?: string;
   loading?: boolean;
   loadingText?: string;

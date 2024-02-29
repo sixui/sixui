@@ -5,7 +5,7 @@ import type {
   IZeroOrMore,
   ICompiledStyles,
   IAny,
-  IIcon,
+  ISvgIcon,
   IMaybeAsync,
 } from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
@@ -59,8 +59,8 @@ export interface ISwitchProps
     event: React.ChangeEvent<HTMLInputElement>,
     enabled: boolean,
   ) => IMaybeAsync<IAny>;
-  icon?: IIcon;
-  selectedIcon?: IIcon;
+  icon?: ISvgIcon;
+  selectedIcon?: ISvgIcon;
   rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
   focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
   circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;

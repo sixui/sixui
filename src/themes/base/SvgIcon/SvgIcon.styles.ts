@@ -2,11 +2,11 @@ import type { MapNamespaces } from '@stylexjs/stylex/lib/StyleXTypes';
 import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
-import type { IIconStyleKey } from '@/components/atoms/Icon';
-import { componentVars as vars } from './Icon.stylex';
+import type { ISvgIconStyleKey } from '@/components/atoms/SvgIcon';
+import { componentVars as vars } from './SvgIcon.stylex';
 
 // https://github.com/material-components/material-web/blob/main/icon/internal/_icon.scss
-type IIconStyles = IStyles<IIconStyleKey>;
+type IIconStyles = IStyles<ISvgIconStyleKey>;
 export const styles: MapNamespaces<IIconStyles> = stylex.create<IIconStyles>({
   host: {
     fontSize: vars.size,

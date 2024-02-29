@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
-import type { IZeroOrMore, ICompiledStyles, IIcon } from '@/helpers/types';
+import type { IZeroOrMore, ICompiledStyles, ISvgIcon } from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type {
@@ -157,8 +157,8 @@ export interface ITextFieldProps
 
   start?: React.ReactNode;
   end?: React.ReactNode;
-  leadingIcon?: IIcon;
-  trailingIcon?: IIcon;
+  leadingIcon?: ISvgIcon;
+  trailingIcon?: ISvgIcon;
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     value: string,

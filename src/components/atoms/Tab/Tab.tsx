@@ -5,7 +5,7 @@ import type {
   IZeroOrMore,
   ICompiledStyles,
   IAny,
-  IIcon,
+  ISvgIcon,
   IMaybeAsync,
 } from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
@@ -36,8 +36,8 @@ export interface ITabProps extends IContainer<ITabStyleKey, ITabStyleVarKey> {
    **/
   active?: boolean;
 
-  icon?: IIcon;
-  activeIcon?: IIcon;
+  icon?: ISvgIcon;
+  activeIcon?: ISvgIcon;
   onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
   label?: string;
   anchor?: string;

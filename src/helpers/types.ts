@@ -11,7 +11,7 @@ export type IAny = any;
 
 export type IMaybeAsync<TReturnType> = TReturnType | Promise<TReturnType>;
 
-export type IIcon = React.ForwardRefExoticComponent<
+export type ISvgIcon = React.ForwardRefExoticComponent<
   Omit<React.SVGProps<SVGSVGElement>, 'ref'> & {
     title?: string | undefined;
     titleId?: string | undefined;
