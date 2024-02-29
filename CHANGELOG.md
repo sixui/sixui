@@ -1,3 +1,21 @@
+# v0.0.50 (Thu Feb 29 2024)
+
+#### ⚠️ Pushed to `main`
+
+- noUnusedLocals enabled in tsconfig ([@olivierpascal](https://github.com/olivierpascal))
+- refactor: replace React default imports by React named imports ([@olivierpascal](https://github.com/olivierpascal))
+- refactor: IContainer -> IContainerProps, and moved Container.tsx from helpers to components/utils ([@olivierpascal](https://github.com/olivierpascal))
+- refactor: use types rather than interfaces ([@olivierpascal](https://github.com/olivierpascal))
+- chore: node packages updated ([@olivierpascal](https://github.com/olivierpascal))
+- feat: support all kinds of icons in props ([@olivierpascal](https://github.com/olivierpascal))
+- refactor: Icon -> SvgIcon ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.49 (Thu Feb 29 2024)
 
 #### ⚠️ Pushed to `main`
