@@ -305,6 +305,16 @@ export const Validation: IStory = {
           supportingText: '3 to 10 characters',
         },
         {
+          label: 'Length',
+          minLength: 3,
+          supportingText: 'Min 3 characters',
+        },
+        {
+          label: 'Length',
+          maxLength: 10,
+          supportingText: 'Max 10 characters',
+        },
+        {
           styles: [
             textFieldStyles,
             stylex.create<IStyles<ITextFieldStyleKey>>({
