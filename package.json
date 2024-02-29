@@ -9,6 +9,7 @@
     "./styles.css": "./dist/styles/main.css",
     "./*.stylex": "./dist/*.stylex.js"
   },
+  "type": "module",
   "types": "./dist/index.d.ts",
   "repository": {
     "url": "git+https://github.com/sixui/ui.git"
