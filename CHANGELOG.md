@@ -1,3 +1,15 @@
+# v0.0.57 (Thu Feb 29 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: default button is now the filled variant ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.56 (Thu Feb 29 2024)
 
 #### ⚠️ Pushed to `main`
