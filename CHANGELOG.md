@@ -1,3 +1,20 @@
+# v0.0.47 (Thu Feb 29 2024)
+
+#### ⚠️ Pushed to `main`
+
+- doc: various TODO updates ([@olivierpascal](https://github.com/olivierpascal))
+- test: add stories for text field length validation ([@olivierpascal](https://github.com/olivierpascal))
+- chore: fix types ([@olivierpascal](https://github.com/olivierpascal))
+- feat: add text color to CardContent ([@olivierpascal](https://github.com/olivierpascal))
+- feat: DeterminateCircularProgressIndicator and IndeterminateCircularProgressIndicator now support sx property ([@olivierpascal](https://github.com/olivierpascal))
+- Counter does not show if count is negative *or 0* ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.46 (Mon Feb 26 2024)
 
 #### ⚠️ Pushed to `main`
