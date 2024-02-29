@@ -1,3 +1,15 @@
+# v0.0.52 (Thu Feb 29 2024)
+
+#### ⚠️ Pushed to `main`
+
+- chore: added react, react-dom and stylex in peer dependencies ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.51 (Thu Feb 29 2024)
 
 #### ⚠️ Pushed to `main`
