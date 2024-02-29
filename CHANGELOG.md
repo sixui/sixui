@@ -1,3 +1,15 @@
+# v0.0.53 (Thu Feb 29 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: export to esm ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.52 (Thu Feb 29 2024)
 
 #### ⚠️ Pushed to `main`
