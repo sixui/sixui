@@ -1,7 +1,7 @@
 import { forwardRef, useImperativeHandle, useMemo, useRef } from 'react';
 
-import type { IAny } from '@/helpers/types';
-import { useForkRef } from '@/hooks/useForkRef';
+// import type { IAny } from '@/helpers/types';
+// import { useForkRef } from '@/hooks/useForkRef';
 import { useId } from '@/hooks/useId';
 import { useControlled } from '@/hooks/useControlled';
 import {
@@ -19,7 +19,7 @@ export type IRadioGroupProps = IRadioGroupContext & {
 // https://github.com/mui/material-ui/blob/master/packages/mui-material/src/RadioGroup/RadioGroup.d.ts
 export const RadioGroup = forwardRef(function RadioGroup(
   { actions, children, onChange, ...props }: IRadioGroupProps,
-  ref: React.ForwardedRef<IAny> | null,
+  // ref: React.ForwardedRef<IAny> | null,
 ): React.ReactNode {
   const hostRef = useRef<HTMLElement>(null);
   const [value, setValue] = useControlled({
@@ -48,8 +48,7 @@ export const RadioGroup = forwardRef(function RadioGroup(
     [],
   );
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const handleRef = useForkRef(ref, hostRef);
+  // const handleRef = useForkRef(ref, hostRef);
   const name = useId();
 
   const contextValue = useMemo(

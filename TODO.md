@@ -167,8 +167,6 @@
 <X elevationStyles={combineStyles('elevationStyles')} />
 ```
 
-- enable `"noUnusedLocals": true,` in `tsconfig.json`
-
 ## FIX ME
 
 - Check why sx property cannot take undefined or boolean values
