@@ -5,6 +5,7 @@ export type ICardContentStyleVarKey =
   | 'trailingSpace'
   | 'topSpace'
   | 'bottomSpace'
+  | 'textColor'
   | 'leadingSpace$actionable'
   | 'trailingSpace$actionable'
   | 'topSpace$actionable'
