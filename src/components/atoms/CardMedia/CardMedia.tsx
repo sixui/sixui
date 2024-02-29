@@ -1,3 +1,4 @@
+import stylex from '@stylexjs/stylex';
 import { useMemo } from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
@@ -10,6 +11,12 @@ export type ICardMediaProps = IContainerProps<ICardMediaStyleKey> &
   Pick<React.ImgHTMLAttributes<HTMLImageElement>, 'src' | 'title'> & {
     children?: React.ReactNode;
   };
+
+const styles = stylex.create({
+  image: (src: string) => ({
+    backgroundImage: `url("${src}")`,
+  }),
+});
 
 export const CardMedia: React.FC<ICardMediaProps> = ({
   children,
@@ -30,8 +37,12 @@ export const CardMedia: React.FC<ICardMediaProps> = ({
 
   return (
     <div
-      {...styleProps(['host', 'host$image', props.sx])}
-      style={src ? { backgroundImage: `url("${src}")` } : undefined}
+      {...styleProps([
+        'host',
+        'host$image',
+        src ? styles.image(src) : undefined,
+        props.sx,
+      ])}
       role='img'
       title={title}
     >
