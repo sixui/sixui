@@ -1,23 +1,21 @@
 import * as React from 'react';
-import stylex from '@stylexjs/stylex';
 
 import type { IContainer } from '@/helpers/Container';
 import type {
-  ICircularProgressIndicatorStyleKey,
   ICircularProgressIndicatorStyleVarKey,
   ICircularProgressIndicatorSize,
 } from '../CircularProgressIndicator';
 import type { IIndeterminateCircularProgressIndicatorStyleKey } from './IndeterminateCircularProgressIndicator.styledefs';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '@/helpers/stylePropsFactory';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 
 // https://github.com/material-components/material-web/blob/main/progress/internal/progress.ts
 // https://github.com/material-components/material-web/blob/main/progress/internal/circular-progress.ts
 
 export interface IIndeterminateCircularProgressIndicatorProps
   extends IContainer<
-      | ICircularProgressIndicatorStyleKey
-      | IIndeterminateCircularProgressIndicatorStyleKey,
+      IIndeterminateCircularProgressIndicatorStyleKey,
       ICircularProgressIndicatorStyleVarKey
     >,
     Pick<React.AriaAttributes, 'aria-label'> {
@@ -30,59 +28,58 @@ export const IndeterminateCircularProgressIndicator: React.FC<
   IIndeterminateCircularProgressIndicatorProps
 > = ({ size = 'md', disabled, ...props }) => {
   const theme = useComponentTheme('CircularProgressIndicator');
-  const { styles: variantStyles } = useComponentTheme(
+  const variantTheme = useComponentTheme(
     'IndeterminateCircularProgressIndicator',
   );
 
-  const combineStyles = React.useMemo(
+  const styleProps = React.useMemo(
     () =>
-      stylesCombinatorFactory<
-        | ICircularProgressIndicatorStyleKey
-        | IIndeterminateCircularProgressIndicatorStyleKey
-      >(theme.styles, variantStyles, props.styles),
-    [theme.styles, variantStyles, props.styles],
+      stylePropsFactory<
+        IIndeterminateCircularProgressIndicatorStyleKey,
+        ICircularProgressIndicatorStyleVarKey
+      >(
+        stylesCombinatorFactory<IIndeterminateCircularProgressIndicatorStyleKey>(
+          theme.styles,
+          variantTheme.styles,
+          props.styles,
+        ),
+      ),
+    [theme.styles, variantTheme.styles, props.styles],
   );
 
   return (
     <div
-      {...stylex.props(
-        theme.vars,
-        props.theme,
-        combineStyles('host', `host$${size}`),
+      {...styleProps(
+        ['host', `host$${size}`, props.sx],
+        [theme.vars, props.theme],
       )}
     >
       <div
-        {...stylex.props(
-          combineStyles('layer', 'progress', `progress$${size}`),
-        )}
+        {...styleProps(['layer', 'progress', `progress$${size}`])}
         role='progressbar'
         aria-label={props['aria-label'] || undefined}
       >
-        <div {...stylex.props(combineStyles('layer', 'spinner'))}>
-          <div {...stylex.props(combineStyles('layer', 'left'))}>
+        <div {...styleProps(['layer', 'spinner'])}>
+          <div {...styleProps(['layer', 'left'])}>
             <div
-              {...stylex.props(
-                combineStyles(
-                  'layer',
-                  'circle',
-                  `circle$${size}`,
-                  'leftCircle',
-                  disabled && 'circle$disabled',
-                ),
-              )}
+              {...styleProps([
+                'layer',
+                'circle',
+                `circle$${size}`,
+                'leftCircle',
+                disabled && 'circle$disabled',
+              ])}
             />
           </div>
-          <div {...stylex.props(combineStyles('layer', 'right'))}>
+          <div {...styleProps(['layer', 'right'])}>
             <div
-              {...stylex.props(
-                combineStyles(
-                  'layer',
-                  'circle',
-                  `circle$${size}`,
-                  'rightCircle',
-                  disabled && 'circle$disabled',
-                ),
-              )}
+              {...styleProps([
+                'layer',
+                'circle',
+                `circle$${size}`,
+                'rightCircle',
+                disabled && 'circle$disabled',
+              ])}
             />
           </div>
         </div>
