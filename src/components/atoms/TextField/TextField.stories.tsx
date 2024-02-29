@@ -1,7 +1,8 @@
 import * as React from 'react';
 import stylex from '@stylexjs/stylex';
 import type { Meta, StoryObj } from '@storybook/react';
-import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 import type { ITextFieldStyleKey } from './TextField.styledefs';
 import type { IStyles } from '@/helpers/types';
@@ -55,8 +56,8 @@ const rowsProps: IComponentPropsWithLegend<ITextFieldProps> = [
   { $legend: 'Error', error: true },
   {
     $legend: 'Icons',
-    leadingIcon: MagnifyingGlassIcon,
-    end: <IconButton icon={XMarkIcon} />,
+    leadingIcon: <FontAwesomeIcon icon={faMagnifyingGlass} />,
+    trailingIcon: <FontAwesomeIcon icon={faXmark} />,
   },
 ];
 
@@ -141,7 +142,7 @@ const ControlledTextField: React.FC<Omit<ITextFieldProps, 'onChange'>> = (
       end={
         <IconButton
           forwardRef={iconButtonRef}
-          icon={XMarkIcon}
+          icon={<FontAwesomeIcon icon={faXmark} />}
           onClick={clearInput}
         />
       }

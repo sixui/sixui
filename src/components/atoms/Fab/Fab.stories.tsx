@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
-import { PaperAirplaneIcon } from '@heroicons/react/24/outline';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
@@ -57,22 +58,22 @@ export const Variants: IStory = {
         {
           $legend: 'Surface',
           variant: 'surface',
-          icon: PaperAirplaneIcon,
+          icon: <FontAwesomeIcon icon={faPaperPlane} />,
         },
         {
           $legend: 'Primary',
           variant: 'primary',
-          icon: PaperAirplaneIcon,
+          icon: <FontAwesomeIcon icon={faPaperPlane} />,
         },
         {
           $legend: 'Secondary',
           variant: 'secondary',
-          icon: PaperAirplaneIcon,
+          icon: <FontAwesomeIcon icon={faPaperPlane} />,
         },
         {
           $legend: 'Tertiary',
           variant: 'tertiary',
-          icon: PaperAirplaneIcon,
+          icon: <FontAwesomeIcon icon={faPaperPlane} />,
         },
         {
           $legend: 'Branded',
@@ -109,7 +110,7 @@ export const Sizes: IStory = {
   args: {
     ...defaultArgs,
     variant: 'surface',
-    icon: PaperAirplaneIcon,
+    icon: <FontAwesomeIcon icon={faPaperPlane} />,
   },
 };
 
@@ -138,8 +139,15 @@ export const Surface: IStory = {
       props={props}
       colsProps={statesProps}
       rowsProps={[
-        { $legend: 'Basic', label: undefined, icon: PaperAirplaneIcon },
-        { $legend: 'With label', icon: PaperAirplaneIcon },
+        {
+          $legend: 'Basic',
+          label: undefined,
+          icon: <FontAwesomeIcon icon={faPaperPlane} />,
+        },
+        {
+          $legend: 'With label',
+          icon: <FontAwesomeIcon icon={faPaperPlane} />,
+        },
         { $legend: 'Label only' },
       ]}
       groupsProps={[{}, { $legend: 'Lowered', lowered: true }]}
@@ -158,8 +166,15 @@ export const Primary: IStory = {
       props={props}
       colsProps={statesProps}
       rowsProps={[
-        { $legend: 'Basic', label: undefined, icon: PaperAirplaneIcon },
-        { $legend: 'With label', icon: PaperAirplaneIcon },
+        {
+          $legend: 'Basic',
+          label: undefined,
+          icon: <FontAwesomeIcon icon={faPaperPlane} />,
+        },
+        {
+          $legend: 'With label',
+          icon: <FontAwesomeIcon icon={faPaperPlane} />,
+        },
         { $legend: 'Label only' },
       ]}
       groupsProps={[{}, { $legend: 'Lowered', lowered: true }]}
@@ -178,8 +193,15 @@ export const Secondary: IStory = {
       props={props}
       colsProps={statesProps}
       rowsProps={[
-        { $legend: 'Basic', label: undefined, icon: PaperAirplaneIcon },
-        { $legend: 'With label', icon: PaperAirplaneIcon },
+        {
+          $legend: 'Basic',
+          label: undefined,
+          icon: <FontAwesomeIcon icon={faPaperPlane} />,
+        },
+        {
+          $legend: 'With label',
+          icon: <FontAwesomeIcon icon={faPaperPlane} />,
+        },
         { $legend: 'Label only' },
       ]}
       groupsProps={[{}, { $legend: 'Lowered', lowered: true }]}
@@ -198,8 +220,15 @@ export const Tertiary: IStory = {
       props={props}
       colsProps={statesProps}
       rowsProps={[
-        { $legend: 'Basic', label: undefined, icon: PaperAirplaneIcon },
-        { $legend: 'With label', icon: PaperAirplaneIcon },
+        {
+          $legend: 'Basic',
+          label: undefined,
+          icon: <FontAwesomeIcon icon={faPaperPlane} />,
+        },
+        {
+          $legend: 'With label',
+          icon: <FontAwesomeIcon icon={faPaperPlane} />,
+        },
         { $legend: 'Label only' },
       ]}
       groupsProps={[{}, { $legend: 'Lowered', lowered: true }]}

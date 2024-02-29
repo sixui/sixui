@@ -7,7 +7,6 @@ import type {
   ICompiledStyles,
   IAny,
   IMaybeAsync,
-  ISvgIcon,
 } from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
@@ -52,7 +51,7 @@ export interface IChipProps
   elevated?: boolean;
   selected?: boolean;
   defaultSelected?: boolean;
-  icon?: ISvgIcon;
+  icon?: React.ReactNode;
   imageUrl?: string;
   loading?: boolean;
   loadingText?: string;
@@ -101,7 +100,7 @@ export const Chip: React.FC<IChipProps> = ({
   onClick,
   onDelete,
   variant = 'assist',
-  icon: Icon,
+  icon,
   imageUrl,
   loadingText,
   href,
@@ -150,7 +149,7 @@ export const Chip: React.FC<IChipProps> = ({
 
   const elevated = variant !== 'input' && props.elevated;
   const loading = props.loading || handlingClick;
-  const hasIcon = !!imageUrl || !!Icon;
+  const hasIcon = !!imageUrl || !!icon;
   const isDeletable = variant === 'input' && onDelete;
   const deleting =
     !loading && isDeletable && (props.deleting || handlingDelete);
@@ -365,8 +364,8 @@ export const Chip: React.FC<IChipProps> = ({
                 <CheckMark aria-hidden />
               ) : imageUrl ? (
                 <Avatar src={imageUrl} styles={avatarStyles} />
-              ) : Icon ? (
-                <Icon aria-hidden />
+              ) : icon ? (
+                icon
               ) : null}
             </div>
           ) : null}

@@ -267,10 +267,12 @@ export const styles: MapNamespaces<ISwitchStyles> =
       opacity: 0,
     },
     icon$size: {
+      fontSize: vars.iconSize,
       width: vars.iconSize,
       height: vars.iconSize,
     },
     icon$size$selected: {
+      fontSize: vars.selectedIconSize,
       width: vars.selectedIconSize,
       height: vars.selectedIconSize,
     },

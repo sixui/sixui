@@ -1,15 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  CalendarDaysIcon,
-  PhotoIcon,
-  Cog6ToothIcon,
-} from '@heroicons/react/24/outline';
+  faEnvelope as faEnvelopeSolid,
+  faUser as faUserSolid,
+  faBookmark as faBookmarkSolid,
+} from '@fortawesome/free-solid-svg-icons';
 import {
-  CalendarDaysIcon as ActiveCalendarDaysIcon,
-  PhotoIcon as ActivePhotoIcon,
-  Cog6ToothIcon as ActiveCog6ToothIcon,
-} from '@heroicons/react/24/solid';
+  faEnvelope,
+  faUser,
+  faBookmark,
+} from '@fortawesome/free-regular-svg-icons';
 
 import {
   type IComponentPropsWithLegend,
@@ -57,19 +58,23 @@ const TabListDemo: React.FC<IExtendedTabListProps> = ({
   <TabList {...props}>
     <Tab
       label={hasLabel ? 'Item one' : undefined}
-      icon={hasIcon ? CalendarDaysIcon : undefined}
-      activeIcon={hasIcon ? ActiveCalendarDaysIcon : undefined}
+      icon={hasIcon ? <FontAwesomeIcon icon={faEnvelope} /> : undefined}
+      activeIcon={
+        hasIcon ? <FontAwesomeIcon icon={faEnvelopeSolid} /> : undefined
+      }
       active
     />
     <Tab
       label={hasLabel ? 'Item two' : undefined}
-      icon={hasIcon ? PhotoIcon : undefined}
-      activeIcon={hasIcon ? ActivePhotoIcon : undefined}
+      icon={hasIcon ? <FontAwesomeIcon icon={faUser} /> : undefined}
+      activeIcon={hasIcon ? <FontAwesomeIcon icon={faUserSolid} /> : undefined}
     />
     <Tab
       label={hasLabel ? 'Item three' : undefined}
-      icon={hasIcon ? Cog6ToothIcon : undefined}
-      activeIcon={hasIcon ? ActiveCog6ToothIcon : undefined}
+      icon={hasIcon ? <FontAwesomeIcon icon={faBookmark} /> : undefined}
+      activeIcon={
+        hasIcon ? <FontAwesomeIcon icon={faBookmarkSolid} /> : undefined
+      }
       disabled
     />
   </TabList>

@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
 import stylex from '@stylexjs/stylex';
-import { LinkIcon, CalendarDaysIcon } from '@heroicons/react/24/solid';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLink, faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { List, type IListProps } from './List';
 import { ListItem } from '../ListItem';
-import { SvgIcon } from '../SvgIcon';
 
 // https://m3.material.io/components/lists/overview
 // https://material-web.dev/components/list/
@@ -39,7 +39,7 @@ export const NonInteractive: IStory = {
     <ComponentShowcase
       component={(args) => (
         <List {...args}>
-          <ListItem end={<SvgIcon icon={LinkIcon} />}>
+          <ListItem end={<FontAwesomeIcon icon={faLink} />}>
             Single line item
           </ListItem>
           <ListItem
@@ -51,7 +51,7 @@ export const NonInteractive: IStory = {
           <ListItem overline='Overline' supportingText='Supporting text'>
             Three line item
           </ListItem>
-          <ListItem start={<SvgIcon icon={CalendarDaysIcon} />} disabled>
+          <ListItem start={<FontAwesomeIcon icon={faCalendarDays} />} disabled>
             Disabled item
           </ListItem>
         </List>
@@ -74,7 +74,7 @@ export const Interactive: IStory = {
             type='link'
             href='https://google.com'
             target='_blank'
-            end={<SvgIcon icon={LinkIcon} />}
+            end={<FontAwesomeIcon icon={faLink} />}
           >
             Link item
           </ListItem>
@@ -88,7 +88,7 @@ export const Interactive: IStory = {
           <ListItem overline='Overline' supportingText='Supporting text'>
             Non-interactive item
           </ListItem>
-          <ListItem start={<SvgIcon icon={CalendarDaysIcon} />} disabled>
+          <ListItem start={<FontAwesomeIcon icon={faCalendarDays} />} disabled>
             Disabled item
           </ListItem>
         </List>

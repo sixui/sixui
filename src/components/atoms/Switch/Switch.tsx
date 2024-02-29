@@ -5,7 +5,6 @@ import type {
   IZeroOrMore,
   ICompiledStyles,
   IAny,
-  ISvgIcon,
   IMaybeAsync,
 } from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
@@ -59,8 +58,8 @@ export interface ISwitchProps
     event: React.ChangeEvent<HTMLInputElement>,
     enabled: boolean,
   ) => IMaybeAsync<IAny>;
-  icon?: ISvgIcon;
-  selectedIcon?: ISvgIcon;
+  icon?: React.ReactNode;
+  selectedIcon?: React.ReactNode;
   rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
   focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
   circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
@@ -72,8 +71,8 @@ export const Switch: React.FC<ISwitchProps> = ({
   required,
   loadingAnimation = 'progressIndicator',
   onChange,
-  icon: Icon,
-  selectedIcon: SelectedIcon,
+  icon,
+  selectedIcon,
   ...props
 }) => {
   const theme = useComponentTheme('Switch');
@@ -220,8 +219,8 @@ export const Switch: React.FC<ISwitchProps> = ({
                           ...asArray(props.circularProgressIndicatorStyles),
                         ]}
                       />
-                    ) : SelectedIcon ? (
-                      <SelectedIcon aria-hidden />
+                    ) : selectedIcon ? (
+                      selectedIcon
                     ) : (
                       <CheckMark aria-hidden />
                     )}
@@ -232,7 +231,7 @@ export const Switch: React.FC<ISwitchProps> = ({
                       {...styleProps([
                         'icon',
                         !loading &&
-                          (!selected ? 'icon$size$selected' : 'icon$size'),
+                          (selected ? 'icon$size$selected' : 'icon$size'),
                         !selected && 'icon$on',
                         !selected && disabled && 'icon$on$disabled',
                       ])}
@@ -244,8 +243,8 @@ export const Switch: React.FC<ISwitchProps> = ({
                             ...asArray(props.circularProgressIndicatorStyles),
                           ]}
                         />
-                      ) : Icon ? (
-                        <Icon aria-hidden />
+                      ) : icon ? (
+                        icon
                       ) : (
                         <XMark aria-hidden />
                       )}

@@ -133,9 +133,6 @@ import {
   focusRingStyles as listItemFocusRingStyles,
 } from './ListItem/ListItem.styles';
 
-import { componentTheme as iconTheme } from './SvgIcon/SvgIcon.stylex';
-import { styles as iconStyles } from './SvgIcon/SvgIcon.styles';
-
 import { componentTheme as dividerTheme } from './Divider/Divider.stylex';
 import { styles as dividerStyles } from './Divider/Divider.styles';
 
@@ -363,10 +360,6 @@ export const theme: ITheme = {
     },
     List: {
       styles: listStyles,
-    },
-    SvgIcon: {
-      vars: iconTheme,
-      styles: iconStyles,
     },
     Divider: {
       vars: dividerTheme,

@@ -18,7 +18,7 @@ const vars: Partial<IStyleVars<IIconButtonStyleVarKey>> = {
   containerOpacity$disabled: stateVars.containerOpacity$disabled,
 
   // icon
-  iconSize: '24px',
+  iconSize: '18px',
   // &:disabled
   iconColor$disabled: colorRolesVars.onSurface,
   iconOpacity$disabled: stateVars.opacity$disabled,

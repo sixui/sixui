@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
 import stylex from '@stylexjs/stylex';
-import { EllipsisVerticalIcon } from '@heroicons/react/24/solid';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
@@ -52,7 +53,7 @@ const NonActionableContent: React.FC<{ headline?: string }> = ({
         <Avatar src='https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' />
       }
       headline='February 21, 2024'
-      end={<IconButton icon={EllipsisVerticalIcon} />}
+      end={<IconButton icon={<FontAwesomeIcon icon={faEllipsisVertical} />} />}
     >
       John Doe
     </Card.Header>

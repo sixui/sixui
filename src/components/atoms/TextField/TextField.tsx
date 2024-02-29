@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
-import type { IZeroOrMore, ICompiledStyles, ISvgIcon } from '@/helpers/types';
+import type { IZeroOrMore, ICompiledStyles } from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type {
@@ -157,8 +157,8 @@ export interface ITextFieldProps
 
   start?: React.ReactNode;
   end?: React.ReactNode;
-  leadingIcon?: ISvgIcon;
-  trailingIcon?: ISvgIcon;
+  leadingIcon?: React.ReactNode;
+  trailingIcon?: React.ReactNode;
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     value: string,
@@ -190,8 +190,8 @@ export const TextField: React.FC<ITextFieldProps> = ({
   suffixText,
   start,
   end,
-  leadingIcon: LeadingIcon,
-  trailingIcon: TrailingIcon,
+  leadingIcon,
+  trailingIcon,
   supportingText,
   cols = 20,
   rows = 2,
@@ -456,23 +456,19 @@ export const TextField: React.FC<ITextFieldProps> = ({
   const renderStart = React.useCallback(
     (): React.ReactNode | null =>
       start ??
-      (LeadingIcon ? (
-        <span {...styleProps(['icon', 'icon$leading'])}>
-          <LeadingIcon aria-hidden />
-        </span>
+      (leadingIcon ? (
+        <span {...styleProps(['icon', 'icon$leading'])}>{leadingIcon}</span>
       ) : null),
-    [styleProps, start, LeadingIcon],
+    [styleProps, start, leadingIcon],
   );
 
   const renderEnd = React.useCallback(
     (): React.ReactNode | null =>
       end ??
-      (TrailingIcon ? (
-        <span {...styleProps(['icon', 'icon$trailing'])}>
-          <TrailingIcon aria-hidden />
-        </span>
+      (trailingIcon ? (
+        <span {...styleProps(['icon', 'icon$trailing'])}>{trailingIcon}</span>
       ) : null),
-    [styleProps, end, TrailingIcon],
+    [styleProps, end, trailingIcon],
   );
 
   return (

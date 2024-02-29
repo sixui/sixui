@@ -240,8 +240,8 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     display: 'flex',
     fill: 'currentColor',
     position: 'relative',
-    justifyContent: 'center',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   icon$selected: {
     color: {

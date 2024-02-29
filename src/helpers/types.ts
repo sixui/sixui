@@ -11,13 +11,6 @@ export type IAny = any;
 
 export type IMaybeAsync<TReturnType> = TReturnType | Promise<TReturnType>;
 
-export type ISvgIcon = React.ForwardRefExoticComponent<
-  Omit<React.SVGProps<SVGSVGElement>, 'ref'> & {
-    title?: string | undefined;
-    titleId?: string | undefined;
-  } & React.RefAttributes<SVGSVGElement>
->;
-
 export type IDeepPartial<TType> = TType extends object
   ? TType extends Array<infer U>
     ? { [P in keyof TType]: IDeepPartial<U> }

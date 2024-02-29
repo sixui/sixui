@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
-import { CalendarDaysIcon, PhotoIcon } from '@heroicons/react/24/solid';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarDays, faImage } from '@fortawesome/free-solid-svg-icons';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
@@ -51,7 +52,7 @@ export const Variants: IStory = {
         {
           variant: 'assist',
           label: 'Assist',
-          icon: CalendarDaysIcon,
+          icon: <FontAwesomeIcon icon={faCalendarDays} />,
         },
         { variant: 'filter', label: 'Filter', defaultSelected: true },
         {
@@ -86,7 +87,10 @@ export const Assist: IStory = {
       ]}
       groupsProps={[
         {},
-        { $legend: 'With icon', icon: CalendarDaysIcon },
+        {
+          $legend: 'With icon',
+          icon: <FontAwesomeIcon icon={faCalendarDays} />,
+        },
         { $legend: 'With image', imageUrl: IMAGE_URL },
       ]}
     />
@@ -148,7 +152,10 @@ export const InputWithIconOrImage: IStory = {
         { $legend: 'Deleting', label: 'Deleting', deleting: true },
       ]}
       rowsProps={[
-        { $legend: 'With icon', icon: PhotoIcon },
+        {
+          $legend: 'With icon',
+          icon: <FontAwesomeIcon icon={faImage} />,
+        },
         {
           $legend: 'With image',
           imageUrl: IMAGE_URL,
@@ -182,7 +189,10 @@ export const Suggestion: IStory = {
       ]}
       groupsProps={[
         {},
-        { $legend: 'With icon', icon: CalendarDaysIcon },
+        {
+          $legend: 'With icon',
+          icon: <FontAwesomeIcon icon={faCalendarDays} />,
+        },
         { $legend: 'With image', imageUrl: IMAGE_URL },
       ]}
     />

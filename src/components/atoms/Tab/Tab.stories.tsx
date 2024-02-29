@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
-import { CalendarDaysIcon as CalendarDaysIcon } from '@heroicons/react/24/outline';
-import { CalendarDaysIcon as ActiveCalendarDaysIcon } from '@heroicons/react/24/solid';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope as faEnvelopeSolid } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
@@ -38,14 +39,14 @@ const rowsProps: IComponentPropsWithLegend<ITabProps> = [
   { $legend: 'Label' },
   {
     $legend: 'Icon',
-    icon: CalendarDaysIcon,
-    activeIcon: ActiveCalendarDaysIcon,
+    icon: <FontAwesomeIcon icon={faEnvelope} />,
+    activeIcon: <FontAwesomeIcon icon={faEnvelopeSolid} />,
     label: undefined,
   },
   {
     $legend: 'Label and icon',
-    icon: CalendarDaysIcon,
-    activeIcon: ActiveCalendarDaysIcon,
+    icon: <FontAwesomeIcon icon={faEnvelope} />,
+    activeIcon: <FontAwesomeIcon icon={faEnvelopeSolid} />,
   },
 ];
 
@@ -61,14 +62,14 @@ export const Variants: IStory = {
         <React.Fragment>
           <PrimaryTab
             {...props}
-            icon={CalendarDaysIcon}
-            activeIcon={ActiveCalendarDaysIcon}
+            icon={<FontAwesomeIcon icon={faEnvelope} />}
+            activeIcon={<FontAwesomeIcon icon={faEnvelopeSolid} />}
             label='Primary'
           />
           <SecondaryTab
             {...props}
-            icon={CalendarDaysIcon}
-            activeIcon={ActiveCalendarDaysIcon}
+            icon={<FontAwesomeIcon icon={faEnvelope} />}
+            activeIcon={<FontAwesomeIcon icon={faEnvelopeSolid} />}
             label='Secondary'
           />
         </React.Fragment>

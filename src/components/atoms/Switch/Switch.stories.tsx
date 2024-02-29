@@ -1,6 +1,7 @@
 import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { delay } from '@olivierpascal/helpers';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
@@ -151,8 +152,8 @@ export const WithCustomIcons: IStory = {
   args: {
     ...defaultArgs,
     icons: true,
-    icon: MinusIcon,
-    selectedIcon: PlusIcon,
+    icon: <FontAwesomeIcon icon={faMinus} />,
+    selectedIcon: <FontAwesomeIcon icon={faPlus} />,
   },
 };
 

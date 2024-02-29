@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
-import { PlusIcon } from '@heroicons/react/24/solid';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
@@ -44,10 +45,10 @@ const statesProps: IComponentPropsWithLegend<IButtonProps> = [
 
 const rowsProps: IComponentPropsWithLegend<IButtonProps> = [
   { $legend: 'Basic' },
-  { $legend: 'With Leading Icon', icon: PlusIcon },
+  { $legend: 'With Leading Icon', icon: <FontAwesomeIcon icon={faPlus} /> },
   {
     $legend: 'With Leading and Trailing Icons',
-    icon: PlusIcon,
+    icon: <FontAwesomeIcon icon={faPlus} />,
     trailingIcon: true,
   },
 ];

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
-import { StarIcon, BoltIcon, CloudIcon } from '@heroicons/react/24/solid';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar, faBolt, faCloud } from '@fortawesome/free-solid-svg-icons';
 
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { Avatar, type IAvatarProps } from './Avatar';
@@ -24,7 +25,7 @@ export const Variants: IStory = {
         },
         {},
         { children: 'OP' },
-        { children: <StarIcon aria-hidden /> },
+        { children: <FontAwesomeIcon icon={faStar} /> },
         { src: '/broken-image.jpg', alt: 'Olivier' },
       ]}
     />
@@ -73,9 +74,9 @@ export const Icon: IStory = {
       component={Avatar}
       props={props}
       colsProps={[
-        { children: <StarIcon aria-hidden /> },
-        { children: <BoltIcon aria-hidden /> },
-        { children: <CloudIcon aria-hidden /> },
+        { children: <FontAwesomeIcon icon={faStar} /> },
+        { children: <FontAwesomeIcon icon={faBolt} /> },
+        { children: <FontAwesomeIcon icon={faCloud} /> },
       ]}
     />
   ),

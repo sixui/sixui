@@ -5,7 +5,6 @@ import type {
   IZeroOrMore,
   ICompiledStyles,
   IAny,
-  ISvgIcon,
   IMaybeAsync,
 } from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
@@ -36,8 +35,8 @@ export interface ITabProps extends IContainer<ITabStyleKey, ITabStyleVarKey> {
    **/
   active?: boolean;
 
-  icon?: ISvgIcon;
-  activeIcon?: ISvgIcon;
+  icon?: React.ReactNode;
+  activeIcon?: React.ReactNode;
   onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
   label?: string;
   anchor?: string;
@@ -61,8 +60,8 @@ const variantMap: ITabVariantMap = {
 };
 
 export const Tab: React.FC<ITabProps> = ({
-  icon: Icon,
-  activeIcon: ActiveIcon,
+  icon,
+  activeIcon,
   onClick,
   label,
   anchor,
@@ -101,7 +100,7 @@ export const Tab: React.FC<ITabProps> = ({
       ? tabContext.anchor !== undefined && tabContext.anchor === anchor
       : props.active
     : false;
-  const hasIcon = active ? !!ActiveIcon || !!Icon : !!Icon;
+  const hasIcon = active ? !!activeIcon ?? !!icon : !!icon;
   const id = tabContext && anchor ? `${tabContext.id}-${anchor}` : undefined;
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> =
@@ -136,22 +135,26 @@ export const Tab: React.FC<ITabProps> = ({
 
   const renderIcon = React.useCallback(
     (): React.ReactNode | null =>
-      active && ActiveIcon ? (
-        <ActiveIcon
+      active && activeIcon ? (
+        <div
           {...styleProps(['icon', 'icon$active', disabled && 'icon$disabled'])}
           aria-hidden
-        />
-      ) : Icon ? (
-        <Icon
+        >
+          {activeIcon}
+        </div>
+      ) : icon ? (
+        <div
           {...styleProps([
             'icon',
             active && 'icon$active',
             disabled && 'icon$disabled',
           ])}
           aria-hidden
-        />
+        >
+          {icon}
+        </div>
       ) : null,
-    [active, Icon, ActiveIcon, styleProps, disabled],
+    [active, icon, activeIcon, styleProps, disabled],
   );
 
   return (

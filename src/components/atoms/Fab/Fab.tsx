@@ -6,7 +6,6 @@ import type {
   ICompiledStyles,
   IAny,
   IMaybeAsync,
-  ISvgIcon,
 } from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
 import type {
@@ -51,7 +50,7 @@ export interface IFabProps
   loading?: boolean;
   loadingText?: string;
   label?: string;
-  icon?: ISvgIcon;
+  icon?: React.ReactNode;
   component?: React.ElementType;
   href?: string;
   rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
@@ -83,7 +82,7 @@ export const Fab: React.FC<IFabProps> = ({
   lowered,
   loadingText,
   label,
-  icon: Icon,
+  icon,
   href,
   ...props
 }) => {
@@ -127,7 +126,7 @@ export const Fab: React.FC<IFabProps> = ({
   const disabled = props.disabled || loading;
   const extended = !!label;
   const hasChildren = variant === 'branded' && !!children;
-  const hasIcon = !!Icon || hasChildren;
+  const hasIcon = !!icon || hasChildren;
   const hasLeading = hasIcon;
   const hasOverlay = loading && (!!loadingText || !hasIcon);
 
@@ -219,8 +218,8 @@ export const Fab: React.FC<IFabProps> = ({
               />
             ) : hasChildren ? (
               children
-            ) : Icon ? (
-              <Icon aria-hidden />
+            ) : icon ? (
+              icon
             ) : null}
           </div>
         ) : null}

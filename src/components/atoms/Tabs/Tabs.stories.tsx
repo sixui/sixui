@@ -1,18 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
 import stylex from '@stylexjs/stylex';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  CalendarDaysIcon,
-  PhotoIcon,
-  ChartPieIcon,
-  Cog6ToothIcon,
-} from '@heroicons/react/24/outline';
+  faEnvelope as faEnvelopeSolid,
+  faUser as faUserSolid,
+  faBookmark as faBookmarkSolid,
+  faCalendar as faCalendarSolid,
+} from '@fortawesome/free-solid-svg-icons';
 import {
-  CalendarDaysIcon as ActiveCalendarDaysIcon,
-  PhotoIcon as ActivePhotoIcon,
-  ChartPieIcon as ActiveChartPieIcon,
-  Cog6ToothIcon as ActiveCog6ToothIcon,
-} from '@heroicons/react/24/solid';
+  faEnvelope,
+  faUser,
+  faBookmark,
+  faCalendar,
+} from '@fortawesome/free-regular-svg-icons';
 
 import { type ITabsProps, Tabs } from './Tabs';
 import { Tab } from '../Tab';
@@ -49,26 +50,26 @@ const TabsDemo: React.FC<ITabsProps> = (props) => (
         <Tab
           label='Item one'
           anchor='tab-1'
-          icon={CalendarDaysIcon}
-          activeIcon={ActiveCalendarDaysIcon}
+          icon={<FontAwesomeIcon icon={faEnvelope} />}
+          activeIcon={<FontAwesomeIcon icon={faEnvelopeSolid} />}
         />
         <Tab
           label='Item two'
           anchor='tab-2'
-          icon={PhotoIcon}
-          activeIcon={ActivePhotoIcon}
+          icon={<FontAwesomeIcon icon={faUser} />}
+          activeIcon={<FontAwesomeIcon icon={faUserSolid} />}
         />
         <Tab
           label='Item three'
           anchor='tab-3'
-          icon={ChartPieIcon}
-          activeIcon={ActiveChartPieIcon}
+          icon={<FontAwesomeIcon icon={faBookmark} />}
+          activeIcon={<FontAwesomeIcon icon={faBookmarkSolid} />}
         />
         <Tab
           label='Item four'
           anchor='tab-4'
-          icon={Cog6ToothIcon}
-          activeIcon={ActiveCog6ToothIcon}
+          icon={<FontAwesomeIcon icon={faCalendar} />}
+          activeIcon={<FontAwesomeIcon icon={faCalendarSolid} />}
           disabled
         />
       </TabList>

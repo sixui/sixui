@@ -1,8 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
 import stylex from '@stylexjs/stylex';
-import { CalendarDaysIcon } from '@heroicons/react/24/solid';
-import { ChevronRightIcon } from '@heroicons/react/20/solid';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faCalendarDays,
+  faChevronRight,
+} from '@fortawesome/free-solid-svg-icons';
 
 import {
   type IComponentPropsWithLegend,
@@ -47,8 +50,8 @@ const rowsProps: IComponentPropsWithLegend<IListItemProps> = [
   {
     $legend: 'Link with Icons',
     type: 'link',
-    start: <CalendarDaysIcon style={{ width: 24, height: 24 }} aria-hidden />,
-    end: <ChevronRightIcon style={{ width: 20, height: 20 }} aria-hidden />,
+    start: <FontAwesomeIcon icon={faCalendarDays} />,
+    end: <FontAwesomeIcon icon={faChevronRight} />,
   },
 ];
 
@@ -63,12 +66,8 @@ export const Variants: IStory = {
         },
         {
           children: 'With Icons',
-          start: (
-            <CalendarDaysIcon style={{ width: 24, height: 24 }} aria-hidden />
-          ),
-          end: (
-            <ChevronRightIcon style={{ width: 20, height: 20 }} aria-hidden />
-          ),
+          start: <FontAwesomeIcon icon={faCalendarDays} />,
+          end: <FontAwesomeIcon icon={faChevronRight} />,
         },
       ]}
     />

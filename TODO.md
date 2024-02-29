@@ -1,6 +1,6 @@
 # TO DO
 
-- Remove heroicicons
+- FIXME: vite does not refresh when modifying .stylex.ts files
 
 - Placeholder -> Skeleton
 

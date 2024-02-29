@@ -20,7 +20,6 @@ import {
 
 import 'modern-normalize/modern-normalize.css';
 import '@/styles/main.css';
-import '@/styles/preview.css';
 
 const preview: Preview = {
   parameters: {

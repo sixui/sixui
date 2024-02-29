@@ -102,6 +102,8 @@ export const styles: MapNamespaces<IIconButtonStyles> =
     },
     icon: {
       display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
       fontSize: vars.iconSize,
       width: vars.iconSize,
       height: vars.iconSize,

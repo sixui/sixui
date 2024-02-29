@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
-import type { ICompiledStyles, ISvgIcon } from '@/helpers/types';
+import type { ICompiledStyles } from '@/helpers/types';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type {
   IButtonStyleKey,
@@ -27,7 +27,7 @@ import { ButtonBase, type IButtonBaseProps } from './ButtonBase';
 
 export interface IButtonProps extends IButtonBaseProps {
   variant?: IButtonVariant;
-  icon?: ISvgIcon;
+  icon?: React.ReactNode;
   trailingIcon?: boolean;
   loading?: boolean;
   loadingAnimation?: 'progressIndicator' | 'halfSpin' | 'none';
@@ -59,7 +59,7 @@ export const Button: React.FC<IButtonProps> = ({
   onClick,
   type,
   variant = 'elevated',
-  icon: Icon,
+  icon,
   trailingIcon,
   loadingAnimation = 'progressIndicator',
   loadingText,
@@ -114,7 +114,7 @@ export const Button: React.FC<IButtonProps> = ({
     (props.loading || handlingClick) &&
     loadingAnimation === 'progressIndicator';
   const disabled = props.disabled || loading;
-  const hasIcon = !!Icon;
+  const hasIcon = !!icon;
   const hasLeadingIcon = hasIcon && !trailingIcon;
   const hasTrailingIcon = hasIcon && !!trailingIcon;
   const hasOverlay = loading && (!!loadingText || !hasIcon);
@@ -173,12 +173,13 @@ export const Button: React.FC<IButtonProps> = ({
                 ...asArray(props.circularProgressIndicatorStyles),
               ]}
             />
-          ) : Icon ? (
-            <Icon
+          ) : icon ? (
+            <div
               {...styleProps([iconAnimation && `icon$${iconAnimation}`])}
-              aria-hidden
               onAnimationIteration={handleAnimationIteration}
-            />
+            >
+              {icon}
+            </div>
           ) : null}
         </div>
       ) : null}
@@ -213,7 +214,7 @@ export const Button: React.FC<IButtonProps> = ({
         </div>
       ) : null}
 
-      {Icon && trailingIcon ? (
+      {icon && trailingIcon ? (
         loading ? (
           <div
             {...styleProps([
@@ -230,15 +231,16 @@ export const Button: React.FC<IButtonProps> = ({
             />
           </div>
         ) : (
-          <Icon
+          <div
             {...styleProps([
               'icon',
               disabled && 'icon$disabled',
               iconAnimation && `icon$${iconAnimation}`,
             ])}
-            aria-hidden
             onAnimationIteration={handleAnimationIteration}
-          />
+          >
+            {icon}
+          </div>
         )
       ) : null}
     </ButtonBase>

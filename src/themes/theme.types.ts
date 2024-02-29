@@ -64,10 +64,6 @@ import type {
   IListItemStyleVarKey,
 } from '@/components/atoms/ListItem';
 import type {
-  ISvgIconStyleKey,
-  ISvgIconStyleVarKey,
-} from '@/components/atoms/SvgIcon';
-import type {
   IDividerStyleKey,
   IDividerStyleVarKey,
 } from '@/components/atoms/Divider';
@@ -287,10 +283,6 @@ export interface ITheme {
     };
     List: {
       styles?: ICompiledStyles<IListStyleKey>;
-    };
-    SvgIcon: {
-      vars?: IStyleVarsTheme<ISvgIconStyleVarKey>;
-      styles?: ICompiledStyles<ISvgIconStyleKey>;
     };
     Divider: {
       vars?: IStyleVarsTheme<IDividerStyleVarKey>;

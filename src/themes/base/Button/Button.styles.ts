@@ -121,6 +121,8 @@ export const styles: MapNamespaces<IButtonStyles> =
     },
     icon: {
       display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
       position: 'relative',
       writingMode: 'horizontal-tb',
       flexShrink: 0,

@@ -6,7 +6,6 @@ import type {
   ICompiledStyles,
   IAny,
   IMaybeAsync,
-  ISvgIcon,
 } from '@/helpers/types';
 import type { IContainer } from '@/helpers/Container';
 import type {
@@ -44,8 +43,8 @@ export interface IIconButtonProps
   toggle?: boolean;
   selected?: boolean;
   loading?: boolean;
-  icon: ISvgIcon;
-  selectedIcon?: ISvgIcon;
+  icon: React.ReactNode;
+  selectedIcon?: React.ReactNode;
   component?: React.ElementType;
   'aria-label-selected'?: React.AriaAttributes['aria-label'];
   rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
@@ -131,7 +130,7 @@ export const IconButton: React.FC<IIconButtonProps> = ({
     : href
       ? 'a'
       : 'button';
-  const Icon =
+  const icon =
     toggle && selected ? props.selectedIcon ?? props.icon : props.icon;
 
   return (
@@ -201,7 +200,7 @@ export const IconButton: React.FC<IIconButtonProps> = ({
       >
         <span {...styleProps(['touchTarget'])} />
 
-        <Icon
+        <div
           {...styleProps([
             'icon',
             disabled
@@ -213,8 +212,9 @@ export const IconButton: React.FC<IIconButtonProps> = ({
                 : null,
             hasOverlay ? 'invisible' : null,
           ])}
-          aria-hidden
-        />
+        >
+          {icon}
+        </div>
 
         {hasOverlay ? (
           <div {...styleProps(['overlay'])}>

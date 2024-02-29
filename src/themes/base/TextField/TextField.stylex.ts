@@ -84,7 +84,7 @@ const vars: Partial<IStyleVars<ITextFieldStyleVarKey>> = {
   leadingContentColor$error$hover: colorRolesVars.onSurfaceVariant,
 
   // leadingIcon
-  leadingIconSize: '24px',
+  leadingIconSize: '18px',
 
   // trailingContent
   trailingContentColor: colorRolesVars.onSurfaceVariant,
@@ -104,7 +104,7 @@ const vars: Partial<IStyleVars<ITextFieldStyleVarKey>> = {
   trailingContentColor$error$hover: colorRolesVars.onErrorContainer,
 
   // trailingIcon
-  trailingIconSize: '24px',
+  trailingIconSize: '18px',
 
   // supporting
   supportingTextColor: colorRolesVars.onSurfaceVariant,

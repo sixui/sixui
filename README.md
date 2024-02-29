@@ -58,7 +58,6 @@ Components
 - [x] FAB
 - [x] Field
 - [x] Focus ring
-- [x] Svg Icon
 - [x] Icon button
 - [x] Item
 - [x] List

@@ -118,6 +118,8 @@ export const styles: MapNamespaces<ITextFieldStyles> =
     icon: {
       color: 'currentColor',
       display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     icon$leading: {
       fontSize: vars.leadingIconSize,

@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
-import { Cog6ToothIcon } from '@heroicons/react/24/outline';
-import { Cog6ToothIcon as SelectedCog6ToothIcon } from '@heroicons/react/24/solid';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
@@ -23,8 +24,8 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   onClick: (args) => sbHandleEvent('click', args),
-  icon: Cog6ToothIcon,
-  selectedIcon: SelectedCog6ToothIcon,
+  icon: <FontAwesomeIcon icon={faHeart} />,
+  selectedIcon: <FontAwesomeIcon icon={faHeartSolid} />,
 } satisfies Partial<IIconButtonProps>;
 
 const statesProps: IComponentPropsWithLegend<IIconButtonProps> = [
