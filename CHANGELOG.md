@@ -1,3 +1,18 @@
+# v0.0.49 (Thu Feb 29 2024)
+
+#### ⚠️ Pushed to `main`
+
+- doc: various TODO update ([@olivierpascal](https://github.com/olivierpascal))
+- feat: generic IconButton exported, not variants ([@olivierpascal](https://github.com/olivierpascal))
+- fix: value is clamped in 0..1 range ([@olivierpascal](https://github.com/olivierpascal))
+- fix: remove variant theme export ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.48 (Thu Feb 29 2024)
 
 #### ⚠️ Pushed to `main`
