@@ -116,8 +116,6 @@
   - Separate the core and the Storybook app
   - Use PostCSS Autoprefixr plugin on the generated CSS file
     https://github.com/facebook/stylex/discussions/223
-  - Do not include .storybook/ in the final package
-  - Check if tree shaking is working
 
 - ButtonBase
 

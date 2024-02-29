@@ -11,7 +11,14 @@
       }
     ],
     ["@babel/preset-typescript"],
-    ["@babel/preset-react"]
+    [
+      "@babel/preset-react",
+      {
+        // auto imports the functions that JSX transpiles to.
+        // See https://babeljs.io/docs/babel-plugin-transform-react-jsx#options
+        "runtime": "automatic"
+      }
+    ]
   ],
   "plugins": [
     [
