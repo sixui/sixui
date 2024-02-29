@@ -1,3 +1,15 @@
+# v0.0.48 (Thu Feb 29 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: CardMedia content is now centered in flex ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.47 (Thu Feb 29 2024)
 
 #### ⚠️ Pushed to `main`
