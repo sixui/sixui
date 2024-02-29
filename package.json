@@ -3,6 +3,7 @@
   "description": "UI components",
   "version": "0.0.50",
   "main": "./dist/index.js",
+  "sideEffects": false,
   "exports": {
     ".": "./dist/index.js",
     "./styles.css": "./dist/styles/main.css",
