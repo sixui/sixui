@@ -63,7 +63,7 @@ export const DeterminateCircularProgressIndicator: React.FC<
   );
 
   const value0 = zeroBased ? 0 : min;
-  const pct = (value - value0) / (max - value0);
+  const pct = Math.max(Math.min((value - value0) / (max - value0), 1), 0);
   const dashOffset = (1 - pct) * 100;
 
   return (
