@@ -12,6 +12,7 @@ export const styles: MapNamespaces<ICardContentStyles> =
       display: 'flex',
       flexDirection: 'column',
       gap: 16,
+      color: vars.textColor,
 
       paddingTop: vars.topSpace,
       paddingBottom: vars.bottomSpace,

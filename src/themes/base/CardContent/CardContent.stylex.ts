@@ -2,12 +2,14 @@ import stylex from '@stylexjs/stylex';
 
 import type { IStyleVars } from '@/helpers/types';
 import type { ICardContentStyleVarKey } from '@/components/atoms/CardContent';
+import { colorRolesVars } from '../vars/colorRoles.stylex';
 
 const vars: Partial<IStyleVars<ICardContentStyleVarKey>> = {
   leadingSpace: '16px',
   trailingSpace: '16px',
   topSpace: '16px',
   bottomSpace: '16px',
+  textColor: colorRolesVars.onSurface,
   // &:actionable
   leadingSpace$actionable: '16px',
   trailingSpace$actionable: '16px',
