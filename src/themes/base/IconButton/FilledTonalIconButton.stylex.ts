@@ -50,6 +50,8 @@ const vars: Partial<IStyleVars<IIconButtonStyleVarKey>> = {
   // stateLayer
   // &:hover
   stateLayerColor$hover: colorRolesVars.onSecondaryContainer,
+  // &:pressed
+  stateLayerColor$pressed: colorRolesVars.onSecondaryContainer,
 
   // toggleStateLayer
   // &:hover
