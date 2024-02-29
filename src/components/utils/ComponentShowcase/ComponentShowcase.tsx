@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type {
   IComponentShowcaseStyleKey,
   IComponentShowcaseStyleVarKey,
@@ -13,7 +13,7 @@ export type IComponentPropsWithLegend<IComponentProps> = Array<
   Partial<IComponentProps> & { $legend?: React.ReactNode }
 >;
 
-export type IComponentShowcaseProps<IComponentProps> = IContainer<
+export type IComponentShowcaseProps<IComponentProps> = IContainerProps<
   IComponentShowcaseStyleKey,
   IComponentShowcaseStyleVarKey
 > & {

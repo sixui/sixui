@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type { ITypographyStyleKey } from './Typography.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
 export type ITypographyProps = Omit<
-  IContainer<ITypographyStyleKey>,
+  IContainerProps<ITypographyStyleKey>,
   'theme'
 > & {
   variant?: 'display' | 'headline' | 'title' | 'body' | 'label';

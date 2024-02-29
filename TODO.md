@@ -133,6 +133,10 @@
 
   - Controlled/uncontrolled modes (if selectable)
 
+- CI
+
+  - use guards for branch names and commit messages
+
 ## Refactoring
 
 - Field
@@ -147,7 +151,6 @@
 - List -> Stack
 - use slots and slotProps
   - https://mui.com/base-ui/getting-started/usage/#slots
-- IContainer -> IContainerProps (dans helpers -> utils)
 - Helper to merge styles:
 
 ```tsx

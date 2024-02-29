@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type { IBadgeStyleKey, IBadgeStyleVarKey } from './Badge.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export type IBadgeProps = IContainer<IBadgeStyleKey, IBadgeStyleVarKey> & {
+export type IBadgeProps = IContainerProps<IBadgeStyleKey, IBadgeStyleVarKey> & {
   value?: number;
   maxValue?: number;
   showZero?: boolean;

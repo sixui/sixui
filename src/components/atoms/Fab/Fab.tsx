@@ -7,7 +7,7 @@ import type {
   IAny,
   IMaybeAsync,
 } from '@/helpers/types';
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type {
   IFabSize,
   IFabStyleKey,
@@ -36,7 +36,7 @@ import {
 // https://github.com/material-components/material-web/blob/main/fab/internal/shared.ts
 // https://github.com/material-components/material-web/blob/main/fab/internal/fab.ts
 
-export type IFabProps = IContainer<IFabStyleKey, IFabStyleVarKey> &
+export type IFabProps = IContainerProps<IFabStyleKey, IFabStyleVarKey> &
   Pick<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     'disabled' | 'aria-label'

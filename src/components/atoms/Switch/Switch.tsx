@@ -7,7 +7,7 @@ import type {
   IAny,
   IMaybeAsync,
 } from '@/helpers/types';
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type { ISwitchStyleKey, ISwitchStyleVarKey } from './Switch.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
@@ -28,7 +28,10 @@ import { ReactComponent as XMark } from '@/assets/XMark.svg';
 
 // https://github.com/material-components/material-web/blob/main/switch/internal/switch.ts
 
-export type ISwitchProps = IContainer<ISwitchStyleKey, ISwitchStyleVarKey> &
+export type ISwitchProps = IContainerProps<
+  ISwitchStyleKey,
+  ISwitchStyleVarKey
+> &
   Pick<
     React.InputHTMLAttributes<HTMLInputElement>,
     'id' | 'name' | 'disabled' | 'required' | 'aria-label'

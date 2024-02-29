@@ -2,7 +2,7 @@ import * as React from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type { IZeroOrMore, ICompiledStyles } from '@/helpers/types';
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type {
   ITextFieldStyleKey,
@@ -57,7 +57,7 @@ export type IInvalidTextFieldType =
   | 'reset'
   | 'submit';
 
-export type ITextFieldProps = IContainer<
+export type ITextFieldProps = IContainerProps<
   ITextFieldStyleKey,
   ITextFieldStyleVarKey
 > &

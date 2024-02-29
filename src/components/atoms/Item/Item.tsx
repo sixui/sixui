@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type { IItemStyleKey, IItemStyleVarKey } from './Item.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
@@ -8,7 +8,7 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 
 // https://github.com/material-components/material-web/blob/main/labs/item/item.ts
 
-export type IItemProps = IContainer<IItemStyleKey, IItemStyleVarKey> & {
+export type IItemProps = IContainerProps<IItemStyleKey, IItemStyleVarKey> & {
   container?: React.ReactNode;
   start?: React.ReactNode;
   overline?: React.ReactNode;

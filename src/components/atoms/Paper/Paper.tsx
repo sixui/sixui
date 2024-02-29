@@ -2,7 +2,7 @@ import * as React from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type { IZeroOrMore, ICompiledStyles } from '@/helpers/types';
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type {
   IPaperStyleKey,
@@ -17,7 +17,7 @@ import { Elevation, IElevationStyleKey } from '@/components/utils/Elevation';
 
 // https://github.com/material-components/material-web/blob/main/labs/paper/internal/paper.ts
 
-export type IPaperProps = IContainer<IPaperStyleKey, IPaperStyleVarKey> & {
+export type IPaperProps = IContainerProps<IPaperStyleKey, IPaperStyleVarKey> & {
   variant?: IPaperVariant;
   children?: React.ReactNode;
   elevation?: 0 | 1 | 2 | 3 | 4 | 5;

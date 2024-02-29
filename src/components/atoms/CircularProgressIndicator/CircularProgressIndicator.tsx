@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type { IMakeOptional } from '@/helpers/types';
 import type { IDeterminateCircularProgressIndicatorProps } from './DeterminateCircularProgressIndicator';
 import type { IDeterminateCircularProgressIndicatorStyleKey } from './DeterminateCircularProgressIndicator.styledefs';
@@ -13,7 +13,7 @@ import {
   ICircularProgressIndicatorStyleVarKey,
 } from './CircularProgressIndicator.styledefs';
 
-export type ICircularProgressIndicatorProps = IContainer<
+export type ICircularProgressIndicatorProps = IContainerProps<
   | ICircularProgressIndicatorStyleKey
   | IDeterminateCircularProgressIndicatorStyleKey
   | IIndeterminateCircularProgressIndicatorStyleKey,

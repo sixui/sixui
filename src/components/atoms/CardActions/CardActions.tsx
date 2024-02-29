@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type { ICardActionsStyleKey } from './CardActions.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export type ICardActionsProps = IContainer<ICardActionsStyleKey> & {
+export type ICardActionsProps = IContainerProps<ICardActionsStyleKey> & {
   children: React.ReactNode;
 };
 

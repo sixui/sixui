@@ -7,7 +7,7 @@ import type {
   IMaybeAsync,
   IAny,
 } from '@/helpers/types';
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type {
   ICardStyleKey,
@@ -33,7 +33,7 @@ import { CardActions } from '../CardActions';
 
 // https://github.com/material-components/material-web/blob/main/labs/card/internal/card.ts
 
-export type ICardProps = IContainer<ICardStyleKey, ICardStyleVarKey> & {
+export type ICardProps = IContainerProps<ICardStyleKey, ICardStyleVarKey> & {
   variant?: ICardVariant;
   children: React.ReactNode;
   elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;

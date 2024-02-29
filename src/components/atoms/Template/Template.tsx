@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type {
   ITemplateStyleKey,
@@ -11,7 +11,7 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export type ITemplateProps = IContainer<
+export type ITemplateProps = IContainerProps<
   ITemplateStyleKey,
   ITemplateStyleVarKey
 > & {

@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type { ICardMediaStyleKey } from './CardMedia.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export type ICardMediaProps = IContainer<ICardMediaStyleKey> &
+export type ICardMediaProps = IContainerProps<ICardMediaStyleKey> &
   Pick<React.ImgHTMLAttributes<HTMLImageElement>, 'src' | 'title'> & {
     children?: React.ReactNode;
   };

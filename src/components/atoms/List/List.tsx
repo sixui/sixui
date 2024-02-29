@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type { IListStyleKey, IListStyleVarKey } from './List.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export type IListProps = IContainer<IListStyleKey, IListStyleVarKey> & {
+export type IListProps = IContainerProps<IListStyleKey, IListStyleVarKey> & {
   children?: React.ReactNode;
 };
 

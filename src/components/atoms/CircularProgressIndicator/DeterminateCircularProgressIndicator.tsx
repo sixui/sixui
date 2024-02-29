@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type {
   ICircularProgressIndicatorStyleVarKey,
   ICircularProgressIndicatorSize,
@@ -13,7 +13,7 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 // https://github.com/material-components/material-web/blob/main/progress/internal/progress.ts
 // https://github.com/material-components/material-web/blob/main/progress/internal/circulardeterminate-progress.ts
 
-export type IDeterminateCircularProgressIndicatorProps = IContainer<
+export type IDeterminateCircularProgressIndicatorProps = IContainerProps<
   IDeterminateCircularProgressIndicatorStyleKey,
   ICircularProgressIndicatorStyleVarKey
 > &

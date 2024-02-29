@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type {
   ICardTitleStyleKey,
   ICardTitleStyleVarKey,
@@ -9,7 +9,7 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export type ICardTitleProps = IContainer<
+export type ICardTitleProps = IContainerProps<
   ICardTitleStyleKey,
   ICardTitleStyleVarKey
 > & {

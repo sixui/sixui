@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type {
   IDividerStyleKey,
   IDividerStyleVarKey,
@@ -11,7 +11,7 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 
 // https://github.com/material-components/material-web/blob/main/divider/internal/divider.ts
 
-export type IDividerProps = IContainer<
+export type IDividerProps = IContainerProps<
   IDividerStyleKey,
   IDividerStyleVarKey
 > & {

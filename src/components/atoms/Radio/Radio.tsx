@@ -7,7 +7,7 @@ import type {
   IAny,
   IMaybeAsync,
 } from '@/helpers/types';
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type { IRadioStyleKey, IRadioStyleVarKey } from './Radio.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
@@ -23,7 +23,7 @@ import { useRadioGroupContext } from '../RadioGroup/useRadioGroupContext';
 
 // https://github.com/material-components/material-web/blob/main/radio/internal/radio.ts
 
-export type IRadioProps = IContainer<IRadioStyleKey, IRadioStyleVarKey> &
+export type IRadioProps = IContainerProps<IRadioStyleKey, IRadioStyleVarKey> &
   Pick<
     React.InputHTMLAttributes<HTMLInputElement>,
     'id' | 'name' | 'required' | 'disabled' | 'checked' | 'aria-label'

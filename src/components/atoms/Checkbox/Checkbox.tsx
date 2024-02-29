@@ -7,7 +7,7 @@ import type {
   IAny,
   IMaybeAsync,
 } from '@/helpers/types';
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type {
   ICheckboxStyleKey,
   ICheckboxStyleVarKey,
@@ -26,7 +26,7 @@ import {
 
 // https://github.com/material-components/material-web/blob/main/checkbox/internal/checkbox.ts
 
-export type ICheckboxProps = IContainer<
+export type ICheckboxProps = IContainerProps<
   ICheckboxStyleKey,
   ICheckboxStyleVarKey
 > &

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import type { IPoint } from '@/helpers/types';
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type { IRippleStyleKey, IRippleStyleVarKey } from './Ripple.styledefs';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { EASING } from '@/helpers/animation';
@@ -10,7 +10,10 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 
 // https://github.com/material-components/material-web/blob/main/ripple/internal/ripple.ts
 
-export type IRippleProps = IContainer<IRippleStyleKey, IRippleStyleVarKey> & {
+export type IRippleProps = IContainerProps<
+  IRippleStyleKey,
+  IRippleStyleVarKey
+> & {
   for?: React.RefObject<HTMLElement>;
   disabled?: boolean;
 };

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type { IFieldStyleKey, IFieldVariant } from './Field.styledefs';
 import type { ITextFieldStyleVarKey } from '../TextField';
@@ -14,7 +14,10 @@ import { EASING } from '@/helpers/animation';
 // https://github.com/material-components/material-web/blob/main/field/internal/outlined-field.ts
 // https://github.com/material-components/material-web/blob/main/field/internal/field.ts
 
-export type IFieldProps = IContainer<IFieldStyleKey, ITextFieldStyleVarKey> &
+export type IFieldProps = IContainerProps<
+  IFieldStyleKey,
+  ITextFieldStyleVarKey
+> &
   Pick<
     React.InputHTMLAttributes<HTMLInputElement>,
     'disabled' | 'required' | 'max'

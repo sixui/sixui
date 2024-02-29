@@ -7,7 +7,7 @@ import type {
   IAny,
   IMaybeAsync,
 } from '@/helpers/types';
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type { IButtonStyleKey, IButtonStyleVarKey } from '../Button';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
@@ -23,7 +23,10 @@ import {
 } from '@/components/utils/FocusRing';
 import { Ripple, type IRippleStyleKey } from '@/components/utils/Ripple';
 
-export type IButtonBaseProps = IContainer<IButtonStyleKey, IButtonStyleVarKey> &
+export type IButtonBaseProps = IContainerProps<
+  IButtonStyleKey,
+  IButtonStyleVarKey
+> &
   Pick<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     'type' | 'disabled' | 'aria-label' | 'aria-haspopup' | 'aria-expanded'

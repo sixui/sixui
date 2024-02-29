@@ -7,7 +7,7 @@ import type {
   IAny,
   IMaybeAsync,
 } from '@/helpers/types';
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type {
   ITabStyleKey,
@@ -27,7 +27,7 @@ import { Anchored } from '@/components/utils/Anchored';
 
 // https://github.com/material-components/material-web/blob/main/tabs/internal/tab.ts
 
-export type ITabProps = IContainer<ITabStyleKey, ITabStyleVarKey> & {
+export type ITabProps = IContainerProps<ITabStyleKey, ITabStyleVarKey> & {
   variant?: ITabVariant;
 
   /**

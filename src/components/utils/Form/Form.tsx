@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type { IFormStyleKey } from './Form.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 
-export type IFormProps = Omit<IContainer<IFormStyleKey>, 'theme'> &
+export type IFormProps = Omit<IContainerProps<IFormStyleKey>, 'theme'> &
   Pick<React.FormHTMLAttributes<HTMLFormElement>, 'onSubmit'> & {
     children: React.ReactNode;
   };

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type { IAvatarStyleKey, IAvatarStyleVarKey } from './Avatar.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
@@ -9,7 +9,10 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { ReactComponent as Person } from '@/assets/Person.svg';
 import { useLoaded } from '@/hooks/useLoaded';
 
-export type IAvatarProps = IContainer<IAvatarStyleKey, IAvatarStyleVarKey> &
+export type IAvatarProps = IContainerProps<
+  IAvatarStyleKey,
+  IAvatarStyleVarKey
+> &
   Pick<
     React.ImgHTMLAttributes<HTMLImageElement>,
     'alt' | 'crossOrigin' | 'referrerPolicy' | 'src' | 'srcSet' | 'sizes'

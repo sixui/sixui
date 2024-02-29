@@ -2,7 +2,7 @@ import * as React from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type { IZeroOrMore, ICompiledStyles } from '@/helpers/types';
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type {
   IBreadcrumbsStyleKey,
   IBreadcrumbsStyleVarKey,
@@ -17,7 +17,7 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { ReactComponent as EllipsisHorizontal } from '@/assets/EllipsisHorizontal.svg';
 import { ButtonBase } from '../Button';
 
-export type IBreadcrumbsProps = IContainer<
+export type IBreadcrumbsProps = IContainerProps<
   IBreadcrumbsStyleKey,
   IBreadcrumbsStyleVarKey
 > &

@@ -8,7 +8,7 @@ import type {
   IAny,
   IMaybeAsync,
 } from '@/helpers/types';
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type {
   IChipStyleKey,
@@ -37,7 +37,7 @@ import { ReactComponent as CheckMark } from '@/assets/CheckMark.svg';
 import { ReactComponent as XMark } from '@/assets/XMark.svg';
 import { Avatar } from '../Avatar';
 
-export type IChipProps = IContainer<IChipStyleKey, IChipStyleVarKey> &
+export type IChipProps = IContainerProps<IChipStyleKey, IChipStyleVarKey> &
   Pick<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     'disabled' | 'aria-label'

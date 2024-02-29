@@ -2,7 +2,7 @@ import * as React from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type { IZeroOrMore, ICompiledStyles } from '@/helpers/types';
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type { IListItemStyleKey } from './ListItem.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
@@ -24,7 +24,10 @@ import {
 
 export type IListItemType = 'text' | 'button' | 'link';
 
-export type IListItemProps = IContainer<IListItemStyleKey, IItemStyleVarKey> &
+export type IListItemProps = IContainerProps<
+  IListItemStyleKey,
+  IItemStyleVarKey
+> &
   Pick<
     React.AnchorHTMLAttributes<HTMLAnchorElement>,
     'href' | 'target' | 'aria-expanded'

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type { ITabListStyleKey } from './TabList.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
@@ -11,7 +11,7 @@ export type ITabListProps = Pick<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   'aria-label'
 > &
-  Omit<IContainer<ITabListStyleKey>, 'theme'> & {
+  Omit<IContainerProps<ITabListStyleKey>, 'theme'> & {
     children?: React.ReactNode;
     defaultValue?: string;
   };

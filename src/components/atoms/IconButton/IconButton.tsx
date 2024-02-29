@@ -7,7 +7,7 @@ import type {
   IAny,
   IMaybeAsync,
 } from '@/helpers/types';
-import type { IContainer } from '@/helpers/Container';
+import type { IContainerProps } from '@/components/utils/Container';
 import type {
   IIconButtonStyleKey,
   IIconButtonStyleVarKey,
@@ -30,7 +30,7 @@ import {
 
 // https://github.com/material-components/material-web/blob/main/iconbutton/internal/icon-button.ts
 
-export type IIconButtonProps = IContainer<
+export type IIconButtonProps = IContainerProps<
   IIconButtonStyleKey,
   IIconButtonStyleVarKey
 > &
