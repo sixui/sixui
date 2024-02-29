@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { type ITemplateProps, Template } from './Template';
 
 export type IVariantTemplateProps = Omit<ITemplateProps, 'variant'>;

@@ -145,7 +145,6 @@ See https://stylexjs.com/docs/learn/installation/.
 
 'use client';
 
-import * as React from 'react';
 import { ThemeProvider, baseTheme, FilledTextField } from '@sixui/ui';
 
 const BasicExample: React.FC = () => (
@@ -164,7 +163,7 @@ export default BasicExample;
 
 import stylex from '@stylexjs/stylex';
 
-import * as React from 'react';
+import { Fragment } from 'react';
 import {
   ThemeProvider,
   baseTheme,
@@ -212,7 +211,7 @@ const buttonStyles = stylex.create({
 });
 
 const ThemingExample: React.FC = () => (
-  <React.Fragment>
+  <Fragment>
     <ThemeProvider value={{ theme: baseTheme }}>
       <div {...stylex.props(layoutStyles.host)}>
         <div {...stylex.props(layoutStyles.legend)}>Base theme</div>
@@ -232,7 +231,7 @@ const ThemingExample: React.FC = () => (
         <FilledButton theme={buttonVariantTheme}>Locally themed</FilledButton>
       </div>
     </ThemeProvider>
-  </React.Fragment>
+  </Fragment>
 );
 
 export default ThemingExample;
@@ -303,14 +302,14 @@ import '@sixui/ui/styles.css';
 #### Notes with `react-router-dom`
 
 ```tsx
-import * as React from 'react';
+import { forwardRef } from 'react';
 import {
   Link as RouterLink,
   LinkProps as RouterLinkProps,
 } from 'react-router-dom';
 import { FilledButton } from '@sixui/ui';
 
-export const LinkBehavior = React.forwardRef<
+export const LinkBehavior = forwardRef<
   HTMLAnchorElement,
   Omit<RouterLinkProps, 'to'> & { href: RouterLinkProps['to'] }
 >(function LinkBehavior(props, ref) {

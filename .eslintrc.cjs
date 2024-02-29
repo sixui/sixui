@@ -20,7 +20,6 @@ const eslintConfig = {
     'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:storybook/recommended',
-    'plugin:react-namespace-import/recommended',
   ],
   settings: {
     'import/extensions': 'always',
@@ -119,6 +118,19 @@ const eslintConfig = {
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
       ],
       rules: {
+        'no-restricted-imports': [
+          'error',
+          {
+            paths: [
+              {
+                name: 'react',
+                importNames: ['default'],
+                message: 'Please use named imports instead.',
+              },
+            ],
+          },
+        ],
+        'react/react-in-jsx-scope': 'off',
         'react/jsx-filename-extension': ['error', { extensions: ['.tsx'] }],
         'react/prop-types': 'off',
         '@typescript-eslint/no-empty-interface': 'off',

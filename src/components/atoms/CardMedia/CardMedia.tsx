@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useMemo } from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
 import type { ICardMediaStyleKey } from './CardMedia.styledefs';
@@ -19,7 +19,7 @@ export const CardMedia: React.FC<ICardMediaProps> = ({
 }) => {
   const theme = useComponentTheme('CardMedia');
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<ICardMediaStyleKey>(
         stylesCombinatorFactory(theme.styles, props.styles),

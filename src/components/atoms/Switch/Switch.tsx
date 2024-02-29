@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -79,11 +79,11 @@ export const Switch: React.FC<ISwitchProps> = ({
 }) => {
   const theme = useComponentTheme('Switch');
 
-  const inputRef = React.useRef<HTMLInputElement>(null);
-  const [handlingChange, setHandlingChange] = React.useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [handlingChange, setHandlingChange] = useState(false);
   const visualState = accumulate(useVisualState(inputRef), props.visualState);
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<ISwitchStyleKey, ISwitchStyleVarKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
@@ -98,26 +98,25 @@ export const Switch: React.FC<ISwitchProps> = ({
     name: 'Switch',
   });
 
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> =
-    React.useCallback(
-      (event) => {
-        if (handlingChange) {
-          return;
-        }
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(
+    (event) => {
+      if (handlingChange) {
+        return;
+      }
 
-        setHandlingChange(true);
+      setHandlingChange(true);
 
-        Promise.resolve(onChange?.(event, !selected))
-          .finally(() => {
-            setHandlingChange(false);
-            setSelected(!selected);
-          })
-          .catch((error: Error) => {
-            throw error;
-          });
-      },
-      [handlingChange, onChange, selected, setSelected],
-    );
+      Promise.resolve(onChange?.(event, !selected))
+        .finally(() => {
+          setHandlingChange(false);
+          setSelected(!selected);
+        })
+        .catch((error: Error) => {
+          throw error;
+        });
+    },
+    [handlingChange, onChange, selected, setSelected],
+  );
 
   const loading =
     (props.loading || handlingChange) &&

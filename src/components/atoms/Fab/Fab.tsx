@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -88,11 +88,11 @@ export const Fab: React.FC<IFabProps> = ({
   const theme = useComponentTheme('Fab');
   const variantTheme = useComponentTheme(variantMap[variant]);
 
-  const actionRef = React.useRef<HTMLButtonElement | HTMLLinkElement>(null);
-  const [handlingClick, setHandlingClick] = React.useState(false);
+  const actionRef = useRef<HTMLButtonElement | HTMLLinkElement>(null);
+  const [handlingClick, setHandlingClick] = useState(false);
   const visualState = accumulate(useVisualState(actionRef), props.visualState);
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<IFabStyleKey, IFabStyleVarKey>(
         stylesCombinatorFactory(

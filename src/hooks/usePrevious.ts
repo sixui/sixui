@@ -1,11 +1,11 @@
-import * as React from 'react';
+import { useEffect, useRef } from 'react';
 
 export const usePrevious = <IValueType>(
   value: IValueType,
 ): IValueType | undefined => {
-  const valueRef = React.useRef<IValueType>();
+  const valueRef = useRef<IValueType>();
 
-  React.useEffect(() => {
+  useEffect(() => {
     valueRef.current = value;
   }, [value]);
 

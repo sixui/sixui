@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useMemo } from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
 import type { ITypographyStyleKey } from './Typography.styledefs';
@@ -45,7 +45,7 @@ export const Typography: React.FC<ITypographyProps> = ({
 }) => {
   const theme = useComponentTheme('Typography');
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<ITypographyStyleKey>(
         stylesCombinatorFactory(theme.styles, props.styles),

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useMemo } from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
 import type {
@@ -32,7 +32,7 @@ export const Placeholder: React.FC<IPlaceholderProps> = ({
 }) => {
   const theme = useComponentTheme('Placeholder');
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<IPlaceholderStyleKey>(
         stylesCombinatorFactory(theme.styles, props.styles),

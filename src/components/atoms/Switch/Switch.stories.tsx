@@ -1,4 +1,5 @@
-import * as React from 'react';
+import { useState } from 'react';
+
 import type { Meta, StoryObj } from '@storybook/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -54,9 +55,7 @@ export const Uncontrolled: IStory = {
 };
 
 const ControlledSwitch: React.FC<Omit<ISwitchProps, 'onChange'>> = (props) => {
-  const [selected, setSelected] = React.useState(
-    props.defaultSelected ?? false,
-  );
+  const [selected, setSelected] = useState(props.defaultSelected ?? false);
 
   return (
     <Switch

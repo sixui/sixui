@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import * as React from 'react';
+import { Fragment } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
@@ -80,10 +80,10 @@ export const ShortText: IStory = {
         {
           children: 'Three line item',
           supportingText: (
-            <React.Fragment>
+            <Fragment>
               <div>Second line text</div>
               <div>Third line text</div>
-            </React.Fragment>
+            </Fragment>
           ),
         },
       ]}

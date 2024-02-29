@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useCallback, useRef, useState } from 'react';
 import stylex from '@stylexjs/stylex';
 import type { Meta, StoryObj } from '@storybook/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,7 +14,7 @@ import {
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { TextField, type ITextFieldProps } from './TextField';
 import { IconButton } from '../IconButton/IconButton';
-import { FilledButton } from '../Button';
+import { Button } from '../Button';
 import { Form } from '@/components/utils/Form/Form';
 
 // https://m3.material.io/components/text-fields/overview
@@ -72,19 +72,18 @@ const inputRowProps: IComponentPropsWithLegend<ITextFieldProps> = [
 ];
 
 const ControlledForm: React.FC<ITextFieldProps> = (props) => {
-  const [result, setResult] = React.useState<string>();
-  const [firstName, setFirstName] = React.useState<string>('');
-  const [lastName, setLastName] = React.useState<string>('');
+  const [result, setResult] = useState<string>();
+  const [firstName, setFirstName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('');
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> =
-    React.useCallback(
-      (event) => {
-        event.preventDefault();
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = useCallback(
+    (event) => {
+      event.preventDefault();
 
-        setResult(JSON.stringify({ firstName, lastName }));
-      },
-      [firstName, lastName],
-    );
+      setResult(JSON.stringify({ firstName, lastName }));
+    },
+    [firstName, lastName],
+  );
 
   return (
     <Form onSubmit={handleSubmit} styles={formStyles}>
@@ -110,7 +109,7 @@ const ControlledForm: React.FC<ITextFieldProps> = (props) => {
           required
         />
         <div {...stylex.props(formStyles2.buttons)}>
-          <FilledButton type='submit'>Submit</FilledButton>
+          <Button type='submit'>Submit</Button>
         </div>
         {result ? <div>{result}</div> : null}
       </div>
@@ -121,13 +120,11 @@ const ControlledForm: React.FC<ITextFieldProps> = (props) => {
 const ControlledTextField: React.FC<Omit<ITextFieldProps, 'onChange'>> = (
   props,
 ) => {
-  const [value, setValue] = React.useState(props.defaultValue ?? '');
-  const iconButtonRef = React.useRef<HTMLButtonElement | HTMLLinkElement>(null);
-  const textFieldRef = React.useRef<HTMLInputElement | HTMLTextAreaElement>(
-    null,
-  );
+  const [value, setValue] = useState(props.defaultValue ?? '');
+  const iconButtonRef = useRef<HTMLButtonElement | HTMLLinkElement>(null);
+  const textFieldRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
 
-  const clearInput = React.useCallback(() => {
+  const clearInput = useCallback(() => {
     iconButtonRef.current?.blur();
     setValue('');
     textFieldRef.current?.focus();

@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { useTabContext } from '../Tabs/useTabContext';
 
 export type ITabPanelProps = {

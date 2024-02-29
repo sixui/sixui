@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import * as React from 'react';
+import { useRef } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import {
@@ -88,7 +88,7 @@ const unboundedStyles = stylex.create({
 });
 
 const UnboundedComponent: React.FC<IRippleProps> = (props) => {
-  const controlRef = React.useRef<HTMLDivElement>(null);
+  const controlRef = useRef<HTMLDivElement>(null);
 
   return (
     <div {...stylex.props(styles.container, styles.unbounded)} ref={controlRef}>

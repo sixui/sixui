@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useMemo } from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
 import type {
@@ -46,7 +46,7 @@ export const DeterminateCircularProgressIndicator: React.FC<
     'DeterminateCircularProgressIndicator',
   );
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<
         IDeterminateCircularProgressIndicatorStyleKey,

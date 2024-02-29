@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { Fragment, useMemo, useRef } from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type { IZeroOrMore, ICompiledStyles } from '@/helpers/types';
@@ -72,10 +72,10 @@ export const ListItem: React.FC<IListItemProps> = ({
   ...props
 }) => {
   const theme = useComponentTheme('ListItem');
-  const actionRef = React.useRef(null);
+  const actionRef = useRef(null);
   const visualState = accumulate(useVisualState(actionRef), props.visualState);
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<IListItemStyleKey, IItemStyleVarKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
@@ -125,7 +125,7 @@ export const ListItem: React.FC<IListItemProps> = ({
         styles={[theme.itemStyles, ...asArray(props.itemStyles)]}
         theme={theme.itemVars}
         container={
-          <React.Fragment>
+          <Fragment>
             <div
               {...styleProps([
                 'background',
@@ -134,7 +134,7 @@ export const ListItem: React.FC<IListItemProps> = ({
               ])}
             />
             {isInteractive ? (
-              <React.Fragment>
+              <Fragment>
                 <Ripple
                   styles={[theme.rippleStyles, ...asArray(props.rippleStyles)]}
                   for={actionRef}
@@ -150,9 +150,9 @@ export const ListItem: React.FC<IListItemProps> = ({
                   visualState={visualState}
                   inward
                 />
-              </React.Fragment>
+              </Fragment>
             ) : null}
-          </React.Fragment>
+          </Fragment>
         }
         overline={overline}
         start={start}

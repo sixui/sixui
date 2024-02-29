@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { createContext } from 'react';
 
 import type { IAny, IMaybeAsync } from '@/helpers/types';
 import type { ITabVariant } from '../Tab/Tab.styledefs';
@@ -11,6 +11,4 @@ export type ITabContext = {
   variant?: ITabVariant;
 };
 
-export const TabContext = React.createContext<ITabContext | undefined>(
-  undefined,
-);
+export const TabContext = createContext<ITabContext | undefined>(undefined);

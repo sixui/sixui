@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useMemo } from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
 import type {
@@ -23,7 +23,7 @@ export const CardContent: React.FC<ICardContentProps> = ({
 }) => {
   const theme = useComponentTheme('CardContent');
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<ICardContentStyleKey, ICardContentStyleVarKey>(
         stylesCombinatorFactory(theme.styles, props.styles),

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 import stylex from '@stylexjs/stylex';
 
@@ -108,10 +108,10 @@ export const Chip: React.FC<IChipProps> = ({
   const theme = useComponentTheme('Chip');
   const variantTheme = useComponentTheme(variantMap[variant]);
 
-  const primaryActionRef = React.useRef<HTMLElement>(null);
-  const trailingActionRef = React.useRef<HTMLButtonElement>(null);
-  const [handlingClick, setHandlingClick] = React.useState(false);
-  const [handlingDelete, setHandlingDelete] = React.useState(false);
+  const primaryActionRef = useRef<HTMLElement>(null);
+  const trailingActionRef = useRef<HTMLButtonElement>(null);
+  const [handlingClick, setHandlingClick] = useState(false);
+  const [handlingDelete, setHandlingDelete] = useState(false);
   const visualState = accumulate(
     useVisualState(primaryActionRef),
     props.visualState,
@@ -121,7 +121,7 @@ export const Chip: React.FC<IChipProps> = ({
     props.visualState,
   );
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<IChipStyleKey, IChipStyleVarKey>(
         stylesCombinatorFactory(
@@ -160,26 +160,25 @@ export const Chip: React.FC<IChipProps> = ({
   const hasOverlay = loading && (loadingText || !hasLeading);
   const avatar = variant === 'input' && !!imageUrl && props.avatar;
 
-  const handleClick: React.MouseEventHandler<HTMLButtonElement> =
-    React.useCallback(
-      (event) => {
-        if (handlingClick) {
-          return;
-        }
+  const handleClick: React.MouseEventHandler<HTMLButtonElement> = useCallback(
+    (event) => {
+      if (handlingClick) {
+        return;
+      }
 
-        setHandlingClick(true);
+      setHandlingClick(true);
 
-        Promise.resolve(onClick?.(event))
-          .finally(() => {
-            setHandlingClick(false);
-            setSelectedValue(!selectedValue);
-          })
-          .catch((error: Error) => {
-            throw error;
-          });
-      },
-      [handlingClick, onClick, selectedValue, setSelectedValue],
-    );
+      Promise.resolve(onClick?.(event))
+        .finally(() => {
+          setHandlingClick(false);
+          setSelectedValue(!selectedValue);
+        })
+        .catch((error: Error) => {
+          throw error;
+        });
+    },
+    [handlingClick, onClick, selectedValue, setSelectedValue],
+  );
 
   const handleDelete: React.MouseEventHandler<HTMLButtonElement> | undefined =
     onDelete
@@ -197,7 +196,7 @@ export const Chip: React.FC<IChipProps> = ({
       : undefined;
 
   // https://github.com/material-components/material-web/blob/035d1553662812e2dcc12aea8d70ea8bf26b164b/chips/internal/multi-action-chip.ts#L74
-  const handleKeyDown = React.useCallback(
+  const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLElement>) => {
       const primaryActionEl = primaryActionRef.current;
       const trailingActionEl = trailingActionRef.current;
@@ -235,7 +234,7 @@ export const Chip: React.FC<IChipProps> = ({
   );
 
   // https://github.com/material-components/material-web/blob/035d1553662812e2dcc12aea8d70ea8bf26b164b/chips/internal/multi-action-chip.ts#L106
-  const handleTrailingActionFocus = React.useCallback(() => {
+  const handleTrailingActionFocus = useCallback(() => {
     const primaryActionEl = primaryActionRef.current;
     const trailingActionEl = trailingActionRef.current;
     if (!primaryActionEl || !trailingActionEl) {

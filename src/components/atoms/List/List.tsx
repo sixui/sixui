@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useMemo } from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
 import type { IListStyleKey, IListStyleVarKey } from './List.styledefs';
@@ -13,7 +13,7 @@ export type IListProps = IContainerProps<IListStyleKey, IListStyleVarKey> & {
 export const List: React.FC<IListProps> = ({ children, ...props }) => {
   const theme = useComponentTheme('List');
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<IListStyleKey, IListStyleVarKey>(
         stylesCombinatorFactory(theme.styles, props.styles),

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { type IChipProps, Chip } from './Chip';
 
 export type IAssistChipProps = Omit<

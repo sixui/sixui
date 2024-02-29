@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
 import type {
@@ -31,10 +31,10 @@ export const FocusRing: React.FC<IFocusRingProps> = ({
 }) => {
   const theme = useComponentTheme('FocusRing');
 
-  const [visible, setVisible] = React.useState(false);
-  const [actionEl, setActionEl] = React.useState<HTMLDivElement | null>();
+  const [visible, setVisible] = useState(false);
+  const [actionEl, setActionEl] = useState<HTMLDivElement | null>();
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<IFocusRingStyleKey, IFocusRingStyleVarKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
@@ -42,12 +42,12 @@ export const FocusRing: React.FC<IFocusRingProps> = ({
     [theme.styles, props.styles],
   );
 
-  const getControl = React.useCallback(
+  const getControl = useCallback(
     () => (forElementRef ? forElementRef.current : actionEl?.parentElement),
     [forElementRef, actionEl],
   );
 
-  const handleEvent = React.useCallback(
+  const handleEvent = useCallback(
     (event: IFocusRingEvent): void => {
       if (event[HANDLED_BY_FOCUS_RING]) {
         // This ensures the focus ring does not activate when multiple focus rings
@@ -74,7 +74,7 @@ export const FocusRing: React.FC<IFocusRingProps> = ({
     [getControl],
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     const control = getControl();
     if (!control) {
       return;

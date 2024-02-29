@@ -1,5 +1,6 @@
+import { useRef } from 'react';
+
 import type { Meta, StoryObj } from '@storybook/react';
-import * as React from 'react';
 import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
@@ -119,7 +120,7 @@ export const Inward: IStory = {
 };
 
 const AttachedComponent: React.FC<IFocusRingProps> = (props) => {
-  const inputRef = React.useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   return (
     <Placeholder styles={dashedPlaceholderStyles}>
@@ -143,7 +144,7 @@ export const Attached: IStory = {
 };
 
 const MultiActionComponent: React.FC<IFocusRingProps> = (props) => {
-  const secondaryActionRef = React.useRef<HTMLInputElement>(null);
+  const secondaryActionRef = useRef<HTMLInputElement>(null);
 
   return (
     <Placeholder styles={placeholderStyles} role='button' tabIndex={0}>

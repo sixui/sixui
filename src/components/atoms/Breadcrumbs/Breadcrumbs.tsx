@@ -1,4 +1,10 @@
-import * as React from 'react';
+import {
+  Children,
+  isValidElement,
+  useCallback,
+  useMemo,
+  useState,
+} from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type { IZeroOrMore, ICompiledStyles } from '@/helpers/types';
@@ -47,9 +53,9 @@ export const Breadcrumbs: React.FC<IBreadcrumbsProps> = ({
 }) => {
   const theme = useComponentTheme('Breadcrumbs');
 
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<IBreadcrumbsStyleKey, IBreadcrumbsStyleVarKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
@@ -58,7 +64,7 @@ export const Breadcrumbs: React.FC<IBreadcrumbsProps> = ({
     [theme.styles, props.styles, props.visualState],
   );
 
-  const insertSeparators = React.useCallback(
+  const insertSeparators = useCallback(
     (items: Array<JSX.Element>): Array<JSX.Element> =>
       items.reduce(
         (acc, current, index) =>
@@ -130,7 +136,7 @@ export const Breadcrumbs: React.FC<IBreadcrumbsProps> = ({
     ];
   };
 
-  const allItems = React.Children.toArray(children)
+  const allItems = Children.toArray(children)
     .filter((child) => {
       if (!isProduction()) {
         if (isFragment(child)) {
@@ -144,7 +150,7 @@ export const Breadcrumbs: React.FC<IBreadcrumbsProps> = ({
         }
       }
 
-      return React.isValidElement(child);
+      return isValidElement(child);
     })
     .map((child, index) => (
       <li {...styleProps(['item'])} key={`child-${index}`}>

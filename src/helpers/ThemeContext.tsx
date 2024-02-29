@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { createContext } from 'react';
 
 import type { ITheme } from '@/themes/theme.types';
 
@@ -10,6 +10,6 @@ export type IThemeContext = {
   theme?: ITheme;
 };
 
-export const ThemeContext = React.createContext<IThemeContext>({
+export const ThemeContext = createContext<IThemeContext>({
   theme: undefined,
 });

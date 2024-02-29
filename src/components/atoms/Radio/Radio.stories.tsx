@@ -1,5 +1,5 @@
-import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { Fragment, useState } from 'react';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
@@ -31,10 +31,10 @@ const statesProps: IComponentPropsWithLegend<IRadioProps> = [
 ];
 
 const RadioWithState: React.FC<Omit<IRadioProps, 'onChange'>> = (props) => {
-  const [value, setValue] = React.useState('2');
+  const [value, setValue] = useState('2');
 
   return (
-    <React.Fragment>
+    <Fragment>
       <Radio
         {...props}
         aria-label='First radio'
@@ -59,7 +59,7 @@ const RadioWithState: React.FC<Omit<IRadioProps, 'onChange'>> = (props) => {
         checked={value === '3'}
         onChange={() => setValue('3')}
       />
-    </React.Fragment>
+    </Fragment>
   );
 };
 

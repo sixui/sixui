@@ -1,5 +1,5 @@
-import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { type IRadioGroupProps, RadioGroup } from './RadioGroup';
@@ -14,7 +14,7 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {} satisfies Partial<IRadioGroupProps>;
 
 const ControlledRadioGroup: React.FC<IRadioGroupProps> = (props) => {
-  const [value, setValue] = React.useState<string | undefined>('2');
+  const [value, setValue] = useState<string | undefined>('2');
 
   return (
     <RadioGroup {...props} value={value} onChange={setValue}>

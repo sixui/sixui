@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useEffect, useState } from 'react';
 
 type IUseLoadedProps = Pick<
   React.ImgHTMLAttributes<HTMLImageElement>,
@@ -11,10 +11,10 @@ export const useLoaded = ({
   src,
   srcSet,
 }: IUseLoadedProps): { loaded: boolean; hasLoadingError: boolean } => {
-  const [loaded, setLoaded] = React.useState(false);
-  const [hasLoadingError, setHasLoadingError] = React.useState(false);
+  const [loaded, setLoaded] = useState(false);
+  const [hasLoadingError, setHasLoadingError] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!src && !srcSet) {
       return undefined;
     }

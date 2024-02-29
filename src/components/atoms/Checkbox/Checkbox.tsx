@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -63,11 +63,11 @@ export const Checkbox: React.FC<ICheckboxProps> = ({
 }) => {
   const theme = useComponentTheme('Checkbox');
 
-  const hostRef = React.useRef<HTMLDivElement>(null);
-  const inputRef = React.useRef<HTMLInputElement>(null);
+  const hostRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const visualState = accumulate(useVisualState(hostRef), props.visualState);
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<ICheckboxStyleKey, ICheckboxStyleVarKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
@@ -96,19 +96,18 @@ export const Checkbox: React.FC<ICheckboxProps> = ({
   const prevIndeterminate = wasIndeterminate;
   const prevDisabled = wasDisabled;
 
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> =
-    React.useCallback(
-      (event) => {
-        Promise.resolve(onChange?.(event, !event.target.checked))
-          .finally(() => {
-            setCheckedValue(!event.target.checked);
-          })
-          .catch((error: Error) => {
-            throw error;
-          });
-      },
-      [onChange, setCheckedValue],
-    );
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(
+    (event) => {
+      Promise.resolve(onChange?.(event, !event.target.checked))
+        .finally(() => {
+          setCheckedValue(!event.target.checked);
+        })
+        .catch((error: Error) => {
+          throw error;
+        });
+    },
+    [onChange, setCheckedValue],
+  );
 
   return (
     <div

@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import type { IContainerProps } from '@/components/utils/Container';
 import type { IMakeOptional } from '@/helpers/types';
 import type { IDeterminateCircularProgressIndicatorProps } from './DeterminateCircularProgressIndicator';

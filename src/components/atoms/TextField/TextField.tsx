@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type { IZeroOrMore, ICompiledStyles } from '@/helpers/types';
@@ -219,8 +219,8 @@ export const TextField: React.FC<ITextFieldProps> = ({
   const theme = useComponentTheme('TextField');
   const variantTheme = useComponentTheme(variantMap[variant]);
 
-  const hostRef = React.useRef<HTMLDivElement>(null);
-  const inputOrTextareaElInternalRef = React.useRef<
+  const hostRef = useRef<HTMLDivElement>(null);
+  const inputOrTextareaElInternalRef = useRef<
     HTMLInputElement | HTMLTextAreaElement
   >(null);
   const inputOrTextareaRef = forwardRef ?? inputOrTextareaElInternalRef;
@@ -236,15 +236,15 @@ export const TextField: React.FC<ITextFieldProps> = ({
    * true when the text field has been interacted with. Native validation errors only display in
    * response to user interactions.
    */
-  const isDirtyRef = React.useRef(false);
+  const isDirtyRef = useRef(false);
 
   const hostVisualState = useVisualState(hostRef);
   const inputOrTextareaVisualState = useVisualState(inputOrTextareaRef, {
     retainFocusAfterClick: true,
   });
-  const hasBeenInteractedWithRef = React.useRef(false);
+  const hasBeenInteractedWithRef = useRef(false);
 
-  const visualState = React.useMemo(
+  const visualState = useMemo(
     () =>
       accumulate(
         hostVisualState,
@@ -254,7 +254,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
     [hostVisualState, inputOrTextareaVisualState, props.visualState],
   );
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<ITextFieldStyleKey, ITextFieldStyleVarKey>(
         stylesCombinatorFactory(
@@ -273,7 +273,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
 
   const handleChange: React.ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
-  > = React.useCallback(
+  > = useCallback(
     (event) => {
       hasBeenInteractedWithRef.current = true;
       isDirtyRef.current = true;
@@ -290,7 +290,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
    */
   const handleBlur: React.FocusEventHandler<
     HTMLInputElement | HTMLTextAreaElement
-  > = React.useCallback(() => {
+  > = useCallback(() => {
     // If the text field has not been interacted with, do not report validity.
     // This prevents the text field from showing an error on page load.
     if (!hasBeenInteractedWithRef.current) {
@@ -321,7 +321,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
     }
   }, [reportValidity, hasError, reportOnBlur, inputOrTextareaRef]);
 
-  const renderInputOrTextarea = React.useCallback((): React.ReactNode => {
+  const renderInputOrTextarea = useCallback((): React.ReactNode => {
     const ariaLabel = props['aria-label'] ?? label;
 
     // These properties may be set to null if the attribute is removed, and
@@ -455,7 +455,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
     noSpinner,
   ]);
 
-  const renderStart = React.useCallback(
+  const renderStart = useCallback(
     (): React.ReactNode | null =>
       start ??
       (leadingIcon ? (
@@ -464,7 +464,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
     [styleProps, start, leadingIcon],
   );
 
-  const renderEnd = React.useCallback(
+  const renderEnd = useCallback(
     (): React.ReactNode | null =>
       end ??
       (trailingIcon ? (

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useMemo } from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
 import type {
@@ -24,7 +24,7 @@ export const Elevation: React.FC<IElevationProps> = ({
 }) => {
   const theme = useComponentTheme('Elevation');
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<IElevationStyleKey, IElevationStyleVarKey>(
         stylesCombinatorFactory(theme.styles, props.styles),

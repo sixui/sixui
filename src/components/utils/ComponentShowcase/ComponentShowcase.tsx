@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useMemo } from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
 import type {
@@ -42,7 +42,7 @@ export const ComponentShowcase = <IComponentProps extends object>({
 }: IComponentShowcaseProps<IComponentProps>): React.ReactNode => {
   const theme = useComponentTheme('ComponentShowcase');
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<
         IComponentShowcaseStyleKey,

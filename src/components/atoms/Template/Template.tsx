@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useMemo } from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
@@ -33,7 +33,7 @@ export const Template: React.FC<ITemplateProps> = ({
   const theme = useComponentTheme('Template');
   const variantTheme = useComponentTheme(variantMap[variant]);
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<ITemplateStyleKey, ITemplateStyleVarKey>(
         stylesCombinatorFactory(

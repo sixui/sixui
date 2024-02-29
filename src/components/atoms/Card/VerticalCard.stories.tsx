@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import * as React from 'react';
+import { Fragment } from 'react';
 import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
@@ -10,7 +10,7 @@ import {
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
 import { Card, type ICardProps } from './Card';
-import { FilledButton, OutlinedButton } from '../Button';
+import { Button } from '../Button';
 import { Avatar } from '../Avatar';
 import { IconButton } from '../IconButton/IconButton';
 
@@ -47,7 +47,7 @@ const statesProps: IComponentPropsWithLegend<ICardProps> = [
 const NonActionableContent: React.FC<{ headline?: string }> = ({
   headline,
 }) => (
-  <React.Fragment>
+  <Fragment>
     <Card.Header
       start={
         <Avatar src='https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' />
@@ -69,28 +69,29 @@ const NonActionableContent: React.FC<{ headline?: string }> = ({
       />
     </Card.Content>
     <Card.Actions>
-      <FilledButton
+      <Button
         onClick={(args: React.MouseEvent<HTMLElement>) =>
           sbHandleEvent('click:primaryAction', args)
         }
       >
         Primary
-      </FilledButton>
-      <OutlinedButton
+      </Button>
+      <Button
+        variant='outlined'
         onClick={(args: React.MouseEvent<HTMLElement>) =>
           sbHandleEvent('click:secondaryAction', args)
         }
       >
         Secondary
-      </OutlinedButton>
+      </Button>
     </Card.Actions>
-  </React.Fragment>
+  </Fragment>
 );
 
 const NonActionableContentVariant: React.FC<{ headline?: string }> = ({
   headline,
 }) => (
-  <React.Fragment>
+  <Fragment>
     <Card.Media
       sx={styles.media}
       src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
@@ -103,19 +104,19 @@ const NonActionableContentVariant: React.FC<{ headline?: string }> = ({
       />
     </Card.Content>
     <Card.Actions>
-      <FilledButton
+      <Button
         onClick={(args: React.MouseEvent<HTMLElement>) =>
           sbHandleEvent('click:primaryAction', args)
         }
       >
         Primary
-      </FilledButton>
+      </Button>
     </Card.Actions>
-  </React.Fragment>
+  </Fragment>
 );
 
 const ActionableContent: React.FC<{ headline?: string }> = ({ headline }) => (
-  <React.Fragment>
+  <Fragment>
     <Card.Media
       sx={styles.media}
       src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
@@ -127,7 +128,7 @@ const ActionableContent: React.FC<{ headline?: string }> = ({ headline }) => (
         supportingText='Explain more about the topic shown in the headline and subhead through supporting text.'
       />
     </Card.Content>
-  </React.Fragment>
+  </Fragment>
 );
 
 const rowsProps: IComponentPropsWithLegend<ICardProps> = [

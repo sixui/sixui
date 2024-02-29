@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
 import type { IFormStyleKey } from './Form.styledefs';
@@ -15,9 +15,9 @@ export const Form: React.FC<IFormProps> = ({
   children,
   ...props
 }) => {
-  const formRef = React.useRef<HTMLFormElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<IFormStyleKey>(
         stylesCombinatorFactory(props.styles),
@@ -28,7 +28,7 @@ export const Form: React.FC<IFormProps> = ({
 
   // TODO: make this callback to be called only once on form validation.
   const handleInvalid: React.FormEventHandler<HTMLFormElement> =
-    React.useCallback(() => {
+    useCallback(() => {
       const formEl = formRef.current;
       if (!formEl) {
         return;

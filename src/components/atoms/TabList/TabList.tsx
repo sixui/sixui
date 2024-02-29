@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useMemo } from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
 import type { ITabListStyleKey } from './TabList.styledefs';
@@ -19,7 +19,7 @@ export type ITabListProps = Pick<
 export const TabList: React.FC<ITabListProps> = ({ children, ...props }) => {
   const theme = useComponentTheme('TabList');
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<ITabListStyleKey>(
         stylesCombinatorFactory(theme.styles, props.styles),

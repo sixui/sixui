@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useMemo } from 'react';
 
 import { setRef } from './setRef';
 
@@ -12,7 +12,7 @@ export const useForkRef = <IInstance>(
    * This means react will call the old forkRef with `null` and the new forkRef
    * with the ref. Cleanup naturally emerges from this behavior.
    */
-  return React.useMemo(() => {
+  return useMemo(() => {
     if (refs.every((ref) => ref === null)) {
       return null;
     }

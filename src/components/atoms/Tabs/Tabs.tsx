@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 
 import type { IAny, IMaybeAsync } from '@/helpers/types';
 import { useControlled } from '@/hooks/useControlled';
@@ -27,10 +27,10 @@ export const Tabs: React.FC<ITabsProps> = ({
   });
 
   const id = useId(props.id);
-  const previousTabRef = React.useRef<HTMLElement | null>(null);
-  const indicatorAnimationRef = React.useRef<Animation>();
+  const previousTabRef = useRef<HTMLElement | null>(null);
+  const indicatorAnimationRef = useRef<Animation>();
 
-  const getIndicatorKeyframes = React.useCallback(
+  const getIndicatorKeyframes = useCallback(
     (previousTab: HTMLElement, activeTab: HTMLElement): Array<Keyframe> => {
       const reduceMotion = shouldReduceMotion();
       if (reduceMotion) {
@@ -63,7 +63,7 @@ export const Tabs: React.FC<ITabsProps> = ({
     [],
   );
 
-  const contextValue = React.useMemo(
+  const contextValue = useMemo(
     () =>
       ({
         id,

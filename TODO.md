@@ -146,7 +146,7 @@
   - https://react-spectrum.adobe.com/blog/building-a-button-part-2.html
 - Chip/Fab/IconButton/ListItem inherit from ButtonBase
 - Use hooks like useButton, useTab, useTabs, ... like mui or adobe
-- Use React.forwardRef & React.useImperativeHandle?
+- Use React.forwardRef & React.useImperativeHandle?, like in RadioGroup?
 - Remove 'borderStyle': 'solid' (handled by reset css)?
 - List -> Stack
 - use slots and slotProps
@@ -165,23 +165,6 @@
 // to:
 
 <X elevationStyles={combineStyles('elevationStyles')} />
-```
-
-- eslint rule:
-
-```js
-'no-restricted-imports': [
-  'error',
-  {
-    paths: [
-      {
-        name: 'react',
-        importNames: ['default'],
-        message: 'Please use named imports instead.',
-      },
-    ],
-  },
-],
 ```
 
 - enable `"noUnusedLocals": true,` in `tsconfig.json`

@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { type IItemProps, Item } from '../Item';
 

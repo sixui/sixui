@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useMemo } from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
 import type { IAvatarStyleKey, IAvatarStyleVarKey } from './Avatar.styledefs';
@@ -36,7 +36,7 @@ export const Avatar: React.FC<IAvatarProps> = ({
 }) => {
   const theme = useComponentTheme('Avatar');
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<IAvatarStyleKey, IAvatarStyleVarKey>(
         stylesCombinatorFactory(theme.styles, props.styles),

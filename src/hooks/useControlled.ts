@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { isProduction } from '@/helpers/isProduction';
 
@@ -34,15 +34,13 @@ export const useControlled = <TValue>({
   TValue | undefined,
   (newValue: React.SetStateAction<TValue | undefined>) => void,
 ] => {
-  const { current: isControlled } = React.useRef(
-    props.controlled !== undefined,
-  );
-  const [valueState, setValue] = React.useState(props.default);
+  const { current: isControlled } = useRef(props.controlled !== undefined);
+  const [valueState, setValue] = useState(props.default);
   const value = isControlled ? props.controlled : valueState;
 
   if (!isProduction()) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
+    useEffect(() => {
       if (isControlled !== (props.controlled !== undefined)) {
         const controlledState = (isControlled: boolean): string =>
           isControlled ? 'controlled' : 'uncontrolled';
@@ -63,10 +61,10 @@ export const useControlled = <TValue>({
     }, [isControlled, value, state, name, props.controlled]);
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { current: defaultValue } = React.useRef(props.default);
+    const { current: defaultValue } = useRef(props.default);
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
+    useEffect(() => {
       if (!isControlled && defaultValue !== props.default) {
         // eslint-disable-next-line no-console
         console.error(
@@ -79,7 +77,7 @@ export const useControlled = <TValue>({
     }, [isControlled, state, name, defaultValue, props.default]);
   }
 
-  const setValueIfUncontrolled = React.useCallback(
+  const setValueIfUncontrolled = useCallback(
     (newValue: React.SetStateAction<TValue | undefined>) => {
       if (!isControlled) {
         setValue(newValue);

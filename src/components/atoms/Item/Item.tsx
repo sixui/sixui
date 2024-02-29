@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useMemo } from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
 import type { IItemStyleKey, IItemStyleVarKey } from './Item.styledefs';
@@ -32,7 +32,7 @@ export const Item: React.FC<IItemProps> = ({
 }) => {
   const theme = useComponentTheme('Item');
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<IItemStyleKey, IItemStyleVarKey>(
         stylesCombinatorFactory(theme.styles, props.styles),

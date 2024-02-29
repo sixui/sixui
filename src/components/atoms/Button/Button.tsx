@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type { ICompiledStyles } from '@/helpers/types';
@@ -69,12 +69,12 @@ export const Button: React.FC<IButtonProps> = ({
   const theme = useComponentTheme('Button');
   const variantTheme = useComponentTheme(variantMap[variant]);
 
-  const actionRef = React.useRef<HTMLButtonElement | HTMLLinkElement>(null);
-  const [handlingClick, setHandlingClick] = React.useState(false);
-  const [animating, setAnimating] = React.useState(false);
+  const actionRef = useRef<HTMLButtonElement | HTMLLinkElement>(null);
+  const [handlingClick, setHandlingClick] = useState(false);
+  const [animating, setAnimating] = useState(false);
   const visualState = accumulate(useVisualState(actionRef), props.visualState);
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<IButtonStyleKey, IButtonStyleVarKey>(
         stylesCombinatorFactory(

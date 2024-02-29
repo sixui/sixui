@@ -1,7 +1,7 @@
-import * as React from 'react';
+import { useId as reactUseId } from 'react';
 
 export const useId = (idOverride?: string): string => {
-  const reactId = React.useId();
+  const reactId = reactUseId();
 
   return idOverride ?? reactId;
 };

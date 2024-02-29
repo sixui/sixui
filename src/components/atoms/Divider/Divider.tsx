@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useMemo } from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
 import type {
@@ -39,7 +39,7 @@ export const Divider: React.FC<IDividerProps> = ({
 }) => {
   const theme = useComponentTheme('Divider');
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<IDividerStyleKey, IDividerStyleVarKey>(
         stylesCombinatorFactory(theme.styles, props.styles),

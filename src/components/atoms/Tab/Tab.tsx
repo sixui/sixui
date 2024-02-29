@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -75,11 +75,11 @@ export const Tab: React.FC<ITabProps> = ({
   const theme = useComponentTheme('Tab');
   const variantTheme = useComponentTheme(variantMap[variant]);
 
-  const actionRef = React.useRef<HTMLButtonElement>(null);
+  const actionRef = useRef<HTMLButtonElement>(null);
   const visualState = accumulate(useVisualState(actionRef), props.visualState);
-  const indicatorRef = React.useRef<HTMLDivElement>(null);
+  const indicatorRef = useRef<HTMLDivElement>(null);
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<ITabStyleKey, ITabStyleVarKey>(
         stylesCombinatorFactory(
@@ -103,19 +103,18 @@ export const Tab: React.FC<ITabProps> = ({
   const hasIcon = active ? !!activeIcon ?? !!icon : !!icon;
   const id = tabContext && anchor ? `${tabContext.id}-${anchor}` : undefined;
 
-  const handleClick: React.MouseEventHandler<HTMLButtonElement> =
-    React.useCallback(
-      (event) => {
-        tabContext?.onChange(anchor);
+  const handleClick: React.MouseEventHandler<HTMLButtonElement> = useCallback(
+    (event) => {
+      tabContext?.onChange(anchor);
 
-        Promise.resolve(onClick?.(event)).catch((error: Error) => {
-          throw error;
-        });
-      },
-      [onClick, tabContext, anchor],
-    );
+      Promise.resolve(onClick?.(event)).catch((error: Error) => {
+        throw error;
+      });
+    },
+    [onClick, tabContext, anchor],
+  );
 
-  const indicator = React.useMemo(
+  const indicator = useMemo(
     () => (
       <div
         {...styleProps(['indicator', active && 'indicator$active'])}
@@ -125,7 +124,7 @@ export const Tab: React.FC<ITabProps> = ({
     [styleProps, active],
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     const activeTab = actionRef.current;
     const indicator = indicatorRef.current;
     if (tabContext && active && activeTab && indicator) {
@@ -133,7 +132,7 @@ export const Tab: React.FC<ITabProps> = ({
     }
   }, [active, anchor, tabContext]);
 
-  const renderIcon = React.useCallback(
+  const renderIcon = useCallback(
     (): React.ReactNode | null =>
       active && activeIcon ? (
         <div

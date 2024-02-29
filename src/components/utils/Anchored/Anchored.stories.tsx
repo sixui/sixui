@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import * as React from 'react';
+import { useEffect, useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import {
@@ -82,9 +82,9 @@ export const Variants: IStory = {
 const ComponentShowcaseAnimated: React.FC<
   IComponentShowcaseProps<IAnchoredProps>
 > = (props) => {
-  const [invisible, setInvisible] = React.useState(true);
+  const [invisible, setInvisible] = useState(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setInterval(() => setInvisible((prev) => !prev), 2000);
   }, []);
 

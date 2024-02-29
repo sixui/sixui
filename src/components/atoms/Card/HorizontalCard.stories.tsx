@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import * as React from 'react';
+import { Fragment } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
@@ -8,7 +8,7 @@ import {
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
 import { Card, type ICardProps } from './Card';
-import { FilledButton, OutlinedButton } from '../Button';
+import { Button } from '../Button';
 
 // https://m3.material.io/components/cards
 // https://github.com/material-components/material-web/blob/main/labs/card/demo/stories.ts
@@ -62,7 +62,7 @@ const statesProps: IComponentPropsWithLegend<ICardProps> = [
 const NonActionableContent: React.FC<{ headline?: string }> = ({
   headline,
 }) => (
-  <React.Fragment>
+  <Fragment>
     <Card.Content sx={styles.content}>
       <Card.Media
         sx={styles.mediaInner}
@@ -74,30 +74,31 @@ const NonActionableContent: React.FC<{ headline?: string }> = ({
           supportingText='Explain more about the topic shown in the headline and subhead through supporting text.'
         />
         <Card.Actions sx={styles.actions}>
-          <FilledButton
+          <Button
             onClick={(args: React.MouseEvent<HTMLElement>) =>
               sbHandleEvent('click:primaryAction', args)
             }
           >
             Primary
-          </FilledButton>
-          <OutlinedButton
+          </Button>
+          <Button
+            variant='outlined'
             onClick={(args: React.MouseEvent<HTMLElement>) =>
               sbHandleEvent('click:secondaryAction', args)
             }
           >
             Secondary
-          </OutlinedButton>
+          </Button>
         </Card.Actions>
       </div>
     </Card.Content>
-  </React.Fragment>
+  </Fragment>
 );
 
 const NonActionableContentVariant: React.FC<{ headline?: string }> = ({
   headline,
 }) => (
-  <React.Fragment>
+  <Fragment>
     <Card.Media
       sx={styles.media}
       src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
@@ -109,21 +110,21 @@ const NonActionableContentVariant: React.FC<{ headline?: string }> = ({
           supportingText='Explain more about the topic shown in the headline and subhead through supporting text.'
         />
         <Card.Actions sx={styles.actions}>
-          <FilledButton
+          <Button
             onClick={(args: React.MouseEvent<HTMLElement>) =>
               sbHandleEvent('click:primaryAction', args)
             }
           >
             Primary
-          </FilledButton>
+          </Button>
         </Card.Actions>
       </div>
     </Card.Content>
-  </React.Fragment>
+  </Fragment>
 );
 
 const ActionableContent: React.FC<{ headline?: string }> = ({ headline }) => (
-  <React.Fragment>
+  <Fragment>
     <Card.Media
       sx={styles.media}
       src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
@@ -135,7 +136,7 @@ const ActionableContent: React.FC<{ headline?: string }> = ({ headline }) => (
         supportingText='Explain more about the topic shown in the headline and subhead through supporting text.'
       />
     </Card.Content>
-  </React.Fragment>
+  </Fragment>
 );
 
 const colsProps: IComponentPropsWithLegend<ICardProps> = [

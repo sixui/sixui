@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export type IVisualState = {
   hovered?: boolean;
@@ -14,32 +14,32 @@ export const useVisualState = (
   elementRef: React.RefObject<HTMLElement>,
   options?: IVisualStateOptions,
 ): IVisualState => {
-  const [hovered, setHovered] = React.useState(false);
-  const [focused, setFocused] = React.useState(false);
-  const [pressed, setPressed] = React.useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const [pressed, setPressed] = useState(false);
 
-  const handleMouseEnter = React.useCallback(() => setHovered(true), []);
-  const handleMouseLeave = React.useCallback(() => {
+  const handleMouseEnter = useCallback(() => setHovered(true), []);
+  const handleMouseLeave = useCallback(() => {
     setHovered(false);
     setPressed(false);
   }, []);
-  const handleFocus = React.useCallback(
+  const handleFocus = useCallback(
     () => setFocused(options?.retainFocusAfterClick ? true : !pressed),
     [options, pressed],
   );
-  const handleBlur = React.useCallback(() => setFocused(false), []);
-  const handleMouseDown = React.useCallback(
+  const handleBlur = useCallback(() => setFocused(false), []);
+  const handleMouseDown = useCallback(
     (event: MouseEvent) => setPressed(event.button === 0),
     [],
   );
-  const handleMouseUp = React.useCallback(() => setPressed(false), []);
-  const handleKeyDown = React.useCallback(
+  const handleMouseUp = useCallback(() => setPressed(false), []);
+  const handleKeyDown = useCallback(
     (event: KeyboardEvent) => setPressed(event.key === ' '),
     [],
   );
-  const handleKeyUp = React.useCallback(() => setPressed(false), []);
+  const handleKeyUp = useCallback(() => setPressed(false), []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const element = elementRef.current;
     if (!element) {
       return;

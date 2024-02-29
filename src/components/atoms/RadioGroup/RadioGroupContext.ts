@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { createContext } from 'react';
 
 import type { IAny, IMaybeAsync } from '@/helpers/types';
 
@@ -8,6 +8,6 @@ export type IRadioGroupContext = {
   value?: string;
 };
 
-export const RadioGroupContext = React.createContext<
-  IRadioGroupContext | undefined
->(undefined);
+export const RadioGroupContext = createContext<IRadioGroupContext | undefined>(
+  undefined,
+);

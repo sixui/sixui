@@ -1,7 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
-import * as React from 'react';
+import { useState } from 'react';
 
+import { componentVars as checkboxVars } from '@/themes/base/Checkbox/Checkbox.stylex';
+import { componentVars as focusRingVars } from '@/themes/base/FocusRing/FocusRing.stylex';
+import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPropsWithLegend,
@@ -45,8 +48,8 @@ export const Uncontrolled: IStory = {
 const ControlledCheckbox: React.FC<Omit<ICheckboxProps, 'onChange'>> = (
   props,
 ) => {
-  const [checked, setChecked] = React.useState(props.defaultChecked ?? false);
-  const [indeterminate, setIndeterminate] = React.useState(
+  const [checked, setChecked] = useState(props.defaultChecked ?? false);
+  const [indeterminate, setIndeterminate] = useState(
     props.indeterminate ?? false,
   );
 
@@ -89,10 +92,6 @@ export const Basic: IStory = {
   ),
   args: defaultArgs,
 };
-
-import { componentVars as checkboxVars } from '@/themes/base/Checkbox/Checkbox.stylex';
-import { componentVars as focusRingVars } from '@/themes/base/FocusRing/FocusRing.stylex';
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 
 const customTheme = stylex.createTheme(checkboxVars, {
   containerShape: '0',

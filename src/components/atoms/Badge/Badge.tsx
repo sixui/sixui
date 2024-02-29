@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useMemo } from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
 import type { IBadgeStyleKey, IBadgeStyleVarKey } from './Badge.styledefs';
@@ -25,7 +25,7 @@ export const Badge: React.FC<IBadgeProps> = ({
 }) => {
   const theme = useComponentTheme('Badge');
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<IBadgeStyleKey, IBadgeStyleVarKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
@@ -39,7 +39,7 @@ export const Badge: React.FC<IBadgeProps> = ({
     (value === undefined && !dot) ||
     (value !== undefined && value <= 0 && !showZero);
 
-  const displayValue = React.useMemo(
+  const displayValue = useMemo(
     () =>
       dot
         ? null

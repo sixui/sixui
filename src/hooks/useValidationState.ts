@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export type IValidationState = {
   reportValidity: () => boolean;
@@ -13,13 +13,13 @@ export const useValidationState = (
   elementRef: React.RefObject<HTMLInputElement | HTMLTextAreaElement>,
   // options?: IValidationStateOptions,
 ): IValidationState => {
-  const [nativeErrorText, setNativeErrorText] = React.useState<string>();
+  const [nativeErrorText, setNativeErrorText] = useState<string>();
 
   /**
    * Handle validation of the element, either by the browser if the element is in an invalid state
    * (through `invalid` event), or manually (via `reportValidity()`).
    */
-  const handleValidation = React.useCallback(
+  const handleValidation = useCallback(
     (invalidEvent: Event | null) => {
       // Cancel validation if the event was default prevented.
       if (invalidEvent?.defaultPrevented) {
@@ -44,7 +44,7 @@ export const useValidationState = (
   /**
    * Report validity of the element.
    */
-  const reportValidity = React.useCallback(() => {
+  const reportValidity = useCallback(() => {
     // If the element is valid, report validity to clear any existing error.
     // The `invalid` event listener will handle reporting invalid events.
 
@@ -59,7 +59,7 @@ export const useValidationState = (
   /**
    * Called when the element is in an invalid sate.
    */
-  const handleInvalid = React.useCallback(
+  const handleInvalid = useCallback(
     (invalidEvent: Event) => {
       // Only handle events that were dispatched by the user agent.
       if (!invalidEvent.isTrusted) {
@@ -79,7 +79,7 @@ export const useValidationState = (
     [elementRef, handleValidation],
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     const element = elementRef.current;
     if (!element) {
       return;

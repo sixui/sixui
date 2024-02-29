@@ -1,4 +1,11 @@
-import * as React from 'react';
+import {
+  Fragment,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
@@ -68,15 +75,15 @@ export const Field: React.FC<IFieldProps> = ({
   const theme = useComponentTheme('Field');
   const variantTheme = useComponentTheme(variantMap[variant]);
 
-  const [refreshErrorAlert, setRefreshErrorAlert] = React.useState(false);
-  const labelAnimationRef = React.useRef<Animation>();
-  const floatingLabelRef = React.useRef<HTMLSpanElement>(null);
-  const restingLabelRef = React.useRef<HTMLSpanElement>(null);
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const [animating, setAnimating] = React.useState(false);
-  const disableTransitionsRef = React.useRef(false);
+  const [refreshErrorAlert, setRefreshErrorAlert] = useState(false);
+  const labelAnimationRef = useRef<Animation>();
+  const floatingLabelRef = useRef<HTMLSpanElement>(null);
+  const restingLabelRef = useRef<HTMLSpanElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [animating, setAnimating] = useState(false);
+  const disableTransitionsRef = useRef(false);
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<IFieldStyleKey, ITextFieldStyleVarKey>(
         stylesCombinatorFactory(
@@ -101,7 +108,7 @@ export const Field: React.FC<IFieldProps> = ({
   const wasFocused = usePrevious(focused);
   const wasPopulated = usePrevious(populated);
 
-  const getLabelKeyframes = React.useCallback(() => {
+  const getLabelKeyframes = useCallback(() => {
     const floatingLabelEl = floatingLabelRef.current;
     const restingLabelEl = restingLabelRef.current;
     if (!floatingLabelEl || !restingLabelEl) {
@@ -160,7 +167,7 @@ export const Field: React.FC<IFieldProps> = ({
     ];
   }, [focused, populated]);
 
-  const animateLabelIfNeeded = React.useCallback(
+  const animateLabelIfNeeded = useCallback(
     (previousState: { wasFocused?: boolean; wasPopulated?: boolean }) => {
       if (!hasLabel) {
         return;
@@ -209,7 +216,7 @@ export const Field: React.FC<IFieldProps> = ({
     [focused, hasLabel, populated, getLabelKeyframes],
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (disabled) {
       disableTransitionsRef.current = true;
     }
@@ -239,7 +246,7 @@ export const Field: React.FC<IFieldProps> = ({
     refreshErrorAlert,
   ]);
 
-  const getCounterText = React.useCallback(() => {
+  const getCounterText = useCallback(() => {
     const countAsNumber = count ?? -1;
     const maxAsNumber = Number(max) ?? -1;
     // Counter does not show if count is negative or 0, or max is negative or 0.
@@ -250,7 +257,7 @@ export const Field: React.FC<IFieldProps> = ({
     return `${countAsNumber} / ${maxAsNumber}`;
   }, [count, max]);
 
-  const renderLabel = React.useCallback(
+  const renderLabel = useCallback(
     (floating = false): React.ReactNode | null => {
       if (!hasLabel) {
         return null;
@@ -295,7 +302,7 @@ export const Field: React.FC<IFieldProps> = ({
   const floatingLabel = renderLabel(true);
   const restingLabel = renderLabel(false);
 
-  const renderSupportingText = React.useCallback((): React.ReactNode | null => {
+  const renderSupportingText = useCallback((): React.ReactNode | null => {
     const counterText = getCounterText();
     if (!supportingOrErrorText && !counterText) {
       return null;
@@ -339,9 +346,9 @@ export const Field: React.FC<IFieldProps> = ({
     supportingOrErrorText,
   ]);
 
-  const renderBackground = React.useCallback(
+  const renderBackground = useCallback(
     (): React.ReactNode => (
-      <React.Fragment>
+      <Fragment>
         <div
           {...styleProps(['background', disabled && 'background$disabled'])}
         />
@@ -352,12 +359,12 @@ export const Field: React.FC<IFieldProps> = ({
             disabled && 'stateLayer$disabled',
           ])}
         />
-      </React.Fragment>
+      </Fragment>
     ),
     [styleProps, disabled, hasError],
   );
 
-  const renderIndicator = React.useCallback(
+  const renderIndicator = useCallback(
     (): React.ReactNode => (
       <div {...styleProps(['activeIndicator'])}>
         <div
@@ -379,7 +386,7 @@ export const Field: React.FC<IFieldProps> = ({
     [styleProps, disabled, hasError],
   );
 
-  const renderOutline = React.useCallback(
+  const renderOutline = useCallback(
     (): React.ReactNode => (
       <div
         {...styleProps([

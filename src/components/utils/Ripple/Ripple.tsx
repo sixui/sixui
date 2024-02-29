@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import type { IPoint } from '@/helpers/types';
 import type { IContainerProps } from '@/components/utils/Container';
@@ -92,7 +92,7 @@ export const Ripple: React.FC<IRippleProps> = ({
 }) => {
   const theme = useComponentTheme('Ripple');
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<IRippleStyleKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
@@ -100,24 +100,24 @@ export const Ripple: React.FC<IRippleProps> = ({
     [theme.styles, props.styles],
   );
 
-  const [pressed, setPressed] = React.useState(false);
-  const [host, setHost] = React.useState<HTMLDivElement | null>();
+  const [pressed, setPressed] = useState(false);
+  const [host, setHost] = useState<HTMLDivElement | null>();
 
-  const rippleStartEventRef = React.useRef<PointerEvent>();
-  const stateRef = React.useRef<IState>(IState.Inactive);
-  const initialSizeRef = React.useRef(0);
-  const rippleScaleRef = React.useRef(1);
-  const rippleSizeRef = React.useRef(0);
-  const surfaceRef = React.useRef<HTMLDivElement>(null);
-  const checkBoundsAfterContextMenuRef = React.useRef(false);
-  const growAnimationRef = React.useRef<Animation>();
+  const rippleStartEventRef = useRef<PointerEvent>();
+  const stateRef = useRef<IState>(IState.Inactive);
+  const initialSizeRef = useRef(0);
+  const rippleScaleRef = useRef(1);
+  const rippleSizeRef = useRef(0);
+  const surfaceRef = useRef<HTMLDivElement>(null);
+  const checkBoundsAfterContextMenuRef = useRef(false);
+  const growAnimationRef = useRef<Animation>();
 
-  const getControl = React.useCallback(
+  const getControl = useCallback(
     () => (forElementRef ? forElementRef.current : host?.parentElement),
     [forElementRef, host],
   );
 
-  const inBounds = React.useCallback(
+  const inBounds = useCallback(
     (event: PointerEvent): boolean => {
       if (!host) {
         return false;
@@ -141,7 +141,7 @@ export const Ripple: React.FC<IRippleProps> = ({
    *  - the pointer is a touch, or the pointer state has the primary button
    * held, or the pointer is hovering
    */
-  const shouldReactToEvent = React.useCallback(
+  const shouldReactToEvent = useCallback(
     (event: PointerEvent) => {
       if (disabled || !event.isPrimary) {
         return false;
@@ -168,7 +168,7 @@ export const Ripple: React.FC<IRippleProps> = ({
     [disabled],
   );
 
-  const determineRippleSize = React.useCallback(() => {
+  const determineRippleSize = useCallback(() => {
     if (!host) {
       return;
     }
@@ -189,7 +189,7 @@ export const Ripple: React.FC<IRippleProps> = ({
     rippleSizeRef.current = initialSize;
   }, [host]);
 
-  const getNormalizedPointerEventCoords = React.useCallback(
+  const getNormalizedPointerEventCoords = useCallback(
     (pointerEvent: PointerEvent): IPoint | null => {
       if (!host) {
         return null;
@@ -209,7 +209,7 @@ export const Ripple: React.FC<IRippleProps> = ({
     [host],
   );
 
-  const getTranslationCoordinates = React.useCallback(
+  const getTranslationCoordinates = useCallback(
     (
       positionEvent?: PointerEvent | MouseEvent,
     ): {
@@ -245,7 +245,7 @@ export const Ripple: React.FC<IRippleProps> = ({
     [host, getNormalizedPointerEventCoords],
   );
 
-  const startPressAnimation = React.useCallback(
+  const startPressAnimation = useCallback(
     (
       _: PointerEvent | MouseEvent,
       positionEvent?: PointerEvent | MouseEvent,
@@ -289,7 +289,7 @@ export const Ripple: React.FC<IRippleProps> = ({
     [getTranslationCoordinates, determineRippleSize],
   );
 
-  const endPressAnimation = React.useCallback(async () => {
+  const endPressAnimation = useCallback(async () => {
     stateRef.current = IState.Inactive;
     const animation = growAnimationRef.current;
     let pressAnimationPlayState = Infinity;
@@ -318,7 +318,7 @@ export const Ripple: React.FC<IRippleProps> = ({
     setPressed(false);
   }, []);
 
-  const handlePointerLeave = React.useCallback(
+  const handlePointerLeave = useCallback(
     (event: PointerEvent) => {
       if (!shouldReactToEvent(event)) {
         return;
@@ -332,7 +332,7 @@ export const Ripple: React.FC<IRippleProps> = ({
     [shouldReactToEvent, endPressAnimation],
   );
 
-  const handlePointerDown = React.useCallback(
+  const handlePointerDown = useCallback(
     (event: PointerEvent): void => {
       if (!shouldReactToEvent(event)) {
         return;
@@ -371,7 +371,7 @@ export const Ripple: React.FC<IRippleProps> = ({
     [shouldReactToEvent, startPressAnimation, inBounds],
   );
 
-  const handlePointerUp = React.useCallback(
+  const handlePointerUp = useCallback(
     (event: PointerEvent) => {
       if (!shouldReactToEvent(event)) {
         return;
@@ -393,7 +393,7 @@ export const Ripple: React.FC<IRippleProps> = ({
     [shouldReactToEvent, startPressAnimation],
   );
 
-  const handlePointerCancel = React.useCallback(
+  const handlePointerCancel = useCallback(
     (event: PointerEvent): void => {
       if (!shouldReactToEvent(event)) {
         return;
@@ -404,7 +404,7 @@ export const Ripple: React.FC<IRippleProps> = ({
     [shouldReactToEvent, endPressAnimation],
   );
 
-  const handleClick = React.useCallback(
+  const handleClick = useCallback(
     (event: MouseEvent) => {
       // Click is a MouseEvent in Firefox and Safari, so we cannot use
       // `shouldReactToEvent`
@@ -427,7 +427,7 @@ export const Ripple: React.FC<IRippleProps> = ({
     [disabled, startPressAnimation, endPressAnimation],
   );
 
-  const handleContextMenu = React.useCallback(() => {
+  const handleContextMenu = useCallback(() => {
     if (disabled) {
       return;
     }
@@ -436,7 +436,7 @@ export const Ripple: React.FC<IRippleProps> = ({
     void endPressAnimation();
   }, [disabled, endPressAnimation]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const control = getControl();
     if (!control) {
       return;

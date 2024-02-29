@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useMemo, useRef } from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type { IZeroOrMore, ICompiledStyles } from '@/helpers/types';
@@ -46,10 +46,10 @@ export const Paper: React.FC<IPaperProps> = ({
   const theme = useComponentTheme('Paper');
   const variantTheme = useComponentTheme(variantMap[variant]);
 
-  const actionRef = React.useRef(null);
+  const actionRef = useRef(null);
   const visualState = accumulate(useVisualState(actionRef), props.visualState);
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<IPaperStyleKey, IPaperStyleVarKey>(
         stylesCombinatorFactory(

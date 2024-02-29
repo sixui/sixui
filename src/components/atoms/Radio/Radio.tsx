@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -44,8 +44,8 @@ export const Radio: React.FC<IRadioProps> = ({
 }) => {
   const theme = useComponentTheme('Radio');
 
-  const hostRef = React.useRef<HTMLDivElement>(null);
-  const inputRef = React.useRef<HTMLInputElement>(null);
+  const hostRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const visualState = accumulate(useVisualState(hostRef), props.visualState);
   const radioGroupContext = useRadioGroupContext();
 
@@ -53,7 +53,7 @@ export const Radio: React.FC<IRadioProps> = ({
   // reference to the mask. This should be removed once the bug is fixed.
   const maskId = useId();
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<IRadioStyleKey, IRadioStyleVarKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
@@ -62,19 +62,18 @@ export const Radio: React.FC<IRadioProps> = ({
     [theme.styles, props.styles, props.visualState],
   );
 
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> =
-    React.useCallback(
-      (event) => {
-        Promise.resolve(
-          radioGroupContext
-            ? radioGroupContext?.onChange(value)
-            : onChange?.(event.target.checked),
-        ).catch((error: Error) => {
-          throw error;
-        });
-      },
-      [onChange, radioGroupContext, value],
-    );
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(
+    (event) => {
+      Promise.resolve(
+        radioGroupContext
+          ? radioGroupContext?.onChange(value)
+          : onChange?.(event.target.checked),
+      ).catch((error: Error) => {
+        throw error;
+      });
+    },
+    [onChange, radioGroupContext, value],
+  );
 
   const name = radioGroupContext?.name ?? props.name;
   const checked = !disabled

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useMemo } from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
 import type { IAnchoredStyleKey } from './Anchored.styledefs';
@@ -25,7 +25,7 @@ export const Anchored: React.FC<IAnchoredProps> = ({
 }) => {
   const theme = useComponentTheme('Anchored');
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<IAnchoredStyleKey>(
         stylesCombinatorFactory(theme.styles, props.styles),

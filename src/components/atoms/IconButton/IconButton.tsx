@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -83,14 +83,12 @@ export const IconButton: React.FC<IIconButtonProps> = ({
   const theme = useComponentTheme('IconButton');
   const variantTheme = useComponentTheme(variantMap[variant]);
 
-  const actionElInternalRef = React.useRef<HTMLButtonElement | HTMLLinkElement>(
-    null,
-  );
+  const actionElInternalRef = useRef<HTMLButtonElement | HTMLLinkElement>(null);
   const actionRef = forwardRef ?? actionElInternalRef;
-  const [handlingClick, setHandlingClick] = React.useState(false);
+  const [handlingClick, setHandlingClick] = useState(false);
   const visualState = accumulate(useVisualState(actionRef), props.visualState);
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<IIconButtonStyleKey, IIconButtonStyleVarKey>(
         stylesCombinatorFactory(

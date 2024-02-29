@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { Fragment, useMemo, useRef } from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -79,10 +79,10 @@ export const Card: React.FC<ICardProps> & ICardSubComponents = ({
   const theme = useComponentTheme('Card');
   const variantTheme = useComponentTheme(variantMap[variant]);
 
-  const actionRef = React.useRef(null);
+  const actionRef = useRef(null);
   const visualState = accumulate(useVisualState(actionRef), props.visualState);
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<ICardStyleKey, ICardStyleVarKey>(
         stylesCombinatorFactory(
@@ -139,7 +139,7 @@ export const Card: React.FC<ICardProps> & ICardSubComponents = ({
           disabled={disabled}
         />
         {actionable ? (
-          <React.Fragment>
+          <Fragment>
             <FocusRing
               styles={[
                 theme.focusRingStyles,
@@ -154,7 +154,7 @@ export const Card: React.FC<ICardProps> & ICardSubComponents = ({
               disabled={disabled}
               visualState={visualState}
             />
-          </React.Fragment>
+          </Fragment>
         ) : null}
         {hasOutline ? (
           <div

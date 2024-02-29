@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useMemo, useRef } from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -56,10 +56,10 @@ export const ButtonBase: React.FC<IButtonBaseProps> = ({
 }) => {
   const theme = useComponentTheme('ButtonBase');
 
-  const actionRef = React.useRef(null);
+  const actionRef = useRef(null);
   const visualState = accumulate(useVisualState(actionRef), props.visualState);
 
-  const styleProps = React.useMemo(
+  const styleProps = useMemo(
     () =>
       stylePropsFactory<IButtonStyleKey, IButtonStyleVarKey>(
         stylesCombinatorFactory(theme.styles, props.styles),
