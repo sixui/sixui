@@ -1,5 +1,9 @@
 # TO DO
 
+- Doc
+
+  - [GitBook](https://www.gitbook.com/)
+
 - CONTRIBUTING.md
 
 - Thumb: like avatar but square and no fallback
@@ -70,6 +74,7 @@
 
   - attrs: id, autocapitalize
   - password: eye button to show/hide password
+  - story demo form: delay on submit
 
 - CheckBox
 
@@ -143,6 +148,9 @@
 
 ## Refactoring
 
+- Field
+  - error boolean -> hasError, ou:
+  - suppimer error au profit de errorText
 - Prefer types over interfaces
 - Use useHover hook?
   - https://react-spectrum.adobe.com/blog/building-a-button-part-2.html
