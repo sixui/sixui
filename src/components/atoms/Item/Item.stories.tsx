@@ -116,11 +116,8 @@ const longTextColProps = [
       itemStyles,
       stylex.create<IStyles<IItemStyleKey>>({
         supportingText: {
-          // eslint-disable-next-line @stylexjs/valid-styles
           display: '-webkit-box',
-          // eslint-disable-next-line @stylexjs/valid-styles
           WebkitBoxOrient: 'vertical',
-          // eslint-disable-next-line @stylexjs/valid-styles
           WebkitLineClamp: '2',
         },
       }),

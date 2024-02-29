@@ -242,14 +242,14 @@ export const Field: React.FC<IFieldProps> = ({
     const maxAsNumber = Number(max) ?? -1;
     // Counter does not show if count is negative or 0, or max is negative or 0.
     if (countAsNumber <= 0 || maxAsNumber <= 0) {
-      return '';
+      return undefined;
     }
 
     return `${countAsNumber} / ${maxAsNumber}`;
   }, [count, max]);
 
   const renderLabel = React.useCallback(
-    (floating = false) => {
+    (floating = false): React.ReactNode | null => {
       if (!hasLabel) {
         return null;
       }
@@ -293,7 +293,7 @@ export const Field: React.FC<IFieldProps> = ({
   const floatingLabel = renderLabel(true);
   const restingLabel = renderLabel(false);
 
-  const renderSupportingText = React.useCallback(() => {
+  const renderSupportingText = React.useCallback((): React.ReactNode | null => {
     const counterText = getCounterText();
     if (!supportingOrErrorText && !counterText) {
       return null;
@@ -338,7 +338,7 @@ export const Field: React.FC<IFieldProps> = ({
   ]);
 
   const renderBackground = React.useCallback(
-    () => (
+    (): React.ReactNode => (
       <React.Fragment>
         <div
           {...styleProps(['background', disabled && 'background$disabled'])}
@@ -356,7 +356,7 @@ export const Field: React.FC<IFieldProps> = ({
   );
 
   const renderIndicator = React.useCallback(
-    () => (
+    (): React.ReactNode => (
       <div {...styleProps(['activeIndicator'])}>
         <div
           {...styleProps([
@@ -378,7 +378,7 @@ export const Field: React.FC<IFieldProps> = ({
   );
 
   const renderOutline = React.useCallback(
-    () => (
+    (): React.ReactNode => (
       <div
         {...styleProps([
           'outline',

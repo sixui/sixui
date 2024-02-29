@@ -135,7 +135,7 @@ export const Tab: React.FC<ITabProps> = ({
   }, [active, anchor, tabContext]);
 
   const renderIcon = React.useCallback(
-    () =>
+    (): React.ReactNode | null =>
       active && ActiveIcon ? (
         <ActiveIcon
           {...styleProps(['icon', 'icon$active', disabled && 'icon$disabled'])}

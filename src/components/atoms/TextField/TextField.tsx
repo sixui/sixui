@@ -319,7 +319,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
     }
   }, [reportValidity, hasError, reportOnBlur, inputOrTextareaRef]);
 
-  const renderInputOrTextarea = React.useCallback(() => {
+  const renderInputOrTextarea = React.useCallback((): React.ReactNode => {
     const ariaLabel = props['aria-label'] ?? label;
 
     // These properties may be set to null if the attribute is removed, and
@@ -454,7 +454,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
   ]);
 
   const renderStart = React.useCallback(
-    () =>
+    (): React.ReactNode | null =>
       start ??
       (LeadingIcon ? (
         <span {...styleProps(['icon', 'icon$leading'])}>
@@ -465,7 +465,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
   );
 
   const renderEnd = React.useCallback(
-    () =>
+    (): React.ReactNode | null =>
       end ??
       (TrailingIcon ? (
         <span {...styleProps(['icon', 'icon$trailing'])}>
