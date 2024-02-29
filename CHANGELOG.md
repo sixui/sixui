@@ -1,3 +1,15 @@
+# v0.0.56 (Thu Feb 29 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: allow to customize backgroundColor on CardMedia ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.55 (Thu Feb 29 2024)
 
 #### ⚠️ Pushed to `main`
