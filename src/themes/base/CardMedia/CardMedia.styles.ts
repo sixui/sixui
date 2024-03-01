@@ -10,18 +10,18 @@ export const styles: MapNamespaces<ICardMediaStyles> =
   stylex.create<ICardMediaStyles>({
     host: {
       display: 'flex',
-      alignItems: 'center',
+      alignItems: 'stretch',
       justifyContent: 'center',
-      backgroundSize: 'cover',
-      backgroundRepeat: 'no-repeat',
-      backgroundPosition: 'center',
       borderRadius: vars.containerShape,
       flexShrink: 0,
     },
-    host$media: {
-      width: '100%',
-    },
-    host$image: {
+    image: {
+      flexGrow: 1,
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center',
+      borderRadius: 'inherit',
       objectFit: 'cover',
+      filter: vars.imageFilter,
     },
   });

@@ -36,16 +36,8 @@ export const CardMedia: React.FC<ICardMediaProps> = ({
   );
 
   return (
-    <div
-      {...styleProps([
-        'host',
-        'host$image',
-        src ? styles.image(src) : undefined,
-        props.sx,
-      ])}
-      role='img'
-      title={title}
-    >
+    <div {...styleProps(['host', props.sx])} role='img' title={title}>
+      <div {...styleProps(['image', src ? styles.image(src) : undefined])} />
       {children}
     </div>
   );

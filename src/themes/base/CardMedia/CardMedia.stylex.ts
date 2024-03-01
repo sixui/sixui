@@ -7,6 +7,8 @@ import { shapeVars } from '../vars/shape.stylex';
 const vars: Partial<IStyleVars<ICardMediaStyleVarKey>> = {
   // container
   containerShape: shapeVars.corner$md,
+
+  imageFilter: 'none',
 };
 
 export const componentVars = stylex.defineVars(

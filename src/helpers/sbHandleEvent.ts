@@ -4,14 +4,16 @@ import { delay } from '@olivierpascal/helpers';
 
 export const sbHandleEvent = (
   name: string,
-  args: IAny = undefined,
-  delayInMs = 300,
+  args?: IAny,
+  delayInMs?: number,
 ): Promise<void> => {
+  if (!delayInMs) {
+    return Promise.resolve(void action(name)(args));
+  }
+
   const actionStartName = `${name}:start`;
   const actionEndName = `${name}:end`;
   action(actionStartName)([]);
 
-  return delayInMs > 0
-    ? delay(delayInMs).then(() => void action(actionEndName)(args))
-    : Promise.resolve(void action(actionEndName)(args));
+  return delay(delayInMs).then(() => void action(actionEndName)(args));
 };
