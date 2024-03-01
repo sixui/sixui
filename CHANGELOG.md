@@ -1,3 +1,15 @@
+# v0.0.60 (Fri Mar 01 2024)
+
+#### ⚠️ Pushed to `main`
+
+- refactor: placeholder color role -> dim ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.59 (Fri Mar 01 2024)
 
 #### ⚠️ Pushed to `main`
