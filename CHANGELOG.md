@@ -1,3 +1,15 @@
+# v0.0.62 (Fri Mar 01 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: allow image filter in CardMedia ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.61 (Fri Mar 01 2024)
 
 #### ⚠️ Pushed to `main`
