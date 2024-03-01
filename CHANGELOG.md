@@ -1,3 +1,16 @@
+# v0.0.63 (Fri Mar 01 2024)
+
+#### ⚠️ Pushed to `main`
+
+- revert: allow image filter in CardMedia ([@olivierpascal](https://github.com/olivierpascal))
+- fix: allow image box shadow in CardMedia ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.62 (Fri Mar 01 2024)
 
 #### ⚠️ Pushed to `main`
