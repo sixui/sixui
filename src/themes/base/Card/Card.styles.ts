@@ -27,7 +27,6 @@ export const styles: MapNamespaces<ICardStyles> = stylex.create<ICardStyles>({
     textAlign: 'unset',
     textDecoration: 'none',
     // hide android tap color since we have ripple
-    // eslint-disable-next-line @stylexjs/valid-styles
     WebkitTapHighlightColor: 'transparent',
 
     borderRadius: vars.containerShape,

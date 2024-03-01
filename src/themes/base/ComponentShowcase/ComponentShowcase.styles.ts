@@ -58,7 +58,6 @@ export const styles: MapNamespaces<IComponentShowcaseStyles> =
       lineHeight: vars.legendTextLineHeight,
       letterSpacing: vars.legendTextLetterSpacing,
       color: vars.legendTextColor,
-      opacity: '0.5',
     },
     legendRow: {
       display: 'flex',

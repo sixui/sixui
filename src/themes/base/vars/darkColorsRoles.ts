@@ -14,6 +14,7 @@ import type {
   IColorRolesSurfaceInverse,
   IColorRolesTertiary,
   IColorRoles,
+  IColorRolesPlaceholder,
 } from '../../colorRoles.types';
 import { colorPalettesVars } from './colorPalettes.stylex';
 import { colorRolesVars as baseColorRolesVars } from './colorRoles.stylex';
@@ -73,6 +74,11 @@ const surface: IColorRolesSurface = {
   ...surfaceInverse,
 };
 
+const placeholder: IColorRolesPlaceholder = {
+  placeholder: colorPalettesVars.neutralVariant60,
+  surfacePlaceholder: colorPalettesVars.neutralVariant30,
+};
+
 const outline: IColorRolesOutline = {
   outline: colorPalettesVars.neutralVariant60,
   outlineVariant: colorPalettesVars.neutralVariant30,
@@ -117,6 +123,7 @@ export const darkColorRoles: IColorRoles = {
   ...tertiary,
   ...error,
   ...surface,
+  ...placeholder,
   ...outline,
   ...addOns,
   shadow: colorPalettesVars.neutral0,

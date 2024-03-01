@@ -169,6 +169,18 @@ export type IColorRolesSurface = IColorRolesSurfaceInverse & {
   surfaceContainerHighest: string;
 };
 
+export type IColorRolesPlaceholder = {
+  /**
+   * Placeholder text color
+   */
+  placeholder: string;
+
+  /**
+   * Placeholder container color
+   */
+  surfacePlaceholder: string;
+};
+
 /**
  * https://m3.material.io/styles/color/roles#e7d72e44-72e2-4ce9-a18d-df07b1433d18
  */
@@ -248,6 +260,7 @@ export type IColorRoles = IColorRolesPrimary &
   IColorRolesTertiary &
   IColorRolesError &
   IColorRolesSurface &
+  IColorRolesPlaceholder &
   IColorRolesOutline &
   IColorRolesAddOns & {
     /**

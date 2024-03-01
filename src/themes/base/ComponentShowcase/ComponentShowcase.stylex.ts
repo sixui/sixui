@@ -7,7 +7,7 @@ import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 
 const vars: Partial<IStyleVars<IComponentShowcaseStyleVarKey>> = {
   // legend
-  legendTextColor: colorRolesVars.onSurface,
+  legendTextColor: colorRolesVars.placeholder,
   legendTextFont: typescaleVars.labelFont$md,
   legendTextLineHeight: typescaleVars.labelLineHeight$md,
   legendTextSize: typescaleVars.labelSize$md,
