@@ -38,7 +38,7 @@ export const CardMedia: React.FC<ICardMediaProps> = ({
   return (
     <div {...styleProps(['host', props.sx])} role='img' title={title}>
       <div {...styleProps(['image', src ? styles.image(src) : undefined])} />
-      {children}
+      <div {...styleProps(['content'])}>{children}</div>
     </div>
   );
 };
