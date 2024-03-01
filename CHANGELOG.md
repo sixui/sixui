@@ -1,3 +1,15 @@
+# v0.0.59 (Fri Mar 01 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: TextField text and placeholder color ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.58 (Fri Mar 01 2024)
 
 #### ⚠️ Pushed to `main`
