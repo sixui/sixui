@@ -1,3 +1,16 @@
+# v0.0.58 (Fri Mar 01 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: new color roles for placeholders ([@olivierpascal](https://github.com/olivierpascal))
+- fix: stateLayerColor$pressed var missing for FilledTonalIconButton ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.57 (Thu Feb 29 2024)
 
 #### ⚠️ Pushed to `main`
