@@ -14,7 +14,6 @@ import type {
   IColorRolesSurfaceInverse,
   IColorRolesTertiary,
   IColorRoles,
-  IColorRolesPlaceholder,
 } from '../../colorRoles.types';
 import { colorPalettesVars } from './colorPalettes.stylex';
 
@@ -73,11 +72,6 @@ const surface: IColorRolesSurface = {
   ...surfaceInverse,
 };
 
-const placeholder: IColorRolesPlaceholder = {
-  placeholder: colorPalettesVars.neutralVariant50,
-  surfacePlaceholder: colorPalettesVars.neutralVariant80,
-};
-
 const outline: IColorRolesOutline = {
   outline: colorPalettesVars.neutralVariant50,
   outlineVariant: colorPalettesVars.neutralVariant80,
@@ -93,6 +87,7 @@ const addOnsDim: IColorRolesAddOnsDim = {
   primaryFixedDim: colorPalettesVars.primary80,
   secondaryFixedDim: colorPalettesVars.secondary80,
   tertiaryFixedDim: colorPalettesVars.tertiary80,
+  dim: colorPalettesVars.neutralVariant50,
 };
 
 const addOnsOnFixed: IColorRolesAddOnsOnFixed = {
@@ -114,6 +109,7 @@ const addOns: IColorRolesAddOns = {
   ...addOnsOnFixedVariant,
   surfaceDim: colorPalettesVars.neutral87,
   surfaceBright: colorPalettesVars.neutral98,
+  surfacePlaceholder: colorPalettesVars.neutralVariant80,
 };
 
 const colorRoles: IColorRoles = {
@@ -122,7 +118,6 @@ const colorRoles: IColorRoles = {
   ...tertiary,
   ...error,
   ...surface,
-  ...placeholder,
   ...outline,
   ...addOns,
   shadow: colorPalettesVars.neutral0,

@@ -169,18 +169,6 @@ export type IColorRolesSurface = IColorRolesSurfaceInverse & {
   surfaceContainerHighest: string;
 };
 
-export type IColorRolesPlaceholder = {
-  /**
-   * Placeholder text color
-   */
-  placeholder: string;
-
-  /**
-   * Placeholder container color
-   */
-  surfacePlaceholder: string;
-};
-
 /**
  * https://m3.material.io/styles/color/roles#e7d72e44-72e2-4ce9-a18d-df07b1433d18
  */
@@ -212,6 +200,11 @@ export type IColorRolesAddOnsDim = {
   primaryFixedDim: string;
   secondaryFixedDim: string;
   tertiaryFixedDim: string;
+
+  /**
+   * Placeholder text color
+   */
+  dim: string;
 };
 
 /**
@@ -249,6 +242,11 @@ export type IColorRolesAddOns = IColorRolesAddOnsFixed &
      * Brightest surface color in light and dark themes
      */
     surfaceBright: string;
+
+    /**
+     * Placeholder container color
+     */
+    surfacePlaceholder: string;
   };
 
 /**
@@ -260,7 +258,6 @@ export type IColorRoles = IColorRolesPrimary &
   IColorRolesTertiary &
   IColorRolesError &
   IColorRolesSurface &
-  IColorRolesPlaceholder &
   IColorRolesOutline &
   IColorRolesAddOns & {
     /**

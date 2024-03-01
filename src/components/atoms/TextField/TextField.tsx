@@ -233,8 +233,8 @@ export const TextField: React.FC<ITextFieldProps> = ({
     useValidationState(inputOrTextareaRef);
 
   /**
-   * true when the text field has been interacted with. Native validation errors only display in
-   * response to user interactions.
+   * `true` when the text field has been interacted with. Native validation
+   * errors only display in response to user interactions.
    */
   const isDirtyRef = useRef(false);
 
