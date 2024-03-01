@@ -25,6 +25,7 @@ export const styles: MapNamespaces<ICardMediaStyles> =
       borderRadius: 'inherit',
       objectFit: 'cover',
       filter: vars.imageFilter,
+      boxShadow: vars.imageBoxShadow,
     },
     content: {
       zIndex: 1,
