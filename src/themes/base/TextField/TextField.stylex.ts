@@ -26,7 +26,7 @@ const vars: Partial<IStyleVars<ITextFieldStyleVarKey>> = {
   contentLineHeight: typescaleVars.bodyLineHeight$lg,
   contentLetterSpacing: typescaleVars.bodyLetterSpacing$lg,
   contentWeight: typescaleVars.bodyWeight$lg,
-  contentPlaceholderColor: colorRolesVars.onSurfaceVariant,
+  contentPlaceholderColor: colorRolesVars.placeholder,
   contentPrefixColor: colorRolesVars.onSurfaceVariant,
   contentPrefixTrailingSpace: '2px',
   contentSuffixColor: colorRolesVars.onSurfaceVariant,

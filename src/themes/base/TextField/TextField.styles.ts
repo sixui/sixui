@@ -57,6 +57,7 @@ export const styles: MapNamespaces<ITextFieldStyles> =
       overflowX: 'hidden',
       textAlign: 'inherit',
       '::placeholder': {
+        WebkitTextFillColor: vars.contentPlaceholderColor,
         color: vars.contentPlaceholderColor,
         opacity: 1,
       },
@@ -77,6 +78,7 @@ export const styles: MapNamespaces<ITextFieldStyles> =
     },
     input$disabled: {
       '::placeholder': {
+        WebkitTextFillColor: 'currentColor',
         color: 'currentColor',
       },
     },
