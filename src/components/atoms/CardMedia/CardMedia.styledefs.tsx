@@ -1,6 +1,3 @@
-export type ICardMediaStyleKey = 'host' | 'image' | 'content';
+export type ICardMediaStyleKey = 'host' | 'host$image';
 
-export type ICardMediaStyleVarKey =
-  | 'containerShape'
-  | 'imageFilter'
-  | 'imageBoxShadow';
+export type ICardMediaStyleVarKey = 'containerShape';
