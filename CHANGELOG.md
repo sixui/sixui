@@ -1,3 +1,16 @@
+# v0.0.75 (Sun Mar 03 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: some visual states are mutually exclusives ([@olivierpascal](https://github.com/olivierpascal))
+- chore: enforce some eslint rules for typescript arrays and react fragments ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.74 (Sun Mar 03 2024)
 
 #### ⚠️ Pushed to `main`
