@@ -1,3 +1,15 @@
+# v0.0.73 (Sun Mar 03 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: Card use correct combined states ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.72 (Sun Mar 03 2024)
 
 #### ⚠️ Pushed to `main`
