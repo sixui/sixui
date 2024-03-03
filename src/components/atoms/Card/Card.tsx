@@ -56,6 +56,12 @@ export type ICardProps<TRoot extends React.ElementType = 'div'> =
       'aria-label'?: string;
       'aria-haspopup'?: boolean;
       'aria-expanded'?: boolean;
+      onKeyDown?: (
+        event: React.KeyboardEvent<HTMLElement>,
+      ) => IMaybeAsync<IAny>;
+      onPointerDown?: (
+        event: React.PointerEvent<HTMLElement>,
+      ) => IMaybeAsync<IAny>;
     }
   >;
 
@@ -85,6 +91,8 @@ const Card: ICard = forwardRef(function Card<
     onClick,
     href,
     as,
+    onKeyDown,
+    onPointerDown,
     ...props
   }: ICardProps<TRoot>,
   ref?: IPolymorphicRef<TRoot>,
@@ -147,6 +155,8 @@ const Card: ICard = forwardRef(function Card<
         aria-label={props['aria-label']}
         aria-haspopup={props['aria-haspopup']}
         aria-expanded={props['aria-expanded']}
+        onKeyDown={onKeyDown}
+        onPointerDown={onPointerDown}
       >
         <Elevation
           styles={[theme.elevationStyles, ...asArray(props.elevationStyles)]}
