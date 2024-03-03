@@ -1,3 +1,16 @@
+# v0.0.65 (Sun Mar 03 2024)
+
+#### ⚠️ Pushed to `main`
+
+- doc: TODO updated ([@olivierpascal](https://github.com/olivierpascal))
+- fix: dragged state for Card component ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.64 (Sun Mar 03 2024)
 
 #### ⚠️ Pushed to `main`
