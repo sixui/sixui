@@ -126,7 +126,7 @@ const Card: React.ForwardRefExoticComponent<ICardProps> = forwardRef(
             ],
             [theme.vars, variantTheme.vars, props.theme],
           )}
-          ref={hostRef}
+          ref={forwardedRef}
           href={actionable ? href : undefined}
           onClick={actionable ? handleClick : undefined}
           role={actionable ? 'button' : undefined}

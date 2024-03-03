@@ -9,7 +9,7 @@ export const useForwardedRef = <T>(
 
   useEffect(() => {
     if (!ref) {
-      return undefined;
+      return;
     }
 
     if (typeof ref === 'function') {
