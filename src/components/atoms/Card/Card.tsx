@@ -1,4 +1,4 @@
-import { forwardRef, Fragment, useMemo } from 'react';
+import { forwardRef, Fragment, useMemo, useRef } from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -27,13 +27,13 @@ import {
   StateLayer,
   type IStateLayerStyleKey,
 } from '@/components/utils/StateLayer';
+import { useForkRef } from '@/hooks/useForkRef';
 import { CardContext, type ICardContext } from './CardContext';
 import { CardHeader } from '../CardHeader';
 import { CardMedia } from '../CardMedia';
 import { CardContent } from '../CardContent';
 import { CardTitle } from '../CardTitle';
 import { CardActions } from '../CardActions';
-import { useForwardedRef } from '@/hooks/useForwardedRef';
 
 // https://github.com/material-components/material-web/blob/main/labs/card/internal/card.ts
 
@@ -70,12 +70,16 @@ const Card: React.ForwardRefExoticComponent<ICardProps> = forwardRef(
     { variant = 'filled', children, onClick, href, ...props },
     forwardedRef: React.ForwardedRef<HTMLElement>,
   ): React.ReactNode {
-    const hostRef = useForwardedRef(forwardedRef);
+    const actionRef = useRef(null);
+    const ref = useForkRef(forwardedRef, actionRef);
 
     const theme = useComponentTheme('Card');
     const variantTheme = useComponentTheme(variantMap[variant]);
 
-    const visualState = accumulate(useVisualState(hostRef), props.visualState);
+    const visualState = accumulate(
+      useVisualState(actionRef),
+      props.visualState,
+    );
 
     const styleProps = useMemo(
       () =>
@@ -126,7 +130,7 @@ const Card: React.ForwardRefExoticComponent<ICardProps> = forwardRef(
             ],
             [theme.vars, variantTheme.vars, props.theme],
           )}
-          ref={forwardedRef}
+          ref={ref}
           href={actionable ? href : undefined}
           onClick={actionable ? handleClick : undefined}
           role={actionable ? 'button' : undefined}
@@ -146,7 +150,7 @@ const Card: React.ForwardRefExoticComponent<ICardProps> = forwardRef(
                   theme.statelayerStyles,
                   ...asArray(props.statelayerStyles),
                 ]}
-                for={hostRef}
+                for={actionRef}
                 disabled={disabled}
                 visualState={visualState}
               />
@@ -155,7 +159,7 @@ const Card: React.ForwardRefExoticComponent<ICardProps> = forwardRef(
                   theme.focusRingStyles,
                   ...asArray(props.focusRingStyles),
                 ]}
-                for={hostRef}
+                for={actionRef}
                 visualState={visualState}
               />
             </Fragment>
