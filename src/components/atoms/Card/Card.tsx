@@ -118,6 +118,7 @@ const Card: ICard = forwardRef(function Card<
 
   const disabled = props.disabled;
   const actionable = !disabled && (!!href || !!onClick);
+  const dragged = combinedVisualState?.dragged;
 
   const hasOutline =
     !!theme.styles?.outline ||
@@ -125,7 +126,7 @@ const Card: ICard = forwardRef(function Card<
     asArray(props.styles).some((styles) => !!styles?.outline);
 
   // If not using `as ? as : ...`, the inferred type is not correct.
-  const Component = as ? as : href ? 'a' : 'div';
+  const Component = as ? as : !dragged && href ? 'a' : 'div';
 
   const handleRef = useForkRef(ref, buttonRef, visualStateRef);
 
@@ -146,8 +147,8 @@ const Card: ICard = forwardRef(function Card<
           [theme.vars, variantTheme.vars, props.theme],
         )}
         ref={handleRef}
-        href={actionable ? href : undefined}
-        onClick={actionable ? onClick : undefined}
+        href={actionable && !dragged ? href : undefined}
+        onClick={actionable && !dragged ? onClick : undefined}
         role={actionable ? 'button' : undefined}
         tabIndex={disabled || !actionable ? -1 : 0}
         aria-label={props['aria-label']}
