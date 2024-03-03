@@ -17,58 +17,59 @@ export type IRadioGroupProps = IRadioGroupContext & {
 
 // https://github.com/mui/material-ui/blob/master/packages/mui-material/src/RadioGroup/RadioGroup.js
 // https://github.com/mui/material-ui/blob/master/packages/mui-material/src/RadioGroup/RadioGroup.d.ts
-export const RadioGroup = forwardRef(function RadioGroup(
-  { actions, children, onChange, ...props }: IRadioGroupProps,
-  // ref: React.ForwardedRef<IAny> | null,
-): React.ReactNode {
-  const hostRef = useRef<HTMLElement>(null);
-  const [value, setValue] = useControlled({
-    controlled: props.value,
-    default: props.defaultValue,
-    name: 'RadioGroup',
-  });
+export const RadioGroup: React.ForwardRefExoticComponent<IRadioGroupProps> =
+  forwardRef(function RadioGroup(
+    { actions, children, onChange, ...props },
+    // ref: React.ForwardedRef<IAny> | null,
+  ): React.ReactNode {
+    const hostRef = useRef<HTMLElement>(null);
+    const [value, setValue] = useControlled({
+      controlled: props.value,
+      default: props.defaultValue,
+      name: 'RadioGroup',
+    });
 
-  useImperativeHandle(
-    actions,
-    () => ({
-      focus: () => {
-        let input = hostRef.current?.querySelector(
-          'input:not(:disabled):checked',
-        );
+    useImperativeHandle(
+      actions,
+      () => ({
+        focus: () => {
+          let input = hostRef.current?.querySelector(
+            'input:not(:disabled):checked',
+          );
 
-        if (!input) {
-          input = hostRef.current?.querySelector('input:not(:disabled)');
-        }
+          if (!input) {
+            input = hostRef.current?.querySelector('input:not(:disabled)');
+          }
 
-        if (input) {
-          (input as HTMLInputElement).focus();
-        }
-      },
-    }),
-    [],
-  );
-
-  // const handleRef = useForkRef(ref, hostRef);
-  const name = useId();
-
-  const contextValue = useMemo(
-    () =>
-      ({
-        name,
-        onChange(value: string | undefined) {
-          setValue(value);
-          onChange?.(value);
+          if (input) {
+            (input as HTMLInputElement).focus();
+          }
         },
-        value,
-      }) satisfies IRadioGroupContext,
-    [name, onChange, value, setValue],
-  );
+      }),
+      [],
+    );
 
-  return (
-    <RadioGroupContext.Provider value={contextValue}>
-      {/* TODO: <FormGroup ref={handleRef} role='radiogroup'> */}
-      {children}
-      {/* TODO: </FormGroup> */}
-    </RadioGroupContext.Provider>
-  );
-});
+    // const handleRef = useForkRef(ref, hostRef);
+    const name = useId();
+
+    const contextValue = useMemo(
+      () =>
+        ({
+          name,
+          onChange(value: string | undefined) {
+            setValue(value);
+            onChange?.(value);
+          },
+          value,
+        }) satisfies IRadioGroupContext,
+      [name, onChange, value, setValue],
+    );
+
+    return (
+      <RadioGroupContext.Provider value={contextValue}>
+        {/* TODO: <FormGroup ref={handleRef} role='radiogroup'> */}
+        {children}
+        {/* TODO: </FormGroup> */}
+      </RadioGroupContext.Provider>
+    );
+  });

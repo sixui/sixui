@@ -83,7 +83,7 @@
 - Chip
 
   - Animate width change on switching between selected and unselected states
-  - Add a minimum delay betweel showing the circular progress indicator. First, to avoid showing it for a very short time, but also to have time to show the ripple effect.
+  - Add a minimum delay betweel showing the circular disabled state and progress indicator. First, to avoid showing it for a very short time, but also to have time to show the ripple effect, and to avoid a glitch when the disabled state has a different elevation than the enabled state.
 
 - ListItem
 
