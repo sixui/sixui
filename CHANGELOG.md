@@ -1,3 +1,15 @@
+# v0.0.74 (Sun Mar 03 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: prevent Card to react to click during dragging ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.73 (Sun Mar 03 2024)
 
 #### ⚠️ Pushed to `main`
