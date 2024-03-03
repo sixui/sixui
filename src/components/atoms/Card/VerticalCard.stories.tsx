@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Fragment } from 'react';
 import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
@@ -49,7 +48,7 @@ const statesProps: IComponentPropsWithLegend<ICardProps> = [
 const NonActionableContent: React.FC<{ headline?: string }> = ({
   headline,
 }) => (
-  <Fragment>
+  <>
     <Card.Header
       start={
         <Avatar src='https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' />
@@ -88,13 +87,13 @@ const NonActionableContent: React.FC<{ headline?: string }> = ({
         Secondary
       </Button>
     </Card.Actions>
-  </Fragment>
+  </>
 );
 
 const NonActionableContentVariant: React.FC<{ headline?: string }> = ({
   headline,
 }) => (
-  <Fragment>
+  <>
     <Card.Media
       sx={styles.media}
       src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
@@ -116,11 +115,11 @@ const NonActionableContentVariant: React.FC<{ headline?: string }> = ({
         Primary
       </Button>
     </Card.Actions>
-  </Fragment>
+  </>
 );
 
 const ActionableContent: React.FC<{ headline?: string }> = ({ headline }) => (
-  <Fragment>
+  <>
     <Card.Media
       sx={styles.media}
       src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
@@ -132,7 +131,7 @@ const ActionableContent: React.FC<{ headline?: string }> = ({ headline }) => (
         supportingText='Explain more about the topic shown in the headline and subhead through supporting text.'
       />
     </Card.Content>
-  </Fragment>
+  </>
 );
 
 const rowsProps: IComponentPropsWithLegend<ICardProps> = [

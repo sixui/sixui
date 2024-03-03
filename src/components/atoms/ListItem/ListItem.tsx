@@ -1,4 +1,4 @@
-import { Fragment, useMemo, useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type { IZeroOrMore, ICompiledStyles } from '@/helpers/types';
@@ -128,7 +128,7 @@ export const ListItem: React.FC<IListItemProps> = ({
         styles={[theme.itemStyles, ...asArray(props.itemStyles)]}
         theme={theme.itemVars}
         container={
-          <Fragment>
+          <>
             <div
               {...styleProps([
                 'background',
@@ -137,7 +137,7 @@ export const ListItem: React.FC<IListItemProps> = ({
               ])}
             />
             {isInteractive ? (
-              <Fragment>
+              <>
                 <StateLayer
                   styles={[
                     theme.statelayerStyles,
@@ -156,9 +156,9 @@ export const ListItem: React.FC<IListItemProps> = ({
                   visualState={visualState}
                   inward
                 />
-              </Fragment>
+              </>
             ) : null}
-          </Fragment>
+          </>
         }
         overline={overline}
         start={start}

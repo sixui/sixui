@@ -134,6 +134,8 @@ const eslintConfig = {
         'react/react-in-jsx-scope': 'off',
         'react/jsx-filename-extension': ['error', { extensions: ['.tsx'] }],
         'react/prop-types': 'off',
+        'react/jsx-fragments': 'error',
+        '@typescript-eslint/array-type': ['error', { default: 'generic' }],
         '@typescript-eslint/no-empty-interface': 'off',
         '@typescript-eslint/no-unused-vars': 'error',
         '@typescript-eslint/indent': 'off',

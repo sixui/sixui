@@ -163,7 +163,6 @@ export default BasicExample;
 
 import stylex from '@stylexjs/stylex';
 
-import { Fragment } from 'react';
 import {
   ThemeProvider,
   baseTheme,
@@ -211,7 +210,7 @@ const buttonStyles = stylex.create({
 });
 
 const ThemingExample: React.FC = () => (
-  <Fragment>
+  <>
     <ThemeProvider value={{ theme: baseTheme }}>
       <div {...stylex.props(layoutStyles.host)}>
         <div {...stylex.props(layoutStyles.legend)}>Base theme</div>
@@ -231,7 +230,7 @@ const ThemingExample: React.FC = () => (
         <FilledButton theme={buttonVariantTheme}>Locally themed</FilledButton>
       </div>
     </ThemeProvider>
-  </Fragment>
+  </>
 );
 
 export default ThemingExample;

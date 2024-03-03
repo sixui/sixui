@@ -1,11 +1,4 @@
-import {
-  Fragment,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
@@ -348,7 +341,7 @@ export const Field: React.FC<IFieldProps> = ({
 
   const renderBackground = useCallback(
     (): React.ReactNode => (
-      <Fragment>
+      <>
         <div
           {...styleProps(['background', disabled && 'background$disabled'])}
         />
@@ -359,7 +352,7 @@ export const Field: React.FC<IFieldProps> = ({
             disabled && 'stateLayer$disabled',
           ])}
         />
-      </Fragment>
+      </>
     ),
     [styleProps, disabled, hasError],
   );

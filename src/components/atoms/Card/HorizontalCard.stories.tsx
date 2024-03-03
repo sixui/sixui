@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Fragment } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
@@ -64,7 +63,7 @@ const statesProps: IComponentPropsWithLegend<ICardProps> = [
 const NonActionableContent: React.FC<{ headline?: string }> = ({
   headline,
 }) => (
-  <Fragment>
+  <>
     <Card.Content sx={styles.content}>
       <Card.Media
         sx={styles.mediaInner}
@@ -94,13 +93,13 @@ const NonActionableContent: React.FC<{ headline?: string }> = ({
         </Card.Actions>
       </div>
     </Card.Content>
-  </Fragment>
+  </>
 );
 
 const NonActionableContentVariant: React.FC<{ headline?: string }> = ({
   headline,
 }) => (
-  <Fragment>
+  <>
     <Card.Media
       sx={styles.media}
       src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
@@ -122,11 +121,11 @@ const NonActionableContentVariant: React.FC<{ headline?: string }> = ({
         </Card.Actions>
       </div>
     </Card.Content>
-  </Fragment>
+  </>
 );
 
 const ActionableContent: React.FC<{ headline?: string }> = ({ headline }) => (
-  <Fragment>
+  <>
     <Card.Media
       sx={styles.media}
       src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
@@ -138,7 +137,7 @@ const ActionableContent: React.FC<{ headline?: string }> = ({ headline }) => (
         supportingText='Explain more about the topic shown in the headline and subhead through supporting text.'
       />
     </Card.Content>
-  </Fragment>
+  </>
 );
 
 const colsProps: IComponentPropsWithLegend<ICardProps> = [

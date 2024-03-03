@@ -1,5 +1,3 @@
-import { Fragment } from 'react';
-
 import type { Meta, StoryObj } from '@storybook/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope as faEnvelopeSolid } from '@fortawesome/free-solid-svg-icons';
@@ -58,7 +56,7 @@ export const Variants: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={() => (
-        <Fragment>
+        <>
           <Tab
             {...props}
             icon={<FontAwesomeIcon icon={faEnvelope} />}
@@ -72,7 +70,7 @@ export const Variants: IStory = {
             activeIcon={<FontAwesomeIcon icon={faEnvelopeSolid} />}
             label='Secondary'
           />
-        </Fragment>
+        </>
       )}
       props={props}
     />

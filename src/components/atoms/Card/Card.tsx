@@ -1,4 +1,4 @@
-import { forwardRef, Fragment, useMemo, useRef } from 'react';
+import { forwardRef, useMemo, useRef } from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -160,7 +160,7 @@ const Card: ICard = forwardRef(function Card<
           disabled={disabled}
         />
         {actionable ? (
-          <Fragment>
+          <>
             <StateLayer
               styles={[
                 theme.statelayerStyles,
@@ -178,7 +178,7 @@ const Card: ICard = forwardRef(function Card<
               for={buttonRef}
               visualState={combinedVisualState}
             />
-          </Fragment>
+          </>
         ) : null}
         {hasOutline ? (
           <div
