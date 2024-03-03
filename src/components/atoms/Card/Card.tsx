@@ -91,8 +91,6 @@ const Card: ICard = forwardRef(function Card<
     onClick,
     href,
     as,
-    onKeyDown,
-    onPointerDown,
     ...props
   }: ICardProps<TRoot>,
   ref?: IPolymorphicRef<TRoot>,
@@ -155,8 +153,6 @@ const Card: ICard = forwardRef(function Card<
         aria-label={props['aria-label']}
         aria-haspopup={props['aria-haspopup']}
         aria-expanded={props['aria-expanded']}
-        onKeyDown={onKeyDown}
-        onPointerDown={onPointerDown}
       >
         <Elevation
           styles={[theme.elevationStyles, ...asArray(props.elevationStyles)]}
@@ -171,7 +167,7 @@ const Card: ICard = forwardRef(function Card<
               ]}
               for={buttonRef}
               disabled={disabled}
-              visualState={visualState}
+              visualState={combinedVisualState}
             />
             <FocusRing
               styles={[
@@ -179,7 +175,7 @@ const Card: ICard = forwardRef(function Card<
                 ...asArray(props.focusRingStyles),
               ]}
               for={buttonRef}
-              visualState={visualState}
+              visualState={combinedVisualState}
             />
           </Fragment>
         ) : null}
