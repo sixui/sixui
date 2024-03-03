@@ -108,76 +108,72 @@ const Card: React.ForwardRefExoticComponent<ICardProps> = forwardRef(
       actionable,
     };
 
-    const handleClick = (event: React.MouseEvent<HTMLElement>): void => {
-      if (visualState?.dragged) {
-        event.preventDefault();
-
-        return;
-      }
-
-      onClick?.(event);
-    };
-
     return (
       <CardContext.Provider value={context}>
-        <Component
-          {...styleProps(
-            [
-              'host',
-              actionable && 'host$actionable',
-              disabled && 'host$disabled',
-              props.sx,
-            ],
-            [theme.vars, variantTheme.vars, props.theme],
-          )}
-          ref={ref}
-          href={actionable ? href : undefined}
-          onClick={actionable ? handleClick : undefined}
-          role={actionable ? 'button' : undefined}
-          tabIndex={disabled || !actionable ? -1 : 0}
-          aria-label={props['aria-label']}
-          aria-haspopup={props['aria-haspopup']}
-          aria-expanded={props['aria-expanded']}
-        >
-          <Elevation
-            styles={[theme.elevationStyles, ...asArray(props.elevationStyles)]}
-            disabled={disabled}
-          />
-          {actionable ? (
-            <Fragment>
-              <StateLayer
-                styles={[
-                  theme.statelayerStyles,
-                  ...asArray(props.statelayerStyles),
-                ]}
-                for={actionRef}
-                disabled={disabled}
-                visualState={visualState}
-              />
-              <FocusRing
-                styles={[
-                  theme.focusRingStyles,
-                  ...asArray(props.focusRingStyles),
-                ]}
-                for={actionRef}
-                visualState={visualState}
-              />
-            </Fragment>
-          ) : null}
-          {hasOutline ? (
-            <div
-              {...styleProps([
-                'outline',
-                actionable && 'outline$actionable',
-                disabled && 'outline$disabled',
-              ])}
+        {/* TODO: find a way to remove the div and keep the ref if Component is
+        updated*/}
+        <div ref={ref}>
+          <Component
+            {...styleProps(
+              [
+                'host',
+                actionable && 'host$actionable',
+                disabled && 'host$disabled',
+                props.sx,
+              ],
+              [theme.vars, variantTheme.vars, props.theme],
+            )}
+            href={actionable ? href : undefined}
+            onClick={actionable ? onClick : undefined}
+            role={actionable ? 'button' : undefined}
+            tabIndex={disabled || !actionable ? -1 : 0}
+            aria-label={props['aria-label']}
+            aria-haspopup={props['aria-haspopup']}
+            aria-expanded={props['aria-expanded']}
+          >
+            <Elevation
+              styles={[
+                theme.elevationStyles,
+                ...asArray(props.elevationStyles),
+              ]}
+              disabled={disabled}
             />
-          ) : null}
-          <div
-            {...styleProps(['background', disabled && 'background$disabled'])}
-          />
-          {children}
-        </Component>
+            {actionable ? (
+              <Fragment>
+                <StateLayer
+                  styles={[
+                    theme.statelayerStyles,
+                    ...asArray(props.statelayerStyles),
+                  ]}
+                  for={actionRef}
+                  disabled={disabled}
+                  visualState={visualState}
+                />
+                <FocusRing
+                  styles={[
+                    theme.focusRingStyles,
+                    ...asArray(props.focusRingStyles),
+                  ]}
+                  for={actionRef}
+                  visualState={visualState}
+                />
+              </Fragment>
+            ) : null}
+            {hasOutline ? (
+              <div
+                {...styleProps([
+                  'outline',
+                  actionable && 'outline$actionable',
+                  disabled && 'outline$disabled',
+                ])}
+              />
+            ) : null}
+            <div
+              {...styleProps(['background', disabled && 'background$disabled'])}
+            />
+            {children}
+          </Component>
+        </div>
       </CardContext.Provider>
     );
   },

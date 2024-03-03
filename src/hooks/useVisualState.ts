@@ -18,7 +18,6 @@ export const useVisualState = (
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
   const [pressed, setPressed] = useState(false);
-  const [dragged, setDragged] = useState(false);
 
   const handleMouseEnter = useCallback(() => setHovered(true), []);
   const handleMouseLeave = useCallback(() => {
@@ -40,8 +39,6 @@ export const useVisualState = (
     [],
   );
   const handleKeyUp = useCallback(() => setPressed(false), []);
-  const handleDragStart = useCallback(() => setDragged(true), []);
-  const handleDragEnd = useCallback(() => setDragged(false), []);
 
   useEffect(() => {
     const element = elementRef.current;
@@ -57,8 +54,6 @@ export const useVisualState = (
     element.addEventListener('mouseup', handleMouseUp);
     element.addEventListener('keydown', handleKeyDown);
     element.addEventListener('keyup', handleKeyUp);
-    element.addEventListener('dragstart', handleDragStart);
-    element.addEventListener('dragend', handleDragEnd);
 
     return () => {
       element.removeEventListener('mouseenter', handleMouseEnter);
@@ -69,8 +64,6 @@ export const useVisualState = (
       element.removeEventListener('mouseup', handleMouseUp);
       element.removeEventListener('keydown', handleKeyDown);
       element.removeEventListener('keyup', handleKeyUp);
-      element.addEventListener('dragstart', handleDragStart);
-      element.addEventListener('dragend', handleDragEnd);
     };
   }, [
     elementRef,
@@ -82,9 +75,7 @@ export const useVisualState = (
     handleMouseUp,
     handleKeyDown,
     handleKeyUp,
-    handleDragStart,
-    handleDragEnd,
   ]);
 
-  return { focused, hovered, pressed, dragged };
+  return { focused, hovered, pressed };
 };
