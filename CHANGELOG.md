@@ -1,3 +1,15 @@
+# v0.0.64 (Sun Mar 03 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: disabled state of Card component correctly handled ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.63 (Fri Mar 01 2024)
 
 #### ⚠️ Pushed to `main`
