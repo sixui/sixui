@@ -131,10 +131,10 @@ export const Button: React.FC<IButtonProps> = ({
       theme={[theme.vars, variantTheme.vars, ...asArray(props.theme)]}
       styles={[theme.styles, variantTheme.styles, ...asArray(props.styles)]}
       sx={props.sx}
-      rippleStyles={[
-        theme.rippleStyles,
-        variantTheme.rippleStyles,
-        ...asArray(props.rippleStyles),
+      statelayerStyles={[
+        theme.statelayerStyles,
+        variantTheme.statelayerStyles,
+        ...asArray(props.statelayerStyles),
       ]}
       focusRingStyles={[
         theme.focusRingStyles,

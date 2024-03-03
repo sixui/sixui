@@ -6,21 +6,21 @@ import {
   type IComponentPropsWithLegend,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { Ripple, type IRippleProps } from './Ripple';
+import { StateLayer, type IStateLayerProps } from './StateLayer';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 
 // https://material-web.dev/components/ripple/
 // https://github.com/material-components/material-web/blob/main/ripple/demo/stories.ts
 
 const meta = {
-  component: Ripple,
-} satisfies Meta<typeof Ripple>;
+  component: StateLayer,
+} satisfies Meta<typeof StateLayer>;
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {} satisfies Partial<IRippleProps>;
+const defaultArgs = {} satisfies Partial<IStateLayerProps>;
 
-const statesProps: IComponentPropsWithLegend<IRippleProps> = [
+const statesProps: IComponentPropsWithLegend<IStateLayerProps> = [
   { $legend: 'Enabled' },
   { $legend: 'Hovered', visualState: { hovered: true } },
   { $legend: 'Pressed', visualState: { pressed: true } },
@@ -69,7 +69,7 @@ export const Bounded: IStory = {
     <ComponentShowcase
       component={(variantArgs) => (
         <div {...stylex.props(styles.container, styles.bounded)}>
-          <Ripple {...props} {...variantArgs} />
+          <StateLayer {...props} {...variantArgs} />
         </div>
       )}
       props={props}
@@ -88,13 +88,13 @@ const unboundedStyles = stylex.create({
   },
 });
 
-const UnboundedComponent: React.FC<IRippleProps> = (props) => {
+const UnboundedComponent: React.FC<IStateLayerProps> = (props) => {
   const controlRef = useRef<HTMLDivElement>(null);
 
   return (
     <div {...stylex.props(styles.container, styles.unbounded)} ref={controlRef}>
       <div {...stylex.props(styles.anchor)}>
-        <Ripple {...props} styles={unboundedStyles} for={controlRef} />
+        <StateLayer {...props} styles={unboundedStyles} for={controlRef} />
       </div>
     </div>
   );

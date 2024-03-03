@@ -3,11 +3,11 @@ import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
 import type { IRadioStyleKey } from '@/components/atoms/Radio';
-import type { IRippleStyleKey } from '@/components/utils/Ripple';
+import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import { componentVars as vars } from './Radio.stylex';
 import { componentVars as radioStateVars } from './Radio.states.stylex';
-import { componentVars as rippleVars } from '../Ripple/Ripple.stylex';
+import { componentVars as statelayerVars } from '../StateLayer/StateLayer.stylex';
 import { componentVars as focusRingVars } from '../FocusRing/FocusRing.stylex';
 import { motionVars } from '../vars/motion.stylex';
 import { shapeVars } from '../vars/shape.stylex';
@@ -131,9 +131,9 @@ export const styles: MapNamespaces<IRadioStyles> = stylex.create<IRadioStyles>({
   },
 });
 
-type IRippleStyles = IStyles<IRippleStyleKey>;
-export const rippleStyles: MapNamespaces<IRippleStyles> = stylex.create<
-  IStyles<IRippleStyleKey>
+type IStateLayerStyles = IStyles<IStateLayerStyleKey>;
+export const statelayerStyles: MapNamespaces<IStateLayerStyles> = stylex.create<
+  IStyles<IStateLayerStyleKey>
 >({
   host: {
     borderRadius: '50%',
@@ -142,13 +142,13 @@ export const rippleStyles: MapNamespaces<IRippleStyles> = stylex.create<
     inset: 'unset',
 
     // eslint-disable-next-line @stylexjs/valid-styles
-    [rippleVars.color$hover]: radioStateVars.stateLayerColor$hover,
+    [statelayerVars.color$hover]: radioStateVars.stateLayerColor$hover,
     // eslint-disable-next-line @stylexjs/valid-styles
-    [rippleVars.opacity$hover]: radioStateVars.stateLayerOpacity$hover,
+    [statelayerVars.opacity$hover]: radioStateVars.stateLayerOpacity$hover,
     // eslint-disable-next-line @stylexjs/valid-styles
-    [rippleVars.color$pressed]: radioStateVars.stateLayerColor$pressed,
+    [statelayerVars.color$pressed]: radioStateVars.stateLayerColor$pressed,
     // eslint-disable-next-line @stylexjs/valid-styles
-    [rippleVars.opacity$pressed]: radioStateVars.stateLayerOpacity$pressed,
+    [statelayerVars.opacity$pressed]: radioStateVars.stateLayerOpacity$pressed,
   },
 });
 

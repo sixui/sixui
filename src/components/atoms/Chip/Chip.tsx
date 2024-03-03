@@ -28,7 +28,10 @@ import {
   FocusRing,
   type IFocusRingStyleKey,
 } from '@/components/utils/FocusRing';
-import { Ripple, type IRippleStyleKey } from '@/components/utils/Ripple';
+import {
+  StateLayer,
+  type IStateLayerStyleKey,
+} from '@/components/utils/StateLayer';
 import {
   IndeterminateCircularProgressIndicator,
   type ICircularProgressIndicatorStyleKey,
@@ -58,13 +61,15 @@ export type IChipProps = IContainerProps<IChipStyleKey, IChipStyleVarKey> &
     component?: React.ElementType;
     'aria-label-remove'?: React.AriaAttributes['aria-label'];
     avatar?: boolean;
-    rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+    statelayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
     focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
     elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
     trailingActionFocusRingStyles?: IZeroOrMore<
       ICompiledStyles<IFocusRingStyleKey>
     >;
-    trailingActionRippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+    trailingActionStateLayerStyles?: IZeroOrMore<
+      ICompiledStyles<IStateLayerStyleKey>
+    >;
     circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
   };
 
@@ -311,12 +316,12 @@ export const Chip: React.FC<IChipProps> = ({
           for={primaryActionRef}
           visualState={visualState}
         />
-        <Ripple
+        <StateLayer
           for={primaryActionRef}
           styles={[
-            theme.rippleStyles,
-            variantTheme.rippleStyles,
-            ...asArray(props.rippleStyles),
+            theme.statelayerStyles,
+            variantTheme.statelayerStyles,
+            ...asArray(props.statelayerStyles),
           ]}
           disabled={disabled}
           visualState={visualState}
@@ -423,11 +428,11 @@ export const Chip: React.FC<IChipProps> = ({
                 ...asArray(props.trailingActionFocusRingStyles),
               ]}
             />
-            <Ripple
+            <StateLayer
               styles={[
-                theme.trailingActionRippleStyles,
-                variantTheme.trailingActionRippleStyles,
-                ...asArray(props.trailingActionRippleStyles),
+                theme.trailingActionStateLayerStyles,
+                variantTheme.trailingActionStateLayerStyles,
+                ...asArray(props.trailingActionStateLayerStyles),
               ]}
               disabled={disabled}
               visualState={trailingActionVisualState}

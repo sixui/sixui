@@ -26,7 +26,10 @@ import {
   FocusRing,
   type IFocusRingStyleKey,
 } from '@/components/utils/FocusRing';
-import { Ripple, type IRippleStyleKey } from '@/components/utils/Ripple';
+import {
+  StateLayer,
+  type IStateLayerStyleKey,
+} from '@/components/utils/StateLayer';
 import { IThemeComponents } from '@/helpers/ThemeContext';
 import {
   IndeterminateCircularProgressIndicator,
@@ -52,7 +55,7 @@ export type IFabProps = IContainerProps<IFabStyleKey, IFabStyleVarKey> &
     icon?: React.ReactNode;
     component?: React.ElementType;
     href?: string;
-    rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+    statelayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
     focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
     elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
     circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
@@ -172,12 +175,12 @@ export const Fab: React.FC<IFabProps> = ({
         for={actionRef}
         visualState={visualState}
       />
-      <Ripple
+      <StateLayer
         for={actionRef}
         styles={[
-          theme.rippleStyles,
-          variantTheme.rippleStyles,
-          ...asArray(props.rippleStyles),
+          theme.statelayerStyles,
+          variantTheme.statelayerStyles,
+          ...asArray(props.statelayerStyles),
         ]}
         disabled={disabled}
         visualState={visualState}

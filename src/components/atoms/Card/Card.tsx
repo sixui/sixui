@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react';
+import { Fragment, useMemo, useRef } from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -23,7 +23,10 @@ import {
   FocusRing,
   type IFocusRingStyleKey,
 } from '@/components/utils/FocusRing';
-import { Ripple, type IRippleStyleKey } from '@/components/utils/Ripple';
+import {
+  StateLayer,
+  type IStateLayerStyleKey,
+} from '@/components/utils/StateLayer';
 import { CardContext, type ICardContext } from './CardContext';
 import { CardHeader } from '../CardHeader';
 import { CardMedia } from '../CardMedia';
@@ -37,7 +40,7 @@ export type ICardProps = IContainerProps<ICardStyleKey, ICardStyleVarKey> & {
   variant?: ICardVariant;
   children: React.ReactNode;
   elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
-  rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+  statelayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
   focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
   component?: React.ElementType;
   onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
@@ -96,8 +99,7 @@ export const Card: React.FC<ICardProps> & ICardSubComponents = ({
   );
 
   const disabled = props.disabled;
-  const actionable =
-    !visualState?.dragged && !disabled && (!!href || !!onClick);
+  const actionable = !disabled && (!!href || !!onClick);
 
   const hasOutline =
     !!theme.styles?.outline ||
@@ -114,6 +116,16 @@ export const Card: React.FC<ICardProps> & ICardSubComponents = ({
     actionable,
   };
 
+  const handleClick = (event: React.MouseEvent<HTMLElement>): void => {
+    if (visualState?.dragged) {
+      event.preventDefault();
+
+      return;
+    }
+
+    onClick?.(event);
+  };
+
   return (
     <CardContext.Provider value={context}>
       <Component
@@ -128,7 +140,7 @@ export const Card: React.FC<ICardProps> & ICardSubComponents = ({
         )}
         ref={actionRef}
         href={actionable ? href : undefined}
-        onClick={actionable ? onClick : undefined}
+        onClick={actionable ? handleClick : undefined}
         role={actionable ? 'button' : undefined}
         tabIndex={disabled || !actionable ? -1 : 0}
         aria-label={props['aria-label']}
@@ -139,18 +151,26 @@ export const Card: React.FC<ICardProps> & ICardSubComponents = ({
           styles={[theme.elevationStyles, ...asArray(props.elevationStyles)]}
           disabled={disabled}
         />
-        <Ripple
-          styles={[theme.rippleStyles, ...asArray(props.rippleStyles)]}
-          for={actionRef}
-          disabled={disabled}
-          visualState={visualState}
-        />
         {actionable ? (
-          <FocusRing
-            styles={[theme.focusRingStyles, ...asArray(props.focusRingStyles)]}
-            for={actionRef}
-            visualState={visualState}
-          />
+          <Fragment>
+            <StateLayer
+              styles={[
+                theme.statelayerStyles,
+                ...asArray(props.statelayerStyles),
+              ]}
+              for={actionRef}
+              disabled={disabled}
+              visualState={visualState}
+            />
+            <FocusRing
+              styles={[
+                theme.focusRingStyles,
+                ...asArray(props.focusRingStyles),
+              ]}
+              for={actionRef}
+              visualState={visualState}
+            />
+          </Fragment>
         ) : null}
         {hasOutline ? (
           <div

@@ -2,14 +2,14 @@ import type { MapNamespaces } from '@stylexjs/stylex/lib/StyleXTypes';
 import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
-import type { IRippleStyleKey } from '@/components/utils/Ripple';
-import { componentVars as vars } from './Ripple.stylex';
+import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
+import { componentVars as vars } from './StateLayer.stylex';
 
 // https://github.com/material-components/material-web/blob/main/ripple/internal/_ripple.scss
 
-type IRippleStyles = IStyles<IRippleStyleKey>;
-export const styles: MapNamespaces<IRippleStyles> =
-  stylex.create<IRippleStyles>({
+type IStateLayerStyles = IStyles<IStateLayerStyleKey>;
+export const styles: MapNamespaces<IStateLayerStyles> =
+  stylex.create<IStateLayerStyles>({
     host: {
       display: 'flex',
       margin: 'auto',
@@ -20,10 +20,7 @@ export const styles: MapNamespaces<IRippleStyles> =
       overflow: 'hidden',
       pointerEvents: 'none',
     },
-    host$disabled: {
-      display: 'none',
-    },
-    surface: {
+    rippleSurface: {
       borderRadius: 'inherit',
       position: 'absolute',
       inset: 0,
@@ -53,19 +50,19 @@ export const styles: MapNamespaces<IRippleStyles> =
         transitionTimingFunction: 'linear',
       },
     },
-    surface$hover: {
+    rippleSurface$hover: {
       '::before': {
         opacity: vars.opacity$hover,
       },
     },
-    surface$pressed: {
+    rippleSurface$pressed: {
       '::after': {
         // press ripple fade-in
         opacity: vars.opacity$pressed,
         transitionDuration: '105ms',
       },
     },
-    surface$pressedStatic: {
+    rippleSurface$pressedStatic: {
       '::before': {
         backgroundColor: vars.color$hover,
         opacity: vars.opacity$hover,
@@ -77,7 +74,7 @@ export const styles: MapNamespaces<IRippleStyles> =
         opacity: vars.opacity$pressed,
       },
     },
-    surface$dragged: {
+    rippleSurface$dragged: {
       '::before': {
         backgroundColor: vars.color$dragged,
         opacity: vars.opacity$dragged,

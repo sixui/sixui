@@ -18,7 +18,10 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useVisualState } from '@/hooks/useVisualState';
 import { usePrevious } from '@/hooks/usePrevious';
 import { useControlled } from '@/hooks/useControlled';
-import { Ripple, type IRippleStyleKey } from '@/components/utils/Ripple';
+import {
+  StateLayer,
+  type IStateLayerStyleKey,
+} from '@/components/utils/StateLayer';
 import {
   FocusRing,
   type IFocusRingStyleKey,
@@ -48,7 +51,7 @@ export type ICheckboxProps = IContainerProps<
       event: React.ChangeEvent<HTMLInputElement>,
       checked: boolean,
     ) => IMaybeAsync<IAny>;
-    rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+    statelayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
     focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
   };
 
@@ -165,9 +168,9 @@ export const Checkbox: React.FC<ICheckboxProps> = ({
           styles={[theme.focusRingStyles, ...asArray(props.focusRingStyles)]}
           visualState={visualState}
         />
-        <Ripple
+        <StateLayer
           for={inputRef}
-          styles={[theme.rippleStyles, ...asArray(props.rippleStyles)]}
+          styles={[theme.statelayerStyles, ...asArray(props.statelayerStyles)]}
           disabled={disabled}
           visualState={visualState}
         />

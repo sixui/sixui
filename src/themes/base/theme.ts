@@ -13,8 +13,8 @@ import { styles as componentShowcaseStyles } from './ComponentShowcase/Component
 import { styles as placeholderStyles } from './Placeholder/Placeholder.styles';
 import { componentTheme as placeholderTheme } from './Placeholder/Placeholder.stylex';
 
-import { styles as rippleStyles } from './Ripple/Ripple.styles';
-import { componentTheme as rippleTheme } from './Ripple/Ripple.stylex';
+import { styles as statelayerStyles } from './StateLayer/StateLayer.styles';
+import { componentTheme as statelayerTheme } from './StateLayer/StateLayer.stylex';
 
 import { styles as elevationStyles } from './Elevation/Elevation.styles';
 import { componentTheme as elevationTheme } from './Elevation/Elevation.stylex';
@@ -25,7 +25,7 @@ import { componentTheme as focusRingTheme } from './FocusRing/FocusRing.stylex';
 import { componentTheme as buttonTheme } from './Button/Button.stylex';
 import {
   styles as buttonStyles,
-  rippleStyles as buttonRippleStyles,
+  statelayerStyles as buttonStateLayerStyles,
   elevationStyles as buttonElevationStyles,
   focusRingStyles as buttonFocusRingStyles,
   circularProgressIndicatorStyles as buttonCircularProgressIndicatorStyles,
@@ -46,11 +46,11 @@ import { styles as determinateCircularProgressIndicatorStyles } from './Circular
 import { componentTheme as chipTheme } from './Chip/Chip.stylex';
 import {
   styles as chipStyles,
-  rippleStyles as chipRippleStyles,
+  statelayerStyles as chipStateLayerStyles,
   elevationStyles as chipElevationStyles,
   focusRingStyles as chipFocusRingStyles,
   trailingActionFocusRingStyles as chipTrailingActionFocusRingStyles,
-  trailingActionRippleStyles as chipTrailingActionRippleStyles,
+  trailingActionStateLayerStyles as chipTrailingActionStateLayerStyles,
   circularProgressIndicatorStyles as chipCircularProgressIndicatorStyles,
 } from './Chip/Chip.styles';
 import { componentTheme as assistChipTheme } from './Chip/AssistChip.stylex';
@@ -60,7 +60,7 @@ import { componentTheme as suggestionChipTheme } from './Chip/SuggestionChip.sty
 
 import {
   styles as fabStyles,
-  rippleStyles as fabRippleStyles,
+  statelayerStyles as fabStateLayerStyles,
   elevationStyles as fabElevationStyles,
   focusRingStyles as fabFocusRingStyles,
   circularProgressIndicatorStyles as fabCircularProgressIndicatorStyles,
@@ -74,7 +74,7 @@ import { componentTheme as brandedFabTheme } from './Fab/BrandedFab.stylex';
 
 import {
   styles as iconButtonStyles,
-  rippleStyles as iconButtonRippleStyles,
+  statelayerStyles as iconButtonStateLayerStyles,
   focusRingStyles as iconButtonFocusRingStyles,
   circularProgressIndicatorStyles as iconButtonCircularProgressIndicatorStyles,
 } from './IconButton/IconButton.styles';
@@ -87,7 +87,7 @@ import { styles as outlinedIconButtonStyles } from './IconButton/OutlinedIconBut
 
 import {
   styles as switchStyles,
-  rippleStyles as switchRippleStyles,
+  statelayerStyles as switchStateLayerStyles,
   focusRingStyles as switchFocusRingStyles,
   circularProgressIndicatorStyles as switchCircularProgressIndicatorStyles,
 } from './Switch/Switch.styles';
@@ -108,13 +108,13 @@ import { componentTheme as outlinedTextFieldTheme } from './TextField/OutlinedTe
 import { componentTheme as radioTheme } from './Radio/Radio.stylex';
 import {
   styles as radioStyles,
-  rippleStyles as radioRippleStyles,
+  statelayerStyles as radioStateLayerStyles,
   focusRingStyles as radioFocusRingStyles,
 } from './Radio/Radio.styles';
 import { componentTheme as checkboxTheme } from './Checkbox/Checkbox.stylex';
 import {
   styles as checkboxStyles,
-  rippleStyles as checkboxRippleStyles,
+  statelayerStyles as checkboxStateLayerStyles,
   focusRingStyles as checkboxFocusRingStyles,
 } from './Checkbox/Checkbox.styles';
 
@@ -129,7 +129,7 @@ import {
 import {
   styles as listItemStyles,
   itemStyles as listItemItemStyles,
-  rippleStyles as listItemRippleStyles,
+  statelayerStyles as listItemStateLayerStyles,
   focusRingStyles as listItemFocusRingStyles,
 } from './ListItem/ListItem.styles';
 
@@ -149,7 +149,7 @@ import { componentTheme as cardTheme } from './Card/Card.stylex';
 import {
   styles as cardStyles,
   elevationStyles as cardElevationStyles,
-  rippleStyles as cardActionAreaRippleStyles,
+  statelayerStyles as cardActionAreaStateLayerStyles,
   focusRingStyles as cardActionAreaFocusRingStyles,
 } from './Card/Card.styles';
 import { componentTheme as elevatedCardTheme } from './Card/ElevatedCard.stylex';
@@ -173,7 +173,7 @@ import { styles as cardActionsStyles } from './CardActions/CardActions.styles';
 import { componentTheme as tabTheme } from './Tab/Tab.stylex';
 import {
   styles as tabStyles,
-  rippleStyles as tabRippleStyles,
+  statelayerStyles as tabStateLayerStyles,
   elevationStyles as tabElevationStyles,
   focusRingStyles as tabFocusRingStyles,
 } from './Tab/Tab.styles';
@@ -225,9 +225,9 @@ export const theme: ITheme = {
       vars: placeholderTheme,
       styles: placeholderStyles,
     },
-    Ripple: {
-      vars: rippleTheme,
-      styles: rippleStyles,
+    StateLayer: {
+      vars: statelayerTheme,
+      styles: statelayerStyles,
     },
     Elevation: {
       vars: elevationTheme,
@@ -243,7 +243,7 @@ export const theme: ITheme = {
     Button: {
       vars: buttonTheme,
       styles: buttonStyles,
-      rippleStyles: buttonRippleStyles,
+      statelayerStyles: buttonStateLayerStyles,
       focusRingStyles: buttonFocusRingStyles,
       elevationStyles: buttonElevationStyles,
       circularProgressIndicatorStyles: buttonCircularProgressIndicatorStyles,
@@ -269,11 +269,11 @@ export const theme: ITheme = {
     Chip: {
       vars: chipTheme,
       styles: chipStyles,
-      rippleStyles: chipRippleStyles,
+      statelayerStyles: chipStateLayerStyles,
       focusRingStyles: chipFocusRingStyles,
       elevationStyles: chipElevationStyles,
       trailingActionFocusRingStyles: chipTrailingActionFocusRingStyles,
-      trailingActionRippleStyles: chipTrailingActionRippleStyles,
+      trailingActionStateLayerStyles: chipTrailingActionStateLayerStyles,
       circularProgressIndicatorStyles: chipCircularProgressIndicatorStyles,
     },
     AssistChip: { vars: assistChipTheme },
@@ -283,7 +283,7 @@ export const theme: ITheme = {
     Fab: {
       vars: fabTheme,
       styles: fabStyles,
-      rippleStyles: fabRippleStyles,
+      statelayerStyles: fabStateLayerStyles,
       focusRingStyles: fabFocusRingStyles,
       elevationStyles: fabElevationStyles,
       circularProgressIndicatorStyles: fabCircularProgressIndicatorStyles,
@@ -296,7 +296,7 @@ export const theme: ITheme = {
     IconButton: {
       vars: iconButtonTheme,
       styles: iconButtonStyles,
-      rippleStyles: iconButtonRippleStyles,
+      statelayerStyles: iconButtonStateLayerStyles,
       focusRingStyles: iconButtonFocusRingStyles,
       circularProgressIndicatorStyles:
         iconButtonCircularProgressIndicatorStyles,
@@ -311,7 +311,7 @@ export const theme: ITheme = {
     Switch: {
       vars: switchTheme,
       styles: switchStyles,
-      rippleStyles: switchRippleStyles,
+      statelayerStyles: switchStateLayerStyles,
       focusRingStyles: switchFocusRingStyles,
       circularProgressIndicatorStyles: switchCircularProgressIndicatorStyles,
     },
@@ -337,13 +337,13 @@ export const theme: ITheme = {
     Radio: {
       vars: radioTheme,
       styles: radioStyles,
-      rippleStyles: radioRippleStyles,
+      statelayerStyles: radioStateLayerStyles,
       focusRingStyles: radioFocusRingStyles,
     },
     Checkbox: {
       vars: checkboxTheme,
       styles: checkboxStyles,
-      rippleStyles: checkboxRippleStyles,
+      statelayerStyles: checkboxStateLayerStyles,
       focusRingStyles: checkboxFocusRingStyles,
     },
     Item: {
@@ -355,7 +355,7 @@ export const theme: ITheme = {
       styles: listItemStyles,
       itemStyles: listItemItemStyles,
       itemVars: listItemItemTheme,
-      rippleStyles: listItemRippleStyles,
+      statelayerStyles: listItemStateLayerStyles,
       focusRingStyles: listItemFocusRingStyles,
     },
     List: {
@@ -379,7 +379,7 @@ export const theme: ITheme = {
       vars: cardTheme,
       styles: cardStyles,
       elevationStyles: cardElevationStyles,
-      rippleStyles: cardActionAreaRippleStyles,
+      statelayerStyles: cardActionAreaStateLayerStyles,
       focusRingStyles: cardActionAreaFocusRingStyles,
     },
     CardHeader: {
@@ -409,7 +409,7 @@ export const theme: ITheme = {
     Tab: {
       vars: tabTheme,
       styles: tabStyles,
-      rippleStyles: tabRippleStyles,
+      statelayerStyles: tabStateLayerStyles,
       focusRingStyles: tabFocusRingStyles,
       elevationStyles: tabElevationStyles,
     },

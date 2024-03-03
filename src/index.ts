@@ -6,7 +6,7 @@ export * from './helpers/ThemeContext';
 export * from './components/utils/Elevation';
 export * from './components/utils/FocusRing';
 export * from './components/utils/Form';
-export * from './components/utils/Ripple';
+export * from './components/utils/StateLayer';
 export * from './components/utils/ComponentShowcase';
 
 // atoms

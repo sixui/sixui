@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
 import type { IFabStyleKey } from '@/components/atoms/Fab';
-import type { IRippleStyleKey } from '@/components/utils/Ripple';
+import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
 import type { IElevationStyleKey } from '@/components/utils/Elevation';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import type { ICircularProgressIndicatorStyleKey } from '@/components/atoms/CircularProgressIndicator';
@@ -11,7 +11,7 @@ import { componentVars as vars } from './Fab.stylex';
 import { componentVars as fabStateVars } from './Fab.states.stylex';
 import { componentVars as elevationVars } from '../Elevation/Elevation.stylex';
 import { componentVars as focusRingVars } from '../FocusRing/FocusRing.stylex';
-import { componentVars as rippleVars } from '../Ripple/Ripple.stylex';
+import { componentVars as statelayerVars } from '../StateLayer/StateLayer.stylex';
 import { componentVars as circularProgressIndicatorVars } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
 
 // https://github.com/material-components/material-web/blob/main/fab/internal/_shared.scss
@@ -81,7 +81,7 @@ export const styles: MapNamespaces<IFabStyles> = stylex.create<IFabStyles>({
     textDecoration: 'none',
     width: '100%',
     height: ' 100%',
-    // Required for elevation and ripple to stay below content
+    // Required for elevation and statelayer to stay below content
     zIndex: 0,
     font: 'inherit',
     padding: 0,
@@ -193,19 +193,19 @@ export const styles: MapNamespaces<IFabStyles> = stylex.create<IFabStyles>({
   },
 });
 
-type IRippleStyles = IStyles<IRippleStyleKey>;
-export const rippleStyles: MapNamespaces<IRippleStyles> = stylex.create<
-  IStyles<IRippleStyleKey>
+type IStateLayerStyles = IStyles<IStateLayerStyleKey>;
+export const statelayerStyles: MapNamespaces<IStateLayerStyles> = stylex.create<
+  IStyles<IStateLayerStyleKey>
 >({
   host: {
     // eslint-disable-next-line @stylexjs/valid-styles
-    [rippleVars.color$hover]: vars.stateLayerColor$hover,
+    [statelayerVars.color$hover]: vars.stateLayerColor$hover,
     // eslint-disable-next-line @stylexjs/valid-styles
-    [rippleVars.opacity$hover]: vars.stateLayerOpacity$hover,
+    [statelayerVars.opacity$hover]: vars.stateLayerOpacity$hover,
     // eslint-disable-next-line @stylexjs/valid-styles
-    [rippleVars.color$pressed]: vars.stateLayerColor$pressed,
+    [statelayerVars.color$pressed]: vars.stateLayerColor$pressed,
     // eslint-disable-next-line @stylexjs/valid-styles
-    [rippleVars.opacity$pressed]: vars.stateLayerOpacity$pressed,
+    [statelayerVars.opacity$pressed]: vars.stateLayerOpacity$pressed,
   },
 });
 

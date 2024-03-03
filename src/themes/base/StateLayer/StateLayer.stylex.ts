@@ -1,13 +1,13 @@
 import stylex from '@stylexjs/stylex';
 
 import type { IStyleVars } from '@/helpers/types';
-import type { IRippleStyleVarKey } from '@/components/utils/Ripple';
+import type { IStateLayerStyleVarKey } from '@/components/utils/StateLayer';
 import { colorRolesVars } from '../vars/colorRoles.stylex';
 import { stateVars } from '../vars/state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-ripple.scss
 
-const vars: Partial<IStyleVars<IRippleStyleVarKey>> = {
+const vars: Partial<IStyleVars<IStateLayerStyleVarKey>> = {
   color$hover: colorRolesVars.onSurface,
   color$pressed: colorRolesVars.onSurface,
   color$dragged: colorRolesVars.onSurface,
@@ -17,7 +17,7 @@ const vars: Partial<IStyleVars<IRippleStyleVarKey>> = {
 };
 
 export const componentVars = stylex.defineVars(
-  vars as IStyleVars<IRippleStyleVarKey>,
+  vars as IStyleVars<IStateLayerStyleVarKey>,
 );
 
 // This is a workaround to allow reaplying vars at the component level so that it can uses themed

@@ -21,7 +21,10 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useVisualState } from '@/hooks/useVisualState';
 import { Elevation, IElevationStyleKey } from '@/components/utils/Elevation';
 import { FocusRing, IFocusRingStyleKey } from '@/components/utils/FocusRing';
-import { Ripple, type IRippleStyleKey } from '@/components/utils/Ripple';
+import {
+  StateLayer,
+  type IStateLayerStyleKey,
+} from '@/components/utils/StateLayer';
 import { useTabContext } from '../Tabs/useTabContext';
 import { Anchored } from '@/components/utils/Anchored';
 
@@ -41,7 +44,7 @@ export type ITabProps = IContainerProps<ITabStyleKey, ITabStyleVarKey> & {
   label?: string;
   anchor?: string;
   disabled?: boolean;
-  rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+  statelayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
   focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
   elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
   badge?: IBadgeProps;
@@ -191,11 +194,11 @@ export const Tab: React.FC<ITabProps> = ({
         for={actionRef}
         visualState={visualState}
       />
-      <Ripple
+      <StateLayer
         styles={[
-          theme.rippleStyles,
-          variantTheme.rippleStyles,
-          ...asArray(props.rippleStyles),
+          theme.statelayerStyles,
+          variantTheme.statelayerStyles,
+          ...asArray(props.statelayerStyles),
         ]}
         for={actionRef}
         disabled={disabled}

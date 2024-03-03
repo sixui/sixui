@@ -1,20 +1,14 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
+import type { IVisualState } from '@/hooks/useVisualState';
 import type { IPoint } from '@/helpers/types';
-import type { IContainerProps } from '@/components/utils/Container';
-import type { IRippleStyleKey, IRippleStyleVarKey } from './Ripple.styledefs';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { EASING } from '@/helpers/animation';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 
 // https://github.com/material-components/material-web/blob/main/ripple/internal/ripple.ts
 
-export type IRippleProps = IContainerProps<
-  IRippleStyleKey,
-  IRippleStyleVarKey
-> & {
+export type IUseRippleProps = {
   for?: React.RefObject<HTMLElement>;
+  visualState?: IVisualState;
   disabled?: boolean;
 };
 
@@ -84,24 +78,17 @@ enum IState {
 const isTouch = ({ pointerType }: PointerEvent): boolean =>
   pointerType === 'touch';
 
-export const Ripple: React.FC<IRippleProps> = ({
+export const useRipple = ({
   visualState,
   for: forElementRef,
   disabled,
-  ...props
-}) => {
-  const theme = useComponentTheme('Ripple');
-
-  const styleProps = useMemo(
-    () =>
-      stylePropsFactory<IRippleStyleKey>(
-        stylesCombinatorFactory(theme.styles, props.styles),
-      ),
-    [theme.styles, props.styles],
-  );
-
+}: IUseRippleProps): {
+  setHostRef: (host: HTMLDivElement | null) => void;
+  surfaceRef: React.RefObject<HTMLDivElement>;
+  pressed: boolean;
+} => {
   const [pressed, setPressed] = useState(false);
-  const [host, setHost] = useState<HTMLDivElement | null>();
+  const [hostRef, setHostRef] = useState<HTMLDivElement | null>();
 
   const rippleStartEventRef = useRef<PointerEvent>();
   const stateRef = useRef<IState>(IState.Inactive);
@@ -113,23 +100,23 @@ export const Ripple: React.FC<IRippleProps> = ({
   const growAnimationRef = useRef<Animation>();
 
   const getControl = useCallback(
-    () => (forElementRef ? forElementRef.current : host?.parentElement),
-    [forElementRef, host],
+    () => (forElementRef ? forElementRef.current : hostRef?.parentElement),
+    [forElementRef, hostRef],
   );
 
   const inBounds = useCallback(
     (event: PointerEvent): boolean => {
-      if (!host) {
+      if (!hostRef) {
         return false;
       }
 
-      const { top, left, bottom, right } = host.getBoundingClientRect();
+      const { top, left, bottom, right } = hostRef.getBoundingClientRect();
       const x = event.clientX - left;
       const y = event.clientY - top;
 
       return x >= left && x <= right && y >= top && y <= bottom;
     },
-    [host],
+    [hostRef],
   );
 
   /**
@@ -143,7 +130,12 @@ export const Ripple: React.FC<IRippleProps> = ({
    */
   const shouldReactToEvent = useCallback(
     (event: PointerEvent) => {
-      if (visualState?.pressed || disabled || !event.isPrimary) {
+      if (
+        visualState?.pressed ||
+        visualState?.dragged ||
+        disabled ||
+        !event.isPrimary
+      ) {
         return false;
       }
 
@@ -169,11 +161,11 @@ export const Ripple: React.FC<IRippleProps> = ({
   );
 
   const determineRippleSize = useCallback(() => {
-    if (!host) {
+    if (!hostRef) {
       return;
     }
 
-    const { height, width } = host.getBoundingClientRect();
+    const { height, width } = hostRef.getBoundingClientRect();
     const maxDim = Math.max(height, width);
     const softEdgeSize = Math.max(
       SOFT_EDGE_CONTAINER_RATIO * maxDim,
@@ -187,16 +179,16 @@ export const Ripple: React.FC<IRippleProps> = ({
     initialSizeRef.current = initialSize;
     rippleScaleRef.current = (maxRadius + softEdgeSize) / initialSize;
     rippleSizeRef.current = initialSize;
-  }, [host]);
+  }, [hostRef]);
 
   const getNormalizedPointerEventCoords = useCallback(
     (pointerEvent: PointerEvent): IPoint | null => {
-      if (!host) {
+      if (!hostRef) {
         return null;
       }
 
       const { scrollX, scrollY } = window;
-      const { left, top } = host.getBoundingClientRect();
+      const { left, top } = hostRef.getBoundingClientRect();
       const documentX = scrollX + left;
       const documentY = scrollY + top;
       const { pageX, pageY } = pointerEvent;
@@ -206,7 +198,7 @@ export const Ripple: React.FC<IRippleProps> = ({
         y: pageY - documentY,
       };
     },
-    [host],
+    [hostRef],
   );
 
   const getTranslationCoordinates = useCallback(
@@ -216,11 +208,11 @@ export const Ripple: React.FC<IRippleProps> = ({
       startPoint: IPoint;
       endPoint: IPoint;
     } | null => {
-      if (!host) {
+      if (!hostRef) {
         return null;
       }
 
-      const { width, height } = host.getBoundingClientRect();
+      const { width, height } = hostRef.getBoundingClientRect();
       //Eend in the center
       const endPoint = {
         x: (width - initialSizeRef.current) / 2,
@@ -242,7 +234,7 @@ export const Ripple: React.FC<IRippleProps> = ({
 
       return { startPoint: centeredStartPoint, endPoint };
     },
-    [host, getNormalizedPointerEventCoords],
+    [hostRef, getNormalizedPointerEventCoords],
   );
 
   const startPressAnimation = useCallback(
@@ -409,7 +401,7 @@ export const Ripple: React.FC<IRippleProps> = ({
     (event: MouseEvent) => {
       // Click is a MouseEvent in Firefox and Safari, so we cannot use
       // `shouldReactToEvent`
-      if (visualState?.pressed || disabled) {
+      if (visualState?.pressed || visualState?.dragged || disabled) {
         return;
       }
 
@@ -468,24 +460,5 @@ export const Ripple: React.FC<IRippleProps> = ({
     handleContextMenu,
   ]);
 
-  return (
-    <div
-      ref={setHost}
-      {...styleProps(
-        ['host', disabled && 'host$disabled', props.sx],
-        [theme.vars, props.theme],
-      )}
-    >
-      <div
-        {...styleProps([
-          'surface',
-          visualState?.hovered && 'surface$hover',
-          pressed && 'surface$pressed',
-          !pressed && visualState?.pressed && 'surface$pressedStatic',
-          visualState?.dragged && 'surface$dragged',
-        ])}
-        ref={surfaceRef}
-      />
-    </div>
-  );
+  return { setHostRef, surfaceRef, pressed };
 };

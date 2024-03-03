@@ -3,14 +3,14 @@ import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
 import type { ITabStyleKey } from '@/components/atoms/Tab';
-import type { IRippleStyleKey } from '@/components/utils/Ripple';
+import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
 import type { IElevationStyleKey } from '@/components/utils/Elevation';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import { componentVars as vars } from './Tab.stylex';
 import { componentVars as tabStateVars } from './Tab.states.stylex';
 import { componentVars as elevationVars } from '../Elevation/Elevation.stylex';
 import { componentVars as focusRingVars } from '../FocusRing/FocusRing.stylex';
-import { componentVars as rippleVars } from '../Ripple/Ripple.stylex';
+import { componentVars as statelayerVars } from '../StateLayer/StateLayer.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tabs/internal/_tab.scss
 
@@ -160,21 +160,21 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
   },
 });
 
-type IRippleStyles = IStyles<IRippleStyleKey>;
-export const rippleStyles: MapNamespaces<IRippleStyles> = stylex.create<
-  IStyles<IRippleStyleKey>
+type IStateLayerStyles = IStyles<IStateLayerStyleKey>;
+export const statelayerStyles: MapNamespaces<IStateLayerStyles> = stylex.create<
+  IStyles<IStateLayerStyleKey>
 >({
   host: {
     borderRadius: vars.containerShape,
 
     // eslint-disable-next-line @stylexjs/valid-styles
-    [rippleVars.color$hover]: tabStateVars.stateLayerColor$hover,
+    [statelayerVars.color$hover]: tabStateVars.stateLayerColor$hover,
     // eslint-disable-next-line @stylexjs/valid-styles
-    [rippleVars.opacity$hover]: tabStateVars.stateLayerOpacity$hover,
+    [statelayerVars.opacity$hover]: tabStateVars.stateLayerOpacity$hover,
     // eslint-disable-next-line @stylexjs/valid-styles
-    [rippleVars.color$pressed]: tabStateVars.stateLayerColor$pressed,
+    [statelayerVars.color$pressed]: tabStateVars.stateLayerColor$pressed,
     // eslint-disable-next-line @stylexjs/valid-styles
-    [rippleVars.opacity$pressed]: tabStateVars.stateLayerOpacity$pressed,
+    [statelayerVars.opacity$pressed]: tabStateVars.stateLayerOpacity$pressed,
   },
 });
 

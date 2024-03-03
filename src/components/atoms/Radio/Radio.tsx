@@ -14,7 +14,10 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useId } from '@/hooks/useId';
 import { useVisualState } from '@/hooks/useVisualState';
-import { Ripple, type IRippleStyleKey } from '@/components/utils/Ripple';
+import {
+  StateLayer,
+  type IStateLayerStyleKey,
+} from '@/components/utils/StateLayer';
 import {
   FocusRing,
   type IFocusRingStyleKey,
@@ -30,7 +33,7 @@ export type IRadioProps = IContainerProps<IRadioStyleKey, IRadioStyleVarKey> &
   > & {
     value?: string;
     onChange?: (checked: boolean) => IMaybeAsync<IAny>;
-    rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+    statelayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
     focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
   };
 
@@ -92,9 +95,9 @@ export const Radio: React.FC<IRadioProps> = ({
       ref={hostRef}
     >
       <div {...styleProps(['container', checked && 'container$checked'])}>
-        <Ripple
+        <StateLayer
           for={inputRef}
-          styles={[theme.rippleStyles, ...asArray(props.rippleStyles)]}
+          styles={[theme.statelayerStyles, ...asArray(props.statelayerStyles)]}
           disabled={disabled}
           visualState={visualState}
         />

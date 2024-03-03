@@ -3,12 +3,12 @@ import * as stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
 import type { IListItemStyleKey } from '@/components/atoms/ListItem';
-import type { IRippleStyleKey } from '@/components/utils/Ripple';
+import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import type { IItemStyleKey } from '@/components/atoms/Item';
 import { componentVars as vars } from './ListItem.stylex';
 import { componentVars as listItemStatesVars } from './ListItem.states.stylex';
-import { componentVars as rippleVars } from '../Ripple/Ripple.stylex';
+import { componentVars as statelayerVars } from '../StateLayer/StateLayer.stylex';
 import { componentVars as focusRingVars } from '../FocusRing/FocusRing.stylex';
 
 // https://github.com/material-components/material-web/blob/main/list/internal/listitem/_list-item.scss
@@ -97,7 +97,7 @@ export const itemStyles: MapNamespaces<IItemStyles> = stylex.create<
     paddingBottom: vars.bottomSpace,
     paddingInlineStart: vars.leadingSpace,
     paddingInlineEnd: vars.trailingSpace,
-    // Hide android tap color since we have ripple
+    // Hide android tap color since we have statelayer
     // eslint-disable-next-line @stylexjs/valid-styles
     WebkitTapHighlightColor: 'transparent',
   },
@@ -114,21 +114,21 @@ export const itemStyles: MapNamespaces<IItemStyles> = stylex.create<
   },
 });
 
-type IRippleStyles = IStyles<IRippleStyleKey>;
-export const rippleStyles: MapNamespaces<IRippleStyles> = stylex.create<
-  IStyles<IRippleStyleKey>
+type IStateLayerStyles = IStyles<IStateLayerStyleKey>;
+export const statelayerStyles: MapNamespaces<IStateLayerStyles> = stylex.create<
+  IStyles<IStateLayerStyleKey>
 >({
   host: {
     borderRadius: 'inherit',
 
     // eslint-disable-next-line @stylexjs/valid-styles
-    [rippleVars.color$hover]: vars.stateLayerColor$hover,
+    [statelayerVars.color$hover]: vars.stateLayerColor$hover,
     // eslint-disable-next-line @stylexjs/valid-styles
-    [rippleVars.opacity$hover]: vars.stateLayerOpacity$hover,
+    [statelayerVars.opacity$hover]: vars.stateLayerOpacity$hover,
     // eslint-disable-next-line @stylexjs/valid-styles
-    [rippleVars.color$pressed]: vars.stateLayerColor$pressed,
+    [statelayerVars.color$pressed]: vars.stateLayerColor$pressed,
     // eslint-disable-next-line @stylexjs/valid-styles
-    [rippleVars.opacity$pressed]: vars.stateLayerOpacity$pressed,
+    [statelayerVars.opacity$pressed]: vars.stateLayerOpacity$pressed,
   },
 });
 

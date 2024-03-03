@@ -21,7 +21,10 @@ import {
   FocusRing,
   type IFocusRingStyleKey,
 } from '@/components/utils/FocusRing';
-import { Ripple, type IRippleStyleKey } from '@/components/utils/Ripple';
+import {
+  StateLayer,
+  type IStateLayerStyleKey,
+} from '@/components/utils/StateLayer';
 
 export type IButtonBaseProps = IContainerProps<
   IButtonStyleKey,
@@ -35,7 +38,7 @@ export type IButtonBaseProps = IContainerProps<
     component?: React.ElementType;
     withLeadingIcon?: boolean;
     withTrailingIcon?: boolean;
-    rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+    statelayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
     focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
     elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
     children?: React.ReactNode;
@@ -115,8 +118,8 @@ export const ButtonBase: React.FC<IButtonBaseProps> = ({
         visualState={visualState}
         inward={inwardFocusRing}
       />
-      <Ripple
-        styles={[theme.rippleStyles, ...asArray(props.rippleStyles)]}
+      <StateLayer
+        styles={[theme.statelayerStyles, ...asArray(props.statelayerStyles)]}
         for={actionRef}
         disabled={disabled}
         visualState={visualState}

@@ -3,13 +3,13 @@ import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
 import type { IIconButtonStyleKey } from '@/components/atoms/IconButton';
-import type { IRippleStyleKey } from '@/components/utils/Ripple';
+import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import type { ICircularProgressIndicatorStyleKey } from '@/components/atoms/CircularProgressIndicator';
 import { componentVars as vars } from './IconButton.stylex';
 import { componentVars as iconButtonStateVars } from './IconButton.states.stylex';
 import { componentVars as focusRingVars } from '../FocusRing/FocusRing.stylex';
-import { componentVars as rippleVars } from '../Ripple/Ripple.stylex';
+import { componentVars as statelayerVars } from '../StateLayer/StateLayer.stylex';
 import { componentVars as circularProgressIndicatorVars } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
 
 // https://github.com/material-components/material-web/blob/main/iconbutton/internal/_shared.scss
@@ -89,7 +89,7 @@ export const styles: MapNamespaces<IIconButtonStyles> =
       textDecoration: 'none',
       font: 'inherit',
       padding: 0,
-      // Place content on top of elevation and ripple
+      // Place content on top of elevation and statelayer
       zIndex: 0,
       gap: 'inherit',
 
@@ -179,19 +179,20 @@ export const styles: MapNamespaces<IIconButtonStyles> =
     },
   });
 
-type IRippleStyles = IStyles<IRippleStyleKey>;
-export const rippleStyles: MapNamespaces<IRippleStyles> = stylex.create<
-  IStyles<IRippleStyleKey>
+type IStateLayerStyles = IStyles<IStateLayerStyleKey>;
+export const statelayerStyles: MapNamespaces<IStateLayerStyles> = stylex.create<
+  IStyles<IStateLayerStyleKey>
 >({
   host: {
     // eslint-disable-next-line @stylexjs/valid-styles
-    [rippleVars.color$hover]: iconButtonStateVars.stateLayerColor$hover,
+    [statelayerVars.color$hover]: iconButtonStateVars.stateLayerColor$hover,
     // eslint-disable-next-line @stylexjs/valid-styles
-    [rippleVars.opacity$hover]: iconButtonStateVars.stateLayerOpacity$hover,
+    [statelayerVars.opacity$hover]: iconButtonStateVars.stateLayerOpacity$hover,
     // eslint-disable-next-line @stylexjs/valid-styles
-    [rippleVars.color$pressed]: iconButtonStateVars.stateLayerColor$pressed,
+    [statelayerVars.color$pressed]: iconButtonStateVars.stateLayerColor$pressed,
     // eslint-disable-next-line @stylexjs/valid-styles
-    [rippleVars.opacity$pressed]: iconButtonStateVars.stateLayerOpacity$pressed,
+    [statelayerVars.opacity$pressed]:
+      iconButtonStateVars.stateLayerOpacity$pressed,
   },
 });
 

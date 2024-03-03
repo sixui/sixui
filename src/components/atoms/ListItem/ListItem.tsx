@@ -8,7 +8,10 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useVisualState } from '@/hooks/useVisualState';
-import { Ripple, type IRippleStyleKey } from '@/components/utils/Ripple';
+import {
+  StateLayer,
+  type IStateLayerStyleKey,
+} from '@/components/utils/StateLayer';
 import {
   FocusRing,
   type IFocusRingStyleKey,
@@ -55,7 +58,7 @@ export type IListItemProps = IContainerProps<
 
     component?: React.ElementType;
     itemStyles?: IZeroOrMore<ICompiledStyles<IItemStyleKey>>;
-    rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+    statelayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
     focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
     selected?: boolean;
   };
@@ -135,8 +138,11 @@ export const ListItem: React.FC<IListItemProps> = ({
             />
             {isInteractive ? (
               <Fragment>
-                <Ripple
-                  styles={[theme.rippleStyles, ...asArray(props.rippleStyles)]}
+                <StateLayer
+                  styles={[
+                    theme.statelayerStyles,
+                    ...asArray(props.statelayerStyles),
+                  ]}
                   for={actionRef}
                   disabled={disabled}
                   visualState={visualState}

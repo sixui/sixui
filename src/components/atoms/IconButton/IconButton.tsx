@@ -21,7 +21,10 @@ import {
   FocusRing,
   type IFocusRingStyleKey,
 } from '@/components/utils/FocusRing';
-import { Ripple, type IRippleStyleKey } from '@/components/utils/Ripple';
+import {
+  StateLayer,
+  type IStateLayerStyleKey,
+} from '@/components/utils/StateLayer';
 import { IThemeComponents } from '@/helpers/ThemeContext';
 import {
   IndeterminateCircularProgressIndicator,
@@ -49,7 +52,7 @@ export type IIconButtonProps = IContainerProps<
     selectedIcon?: React.ReactNode;
     component?: React.ElementType;
     'aria-label-selected'?: React.AriaAttributes['aria-label'];
-    rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+    statelayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
     focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
     circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
   };
@@ -173,11 +176,11 @@ export const IconButton: React.FC<IIconButtonProps> = ({
         for={actionRef}
         visualState={visualState}
       />
-      <Ripple
+      <StateLayer
         styles={[
-          theme.rippleStyles,
-          variantTheme.rippleStyles,
-          ...asArray(props.rippleStyles),
+          theme.statelayerStyles,
+          variantTheme.statelayerStyles,
+          ...asArray(props.statelayerStyles),
         ]}
         for={actionRef}
         disabled={disabled}

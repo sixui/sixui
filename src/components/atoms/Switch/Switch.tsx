@@ -18,7 +18,10 @@ import {
   FocusRing,
   type IFocusRingStyleKey,
 } from '@/components/utils/FocusRing';
-import { Ripple, type IRippleStyleKey } from '@/components/utils/Ripple';
+import {
+  StateLayer,
+  type IStateLayerStyleKey,
+} from '@/components/utils/StateLayer';
 import {
   IndeterminateCircularProgressIndicator,
   type ICircularProgressIndicatorStyleKey,
@@ -62,7 +65,7 @@ export type ISwitchProps = IContainerProps<
     ) => IMaybeAsync<IAny>;
     icon?: React.ReactNode;
     selectedIcon?: React.ReactNode;
-    rippleStyles?: IZeroOrMore<ICompiledStyles<IRippleStyleKey>>;
+    statelayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
     focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
     circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
   };
@@ -174,8 +177,11 @@ export const Switch: React.FC<ISwitchProps> = ({
               disabled && 'handleContainer$disabled',
             ])}
           >
-            <Ripple
-              styles={[theme.rippleStyles, ...asArray(props.rippleStyles)]}
+            <StateLayer
+              styles={[
+                theme.statelayerStyles,
+                ...asArray(props.statelayerStyles),
+              ]}
               for={inputRef}
               disabled={disabled}
               visualState={visualState}

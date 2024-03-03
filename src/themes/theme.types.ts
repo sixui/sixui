@@ -13,9 +13,9 @@ import type {
   IPlaceholderStyleVarKey,
 } from '@/components/atoms/Placeholder';
 import type {
-  IRippleStyleKey,
-  IRippleStyleVarKey,
-} from '@/components/utils/Ripple';
+  IStateLayerStyleKey,
+  IStateLayerStyleVarKey,
+} from '@/components/utils/StateLayer';
 import type {
   IElevationStyleKey,
   IElevationStyleVarKey,
@@ -110,7 +110,7 @@ export type ITemplateTheme = {
 export type IButtonTheme = {
   vars?: IStyleVarsTheme<IButtonStyleVarKey>;
   styles?: ICompiledStyles<IButtonStyleKey>;
-  rippleStyles?: ICompiledStyles<IRippleStyleKey>;
+  statelayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
   focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
   elevationStyles?: ICompiledStyles<IElevationStyleKey>;
   circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
@@ -119,22 +119,22 @@ export type IButtonTheme = {
 export type IChipTheme = {
   vars?: IStyleVarsTheme<IChipStyleVarKey>;
   styles?: ICompiledStyles<IChipStyleKey>;
-  rippleStyles?: ICompiledStyles<IRippleStyleKey>;
+  statelayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
   focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
   elevationStyles?: ICompiledStyles<IElevationStyleKey>;
   trailingActionFocusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
-  trailingActionRippleStyles?: ICompiledStyles<IRippleStyleKey>;
+  trailingActionStateLayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
   circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
 };
 
 export type IChipVariantTheme = IChipTheme & {
-  rippleTheme?: IStyleVarsTheme<IRippleStyleVarKey>;
+  statelayerTheme?: IStyleVarsTheme<IStateLayerStyleVarKey>;
 };
 
 export type IFabTheme = {
   vars?: IStyleVarsTheme<IFabStyleVarKey>;
   styles?: ICompiledStyles<IFabStyleKey>;
-  rippleStyles?: ICompiledStyles<IRippleStyleKey>;
+  statelayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
   focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
   elevationStyles?: ICompiledStyles<IElevationStyleKey>;
   circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
@@ -145,7 +145,7 @@ export type IFabVariantTheme = IFabTheme;
 export type IIconButtonTheme = {
   vars?: IStyleVarsTheme<IIconButtonStyleVarKey>;
   styles?: ICompiledStyles<IIconButtonStyleKey>;
-  rippleStyles?: ICompiledStyles<IRippleStyleKey>;
+  statelayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
   focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
   circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
 };
@@ -175,7 +175,7 @@ export type ICardTheme = {
 export type ITabTheme = {
   vars?: IStyleVarsTheme<ITabStyleVarKey>;
   styles?: ICompiledStyles<ITabStyleKey>;
-  rippleStyles?: ICompiledStyles<IRippleStyleKey>;
+  statelayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
   focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
   elevationStyles?: ICompiledStyles<IElevationStyleKey>;
 };
@@ -199,9 +199,9 @@ export type ITheme = {
       vars: IStyleVarsTheme<IPlaceholderStyleVarKey>;
       styles: ICompiledStyles<IPlaceholderStyleKey>;
     };
-    Ripple: {
-      vars: IStyleVarsTheme<IRippleStyleVarKey>;
-      styles: ICompiledStyles<IRippleStyleKey>;
+    StateLayer: {
+      vars: IStyleVarsTheme<IStateLayerStyleVarKey>;
+      styles: ICompiledStyles<IStateLayerStyleKey>;
     };
     Elevation: {
       vars: IStyleVarsTheme<IElevationStyleVarKey>;
@@ -247,7 +247,7 @@ export type ITheme = {
     Switch: {
       vars: IStyleVarsTheme<ISwitchStyleVarKey>;
       styles: ICompiledStyles<ISwitchStyleKey>;
-      rippleStyles?: ICompiledStyles<IRippleStyleKey>;
+      statelayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
       focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
       circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
     };
@@ -260,13 +260,13 @@ export type ITheme = {
     Radio: {
       vars?: IStyleVarsTheme<IRadioStyleVarKey>;
       styles?: ICompiledStyles<IRadioStyleKey>;
-      rippleStyles: ICompiledStyles<IRippleStyleKey>;
+      statelayerStyles: ICompiledStyles<IStateLayerStyleKey>;
       focusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
     };
     Checkbox: {
       vars?: IStyleVarsTheme<ICheckboxStyleVarKey>;
       styles?: ICompiledStyles<ICheckboxStyleKey>;
-      rippleStyles: ICompiledStyles<IRippleStyleKey>;
+      statelayerStyles: ICompiledStyles<IStateLayerStyleKey>;
       focusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
     };
     Item: {
@@ -278,7 +278,7 @@ export type ITheme = {
       styles?: ICompiledStyles<IListItemStyleKey>;
       itemStyles?: ICompiledStyles<IItemStyleKey>;
       itemVars?: IStyleVarsTheme<IItemStyleVarKey>;
-      rippleStyles: ICompiledStyles<IRippleStyleKey>;
+      statelayerStyles: ICompiledStyles<IStateLayerStyleKey>;
       focusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
     };
     List: {
@@ -295,7 +295,7 @@ export type ITheme = {
     };
     Card: ICardTheme & {
       elevationStyles?: ICompiledStyles<IElevationStyleKey>;
-      rippleStyles?: ICompiledStyles<IRippleStyleKey>;
+      statelayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
       focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
     };
     CardHeader: {
