@@ -1,3 +1,16 @@
+# v0.0.72 (Sun Mar 03 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: Card now forward onKeyDown and onPointerDown props ([@olivierpascal](https://github.com/olivierpascal))
+- chore: cleanup ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.71 (Sun Mar 03 2024)
 
 #### ⚠️ Pushed to `main`
