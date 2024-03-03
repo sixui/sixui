@@ -10,8 +10,10 @@ import { stateVars } from '../vars/state.stylex';
 const vars: Partial<IStyleVars<IRippleStyleVarKey>> = {
   color$hover: colorRolesVars.onSurface,
   color$pressed: colorRolesVars.onSurface,
+  color$dragged: colorRolesVars.onSurface,
   opacity$hover: stateVars.stateLayerOpacity$hover,
   opacity$pressed: stateVars.stateLayerOpacity$pressed,
+  opacity$dragged: stateVars.stateLayerOpacity$dragged,
 };
 
 export const componentVars = stylex.defineVars(

@@ -143,7 +143,7 @@ export const Ripple: React.FC<IRippleProps> = ({
    */
   const shouldReactToEvent = useCallback(
     (event: PointerEvent) => {
-      if (disabled || !event.isPrimary) {
+      if (visualState?.pressed || disabled || !event.isPrimary) {
         return false;
       }
 
@@ -165,7 +165,7 @@ export const Ripple: React.FC<IRippleProps> = ({
 
       return true;
     },
-    [disabled],
+    [visualState, disabled],
   );
 
   const determineRippleSize = useCallback(() => {
@@ -292,12 +292,13 @@ export const Ripple: React.FC<IRippleProps> = ({
   const endPressAnimation = useCallback(async () => {
     stateRef.current = IState.Inactive;
     const animation = growAnimationRef.current;
-    let pressAnimationPlayState = Infinity;
-    if (typeof animation?.currentTime === 'number') {
-      pressAnimationPlayState = animation.currentTime;
-    } else if (animation?.currentTime) {
-      pressAnimationPlayState = animation.currentTime.to('ms').value;
-    }
+
+    const pressAnimationPlayState =
+      typeof animation?.currentTime === 'number'
+        ? animation.currentTime
+        : animation?.currentTime
+          ? animation.currentTime.to('ms').value
+          : Infinity;
 
     if (pressAnimationPlayState >= MINIMUM_PRESS_MS) {
       setPressed(false);
@@ -408,7 +409,7 @@ export const Ripple: React.FC<IRippleProps> = ({
     (event: MouseEvent) => {
       // Click is a MouseEvent in Firefox and Safari, so we cannot use
       // `shouldReactToEvent`
-      if (disabled) {
+      if (visualState?.pressed || disabled) {
         return;
       }
 
@@ -424,7 +425,7 @@ export const Ripple: React.FC<IRippleProps> = ({
         void endPressAnimation();
       }
     },
-    [disabled, startPressAnimation, endPressAnimation],
+    [visualState, disabled, startPressAnimation, endPressAnimation],
   );
 
   const handleContextMenu = useCallback(() => {
@@ -481,6 +482,7 @@ export const Ripple: React.FC<IRippleProps> = ({
           visualState?.hovered && 'surface$hover',
           pressed && 'surface$pressed',
           !pressed && visualState?.pressed && 'surface$pressedStatic',
+          visualState?.dragged && 'surface$dragged',
         ])}
         ref={surfaceRef}
       />

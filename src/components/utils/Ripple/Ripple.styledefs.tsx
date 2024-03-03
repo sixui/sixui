@@ -4,12 +4,15 @@ export type IRippleStyleKey =
   | 'surface'
   | 'surface$hover'
   | 'surface$pressed'
-  | 'surface$pressedStatic';
+  | 'surface$pressedStatic'
+  | 'surface$dragged';
 
 export type IRippleStyleVarKey =
   | 'color'
   | 'color$hover'
   | 'color$pressed'
+  | 'color$dragged'
   | 'opacity'
   | 'opacity$hover'
-  | 'opacity$pressed';
+  | 'opacity$pressed'
+  | 'opacity$dragged';

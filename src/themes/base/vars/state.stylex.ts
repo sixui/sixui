@@ -7,7 +7,7 @@ export const stateVars = stylex.defineVars({
   stateLayerOpacity$hover: '0.08',
   // stateLayerOpacity$focus: '0', // not implemented
   stateLayerOpacity$pressed: '0.12',
-  // stateLayerOpacity$dragged: '0.16', // not implemented
+  stateLayerOpacity$dragged: '0.16',
 
   // opacity
   opacity$disabled: '0.38',

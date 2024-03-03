@@ -48,11 +48,11 @@
 - Card
 
   - Derivate from Paper
-  - Disabled state
   - Video Media
   - Loading state
   - Color
   - Title: truncate on x lines
+  - Better disabled state for content
 
 - CardMedia
 

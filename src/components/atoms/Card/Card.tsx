@@ -1,4 +1,4 @@
-import { Fragment, useMemo, useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -96,7 +96,8 @@ export const Card: React.FC<ICardProps> & ICardSubComponents = ({
   );
 
   const disabled = props.disabled;
-  const actionable = !disabled && (!!href || !!onClick);
+  const actionable =
+    !visualState?.dragged && !disabled && (!!href || !!onClick);
 
   const hasOutline =
     !!theme.styles?.outline ||
@@ -126,8 +127,8 @@ export const Card: React.FC<ICardProps> & ICardSubComponents = ({
           [theme.vars, variantTheme.vars, props.theme],
         )}
         ref={actionRef}
-        href={href}
-        onClick={actionable && onClick}
+        href={actionable ? href : undefined}
+        onClick={actionable ? onClick : undefined}
         role={actionable ? 'button' : undefined}
         tabIndex={disabled || !actionable ? -1 : 0}
         aria-label={props['aria-label']}
@@ -138,23 +139,18 @@ export const Card: React.FC<ICardProps> & ICardSubComponents = ({
           styles={[theme.elevationStyles, ...asArray(props.elevationStyles)]}
           disabled={disabled}
         />
+        <Ripple
+          styles={[theme.rippleStyles, ...asArray(props.rippleStyles)]}
+          for={actionRef}
+          disabled={disabled}
+          visualState={visualState}
+        />
         {actionable ? (
-          <Fragment>
-            <FocusRing
-              styles={[
-                theme.focusRingStyles,
-                ...asArray(props.focusRingStyles),
-              ]}
-              for={actionRef}
-              visualState={visualState}
-            />
-            <Ripple
-              styles={[theme.rippleStyles, ...asArray(props.rippleStyles)]}
-              for={actionRef}
-              disabled={disabled}
-              visualState={visualState}
-            />
-          </Fragment>
+          <FocusRing
+            styles={[theme.focusRingStyles, ...asArray(props.focusRingStyles)]}
+            for={actionRef}
+            visualState={visualState}
+          />
         ) : null}
         {hasOutline ? (
           <div

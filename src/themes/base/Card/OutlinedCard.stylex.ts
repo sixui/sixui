@@ -22,6 +22,8 @@ const vars: Partial<IStyleVars<ICardStyleVarKey>> = {
   containerElevation$hover: elevationVars.boxShadow$level0,
   // &:pressed
   containerElevation$pressed: elevationVars.boxShadow$level0,
+  // &:dragged
+  containerElevation$dragged: elevationVars.boxShadow$level3,
 
   // outline
   outlineColor: colorRolesVars.outlineVariant,
@@ -35,6 +37,8 @@ const vars: Partial<IStyleVars<ICardStyleVarKey>> = {
   outlineColor$hover: colorRolesVars.outlineVariant,
   // &:pressed
   outlineColor$pressed: colorRolesVars.outlineVariant,
+  // &:dragged
+  outlineColor$dragged: colorRolesVars.outlineVariant,
 };
 
 export const componentTheme = stylex.createTheme(baseComponentVars, vars);

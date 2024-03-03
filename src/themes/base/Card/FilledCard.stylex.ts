@@ -14,7 +14,7 @@ const vars: Partial<IStyleVars<ICardStyleVarKey>> = {
   containerColor: colorRolesVars.surfaceContainerHighest,
   containerElevation: elevationVars.boxShadow$level0,
   // &:disabled
-  containerColor$disabled: colorRolesVars.surface,
+  containerColor$disabled: colorRolesVars.surfaceContainerHighest,
   containerElevation$disabled: elevationVars.boxShadow$level0,
   // &:focus
   containerElevation$focus: elevationVars.boxShadow$level0,
@@ -22,6 +22,8 @@ const vars: Partial<IStyleVars<ICardStyleVarKey>> = {
   containerElevation$hover: elevationVars.boxShadow$level1,
   // &:pressed
   containerElevation$pressed: elevationVars.boxShadow$level0,
+  // &:dragged
+  containerElevation$dragged: elevationVars.boxShadow$level3,
 };
 
 export const componentTheme = stylex.createTheme(baseComponentVars, vars);

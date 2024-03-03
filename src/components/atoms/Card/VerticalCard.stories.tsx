@@ -42,6 +42,7 @@ const statesProps: IComponentPropsWithLegend<ICardProps> = [
   { $legend: 'Focused', visualState: { focused: true } },
   { $legend: 'Hovered', visualState: { hovered: true } },
   { $legend: 'Pressed', visualState: { pressed: true } },
+  { $legend: 'Dragged', visualState: { dragged: true } },
   { $legend: 'Disabled', disabled: true },
 ];
 

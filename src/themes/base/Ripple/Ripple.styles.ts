@@ -77,4 +77,14 @@ export const styles: MapNamespaces<IRippleStyles> =
         opacity: vars.opacity$pressed,
       },
     },
+    surface$dragged: {
+      '::before': {
+        backgroundColor: vars.color$dragged,
+        opacity: vars.opacity$dragged,
+      },
+
+      '::after': {
+        display: 'none',
+      },
+    },
   });

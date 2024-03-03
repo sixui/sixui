@@ -24,6 +24,7 @@ const statesProps: IComponentPropsWithLegend<IRippleProps> = [
   { $legend: 'Enabled' },
   { $legend: 'Hovered', visualState: { hovered: true } },
   { $legend: 'Pressed', visualState: { pressed: true } },
+  { $legend: 'Dragged', visualState: { dragged: true } },
   { $legend: 'Disabled', disabled: true },
 ];
 

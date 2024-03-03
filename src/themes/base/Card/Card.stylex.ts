@@ -10,7 +10,7 @@ const vars: Partial<IStyleVars<ICardStyleVarKey>> = {
   // container
   containerShape: shapeVars.corner$md,
   // &:disabled
-  containerOpacity$disabled: stateVars.containerOpacity$disabled,
+  containerOpacity$disabled: '0.38',
 
   // stateLayer
   // &:hover
@@ -19,6 +19,9 @@ const vars: Partial<IStyleVars<ICardStyleVarKey>> = {
   // &:pressed
   stateLayerColor$pressed: colorRolesVars.onSurface,
   stateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
+  // &:dragged
+  stateLayerColor$dragged: colorRolesVars.onSurface,
+  stateLayerOpacity$dragged: stateVars.stateLayerOpacity$dragged,
 };
 
 export const componentVars = stylex.defineVars(

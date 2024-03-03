@@ -22,6 +22,8 @@ const vars: Partial<IStyleVars<ICardStyleVarKey>> = {
   containerElevation$hover: elevationVars.boxShadow$level2,
   // &:pressed
   containerElevation$pressed: elevationVars.boxShadow$level1,
+  // &:dragged
+  containerElevation$dragged: elevationVars.boxShadow$level4,
 };
 
 export const componentTheme = stylex.createTheme(baseComponentVars, vars);

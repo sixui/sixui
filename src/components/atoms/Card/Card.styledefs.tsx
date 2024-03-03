@@ -8,6 +8,7 @@ export type ICardStyleKey =
   | 'outline'
   | 'outline$actionable'
   | 'outline$disabled'
+  | 'outline$dragged'
   | 'background'
   | 'background$disabled';
 
@@ -21,6 +22,7 @@ export type ICardStyleVarKey =
   | 'containerElevation$focus'
   | 'containerElevation$hover'
   | 'containerElevation$pressed'
+  | 'containerElevation$dragged'
   | 'outlineColor'
   | 'outlineWidth'
   | 'outlineColor$disabled'
@@ -28,9 +30,12 @@ export type ICardStyleVarKey =
   | 'outlineColor$focus'
   | 'outlineColor$hover'
   | 'outlineColor$pressed'
+  | 'outlineColor$dragged'
   | 'stateLayerColor$hover'
   | 'stateLayerOpacity$hover'
   | 'stateLayerColor$pressed'
-  | 'stateLayerOpacity$pressed';
+  | 'stateLayerOpacity$pressed'
+  | 'stateLayerColor$dragged'
+  | 'stateLayerOpacity$dragged';
 
 export type ICardStyleStateVarKey = 'elevation';

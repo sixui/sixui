@@ -31,4 +31,7 @@ export const styles: MapNamespaces<IOutlinedCardStyles> =
       borderColor: vars.outlineColor$disabled,
       opacity: vars.outlineOpacity$disabled,
     },
+    outline$dragged: {
+      borderColor: vars.outlineColor$dragged,
+    },
   });

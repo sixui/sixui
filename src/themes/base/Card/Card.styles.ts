@@ -21,7 +21,6 @@ export const styles: MapNamespaces<ICardStyles> = stylex.create<ICardStyles>({
     flexDirection: 'column',
     background: 'none',
     borderStyle: 'unset',
-    cursor: 'inherit',
     padding: 0,
     margin: 0,
     textAlign: 'unset',
@@ -33,20 +32,31 @@ export const styles: MapNamespaces<ICardStyles> = stylex.create<ICardStyles>({
     position: 'relative',
     zIndex: 0,
 
-    // eslint-disable-next-line @stylexjs/valid-styles
-    [cardStateVars.elevation]: vars.containerElevation,
+    [cardStateVars.elevation]: {
+      default: vars.containerElevation,
+      ':is([data-dragged])': vars.containerElevation$dragged,
+    },
+    cursor: {
+      default: 'inherit',
+      ':is([data-dragged])': 'grabbing',
+    },
   },
   host$actionable: {
-    cursor: 'pointer',
+    cursor: {
+      default: 'pointer',
+      ':is([data-dragged])': 'grabbing',
+    },
     [cardStateVars.elevation]: {
       default: vars.containerElevation,
       ':is([data-focused])': vars.containerElevation$focus,
       ':is([data-hovered])': vars.containerElevation$hover,
       ':is([data-pressed])': vars.containerElevation$pressed,
+      ':is([data-dragged])': vars.containerElevation$dragged,
     },
   },
   host$disabled: {
     cursor: 'default',
+    pointerEvents: 'none',
     // eslint-disable-next-line @stylexjs/valid-styles
     [cardStateVars.elevation]: vars.containerElevation$disabled,
   },
@@ -93,10 +103,16 @@ export const rippleStyles: MapNamespaces<IRippleStyles> = stylex.create<
     [rippleVars.color$hover]: vars.stateLayerColor$hover,
     // eslint-disable-next-line @stylexjs/valid-styles
     [rippleVars.opacity$hover]: vars.stateLayerOpacity$hover,
+
     // eslint-disable-next-line @stylexjs/valid-styles
     [rippleVars.color$pressed]: vars.stateLayerColor$pressed,
     // eslint-disable-next-line @stylexjs/valid-styles
     [rippleVars.opacity$pressed]: vars.stateLayerOpacity$pressed,
+
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [rippleVars.color$dragged]: vars.stateLayerColor$dragged,
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [rippleVars.opacity$dragged]: vars.stateLayerOpacity$dragged,
 
     zIndex: 1,
   },
