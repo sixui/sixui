@@ -4192,17 +4192,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stylexjs/babel-plugin@npm:0.5.0":
-  version: 0.5.0
-  resolution: "@stylexjs/babel-plugin@npm:0.5.0"
+"@stylexjs/babel-plugin@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "@stylexjs/babel-plugin@npm:0.5.1"
   dependencies:
     "@babel/core": "npm:^7.23.6"
     "@babel/helper-module-imports": "npm:^7.22.15"
     "@babel/traverse": "npm:^7.23.6"
     "@babel/types": "npm:^7.23.6"
-    "@stylexjs/shared": "npm:0.5.0"
-    "@stylexjs/stylex": "npm:0.5.0"
-  checksum: 10/d5e170325edf6e8f1f9bf11039ce985c645398473abd23c7069bc2492b84c0f3dc5f80d01c857e6560b37598089e047cdb63e053ebb46298ebab51e340b4f7cc
+    "@stylexjs/shared": "npm:0.5.1"
+    "@stylexjs/stylex": "npm:0.5.1"
+  checksum: 10/90b5dad983cfeda9860ea44031767d1cb7a68fdb4d39644274f891642dcb7540d2de756b3c4c27ffff2f4264451107ff6022d38636b7f4a64cf7351a1be6c0e4
   languageName: node
   linkType: hard
 
@@ -4215,28 +4215,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stylexjs/shared@npm:0.5.0":
-  version: 0.5.0
-  resolution: "@stylexjs/shared@npm:0.5.0"
+"@stylexjs/shared@npm:0.5.1":
+  version: 0.5.1
+  resolution: "@stylexjs/shared@npm:0.5.1"
   dependencies:
     postcss-value-parser: "npm:^4.1.0"
-  checksum: 10/7d02a892227c39a4412ce9c8b51a06c84c4222aa48cb3b4028806ed5ac1838a7a40c8ab203b1caef5007e25caafe94807d4458dbbc2e00488140191adef07c85
+  checksum: 10/6d42b225da74526773be026c5c0ea0bec00a9a369aa6e0ee4faf94caf1e79239f01a7f0f40570abb171f3e11aef20d4a7ac8dc76df1aaf50c4adfbae1afe3595
   languageName: node
   linkType: hard
 
-"@stylexjs/stylex@npm:0.5.0":
-  version: 0.5.0
-  resolution: "@stylexjs/stylex@npm:0.5.0"
-  dependencies:
-    css-mediaquery: "npm:^0.1.2"
-    invariant: "npm:^2.2.4"
-    styleq: "npm:0.1.3"
-    utility-types: "npm:^3.10.0"
-  checksum: 10/ebdf1e1f2add3a7c51d5bb4ce909f431aa289f05278486647eea65389ed604267997a686988df13dd698617e8bc01f92ac6a1e5c29d96dfc590ed34700deeba0
-  languageName: node
-  linkType: hard
-
-"@stylexjs/stylex@npm:^0.5.1":
+"@stylexjs/stylex@npm:0.5.1, @stylexjs/stylex@npm:^0.5.1":
   version: 0.5.1
   resolution: "@stylexjs/stylex@npm:0.5.1"
   dependencies:

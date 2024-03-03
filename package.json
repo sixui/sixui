@@ -114,8 +114,5 @@
     "@stylexjs/stylex": "^0.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
-  },
-  "resolutions": {
-    "@stylexjs/babel-plugin": "0.5.0"
   }
 }

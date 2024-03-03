@@ -57,6 +57,7 @@ const statesProps: IComponentPropsWithLegend<ICardProps> = [
   { $legend: 'Focused', visualState: { focused: true } },
   { $legend: 'Hovered', visualState: { hovered: true } },
   { $legend: 'Pressed', visualState: { pressed: true } },
+  { $legend: 'Disabled', disabled: true },
 ];
 
 const NonActionableContent: React.FC<{ headline?: string }> = ({

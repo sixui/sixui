@@ -127,7 +127,7 @@ export const Card: React.FC<ICardProps> & ICardSubComponents = ({
         )}
         ref={actionRef}
         href={href}
-        onClick={onClick}
+        onClick={actionable && onClick}
         role={actionable ? 'button' : undefined}
         tabIndex={disabled || !actionable ? -1 : 0}
         aria-label={props['aria-label']}
