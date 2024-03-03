@@ -1,3 +1,15 @@
+# v0.0.66 (Sun Mar 03 2024)
+
+#### ⚠️ Pushed to `main`
+
+- refactor: Ripple -> StateLayer ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.65 (Sun Mar 03 2024)
 
 #### ⚠️ Pushed to `main`
