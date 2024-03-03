@@ -47,4 +47,4 @@ export type IStyleVarsTheme<TKey extends string> = Theme<IStyleVarGroup<TKey>>;
 export type IZeroOrMore<T> = undefined | T | Array<T | undefined>;
 
 export type IArrayElement<TArray> =
-  TArray extends readonly (infer TElementType)[] ? TElementType : TArray;
+  TArray extends ReadonlyArray<infer TElementType> ? TElementType : TArray;

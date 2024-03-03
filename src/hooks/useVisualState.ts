@@ -1,3 +1,4 @@
+import { accumulate } from '@olivierpascal/helpers';
 import { useCallback, useState } from 'react';
 
 export type IVisualState = {
@@ -17,6 +18,7 @@ export type IVisualStateOptions = {
 };
 
 export const useVisualState = (
+  forcedVisualState?: IVisualState,
   options?: IVisualStateOptions,
 ): IUseVisualStateResult => {
   const [hovered, setHovered] = useState(false);
@@ -71,5 +73,32 @@ export const useVisualState = (
     ],
   );
 
-  return { visualState: { focused, hovered, pressed }, ref };
+  const accumulatedVisualState =
+    accumulate({ focused, hovered, pressed }, forcedVisualState) ?? {};
+
+  if (accumulatedVisualState?.dragged) {
+    return {
+      visualState: {
+        ...accumulatedVisualState,
+        hovered: false,
+        pressed: false,
+      },
+      ref,
+    };
+  }
+
+  if (accumulatedVisualState?.pressed) {
+    return {
+      visualState: {
+        ...accumulatedVisualState,
+        hovered: false,
+      },
+      ref,
+    };
+  }
+
+  return {
+    visualState: accumulatedVisualState,
+    ref,
+  };
 };

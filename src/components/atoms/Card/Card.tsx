@@ -1,5 +1,5 @@
 import { forwardRef, useMemo, useRef } from 'react';
-import { accumulate, asArray } from '@olivierpascal/helpers';
+import { asArray } from '@olivierpascal/helpers';
 
 import type {
   IPolymorphicComponentPropsWithRef,
@@ -99,9 +99,9 @@ const Card: ICard = forwardRef(function Card<
 
   const theme = useComponentTheme('Card');
   const variantTheme = useComponentTheme(variantMap[variant]);
-
-  const { visualState, ref: visualStateRef } = useVisualState();
-  const combinedVisualState = accumulate(visualState, props.visualState);
+  const { visualState, ref: visualStateRef } = useVisualState(
+    props.visualState,
+  );
 
   const styleProps = useMemo(
     () =>
@@ -111,14 +111,14 @@ const Card: ICard = forwardRef(function Card<
           variantTheme.styles,
           props.styles,
         ),
-        combinedVisualState,
+        visualState,
       ),
-    [theme.styles, variantTheme.styles, props.styles, combinedVisualState],
+    [theme.styles, variantTheme.styles, props.styles, visualState],
   );
 
   const disabled = props.disabled;
   const actionable = !disabled && (!!href || !!onClick);
-  const dragged = combinedVisualState?.dragged;
+  const dragged = visualState?.dragged;
 
   const hasOutline =
     !!theme.styles?.outline ||
@@ -168,7 +168,7 @@ const Card: ICard = forwardRef(function Card<
               ]}
               for={buttonRef}
               disabled={disabled}
-              visualState={combinedVisualState}
+              visualState={visualState}
             />
             <FocusRing
               styles={[
@@ -176,7 +176,7 @@ const Card: ICard = forwardRef(function Card<
                 ...asArray(props.focusRingStyles),
               ]}
               for={buttonRef}
-              visualState={combinedVisualState}
+              visualState={visualState}
             />
           </>
         ) : null}
