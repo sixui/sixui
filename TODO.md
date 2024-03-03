@@ -104,7 +104,7 @@
   - Should we export TabContext?
   - Test with reduced motion
 
-- Ripple
+- StateLayer
 
   - FIXME: no ripple effect on keyboard validation?
 
@@ -134,7 +134,6 @@
 
 ## Refactoring
 
-- Decorrelate Ripple effect with State Layer (hover, pressed, dragged, disabled)?
 - Field
   - error boolean -> hasError, ou:
   - suppimer error au profit de errorText

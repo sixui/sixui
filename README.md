@@ -63,7 +63,7 @@ Components
 - [x] List
 - [x] Paper
 - [x] Radio
-- [x] Ripple
+- [x] State Layer
 - [x] Switch
 - [x] Tabs
 - [x] Text field

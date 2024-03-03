@@ -80,7 +80,7 @@ export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
     lineHeight: vars.trailingSupportingTextLineHeight,
     letterSpacing: vars.trailingSupportingTextLetterSpacing,
   },
-  // A slot for background container elements, such as ripples and focus rings.
+  // A slot for background container elements, such as state layer and focus rings.
   container: {
     inset: 0,
     position: 'absolute',
