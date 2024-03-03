@@ -9,7 +9,7 @@ const eslintConfig = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['@stylexjs/eslint-plugin', 'fp'],
+  plugins: ['@stylexjs/eslint-plugin', 'fp', 'eslint-plugin-tsdoc'],
   extends: [
     'prettier',
     'plugin:prettier/recommended',
@@ -42,6 +42,7 @@ const eslintConfig = {
     },
   },
   rules: {
+    'tsdoc/syntax': 'warn',
     '@stylexjs/valid-styles': 'error',
     'import/no-default-export': 'error',
     'lines-between-class-members': [

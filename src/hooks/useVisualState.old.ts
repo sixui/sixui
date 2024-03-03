@@ -12,7 +12,7 @@ export type IVisualStateOptions = {
 };
 
 /**
- * @deprecated
+ * @deprecated Please use useVisualState from `@/hooks/useVisualState` instead.
  */
 export const useVisualState = (
   elementRef?: React.RefObject<HTMLElement>,

@@ -4,7 +4,7 @@ import { accumulate, asArray } from '@olivierpascal/helpers';
 import type {
   IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
-} from './types';
+} from '@/helpers/polymorphicComponentTypes';
 import type {
   IZeroOrMore,
   ICompiledStyles,
