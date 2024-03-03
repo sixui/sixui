@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { setRef } from './setRef';
+import { setRef } from '@/helpers/setRef';
 
 // https://github.com/mui/material-ui/blob/master/packages/mui-utils/src/useForkRef/useForkRef.ts
 // https://ollylut.medium.com/what-is-useforkref-hook-4be1c85d2d1b

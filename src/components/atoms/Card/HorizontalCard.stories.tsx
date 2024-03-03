@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
@@ -206,27 +206,6 @@ export const Filled: IStory = {
       rowsProps={statesProps}
     />
   ),
-  args: {
-    ...defaultArgs,
-    variant: 'filled',
-  },
-};
-
-const TestRefIssueComponent: React.FC<ICardProps> = (props) => {
-  const [showLink, setShowLink] = useState(false);
-
-  return (
-    <div>
-      <button onClick={() => setShowLink(!showLink)}>
-        Show links ({showLink ? 'on' : 'off'})
-      </button>
-      <Card {...props} href={showLink ? '#' : undefined} />
-    </div>
-  );
-};
-
-export const TestRefIssue: IStory = {
-  render: (props) => <TestRefIssueComponent {...props} />,
   args: {
     ...defaultArgs,
     variant: 'filled',

@@ -12,7 +12,7 @@ import type { ISwitchStyleKey, ISwitchStyleVarKey } from './Switch.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { useVisualState } from '@/hooks/useVisualState';
+import { useVisualState } from '@/hooks/useVisualState.old';
 import { useControlled } from '@/hooks/useControlled';
 import {
   FocusRing,

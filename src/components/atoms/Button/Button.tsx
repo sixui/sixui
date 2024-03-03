@@ -11,7 +11,7 @@ import type {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { useVisualState } from '@/hooks/useVisualState';
+import { useVisualState } from '@/hooks/useVisualState.old';
 import {
   type ICircularProgressIndicatorStyleKey,
   IndeterminateCircularProgressIndicator,

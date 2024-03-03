@@ -18,7 +18,7 @@ import { Badge, type IBadgeProps } from '../Badge';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { useVisualState } from '@/hooks/useVisualState';
+import { useVisualState } from '@/hooks/useVisualState.old';
 import { Elevation, IElevationStyleKey } from '@/components/utils/Elevation';
 import { FocusRing, IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import {

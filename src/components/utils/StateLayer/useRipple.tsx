@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import type { IVisualState } from '@/hooks/useVisualState';
+import type { IVisualState } from '@/hooks/useVisualState.old';
 import type { IPoint } from '@/helpers/types';
 import { EASING } from '@/helpers/animation';
 
@@ -10,6 +10,12 @@ export type IUseRippleProps = {
   for?: React.RefObject<HTMLElement>;
   visualState?: IVisualState;
   disabled?: boolean;
+};
+
+export type IUseRippleResult = {
+  setHostRef: (host: HTMLDivElement | null) => void;
+  surfaceRef: React.RefObject<HTMLDivElement>;
+  pressed: boolean;
 };
 
 const PRESS_GROW_MS = 450;
@@ -82,11 +88,7 @@ export const useRipple = ({
   visualState,
   for: forElementRef,
   disabled,
-}: IUseRippleProps): {
-  setHostRef: (host: HTMLDivElement | null) => void;
-  surfaceRef: React.RefObject<HTMLDivElement>;
-  pressed: boolean;
-} => {
+}: IUseRippleProps): IUseRippleResult => {
   const [pressed, setPressed] = useState(false);
   const [hostRef, setHostRef] = useState<HTMLDivElement | null>();
 

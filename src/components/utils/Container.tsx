@@ -5,7 +5,7 @@ import type {
   ICompiledStyles,
   IStyleVarsTheme,
 } from '@/helpers/types';
-import type { IVisualState } from '@/hooks/useVisualState';
+import type { IVisualState } from '@/hooks/useVisualState.old';
 
 export type IContainerProps<
   IStyleKey extends string = never,

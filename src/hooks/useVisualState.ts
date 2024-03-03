@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export type IVisualState = {
   hovered?: boolean;
@@ -7,14 +7,18 @@ export type IVisualState = {
   dragged?: boolean;
 };
 
+export type IUseVisualStateResult = {
+  visualState: IVisualState;
+  ref: (node: HTMLElement) => void;
+};
+
 export type IVisualStateOptions = {
   retainFocusAfterClick?: boolean;
 };
 
 export const useVisualState = (
-  elementRef: React.RefObject<HTMLElement>,
   options?: IVisualStateOptions,
-): IVisualState => {
+): IUseVisualStateResult => {
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
   const [pressed, setPressed] = useState(false);
@@ -40,42 +44,32 @@ export const useVisualState = (
   );
   const handleKeyUp = useCallback(() => setPressed(false), []);
 
-  useEffect(() => {
-    const element = elementRef.current;
-    if (!element) {
-      return;
-    }
+  const ref = useCallback(
+    (element: HTMLElement) => {
+      if (!element) {
+        return;
+      }
 
-    element.addEventListener('mouseenter', handleMouseEnter);
-    element.addEventListener('mouseleave', handleMouseLeave);
-    element.addEventListener('focus', handleFocus);
-    element.addEventListener('blur', handleBlur);
-    element.addEventListener('mousedown', handleMouseDown);
-    element.addEventListener('mouseup', handleMouseUp);
-    element.addEventListener('keydown', handleKeyDown);
-    element.addEventListener('keyup', handleKeyUp);
+      element.addEventListener('mouseenter', handleMouseEnter);
+      element.addEventListener('mouseleave', handleMouseLeave);
+      element.addEventListener('focus', handleFocus);
+      element.addEventListener('blur', handleBlur);
+      element.addEventListener('mousedown', handleMouseDown);
+      element.addEventListener('mouseup', handleMouseUp);
+      element.addEventListener('keydown', handleKeyDown);
+      element.addEventListener('keyup', handleKeyUp);
+    },
+    [
+      handleMouseEnter,
+      handleMouseLeave,
+      handleFocus,
+      handleBlur,
+      handleMouseDown,
+      handleMouseUp,
+      handleKeyDown,
+      handleKeyUp,
+    ],
+  );
 
-    return () => {
-      element.removeEventListener('mouseenter', handleMouseEnter);
-      element.removeEventListener('mouseleave', handleMouseLeave);
-      element.removeEventListener('focus', handleFocus);
-      element.removeEventListener('blur', handleBlur);
-      element.removeEventListener('mousedown', handleMouseDown);
-      element.removeEventListener('mouseup', handleMouseUp);
-      element.removeEventListener('keydown', handleKeyDown);
-      element.removeEventListener('keyup', handleKeyUp);
-    };
-  }, [
-    elementRef,
-    handleMouseEnter,
-    handleMouseLeave,
-    handleFocus,
-    handleBlur,
-    handleMouseDown,
-    handleMouseUp,
-    handleKeyDown,
-    handleKeyUp,
-  ]);
-
-  return { focused, hovered, pressed };
+  return { visualState: { focused, hovered, pressed }, ref };
 };

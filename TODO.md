@@ -134,6 +134,7 @@
 
 ## Refactoring
 
+- 'component'?: React.ReactNode' property -> 'as'
 - Field
   - error boolean -> hasError, ou:
   - suppimer error au profit de errorText
