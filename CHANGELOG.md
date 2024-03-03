@@ -1,3 +1,15 @@
+# v0.0.70 (Sun Mar 03 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: Card ref is now stable when Component change ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.69 (Sun Mar 03 2024)
 
 #### ⚠️ Pushed to `main`
