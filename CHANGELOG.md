@@ -1,3 +1,15 @@
+# v0.0.76 (Mon Mar 04 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: expose some hooks ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.75 (Sun Mar 03 2024)
 
 #### ⚠️ Pushed to `main`
