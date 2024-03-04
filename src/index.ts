@@ -39,4 +39,7 @@ export * from './components/atoms/CardHeader';
 export * from './components/atoms/CardMedia';
 export * from './components/atoms/CardTitle';
 
+// hooks
+export * from './hooks/useForkRef';
+
 export { theme as baseTheme } from './themes/base';
