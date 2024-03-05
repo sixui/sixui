@@ -13,8 +13,8 @@ type IClassName<IStyleKey extends string> =
   | undefined
   | false;
 
-type IStyles<IStyleKey extends string> =
-  | IStyleVarsTheme<IStyleKey>
+type IStyles<IStyleVarKey extends string> =
+  | IStyleVarsTheme<IStyleVarKey>
   | CompiledStyles
   | null
   | false
@@ -24,7 +24,7 @@ export type IStyleProps<
   IStyleKey extends string,
   IStyleVarKey extends string,
 > = (
-  classNames?: Array<
+  styleKeys?: Array<
     IClassName<IStyleKey> | Array<IClassName<IStyleKey>> | StyleXStyles
   >,
   styles?: Array<IZeroOrMore<IStyles<IStyleVarKey>>>,
@@ -37,10 +37,10 @@ export const stylePropsFactory =
     combineStyles: IStylesCombinator<IStyleKey>,
     visualState?: IVisualState,
   ): IStyleProps<IStyleKey, IStyleVarKey> =>
-  (classNames, styles) => ({
+  (styleKeys, styles) => ({
     ...stylex.props(
-      ...(classNames
-        ? combineStyles(...(classNames.flat() as Array<IClassName<IStyleKey>>))
+      ...(styleKeys
+        ? combineStyles(...(styleKeys.flat() as Array<IClassName<IStyleKey>>))
         : []),
       ...(styles ? asArray(styles) : []),
     ),
