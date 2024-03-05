@@ -101,6 +101,10 @@ import type {
   IAvatarStyleKey,
   IAvatarStyleVarKey,
 } from '@/components/atoms/Avatar';
+import type {
+  IDialogStyleKey,
+  IDialogStyleVarKey,
+} from '@/components/atoms/Dialog';
 
 export type ITemplateTheme = {
   vars?: IStyleVarsTheme<ITemplateStyleVarKey>;
@@ -346,6 +350,10 @@ export type ITheme = {
     Avatar: {
       vars?: IStyleVarsTheme<IAvatarStyleVarKey>;
       styles?: ICompiledStyles<IAvatarStyleKey>;
+    };
+    Dialog: {
+      vars?: IStyleVarsTheme<IDialogStyleVarKey>;
+      styles?: ICompiledStyles<IDialogStyleKey>;
     };
   };
 };

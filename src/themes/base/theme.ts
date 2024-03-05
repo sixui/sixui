@@ -200,6 +200,9 @@ import { styles as badgeStyles } from './Badge/Badge.styles';
 import { componentTheme as avatarTheme } from './Avatar/Avatar.stylex';
 import { styles as avatarStyles } from './Avatar/Avatar.styles';
 
+import { componentTheme as dialogTheme } from './Dialog/Dialog.stylex';
+import { styles as dialogStyles } from './Dialog/Dialog.styles';
+
 export const theme: ITheme = {
   name: 'Material Design 3',
   colorSchemes: {
@@ -437,6 +440,10 @@ export const theme: ITheme = {
     Avatar: {
       vars: avatarTheme,
       styles: avatarStyles,
+    },
+    Dialog: {
+      vars: dialogTheme,
+      styles: dialogStyles,
     },
   },
 };
