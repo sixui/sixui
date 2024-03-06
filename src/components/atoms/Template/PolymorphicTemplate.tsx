@@ -1,11 +1,11 @@
 import { forwardRef, useMemo } from 'react';
 
+import type { IContainerProps } from '@/helpers/types';
 import type {
   IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/polymorphicComponentTypes';
-import type { IContainerProps } from '@/components/utils/Container';
 import type {
   ITemplateStyleKey,
   ITemplateStyleVarKey,
@@ -25,30 +25,42 @@ export type IPolymorphicTemplateProps<
   TRoot extends React.ElementType = typeof DEFAULT_TAG,
 > = IPolymorphicComponentPropsWithRef<TRoot, IPolymorphicTemplateOwnProps>;
 
-export const PolymorphicTemplate = forwardRef(function PolymorphicTemplate<
+type IPolymorphicTemplate = <
   TRoot extends React.ElementType = typeof DEFAULT_TAG,
->(props: IPolymorphicTemplateProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
-  const { as, styles, sx, children, ...other } =
-    props as IWithAsProp<IPolymorphicTemplateOwnProps>;
+>(
+  props: IPolymorphicTemplateProps<TRoot>,
+) => React.ReactNode;
 
-  const theme = useComponentTheme('Template');
-  const styleCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, styles),
-    [theme.styles, styles],
-  );
-  const styleProps = useMemo(
-    () =>
-      stylePropsFactory<ITemplateStyleKey, ITemplateStyleVarKey>(
-        styleCombinator,
-      ),
-    [styleCombinator],
-  );
+export const PolymorphicTemplate: IPolymorphicTemplate = forwardRef(
+  function PolymorphicTemplate<
+    TRoot extends React.ElementType = typeof DEFAULT_TAG,
+  >(props: IPolymorphicTemplateProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+    const { as, styles, sx, children, ...other } =
+      props as IWithAsProp<IPolymorphicTemplateOwnProps>;
 
-  const Component = as ?? DEFAULT_TAG;
+    const theme = useComponentTheme('Template');
+    const styleCombinator = useMemo(
+      () => stylesCombinatorFactory(theme.styles, styles),
+      [theme.styles, styles],
+    );
+    const styleProps = useMemo(
+      () =>
+        stylePropsFactory<ITemplateStyleKey, ITemplateStyleVarKey>(
+          styleCombinator,
+        ),
+      [styleCombinator],
+    );
 
-  return (
-    <Component {...styleProps(['host', sx], [theme.vars])} ref={ref} {...other}>
-      {children}
-    </Component>
-  );
-});
+    const Component = as ?? DEFAULT_TAG;
+
+    return (
+      <Component
+        {...styleProps(['host', sx], [theme.vars])}
+        ref={ref}
+        {...other}
+      >
+        {children}
+      </Component>
+    );
+  },
+);

@@ -1,23 +1,19 @@
-import { useMemo } from 'react';
+import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/components/utils/Container';
+import type { IContainerProps } from '@/helpers/types';
+import type {
+  IPolymorphicComponentPropsWithRef,
+  IPolymorphicRef,
+  IWithAsProp,
+} from '@/helpers/polymorphicComponentTypes';
 import type { ITypographyStyleKey } from './Typography.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export type ITypographyProps = Omit<
-  IContainerProps<ITypographyStyleKey>,
-  'theme'
-> & {
-  variant?: 'display' | 'headline' | 'title' | 'body' | 'label';
-  size?: 'lg' | 'md' | 'sm';
-  children?: React.ReactNode;
-  gutterBottom?: boolean;
-  component?: React.ElementType;
-};
+const DEFAULT_TAG = 'span';
 
-const tagMap = {
+export const typographyTagMap = {
   display$lg: 'span',
   display$md: 'span',
   display$sm: 'span',
@@ -35,37 +31,60 @@ const tagMap = {
   label$sm: 'span',
 };
 
-export const Typography: React.FC<ITypographyProps> = ({
-  variant = 'body',
-  size = 'md',
-  children,
-  gutterBottom,
-  component,
-  ...props
-}) => {
-  const theme = useComponentTheme('Typography');
+export type ITypographyOwnProps = IContainerProps<ITypographyStyleKey> & {
+  variant?: 'display' | 'headline' | 'title' | 'body' | 'label';
+  size?: 'lg' | 'md' | 'sm';
+  children?: React.ReactNode;
+  gutterBottom?: boolean;
+  component?: React.ElementType;
+};
 
+export type ITypographyProps<
+  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+> = IPolymorphicComponentPropsWithRef<TRoot, ITypographyOwnProps>;
+
+type ITypography = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
+  props: ITypographyProps<TRoot>,
+) => React.ReactNode;
+
+export const Typography: ITypography = forwardRef(function Typography<
+  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+>(props: ITypographyProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+  const {
+    as,
+    styles,
+    sx,
+    variant = 'body',
+    size = 'md',
+    children,
+    gutterBottom,
+    ...other
+  } = props as IWithAsProp<ITypographyOwnProps>;
+
+  const theme = useComponentTheme('Typography');
+  const stylesCombinator = useMemo(
+    () => stylesCombinatorFactory(theme.styles, styles),
+    [theme.styles, styles],
+  );
   const styleProps = useMemo(
-    () =>
-      stylePropsFactory<ITypographyStyleKey>(
-        stylesCombinatorFactory(theme.styles, props.styles),
-        props.visualState,
-      ),
-    [theme.styles, props.styles, props.visualState],
+    () => stylePropsFactory<ITypographyStyleKey>(stylesCombinator),
+    [stylesCombinator],
   );
 
-  const Tag = component ?? tagMap[`${variant}$${size}`];
+  const Component = as ?? typographyTagMap[`${variant}$${size}`];
 
   return (
-    <Tag
+    <Component
       {...styleProps([
         'host',
         gutterBottom && 'host$gutterBottom',
         `${variant}$${size}`,
-        props.sx,
+        sx,
       ])}
+      ref={ref}
+      {...other}
     >
       {children}
-    </Tag>
+    </Component>
   );
-};
+});

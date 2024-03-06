@@ -2,12 +2,12 @@ import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type {
+  IContainerProps,
   IZeroOrMore,
   ICompiledStyles,
   IAny,
   IMaybeAsync,
 } from '@/helpers/types';
-import type { IContainerProps } from '@/components/utils/Container';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type {
   ITabStyleKey,

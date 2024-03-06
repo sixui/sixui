@@ -1,18 +1,20 @@
 import { forwardRef, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
-import type { IZeroOrMore, ICompiledStyles } from '@/helpers/types';
+import type {
+  IContainerProps,
+  IZeroOrMore,
+  ICompiledStyles,
+} from '@/helpers/types';
 import type {
   IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/polymorphicComponentTypes';
-import type { IContainerProps } from '@/components/utils/Container';
 import type { IFabSize, IFabStyleKey, IFabVariant } from './Fab.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { IThemeComponents } from '@/helpers/ThemeContext';
-import { type ICircularProgressIndicatorStyleKey } from '@/components/atoms/CircularProgressIndicator';
 import { type IButtonStyleKey, type IButtonOwnProps, Button } from '../Button';
 
 // https://github.com/material-components/material-web/blob/main/fab/internal/shared.ts
@@ -20,13 +22,13 @@ import { type IButtonStyleKey, type IButtonOwnProps, Button } from '../Button';
 
 const DEFAULT_TAG = 'button';
 
-export type IFabOwnProps = Omit<IButtonOwnProps, 'variant'> &
+export type IFabOwnProps = Omit<
+  IButtonOwnProps,
+  'variant' | 'icon' | 'trailingIcon'
+> &
   IContainerProps<IFabStyleKey> & {
     innerStyles?: IButtonOwnProps['innerStyles'] & {
       button?: IZeroOrMore<ICompiledStyles<IButtonStyleKey>>;
-      circularProgressIndicator?: IZeroOrMore<
-        ICompiledStyles<ICircularProgressIndicatorStyleKey>
-      >;
     };
     children?: React.ReactNode;
     size?: IFabSize;
@@ -63,11 +65,13 @@ export const Fab: IFab = forwardRef(function Fab<
   const {
     styles,
     sx,
+    as = DEFAULT_TAG,
     innerStyles,
     size = 'md',
     variant = 'surface',
     label,
     lowered,
+    children,
     ...other
   } = props as IWithAsProp<IFabOwnProps>;
 
@@ -83,6 +87,7 @@ export const Fab: IFab = forwardRef(function Fab<
   return (
     <Button
       ref={ref}
+      as={as}
       variant='elevated'
       styles={asArray(innerStyles?.button)}
       sx={[
@@ -96,6 +101,7 @@ export const Fab: IFab = forwardRef(function Fab<
         variantTheme.vars,
         sx,
       ]}
+      icon={children}
       {...other}
     >
       {label}

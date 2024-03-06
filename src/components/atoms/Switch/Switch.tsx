@@ -2,12 +2,12 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
 import type {
+  IContainerProps,
   IZeroOrMore,
   ICompiledStyles,
   IAny,
   IMaybeAsync,
 } from '@/helpers/types';
-import type { IContainerProps } from '@/components/utils/Container';
 import type { ISwitchStyleKey, ISwitchStyleVarKey } from './Switch.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';

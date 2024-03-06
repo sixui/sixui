@@ -1,8 +1,11 @@
 import { useMemo, useRef } from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
-import type { IZeroOrMore, ICompiledStyles } from '@/helpers/types';
-import type { IContainerProps } from '@/components/utils/Container';
+import type {
+  IContainerProps,
+  IZeroOrMore,
+  ICompiledStyles,
+} from '@/helpers/types';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type {
   IPaperStyleKey,

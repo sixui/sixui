@@ -31,14 +31,19 @@ import { ButtonBase, type IButtonBaseOwnProps } from './ButtonBase';
 
 const DEFAULT_TAG = 'button';
 
-export type IButtonOwnProps = IButtonBaseOwnProps & {
+export type IButtonOwnProps = Omit<
+  IButtonBaseOwnProps,
+  'withLeadingIcon' | 'withTrailingIcon'
+> & {
+  innerStyles?: IButtonBaseOwnProps['innerStyles'] & {
+    circularProgressIndicator?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
+  };
   variant?: IButtonVariant;
   icon?: React.ReactNode;
   trailingIcon?: boolean;
   loading?: boolean;
   loadingAnimation?: 'progressIndicator' | 'halfSpin' | 'none';
   loadingText?: string;
-  circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
   onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
 };
 
@@ -74,7 +79,7 @@ export const Button: IButton = forwardRef(function Button<
   const {
     styles,
     sx,
-    as: asProp,
+    as = DEFAULT_TAG,
     innerStyles,
     children,
     onClick,
@@ -84,7 +89,6 @@ export const Button: IButton = forwardRef(function Button<
     loading: loadingProp,
     loadingAnimation = 'progressIndicator',
     loadingText,
-    circularProgressIndicatorStyles,
     disabled: disabledProp,
     ...other
   } = props as IWithAsProp<IButtonOwnProps>;
@@ -145,6 +149,7 @@ export const Button: IButton = forwardRef(function Button<
   return (
     <ButtonBase
       ref={ref}
+      as={as}
       styles={[theme.styles, variantTheme.styles, ...asArray(styles)]}
       sx={[theme.vars, variantTheme.vars, sx]}
       withLeadingIcon={hasLeadingIcon}
@@ -169,7 +174,6 @@ export const Button: IButton = forwardRef(function Button<
       }}
       onClick={handleClick}
       disabled={disabled}
-      as={asProp as React.ElementType}
       {...other}
     >
       {hasLeadingIcon ? (
@@ -185,7 +189,7 @@ export const Button: IButton = forwardRef(function Button<
               styles={[
                 theme.circularProgressIndicatorStyles,
                 variantTheme.circularProgressIndicatorStyles,
-                ...asArray(circularProgressIndicatorStyles),
+                ...asArray(innerStyles?.circularProgressIndicator),
               ]}
             />
           ) : icon ? (
@@ -226,7 +230,7 @@ export const Button: IButton = forwardRef(function Button<
                 styles={[
                   theme.circularProgressIndicatorStyles,
                   variantTheme.circularProgressIndicatorStyles,
-                  ...asArray(circularProgressIndicatorStyles),
+                  ...asArray(innerStyles?.circularProgressIndicator),
                 ]}
               />
             </div>
@@ -246,7 +250,7 @@ export const Button: IButton = forwardRef(function Button<
               styles={[
                 theme.circularProgressIndicatorStyles,
                 variantTheme.circularProgressIndicatorStyles,
-                ...asArray(circularProgressIndicatorStyles),
+                ...asArray(innerStyles?.circularProgressIndicator),
               ]}
             />
           </div>

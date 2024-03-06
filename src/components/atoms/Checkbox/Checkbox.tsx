@@ -2,12 +2,12 @@ import { forwardRef, useCallback, useMemo, useRef } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type {
+  IContainerProps,
   IZeroOrMore,
   ICompiledStyles,
   IAny,
   IMaybeAsync,
 } from '@/helpers/types';
-import type { IContainerProps } from '@/components/utils/Container';
 import type {
   ICheckboxStyleKey,
   ICheckboxStyleVarKey,
@@ -30,26 +30,25 @@ import { useForkRef } from '@/hooks/useForkRef';
 
 // https://github.com/material-components/material-web/blob/main/checkbox/internal/checkbox.ts
 
-export type ICheckboxProps = IContainerProps<ICheckboxStyleKey> &
-  Pick<React.AriaAttributes, 'aria-label' | 'aria-invalid'> & {
-    innerStyles?: {
-      stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
-      focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-    };
-    visualState?: IVisualState;
-    required?: boolean;
-    disabled?: boolean;
-    checked?: boolean;
-    id?: string;
-    name?: string;
-    value?: string;
-    defaultChecked?: boolean;
-    indeterminate?: boolean;
-    onChange?: (
-      event: React.ChangeEvent<HTMLInputElement>,
-      checked: boolean,
-    ) => IMaybeAsync<IAny>;
+export type ICheckboxProps = IContainerProps<ICheckboxStyleKey> & {
+  innerStyles?: {
+    stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
+    focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
   };
+  visualState?: IVisualState;
+  required?: boolean;
+  disabled?: boolean;
+  checked?: boolean;
+  id?: string;
+  name?: string;
+  value?: string;
+  defaultChecked?: boolean;
+  indeterminate?: boolean;
+  onChange?: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    checked: boolean,
+  ) => IMaybeAsync<IAny>;
+};
 
 export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
   function Checkbox(props, ref) {

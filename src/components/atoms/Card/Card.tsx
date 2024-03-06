@@ -2,17 +2,17 @@ import { forwardRef, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type {
-  IPolymorphicComponentPropsWithRef,
-  IPolymorphicRef,
-  IWithAsProp,
-} from '@/helpers/polymorphicComponentTypes';
-import type {
+  IContainerProps,
   IZeroOrMore,
   ICompiledStyles,
   IMaybeAsync,
   IAny,
 } from '@/helpers/types';
-import type { IContainerProps } from '@/components/utils/Container';
+import type {
+  IPolymorphicComponentPropsWithRef,
+  IPolymorphicRef,
+  IWithAsProp,
+} from '@/helpers/polymorphicComponentTypes';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type {
   ICardStyleKey,
@@ -56,9 +56,6 @@ export type ICardOwnProps = IContainerProps<ICardStyleKey> & {
   onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
   href?: string;
   disabled?: boolean;
-  'aria-label'?: string;
-  'aria-haspopup'?: boolean;
-  'aria-expanded'?: boolean;
 };
 
 export type ICardProps<TRoot extends React.ElementType = typeof DEFAULT_TAG> =
@@ -85,9 +82,9 @@ const Card: ICard = forwardRef(function Card<
   TRoot extends React.ElementType = typeof DEFAULT_TAG,
 >(props: ICardProps<TRoot>, ref: IPolymorphicRef<TRoot>) {
   const {
+    as,
     styles,
     sx,
-    as,
     innerStyles,
     visualState: visualStateProp,
     variant = 'filled',

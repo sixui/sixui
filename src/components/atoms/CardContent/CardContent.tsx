@@ -1,6 +1,6 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/components/utils/Container';
+import type { IContainerProps } from '@/helpers/types';
 import type {
   ICardContentStyleKey,
   ICardContentStyleVarKey,

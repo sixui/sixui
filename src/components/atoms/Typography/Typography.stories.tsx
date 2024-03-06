@@ -6,7 +6,11 @@ import {
   type IComponentPropsWithLegend,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { type ITypographyProps, Typography } from './Typography';
+import {
+  type ITypographyProps,
+  Typography,
+  typographyTagMap,
+} from './Typography';
 
 // https://m3.material.io/styles/typography/overview
 // https://material-web.dev/theming/typography/
@@ -28,91 +32,91 @@ const LOREM$LG =
 
 const rowsProps: IComponentPropsWithLegend<ITypographyProps> = [
   {
-    $legend: 'Display (lg) | span',
+    $legend: `Display (lg) | ${typographyTagMap.display$lg}`,
     variant: 'display',
     size: 'lg',
     children: LOREM$SM,
   },
   {
-    $legend: 'Display (md) | span',
+    $legend: `Display (md) | ${typographyTagMap.display$md}`,
     variant: 'display',
     size: 'md',
     children: LOREM$SM,
   },
   {
-    $legend: 'Display (sm) | span',
+    $legend: `Display (sm) | ${typographyTagMap.display$sm}`,
     variant: 'display',
     size: 'sm',
     children: LOREM$SM,
   },
   {
-    $legend: 'Headline (lg) | h1',
+    $legend: `Headline (lg) | ${typographyTagMap.headline$lg}`,
     variant: 'headline',
     size: 'lg',
     children: LOREM$MD,
   },
   {
-    $legend: 'Headline (md) | h2',
+    $legend: `Headline (md) | ${typographyTagMap.headline$md}`,
     variant: 'headline',
     size: 'md',
     children: LOREM$MD,
   },
   {
-    $legend: 'Headline (sm) | h3',
+    $legend: `Headline (sm) | | ${typographyTagMap.headline$sm}`,
     variant: 'headline',
     size: 'sm',
     children: LOREM$MD,
   },
   {
-    $legend: 'Title (lg) | h4',
+    $legend: `Title (lg) | ${typographyTagMap.title$lg}`,
     variant: 'title',
     size: 'lg',
     children: LOREM$MD,
   },
   {
-    $legend: 'Title (md) | h5',
+    $legend: `Title (md) | ${typographyTagMap.title$md}`,
     variant: 'title',
     size: 'md',
     children: LOREM$MD,
   },
   {
-    $legend: 'Title (sm) | h6',
+    $legend: `Title (sm) | | ${typographyTagMap.title$sm}`,
     variant: 'title',
     size: 'sm',
     children: LOREM$MD,
   },
   {
-    $legend: 'Body (lg) | p',
+    $legend: `Body (lg) | ${typographyTagMap.body$lg}`,
     variant: 'body',
     size: 'lg',
     children: LOREM$LG,
   },
   {
-    $legend: 'Body (md) | p',
+    $legend: `Body (md) | ${typographyTagMap.body$md}`,
     variant: 'body',
     size: 'md',
     children: LOREM$LG,
   },
   {
-    $legend: 'Body (sm) | p',
+    $legend: `Body (sm) | ${typographyTagMap.body$sm}`,
     variant: 'body',
     size: 'sm',
     children: LOREM$LG,
   },
   {
-    $legend: 'Label (lg) | span',
+    $legend: `Label (lg) | ${typographyTagMap.label$lg}`,
     variant: 'label',
     size: 'lg',
     children: LOREM$XS,
   },
   {
-    $legend: 'Label (md) | span',
+    $legend: `Label (md) | ${typographyTagMap.label$md}`,
     variant: 'label',
     size: 'md',
     children: LOREM$XS,
   },
   {
-    $legend: 'Label (sm) | span',
+    $legend: `Label (sm) | ${typographyTagMap.label$sm}`,
     variant: 'label',
     size: 'sm',
     children: LOREM$XS,

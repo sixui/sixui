@@ -1,5 +1,6 @@
-import type { IContainerProps } from '@/components/utils/Container';
-import type { IMakeOptional } from '@/helpers/types';
+import { forwardRef } from 'react';
+
+import type { IContainerProps, IMakeOptional } from '@/helpers/types';
 import type { IDeterminateCircularProgressIndicatorProps } from './DeterminateCircularProgressIndicator';
 import type { IDeterminateCircularProgressIndicatorStyleKey } from './DeterminateCircularProgressIndicator.styledefs';
 import type { IIndeterminateCircularProgressIndicatorProps } from './IndeterminateCircularProgressIndicator';
@@ -7,7 +8,6 @@ import type { IIndeterminateCircularProgressIndicatorStyleKey } from './Indeterm
 import { DeterminateCircularProgressIndicator } from './DeterminateCircularProgressIndicator';
 import { IndeterminateCircularProgressIndicator } from './IndeterminateCircularProgressIndicator';
 import { ICircularProgressIndicatorStyleKey } from './CircularProgressIndicator.styledefs';
-import { forwardRef } from 'react';
 
 export type ICircularProgressIndicatorProps = IContainerProps<
   | ICircularProgressIndicatorStyleKey

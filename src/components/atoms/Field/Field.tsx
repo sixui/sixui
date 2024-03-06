@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import type { IContainerProps } from '@/components/utils/Container';
+import type { IContainerProps } from '@/helpers/types';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type { IFieldStyleKey, IFieldVariant } from './Field.styledefs';
 import type { ITextFieldStyleVarKey } from '../TextField';
@@ -306,24 +306,22 @@ export const Field: React.FC<IFieldProps> = ({
     const role = shouldErrorAnnounce ? 'alert' : undefined;
 
     return (
-      <div>
-        <div
-          {...styleProps([
-            'supportingText',
-            hasError && 'supportingText$error',
-            disabled && 'supportingText$disabled',
-          ])}
-          role={role}
-        >
-          {/* Always render the supporting text span so that our `space-around` container puts the counter at the end. */}
-          <span>{supportingOrErrorText}</span>
+      <div
+        {...styleProps([
+          'supportingText',
+          hasError && 'supportingText$error',
+          disabled && 'supportingText$disabled',
+        ])}
+        role={role}
+      >
+        {/* Always render the supporting text span so that our `space-around` container puts the counter at the end. */}
+        <span>{supportingOrErrorText}</span>
 
-          {/* Conditionally render counter so we don't render the extra `gap`. */}
-          {/* TODO(b/244473435): add aria-label and announcements */}
-          {counterText ? (
-            <span {...styleProps(['counter'])}>{counterText}</span>
-          ) : null}
-        </div>
+        {/* Conditionally render counter so we don't render the extra `gap`. */}
+        {/* TODO(b/244473435): add aria-label and announcements */}
+        {counterText ? (
+          <span {...styleProps(['counter'])}>{counterText}</span>
+        ) : null}
       </div>
     );
   }, [

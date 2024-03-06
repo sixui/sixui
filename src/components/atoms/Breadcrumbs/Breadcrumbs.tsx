@@ -8,8 +8,11 @@ import {
 } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
-import type { IZeroOrMore, ICompiledStyles } from '@/helpers/types';
-import type { IContainerProps } from '@/components/utils/Container';
+import type {
+  IContainerProps,
+  IZeroOrMore,
+  ICompiledStyles,
+} from '@/helpers/types';
 import type {
   IBreadcrumbsStyleKey,
   IBreadcrumbsStyleVarKey,

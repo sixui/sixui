@@ -3,6 +3,7 @@ import { asArray } from '@olivierpascal/helpers';
 import stylex from '@stylexjs/stylex';
 
 import type {
+  IContainerProps,
   IZeroOrMore,
   ICompiledStyles,
   IAny,
@@ -13,7 +14,6 @@ import type {
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/polymorphicComponentTypes';
-import type { IContainerProps } from '@/components/utils/Container';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type {
   IChipStyleKey,
@@ -83,7 +83,6 @@ export type IChipOwnProps = IContainerProps<IChipStyleKey> & {
   deleting?: boolean;
   avatar?: boolean;
   'aria-label-remove'?: React.AriaAttributes['aria-label'];
-  'aria-label'?: string;
 };
 
 export type IChipProps<TRoot extends React.ElementType = typeof DEFAULT_TAG> =
@@ -118,9 +117,9 @@ export const Chip: IChip = forwardRef(function Chip<
   TRoot extends React.ElementType = typeof DEFAULT_TAG,
 >(props: IChipProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
   const {
+    as,
     styles,
     sx,
-    as,
     innerStyles,
     visualState: visualStateProp,
     selected: selectedProp,

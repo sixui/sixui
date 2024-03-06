@@ -61,3 +61,8 @@ export type IStyleXStyles =
         | Readonly<[CompiledStyles, InlineStyles]>
       >
     >;
+
+export type IContainerProps<IStyleKey extends string = never> = {
+  styles?: IZeroOrMore<ICompiledStyles<IStyleKey>>;
+  sx?: IStyleXStyles;
+};

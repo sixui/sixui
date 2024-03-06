@@ -1,13 +1,16 @@
 import { forwardRef, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
-import type { IZeroOrMore, ICompiledStyles } from '@/helpers/types';
+import type {
+  IContainerProps,
+  IZeroOrMore,
+  ICompiledStyles,
+} from '@/helpers/types';
 import type {
   IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/polymorphicComponentTypes';
-import type { IContainerProps } from '@/components/utils/Container';
 import type { IButtonStyleKey, IButtonStyleVarKey } from '../Button';
 import { type IVisualState, useVisualState } from '@/hooks/useVisualState';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
@@ -56,9 +59,9 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
   TRoot extends React.ElementType = typeof DEFAULT_TAG,
 >(props: IButtonBaseProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
   const {
+    as,
     styles,
     sx,
-    as,
     innerStyles,
     visualState: visualStateProp,
     withLeadingIcon,

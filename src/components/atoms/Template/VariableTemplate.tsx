@@ -1,6 +1,6 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/components/utils/Container';
+import type { IContainerProps } from '@/helpers/types';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type {
   ITemplateStyleKey,
@@ -32,7 +32,6 @@ export const VariableTemplate = forwardRef<
 
   const theme = useComponentTheme('Template');
   const variantTheme = useComponentTheme(variantMap[variant]);
-
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(theme.styles, variantTheme.styles, styles),
     [theme.styles, variantTheme.styles, styles],
