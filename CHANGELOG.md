@@ -1,3 +1,15 @@
+# v0.0.78 (Wed Mar 06 2024)
+
+#### ⚠️ Pushed to `main`
+
+- doc: update README.md ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.76 (Mon Mar 04 2024)
 
 #### ⚠️ Pushed to `main`
