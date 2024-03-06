@@ -136,6 +136,7 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
   },
   section$end$disabled: {
     color: vars.trailingContentColor$disabled,
+    opacity: vars.trailingContentOpacity$disabled,
   },
   section$end$withEnd: {
     minWidth: vars.trailingContentMinWidth,

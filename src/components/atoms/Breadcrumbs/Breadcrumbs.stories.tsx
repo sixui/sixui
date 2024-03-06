@@ -59,7 +59,7 @@ export const WithCustomSeparator: IStory = {
         <Breadcrumbs
           {...props}
           aria-label='breadcrumb'
-          separator={<FontAwesomeIcon icon={faChevronRight} />}
+          separator={<FontAwesomeIcon icon={faChevronRight} size='2xs' />}
         >
           <span>Item 1</span>
           <span>Item 2</span>

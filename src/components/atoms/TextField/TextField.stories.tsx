@@ -284,7 +284,7 @@ export const Validation: IStory = {
         },
         {
           label: 'Required',
-          value: 'Initial value',
+          defaultValue: 'Initial value',
           required: true,
           supportingText: '* this field is required',
         },

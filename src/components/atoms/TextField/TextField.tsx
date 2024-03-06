@@ -397,6 +397,7 @@ export const TextField = forwardRef<
           onChange={handleChange}
           onBlur={handleBlur}
           required={required}
+          type={type}
           {...other}
         />
         {suffixText ? (
