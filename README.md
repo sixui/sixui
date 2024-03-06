@@ -44,30 +44,48 @@ Features
 
 Components
 
-- [x] Anchored
 - [x] Avatar
 - [x] Badge
 - [x] Breadcrumbs
 - [x] Button
 - [x] Card
+  - [x] CardActions
+  - [x] CardContent
+  - [x] CardHeader
+  - [x] CardMedia
+  - [x] CardTitle
 - [x] Checkbox
 - [x] Chip
-- [x] Circular progress indicator
+- [x] Circular Progress Indicator
+- [-] Dialog
 - [x] Divider
-- [x] Elevation
 - [x] FAB
 - [x] Field
-- [x] Focus ring
-- [x] Icon button
+- [x] Icon Button
 - [x] Item
 - [x] List
+- [x] ListItem
 - [x] Paper
+- [x] Placeholder
 - [x] Radio
-- [x] State Layer
+- [x] RadioGroup
 - [x] Switch
+- [x] Tab
+- [x] TabList
+- [x] TabPanel
 - [x] Tabs
-- [x] Text field
+- [x] Text Field
 - [x] Typography
+
+Utils
+
+- [x] Anchored
+- [x] Component Showcase
+- [x] Elevation
+- [x] Focus Ring
+- [x] Form
+- [x] State Layer
+- [x] Visual State
 
 ## Workflow
 
