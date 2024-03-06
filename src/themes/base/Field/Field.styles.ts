@@ -34,7 +34,7 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
     display: 'flex',
     flexGrow: 1,
     flexShrink: 1,
-    flexBasis: 0,
+    flexBasis: '0%',
     flexDirection: 'column',
     maxWidth: '100%',
   },
@@ -54,7 +54,7 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
     display: 'flex',
     flexGrow: 1,
     flexShrink: 1,
-    flexBasis: 0,
+    flexBasis: '0%',
     minHeight: '100%',
     maxHeight: '100%',
     minWidth: 'min-content',
@@ -121,7 +121,7 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
     alignSelf: 'baseline',
     flexGrow: 1,
     flexShrink: 1,
-    flexBasis: 0,
+    flexBasis: '0%',
   },
   section$end: {
     alignItems: 'center',
@@ -136,6 +136,7 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
   },
   section$end$disabled: {
     color: vars.trailingContentColor$disabled,
+    opacity: vars.trailingContentOpacity$disabled,
   },
   section$end$withEnd: {
     minWidth: vars.trailingContentMinWidth,
@@ -153,7 +154,7 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
     display: 'flex',
     flexGrow: 1,
     flexShrink: 1,
-    flexBasis: 0,
+    flexBasis: '0%',
     transitionProperty: 'opacity',
     transitionDuration: visibleDuration,
     transitionTimingFunction: motionVars.easing$emphasized,

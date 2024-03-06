@@ -15,8 +15,7 @@ const vars: Partial<IStyleVars<IPaperStyleVarKey>> = {
   containerElevation: elevationVars.boxShadow$level0,
 
   // outline
-  outlineColor: colorRolesVars.outlineVariant,
-  outlineWidth: '1px',
+  outlineStyle: 'solid',
 };
 
 export const componentTheme = stylex.createTheme(baseComponentVars, vars);

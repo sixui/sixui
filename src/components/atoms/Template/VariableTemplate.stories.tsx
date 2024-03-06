@@ -4,27 +4,33 @@ import {
   type IComponentPropsWithLegend,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { Template, type ITemplateProps } from './Template';
+import {
+  VariableTemplate,
+  type IVariableTemplateProps,
+} from './VariableTemplate';
 
 const meta = {
-  component: Template,
-} satisfies Meta<typeof Template>;
+  component: VariableTemplate,
+} satisfies Meta<typeof VariableTemplate>;
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {} satisfies Partial<ITemplateProps>;
+const defaultArgs = {
+  children: 'VariableTemplate',
+} satisfies Partial<IVariableTemplateProps>;
 
-const statesProps: IComponentPropsWithLegend<ITemplateProps> = [
+const statesProps: IComponentPropsWithLegend<IVariableTemplateProps> = [
   { $legend: 'Enabled' },
   { $legend: 'Hovered', visualState: { hovered: true } },
   { $legend: 'Focused', visualState: { focused: true } },
   { $legend: 'Pressed', visualState: { pressed: true } },
+  { $legend: 'Dragged', visualState: { dragged: true } },
 ];
 
 export const Variants: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={Template}
+      component={VariableTemplate}
       props={props}
       colsProps={[{ variant: 'variant' }]}
     />
@@ -35,7 +41,7 @@ export const Variants: IStory = {
 export const Variant: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={Template}
+      component={VariableTemplate}
       props={props}
       colsProps={statesProps}
     />

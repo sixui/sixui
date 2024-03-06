@@ -1,6 +1,6 @@
-import { useMemo } from 'react';
+import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/components/utils/Container';
+import type { IContainerProps } from '@/helpers/types';
 import type {
   IElevationStyleKey,
   IElevationStyleVarKey,
@@ -9,42 +9,41 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export type IElevationProps = IContainerProps<
-  IElevationStyleKey,
-  IElevationStyleVarKey
-> & {
+export type IElevationProps = IContainerProps<IElevationStyleKey> & {
   level?: 0 | 1 | 2 | 3 | 4 | 5;
   disabled?: boolean;
 };
 
-export const Elevation: React.FC<IElevationProps> = ({
-  level,
-  disabled,
-  ...props
-}) => {
-  const theme = useComponentTheme('Elevation');
+export const Elevation = forwardRef<HTMLDivElement, IElevationProps>(
+  function Elevation(props, ref) {
+    const { styles, sx, level, disabled, ...other } = props;
 
-  const styleProps = useMemo(
-    () =>
-      stylePropsFactory<IElevationStyleKey, IElevationStyleVarKey>(
-        stylesCombinatorFactory(theme.styles, props.styles),
-        props.visualState,
-      ),
-    [theme.styles, props.styles, props.visualState],
-  );
+    const { theme } = useComponentTheme('Elevation');
+    const stylesCombinator = useMemo(
+      () => stylesCombinatorFactory(theme.styles, styles),
+      [theme.styles, styles],
+    );
+    const sxf = useMemo(
+      () =>
+        stylePropsFactory<IElevationStyleKey, IElevationStyleVarKey>(
+          stylesCombinator,
+        ),
+      [stylesCombinator],
+    );
 
-  return (
-    <div
-      {...styleProps(
-        [
+    return (
+      <div
+        {...sxf(
           'host',
           level !== undefined && `host$level${level}`,
           disabled && 'host$disabled',
-          props.sx,
-        ],
-        [theme.vars, props.theme],
-      )}
-      aria-hidden
-    />
-  );
-};
+          theme.vars,
+          sx,
+        )}
+        ref={ref}
+        aria-hidden
+        {...other}
+      />
+    );
+  },
+);

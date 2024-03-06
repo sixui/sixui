@@ -1,52 +1,52 @@
 import stylex from '@stylexjs/stylex';
-import { useMemo } from 'react';
+import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/components/utils/Container';
+import type { IContainerProps } from '@/helpers/types';
 import type { ICardMediaStyleKey } from './CardMedia.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export type ICardMediaProps = IContainerProps<ICardMediaStyleKey> &
-  Pick<React.ImgHTMLAttributes<HTMLImageElement>, 'src' | 'title'> & {
-    children?: React.ReactNode;
-  };
+export type ICardMediaProps = IContainerProps<ICardMediaStyleKey> & {
+  children?: React.ReactNode;
+  src?: string;
+  title?: string;
+};
 
-const styles = stylex.create({
+const dynamicStyles = stylex.create({
   image: (src: string) => ({
     backgroundImage: `url("${src}")`,
   }),
 });
 
-export const CardMedia: React.FC<ICardMediaProps> = ({
-  children,
-  src,
-  title,
-  ...props
-}) => {
-  const theme = useComponentTheme('CardMedia');
+export const CardMedia = forwardRef<HTMLDivElement, ICardMediaProps>(
+  function CardMedia(props, ref) {
+    const { styles, sx, children, src, ...other } = props;
 
-  const styleProps = useMemo(
-    () =>
-      stylePropsFactory<ICardMediaStyleKey>(
-        stylesCombinatorFactory(theme.styles, props.styles),
-        props.visualState,
-      ),
-    [theme.styles, props.styles, props.visualState],
-  );
+    const { theme } = useComponentTheme('CardMedia');
+    const stylesCombinator = useMemo(
+      () => stylesCombinatorFactory(theme.styles, styles),
+      [theme.styles, styles],
+    );
+    const sxf = useMemo(
+      () => stylePropsFactory<ICardMediaStyleKey>(stylesCombinator),
+      [stylesCombinator],
+    );
 
-  return (
-    <div
-      {...styleProps([
-        'host',
-        'host$image',
-        src ? styles.image(src) : undefined,
-        props.sx,
-      ])}
-      role='img'
-      title={title}
-    >
-      {children}
-    </div>
-  );
-};
+    return (
+      <div
+        {...sxf(
+          'host',
+          'host$image',
+          src ? dynamicStyles.image(src) : undefined,
+          sx,
+        )}
+        role='img'
+        ref={ref}
+        {...other}
+      >
+        {children}
+      </div>
+    );
+  },
+);

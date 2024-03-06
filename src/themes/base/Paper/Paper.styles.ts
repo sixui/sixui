@@ -51,14 +51,21 @@ export const styles: MapNamespaces<IPaperStyles> = stylex.create<IPaperStyles>({
     position: 'absolute',
     zIndex: -1,
   },
-  outline: {
-    zIndex: 1,
-  },
   content: {
     display: 'flex',
     flexDirection: 'column',
     borderRadius: 'inherit',
     position: 'relative',
+  },
+  outline: {
+    zIndex: 1,
+    inset: 0,
+    pointerEvents: 'none',
+    borderStyle: vars.outlineStyle,
+    borderWidth: vars.outlineWidth,
+    position: 'absolute',
+    borderColor: vars.outlineColor,
+    borderRadius: 'inherit',
   },
 });
 

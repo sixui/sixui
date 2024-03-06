@@ -1,10 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
 import { useState } from 'react';
 
-import { componentVars as checkboxVars } from '@/themes/base/Checkbox/Checkbox.stylex';
-import { componentVars as focusRingVars } from '@/themes/base/FocusRing/FocusRing.stylex';
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPropsWithLegend,
@@ -23,7 +19,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onChange: (props) => sbHandleEvent('change', props, 0),
+  onChange: (props) => sbHandleEvent('change', props),
 } satisfies Partial<ICheckboxProps>;
 
 const statesProps: IComponentPropsWithLegend<ICheckboxProps> = [
@@ -45,9 +41,9 @@ export const Uncontrolled: IStory = {
   args: defaultArgs,
 };
 
-const ControlledCheckbox: React.FC<Omit<ICheckboxProps, 'onChange'>> = (
-  props,
-) => {
+const ControlledCheckbox: React.FC<
+  Omit<ICheckboxProps, 'onChange' | 'checked' | 'as'>
+> = (props) => {
   const [checked, setChecked] = useState(props.defaultChecked ?? false);
   const [indeterminate, setIndeterminate] = useState(
     props.indeterminate ?? false,
@@ -91,45 +87,6 @@ export const Basic: IStory = {
     />
   ),
   args: defaultArgs,
-};
-
-const customTheme = stylex.createTheme(checkboxVars, {
-  containerShape: '0',
-  containerSize: '12px',
-  iconSize: '12px',
-  stateLayerSize: '20px',
-  stateLayerShape: '0',
-  selectedContainerColor: colorRolesVars.error,
-  selectedIconColor: colorRolesVars.onError,
-});
-
-const customFocusRingStyles = stylex.create({
-  host: {
-    width: '22px',
-    height: '22px',
-    // eslint-disable-next-line @stylexjs/valid-styles
-    [focusRingVars.shape]: '0',
-  },
-});
-
-export const Custom: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={Checkbox}
-      props={props}
-      colsProps={statesProps}
-      rowsProps={[
-        { $legend: 'Unchecked' },
-        { $legend: 'Checked', defaultChecked: true },
-        { $legend: 'Indeterminate', indeterminate: true },
-      ]}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    theme: customTheme,
-    focusRingStyles: customFocusRingStyles,
-  },
 };
 
 export default meta;

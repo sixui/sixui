@@ -11,8 +11,8 @@ import { stateVars } from '../vars/state.stylex';
 
 const vars: Partial<IStyleVars<IIconButtonStyleVarKey>> = {
   // container
-  containerHeight: '40px',
   containerWidth: '40px',
+  containerHeight: '40px',
   containerShape: shapeVars.corner$full,
   // &:disabled
   containerOpacity$disabled: stateVars.containerOpacity$disabled,
@@ -28,18 +28,16 @@ const vars: Partial<IStyleVars<IIconButtonStyleVarKey>> = {
   stateLayerOpacity$hover: stateVars.stateLayerOpacity$hover,
   // &:pressed
   stateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
-
-  // selectedStateLayer
-  // &:hover
-  selectedStateLayerOpacity$hover: stateVars.stateLayerOpacity$hover,
-  // &:pressed
-  selectedStateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
 };
 
 export const componentVars = stylex.defineVars(
   vars as IStyleVars<IIconButtonStyleVarKey>,
 );
 
-// This is a workaround to allow reaplying vars at the component level so that it can uses themed
-// vars. See https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
+/**
+ * This is a workaround to allow reaplying vars at the component level so that
+ * it can uses themed vars.
+ *
+ * @see https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
+ */
 export const componentTheme = stylex.createTheme(componentVars, vars);

@@ -37,7 +37,7 @@ const paperContentStyles = stylex.create({
     flexDirection: 'column',
     flexGrow: 1,
     flexShrink: 1,
-    flexBasis: 0,
+    flexBasis: '0%',
     justifyContent: 'flex-end',
     padding: '16px',
     gap: '16px',

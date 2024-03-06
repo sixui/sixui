@@ -23,7 +23,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onChange: (args) => sbHandleEvent('change', args),
+  onChange: (args) => sbHandleEvent('change', args, 300),
 } satisfies Partial<ISwitchProps>;
 
 const statesProps: IComponentPropsWithLegend<ISwitchProps> = [
@@ -54,7 +54,9 @@ export const Uncontrolled: IStory = {
   args: defaultArgs,
 };
 
-const ControlledSwitch: React.FC<Omit<ISwitchProps, 'onChange'>> = (props) => {
+const ControlledSwitch: React.FC<Omit<ISwitchProps, 'onChange' | 'as'>> = (
+  props,
+) => {
   const [selected, setSelected] = useState(props.defaultSelected ?? false);
 
   return (

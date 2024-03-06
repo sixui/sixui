@@ -92,7 +92,7 @@ const vars: Partial<IStyleVars<IChipStyleVarKey>> = {
   // &:focus
   selectedTrailingIconColor$focus: colorRolesVars.onSecondaryContainer,
   // &:hover
-  selectedTrailingIconColor$hover: 'colorRolesVars.onSecondaryContainer',
+  selectedTrailingIconColor$hover: colorRolesVars.onSecondaryContainer,
   // &:pressed
   selectedTrailingIconColor$pressed: colorRolesVars.onSecondaryContainer,
 

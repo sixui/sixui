@@ -20,7 +20,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onClick: (args) => sbHandleEvent('click', args),
+  onClick: (args) => sbHandleEvent('click', args, 300),
 } satisfies Partial<IFabProps>;
 
 const statesProps: IComponentPropsWithLegend<IFabProps> = [
@@ -57,22 +57,22 @@ export const Variants: IStory = {
         {
           $legend: 'Surface',
           variant: 'surface',
-          icon: <FontAwesomeIcon icon={faPaperPlane} />,
+          children: <FontAwesomeIcon icon={faPaperPlane} />,
         },
         {
           $legend: 'Primary',
           variant: 'primary',
-          icon: <FontAwesomeIcon icon={faPaperPlane} />,
+          children: <FontAwesomeIcon icon={faPaperPlane} />,
         },
         {
           $legend: 'Secondary',
           variant: 'secondary',
-          icon: <FontAwesomeIcon icon={faPaperPlane} />,
+          children: <FontAwesomeIcon icon={faPaperPlane} />,
         },
         {
           $legend: 'Tertiary',
           variant: 'tertiary',
-          icon: <FontAwesomeIcon icon={faPaperPlane} />,
+          children: <FontAwesomeIcon icon={faPaperPlane} />,
         },
         {
           $legend: 'Branded',
@@ -109,7 +109,7 @@ export const Sizes: IStory = {
   args: {
     ...defaultArgs,
     variant: 'surface',
-    icon: <FontAwesomeIcon icon={faPaperPlane} />,
+    children: <FontAwesomeIcon icon={faPaperPlane} />,
   },
 };
 
@@ -141,11 +141,11 @@ export const Surface: IStory = {
         {
           $legend: 'Basic',
           label: undefined,
-          icon: <FontAwesomeIcon icon={faPaperPlane} />,
+          children: <FontAwesomeIcon icon={faPaperPlane} />,
         },
         {
           $legend: 'With label',
-          icon: <FontAwesomeIcon icon={faPaperPlane} />,
+          children: <FontAwesomeIcon icon={faPaperPlane} />,
         },
         { $legend: 'Label only' },
       ]}
@@ -168,11 +168,11 @@ export const Primary: IStory = {
         {
           $legend: 'Basic',
           label: undefined,
-          icon: <FontAwesomeIcon icon={faPaperPlane} />,
+          children: <FontAwesomeIcon icon={faPaperPlane} />,
         },
         {
           $legend: 'With label',
-          icon: <FontAwesomeIcon icon={faPaperPlane} />,
+          children: <FontAwesomeIcon icon={faPaperPlane} />,
         },
         { $legend: 'Label only' },
       ]}
@@ -195,11 +195,11 @@ export const Secondary: IStory = {
         {
           $legend: 'Basic',
           label: undefined,
-          icon: <FontAwesomeIcon icon={faPaperPlane} />,
+          children: <FontAwesomeIcon icon={faPaperPlane} />,
         },
         {
           $legend: 'With label',
-          icon: <FontAwesomeIcon icon={faPaperPlane} />,
+          children: <FontAwesomeIcon icon={faPaperPlane} />,
         },
         { $legend: 'Label only' },
       ]}
@@ -222,11 +222,11 @@ export const Tertiary: IStory = {
         {
           $legend: 'Basic',
           label: undefined,
-          icon: <FontAwesomeIcon icon={faPaperPlane} />,
+          children: <FontAwesomeIcon icon={faPaperPlane} />,
         },
         {
           $legend: 'With label',
-          icon: <FontAwesomeIcon icon={faPaperPlane} />,
+          children: <FontAwesomeIcon icon={faPaperPlane} />,
         },
         { $legend: 'Label only' },
       ]}

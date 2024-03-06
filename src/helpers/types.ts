@@ -1,5 +1,8 @@
 import type {
   CompiledStyles,
+  InlineStyles,
+  StyleXArray,
+  StyleXStyles,
   StyleXVar,
   Theme,
   UserAuthoredStyles,
@@ -48,3 +51,18 @@ export type IZeroOrMore<T> = undefined | T | Array<T | undefined>;
 
 export type IArrayElement<TArray> =
   TArray extends ReadonlyArray<infer TElementType> ? TElementType : TArray;
+
+export type IStyleXStyles =
+  | StyleXStyles
+  | ReadonlyArray<
+      StyleXArray<
+        | (null | undefined | CompiledStyles)
+        | boolean
+        | Readonly<[CompiledStyles, InlineStyles]>
+      >
+    >;
+
+export type IContainerProps<IStyleKey extends string = never> = {
+  styles?: IZeroOrMore<ICompiledStyles<IStyleKey>>;
+  sx?: IStyleXStyles;
+};

@@ -1,17 +1,18 @@
-import { forwardRef, useMemo, useRef } from 'react';
+import { forwardRef, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type {
-  IPolymorphicComponentPropsWithRef,
-  IPolymorphicRef,
-} from '@/helpers/polymorphicComponentTypes';
-import type {
+  IContainerProps,
   IZeroOrMore,
   ICompiledStyles,
   IMaybeAsync,
   IAny,
 } from '@/helpers/types';
-import type { IContainerProps } from '@/components/utils/Container';
+import type {
+  IPolymorphicComponentPropsWithRef,
+  IPolymorphicRef,
+  IWithAsProp,
+} from '@/helpers/polymorphicComponentTypes';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type {
   ICardStyleKey,
@@ -21,7 +22,7 @@ import type {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { useVisualState } from '@/hooks/useVisualState';
+import { type IVisualState, useVisualState } from '@/hooks/useVisualState';
 import { Elevation, IElevationStyleKey } from '@/components/utils/Elevation';
 import {
   FocusRing,
@@ -31,39 +32,34 @@ import {
   StateLayer,
   type IStateLayerStyleKey,
 } from '@/components/utils/StateLayer';
+import { useForkRef } from '@/hooks/useForkRef';
 import { CardContext, type ICardContext } from './CardContext';
 import { CardHeader } from '../CardHeader';
 import { CardMedia } from '../CardMedia';
 import { CardContent } from '../CardContent';
 import { CardTitle } from '../CardTitle';
 import { CardActions } from '../CardActions';
-import { useForkRef } from '@/hooks/useForkRef';
 
 // https://github.com/material-components/material-web/blob/main/labs/card/internal/card.ts
 
-export type ICardProps<TRoot extends React.ElementType = 'div'> =
-  IPolymorphicComponentPropsWithRef<
-    TRoot,
-    IContainerProps<ICardStyleKey, ICardStyleVarKey> & {
-      variant?: ICardVariant;
-      children: React.ReactNode;
-      elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
-      statelayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
-      focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-      onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
-      href?: string;
-      disabled?: boolean;
-      'aria-label'?: string;
-      'aria-haspopup'?: boolean;
-      'aria-expanded'?: boolean;
-      onKeyDown?: (
-        event: React.KeyboardEvent<HTMLElement>,
-      ) => IMaybeAsync<IAny>;
-      onPointerDown?: (
-        event: React.PointerEvent<HTMLElement>,
-      ) => IMaybeAsync<IAny>;
-    }
-  >;
+const DEFAULT_TAG = 'div';
+
+export type ICardOwnProps = IContainerProps<ICardStyleKey> & {
+  innerStyles?: {
+    elevation?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
+    stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
+    focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+  };
+  visualState?: IVisualState;
+  variant?: ICardVariant | false;
+  children: React.ReactNode;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
+  href?: string;
+  disabled?: boolean;
+};
+
+export type ICardProps<TRoot extends React.ElementType = typeof DEFAULT_TAG> =
+  IPolymorphicComponentPropsWithRef<TRoot, ICardOwnProps>;
 
 type ICardVariantMap = {
   [key in ICardVariant]: keyof Pick<
@@ -78,57 +74,58 @@ const variantMap: ICardVariantMap = {
   outlined: 'OutlinedCard',
 };
 
-type ICard = <TRoot extends React.ElementType = 'div'>(
+type ICard = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
   props: ICardProps<TRoot>,
-) => React.ReactNode | null;
+) => React.ReactNode;
 
 const Card: ICard = forwardRef(function Card<
-  TRoot extends React.ElementType = 'div',
->(
-  {
+  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+>(props: ICardProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+  const {
+    as,
+    styles,
+    sx,
+    innerStyles,
+    visualState: visualStateProp,
     variant = 'filled',
     children,
     onClick,
     href,
-    as,
-    ...props
-  }: ICardProps<TRoot>,
-  ref?: IPolymorphicRef<TRoot>,
-) {
-  const buttonRef = useRef(null);
+    disabled,
+    ...other
+  } = props as IWithAsProp<ICardOwnProps>;
 
-  const theme = useComponentTheme('Card');
-  const variantTheme = useComponentTheme(variantMap[variant]);
-  const { visualState, ref: visualStateRef } = useVisualState(
-    props.visualState,
+  const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
+    disabled,
+  });
+  const handleRef = useForkRef(ref, visualStateRef);
+
+  const { theme, variantTheme } = useComponentTheme(
+    'Card',
+    variant ? variantMap[variant] : undefined,
   );
-
-  const styleProps = useMemo(
+  const stylesCombinator = useMemo(
+    () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
+    [theme.styles, variantTheme?.styles, styles],
+  );
+  const sxf = useMemo(
     () =>
       stylePropsFactory<ICardStyleKey, ICardStyleVarKey>(
-        stylesCombinatorFactory(
-          theme.styles,
-          variantTheme.styles,
-          props.styles,
-        ),
+        stylesCombinator,
         visualState,
       ),
-    [theme.styles, variantTheme.styles, props.styles, visualState],
+    [stylesCombinator, visualState],
   );
 
-  const disabled = props.disabled;
   const actionable = !disabled && (!!href || !!onClick);
   const dragged = visualState?.dragged;
 
   const hasOutline =
     !!theme.styles?.outline ||
-    !!variantTheme.styles?.outline ||
-    asArray(props.styles).some((styles) => !!styles?.outline);
+    !!variantTheme?.styles?.outline ||
+    asArray(styles).some((styles) => !!styles?.outline);
 
-  // If not using `as ? as : ...`, the inferred type is not correct.
-  const Component = as ? as : !dragged && href ? 'a' : 'div';
-
-  const handleRef = useForkRef(ref, buttonRef, visualStateRef);
+  const Component = as ?? (!dragged && href ? 'a' : DEFAULT_TAG);
 
   const context: ICardContext = {
     actionable,
@@ -137,61 +134,57 @@ const Card: ICard = forwardRef(function Card<
   return (
     <CardContext.Provider value={context}>
       <Component
-        {...styleProps(
-          [
-            'host',
-            actionable && 'host$actionable',
-            disabled && 'host$disabled',
-            props.sx,
-          ],
-          [theme.vars, variantTheme.vars, props.theme],
+        {...sxf(
+          'host',
+          actionable && 'host$actionable',
+          disabled && 'host$disabled',
+          theme.vars,
+          variantTheme?.vars,
+          sx,
         )}
         ref={handleRef}
         href={actionable && !dragged ? href : undefined}
         onClick={actionable && !dragged ? onClick : undefined}
         role={actionable ? 'button' : undefined}
         tabIndex={disabled || !actionable ? -1 : 0}
-        aria-label={props['aria-label']}
-        aria-haspopup={props['aria-haspopup']}
-        aria-expanded={props['aria-expanded']}
+        disabled={disabled}
+        {...other}
       >
         <Elevation
-          styles={[theme.elevationStyles, ...asArray(props.elevationStyles)]}
+          styles={[theme.elevationStyles, ...asArray(innerStyles?.elevation)]}
           disabled={disabled}
         />
         {actionable ? (
           <>
             <StateLayer
               styles={[
-                theme.statelayerStyles,
-                ...asArray(props.statelayerStyles),
+                theme.stateLayerStyles,
+                ...asArray(innerStyles?.stateLayer),
               ]}
-              for={buttonRef}
+              for={ref}
               disabled={disabled}
               visualState={visualState}
             />
             <FocusRing
               styles={[
                 theme.focusRingStyles,
-                ...asArray(props.focusRingStyles),
+                ...asArray(innerStyles?.focusRing),
               ]}
-              for={buttonRef}
+              for={ref}
               visualState={visualState}
             />
           </>
         ) : null}
         {hasOutline ? (
           <div
-            {...styleProps([
+            {...sxf(
               'outline',
               actionable && 'outline$actionable',
               disabled && 'outline$disabled',
-            ])}
+            )}
           />
         ) : null}
-        <div
-          {...styleProps(['background', disabled && 'background$disabled'])}
-        />
+        <div {...sxf('background', disabled && 'background$disabled')} />
         {children}
       </Component>
     </CardContext.Provider>

@@ -1,4 +1,7 @@
-import type { CompiledStyles } from '@stylexjs/stylex/lib/StyleXTypes';
+import type {
+  CompiledStyles,
+  StyleXStyles,
+} from '@stylexjs/stylex/lib/StyleXTypes';
 
 import type { ICompiledStyles } from './types';
 
@@ -7,8 +10,8 @@ type IOptionalCompiledStyles<IStyleKey extends string> =
   | undefined;
 
 export type IStylesCombinator<IStyleKey extends string> = (
-  ...classNames: Array<IStyleKey | null | undefined | false>
-) => Array<CompiledStyles | null | undefined | false>;
+  ...classNames: Array<IStyleKey | StyleXStyles | null | undefined | false>
+) => Array<StyleXStyles>;
 
 export const stylesCombinatorFactory =
   <IStyleKey extends string>(
@@ -17,15 +20,16 @@ export const stylesCombinatorFactory =
       | Array<IOptionalCompiledStyles<IStyleKey>>
     >
   ): IStylesCombinator<IStyleKey> =>
-  (...classNames) =>
-    classNames
-      .map((className) =>
-        typeof className === 'string'
+  (...styleKeys) =>
+    styleKeys
+      .map((styleKey) =>
+        typeof styleKey === 'string'
           ? (
               styles.flat() as Array<
                 IOptionalCompiledStyles<IStyleKey> | undefined
               >
-            ).map((style) => (className ? style?.[className] : undefined))
-          : className,
+            ).map((style) => (styleKey ? style?.[styleKey] : undefined))
+          : styleKey,
       )
-      .flat();
+      .flat()
+      .filter((styleKey) => !!styleKey) as Array<CompiledStyles>;

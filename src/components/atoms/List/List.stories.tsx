@@ -29,7 +29,7 @@ const listStyles = stylex.create({
     outlineColor: colorRolesVars.outline,
     maxWidth: '360px',
     overflow: 'hidden',
-    width: '100%',
+    width: '250px',
   },
 });
 

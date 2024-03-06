@@ -1,18 +1,23 @@
-import { useCallback, useMemo, useRef, useState } from 'react';
-import { accumulate, asArray } from '@olivierpascal/helpers';
+import { forwardRef, useCallback, useMemo, useRef, useState } from 'react';
+import { asArray } from '@olivierpascal/helpers';
 
 import type {
+  IContainerProps,
   IZeroOrMore,
   ICompiledStyles,
   IAny,
   IMaybeAsync,
 } from '@/helpers/types';
-import type { IContainerProps } from '@/components/utils/Container';
+import type {
+  IPolymorphicComponentPropsWithRef,
+  IPolymorphicRef,
+  IWithAsProp,
+} from '@/helpers/polymorphicComponentTypes';
 import type { ISwitchStyleKey, ISwitchStyleVarKey } from './Switch.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { useVisualState } from '@/hooks/useVisualState.old';
+import { type IVisualState, useVisualState } from '@/hooks/useVisualState';
 import { useControlled } from '@/hooks/useControlled';
 import {
   FocusRing,
@@ -28,17 +33,28 @@ import {
 } from '@/components/atoms/CircularProgressIndicator';
 import { ReactComponent as CheckMark } from '@/assets/CheckMark.svg';
 import { ReactComponent as XMark } from '@/assets/XMark.svg';
+import { useForkRef } from '@/hooks/useForkRef';
 
 // https://github.com/material-components/material-web/blob/main/switch/internal/switch.ts
 
-export type ISwitchProps = IContainerProps<
-  ISwitchStyleKey,
-  ISwitchStyleVarKey
-> &
-  Pick<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    'id' | 'name' | 'disabled' | 'required' | 'aria-label'
-  > & {
+const DEFAULT_TAG = 'input';
+
+export type ISwitchOwnProps = IContainerProps<ISwitchStyleKey> &
+  Pick<React.AriaAttributes, 'aria-label'> & {
+    innerStyles?: {
+      stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
+      focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+      circularProgressIndicator?: IZeroOrMore<
+        ICompiledStyles<ICircularProgressIndicatorStyleKey>
+      >;
+    };
+    visualState?: IVisualState;
+
+    id?: string;
+    name?: string;
+    disabled?: boolean;
+    required?: boolean;
+
     /**
      * Puts the switch in the selected state.
      */
@@ -65,39 +81,65 @@ export type ISwitchProps = IContainerProps<
     ) => IMaybeAsync<IAny>;
     icon?: React.ReactNode;
     selectedIcon?: React.ReactNode;
-    statelayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
-    focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-    circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
   };
 
-export const Switch: React.FC<ISwitchProps> = ({
-  id,
-  name,
-  required,
-  loadingAnimation = 'progressIndicator',
-  onChange,
-  icon,
-  selectedIcon,
-  ...props
-}) => {
-  const theme = useComponentTheme('Switch');
+export type ISwitchProps<TRoot extends React.ElementType = typeof DEFAULT_TAG> =
+  IPolymorphicComponentPropsWithRef<TRoot, ISwitchOwnProps>;
 
-  const inputRef = useRef<HTMLInputElement>(null);
+type ISwitch = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
+  props: ISwitchProps<TRoot>,
+) => React.ReactNode;
+
+export const Switch: ISwitch = forwardRef(function Switch<
+  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+>(props: ISwitchProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+  const {
+    as: Component = DEFAULT_TAG,
+    styles,
+    sx,
+    innerStyles,
+    visualState: visualStateProp,
+    selected: selectedProp,
+    defaultSelected,
+    disabled: disabledProp,
+    loading: loadingProp,
+    icons: iconsProp,
+    showOnlySelectedIcon: showOnlySelectedIconProp,
+    loadingAnimation = 'progressIndicator',
+    onChange,
+    icon,
+    selectedIcon,
+    ...other
+  } = props as IWithAsProp<ISwitchOwnProps>;
+
   const [handlingChange, setHandlingChange] = useState(false);
-  const visualState = accumulate(useVisualState(inputRef), props.visualState);
+  const loading =
+    (loadingProp || handlingChange) && loadingAnimation === 'progressIndicator';
+  const disabled = disabledProp || loading;
 
-  const styleProps = useMemo(
+  const actionRef = useRef<HTMLInputElement>(null);
+  const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
+    disabled,
+  });
+  const handleRef = useForkRef(ref, visualStateRef, actionRef);
+
+  const { theme } = useComponentTheme('Switch');
+  const stylesCombinator = useMemo(
+    () => stylesCombinatorFactory(theme.styles, styles),
+    [theme.styles, styles],
+  );
+  const sxf = useMemo(
     () =>
       stylePropsFactory<ISwitchStyleKey, ISwitchStyleVarKey>(
-        stylesCombinatorFactory(theme.styles, props.styles),
+        stylesCombinator,
         visualState,
       ),
-    [theme.styles, props.styles, visualState],
+    [stylesCombinator, visualState],
   );
 
   const [selected, setSelected] = useControlled({
-    controlled: props.selected,
-    default: !!props.defaultSelected,
+    controlled: selectedProp,
+    default: !!defaultSelected,
     name: 'Switch',
   });
 
@@ -121,45 +163,33 @@ export const Switch: React.FC<ISwitchProps> = ({
     [handlingChange, onChange, selected, setSelected],
   );
 
-  const loading =
-    (props.loading || handlingChange) &&
-    loadingAnimation === 'progressIndicator';
-  const disabled = props.disabled || loading;
-  const icons = props.icons || loading;
-  const showOnlySelectedIcon = !loading && props.showOnlySelectedIcon;
+  const icons = iconsProp || loading;
+  const showOnlySelectedIcon = !loading && showOnlySelectedIconProp;
   const shouldShowIcons = icons || showOnlySelectedIcon;
 
   return (
-    <div
-      {...styleProps(
-        ['host', disabled && 'host$disabled', props.sx],
-        [theme.vars, props.theme],
-      )}
-    >
-      <div {...styleProps(['switch', selected && 'switch$selected'])}>
-        <input
-          {...styleProps(['input'])}
-          ref={inputRef}
-          id={id}
-          name={name}
+    <div {...sxf('host', disabled && 'host$disabled', theme.vars, sx)}>
+      <div {...sxf('switch', selected && 'switch$selected')}>
+        <Component
+          {...sxf('input')}
+          ref={handleRef}
           type='checkbox'
           role='switch'
-          aria-label={props['aria-label']}
           checked={selected}
           readOnly={disabled}
           tabIndex={disabled ? -1 : 0}
-          required={required}
           onChange={disabled ? undefined : handleChange}
+          {...other}
         />
         <FocusRing
-          styles={[theme.focusRingStyles, ...asArray(props.focusRingStyles)]}
-          for={inputRef}
+          styles={[theme.focusRingStyles, ...asArray(innerStyles?.focusRing)]}
+          for={actionRef}
           visualState={visualState}
         />
 
-        <span {...styleProps(['track'])}>
+        <span {...sxf('track')}>
           <div
-            {...styleProps([
+            {...sxf(
               'background',
               disabled && 'background$disabled',
               'trackBackground',
@@ -168,36 +198,36 @@ export const Switch: React.FC<ISwitchProps> = ({
                 (selected
                   ? 'trackBackground$disabled$selected'
                   : 'trackBackground$disabled'),
-            ])}
+            )}
           />
           <span
-            {...styleProps([
+            {...sxf(
               'handleContainer',
               selected && 'handleContainer$selected',
               disabled && 'handleContainer$disabled',
-            ])}
+            )}
           >
             <StateLayer
               styles={[
-                theme.statelayerStyles,
-                ...asArray(props.statelayerStyles),
+                theme.stateLayerStyles,
+                ...asArray(innerStyles?.stateLayer),
               ]}
-              for={inputRef}
+              for={actionRef}
               disabled={disabled}
               visualState={visualState}
             />
             <span
-              {...styleProps([
+              {...sxf(
                 'handle',
                 selected && 'handle$selected',
                 loading && 'handle$loading',
                 disabled &&
                   (selected ? 'handle$disabled$selected' : 'handle$disabled'),
                 (showOnlySelectedIcon ? selected : icons) && 'handle$withIcon',
-              ])}
+              )}
             >
               <div
-                {...styleProps([
+                {...sxf(
                   'background',
                   'handleBackground',
                   selected && 'handleBackground$selected',
@@ -205,25 +235,25 @@ export const Switch: React.FC<ISwitchProps> = ({
                     (selected
                       ? 'handleBackground$disabled$selected'
                       : 'handleBackground$disabled'),
-                ])}
+                )}
               />
 
               {shouldShowIcons ? (
-                <div {...styleProps(['icons'])}>
+                <div {...sxf('icons')}>
                   <div
-                    {...styleProps([
+                    {...sxf(
                       'icon',
                       !loading &&
                         (selected ? 'icon$size$selected' : 'icon$size'),
                       selected && 'icon$on$selected',
                       selected && disabled && 'icon$on$selected$disabled',
-                    ])}
+                    )}
                   >
                     {loading ? (
                       <IndeterminateCircularProgressIndicator
                         styles={[
                           theme.circularProgressIndicatorStyles,
-                          ...asArray(props.circularProgressIndicatorStyles),
+                          ...asArray(innerStyles?.circularProgressIndicator),
                         ]}
                       />
                     ) : selectedIcon ? (
@@ -235,19 +265,19 @@ export const Switch: React.FC<ISwitchProps> = ({
 
                   {showOnlySelectedIcon ? null : (
                     <div
-                      {...styleProps([
+                      {...sxf(
                         'icon',
                         !loading &&
                           (selected ? 'icon$size$selected' : 'icon$size'),
                         !selected && 'icon$on',
                         !selected && disabled && 'icon$on$disabled',
-                      ])}
+                      )}
                     >
                       {loading ? (
                         <IndeterminateCircularProgressIndicator
                           styles={[
                             theme.circularProgressIndicatorStyles,
-                            ...asArray(props.circularProgressIndicatorStyles),
+                            ...asArray(innerStyles?.circularProgressIndicator),
                           ]}
                         />
                       ) : icon ? (
@@ -265,4 +295,4 @@ export const Switch: React.FC<ISwitchProps> = ({
       </div>
     </div>
   );
-};
+});

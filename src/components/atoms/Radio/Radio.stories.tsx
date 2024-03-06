@@ -19,7 +19,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onChange: (args) => sbHandleEvent('change', args),
+  onChange: (args) => sbHandleEvent('change', args, 300),
 } satisfies Partial<IRadioProps>;
 
 const statesProps: IComponentPropsWithLegend<IRadioProps> = [
@@ -30,7 +30,9 @@ const statesProps: IComponentPropsWithLegend<IRadioProps> = [
   { $legend: 'Disabled', disabled: true },
 ];
 
-const RadioWithState: React.FC<Omit<IRadioProps, 'onChange'>> = (props) => {
+const RadioWithState: React.FC<Omit<IRadioProps, 'onChange' | 'as'>> = (
+  props,
+) => {
   const [value, setValue] = useState('2');
 
   return (

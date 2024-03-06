@@ -1,3 +1,4 @@
 export * from './Template.styledefs';
-export * from './Template';
-export * from './TemplateVariant';
+export * from './BasicTemplate';
+export * from './VariableTemplate';
+export * from './PolymorphicTemplate';

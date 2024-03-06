@@ -1,8 +1,10 @@
 import type { IAny } from '@/helpers/types';
 
-// Source: https://github.com/emotion-js/emotion/blob/master/packages/styled-base/types/helper.d.ts
+// https://www.benmvp.com/blog/forwarding-refs-polymorphic-react-component-typescript/
 
-// A more precise version of just React.ComponentPropsWithoutRef on its own
+/**
+ * A more precise version of just `React.ComponentPropsWithoutRef` on its own.
+ */
 export type IPropsOf<
   TComponent extends
     | keyof JSX.IntrinsicElements
@@ -20,10 +22,12 @@ type IAsProp<TRoot extends React.ElementType> = {
   as?: TRoot;
 };
 
+export type IWithAsProp<TProps = object> = TProps & IAsProp<React.ElementType>;
+
 /**
- * Allows for extending a set of props (`ExtendedProps`) by an overriding set of props
- * (`OverrideProps`), ensuring that any duplicates are overridden by the overriding
- * set of props.
+ * Allows for extending a set of props (`TExtendedProps`) by an overriding set
+ * of props (`TOverrideProps`), ensuring that any duplicates are overridden by
+ * the overriding set of props.
  */
 export type IExtendableProps<
   TExtendedProps = object,
@@ -33,7 +37,7 @@ export type IExtendableProps<
 /**
  * Allows for inheriting the props from the specified element type so that
  * props like children, className & style work, as well as element-specific
- * attributes like aria roles. The component (`C`) must be passed in.
+ * attributes like aria roles. The component (`TRoot`) must be passed in.
  */
 export type IInheritableElementProps<
   TRoot extends React.ElementType,
@@ -41,8 +45,8 @@ export type IInheritableElementProps<
 > = IExtendableProps<IPropsOf<TRoot>, TProps>;
 
 /**
- * A more sophisticated version of `InheritableElementProps` where
- * the passed in `as` prop will determine which props can be included
+ * A more sophisticated version of `IInheritableElementProps` where the passed
+ * in `as` prop will determine which props can be included.
  */
 export type IPolymorphicComponentProps<
   TRoot extends React.ElementType,
@@ -50,14 +54,14 @@ export type IPolymorphicComponentProps<
 > = IInheritableElementProps<TRoot, TProps & IAsProp<TRoot>>;
 
 /**
- * Utility type to extract the `ref` prop from a polymorphic component
+ * Utility type to extract the `ref` prop from a polymorphic component.
  */
 export type IPolymorphicRef<TRoot extends React.ElementType> =
   React.ComponentPropsWithRef<TRoot>['ref'];
 
 /**
- * A wrapper of `PolymorphicComponentProps` that also includes the `ref`
- * prop for the polymorphic component
+ * A wrapper of `IPolymorphicComponentProps` that also includes the `ref` prop
+ * for the polymorphic component.
  */
 export type IPolymorphicComponentPropsWithRef<
   TRoot extends React.ElementType,

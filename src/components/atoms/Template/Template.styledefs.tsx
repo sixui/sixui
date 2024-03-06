@@ -3,6 +3,6 @@ export type ITemplateVariant = (typeof templateVariants)[number];
 
 export type ITemplateStyleKey = 'host';
 
-export type ITemplateStyleVarKey = 'var1';
+export type ITemplateStyleVarKey = 'textColor';
 
 export type ITemplateStyleStateVarKey = 'varA';

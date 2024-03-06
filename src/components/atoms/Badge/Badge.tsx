@@ -1,12 +1,12 @@
-import { useMemo } from 'react';
+import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/components/utils/Container';
+import type { IContainerProps } from '@/helpers/types';
 import type { IBadgeStyleKey, IBadgeStyleVarKey } from './Badge.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export type IBadgeProps = IContainerProps<IBadgeStyleKey, IBadgeStyleVarKey> & {
+export type IBadgeProps = IContainerProps<IBadgeStyleKey> & {
   value?: number;
   maxValue?: number;
   showZero?: boolean;
@@ -15,53 +15,65 @@ export type IBadgeProps = IContainerProps<IBadgeStyleKey, IBadgeStyleVarKey> & {
   disabled?: boolean;
 };
 
-export const Badge: React.FC<IBadgeProps> = ({
-  value,
-  maxValue,
-  showZero,
-  dot,
-  disabled,
-  ...props
-}) => {
-  const theme = useComponentTheme('Badge');
+export const Badge = forwardRef<HTMLDivElement, IBadgeProps>(
+  function Badge(props, ref) {
+    const {
+      styles,
+      sx,
+      value,
+      maxValue,
+      showZero,
+      dot,
+      invisible: invisibleProp,
+      disabled,
+      ...other
+    } = props;
 
-  const styleProps = useMemo(
-    () =>
-      stylePropsFactory<IBadgeStyleKey, IBadgeStyleVarKey>(
-        stylesCombinatorFactory(theme.styles, props.styles),
-        props.visualState,
-      ),
-    [theme.styles, props.styles, props.visualState],
-  );
+    const { theme } = useComponentTheme('Badge');
+    const stylesCombinator = useMemo(
+      () => stylesCombinatorFactory(theme.styles, styles),
+      [theme.styles, styles],
+    );
+    const sxf = useMemo(
+      () =>
+        stylePropsFactory<IBadgeStyleKey, IBadgeStyleVarKey>(stylesCombinator),
+      [stylesCombinator],
+    );
 
-  const invisible =
-    props.invisible ||
-    (value === undefined && !dot) ||
-    (value !== undefined && value <= 0 && !showZero);
+    const invisible =
+      invisibleProp ||
+      (value === undefined && !dot) ||
+      (value !== undefined && value <= 0 && !showZero);
 
-  const displayValue = useMemo(
-    () =>
-      dot
-        ? null
-        : value !== undefined
-          ? maxValue !== undefined && value > maxValue
-            ? `${maxValue}+`
-            : Math.max(0, value)
-          : null,
-    [dot, value, maxValue],
-  );
+    const displayValue = useMemo(
+      () =>
+        dot
+          ? null
+          : value !== undefined
+            ? maxValue !== undefined && value > maxValue
+              ? `${maxValue}+`
+              : Math.max(0, value)
+            : null,
+      [dot, value, maxValue],
+    );
 
-  return (
-    <div
-      {...styleProps(
-        ['host', invisible && 'host$invisible', dot && 'host$dot', props.sx],
-        [theme.vars, props.theme],
-      )}
-    >
-      <div {...styleProps(['background', disabled && 'background$disabled'])} />
-      <div {...styleProps(['label', disabled && 'label$disabled'])}>
-        {displayValue}
+    return (
+      <div
+        {...sxf(
+          'host',
+          invisible && 'host$invisible',
+          dot && 'host$dot',
+          theme.vars,
+          sx,
+        )}
+        ref={ref}
+        {...other}
+      >
+        <div {...sxf('background', disabled && 'background$disabled')} />
+        <div {...sxf('label', disabled && 'label$disabled')}>
+          {displayValue}
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  },
+);

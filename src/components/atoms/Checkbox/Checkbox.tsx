@@ -1,13 +1,18 @@
-import { useCallback, useMemo, useRef } from 'react';
-import { accumulate, asArray } from '@olivierpascal/helpers';
+import { forwardRef, useCallback, useMemo, useRef } from 'react';
+import { asArray } from '@olivierpascal/helpers';
 
 import type {
+  IContainerProps,
   IZeroOrMore,
   ICompiledStyles,
   IAny,
   IMaybeAsync,
 } from '@/helpers/types';
-import type { IContainerProps } from '@/components/utils/Container';
+import type {
+  IPolymorphicComponentPropsWithRef,
+  IPolymorphicRef,
+  IWithAsProp,
+} from '@/helpers/polymorphicComponentTypes';
 import type {
   ICheckboxStyleKey,
   ICheckboxStyleVarKey,
@@ -15,7 +20,7 @@ import type {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { useVisualState } from '@/hooks/useVisualState.old';
+import { type IVisualState, useVisualState } from '@/hooks/useVisualState';
 import { usePrevious } from '@/hooks/usePrevious';
 import { useControlled } from '@/hooks/useControlled';
 import {
@@ -26,63 +31,80 @@ import {
   FocusRing,
   type IFocusRingStyleKey,
 } from '@/components/utils/FocusRing';
+import { useForkRef } from '@/hooks/useForkRef';
 
 // https://github.com/material-components/material-web/blob/main/checkbox/internal/checkbox.ts
 
-export type ICheckboxProps = IContainerProps<
-  ICheckboxStyleKey,
-  ICheckboxStyleVarKey
-> &
-  Pick<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    | 'required'
-    | 'disabled'
-    | 'checked'
-    | 'id'
-    | 'name'
-    | 'value'
-    | 'aria-label'
-    | 'aria-checked'
-    | 'aria-invalid'
-  > & {
-    defaultChecked?: boolean;
-    indeterminate?: boolean;
-    onChange?: (
-      event: React.ChangeEvent<HTMLInputElement>,
-      checked: boolean,
-    ) => IMaybeAsync<IAny>;
-    statelayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
-    focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+const DEFAULT_TAG = 'input';
+
+export type ICheckboxOwnProps = IContainerProps<ICheckboxStyleKey> & {
+  innerStyles?: {
+    stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
+    focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
   };
+  visualState?: IVisualState;
+  required?: boolean;
+  disabled?: boolean;
+  checked?: boolean;
+  id?: string;
+  name?: string;
+  value?: string;
+  defaultChecked?: boolean;
+  indeterminate?: boolean;
+  onChange?: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    checked: boolean,
+  ) => IMaybeAsync<IAny>;
+};
 
-export const Checkbox: React.FC<ICheckboxProps> = ({
-  disabled,
-  required,
-  onChange,
-  id,
-  name,
-  value,
-  ...props
-}) => {
-  const theme = useComponentTheme('Checkbox');
+export type ICheckboxProps<
+  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+> = IPolymorphicComponentPropsWithRef<TRoot, ICheckboxOwnProps>;
 
-  const hostRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const visualState = accumulate(useVisualState(hostRef), props.visualState);
+type ICheckbox = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
+  props: ICheckboxProps<TRoot>,
+) => React.ReactNode;
 
-  const styleProps = useMemo(
+export const Checkbox: ICheckbox = forwardRef(function Checkbox<
+  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+>(props: ICheckboxProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+  const {
+    as: Component = DEFAULT_TAG,
+    styles,
+    sx,
+    innerStyles,
+    visualState: visualStateProp,
+    disabled,
+    onChange,
+    indeterminate,
+    checked: checkedProp,
+    defaultChecked,
+    ...other
+  } = props as IWithAsProp<ICheckboxOwnProps>;
+
+  const actionRef = useRef<HTMLInputElement>(null);
+  const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
+    disabled,
+  });
+  const handleRef = useForkRef(ref, visualStateRef, actionRef);
+
+  const { theme } = useComponentTheme('Checkbox');
+  const stylesCombinator = useMemo(
+    () => stylesCombinatorFactory(theme.styles, styles),
+    [theme.styles, styles],
+  );
+  const sxf = useMemo(
     () =>
       stylePropsFactory<ICheckboxStyleKey, ICheckboxStyleVarKey>(
-        stylesCombinatorFactory(theme.styles, props.styles),
-        props.visualState,
+        stylesCombinator,
+        visualState,
       ),
-    [theme.styles, props.styles, props.visualState],
+    [stylesCombinator, visualState],
   );
 
-  const indeterminate = props.indeterminate;
   const [checkedValue, setCheckedValue] = useControlled({
-    controlled: props.checked,
-    default: !!props.defaultChecked,
+    controlled: checkedProp,
+    default: !!defaultChecked,
     name: 'Checkbox',
   });
   const checked = checkedValue && !indeterminate;
@@ -114,43 +136,36 @@ export const Checkbox: React.FC<ICheckboxProps> = ({
 
   return (
     <div
-      {...styleProps(
-        [
-          'host',
-          selected && 'host$selected',
-          disabled && 'host$disabled',
-          props.sx,
-        ],
-        [theme.vars, props.theme],
+      {...sxf(
+        'host',
+        selected && 'host$selected',
+        disabled && 'host$disabled',
+        theme.vars,
+        sx,
       )}
     >
-      <div {...styleProps(['container'])}>
-        <input
-          {...styleProps(['input'])}
-          ref={inputRef}
+      <div {...sxf('container')}>
+        <Component
+          {...sxf('input')}
+          ref={handleRef}
           type='checkbox'
           aria-checked={indeterminate ? 'mixed' : undefined}
-          aria-label={props['aria-label']}
-          aria-invalid={props['aria-invalid']}
           disabled={disabled}
-          id={id}
-          name={name}
-          value={value}
-          required={required}
           checked={checkedValue}
           onChange={handleChange}
+          {...other}
         />
 
         <div
-          {...styleProps([
+          {...sxf(
             'overlay',
             'outline',
             disabled &&
               (selected ? 'outline$disabled$selected' : 'outline$disabled'),
-          ])}
+          )}
         />
         <div
-          {...styleProps([
+          {...sxf(
             'overlay',
             'background',
             'backgroundAndIcon',
@@ -160,35 +175,35 @@ export const Checkbox: React.FC<ICheckboxProps> = ({
                 ? 'background$disabled$selected'
                 : 'background$disabled'),
             prevDisabled && 'background$prevDisabled',
-          ])}
+          )}
         />
 
-        <FocusRing
-          for={inputRef}
-          styles={[theme.focusRingStyles, ...asArray(props.focusRingStyles)]}
+        <StateLayer
+          for={actionRef}
+          styles={[theme.stateLayerStyles, ...asArray(innerStyles?.stateLayer)]}
+          disabled={disabled}
           visualState={visualState}
         />
-        <StateLayer
-          for={inputRef}
-          styles={[theme.statelayerStyles, ...asArray(props.statelayerStyles)]}
-          disabled={disabled}
+        <FocusRing
+          for={actionRef}
+          styles={[theme.focusRingStyles, ...asArray(innerStyles?.focusRing)]}
           visualState={visualState}
         />
 
         <svg
-          {...styleProps([
+          {...sxf(
             'overlay',
             'icon',
             disabled && 'icon$disabled',
             prevDisabled && 'icon$prevDisabled',
             'backgroundAndIcon',
             selected && 'backgroundAndIcon$selected',
-          ])}
+          )}
           viewBox='0 0 18 18'
           aria-hidden
         >
           <rect
-            {...styleProps([
+            {...sxf(
               'mark',
               'mark$short',
               selected && 'mark$selected',
@@ -201,10 +216,10 @@ export const Checkbox: React.FC<ICheckboxProps> = ({
               ],
               (indeterminate || (prevIndeterminate && unselected)) &&
                 'indeterminate',
-            ])}
+            )}
           />
           <rect
-            {...styleProps([
+            {...sxf(
               'mark',
               'mark$long',
               selected && 'mark$selected',
@@ -218,10 +233,10 @@ export const Checkbox: React.FC<ICheckboxProps> = ({
               (indeterminate || (prevIndeterminate && unselected)) &&
                 'indeterminate',
               prevUnselected && checked && 'mark$long$prevUnselected$checked',
-            ])}
+            )}
           />
         </svg>
       </div>
     </div>
   );
-};
+});

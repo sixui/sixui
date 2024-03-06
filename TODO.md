@@ -2,8 +2,12 @@
 
 - Skeleton version of components
 
+- refactor how styles are structured (can only theme color roles and palette?)
+
+- useVisualState -> useVisualStateGroup
 - FIXME: vite does not refresh when modifying .stylex.ts files
 
+- use common styles utilities
 - Placeholder -> Skeleton
 
 - Doc

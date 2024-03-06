@@ -1,6 +1,6 @@
-import { useMemo } from 'react';
+import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/components/utils/Container';
+import type { IContainerProps } from '@/helpers/types';
 import type { IAvatarStyleKey, IAvatarStyleVarKey } from './Avatar.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
@@ -9,10 +9,7 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { ReactComponent as Person } from '@/assets/Person.svg';
 import { useLoaded } from '@/hooks/useLoaded';
 
-export type IAvatarProps = IContainerProps<
-  IAvatarStyleKey,
-  IAvatarStyleVarKey
-> &
+export type IAvatarProps = IContainerProps<IAvatarStyleKey> &
   Pick<
     React.ImgHTMLAttributes<HTMLImageElement>,
     'alt' | 'crossOrigin' | 'referrerPolicy' | 'src' | 'srcSet' | 'sizes'
@@ -24,56 +21,64 @@ export type IAvatarProps = IContainerProps<
     children?: React.ReactNode;
   };
 
-export const Avatar: React.FC<IAvatarProps> = ({
-  alt,
-  crossOrigin,
-  referrerPolicy,
-  src,
-  srcSet,
-  sizes,
-  children,
-  ...props
-}) => {
-  const theme = useComponentTheme('Avatar');
+export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
+  function Avatar(props, ref) {
+    const {
+      styles,
+      sx,
+      alt,
+      crossOrigin,
+      referrerPolicy,
+      src,
+      srcSet,
+      sizes,
+      children,
+      ...other
+    } = props;
 
-  const styleProps = useMemo(
-    () =>
-      stylePropsFactory<IAvatarStyleKey, IAvatarStyleVarKey>(
-        stylesCombinatorFactory(theme.styles, props.styles),
-        props.visualState,
-      ),
-    [theme.styles, props.styles, props.visualState],
-  );
+    const { theme } = useComponentTheme('Avatar');
+    const stylesCombinator = useMemo(
+      () => stylesCombinatorFactory(theme.styles, styles),
+      [theme.styles, styles],
+    );
+    const sxf = useMemo(
+      () =>
+        stylePropsFactory<IAvatarStyleKey, IAvatarStyleVarKey>(
+          stylesCombinator,
+        ),
+      [stylesCombinator],
+    );
 
-  // Use a hook instead of onError on the img element to support server-side rendering.
-  const { hasLoadingError } = useLoaded({
-    crossOrigin,
-    referrerPolicy,
-    src,
-    srcSet,
-  });
-  const hasImage = !!src || !!srcSet;
-  const hasImageNotFailing = hasImage && !hasLoadingError;
+    // Use a hook instead of onError on the img element to support server-side rendering.
+    const { hasLoadingError } = useLoaded({
+      crossOrigin,
+      referrerPolicy,
+      src,
+      srcSet,
+    });
+    const hasImage = !!src || !!srcSet;
+    const hasImageNotFailing = hasImage && !hasLoadingError;
 
-  return (
-    <div {...styleProps(['host', props.sx], [theme.vars, props.theme])}>
-      {hasImageNotFailing ? (
-        <img
-          {...styleProps(['image'])}
-          alt={alt}
-          crossOrigin={crossOrigin}
-          referrerPolicy={referrerPolicy}
-          src={src}
-          srcSet={srcSet}
-          sizes={sizes}
-        />
-      ) : children ? (
-        <div {...styleProps(['content'])}>{children}</div>
-      ) : hasImage && !!alt ? (
-        <div {...styleProps(['content'])}>{alt[0]}</div>
-      ) : (
-        <Person {...styleProps(['content', 'content$fallback'])} aria-hidden />
-      )}
-    </div>
-  );
-};
+    return (
+      <div {...sxf('host', theme.vars, sx)} ref={ref} {...other}>
+        {hasImageNotFailing ? (
+          <img
+            {...sxf('image')}
+            alt={alt}
+            crossOrigin={crossOrigin}
+            referrerPolicy={referrerPolicy}
+            src={src}
+            srcSet={srcSet}
+            sizes={sizes}
+          />
+        ) : children ? (
+          <div {...sxf('content')}>{children}</div>
+        ) : hasImage && !!alt ? (
+          <div {...sxf('content')}>{alt[0]}</div>
+        ) : (
+          <Person {...sxf('content', 'content$fallback')} aria-hidden />
+        )}
+      </div>
+    );
+  },
+);

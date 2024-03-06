@@ -1,8 +1,11 @@
-import { useCallback, useMemo, useRef } from 'react';
+import { forwardRef, useCallback, useMemo, useRef } from 'react';
 import { accumulate, asArray } from '@olivierpascal/helpers';
 
-import type { IZeroOrMore, ICompiledStyles } from '@/helpers/types';
-import type { IContainerProps } from '@/components/utils/Container';
+import type {
+  IContainerProps,
+  IZeroOrMore,
+  ICompiledStyles,
+} from '@/helpers/types';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type {
   ITextFieldStyleKey,
@@ -13,9 +16,10 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useValidationState } from '@/hooks/useValidationState';
-import { useVisualState } from '@/hooks/useVisualState.old';
+import { type IVisualState, useVisualState } from '@/hooks/useVisualState';
 import { useControlled } from '@/hooks/useControlled';
 import { Field } from '../Field/Field';
+import { useForkRef } from '@/hooks/useForkRef';
 
 // https://github.com/material-components/material-web/blob/main/textfield/internal/text-field.ts
 
@@ -57,10 +61,7 @@ export type IInvalidTextFieldType =
   | 'reset'
   | 'submit';
 
-export type ITextFieldProps = IContainerProps<
-  ITextFieldStyleKey,
-  ITextFieldStyleVarKey
-> &
+export type ITextFieldProps = IContainerProps<ITextFieldStyleKey> &
   Pick<
     | React.InputHTMLAttributes<HTMLInputElement>
     | React.TextareaHTMLAttributes<HTMLTextAreaElement>,
@@ -82,13 +83,16 @@ export type ITextFieldProps = IContainerProps<
     'min' | 'max' | 'step' | 'pattern' | 'multiple'
   > &
   Pick<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'cols' | 'rows'> & {
-    variant?: IFieldVariant;
-    forwardRef?: React.RefObject<HTMLInputElement | HTMLTextAreaElement>;
+    innerStyles?: {
+      field?: IZeroOrMore<ICompiledStyles<IFieldStyleKey>>;
+    };
+    visualState?: IVisualState;
+    variant?: IFieldVariant | false;
 
     /**
      * Gets or sets whether or not the text field is in a visually invalid state.
      */
-    error?: boolean;
+    hasError?: boolean;
 
     /**
      * The error message that replaces supporting text when `error` is true. If
@@ -166,7 +170,6 @@ export type ITextFieldProps = IContainerProps<
       value: string,
     ) => void;
     reportOnBlur?: boolean;
-    fieldStyles?: IZeroOrMore<ICompiledStyles<IFieldStyleKey>>;
   };
 
 type ITextFieldVariantMap = {
@@ -181,52 +184,92 @@ const variantMap: ITextFieldVariantMap = {
   outlined: 'OutlinedTextField',
 };
 
-export const TextField: React.FC<ITextFieldProps> = ({
-  variant = 'filled',
-  forwardRef,
-  label,
-  required,
-  id,
-  name,
-  prefixText,
-  suffixText,
-  start,
-  end,
-  leadingIcon,
-  trailingIcon,
-  supportingText,
-  cols = 20,
-  rows = 2,
-  inputMode,
-  max,
-  maxLength = -1,
-  min,
-  minLength = -1,
-  pattern,
-  placeholder,
-  noSpinner,
-  readOnly,
-  multiple,
-  step,
-  type = 'text',
-  autoComplete,
-  autoCapitalize,
-  disabled,
-  onChange,
-  reportOnBlur,
-  ...props
-}) => {
-  const theme = useComponentTheme('TextField');
-  const variantTheme = useComponentTheme(variantMap[variant]);
+export const TextField = forwardRef<
+  HTMLInputElement | HTMLTextAreaElement,
+  ITextFieldProps
+>(function TextField(props, ref) {
+  const {
+    styles,
+    sx,
+    innerStyles,
+    visualState: visualStateProp,
+    variant = 'filled',
+    label,
+    required,
+    prefixText,
+    suffixText,
+    start,
+    end,
+    leadingIcon,
+    trailingIcon,
+    supportingText,
+    maxLength = -1,
+    minLength = -1,
+    noSpinner,
+    value: valueProp,
+    defaultValue,
+    type = 'text',
+    hasError: hasErrorProp,
+    errorText: errorTextProp,
+    disabled,
+    onChange,
+    reportOnBlur,
+    'aria-label': ariaLabelProp,
+    ...other
+  } = props;
 
-  const hostRef = useRef<HTMLDivElement>(null);
-  const inputOrTextareaElInternalRef = useRef<
-    HTMLInputElement | HTMLTextAreaElement
-  >(null);
-  const inputOrTextareaRef = forwardRef ?? inputOrTextareaElInternalRef;
+  const hostRef = useRef<HTMLInputElement>(null);
+  const { visualState: hostVisualState, ref: hostVisualStateRef } =
+    useVisualState(undefined, {
+      disabled,
+      retainFocusAfterClick: true,
+    });
+  const hostHandleRef = useForkRef(hostVisualStateRef, hostRef);
+
+  const inputOrTextareaRef = useRef<HTMLInputElement | HTMLTextAreaElement>(
+    null,
+  );
+  const {
+    visualState: inputOrTextareaVisualState,
+    ref: inputOrTextareaRefVisualStateRef,
+  } = useVisualState(undefined, {
+    disabled,
+    retainFocusAfterClick: true,
+  });
+  const handleRef = useForkRef(
+    ref,
+    inputOrTextareaRefVisualStateRef,
+    inputOrTextareaRef,
+  );
+
+  const visualState = accumulate(
+    hostVisualState,
+    inputOrTextareaVisualState,
+    visualStateProp,
+  );
+
+  const { theme, variantTheme } = useComponentTheme(
+    'TextField',
+    variant ? variantMap[variant] : undefined,
+  );
+  const stylesCombinator = useMemo(
+    () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
+    [theme.styles, variantTheme?.styles, styles],
+  );
+  const sxf = useMemo(
+    () =>
+      stylePropsFactory<ITextFieldStyleKey, ITextFieldStyleVarKey>(
+        stylesCombinator,
+        visualState,
+      ),
+    [stylesCombinator, visualState],
+  );
+
+  const hasBeenInteractedWithRef = useRef(false);
+
   const [value, setValue] = useControlled({
-    controlled: props.value,
-    default: props.defaultValue,
+    controlled: valueProp,
+    default: defaultValue,
     name: 'TextField',
   });
   const { reportValidity, nativeErrorText } =
@@ -238,38 +281,9 @@ export const TextField: React.FC<ITextFieldProps> = ({
    */
   const isDirtyRef = useRef(false);
 
-  const hostVisualState = useVisualState(hostRef);
-  const inputOrTextareaVisualState = useVisualState(inputOrTextareaRef, {
-    retainFocusAfterClick: true,
-  });
-  const hasBeenInteractedWithRef = useRef(false);
-
-  const visualState = useMemo(
-    () =>
-      accumulate(
-        hostVisualState,
-        inputOrTextareaVisualState,
-        props.visualState,
-      ),
-    [hostVisualState, inputOrTextareaVisualState, props.visualState],
-  );
-
-  const styleProps = useMemo(
-    () =>
-      stylePropsFactory<ITextFieldStyleKey, ITextFieldStyleVarKey>(
-        stylesCombinatorFactory(
-          theme.styles,
-          variantTheme.styles,
-          props.styles,
-        ),
-        visualState,
-      ),
-    [theme.styles, variantTheme.styles, props.styles, visualState],
-  );
-
   const isTextarea = type === 'textarea';
-  const hasError = props.error || !!nativeErrorText;
-  const errorText = props.error ? props.errorText : nativeErrorText;
+  const hasError = hasErrorProp || !!nativeErrorText;
+  const errorText = hasErrorProp ? errorTextProp : nativeErrorText;
 
   const handleChange: React.ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
@@ -322,7 +336,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
   }, [reportValidity, hasError, reportOnBlur, inputOrTextareaRef]);
 
   const renderInputOrTextarea = useCallback((): React.ReactNode => {
-    const ariaLabel = props['aria-label'] ?? label;
+    const ariaLabel = ariaLabelProp ?? label;
 
     // These properties may be set to null if the attribute is removed, and
     // `null > -1` is incorrectly `true`.
@@ -332,89 +346,63 @@ export const TextField: React.FC<ITextFieldProps> = ({
     if (isTextarea) {
       return (
         <textarea
-          {...styleProps([
+          {...sxf(
             'input',
             'inputWrapped',
             hasError && 'input$error',
             disabled && 'input$disabled',
-          ])}
-          ref={inputOrTextareaRef as React.RefObject<HTMLTextAreaElement>}
-          id={id}
-          name={name}
+          )}
+          ref={handleRef}
           // TODO: aria-describedby="description"
           aria-invalid={hasError}
           aria-label={ariaLabel}
-          autoComplete={autoComplete}
-          autoCapitalize={autoCapitalize}
           disabled={disabled}
           minLength={hasMinLength ? minLength : undefined}
           maxLength={hasMaxLength ? maxLength : undefined}
-          placeholder={placeholder}
-          readOnly={readOnly}
-          required={required}
-          cols={cols}
-          rows={rows}
           value={value ?? ''}
           onChange={handleChange}
           onBlur={handleBlur}
+          required={required}
+          {...other}
         />
       );
     }
 
     return (
-      <div {...styleProps(['inputWrapper'])}>
+      <div {...sxf('inputWrapper')}>
         {prefixText ? (
           <span
-            {...styleProps([
-              'inputWrapped',
-              'prefix',
-              disabled && 'prefix$disabled',
-            ])}
+            {...sxf('inputWrapped', 'prefix', disabled && 'prefix$disabled')}
           >
             {prefixText}
           </span>
         ) : null}
         <input
-          {...styleProps([
+          {...sxf(
             'inputWrapped',
             'input',
             hasError && 'input$error',
             disabled && 'input$disabled',
             noSpinner && 'input$noSpinner',
             type === 'number' && 'input$number',
-          ])}
-          ref={inputOrTextareaRef as React.RefObject<HTMLInputElement>}
-          id={id}
-          name={name}
+          )}
+          ref={handleRef}
           // TODO: aria-describedby="description"
           aria-invalid={hasError}
           aria-label={ariaLabel}
-          autoComplete={autoComplete}
-          autoCapitalize={autoCapitalize}
           disabled={disabled}
-          inputMode={inputMode}
-          min={min}
-          max={max}
           minLength={hasMinLength ? minLength : undefined}
           maxLength={hasMaxLength ? maxLength : undefined}
-          pattern={pattern}
-          placeholder={placeholder}
-          readOnly={readOnly}
-          required={required}
-          multiple={multiple}
-          step={step}
-          type={type}
           value={value ?? ''}
           onChange={handleChange}
           onBlur={handleBlur}
+          required={required}
+          type={type}
+          {...other}
         />
         {suffixText ? (
           <span
-            {...styleProps([
-              'inputWrapped',
-              'suffix',
-              disabled && 'suffix$disabled',
-            ])}
+            {...sxf('inputWrapped', 'suffix', disabled && 'suffix$disabled')}
           >
             {suffixText}
           </span>
@@ -422,80 +410,64 @@ export const TextField: React.FC<ITextFieldProps> = ({
       </div>
     );
   }, [
-    id,
-    name,
-    inputOrTextareaRef,
+    sxf,
     isTextarea,
-    styleProps,
     prefixText,
-    suffixText,
-    props,
-    label,
-    autoComplete,
-    autoCapitalize,
-    disabled,
-    inputMode,
-    hasError,
-    min,
-    max,
-    minLength,
-    maxLength,
-    cols,
-    rows,
-    pattern,
-    placeholder,
-    readOnly,
-    required,
-    multiple,
-    step,
-    type,
     value,
     handleChange,
     handleBlur,
+    ariaLabelProp,
+    hasError,
+    disabled,
+    minLength,
+    maxLength,
+    suffixText,
     noSpinner,
+    type,
+    other,
+    handleRef,
+    label,
+    required,
   ]);
 
   const renderStart = useCallback(
     (): React.ReactNode | null =>
       start ??
       (leadingIcon ? (
-        <span {...styleProps(['icon', 'icon$leading'])}>{leadingIcon}</span>
+        <span {...sxf('icon', 'icon$leading')}>{leadingIcon}</span>
       ) : null),
-    [styleProps, start, leadingIcon],
+    [sxf, start, leadingIcon],
   );
 
   const renderEnd = useCallback(
     (): React.ReactNode | null =>
       end ??
       (trailingIcon ? (
-        <span {...styleProps(['icon', 'icon$trailing'])}>{trailingIcon}</span>
+        <span {...sxf('icon', 'icon$trailing')}>{trailingIcon}</span>
       ) : null),
-    [styleProps, end, trailingIcon],
+    [sxf, end, trailingIcon],
   );
 
   return (
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
     <div
-      {...styleProps(
-        ['host', props.sx],
-        [theme.vars, variantTheme.vars, props.theme],
-      )}
-      ref={hostRef}
+      {...sxf('host', theme.vars, variantTheme?.vars, sx)}
+      ref={hostHandleRef}
       onClick={() => inputOrTextareaRef.current?.focus()}
       role='textbox'
       tabIndex={-1}
-      onKeyDown={() => {}}
     >
-      <span {...styleProps(['textField'])}>
+      <span {...sxf('textField')}>
         <Field
           styles={[
             theme.fieldStyles,
-            variantTheme.fieldStyles,
-            ...asArray(props.fieldStyles),
+            variantTheme?.fieldStyles,
+            ...asArray(innerStyles?.field),
           ]}
           variant={variant}
           count={value?.length}
           disabled={disabled}
-          error={hasError}
+          hasError={hasError}
           errorText={errorText}
           visualState={visualState}
           start={renderStart()}
@@ -513,4 +485,4 @@ export const TextField: React.FC<ITextFieldProps> = ({
       </span>
     </div>
   );
-};
+});

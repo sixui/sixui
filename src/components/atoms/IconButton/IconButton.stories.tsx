@@ -22,7 +22,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onClick: (args) => sbHandleEvent('click', args),
+  onClick: (args) => sbHandleEvent('click', args, 300),
   icon: <FontAwesomeIcon icon={faHeart} />,
   selectedIcon: <FontAwesomeIcon icon={faHeartSolid} />,
 } satisfies Partial<IIconButtonProps>;

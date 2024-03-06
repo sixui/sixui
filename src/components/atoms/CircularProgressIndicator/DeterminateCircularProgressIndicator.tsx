@@ -1,6 +1,6 @@
-import { useMemo } from 'react';
+import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/components/utils/Container';
+import type { IContainerProps } from '@/helpers/types';
 import type {
   ICircularProgressIndicatorStyleVarKey,
   ICircularProgressIndicatorSize,
@@ -13,53 +13,57 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 // https://github.com/material-components/material-web/blob/main/progress/internal/progress.ts
 // https://github.com/material-components/material-web/blob/main/progress/internal/circulardeterminate-progress.ts
 
-export type IDeterminateCircularProgressIndicatorProps = IContainerProps<
-  IDeterminateCircularProgressIndicatorStyleKey,
-  ICircularProgressIndicatorStyleVarKey
-> &
-  Pick<React.AriaAttributes, 'aria-label'> & {
-    value: number;
-    withLabel?: boolean;
-    min?: number;
-    max?: number;
-    zeroBased?: boolean;
-    labelFormatter?: (value: number) => string;
-    size?: ICircularProgressIndicatorSize;
-    disabled?: boolean;
-  };
+export type IDeterminateCircularProgressIndicatorProps =
+  IContainerProps<IDeterminateCircularProgressIndicatorStyleKey> &
+    Pick<React.AriaAttributes, 'aria-label'> & {
+      value: number;
+      withLabel?: boolean;
+      min?: number;
+      max?: number;
+      zeroBased?: boolean;
+      labelFormatter?: (value: number) => string;
+      size?: ICircularProgressIndicatorSize;
+      disabled?: boolean;
+    };
 
-export const DeterminateCircularProgressIndicator: React.FC<
+export const DeterminateCircularProgressIndicator = forwardRef<
+  HTMLDivElement,
   IDeterminateCircularProgressIndicatorProps
-> = ({
-  value,
-  withLabel,
-  min = 0,
-  max = 1,
-  zeroBased,
-  labelFormatter,
-  size = 'md',
-  disabled,
-  ...props
-}) => {
-  const theme = useComponentTheme('CircularProgressIndicator');
-  const variantTheme = useComponentTheme(
+>(function DeterminateCircularProgressIndicator(props, ref) {
+  const {
+    styles,
+    sx,
+    value,
+    withLabel,
+    min = 0,
+    max = 1,
+    zeroBased,
+    labelFormatter,
+    size = 'md',
+    disabled,
+    ...other
+  } = props;
+
+  const { theme, variantTheme } = useComponentTheme(
+    'CircularProgressIndicator',
     'DeterminateCircularProgressIndicator',
   );
-
-  const styleProps = useMemo(
+  const stylesCombinator = useMemo(
+    () =>
+      stylesCombinatorFactory<IDeterminateCircularProgressIndicatorStyleKey>(
+        theme.styles,
+        variantTheme?.styles,
+        styles,
+      ),
+    [theme.styles, variantTheme?.styles, styles],
+  );
+  const sxf = useMemo(
     () =>
       stylePropsFactory<
         IDeterminateCircularProgressIndicatorStyleKey,
         ICircularProgressIndicatorStyleVarKey
-      >(
-        stylesCombinatorFactory<IDeterminateCircularProgressIndicatorStyleKey>(
-          theme.styles,
-          variantTheme.styles,
-          props.styles,
-        ),
-        props.visualState,
-      ),
-    [theme.styles, variantTheme.styles, props.styles, props.visualState],
+      >(stylesCombinator),
+    [stylesCombinator],
   );
 
   const value0 = zeroBased ? 0 : min;
@@ -67,14 +71,9 @@ export const DeterminateCircularProgressIndicator: React.FC<
   const dashOffset = (1 - pct) * 100;
 
   return (
-    <div
-      {...styleProps(
-        ['host', `host$${size}`, props.sx],
-        [theme.vars, props.theme],
-      )}
-    >
+    <div {...sxf('host', `host$${size}`, theme.vars, sx)} ref={ref} {...other}>
       <div
-        {...styleProps(['layer', 'progress', `progress$${size}`])}
+        {...sxf('layer', 'progress', `progress$${size}`)}
         role='progressbar'
         aria-label={props['aria-label'] || undefined}
         aria-valuemin={min}
@@ -83,32 +82,25 @@ export const DeterminateCircularProgressIndicator: React.FC<
       >
         {/* note, dash-array/offset are relative to Setting `pathLength` but Chrome seems to render this inaccurately and using a large viewbox
         helps. */}
-        <svg viewBox='0 0 4800 4800' {...styleProps(['layer', 'svg'])}>
+        <svg viewBox='0 0 4800 4800' {...sxf('layer', 'svg')}>
           <circle
-            {...styleProps([
-              'layer',
-              'svgCircle',
-              `svgCircle$${size}`,
-              'track',
-            ])}
+            {...sxf('layer', 'svgCircle', `svgCircle$${size}`, 'track')}
             pathLength='100'
           />
           <circle
-            {...styleProps([
+            {...sxf(
               'layer',
               'svgCircle',
               `svgCircle$${size}`,
               'activeTrack',
               disabled && 'activeTrack$disabled',
-            ])}
+            )}
             pathLength='100'
             strokeDashoffset={dashOffset}
           />
         </svg>
         {withLabel && size === 'lg' ? (
-          <div
-            {...styleProps(['layer', 'label', disabled && 'label$disabled'])}
-          >
+          <div {...sxf('layer', 'label', disabled && 'label$disabled')}>
             {labelFormatter
               ? labelFormatter(value)
               : `${Math.round(pct * 100)}%`}
@@ -117,4 +109,4 @@ export const DeterminateCircularProgressIndicator: React.FC<
       </div>
     </div>
   );
-};
+});

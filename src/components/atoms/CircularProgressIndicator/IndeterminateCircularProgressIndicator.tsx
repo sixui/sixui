@@ -1,6 +1,6 @@
-import { useMemo } from 'react';
+import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/components/utils/Container';
+import type { IContainerProps } from '@/helpers/types';
 import type {
   ICircularProgressIndicatorStyleVarKey,
   ICircularProgressIndicatorSize,
@@ -13,77 +13,73 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 // https://github.com/material-components/material-web/blob/main/progress/internal/progress.ts
 // https://github.com/material-components/material-web/blob/main/progress/internal/circular-progress.ts
 
-export type IIndeterminateCircularProgressIndicatorProps = IContainerProps<
-  IIndeterminateCircularProgressIndicatorStyleKey,
-  ICircularProgressIndicatorStyleVarKey
-> &
-  Pick<React.AriaAttributes, 'aria-label'> & {
-    labelFormatter?: (value: number) => string;
-    size?: ICircularProgressIndicatorSize;
-    disabled?: boolean;
-  };
+export type IIndeterminateCircularProgressIndicatorProps =
+  IContainerProps<IIndeterminateCircularProgressIndicatorStyleKey> &
+    Pick<React.AriaAttributes, 'aria-label'> & {
+      size?: ICircularProgressIndicatorSize;
+      disabled?: boolean;
+    };
 
-export const IndeterminateCircularProgressIndicator: React.FC<
+export const IndeterminateCircularProgressIndicator = forwardRef<
+  HTMLInputElement,
   IIndeterminateCircularProgressIndicatorProps
-> = ({ size = 'md', disabled, ...props }) => {
-  const theme = useComponentTheme('CircularProgressIndicator');
-  const variantTheme = useComponentTheme(
+>(function IndeterminateCircularProgressIndicator(props, ref) {
+  const { styles, sx, size = 'md', disabled, ...other } = props;
+
+  const { theme, variantTheme } = useComponentTheme(
+    'CircularProgressIndicator',
     'IndeterminateCircularProgressIndicator',
   );
-
-  const styleProps = useMemo(
+  const stylesCombinator = useMemo(
+    () =>
+      stylesCombinatorFactory<IIndeterminateCircularProgressIndicatorStyleKey>(
+        theme.styles,
+        variantTheme?.styles,
+        styles,
+      ),
+    [theme.styles, variantTheme?.styles, styles],
+  );
+  const sxf = useMemo(
     () =>
       stylePropsFactory<
         IIndeterminateCircularProgressIndicatorStyleKey,
         ICircularProgressIndicatorStyleVarKey
-      >(
-        stylesCombinatorFactory<IIndeterminateCircularProgressIndicatorStyleKey>(
-          theme.styles,
-          variantTheme.styles,
-          props.styles,
-        ),
-        props.visualState,
-      ),
-    [theme.styles, variantTheme.styles, props.styles, props.visualState],
+      >(stylesCombinator),
+    [stylesCombinator],
   );
 
   return (
-    <div
-      {...styleProps(
-        ['host', `host$${size}`, props.sx],
-        [theme.vars, props.theme],
-      )}
-    >
+    <div {...sxf('host', `host$${size}`, theme.vars, sx)} ref={ref} {...other}>
       <div
-        {...styleProps(['layer', 'progress', `progress$${size}`])}
+        {...sxf('layer', 'progress', `progress$${size}`)}
         role='progressbar'
         aria-label={props['aria-label'] || undefined}
       >
-        <div {...styleProps(['layer', 'spinner'])}>
-          <div {...styleProps(['layer', 'left'])}>
+        <div {...sxf('layer', 'spinner')}>
+          <div {...sxf('layer', 'left')}>
             <div
-              {...styleProps([
+              {...sxf(
                 'layer',
                 'circle',
                 `circle$${size}`,
                 'leftCircle',
                 disabled && 'circle$disabled',
-              ])}
+              )}
             />
           </div>
-          <div {...styleProps(['layer', 'right'])}>
+          <div {...sxf('layer', 'right')}>
             <div
-              {...styleProps([
+              {...sxf(
                 'layer',
                 'circle',
                 `circle$${size}`,
                 'rightCircle',
                 disabled && 'circle$disabled',
-              ])}
+              )}
             />
           </div>
         </div>
       </div>
     </div>
   );
-};
+});

@@ -1,61 +1,49 @@
-import { useMemo, useRef, useState } from 'react';
-import { accumulate, asArray } from '@olivierpascal/helpers';
+import { forwardRef, useMemo } from 'react';
+import { asArray } from '@olivierpascal/helpers';
 
 import type {
+  IContainerProps,
   IZeroOrMore,
   ICompiledStyles,
-  IAny,
-  IMaybeAsync,
 } from '@/helpers/types';
-import type { IContainerProps } from '@/components/utils/Container';
+import type {
+  IPolymorphicComponentPropsWithRef,
+  IPolymorphicRef,
+  IWithAsProp,
+} from '@/helpers/polymorphicComponentTypes';
 import type {
   IIconButtonStyleKey,
-  IIconButtonStyleVarKey,
   IIconButtonVariant,
 } from './IconButton.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { useVisualState } from '@/hooks/useVisualState.old';
-import {
-  FocusRing,
-  type IFocusRingStyleKey,
-} from '@/components/utils/FocusRing';
-import {
-  StateLayer,
-  type IStateLayerStyleKey,
-} from '@/components/utils/StateLayer';
 import { IThemeComponents } from '@/helpers/ThemeContext';
-import {
-  IndeterminateCircularProgressIndicator,
-  type ICircularProgressIndicatorStyleKey,
-} from '@/components/atoms/CircularProgressIndicator';
+import { type IButtonStyleKey, type IButtonOwnProps, Button } from '../Button';
 
 // https://github.com/material-components/material-web/blob/main/iconbutton/internal/icon-button.ts
 
-export type IIconButtonProps = IContainerProps<
-  IIconButtonStyleKey,
-  IIconButtonStyleVarKey
+const DEFAULT_TAG = 'button';
+
+export type IIconButtonOwnProps = Omit<
+  IButtonOwnProps,
+  'variant' | 'icon' | 'trailingIcon'
 > &
-  Pick<
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
-    'disabled' | 'aria-label' | 'aria-haspopup' | 'aria-expanded'
-  > &
-  Pick<React.LinkHTMLAttributes<HTMLLinkElement>, 'href'> & {
-    forwardRef?: React.RefObject<HTMLButtonElement | HTMLLinkElement>;
-    onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
-    variant?: IIconButtonVariant;
+  IContainerProps<IIconButtonStyleKey> &
+  Pick<React.AriaAttributes, 'aria-label'> & {
+    innerStyles?: IButtonOwnProps['innerStyles'] & {
+      button?: IZeroOrMore<ICompiledStyles<IButtonStyleKey>>;
+    };
+    variant?: IIconButtonVariant | false;
     toggle?: boolean;
     selected?: boolean;
-    loading?: boolean;
     icon: React.ReactNode;
     selectedIcon?: React.ReactNode;
-    component?: React.ElementType;
     'aria-label-selected'?: React.AriaAttributes['aria-label'];
-    statelayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
-    focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-    circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
   };
+
+export type IIconButtonProps<
+  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+> = IPolymorphicComponentPropsWithRef<TRoot, IIconButtonOwnProps>;
 
 type IIconButtonVariantMap = {
   [key in IIconButtonVariant]: keyof Pick<
@@ -74,165 +62,56 @@ const variantMap: IIconButtonVariantMap = {
   outlined: 'OutlinedIconButton',
 };
 
-export const IconButton: React.FC<IIconButtonProps> = ({
-  forwardRef,
-  onClick,
-  variant = 'standard',
-  toggle,
-  selected,
-  href,
-  ...props
-}) => {
-  const theme = useComponentTheme('IconButton');
-  const variantTheme = useComponentTheme(variantMap[variant]);
+type IIconButton = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
+  props: IIconButtonProps<TRoot>,
+) => React.ReactNode;
 
-  const actionElInternalRef = useRef<HTMLButtonElement | HTMLLinkElement>(null);
-  const actionRef = forwardRef ?? actionElInternalRef;
-  const [handlingClick, setHandlingClick] = useState(false);
-  const visualState = accumulate(useVisualState(actionRef), props.visualState);
+export const IconButton: IIconButton = forwardRef(function IconButton<
+  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+>(props: IIconButtonProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+  const {
+    styles,
+    sx,
+    as = DEFAULT_TAG,
+    innerStyles,
+    variant = 'standard',
+    toggle,
+    selected,
+    icon,
+    selectedIcon,
+    'aria-label': ariaLabel,
+    'aria-label-selected': ariaLabelSelected,
+    ...other
+  } = props as IWithAsProp<IIconButtonOwnProps>;
 
-  const styleProps = useMemo(
-    () =>
-      stylePropsFactory<IIconButtonStyleKey, IIconButtonStyleVarKey>(
-        stylesCombinatorFactory(
-          theme.styles,
-          variantTheme.styles,
-          props.styles,
-        ),
-        visualState,
-      ),
-    [theme.styles, variantTheme.styles, props.styles, visualState],
+  const { theme, variantTheme } = useComponentTheme(
+    'IconButton',
+    variant ? variantMap[variant] : undefined,
   );
-
-  const handleClick: React.MouseEventHandler<HTMLElement> | undefined = onClick
-    ? (event) => {
-        if (handlingClick) {
-          return;
-        }
-
-        setHandlingClick(true);
-
-        Promise.resolve(onClick(event))
-          .finally(() => setHandlingClick(false))
-          .catch((error: Error) => {
-            throw error;
-          });
-      }
-    : undefined;
-
-  const loading = props.loading || handlingClick;
-  const disabled = props.disabled || loading;
-  const hasOverlay = loading;
-  const hasOutline =
-    theme.styles?.outline ||
-    variantTheme.styles?.outline ||
-    asArray(props.styles).some((styles) => !!styles?.outline);
-
-  const Component: React.ElementType = props.component
-    ? props.component
-    : href
-      ? 'a'
-      : 'button';
-  const icon =
-    toggle && selected ? props.selectedIcon ?? props.icon : props.icon;
+  const stylesCombinator = useMemo(
+    () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
+    [theme.styles, variantTheme?.styles, styles],
+  );
 
   return (
-    <div
-      {...styleProps(
-        [
+    <Button
+      ref={ref}
+      as={as}
+      styles={asArray(innerStyles?.button)}
+      sx={[
+        stylesCombinator(
           'host',
-          disabled ? 'host$disabled' : toggle ? 'host$toggle' : null,
-          !disabled && selected
-            ? toggle
-              ? 'host$toggle$selected'
-              : 'host$selected'
-            : null,
-          props.sx,
-        ],
-        [theme.vars, variantTheme.vars, props.theme],
-      )}
-    >
-      {hasOutline ? (
-        <div {...styleProps(['outline', disabled && 'outline$disabled'])} />
-      ) : null}
-      <div
-        {...styleProps([
-          'background',
-          disabled
-            ? 'background$disabled'
-            : toggle
-              ? selected
-                ? 'background$selected'
-                : 'background$unselected'
-              : null,
-        ])}
-      />
-      <FocusRing
-        styles={[
-          theme.focusRingStyles,
-          variantTheme.focusRingStyles,
-          ...asArray(props.focusRingStyles),
-        ]}
-        for={actionRef}
-        visualState={visualState}
-      />
-      <StateLayer
-        styles={[
-          theme.statelayerStyles,
-          variantTheme.statelayerStyles,
-          ...asArray(props.statelayerStyles),
-        ]}
-        for={actionRef}
-        disabled={disabled}
-        visualState={visualState}
-      />
-
-      <Component
-        {...styleProps(['button'])}
-        ref={actionRef}
-        onClick={handleClick}
-        readOnly={disabled}
-        tabIndex={disabled ? -1 : 0}
-        aria-label={
-          toggle && selected
-            ? props['aria-label-selected'] ?? props['aria-label']
-            : props['aria-label']
-        }
-        aria-haspopup={props['aria-haspopup']}
-        aria-expanded={props['aria-expanded']}
-      >
-        <span {...styleProps(['touchTarget'])} />
-
-        <div
-          {...styleProps([
-            'icon',
-            disabled
-              ? 'icon$disabled'
-              : toggle
-                ? selected
-                  ? 'icon$toggle$selected'
-                  : 'icon$toggle'
-                : null,
-            hasOverlay ? 'invisible' : null,
-          ])}
-        >
-          {icon}
-        </div>
-
-        {hasOverlay ? (
-          <div {...styleProps(['overlay'])}>
-            <div {...styleProps([disabled && 'icon$disabled'])}>
-              <IndeterminateCircularProgressIndicator
-                styles={[
-                  theme.circularProgressIndicatorStyles,
-                  variantTheme.circularProgressIndicatorStyles,
-                  ...asArray(props.circularProgressIndicatorStyles),
-                ]}
-              />
-            </div>
-          </div>
-        ) : null}
-      </Component>
-    </div>
+          toggle ? (selected ? 'host$toggle$selected' : 'host$toggle') : null,
+        ),
+        theme.vars,
+        variantTheme?.vars,
+        sx,
+      ]}
+      icon={selected ? selectedIcon ?? icon : icon}
+      aria-label={
+        toggle && selected ? ariaLabelSelected ?? ariaLabel : ariaLabel
+      }
+      {...other}
+    />
   );
-};
+});

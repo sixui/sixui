@@ -82,7 +82,6 @@ export const styles: MapNamespaces<IButtonStyles> =
     },
     host$disabled: {
       cursor: 'default',
-      pointerEvents: 'none',
       // eslint-disable-next-line @stylexjs/valid-styles
       [buttonStateVars.elevation]: vars.containerElevation$disabled,
     },
@@ -95,7 +94,12 @@ export const styles: MapNamespaces<IButtonStyles> =
       paddingInlineEnd: vars.trailingIconTrailingSpace,
     },
     touchTarget: {
-      height: vars.touchHeight,
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      width: `calc(100% + ${vars.touchTargetSpace})`,
+      height: `calc(100% + ${vars.touchTargetSpace})`,
+      transform: 'translate(-50%, -50%)',
     },
     background: {
       backgroundColor: vars.containerColor,
@@ -159,10 +163,27 @@ export const styles: MapNamespaces<IButtonStyles> =
       textAlign: 'center',
       justifyContent: 'center',
     },
+    outline: {
+      inset: 0,
+      pointerEvents: 'none',
+      borderStyle: vars.outlineStyle,
+      borderWidth: vars.outlineWidth,
+      position: 'absolute',
+      borderColor: {
+        default: vars.outlineColor,
+        ':is([data-focused])': vars.outlineColor$focus,
+        ':is([data-pressed])': vars.outlineColor$pressed,
+      },
+      borderRadius: vars.containerShape,
+    },
+    outline$disabled: {
+      borderColor: vars.outlineColor$disabled,
+      opacity: vars.outlineOpacity$disabled,
+    },
   });
 
 type IStateLayerStyles = IStyles<IStateLayerStyleKey>;
-export const statelayerStyles: MapNamespaces<IStateLayerStyles> = stylex.create<
+export const stateLayerStyles: MapNamespaces<IStateLayerStyles> = stylex.create<
   IStyles<IStateLayerStyleKey>
 >({
   host: {

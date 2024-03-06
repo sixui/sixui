@@ -1,28 +1,34 @@
-import { useMemo } from 'react';
+import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/components/utils/Container';
+import type { IContainerProps } from '@/helpers/types';
 import type { IListStyleKey, IListStyleVarKey } from './List.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export type IListProps = IContainerProps<IListStyleKey, IListStyleVarKey> & {
+export type IListProps = IContainerProps<IListStyleKey> & {
   children?: React.ReactNode;
 };
 
-export const List: React.FC<IListProps> = ({ children, ...props }) => {
-  const theme = useComponentTheme('List');
+export const List = forwardRef<HTMLDivElement, IListProps>(
+  function List(props, ref) {
+    const { styles, sx, children, ...other } = props;
 
-  const styleProps = useMemo(
-    () =>
-      stylePropsFactory<IListStyleKey, IListStyleVarKey>(
-        stylesCombinatorFactory(theme.styles, props.styles),
-        props.visualState,
-      ),
-    [theme.styles, props.styles, props.visualState],
-  );
+    const { theme } = useComponentTheme('List');
+    const stylesCombinator = useMemo(
+      () => stylesCombinatorFactory(theme.styles, styles),
+      [theme.styles, styles],
+    );
+    const sxf = useMemo(
+      () =>
+        stylePropsFactory<IListStyleKey, IListStyleVarKey>(stylesCombinator),
+      [stylesCombinator],
+    );
 
-  return (
-    <div {...styleProps(['host', props.sx], [props.theme])}>{children}</div>
-  );
-};
+    return (
+      <div {...sxf('host', sx)} ref={ref} {...other}>
+        {children}
+      </div>
+    );
+  },
+);

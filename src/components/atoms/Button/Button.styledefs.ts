@@ -26,6 +26,7 @@ export type IButtonStyleKey =
   | 'overlay';
 
 type IOutlineStyleVarKey =
+  | 'outlineStyle'
   | 'outlineWidth'
   | 'outlineColor'
   | 'outlineColor$disabled'
@@ -82,7 +83,7 @@ export type IButtonStyleVarKey =
   | 'gap'
   | 'leadingSpace'
   | 'trailingSpace'
-  | 'touchHeight'
+  | 'touchTargetSpace'
   | 'leadingIconLeadingSpace'
   | 'leadingIconTrailingSpace'
   | 'trailingIconLeadingSpace'

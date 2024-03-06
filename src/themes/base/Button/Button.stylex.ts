@@ -39,7 +39,7 @@ const vars: Partial<IStyleVars<IButtonStyleVarKey>> = {
   stateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
 
   // touch
-  touchHeight: '48px',
+  touchTargetSpace: '8px',
 
   // labelText
   labelTextFont: typescaleVars.labelFont$lg,
@@ -61,6 +61,18 @@ const vars: Partial<IStyleVars<IButtonStyleVarKey>> = {
   stateLayerColor$hover: colorRolesVars.primary,
   // &:pressed
   stateLayerColor$pressed: colorRolesVars.primary,
+
+  // outline
+  outlineStyle: 'none',
+  outlineWidth: '1px',
+  outlineColor: colorRolesVars.outline,
+  // &:disabled
+  outlineColor$disabled: colorRolesVars.onSurface,
+  outlineOpacity$disabled: stateVars.outlineOpacity$disabled,
+  // &:focus
+  outlineColor$focus: colorRolesVars.outline,
+  // &:pressed
+  outlineColor$pressed: colorRolesVars.outline,
 };
 
 export const componentVars = stylex.defineVars(

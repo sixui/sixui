@@ -13,7 +13,7 @@ import { styles as componentShowcaseStyles } from './ComponentShowcase/Component
 import { styles as placeholderStyles } from './Placeholder/Placeholder.styles';
 import { componentTheme as placeholderTheme } from './Placeholder/Placeholder.stylex';
 
-import { styles as statelayerStyles } from './StateLayer/StateLayer.styles';
+import { styles as stateLayerStyles } from './StateLayer/StateLayer.styles';
 import { componentTheme as statelayerTheme } from './StateLayer/StateLayer.stylex';
 
 import { styles as elevationStyles } from './Elevation/Elevation.styles';
@@ -25,7 +25,7 @@ import { componentTheme as focusRingTheme } from './FocusRing/FocusRing.stylex';
 import { componentTheme as buttonTheme } from './Button/Button.stylex';
 import {
   styles as buttonStyles,
-  statelayerStyles as buttonStateLayerStyles,
+  stateLayerStyles as buttonStateLayerStyles,
   elevationStyles as buttonElevationStyles,
   focusRingStyles as buttonFocusRingStyles,
   circularProgressIndicatorStyles as buttonCircularProgressIndicatorStyles,
@@ -35,7 +35,6 @@ import { componentTheme as elevatedButtonTheme } from './Button/ElevatedButton.s
 import { componentTheme as filledButtonTheme } from './Button/FilledButton.stylex';
 import { componentTheme as filledTonalButtonTheme } from './Button/FilledTonalButton.stylex';
 import { componentTheme as outlinedButtonTheme } from './Button/OutlinedButton.stylex';
-import { styles as outlinedButtonStyles } from './Button/OutlinedButton.styles';
 import { componentTheme as textButtonTheme } from './Button/TextButton.stylex';
 
 import { styles as circularProgressIndicatorStyles } from './CircularProgressIndicator/CircularProgressIndicator.styles';
@@ -46,7 +45,7 @@ import { styles as determinateCircularProgressIndicatorStyles } from './Circular
 import { componentTheme as chipTheme } from './Chip/Chip.stylex';
 import {
   styles as chipStyles,
-  statelayerStyles as chipStateLayerStyles,
+  stateLayerStyles as chipStateLayerStyles,
   elevationStyles as chipElevationStyles,
   focusRingStyles as chipFocusRingStyles,
   trailingActionFocusRingStyles as chipTrailingActionFocusRingStyles,
@@ -58,13 +57,7 @@ import { componentTheme as filterChipTheme } from './Chip/FilterChip.stylex';
 import { componentTheme as inputChipTheme } from './Chip/InputChip.stylex';
 import { componentTheme as suggestionChipTheme } from './Chip/SuggestionChip.stylex';
 
-import {
-  styles as fabStyles,
-  statelayerStyles as fabStateLayerStyles,
-  elevationStyles as fabElevationStyles,
-  focusRingStyles as fabFocusRingStyles,
-  circularProgressIndicatorStyles as fabCircularProgressIndicatorStyles,
-} from './Fab/Fab.styles';
+import { styles as fabStyles } from './Fab/Fab.styles';
 import { componentTheme as fabTheme } from './Fab/Fab.stylex';
 import { componentTheme as surfaceFabTheme } from './Fab/SurfaceFab.stylex';
 import { componentTheme as primaryFabTheme } from './Fab/PrimaryFab.stylex';
@@ -72,22 +65,16 @@ import { componentTheme as secondaryFabTheme } from './Fab/SecondaryFab.stylex';
 import { componentTheme as tertiaryFabTheme } from './Fab/TertiaryFab.stylex';
 import { componentTheme as brandedFabTheme } from './Fab/BrandedFab.stylex';
 
-import {
-  styles as iconButtonStyles,
-  statelayerStyles as iconButtonStateLayerStyles,
-  focusRingStyles as iconButtonFocusRingStyles,
-  circularProgressIndicatorStyles as iconButtonCircularProgressIndicatorStyles,
-} from './IconButton/IconButton.styles';
+import { styles as iconButtonStyles } from './IconButton/IconButton.styles';
 import { componentTheme as iconButtonTheme } from './IconButton/IconButton.stylex';
 import { componentTheme as standardIconButtonTheme } from './IconButton/StandardIconButton.stylex';
 import { componentTheme as filledIconButtonTheme } from './IconButton/FilledIconButton.stylex';
 import { componentTheme as filledTonalIconButtonTheme } from './IconButton/FilledTonalIconButton.stylex';
 import { componentTheme as outlinedIconButtonTheme } from './IconButton/OutlinedIconButton.stylex';
-import { styles as outlinedIconButtonStyles } from './IconButton/OutlinedIconButton.styles';
 
 import {
   styles as switchStyles,
-  statelayerStyles as switchStateLayerStyles,
+  stateLayerStyles as switchStateLayerStyles,
   focusRingStyles as switchFocusRingStyles,
   circularProgressIndicatorStyles as switchCircularProgressIndicatorStyles,
 } from './Switch/Switch.styles';
@@ -108,13 +95,13 @@ import { componentTheme as outlinedTextFieldTheme } from './TextField/OutlinedTe
 import { componentTheme as radioTheme } from './Radio/Radio.stylex';
 import {
   styles as radioStyles,
-  statelayerStyles as radioStateLayerStyles,
+  stateLayerStyles as radioStateLayerStyles,
   focusRingStyles as radioFocusRingStyles,
 } from './Radio/Radio.styles';
 import { componentTheme as checkboxTheme } from './Checkbox/Checkbox.stylex';
 import {
   styles as checkboxStyles,
-  statelayerStyles as checkboxStateLayerStyles,
+  stateLayerStyles as checkboxStateLayerStyles,
   focusRingStyles as checkboxFocusRingStyles,
 } from './Checkbox/Checkbox.styles';
 
@@ -122,14 +109,11 @@ import { styles as itemStyles } from './Item/Item.styles';
 import { componentTheme as itemTheme } from './Item/Item.stylex';
 
 import { styles as listStyles } from './List/List.styles';
-import {
-  componentTheme as listItemTheme,
-  itemComponentTheme as listItemItemTheme,
-} from './ListItem/ListItem.stylex';
+import { componentTheme as listItemTheme } from './ListItem/ListItem.stylex';
 import {
   styles as listItemStyles,
   itemStyles as listItemItemStyles,
-  statelayerStyles as listItemStateLayerStyles,
+  stateLayerStyles as listItemStateLayerStyles,
   focusRingStyles as listItemFocusRingStyles,
 } from './ListItem/ListItem.styles';
 
@@ -143,13 +127,12 @@ import {
 } from './Paper/Paper.styles';
 import { componentTheme as filledPaperTheme } from './Paper/FilledPaper.stylex';
 import { componentTheme as outlinedPaperTheme } from './Paper/OutlinedPaper.stylex';
-import { styles as outlinedPaperStyles } from './Paper/OutlinedPaper.styles';
 
 import { componentTheme as cardTheme } from './Card/Card.stylex';
 import {
   styles as cardStyles,
   elevationStyles as cardElevationStyles,
-  statelayerStyles as cardActionAreaStateLayerStyles,
+  stateLayerStyles as cardActionAreaStateLayerStyles,
   focusRingStyles as cardActionAreaFocusRingStyles,
 } from './Card/Card.styles';
 import { componentTheme as elevatedCardTheme } from './Card/ElevatedCard.stylex';
@@ -173,7 +156,7 @@ import { styles as cardActionsStyles } from './CardActions/CardActions.styles';
 import { componentTheme as tabTheme } from './Tab/Tab.stylex';
 import {
   styles as tabStyles,
-  statelayerStyles as tabStateLayerStyles,
+  stateLayerStyles as tabStateLayerStyles,
   elevationStyles as tabElevationStyles,
   focusRingStyles as tabFocusRingStyles,
 } from './Tab/Tab.styles';
@@ -199,6 +182,9 @@ import { styles as badgeStyles } from './Badge/Badge.styles';
 
 import { componentTheme as avatarTheme } from './Avatar/Avatar.stylex';
 import { styles as avatarStyles } from './Avatar/Avatar.styles';
+
+import { componentTheme as dialogTheme } from './Dialog/Dialog.stylex';
+import { styles as dialogStyles } from './Dialog/Dialog.styles';
 
 export const theme: ITheme = {
   name: 'Material Design 3',
@@ -227,7 +213,7 @@ export const theme: ITheme = {
     },
     StateLayer: {
       vars: statelayerTheme,
-      styles: statelayerStyles,
+      styles: stateLayerStyles,
     },
     Elevation: {
       vars: elevationTheme,
@@ -243,7 +229,7 @@ export const theme: ITheme = {
     Button: {
       vars: buttonTheme,
       styles: buttonStyles,
-      statelayerStyles: buttonStateLayerStyles,
+      stateLayerStyles: buttonStateLayerStyles,
       focusRingStyles: buttonFocusRingStyles,
       elevationStyles: buttonElevationStyles,
       circularProgressIndicatorStyles: buttonCircularProgressIndicatorStyles,
@@ -251,10 +237,7 @@ export const theme: ITheme = {
     ElevatedButton: { vars: elevatedButtonTheme },
     FilledButton: { vars: filledButtonTheme },
     FilledTonalButton: { vars: filledTonalButtonTheme },
-    OutlinedButton: {
-      vars: outlinedButtonTheme,
-      styles: outlinedButtonStyles,
-    },
+    OutlinedButton: { vars: outlinedButtonTheme },
     TextButton: { vars: textButtonTheme },
     CircularProgressIndicator: {
       vars: circularProgressIndicatorTheme,
@@ -269,7 +252,7 @@ export const theme: ITheme = {
     Chip: {
       vars: chipTheme,
       styles: chipStyles,
-      statelayerStyles: chipStateLayerStyles,
+      stateLayerStyles: chipStateLayerStyles,
       focusRingStyles: chipFocusRingStyles,
       elevationStyles: chipElevationStyles,
       trailingActionFocusRingStyles: chipTrailingActionFocusRingStyles,
@@ -283,10 +266,6 @@ export const theme: ITheme = {
     Fab: {
       vars: fabTheme,
       styles: fabStyles,
-      statelayerStyles: fabStateLayerStyles,
-      focusRingStyles: fabFocusRingStyles,
-      elevationStyles: fabElevationStyles,
-      circularProgressIndicatorStyles: fabCircularProgressIndicatorStyles,
     },
     SurfaceFab: { vars: surfaceFabTheme },
     PrimaryFab: { vars: primaryFabTheme },
@@ -296,22 +275,15 @@ export const theme: ITheme = {
     IconButton: {
       vars: iconButtonTheme,
       styles: iconButtonStyles,
-      statelayerStyles: iconButtonStateLayerStyles,
-      focusRingStyles: iconButtonFocusRingStyles,
-      circularProgressIndicatorStyles:
-        iconButtonCircularProgressIndicatorStyles,
     },
     StandardIconButton: { vars: standardIconButtonTheme },
     FilledIconButton: { vars: filledIconButtonTheme },
     FilledTonalIconButton: { vars: filledTonalIconButtonTheme },
-    OutlinedIconButton: {
-      vars: outlinedIconButtonTheme,
-      styles: outlinedIconButtonStyles,
-    },
+    OutlinedIconButton: { vars: outlinedIconButtonTheme },
     Switch: {
       vars: switchTheme,
       styles: switchStyles,
-      statelayerStyles: switchStateLayerStyles,
+      stateLayerStyles: switchStateLayerStyles,
       focusRingStyles: switchFocusRingStyles,
       circularProgressIndicatorStyles: switchCircularProgressIndicatorStyles,
     },
@@ -337,13 +309,13 @@ export const theme: ITheme = {
     Radio: {
       vars: radioTheme,
       styles: radioStyles,
-      statelayerStyles: radioStateLayerStyles,
+      stateLayerStyles: radioStateLayerStyles,
       focusRingStyles: radioFocusRingStyles,
     },
     Checkbox: {
       vars: checkboxTheme,
       styles: checkboxStyles,
-      statelayerStyles: checkboxStateLayerStyles,
+      stateLayerStyles: checkboxStateLayerStyles,
       focusRingStyles: checkboxFocusRingStyles,
     },
     Item: {
@@ -354,8 +326,7 @@ export const theme: ITheme = {
       vars: listItemTheme,
       styles: listItemStyles,
       itemStyles: listItemItemStyles,
-      itemVars: listItemItemTheme,
-      statelayerStyles: listItemStateLayerStyles,
+      stateLayerStyles: listItemStateLayerStyles,
       focusRingStyles: listItemFocusRingStyles,
     },
     List: {
@@ -371,15 +342,12 @@ export const theme: ITheme = {
       elevationStyles: paperElevationStyles,
     },
     FilledPaper: { vars: filledPaperTheme },
-    OutlinedPaper: {
-      vars: outlinedPaperTheme,
-      styles: outlinedPaperStyles,
-    },
+    OutlinedPaper: { vars: outlinedPaperTheme },
     Card: {
       vars: cardTheme,
       styles: cardStyles,
       elevationStyles: cardElevationStyles,
-      statelayerStyles: cardActionAreaStateLayerStyles,
+      stateLayerStyles: cardActionAreaStateLayerStyles,
       focusRingStyles: cardActionAreaFocusRingStyles,
     },
     CardHeader: {
@@ -409,7 +377,7 @@ export const theme: ITheme = {
     Tab: {
       vars: tabTheme,
       styles: tabStyles,
-      statelayerStyles: tabStateLayerStyles,
+      stateLayerStyles: tabStateLayerStyles,
       focusRingStyles: tabFocusRingStyles,
       elevationStyles: tabElevationStyles,
     },
@@ -437,6 +405,10 @@ export const theme: ITheme = {
     Avatar: {
       vars: avatarTheme,
       styles: avatarStyles,
+    },
+    Dialog: {
+      vars: dialogTheme,
+      styles: dialogStyles,
     },
   },
 };

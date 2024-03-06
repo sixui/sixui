@@ -1,22 +1,36 @@
+import stylex from '@stylexjs/stylex';
+import { forwardRef } from 'react';
+import { asArray } from '@olivierpascal/helpers';
+
+import type { IContainerProps } from '@/helpers/types';
 import { useTabContext } from '../Tabs/useTabContext';
 
-export type ITabPanelProps = {
+export type ITabPanelProps = Omit<IContainerProps, 'styles'> & {
   anchor: string;
   children?: React.ReactNode;
 };
 
-export const TabPanel: React.FC<ITabPanelProps> = ({ anchor, children }) => {
-  const tabContext = useTabContext();
+export const TabPanel = forwardRef<HTMLDivElement, ITabPanelProps>(
+  function TabPanel(props, ref) {
+    const { sx, anchor, children } = props;
 
-  if (tabContext?.anchor !== anchor) {
-    return null;
-  }
+    const tabContext = useTabContext();
 
-  const id = tabContext && anchor ? `${tabContext.id}-${anchor}` : undefined;
+    if (tabContext?.anchor !== anchor) {
+      return null;
+    }
 
-  return (
-    <div role='tabpanel' aria-labelledby={id}>
-      {children}
-    </div>
-  );
-};
+    const id = tabContext && anchor ? `${tabContext.id}-${anchor}` : undefined;
+
+    return (
+      <div
+        {...stylex.props(...asArray(sx))}
+        ref={ref}
+        role='tabpanel'
+        aria-labelledby={id}
+      >
+        {children}
+      </div>
+    );
+  },
+);

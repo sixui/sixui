@@ -39,8 +39,7 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     [chipStateVars.containerShape]: `calc(${vars.containerHeight} / 2)`,
   },
   host$disabled: {
-    cursor: 'pointer',
-    pointerEvents: 'none',
+    cursor: 'default',
   },
   container: {
     borderRadius: 'inherit',
@@ -73,7 +72,7 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
       backgroundColor: vars.flatContainerColor$disabled,
       opacity: vars.flatContainerOpacity$disabled,
     },
-    pointerEvents: 'none',
+    // pointerEvents: 'none',
     // eslint-disable-next-line @stylexjs/valid-styles
     [chipStateVars.elevation]: vars.flatContainerElevation$disabled,
   },
@@ -307,7 +306,7 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
 });
 
 type IStateLayerStyles = IStyles<IStateLayerStyleKey>;
-export const statelayerStyles: MapNamespaces<IStateLayerStyles> =
+export const stateLayerStyles: MapNamespaces<IStateLayerStyles> =
   stylex.create<IStateLayerStyles>({
     host: {
       // eslint-disable-next-line @stylexjs/valid-styles
@@ -363,6 +362,15 @@ export const trailingActionStateLayerStyles: MapNamespaces<IStateLayerStyles> =
       height: `calc(4 / 3 * ${vars.iconSize})`,
       width: `calc(4 / 3 * ${vars.iconSize})`,
       inset: 'unset',
+
+      // eslint-disable-next-line @stylexjs/valid-styles
+      [statelayerVars.color$hover]: vars.stateLayerColor$hover,
+      // eslint-disable-next-line @stylexjs/valid-styles
+      [statelayerVars.opacity$hover]: vars.stateLayerOpacity$hover,
+      // eslint-disable-next-line @stylexjs/valid-styles
+      [statelayerVars.color$pressed]: vars.stateLayerColor$pressed,
+      // eslint-disable-next-line @stylexjs/valid-styles
+      [statelayerVars.opacity$pressed]: vars.stateLayerOpacity$pressed,
     },
   });
 

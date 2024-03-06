@@ -1,10 +1,9 @@
-import stylex, { type StyleXStyles } from '@stylexjs/stylex';
-import { asArray } from '@olivierpascal/helpers';
+import stylex from '@stylexjs/stylex';
 import { CompiledStyles } from '@stylexjs/stylex/lib/StyleXTypes';
 
 import type { IStylesCombinator } from '@/helpers/stylesCombinatorFactory';
-import type { IVisualState } from '@/hooks/useVisualState.old';
-import type { IZeroOrMore, IStyleVarsTheme } from './types';
+import type { IVisualState } from '@/hooks/useVisualState';
+import type { IStyleVarsTheme, IStyleXStyles } from './types';
 import { dataProps } from '@/helpers/dataProps';
 
 type IClassName<IStyleKey extends string> =
@@ -13,8 +12,8 @@ type IClassName<IStyleKey extends string> =
   | undefined
   | false;
 
-type IStyles<IStyleKey extends string> =
-  | IStyleVarsTheme<IStyleKey>
+type IStyles<IStyleVarKey extends string> =
+  | IStyleVarsTheme<IStyleVarKey>
   | CompiledStyles
   | null
   | false
@@ -24,10 +23,12 @@ export type IStyleProps<
   IStyleKey extends string,
   IStyleVarKey extends string,
 > = (
-  classNames?: Array<
-    IClassName<IStyleKey> | Array<IClassName<IStyleKey>> | StyleXStyles
-  >,
-  styles?: Array<IZeroOrMore<IStyles<IStyleVarKey>>>,
+  ...styleKeys: Array<
+    | IClassName<IStyleKey>
+    | Array<IClassName<IStyleKey>>
+    | IStyleXStyles
+    | IStyles<IStyleVarKey>
+  >
 ) => ReturnType<typeof stylex.props> & {
   [key in `data-${keyof IVisualState}`]?: string;
 };
@@ -37,12 +38,11 @@ export const stylePropsFactory =
     combineStyles: IStylesCombinator<IStyleKey>,
     visualState?: IVisualState,
   ): IStyleProps<IStyleKey, IStyleVarKey> =>
-  (classNames, styles) => ({
+  (...styleKeys) => ({
     ...stylex.props(
-      ...(classNames
-        ? combineStyles(...(classNames.flat() as Array<IClassName<IStyleKey>>))
+      ...(styleKeys
+        ? combineStyles(...(styleKeys.flat() as Array<IClassName<IStyleKey>>))
         : []),
-      ...(styles ? asArray(styles) : []),
     ),
     ...dataProps(visualState),
   });
