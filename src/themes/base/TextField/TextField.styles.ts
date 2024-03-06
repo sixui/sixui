@@ -27,7 +27,7 @@ export const styles: MapNamespaces<ITextFieldStyles> =
     inputWrapper: {
       flexGrow: 1,
       flexShrink: 1,
-      flexBasis: 0,
+      flexBasis: '0%',
       display: 'flex',
     },
     inputWrapped: {

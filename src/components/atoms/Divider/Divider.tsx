@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { forwardRef, useMemo } from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
 import type {
@@ -11,10 +11,7 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 
 // https://github.com/material-components/material-web/blob/main/divider/internal/divider.ts
 
-export type IDividerProps = IContainerProps<
-  IDividerStyleKey,
-  IDividerStyleVarKey
-> & {
+export type IDividerProps = IContainerProps<IDividerStyleKey> & {
   /**
    * Indents the divider with equal padding on both sides.
    */
@@ -31,35 +28,38 @@ export type IDividerProps = IContainerProps<
   insetEnd?: boolean;
 };
 
-export const Divider: React.FC<IDividerProps> = ({
-  inset,
-  insetStart,
-  insetEnd,
-  ...props
-}) => {
-  const theme = useComponentTheme('Divider');
+export const Divider = forwardRef<HTMLDivElement, IDividerProps>(
+  function Divider(props, ref) {
+    const { styles, sx, inset, insetStart, insetEnd, ...other } = props;
 
-  const styleProps = useMemo(
-    () =>
-      stylePropsFactory<IDividerStyleKey, IDividerStyleVarKey>(
-        stylesCombinatorFactory(theme.styles, props.styles),
-        props.visualState,
-      ),
-    [theme.styles, props.styles, props.visualState],
-  );
+    const theme = useComponentTheme('Divider');
+    const stylesCombinator = useMemo(
+      () => stylesCombinatorFactory(theme.styles, styles),
+      [theme.styles, styles],
+    );
+    const styleProps = useMemo(
+      () =>
+        stylePropsFactory<IDividerStyleKey, IDividerStyleVarKey>(
+          stylesCombinator,
+        ),
+      [stylesCombinator],
+    );
 
-  return (
-    <div
-      {...styleProps(
-        [
-          'host',
-          inset && 'host$inset',
-          insetStart && 'host$insetStart',
-          insetEnd && 'host$insetEnd',
-          props.sx,
-        ],
-        [theme.vars, props.theme],
-      )}
-    />
-  );
-};
+    return (
+      <div
+        {...styleProps(
+          [
+            'host',
+            inset && 'host$inset',
+            insetStart && 'host$insetStart',
+            insetEnd && 'host$insetEnd',
+            sx,
+          ],
+          [theme.vars],
+        )}
+        ref={ref}
+        {...other}
+      />
+    );
+  },
+);

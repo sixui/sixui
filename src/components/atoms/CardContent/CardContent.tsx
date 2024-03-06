@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { forwardRef, useMemo } from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
 import type {
@@ -10,39 +10,41 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useCardContext } from '../Card/useCardContext';
 
-export type ICardContentProps = IContainerProps<
-  ICardContentStyleKey,
-  ICardContentStyleVarKey
-> & {
+export type ICardContentProps = IContainerProps<ICardContentStyleKey> & {
   children?: React.ReactNode;
 };
 
-export const CardContent: React.FC<ICardContentProps> = ({
-  children,
-  ...props
-}) => {
-  const theme = useComponentTheme('CardContent');
+export const CardContent = forwardRef<HTMLDivElement, ICardContentProps>(
+  function CardContent(props, ref) {
+    const { styles, sx, children, ...other } = props;
 
-  const styleProps = useMemo(
-    () =>
-      stylePropsFactory<ICardContentStyleKey, ICardContentStyleVarKey>(
-        stylesCombinatorFactory(theme.styles, props.styles),
-        props.visualState,
-      ),
-    [theme.styles, props.styles, props.visualState],
-  );
+    const theme = useComponentTheme('CardContent');
+    const stylesCombinator = useMemo(
+      () => stylesCombinatorFactory(theme.styles, styles),
+      [theme.styles, styles],
+    );
+    const styleProps = useMemo(
+      () =>
+        stylePropsFactory<ICardContentStyleKey, ICardContentStyleVarKey>(
+          stylesCombinator,
+        ),
+      [stylesCombinator],
+    );
 
-  const context = useCardContext();
-  const { actionable } = context ?? {};
+    const context = useCardContext();
+    const { actionable } = context ?? {};
 
-  return (
-    <div
-      {...styleProps(
-        ['host', actionable ? 'host$actionable' : null, props.sx],
-        [theme.vars, props.theme],
-      )}
-    >
-      {children}
-    </div>
-  );
-};
+    return (
+      <div
+        {...styleProps(
+          ['host', actionable ? 'host$actionable' : null, sx],
+          [theme.vars],
+        )}
+        ref={ref}
+        {...other}
+      >
+        {children}
+      </div>
+    );
+  },
+);

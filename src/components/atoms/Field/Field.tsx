@@ -14,10 +14,7 @@ import { EASING } from '@/helpers/animation';
 // https://github.com/material-components/material-web/blob/main/field/internal/outlined-field.ts
 // https://github.com/material-components/material-web/blob/main/field/internal/field.ts
 
-export type IFieldProps = IContainerProps<
-  IFieldStyleKey,
-  ITextFieldStyleVarKey
-> &
+export type IFieldProps = IContainerProps<IFieldStyleKey> &
   Pick<
     React.InputHTMLAttributes<HTMLInputElement>,
     'disabled' | 'required' | 'max'

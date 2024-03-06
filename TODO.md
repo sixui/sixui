@@ -2,8 +2,28 @@
 
 - Skeleton version of components
 
-- FIXME: vite does not refresh when modifying .stylex.ts files
+- faire les stories de dialog
+  Refactoring:
 
+  1. suprimer `prop.theme`
+  2. use `forwardRref`
+  3. extract props from arguments
+  4. delete `props.*` and `other.*`
+  5. extract `stylesCombinator` from `styleProps` in components
+  6. delete unused `visualState` (if not interactive component) or use new `useVisualState`
+
+- tests with polymorphic
+- ButtonBase styles in ButtonBase, not in Button?
+- styleProps: take only arguments, not array
+- refactor how styles are structured (can only theme color roles and palette?)
+- story for buttonbase
+- stories for visualstate
+- faire un code reproductible pour https://github.com/facebook/stylex/issues/478
+
+- FIXME: vite does not refresh when modifying .stylex.ts files
+- stories pour ComponentShowcase
+
+- use common styles utilities
 - Placeholder -> Skeleton
 
 - Doc

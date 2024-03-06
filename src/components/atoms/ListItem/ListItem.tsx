@@ -27,10 +27,7 @@ import {
 
 export type IListItemType = 'text' | 'button' | 'link';
 
-export type IListItemProps = IContainerProps<
-  IListItemStyleKey,
-  IItemStyleVarKey
-> &
+export type IListItemProps = IContainerProps<IListItemStyleKey> &
   Pick<
     React.AnchorHTMLAttributes<HTMLAnchorElement>,
     'href' | 'target' | 'aria-expanded'
@@ -58,7 +55,7 @@ export type IListItemProps = IContainerProps<
 
     component?: React.ElementType;
     itemStyles?: IZeroOrMore<ICompiledStyles<IItemStyleKey>>;
-    statelayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
+    stateLayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
     focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
     selected?: boolean;
   };
@@ -140,8 +137,8 @@ export const ListItem: React.FC<IListItemProps> = ({
               <>
                 <StateLayer
                   styles={[
-                    theme.statelayerStyles,
-                    ...asArray(props.statelayerStyles),
+                    theme.stateLayerStyles,
+                    ...asArray(props.stateLayerStyles),
                   ]}
                   for={actionRef}
                   disabled={disabled}

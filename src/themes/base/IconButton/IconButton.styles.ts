@@ -180,7 +180,7 @@ export const styles: MapNamespaces<IIconButtonStyles> =
   });
 
 type IStateLayerStyles = IStyles<IStateLayerStyleKey>;
-export const statelayerStyles: MapNamespaces<IStateLayerStyles> = stylex.create<
+export const stateLayerStyles: MapNamespaces<IStateLayerStyles> = stylex.create<
   IStyles<IStateLayerStyleKey>
 >({
   host: {

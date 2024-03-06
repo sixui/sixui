@@ -30,7 +30,7 @@ export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
     display: 'flex',
     flexGrow: 1,
     flexShrink: 1,
-    flexBasis: 0,
+    flexBasis: '0%',
     flexDirection: 'column',
     overflow: 'hidden',
     color: vars.textColor,

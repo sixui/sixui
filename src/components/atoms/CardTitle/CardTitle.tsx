@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { forwardRef, useMemo } from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
 import type {
@@ -9,41 +9,41 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export type ICardTitleProps = IContainerProps<
-  ICardTitleStyleKey,
-  ICardTitleStyleVarKey
-> & {
+export type ICardTitleProps = IContainerProps<ICardTitleStyleKey> & {
   headline?: React.ReactNode;
   subhead?: React.ReactNode;
   supportingText?: React.ReactNode;
 };
 
-export const CardTitle: React.FC<ICardTitleProps> = ({
-  headline,
-  subhead,
-  supportingText,
-  ...props
-}) => {
-  const theme = useComponentTheme('CardTitle');
+export const CardTitle = forwardRef<HTMLDivElement, ICardTitleProps>(
+  function CardTitle(props, ref) {
+    const { styles, sx, headline, subhead, supportingText, ...other } = props;
 
-  const styleProps = useMemo(
-    () =>
-      stylePropsFactory<ICardTitleStyleKey, ICardTitleStyleVarKey>(
-        stylesCombinatorFactory(theme.styles, props.styles),
-        props.visualState,
-      ),
-    [theme.styles, props.styles, props.visualState],
-  );
+    const theme = useComponentTheme('CardTitle');
+    const stylesCombinator = useMemo(
+      () => stylesCombinatorFactory(theme.styles, styles),
+      [theme.styles, styles],
+    );
+    const styleProps = useMemo(
+      () =>
+        stylePropsFactory<ICardTitleStyleKey, ICardTitleStyleVarKey>(
+          stylesCombinator,
+        ),
+      [stylesCombinator],
+    );
 
-  return (
-    <div {...styleProps(['host', props.sx], [theme.vars, props.theme])}>
-      <div {...styleProps(['header'])}>
-        {headline ? <div {...styleProps(['headline'])}>{headline}</div> : null}
-        {subhead ? <div {...styleProps(['subhead'])}>{subhead}</div> : null}
+    return (
+      <div {...styleProps(['host', sx], [theme.vars])} ref={ref} {...other}>
+        <div {...styleProps(['header'])}>
+          {headline ? (
+            <div {...styleProps(['headline'])}>{headline}</div>
+          ) : null}
+          {subhead ? <div {...styleProps(['subhead'])}>{subhead}</div> : null}
+        </div>
+        {supportingText ? (
+          <div {...styleProps(['supportingText'])}>{supportingText}</div>
+        ) : null}
       </div>
-      {supportingText ? (
-        <div {...styleProps(['supportingText'])}>{supportingText}</div>
-      ) : null}
-    </div>
-  );
-};
+    );
+  },
+);

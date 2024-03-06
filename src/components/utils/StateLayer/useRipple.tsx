@@ -132,12 +132,7 @@ export const useRipple = ({
    */
   const shouldReactToEvent = useCallback(
     (event: PointerEvent) => {
-      if (
-        visualState?.pressed ||
-        visualState?.dragged ||
-        disabled ||
-        !event.isPrimary
-      ) {
+      if (visualState?.dragged || disabled || !event.isPrimary) {
         return false;
       }
 
@@ -329,7 +324,7 @@ export const useRipple = ({
 
   const handlePointerDown = useCallback(
     (event: PointerEvent): void => {
-      if (!shouldReactToEvent(event)) {
+      if (visualState?.pressed || !shouldReactToEvent(event)) {
         return;
       }
 
@@ -363,7 +358,7 @@ export const useRipple = ({
         startPressAnimation(event, event);
       });
     },
-    [shouldReactToEvent, startPressAnimation, inBounds],
+    [visualState?.pressed, shouldReactToEvent, startPressAnimation, inBounds],
   );
 
   const handlePointerUp = useCallback(

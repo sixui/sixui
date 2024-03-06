@@ -114,7 +114,7 @@ export type ITemplateTheme = {
 export type IButtonTheme = {
   vars?: IStyleVarsTheme<IButtonStyleVarKey>;
   styles?: ICompiledStyles<IButtonStyleKey>;
-  statelayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
+  stateLayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
   focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
   elevationStyles?: ICompiledStyles<IElevationStyleKey>;
   circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
@@ -123,7 +123,7 @@ export type IButtonTheme = {
 export type IChipTheme = {
   vars?: IStyleVarsTheme<IChipStyleVarKey>;
   styles?: ICompiledStyles<IChipStyleKey>;
-  statelayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
+  stateLayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
   focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
   elevationStyles?: ICompiledStyles<IElevationStyleKey>;
   trailingActionFocusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
@@ -138,7 +138,7 @@ export type IChipVariantTheme = IChipTheme & {
 export type IFabTheme = {
   vars?: IStyleVarsTheme<IFabStyleVarKey>;
   styles?: ICompiledStyles<IFabStyleKey>;
-  statelayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
+  stateLayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
   focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
   elevationStyles?: ICompiledStyles<IElevationStyleKey>;
   circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
@@ -149,7 +149,7 @@ export type IFabVariantTheme = IFabTheme;
 export type IIconButtonTheme = {
   vars?: IStyleVarsTheme<IIconButtonStyleVarKey>;
   styles?: ICompiledStyles<IIconButtonStyleKey>;
-  statelayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
+  stateLayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
   focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
   circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
 };
@@ -179,7 +179,7 @@ export type ICardTheme = {
 export type ITabTheme = {
   vars?: IStyleVarsTheme<ITabStyleVarKey>;
   styles?: ICompiledStyles<ITabStyleKey>;
-  statelayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
+  stateLayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
   focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
   elevationStyles?: ICompiledStyles<IElevationStyleKey>;
 };
@@ -251,7 +251,7 @@ export type ITheme = {
     Switch: {
       vars: IStyleVarsTheme<ISwitchStyleVarKey>;
       styles: ICompiledStyles<ISwitchStyleKey>;
-      statelayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
+      stateLayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
       focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
       circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
     };
@@ -264,13 +264,13 @@ export type ITheme = {
     Radio: {
       vars?: IStyleVarsTheme<IRadioStyleVarKey>;
       styles?: ICompiledStyles<IRadioStyleKey>;
-      statelayerStyles: ICompiledStyles<IStateLayerStyleKey>;
+      stateLayerStyles: ICompiledStyles<IStateLayerStyleKey>;
       focusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
     };
     Checkbox: {
       vars?: IStyleVarsTheme<ICheckboxStyleVarKey>;
       styles?: ICompiledStyles<ICheckboxStyleKey>;
-      statelayerStyles: ICompiledStyles<IStateLayerStyleKey>;
+      stateLayerStyles: ICompiledStyles<IStateLayerStyleKey>;
       focusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
     };
     Item: {
@@ -282,7 +282,7 @@ export type ITheme = {
       styles?: ICompiledStyles<IListItemStyleKey>;
       itemStyles?: ICompiledStyles<IItemStyleKey>;
       itemVars?: IStyleVarsTheme<IItemStyleVarKey>;
-      statelayerStyles: ICompiledStyles<IStateLayerStyleKey>;
+      stateLayerStyles: ICompiledStyles<IStateLayerStyleKey>;
       focusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
     };
     List: {
@@ -299,7 +299,7 @@ export type ITheme = {
     };
     Card: ICardTheme & {
       elevationStyles?: ICompiledStyles<IElevationStyleKey>;
-      statelayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
+      stateLayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
       focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
     };
     CardHeader: {

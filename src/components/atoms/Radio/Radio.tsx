@@ -33,7 +33,7 @@ export type IRadioProps = IContainerProps<IRadioStyleKey, IRadioStyleVarKey> &
   > & {
     value?: string;
     onChange?: (checked: boolean) => IMaybeAsync<IAny>;
-    statelayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
+    stateLayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
     focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
   };
 
@@ -97,7 +97,7 @@ export const Radio: React.FC<IRadioProps> = ({
       <div {...styleProps(['container', checked && 'container$checked'])}>
         <StateLayer
           for={inputRef}
-          styles={[theme.statelayerStyles, ...asArray(props.statelayerStyles)]}
+          styles={[theme.stateLayerStyles, ...asArray(props.stateLayerStyles)]}
           disabled={disabled}
           visualState={visualState}
         />

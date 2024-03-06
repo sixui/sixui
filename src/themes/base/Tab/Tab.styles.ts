@@ -19,7 +19,7 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
   host: {
     flexGrow: 1,
     flexShrink: 1,
-    flexBasis: 0,
+    flexBasis: '0%',
 
     display: 'inline-flex',
     alignItems: 'center',
@@ -161,7 +161,7 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
 });
 
 type IStateLayerStyles = IStyles<IStateLayerStyleKey>;
-export const statelayerStyles: MapNamespaces<IStateLayerStyles> = stylex.create<
+export const stateLayerStyles: MapNamespaces<IStateLayerStyles> = stylex.create<
   IStyles<IStateLayerStyleKey>
 >({
   host: {

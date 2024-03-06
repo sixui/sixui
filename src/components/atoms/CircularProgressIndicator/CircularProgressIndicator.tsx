@@ -6,16 +6,13 @@ import type { IIndeterminateCircularProgressIndicatorProps } from './Indetermina
 import type { IIndeterminateCircularProgressIndicatorStyleKey } from './IndeterminateCircularProgressIndicator.styledefs';
 import { DeterminateCircularProgressIndicator } from './DeterminateCircularProgressIndicator';
 import { IndeterminateCircularProgressIndicator } from './IndeterminateCircularProgressIndicator';
-import {
-  ICircularProgressIndicatorStyleKey,
-  ICircularProgressIndicatorStyleVarKey,
-} from './CircularProgressIndicator.styledefs';
+import { ICircularProgressIndicatorStyleKey } from './CircularProgressIndicator.styledefs';
+import { forwardRef } from 'react';
 
 export type ICircularProgressIndicatorProps = IContainerProps<
   | ICircularProgressIndicatorStyleKey
   | IDeterminateCircularProgressIndicatorStyleKey
-  | IIndeterminateCircularProgressIndicatorStyleKey,
-  ICircularProgressIndicatorStyleVarKey
+  | IIndeterminateCircularProgressIndicatorStyleKey
 > &
   IMakeOptional<
     Omit<IDeterminateCircularProgressIndicatorProps, 'styles'>,
@@ -23,11 +20,15 @@ export type ICircularProgressIndicatorProps = IContainerProps<
   > &
   Omit<IIndeterminateCircularProgressIndicatorProps, 'styles'>;
 
-export const CircularProgressIndicator: React.FC<
+export const CircularProgressIndicator = forwardRef<
+  HTMLInputElement,
   ICircularProgressIndicatorProps
-> = ({ value, ...props }) =>
-  value === undefined ? (
-    <IndeterminateCircularProgressIndicator {...props} />
+>(function CircularProgressIndicator(props, ref) {
+  const { value } = props;
+
+  return value === undefined ? (
+    <IndeterminateCircularProgressIndicator {...props} ref={ref} />
   ) : (
-    <DeterminateCircularProgressIndicator {...props} value={value} />
+    <DeterminateCircularProgressIndicator {...props} ref={ref} value={value} />
   );
+});

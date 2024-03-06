@@ -1,18 +1,10 @@
-import type { StyleXStyles } from '@stylexjs/stylex';
-
 import type {
   IZeroOrMore,
   ICompiledStyles,
-  IStyleVarsTheme,
+  IStyleXStyles,
 } from '@/helpers/types';
-import type { IVisualState } from '@/hooks/useVisualState.old';
 
-export type IContainerProps<
-  IStyleKey extends string = never,
-  IStyleVarKey extends string = never,
-> = {
-  visualState?: IVisualState;
+export type IContainerProps<IStyleKey extends string = never> = {
   styles?: IZeroOrMore<ICompiledStyles<IStyleKey>>;
-  theme?: IZeroOrMore<IStyleVarsTheme<IStyleVarKey>>;
-  sx?: StyleXStyles;
+  sx?: IStyleXStyles;
 };

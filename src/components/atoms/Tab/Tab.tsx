@@ -44,7 +44,7 @@ export type ITabProps = IContainerProps<ITabStyleKey, ITabStyleVarKey> & {
   label?: string;
   anchor?: string;
   disabled?: boolean;
-  statelayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
+  stateLayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
   focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
   elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
   badge?: IBadgeProps;
@@ -196,9 +196,9 @@ export const Tab: React.FC<ITabProps> = ({
       />
       <StateLayer
         styles={[
-          theme.statelayerStyles,
-          variantTheme.statelayerStyles,
-          ...asArray(props.statelayerStyles),
+          theme.stateLayerStyles,
+          variantTheme.stateLayerStyles,
+          ...asArray(props.stateLayerStyles),
         ]}
         for={actionRef}
         disabled={disabled}

@@ -39,7 +39,7 @@ import {
 // https://github.com/material-components/material-web/blob/main/fab/internal/shared.ts
 // https://github.com/material-components/material-web/blob/main/fab/internal/fab.ts
 
-export type IFabProps = IContainerProps<IFabStyleKey, IFabStyleVarKey> &
+export type IFabProps = IContainerProps<IFabStyleKey> &
   Pick<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     'disabled' | 'aria-label'
@@ -55,7 +55,7 @@ export type IFabProps = IContainerProps<IFabStyleKey, IFabStyleVarKey> &
     icon?: React.ReactNode;
     component?: React.ElementType;
     href?: string;
-    statelayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
+    stateLayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
     focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
     elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
     circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
@@ -178,9 +178,9 @@ export const Fab: React.FC<IFabProps> = ({
       <StateLayer
         for={actionRef}
         styles={[
-          theme.statelayerStyles,
-          variantTheme.statelayerStyles,
-          ...asArray(props.statelayerStyles),
+          theme.stateLayerStyles,
+          variantTheme.stateLayerStyles,
+          ...asArray(props.stateLayerStyles),
         ]}
         disabled={disabled}
         visualState={visualState}

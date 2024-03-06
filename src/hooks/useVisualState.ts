@@ -1,5 +1,5 @@
 import { accumulate } from '@olivierpascal/helpers';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export type IVisualState = {
   hovered?: boolean;
@@ -8,19 +8,20 @@ export type IVisualState = {
   dragged?: boolean;
 };
 
-export type IUseVisualStateResult = {
+export type IUseVisualStateResult<TElement> = {
   visualState: IVisualState;
-  ref: (node: HTMLElement) => void;
+  ref: (element: TElement) => void;
 };
 
 export type IVisualStateOptions = {
   retainFocusAfterClick?: boolean;
+  disabled?: boolean;
 };
 
-export const useVisualState = (
-  forcedVisualState?: IVisualState,
+export const useVisualState = <TElement extends Element = HTMLElement>(
+  inheritedVisualState?: IVisualState,
   options?: IVisualStateOptions,
-): IUseVisualStateResult => {
+): IUseVisualStateResult<TElement> => {
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
   const [pressed, setPressed] = useState(false);
@@ -32,22 +33,32 @@ export const useVisualState = (
   }, []);
   const handleFocus = useCallback(
     () => setFocused(options?.retainFocusAfterClick ? true : !pressed),
-    [options, pressed],
+    [options?.retainFocusAfterClick, pressed],
   );
   const handleBlur = useCallback(() => setFocused(false), []);
   const handleMouseDown = useCallback(
-    (event: MouseEvent) => setPressed(event.button === 0),
+    (event: MouseEvent | Event) =>
+      setPressed((event as MouseEvent).button === 0),
     [],
   );
   const handleMouseUp = useCallback(() => setPressed(false), []);
   const handleKeyDown = useCallback(
-    (event: KeyboardEvent) => setPressed(event.key === ' '),
+    (event: KeyboardEvent | Event) =>
+      setPressed((event as KeyboardEvent).key === ' '),
     [],
   );
   const handleKeyUp = useCallback(() => setPressed(false), []);
 
+  useEffect(() => {
+    if (options?.disabled) {
+      setHovered(false);
+      setFocused(false);
+      setPressed(false);
+    }
+  }, [options?.disabled]);
+
   const ref = useCallback(
-    (element: HTMLElement) => {
+    (element: TElement) => {
       if (!element) {
         return;
       }
@@ -73,8 +84,19 @@ export const useVisualState = (
     ],
   );
 
+  if (options?.disabled) {
+    return {
+      visualState: {
+        hovered: false,
+        focused: false,
+        pressed: false,
+      },
+      ref,
+    };
+  }
+
   const accumulatedVisualState =
-    accumulate({ focused, hovered, pressed }, forcedVisualState) ?? {};
+    accumulate({ focused, hovered, pressed }, inheritedVisualState) ?? {};
 
   if (accumulatedVisualState?.dragged) {
     return {
@@ -82,16 +104,6 @@ export const useVisualState = (
         ...accumulatedVisualState,
         hovered: false,
         pressed: false,
-      },
-      ref,
-    };
-  }
-
-  if (accumulatedVisualState?.pressed) {
-    return {
-      visualState: {
-        ...accumulatedVisualState,
-        hovered: false,
       },
       ref,
     };

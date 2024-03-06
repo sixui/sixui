@@ -1,5 +1,5 @@
-import { useCallback, useMemo, useRef, useState } from 'react';
-import { accumulate, asArray } from '@olivierpascal/helpers';
+import { forwardRef, useCallback, useMemo, useRef, useState } from 'react';
+import { asArray } from '@olivierpascal/helpers';
 import stylex from '@stylexjs/stylex';
 
 import type {
@@ -8,6 +8,11 @@ import type {
   IAny,
   IMaybeAsync,
 } from '@/helpers/types';
+import type {
+  IPolymorphicComponentPropsWithRef,
+  IPolymorphicRef,
+  IWithAsProp,
+} from '@/helpers/polymorphicComponentTypes';
 import type { IContainerProps } from '@/components/utils/Container';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type {
@@ -18,7 +23,7 @@ import type {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { useVisualState } from '@/hooks/useVisualState.old';
+import { type IVisualState, useVisualState } from '@/hooks/useVisualState';
 import { useControlled } from '@/hooks/useControlled';
 import {
   Elevation,
@@ -39,39 +44,50 @@ import {
 import { ReactComponent as CheckMark } from '@/assets/CheckMark.svg';
 import { ReactComponent as XMark } from '@/assets/XMark.svg';
 import { Avatar } from '../Avatar';
+import { useForkRef } from '@/hooks/useForkRef';
+import { ButtonBase } from '../Button';
 
-export type IChipProps = IContainerProps<IChipStyleKey, IChipStyleVarKey> &
-  Pick<
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
-    'disabled' | 'aria-label'
-  > &
-  Pick<React.LinkHTMLAttributes<HTMLLinkElement>, 'href'> & {
-    onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
-    onDelete?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
-    variant?: IChipVariant;
-    label?: string;
-    elevated?: boolean;
-    selected?: boolean;
-    defaultSelected?: boolean;
-    icon?: React.ReactNode;
-    imageUrl?: string;
-    loading?: boolean;
-    loadingText?: string;
-    deleting?: boolean;
-    component?: React.ElementType;
-    'aria-label-remove'?: React.AriaAttributes['aria-label'];
-    avatar?: boolean;
-    statelayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
-    focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-    elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
-    trailingActionFocusRingStyles?: IZeroOrMore<
-      ICompiledStyles<IFocusRingStyleKey>
-    >;
-    trailingActionStateLayerStyles?: IZeroOrMore<
+// https://github.com/material-components/material-web/blob/main/chips/internal/chip.ts
+// https://github.com/material-components/material-web/blob/main/chips/internal/assist-chip.ts
+// https://github.com/material-components/material-web/blob/main/chips/internal/filter-chip.ts
+// https://github.com/material-components/material-web/blob/main/chips/internal/input-chip.ts
+// https://github.com/material-components/material-web/blob/main/chips/internal/suggestion-chip.ts
+
+const DEFAULT_TAG = 'button';
+
+export type IChipOwnProps = IContainerProps<IChipStyleKey> & {
+  innerStyles?: {
+    stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
+    focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+    elevation?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
+    trailingActionFocusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+    trailingActionStateLayer?: IZeroOrMore<
       ICompiledStyles<IStateLayerStyleKey>
     >;
-    circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
+    circularProgressIndicator?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
   };
+  visualState?: IVisualState;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
+  onDelete?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
+  variant?: IChipVariant;
+  label?: string;
+  disabled?: boolean;
+  elevated?: boolean;
+  selected?: boolean;
+  defaultSelected?: boolean;
+  icon?: React.ReactNode;
+  href?: string;
+  imageUrl?: string;
+  loading?: boolean;
+  loadingText?: string;
+  deleting?: boolean;
+  avatar?: boolean;
+  'aria-label-remove'?: React.AriaAttributes['aria-label'];
+  'aria-label'?: string;
+};
+
+export type IChipProps<TRoot extends React.ElementType = typeof DEFAULT_TAG> =
+  IPolymorphicComponentPropsWithRef<TRoot, IChipOwnProps>;
 
 type IChipVariantMap = {
   [key in IChipVariant]: keyof Pick<
@@ -94,76 +110,85 @@ const avatarStyles = stylex.create({
   },
 });
 
-// https://github.com/material-components/material-web/blob/main/chips/internal/chip.ts
-// https://github.com/material-components/material-web/blob/main/chips/internal/assist-chip.ts
-// https://github.com/material-components/material-web/blob/main/chips/internal/filter-chip.ts
-// https://github.com/material-components/material-web/blob/main/chips/internal/input-chip.ts
-// https://github.com/material-components/material-web/blob/main/chips/internal/suggestion-chip.ts
-export const Chip: React.FC<IChipProps> = ({
-  label,
-  onClick,
-  onDelete,
-  variant = 'assist',
-  icon,
-  imageUrl,
-  loadingText,
-  href,
-  ...props
-}) => {
-  const theme = useComponentTheme('Chip');
-  const variantTheme = useComponentTheme(variantMap[variant]);
+type IChip = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
+  props: IChipProps<TRoot>,
+) => React.ReactNode;
 
-  const primaryActionRef = useRef<HTMLElement>(null);
-  const trailingActionRef = useRef<HTMLButtonElement>(null);
+export const Chip: IChip = forwardRef(function Chip<
+  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+>(props: IChipProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+  const {
+    styles,
+    sx,
+    as,
+    innerStyles,
+    visualState: visualStateProp,
+    selected: selectedProp,
+    defaultSelected,
+    elevated: elevatedProp,
+    loading: loadingProp,
+    disabled: disabledProp,
+    deleting: deletingProp,
+    label,
+    onClick,
+    onDelete,
+    variant = 'assist',
+    icon,
+    imageUrl,
+    loadingText,
+    href,
+    avatar: avatarProp,
+    'aria-label-remove': ariaLabelRemove,
+    ...other
+  } = props as IWithAsProp<IChipOwnProps>;
+
   const [handlingClick, setHandlingClick] = useState(false);
   const [handlingDelete, setHandlingDelete] = useState(false);
-  const visualState = accumulate(
-    useVisualState(primaryActionRef),
-    props.visualState,
-  );
-  const trailingActionVisualState = accumulate(
-    useVisualState(trailingActionRef),
-    props.visualState,
-  );
 
+  const loading = loadingProp || handlingClick;
+  const isDeletable = variant === 'input' && onDelete;
+  const deleting = !loading && isDeletable && (deletingProp || handlingDelete);
+  const disabled = disabledProp || loading || deleting;
+
+  const primaryActionRef = useRef<HTMLElement>(null);
+  const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
+    disabled,
+  });
+  const primaryHandleRef = useForkRef(ref, visualStateRef, primaryActionRef);
+
+  const trailingActionRef = useRef<HTMLButtonElement>(null);
+
+  const theme = useComponentTheme('Chip');
+  const variantTheme = useComponentTheme(variantMap[variant]);
+  const stylesCombinator = useMemo(
+    () => stylesCombinatorFactory(theme.styles, variantTheme.styles, styles),
+    [theme.styles, variantTheme.styles, styles],
+  );
   const styleProps = useMemo(
     () =>
       stylePropsFactory<IChipStyleKey, IChipStyleVarKey>(
-        stylesCombinatorFactory(
-          theme.styles,
-          variantTheme.styles,
-          props.styles,
-        ),
+        stylesCombinator,
         visualState,
       ),
-    [theme.styles, variantTheme.styles, props.styles, visualState],
+    [stylesCombinator, visualState],
   );
 
   const [selectedValue, setSelectedValue] = useControlled({
-    controlled: props.selected,
-    default: !!props.defaultSelected,
+    controlled: selectedProp,
+    default: !!defaultSelected,
     name: 'Chip',
   });
 
-  const Component: React.ElementType = props.component
-    ? props.component
-    : href
-      ? 'a'
-      : 'button';
+  const Component = as ?? (href ? 'a' : 'button');
 
-  const elevated = variant !== 'input' && props.elevated;
-  const loading = props.loading || handlingClick;
+  const elevated = variant !== 'input' && elevatedProp;
   const hasIcon = !!imageUrl || !!icon;
-  const isDeletable = variant === 'input' && onDelete;
-  const deleting =
-    !loading && isDeletable && (props.deleting || handlingDelete);
   const isSelectable = ['input', 'filter'].includes(variant);
   const selected = isSelectable && selectedValue;
-  const disabled = props.disabled || loading || deleting;
   const hasLeading = (variant === 'filter' && (loading || selected)) || hasIcon;
   const hasTrailing = isDeletable;
   const hasOverlay = loading && (loadingText || !hasLeading);
-  const avatar = variant === 'input' && !!imageUrl && props.avatar;
+  const avatar = variant === 'input' && !!imageUrl && avatarProp;
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = useCallback(
     (event) => {
@@ -203,8 +228,8 @@ export const Chip: React.FC<IChipProps> = ({
   // https://github.com/material-components/material-web/blob/035d1553662812e2dcc12aea8d70ea8bf26b164b/chips/internal/multi-action-chip.ts#L74
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLElement>) => {
-      const primaryActionEl = primaryActionRef.current;
-      const trailingActionEl = trailingActionRef.current;
+      const primaryActionEl = primaryActionRef?.current;
+      const trailingActionEl = trailingActionRef?.current;
       if (!primaryActionEl || !trailingActionEl) {
         // Does not have multiple actions.
         return;
@@ -235,13 +260,13 @@ export const Chip: React.FC<IChipProps> = ({
       const actionToFocus = forwards ? trailingActionEl : primaryActionEl;
       actionToFocus.focus();
     },
-    [primaryActionRef, trailingActionRef],
+    [],
   );
 
   // https://github.com/material-components/material-web/blob/035d1553662812e2dcc12aea8d70ea8bf26b164b/chips/internal/multi-action-chip.ts#L106
   const handleTrailingActionFocus = useCallback(() => {
-    const primaryActionEl = primaryActionRef.current;
-    const trailingActionEl = trailingActionRef.current;
+    const primaryActionEl = primaryActionRef?.current;
+    const trailingActionEl = trailingActionRef?.current;
     if (!primaryActionEl || !trailingActionEl) {
       return;
     }
@@ -257,7 +282,7 @@ export const Chip: React.FC<IChipProps> = ({
       },
       { once: true },
     );
-  }, [primaryActionRef, trailingActionRef]);
+  }, []);
 
   const containerStyle = isSelectable
     ? selected
@@ -274,13 +299,8 @@ export const Chip: React.FC<IChipProps> = ({
   return (
     <div
       {...styleProps(
-        [
-          'host',
-          disabled && 'host$disabled',
-          avatar && 'host$avatar',
-          props.sx,
-        ],
-        [theme.vars, variantTheme.vars, props.theme],
+        ['host', disabled && 'host$disabled', avatar && 'host$avatar', sx],
+        [theme.vars, variantTheme.vars],
       )}
     >
       <div
@@ -294,7 +314,7 @@ export const Chip: React.FC<IChipProps> = ({
           styles={[
             theme.elevationStyles,
             variantTheme.elevationStyles,
-            ...asArray(props.elevationStyles),
+            ...asArray(innerStyles?.elevation),
           ]}
           disabled={disabled}
         />
@@ -311,18 +331,18 @@ export const Chip: React.FC<IChipProps> = ({
           styles={[
             theme.focusRingStyles,
             variantTheme.focusRingStyles,
-            ...asArray(props.focusRingStyles),
+            ...asArray(innerStyles?.focusRing),
           ]}
           for={primaryActionRef}
           visualState={visualState}
         />
         <StateLayer
-          for={primaryActionRef}
           styles={[
-            theme.statelayerStyles,
-            variantTheme.statelayerStyles,
-            ...asArray(props.statelayerStyles),
+            theme.stateLayerStyles,
+            variantTheme.stateLayerStyles,
+            ...asArray(innerStyles?.stateLayer),
           ]}
+          for={primaryActionRef}
           disabled={disabled}
           visualState={visualState}
         />
@@ -335,14 +355,14 @@ export const Chip: React.FC<IChipProps> = ({
             hasTrailing && 'action$primary$hasTrailing',
             avatar && 'action$primary$avatar',
           ])}
+          ref={primaryHandleRef}
           href={href}
-          ref={primaryActionRef}
           onClick={href ? undefined : handleClick}
           role='button'
-          readOnly={disabled}
+          disabled={disabled}
           tabIndex={disabled ? -1 : 0}
           onKeyDown={handleKeyDown}
-          aria-label={props['aria-label']}
+          {...other}
         >
           {hasLeading ? (
             <div
@@ -359,7 +379,7 @@ export const Chip: React.FC<IChipProps> = ({
                     styles={[
                       theme.circularProgressIndicatorStyles,
                       variantTheme.circularProgressIndicatorStyles,
-                      ...asArray(props.circularProgressIndicatorStyles),
+                      ...asArray(innerStyles?.circularProgressIndicator),
                     ]}
                   />
                 ) : null
@@ -399,7 +419,7 @@ export const Chip: React.FC<IChipProps> = ({
                       styles={[
                         theme.circularProgressIndicatorStyles,
                         variantTheme.circularProgressIndicatorStyles,
-                        ...asArray(props.circularProgressIndicatorStyles),
+                        ...asArray(innerStyles?.circularProgressIndicator),
                       ]}
                     />
                   </div>
@@ -412,31 +432,28 @@ export const Chip: React.FC<IChipProps> = ({
         </Component>
 
         {isDeletable ? (
-          <button
-            {...styleProps(['action', 'action$trailing'])}
-            aria-label={props['aria-label-remove']}
+          <ButtonBase
+            ref={trailingActionRef}
+            sx={[...stylesCombinator('action', 'action$trailing')]}
+            innerStyles={{
+              focusRing: [
+                theme.trailingActionFocusRingStyles,
+                variantTheme.trailingActionFocusRingStyles,
+                ...asArray(innerStyles?.trailingActionFocusRing),
+              ],
+              stateLayer: [
+                theme.trailingActionStateLayerStyles,
+                variantTheme.trailingActionStateLayerStyles,
+                ...asArray(innerStyles?.trailingActionStateLayer),
+              ],
+            }}
+            aria-label={ariaLabelRemove}
             tabIndex={-1}
             onClick={handleDelete}
             onKeyDown={handleKeyDown}
             onFocus={handleTrailingActionFocus}
-            ref={trailingActionRef}
+            disabled={disabled}
           >
-            <FocusRing
-              styles={[
-                theme.trailingActionFocusRingStyles,
-                variantTheme.trailingActionFocusRingStyles,
-                ...asArray(props.trailingActionFocusRingStyles),
-              ]}
-            />
-            <StateLayer
-              styles={[
-                theme.trailingActionStateLayerStyles,
-                variantTheme.trailingActionStateLayerStyles,
-                ...asArray(props.trailingActionStateLayerStyles),
-              ]}
-              disabled={disabled}
-              visualState={trailingActionVisualState}
-            />
             <span
               {...styleProps([
                 'icon',
@@ -453,7 +470,7 @@ export const Chip: React.FC<IChipProps> = ({
                     styles={[
                       theme.circularProgressIndicatorStyles,
                       variantTheme.circularProgressIndicatorStyles,
-                      ...asArray(props.circularProgressIndicatorStyles),
+                      ...asArray(innerStyles?.circularProgressIndicator),
                     ]}
                   />
                 </div>
@@ -461,10 +478,9 @@ export const Chip: React.FC<IChipProps> = ({
                 <XMark aria-hidden />
               )}
             </span>
-            <span {...styleProps(['touchTarget'])}></span>
-          </button>
+          </ButtonBase>
         ) : null}
       </div>
     </div>
   );
-};
+});

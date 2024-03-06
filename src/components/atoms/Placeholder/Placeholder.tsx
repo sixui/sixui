@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { forwardRef, useMemo } from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
 import type {
@@ -9,10 +9,7 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export type IPlaceholderProps = IContainerProps<
-  IPlaceholderStyleKey,
-  IPlaceholderStyleVarKey
-> & {
+export type IPlaceholderProps = IContainerProps<IPlaceholderStyleKey> & {
   label?: string;
   children?: React.ReactNode;
   role?: string;
@@ -21,46 +18,52 @@ export type IPlaceholderProps = IContainerProps<
   shape?: 'rounded' | 'rectangular' | 'circular';
 };
 
-export const Placeholder: React.FC<IPlaceholderProps> = ({
-  label,
-  children,
-  role,
-  tabIndex,
-  crosshairs,
-  shape = 'rounded',
-  ...props
-}) => {
-  const theme = useComponentTheme('Placeholder');
+export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
+  function Placeholder(props, ref) {
+    const {
+      styles,
+      sx,
+      label,
+      children,
+      crosshairs,
+      shape = 'rounded',
+      ...other
+    } = props;
 
-  const styleProps = useMemo(
-    () =>
-      stylePropsFactory<IPlaceholderStyleKey>(
-        stylesCombinatorFactory(theme.styles, props.styles),
-        props.visualState,
-      ),
-    [theme.styles, props.styles, props.visualState],
-  );
+    const theme = useComponentTheme('Placeholder');
+    const stylesCombinator = useMemo(
+      () => stylesCombinatorFactory(theme.styles, styles),
+      [theme.styles, styles],
+    );
+    const styleProps = useMemo(
+      () =>
+        stylePropsFactory<IPlaceholderStyleKey, IPlaceholderStyleVarKey>(
+          stylesCombinator,
+        ),
+      [stylesCombinator],
+    );
 
-  return (
-    <div
-      {...styleProps(
-        [
-          'host',
-          shape === 'rectangular'
-            ? 'host$rectangular'
-            : shape === 'circular'
-              ? 'host$circular'
-              : null,
-          props.sx,
-        ],
-        [theme.vars, props.theme],
-      )}
-      role={role}
-      tabIndex={tabIndex}
-    >
-      {crosshairs ? <div {...styleProps(['guides'])} /> : null}
-      {label ? <div {...styleProps(['label'])}>{label}</div> : null}
-      {children}
-    </div>
-  );
-};
+    return (
+      <div
+        {...styleProps(
+          [
+            'host',
+            shape === 'rectangular'
+              ? 'host$rectangular'
+              : shape === 'circular'
+                ? 'host$circular'
+                : null,
+            sx,
+          ],
+          [theme.vars],
+        )}
+        ref={ref}
+        {...other}
+      >
+        {crosshairs ? <div {...styleProps(['guides'])} /> : null}
+        {label ? <div {...styleProps(['label'])}>{label}</div> : null}
+        {children}
+      </div>
+    );
+  },
+);

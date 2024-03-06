@@ -1,7 +1,12 @@
-import { useMemo, useRef, useState } from 'react';
-import { accumulate, asArray } from '@olivierpascal/helpers';
+import { forwardRef, useMemo, useState } from 'react';
+import { asArray } from '@olivierpascal/helpers';
 
-import type { ICompiledStyles } from '@/helpers/types';
+import type { IAny, ICompiledStyles, IMaybeAsync } from '@/helpers/types';
+import type {
+  IPolymorphicComponentPropsWithRef,
+  IPolymorphicRef,
+  IWithAsProp,
+} from '@/helpers/polymorphicComponentTypes';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type {
   IButtonStyleKey,
@@ -11,12 +16,11 @@ import type {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { useVisualState } from '@/hooks/useVisualState.old';
 import {
   type ICircularProgressIndicatorStyleKey,
   IndeterminateCircularProgressIndicator,
 } from '@/components/atoms/CircularProgressIndicator';
-import { ButtonBase, type IButtonBaseProps } from './ButtonBase';
+import { ButtonBase, type IButtonBaseOwnProps } from './ButtonBase';
 
 // https://github.com/material-components/material-web/blob/main/button/internal/button.ts
 // https://github.com/material-components/material-web/blob/main/button/internal/elevated-button.ts
@@ -25,7 +29,9 @@ import { ButtonBase, type IButtonBaseProps } from './ButtonBase';
 // https://github.com/material-components/material-web/blob/main/button/internal/outlined-button.ts
 // https://github.com/material-components/material-web/blob/main/button/internal/text-button.ts
 
-export type IButtonProps = IButtonBaseProps & {
+const DEFAULT_TAG = 'button';
+
+export type IButtonOwnProps = IButtonBaseOwnProps & {
   variant?: IButtonVariant;
   icon?: React.ReactNode;
   trailingIcon?: boolean;
@@ -33,7 +39,11 @@ export type IButtonProps = IButtonBaseProps & {
   loadingAnimation?: 'progressIndicator' | 'halfSpin' | 'none';
   loadingText?: string;
   circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
 };
+
+export type IButtonProps<TRoot extends React.ElementType = typeof DEFAULT_TAG> =
+  IPolymorphicComponentPropsWithRef<TRoot, IButtonOwnProps>;
 
 type IButtonVariantMap = {
   [key in IButtonVariant]: keyof Pick<
@@ -54,38 +64,44 @@ const variantMap: IButtonVariantMap = {
   text: 'TextButton',
 };
 
-export const Button: React.FC<IButtonProps> = ({
-  children,
-  onClick,
-  type,
-  variant = 'filled',
-  icon,
-  trailingIcon,
-  loadingAnimation = 'progressIndicator',
-  loadingText,
-  href,
-  ...props
-}) => {
+type IButton = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
+  props: IButtonProps<TRoot>,
+) => React.ReactNode;
+
+export const Button: IButton = forwardRef(function Button<
+  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+>(props: IButtonProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+  const {
+    styles,
+    sx,
+    innerStyles,
+    children,
+    onClick,
+    variant = 'filled',
+    icon,
+    trailingIcon,
+    loading: loadingProp,
+    loadingAnimation = 'progressIndicator',
+    loadingText,
+    circularProgressIndicatorStyles,
+    disabled: disabledProp,
+    ...other
+  } = props as IWithAsProp<IButtonOwnProps>;
+
   const theme = useComponentTheme('Button');
   const variantTheme = useComponentTheme(variantMap[variant]);
-
-  const actionRef = useRef<HTMLButtonElement | HTMLLinkElement>(null);
-  const [handlingClick, setHandlingClick] = useState(false);
-  const [animating, setAnimating] = useState(false);
-  const visualState = accumulate(useVisualState(actionRef), props.visualState);
-
+  const stylesCombinator = useMemo(
+    () => stylesCombinatorFactory(theme.styles, variantTheme.styles, styles),
+    [theme.styles, variantTheme.styles, styles],
+  );
   const styleProps = useMemo(
     () =>
-      stylePropsFactory<IButtonStyleKey, IButtonStyleVarKey>(
-        stylesCombinatorFactory(
-          theme.styles,
-          variantTheme.styles,
-          props.styles,
-        ),
-        visualState,
-      ),
-    [theme.styles, variantTheme.styles, props.styles, visualState],
+      stylePropsFactory<IButtonStyleKey, IButtonStyleVarKey>(stylesCombinator),
+    [stylesCombinator],
   );
+
+  const [handlingClick, setHandlingClick] = useState(false);
+  const [animating, setAnimating] = useState(false);
 
   const handleAnimationIteration = (): void => setAnimating(handlingClick);
 
@@ -111,15 +127,14 @@ export const Button: React.FC<IButtonProps> = ({
   };
 
   const loading =
-    (props.loading || handlingClick) &&
-    loadingAnimation === 'progressIndicator';
-  const disabled = props.disabled || loading;
+    (loadingProp || handlingClick) && loadingAnimation === 'progressIndicator';
+  const disabled = disabledProp || loading;
   const hasIcon = !!icon;
   const hasLeadingIcon = hasIcon && !trailingIcon;
   const hasTrailingIcon = hasIcon && !!trailingIcon;
   const hasOverlay = loading && (!!loadingText || !hasIcon);
   const iconAnimation =
-    (animating || props.loading || handlingClick) &&
+    (loadingProp || handlingClick || animating) &&
     loadingAnimation !== undefined &&
     loadingAnimation !== 'progressIndicator' &&
     loadingAnimation !== 'none'
@@ -128,34 +143,33 @@ export const Button: React.FC<IButtonProps> = ({
 
   return (
     <ButtonBase
-      theme={[theme.vars, variantTheme.vars, ...asArray(props.theme)]}
-      styles={[theme.styles, variantTheme.styles, ...asArray(props.styles)]}
-      sx={props.sx}
-      statelayerStyles={[
-        theme.statelayerStyles,
-        variantTheme.statelayerStyles,
-        ...asArray(props.statelayerStyles),
-      ]}
-      focusRingStyles={[
-        theme.focusRingStyles,
-        variantTheme.focusRingStyles,
-        ...asArray(props.focusRingStyles),
-      ]}
-      elevationStyles={[
-        theme.elevationStyles,
-        variantTheme.elevationStyles,
-        ...asArray(props.elevationStyles),
-      ]}
-      visualState={visualState}
-      type={type}
-      disabled={disabled}
-      aria-label={props['aria-label']}
-      aria-haspopup={props['aria-haspopup']}
-      aria-expanded={props['aria-expanded']}
-      href={href}
-      onClick={handleClick}
+      ref={ref}
+      styles={[theme.styles, variantTheme.styles, ...asArray(styles)]}
+      sx={[theme.vars, variantTheme.vars, sx]}
       withLeadingIcon={hasLeadingIcon}
       withTrailingIcon={hasTrailingIcon}
+      innerStyles={{
+        ...innerStyles,
+        stateLayer: [
+          theme.stateLayerStyles,
+          variantTheme.stateLayerStyles,
+          ...asArray(innerStyles?.stateLayer),
+        ],
+        focusRing: [
+          theme.focusRingStyles,
+          variantTheme.focusRingStyles,
+          ...asArray(innerStyles?.focusRing),
+        ],
+        elevation: [
+          theme.elevationStyles,
+          variantTheme.stateLayerStyles,
+          ...asArray(innerStyles?.elevation),
+        ],
+      }}
+      onClick={handleClick}
+      disabled={disabled}
+      as={props.as as React.ElementType}
+      {...other}
     >
       {hasLeadingIcon ? (
         <div
@@ -170,7 +184,7 @@ export const Button: React.FC<IButtonProps> = ({
               styles={[
                 theme.circularProgressIndicatorStyles,
                 variantTheme.circularProgressIndicatorStyles,
-                ...asArray(props.circularProgressIndicatorStyles),
+                ...asArray(circularProgressIndicatorStyles),
               ]}
             />
           ) : icon ? (
@@ -206,7 +220,7 @@ export const Button: React.FC<IButtonProps> = ({
                 styles={[
                   theme.circularProgressIndicatorStyles,
                   variantTheme.circularProgressIndicatorStyles,
-                  ...asArray(props.circularProgressIndicatorStyles),
+                  ...asArray(circularProgressIndicatorStyles),
                 ]}
               />
             </div>
@@ -226,7 +240,7 @@ export const Button: React.FC<IButtonProps> = ({
               styles={[
                 theme.circularProgressIndicatorStyles,
                 variantTheme.circularProgressIndicatorStyles,
-                ...asArray(props.circularProgressIndicatorStyles),
+                ...asArray(circularProgressIndicatorStyles),
               ]}
             />
           </div>
@@ -245,4 +259,4 @@ export const Button: React.FC<IButtonProps> = ({
       ) : null}
     </ButtonBase>
   );
-};
+});

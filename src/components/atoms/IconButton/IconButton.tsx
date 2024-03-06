@@ -52,7 +52,7 @@ export type IIconButtonProps = IContainerProps<
     selectedIcon?: React.ReactNode;
     component?: React.ElementType;
     'aria-label-selected'?: React.AriaAttributes['aria-label'];
-    statelayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
+    stateLayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
     focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
     circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
   };
@@ -178,9 +178,9 @@ export const IconButton: React.FC<IIconButtonProps> = ({
       />
       <StateLayer
         styles={[
-          theme.statelayerStyles,
-          variantTheme.statelayerStyles,
-          ...asArray(props.statelayerStyles),
+          theme.stateLayerStyles,
+          variantTheme.stateLayerStyles,
+          ...asArray(props.stateLayerStyles),
         ]}
         for={actionRef}
         disabled={disabled}

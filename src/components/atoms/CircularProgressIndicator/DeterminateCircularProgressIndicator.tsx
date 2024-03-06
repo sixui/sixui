@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { forwardRef, useMemo } from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
 import type {
@@ -13,53 +13,52 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 // https://github.com/material-components/material-web/blob/main/progress/internal/progress.ts
 // https://github.com/material-components/material-web/blob/main/progress/internal/circulardeterminate-progress.ts
 
-export type IDeterminateCircularProgressIndicatorProps = IContainerProps<
-  IDeterminateCircularProgressIndicatorStyleKey,
-  ICircularProgressIndicatorStyleVarKey
-> &
-  Pick<React.AriaAttributes, 'aria-label'> & {
-    value: number;
-    withLabel?: boolean;
-    min?: number;
-    max?: number;
-    zeroBased?: boolean;
-    labelFormatter?: (value: number) => string;
-    size?: ICircularProgressIndicatorSize;
-    disabled?: boolean;
-  };
+export type IDeterminateCircularProgressIndicatorProps =
+  IContainerProps<IDeterminateCircularProgressIndicatorStyleKey> &
+    Pick<React.AriaAttributes, 'aria-label'> & {
+      value: number;
+      withLabel?: boolean;
+      min?: number;
+      max?: number;
+      zeroBased?: boolean;
+      labelFormatter?: (value: number) => string;
+      size?: ICircularProgressIndicatorSize;
+      disabled?: boolean;
+    };
 
-export const DeterminateCircularProgressIndicator: React.FC<
+export const DeterminateCircularProgressIndicator = forwardRef<
+  HTMLDivElement,
   IDeterminateCircularProgressIndicatorProps
-> = ({
-  value,
-  withLabel,
-  min = 0,
-  max = 1,
-  zeroBased,
-  labelFormatter,
-  size = 'md',
-  disabled,
-  ...props
-}) => {
+>(function DeterminateCircularProgressIndicator(props, ref) {
+  const {
+    styles,
+    sx,
+    value,
+    withLabel,
+    min = 0,
+    max = 1,
+    zeroBased,
+    labelFormatter,
+    size = 'md',
+    disabled,
+    ...other
+  } = props;
+
   const theme = useComponentTheme('CircularProgressIndicator');
   const variantTheme = useComponentTheme(
     'DeterminateCircularProgressIndicator',
   );
-
+  const stylesCombinator = useMemo(
+    () => stylesCombinatorFactory(theme.styles, variantTheme.styles, styles),
+    [theme.styles, variantTheme.styles, styles],
+  );
   const styleProps = useMemo(
     () =>
       stylePropsFactory<
         IDeterminateCircularProgressIndicatorStyleKey,
         ICircularProgressIndicatorStyleVarKey
-      >(
-        stylesCombinatorFactory<IDeterminateCircularProgressIndicatorStyleKey>(
-          theme.styles,
-          variantTheme.styles,
-          props.styles,
-        ),
-        props.visualState,
-      ),
-    [theme.styles, variantTheme.styles, props.styles, props.visualState],
+      >(stylesCombinator),
+    [stylesCombinator],
   );
 
   const value0 = zeroBased ? 0 : min;
@@ -68,10 +67,9 @@ export const DeterminateCircularProgressIndicator: React.FC<
 
   return (
     <div
-      {...styleProps(
-        ['host', `host$${size}`, props.sx],
-        [theme.vars, props.theme],
-      )}
+      {...styleProps(['host', `host$${size}`, sx], [theme.vars])}
+      ref={ref}
+      {...other}
     >
       <div
         {...styleProps(['layer', 'progress', `progress$${size}`])}
@@ -117,4 +115,4 @@ export const DeterminateCircularProgressIndicator: React.FC<
       </div>
     </div>
   );
-};
+});

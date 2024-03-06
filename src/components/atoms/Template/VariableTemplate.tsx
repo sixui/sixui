@@ -11,10 +11,7 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export type IVariableTemplateProps = IContainerProps<
-  ITemplateStyleKey,
-  ITemplateStyleVarKey
-> & {
+export type IVariableTemplateProps = IContainerProps<ITemplateStyleKey> & {
   variant?: ITemplateVariant;
   children?: React.ReactNode;
 };
@@ -31,32 +28,28 @@ export const VariableTemplate = forwardRef<
   HTMLDivElement,
   IVariableTemplateProps
 >(function VariableTemplate(props, ref) {
-  const { variant = 'variant', children, ...other } = props;
+  const { styles, sx, variant = 'variant', children, ...other } = props;
 
   const theme = useComponentTheme('Template');
   const variantTheme = useComponentTheme(variantMap[variant]);
 
-  const styles = useMemo(
-    () =>
-      stylesCombinatorFactory(theme.styles, variantTheme.styles, other.styles),
-    [theme.styles, variantTheme.styles, other.styles],
+  const stylesCombinator = useMemo(
+    () => stylesCombinatorFactory(theme.styles, variantTheme.styles, styles),
+    [theme.styles, variantTheme.styles, styles],
   );
   const styleProps = useMemo(
     () =>
       stylePropsFactory<ITemplateStyleKey, ITemplateStyleVarKey>(
-        styles,
-        other.visualState,
+        stylesCombinator,
       ),
-    [styles, other.visualState],
+    [stylesCombinator],
   );
 
   return (
     <div
-      {...styleProps(
-        ['host', other.sx],
-        [theme.vars, variantTheme.vars, other.theme],
-      )}
+      {...styleProps(['host', sx], [theme.vars, variantTheme.vars])}
       ref={ref}
+      {...other}
     >
       {children}
     </div>

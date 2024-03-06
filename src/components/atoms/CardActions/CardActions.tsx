@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { forwardRef, useMemo } from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
 import type { ICardActionsStyleKey } from './CardActions.styledefs';
@@ -10,20 +10,25 @@ export type ICardActionsProps = IContainerProps<ICardActionsStyleKey> & {
   children: React.ReactNode;
 };
 
-export const CardActions: React.FC<ICardActionsProps> = ({
-  children,
-  ...props
-}) => {
-  const theme = useComponentTheme('CardActions');
+export const CardActions: React.FC<ICardActionsProps> = forwardRef<
+  HTMLDivElement,
+  ICardActionsProps
+>(function CardActions(props, ref) {
+  const { styles, sx, children, ...other } = props;
 
+  const theme = useComponentTheme('CardActions');
+  const stylesCombinator = useMemo(
+    () => stylesCombinatorFactory(theme.styles, styles),
+    [theme.styles, styles],
+  );
   const styleProps = useMemo(
-    () =>
-      stylePropsFactory<ICardActionsStyleKey>(
-        stylesCombinatorFactory(theme.styles, props.styles),
-        props.visualState,
-      ),
-    [theme.styles, props.styles, props.visualState],
+    () => stylePropsFactory<ICardActionsStyleKey>(stylesCombinator),
+    [stylesCombinator],
   );
 
-  return <div {...styleProps(['host', props.sx])}>{children}</div>;
-};
+  return (
+    <div {...styleProps(['host', sx])} ref={ref} {...other}>
+      {children}
+    </div>
+  );
+});

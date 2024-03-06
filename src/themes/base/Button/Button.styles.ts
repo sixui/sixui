@@ -82,7 +82,6 @@ export const styles: MapNamespaces<IButtonStyles> =
     },
     host$disabled: {
       cursor: 'default',
-      pointerEvents: 'none',
       // eslint-disable-next-line @stylexjs/valid-styles
       [buttonStateVars.elevation]: vars.containerElevation$disabled,
     },
@@ -162,7 +161,7 @@ export const styles: MapNamespaces<IButtonStyles> =
   });
 
 type IStateLayerStyles = IStyles<IStateLayerStyleKey>;
-export const statelayerStyles: MapNamespaces<IStateLayerStyles> = stylex.create<
+export const stateLayerStyles: MapNamespaces<IStateLayerStyles> = stylex.create<
   IStyles<IStateLayerStyleKey>
 >({
   host: {

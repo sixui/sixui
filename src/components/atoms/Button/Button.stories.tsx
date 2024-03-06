@@ -10,6 +10,7 @@ import {
 } from '@/components/utils/ComponentShowcase';
 import { buttonVariants } from './Button.styledefs';
 import { type IButtonProps, Button } from './Button';
+import React, { forwardRef } from 'react';
 
 // https://m3.material.io/components/buttons/overview
 // https://material-web.dev/components/button/
@@ -22,7 +23,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onClick: (args) => sbHandleEvent('click', args),
+  onClick: (args) => sbHandleEvent('click', args, 300),
   children: 'Button',
 } satisfies Partial<IButtonProps>;
 

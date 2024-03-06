@@ -65,7 +65,7 @@ export type ISwitchProps = IContainerProps<
     ) => IMaybeAsync<IAny>;
     icon?: React.ReactNode;
     selectedIcon?: React.ReactNode;
-    statelayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
+    stateLayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
     focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
     circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
   };
@@ -179,8 +179,8 @@ export const Switch: React.FC<ISwitchProps> = ({
           >
             <StateLayer
               styles={[
-                theme.statelayerStyles,
-                ...asArray(props.statelayerStyles),
+                theme.stateLayerStyles,
+                ...asArray(props.stateLayerStyles),
               ]}
               for={inputRef}
               disabled={disabled}

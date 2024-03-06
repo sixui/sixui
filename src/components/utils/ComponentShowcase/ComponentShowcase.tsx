@@ -13,55 +13,61 @@ export type IComponentPropsWithLegend<IComponentProps> = Array<
   Partial<IComponentProps> & { $legend?: React.ReactNode }
 >;
 
-export type IComponentShowcaseProps<IComponentProps> = IContainerProps<
-  IComponentShowcaseStyleKey,
-  IComponentShowcaseStyleVarKey
-> & {
-  component: React.FC<IComponentProps>;
-  props: IComponentProps;
-  groupsProps?: IComponentPropsWithLegend<IComponentProps>;
-  colsProps?: IComponentPropsWithLegend<IComponentProps>;
-  rowsProps?: IComponentPropsWithLegend<IComponentProps>;
-  align?: 'start' | 'center';
-  rowLegendPosition?: 'start' | 'top' | 'bottom';
-  fullWidth?: boolean;
-};
+export type IComponentShowcaseProps<IComponentProps> =
+  IContainerProps<IComponentShowcaseStyleKey> & {
+    component: React.FC<IComponentProps>;
+    props: IComponentProps;
+    groupsProps?: IComponentPropsWithLegend<IComponentProps>;
+    colsProps?: IComponentPropsWithLegend<IComponentProps>;
+    rowsProps?: IComponentPropsWithLegend<IComponentProps>;
+    align?: 'start' | 'center';
+    rowLegendPosition?: 'start' | 'top' | 'bottom';
+    fullWidth?: boolean;
+  };
 
 const DUMMY_TEXT = '.';
 
-export const ComponentShowcase = <IComponentProps extends object>({
-  component: Component,
-  props: componentProps,
-  groupsProps = [{}],
-  colsProps = [{}],
-  rowsProps = [{}],
-  align = 'center',
-  rowLegendPosition = 'start',
-  fullWidth,
-  ...props
-}: IComponentShowcaseProps<IComponentProps>): React.ReactNode => {
-  const theme = useComponentTheme('ComponentShowcase');
+export const ComponentShowcase = <TComponentProps,>(
+  props: IComponentShowcaseProps<TComponentProps>,
+): React.ReactNode => {
+  const {
+    styles,
+    sx,
+    component: Component,
+    props: componentProps,
+    groupsProps,
+    colsProps,
+    rowsProps,
+    align = 'center',
+    rowLegendPosition = 'start',
+    fullWidth,
+  } = props;
 
+  const theme = useComponentTheme('ComponentShowcase');
+  const stylesCombinator = useMemo(
+    () => stylesCombinatorFactory(theme.styles, styles),
+    [theme.styles, styles],
+  );
   const styleProps = useMemo(
     () =>
       stylePropsFactory<
         IComponentShowcaseStyleKey,
         IComponentShowcaseStyleVarKey
-      >(stylesCombinatorFactory(theme.styles, props.styles), props.visualState),
-    [theme.styles, props.styles, props.visualState],
+      >(stylesCombinator),
+    [stylesCombinator],
   );
 
-  const shouldShowRowLegends = rowsProps.some(({ $legend }) => !!$legend);
-  const shouldShowColLegends = colsProps.some(({ $legend }) => !!$legend);
-  const shouldShowGroupLegends = groupsProps.some(({ $legend }) => !!$legend);
+  const shouldShowRowLegends = rowsProps?.some(({ $legend }) => !!$legend);
+  const shouldShowColLegends = colsProps?.some(({ $legend }) => !!$legend);
+  const shouldShowGroupLegends = groupsProps?.some(({ $legend }) => !!$legend);
+
+  const placeholder = { $legend: undefined };
+  const nonEmptyGroupsProps = groupsProps ?? [placeholder];
+  const nonEmptyColsProps = colsProps ?? [placeholder];
+  const nonEmptyRowsProps = rowsProps ?? [placeholder];
 
   return (
-    <div
-      {...styleProps(
-        ['host', 'cols', 'gap$md', props.sx],
-        [theme.vars, props.theme],
-      )}
-    >
+    <div {...styleProps(['host', 'cols', 'gap$md', sx], [theme.vars])}>
       {shouldShowRowLegends && rowLegendPosition === 'start' ? (
         <div {...styleProps(['rows', 'gap$lg'])}>
           {shouldShowColLegends ? (
@@ -71,12 +77,12 @@ export const ComponentShowcase = <IComponentProps extends object>({
           ) : null}
 
           <div {...styleProps(['flex', 'groupRows'])}>
-            {groupsProps.map((_, groupIndex) => (
+            {nonEmptyGroupsProps.map((_, groupIndex) => (
               <div
                 {...styleProps(['flex', 'rows', 'gap$lg'])}
                 key={`$legend-${groupIndex}`}
               >
-                {rowsProps.map(({ $legend: rowLegend }, rowIndex) => (
+                {nonEmptyRowsProps.map(({ $legend: rowLegend }, rowIndex) => (
                   <div
                     {...styleProps([
                       'flex',
@@ -100,54 +106,74 @@ export const ComponentShowcase = <IComponentProps extends object>({
       <div
         {...styleProps(['cols', 'gap$md', 'itemsStart', fullWidth && 'flex'])}
       >
-        {colsProps.map(({ $legend: colLegend, ...colProps }, colIndex) => (
-          <div
-            {...styleProps(['groupRows', fullWidth && 'flex'])}
-            key={colIndex}
-          >
-            {groupsProps.map((groupProps, groupIndex) => (
-              <div
-                key={`${colIndex}-${groupIndex}`}
-                {...styleProps([
-                  'rows',
-                  'gap$lg',
-                  align === 'start' ? 'itemsStart' : 'itemsCenter',
-                  'flex',
-                ])}
-              >
-                {shouldShowColLegends && groupIndex === 0 ? (
-                  <div {...styleProps(['legend', !colLegend && 'invisible'])}>
-                    {colLegend ?? DUMMY_TEXT}
-                  </div>
-                ) : null}
-
-                {rowsProps.map((rowProps, rowIndex) => (
+        {nonEmptyColsProps.map(
+          ({ $legend: colLegend, ...colProps }, colIndex) => (
+            <div
+              {...styleProps(['groupRows', fullWidth && 'flex'])}
+              key={colIndex}
+            >
+              {nonEmptyGroupsProps.map(
+                (
+                  {
+                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                    $legend: groupLegend,
+                    ...groupProps
+                  },
+                  groupIndex,
+                ) => (
                   <div
-                    key={`${colIndex}-${groupIndex}-${rowIndex}`}
-                    {...styleProps(['flex', 'rows', fullWidth && 'w100'])}
+                    key={`${colIndex}-${groupIndex}`}
+                    {...styleProps([
+                      'rows',
+                      'gap$lg',
+                      align === 'start' ? 'itemsStart' : 'itemsCenter',
+                      'flex',
+                    ])}
                   >
-                    {shouldShowRowLegends &&
-                    rowLegendPosition === 'top' &&
-                    rowProps.$legend ? (
-                      <div {...styleProps(['legend'])}>{rowProps.$legend}</div>
+                    {shouldShowColLegends && groupIndex === 0 ? (
+                      <div
+                        {...styleProps(['legend', !colLegend && 'invisible'])}
+                      >
+                        {colLegend ?? DUMMY_TEXT}
+                      </div>
                     ) : null}
 
-                    <div
-                      {...styleProps(['flex', 'cols', 'gap$md', 'itemsEnd'])}
-                    >
-                      <Component
-                        {...componentProps}
-                        {...groupProps}
-                        {...colProps}
-                        {...rowProps}
-                      />
-                    </div>
+                    {nonEmptyRowsProps.map(
+                      ({ $legend: rowLegend, ...rowProps }, rowIndex) => (
+                        <div
+                          key={`${colIndex}-${groupIndex}-${rowIndex}`}
+                          {...styleProps(['flex', 'rows', fullWidth && 'w100'])}
+                        >
+                          {shouldShowRowLegends &&
+                          rowLegendPosition === 'top' &&
+                          rowLegend ? (
+                            <div {...styleProps(['legend'])}>{rowLegend}</div>
+                          ) : null}
+
+                          <div
+                            {...styleProps([
+                              'flex',
+                              'cols',
+                              'gap$md',
+                              'itemsEnd',
+                            ])}
+                          >
+                            <Component
+                              {...componentProps}
+                              {...groupProps}
+                              {...colProps}
+                              {...rowProps}
+                            />
+                          </div>
+                        </div>
+                      ),
+                    )}
                   </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        ))}
+                ),
+              )}
+            </div>
+          ),
+        )}
       </div>
 
       {shouldShowGroupLegends ? (
@@ -159,7 +185,7 @@ export const ComponentShowcase = <IComponentProps extends object>({
           ) : null}
 
           <div {...styleProps(['flex', 'groupRows'])}>
-            {groupsProps.map(({ $legend: groupLegend }, groupIndex) => (
+            {nonEmptyGroupsProps.map(({ $legend: groupLegend }, groupIndex) => (
               <div
                 {...styleProps(['flex', 'rows', 'gap$lg'])}
                 key={`$legend-${groupIndex}`}

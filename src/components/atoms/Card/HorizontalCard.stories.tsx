@@ -115,6 +115,7 @@ const NonActionableContentVariant: React.FC<{ headline?: string }> = ({
             onClick={(args: React.MouseEvent<HTMLElement>) =>
               sbHandleEvent('click:primaryAction', args)
             }
+            type='submit'
           >
             Primary
           </Button>

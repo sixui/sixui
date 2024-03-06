@@ -23,7 +23,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onClick: (args) => sbHandleEvent('click', args),
+  onClick: (args) => sbHandleEvent('click', args, 300),
   label: 'Chip',
 } satisfies Partial<IChipProps>;
 
@@ -57,13 +57,13 @@ export const Variants: IStory = {
         {
           variant: 'input',
           label: 'Input',
-          onDelete: () => sbHandleEvent('delete'),
+          onDelete: () => sbHandleEvent('delete', undefined, 300),
           imageUrl: IMAGE_URL,
         },
         {
           variant: 'input',
           label: 'Avatar',
-          onDelete: () => sbHandleEvent('delete'),
+          onDelete: () => sbHandleEvent('delete', undefined, 300),
           imageUrl: IMAGE_URL,
           avatar: true,
         },
@@ -130,7 +130,10 @@ export const Input: IStory = {
       ]}
       rowsProps={[
         { $legend: 'Basic' },
-        { $legend: 'Deletable', onDelete: () => sbHandleEvent('delete') },
+        {
+          $legend: 'Deletable',
+          onDelete: () => sbHandleEvent('delete', undefined, 300),
+        },
       ]}
       groupsProps={[{}, { $legend: 'Selected', defaultSelected: true }]}
     />
@@ -158,12 +161,12 @@ export const InputWithIconOrImage: IStory = {
         {
           $legend: 'With image',
           imageUrl: IMAGE_URL,
-          onDelete: () => sbHandleEvent('delete'),
+          onDelete: () => sbHandleEvent('delete', undefined, 300),
         },
         {
           $legend: 'With avatar',
           imageUrl: IMAGE_URL,
-          onDelete: () => sbHandleEvent('delete'),
+          onDelete: () => sbHandleEvent('delete', undefined, 300),
           avatar: true,
         },
       ]}

@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { forwardRef, useMemo } from 'react';
 
 import type { IContainerProps } from '@/components/utils/Container';
 import type {
@@ -13,46 +13,42 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 // https://github.com/material-components/material-web/blob/main/progress/internal/progress.ts
 // https://github.com/material-components/material-web/blob/main/progress/internal/circular-progress.ts
 
-export type IIndeterminateCircularProgressIndicatorProps = IContainerProps<
-  IIndeterminateCircularProgressIndicatorStyleKey,
-  ICircularProgressIndicatorStyleVarKey
-> &
-  Pick<React.AriaAttributes, 'aria-label'> & {
-    labelFormatter?: (value: number) => string;
-    size?: ICircularProgressIndicatorSize;
-    disabled?: boolean;
-  };
+export type IIndeterminateCircularProgressIndicatorProps =
+  IContainerProps<IIndeterminateCircularProgressIndicatorStyleKey> &
+    Pick<React.AriaAttributes, 'aria-label'> & {
+      size?: ICircularProgressIndicatorSize;
+      disabled?: boolean;
+    };
 
-export const IndeterminateCircularProgressIndicator: React.FC<
+export const IndeterminateCircularProgressIndicator = forwardRef<
+  HTMLInputElement,
   IIndeterminateCircularProgressIndicatorProps
-> = ({ size = 'md', disabled, ...props }) => {
+>(function IndeterminateCircularProgressIndicator(props, ref) {
+  const { styles, sx, size = 'md', disabled, ...other } = props;
+
   const theme = useComponentTheme('CircularProgressIndicator');
   const variantTheme = useComponentTheme(
     'IndeterminateCircularProgressIndicator',
   );
 
+  const stylesCombinator = useMemo(
+    () => stylesCombinatorFactory(theme.styles, variantTheme.styles, styles),
+    [theme.styles, variantTheme.styles, styles],
+  );
   const styleProps = useMemo(
     () =>
       stylePropsFactory<
         IIndeterminateCircularProgressIndicatorStyleKey,
         ICircularProgressIndicatorStyleVarKey
-      >(
-        stylesCombinatorFactory<IIndeterminateCircularProgressIndicatorStyleKey>(
-          theme.styles,
-          variantTheme.styles,
-          props.styles,
-        ),
-        props.visualState,
-      ),
-    [theme.styles, variantTheme.styles, props.styles, props.visualState],
+      >(stylesCombinator),
+    [stylesCombinator],
   );
 
   return (
     <div
-      {...styleProps(
-        ['host', `host$${size}`, props.sx],
-        [theme.vars, props.theme],
-      )}
+      {...styleProps(['host', `host$${size}`, sx], [theme.vars])}
+      ref={ref}
+      {...other}
     >
       <div
         {...styleProps(['layer', 'progress', `progress$${size}`])}
@@ -86,4 +82,4 @@ export const IndeterminateCircularProgressIndicator: React.FC<
       </div>
     </div>
   );
-};
+});

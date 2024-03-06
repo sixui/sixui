@@ -23,7 +23,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onChange: (props) => sbHandleEvent('change', props, 0),
+  onChange: (props) => sbHandleEvent('change', props),
 } satisfies Partial<ICheckboxProps>;
 
 const statesProps: IComponentPropsWithLegend<ICheckboxProps> = [

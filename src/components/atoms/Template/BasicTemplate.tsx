@@ -9,37 +9,29 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export type IBasicTemplateProps = IContainerProps<
-  ITemplateStyleKey,
-  ITemplateStyleVarKey
-> & {
+export type IBasicTemplateProps = IContainerProps<ITemplateStyleKey> & {
   children?: React.ReactNode;
 };
 
 export const BasicTemplate = forwardRef<HTMLDivElement, IBasicTemplateProps>(
   function BasicTemplate(props, ref) {
-    const { children, ...other } = props;
+    const { styles, sx, children, ...other } = props;
 
     const theme = useComponentTheme('Template');
-
-    const styles = useMemo(
-      () => stylesCombinatorFactory(theme.styles, other.styles),
-      [theme.styles, other.styles],
+    const stylesCombinator = useMemo(
+      () => stylesCombinatorFactory(theme.styles, styles),
+      [theme.styles, styles],
     );
     const styleProps = useMemo(
       () =>
         stylePropsFactory<ITemplateStyleKey, ITemplateStyleVarKey>(
-          styles,
-          other.visualState,
+          stylesCombinator,
         ),
-      [styles, other.visualState],
+      [stylesCombinator],
     );
 
     return (
-      <div
-        {...styleProps(['host', other.sx], [theme.vars, other.theme])}
-        ref={ref}
-      >
+      <div {...styleProps(['host', sx], [theme.vars])} ref={ref} {...other}>
         {children}
       </div>
     );
