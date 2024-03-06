@@ -5,7 +5,6 @@ import type { IFabStyleStateVarKey } from '@/components/atoms/Fab';
 
 const vars: IStyleVars<IFabStyleStateVarKey> = {
   elevation: 'unset',
-  containerShape: 'unset',
   iconColor: 'unset',
 };
 

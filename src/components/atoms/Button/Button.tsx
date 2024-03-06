@@ -74,6 +74,7 @@ export const Button: IButton = forwardRef(function Button<
   const {
     styles,
     sx,
+    as: asProp,
     innerStyles,
     children,
     onClick,
@@ -168,7 +169,7 @@ export const Button: IButton = forwardRef(function Button<
       }}
       onClick={handleClick}
       disabled={disabled}
-      as={props.as as React.ElementType}
+      as={asProp as React.ElementType}
       {...other}
     >
       {hasLeadingIcon ? (
@@ -189,7 +190,10 @@ export const Button: IButton = forwardRef(function Button<
             />
           ) : icon ? (
             <div
-              {...styleProps([iconAnimation && `icon$${iconAnimation}`])}
+              {...styleProps([
+                'icon',
+                iconAnimation && `icon$${iconAnimation}`,
+              ])}
               onAnimationIteration={handleAnimationIteration}
             >
               {icon}
@@ -198,15 +202,17 @@ export const Button: IButton = forwardRef(function Button<
         </div>
       ) : null}
 
-      <span
-        {...styleProps([
-          'label',
-          disabled && 'label$disabled',
-          hasOverlay ? 'invisible' : null,
-        ])}
-      >
-        {children}
-      </span>
+      {children ? (
+        <span
+          {...styleProps([
+            'label',
+            disabled && 'label$disabled',
+            hasOverlay ? 'invisible' : null,
+          ])}
+        >
+          {children}
+        </span>
+      ) : null}
 
       {hasOverlay ? (
         <div {...styleProps(['overlay'])}>

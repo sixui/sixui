@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useMemo } from 'react';
+import { forwardRef, useCallback, useMemo, useRef } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -31,22 +31,18 @@ import { useForkRef } from '@/hooks/useForkRef';
 // https://github.com/material-components/material-web/blob/main/checkbox/internal/checkbox.ts
 
 export type ICheckboxProps = IContainerProps<ICheckboxStyleKey> &
-  Pick<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    | 'required'
-    | 'disabled'
-    | 'checked'
-    | 'id'
-    | 'name'
-    | 'value'
-    | 'aria-label'
-    | 'aria-invalid'
-  > & {
+  Pick<React.AriaAttributes, 'aria-label' | 'aria-invalid'> & {
     innerStyles?: {
       stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
       focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
     };
     visualState?: IVisualState;
+    required?: boolean;
+    disabled?: boolean;
+    checked?: boolean;
+    id?: string;
+    name?: string;
+    value?: string;
     defaultChecked?: boolean;
     indeterminate?: boolean;
     onChange?: (
@@ -70,9 +66,12 @@ export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
       ...other
     } = props;
 
-    const { visualState, ref: visualStateRef } =
-      useVisualState(visualStateProp);
-    const handleRef = useForkRef(ref, visualStateRef);
+    const buttonRef = useRef<HTMLInputElement>(null);
+    const { visualState, ref: visualStateRef } = useVisualState(
+      visualStateProp,
+      { disabled },
+    );
+    const handleRef = useForkRef(ref, visualStateRef, buttonRef);
 
     const theme = useComponentTheme('Checkbox');
     const stylesCombinator = useMemo(
@@ -168,12 +167,12 @@ export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
           />
 
           <FocusRing
-            for={ref}
+            for={buttonRef}
             styles={[theme.focusRingStyles, ...asArray(innerStyles?.focusRing)]}
             visualState={visualState}
           />
           <StateLayer
-            for={ref}
+            for={buttonRef}
             styles={[
               theme.stateLayerStyles,
               ...asArray(innerStyles?.stateLayer),

@@ -58,13 +58,7 @@ import { componentTheme as filterChipTheme } from './Chip/FilterChip.stylex';
 import { componentTheme as inputChipTheme } from './Chip/InputChip.stylex';
 import { componentTheme as suggestionChipTheme } from './Chip/SuggestionChip.stylex';
 
-import {
-  styles as fabStyles,
-  stateLayerStyles as fabStateLayerStyles,
-  elevationStyles as fabElevationStyles,
-  focusRingStyles as fabFocusRingStyles,
-  circularProgressIndicatorStyles as fabCircularProgressIndicatorStyles,
-} from './Fab/Fab.styles';
+import { styles as fabStyles } from './Fab/Fab.styles';
 import { componentTheme as fabTheme } from './Fab/Fab.stylex';
 import { componentTheme as surfaceFabTheme } from './Fab/SurfaceFab.stylex';
 import { componentTheme as primaryFabTheme } from './Fab/PrimaryFab.stylex';
@@ -286,10 +280,6 @@ export const theme: ITheme = {
     Fab: {
       vars: fabTheme,
       styles: fabStyles,
-      stateLayerStyles: fabStateLayerStyles,
-      focusRingStyles: fabFocusRingStyles,
-      elevationStyles: fabElevationStyles,
-      circularProgressIndicatorStyles: fabCircularProgressIndicatorStyles,
     },
     SurfaceFab: { vars: surfaceFabTheme },
     PrimaryFab: { vars: primaryFabTheme },

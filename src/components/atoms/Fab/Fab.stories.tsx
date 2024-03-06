@@ -77,7 +77,7 @@ export const Variants: IStory = {
         {
           $legend: 'Branded',
           variant: 'branded',
-          children: svgColorIcon,
+          icon: svgColorIcon,
         },
       ]}
     />
@@ -127,7 +127,7 @@ export const BrandedSizes: IStory = {
   args: {
     ...defaultArgs,
     variant: 'branded',
-    children: svgColorIcon,
+    icon: svgColorIcon,
   },
 };
 
@@ -255,7 +255,7 @@ export const Branded: IStory = {
   args: {
     ...defaultArgs,
     variant: 'branded',
-    children: svgColorIcon,
+    icon: svgColorIcon,
   },
 };
 

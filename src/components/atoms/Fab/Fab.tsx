@@ -1,65 +1,42 @@
-import { useMemo, useRef, useState } from 'react';
-import { accumulate, asArray } from '@olivierpascal/helpers';
+import { forwardRef, useMemo } from 'react';
+import { asArray } from '@olivierpascal/helpers';
 
+import type { IZeroOrMore, ICompiledStyles } from '@/helpers/types';
 import type {
-  IZeroOrMore,
-  ICompiledStyles,
-  IAny,
-  IMaybeAsync,
-} from '@/helpers/types';
+  IPolymorphicComponentPropsWithRef,
+  IPolymorphicRef,
+  IWithAsProp,
+} from '@/helpers/polymorphicComponentTypes';
 import type { IContainerProps } from '@/components/utils/Container';
-import type {
-  IFabSize,
-  IFabStyleKey,
-  IFabStyleVarKey,
-  IFabVariant,
-} from './Fab.styledefs';
+import type { IFabSize, IFabStyleKey, IFabVariant } from './Fab.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { useVisualState } from '@/hooks/useVisualState.old';
-import {
-  Elevation,
-  type IElevationStyleKey,
-} from '@/components/utils/Elevation';
-import {
-  FocusRing,
-  type IFocusRingStyleKey,
-} from '@/components/utils/FocusRing';
-import {
-  StateLayer,
-  type IStateLayerStyleKey,
-} from '@/components/utils/StateLayer';
 import { IThemeComponents } from '@/helpers/ThemeContext';
-import {
-  IndeterminateCircularProgressIndicator,
-  type ICircularProgressIndicatorStyleKey,
-} from '@/components/atoms/CircularProgressIndicator';
+import { type ICircularProgressIndicatorStyleKey } from '@/components/atoms/CircularProgressIndicator';
+import { type IButtonStyleKey, type IButtonOwnProps, Button } from '../Button';
 
 // https://github.com/material-components/material-web/blob/main/fab/internal/shared.ts
 // https://github.com/material-components/material-web/blob/main/fab/internal/fab.ts
 
-export type IFabProps = IContainerProps<IFabStyleKey> &
-  Pick<
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
-    'disabled' | 'aria-label'
-  > & {
+const DEFAULT_TAG = 'button';
+
+export type IFabOwnProps = Omit<IButtonOwnProps, 'variant'> &
+  IContainerProps<IFabStyleKey> & {
+    innerStyles?: IButtonOwnProps['innerStyles'] & {
+      button?: IZeroOrMore<ICompiledStyles<IButtonStyleKey>>;
+      circularProgressIndicator?: IZeroOrMore<
+        ICompiledStyles<ICircularProgressIndicatorStyleKey>
+      >;
+    };
     children?: React.ReactNode;
     size?: IFabSize;
-    onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
     variant?: IFabVariant;
-    lowered?: boolean;
-    loading?: boolean;
-    loadingText?: string;
     label?: string;
-    icon?: React.ReactNode;
-    component?: React.ElementType;
-    href?: string;
-    stateLayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
-    focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-    elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
-    circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
+    lowered?: boolean;
   };
+
+export type IFabProps<TRoot extends React.ElementType = typeof DEFAULT_TAG> =
+  IPolymorphicComponentPropsWithRef<TRoot, IFabOwnProps>;
 
 type IFabVariantMap = {
   [key in IFabVariant]: keyof Pick<
@@ -76,186 +53,52 @@ const variantMap: IFabVariantMap = {
   branded: 'BrandedFab',
 };
 
-export const Fab: React.FC<IFabProps> = ({
-  children,
-  size = 'md',
-  onClick,
-  variant = 'surface',
-  lowered,
-  loadingText,
-  label,
-  icon,
-  href,
-  ...props
-}) => {
+type IFab = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
+  props: IFabProps<TRoot>,
+) => React.ReactNode;
+
+export const Fab: IFab = forwardRef(function Fab<
+  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+>(props: IFabProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+  const {
+    styles,
+    sx,
+    innerStyles,
+    size = 'md',
+    variant = 'surface',
+    label,
+    lowered,
+    ...other
+  } = props as IWithAsProp<IFabOwnProps>;
+
   const theme = useComponentTheme('Fab');
   const variantTheme = useComponentTheme(variantMap[variant]);
-
-  const actionRef = useRef<HTMLButtonElement | HTMLLinkElement>(null);
-  const [handlingClick, setHandlingClick] = useState(false);
-  const visualState = accumulate(useVisualState(actionRef), props.visualState);
-
-  const styleProps = useMemo(
-    () =>
-      stylePropsFactory<IFabStyleKey, IFabStyleVarKey>(
-        stylesCombinatorFactory(
-          theme.styles,
-          variantTheme.styles,
-          props.styles,
-        ),
-        visualState,
-      ),
-    [theme.styles, variantTheme.styles, props.styles, visualState],
+  const stylesCombinator = useMemo(
+    () => stylesCombinatorFactory(theme.styles, variantTheme.styles, styles),
+    [theme.styles, variantTheme.styles, styles],
   );
 
-  const handleClick: React.MouseEventHandler<HTMLElement> | undefined = onClick
-    ? (event) => {
-        if (handlingClick) {
-          return;
-        }
-
-        setHandlingClick(true);
-
-        Promise.resolve(onClick(event))
-          .finally(() => setHandlingClick(false))
-          .catch((error: Error) => {
-            throw error;
-          });
-      }
-    : undefined;
-
-  const loading = props.loading || handlingClick;
-  const disabled = props.disabled || loading;
   const extended = !!label;
-  const hasChildren = variant === 'branded' && !!children;
-  const hasIcon = !!icon || hasChildren;
-  const hasLeading = hasIcon;
-  const hasOverlay = loading && (!!loadingText || !hasIcon);
-
-  const Component: React.ElementType = props.component
-    ? props.component
-    : href
-      ? 'a'
-      : 'button';
 
   return (
-    <div
-      {...styleProps(
-        [
+    <Button
+      ref={ref}
+      variant='elevated'
+      styles={asArray(innerStyles?.button)}
+      sx={[
+        stylesCombinator(
           'host',
           extended ? 'host$md' : `host$${size}`,
+          extended && 'host$extended',
           lowered && 'host$lowered',
-          disabled && 'host$disabled',
-          props.sx,
-        ],
-        [theme.vars, variantTheme.vars, props.theme],
-      )}
+        ),
+        theme.vars,
+        variantTheme.vars,
+        sx,
+      ]}
+      {...other}
     >
-      <Elevation
-        styles={[
-          theme.elevationStyles,
-          variantTheme.elevationStyles,
-          ...asArray(props.elevationStyles),
-        ]}
-        disabled={disabled}
-      />
-      <div
-        {...styleProps([
-          'background',
-          lowered && 'background$lowered',
-          disabled && 'background$disabled',
-        ])}
-      />
-      <FocusRing
-        styles={[
-          theme.focusRingStyles,
-          variantTheme.focusRingStyles,
-          ...asArray(props.focusRingStyles),
-        ]}
-        for={actionRef}
-        visualState={visualState}
-      />
-      <StateLayer
-        for={actionRef}
-        styles={[
-          theme.stateLayerStyles,
-          variantTheme.stateLayerStyles,
-          ...asArray(props.stateLayerStyles),
-        ]}
-        disabled={disabled}
-        visualState={visualState}
-      />
-
-      <Component
-        {...styleProps([
-          'fab',
-          extended ? 'fab$md' : `fab$${size}`,
-          extended && 'fab$extended',
-        ])}
-        ref={actionRef}
-        onClick={handleClick}
-        readOnly={disabled}
-        tabIndex={disabled ? -1 : 0}
-        aria-label={props['aria-label']}
-      >
-        <span {...styleProps(['touchTarget'])} />
-
-        {hasLeading ? (
-          <div
-            {...styleProps([
-              'icon',
-              extended ? `icon$md` : `icon$${size}`,
-              extended && 'icon$extended',
-              disabled && 'icon$disabled',
-              hasOverlay ? 'invisible' : null,
-            ])}
-          >
-            {loading ? (
-              <IndeterminateCircularProgressIndicator
-                styles={[
-                  theme.circularProgressIndicatorStyles,
-                  variantTheme.circularProgressIndicatorStyles,
-                  ...asArray(props.circularProgressIndicatorStyles),
-                ]}
-              />
-            ) : hasChildren ? (
-              children
-            ) : icon ? (
-              icon
-            ) : null}
-          </div>
-        ) : null}
-
-        <span
-          {...styleProps([
-            'label',
-            disabled && 'label$disabled',
-            hasOverlay ? 'invisible' : null,
-          ])}
-        >
-          {label}
-        </span>
-
-        {hasOverlay ? (
-          <div {...styleProps(['overlay'])}>
-            {(
-              <span {...styleProps(['label', disabled && 'label$disabled'])}>
-                {loadingText}
-              </span>
-            ) ?? (
-              <div {...styleProps([disabled && 'icon$disabled'])}>
-                <IndeterminateCircularProgressIndicator
-                  styles={[
-                    theme.circularProgressIndicatorStyles,
-                    variantTheme.circularProgressIndicatorStyles,
-                    ...asArray(props.circularProgressIndicatorStyles),
-                  ]}
-                />
-              </div>
-            )}
-          </div>
-        ) : null}
-      </Component>
-    </div>
+      {label}
+    </Button>
   );
-};
+});

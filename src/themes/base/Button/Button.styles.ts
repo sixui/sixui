@@ -94,7 +94,12 @@ export const styles: MapNamespaces<IButtonStyles> =
       paddingInlineEnd: vars.trailingIconTrailingSpace,
     },
     touchTarget: {
-      height: vars.touchHeight,
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      width: `calc(100% + ${vars.touchTargetSpace})`,
+      height: `calc(100% + ${vars.touchTargetSpace})`,
+      transform: 'translate(-50%, -50%)',
     },
     background: {
       backgroundColor: vars.containerColor,

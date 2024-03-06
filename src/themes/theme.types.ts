@@ -138,10 +138,6 @@ export type IChipVariantTheme = IChipTheme & {
 export type IFabTheme = {
   vars?: IStyleVarsTheme<IFabStyleVarKey>;
   styles?: ICompiledStyles<IFabStyleKey>;
-  stateLayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
-  focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
-  elevationStyles?: ICompiledStyles<IElevationStyleKey>;
-  circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
 };
 
 export type IFabVariantTheme = IFabTheme;

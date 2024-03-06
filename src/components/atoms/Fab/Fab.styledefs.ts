@@ -15,27 +15,8 @@ export type IFabStyleKey =
   | 'host$sm'
   | 'host$md'
   | 'host$lg'
-  | 'host$lowered'
-  | 'host$disabled'
-  | 'fab'
-  | 'fab$sm'
-  | 'fab$md'
-  | 'fab$lg'
-  | 'fab$extended'
-  | 'background'
-  | 'background$lowered'
-  | 'background$disabled'
-  | 'icon'
-  | 'icon$sm'
-  | 'icon$md'
-  | 'icon$lg'
-  | 'icon$extended'
-  | 'icon$disabled'
-  | 'label'
-  | 'label$disabled'
-  | 'touchTarget'
-  | 'invisible'
-  | 'overlay';
+  | 'host$extended'
+  | 'host$lowered';
 
 export type IFabStyleVarKey =
   | 'containerColor'
@@ -85,4 +66,4 @@ export type IFabStyleVarKey =
   | 'labelTextWeight'
   | 'labelTextOpacity$disabled';
 
-export type IFabStyleStateVarKey = 'elevation' | 'containerShape' | 'iconColor';
+export type IFabStyleStateVarKey = 'elevation' | 'iconColor';

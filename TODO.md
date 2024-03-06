@@ -20,6 +20,7 @@
 - stories for visualstate
 - faire un code reproductible pour https://github.com/facebook/stylex/issues/478
 
+- useVisualState -> useVisualStateGroup
 - FIXME: vite does not refresh when modifying .stylex.ts files
 - stories pour ComponentShowcase
 

@@ -82,7 +82,7 @@ export type IButtonStyleVarKey =
   | 'gap'
   | 'leadingSpace'
   | 'trailingSpace'
-  | 'touchHeight'
+  | 'touchTargetSpace'
   | 'leadingIconLeadingSpace'
   | 'leadingIconTrailingSpace'
   | 'trailingIconLeadingSpace'
