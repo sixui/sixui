@@ -8,6 +8,7 @@ import {
 } from '@/components/utils/ComponentShowcase';
 import { StateLayer, type IStateLayerProps } from './StateLayer';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { shapeVars } from '@/themes/base/vars/shape.stylex';
 
 // https://material-web.dev/components/ripple/
 // https://github.com/material-components/material-web/blob/main/ripple/demo/stories.ts
@@ -42,7 +43,7 @@ const styles = stylex.create({
     outlineColor: colorRolesVars.outline,
   },
   bounded: {
-    borderRadius: '1.5rem',
+    borderRadius: shapeVars.corner$xl,
     outlineStyle: 'solid',
   },
   unbounded: {

@@ -48,8 +48,9 @@ export type IButtonBaseOwnProps = IContainerProps<IButtonStyleKey> & {
   readOnly?: boolean;
 };
 
-export type IButtonBaseProps<TRoot extends React.ElementType> =
-  IPolymorphicComponentPropsWithRef<TRoot, IButtonBaseOwnProps>;
+export type IButtonBaseProps<
+  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+> = IPolymorphicComponentPropsWithRef<TRoot, IButtonBaseOwnProps>;
 
 type IButtonBase = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
   props: IButtonBaseProps<TRoot>,

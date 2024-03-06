@@ -13,21 +13,24 @@ export type IComponentPropsWithLegend<IComponentProps> = Array<
   Partial<IComponentProps> & { $legend?: React.ReactNode }
 >;
 
-export type IComponentShowcaseProps<IComponentProps> =
-  IContainerProps<IComponentShowcaseStyleKey> & {
-    component: React.FC<IComponentProps>;
-    props: IComponentProps;
-    groupsProps?: IComponentPropsWithLegend<IComponentProps>;
-    colsProps?: IComponentPropsWithLegend<IComponentProps>;
-    rowsProps?: IComponentPropsWithLegend<IComponentProps>;
-    align?: 'start' | 'center';
-    rowLegendPosition?: 'start' | 'top' | 'bottom';
-    fullWidth?: boolean;
-  };
+export type IComponentShowcaseProps<
+  IComponentProps extends object = Record<string, never>,
+> = IContainerProps<IComponentShowcaseStyleKey> & {
+  component: React.FC<IComponentProps>;
+  props: IComponentProps;
+  groupsProps?: IComponentPropsWithLegend<IComponentProps>;
+  colsProps?: IComponentPropsWithLegend<IComponentProps>;
+  rowsProps?: IComponentPropsWithLegend<IComponentProps>;
+  align?: 'start' | 'center';
+  rowLegendPosition?: 'start' | 'top' | 'bottom';
+  fullWidth?: boolean;
+};
 
 const DUMMY_TEXT = '.';
 
-export const ComponentShowcase = <TComponentProps,>(
+export const ComponentShowcase = <
+  TComponentProps extends object = Record<string, never>,
+>(
   props: IComponentShowcaseProps<TComponentProps>,
 ): React.ReactNode => {
   const {

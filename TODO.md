@@ -2,15 +2,10 @@
 
 - Skeleton version of components
 
-- faire les stories de dialog
-- tests with polymorphic
 - refactor how styles are structured (can only theme color roles and palette?)
-- story for buttonbase
-- stories for visualstate
 
 - useVisualState -> useVisualStateGroup
 - FIXME: vite does not refresh when modifying .stylex.ts files
-- stories pour ComponentShowcase
 
 - use common styles utilities
 - Placeholder -> Skeleton

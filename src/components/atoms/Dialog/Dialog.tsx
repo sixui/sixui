@@ -1,4 +1,12 @@
-import { forwardRef, useId, useMemo } from 'react';
+import {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import type { IContainerProps } from '@/helpers/types';
 import type { IDialogStyleKey, IDialogStyleVarKey } from './Dialog.styledefs';
@@ -50,12 +58,60 @@ export const Dialog = forwardRef<HTMLDivElement, IDialogProps>(
       [stylesCombinator],
     );
 
-    // TODO: handle scrollable
-    const isAtScrollTop = true;
-    const isAtScrollBottom = false;
+    const [isAtScrollTop, setIsAtScrollTop] = useState(true);
+    const [isAtScrollBottom, setIsAtScrollBottom] = useState(false);
 
     const showTopDivider = scrollable && !isAtScrollTop;
     const showBottomDivider = scrollable && !isAtScrollBottom;
+
+    const scrollerRef = useRef<HTMLDivElement>(null);
+    const topAnchorRef = useRef<HTMLDivElement>(null);
+    const bottomAnchorRef = useRef<HTMLDivElement>(null);
+
+    const handleAndhorIntersection = useCallback(
+      (entry: IntersectionObserverEntry): void => {
+        const { target, isIntersecting } = entry;
+        if (target === topAnchorRef.current) {
+          setIsAtScrollTop(isIntersecting);
+        }
+
+        if (target === bottomAnchorRef.current) {
+          setIsAtScrollBottom(isIntersecting);
+        }
+      },
+      [],
+    );
+
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            handleAndhorIntersection(entry);
+          }
+        },
+        { root: scrollerRef.current },
+      );
+
+      const topAnchorEl = topAnchorRef.current;
+      if (topAnchorEl) {
+        observer.observe(topAnchorRef.current);
+      }
+
+      const bottomAnchorEl = bottomAnchorRef.current;
+      if (bottomAnchorEl) {
+        observer.observe(bottomAnchorRef.current);
+      }
+
+      return () => {
+        if (topAnchorEl) {
+          observer.unobserve(topAnchorEl);
+        }
+
+        if (bottomAnchorEl) {
+          observer.unobserve(bottomAnchorEl);
+        }
+      };
+    }, [handleAndhorIntersection]);
 
     return (
       <div
@@ -69,24 +125,30 @@ export const Dialog = forwardRef<HTMLDivElement, IDialogProps>(
           <div {...sxf('container')}>
             {headline || icon ? (
               <div {...sxf('headline')}>
-                <div {...sxf('icon')}>
-                  <div {...sxf('iconSlot')}>{icon}</div>
-                </div>
-                <h2
-                  {...sxf('header')}
-                  id={headlineId}
-                  aria-hidden={headline ? undefined : true}
-                >
-                  <div
-                    {...sxf(
-                      'headlineSlot',
-                      !!icon && 'headlineSlot$hasIcon',
-                      scrollable && 'headlineSlot$scrollable',
-                    )}
-                  >
-                    {headline}
+                {icon ? (
+                  <div {...sxf('icon')}>
+                    <div {...sxf('iconSlot')}>{icon}</div>
                   </div>
-                </h2>
+                ) : null}
+
+                {headline ? (
+                  <h2
+                    {...sxf('header')}
+                    id={headlineId}
+                    aria-hidden={headline ? undefined : true}
+                  >
+                    <div
+                      {...sxf(
+                        'headlineSlot',
+                        !!icon && 'headlineSlot$hasIcon',
+                        scrollable && 'headlineSlot$scrollable',
+                      )}
+                    >
+                      {headline}
+                    </div>
+                  </h2>
+                ) : null}
+
                 <Divider
                   sx={stylesCombinator(
                     'divider',
@@ -98,7 +160,11 @@ export const Dialog = forwardRef<HTMLDivElement, IDialogProps>(
             ) : null}
 
             {content ? (
-              <div {...sxf('scroller', scrollable && 'scroller$scrollable')}>
+              <div
+                ref={scrollerRef}
+                {...sxf('scroller', scrollable && 'scroller$scrollable')}
+              >
+                <div ref={topAnchorRef} />
                 <div {...sxf('content')}>
                   <div
                     {...sxf(
@@ -112,6 +178,7 @@ export const Dialog = forwardRef<HTMLDivElement, IDialogProps>(
                     {content}
                   </div>
                 </div>
+                <div ref={bottomAnchorRef} />
               </div>
             ) : null}
 
