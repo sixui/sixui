@@ -57,7 +57,7 @@ const rowsProps: IComponentPropsWithLegend<IFieldProps> = [
       <div {...stylex.props(inputStyles.host, inputStyles.host$populated)} />
     ),
   },
-  { $legend: 'Error', error: true },
+  { $legend: 'Error', hasError: true },
 ];
 
 export const Variants: IStory = {
