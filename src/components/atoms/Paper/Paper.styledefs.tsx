@@ -18,6 +18,7 @@ export type IPaperStyleVarKey =
   | 'containerShape'
   | 'containerColor'
   | 'containerElevation'
+  | 'outlineStyle'
   | 'outlineColor'
   | 'outlineWidth';
 

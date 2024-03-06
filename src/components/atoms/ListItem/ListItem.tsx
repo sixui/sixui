@@ -1,16 +1,21 @@
-import { useMemo, useRef } from 'react';
-import { accumulate, asArray } from '@olivierpascal/helpers';
+import { forwardRef, useMemo, useRef } from 'react';
+import { asArray } from '@olivierpascal/helpers';
 
 import type {
   IContainerProps,
   IZeroOrMore,
   ICompiledStyles,
 } from '@/helpers/types';
+import type {
+  IPolymorphicComponentPropsWithRef,
+  IPolymorphicRef,
+  IWithAsProp,
+} from '@/helpers/polymorphicComponentTypes';
 import type { IListItemStyleKey } from './ListItem.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { useVisualState } from '@/hooks/useVisualState.old';
+import { type IVisualState, useVisualState } from '@/hooks/useVisualState';
 import {
   StateLayer,
   type IStateLayerStyleKey,
@@ -25,26 +30,26 @@ import {
   type IItemStyleKey,
   Item,
 } from '../Item';
+import { useForkRef } from '@/hooks/useForkRef';
 
 // https://github.com/material-components/material-web/blob/main/list/internal/listitem/list-item.ts
 
+const DEFAULT_TAG = 'button';
+
 export type IListItemType = 'text' | 'button' | 'link';
 
-export type IListItemProps = IContainerProps<IListItemStyleKey> &
-  Pick<
-    React.AnchorHTMLAttributes<HTMLAnchorElement>,
-    'href' | 'target' | 'aria-expanded'
-  > &
-  Pick<
-    IItemProps,
-    | 'overline'
-    | 'start'
-    | 'children'
-    | 'headline'
-    | 'supportingText'
-    | 'trailingSupportingText'
-    | 'end'
-  > & {
+export type IListItemOwnProps = IContainerProps<IListItemStyleKey> &
+  Pick<React.AriaAttributes, 'aria-expanded'> &
+  Omit<IItemProps, 'container'> & {
+    innerStyles?: {
+      item?: IZeroOrMore<ICompiledStyles<IItemStyleKey>>;
+      stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
+      focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+    };
+    visualState?: IVisualState;
+    href?: string;
+    target?: React.AnchorHTMLAttributes<HTMLAnchorElement>['target'];
+
     /**
      * Disables the item and makes it non-selectable and non-interactive.
      */
@@ -56,52 +61,71 @@ export type IListItemProps = IContainerProps<IListItemStyleKey> &
      */
     type?: IListItemType;
 
-    component?: React.ElementType;
-    itemStyles?: IZeroOrMore<ICompiledStyles<IItemStyleKey>>;
-    stateLayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
-    focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
     selected?: boolean;
   };
 
-export const ListItem: React.FC<IListItemProps> = ({
-  href,
-  overline,
-  start,
-  children,
-  headline,
-  supportingText,
-  trailingSupportingText,
-  end,
-  ...props
-}) => {
-  const { theme } = useComponentTheme('ListItem');
-  const actionRef = useRef(null);
-  const visualState = accumulate(useVisualState(actionRef), props.visualState);
+export type IListItemProps<
+  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+> = IPolymorphicComponentPropsWithRef<TRoot, IListItemOwnProps>;
 
+type IListItem = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
+  props: IListItemProps<TRoot>,
+) => React.ReactNode;
+
+export const ListItem: IListItem = forwardRef(function ListItem<
+  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+>(props: IListItemProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+  const {
+    as,
+    styles,
+    sx,
+    innerStyles,
+    visualState: visualStateProp,
+    href,
+    overline,
+    start,
+    children,
+    headline,
+    supportingText,
+    trailingSupportingText,
+    end,
+    type: typeProp,
+    disabled,
+    selected: selectedProp,
+    target: targetProp,
+    ...other
+  } = props as IWithAsProp<IListItemOwnProps>;
+
+  const actionRef = useRef<HTMLInputElement>(null);
+  const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
+    disabled,
+  });
+  const handleRef = useForkRef(ref, visualStateRef, actionRef);
+
+  const { theme } = useComponentTheme('ListItem');
+  const stylesCombinator = useMemo(
+    () => stylesCombinatorFactory(theme.styles, styles),
+    [theme.styles, styles],
+  );
   const styleProps = useMemo(
     () =>
       stylePropsFactory<IListItemStyleKey, IItemStyleVarKey>(
-        stylesCombinatorFactory(theme.styles, props.styles),
+        stylesCombinator,
         visualState,
       ),
-    [theme.styles, props.styles, visualState],
+    [stylesCombinator, visualState],
   );
 
-  const type = href ? 'link' : props.type ?? 'text';
-  const disabled = props.disabled;
-  const selected = !disabled && props.selected;
-  const Component: React.ElementType = props.component
-    ? props.component
-    : type == 'link'
-      ? 'a'
-      : type === 'button'
-        ? 'button'
-        : 'li';
+  const type = href ? 'link' : typeProp ?? 'text';
+  const selected = !disabled && selectedProp;
   const role =
     type === 'link' ? 'link' : type === 'button' ? 'button' : 'listitem';
   const isAnchor = type === 'link';
   const isInteractive = type !== 'text';
-  const target = isAnchor && props.target ? props.target : undefined;
+  const target = isAnchor && targetProp ? targetProp : undefined;
+
+  const Component =
+    as ?? (type == 'link' ? 'a' : type === 'button' ? 'button' : 'li');
 
   return (
     <Component
@@ -111,22 +135,22 @@ export const ListItem: React.FC<IListItemProps> = ({
           isInteractive && 'host$interactive',
           selected && 'host$selected',
           disabled && 'host$disabled',
-          props.sx,
+          sx,
         ],
-        [theme.vars, props.theme],
+        [theme.vars],
       )}
-      ref={actionRef}
+      ref={handleRef}
       tabIndex={disabled || !isInteractive ? -1 : 0}
       disabled={disabled}
       role={role}
       aria-current={selected}
-      aria-expanded={props['aria-expanded']}
       href={href}
       target={target}
+      {...other}
     >
       <Item
-        styles={[theme.itemStyles, ...asArray(props.itemStyles)]}
-        theme={theme.itemVars}
+        styles={[theme.itemStyles, ...asArray(innerStyles?.item)]}
+        // theme={theme.itemVars}
         container={
           <>
             <div
@@ -141,7 +165,7 @@ export const ListItem: React.FC<IListItemProps> = ({
                 <StateLayer
                   styles={[
                     theme.stateLayerStyles,
-                    ...asArray(props.stateLayerStyles),
+                    ...asArray(innerStyles?.stateLayer),
                   ]}
                   for={actionRef}
                   disabled={disabled}
@@ -150,7 +174,7 @@ export const ListItem: React.FC<IListItemProps> = ({
                 <FocusRing
                   styles={[
                     theme.focusRingStyles,
-                    ...asArray(props.focusRingStyles),
+                    ...asArray(innerStyles?.focusRing),
                   ]}
                   for={actionRef}
                   visualState={visualState}
@@ -171,4 +195,4 @@ export const ListItem: React.FC<IListItemProps> = ({
       </Item>
     </Component>
   );
-};
+});

@@ -109,10 +109,7 @@ import { styles as itemStyles } from './Item/Item.styles';
 import { componentTheme as itemTheme } from './Item/Item.stylex';
 
 import { styles as listStyles } from './List/List.styles';
-import {
-  componentTheme as listItemTheme,
-  itemComponentTheme as listItemItemTheme,
-} from './ListItem/ListItem.stylex';
+import { componentTheme as listItemTheme } from './ListItem/ListItem.stylex';
 import {
   styles as listItemStyles,
   itemStyles as listItemItemStyles,
@@ -130,7 +127,6 @@ import {
 } from './Paper/Paper.styles';
 import { componentTheme as filledPaperTheme } from './Paper/FilledPaper.stylex';
 import { componentTheme as outlinedPaperTheme } from './Paper/OutlinedPaper.stylex';
-import { styles as outlinedPaperStyles } from './Paper/OutlinedPaper.styles';
 
 import { componentTheme as cardTheme } from './Card/Card.stylex';
 import {
@@ -330,7 +326,6 @@ export const theme: ITheme = {
       vars: listItemTheme,
       styles: listItemStyles,
       itemStyles: listItemItemStyles,
-      itemVars: listItemItemTheme,
       stateLayerStyles: listItemStateLayerStyles,
       focusRingStyles: listItemFocusRingStyles,
     },
@@ -347,10 +342,7 @@ export const theme: ITheme = {
       elevationStyles: paperElevationStyles,
     },
     FilledPaper: { vars: filledPaperTheme },
-    OutlinedPaper: {
-      vars: outlinedPaperTheme,
-      styles: outlinedPaperStyles,
-    },
+    OutlinedPaper: { vars: outlinedPaperTheme },
     Card: {
       vars: cardTheme,
       styles: cardStyles,

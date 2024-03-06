@@ -7,26 +7,29 @@ import { shouldReduceMotion } from '@/helpers/shouldReduceAnimations';
 import { type ITabContext, TabContext } from './TabContext';
 import { useId } from '@/hooks/useId';
 
-export type ITabsProps = Omit<ITabContext, 'onChange'> &
-  Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, 'aria-label'> & {
-    onChange?: (anchor: string | undefined) => IMaybeAsync<IAny>;
-    defaultAnchor?: string;
-    children?: React.ReactNode;
-  };
+export type ITabsProps = Omit<ITabContext, 'onChange' | 'onTabActivated'> & {
+  onChange?: (anchor: string | undefined) => IMaybeAsync<IAny>;
+  defaultAnchor?: string;
+  children?: React.ReactNode;
+};
 
-export const Tabs: React.FC<ITabsProps> = ({
-  children,
-  onChange,
-  variant,
-  ...props
-}) => {
+export const Tabs: React.FC<ITabsProps> = (props) => {
+  const {
+    children,
+    onChange,
+    variant,
+    anchor: anchorProp,
+    defaultAnchor,
+    id: idProp,
+  } = props;
+
   const [anchor, setAnchor] = useControlled({
-    controlled: props.anchor,
-    default: props.defaultAnchor,
+    controlled: anchorProp,
+    default: defaultAnchor,
     name: 'Tabs',
   });
 
-  const id = useId(props.id);
+  const id = useId(idProp);
   const previousTabRef = useRef<HTMLElement | null>(null);
   const indicatorAnimationRef = useRef<Animation>();
 

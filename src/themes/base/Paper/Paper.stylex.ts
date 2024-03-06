@@ -2,11 +2,17 @@ import stylex from '@stylexjs/stylex';
 
 import type { IStyleVars } from '@/helpers/types';
 import type { IPaperStyleVarKey } from '@/components/atoms/Paper';
+import { colorRolesVars } from '../vars/colorRoles.stylex';
 import { shapeVars } from '../vars/shape.stylex';
 
 const vars: Partial<IStyleVars<IPaperStyleVarKey>> = {
   // container
   containerShape: shapeVars.corner$md,
+
+  // outline
+  outlineStyle: 'none',
+  outlineColor: colorRolesVars.outlineVariant,
+  outlineWidth: '1px',
 };
 
 export const componentVars = stylex.defineVars(

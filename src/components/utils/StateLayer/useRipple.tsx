@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import type { IVisualState } from '@/hooks/useVisualState.old';
+import type { IVisualState } from '@/hooks/useVisualState';
 import type { IPoint } from '@/helpers/types';
 import { EASING } from '@/helpers/animation';
 

@@ -72,7 +72,7 @@ export const Item = forwardRef<HTMLDivElement, IItemProps>(
         </div>
 
         {trailingSupportingText ? (
-          <div {...styleProps(['text'])}>
+          <div {...styleProps(['nonText'])}>
             <div {...styleProps(['center', 'trailingSupportingText'])}>
               {trailingSupportingText}
             </div>

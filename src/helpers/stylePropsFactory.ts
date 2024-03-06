@@ -3,7 +3,7 @@ import { asArray } from '@olivierpascal/helpers';
 import { CompiledStyles } from '@stylexjs/stylex/lib/StyleXTypes';
 
 import type { IStylesCombinator } from '@/helpers/stylesCombinatorFactory';
-import type { IVisualState } from '@/hooks/useVisualState.old';
+import type { IVisualState } from '@/hooks/useVisualState';
 import type { IZeroOrMore, IStyleVarsTheme, IStyleXStyles } from './types';
 import { dataProps } from '@/helpers/dataProps';
 
