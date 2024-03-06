@@ -1,3 +1,15 @@
+# v0.0.77 (Wed Mar 06 2024)
+
+#### 🐛 Bug Fix
+
+- Refactor/refs [#12](https://github.com/sixui/ui/pull/12) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.76 (Mon Mar 04 2024)
 
 #### ⚠️ Pushed to `main`
