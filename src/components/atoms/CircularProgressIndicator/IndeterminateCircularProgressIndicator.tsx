@@ -26,14 +26,13 @@ export const IndeterminateCircularProgressIndicator = forwardRef<
 >(function IndeterminateCircularProgressIndicator(props, ref) {
   const { styles, sx, size = 'md', disabled, ...other } = props;
 
-  const theme = useComponentTheme('CircularProgressIndicator');
-  const variantTheme = useComponentTheme(
+  const { theme, variantTheme } = useComponentTheme(
+    'CircularProgressIndicator',
     'IndeterminateCircularProgressIndicator',
   );
-
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, variantTheme.styles, styles),
-    [theme.styles, variantTheme.styles, styles],
+    () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
+    [theme.styles, variantTheme?.styles, styles],
   );
   const styleProps = useMemo(
     () =>

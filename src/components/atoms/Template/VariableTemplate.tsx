@@ -12,7 +12,7 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
 export type IVariableTemplateProps = IContainerProps<ITemplateStyleKey> & {
-  variant?: ITemplateVariant;
+  variant?: ITemplateVariant | false;
   children?: React.ReactNode;
 };
 
@@ -30,11 +30,13 @@ export const VariableTemplate = forwardRef<
 >(function VariableTemplate(props, ref) {
   const { styles, sx, variant = 'variant', children, ...other } = props;
 
-  const theme = useComponentTheme('Template');
-  const variantTheme = useComponentTheme(variantMap[variant]);
+  const { theme, variantTheme } = useComponentTheme(
+    'Template',
+    variant ? variantMap[variant] : undefined,
+  );
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, variantTheme.styles, styles),
-    [theme.styles, variantTheme.styles, styles],
+    () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
+    [theme.styles, variantTheme?.styles, styles],
   );
   const styleProps = useMemo(
     () =>
@@ -46,7 +48,7 @@ export const VariableTemplate = forwardRef<
 
   return (
     <div
-      {...styleProps(['host', sx], [theme.vars, variantTheme.vars])}
+      {...styleProps(['host', sx], [theme.vars, variantTheme?.vars])}
       ref={ref}
       {...other}
     >

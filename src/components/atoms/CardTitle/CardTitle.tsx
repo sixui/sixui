@@ -19,7 +19,7 @@ export const CardTitle = forwardRef<HTMLDivElement, ICardTitleProps>(
   function CardTitle(props, ref) {
     const { styles, sx, headline, subhead, supportingText, ...other } = props;
 
-    const theme = useComponentTheme('CardTitle');
+    const { theme } = useComponentTheme('CardTitle');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

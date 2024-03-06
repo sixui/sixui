@@ -47,11 +47,17 @@ const vars: Partial<IStyleVars<IIconButtonStyleVarKey>> = {
   // &:pressed
   stateLayerColor$pressed: colorRolesVars.onSurfaceVariant,
 
-  // selectedStateLayer
+  // toggleStateLayer
   // &:hover
-  selectedStateLayerColor$hover: colorRolesVars.primary,
+  toggleStateLayerColor$hover: colorRolesVars.onSurfaceVariant,
   // &:pressed
-  selectedStateLayerColor$pressed: colorRolesVars.primary,
+  toggleStateLayerColor$pressed: colorRolesVars.onSurfaceVariant,
+
+  // toggleSelectedStateLayer
+  // &:hover
+  toggleSelectedStateLayerColor$hover: colorRolesVars.onSurfaceVariant,
+  // &:pressed
+  toggleSelectedStateLayerColor$pressed: colorRolesVars.onSurfaceVariant,
 };
 
 export const componentTheme = stylex.createTheme(baseComponentVars, vars);

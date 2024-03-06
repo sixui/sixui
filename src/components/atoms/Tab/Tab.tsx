@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react';
-import { accumulate, asArray } from '@olivierpascal/helpers';
+import { forwardRef, useCallback, useEffect, useMemo, useRef } from 'react';
+import { asArray } from '@olivierpascal/helpers';
 
 import type {
   IContainerProps,
@@ -8,6 +8,11 @@ import type {
   IAny,
   IMaybeAsync,
 } from '@/helpers/types';
+import type {
+  IPolymorphicComponentPropsWithRef,
+  IPolymorphicRef,
+  IWithAsProp,
+} from '@/helpers/polymorphicComponentTypes';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
 import type {
   ITabStyleKey,
@@ -18,7 +23,7 @@ import { Badge, type IBadgeProps } from '../Badge';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { useVisualState } from '@/hooks/useVisualState.old';
+import { type IVisualState, useVisualState } from '@/hooks/useVisualState';
 import { Elevation, IElevationStyleKey } from '@/components/utils/Elevation';
 import { FocusRing, IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import {
@@ -27,11 +32,20 @@ import {
 } from '@/components/utils/StateLayer';
 import { useTabContext } from '../Tabs/useTabContext';
 import { Anchored } from '@/components/utils/Anchored';
+import { useForkRef } from '@/hooks/useForkRef';
 
 // https://github.com/material-components/material-web/blob/main/tabs/internal/tab.ts
 
-export type ITabProps = IContainerProps<ITabStyleKey, ITabStyleVarKey> & {
-  variant?: ITabVariant;
+const DEFAULT_TAG = 'button';
+
+export type ITabOwnProps = IContainerProps<ITabStyleKey> & {
+  innerStyles?: {
+    stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
+    focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+    elevation?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
+  };
+  visualState?: IVisualState;
+  variant?: ITabVariant | false;
 
   /**
    * Whether or not the tab is selected.
@@ -42,13 +56,14 @@ export type ITabProps = IContainerProps<ITabStyleKey, ITabStyleVarKey> & {
   activeIcon?: React.ReactNode;
   onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
   label?: string;
+  href?: string;
   anchor?: string;
   disabled?: boolean;
-  stateLayerStyles?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
-  focusRingStyles?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-  elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
   badge?: IBadgeProps;
 };
+
+export type ITabProps<TRoot extends React.ElementType = typeof DEFAULT_TAG> =
+  IPolymorphicComponentPropsWithRef<TRoot, ITabOwnProps>;
 
 type ITabVariantMap = {
   [key in ITabVariant]: keyof Pick<
@@ -62,38 +77,59 @@ const variantMap: ITabVariantMap = {
   secondary: 'SecondaryTab',
 };
 
-export const Tab: React.FC<ITabProps> = ({
-  icon,
-  activeIcon,
-  onClick,
-  label,
-  anchor,
-  disabled,
-  badge,
-  ...props
-}) => {
-  const tabContext = useTabContext();
-  const variant = props.variant ?? tabContext?.variant ?? 'primary';
+type ITab = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
+  props: ITabProps<TRoot>,
+) => React.ReactNode;
 
-  const theme = useComponentTheme('Tab');
-  const variantTheme = useComponentTheme(variantMap[variant]);
+export const Tab: ITab = forwardRef(function Tab<
+  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+>(props: ITabProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+  const {
+    as,
+    styles,
+    sx,
+    innerStyles,
+    visualState: visualStateProp,
+    variant: variantProp,
+    icon,
+    activeIcon,
+    active: activeProp,
+    onClick,
+    href,
+    label,
+    anchor,
+    disabled,
+    badge,
+    ...other
+  } = props as IWithAsProp<ITabOwnProps>;
+
+  const tabContext = useTabContext();
+  const variant = variantProp ?? tabContext?.variant ?? 'primary';
 
   const actionRef = useRef<HTMLButtonElement>(null);
-  const visualState = accumulate(useVisualState(actionRef), props.visualState);
-  const indicatorRef = useRef<HTMLDivElement>(null);
+  const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
+    disabled,
+  });
+  const handleRef = useForkRef(ref, visualStateRef, actionRef);
 
+  const { theme, variantTheme } = useComponentTheme(
+    'Tab',
+    variant ? variantMap[variant] : undefined,
+  );
+  const stylesCombinator = useMemo(
+    () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
+    [theme.styles, variantTheme?.styles, styles],
+  );
   const styleProps = useMemo(
     () =>
       stylePropsFactory<ITabStyleKey, ITabStyleVarKey>(
-        stylesCombinatorFactory(
-          theme.styles,
-          variantTheme.styles,
-          props.styles,
-        ),
+        stylesCombinator,
         visualState,
       ),
-    [theme.styles, variantTheme.styles, props.styles, visualState],
+    [stylesCombinator, visualState],
   );
+
+  const indicatorRef = useRef<HTMLDivElement>(null);
 
   const fullWidthIndicator = variant === 'secondary';
   const stacked = variant === 'primary';
@@ -101,7 +137,7 @@ export const Tab: React.FC<ITabProps> = ({
   const active = !disabled
     ? tabContext
       ? tabContext.anchor !== undefined && tabContext.anchor === anchor
-      : props.active
+      : activeProp
     : false;
   const hasIcon = active ? !!activeIcon ?? !!icon : !!icon;
   const id = tabContext && anchor ? `${tabContext.id}-${anchor}` : undefined;
@@ -159,49 +195,48 @@ export const Tab: React.FC<ITabProps> = ({
     [active, icon, activeIcon, styleProps, disabled],
   );
 
+  const Component = as ?? (href ? 'a' : DEFAULT_TAG);
+
   return (
-    <button
+    <Component
       {...styleProps(
-        [
-          'host',
-          active && 'host$active',
-          disabled && 'host$disabled',
-          props.sx,
-        ],
-        [theme.vars, variantTheme.vars, props.theme],
+        ['host', active && 'host$active', disabled && 'host$disabled', sx],
+        [theme.vars, variantTheme?.vars],
       )}
-      ref={actionRef}
+      ref={handleRef}
       role='tab'
       aria-controls={id}
       aria-selected={active}
       onClick={handleClick}
+      href={href}
+      {...other}
     >
       <Elevation
         styles={[
           theme.elevationStyles,
-          variantTheme.elevationStyles,
-          ...asArray(props.elevationStyles),
+          variantTheme?.elevationStyles,
+          ...asArray(innerStyles?.elevation),
         ]}
         disabled={disabled}
       />
       <div {...styleProps(['background', disabled && 'background$disabled'])} />
-      <FocusRing
-        styles={[
-          theme.focusRingStyles,
-          variantTheme.focusRingStyles,
-          ...asArray(props.focusRingStyles),
-        ]}
-        for={actionRef}
-        visualState={visualState}
-      />
       <StateLayer
         styles={[
           theme.stateLayerStyles,
-          variantTheme.stateLayerStyles,
-          ...asArray(props.stateLayerStyles),
+          variantTheme?.stateLayerStyles,
+          ...asArray(innerStyles?.stateLayer),
         ]}
         for={actionRef}
         disabled={disabled}
+        visualState={visualState}
+      />
+      <FocusRing
+        styles={[
+          theme.focusRingStyles,
+          variantTheme?.focusRingStyles,
+          ...asArray(innerStyles?.focusRing),
+        ]}
+        for={actionRef}
         visualState={visualState}
       />
       <div
@@ -247,6 +282,6 @@ export const Tab: React.FC<ITabProps> = ({
         {fullWidthIndicator ? null : indicator}
       </div>
       {fullWidthIndicator ? indicator : null}
-    </button>
+    </Component>
   );
-};
+});

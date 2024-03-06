@@ -32,7 +32,7 @@ export const Divider = forwardRef<HTMLDivElement, IDividerProps>(
   function Divider(props, ref) {
     const { styles, sx, inset, insetStart, insetEnd, ...other } = props;
 
-    const theme = useComponentTheme('Divider');
+    const { theme } = useComponentTheme('Divider');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

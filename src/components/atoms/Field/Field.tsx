@@ -19,7 +19,7 @@ export type IFieldProps = IContainerProps<IFieldStyleKey> &
     React.InputHTMLAttributes<HTMLInputElement>,
     'disabled' | 'required' | 'max'
   > & {
-    variant?: IFieldVariant;
+    variant?: IFieldVariant | false;
     children?: React.ReactNode;
     start?: React.ReactNode;
     end?: React.ReactNode;
@@ -62,8 +62,10 @@ export const Field: React.FC<IFieldProps> = ({
   textarea,
   ...props
 }) => {
-  const theme = useComponentTheme('Field');
-  const variantTheme = useComponentTheme(variantMap[variant]);
+  const { theme, variantTheme } = useComponentTheme(
+    'Field',
+    variant ? variantMap[variant] : undefined,
+  );
 
   const [refreshErrorAlert, setRefreshErrorAlert] = useState(false);
   const labelAnimationRef = useRef<Animation>();
@@ -78,12 +80,12 @@ export const Field: React.FC<IFieldProps> = ({
       stylePropsFactory<IFieldStyleKey, ITextFieldStyleVarKey>(
         stylesCombinatorFactory(
           theme.styles,
-          variantTheme.styles,
+          variantTheme?.styles,
           props.styles,
         ),
         visualState,
       ),
-    [theme.styles, variantTheme.styles, props.styles, visualState],
+    [theme.styles, variantTheme?.styles, props.styles, visualState],
   );
 
   const disabled = props.disabled;
@@ -524,7 +526,7 @@ export const Field: React.FC<IFieldProps> = ({
           disabled && 'host$disabled',
           props.sx,
         ],
-        [theme.vars, variantTheme.vars, props.theme],
+        [theme.vars, variantTheme?.vars, props.theme],
       )}
     >
       <div

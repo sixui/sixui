@@ -85,7 +85,7 @@ export type ITextFieldProps = IContainerProps<
     'min' | 'max' | 'step' | 'pattern' | 'multiple'
   > &
   Pick<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'cols' | 'rows'> & {
-    variant?: IFieldVariant;
+    variant?: IFieldVariant | false;
     forwardRef?: React.RefObject<HTMLInputElement | HTMLTextAreaElement>;
 
     /**
@@ -219,8 +219,10 @@ export const TextField: React.FC<ITextFieldProps> = ({
   reportOnBlur,
   ...props
 }) => {
-  const theme = useComponentTheme('TextField');
-  const variantTheme = useComponentTheme(variantMap[variant]);
+  const { theme, variantTheme } = useComponentTheme(
+    'TextField',
+    variant ? variantMap[variant] : undefined,
+  );
 
   const hostRef = useRef<HTMLDivElement>(null);
   const inputOrTextareaElInternalRef = useRef<
@@ -262,12 +264,12 @@ export const TextField: React.FC<ITextFieldProps> = ({
       stylePropsFactory<ITextFieldStyleKey, ITextFieldStyleVarKey>(
         stylesCombinatorFactory(
           theme.styles,
-          variantTheme.styles,
+          variantTheme?.styles,
           props.styles,
         ),
         visualState,
       ),
-    [theme.styles, variantTheme.styles, props.styles, visualState],
+    [theme.styles, variantTheme?.styles, props.styles, visualState],
   );
 
   const isTextarea = type === 'textarea';
@@ -480,7 +482,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
     <div
       {...styleProps(
         ['host', props.sx],
-        [theme.vars, variantTheme.vars, props.theme],
+        [theme.vars, variantTheme?.vars, props.theme],
       )}
       ref={hostRef}
       onClick={() => inputOrTextareaRef.current?.focus()}
@@ -492,7 +494,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
         <Field
           styles={[
             theme.fieldStyles,
-            variantTheme.fieldStyles,
+            variantTheme?.fieldStyles,
             ...asArray(props.fieldStyles),
           ]}
           variant={variant}

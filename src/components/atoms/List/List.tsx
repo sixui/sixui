@@ -14,7 +14,7 @@ export const List = forwardRef<HTMLDivElement, IListProps>(
   function List(props, ref) {
     const { styles, sx, children, ...other } = props;
 
-    const theme = useComponentTheme('List');
+    const { theme } = useComponentTheme('List');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

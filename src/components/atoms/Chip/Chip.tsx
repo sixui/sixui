@@ -69,7 +69,7 @@ export type IChipOwnProps = IContainerProps<IChipStyleKey> & {
   visualState?: IVisualState;
   onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
   onDelete?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
-  variant?: IChipVariant;
+  variant?: IChipVariant | false;
   label?: string;
   disabled?: boolean;
   elevated?: boolean;
@@ -157,11 +157,13 @@ export const Chip: IChip = forwardRef(function Chip<
 
   const trailingActionRef = useRef<HTMLButtonElement>(null);
 
-  const theme = useComponentTheme('Chip');
-  const variantTheme = useComponentTheme(variantMap[variant]);
+  const { theme, variantTheme } = useComponentTheme(
+    'Chip',
+    variant ? variantMap[variant] : undefined,
+  );
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, variantTheme.styles, styles),
-    [theme.styles, variantTheme.styles, styles],
+    () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
+    [theme.styles, variantTheme?.styles, styles],
   );
   const styleProps = useMemo(
     () =>
@@ -299,7 +301,7 @@ export const Chip: IChip = forwardRef(function Chip<
     <div
       {...styleProps(
         ['host', disabled && 'host$disabled', avatar && 'host$avatar', sx],
-        [theme.vars, variantTheme.vars],
+        [theme.vars, variantTheme?.vars],
       )}
     >
       <div
@@ -312,7 +314,7 @@ export const Chip: IChip = forwardRef(function Chip<
         <Elevation
           styles={[
             theme.elevationStyles,
-            variantTheme.elevationStyles,
+            variantTheme?.elevationStyles,
             ...asArray(innerStyles?.elevation),
           ]}
           disabled={disabled}
@@ -329,7 +331,7 @@ export const Chip: IChip = forwardRef(function Chip<
         <FocusRing
           styles={[
             theme.focusRingStyles,
-            variantTheme.focusRingStyles,
+            variantTheme?.focusRingStyles,
             ...asArray(innerStyles?.focusRing),
           ]}
           for={primaryActionRef}
@@ -338,7 +340,7 @@ export const Chip: IChip = forwardRef(function Chip<
         <StateLayer
           styles={[
             theme.stateLayerStyles,
-            variantTheme.stateLayerStyles,
+            variantTheme?.stateLayerStyles,
             ...asArray(innerStyles?.stateLayer),
           ]}
           for={primaryActionRef}
@@ -377,7 +379,7 @@ export const Chip: IChip = forwardRef(function Chip<
                   <IndeterminateCircularProgressIndicator
                     styles={[
                       theme.circularProgressIndicatorStyles,
-                      variantTheme.circularProgressIndicatorStyles,
+                      variantTheme?.circularProgressIndicatorStyles,
                       ...asArray(innerStyles?.circularProgressIndicator),
                     ]}
                   />
@@ -417,7 +419,7 @@ export const Chip: IChip = forwardRef(function Chip<
                     <IndeterminateCircularProgressIndicator
                       styles={[
                         theme.circularProgressIndicatorStyles,
-                        variantTheme.circularProgressIndicatorStyles,
+                        variantTheme?.circularProgressIndicatorStyles,
                         ...asArray(innerStyles?.circularProgressIndicator),
                       ]}
                     />
@@ -437,12 +439,12 @@ export const Chip: IChip = forwardRef(function Chip<
             innerStyles={{
               focusRing: [
                 theme.trailingActionFocusRingStyles,
-                variantTheme.trailingActionFocusRingStyles,
+                variantTheme?.trailingActionFocusRingStyles,
                 ...asArray(innerStyles?.trailingActionFocusRing),
               ],
               stateLayer: [
                 theme.trailingActionStateLayerStyles,
-                variantTheme.trailingActionStateLayerStyles,
+                variantTheme?.trailingActionStateLayerStyles,
                 ...asArray(innerStyles?.trailingActionStateLayer),
               ],
             }}
@@ -468,7 +470,7 @@ export const Chip: IChip = forwardRef(function Chip<
                   <IndeterminateCircularProgressIndicator
                     styles={[
                       theme.circularProgressIndicatorStyles,
-                      variantTheme.circularProgressIndicatorStyles,
+                      variantTheme?.circularProgressIndicatorStyles,
                       ...asArray(innerStyles?.circularProgressIndicator),
                     ]}
                   />

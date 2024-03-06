@@ -58,7 +58,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
       ...other
     } = props;
 
-    const theme = useComponentTheme('Breadcrumbs');
+    const { theme } = useComponentTheme('Breadcrumbs');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

@@ -80,7 +80,7 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
   });
   const handleRef = useForkRef(ref, visualStateRef);
 
-  const theme = useComponentTheme('ButtonBase');
+  const { theme } = useComponentTheme('ButtonBase');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],
@@ -95,9 +95,6 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
   );
 
   const Component = as ?? (href ? 'a' : DEFAULT_TAG);
-  const hasOutline =
-    theme.styles?.outline ||
-    asArray(styles).some((styles) => !!styles?.outline);
 
   return (
     <Component
@@ -124,9 +121,7 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
         styles={[theme.elevationStyles, ...asArray(innerStyles?.elevation)]}
         disabled={disabled}
       />
-      {hasOutline ? (
-        <div {...styleProps(['outline', disabled && 'outline$disabled'])} />
-      ) : null}
+      <div {...styleProps(['outline', disabled && 'outline$disabled'])} />
       <div {...styleProps(['background', disabled && 'background$disabled'])} />
       <FocusRing
         styles={[theme.focusRingStyles, ...asArray(innerStyles?.focusRing)]}

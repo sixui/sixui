@@ -16,7 +16,7 @@ export const CardActions: React.FC<ICardActionsProps> = forwardRef<
 >(function CardActions(props, ref) {
   const { styles, sx, children, ...other } = props;
 
-  const theme = useComponentTheme('CardActions');
+  const { theme } = useComponentTheme('CardActions');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],

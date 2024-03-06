@@ -36,7 +36,7 @@ export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
       ...other
     } = props;
 
-    const theme = useComponentTheme('Avatar');
+    const { theme } = useComponentTheme('Avatar');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

@@ -44,13 +44,13 @@ export const DeterminateCircularProgressIndicator = forwardRef<
     ...other
   } = props;
 
-  const theme = useComponentTheme('CircularProgressIndicator');
-  const variantTheme = useComponentTheme(
+  const { theme, variantTheme } = useComponentTheme(
+    'CircularProgressIndicator',
     'DeterminateCircularProgressIndicator',
   );
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, variantTheme.styles, styles),
-    [theme.styles, variantTheme.styles, styles],
+    () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
+    [theme.styles, variantTheme?.styles, styles],
   );
   const styleProps = useMemo(
     () =>

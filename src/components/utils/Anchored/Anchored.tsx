@@ -29,7 +29,7 @@ export const Anchored = forwardRef<HTMLDivElement, IAnchoredProps>(
       ...other
     } = props;
 
-    const theme = useComponentTheme('Anchored');
+    const { theme } = useComponentTheme('Anchored');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

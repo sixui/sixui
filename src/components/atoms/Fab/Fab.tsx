@@ -32,7 +32,7 @@ export type IFabOwnProps = Omit<
     };
     children?: React.ReactNode;
     size?: IFabSize;
-    variant?: IFabVariant;
+    variant?: IFabVariant | false;
     label?: string;
     lowered?: boolean;
   };
@@ -75,11 +75,13 @@ export const Fab: IFab = forwardRef(function Fab<
     ...other
   } = props as IWithAsProp<IFabOwnProps>;
 
-  const theme = useComponentTheme('Fab');
-  const variantTheme = useComponentTheme(variantMap[variant]);
+  const { theme, variantTheme } = useComponentTheme(
+    'Fab',
+    variant ? variantMap[variant] : undefined,
+  );
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, variantTheme.styles, styles),
-    [theme.styles, variantTheme.styles, styles],
+    () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
+    [theme.styles, variantTheme?.styles, styles],
   );
 
   const extended = !!label;
@@ -88,7 +90,7 @@ export const Fab: IFab = forwardRef(function Fab<
     <Button
       ref={ref}
       as={as}
-      variant='elevated'
+      variant={false}
       styles={asArray(innerStyles?.button)}
       sx={[
         stylesCombinator(
@@ -98,7 +100,7 @@ export const Fab: IFab = forwardRef(function Fab<
           lowered && 'host$lowered',
         ),
         theme.vars,
-        variantTheme.vars,
+        variantTheme?.vars,
         sx,
       ]}
       icon={children}

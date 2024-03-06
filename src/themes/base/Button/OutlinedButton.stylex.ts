@@ -3,7 +3,6 @@ import stylex from '@stylexjs/stylex';
 import type { IStyleVars } from '@/helpers/types';
 import type { IButtonStyleVarKey } from '@/components/atoms/Button';
 import { colorRolesVars } from '../vars/colorRoles.stylex';
-import { stateVars } from '../vars/state.stylex';
 import { componentVars as baseComponentVars } from './Button.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-outlined-button.scss
@@ -37,15 +36,7 @@ const vars: Partial<IStyleVars<IButtonStyleVarKey>> = {
   iconColor$pressed: colorRolesVars.primary,
 
   // outline
-  outlineWidth: '1px',
-  outlineColor: colorRolesVars.outline,
-  // &:disabled
-  outlineColor$disabled: colorRolesVars.onSurface,
-  outlineOpacity$disabled: stateVars.outlineOpacity$disabled,
-  // &:focus
-  outlineColor$focus: colorRolesVars.outline,
-  // &:pressed
-  outlineColor$pressed: colorRolesVars.outline,
+  outlineStyle: 'solid',
 };
 
 export const componentTheme = stylex.createTheme(baseComponentVars, vars);

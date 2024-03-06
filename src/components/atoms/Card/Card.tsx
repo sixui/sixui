@@ -51,7 +51,7 @@ export type ICardOwnProps = IContainerProps<ICardStyleKey> & {
     focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
   };
   visualState?: IVisualState;
-  variant?: ICardVariant;
+  variant?: ICardVariant | false;
   children: React.ReactNode;
   onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
   href?: string;
@@ -80,7 +80,7 @@ type ICard = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
 
 const Card: ICard = forwardRef(function Card<
   TRoot extends React.ElementType = typeof DEFAULT_TAG,
->(props: ICardProps<TRoot>, ref: IPolymorphicRef<TRoot>) {
+>(props: ICardProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
   const {
     as,
     styles,
@@ -100,11 +100,13 @@ const Card: ICard = forwardRef(function Card<
   });
   const handleRef = useForkRef(ref, visualStateRef);
 
-  const theme = useComponentTheme('Card');
-  const variantTheme = useComponentTheme(variantMap[variant]);
+  const { theme, variantTheme } = useComponentTheme(
+    'Card',
+    variant ? variantMap[variant] : undefined,
+  );
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, variantTheme.styles, styles),
-    [theme.styles, variantTheme.styles, styles],
+    () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
+    [theme.styles, variantTheme?.styles, styles],
   );
   const styleProps = useMemo(
     () =>
@@ -120,7 +122,7 @@ const Card: ICard = forwardRef(function Card<
 
   const hasOutline =
     !!theme.styles?.outline ||
-    !!variantTheme.styles?.outline ||
+    !!variantTheme?.styles?.outline ||
     asArray(styles).some((styles) => !!styles?.outline);
 
   const Component = as ?? (!dragged && href ? 'a' : DEFAULT_TAG);
@@ -139,7 +141,7 @@ const Card: ICard = forwardRef(function Card<
             disabled && 'host$disabled',
             sx,
           ],
-          [theme.vars, variantTheme.vars],
+          [theme.vars, variantTheme?.vars],
         )}
         ref={handleRef}
         href={actionable && !dragged ? href : undefined}

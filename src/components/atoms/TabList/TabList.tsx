@@ -16,7 +16,7 @@ export const TabList = forwardRef<HTMLInputElement, ITabListProps>(
   function TabList(props, ref) {
     const { styles, sx, children, ...other } = props;
 
-    const theme = useComponentTheme('TabList');
+    const { theme } = useComponentTheme('TabList');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

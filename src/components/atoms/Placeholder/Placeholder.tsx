@@ -30,7 +30,7 @@ export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
       ...other
     } = props;
 
-    const theme = useComponentTheme('Placeholder');
+    const { theme } = useComponentTheme('Placeholder');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

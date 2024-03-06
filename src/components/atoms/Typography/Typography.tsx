@@ -61,7 +61,7 @@ export const Typography: ITypography = forwardRef(function Typography<
     ...other
   } = props as IWithAsProp<ITypographyOwnProps>;
 
-  const theme = useComponentTheme('Typography');
+  const { theme } = useComponentTheme('Typography');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],

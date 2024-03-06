@@ -74,7 +74,7 @@ export const ListItem: React.FC<IListItemProps> = ({
   end,
   ...props
 }) => {
-  const theme = useComponentTheme('ListItem');
+  const { theme } = useComponentTheme('ListItem');
   const actionRef = useRef(null);
   const visualState = accumulate(useVisualState(actionRef), props.visualState);
 

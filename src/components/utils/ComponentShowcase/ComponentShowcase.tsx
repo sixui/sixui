@@ -43,7 +43,7 @@ export const ComponentShowcase = <TComponentProps,>(
     fullWidth,
   } = props;
 
-  const theme = useComponentTheme('ComponentShowcase');
+  const { theme } = useComponentTheme('ComponentShowcase');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],

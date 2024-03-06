@@ -11,8 +11,8 @@ import { stateVars } from '../vars/state.stylex';
 
 const vars: Partial<IStyleVars<IIconButtonStyleVarKey>> = {
   // container
-  containerHeight: '40px',
   containerWidth: '40px',
+  containerHeight: '40px',
   containerShape: shapeVars.corner$full,
   // &:disabled
   containerOpacity$disabled: stateVars.containerOpacity$disabled,

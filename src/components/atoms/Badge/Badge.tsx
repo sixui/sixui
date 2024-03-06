@@ -29,7 +29,7 @@ export const Badge = forwardRef<HTMLDivElement, IBadgeProps>(
       ...other
     } = props;
 
-    const theme = useComponentTheme('Badge');
+    const { theme } = useComponentTheme('Badge');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

@@ -17,7 +17,7 @@ export const BasicTemplate = forwardRef<HTMLDivElement, IBasicTemplateProps>(
   function BasicTemplate(props, ref) {
     const { styles, sx, children, ...other } = props;
 
-    const theme = useComponentTheme('Template');
+    const { theme } = useComponentTheme('Template');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

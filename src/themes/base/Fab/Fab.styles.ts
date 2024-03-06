@@ -13,8 +13,6 @@ type IFabStyles = IStyles<IFabStyleKey>;
 export const styles: MapNamespaces<IFabStyles> = stylex.create<IFabStyles>({
   host: {
     // eslint-disable-next-line @stylexjs/valid-styles
-    [buttonVars.gap]: '12px',
-    // eslint-disable-next-line @stylexjs/valid-styles
     [buttonVars.leadingSpace]: '0',
     // eslint-disable-next-line @stylexjs/valid-styles
     [buttonVars.trailingSpace]: '0',
@@ -26,6 +24,9 @@ export const styles: MapNamespaces<IFabStyles> = stylex.create<IFabStyles>({
     [buttonVars.trailingIconLeadingSpace]: '0',
     // eslint-disable-next-line @stylexjs/valid-styles
     [buttonVars.trailingIconTrailingSpace]: '0',
+
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [buttonVars.gap]: '12px',
     // eslint-disable-next-line @stylexjs/valid-styles
     [buttonVars.containerElevation$disabled]: vars.containerElevation$disabled,
     // eslint-disable-next-line @stylexjs/valid-styles

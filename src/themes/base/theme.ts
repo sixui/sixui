@@ -35,7 +35,6 @@ import { componentTheme as elevatedButtonTheme } from './Button/ElevatedButton.s
 import { componentTheme as filledButtonTheme } from './Button/FilledButton.stylex';
 import { componentTheme as filledTonalButtonTheme } from './Button/FilledTonalButton.stylex';
 import { componentTheme as outlinedButtonTheme } from './Button/OutlinedButton.stylex';
-import { styles as outlinedButtonStyles } from './Button/OutlinedButton.styles';
 import { componentTheme as textButtonTheme } from './Button/TextButton.stylex';
 
 import { styles as circularProgressIndicatorStyles } from './CircularProgressIndicator/CircularProgressIndicator.styles';
@@ -66,18 +65,12 @@ import { componentTheme as secondaryFabTheme } from './Fab/SecondaryFab.stylex';
 import { componentTheme as tertiaryFabTheme } from './Fab/TertiaryFab.stylex';
 import { componentTheme as brandedFabTheme } from './Fab/BrandedFab.stylex';
 
-import {
-  styles as iconButtonStyles,
-  stateLayerStyles as iconButtonStateLayerStyles,
-  focusRingStyles as iconButtonFocusRingStyles,
-  circularProgressIndicatorStyles as iconButtonCircularProgressIndicatorStyles,
-} from './IconButton/IconButton.styles';
+import { styles as iconButtonStyles } from './IconButton/IconButton.styles';
 import { componentTheme as iconButtonTheme } from './IconButton/IconButton.stylex';
 import { componentTheme as standardIconButtonTheme } from './IconButton/StandardIconButton.stylex';
 import { componentTheme as filledIconButtonTheme } from './IconButton/FilledIconButton.stylex';
 import { componentTheme as filledTonalIconButtonTheme } from './IconButton/FilledTonalIconButton.stylex';
 import { componentTheme as outlinedIconButtonTheme } from './IconButton/OutlinedIconButton.stylex';
-import { styles as outlinedIconButtonStyles } from './IconButton/OutlinedIconButton.styles';
 
 import {
   styles as switchStyles,
@@ -248,10 +241,7 @@ export const theme: ITheme = {
     ElevatedButton: { vars: elevatedButtonTheme },
     FilledButton: { vars: filledButtonTheme },
     FilledTonalButton: { vars: filledTonalButtonTheme },
-    OutlinedButton: {
-      vars: outlinedButtonTheme,
-      styles: outlinedButtonStyles,
-    },
+    OutlinedButton: { vars: outlinedButtonTheme },
     TextButton: { vars: textButtonTheme },
     CircularProgressIndicator: {
       vars: circularProgressIndicatorTheme,
@@ -289,18 +279,11 @@ export const theme: ITheme = {
     IconButton: {
       vars: iconButtonTheme,
       styles: iconButtonStyles,
-      stateLayerStyles: iconButtonStateLayerStyles,
-      focusRingStyles: iconButtonFocusRingStyles,
-      circularProgressIndicatorStyles:
-        iconButtonCircularProgressIndicatorStyles,
     },
     StandardIconButton: { vars: standardIconButtonTheme },
     FilledIconButton: { vars: filledIconButtonTheme },
     FilledTonalIconButton: { vars: filledTonalIconButtonTheme },
-    OutlinedIconButton: {
-      vars: outlinedIconButtonTheme,
-      styles: outlinedIconButtonStyles,
-    },
+    OutlinedIconButton: { vars: outlinedIconButtonTheme },
     Switch: {
       vars: switchTheme,
       styles: switchStyles,

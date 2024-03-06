@@ -33,7 +33,7 @@ export type IIconButtonOwnProps = Omit<
     innerStyles?: IButtonOwnProps['innerStyles'] & {
       button?: IZeroOrMore<ICompiledStyles<IButtonStyleKey>>;
     };
-    variant?: IIconButtonVariant;
+    variant?: IIconButtonVariant | false;
     toggle?: boolean;
     selected?: boolean;
     icon: React.ReactNode;
@@ -77,14 +77,20 @@ export const IconButton: IIconButton = forwardRef(function IconButton<
     variant = 'standard',
     toggle,
     selected,
+    icon,
+    selectedIcon,
+    'aria-label': ariaLabel,
+    'aria-label-selected': ariaLabelSelected,
     ...other
   } = props as IWithAsProp<IIconButtonOwnProps>;
 
-  const theme = useComponentTheme('IconButton');
-  const variantTheme = useComponentTheme(variantMap[variant]);
+  const { theme, variantTheme } = useComponentTheme(
+    'IconButton',
+    variant ? variantMap[variant] : undefined,
+  );
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, variantTheme.styles, styles),
-    [theme.styles, variantTheme.styles, styles],
+    () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
+    [theme.styles, variantTheme?.styles, styles],
   );
 
   return (
@@ -95,115 +101,17 @@ export const IconButton: IIconButton = forwardRef(function IconButton<
       sx={[
         stylesCombinator(
           'host',
-          toggle ? 'host$toggle' : null,
-          selected ? (toggle ? 'host$toggle$selected' : 'host$selected') : null,
+          toggle ? (selected ? 'host$toggle$selected' : 'host$toggle') : null,
         ),
         theme.vars,
-        variantTheme.vars,
+        variantTheme?.vars,
         sx,
       ]}
+      icon={selected ? selectedIcon ?? icon : icon}
+      aria-label={
+        toggle && selected ? ariaLabelSelected ?? ariaLabel : ariaLabel
+      }
       {...other}
     />
   );
-
-  // FIXME: delete
-  // return (
-  //   <div
-  //     {...styleProps(
-  //       [
-  //         'host',
-  // disabled ? 'host$disabled' : toggle ? 'host$toggle' : null,
-  // !disabled && selected
-  //   ? toggle
-  //     ? 'host$toggle$selected'
-  //     : 'host$selected'
-  //   : null,
-  //         props.sx,
-  //       ],
-  //       [theme.vars, variantTheme.vars, props.theme],
-  //     )}
-  //   >
-  //     {hasOutline ? (
-  //       <div {...styleProps(['outline', disabled && 'outline$disabled'])} />
-  //     ) : null}
-  //     <div
-  //       {...styleProps([
-  //         'background',
-  //         disabled
-  //           ? 'background$disabled'
-  //           : toggle
-  //             ? selected
-  //               ? 'background$selected'
-  //               : 'background$unselected'
-  //             : null,
-  //       ])}
-  //     />
-  //     <FocusRing
-  //       styles={[
-  //         theme.focusRingStyles,
-  //         variantTheme.focusRingStyles,
-  //         ...asArray(props.focusRingStyles),
-  //       ]}
-  //       for={actionRef}
-  //       visualState={visualState}
-  //     />
-  //     <StateLayer
-  //       styles={[
-  //         theme.stateLayerStyles,
-  //         variantTheme.stateLayerStyles,
-  //         ...asArray(props.stateLayerStyles),
-  //       ]}
-  //       for={actionRef}
-  //       disabled={disabled}
-  //       visualState={visualState}
-  //     />
-
-  //     <Component
-  //       {...styleProps(['button'])}
-  //       ref={actionRef}
-  //       onClick={handleClick}
-  //       readOnly={disabled}
-  //       tabIndex={disabled ? -1 : 0}
-  //       aria-label={
-  //         toggle && selected
-  //           ? props['aria-label-selected'] ?? props['aria-label']
-  //           : props['aria-label']
-  //       }
-  //       aria-haspopup={props['aria-haspopup']}
-  //       aria-expanded={props['aria-expanded']}
-  //     >
-  //       <span {...styleProps(['touchTarget'])} />
-
-  //       <div
-  //         {...styleProps([
-  //           'icon',
-  //           disabled
-  //             ? 'icon$disabled'
-  //             : toggle
-  //               ? selected
-  //                 ? 'icon$toggle$selected'
-  //                 : 'icon$toggle'
-  //               : null,
-  //           hasOverlay ? 'invisible' : null,
-  //         ])}
-  //       >
-  //         {icon}
-  //       </div>
-
-  //       {hasOverlay ? (
-  //         <div {...styleProps(['overlay'])}>
-  //           <div {...styleProps([disabled && 'icon$disabled'])}>
-  //             <IndeterminateCircularProgressIndicator
-  //               styles={[
-  //                 theme.circularProgressIndicatorStyles,
-  //                 variantTheme.circularProgressIndicatorStyles,
-  //                 ...asArray(props.circularProgressIndicatorStyles),
-  //               ]}
-  //             />
-  //           </div>
-  //         </div>
-  //       ) : null}
-  //     </Component>
-  //   </div>
-  // );
 });

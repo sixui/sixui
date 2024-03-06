@@ -18,7 +18,7 @@ export const CardContent = forwardRef<HTMLDivElement, ICardContentProps>(
   function CardContent(props, ref) {
     const { styles, sx, children, ...other } = props;
 
-    const theme = useComponentTheme('CardContent');
+    const { theme } = useComponentTheme('CardContent');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

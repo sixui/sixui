@@ -14,6 +14,7 @@ const vars: Partial<IStyleVars<IIconButtonStyleVarKey>> = {
   selectedContainerColor: colorRolesVars.inverseSurface,
 
   // outline
+  outlineStyle: 'solid',
   outlineWidth: '1px',
   outlineColor: colorRolesVars.outline,
   // &:disabled
@@ -33,6 +34,15 @@ const vars: Partial<IStyleVars<IIconButtonStyleVarKey>> = {
   // &:pressed
   iconColor$pressed: colorRolesVars.onSurfaceVariant,
 
+  // toggleIcon
+  toggleIconColor: colorRolesVars.onSurfaceVariant,
+  // &:focus
+  toggleIconColor$focus: colorRolesVars.onSurfaceVariant,
+  // &:hover
+  toggleIconColor$hover: colorRolesVars.onSurfaceVariant,
+  // &:pressed
+  toggleIconColor$pressed: colorRolesVars.onSurfaceVariant,
+
   // toggleSelectedIcon
   toggleSelectedIconColor: colorRolesVars.inverseOnSurface,
   // &:focus
@@ -48,11 +58,17 @@ const vars: Partial<IStyleVars<IIconButtonStyleVarKey>> = {
   // &:pressed
   stateLayerColor$pressed: colorRolesVars.onSurfaceVariant,
 
-  // selectedStateLayer
+  // toggleStateLayer
   // &:hover
-  selectedStateLayerColor$hover: colorRolesVars.inverseOnSurface,
+  toggleStateLayerColor$hover: colorRolesVars.onSurfaceVariant,
   // &:pressed
-  selectedStateLayerColor$pressed: colorRolesVars.inverseOnSurface,
+  toggleStateLayerColor$pressed: colorRolesVars.onSurfaceVariant,
+
+  // toggleSelectedStateLayer
+  // &:hover
+  toggleSelectedStateLayerColor$hover: colorRolesVars.inverseOnSurface,
+  // &:pressed
+  toggleSelectedStateLayerColor$pressed: colorRolesVars.inverseOnSurface,
 };
 
 export const componentTheme = stylex.createTheme(baseComponentVars, vars);

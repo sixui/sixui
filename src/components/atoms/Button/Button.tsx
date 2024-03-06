@@ -38,7 +38,7 @@ export type IButtonOwnProps = Omit<
   innerStyles?: IButtonBaseOwnProps['innerStyles'] & {
     circularProgressIndicator?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
   };
-  variant?: IButtonVariant;
+  variant?: IButtonVariant | false;
   icon?: React.ReactNode;
   trailingIcon?: boolean;
   loading?: boolean;
@@ -93,11 +93,13 @@ export const Button: IButton = forwardRef(function Button<
     ...other
   } = props as IWithAsProp<IButtonOwnProps>;
 
-  const theme = useComponentTheme('Button');
-  const variantTheme = useComponentTheme(variantMap[variant]);
+  const { theme, variantTheme } = useComponentTheme(
+    'Button',
+    variant ? variantMap[variant] : undefined,
+  );
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, variantTheme.styles, styles),
-    [theme.styles, variantTheme.styles, styles],
+    () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
+    [theme.styles, variantTheme?.styles, styles],
   );
   const styleProps = useMemo(
     () =>
@@ -150,25 +152,25 @@ export const Button: IButton = forwardRef(function Button<
     <ButtonBase
       ref={ref}
       as={as}
-      styles={[theme.styles, variantTheme.styles, ...asArray(styles)]}
-      sx={[theme.vars, variantTheme.vars, sx]}
+      styles={[theme.styles, variantTheme?.styles, ...asArray(styles)]}
+      sx={[theme.vars, variantTheme?.vars, sx]}
       withLeadingIcon={hasLeadingIcon}
       withTrailingIcon={hasTrailingIcon}
       innerStyles={{
         ...innerStyles,
         stateLayer: [
           theme.stateLayerStyles,
-          variantTheme.stateLayerStyles,
+          variantTheme?.stateLayerStyles,
           ...asArray(innerStyles?.stateLayer),
         ],
         focusRing: [
           theme.focusRingStyles,
-          variantTheme.focusRingStyles,
+          variantTheme?.focusRingStyles,
           ...asArray(innerStyles?.focusRing),
         ],
         elevation: [
           theme.elevationStyles,
-          variantTheme.stateLayerStyles,
+          variantTheme?.stateLayerStyles,
           ...asArray(innerStyles?.elevation),
         ],
       }}
@@ -188,7 +190,7 @@ export const Button: IButton = forwardRef(function Button<
             <IndeterminateCircularProgressIndicator
               styles={[
                 theme.circularProgressIndicatorStyles,
-                variantTheme.circularProgressIndicatorStyles,
+                variantTheme?.circularProgressIndicatorStyles,
                 ...asArray(innerStyles?.circularProgressIndicator),
               ]}
             />
@@ -229,7 +231,7 @@ export const Button: IButton = forwardRef(function Button<
               <IndeterminateCircularProgressIndicator
                 styles={[
                   theme.circularProgressIndicatorStyles,
-                  variantTheme.circularProgressIndicatorStyles,
+                  variantTheme?.circularProgressIndicatorStyles,
                   ...asArray(innerStyles?.circularProgressIndicator),
                 ]}
               />
@@ -249,7 +251,7 @@ export const Button: IButton = forwardRef(function Button<
             <IndeterminateCircularProgressIndicator
               styles={[
                 theme.circularProgressIndicatorStyles,
-                variantTheme.circularProgressIndicatorStyles,
+                variantTheme?.circularProgressIndicatorStyles,
                 ...asArray(innerStyles?.circularProgressIndicator),
               ]}
             />

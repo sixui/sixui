@@ -35,10 +35,15 @@ export const PolymorphicTemplate: IPolymorphicTemplate = forwardRef(
   function PolymorphicTemplate<
     TRoot extends React.ElementType = typeof DEFAULT_TAG,
   >(props: IPolymorphicTemplateProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
-    const { as, styles, sx, children, ...other } =
-      props as IWithAsProp<IPolymorphicTemplateOwnProps>;
+    const {
+      as: Component = DEFAULT_TAG,
+      styles,
+      sx,
+      children,
+      ...other
+    } = props as IWithAsProp<IPolymorphicTemplateOwnProps>;
 
-    const theme = useComponentTheme('Template');
+    const { theme } = useComponentTheme('Template');
     const styleCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],
@@ -50,8 +55,6 @@ export const PolymorphicTemplate: IPolymorphicTemplate = forwardRef(
         ),
       [styleCombinator],
     );
-
-    const Component = as ?? DEFAULT_TAG;
 
     return (
       <Component

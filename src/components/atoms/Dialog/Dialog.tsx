@@ -35,7 +35,7 @@ export const Dialog = forwardRef<HTMLDivElement, IDialogProps>(
       ...other
     } = props;
 
-    const theme = useComponentTheme('Dialog');
+    const { theme } = useComponentTheme('Dialog');
     const headlineId = useId();
 
     const stylesCombinator = useMemo(

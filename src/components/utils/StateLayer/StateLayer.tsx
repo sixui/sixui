@@ -24,7 +24,7 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
   function StateLayer(props, ref) {
     const { styles, sx, visualState, for: forElementRef, disabled } = props;
 
-    const theme = useComponentTheme('StateLayer');
+    const { theme } = useComponentTheme('StateLayer');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

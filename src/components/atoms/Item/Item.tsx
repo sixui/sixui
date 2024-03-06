@@ -35,7 +35,7 @@ export const Item = forwardRef<HTMLDivElement, IItemProps>(
       ...other
     } = props;
 
-    const theme = useComponentTheme('Item');
+    const { theme } = useComponentTheme('Item');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

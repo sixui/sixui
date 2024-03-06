@@ -163,6 +163,23 @@ export const styles: MapNamespaces<IButtonStyles> =
       textAlign: 'center',
       justifyContent: 'center',
     },
+    outline: {
+      inset: 0,
+      pointerEvents: 'none',
+      borderStyle: vars.outlineStyle,
+      borderWidth: vars.outlineWidth,
+      position: 'absolute',
+      borderColor: {
+        default: vars.outlineColor,
+        ':is([data-focused])': vars.outlineColor$focus,
+        ':is([data-pressed])': vars.outlineColor$pressed,
+      },
+      borderRadius: vars.containerShape,
+    },
+    outline$disabled: {
+      borderColor: vars.outlineColor$disabled,
+      opacity: vars.outlineOpacity$disabled,
+    },
   });
 
 type IStateLayerStyles = IStyles<IStateLayerStyleKey>;

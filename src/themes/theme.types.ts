@@ -145,9 +145,6 @@ export type IFabVariantTheme = IFabTheme;
 export type IIconButtonTheme = {
   vars?: IStyleVarsTheme<IIconButtonStyleVarKey>;
   styles?: ICompiledStyles<IIconButtonStyleKey>;
-  stateLayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
-  focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
-  circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
 };
 
 export type IFieldTheme = {

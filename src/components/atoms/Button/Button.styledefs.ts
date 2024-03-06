@@ -26,6 +26,7 @@ export type IButtonStyleKey =
   | 'overlay';
 
 type IOutlineStyleVarKey =
+  | 'outlineStyle'
   | 'outlineWidth'
   | 'outlineColor'
   | 'outlineColor$disabled'

@@ -21,7 +21,7 @@ import { Elevation, IElevationStyleKey } from '@/components/utils/Elevation';
 // https://github.com/material-components/material-web/blob/main/labs/paper/internal/paper.ts
 
 export type IPaperProps = IContainerProps<IPaperStyleKey, IPaperStyleVarKey> & {
-  variant?: IPaperVariant;
+  variant?: IPaperVariant | false;
   children?: React.ReactNode;
   elevation?: 0 | 1 | 2 | 3 | 4 | 5;
   square?: boolean;
@@ -46,8 +46,10 @@ export const Paper: React.FC<IPaperProps> = ({
   square,
   ...props
 }) => {
-  const theme = useComponentTheme('Paper');
-  const variantTheme = useComponentTheme(variantMap[variant]);
+  const { theme, variantTheme } = useComponentTheme(
+    'Paper',
+    variant ? variantMap[variant] : undefined,
+  );
 
   const actionRef = useRef(null);
   const visualState = accumulate(useVisualState(actionRef), props.visualState);
@@ -57,17 +59,17 @@ export const Paper: React.FC<IPaperProps> = ({
       stylePropsFactory<IPaperStyleKey, IPaperStyleVarKey>(
         stylesCombinatorFactory(
           theme.styles,
-          variantTheme.styles,
+          variantTheme?.styles,
           props.styles,
         ),
         visualState,
       ),
-    [theme.styles, variantTheme.styles, props.styles, visualState],
+    [theme.styles, variantTheme?.styles, props.styles, visualState],
   );
 
   const hasOutline =
     theme.styles?.outline ||
-    variantTheme.styles?.outline ||
+    variantTheme?.styles?.outline ||
     asArray(props.styles).some((styles) => !!styles?.outline);
   const elevation = variant === 'outlined' ? 0 : props.elevation || 0;
 
@@ -80,13 +82,13 @@ export const Paper: React.FC<IPaperProps> = ({
           square && 'host$square',
           props.sx,
         ],
-        [theme.vars, variantTheme.vars, props.theme],
+        [theme.vars, variantTheme?.vars, props.theme],
       )}
     >
       <Elevation
         styles={[
           theme.elevationStyles,
-          variantTheme.elevationStyles,
+          variantTheme?.elevationStyles,
           ...asArray(props.elevationStyles),
         ]}
       />

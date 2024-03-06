@@ -23,7 +23,7 @@ export const CardMedia = forwardRef<HTMLDivElement, ICardMediaProps>(
   function CardMedia(props, ref) {
     const { styles, sx, children, src, ...other } = props;
 
-    const theme = useComponentTheme('CardMedia');
+    const { theme } = useComponentTheme('CardMedia');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

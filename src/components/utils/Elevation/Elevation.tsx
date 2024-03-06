@@ -18,7 +18,7 @@ export const Elevation = forwardRef<HTMLDivElement, IElevationProps>(
   function Elevation(props, ref) {
     const { styles, sx, level, disabled, ...other } = props;
 
-    const theme = useComponentTheme('Elevation');
+    const { theme } = useComponentTheme('Elevation');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],
