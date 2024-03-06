@@ -108,7 +108,7 @@ const Card: ICard = forwardRef(function Card<
     () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
     [theme.styles, variantTheme?.styles, styles],
   );
-  const styleProps = useMemo(
+  const sxf = useMemo(
     () =>
       stylePropsFactory<ICardStyleKey, ICardStyleVarKey>(
         stylesCombinator,
@@ -134,14 +134,13 @@ const Card: ICard = forwardRef(function Card<
   return (
     <CardContext.Provider value={context}>
       <Component
-        {...styleProps(
-          [
-            'host',
-            actionable && 'host$actionable',
-            disabled && 'host$disabled',
-            sx,
-          ],
-          [theme.vars, variantTheme?.vars],
+        {...sxf(
+          'host',
+          actionable && 'host$actionable',
+          disabled && 'host$disabled',
+          theme.vars,
+          variantTheme?.vars,
+          sx,
         )}
         ref={handleRef}
         href={actionable && !dragged ? href : undefined}
@@ -178,16 +177,14 @@ const Card: ICard = forwardRef(function Card<
         ) : null}
         {hasOutline ? (
           <div
-            {...styleProps([
+            {...sxf(
               'outline',
               actionable && 'outline$actionable',
               disabled && 'outline$disabled',
-            ])}
+            )}
           />
         ) : null}
-        <div
-          {...styleProps(['background', disabled && 'background$disabled'])}
-        />
+        <div {...sxf('background', disabled && 'background$disabled')} />
         {children}
       </Component>
     </CardContext.Provider>

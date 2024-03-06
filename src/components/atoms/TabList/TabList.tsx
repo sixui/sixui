@@ -21,20 +21,20 @@ export const TabList = forwardRef<HTMLInputElement, ITabListProps>(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],
     );
-    const styleProps = useMemo(
+    const sxf = useMemo(
       () => stylePropsFactory<ITabListStyleKey>(stylesCombinator),
       [stylesCombinator],
     );
 
     return (
       <div
-        {...styleProps(['host', sx])}
+        {...sxf('host', sx)}
         role='tablist'
         aria-orientation='horizontal'
         ref={ref}
         {...other}
       >
-        <div {...styleProps(['tabList'])}>{children}</div>
+        <div {...sxf('tabList')}>{children}</div>
         <Divider />
       </div>
     );

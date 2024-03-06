@@ -66,7 +66,7 @@ export const Typography: ITypography = forwardRef(function Typography<
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],
   );
-  const styleProps = useMemo(
+  const sxf = useMemo(
     () => stylePropsFactory<ITypographyStyleKey>(stylesCombinator),
     [stylesCombinator],
   );
@@ -75,12 +75,12 @@ export const Typography: ITypography = forwardRef(function Typography<
 
   return (
     <Component
-      {...styleProps([
+      {...sxf(
         'host',
         gutterBottom && 'host$gutterBottom',
         `${variant}$${size}`,
         sx,
-      ])}
+      )}
       ref={ref}
       {...other}
     >

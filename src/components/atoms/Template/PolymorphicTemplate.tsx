@@ -48,7 +48,7 @@ export const PolymorphicTemplate: IPolymorphicTemplate = forwardRef(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],
     );
-    const styleProps = useMemo(
+    const sxf = useMemo(
       () =>
         stylePropsFactory<ITemplateStyleKey, ITemplateStyleVarKey>(
           styleCombinator,
@@ -57,11 +57,7 @@ export const PolymorphicTemplate: IPolymorphicTemplate = forwardRef(
     );
 
     return (
-      <Component
-        {...styleProps(['host', sx], [theme.vars])}
-        ref={ref}
-        {...other}
-      >
+      <Component {...sxf('host', theme.vars, sx)} ref={ref} {...other}>
         {children}
       </Component>
     );

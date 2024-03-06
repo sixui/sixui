@@ -93,7 +93,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],
   );
-  const styleProps = useMemo(
+  const sxf = useMemo(
     () =>
       stylePropsFactory<ICheckboxStyleKey, ICheckboxStyleVarKey>(
         stylesCombinator,
@@ -136,14 +136,17 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
 
   return (
     <div
-      {...styleProps(
-        ['host', selected && 'host$selected', disabled && 'host$disabled', sx],
-        [theme.vars],
+      {...sxf(
+        'host',
+        selected && 'host$selected',
+        disabled && 'host$disabled',
+        theme.vars,
+        sx,
       )}
     >
-      <div {...styleProps(['container'])}>
+      <div {...sxf('container')}>
         <Component
-          {...styleProps(['input'])}
+          {...sxf('input')}
           ref={handleRef}
           type='checkbox'
           aria-checked={indeterminate ? 'mixed' : undefined}
@@ -154,15 +157,15 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
         />
 
         <div
-          {...styleProps([
+          {...sxf(
             'overlay',
             'outline',
             disabled &&
               (selected ? 'outline$disabled$selected' : 'outline$disabled'),
-          ])}
+          )}
         />
         <div
-          {...styleProps([
+          {...sxf(
             'overlay',
             'background',
             'backgroundAndIcon',
@@ -172,7 +175,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
                 ? 'background$disabled$selected'
                 : 'background$disabled'),
             prevDisabled && 'background$prevDisabled',
-          ])}
+          )}
         />
 
         <StateLayer
@@ -188,19 +191,19 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
         />
 
         <svg
-          {...styleProps([
+          {...sxf(
             'overlay',
             'icon',
             disabled && 'icon$disabled',
             prevDisabled && 'icon$prevDisabled',
             'backgroundAndIcon',
             selected && 'backgroundAndIcon$selected',
-          ])}
+          )}
           viewBox='0 0 18 18'
           aria-hidden
         >
           <rect
-            {...styleProps([
+            {...sxf(
               'mark',
               'mark$short',
               selected && 'mark$selected',
@@ -213,10 +216,10 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
               ],
               (indeterminate || (prevIndeterminate && unselected)) &&
                 'indeterminate',
-            ])}
+            )}
           />
           <rect
-            {...styleProps([
+            {...sxf(
               'mark',
               'mark$long',
               selected && 'mark$selected',
@@ -230,7 +233,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
               (indeterminate || (prevIndeterminate && unselected)) &&
                 'indeterminate',
               prevUnselected && checked && 'mark$long$prevUnselected$checked',
-            ])}
+            )}
           />
         </svg>
       </div>

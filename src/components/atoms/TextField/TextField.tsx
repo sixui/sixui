@@ -256,7 +256,7 @@ export const TextField = forwardRef<
     () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
     [theme.styles, variantTheme?.styles, styles],
   );
-  const styleProps = useMemo(
+  const sxf = useMemo(
     () =>
       stylePropsFactory<ITextFieldStyleKey, ITextFieldStyleVarKey>(
         stylesCombinator,
@@ -346,12 +346,12 @@ export const TextField = forwardRef<
     if (isTextarea) {
       return (
         <textarea
-          {...styleProps([
+          {...sxf(
             'input',
             'inputWrapped',
             hasError && 'input$error',
             disabled && 'input$disabled',
-          ])}
+          )}
           ref={handleRef}
           // TODO: aria-describedby="description"
           aria-invalid={hasError}
@@ -369,27 +369,23 @@ export const TextField = forwardRef<
     }
 
     return (
-      <div {...styleProps(['inputWrapper'])}>
+      <div {...sxf('inputWrapper')}>
         {prefixText ? (
           <span
-            {...styleProps([
-              'inputWrapped',
-              'prefix',
-              disabled && 'prefix$disabled',
-            ])}
+            {...sxf('inputWrapped', 'prefix', disabled && 'prefix$disabled')}
           >
             {prefixText}
           </span>
         ) : null}
         <input
-          {...styleProps([
+          {...sxf(
             'inputWrapped',
             'input',
             hasError && 'input$error',
             disabled && 'input$disabled',
             noSpinner && 'input$noSpinner',
             type === 'number' && 'input$number',
-          ])}
+          )}
           ref={handleRef}
           // TODO: aria-describedby="description"
           aria-invalid={hasError}
@@ -405,11 +401,7 @@ export const TextField = forwardRef<
         />
         {suffixText ? (
           <span
-            {...styleProps([
-              'inputWrapped',
-              'suffix',
-              disabled && 'suffix$disabled',
-            ])}
+            {...sxf('inputWrapped', 'suffix', disabled && 'suffix$disabled')}
           >
             {suffixText}
           </span>
@@ -417,7 +409,7 @@ export const TextField = forwardRef<
       </div>
     );
   }, [
-    styleProps,
+    sxf,
     isTextarea,
     prefixText,
     value,
@@ -441,30 +433,30 @@ export const TextField = forwardRef<
     (): React.ReactNode | null =>
       start ??
       (leadingIcon ? (
-        <span {...styleProps(['icon', 'icon$leading'])}>{leadingIcon}</span>
+        <span {...sxf('icon', 'icon$leading')}>{leadingIcon}</span>
       ) : null),
-    [styleProps, start, leadingIcon],
+    [sxf, start, leadingIcon],
   );
 
   const renderEnd = useCallback(
     (): React.ReactNode | null =>
       end ??
       (trailingIcon ? (
-        <span {...styleProps(['icon', 'icon$trailing'])}>{trailingIcon}</span>
+        <span {...sxf('icon', 'icon$trailing')}>{trailingIcon}</span>
       ) : null),
-    [styleProps, end, trailingIcon],
+    [sxf, end, trailingIcon],
   );
 
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
     <div
-      {...styleProps(['host', sx], [theme.vars, variantTheme?.vars])}
+      {...sxf('host', theme.vars, variantTheme?.vars, sx)}
       ref={hostHandleRef}
       onClick={() => inputOrTextareaRef.current?.focus()}
       role='textbox'
       tabIndex={-1}
     >
-      <span {...styleProps(['textField'])}>
+      <span {...sxf('textField')}>
         <Field
           styles={[
             theme.fieldStyles,

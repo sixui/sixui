@@ -85,7 +85,7 @@ export const Field = forwardRef<HTMLDivElement, IFieldProps>(
       () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
       [theme.styles, variantTheme?.styles, styles],
     );
-    const styleProps = useMemo(
+    const sxf = useMemo(
       () =>
         stylePropsFactory<IFieldStyleKey, ITextFieldStyleVarKey>(
           stylesCombinator,
@@ -277,13 +277,13 @@ export const Field = forwardRef<HTMLDivElement, IFieldProps>(
 
         return (
           <span
-            {...styleProps([
+            {...sxf(
               'label',
               floating ? 'label$floating' : 'label$resting',
               hasError && 'label$error',
               disabled && 'label$disabled',
               !visible && 'label$invisible',
-            ])}
+            )}
             aria-hidden={!visible}
             ref={floating ? floatingLabelRef : restingLabelRef}
           >
@@ -301,7 +301,7 @@ export const Field = forwardRef<HTMLDivElement, IFieldProps>(
         hasLabel,
         populated,
         required,
-        styleProps,
+        sxf,
       ],
     );
 
@@ -323,11 +323,11 @@ export const Field = forwardRef<HTMLDivElement, IFieldProps>(
 
       return (
         <div
-          {...styleProps([
+          {...sxf(
             'supportingText',
             hasError && 'supportingText$error',
             disabled && 'supportingText$disabled',
-          ])}
+          )}
           role={role}
         >
           {/* Always render the supporting text span so that our `space-around` container puts the counter at the end. */}
@@ -335,9 +335,7 @@ export const Field = forwardRef<HTMLDivElement, IFieldProps>(
 
           {/* Conditionally render counter so we don't render the extra `gap`. */}
           {/* TODO(b/244473435): add aria-label and announcements */}
-          {counterText ? (
-            <span {...styleProps(['counter'])}>{counterText}</span>
-          ) : null}
+          {counterText ? <span {...sxf('counter')}>{counterText}</span> : null}
         </div>
       );
     }, [
@@ -346,69 +344,67 @@ export const Field = forwardRef<HTMLDivElement, IFieldProps>(
       errorText,
       getCounterText,
       refreshErrorAlert,
-      styleProps,
+      sxf,
       supportingOrErrorText,
     ]);
 
     const renderBackground = useCallback(
       (): React.ReactNode => (
         <>
+          <div {...sxf('background', disabled && 'background$disabled')} />
           <div
-            {...styleProps(['background', disabled && 'background$disabled'])}
-          />
-          <div
-            {...styleProps([
+            {...sxf(
               'stateLayer',
               hasError && 'stateLayer$error',
               disabled && 'stateLayer$disabled',
-            ])}
+            )}
           />
         </>
       ),
-      [styleProps, disabled, hasError],
+      [sxf, disabled, hasError],
     );
 
     const renderIndicator = useCallback(
       (): React.ReactNode => (
-        <div {...styleProps(['activeIndicator'])}>
+        <div {...sxf('activeIndicator')}>
           <div
-            {...styleProps([
+            {...sxf(
               'activeIndicatorBackground',
               hasError && 'activeIndicatorBackground$error',
               disabled && 'activeIndicatorBackground$disabled',
-            ])}
+            )}
           />
           <div
-            {...styleProps([
+            {...sxf(
               'activeIndicatorFocus',
               hasError && 'activeIndicatorFocus$error',
               hasError && 'activeIndicatorBackground$error',
-            ])}
+            )}
           />
         </div>
       ),
-      [styleProps, disabled, hasError],
+      [sxf, disabled, hasError],
     );
 
     const renderOutline = useCallback(
       (): React.ReactNode => (
         <div
-          {...styleProps([
+          {...sxf(
             'outline',
             hasError && 'outline$error',
             disabled && 'outline$disabled',
-          ])}
+          )}
         >
           <div
-            {...styleProps([
+            {...sxf(
               'outlineSection',
               'outlineSection$startEnd',
               'outlineSection$start',
               disabled && 'outlineSection$startEnd$disabled',
-            ])}
+            )}
           >
             <div
-              {...styleProps([
+              {...sxf(
                 'outlineBorder',
                 'outlineBorder$startEnd',
                 'outlineBorder$start',
@@ -416,35 +412,32 @@ export const Field = forwardRef<HTMLDivElement, IFieldProps>(
                 'outlineBorder$inactive$startEnd',
                 'outlineBorder$inactive$start',
                 disabled && 'outlineBorder$inactive$startEnd$disabled',
-              ])}
+              )}
             />
             <div
-              {...styleProps([
+              {...sxf(
                 'outlineBorder',
                 'outlineBorder$startEnd',
                 'outlineBorder$start',
                 'outlineBorder$active',
                 'outlineBorder$active$startEnd',
                 'outlineBorder$active$end',
-              ])}
+              )}
             />
           </div>
           <div
-            {...styleProps([
-              'outlineNotch',
-              !hasLabel && 'outlineNotch$withoutLabel',
-            ])}
+            {...sxf('outlineNotch', !hasLabel && 'outlineNotch$withoutLabel')}
           >
             <div
-              {...styleProps([
+              {...sxf(
                 'outlineSection',
                 'outlineSection$panel',
                 'outlineSection$panel$inactive',
                 disabled && 'outlineSection$panel$inactive$disabled',
-              ])}
+              )}
             >
               <div
-                {...styleProps([
+                {...sxf(
                   'outlineBorder',
                   'outlineBorder$panel',
                   'outlineBorder$inactive',
@@ -452,10 +445,10 @@ export const Field = forwardRef<HTMLDivElement, IFieldProps>(
                   'outlineBorder$inactive$panel$inactive',
                   populated && 'outlineBorder$panel$populated',
                   disabled && 'outlineBorder$inactive$panel$inactive$disabled',
-                ])}
+                )}
               />
               <div
-                {...styleProps([
+                {...sxf(
                   'outlineBorder',
                   'outlineBorder$panel',
                   'outlineBorder$active',
@@ -463,49 +456,49 @@ export const Field = forwardRef<HTMLDivElement, IFieldProps>(
                   'outlineBorder$active$panel$inactive',
                   populated && 'outlineBorder$panel$populated',
                   disabled && 'outlineBorder$active$panel$inactive$disabled',
-                ])}
+                )}
               />
             </div>
             <div
-              {...styleProps([
+              {...sxf(
                 'outlineSection',
                 'outlineSection$panel',
                 'outlineSection$panel$active',
-              ])}
+              )}
             >
               <div
-                {...styleProps([
+                {...sxf(
                   'outlineBorder',
                   'outlineBorder$panel',
                   'outlineBorder$inactive',
                   'outlineBorder$inactive$panel',
                   'outlineBorder$inactive$panel$active',
                   populated && 'outlineBorder$panel$populated',
-                ])}
+                )}
               />
               <div
-                {...styleProps([
+                {...sxf(
                   'outlineBorder',
                   'outlineBorder$panel',
                   'outlineBorder$active',
                   'outlineBorder$active$panel',
                   'outlineBorder$active$panel$active',
                   populated && 'outlineBorder$panel$populated',
-                ])}
+                )}
               />
             </div>
-            <div {...styleProps(['outlineLabel'])}>{floatingLabel}</div>
+            <div {...sxf('outlineLabel')}>{floatingLabel}</div>
           </div>
           <div
-            {...styleProps([
+            {...sxf(
               'outlineSection',
               'outlineSection$startEnd',
               'outlineSection$end',
               disabled && 'outlineSection$startEnd$disabled',
-            ])}
+            )}
           >
             <div
-              {...styleProps([
+              {...sxf(
                 'outlineBorder',
                 'outlineBorder$startEnd',
                 'outlineBorder$end',
@@ -513,95 +506,95 @@ export const Field = forwardRef<HTMLDivElement, IFieldProps>(
                 'outlineBorder$inactive$startEnd',
                 'outlineBorder$inactive$end',
                 disabled && 'outlineBorder$inactive$startEnd$disabled',
-              ])}
+              )}
             />
             <div
-              {...styleProps([
+              {...sxf(
                 'outlineBorder',
                 'outlineBorder$startEnd',
                 'outlineBorder$end',
                 'outlineBorder$active',
                 'outlineBorder$active$startEnd',
                 'outlineBorder$active$end',
-              ])}
+              )}
             />
           </div>
         </div>
       ),
-      [styleProps, hasLabel, populated, disabled, hasError, floatingLabel],
+      [sxf, hasLabel, populated, disabled, hasError, floatingLabel],
     );
 
     return (
       <div
-        {...styleProps(
-          [
-            'host',
-            !!supportingOrErrorText && 'host$withSupportingText',
-            disabled && 'host$disabled',
-            sx,
-          ],
-          [theme.vars, variantTheme?.vars],
+        {...sxf(
+          'host',
+          !!supportingOrErrorText && 'host$withSupportingText',
+          disabled && 'host$disabled',
+
+          theme.vars,
+          variantTheme?.vars,
+          sx,
         )}
         ref={ref}
         {...other}
       >
         <div
-          {...styleProps([
+          {...sxf(
             'field',
             textarea && 'field$textarea',
             disabled && 'field$disabled',
-          ])}
+          )}
         >
-          <div {...styleProps(['containerOverflow'])}>
+          <div {...sxf('containerOverflow')}>
             {variant === 'filled' ? renderBackground() : null}
             {variant === 'filled' ? renderIndicator() : null}
             {variant === 'filled' ? null : renderOutline()}
             <div
-              {...styleProps([
+              {...sxf(
                 'container',
                 resizable &&
                   (disabled
                     ? 'container$disabled$resizable'
                     : 'container$resizable'),
-              ])}
+              )}
               ref={containerRef}
             >
               {start ? (
                 <div
-                  {...styleProps([
+                  {...sxf(
                     'section',
                     'section$start',
                     resizable && 'section$resizable',
                     hasStart && 'section$start$withStart',
                     hasError && 'section$start$error',
                     disabled && 'section$start$disabled',
-                  ])}
+                  )}
                 >
                   {start}
                 </div>
               ) : null}
 
               <div
-                {...styleProps([
+                {...sxf(
                   'section',
                   resizable && 'section$resizable',
                   'section$middle',
-                ])}
+                )}
               >
                 <div
-                  {...styleProps([
+                  {...sxf(
                     'labelWrapper',
                     hasStart
                       ? 'labelWrapper$withStart'
                       : 'labelWrapper$withoutStart',
                     hasEnd ? 'labelWrapper$withEnd' : 'labelWrapper$withoutEnd',
-                  ])}
+                  )}
                 >
                   {restingLabel}
                   {variant === 'outlined' ? null : floatingLabel}
                 </div>
                 <div
-                  {...styleProps([
+                  {...sxf(
                     'content',
                     !hasLabel && 'content$noLabel',
                     populated && 'content$populated',
@@ -613,10 +606,10 @@ export const Field = forwardRef<HTMLDivElement, IFieldProps>(
                         : populated
                           ? 'content$populated$disabled'
                           : null),
-                  ])}
+                  )}
                 >
                   <div
-                    {...styleProps([
+                    {...sxf(
                       'contentSlot',
                       !hasStart && 'contentSlot$withoutStart',
                       !hasEnd && 'contentSlot$withoutEnd',
@@ -625,7 +618,7 @@ export const Field = forwardRef<HTMLDivElement, IFieldProps>(
                         (hasLabel
                           ? 'contentSlot$withLabel$textarea'
                           : 'contentSlot$textarea'),
-                    ])}
+                    )}
                   >
                     {children}
                   </div>
@@ -634,14 +627,14 @@ export const Field = forwardRef<HTMLDivElement, IFieldProps>(
 
               {end ? (
                 <div
-                  {...styleProps([
+                  {...sxf(
                     'section',
                     resizable && 'section$resizable',
                     'section$end',
                     hasEnd && 'section$end$withEnd',
                     hasError && 'section$end$error',
                     disabled && 'section$end$disabled',
-                  ])}
+                  )}
                 >
                   {end}
                 </div>

@@ -11,7 +11,7 @@ import type {
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/polymorphicComponentTypes';
-import type { IButtonStyleKey, IButtonStyleVarKey } from '../Button';
+import type { IButtonStyleKey } from './ButtonBase.styledefs';
 import { type IVisualState, useVisualState } from '@/hooks/useVisualState';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
@@ -85,12 +85,8 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],
   );
-  const styleProps = useMemo(
-    () =>
-      stylePropsFactory<IButtonStyleKey, IButtonStyleVarKey>(
-        stylesCombinator,
-        visualState,
-      ),
+  const sxf = useMemo(
+    () => stylePropsFactory<IButtonStyleKey>(stylesCombinator, visualState),
     [stylesCombinator, visualState],
   );
 
@@ -98,15 +94,13 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
 
   return (
     <Component
-      {...styleProps(
-        [
-          'host',
-          disabled && 'host$disabled',
-          withLeadingIcon && 'host$withLeadingIcon',
-          withTrailingIcon && 'host$withTrailingIcon',
-          sx,
-        ],
-        [theme.vars],
+      {...sxf(
+        'host',
+        disabled && 'host$disabled',
+        withLeadingIcon && 'host$withLeadingIcon',
+        withTrailingIcon && 'host$withTrailingIcon',
+        theme.vars,
+        sx,
       )}
       ref={handleRef}
       href={href}
@@ -115,14 +109,14 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
       disabled={disabled}
       {...other}
     >
-      <span {...styleProps(['touchTarget'])} />
+      <span {...sxf('touchTarget')} />
 
       <Elevation
         styles={[theme.elevationStyles, ...asArray(innerStyles?.elevation)]}
         disabled={disabled}
       />
-      <div {...styleProps(['outline', disabled && 'outline$disabled'])} />
-      <div {...styleProps(['background', disabled && 'background$disabled'])} />
+      <div {...sxf('outline', disabled && 'outline$disabled')} />
+      <div {...sxf('background', disabled && 'background$disabled')} />
       <FocusRing
         styles={[theme.focusRingStyles, ...asArray(innerStyles?.focusRing)]}
         for={ref}

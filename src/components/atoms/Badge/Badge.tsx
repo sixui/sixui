@@ -34,7 +34,7 @@ export const Badge = forwardRef<HTMLDivElement, IBadgeProps>(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],
     );
-    const styleProps = useMemo(
+    const sxf = useMemo(
       () =>
         stylePropsFactory<IBadgeStyleKey, IBadgeStyleVarKey>(stylesCombinator),
       [stylesCombinator],
@@ -59,17 +59,18 @@ export const Badge = forwardRef<HTMLDivElement, IBadgeProps>(
 
     return (
       <div
-        {...styleProps(
-          ['host', invisible && 'host$invisible', dot && 'host$dot', sx],
-          [theme.vars],
+        {...sxf(
+          'host',
+          invisible && 'host$invisible',
+          dot && 'host$dot',
+          theme.vars,
+          sx,
         )}
         ref={ref}
         {...other}
       >
-        <div
-          {...styleProps(['background', disabled && 'background$disabled'])}
-        />
-        <div {...styleProps(['label', disabled && 'label$disabled'])}>
+        <div {...sxf('background', disabled && 'background$disabled')} />
+        <div {...sxf('label', disabled && 'label$disabled')}>
           {displayValue}
         </div>
       </div>

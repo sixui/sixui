@@ -107,7 +107,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],
   );
-  const styleProps = useMemo(
+  const sxf = useMemo(
     () =>
       stylePropsFactory<IListItemStyleKey, IItemStyleVarKey>(
         stylesCombinator,
@@ -129,15 +129,13 @@ export const ListItem: IListItem = forwardRef(function ListItem<
 
   return (
     <Component
-      {...styleProps(
-        [
-          'host',
-          isInteractive && 'host$interactive',
-          selected && 'host$selected',
-          disabled && 'host$disabled',
-          sx,
-        ],
-        [theme.vars],
+      {...sxf(
+        'host',
+        isInteractive && 'host$interactive',
+        selected && 'host$selected',
+        disabled && 'host$disabled',
+        theme.vars,
+        sx,
       )}
       ref={handleRef}
       tabIndex={disabled || !isInteractive ? -1 : 0}
@@ -153,11 +151,11 @@ export const ListItem: IListItem = forwardRef(function ListItem<
         container={
           <>
             <div
-              {...styleProps([
+              {...sxf(
                 'background',
                 selected && 'background$selected',
                 disabled && 'background$disabled',
-              ])}
+              )}
             />
             {isInteractive ? (
               <>

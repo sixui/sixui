@@ -19,7 +19,7 @@ export const Form = forwardRef<HTMLFormElement, IFormProps>(
       () => stylesCombinatorFactory(styles),
       [styles],
     );
-    const styleProps = useMemo(
+    const sxf = useMemo(
       () => stylePropsFactory<IFormStyleKey>(stylesCombinator),
       [stylesCombinator],
     );
@@ -50,7 +50,7 @@ export const Form = forwardRef<HTMLFormElement, IFormProps>(
 
     return (
       <form
-        {...styleProps(['host', sx])}
+        {...sxf('host', sx)}
         ref={handleRef}
         onInvalid={handleInvalid}
         {...other}

@@ -85,7 +85,7 @@ export const Radio: IRadio = forwardRef(function Radio<
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],
   );
-  const styleProps = useMemo(
+  const sxf = useMemo(
     () =>
       stylePropsFactory<IRadioStyleKey, IRadioStyleVarKey>(
         stylesCombinator,
@@ -122,10 +122,8 @@ export const Radio: IRadio = forwardRef(function Radio<
     : false;
 
   return (
-    <div
-      {...styleProps(['host', disabled && 'host$disabled', sx], [theme.vars])}
-    >
-      <div {...styleProps(['container', checked && 'container$checked'])}>
+    <div {...sxf('host', disabled && 'host$disabled', theme.vars, sx)}>
+      <div {...sxf('container', checked && 'container$checked')}>
         <StateLayer
           for={actionRef}
           styles={[theme.stateLayerStyles, ...asArray(innerStyles?.stateLayer)]}
@@ -139,11 +137,11 @@ export const Radio: IRadio = forwardRef(function Radio<
         />
 
         <svg
-          {...styleProps([
+          {...sxf(
             'icon',
             checked && 'icon$checked',
             disabled && (checked ? 'icon$checked$disabled' : 'icon$disabled'),
-          ])}
+          )}
           viewBox='0 0 20 20'
         >
           <mask id={maskId}>
@@ -151,18 +149,18 @@ export const Radio: IRadio = forwardRef(function Radio<
             <circle cx='10' cy='10' r='8' fill='black' />
           </mask>
           <circle
-            {...styleProps(['circle$outer', disabled && 'circle$disabled'])}
+            {...sxf('circle$outer', disabled && 'circle$disabled')}
             cx='10'
             cy='10'
             r='10'
             mask={`url(#${maskId})`}
           />
           <circle
-            {...styleProps([
+            {...sxf(
               'circle$inner',
               checked && 'circle$inner$checked',
               disabled && 'circle$disabled',
-            ])}
+            )}
             cx='10'
             cy='10'
             r='5'
@@ -170,7 +168,7 @@ export const Radio: IRadio = forwardRef(function Radio<
         </svg>
 
         <Component
-          {...styleProps(['input'])}
+          {...sxf('input')}
           ref={handleRef}
           name={name}
           type='radio'

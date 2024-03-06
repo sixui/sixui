@@ -52,7 +52,7 @@ export const VariableTemplate = forwardRef<
     () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
     [theme.styles, variantTheme?.styles, styles],
   );
-  const styleProps = useMemo(
+  const sxf = useMemo(
     () =>
       stylePropsFactory<ITemplateStyleKey, ITemplateStyleVarKey>(
         stylesCombinator,
@@ -63,7 +63,7 @@ export const VariableTemplate = forwardRef<
 
   return (
     <div
-      {...styleProps(['host', sx], [theme.vars, variantTheme?.vars])}
+      {...sxf('host', theme.vars, variantTheme?.vars, sx)}
       ref={handleRef}
       {...other}
     >

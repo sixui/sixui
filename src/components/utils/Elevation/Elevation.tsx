@@ -23,7 +23,7 @@ export const Elevation = forwardRef<HTMLDivElement, IElevationProps>(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],
     );
-    const styleProps = useMemo(
+    const sxf = useMemo(
       () =>
         stylePropsFactory<IElevationStyleKey, IElevationStyleVarKey>(
           stylesCombinator,
@@ -33,14 +33,12 @@ export const Elevation = forwardRef<HTMLDivElement, IElevationProps>(
 
     return (
       <div
-        {...styleProps(
-          [
-            'host',
-            level !== undefined && `host$level${level}`,
-            disabled && 'host$disabled',
-            sx,
-          ],
-          [theme.vars],
+        {...sxf(
+          'host',
+          level !== undefined && `host$level${level}`,
+          disabled && 'host$disabled',
+          theme.vars,
+          sx,
         )}
         ref={ref}
         aria-hidden

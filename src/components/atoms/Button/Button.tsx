@@ -20,7 +20,10 @@ import {
   type ICircularProgressIndicatorStyleKey,
   IndeterminateCircularProgressIndicator,
 } from '@/components/atoms/CircularProgressIndicator';
-import { ButtonBase, type IButtonBaseOwnProps } from './ButtonBase';
+import {
+  ButtonBase,
+  type IButtonBaseOwnProps,
+} from '@/components/atoms/ButtonBase';
 
 // https://github.com/material-components/material-web/blob/main/button/internal/button.ts
 // https://github.com/material-components/material-web/blob/main/button/internal/elevated-button.ts
@@ -98,10 +101,15 @@ export const Button: IButton = forwardRef(function Button<
     variant ? variantMap[variant] : undefined,
   );
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
+    () =>
+      stylesCombinatorFactory<IButtonStyleKey>(
+        theme.styles,
+        variantTheme?.styles,
+        styles,
+      ),
     [theme.styles, variantTheme?.styles, styles],
   );
-  const styleProps = useMemo(
+  const sxf = useMemo(
     () =>
       stylePropsFactory<IButtonStyleKey, IButtonStyleVarKey>(stylesCombinator),
     [stylesCombinator],
@@ -182,11 +190,11 @@ export const Button: IButton = forwardRef(function Button<
     >
       {hasLeadingIcon ? (
         <div
-          {...styleProps([
+          {...sxf(
             'icon',
             disabled && 'icon$disabled',
             hasOverlay ? 'invisible' : null,
-          ])}
+          )}
         >
           {loading ? (
             <IndeterminateCircularProgressIndicator
@@ -198,10 +206,7 @@ export const Button: IButton = forwardRef(function Button<
             />
           ) : icon ? (
             <div
-              {...styleProps([
-                'icon',
-                iconAnimation && `icon$${iconAnimation}`,
-              ])}
+              {...sxf('icon', iconAnimation && `icon$${iconAnimation}`)}
               onAnimationIteration={handleAnimationIteration}
             >
               {icon}
@@ -212,24 +217,24 @@ export const Button: IButton = forwardRef(function Button<
 
       {children ? (
         <span
-          {...styleProps([
+          {...sxf(
             'label',
             disabled && 'label$disabled',
             hasOverlay ? 'invisible' : null,
-          ])}
+          )}
         >
           {children}
         </span>
       ) : null}
 
       {hasOverlay ? (
-        <div {...styleProps(['overlay'])}>
+        <div {...sxf('overlay')}>
           {loadingText ? (
-            <span {...styleProps(['label', disabled && 'label$disabled'])}>
+            <span {...sxf('label', disabled && 'label$disabled')}>
               {loadingText}
             </span>
           ) : (
-            <div {...styleProps([disabled && 'icon$disabled'])}>
+            <div {...sxf(disabled && 'icon$disabled')}>
               <IndeterminateCircularProgressIndicator
                 styles={[
                   theme.circularProgressIndicatorStyles,
@@ -245,10 +250,10 @@ export const Button: IButton = forwardRef(function Button<
       {icon && trailingIcon ? (
         loading ? (
           <div
-            {...styleProps([
+            {...sxf(
               hasOverlay ? 'invisible' : null,
               disabled && 'icon$disabled',
-            ])}
+            )}
           >
             <IndeterminateCircularProgressIndicator
               styles={[
@@ -260,11 +265,11 @@ export const Button: IButton = forwardRef(function Button<
           </div>
         ) : (
           <div
-            {...styleProps([
+            {...sxf(
               'icon',
               disabled && 'icon$disabled',
               iconAnimation && `icon$${iconAnimation}`,
-            ])}
+            )}
             onAnimationIteration={handleAnimationIteration}
           >
             {icon}

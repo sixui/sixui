@@ -128,7 +128,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],
   );
-  const styleProps = useMemo(
+  const sxf = useMemo(
     () =>
       stylePropsFactory<ISwitchStyleKey, ISwitchStyleVarKey>(
         stylesCombinator,
@@ -168,12 +168,10 @@ export const Switch: ISwitch = forwardRef(function Switch<
   const shouldShowIcons = icons || showOnlySelectedIcon;
 
   return (
-    <div
-      {...styleProps(['host', disabled && 'host$disabled', sx], [theme.vars])}
-    >
-      <div {...styleProps(['switch', selected && 'switch$selected'])}>
+    <div {...sxf('host', disabled && 'host$disabled', theme.vars, sx)}>
+      <div {...sxf('switch', selected && 'switch$selected')}>
         <Component
-          {...styleProps(['input'])}
+          {...sxf('input')}
           ref={handleRef}
           type='checkbox'
           role='switch'
@@ -189,9 +187,9 @@ export const Switch: ISwitch = forwardRef(function Switch<
           visualState={visualState}
         />
 
-        <span {...styleProps(['track'])}>
+        <span {...sxf('track')}>
           <div
-            {...styleProps([
+            {...sxf(
               'background',
               disabled && 'background$disabled',
               'trackBackground',
@@ -200,14 +198,14 @@ export const Switch: ISwitch = forwardRef(function Switch<
                 (selected
                   ? 'trackBackground$disabled$selected'
                   : 'trackBackground$disabled'),
-            ])}
+            )}
           />
           <span
-            {...styleProps([
+            {...sxf(
               'handleContainer',
               selected && 'handleContainer$selected',
               disabled && 'handleContainer$disabled',
-            ])}
+            )}
           >
             <StateLayer
               styles={[
@@ -219,17 +217,17 @@ export const Switch: ISwitch = forwardRef(function Switch<
               visualState={visualState}
             />
             <span
-              {...styleProps([
+              {...sxf(
                 'handle',
                 selected && 'handle$selected',
                 loading && 'handle$loading',
                 disabled &&
                   (selected ? 'handle$disabled$selected' : 'handle$disabled'),
                 (showOnlySelectedIcon ? selected : icons) && 'handle$withIcon',
-              ])}
+              )}
             >
               <div
-                {...styleProps([
+                {...sxf(
                   'background',
                   'handleBackground',
                   selected && 'handleBackground$selected',
@@ -237,19 +235,19 @@ export const Switch: ISwitch = forwardRef(function Switch<
                     (selected
                       ? 'handleBackground$disabled$selected'
                       : 'handleBackground$disabled'),
-                ])}
+                )}
               />
 
               {shouldShowIcons ? (
-                <div {...styleProps(['icons'])}>
+                <div {...sxf('icons')}>
                   <div
-                    {...styleProps([
+                    {...sxf(
                       'icon',
                       !loading &&
                         (selected ? 'icon$size$selected' : 'icon$size'),
                       selected && 'icon$on$selected',
                       selected && disabled && 'icon$on$selected$disabled',
-                    ])}
+                    )}
                   >
                     {loading ? (
                       <IndeterminateCircularProgressIndicator
@@ -267,13 +265,13 @@ export const Switch: ISwitch = forwardRef(function Switch<
 
                   {showOnlySelectedIcon ? null : (
                     <div
-                      {...styleProps([
+                      {...sxf(
                         'icon',
                         !loading &&
                           (selected ? 'icon$size$selected' : 'icon$size'),
                         !selected && 'icon$on',
                         !selected && disabled && 'icon$on$disabled',
-                      ])}
+                      )}
                     >
                       {loading ? (
                         <IndeterminateCircularProgressIndicator

@@ -59,7 +59,7 @@ export const Paper = forwardRef<HTMLDivElement, IPaperProps>(
       () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
       [theme.styles, variantTheme?.styles, styles],
     );
-    const styleProps = useMemo(
+    const sxf = useMemo(
       () =>
         stylePropsFactory<IPaperStyleKey, IPaperStyleVarKey>(stylesCombinator),
       [stylesCombinator],
@@ -69,9 +69,13 @@ export const Paper = forwardRef<HTMLDivElement, IPaperProps>(
 
     return (
       <div
-        {...styleProps(
-          ['host', `host$elevation${elevation}`, square && 'host$square', sx],
-          [theme.vars, variantTheme?.vars],
+        {...sxf(
+          'host',
+          `host$elevation${elevation}`,
+          square && 'host$square',
+          theme.vars,
+          variantTheme?.vars,
+          sx,
         )}
         ref={ref}
         {...other}
@@ -83,9 +87,9 @@ export const Paper = forwardRef<HTMLDivElement, IPaperProps>(
             ...asArray(props.elevationStyles),
           ]}
         />
-        <div {...styleProps(['outline'])} />
-        <div {...styleProps(['background'])} />
-        <div {...styleProps(['content'])}>{children}</div>
+        <div {...sxf('outline')} />
+        <div {...sxf('background')} />
+        <div {...sxf('content')}>{children}</div>
       </div>
     );
   },

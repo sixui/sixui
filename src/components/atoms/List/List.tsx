@@ -19,14 +19,14 @@ export const List = forwardRef<HTMLDivElement, IListProps>(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],
     );
-    const styleProps = useMemo(
+    const sxf = useMemo(
       () =>
         stylePropsFactory<IListStyleKey, IListStyleVarKey>(stylesCombinator),
       [stylesCombinator],
     );
 
     return (
-      <div {...styleProps(['host', sx])} ref={ref} {...other}>
+      <div {...sxf('host', sx)} ref={ref} {...other}>
         {children}
       </div>
     );

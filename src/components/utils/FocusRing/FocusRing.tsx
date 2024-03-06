@@ -39,7 +39,7 @@ export const FocusRing = forwardRef<HTMLInputElement, IFocusRingProps>(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],
     );
-    const styleProps = useMemo(
+    const sxf = useMemo(
       () =>
         stylePropsFactory<IFocusRingStyleKey, IFocusRingStyleVarKey>(
           stylesCombinator,
@@ -105,14 +105,12 @@ export const FocusRing = forwardRef<HTMLInputElement, IFocusRingProps>(
     return (
       <div
         ref={handleRef}
-        {...styleProps(
-          [
-            'host',
-            (visible || visibleOnInit) && 'host$visible',
-            inward ? 'host$inward' : 'host$outward',
-            sx,
-          ],
-          [theme.vars],
+        {...sxf(
+          'host',
+          (visible || visibleOnInit) && 'host$visible',
+          inward ? 'host$inward' : 'host$outward',
+          theme.vars,
+          sx,
         )}
       />
     );

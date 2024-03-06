@@ -41,7 +41,7 @@ export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],
     );
-    const styleProps = useMemo(
+    const sxf = useMemo(
       () =>
         stylePropsFactory<IAvatarStyleKey, IAvatarStyleVarKey>(
           stylesCombinator,
@@ -60,10 +60,10 @@ export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
     const hasImageNotFailing = hasImage && !hasLoadingError;
 
     return (
-      <div {...styleProps(['host', sx], [theme.vars])} ref={ref} {...other}>
+      <div {...sxf('host', theme.vars, sx)} ref={ref} {...other}>
         {hasImageNotFailing ? (
           <img
-            {...styleProps(['image'])}
+            {...sxf('image')}
             alt={alt}
             crossOrigin={crossOrigin}
             referrerPolicy={referrerPolicy}
@@ -72,14 +72,11 @@ export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
             sizes={sizes}
           />
         ) : children ? (
-          <div {...styleProps(['content'])}>{children}</div>
+          <div {...sxf('content')}>{children}</div>
         ) : hasImage && !!alt ? (
-          <div {...styleProps(['content'])}>{alt[0]}</div>
+          <div {...sxf('content')}>{alt[0]}</div>
         ) : (
-          <Person
-            {...styleProps(['content', 'content$fallback'])}
-            aria-hidden
-          />
+          <Person {...sxf('content', 'content$fallback')} aria-hidden />
         )}
       </div>
     );

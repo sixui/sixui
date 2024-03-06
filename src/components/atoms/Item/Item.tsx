@@ -40,48 +40,42 @@ export const Item = forwardRef<HTMLDivElement, IItemProps>(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],
     );
-    const styleProps = useMemo(
+    const sxf = useMemo(
       () =>
         stylePropsFactory<IItemStyleKey, IItemStyleVarKey>(stylesCombinator),
       [stylesCombinator],
     );
 
     return (
-      <div {...styleProps(['host', sx], [theme.vars])} ref={ref} {...other}>
-        {container ? (
-          <div {...styleProps(['container'])}>{container}</div>
-        ) : null}
+      <div {...sxf('host', theme.vars, sx)} ref={ref} {...other}>
+        {container ? <div {...sxf('container')}>{container}</div> : null}
 
         {start ? (
-          <div {...styleProps(['nonText'])}>
-            <div {...styleProps(['center', 'start'])}>{start}</div>
+          <div {...sxf('nonText')}>
+            <div {...sxf('center', 'start')}>{start}</div>
           </div>
         ) : null}
 
-        <div {...styleProps(['text'])}>
-          {overline ? (
-            <div {...styleProps(['overline'])}>{overline}</div>
-          ) : null}
-          <div {...styleProps(['children'])}>{children}</div>
-          {headline ? (
-            <div {...styleProps(['headline'])}>{headline}</div>
-          ) : null}
+        <div {...sxf('text')}>
+          {overline ? <div {...sxf('overline')}>{overline}</div> : null}
+          <div {...sxf('children')}>{children}</div>
+          {headline ? <div {...sxf('headline')}>{headline}</div> : null}
           {supportingText ? (
-            <div {...styleProps(['supportingText'])}>{supportingText}</div>
+            <div {...sxf('supportingText')}>{supportingText}</div>
           ) : null}
         </div>
 
         {trailingSupportingText ? (
-          <div {...styleProps(['nonText'])}>
-            <div {...styleProps(['center', 'trailingSupportingText'])}>
+          <div {...sxf('nonText')}>
+            <div {...sxf('center', 'trailingSupportingText')}>
               {trailingSupportingText}
             </div>
           </div>
         ) : null}
 
         {end ? (
-          <div {...styleProps(['nonText'])}>
-            <div {...styleProps(['center', 'end'])}>{end}</div>
+          <div {...sxf('nonText')}>
+            <div {...sxf('center', 'end')}>{end}</div>
           </div>
         ) : null}
       </div>

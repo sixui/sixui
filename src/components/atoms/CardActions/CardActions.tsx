@@ -21,13 +21,13 @@ export const CardActions: React.FC<ICardActionsProps> = forwardRef<
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],
   );
-  const styleProps = useMemo(
+  const sxf = useMemo(
     () => stylePropsFactory<ICardActionsStyleKey>(stylesCombinator),
     [stylesCombinator],
   );
 
   return (
-    <div {...styleProps(['host', sx])} ref={ref} {...other}>
+    <div {...sxf('host', sx)} ref={ref} {...other}>
       {children}
     </div>
   );

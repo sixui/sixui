@@ -28,19 +28,19 @@ export const CardMedia = forwardRef<HTMLDivElement, ICardMediaProps>(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],
     );
-    const styleProps = useMemo(
+    const sxf = useMemo(
       () => stylePropsFactory<ICardMediaStyleKey>(stylesCombinator),
       [stylesCombinator],
     );
 
     return (
       <div
-        {...styleProps([
+        {...sxf(
           'host',
           'host$image',
           src ? dynamicStyles.image(src) : undefined,
           sx,
-        ])}
+        )}
         role='img'
         ref={ref}
         {...other}

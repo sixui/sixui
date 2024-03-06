@@ -24,7 +24,7 @@ export const CardTitle = forwardRef<HTMLDivElement, ICardTitleProps>(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],
     );
-    const styleProps = useMemo(
+    const sxf = useMemo(
       () =>
         stylePropsFactory<ICardTitleStyleKey, ICardTitleStyleVarKey>(
           stylesCombinator,
@@ -33,15 +33,13 @@ export const CardTitle = forwardRef<HTMLDivElement, ICardTitleProps>(
     );
 
     return (
-      <div {...styleProps(['host', sx], [theme.vars])} ref={ref} {...other}>
-        <div {...styleProps(['header'])}>
-          {headline ? (
-            <div {...styleProps(['headline'])}>{headline}</div>
-          ) : null}
-          {subhead ? <div {...styleProps(['subhead'])}>{subhead}</div> : null}
+      <div {...sxf('host', theme.vars, sx)} ref={ref} {...other}>
+        <div {...sxf('header')}>
+          {headline ? <div {...sxf('headline')}>{headline}</div> : null}
+          {subhead ? <div {...sxf('subhead')}>{subhead}</div> : null}
         </div>
         {supportingText ? (
-          <div {...styleProps(['supportingText'])}>{supportingText}</div>
+          <div {...sxf('supportingText')}>{supportingText}</div>
         ) : null}
       </div>
     );

@@ -34,7 +34,7 @@ export const Anchored = forwardRef<HTMLDivElement, IAnchoredProps>(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],
     );
-    const styleProps = useMemo(
+    const sxf = useMemo(
       () => stylePropsFactory<IAnchoredStyleKey>(stylesCombinator),
       [stylesCombinator],
     );
@@ -59,15 +59,15 @@ export const Anchored = forwardRef<HTMLDivElement, IAnchoredProps>(
             : 'content$circular$bottom$left';
 
     return (
-      <div {...styleProps(['host', sx])} ref={ref} {...other}>
+      <div {...sxf('host', sx)} ref={ref} {...other}>
         {children}
 
         <div
-          {...styleProps([
+          {...sxf(
             'content',
             contentPositionClassname,
             invisible && `${contentPositionClassname}$invisible`,
-          ])}
+          )}
         >
           {content}
         </div>

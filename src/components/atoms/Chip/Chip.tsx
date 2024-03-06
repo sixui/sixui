@@ -43,9 +43,9 @@ import {
 } from '@/components/atoms/CircularProgressIndicator';
 import { ReactComponent as CheckMark } from '@/assets/CheckMark.svg';
 import { ReactComponent as XMark } from '@/assets/XMark.svg';
-import { Avatar } from '../Avatar';
 import { useForkRef } from '@/hooks/useForkRef';
-import { ButtonBase } from '../Button';
+import { ButtonBase } from '@/components/atoms/ButtonBase';
+import { Avatar } from '../Avatar';
 
 // https://github.com/material-components/material-web/blob/main/chips/internal/chip.ts
 // https://github.com/material-components/material-web/blob/main/chips/internal/assist-chip.ts
@@ -165,7 +165,7 @@ export const Chip: IChip = forwardRef(function Chip<
     () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
     [theme.styles, variantTheme?.styles, styles],
   );
-  const styleProps = useMemo(
+  const sxf = useMemo(
     () =>
       stylePropsFactory<IChipStyleKey, IChipStyleVarKey>(
         stylesCombinator,
@@ -300,17 +300,21 @@ export const Chip: IChip = forwardRef(function Chip<
 
   return (
     <div
-      {...styleProps(
-        ['host', disabled && 'host$disabled', avatar && 'host$avatar', sx],
-        [theme.vars, variantTheme?.vars],
+      {...sxf(
+        'host',
+        disabled && 'host$disabled',
+        avatar && 'host$avatar',
+        theme.vars,
+        variantTheme?.vars,
+        sx,
       )}
     >
       <div
-        {...styleProps([
+        {...sxf(
           'container',
           containerStyle,
           disabled && `${containerStyle}$disabled`,
-        ])}
+        )}
       >
         <Elevation
           styles={[
@@ -322,11 +326,11 @@ export const Chip: IChip = forwardRef(function Chip<
         />
         {elevated ? null : (
           <span
-            {...styleProps([
+            {...sxf(
               'outline',
               selected && 'outline$selected',
               disabled && 'outline$disabled',
-            ])}
+            )}
           />
         )}
         <FocusRing
@@ -350,13 +354,13 @@ export const Chip: IChip = forwardRef(function Chip<
         />
 
         <Component
-          {...styleProps([
+          {...sxf(
             'action',
             'action$primary',
             hasLeading && 'action$primary$hasLeading',
             hasTrailing && 'action$primary$hasTrailing',
             avatar && 'action$primary$avatar',
-          ])}
+          )}
           ref={primaryHandleRef}
           href={href}
           onClick={href ? undefined : handleClick}
@@ -368,12 +372,12 @@ export const Chip: IChip = forwardRef(function Chip<
         >
           {hasLeading ? (
             <div
-              {...styleProps([
+              {...sxf(
                 'icon',
                 'icon$leading',
                 disabled ? 'icon$disabled' : selected && 'icon$selected',
                 avatar && 'icon$avatar',
-              ])}
+              )}
             >
               {loading ? (
                 !loadingText ? (
@@ -397,26 +401,24 @@ export const Chip: IChip = forwardRef(function Chip<
 
           <div style={hasTrailing ? { position: 'relative' } : undefined}>
             <span
-              {...styleProps([
+              {...sxf(
                 'label',
                 selected && 'label$selected',
                 disabled && 'label$disabled',
                 hasOverlay ? 'invisible' : null,
-              ])}
+              )}
             >
               {label}
             </span>
 
             {hasOverlay ? (
-              <div {...styleProps(['overlay'])}>
+              <div {...sxf('overlay')}>
                 {loadingText ? (
-                  <span
-                    {...styleProps(['label', disabled && 'label$disabled'])}
-                  >
+                  <span {...sxf('label', disabled && 'label$disabled')}>
                     {loadingText}
                   </span>
                 ) : (
-                  <div {...styleProps([disabled && 'icon$disabled'])}>
+                  <div {...sxf(disabled && 'icon$disabled')}>
                     <IndeterminateCircularProgressIndicator
                       styles={[
                         theme.circularProgressIndicatorStyles,
@@ -430,7 +432,7 @@ export const Chip: IChip = forwardRef(function Chip<
             ) : null}
           </div>
 
-          <span {...styleProps(['touchTarget'])}></span>
+          <span {...sxf('touchTarget')}></span>
         </Component>
 
         {isDeletable ? (
@@ -457,17 +459,17 @@ export const Chip: IChip = forwardRef(function Chip<
             disabled={disabled}
           >
             <span
-              {...styleProps([
+              {...sxf(
                 'icon',
                 'icon$trailing',
                 disabled
                   ? 'icon$disabled'
                   : selected && 'icon$trailing$selected',
-              ])}
+              )}
               aria-hidden
             >
               {deleting ? (
-                <div {...styleProps(['overlay'])}>
+                <div {...sxf('overlay')}>
                   <IndeterminateCircularProgressIndicator
                     styles={[
                       theme.circularProgressIndicatorStyles,

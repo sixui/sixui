@@ -23,7 +23,7 @@ export const CardContent = forwardRef<HTMLDivElement, ICardContentProps>(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],
     );
-    const styleProps = useMemo(
+    const sxf = useMemo(
       () =>
         stylePropsFactory<ICardContentStyleKey, ICardContentStyleVarKey>(
           stylesCombinator,
@@ -36,10 +36,7 @@ export const CardContent = forwardRef<HTMLDivElement, ICardContentProps>(
 
     return (
       <div
-        {...styleProps(
-          ['host', actionable ? 'host$actionable' : null, sx],
-          [theme.vars],
-        )}
+        {...sxf('host', actionable ? 'host$actionable' : null, theme.vars, sx)}
         ref={ref}
         {...other}
       >

@@ -29,7 +29,7 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],
     );
-    const styleProps = useMemo(
+    const sxf = useMemo(
       () =>
         stylePropsFactory<IStateLayerStyleKey, IStateLayerStyleVarKey>(
           stylesCombinator,
@@ -45,15 +45,15 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
     const handleRef = useForkRef(ref, setHostRef);
 
     return (
-      <div ref={handleRef} {...styleProps(['host', sx], [theme.vars])}>
+      <div ref={handleRef} {...sxf('host', theme.vars, sx)}>
         <div
-          {...styleProps([
+          {...sxf(
             'rippleSurface',
             visualState?.hovered && 'rippleSurface$hover',
             pressed && 'rippleSurface$pressed',
             !pressed && visualState?.pressed && 'rippleSurface$pressedStatic',
             visualState?.dragged && 'rippleSurface$dragged',
-          ])}
+          )}
           ref={surfaceRef}
         />
       </div>

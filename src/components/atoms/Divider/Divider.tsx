@@ -37,7 +37,7 @@ export const Divider = forwardRef<HTMLDivElement, IDividerProps>(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],
     );
-    const styleProps = useMemo(
+    const sxf = useMemo(
       () =>
         stylePropsFactory<IDividerStyleKey, IDividerStyleVarKey>(
           stylesCombinator,
@@ -47,15 +47,13 @@ export const Divider = forwardRef<HTMLDivElement, IDividerProps>(
 
     return (
       <div
-        {...styleProps(
-          [
-            'host',
-            inset && 'host$inset',
-            insetStart && 'host$insetStart',
-            insetEnd && 'host$insetEnd',
-            sx,
-          ],
-          [theme.vars],
+        {...sxf(
+          'host',
+          inset && 'host$inset',
+          insetStart && 'host$insetStart',
+          insetEnd && 'host$insetEnd',
+          theme.vars,
+          sx,
         )}
         ref={ref}
         {...other}

@@ -23,9 +23,9 @@ import { isProduction } from '@/helpers/isProduction';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { isFragment } from '@/helpers/isFragment';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { ButtonBase } from '@/components/atoms/ButtonBase';
 
 import { ReactComponent as EllipsisHorizontal } from '@/assets/EllipsisHorizontal.svg';
-import { ButtonBase } from '../Button';
 
 export type IBreadcrumbsProps = IContainerProps<IBreadcrumbsStyleKey> & {
   innerStyles?: {
@@ -63,7 +63,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],
     );
-    const styleProps = useMemo(
+    const sxf = useMemo(
       () =>
         stylePropsFactory<IBreadcrumbsStyleKey, IBreadcrumbsStyleVarKey>(
           stylesCombinator,
@@ -84,7 +84,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
                   <li
                     aria-hidden
                     key={`separator-${index}`}
-                    {...styleProps(['item', 'separator'])}
+                    {...sxf('item', 'separator')}
                   >
                     {separator}
                   </li>,
@@ -92,7 +92,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
               : [...acc, current],
           [] as Array<JSX.Element>,
         ),
-      [styleProps, separator, trailing],
+      [sxf, separator, trailing],
     );
 
     const renderItemsBeforeAndAfter = (
@@ -124,7 +124,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
 
       return [
         ...items.slice(0, itemCountBeforeCollapse),
-        <li key='ellipsis' {...styleProps(['item'])}>
+        <li key='ellipsis' {...sxf('item')}>
           <ButtonBase
             styles={[
               theme.expandButtonStyles,
@@ -140,7 +140,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
             key='ellipsis'
             onClick={handleClickExpand}
           >
-            <EllipsisHorizontal {...styleProps(['icon'])} aria-hidden />
+            <EllipsisHorizontal {...sxf('icon')} aria-hidden />
           </ButtonBase>
         </li>,
         ...items.slice(items.length - itemCountAfterCollapse, items.length),
@@ -164,13 +164,13 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
         return isValidElement(child);
       })
       .map((child, index) => (
-        <li {...styleProps(['item'])} key={`child-${index}`}>
+        <li {...sxf('item')} key={`child-${index}`}>
           {child}
         </li>
       ));
 
     return (
-      <ol {...styleProps(['host', sx], [theme.vars])} ref={ref} {...other}>
+      <ol {...sxf('host', theme.vars, sx)} ref={ref} {...other}>
         {insertSeparators(
           expanded || (maxItems !== undefined && allItems.length <= maxItems)
             ? allItems

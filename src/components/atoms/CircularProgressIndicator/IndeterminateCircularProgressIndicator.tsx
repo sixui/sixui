@@ -39,7 +39,7 @@ export const IndeterminateCircularProgressIndicator = forwardRef<
       ),
     [theme.styles, variantTheme?.styles, styles],
   );
-  const styleProps = useMemo(
+  const sxf = useMemo(
     () =>
       stylePropsFactory<
         IIndeterminateCircularProgressIndicatorStyleKey,
@@ -49,37 +49,33 @@ export const IndeterminateCircularProgressIndicator = forwardRef<
   );
 
   return (
-    <div
-      {...styleProps(['host', `host$${size}`, sx], [theme.vars])}
-      ref={ref}
-      {...other}
-    >
+    <div {...sxf('host', `host$${size}`, theme.vars, sx)} ref={ref} {...other}>
       <div
-        {...styleProps(['layer', 'progress', `progress$${size}`])}
+        {...sxf('layer', 'progress', `progress$${size}`)}
         role='progressbar'
         aria-label={props['aria-label'] || undefined}
       >
-        <div {...styleProps(['layer', 'spinner'])}>
-          <div {...styleProps(['layer', 'left'])}>
+        <div {...sxf('layer', 'spinner')}>
+          <div {...sxf('layer', 'left')}>
             <div
-              {...styleProps([
+              {...sxf(
                 'layer',
                 'circle',
                 `circle$${size}`,
                 'leftCircle',
                 disabled && 'circle$disabled',
-              ])}
+              )}
             />
           </div>
-          <div {...styleProps(['layer', 'right'])}>
+          <div {...sxf('layer', 'right')}>
             <div
-              {...styleProps([
+              {...sxf(
                 'layer',
                 'circle',
                 `circle$${size}`,
                 'rightCircle',
                 disabled && 'circle$disabled',
-              ])}
+              )}
             />
           </div>
         </div>

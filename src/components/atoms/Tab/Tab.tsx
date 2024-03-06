@@ -120,7 +120,7 @@ export const Tab: ITab = forwardRef(function Tab<
     () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
     [theme.styles, variantTheme?.styles, styles],
   );
-  const styleProps = useMemo(
+  const sxf = useMemo(
     () =>
       stylePropsFactory<ITabStyleKey, ITabStyleVarKey>(
         stylesCombinator,
@@ -156,11 +156,11 @@ export const Tab: ITab = forwardRef(function Tab<
   const indicator = useMemo(
     () => (
       <div
-        {...styleProps(['indicator', active && 'indicator$active'])}
+        {...sxf('indicator', active && 'indicator$active')}
         ref={indicatorRef}
       />
     ),
-    [styleProps, active],
+    [sxf, active],
   );
 
   useEffect(() => {
@@ -175,33 +175,33 @@ export const Tab: ITab = forwardRef(function Tab<
     (): React.ReactNode | null =>
       active && activeIcon ? (
         <div
-          {...styleProps(['icon', 'icon$active', disabled && 'icon$disabled'])}
+          {...sxf('icon', 'icon$active', disabled && 'icon$disabled')}
           aria-hidden
         >
           {activeIcon}
         </div>
       ) : icon ? (
         <div
-          {...styleProps([
-            'icon',
-            active && 'icon$active',
-            disabled && 'icon$disabled',
-          ])}
+          {...sxf('icon', active && 'icon$active', disabled && 'icon$disabled')}
           aria-hidden
         >
           {icon}
         </div>
       ) : null,
-    [active, icon, activeIcon, styleProps, disabled],
+    [active, icon, activeIcon, sxf, disabled],
   );
 
   const Component = as ?? (href ? 'a' : DEFAULT_TAG);
 
   return (
     <Component
-      {...styleProps(
-        ['host', active && 'host$active', disabled && 'host$disabled', sx],
-        [theme.vars, variantTheme?.vars],
+      {...sxf(
+        'host',
+        active && 'host$active',
+        disabled && 'host$disabled',
+        theme.vars,
+        variantTheme?.vars,
+        sx,
       )}
       ref={handleRef}
       role='tab'
@@ -219,7 +219,7 @@ export const Tab: ITab = forwardRef(function Tab<
         ]}
         disabled={disabled}
       />
-      <div {...styleProps(['background', disabled && 'background$disabled'])} />
+      <div {...sxf('background', disabled && 'background$disabled')} />
       <StateLayer
         styles={[
           theme.stateLayerStyles,
@@ -240,11 +240,11 @@ export const Tab: ITab = forwardRef(function Tab<
         visualState={visualState}
       />
       <div
-        {...styleProps([
+        {...sxf(
           'content',
           stacked && 'content$stacked',
           stacked && hasIcon && hasLabel && 'content$stacked$hasIcon$hasLabel',
-        ])}
+        )}
         role='presentation'
       >
         {hasIcon ? (
@@ -262,13 +262,13 @@ export const Tab: ITab = forwardRef(function Tab<
         ) : null}
 
         {label ? (
-          <div {...styleProps(['labelContainer'])}>
+          <div {...sxf('labelContainer')}>
             <div
-              {...styleProps([
+              {...sxf(
                 'label',
                 active && 'label$active',
                 disabled && 'label$disabled',
-              ])}
+              )}
             >
               {label}
             </div>

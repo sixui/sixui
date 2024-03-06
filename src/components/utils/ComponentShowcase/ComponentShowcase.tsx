@@ -48,7 +48,7 @@ export const ComponentShowcase = <TComponentProps,>(
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],
   );
-  const styleProps = useMemo(
+  const sxf = useMemo(
     () =>
       stylePropsFactory<
         IComponentShowcaseStyleKey,
@@ -67,31 +67,31 @@ export const ComponentShowcase = <TComponentProps,>(
   const nonEmptyRowsProps = rowsProps ?? [placeholder];
 
   return (
-    <div {...styleProps(['host', 'cols', 'gap$md', sx], [theme.vars])}>
+    <div {...sxf('host', 'cols', 'gap$md', theme.vars, sx)}>
       {shouldShowRowLegends && rowLegendPosition === 'start' ? (
-        <div {...styleProps(['rows', 'gap$lg'])}>
+        <div {...sxf('rows', 'gap$lg')}>
           {shouldShowColLegends ? (
-            <div {...styleProps(['legend', 'invisible'])} aria-hidden>
+            <div {...sxf('legend', 'invisible')} aria-hidden>
               {DUMMY_TEXT}
             </div>
           ) : null}
 
-          <div {...styleProps(['flex', 'groupRows'])}>
+          <div {...sxf('flex', 'groupRows')}>
             {nonEmptyGroupsProps.map((_, groupIndex) => (
               <div
-                {...styleProps(['flex', 'rows', 'gap$lg'])}
+                {...sxf('flex', 'rows', 'gap$lg')}
                 key={`$legend-${groupIndex}`}
               >
                 {nonEmptyRowsProps.map(({ $legend: rowLegend }, rowIndex) => (
                   <div
-                    {...styleProps([
+                    {...sxf(
                       'flex',
                       'legendRow',
                       'justifyEnd',
                       'textRight',
                       'legend',
                       !rowLegend && 'invisible',
-                    ])}
+                    )}
                     key={`$legend-${groupIndex}-${rowIndex}`}
                   >
                     {rowLegend ?? DUMMY_TEXT}
@@ -103,15 +103,10 @@ export const ComponentShowcase = <TComponentProps,>(
         </div>
       ) : null}
 
-      <div
-        {...styleProps(['cols', 'gap$md', 'itemsStart', fullWidth && 'flex'])}
-      >
+      <div {...sxf('cols', 'gap$md', 'itemsStart', fullWidth && 'flex')}>
         {nonEmptyColsProps.map(
           ({ $legend: colLegend, ...colProps }, colIndex) => (
-            <div
-              {...styleProps(['groupRows', fullWidth && 'flex'])}
-              key={colIndex}
-            >
+            <div {...sxf('groupRows', fullWidth && 'flex')} key={colIndex}>
               {nonEmptyGroupsProps.map(
                 (
                   {
@@ -123,17 +118,15 @@ export const ComponentShowcase = <TComponentProps,>(
                 ) => (
                   <div
                     key={`${colIndex}-${groupIndex}`}
-                    {...styleProps([
+                    {...sxf(
                       'rows',
                       'gap$lg',
                       align === 'start' ? 'itemsStart' : 'itemsCenter',
                       'flex',
-                    ])}
+                    )}
                   >
                     {shouldShowColLegends && groupIndex === 0 ? (
-                      <div
-                        {...styleProps(['legend', !colLegend && 'invisible'])}
-                      >
+                      <div {...sxf('legend', !colLegend && 'invisible')}>
                         {colLegend ?? DUMMY_TEXT}
                       </div>
                     ) : null}
@@ -142,22 +135,15 @@ export const ComponentShowcase = <TComponentProps,>(
                       ({ $legend: rowLegend, ...rowProps }, rowIndex) => (
                         <div
                           key={`${colIndex}-${groupIndex}-${rowIndex}`}
-                          {...styleProps(['flex', 'rows', fullWidth && 'w100'])}
+                          {...sxf('flex', 'rows', fullWidth && 'w100')}
                         >
                           {shouldShowRowLegends &&
                           rowLegendPosition === 'top' &&
                           rowLegend ? (
-                            <div {...styleProps(['legend'])}>{rowLegend}</div>
+                            <div {...sxf('legend')}>{rowLegend}</div>
                           ) : null}
 
-                          <div
-                            {...styleProps([
-                              'flex',
-                              'cols',
-                              'gap$md',
-                              'itemsEnd',
-                            ])}
-                          >
+                          <div {...sxf('flex', 'cols', 'gap$md', 'itemsEnd')}>
                             <Component
                               {...componentProps}
                               {...groupProps}
@@ -177,28 +163,28 @@ export const ComponentShowcase = <TComponentProps,>(
       </div>
 
       {shouldShowGroupLegends ? (
-        <div {...styleProps(['rows', 'gap$lg'])}>
+        <div {...sxf('rows', 'gap$lg')}>
           {shouldShowColLegends ? (
-            <div {...styleProps(['legend', 'invisible'])} aria-hidden>
+            <div {...sxf('legend', 'invisible')} aria-hidden>
               {DUMMY_TEXT}
             </div>
           ) : null}
 
-          <div {...styleProps(['flex', 'groupRows'])}>
+          <div {...sxf('flex', 'groupRows')}>
             {nonEmptyGroupsProps.map(({ $legend: groupLegend }, groupIndex) => (
               <div
-                {...styleProps(['flex', 'rows', 'gap$lg'])}
+                {...sxf('flex', 'rows', 'gap$lg')}
                 key={`$legend-${groupIndex}`}
               >
                 <div
-                  {...styleProps([
+                  {...sxf(
                     'flex',
                     'legendRow',
                     'justifyStart',
                     'legend',
                     'leftBorder',
                     !groupLegend && 'invisible',
-                  ])}
+                  )}
                   key={`$legend-${groupIndex}`}
                 >
                   {groupLegend ?? DUMMY_TEXT}

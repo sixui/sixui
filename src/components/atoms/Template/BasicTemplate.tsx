@@ -22,7 +22,7 @@ export const BasicTemplate = forwardRef<HTMLDivElement, IBasicTemplateProps>(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],
     );
-    const styleProps = useMemo(
+    const sxf = useMemo(
       () =>
         stylePropsFactory<ITemplateStyleKey, ITemplateStyleVarKey>(
           stylesCombinator,
@@ -31,7 +31,7 @@ export const BasicTemplate = forwardRef<HTMLDivElement, IBasicTemplateProps>(
     );
 
     return (
-      <div {...styleProps(['host', sx], [theme.vars])} ref={ref} {...other}>
+      <div {...sxf('host', theme.vars, sx)} ref={ref} {...other}>
         {children}
       </div>
     );

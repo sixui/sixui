@@ -42,7 +42,7 @@ export const Dialog = forwardRef<HTMLDivElement, IDialogProps>(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],
     );
-    const styleProps = useMemo(
+    const sxf = useMemo(
       () =>
         stylePropsFactory<IDialogStyleKey, IDialogStyleVarKey>(
           stylesCombinator,
@@ -59,30 +59,30 @@ export const Dialog = forwardRef<HTMLDivElement, IDialogProps>(
 
     return (
       <div
-        {...styleProps(['host', sx], [theme.vars])}
+        {...sxf('host', theme.vars, sx)}
         aria-labelledby={headline ? headlineId : undefined}
         role={type === 'alert' ? 'alertdialog' : undefined}
         ref={ref}
         {...other}
       >
-        <div {...styleProps(['dialog', open && 'dialog$open'])}>
-          <div {...styleProps(['container'])}>
+        <div {...sxf('dialog', open && 'dialog$open')}>
+          <div {...sxf('container')}>
             {headline || icon ? (
-              <div {...styleProps(['headline'])}>
-                <div {...styleProps(['icon'])}>
-                  <div {...styleProps(['iconSlot'])}>{icon}</div>
+              <div {...sxf('headline')}>
+                <div {...sxf('icon')}>
+                  <div {...sxf('iconSlot')}>{icon}</div>
                 </div>
                 <h2
-                  {...styleProps(['header'])}
+                  {...sxf('header')}
                   id={headlineId}
                   aria-hidden={headline ? undefined : true}
                 >
                   <div
-                    {...styleProps([
+                    {...sxf(
                       'headlineSlot',
                       !!icon && 'headlineSlot$hasIcon',
                       scrollable && 'headlineSlot$scrollable',
-                    ])}
+                    )}
                   >
                     {headline}
                   </div>
@@ -98,21 +98,16 @@ export const Dialog = forwardRef<HTMLDivElement, IDialogProps>(
             ) : null}
 
             {content ? (
-              <div
-                {...styleProps([
-                  'scroller',
-                  scrollable && 'scroller$scrollable',
-                ])}
-              >
-                <div {...styleProps(['content'])}>
+              <div {...sxf('scroller', scrollable && 'scroller$scrollable')}>
+                <div {...sxf('content')}>
                   <div
-                    {...styleProps([
+                    {...sxf(
                       'contentSlot',
                       !!actions && 'contentSlot$hasActions',
                       scrollable &&
                         !!headline &&
                         'contentSlot$scrollable$hasHeadline',
-                    ])}
+                    )}
                   >
                     {content}
                   </div>
@@ -121,7 +116,7 @@ export const Dialog = forwardRef<HTMLDivElement, IDialogProps>(
             ) : null}
 
             {actions ? (
-              <div {...styleProps(['actions'])}>
+              <div {...sxf('actions')}>
                 <Divider
                   sx={stylesCombinator(
                     'divider',
@@ -129,7 +124,7 @@ export const Dialog = forwardRef<HTMLDivElement, IDialogProps>(
                     showBottomDivider && 'actionsDivide$showBottomDivider',
                   )}
                 />
-                <div {...styleProps(['actionsSlot'])}>{actions}</div>
+                <div {...sxf('actionsSlot')}>{actions}</div>
               </div>
             ) : null}
           </div>

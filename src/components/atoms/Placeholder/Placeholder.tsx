@@ -35,7 +35,7 @@ export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],
     );
-    const styleProps = useMemo(
+    const sxf = useMemo(
       () =>
         stylePropsFactory<IPlaceholderStyleKey, IPlaceholderStyleVarKey>(
           stylesCombinator,
@@ -45,23 +45,21 @@ export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
 
     return (
       <div
-        {...styleProps(
-          [
-            'host',
-            shape === 'rectangular'
-              ? 'host$rectangular'
-              : shape === 'circular'
-                ? 'host$circular'
-                : null,
-            sx,
-          ],
-          [theme.vars],
+        {...sxf(
+          'host',
+          shape === 'rectangular'
+            ? 'host$rectangular'
+            : shape === 'circular'
+              ? 'host$circular'
+              : null,
+          theme.vars,
+          sx,
         )}
         ref={ref}
         {...other}
       >
-        {crosshairs ? <div {...styleProps(['guides'])} /> : null}
-        {label ? <div {...styleProps(['label'])}>{label}</div> : null}
+        {crosshairs ? <div {...sxf('guides')} /> : null}
+        {label ? <div {...sxf('label')}>{label}</div> : null}
         {children}
       </div>
     );
