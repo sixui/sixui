@@ -54,7 +54,9 @@ export const Uncontrolled: IStory = {
   args: defaultArgs,
 };
 
-const ControlledSwitch: React.FC<Omit<ISwitchProps, 'onChange'>> = (props) => {
+const ControlledSwitch: React.FC<Omit<ISwitchProps, 'onChange' | 'as'>> = (
+  props,
+) => {
   const [selected, setSelected] = useState(props.defaultSelected ?? false);
 
   return (

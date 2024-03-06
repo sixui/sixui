@@ -123,6 +123,8 @@ export const Button: IButton = forwardRef(function Button<
       return;
     }
 
+    event.stopPropagation();
+
     setHandlingClick(true);
     setAnimating(true);
 

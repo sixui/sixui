@@ -150,7 +150,6 @@ export const ListItem: IListItem = forwardRef(function ListItem<
     >
       <Item
         styles={[theme.itemStyles, ...asArray(innerStyles?.item)]}
-        // theme={theme.itemVars}
         container={
           <>
             <div

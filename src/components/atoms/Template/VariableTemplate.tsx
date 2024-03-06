@@ -1,4 +1,4 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef, useMemo, useRef } from 'react';
 
 import type { IContainerProps } from '@/helpers/types';
 import type { IThemeComponents } from '@/helpers/ThemeContext';
@@ -7,11 +7,14 @@ import type {
   ITemplateStyleVarKey,
   ITemplateVariant,
 } from './Template.styledefs';
+import { type IVisualState, useVisualState } from '@/hooks/useVisualState';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useForkRef } from '@/hooks/useForkRef';
 
 export type IVariableTemplateProps = IContainerProps<ITemplateStyleKey> & {
+  visualState?: IVisualState;
   variant?: ITemplateVariant | false;
   children?: React.ReactNode;
 };
@@ -28,7 +31,18 @@ export const VariableTemplate = forwardRef<
   HTMLDivElement,
   IVariableTemplateProps
 >(function VariableTemplate(props, ref) {
-  const { styles, sx, variant = 'variant', children, ...other } = props;
+  const {
+    styles,
+    sx,
+    visualState: visualStateProp,
+    variant = 'variant',
+    children,
+    ...other
+  } = props;
+
+  const actionRef = useRef<HTMLInputElement>(null);
+  const { visualState, ref: visualStateRef } = useVisualState(visualStateProp);
+  const handleRef = useForkRef(ref, visualStateRef, actionRef);
 
   const { theme, variantTheme } = useComponentTheme(
     'Template',
@@ -42,14 +56,15 @@ export const VariableTemplate = forwardRef<
     () =>
       stylePropsFactory<ITemplateStyleKey, ITemplateStyleVarKey>(
         stylesCombinator,
+        visualState,
       ),
-    [stylesCombinator],
+    [stylesCombinator, visualState],
   );
 
   return (
     <div
       {...styleProps(['host', sx], [theme.vars, variantTheme?.vars])}
-      ref={ref}
+      ref={handleRef}
       {...other}
     >
       {children}

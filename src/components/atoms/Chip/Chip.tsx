@@ -184,7 +184,8 @@ export const Chip: IChip = forwardRef(function Chip<
 
   const elevated = variant !== 'input' && elevatedProp;
   const hasIcon = !!imageUrl || !!icon;
-  const isSelectable = ['input', 'filter'].includes(variant);
+  const isSelectable =
+    variant !== false && ['input', 'filter'].includes(variant);
   const selected = isSelectable && selectedValue;
   const hasLeading = (variant === 'filter' && (loading || selected)) || hasIcon;
   const hasTrailing = isDeletable;

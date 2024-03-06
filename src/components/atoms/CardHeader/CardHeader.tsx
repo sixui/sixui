@@ -1,10 +1,17 @@
+import { forwardRef } from 'react';
+import { asArray } from '@olivierpascal/helpers';
+
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { type IItemProps, Item } from '../Item';
 
 export type ICardHeaderProps = IItemProps;
 
-export const CardHeader: React.FC<ICardHeaderProps> = ({ ...props }) => {
-  const { theme } = useComponentTheme('CardHeader');
+export const CardHeader = forwardRef<HTMLDivElement, ICardHeaderProps>(
+  function CardHeader(props, ref) {
+    const { sx, ...other } = props;
 
-  return <Item {...props} theme={theme.vars} />;
-};
+    const { theme } = useComponentTheme('CardHeader');
+
+    return <Item {...other} sx={[...asArray(sx), theme.vars]} ref={ref} />;
+  },
+);

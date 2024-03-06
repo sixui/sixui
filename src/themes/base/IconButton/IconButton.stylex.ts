@@ -28,12 +28,6 @@ const vars: Partial<IStyleVars<IIconButtonStyleVarKey>> = {
   stateLayerOpacity$hover: stateVars.stateLayerOpacity$hover,
   // &:pressed
   stateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
-
-  // selectedStateLayer
-  // &:hover
-  selectedStateLayerOpacity$hover: stateVars.stateLayerOpacity$hover,
-  // &:pressed
-  selectedStateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
 };
 
 export const componentVars = stylex.defineVars(

@@ -1,28 +1,18 @@
-import { forwardRef, useMemo } from 'react';
+import stylex from '@stylexjs/stylex';
+import { forwardRef } from 'react';
+import { asArray } from '@olivierpascal/helpers';
 
 import type { IContainerProps } from '@/helpers/types';
-import type { ITabPanelStyleKey } from './TabPanel.styledefs';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useTabContext } from '../Tabs/useTabContext';
 
-export type ITabPanelProps = IContainerProps<ITabPanelStyleKey> & {
+export type ITabPanelProps = Omit<IContainerProps, 'styles'> & {
   anchor: string;
   children?: React.ReactNode;
 };
 
 export const TabPanel = forwardRef<HTMLDivElement, ITabPanelProps>(
   function TabPanel(props, ref) {
-    const { styles, sx, anchor, children } = props;
-
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(styles),
-      [styles],
-    );
-    const styleProps = useMemo(
-      () => stylePropsFactory<ITabPanelStyleKey>(stylesCombinator),
-      [stylesCombinator],
-    );
+    const { sx, anchor, children } = props;
 
     const tabContext = useTabContext();
 
@@ -34,7 +24,7 @@ export const TabPanel = forwardRef<HTMLDivElement, ITabPanelProps>(
 
     return (
       <div
-        {...styleProps(['host', sx])}
+        {...stylex.props(...asArray(sx))}
         ref={ref}
         role='tabpanel'
         aria-labelledby={id}

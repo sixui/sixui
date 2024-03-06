@@ -41,9 +41,9 @@ export const Uncontrolled: IStory = {
   args: defaultArgs,
 };
 
-const ControlledCheckbox: React.FC<Omit<ICheckboxProps, 'onChange'>> = (
-  props,
-) => {
+const ControlledCheckbox: React.FC<
+  Omit<ICheckboxProps, 'onChange' | 'checked' | 'as'>
+> = (props) => {
   const [checked, setChecked] = useState(props.defaultChecked ?? false);
   const [indeterminate, setIndeterminate] = useState(
     props.indeterminate ?? false,

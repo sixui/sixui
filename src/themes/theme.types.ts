@@ -274,7 +274,6 @@ export type ITheme = {
       vars?: IStyleVarsTheme<IListItemStyleVarKey>;
       styles?: ICompiledStyles<IListItemStyleKey>;
       itemStyles?: ICompiledStyles<IItemStyleKey>;
-      itemVars?: IStyleVarsTheme<IItemStyleVarKey>;
       stateLayerStyles: ICompiledStyles<IStateLayerStyleKey>;
       focusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
     };

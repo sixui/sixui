@@ -53,7 +53,7 @@ const rowsProps: IComponentPropsWithLegend<ITextFieldProps> = [
     $legend: 'Populated',
     defaultValue: 'Value',
   },
-  { $legend: 'Error', error: true },
+  { $legend: 'Error', hasError: true },
   {
     $legend: 'Icons',
     leadingIcon: <FontAwesomeIcon icon={faMagnifyingGlass} />,
@@ -121,8 +121,8 @@ const ControlledTextField: React.FC<Omit<ITextFieldProps, 'onChange'>> = (
   props,
 ) => {
   const [value, setValue] = useState(props.defaultValue ?? '');
-  const iconButtonRef = useRef<HTMLButtonElement | HTMLLinkElement>(null);
-  const textFieldRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
+  const textFieldRef = useRef<HTMLInputElement>(null);
+  const iconButtonRef = useRef<HTMLButtonElement>(null);
 
   const clearInput = useCallback(() => {
     iconButtonRef.current?.blur();
@@ -133,12 +133,12 @@ const ControlledTextField: React.FC<Omit<ITextFieldProps, 'onChange'>> = (
   return (
     <TextField
       {...props}
-      forwardRef={textFieldRef}
+      ref={textFieldRef}
       value={value}
       onChange={(_, value) => setValue(value)}
       end={
         <IconButton
-          forwardRef={iconButtonRef}
+          ref={iconButtonRef}
           icon={<FontAwesomeIcon icon={faXmark} />}
           onClick={clearInput}
         />

@@ -31,7 +31,12 @@ export const IndeterminateCircularProgressIndicator = forwardRef<
     'IndeterminateCircularProgressIndicator',
   );
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
+    () =>
+      stylesCombinatorFactory<IIndeterminateCircularProgressIndicatorStyleKey>(
+        theme.styles,
+        variantTheme?.styles,
+        styles,
+      ),
     [theme.styles, variantTheme?.styles, styles],
   );
   const styleProps = useMemo(
