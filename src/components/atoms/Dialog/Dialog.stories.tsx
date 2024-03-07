@@ -58,7 +58,7 @@ export const Basic: IStory = {
   args: {
     ...defaultArgs,
     headline: 'Headline',
-    content: 'Just a simple dialog.',
+    children: 'Just a simple dialog.',
   },
 };
 
@@ -68,7 +68,7 @@ export const WithIcon: IStory = {
     ...defaultArgs,
     icon: <FontAwesomeIcon icon={faStar} />,
     headline: 'Headline',
-    content: 'Just a simple dialog.',
+    children: 'Just a simple dialog.',
   },
 };
 
@@ -77,7 +77,7 @@ export const Scrollable: IStory = {
   args: {
     ...defaultArgs,
     headline: 'Headline',
-    content: (
+    children: (
       <>
         <Typography gutterBottom>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a

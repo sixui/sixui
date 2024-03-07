@@ -25,7 +25,7 @@ export type IDialogProps = IContainerProps<IDialogStyleKey> &
     scrollable?: boolean;
     icon?: React.ReactNode;
     headline?: React.ReactNode;
-    content?: React.ReactNode;
+    children?: React.ReactNode;
     actions?: React.ReactNode;
     onClose?: (event: React.MouseEvent, reason?: string) => void;
   };
@@ -40,7 +40,7 @@ export const Dialog = forwardRef<HTMLDivElement, IDialogProps>(
       scrollable,
       headline,
       icon,
-      content,
+      children,
       actions,
       onClose,
       ...other
@@ -187,7 +187,7 @@ export const Dialog = forwardRef<HTMLDivElement, IDialogProps>(
                 </div>
               ) : null}
 
-              {content ? (
+              {children ? (
                 <div
                   ref={scrollerRef}
                   {...sxf('scroller', scrollable && 'scroller$scrollable')}
@@ -203,7 +203,7 @@ export const Dialog = forwardRef<HTMLDivElement, IDialogProps>(
                           'contentSlot$scrollable$hasHeadline',
                       )}
                     >
-                      {content}
+                      {children}
                     </div>
                   </div>
                   <div ref={bottomAnchorRef} />
