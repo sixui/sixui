@@ -1,3 +1,15 @@
+# v0.0.80 (Thu Mar 07 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: main exports ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.79 (Thu Mar 07 2024)
 
 #### 🐛 Bug Fix
