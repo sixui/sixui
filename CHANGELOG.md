@@ -1,3 +1,15 @@
+# v0.0.83 (Thu Mar 07 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: dialog actions slot can be a function ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.82 (Thu Mar 07 2024)
 
 #### ⚠️ Pushed to `main`
