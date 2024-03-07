@@ -1,3 +1,15 @@
+# v0.0.82 (Thu Mar 07 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: no unused ref in RadioGroup ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.81 (Thu Mar 07 2024)
 
 #### ⚠️ Pushed to `main`
