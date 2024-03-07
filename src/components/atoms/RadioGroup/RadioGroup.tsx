@@ -1,4 +1,4 @@
-import { forwardRef, useImperativeHandle, useMemo, useRef } from 'react';
+import { useImperativeHandle, useMemo, useRef } from 'react';
 
 // import type { IAny } from '@/helpers/types';
 // import { useForkRef } from '@/hooks/useForkRef';
@@ -18,67 +18,61 @@ export type IRadioGroupProps = IRadioGroupContext & {
   defaultValue?: string;
 };
 
-export const RadioGroup: React.ForwardRefExoticComponent<IRadioGroupProps> =
-  forwardRef(
-    function RadioGroup(
-      props,
-      // ref: React.ForwardedRef<IAny> | null,
-    ): React.ReactNode {
-      const {
-        actions,
-        children,
-        onChange,
-        value: valueProp,
-        defaultValue,
-        name: nameProp,
-      } = props;
+export const RadioGroup: React.FC<IRadioGroupProps> = (props) => {
+  const {
+    actions,
+    children,
+    onChange,
+    value: valueProp,
+    defaultValue,
+    name: nameProp,
+  } = props;
 
-      const hostRef = useRef<HTMLElement>(null);
-      const [value, setValue] = useControlled({
-        controlled: valueProp,
-        default: defaultValue,
-        name: 'RadioGroup',
-      });
+  const hostRef = useRef<HTMLElement>(null);
+  const [value, setValue] = useControlled({
+    controlled: valueProp,
+    default: defaultValue,
+    name: 'RadioGroup',
+  });
 
-      useImperativeHandle(
-        actions,
-        () => ({
-          focus: () => {
-            const input =
-              (hostRef.current?.querySelector('input:not(:disabled):checked') ||
-                hostRef.current?.querySelector('input:not(:disabled)')) ??
-              undefined;
+  useImperativeHandle(
+    actions,
+    () => ({
+      focus: () => {
+        const input =
+          (hostRef.current?.querySelector('input:not(:disabled):checked') ||
+            hostRef.current?.querySelector('input:not(:disabled)')) ??
+          undefined;
 
-            if (input) {
-              (input as HTMLInputElement).focus();
-            }
-          },
-        }),
-        [],
-      );
-
-      // const handleRef = useForkRef(ref, hostRef);
-      const name = useId(nameProp);
-
-      const contextValue = useMemo(
-        () =>
-          ({
-            name,
-            onChange(value: string | undefined) {
-              setValue(value);
-              onChange?.(value);
-            },
-            value,
-          }) satisfies IRadioGroupContext,
-        [name, onChange, value, setValue],
-      );
-
-      return (
-        <RadioGroupContext.Provider value={contextValue}>
-          {/* TODO: <FormGroup ref={handleRef} role='radiogroup'> */}
-          {children}
-          {/* TODO: </FormGroup> */}
-        </RadioGroupContext.Provider>
-      );
-    },
+        if (input) {
+          (input as HTMLInputElement).focus();
+        }
+      },
+    }),
+    [],
   );
+
+  // const handleRef = useForkRef(ref, hostRef);
+  const name = useId(nameProp);
+
+  const contextValue = useMemo(
+    () =>
+      ({
+        name,
+        onChange(value: string | undefined) {
+          setValue(value);
+          onChange?.(value);
+        },
+        value,
+      }) satisfies IRadioGroupContext,
+    [name, onChange, value, setValue],
+  );
+
+  return (
+    <RadioGroupContext.Provider value={contextValue}>
+      {/* TODO: <FormGroup ref={handleRef} role='radiogroup'> */}
+      {children}
+      {/* TODO: </FormGroup> */}
+    </RadioGroupContext.Provider>
+  );
+};
