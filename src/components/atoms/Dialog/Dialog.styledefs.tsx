@@ -1,7 +1,6 @@
 export type IDialogStyleKey =
   | 'host'
   | 'dialog'
-  | 'dialog$open'
   | 'container'
   | 'headline'
   | 'headlineSlot'

@@ -1,6 +1,9 @@
 # TO DO
 
 - modal
+  - use portal
+  - use transition
+  - derivate dialog from modal
 - Skeleton version of components
 
 - check transitions

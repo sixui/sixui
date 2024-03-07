@@ -6,6 +6,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { Dialog, type IDialogProps } from './Dialog';
 import { Button } from '../Button';
 import { Typography } from '../Typography';
+import { useState } from 'react';
 
 // https://m3.material.io/components/dialogs/overview
 // https://material-web.dev/components/dialog/
@@ -17,9 +18,7 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {
-  open: true,
-} satisfies Partial<IDialogProps>;
+const defaultArgs = {} satisfies Partial<IDialogProps>;
 
 const styles = stylex.create({
   scrollable: {
@@ -27,39 +26,54 @@ const styles = stylex.create({
   },
 });
 
+const DialogLauncher: React.FC<IDialogProps> = (props) => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = (): void => setOpen(true);
+  const handleClose = (): void => setOpen(false);
+
+  return (
+    <>
+      <Dialog
+        {...props}
+        open={open}
+        onClose={handleClose}
+        actions={
+          <>
+            <Button variant='text' onClick={handleClose}>
+              Cancel
+            </Button>
+            <Button variant='text' onClick={handleClose}>
+              OK
+            </Button>
+          </>
+        }
+      />
+      <Button onClick={handleOpen}>Open</Button>
+    </>
+  );
+};
+
 export const Basic: IStory = {
-  render: (props) => <Dialog {...props} />,
+  render: (props) => <DialogLauncher {...props} />,
   args: {
     ...defaultArgs,
     headline: 'Headline',
     content: 'Just a simple dialog.',
-    actions: (
-      <>
-        <Button variant='text'>Close</Button>
-        <Button variant='text'>OK</Button>
-      </>
-    ),
   },
 };
 
 export const WithIcon: IStory = {
-  render: (props) => <Dialog {...props} />,
+  render: (props) => <DialogLauncher {...props} />,
   args: {
     ...defaultArgs,
     icon: <FontAwesomeIcon icon={faStar} />,
     headline: 'Headline',
     content: 'Just a simple dialog.',
-    actions: (
-      <>
-        <Button variant='text'>Close</Button>
-        <Button variant='text'>OK</Button>
-      </>
-    ),
   },
 };
 
 export const Scrollable: IStory = {
-  render: (props) => <Dialog {...props} />,
+  render: (props) => <DialogLauncher {...props} />,
   args: {
     ...defaultArgs,
     headline: 'Headline',
@@ -84,12 +98,6 @@ export const Scrollable: IStory = {
           Vestibulum a dolor sollicitudin, maximus eros faucibus, commodo diam.
           Maecenas dictum ornare quam quis imperdiet.
         </Typography>
-      </>
-    ),
-    actions: (
-      <>
-        <Button variant='text'>Close</Button>
-        <Button variant='text'>OK</Button>
       </>
     ),
     scrollable: true,

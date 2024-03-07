@@ -9,13 +9,14 @@ import { Fade } from '@/components/utils/Fade';
 
 export type IScrimProps = IContainerProps<IScrimStyleKey> & {
   open?: boolean;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent) => void;
   children: React.ReactNode;
+  onMouseDown?: (event: React.MouseEvent) => void;
 };
 
 export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
   function Scrim(props, ref) {
-    const { styles, sx, open, onClick, children } = props;
+    const { styles, sx, open, onClick, children, onMouseDown } = props;
 
     const { theme } = useComponentTheme('Scrim');
     const stylesCombinator = useMemo(
@@ -37,6 +38,7 @@ export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
           ref={ref}
           onClick={onClick}
           role='button'
+          onMouseDown={onMouseDown}
         >
           {children}
         </div>

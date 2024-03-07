@@ -36,8 +36,6 @@ export const styles: MapNamespaces<IDialogStyles> =
       overflow: 'visible',
       padding: 0,
       width: 'inherit',
-    },
-    dialog$open: {
       display: 'flex',
     },
     container: {
