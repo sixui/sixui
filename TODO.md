@@ -4,9 +4,16 @@
   - use portal
   - use transition
   - derivate dialog from modal
+- dialog
+  - on open, focus on the first input
 - Skeleton version of components
 - FIXME: radioGroup unused ref in forwardRef
 - FileUplodaer: picture
+
+- Form
+
+  - reset (input and errors, ie. on modal close)
+  - FIXME: modal close on enter key press
 
 - check transitions
   https://m3.material.io/styles/motion/transitions/transition-patterns#ec5b8269-755c-4aa5-a784-a07533a8348a

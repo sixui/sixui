@@ -18,6 +18,8 @@ import { Scrim } from '../Scrim';
 
 // https://github.com/material-components/material-web/blob/main/dialog/internal/dialog.ts
 
+type IOnCloseEventHandler = (event: React.MouseEvent, reason?: string) => void;
+
 export type IDialogProps = IContainerProps<IDialogStyleKey> &
   Pick<React.AriaAttributes, 'aria-label'> & {
     open?: boolean;
@@ -26,8 +28,10 @@ export type IDialogProps = IContainerProps<IDialogStyleKey> &
     icon?: React.ReactNode;
     headline?: React.ReactNode;
     children?: React.ReactNode;
-    actions?: React.ReactNode;
-    onClose?: (event: React.MouseEvent, reason?: string) => void;
+    actions?:
+      | React.ReactNode
+      | ((close?: IOnCloseEventHandler) => React.ReactNode);
+    onClose?: IOnCloseEventHandler;
   };
 
 export const Dialog = forwardRef<HTMLDivElement, IDialogProps>(
@@ -133,6 +137,9 @@ export const Dialog = forwardRef<HTMLDivElement, IDialogProps>(
       onClose?.(event, 'backdropClick');
     };
 
+    const renderActions = (): React.ReactNode =>
+      typeof actions === 'function' ? actions(onClose) : actions;
+
     // TODO: Reset scroll position if re-opening a dialog with the same content.
     // See https://github.com/material-components/material-web/blob/main/dialog/internal/dialog.ts#L193C8-L193C75
 
@@ -219,7 +226,7 @@ export const Dialog = forwardRef<HTMLDivElement, IDialogProps>(
                       showBottomDivider && 'actionsDivide$showBottomDivider',
                     )}
                   />
-                  <div {...sxf('actionsSlot')}>{actions}</div>
+                  <div {...sxf('actionsSlot')}>{renderActions()}</div>
                 </div>
               ) : null}
             </div>

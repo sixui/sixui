@@ -7,6 +7,8 @@ import { Dialog, type IDialogProps } from './Dialog';
 import { Button } from '../Button';
 import { Typography } from '../Typography';
 import { useState } from 'react';
+import { TextField } from '../TextField';
+import { Form } from '@/components/utils/Form';
 
 // https://m3.material.io/components/dialogs/overview
 // https://material-web.dev/components/dialog/
@@ -24,6 +26,9 @@ const styles = stylex.create({
   scrollable: {
     height: 300,
   },
+  field: {
+    width: '100%',
+  },
 });
 
 const DialogLauncher: React.FC<IDialogProps> = (props) => {
@@ -34,9 +39,6 @@ const DialogLauncher: React.FC<IDialogProps> = (props) => {
   return (
     <>
       <Dialog
-        {...props}
-        open={open}
-        onClose={handleClose}
         actions={
           <>
             <Button variant='text' onClick={handleClose}>
@@ -47,6 +49,9 @@ const DialogLauncher: React.FC<IDialogProps> = (props) => {
             </Button>
           </>
         }
+        {...props}
+        open={open}
+        onClose={handleClose}
       />
       <Button onClick={handleOpen}>Open</Button>
     </>
@@ -69,6 +74,34 @@ export const WithIcon: IStory = {
     icon: <FontAwesomeIcon icon={faStar} />,
     headline: 'Headline',
     children: 'Just a simple dialog.',
+  },
+};
+
+export const WithForm: IStory = {
+  render: (props) => <DialogLauncher {...props} />,
+  args: {
+    ...defaultArgs,
+    icon: <FontAwesomeIcon icon={faStar} />,
+    headline: 'Headline',
+    children: (
+      <Form
+        onSubmit={(event) => {
+          event.preventDefault();
+        }}
+      >
+        <TextField sx={styles.field} label='Name' required />
+      </Form>
+    ),
+    actions: (close) => (
+      <>
+        <Button variant='text' onClick={close}>
+          Cancel
+        </Button>
+        <Button variant='filled' type='submit'>
+          OK
+        </Button>
+      </>
+    ),
   },
 };
 
