@@ -1,3 +1,15 @@
+# v0.0.81 (Thu Mar 07 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: Dialog use children in place of content ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.80 (Thu Mar 07 2024)
 
 #### ⚠️ Pushed to `main`
