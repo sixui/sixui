@@ -183,6 +183,9 @@ import { styles as badgeStyles } from './Badge/Badge.styles';
 import { componentTheme as avatarTheme } from './Avatar/Avatar.stylex';
 import { styles as avatarStyles } from './Avatar/Avatar.styles';
 
+import { componentTheme as scrimTheme } from './Scrim/Scrim.stylex';
+import { styles as scrimStyles } from './Scrim/Scrim.styles';
+
 import { componentTheme as dialogTheme } from './Dialog/Dialog.stylex';
 import { styles as dialogStyles } from './Dialog/Dialog.styles';
 
@@ -405,6 +408,10 @@ export const theme: ITheme = {
     Avatar: {
       vars: avatarTheme,
       styles: avatarStyles,
+    },
+    Scrim: {
+      vars: scrimTheme,
+      styles: scrimStyles,
     },
     Dialog: {
       vars: dialogTheme,

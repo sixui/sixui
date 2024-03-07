@@ -57,7 +57,7 @@ Components
 - [x] Checkbox
 - [x] Chip
 - [x] Circular Progress Indicator
-- [-] Dialog
+- [x] Dialog
 - [x] Divider
 - [x] FAB
 - [x] Field
@@ -69,6 +69,7 @@ Components
 - [x] Placeholder
 - [x] Radio
 - [x] RadioGroup
+- [x] Scrim
 - [x] Switch
 - [x] Tab
 - [x] TabList
@@ -86,6 +87,7 @@ Utils
 - [x] Form
 - [x] State Layer
 - [x] Visual State
+- [x] Fade
 
 ## Workflow
 

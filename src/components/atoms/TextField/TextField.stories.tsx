@@ -3,6 +3,7 @@ import stylex from '@stylexjs/stylex';
 import type { Meta, StoryObj } from '@storybook/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { delay } from '@olivierpascal/helpers';
 
 import type { ITextFieldStyleKey } from './TextField.styledefs';
 import type { IStyles } from '@/helpers/types';
@@ -72,6 +73,7 @@ const inputRowProps: IComponentPropsWithLegend<ITextFieldProps> = [
 ];
 
 const ControlledForm: React.FC<ITextFieldProps> = (props) => {
+  const [submitting, setSubmitting] = useState<boolean>(false);
   const [result, setResult] = useState<string>();
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
@@ -80,7 +82,10 @@ const ControlledForm: React.FC<ITextFieldProps> = (props) => {
     (event) => {
       event.preventDefault();
 
-      setResult(JSON.stringify({ firstName, lastName }));
+      setSubmitting(true);
+      void delay(1000)
+        .then(() => setResult(JSON.stringify({ firstName, lastName })))
+        .finally(() => setSubmitting(false));
     },
     [firstName, lastName],
   );
@@ -109,7 +114,9 @@ const ControlledForm: React.FC<ITextFieldProps> = (props) => {
           required
         />
         <div {...stylex.props(formStyles2.buttons)}>
-          <Button type='submit'>Submit</Button>
+          <Button type='submit' loading={submitting}>
+            Submit
+          </Button>
         </div>
         {result ? <div>{result}</div> : null}
       </div>
