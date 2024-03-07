@@ -1,3 +1,15 @@
+# v0.0.79 (Thu Mar 07 2024)
+
+#### 🐛 Bug Fix
+
+- Feat/scrim [#13](https://github.com/sixui/ui/pull/13) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.78 (Wed Mar 06 2024)
 
 #### ⚠️ Pushed to `main`
