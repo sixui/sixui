@@ -1,8 +1,10 @@
 # TO DO
 
-- scrim
-- dialog
+- modal
 - Skeleton version of components
+
+- check transitions
+  https://m3.material.io/styles/motion/transitions/transition-patterns#ec5b8269-755c-4aa5-a784-a07533a8348a
 
 - refactor how styles are structured (can only theme color roles and palette?)
 
@@ -75,13 +77,9 @@
 
   - password: eye button to show/hide password
 
-- CheckBox
-
-  - hover effect?
-
 - Badge
 
-  - Text is not perfecetly aligned inside
+  - Text is not perfectly aligned inside
 
 - Chip
 
@@ -117,6 +115,10 @@
   - Use PostCSS Autoprefixr plugin on the generated CSS file
     https://github.com/facebook/stylex/discussions/223
 
+- Button/Chip
+
+  - Focus is lost on click (cause it's switching to loading state)
+
 - ButtonBase
 
   - Example in stories
@@ -129,7 +131,7 @@
 
 - IconButton
 
-  - Controlled/uncontrolled modes (if selectable)
+  - stories: Controlled/uncontrolled modes (if selectable)
 
 - CI
 
@@ -137,13 +139,9 @@
 
 ## Refactoring
 
-- 'component'?: React.ReactNode' property -> 'as'
-- Field
-  - error boolean -> hasError, ou:
-  - suppimer error au profit de errorText
 - Use useHover hook?
   - https://react-spectrum.adobe.com/blog/building-a-button-part-2.html
-- Chip/Fab/IconButton/ListItem inherit from ButtonBase
+- ListItem inherit from ButtonBase
 - Use hooks like useButton, useTab, useTabs, ... like mui or adobe
 - Use React.forwardRef & React.useImperativeHandle?, like in RadioGroup?
 - Remove 'borderStyle': 'solid' (handled by reset css)?
@@ -169,16 +167,6 @@
 ## FIX ME
 
 - Check why sx property cannot take undefined or boolean values
-- Button / Chip / Fab / ...
-  - Adapt attributes if that's a button or a link (ie. type is just for buttons)
-- Chromatic
-  - Radio not selectable/tabbable with keyboard
-  - Custom themes not applied (ie. Checkbox/Custom story)
-    to fix, do not define themes in stylex.ts (only vars), but define themes in styles.ts
-    the problem is that by defining the theme in styles.ts, dark color scheme is not applied
-    find another solution
-    - https://github.com/facebook/stylex/issues/162
-    - https://github.com/facebook/stylex/issues/281
 
 ## Waiting for a fix
 
@@ -241,7 +229,6 @@ Components
 - [ ] Backdrop
 - [ ] Box
 - [ ] Container
-- [ ] Dialog
 - [ ] Drawer
 - [ ] Image List
 - [ ] Linear Progress Indicator

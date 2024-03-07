@@ -102,6 +102,10 @@ import type {
   IAvatarStyleVarKey,
 } from '@/components/atoms/Avatar';
 import type {
+  IScrimStyleKey,
+  IScrimStyleVarKey,
+} from '@/components/atoms/Scrim';
+import type {
   IDialogStyleKey,
   IDialogStyleVarKey,
 } from '@/components/atoms/Dialog';
@@ -342,6 +346,10 @@ export type ITheme = {
     Avatar: {
       vars?: IStyleVarsTheme<IAvatarStyleVarKey>;
       styles?: ICompiledStyles<IAvatarStyleKey>;
+    };
+    Scrim: {
+      vars?: IStyleVarsTheme<IScrimStyleVarKey>;
+      styles?: ICompiledStyles<IScrimStyleKey>;
     };
     Dialog: {
       vars?: IStyleVarsTheme<IDialogStyleVarKey>;
