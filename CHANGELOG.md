@@ -1,3 +1,15 @@
+# v0.0.84 (Fri Mar 08 2024)
+
+#### 🐛 Bug Fix
+
+- Feat/menu [#14](https://github.com/sixui/ui/pull/14) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.83 (Thu Mar 07 2024)
 
 #### ⚠️ Pushed to `main`
