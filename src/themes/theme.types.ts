@@ -109,6 +109,11 @@ import type {
   IDialogStyleKey,
   IDialogStyleVarKey,
 } from '@/components/atoms/Dialog';
+import type { IMenuStyleKey, IMenuStyleVarKey } from '@/components/atoms/Menu';
+import type {
+  IMenuListStyleKey,
+  IMenuListStyleVarKey,
+} from '@/components/atoms/MenuList';
 
 export type ITemplateTheme = {
   vars?: IStyleVarsTheme<ITemplateStyleVarKey>;
@@ -354,6 +359,18 @@ export type ITheme = {
     Dialog: {
       vars?: IStyleVarsTheme<IDialogStyleVarKey>;
       styles?: ICompiledStyles<IDialogStyleKey>;
+    };
+    Menu: {
+      vars?: IStyleVarsTheme<IMenuStyleVarKey>;
+      styles?: ICompiledStyles<IMenuStyleKey>;
+      elevationStyles?: ICompiledStyles<IElevationStyleKey>;
+      focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
+    };
+    MenuList: {
+      vars?: IStyleVarsTheme<IMenuListStyleVarKey>;
+      styles?: ICompiledStyles<IMenuListStyleKey>;
+      elevationStyles?: ICompiledStyles<IElevationStyleKey>;
+      focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
     };
   };
 };
