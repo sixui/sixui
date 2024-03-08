@@ -61,7 +61,7 @@ export type IListItemOwnProps = IContainerProps<IListItemStyleKey> &
      */
     type?: IListItemType;
 
-    selected?: boolean;
+    active?: boolean;
   };
 
 export type IListItemProps<
@@ -91,7 +91,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
     end,
     type: typeProp,
     disabled,
-    selected: selectedProp,
+    active: selectedProp,
     target: targetProp,
     ...other
   } = props as IWithAsProp<IListItemOwnProps>;
