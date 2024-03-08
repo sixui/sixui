@@ -5,7 +5,6 @@ import type { IListItemStyleVarKey } from '@/components/atoms/ListItem';
 import { colorRolesVars } from '../vars/colorRoles.stylex';
 import { shapeVars } from '../vars/shape.stylex';
 import { stateVars } from '../vars/state.stylex';
-import { typescaleVars } from '../vars/typo.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-list-item.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-list.scss
@@ -79,51 +78,31 @@ const vars: Partial<IStyleVars<IListItemStyleVarKey>> = {
   stateLayerColor$pressed: colorRolesVars.primary,
   stateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
 
-  // start
-  startColor: 'inherit',
+  // leadingIcon
+  leadingIconColor: colorRolesVars.onSurfaceVariant,
+  leadingIconSize: '18px',
+  // &:disabled
+  leadingIconColor$disabled: colorRolesVars.onSurface,
+  leadingIconOpacity$disabled: stateVars.opacity$disabled,
+  // &:focus
+  leadingIconColor$focus: colorRolesVars.onSurfaceVariant,
+  // &:hover
+  leadingIconColor$hover: colorRolesVars.onSurfaceVariant,
+  // &:pressed
+  leadingIconColor$pressed: colorRolesVars.onSurfaceVariant,
 
-  // overline
-  overlineColor: 'inherit',
-  overlineFont: typescaleVars.labelFont$sm,
-  overlineLineHeight: typescaleVars.labelLineHeight$sm,
-  overlineSize: typescaleVars.labelSize$sm,
-  overlineLetterSpacing: typescaleVars.labelLetterSpacing$sm,
-  overlineWeight: typescaleVars.labelWeight$sm,
-
-  // labelText
-  labelTextColor: 'inherit',
-  labelTextFont: typescaleVars.bodyFont$md,
-  labelTextLineHeight: typescaleVars.bodyLineHeight$md,
-  labelTextSize: typescaleVars.bodySize$md,
-  labelTextLetterSpacing: typescaleVars.bodyLetterSpacing$md,
-  labelTextWeight: typescaleVars.bodyWeight$md,
-
-  // headline
-  headlineColor: 'inherit',
-  headlineFont: typescaleVars.labelFont$sm,
-  headlineLineHeight: typescaleVars.labelLineHeight$sm,
-  headlineSize: typescaleVars.labelSize$sm,
-  headlineLetterSpacing: typescaleVars.labelLetterSpacing$sm,
-  headlineWeight: typescaleVars.labelWeight$sm,
-
-  // supportingText
-  supportingTextColor: 'inherit',
-  supportingTextFont: typescaleVars.bodyFont$sm,
-  supportingTextLineHeight: typescaleVars.bodyLineHeight$sm,
-  supportingTextSize: typescaleVars.bodySize$sm,
-  supportingTextLetterSpacing: typescaleVars.bodyLetterSpacing$sm,
-  supportingTextWeight: typescaleVars.bodyWeight$sm,
-
-  // trailingSupportingText
-  trailingSupportingTextColor: 'inherit',
-  trailingSupportingTextFont: typescaleVars.labelFont$sm,
-  trailingSupportingTextLineHeight: typescaleVars.labelLineHeight$sm,
-  trailingSupportingTextSize: typescaleVars.labelSize$sm,
-  trailingSupportingTextLetterSpacing: typescaleVars.labelLetterSpacing$sm,
-  trailingSupportingTextWeight: typescaleVars.labelWeight$sm,
-
-  // end
-  endColor: 'inherit',
+  // trailingIcon
+  trailingIconColor: colorRolesVars.onSurfaceVariant,
+  trailingIconSize: '18px',
+  // &:disabled
+  trailingIconColor$disabled: colorRolesVars.onSurface,
+  trailingIconOpacity$disabled: stateVars.opacity$disabled,
+  // &:focus
+  trailingIconColor$focus: colorRolesVars.onSurfaceVariant,
+  // &:hover
+  trailingIconColor$hover: colorRolesVars.onSurfaceVariant,
+  // &:pressed
+  trailingIconColor$pressed: colorRolesVars.onSurfaceVariant,
 };
 
 export const componentVars = stylex.defineVars(

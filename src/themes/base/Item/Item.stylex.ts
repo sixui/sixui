@@ -27,11 +27,11 @@ const vars: Partial<IStyleVars<IItemStyleVarKey>> = {
 
   // labelText
   labelTextColor: 'inherit',
-  labelTextFont: typescaleVars.bodyFont$md,
-  labelTextLineHeight: typescaleVars.bodyLineHeight$md,
-  labelTextSize: typescaleVars.bodySize$md,
-  labelTextLetterSpacing: typescaleVars.bodyLetterSpacing$md,
-  labelTextWeight: typescaleVars.bodyWeight$md,
+  labelTextFont: typescaleVars.bodyFont$lg,
+  labelTextLineHeight: typescaleVars.bodyLineHeight$lg,
+  labelTextSize: typescaleVars.bodySize$lg,
+  labelTextLetterSpacing: typescaleVars.bodyLetterSpacing$lg,
+  labelTextWeight: typescaleVars.bodyWeight$lg,
 
   // headline
   headlineColor: 'inherit',

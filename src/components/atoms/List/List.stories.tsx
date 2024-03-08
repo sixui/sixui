@@ -38,7 +38,7 @@ export const NonInteractive: IStory = {
     <ComponentShowcase
       component={(args) => (
         <List {...args}>
-          <ListItem end={<FontAwesomeIcon icon={faLink} />}>
+          <ListItem trailingIcon={<FontAwesomeIcon icon={faLink} />}>
             Single line item
           </ListItem>
           <ListItem
@@ -50,7 +50,10 @@ export const NonInteractive: IStory = {
           <ListItem overline='Overline' supportingText='Supporting text'>
             Three line item
           </ListItem>
-          <ListItem start={<FontAwesomeIcon icon={faCalendarDays} />} disabled>
+          <ListItem
+            leadingIcon={<FontAwesomeIcon icon={faCalendarDays} />}
+            disabled
+          >
             Disabled item
           </ListItem>
         </List>
@@ -73,7 +76,7 @@ export const Interactive: IStory = {
             type='link'
             href='https://google.com'
             target='_blank'
-            end={<FontAwesomeIcon icon={faLink} />}
+            trailingIcon={<FontAwesomeIcon icon={faLink} />}
           >
             Link item
           </ListItem>
@@ -87,7 +90,10 @@ export const Interactive: IStory = {
           <ListItem overline='Overline' supportingText='Supporting text'>
             Non-interactive item
           </ListItem>
-          <ListItem start={<FontAwesomeIcon icon={faCalendarDays} />} disabled>
+          <ListItem
+            leadingIcon={<FontAwesomeIcon icon={faCalendarDays} />}
+            disabled
+          >
             Disabled item
           </ListItem>
         </List>

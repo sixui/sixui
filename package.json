@@ -110,6 +110,7 @@
   "packageManager": "yarn@4.1.0",
   "readme": "README.md",
   "dependencies": {
+    "@headlessui/react": "^1.7.18",
     "@olivierpascal/helpers": "^0.0.67",
     "react-transition-group": "^4.4.5"
   },

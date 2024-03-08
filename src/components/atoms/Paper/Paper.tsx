@@ -15,16 +15,21 @@ import type {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { Elevation, IElevationStyleKey } from '@/components/utils/Elevation';
+import {
+  Elevation,
+  type IElevationStyleKey,
+} from '@/components/utils/Elevation';
 
 // https://github.com/material-components/material-web/blob/main/labs/paper/internal/paper.ts
 
 export type IPaperProps = IContainerProps<IPaperStyleKey> & {
   variant?: IPaperVariant | false;
+  innerStyles?: {
+    elevation?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
+  };
   children?: React.ReactNode;
   elevation?: 0 | 1 | 2 | 3 | 4 | 5;
   square?: boolean;
-  elevationStyles?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
 };
 
 type IPaperVariantMap = {
@@ -45,6 +50,7 @@ export const Paper = forwardRef<HTMLDivElement, IPaperProps>(
       styles,
       sx,
       variant = 'filled',
+      innerStyles,
       children,
       elevation: elevationProp,
       square,
@@ -84,7 +90,7 @@ export const Paper = forwardRef<HTMLDivElement, IPaperProps>(
           styles={[
             theme.elevationStyles,
             variantTheme?.elevationStyles,
-            ...asArray(props.elevationStyles),
+            ...asArray(innerStyles?.elevation),
           ]}
         />
         <div {...sxf('outline')} />

@@ -1,5 +1,3 @@
-import type { IItemStyleVarKey } from '../Item';
-
 export type IListItemStyleKey =
   | 'host'
   | 'host$interactive'
@@ -10,10 +8,14 @@ export type IListItemStyleKey =
   | 'listItem$disabled'
   | 'background'
   | 'background$selected'
-  | 'background$disabled';
+  | 'background$disabled'
+  | 'icon'
+  | 'icon$leading'
+  | 'icon$leading$disabled'
+  | 'icon$trailing'
+  | 'icon$trailing$disabled';
 
 export type IListItemStyleVarKey =
-  | IItemStyleVarKey
   | 'leadingSpace'
   | 'topSpace'
   | 'bottomSpace'
@@ -26,6 +28,7 @@ export type IListItemStyleVarKey =
   | 'containerColor$disabled'
   | 'containerOpacity$disabled'
   | 'selectedContainerColor'
+  | 'textColor'
   | 'textColor$disabled'
   | 'textOpacity$disabled'
   | 'textColor$focus'
@@ -35,6 +38,7 @@ export type IListItemStyleVarKey =
   | 'selectedTextColor$focus'
   | 'selectedTextColor$hover'
   | 'selectedTextColor$pressed'
+  | 'nonTextColor'
   | 'nonTextColor$disabled'
   | 'nonTextOpacity$disabled'
   | 'nonTextColor$focus'
@@ -47,7 +51,21 @@ export type IListItemStyleVarKey =
   | 'stateLayerColor$hover'
   | 'stateLayerOpacity$hover'
   | 'stateLayerColor$pressed'
-  | 'stateLayerOpacity$pressed';
+  | 'stateLayerOpacity$pressed'
+  | 'leadingIconColor'
+  | 'leadingIconSize'
+  | 'leadingIconColor$disabled'
+  | 'leadingIconOpacity$disabled'
+  | 'leadingIconColor$focus'
+  | 'leadingIconColor$hover'
+  | 'leadingIconColor$pressed'
+  | 'trailingIconColor'
+  | 'trailingIconSize'
+  | 'trailingIconColor$disabled'
+  | 'trailingIconOpacity$disabled'
+  | 'trailingIconColor$focus'
+  | 'trailingIconColor$hover'
+  | 'trailingIconColor$pressed';
 
 export type IListItemStyleStateVarKey =
   | 'nonTextColor'

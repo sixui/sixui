@@ -84,6 +84,43 @@ export const styles: MapNamespaces<IListItemStyles> =
       backgroundColor: vars.containerColor$disabled,
       opacity: vars.containerOpacity$disabled,
     },
+    icon: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    icon$leading: {
+      fontSize: vars.leadingIconSize,
+      height: vars.leadingIconSize,
+      width: vars.leadingIconSize,
+
+      color: {
+        default: vars.leadingIconColor,
+        ':is([data-focused])': vars.leadingIconColor$focus,
+        ':is([data-hovered])': vars.leadingIconColor$hover,
+        ':is([data-pressed])': vars.leadingIconColor$pressed,
+      },
+    },
+    icon$leading$disabled: {
+      color: vars.leadingIconColor$disabled,
+      opacity: vars.leadingIconOpacity$disabled,
+    },
+    icon$trailing: {
+      fontSize: vars.trailingIconSize,
+      height: vars.trailingIconSize,
+      width: vars.trailingIconSize,
+
+      color: {
+        default: vars.trailingIconColor,
+        ':is([data-focused])': vars.trailingIconColor$focus,
+        ':is([data-hovered])': vars.trailingIconColor$hover,
+        ':is([data-pressed])': vars.trailingIconColor$pressed,
+      },
+    },
+    icon$trailing$disabled: {
+      color: vars.trailingIconColor$disabled,
+      opacity: vars.trailingIconOpacity$disabled,
+    },
   });
 
 type IItemStyles = IStyles<IItemStyleKey>;
