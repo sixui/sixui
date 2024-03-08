@@ -38,7 +38,7 @@ const statesProps: IComponentPropsWithLegend<IListItemProps> = [
   { $legend: 'Focused', children: 'Focused', visualState: { focused: true } },
   { $legend: 'Hovered', children: 'Hovered', visualState: { hovered: true } },
   { $legend: 'Pressed', children: 'Pressed', visualState: { pressed: true } },
-  { $legend: 'Selected', children: 'Selected', active: true },
+  { $legend: 'Active', children: 'Active', active: true },
   { $legend: 'Disabled', children: 'Disabled', disabled: true },
 ];
 
@@ -49,8 +49,8 @@ const rowsProps: IComponentPropsWithLegend<IListItemProps> = [
   {
     $legend: 'Link with Icons',
     type: 'link',
-    start: <FontAwesomeIcon icon={faCalendarDays} />,
-    end: <FontAwesomeIcon icon={faChevronRight} />,
+    leadingIcon: <FontAwesomeIcon icon={faCalendarDays} />,
+    trailingIcon: <FontAwesomeIcon icon={faChevronRight} />,
   },
 ];
 

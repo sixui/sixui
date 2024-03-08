@@ -31,7 +31,7 @@ const styles = stylex.create({
 
 export const Test = forwardRef<HTMLDivElement, ITestProps>(
   function Test(props, ref) {
-    const { sx, children, ...other } = props;
+    const { sx, ...other } = props;
 
     return (
       <div {...stylex.props(styles.host, sx)} ref={ref} {...other}>
