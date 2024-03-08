@@ -278,7 +278,6 @@ Components
 - [ ] Bottom sheet
 - [ ] Data table
 - [ ] Date picker
-- [ ] Menu
 - [ ] Navigation bar
 - [ ] Navigation drawer
 - [ ] Navigation rail

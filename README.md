@@ -65,6 +65,8 @@ Components
 - [x] Item
 - [x] List
 - [x] ListItem
+- [x] Menu
+- [x] MenuList
 - [x] Paper
 - [x] Placeholder
 - [x] Radio
