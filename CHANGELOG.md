@@ -1,3 +1,15 @@
+# v0.0.85 (Sat Mar 09 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: Dialog is now polymorphic ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.84 (Fri Mar 08 2024)
 
 #### 🐛 Bug Fix
