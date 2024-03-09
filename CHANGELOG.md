@@ -1,3 +1,15 @@
+# v0.0.86 (Sat Mar 09 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: Button has now default type="button" ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.85 (Sat Mar 09 2024)
 
 #### ⚠️ Pushed to `main`
