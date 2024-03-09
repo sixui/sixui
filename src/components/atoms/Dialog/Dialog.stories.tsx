@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
-import { Dialog, type IDialogProps } from './Dialog';
+import { Dialog, type IDialogOwnProps, type IDialogProps } from './Dialog';
 import { Button } from '../Button';
 import { Typography } from '../Typography';
 import { useState } from 'react';
@@ -31,7 +31,7 @@ const styles = stylex.create({
   },
 });
 
-const DialogLauncher: React.FC<IDialogProps> = (props) => {
+const DialogLauncher: React.FC<IDialogOwnProps> = (props) => {
   const [open, setOpen] = useState(false);
   const handleOpen = (): void => setOpen(true);
   const handleClose = (): void => setOpen(false);

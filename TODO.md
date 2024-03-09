@@ -15,6 +15,17 @@
 - Menu
 
   - From TextField
+  - Show animation
+  - Keep button on 'active' state
+    - https://m3.material.io/components/menus/specs#15cc3423-ab1f-4d1c-8ce4-e5c9ae95f19f
+
+- Headlessui
+
+  - use it for
+    - modal
+    - switch?
+    - tabs?
+  - check transition
 
 - Form
 
