@@ -44,9 +44,7 @@ const DialogLauncher: React.FC<IDialogOwnProps> = (props) => {
             <Button variant='text' onClick={handleClose}>
               Cancel
             </Button>
-            <Button variant='text' onClick={handleClose}>
-              OK
-            </Button>
+            <Button variant='text'>OK</Button>
           </>
         }
         {...props}
@@ -83,15 +81,8 @@ export const WithForm: IStory = {
     ...defaultArgs,
     icon: <FontAwesomeIcon icon={faStar} />,
     headline: 'Headline',
-    children: (
-      <Form
-        onSubmit={(event) => {
-          event.preventDefault();
-        }}
-      >
-        <TextField sx={styles.field} label='Name' required />
-      </Form>
-    ),
+    as: Form,
+    children: <TextField sx={styles.field} label='Name' required />,
     actions: (close) => (
       <>
         <Button variant='text' onClick={close}>
@@ -102,6 +93,9 @@ export const WithForm: IStory = {
         </Button>
       </>
     ),
+    onSubmit: (event: SubmitEvent) => {
+      event.preventDefault();
+    },
   },
 };
 

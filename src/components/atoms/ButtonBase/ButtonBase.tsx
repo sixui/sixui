@@ -46,6 +46,7 @@ export type IButtonBaseOwnProps = IContainerProps<IButtonStyleKey> & {
   href?: string;
   disabled?: boolean;
   readOnly?: boolean;
+  type?: 'button' | 'submit' | 'reset';
 };
 
 export type IButtonBaseProps<
@@ -71,6 +72,7 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
     inwardFocusRing,
     disabled: disabledProp,
     readOnly,
+    type = 'button',
     href,
     ...other
   } = props as IWithAsProp<IButtonBaseOwnProps>;
@@ -108,6 +110,7 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
       role='button'
       tabIndex={disabled ? -1 : 0}
       disabled={disabled}
+      type={type}
       {...other}
     >
       <span {...sxf('touchTarget')} />
