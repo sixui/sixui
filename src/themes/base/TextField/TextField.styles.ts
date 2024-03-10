@@ -24,29 +24,6 @@ export const styles: MapNamespaces<ITextFieldStyles> =
       // Note: only inherit default `resize: both` to the field when textarea.
       resize: 'inherit',
     },
-    inputWrapper: {
-      flexGrow: 1,
-      flexShrink: 1,
-      flexBasis: '0%',
-      display: 'flex',
-    },
-    inputWrapped: {
-      resize: 'none',
-      margin: 0,
-      padding: 0,
-      borderWidth: 'inherit',
-      borderStyle: 'inherit',
-      borderColor: 'inherit',
-      backgroundColor: 'inherit',
-      fontFamily: 'inherit',
-      fontSize: 'inherit',
-      fontWeight: 'inherit',
-      lineHeight: 'inherit',
-      letterSpacing: 'inherit',
-      outline: {
-        ':is([data-focused])': '0',
-      },
-    },
     input: {
       width: '100%',
       caretColor: {
@@ -99,51 +76,16 @@ export const styles: MapNamespaces<ITextFieldStyles> =
       // eslint-disable-next-line @stylexjs/valid-styles
       '-moz-appearance': 'textfield',
     },
-    prefix: {
-      color: vars.contentPrefixColor,
-      textWrap: 'nowrap',
-      width: 'min-content',
-      paddingInlineEnd: vars.contentPrefixTrailingSpace,
-    },
-    prefix$disabled: {
-      color: 'inherit',
-    },
-    suffix: {
-      color: vars.contentSuffixColor,
-      textWrap: 'nowrap',
-      width: 'min-content',
-      paddingInlineStart: vars.contentSuffixLeadingSpace,
-    },
-    suffix$disabled: {
-      color: 'inherit',
-    },
-    icon: {
-      color: 'currentColor',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    icon$leading: {
-      fontSize: vars.leadingIconSize,
-      width: vars.leadingIconSize,
-      height: vars.leadingIconSize,
-    },
-    icon$trailing: {
-      fontSize: vars.trailingIconSize,
-      width: vars.trailingIconSize,
-      height: vars.trailingIconSize,
-    },
   });
 
 type IFieldStyles = IStyles<IFieldStyleKey>;
 export const fieldStyles: MapNamespaces<IFieldStyles> =
   stylex.create<IFieldStyles>({
-    field: {
-      width: '100%',
+    host: {
       cursor: 'text',
     },
-    field$disabled: {
-      cursor: 'default',
+    field: {
+      width: '100%',
     },
     field$textarea: {
       resize: 'inherit',

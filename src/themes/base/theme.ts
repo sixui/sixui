@@ -80,9 +80,11 @@ import {
 } from './Switch/Switch.styles';
 import { componentTheme as switchTheme } from './Switch/Switch.stylex';
 
-import { styles as fieldSharedStyles } from './Field/Field.styles';
-import { styles as fieldFilledStyles } from './Field/FilledField.styles';
-import { styles as fieldOutlinedStyles } from './Field/OutlinedField.styles';
+import { styles as fieldBaseStyles } from './FieldBase/FieldBase.styles';
+import { styles as filledFieldBaseStyles } from './FieldBase/FilledFieldBase.styles';
+import { styles as outlinedFieldBaseStyles } from './FieldBase/OutlinedFieldBase.styles';
+
+import { styles as fieldStyles } from './Field/Field.styles';
 
 import { componentTheme as textFieldTheme } from './TextField/TextField.stylex';
 import {
@@ -188,13 +190,6 @@ import { styles as scrimStyles } from './Scrim/Scrim.styles';
 
 import { componentTheme as dialogTheme } from './Dialog/Dialog.stylex';
 import { styles as dialogStyles } from './Dialog/Dialog.styles';
-
-import { componentTheme as menuTheme } from './Menu/Menu.stylex';
-import {
-  styles as menuStyles,
-  elevationStyles as menuElevationStyles,
-  focusRingStyles as menuFocusRingStyles,
-} from './Menu/Menu.styles';
 
 import { componentTheme as menuListTheme } from './MenuList/MenuList.stylex';
 import {
@@ -304,17 +299,19 @@ export const theme: ITheme = {
       focusRingStyles: switchFocusRingStyles,
       circularProgressIndicatorStyles: switchCircularProgressIndicatorStyles,
     },
-    Field: {
-      vars: textFieldTheme,
-      styles: fieldSharedStyles,
+    FieldBase: {
+      styles: fieldBaseStyles,
     },
-    FilledField: {
+    FilledFieldBase: {
       vars: filledTextFieldTheme,
-      styles: fieldFilledStyles,
+      styles: filledFieldBaseStyles,
     },
-    OutlinedField: {
+    OutlinedFieldBase: {
       vars: outlinedTextFieldTheme,
-      styles: fieldOutlinedStyles,
+      styles: outlinedFieldBaseStyles,
+    },
+    Field: {
+      styles: fieldStyles,
     },
     TextField: {
       vars: textFieldTheme,
@@ -430,12 +427,6 @@ export const theme: ITheme = {
     Dialog: {
       vars: dialogTheme,
       styles: dialogStyles,
-    },
-    Menu: {
-      vars: menuTheme,
-      styles: menuStyles,
-      focusRingStyles: menuFocusRingStyles,
-      elevationStyles: menuElevationStyles,
     },
     MenuList: {
       vars: menuListTheme,

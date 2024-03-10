@@ -1,5 +1,5 @@
 import { forwardRef, useCallback, useMemo, useRef } from 'react';
-import { accumulate, asArray } from '@olivierpascal/helpers';
+import { asArray } from '@olivierpascal/helpers';
 
 import type {
   IContainerProps,
@@ -11,14 +11,18 @@ import type {
   ITextFieldStyleKey,
   ITextFieldStyleVarKey,
 } from './TextField.styledefs';
-import type { IFieldStyleKey, IFieldVariant } from '../Field';
+import {
+  FieldBase,
+  type IFieldBaseProps,
+  type IFieldBaseStyleKey,
+  type IFieldBaseVariant,
+} from '@/components/atoms/FieldBase';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useValidationState } from '@/hooks/useValidationState';
-import { type IVisualState, useVisualState } from '@/hooks/useVisualState';
+import { useVisualState } from '@/hooks/useVisualState';
 import { useControlled } from '@/hooks/useControlled';
-import { Field } from '../Field/Field';
 import { useForkRef } from '@/hooks/useForkRef';
 
 // https://github.com/material-components/material-web/blob/main/textfield/internal/text-field.ts
@@ -75,59 +79,22 @@ export type ITextFieldProps = IContainerProps<ITextFieldStyleKey> &
     | 'autoCapitalize'
     | 'minLength'
     | 'maxLength'
-    | 'placeholder'
     | 'readOnly'
   > &
   Pick<
     React.InputHTMLAttributes<HTMLInputElement>,
     'min' | 'max' | 'step' | 'pattern' | 'multiple'
   > &
-  Pick<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'cols' | 'rows'> & {
+  Pick<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'cols' | 'rows'> &
+  Omit<
+    IFieldBaseProps,
+    'styles' | 'children' | 'textarea' | 'populated' | 'resizable'
+  > & {
     innerStyles?: {
-      field?: IZeroOrMore<ICompiledStyles<IFieldStyleKey>>;
+      field?: IZeroOrMore<ICompiledStyles<IFieldBaseStyleKey>>;
     };
-    visualState?: IVisualState;
-    variant?: IFieldVariant | false;
-
-    /**
-     * Gets or sets whether or not the text field is in a visually invalid state.
-     */
-    hasError?: boolean;
-
-    /**
-     * The error message that replaces supporting text when `error` is true. If
-     * `errorText` is an empty string, then the supporting text will continue to
-     * show.
-     */
-    errorText?: string;
-
-    /**
-     * The floating Material label of the textfield component. It informs the user
-     * about what information is requested for a text field. It is aligned with
-     * the input text, is always visible, and it floats when focused or when text
-     * is entered into the textfield. This label also sets accessibilty labels,
-     * but the accessible label is overriden by `aria-label`.
-     *
-     * Learn more about floating labels from the Material Design guidelines:
-     * https://m3.material.io/components/text-fields/guidelines
-     */
-    label?: string;
-
-    /**
-     * An optional prefix to display before the input value.
-     */
-    prefixText?: string;
-
-    /**
-     * An optional suffix to display after the input value.
-     */
-    suffixText?: string;
-
-    /**
-     * Conveys additional information below the text field, such as how it should
-     * be used.
-     */
-    supportingText?: string;
+    value?: string;
+    placeholder?: string;
 
     /**
      * The `<input>` type to use, defaults to "text". The type greatly changes how
@@ -150,30 +117,21 @@ export type ITextFieldProps = IContainerProps<ITextFieldStyleKey> &
      */
     type?: ITextFieldType | IUnsupportedTextFieldType;
 
-    /**
-     * The current value of the text field. It is always a string.
-     */
-    value?: string;
     defaultValue?: string;
-
-    /**
-     * When true, hide the spinner for `type="number"` text fields.
-     */
-    noSpinner?: boolean;
-
-    start?: React.ReactNode;
-    end?: React.ReactNode;
-    leadingIcon?: React.ReactNode;
-    trailingIcon?: React.ReactNode;
     onChange?: (
       event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
       value: string,
     ) => void;
     reportOnBlur?: boolean;
+
+    /**
+     * When true, hide the spinner for `type="number"` text fields.
+     */
+    noSpinner?: boolean;
   };
 
 type ITextFieldVariantMap = {
-  [key in IFieldVariant]: keyof Pick<
+  [key in IFieldBaseVariant]: keyof Pick<
     IThemeComponents,
     'FilledTextField' | 'OutlinedTextField'
   >;
@@ -218,34 +176,20 @@ export const TextField = forwardRef<
     ...other
   } = props;
 
-  const hostRef = useRef<HTMLInputElement>(null);
-  const { visualState: hostVisualState, ref: hostVisualStateRef } =
-    useVisualState(undefined, {
-      disabled,
-      retainFocusAfterClick: true,
-    });
-  const hostHandleRef = useForkRef(hostVisualStateRef, hostRef);
-
   const inputOrTextareaRef = useRef<HTMLInputElement | HTMLTextAreaElement>(
     null,
   );
-  const {
-    visualState: inputOrTextareaVisualState,
-    ref: inputOrTextareaRefVisualStateRef,
-  } = useVisualState(undefined, {
-    disabled,
-    retainFocusAfterClick: true,
-  });
+  const { visualState, ref: inputOrTextareaRefVisualStateRef } = useVisualState(
+    visualStateProp,
+    {
+      disabled,
+      retainFocusAfterClick: true,
+    },
+  );
   const handleRef = useForkRef(
     ref,
     inputOrTextareaRefVisualStateRef,
     inputOrTextareaRef,
-  );
-
-  const visualState = accumulate(
-    hostVisualState,
-    inputOrTextareaVisualState,
-    visualStateProp,
   );
 
   const { theme, variantTheme } = useComponentTheme(
@@ -348,7 +292,6 @@ export const TextField = forwardRef<
         <textarea
           {...sxf(
             'input',
-            'inputWrapped',
             hasError && 'input$error',
             disabled && 'input$disabled',
           )}
@@ -369,50 +312,32 @@ export const TextField = forwardRef<
     }
 
     return (
-      <div {...sxf('inputWrapper')}>
-        {prefixText ? (
-          <span
-            {...sxf('inputWrapped', 'prefix', disabled && 'prefix$disabled')}
-          >
-            {prefixText}
-          </span>
-        ) : null}
-        <input
-          {...sxf(
-            'inputWrapped',
-            'input',
-            hasError && 'input$error',
-            disabled && 'input$disabled',
-            noSpinner && 'input$noSpinner',
-            type === 'number' && 'input$number',
-          )}
-          ref={handleRef}
-          // TODO: aria-describedby="description"
-          aria-invalid={hasError}
-          aria-label={ariaLabel}
-          disabled={disabled}
-          minLength={hasMinLength ? minLength : undefined}
-          maxLength={hasMaxLength ? maxLength : undefined}
-          value={value ?? ''}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          required={required}
-          type={type}
-          {...other}
-        />
-        {suffixText ? (
-          <span
-            {...sxf('inputWrapped', 'suffix', disabled && 'suffix$disabled')}
-          >
-            {suffixText}
-          </span>
-        ) : null}
-      </div>
+      <input
+        {...sxf(
+          'input',
+          hasError && 'input$error',
+          disabled && 'input$disabled',
+          noSpinner && 'input$noSpinner',
+          type === 'number' && 'input$number',
+        )}
+        ref={handleRef}
+        // TODO: aria-describedby="description"
+        aria-invalid={hasError}
+        aria-label={ariaLabel}
+        disabled={disabled}
+        minLength={hasMinLength ? minLength : undefined}
+        maxLength={hasMaxLength ? maxLength : undefined}
+        value={value ?? ''}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        required={required}
+        type={type}
+        {...other}
+      />
     );
   }, [
     sxf,
     isTextarea,
-    prefixText,
     value,
     handleChange,
     handleBlur,
@@ -421,7 +346,6 @@ export const TextField = forwardRef<
     disabled,
     minLength,
     maxLength,
-    suffixText,
     noSpinner,
     type,
     other,
@@ -430,35 +354,16 @@ export const TextField = forwardRef<
     required,
   ]);
 
-  const renderStart = useCallback(
-    (): React.ReactNode | null =>
-      start ??
-      (leadingIcon ? (
-        <span {...sxf('icon', 'icon$leading')}>{leadingIcon}</span>
-      ) : null),
-    [sxf, start, leadingIcon],
-  );
-
-  const renderEnd = useCallback(
-    (): React.ReactNode | null =>
-      end ??
-      (trailingIcon ? (
-        <span {...sxf('icon', 'icon$trailing')}>{trailingIcon}</span>
-      ) : null),
-    [sxf, end, trailingIcon],
-  );
-
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
     <div
       {...sxf('host', theme.vars, variantTheme?.vars, sx)}
-      ref={hostHandleRef}
       onClick={() => inputOrTextareaRef.current?.focus()}
       role='textbox'
       tabIndex={-1}
     >
       <span {...sxf('textField')}>
-        <Field
+        <FieldBase
           styles={[
             theme.fieldStyles,
             variantTheme?.fieldStyles,
@@ -470,9 +375,13 @@ export const TextField = forwardRef<
           hasError={hasError}
           errorText={errorText}
           visualState={visualState}
-          start={renderStart()}
-          end={renderEnd()}
+          start={start}
+          end={end}
+          leadingIcon={leadingIcon}
+          trailingIcon={trailingIcon}
           label={label}
+          prefixText={prefixText}
+          suffixText={suffixText}
           max={maxLength}
           populated={!!value}
           required={required}
@@ -481,7 +390,7 @@ export const TextField = forwardRef<
           textarea={isTextarea}
         >
           {renderInputOrTextarea()}
-        </Field>
+        </FieldBase>
       </span>
     </div>
   );

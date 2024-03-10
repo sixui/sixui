@@ -3,11 +3,12 @@ import stylex from '@stylexjs/stylex';
 import type { Meta, StoryObj } from '@storybook/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { delay } from '@olivierpascal/helpers';
+import { capitalizeFirstLetter, delay } from '@olivierpascal/helpers';
 
-import type { ITextFieldStyleKey } from './TextField.styledefs';
 import type { IStyles } from '@/helpers/types';
+import type { ITextFieldStyleKey } from './TextField.styledefs';
 import type { IFormStyleKey } from '@/components/utils/Form/Form.styledefs';
+import { fieldBaseVariants } from '@/components/atoms/FieldBase';
 import {
   type IComponentPropsWithLegend,
   ComponentShowcase,
@@ -30,7 +31,7 @@ type IStory = StoryObj<typeof meta>;
 
 const textFieldStyles = stylex.create<IStyles<ITextFieldStyleKey>>({
   host: {
-    width: '248px',
+    width: 200,
   },
 });
 
@@ -40,37 +41,55 @@ const statesProps: IComponentPropsWithLegend<ITextFieldProps> = [
   { $legend: 'Enabled' },
   { $legend: 'Hovered', visualState: { hovered: true } },
   { $legend: 'Focused', visualState: { focused: true } },
-  { $legend: 'Pressed', visualState: { pressed: true } },
   {
     $legend: 'Disabled',
     disabled: true,
   },
 ];
 
-const rowsProps: IComponentPropsWithLegend<ITextFieldProps> = [
+const emptyRowsProps: IComponentPropsWithLegend<ITextFieldProps> = [
   { $legend: 'Basic' },
   { $legend: 'Required', required: true },
-  {
-    $legend: 'Populated',
-    defaultValue: 'Value',
-  },
   { $legend: 'Error', hasError: true },
-  {
-    $legend: 'Icons',
-    leadingIcon: <FontAwesomeIcon icon={faMagnifyingGlass} />,
-    trailingIcon: <FontAwesomeIcon icon={faXmark} />,
-  },
 ];
 
-const inputRowProps: IComponentPropsWithLegend<ITextFieldProps> = [
+const rowsProps: IComponentPropsWithLegend<ITextFieldProps> = [
+  { $legend: 'Basic' },
+  { $legend: 'Required Label', label: 'Label', required: true },
+  { $legend: 'Placeholder', placeholder: 'Placeholder' },
   {
-    $legend: 'Préfix / Suffix',
-    type: 'number',
-    defaultValue: '0',
-    prefixText: '$',
-    suffixText: '.00',
+    $legend: 'Label and Placeholder',
+    label: 'Label',
+    placeholder: 'Placeholder',
   },
+  { $legend: 'Value', value: 'Value' },
+  { $legend: 'Error', value: 'Value', hasError: true },
 ];
+
+const groupsProps: IComponentPropsWithLegend<ITextFieldProps> =
+  fieldBaseVariants.map((variant) => ({
+    $legend: capitalizeFirstLetter(variant),
+    variant,
+  }));
+
+export const Variants: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={TextField}
+      props={props}
+      colsProps={fieldBaseVariants.map((variant) => ({
+        variant,
+        label: capitalizeFirstLetter(variant),
+      }))}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    styles: textFieldStyles,
+    label: 'Label',
+    supportingText: 'Supporting text',
+  },
+};
 
 const ControlledForm: React.FC<ITextFieldProps> = (props) => {
   const [submitting, setSubmitting] = useState<boolean>(false);
@@ -168,109 +187,82 @@ export const Demo: IStory = {
   args: defaultArgs,
 };
 
-export const Uncontrolled: IStory = {
-  render: (props) => <ComponentShowcase component={TextField} props={props} />,
-  args: defaultArgs,
-};
-
-export const Controlled: IStory = {
-  render: (props) => (
-    <ComponentShowcase component={ControlledTextField} props={props} />
-  ),
-  args: defaultArgs,
-};
-
-export const Variants: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={TextField}
-      props={props}
-      colsProps={[{ variant: 'filled' }, { variant: 'outlined' }]}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    styles: textFieldStyles,
-    label: 'Label',
-    supportingText: 'Supporting text',
-  },
-};
-
-export const FilledInput: IStory = {
+export const Empty: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={TextField}
       props={props}
       colsProps={statesProps}
-      rowsProps={[...rowsProps, ...inputRowProps]}
+      rowsProps={emptyRowsProps}
+      groupsProps={groupsProps}
     />
   ),
   args: {
     ...defaultArgs,
-    styles: textFieldStyles,
-    label: 'Label',
-    supportingText: 'Supporting text',
     variant: 'filled',
-    placeholder: 'Placeholder',
   },
 };
 
-export const FilledTextarea: IStory = {
+export const TextareaEmpty: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={TextField}
+      props={props}
+      colsProps={statesProps}
+      rowsProps={emptyRowsProps}
+      groupsProps={groupsProps}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    type: 'textarea',
+    variant: 'filled',
+  },
+};
+
+export const InputWithData: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={TextField}
       props={props}
       colsProps={statesProps}
       rowsProps={rowsProps}
+      groupsProps={groupsProps}
     />
   ),
   args: {
     ...defaultArgs,
-    styles: textFieldStyles,
-    label: 'Label',
-    supportingText: 'Supporting text',
     variant: 'filled',
-    type: 'textarea',
-    placeholder: 'Placeholder',
-  },
-};
-
-export const OutlinedInput: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={TextField}
-      props={props}
-      colsProps={statesProps}
-      rowsProps={[...rowsProps, ...inputRowProps]}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    styles: textFieldStyles,
-    label: 'Label',
     supportingText: 'Supporting text',
-    variant: 'outlined',
-    placeholder: 'Placeholder',
+    errorText: 'Error text',
+    count: 2,
+    max: 10,
+    leadingIcon: <FontAwesomeIcon icon={faMagnifyingGlass} />,
+    trailingIcon: <FontAwesomeIcon icon={faXmark} />,
   },
 };
 
-export const OutlinedTextarea: IStory = {
+export const TextareaWithData: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={TextField}
       props={props}
       colsProps={statesProps}
       rowsProps={rowsProps}
+      groupsProps={groupsProps}
     />
   ),
   args: {
     ...defaultArgs,
-    styles: textFieldStyles,
+    type: 'textarea',
+    variant: 'filled',
     label: 'Label',
     supportingText: 'Supporting text',
-    variant: 'outlined',
-    type: 'textarea',
-    placeholder: 'Placeholder',
+    errorText: 'Error text',
+    count: 2,
+    max: 10,
+    leadingIcon: <FontAwesomeIcon icon={faMagnifyingGlass} />,
+    trailingIcon: <FontAwesomeIcon icon={faXmark} />,
   },
 };
 

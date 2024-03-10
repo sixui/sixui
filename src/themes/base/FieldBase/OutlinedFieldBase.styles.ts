@@ -137,9 +137,11 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
   },
   outlineSection$panel: {
     borderWidth: 'inherit',
-    borderStyle: 'inherit',
     borderColor: 'inherit',
+    borderTopStyle: 'none',
+    borderRightStyle: 'none',
     borderBottomStyle: 'solid',
+    borderLeftStyle: 'none',
     inset: 0,
     position: 'absolute',
   },

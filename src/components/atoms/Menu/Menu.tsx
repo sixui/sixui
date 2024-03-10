@@ -5,7 +5,6 @@ import { Menu as HeadlessMenu } from '@headlessui/react';
 import type { IContainerProps } from '@/helpers/types';
 import { MenuList } from '@/components/atoms/MenuList';
 import { MenuItem } from './MenuItem';
-import { MenuDivider } from './MenuDivider';
 import { IVisualState } from '@/hooks/useVisualState';
 
 type IMenuActionRenderPropArg = {
@@ -40,8 +39,8 @@ const styles = stylex.create({
 const Menu = forwardRef<HTMLElement, IMenuProps>(function Menu(props, ref) {
   const { sx, action, anchor = 'left', children } = props;
 
-  const activedVisualState: IVisualState = { hovered: true };
-  const activedProps = { visualState: activedVisualState };
+  const openVisualState: IVisualState = { hovered: true };
+  const openProps = { visualState: openVisualState };
 
   return (
     <HeadlessMenu ref={ref} as='div' {...stylex.props(styles.host, sx)}>
@@ -49,7 +48,7 @@ const Menu = forwardRef<HTMLElement, IMenuProps>(function Menu(props, ref) {
         {(bag) =>
           cloneElement(
             typeof action === 'function' ? action(bag) : action,
-            bag.open ? activedProps : undefined,
+            bag.open ? openProps : undefined,
           )
         }
       </HeadlessMenu.Button>
@@ -64,7 +63,6 @@ const Menu = forwardRef<HTMLElement, IMenuProps>(function Menu(props, ref) {
 
 const MenuNamespace = Object.assign(Menu, {
   Item: MenuItem,
-  Divider: MenuDivider,
 });
 
 export { MenuNamespace as Menu };

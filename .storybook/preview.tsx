@@ -17,7 +17,6 @@ import {
 // import { colorPaletteTheme } from '@/themes/variant/vars/colorPalettes.stylex';
 // import { shapeTheme } from '@/themes/variant/vars/shape.stylex';
 
-import 'modern-normalize/modern-normalize.css';
 import '@/styles/main.css';
 
 const preview: Preview = {

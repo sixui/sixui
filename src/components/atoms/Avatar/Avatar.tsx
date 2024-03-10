@@ -5,9 +5,8 @@ import type { IAvatarStyleKey, IAvatarStyleVarKey } from './Avatar.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-
-import { ReactComponent as Person } from '@/assets/Person.svg';
 import { useLoaded } from '@/hooks/useLoaded';
+import { ReactComponent as PersonIcon } from '@/assets/Person.svg';
 
 export type IAvatarProps = IContainerProps<IAvatarStyleKey> &
   Pick<
@@ -76,7 +75,7 @@ export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
         ) : hasImage && !!alt ? (
           <div {...sxf('content')}>{alt[0]}</div>
         ) : (
-          <Person {...sxf('content', 'content$fallback')} aria-hidden />
+          <PersonIcon {...sxf('content', 'content$fallback')} aria-hidden />
         )}
       </div>
     );
