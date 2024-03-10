@@ -300,6 +300,7 @@ export const theme: ITheme = {
       circularProgressIndicatorStyles: switchCircularProgressIndicatorStyles,
     },
     FieldBase: {
+      vars: textFieldTheme,
       styles: fieldBaseStyles,
     },
     FilledFieldBase: {

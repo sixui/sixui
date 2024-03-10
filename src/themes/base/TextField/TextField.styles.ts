@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
 import type { ITextFieldStyleKey } from '@/components/atoms/TextField';
-import type { IFieldStyleKey } from '@/components/atoms/Field';
+import type { IFieldBaseStyleKey } from '@/components/atoms/FieldBase';
 import { componentVars as vars } from './TextField.stylex';
 
 // https://github.com/material-components/material-web/blob/main/textfield/internal/_shared.scss
@@ -78,9 +78,9 @@ export const styles: MapNamespaces<ITextFieldStyles> =
     },
   });
 
-type IFieldStyles = IStyles<IFieldStyleKey>;
-export const fieldStyles: MapNamespaces<IFieldStyles> =
-  stylex.create<IFieldStyles>({
+type IFieldBaseStyles = IStyles<IFieldBaseStyleKey>;
+export const fieldStyles: MapNamespaces<IFieldBaseStyles> =
+  stylex.create<IFieldBaseStyles>({
     host: {
       cursor: 'text',
     },

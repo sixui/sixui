@@ -26,9 +26,9 @@ const defaultArgs = {
 } satisfies Partial<ISelectProps>;
 
 const statesProps: IComponentPropsWithLegend<ISelectProps> = [
-  { $legend: 'Enabled', children: 'Enabled' },
-  { $legend: 'Hovered', children: 'Hovered', visualState: { hovered: true } },
-  { $legend: 'Focused', children: 'Focused', visualState: { focused: true } },
+  { $legend: 'Enabled' },
+  { $legend: 'Hovered', visualState: { hovered: true } },
+  { $legend: 'Focused', visualState: { focused: true } },
 ];
 
 const rowsProps: IComponentPropsWithLegend<ISelectProps> = [
