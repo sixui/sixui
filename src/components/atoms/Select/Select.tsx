@@ -1,5 +1,11 @@
 import stylex from '@stylexjs/stylex';
-import { Fragment, forwardRef } from 'react';
+import {
+  Children,
+  Fragment,
+  forwardRef,
+  isValidElement,
+  useState,
+} from 'react';
 import { Listbox } from '@headlessui/react';
 
 import { MenuList } from '@/components/atoms/MenuList';
@@ -9,9 +15,18 @@ import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 import { SelectOption } from './SelectOption';
 
-export type ISelectProps = Omit<IFieldProps, 'end'> & {
+export type ISelectProps = Omit<IFieldProps, 'end' | 'value'> & {
   visualState?: IVisualState;
   children: Array<React.ReactNode>;
+  id?: string;
+  onChange?: (value?: string) => void;
+  value?: string;
+  defaultValue?: string;
+};
+
+type IChildCompatibleProps = {
+  value?: string;
+  children?: React.ReactNode;
 };
 
 const styles = stylex.create({
@@ -28,12 +43,43 @@ const styles = stylex.create({
 
 const Select = forwardRef<HTMLElement, ISelectProps>(
   function Select(props, ref) {
-    const { children, visualState: visualStateProp, ...other } = props;
+    const {
+      children,
+      visualState: visualStateProp,
+      id,
+      onChange,
+      defaultValue,
+      value: valueProp,
+      ...other
+    } = props;
+
+    const [value, setValue] = useState(defaultValue ?? valueProp);
+
+    const handleChange = (value: string): void => {
+      setValue(value);
+      onChange?.(value);
+    };
 
     const openVisualState: IVisualState = { focused: true };
 
+    const currentChild = (
+      Children.toArray(children).find(
+        (child) =>
+          isValidElement(child) &&
+          (child as React.ReactElement<IChildCompatibleProps>).props.value ===
+            value,
+      ) as React.ReactElement<IChildCompatibleProps> | undefined
+    )?.props.children;
+
     return (
-      <Listbox ref={ref} as='div' {...stylex.props(styles.host)}>
+      <Listbox
+        ref={ref}
+        as='div'
+        {...stylex.props(styles.host)}
+        id={id}
+        onChange={handleChange}
+        value={value}
+      >
         <Listbox.Button as={Fragment}>
           {({ open }) => (
             <Field
@@ -52,6 +98,7 @@ const Select = forwardRef<HTMLElement, ISelectProps>(
                   <TriangleDownIcon height='6' />
                 )
               }
+              value={currentChild}
               {...other}
             />
           )}

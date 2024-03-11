@@ -2,15 +2,16 @@ import { Listbox } from '@headlessui/react';
 
 import { IListItemProps, ListItem } from '@/components/atoms/ListItem';
 
-export type ISelectOptionProps = IListItemProps & {
+export type ISelectOptionProps = Omit<IListItemProps, 'type'> & {
   children: React.ReactNode;
+  value: string;
 };
 
 export const SelectOption: React.FC<ISelectOptionProps> = (props) => {
-  const { children, ...other } = props;
+  const { children, value, ...other } = props;
 
   return (
-    <Listbox.Option disabled={props.disabled} value='X'>
+    <Listbox.Option disabled={props.disabled} value={value}>
       {({ active }) => (
         <ListItem {...other} active={active}>
           {children}

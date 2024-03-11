@@ -21,7 +21,7 @@ export type IFieldProps = IContainerProps<IFieldStyleKey> &
       field?: IZeroOrMore<ICompiledStyles<IFieldBaseStyleKey>>;
     };
     placeholder?: string;
-    value?: string;
+    value?: React.ReactNode;
   };
 
 export const Field = forwardRef<HTMLDivElement, IFieldProps>(
@@ -42,14 +42,14 @@ export const Field = forwardRef<HTMLDivElement, IFieldProps>(
 
     return (
       <FieldBase sx={sx} ref={ref} populated={populated} {...other}>
-        {placeholder ? (
+        {value ? (
+          <div {...sxf('value')}>{value}</div>
+        ) : placeholder ? (
           <div
             {...sxf('placeholder', other.disabled && 'placeholder$disabled')}
           >
             {placeholder}
           </div>
-        ) : value ? (
-          <div {...sxf('value')}>{value}</div>
         ) : null}
       </FieldBase>
     );

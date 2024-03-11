@@ -33,28 +33,28 @@ const statesProps: IComponentPropsWithLegend<ISelectProps> = [
 
 const rowsProps: IComponentPropsWithLegend<ISelectProps> = [
   { $legend: 'Basic' },
-  // { $legend: 'With Leading Icon', icon: <FontAwesomeIcon icon={faPlus} /> },
-  // {
-  //   $legend: 'With Leading and Trailing Icons',
-  //   icon: <FontAwesomeIcon icon={faPlus} />,
-  //   trailingIcon: true,
-  // },
+  { $legend: 'With Label', label: 'Label' },
+  { $legend: 'With Placeholder', placeholder: 'Placeholder' },
+  {
+    $legend: 'With Default Value',
+    value: 'banana',
+  },
 ];
 
 const options = [
-  <Select.Option key={0} type='link' disabled>
+  <Select.Option key={0} value='apple' disabled>
     Apple
   </Select.Option>,
   <MenuListDivider key={1} />,
-  <Select.Option key={2} type='link'>
+  <Select.Option key={2} value='banana'>
     Banana
   </Select.Option>,
-  <Select.Option key={3} type='link'>
+  <Select.Option key={3} value='cumcumber'>
     Cumcumber
   </Select.Option>,
 ];
 
-export const Basic: IStory = {
+export const Filled: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={Select}
@@ -68,4 +68,21 @@ export const Basic: IStory = {
     children: options,
   },
 };
+
+export const Outlined: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={Select}
+      props={props}
+      colsProps={statesProps}
+      rowsProps={rowsProps}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    children: options,
+    variant: 'outlined',
+  },
+};
+
 export default meta;

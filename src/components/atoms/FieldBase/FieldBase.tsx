@@ -45,6 +45,7 @@ export type IFieldBaseProps = IContainerProps<IFieldBaseStyleKey> & {
   supportingText?: string;
   textarea?: boolean;
   children?: React.ReactNode;
+  labelId?: string;
 };
 
 type IFieldBaseVariantMap = {
@@ -73,6 +74,7 @@ export const FieldBase = forwardRef<HTMLDivElement, IFieldBaseProps>(
       trailingIcon,
       disabled,
       label,
+      labelId,
       required,
       populated,
       resizable,
@@ -548,6 +550,7 @@ export const FieldBase = forwardRef<HTMLDivElement, IFieldBaseProps>(
           sx,
         )}
         ref={handleRef}
+        aria-labelledby={labelId}
         {...other}
       >
         <div
