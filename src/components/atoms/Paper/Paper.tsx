@@ -71,7 +71,7 @@ export const Paper = forwardRef<HTMLDivElement, IPaperProps>(
       [stylesCombinator],
     );
 
-    const elevation = variant === 'outlined' ? 0 : elevationProp || 0;
+    const elevation = variant === 'outlined' ? 0 : elevationProp ?? 0;
 
     return (
       <div

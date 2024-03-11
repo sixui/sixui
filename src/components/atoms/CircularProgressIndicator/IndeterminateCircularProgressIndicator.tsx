@@ -53,7 +53,7 @@ export const IndeterminateCircularProgressIndicator = forwardRef<
       <div
         {...sxf('layer', 'progress', `progress$${size}`)}
         role='progressbar'
-        aria-label={props['aria-label'] || undefined}
+        aria-label={props['aria-label'] ?? undefined}
       >
         <div {...sxf('layer', 'spinner')}>
           <div {...sxf('layer', 'left')}>

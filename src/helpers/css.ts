@@ -5,11 +5,11 @@ export type ITransform = {
   scaleY: number;
 };
 
-export interface ITransition {
+export type ITransition = {
   property: string;
   easing: string;
   duration: string | number;
-}
+};
 
 export const css = Object.freeze({
   translate: {

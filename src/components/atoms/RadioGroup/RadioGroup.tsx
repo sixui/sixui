@@ -40,8 +40,8 @@ export const RadioGroup: React.FC<IRadioGroupProps> = (props) => {
     () => ({
       focus: () => {
         const input =
-          (hostRef.current?.querySelector('input:not(:disabled):checked') ||
-            hostRef.current?.querySelector('input:not(:disabled)')) ??
+          hostRef.current?.querySelector('input:not(:disabled):checked') ??
+          hostRef.current?.querySelector('input:not(:disabled)') ??
           undefined;
 
         if (input) {

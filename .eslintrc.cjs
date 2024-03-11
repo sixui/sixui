@@ -75,16 +75,6 @@ const eslintConfig = {
     'object-curly-newline': 'off',
     'function-paren-newline': 'off',
     'no-confusing-arrow': 'off',
-    'import/no-unresolved': [
-      'error',
-      {
-        commonjs: true,
-        amd: true,
-      },
-    ],
-    'import/named': 'error',
-    'import/namespace': 'error',
-    'import/default': 'error',
     'import/export': 'error',
     'react/jsx-one-expression-per-line': 'off',
     'react/no-array-index-key': 'off',
@@ -115,10 +105,34 @@ const eslintConfig = {
         project: './tsconfig.json',
       },
       extends: [
-        'plugin:@typescript-eslint/recommended',
-        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+        'plugin:@typescript-eslint/recommended-type-checked',
+        'plugin:@typescript-eslint/stylistic-type-checked',
       ],
       rules: {
+        '@typescript-eslint/no-misused-promises': [
+          'error',
+          {
+            checksConditionals: true,
+            checksSpreads: true,
+            checksVoidReturn: {
+              arguments: true,
+              attributes: false, // slow
+              properties: true,
+              returns: true,
+              variables: true,
+            },
+          },
+        ],
+        '@typescript-eslint/no-unsafe-assignment': 'off', // slow
+        '@typescript-eslint/prefer-nullish-coalescing': [
+          'error',
+          {
+            ignorePrimitives: {
+              boolean: true,
+            },
+          },
+        ],
+        '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
         'no-restricted-imports': [
           'error',
           {
@@ -137,12 +151,9 @@ const eslintConfig = {
         'react/jsx-fragments': 'error',
         '@typescript-eslint/array-type': ['error', { default: 'generic' }],
         '@typescript-eslint/no-empty-interface': 'off',
-        '@typescript-eslint/no-unused-vars': 'error',
         '@typescript-eslint/indent': 'off',
         '@typescript-eslint/explicit-member-accessibility': 'error',
         '@typescript-eslint/typedef': 'error',
-        '@typescript-eslint/no-explicit-any': 'error',
-        '@typescript-eslint/no-unsafe-enum-comparison': 'off',
         '@typescript-eslint/no-inferrable-types': [
           'error',
           {
@@ -185,6 +196,12 @@ const eslintConfig = {
             format: ['PascalCase'],
           },
         ],
+      },
+    },
+    {
+      files: ['**/*.test.ts'],
+      rules: {
+        '@typescript-eslint/unbound-method': 'off',
       },
     },
   ],

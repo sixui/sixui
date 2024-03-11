@@ -75,7 +75,7 @@ export const DeterminateCircularProgressIndicator = forwardRef<
       <div
         {...sxf('layer', 'progress', `progress$${size}`)}
         role='progressbar'
-        aria-label={props['aria-label'] || undefined}
+        aria-label={props['aria-label'] ?? undefined}
         aria-valuemin={min}
         aria-valuemax={max}
         aria-valuenow={value}
