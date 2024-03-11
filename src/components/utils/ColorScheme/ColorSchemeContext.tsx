@@ -4,7 +4,8 @@ export type IColorScheme = 'light' | 'dark';
 
 export type IColorSchemeContext = IColorScheme;
 
-export const initialContext: IColorSchemeContext = 'light';
+export const colorSchemeInitialContext: IColorSchemeContext = 'light';
 
-export const ColorSchemeContext =
-  createContext<IColorSchemeContext>(initialContext);
+export const ColorSchemeContext = createContext<IColorSchemeContext>(
+  colorSchemeInitialContext,
+);
