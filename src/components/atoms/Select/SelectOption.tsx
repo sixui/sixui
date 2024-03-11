@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { Listbox } from '@headlessui/react';
 
 import { IListItemProps, ListItem } from '@/components/atoms/ListItem';
@@ -11,7 +12,7 @@ export const SelectOption: React.FC<ISelectOptionProps> = (props) => {
   const { children, value, ...other } = props;
 
   return (
-    <Listbox.Option disabled={props.disabled} value={value}>
+    <Listbox.Option as={Fragment} disabled={props.disabled} value={value}>
       {({ active }) => (
         <ListItem {...other} active={active}>
           {children}

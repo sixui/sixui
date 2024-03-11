@@ -65,6 +65,7 @@ export const Filled: IStory = {
   ),
   args: {
     ...defaultArgs,
+    value: '',
     children: options,
   },
 };
@@ -81,6 +82,7 @@ export const Outlined: IStory = {
   args: {
     ...defaultArgs,
     children: options,
+    value: '',
     variant: 'outlined',
   },
 };

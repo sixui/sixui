@@ -53,10 +53,12 @@ const Select = forwardRef<HTMLElement, ISelectProps>(
       ...other
     } = props;
 
-    const [value, setValue] = useState(defaultValue ?? valueProp);
+    const [value, setValue] = useState(valueProp);
 
     const handleChange = (value: string): void => {
-      setValue(value);
+      if (defaultValue === undefined) {
+        setValue(value);
+      }
       onChange?.(value);
     };
 
@@ -79,6 +81,7 @@ const Select = forwardRef<HTMLElement, ISelectProps>(
         id={id}
         onChange={handleChange}
         value={value}
+        defaultValue={defaultValue}
       >
         <Listbox.Button as={Fragment}>
           {({ open }) => (
