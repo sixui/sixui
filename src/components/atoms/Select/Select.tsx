@@ -17,15 +17,15 @@ import { SelectOption } from './SelectOption';
 
 export type ISelectProps = Omit<IFieldProps, 'end' | 'value'> & {
   visualState?: IVisualState;
-  children: Array<React.ReactNode>;
+  children: Array<React.ReactNode> | React.ReactNode;
   id?: string;
-  onChange?: (value?: string) => void;
+  onChange?: (value: string) => void;
   value?: string;
   defaultValue?: string;
 };
 
 type IChildCompatibleProps = {
-  value?: string;
+  value: string;
   children?: React.ReactNode;
 };
 
@@ -44,6 +44,7 @@ const styles = stylex.create({
 const Select = forwardRef<HTMLElement, ISelectProps>(
   function Select(props, ref) {
     const {
+      sx,
       children,
       visualState: visualStateProp,
       id,
@@ -75,9 +76,9 @@ const Select = forwardRef<HTMLElement, ISelectProps>(
 
     return (
       <Listbox
+        {...stylex.props(styles.host, sx)}
         ref={ref}
         as='div'
-        {...stylex.props(styles.host)}
         id={id}
         onChange={handleChange}
         value={value}

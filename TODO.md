@@ -15,6 +15,10 @@
 
 - uniformize z-index
 
+- Switch
+
+  - Always toggled on mode with visible icons, ie. for color scheme toggle
+
 - Menu
 
   - Show animation
