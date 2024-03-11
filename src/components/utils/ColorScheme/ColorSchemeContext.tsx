@@ -2,13 +2,9 @@ import { createContext } from 'react';
 
 export type IColorScheme = 'light' | 'dark';
 
-export type IColorSchemeContext = {
-  colorScheme: IColorScheme;
-};
+export type IColorSchemeContext = IColorScheme;
 
-export const initialContext: IColorSchemeContext = {
-  colorScheme: 'light',
-};
+export const initialContext: IColorSchemeContext = 'light';
 
 export const ColorSchemeContext =
   createContext<IColorSchemeContext>(initialContext);

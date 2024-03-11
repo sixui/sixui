@@ -66,7 +66,7 @@ export const decorators: Array<Decorator> = [
       <ThemeProvider value={{ theme }}>
         {/* <div {...stylex.props(colorPaletteTheme, colorRolesTheme, shapeTheme)}> */}
         {showLightMode ? (
-          <ColorSchemeProvider value={{ colorScheme: 'light' }}>
+          <ColorSchemeProvider value='light'>
             <div {...stylex.props(styles.storyWrapper)}>
               <Story />
             </div>
@@ -74,7 +74,7 @@ export const decorators: Array<Decorator> = [
         ) : null}
 
         {showDarkMode ? (
-          <ColorSchemeProvider value={{ colorScheme: 'dark' }}>
+          <ColorSchemeProvider value='dark'>
             <div {...stylex.props(styles.storyWrapper)}>
               <Story />
             </div>

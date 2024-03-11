@@ -29,7 +29,7 @@ export const ColorSchemeProvider: React.FC<IColorSchemeProviderProps> = (
 
   return (
     <ColorSchemeContext.Provider value={value}>
-      {value.colorScheme === 'dark' ? (
+      {value === 'dark' ? (
         <div {...stylex.props(styles.container$dark, theme.colorSchemes.dark)}>
           {children}
         </div>
