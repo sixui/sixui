@@ -152,7 +152,6 @@ export const WithCustomIcons: IStory = {
   ),
   args: {
     ...defaultArgs,
-    icons: true,
     icon: <FontAwesomeIcon icon={faMinus} />,
     selectedIcon: <FontAwesomeIcon icon={faPlus} />,
   },

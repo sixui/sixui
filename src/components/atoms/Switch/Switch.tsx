@@ -103,7 +103,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
     defaultSelected,
     disabled: disabledProp,
     loading: loadingProp,
-    icons: iconsProp,
+    icons,
     showOnlySelectedIcon: showOnlySelectedIconProp,
     loadingAnimation = 'progressIndicator',
     onChange,
@@ -163,9 +163,10 @@ export const Switch: ISwitch = forwardRef(function Switch<
     [handlingChange, onChange, selected, setSelected],
   );
 
-  const icons = iconsProp || loading;
+  const hasCustomIcons = !!icon || !!selectedIcon;
+  const hasIcons = icons || loading || hasCustomIcons;
   const showOnlySelectedIcon = !loading && showOnlySelectedIconProp;
-  const shouldShowIcons = icons || showOnlySelectedIcon;
+  const shouldShowIcons = hasIcons || showOnlySelectedIcon;
 
   return (
     <div {...sxf('host', disabled && 'host$disabled', theme.vars, sx)}>
@@ -223,7 +224,8 @@ export const Switch: ISwitch = forwardRef(function Switch<
                 loading && 'handle$loading',
                 disabled &&
                   (selected ? 'handle$disabled$selected' : 'handle$disabled'),
-                (showOnlySelectedIcon ? selected : icons) && 'handle$withIcon',
+                (showOnlySelectedIcon ? selected : hasIcons) &&
+                  'handle$withIcon',
               )}
             >
               <div
@@ -258,9 +260,9 @@ export const Switch: ISwitch = forwardRef(function Switch<
                       />
                     ) : selectedIcon ? (
                       selectedIcon
-                    ) : (
+                    ) : !hasCustomIcons ? (
                       <CheckMarkIcon aria-hidden />
-                    )}
+                    ) : null}
                   </div>
 
                   {showOnlySelectedIcon ? null : (
@@ -282,9 +284,9 @@ export const Switch: ISwitch = forwardRef(function Switch<
                         />
                       ) : icon ? (
                         icon
-                      ) : (
+                      ) : !hasCustomIcons ? (
                         <XMarkIcon aria-hidden />
-                      )}
+                      ) : null}
                     </div>
                   )}
                 </div>
