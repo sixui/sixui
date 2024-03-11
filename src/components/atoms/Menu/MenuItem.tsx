@@ -1,6 +1,6 @@
 import { Menu as HeadlessMenu } from '@headlessui/react';
 
-import { IListItemProps, ListItem } from '@/components/atoms/ListItem';
+import { type IListItemProps, ListItem } from '@/components/atoms/ListItem';
 
 export type IMenuItemProps = IListItemProps & {
   children: React.ReactNode;

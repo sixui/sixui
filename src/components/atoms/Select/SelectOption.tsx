@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { Listbox } from '@headlessui/react';
 
-import { IListItemProps, ListItem } from '@/components/atoms/ListItem';
+import { type IListItemProps, ListItem } from '@/components/atoms/ListItem';
 
 export type ISelectOptionProps = Omit<IListItemProps, 'type'> & {
   children: React.ReactNode;

@@ -5,8 +5,7 @@ import { faLink, faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { List, type IListProps } from './List';
-import { ListItem } from '../ListItem';
+import { type IListProps, List } from './List';
 
 // https://m3.material.io/components/lists/overview
 // https://material-web.dev/components/list/
@@ -38,24 +37,25 @@ export const NonInteractive: IStory = {
     <ComponentShowcase
       component={(args) => (
         <List {...args}>
-          <ListItem trailingIcon={<FontAwesomeIcon icon={faLink} />}>
+          <List.Item trailingIcon={<FontAwesomeIcon icon={faLink} />}>
             Single line item
-          </ListItem>
-          <ListItem
+          </List.Item>
+          <List.Item
             supportingText='Supporting text'
             trailingSupportingText='1/2'
           >
             Two line item
-          </ListItem>
-          <ListItem overline='Overline' supportingText='Supporting text'>
+          </List.Item>
+          <List.Item overline='Overline' supportingText='Supporting text'>
             Three line item
-          </ListItem>
-          <ListItem
+          </List.Item>
+          <List.Divider />
+          <List.Item
             leadingIcon={<FontAwesomeIcon icon={faCalendarDays} />}
             disabled
           >
             Disabled item
-          </ListItem>
+          </List.Item>
         </List>
       )}
       props={args}
@@ -72,30 +72,30 @@ export const Interactive: IStory = {
     <ComponentShowcase
       component={(args) => (
         <List {...args}>
-          <ListItem
+          <List.Item
             type='link'
             href='https://google.com'
             target='_blank'
             trailingIcon={<FontAwesomeIcon icon={faLink} />}
           >
             Link item
-          </ListItem>
-          <ListItem
+          </List.Item>
+          <List.Item
             type='button'
             trailingSupportingText='1/2'
             supportingText='Supporting text'
           >
             Button item
-          </ListItem>
-          <ListItem overline='Overline' supportingText='Supporting text'>
+          </List.Item>
+          <List.Item overline='Overline' supportingText='Supporting text'>
             Non-interactive item
-          </ListItem>
-          <ListItem
+          </List.Item>
+          <List.Item
             leadingIcon={<FontAwesomeIcon icon={faCalendarDays} />}
             disabled
           >
             Disabled item
-          </ListItem>
+          </List.Item>
         </List>
       )}
       props={args}
