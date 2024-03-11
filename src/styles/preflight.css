@@ -17,7 +17,7 @@
 
 ::before,
 ::after {
-  --tw-content: '';
+  content: '';
 }
 
 /*
