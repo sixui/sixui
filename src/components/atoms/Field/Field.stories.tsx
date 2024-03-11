@@ -16,13 +16,13 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
-  field: {
+  host: {
     width: '200px',
   },
 });
 
 const defaultArgs = {
-  sx: styles.field,
+  sx: styles.host,
 } satisfies Partial<IFieldProps>;
 
 const statesProps: IComponentPropsWithLegend<IFieldProps> = [

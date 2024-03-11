@@ -1,6 +1,5 @@
 # TO DO
 
-- Check les styles root de Field et TextField, voir si les rendus sont bien exactement les memes
 - Créer FieldBase.stylex.ts
 - Finir Select
 

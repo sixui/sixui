@@ -4,11 +4,7 @@ import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
 
-import type { IStyles } from '@/helpers/types';
-import {
-  type IFieldBaseStyleKey,
-  fieldBaseVariants,
-} from './FieldBase.styledefs';
+import { fieldBaseVariants } from './FieldBase.styledefs';
 import {
   type IComponentPropsWithLegend,
   ComponentShowcase,
@@ -24,7 +20,7 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const fieldStyles = stylex.create<IStyles<IFieldBaseStyleKey>>({
+const styles = stylex.create({
   host: {
     width: 200,
   },
@@ -39,7 +35,7 @@ const inputStyles = stylex.create({
 });
 
 const defaultArgs = {
-  styles: fieldStyles,
+  sx: styles.host,
   children: <div {...stylex.props(inputStyles.placeholder)} />,
 } satisfies Partial<IFieldBaseProps>;
 

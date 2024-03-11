@@ -28,13 +28,15 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const textFieldStyles = stylex.create<IStyles<ITextFieldStyleKey>>({
+const styles = stylex.create({
   host: {
     width: 200,
   },
 });
 
-const defaultArgs = {} satisfies Partial<ITextFieldProps>;
+const defaultArgs = {
+  sx: styles.host,
+} satisfies Partial<ITextFieldProps>;
 
 const statesProps: IComponentPropsWithLegend<ITextFieldProps> = [
   { $legend: 'Enabled' },
@@ -172,14 +174,11 @@ export const Validation: IStory = {
           supportingText: 'Max 10 characters',
         },
         {
-          styles: [
-            textFieldStyles,
-            stylex.create<IStyles<ITextFieldStyleKey>>({
-              host: {
-                textAlign: 'end',
-              },
-            }),
-          ],
+          styles: stylex.create<IStyles<ITextFieldStyleKey>>({
+            host: {
+              textAlign: 'end',
+            },
+          }),
           label: 'Pattern',
           pattern: '[a-zA-Z]+',
           placeholder: 'username',
@@ -191,7 +190,6 @@ export const Validation: IStory = {
   ),
   args: {
     ...defaultArgs,
-    styles: textFieldStyles,
     reportOnBlur: true,
   },
 };
