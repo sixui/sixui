@@ -1,3 +1,20 @@
+# v0.0.87 (Mon Mar 11 2024)
+
+#### 🐛 Bug Fix
+
+- Feat/select [#15](https://github.com/sixui/ui/pull/15) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### ⚠️ Pushed to `main`
+
+- fix: package.json wrong dependencies order ([@olivierpascal](https://github.com/olivierpascal))
+- fix: Select can be uncontrolled ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.86 (Sat Mar 09 2024)
 
 #### ⚠️ Pushed to `main`
