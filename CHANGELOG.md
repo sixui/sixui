@@ -1,3 +1,16 @@
+# v0.0.88 (Mon Mar 11 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: untrack vscode settings with exceptions ([@olivierpascal](https://github.com/olivierpascal))
+- fix: eslint config ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.87 (Mon Mar 11 2024)
 
 #### 🐛 Bug Fix
