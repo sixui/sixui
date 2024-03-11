@@ -1,7 +1,7 @@
 import { forwardRef, useMemo, useRef } from 'react';
 
 import type { IContainerProps } from '@/helpers/types';
-import type { IThemeComponents } from '@/helpers/ThemeContext';
+import type { IThemeComponents } from '@/components/utils/Theme';
 import type {
   ITemplateStyleKey,
   ITemplateStyleVarKey,

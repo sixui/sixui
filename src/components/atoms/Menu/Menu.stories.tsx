@@ -10,6 +10,7 @@ import {
 import { Menu, type IMenuProps } from './Menu';
 import { Button } from '@/components/atoms/Button';
 import { IconButton } from '@/components/atoms/IconButton';
+import { MenuListDivider } from '@/components/atoms/MenuList/MenuListDivider';
 
 const meta = {
   component: Menu,
@@ -23,7 +24,7 @@ const items = [
   <Menu.Item key={0} type='link' disabled>
     Apple
   </Menu.Item>,
-  <Menu.Divider key={1} />,
+  <MenuListDivider key={1} />,
   <Menu.Item key={2} type='link'>
     Banana
   </Menu.Item>,

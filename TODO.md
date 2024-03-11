@@ -1,5 +1,8 @@
 # TO DO
 
+- Créer FieldBase.stylex.ts
+- Finir Select
+
 - modal
   - use portal
   - use transition
@@ -14,10 +17,11 @@
 
 - Menu
 
-  - From TextField
   - Show animation
-  - Keep button on 'active' state
-    - https://m3.material.io/components/menus/specs#15cc3423-ab1f-4d1c-8ce4-e5c9ae95f19f
+
+- Select
+
+  - Show animation
 
 - Headlessui
 

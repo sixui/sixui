@@ -24,8 +24,7 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { isFragment } from '@/helpers/isFragment';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { ButtonBase } from '@/components/atoms/ButtonBase';
-
-import { ReactComponent as EllipsisHorizontal } from '@/assets/EllipsisHorizontal.svg';
+import { ReactComponent as EllipsisHorizontalIcon } from '@/assets/EllipsisHorizontal.svg';
 
 export type IBreadcrumbsProps = IContainerProps<IBreadcrumbsStyleKey> & {
   innerStyles?: {
@@ -140,7 +139,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
             key='ellipsis'
             onClick={handleClickExpand}
           >
-            <EllipsisHorizontal {...sxf('icon')} aria-hidden />
+            <EllipsisHorizontalIcon {...sxf('icon')} aria-hidden />
           </ButtonBase>
         </li>,
         ...items.slice(items.length - itemCountAfterCollapse, items.length),

@@ -17,15 +17,19 @@ export * from './components/atoms/Dialog';
 export * from './components/atoms/Divider';
 export * from './components/atoms/Fab';
 export * from './components/atoms/Field';
+export * from './components/atoms/FieldBase';
 export * from './components/atoms/IconButton';
 export * from './components/atoms/Item';
 export * from './components/atoms/List';
 export * from './components/atoms/ListItem';
+export * from './components/atoms/Menu';
+export * from './components/atoms/MenuList';
 export * from './components/atoms/Paper';
 export * from './components/atoms/Placeholder';
 export * from './components/atoms/Radio';
 export * from './components/atoms/RadioGroup';
 export * from './components/atoms/Scrim';
+export * from './components/atoms/Select';
 export * from './components/atoms/Switch';
 export * from './components/atoms/Tab';
 export * from './components/atoms/TabList';
@@ -43,15 +47,13 @@ export * from './components/utils/FocusRing';
 export * from './components/utils/Form';
 export * from './components/utils/StateLayer';
 export * from './components/utils/VisualState';
+export * from './components/utils/Theme';
+export * from './components/utils/ColorScheme';
 
 // hooks
 export * from './hooks/useForkRef';
 export * from './hooks/useLoaded';
 export * from './hooks/usePrevious';
 export * from './hooks/useVisualState';
-
-// helpers
-export * from './helpers/ThemeProvider';
-export * from './helpers/ThemeContext';
 
 export { theme as baseTheme } from './themes/base';

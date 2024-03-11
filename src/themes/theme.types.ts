@@ -44,6 +44,7 @@ import type {
   ISwitchStyleKey,
   ISwitchStyleVarKey,
 } from '@/components/atoms/Switch';
+import type { IFieldBaseStyleKey } from '@/components/atoms/FieldBase';
 import type { IFieldStyleKey } from '@/components/atoms/Field';
 import type {
   ITextFieldStyleKey,
@@ -109,7 +110,6 @@ import type {
   IDialogStyleKey,
   IDialogStyleVarKey,
 } from '@/components/atoms/Dialog';
-import type { IMenuStyleKey, IMenuStyleVarKey } from '@/components/atoms/Menu';
 import type {
   IMenuListStyleKey,
   IMenuListStyleVarKey,
@@ -158,13 +158,13 @@ export type IIconButtonTheme = {
 
 export type IFieldTheme = {
   vars?: IStyleVarsTheme<ITextFieldStyleVarKey>;
-  styles?: ICompiledStyles<IFieldStyleKey>;
+  styles?: ICompiledStyles<IFieldBaseStyleKey>;
 };
 
 export type ITextFieldTheme = {
   vars?: IStyleVarsTheme<ITextFieldStyleVarKey>;
   styles?: ICompiledStyles<ITextFieldStyleKey>;
-  fieldStyles?: ICompiledStyles<IFieldStyleKey>;
+  fieldStyles?: ICompiledStyles<IFieldBaseStyleKey>;
 };
 
 export type IPaperTheme = {
@@ -257,9 +257,12 @@ export type ITheme = {
       focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
       circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
     };
-    Field: IFieldTheme;
-    FilledField: IFieldTheme;
-    OutlinedField: IFieldTheme;
+    FieldBase: IFieldTheme;
+    FilledFieldBase: IFieldTheme;
+    OutlinedFieldBase: IFieldTheme;
+    Field: {
+      styles?: ICompiledStyles<IFieldStyleKey>;
+    };
     TextField: ITextFieldTheme;
     FilledTextField: ITextFieldTheme;
     OutlinedTextField: ITextFieldTheme;
@@ -359,12 +362,6 @@ export type ITheme = {
     Dialog: {
       vars?: IStyleVarsTheme<IDialogStyleVarKey>;
       styles?: ICompiledStyles<IDialogStyleKey>;
-    };
-    Menu: {
-      vars?: IStyleVarsTheme<IMenuStyleVarKey>;
-      styles?: ICompiledStyles<IMenuStyleKey>;
-      elevationStyles?: ICompiledStyles<IElevationStyleKey>;
-      focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
     };
     MenuList: {
       vars?: IStyleVarsTheme<IMenuListStyleVarKey>;

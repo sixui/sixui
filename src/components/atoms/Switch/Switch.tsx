@@ -31,8 +31,8 @@ import {
   IndeterminateCircularProgressIndicator,
   type ICircularProgressIndicatorStyleKey,
 } from '@/components/atoms/CircularProgressIndicator';
-import { ReactComponent as CheckMark } from '@/assets/CheckMark.svg';
-import { ReactComponent as XMark } from '@/assets/XMark.svg';
+import { ReactComponent as CheckMarkIcon } from '@/assets/CheckMark.svg';
+import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
 import { useForkRef } from '@/hooks/useForkRef';
 
 // https://github.com/material-components/material-web/blob/main/switch/internal/switch.ts
@@ -259,7 +259,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
                     ) : selectedIcon ? (
                       selectedIcon
                     ) : (
-                      <CheckMark aria-hidden />
+                      <CheckMarkIcon aria-hidden />
                     )}
                   </div>
 
@@ -283,7 +283,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
                       ) : icon ? (
                         icon
                       ) : (
-                        <XMark aria-hidden />
+                        <XMarkIcon aria-hidden />
                       )}
                     </div>
                   )}

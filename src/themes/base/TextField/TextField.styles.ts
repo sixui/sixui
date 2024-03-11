@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
 import type { ITextFieldStyleKey } from '@/components/atoms/TextField';
-import type { IFieldStyleKey } from '@/components/atoms/Field';
+import type { IFieldBaseStyleKey } from '@/components/atoms/FieldBase';
 import { componentVars as vars } from './TextField.stylex';
 
 // https://github.com/material-components/material-web/blob/main/textfield/internal/_shared.scss
@@ -24,30 +24,11 @@ export const styles: MapNamespaces<ITextFieldStyles> =
       // Note: only inherit default `resize: both` to the field when textarea.
       resize: 'inherit',
     },
-    inputWrapper: {
-      flexGrow: 1,
-      flexShrink: 1,
-      flexBasis: '0%',
-      display: 'flex',
-    },
-    inputWrapped: {
-      resize: 'none',
-      margin: 0,
-      padding: 0,
-      borderWidth: 'inherit',
-      borderStyle: 'inherit',
-      borderColor: 'inherit',
-      backgroundColor: 'inherit',
-      fontFamily: 'inherit',
-      fontSize: 'inherit',
-      fontWeight: 'inherit',
-      lineHeight: 'inherit',
-      letterSpacing: 'inherit',
-      outline: {
-        ':is([data-focused])': '0',
-      },
-    },
     input: {
+      overflowWrap: 'inherit',
+      whiteSpace: 'inherit',
+      resize: 'none',
+
       width: '100%',
       caretColor: {
         default: vars.caretColor,
@@ -99,6 +80,12 @@ export const styles: MapNamespaces<ITextFieldStyles> =
       // eslint-disable-next-line @stylexjs/valid-styles
       '-moz-appearance': 'textfield',
     },
+    inputWrapper: {
+      flexGrow: 1,
+      flexShrink: 1,
+      flexBasis: '0%',
+      display: 'flex',
+    },
     prefix: {
       color: vars.contentPrefixColor,
       textWrap: 'nowrap',
@@ -117,33 +104,16 @@ export const styles: MapNamespaces<ITextFieldStyles> =
     suffix$disabled: {
       color: 'inherit',
     },
-    icon: {
-      color: 'currentColor',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    icon$leading: {
-      fontSize: vars.leadingIconSize,
-      width: vars.leadingIconSize,
-      height: vars.leadingIconSize,
-    },
-    icon$trailing: {
-      fontSize: vars.trailingIconSize,
-      width: vars.trailingIconSize,
-      height: vars.trailingIconSize,
-    },
   });
 
-type IFieldStyles = IStyles<IFieldStyleKey>;
-export const fieldStyles: MapNamespaces<IFieldStyles> =
-  stylex.create<IFieldStyles>({
-    field: {
-      width: '100%',
+type IFieldBaseStyles = IStyles<IFieldBaseStyleKey>;
+export const fieldStyles: MapNamespaces<IFieldBaseStyles> =
+  stylex.create<IFieldBaseStyles>({
+    host: {
       cursor: 'text',
     },
-    field$disabled: {
-      cursor: 'default',
+    field: {
+      width: '100%',
     },
     field$textarea: {
       resize: 'inherit',

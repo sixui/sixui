@@ -14,7 +14,7 @@ import type {
 import type { IFabSize, IFabStyleKey, IFabVariant } from './Fab.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { IThemeComponents } from '@/helpers/ThemeContext';
+import { IThemeComponents } from '@/components/utils/Theme';
 import { type IButtonStyleKey, type IButtonOwnProps, Button } from '../Button';
 
 // https://github.com/material-components/material-web/blob/main/fab/internal/shared.ts

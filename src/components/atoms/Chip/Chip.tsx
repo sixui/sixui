@@ -14,7 +14,7 @@ import type {
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/polymorphicComponentTypes';
-import type { IThemeComponents } from '@/helpers/ThemeContext';
+import type { IThemeComponents } from '@/components/utils/Theme';
 import type {
   IChipStyleKey,
   IChipStyleVarKey,
@@ -41,8 +41,8 @@ import {
   IndeterminateCircularProgressIndicator,
   type ICircularProgressIndicatorStyleKey,
 } from '@/components/atoms/CircularProgressIndicator';
-import { ReactComponent as CheckMark } from '@/assets/CheckMark.svg';
-import { ReactComponent as XMark } from '@/assets/XMark.svg';
+import { ReactComponent as CheckMarkIcon } from '@/assets/CheckMark.svg';
+import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
 import { useForkRef } from '@/hooks/useForkRef';
 import { ButtonBase } from '@/components/atoms/ButtonBase';
 import { Avatar } from '../Avatar';
@@ -390,7 +390,7 @@ export const Chip: IChip = forwardRef(function Chip<
                   />
                 ) : null
               ) : selected && variant === 'filter' ? (
-                <CheckMark aria-hidden />
+                <CheckMarkIcon aria-hidden />
               ) : imageUrl ? (
                 <Avatar src={imageUrl} styles={avatarStyles} />
               ) : icon ? (
@@ -479,7 +479,7 @@ export const Chip: IChip = forwardRef(function Chip<
                   />
                 </div>
               ) : (
-                <XMark aria-hidden />
+                <XMarkIcon aria-hidden />
               )}
             </span>
           </ButtonBase>
