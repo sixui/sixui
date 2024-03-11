@@ -8,7 +8,7 @@ import {
 } from 'react';
 
 import type { IContainerProps } from '@/helpers/types';
-import type { IThemeComponents } from '@/helpers/ThemeContext';
+import type { IThemeComponents } from '@/components/utils/Theme';
 import { useVisualState, type IVisualState } from '@/hooks/useVisualState';
 import type {
   IFieldBaseStyleKey,
@@ -38,8 +38,6 @@ export type IFieldBaseProps = IContainerProps<IFieldBaseStyleKey> & {
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
   label?: string;
-  prefixText?: string;
-  suffixText?: string;
   max?: number;
   populated?: boolean;
   required?: boolean;
@@ -75,8 +73,6 @@ export const FieldBase = forwardRef<HTMLDivElement, IFieldBaseProps>(
       trailingIcon,
       disabled,
       label,
-      prefixText,
-      suffixText,
       required,
       populated,
       resizable,
@@ -638,19 +634,7 @@ export const FieldBase = forwardRef<HTMLDivElement, IFieldBaseProps>(
                           : 'contentSlot$textarea'),
                     )}
                   >
-                    <div {...sxf('inputWrapper')}>
-                      {prefixText ? (
-                        <span {...sxf('prefix', disabled && 'prefix$disabled')}>
-                          {prefixText}
-                        </span>
-                      ) : null}
-                      <div {...sxf('inputWrapper')}>{children}</div>
-                      {suffixText ? (
-                        <span {...sxf('suffix', disabled && 'suffix$disabled')}>
-                          {suffixText}
-                        </span>
-                      ) : null}
-                    </div>
+                    {children}
                   </div>
                 </div>
               </div>

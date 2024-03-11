@@ -1,5 +1,4 @@
-import type { IThemeComponents } from '@/helpers/ThemeContext';
-import { useTheme } from './useTheme';
+import { useTheme, type IThemeComponents } from '@/components/utils/Theme';
 
 export type IUseComponentThemeResult<
   TThemeComponent extends keyof IThemeComponents,

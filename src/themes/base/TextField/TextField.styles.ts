@@ -25,6 +25,10 @@ export const styles: MapNamespaces<ITextFieldStyles> =
       resize: 'inherit',
     },
     input: {
+      overflowWrap: 'inherit',
+      whiteSpace: 'inherit',
+      resize: 'none',
+
       width: '100%',
       caretColor: {
         default: vars.caretColor,
@@ -75,6 +79,30 @@ export const styles: MapNamespaces<ITextFieldStyles> =
     input$number: {
       // eslint-disable-next-line @stylexjs/valid-styles
       '-moz-appearance': 'textfield',
+    },
+    inputWrapper: {
+      flexGrow: 1,
+      flexShrink: 1,
+      flexBasis: '0%',
+      display: 'flex',
+    },
+    prefix: {
+      color: vars.contentPrefixColor,
+      textWrap: 'nowrap',
+      width: 'min-content',
+      paddingInlineEnd: vars.contentPrefixTrailingSpace,
+    },
+    prefix$disabled: {
+      color: 'inherit',
+    },
+    suffix: {
+      color: vars.contentSuffixColor,
+      textWrap: 'nowrap',
+      width: 'min-content',
+      paddingInlineStart: vars.contentSuffixLeadingSpace,
+    },
+    suffix$disabled: {
+      color: 'inherit',
     },
   });
 

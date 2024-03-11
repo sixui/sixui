@@ -6,7 +6,7 @@ import type {
   IZeroOrMore,
   ICompiledStyles,
 } from '@/helpers/types';
-import type { IThemeComponents } from '@/helpers/ThemeContext';
+import type { IThemeComponents } from '@/components/utils/Theme';
 import type {
   ITextFieldStyleKey,
   ITextFieldStyleVarKey,
@@ -95,6 +95,8 @@ export type ITextFieldProps = IContainerProps<ITextFieldStyleKey> &
     };
     value?: string;
     placeholder?: string;
+    prefixText?: string;
+    suffixText?: string;
 
     /**
      * The `<input>` type to use, defaults to "text". The type greatly changes how
@@ -154,13 +156,13 @@ export const TextField = forwardRef<
     variant = 'filled',
     label,
     required,
-    prefixText,
-    suffixText,
     start,
     end,
     leadingIcon,
     trailingIcon,
     supportingText,
+    prefixText,
+    suffixText,
     maxLength = -1,
     minLength = -1,
     noSpinner,
@@ -312,28 +314,40 @@ export const TextField = forwardRef<
     }
 
     return (
-      <input
-        {...sxf(
-          'input',
-          hasError && 'input$error',
-          disabled && 'input$disabled',
-          noSpinner && 'input$noSpinner',
-          type === 'number' && 'input$number',
-        )}
-        ref={handleRef}
-        // TODO: aria-describedby="description"
-        aria-invalid={hasError}
-        aria-label={ariaLabel}
-        disabled={disabled}
-        minLength={hasMinLength ? minLength : undefined}
-        maxLength={hasMaxLength ? maxLength : undefined}
-        value={value ?? ''}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        required={required}
-        type={type}
-        {...other}
-      />
+      <div {...sxf('inputWrapper')}>
+        {prefixText ? (
+          <span {...sxf('prefix', disabled && 'prefix$disabled')}>
+            {prefixText}
+          </span>
+        ) : null}
+        <input
+          {...sxf(
+            'input',
+            hasError && 'input$error',
+            disabled && 'input$disabled',
+            noSpinner && 'input$noSpinner',
+            type === 'number' && 'input$number',
+          )}
+          ref={handleRef}
+          // TODO: aria-describedby="description"
+          aria-invalid={hasError}
+          aria-label={ariaLabel}
+          disabled={disabled}
+          minLength={hasMinLength ? minLength : undefined}
+          maxLength={hasMaxLength ? maxLength : undefined}
+          value={value ?? ''}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          required={required}
+          type={type}
+          {...other}
+        />
+        {suffixText ? (
+          <span {...sxf('suffix', disabled && 'suffix$disabled')}>
+            {suffixText}
+          </span>
+        ) : null}
+      </div>
     );
   }, [
     sxf,
@@ -352,6 +366,8 @@ export const TextField = forwardRef<
     handleRef,
     label,
     required,
+    prefixText,
+    suffixText,
   ]);
 
   return (
@@ -380,8 +396,6 @@ export const TextField = forwardRef<
           leadingIcon={leadingIcon}
           trailingIcon={trailingIcon}
           label={label}
-          prefixText={prefixText}
-          suffixText={suffixText}
           max={maxLength}
           populated={!!value}
           required={required}

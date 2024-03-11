@@ -14,7 +14,7 @@ import type {
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/polymorphicComponentTypes';
-import type { IThemeComponents } from '@/helpers/ThemeContext';
+import type { IThemeComponents } from '@/components/utils/Theme';
 import type {
   IChipStyleKey,
   IChipStyleVarKey,

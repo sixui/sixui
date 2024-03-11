@@ -2,14 +2,12 @@ import type { Decorator, Preview } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
 import { modes } from './modes';
-import { ThemeProvider } from '@/helpers/ThemeProvider';
+import { ThemeProvider } from '@/components/utils/Theme';
+import { ColorSchemeProvider } from '@/components/utils/ColorScheme';
 
 import { theme } from '@/themes/base';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import {
-  darkColorRoles,
-  darkColorRolesTheme,
-} from '@/themes/base/vars/darkColorsRoles';
+import { darkColorRoles } from '@/themes/base/vars/darkColorsRoles';
 
 // For theme variant
 // import { theme } from '@/themes/variant';
@@ -53,15 +51,9 @@ const preview: Preview = {
 };
 
 export const styles = stylex.create({
-  container: {
+  storyWrapper: {
     backgroundColor: colorRolesVars.surface,
     padding: '2rem',
-  },
-  container$light: {
-    colorScheme: 'light',
-  },
-  container$dark: {
-    colorScheme: 'dark',
   },
 });
 
@@ -74,21 +66,19 @@ export const decorators: Array<Decorator> = [
       <ThemeProvider value={{ theme }}>
         {/* <div {...stylex.props(colorPaletteTheme, colorRolesTheme, shapeTheme)}> */}
         {showLightMode ? (
-          <div {...stylex.props(styles.container, styles.container$light)}>
-            <Story theme='light' />
-          </div>
+          <ColorSchemeProvider value={{ colorScheme: 'light' }}>
+            <div {...stylex.props(styles.storyWrapper)}>
+              <Story />
+            </div>
+          </ColorSchemeProvider>
         ) : null}
 
         {showDarkMode ? (
-          <div
-            {...stylex.props(
-              darkColorRolesTheme,
-              styles.container,
-              styles.container$dark,
-            )}
-          >
-            <Story theme='dark' />
-          </div>
+          <ColorSchemeProvider value={{ colorScheme: 'dark' }}>
+            <div {...stylex.props(styles.storyWrapper)}>
+              <Story />
+            </div>
+          </ColorSchemeProvider>
         ) : null}
         {/* </div> */}
       </ThemeProvider>

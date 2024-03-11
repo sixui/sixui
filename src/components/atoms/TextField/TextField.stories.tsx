@@ -2,13 +2,12 @@ import { useCallback, useRef, useState } from 'react';
 import stylex from '@stylexjs/stylex';
 import type { Meta, StoryObj } from '@storybook/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { capitalizeFirstLetter, delay } from '@olivierpascal/helpers';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { delay } from '@olivierpascal/helpers';
 
 import type { IStyles } from '@/helpers/types';
 import type { ITextFieldStyleKey } from './TextField.styledefs';
 import type { IFormStyleKey } from '@/components/utils/Form/Form.styledefs';
-import { fieldBaseVariants } from '@/components/atoms/FieldBase';
 import {
   type IComponentPropsWithLegend,
   ComponentShowcase,
@@ -47,100 +46,54 @@ const statesProps: IComponentPropsWithLegend<ITextFieldProps> = [
   },
 ];
 
-const emptyRowsProps: IComponentPropsWithLegend<ITextFieldProps> = [
-  { $legend: 'Basic' },
-  { $legend: 'Required', required: true },
-  { $legend: 'Error', hasError: true },
-];
-
 const rowsProps: IComponentPropsWithLegend<ITextFieldProps> = [
-  { $legend: 'Basic' },
-  { $legend: 'Required Label', label: 'Label', required: true },
+  { $legend: 'Empty' },
+  { $legend: 'Label', label: 'Label' },
   { $legend: 'Placeholder', placeholder: 'Placeholder' },
   {
-    $legend: 'Label and Placeholder',
-    label: 'Label',
-    placeholder: 'Placeholder',
+    $legend: 'Value',
+    value: 'Value',
+    prefixText: '$',
+    suffixText: '.00',
   },
-  { $legend: 'Value', value: 'Value' },
   { $legend: 'Error', value: 'Value', hasError: true },
 ];
 
-const groupsProps: IComponentPropsWithLegend<ITextFieldProps> =
-  fieldBaseVariants.map((variant) => ({
-    $legend: capitalizeFirstLetter(variant),
-    variant,
-  }));
+const groupsProps: IComponentPropsWithLegend<ITextFieldProps> = [
+  { $legend: 'Input' },
+  { $legend: 'Textarea', type: 'textarea' },
+];
 
-export const Variants: IStory = {
+export const Filled: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={TextField}
       props={props}
-      colsProps={fieldBaseVariants.map((variant) => ({
-        variant,
-        label: capitalizeFirstLetter(variant),
-      }))}
+      colsProps={statesProps}
+      rowsProps={rowsProps}
+      groupsProps={groupsProps}
     />
   ),
   args: {
     ...defaultArgs,
-    styles: textFieldStyles,
-    label: 'Label',
-    supportingText: 'Supporting text',
+    variant: 'filled',
   },
 };
 
-const ControlledForm: React.FC<ITextFieldProps> = (props) => {
-  const [submitting, setSubmitting] = useState<boolean>(false);
-  const [result, setResult] = useState<string>();
-  const [firstName, setFirstName] = useState<string>('');
-  const [lastName, setLastName] = useState<string>('');
-
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = useCallback(
-    (event) => {
-      event.preventDefault();
-
-      setSubmitting(true);
-      void delay(1000)
-        .then(() => setResult(JSON.stringify({ firstName, lastName })))
-        .finally(() => setSubmitting(false));
-    },
-    [firstName, lastName],
-  );
-
-  return (
-    <Form onSubmit={handleSubmit} styles={formStyles}>
-      <div {...stylex.props(formStyles2.col)}>
-        <TextField
-          {...props}
-          label='First name'
-          name='firstName'
-          value={firstName}
-          onChange={(_, value) => setFirstName(value)}
-          autoComplete='given-name'
-          autoCapitalize='words'
-          required
-        />
-        <TextField
-          {...props}
-          label='Last name'
-          name='lastName'
-          value={lastName}
-          onChange={(_, value) => setLastName(value)}
-          autoComplete='family-name'
-          autoCapitalize='words'
-          required
-        />
-        <div {...stylex.props(formStyles2.buttons)}>
-          <Button type='submit' loading={submitting}>
-            Submit
-          </Button>
-        </div>
-        {result ? <div>{result}</div> : null}
-      </div>
-    </Form>
-  );
+export const Outlined: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={TextField}
+      props={props}
+      colsProps={statesProps}
+      rowsProps={rowsProps}
+      groupsProps={groupsProps}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'outlined',
+  },
 };
 
 const ControlledTextField: React.FC<Omit<ITextFieldProps, 'onChange'>> = (
@@ -171,99 +124,6 @@ const ControlledTextField: React.FC<Omit<ITextFieldProps, 'onChange'>> = (
       }
     />
   );
-};
-
-export const Demo: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={ControlledForm}
-      props={props}
-      colsProps={[
-        { $legend: 'Filled', variant: 'filled' },
-        { $legend: 'Outlined', variant: 'outlined' },
-      ]}
-    />
-  ),
-  args: defaultArgs,
-};
-
-export const Empty: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={TextField}
-      props={props}
-      colsProps={statesProps}
-      rowsProps={emptyRowsProps}
-      groupsProps={groupsProps}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    variant: 'filled',
-  },
-};
-
-export const TextareaEmpty: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={TextField}
-      props={props}
-      colsProps={statesProps}
-      rowsProps={emptyRowsProps}
-      groupsProps={groupsProps}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    type: 'textarea',
-    variant: 'filled',
-  },
-};
-
-export const InputWithData: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={TextField}
-      props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
-      groupsProps={groupsProps}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    variant: 'filled',
-    supportingText: 'Supporting text',
-    errorText: 'Error text',
-    count: 2,
-    max: 10,
-    leadingIcon: <FontAwesomeIcon icon={faMagnifyingGlass} />,
-    trailingIcon: <FontAwesomeIcon icon={faXmark} />,
-  },
-};
-
-export const TextareaWithData: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={TextField}
-      props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
-      groupsProps={groupsProps}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    type: 'textarea',
-    variant: 'filled',
-    label: 'Label',
-    supportingText: 'Supporting text',
-    errorText: 'Error text',
-    count: 2,
-    max: 10,
-    leadingIcon: <FontAwesomeIcon icon={faMagnifyingGlass} />,
-    trailingIcon: <FontAwesomeIcon icon={faXmark} />,
-  },
 };
 
 export const Validation: IStory = {
@@ -353,5 +213,71 @@ const formStyles2 = stylex.create({
     gap: '1em',
   },
 });
+
+const ControlledForm: React.FC<ITextFieldProps> = (props) => {
+  const [submitting, setSubmitting] = useState<boolean>(false);
+  const [result, setResult] = useState<string>();
+  const [firstName, setFirstName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('');
+
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = useCallback(
+    (event) => {
+      event.preventDefault();
+
+      setSubmitting(true);
+      void delay(1000)
+        .then(() => setResult(JSON.stringify({ firstName, lastName })))
+        .finally(() => setSubmitting(false));
+    },
+    [firstName, lastName],
+  );
+
+  return (
+    <Form onSubmit={handleSubmit} styles={formStyles}>
+      <div {...stylex.props(formStyles2.col)}>
+        <TextField
+          {...props}
+          label='First name'
+          name='firstName'
+          value={firstName}
+          onChange={(_, value) => setFirstName(value)}
+          autoComplete='given-name'
+          autoCapitalize='words'
+          required
+        />
+        <TextField
+          {...props}
+          label='Last name'
+          name='lastName'
+          value={lastName}
+          onChange={(_, value) => setLastName(value)}
+          autoComplete='family-name'
+          autoCapitalize='words'
+          required
+        />
+        <div {...stylex.props(formStyles2.buttons)}>
+          <Button type='submit' loading={submitting}>
+            Submit
+          </Button>
+        </div>
+        {result ? <div>{result}</div> : null}
+      </div>
+    </Form>
+  );
+};
+
+export const FormDemo: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={ControlledForm}
+      props={props}
+      colsProps={[
+        { $legend: 'Filled', variant: 'filled' },
+        { $legend: 'Outlined', variant: 'outlined' },
+      ]}
+    />
+  ),
+  args: defaultArgs,
+};
 
 export default meta;

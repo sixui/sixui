@@ -6,7 +6,7 @@ import type {
   IZeroOrMore,
   ICompiledStyles,
 } from '@/helpers/types';
-import type { IThemeComponents } from '@/helpers/ThemeContext';
+import type { IThemeComponents } from '@/components/utils/Theme';
 import type {
   IPaperStyleKey,
   IPaperStyleVarKey,

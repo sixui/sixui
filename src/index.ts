@@ -47,15 +47,13 @@ export * from './components/utils/FocusRing';
 export * from './components/utils/Form';
 export * from './components/utils/StateLayer';
 export * from './components/utils/VisualState';
+export * from './components/utils/Theme';
+export * from './components/utils/ColorScheme';
 
 // hooks
 export * from './hooks/useForkRef';
 export * from './hooks/useLoaded';
 export * from './hooks/usePrevious';
 export * from './hooks/useVisualState';
-
-// helpers
-export * from './helpers/ThemeProvider';
-export * from './helpers/ThemeContext';
 
 export { theme as baseTheme } from './themes/base';

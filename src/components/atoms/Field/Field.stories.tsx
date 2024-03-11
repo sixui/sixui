@@ -34,14 +34,14 @@ const statesProps: IComponentPropsWithLegend<IFieldProps> = [
 
 const rowsProps: IComponentPropsWithLegend<IFieldProps> = [
   { $legend: 'Empty' },
-  { $legend: 'With Placeholder', placeholder: 'Placeholder' },
+  { $legend: 'Placeholder', placeholder: 'Placeholder' },
   {
-    $legend: 'With Value',
+    $legend: 'Value',
     value: 'Value',
   },
 ];
 
-export const Variants: IStory = {
+export const Filled: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={Field}
@@ -50,7 +50,25 @@ export const Variants: IStory = {
       rowsProps={rowsProps}
     />
   ),
-  args: defaultArgs,
+  args: {
+    ...defaultArgs,
+    variant: 'filled',
+  },
+};
+
+export const Outlined: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={Field}
+      props={props}
+      colsProps={statesProps}
+      rowsProps={rowsProps}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'outlined',
+  },
 };
 
 export default meta;

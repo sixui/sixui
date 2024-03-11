@@ -31,20 +31,16 @@ const fieldStyles = stylex.create<IStyles<IFieldBaseStyleKey>>({
 });
 
 const inputStyles = stylex.create({
-  host: {
+  placeholder: {
     width: '100%',
     height: 24,
-  },
-  host$populated: {
     backgroundColor: colorRolesVars.surfacePlaceholder,
   },
 });
 
 const defaultArgs = {
   styles: fieldStyles,
-  children: (
-    <div {...stylex.props(inputStyles.host, inputStyles.host$populated)} />
-  ),
+  children: <div {...stylex.props(inputStyles.placeholder)} />,
 } satisfies Partial<IFieldBaseProps>;
 
 const statesProps: IComponentPropsWithLegend<IFieldBaseProps> = [
@@ -55,16 +51,28 @@ const statesProps: IComponentPropsWithLegend<IFieldBaseProps> = [
 ];
 
 const rowsProps: IComponentPropsWithLegend<IFieldBaseProps> = [
-  { $legend: 'Basic' },
-  { $legend: 'Required', required: true },
-  { $legend: 'Error', hasError: true },
+  { $legend: 'Empty' },
+  {
+    $legend: 'Label',
+    label: 'Label',
+  },
+  {
+    $legend: 'Populated',
+    label: 'Label',
+    populated: true,
+  },
+  {
+    $legend: 'Slots',
+    label: 'Label',
+    supportingText: 'Supporting text',
+    count: 2,
+    max: 10,
+    leadingIcon: <FontAwesomeIcon icon={faMagnifyingGlass} />,
+    trailingIcon: <FontAwesomeIcon icon={faXmark} />,
+  },
+  { $legend: 'Error', hasError: true, errorText: 'Error text' },
+  { $legend: 'Resizable', resizable: true },
 ];
-
-const groupsProps: IComponentPropsWithLegend<IFieldBaseProps> =
-  fieldBaseVariants.map((variant) => ({
-    $legend: capitalizeFirstLetter(variant),
-    variant,
-  }));
 
 export const Variants: IStory = {
   render: (props) => (
@@ -77,21 +85,16 @@ export const Variants: IStory = {
       }))}
     />
   ),
-  args: {
-    ...defaultArgs,
-    supportingText: 'Supporting text',
-    errorText: 'Error text',
-  },
+  args: defaultArgs,
 };
 
-export const Empty: IStory = {
+export const Filled: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={FieldBase}
       props={props}
       colsProps={statesProps}
       rowsProps={rowsProps}
-      groupsProps={groupsProps}
     />
   ),
   args: {
@@ -100,26 +103,18 @@ export const Empty: IStory = {
   },
 };
 
-export const WithData: IStory = {
+export const Outlined: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={FieldBase}
       props={props}
       colsProps={statesProps}
       rowsProps={rowsProps}
-      groupsProps={groupsProps}
     />
   ),
   args: {
     ...defaultArgs,
-    variant: 'filled',
-    label: 'Label',
-    supportingText: 'Supporting text',
-    errorText: 'Error text',
-    count: 2,
-    max: 10,
-    leadingIcon: <FontAwesomeIcon icon={faMagnifyingGlass} />,
-    trailingIcon: <FontAwesomeIcon icon={faXmark} />,
+    variant: 'outlined',
   },
 };
 

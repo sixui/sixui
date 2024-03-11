@@ -362,7 +362,7 @@ Prevent resizing textareas horizontally by default.
 */
 
 textarea {
-  resize: vertical;
+  /* resize: vertical; */
 }
 
 /*

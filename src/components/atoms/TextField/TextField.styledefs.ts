@@ -1,11 +1,16 @@
 export type ITextFieldStyleKey =
   | 'host'
   | 'textField'
+  | 'inputWrapper'
   | 'input'
   | 'input$disabled'
   | 'input$noSpinner'
   | 'input$number'
-  | 'input$error';
+  | 'input$error'
+  | 'prefix'
+  | 'prefix$disabled'
+  | 'suffix'
+  | 'suffix$disabled';
 
 export type ITextFieldStyleVarKey =
   | 'leadingSpace'

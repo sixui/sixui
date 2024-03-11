@@ -217,6 +217,7 @@ export const styles: MapNamespaces<IFieldBaseStyles> =
       // all: 'unset',
       // Use `currentColor` to inherit the various state colors that are set
       // below.
+      display: 'flex',
       color: 'currentColor',
       fontFamily: vars.contentFont,
       fontSize: vars.contentSize,
@@ -257,24 +258,6 @@ export const styles: MapNamespaces<IFieldBaseStyles> =
       // Don't let setting text-align on the field change the label's alignment.
       // It should only impact content text.
       textAlign: 'initial',
-    },
-    prefix: {
-      color: vars.contentPrefixColor,
-      textWrap: 'nowrap',
-      width: 'min-content',
-      paddingInlineEnd: vars.contentPrefixTrailingSpace,
-    },
-    prefix$disabled: {
-      color: 'inherit',
-    },
-    suffix: {
-      color: vars.contentSuffixColor,
-      textWrap: 'nowrap',
-      width: 'min-content',
-      paddingInlineStart: vars.contentSuffixLeadingSpace,
-    },
-    suffix$disabled: {
-      color: 'inherit',
     },
     label: {
       overflow: 'hidden',
@@ -379,11 +362,5 @@ export const styles: MapNamespaces<IFieldBaseStyles> =
       fontSize: vars.trailingIconSize,
       width: vars.trailingIconSize,
       height: vars.trailingIconSize,
-    },
-    inputWrapper: {
-      flexGrow: 1,
-      flexShrink: 1,
-      flexBasis: '0%',
-      display: 'flex',
     },
   });
