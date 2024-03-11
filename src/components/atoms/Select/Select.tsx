@@ -11,6 +11,7 @@ import { Listbox } from '@headlessui/react';
 import { MenuList } from '@/components/atoms/MenuList';
 import { IVisualState } from '@/hooks/useVisualState';
 import { Field, type IFieldProps } from '@/components/atoms/Field';
+import { MenuListDivider } from '@/components/atoms/MenuList/MenuListDivider';
 import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 import { SelectOption } from './SelectOption';
@@ -117,6 +118,7 @@ const Select = forwardRef<HTMLElement, ISelectProps>(
 
 const SelectNamespace = Object.assign(Select, {
   Option: SelectOption,
+  Divider: MenuListDivider,
 });
 
 export { SelectNamespace as Select };

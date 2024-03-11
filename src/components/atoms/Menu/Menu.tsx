@@ -4,8 +4,9 @@ import { Menu as HeadlessMenu } from '@headlessui/react';
 
 import type { IContainerProps } from '@/helpers/types';
 import { MenuList } from '@/components/atoms/MenuList';
-import { MenuItem } from './MenuItem';
+import { MenuListDivider } from '@/components/atoms/MenuList/MenuListDivider';
 import { IVisualState } from '@/hooks/useVisualState';
+import { MenuItem } from './MenuItem';
 
 type IMenuActionRenderPropArg = {
   open: boolean;
@@ -63,6 +64,7 @@ const Menu = forwardRef<HTMLElement, IMenuProps>(function Menu(props, ref) {
 
 const MenuNamespace = Object.assign(Menu, {
   Item: MenuItem,
+  Divider: MenuListDivider,
 });
 
 export { MenuNamespace as Menu };
