@@ -1,3 +1,15 @@
+# v0.0.92 (Mon Mar 11 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: Select now propagates styles ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.91 (Mon Mar 11 2024)
 
 #### ⚠️ Pushed to `main`
