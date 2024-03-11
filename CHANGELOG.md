@@ -1,3 +1,15 @@
+# v0.0.93 (Mon Mar 11 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: Menu and Select now export Divider ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.92 (Mon Mar 11 2024)
 
 #### ⚠️ Pushed to `main`
