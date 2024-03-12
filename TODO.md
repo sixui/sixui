@@ -13,6 +13,18 @@
 - FIXME: radioGroup unused ref in forwardRef
 - FileUplodaer: picture
 
+- Field
+
+  - Loading state
+
+- Select
+
+  - Story with async loading
+
+- Autocomplete
+
+  - Story with async loading
+
 - MultiAutocomplete
 
 - uniformize z-index
