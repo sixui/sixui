@@ -1,5 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faAppleWhole,
+  faLemon,
+  faCarrot,
+  faPepperHot,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
@@ -38,25 +45,38 @@ const rowsProps: IComponentPropsWithLegend<ISelectProps> = [
   { $legend: 'With Placeholder', placeholder: 'Placeholder' },
   {
     $legend: 'With Default Value',
-    value: 'banana',
-  },
-  {
-    $legend: 'Uncontrolled',
-    defaultValue: 'banana',
+    value: 'carrot',
   },
 ];
 
 const options = [
-  <Select.Option key={0} value='apple' disabled>
-    Apple
-  </Select.Option>,
+  <Select.Option
+    key={0}
+    value='apple'
+    disabled
+    leadingIcon={<FontAwesomeIcon icon={faAppleWhole} />}
+    displayValue='Apple'
+  />,
   <Select.Divider key={1} />,
-  <Select.Option key={2} value='banana'>
-    Banana
-  </Select.Option>,
-  <Select.Option key={3} value='cumcumber'>
-    Cumcumber
-  </Select.Option>,
+  <Select.Option
+    key={2}
+    value='lemon'
+    leadingIcon={<FontAwesomeIcon icon={faLemon} />}
+    displayValue='Lemon'
+  />,
+  <Select.Option
+    key={3}
+    value='carrot'
+    leadingIcon={<FontAwesomeIcon icon={faCarrot} />}
+    displayValue='Carrot'
+  />,
+  <Select.Option
+    key={4}
+    value='hotPepper'
+    leadingIcon={<FontAwesomeIcon icon={faPepperHot} />}
+    supportingText='Yummy!'
+    displayValue='Pepper Hot'
+  />,
 ];
 
 export const Filled: IStory = {

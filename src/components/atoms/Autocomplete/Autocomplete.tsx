@@ -17,6 +17,21 @@ import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 import { AutocompleteOption } from './AutocompleteOption';
 
+// TODO: allowEmpty
+// https://headlessui.com/react/combobox#allowing-empty-values
+
+// TODO: customFilter
+
+// TODO: value when filtered elements are empty
+
+// TODO: open on focus
+
+// TODO: allow custom values
+// https://headlessui.com/react/combobox#allowing-custom-values
+
+// TODO: allow multiple values
+// https://headlessui.com/react/combobox#allowing-custom-values
+
 export type IAutocompleteProps = Omit<
   ITextFieldProps,
   'onChange' | 'end' | 'value' | 'id'
@@ -26,12 +41,11 @@ export type IAutocompleteProps = Omit<
   id?: string;
   onChange?: (value: string) => void;
   value?: string;
-  defaultValue?: string;
 };
 
 type IChildCompatibleProps = {
-  value: string;
-  children?: React.ReactNode;
+  value?: string;
+  displayValue?: string;
 };
 
 const styles = stylex.create({
@@ -58,41 +72,42 @@ const Autocomplete = forwardRef<HTMLElement, IAutocompleteProps>(
       id,
       onChange,
       disabled,
-      defaultValue,
       value: valueProp,
       ...other
     } = props;
 
-    const [value, setValue] = useState(valueProp);
-    const [query, setQuery] = useState('');
+    const [value, setValue] = useState(valueProp ?? '');
+    const [query, setQuery] = useState<string | undefined>(undefined);
+
+    const getCurrentDisplayValueForValue = (value: string): string => {
+      const compatibleProps = (
+        Children.toArray(children).find((child) => {
+          const childValue = isValidElement(child)
+            ? (child as React.ReactElement<IChildCompatibleProps>).props.value
+            : undefined;
+          const isMatching = childValue !== undefined && childValue === value;
+
+          return isMatching;
+        }) as React.ReactElement<IChildCompatibleProps> | undefined
+      )?.props;
+
+      return compatibleProps?.displayValue ?? value;
+    };
 
     const handleChange = (value: string): void => {
-      if (defaultValue === undefined) {
-        setValue(value);
-      }
+      setValue(value);
+      setQuery(undefined);
       onChange?.(value);
     };
 
     const openVisualState: IVisualState = { focused: true };
 
-    const currentChildValue = (
-      Children.toArray(children).find((child) => {
-        const childValue = isValidElement(child)
-          ? (child as React.ReactElement<IChildCompatibleProps>).props.value
-          : undefined;
-        const isMatching = childValue !== undefined && childValue === value;
-
-        return isMatching;
-      }) as React.ReactElement<IChildCompatibleProps> | undefined
-    )?.props.value;
-
     const filteredOptions = Children.toArray(children).filter((child) => {
       const childValue = isValidElement(child)
         ? (child as React.ReactElement<IChildCompatibleProps>).props.value
         : undefined;
-      const isMatching = childValue
-        ?.toLowerCase()
-        .includes(query.toLowerCase());
+      const isMatching =
+        !query || childValue?.toLowerCase().includes(query.toLowerCase());
 
       return isMatching;
     });
@@ -105,10 +120,14 @@ const Autocomplete = forwardRef<HTMLElement, IAutocompleteProps>(
         id={id}
         onChange={handleChange}
         value={value}
-        defaultValue={defaultValue}
         disabled={disabled}
       >
-        <Combobox.Input as={Fragment}>
+        <Combobox.Input
+          as={Fragment}
+          displayValue={(value: string) =>
+            getCurrentDisplayValueForValue(value)
+          }
+        >
           {({ open }) => (
             <TextField
               visualState={
@@ -131,8 +150,11 @@ const Autocomplete = forwardRef<HTMLElement, IAutocompleteProps>(
                   }
                 />
               }
-              value={currentChildValue}
+              value={
+                query ?? (value ? getCurrentDisplayValueForValue(value) : '')
+              }
               onChange={(event) => setQuery(event.target.value)}
+              autoComplete='off'
               {...other}
             />
           )}

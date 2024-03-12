@@ -22,11 +22,11 @@ export type ISelectProps = Omit<IFieldProps, 'end' | 'value'> & {
   id?: string;
   onChange?: (value: string) => void;
   value?: string;
-  defaultValue?: string;
 };
 
 type IChildCompatibleProps = {
   value?: string;
+  displayValue?: string;
   children?: React.ReactNode;
 };
 
@@ -54,26 +54,14 @@ const Select = forwardRef<HTMLElement, ISelectProps>(
       id,
       onChange,
       disabled,
-      defaultValue,
       value: valueProp,
       ...other
     } = props;
 
-    const [value, setValue] = useState(
-      valueProp ?? (defaultValue !== undefined ? undefined : ''),
-    );
+    const [value, setValue] = useState(valueProp ?? '');
 
-    const handleChange = (value: string): void => {
-      if (defaultValue === undefined) {
-        setValue(value);
-      }
-      onChange?.(value);
-    };
-
-    const openVisualState: IVisualState = { focused: true };
-
-    const getCurrentChildNodeForValue = (value: string): React.ReactNode =>
-      (
+    const getCurrentChildNodeForValue = (value: string): React.ReactNode => {
+      const compatibleProps = (
         Children.toArray(children).find((child) => {
           const childValue = isValidElement(child)
             ? (child as React.ReactElement<IChildCompatibleProps>).props.value
@@ -82,7 +70,19 @@ const Select = forwardRef<HTMLElement, ISelectProps>(
 
           return isMatching;
         }) as React.ReactElement<IChildCompatibleProps> | undefined
-      )?.props.children ?? value;
+      )?.props;
+
+      return (
+        compatibleProps?.displayValue ?? compatibleProps?.children ?? value
+      );
+    };
+
+    const handleChange = (value: string): void => {
+      setValue(value);
+      onChange?.(value);
+    };
+
+    const openVisualState: IVisualState = { focused: true };
 
     return (
       <Listbox
@@ -92,17 +92,10 @@ const Select = forwardRef<HTMLElement, ISelectProps>(
         id={id}
         onChange={handleChange}
         value={value}
-        defaultValue={defaultValue}
         disabled={disabled}
       >
         <Listbox.Button as={Fragment}>
-          {({
-            open,
-            value: uncontrolledValue,
-          }: {
-            open: boolean;
-            value: string;
-          }) => (
+          {({ open, value: uncontrolledValue }) => (
             <Field
               visualState={
                 open
@@ -119,7 +112,9 @@ const Select = forwardRef<HTMLElement, ISelectProps>(
                   <TriangleDownIcon height='6' />
                 )
               }
-              value={getCurrentChildNodeForValue(value ?? uncontrolledValue)}
+              value={getCurrentChildNodeForValue(
+                value ?? (uncontrolledValue as string),
+              )}
               {...other}
             />
           )}

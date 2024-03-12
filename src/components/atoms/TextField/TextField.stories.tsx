@@ -79,6 +79,7 @@ export const Filled: IStory = {
   args: {
     ...defaultArgs,
     variant: 'filled',
+    defaultValue: '',
   },
 };
 
@@ -231,7 +232,7 @@ const ControlledForm: React.FC<ITextFieldProps> = (props) => {
   );
 
   return (
-    <Form onSubmit={handleSubmit} styles={formStyles}>
+    <Form onSubmit={handleSubmit} styles={formStyles} sx={styles.host}>
       <div {...stylex.props(formStyles2.col)}>
         <TextField
           {...props}

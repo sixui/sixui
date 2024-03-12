@@ -1,5 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faAppleWhole,
+  faLemon,
+  faCarrot,
+  faPepperHot,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
@@ -38,21 +45,38 @@ const rowsProps: IComponentPropsWithLegend<IAutocompleteProps> = [
   { $legend: 'With Placeholder', placeholder: 'Placeholder' },
   {
     $legend: 'With Default Value',
-    value: 'banana',
+    value: 'carrot',
   },
 ];
 
 const options = [
-  <Autocomplete.Option key={0} value='apple' disabled>
-    Apple
-  </Autocomplete.Option>,
+  <Autocomplete.Option
+    key={0}
+    value='apple'
+    disabled
+    leadingIcon={<FontAwesomeIcon icon={faAppleWhole} />}
+    displayValue='Apple'
+  />,
   <Autocomplete.Divider key={1} />,
-  <Autocomplete.Option key={2} value='banana'>
-    Banana
-  </Autocomplete.Option>,
-  <Autocomplete.Option key={3} value='cumcumber'>
-    Cumcumber
-  </Autocomplete.Option>,
+  <Autocomplete.Option
+    key={2}
+    value='lemon'
+    leadingIcon={<FontAwesomeIcon icon={faLemon} />}
+    displayValue='Lemon'
+  />,
+  <Autocomplete.Option
+    key={3}
+    value='carrot'
+    leadingIcon={<FontAwesomeIcon icon={faCarrot} />}
+    displayValue='Carrot'
+  />,
+  <Autocomplete.Option
+    key={4}
+    value='hotPepper'
+    leadingIcon={<FontAwesomeIcon icon={faPepperHot} />}
+    supportingText='Yummy!'
+    displayValue='Pepper Hot'
+  />,
 ];
 
 export const Filled: IStory = {

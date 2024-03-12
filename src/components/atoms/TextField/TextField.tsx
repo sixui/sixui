@@ -239,10 +239,12 @@ export const TextField = forwardRef<
       isDirtyRef.current = true;
 
       const value = event.currentTarget.value;
-      setValue(value);
+      if (defaultValue !== undefined) {
+        setValue(value);
+      }
       onChange?.(event, value);
     },
-    [onChange, setValue],
+    [onChange, setValue, defaultValue],
   );
 
   /**
@@ -335,7 +337,7 @@ export const TextField = forwardRef<
           disabled={disabled}
           minLength={hasMinLength ? minLength : undefined}
           maxLength={hasMaxLength ? maxLength : undefined}
-          value={value ?? ''}
+          value={value}
           onChange={handleChange}
           onBlur={handleBlur}
           required={required}
