@@ -134,8 +134,8 @@ import { componentTheme as cardTheme } from './Card/Card.stylex';
 import {
   styles as cardStyles,
   elevationStyles as cardElevationStyles,
-  stateLayerStyles as cardActionAreaStateLayerStyles,
-  focusRingStyles as cardActionAreaFocusRingStyles,
+  stateLayerStyles as cardStateLayerStyles,
+  focusRingStyles as cardFocusRingStyles,
 } from './Card/Card.styles';
 import { componentTheme as elevatedCardTheme } from './Card/ElevatedCard.stylex';
 import { componentTheme as filledCardTheme } from './Card/FilledCard.stylex';
@@ -362,8 +362,8 @@ export const theme: ITheme = {
       vars: cardTheme,
       styles: cardStyles,
       elevationStyles: cardElevationStyles,
-      stateLayerStyles: cardActionAreaStateLayerStyles,
-      focusRingStyles: cardActionAreaFocusRingStyles,
+      stateLayerStyles: cardStateLayerStyles,
+      focusRingStyles: cardFocusRingStyles,
     },
     CardHeader: {
       vars: cardHeaderTheme,

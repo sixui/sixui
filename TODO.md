@@ -15,6 +15,12 @@
 
 - uniformize z-index
 
+- FIXME: ripple effect:
+
+  - click on button A: ripple ok
+  - click again on button A: ripple ok
+  - click on button B: ripple NOT ok (stop on mouse UP)
+
 - Switch
 
   - Always toggled on mode with visible icons, ie. for color scheme toggle
@@ -246,11 +252,6 @@ Components
 - [ ] Tooltip
 - [ ] Stack
 - [ ] Pagination
-- [ ] CardActionArea
-- [ ] CardActions
-- [ ] CardContent
-- [ ] CardHeader
-- [ ] CardMedia
 - [ ] Select
 
 ### Planned
