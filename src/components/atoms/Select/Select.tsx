@@ -24,12 +24,13 @@ export type ISelectProps = Omit<IFieldProps, 'end' | 'value'> & {
   value?: string;
 };
 
-type IChildCompatibleProps = {
+type ICompatibleOptionProps = {
   value?: string;
   displayValue?: string;
   children?: React.ReactNode;
 };
 
+// TODO: migrate in theme
 const styles = stylex.create({
   host: {
     position: 'relative',
@@ -60,20 +61,24 @@ const Select = forwardRef<HTMLElement, ISelectProps>(
 
     const [value, setValue] = useState(valueProp ?? '');
 
-    const getCurrentChildNodeForValue = (value: string): React.ReactNode => {
-      const compatibleProps = (
-        Children.toArray(children).find((child) => {
-          const childValue = isValidElement(child)
-            ? (child as React.ReactElement<IChildCompatibleProps>).props.value
-            : undefined;
-          const isMatching = childValue !== undefined && childValue === value;
+    const getDisplayNodeForOption = (
+      option: React.ReactElement<ICompatibleOptionProps>,
+    ): React.ReactNode => option.props.displayValue ?? option.props.children;
 
-          return isMatching;
-        }) as React.ReactElement<IChildCompatibleProps> | undefined
-      )?.props;
+    const getDisplayNodeForValue = (value: string): React.ReactNode => {
+      const matchingOption = Children.toArray(children).find((child) => {
+        const childValue = isValidElement(child)
+          ? (child as React.ReactElement<ICompatibleOptionProps>).props.value
+          : undefined;
+        const isMatching = childValue !== undefined && childValue === value;
+
+        return isMatching;
+      }) as React.ReactElement<ICompatibleOptionProps> | undefined;
 
       return (
-        compatibleProps?.displayValue ?? compatibleProps?.children ?? value
+        (matchingOption
+          ? getDisplayNodeForOption(matchingOption)
+          : undefined) ?? value
       );
     };
 
@@ -112,7 +117,7 @@ const Select = forwardRef<HTMLElement, ISelectProps>(
                   <TriangleDownIcon height='6' />
                 )
               }
-              value={getCurrentChildNodeForValue(
+              value={getDisplayNodeForValue(
                 value ?? (uncontrolledValue as string),
               )}
               {...other}

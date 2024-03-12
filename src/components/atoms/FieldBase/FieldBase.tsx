@@ -115,8 +115,8 @@ export const FieldBase = forwardRef<HTMLDivElement, IFieldBaseProps>(
     const floatingLabelRef = useRef<HTMLSpanElement>(null);
     const restingLabelRef = useRef<HTMLSpanElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
-    const [animating, setAnimating] = useState(false);
     const disableTransitionsRef = useRef(false);
+    const animatingRef = useRef(false);
 
     const supportingOrErrorText =
       hasError && errorText ? errorText : supportingText;
@@ -201,7 +201,7 @@ export const FieldBase = forwardRef<HTMLDivElement, IFieldBaseProps>(
           return;
         }
 
-        setAnimating(true);
+        animatingRef.current = true;
         labelAnimationRef.current?.cancel();
 
         // Only one label is visible at a time for clearer text rendering.
@@ -230,7 +230,7 @@ export const FieldBase = forwardRef<HTMLDivElement, IFieldBaseProps>(
 
         labelAnimationRef.current?.addEventListener('finish', () => {
           // At the end of the animation, update the visible label.
-          setAnimating(false);
+          animatingRef.current = false;
         });
       },
       [focused, hasLabel, populated, getLabelKeyframes],
@@ -284,7 +284,7 @@ export const FieldBase = forwardRef<HTMLDivElement, IFieldBaseProps>(
         }
 
         const isFloatingVisible =
-          wasFocused || focused || populated || animating;
+          wasFocused || focused || populated || animatingRef.current;
         const visible = floating ? isFloatingVisible : !isFloatingVisible;
 
         // Add '*' if a label is present and the field is required
@@ -307,7 +307,6 @@ export const FieldBase = forwardRef<HTMLDivElement, IFieldBaseProps>(
         );
       },
       [
-        animating,
         disabled,
         hasError,
         wasFocused,

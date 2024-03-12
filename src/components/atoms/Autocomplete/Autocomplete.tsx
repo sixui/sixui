@@ -5,32 +5,28 @@ import {
   useState,
   Children,
   isValidElement,
+  useRef,
 } from 'react';
 import { Combobox } from '@headlessui/react';
 
+import { createFilter, type IFilter } from '@/helpers/createFilter';
 import { MenuList } from '@/components/atoms/MenuList';
 import { IVisualState } from '@/hooks/useVisualState';
 import { TextField, type ITextFieldProps } from '@/components/atoms/TextField';
 import { MenuListDivider } from '@/components/atoms/MenuList/MenuListDivider';
 import { IconButton } from '@/components/atoms/IconButton';
+import { ListItem } from '@/components/atoms/ListItem';
 import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 import { AutocompleteOption } from './AutocompleteOption';
-
-// TODO: allowEmpty
-// https://headlessui.com/react/combobox#allowing-empty-values
-
-// TODO: customFilter
-
-// TODO: value when filtered elements are empty
-
-// TODO: open on focus
 
 // TODO: allow custom values
 // https://headlessui.com/react/combobox#allowing-custom-values
 
 // TODO: allow multiple values
 // https://headlessui.com/react/combobox#allowing-custom-values
+
+// TODO: highlight
 
 export type IAutocompleteProps = Omit<
   ITextFieldProps,
@@ -39,19 +35,21 @@ export type IAutocompleteProps = Omit<
   visualState?: IVisualState;
   children: Array<React.ReactNode> | React.ReactNode;
   id?: string;
-  onChange?: (value: string) => void;
+  onChange?: (value: string | null) => void;
   value?: string;
+  filter?: IFilter<Exclude<React.ReactNode, boolean | null | undefined>>;
+  noOptionsText?: string;
 };
 
-type IChildCompatibleProps = {
+type ICompatibleOptionProps = {
   value?: string;
   displayValue?: string;
 };
 
+// TODO: migrate in theme
 const styles = stylex.create({
   host: {
     position: 'relative',
-    cursor: 'pointer',
     width: 'fit-content',
   },
   host$disabled: {
@@ -63,6 +61,9 @@ const styles = stylex.create({
   },
 });
 
+const defaultFilter =
+  createFilter<Exclude<React.ReactNode, boolean | null | undefined>>();
+
 const Autocomplete = forwardRef<HTMLElement, IAutocompleteProps>(
   function Autocomplete(props, ref) {
     const {
@@ -73,44 +74,61 @@ const Autocomplete = forwardRef<HTMLElement, IAutocompleteProps>(
       onChange,
       disabled,
       value: valueProp,
+      filter = defaultFilter,
+      noOptionsText = 'No options',
       ...other
     } = props;
 
-    const [value, setValue] = useState(valueProp ?? '');
+    const toggleButtonRef = useRef<HTMLButtonElement>(null);
+    const [value, setValue] = useState<string | null>(valueProp ?? null);
     const [query, setQuery] = useState<string | undefined>(undefined);
 
-    const getCurrentDisplayValueForValue = (value: string): string => {
-      const compatibleProps = (
-        Children.toArray(children).find((child) => {
-          const childValue = isValidElement(child)
-            ? (child as React.ReactElement<IChildCompatibleProps>).props.value
-            : undefined;
-          const isMatching = childValue !== undefined && childValue === value;
+    const getDisplayValueForOption = (
+      option: React.ReactElement<ICompatibleOptionProps>,
+    ): string | undefined => option.props.displayValue ?? option.props.value;
 
-          return isMatching;
-        }) as React.ReactElement<IChildCompatibleProps> | undefined
-      )?.props;
+    const getDisplayValueForValue = (value: string): string => {
+      const matchingOption = Children.toArray(children).find((child) => {
+        const childValue = isValidElement(child)
+          ? (child as React.ReactElement<ICompatibleOptionProps>).props.value
+          : undefined;
+        const isMatching = childValue !== undefined && childValue === value;
 
-      return compatibleProps?.displayValue ?? value;
+        return isMatching;
+      }) as React.ReactElement<ICompatibleOptionProps> | undefined;
+
+      return (
+        (matchingOption
+          ? getDisplayValueForOption(matchingOption)
+          : undefined) ?? value
+      );
     };
 
-    const handleChange = (value: string): void => {
+    const handleChange = (value: string | null): void => {
       setValue(value);
-      setQuery(undefined);
       onChange?.(value);
+
+      // Use setTimeout to clear the query in the next tick, to avoid flickering
+      // when clicking on an option.
+      setTimeout(() => setQuery(undefined));
     };
 
     const openVisualState: IVisualState = { focused: true };
 
-    const filteredOptions = Children.toArray(children).filter((child) => {
-      const childValue = isValidElement(child)
-        ? (child as React.ReactElement<IChildCompatibleProps>).props.value
-        : undefined;
-      const isMatching =
-        !query || childValue?.toLowerCase().includes(query.toLowerCase());
+    const options = Children.toArray(children);
+    const filteredOptions = query
+      ? filter(options, {
+          query,
+          getItemLabel: (item) =>
+            isValidElement(item)
+              ? (item as React.ReactElement<ICompatibleOptionProps>).props
+                  .displayValue
+              : undefined,
+        })
+      : options;
 
-      return isMatching;
-    });
+    const lastCloseActionRef = useRef<number>(0);
+    const minDelayBetweenCloseAndOpen = 300;
 
     return (
       <Combobox
@@ -121,12 +139,11 @@ const Autocomplete = forwardRef<HTMLElement, IAutocompleteProps>(
         onChange={handleChange}
         value={value}
         disabled={disabled}
+        nullable
       >
         <Combobox.Input
           as={Fragment}
-          displayValue={(value: string) =>
-            getCurrentDisplayValueForValue(value)
-          }
+          displayValue={(value: string) => getDisplayValueForValue(value)}
         >
           {({ open }) => (
             <TextField
@@ -140,7 +157,13 @@ const Autocomplete = forwardRef<HTMLElement, IAutocompleteProps>(
               }
               end={
                 <Combobox.Button
+                  ref={toggleButtonRef}
                   as={IconButton}
+                  onClick={() => {
+                    if (open) {
+                      lastCloseActionRef.current = Date.now();
+                    }
+                  }}
                   icon={
                     open ? (
                       <TriangleUpIcon height='6' />
@@ -150,17 +173,28 @@ const Autocomplete = forwardRef<HTMLElement, IAutocompleteProps>(
                   }
                 />
               }
-              value={
-                query ?? (value ? getCurrentDisplayValueForValue(value) : '')
-              }
-              onChange={(event) => setQuery(event.target.value)}
               autoComplete='off'
+              onChange={(event) => setQuery(event.target.value)}
+              onFocus={() =>
+                open
+                  ? undefined
+                  : lastCloseActionRef.current <
+                      Date.now() - minDelayBetweenCloseAndOpen
+                    ? toggleButtonRef.current?.click()
+                    : undefined
+              }
               {...other}
             />
           )}
         </Combobox.Input>
         <Combobox.Options {...stylex.props(styles.options)}>
-          <MenuList>{filteredOptions}</MenuList>
+          <MenuList>
+            {filteredOptions?.length === 0 && !!query ? (
+              <ListItem disabled>{noOptionsText}</ListItem>
+            ) : (
+              filteredOptions
+            )}
+          </MenuList>
         </Combobox.Options>
       </Combobox>
     );

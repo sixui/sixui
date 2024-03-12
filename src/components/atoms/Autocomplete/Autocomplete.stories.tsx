@@ -6,6 +6,7 @@ import {
   faLemon,
   faCarrot,
   faPepperHot,
+  faGift,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
@@ -77,6 +78,12 @@ const options = [
     supportingText='Yummy!'
     displayValue='Pepper Hot'
   />,
+  <Autocomplete.Option
+    key={5}
+    value='christmas'
+    leadingIcon={<FontAwesomeIcon icon={faGift} />}
+    displayValue='Noël'
+  />,
 ];
 
 export const Filled: IStory = {
@@ -90,7 +97,6 @@ export const Filled: IStory = {
   ),
   args: {
     ...defaultArgs,
-    value: '',
     children: options,
   },
 };
@@ -107,7 +113,6 @@ export const Outlined: IStory = {
   args: {
     ...defaultArgs,
     children: options,
-    value: '',
     variant: 'outlined',
   },
 };

@@ -124,6 +124,8 @@ export type ITextFieldProps = IContainerProps<ITextFieldStyleKey> &
       event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
       value: string,
     ) => void;
+    onFocus?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+    onBlur?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
     reportOnBlur?: boolean;
 
     /**
@@ -173,6 +175,8 @@ export const TextField = forwardRef<
     errorText: errorTextProp,
     disabled,
     onChange,
+    onFocus,
+    onBlur,
     reportOnBlur,
     'aria-label': ariaLabelProp,
     ...other
@@ -213,6 +217,7 @@ export const TextField = forwardRef<
 
   const hasBeenInteractedWithRef = useRef(false);
 
+  const isControlled = valueProp !== undefined;
   const [value, setValue] = useControlled({
     controlled: valueProp,
     default: defaultValue,
@@ -230,6 +235,7 @@ export const TextField = forwardRef<
   const isTextarea = type === 'textarea';
   const hasError = hasErrorProp || !!nativeErrorText;
   const errorText = hasErrorProp ? errorTextProp : nativeErrorText;
+  const populated = !!value || !!inputOrTextareaRef.current?.value;
 
   const handleChange: React.ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
@@ -239,12 +245,10 @@ export const TextField = forwardRef<
       isDirtyRef.current = true;
 
       const value = event.currentTarget.value;
-      if (defaultValue !== undefined) {
-        setValue(value);
-      }
+      setValue(value);
       onChange?.(event, value);
     },
-    [onChange, setValue, defaultValue],
+    [onChange, setValue],
   );
 
   /**
@@ -252,36 +256,43 @@ export const TextField = forwardRef<
    */
   const handleBlur: React.FocusEventHandler<
     HTMLInputElement | HTMLTextAreaElement
-  > = useCallback(() => {
-    // If the text field has not been interacted with, do not report validity.
-    // This prevents the text field from showing an error on page load.
-    if (!hasBeenInteractedWithRef.current) {
-      return;
-    }
+  > = useCallback(
+    (event) => {
+      onBlur?.(event);
 
-    // Reset the interaction flag so that the text field cannot be validated anymore until it has
-    // been interacted with again. This prevents a text field in an invalid state from an infinite
-    // loop of reporting validity.
-    hasBeenInteractedWithRef.current = false;
+      // If the text field has not been interacted with, do not report validity.
+      // This prevents the text field from showing an error on page load.
+      if (!hasBeenInteractedWithRef.current) {
+        return;
+      }
 
-    const validity = inputOrTextareaRef.current?.validity;
+      // Reset the interaction flag so that the text field cannot be validated anymore until it has
+      // been interacted with again. This prevents a text field in an invalid state from an infinite
+      // loop of reporting validity.
+      hasBeenInteractedWithRef.current = false;
 
-    // Report validity if one of the following is true:
-    // - the text field is in a valid state (and clear the native error text) ;
-    // - the text field is in an invalid state (and set the native error text), except if the value
-    //   is missing (missing values are never checked on blur) ;
-    // - the `reportOnBlur` option flag is set (mainly for demo purpose).
-    const shouldReportValidity =
-      validity?.valid || (hasError && !validity?.valueMissing) || reportOnBlur;
+      const validity = inputOrTextareaRef.current?.validity;
 
-    if (shouldReportValidity) {
-      // Calling `reportValidity()` may focus the text field. Since we do this on
-      // blur, wait for other focus changes to finish, like tabbing.
-      void new Promise((resolve) => setTimeout(resolve)).then(() =>
-        reportValidity(),
-      );
-    }
-  }, [reportValidity, hasError, reportOnBlur, inputOrTextareaRef]);
+      // Report validity if one of the following is true:
+      // - the text field is in a valid state (and clear the native error text) ;
+      // - the text field is in an invalid state (and set the native error text), except if the value
+      //   is missing (missing values are never checked on blur) ;
+      // - the `reportOnBlur` option flag is set (mainly for demo purpose).
+      const shouldReportValidity =
+        validity?.valid ||
+        (hasError && !validity?.valueMissing) ||
+        reportOnBlur;
+
+      if (shouldReportValidity) {
+        // Calling `reportValidity()` may focus the text field. Since we do this on
+        // blur, wait for other focus changes to finish, like tabbing.
+        void new Promise((resolve) => setTimeout(resolve)).then(() =>
+          reportValidity(),
+        );
+      }
+    },
+    [reportValidity, hasError, reportOnBlur, inputOrTextareaRef, onBlur],
+  );
 
   const renderInputOrTextarea = useCallback((): React.ReactNode => {
     const ariaLabel = ariaLabelProp ?? label;
@@ -306,10 +317,11 @@ export const TextField = forwardRef<
           disabled={disabled}
           minLength={hasMinLength ? minLength : undefined}
           maxLength={hasMaxLength ? maxLength : undefined}
-          value={value ?? ''}
+          value={isControlled ? value : undefined}
           onChange={handleChange}
           onBlur={handleBlur}
           required={required}
+          onFocus={onFocus}
           {...other}
         />
       );
@@ -337,11 +349,12 @@ export const TextField = forwardRef<
           disabled={disabled}
           minLength={hasMinLength ? minLength : undefined}
           maxLength={hasMaxLength ? maxLength : undefined}
-          value={value}
+          value={isControlled ? value : undefined}
           onChange={handleChange}
           onBlur={handleBlur}
           required={required}
           type={type}
+          onFocus={onFocus}
           {...other}
         />
         {suffixText ? (
@@ -370,6 +383,8 @@ export const TextField = forwardRef<
     required,
     prefixText,
     suffixText,
+    onFocus,
+    isControlled,
   ]);
 
   return (
@@ -399,7 +414,7 @@ export const TextField = forwardRef<
           trailingIcon={trailingIcon}
           label={label}
           max={maxLength}
-          populated={!!value}
+          populated={populated}
           required={required}
           resizable={isTextarea}
           supportingText={supportingText}

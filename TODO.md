@@ -15,6 +15,10 @@
 
 - uniformize z-index
 
+- TextField
+
+  - Clear button
+
 - FIXME: ripple effect:
 
   - click on button A: ripple ok
