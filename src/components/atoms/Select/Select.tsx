@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 import {
-  Children,
   Fragment,
   forwardRef,
-  isValidElement,
   useState,
+  Children,
+  isValidElement,
 } from 'react';
 import { Listbox } from '@headlessui/react';
 
@@ -26,7 +26,7 @@ export type ISelectProps = Omit<IFieldProps, 'end' | 'value'> & {
 };
 
 type IChildCompatibleProps = {
-  value: string;
+  value?: string;
   children?: React.ReactNode;
 };
 
@@ -59,7 +59,9 @@ const Select = forwardRef<HTMLElement, ISelectProps>(
       ...other
     } = props;
 
-    const [value, setValue] = useState(valueProp);
+    const [value, setValue] = useState(
+      valueProp ?? (defaultValue !== undefined ? undefined : ''),
+    );
 
     const handleChange = (value: string): void => {
       if (defaultValue === undefined) {
@@ -70,14 +72,17 @@ const Select = forwardRef<HTMLElement, ISelectProps>(
 
     const openVisualState: IVisualState = { focused: true };
 
-    const currentChild = (
-      Children.toArray(children).find(
-        (child) =>
-          isValidElement(child) &&
-          (child as React.ReactElement<IChildCompatibleProps>).props.value ===
-            value,
-      ) as React.ReactElement<IChildCompatibleProps> | undefined
-    )?.props.children;
+    const getCurrentChildNodeForValue = (value: string): React.ReactNode =>
+      (
+        Children.toArray(children).find((child) => {
+          const childValue = isValidElement(child)
+            ? (child as React.ReactElement<IChildCompatibleProps>).props.value
+            : undefined;
+          const isMatching = childValue !== undefined && childValue === value;
+
+          return isMatching;
+        }) as React.ReactElement<IChildCompatibleProps> | undefined
+      )?.props.children ?? value;
 
     return (
       <Listbox
@@ -91,7 +96,13 @@ const Select = forwardRef<HTMLElement, ISelectProps>(
         disabled={disabled}
       >
         <Listbox.Button as={Fragment}>
-          {({ open }) => (
+          {({
+            open,
+            value: uncontrolledValue,
+          }: {
+            open: boolean;
+            value: string;
+          }) => (
             <Field
               visualState={
                 open
@@ -108,7 +119,7 @@ const Select = forwardRef<HTMLElement, ISelectProps>(
                   <TriangleDownIcon height='6' />
                 )
               }
-              value={currentChild}
+              value={getCurrentChildNodeForValue(value ?? uncontrolledValue)}
               {...other}
             />
           )}

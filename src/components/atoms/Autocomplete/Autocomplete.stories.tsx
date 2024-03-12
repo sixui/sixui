@@ -6,11 +6,11 @@ import {
   ComponentShowcase,
   type IComponentPropsWithLegend,
 } from '@/components/utils/ComponentShowcase';
-import { Select, type ISelectProps } from './Select';
+import { Autocomplete, type IAutocompleteProps } from './Autocomplete';
 
 const meta = {
-  component: Select,
-} satisfies Meta<typeof Select>;
+  component: Autocomplete,
+} satisfies Meta<typeof Autocomplete>;
 
 type IStory = StoryObj<typeof meta>;
 
@@ -23,16 +23,16 @@ const styles = stylex.create({
 const defaultArgs = {
   sx: styles.host,
   onChange: (...args) => void sbHandleEvent('onChange', args),
-} satisfies Partial<ISelectProps>;
+} satisfies Partial<IAutocompleteProps>;
 
-const statesProps: IComponentPropsWithLegend<ISelectProps> = [
+const statesProps: IComponentPropsWithLegend<IAutocompleteProps> = [
   { $legend: 'Enabled' },
   { $legend: 'Hovered', visualState: { hovered: true } },
   { $legend: 'Focused', visualState: { focused: true } },
   { $legend: 'Disabled', disabled: true },
 ];
 
-const rowsProps: IComponentPropsWithLegend<ISelectProps> = [
+const rowsProps: IComponentPropsWithLegend<IAutocompleteProps> = [
   { $legend: 'Basic' },
   { $legend: 'With Label', label: 'Label' },
   { $legend: 'With Placeholder', placeholder: 'Placeholder' },
@@ -40,29 +40,25 @@ const rowsProps: IComponentPropsWithLegend<ISelectProps> = [
     $legend: 'With Default Value',
     value: 'banana',
   },
-  {
-    $legend: 'Uncontrolled',
-    defaultValue: 'banana',
-  },
 ];
 
 const options = [
-  <Select.Option key={0} value='apple' disabled>
+  <Autocomplete.Option key={0} value='apple' disabled>
     Apple
-  </Select.Option>,
-  <Select.Divider key={1} />,
-  <Select.Option key={2} value='banana'>
+  </Autocomplete.Option>,
+  <Autocomplete.Divider key={1} />,
+  <Autocomplete.Option key={2} value='banana'>
     Banana
-  </Select.Option>,
-  <Select.Option key={3} value='cumcumber'>
+  </Autocomplete.Option>,
+  <Autocomplete.Option key={3} value='cumcumber'>
     Cumcumber
-  </Select.Option>,
+  </Autocomplete.Option>,
 ];
 
 export const Filled: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={Select}
+      component={Autocomplete}
       props={props}
       colsProps={statesProps}
       rowsProps={rowsProps}
@@ -70,6 +66,7 @@ export const Filled: IStory = {
   ),
   args: {
     ...defaultArgs,
+    value: '',
     children: options,
   },
 };
@@ -77,7 +74,7 @@ export const Filled: IStory = {
 export const Outlined: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={Select}
+      component={Autocomplete}
       props={props}
       colsProps={statesProps}
       rowsProps={rowsProps}
@@ -86,6 +83,7 @@ export const Outlined: IStory = {
   args: {
     ...defaultArgs,
     children: options,
+    value: '',
     variant: 'outlined',
   },
 };
