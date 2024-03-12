@@ -20,14 +20,6 @@ import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 import { AutocompleteOption } from './AutocompleteOption';
 
-// TODO: allow custom values
-// https://headlessui.com/react/combobox#allowing-custom-values
-
-// TODO: allow multiple values
-// https://headlessui.com/react/combobox#allowing-custom-values
-
-// TODO: highlight
-
 export type IAutocompleteProps = Omit<
   ITextFieldProps,
   'onChange' | 'end' | 'value' | 'id'
@@ -39,6 +31,8 @@ export type IAutocompleteProps = Omit<
   value?: string;
   filter?: IFilter<Exclude<React.ReactNode, boolean | null | undefined>>;
   noOptionsText?: string;
+  createOptionText?: (query: string) => string;
+  allowCustomValues?: boolean;
 };
 
 type ICompatibleOptionProps = {
@@ -76,6 +70,8 @@ const Autocomplete = forwardRef<HTMLElement, IAutocompleteProps>(
       value: valueProp,
       filter = defaultFilter,
       noOptionsText = 'No options',
+      createOptionText = (query) => `Create "${query}"`,
+      allowCustomValues,
       ...other
     } = props;
 
@@ -190,7 +186,13 @@ const Autocomplete = forwardRef<HTMLElement, IAutocompleteProps>(
         <Combobox.Options {...stylex.props(styles.options)}>
           <MenuList>
             {filteredOptions?.length === 0 && !!query ? (
-              <ListItem disabled>{noOptionsText}</ListItem>
+              allowCustomValues ? (
+                <AutocompleteOption value={query}>
+                  {createOptionText(query)}
+                </AutocompleteOption>
+              ) : (
+                <ListItem disabled>{noOptionsText}</ListItem>
+              )
             ) : (
               filteredOptions
             )}

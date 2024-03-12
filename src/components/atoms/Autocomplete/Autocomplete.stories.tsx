@@ -48,6 +48,10 @@ const rowsProps: IComponentPropsWithLegend<IAutocompleteProps> = [
     $legend: 'With Default Value',
     value: 'carrot',
   },
+  {
+    $legend: 'Allow Custom Value',
+    allowCustomValues: true,
+  },
 ];
 
 const options = [
