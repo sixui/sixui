@@ -1,4 +1,5 @@
 // atoms
+export * from './components/atoms/Autocomplete';
 export * from './components/atoms/Avatar';
 export * from './components/atoms/Badge';
 export * from './components/atoms/Breadcrumbs';
