@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 import {
-  Children,
   Fragment,
   forwardRef,
-  isValidElement,
   useState,
+  Children,
+  isValidElement,
 } from 'react';
 import { Listbox } from '@headlessui/react';
 
@@ -22,14 +22,15 @@ export type ISelectProps = Omit<IFieldProps, 'end' | 'value'> & {
   id?: string;
   onChange?: (value: string) => void;
   value?: string;
-  defaultValue?: string;
 };
 
-type IChildCompatibleProps = {
-  value: string;
+type ICompatibleOptionProps = {
+  value?: string;
+  displayValue?: string;
   children?: React.ReactNode;
 };
 
+// TODO: migrate in theme
 const styles = stylex.create({
   host: {
     position: 'relative',
@@ -54,30 +55,39 @@ const Select = forwardRef<HTMLElement, ISelectProps>(
       id,
       onChange,
       disabled,
-      defaultValue,
       value: valueProp,
       ...other
     } = props;
 
-    const [value, setValue] = useState(valueProp);
+    const [value, setValue] = useState(valueProp ?? '');
+
+    const getDisplayNodeForOption = (
+      option: React.ReactElement<ICompatibleOptionProps>,
+    ): React.ReactNode => option.props.displayValue ?? option.props.children;
+
+    const getDisplayNodeForValue = (value: string): React.ReactNode => {
+      const matchingOption = Children.toArray(children).find((child) => {
+        const childValue = isValidElement(child)
+          ? (child as React.ReactElement<ICompatibleOptionProps>).props.value
+          : undefined;
+        const isMatching = childValue !== undefined && childValue === value;
+
+        return isMatching;
+      }) as React.ReactElement<ICompatibleOptionProps> | undefined;
+
+      return (
+        (matchingOption
+          ? getDisplayNodeForOption(matchingOption)
+          : undefined) ?? value
+      );
+    };
 
     const handleChange = (value: string): void => {
-      if (defaultValue === undefined) {
-        setValue(value);
-      }
+      setValue(value);
       onChange?.(value);
     };
 
     const openVisualState: IVisualState = { focused: true };
-
-    const currentChild = (
-      Children.toArray(children).find(
-        (child) =>
-          isValidElement(child) &&
-          (child as React.ReactElement<IChildCompatibleProps>).props.value ===
-            value,
-      ) as React.ReactElement<IChildCompatibleProps> | undefined
-    )?.props.children;
 
     return (
       <Listbox
@@ -87,11 +97,10 @@ const Select = forwardRef<HTMLElement, ISelectProps>(
         id={id}
         onChange={handleChange}
         value={value}
-        defaultValue={defaultValue}
         disabled={disabled}
       >
         <Listbox.Button as={Fragment}>
-          {({ open }) => (
+          {({ open, value: uncontrolledValue }) => (
             <Field
               visualState={
                 open
@@ -108,7 +117,9 @@ const Select = forwardRef<HTMLElement, ISelectProps>(
                   <TriangleDownIcon height='6' />
                 )
               }
-              value={currentChild}
+              value={getDisplayNodeForValue(
+                value ?? (uncontrolledValue as string),
+              )}
               {...other}
             />
           )}

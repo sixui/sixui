@@ -20,6 +20,7 @@ export type IMenuProps = Omit<IContainerProps, 'styles'> & {
   anchor?: 'left' | 'center' | 'right';
 };
 
+// TODO: migrate in theme
 const styles = stylex.create({
   host: {
     position: 'relative',

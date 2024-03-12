@@ -101,7 +101,7 @@ export const Outlined: IStory = {
 const ControlledTextField: React.FC<Omit<ITextFieldProps, 'onChange'>> = (
   props,
 ) => {
-  const [value, setValue] = useState(props.defaultValue ?? '');
+  const [value, setValue] = useState(props.value ?? '');
   const textFieldRef = useRef<HTMLInputElement>(null);
   const iconButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -145,7 +145,7 @@ export const Validation: IStory = {
         },
         {
           label: 'Required',
-          defaultValue: 'Initial value',
+          value: 'Initial value',
           required: true,
           supportingText: '* this field is required',
         },
@@ -231,7 +231,7 @@ const ControlledForm: React.FC<ITextFieldProps> = (props) => {
   );
 
   return (
-    <Form onSubmit={handleSubmit} styles={formStyles}>
+    <Form onSubmit={handleSubmit} styles={formStyles} sx={styles.host}>
       <div {...stylex.props(formStyles2.col)}>
         <TextField
           {...props}

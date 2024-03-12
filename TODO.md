@@ -13,7 +13,19 @@
 - FIXME: radioGroup unused ref in forwardRef
 - FileUplodaer: picture
 
+- MultiAutocomplete
+
 - uniformize z-index
+
+- TextField
+
+  - Clear button
+
+- FIXME: ripple effect:
+
+  - click on button A: ripple ok
+  - click again on button A: ripple ok
+  - click on button B: ripple NOT ok (stop on mouse UP)
 
 - Switch
 
@@ -246,11 +258,6 @@ Components
 - [ ] Tooltip
 - [ ] Stack
 - [ ] Pagination
-- [ ] CardActionArea
-- [ ] CardActions
-- [ ] CardContent
-- [ ] CardHeader
-- [ ] CardMedia
 - [ ] Select
 
 ### Planned
