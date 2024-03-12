@@ -1,3 +1,15 @@
+# v0.0.98 (Tue Mar 12 2024)
+
+#### 🐛 Bug Fix
+
+- Feat/autocomplete [#16](https://github.com/sixui/ui/pull/16) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.97 (Tue Mar 12 2024)
 
 #### ⚠️ Pushed to `main`
