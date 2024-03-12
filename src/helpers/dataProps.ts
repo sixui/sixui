@@ -1,5 +1,5 @@
 type IData = Record<string, string | boolean | undefined>;
-type IDataProps<IKey extends string> = Record<`data-${IKey}`, string | boolean>;
+type IDataProps<TKey extends string> = Record<`data-${TKey}`, string | boolean>;
 
 export const dataProps = (
   data: IData | undefined,

@@ -62,7 +62,7 @@ export type IStyleXStyles =
       >
     >;
 
-export type IContainerProps<IStyleKey extends string = never> = {
-  styles?: IZeroOrMore<ICompiledStyles<IStyleKey>>;
+export type IContainerProps<TStyleKey extends string = never> = {
+  styles?: IZeroOrMore<ICompiledStyles<TStyleKey>>;
   sx?: IStyleXStyles;
 };

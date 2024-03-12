@@ -76,17 +76,13 @@ const NonActionableContent: React.FC<{ headline?: string }> = ({
         />
         <Card.Actions sx={styles.actions}>
           <Button
-            onClick={(args: React.MouseEvent<HTMLElement>) =>
-              sbHandleEvent('click:primaryAction', args)
-            }
+            onClick={(...args) => sbHandleEvent('click:primaryAction', args)}
           >
             Primary
           </Button>
           <Button
             variant='outlined'
-            onClick={(args: React.MouseEvent<HTMLElement>) =>
-              sbHandleEvent('click:secondaryAction', args)
-            }
+            onClick={(...args) => sbHandleEvent('click:secondaryAction', args)}
           >
             Secondary
           </Button>
@@ -112,9 +108,7 @@ const NonActionableContentVariant: React.FC<{ headline?: string }> = ({
         />
         <Card.Actions sx={styles.actions}>
           <Button
-            onClick={(args: React.MouseEvent<HTMLElement>) =>
-              sbHandleEvent('click:primaryAction', args)
-            }
+            onClick={(...args) => sbHandleEvent('click:primaryAction', args)}
             type='submit'
           >
             Primary
@@ -148,7 +142,7 @@ const colsProps: IComponentPropsWithLegend<ICardProps> = [
   },
   {
     $legend: 'Actionable',
-    onClick: (args) => sbHandleEvent('click:cardAction', args),
+    onClick: (...args) => sbHandleEvent('click:cardAction', args),
     children: <ActionableContent />,
   },
 ];
@@ -170,8 +164,7 @@ export const Variants: IStory = {
         {
           variant: 'filled',
           children: <ActionableContent headline='Actionable' />,
-          onClick: (args: React.MouseEvent<HTMLElement>) =>
-            sbHandleEvent('click:card', args),
+          onClick: () => sbHandleEvent('click:card'),
         },
       ]}
     />

@@ -36,6 +36,9 @@ const styles = stylex.create({
     cursor: 'pointer',
     width: 'fit-content',
   },
+  host$disabled: {
+    cursor: 'default',
+  },
   options: {
     position: 'absolute',
     width: '100%',
@@ -50,6 +53,7 @@ const Select = forwardRef<HTMLElement, ISelectProps>(
       visualState: visualStateProp,
       id,
       onChange,
+      disabled,
       defaultValue,
       value: valueProp,
       ...other
@@ -77,13 +81,14 @@ const Select = forwardRef<HTMLElement, ISelectProps>(
 
     return (
       <Listbox
-        {...stylex.props(styles.host, sx)}
+        {...stylex.props(styles.host, disabled && styles.host$disabled, sx)}
         ref={ref}
         as='div'
         id={id}
         onChange={handleChange}
         value={value}
         defaultValue={defaultValue}
+        disabled={disabled}
       >
         <Listbox.Button as={Fragment}>
           {({ open }) => (

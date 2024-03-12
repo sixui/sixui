@@ -22,13 +22,13 @@ const styles = stylex.create({
 
 const defaultArgs = {
   sx: styles.host,
-  disabled: true,
 } satisfies Partial<ISelectProps>;
 
 const statesProps: IComponentPropsWithLegend<ISelectProps> = [
   { $legend: 'Enabled' },
   { $legend: 'Hovered', visualState: { hovered: true } },
   { $legend: 'Focused', visualState: { focused: true } },
+  { $legend: 'Disabled', disabled: true },
 ];
 
 const rowsProps: IComponentPropsWithLegend<ISelectProps> = [

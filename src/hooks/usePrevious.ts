@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
 
-export const usePrevious = <IValueType>(
-  value: IValueType,
-): IValueType | undefined => {
-  const valueRef = useRef<IValueType>();
+export const usePrevious = <TValueType>(
+  value: TValueType,
+): TValueType | undefined => {
+  const valueRef = useRef<TValueType>();
 
   useEffect(() => {
     valueRef.current = value;

@@ -21,7 +21,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onClick: (args) => sbHandleEvent('click', args),
+  onClick: (...args) => sbHandleEvent('click', args),
 } satisfies Partial<ITabProps>;
 
 const statesProps: IComponentPropsWithLegend<ITabProps> = [

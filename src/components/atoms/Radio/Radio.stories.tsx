@@ -19,7 +19,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onChange: (args) => sbHandleEvent('change', args, 300),
+  onChange: (...args) => sbHandleEvent('change', args, 300),
 } satisfies Partial<IRadioProps>;
 
 const statesProps: IComponentPropsWithLegend<IRadioProps> = [

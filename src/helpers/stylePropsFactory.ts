@@ -6,42 +6,42 @@ import type { IVisualState } from '@/hooks/useVisualState';
 import type { IStyleVarsTheme, IStyleXStyles } from './types';
 import { dataProps } from '@/helpers/dataProps';
 
-type IClassName<IStyleKey extends string> =
-  | IStyleKey
+type IClassName<TStyleKey extends string> =
+  | TStyleKey
   | null
   | undefined
   | false;
 
-type IStyles<IStyleVarKey extends string> =
-  | IStyleVarsTheme<IStyleVarKey>
+type IStyles<TStyleVarKey extends string> =
+  | IStyleVarsTheme<TStyleVarKey>
   | CompiledStyles
   | null
   | false
   | undefined;
 
 export type IStyleProps<
-  IStyleKey extends string,
-  IStyleVarKey extends string,
+  TStyleKey extends string,
+  TStyleVarKey extends string,
 > = (
   ...styleKeys: Array<
-    | IClassName<IStyleKey>
-    | Array<IClassName<IStyleKey>>
+    | IClassName<TStyleKey>
+    | Array<IClassName<TStyleKey>>
     | IStyleXStyles
-    | IStyles<IStyleVarKey>
+    | IStyles<TStyleVarKey>
   >
 ) => ReturnType<typeof stylex.props> & {
   [key in `data-${keyof IVisualState}`]?: string;
 };
 
 export const stylePropsFactory =
-  <IStyleKey extends string, IStyleVarKey extends string = never>(
-    combineStyles: IStylesCombinator<IStyleKey>,
+  <TStyleKey extends string, TStyleVarKey extends string = never>(
+    combineStyles: IStylesCombinator<TStyleKey>,
     visualState?: IVisualState,
-  ): IStyleProps<IStyleKey, IStyleVarKey> =>
+  ): IStyleProps<TStyleKey, TStyleVarKey> =>
   (...styleKeys) => ({
     ...stylex.props(
       ...(styleKeys
-        ? combineStyles(...(styleKeys.flat() as Array<IClassName<IStyleKey>>))
+        ? combineStyles(...(styleKeys.flat() as Array<IClassName<TStyleKey>>))
         : []),
     ),
     ...dataProps(visualState),

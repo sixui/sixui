@@ -72,17 +72,13 @@ const NonActionableContent: React.FC<{ headline?: string }> = ({
     <Card.Actions>
       <Button
         variant='filled'
-        onClick={(args: React.MouseEvent<HTMLElement>) =>
-          sbHandleEvent('click:primaryAction', args)
-        }
+        onClick={(...args) => sbHandleEvent('click:primaryAction', args)}
       >
         Primary
       </Button>
       <Button
         variant='outlined'
-        onClick={(args: React.MouseEvent<HTMLElement>) =>
-          sbHandleEvent('click:secondaryAction', args)
-        }
+        onClick={(...args) => sbHandleEvent('click:secondaryAction', args)}
       >
         Secondary
       </Button>
@@ -108,9 +104,7 @@ const NonActionableContentVariant: React.FC<{ headline?: string }> = ({
     <Card.Actions>
       <Button
         variant='filled'
-        onClick={(args: React.MouseEvent<HTMLElement>) =>
-          sbHandleEvent('click:primaryAction', args)
-        }
+        onClick={(...args) => sbHandleEvent('click:primaryAction', args)}
       >
         Primary
       </Button>
@@ -165,8 +159,7 @@ export const Variants: IStory = {
           children: (
             <ActionableContent headline='Actionable qskljd qlsjdlqskjd lqskjdlqsjd lqsjdlqsjd lqs dqs kjqslkdj qslkdj lqsj dlqs' />
           ),
-          onClick: (args: React.MouseEvent<HTMLElement>) =>
-            sbHandleEvent('click:card', args),
+          onClick: () => sbHandleEvent('click:card'),
         },
       ]}
     />

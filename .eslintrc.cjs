@@ -179,7 +179,12 @@ const eslintConfig = {
           {
             selector: 'typeLike',
             format: ['PascalCase'],
-            prefix: ['I', 'T'],
+            prefix: ['I'],
+          },
+          {
+            selector: 'typeParameter',
+            format: ['PascalCase'],
+            prefix: ['T'],
           },
           {
             selector: 'variable',

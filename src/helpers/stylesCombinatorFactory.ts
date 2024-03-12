@@ -5,28 +5,28 @@ import type {
 
 import type { ICompiledStyles } from './types';
 
-type IOptionalCompiledStyles<IStyleKey extends string> =
-  | ICompiledStyles<IStyleKey>
+type IOptionalCompiledStyles<TStyleKey extends string> =
+  | ICompiledStyles<TStyleKey>
   | undefined;
 
-export type IStylesCombinator<IStyleKey extends string> = (
-  ...classNames: Array<IStyleKey | StyleXStyles | null | undefined | false>
+export type IStylesCombinator<TStyleKey extends string> = (
+  ...classNames: Array<TStyleKey | StyleXStyles | null | undefined | false>
 ) => Array<StyleXStyles>;
 
 export const stylesCombinatorFactory =
-  <IStyleKey extends string>(
+  <TStyleKey extends string>(
     ...styles: Array<
-      | IOptionalCompiledStyles<IStyleKey>
-      | Array<IOptionalCompiledStyles<IStyleKey>>
+      | IOptionalCompiledStyles<TStyleKey>
+      | Array<IOptionalCompiledStyles<TStyleKey>>
     >
-  ): IStylesCombinator<IStyleKey> =>
+  ): IStylesCombinator<TStyleKey> =>
   (...styleKeys) =>
     styleKeys
       .map((styleKey) =>
         typeof styleKey === 'string'
           ? (
               styles.flat() as Array<
-                IOptionalCompiledStyles<IStyleKey> | undefined
+                IOptionalCompiledStyles<TStyleKey> | undefined
               >
             ).map((style) => (styleKey ? style?.[styleKey] : undefined))
           : styleKey,

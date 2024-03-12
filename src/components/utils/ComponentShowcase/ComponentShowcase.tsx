@@ -9,18 +9,18 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export type IComponentPropsWithLegend<IComponentProps> = Array<
-  Partial<IComponentProps> & { $legend?: React.ReactNode }
+export type IComponentPropsWithLegend<TComponentProps> = Array<
+  Partial<TComponentProps> & { $legend?: React.ReactNode }
 >;
 
 export type IComponentShowcaseProps<
-  IComponentProps extends object = Record<string, never>,
+  TComponentProps extends object = Record<string, never>,
 > = IContainerProps<IComponentShowcaseStyleKey> & {
-  component: React.FC<IComponentProps>;
-  props: IComponentProps;
-  groupsProps?: IComponentPropsWithLegend<IComponentProps>;
-  colsProps?: IComponentPropsWithLegend<IComponentProps>;
-  rowsProps?: IComponentPropsWithLegend<IComponentProps>;
+  component: React.FC<TComponentProps>;
+  props: TComponentProps;
+  groupsProps?: IComponentPropsWithLegend<TComponentProps>;
+  colsProps?: IComponentPropsWithLegend<TComponentProps>;
+  rowsProps?: IComponentPropsWithLegend<TComponentProps>;
   align?: 'start' | 'center';
   rowLegendPosition?: 'start' | 'top' | 'bottom';
   fullWidth?: boolean;
