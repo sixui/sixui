@@ -1,3 +1,15 @@
+# v0.0.97 (Tue Mar 12 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: disabled state is working for Select ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.96 (Mon Mar 11 2024)
 
 #### ⚠️ Pushed to `main`
