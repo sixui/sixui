@@ -28,6 +28,10 @@ export type IComponentShowcaseProps<
 
 const DUMMY_TEXT = '.';
 
+/**
+ * @deprecated Use `ComponentShowcase` from
+ * `@/components/utils/ComponentShowcase2` instead.
+ */
 export const ComponentShowcase = <
   TComponentProps extends object = Record<string, never>,
 >(

@@ -24,7 +24,6 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { type IVisualState, useVisualState } from '@/hooks/useVisualState';
-import { useControlled } from '@/hooks/useControlled';
 import {
   Elevation,
   type IElevationStyleKey,
@@ -70,11 +69,10 @@ export type IChipOwnProps = IContainerProps<IChipStyleKey> & {
   onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
   onDelete?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
   variant?: IChipVariant | false;
-  label?: string;
+  label?: React.ReactNode;
   disabled?: boolean;
   elevated?: boolean;
   selected?: boolean;
-  defaultSelected?: boolean;
   icon?: React.ReactNode;
   href?: string;
   imageUrl?: string;
@@ -123,7 +121,6 @@ export const Chip: IChip = forwardRef(function Chip<
     innerStyles,
     visualState: visualStateProp,
     selected: selectedProp,
-    defaultSelected,
     elevated: elevatedProp,
     loading: loadingProp,
     disabled: disabledProp,
@@ -174,19 +171,13 @@ export const Chip: IChip = forwardRef(function Chip<
     [stylesCombinator, visualState],
   );
 
-  const [selectedValue, setSelectedValue] = useControlled({
-    controlled: selectedProp,
-    default: !!defaultSelected,
-    name: 'Chip',
-  });
-
   const Component = as ?? (href ? 'a' : 'button');
 
   const elevated = variant !== 'input' && elevatedProp;
   const hasIcon = !!imageUrl || !!icon;
   const isSelectable =
     variant !== false && ['input', 'filter'].includes(variant);
-  const selected = isSelectable && selectedValue;
+  const selected = !disabled && isSelectable && selectedProp;
   const hasLeading = (variant === 'filter' && (loading || selected)) || hasIcon;
   const hasTrailing = isDeletable;
   const hasOverlay = loading && (loadingText ?? !hasLeading);
@@ -201,15 +192,12 @@ export const Chip: IChip = forwardRef(function Chip<
       setHandlingClick(true);
 
       Promise.resolve(onClick?.(event))
-        .finally(() => {
-          setHandlingClick(false);
-          setSelectedValue(!selectedValue);
-        })
+        .finally(() => setHandlingClick(false))
         .catch((error: Error) => {
           throw error;
         });
     },
-    [handlingClick, onClick, selectedValue, setSelectedValue],
+    [handlingClick, onClick],
   );
 
   const handleDelete: React.MouseEventHandler<HTMLButtonElement> | undefined =

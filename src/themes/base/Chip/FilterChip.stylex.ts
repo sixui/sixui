@@ -13,6 +13,9 @@ const vars: Partial<IStyleVars<IChipStyleVarKey>> = {
    * Flat Container
    */
 
+  // flatContainer
+  flatContainerColor: colorRolesVars.surfaceContainerLow,
+
   // selectedFlatContainer
   selectedFlatContainerColor: colorRolesVars.secondaryContainer,
   // &:disabled

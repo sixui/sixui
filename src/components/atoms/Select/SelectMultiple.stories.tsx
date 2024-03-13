@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faAppleWhole,
@@ -11,10 +12,10 @@ import {
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   ComponentShowcase,
-  type IComponentPropsWithLegend,
-} from '@/components/utils/ComponentShowcase';
+  type IComponentPresentation,
+} from '@/components/utils/ComponentShowcase2';
 import { SelectMultiple, type ISelectMultipleProps } from './SelectMultiple';
-import { useState } from 'react';
+import { InputChip } from '@/components/atoms/Chip';
 
 const meta = {
   component: SelectMultiple,
@@ -26,6 +27,12 @@ const styles = stylex.create({
   host: {
     width: 200,
   },
+  chips: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+  },
 });
 
 const defaultArgs = {
@@ -33,30 +40,48 @@ const defaultArgs = {
   onChange: (...args) => void sbHandleEvent('onChange', args),
 } satisfies Partial<ISelectMultipleProps>;
 
-const statesProps: IComponentPropsWithLegend<ISelectMultipleProps> = [
-  { $legend: 'Enabled' },
-  { $legend: 'Hovered', visualState: { hovered: true } },
-  { $legend: 'Focused', visualState: { focused: true } },
-  { $legend: 'Disabled', disabled: true },
+const states: Array<IComponentPresentation<ISelectMultipleProps>> = [
+  { legend: 'Enabled' },
+  { legend: 'Hovered', props: { visualState: { hovered: true } } },
+  { legend: 'Focused', props: { visualState: { focused: true } } },
+  { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const rowsUncontrolledProps: IComponentPropsWithLegend<ISelectMultipleProps> = [
-  { $legend: 'Basic' },
-  { $legend: 'With Label', label: 'Label' },
-  { $legend: 'With Placeholder', placeholder: 'Placeholder' },
+const rowsUncontrolled: Array<IComponentPresentation<ISelectMultipleProps>> = [
+  { legend: 'Basic' },
+  { legend: 'With Label', props: { label: 'Label' } },
+  { legend: 'With Placeholder', props: { placeholder: 'Placeholder' } },
   {
-    $legend: 'With Default Value',
-    defaultValue: ['lemon', 'pepperHot'],
+    legend: 'With Default Value',
+    props: { defaultValue: ['lemon', 'pepperHot'] },
   },
 ];
 
-const rowsControlledProps: IComponentPropsWithLegend<ISelectMultipleProps> = [
-  { $legend: 'Basic' },
-  { $legend: 'With Label', label: 'Label' },
-  { $legend: 'With Placeholder', placeholder: 'Placeholder' },
+const rowsControlled: Array<IComponentPresentation<ISelectMultipleProps>> = [
+  { legend: 'Basic' },
+  { legend: 'With Label', props: { label: 'Label' } },
+  { legend: 'With Placeholder', props: { placeholder: 'Placeholder' } },
   {
-    $legend: 'With Default Value',
-    value: ['lemon', 'pepperHot'],
+    legend: 'With Default Value',
+    props: { value: ['lemon', 'pepperHot'] },
+  },
+  {
+    legend: 'With Chips',
+    props: {
+      value: ['lemon'],
+      renderValue: (options) => (
+        <div {...stylex.props(styles.chips)}>
+          {options.map((option, index) => (
+            <InputChip
+              key={index}
+              label={option.props.children}
+              onClick={(e) => e.preventDefault()}
+              onDelete={(e) => e.preventDefault()}
+            />
+          ))}
+        </div>
+      ),
+    },
   },
 ];
 
@@ -112,8 +137,8 @@ export const FilledUncontrolled: IStory = {
     <ComponentShowcase
       component={SelectMultiple}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsUncontrolledProps}
+      cols={states}
+      rows={rowsUncontrolled}
     />
   ),
   args: {
@@ -127,8 +152,8 @@ export const FilledControlled: IStory = {
     <ComponentShowcase
       component={ControlledSelect}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsControlledProps}
+      cols={states}
+      rows={rowsControlled}
     />
   ),
   args: {
@@ -142,8 +167,8 @@ export const OutlinedUncontrolled: IStory = {
     <ComponentShowcase
       component={SelectMultiple}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsUncontrolledProps}
+      cols={states}
+      rows={rowsUncontrolled}
     />
   ),
   args: {
@@ -158,8 +183,8 @@ export const OutlinedControlled: IStory = {
     <ComponentShowcase
       component={ControlledSelect}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsControlledProps}
+      cols={states}
+      rows={rowsControlled}
     />
   ),
   args: {

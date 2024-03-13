@@ -13,6 +13,10 @@
 - FIXME: radioGroup unused ref in forwardRef
 - FileUplodaer: picture
 
+- Select
+
+  - Focus Ring does not appear
+
 - Field
 
   - Loading state
