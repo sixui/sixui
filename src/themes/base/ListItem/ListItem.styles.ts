@@ -20,6 +20,7 @@ export const styles: MapNamespaces<IListItemStyles> =
       listStyle: 'none',
       borderRadius: vars.containerShape,
       textDecoration: 'none',
+      textAlign: 'start',
 
       // eslint-disable-next-line @stylexjs/valid-styles
       [listItemStatesVars.nonTextColor]: vars.nonTextColor,
@@ -101,6 +102,14 @@ export const styles: MapNamespaces<IListItemStyles> =
         ':is([data-pressed])': vars.leadingIconColor$pressed,
       },
     },
+    icon$leading$selected: {
+      color: {
+        default: vars.selectedLeadingIconColor,
+        ':is([data-focused])': vars.selectedLeadingIconColor$focus,
+        ':is([data-hovered])': vars.selectedLeadingIconColor$hover,
+        ':is([data-pressed])': vars.selectedLeadingIconColor$pressed,
+      },
+    },
     icon$leading$disabled: {
       color: vars.leadingIconColor$disabled,
       opacity: vars.leadingIconOpacity$disabled,
@@ -115,6 +124,14 @@ export const styles: MapNamespaces<IListItemStyles> =
         ':is([data-focused])': vars.trailingIconColor$focus,
         ':is([data-hovered])': vars.trailingIconColor$hover,
         ':is([data-pressed])': vars.trailingIconColor$pressed,
+      },
+    },
+    icon$trailing$selected: {
+      color: {
+        default: vars.selectedTrailingIconColor,
+        ':is([data-focused])': vars.selectedTrailingIconColor$focus,
+        ':is([data-hovered])': vars.selectedTrailingIconColor$hover,
+        ':is([data-pressed])': vars.selectedTrailingIconColor$pressed,
       },
     },
     icon$trailing$disabled: {

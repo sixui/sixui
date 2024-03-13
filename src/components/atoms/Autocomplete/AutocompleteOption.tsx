@@ -30,8 +30,9 @@ export const AutocompleteOption: React.FC<IAutocompleteOptionProps> = (
       {({ active }) => (
         <ListItem
           {...other}
+          type='button'
           sx={[styles.host, props.disabled && styles.host$disabled, sx]}
-          active={active}
+          selected={active}
         >
           {children ?? displayValue}
         </ListItem>

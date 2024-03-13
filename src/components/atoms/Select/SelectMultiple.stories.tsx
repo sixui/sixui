@@ -13,12 +13,12 @@ import {
   ComponentShowcase,
   type IComponentPropsWithLegend,
 } from '@/components/utils/ComponentShowcase';
-import { Select, type ISelectProps } from './Select';
+import { SelectMultiple, type ISelectMultipleProps } from './SelectMultiple';
 import { useState } from 'react';
 
 const meta = {
-  component: Select,
-} satisfies Meta<typeof Select>;
+  component: SelectMultiple,
+} satisfies Meta<typeof SelectMultiple>;
 
 type IStory = StoryObj<typeof meta>;
 
@@ -31,84 +31,86 @@ const styles = stylex.create({
 const defaultArgs = {
   sx: styles.host,
   onChange: (...args) => void sbHandleEvent('onChange', args),
-} satisfies Partial<ISelectProps>;
+} satisfies Partial<ISelectMultipleProps>;
 
-const statesProps: IComponentPropsWithLegend<ISelectProps> = [
+const statesProps: IComponentPropsWithLegend<ISelectMultipleProps> = [
   { $legend: 'Enabled' },
   { $legend: 'Hovered', visualState: { hovered: true } },
   { $legend: 'Focused', visualState: { focused: true } },
   { $legend: 'Disabled', disabled: true },
 ];
 
-const rowsUncontrolledProps: IComponentPropsWithLegend<ISelectProps> = [
+const rowsUncontrolledProps: IComponentPropsWithLegend<ISelectMultipleProps> = [
   { $legend: 'Basic' },
   { $legend: 'With Label', label: 'Label' },
   { $legend: 'With Placeholder', placeholder: 'Placeholder' },
   {
     $legend: 'With Default Value',
-    defaultValue: 'carrot',
+    defaultValue: ['lemon', 'pepperHot'],
   },
 ];
 
-const rowsControlledProps: IComponentPropsWithLegend<ISelectProps> = [
+const rowsControlledProps: IComponentPropsWithLegend<ISelectMultipleProps> = [
   { $legend: 'Basic' },
   { $legend: 'With Label', label: 'Label' },
   { $legend: 'With Placeholder', placeholder: 'Placeholder' },
   {
     $legend: 'With Default Value',
-    value: 'carrot',
+    value: ['lemon', 'pepperHot'],
   },
 ];
 
 const options = [
-  <Select.Option
+  <SelectMultiple.Option
     key={0}
     value='apple'
     disabled
     leadingIcon={<FontAwesomeIcon icon={faAppleWhole} />}
   >
     Apple
-  </Select.Option>,
-  <Select.Divider key={1} />,
-  <Select.Option
+  </SelectMultiple.Option>,
+  <SelectMultiple.Divider key={1} />,
+  <SelectMultiple.Option
     key={2}
     value='lemon'
     leadingIcon={<FontAwesomeIcon icon={faLemon} />}
   >
     Lemon
-  </Select.Option>,
-  <Select.Option
+  </SelectMultiple.Option>,
+  <SelectMultiple.Option
     key={3}
     value='carrot'
     leadingIcon={<FontAwesomeIcon icon={faCarrot} />}
   >
     Carrot
-  </Select.Option>,
-  <Select.Option
+  </SelectMultiple.Option>,
+  <SelectMultiple.Option
     key={4}
     value='pepperHot'
     leadingIcon={<FontAwesomeIcon icon={faPepperHot} />}
     supportingText='Yummy!'
   >
     Pepper Hot
-  </Select.Option>,
+  </SelectMultiple.Option>,
 ];
 
-const ControlledSelect: React.FC<Omit<ISelectProps, 'onChange'>> = (props) => {
-  const [value, setValue] = useState(props.value ?? '');
+const ControlledSelect: React.FC<Omit<ISelectMultipleProps, 'onChange'>> = (
+  props,
+) => {
+  const [value, setValue] = useState(props.value ?? []);
 
-  const handleChange = (value: string): void => {
+  const handleChange = (value: Array<string>): void => {
     setValue(value);
     void sbHandleEvent('onChange', value);
   };
 
-  return <Select {...props} value={value} onChange={handleChange} />;
+  return <SelectMultiple {...props} value={value} onChange={handleChange} />;
 };
 
 export const FilledUncontrolled: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={Select}
+      component={SelectMultiple}
       props={props}
       colsProps={statesProps}
       rowsProps={rowsUncontrolledProps}
@@ -138,7 +140,7 @@ export const FilledControlled: IStory = {
 export const OutlinedUncontrolled: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={Select}
+      component={SelectMultiple}
       props={props}
       colsProps={statesProps}
       rowsProps={rowsUncontrolledProps}

@@ -37,7 +37,6 @@ export const styles: MapNamespaces<IMenuListStyles> =
       maxWidth: 'inherit',
     },
     items: {
-      display: 'block',
       listStyleType: 'none',
       margin: 0,
       outline: 'none',
@@ -52,6 +51,8 @@ export const styles: MapNamespaces<IMenuListStyles> =
     },
     itemPadding: {
       paddingBlock: '8px',
+      display: 'flex',
+      flexDirection: 'column',
     },
     divider: {
       marginTop: 8,

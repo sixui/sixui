@@ -6,7 +6,6 @@ import { type IListItemProps, ListItem } from '@/components/atoms/ListItem';
 
 export type ISelectOptionProps = Omit<IListItemProps, 'type'> & {
   value: string;
-  displayValue?: string;
   children?: React.ReactNode;
 };
 
@@ -21,17 +20,19 @@ const styles = stylex.create({
 });
 
 export const SelectOption: React.FC<ISelectOptionProps> = (props) => {
-  const { sx, value, displayValue, children, ...other } = props;
+  const { sx, value, children, ...other } = props;
 
   return (
     <Listbox.Option as={Fragment} disabled={props.disabled} value={value}>
-      {({ active }) => (
+      {({ active, selected }) => (
         <ListItem
           {...other}
+          type='button'
           sx={[styles.host, props.disabled && styles.host$disabled, sx]}
-          active={active}
+          visualState={{ hovered: active }}
+          selected={selected}
         >
-          {children ?? displayValue}
+          {children}
         </ListItem>
       )}
     </Listbox.Option>
