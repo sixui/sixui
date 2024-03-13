@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,8 +13,8 @@ import {
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   ComponentShowcase,
-  type IComponentPropsWithLegend,
-} from '@/components/utils/ComponentShowcase';
+  type IComponentPresentation,
+} from '@/components/utils/ComponentShowcase2';
 import { Autocomplete, type IAutocompleteProps } from './Autocomplete';
 
 const meta = {
@@ -33,24 +34,42 @@ const defaultArgs = {
   onChange: (...args) => void sbHandleEvent('onChange', args),
 } satisfies Partial<IAutocompleteProps>;
 
-const statesProps: IComponentPropsWithLegend<IAutocompleteProps> = [
-  { $legend: 'Enabled' },
-  { $legend: 'Hovered', visualState: { hovered: true } },
-  { $legend: 'Focused', visualState: { focused: true } },
-  { $legend: 'Disabled', disabled: true },
+const ControlledAutocomplete: React.FC<Omit<IAutocompleteProps, 'onChange'>> = (
+  props,
+) => {
+  const [value, setValue] = useState(props.value ?? '');
+
+  const handleChange = (value: string | null): void => {
+    setValue(value ?? '');
+    void sbHandleEvent('onChange', value);
+  };
+
+  return <Autocomplete {...props} value={value} onChange={handleChange} />;
+};
+
+const states: Array<IComponentPresentation<IAutocompleteProps>> = [
+  { legend: 'Enabled' },
+  { legend: 'Hovered', props: { visualState: { hovered: true } } },
+  { legend: 'Focused', props: { visualState: { focused: true } } },
+  { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const rowsProps: IComponentPropsWithLegend<IAutocompleteProps> = [
-  { $legend: 'Basic' },
-  { $legend: 'With Label', label: 'Label' },
-  { $legend: 'With Placeholder', placeholder: 'Placeholder' },
+const rows: Array<IComponentPresentation<IAutocompleteProps>> = [
+  { legend: 'Basic' },
+  { legend: 'With Label', props: { label: 'Label' } },
+  { legend: 'With Placeholder', props: { placeholder: 'Placeholder' } },
   {
-    $legend: 'With Default Value',
-    value: 'carrot',
+    legend: 'With Default Value',
+    props: { defaultValue: 'carrot' },
   },
   {
-    $legend: 'Allow Custom Value',
-    allowCustomValues: true,
+    legend: 'Controlled',
+    props: { value: 'carrot' },
+    component: ControlledAutocomplete,
+  },
+  {
+    legend: 'Allow Custom Value',
+    props: { allowCustomValues: true },
   },
 ];
 
@@ -60,34 +79,39 @@ const options = [
     value='apple'
     disabled
     leadingIcon={<FontAwesomeIcon icon={faAppleWhole} />}
-    displayValue='Apple'
-  />,
+  >
+    Apple
+  </Autocomplete.Option>,
   <Autocomplete.Divider key={1} />,
   <Autocomplete.Option
     key={2}
     value='lemon'
     leadingIcon={<FontAwesomeIcon icon={faLemon} />}
-    displayValue='Lemon'
-  />,
+  >
+    Lemon
+  </Autocomplete.Option>,
   <Autocomplete.Option
     key={3}
     value='carrot'
     leadingIcon={<FontAwesomeIcon icon={faCarrot} />}
-    displayValue='Carrot'
-  />,
+  >
+    Carrot
+  </Autocomplete.Option>,
   <Autocomplete.Option
     key={4}
     value='hotPepper'
     leadingIcon={<FontAwesomeIcon icon={faPepperHot} />}
     supportingText='Yummy!'
-    displayValue='Pepper Hot'
-  />,
+  >
+    Hot Pepper
+  </Autocomplete.Option>,
   <Autocomplete.Option
     key={5}
     value='christmas'
     leadingIcon={<FontAwesomeIcon icon={faGift} />}
-    displayValue='Noël'
-  />,
+  >
+    Noël
+  </Autocomplete.Option>,
 ];
 
 export const Filled: IStory = {
@@ -95,8 +119,8 @@ export const Filled: IStory = {
     <ComponentShowcase
       component={Autocomplete}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
+      cols={states}
+      rows={rows}
     />
   ),
   args: {
@@ -110,8 +134,8 @@ export const Outlined: IStory = {
     <ComponentShowcase
       component={Autocomplete}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
+      cols={states}
+      rows={rows}
     />
   ),
   args: {

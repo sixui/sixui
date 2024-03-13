@@ -4,15 +4,19 @@ import { Listbox } from '@headlessui/react';
 
 import { MenuList } from '@/components/atoms/MenuList';
 import { IVisualState } from '@/hooks/useVisualState';
+import { getComponentDisplayName } from '@/helpers/getComponentDisplayName';
 import { Field, type IFieldProps } from '@/components/atoms/Field';
 import { MenuListDivider } from '@/components/atoms/MenuList/MenuListDivider';
 import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
-import { type ISelectOptionProps, SelectOption } from './SelectOption';
+import { SelectOption, type ISelectOptionProps } from './SelectOption';
 
 type ISelectOption = React.ReactElement<ISelectOptionProps>;
 
-export type ISelectBaseProps<TValue> = Omit<IFieldProps, 'end' | 'value'> & {
+export type ISelectBaseProps<TValue> = Omit<
+  IFieldProps,
+  'end' | 'value' | 'defaultValue'
+> & {
   visualState?: IVisualState;
   children: Array<React.ReactNode> | React.ReactNode;
   id?: string;
@@ -23,12 +27,12 @@ export type ISelectBaseProps<TValue> = Omit<IFieldProps, 'end' | 'value'> & {
 
 export type ISelectSingleBaseProps = ISelectBaseProps<string> & {
   multiple: false;
-  renderValue?: (option: ISelectOption) => React.ReactNode;
+  renderOption?: (option: ISelectOption) => React.ReactNode;
 };
 
 export type ISelectMultipleBaseProps = ISelectBaseProps<Array<string>> & {
   multiple: true;
-  renderValue?: (options: Array<ISelectOption>) => React.ReactNode;
+  renderOption?: (options: Array<ISelectOption>) => React.ReactNode;
 };
 
 // TODO: migrate in theme
@@ -46,22 +50,6 @@ const styles = stylex.create({
     width: '100%',
   },
 });
-
-const getComponentDisplayName = (
-  element: React.ReactElement<unknown>,
-): string | undefined => {
-  const node = element as React.ReactElement<React.ComponentType<unknown>>;
-  const type = (node as unknown as React.ReactElement<React.FunctionComponent>)
-    .type;
-  const displayName =
-    typeof type === 'function'
-      ? (type as React.FunctionComponent).displayName ??
-        (type as React.FunctionComponent).name ??
-        undefined
-      : type;
-
-  return displayName;
-};
 
 const getMatchingOptions = (
   children: Array<React.ReactNode> | React.ReactNode,
@@ -86,7 +74,7 @@ const getMatchingOptions = (
       return isMatching;
     }) as Array<ISelectOption>;
 
-const defaultRenderValue = (
+const defaultRenderOption = (
   options: ISelectOption | Array<ISelectOption>,
 ): React.ReactNode =>
   Array.isArray(options)
@@ -107,11 +95,11 @@ const SelectBase = forwardRef<
     defaultValue,
     value,
     multiple,
-    renderValue = defaultRenderValue,
+    renderOption = defaultRenderOption,
     ...other
   } = props;
 
-  const handleChange = (value: string | Array<string>): void => {
+  const handleChange = (value: (typeof props)['value']): void => {
     onChange?.(value as string & Array<string>);
   };
 
@@ -148,6 +136,11 @@ const SelectBase = forwardRef<
           const optionsToRender = multiple
             ? matchingOptions
             : singleMatchingOption;
+          const displayValue = optionsToRender
+            ? renderOption(
+                optionsToRender as ISelectOption & Array<ISelectOption>,
+              )
+            : undefined;
 
           return (
             <Field
@@ -164,13 +157,7 @@ const SelectBase = forwardRef<
               start={singleMatchingOption?.props.start}
               leadingIcon={singleMatchingOption?.props.leadingIcon}
               end={<TrailingIcon height='6' />}
-              value={
-                optionsToRender
-                  ? renderValue(
-                      optionsToRender as ISelectOption & Array<ISelectOption>,
-                    )
-                  : undefined
-              }
+              value={displayValue}
             />
           );
         }}

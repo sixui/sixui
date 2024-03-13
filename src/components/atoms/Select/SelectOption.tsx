@@ -38,3 +38,4 @@ export const SelectOption: React.FC<ISelectOptionProps> = (props) => {
     </Listbox.Option>
   );
 };
+SelectOption.displayName = 'SelectOption';

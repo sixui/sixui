@@ -7,7 +7,6 @@ import { type IListItemProps, ListItem } from '@/components/atoms/ListItem';
 export type IAutocompleteOptionProps = Omit<IListItemProps, 'type'> & {
   value: string;
   children?: React.ReactNode;
-  displayValue?: string;
 };
 
 // TODO: migrate in theme
@@ -23,7 +22,7 @@ const styles = stylex.create({
 export const AutocompleteOption: React.FC<IAutocompleteOptionProps> = (
   props,
 ) => {
-  const { sx, value, children, displayValue, ...other } = props;
+  const { sx, value, children, ...other } = props;
 
   return (
     <Combobox.Option as={Fragment} disabled={props.disabled} value={value}>
@@ -34,9 +33,10 @@ export const AutocompleteOption: React.FC<IAutocompleteOptionProps> = (
           sx={[styles.host, props.disabled && styles.host$disabled, sx]}
           selected={active}
         >
-          {children ?? displayValue}
+          {children}
         </ListItem>
       )}
     </Combobox.Option>
   );
 };
+AutocompleteOption.displayName = 'AutocompleteOption';

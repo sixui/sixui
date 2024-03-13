@@ -76,7 +76,7 @@ const ControlledSelectWithChip: React.FC<
       {...props}
       value={values}
       onChange={handleChange}
-      renderValue={(options) => (
+      renderOption={(options) => (
         <div {...stylex.props(styles.chips)}>
           {options.map((option, index) => (
             <InputChip
