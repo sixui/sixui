@@ -11,8 +11,8 @@ import {
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   ComponentShowcase,
-  type IComponentPropsWithLegend,
-} from '@/components/utils/ComponentShowcase';
+  type IComponentPresentation,
+} from '@/components/utils/ComponentShowcase2';
 import { Select, type ISelectProps } from './Select';
 import { useState } from 'react';
 
@@ -33,30 +33,36 @@ const defaultArgs = {
   onChange: (...args) => void sbHandleEvent('onChange', args),
 } satisfies Partial<ISelectProps>;
 
-const statesProps: IComponentPropsWithLegend<ISelectProps> = [
-  { $legend: 'Enabled' },
-  { $legend: 'Hovered', visualState: { hovered: true } },
-  { $legend: 'Focused', visualState: { focused: true } },
-  { $legend: 'Disabled', disabled: true },
+const ControlledSelect: React.FC<Omit<ISelectProps, 'onChange'>> = (props) => {
+  const [value, setValue] = useState(props.value ?? '');
+
+  const handleChange = (value: string): void => {
+    setValue(value);
+    void sbHandleEvent('onChange', value);
+  };
+
+  return <Select {...props} value={value} onChange={handleChange} />;
+};
+
+const states: Array<IComponentPresentation<ISelectProps>> = [
+  { legend: 'Enabled' },
+  { legend: 'Hovered', props: { visualState: { hovered: true } } },
+  { legend: 'Focused', props: { visualState: { focused: true } } },
+  { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const rowsUncontrolledProps: IComponentPropsWithLegend<ISelectProps> = [
-  { $legend: 'Basic' },
-  { $legend: 'With Label', label: 'Label' },
-  { $legend: 'With Placeholder', placeholder: 'Placeholder' },
+const rows: Array<IComponentPresentation<ISelectProps>> = [
+  { legend: 'Basic' },
+  { legend: 'With Label', props: { label: 'Label' } },
+  { legend: 'With Placeholder', props: { placeholder: 'Placeholder' } },
   {
-    $legend: 'With Default Value',
-    defaultValue: 'carrot',
+    legend: 'With Default Value',
+    props: { defaultValue: 'carrot' },
   },
-];
-
-const rowsControlledProps: IComponentPropsWithLegend<ISelectProps> = [
-  { $legend: 'Basic' },
-  { $legend: 'With Label', label: 'Label' },
-  { $legend: 'With Placeholder', placeholder: 'Placeholder' },
   {
-    $legend: 'With Default Value',
-    value: 'carrot',
+    legend: 'Controlled',
+    props: { value: 'carrot' },
+    component: ControlledSelect,
   },
 ];
 
@@ -94,24 +100,13 @@ const options = [
   </Select.Option>,
 ];
 
-const ControlledSelect: React.FC<Omit<ISelectProps, 'onChange'>> = (props) => {
-  const [value, setValue] = useState(props.value ?? '');
-
-  const handleChange = (value: string): void => {
-    setValue(value);
-    void sbHandleEvent('onChange', value);
-  };
-
-  return <Select {...props} value={value} onChange={handleChange} />;
-};
-
-export const FilledUncontrolled: IStory = {
+export const Filled: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={Select}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsUncontrolledProps}
+      cols={states}
+      rows={rows}
     />
   ),
   args: {
@@ -120,44 +115,13 @@ export const FilledUncontrolled: IStory = {
   },
 };
 
-export const FilledControlled: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={ControlledSelect}
-      props={props}
-      colsProps={statesProps}
-      rowsProps={rowsControlledProps}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    children: options,
-  },
-};
-
-export const OutlinedUncontrolled: IStory = {
+export const Outlined: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={Select}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsUncontrolledProps}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    children: options,
-    variant: 'outlined',
-  },
-};
-
-export const OutlinedControlled: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={ControlledSelect}
-      props={props}
-      colsProps={statesProps}
-      rowsProps={rowsControlledProps}
+      cols={states}
+      rows={rows}
     />
   ),
   args: {

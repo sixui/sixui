@@ -92,7 +92,8 @@ const vars: Partial<IStyleVars<IChipStyleVarKey>> = {
 
   // icon
   iconSize: '18px',
-  iconColor: colorRolesVars.primary,
+  iconColor: colorRolesVars.onSurfaceVariant,
+  iconColor$interactive: colorRolesVars.primary,
   // &:disabled
   iconColor$disabled: colorRolesVars.onSurface,
   iconOpacity$disabled: stateVars.opacity$disabled,

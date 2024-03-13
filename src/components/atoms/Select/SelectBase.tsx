@@ -152,6 +152,7 @@ const SelectBase = forwardRef<
           return (
             <Field
               {...other}
+              tabIndex={0}
               visualState={
                 open
                   ? {

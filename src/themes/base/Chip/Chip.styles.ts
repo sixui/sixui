@@ -25,10 +25,15 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     borderRadius: chipStateVars.containerShape,
     display: 'inline-flex',
     height: vars.containerHeight,
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [chipStateVars.iconColor]: vars.iconColor,
+    cursor: 'default',
+  },
+  host$interactive: {
     cursor: 'pointer',
 
     [chipStateVars.iconColor]: {
-      default: vars.iconColor,
+      default: vars.iconColor$interactive,
       ':is([data-focused])': vars.iconColor$focus,
       ':is([data-hovered])': vars.iconColor$hover,
       ':is([data-pressed])': vars.iconColor$pressed,
@@ -60,6 +65,10 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     '::before': {
       backgroundColor: vars.flatContainerColor,
     },
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [chipStateVars.elevation]: vars.flatContainerElevation,
+  },
+  flatContainer$interactive: {
     [chipStateVars.elevation]: {
       default: vars.flatContainerElevation,
       ':is([data-focused])': vars.flatContainerElevation$focus,
@@ -72,7 +81,7 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
       backgroundColor: vars.flatContainerColor$disabled,
       opacity: vars.flatContainerOpacity$disabled,
     },
-    // pointerEvents: 'none',
+    pointerEvents: 'none',
     // eslint-disable-next-line @stylexjs/valid-styles
     [chipStateVars.elevation]: vars.flatContainerElevation$disabled,
   },
@@ -80,6 +89,10 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     '::before': {
       backgroundColor: vars.selectedFlatContainerColor,
     },
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [chipStateVars.elevation]: vars.flatContainerElevation,
+  },
+  selectedFlatContainer$interactive: {
     [chipStateVars.elevation]: {
       default: vars.flatContainerElevation,
       ':is([data-focused])': vars.selectedFlatContainerElevation$focus,
@@ -100,6 +113,10 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     '::before': {
       backgroundColor: vars.elevatedContainerColor,
     },
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [chipStateVars.elevation]: vars.elevatedContainerElevation,
+  },
+  elevatedContainer$interactive: {
     [chipStateVars.elevation]: {
       default: vars.elevatedContainerElevation,
       ':is([data-focused])': vars.elevatedContainerElevation$focus,
@@ -120,6 +137,10 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     '::before': {
       backgroundColor: vars.selectedElevatedContainerColor,
     },
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [chipStateVars.elevation]: vars.elevatedContainerElevation,
+  },
+  selectedElevatedContainer$interactive: {
     [chipStateVars.elevation]: {
       default: vars.elevatedContainerElevation,
       ':is([data-focused])': vars.elevatedContainerElevation$focus,
@@ -154,6 +175,7 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     justifyContent: 'center',
     paddingInlineStart: vars.iconLabelSpace,
     paddingInlineEnd: vars.trailingIconTrailingSpace,
+    cursor: 'pointer',
   },
   action$primary: {
     paddingInlineStart: vars.leadingSpace,
@@ -185,6 +207,9 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     pointerEvents: 'none',
     position: 'absolute',
 
+    borderColor: vars.outlineColor,
+  },
+  outline$interactive: {
     borderColor: {
       default: vars.outlineColor,
       ':is([data-focused])': vars.outlineColor$focus,
@@ -212,7 +237,9 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     textOverflow: 'ellipsis',
     userSelect: 'none',
     whiteSpace: 'nowrap',
-
+    color: vars.labelTextColor,
+  },
+  label$interactive: {
     color: {
       default: vars.labelTextColor,
       ':is([data-focused])': vars.labelTextColor$focus,
@@ -221,6 +248,9 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     },
   },
   label$selected: {
+    color: vars.selectedLabelTextColor,
+  },
+  label$selected$interactive: {
     color: {
       default: vars.selectedLabelTextColor,
       ':is([data-focused])': vars.selectedLabelTextColor$focus,
@@ -243,6 +273,9 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     justifyContent: 'center',
   },
   icon$selected: {
+    color: vars.selectedIconColor,
+  },
+  icon$selected$interactive: {
     color: {
       default: vars.selectedIconColor,
       ':is([data-focused])': vars.selectedIconColor$focus,
@@ -262,7 +295,9 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     fontSize: vars.iconSize,
     height: vars.iconSize,
     width: vars.iconSize,
-
+    color: vars.trailingIconColor,
+  },
+  icon$trailing$interactive: {
     color: {
       default: vars.trailingIconColor,
       ':is([data-focused])': vars.trailingIconColor$focus,
@@ -271,6 +306,9 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     },
   },
   icon$trailing$selected: {
+    color: vars.selectedTrailingIconColor,
+  },
+  icon$trailing$selected$interactive: {
     color: {
       default: vars.selectedTrailingIconColor,
       ':is([data-focused])': vars.selectedTrailingIconColor$focus,

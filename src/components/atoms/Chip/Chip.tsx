@@ -52,7 +52,7 @@ import { Avatar } from '../Avatar';
 // https://github.com/material-components/material-web/blob/main/chips/internal/input-chip.ts
 // https://github.com/material-components/material-web/blob/main/chips/internal/suggestion-chip.ts
 
-const DEFAULT_TAG = 'button';
+const DEFAULT_TAG = 'div';
 
 export type IChipOwnProps = IContainerProps<IChipStyleKey> & {
   innerStyles?: {
@@ -171,13 +171,14 @@ export const Chip: IChip = forwardRef(function Chip<
     [stylesCombinator, visualState],
   );
 
-  const Component = as ?? (href ? 'a' : 'button');
+  const Component = as ?? (href ? 'a' : onClick ? 'button' : 'div');
 
+  const interactive = !!href || !!onClick;
   const elevated = variant !== 'input' && elevatedProp;
   const hasIcon = !!imageUrl || !!icon;
   const isSelectable =
     variant !== false && ['input', 'filter'].includes(variant);
-  const selected = !disabled && isSelectable && selectedProp;
+  const selected = selectedProp;
   const hasLeading = (variant === 'filter' && (loading || selected)) || hasIcon;
   const hasTrailing = isDeletable;
   const hasOverlay = loading && (loadingText ?? !hasLeading);
@@ -290,6 +291,7 @@ export const Chip: IChip = forwardRef(function Chip<
     <div
       {...sxf(
         'host',
+        interactive && 'host$interactive',
         disabled && 'host$disabled',
         avatar && 'host$avatar',
         theme.vars,
@@ -301,6 +303,7 @@ export const Chip: IChip = forwardRef(function Chip<
         {...sxf(
           'container',
           containerStyle,
+          interactive && `${containerStyle}$interactive`,
           disabled && `${containerStyle}$disabled`,
         )}
       >
@@ -316,30 +319,35 @@ export const Chip: IChip = forwardRef(function Chip<
           <span
             {...sxf(
               'outline',
+              interactive && 'outline$interactive',
               selected && 'outline$selected',
               disabled && 'outline$disabled',
             )}
           />
         )}
-        <FocusRing
-          styles={[
-            theme.focusRingStyles,
-            variantTheme?.focusRingStyles,
-            ...asArray(innerStyles?.focusRing),
-          ]}
-          for={primaryActionRef}
-          visualState={visualState}
-        />
-        <StateLayer
-          styles={[
-            theme.stateLayerStyles,
-            variantTheme?.stateLayerStyles,
-            ...asArray(innerStyles?.stateLayer),
-          ]}
-          for={primaryActionRef}
-          disabled={disabled}
-          visualState={visualState}
-        />
+        {interactive ? (
+          <>
+            <FocusRing
+              styles={[
+                theme.focusRingStyles,
+                variantTheme?.focusRingStyles,
+                ...asArray(innerStyles?.focusRing),
+              ]}
+              for={primaryActionRef}
+              visualState={visualState}
+            />
+            <StateLayer
+              styles={[
+                theme.stateLayerStyles,
+                variantTheme?.stateLayerStyles,
+                ...asArray(innerStyles?.stateLayer),
+              ]}
+              for={primaryActionRef}
+              disabled={disabled}
+              visualState={visualState}
+            />
+          </>
+        ) : null}
 
         <Component
           {...sxf(
@@ -351,10 +359,10 @@ export const Chip: IChip = forwardRef(function Chip<
           )}
           ref={primaryHandleRef}
           href={href}
-          onClick={href ? undefined : handleClick}
+          onClick={href ?? !onClick ? undefined : handleClick}
           role='button'
           disabled={disabled}
-          tabIndex={disabled ? -1 : 0}
+          tabIndex={!interactive || disabled ? -1 : 0}
           onKeyDown={handleKeyDown}
           {...other}
         >
@@ -363,7 +371,12 @@ export const Chip: IChip = forwardRef(function Chip<
               {...sxf(
                 'icon',
                 'icon$leading',
-                disabled ? 'icon$disabled' : selected && 'icon$selected',
+                disabled
+                  ? 'icon$disabled'
+                  : selected && [
+                      'icon$selected',
+                      interactive && 'icon$selected$interactive',
+                    ],
                 avatar && 'icon$avatar',
               )}
             >
@@ -391,7 +404,11 @@ export const Chip: IChip = forwardRef(function Chip<
             <span
               {...sxf(
                 'label',
-                selected && 'label$selected',
+                interactive && 'label$interactive',
+                selected && [
+                  'label$selected',
+                  interactive && 'label$selected$interactive',
+                ],
                 disabled && 'label$disabled',
                 hasOverlay ? 'invisible' : null,
               )}
@@ -450,9 +467,13 @@ export const Chip: IChip = forwardRef(function Chip<
               {...sxf(
                 'icon',
                 'icon$trailing',
+                interactive && 'icon$trailing$interactive',
                 disabled
                   ? 'icon$disabled'
-                  : selected && 'icon$trailing$selected',
+                  : selected && [
+                      'icon$trailing$selected',
+                      interactive && 'icon$trailing$selected$interactive',
+                    ],
               )}
               aria-hidden
             >

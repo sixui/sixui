@@ -40,6 +40,58 @@ const defaultArgs = {
   onChange: (...args) => void sbHandleEvent('onChange', args),
 } satisfies Partial<ISelectMultipleProps>;
 
+const ControlledSelect: React.FC<Omit<ISelectMultipleProps, 'onChange'>> = (
+  props,
+) => {
+  const [value, setValue] = useState(props.value ?? []);
+
+  const handleChange = (value: Array<string>): void => {
+    setValue(value);
+    void sbHandleEvent('onChange', value);
+  };
+
+  return <SelectMultiple {...props} value={value} onChange={handleChange} />;
+};
+
+const ControlledSelectWithChip: React.FC<
+  Omit<ISelectMultipleProps, 'onChange' | 'renderValue'>
+> = (props) => {
+  const [values, setValues] = useState(props.value ?? []);
+
+  const handleChange = (values: Array<string>): void => {
+    setValues(values);
+    void sbHandleEvent('onChange', values);
+  };
+
+  const handleDelete = (
+    event: React.MouseEvent<HTMLElement>,
+    value: string,
+  ): void => {
+    event.preventDefault();
+    setValues((values) => values.filter((v) => v !== value));
+  };
+
+  return (
+    <SelectMultiple
+      {...props}
+      value={values}
+      onChange={handleChange}
+      renderValue={(options) => (
+        <div {...stylex.props(styles.chips)}>
+          {options.map((option, index) => (
+            <InputChip
+              key={index}
+              label={option.props.children}
+              onDelete={(event) => handleDelete(event, option.props.value)}
+              icon={option.props.leadingIcon}
+            />
+          ))}
+        </div>
+      )}
+    />
+  );
+};
+
 const states: Array<IComponentPresentation<ISelectMultipleProps>> = [
   { legend: 'Enabled' },
   { legend: 'Hovered', props: { visualState: { hovered: true } } },
@@ -47,7 +99,7 @@ const states: Array<IComponentPresentation<ISelectMultipleProps>> = [
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const rowsUncontrolled: Array<IComponentPresentation<ISelectMultipleProps>> = [
+const rows: Array<IComponentPresentation<ISelectMultipleProps>> = [
   { legend: 'Basic' },
   { legend: 'With Label', props: { label: 'Label' } },
   { legend: 'With Placeholder', props: { placeholder: 'Placeholder' } },
@@ -55,33 +107,15 @@ const rowsUncontrolled: Array<IComponentPresentation<ISelectMultipleProps>> = [
     legend: 'With Default Value',
     props: { defaultValue: ['lemon', 'pepperHot'] },
   },
-];
-
-const rowsControlled: Array<IComponentPresentation<ISelectMultipleProps>> = [
-  { legend: 'Basic' },
-  { legend: 'With Label', props: { label: 'Label' } },
-  { legend: 'With Placeholder', props: { placeholder: 'Placeholder' } },
   {
-    legend: 'With Default Value',
+    legend: 'Controlled',
     props: { value: ['lemon', 'pepperHot'] },
+    component: ControlledSelect,
   },
   {
     legend: 'With Chips',
-    props: {
-      value: ['lemon'],
-      renderValue: (options) => (
-        <div {...stylex.props(styles.chips)}>
-          {options.map((option, index) => (
-            <InputChip
-              key={index}
-              label={option.props.children}
-              onClick={(e) => e.preventDefault()}
-              onDelete={(e) => e.preventDefault()}
-            />
-          ))}
-        </div>
-      ),
-    },
+    props: { value: ['lemon'] },
+    component: ControlledSelectWithChip,
   },
 ];
 
@@ -119,26 +153,13 @@ const options = [
   </SelectMultiple.Option>,
 ];
 
-const ControlledSelect: React.FC<Omit<ISelectMultipleProps, 'onChange'>> = (
-  props,
-) => {
-  const [value, setValue] = useState(props.value ?? []);
-
-  const handleChange = (value: Array<string>): void => {
-    setValue(value);
-    void sbHandleEvent('onChange', value);
-  };
-
-  return <SelectMultiple {...props} value={value} onChange={handleChange} />;
-};
-
-export const FilledUncontrolled: IStory = {
+export const Filled: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={SelectMultiple}
       props={props}
       cols={states}
-      rows={rowsUncontrolled}
+      rows={rows}
     />
   ),
   args: {
@@ -147,44 +168,13 @@ export const FilledUncontrolled: IStory = {
   },
 };
 
-export const FilledControlled: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={ControlledSelect}
-      props={props}
-      cols={states}
-      rows={rowsControlled}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    children: options,
-  },
-};
-
-export const OutlinedUncontrolled: IStory = {
+export const Outlined: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={SelectMultiple}
       props={props}
       cols={states}
-      rows={rowsUncontrolled}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    children: options,
-    variant: 'outlined',
-  },
-};
-
-export const OutlinedControlled: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={ControlledSelect}
-      props={props}
-      cols={states}
-      rows={rowsControlled}
+      rows={rows}
     />
   ),
   args: {

@@ -68,7 +68,7 @@ export const Variants: IStory = {
           },
         },
         {
-          props: { variant: 'filter', label: 'Filter', defaultSelected: true },
+          props: { variant: 'filter', label: 'Filter', selected: true },
         },
         {
           props: {
@@ -130,7 +130,7 @@ export const Filter: IStory = {
         { legend: 'Basic' },
         { legend: 'Elevated', props: { elevated: true } },
       ]}
-      groups={[{}, { legend: 'Selected', props: { defaultSelected: true } }]}
+      groups={[{}, { legend: 'Selected', props: { selected: true } }]}
     />
   ),
   args: {
@@ -155,7 +155,7 @@ export const Input: IStory = {
           props: { onDelete: () => sbHandleEvent('delete', undefined, 300) },
         },
       ]}
-      groups={[{}, { legend: 'Selected', props: { defaultSelected: true } }]}
+      groups={[{}, { legend: 'Selected', props: { selected: true } }]}
     />
   ),
   args: {
@@ -195,7 +195,7 @@ export const InputWithIconOrImage: IStory = {
           },
         },
       ]}
-      groups={[{}, { legend: 'Selected', props: { defaultSelected: true } }]}
+      groups={[{}, { legend: 'Selected', props: { selected: true } }]}
     />
   ),
   args: {

@@ -228,6 +228,7 @@ export const styles: MapNamespaces<IFieldBaseStyles> =
       // Reverting values before "all: unset"
       overflowWrap: 'revert', // Neceded to break words in textarea
       whiteSpace: 'revert', // Needed for Firefox textarea
+      alignItems: 'center',
 
       paddingTop: vars.topSpace,
       paddingBottom: vars.bottomSpace,
@@ -295,7 +296,8 @@ export const styles: MapNamespaces<IFieldBaseStyles> =
     },
     label$resting: {
       position: 'absolute',
-      top: vars.topSpace,
+      insetBlockStart: '50%',
+      transform: 'translateY(-50%)',
     },
     label$floating: {
       fontSize: vars.labelTextPopulatedSize,
