@@ -1,3 +1,15 @@
+# v0.0.100 (Thu Mar 14 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: onChange callback is called on option delete for MultiSelect and MultiCombobox ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.99 (Thu Mar 14 2024)
 
 #### 🐛 Bug Fix
