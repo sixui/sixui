@@ -18,8 +18,8 @@ import { IconButton } from '@/components/atoms/IconButton';
 import { ListItem } from '@/components/atoms/ListItem';
 import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
-import { getComponentDisplayName } from '@/helpers/getComponentDisplayName';
-import { reactNodeToString } from '@/helpers/reactNodeToString';
+import { getDisplayName } from '@/helpers/react/getDisplayName';
+import { reactNodeToString } from '@/helpers/react/nodeToString';
 import {
   AutocompleteOption,
   type IAutocompleteOptionProps,
@@ -76,7 +76,7 @@ const getValidOption = (
   child: React.ReactNode,
 ): IAutocompleteOption | undefined => {
   const childDisplayName = isValidElement(child)
-    ? getComponentDisplayName(child)
+    ? getDisplayName(child)
     : undefined;
   const isCompatibleOption =
     childDisplayName === AutocompleteOption.displayName;

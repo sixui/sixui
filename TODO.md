@@ -13,17 +13,16 @@
 - FIXME: radioGroup unused ref in forwardRef
 - FileUplodaer: picture
 
-- Select
-
-  - Focus Ring does not appear
-
 - Field
 
   - Loading state
 
 - Select
 
-  - Story with async loading
+  - Support async loading
+  - With supporting text: no offset
+  - Grouped options
+  - Clear field button
 
 - Autocomplete
 
