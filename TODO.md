@@ -14,13 +14,15 @@
 - FIXME: radioGroup unused ref in forwardRef
 - FileUplodaer: picture
 
-- MultiAutocomplete
+- MultiCombobox
 
   - Fixed options
   - Keyboard to delete
   - Navigate focus between chips with keyboard
 
-- Field
+- FIXME: possible fuite de mémoire dans IndeterminateCircularProgressIndicator
+
+- Field, Combobox, Select
 
   - Loading state
 

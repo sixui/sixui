@@ -21,6 +21,7 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { EASING } from '@/helpers/animation';
 import { useForkRef } from '@/hooks/useForkRef';
+import { CircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
 
 // https://github.com/material-components/material-web/blob/main/field/internal/filled-field.ts
 // https://github.com/material-components/material-web/blob/main/field/internal/outlined-field.ts
@@ -47,6 +48,7 @@ export type IFieldBaseProps = IContainerProps<IFieldBaseStyleKey> & {
   children?: React.ReactNode;
   labelId?: string;
   tabIndex?: number;
+  loading?: boolean;
 };
 
 type IFieldBaseVariantMap = {
@@ -70,7 +72,7 @@ export const FieldBase = forwardRef<HTMLDivElement, IFieldBaseProps>(
       variant = 'filled',
       children,
       start,
-      end,
+      end: endProp,
       leadingIcon,
       trailingIcon,
       disabled,
@@ -85,6 +87,7 @@ export const FieldBase = forwardRef<HTMLDivElement, IFieldBaseProps>(
       count = -1,
       max = -1,
       textarea,
+      loading,
       ...other
     } = props;
 
@@ -110,6 +113,8 @@ export const FieldBase = forwardRef<HTMLDivElement, IFieldBaseProps>(
         ),
       [stylesCombinator, visualState],
     );
+
+    const end = loading ? <CircularProgressIndicator /> : endProp;
 
     const [refreshErrorAlert, setRefreshErrorAlert] = useState(false);
     const labelAnimationRef = useRef<Animation>();

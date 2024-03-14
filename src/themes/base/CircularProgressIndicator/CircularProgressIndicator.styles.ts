@@ -36,6 +36,7 @@ export const styles: MapNamespaces<ICircularProgressIndicatorStyles> =
     layer: {
       position: 'absolute',
       inset: 0,
+      borderColor: 'inherit',
     },
     progress: {
       flexGrow: 1,

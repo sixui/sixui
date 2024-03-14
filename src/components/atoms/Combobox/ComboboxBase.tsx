@@ -34,7 +34,7 @@ export type IComboboxBaseProps = Omit<
   'onChange' | 'end' | 'value' | 'defaultValue' | 'id'
 > & {
   visualState?: IVisualState;
-  children?: Array<React.ReactNode>;
+  children?: Array<React.ReactNode> | null;
   id?: string;
   filter?: IFilter<IOption>;
   noOptionsText?: string;
@@ -91,7 +91,7 @@ const getValidOption = (child: React.ReactNode): IOption | undefined => {
 };
 
 const getMatchingOptions = (
-  children: Array<React.ReactNode> | undefined,
+  children: Array<React.ReactNode> | undefined | null,
   values: string | Array<string>,
 ): Array<IOption | string> =>
   filterUndefineds(

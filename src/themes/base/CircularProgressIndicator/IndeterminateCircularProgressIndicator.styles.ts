@@ -77,6 +77,9 @@ type IIndeterminateCircularProgressIndicatorStyles =
   IStyles<IIndeterminateCircularProgressIndicatorStyleKey>;
 export const styles: MapNamespaces<IIndeterminateCircularProgressIndicatorStyles> =
   stylex.create<IIndeterminateCircularProgressIndicatorStyles>({
+    host: {
+      borderColor: vars.color,
+    },
     progress: {
       animationTimingFunction: 'linear',
       animationIterationCount: 'infinite',
@@ -103,7 +106,10 @@ export const styles: MapNamespaces<IIndeterminateCircularProgressIndicatorStyles
       // match size to svg stroke width, which is a fraction of the overall
       // padding box width.
       borderStyle: 'solid',
-      borderColor: `${vars.color} ${vars.color} transparent transparent`,
+      borderTopColor: 'inherit',
+      borderRightColor: 'inherit',
+      borderBottomColor: 'transparent',
+      borderLeftColor: 'transparent',
       animationName: expandArcKeyframes,
       animationIterationCount: 'infinite',
       animationFillMode: 'both',
@@ -111,7 +117,10 @@ export const styles: MapNamespaces<IIndeterminateCircularProgressIndicatorStyles
       animationTimingFunction: indeterminateEasing,
     },
     circle$disabled: {
-      borderColor: `${color$disabled} ${color$disabled} transparent transparent`,
+      borderTopColor: color$disabled,
+      borderRightColor: color$disabled,
+      borderBottomColor: 'transparent',
+      borderLeftColor: 'transparent',
     },
     circle$md: {
       borderWidth: `calc(${vars.widthPct$md} / 100 * calc(${vars.size$md} - (2 * ${vars.containerPadding$md})))`,

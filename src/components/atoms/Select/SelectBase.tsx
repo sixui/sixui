@@ -26,7 +26,7 @@ export type ISelectBaseProps = Omit<
   'end' | 'value' | 'defaultValue'
 > & {
   visualState?: IVisualState;
-  children?: Array<React.ReactNode>;
+  children?: Array<React.ReactNode> | null;
   id?: string;
 } & (
     | {
@@ -84,7 +84,7 @@ const getValidOption = (child: React.ReactNode): IOption | undefined => {
 };
 
 const getMatchingOptions = (
-  children: Array<React.ReactNode> | undefined,
+  children: Array<React.ReactNode> | undefined | null,
   values: string | Array<string>,
 ): Array<IOption | string> =>
   filterUndefineds(

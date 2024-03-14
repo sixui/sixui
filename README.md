@@ -1,6 +1,4 @@
-# sixui/ui
-
-[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@sixui/ui)](https://bundlephobia.com/package/@sixui/ui@latest)
+# sixui/ui &middot; [![npm bundle size](https://img.shields.io/bundlephobia/minzip/@sixui/ui)](https://bundlephobia.com/package/@sixui/ui@latest)
 
 Ready-to-use foundational React components.
 

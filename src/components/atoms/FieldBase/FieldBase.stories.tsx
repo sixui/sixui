@@ -66,6 +66,7 @@ const rowsProps: IComponentPropsWithLegend<IFieldBaseProps> = [
     leadingIcon: <FontAwesomeIcon icon={faMagnifyingGlass} />,
     trailingIcon: <FontAwesomeIcon icon={faXmark} />,
   },
+  { $legend: 'Loading', loading: true },
   { $legend: 'Error', hasError: true, errorText: 'Error text' },
   { $legend: 'Resizable', resizable: true },
 ];
