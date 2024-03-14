@@ -7,7 +7,7 @@ import {
   isValidElement,
   useRef,
 } from 'react';
-import { Combobox } from '@headlessui/react';
+import { Combobox as Autocomplete } from '@headlessui/react';
 import { asArray, filterUndefineds } from '@olivierpascal/helpers';
 
 import { createFilter, type IFilter } from '@/helpers/createFilter';
@@ -22,17 +22,14 @@ import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 import { getDisplayName } from '@/helpers/react/getDisplayName';
 import { reactNodeToString } from '@/helpers/react/nodeToString';
 import { componentVars as textFieldVars } from '@/themes/base/TextField/TextField.stylex';
-import {
-  AutocompleteOption,
-  type IAutocompleteOptionProps,
-} from './AutocompleteOption';
+import { ComboboxOption, type IComboboxOptionProps } from './ComboboxOption';
 import { InputChip } from '@/components/atoms/Chip';
 
 const MIN_DELAY_BETWEEN_CLOSE_AND_OPEN = 300;
 
-type IOption = React.ReactElement<IAutocompleteOptionProps>;
+type IOption = React.ReactElement<IComboboxOptionProps>;
 
-export type IAutocompleteBaseProps = Omit<
+export type IComboboxBaseProps = Omit<
   ITextFieldProps,
   'onChange' | 'end' | 'value' | 'defaultValue' | 'id'
 > & {
@@ -87,8 +84,7 @@ const getValidOption = (child: React.ReactNode): IOption | undefined => {
   const childDisplayName = isValidElement(child)
     ? getDisplayName(child)
     : undefined;
-  const isCompatibleOption =
-    childDisplayName === AutocompleteOption.displayName;
+  const isCompatibleOption = childDisplayName === ComboboxOption.displayName;
   const option = isCompatibleOption ? (child as IOption) : undefined;
 
   return option;
@@ -123,8 +119,8 @@ const optionNodeToLabel = (option: IOption | string): string =>
       reactNodeToString(option.props.children) ??
       option.props.value;
 
-const AutocompleteBase = forwardRef<HTMLDivElement, IAutocompleteBaseProps>(
-  function Autocomplete(props, ref) {
+const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
+  function Combobox(props, ref) {
     const {
       sx,
       children,
@@ -171,20 +167,20 @@ const AutocompleteBase = forwardRef<HTMLDivElement, IAutocompleteBaseProps>(
 
     const lastCloseActionRef = useRef<number>(0);
 
-    // In a MultiAutocomplete, the input value is always the query. Once the
+    // In a MultiCombobox, the input value is always the query. Once the
     // user selects an option, the query is cleared.
-    // In a Autocomplete, the input value is managed by the Combobox. Check the
+    // In a Combobox, the input value is managed by the Combobox. Check the
     // Combobox.Input component to see how `displayValue` is managed.
     const inputValue = multiple ? query ?? '' : undefined;
 
-    // In a MultiAutocomplete, options are toggled on and off, resulting in an
+    // In a MultiCombobox, options are toggled on and off, resulting in an
     // empty array (rather than null) if nothing is selected.
-    // In a Autocomplete, when no option is selected, the value is null.
+    // In a Combobox, when no option is selected, the value is null.
     const nullable = multiple ? undefined : true;
 
-    // In a MultiAutocomplete, the user can unselect a selected option by
+    // In a MultiCombobox, the user can unselect a selected option by
     // clicking on the delete action of its chip.
-    // In a Autocomplete, there is no chip, and no delete action to handle.
+    // In a Combobox, there is no chip, and no delete action to handle.
     const handleDelete = multiple
       ? (event: React.MouseEvent<HTMLElement>, value: string): void => {
           event.preventDefault();
@@ -194,9 +190,9 @@ const AutocompleteBase = forwardRef<HTMLDivElement, IAutocompleteBaseProps>(
         }
       : undefined;
 
-    // In a MultiAutocomplete, the user can unselect the last selected option
+    // In a MultiCombobox, the user can unselect the last selected option
     // when the query is empty by pressing the backspace key.
-    // In a Autocomplete, there is no chip, and no delete action to handle.
+    // In a Combobox, there is no chip, and no delete action to handle.
     const handleKeyDown = multiple
       ? (event: React.KeyboardEvent<HTMLElement>) => {
           if (event.key === 'Backspace') {
@@ -213,7 +209,7 @@ const AutocompleteBase = forwardRef<HTMLDivElement, IAutocompleteBaseProps>(
       : undefined;
 
     return (
-      <Combobox
+      <Autocomplete
         {...stylex.props(styles.host, disabled && styles.host$disabled, sx)}
         ref={ref}
         as='div'
@@ -229,7 +225,7 @@ const AutocompleteBase = forwardRef<HTMLDivElement, IAutocompleteBaseProps>(
         // properties.
         multiple={multiple}
       >
-        <Combobox.Input
+        <Autocomplete.Input
           as={Fragment}
           displayValue={
             multiple
@@ -262,7 +258,7 @@ const AutocompleteBase = forwardRef<HTMLDivElement, IAutocompleteBaseProps>(
                 innerStyles={{ field: fieldStyles }}
                 visualState={visualState}
                 end={
-                  <Combobox.Button
+                  <Autocomplete.Button
                     ref={toggleButtonRef}
                     as={IconButton}
                     onClick={() => {
@@ -316,15 +312,15 @@ const AutocompleteBase = forwardRef<HTMLDivElement, IAutocompleteBaseProps>(
               </TextField>
             );
           }}
-        </Combobox.Input>
+        </Autocomplete.Input>
 
-        <Combobox.Options {...stylex.props(styles.options)}>
+        <Autocomplete.Options {...stylex.props(styles.options)}>
           <MenuList>
             {filteredOptions?.length === 0 && !!query ? (
               allowCustomValues ? (
-                <AutocompleteOption value={query}>
+                <ComboboxOption value={query}>
                   {createOptionText(query)}
-                </AutocompleteOption>
+                </ComboboxOption>
               ) : (
                 <ListItem disabled>{noOptionsText}</ListItem>
               )
@@ -332,15 +328,15 @@ const AutocompleteBase = forwardRef<HTMLDivElement, IAutocompleteBaseProps>(
               filteredOptions
             )}
           </MenuList>
-        </Combobox.Options>
-      </Combobox>
+        </Autocomplete.Options>
+      </Autocomplete>
     );
   },
 );
 
-const AutocompleteBaseNamespace = Object.assign(AutocompleteBase, {
-  Option: AutocompleteOption,
+const ComboboxBaseNamespace = Object.assign(ComboboxBase, {
+  Option: ComboboxOption,
   Divider: MenuListDivider,
 });
 
-export { AutocompleteBaseNamespace as AutocompleteBase };
+export { ComboboxBaseNamespace as ComboboxBase };

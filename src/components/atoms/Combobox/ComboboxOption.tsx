@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 import { Fragment } from 'react';
-import { Combobox } from '@headlessui/react';
+import { Combobox as Autocomplete } from '@headlessui/react';
 
 import { type IListItemProps, ListItem } from '@/components/atoms/ListItem';
 
-export type IAutocompleteOptionProps = Omit<IListItemProps, 'type'> & {
+export type IComboboxOptionProps = Omit<IListItemProps, 'type'> & {
   value: string;
   label?: string;
   searchableText?: string | Array<string>;
@@ -21,9 +21,7 @@ const styles = stylex.create({
   },
 });
 
-export const AutocompleteOption: React.FC<IAutocompleteOptionProps> = (
-  props,
-) => {
+export const ComboboxOption: React.FC<IComboboxOptionProps> = (props) => {
   const {
     sx,
     value,
@@ -35,7 +33,7 @@ export const AutocompleteOption: React.FC<IAutocompleteOptionProps> = (
   } = props;
 
   return (
-    <Combobox.Option as={Fragment} disabled={props.disabled} value={value}>
+    <Autocomplete.Option as={Fragment} disabled={props.disabled} value={value}>
       {({ active, selected }) => (
         <ListItem
           {...other}
@@ -47,7 +45,7 @@ export const AutocompleteOption: React.FC<IAutocompleteOptionProps> = (
           {children ?? label}
         </ListItem>
       )}
-    </Combobox.Option>
+    </Autocomplete.Option>
   );
 };
-AutocompleteOption.displayName = 'AutocompleteOption';
+ComboboxOption.displayName = 'ComboboxOption';

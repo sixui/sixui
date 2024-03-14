@@ -17,14 +17,11 @@ import {
   ComponentShowcase,
   type IComponentPresentation,
 } from '@/components/utils/ComponentShowcase2';
-import {
-  MultiAutocomplete,
-  type IMultiAutocompleteProps,
-} from './MultiAutocomplete';
+import { Combobox, type IComboboxProps } from './Combobox';
 
 const meta = {
-  component: MultiAutocomplete,
-} satisfies Meta<typeof MultiAutocomplete>;
+  component: Combobox,
+} satisfies Meta<typeof Combobox>;
 
 type IStory = StoryObj<typeof meta>;
 
@@ -38,105 +35,109 @@ const styles = stylex.create({
     objectFit: 'cover',
     borderRadius: shapeVars.corner$md,
   },
-  chips: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 8,
-  },
 });
 
 const defaultArgs = {
   sx: styles.host,
   onChange: (...args) => void sbHandleEvent('onChange', args),
-} satisfies Partial<IMultiAutocompleteProps>;
+} satisfies Partial<IComboboxProps>;
 
-const ControlledMultiAutocomplete: React.FC<
-  Omit<IMultiAutocompleteProps, 'onChange'>
-> = (props) => {
-  const [value, setValue] = useState(props.value ?? []);
+const ControlledCombobox: React.FC<Omit<IComboboxProps, 'onChange'>> = (
+  props,
+) => {
+  const [value, setValue] = useState(props.value ?? '');
 
-  const handleChange = (value: Array<string>): void => {
+  const handleChange = (value: string): void => {
     setValue(value);
     void sbHandleEvent('onChange', value);
   };
 
-  return <MultiAutocomplete {...props} value={value} onChange={handleChange} />;
+  return <Combobox {...props} value={value} onChange={handleChange} />;
 };
 
 const pictureOptions = [
-  <MultiAutocomplete.Option key='apple' value='apple' label='Apple'>
+  <Combobox.Option
+    key='apple'
+    value='apple'
+    label='Apple'
+    searchableText={['gala', 'golden', 'granny']}
+  >
     <img
       {...stylex.props(styles.pictureOption)}
       alt='Apple'
       src='https://images.unsplash.com/photo-1590005354167-6da97870c757?auto=format&fit=facearea&facepad=2&w=300&q=80'
     />
-  </MultiAutocomplete.Option>,
-  <MultiAutocomplete.Option key='lemon' value='lemon' label='Lemon'>
+  </Combobox.Option>,
+  <Combobox.Option
+    key='lemon'
+    value='lemon'
+    label='Lemon'
+    searchableText={['lisbon', 'eureka', 'meyer']}
+  >
     <img
       {...stylex.props(styles.pictureOption)}
       alt='Lemon'
       src='https://images.unsplash.com/photo-1590004953392-5aba2e72269a?auto=format&fit=facearea&facepad=2&w=300&q=80'
     />
-  </MultiAutocomplete.Option>,
+  </Combobox.Option>,
 ];
 
 const options = [
-  <MultiAutocomplete.Option
+  <Combobox.Option
     key='apple'
     value='apple'
     leadingIcon={<FontAwesomeIcon icon={faAppleWhole} />}
   >
     Apple
-  </MultiAutocomplete.Option>,
-  <MultiAutocomplete.Option
+  </Combobox.Option>,
+  <Combobox.Option
     key='lemon'
     value='lemon'
     leadingIcon={<FontAwesomeIcon icon={faLemon} />}
     disabled
   >
     Lemon
-  </MultiAutocomplete.Option>,
-  <MultiAutocomplete.Option
+  </Combobox.Option>,
+  <Combobox.Option
     key='carrot'
     value='carrot'
     leadingIcon={<FontAwesomeIcon icon={faCarrot} />}
     trailingSupportingText='4/6'
   >
     Carrot
-  </MultiAutocomplete.Option>,
-  <MultiAutocomplete.Divider key='divider1' />,
-  <MultiAutocomplete.Option
+  </Combobox.Option>,
+  <Combobox.Divider key='divider1' />,
+  <Combobox.Option
     key='egg'
     value='egg'
     leadingIcon={<FontAwesomeIcon icon={faEgg} />}
   >
     Egg
-  </MultiAutocomplete.Option>,
-  <MultiAutocomplete.Option
+  </Combobox.Option>,
+  <Combobox.Option
     key='fish'
     value='fish'
     leadingIcon={<FontAwesomeIcon icon={faFish} />}
   >
     Fish
-  </MultiAutocomplete.Option>,
-  <MultiAutocomplete.Divider key='divider2' />,
-  <MultiAutocomplete.Option
+  </Combobox.Option>,
+  <Combobox.Divider key='divider2' />,
+  <Combobox.Option
     key='pepperHot'
     value='pepperHot'
     leadingIcon={<FontAwesomeIcon icon={faPepperHot} />}
     headline='Yummy!'
   >
     Pepper Hot
-  </MultiAutocomplete.Option>,
+  </Combobox.Option>,
 ];
 
-const variants: Array<IComponentPresentation<IMultiAutocompleteProps>> = [
+const variants: Array<IComponentPresentation<IComboboxProps>> = [
   { legend: 'Filled', props: { variant: 'filled' } },
   { legend: 'Outlined', props: { variant: 'outlined' } },
 ];
 
-const useCases: Array<IComponentPresentation<IMultiAutocompleteProps>> = [
+const useCases: Array<IComponentPresentation<IComboboxProps>> = [
   { legend: 'Basic', props: { children: options } },
   { legend: 'With Label', props: { children: options, label: 'Label' } },
   {
@@ -149,12 +150,12 @@ const useCases: Array<IComponentPresentation<IMultiAutocompleteProps>> = [
   },
   {
     legend: 'With Default Value',
-    props: { children: options, defaultValue: ['carrot'] },
+    props: { children: options, defaultValue: 'carrot' },
   },
   {
     legend: 'Controlled',
-    props: { children: options, value: ['carrot'] },
-    component: ControlledMultiAutocomplete,
+    props: { children: options, value: 'carrot' },
+    component: ControlledCombobox,
   },
   {
     legend: 'Display Text',
@@ -169,7 +170,7 @@ const useCases: Array<IComponentPresentation<IMultiAutocompleteProps>> = [
 export const UseCases: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={MultiAutocomplete}
+      component={Combobox}
       props={props}
       cols={variants}
       rows={useCases}

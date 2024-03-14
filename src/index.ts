@@ -1,5 +1,4 @@
 // atoms
-export * from './components/atoms/Autocomplete';
 export * from './components/atoms/Avatar';
 export * from './components/atoms/Badge';
 export * from './components/atoms/Breadcrumbs';
@@ -14,6 +13,7 @@ export * from './components/atoms/CardTitle';
 export * from './components/atoms/Checkbox';
 export * from './components/atoms/Chip';
 export * from './components/atoms/CircularProgressIndicator';
+export * from './components/atoms/Combobox';
 export * from './components/atoms/Dialog';
 export * from './components/atoms/Divider';
 export * from './components/atoms/Fab';
