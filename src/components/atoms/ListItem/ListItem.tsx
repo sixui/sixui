@@ -141,6 +141,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
         theme.vars,
         sx,
       )}
+      type={type === 'button' ? 'button' : undefined}
       ref={handleRef}
       tabIndex={disabled || !isInteractive ? -1 : 0}
       disabled={disabled}

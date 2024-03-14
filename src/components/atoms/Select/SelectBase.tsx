@@ -162,7 +162,7 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
       onChange?.(value as string & Array<string>);
     };
 
-    const handleDelete = (valueToDelete: string): void => {
+    const deleteValue = (valueToDelete: string): void => {
       const updatedValues = Array.isArray(value)
         ? value.filter((v) => v !== valueToDelete)
         : value;
@@ -203,7 +203,7 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
             const displayValue = optionsToRender
               ? renderOption(
                   optionsToRender as IOption & Array<IOption>,
-                  handleDelete,
+                  deleteValue,
                 )
               : undefined;
 
