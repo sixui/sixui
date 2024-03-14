@@ -91,6 +91,15 @@ const vars: Partial<IStyleVars<IListItemStyleVarKey>> = {
   // &:pressed
   leadingIconColor$pressed: colorRolesVars.onSurfaceVariant,
 
+  // selectedLeadingIcon
+  selectedLeadingIconColor: colorRolesVars.primary,
+  // &:focus
+  selectedLeadingIconColor$focus: colorRolesVars.primary,
+  // &:hover
+  selectedLeadingIconColor$hover: colorRolesVars.primary,
+  // &:pressed
+  selectedLeadingIconColor$pressed: colorRolesVars.primary,
+
   // trailingIcon
   trailingIconColor: colorRolesVars.onSurfaceVariant,
   trailingIconSize: '18px',
@@ -103,6 +112,15 @@ const vars: Partial<IStyleVars<IListItemStyleVarKey>> = {
   trailingIconColor$hover: colorRolesVars.onSurfaceVariant,
   // &:pressed
   trailingIconColor$pressed: colorRolesVars.onSurfaceVariant,
+
+  // selectedLeadingIcon
+  selectedTrailingIconColor: colorRolesVars.primary,
+  // &:focus
+  selectedTrailingIconColor$focus: colorRolesVars.primary,
+  // &:hover
+  selectedTrailingIconColor$hover: colorRolesVars.primary,
+  // &:pressed
+  selectedTrailingIconColor$pressed: colorRolesVars.primary,
 };
 
 export const componentVars = stylex.defineVars(

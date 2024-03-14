@@ -67,6 +67,15 @@ export type IInvalidTextFieldType =
 
 export type ITextFieldProps = IContainerProps<ITextFieldStyleKey> &
   Pick<
+    React.AriaAttributes,
+    | 'aria-label'
+    | 'aria-controls'
+    | 'aria-expanded'
+    | 'aria-activedescendant'
+    | 'aria-labelledby'
+    | 'aria-autocomplete'
+  > &
+  Pick<
     | React.InputHTMLAttributes<HTMLInputElement>
     | React.TextareaHTMLAttributes<HTMLTextAreaElement>,
     | 'required'
@@ -74,22 +83,19 @@ export type ITextFieldProps = IContainerProps<ITextFieldStyleKey> &
     | 'id'
     | 'name'
     | 'disabled'
-    | 'aria-label'
     | 'autoComplete'
     | 'autoCapitalize'
     | 'minLength'
     | 'maxLength'
     | 'readOnly'
+    | 'role'
   > &
   Pick<
     React.InputHTMLAttributes<HTMLInputElement>,
     'min' | 'max' | 'step' | 'pattern' | 'multiple'
   > &
   Pick<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'cols' | 'rows'> &
-  Omit<
-    IFieldBaseProps,
-    'styles' | 'children' | 'textarea' | 'populated' | 'resizable'
-  > & {
+  Omit<IFieldBaseProps, 'styles' | 'textarea' | 'populated' | 'resizable'> & {
     innerStyles?: {
       field?: IZeroOrMore<ICompiledStyles<IFieldBaseStyleKey>>;
     };
@@ -97,6 +103,7 @@ export type ITextFieldProps = IContainerProps<ITextFieldStyleKey> &
     placeholder?: string;
     prefixText?: string;
     suffixText?: string;
+    role?: string;
 
     /**
      * The `<input>` type to use, defaults to "text". The type greatly changes how
@@ -126,6 +133,9 @@ export type ITextFieldProps = IContainerProps<ITextFieldStyleKey> &
     ) => void;
     onFocus?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
     onBlur?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+    onKeyDown?: React.KeyboardEventHandler<
+      HTMLInputElement | HTMLTextAreaElement
+    >;
     reportOnBlur?: boolean;
 
     /**
@@ -177,7 +187,10 @@ export const TextField = forwardRef<
     onChange,
     onFocus,
     onBlur,
+    onKeyDown,
     reportOnBlur,
+    children,
+    role = 'textbox',
     'aria-label': ariaLabelProp,
     ...other
   } = props;
@@ -319,9 +332,10 @@ export const TextField = forwardRef<
           maxLength={hasMaxLength ? maxLength : undefined}
           value={isControlled ? value : undefined}
           onChange={handleChange}
-          onBlur={handleBlur}
-          required={required}
           onFocus={onFocus}
+          onBlur={handleBlur}
+          onKeyDown={onKeyDown}
+          required={required}
           {...other}
         />
       );
@@ -351,10 +365,11 @@ export const TextField = forwardRef<
           maxLength={hasMaxLength ? maxLength : undefined}
           value={isControlled ? value : undefined}
           onChange={handleChange}
+          onFocus={onFocus}
           onBlur={handleBlur}
+          onKeyDown={onKeyDown}
           required={required}
           type={type}
-          onFocus={onFocus}
           {...other}
         />
         {suffixText ? (
@@ -369,7 +384,9 @@ export const TextField = forwardRef<
     isTextarea,
     value,
     handleChange,
+    onFocus,
     handleBlur,
+    onKeyDown,
     ariaLabelProp,
     hasError,
     disabled,
@@ -383,7 +400,6 @@ export const TextField = forwardRef<
     required,
     prefixText,
     suffixText,
-    onFocus,
     isControlled,
   ]);
 
@@ -392,7 +408,7 @@ export const TextField = forwardRef<
     <div
       {...sxf('host', theme.vars, variantTheme?.vars, sx)}
       onClick={() => inputOrTextareaRef.current?.focus()}
-      role='textbox'
+      role={role}
       tabIndex={-1}
     >
       <span {...sxf('textField')}>
@@ -420,6 +436,7 @@ export const TextField = forwardRef<
           supportingText={supportingText}
           textarea={isTextarea}
         >
+          {children}
           {renderInputOrTextarea()}
         </FieldBase>
       </span>

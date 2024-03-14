@@ -11,8 +11,10 @@ export type IListItemStyleKey =
   | 'background$disabled'
   | 'icon'
   | 'icon$leading'
+  | 'icon$leading$selected'
   | 'icon$leading$disabled'
   | 'icon$trailing'
+  | 'icon$trailing$selected'
   | 'icon$trailing$disabled';
 
 export type IListItemStyleVarKey =
@@ -59,13 +61,21 @@ export type IListItemStyleVarKey =
   | 'leadingIconColor$focus'
   | 'leadingIconColor$hover'
   | 'leadingIconColor$pressed'
+  | 'selectedLeadingIconColor'
+  | 'selectedLeadingIconColor$focus'
+  | 'selectedLeadingIconColor$hover'
+  | 'selectedLeadingIconColor$pressed'
   | 'trailingIconColor'
   | 'trailingIconSize'
   | 'trailingIconColor$disabled'
   | 'trailingIconOpacity$disabled'
   | 'trailingIconColor$focus'
   | 'trailingIconColor$hover'
-  | 'trailingIconColor$pressed';
+  | 'trailingIconColor$pressed'
+  | 'selectedTrailingIconColor'
+  | 'selectedTrailingIconColor$focus'
+  | 'selectedTrailingIconColor$hover'
+  | 'selectedTrailingIconColor$pressed';
 
 export type IListItemStyleStateVarKey =
   | 'nonTextColor'

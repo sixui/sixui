@@ -12,7 +12,7 @@ export const MenuItem: React.FC<IMenuItemProps> = (props) => {
   return (
     <HeadlessMenu.Item disabled={props.disabled}>
       {({ active }) => (
-        <ListItem {...other} active={active}>
+        <ListItem {...other} selected={active}>
           {children}
         </ListItem>
       )}

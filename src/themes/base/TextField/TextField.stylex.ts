@@ -14,8 +14,8 @@ import { colorRolesVars } from '../vars/colorRoles.stylex';
 const vars: Partial<IStyleVars<ITextFieldStyleVarKey>> = {
   leadingSpace: '16px',
   trailingSpace: '16px',
-  topSpace: '16px',
-  bottomSpace: '16px',
+  topSpace: '12px',
+  bottomSpace: '12px',
 
   // content
   contentColor: colorRolesVars.onSurface,

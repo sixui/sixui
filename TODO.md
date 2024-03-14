@@ -1,5 +1,6 @@
 # TO DO
 
+- Faire un Jira
 - Créer FieldBase.stylex.ts
 - Finir Select
 
@@ -12,6 +13,27 @@
 - Skeleton version of components
 - FIXME: radioGroup unused ref in forwardRef
 - FileUplodaer: picture
+
+- MultiAutocomplete
+
+  - Fixed options
+  - Keyboard to delete
+  - Navigate focus between chips with keyboard
+
+- Field
+
+  - Loading state
+
+- Select
+
+  - Support async loading
+  - With supporting text: no offset
+  - Grouped options
+  - Clear field button
+
+- Autocomplete
+
+  - Story with async loading
 
 - MultiAutocomplete
 
@@ -188,6 +210,7 @@
 
 ## Refactoring
 
+- use ComponentShowcase V2
 - Use useHover hook?
   - https://react-spectrum.adobe.com/blog/building-a-button-part-2.html
 - ListItem inherit from ButtonBase

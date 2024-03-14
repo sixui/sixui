@@ -61,7 +61,7 @@ export type IListItemOwnProps = IContainerProps<IListItemStyleKey> &
      */
     type?: IListItemType;
 
-    active?: boolean;
+    selected?: boolean;
     leadingIcon?: React.ReactNode;
     trailingIcon?: React.ReactNode;
   };
@@ -93,7 +93,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
     end,
     type: typeProp,
     disabled,
-    active: selectedProp,
+    selected: selectedProp,
     target: targetProp,
     leadingIcon,
     trailingIcon,
@@ -193,6 +193,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
                 'icon',
                 'icon$leading',
                 disabled && 'icon$leading$disabled',
+                selected && 'icon$leading$selected',
               )}
             >
               {leadingIcon}
@@ -211,6 +212,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
                 'icon',
                 'icon$trailing',
                 disabled && 'icon$trailing$disabled',
+                selected && 'icon$trailing$selected',
               )}
             >
               {trailingIcon}

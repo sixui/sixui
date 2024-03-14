@@ -2,11 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarDays, faImage } from '@fortawesome/free-solid-svg-icons';
 
+import { IAny } from '@/helpers/types';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
-  type IComponentPropsWithLegend,
   ComponentShowcase,
-} from '@/components/utils/ComponentShowcase';
+  type IComponentPresentation,
+} from '@/components/utils/ComponentShowcase2';
 import { type IChipProps, Chip } from './Chip';
 
 // https://m3.material.io/components/chips/overview
@@ -27,19 +28,30 @@ const defaultArgs = {
   label: 'Chip',
 } satisfies Partial<IChipProps>;
 
-const statesProps: IComponentPropsWithLegend<IChipProps> = [
-  { $legend: 'Enabled', label: 'Enabled' },
-  { $legend: 'Hovered', label: 'Hovered', visualState: { hovered: true } },
-  { $legend: 'Focused', label: 'Focused', visualState: { focused: true } },
-  { $legend: 'Pressed', label: 'Pressed', visualState: { pressed: true } },
-  { $legend: 'Loading', label: 'Loading', loading: true },
+const states: Array<IComponentPresentation<IChipProps<IAny>>> = [
+  { legend: 'Enabled', props: { label: 'Enabled' } },
   {
-    $legend: 'Loading text',
-    label: 'Loading',
-    loading: true,
-    loadingText: '…',
+    legend: 'Hovered',
+    props: { label: 'Hovered', visualState: { hovered: true } },
   },
-  { $legend: 'Disabled', label: 'Disabled', disabled: true },
+  {
+    legend: 'Focused',
+    props: { label: 'Focused', visualState: { focused: true } },
+  },
+  {
+    legend: 'Pressed',
+    props: { label: 'Pressed', visualState: { pressed: true } },
+  },
+  { legend: 'Loading', props: { label: 'Loading', loading: true } },
+  {
+    legend: 'Loading text',
+    props: {
+      label: 'Loading',
+      loading: true,
+      loadingText: '…',
+    },
+  },
+  { legend: 'Disabled', props: { label: 'Disabled', disabled: true } },
 ];
 
 export const Variants: IStory = {
@@ -47,27 +59,35 @@ export const Variants: IStory = {
     <ComponentShowcase
       component={Chip}
       props={props}
-      colsProps={[
+      cols={[
         {
-          variant: 'assist',
-          label: 'Assist',
-          icon: <FontAwesomeIcon icon={faCalendarDays} />,
-        },
-        { variant: 'filter', label: 'Filter', defaultSelected: true },
-        {
-          variant: 'input',
-          label: 'Input',
-          onDelete: () => sbHandleEvent('delete', undefined, 300),
-          imageUrl: IMAGE_URL,
+          props: {
+            variant: 'assist',
+            label: 'Assist',
+            icon: <FontAwesomeIcon icon={faCalendarDays} />,
+          },
         },
         {
-          variant: 'input',
-          label: 'Avatar',
-          onDelete: () => sbHandleEvent('delete', undefined, 300),
-          imageUrl: IMAGE_URL,
-          avatar: true,
+          props: { variant: 'filter', label: 'Filter', selected: true },
         },
-        { variant: 'suggestion', label: 'Suggestion' },
+        {
+          props: {
+            variant: 'input',
+            label: 'Input',
+            onDelete: () => sbHandleEvent('delete', undefined, 300),
+            imageUrl: IMAGE_URL,
+          },
+        },
+        {
+          props: {
+            variant: 'input',
+            label: 'Avatar',
+            onDelete: () => sbHandleEvent('delete', undefined, 300),
+            imageUrl: IMAGE_URL,
+            avatar: true,
+          },
+        },
+        { props: { variant: 'suggestion', label: 'Suggestion' } },
       ]}
     />
   ),
@@ -79,18 +99,18 @@ export const Assist: IStory = {
     <ComponentShowcase
       component={Chip}
       props={props}
-      colsProps={statesProps}
-      rowsProps={[
-        { $legend: 'Basic' },
-        { $legend: 'Elevated', elevated: true },
+      cols={states}
+      rows={[
+        { legend: 'Basic' },
+        { legend: 'Elevated', props: { elevated: true } },
       ]}
-      groupsProps={[
+      groups={[
         {},
         {
-          $legend: 'With icon',
-          icon: <FontAwesomeIcon icon={faCalendarDays} />,
+          legend: 'With Icon',
+          props: { icon: <FontAwesomeIcon icon={faCalendarDays} /> },
         },
-        { $legend: 'With image', imageUrl: IMAGE_URL },
+        { legend: 'With Image', props: { imageUrl: IMAGE_URL } },
       ]}
     />
   ),
@@ -105,12 +125,12 @@ export const Filter: IStory = {
     <ComponentShowcase
       component={Chip}
       props={props}
-      colsProps={statesProps}
-      rowsProps={[
-        { $legend: 'Basic' },
-        { $legend: 'Elevated', elevated: true },
+      cols={states}
+      rows={[
+        { legend: 'Basic' },
+        { legend: 'Elevated', props: { elevated: true } },
       ]}
-      groupsProps={[{}, { $legend: 'Selected', defaultSelected: true }]}
+      groups={[{}, { legend: 'Selected', props: { selected: true } }]}
     />
   ),
   args: {
@@ -124,18 +144,18 @@ export const Input: IStory = {
     <ComponentShowcase
       component={Chip}
       props={props}
-      colsProps={[
-        ...statesProps,
-        { $legend: 'Deleting', label: 'Deleting', deleting: true },
+      cols={[
+        ...states,
+        { legend: 'Deleting', props: { label: 'Deleting', deleting: true } },
       ]}
-      rowsProps={[
-        { $legend: 'Basic' },
+      rows={[
+        { legend: 'Basic', hiddenIndexes: [7] },
         {
-          $legend: 'Deletable',
-          onDelete: () => sbHandleEvent('delete', undefined, 300),
+          legend: 'Deletable',
+          props: { onDelete: () => sbHandleEvent('delete', undefined, 300) },
         },
       ]}
-      groupsProps={[{}, { $legend: 'Selected', defaultSelected: true }]}
+      groups={[{}, { legend: 'Selected', props: { selected: true } }]}
     />
   ),
   args: {
@@ -149,28 +169,33 @@ export const InputWithIconOrImage: IStory = {
     <ComponentShowcase
       component={Chip}
       props={props}
-      colsProps={[
-        ...statesProps,
-        { $legend: 'Deleting', label: 'Deleting', deleting: true },
+      cols={[
+        ...states,
+        { legend: 'Deleting', props: { label: 'Deleting', deleting: true } },
       ]}
-      rowsProps={[
+      rows={[
         {
-          $legend: 'With icon',
-          icon: <FontAwesomeIcon icon={faImage} />,
+          legend: 'With Icon',
+          hiddenIndexes: [7],
+          props: { icon: <FontAwesomeIcon icon={faImage} /> },
         },
         {
-          $legend: 'With image',
-          imageUrl: IMAGE_URL,
-          onDelete: () => sbHandleEvent('delete', undefined, 300),
+          legend: 'With Image',
+          props: {
+            imageUrl: IMAGE_URL,
+            onDelete: () => sbHandleEvent('delete', undefined, 300),
+          },
         },
         {
-          $legend: 'With avatar',
-          imageUrl: IMAGE_URL,
-          onDelete: () => sbHandleEvent('delete', undefined, 300),
-          avatar: true,
+          legend: 'With avatar',
+          props: {
+            imageUrl: IMAGE_URL,
+            onDelete: () => sbHandleEvent('delete', undefined, 300),
+            avatar: true,
+          },
         },
       ]}
-      groupsProps={[{}, { $legend: 'Selected', defaultSelected: true }]}
+      groups={[{}, { legend: 'Selected', props: { selected: true } }]}
     />
   ),
   args: {
@@ -184,18 +209,18 @@ export const Suggestion: IStory = {
     <ComponentShowcase
       component={Chip}
       props={props}
-      colsProps={statesProps}
-      rowsProps={[
-        { $legend: 'Basic' },
-        { $legend: 'Elevated', elevated: true },
+      cols={states}
+      rows={[
+        { legend: 'Basic' },
+        { legend: 'Elevated', props: { elevated: true } },
       ]}
-      groupsProps={[
+      groups={[
         {},
         {
-          $legend: 'With icon',
-          icon: <FontAwesomeIcon icon={faCalendarDays} />,
+          legend: 'With Icon',
+          props: { icon: <FontAwesomeIcon icon={faCalendarDays} /> },
         },
-        { $legend: 'With image', imageUrl: IMAGE_URL },
+        { legend: 'With Image', props: { imageUrl: IMAGE_URL } },
       ]}
     />
   ),

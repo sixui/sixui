@@ -46,6 +46,7 @@ export type IFieldBaseProps = IContainerProps<IFieldBaseStyleKey> & {
   textarea?: boolean;
   children?: React.ReactNode;
   labelId?: string;
+  tabIndex?: number;
 };
 
 type IFieldBaseVariantMap = {
@@ -89,7 +90,7 @@ export const FieldBase = forwardRef<HTMLDivElement, IFieldBaseProps>(
 
     const { visualState, ref: visualStateRef } = useVisualState(
       visualStateProp,
-      { disabled },
+      { disabled, retainFocusAfterClick: true },
     );
     const handleRef = useForkRef(ref, visualStateRef);
 

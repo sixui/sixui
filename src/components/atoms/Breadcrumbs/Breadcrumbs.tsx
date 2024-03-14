@@ -21,7 +21,7 @@ import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { isProduction } from '@/helpers/isProduction';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { isFragment } from '@/helpers/isFragment';
+import { isFragment } from '@/helpers/react/isFragment';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { ButtonBase } from '@/components/atoms/ButtonBase';
 import { ReactComponent as EllipsisHorizontalIcon } from '@/assets/EllipsisHorizontal.svg';
@@ -108,7 +108,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
       // This defends against someone passing weird input, to ensure that if all
       // items would be shown anyway, we just show all items without the EllipsisItem
       if (itemCountBeforeCollapse + itemCountAfterCollapse >= items.length) {
-        if (process.env.NODE_ENV !== 'production') {
+        if (!isProduction()) {
           // eslint-disable-next-line no-console
           console.error(
             [
@@ -148,16 +148,11 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
 
     const allItems = Children.toArray(children)
       .filter((child) => {
-        if (!isProduction()) {
-          if (isFragment(child)) {
-            // eslint-disable-next-line no-console
-            console.error(
-              [
-                "sixui: The Breadcrumbs component doesn't accept a Fragment as a child.",
-                'Consider providing an array instead.',
-              ].join('\n'),
-            );
-          }
+        if (!isProduction() && isFragment(child)) {
+          // eslint-disable-next-line no-console
+          console.error(
+            "sixui: The Breadcrumbs component doesn't accept a Fragment as a child. Consider providing an array instead.",
+          );
         }
 
         return isValidElement(child);

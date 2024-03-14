@@ -1,3 +1,5 @@
+import { filterUndefineds } from '@olivierpascal/helpers';
+
 import {
   type INormalizeStringOptions,
   normalizeString,
@@ -11,7 +13,9 @@ export type ICreateFilterOptions<TItem> = INormalizeStringOptions & {
 
 export type IFilterItemsState<TItem> = {
   query: string;
-  getItemLabel: (option: TItem) => string | undefined;
+  getSearchableText: (
+    option: TItem,
+  ) => string | Array<string | undefined> | undefined;
 };
 
 export type IFilter<TItem> = (
@@ -31,22 +35,25 @@ export const createFilter = <TItem>(
 
   return (
     items: Array<TItem>,
-    { query, getItemLabel }: IFilterItemsState<TItem>,
+    { query, getSearchableText: getItemLabel }: IFilterItemsState<TItem>,
   ) => {
     const normalizedQuery = normalizeString(query, options);
 
     const filteredOptions = normalizedQuery
       ? items.filter((option) => {
           const candidate = (stringify ?? getItemLabel)(option);
-          const normalizedCandidate = candidate
-            ? normalizeString(candidate)
-            : undefined;
+          const candidates = Array.isArray(candidate) ? candidate : [candidate];
+          const normalizedCandidates = filterUndefineds(candidates).map(
+            (candidate) => normalizeString(candidate),
+          );
 
-          return normalizedCandidate
-            ? matchFrom === 'start'
-              ? normalizedCandidate.startsWith(normalizedQuery)
-              : normalizedCandidate.indexOf(normalizedQuery) > -1
-            : false;
+          return normalizedCandidates.some((normalizedCandidate) =>
+            normalizedCandidate
+              ? matchFrom === 'start'
+                ? normalizedCandidate.startsWith(normalizedQuery)
+                : normalizedCandidate.indexOf(normalizedQuery) > -1
+              : false,
+          );
         })
       : items;
 

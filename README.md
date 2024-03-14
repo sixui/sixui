@@ -58,6 +58,7 @@ Components
 - [x] Checkbox
 - [x] Chip
 - [x] Circular Progress Indicator
+- [x] Combobox
 - [x] Dialog
 - [x] Divider
 - [x] FAB
@@ -68,6 +69,8 @@ Components
 - [x] ListItem
 - [x] Menu
 - [x] MenuList
+- [x] MultiCombobox
+- [x] MultiSelect
 - [x] Paper
 - [x] Placeholder
 - [x] Radio

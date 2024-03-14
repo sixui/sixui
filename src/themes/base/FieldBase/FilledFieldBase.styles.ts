@@ -41,7 +41,7 @@ export const styles: MapNamespaces<IFieldBaseStyles> =
 
       visibility: {
         default: 'hidden',
-        ':is([data-hovered])': 'visible',
+        ':is([data-hovered])': 'unset',
       },
       backgroundColor: {
         ':is([data-hovered])': vars.stateLayerColor$hover,

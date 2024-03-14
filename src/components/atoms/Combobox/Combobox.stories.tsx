@@ -17,11 +17,11 @@ import {
   ComponentShowcase,
   type IComponentPresentation,
 } from '@/components/utils/ComponentShowcase2';
-import { Select, type ISelectProps } from './Select';
+import { Combobox, type IComboboxProps } from './Combobox';
 
 const meta = {
-  component: Select,
-} satisfies Meta<typeof Select>;
+  component: Combobox,
+} satisfies Meta<typeof Combobox>;
 
 type IStory = StoryObj<typeof meta>;
 
@@ -40,9 +40,11 @@ const styles = stylex.create({
 const defaultArgs = {
   sx: styles.host,
   onChange: (...args) => void sbHandleEvent('onChange', args),
-} satisfies Partial<ISelectProps>;
+} satisfies Partial<IComboboxProps>;
 
-const ControlledSelect: React.FC<Omit<ISelectProps, 'onChange'>> = (props) => {
+const ControlledCombobox: React.FC<Omit<IComboboxProps, 'onChange'>> = (
+  props,
+) => {
   const [value, setValue] = useState(props.value ?? '');
 
   const handleChange = (value: string): void => {
@@ -50,82 +52,92 @@ const ControlledSelect: React.FC<Omit<ISelectProps, 'onChange'>> = (props) => {
     void sbHandleEvent('onChange', value);
   };
 
-  return <Select {...props} value={value} onChange={handleChange} />;
+  return <Combobox {...props} value={value} onChange={handleChange} />;
 };
 
 const pictureOptions = [
-  <Select.Option key='apple' value='apple' label='Apple'>
+  <Combobox.Option
+    key='apple'
+    value='apple'
+    label='Apple'
+    searchableText={['gala', 'golden', 'granny']}
+  >
     <img
       {...stylex.props(styles.pictureOption)}
       alt='Apple'
       src='https://images.unsplash.com/photo-1590005354167-6da97870c757?auto=format&fit=facearea&facepad=2&w=300&q=80'
     />
-  </Select.Option>,
-  <Select.Option key='lemon' value='lemon' label='Lemon'>
+  </Combobox.Option>,
+  <Combobox.Option
+    key='lemon'
+    value='lemon'
+    label='Lemon'
+    searchableText={['lisbon', 'eureka', 'meyer']}
+  >
     <img
       {...stylex.props(styles.pictureOption)}
       alt='Lemon'
       src='https://images.unsplash.com/photo-1590004953392-5aba2e72269a?auto=format&fit=facearea&facepad=2&w=300&q=80'
     />
-  </Select.Option>,
+  </Combobox.Option>,
 ];
 
 const options = [
-  <Select.Option
+  <Combobox.Option
     key='apple'
     value='apple'
     leadingIcon={<FontAwesomeIcon icon={faAppleWhole} />}
   >
     Apple
-  </Select.Option>,
-  <Select.Option
+  </Combobox.Option>,
+  <Combobox.Option
     key='lemon'
     value='lemon'
     leadingIcon={<FontAwesomeIcon icon={faLemon} />}
     disabled
   >
     Lemon
-  </Select.Option>,
-  <Select.Option
+  </Combobox.Option>,
+  <Combobox.Option
     key='carrot'
     value='carrot'
     leadingIcon={<FontAwesomeIcon icon={faCarrot} />}
     trailingSupportingText='4/6'
   >
     Carrot
-  </Select.Option>,
-  <Select.Divider key='divider1' />,
-  <Select.Option
+  </Combobox.Option>,
+  <Combobox.Divider key='divider1' />,
+  <Combobox.Option
     key='egg'
     value='egg'
     leadingIcon={<FontAwesomeIcon icon={faEgg} />}
   >
     Egg
-  </Select.Option>,
-  <Select.Option
+  </Combobox.Option>,
+  <Combobox.Option
     key='fish'
     value='fish'
     leadingIcon={<FontAwesomeIcon icon={faFish} />}
   >
     Fish
-  </Select.Option>,
-  <Select.Divider key='divider2' />,
-  <Select.Option
+  </Combobox.Option>,
+  <Combobox.Divider key='divider2' />,
+  <Combobox.Option
     key='pepperHot'
     value='pepperHot'
     leadingIcon={<FontAwesomeIcon icon={faPepperHot} />}
     headline='Yummy!'
   >
     Pepper Hot
-  </Select.Option>,
+  </Combobox.Option>,
 ];
 
-const variants: Array<IComponentPresentation<ISelectProps>> = [
+const variants: Array<IComponentPresentation<IComboboxProps>> = [
   { legend: 'Filled', props: { variant: 'filled' } },
   { legend: 'Outlined', props: { variant: 'outlined' } },
 ];
 
-const useCases: Array<IComponentPresentation<ISelectProps>> = [
+const useCases: Array<IComponentPresentation<IComboboxProps>> = [
   { legend: 'Basic', props: { children: options } },
   { legend: 'With Label', props: { children: options, label: 'Label' } },
   {
@@ -143,18 +155,22 @@ const useCases: Array<IComponentPresentation<ISelectProps>> = [
   {
     legend: 'Controlled',
     props: { children: options, value: 'carrot' },
-    component: ControlledSelect,
+    component: ControlledCombobox,
   },
   {
     legend: 'Display Text',
     props: { children: pictureOptions },
+  },
+  {
+    legend: 'Allow Custom Values',
+    props: { children: options, allowCustomValues: true },
   },
 ];
 
 export const UseCases: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={Select}
+      component={Combobox}
       props={props}
       cols={variants}
       rows={useCases}

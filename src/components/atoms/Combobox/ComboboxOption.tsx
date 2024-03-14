@@ -1,12 +1,13 @@
 import stylex from '@stylexjs/stylex';
 import { Fragment } from 'react';
-import { Listbox } from '@headlessui/react';
+import { Combobox as Autocomplete } from '@headlessui/react';
 
 import { type IListItemProps, ListItem } from '@/components/atoms/ListItem';
 
-export type ISelectOptionProps = Omit<IListItemProps, 'type'> & {
+export type IComboboxOptionProps = Omit<IListItemProps, 'type'> & {
   value: string;
   label?: string;
+  searchableText?: string | Array<string>;
   children?: React.ReactNode;
 };
 
@@ -20,11 +21,19 @@ const styles = stylex.create({
   },
 });
 
-export const SelectOption: React.FC<ISelectOptionProps> = (props) => {
-  const { sx, value, children, label, ...other } = props;
+export const ComboboxOption: React.FC<IComboboxOptionProps> = (props) => {
+  const {
+    sx,
+    value,
+    children,
+    label,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    searchableText,
+    ...other
+  } = props;
 
   return (
-    <Listbox.Option as={Fragment} disabled={props.disabled} value={value}>
+    <Autocomplete.Option as={Fragment} disabled={props.disabled} value={value}>
       {({ active, selected }) => (
         <ListItem
           {...other}
@@ -36,7 +45,7 @@ export const SelectOption: React.FC<ISelectOptionProps> = (props) => {
           {children ?? label}
         </ListItem>
       )}
-    </Listbox.Option>
+    </Autocomplete.Option>
   );
 };
-SelectOption.displayName = 'SelectOption';
+ComboboxOption.displayName = 'ComboboxOption';

@@ -38,7 +38,7 @@ const statesProps: IComponentPropsWithLegend<IListItemProps> = [
   { $legend: 'Focused', children: 'Focused', visualState: { focused: true } },
   { $legend: 'Hovered', children: 'Hovered', visualState: { hovered: true } },
   { $legend: 'Pressed', children: 'Pressed', visualState: { pressed: true } },
-  { $legend: 'Active', children: 'Active', active: true },
+  { $legend: 'Selected', children: 'Selected', selected: true },
   { $legend: 'Disabled', children: 'Disabled', disabled: true },
 ];
 
