@@ -6,7 +6,7 @@ import { type IListItemProps, ListItem } from '@/components/atoms/ListItem';
 
 export type ISelectOptionProps = Omit<IListItemProps, 'type'> & {
   value: string;
-  displayText?: string;
+  label?: string;
   children?: React.ReactNode;
 };
 
@@ -21,14 +21,7 @@ const styles = stylex.create({
 });
 
 export const SelectOption: React.FC<ISelectOptionProps> = (props) => {
-  const {
-    sx,
-    value,
-    children,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    displayText,
-    ...other
-  } = props;
+  const { sx, value, children, label, ...other } = props;
 
   return (
     <Listbox.Option as={Fragment} disabled={props.disabled} value={value}>
@@ -40,7 +33,7 @@ export const SelectOption: React.FC<ISelectOptionProps> = (props) => {
           visualState={{ hovered: active }}
           selected={selected}
         >
-          {children}
+          {children ?? label}
         </ListItem>
       )}
     </Listbox.Option>

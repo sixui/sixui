@@ -14,7 +14,7 @@ type ITextFieldStyles = IStyles<ITextFieldStyleKey>;
 export const styles: MapNamespaces<ITextFieldStyles> =
   stylex.create<ITextFieldStyles>({
     host: {
-      display: 'inline-flex',
+      display: 'flex',
       outline: 'none',
       resize: 'vertical',
     },
@@ -28,6 +28,7 @@ export const styles: MapNamespaces<ITextFieldStyles> =
       overflowWrap: 'inherit',
       whiteSpace: 'inherit',
       resize: 'none',
+      minWidth: 30,
 
       width: '100%',
       caretColor: {

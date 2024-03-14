@@ -104,7 +104,7 @@ export const Radio: IRadio = forwardRef(function Radio<
     (event) => {
       Promise.resolve(
         radioGroupContext
-          ? radioGroupContext?.onChange(value)
+          ? radioGroupContext?.onChange?.(value)
           : onChange?.(event.target.checked),
       ).catch((error: Error) => {
         throw error;

@@ -11,6 +11,7 @@ import {
   faFish,
 } from '@fortawesome/free-solid-svg-icons';
 
+import { shapeVars } from '@/themes/base/vars/shape.stylex';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   ComponentShowcase,
@@ -26,7 +27,13 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   host: {
-    width: 200,
+    width: 300,
+  },
+  pictureOption: {
+    width: '100%',
+    height: 100,
+    objectFit: 'cover',
+    borderRadius: shapeVars.corner$md,
   },
 });
 
@@ -46,12 +53,20 @@ const ControlledSelect: React.FC<Omit<ISelectProps, 'onChange'>> = (props) => {
   return <Select {...props} value={value} onChange={handleChange} />;
 };
 
-const iconOptions = [
-  <Select.Option key='apple' value='apple' displayText='Apple'>
-    <FontAwesomeIcon icon={faAppleWhole} />
+const pictureOptions = [
+  <Select.Option key='apple' value='apple' label='Apple'>
+    <img
+      {...stylex.props(styles.pictureOption)}
+      alt='Apple'
+      src='https://images.unsplash.com/photo-1590005354167-6da97870c757?auto=format&fit=facearea&facepad=2&w=300&q=80'
+    />
   </Select.Option>,
-  <Select.Option key='lemon' value='lemon' displayText='Lemon'>
-    <FontAwesomeIcon icon={faLemon} />
+  <Select.Option key='lemon' value='lemon' label='Lemon'>
+    <img
+      {...stylex.props(styles.pictureOption)}
+      alt='Lemon'
+      src='https://images.unsplash.com/photo-1590004953392-5aba2e72269a?auto=format&fit=facearea&facepad=2&w=300&q=80'
+    />
   </Select.Option>,
 ];
 
@@ -132,7 +147,7 @@ const useCases: Array<IComponentPresentation<ISelectProps>> = [
   },
   {
     legend: 'Display Text',
-    props: { children: iconOptions },
+    props: { children: pictureOptions },
   },
 ];
 

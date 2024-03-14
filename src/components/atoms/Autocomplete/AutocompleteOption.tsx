@@ -6,6 +6,8 @@ import { type IListItemProps, ListItem } from '@/components/atoms/ListItem';
 
 export type IAutocompleteOptionProps = Omit<IListItemProps, 'type'> & {
   value: string;
+  label?: string;
+  searchableText?: string | Array<string>;
   children?: React.ReactNode;
 };
 
@@ -22,18 +24,27 @@ const styles = stylex.create({
 export const AutocompleteOption: React.FC<IAutocompleteOptionProps> = (
   props,
 ) => {
-  const { sx, value, children, ...other } = props;
+  const {
+    sx,
+    value,
+    children,
+    label,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    searchableText,
+    ...other
+  } = props;
 
   return (
     <Combobox.Option as={Fragment} disabled={props.disabled} value={value}>
-      {({ active }) => (
+      {({ active, selected }) => (
         <ListItem
           {...other}
           type='button'
           sx={[styles.host, props.disabled && styles.host$disabled, sx]}
-          selected={active}
+          visualState={{ hovered: active }}
+          selected={selected}
         >
-          {children}
+          {children ?? label}
         </ListItem>
       )}
     </Combobox.Option>

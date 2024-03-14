@@ -11,6 +11,7 @@ import {
   faFish,
 } from '@fortawesome/free-solid-svg-icons';
 
+import { shapeVars } from '@/themes/base/vars/shape.stylex';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   ComponentShowcase,
@@ -27,7 +28,13 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   host: {
-    width: 200,
+    width: 300,
+  },
+  pictureOption: {
+    width: '100%',
+    height: 100,
+    objectFit: 'cover',
+    borderRadius: shapeVars.corner$md,
   },
   chips: {
     display: 'flex',
@@ -78,28 +85,38 @@ const ControlledSelectWithChip: React.FC<
       {...props}
       value={values}
       onChange={handleChange}
-      renderOption={(options) => (
-        <div {...stylex.props(styles.chips)}>
-          {options.map((option, index) => (
-            <InputChip
-              key={index}
-              label={option.props.children}
-              onDelete={(event) => handleDelete(event, option.props.value)}
-              icon={option.props.leadingIcon}
-            />
-          ))}
-        </div>
-      )}
+      renderOption={(options) =>
+        options.length ? (
+          <div {...stylex.props(styles.chips)}>
+            {options.map((option, index) => (
+              <InputChip
+                key={index}
+                label={option.props.children}
+                onDelete={(event) => handleDelete(event, option.props.value)}
+                icon={option.props.leadingIcon}
+              />
+            ))}
+          </div>
+        ) : null
+      }
     />
   );
 };
 
-const iconOptions = [
-  <MultiSelect.Option key='apple' value='apple' displayText='Apple'>
-    <FontAwesomeIcon icon={faAppleWhole} />
+const pictureOptions = [
+  <MultiSelect.Option key='apple' value='apple' label='Apple'>
+    <img
+      {...stylex.props(styles.pictureOption)}
+      alt='Apple'
+      src='https://images.unsplash.com/photo-1590005354167-6da97870c757?auto=format&fit=facearea&facepad=2&w=300&q=80'
+    />
   </MultiSelect.Option>,
-  <MultiSelect.Option key='lemon' value='lemon' displayText='Lemon'>
-    <FontAwesomeIcon icon={faLemon} />
+  <MultiSelect.Option key='lemon' value='lemon' label='Lemon'>
+    <img
+      {...stylex.props(styles.pictureOption)}
+      alt='Lemon'
+      src='https://images.unsplash.com/photo-1590004953392-5aba2e72269a?auto=format&fit=facearea&facepad=2&w=300&q=80'
+    />
   </MultiSelect.Option>,
 ];
 
@@ -180,7 +197,7 @@ const useCases: Array<IComponentPresentation<IMultiSelectProps>> = [
   },
   {
     legend: 'Display Text',
-    props: { children: iconOptions },
+    props: { children: pictureOptions },
   },
   {
     legend: 'Chips',

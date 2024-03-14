@@ -1,6 +1,7 @@
 import stylex from '@stylexjs/stylex';
 import { Fragment, forwardRef, Children, isValidElement } from 'react';
 import { Listbox } from '@headlessui/react';
+import { asArray, filterUndefineds } from '@olivierpascal/helpers';
 
 import { MenuList } from '@/components/atoms/MenuList';
 import { IVisualState } from '@/hooks/useVisualState';
@@ -10,17 +11,15 @@ import { MenuListDivider } from '@/components/atoms/MenuList/MenuListDivider';
 import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 import { SelectOption, type ISelectOptionProps } from './SelectOption';
-import { isFragment } from '@/helpers/react/isFragment';
-import { isProduction } from '@/helpers/isProduction';
 
-type ISelectOption = React.ReactElement<ISelectOptionProps>;
+type IOption = React.ReactElement<ISelectOptionProps>;
 
 export type ISelectBaseProps = Omit<
   IFieldProps,
   'end' | 'value' | 'defaultValue'
 > & {
   visualState?: IVisualState;
-  children?: Array<React.ReactNode> | React.ReactNode;
+  children?: Array<React.ReactNode>;
   id?: string;
 } & (
     | {
@@ -28,14 +27,14 @@ export type ISelectBaseProps = Omit<
         value?: string;
         defaultValue?: string;
         onChange?: (value: string) => void;
-        renderOption?: (option: ISelectOption) => React.ReactNode;
+        renderOption?: (option: IOption) => React.ReactNode;
       }
     | {
         multiple: true;
         value?: Array<string>;
         defaultValue?: Array<string>;
         onChange?: (value: Array<string>) => void;
-        renderOption?: (options: Array<ISelectOption>) => React.ReactNode;
+        renderOption?: (options: Array<IOption>) => React.ReactNode;
       }
   );
 
@@ -55,45 +54,46 @@ const styles = stylex.create({
   },
 });
 
-const getValidOption = (child: React.ReactNode): ISelectOption | undefined => {
+const getValidOption = (child: React.ReactNode): IOption | undefined => {
   const childDisplayName = isValidElement(child)
     ? getDisplayName(child)
     : undefined;
   const isCompatibleOption = childDisplayName === SelectOption.displayName;
-  const option = isCompatibleOption ? (child as ISelectOption) : undefined;
+  const option = isCompatibleOption ? (child as IOption) : undefined;
 
   return option;
 };
 
 const getMatchingOptions = (
-  children: Array<React.ReactNode> | React.ReactNode,
-  value: string | Array<string>,
-): Array<ISelectOption> =>
-  Children.toArray(children)
-    .map((child) => {
-      if (!isProduction() && isFragment(child)) {
-        // eslint-disable-next-line no-console
-        console.error(
-          "sixui: The Select component doesn't accept a Fragment as a child. Consider providing an array instead.",
-        );
-      }
+  children: Array<React.ReactNode> | undefined,
+  values: string | Array<string>,
+): Array<IOption | string> =>
+  filterUndefineds(
+    asArray(values).map(
+      (value) =>
+        Children.toArray(children)
+          .map(getValidOption)
+          .find((option) => {
+            const isMatching =
+              option &&
+              ((typeof value === 'string' && option.props.value === value) ||
+                value.includes(option.props.value));
 
-      return getValidOption(child);
-    })
-    .filter((option) => {
-      const isMatching =
-        option &&
-        ((typeof value === 'string' && option.props.value === value) ||
-          value.includes(option.props.value));
+            return isMatching;
+          }) ?? value,
+    ),
+  );
 
-      return isMatching;
-    }) as Array<ISelectOption>;
+const optionNodeToLabel = (option: IOption | string): React.ReactNode =>
+  typeof option === 'string'
+    ? option
+    : option.props.label ?? option.props.children ?? option.props.value;
 
 const defaultRenderOption = (
-  options: ISelectOption | Array<ISelectOption>,
+  options: IOption | Array<IOption>,
 ): React.ReactNode =>
   (Array.isArray(options) ? options : [options])
-    .map((option) => option.props.displayText ?? option.props.children)
+    .map(optionNodeToLabel)
     .join(', ');
 
 const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
@@ -141,34 +141,38 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
             const matchingOptions = value
               ? getMatchingOptions(children, value)
               : [];
-            const singleMatchingOption =
+            const matchingOption =
               multiple || !matchingOptions.length
                 ? undefined
                 : matchingOptions[0];
-            const TrailingIcon = open ? TriangleUpIcon : TriangleDownIcon;
-            const optionsToRender = multiple
-              ? matchingOptions
-              : singleMatchingOption;
+            const optionsToRender = multiple ? matchingOptions : matchingOption;
             const displayValue = optionsToRender
-              ? renderOption(
-                  optionsToRender as ISelectOption & Array<ISelectOption>,
-                )
+              ? renderOption(optionsToRender as IOption & Array<IOption>)
               : undefined;
+
+            const TrailingIcon = open ? TriangleUpIcon : TriangleDownIcon;
+            const visualState = open
+              ? {
+                  ...visualStateProp,
+                  ...openVisualState,
+                }
+              : visualStateProp;
 
             return (
               <Field
                 {...other}
                 tabIndex={0}
-                visualState={
-                  open
-                    ? {
-                        ...visualStateProp,
-                        ...openVisualState,
-                      }
-                    : visualStateProp
+                visualState={visualState}
+                start={
+                  typeof matchingOption === 'string'
+                    ? undefined
+                    : matchingOption?.props.start
                 }
-                start={singleMatchingOption?.props.start}
-                leadingIcon={singleMatchingOption?.props.leadingIcon}
+                leadingIcon={
+                  typeof matchingOption === 'string'
+                    ? undefined
+                    : matchingOption?.props.leadingIcon
+                }
                 end={<TrailingIcon height='6' />}
                 value={displayValue}
               />

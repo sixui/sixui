@@ -1,5 +1,6 @@
 # TO DO
 
+- Faire un Jira
 - Créer FieldBase.stylex.ts
 - Finir Select
 
@@ -12,6 +13,12 @@
 - Skeleton version of components
 - FIXME: radioGroup unused ref in forwardRef
 - FileUplodaer: picture
+
+- MultiAutocomplete
+
+  - Fixed options
+  - Keyboard to delete
+  - Navigate focus between chips with keyboard
 
 - Field
 

@@ -226,9 +226,10 @@ export const styles: MapNamespaces<IFieldBaseStyles> =
       letterSpacing: vars.contentLetterSpacing,
       width: '100%',
       // Reverting values before "all: unset"
-      overflowWrap: 'revert', // Neceded to break words in textarea
+      overflowWrap: 'revert', // Needed to break words in textarea
       whiteSpace: 'revert', // Needed for Firefox textarea
       alignItems: 'center',
+      flexWrap: 'wrap', // To make the input/textarea go to new line when needed
 
       paddingTop: vars.topSpace,
       paddingBottom: vars.bottomSpace,

@@ -17,11 +17,14 @@ import {
   ComponentShowcase,
   type IComponentPresentation,
 } from '@/components/utils/ComponentShowcase2';
-import { Autocomplete, type IAutocompleteProps } from './Autocomplete';
+import {
+  MultiAutocomplete,
+  type IMultiAutocompleteProps,
+} from './MultiAutocomplete';
 
 const meta = {
-  component: Autocomplete,
-} satisfies Meta<typeof Autocomplete>;
+  component: MultiAutocomplete,
+} satisfies Meta<typeof MultiAutocomplete>;
 
 type IStory = StoryObj<typeof meta>;
 
@@ -35,109 +38,105 @@ const styles = stylex.create({
     objectFit: 'cover',
     borderRadius: shapeVars.corner$md,
   },
+  chips: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+  },
 });
 
 const defaultArgs = {
   sx: styles.host,
   onChange: (...args) => void sbHandleEvent('onChange', args),
-} satisfies Partial<IAutocompleteProps>;
+} satisfies Partial<IMultiAutocompleteProps>;
 
-const ControlledAutocomplete: React.FC<Omit<IAutocompleteProps, 'onChange'>> = (
-  props,
-) => {
-  const [value, setValue] = useState(props.value ?? '');
+const ControlledMultiAutocomplete: React.FC<
+  Omit<IMultiAutocompleteProps, 'onChange'>
+> = (props) => {
+  const [value, setValue] = useState(props.value ?? []);
 
-  const handleChange = (value: string): void => {
+  const handleChange = (value: Array<string>): void => {
     setValue(value);
     void sbHandleEvent('onChange', value);
   };
 
-  return <Autocomplete {...props} value={value} onChange={handleChange} />;
+  return <MultiAutocomplete {...props} value={value} onChange={handleChange} />;
 };
 
 const pictureOptions = [
-  <Autocomplete.Option
-    key='apple'
-    value='apple'
-    label='Apple'
-    searchableText={['gala', 'golden', 'granny']}
-  >
+  <MultiAutocomplete.Option key='apple' value='apple' label='Apple'>
     <img
       {...stylex.props(styles.pictureOption)}
       alt='Apple'
       src='https://images.unsplash.com/photo-1590005354167-6da97870c757?auto=format&fit=facearea&facepad=2&w=300&q=80'
     />
-  </Autocomplete.Option>,
-  <Autocomplete.Option
-    key='lemon'
-    value='lemon'
-    label='Lemon'
-    searchableText={['lisbon', 'eureka', 'meyer']}
-  >
+  </MultiAutocomplete.Option>,
+  <MultiAutocomplete.Option key='lemon' value='lemon' label='Lemon'>
     <img
       {...stylex.props(styles.pictureOption)}
       alt='Lemon'
       src='https://images.unsplash.com/photo-1590004953392-5aba2e72269a?auto=format&fit=facearea&facepad=2&w=300&q=80'
     />
-  </Autocomplete.Option>,
+  </MultiAutocomplete.Option>,
 ];
 
 const options = [
-  <Autocomplete.Option
+  <MultiAutocomplete.Option
     key='apple'
     value='apple'
     leadingIcon={<FontAwesomeIcon icon={faAppleWhole} />}
   >
     Apple
-  </Autocomplete.Option>,
-  <Autocomplete.Option
+  </MultiAutocomplete.Option>,
+  <MultiAutocomplete.Option
     key='lemon'
     value='lemon'
     leadingIcon={<FontAwesomeIcon icon={faLemon} />}
     disabled
   >
     Lemon
-  </Autocomplete.Option>,
-  <Autocomplete.Option
+  </MultiAutocomplete.Option>,
+  <MultiAutocomplete.Option
     key='carrot'
     value='carrot'
     leadingIcon={<FontAwesomeIcon icon={faCarrot} />}
     trailingSupportingText='4/6'
   >
     Carrot
-  </Autocomplete.Option>,
-  <Autocomplete.Divider key='divider1' />,
-  <Autocomplete.Option
+  </MultiAutocomplete.Option>,
+  <MultiAutocomplete.Divider key='divider1' />,
+  <MultiAutocomplete.Option
     key='egg'
     value='egg'
     leadingIcon={<FontAwesomeIcon icon={faEgg} />}
   >
     Egg
-  </Autocomplete.Option>,
-  <Autocomplete.Option
+  </MultiAutocomplete.Option>,
+  <MultiAutocomplete.Option
     key='fish'
     value='fish'
     leadingIcon={<FontAwesomeIcon icon={faFish} />}
   >
     Fish
-  </Autocomplete.Option>,
-  <Autocomplete.Divider key='divider2' />,
-  <Autocomplete.Option
+  </MultiAutocomplete.Option>,
+  <MultiAutocomplete.Divider key='divider2' />,
+  <MultiAutocomplete.Option
     key='pepperHot'
     value='pepperHot'
     leadingIcon={<FontAwesomeIcon icon={faPepperHot} />}
     headline='Yummy!'
   >
     Pepper Hot
-  </Autocomplete.Option>,
+  </MultiAutocomplete.Option>,
 ];
 
-const variants: Array<IComponentPresentation<IAutocompleteProps>> = [
+const variants: Array<IComponentPresentation<IMultiAutocompleteProps>> = [
   { legend: 'Filled', props: { variant: 'filled' } },
   { legend: 'Outlined', props: { variant: 'outlined' } },
 ];
 
-const useCases: Array<IComponentPresentation<IAutocompleteProps>> = [
+const useCases: Array<IComponentPresentation<IMultiAutocompleteProps>> = [
   { legend: 'Basic', props: { children: options } },
   { legend: 'With Label', props: { children: options, label: 'Label' } },
   {
@@ -150,12 +149,12 @@ const useCases: Array<IComponentPresentation<IAutocompleteProps>> = [
   },
   {
     legend: 'With Default Value',
-    props: { children: options, defaultValue: 'carrot' },
+    props: { children: options, defaultValue: ['carrot'] },
   },
   {
     legend: 'Controlled',
-    props: { children: options, value: 'carrot' },
-    component: ControlledAutocomplete,
+    props: { children: options, value: ['carrot'] },
+    component: ControlledMultiAutocomplete,
   },
   {
     legend: 'Display Text',
@@ -170,7 +169,7 @@ const useCases: Array<IComponentPresentation<IAutocompleteProps>> = [
 export const UseCases: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={Autocomplete}
+      component={MultiAutocomplete}
       props={props}
       cols={variants}
       rows={useCases}
