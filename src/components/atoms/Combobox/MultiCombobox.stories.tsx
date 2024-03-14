@@ -146,7 +146,7 @@ const useCases: Array<IComponentPresentation<IMultiComboboxProps>> = [
   },
   {
     legend: 'With Default Value',
-    props: { children: options, defaultValue: ['carrot'] },
+    props: { children: options, label: 'Label', defaultValue: ['carrot'] },
   },
   {
     legend: 'Controlled',

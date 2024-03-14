@@ -17,6 +17,7 @@ import {
   ComponentShowcase,
   type IComponentPresentation,
 } from '@/components/utils/ComponentShowcase2';
+import { ListItem } from '@/components/atoms/ListItem';
 import { Combobox, type IComboboxProps } from './Combobox';
 
 const meta = {
@@ -132,6 +133,10 @@ const options = [
   </Combobox.Option>,
 ];
 
+const lotOfOptions = Array.from({ length: 100 }, (_, i) => (
+  <Combobox.Option key={i} value={String(i + 1)} label={`Option ${i + 1}`} />
+));
+
 const variants: Array<IComponentPresentation<IComboboxProps>> = [
   { legend: 'Filled', props: { variant: 'filled' } },
   { legend: 'Outlined', props: { variant: 'outlined' } },
@@ -150,7 +155,7 @@ const useCases: Array<IComponentPresentation<IComboboxProps>> = [
   },
   {
     legend: 'With Default Value',
-    props: { children: options, defaultValue: 'carrot' },
+    props: { children: options, label: 'Label', defaultValue: 'carrot' },
   },
   {
     legend: 'Controlled',
@@ -164,6 +169,31 @@ const useCases: Array<IComponentPresentation<IComboboxProps>> = [
   {
     legend: 'Allow Custom Values',
     props: { children: options, allowCustomValues: true },
+  },
+  {
+    legend: 'More...',
+    props: {
+      children: lotOfOptions,
+      limit: 5,
+      moreOption: ({ hidden }) => (
+        <ListItem supportingText={`${hidden} more items`} type='button'>
+          More…
+        </ListItem>
+      ),
+    },
+  },
+  {
+    legend: 'More with Default Value',
+    props: {
+      children: lotOfOptions,
+      limit: 5,
+      defaultValue: '42',
+      moreOption: ({ hidden }) => (
+        <ListItem supportingText={`${hidden} more items`} type='button'>
+          More…
+        </ListItem>
+      ),
+    },
   },
 ];
 

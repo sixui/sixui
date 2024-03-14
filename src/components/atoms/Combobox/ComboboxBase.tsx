@@ -46,12 +46,18 @@ export type IComboboxBaseProps = Omit<
         value?: string;
         defaultValue?: string;
         onChange?: (value: string) => void;
+        limit?: number;
+        moreOption?:
+          | React.ReactNode
+          | ((props: { total: number; hidden: number }) => React.ReactNode);
       }
     | {
         multiple: true;
         value?: Array<string>;
         defaultValue?: Array<string>;
         onChange?: (value: Array<string>) => void;
+        limit?: undefined;
+        moreOption?: undefined;
       }
   );
 
@@ -99,14 +105,7 @@ const getMatchingOptions = (
       (value) =>
         Children.toArray(children)
           .map(getValidOption)
-          .find((option) => {
-            const isMatching =
-              option &&
-              ((typeof value === 'string' && option.props.value === value) ||
-                value.includes(option.props.value));
-
-            return isMatching;
-          }) ?? value,
+          .find((option) => option && option.props.value === value) ?? value,
     ),
   );
 
@@ -135,6 +134,8 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
       noOptionsText = 'No options',
       createOptionText = (query) => `Create "${query}"`,
       allowCustomValues,
+      limit,
+      moreOption,
       ...other
     } = props;
 
@@ -147,7 +148,7 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
     const handleChange = (value: (typeof props)['value']): void => {
       setValue(value);
       onChange?.(value as string & Array<string>);
-      setQuery(undefined);
+      setTimeout(() => setQuery(undefined));
     };
 
     const openVisualState: IVisualState = { focused: true };
@@ -160,7 +161,8 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
           getSearchableText: (option) =>
             [optionNodeToLabel(option), option.props.searchableText].flat(),
         })
-      : options;
+      : undefined;
+    const presentedOptions = filteredOptions ?? options;
     const isValueNotEmpty = Array.isArray(value)
       ? value.length
       : value !== undefined;
@@ -213,6 +215,50 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
       }
     };
 
+    // TODO: only take in consideration Combobox.Option children
+    const hasMore = limit && limit < presentedOptions.length;
+    const visibleOptions = hasMore
+      ? presentedOptions.slice(0, limit)
+      : presentedOptions;
+
+    const matchingOptions = value ? getMatchingOptions(children, value) : [];
+
+    // Make sure app list always contains the current value.
+    if (!multiple && !query && !!value) {
+      const valueAsString = value as string;
+      const isCurrentOptionVisible = filterUndefineds(
+        visibleOptions.map(getValidOption),
+      ).some((option) => option.props.value === valueAsString);
+
+      if (!isCurrentOptionVisible) {
+        const currentOption = matchingOptions[0];
+        if (currentOption) {
+          const extraOption =
+            typeof currentOption === 'string' ? (
+              <ComboboxOption key={valueAsString} value={valueAsString}>
+                {currentOption}
+              </ComboboxOption>
+            ) : (
+              currentOption
+            );
+
+          if (hasMore) {
+            visibleOptions.splice(visibleOptions.length - 1, 1, extraOption);
+          } else {
+            visibleOptions.push(extraOption);
+          }
+        }
+      }
+    }
+
+    const renderMoreOption = (): React.ReactNode =>
+      typeof moreOption === 'function'
+        ? moreOption({
+            total: options.length,
+            hidden: options.length - visibleOptions.length,
+          })
+        : moreOption;
+
     return (
       <Autocomplete
         {...stylex.props(styles.host, disabled && styles.host$disabled, sx)}
@@ -236,9 +282,6 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
             multiple
               ? undefined
               : (value: string) => {
-                  const matchingOptions = value
-                    ? getMatchingOptions(children, value)
-                    : [];
                   const matchingOption = matchingOptions[0];
                   const displayValue = matchingOption
                     ? optionNodeToLabel(matchingOption)
@@ -321,7 +364,7 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
 
         <Autocomplete.Options {...stylex.props(styles.options)}>
           <MenuList>
-            {filteredOptions?.length === 0 && !!query ? (
+            {visibleOptions?.length === 0 && !!query ? (
               allowCustomValues ? (
                 <ComboboxOption value={query}>
                   {createOptionText(query)}
@@ -330,8 +373,14 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
                 <ListItem disabled>{noOptionsText}</ListItem>
               )
             ) : (
-              filteredOptions
+              visibleOptions
             )}
+            {hasMore ? (
+              <>
+                <MenuListDivider />
+                {renderMoreOption()}
+              </>
+            ) : null}
           </MenuList>
         </Autocomplete.Options>
       </Autocomplete>

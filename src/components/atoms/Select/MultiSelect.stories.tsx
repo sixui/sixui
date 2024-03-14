@@ -146,7 +146,11 @@ const useCases: Array<IComponentPresentation<IMultiSelectProps>> = [
   },
   {
     legend: 'With Default Value',
-    props: { children: options, defaultValue: ['carrot', 'fish'] },
+    props: {
+      children: options,
+      label: 'Label',
+      defaultValue: ['carrot', 'fish'],
+    },
   },
   {
     legend: 'Controlled',

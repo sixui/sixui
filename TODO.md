@@ -14,6 +14,10 @@
 - FIXME: radioGroup unused ref in forwardRef
 - FileUplodaer: picture
 
+- Combobox
+
+  - FIXME: quand on met une custom value et qu'on blur, c'est le 1er item de la liste qui est sélectionné
+
 - MultiCombobox
 
   - Fixed options
@@ -25,6 +29,7 @@
 - Field, Combobox, Select
 
   - Loading state
+  - support required
 
 - Select
 

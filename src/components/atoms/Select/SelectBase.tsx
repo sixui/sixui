@@ -38,6 +38,10 @@ export type ISelectBaseProps = Omit<
           option: IOption,
           onDelete: (value: string) => void,
         ) => React.ReactNode;
+        limit?: number;
+        moreOption?:
+          | React.ReactNode
+          | ((props: { total: number; hidden: number }) => React.ReactNode);
       }
     | {
         multiple: true;
@@ -48,6 +52,8 @@ export type ISelectBaseProps = Omit<
           options: Array<IOption>,
           onDelete: (value: string) => void,
         ) => React.ReactNode;
+        limit?: undefined;
+        moreOption?: undefined;
       }
   );
 
@@ -92,14 +98,7 @@ const getMatchingOptions = (
       (value) =>
         Children.toArray(children)
           .map(getValidOption)
-          .find((option) => {
-            const isMatching =
-              option &&
-              ((typeof value === 'string' && option.props.value === value) ||
-                value.includes(option.props.value));
-
-            return isMatching;
-          }) ?? value,
+          .find((option) => option && option.props.value === value) ?? value,
     ),
   );
 
@@ -150,6 +149,8 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
       renderOption = multiple
         ? defaultRenderMultiOptions
         : defaultRenderSingleOption,
+      limit,
+      moreOption,
       ...other
     } = props;
 
@@ -171,6 +172,20 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
     };
 
     const openVisualState: IVisualState = { focused: true };
+
+    const options = Children.toArray(children);
+
+    // TODO: only take in consideration Select.Option children
+    const hasMore = limit && limit < options.length;
+    const visibleOptions = hasMore ? options.slice(0, limit) : options;
+
+    const renderMoreOption = (): React.ReactNode =>
+      typeof moreOption === 'function'
+        ? moreOption({
+            total: options.length,
+            hidden: options.length - visibleOptions.length,
+          })
+        : moreOption;
 
     return (
       <Listbox
@@ -237,7 +252,15 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
           }}
         </Listbox.Button>
         <Listbox.Options {...stylex.props(styles.options)}>
-          <MenuList>{children}</MenuList>
+          <MenuList>
+            {visibleOptions}
+            {hasMore ? (
+              <>
+                <MenuListDivider />
+                {renderMoreOption()}
+              </>
+            ) : null}
+          </MenuList>
         </Listbox.Options>
       </Listbox>
     );
