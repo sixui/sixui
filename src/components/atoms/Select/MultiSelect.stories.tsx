@@ -18,7 +18,6 @@ import {
   type IComponentPresentation,
 } from '@/components/utils/ComponentShowcase2';
 import { MultiSelect, type IMultiSelectProps } from './MultiSelect';
-import { InputChip } from '@/components/atoms/Chip';
 
 const meta = {
   component: MultiSelect,
@@ -60,47 +59,6 @@ const ControlledMultiSelect: React.FC<Omit<IMultiSelectProps, 'onChange'>> = (
   };
 
   return <MultiSelect {...props} value={value} onChange={handleChange} />;
-};
-
-const ControlledSelectWithChip: React.FC<
-  Omit<IMultiSelectProps, 'onChange' | 'renderValue'>
-> = (props) => {
-  const [values, setValues] = useState(props.value ?? []);
-
-  const handleChange = (values: Array<string>): void => {
-    setValues(values);
-    void sbHandleEvent('onChange', values);
-  };
-
-  const handleDelete = (
-    event: React.MouseEvent<HTMLElement>,
-    value: string,
-  ): void => {
-    event.preventDefault();
-    setValues((values) => values.filter((v) => v !== value));
-  };
-
-  return (
-    <MultiSelect
-      {...props}
-      value={values}
-      onChange={handleChange}
-      renderOption={(options) =>
-        options.length ? (
-          <div {...stylex.props(styles.chips)}>
-            {options.map((option, index) => (
-              <InputChip
-                key={index}
-                label={option.props.children}
-                onDelete={(event) => handleDelete(event, option.props.value)}
-                icon={option.props.leadingIcon}
-              />
-            ))}
-          </div>
-        ) : null
-      }
-    />
-  );
 };
 
 const pictureOptions = [
@@ -198,11 +156,6 @@ const useCases: Array<IComponentPresentation<IMultiSelectProps>> = [
   {
     legend: 'Display Text',
     props: { children: pictureOptions },
-  },
-  {
-    legend: 'Chips',
-    props: { children: options },
-    component: ControlledSelectWithChip,
   },
 ];
 

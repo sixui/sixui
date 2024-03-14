@@ -1,5 +1,11 @@
 import stylex from '@stylexjs/stylex';
-import { Fragment, forwardRef, Children, isValidElement } from 'react';
+import {
+  Fragment,
+  forwardRef,
+  Children,
+  isValidElement,
+  useState,
+} from 'react';
 import { Listbox } from '@headlessui/react';
 import { asArray, filterUndefineds } from '@olivierpascal/helpers';
 
@@ -11,6 +17,7 @@ import { MenuListDivider } from '@/components/atoms/MenuList/MenuListDivider';
 import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 import { SelectOption, type ISelectOptionProps } from './SelectOption';
+import { InputChip } from '@/components/atoms/Chip';
 
 type IOption = React.ReactElement<ISelectOptionProps>;
 
@@ -27,14 +34,20 @@ export type ISelectBaseProps = Omit<
         value?: string;
         defaultValue?: string;
         onChange?: (value: string) => void;
-        renderOption?: (option: IOption) => React.ReactNode;
+        renderOption?: (
+          option: IOption,
+          onDelete: (value: string) => void,
+        ) => React.ReactNode;
       }
     | {
         multiple: true;
         value?: Array<string>;
         defaultValue?: Array<string>;
         onChange?: (value: Array<string>) => void;
-        renderOption?: (options: Array<IOption>) => React.ReactNode;
+        renderOption?: (
+          options: Array<IOption>,
+          onDelete: (value: string) => void,
+        ) => React.ReactNode;
       }
   );
 
@@ -51,6 +64,12 @@ const styles = stylex.create({
   options: {
     position: 'absolute',
     width: '100%',
+  },
+  chips: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
   },
 });
 
@@ -89,12 +108,32 @@ const optionNodeToLabel = (option: IOption | string): React.ReactNode =>
     ? option
     : option.props.label ?? option.props.children ?? option.props.value;
 
-const defaultRenderOption = (
+const defaultRenderSingleOption = (
   options: IOption | Array<IOption>,
-): React.ReactNode =>
-  (Array.isArray(options) ? options : [options])
-    .map(optionNodeToLabel)
-    .join(', ');
+): React.ReactNode => asArray(options).map(optionNodeToLabel).join(', ');
+
+const defaultRenderMultiOptions = (
+  options: IOption | Array<IOption>,
+  onDelete: (value: string) => void,
+): React.ReactNode => {
+  const optionsArray = asArray(options);
+
+  return optionsArray.length ? (
+    <div {...stylex.props(styles.chips)}>
+      {optionsArray.map((option, index) => (
+        <InputChip
+          key={index}
+          label={optionNodeToLabel(option)}
+          onDelete={(event) => {
+            event.preventDefault();
+            onDelete(option.props.value);
+          }}
+          icon={option.props.leadingIcon}
+        />
+      ))}
+    </div>
+  ) : null;
+};
 
 const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
   function SelectBase(props, ref) {
@@ -106,15 +145,27 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
       onChange,
       disabled,
       defaultValue,
-      value,
+      value: valueProp,
       multiple,
-      renderOption = defaultRenderOption,
+      renderOption = multiple
+        ? defaultRenderMultiOptions
+        : defaultRenderSingleOption,
       ...other
     } = props;
 
+    const [value, setValue] = useState<(typeof props)['value']>(
+      valueProp ?? defaultValue ?? (multiple ? [] : ''),
+    );
+
     const handleChange = (value: (typeof props)['value']): void => {
+      setValue(value);
       onChange?.(value as string & Array<string>);
     };
+
+    const handleDelete = (value: string): void =>
+      setValue((values) =>
+        Array.isArray(values) ? values.filter((v) => v !== value) : values,
+      );
 
     const openVisualState: IVisualState = { focused: true };
 
@@ -147,7 +198,10 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
                 : matchingOptions[0];
             const optionsToRender = multiple ? matchingOptions : matchingOption;
             const displayValue = optionsToRender
-              ? renderOption(optionsToRender as IOption & Array<IOption>)
+              ? renderOption(
+                  optionsToRender as IOption & Array<IOption>,
+                  handleDelete,
+                )
               : undefined;
 
             const TrailingIcon = open ? TriangleUpIcon : TriangleDownIcon;
