@@ -1,3 +1,15 @@
+# v0.0.101 (Thu Mar 14 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: ListItem has correct type prop when type is button ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.100 (Thu Mar 14 2024)
 
 #### ⚠️ Pushed to `main`
