@@ -178,35 +178,40 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
     // In a Combobox, when no option is selected, the value is null.
     const nullable = multiple ? undefined : true;
 
+    const deleteValue = (valueToDelete: string): void => {
+      const updatedValues = Array.isArray(value)
+        ? value.filter((v) => v !== valueToDelete)
+        : value;
+      setValue(updatedValues);
+      onChange?.(updatedValues as string & Array<string>);
+    };
+
     // In a MultiCombobox, the user can unselect a selected option by
     // clicking on the delete action of its chip.
     // In a Combobox, there is no chip, and no delete action to handle.
-    const handleDelete = multiple
-      ? (event: React.MouseEvent<HTMLElement>, value: string): void => {
-          event.preventDefault();
-          setValue((values) =>
-            Array.isArray(values) ? values.filter((v) => v !== value) : values,
-          );
-        }
-      : undefined;
+    const handleDelete = (
+      event: React.MouseEvent<HTMLElement>,
+      value: string,
+    ): void => {
+      event.preventDefault();
+
+      deleteValue(value);
+    };
 
     // In a MultiCombobox, the user can unselect the last selected option
     // when the query is empty by pressing the backspace key.
     // In a Combobox, there is no chip, and no delete action to handle.
-    const handleKeyDown = multiple
-      ? (event: React.KeyboardEvent<HTMLElement>) => {
-          if (event.key === 'Backspace') {
-            if (!query) {
-              // delete last value
-              setValue((values) =>
-                Array.isArray(values)
-                  ? values.slice(0, values.length - 1)
-                  : values,
-              );
-            }
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>): void => {
+      if (event.key === 'Backspace') {
+        if (!query) {
+          // Delete last value
+          const lastValue = asArray(value).slice(-1)[0];
+          if (lastValue) {
+            deleteValue(lastValue);
           }
         }
-      : undefined;
+      }
+    };
 
     return (
       <Autocomplete
@@ -280,7 +285,7 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
                       : undefined
                 }
                 value={inputValue}
-                onKeyDown={handleKeyDown}
+                onKeyDown={multiple ? handleKeyDown : undefined}
               >
                 {multiple && value && isValueNotEmpty
                   ? getMatchingOptions(children, value).map((option, index) =>
@@ -289,7 +294,7 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
                           key={index}
                           label={option}
                           onDelete={
-                            handleDelete
+                            multiple
                               ? (event) => handleDelete(event, option)
                               : undefined
                           }
@@ -299,7 +304,7 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
                           key={index}
                           label={option.props.children}
                           onDelete={
-                            handleDelete
+                            multiple
                               ? (event) =>
                                   handleDelete(event, option.props.value)
                               : undefined

@@ -162,10 +162,13 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
       onChange?.(value as string & Array<string>);
     };
 
-    const handleDelete = (value: string): void =>
-      setValue((values) =>
-        Array.isArray(values) ? values.filter((v) => v !== value) : values,
-      );
+    const handleDelete = (valueToDelete: string): void => {
+      const updatedValues = Array.isArray(value)
+        ? value.filter((v) => v !== valueToDelete)
+        : value;
+      setValue(updatedValues);
+      onChange?.(updatedValues as string & Array<string>);
+    };
 
     const openVisualState: IVisualState = { focused: true };
 
