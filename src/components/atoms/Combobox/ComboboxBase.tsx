@@ -43,7 +43,7 @@ export type IComboboxBaseProps = Omit<
 } & (
     | {
         multiple: false;
-        value?: string;
+        value?: string | null;
         defaultValue?: string;
         onChange?: (value: string) => void;
         limit?: number;
