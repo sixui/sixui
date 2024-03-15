@@ -1,3 +1,15 @@
+# v0.0.106 (Fri Mar 15 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: attempting fix the controlled state of SelectBase and ComboboxBase ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.105 (Fri Mar 15 2024)
 
 #### ⚠️ Pushed to `main`
