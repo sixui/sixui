@@ -129,6 +129,8 @@ const defaultRenderMultiOptions = (
   ) : null;
 };
 
+const emptyArrayStableRef: Array<string> = [];
+
 const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
   function SelectBase(props, ref) {
     const {
@@ -151,7 +153,7 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
 
     const [value, setValue] = useControlled({
       controlled: valueProp,
-      default: defaultValue ?? (multiple ? [] : null),
+      default: defaultValue ?? (multiple ? emptyArrayStableRef : null),
       name: 'SelectBase',
     });
 

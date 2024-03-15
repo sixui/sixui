@@ -97,6 +97,8 @@ const getValidOption = (child: React.ReactNode): IOption | undefined => {
   return option;
 };
 
+const emptyArrayStableRef: Array<string> = [];
+
 const getMatchingOptions = (
   children: Array<React.ReactNode> | undefined | null,
   values: string | Array<string>,
@@ -142,7 +144,7 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
 
     const [value, setValue] = useControlled({
       controlled: valueProp,
-      default: defaultValue ?? (multiple ? [] : null),
+      default: defaultValue ?? (multiple ? emptyArrayStableRef : null),
       name: 'ComboboxBase',
     });
 
@@ -172,12 +174,6 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
       : value !== undefined;
 
     const lastCloseActionRef = useRef<number>(0);
-
-    // In a MultiCombobox, the input value is always the query. Once the
-    // user selects an option, the query is cleared.
-    // In a Combobox, the input value is managed by the Combobox. Check the
-    // Combobox.Input component to see how `displayValue` is managed.
-    const inputValue = multiple ? query ?? '' : undefined;
 
     // In a MultiCombobox, options are toggled on and off, resulting in an
     // empty array (rather than null) if nothing is selected.
@@ -226,6 +222,20 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
       : presentedOptions;
 
     const matchingOptions = value ? getMatchingOptions(children, value) : [];
+
+    // In a MultiCombobox, the input value is always the query. Once the
+    // user selects an option, the query is cleared.
+    // In a Combobox, the input value is managed by the Combobox. Check the
+    // Combobox.Input component to see how `displayValue` is managed.
+
+    const matchingOption = matchingOptions[0];
+    const displayValue =
+      (multiple
+        ? undefined
+        : (matchingOption ? optionNodeToLabel(matchingOption) : undefined) ??
+          (value as string)) ?? '';
+
+    const inputValue = query ?? displayValue;
 
     // Make sure app list always contains the current value.
     if (!multiple && !query && !!value) {
@@ -280,21 +290,7 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
         // properties.
         multiple={multiple}
       >
-        <Autocomplete.Input
-          as={Fragment}
-          displayValue={
-            multiple
-              ? undefined
-              : (value: string) => {
-                  const matchingOption = matchingOptions[0];
-                  const displayValue = matchingOption
-                    ? optionNodeToLabel(matchingOption)
-                    : undefined;
-
-                  return displayValue ?? value;
-                }
-          }
-        >
+        <Autocomplete.Input as={Fragment} displayValue={() => displayValue}>
           {({ open }) => {
             const TrailingIcon = open ? TriangleUpIcon : TriangleDownIcon;
             const visualState = open
