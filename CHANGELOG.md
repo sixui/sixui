@@ -1,3 +1,15 @@
+# v0.0.108 (Fri Mar 15 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: Combobox: selectOnFocus prop ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.107 (Fri Mar 15 2024)
 
 #### ⚠️ Pushed to `main`
