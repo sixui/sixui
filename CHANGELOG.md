@@ -1,3 +1,15 @@
+# v0.0.104 (Fri Mar 15 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: single select value can be null ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.103 (Thu Mar 14 2024)
 
 #### ⚠️ Pushed to `main`
