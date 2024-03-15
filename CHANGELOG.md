@@ -1,3 +1,15 @@
+# v0.0.107 (Fri Mar 15 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: controlled and uncontrolled states of Select and Combobox ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.106 (Fri Mar 15 2024)
 
 #### ⚠️ Pushed to `main`
