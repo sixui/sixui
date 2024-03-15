@@ -6,7 +6,7 @@ Ready-to-use foundational React components.
 - Leverages Meta's [StyleX](https://github.com/facebook/stylex/) for near zero-runtime styling.
 - Fully themable through CSS styles or CSS vars.
 - Type-safe APIs, styles and themes.
-- Deploys on [Chromatic](https://www.chromatic.com/library?appId=65b3729830a9a664ba7336f5).
+- Deploys on [Chromatic](https://65b3729830a9a664ba7336f5-mgbxgkdzhu.chromatic.com/).
 
 ## Prepare
 

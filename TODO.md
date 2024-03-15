@@ -16,7 +16,11 @@
 
 - Combobox
 
-  - FIXME: quand on met une custom value et qu'on blur, c'est le 1er item de la liste qui est sélectionné
+  - select text on focus
+
+- Combobox, Select
+
+  - Scrollable menu
 
 - MultiCombobox
 

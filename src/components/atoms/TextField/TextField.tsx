@@ -84,6 +84,7 @@ export type ITextFieldProps = IContainerProps<ITextFieldStyleKey> &
     | 'name'
     | 'disabled'
     | 'autoComplete'
+    | 'spellCheck'
     | 'autoCapitalize'
     | 'minLength'
     | 'maxLength'

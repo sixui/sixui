@@ -1,5 +1,6 @@
 import type { Decorator, Preview } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
+import { themes } from '@storybook/theming';
 
 import { modes } from './modes';
 import { ThemeProvider } from '@/components/utils/Theme';
@@ -16,17 +17,22 @@ import { darkColorRoles } from '@/themes/base/vars/darkColorsRoles';
 // import { shapeTheme } from '@/themes/variant/vars/shape.stylex';
 
 import '@/styles/main.css';
+import '@/styles/storybook.css';
 
 const preview: Preview = {
   parameters: {
     // https://github.com/storybookjs/storybook/issues/17098#issuecomment-1049679681
     docs: {
+      theme: themes.dark,
       source: {
         type: 'code',
       },
     },
     // actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
+      controls: {
+        expanded: true,
+      },
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
@@ -42,11 +48,6 @@ const preview: Preview = {
     chromatic: { modes },
     // This allows custom storybook body padding.
     layout: 'none',
-    pseudo: {
-      hover: ['[data-hovered]'],
-      focus: ['[data-focused]'],
-      active: ['[data-pressed]'],
-    },
   },
 };
 
@@ -54,6 +55,7 @@ export const styles = stylex.create({
   storyWrapper: {
     backgroundColor: colorRolesVars.surface,
     padding: '2rem',
+    width: '100%',
   },
 });
 

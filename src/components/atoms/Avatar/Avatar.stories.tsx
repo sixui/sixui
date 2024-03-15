@@ -7,6 +7,7 @@ import { Avatar, type IAvatarProps } from './Avatar';
 
 const meta = {
   component: Avatar,
+  // tags: ['autodocs'],
 } satisfies Meta<typeof Avatar>;
 
 type IStory = StoryObj<typeof meta>;
@@ -29,7 +30,9 @@ export const Variants: IStory = {
       ]}
     />
   ),
-  args: defaultArgs,
+  args: {
+    ...defaultArgs,
+  },
 };
 
 export const Image: IStory = {

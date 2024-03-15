@@ -2946,6 +2946,7 @@ __metadata:
     "@headlessui/react": "npm:^1.7.18"
     "@olivierpascal/helpers": "npm:^0.0.67"
     "@storybook/addon-actions": "npm:^8.0.0"
+    "@storybook/addon-docs": "npm:^8.0.0"
     "@storybook/addon-essentials": "npm:^8.0.0"
     "@storybook/addon-interactions": "npm:^8.0.0"
     "@storybook/blocks": "npm:^8.0.0"
@@ -2988,7 +2989,6 @@ __metadata:
     react-transition-group: "npm:^4.4.5"
     rimraf: "npm:^5.0.5"
     storybook: "npm:^8.0.0"
-    storybook-addon-pseudo-states: "npm:^2.2.1"
     tsc-alias: "npm:^1.8.8"
     typescript: "npm:^5.4.2"
     vite: "npm:^4.5.2"
@@ -3037,7 +3037,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-docs@npm:8.0.0":
+"@storybook/addon-docs@npm:8.0.0, @storybook/addon-docs@npm:^8.0.0":
   version: 8.0.0
   resolution: "@storybook/addon-docs@npm:8.0.0"
   dependencies:
@@ -12023,26 +12023,6 @@ __metadata:
   version: 2.14.2
   resolution: "store2@npm:2.14.2"
   checksum: 10/896cb4c75b94b630206e0ef414f78d656a5d2498127094d9d0852e1e7b88509b3a7972c92cad3e74ee34ef6b06d25083ad2ac38880254ccb2d40b7930dc0ed01
-  languageName: node
-  linkType: hard
-
-"storybook-addon-pseudo-states@npm:^2.2.1":
-  version: 2.2.1
-  resolution: "storybook-addon-pseudo-states@npm:2.2.1"
-  peerDependencies:
-    "@storybook/components": ^7.4.6
-    "@storybook/core-events": ^7.4.6
-    "@storybook/manager-api": ^7.4.6
-    "@storybook/preview-api": ^7.4.6
-    "@storybook/theming": ^7.4.6
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  peerDependenciesMeta:
-    react:
-      optional: true
-    react-dom:
-      optional: true
-  checksum: 10/28869de0f20d8d2c152418b43bc1ebae566f239f381cef4209daf94b2578f62000e4299d0add10fd52c4fd26c4435e511e4b5f68dd1bfed7bdf7828085ac46fb
   languageName: node
   linkType: hard
 

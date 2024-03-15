@@ -44,9 +44,9 @@ const defaultArgs = {
 } satisfies Partial<ISelectProps>;
 
 const ControlledSelect: React.FC<Omit<ISelectProps, 'onChange'>> = (props) => {
-  const [value, setValue] = useState(props.value ?? '');
+  const [value, setValue] = useState(props.value ?? null);
 
-  const handleChange = (value: string): void => {
+  const handleChange = (value: string | null): void => {
     setValue(value);
     void sbHandleEvent('onChange', value);
   };

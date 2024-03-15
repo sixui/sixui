@@ -31,9 +31,9 @@ export type ISelectBaseProps = Omit<
 } & (
     | {
         multiple: false;
-        value?: string;
+        value?: string | null;
         defaultValue?: string;
-        onChange?: (value: string) => void;
+        onChange?: (value: string | null) => void;
         renderOption?: (
           option: IOption,
           onDelete: (value: string) => void,
@@ -155,7 +155,7 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
     } = props;
 
     const [value, setValue] = useState<(typeof props)['value']>(
-      valueProp ?? defaultValue ?? (multiple ? [] : ''),
+      valueProp ?? defaultValue ?? (multiple ? [] : null),
     );
 
     const handleChange = (value: (typeof props)['value']): void => {

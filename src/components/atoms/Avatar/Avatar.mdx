@@ -1,0 +1,27 @@
+import { Canvas, Meta, Story, Controls, Source, ArgTypes, Primary } from '@storybook/blocks';
+
+import * as AvatarStories from './Avatar.stories';
+
+<Meta of={AvatarStories} />
+
+# Avatar
+
+<Primary />
+
+A checkbox is a square box that can be activated or deactivated when ticked.
+
+Use checkboxes to select one or more options from a list of choices.
+
+## Image
+
+<Canvas of={AvatarStories.Image} source={{code: `
+const a = 'b';
+`}} sourceState = 'shown' />
+
+<ArgTypes of={AvatarStories} />
+
+<Source of={AvatarStories.Image} />
+
+<Source code={`
+const a = 'b';
+`} />
