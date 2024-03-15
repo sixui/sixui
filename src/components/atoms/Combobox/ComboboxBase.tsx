@@ -51,6 +51,7 @@ export type IComboboxBaseProps = Omit<
         moreOption?:
           | React.ReactNode
           | ((props: { total: number; hidden: number }) => React.ReactNode);
+        selectOnFocus?: boolean;
       }
     | {
         multiple: true;
@@ -59,6 +60,7 @@ export type IComboboxBaseProps = Omit<
         onChange?: (value: Array<string>) => void;
         limit?: undefined;
         moreOption?: undefined;
+        selectOnFocus?: undefined;
       }
   );
 
@@ -139,6 +141,7 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
       allowCustomValues,
       limit,
       moreOption,
+      selectOnFocus,
       ...other
     } = props;
 
@@ -273,6 +276,24 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
           })
         : moreOption;
 
+    const handleFocus = (
+      event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+      open: boolean,
+    ): void => {
+      if (!open) {
+        if (
+          lastCloseActionRef.current <
+          Date.now() - MIN_DELAY_BETWEEN_CLOSE_AND_OPEN
+        ) {
+          toggleButtonRef.current?.click();
+        }
+
+        if (selectOnFocus) {
+          event.target.select();
+        }
+      }
+    };
+
     return (
       <Autocomplete
         {...stylex.props(styles.host, disabled && styles.host$disabled, sx)}
@@ -319,14 +340,7 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
                 }
                 autoComplete='off'
                 onChange={(event) => setQuery(event.target.value)}
-                onFocus={() =>
-                  open
-                    ? undefined
-                    : lastCloseActionRef.current <
-                        Date.now() - MIN_DELAY_BETWEEN_CLOSE_AND_OPEN
-                      ? toggleButtonRef.current?.click()
-                      : undefined
-                }
+                onFocus={(event) => handleFocus(event, open)}
                 value={inputValue}
                 onKeyDown={multiple ? handleKeyDown : undefined}
               >

@@ -195,6 +195,10 @@ const useCases: Array<IComponentPresentation<IComboboxProps>> = [
       ),
     },
   },
+  {
+    legend: 'Select on Focus',
+    props: { children: options, selectOnFocus: true },
+  },
 ];
 
 export const UseCases: IStory = {
