@@ -1,11 +1,5 @@
 import stylex from '@stylexjs/stylex';
-import {
-  Fragment,
-  forwardRef,
-  Children,
-  isValidElement,
-  useState,
-} from 'react';
+import { Fragment, forwardRef, Children, isValidElement } from 'react';
 import { Listbox } from '@headlessui/react';
 import { asArray, filterUndefineds } from '@olivierpascal/helpers';
 
@@ -18,6 +12,7 @@ import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 import { SelectOption, type ISelectOptionProps } from './SelectOption';
 import { InputChip } from '@/components/atoms/Chip';
+import { useControlled } from '@/hooks/useControlled';
 
 type IOption = React.ReactElement<ISelectOptionProps>;
 
@@ -154,9 +149,11 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
       ...other
     } = props;
 
-    const [value, setValue] = useState<(typeof props)['value']>(
-      valueProp ?? defaultValue ?? (multiple ? [] : null),
-    );
+    const [value, setValue] = useControlled({
+      controlled: valueProp,
+      default: defaultValue ?? (multiple ? [] : null),
+      name: 'SelectBase',
+    });
 
     const handleChange = (value: (typeof props)['value']): void => {
       setValue(value);

@@ -24,6 +24,7 @@ import { reactNodeToString } from '@/helpers/react/nodeToString';
 import { componentVars as textFieldVars } from '@/themes/base/TextField/TextField.stylex';
 import { ComboboxOption, type IComboboxOptionProps } from './ComboboxOption';
 import { InputChip } from '@/components/atoms/Chip';
+import { useControlled } from '@/hooks/useControlled';
 
 const MIN_DELAY_BETWEEN_CLOSE_AND_OPEN = 300;
 
@@ -139,10 +140,13 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
       ...other
     } = props;
 
+    const [value, setValue] = useControlled({
+      controlled: valueProp,
+      default: defaultValue ?? (multiple ? [] : null),
+      name: 'ComboboxBase',
+    });
+
     const toggleButtonRef = useRef<HTMLButtonElement>(null);
-    const [value, setValue] = useState<(typeof props)['value']>(
-      valueProp ?? defaultValue ?? (multiple ? [] : ''),
-    );
     const [query, setQuery] = useState<string | undefined>(undefined);
 
     const handleChange = (value: (typeof props)['value']): void => {
