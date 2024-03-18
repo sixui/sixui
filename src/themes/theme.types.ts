@@ -114,6 +114,10 @@ import type {
   IMenuListStyleKey,
   IMenuListStyleVarKey,
 } from '@/components/atoms/MenuList';
+import type {
+  IDisclosureStyleKey,
+  IDisclosureStyleVarKey,
+} from '@/components/atoms/Disclosure';
 
 export type ITemplateTheme = {
   vars?: IStyleVarsTheme<ITemplateStyleVarKey>;
@@ -368,6 +372,10 @@ export type ITheme = {
       styles?: ICompiledStyles<IMenuListStyleKey>;
       elevationStyles?: ICompiledStyles<IElevationStyleKey>;
       focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
+    };
+    Disclosure: {
+      vars?: IStyleVarsTheme<IDisclosureStyleVarKey>;
+      styles?: ICompiledStyles<IDisclosureStyleKey>;
     };
   };
 };

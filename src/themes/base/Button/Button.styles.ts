@@ -111,6 +111,7 @@ export const styles: MapNamespaces<IButtonStyles> =
     label: {
       position: 'relative',
       overflow: 'hidden',
+      flexGrow: 1,
 
       color: {
         default: vars.labelTextColor,

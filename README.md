@@ -58,6 +58,7 @@ Components
 - [x] Circular Progress Indicator
 - [x] Combobox
 - [x] Dialog
+- [x] Disclosure
 - [x] Divider
 - [x] FAB
 - [x] Field
