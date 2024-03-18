@@ -1,3 +1,15 @@
+# v0.0.109 (Mon Mar 18 2024)
+
+#### 🐛 Bug Fix
+
+- Feat/n0 101/disclosure [#18](https://github.com/sixui/ui/pull/18) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.108 (Fri Mar 15 2024)
 
 #### ⚠️ Pushed to `main`
