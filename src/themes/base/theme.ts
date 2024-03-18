@@ -198,6 +198,9 @@ import {
   focusRingStyles as menuListFocusRingStyles,
 } from './MenuList/MenuList.styles';
 
+import { componentTheme as DisclosureTheme } from './Disclosure/Disclosure.stylex';
+import { styles as DisclosureStyles } from './Disclosure/Disclosure.styles';
+
 export const theme: ITheme = {
   name: 'Material Design 3',
   colorSchemes: {
@@ -434,6 +437,10 @@ export const theme: ITheme = {
       styles: menuListStyles,
       focusRingStyles: menuListFocusRingStyles,
       elevationStyles: menuListElevationStyles,
+    },
+    Disclosure: {
+      vars: DisclosureTheme,
+      styles: DisclosureStyles,
     },
   },
 };
