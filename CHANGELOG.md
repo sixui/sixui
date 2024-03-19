@@ -1,3 +1,15 @@
+# v0.0.111 (Tue Mar 19 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: inconsistent value when Combobox is nullable ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.110 (Tue Mar 19 2024)
 
 #### ⚠️ Pushed to `main`
