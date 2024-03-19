@@ -155,12 +155,15 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
     });
 
     const toggleButtonRef = useRef<HTMLButtonElement>(null);
-    const [query, setQuery] = useState<string | undefined>(undefined);
+    const [query, setQuery] = useState<string>('');
 
-    const handleChange = (value: (typeof props)['value']): void => {
-      setValue(value);
-      onChange?.(value as string & Array<string>);
-      setTimeout(() => setQuery(undefined));
+    const handleChange = (newValue: (typeof props)['value']): void => {
+      setValue(newValue);
+      setQuery('');
+
+      if (value !== newValue) {
+        onChange?.(newValue as string & Array<string>);
+      }
     };
 
     const openVisualState: IVisualState = { focused: true };
@@ -240,8 +243,6 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
         : (matchingOption ? optionNodeToLabel(matchingOption) : undefined) ??
           (value as string)) ?? '';
 
-    const inputValue = query ?? displayValue;
-
     // Make sure app list always contains the current value.
     if (!multiple && !query && !!value) {
       const valueAsString = value as string;
@@ -313,7 +314,10 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
         // properties.
         multiple={multiple}
       >
-        <Autocomplete.Input as={Fragment} displayValue={() => displayValue}>
+        <Autocomplete.Input
+          as={Fragment}
+          displayValue={() => query || displayValue}
+        >
           {({ open }) => {
             const TrailingIcon = open ? TriangleUpIcon : TriangleDownIcon;
             const visualState = open
@@ -343,7 +347,6 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
                 autoComplete='off'
                 onChange={(event) => setQuery(event.target.value)}
                 onFocus={(event) => handleFocus(event, open)}
-                value={inputValue}
                 onKeyDown={multiple ? handleKeyDown : undefined}
               >
                 {multiple && value && isValueNotEmpty
