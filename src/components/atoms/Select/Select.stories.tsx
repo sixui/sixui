@@ -181,7 +181,7 @@ const useCases: Array<IComponentPresentation<ISelectProps>> = [
   },
 ];
 
-export const UseCases: IStory = {
+export const Basic: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={Select}

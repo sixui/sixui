@@ -201,7 +201,7 @@ const useCases: Array<IComponentPresentation<IComboboxProps>> = [
   },
 ];
 
-export const UseCases: IStory = {
+export const Basic: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={Combobox}
@@ -211,6 +211,21 @@ export const UseCases: IStory = {
     />
   ),
   args: defaultArgs,
+};
+
+export const Nullable: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={Combobox}
+      props={props}
+      cols={variants}
+      rows={useCases}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    nullable: true,
+  },
 };
 
 export default meta;

@@ -163,7 +163,7 @@ const useCases: Array<IComponentPresentation<IMultiComboboxProps>> = [
   },
 ];
 
-export const UseCases: IStory = {
+export const Basic: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={MultiCombobox}

@@ -52,6 +52,7 @@ export type IComboboxBaseProps = Omit<
           | React.ReactNode
           | ((props: { total: number; hidden: number }) => React.ReactNode);
         selectOnFocus?: boolean;
+        nullable?: boolean;
       }
     | {
         multiple: true;
@@ -61,6 +62,7 @@ export type IComboboxBaseProps = Omit<
         limit?: undefined;
         moreOption?: undefined;
         selectOnFocus?: undefined;
+        nullable?: undefined;
       }
   );
 
@@ -142,6 +144,7 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
       limit,
       moreOption,
       selectOnFocus,
+      nullable: nullableProp,
       ...other
     } = props;
 
@@ -180,8 +183,7 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
 
     // In a MultiCombobox, options are toggled on and off, resulting in an
     // empty array (rather than null) if nothing is selected.
-    // In a Combobox, when no option is selected, the value is null.
-    const nullable = multiple ? undefined : true;
+    const nullable = multiple ? undefined : nullableProp;
 
     const deleteValue = (valueToDelete: string): void => {
       const updatedValues = Array.isArray(value)
