@@ -1,3 +1,15 @@
+# v0.0.118 (Wed Mar 20 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: better styles for Disclosure button ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.117 (Wed Mar 20 2024)
 
 #### ⚠️ Pushed to `main`
