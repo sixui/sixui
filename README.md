@@ -59,6 +59,8 @@ Components
 - [x] Combobox
 - [x] Dialog
 - [x] Disclosure
+- [x] DisclosureButton
+- [x] DisclosurePanel
 - [x] Divider
 - [x] FAB
 - [x] Field

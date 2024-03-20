@@ -198,8 +198,13 @@ import {
   focusRingStyles as menuListFocusRingStyles,
 } from './MenuList/MenuList.styles';
 
-import { componentTheme as DisclosureTheme } from './Disclosure/Disclosure.stylex';
 import { styles as DisclosureStyles } from './Disclosure/Disclosure.styles';
+
+import { componentTheme as DisclosureButtonTheme } from './DisclosureButton/DisclosureButton.stylex';
+import { styles as DisclosureButtonStyles } from './DisclosureButton/DisclosureButton.styles';
+
+import { componentTheme as DisclosurePanelTheme } from './DisclosurePanel/DisclosurePanel.stylex';
+import { styles as DisclosurePanelStyles } from './DisclosurePanel/DisclosurePanel.styles';
 
 export const theme: ITheme = {
   name: 'Material Design 3',
@@ -439,8 +444,15 @@ export const theme: ITheme = {
       elevationStyles: menuListElevationStyles,
     },
     Disclosure: {
-      vars: DisclosureTheme,
       styles: DisclosureStyles,
+    },
+    DisclosureButton: {
+      vars: DisclosureButtonTheme,
+      styles: DisclosureButtonStyles,
+    },
+    DisclosurePanel: {
+      vars: DisclosurePanelTheme,
+      styles: DisclosurePanelStyles,
     },
   },
 };

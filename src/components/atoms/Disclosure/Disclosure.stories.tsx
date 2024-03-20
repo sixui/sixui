@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faFolderOpen,
   faFolderClosed,
+  faArrowDown,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { Disclosure, type IDisclosureProps } from './Disclosure';
@@ -13,14 +14,21 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {
-  label: 'Advanced options',
-  children: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-} satisfies Partial<IDisclosureProps>;
+const defaultArgs = {} satisfies Partial<IDisclosureProps>;
 
 export const Basic: IStory = {
   render: (props) => <Disclosure {...props} />,
-  args: defaultArgs,
+  args: {
+    ...defaultArgs,
+    children: (
+      <>
+        <Disclosure.Button>Advanced options</Disclosure.Button>
+        <Disclosure.Panel>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </Disclosure.Panel>
+      </>
+    ),
+  },
 };
 
 export const DefaultOpen: IStory = {
@@ -28,6 +36,48 @@ export const DefaultOpen: IStory = {
   args: {
     ...defaultArgs,
     defaultOpen: true,
+    children: (
+      <>
+        <Disclosure.Button>Advanced options</Disclosure.Button>
+        <Disclosure.Panel>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </Disclosure.Panel>
+      </>
+    ),
+  },
+};
+
+export const TrailingIcon: IStory = {
+  render: (props) => <Disclosure {...props} />,
+  args: {
+    ...defaultArgs,
+    children: (
+      <>
+        <Disclosure.Button trailing>Advanced options</Disclosure.Button>
+        <Disclosure.Panel>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </Disclosure.Panel>
+      </>
+    ),
+  },
+};
+
+export const CustomExpandIcon: IStory = {
+  render: (props) => <Disclosure {...props} />,
+  args: {
+    ...defaultArgs,
+    children: (
+      <>
+        <Disclosure.Button
+          expandIcon={<FontAwesomeIcon icon={faArrowDown} fixedWidth />}
+        >
+          Advanced options
+        </Disclosure.Button>
+        <Disclosure.Panel>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </Disclosure.Panel>
+      </>
+    ),
   },
 };
 
@@ -35,8 +85,19 @@ export const CustomIcons: IStory = {
   render: (props) => <Disclosure {...props} />,
   args: {
     ...defaultArgs,
-    disclosedIcon: <FontAwesomeIcon icon={faFolderOpen} fixedWidth />,
-    concealedIcon: <FontAwesomeIcon icon={faFolderClosed} fixedWidth />,
+    children: (
+      <>
+        <Disclosure.Button
+          expandIcon={<FontAwesomeIcon icon={faFolderClosed} fixedWidth />}
+          collapseIcon={<FontAwesomeIcon icon={faFolderOpen} fixedWidth />}
+        >
+          Advanced options
+        </Disclosure.Button>
+        <Disclosure.Panel>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </Disclosure.Panel>
+      </>
+    ),
   },
 };
 

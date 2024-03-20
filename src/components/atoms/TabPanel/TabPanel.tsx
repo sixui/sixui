@@ -1,6 +1,5 @@
 import stylex from '@stylexjs/stylex';
 import { forwardRef } from 'react';
-import { asArray } from '@olivierpascal/helpers';
 
 import type { IContainerProps } from '@/helpers/types';
 import { useTabContext } from '../Tabs/useTabContext';
@@ -23,12 +22,7 @@ export const TabPanel = forwardRef<HTMLDivElement, ITabPanelProps>(
     const id = tabContext && anchor ? `${tabContext.id}-${anchor}` : undefined;
 
     return (
-      <div
-        {...stylex.props(...asArray(sx))}
-        ref={ref}
-        role='tabpanel'
-        aria-labelledby={id}
-      >
+      <div {...stylex.props(sx)} ref={ref} role='tabpanel' aria-labelledby={id}>
         {children}
       </div>
     );

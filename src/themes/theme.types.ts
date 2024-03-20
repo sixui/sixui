@@ -114,10 +114,15 @@ import type {
   IMenuListStyleKey,
   IMenuListStyleVarKey,
 } from '@/components/atoms/MenuList';
+import type { IDisclosureStyleKey } from '@/components/atoms/Disclosure';
 import type {
-  IDisclosureStyleKey,
-  IDisclosureStyleVarKey,
-} from '@/components/atoms/Disclosure';
+  IDisclosureButtonStyleKey,
+  IDisclosureButtonStyleVarKey,
+} from '@/components/atoms/DisclosureButton';
+import type {
+  IDisclosurePanelStyleKey,
+  IDisclosurePanelStyleVarKey,
+} from '@/components/atoms/DisclosurePanel';
 
 export type ITemplateTheme = {
   vars?: IStyleVarsTheme<ITemplateStyleVarKey>;
@@ -374,8 +379,15 @@ export type ITheme = {
       focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
     };
     Disclosure: {
-      vars?: IStyleVarsTheme<IDisclosureStyleVarKey>;
       styles?: ICompiledStyles<IDisclosureStyleKey>;
+    };
+    DisclosureButton: {
+      vars?: IStyleVarsTheme<IDisclosureButtonStyleVarKey>;
+      styles?: ICompiledStyles<IDisclosureButtonStyleKey>;
+    };
+    DisclosurePanel: {
+      vars?: IStyleVarsTheme<IDisclosurePanelStyleVarKey>;
+      styles?: ICompiledStyles<IDisclosurePanelStyleKey>;
     };
   };
 };
