@@ -254,7 +254,7 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
           }}
         </Listbox.Button>
         <Listbox.Options {...stylex.props(styles.options)}>
-          <MenuList {...stylex.props(styles.menuList)}>
+          <MenuList sx={styles.menuList}>
             {visibleOptions}
             {hasMore ? (
               <>

@@ -385,7 +385,7 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
 
             <Transition as={Fragment} afterLeave={() => setQuery('')}>
               <Autocomplete.Options {...stylex.props(styles.options)}>
-                <MenuList {...stylex.props(styles.menuList)}>
+                <MenuList sx={styles.menuList}>
                   {visibleOptions?.length === 0 && !!query ? (
                     allowCustomValues ? (
                       <ComboboxOption value={query}>
