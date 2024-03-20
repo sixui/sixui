@@ -1,3 +1,15 @@
+# v0.0.114 (Wed Mar 20 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: MenuList styles in Select and Combobox ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.113 (Wed Mar 20 2024)
 
 #### ⚠️ Pushed to `main`
