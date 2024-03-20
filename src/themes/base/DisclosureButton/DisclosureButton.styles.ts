@@ -3,14 +3,17 @@ import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
 import type { IDisclosureButtonStyleKey } from '@/components/atoms/DisclosureButton';
+import type { IItemStyleKey } from '@/components/atoms/Item';
 import { componentVars as vars } from './DisclosureButton.stylex';
 import { componentVars as listItemVars } from '../ListItem/ListItem.stylex';
+import { componentVars as itemVars } from '../Item/Item.stylex';
 
 type IDisclosureButtonStyles = IStyles<IDisclosureButtonStyleKey>;
 export const styles: MapNamespaces<IDisclosureButtonStyles> =
   stylex.create<IDisclosureButtonStyles>({
     host: {
       flexGrow: 1,
+
       // eslint-disable-next-line @stylexjs/valid-styles
       [listItemVars.containerShape]: vars.containerShape,
 
@@ -86,3 +89,21 @@ export const styles: MapNamespaces<IDisclosureButtonStyles> =
       transform: 'rotate(180deg)',
     },
   });
+
+type IItemStyles = IStyles<IItemStyleKey>;
+export const itemStyles: MapNamespaces<IItemStyles> = stylex.create<
+  IStyles<IItemStyleKey>
+>({
+  label: {
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [itemVars.labelTextFont]: vars.textFont,
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [itemVars.labelTextLineHeight]: vars.textLineHeight,
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [itemVars.labelTextSize]: vars.textSize,
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [itemVars.labelTextLetterSpacing]: vars.textLetterSpacing,
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [itemVars.labelTextWeight]: vars.textWeight,
+  },
+});

@@ -384,6 +384,7 @@ export type ITheme = {
     DisclosureButton: {
       vars?: IStyleVarsTheme<IDisclosureButtonStyleVarKey>;
       styles?: ICompiledStyles<IDisclosureButtonStyleKey>;
+      itemStyles?: ICompiledStyles<IItemStyleKey>;
     };
     DisclosurePanel: {
       vars?: IStyleVarsTheme<IDisclosurePanelStyleVarKey>;

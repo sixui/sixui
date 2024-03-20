@@ -101,7 +101,7 @@ const longTextColProps = [
     styles: [
       itemStyles,
       stylex.create<IStyles<IItemStyleKey>>({
-        children: {
+        label: {
           // Prevent lines from wrapping
           whiteSpace: 'nowrap',
         },

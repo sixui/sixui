@@ -85,7 +85,7 @@ export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
     inset: 0,
     position: 'absolute',
   },
-  children: {
+  label: {
     // Needed since the default slot can have just text content, and ellipsis
     // need an inline display.
     display: 'inline',

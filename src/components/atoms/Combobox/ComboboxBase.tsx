@@ -84,6 +84,7 @@ const styles = stylex.create({
   },
 });
 
+// TODO: migrate in theme
 const fieldStyles = stylex.create({
   contentSlot: {
     display: 'flex',

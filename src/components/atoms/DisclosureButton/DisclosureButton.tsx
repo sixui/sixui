@@ -1,11 +1,17 @@
 import { forwardRef, useMemo, Fragment } from 'react';
 import { Disclosure as HeadlessDisclosure } from '@headlessui/react';
+import { asArray } from '@olivierpascal/helpers';
 
-import type { IContainerProps } from '@/helpers/types';
+import type {
+  IContainerProps,
+  IZeroOrMore,
+  ICompiledStyles,
+} from '@/helpers/types';
 import type {
   IDisclosureButtonStyleKey,
   IDisclosureButtonStyleVarKey,
 } from './DisclosureButton.styledefs';
+import type { IItemStyleKey } from '@/components/atoms/Item';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
@@ -14,6 +20,9 @@ import { ReactComponent as ChevronDown } from '@/assets/ChevronDown.svg';
 
 export type IDisclosureButtonProps =
   IContainerProps<IDisclosureButtonStyleKey> & {
+    innerStyles?: {
+      item?: IZeroOrMore<ICompiledStyles<IItemStyleKey>>;
+    };
     collapseIcon?: React.ReactNode;
     expandIcon?: React.ReactNode;
     trailing?: boolean;
@@ -26,8 +35,16 @@ export const DisclosureButton = forwardRef<
   HTMLButtonElement,
   IDisclosureButtonProps
 >(function DisclosureButton(props, ref) {
-  const { styles, sx, collapseIcon, expandIcon, trailing, children, ...other } =
-    props;
+  const {
+    styles,
+    sx,
+    innerStyles,
+    collapseIcon,
+    expandIcon,
+    trailing,
+    children,
+    ...other
+  } = props;
 
   const { theme } = useComponentTheme('DisclosureButton');
   const stylesCombinator = useMemo(
@@ -64,6 +81,9 @@ export const DisclosureButton = forwardRef<
               sx,
               theme.vars,
             ]}
+            innerStyles={{
+              item: [theme.itemStyles, ...asArray(innerStyles?.item)],
+            }}
             leadingIcon={trailing ? null : icon}
             trailingIcon={trailing ? icon : null}
             type='button'

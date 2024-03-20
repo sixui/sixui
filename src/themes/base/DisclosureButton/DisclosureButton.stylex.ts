@@ -2,7 +2,7 @@ import stylex from '@stylexjs/stylex';
 
 import type { IStyleVars } from '@/helpers/types';
 import type { IDisclosureButtonStyleVarKey } from '@/components/atoms/DisclosureButton';
-
+import { typescaleVars } from '../vars/typo.stylex';
 import { shapeVars } from '../vars/shape.stylex';
 import { colorRolesVars } from '../vars/colorRoles.stylex';
 
@@ -20,6 +20,11 @@ const vars: Partial<IStyleVars<IDisclosureButtonStyleVarKey>> = {
   textColor$focus: colorRolesVars.onSecondaryContainer,
   textColor$hover: colorRolesVars.onSecondaryContainer,
   textColor$pressed: colorRolesVars.onSecondaryContainer,
+  textFont: typescaleVars.titleFont$md,
+  textLineHeight: typescaleVars.titleLineHeight$md,
+  textSize: typescaleVars.titleSize$md,
+  textLetterSpacing: typescaleVars.titleLetterSpacing$md,
+  textWeight: typescaleVars.titleWeight$md,
 
   // expandedText
   expandedTextColor: colorRolesVars.onSecondaryContainer,

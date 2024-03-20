@@ -6,7 +6,7 @@ export type IItemStyleKey =
   | 'nonText'
   | 'text'
   | 'overline'
-  | 'children'
+  | 'label'
   | 'headline'
   | 'supportingText'
   | 'trailingSupportingText'

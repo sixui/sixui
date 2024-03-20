@@ -31,10 +31,10 @@ const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
     return (
       <HeadlessDisclosure
         as='div'
+        {...other}
         {...sxf('host', sx)}
         ref={ref}
         defaultOpen={defaultOpen}
-        {...other}
       >
         {children}
       </HeadlessDisclosure>

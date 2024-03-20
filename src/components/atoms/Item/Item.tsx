@@ -58,7 +58,7 @@ export const Item = forwardRef<HTMLDivElement, IItemProps>(
 
         <div {...sxf('text')}>
           {overline ? <div {...sxf('overline')}>{overline}</div> : null}
-          <div {...sxf('children')}>{children}</div>
+          <div {...sxf('label')}>{children}</div>
           {headline ? <div {...sxf('headline')}>{headline}</div> : null}
           {supportingText ? (
             <div {...sxf('supportingText')}>{supportingText}</div>

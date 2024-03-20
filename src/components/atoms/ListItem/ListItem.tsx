@@ -29,7 +29,7 @@ import {
   type IItemStyleVarKey,
   type IItemStyleKey,
   Item,
-} from '../Item';
+} from '@/components/atoms/Item';
 import { useForkRef } from '@/hooks/useForkRef';
 
 // https://github.com/material-components/material-web/blob/main/list/internal/listitem/list-item.ts

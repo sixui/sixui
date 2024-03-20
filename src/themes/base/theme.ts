@@ -200,11 +200,14 @@ import {
 
 import { styles as DisclosureStyles } from './Disclosure/Disclosure.styles';
 
-import { componentTheme as DisclosureButtonTheme } from './DisclosureButton/DisclosureButton.stylex';
-import { styles as DisclosureButtonStyles } from './DisclosureButton/DisclosureButton.styles';
+import { componentTheme as disclosureButtonTheme } from './DisclosureButton/DisclosureButton.stylex';
+import {
+  styles as disclosureButtonStyles,
+  itemStyles as buttonItemStyles,
+} from './DisclosureButton/DisclosureButton.styles';
 
-import { componentTheme as DisclosurePanelTheme } from './DisclosurePanel/DisclosurePanel.stylex';
-import { styles as DisclosurePanelStyles } from './DisclosurePanel/DisclosurePanel.styles';
+import { componentTheme as disclosurePanelTheme } from './DisclosurePanel/DisclosurePanel.stylex';
+import { styles as disclosurePanelStyles } from './DisclosurePanel/DisclosurePanel.styles';
 
 export const theme: ITheme = {
   name: 'Material Design 3',
@@ -447,12 +450,13 @@ export const theme: ITheme = {
       styles: DisclosureStyles,
     },
     DisclosureButton: {
-      vars: DisclosureButtonTheme,
-      styles: DisclosureButtonStyles,
+      vars: disclosureButtonTheme,
+      styles: disclosureButtonStyles,
+      itemStyles: buttonItemStyles,
     },
     DisclosurePanel: {
-      vars: DisclosurePanelTheme,
-      styles: DisclosurePanelStyles,
+      vars: disclosurePanelTheme,
+      styles: disclosurePanelStyles,
     },
   },
 };
