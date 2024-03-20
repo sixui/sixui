@@ -1,3 +1,15 @@
+# v0.0.119 (Wed Mar 20 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: Select and Combobox allows empty values ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.118 (Wed Mar 20 2024)
 
 #### ⚠️ Pushed to `main`
