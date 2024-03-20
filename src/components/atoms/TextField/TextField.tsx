@@ -96,7 +96,7 @@ export type ITextFieldProps = IContainerProps<ITextFieldStyleKey> &
     'min' | 'max' | 'step' | 'pattern' | 'multiple'
   > &
   Pick<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'cols' | 'rows'> &
-  Omit<IFieldBaseProps, 'styles' | 'textarea' | 'populated' | 'resizable'> & {
+  Omit<IFieldBaseProps, 'styles' | 'textarea' | 'resizable'> & {
     innerStyles?: {
       field?: IZeroOrMore<ICompiledStyles<IFieldBaseStyleKey>>;
     };
@@ -171,6 +171,7 @@ export const TextField = forwardRef<
     required,
     start,
     end,
+    populated: populatedProp,
     leadingIcon,
     trailingIcon,
     supportingText,
@@ -236,6 +237,9 @@ export const TextField = forwardRef<
     controlled: valueProp,
     default: defaultValue,
     name: 'TextField',
+    // TODO: wait for a fix and delete this option.
+    // See: https://github.com/tailwindlabs/headlessui/issues/3044
+    noDefaultStateWarning: true,
   });
   const { reportValidity, nativeErrorText } =
     useValidationState(inputOrTextareaRef);
@@ -249,7 +253,8 @@ export const TextField = forwardRef<
   const isTextarea = type === 'textarea';
   const hasError = hasErrorProp || !!nativeErrorText;
   const errorText = hasErrorProp ? errorTextProp : nativeErrorText;
-  const populated = !!value || !!inputOrTextareaRef.current?.value;
+  const populated =
+    populatedProp ?? (!!value || !!inputOrTextareaRef.current?.value);
 
   const handleChange: React.ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
@@ -332,6 +337,7 @@ export const TextField = forwardRef<
           minLength={hasMinLength ? minLength : undefined}
           maxLength={hasMaxLength ? maxLength : undefined}
           value={isControlled ? value : undefined}
+          defaultValue={defaultValue}
           onChange={handleChange}
           onFocus={onFocus}
           onBlur={handleBlur}
@@ -365,6 +371,7 @@ export const TextField = forwardRef<
           minLength={hasMinLength ? minLength : undefined}
           maxLength={hasMaxLength ? maxLength : undefined}
           value={isControlled ? value : undefined}
+          defaultValue={defaultValue}
           onChange={handleChange}
           onFocus={onFocus}
           onBlur={handleBlur}
@@ -384,6 +391,7 @@ export const TextField = forwardRef<
     sxf,
     isTextarea,
     value,
+    defaultValue,
     handleChange,
     onFocus,
     handleBlur,

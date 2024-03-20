@@ -22,6 +22,10 @@ type IUseControlledProps<T> = {
    * The name of the state variable displayed in warnings.
    */
   state?: string;
+
+  // TODO: wait for a fix and delete this option.
+  // See: https://github.com/tailwindlabs/headlessui/issues/3044
+  noDefaultStateWarning?: boolean;
 };
 
 // https://github.com/mui/material-ui/blob/master/packages/mui-utils/src/useControlled/useControlled.js
@@ -29,6 +33,7 @@ type IUseControlledProps<T> = {
 export const useControlled = <TValue>({
   name,
   state = 'value',
+  noDefaultStateWarning,
   ...props
 }: IUseControlledProps<TValue | undefined>): [
   TValue | undefined,
@@ -65,16 +70,27 @@ export const useControlled = <TValue>({
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
-      if (!isControlled && defaultValue !== props.default) {
+      if (
+        !noDefaultStateWarning &&
+        !isControlled &&
+        defaultValue !== props.default
+      ) {
         // eslint-disable-next-line no-console
         console.error(
           [
-            `sixui: A component is changing the default ${state} state of an uncontrolled ${name} from "${JSON.stringify(props.default)}" to "${JSON.stringify(defaultValue)}" after being initialized. ` +
+            `sixui: A component is changing the default ${state} state of an uncontrolled ${name} from "${JSON.stringify(defaultValue)}" to "${JSON.stringify(props.default)}" after being initialized. ` +
               `To suppress this warning opt to use a controlled ${name}.`,
           ].join('\n'),
         );
       }
-    }, [isControlled, state, name, defaultValue, props.default]);
+    }, [
+      noDefaultStateWarning,
+      isControlled,
+      state,
+      name,
+      defaultValue,
+      props.default,
+    ]);
   }
 
   const setValueIfUncontrolled = useCallback(

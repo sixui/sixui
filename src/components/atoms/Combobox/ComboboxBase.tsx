@@ -7,7 +7,7 @@ import {
   isValidElement,
   useRef,
 } from 'react';
-import { Combobox as Autocomplete } from '@headlessui/react';
+import { Combobox as Autocomplete, Transition } from '@headlessui/react';
 import { asArray, filterUndefineds } from '@olivierpascal/helpers';
 
 import { createFilter, type IFilter } from '@/helpers/createFilter';
@@ -159,8 +159,8 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
 
     const handleChange = (newValue: (typeof props)['value']): void => {
       setValue(newValue);
-      setQuery('');
 
+      // TODO: check array equality?
       if (value !== newValue) {
         onChange?.(newValue as string & Array<string>);
       }
@@ -178,9 +178,7 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
         })
       : undefined;
     const presentedOptions = filteredOptions ?? options;
-    const isValueNotEmpty = Array.isArray(value)
-      ? value.length
-      : value !== undefined;
+    const hasValue = Array.isArray(value) ? !!value.length : !!value?.length;
 
     const lastCloseActionRef = useRef<number>(0);
 
@@ -314,94 +312,99 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
         // properties.
         multiple={multiple}
       >
-        <Autocomplete.Input
-          as={Fragment}
-          displayValue={() => query || displayValue}
-        >
-          {({ open }) => {
-            const TrailingIcon = open ? TriangleUpIcon : TriangleDownIcon;
-            const visualState = open
-              ? {
-                  ...visualStateProp,
-                  ...openVisualState,
-                }
-              : visualStateProp;
+        {({ open }) => (
+          <>
+            <Autocomplete.Input as={Fragment} displayValue={() => displayValue}>
+              {() => {
+                const TrailingIcon = open ? TriangleUpIcon : TriangleDownIcon;
+                const visualState = open
+                  ? {
+                      ...visualStateProp,
+                      ...openVisualState,
+                    }
+                  : visualStateProp;
 
-            return (
-              <TextField
-                {...other}
-                innerStyles={{ field: fieldStyles }}
-                visualState={visualState}
-                end={
-                  <Autocomplete.Button
-                    ref={toggleButtonRef}
-                    as={IconButton}
-                    onClick={() => {
-                      if (open) {
-                        lastCloseActionRef.current = Date.now();
-                      }
-                    }}
-                    icon={<TrailingIcon height='6' />}
-                  />
-                }
-                autoComplete='off'
-                onChange={(event) => setQuery(event.target.value)}
-                onFocus={(event) => handleFocus(event, open)}
-                onKeyDown={multiple ? handleKeyDown : undefined}
-              >
-                {multiple && value && isValueNotEmpty
-                  ? getMatchingOptions(children, value).map((option, index) =>
-                      typeof option === 'string' ? (
-                        <InputChip
-                          key={index}
-                          label={option}
-                          onDelete={
-                            multiple
-                              ? (event) => handleDelete(event, option)
-                              : undefined
+                return (
+                  <TextField
+                    {...other}
+                    innerStyles={{ field: fieldStyles }}
+                    visualState={visualState}
+                    end={
+                      <Autocomplete.Button
+                        ref={toggleButtonRef}
+                        as={IconButton}
+                        onClick={() => {
+                          if (open) {
+                            lastCloseActionRef.current = Date.now();
                           }
-                        />
-                      ) : (
-                        <InputChip
-                          key={index}
-                          label={option.props.children}
-                          onDelete={
-                            multiple
-                              ? (event) =>
-                                  handleDelete(event, option.props.value)
-                              : undefined
-                          }
-                          icon={option.props.leadingIcon}
-                        />
-                      ),
+                        }}
+                        icon={<TrailingIcon height='6' />}
+                      />
+                    }
+                    autoComplete='off'
+                    onChange={(event) => setQuery(event.target.value)}
+                    onFocus={(event) => handleFocus(event, open)}
+                    onKeyDown={multiple ? handleKeyDown : undefined}
+                    populated={hasValue}
+                  >
+                    {multiple && value && hasValue
+                      ? getMatchingOptions(children, value).map(
+                          (option, index) =>
+                            typeof option === 'string' ? (
+                              <InputChip
+                                key={index}
+                                label={option}
+                                onDelete={
+                                  multiple
+                                    ? (event) => handleDelete(event, option)
+                                    : undefined
+                                }
+                              />
+                            ) : (
+                              <InputChip
+                                key={index}
+                                label={optionNodeToLabel(option)}
+                                onDelete={
+                                  multiple
+                                    ? (event) =>
+                                        handleDelete(event, option.props.value)
+                                    : undefined
+                                }
+                                icon={option.props.leadingIcon}
+                              />
+                            ),
+                        )
+                      : null}
+                  </TextField>
+                );
+              }}
+            </Autocomplete.Input>
+
+            <Transition as={Fragment} afterLeave={() => setQuery('')}>
+              <Autocomplete.Options {...stylex.props(styles.options)}>
+                <MenuList>
+                  {visibleOptions?.length === 0 && !!query ? (
+                    allowCustomValues ? (
+                      <ComboboxOption value={query}>
+                        {createOptionText(query)}
+                      </ComboboxOption>
+                    ) : (
+                      <ListItem disabled>{noOptionsText}</ListItem>
                     )
-                  : null}
-              </TextField>
-            );
-          }}
-        </Autocomplete.Input>
-
-        <Autocomplete.Options {...stylex.props(styles.options)}>
-          <MenuList>
-            {visibleOptions?.length === 0 && !!query ? (
-              allowCustomValues ? (
-                <ComboboxOption value={query}>
-                  {createOptionText(query)}
-                </ComboboxOption>
-              ) : (
-                <ListItem disabled>{noOptionsText}</ListItem>
-              )
-            ) : (
-              visibleOptions
-            )}
-            {hasMore ? (
-              <>
-                <MenuListDivider />
-                {renderMoreOption()}
-              </>
-            ) : null}
-          </MenuList>
-        </Autocomplete.Options>
+                  ) : (
+                    visibleOptions
+                  )}
+                  {hasMore ? (
+                    <>
+                      <MenuListDivider />
+                      {renderMoreOption()}
+                    </>
+                  ) : null}
+                </MenuList>
+              </Autocomplete.Options>
+            </Transition>
+          </>
+        )}
       </Autocomplete>
     );
   },
