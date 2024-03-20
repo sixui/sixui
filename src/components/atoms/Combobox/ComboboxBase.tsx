@@ -79,6 +79,9 @@ const styles = stylex.create({
     position: 'absolute',
     width: '100%',
   },
+  menuList: {
+    maxHeight: 300,
+  },
 });
 
 const fieldStyles = stylex.create({
@@ -382,7 +385,7 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
 
             <Transition as={Fragment} afterLeave={() => setQuery('')}>
               <Autocomplete.Options {...stylex.props(styles.options)}>
-                <MenuList>
+                <MenuList {...stylex.props(styles.menuList)}>
                   {visibleOptions?.length === 0 && !!query ? (
                     allowCustomValues ? (
                       <ComboboxOption value={query}>

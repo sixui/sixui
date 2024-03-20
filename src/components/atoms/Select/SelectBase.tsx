@@ -66,6 +66,9 @@ const styles = stylex.create({
     position: 'absolute',
     width: '100%',
   },
+  menuList: {
+    maxHeight: 300,
+  },
   chips: {
     display: 'flex',
     flexDirection: 'row',
@@ -251,7 +254,7 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
           }}
         </Listbox.Button>
         <Listbox.Options {...stylex.props(styles.options)}>
-          <MenuList>
+          <MenuList {...stylex.props(styles.menuList)}>
             {visibleOptions}
             {hasMore ? (
               <>

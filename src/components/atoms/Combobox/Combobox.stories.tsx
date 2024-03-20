@@ -167,6 +167,10 @@ const useCases: Array<IComponentPresentation<IComboboxProps>> = [
     props: { children: pictureOptions },
   },
   {
+    legend: 'Lot of options',
+    props: { children: lotOfOptions },
+  },
+  {
     legend: 'Allow Custom Values',
     props: { children: options, allowCustomValues: true },
   },
