@@ -1,3 +1,15 @@
+# v0.0.113 (Wed Mar 20 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: MenuList is scrollable in Select and Combobox ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.112 (Wed Mar 20 2024)
 
 #### ⚠️ Pushed to `main`
