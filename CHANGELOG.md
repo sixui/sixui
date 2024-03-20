@@ -1,3 +1,15 @@
+# v0.0.116 (Wed Mar 20 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: Disclosure component ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.115 (Wed Mar 20 2024)
 
 #### ⚠️ Pushed to `main`
