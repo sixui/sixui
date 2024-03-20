@@ -144,6 +144,17 @@ const variants: Array<IComponentPresentation<IComboboxProps>> = [
 
 const useCases: Array<IComponentPresentation<IComboboxProps>> = [
   { legend: 'Basic', props: { children: options } },
+  {
+    legend: 'With Empty Option',
+    props: {
+      children: [
+        <Combobox.Option key='empty' value=''>
+          Nothing
+        </Combobox.Option>,
+        ...options,
+      ],
+    },
+  },
   { legend: 'With Label', props: { children: options, label: 'Label' } },
   {
     legend: 'With Placeholder',

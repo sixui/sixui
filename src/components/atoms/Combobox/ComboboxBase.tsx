@@ -231,7 +231,10 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
       ? presentedOptions.slice(0, limit)
       : presentedOptions;
 
-    const matchingOptions = value ? getMatchingOptions(children, value) : [];
+    const matchingOptions =
+      value !== null && value !== undefined
+        ? getMatchingOptions(children, value)
+        : [];
 
     // In a MultiCombobox, the input value is always the query. Once the
     // user selects an option, the query is cleared.

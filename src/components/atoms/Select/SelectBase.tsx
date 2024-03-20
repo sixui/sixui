@@ -160,9 +160,13 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
       name: 'SelectBase',
     });
 
-    const handleChange = (value: (typeof props)['value']): void => {
-      setValue(value);
-      onChange?.(value as string & Array<string>);
+    const handleChange = (newValue: (typeof props)['value']): void => {
+      setValue(newValue);
+
+      // TODO: check array equality?
+      if (value !== newValue) {
+        onChange?.(newValue as string & Array<string>);
+      }
     };
 
     const deleteValue = (valueToDelete: string): void => {
@@ -209,9 +213,10 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
             open: boolean;
             value: (typeof props)['value'];
           }) => {
-            const matchingOptions = value
-              ? getMatchingOptions(children, value)
-              : [];
+            const matchingOptions =
+              value !== null && value !== undefined
+                ? getMatchingOptions(children, value)
+                : [];
             const matchingOption =
               multiple || !matchingOptions.length
                 ? undefined

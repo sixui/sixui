@@ -2,34 +2,27 @@ import { forwardRef, useMemo, Fragment } from 'react';
 import { Disclosure as HeadlessDisclosure } from '@headlessui/react';
 import { asArray } from '@olivierpascal/helpers';
 
-import type {
-  IContainerProps,
-  IZeroOrMore,
-  ICompiledStyles,
-} from '@/helpers/types';
+import type { IContainerProps } from '@/helpers/types';
 import type {
   IDisclosureButtonStyleKey,
   IDisclosureButtonStyleVarKey,
 } from './DisclosureButton.styledefs';
-import type { IItemStyleKey } from '@/components/atoms/Item';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { ListItem } from '@/components/atoms/ListItem';
+import { IListItemProps, ListItem } from '@/components/atoms/ListItem';
 import { ReactComponent as ChevronDown } from '@/assets/ChevronDown.svg';
 
 export type IDisclosureButtonProps =
-  IContainerProps<IDisclosureButtonStyleKey> & {
-    innerStyles?: {
-      item?: IZeroOrMore<ICompiledStyles<IItemStyleKey>>;
+  IContainerProps<IDisclosureButtonStyleKey> &
+    Omit<IListItemProps, 'children'> & {
+      collapseIcon?: React.ReactNode;
+      expandIcon?: React.ReactNode;
+      trailing?: boolean;
+      children:
+        | React.ReactNode
+        | ((props: { open: boolean }) => React.ReactElement);
     };
-    collapseIcon?: React.ReactNode;
-    expandIcon?: React.ReactNode;
-    trailing?: boolean;
-    children:
-      | React.ReactNode
-      | ((props: { open: boolean }) => React.ReactElement);
-  };
 
 export const DisclosureButton = forwardRef<
   HTMLButtonElement,
