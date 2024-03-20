@@ -14,10 +14,11 @@ import { ReactComponent as ChevronDown } from '@/assets/ChevronDown.svg';
 import { ReactComponent as ChevronUp } from '@/assets/ChevronUp.svg';
 
 export type IDisclosureProps = IContainerProps<IDisclosureStyleKey> & {
-  children?: React.ReactNode;
+  children: React.ReactNode | ((props: { open: boolean }) => React.ReactNode);
   disclosedIcon?: React.ReactNode;
   concealedIcon?: React.ReactNode;
   defaultOpen?: boolean;
+  label: React.ReactNode | ((props: { open: boolean }) => React.ReactNode);
 };
 
 export const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
@@ -29,6 +30,7 @@ export const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
       disclosedIcon,
       concealedIcon,
       defaultOpen,
+      label,
       ...other
     } = props;
 
@@ -65,14 +67,12 @@ export const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
                 }
                 type='button'
               >
-                Advanced options
+                {typeof label === 'function' ? label({ open }) : label}
               </ListItem>
             </HeadlessDisclosure.Button>
             <HeadlessDisclosure.Panel as={Fragment}>
               <div {...sxf('panel')}>
-                {children}
-                Yes! You can purchase a license that you can share with your
-                entire team.
+                {typeof children === 'function' ? children({ open }) : children}
               </div>
             </HeadlessDisclosure.Panel>
           </>

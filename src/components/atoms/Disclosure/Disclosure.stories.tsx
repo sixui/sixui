@@ -14,6 +14,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
+  label: 'Advanced options',
   children: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 } satisfies Partial<IDisclosureProps>;
 
