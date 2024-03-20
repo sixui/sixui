@@ -67,7 +67,7 @@ const styles = stylex.create({
     width: '100%',
   },
   menuList: {
-    maxHeight: 300,
+    maxHeight: 320,
   },
   chips: {
     display: 'flex',

@@ -37,7 +37,7 @@ export type IBreadcrumbsProps = IContainerProps<IBreadcrumbsStyleKey> & {
   itemCountAfterCollapse?: number;
   maxItems?: number;
   separator?: React.ReactNode;
-  trailing?: boolean;
+  showTrailingSeparator?: boolean;
   'aria-label'?: string;
 };
 
@@ -53,7 +53,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
       itemCountAfterCollapse = 1,
       maxItems = 8,
       separator = '/',
-      trailing,
+      showTrailingSeparator: trailing,
       ...other
     } = props;
 

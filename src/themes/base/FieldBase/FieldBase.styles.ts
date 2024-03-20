@@ -102,7 +102,6 @@ export const styles: MapNamespaces<IFieldBaseStyles> =
     },
     section$start$withStart: {
       minWidth: vars.leadingContentMinWidth,
-      marginInlineEnd: 4,
     },
     section$start$error: {
       color: {

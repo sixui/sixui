@@ -8,11 +8,6 @@ import { colorRolesVars } from '../vars/colorRoles.stylex';
 const vars: Partial<IStyleVars<IBreadcrumbsStyleVarKey>> = {
   // item
   itemColor: colorRolesVars.onSurface,
-  itemTextFont: typescaleVars.bodyFont$md,
-  itemTextSize: typescaleVars.bodySize$md,
-  itemTextWeight: typescaleVars.bodyWeight$md,
-  itemTextLineHeight: typescaleVars.bodyLineHeight$md,
-  itemTextLetterSpacing: typescaleVars.bodyLetterSpacing$md,
 
   // separator
   separatorColor: colorRolesVars.onSurface,

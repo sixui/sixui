@@ -48,7 +48,7 @@ export const WithTrailingSeparator: IStory = {
   args: {
     ...defaultArgs,
     children: undefined,
-    trailing: true,
+    showTrailingSeparator: true,
   },
 };
 

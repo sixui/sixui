@@ -22,11 +22,6 @@ export const styles: MapNamespaces<IBreadcrumbsStyles> =
     },
     item: {
       color: vars.itemColor,
-      fontFamily: vars.itemTextFont,
-      fontSize: vars.itemTextSize,
-      fontWeight: vars.itemTextWeight,
-      lineHeight: vars.itemTextLineHeight,
-      letterSpacing: vars.itemTextLetterSpacing,
     },
     separator: {
       color: vars.separatorColor,
