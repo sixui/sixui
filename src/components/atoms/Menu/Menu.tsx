@@ -1,6 +1,7 @@
 import stylex from '@stylexjs/stylex';
 import { Fragment, cloneElement, forwardRef } from 'react';
-import { Menu as HeadlessMenu } from '@headlessui/react';
+import { Menu as HeadlessMenu, Portal } from '@headlessui/react';
+import { useFloating } from '@floating-ui/react-dom';
 
 import type { IContainerProps } from '@/helpers/types';
 import { MenuList } from '@/components/atoms/MenuList';
@@ -26,7 +27,7 @@ const styles = stylex.create({
     position: 'relative',
   },
   items: {
-    position: 'absolute',
+    zIndex: 999,
   },
   items$left: {},
   items$center: {
@@ -41,12 +42,16 @@ const styles = stylex.create({
 const Menu = forwardRef<HTMLElement, IMenuProps>(function Menu(props, ref) {
   const { sx, action, anchor = 'left', children } = props;
 
+  const { refs, floatingStyles } = useFloating({
+    placement: 'bottom-start',
+  });
+
   const openVisualState: IVisualState = { hovered: true };
   const openProps = { visualState: openVisualState };
 
   return (
     <HeadlessMenu ref={ref} as='div' {...stylex.props(styles.host, sx)}>
-      <HeadlessMenu.Button as={Fragment}>
+      <HeadlessMenu.Button as={Fragment} ref={refs.setReference}>
         {(bag) =>
           cloneElement(
             typeof action === 'function' ? action(bag) : action,
@@ -54,11 +59,15 @@ const Menu = forwardRef<HTMLElement, IMenuProps>(function Menu(props, ref) {
           )
         }
       </HeadlessMenu.Button>
-      <HeadlessMenu.Items
-        {...stylex.props(styles.items, styles[`items$${anchor}`])}
-      >
-        <MenuList>{children}</MenuList>
-      </HeadlessMenu.Items>
+      <Portal>
+        <HeadlessMenu.Items
+          {...stylex.props(styles.items, styles[`items$${anchor}`])}
+          ref={refs.setFloating}
+          style={floatingStyles}
+        >
+          <MenuList>{children}</MenuList>
+        </HeadlessMenu.Items>
+      </Portal>
     </HeadlessMenu>
   );
 });

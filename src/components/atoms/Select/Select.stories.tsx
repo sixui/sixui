@@ -36,7 +36,7 @@ const styles = stylex.create({
     objectFit: 'cover',
     borderRadius: shapeVars.corner$md,
   },
-  container: {
+  clipper: {
     overflow: 'hidden',
   },
 });
@@ -211,7 +211,7 @@ export const Contained: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={(props) => (
-        <div {...stylex.props(styles.container)}>
+        <div {...stylex.props(styles.clipper)}>
           <Select {...props} />
         </div>
       )}

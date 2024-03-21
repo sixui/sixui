@@ -18,6 +18,12 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
+const styles = stylex.create({
+  clipper: {
+    overflow: 'hidden',
+  },
+});
+
 const defaultArgs = {} satisfies Partial<IMenuProps>;
 
 const items = [
@@ -35,6 +41,31 @@ const items = [
 
 export const FromButton: IStory = {
   render: (props) => <Menu {...props} />,
+  args: {
+    ...defaultArgs,
+    action: ({ open }) => (
+      <Button
+        icon={
+          <FontAwesomeIcon
+            icon={open ? faChevronUp : faChevronDown}
+            size='xs'
+          />
+        }
+        trailingIcon
+      >
+        Open
+      </Button>
+    ),
+    children: items,
+  },
+};
+
+export const Contained: IStory = {
+  render: (props) => (
+    <div {...stylex.props(styles.clipper)}>
+      <Menu {...props} />
+    </div>
+  ),
   args: {
     ...defaultArgs,
     action: ({ open }) => (
