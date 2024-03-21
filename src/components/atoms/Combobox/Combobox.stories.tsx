@@ -36,6 +36,9 @@ const styles = stylex.create({
     objectFit: 'cover',
     borderRadius: shapeVars.corner$md,
   },
+  container: {
+    overflow: 'hidden',
+  },
 });
 
 const defaultArgs = {
@@ -241,6 +244,22 @@ export const Nullable: IStory = {
     ...defaultArgs,
     nullable: true,
   },
+};
+
+export const Contained: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={(props) => (
+        <div {...stylex.props(styles.container)}>
+          <Combobox {...props} />
+        </div>
+      )}
+      props={props}
+      cols={variants}
+      rows={useCases}
+    />
+  ),
+  args: defaultArgs,
 };
 
 export default meta;

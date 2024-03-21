@@ -41,6 +41,9 @@ const styles = stylex.create({
     flexWrap: 'wrap',
     gap: 8,
   },
+  container: {
+    overflow: 'hidden',
+  },
 });
 
 const defaultArgs = {
@@ -167,6 +170,22 @@ export const Basic: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={MultiSelect}
+      props={props}
+      cols={variants}
+      rows={useCases}
+    />
+  ),
+  args: defaultArgs,
+};
+
+export const Contained: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={(props) => (
+        <div {...stylex.props(styles.container)}>
+          <MultiSelect {...props} />
+        </div>
+      )}
       props={props}
       cols={variants}
       rows={useCases}

@@ -36,6 +36,9 @@ const styles = stylex.create({
     objectFit: 'cover',
     borderRadius: shapeVars.corner$md,
   },
+  container: {
+    overflow: 'hidden',
+  },
 });
 
 const defaultArgs = {
@@ -196,6 +199,22 @@ export const Basic: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={Select}
+      props={props}
+      cols={variants}
+      rows={useCases}
+    />
+  ),
+  args: defaultArgs,
+};
+
+export const Contained: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={(props) => (
+        <div {...stylex.props(styles.container)}>
+          <Select {...props} />
+        </div>
+      )}
       props={props}
       cols={variants}
       rows={useCases}

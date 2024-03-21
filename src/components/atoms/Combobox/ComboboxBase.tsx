@@ -7,8 +7,14 @@ import {
   isValidElement,
   useRef,
 } from 'react';
-import { Combobox as Autocomplete, Transition } from '@headlessui/react';
+import {
+  Combobox as Autocomplete,
+  Transition,
+  Portal,
+} from '@headlessui/react';
 import { asArray, filterUndefineds } from '@olivierpascal/helpers';
+import { useFloating } from '@floating-ui/react-dom';
+import { size } from '@floating-ui/dom';
 
 import { createFilter, type IFilter } from '@/helpers/createFilter';
 import { MenuList } from '@/components/atoms/MenuList';
@@ -76,8 +82,7 @@ const styles = stylex.create({
     cursor: 'default',
   },
   options: {
-    position: 'absolute',
-    width: '100%',
+    zIndex: 999,
   },
   menuList: {
     maxHeight: 320,
@@ -135,7 +140,6 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
       sx,
       children,
       visualState: visualStateProp,
-      id,
       onChange,
       disabled,
       defaultValue,
@@ -156,6 +160,18 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
       controlled: valueProp,
       default: defaultValue ?? (multiple ? emptyArrayStableRef : null),
       name: 'ComboboxBase',
+    });
+    const { refs, floatingStyles } = useFloating({
+      placement: 'bottom-start',
+      middleware: [
+        size({
+          apply({ rects, elements }) {
+            Object.assign(elements.floating.style, {
+              width: `${rects.reference.width}px`,
+            });
+          },
+        }),
+      ],
     });
 
     const toggleButtonRef = useRef<HTMLButtonElement>(null);
@@ -307,7 +323,6 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
         {...stylex.props(styles.host, disabled && styles.host$disabled, sx)}
         ref={ref}
         as='div'
-        id={id}
         onChange={handleChange}
         defaultValue={defaultValue}
         value={value}
@@ -334,6 +349,7 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
                 return (
                   <TextField
                     {...other}
+                    wrapperRef={refs.setReference}
                     innerStyles={{ field: fieldStyles }}
                     visualState={visualState}
                     end={
@@ -388,27 +404,33 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
             </Autocomplete.Input>
 
             <Transition as={Fragment} afterLeave={() => setQuery('')}>
-              <Autocomplete.Options {...stylex.props(styles.options)}>
-                <MenuList sx={styles.menuList}>
-                  {visibleOptions?.length === 0 && !!query ? (
-                    allowCustomValues ? (
-                      <ComboboxOption value={query}>
-                        {createOptionText(query)}
-                      </ComboboxOption>
+              <Portal>
+                <Autocomplete.Options
+                  {...stylex.props(styles.options)}
+                  ref={refs.setFloating}
+                  style={floatingStyles}
+                >
+                  <MenuList sx={styles.menuList}>
+                    {visibleOptions?.length === 0 && !!query ? (
+                      allowCustomValues ? (
+                        <ComboboxOption value={query}>
+                          {createOptionText(query)}
+                        </ComboboxOption>
+                      ) : (
+                        <ListItem disabled>{noOptionsText}</ListItem>
+                      )
                     ) : (
-                      <ListItem disabled>{noOptionsText}</ListItem>
-                    )
-                  ) : (
-                    visibleOptions
-                  )}
-                  {hasMore ? (
-                    <>
-                      <MenuListDivider />
-                      {renderMoreOption()}
-                    </>
-                  ) : null}
-                </MenuList>
-              </Autocomplete.Options>
+                      visibleOptions
+                    )}
+                    {hasMore ? (
+                      <>
+                        <MenuListDivider />
+                        {renderMoreOption()}
+                      </>
+                    ) : null}
+                  </MenuList>
+                </Autocomplete.Options>
+              </Portal>
             </Transition>
           </>
         )}

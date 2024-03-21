@@ -2,11 +2,11 @@ import stylex from '@stylexjs/stylex';
 
 import type { IStyleVars } from '@/helpers/types';
 import type { ICardMediaStyleVarKey } from '@/components/atoms/CardMedia';
-import { shapeVars } from '../vars/shape.stylex';
+import { componentVars as cardVars } from '../Card/Card.stylex';
 
 const vars: Partial<IStyleVars<ICardMediaStyleVarKey>> = {
   // container
-  containerShape: shapeVars.corner$md,
+  containerShape: cardVars.containerShape,
 };
 
 export const componentVars = stylex.defineVars(

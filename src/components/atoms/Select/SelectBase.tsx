@@ -1,7 +1,9 @@
 import stylex from '@stylexjs/stylex';
 import { Fragment, forwardRef, Children, isValidElement } from 'react';
-import { Listbox } from '@headlessui/react';
+import { Listbox, Portal } from '@headlessui/react';
 import { asArray, filterUndefineds } from '@olivierpascal/helpers';
+import { useFloating } from '@floating-ui/react-dom';
+import { size } from '@floating-ui/dom';
 
 import { MenuList } from '@/components/atoms/MenuList';
 import { IVisualState } from '@/hooks/useVisualState';
@@ -28,7 +30,7 @@ export type ISelectBaseProps = Omit<
         multiple: false;
         value?: string | null;
         defaultValue?: string;
-        onChange?: (value: string | null) => void;
+        onChange?: (value: string) => void;
         renderOption?: (
           option: IOption,
           onDelete: (value: string) => void,
@@ -62,12 +64,11 @@ const styles = stylex.create({
   host$disabled: {
     cursor: 'default',
   },
-  options: {
-    position: 'absolute',
-    width: '100%',
-  },
   menuList: {
     maxHeight: 320,
+  },
+  options: {
+    zIndex: 999,
   },
   chips: {
     display: 'flex',
@@ -159,12 +160,24 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
       default: defaultValue ?? (multiple ? emptyArrayStableRef : null),
       name: 'SelectBase',
     });
+    const { refs, floatingStyles } = useFloating({
+      placement: 'bottom-start',
+      middleware: [
+        size({
+          apply({ rects, elements }) {
+            Object.assign(elements.floating.style, {
+              width: `${rects.reference.width}px`,
+            });
+          },
+        }),
+      ],
+    });
 
     const handleChange = (newValue: (typeof props)['value']): void => {
       setValue(newValue);
 
       // TODO: check array equality?
-      if (value !== newValue) {
+      if (newValue !== null && value !== newValue) {
         onChange?.(newValue as string & Array<string>);
       }
     };
@@ -240,6 +253,7 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
             return (
               <Field
                 {...other}
+                ref={refs.setReference}
                 tabIndex={0}
                 visualState={visualState}
                 start={
@@ -258,17 +272,23 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
             );
           }}
         </Listbox.Button>
-        <Listbox.Options {...stylex.props(styles.options)}>
-          <MenuList sx={styles.menuList}>
-            {visibleOptions}
-            {hasMore ? (
-              <>
-                <MenuListDivider />
-                {renderMoreOption()}
-              </>
-            ) : null}
-          </MenuList>
-        </Listbox.Options>
+        <Portal>
+          <Listbox.Options
+            {...stylex.props(styles.options)}
+            ref={refs.setFloating}
+            style={floatingStyles}
+          >
+            <MenuList sx={styles.menuList}>
+              {visibleOptions}
+              {hasMore ? (
+                <>
+                  <MenuListDivider />
+                  {renderMoreOption()}
+                </>
+              ) : null}
+            </MenuList>
+          </Listbox.Options>
+        </Portal>
       </Listbox>
     );
   },
