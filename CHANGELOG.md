@@ -1,3 +1,15 @@
+# v0.0.120 (Thu Mar 21 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: use floating-ui to handle floating elements ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.119 (Wed Mar 20 2024)
 
 #### ⚠️ Pushed to `main`
