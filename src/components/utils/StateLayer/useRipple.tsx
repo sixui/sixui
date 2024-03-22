@@ -84,6 +84,9 @@ enum IState {
 const isTouch = ({ pointerType }: PointerEvent): boolean =>
   pointerType === 'touch';
 
+// Used to handle overlapping surfaces.
+let activeTarget: EventTarget | null = null;
+
 export const useRipple = ({
   visualState,
   for: forElementRef,
@@ -279,6 +282,7 @@ export const useRipple = ({
   );
 
   const endPressAnimation = useCallback(async () => {
+    activeTarget = null;
     stateRef.current = IState.Inactive;
     const animation = growAnimationRef.current;
 
@@ -324,9 +328,15 @@ export const useRipple = ({
 
   const handlePointerDown = useCallback(
     (event: PointerEvent): void => {
-      if (visualState?.pressed || !shouldReactToEvent(event)) {
+      if (
+        !!activeTarget ||
+        visualState?.pressed ||
+        !shouldReactToEvent(event)
+      ) {
         return;
       }
+
+      activeTarget = event.target;
 
       rippleStartEventRef.current = event;
       if (!isTouch(event)) {
@@ -397,7 +407,7 @@ export const useRipple = ({
   const handleClick = useCallback(
     (event: MouseEvent) => {
       // Click is a MouseEvent in Firefox and Safari, so we cannot use
-      // `shouldReactToEvent`
+      // `shouldReactToEvent`.
       if (visualState?.pressed || visualState?.dragged || disabled) {
         return;
       }
@@ -408,7 +418,9 @@ export const useRipple = ({
         return;
       }
 
-      if (stateRef.current === IState.Inactive) {
+      if (!!activeTarget && stateRef.current === IState.Inactive) {
+        activeTarget = event.target;
+
         // Keyboard synthesized click event
         startPressAnimation(event);
         void endPressAnimation();

@@ -18,6 +18,9 @@ export type IVisualStateOptions = {
   disabled?: boolean;
 };
 
+// Used to handle overlapping surfaces.
+let activeTarget: EventTarget | null = null;
+
 export const useVisualState = <TElement extends Element = HTMLElement>(
   inheritedVisualState?: IVisualState,
   options?: IVisualStateOptions,
@@ -36,18 +39,24 @@ export const useVisualState = <TElement extends Element = HTMLElement>(
     [options?.retainFocusAfterClick, pressed],
   );
   const handleBlur = useCallback(() => setFocused(false), []);
-  const handleMouseDown = useCallback(
-    (event: MouseEvent | Event) =>
-      setPressed((event as MouseEvent).button === 0),
-    [],
-  );
-  const handleMouseUp = useCallback(() => setPressed(false), []);
-  const handleKeyDown = useCallback(
-    (event: KeyboardEvent | Event) =>
-      setPressed((event as KeyboardEvent).key === ' '),
-    [],
-  );
-  const handleKeyUp = useCallback(() => setPressed(false), []);
+  const handleMouseDown = useCallback((event: MouseEvent | Event) => {
+    const pressed = !activeTarget && (event as MouseEvent).button === 0;
+    setPressed(pressed);
+    activeTarget = event.target;
+  }, []);
+  const handleMouseUp = useCallback(() => {
+    setPressed(false);
+    activeTarget = null;
+  }, []);
+  const handleKeyDown = useCallback((event: KeyboardEvent | Event) => {
+    const pressed = !activeTarget && (event as KeyboardEvent).key === ' ';
+    setPressed(pressed);
+    activeTarget = event.target;
+  }, []);
+  const handleKeyUp = useCallback(() => {
+    setPressed(false);
+    activeTarget = null;
+  }, []);
 
   useEffect(() => {
     if (options?.disabled) {

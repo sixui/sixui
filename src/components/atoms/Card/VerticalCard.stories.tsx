@@ -124,6 +124,11 @@ const ActionableContent: React.FC<{ headline?: string }> = ({ headline }) => (
         subhead='Subhead'
         supportingText='Explain more about the topic shown in the headline and subhead through supporting text.'
       />
+      <div>
+        <Button onClick={(args) => sbHandleEvent('click:button', args)}>
+          XX
+        </Button>
+      </div>
     </Card.Content>
   </>
 );
@@ -156,9 +161,7 @@ export const Variants: IStory = {
         },
         {
           variant: 'filled',
-          children: (
-            <ActionableContent headline='Actionable qskljd qlsjdlqskjd lqskjdlqsjd lqsjdlqsjd lqs dqs kjqslkdj qslkdj lqsj dlqs' />
-          ),
+          children: <ActionableContent headline='Actionable' />,
           onClick: () => sbHandleEvent('click:card'),
         },
       ]}
