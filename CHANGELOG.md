@@ -1,3 +1,15 @@
+# v0.0.123 (Fri Mar 22 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(useRipple): control was not correct ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.122 (Fri Mar 22 2024)
 
 #### ⚠️ Pushed to `main`
