@@ -79,7 +79,6 @@ export const DisclosureButton = forwardRef<
             }}
             leadingIcon={trailing ? null : icon}
             trailingIcon={trailing ? icon : null}
-            type='button'
           >
             {typeof children === 'function' ? children({ open }) : children}
           </ListItem>

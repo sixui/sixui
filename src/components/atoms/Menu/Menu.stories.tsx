@@ -7,6 +7,7 @@ import {
   faEllipsisVertical,
 } from '@fortawesome/free-solid-svg-icons';
 
+import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { Menu, type IMenuProps } from './Menu';
 import { Button } from '@/components/atoms/Button';
 import { IconButton } from '@/components/atoms/IconButton';
@@ -26,14 +27,18 @@ const styles = stylex.create({
 const defaultArgs = {} satisfies Partial<IMenuProps>;
 
 const items = [
-  <Menu.Item key={0} type='link' disabled>
+  <Menu.Item
+    key={0}
+    onClick={(...args) => sbHandleEvent('click', args)}
+    disabled
+  >
     Apple
   </Menu.Item>,
   <Menu.Divider key={1} />,
-  <Menu.Item key={2} type='link'>
+  <Menu.Item key={2} onClick={(...args) => sbHandleEvent('click', args)}>
     Banana
   </Menu.Item>,
-  <Menu.Item key={3} type='link'>
+  <Menu.Item key={3} onClick={(...args) => sbHandleEvent('click', args)}>
     Cumcumber
   </Menu.Item>,
 ];

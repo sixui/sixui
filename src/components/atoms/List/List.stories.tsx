@@ -3,6 +3,7 @@ import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink, faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 
+import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { type IListProps, List } from './List';
@@ -73,7 +74,6 @@ export const Interactive: IStory = {
       component={(args) => (
         <List {...args}>
           <List.Item
-            type='link'
             href='https://google.com'
             target='_blank'
             trailingIcon={<FontAwesomeIcon icon={faLink} />}
@@ -81,7 +81,7 @@ export const Interactive: IStory = {
             Link item
           </List.Item>
           <List.Item
-            type='button'
+            onClick={(...args) => sbHandleEvent('click', args)}
             trailingSupportingText='1/2'
             supportingText='Supporting text'
           >

@@ -36,8 +36,6 @@ import { useForkRef } from '@/hooks/useForkRef';
 
 const DEFAULT_TAG = 'button';
 
-export type IListItemType = 'text' | 'button' | 'link';
-
 export type IListItemOwnProps = IContainerProps<IListItemStyleKey> &
   Pick<React.AriaAttributes, 'aria-expanded'> &
   Omit<IItemProps, 'container'> & {
@@ -55,15 +53,10 @@ export type IListItemOwnProps = IContainerProps<IListItemStyleKey> &
      */
     disabled?: boolean;
 
-    /**
-     * Sets the behavior of the list item, defaults to "text". Change to "link" or
-     * "button" for interactive items.
-     */
-    type?: IListItemType;
-
     selected?: boolean;
     leadingIcon?: React.ReactNode;
     trailingIcon?: React.ReactNode;
+    onClick?: React.MouseEventHandler;
   };
 
 export type IListItemProps<
@@ -91,12 +84,12 @@ export const ListItem: IListItem = forwardRef(function ListItem<
     supportingText,
     trailingSupportingText,
     end,
-    type: typeProp,
     disabled,
     selected: selectedProp,
     target: targetProp,
     leadingIcon,
     trailingIcon,
+    onClick,
     ...other
   } = props as IWithAsProp<IListItemOwnProps>;
 
@@ -120,13 +113,11 @@ export const ListItem: IListItem = forwardRef(function ListItem<
     [stylesCombinator, visualState],
   );
 
-  const type = href ? 'link' : typeProp ?? 'text';
+  const type = href !== undefined ? 'link' : onClick ? 'button' : 'text';
+  const role = type === 'text' ? 'listitem' : undefined;
   const selected = !disabled && selectedProp;
-  const role =
-    type === 'link' ? 'link' : type === 'button' ? 'button' : 'listitem';
-  const isAnchor = type === 'link';
   const isInteractive = type !== 'text';
-  const target = isAnchor && targetProp ? targetProp : undefined;
+  const target = type === 'link' && targetProp ? targetProp : undefined;
 
   const Component =
     as ?? (type == 'link' ? 'a' : type === 'button' ? 'button' : 'li');
@@ -141,14 +132,15 @@ export const ListItem: IListItem = forwardRef(function ListItem<
         theme.vars,
         sx,
       )}
+      role={role}
       type={type === 'button' ? 'button' : undefined}
       ref={handleRef}
       tabIndex={disabled || !isInteractive ? -1 : 0}
       disabled={disabled}
-      role={role}
       aria-current={selected}
       href={href}
       target={target}
+      onClick={onClick}
       {...other}
     >
       <Item

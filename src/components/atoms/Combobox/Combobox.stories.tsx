@@ -194,7 +194,10 @@ const useCases: Array<IComponentPresentation<IComboboxProps>> = [
       children: lotOfOptions,
       limit: 5,
       moreOption: ({ hidden }) => (
-        <ListItem supportingText={`${hidden} more items`} type='button'>
+        <ListItem
+          supportingText={`${hidden} more items`}
+          onClick={(...args) => sbHandleEvent('click:more', args)}
+        >
           More…
         </ListItem>
       ),
@@ -207,7 +210,10 @@ const useCases: Array<IComponentPresentation<IComboboxProps>> = [
       limit: 5,
       defaultValue: '42',
       moreOption: ({ hidden }) => (
-        <ListItem supportingText={`${hidden} more items`} type='button'>
+        <ListItem
+          supportingText={`${hidden} more items`}
+          onClick={(...args) => sbHandleEvent('click:more', args)}
+        >
           More…
         </ListItem>
       ),

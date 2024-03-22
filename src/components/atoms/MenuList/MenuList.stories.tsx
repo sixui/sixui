@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
+import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { MenuList, type IMenuListProps } from './MenuList';
 import { ListItem } from '../ListItem';
 
@@ -19,7 +20,7 @@ const styles = stylex.create({
 const defaultArgs = {} satisfies Partial<IMenuListProps>;
 
 const items = ['Apple', 'Banana', 'Cumcumber'].map((name) => (
-  <ListItem key={name} type='link'>
+  <ListItem key={name} onClick={(...args) => sbHandleEvent('click', args)}>
     {name}
   </ListItem>
 ));

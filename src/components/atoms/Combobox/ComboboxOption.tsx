@@ -37,7 +37,6 @@ export const ComboboxOption: React.FC<IComboboxOptionProps> = (props) => {
       {({ active, selected }) => (
         <ListItem
           {...other}
-          type='button'
           sx={[styles.host, props.disabled && styles.host$disabled, sx]}
           visualState={{ hovered: active }}
           selected={selected}

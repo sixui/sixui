@@ -6,6 +6,7 @@ import {
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 
+import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPropsWithLegend,
   ComponentShowcase,
@@ -44,11 +45,14 @@ const statesProps: IComponentPropsWithLegend<IListItemProps> = [
 
 const rowsProps: IComponentPropsWithLegend<IListItemProps> = [
   { $legend: 'Text' },
-  { $legend: 'Button', type: 'button' },
-  { $legend: 'Link', type: 'link' },
+  {
+    $legend: 'Button',
+    onClick: (...args) => void sbHandleEvent('click', args),
+  },
+  { $legend: 'Link', href: '#' },
   {
     $legend: 'Link with Icons',
-    type: 'link',
+    href: '#',
     leadingIcon: <FontAwesomeIcon icon={faCalendarDays} />,
     trailingIcon: <FontAwesomeIcon icon={faChevronRight} />,
   },
