@@ -1,3 +1,15 @@
+# v0.0.125 (Fri Mar 22 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(ListItem): automatically detect type ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.124 (Fri Mar 22 2024)
 
 #### ⚠️ Pushed to `main`
