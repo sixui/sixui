@@ -105,7 +105,7 @@ export const useRipple = ({
   const growAnimationRef = useRef<Animation>();
 
   const getControl = useCallback(
-    () => (forElementRef ? forElementRef.current : hostRef?.parentElement),
+    () => forElementRef?.current ?? hostRef?.parentElement,
     [forElementRef, hostRef],
   );
 
