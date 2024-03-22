@@ -27,7 +27,7 @@ const styles = stylex.create({
     position: 'relative',
   },
   items: {
-    width: '20ch',
+    width: 'max-content',
     zIndex: 999,
   },
 });
