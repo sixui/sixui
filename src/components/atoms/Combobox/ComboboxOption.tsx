@@ -4,7 +4,8 @@ import { Combobox as Autocomplete } from '@headlessui/react';
 
 import { type IListItemProps, ListItem } from '@/components/atoms/ListItem';
 
-export type IComboboxOptionProps = Omit<IListItemProps, 'type'> & {
+export type IComboboxOptionProps = Omit<IListItemProps, 'as' | 'type'> & {
+  as?: React.ElementType;
   value: string;
   label?: string;
   searchableText?: string | Array<string>;

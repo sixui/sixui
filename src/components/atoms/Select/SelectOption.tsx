@@ -4,7 +4,8 @@ import { Listbox } from '@headlessui/react';
 
 import { type IListItemProps, ListItem } from '@/components/atoms/ListItem';
 
-export type ISelectOptionProps = Omit<IListItemProps, 'type'> & {
+export type ISelectOptionProps = Omit<IListItemProps, 'as' | 'type'> & {
+  as?: React.ElementType;
   value: string;
   label?: string;
   children?: React.ReactNode;
