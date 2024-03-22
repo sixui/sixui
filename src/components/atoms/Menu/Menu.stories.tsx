@@ -10,7 +10,6 @@ import {
 import { Menu, type IMenuProps } from './Menu';
 import { Button } from '@/components/atoms/Button';
 import { IconButton } from '@/components/atoms/IconButton';
-import { MenuListDivider } from '@/components/atoms/MenuList/MenuListDivider';
 
 const meta = {
   component: Menu,
@@ -30,7 +29,7 @@ const items = [
   <Menu.Item key={0} type='link' disabled>
     Apple
   </Menu.Item>,
-  <MenuListDivider key={1} />,
+  <Menu.Divider key={1} />,
   <Menu.Item key={2} type='link'>
     Banana
   </Menu.Item>,
@@ -88,7 +87,7 @@ export const Contained: IStory = {
 const fromIconButtonStyles = stylex.create({
   host: {
     display: 'flex',
-    paddingLeft: 100,
+    paddingLeft: '20ch',
   },
 });
 
@@ -102,7 +101,7 @@ export const FromIconButton: IStory = {
     ...defaultArgs,
     action: <IconButton icon={<FontAwesomeIcon icon={faEllipsisVertical} />} />,
     children: items,
-    anchor: 'right',
+    placement: 'bottom-end',
   },
 };
 

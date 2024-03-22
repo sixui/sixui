@@ -118,6 +118,7 @@ const longTextColProps = [
           display: '-webkit-box',
           WebkitBoxOrient: 'vertical',
           WebkitLineClamp: '2',
+          wordBreak: 'break-all',
         },
       }),
     ],

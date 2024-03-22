@@ -124,12 +124,15 @@ const ActionableContent: React.FC<{ headline?: string }> = ({ headline }) => (
         subhead='Subhead'
         supportingText='Explain more about the topic shown in the headline and subhead through supporting text.'
       />
-      <div>
-        <Button onClick={(args) => sbHandleEvent('click:button', args)}>
-          XX
-        </Button>
-      </div>
     </Card.Content>
+    <Card.Actions>
+      <Button
+        variant='outlined'
+        onClick={(...args) => sbHandleEvent('click:secondaryAction', args)}
+      >
+        Secondary
+      </Button>
+    </Card.Actions>
   </>
 );
 

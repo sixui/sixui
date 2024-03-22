@@ -33,7 +33,7 @@ const styles = stylex.create({
     gap: 8,
   },
   media: {
-    width: 140,
+    width: 156,
   },
   mediaInner: {
     height: '100%',
@@ -126,11 +126,21 @@ const ActionableContent: React.FC<{ headline?: string }> = ({ headline }) => (
       src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
     />
     <Card.Content sx={styles.content}>
-      <Card.Title
-        headline={headline ?? 'Headline'}
-        subhead='Subhead'
-        supportingText='Explain more about the topic shown in the headline and subhead through supporting text.'
-      />
+      <div {...stylex.props(styles.innerContent)}>
+        <Card.Title
+          headline={headline ?? 'Headline'}
+          supportingText='Explain more about the topic shown in the headline and subhead through supporting text.'
+        />
+        <Card.Actions sx={styles.actions}>
+          <Button
+            onClick={(...args) => sbHandleEvent('click:secondaryAction', args)}
+            type='submit'
+            variant='outlined'
+          >
+            Secondary
+          </Button>
+        </Card.Actions>
+      </div>
     </Card.Content>
   </>
 );
