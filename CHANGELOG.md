@@ -1,3 +1,15 @@
+# v0.0.126 (Fri Mar 22 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: allow polymorphism for MenuItem, SelectOption and ComboboxOption ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.125 (Fri Mar 22 2024)
 
 #### ⚠️ Pushed to `main`
