@@ -42,6 +42,7 @@ const eslintConfig = {
     },
   },
   rules: {
+    curly: 'error',
     'tsdoc/syntax': 'warn',
     '@stylexjs/valid-styles': 'error',
     'import/no-default-export': 'error',
