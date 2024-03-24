@@ -115,7 +115,8 @@
     "@headlessui/react": "^1.7.18",
     "@olivierpascal/helpers": "^0.0.67",
     "modern-normalize": "^2.0.0",
-    "react-transition-group": "^4.4.5"
+    "react-transition-group": "^4.4.5",
+    "validate-branch-name": "^1.3.0"
   },
   "peerDependencies": {
     "@stylexjs/stylex": "^0.5.1",
