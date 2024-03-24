@@ -8,7 +8,7 @@ export const shapeVars = stylex.defineVars({
   corner$xl: '28px',
   cornerTop$xl: '28px 28px 0px 0px',
 
-  corner$lg: '12px',
+  corner$lg: '16px',
   cornerStart$lg: '16px 0px 0px 16px',
   cornerEnd$lg: '0px 16px 16px 0px',
   cornerTop$lg: '16px 16px 0px 0px',

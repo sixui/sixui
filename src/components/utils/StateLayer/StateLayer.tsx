@@ -18,11 +18,19 @@ export type IStateLayerProps = IContainerProps<IStateLayerStyleKey> & {
   visualState?: IVisualState;
   for?: React.RefObject<HTMLElement>;
   disabled?: boolean;
+  children?: React.ReactNode;
 };
 
 export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
   function StateLayer(props, ref) {
-    const { styles, sx, visualState, for: forElementRef, disabled } = props;
+    const {
+      styles,
+      sx,
+      visualState,
+      for: forElementRef,
+      disabled,
+      children,
+    } = props;
 
     const { theme } = useComponentTheme('StateLayer');
     const stylesCombinator = useMemo(
@@ -56,6 +64,8 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
           )}
           ref={surfaceRef}
         />
+
+        {children}
       </div>
     );
   },

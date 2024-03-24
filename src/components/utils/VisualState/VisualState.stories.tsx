@@ -36,9 +36,23 @@ export const Basic: IStory = {
   args: defaultArgs,
 };
 
-export const Inherited: IStory = {
+export const WithInitialValue: IStory = {
   render: (props) => (
     <ComponentShowcase component={VisualState} cols={states} props={props} />
+  ),
+  args: defaultArgs,
+};
+
+export const Overlapping: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={(props) => (
+        <VisualState {...props}>
+          <VisualState {...props} />
+        </VisualState>
+      )}
+      props={props}
+    />
   ),
   args: defaultArgs,
 };

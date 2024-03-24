@@ -36,19 +36,32 @@ const styles = stylex.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '1rem',
-    width: 64,
-    height: 64,
+    width: 96,
+    height: 96,
     outlineWidth: '1px',
     outlineColor: colorRolesVars.outline,
   },
-  bounded: {
+  container$inner: {
+    position: 'absolute',
+    width: 48,
+    height: 48,
+    borderRadius: shapeVars.corner$lg,
+    outlineStyle: 'solid',
+    inset: '50%',
+    transform: 'translate(-50%, -50%)',
+  },
+  container$bounded: {
     borderRadius: shapeVars.corner$xl,
     outlineStyle: 'solid',
   },
-  unbounded: {
+  container$unbounded: {
     borderRadius: '50%',
     outlineStyle: 'dashed',
+  },
+  overlappingContainer: {
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'row',
   },
   anchor: {
     borderRadius: '50%',
@@ -69,7 +82,7 @@ export const Bounded: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={(variantArgs) => (
-        <div {...stylex.props(styles.container, styles.bounded)}>
+        <div {...stylex.props(styles.container, styles.container$bounded)}>
           <StateLayer {...props} {...variantArgs} />
         </div>
       )}
@@ -93,7 +106,10 @@ const UnboundedComponent: React.FC<IStateLayerProps> = (props) => {
   const controlRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div {...stylex.props(styles.container, styles.unbounded)} ref={controlRef}>
+    <div
+      {...stylex.props(styles.container, styles.container$unbounded)}
+      ref={controlRef}
+    >
       <div {...stylex.props(styles.anchor)}>
         <StateLayer {...props} styles={unboundedStyles} for={controlRef} />
       </div>
@@ -109,6 +125,25 @@ export const Unbounded: IStory = {
       )}
       props={props}
       cols={states}
+    />
+  ),
+  args: defaultArgs,
+};
+
+export const Overlapping: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={(variantArgs) => (
+        <div {...stylex.props(styles.overlappingContainer)}>
+          <div {...stylex.props(styles.container, styles.container$bounded)}>
+            <StateLayer {...props} {...variantArgs} />
+          </div>
+          <div {...stylex.props(styles.container, styles.container$inner)}>
+            <StateLayer {...props} {...variantArgs} />
+          </div>
+        </div>
+      )}
+      props={props}
     />
   ),
   args: defaultArgs,

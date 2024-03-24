@@ -10,24 +10,33 @@ import { componentVars as focusRingVars } from '@/themes/base/FocusRing/FocusRin
 export type IVisualStateProps = {
   visualState?: IVisualState;
   disabled?: boolean;
+  children?: React.ReactNode;
 };
 
 const styles = stylex.create({
   host: {
     position: 'relative',
     boxSizing: 'content-box',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
     padding: '1rem',
-    width: 64,
-    height: 64,
+    minHeight: 96,
+    minWidth: 96,
     outlineWidth: '1px',
     outlineColor: colorRolesVars.outline,
     borderRadius: shapeVars.corner$xl,
     outlineStyle: 'solid',
     color: colorRolesVars.onSurface,
+    justifyContent: 'center',
+  },
+  inner: {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: '1rem',
+    alignItems: 'center',
+  },
+  states: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   on: {
     color: colorRolesVars.primary,
@@ -45,7 +54,7 @@ const focusRingStyles = stylex.create({
 });
 
 export const VisualState: React.FC<IVisualStateProps> = (props) => {
-  const { visualState: visualStateProp, disabled } = props;
+  const { visualState: visualStateProp, disabled, children } = props;
 
   const { visualState, ref } = useVisualState(visualStateProp, {
     disabled,
@@ -60,17 +69,23 @@ export const VisualState: React.FC<IVisualStateProps> = (props) => {
       draggable={true}
       disabled={disabled}
     >
-      <div {...stylex.props(visualState?.hovered ? styles.on : styles.off)}>
-        Hovered
-      </div>
-      <div {...stylex.props(visualState?.focused ? styles.on : styles.off)}>
-        Focused
-      </div>
-      <div {...stylex.props(visualState?.pressed ? styles.on : styles.off)}>
-        Pressed
-      </div>
-      <div {...stylex.props(visualState?.dragged ? styles.on : styles.off)}>
-        Dragged
+      <div {...stylex.props(styles.inner)}>
+        <div {...stylex.props(styles.states)}>
+          <div {...stylex.props(visualState?.hovered ? styles.on : styles.off)}>
+            Hovered
+          </div>
+          <div {...stylex.props(visualState?.focused ? styles.on : styles.off)}>
+            Focused
+          </div>
+          <div {...stylex.props(visualState?.pressed ? styles.on : styles.off)}>
+            Pressed
+          </div>
+          <div {...stylex.props(visualState?.dragged ? styles.on : styles.off)}>
+            Dragged
+          </div>
+        </div>
+
+        {children}
       </div>
     </ButtonBase>
   );
