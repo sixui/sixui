@@ -260,7 +260,7 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
                 return (
                   <Field
                     {...other}
-                    ref={refs.setReference}
+                    containerRef={refs.setReference}
                     tabIndex={0}
                     visualState={visualState}
                     start={

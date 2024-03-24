@@ -95,7 +95,6 @@ export type ITextFieldProps = IContainerProps<ITextFieldStyleKey> &
   > &
   Pick<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'cols' | 'rows'> &
   Omit<IFieldBaseProps, 'styles' | 'textarea' | 'resizable'> & {
-    wrapperRef?: React.Ref<HTMLDivElement>;
     innerStyles?: {
       field?: IZeroOrMore<ICompiledStyles<IFieldBaseStyleKey>>;
     };
@@ -164,7 +163,6 @@ export const TextField = forwardRef<
     styles,
     sx,
     innerStyles,
-    wrapperRef,
     visualState: visualStateProp,
     variant = 'filled',
     label,
@@ -192,6 +190,7 @@ export const TextField = forwardRef<
     onKeyDown,
     reportOnBlur,
     children,
+    containerRef,
     role = 'textbox',
     'aria-label': ariaLabelProp,
     ...other
@@ -416,7 +415,6 @@ export const TextField = forwardRef<
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
     <div
       {...sxf('host', theme.vars, variantTheme?.vars, sx)}
-      ref={wrapperRef}
       onClick={() => inputOrTextareaRef.current?.focus()}
       role={role}
       tabIndex={-1}
@@ -445,6 +443,7 @@ export const TextField = forwardRef<
           resizable={isTextarea}
           supportingText={supportingText}
           textarea={isTextarea}
+          containerRef={containerRef}
         >
           {children}
           {renderInputOrTextarea()}

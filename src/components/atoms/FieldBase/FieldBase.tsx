@@ -30,6 +30,7 @@ import { CircularProgressIndicator } from '@/components/atoms/CircularProgressIn
 export type IFieldBaseProps = IContainerProps<IFieldBaseStyleKey> & {
   visualState?: IVisualState;
   variant?: IFieldBaseVariant | false;
+  containerRef?: React.Ref<HTMLDivElement>;
   count?: number;
   disabled?: boolean;
   hasError?: boolean;
@@ -70,6 +71,7 @@ export const FieldBase = forwardRef<HTMLDivElement, IFieldBaseProps>(
       sx,
       visualState: visualStateProp,
       variant = 'filled',
+      containerRef: containerRefProp,
       children,
       start,
       end: endProp,
@@ -120,9 +122,11 @@ export const FieldBase = forwardRef<HTMLDivElement, IFieldBaseProps>(
     const labelAnimationRef = useRef<Animation>();
     const floatingLabelRef = useRef<HTMLSpanElement>(null);
     const restingLabelRef = useRef<HTMLSpanElement>(null);
-    const containerRef = useRef<HTMLDivElement>(null);
     const disableTransitionsRef = useRef(false);
     const animatingRef = useRef(false);
+
+    const containerRef = useRef<HTMLDivElement>(null);
+    const handleContainerRef = useForkRef(containerRef, containerRefProp);
 
     const supportingOrErrorText =
       hasError && errorText ? errorText : supportingText;
@@ -577,7 +581,7 @@ export const FieldBase = forwardRef<HTMLDivElement, IFieldBaseProps>(
                     ? 'container$disabled$resizable'
                     : 'container$resizable'),
               )}
-              ref={containerRef}
+              ref={handleContainerRef}
             >
               {start || leadingIcon ? (
                 <div
