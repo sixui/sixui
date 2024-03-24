@@ -79,8 +79,8 @@ export const Basic: IStory = {
       props={props}
       cols={states}
       rows={[
-        { props: { legend: 'Unselected' } },
-        { props: { legend: 'Selected', checked: true } },
+        { legend: 'Unselected' },
+        { legend: 'Selected', props: { checked: true } },
       ]}
     />
   ),
