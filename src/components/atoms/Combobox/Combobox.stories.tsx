@@ -37,6 +37,7 @@ const styles = stylex.create({
     borderRadius: shapeVars.corner$md,
   },
   clipper: {
+    position: 'relative',
     overflow: 'hidden',
   },
 });

@@ -1,13 +1,15 @@
 import stylex from '@stylexjs/stylex';
 import { Fragment, forwardRef, Children, isValidElement } from 'react';
-import { Listbox, Portal } from '@headlessui/react';
+import { Listbox } from '@headlessui/react';
 import { asArray, filterUndefineds } from '@olivierpascal/helpers';
 import { useFloating } from '@floating-ui/react-dom';
 import { size } from '@floating-ui/dom';
+import { FloatingPortal } from '@floating-ui/react';
 
 import { MenuList } from '@/components/atoms/MenuList';
 import { IVisualState } from '@/hooks/useVisualState';
 import { getDisplayName } from '@/helpers/react/getDisplayName';
+import { useColorScheme } from '@/components/utils/ColorScheme';
 import { Field, type IFieldProps } from '@/components/atoms/Field';
 import { MenuListDivider } from '@/components/atoms/MenuList/MenuListDivider';
 import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
@@ -172,6 +174,7 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
         }),
       ],
     });
+    const { root } = useColorScheme();
 
     const handleChange = (newValue: (typeof props)['value']): void => {
       setValue(newValue);
@@ -218,77 +221,87 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
         multiple={multiple}
         defaultValue={defaultValue}
       >
-        <Listbox.Button as={Fragment}>
-          {({
-            open,
-            value,
-          }: {
-            open: boolean;
-            value: (typeof props)['value'];
-          }) => {
-            const matchingOptions =
-              value !== null && value !== undefined
-                ? getMatchingOptions(children, value)
-                : [];
-            const matchingOption =
-              multiple || !matchingOptions.length
-                ? undefined
-                : matchingOptions[0];
-            const optionsToRender = multiple ? matchingOptions : matchingOption;
-            const displayValue = optionsToRender
-              ? renderOption(
-                  optionsToRender as IOption & Array<IOption>,
-                  deleteValue,
-                )
-              : undefined;
-
-            const TrailingIcon = open ? TriangleUpIcon : TriangleDownIcon;
-            const visualState = open
-              ? {
-                  ...visualStateProp,
-                  ...openVisualState,
-                }
-              : visualStateProp;
-
-            return (
-              <Field
-                {...other}
-                ref={refs.setReference}
-                tabIndex={0}
-                visualState={visualState}
-                start={
-                  typeof matchingOption === 'string'
+        {({ open }) => (
+          <>
+            <Listbox.Button as={Fragment}>
+              {({
+                open,
+                value,
+              }: {
+                open: boolean;
+                value: (typeof props)['value'];
+              }) => {
+                const matchingOptions =
+                  value !== null && value !== undefined
+                    ? getMatchingOptions(children, value)
+                    : [];
+                const matchingOption =
+                  multiple || !matchingOptions.length
                     ? undefined
-                    : matchingOption?.props.start
-                }
-                leadingIcon={
-                  typeof matchingOption === 'string'
-                    ? undefined
-                    : matchingOption?.props.leadingIcon
-                }
-                end={<TrailingIcon height='6' />}
-                value={displayValue}
-              />
-            );
-          }}
-        </Listbox.Button>
-        <Portal>
-          <Listbox.Options
-            {...stylex.props(styles.options)}
-            ref={refs.setFloating}
-            style={floatingStyles}
-          >
-            <MenuList sx={styles.menuList}>
-              {visibleOptions}
-              {hasMore ? (
-                <>
-                  <MenuListDivider />
-                  {renderMoreOption()}
-                </>
-              ) : null}
-            </MenuList>
-          </Listbox.Options>
-        </Portal>
+                    : matchingOptions[0];
+                const optionsToRender = multiple
+                  ? matchingOptions
+                  : matchingOption;
+                const displayValue = optionsToRender
+                  ? renderOption(
+                      optionsToRender as IOption & Array<IOption>,
+                      deleteValue,
+                    )
+                  : undefined;
+
+                const TrailingIcon = open ? TriangleUpIcon : TriangleDownIcon;
+                const visualState = open
+                  ? {
+                      ...visualStateProp,
+                      ...openVisualState,
+                    }
+                  : visualStateProp;
+
+                return (
+                  <Field
+                    {...other}
+                    ref={refs.setReference}
+                    tabIndex={0}
+                    visualState={visualState}
+                    start={
+                      typeof matchingOption === 'string'
+                        ? undefined
+                        : matchingOption?.props.start
+                    }
+                    leadingIcon={
+                      typeof matchingOption === 'string'
+                        ? undefined
+                        : matchingOption?.props.leadingIcon
+                    }
+                    end={<TrailingIcon height='6' />}
+                    value={displayValue}
+                  />
+                );
+              }}
+            </Listbox.Button>
+
+            {open ? (
+              <FloatingPortal root={root}>
+                <Listbox.Options
+                  {...stylex.props(styles.options)}
+                  ref={refs.setFloating}
+                  style={floatingStyles}
+                  static
+                >
+                  <MenuList sx={styles.menuList}>
+                    {visibleOptions}
+                    {hasMore ? (
+                      <>
+                        <MenuListDivider />
+                        {renderMoreOption()}
+                      </>
+                    ) : null}
+                  </MenuList>
+                </Listbox.Options>
+              </FloatingPortal>
+            ) : null}
+          </>
+        )}
       </Listbox>
     );
   },

@@ -28,6 +28,11 @@ type IUseControlledProps<T> = {
   noDefaultStateWarning?: boolean;
 };
 
+type IUseControlledValue<TValue> = [
+  TValue | undefined,
+  (newValue: React.SetStateAction<TValue | undefined>) => void,
+];
+
 // https://github.com/mui/material-ui/blob/master/packages/mui-utils/src/useControlled/useControlled.js
 // https://github.com/mui/material-ui/blob/master/packages/mui-utils/src/useControlled/useControlled.d.ts
 export const useControlled = <TValue>({
@@ -35,10 +40,7 @@ export const useControlled = <TValue>({
   state = 'value',
   noDefaultStateWarning,
   ...props
-}: IUseControlledProps<TValue | undefined>): [
-  TValue | undefined,
-  (newValue: React.SetStateAction<TValue | undefined>) => void,
-] => {
+}: IUseControlledProps<TValue | undefined>): IUseControlledValue<TValue> => {
   const { current: isControlled } = useRef(props.controlled !== undefined);
   const [valueState, setValue] = useState(props.default);
   const value = isControlled ? props.controlled : valueState;

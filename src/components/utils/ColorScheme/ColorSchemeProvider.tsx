@@ -1,14 +1,12 @@
+import { useRef } from 'react';
 import stylex from '@stylexjs/stylex';
 
-import {
-  ColorSchemeContext,
-  type IColorSchemeContext,
-} from './ColorSchemeContext';
+import { ColorSchemeContext, type IColorScheme } from './ColorSchemeContext';
 import { useTheme } from '@/components/utils/Theme';
 
 export type IColorSchemeProviderProps = {
+  scheme: IColorScheme;
   children: React.ReactNode;
-  value: IColorSchemeContext;
 };
 
 const styles = stylex.create({
@@ -23,19 +21,25 @@ const styles = stylex.create({
 export const ColorSchemeProvider: React.FC<IColorSchemeProviderProps> = (
   props,
 ) => {
-  const { children, value } = props;
+  const { scheme, children } = props;
 
+  const root = useRef<HTMLDivElement | null>(null);
   const theme = useTheme();
 
+  const isDark = scheme === 'dark';
+  const isLight = !isDark;
+
   return (
-    <ColorSchemeContext.Provider value={value}>
-      {value === 'dark' ? (
-        <div {...stylex.props(styles.container$dark, theme.colorSchemes.dark)}>
-          {children}
-        </div>
-      ) : (
-        <div {...stylex.props(styles.container$light)}>{children}</div>
-      )}
+    <ColorSchemeContext.Provider value={{ scheme, root }}>
+      <div
+        {...stylex.props(
+          isLight && styles.container$light,
+          isDark && [styles.container$dark, theme.colorSchemes.dark],
+        )}
+        ref={root}
+      >
+        {children}
+      </div>
     </ColorSchemeContext.Provider>
   );
 };

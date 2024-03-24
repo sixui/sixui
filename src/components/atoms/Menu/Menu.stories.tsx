@@ -20,6 +20,7 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   clipper: {
+    position: 'relative',
     overflow: 'hidden',
   },
 });

@@ -7,16 +7,14 @@ import {
   isValidElement,
   useRef,
 } from 'react';
-import {
-  Combobox as Autocomplete,
-  Transition,
-  Portal,
-} from '@headlessui/react';
+import { Combobox as Autocomplete, Transition } from '@headlessui/react';
 import { asArray, filterUndefineds } from '@olivierpascal/helpers';
 import { useFloating } from '@floating-ui/react-dom';
 import { size } from '@floating-ui/dom';
+import { FloatingPortal } from '@floating-ui/react';
 
 import { createFilter, type IFilter } from '@/helpers/createFilter';
+import { useColorScheme } from '@/components/utils/ColorScheme';
 import { MenuList } from '@/components/atoms/MenuList';
 import { IVisualState } from '@/hooks/useVisualState';
 import { TextField, type ITextFieldProps } from '@/components/atoms/TextField';
@@ -28,9 +26,9 @@ import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 import { getDisplayName } from '@/helpers/react/getDisplayName';
 import { reactNodeToString } from '@/helpers/react/nodeToString';
 import { componentVars as textFieldVars } from '@/themes/base/TextField/TextField.stylex';
-import { ComboboxOption, type IComboboxOptionProps } from './ComboboxOption';
 import { InputChip } from '@/components/atoms/Chip';
 import { useControlled } from '@/hooks/useControlled';
+import { ComboboxOption, type IComboboxOptionProps } from './ComboboxOption';
 
 const MIN_DELAY_BETWEEN_CLOSE_AND_OPEN = 300;
 
@@ -173,6 +171,7 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
         }),
       ],
     });
+    const { root } = useColorScheme();
 
     const toggleButtonRef = useRef<HTMLButtonElement>(null);
     const [query, setQuery] = useState<string>('');
@@ -403,35 +402,38 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
               }}
             </Autocomplete.Input>
 
-            <Transition as={Fragment} afterLeave={() => setQuery('')}>
-              <Portal>
-                <Autocomplete.Options
-                  {...stylex.props(styles.options)}
-                  ref={refs.setFloating}
-                  style={floatingStyles}
-                >
-                  <MenuList sx={styles.menuList}>
-                    {visibleOptions?.length === 0 && !!query ? (
-                      allowCustomValues ? (
-                        <ComboboxOption value={query}>
-                          {createOptionText(query)}
-                        </ComboboxOption>
+            {open ? (
+              <FloatingPortal root={root}>
+                <Transition as={Fragment} afterLeave={() => setQuery('')}>
+                  <Autocomplete.Options
+                    {...stylex.props(styles.options)}
+                    ref={refs.setFloating}
+                    style={floatingStyles}
+                    static
+                  >
+                    <MenuList sx={styles.menuList}>
+                      {visibleOptions?.length === 0 && !!query ? (
+                        allowCustomValues ? (
+                          <ComboboxOption value={query}>
+                            {createOptionText(query)}
+                          </ComboboxOption>
+                        ) : (
+                          <ListItem disabled>{noOptionsText}</ListItem>
+                        )
                       ) : (
-                        <ListItem disabled>{noOptionsText}</ListItem>
-                      )
-                    ) : (
-                      visibleOptions
-                    )}
-                    {hasMore ? (
-                      <>
-                        <MenuListDivider />
-                        {renderMoreOption()}
-                      </>
-                    ) : null}
-                  </MenuList>
-                </Autocomplete.Options>
-              </Portal>
-            </Transition>
+                        visibleOptions
+                      )}
+                      {hasMore ? (
+                        <>
+                          <MenuListDivider />
+                          {renderMoreOption()}
+                        </>
+                      ) : null}
+                    </MenuList>
+                  </Autocomplete.Options>
+                </Transition>
+              </FloatingPortal>
+            ) : null}
           </>
         )}
       </Autocomplete>

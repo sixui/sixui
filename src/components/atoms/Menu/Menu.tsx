@@ -1,12 +1,14 @@
 import stylex from '@stylexjs/stylex';
 import { Fragment, cloneElement, forwardRef } from 'react';
-import { Menu as HeadlessMenu, Portal } from '@headlessui/react';
+import { Menu as HeadlessMenu } from '@headlessui/react';
 import { type Placement, useFloating } from '@floating-ui/react-dom';
+import { FloatingPortal } from '@floating-ui/react';
 
 import type { IContainerProps } from '@/helpers/types';
+import { IVisualState } from '@/hooks/useVisualState';
 import { MenuList } from '@/components/atoms/MenuList';
 import { MenuListDivider } from '@/components/atoms/MenuList/MenuListDivider';
-import { IVisualState } from '@/hooks/useVisualState';
+import { useColorScheme } from '@/components/utils/ColorScheme';
 import { MenuItem } from './MenuItem';
 
 type IMenuActionRenderPropArg = {
@@ -38,29 +40,38 @@ const Menu = forwardRef<HTMLElement, IMenuProps>(function Menu(props, ref) {
   const { refs, floatingStyles } = useFloating({
     placement,
   });
+  const { root } = useColorScheme();
 
   const openVisualState: IVisualState = { hovered: true };
   const openProps = { visualState: openVisualState };
 
   return (
     <HeadlessMenu ref={ref}>
-      <HeadlessMenu.Button as={Fragment} ref={refs.setReference}>
-        {(bag) =>
-          cloneElement(
-            typeof action === 'function' ? action(bag) : action,
-            bag.open ? openProps : undefined,
-          )
-        }
-      </HeadlessMenu.Button>
-      <Portal>
-        <HeadlessMenu.Items
-          {...stylex.props(styles.items, sx)}
-          ref={refs.setFloating}
-          style={floatingStyles}
-        >
-          <MenuList>{children}</MenuList>
-        </HeadlessMenu.Items>
-      </Portal>
+      {({ open }) => (
+        <>
+          <HeadlessMenu.Button as={Fragment} ref={refs.setReference}>
+            {(bag) =>
+              cloneElement(
+                typeof action === 'function' ? action(bag) : action,
+                bag.open ? openProps : undefined,
+              )
+            }
+          </HeadlessMenu.Button>
+
+          {open ? (
+            <FloatingPortal root={root}>
+              <HeadlessMenu.Items
+                {...stylex.props(styles.items, sx)}
+                ref={refs.setFloating}
+                style={floatingStyles}
+                static
+              >
+                <MenuList>{children}</MenuList>
+              </HeadlessMenu.Items>
+            </FloatingPortal>
+          ) : null}
+        </>
+      )}
     </HeadlessMenu>
   );
 });

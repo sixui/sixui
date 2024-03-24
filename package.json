@@ -109,7 +109,7 @@
   "packageManager": "yarn@4.1.0",
   "readme": "README.md",
   "dependencies": {
-    "@floating-ui/react-dom": "^2.0.8",
+    "@floating-ui/react": "^0.26.9",
     "@headlessui/react": "^1.7.18",
     "@olivierpascal/helpers": "^0.0.67",
     "modern-normalize": "^2.0.0",

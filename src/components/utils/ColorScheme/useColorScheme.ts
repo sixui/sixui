@@ -1,12 +1,15 @@
 import { useContext } from 'react';
 
-import { type IColorScheme, ColorSchemeContext } from './ColorSchemeContext';
+import {
+  type IColorSchemeContext,
+  ColorSchemeContext,
+} from './ColorSchemeContext';
 
-export const useColorScheme = (): IColorScheme => {
-  const colorScheme = useContext(ColorSchemeContext);
-  if (!colorScheme) {
+export const useColorScheme = (): IColorSchemeContext => {
+  const context = useContext(ColorSchemeContext);
+  if (!context.scheme) {
     throw new Error('ColorSchemeProvider not set.');
   }
 
-  return colorScheme;
+  return context;
 };
