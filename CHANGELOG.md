@@ -1,3 +1,23 @@
+# v0.0.127 (Sun Mar 24 2024)
+
+#### ⚠️ Pushed to `main`
+
+- chore: validate branch name ([@olivierpascal](https://github.com/olivierpascal))
+- fix: floating menu now open over supporting text in Select and Combobox ([@olivierpascal](https://github.com/olivierpascal))
+- refactor: TextField styles and vars are now based on FieldBase rather than the opposite ([@olivierpascal](https://github.com/olivierpascal))
+- chore: dependencies updated ([@olivierpascal](https://github.com/olivierpascal))
+- feat: stories for overlapping events for VisualState and StateLayer ([@olivierpascal](https://github.com/olivierpascal))
+- chore: add commitlint ([@olivierpascal](https://github.com/olivierpascal))
+- refactor: migrate to new ComponentShowcase component ([@olivierpascal](https://github.com/olivierpascal))
+- chore(eslint): always enforce curly braces ([@olivierpascal](https://github.com/olivierpascal))
+- fix: floating elements now use a color scheme relative portal root ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.126 (Fri Mar 22 2024)
 
 #### ⚠️ Pushed to `main`
