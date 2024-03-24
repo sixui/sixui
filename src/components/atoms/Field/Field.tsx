@@ -43,10 +43,13 @@ export const Field = forwardRef<HTMLDivElement, IFieldProps>(
     return (
       <FieldBase sx={sx} ref={ref} populated={populated} {...other}>
         {value ? (
-          <div {...sxf('value')}>{value}</div>
+          <div {...sxf('value')} data-cy='value'>
+            {value}
+          </div>
         ) : placeholder ? (
           <div
             {...sxf('placeholder', other.disabled && 'placeholder$disabled')}
+            data-cy='placeholder'
           >
             {placeholder}
           </div>

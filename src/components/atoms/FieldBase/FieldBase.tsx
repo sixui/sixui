@@ -560,6 +560,7 @@ export const FieldBase = forwardRef<HTMLDivElement, IFieldBaseProps>(
         )}
         ref={handleRef}
         aria-labelledby={labelId}
+        data-cy='field'
         {...other}
       >
         <div

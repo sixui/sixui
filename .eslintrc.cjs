@@ -9,7 +9,7 @@ const eslintConfig = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['@stylexjs/eslint-plugin', 'fp', 'eslint-plugin-tsdoc'],
+  plugins: ['@stylexjs/eslint-plugin', 'fp', 'eslint-plugin-tsdoc', 'cypress'],
   extends: [
     'prettier',
     'plugin:prettier/recommended',
@@ -20,6 +20,7 @@ const eslintConfig = {
     'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:storybook/recommended',
+    'plugin:cypress/recommended',
   ],
   settings: {
     'import/extensions': 'always',

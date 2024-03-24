@@ -25,7 +25,12 @@ export const SelectOption: React.FC<ISelectOptionProps> = (props) => {
   const { sx, value, children, label, ...other } = props;
 
   return (
-    <Listbox.Option as={Fragment} disabled={props.disabled} value={value}>
+    <Listbox.Option
+      as={Fragment}
+      disabled={props.disabled}
+      value={value}
+      data-cy={`option-${value}`}
+    >
       {({ active, selected }) => (
         <ListItem
           {...other}

@@ -166,7 +166,7 @@ const useCases: Array<IComponentPresentation<ISelectProps>> = [
     component: ControlledSelect,
   },
   {
-    legend: 'Display Text',
+    legend: 'Option Labels',
     props: { children: pictureOptions },
   },
   {
