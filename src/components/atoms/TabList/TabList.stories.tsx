@@ -12,7 +12,7 @@ import {
 } from '@fortawesome/free-regular-svg-icons';
 
 import {
-  type IComponentPropsWithLegend,
+  type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
 import { TabList, type ITabListProps } from './TabList';
@@ -24,7 +24,7 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-type IExtendedTabListProps = ITabListProps & {
+type ITabListDemoProps = ITabListProps & {
   variant?: 'primary' | 'secondary';
   hasIcon?: boolean;
   hasLabel?: boolean;
@@ -33,23 +33,25 @@ type IExtendedTabListProps = ITabListProps & {
 
 const defaultArgs = {} satisfies Partial<ITabListProps>;
 
-const rowsProps: IComponentPropsWithLegend<IExtendedTabListProps> = [
+const rows: Array<IComponentPresentation<ITabListDemoProps>> = [
   {
-    $legend: 'Label',
-    hasLabel: true,
+    legend: 'Label',
+    props: { hasLabel: true },
   },
   {
-    $legend: 'Icon',
-    hasIcon: true,
+    legend: 'Icon',
+    props: { hasIcon: true },
   },
   {
-    $legend: 'Label and icon',
-    hasLabel: true,
-    hasIcon: true,
+    legend: 'Label and icon',
+    props: {
+      hasLabel: true,
+      hasIcon: true,
+    },
   },
 ];
 
-const TabListDemo: React.FC<IExtendedTabListProps> = ({
+const TabListDemo: React.FC<ITabListDemoProps> = ({
   variant,
   hasIcon,
   hasLabel,
@@ -87,9 +89,9 @@ const TabListDemo: React.FC<IExtendedTabListProps> = ({
 export const Primary: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={(props) => <TabListDemo tab={Tab} {...props} />}
-      props={props}
-      rowsProps={rowsProps}
+      component={(props) => <TabListDemo {...props} />}
+      props={{ ...props, tab: Tab }}
+      rows={rows}
       align='start'
     />
   ),
@@ -99,11 +101,9 @@ export const Primary: IStory = {
 export const Secondary: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={(props) => (
-        <TabListDemo tab={Tab} variant='secondary' {...props} />
-      )}
-      props={props}
-      rowsProps={rowsProps}
+      component={(props) => <TabListDemo {...props} />}
+      props={{ ...props, tab: Tab, variant: 'secondary' }}
+      rows={rows}
       align='start'
     />
   ),

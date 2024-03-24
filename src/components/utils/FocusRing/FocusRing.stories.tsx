@@ -75,7 +75,7 @@ export const Variants: IStory = {
         </Placeholder>
       )}
       props={props}
-      colsProps={[{ inward: false }, { inward: true }]}
+      cols={[{ props: { inward: false } }, { props: { inward: true } }]}
     />
   ),
   args: {
@@ -95,7 +95,7 @@ export const Outward: IStory = {
         </Placeholder>
       )}
       props={props}
-      colsProps={[{}, {}, {}]}
+      cols={[{}, {}, {}]}
     />
   ),
   args: defaultArgs,
@@ -110,7 +110,7 @@ export const Inward: IStory = {
         </Placeholder>
       )}
       props={props}
-      colsProps={[{}, {}, {}]}
+      cols={[{}, {}, {}]}
     />
   ),
   args: {
@@ -137,7 +137,7 @@ export const Attached: IStory = {
         <AttachedComponent {...props} {...variantArgs} />
       )}
       props={props}
-      colsProps={[{}, {}, {}]}
+      cols={[{}, {}, {}]}
     />
   ),
   args: defaultArgs,
@@ -164,7 +164,7 @@ export const MultiAction: IStory = {
         <MultiActionComponent {...props} {...variantArgs} />
       )}
       props={props}
-      colsProps={[{}, {}, {}]}
+      cols={[{}, {}, {}]}
     />
   ),
   args: defaultArgs,

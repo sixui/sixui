@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import {
-  type IComponentPropsWithLegend,
+  type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
 import { Paper, type IPaperProps } from './Paper';
@@ -19,9 +19,9 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const variantsProps: IComponentPropsWithLegend<IPaperProps> = [
-  { $legend: 'Filled' },
-  { $legend: 'Outlined', variant: 'outlined' },
+const variants: Array<IComponentPresentation<IPaperProps>> = [
+  { legend: 'Filled' },
+  { legend: 'Outlined', props: { variant: 'outlined' } },
 ];
 
 const paperStyles = stylex.create({
@@ -63,9 +63,11 @@ export const Variants: IStory = {
     <ComponentShowcase
       component={PaperWithContent}
       props={props}
-      colsProps={paperVariants.map((variant) => ({
-        variant,
-        children: capitalizeFirstLetter(variant),
+      cols={paperVariants.map((variant) => ({
+        props: {
+          variant,
+          children: capitalizeFirstLetter(variant),
+        },
       }))}
     />
   ),
@@ -77,8 +79,11 @@ export const Corners: IStory = {
     <ComponentShowcase
       component={PaperWithContent}
       props={props}
-      colsProps={variantsProps}
-      rowsProps={[{ $legend: 'Rounded' }, { $legend: 'Square', square: true }]}
+      cols={variants}
+      rows={[
+        { legend: 'Rounded' },
+        { legend: 'Square', props: { square: true } },
+      ]}
     />
   ),
   args: defaultArgs,
@@ -89,14 +94,14 @@ export const Elevations: IStory = {
     <ComponentShowcase
       component={PaperWithContent}
       props={props}
-      colsProps={variantsProps}
-      rowsProps={[
-        { $legend: 'Level 0', elevation: 0 },
-        { $legend: 'Level 1', elevation: 1 },
-        { $legend: 'Level 2', elevation: 2 },
-        { $legend: 'Level 3', elevation: 3 },
-        { $legend: 'Level 4', elevation: 4 },
-        { $legend: 'Level 5', elevation: 5 },
+      cols={variants}
+      rows={[
+        { legend: 'Level 0', props: { elevation: 0 } },
+        { legend: 'Level 1', props: { elevation: 1 } },
+        { legend: 'Level 2', props: { elevation: 2 } },
+        { legend: 'Level 3', props: { elevation: 3 } },
+        { legend: 'Level 4', props: { elevation: 4 } },
+        { legend: 'Level 5', props: { elevation: 5 } },
       ]}
     />
   ),

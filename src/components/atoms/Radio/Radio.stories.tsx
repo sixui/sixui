@@ -3,10 +3,10 @@ import { useState } from 'react';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
-  type IComponentPropsWithLegend,
+  type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { Radio, type IRadioProps } from './Radio';
+import { Radio, type IRadioProps, type IRadioOwnProps } from './Radio';
 
 // https://m3.material.io/components/radio/overview
 // https://material-web.dev/components/radio/
@@ -22,12 +22,12 @@ const defaultArgs = {
   onChange: (...args) => sbHandleEvent('change', args, 300),
 } satisfies Partial<IRadioProps>;
 
-const statesProps: IComponentPropsWithLegend<IRadioProps> = [
-  { $legend: 'Enabled' },
-  { $legend: 'Hovered', visualState: { hovered: true } },
-  { $legend: 'Focused', visualState: { focused: true } },
-  { $legend: 'Pressed', visualState: { pressed: true } },
-  { $legend: 'Disabled', disabled: true },
+const states: Array<IComponentPresentation<IRadioOwnProps>> = [
+  { legend: 'Enabled' },
+  { legend: 'Hovered', props: { visualState: { hovered: true } } },
+  { legend: 'Focused', props: { visualState: { focused: true } } },
+  { legend: 'Pressed', props: { visualState: { pressed: true } } },
+  { legend: 'Disabled', props: { disabled: true } },
 ];
 
 const RadioWithState: React.FC<Omit<IRadioProps, 'onChange' | 'as'>> = (
@@ -77,10 +77,10 @@ export const Basic: IStory = {
     <ComponentShowcase
       component={Radio}
       props={props}
-      colsProps={statesProps}
-      rowsProps={[
-        { $legend: 'Unselected' },
-        { $legend: 'Selected', checked: true },
+      cols={states}
+      rows={[
+        { props: { legend: 'Unselected' } },
+        { props: { legend: 'Selected', checked: true } },
       ]}
     />
   ),

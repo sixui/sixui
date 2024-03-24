@@ -7,10 +7,10 @@ import { delay } from '@olivierpascal/helpers';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
-  type IComponentPropsWithLegend,
+  type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { Switch, type ISwitchProps } from './Switch';
+import { Switch, type ISwitchProps, type ISwitchOwnProps } from './Switch';
 
 // https://m3.material.io/components/switch/overview
 // https://material-web.dev/components/switch/
@@ -26,13 +26,13 @@ const defaultArgs = {
   onChange: (...args) => sbHandleEvent('change', args, 300),
 } satisfies Partial<ISwitchProps>;
 
-const statesProps: IComponentPropsWithLegend<ISwitchProps> = [
-  { $legend: 'Enabled' },
-  { $legend: 'Hovered', visualState: { hovered: true } },
-  { $legend: 'Focused', visualState: { focused: true } },
-  { $legend: 'Pressed', visualState: { pressed: true } },
-  { $legend: 'Loading', loading: true },
-  { $legend: 'Disabled', disabled: true },
+const states: Array<IComponentPresentation<ISwitchOwnProps>> = [
+  { legend: 'Enabled' },
+  { legend: 'Hovered', props: { visualState: { hovered: true } } },
+  { legend: 'Focused', props: { visualState: { focused: true } } },
+  { legend: 'Pressed', props: { visualState: { pressed: true } } },
+  { legend: 'Loading', props: { loading: true } },
+  { legend: 'Disabled', props: { disabled: true } },
 ];
 
 export const Uncontrolled: IStory = {
@@ -40,14 +40,16 @@ export const Uncontrolled: IStory = {
     <ComponentShowcase
       component={Switch}
       props={props}
-      colsProps={[
-        { $legend: 'Basic' },
+      cols={[
+        { legend: 'Basic' },
         {
-          $legend: 'With selected icon',
-          showOnlySelectedIcon: true,
-          defaultSelected: true,
+          legend: 'With selected icon',
+          props: {
+            showOnlySelectedIcon: true,
+            defaultSelected: true,
+          },
         },
-        { $legend: 'With icons', icons: true },
+        { legend: 'With icons', props: { icons: true } },
       ]}
     />
   ),
@@ -73,14 +75,16 @@ export const Controlled: IStory = {
     <ComponentShowcase
       component={ControlledSwitch}
       props={props}
-      colsProps={[
-        { $legend: 'Basic' },
+      cols={[
+        { legend: 'Basic' },
         {
-          $legend: 'With selected icon',
-          showOnlySelectedIcon: true,
-          defaultSelected: true,
+          legend: 'With selected icon',
+          props: {
+            showOnlySelectedIcon: true,
+            defaultSelected: true,
+          },
         },
-        { $legend: 'With icons', icons: true },
+        { legend: 'With icons', props: { icons: true } },
       ]}
     />
   ),
@@ -92,10 +96,10 @@ export const WithoutIcons: IStory = {
     <ComponentShowcase
       component={Switch}
       props={props}
-      colsProps={statesProps}
-      rowsProps={[
-        { $legend: 'Unselected' },
-        { $legend: 'Selected', defaultSelected: true },
+      cols={states}
+      rows={[
+        { legend: 'Unselected' },
+        { legend: 'Selected', props: { defaultSelected: true } },
       ]}
     />
   ),
@@ -107,10 +111,10 @@ export const WithSelectedIcon: IStory = {
     <ComponentShowcase
       component={Switch}
       props={props}
-      colsProps={statesProps}
-      rowsProps={[
-        { $legend: 'Unselected' },
-        { $legend: 'Selected', defaultSelected: true },
+      cols={states}
+      rows={[
+        { legend: 'Unselected' },
+        { legend: 'Selected', props: { defaultSelected: true } },
       ]}
     />
   ),
@@ -125,10 +129,10 @@ export const WithIcons: IStory = {
     <ComponentShowcase
       component={Switch}
       props={props}
-      colsProps={statesProps}
-      rowsProps={[
-        { $legend: 'Unselected' },
-        { $legend: 'Selected', defaultSelected: true },
+      cols={states}
+      rows={[
+        { legend: 'Unselected' },
+        { legend: 'Selected', props: { defaultSelected: true } },
       ]}
     />
   ),
@@ -143,10 +147,10 @@ export const WithCustomIcons: IStory = {
     <ComponentShowcase
       component={Switch}
       props={props}
-      colsProps={statesProps}
-      rowsProps={[
-        { $legend: 'Unselected' },
-        { $legend: 'Selected', defaultSelected: true },
+      cols={states}
+      rows={[
+        { legend: 'Unselected' },
+        { legend: 'Selected', props: { defaultSelected: true } },
       ]}
     />
   ),

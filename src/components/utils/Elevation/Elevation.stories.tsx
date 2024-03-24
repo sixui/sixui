@@ -32,13 +32,13 @@ export const Levels: IStory = {
         </Placeholder>
       )}
       props={{}}
-      colsProps={[
-        { level: 0 },
-        { level: 1 },
-        { level: 2 },
-        { level: 3 },
-        { level: 4 },
-        { level: 5 },
+      cols={[
+        { props: { level: 0 } },
+        { props: { level: 1 } },
+        { props: { level: 2 } },
+        { props: { level: 3 } },
+        { props: { level: 4 } },
+        { props: { level: 5 } },
       ]}
     />
   ),

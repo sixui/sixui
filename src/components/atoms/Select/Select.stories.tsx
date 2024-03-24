@@ -16,7 +16,7 @@ import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   ComponentShowcase,
   type IComponentPresentation,
-} from '@/components/utils/ComponentShowcase2';
+} from '@/components/utils/ComponentShowcase';
 import { ListItem } from '@/components/atoms/ListItem';
 import { Select, type ISelectProps } from './Select';
 

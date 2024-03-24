@@ -1,7 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
-import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
+import {
+  type IComponentPresentation,
+  ComponentShowcase,
+} from '@/components/utils/ComponentShowcase';
 import type { IStyles } from '@/helpers/types';
 import type { IItemStyleKey } from './Item.styledefs';
 import { Item, type IItemProps } from './Item';
@@ -73,17 +76,24 @@ export const ShortText: IStory = {
       styles={componentShowCaseStyles}
       component={Item}
       props={props}
-      colsProps={[
-        { children: 'Single line item' },
-        { children: 'Two line item', supportingText: 'Supporting text' },
+      cols={[
+        { props: { children: 'Single line item' } },
         {
-          children: 'Three line item',
-          supportingText: (
-            <>
-              <div>Second line text</div>
-              <div>Third line text</div>
-            </>
-          ),
+          props: {
+            children: 'Two line item',
+            supportingText: 'Supporting text',
+          },
+        },
+        {
+          props: {
+            children: 'Three line item',
+            supportingText: (
+              <>
+                <div>Second line text</div>
+                <div>Third line text</div>
+              </>
+            ),
+          },
         },
       ]}
     />
@@ -94,38 +104,44 @@ export const ShortText: IStory = {
   },
 };
 
-const longTextColProps = [
+const longTextColProps: Array<IComponentPresentation<IItemProps>> = [
   {
-    children: 'Item with a truncated headline and supporting text.',
-    supportingText: `Supporting text. ${LOREM_IPSUM}`,
-    styles: [
-      itemStyles,
-      stylex.create<IStyles<IItemStyleKey>>({
-        label: {
-          // Prevent lines from wrapping
-          whiteSpace: 'nowrap',
-        },
-      }),
-    ],
+    props: {
+      children: 'Item with a truncated headline and supporting text.',
+      supportingText: `Supporting text. ${LOREM_IPSUM}`,
+      styles: [
+        itemStyles,
+        stylex.create<IStyles<IItemStyleKey>>({
+          label: {
+            // Prevent lines from wrapping
+            whiteSpace: 'nowrap',
+          },
+        }),
+      ],
+    },
   },
   {
-    children: 'Item with clamped lines',
-    supportingText: `Supporting text that wraps up to two lines. ${LOREM_IPSUM}`,
-    styles: [
-      itemStyles,
-      stylex.create<IStyles<IItemStyleKey>>({
-        supportingText: {
-          display: '-webkit-box',
-          WebkitBoxOrient: 'vertical',
-          WebkitLineClamp: '2',
-          wordBreak: 'break-all',
-        },
-      }),
-    ],
+    props: {
+      children: 'Item with clamped lines',
+      supportingText: `Supporting text that wraps up to two lines. ${LOREM_IPSUM}`,
+      styles: [
+        itemStyles,
+        stylex.create<IStyles<IItemStyleKey>>({
+          supportingText: {
+            display: '-webkit-box',
+            WebkitBoxOrient: 'vertical',
+            WebkitLineClamp: '2',
+            wordBreak: 'break-all',
+          },
+        }),
+      ],
+    },
   },
   {
-    children: 'Item that always shows long wrapping text.',
-    supportingText: `Supporting text. ${LOREM_IPSUM}`,
+    props: {
+      children: 'Item that always shows long wrapping text.',
+      supportingText: `Supporting text. ${LOREM_IPSUM}`,
+    },
   },
 ];
 
@@ -135,7 +151,7 @@ export const LongText: IStory = {
       styles={componentShowCaseStyles}
       component={Item}
       props={props}
-      colsProps={longTextColProps}
+      cols={longTextColProps}
     />
   ),
   args: {

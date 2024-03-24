@@ -3,10 +3,14 @@ import { useState } from 'react';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
-  type IComponentPropsWithLegend,
+  type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { Checkbox, type ICheckboxProps } from './Checkbox';
+import {
+  Checkbox,
+  type ICheckboxProps,
+  type ICheckboxOwnProps,
+} from './Checkbox';
 
 // https://m3.material.io/components/checkbox/overview
 // https://material-web.dev/components/checkbox/
@@ -22,12 +26,12 @@ const defaultArgs = {
   onChange: (...args) => sbHandleEvent('change', args),
 } satisfies Partial<ICheckboxProps>;
 
-const statesProps: IComponentPropsWithLegend<ICheckboxProps> = [
-  { $legend: 'Enabled' },
-  { $legend: 'Hovered', visualState: { hovered: true } },
-  { $legend: 'Focused', visualState: { focused: true } },
-  { $legend: 'Pressed', visualState: { pressed: true } },
-  { $legend: 'Disabled', disabled: true },
+const states: Array<IComponentPresentation<ICheckboxOwnProps>> = [
+  { legend: 'Enabled' },
+  { legend: 'Hovered', props: { visualState: { hovered: true } } },
+  { legend: 'Focused', props: { visualState: { focused: true } } },
+  { legend: 'Pressed', props: { visualState: { pressed: true } } },
+  { legend: 'Disabled', props: { disabled: true } },
 ];
 
 export const Uncontrolled: IStory = {
@@ -35,7 +39,11 @@ export const Uncontrolled: IStory = {
     <ComponentShowcase
       component={Checkbox}
       props={props}
-      colsProps={[{}, { defaultChecked: true }, { indeterminate: true }]}
+      cols={[
+        {},
+        { props: { defaultChecked: true } },
+        { props: { indeterminate: true } },
+      ]}
     />
   ),
   args: defaultArgs,
@@ -67,7 +75,11 @@ export const Controlled: IStory = {
     <ComponentShowcase
       component={ControlledCheckbox}
       props={props}
-      colsProps={[{}, { defaultChecked: true }, { indeterminate: true }]}
+      cols={[
+        {},
+        { props: { defaultChecked: true } },
+        { props: { indeterminate: true } },
+      ]}
     />
   ),
   args: defaultArgs,
@@ -78,11 +90,11 @@ export const Basic: IStory = {
     <ComponentShowcase
       component={Checkbox}
       props={props}
-      colsProps={statesProps}
-      rowsProps={[
-        { $legend: 'Unchecked' },
-        { $legend: 'Checked', defaultChecked: true },
-        { $legend: 'Indeterminate', indeterminate: true },
+      cols={states}
+      rows={[
+        { legend: 'Unchecked' },
+        { legend: 'Checked', props: { defaultChecked: true } },
+        { legend: 'Indeterminate', props: { indeterminate: true } },
       ]}
     />
   ),

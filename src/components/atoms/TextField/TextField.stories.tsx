@@ -9,7 +9,7 @@ import type { IStyles } from '@/helpers/types';
 import type { ITextFieldStyleKey } from './TextField.styledefs';
 import type { IFormStyleKey } from '@/components/utils/Form/Form.styledefs';
 import {
-  type IComponentPropsWithLegend,
+  type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
@@ -38,32 +38,36 @@ const defaultArgs = {
   sx: styles.host,
 } satisfies Partial<ITextFieldProps>;
 
-const statesProps: IComponentPropsWithLegend<ITextFieldProps> = [
-  { $legend: 'Enabled' },
-  { $legend: 'Hovered', visualState: { hovered: true } },
-  { $legend: 'Focused', visualState: { focused: true } },
+const states: Array<IComponentPresentation<ITextFieldProps>> = [
+  { legend: 'Enabled' },
+  { legend: 'Hovered', props: { visualState: { hovered: true } } },
+  { legend: 'Focused', props: { visualState: { focused: true } } },
   {
-    $legend: 'Disabled',
-    disabled: true,
+    legend: 'Disabled',
+    props: {
+      disabled: true,
+    },
   },
 ];
 
-const rowsProps: IComponentPropsWithLegend<ITextFieldProps> = [
-  { $legend: 'Empty' },
-  { $legend: 'Label', label: 'Label' },
-  { $legend: 'Placeholder', placeholder: 'Placeholder' },
+const rows: Array<IComponentPresentation<ITextFieldProps>> = [
+  { legend: 'Empty' },
+  { legend: 'Label', props: { label: 'Label' } },
+  { legend: 'Placeholder', props: { placeholder: 'Placeholder' } },
   {
-    $legend: 'Value',
-    value: 'Value',
-    prefixText: '$',
-    suffixText: '.00',
+    legend: 'Value',
+    props: {
+      value: 'Value',
+      prefixText: '$',
+      suffixText: '.00',
+    },
   },
-  { $legend: 'Error', value: 'Value', hasError: true },
+  { legend: 'Error', props: { value: 'Value', hasError: true } },
 ];
 
-const groupsProps: IComponentPropsWithLegend<ITextFieldProps> = [
-  { $legend: 'Input' },
-  { $legend: 'Textarea', type: 'textarea' },
+const groups: Array<IComponentPresentation<ITextFieldProps>> = [
+  { legend: 'Input' },
+  { legend: 'Textarea', props: { type: 'textarea' } },
 ];
 
 export const Filled: IStory = {
@@ -71,9 +75,9 @@ export const Filled: IStory = {
     <ComponentShowcase
       component={TextField}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
-      groupsProps={groupsProps}
+      cols={states}
+      rows={rows}
+      groups={groups}
     />
   ),
   args: {
@@ -87,9 +91,9 @@ export const Outlined: IStory = {
     <ComponentShowcase
       component={TextField}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
-      groupsProps={groupsProps}
+      cols={states}
+      rows={rows}
+      groups={groups}
     />
   ),
   args: {
@@ -133,57 +137,71 @@ export const Validation: IStory = {
     <ComponentShowcase
       component={ControlledTextField}
       props={props}
-      colsProps={[
-        { $legend: 'Filled', variant: 'filled' },
-        { $legend: 'Outlined', variant: 'outlined' },
+      cols={[
+        { legend: 'Filled', props: { variant: 'filled' } },
+        { legend: 'Outlined', props: { variant: 'outlined' } },
       ]}
-      rowsProps={[
+      rows={[
         {
-          label: 'Required',
-          required: true,
-          supportingText: '* this field is required',
+          props: {
+            label: 'Required',
+            required: true,
+            supportingText: '* this field is required',
+          },
         },
         {
-          label: 'Required',
-          value: 'Initial value',
-          required: true,
-          supportingText: '* this field is required',
+          props: {
+            label: 'Required',
+            value: 'Initial value',
+            required: true,
+            supportingText: '* this field is required',
+          },
         },
         {
-          type: 'number',
-          label: 'Numeric',
-          min: 1,
-          max: 10,
-          supportingText: 'Enter a number between 1 and 10',
-          noSpinner: true,
+          props: {
+            type: 'number',
+            label: 'Numeric',
+            min: 1,
+            max: 10,
+            supportingText: 'Enter a number between 1 and 10',
+            noSpinner: true,
+          },
         },
         {
-          label: 'Length',
-          minLength: 3,
-          maxLength: 10,
-          supportingText: '3 to 10 characters',
+          props: {
+            label: 'Length',
+            minLength: 3,
+            maxLength: 10,
+            supportingText: '3 to 10 characters',
+          },
         },
         {
-          label: 'Length',
-          minLength: 3,
-          supportingText: 'Min 3 characters',
+          props: {
+            label: 'Length',
+            minLength: 3,
+            supportingText: 'Min 3 characters',
+          },
         },
         {
-          label: 'Length',
-          maxLength: 10,
-          supportingText: 'Max 10 characters',
+          props: {
+            label: 'Length',
+            maxLength: 10,
+            supportingText: 'Max 10 characters',
+          },
         },
         {
-          styles: stylex.create<IStyles<ITextFieldStyleKey>>({
-            host: {
-              textAlign: 'end',
-            },
-          }),
-          label: 'Pattern',
-          pattern: '[a-zA-Z]+',
-          placeholder: 'username',
-          suffixText: '@gmail.com',
-          supportingText: 'Characters only',
+          props: {
+            styles: stylex.create<IStyles<ITextFieldStyleKey>>({
+              host: {
+                textAlign: 'end',
+              },
+            }),
+            label: 'Pattern',
+            pattern: '[a-zA-Z]+',
+            placeholder: 'username',
+            suffixText: '@gmail.com',
+            supportingText: 'Characters only',
+          },
         },
       ]}
     />
@@ -269,9 +287,9 @@ export const FormDemo: IStory = {
     <ComponentShowcase
       component={ControlledForm}
       props={props}
-      colsProps={[
-        { $legend: 'Filled', variant: 'filled' },
-        { $legend: 'Outlined', variant: 'outlined' },
+      cols={[
+        { legend: 'Filled', props: { variant: 'filled' } },
+        { legend: 'Outlined', props: { variant: 'outlined' } },
       ]}
     />
   ),

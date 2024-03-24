@@ -26,14 +26,14 @@ export const Basic: IStory = {
     <ComponentShowcase
       component={DeterminateCircularProgressIndicator}
       props={props}
-      colsProps={[
-        { value: 0 },
-        { value: 0.25 },
-        { value: 0.5 },
-        { value: 0.75 },
-        { value: 1 },
+      cols={[
+        { props: { value: 0 } },
+        { props: { value: 0.25 } },
+        { props: { value: 0.5 } },
+        { props: { value: 0.75 } },
+        { props: { value: 1 } },
       ]}
-      rowsProps={[{}, { disabled: true }]}
+      rows={[{}, { props: { disabled: true } }]}
     />
   ),
   args: defaultArgs,
@@ -44,14 +44,14 @@ export const WithLabel: IStory = {
     <ComponentShowcase
       component={DeterminateCircularProgressIndicator}
       props={props}
-      colsProps={[
-        { value: 0 },
-        { value: 0.25 },
-        { value: 0.5 },
-        { value: 0.75 },
-        { value: 1 },
+      cols={[
+        { props: { value: 0 } },
+        { props: { value: 0.25 } },
+        { props: { value: 0.5 } },
+        { props: { value: 0.75 } },
+        { props: { value: 1 } },
       ]}
-      rowsProps={[{}, { disabled: true }]}
+      rows={[{}, { props: { disabled: true } }]}
     />
   ),
   args: {
@@ -66,14 +66,14 @@ export const WithLabelFormatter: IStory = {
     <ComponentShowcase
       component={DeterminateCircularProgressIndicator}
       props={props}
-      colsProps={[
-        { value: 0 },
-        { value: 0.25 },
-        { value: 0.5 },
-        { value: 0.75 },
-        { value: 1 },
+      cols={[
+        { props: { value: 0 } },
+        { props: { value: 0.25 } },
+        { props: { value: 0.5 } },
+        { props: { value: 0.75 } },
+        { props: { value: 1 } },
       ]}
-      rowsProps={[{}, { disabled: true }]}
+      rows={[{}, { props: { disabled: true } }]}
     />
   ),
   args: {
@@ -89,14 +89,14 @@ export const WithRange: IStory = {
     <ComponentShowcase
       component={DeterminateCircularProgressIndicator}
       props={props}
-      colsProps={[
-        { value: -64 },
-        { value: -16 },
-        { value: 32 },
-        { value: 80 },
-        { value: 128 },
+      cols={[
+        { props: { value: -64 } },
+        { props: { value: -16 } },
+        { props: { value: 32 } },
+        { props: { value: 80 } },
+        { props: { value: 128 } },
       ]}
-      rowsProps={[{}, { disabled: true }]}
+      rows={[{}, { props: { disabled: true } }]}
     />
   ),
   args: {
@@ -114,14 +114,14 @@ export const ZeroBased: IStory = {
     <ComponentShowcase
       component={DeterminateCircularProgressIndicator}
       props={props}
-      colsProps={[
-        { value: -100 },
-        { value: -50 },
-        { value: 0 },
-        { value: 50 },
-        { value: 100 },
+      cols={[
+        { props: { value: -100 } },
+        { props: { value: -50 } },
+        { props: { value: 0 } },
+        { props: { value: 50 } },
+        { props: { value: 100 } },
       ]}
-      rowsProps={[{}, { disabled: true }]}
+      rows={[{}, { props: { disabled: true } }]}
     />
   ),
   args: {
@@ -140,7 +140,7 @@ export const Sizes: IStory = {
     <ComponentShowcase
       component={DeterminateCircularProgressIndicator}
       props={props}
-      colsProps={circularProgressIndicatorSizes.map((size) => ({ size }))}
+      cols={circularProgressIndicatorSizes.map((size) => ({ props: { size } }))}
     />
   ),
   args: defaultArgs,

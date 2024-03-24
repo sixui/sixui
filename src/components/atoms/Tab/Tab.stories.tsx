@@ -5,10 +5,10 @@ import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
-  type IComponentPropsWithLegend,
+  type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { type ITabProps, Tab } from './Tab';
+import { Tab, type ITabProps, type ITabOwnProps } from './Tab';
 
 // https://m3.material.io/components/tabs/overview
 // https://material-web.dev/components/tabs/
@@ -24,32 +24,45 @@ const defaultArgs = {
   onClick: (...args) => sbHandleEvent('click', args),
 } satisfies Partial<ITabProps>;
 
-const statesProps: IComponentPropsWithLegend<ITabProps> = [
-  { $legend: 'Enabled', label: 'Enabled' },
-  { $legend: 'Focused', label: 'Focused', visualState: { focused: true } },
-  { $legend: 'Hovered', label: 'Hovered', visualState: { hovered: true } },
-  { $legend: 'Pressed', label: 'Pressed', visualState: { pressed: true } },
-  { $legend: 'Disabled', label: 'Disabled', disabled: true },
-];
-
-const rowsProps: IComponentPropsWithLegend<ITabProps> = [
-  { $legend: 'Label' },
+const states: Array<IComponentPresentation<ITabOwnProps>> = [
+  { legend: 'Enabled', props: { label: 'Enabled' } },
   {
-    $legend: 'Icon',
-    icon: <FontAwesomeIcon icon={faEnvelope} />,
-    activeIcon: <FontAwesomeIcon icon={faEnvelopeSolid} />,
-    label: undefined,
+    legend: 'Focused',
+    props: { label: 'Focused', visualState: { focused: true } },
   },
   {
-    $legend: 'Label and icon',
-    icon: <FontAwesomeIcon icon={faEnvelope} />,
-    activeIcon: <FontAwesomeIcon icon={faEnvelopeSolid} />,
+    legend: 'Hovered',
+    props: { label: 'Hovered', visualState: { hovered: true } },
+  },
+  {
+    legend: 'Pressed',
+    props: { label: 'Pressed', visualState: { pressed: true } },
+  },
+  { legend: 'Disabled', props: { label: 'Disabled', disabled: true } },
+];
+
+const rows: Array<IComponentPresentation<ITabOwnProps>> = [
+  { legend: 'Label' },
+  {
+    legend: 'Icon',
+    props: {
+      icon: <FontAwesomeIcon icon={faEnvelope} />,
+      activeIcon: <FontAwesomeIcon icon={faEnvelopeSolid} />,
+      label: undefined,
+    },
+  },
+  {
+    legend: 'Label and icon',
+    props: {
+      icon: <FontAwesomeIcon icon={faEnvelope} />,
+      activeIcon: <FontAwesomeIcon icon={faEnvelopeSolid} />,
+    },
   },
 ];
 
-const groupsProps: IComponentPropsWithLegend<ITabProps> = [
-  { $legend: 'Inactive' },
-  { $legend: 'Active', active: true },
+const groups: Array<IComponentPresentation<ITabOwnProps>> = [
+  { legend: 'Inactive' },
+  { legend: 'Active', props: { active: true } },
 ];
 
 export const Variants: IStory = {
@@ -87,9 +100,9 @@ export const Primary: IStory = {
     <ComponentShowcase
       component={Tab}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
-      groupsProps={groupsProps}
+      cols={states}
+      rows={rows}
+      groups={groups}
     />
   ),
   args: defaultArgs,
@@ -100,9 +113,9 @@ export const PrimaryWithBadge: IStory = {
     <ComponentShowcase
       component={Tab}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
-      groupsProps={groupsProps}
+      cols={states}
+      rows={rows}
+      groups={groups}
     />
   ),
   args: {
@@ -116,9 +129,9 @@ export const Secondary: IStory = {
     <ComponentShowcase
       component={Tab}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
-      groupsProps={groupsProps}
+      cols={states}
+      rows={rows}
+      groups={groups}
     />
   ),
   args: {
@@ -132,9 +145,9 @@ export const SecondaryWithBadge: IStory = {
     <ComponentShowcase
       component={Tab}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
-      groupsProps={groupsProps}
+      cols={states}
+      rows={rows}
+      groups={groups}
     />
   ),
   args: {

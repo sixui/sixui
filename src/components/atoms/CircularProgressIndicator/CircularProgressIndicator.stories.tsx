@@ -23,8 +23,8 @@ export const Variants: IStory = {
     <ComponentShowcase
       component={CircularProgressIndicator}
       props={props}
-      colsProps={[{ value: undefined }, { value: 0.75 }]}
-      rowsProps={[{}, { disabled: true }]}
+      cols={[{ props: { value: undefined } }, { props: { value: 0.75 } }]}
+      rows={[{}, { props: { disabled: true } }]}
     />
   ),
   args: defaultArgs,
@@ -35,7 +35,10 @@ export const Sizes: IStory = {
     <ComponentShowcase
       component={CircularProgressIndicator}
       props={props}
-      colsProps={[{ value: undefined }, { value: 0.75, size: 'lg' }]}
+      cols={[
+        { props: { value: undefined } },
+        { props: { value: 0.75, size: 'lg' } },
+      ]}
     />
   ),
   args: defaultArgs,

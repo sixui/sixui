@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import {
-  type IComponentPropsWithLegend,
+  type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
 import {
@@ -19,12 +19,12 @@ const defaultArgs = {
   children: 'VariableTemplate',
 } satisfies Partial<IVariableTemplateProps>;
 
-const statesProps: IComponentPropsWithLegend<IVariableTemplateProps> = [
-  { $legend: 'Enabled' },
-  { $legend: 'Hovered', visualState: { hovered: true } },
-  { $legend: 'Focused', visualState: { focused: true } },
-  { $legend: 'Pressed', visualState: { pressed: true } },
-  { $legend: 'Dragged', visualState: { dragged: true } },
+const states: Array<IComponentPresentation<IVariableTemplateProps>> = [
+  { legend: 'Enabled' },
+  { legend: 'Hovered', props: { visualState: { hovered: true } } },
+  { legend: 'Focused', props: { visualState: { focused: true } } },
+  { legend: 'Pressed', props: { visualState: { pressed: true } } },
+  { legend: 'Dragged', props: { visualState: { dragged: true } } },
 ];
 
 export const Variants: IStory = {
@@ -32,7 +32,7 @@ export const Variants: IStory = {
     <ComponentShowcase
       component={VariableTemplate}
       props={props}
-      colsProps={[{ variant: 'variant' }]}
+      cols={[{ props: { variant: 'variant' } }]}
     />
   ),
   args: defaultArgs,
@@ -43,7 +43,7 @@ export const Variant: IStory = {
     <ComponentShowcase
       component={VariableTemplate}
       props={props}
-      colsProps={statesProps}
+      cols={states}
     />
   ),
   args: {

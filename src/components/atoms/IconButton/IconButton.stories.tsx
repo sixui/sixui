@@ -5,10 +5,14 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
-  type IComponentPropsWithLegend,
+  type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { IconButton, type IIconButtonProps } from './IconButton';
+import {
+  IconButton,
+  type IIconButtonProps,
+  type IIconButtonOwnProps,
+} from './IconButton';
 import { iconbuttonVariants } from './IconButton.styledefs';
 
 // https://m3.material.io/components/icon-buttons/overview
@@ -27,19 +31,19 @@ const defaultArgs = {
   selectedIcon: <FontAwesomeIcon icon={faHeartSolid} />,
 } satisfies Partial<IIconButtonProps>;
 
-const statesProps: IComponentPropsWithLegend<IIconButtonProps> = [
-  { $legend: 'Enabled' },
-  { $legend: 'Hovered', visualState: { hovered: true } },
-  { $legend: 'Focused', visualState: { focused: true } },
-  { $legend: 'Pressed', visualState: { pressed: true } },
-  { $legend: 'Loading', loading: true },
-  { $legend: 'Disabled', disabled: true },
+const states: Array<IComponentPresentation<IIconButtonOwnProps>> = [
+  { legend: 'Enabled' },
+  { legend: 'Hovered', props: { visualState: { hovered: true } } },
+  { legend: 'Focused', props: { visualState: { focused: true } } },
+  { legend: 'Pressed', props: { visualState: { pressed: true } } },
+  { legend: 'Loading', props: { loading: true } },
+  { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const rowsProps: IComponentPropsWithLegend<IIconButtonProps> = [
-  { $legend: 'Basic', toggle: false },
-  { $legend: 'Selectable', toggle: true },
-  { $legend: 'Selected', toggle: true, selected: true },
+const rows: Array<IComponentPresentation<IIconButtonOwnProps>> = [
+  { legend: 'Basic', props: { toggle: false } },
+  { legend: 'Selectable', props: { toggle: true } },
+  { legend: 'Selected', props: { toggle: true, selected: true } },
 ];
 
 export const Variants: IStory = {
@@ -47,7 +51,7 @@ export const Variants: IStory = {
     <ComponentShowcase
       component={IconButton}
       props={props}
-      colsProps={iconbuttonVariants.map((variant) => ({ variant }))}
+      cols={iconbuttonVariants.map((variant) => ({ props: { variant } }))}
     />
   ),
   args: defaultArgs,
@@ -58,8 +62,8 @@ export const Standard: IStory = {
     <ComponentShowcase
       component={IconButton}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
+      cols={states}
+      rows={rows}
     />
   ),
   args: {
@@ -73,8 +77,8 @@ export const Filled: IStory = {
     <ComponentShowcase
       component={IconButton}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
+      cols={states}
+      rows={rows}
     />
   ),
   args: {
@@ -88,8 +92,8 @@ export const FilledTonal: IStory = {
     <ComponentShowcase
       component={IconButton}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
+      cols={states}
+      rows={rows}
     />
   ),
   args: {
@@ -103,8 +107,8 @@ export const Outlined: IStory = {
     <ComponentShowcase
       component={IconButton}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
+      cols={states}
+      rows={rows}
     />
   ),
   args: {

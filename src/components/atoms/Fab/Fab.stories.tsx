@@ -4,10 +4,10 @@ import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
-  type IComponentPropsWithLegend,
+  type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { Fab, type IFabProps } from './Fab';
+import { Fab, type IFabProps, type IFabOwnProps } from './Fab';
 
 // https://m3.material.io/components/floating-action-button/overview
 // https://material-web.dev/components/fab/
@@ -23,21 +23,6 @@ const defaultArgs = {
   onClick: (...args) => sbHandleEvent('click', args, 300),
 } satisfies Partial<IFabProps>;
 
-const statesProps: IComponentPropsWithLegend<IFabProps> = [
-  { $legend: 'Enabled', label: 'Enabled' },
-  { $legend: 'Hovered', label: 'Hovered', visualState: { hovered: true } },
-  { $legend: 'Focused', label: 'Focused', visualState: { focused: true } },
-  { $legend: 'Pressed', label: 'Pressed', visualState: { pressed: true } },
-  { $legend: 'Loading', label: 'Loading', loading: true },
-  {
-    $legend: 'Loading text',
-    label: 'Loading',
-    loading: true,
-    loadingText: '…',
-  },
-  { $legend: 'Disabled', label: 'Disabled', disabled: true },
-];
-
 const svgColorIcon = (
   <svg viewBox='0 0 36 36'>
     <path fill='#4285F4' d='M30 16H20l-4 4h14z'></path>
@@ -48,63 +33,95 @@ const svgColorIcon = (
   </svg>
 );
 
+const states: Array<IComponentPresentation<IFabOwnProps>> = [
+  { legend: 'Enabled', props: { label: 'Enabled' } },
+  {
+    legend: 'Hovered',
+    props: { label: 'Hovered', visualState: { hovered: true } },
+  },
+  {
+    legend: 'Focused',
+    props: { label: 'Focused', visualState: { focused: true } },
+  },
+  {
+    legend: 'Pressed',
+    props: { label: 'Pressed', visualState: { pressed: true } },
+  },
+  { legend: 'Loading', props: { label: 'Loading', loading: true } },
+  {
+    legend: 'Loading text',
+    props: {
+      label: 'Loading',
+      loading: true,
+      loadingText: '…',
+    },
+  },
+  { legend: 'Disabled', props: { label: 'Disabled', disabled: true } },
+];
+
+const variants: Array<IComponentPresentation<IFabOwnProps>> = [
+  {
+    legend: 'Surface',
+    props: {
+      variant: 'surface',
+      children: <FontAwesomeIcon icon={faPaperPlane} />,
+    },
+  },
+  {
+    legend: 'Primary',
+    props: {
+      variant: 'primary',
+      children: <FontAwesomeIcon icon={faPaperPlane} />,
+    },
+  },
+  {
+    legend: 'Secondary',
+    props: {
+      variant: 'secondary',
+      children: <FontAwesomeIcon icon={faPaperPlane} />,
+    },
+  },
+  {
+    legend: 'Tertiary',
+    props: {
+      variant: 'tertiary',
+      children: <FontAwesomeIcon icon={faPaperPlane} />,
+    },
+  },
+  {
+    legend: 'Branded',
+    props: {
+      variant: 'branded',
+      children: svgColorIcon,
+    },
+  },
+];
+
+const sizes: Array<IComponentPresentation<IFabOwnProps>> = [
+  {
+    legend: 'Small',
+    props: { size: 'sm' },
+  },
+  {
+    legend: 'Medium',
+    props: { size: 'md' },
+  },
+  {
+    legend: 'Large',
+    props: { size: 'lg' },
+  },
+];
+
 export const Variants: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={Fab}
-      props={props}
-      colsProps={[
-        {
-          $legend: 'Surface',
-          variant: 'surface',
-          children: <FontAwesomeIcon icon={faPaperPlane} />,
-        },
-        {
-          $legend: 'Primary',
-          variant: 'primary',
-          children: <FontAwesomeIcon icon={faPaperPlane} />,
-        },
-        {
-          $legend: 'Secondary',
-          variant: 'secondary',
-          children: <FontAwesomeIcon icon={faPaperPlane} />,
-        },
-        {
-          $legend: 'Tertiary',
-          variant: 'tertiary',
-          children: <FontAwesomeIcon icon={faPaperPlane} />,
-        },
-        {
-          $legend: 'Branded',
-          variant: 'branded',
-          children: svgColorIcon,
-        },
-      ]}
-    />
+    <ComponentShowcase component={Fab} props={props} cols={variants} />
   ),
   args: defaultArgs,
 };
 
 export const Sizes: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={Fab}
-      props={props}
-      colsProps={[
-        {
-          $legend: 'Small',
-          size: 'sm',
-        },
-        {
-          $legend: 'Medium',
-          size: 'md',
-        },
-        {
-          $legend: 'Large',
-          size: 'lg',
-        },
-      ]}
-    />
+    <ComponentShowcase component={Fab} props={props} cols={sizes} />
   ),
   args: {
     ...defaultArgs,
@@ -118,9 +135,9 @@ export const BrandedSizes: IStory = {
     <ComponentShowcase
       component={Fab}
       props={props}
-      colsProps={[
-        { $legend: 'Medium', size: 'md' },
-        { $legend: 'Large', size: 'lg' },
+      cols={[
+        { legend: 'Medium', props: { size: 'md' } },
+        { legend: 'Large', props: { size: 'lg' } },
       ]}
     />
   ),
@@ -136,20 +153,22 @@ export const Surface: IStory = {
     <ComponentShowcase
       component={Fab}
       props={props}
-      colsProps={statesProps}
-      rowsProps={[
+      cols={states}
+      rows={[
         {
-          $legend: 'Basic',
-          label: undefined,
-          children: <FontAwesomeIcon icon={faPaperPlane} />,
+          legend: 'Basic',
+          props: {
+            label: undefined,
+            children: <FontAwesomeIcon icon={faPaperPlane} />,
+          },
         },
         {
-          $legend: 'With label',
-          children: <FontAwesomeIcon icon={faPaperPlane} />,
+          legend: 'With label',
+          props: { children: <FontAwesomeIcon icon={faPaperPlane} /> },
         },
-        { $legend: 'Label only' },
+        { legend: 'Label only' },
       ]}
-      groupsProps={[{}, { $legend: 'Lowered', lowered: true }]}
+      groups={[{}, { legend: 'Lowered', props: { lowered: true } }]}
     />
   ),
   args: {
@@ -163,20 +182,22 @@ export const Primary: IStory = {
     <ComponentShowcase
       component={Fab}
       props={props}
-      colsProps={statesProps}
-      rowsProps={[
+      cols={states}
+      rows={[
         {
-          $legend: 'Basic',
-          label: undefined,
-          children: <FontAwesomeIcon icon={faPaperPlane} />,
+          legend: 'Basic',
+          props: {
+            label: undefined,
+            children: <FontAwesomeIcon icon={faPaperPlane} />,
+          },
         },
         {
-          $legend: 'With label',
-          children: <FontAwesomeIcon icon={faPaperPlane} />,
+          legend: 'With label',
+          props: { children: <FontAwesomeIcon icon={faPaperPlane} /> },
         },
-        { $legend: 'Label only' },
+        { legend: 'Label only' },
       ]}
-      groupsProps={[{}, { $legend: 'Lowered', lowered: true }]}
+      groups={[{}, { legend: 'Lowered', props: { lowered: true } }]}
     />
   ),
   args: {
@@ -190,20 +211,22 @@ export const Secondary: IStory = {
     <ComponentShowcase
       component={Fab}
       props={props}
-      colsProps={statesProps}
-      rowsProps={[
+      cols={states}
+      rows={[
         {
-          $legend: 'Basic',
-          label: undefined,
-          children: <FontAwesomeIcon icon={faPaperPlane} />,
+          legend: 'Basic',
+          props: {
+            label: undefined,
+            children: <FontAwesomeIcon icon={faPaperPlane} />,
+          },
         },
         {
-          $legend: 'With label',
-          children: <FontAwesomeIcon icon={faPaperPlane} />,
+          legend: 'With label',
+          props: { children: <FontAwesomeIcon icon={faPaperPlane} /> },
         },
-        { $legend: 'Label only' },
+        { legend: 'Label only' },
       ]}
-      groupsProps={[{}, { $legend: 'Lowered', lowered: true }]}
+      groups={[{}, { legend: 'Lowered', props: { lowered: true } }]}
     />
   ),
   args: {
@@ -217,20 +240,22 @@ export const Tertiary: IStory = {
     <ComponentShowcase
       component={Fab}
       props={props}
-      colsProps={statesProps}
-      rowsProps={[
+      cols={states}
+      rows={[
         {
-          $legend: 'Basic',
-          label: undefined,
-          children: <FontAwesomeIcon icon={faPaperPlane} />,
+          legend: 'Basic',
+          props: {
+            label: undefined,
+            children: <FontAwesomeIcon icon={faPaperPlane} />,
+          },
         },
         {
-          $legend: 'With label',
-          children: <FontAwesomeIcon icon={faPaperPlane} />,
+          legend: 'With label',
+          props: { children: <FontAwesomeIcon icon={faPaperPlane} /> },
         },
-        { $legend: 'Label only' },
+        { legend: 'Label only' },
       ]}
-      groupsProps={[{}, { $legend: 'Lowered', lowered: true }]}
+      groups={[{}, { legend: 'Lowered', props: { lowered: true } }]}
     />
   ),
   args: {
@@ -244,12 +269,12 @@ export const Branded: IStory = {
     <ComponentShowcase
       component={Fab}
       props={props}
-      colsProps={statesProps}
-      rowsProps={[
-        { $legend: 'Basic', label: undefined },
-        { $legend: 'With label' },
+      cols={states}
+      rows={[
+        { legend: 'Basic', props: { label: undefined } },
+        { legend: 'With label' },
       ]}
-      groupsProps={[{}, { $legend: 'Lowered', lowered: true }]}
+      groups={[{}, { legend: 'Lowered', props: { lowered: true } }]}
     />
   ),
   args: {

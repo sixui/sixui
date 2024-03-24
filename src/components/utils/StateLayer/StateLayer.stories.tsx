@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import {
-  type IComponentPropsWithLegend,
+  type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
 import { StateLayer, type IStateLayerProps } from './StateLayer';
@@ -21,12 +21,12 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {} satisfies Partial<IStateLayerProps>;
 
-const statesProps: IComponentPropsWithLegend<IStateLayerProps> = [
-  { $legend: 'Enabled' },
-  { $legend: 'Hovered', visualState: { hovered: true } },
-  { $legend: 'Pressed', visualState: { pressed: true } },
-  { $legend: 'Dragged', visualState: { dragged: true } },
-  { $legend: 'Disabled', disabled: true },
+const states: Array<IComponentPresentation<IStateLayerProps>> = [
+  { legend: 'Enabled' },
+  { legend: 'Hovered', props: { visualState: { hovered: true } } },
+  { legend: 'Pressed', props: { visualState: { pressed: true } } },
+  { legend: 'Dragged', props: { visualState: { dragged: true } } },
+  { legend: 'Disabled', props: { disabled: true } },
 ];
 
 const styles = stylex.create({
@@ -74,7 +74,7 @@ export const Bounded: IStory = {
         </div>
       )}
       props={props}
-      colsProps={statesProps}
+      cols={states}
     />
   ),
   args: defaultArgs,
@@ -108,7 +108,7 @@ export const Unbounded: IStory = {
         <UnboundedComponent {...props} {...variantArgs} />
       )}
       props={props}
-      colsProps={statesProps}
+      cols={states}
     />
   ),
   args: defaultArgs,

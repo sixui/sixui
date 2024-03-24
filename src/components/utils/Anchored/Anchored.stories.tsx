@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import {
-  type IComponentPropsWithLegend,
+  type IComponentPresentation,
   type IComponentShowcaseProps,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
@@ -41,40 +41,42 @@ const Badge: React.FC<{ size: 'sm' | 'lg' }> = ({ size }) => (
   <Placeholder styles={size === 'sm' ? badgeStyles$sm : badgeStyles$lg} />
 );
 
-const anchorsProps: IComponentPropsWithLegend<IAnchoredProps> = [
-  { verticalOrigin: 'top', horizontalOrigin: 'right' },
-  { verticalOrigin: 'bottom', horizontalOrigin: 'right' },
-  { verticalOrigin: 'top', horizontalOrigin: 'left' },
-  { verticalOrigin: 'bottom', horizontalOrigin: 'left' },
+const variants: Array<IComponentPresentation<IAnchoredProps>> = [
+  {
+    props: {
+      overlap: 'rectangular',
+      children: <Placeholder shape='rectangular' />,
+      content: <Badge size='sm' />,
+      verticalOrigin: 'top',
+      horizontalOrigin: 'right',
+    },
+  },
+  {
+    props: {
+      overlap: 'circular',
+      children: <Placeholder shape='circular' />,
+      content: <Badge size='lg' />,
+      verticalOrigin: 'bottom',
+      horizontalOrigin: 'left',
+    },
+  },
 ];
 
-const contentProps: IComponentPropsWithLegend<IAnchoredProps> = [
-  { $legend: 'Short', content: <Badge size='sm' /> },
-  { $legend: 'Long', content: <Badge size='lg' /> },
+const anchors: Array<IComponentPresentation<IAnchoredProps>> = [
+  { props: { verticalOrigin: 'top', horizontalOrigin: 'right' } },
+  { props: { verticalOrigin: 'bottom', horizontalOrigin: 'right' } },
+  { props: { verticalOrigin: 'top', horizontalOrigin: 'left' } },
+  { props: { verticalOrigin: 'bottom', horizontalOrigin: 'left' } },
+];
+
+const content: Array<IComponentPresentation<IAnchoredProps>> = [
+  { legend: 'Short', props: { content: <Badge size='sm' /> } },
+  { legend: 'Long', props: { content: <Badge size='lg' /> } },
 ];
 
 export const Variants: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={Anchored}
-      props={props}
-      colsProps={[
-        {
-          overlap: 'rectangular',
-          children: <Placeholder shape='rectangular' />,
-          content: <Badge size='sm' />,
-          verticalOrigin: 'top',
-          horizontalOrigin: 'right',
-        },
-        {
-          overlap: 'circular',
-          children: <Placeholder shape='circular' />,
-          content: <Badge size='lg' />,
-          verticalOrigin: 'bottom',
-          horizontalOrigin: 'left',
-        },
-      ]}
-    />
+    <ComponentShowcase component={Anchored} props={props} cols={variants} />
   ),
   args: defaultArgs as IAnchoredProps,
 };
@@ -91,7 +93,10 @@ const ComponentShowcaseAnimated: React.FC<
   return (
     <ComponentShowcase
       {...props}
-      groupsProps={[{ $legend: 'Static' }, { $legend: 'Animated', invisible }]}
+      groups={[
+        { legend: 'Static' },
+        { legend: 'Animated', props: { invisible } },
+      ]}
     />
   );
 };
@@ -101,8 +106,8 @@ export const RectangularOverlap: IStory = {
     <ComponentShowcaseAnimated
       component={Anchored}
       props={props}
-      rowsProps={contentProps}
-      colsProps={anchorsProps}
+      rows={content}
+      cols={anchors}
     />
   ),
   args: {
@@ -117,8 +122,8 @@ export const CircularOverlap: IStory = {
     <ComponentShowcaseAnimated
       component={Anchored}
       props={props}
-      rowsProps={contentProps}
-      colsProps={anchorsProps}
+      rows={content}
+      cols={anchors}
     />
   ),
   args: {

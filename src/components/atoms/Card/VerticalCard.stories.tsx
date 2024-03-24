@@ -5,13 +5,13 @@ import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
-  type IComponentPropsWithLegend,
+  type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { Card, type ICardProps } from './Card';
-import { Button } from '../Button';
-import { Avatar } from '../Avatar';
-import { IconButton } from '../IconButton/IconButton';
+import { Button } from '@/components/atoms/Button';
+import { Avatar } from '@/components/atoms/Avatar';
+import { IconButton } from '@/components/atoms/IconButton/IconButton';
+import { Card, type ICardProps, type ICardOwnProps } from './Card';
 
 // https://m3.material.io/components/cards
 // https://github.com/material-components/material-web/blob/main/labs/card/demo/stories.ts
@@ -35,15 +35,6 @@ const defaultArgs = {
   children: 'Default card content',
   sx: styles.card,
 } satisfies Partial<ICardProps>;
-
-const statesProps: IComponentPropsWithLegend<ICardProps> = [
-  { $legend: 'Enabled' },
-  { $legend: 'Focused', visualState: { focused: true } },
-  { $legend: 'Hovered', visualState: { hovered: true } },
-  { $legend: 'Pressed', visualState: { pressed: true } },
-  { $legend: 'Dragged', visualState: { dragged: true } },
-  { $legend: 'Disabled', disabled: true },
-];
 
 const NonActionableContent: React.FC<{ headline?: string }> = ({
   headline,
@@ -136,39 +127,57 @@ const ActionableContent: React.FC<{ headline?: string }> = ({ headline }) => (
   </>
 );
 
-const rowsProps: IComponentPropsWithLegend<ICardProps> = [
+const states: Array<IComponentPresentation<ICardOwnProps>> = [
+  { legend: 'Enabled' },
+  { legend: 'Focused', props: { visualState: { focused: true } } },
+  { legend: 'Hovered', props: { visualState: { hovered: true } } },
+  { legend: 'Pressed', props: { visualState: { pressed: true } } },
+  { legend: 'Dragged', props: { visualState: { dragged: true } } },
+  { legend: 'Disabled', props: { disabled: true } },
+];
+
+const rows: Array<IComponentPresentation<ICardOwnProps>> = [
   {
-    $legend: 'Non-actionable',
-    children: <NonActionableContent />,
+    legend: 'Non-actionable',
+    props: {
+      children: <NonActionableContent />,
+    },
   },
   {
-    $legend: 'Actionable',
-    onClick: (args) => sbHandleEvent('click:cardAction', args),
-    children: <ActionableContent />,
+    legend: 'Actionable',
+    props: {
+      onClick: (args) => sbHandleEvent('click:cardAction', args),
+      children: <ActionableContent />,
+    },
+  },
+];
+
+const variants: Array<IComponentPresentation<ICardOwnProps>> = [
+  {
+    props: {
+      variant: 'elevated',
+
+      children: <NonActionableContent headline='Non-actionable' />,
+    },
+  },
+  {
+    props: {
+      variant: 'outlined',
+      children: <NonActionableContentVariant headline='Non-actionable' />,
+    },
+  },
+  {
+    props: {
+      variant: 'filled',
+      children: <ActionableContent headline='Actionable' />,
+      onClick: () => sbHandleEvent('click:card'),
+    },
   },
 ];
 
 export const Variants: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={Card}
-      props={props}
-      colsProps={[
-        {
-          variant: 'elevated',
-          children: <NonActionableContent headline='Non-actionable' />,
-        },
-        {
-          variant: 'outlined',
-          children: <NonActionableContentVariant headline='Non-actionable' />,
-        },
-        {
-          variant: 'filled',
-          children: <ActionableContent headline='Actionable' />,
-          onClick: () => sbHandleEvent('click:card'),
-        },
-      ]}
-    />
+    <ComponentShowcase component={Card} props={props} cols={variants} />
   ),
   args: defaultArgs,
 };
@@ -178,8 +187,8 @@ export const Elevated: IStory = {
     <ComponentShowcase
       component={Card}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
+      cols={states}
+      rows={rows}
     />
   ),
   args: {
@@ -193,8 +202,8 @@ export const Filled: IStory = {
     <ComponentShowcase
       component={Card}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
+      cols={states}
+      rows={rows}
     />
   ),
   args: {
@@ -208,8 +217,8 @@ export const Outlined: IStory = {
     <ComponentShowcase
       component={Card}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
+      cols={states}
+      rows={rows}
     />
   ),
   args: {

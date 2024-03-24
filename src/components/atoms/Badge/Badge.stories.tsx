@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import {
-  type IComponentPropsWithLegend,
+  type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
 import {
@@ -26,15 +26,15 @@ type IExtendedBadgeProps = IBadgeProps & {
 
 const defaultArgs = {} satisfies Partial<IBadgeProps>;
 
-const colsProps: IComponentPropsWithLegend<IExtendedBadgeProps> = [
+const cols: Array<IComponentPresentation<IExtendedBadgeProps>> = [
   {},
-  { anchored: true, shape: 'rectangular' },
-  { anchored: true, shape: 'circular' },
+  { props: { anchored: true, shape: 'rectangular' } },
+  { props: { anchored: true, shape: 'circular' } },
 ];
 
-const rowsProps: IComponentPropsWithLegend<IExtendedBadgeProps> = [
-  { $legend: 'Enabled' },
-  { $legend: 'Disabled', disabled: true },
+const rows: Array<IComponentPresentation<IExtendedBadgeProps>> = [
+  { legend: 'Enabled' },
+  { legend: 'Disabled', props: { disabled: true } },
 ];
 
 const BadgeDemo: React.FC<IExtendedBadgeProps> = ({
@@ -58,11 +58,18 @@ export const Variants: IStory = {
     <ComponentShowcase<IExtendedBadgeProps>
       component={BadgeDemo}
       props={props}
-      colsProps={[
-        { anchored: true, shape: 'rectangular', dot: true },
-        { anchored: true, shape: 'rectangular', value: 3 },
-        { anchored: true, shape: 'circular', value: 32 },
-        { anchored: true, shape: 'circular', value: 8000, maxValue: 999 },
+      cols={[
+        { props: { anchored: true, shape: 'rectangular', dot: true } },
+        { props: { anchored: true, shape: 'rectangular', value: 3 } },
+        { props: { anchored: true, shape: 'circular', value: 32 } },
+        {
+          props: {
+            anchored: true,
+            shape: 'circular',
+            value: 8000,
+            maxValue: 999,
+          },
+        },
       ]}
     />
   ),
@@ -74,8 +81,8 @@ export const Dot: IStory = {
     <ComponentShowcase<IExtendedBadgeProps>
       component={(props) => <BadgeDemo {...props} />}
       props={props}
-      colsProps={colsProps}
-      rowsProps={rowsProps}
+      cols={cols}
+      rows={rows}
     />
   ),
   args: {
@@ -89,8 +96,8 @@ export const SingleDigit: IStory = {
     <ComponentShowcase<IExtendedBadgeProps>
       component={(props) => <BadgeDemo {...props} />}
       props={props}
-      colsProps={colsProps}
-      rowsProps={rowsProps}
+      cols={cols}
+      rows={rows}
     />
   ),
   args: {
@@ -104,8 +111,8 @@ export const MultipleDigits: IStory = {
     <ComponentShowcase<IExtendedBadgeProps>
       component={(props) => <BadgeDemo {...props} />}
       props={props}
-      colsProps={colsProps}
-      rowsProps={rowsProps}
+      cols={cols}
+      rows={rows}
     />
   ),
   args: {
@@ -119,8 +126,8 @@ export const MultipleDigitsThresholded: IStory = {
     <ComponentShowcase<IExtendedBadgeProps>
       component={(props) => <BadgeDemo {...props} />}
       props={props}
-      colsProps={colsProps}
-      rowsProps={rowsProps}
+      cols={cols}
+      rows={rows}
     />
   ),
   args: {
@@ -135,8 +142,8 @@ export const ShowZeroValue: IStory = {
     <ComponentShowcase<IExtendedBadgeProps>
       component={(props) => <BadgeDemo {...props} />}
       props={props}
-      colsProps={colsProps}
-      rowsProps={rowsProps}
+      cols={cols}
+      rows={rows}
     />
   ),
   args: {
@@ -151,8 +158,8 @@ export const HideZeroValue: IStory = {
     <ComponentShowcase<IExtendedBadgeProps>
       component={(props) => <BadgeDemo {...props} />}
       props={props}
-      colsProps={colsProps}
-      rowsProps={rowsProps}
+      cols={cols}
+      rows={rows}
     />
   ),
   args: {

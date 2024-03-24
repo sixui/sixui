@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
 import {
-  type IComponentPropsWithLegend,
+  type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
 import { Field, type IFieldProps } from './Field';
@@ -25,19 +25,19 @@ const defaultArgs = {
   sx: styles.host,
 } satisfies Partial<IFieldProps>;
 
-const statesProps: IComponentPropsWithLegend<IFieldProps> = [
-  { $legend: 'Enabled' },
-  { $legend: 'Hovered', visualState: { hovered: true } },
-  { $legend: 'Focused', visualState: { focused: true } },
-  { $legend: 'Disabled', disabled: true },
+const states: Array<IComponentPresentation<IFieldProps>> = [
+  { legend: 'Enabled' },
+  { legend: 'Hovered', props: { visualState: { hovered: true } } },
+  { legend: 'Focused', props: { visualState: { focused: true } } },
+  { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const rowsProps: IComponentPropsWithLegend<IFieldProps> = [
-  { $legend: 'Empty' },
-  { $legend: 'Placeholder', placeholder: 'Placeholder' },
+const rows: Array<IComponentPresentation<IFieldProps>> = [
+  { legend: 'Empty' },
+  { legend: 'Placeholder', props: { placeholder: 'Placeholder' } },
   {
-    $legend: 'Value',
-    value: 'Value',
+    legend: 'Value',
+    props: { value: 'Value' },
   },
 ];
 
@@ -46,8 +46,8 @@ export const Filled: IStory = {
     <ComponentShowcase
       component={Field}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
+      cols={states}
+      rows={rows}
     />
   ),
   args: {
@@ -61,8 +61,8 @@ export const Outlined: IStory = {
     <ComponentShowcase
       component={Field}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
+      cols={states}
+      rows={rows}
     />
   ),
   args: {

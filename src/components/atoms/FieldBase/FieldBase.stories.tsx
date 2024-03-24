@@ -6,7 +6,7 @@ import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 import { fieldBaseVariants } from './FieldBase.styledefs';
 import {
-  type IComponentPropsWithLegend,
+  type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
 import { FieldBase, type IFieldBaseProps } from './FieldBase';
@@ -39,36 +39,40 @@ const defaultArgs = {
   children: <div {...stylex.props(inputStyles.placeholder)} />,
 } satisfies Partial<IFieldBaseProps>;
 
-const statesProps: IComponentPropsWithLegend<IFieldBaseProps> = [
-  { $legend: 'Enabled' },
-  { $legend: 'Hovered', visualState: { hovered: true } },
-  { $legend: 'Focused', visualState: { focused: true } },
-  { $legend: 'Disabled', disabled: true },
+const states: Array<IComponentPresentation<IFieldBaseProps>> = [
+  { legend: 'Enabled' },
+  { legend: 'Hovered', props: { visualState: { hovered: true } } },
+  { legend: 'Focused', props: { visualState: { focused: true } } },
+  { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const rowsProps: IComponentPropsWithLegend<IFieldBaseProps> = [
-  { $legend: 'Empty' },
+const rows: Array<IComponentPresentation<IFieldBaseProps>> = [
+  { legend: 'Empty' },
   {
-    $legend: 'Label',
-    label: 'Label',
+    legend: 'Label',
+    props: { label: 'Label' },
   },
   {
-    $legend: 'Populated',
-    label: 'Label',
-    populated: true,
+    legend: 'Populated',
+    props: {
+      label: 'Label',
+      populated: true,
+    },
   },
   {
-    $legend: 'Slots',
-    label: 'Label',
-    supportingText: 'Supporting text',
-    count: 2,
-    max: 10,
-    leadingIcon: <FontAwesomeIcon icon={faMagnifyingGlass} />,
-    trailingIcon: <FontAwesomeIcon icon={faXmark} />,
+    legend: 'Slots',
+    props: {
+      label: 'Label',
+      supportingText: 'Supporting text',
+      count: 2,
+      max: 10,
+      leadingIcon: <FontAwesomeIcon icon={faMagnifyingGlass} />,
+      trailingIcon: <FontAwesomeIcon icon={faXmark} />,
+    },
   },
-  { $legend: 'Loading', loading: true },
-  { $legend: 'Error', hasError: true, errorText: 'Error text' },
-  { $legend: 'Resizable', resizable: true },
+  { legend: 'Loading', props: { loading: true } },
+  { legend: 'Error', props: { hasError: true, errorText: 'Error text' } },
+  { legend: 'Resizable', props: { resizable: true } },
 ];
 
 export const Variants: IStory = {
@@ -76,9 +80,11 @@ export const Variants: IStory = {
     <ComponentShowcase
       component={FieldBase}
       props={props}
-      colsProps={fieldBaseVariants.map((variant) => ({
-        variant,
-        label: capitalizeFirstLetter(variant),
+      cols={fieldBaseVariants.map((variant) => ({
+        props: {
+          variant,
+          label: capitalizeFirstLetter(variant),
+        },
       }))}
     />
   ),
@@ -90,8 +96,8 @@ export const Filled: IStory = {
     <ComponentShowcase
       component={FieldBase}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
+      cols={states}
+      rows={rows}
     />
   ),
   args: {
@@ -105,8 +111,8 @@ export const Outlined: IStory = {
     <ComponentShowcase
       component={FieldBase}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
+      cols={states}
+      rows={rows}
     />
   ),
   args: {

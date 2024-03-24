@@ -25,7 +25,7 @@ export const Sizes: IStory = {
     <ComponentShowcase
       component={IndeterminateCircularProgressIndicator}
       props={props}
-      colsProps={circularProgressIndicatorSizes.map((size) => ({ size }))}
+      cols={circularProgressIndicatorSizes.map((size) => ({ props: { size } }))}
     />
   ),
   args: defaultArgs,

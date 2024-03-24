@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
 import {
+  type IComponentPresentation,
   ComponentShowcase,
-  type IComponentPropsWithLegend,
 } from '@/components/utils/ComponentShowcase';
 import { Placeholder, type IPlaceholderProps } from './Placeholder';
 
@@ -22,10 +22,10 @@ const defaultArgs = {
   }),
 } satisfies Partial<IPlaceholderProps>;
 
-const colsProps: IComponentPropsWithLegend<IPlaceholderProps> = [
-  { $legend: 'Basic' },
-  { $legend: 'Crosshairs', crosshairs: true },
-  { $legend: 'Label', label: 'Label' },
+const cols: Array<IComponentPresentation<IPlaceholderProps>> = [
+  { legend: 'Basic' },
+  { legend: 'Crosshairs', props: { crosshairs: true } },
+  { legend: 'Label', props: { label: 'Label' } },
 ];
 
 export const Variants: IStory = {
@@ -33,10 +33,10 @@ export const Variants: IStory = {
     <ComponentShowcase
       component={Placeholder}
       props={props}
-      colsProps={[
-        { shape: 'rounded' },
-        { shape: 'rectangular', crosshairs: true },
-        { shape: 'circular', label: 'Label' },
+      cols={[
+        { props: { shape: 'rounded' } },
+        { props: { shape: 'rectangular', crosshairs: true } },
+        { props: { shape: 'circular', label: 'Label' } },
       ]}
     />
   ),
@@ -45,11 +45,7 @@ export const Variants: IStory = {
 
 export const Rounded: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={Placeholder}
-      props={props}
-      colsProps={colsProps}
-    />
+    <ComponentShowcase component={Placeholder} props={props} cols={cols} />
   ),
   args: {
     ...defaultArgs,
@@ -59,11 +55,7 @@ export const Rounded: IStory = {
 
 export const Rectangular: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={Placeholder}
-      props={props}
-      colsProps={colsProps}
-    />
+    <ComponentShowcase component={Placeholder} props={props} cols={cols} />
   ),
   args: {
     ...defaultArgs,
@@ -73,11 +65,7 @@ export const Rectangular: IStory = {
 
 export const Circular: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={Placeholder}
-      props={props}
-      colsProps={colsProps}
-    />
+    <ComponentShowcase component={Placeholder} props={props} cols={cols} />
   ),
   args: {
     ...defaultArgs,

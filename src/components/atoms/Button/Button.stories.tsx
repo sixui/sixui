@@ -5,11 +5,11 @@ import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
-  type IComponentPropsWithLegend,
+  type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
 import { buttonVariants } from './Button.styledefs';
-import { type IButtonProps, Button } from './Button';
+import { type IButtonProps, type IButtonOwnProps, Button } from './Button';
 
 // https://m3.material.io/components/buttons/overview
 // https://material-web.dev/components/button/
@@ -26,28 +26,44 @@ const defaultArgs = {
   children: 'Button',
 } satisfies Partial<IButtonProps>;
 
-const statesProps: IComponentPropsWithLegend<IButtonProps> = [
-  { $legend: 'Enabled', children: 'Enabled' },
-  { $legend: 'Hovered', children: 'Hovered', visualState: { hovered: true } },
-  { $legend: 'Focused', children: 'Focused', visualState: { focused: true } },
-  { $legend: 'Pressed', children: 'Pressed', visualState: { pressed: true } },
-  { $legend: 'Loading', children: 'Loading', loading: true },
+const states: Array<IComponentPresentation<IButtonOwnProps>> = [
+  { legend: 'Enabled', props: { children: 'Enabled' } },
   {
-    $legend: 'Loading text',
-    children: 'Loading',
-    loading: true,
-    loadingText: '…',
+    legend: 'Hovered',
+    props: { children: 'Hovered', visualState: { hovered: true } },
   },
-  { $legend: 'Disabled', children: 'Disabled', disabled: true },
+  {
+    legend: 'Focused',
+    props: { children: 'Focused', visualState: { focused: true } },
+  },
+  {
+    legend: 'Pressed',
+    props: { children: 'Pressed', visualState: { pressed: true } },
+  },
+  { legend: 'Loading', props: { children: 'Loading', loading: true } },
+  {
+    legend: 'Loading text',
+    props: {
+      children: 'Loading',
+      loading: true,
+      loadingText: '…',
+    },
+  },
+  { legend: 'Disabled', props: { children: 'Disabled', disabled: true } },
 ];
 
-const rowsProps: IComponentPropsWithLegend<IButtonProps> = [
-  { $legend: 'Basic' },
-  { $legend: 'With Leading Icon', icon: <FontAwesomeIcon icon={faPlus} /> },
+const rows: Array<IComponentPresentation<IButtonOwnProps>> = [
+  { legend: 'Basic' },
   {
-    $legend: 'With Leading and Trailing Icons',
-    icon: <FontAwesomeIcon icon={faPlus} />,
-    trailingIcon: true,
+    legend: 'With Leading Icon',
+    props: { icon: <FontAwesomeIcon icon={faPlus} /> },
+  },
+  {
+    legend: 'With Leading and Trailing Icons',
+    props: {
+      icon: <FontAwesomeIcon icon={faPlus} />,
+      trailingIcon: true,
+    },
   },
 ];
 
@@ -56,9 +72,11 @@ export const Variants: IStory = {
     <ComponentShowcase
       component={Button}
       props={props}
-      colsProps={buttonVariants.map((variant) => ({
-        variant,
-        children: capitalizeFirstLetter(variant),
+      cols={buttonVariants.map((variant) => ({
+        props: {
+          variant,
+          children: capitalizeFirstLetter(variant),
+        },
       }))}
     />
   ),
@@ -70,8 +88,8 @@ export const Elevated: IStory = {
     <ComponentShowcase
       component={Button}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
+      cols={states}
+      rows={rows}
     />
   ),
   args: {
@@ -85,8 +103,8 @@ export const Filled: IStory = {
     <ComponentShowcase
       component={Button}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
+      cols={states}
+      rows={rows}
     />
   ),
   args: {
@@ -100,8 +118,8 @@ export const FilledTonal: IStory = {
     <ComponentShowcase
       component={Button}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
+      cols={states}
+      rows={rows}
     />
   ),
   args: {
@@ -115,8 +133,8 @@ export const Outlined: IStory = {
     <ComponentShowcase
       component={Button}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
+      cols={states}
+      rows={rows}
     />
   ),
   args: {
@@ -130,8 +148,8 @@ export const Text: IStory = {
     <ComponentShowcase
       component={Button}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
+      cols={states}
+      rows={rows}
     />
   ),
   args: {

@@ -26,10 +26,10 @@ export const OneRow: IStory = {
     <ComponentShowcase
       component={DemoComponent}
       props={props}
-      colsProps={[
-        { color: colorRolesVars.primary },
-        { color: colorRolesVars.secondary },
-        { color: colorRolesVars.tertiary },
+      cols={[
+        { props: { color: colorRolesVars.primary } },
+        { props: { color: colorRolesVars.secondary } },
+        { props: { color: colorRolesVars.tertiary } },
       ]}
     />
   ),
@@ -41,10 +41,10 @@ export const OneRowWithLegend: IStory = {
     <ComponentShowcase
       component={DemoComponent}
       props={props}
-      colsProps={[
-        { $legend: 'Primary', color: colorRolesVars.primary },
-        { $legend: 'Secondary', color: colorRolesVars.secondary },
-        { $legend: 'Tertiary', color: colorRolesVars.tertiary },
+      cols={[
+        { legend: 'Primary', props: { color: colorRolesVars.primary } },
+        { legend: 'Secondary', props: { color: colorRolesVars.secondary } },
+        { legend: 'Tertiary', props: { color: colorRolesVars.tertiary } },
       ]}
     />
   ),
@@ -56,7 +56,7 @@ export const OneCol: IStory = {
     <ComponentShowcase
       component={DemoComponent}
       props={props}
-      rowsProps={[{ size: 'sm' }, {}, { size: 'lg' }]}
+      rows={[{ props: { size: 'sm' } }, {}, { props: { size: 'lg' } }]}
     />
   ),
   args: defaultArgs,
@@ -67,10 +67,10 @@ export const OneColWithLegend: IStory = {
     <ComponentShowcase
       component={DemoComponent}
       props={props}
-      rowsProps={[
-        { $legend: 'Small', size: 'sm' },
-        { $legend: 'Medium', size: 'md' },
-        { $legend: 'Big', size: 'lg' },
+      rows={[
+        { legend: 'Small', props: { size: 'sm' } },
+        { legend: 'Medium', props: { size: 'md' } },
+        { legend: 'Big', props: { size: 'lg' } },
       ]}
     />
   ),
@@ -82,15 +82,15 @@ export const RowsAndCols: IStory = {
     <ComponentShowcase
       component={DemoComponent}
       props={props}
-      colsProps={[
-        { $legend: 'Primary', color: colorRolesVars.primary },
-        { $legend: 'Secondary', color: colorRolesVars.secondary },
-        { $legend: 'Tertiary', color: colorRolesVars.tertiary },
+      cols={[
+        { legend: 'Primary', props: { color: colorRolesVars.primary } },
+        { legend: 'Secondary', props: { color: colorRolesVars.secondary } },
+        { legend: 'Tertiary', props: { color: colorRolesVars.tertiary } },
       ]}
-      rowsProps={[
-        { $legend: 'Small', size: 'sm' },
-        { $legend: 'Medium', size: 'md' },
-        { $legend: 'Big', size: 'lg' },
+      rows={[
+        { legend: 'Small', props: { size: 'sm' } },
+        { legend: 'Medium', props: { size: 'md' } },
+        { legend: 'Big', props: { size: 'lg' } },
       ]}
     />
   ),
@@ -102,19 +102,19 @@ export const Groups: IStory = {
     <ComponentShowcase
       component={DemoComponent}
       props={props}
-      colsProps={[
-        { $legend: 'Primary', color: colorRolesVars.primary },
-        { $legend: 'Secondary', color: colorRolesVars.secondary },
-        { $legend: 'Tertiary', color: colorRolesVars.tertiary },
+      cols={[
+        { legend: 'Primary', props: { color: colorRolesVars.primary } },
+        { legend: 'Secondary', props: { color: colorRolesVars.secondary } },
+        { legend: 'Tertiary', props: { color: colorRolesVars.tertiary } },
       ]}
-      rowsProps={[
-        { $legend: 'Small', size: 'sm' },
-        { $legend: 'Medium', size: 'md' },
-        { $legend: 'Big', size: 'lg' },
+      rows={[
+        { legend: 'Small', props: { size: 'sm' } },
+        { legend: 'Medium', props: { size: 'md' } },
+        { legend: 'Big', props: { size: 'lg' } },
       ]}
-      groupsProps={[
-        { $legend: 'Shirts', icon: 'shirt' },
-        { $legend: 'Socks', icon: 'socks' },
+      groups={[
+        { legend: 'Shirts', props: { icon: 'shirt' } },
+        { legend: 'Socks', props: { icon: 'socks' } },
       ]}
     />
   ),

@@ -8,10 +8,14 @@ import {
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
-  type IComponentPropsWithLegend,
+  type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { ListItem, type IListItemProps } from './ListItem';
+import {
+  ListItem,
+  type IListItemProps,
+  type IListItemOwnProps,
+} from './ListItem';
 
 // https://m3.material.io/components/items/overview
 // https://material-web.dev/components/item/
@@ -34,46 +38,57 @@ const defaultArgs = {
   styles: listItemStyles,
 } satisfies Partial<IListItemProps>;
 
-const statesProps: IComponentPropsWithLegend<IListItemProps> = [
-  { $legend: 'Enabled', children: 'Enabled' },
-  { $legend: 'Focused', children: 'Focused', visualState: { focused: true } },
-  { $legend: 'Hovered', children: 'Hovered', visualState: { hovered: true } },
-  { $legend: 'Pressed', children: 'Pressed', visualState: { pressed: true } },
-  { $legend: 'Selected', children: 'Selected', selected: true },
-  { $legend: 'Disabled', children: 'Disabled', disabled: true },
+const states: Array<IComponentPresentation<IListItemOwnProps>> = [
+  { legend: 'Enabled', props: { children: 'Enabled' } },
+  {
+    legend: 'Focused',
+    props: { children: 'Focused', visualState: { focused: true } },
+  },
+  {
+    legend: 'Hovered',
+    props: { children: 'Hovered', visualState: { hovered: true } },
+  },
+  {
+    legend: 'Pressed',
+    props: { children: 'Pressed', visualState: { pressed: true } },
+  },
+  { legend: 'Selected', props: { children: 'Selected', selected: true } },
+  { legend: 'Disabled', props: { children: 'Disabled', disabled: true } },
 ];
 
-const rowsProps: IComponentPropsWithLegend<IListItemProps> = [
-  { $legend: 'Text' },
+const rows: Array<IComponentPresentation<IListItemOwnProps>> = [
+  { legend: 'Text' },
   {
-    $legend: 'Button',
-    onClick: (...args) => void sbHandleEvent('click', args),
+    legend: 'Button',
+    props: { onClick: (...args) => void sbHandleEvent('click', args) },
   },
-  { $legend: 'Link', href: '#' },
+  { legend: 'Link', props: { href: '#' } },
   {
-    $legend: 'Link with Icons',
-    href: '#',
-    leadingIcon: <FontAwesomeIcon icon={faCalendarDays} />,
-    trailingIcon: <FontAwesomeIcon icon={faChevronRight} />,
+    legend: 'Link with Icons',
+    props: {
+      href: '#',
+      leadingIcon: <FontAwesomeIcon icon={faCalendarDays} />,
+      trailingIcon: <FontAwesomeIcon icon={faChevronRight} />,
+    },
+  },
+];
+
+const variants: Array<IComponentPresentation<IListItemOwnProps>> = [
+  {
+    props: { children: 'One line item' },
+  },
+  {
+    props: {
+      children: 'With Icons',
+      start: <FontAwesomeIcon icon={faCalendarDays} />,
+      end: <FontAwesomeIcon icon={faChevronRight} />,
+    },
   },
 ];
 
 export const Variants: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={ListItem}
-      props={props}
-      colsProps={[
-        {
-          children: 'One line item',
-        },
-        {
-          children: 'With Icons',
-          start: <FontAwesomeIcon icon={faCalendarDays} />,
-          end: <FontAwesomeIcon icon={faChevronRight} />,
-        },
-      ]}
-    />
+    <ComponentShowcase component={ListItem} props={props} cols={variants} />
   ),
   args: {
     ...defaultArgs,
@@ -86,8 +101,8 @@ export const Basic: IStory = {
     <ComponentShowcase
       component={ListItem}
       props={props}
-      colsProps={statesProps}
-      rowsProps={rowsProps}
+      cols={states}
+      rows={rows}
     />
   ),
   args: defaultArgs as IListItemProps,

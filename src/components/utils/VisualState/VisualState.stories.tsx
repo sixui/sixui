@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
+import {
+  ComponentShowcase,
+  type IComponentPresentation,
+} from '@/components/utils/ComponentShowcase';
 import { VisualState, type IVisualStateProps } from './VisualState';
 
 const meta = {
@@ -11,13 +14,21 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {} satisfies Partial<IVisualStateProps>;
 
+const states: Array<IComponentPresentation<IVisualStateProps>> = [
+  { legend: 'Enabled' },
+  { legend: 'Hovered', props: { visualState: { hovered: true } } },
+  { legend: 'Focused', props: { visualState: { focused: true } } },
+  { legend: 'Pressed', props: { visualState: { pressed: true } } },
+  { legend: 'Dragged', props: { visualState: { dragged: true } } },
+];
+
 export const Basic: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={VisualState}
-      colsProps={[
-        { $legend: 'Enabled' },
-        { $legend: 'Disabled', disabled: true },
+      cols={[
+        { legend: 'Enabled' },
+        { legend: 'Disabled', props: { disabled: true } },
       ]}
       props={props}
     />
@@ -27,17 +38,7 @@ export const Basic: IStory = {
 
 export const Inherited: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={VisualState}
-      colsProps={[
-        { $legend: 'Enabled' },
-        { $legend: 'Hovered', visualState: { hovered: true } },
-        { $legend: 'Focused', visualState: { focused: true } },
-        { $legend: 'Pressed', visualState: { pressed: true } },
-        { $legend: 'Dragged', visualState: { dragged: true } },
-      ]}
-      props={props}
-    />
+    <ComponentShowcase component={VisualState} cols={states} props={props} />
   ),
   args: defaultArgs,
 };
