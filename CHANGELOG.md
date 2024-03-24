@@ -1,3 +1,20 @@
+# v0.0.128 (Sun Mar 24 2024)
+
+#### 🐛 Bug Fix
+
+- chore: cypress setup [#19](https://github.com/sixui/ui/pull/19) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### ⚠️ Pushed to `main`
+
+- fix: add new line at the end of package.json ([@olivierpascal](https://github.com/olivierpascal))
+- fix: legend in Radio story ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.127 (Sun Mar 24 2024)
 
 #### ⚠️ Pushed to `main`
