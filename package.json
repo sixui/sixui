@@ -28,7 +28,8 @@
     "prepack": "pinst --disable",
     "postpack": "pinst --enable",
     "dev": "BROWSER=none storybook dev -p 6006 --no-open --disable-telemetry",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "run-s test:cy",
+    "test:cy": "cypress run --component",
     "build-storybook": "yarn build:sb",
     "build:sb": "storybook build",
     "build:ts": "babel src --out-dir dist --config-file ./.babelrc --extensions '.ts,.tsx' --delete-dir-on-start --copy-files",
@@ -39,7 +40,8 @@
     "lint:fix:file": "eslint --fix",
     "lint:check": "eslint src --ext .js,.ts,.jsx,.tsx --fix",
     "ts:check": "tsc --project tsconfig.json --pretty --noEmit",
-    "check:all": "run-s lint:check ts:check"
+    "check:all": "run-s test lint:check ts:check",
+    "cy": "cypress open"
   },
   "lint-staged": {
     "src/**/*.(ts|js)?(x)": [
@@ -81,9 +83,11 @@
     "auto": "^11.1.2",
     "babel-plugin-inline-react-svg": "^2.0.2",
     "babel-plugin-module-resolver": "^5.0.0",
+    "cypress": "^13.7.1",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-cypress": "^2.15.1",
     "eslint-plugin-fp": "^2.3.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsx-a11y": "^6.8.0",
@@ -104,7 +108,7 @@
     "storybook": "^8.0.4",
     "tsc-alias": "^1.8.8",
     "typescript": "^5.4.3",
-    "vite": "^5.2.6",
+    "vite": "^4",
     "vite-plugin-stylex": "^0.8.0",
     "vite-plugin-svgr": "^4.2.0"
   },
