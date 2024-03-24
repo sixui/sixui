@@ -25,7 +25,7 @@ import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 import { getDisplayName } from '@/helpers/react/getDisplayName';
 import { reactNodeToString } from '@/helpers/react/nodeToString';
-import { componentVars as textFieldVars } from '@/themes/base/TextField/TextField.stylex';
+import { componentVars as fieldBaseVars } from '@/themes/base/FieldBase/FieldBase.stylex';
 import { InputChip } from '@/components/atoms/Chip';
 import { useControlled } from '@/hooks/useControlled';
 import { ComboboxOption, type IComboboxOptionProps } from './ComboboxOption';
@@ -94,7 +94,7 @@ const fieldStyles = stylex.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 8,
-    paddingInlineEnd: textFieldVars.trailingSpace,
+    paddingInlineEnd: fieldBaseVars.trailingSpace,
   },
 });
 

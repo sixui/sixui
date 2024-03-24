@@ -4,6 +4,7 @@ import stylex from '@stylexjs/stylex';
 import type { IStyles } from '@/helpers/types';
 import type { ITextFieldStyleKey } from '@/components/atoms/TextField';
 import type { IFieldBaseStyleKey } from '@/components/atoms/FieldBase';
+import { componentVars as fieldBaseVars } from '../FieldBase/FieldBase.stylex';
 import { componentVars as vars } from './TextField.stylex';
 
 // https://github.com/material-components/material-web/blob/main/textfield/internal/_shared.scss
@@ -39,13 +40,13 @@ export const styles: MapNamespaces<ITextFieldStyles> =
       overflowX: 'hidden',
       textAlign: 'inherit',
       '::placeholder': {
-        WebkitTextFillColor: vars.contentPlaceholderColor,
-        color: vars.contentPlaceholderColor,
+        WebkitTextFillColor: fieldBaseVars.contentPlaceholderColor,
+        color: fieldBaseVars.contentPlaceholderColor,
         opacity: 1,
       },
       '::selection': {
-        backgroundColor: vars.contentBackground$selection,
-        color: vars.contentColor$selection,
+        backgroundColor: fieldBaseVars.contentBackground$selection,
+        color: fieldBaseVars.contentColor$selection,
       },
       color: 'inherit',
 
@@ -88,19 +89,19 @@ export const styles: MapNamespaces<ITextFieldStyles> =
       display: 'flex',
     },
     prefix: {
-      color: vars.contentPrefixColor,
+      color: fieldBaseVars.contentPrefixColor,
       textWrap: 'nowrap',
       width: 'min-content',
-      paddingInlineEnd: vars.contentPrefixTrailingSpace,
+      paddingInlineEnd: fieldBaseVars.contentPrefixTrailingSpace,
     },
     prefix$disabled: {
       color: 'inherit',
     },
     suffix: {
-      color: vars.contentSuffixColor,
+      color: fieldBaseVars.contentSuffixColor,
       textWrap: 'nowrap',
       width: 'min-content',
-      paddingInlineStart: vars.contentSuffixLeadingSpace,
+      paddingInlineStart: fieldBaseVars.contentSuffixLeadingSpace,
     },
     suffix$disabled: {
       color: 'inherit',

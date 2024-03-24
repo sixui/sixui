@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
 import type { IFieldStyleKey } from '@/components/atoms/Field';
-import { componentVars as vars } from '../TextField/TextField.stylex';
+import { componentVars as vars } from '../FieldBase/FieldBase.stylex';
 
 type IFieldStyles = IStyles<IFieldStyleKey>;
 export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({

@@ -81,18 +81,19 @@ import {
 import { componentTheme as switchTheme } from './Switch/Switch.stylex';
 
 import { styles as fieldBaseStyles } from './FieldBase/FieldBase.styles';
+import { componentTheme as fieldBaseTheme } from './FieldBase/FieldBase.stylex';
 import { styles as filledFieldBaseStyles } from './FieldBase/FilledFieldBase.styles';
+import { componentTheme as filledFieldBaseTheme } from './FieldBase/FilledFieldBase.stylex';
 import { styles as outlinedFieldBaseStyles } from './FieldBase/OutlinedFieldBase.styles';
+import { componentTheme as outlinedFieldBaseTheme } from './FieldBase/OutlinedFieldBase.stylex';
 
 import { styles as fieldStyles } from './Field/Field.styles';
 
-import { componentTheme as textFieldTheme } from './TextField/TextField.stylex';
 import {
   styles as textFieldStyles,
   fieldStyles as textFieldFieldStyles,
 } from './TextField/TextField.styles';
-import { componentTheme as filledTextFieldTheme } from './TextField/FilledTextField.stylex';
-import { componentTheme as outlinedTextFieldTheme } from './TextField/OutlinedTextField.stylex';
+import { componentTheme as textFieldTheme } from './TextField/TextField.stylex';
 
 import { componentTheme as radioTheme } from './Radio/Radio.stylex';
 import {
@@ -311,15 +312,15 @@ export const theme: ITheme = {
       circularProgressIndicatorStyles: switchCircularProgressIndicatorStyles,
     },
     FieldBase: {
-      vars: textFieldTheme,
+      vars: fieldBaseTheme,
       styles: fieldBaseStyles,
     },
     FilledFieldBase: {
-      vars: filledTextFieldTheme,
+      vars: filledFieldBaseTheme,
       styles: filledFieldBaseStyles,
     },
     OutlinedFieldBase: {
-      vars: outlinedTextFieldTheme,
+      vars: outlinedFieldBaseTheme,
       styles: outlinedFieldBaseStyles,
     },
     Field: {
@@ -330,8 +331,8 @@ export const theme: ITheme = {
       styles: textFieldStyles,
       fieldStyles: textFieldFieldStyles,
     },
-    FilledTextField: { vars: filledTextFieldTheme },
-    OutlinedTextField: { vars: outlinedTextFieldTheme },
+    FilledTextField: {},
+    OutlinedTextField: {},
     Radio: {
       vars: radioTheme,
       styles: radioStyles,

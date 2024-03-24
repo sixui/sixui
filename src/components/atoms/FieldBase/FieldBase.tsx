@@ -11,10 +11,10 @@ import type { IContainerProps } from '@/helpers/types';
 import type { IThemeComponents } from '@/components/utils/Theme';
 import { useVisualState, type IVisualState } from '@/hooks/useVisualState';
 import type {
-  IFieldBaseStyleKey,
   IFieldBaseVariant,
+  IFieldBaseStyleKey,
+  IFieldBaseStyleVarKey,
 } from './FieldBase.styledefs';
-import type { ITextFieldStyleVarKey } from '../TextField';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { usePrevious } from '@/hooks/usePrevious';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
@@ -107,7 +107,7 @@ export const FieldBase = forwardRef<HTMLDivElement, IFieldBaseProps>(
     );
     const sxf = useMemo(
       () =>
-        stylePropsFactory<IFieldBaseStyleKey, ITextFieldStyleVarKey>(
+        stylePropsFactory<IFieldBaseStyleKey, IFieldBaseStyleVarKey>(
           stylesCombinator,
           visualState,
         ),

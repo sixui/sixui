@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
 import type { IFieldBaseStyleKey } from '@/components/atoms/FieldBase';
-import { componentVars as vars } from '../TextField/TextField.stylex';
+import { componentVars as vars } from './FieldBase.stylex';
 import { motionVars } from '../vars/motion.stylex';
 
 // Duration of the label animation.

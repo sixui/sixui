@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
 import type { IStyleVars } from '@/helpers/types';
-import type { ITextFieldStyleVarKey } from '@/components/atoms/TextField';
-import { componentVars as baseComponentVars } from './TextField.stylex';
+import type { IFieldBaseStyleVarKey } from '@/components/atoms/FieldBase';
+import { componentVars as baseComponentVars } from './FieldBase.stylex';
 import { colorRolesVars } from '../vars/colorRoles.stylex';
 import { stateVars } from '../vars/state.stylex';
 import { shapeVars } from '../vars/shape.stylex';
@@ -11,7 +11,7 @@ import { shapeVars } from '../vars/shape.stylex';
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-filled-text-field.scss
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-filled-field.scss
 
-const vars: Partial<IStyleVars<ITextFieldStyleVarKey>> = {
+const vars: Partial<IStyleVars<IFieldBaseStyleVarKey>> = {
   topSpace$withLabel: '8px',
   bottomSpace$withLabel: '8px',
 
