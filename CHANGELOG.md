@@ -1,3 +1,15 @@
+# v0.0.131 (Mon Mar 25 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: Field now supports strings for max attribute ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.130 (Mon Mar 25 2024)
 
 #### 🐛 Bug Fix
