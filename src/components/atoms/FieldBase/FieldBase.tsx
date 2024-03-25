@@ -40,7 +40,7 @@ export type IFieldBaseProps = IContainerProps<IFieldBaseStyleKey> & {
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
   label?: string;
-  max?: number;
+  max?: number | string;
   populated?: boolean;
   required?: boolean;
   resizable?: boolean;
