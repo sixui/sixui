@@ -1,3 +1,15 @@
+# v0.0.130 (Mon Mar 25 2024)
+
+#### 🐛 Bug Fix
+
+- feat: back to cypress [#20](https://github.com/sixui/ui/pull/20) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.129 (Sun Mar 24 2024)
 
 #### ⚠️ Pushed to `main`
