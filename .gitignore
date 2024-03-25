@@ -33,11 +33,9 @@ dist
 vite.config.ts.timestamp-*
 package-lock.json
 
-# playwright
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
+# cypress
+cypress/videos
+cypress/screenshots
 
 # vscode
 .vscode/*
