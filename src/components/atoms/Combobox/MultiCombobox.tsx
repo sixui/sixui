@@ -1,3 +1,5 @@
+import { forwardRef } from 'react';
+
 import { MenuListDivider } from '@/components/atoms/MenuList/MenuListDivider';
 import { ComboboxBase, type IComboboxBaseProps } from './ComboboxBase';
 import { ComboboxOption } from './ComboboxOption';
@@ -7,8 +9,10 @@ export type IMultiComboboxProps = Omit<
   'multiple'
 >;
 
-const MultiCombobox: React.FC<IMultiComboboxProps> = (props) => (
-  <ComboboxBase {...props} multiple={true} />
+const MultiCombobox = forwardRef<HTMLDivElement, IMultiComboboxProps>(
+  function MultiCombobox(props, ref) {
+    return <ComboboxBase {...props} ref={ref} multiple={true} />;
+  },
 );
 
 const MultiComboboxNamespace = Object.assign(MultiCombobox, {

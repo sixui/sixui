@@ -1,3 +1,5 @@
+import { forwardRef } from 'react';
+
 import { MenuListDivider } from '@/components/atoms/MenuList/MenuListDivider';
 import { SelectBase, type ISelectBaseProps } from './SelectBase';
 import { SelectOption } from './SelectOption';
@@ -7,8 +9,10 @@ export type IMultiSelectProps = Omit<
   'multiple'
 >;
 
-const MultiSelect: React.FC<IMultiSelectProps> = (props) => (
-  <SelectBase {...props} multiple={true} />
+const MultiSelect = forwardRef<HTMLDivElement, IMultiSelectProps>(
+  function MultiSelect(props, ref) {
+    return <SelectBase {...props} ref={ref} multiple={true} />;
+  },
 );
 
 const MultiSelectNamespace = Object.assign(MultiSelect, {
