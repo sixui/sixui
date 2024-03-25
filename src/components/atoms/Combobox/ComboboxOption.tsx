@@ -41,6 +41,7 @@ export const ComboboxOption: React.FC<IComboboxOptionProps> = (props) => {
           sx={[styles.host, props.disabled && styles.host$disabled, sx]}
           visualState={{ hovered: active }}
           selected={selected}
+          data-cy={`option-${value}`}
         >
           {children ?? label}
         </ListItem>

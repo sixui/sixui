@@ -104,7 +104,11 @@ const eslintConfig = {
       files: ['**/*.tsx', '**/*.ts'],
       parser: '@typescript-eslint/parser',
       parserOptions: {
-        project: './tsconfig.json',
+        project: [
+          './tsconfig.json',
+          './.storybook/tsconfig.json',
+          './cypress/tsconfig.json',
+        ],
       },
       extends: [
         'plugin:@typescript-eslint/recommended-type-checked',

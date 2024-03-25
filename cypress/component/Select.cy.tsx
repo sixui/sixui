@@ -6,8 +6,44 @@ import '@/styles/main.css';
 
 import { Select } from '@/components/atoms/Select';
 
-describe('Select.cy.tsx', () => {
-  it('should open on click inside and close on click outside', () => {
+describe('Select', () => {
+  it('should open on click inside', () => {
+    cy.mount(
+      <ThemeProvider value={{ theme }}>
+        <Select>
+          <Select.Option value='apple'>Apple</Select.Option>
+          <Select.Option value='carrot'>Carrot</Select.Option>
+        </Select>
+      </ThemeProvider>,
+    );
+
+    cy.get('[data-cy=options]').should('not.exist');
+
+    cy.get('[data-cy=field]').click();
+    cy.get('[data-cy=options]').should('exist').should('be.visible');
+    cy.get('[data-cy=option-apple]').should('exist');
+    cy.get('[data-cy=option-carrot]').should('exist');
+  });
+
+  it('should use portal', () => {
+    cy.mount(
+      <ThemeProvider value={{ theme }}>
+        <div style={{ position: 'relative', overflow: 'hidden' }}>
+          <Select>
+            <Select.Option value='apple'>Apple</Select.Option>
+            <Select.Option value='carrot'>Carrot</Select.Option>
+          </Select>
+        </div>
+      </ThemeProvider>,
+    );
+
+    cy.get('[data-cy=field]').click();
+    cy.get('[data-cy=options]').should('be.visible');
+    cy.get('[data-cy=option-apple]').should('be.visible');
+    cy.get('[data-cy=option-carrot]').should('be.visible');
+  });
+
+  it('should close on click outside', () => {
     cy.mount(
       <ThemeProvider value={{ theme }}>
         <Select>
@@ -19,8 +55,13 @@ describe('Select.cy.tsx', () => {
 
     cy.get('[data-cy=field]').click();
     cy.get('[data-cy=options]').should('exist');
+
     cy.get('body').click();
     cy.get('[data-cy=options]').should('not.exist');
+    cy.get('[data-cy=field]').should('have.focus');
+
+    cy.get('body').click();
+    cy.get('[data-cy=field]').should('not.have.focus');
   });
 
   it('should select an option', () => {
@@ -34,9 +75,13 @@ describe('Select.cy.tsx', () => {
     );
 
     cy.get('[data-cy=value]').should('not.exist');
+
     cy.get('[data-cy=field]').click();
     cy.get('[data-cy=option-carrot]').click();
     cy.get('[data-cy=value]').should('have.text', 'Carrot');
+
+    cy.get('[data-cy=field]').should('have.focus');
+    cy.get('[data-cy=options]').should('not.exist');
   });
 
   it('should select an empty option', () => {
@@ -52,6 +97,7 @@ describe('Select.cy.tsx', () => {
 
     cy.get('[data-cy=value]').should('not.exist');
     cy.get('[data-cy=field]').click();
+
     cy.get('[data-cy=option-]').click();
     cy.get('[data-cy=value]').should('have.text', 'Empty');
   });
@@ -78,9 +124,9 @@ describe('Select.cy.tsx', () => {
 
     cy.get('[data-cy=value]').should('not.exist');
     cy.get('[data-cy=field]').click();
+
     cy.get('[data-cy=option-carrot]').click();
     cy.get('[data-cy=field] [data-icon=carrot]').should('exist');
-    cy.get('[data-cy=value]').should('have.text', 'Carrot');
   });
 
   it('should have a default value', () => {
@@ -130,9 +176,11 @@ describe('Select.cy.tsx', () => {
     );
 
     cy.get('[data-cy=field]').click();
+
     cy.get('[data-cy=option-1]').should('exist');
     cy.get('[data-cy=option-2]').should('exist');
     cy.get('[data-cy=option-more]').should('have.text', 'Hidden: 3/5');
+
     cy.get('[data-cy=option-3]').should('not.exist');
     cy.get('[data-cy=option-4]').should('not.exist');
     cy.get('[data-cy=option-5]').should('not.exist');
@@ -161,9 +209,11 @@ describe('Select.cy.tsx', () => {
 
     cy.get('[data-cy=value]').should('have.text', 'Option 5');
     cy.get('[data-cy=field]').click();
+
     cy.get('[data-cy=option-1]').should('exist');
     cy.get('[data-cy=option-2]').should('exist');
     cy.get('[data-cy=option-more]').should('have.text', 'Hidden: 3/5');
+
     cy.get('[data-cy=option-3]').should('not.exist');
     cy.get('[data-cy=option-4]').should('not.exist');
     cy.get('[data-cy=option-5]').should('not.exist');

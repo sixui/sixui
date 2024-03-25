@@ -135,6 +135,7 @@ export const Chip: IChip = forwardRef(function Chip<
     href,
     avatar: avatarProp,
     'aria-label-remove': ariaLabelRemove,
+    'data-cy': dataCy,
     ...other
   } = props as IWithAsProp<IChipOwnProps>;
 
@@ -298,6 +299,7 @@ export const Chip: IChip = forwardRef(function Chip<
         variantTheme?.vars,
         sx,
       )}
+      data-cy={dataCy}
     >
       <div
         {...sxf(
@@ -462,6 +464,7 @@ export const Chip: IChip = forwardRef(function Chip<
             onKeyDown={handleKeyDown}
             onFocus={handleTrailingActionFocus}
             disabled={disabled}
+            data-cy='delete'
           >
             <span
               {...sxf(

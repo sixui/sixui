@@ -342,6 +342,7 @@ export const TextField = forwardRef<
           onBlur={handleBlur}
           onKeyDown={onKeyDown}
           required={required}
+          data-cy='textarea'
           {...other}
         />
       );
@@ -377,6 +378,7 @@ export const TextField = forwardRef<
           onKeyDown={onKeyDown}
           required={required}
           type={type}
+          data-cy='input'
           {...other}
         />
         {suffixText ? (
