@@ -65,4 +65,5 @@ export type IStyleXStyles =
 export type IContainerProps<TStyleKey extends string = never> = {
   styles?: IZeroOrMore<ICompiledStyles<TStyleKey>>;
   sx?: IStyleXStyles;
+  'data-cy'?: string;
 };

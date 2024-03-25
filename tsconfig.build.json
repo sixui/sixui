@@ -1,4 +1,10 @@
 {
   "extends": "./tsconfig",
-  "exclude": ["src/**/*.test.ts", ".storybook"]
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "./dist",
+    "emitDeclarationOnly": true,
+    "declarationMap": true
+  },
+  "exclude": ["src/**/*.test.ts", "src/**/*.stories.tsx", "src/**/*.spec.tsx"]
 }

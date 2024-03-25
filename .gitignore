@@ -33,9 +33,19 @@ dist
 vite.config.ts.timestamp-*
 package-lock.json
 
+# playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
 # vscode
 .vscode/*
 !.vscode/settings.json.default
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

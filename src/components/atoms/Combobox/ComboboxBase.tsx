@@ -381,6 +381,7 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
                                     ? (event) => handleDelete(event, option)
                                     : undefined
                                 }
+                                data-cy={`chip-${option}`}
                               />
                             ) : (
                               <InputChip
@@ -393,6 +394,7 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
                                     : undefined
                                 }
                                 icon={option.props.leadingIcon}
+                                data-cy={`chip-${option.props.value}`}
                               />
                             ),
                         )
@@ -410,6 +412,7 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
                     ref={refs.setFloating}
                     style={floatingStyles}
                     static
+                    data-cy='options'
                   >
                     <MenuList sx={styles.menuList}>
                       {visibleOptions?.length === 0 && !!query ? (
@@ -418,7 +421,9 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
                             {createOptionText(query)}
                           </ComboboxOption>
                         ) : (
-                          <ListItem disabled>{noOptionsText}</ListItem>
+                          <ListItem disabled data-cy='no-options'>
+                            {noOptionsText}
+                          </ListItem>
                         )
                       ) : (
                         visibleOptions

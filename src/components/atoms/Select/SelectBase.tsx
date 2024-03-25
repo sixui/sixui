@@ -129,6 +129,7 @@ const defaultRenderMultiOptions = (
             onDelete(option.props.value);
           }}
           icon={option.props.leadingIcon}
+          data-cy={`chip-${option.props.value}`}
         />
       ))}
     </div>

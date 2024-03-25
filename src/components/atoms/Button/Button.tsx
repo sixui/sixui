@@ -186,6 +186,7 @@ export const Button: IButton = forwardRef(function Button<
       }}
       onClick={handleClick}
       disabled={disabled}
+      data-cy='button'
       {...other}
     >
       {hasLeadingIcon ? (
