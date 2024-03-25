@@ -1,3 +1,15 @@
+# v0.0.132 (Mon Mar 25 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: Select, MultiSelect, Combobox and MultiCombobox now forward refs ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.131 (Mon Mar 25 2024)
 
 #### ⚠️ Pushed to `main`
