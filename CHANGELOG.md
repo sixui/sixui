@@ -1,3 +1,15 @@
+# v0.0.134 (Thu Mar 28 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(ColorSchemeProvider): add data-scheme attribute to node ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.133 (Thu Mar 28 2024)
 
 #### ⚠️ Pushed to `main`
