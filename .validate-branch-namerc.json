@@ -1,4 +1,4 @@
 {
-  "pattern": "^main|(feat|fix|hotfix|doc|style|refactor|test|chore|release){1}(/n1-[0-9]+)?/[a-z0-9-]+$|^onboarding/[a-z0-9-]+$",
+  "pattern": "^main|(feat|fix|hotfix|doc|style|refactor|test|chore|release){1}(/n1-[0-9]+)?/[a-zA-Z0-9-]+$|^onboarding/[a-z0-9-]+$",
   "errorMsg": "Your branch name does not follow the correct pattern. Please check CONTRIBUTING.md for a valid branch name."
 }
