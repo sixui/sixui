@@ -6,19 +6,19 @@ export const shapeVars = stylex.defineVars({
   corner$full: '999px',
 
   corner$xl: '28px',
-  cornerTop$xl: '28px 28px 0px 0px',
+  cornerTop$xl: '28px 28px 0 0',
 
   corner$lg: '16px',
-  cornerStart$lg: '16px 0px 0px 16px',
-  cornerEnd$lg: '0px 16px 16px 0px',
-  cornerTop$lg: '16px 16px 0px 0px',
+  cornerStart$lg: '16px 0 0 16px',
+  cornerEnd$lg: '0 16px 16px 0',
+  cornerTop$lg: '16px 16px 0 0',
 
   corner$md: '12px',
 
   corner$sm: '8px',
 
   corner$xs: '6px',
-  cornerTop$xs: '6px 6px 0px 0px',
+  cornerTop$xs: '6px 6px 0 0',
 
   corner$none: '0',
 });
