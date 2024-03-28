@@ -1,3 +1,15 @@
+# v0.0.136 (Thu Mar 28 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(Select,Combobox): optionToNode() is more robust ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.135 (Thu Mar 28 2024)
 
 #### ⚠️ Pushed to `main`
