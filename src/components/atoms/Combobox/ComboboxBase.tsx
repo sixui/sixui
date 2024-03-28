@@ -129,7 +129,9 @@ const optionNodeToLabel = (option: IOption | string): string =>
   typeof option === 'string'
     ? option
     : option.props?.label ??
-      reactNodeToString(option.props.children) ??
+      (option.props?.children
+        ? reactNodeToString(option.props?.children)
+        : undefined) ??
       option.props?.value;
 
 const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
