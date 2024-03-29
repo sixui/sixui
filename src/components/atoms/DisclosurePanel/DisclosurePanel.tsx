@@ -11,9 +11,7 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
 export type IDisclosureProps = IContainerProps<IDisclosurePanelStyleKey> & {
-  children:
-    | React.ReactNode
-    | ((props: { open: boolean }) => React.ReactElement);
+  children: React.ReactNode;
 };
 
 export const DisclosurePanel = forwardRef<HTMLDivElement, IDisclosureProps>(
@@ -41,9 +39,7 @@ export const DisclosurePanel = forwardRef<HTMLDivElement, IDisclosureProps>(
         as='div'
         {...sxf('host', theme.vars, sx)}
       >
-        {typeof children === 'function'
-          ? ({ open }) => children({ open })
-          : children}
+        {children}
       </HeadlessDisclosure.Panel>
     );
   },

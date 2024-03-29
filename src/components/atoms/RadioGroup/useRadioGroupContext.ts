@@ -5,7 +5,5 @@ import {
   RadioGroupContext,
 } from './RadioGroupContext';
 
-export type IRadioGroupState = IRadioGroupContext;
-
-export const useRadioGroupContext = (): IRadioGroupState | undefined =>
+export const useRadioGroupContext = (): IRadioGroupContext | undefined =>
   useContext(RadioGroupContext);

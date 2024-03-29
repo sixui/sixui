@@ -16,8 +16,6 @@ export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
     minHeight: 56,
     padding: '12px 16px',
     position: 'relative',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
   },
   nonText: {
     position: 'relative',
@@ -84,6 +82,7 @@ export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
   container: {
     inset: 0,
     position: 'absolute',
+    borderRadius: 'inherit',
   },
   label: {
     // Needed since the default slot can have just text content, and ellipsis

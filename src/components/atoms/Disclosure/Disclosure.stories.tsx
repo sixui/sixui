@@ -6,6 +6,7 @@ import {
   faArrowDown,
 } from '@fortawesome/free-solid-svg-icons';
 
+import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { Disclosure, type IDisclosureProps } from './Disclosure';
 
 const meta = {
@@ -47,21 +48,6 @@ export const DefaultOpen: IStory = {
   },
 };
 
-export const TrailingIcon: IStory = {
-  render: (props) => <Disclosure {...props} />,
-  args: {
-    ...defaultArgs,
-    children: (
-      <>
-        <Disclosure.Button trailing>Advanced options</Disclosure.Button>
-        <Disclosure.Panel>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </Disclosure.Panel>
-      </>
-    ),
-  },
-};
-
 export const CustomExpandIcon: IStory = {
   render: (props) => <Disclosure {...props} />,
   args: {
@@ -95,6 +81,67 @@ export const CustomIcons: IStory = {
         </Disclosure.Button>
         <Disclosure.Panel>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </Disclosure.Panel>
+      </>
+    ),
+  },
+};
+
+export const CustomText: IStory = {
+  render: (props) => <Disclosure {...props} />,
+  args: {
+    ...defaultArgs,
+    children: ({ open }) => (
+      <>
+        <Disclosure.Button
+          expandIcon={<FontAwesomeIcon icon={faFolderClosed} fixedWidth />}
+          collapseIcon={<FontAwesomeIcon icon={faFolderOpen} fixedWidth />}
+        >
+          {open ? 'Hide advanced options' : 'Show advanced options'}
+        </Disclosure.Button>
+        <Disclosure.Panel>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </Disclosure.Panel>
+      </>
+    ),
+  },
+};
+
+export const Checkable: IStory = {
+  render: (props) => <Disclosure {...props} />,
+  args: {
+    ...defaultArgs,
+    checkable: true,
+    onChange: (...args) => sbHandleEvent('change', args),
+    children: ({ checked }) => (
+      <>
+        <Disclosure.Button>
+          Advanced options{checked ? ' (checked)' : ''}
+        </Disclosure.Button>
+        <Disclosure.Panel>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          {checked ? ' (checked)' : ''}
+        </Disclosure.Panel>
+      </>
+    ),
+  },
+};
+
+export const DefaultChecked: IStory = {
+  render: (props) => <Disclosure {...props} />,
+  args: {
+    ...defaultArgs,
+    checkable: true,
+    defaultChecked: true,
+    onChange: (...args) => sbHandleEvent('change', args),
+    children: ({ checked }) => (
+      <>
+        <Disclosure.Button>
+          Advanced options{checked ? ' (checked)' : ''}
+        </Disclosure.Button>
+        <Disclosure.Panel>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          {checked ? ' (checked)' : ''}
         </Disclosure.Panel>
       </>
     ),

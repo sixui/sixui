@@ -48,7 +48,6 @@ export type ICheckboxOwnProps = IContainerProps<ICheckboxStyleKey> & {
   checked?: boolean;
   id?: string;
   name?: string;
-  value?: string;
   defaultChecked?: boolean;
   indeterminate?: boolean;
   onChange?: (
@@ -134,6 +133,9 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
     [onChange, setCheckedValue],
   );
 
+  const handleClick: React.MouseEventHandler<HTMLInputElement> = (event) =>
+    event.preventDefault();
+
   return (
     <div
       {...sxf(
@@ -153,6 +155,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
           disabled={disabled}
           checked={checkedValue}
           onChange={handleChange}
+          onClick={handleClick}
           {...other}
         />
 
