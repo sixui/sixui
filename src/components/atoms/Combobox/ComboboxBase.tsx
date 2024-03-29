@@ -128,11 +128,11 @@ const defaultFilter = createFilter<IOption>();
 const optionNodeToLabel = (option: IOption | string): string =>
   typeof option === 'string'
     ? option
-    : option.props?.label ??
-      (option.props?.children
-        ? reactNodeToString(option.props?.children)
+    : option.props.label ??
+      (option.props.children
+        ? reactNodeToString(option.props.children)
         : undefined) ??
-      option.props?.value;
+      option.props.value;
 
 const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
   function Combobox(props, ref) {

@@ -106,7 +106,7 @@ const getMatchingOptions = (
 const optionNodeToLabel = (option: IOption | string): React.ReactNode =>
   typeof option === 'string'
     ? option
-    : option.props?.label ?? option.props?.children ?? option.props?.value;
+    : option.props.label ?? option.props.children ?? option.props.value;
 
 const defaultRenderSingleOption = (
   options: IOption | Array<IOption>,

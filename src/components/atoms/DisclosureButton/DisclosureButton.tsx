@@ -12,16 +12,15 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { IListItemProps, ListItem } from '@/components/atoms/ListItem';
 import { ReactComponent as ChevronDown } from '@/assets/ChevronDown.svg';
+import { Checkbox } from '@/components/atoms/Checkbox';
+import { useDisclosureContext } from '@/components/atoms/Disclosure/useDisclosureContext';
 
 export type IDisclosureButtonProps =
   IContainerProps<IDisclosureButtonStyleKey> &
     Omit<IListItemProps, 'children'> & {
       collapseIcon?: React.ReactNode;
       expandIcon?: React.ReactNode;
-      trailing?: boolean;
-      children:
-        | React.ReactNode
-        | ((props: { open: boolean }) => React.ReactElement);
+      children: React.ReactNode;
     };
 
 export const DisclosureButton = forwardRef<
@@ -34,8 +33,8 @@ export const DisclosureButton = forwardRef<
     innerStyles,
     collapseIcon,
     expandIcon,
-    trailing,
     children,
+    defaultChecked,
     ...other
   } = props;
 
@@ -52,6 +51,8 @@ export const DisclosureButton = forwardRef<
       >(stylesCombinator),
     [stylesCombinator],
   );
+
+  const context = useDisclosureContext();
 
   return (
     <HeadlessDisclosure.Button as={Fragment}>
@@ -77,10 +78,18 @@ export const DisclosureButton = forwardRef<
             innerStyles={{
               item: [theme.itemStyles, ...asArray(innerStyles?.item)],
             }}
-            leadingIcon={trailing ? null : icon}
-            trailingIcon={trailing ? icon : null}
+            start={
+              context?.checkable ? (
+                <Checkbox
+                  defaultChecked={defaultChecked}
+                  checked={context.checked}
+                  onChange={context.onChange}
+                />
+              ) : undefined
+            }
+            trailingIcon={icon}
           >
-            {typeof children === 'function' ? children({ open }) : children}
+            {children}
           </ListItem>
         );
       }}
