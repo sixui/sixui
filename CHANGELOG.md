@@ -1,3 +1,15 @@
+# v0.0.138 (Fri Mar 29 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(Disclosure): now accept React.ReactNode as children ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.137 (Fri Mar 29 2024)
 
 #### 🐛 Bug Fix
