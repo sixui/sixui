@@ -25,7 +25,7 @@ export type IDisclosureChildrenProps = {
 export type IDisclosureProps = IContainerProps<IDisclosureStyleKey> &
   IDisclosureContext & {
     children:
-      | React.ReactElement
+      | React.ReactNode
       | ((props: IDisclosureChildrenProps) => React.ReactElement);
     defaultOpen?: boolean;
   };
@@ -83,11 +83,9 @@ const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
           ref={ref}
           defaultOpen={defaultOpen}
         >
-          {({ open, close }) =>
-            typeof children === 'function'
-              ? children({ open, close, checked })
-              : children
-          }
+          {typeof children === 'function'
+            ? ({ open, close }) => children({ open, close, checked })
+            : children}
         </HeadlessDisclosure>
       </DisclosureContext.Provider>
     );
