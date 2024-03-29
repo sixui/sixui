@@ -1,3 +1,15 @@
+# v0.0.137 (Fri Mar 29 2024)
+
+#### 🐛 Bug Fix
+
+- feat(Disclosure): checkable [#21](https://github.com/sixui/ui/pull/21) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.136 (Thu Mar 28 2024)
 
 #### ⚠️ Pushed to `main`
