@@ -5,14 +5,30 @@ import type { IDisclosureButtonStyleVarKey } from '@/components/atoms/Disclosure
 import { typescaleVars } from '../vars/typo.stylex';
 import { shapeVars } from '../vars/shape.stylex';
 import { colorRolesVars } from '../vars/colorRoles.stylex';
+import { stateVars } from '../vars/state.stylex';
 
 const vars: Partial<IStyleVars<IDisclosureButtonStyleVarKey>> = {
   // container
   containerShape: shapeVars.corner$sm,
   containerColor: colorRolesVars.secondaryContainer,
+  containerOpacity: '1',
+  // &:disabled
+  containerColor$disabled: colorRolesVars.onSurface,
+  containerOpacity$disabled: stateVars.containerOpacity$disabled,
 
   // expandedContainer
   expandedContainerColor: colorRolesVars.secondaryContainer,
+  expandedContainerOpacity: '1',
+  // &:disabled
+  expandedContainerColor$disabled: colorRolesVars.onSurface,
+  expandedContainerOpacity$disabled: stateVars.containerOpacity$disabled,
+
+  // uncheckedContainer
+  uncheckedContainerColor: colorRolesVars.onSurface,
+  uncheckedContainerOpacity: stateVars.containerOpacity$disabled,
+  // &:disabled
+  uncheckedContainerColor$disabled: colorRolesVars.onSurface,
+  uncheckedContainerOpacity$disabled: stateVars.containerOpacity$disabled,
 
   // text
   textColor: colorRolesVars.onSecondaryContainer,

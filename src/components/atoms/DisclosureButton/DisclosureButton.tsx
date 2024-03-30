@@ -1,5 +1,4 @@
-import { forwardRef, useMemo, Fragment } from 'react';
-import { Disclosure as HeadlessDisclosure } from '@headlessui/react';
+import { forwardRef, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type { IContainerProps } from '@/helpers/types';
@@ -35,6 +34,7 @@ export const DisclosureButton = forwardRef<
     expandIcon,
     children,
     defaultChecked,
+    disabled: disabledProp,
     ...other
   } = props;
 
@@ -53,46 +53,62 @@ export const DisclosureButton = forwardRef<
   );
 
   const context = useDisclosureContext();
+  const disabled = disabledProp ?? context.disabled;
+  const expanded = context.checkable
+    ? context.expanded && context.checked
+    : context.expanded;
+  const icon = expanded
+    ? collapseIcon ??
+      (expandIcon ? (
+        <div {...sxf('icon$expanded')}>{expandIcon}</div>
+      ) : (
+        <ChevronDown {...sxf('icon$expanded')} aria-hidden />
+      ))
+    : expandIcon ?? <ChevronDown aria-hidden />;
+
+  const handleCheckboxChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    checked: boolean,
+  ): void => {
+    context.onChange?.(event, checked);
+    context.setExpanded?.(checked);
+  };
 
   return (
-    <HeadlessDisclosure.Button as={Fragment}>
-      {({ open }) => {
-        const icon = open
-          ? collapseIcon ??
-            (expandIcon ? (
-              <div {...sxf('icon$expanded')}>{expandIcon}</div>
-            ) : (
-              <ChevronDown {...sxf('icon$expanded')} aria-hidden />
-            ))
-          : expandIcon ?? <ChevronDown aria-hidden />;
+    <div {...sxf('host')}>
+      <ListItem
+        {...other}
+        ref={ref}
+        sx={[
+          stylesCombinator(
+            'button',
+            context.expanded && 'button$expanded',
+            context.checkable && 'button$checkable',
+            context.checkable && !context.checked && 'button$unchecked',
+          ),
+          sx,
+          theme.vars,
+        ]}
+        innerStyles={{
+          item: [theme.itemStyles, ...asArray(innerStyles?.item)],
+        }}
+        trailingIcon={icon}
+        disabled={disabled ?? (context.checkable && !context.checked)}
+        onClick={() => context.setExpanded?.(!context.expanded)}
+      >
+        {children}
+      </ListItem>
 
-        return (
-          <ListItem
-            {...other}
-            ref={ref}
-            sx={[
-              stylesCombinator('host', open && 'host$expanded'),
-              sx,
-              theme.vars,
-            ]}
-            innerStyles={{
-              item: [theme.itemStyles, ...asArray(innerStyles?.item)],
-            }}
-            start={
-              context?.checkable ? (
-                <Checkbox
-                  defaultChecked={defaultChecked}
-                  checked={context.checked}
-                  onChange={context.onChange}
-                />
-              ) : undefined
-            }
-            trailingIcon={icon}
-          >
-            {children}
-          </ListItem>
-        );
-      }}
-    </HeadlessDisclosure.Button>
+      {context.checkable ? (
+        <div {...sxf('checkboxContainer')}>
+          <Checkbox
+            defaultChecked={defaultChecked}
+            checked={context.checked}
+            onChange={handleCheckboxChange}
+            disabled={disabled}
+          />
+        </div>
+      ) : undefined}
+    </div>
   );
 });

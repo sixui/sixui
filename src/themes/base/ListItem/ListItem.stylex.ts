@@ -17,6 +17,7 @@ const vars: Partial<IStyleVars<IListItemStyleVarKey>> = {
 
   // container
   containerColor: 'transparent',
+  containerOpacity: '1',
   containerShape: shapeVars.corner$none,
   containerHeight$oneLine: '48px',
   containerHeight$twoLine: '56px',
@@ -27,6 +28,7 @@ const vars: Partial<IStyleVars<IListItemStyleVarKey>> = {
 
   // selectedContainer
   selectedContainerColor: colorRolesVars.primaryContainer,
+  selectedContainerOpacity: '1',
 
   // text
   textColor: colorRolesVars.onSurface,

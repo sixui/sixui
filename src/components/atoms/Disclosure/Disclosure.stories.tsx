@@ -15,36 +15,35 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {} satisfies Partial<IDisclosureProps>;
+const defaultArgs = {
+  children: (
+    <>
+      <Disclosure.Button>Advanced options</Disclosure.Button>
+      <Disclosure.Panel>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </Disclosure.Panel>
+    </>
+  ),
+} satisfies Partial<IDisclosureProps>;
 
 export const Basic: IStory = {
   render: (props) => <Disclosure {...props} />,
-  args: {
-    ...defaultArgs,
-    children: (
-      <>
-        <Disclosure.Button>Advanced options</Disclosure.Button>
-        <Disclosure.Panel>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </Disclosure.Panel>
-      </>
-    ),
-  },
+  args: defaultArgs,
 };
 
-export const DefaultOpen: IStory = {
+export const Disabled: IStory = {
   render: (props) => <Disclosure {...props} />,
   args: {
     ...defaultArgs,
-    defaultOpen: true,
-    children: (
-      <>
-        <Disclosure.Button>Advanced options</Disclosure.Button>
-        <Disclosure.Panel>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </Disclosure.Panel>
-      </>
-    ),
+    disabled: true,
+  },
+};
+
+export const DefaultExpanded: IStory = {
+  render: (props) => <Disclosure {...props} />,
+  args: {
+    ...defaultArgs,
+    defaultExpanded: true,
   },
 };
 
@@ -87,43 +86,12 @@ export const CustomIcons: IStory = {
   },
 };
 
-export const CustomText: IStory = {
-  render: (props) => <Disclosure {...props} />,
-  args: {
-    ...defaultArgs,
-    children: ({ open }) => (
-      <>
-        <Disclosure.Button
-          expandIcon={<FontAwesomeIcon icon={faFolderClosed} fixedWidth />}
-          collapseIcon={<FontAwesomeIcon icon={faFolderOpen} fixedWidth />}
-        >
-          {open ? 'Hide advanced options' : 'Show advanced options'}
-        </Disclosure.Button>
-        <Disclosure.Panel>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </Disclosure.Panel>
-      </>
-    ),
-  },
-};
-
 export const Checkable: IStory = {
   render: (props) => <Disclosure {...props} />,
   args: {
     ...defaultArgs,
     checkable: true,
     onChange: (...args) => sbHandleEvent('change', args),
-    children: ({ checked }) => (
-      <>
-        <Disclosure.Button>
-          Advanced options{checked ? ' (checked)' : ''}
-        </Disclosure.Button>
-        <Disclosure.Panel>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          {checked ? ' (checked)' : ''}
-        </Disclosure.Panel>
-      </>
-    ),
   },
 };
 
@@ -134,17 +102,16 @@ export const DefaultChecked: IStory = {
     checkable: true,
     defaultChecked: true,
     onChange: (...args) => sbHandleEvent('change', args),
-    children: ({ checked }) => (
-      <>
-        <Disclosure.Button>
-          Advanced options{checked ? ' (checked)' : ''}
-        </Disclosure.Button>
-        <Disclosure.Panel>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          {checked ? ' (checked)' : ''}
-        </Disclosure.Panel>
-      </>
-    ),
+  },
+};
+
+export const CheckableDisabled: IStory = {
+  render: (props) => <Disclosure {...props} />,
+  args: {
+    ...defaultArgs,
+    checkable: true,
+    onChange: (...args) => sbHandleEvent('change', args),
+    disabled: true,
   },
 };
 

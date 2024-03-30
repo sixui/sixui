@@ -77,9 +77,11 @@ export const styles: MapNamespaces<IListItemStyles> =
       inset: 0,
       borderRadius: 'inherit',
       backgroundColor: vars.containerColor,
+      opacity: vars.containerOpacity,
     },
     background$selected: {
       backgroundColor: vars.selectedContainerColor,
+      opacity: vars.selectedContainerOpacity,
     },
     background$disabled: {
       backgroundColor: vars.containerColor$disabled,

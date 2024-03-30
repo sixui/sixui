@@ -1,5 +1,4 @@
 import { forwardRef, useMemo } from 'react';
-import { Disclosure as HeadlessDisclosure } from '@headlessui/react';
 
 import type { IContainerProps } from '@/helpers/types';
 import type {
@@ -9,6 +8,7 @@ import type {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useDisclosureContext } from '@/components/atoms/Disclosure/useDisclosureContext';
 
 export type IDisclosureProps = IContainerProps<IDisclosurePanelStyleKey> & {
   children: React.ReactNode;
@@ -32,15 +32,15 @@ export const DisclosurePanel = forwardRef<HTMLDivElement, IDisclosureProps>(
       [stylesCombinator],
     );
 
-    return (
-      <HeadlessDisclosure.Panel
-        {...other}
-        ref={ref}
-        as='div'
-        {...sxf('host', theme.vars, sx)}
-      >
+    const context = useDisclosureContext();
+    const expanded = context.checkable
+      ? context.expanded && context.checked
+      : context.expanded;
+
+    return expanded ? (
+      <div {...other} {...sxf('host', theme.vars, sx)} ref={ref}>
         {children}
-      </HeadlessDisclosure.Panel>
-    );
+      </div>
+    ) : null;
   },
 );

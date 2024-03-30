@@ -122,7 +122,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(
     (event) => {
-      Promise.resolve(onChange?.(event, !event.target.checked))
+      Promise.resolve(onChange?.(event, event.target.checked))
         .finally(() => {
           setCheckedValue(!event.target.checked);
         })

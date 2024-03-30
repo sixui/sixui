@@ -5,5 +5,5 @@ import {
   DisclosureContext,
 } from './DisclosureContext';
 
-export const useDisclosureContext = (): IDisclosureContext | undefined =>
+export const useDisclosureContext = (): IDisclosureContext =>
   useContext(DisclosureContext);

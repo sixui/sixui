@@ -1,5 +1,4 @@
-import { forwardRef, useMemo } from 'react';
-import { Disclosure as HeadlessDisclosure } from '@headlessui/react';
+import { forwardRef, useMemo, useState } from 'react';
 
 import type { IContainerProps } from '@/helpers/types';
 import type { IDisclosureStyleKey } from './Disclosure.styledefs';
@@ -14,20 +13,10 @@ import {
   type IDisclosureContext,
 } from './DisclosureContext';
 
-export type IDisclosureChildrenProps = {
-  open?: boolean;
-  close: (
-    focusableElement?: HTMLElement | React.MutableRefObject<HTMLElement | null>,
-  ) => void;
-  checked?: boolean;
-};
-
 export type IDisclosureProps = IContainerProps<IDisclosureStyleKey> &
-  IDisclosureContext & {
-    children:
-      | React.ReactNode
-      | ((props: IDisclosureChildrenProps) => React.ReactElement);
-    defaultOpen?: boolean;
+  Omit<IDisclosureContext, 'expanded' | 'setExpanded'> & {
+    children: React.ReactNode;
+    defaultExpanded?: boolean;
   };
 
 const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
@@ -36,11 +25,12 @@ const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
       styles,
       sx,
       children,
-      defaultOpen,
+      defaultExpanded,
       checkable,
       defaultChecked,
       checked: checkedProp,
       onChange,
+      disabled,
       ...other
     } = props;
 
@@ -49,6 +39,7 @@ const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
       default: !!defaultChecked,
       name: 'Disclosure',
     });
+    const [expanded, setExpanded] = useState(defaultExpanded || defaultChecked);
 
     const { theme } = useComponentTheme('Disclosure');
     const stylesCombinator = useMemo(
@@ -60,33 +51,24 @@ const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
       [stylesCombinator],
     );
 
-    const contextValue = useMemo(
-      () =>
-        ({
-          checkable,
-          defaultChecked,
-          checked,
-          onChange: (event) => {
-            setChecked(event.target.checked);
-            onChange?.(event, event.target.checked);
-          },
-        }) satisfies IDisclosureContext,
-      [checkable, defaultChecked, checked, setChecked, onChange],
-    );
+    const context: IDisclosureContext = {
+      checkable,
+      defaultChecked,
+      checked,
+      onChange: (event) => {
+        setChecked(event.target.checked);
+        onChange?.(event, event.target.checked);
+      },
+      disabled,
+      expanded,
+      setExpanded,
+    };
 
     return (
-      <DisclosureContext.Provider value={contextValue}>
-        <HeadlessDisclosure
-          as='div'
-          {...other}
-          {...sxf('host', sx)}
-          ref={ref}
-          defaultOpen={defaultOpen}
-        >
-          {typeof children === 'function'
-            ? ({ open, close }) => children({ open, close, checked })
-            : children}
-        </HeadlessDisclosure>
+      <DisclosureContext.Provider value={context}>
+        <div {...other} {...sxf('host', sx)} ref={ref}>
+          {children}
+        </div>
       </DisclosureContext.Provider>
     );
   },
