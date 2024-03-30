@@ -15,4 +15,7 @@ export const styles: MapNamespaces<IDisclosurePanelStyles> =
       paddingRight: listItemVars.trailingSpace,
       color: vars.textColor,
     },
+    host$collapsed: {
+      display: 'none',
+    },
   });

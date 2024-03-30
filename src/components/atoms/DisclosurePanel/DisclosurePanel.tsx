@@ -37,10 +37,14 @@ export const DisclosurePanel = forwardRef<HTMLDivElement, IDisclosureProps>(
       ? context.expanded && context.checked
       : context.expanded;
 
-    return expanded ? (
-      <div {...other} {...sxf('host', theme.vars, sx)} ref={ref}>
+    return (
+      <div
+        {...other}
+        {...sxf('host', expanded ? null : 'host$collapsed', theme.vars, sx)}
+        ref={ref}
+      >
         {children}
       </div>
-    ) : null;
+    );
   },
 );
