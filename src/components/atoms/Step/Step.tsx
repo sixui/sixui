@@ -54,7 +54,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       [stylesCombinator],
     );
 
-    const isIcon = icon || hasError;
+    const isIcon = !!icon || hasError;
     const hasText = !!label || !!supportingText;
     const isVertical = hasText && layout === 'vertical';
     const active = !disabled && !completed && activeProp;
@@ -79,8 +79,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
             {...sxf(
               'buttonInner',
               hasText && 'buttonInner$withText',
-              isVertical ? `buttonInner$vertical` : `buttonInner$horizontal`,
-              isIcon && 'buttonInner$hasIcon',
+              isVertical ? 'buttonInner$vertical' : 'buttonInner$horizontal',
             )}
           >
             <div

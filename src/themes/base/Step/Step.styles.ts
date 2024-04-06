@@ -29,9 +29,6 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     gap: 8,
     padding: 8,
   },
-  buttonInner$hasIcon: {
-    gap: 4,
-  },
   buttonInner$withText: {
     paddingRight: 12,
   },
@@ -50,7 +47,7 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
   },
   stepIndex$icon: {
     color: colorRolesVars.secondary,
-    fontSize: 18,
+    fontSize: 24,
   },
   stepIndex$icon$active: {
     color: colorRolesVars.primary,
