@@ -1,3 +1,15 @@
+# v0.0.142 (Sat Apr 06 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(Divider): can add children ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.141 (Sat Apr 06 2024)
 
 #### ⚠️ Pushed to `main`
