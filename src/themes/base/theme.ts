@@ -210,6 +210,15 @@ import {
 import { componentTheme as disclosurePanelTheme } from './DisclosurePanel/DisclosurePanel.stylex';
 import { styles as disclosurePanelStyles } from './DisclosurePanel/DisclosurePanel.styles';
 
+import { componentTheme as stepperTheme } from './Stepper/Stepper.stylex';
+import { styles as stepperStyles } from './Stepper/Stepper.styles';
+
+import { componentTheme as stepTheme } from './Step/Step.stylex';
+import {
+  styles as stepStyles,
+  focusRingStyles as stepFocusRingStypes,
+} from './Step/Step.styles';
+
 export const theme: ITheme = {
   name: 'Material Design 3',
   colorSchemes: {
@@ -458,6 +467,15 @@ export const theme: ITheme = {
     DisclosurePanel: {
       vars: disclosurePanelTheme,
       styles: disclosurePanelStyles,
+    },
+    Stepper: {
+      vars: stepperTheme,
+      styles: stepperStyles,
+    },
+    Step: {
+      vars: stepTheme,
+      styles: stepStyles,
+      focusRingStyles: stepFocusRingStypes,
     },
   },
 };
