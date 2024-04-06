@@ -1,3 +1,15 @@
+# v0.0.141 (Sat Apr 06 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(Divider): can add text ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.140 (Sat Mar 30 2024)
 
 #### ⚠️ Pushed to `main`
