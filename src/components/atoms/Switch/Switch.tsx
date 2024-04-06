@@ -81,6 +81,7 @@ export type ISwitchOwnProps = IContainerProps<ISwitchStyleKey> &
     ) => IMaybeAsync<IAny>;
     icon?: React.ReactNode;
     selectedIcon?: React.ReactNode;
+    onClick?: React.MouseEventHandler<HTMLInputElement>;
   };
 
 export type ISwitchProps<TRoot extends React.ElementType = typeof DEFAULT_TAG> =

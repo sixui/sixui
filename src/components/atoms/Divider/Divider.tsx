@@ -26,11 +26,13 @@ export type IDividerProps = IContainerProps<IDividerStyleKey> & {
    * Indents the divider with padding on the trailing side.
    */
   insetEnd?: boolean;
+
+  text?: string;
 };
 
 export const Divider = forwardRef<HTMLDivElement, IDividerProps>(
   function Divider(props, ref) {
-    const { styles, sx, inset, insetStart, insetEnd, ...other } = props;
+    const { styles, sx, inset, insetStart, insetEnd, text, ...other } = props;
 
     const { theme } = useComponentTheme('Divider');
     const stylesCombinator = useMemo(
@@ -45,19 +47,29 @@ export const Divider = forwardRef<HTMLDivElement, IDividerProps>(
       [stylesCombinator],
     );
 
-    return (
+    const renderSeparator = (): React.ReactElement => (
       <div
         {...sxf(
-          'host',
-          inset && 'host$inset',
-          insetStart && 'host$insetStart',
-          insetEnd && 'host$insetEnd',
-          theme.vars,
-          sx,
+          'separator',
+          inset && 'separator$inset',
+          insetStart && 'separator$insetStart',
+          insetEnd && 'separator$insetEnd',
         )}
-        ref={ref}
-        {...other}
       />
+    );
+
+    return (
+      <div {...sxf('host', theme.vars, sx)} ref={ref} {...other}>
+        {text !== undefined ? (
+          <>
+            {renderSeparator()}
+            <div {...sxf('text')}>{text}</div>
+            {renderSeparator()}
+          </>
+        ) : (
+          renderSeparator()
+        )}
+      </div>
     );
   },
 );

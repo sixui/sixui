@@ -8,6 +8,7 @@ import { colorRolesVars } from '../vars/colorRoles.stylex';
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-divider.scss
 const vars: Partial<IStyleVars<IDividerStyleVarKey>> = {
   color: colorRolesVars.outlineVariant,
+  textColor: colorRolesVars.outline,
   thickness: '1px',
 };
 

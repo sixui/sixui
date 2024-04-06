@@ -1,7 +1,9 @@
 export type IDividerStyleKey =
   | 'host'
-  | 'host$inset'
-  | 'host$insetStart'
-  | 'host$insetEnd';
+  | 'separator'
+  | 'separator$inset'
+  | 'separator$insetStart'
+  | 'separator$insetEnd'
+  | 'text';
 
-export type IDividerStyleVarKey = 'color' | 'thickness';
+export type IDividerStyleVarKey = 'color' | 'thickness' | 'textColor';

@@ -77,4 +77,12 @@ export const InsetEnd: IStory = {
   },
 };
 
+export const WithText: IStory = {
+  render: (props) => <List {...props} />,
+  args: {
+    ...defaultArgs,
+    text: 'or',
+  },
+};
+
 export default meta;
