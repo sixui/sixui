@@ -1,3 +1,28 @@
-export type IStepStyleKey = 'host';
+export type IStepStyleKey =
+  | 'host'
+  | 'separator'
+  | 'button'
+  | 'button$horizontal'
+  | 'button$vertical'
+  | 'buttonFocusRing'
+  | 'buttonInner'
+  | 'buttonInner$hasIcon'
+  | 'buttonInner$withText'
+  | 'buttonInner$horizontal'
+  | 'buttonInner$vertical'
+  | 'stepIndex'
+  | 'stepIndex$icon'
+  | 'stepIndex$icon$disabled'
+  | 'stepIndex$icon$error'
+  | 'stepIndex$text'
+  | 'stepIndex$text$disabled'
+  | 'stepIndex$text$error'
+  | 'labelContainer'
+  | 'labelContainer$disabled'
+  | 'labelContainer$error'
+  | 'labelContainer$horizontal'
+  | 'labelContainer$vertical'
+  | 'label'
+  | 'supportingText';
 
 export type IStepStyleVarKey = 'textColor';

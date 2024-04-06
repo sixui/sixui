@@ -2,6 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 
+import {
+  type IComponentPresentation,
+  ComponentShowcase,
+} from '@/components/utils/ComponentShowcase';
 import { Step, type IStepProps } from './Step';
 
 const meta = {
@@ -14,96 +18,87 @@ const defaultArgs = {
   index: 1,
 } satisfies Partial<IStepProps>;
 
-export const Basic: IStory = {
-  render: (props) => <Step {...props} />,
+const rows: Array<IComponentPresentation<IStepProps>> = [
+  {
+    legend: 'Basic',
+  },
+  {
+    legend: 'With Icon',
+    props: {
+      icon: <FontAwesomeIcon icon={faGear} />,
+    },
+  },
+  {
+    legend: 'With Label',
+    props: {
+      label: 'Lorem ipsum',
+    },
+  },
+  {
+    legend: 'With Supporting Text',
+    props: {
+      label: 'Lorem ipsum',
+      supportingText: 'Lorem ipsum',
+    },
+  },
+];
+
+const cols: Array<IComponentPresentation<IStepProps>> = [
+  {
+    legend: 'Inactive',
+  },
+  {
+    legend: 'Active',
+    props: {
+      active: true,
+    },
+  },
+  {
+    legend: 'Completed',
+    props: {
+      completed: true,
+    },
+  },
+  {
+    legend: 'Error',
+    props: {
+      hasError: true,
+    },
+  },
+  {
+    legend: 'Disabled',
+    props: {
+      disabled: true,
+    },
+  },
+];
+
+const groups: Array<IComponentPresentation<IStepProps>> = [
+  {
+    legend: 'Horizontal',
+    props: {
+      layout: 'horizontal',
+    },
+  },
+  {
+    legend: 'Vertical',
+    props: {
+      layout: 'vertical',
+    },
+  },
+];
+
+export const Variants: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={Step}
+      props={props}
+      rows={rows}
+      cols={cols}
+      groups={groups}
+    />
+  ),
   args: defaultArgs,
-};
-
-export const Completed: IStory = {
-  render: (props) => <Step {...props} />,
-  args: {
-    ...defaultArgs,
-    completed: true,
-  },
-};
-
-export const WithIcon: IStory = {
-  render: (props) => <Step {...props} />,
-  args: {
-    ...defaultArgs,
-    icon: <FontAwesomeIcon icon={faGear} />,
-  },
-};
-
-export const WithLabel: IStory = {
-  render: (props) => <Step {...props} />,
-  args: {
-    ...defaultArgs,
-    icon: <FontAwesomeIcon icon={faGear} />,
-    label: 'Lorem ipsum dolor sit amet',
-  },
-};
-
-export const WithLabelBottom: IStory = {
-  render: (props) => <Step {...props} />,
-  args: {
-    ...defaultArgs,
-    icon: <FontAwesomeIcon icon={faGear} />,
-    label: 'Lorem ipsum dolor sit amet',
-    labelPosition: 'bottom',
-  },
-};
-
-export const WithSupportingText: IStory = {
-  render: (props) => <Step {...props} />,
-  args: {
-    ...defaultArgs,
-    icon: <FontAwesomeIcon icon={faGear} />,
-    label: 'Lorem ipsum dolor sit amet',
-    supportingText: 'Lorem ipsum dolor sit amet',
-  },
-};
-
-export const Error: IStory = {
-  render: (props) => <Step {...props} />,
-  args: {
-    ...defaultArgs,
-    label: 'Lorem ipsum dolor sit amet',
-    supportingText: 'Lorem ipsum dolor sit amet',
-    hasError: true,
-  },
-};
-
-export const ErrorWithIcon: IStory = {
-  render: (props) => <Step {...props} />,
-  args: {
-    ...defaultArgs,
-    icon: <FontAwesomeIcon icon={faGear} />,
-    label: 'Lorem ipsum dolor sit amet',
-    supportingText: 'Lorem ipsum dolor sit amet',
-    hasError: true,
-  },
-};
-
-export const Disabled: IStory = {
-  render: (props) => <Step {...props} />,
-  args: {
-    ...defaultArgs,
-    label: 'Lorem ipsum dolor sit amet',
-    supportingText: 'Lorem ipsum dolor sit amet',
-    disabled: true,
-  },
-};
-
-export const DisabledWithIcon: IStory = {
-  render: (props) => <Step {...props} />,
-  args: {
-    ...defaultArgs,
-    icon: <FontAwesomeIcon icon={faGear} />,
-    label: 'Lorem ipsum dolor sit amet',
-    supportingText: 'Lorem ipsum dolor sit amet',
-    disabled: true,
-  },
 };
 
 export default meta;

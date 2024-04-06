@@ -7,7 +7,7 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { ReactComponent as CheckMarkIcon } from '@/assets/CheckMark.svg';
-import { Divider } from '../Divider';
+import { ReactComponent as ExclamationTriangleIcon } from '@/assets/ExclamationTriangle.svg';
 import { ButtonBase, type IButtonBaseOwnProps } from '../ButtonBase';
 
 export type IStepProps = IContainerProps<IStepStyleKey> & {
@@ -20,7 +20,7 @@ export type IStepProps = IContainerProps<IStepStyleKey> & {
   icon?: React.ReactNode;
   label?: React.ReactNode;
   supportingText?: React.ReactNode;
-  labelPosition?: 'right' | 'bottom';
+  layout?: 'horizontal' | 'vertical';
   hasError?: boolean;
 };
 
@@ -30,7 +30,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       styles,
       sx,
       innerStyles,
-      active,
+      active: activeProp,
       completed,
       disabled,
       index,
@@ -38,7 +38,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       icon,
       label,
       supportingText,
-      labelPosition = 'right',
+      layout = 'horizontal',
       hasError,
       ...other
     } = props;
@@ -54,13 +54,18 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       [stylesCombinator],
     );
 
-    const hasText = label || supportingText;
+    const isIcon = icon || hasError;
+    const hasText = !!label || !!supportingText;
+    const isVertical = hasText && layout === 'vertical';
+    const active = !disabled && !completed && activeProp;
 
     return (
       <div {...sxf('host', theme.vars, sx)} ref={ref} {...other}>
-        <Divider sx={stylesCombinator('separator')} />
         <ButtonBase
-          sx={stylesCombinator('button')}
+          sx={stylesCombinator(
+            'button',
+            isVertical ? 'button$vertical' : 'button$horizontal',
+          )}
           innerStyles={{
             ...innerStyles,
             focusRing: [
@@ -74,24 +79,38 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
             {...sxf(
               'buttonInner',
               hasText && 'buttonInner$withText',
-              labelPosition === 'bottom'
-                ? `buttonInner$labelBottom`
-                : `buttonInner$labelRight`,
+              isVertical ? `buttonInner$vertical` : `buttonInner$horizontal`,
+              isIcon && 'buttonInner$hasIcon',
             )}
           >
             <div
               {...sxf(
                 'stepIndex',
-                icon ? 'stepIndex$icon' : 'stepIndex$text',
+                isIcon ? 'stepIndex$icon' : 'stepIndex$text',
                 disabled
-                  ? icon
+                  ? isIcon
                     ? 'stepIndex$icon$disabled'
                     : 'stepIndex$text$disabled'
                   : hasError &&
-                      (icon ? 'stepIndex$icon$error' : 'stepIndex$text$error'),
+                      (isIcon
+                        ? 'stepIndex$icon$error'
+                        : 'stepIndex$text$error'),
+                active &&
+                  (isIcon ? 'stepIndex$icon$active' : 'stepIndex$text$active'),
+                completed &&
+                  (isIcon
+                    ? 'stepIndex$icon$completed'
+                    : 'stepIndex$text$completed'),
               )}
             >
-              {icon ?? (completed ? <CheckMarkIcon aria-hidden /> : index)}
+              {icon ??
+                (completed ? (
+                  <CheckMarkIcon aria-hidden />
+                ) : hasError ? (
+                  <ExclamationTriangleIcon aria-hidden />
+                ) : (
+                  index
+                ))}
             </div>
             {hasText ? (
               <div
@@ -100,7 +119,11 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
                   disabled
                     ? 'labelContainer$disabled'
                     : hasError && 'labelContainer$error',
-                  `labelContainer$${labelPosition}`,
+                  active && 'labelContainer$active',
+                  completed && 'labelContainer$completed',
+                  isVertical
+                    ? `labelContainer$vertical`
+                    : `labelContainer$horizontal`,
                 )}
               >
                 <div {...sxf('label')}>{label}</div>

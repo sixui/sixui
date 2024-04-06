@@ -13,20 +13,12 @@ import { stateVars } from '../vars/state.stylex';
 
 type IStepStyles = IStyles<IStepStyleKey>;
 export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
-  host: {
-    position: 'relative',
-    flexGrow: 1,
-    paddingLeft: 8,
-    paddingRight: 8,
-  },
-  separator: {
-    position: 'absolute',
-    top: 'calc((24px + 8px * 2) / 2)',
-    left: 'calc(-50% + 12px)',
-    right: 'calc(50% + 12px)',
-  },
-  button: {
+  button: {},
+  button$horizontal: {
     borderRadius: shapeVars.corner$full,
+  },
+  button$vertical: {
+    borderRadius: shapeVars.corner$md,
   },
   buttonFocusRing: {
     borderRadius: shapeVars.corner$full,
@@ -37,13 +29,16 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     gap: 8,
     padding: 8,
   },
+  buttonInner$hasIcon: {
+    gap: 4,
+  },
   buttonInner$withText: {
     paddingRight: 12,
   },
-  buttonInner$labelRight: {
+  buttonInner$horizontal: {
     flexDirection: 'row',
   },
-  buttonInner$labelBottom: {
+  buttonInner$vertical: {
     flexDirection: 'column',
   },
   stepIndex: {
@@ -54,8 +49,14 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     height: 24,
   },
   stepIndex$icon: {
+    color: colorRolesVars.secondary,
+    fontSize: 18,
+  },
+  stepIndex$icon$active: {
     color: colorRolesVars.primary,
-    fontSize: 24,
+  },
+  stepIndex$icon$completed: {
+    color: colorRolesVars.primary,
   },
   stepIndex$icon$disabled: {
     color: colorRolesVars.onSurface,
@@ -63,17 +64,26 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
   },
   stepIndex$icon$error: {
     color: colorRolesVars.error,
+    fill: 'currentColor',
   },
   stepIndex$text: {
     borderRadius: shapeVars.corner$full,
-    backgroundColor: colorRolesVars.primary,
-    color: colorRolesVars.onPrimary,
+    backgroundColor: colorRolesVars.secondary,
+    color: colorRolesVars.onSecondary,
 
     fontFamily: typescaleVars.labelFont$md,
     fontSize: typescaleVars.labelSize$md,
     fontWeight: typescaleVars.labelWeight$md,
     lineHeight: typescaleVars.labelLineHeight$md,
     letterSpacing: typescaleVars.labelLetterSpacing$md,
+  },
+  stepIndex$text$active: {
+    backgroundColor: colorRolesVars.primary,
+    color: colorRolesVars.onPrimary,
+  },
+  stepIndex$text$completed: {
+    backgroundColor: colorRolesVars.primary,
+    color: colorRolesVars.onPrimary,
   },
   stepIndex$text$disabled: {
     backgroundColor: colorRolesVars.onSurface,
@@ -87,19 +97,25 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
   labelContainer: {
     display: 'flex',
     flexDirection: 'column',
-    color: colorRolesVars.onSurface,
+    color: colorRolesVars.secondary,
   },
   labelContainer$disabled: {
     color: colorRolesVars.onSurface,
     opacity: stateVars.opacity$disabled,
   },
-  labelContainer$error: {
-    color: colorRolesVars.onErrorContainer,
+  labelContainer$active: {
+    color: colorRolesVars.onSurface,
   },
-  labelContainer$right: {
+  labelContainer$completed: {
+    color: colorRolesVars.onSurface,
+  },
+  labelContainer$error: {
+    color: colorRolesVars.error,
+  },
+  labelContainer$horizontal: {
     alignItems: 'flex-start',
   },
-  labelContainer$bottom: {},
+  labelContainer$vertical: {},
   label: {
     fontFamily: typescaleVars.labelFont$lg,
     fontSize: typescaleVars.labelSize$lg,
