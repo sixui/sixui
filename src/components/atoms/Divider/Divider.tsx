@@ -27,12 +27,13 @@ export type IDividerProps = IContainerProps<IDividerStyleKey> & {
    */
   insetEnd?: boolean;
 
-  text?: string;
+  children?: React.ReactNode;
 };
 
 export const Divider = forwardRef<HTMLDivElement, IDividerProps>(
   function Divider(props, ref) {
-    const { styles, sx, inset, insetStart, insetEnd, text, ...other } = props;
+    const { styles, sx, inset, insetStart, insetEnd, children, ...other } =
+      props;
 
     const { theme } = useComponentTheme('Divider');
     const stylesCombinator = useMemo(
@@ -60,10 +61,10 @@ export const Divider = forwardRef<HTMLDivElement, IDividerProps>(
 
     return (
       <div {...sxf('host', theme.vars, sx)} ref={ref} {...other}>
-        {text !== undefined ? (
+        {children ? (
           <>
             {renderSeparator()}
-            <div {...sxf('text')}>{text}</div>
+            <div {...sxf('text')}>{children}</div>
             {renderSeparator()}
           </>
         ) : (
