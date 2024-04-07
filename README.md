@@ -70,6 +70,7 @@ Components
 - [x] RadioGroup
 - [x] Scrim
 - [x] Select
+- [x] Stepper
 - [x] Switch
 - [x] Tab
 - [x] TabList
