@@ -12,7 +12,7 @@ import type {
   IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
   IWithAsProp,
-} from '@/helpers/polymorphicComponentTypes';
+} from '@/helpers/react/polymorphicComponentTypes';
 import type { IRadioStyleKey, IRadioStyleVarKey } from './Radio.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';

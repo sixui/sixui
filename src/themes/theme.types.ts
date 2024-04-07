@@ -126,6 +126,12 @@ import type {
   IDisclosurePanelStyleKey,
   IDisclosurePanelStyleVarKey,
 } from '@/components/atoms/DisclosurePanel';
+import type { IStepperStyleKey } from '@/components/atoms/Stepper';
+import type { IStepStyleKey, IStepStyleVarKey } from '@/components/atoms/Step';
+import type {
+  IStepConnectorStyleKey,
+  IStepConnectorStyleVarKey,
+} from '@/components/atoms/StepConnector';
 
 export type ITemplateTheme = {
   vars?: IStyleVarsTheme<ITemplateStyleVarKey>;
@@ -392,6 +398,18 @@ export type ITheme = {
     DisclosurePanel: {
       vars?: IStyleVarsTheme<IDisclosurePanelStyleVarKey>;
       styles?: ICompiledStyles<IDisclosurePanelStyleKey>;
+    };
+    Stepper: {
+      styles?: ICompiledStyles<IStepperStyleKey>;
+    };
+    Step: {
+      vars?: IStyleVarsTheme<IStepStyleVarKey>;
+      styles?: ICompiledStyles<IStepStyleKey>;
+      focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
+    };
+    StepConnector: {
+      vars?: IStyleVarsTheme<IStepConnectorStyleVarKey>;
+      styles?: ICompiledStyles<IStepConnectorStyleKey>;
     };
   };
 };

@@ -44,7 +44,7 @@ export type IFieldBaseProps = IContainerProps<IFieldBaseStyleKey> & {
   populated?: boolean;
   required?: boolean;
   resizable?: boolean;
-  supportingText?: string;
+  supportingText?: React.ReactNode;
   textarea?: boolean;
   children?: React.ReactNode;
   labelId?: string;

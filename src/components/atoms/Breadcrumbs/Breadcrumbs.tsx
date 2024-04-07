@@ -147,15 +147,20 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
     };
 
     const allItems = Children.toArray(children)
+      .filter(isValidElement)
       .filter((child) => {
-        if (!isProduction() && isFragment(child)) {
-          // eslint-disable-next-line no-console
-          console.error(
-            "sixui: The Breadcrumbs component doesn't accept a Fragment as a child. Consider providing an array instead.",
-          );
+        if (isFragment(child)) {
+          if (!isProduction()) {
+            // eslint-disable-next-line no-console
+            console.error(
+              "sixui: The Breadcrumbs component doesn't accept a Fragment as a child. Consider providing an array instead.",
+            );
+          }
+
+          return false;
         }
 
-        return isValidElement(child);
+        return true;
       })
       .map((child, index) => (
         <li {...sxf('item')} key={`child-${index}`}>

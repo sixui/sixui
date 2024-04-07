@@ -10,7 +10,7 @@ import type {
   IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
   IWithAsProp,
-} from '@/helpers/polymorphicComponentTypes';
+} from '@/helpers/react/polymorphicComponentTypes';
 import type { IFabSize, IFabStyleKey, IFabVariant } from './Fab.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';

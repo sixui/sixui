@@ -1,7 +1,5 @@
 import { ThemeProvider } from '@/components/utils/Theme';
 import { theme } from '@/themes/base';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faAppleWhole, faCarrot } from '@fortawesome/free-solid-svg-icons';
 import '@/styles/main.css';
 
 import { Combobox } from '@/components/atoms/Combobox';
@@ -45,23 +43,23 @@ describe('Combobox', () => {
     cy.get('[data-cy=option-carrot]').should('exist');
   });
 
-   it('should use portal', () => {
-     cy.mount(
-       <ThemeProvider value={{ theme }}>
-         <div style={{ position: 'relative', overflow: 'hidden' }}>
-           <Combobox>
-             <Combobox.Option value='apple'>Apple</Combobox.Option>
-             <Combobox.Option value='carrot'>Carrot</Combobox.Option>
-           </Combobox>
-         </div>
-       </ThemeProvider>,
-     );
+  it('should use portal', () => {
+    cy.mount(
+      <ThemeProvider value={{ theme }}>
+        <div style={{ position: 'relative', overflow: 'hidden' }}>
+          <Combobox>
+            <Combobox.Option value='apple'>Apple</Combobox.Option>
+            <Combobox.Option value='carrot'>Carrot</Combobox.Option>
+          </Combobox>
+        </div>
+      </ThemeProvider>,
+    );
 
-     cy.get('[data-cy=input]').click();
-     cy.get('[data-cy=options]').should('be.visible');
-     cy.get('[data-cy=option-apple]').should('be.visible');
-     cy.get('[data-cy=option-carrot]').should('be.visible');
-   });
+    cy.get('[data-cy=input]').click();
+    cy.get('[data-cy=options]').should('be.visible');
+    cy.get('[data-cy=option-apple]').should('be.visible');
+    cy.get('[data-cy=option-carrot]').should('be.visible');
+  });
 
   it('should close on click outside', () => {
     cy.mount(

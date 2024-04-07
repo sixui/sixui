@@ -48,13 +48,13 @@ export const Divider = forwardRef<HTMLDivElement, IDividerProps>(
       [stylesCombinator],
     );
 
-    const renderSeparator = (): React.ReactElement => (
+    const renderLine = (): React.ReactElement => (
       <div
         {...sxf(
-          'separator',
-          inset && 'separator$inset',
-          insetStart && 'separator$insetStart',
-          insetEnd && 'separator$insetEnd',
+          'line',
+          inset && 'line$inset',
+          insetStart && 'line$insetStart',
+          insetEnd && 'line$insetEnd',
         )}
       />
     );
@@ -63,12 +63,12 @@ export const Divider = forwardRef<HTMLDivElement, IDividerProps>(
       <div {...sxf('host', theme.vars, sx)} ref={ref} {...other}>
         {children ? (
           <>
-            {renderSeparator()}
+            {renderLine()}
             <div {...sxf('text')}>{children}</div>
-            {renderSeparator()}
+            {renderLine()}
           </>
         ) : (
-          renderSeparator()
+          renderLine()
         )}
       </div>
     );

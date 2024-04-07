@@ -5,7 +5,7 @@ import type {
   IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
   IWithAsProp,
-} from '@/helpers/polymorphicComponentTypes';
+} from '@/helpers/react/polymorphicComponentTypes';
 import type { ITypographyStyleKey } from './Typography.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';

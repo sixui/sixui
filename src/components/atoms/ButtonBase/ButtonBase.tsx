@@ -10,7 +10,7 @@ import type {
   IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
   IWithAsProp,
-} from '@/helpers/polymorphicComponentTypes';
+} from '@/helpers/react/polymorphicComponentTypes';
 import type { IButtonStyleKey } from './ButtonBase.styledefs';
 import { type IVisualState, useVisualState } from '@/hooks/useVisualState';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';

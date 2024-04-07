@@ -6,7 +6,7 @@ import type {
   IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
   IWithAsProp,
-} from '@/helpers/polymorphicComponentTypes';
+} from '@/helpers/react/polymorphicComponentTypes';
 import type { IThemeComponents } from '@/components/utils/Theme';
 import type {
   IButtonStyleKey,
