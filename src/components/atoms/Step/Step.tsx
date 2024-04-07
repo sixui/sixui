@@ -8,25 +8,27 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { ReactComponent as CheckMarkIcon } from '@/assets/CheckMark.svg';
 import { ReactComponent as ExclamationTriangleIcon } from '@/assets/ExclamationTriangle.svg';
+import {
+  StepperContext,
+  type IStepperContext,
+} from '@/components/atoms/Stepper/StepperContext';
 import { ButtonBase, type IButtonBaseOwnProps } from '../ButtonBase';
-import { StepperContext } from '@/components/atoms/Stepper/StepperContext';
 
-export type IStepProps = IContainerProps<IStepStyleKey> & {
-  innerStyles?: IButtonBaseOwnProps['innerStyles'];
-  active?: boolean;
-  completed?: boolean;
-  disabled?: boolean;
-  index?: number;
-  last?: boolean;
-  icon?: React.ReactNode;
-  label?: React.ReactNode;
-  supportingText?: React.ReactNode;
-  labelPosition?: 'right' | 'bottom';
-  hasError?: boolean;
-  connector?: React.ReactNode;
-  children?: React.ReactNode;
-  onClick?: () => void;
-};
+export type IStepProps = IContainerProps<IStepStyleKey> &
+  Partial<Pick<IStepperContext, 'labelPosition' | 'connector'>> & {
+    innerStyles?: IButtonBaseOwnProps['innerStyles'];
+    active?: boolean;
+    completed?: boolean;
+    disabled?: boolean;
+    index?: number;
+    last?: boolean;
+    icon?: React.ReactNode;
+    label?: React.ReactNode;
+    supportingText?: React.ReactNode;
+    hasError?: boolean;
+    children?: React.ReactNode;
+    onClick?: () => void;
+  };
 
 export const Step = forwardRef<HTMLDivElement, IStepProps>(
   function Step(props, ref) {
@@ -38,7 +40,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       completed,
       disabled,
       index = 0,
-      last,
+      last: isLast,
       icon,
       label,
       supportingText,
@@ -65,10 +67,11 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
     const hasText = !!label || !!supportingText;
 
     const context = useContext(StepperContext);
-    const active =
-      !disabled &&
-      !completed &&
-      (activeProp ?? (context && context.activeStep === index));
+    const isCurrent = !disabled && !completed && index === context.activeStep;
+    const isActive =
+      !disabled && !completed && (activeProp ?? index <= context.activeStep);
+    const isPreviousActive =
+      !disabled && !completed && index < context.activeStep;
     const labelPosition = hasText
       ? labelPositionProp ?? context.labelPosition
       : 'right';
@@ -82,7 +85,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
         ? 'error'
         : completed
           ? 'completed'
-          : active
+          : isActive
             ? 'active'
             : undefined;
 
@@ -128,16 +131,23 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       </div>
     );
 
+    const renderConnector = (): React.ReactNode | undefined =>
+      connector && typeof connector === 'function'
+        ? connector({ active: isActive })
+        : connector;
+
     return (
       <>
-        {connector && !isFirst && labelPosition === 'right' ? connector : null}
+        {connector && !isFirst && labelPosition === 'right'
+          ? renderConnector()
+          : null}
         <div
           {...sxf('host', `host$${labelPosition}Label`, theme.vars, sx)}
           ref={ref}
           {...other}
         >
           {connector && !isFirst && labelPosition === 'bottom'
-            ? connector
+            ? renderConnector()
             : null}
 
           {onClick ? (
@@ -159,8 +169,16 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
             renderInner()
           )}
 
-          {active && children ? (
-            <div {...sxf('content')}>{children}</div>
+          {isCurrent && children ? (
+            <div
+              {...sxf(
+                'content',
+                isPreviousActive && 'content$active',
+                isLast && 'content$last',
+              )}
+            >
+              {children}
+            </div>
           ) : null}
         </div>
       </>

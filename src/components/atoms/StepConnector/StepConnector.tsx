@@ -12,11 +12,12 @@ import { StepperContext } from '@/components/atoms/Stepper/StepperContext';
 
 export type IStepConnectorProps = IContainerProps<IStepConnectorStyleKey> & {
   children?: React.ReactNode;
+  active?: boolean;
 };
 
 export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
   function StepConnector(props, ref) {
-    const { styles, sx, children, ...other } = props;
+    const { styles, sx, children, active, ...other } = props;
 
     const { theme } = useComponentTheme('StepConnector');
     const stylesCombinator = useMemo(
@@ -34,7 +35,9 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
     const context = useContext(StepperContext);
 
     const renderLine = (): React.ReactElement => (
-      <div {...sxf('line', `line$${context.orientation}`)} />
+      <div
+        {...sxf('line', `line$${context.orientation}`, active && 'line$active')}
+      />
     );
 
     return (
@@ -52,7 +55,13 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
         {children ? (
           <>
             {renderLine()}
-            <div {...sxf('text', `text$${context.orientation}`)}>
+            <div
+              {...sxf(
+                'text',
+                `text$${context.orientation}`,
+                active && 'text$active',
+              )}
+            >
               {children}
             </div>
             {renderLine()}

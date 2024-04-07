@@ -15,6 +15,7 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   children: 'Stepper',
+  activeStep: 1,
 } satisfies Partial<IStepperProps>;
 
 const makeSteps = (props?: IStepProps, count = 3): Array<React.ReactElement> =>
@@ -33,18 +34,22 @@ export const Horizontal: IStory = {
           },
         },
         {
-          legend: 'Custom connector',
-          props: {
-            children: makeSteps({
-              connector: <Stepper.Connector>Lorem ipsum</Stepper.Connector>,
-            }),
-          },
-        },
-        {
           legend: 'Icons',
           props: {
             children: makeSteps({
               icon: <FontAwesomeIcon icon={faLocationDot} />,
+            }),
+          },
+        },
+        {
+          legend: 'Custom connector',
+          props: {
+            children: makeSteps({
+              connector: ({ active }) => (
+                <Stepper.Connector active={active}>
+                  Lorem ipsum
+                </Stepper.Connector>
+              ),
             }),
           },
         },
@@ -88,18 +93,22 @@ export const Vertical: IStory = {
           },
         },
         {
-          legend: 'Custom connector',
-          props: {
-            children: makeSteps({
-              connector: <Stepper.Connector>Lorem ipsum</Stepper.Connector>,
-            }),
-          },
-        },
-        {
           legend: 'Icons',
           props: {
             children: makeSteps({
               icon: <FontAwesomeIcon icon={faLocationDot} />,
+            }),
+          },
+        },
+        {
+          legend: 'Custom connector',
+          props: {
+            children: makeSteps({
+              connector: ({ active }) => (
+                <Stepper.Connector active={active}>
+                  Lorem ipsum
+                </Stepper.Connector>
+              ),
             }),
           },
         },
@@ -135,6 +144,7 @@ export const Vertical: IStory = {
 // FIXME:
 // - line color on avancement
 // - handle state
+// - arbitrate between context and children func
 // - add style vars
 
 export default meta;

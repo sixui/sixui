@@ -36,6 +36,9 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
       display: 'block',
       flexGrow: 1,
     },
+    line$active: {
+      borderColor: colorRolesVars.primary,
+    },
     line$horizontal: {
       borderTopStyle: 'solid',
       borderTopWidth: 1,
@@ -54,6 +57,9 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
       fontWeight: typescaleVars.bodyWeight$md,
       lineHeight: typescaleVars.bodyLineHeight$md,
       letterSpacing: typescaleVars.bodyLetterSpacing$md,
+    },
+    text$active: {
+      color: colorRolesVars.primary,
     },
     text$horizontal: {
       paddingLeft: 8,

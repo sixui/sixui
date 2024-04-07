@@ -67,7 +67,7 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
     const steps = validChildren.map((child, index) =>
       cloneElement(child, {
         index,
-        last: index + 1 === validChildren.length,
+        last: index + 1 >= validChildren.length,
         ...child.props,
       }),
     );
@@ -77,12 +77,12 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
 
     const contextValue: IStepperContext = useMemo(
       () => ({
-        activeStep,
+        activeStep: Math.max(Math.min(activeStep, validChildren.length - 1), 0),
         connector,
         orientation,
         labelPosition,
       }),
-      [activeStep, connector, orientation, labelPosition],
+      [activeStep, connector, orientation, labelPosition, validChildren.length],
     );
 
     return (

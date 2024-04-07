@@ -57,7 +57,7 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     height: 24,
   },
   stepIndex$icon: {
-    color: colorRolesVars.secondary,
+    color: colorRolesVars.secondaryContainer,
     fontSize: 24,
   },
   stepIndex$icon$active: {
@@ -150,9 +150,15 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     marginLeft: 20, // half icon
     paddingLeft: 8 + 12 - 1, // margin + half icon - border
     paddingRight: 8,
-    borderColor: colorRolesVars.outlineVariant,
     borderLeftStyle: 'solid',
     borderLeftWidth: 1,
+    borderColor: colorRolesVars.outlineVariant,
+  },
+  content$active: {
+    borderColor: colorRolesVars.primary,
+  },
+  content$last: {
+    borderLeftWidth: 0,
   },
 });
 
