@@ -15,12 +15,11 @@ import { stateVars } from '../vars/state.stylex';
 
 type IStepStyles = IStyles<IStepStyleKey>;
 export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
-  host: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
+  host: {},
   host$rightLabel: {},
   host$bottomLabel: {
+    display: 'flex',
+    justifyContent: 'center',
     flexGrow: 1,
     position: 'relative',
   },
@@ -137,6 +136,21 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     fontWeight: typescaleVars.labelWeight$sm,
     lineHeight: typescaleVars.labelLineHeight$sm,
     letterSpacing: typescaleVars.labelLetterSpacing$sm,
+  },
+  content: {
+    color: colorRolesVars.onSurface,
+    fontFamily: typescaleVars.bodyFont$md,
+    fontSize: typescaleVars.bodySize$md,
+    fontWeight: typescaleVars.bodyWeight$md,
+    lineHeight: typescaleVars.bodyLineHeight$md,
+    letterSpacing: typescaleVars.bodyLetterSpacing$md,
+
+    marginLeft: 20, // half icon
+    paddingLeft: 8 + 12 - 1, // margin + half icon - border
+    paddingRight: 8,
+    borderColor: colorRolesVars.outlineVariant,
+    borderLeftStyle: 'solid',
+    borderLeftWidth: 1,
   },
 });
 

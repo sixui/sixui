@@ -31,6 +31,7 @@ export type IStepStyleKey =
   | 'labelContainer$rightLabel'
   | 'labelContainer$bottomLabel'
   | 'label'
-  | 'supportingText';
+  | 'supportingText'
+  | 'content';
 
 export type IStepStyleVarKey = 'textColor';

@@ -24,6 +24,7 @@ export type IStepProps = IContainerProps<IStepStyleKey> & {
   labelPosition?: 'right' | 'bottom';
   hasError?: boolean;
   connector?: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 export const Step = forwardRef<HTMLDivElement, IStepProps>(
@@ -43,6 +44,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       labelPosition: labelPositionProp,
       hasError,
       connector: connectorProp,
+      children,
       ...other
     } = props;
 
@@ -138,12 +140,15 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
                     `labelContainer$${labelPosition}Label`,
                   )}
                 >
-                  <div {...sxf('label')}>{label}</div>
-                  <div {...sxf('supportingText')}>{supportingText}</div>
+                  {label ? <div {...sxf('label')}>{label}</div> : null}
+                  {supportingText ? (
+                    <div {...sxf('supportingText')}>{supportingText}</div>
+                  ) : null}
                 </div>
               ) : null}
             </div>
           </ButtonBase>
+          {children ? <div {...sxf('content')}>{children}</div> : null}
         </div>
       </>
     );
