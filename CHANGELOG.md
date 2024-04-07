@@ -1,3 +1,15 @@
+# v0.0.144 (Sun Apr 07 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: export Stepper, Step, and contexts ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.143 (Sun Apr 07 2024)
 
 #### 🐛 Bug Fix
