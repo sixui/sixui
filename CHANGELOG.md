@@ -1,3 +1,15 @@
+# v0.0.143 (Sun Apr 07 2024)
+
+#### 🐛 Bug Fix
+
+- Feat/n1 106/stepper [#22](https://github.com/sixui/ui/pull/22) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.142 (Sat Apr 06 2024)
 
 #### ⚠️ Pushed to `main`
