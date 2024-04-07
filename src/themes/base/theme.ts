@@ -210,7 +210,6 @@ import {
 import { componentTheme as disclosurePanelTheme } from './DisclosurePanel/DisclosurePanel.stylex';
 import { styles as disclosurePanelStyles } from './DisclosurePanel/DisclosurePanel.styles';
 
-import { componentTheme as stepperTheme } from './Stepper/Stepper.stylex';
 import { styles as stepperStyles } from './Stepper/Stepper.styles';
 
 import { componentTheme as stepTheme } from './Step/Step.stylex';
@@ -472,7 +471,6 @@ export const theme: ITheme = {
       styles: disclosurePanelStyles,
     },
     Stepper: {
-      vars: stepperTheme,
       styles: stepperStyles,
     },
     Step: {

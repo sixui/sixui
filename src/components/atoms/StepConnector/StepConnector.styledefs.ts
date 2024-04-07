@@ -1,5 +1,3 @@
-// FIXME: cleanup
-
 export type IStepConnectorStyleKey =
   | 'host'
   | 'host$horizontal'
@@ -15,4 +13,18 @@ export type IStepConnectorStyleKey =
   | 'text$horizontal'
   | 'text$vertical';
 
-export type IStepConnectorStyleVarKey = 'textColor';
+export type IStepConnectorStyleVarKey =
+  | 'thickness'
+  | 'color'
+  | 'color$completed'
+  | 'minLength$horizontal'
+  | 'minLength$vertical'
+  | 'textSpace$horizontal'
+  | 'textSpace$vertical'
+  | 'textColor'
+  | 'textFont'
+  | 'textSize'
+  | 'textWeight'
+  | 'textLineHeight'
+  | 'textLetterSpacing'
+  | 'textColor$completed';

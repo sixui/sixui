@@ -126,10 +126,7 @@ import type {
   IDisclosurePanelStyleKey,
   IDisclosurePanelStyleVarKey,
 } from '@/components/atoms/DisclosurePanel';
-import type {
-  IStepperStyleKey,
-  IStepperStyleVarKey,
-} from '@/components/atoms/Stepper';
+import type { IStepperStyleKey } from '@/components/atoms/Stepper';
 import type { IStepStyleKey, IStepStyleVarKey } from '@/components/atoms/Step';
 import type {
   IStepConnectorStyleKey,
@@ -403,7 +400,6 @@ export type ITheme = {
       styles?: ICompiledStyles<IDisclosurePanelStyleKey>;
     };
     Stepper: {
-      vars?: IStyleVarsTheme<IStepperStyleVarKey>;
       styles?: ICompiledStyles<IStepperStyleKey>;
     };
     Step: {

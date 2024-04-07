@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
 import type { IStepProps } from '@/components/atoms/Step';
+import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { Stepper, type IStepperProps } from './Stepper';
 import { createSequence } from '@olivierpascal/helpers';
@@ -19,7 +20,13 @@ const defaultArgs = {
 } satisfies Partial<IStepperProps>;
 
 const makeSteps = (props?: IStepProps, count = 3): Array<React.ReactElement> =>
-  createSequence(count).map((index) => <Stepper.Step {...props} key={index} />);
+  createSequence(count).map((index) => (
+    <Stepper.Step
+      onClick={() => void sbHandleEvent('click')}
+      {...props}
+      key={index}
+    />
+  ));
 
 export const Horizontal: IStory = {
   render: (props) => (

@@ -3,11 +3,26 @@ import stylex from '@stylexjs/stylex';
 import type { IStyleVars } from '@/helpers/types';
 import type { IStepConnectorStyleVarKey } from '@/components/atoms/StepConnector';
 import { colorRolesVars } from '../vars/colorRoles.stylex';
-
-// FIXME: delete?
+import { typescaleVars } from '../vars/typo.stylex';
 
 const vars: Partial<IStyleVars<IStepConnectorStyleVarKey>> = {
-  //
+  thickness: '1px',
+  color: colorRolesVars.outlineVariant,
+  color$completed: colorRolesVars.primary,
+  minLength$horizontal: '12px',
+  minLength$vertical: '24px',
+
+  // text
+  textSpace$horizontal: '8px',
+  textSpace$vertical: '4px',
+  textColor: colorRolesVars.outline,
+  textFont: typescaleVars.bodyFont$sm,
+  textSize: typescaleVars.bodySize$sm,
+  textWeight: typescaleVars.bodyWeight$sm,
+  textLineHeight: typescaleVars.bodyLineHeight$sm,
+  textLetterSpacing: typescaleVars.bodyLetterSpacing$sm,
+  // &:completed
+  textColor$completed: colorRolesVars.primary,
 };
 
 export const componentVars = stylex.defineVars(

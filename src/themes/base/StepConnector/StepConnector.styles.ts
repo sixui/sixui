@@ -3,11 +3,8 @@ import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
 import type { IStepConnectorStyleKey } from '@/components/atoms/StepConnector';
-import { colorRolesVars } from '../vars/colorRoles.stylex';
+import { componentVars as stepVars } from '../Step/Step.stylex';
 import { componentVars as vars } from './StepConnector.stylex';
-import { typescaleVars } from '../vars/typo.stylex';
-
-// FIXME: use vars
 
 type IStepConnectorStyles = IStyles<IStepConnectorStyleKey>;
 export const styles: MapNamespaces<IStepConnectorStyles> =
@@ -22,50 +19,51 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
     },
     host$vertical: {
       flexDirection: 'column',
-      marginLeft: 8 + 12,
+      marginLeft: `calc(${stepVars.leadingSpace} + ${stepVars.bulletPointSize} / 2 - ${vars.thickness} / 2)`,
     },
     host$rightLabel: {},
     host$bottomLabel: {
       position: 'absolute',
-      top: 8 + 12 - 0.5, // - half border
-      left: 'calc(-50% + 20px)',
-      right: 'calc(50% + 20px)',
+      top: `calc(${stepVars.leadingSpace} + ${stepVars.bulletPointSize} / 2 - ${vars.thickness} / 2)`,
+      left: `calc(-50% + ${stepVars.leadingSpace} + ${stepVars.bulletPointSize} / 2)`,
+      right: `calc(50% + ${stepVars.leadingSpace} + ${stepVars.bulletPointSize} / 2)`,
     },
     line: {
-      borderColor: colorRolesVars.outlineVariant,
+      borderColor: vars.color,
       display: 'block',
       flexGrow: 1,
     },
     line$completed: {
-      borderColor: colorRolesVars.primary,
+      borderColor: vars.color$completed,
     },
     line$horizontal: {
       borderTopStyle: 'solid',
-      borderTopWidth: 1,
-      minWidth: 12,
+      borderTopWidth: vars.thickness,
+      minWidth: vars.minLength$horizontal,
     },
     line$vertical: {
       borderLeftStyle: 'solid',
-      borderLeftWidth: 1,
-      minHeight: 24,
+      borderLeftWidth: vars.thickness,
+      minHeight: vars.minLength$vertical,
     },
     text: {
-      color: colorRolesVars.outline,
-
-      fontFamily: typescaleVars.bodyFont$sm,
-      fontSize: typescaleVars.bodySize$sm,
-      fontWeight: typescaleVars.bodyWeight$sm,
-      lineHeight: typescaleVars.bodyLineHeight$sm,
-      letterSpacing: typescaleVars.bodyLetterSpacing$sm,
+      color: vars.textColor,
+      fontFamily: vars.textFont,
+      fontSize: vars.textSize,
+      fontWeight: vars.textWeight,
+      lineHeight: vars.textLineHeight,
+      letterSpacing: vars.textLetterSpacing,
     },
     text$completed: {
-      color: colorRolesVars.primary,
+      color: vars.textColor$completed,
     },
     text$horizontal: {
-      paddingLeft: 8,
-      paddingRight: 8,
+      paddingLeft: vars.textSpace$horizontal,
+      paddingRight: vars.textSpace$horizontal,
     },
     text$vertical: {
-      transform: 'translateX(-50%)',
+      paddingTop: vars.textSpace$vertical,
+      paddingBottom: vars.textSpace$vertical,
+      transform: `translateX(calc(-50% + ${vars.thickness} / 2))`,
     },
   });

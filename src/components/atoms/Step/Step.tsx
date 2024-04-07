@@ -172,10 +172,12 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
 
           {isActive && children ? (
             <div {...sxf('content')}>
-              {isLast ? null : renderConnector({ completed: false })}
-              <div {...sxf('contentText', isLast && 'contentText$last')}>
-                {children}
-              </div>
+              {isLast ? null : (
+                <div {...sxf('contentConnectorContainer')}>
+                  {renderConnector({ completed: false })}
+                </div>
+              )}
+              <div {...sxf('contentText')}>{children}</div>
             </div>
           ) : null}
         </div>

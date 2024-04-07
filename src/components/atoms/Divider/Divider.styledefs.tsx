@@ -6,4 +6,12 @@ export type IDividerStyleKey =
   | 'line$insetEnd'
   | 'text';
 
-export type IDividerStyleVarKey = 'color' | 'thickness' | 'textColor';
+export type IDividerStyleVarKey =
+  | 'color'
+  | 'thickness'
+  | 'textColor'
+  | 'textFont'
+  | 'textSize'
+  | 'textWeight'
+  | 'textLineHeight'
+  | 'textLetterSpacing';

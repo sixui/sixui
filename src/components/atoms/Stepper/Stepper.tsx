@@ -7,10 +7,7 @@ import {
 } from 'react';
 
 import type { IContainerProps } from '@/helpers/types';
-import type {
-  IStepperStyleKey,
-  IStepperStyleVarKey,
-} from './Stepper.styledefs';
+import type { IStepperStyleKey } from './Stepper.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
@@ -56,10 +53,7 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
       [theme.styles, styles],
     );
     const sxf = useMemo(
-      () =>
-        stylePropsFactory<IStepperStyleKey, IStepperStyleVarKey>(
-          stylesCombinator,
-        ),
+      () => stylePropsFactory<IStepperStyleKey>(stylesCombinator),
       [stylesCombinator],
     );
 
@@ -98,7 +92,6 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
             'host',
             `host$${orientation}`,
             labelPosition === 'bottom' && 'host$labelBottom',
-            theme.vars,
             sx,
           )}
           ref={ref}

@@ -6,8 +6,6 @@ import type { IStepStyleKey } from '@/components/atoms/Step';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import { componentVars as vars } from './Step.stylex';
 import { componentVars as focusRingVars } from '../FocusRing/FocusRing.stylex';
-import { shapeVars } from '../vars/shape.stylex';
-import { typescaleVars } from '../vars/typo.stylex';
 import { componentVars as stepStateVars } from './Step.states.stylex';
 
 type IStepStyles = IStyles<IStepStyleKey>;
@@ -70,7 +68,7 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     fill: 'currentColor',
   },
   bulletPoint$text: {
-    borderRadius: shapeVars.corner$full,
+    borderRadius: vars.bulletPointShape,
     backgroundColor: vars.bulletPointColor,
     color: vars.bulletPointTextColor,
 
@@ -142,21 +140,19 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     display: 'flex',
     flexDirection: 'row',
   },
+  contentConnectorContainer: {
+    position: 'absolute',
+  },
   contentText: {
     color: vars.contentTextColor,
-    fontFamily: typescaleVars.bodyFont$md,
-    fontSize: typescaleVars.bodySize$md,
-    fontWeight: typescaleVars.bodyWeight$md,
-    lineHeight: typescaleVars.bodyLineHeight$md,
-    letterSpacing: typescaleVars.bodyLetterSpacing$md,
+    fontFamily: vars.contentTextFont,
+    fontSize: vars.contentTextSize,
+    fontWeight: vars.contentTextWeight,
+    lineHeight: vars.contentTextLineHeight,
+    letterSpacing: vars.contentTextLetterSpacing,
 
-    // FIXME: use border size
-    paddingLeft: `calc(${vars.leadingSpace} + ${vars.bulletPointSize} / 2 - 1px)`,
+    paddingLeft: `calc(${vars.leadingSpace} + ${vars.bulletPointSize} + ${vars.gap})`, // iconSize + gap
     paddingRight: vars.trailingSpace,
-  },
-  contentText$last: {
-    // FIXME: use border size
-    marginLeft: `calc(${vars.leadingSpace} + ${vars.bulletPointSize} / 2 + 1px)`,
   },
 });
 

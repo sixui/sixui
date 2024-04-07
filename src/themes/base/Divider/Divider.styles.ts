@@ -41,6 +41,12 @@ export const styles: MapNamespaces<IDividerStyles> =
       alignItems: 'center',
       marginInlineStart: 8,
       marginInlineEnd: 8,
+
       color: vars.textColor,
+      fontFamily: vars.textFont,
+      fontSize: vars.textSize,
+      fontWeight: vars.textWeight,
+      lineHeight: vars.textLineHeight,
+      letterSpacing: vars.textLetterSpacing,
     },
   });

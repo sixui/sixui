@@ -22,6 +22,7 @@ const vars: Partial<IStyleVars<IStepStyleVarKey>> = {
 
   // bulletPoint
   bulletPointSize: '24px',
+  bulletPointShape: shapeVars.corner$full,
   bulletPointColor: colorRolesVars.secondaryContainer,
   bulletPointTextColor: colorRolesVars.secondary,
   bulletPointTextFont: typescaleVars.labelFont$md,
@@ -72,6 +73,11 @@ const vars: Partial<IStyleVars<IStepStyleVarKey>> = {
 
   // contentText
   contentTextColor: colorRolesVars.onSurface,
+  contentTextFont: typescaleVars.bodyFont$md,
+  contentTextSize: typescaleVars.bodySize$md,
+  contentTextWeight: typescaleVars.bodyWeight$md,
+  contentTextLineHeight: typescaleVars.bodyLineHeight$md,
+  contentTextLetterSpacing: typescaleVars.bodyLetterSpacing$md,
 };
 
 export const componentVars = stylex.defineVars(

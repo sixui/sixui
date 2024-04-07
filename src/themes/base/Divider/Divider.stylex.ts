@@ -3,13 +3,21 @@ import stylex from '@stylexjs/stylex';
 import type { IStyleVars } from '@/helpers/types';
 import type { IDividerStyleVarKey } from '@/components/atoms/Divider';
 import { colorRolesVars } from '../vars/colorRoles.stylex';
+import { typescaleVars } from '../vars/typo.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-divider.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-divider.scss
 const vars: Partial<IStyleVars<IDividerStyleVarKey>> = {
-  color: colorRolesVars.outlineVariant,
-  textColor: colorRolesVars.outline,
   thickness: '1px',
+  color: colorRolesVars.outlineVariant,
+
+  // text
+  textColor: colorRolesVars.outline,
+  textFont: typescaleVars.bodyFont$sm,
+  textSize: typescaleVars.bodySize$sm,
+  textWeight: typescaleVars.bodyWeight$sm,
+  textLineHeight: typescaleVars.bodyLineHeight$sm,
+  textLetterSpacing: typescaleVars.bodyLetterSpacing$sm,
 };
 
 export const componentVars = stylex.defineVars(

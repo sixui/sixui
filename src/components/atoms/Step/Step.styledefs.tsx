@@ -30,9 +30,9 @@ export type IStepStyleKey =
   | 'supportingText$completed'
   | 'supportingText$error'
   | 'supportingText$disabled'
+  | 'contentConnectorContainer'
   | 'content'
-  | 'contentText'
-  | 'contentText$last';
+  | 'contentText';
 
 export type IStepStyleVarKey =
   | 'gap'
@@ -43,6 +43,7 @@ export type IStepStyleVarKey =
   | 'containerShape$horizontal'
   | 'containerShape$vertical'
   | 'bulletPointSize'
+  | 'bulletPointShape'
   | 'bulletPointColor'
   | 'bulletPointTextColor'
   | 'bulletPointTextFont'
