@@ -136,5 +136,6 @@ export const focusRingStyles: MapNamespaces<IFocusRingStyles> = stylex.create<
   host: {
     // eslint-disable-next-line @stylexjs/valid-styles
     [focusRingVars.shape]: shapeVars.corner$full,
+    // FIXME: adapt corner to layout
   },
 });

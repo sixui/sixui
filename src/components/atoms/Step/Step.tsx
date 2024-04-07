@@ -1,4 +1,4 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef, useContext, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type { IContainerProps } from '@/helpers/types';
@@ -9,18 +9,20 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { ReactComponent as CheckMarkIcon } from '@/assets/CheckMark.svg';
 import { ReactComponent as ExclamationTriangleIcon } from '@/assets/ExclamationTriangle.svg';
 import { ButtonBase, type IButtonBaseOwnProps } from '../ButtonBase';
+import { StepperContext } from '@/components/atoms/Stepper/StepperContext';
+import { Divider } from '@/components/atoms/Divider';
 
 export type IStepProps = IContainerProps<IStepStyleKey> & {
   innerStyles?: IButtonBaseOwnProps['innerStyles'];
   active?: boolean;
   completed?: boolean;
   disabled?: boolean;
-  index: number;
+  index?: number;
   last?: boolean;
   icon?: React.ReactNode;
   label?: React.ReactNode;
   supportingText?: React.ReactNode;
-  layout?: 'horizontal' | 'vertical';
+  labelPosition?: 'right' | 'bottom';
   hasError?: boolean;
 };
 
@@ -33,12 +35,12 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       active: activeProp,
       completed,
       disabled,
-      index,
+      index = 0,
       last,
       icon,
       label,
       supportingText,
-      layout = 'horizontal',
+      labelPosition: labelPositionProp,
       hasError,
       ...other
     } = props;
@@ -56,82 +58,86 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
 
     const isIcon = !!icon || hasError;
     const hasText = !!label || !!supportingText;
-    const isVertical = hasText && layout === 'vertical';
-    const active = !disabled && !completed && activeProp;
+
+    const context = useContext(StepperContext);
+    const active =
+      !disabled &&
+      !completed &&
+      (activeProp ?? (context && context.activeStep === index));
+    const labelPosition =
+      labelPositionProp ?? context?.labelPosition ?? 'right';
+
+    const state = disabled
+      ? 'disabled'
+      : hasError
+        ? 'error'
+        : completed
+          ? 'completed'
+          : active
+            ? 'active'
+            : undefined;
+
+    const layout =
+      hasText && labelPosition === 'bottom' ? 'vertical' : 'horizontal';
 
     return (
-      <div {...sxf('host', theme.vars, sx)} ref={ref} {...other}>
-        <ButtonBase
-          sx={stylesCombinator(
-            'button',
-            isVertical ? 'button$vertical' : 'button$horizontal',
-          )}
-          innerStyles={{
-            ...innerStyles,
-            focusRing: [
-              theme.focusRingStyles,
-              ...asArray(innerStyles?.focusRing),
-            ],
-          }}
-          disabled={disabled}
-        >
-          <div
-            {...sxf(
-              'buttonInner',
-              hasText && 'buttonInner$withText',
-              isVertical ? 'buttonInner$vertical' : 'buttonInner$horizontal',
-            )}
+      <>
+        <div {...sxf('host', theme.vars, sx)} ref={ref} {...other}>
+          <ButtonBase
+            sx={stylesCombinator('button', `button$${layout}`)}
+            innerStyles={{
+              ...innerStyles,
+              focusRing: [
+                theme.focusRingStyles,
+                ...asArray(innerStyles?.focusRing),
+              ],
+            }}
+            disabled={disabled}
           >
             <div
               {...sxf(
-                'stepIndex',
-                isIcon ? 'stepIndex$icon' : 'stepIndex$text',
-                disabled
-                  ? isIcon
-                    ? 'stepIndex$icon$disabled'
-                    : 'stepIndex$text$disabled'
-                  : hasError &&
-                      (isIcon
-                        ? 'stepIndex$icon$error'
-                        : 'stepIndex$text$error'),
-                active &&
-                  (isIcon ? 'stepIndex$icon$active' : 'stepIndex$text$active'),
-                completed &&
-                  (isIcon
-                    ? 'stepIndex$icon$completed'
-                    : 'stepIndex$text$completed'),
+                'buttonInner',
+                hasText && 'buttonInner$withText',
+                `buttonInner$${layout}`,
               )}
             >
-              {icon ??
-                (completed ? (
-                  <CheckMarkIcon aria-hidden />
-                ) : hasError ? (
-                  <ExclamationTriangleIcon aria-hidden />
-                ) : (
-                  index
-                ))}
-            </div>
-            {hasText ? (
               <div
                 {...sxf(
-                  'labelContainer',
-                  disabled
-                    ? 'labelContainer$disabled'
-                    : hasError && 'labelContainer$error',
-                  active && 'labelContainer$active',
-                  completed && 'labelContainer$completed',
-                  isVertical
-                    ? `labelContainer$vertical`
-                    : `labelContainer$horizontal`,
+                  'stepIndex',
+                  isIcon ? 'stepIndex$icon' : 'stepIndex$text',
+                  state &&
+                    (isIcon
+                      ? `stepIndex$icon$${state}`
+                      : `stepIndex$text$${state}`),
                 )}
               >
-                <div {...sxf('label')}>{label}</div>
-                <div {...sxf('supportingText')}>{supportingText}</div>
+                {icon ??
+                  (completed ? (
+                    <CheckMarkIcon aria-hidden />
+                  ) : hasError ? (
+                    <ExclamationTriangleIcon aria-hidden />
+                  ) : (
+                    index + 1
+                  ))}
               </div>
-            ) : null}
-          </div>
-        </ButtonBase>
-      </div>
+              {hasText ? (
+                <div
+                  {...sxf(
+                    'labelContainer',
+                    state && `labelContainer$${state}`,
+                    `labelContainer$${layout}`,
+                  )}
+                >
+                  <div {...sxf('label')}>{label}</div>
+                  <div {...sxf('supportingText')}>{supportingText}</div>
+                </div>
+              ) : null}
+            </div>
+          </ButtonBase>
+        </div>
+        {last ? null : <Divider />}
+      </>
     );
   },
 );
+Step.displayName = 'Step';

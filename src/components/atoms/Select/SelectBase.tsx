@@ -1,22 +1,22 @@
 import stylex from '@stylexjs/stylex';
 import { Fragment, forwardRef, Children, isValidElement } from 'react';
 import { Listbox } from '@headlessui/react';
-import { asArray, filterUndefineds } from '@olivierpascal/helpers';
+import { asArray } from '@olivierpascal/helpers';
 import { useFloating } from '@floating-ui/react-dom';
 import { size } from '@floating-ui/dom';
 import { FloatingPortal } from '@floating-ui/react';
 
 import { MenuList } from '@/components/atoms/MenuList';
 import { IVisualState } from '@/hooks/useVisualState';
-import { getDisplayName } from '@/helpers/react/getDisplayName';
 import { useColorScheme } from '@/components/utils/ColorScheme';
 import { Field, type IFieldProps } from '@/components/atoms/Field';
 import { MenuListDivider } from '@/components/atoms/MenuList/MenuListDivider';
 import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
-import { SelectOption, type ISelectOptionProps } from './SelectOption';
 import { InputChip } from '@/components/atoms/Chip';
 import { useControlled } from '@/hooks/useControlled';
+import { isElementLike } from '@/helpers/react/isElementLike';
+import { SelectOption, type ISelectOptionProps } from './SelectOption';
 
 type IOption = React.ReactElement<ISelectOptionProps>;
 
@@ -80,27 +80,21 @@ const styles = stylex.create({
   },
 });
 
-const getValidOption = (child: React.ReactNode): IOption | undefined => {
-  const childDisplayName = isValidElement(child)
-    ? getDisplayName(child)
-    : undefined;
-  const isCompatibleOption = childDisplayName === SelectOption.displayName;
-  const option = isCompatibleOption ? (child as IOption) : undefined;
-
-  return option;
-};
+type ISelectOption = React.ReactElement<ISelectOptionProps>;
+const isOption = (element: React.ReactElement): element is ISelectOption =>
+  !!SelectOption.displayName &&
+  isElementLike<ISelectOption>(element, SelectOption.displayName);
 
 const getMatchingOptions = (
   children: Array<React.ReactNode> | undefined | null,
   values: string | Array<string>,
 ): Array<IOption | string> =>
-  filterUndefineds(
-    asArray(values).map(
-      (value) =>
-        Children.toArray(children)
-          .map(getValidOption)
-          .find((option) => option && option.props.value === value) ?? value,
-    ),
+  asArray(values).map(
+    (value) =>
+      Children.toArray(children)
+        .filter(isValidElement)
+        .filter(isOption)
+        .find((option) => option && option.props.value === value) ?? value,
   );
 
 const optionNodeToLabel = (option: IOption | string): React.ReactNode =>
@@ -196,9 +190,10 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
 
     const openVisualState: IVisualState = { focused: true };
 
-    const options = Children.toArray(children);
+    const options = Children.toArray(children)
+      .filter(isValidElement)
+      .filter(isOption);
 
-    // TODO: only take in consideration Select.Option children
     const hasMore = limit && limit < options.length;
     const visibleOptions = hasMore ? options.slice(0, limit) : options;
 

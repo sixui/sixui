@@ -9,6 +9,17 @@ type IStepperStyles = IStyles<IStepperStyleKey>;
 export const styles: MapNamespaces<IStepperStyles> =
   stylex.create<IStepperStyles>({
     host: {
-      //
+      display: 'flex',
+      flexGrow: 1,
+    },
+    host$horizontal: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    host$vertical: {
+      flexDirection: 'column',
+    },
+    host$labelBottom: {
+      alignItems: 'flex-start',
     },
   });

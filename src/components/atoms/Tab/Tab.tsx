@@ -12,7 +12,7 @@ import type {
   IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
   IWithAsProp,
-} from '@/helpers/polymorphicComponentTypes';
+} from '@/helpers/react/polymorphicComponentTypes';
 import type { IThemeComponents } from '@/components/utils/Theme';
 import type {
   ITabStyleKey,
@@ -30,7 +30,7 @@ import {
   StateLayer,
   type IStateLayerStyleKey,
 } from '@/components/utils/StateLayer';
-import { useTabContext } from '../Tabs/useTabContext';
+import { useTabContext } from '@/components/atoms/Tabs/useTabContext';
 import { Anchored } from '@/components/utils/Anchored';
 import { useForkRef } from '@/hooks/useForkRef';
 

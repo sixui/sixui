@@ -8,7 +8,7 @@ import {
   useRef,
 } from 'react';
 import { Combobox as Autocomplete, Transition } from '@headlessui/react';
-import { asArray, filterUndefineds } from '@olivierpascal/helpers';
+import { asArray } from '@olivierpascal/helpers';
 import { useFloating } from '@floating-ui/react-dom';
 import { size } from '@floating-ui/dom';
 import { FloatingPortal } from '@floating-ui/react';
@@ -23,11 +23,11 @@ import { IconButton } from '@/components/atoms/IconButton';
 import { ListItem } from '@/components/atoms/ListItem';
 import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
-import { getDisplayName } from '@/helpers/react/getDisplayName';
 import { reactNodeToString } from '@/helpers/react/nodeToString';
 import { componentVars as fieldBaseVars } from '@/themes/base/FieldBase/FieldBase.stylex';
 import { InputChip } from '@/components/atoms/Chip';
 import { useControlled } from '@/hooks/useControlled';
+import { isElementLike } from '@/helpers/react/isElementLike';
 import { ComboboxOption, type IComboboxOptionProps } from './ComboboxOption';
 
 const MIN_DELAY_BETWEEN_CLOSE_AND_OPEN = 300;
@@ -98,15 +98,10 @@ const fieldStyles = stylex.create({
   },
 });
 
-const getValidOption = (child: React.ReactNode): IOption | undefined => {
-  const childDisplayName = isValidElement(child)
-    ? getDisplayName(child)
-    : undefined;
-  const isCompatibleOption = childDisplayName === ComboboxOption.displayName;
-  const option = isCompatibleOption ? (child as IOption) : undefined;
-
-  return option;
-};
+type IComboboxOption = React.ReactElement<IComboboxOptionProps>;
+const isOption = (element: React.ReactElement): element is IComboboxOption =>
+  !!ComboboxOption.displayName &&
+  isElementLike<IComboboxOption>(element, ComboboxOption.displayName);
 
 const emptyArrayStableRef: Array<string> = [];
 
@@ -114,13 +109,12 @@ const getMatchingOptions = (
   children: Array<React.ReactNode> | undefined | null,
   values: string | Array<string>,
 ): Array<IOption | string> =>
-  filterUndefineds(
-    asArray(values).map(
-      (value) =>
-        Children.toArray(children)
-          .map(getValidOption)
-          .find((option) => option && option.props.value === value) ?? value,
-    ),
+  asArray(values).map(
+    (value) =>
+      Children.toArray(children)
+        .filter(isValidElement)
+        .filter(isOption)
+        .find((option) => option && option.props.value === value) ?? value,
   );
 
 const defaultFilter = createFilter<IOption>();
@@ -189,10 +183,11 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
 
     const openVisualState: IVisualState = { focused: true };
 
-    const options = Children.toArray(children);
-    const validOptions = filterUndefineds(options.map(getValidOption));
+    const options = Children.toArray(children)
+      .filter(isValidElement)
+      .filter(isOption);
     const filteredOptions = query
-      ? filter(validOptions, {
+      ? filter(options, {
           query,
           getSearchableText: (option) =>
             [optionNodeToLabel(option), option.props.searchableText].flat(),
@@ -242,7 +237,6 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
       }
     };
 
-    // TODO: only take in consideration Combobox.Option children
     const hasMore = limit && limit < presentedOptions.length;
     const visibleOptions = hasMore
       ? presentedOptions.slice(0, limit)
@@ -268,9 +262,9 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
     // Make sure app list always contains the current value.
     if (!multiple && !query && !!value) {
       const valueAsString = value as string;
-      const isCurrentOptionVisible = filterUndefineds(
-        visibleOptions.map(getValidOption),
-      ).some((option) => option.props.value === valueAsString);
+      const isCurrentOptionVisible = visibleOptions.some(
+        (option) => option.props.value === valueAsString,
+      );
 
       if (!isCurrentOptionVisible) {
         const currentOption = matchingOptions[0];

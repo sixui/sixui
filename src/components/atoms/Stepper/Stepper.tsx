@@ -1,4 +1,10 @@
-import { forwardRef, useMemo } from 'react';
+import {
+  Children,
+  cloneElement,
+  forwardRef,
+  isValidElement,
+  useMemo,
+} from 'react';
 
 import type { IContainerProps } from '@/helpers/types';
 import type {
@@ -8,19 +14,33 @@ import type {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { Step } from '@/components/atoms/Step';
+import { Step, type IStepProps } from '@/components/atoms/Step';
+import { Divider } from '@/components/atoms/Divider';
+import { StepperContext } from './StepperContext';
+import { isElementLike } from '@/helpers/react/isElementLike';
 
 export type IStepperProps = IContainerProps<IStepperStyleKey> & {
+  children: React.ReactNode;
   activeStep?: number;
   connector?: React.ReactNode;
-  children?: React.ReactNode;
+  orientation?: 'horizontal' | 'vertical';
+  labelPosition?: 'right' | 'bottom';
 };
 
 const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
   function Stepper(props, ref) {
-    const { styles, sx, children, ...other } = props;
+    const {
+      styles,
+      sx,
+      children,
+      activeStep = 0,
+      connector = <Divider />,
+      orientation = 'horizontal',
+      labelPosition = 'right',
+      ...other
+    } = props;
 
-    const { theme } = useComponentTheme('Template');
+    const { theme } = useComponentTheme('Stepper');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],
@@ -33,10 +53,47 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
       [stylesCombinator],
     );
 
+    type IStep = React.ReactElement<IStepProps>;
+    const isStep = (element: React.ReactElement): element is IStep =>
+      !!Step.displayName && isElementLike<IStep>(element, Step.displayName);
+
+    const validChildren = Children.toArray(children)
+      .filter(isValidElement)
+      .filter(isStep);
+    const steps = validChildren.map((child, index) =>
+      cloneElement(child, {
+        index,
+        last: index + 1 === validChildren.length,
+        ...child.props,
+      }),
+    );
+
+    const contextValue = useMemo(
+      () => ({
+        activeStep,
+        connector,
+        orientation,
+        labelPosition,
+      }),
+      [activeStep, connector, orientation, labelPosition],
+    );
+
     return (
-      <div {...sxf('host', theme.vars, sx)} ref={ref} {...other}>
-        {children}
-      </div>
+      <StepperContext.Provider value={contextValue}>
+        <div
+          {...sxf(
+            'host',
+            `host$${orientation}`,
+            labelPosition === 'bottom' && 'host$labelBottom',
+            theme.vars,
+            sx,
+          )}
+          ref={ref}
+          {...other}
+        >
+          {steps}
+        </div>
+      </StepperContext.Provider>
     );
   },
 );
