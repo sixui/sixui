@@ -14,7 +14,7 @@ export const styles: MapNamespaces<IDividerStyles> =
       height: vars.thickness,
       color: vars.color,
     },
-    separator: {
+    line: {
       display: 'flex',
       flexGrow: 1,
       color: 'inherit',
@@ -26,14 +26,14 @@ export const styles: MapNamespaces<IDividerStyles> =
         height: '100%',
       },
     },
-    separator$inset: {
+    line$inset: {
       paddingInlineStart: 16,
       paddingInlineEnd: 16,
     },
-    separator$insetStart: {
+    line$insetStart: {
       paddingInlineStart: 16,
     },
-    separator$insetEnd: {
+    line$insetEnd: {
       paddingInlineEnd: 16,
     },
     text: {

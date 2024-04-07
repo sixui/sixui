@@ -11,13 +11,24 @@ import { colorRolesVars } from '../vars/colorRoles.stylex';
 import { typescaleVars } from '../vars/typo.stylex';
 import { stateVars } from '../vars/state.stylex';
 
+// FIXME: use vars
+
 type IStepStyles = IStyles<IStepStyleKey>;
 export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
+  host: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  host$rightLabel: {},
+  host$bottomLabel: {
+    flexGrow: 1,
+    position: 'relative',
+  },
   button: {},
-  button$horizontal: {
+  button$rightLabel: {
     borderRadius: shapeVars.corner$full,
   },
-  button$vertical: {
+  button$bottomLabel: {
     borderRadius: shapeVars.corner$md,
   },
   buttonFocusRing: {
@@ -32,10 +43,10 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
   buttonInner$withText: {
     paddingRight: 12,
   },
-  buttonInner$horizontal: {
+  buttonInner$rightLabel: {
     flexDirection: 'row',
   },
-  buttonInner$vertical: {
+  buttonInner$bottomLabel: {
     flexDirection: 'column',
   },
   stepIndex: {
@@ -109,10 +120,10 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
   labelContainer$error: {
     color: colorRolesVars.error,
   },
-  labelContainer$horizontal: {
+  labelContainer$rightLabel: {
     alignItems: 'flex-start',
   },
-  labelContainer$vertical: {},
+  labelContainer$bottomLabel: {},
   label: {
     fontFamily: typescaleVars.labelFont$lg,
     fontSize: typescaleVars.labelSize$lg,

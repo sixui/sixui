@@ -219,6 +219,9 @@ import {
   focusRingStyles as stepFocusRingStypes,
 } from './Step/Step.styles';
 
+import { componentTheme as stepConnectorTheme } from './StepConnector/StepConnector.stylex';
+import { styles as stepConnectorStyles } from './StepConnector/StepConnector.styles';
+
 export const theme: ITheme = {
   name: 'Material Design 3',
   colorSchemes: {
@@ -476,6 +479,10 @@ export const theme: ITheme = {
       vars: stepTheme,
       styles: stepStyles,
       focusRingStyles: stepFocusRingStypes,
+    },
+    StepConnector: {
+      vars: stepConnectorTheme,
+      styles: stepConnectorStyles,
     },
   },
 };

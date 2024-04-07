@@ -1,17 +1,17 @@
 import stylex from '@stylexjs/stylex';
 
 import type { IStyleVars } from '@/helpers/types';
-import type { IStepperStyleVarKey } from '@/components/atoms/Stepper';
+import type { IStepConnectorStyleVarKey } from '@/components/atoms/StepConnector';
 import { colorRolesVars } from '../vars/colorRoles.stylex';
 
 // FIXME: delete?
 
-const vars: Partial<IStyleVars<IStepperStyleVarKey>> = {
+const vars: Partial<IStyleVars<IStepConnectorStyleVarKey>> = {
   //
 };
 
 export const componentVars = stylex.defineVars(
-  vars as IStyleVars<IStepperStyleVarKey>,
+  vars as IStyleVars<IStepConnectorStyleVarKey>,
 );
 
 /**

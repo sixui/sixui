@@ -15,8 +15,11 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { Step, type IStepProps } from '@/components/atoms/Step';
-import { Divider } from '@/components/atoms/Divider';
-import { StepperContext } from './StepperContext';
+import {
+  StepperContext,
+  initialStepperContext,
+  type IStepperContext,
+} from './StepperContext';
 import { isElementLike } from '@/helpers/react/isElementLike';
 
 export type IStepperProps = IContainerProps<IStepperStyleKey> & {
@@ -33,10 +36,10 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
       styles,
       sx,
       children,
-      activeStep = 0,
-      connector = <Divider />,
-      orientation = 'horizontal',
-      labelPosition = 'right',
+      activeStep = initialStepperContext.activeStep,
+      connector = initialStepperContext.connector,
+      orientation = initialStepperContext.orientation,
+      labelPosition: labelPositionProp = initialStepperContext.labelPosition,
       ...other
     } = props;
 
@@ -68,7 +71,10 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
       }),
     );
 
-    const contextValue = useMemo(
+    const labelPosition =
+      orientation === 'horizontal' ? labelPositionProp : 'right';
+
+    const contextValue: IStepperContext = useMemo(
       () => ({
         activeStep,
         connector,

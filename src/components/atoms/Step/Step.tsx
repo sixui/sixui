@@ -10,7 +10,6 @@ import { ReactComponent as CheckMarkIcon } from '@/assets/CheckMark.svg';
 import { ReactComponent as ExclamationTriangleIcon } from '@/assets/ExclamationTriangle.svg';
 import { ButtonBase, type IButtonBaseOwnProps } from '../ButtonBase';
 import { StepperContext } from '@/components/atoms/Stepper/StepperContext';
-import { Divider } from '@/components/atoms/Divider';
 
 export type IStepProps = IContainerProps<IStepStyleKey> & {
   innerStyles?: IButtonBaseOwnProps['innerStyles'];
@@ -24,6 +23,7 @@ export type IStepProps = IContainerProps<IStepStyleKey> & {
   supportingText?: React.ReactNode;
   labelPosition?: 'right' | 'bottom';
   hasError?: boolean;
+  connector?: React.ReactNode;
 };
 
 export const Step = forwardRef<HTMLDivElement, IStepProps>(
@@ -42,6 +42,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       supportingText,
       labelPosition: labelPositionProp,
       hasError,
+      connector: connectorProp,
       ...other
     } = props;
 
@@ -64,8 +65,12 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       !disabled &&
       !completed &&
       (activeProp ?? (context && context.activeStep === index));
-    const labelPosition =
-      labelPositionProp ?? context?.labelPosition ?? 'right';
+    const labelPosition = hasText
+      ? labelPositionProp ?? context.labelPosition
+      : 'right';
+    const isFirst = index <= 0;
+    const connector =
+      connectorProp !== undefined ? connectorProp : context.connector;
 
     const state = disabled
       ? 'disabled'
@@ -77,14 +82,19 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
             ? 'active'
             : undefined;
 
-    const layout =
-      hasText && labelPosition === 'bottom' ? 'vertical' : 'horizontal';
-
     return (
       <>
-        <div {...sxf('host', theme.vars, sx)} ref={ref} {...other}>
+        {connector && !isFirst && labelPosition === 'right' ? connector : null}
+        <div
+          {...sxf('host', `host$${labelPosition}Label`, theme.vars, sx)}
+          ref={ref}
+          {...other}
+        >
+          {connector && !isFirst && labelPosition === 'bottom'
+            ? connector
+            : null}
           <ButtonBase
-            sx={stylesCombinator('button', `button$${layout}`)}
+            sx={stylesCombinator('button', `button$${labelPosition}Label`)}
             innerStyles={{
               ...innerStyles,
               focusRing: [
@@ -98,7 +108,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
               {...sxf(
                 'buttonInner',
                 hasText && 'buttonInner$withText',
-                `buttonInner$${layout}`,
+                `buttonInner$${labelPosition}Label`,
               )}
             >
               <div
@@ -125,7 +135,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
                   {...sxf(
                     'labelContainer',
                     state && `labelContainer$${state}`,
-                    `labelContainer$${layout}`,
+                    `labelContainer$${labelPosition}Label`,
                   )}
                 >
                   <div {...sxf('label')}>{label}</div>
@@ -135,7 +145,6 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
             </div>
           </ButtonBase>
         </div>
-        {last ? null : <Divider />}
       </>
     );
   },
