@@ -8,6 +8,9 @@ export type IStepConnectorStyleKey =
   | 'host$bottomLabel'
   | 'line'
   | 'line$horizontal'
-  | 'line$vertical';
+  | 'line$vertical'
+  | 'text'
+  | 'text$horizontal'
+  | 'text$vertical';
 
 export type IStepConnectorStyleVarKey = 'textColor';

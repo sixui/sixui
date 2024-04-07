@@ -25,6 +25,7 @@ export type IStepProps = IContainerProps<IStepStyleKey> & {
   hasError?: boolean;
   connector?: React.ReactNode;
   children?: React.ReactNode;
+  onClick?: () => void;
 };
 
 export const Step = forwardRef<HTMLDivElement, IStepProps>(
@@ -45,6 +46,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       hasError,
       connector: connectorProp,
       children,
+      onClick,
       ...other
     } = props;
 
@@ -84,6 +86,48 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
             ? 'active'
             : undefined;
 
+    const renderInner = (): React.ReactElement => (
+      <div
+        {...sxf(
+          'inner',
+          hasText && 'inner$withText',
+          `inner$${labelPosition}Label`,
+        )}
+      >
+        <div
+          {...sxf(
+            'stepIndex',
+            isIcon ? 'stepIndex$icon' : 'stepIndex$text',
+            state &&
+              (isIcon ? `stepIndex$icon$${state}` : `stepIndex$text$${state}`),
+          )}
+        >
+          {icon ??
+            (completed ? (
+              <CheckMarkIcon aria-hidden />
+            ) : hasError ? (
+              <ExclamationTriangleIcon aria-hidden />
+            ) : (
+              index + 1
+            ))}
+        </div>
+        {hasText ? (
+          <div
+            {...sxf(
+              'labelContainer',
+              state && `labelContainer$${state}`,
+              `labelContainer$${labelPosition}Label`,
+            )}
+          >
+            {label ? <div {...sxf('label')}>{label}</div> : null}
+            {supportingText ? (
+              <div {...sxf('supportingText')}>{supportingText}</div>
+            ) : null}
+          </div>
+        ) : null}
+      </div>
+    );
+
     return (
       <>
         {connector && !isFirst && labelPosition === 'right' ? connector : null}
@@ -95,60 +139,29 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
           {connector && !isFirst && labelPosition === 'bottom'
             ? connector
             : null}
-          <ButtonBase
-            sx={stylesCombinator('button', `button$${labelPosition}Label`)}
-            innerStyles={{
-              ...innerStyles,
-              focusRing: [
-                theme.focusRingStyles,
-                ...asArray(innerStyles?.focusRing),
-              ],
-            }}
-            disabled={disabled}
-          >
-            <div
-              {...sxf(
-                'buttonInner',
-                hasText && 'buttonInner$withText',
-                `buttonInner$${labelPosition}Label`,
-              )}
+
+          {onClick ? (
+            <ButtonBase
+              sx={stylesCombinator('button', `button$${labelPosition}Label`)}
+              innerStyles={{
+                ...innerStyles,
+                focusRing: [
+                  theme.focusRingStyles,
+                  ...asArray(innerStyles?.focusRing),
+                ],
+              }}
+              onClick={onClick}
+              disabled={disabled}
             >
-              <div
-                {...sxf(
-                  'stepIndex',
-                  isIcon ? 'stepIndex$icon' : 'stepIndex$text',
-                  state &&
-                    (isIcon
-                      ? `stepIndex$icon$${state}`
-                      : `stepIndex$text$${state}`),
-                )}
-              >
-                {icon ??
-                  (completed ? (
-                    <CheckMarkIcon aria-hidden />
-                  ) : hasError ? (
-                    <ExclamationTriangleIcon aria-hidden />
-                  ) : (
-                    index + 1
-                  ))}
-              </div>
-              {hasText ? (
-                <div
-                  {...sxf(
-                    'labelContainer',
-                    state && `labelContainer$${state}`,
-                    `labelContainer$${labelPosition}Label`,
-                  )}
-                >
-                  {label ? <div {...sxf('label')}>{label}</div> : null}
-                  {supportingText ? (
-                    <div {...sxf('supportingText')}>{supportingText}</div>
-                  ) : null}
-                </div>
-              ) : null}
-            </div>
-          </ButtonBase>
-          {children ? <div {...sxf('content')}>{children}</div> : null}
+              {renderInner()}
+            </ButtonBase>
+          ) : (
+            renderInner()
+          )}
+
+          {active && children ? (
+            <div {...sxf('content')}>{children}</div>
+          ) : null}
         </div>
       </>
     );

@@ -15,6 +15,7 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { Step, type IStepProps } from '@/components/atoms/Step';
+import { StepConnector } from '@/components/atoms/StepConnector';
 import {
   StepperContext,
   initialStepperContext,
@@ -106,6 +107,7 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
 
 const StepperNamespace = Object.assign(Stepper, {
   Step,
+  Connector: StepConnector,
 });
 
 export { StepperNamespace as Stepper };

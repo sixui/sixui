@@ -52,7 +52,9 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
         {children ? (
           <>
             {renderLine()}
-            <div {...sxf('text')}>{children}</div>
+            <div {...sxf('text', `text$${context.orientation}`)}>
+              {children}
+            </div>
             {renderLine()}
           </>
         ) : (

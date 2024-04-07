@@ -1,5 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
+import type { IStepProps } from '@/components/atoms/Step';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { Stepper, type IStepperProps } from './Stepper';
 import { createSequence } from '@olivierpascal/helpers';
@@ -14,23 +17,8 @@ const defaultArgs = {
   children: 'Stepper',
 } satisfies Partial<IStepperProps>;
 
-const stepsWithLabel = [
-  <Stepper.Step key={0} label='Lorem ipsum' />,
-  <Stepper.Step key={1} label='Lorem ipsum' supportingText='Supporting' />,
-  <Stepper.Step key={2} label='Lorem ipsum' />,
-];
-
-const stepsWithContent = [
-  <Stepper.Step key={0} label='Lorem ipsum'>
-    Lorem ipsum dolor sit amet.
-  </Stepper.Step>,
-  <Stepper.Step key={1} label='Lorem ipsum' supportingText='Supporting'>
-    Lorem ipsum dolor sit amet.
-  </Stepper.Step>,
-  <Stepper.Step key={2} label='Lorem ipsum'>
-    Lorem ipsum dolor sit amet.
-  </Stepper.Step>,
-];
+const makeSteps = (props?: IStepProps, count = 3): Array<React.ReactElement> =>
+  createSequence(count).map((index) => <Stepper.Step {...props} key={index} />);
 
 export const Horizontal: IStory = {
   render: (props) => (
@@ -41,20 +29,42 @@ export const Horizontal: IStory = {
         {
           legend: 'No label',
           props: {
-            children: createSequence(3).map((index) => (
-              <Stepper.Step key={index} />
-            )),
+            children: makeSteps(),
+          },
+        },
+        {
+          legend: 'Custom connector',
+          props: {
+            children: makeSteps({
+              connector: <Stepper.Connector>Lorem ipsum</Stepper.Connector>,
+            }),
+          },
+        },
+        {
+          legend: 'Icons',
+          props: {
+            children: makeSteps({
+              icon: <FontAwesomeIcon icon={faLocationDot} />,
+            }),
           },
         },
         {
           legend: 'Label right',
           props: {
+            children: makeSteps({
+              label: 'Lorem ipsum',
+              supportingText: 'Supporting text',
+            }),
             labelPosition: 'right',
           },
         },
         {
           legend: 'Label bottom',
           props: {
+            children: makeSteps({
+              label: 'Lorem ipsum',
+              supportingText: 'Supporting text',
+            }),
             labelPosition: 'bottom',
           },
         },
@@ -62,10 +72,7 @@ export const Horizontal: IStory = {
       fullWidth
     />
   ),
-  args: {
-    ...defaultArgs,
-    children: stepsWithLabel,
-  },
+  args: defaultArgs,
 };
 
 export const Vertical: IStory = {
@@ -73,28 +80,46 @@ export const Vertical: IStory = {
     <ComponentShowcase
       component={Stepper}
       props={props}
-      rows={[
+      cols={[
         {
           legend: 'No label',
           props: {
-            children: createSequence(3).map((index) => (
-              <Stepper.Step key={index} />
-            )),
+            children: makeSteps(),
           },
         },
         {
-          legend: 'Label right',
+          legend: 'Custom connector',
           props: {
-            labelPosition: 'right',
+            children: makeSteps({
+              connector: <Stepper.Connector>Lorem ipsum</Stepper.Connector>,
+            }),
           },
         },
-      ]}
-      cols={[
-        { legend: 'Basic' },
         {
-          legend: 'With content',
+          legend: 'Icons',
           props: {
-            children: stepsWithContent,
+            children: makeSteps({
+              icon: <FontAwesomeIcon icon={faLocationDot} />,
+            }),
+          },
+        },
+        {
+          legend: 'Label',
+          props: {
+            children: makeSteps({
+              label: 'Lorem ipsum',
+              supportingText: 'Supporting text',
+            }),
+          },
+        },
+        {
+          legend: 'Content',
+          props: {
+            children: makeSteps({
+              label: 'Lorem ipsum',
+              supportingText: 'Supporting text',
+              children: 'Lorem ipsum dolor sit amet.',
+            }),
           },
         },
       ]}
@@ -104,14 +129,11 @@ export const Vertical: IStory = {
   args: {
     ...defaultArgs,
     orientation: 'vertical',
-    children: stepsWithLabel,
   },
 };
 
 // FIXME:
-// - with icons
-// - with text in connector
-// - with different connector
+// - line color on avancement
 // - handle state
 // - add style vars
 

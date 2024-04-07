@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 
+import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
@@ -78,18 +79,18 @@ const groups: Array<IComponentPresentation<IStepProps>> = [
   {
     legend: 'Horizontal',
     props: {
-      layout: 'horizontal',
+      labelPosition: 'right',
     },
   },
   {
     legend: 'Vertical',
     props: {
-      layout: 'vertical',
+      labelPosition: 'bottom',
     },
   },
 ];
 
-export const Variants: IStory = {
+export const NonInteractive: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={Step}
@@ -100,6 +101,22 @@ export const Variants: IStory = {
     />
   ),
   args: defaultArgs,
+};
+
+export const Interactive: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={Step}
+      props={props}
+      rows={rows}
+      cols={cols}
+      groups={groups}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    onClick: () => void sbHandleEvent('click'),
+  },
 };
 
 export default meta;

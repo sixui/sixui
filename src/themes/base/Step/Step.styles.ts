@@ -33,25 +33,26 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
   buttonFocusRing: {
     borderRadius: shapeVars.corner$full,
   },
-  buttonInner: {
+  inner: {
     display: 'flex',
     alignItems: 'center',
     gap: 8,
     padding: 8,
   },
-  buttonInner$withText: {
+  inner$withText: {
     paddingRight: 12,
   },
-  buttonInner$rightLabel: {
+  inner$rightLabel: {
     flexDirection: 'row',
   },
-  buttonInner$bottomLabel: {
+  inner$bottomLabel: {
     flexDirection: 'column',
   },
   stepIndex: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    flexShrink: 0,
     width: 24,
     height: 24,
   },
@@ -75,8 +76,8 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
   },
   stepIndex$text: {
     borderRadius: shapeVars.corner$full,
-    backgroundColor: colorRolesVars.secondary,
-    color: colorRolesVars.onSecondary,
+    backgroundColor: colorRolesVars.secondaryContainer,
+    color: colorRolesVars.secondary,
 
     fontFamily: typescaleVars.labelFont$md,
     fontSize: typescaleVars.labelSize$md,
@@ -104,6 +105,7 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
   labelContainer: {
     display: 'flex',
     flexDirection: 'column',
+    alignItems: 'center',
     color: colorRolesVars.secondary,
   },
   labelContainer$disabled: {
