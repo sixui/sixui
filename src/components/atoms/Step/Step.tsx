@@ -69,7 +69,10 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
 
     const context = useContext(StepperContext);
     const completed =
-      !disabled && (completedProp ?? (context && index <= context.activeStep));
+      !disabled &&
+      (context?.completed ||
+        (completedProp ??
+          (context?.activeStep !== undefined && index < context.activeStep)));
     const isActive =
       !disabled && (activeProp ?? (context && index === context.activeStep));
     const labelPosition = hasText
@@ -83,9 +86,11 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       ? 'disabled'
       : hasError
         ? 'error'
-        : completed
-          ? 'completed'
-          : undefined;
+        : isActive
+          ? 'active'
+          : completed
+            ? 'completed'
+            : undefined;
 
     const renderInner = (): React.ReactElement => (
       <div {...sxf('inner', `inner$${labelPosition}Label`)}>

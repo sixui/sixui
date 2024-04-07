@@ -56,6 +56,9 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     color: vars.bulletPointColor,
     fontSize: vars.bulletPointSize,
   },
+  bulletPoint$icon$active: {
+    color: vars.bulletPointColor$active,
+  },
   bulletPoint$icon$completed: {
     color: vars.bulletPointColor$completed,
   },
@@ -77,6 +80,10 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     fontWeight: vars.bulletPointTextWeight,
     lineHeight: vars.bulletPointTextLineHeight,
     letterSpacing: vars.bulletPointTextLetterSpacing,
+  },
+  bulletPoint$text$active: {
+    backgroundColor: vars.bulletPointColor$active,
+    color: vars.bulletPointTextColor$active,
   },
   bulletPoint$text$completed: {
     backgroundColor: vars.bulletPointColor$completed,
@@ -108,6 +115,9 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     lineHeight: vars.labelTextLineHeight,
     letterSpacing: vars.labelTextLetterSpacing,
   },
+  label$active: {
+    color: vars.labelTextColor$active,
+  },
   label$completed: {
     color: vars.labelTextColor$completed,
   },
@@ -125,6 +135,9 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     fontWeight: vars.supportingTextWeight,
     lineHeight: vars.supportingTextLineHeight,
     letterSpacing: vars.supportingTextLetterSpacing,
+  },
+  supportingText$active: {
+    color: vars.supportingTextColor$active,
   },
   supportingText$completed: {
     color: vars.supportingTextColor$completed,

@@ -26,6 +26,7 @@ export type IStepperProps = IContainerProps<IStepperStyleKey> & {
   connector?: React.ReactNode;
   orientation?: 'horizontal' | 'vertical';
   labelPosition?: 'right' | 'bottom';
+  completed?: boolean;
 };
 
 const defaultConnector = ({
@@ -40,10 +41,11 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
       styles,
       sx,
       children,
-      activeStep = 0,
+      activeStep,
       connector = defaultConnector,
       orientation = 'horizontal',
       labelPosition: labelPositionProp = 'right',
+      completed,
       ...other
     } = props;
 
@@ -77,12 +79,23 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
 
     const contextValue: IStepperContext = useMemo(
       () => ({
-        activeStep: Math.max(Math.min(activeStep, validChildren.length - 1), 0),
+        activeStep:
+          activeStep !== undefined
+            ? Math.max(Math.min(activeStep, validChildren.length - 1), 0)
+            : undefined,
         connector,
         orientation,
         labelPosition,
+        completed,
       }),
-      [activeStep, connector, orientation, labelPosition, validChildren.length],
+      [
+        activeStep,
+        validChildren.length,
+        connector,
+        orientation,
+        labelPosition,
+        completed,
+      ],
     );
 
     return (

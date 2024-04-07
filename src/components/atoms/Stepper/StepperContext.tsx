@@ -5,12 +5,13 @@ export type IStepConnectorRenderProps = {
 };
 
 export type IStepperContext = {
-  activeStep: number;
+  activeStep?: number;
   connector:
     | React.ReactNode
     | ((props: IStepConnectorRenderProps) => React.ReactNode);
   orientation: 'horizontal' | 'vertical';
   labelPosition: 'right' | 'bottom';
+  completed?: boolean;
 };
 
 export const StepperContext = createContext<IStepperContext | undefined>(
