@@ -27,7 +27,7 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
     host$rightLabel: {},
     host$bottomLabel: {
       position: 'absolute',
-      top: 8 + 12,
+      top: 8 + 12 - 0.5, // - half border
       left: 'calc(-50% + 20px)',
       right: 'calc(50% + 20px)',
     },
@@ -36,7 +36,7 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
       display: 'block',
       flexGrow: 1,
     },
-    line$active: {
+    line$completed: {
       borderColor: colorRolesVars.primary,
     },
     line$horizontal: {
@@ -52,13 +52,13 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
     text: {
       color: colorRolesVars.outline,
 
-      fontFamily: typescaleVars.bodyFont$md,
-      fontSize: typescaleVars.bodySize$md,
-      fontWeight: typescaleVars.bodyWeight$md,
-      lineHeight: typescaleVars.bodyLineHeight$md,
-      letterSpacing: typescaleVars.bodyLetterSpacing$md,
+      fontFamily: typescaleVars.bodyFont$sm,
+      fontSize: typescaleVars.bodySize$sm,
+      fontWeight: typescaleVars.bodyWeight$sm,
+      lineHeight: typescaleVars.bodyLineHeight$sm,
+      letterSpacing: typescaleVars.bodyLetterSpacing$sm,
     },
-    text$active: {
+    text$completed: {
       color: colorRolesVars.primary,
     },
     text$horizontal: {

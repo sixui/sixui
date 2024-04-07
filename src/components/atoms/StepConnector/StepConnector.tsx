@@ -12,12 +12,22 @@ import { StepperContext } from '@/components/atoms/Stepper/StepperContext';
 
 export type IStepConnectorProps = IContainerProps<IStepConnectorStyleKey> & {
   children?: React.ReactNode;
-  active?: boolean;
+  completed?: boolean;
+  orientation?: 'horizontal' | 'vertical';
+  labelPosition?: 'right' | 'bottom';
 };
 
 export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
   function StepConnector(props, ref) {
-    const { styles, sx, children, active, ...other } = props;
+    const {
+      styles,
+      sx,
+      children,
+      completed,
+      orientation: orientationProp,
+      labelPosition: labelPositionProp,
+      ...other
+    } = props;
 
     const { theme } = useComponentTheme('StepConnector');
     const stylesCombinator = useMemo(
@@ -33,10 +43,13 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
     );
 
     const context = useContext(StepperContext);
+    const orientation = orientationProp ?? context?.orientation ?? 'horizontal';
+    const labelPosition =
+      labelPositionProp ?? context?.labelPosition ?? 'right';
 
     const renderLine = (): React.ReactElement => (
       <div
-        {...sxf('line', `line$${context.orientation}`, active && 'line$active')}
+        {...sxf('line', `line$${orientation}`, completed && 'line$completed')}
       />
     );
 
@@ -44,8 +57,8 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
       <div
         {...sxf(
           'host',
-          `host$${context.orientation}`,
-          `host$${context.labelPosition}Label`,
+          `host$${orientation}`,
+          `host$${labelPosition}Label`,
           theme.vars,
           sx,
         )}
@@ -58,8 +71,8 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
             <div
               {...sxf(
                 'text',
-                `text$${context.orientation}`,
-                active && 'text$active',
+                `text$${orientation}`,
+                completed && 'text$completed',
               )}
             >
               {children}

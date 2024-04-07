@@ -7,40 +7,38 @@ import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import { componentVars as vars } from './Step.stylex';
 import { componentVars as focusRingVars } from '../FocusRing/FocusRing.stylex';
 import { shapeVars } from '../vars/shape.stylex';
-import { colorRolesVars } from '../vars/colorRoles.stylex';
 import { typescaleVars } from '../vars/typo.stylex';
-import { stateVars } from '../vars/state.stylex';
-
-// FIXME: use vars
+import { componentVars as stepStateVars } from './Step.states.stylex';
 
 type IStepStyles = IStyles<IStepStyleKey>;
 export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
   host: {},
   host$rightLabel: {},
   host$bottomLabel: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexGrow: 1,
     position: 'relative',
+    display: 'flex',
+    flexGrow: 1,
+    justifyContent: 'center',
   },
-  button: {},
-  button$rightLabel: {
-    borderRadius: shapeVars.corner$full,
+  container: {
+    borderRadius: stepStateVars.containerShape,
   },
-  button$bottomLabel: {
-    borderRadius: shapeVars.corner$md,
+  container$rightLabel: {
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [stepStateVars.containerShape]: vars.containerShape$horizontal,
   },
-  buttonFocusRing: {
-    borderRadius: shapeVars.corner$full,
+  container$bottomLabel: {
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [stepStateVars.containerShape]: vars.containerShape$vertical,
   },
   inner: {
     display: 'flex',
     alignItems: 'center',
-    gap: 8,
-    padding: 8,
-  },
-  inner$withText: {
-    paddingRight: 12,
+    gap: vars.gap,
+    paddingLeft: vars.leadingSpace,
+    paddingRight: vars.trailingSpace,
+    paddingTop: vars.topSpace,
+    paddingBottom: vars.bottomSpace,
   },
   inner$rightLabel: {
     flexDirection: 'row',
@@ -48,117 +46,117 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
   inner$bottomLabel: {
     flexDirection: 'column',
   },
-  stepIndex: {
+  bulletPoint: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     flexShrink: 0,
-    width: 24,
-    height: 24,
+    width: vars.bulletPointSize,
+    height: vars.bulletPointSize,
   },
-  stepIndex$icon: {
-    color: colorRolesVars.secondaryContainer,
-    fontSize: 24,
+  bulletPoint$icon: {
+    color: vars.bulletPointColor,
+    fontSize: vars.bulletPointSize,
   },
-  stepIndex$icon$active: {
-    color: colorRolesVars.primary,
+  bulletPoint$icon$completed: {
+    color: vars.bulletPointColor$completed,
   },
-  stepIndex$icon$completed: {
-    color: colorRolesVars.primary,
+  bulletPoint$icon$disabled: {
+    color: vars.bulletPointColor$disabled,
+    opacity: vars.bulletPointOpacity$disabled,
   },
-  stepIndex$icon$disabled: {
-    color: colorRolesVars.onSurface,
-    opacity: stateVars.opacity$disabled,
-  },
-  stepIndex$icon$error: {
-    color: colorRolesVars.error,
+  bulletPoint$icon$error: {
+    color: vars.bulletPointColor$error,
     fill: 'currentColor',
   },
-  stepIndex$text: {
+  bulletPoint$text: {
     borderRadius: shapeVars.corner$full,
-    backgroundColor: colorRolesVars.secondaryContainer,
-    color: colorRolesVars.secondary,
+    backgroundColor: vars.bulletPointColor,
+    color: vars.bulletPointTextColor,
 
-    fontFamily: typescaleVars.labelFont$md,
-    fontSize: typescaleVars.labelSize$md,
-    fontWeight: typescaleVars.labelWeight$md,
-    lineHeight: typescaleVars.labelLineHeight$md,
-    letterSpacing: typescaleVars.labelLetterSpacing$md,
+    fontFamily: vars.bulletPointTextFont,
+    fontSize: vars.bulletPointTextSize,
+    fontWeight: vars.bulletPointTextWeight,
+    lineHeight: vars.bulletPointTextLineHeight,
+    letterSpacing: vars.bulletPointTextLetterSpacing,
   },
-  stepIndex$text$active: {
-    backgroundColor: colorRolesVars.primary,
-    color: colorRolesVars.onPrimary,
+  bulletPoint$text$completed: {
+    backgroundColor: vars.bulletPointColor$completed,
+    color: vars.bulletPointTextColor$completed,
   },
-  stepIndex$text$completed: {
-    backgroundColor: colorRolesVars.primary,
-    color: colorRolesVars.onPrimary,
+  bulletPoint$text$disabled: {
+    backgroundColor: vars.bulletPointColor$disabled,
+    color: vars.bulletPointTextColor$disabled,
+    opacity: vars.bulletPointOpacity$disabled,
   },
-  stepIndex$text$disabled: {
-    backgroundColor: colorRolesVars.onSurface,
-    color: colorRolesVars.surface,
-    opacity: stateVars.opacity$disabled,
-  },
-  stepIndex$text$error: {
-    backgroundColor: colorRolesVars.errorContainer,
-    color: colorRolesVars.onErrorContainer,
+  bulletPoint$text$error: {
+    backgroundColor: vars.bulletPointColor$error,
+    color: vars.bulletPointTextColor$error,
   },
   labelContainer: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    color: colorRolesVars.secondary,
-  },
-  labelContainer$disabled: {
-    color: colorRolesVars.onSurface,
-    opacity: stateVars.opacity$disabled,
-  },
-  labelContainer$active: {
-    color: colorRolesVars.onSurface,
-  },
-  labelContainer$completed: {
-    color: colorRolesVars.onSurface,
-  },
-  labelContainer$error: {
-    color: colorRolesVars.error,
   },
   labelContainer$rightLabel: {
     alignItems: 'flex-start',
   },
   labelContainer$bottomLabel: {},
   label: {
-    fontFamily: typescaleVars.labelFont$lg,
-    fontSize: typescaleVars.labelSize$lg,
-    fontWeight: typescaleVars.labelWeight$lg,
-    lineHeight: typescaleVars.labelLineHeight$lg,
-    letterSpacing: typescaleVars.labelLetterSpacing$lg,
+    color: vars.labelTextColor,
+    fontFamily: vars.labelTextFont,
+    fontSize: vars.labelTextSize,
+    fontWeight: vars.labelTextWeight,
+    lineHeight: vars.labelTextLineHeight,
+    letterSpacing: vars.labelTextLetterSpacing,
+  },
+  label$completed: {
+    color: vars.labelTextColor$completed,
+  },
+  label$error: {
+    color: vars.labelTextColor$error,
+  },
+  label$disabled: {
+    color: vars.labelTextColor$disabled,
+    opacity: vars.labelTextOpacity$disabled,
   },
   supportingText: {
-    fontFamily: typescaleVars.labelFont$sm,
-    fontSize: typescaleVars.labelSize$sm,
-    fontWeight: typescaleVars.labelWeight$sm,
-    lineHeight: typescaleVars.labelLineHeight$sm,
-    letterSpacing: typescaleVars.labelLetterSpacing$sm,
+    color: vars.supportingTextColor,
+    fontFamily: vars.supportingTextFont,
+    fontSize: vars.supportingTextSize,
+    fontWeight: vars.supportingTextWeight,
+    lineHeight: vars.supportingTextLineHeight,
+    letterSpacing: vars.supportingTextLetterSpacing,
+  },
+  supportingText$completed: {
+    color: vars.supportingTextColor$completed,
+  },
+  supportingText$error: {
+    color: vars.supportingTextColor$error,
+  },
+  supportingText$disabled: {
+    color: vars.supportingTextColor$disabled,
+    opacity: vars.supportingTextOpacity$disabled,
   },
   content: {
-    color: colorRolesVars.onSurface,
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  contentText: {
+    color: vars.contentTextColor,
     fontFamily: typescaleVars.bodyFont$md,
     fontSize: typescaleVars.bodySize$md,
     fontWeight: typescaleVars.bodyWeight$md,
     lineHeight: typescaleVars.bodyLineHeight$md,
     letterSpacing: typescaleVars.bodyLetterSpacing$md,
 
-    marginLeft: 20, // half icon
-    paddingLeft: 8 + 12 - 1, // margin + half icon - border
-    paddingRight: 8,
-    borderLeftStyle: 'solid',
-    borderLeftWidth: 1,
-    borderColor: colorRolesVars.outlineVariant,
+    // FIXME: use border size
+    paddingLeft: `calc(${vars.leadingSpace} + ${vars.bulletPointSize} / 2 - 1px)`,
+    paddingRight: vars.trailingSpace,
   },
-  content$active: {
-    borderColor: colorRolesVars.primary,
-  },
-  content$last: {
-    borderLeftWidth: 0,
+  contentText$last: {
+    // FIXME: use border size
+    marginLeft: `calc(${vars.leadingSpace} + ${vars.bulletPointSize} / 2 + 1px)`,
   },
 });
 
@@ -168,7 +166,6 @@ export const focusRingStyles: MapNamespaces<IFocusRingStyles> = stylex.create<
 >({
   host: {
     // eslint-disable-next-line @stylexjs/valid-styles
-    [focusRingVars.shape]: shapeVars.corner$full,
-    // FIXME: adapt corner to layout
+    [focusRingVars.shape]: stepStateVars.containerShape,
   },
 });

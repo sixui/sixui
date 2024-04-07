@@ -18,8 +18,8 @@ import { Step, type IStepProps } from '@/components/atoms/Step';
 import { StepConnector } from '@/components/atoms/StepConnector';
 import {
   StepperContext,
-  initialStepperContext,
   type IStepperContext,
+  type IStepConnectorRenderProps,
 } from './StepperContext';
 import { isElementLike } from '@/helpers/react/isElementLike';
 
@@ -31,16 +31,22 @@ export type IStepperProps = IContainerProps<IStepperStyleKey> & {
   labelPosition?: 'right' | 'bottom';
 };
 
+const defaultConnector = ({
+  completed,
+}: IStepConnectorRenderProps): React.ReactElement => (
+  <StepConnector completed={completed} />
+);
+
 const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
   function Stepper(props, ref) {
     const {
       styles,
       sx,
       children,
-      activeStep = initialStepperContext.activeStep,
-      connector = initialStepperContext.connector,
-      orientation = initialStepperContext.orientation,
-      labelPosition: labelPositionProp = initialStepperContext.labelPosition,
+      activeStep = 0,
+      connector = defaultConnector,
+      orientation = 'horizontal',
+      labelPosition: labelPositionProp = 'right',
       ...other
     } = props;
 

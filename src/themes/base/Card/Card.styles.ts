@@ -9,8 +9,8 @@ import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import { componentVars as vars } from './Card.stylex';
 import { componentVars as focusRingVars } from '../FocusRing/FocusRing.stylex';
 import { componentVars as statelayerVars } from '../StateLayer/StateLayer.stylex';
-import { componentVars as cardStateVars } from './Card.states.stylex';
 import { componentVars as elevationVars } from '../Elevation/Elevation.stylex';
+import { componentVars as cardStateVars } from './Card.states.stylex';
 
 // https://github.com/material-components/material-web/blob/main/labs/card/internal/_shared.scss
 

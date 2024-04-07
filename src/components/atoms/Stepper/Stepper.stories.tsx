@@ -45,8 +45,8 @@ export const Horizontal: IStory = {
           legend: 'Custom connector',
           props: {
             children: makeSteps({
-              connector: ({ active }) => (
-                <Stepper.Connector active={active}>
+              connector: ({ completed }) => (
+                <Stepper.Connector completed={completed}>
                   Lorem ipsum
                 </Stepper.Connector>
               ),
@@ -104,8 +104,8 @@ export const Vertical: IStory = {
           legend: 'Custom connector',
           props: {
             children: makeSteps({
-              connector: ({ active }) => (
-                <Stepper.Connector active={active}>
+              connector: ({ completed }) => (
+                <Stepper.Connector completed={completed}>
                   Lorem ipsum
                 </Stepper.Connector>
               ),
@@ -140,11 +140,5 @@ export const Vertical: IStory = {
     orientation: 'vertical',
   },
 };
-
-// FIXME:
-// - line color on avancement
-// - handle state
-// - arbitrate between context and children func
-// - add style vars
 
 export default meta;

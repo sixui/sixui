@@ -47,13 +47,7 @@ const rows: Array<IComponentPresentation<IStepProps>> = [
 
 const cols: Array<IComponentPresentation<IStepProps>> = [
   {
-    legend: 'Inactive',
-  },
-  {
-    legend: 'Active',
-    props: {
-      active: true,
-    },
+    legend: 'Not completed',
   },
   {
     legend: 'Completed',

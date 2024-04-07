@@ -11,6 +11,7 @@ import { ReactComponent as ExclamationTriangleIcon } from '@/assets/ExclamationT
 import {
   StepperContext,
   type IStepperContext,
+  type IStepConnectorRenderProps,
 } from '@/components/atoms/Stepper/StepperContext';
 import { ButtonBase, type IButtonBaseOwnProps } from '../ButtonBase';
 
@@ -37,7 +38,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       sx,
       innerStyles,
       active: activeProp,
-      completed,
+      completed: completedProp,
       disabled,
       index = 0,
       last: isLast,
@@ -67,17 +68,16 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
     const hasText = !!label || !!supportingText;
 
     const context = useContext(StepperContext);
-    const isCurrent = !disabled && !completed && index === context.activeStep;
+    const completed =
+      !disabled && (completedProp ?? (context && index <= context.activeStep));
     const isActive =
-      !disabled && !completed && (activeProp ?? index <= context.activeStep);
-    const isPreviousActive =
-      !disabled && !completed && index < context.activeStep;
+      !disabled && (activeProp ?? (context && index === context.activeStep));
     const labelPosition = hasText
-      ? labelPositionProp ?? context.labelPosition
+      ? labelPositionProp ?? context?.labelPosition ?? 'right'
       : 'right';
     const isFirst = index <= 0;
     const connector =
-      connectorProp !== undefined ? connectorProp : context.connector;
+      connectorProp !== undefined ? connectorProp : context?.connector;
 
     const state = disabled
       ? 'disabled'
@@ -85,24 +85,18 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
         ? 'error'
         : completed
           ? 'completed'
-          : isActive
-            ? 'active'
-            : undefined;
+          : undefined;
 
     const renderInner = (): React.ReactElement => (
-      <div
-        {...sxf(
-          'inner',
-          hasText && 'inner$withText',
-          `inner$${labelPosition}Label`,
-        )}
-      >
+      <div {...sxf('inner', `inner$${labelPosition}Label`)}>
         <div
           {...sxf(
-            'stepIndex',
-            isIcon ? 'stepIndex$icon' : 'stepIndex$text',
+            'bulletPoint',
+            isIcon ? 'bulletPoint$icon' : 'bulletPoint$text',
             state &&
-              (isIcon ? `stepIndex$icon$${state}` : `stepIndex$text$${state}`),
+              (isIcon
+                ? `bulletPoint$icon$${state}`
+                : `bulletPoint$text$${state}`),
           )}
         >
           {icon ??
@@ -116,30 +110,34 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
         </div>
         {hasText ? (
           <div
-            {...sxf(
-              'labelContainer',
-              state && `labelContainer$${state}`,
-              `labelContainer$${labelPosition}Label`,
-            )}
+            {...sxf('labelContainer', `labelContainer$${labelPosition}Label`)}
           >
-            {label ? <div {...sxf('label')}>{label}</div> : null}
+            {label ? (
+              <div {...sxf('label', state && `label$${state}`)}>{label}</div>
+            ) : null}
             {supportingText ? (
-              <div {...sxf('supportingText')}>{supportingText}</div>
+              <div
+                {...sxf('supportingText', state && `supportingText$${state}`)}
+              >
+                {supportingText}
+              </div>
             ) : null}
           </div>
         ) : null}
       </div>
     );
 
-    const renderConnector = (): React.ReactNode | undefined =>
+    const renderConnector = (
+      props: IStepConnectorRenderProps,
+    ): React.ReactNode | undefined =>
       connector && typeof connector === 'function'
-        ? connector({ active: isActive })
+        ? connector(props)
         : connector;
 
     return (
       <>
         {connector && !isFirst && labelPosition === 'right'
-          ? renderConnector()
+          ? renderConnector({ completed })
           : null}
         <div
           {...sxf('host', `host$${labelPosition}Label`, theme.vars, sx)}
@@ -147,12 +145,15 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
           {...other}
         >
           {connector && !isFirst && labelPosition === 'bottom'
-            ? renderConnector()
+            ? renderConnector({ completed })
             : null}
 
           {onClick ? (
             <ButtonBase
-              sx={stylesCombinator('button', `button$${labelPosition}Label`)}
+              sx={stylesCombinator(
+                `container$${labelPosition}Label`,
+                'container',
+              )}
               innerStyles={{
                 ...innerStyles,
                 focusRing: [
@@ -169,15 +170,12 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
             renderInner()
           )}
 
-          {isCurrent && children ? (
-            <div
-              {...sxf(
-                'content',
-                isPreviousActive && 'content$active',
-                isLast && 'content$last',
-              )}
-            >
-              {children}
+          {isActive && children ? (
+            <div {...sxf('content')}>
+              {isLast ? null : renderConnector({ completed: false })}
+              <div {...sxf('contentText', isLast && 'contentText$last')}>
+                {children}
+              </div>
             </div>
           ) : null}
         </div>

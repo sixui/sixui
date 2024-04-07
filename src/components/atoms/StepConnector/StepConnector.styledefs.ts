@@ -7,11 +7,11 @@ export type IStepConnectorStyleKey =
   | 'host$rightLabel'
   | 'host$bottomLabel'
   | 'line'
-  | 'line$active'
+  | 'line$completed'
   | 'line$horizontal'
   | 'line$vertical'
   | 'text'
-  | 'text$active'
+  | 'text$completed'
   | 'text$horizontal'
   | 'text$vertical';
 
