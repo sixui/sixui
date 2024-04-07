@@ -1,3 +1,15 @@
+# v0.0.145 (Sun Apr 07 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(Stepper): completed property, and fixed active state ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.144 (Sun Apr 07 2024)
 
 #### ⚠️ Pushed to `main`
