@@ -31,7 +31,7 @@ const makeSteps = (props?: IStepProps, count = 3): Array<React.ReactElement> =>
 export const Horizontal: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={Stepper}
+      component={(props) => <Stepper {...props} />}
       props={props}
       rows={[
         {
@@ -52,7 +52,11 @@ export const Horizontal: IStory = {
           legend: 'Custom connector',
           props: {
             children: makeSteps({
-              nextConnector: <Stepper.Connector>Lorem ipsum</Stepper.Connector>,
+              nextConnector: (
+                <Stepper.Connector textPosition='top'>
+                  Lorem ipsum
+                </Stepper.Connector>
+              ),
             }),
           },
         },

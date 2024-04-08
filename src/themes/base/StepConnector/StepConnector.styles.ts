@@ -15,22 +15,38 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
       position: 'relative',
     },
     host$horizontal: {
-      flexDirection: 'row',
       alignItems: 'center',
     },
     host$vertical: {
       flexDirection: 'column',
       marginLeft: `calc(${stepVars.leadingSpace} + ${stepVars.bulletPointSize} / 2 - ${vars.thickness} / 2)`,
     },
-    host$rightLabel: {},
     host$bottomLabel: {
       position: 'absolute',
       top: `calc(${stepVars.leadingSpace} + ${stepVars.bulletPointSize} / 2 - ${vars.thickness} / 2)`,
       left: `calc(50% + ${stepVars.leadingSpace} + ${stepVars.bulletPointSize} / 2)`,
       right: `calc(-50% + ${stepVars.leadingSpace} + ${stepVars.bulletPointSize} / 2)`,
     },
+    host$rightLabel: {},
+    container$horizontal: {
+      display: 'flex',
+      flexGrow: 1,
+    },
+    container$horizontal$topText: {
+      flexDirection: 'column',
+      gap: vars.textSpace$vertical,
+    },
+    container$horizontal$bottomText: {
+      flexDirection: 'column',
+      gap: vars.textSpace$vertical,
+    },
+    container$horizontal$middleText: {
+      flexDirection: 'row',
+      gap: vars.textSpace$horizontal,
+      alignItems: 'center',
+    },
     line: {
-      display: 'block',
+      display: 'flex',
       flexGrow: 1,
       backgroundColor: vars.color,
       borderRadius: vars.shape,
@@ -66,26 +82,10 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
     text$completed: {
       color: vars.textColor$completed,
     },
-    text$horizontal: {
-      paddingLeft: vars.textSpace$horizontal,
-      paddingRight: vars.textSpace$horizontal,
-    },
+    text$horizontal: {},
     text$vertical: {
       paddingTop: vars.textSpace$vertical,
       paddingBottom: vars.textSpace$vertical,
       transform: `translateX(calc(-50% + ${vars.thickness} / 2))`,
-    },
-    text$top: {
-      position: 'absolute',
-      transform: `translateY(calc(-50% - ${vars.thickness} / 2 - ${vars.textSpace$vertical}))`,
-      left: 0,
-      right: 0,
-    },
-    text$middle: {},
-    text$bottom: {
-      position: 'absolute',
-      transform: `translateY(calc(50% + ${vars.thickness} / 2 + ${vars.textSpace$vertical}))`,
-      left: 0,
-      right: 0,
     },
   });

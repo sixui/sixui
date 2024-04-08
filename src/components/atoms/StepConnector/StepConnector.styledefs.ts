@@ -4,6 +4,10 @@ export type IStepConnectorStyleKey =
   | 'host$vertical'
   | 'host$rightLabel'
   | 'host$bottomLabel'
+  | 'container$horizontal'
+  | 'container$horizontal$topText'
+  | 'container$horizontal$middleText'
+  | 'container$horizontal$bottomText'
   | 'line'
   | 'line$completed'
   | 'line$horizontal'
@@ -13,10 +17,7 @@ export type IStepConnectorStyleKey =
   | 'text'
   | 'text$completed'
   | 'text$horizontal'
-  | 'text$vertical'
-  | 'text$top'
-  | 'text$middle'
-  | 'text$bottom';
+  | 'text$vertical';
 
 export type IStepConnectorStyleVarKey =
   | 'thickness'

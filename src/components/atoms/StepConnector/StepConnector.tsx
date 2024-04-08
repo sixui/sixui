@@ -64,6 +64,41 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
       />
     );
 
+    const renderText = (): React.ReactElement => (
+      <div
+        {...sxf(
+          'text',
+          `text$${orientation}`,
+          stepContext?.completed && 'text$completed',
+        )}
+      >
+        {children}
+      </div>
+    );
+
+    const renderInner = (): React.ReactElement =>
+      children ? (
+        textPosition === 'top' ? (
+          <>
+            {renderText()}
+            {renderLine()}
+          </>
+        ) : textPosition === 'bottom' ? (
+          <>
+            {renderLine()}
+            {renderText()}
+          </>
+        ) : (
+          <>
+            {renderLine()}
+            {renderText()}
+            {renderLine()}
+          </>
+        )
+      ) : (
+        renderLine()
+      );
+
     return (
       <div
         {...sxf(
@@ -76,24 +111,18 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
         ref={ref}
         {...other}
       >
-        <>
-          {renderLine()}
-          {children ? (
-            <>
-              <div
-                {...sxf(
-                  'text',
-                  `text$${orientation}`,
-                  `text$${textPosition}`,
-                  stepContext?.completed && 'text$completed',
-                )}
-              >
-                {children}
-              </div>
-              {textPosition === 'middle' ? renderLine() : null}
-            </>
-          ) : null}
-        </>
+        {orientation === 'horizontal' ? (
+          <div
+            {...sxf(
+              'container$horizontal',
+              `container$horizontal$${textPosition}Text`,
+            )}
+          >
+            {renderInner()}
+          </div>
+        ) : (
+          renderInner()
+        )}
       </div>
     );
   },

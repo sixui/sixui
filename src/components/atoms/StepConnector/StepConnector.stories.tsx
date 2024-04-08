@@ -22,7 +22,10 @@ export const Horizontal: IStory = {
         },
         {
           legend: 'With top text',
-          props: { textPosition: 'top', children: 'Lorem ipsum' },
+          props: {
+            textPosition: 'top',
+            children: 'Lorem ipsum',
+          },
         },
         {
           legend: 'With middle text',
