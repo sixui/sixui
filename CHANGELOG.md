@@ -1,3 +1,15 @@
+# v0.0.152 (Mon Apr 08 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(StepConnector): text position ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.151 (Mon Apr 08 2024)
 
 #### ⚠️ Pushed to `main`
