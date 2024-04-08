@@ -37,6 +37,7 @@ export const styles: MapNamespaces<IFocusRingStyles> =
       display: 'none',
       pointerEvents: 'none',
       position: 'absolute',
+      zIndex: 999,
     },
     host$visible: {
       display: 'flex',
