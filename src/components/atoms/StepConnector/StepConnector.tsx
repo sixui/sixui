@@ -14,7 +14,8 @@ import { StepContext } from '@/components/atoms/Step/StepContext';
 export type IStepConnectorProps = IContainerProps<IStepConnectorStyleKey> & {
   children?: React.ReactNode;
   orientation?: 'horizontal' | 'vertical';
-  labelPosition?: 'right' | 'bottom';
+  stepLabelPosition?: 'right' | 'bottom';
+  textPosition?: 'top' | 'middle' | 'bottom';
 };
 
 export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
@@ -24,7 +25,8 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
       sx,
       children,
       orientation: orientationProp,
-      labelPosition: labelPositionProp,
+      stepLabelPosition: stepLabelPositionProp,
+      textPosition: textPositionProp,
       ...other
     } = props;
 
@@ -46,8 +48,10 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
 
     const orientation =
       orientationProp ?? stepperContext?.orientation ?? 'horizontal';
-    const labelPosition =
-      labelPositionProp ?? stepperContext?.labelPosition ?? 'right';
+    const stepLabelPosition =
+      stepLabelPositionProp ?? stepperContext?.labelPosition ?? 'right';
+    const textPosition =
+      (orientation === 'horizontal' ? textPositionProp : undefined) ?? 'middle';
 
     const renderLine = (): React.ReactElement => (
       <div
@@ -65,30 +69,31 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
         {...sxf(
           'host',
           `host$${orientation}`,
-          `host$${labelPosition}Label`,
+          `host$${stepLabelPosition}Label`,
           theme.vars,
           sx,
         )}
         ref={ref}
         {...other}
       >
-        {children ? (
-          <>
-            {renderLine()}
-            <div
-              {...sxf(
-                'text',
-                `text$${orientation}`,
-                stepContext?.completed && 'text$completed',
-              )}
-            >
-              {children}
-            </div>
-            {renderLine()}
-          </>
-        ) : (
-          renderLine()
-        )}
+        <>
+          {renderLine()}
+          {children ? (
+            <>
+              <div
+                {...sxf(
+                  'text',
+                  `text$${orientation}`,
+                  `text$${textPosition}`,
+                  stepContext?.completed && 'text$completed',
+                )}
+              >
+                {children}
+              </div>
+              {textPosition === 'middle' ? renderLine() : null}
+            </>
+          ) : null}
+        </>
       </div>
     );
   },

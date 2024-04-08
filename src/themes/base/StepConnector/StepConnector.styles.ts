@@ -12,6 +12,7 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
     host: {
       display: 'flex',
       flexGrow: 1,
+      position: 'relative',
     },
     host$horizontal: {
       flexDirection: 'row',
@@ -60,6 +61,7 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
       fontWeight: vars.textWeight,
       lineHeight: vars.textLineHeight,
       letterSpacing: vars.textLetterSpacing,
+      textAlign: 'center',
     },
     text$completed: {
       color: vars.textColor$completed,
@@ -72,5 +74,18 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
       paddingTop: vars.textSpace$vertical,
       paddingBottom: vars.textSpace$vertical,
       transform: `translateX(calc(-50% + ${vars.thickness} / 2))`,
+    },
+    text$top: {
+      position: 'absolute',
+      transform: `translateY(calc(-50% - ${vars.thickness} / 2 - ${vars.textSpace$vertical}))`,
+      left: 0,
+      right: 0,
+    },
+    text$middle: {},
+    text$bottom: {
+      position: 'absolute',
+      transform: `translateY(calc(50% + ${vars.thickness} / 2 + ${vars.textSpace$vertical}))`,
+      left: 0,
+      right: 0,
     },
   });

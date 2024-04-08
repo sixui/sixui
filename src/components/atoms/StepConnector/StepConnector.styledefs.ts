@@ -13,7 +13,10 @@ export type IStepConnectorStyleKey =
   | 'text'
   | 'text$completed'
   | 'text$horizontal'
-  | 'text$vertical';
+  | 'text$vertical'
+  | 'text$top'
+  | 'text$middle'
+  | 'text$bottom';
 
 export type IStepConnectorStyleVarKey =
   | 'thickness'

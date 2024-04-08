@@ -38,8 +38,7 @@ export const styles: MapNamespaces<IDividerStyles> =
       paddingInlineEnd: 16,
     },
     text: {
-      display: 'flex',
-      alignItems: 'center',
+      textAlign: 'center',
       marginInlineStart: 8,
       marginInlineEnd: 8,
 
