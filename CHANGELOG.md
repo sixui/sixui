@@ -1,3 +1,15 @@
+# v0.0.148 (Mon Apr 08 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(Stepper): default connector definition ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.147 (Mon Apr 08 2024)
 
 #### ⚠️ Pushed to `main`
