@@ -25,6 +25,8 @@ export type IStepperProps = IContainerProps<IStepperStyleKey> & {
   completed?: boolean;
 };
 
+const defaultConnector = <StepConnector />;
+
 const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
   function Stepper(props, ref) {
     const {
@@ -32,7 +34,7 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
       sx,
       children,
       activeStep,
-      connector = <StepConnector />,
+      connector = defaultConnector,
       orientation = 'horizontal',
       labelPosition: labelPositionProp = 'right',
       completed,

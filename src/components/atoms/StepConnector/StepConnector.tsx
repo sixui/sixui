@@ -8,8 +8,8 @@ import type {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { StepperContext } from '@/components/atoms/Stepper';
-import { StepContext } from '@/components/atoms/Step';
+import { StepperContext } from '@/components/atoms/Stepper/StepperContext';
+import { StepContext } from '@/components/atoms/Step/StepContext';
 
 export type IStepConnectorProps = IContainerProps<IStepConnectorStyleKey> & {
   children?: React.ReactNode;
