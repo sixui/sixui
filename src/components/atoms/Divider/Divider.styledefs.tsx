@@ -9,6 +9,7 @@ export type IDividerStyleKey =
 export type IDividerStyleVarKey =
   | 'color'
   | 'thickness'
+  | 'shape'
   | 'textColor'
   | 'textFont'
   | 'textSize'

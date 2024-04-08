@@ -8,6 +8,8 @@ export type IStepConnectorStyleKey =
   | 'line$completed'
   | 'line$horizontal'
   | 'line$vertical'
+  | 'line$hasContent$horizontal'
+  | 'line$hasContent$vertical'
   | 'text'
   | 'text$completed'
   | 'text$horizontal'
@@ -15,6 +17,7 @@ export type IStepConnectorStyleKey =
 
 export type IStepConnectorStyleVarKey =
   | 'thickness'
+  | 'shape'
   | 'color'
   | 'color$completed'
   | 'minLength$horizontal'

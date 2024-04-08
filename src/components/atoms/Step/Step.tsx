@@ -11,25 +11,26 @@ import { ReactComponent as ExclamationTriangleIcon } from '@/assets/ExclamationT
 import {
   StepperContext,
   type IStepperContext,
-  type IStepConnectorRenderProps,
 } from '@/components/atoms/Stepper/StepperContext';
 import { ButtonBase, type IButtonBaseOwnProps } from '../ButtonBase';
+import { StepContext, type IStepContext } from './StepContext';
 
-export type IStepProps = IContainerProps<IStepStyleKey> &
-  Partial<Pick<IStepperContext, 'labelPosition' | 'connector'>> & {
-    innerStyles?: IButtonBaseOwnProps['innerStyles'];
-    active?: boolean;
-    completed?: boolean;
-    disabled?: boolean;
-    index?: number;
-    last?: boolean;
-    icon?: React.ReactNode;
-    label?: React.ReactNode;
-    supportingText?: React.ReactNode;
-    hasError?: boolean;
-    children?: React.ReactNode;
-    onClick?: () => void;
-  };
+export type IStepProps = IContainerProps<IStepStyleKey> & {
+  innerStyles?: IButtonBaseOwnProps['innerStyles'];
+  active?: boolean;
+  completed?: boolean;
+  disabled?: boolean;
+  index?: number;
+  last?: boolean;
+  icon?: React.ReactNode;
+  label?: React.ReactNode;
+  supportingText?: React.ReactNode;
+  hasError?: boolean;
+  children?: React.ReactNode;
+  onClick?: () => void;
+  labelPosition?: IStepperContext['labelPosition'];
+  nextConnector?: IStepperContext['connector'];
+};
 
 export const Step = forwardRef<HTMLDivElement, IStepProps>(
   function Step(props, ref) {
@@ -47,7 +48,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       supportingText,
       labelPosition: labelPositionProp,
       hasError,
-      connector: connectorProp,
+      nextConnector: nextConnectorProp,
       children,
       onClick,
       ...other
@@ -78,9 +79,9 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
     const labelPosition = hasText
       ? labelPositionProp ?? context?.labelPosition ?? 'right'
       : 'right';
-    const isFirst = index <= 0;
-    const connector =
-      connectorProp !== undefined ? connectorProp : context?.connector;
+    const nextConnector =
+      nextConnectorProp !== undefined ? nextConnectorProp : context?.connector;
+    const hasContent = isActive && !!children;
 
     const state = disabled
       ? 'disabled'
@@ -132,27 +133,18 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       </div>
     );
 
-    const renderConnector = (
-      props: IStepConnectorRenderProps,
-    ): React.ReactNode | undefined =>
-      connector && typeof connector === 'function'
-        ? connector(props)
-        : connector;
+    const contextValue: IStepContext = {
+      completed,
+      hasContent,
+    };
 
     return (
-      <>
-        {connector && !isFirst && labelPosition === 'right'
-          ? renderConnector({ completed })
-          : null}
+      <StepContext.Provider value={contextValue}>
         <div
           {...sxf('host', `host$${labelPosition}Label`, theme.vars, sx)}
           ref={ref}
           {...other}
         >
-          {connector && !isFirst && labelPosition === 'bottom'
-            ? renderConnector({ completed })
-            : null}
-
           {onClick ? (
             <ButtonBase
               sx={stylesCombinator(
@@ -175,18 +167,25 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
             renderInner()
           )}
 
-          {isActive && children ? (
-            <div {...sxf('content')}>
-              {isLast ? null : (
-                <div {...sxf('contentConnectorContainer')}>
-                  {renderConnector({ completed: false })}
-                </div>
-              )}
-              <div {...sxf('contentText')}>{children}</div>
-            </div>
+          {hasContent ? (
+            <StepContext.Provider value={{ completed: false }}>
+              <div {...sxf('content')}>
+                {nextConnector && !isLast ? (
+                  <div {...sxf('contentConnectorContainer')}>
+                    {nextConnector}
+                  </div>
+                ) : null}
+                <div {...sxf('contentText')}>{children}</div>
+              </div>
+            </StepContext.Provider>
           ) : null}
+
+          {nextConnector && !isLast && labelPosition === 'bottom'
+            ? nextConnector
+            : null}
         </div>
-      </>
+        {!isLast && labelPosition === 'right' ? nextConnector : null}
+      </StepContext.Provider>
     );
   },
 );

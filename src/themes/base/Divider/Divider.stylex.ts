@@ -4,11 +4,13 @@ import type { IStyleVars } from '@/helpers/types';
 import type { IDividerStyleVarKey } from '@/components/atoms/Divider';
 import { colorRolesVars } from '../vars/colorRoles.stylex';
 import { typescaleVars } from '../vars/typo.stylex';
+import { shapeVars } from '../vars/shape.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-divider.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-divider.scss
 const vars: Partial<IStyleVars<IDividerStyleVarKey>> = {
   thickness: '1px',
+  shape: shapeVars.corner$none,
   color: colorRolesVars.outlineVariant,
 
   // text

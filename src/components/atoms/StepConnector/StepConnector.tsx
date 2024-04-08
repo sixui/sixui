@@ -8,11 +8,11 @@ import type {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { StepperContext } from '@/components/atoms/Stepper/StepperContext';
+import { StepperContext } from '@/components/atoms/Stepper';
+import { StepContext } from '@/components/atoms/Step';
 
 export type IStepConnectorProps = IContainerProps<IStepConnectorStyleKey> & {
   children?: React.ReactNode;
-  completed?: boolean;
   orientation?: 'horizontal' | 'vertical';
   labelPosition?: 'right' | 'bottom';
 };
@@ -23,7 +23,6 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
       styles,
       sx,
       children,
-      completed,
       orientation: orientationProp,
       labelPosition: labelPositionProp,
       ...other
@@ -42,14 +41,22 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
       [stylesCombinator],
     );
 
-    const context = useContext(StepperContext);
-    const orientation = orientationProp ?? context?.orientation ?? 'horizontal';
+    const stepperContext = useContext(StepperContext);
+    const stepContext = useContext(StepContext);
+
+    const orientation =
+      orientationProp ?? stepperContext?.orientation ?? 'horizontal';
     const labelPosition =
-      labelPositionProp ?? context?.labelPosition ?? 'right';
+      labelPositionProp ?? stepperContext?.labelPosition ?? 'right';
 
     const renderLine = (): React.ReactElement => (
       <div
-        {...sxf('line', `line$${orientation}`, completed && 'line$completed')}
+        {...sxf(
+          'line',
+          `line$${orientation}`,
+          stepContext?.hasContent && `line$hasContent$${orientation}`,
+          stepContext?.completed && 'line$completed',
+        )}
       />
     );
 
@@ -72,7 +79,7 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
               {...sxf(
                 'text',
                 `text$${orientation}`,
-                completed && 'text$completed',
+                stepContext?.completed && 'text$completed',
               )}
             >
               {children}

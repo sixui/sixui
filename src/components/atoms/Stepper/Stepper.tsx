@@ -13,11 +13,7 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { Step, type IStepProps } from '@/components/atoms/Step';
 import { StepConnector } from '@/components/atoms/StepConnector';
-import {
-  StepperContext,
-  type IStepperContext,
-  type IStepConnectorRenderProps,
-} from './StepperContext';
+import { StepperContext, type IStepperContext } from './StepperContext';
 import { isElementLike } from '@/helpers/react/isElementLike';
 
 export type IStepperProps = IContainerProps<IStepperStyleKey> & {
@@ -29,11 +25,7 @@ export type IStepperProps = IContainerProps<IStepperStyleKey> & {
   completed?: boolean;
 };
 
-const defaultConnector = ({
-  completed,
-}: IStepConnectorRenderProps): React.ReactElement => (
-  <StepConnector completed={completed} />
-);
+const defaultConnector = <StepConnector />;
 
 const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
   function Stepper(props, ref) {

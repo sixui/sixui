@@ -52,11 +52,7 @@ export const Horizontal: IStory = {
           legend: 'Custom connector',
           props: {
             children: makeSteps({
-              connector: ({ completed }) => (
-                <Stepper.Connector completed={completed}>
-                  Lorem ipsum
-                </Stepper.Connector>
-              ),
+              nextConnector: <Stepper.Connector>Lorem ipsum</Stepper.Connector>,
             }),
           },
         },
@@ -111,11 +107,7 @@ export const Vertical: IStory = {
           legend: 'Custom connector',
           props: {
             children: makeSteps({
-              connector: ({ completed }) => (
-                <Stepper.Connector completed={completed}>
-                  Lorem ipsum
-                </Stepper.Connector>
-              ),
+              nextConnector: <Stepper.Connector>Lorem ipsum</Stepper.Connector>,
             }),
           },
         },

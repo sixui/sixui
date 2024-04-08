@@ -24,6 +24,7 @@ export const styles: MapNamespaces<IDividerStyles> =
         content: '',
         width: '100%',
         height: '100%',
+        borderRadius: vars.shape,
       },
     },
     line$inset: {

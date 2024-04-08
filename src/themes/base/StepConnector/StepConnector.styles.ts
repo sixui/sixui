@@ -25,26 +25,33 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
     host$bottomLabel: {
       position: 'absolute',
       top: `calc(${stepVars.leadingSpace} + ${stepVars.bulletPointSize} / 2 - ${vars.thickness} / 2)`,
-      left: `calc(-50% + ${stepVars.leadingSpace} + ${stepVars.bulletPointSize} / 2)`,
-      right: `calc(50% + ${stepVars.leadingSpace} + ${stepVars.bulletPointSize} / 2)`,
+      left: `calc(50% + ${stepVars.leadingSpace} + ${stepVars.bulletPointSize} / 2)`,
+      right: `calc(-50% + ${stepVars.leadingSpace} + ${stepVars.bulletPointSize} / 2)`,
     },
     line: {
-      borderColor: vars.color,
       display: 'block',
       flexGrow: 1,
+      backgroundColor: vars.color,
+      borderRadius: vars.shape,
     },
     line$completed: {
-      borderColor: vars.color$completed,
+      backgroundColor: vars.color$completed,
     },
     line$horizontal: {
-      borderTopStyle: 'solid',
-      borderTopWidth: vars.thickness,
       minWidth: vars.minLength$horizontal,
+      height: vars.thickness,
     },
     line$vertical: {
-      borderLeftStyle: 'solid',
-      borderLeftWidth: vars.thickness,
       minHeight: vars.minLength$vertical,
+      width: vars.thickness,
+    },
+    line$hasContent$horizontal: {
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+    },
+    line$hasContent$vertical: {
+      borderTopLeftRadius: 0,
+      borderTopRightRadius: 0,
     },
     text: {
       color: vars.textColor,
