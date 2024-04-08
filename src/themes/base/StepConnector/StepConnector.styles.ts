@@ -35,10 +35,12 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
     container$horizontal$topText: {
       flexDirection: 'column',
       gap: vars.textSpace$vertical,
+      transform: `translateY(calc(-50% + ${vars.thickness} / 2))`,
     },
     container$horizontal$bottomText: {
       flexDirection: 'column',
       gap: vars.textSpace$vertical,
+      transform: `translateY(calc(50% - ${vars.thickness} / 2))`,
     },
     container$horizontal$middleText: {
       flexDirection: 'row',
