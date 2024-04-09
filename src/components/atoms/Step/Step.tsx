@@ -117,9 +117,14 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
             ? 'completed'
             : undefined;
 
-    const renderInner = (): React.ReactElement => (
-      <div {...sxf('inner', labelPosition === 'bottom' && 'inner$bottomLabel')}>
-        {orientation === 'vertical' ? (
+    const renderButtonInner = (): React.ReactElement => (
+      <div
+        {...sxf(
+          'innerButton',
+          labelPosition === 'bottom' && 'innerButton$bottomLabel',
+        )}
+      >
+        {isValidElement(nextConnector) && orientation === 'vertical' ? (
           <>
             {/* As the step height may change depending on the content, in a
                 vertical orientation, we need to add a top connector and a
@@ -128,7 +133,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
              */}
 
             {/* Connect the bullet point to the previous element. */}
-            {hasText && !isFirst && isValidElement(nextConnector) ? (
+            {!isFirst ? (
               // This connector should be rendered in the context of the
               // previous step.
               <StepContext.Provider
@@ -144,7 +149,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
             ) : null}
 
             {/* Connect the bullet point to the next element. */}
-            {hasText && !isLast && isValidElement(nextConnector) ? (
+            {!isLast ? (
               <div {...sxf('bottomConnectorContainer')}>
                 {/* FIXME: merge both divs */}
                 <div {...sxf('connectorContainer')}>
@@ -212,10 +217,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
           >
             {onClick ? (
               <ButtonBase
-                sx={stylesCombinator(
-                  `container$${labelPosition}Label`,
-                  'container',
-                )}
+                sx={stylesCombinator(`button$${labelPosition}Label`, 'button')}
                 innerStyles={{
                   ...innerStyles,
                   focusRing: [
@@ -226,10 +228,10 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
                 onClick={onClick}
                 disabled={disabled}
               >
-                {renderInner()}
+                {renderButtonInner()}
               </ButtonBase>
             ) : (
-              renderInner()
+              renderButtonInner()
             )}
 
             {contentExpanded ? (
@@ -238,12 +240,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
                 {nextConnector && !isLast && isValidElement(nextConnector) ? (
                   // FIXME: merge both divs
                   <div {...sxf('contentConnectorContainer')}>
-                    <div
-                      {...sxf(
-                        'connectorContainer',
-                        `connectorContainer$${orientation}$${labelPosition}Label`,
-                      )}
-                    >
+                    <div {...sxf('connectorContainer')}>
                       {cloneElement(nextConnector, { children: undefined })}
                     </div>
                   </div>
@@ -271,6 +268,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
                 flexGrow: 1,
                 position: 'relative',
                 alignItems: 'center',
+                minHeight: 64,
               }}
             >
               {/* FIXME: style */}
@@ -278,10 +276,6 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
                 {...sxf(
                   'connectorContainer',
                   `connectorContainer$${orientation}$rightLabel`,
-                  orientation === 'vertical' && [
-                    'connectorContainer$vertical$startAtBulletPoint',
-                    'connectorContainer$vertical$endAtBulletPoint',
-                  ],
                 )}
               >
                 {nextConnector}

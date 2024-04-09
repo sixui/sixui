@@ -7,8 +7,7 @@ import { typescaleVars } from '../vars/typo.stylex';
 import { shapeVars } from '../vars/shape.stylex';
 
 const vars: Partial<IStyleVars<IStepConnectorStyleVarKey>> = {
-  thickness: '24px',
-  shape: shapeVars.corner$full,
+  thickness: '1px',
   color: colorRolesVars.outlineVariant,
   // &:completed
   color$completed: colorRolesVars.primary,

@@ -19,18 +19,18 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     flexGrow: 1,
     justifyContent: 'center',
   },
-  container: {
+  button: {
     borderRadius: stepStateVars.containerShape,
   },
-  container$rightLabel: {
+  button$rightLabel: {
     // eslint-disable-next-line @stylexjs/valid-styles
     [stepStateVars.containerShape]: vars.containerShape$horizontal,
   },
-  container$bottomLabel: {
+  button$bottomLabel: {
     // eslint-disable-next-line @stylexjs/valid-styles
     [stepStateVars.containerShape]: vars.containerShape$vertical,
   },
-  inner: {
+  innerButton: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -39,8 +39,9 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     paddingRight: vars.trailingSpace,
     paddingTop: vars.topSpace,
     paddingBottom: vars.bottomSpace,
+    minHeight: `calc(${vars.topSpace} + ${vars.bulletPointSize} + ${vars.bottomSpace} + 2 * ${vars.bulletPointSpace})`,
   },
-  inner$bottomLabel: {
+  innerButton$bottomLabel: {
     flexDirection: 'column',
   },
   bulletPoint: {
@@ -171,21 +172,26 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     zIndex: 999,
     left: 0,
     top: 0,
-    bottom: `calc(50% + ${vars.bulletPointSize} / 2 + ${vars.bulletPointSpace})`,
+    bottom: `calc(50% + ((${vars.topSpace} + ${vars.bulletPointSize} + ${vars.bottomSpace}) / 2 - (${vars.topSpace} + ${vars.bulletPointSize} / 2)) + ${vars.bulletPointSize} / 2 + ${vars.bulletPointSpace})`,
+    borderBottomLeftRadius: vars.connectorShape,
+    borderBottomRightRadius: vars.connectorShape,
   },
   bottomConnectorContainer: {
     position: 'absolute',
     display: 'flex',
     zIndex: 999,
     left: 0,
-    top: `calc(50% + ${vars.bulletPointSize} / 2 + ${vars.bulletPointSpace})`,
+    top: `calc(50% - ((${vars.topSpace} + ${vars.bulletPointSize} + ${vars.bottomSpace}) / 2 - (${vars.topSpace} + ${vars.bulletPointSize} / 2)) + ${vars.bulletPointSize} / 2 + ${vars.bulletPointSpace})`,
     bottom: 0,
+    borderTopLeftRadius: vars.connectorShape,
+    borderTopRightRadius: vars.connectorShape,
   },
   connectorContainer: {
     display: 'flex',
     flexGrow: 1,
     flexBasis: 0,
     position: 'relative',
+    borderRadius: 'inherit',
   },
   connectorContainer$horizontal$rightLabel: {
     flexDirection: 'row',
@@ -193,6 +199,7 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     transform: `translateY(calc(-1 * ((${vars.topSpace} + ${vars.bulletPointSize} + ${vars.bottomSpace}) / 2 - (${vars.topSpace} + ${vars.bulletPointSize} / 2))))`,
     left: `calc(-1 * ${vars.trailingSpace} + ${vars.bulletPointSpace})`,
     right: `calc(-1 * ${vars.leadingSpace} + ${vars.bulletPointSpace})`,
+    borderRadius: vars.connectorShape,
   },
   connectorContainer$horizontal$bottomLabel: {
     flexDirection: 'row',
@@ -200,8 +207,13 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     top: 0,
     left: `calc(50% - ((${vars.leadingSpace} + ${vars.bulletPointSize} + ${vars.trailingSpace}) / 2 - (${vars.leadingSpace} + ${vars.bulletPointSize} / 2)) + ${vars.bulletPointSize} / 2 + ${vars.bulletPointSpace})`,
     right: `calc(-50% + ((${vars.leadingSpace} + ${vars.bulletPointSize} + ${vars.trailingSpace}) / 2 - (${vars.leadingSpace} + ${vars.bulletPointSize} / 2)) + ${vars.bulletPointSize} / 2 + ${vars.bulletPointSpace})`,
+    borderRadius: vars.connectorShape,
   },
   connectorContainer$vertical$rightLabel: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    // FIXME: delete?
     // position: 'absolute',
     // border: '1px solid red',
     // top: 0,
@@ -213,14 +225,15 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     // This style is never applied because the vertical orientation does not
     // support bottom label.
   },
-  connectorContainer$vertical$startAtBulletPoint: {
-    position: 'absolute',
-    top: `calc(-1 * ${vars.bottomSpace} - ${vars.bulletPointSpace})`,
-  },
-  connectorContainer$vertical$endAtBulletPoint: {
-    position: 'absolute',
-    bottom: `calc(-1 * ${vars.topSpace} - ${vars.bulletPointSpace})`,
-  },
+  // FIXME: delete?
+  // connectorContainer$vertical$startAtBulletPoint: {
+  //   position: 'absolute',
+  //   top: `calc(-1 * ${vars.bottomSpace} + ${vars.bulletPointSpace})`,
+  // },
+  // connectorContainer$vertical$endAtBulletPoint: {
+  //   position: 'absolute',
+  //   bottom: `calc(-1 * ${vars.topSpace} + ${vars.bulletPointSpace})`,
+  // },
 });
 
 type IFocusRingStyles = IStyles<IFocusRingStyleKey>;

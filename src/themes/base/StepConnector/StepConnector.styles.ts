@@ -12,6 +12,7 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
     host: {
       display: 'flex',
       flexGrow: 1,
+      borderRadius: 'inherit',
     },
     host$horizontal$rightLabel: {
       flexDirection: 'row',
@@ -27,6 +28,9 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
     host$vertical$bottomLabel: {
       // This style is never applied because the vertical orientation does not
       // support bottom label.
+    },
+    container: {
+      borderRadius: 'inherit',
     },
     container$horizontal: {
       display: 'flex',
@@ -56,7 +60,7 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
       display: 'flex',
       flexGrow: 1,
       backgroundColor: vars.color,
-      borderRadius: vars.shape,
+      borderRadius: 'inherit',
     },
     line$completed: {
       backgroundColor: vars.color$completed,
@@ -69,6 +73,22 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
     },
     line$horizontal$rightLabel$hasText: {
       marginLeft: `calc(max(0px, ${stepVars.trailingSpace} - ${stepVars.bulletPointSpace}))`,
+    },
+    line$horizontal$cutStart: {
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+    },
+    line$horizontal$cutEnd: {
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+    },
+    line$vertical$cutStart: {
+      borderTopLeftRadius: 0,
+      borderTopRightRadius: 0,
+    },
+    line$vertical$cutEnd: {
+      borderBottomLeftRadius: 0,
+      borderBottomRightRadius: 0,
     },
     text: {
       color: vars.textColor,

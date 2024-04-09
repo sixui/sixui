@@ -51,10 +51,15 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
     const textPosition =
       (orientation === 'horizontal' ? textPositionProp : undefined) ?? 'middle';
 
-    const renderLine = (): React.ReactElement => (
+    const renderLine = (props?: {
+      cutStart?: boolean;
+      cutEnd?: boolean;
+    }): React.ReactElement => (
       <div
         {...sxf(
           'line',
+          props?.cutStart && `line$${orientation}$cutStart`,
+          props?.cutEnd && `line$${orientation}$cutEnd`,
           `line$${orientation}`,
           orientation === 'horizontal' &&
             stepLabelPosition === 'right' &&
@@ -91,9 +96,9 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
           </>
         ) : (
           <>
-            {renderLine()}
+            {renderLine({ cutEnd: true })}
             {renderText()}
-            {renderLine()}
+            {renderLine({ cutStart: true })}
           </>
         )
       ) : (
@@ -113,6 +118,7 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
       >
         <div
           {...sxf(
+            'container',
             `container$${orientation}`,
             orientation === 'horizontal' &&
               `container$horizontal$${textPosition}Text`,

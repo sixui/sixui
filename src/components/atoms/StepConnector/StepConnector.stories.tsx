@@ -24,45 +24,21 @@ export const Horizontal: IStory = {
           legend: 'With top text',
           props: {
             textPosition: 'top',
-            children: (
-              <>
-                Lorem ipsum
-                <br />
-                Lorem ipsum
-                <br />
-                Lorem ipsum
-              </>
-            ),
+            children: 'Lorem ipsum',
           },
         },
         {
           legend: 'With middle text',
           props: {
             textPosition: 'middle',
-            children: (
-              <>
-                Lorem ipsum
-                <br />
-                Lorem ipsum
-                <br />
-                Lorem ipsum
-              </>
-            ),
+            children: 'Lorem ipsum',
           },
         },
         {
           legend: 'With bottom text',
           props: {
             textPosition: 'bottom',
-            children: (
-              <>
-                Lorem ipsum
-                <br />
-                Lorem ipsum
-                <br />
-                Lorem ipsum
-              </>
-            ),
+            children: 'Lorem ipsum',
           },
         },
       ]}
@@ -78,7 +54,11 @@ export const Horizontal: IStory = {
 export const Vertical: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={StepConnector}
+      component={(props) => (
+        <div style={{ display: 'flex', minWidth: 64, minHeight: 128 }}>
+          <StepConnector {...props} />
+        </div>
+      )}
       props={props}
       cols={[
         {
@@ -89,7 +69,7 @@ export const Vertical: IStory = {
           props: { textPosition: 'middle', children: 'Lorem ipsum' },
         },
       ]}
-      align='center'
+      horizontalAlign='start'
     />
   ),
   args: {

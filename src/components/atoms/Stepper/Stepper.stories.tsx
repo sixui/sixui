@@ -169,14 +169,6 @@ export const Vertical: IStory = {
                     Supporting text
                     <br />
                     Supporting text
-                    <br />
-                    Supporting text
-                    <br />
-                    Supporting text
-                    <br />
-                    Supporting text
-                    <br />
-                    Supporting text
                   </>
                 ),
             })),

@@ -21,7 +21,6 @@ export type IStepConnectorStyleKey =
 
 export type IStepConnectorStyleVarKey =
   | 'thickness'
-  | 'shape'
   | 'color'
   | 'color$completed'
   | 'textSpace$horizontal'
