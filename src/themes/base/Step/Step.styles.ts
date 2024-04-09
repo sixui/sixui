@@ -19,8 +19,22 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     flexGrow: 1,
     justifyContent: 'center',
   },
+  buttonContainer: {
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    minHeight: `calc(${vars.topSpace} + ${vars.bulletPointSize} + ${vars.bottomSpace} + 2 * ${vars.bulletPointSpace})`,
+  },
+  buttonContainer$bottomLabel: {
+    flexDirection: 'column',
+  },
   button: {
     borderRadius: stepStateVars.containerShape,
+    paddingLeft: vars.leadingSpace,
+    paddingRight: vars.trailingSpace,
+    paddingTop: vars.topSpace,
+    paddingBottom: vars.bottomSpace,
   },
   button$rightLabel: {
     // eslint-disable-next-line @stylexjs/valid-styles
@@ -30,18 +44,13 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     // eslint-disable-next-line @stylexjs/valid-styles
     [stepStateVars.containerShape]: vars.containerShape$vertical,
   },
-  innerButton: {
+  buttonInner: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     gap: vars.gap,
-    paddingLeft: vars.leadingSpace,
-    paddingRight: vars.trailingSpace,
-    paddingTop: vars.topSpace,
-    paddingBottom: vars.bottomSpace,
-    minHeight: `calc(${vars.topSpace} + ${vars.bulletPointSize} + ${vars.bottomSpace} + 2 * ${vars.bulletPointSpace})`,
   },
-  innerButton$bottomLabel: {
+  buttonInner$bottomLabel: {
     flexDirection: 'column',
   },
   bulletPoint: {

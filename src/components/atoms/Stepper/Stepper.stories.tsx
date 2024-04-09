@@ -99,7 +99,7 @@ export const Horizontal: IStory = {
           },
         },
         {
-          legend: 'No space',
+          legend: 'Right label and no space',
           props: {
             children: makeSteps((index) => ({
               label: index === 1 || index === 2 ? 'Label' : undefined,
@@ -117,6 +117,17 @@ export const Horizontal: IStory = {
             children: makeSteps((index) => ({
               label: 'Lorem ipsum',
               supportingText: index % 2 === 0 ? undefined : 'Supporting text',
+            })),
+            labelPosition: 'bottom',
+          },
+        },
+        {
+          legend: 'Bottom label and no space',
+          props: {
+            children: makeSteps((index) => ({
+              label: 'Lorem ipsum',
+              supportingText: index % 2 === 0 ? undefined : 'Supporting text',
+              sx: styles.step$noSpace,
             })),
             labelPosition: 'bottom',
           },
