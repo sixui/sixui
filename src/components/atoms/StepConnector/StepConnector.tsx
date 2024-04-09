@@ -66,6 +66,9 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
             stepContext?.hasText &&
             'line$horizontal$rightLabel$hasText',
           stepContext?.completed && 'line$completed',
+          children &&
+            textPosition === 'middle' &&
+            `line$${orientation}$minLength`,
         )}
       />
     );

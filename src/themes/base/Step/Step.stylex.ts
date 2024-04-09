@@ -27,13 +27,10 @@ const vars: Partial<IStyleVars<IStepStyleVarKey>> = {
 
   // connector
   connectorShape: shapeVars.corner$full,
+  connectorMinLength: '16px',
 
   // container
-  // FIXME: merge shapes?
-  // &:horizontal
-  containerShape$horizontal: shapeVars.corner$md,
-  // &:vertical
-  containerShape$vertical: shapeVars.corner$md,
+  containerShape: shapeVars.corner$md,
 
   // bulletPoint
   bulletPointSize: '24px',

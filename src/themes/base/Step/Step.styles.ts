@@ -13,7 +13,6 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
   host: {
     position: 'relative',
   },
-  host$rightLabel: {},
   host$bottomLabel: {
     display: 'flex',
     flexGrow: 1,
@@ -35,20 +34,17 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     paddingRight: vars.trailingSpace,
     paddingTop: vars.topSpace,
     paddingBottom: vars.bottomSpace,
-  },
-  button$rightLabel: {
+
     // eslint-disable-next-line @stylexjs/valid-styles
-    [stepStateVars.containerShape]: vars.containerShape$horizontal,
-  },
-  button$bottomLabel: {
-    // eslint-disable-next-line @stylexjs/valid-styles
-    [stepStateVars.containerShape]: vars.containerShape$vertical,
+    [stepStateVars.containerShape]: vars.containerShape,
   },
   buttonInner: {
     display: 'flex',
-    flexDirection: 'row',
     alignItems: 'center',
     gap: vars.gap,
+  },
+  buttonInner$rightLabel: {
+    flexDirection: 'row',
   },
   buttonInner$bottomLabel: {
     flexDirection: 'column',
@@ -160,10 +156,6 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     display: 'flex',
     flexDirection: 'row',
   },
-  contentConnectorContainer: {
-    display: 'flex',
-    width: 0,
-  },
   contentText: {
     color: vars.contentTextColor,
     fontFamily: vars.contentTextFont,
@@ -172,28 +164,21 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     lineHeight: vars.contentTextLineHeight,
     letterSpacing: vars.contentTextLetterSpacing,
 
-    paddingLeft: `calc(${vars.leadingSpace} + ${vars.bulletPointSize} + ${vars.gap})`, // iconSize + gap
+    paddingLeft: `calc(${vars.leadingSpace} + ${vars.bulletPointSize} + ${vars.gap})`,
     paddingRight: vars.trailingSpace,
   },
-  topConnectorContainer: {
-    position: 'absolute',
+  extensibleConnectorContainer: {
     display: 'flex',
-    zIndex: 999,
-    left: 0,
-    top: 0,
-    bottom: `calc(50% + ((${vars.topSpace} + ${vars.bulletPointSize} + ${vars.bottomSpace}) / 2 - (${vars.topSpace} + ${vars.bulletPointSize} / 2)) + ${vars.bulletPointSize} / 2 + ${vars.bulletPointSpace})`,
-    borderBottomLeftRadius: vars.connectorShape,
-    borderBottomRightRadius: vars.connectorShape,
+    flexGrow: 1,
+    position: 'relative',
   },
-  bottomConnectorContainer: {
-    position: 'absolute',
-    display: 'flex',
-    zIndex: 999,
-    left: 0,
-    top: `calc(50% - ((${vars.topSpace} + ${vars.bulletPointSize} + ${vars.bottomSpace}) / 2 - (${vars.topSpace} + ${vars.bulletPointSize} / 2)) + ${vars.bulletPointSize} / 2 + ${vars.bulletPointSpace})`,
-    bottom: 0,
-    borderTopLeftRadius: vars.connectorShape,
-    borderTopRightRadius: vars.connectorShape,
+  extensibleConnectorContainer$vertical: {
+    alignItems: 'stretch',
+    minHeight: vars.connectorMinLength,
+  },
+  extensibleConnectorContainer$horizontal: {
+    alignItems: 'center',
+    minWidth: vars.connectorMinLength,
   },
   connectorContainer: {
     display: 'flex',
@@ -201,6 +186,28 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     flexBasis: 0,
     position: 'relative',
     borderRadius: 'inherit',
+  },
+  connectorContainer$top: {
+    position: 'absolute',
+    display: 'flex',
+    left: 0,
+    top: 0,
+    bottom: `calc(50% + ((${vars.topSpace} + ${vars.bulletPointSize} + ${vars.bottomSpace}) / 2 - (${vars.topSpace} + ${vars.bulletPointSize} / 2)) + ${vars.bulletPointSize} / 2 + ${vars.bulletPointSpace})`,
+    borderBottomLeftRadius: vars.connectorShape,
+    borderBottomRightRadius: vars.connectorShape,
+  },
+  connectorContainer$bottom: {
+    position: 'absolute',
+    display: 'flex',
+    left: 0,
+    top: `calc(50% - ((${vars.topSpace} + ${vars.bulletPointSize} + ${vars.bottomSpace}) / 2 - (${vars.topSpace} + ${vars.bulletPointSize} / 2)) + ${vars.bulletPointSize} / 2 + ${vars.bulletPointSpace})`,
+    bottom: 0,
+    borderTopLeftRadius: vars.connectorShape,
+    borderTopRightRadius: vars.connectorShape,
+  },
+  connectorContainer$content: {
+    display: 'flex',
+    width: 0,
   },
   connectorContainer$horizontal$rightLabel: {
     flexDirection: 'row',
@@ -218,31 +225,6 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     right: `calc(-50% + ((${vars.leadingSpace} + ${vars.bulletPointSize} + ${vars.trailingSpace}) / 2 - (${vars.leadingSpace} + ${vars.bulletPointSize} / 2)) + ${vars.bulletPointSize} / 2 + ${vars.bulletPointSpace})`,
     borderRadius: vars.connectorShape,
   },
-  connectorContainer$vertical$rightLabel: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    // FIXME: delete?
-    // position: 'absolute',
-    // border: '1px solid red',
-    // top: 0,
-    // top: `calc(-1 * ${vars.bottomSpace} - ${vars.bulletPointSpace})`,
-    // bottom: `calc(-1 * ${vars.topSpace} - ${vars.bulletPointSpace})`,
-    // bottom: 0,
-  },
-  connectorContainer$vertical$bottomLabel: {
-    // This style is never applied because the vertical orientation does not
-    // support bottom label.
-  },
-  // FIXME: delete?
-  // connectorContainer$vertical$startAtBulletPoint: {
-  //   position: 'absolute',
-  //   top: `calc(-1 * ${vars.bottomSpace} + ${vars.bulletPointSpace})`,
-  // },
-  // connectorContainer$vertical$endAtBulletPoint: {
-  //   position: 'absolute',
-  //   bottom: `calc(-1 * ${vars.topSpace} + ${vars.bulletPointSpace})`,
-  // },
 });
 
 type IFocusRingStyles = IStyles<IFocusRingStyleKey>;

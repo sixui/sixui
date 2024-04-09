@@ -173,7 +173,7 @@ export const Vertical: IStory = {
             children: makeSteps((index) => ({
               label: 'Lorem ipsum',
               supportingText:
-                index % 2 === 0 ? undefined : (
+                index === 1 ? (
                   <>
                     Supporting text
                     <br />
@@ -181,44 +181,8 @@ export const Vertical: IStory = {
                     <br />
                     Supporting text
                   </>
-                ),
+                ) : null,
             })),
-          },
-        },
-        {
-          legend: 'No space',
-          props: {
-            children: [
-              <Stepper.Step
-                key={0}
-                onClick={() => void sbHandleEvent('click')}
-                sx={styles.step$noSpace}
-              />,
-              <Stepper.Step
-                key={1}
-                onClick={() => void sbHandleEvent('click')}
-                label='Lorem ipsum'
-                sx={styles.step$noSpace}
-                supportingText='Supporting text'
-                nextConnector={
-                  <Stepper.Connector>Lorem ipsum</Stepper.Connector>
-                }
-              >
-                Lorem ipsum dolor sit amet.
-                <br />
-                Lorem ipsum dolor sit amet.
-                <br />
-                Lorem ipsum dolor sit amet.
-              </Stepper.Step>,
-              <Stepper.Step
-                key={2}
-                onClick={() => void sbHandleEvent('click')}
-                label='Lorem ipsum'
-                sx={styles.step$noSpace}
-              >
-                Lorem ipsum dolor sit amet.
-              </Stepper.Step>,
-            ],
           },
         },
         {
@@ -251,6 +215,42 @@ export const Vertical: IStory = {
                 key={2}
                 onClick={() => void sbHandleEvent('click')}
                 label='Lorem ipsum'
+              >
+                Lorem ipsum dolor sit amet.
+              </Stepper.Step>,
+            ],
+          },
+        },
+        {
+          legend: 'No space',
+          props: {
+            children: [
+              <Stepper.Step
+                key={0}
+                onClick={() => void sbHandleEvent('click')}
+                sx={styles.step$noSpace}
+              />,
+              <Stepper.Step
+                key={1}
+                onClick={() => void sbHandleEvent('click')}
+                label='Lorem ipsum'
+                sx={styles.step$noSpace}
+                supportingText='Supporting text'
+                nextConnector={
+                  <Stepper.Connector>Lorem ipsum</Stepper.Connector>
+                }
+              >
+                Lorem ipsum dolor sit amet.
+                <br />
+                Lorem ipsum dolor sit amet.
+                <br />
+                Lorem ipsum dolor sit amet.
+              </Stepper.Step>,
+              <Stepper.Step
+                key={2}
+                onClick={() => void sbHandleEvent('click')}
+                label='Lorem ipsum'
+                sx={styles.step$noSpace}
               >
                 Lorem ipsum dolor sit amet.
               </Stepper.Step>,

@@ -90,6 +90,12 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
       borderBottomLeftRadius: 0,
       borderBottomRightRadius: 0,
     },
+    line$horizontal$minLength: {
+      minWidth: stepVars.connectorMinLength,
+    },
+    line$vertical$minLength: {
+      minHeight: stepVars.connectorMinLength,
+    },
     text: {
       color: vars.textColor,
       fontFamily: vars.textFont,
