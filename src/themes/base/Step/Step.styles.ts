@@ -10,10 +10,11 @@ import { componentVars as stepStateVars } from './Step.states.stylex';
 
 type IStepStyles = IStyles<IStepStyleKey>;
 export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
-  host: {},
+  host: {
+    position: 'relative',
+  },
   host$rightLabel: {},
   host$bottomLabel: {
-    position: 'relative',
     display: 'flex',
     flexGrow: 1,
     justifyContent: 'center',
@@ -31,6 +32,7 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
   },
   inner: {
     display: 'flex',
+    flexDirection: 'row',
     alignItems: 'center',
     gap: vars.gap,
     paddingLeft: vars.leadingSpace,
@@ -38,13 +40,11 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     paddingTop: vars.topSpace,
     paddingBottom: vars.bottomSpace,
   },
-  inner$rightLabel: {
-    flexDirection: 'row',
-  },
   inner$bottomLabel: {
     flexDirection: 'column',
   },
   bulletPoint: {
+    position: 'relative',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -101,12 +101,9 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
   labelContainer: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
   },
-  labelContainer$rightLabel: {
-    alignItems: 'flex-start',
-  },
-  labelContainer$bottomLabel: {},
+  labelContainer$rightLabel: { alignItems: 'start' },
+  labelContainer$bottomLabel: { alignItems: 'center' },
   label: {
     color: vars.labelTextColor,
     fontFamily: vars.labelTextFont,
@@ -154,7 +151,8 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     flexDirection: 'row',
   },
   contentConnectorContainer: {
-    position: 'absolute',
+    display: 'flex',
+    width: 0,
   },
   contentText: {
     color: vars.contentTextColor,
@@ -166,6 +164,62 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
 
     paddingLeft: `calc(${vars.leadingSpace} + ${vars.bulletPointSize} + ${vars.gap})`, // iconSize + gap
     paddingRight: vars.trailingSpace,
+  },
+  topConnectorContainer: {
+    position: 'absolute',
+    display: 'flex',
+    zIndex: 999,
+    left: 0,
+    top: 0,
+    bottom: `calc(50% + ${vars.bulletPointSize} / 2 + ${vars.bulletPointSpace})`,
+  },
+  bottomConnectorContainer: {
+    position: 'absolute',
+    display: 'flex',
+    zIndex: 999,
+    left: 0,
+    top: `calc(50% + ${vars.bulletPointSize} / 2 + ${vars.bulletPointSpace})`,
+    bottom: 0,
+  },
+  connectorContainer: {
+    display: 'flex',
+    flexGrow: 1,
+    flexBasis: 0,
+    position: 'relative',
+  },
+  connectorContainer$horizontal$rightLabel: {
+    flexDirection: 'row',
+    position: 'absolute',
+    transform: `translateY(calc(-1 * ((${vars.topSpace} + ${vars.bulletPointSize} + ${vars.bottomSpace}) / 2 - (${vars.topSpace} + ${vars.bulletPointSize} / 2))))`,
+    left: `calc(-1 * ${vars.trailingSpace} + ${vars.bulletPointSpace})`,
+    right: `calc(-1 * ${vars.leadingSpace} + ${vars.bulletPointSpace})`,
+  },
+  connectorContainer$horizontal$bottomLabel: {
+    flexDirection: 'row',
+    position: 'absolute',
+    top: 0,
+    left: `calc(50% - ((${vars.leadingSpace} + ${vars.bulletPointSize} + ${vars.trailingSpace}) / 2 - (${vars.leadingSpace} + ${vars.bulletPointSize} / 2)) + ${vars.bulletPointSize} / 2 + ${vars.bulletPointSpace})`,
+    right: `calc(-50% + ((${vars.leadingSpace} + ${vars.bulletPointSize} + ${vars.trailingSpace}) / 2 - (${vars.leadingSpace} + ${vars.bulletPointSize} / 2)) + ${vars.bulletPointSize} / 2 + ${vars.bulletPointSpace})`,
+  },
+  connectorContainer$vertical$rightLabel: {
+    // position: 'absolute',
+    // border: '1px solid red',
+    // top: 0,
+    // top: `calc(-1 * ${vars.bottomSpace} - ${vars.bulletPointSpace})`,
+    // bottom: `calc(-1 * ${vars.topSpace} - ${vars.bulletPointSpace})`,
+    // bottom: 0,
+  },
+  connectorContainer$vertical$bottomLabel: {
+    // This style is never applied because the vertical orientation does not
+    // support bottom label.
+  },
+  connectorContainer$vertical$startAtBulletPoint: {
+    position: 'absolute',
+    top: `calc(-1 * ${vars.bottomSpace} - ${vars.bulletPointSpace})`,
+  },
+  connectorContainer$vertical$endAtBulletPoint: {
+    position: 'absolute',
+    bottom: `calc(-1 * ${vars.topSpace} - ${vars.bulletPointSpace})`,
   },
 });
 

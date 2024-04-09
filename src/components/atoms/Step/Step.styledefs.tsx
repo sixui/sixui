@@ -8,7 +8,6 @@ export type IStepStyleKey =
   | 'container$bottomLabel'
   | 'inner'
   | 'inner$hasIcon'
-  | 'inner$rightLabel'
   | 'inner$bottomLabel'
   | 'bulletPoint'
   | 'bulletPoint$icon'
@@ -35,8 +34,15 @@ export type IStepStyleKey =
   | 'supportingText$error'
   | 'supportingText$disabled'
   | 'contentConnectorContainer'
+  | 'connectorContainer'
+  | 'connectorContainer$horizontal$rightLabel'
+  | 'connectorContainer$horizontal$bottomLabel'
+  | 'connectorContainer$vertical$rightLabel'
+  | 'connectorContainer$vertical$bottomLabel'
   | 'content'
-  | 'contentText';
+  | 'contentText'
+  | 'topConnectorContainer'
+  | 'bottomConnectorContainer';
 
 export type IStepStyleVarKey =
   | 'gap'
@@ -44,6 +50,7 @@ export type IStepStyleVarKey =
   | 'trailingSpace'
   | 'topSpace'
   | 'bottomSpace'
+  | 'bulletPointSpace'
   | 'containerShape$horizontal'
   | 'containerShape$vertical'
   | 'bulletPointSize'

@@ -24,16 +24,46 @@ export const Horizontal: IStory = {
           legend: 'With top text',
           props: {
             textPosition: 'top',
-            children: 'Lorem ipsum',
+            children: (
+              <>
+                Lorem ipsum
+                <br />
+                Lorem ipsum
+                <br />
+                Lorem ipsum
+              </>
+            ),
           },
         },
         {
           legend: 'With middle text',
-          props: { textPosition: 'middle', children: 'Lorem ipsum' },
+          props: {
+            textPosition: 'middle',
+            children: (
+              <>
+                Lorem ipsum
+                <br />
+                Lorem ipsum
+                <br />
+                Lorem ipsum
+              </>
+            ),
+          },
         },
         {
           legend: 'With bottom text',
-          props: { textPosition: 'bottom', children: 'Lorem ipsum' },
+          props: {
+            textPosition: 'bottom',
+            children: (
+              <>
+                Lorem ipsum
+                <br />
+                Lorem ipsum
+                <br />
+                Lorem ipsum
+              </>
+            ),
+          },
         },
       ]}
       fullWidth

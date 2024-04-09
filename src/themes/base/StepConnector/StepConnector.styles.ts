@@ -12,24 +12,29 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
     host: {
       display: 'flex',
       flexGrow: 1,
-      position: 'relative',
     },
-    host$horizontal: {
-      alignItems: 'center',
+    host$horizontal$rightLabel: {
+      flexDirection: 'row',
     },
-    host$vertical: {
+    host$horizontal$bottomLabel: {
+      flexDirection: 'row',
+      marginTop: `calc(-1 * ${vars.thickness} / 2 + ${stepVars.topSpace} + ${stepVars.bulletPointSize} / 2)`,
+    },
+    host$vertical$rightLabel: {
       flexDirection: 'column',
-      marginLeft: `calc(${stepVars.leadingSpace} + ${stepVars.bulletPointSize} / 2 - ${vars.thickness} / 2)`,
+      marginLeft: `calc(-1 * ${vars.thickness} / 2 + ${stepVars.leadingSpace} + ${stepVars.bulletPointSize} / 2)`,
     },
-    host$bottomLabel: {
-      position: 'absolute',
-      top: `calc(${stepVars.leadingSpace} + ${stepVars.bulletPointSize} / 2 - ${vars.thickness} / 2)`,
-      left: `calc(50% + ${stepVars.leadingSpace} + ${stepVars.bulletPointSize} / 2)`,
-      right: `calc(-50% + ${stepVars.leadingSpace} + ${stepVars.bulletPointSize} / 2)`,
+    host$vertical$bottomLabel: {
+      // This style is never applied because the vertical orientation does not
+      // support bottom label.
     },
-    host$rightLabel: {},
     container$horizontal: {
       display: 'flex',
+      flexGrow: 1,
+    },
+    container$vertical: {
+      display: 'flex',
+      flexDirection: 'column',
       flexGrow: 1,
     },
     container$horizontal$topText: {
@@ -57,20 +62,13 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
       backgroundColor: vars.color$completed,
     },
     line$horizontal: {
-      minWidth: vars.minLength$horizontal,
-      height: vars.thickness,
+      minHeight: vars.thickness,
     },
     line$vertical: {
-      minHeight: vars.minLength$vertical,
       width: vars.thickness,
     },
-    line$hasContent$horizontal: {
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
-    },
-    line$hasContent$vertical: {
-      borderTopLeftRadius: 0,
-      borderTopRightRadius: 0,
+    line$horizontal$rightLabel$hasText: {
+      marginLeft: `calc(max(0px, ${stepVars.trailingSpace} - ${stepVars.bulletPointSpace}))`,
     },
     text: {
       color: vars.textColor,

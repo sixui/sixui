@@ -13,6 +13,7 @@ const vars: Partial<IStyleVars<IStepStyleVarKey>> = {
   trailingSpace: '8px',
   topSpace: '8px',
   bottomSpace: '8px',
+  bulletPointSpace: '0px',
 
   // container
   // &:horizontal

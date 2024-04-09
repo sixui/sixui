@@ -8,7 +8,6 @@ import type {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { StepperContext } from '@/components/atoms/Stepper/StepperContext';
 import { StepContext } from '@/components/atoms/Step/StepContext';
 
 export type IStepConnectorProps = IContainerProps<IStepConnectorStyleKey> & {
@@ -43,13 +42,12 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
       [stylesCombinator],
     );
 
-    const stepperContext = useContext(StepperContext);
     const stepContext = useContext(StepContext);
 
     const orientation =
-      orientationProp ?? stepperContext?.orientation ?? 'horizontal';
+      orientationProp ?? stepContext?.orientation ?? 'horizontal';
     const stepLabelPosition =
-      stepLabelPositionProp ?? stepperContext?.labelPosition ?? 'right';
+      stepLabelPositionProp ?? stepContext?.labelPosition ?? 'right';
     const textPosition =
       (orientation === 'horizontal' ? textPositionProp : undefined) ?? 'middle';
 
@@ -58,7 +56,10 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
         {...sxf(
           'line',
           `line$${orientation}`,
-          stepContext?.hasContent && `line$hasContent$${orientation}`,
+          orientation === 'horizontal' &&
+            stepLabelPosition === 'right' &&
+            stepContext?.hasText &&
+            'line$horizontal$rightLabel$hasText',
           stepContext?.completed && 'line$completed',
         )}
       />
@@ -103,26 +104,22 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
       <div
         {...sxf(
           'host',
-          `host$${orientation}`,
-          `host$${stepLabelPosition}Label`,
+          `host$${orientation}$${stepLabelPosition}Label`,
           theme.vars,
           sx,
         )}
         ref={ref}
         {...other}
       >
-        {orientation === 'horizontal' ? (
-          <div
-            {...sxf(
-              'container$horizontal',
+        <div
+          {...sxf(
+            `container$${orientation}`,
+            orientation === 'horizontal' &&
               `container$horizontal$${textPosition}Text`,
-            )}
-          >
-            {renderInner()}
-          </div>
-        ) : (
-          renderInner()
-        )}
+          )}
+        >
+          {renderInner()}
+        </div>
       </div>
     );
   },

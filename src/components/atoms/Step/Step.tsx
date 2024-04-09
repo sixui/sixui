@@ -1,4 +1,10 @@
-import { forwardRef, useContext, useMemo } from 'react';
+import {
+  cloneElement,
+  forwardRef,
+  isValidElement,
+  useContext,
+  useMemo,
+} from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type { IContainerProps } from '@/helpers/types';
@@ -26,10 +32,19 @@ export type IStepProps = IContainerProps<IStepStyleKey> & {
   label?: React.ReactNode;
   supportingText?: React.ReactNode;
   hasError?: boolean;
-  children?: React.ReactNode;
   onClick?: () => void;
-  labelPosition?: IStepperContext['labelPosition'];
+  orientation?: IStepperContext['orientation'];
   nextConnector?: IStepperContext['connector'];
+
+  /**
+   * Only supported in vertical orientation.
+   */
+  labelPosition?: IStepperContext['labelPosition'];
+
+  /**
+   * Only supported in vertical orientation.
+   */
+  children?: React.ReactNode;
 };
 
 export const Step = forwardRef<HTMLDivElement, IStepProps>(
@@ -46,8 +61,9 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       icon,
       label,
       supportingText,
-      labelPosition: labelPositionProp,
       hasError,
+      orientation: orientationProp,
+      labelPosition: labelPositionProp,
       nextConnector: nextConnectorProp,
       children,
       onClick,
@@ -65,15 +81,20 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       [stylesCombinator],
     );
 
+    const context = useContext(StepperContext);
+
     const isIcon = !!icon || hasError;
     const hasText = !!label || !!supportingText;
 
-    const context = useContext(StepperContext);
     const completed =
       !disabled &&
       (context?.completed ||
         (completedProp ??
           (context?.activeStep !== undefined && index < context.activeStep)));
+    const previousCompleted =
+      !disabled &&
+      context?.activeStep !== undefined &&
+      index <= context.activeStep;
     const isActive =
       !disabled && (activeProp ?? (context && index === context.activeStep));
     const labelPosition = hasText
@@ -81,7 +102,10 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       : 'right';
     const nextConnector =
       nextConnectorProp !== undefined ? nextConnectorProp : context?.connector;
-    const hasContent = isActive && !!children;
+    const orientation = orientationProp ?? context?.orientation ?? 'horizontal';
+    const contentExpanded =
+      isActive && orientation === 'vertical' && !!children;
+    const isFirst = index === 0;
 
     const state = disabled
       ? 'disabled'
@@ -94,7 +118,43 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
             : undefined;
 
     const renderInner = (): React.ReactElement => (
-      <div {...sxf('inner', `inner$${labelPosition}Label`)}>
+      <div {...sxf('inner', labelPosition === 'bottom' && 'inner$bottomLabel')}>
+        {orientation === 'vertical' ? (
+          <>
+            {/* As the step height may change depending on the content, in a
+                vertical orientation, we need to add a top connector and a
+                bottom connector to connect the bullet point to the previous and
+                next elements.
+             */}
+
+            {/* Connect the bullet point to the previous element. */}
+            {hasText && !isFirst && isValidElement(nextConnector) ? (
+              // This connector should be rendered in the context of the
+              // previous step.
+              <StepContext.Provider
+                value={{ ...contextValue, completed: previousCompleted }}
+              >
+                <div {...sxf('topConnectorContainer')}>
+                  {/* FIXME: merge both divs */}
+                  <div {...sxf('connectorContainer')}>
+                    {cloneElement(nextConnector, { children: undefined })}
+                  </div>
+                </div>
+              </StepContext.Provider>
+            ) : null}
+
+            {/* Connect the bullet point to the next element. */}
+            {hasText && !isLast && isValidElement(nextConnector) ? (
+              <div {...sxf('bottomConnectorContainer')}>
+                {/* FIXME: merge both divs */}
+                <div {...sxf('connectorContainer')}>
+                  {cloneElement(nextConnector, { children: undefined })}
+                </div>
+              </div>
+            ) : null}
+          </>
+        ) : null}
+
         <div
           {...sxf(
             'bulletPoint',
@@ -114,6 +174,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
               index + 1
             ))}
         </div>
+
         {hasText ? (
           <div
             {...sxf('labelContainer', `labelContainer$${labelPosition}Label`)}
@@ -135,56 +196,99 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
 
     const contextValue: IStepContext = {
       completed,
-      hasContent,
+      hasContent: contentExpanded,
+      hasText,
+      orientation,
+      labelPosition,
     };
 
     return (
       <StepContext.Provider value={contextValue}>
-        <div
-          {...sxf('host', `host$${labelPosition}Label`, theme.vars, sx)}
-          ref={ref}
-          {...other}
-        >
-          {onClick ? (
-            <ButtonBase
-              sx={stylesCombinator(
-                `container$${labelPosition}Label`,
-                'container',
-              )}
-              innerStyles={{
-                ...innerStyles,
-                focusRing: [
-                  theme.focusRingStyles,
-                  ...asArray(innerStyles?.focusRing),
-                ],
-              }}
-              onClick={onClick}
-              disabled={disabled}
-            >
-              {renderInner()}
-            </ButtonBase>
-          ) : (
-            renderInner()
-          )}
+        <div style={{ display: 'contents' }} {...sxf(theme.vars, sx)}>
+          <div
+            {...sxf('host', `host$${labelPosition}Label`)}
+            ref={ref}
+            {...other}
+          >
+            {onClick ? (
+              <ButtonBase
+                sx={stylesCombinator(
+                  `container$${labelPosition}Label`,
+                  'container',
+                )}
+                innerStyles={{
+                  ...innerStyles,
+                  focusRing: [
+                    theme.focusRingStyles,
+                    ...asArray(innerStyles?.focusRing),
+                  ],
+                }}
+                onClick={onClick}
+                disabled={disabled}
+              >
+                {renderInner()}
+              </ButtonBase>
+            ) : (
+              renderInner()
+            )}
 
-          {hasContent ? (
-            <StepContext.Provider value={{ completed: false }}>
+            {contentExpanded ? (
               <div {...sxf('content')}>
-                {nextConnector && !isLast ? (
+                {/* Connect the content block to the next connector. */}
+                {nextConnector && !isLast && isValidElement(nextConnector) ? (
+                  // FIXME: merge both divs
                   <div {...sxf('contentConnectorContainer')}>
-                    {nextConnector}
+                    <div
+                      {...sxf(
+                        'connectorContainer',
+                        `connectorContainer$${orientation}$${labelPosition}Label`,
+                      )}
+                    >
+                      {cloneElement(nextConnector, { children: undefined })}
+                    </div>
                   </div>
                 ) : null}
                 <div {...sxf('contentText')}>{children}</div>
               </div>
-            </StepContext.Provider>
-          ) : null}
+            ) : null}
 
-          {nextConnector && !isLast && labelPosition === 'bottom'
-            ? nextConnector
-            : null}
+            {nextConnector && !isLast && labelPosition === 'bottom' ? (
+              <div
+                {...sxf(
+                  'connectorContainer',
+                  `connectorContainer$${orientation}$bottomLabel`,
+                )}
+              >
+                {nextConnector}
+              </div>
+            ) : null}
+          </div>
+
+          {!isLast && labelPosition === 'right' ? (
+            <div
+              style={{
+                display: 'flex',
+                flexGrow: 1,
+                position: 'relative',
+                alignItems: 'center',
+              }}
+            >
+              {/* FIXME: style */}
+              <div
+                {...sxf(
+                  'connectorContainer',
+                  `connectorContainer$${orientation}$rightLabel`,
+                  orientation === 'vertical' && [
+                    'connectorContainer$vertical$startAtBulletPoint',
+                    'connectorContainer$vertical$endAtBulletPoint',
+                  ],
+                )}
+              >
+                {nextConnector}
+              </div>
+            </div>
+          ) : null}
         </div>
-        {!isLast && labelPosition === 'right' ? nextConnector : null}
       </StepContext.Provider>
     );
   },
