@@ -1,3 +1,19 @@
+# v0.0.154 (Wed Apr 10 2024)
+
+#### 🐛 Bug Fix
+
+- Fix/stepper styles [#24](https://github.com/sixui/ui/pull/24) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### ⚠️ Pushed to `main`
+
+- fix: add empty end line in package.json ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.153 (Wed Apr 10 2024)
 
 #### 🐛 Bug Fix
