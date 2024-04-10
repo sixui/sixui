@@ -58,17 +58,26 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
       <div
         {...sxf(
           'line',
-          props?.cutStart && `line$${orientation}$cutStart`,
-          props?.cutEnd && `line$${orientation}$cutEnd`,
-          `line$${orientation}`,
-          orientation === 'horizontal' &&
+          orientation === 'horizontal' && [
+            'line$horizontal',
+            props?.cutStart && `line$horizontal$cutStart`,
+            props?.cutEnd && `line$horizontal$cutEnd`,
             stepLabelPosition === 'right' &&
-            stepContext?.hasText &&
-            'line$horizontal$rightLabel$hasText',
+              stepContext?.hasText &&
+              'line$horizontal$rightLabel$hasText',
+            !!children &&
+              textPosition === 'middle' &&
+              `line$horizontal$minLength`,
+          ],
+          orientation === 'vertical' && [
+            'line$vertical',
+            props?.cutStart && `line$vertical$cutStart`,
+            props?.cutEnd && `line$vertical$cutEnd`,
+            !!children &&
+              textPosition === 'middle' &&
+              `line$vertical$minLength`,
+          ],
           stepContext?.completed && 'line$completed',
-          children &&
-            textPosition === 'middle' &&
-            `line$${orientation}$minLength`,
         )}
       />
     );
@@ -77,7 +86,7 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
       <div
         {...sxf(
           'text',
-          `text$${orientation}`,
+          orientation === 'vertical' && `text$vertical`,
           stepContext?.completed && 'text$completed',
         )}
       >

@@ -172,7 +172,7 @@ export const TypeScale: IStory = {
       )}
       props={props}
       rows={rows}
-      align='start'
+      horizontalAlign='start'
       rowLegendPosition='top'
     />
   ),

@@ -4,7 +4,6 @@ import type { IStyleVars } from '@/helpers/types';
 import type { IStepConnectorStyleVarKey } from '@/components/atoms/StepConnector';
 import { colorRolesVars } from '../vars/colorRoles.stylex';
 import { typescaleVars } from '../vars/typo.stylex';
-import { shapeVars } from '../vars/shape.stylex';
 
 const vars: Partial<IStyleVars<IStepConnectorStyleVarKey>> = {
   thickness: '1px',

@@ -108,7 +108,6 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
     text$completed: {
       color: vars.textColor$completed,
     },
-    text$horizontal: {},
     text$vertical: {
       paddingTop: vars.textSpace$vertical,
       paddingBottom: vars.textSpace$vertical,
