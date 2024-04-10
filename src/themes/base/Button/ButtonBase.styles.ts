@@ -14,10 +14,6 @@ export const styles: MapNamespaces<IButtonStyles> =
       display: 'inline-flex',
       position: 'relative',
       cursor: 'pointer',
-      // Long labels are cut off with ellipsis by default. `text-overflow` and `text-wrap` can
-      // customize this.
-      textOverflow: 'ellipsis',
-      textWrap: 'nowrap',
       userSelect: 'none',
       textDecoration: 'none',
     },

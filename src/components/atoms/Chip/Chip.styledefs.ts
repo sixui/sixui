@@ -41,6 +41,8 @@ export type IChipStyleKey =
   | 'icon$trailing$selected$interactive'
   | 'icon$avatar'
   | 'icon$disabled'
+  | 'labelContainer'
+  | 'labelContainer$hasTrailing'
   | 'label'
   | 'label$interactive'
   | 'label$selected'

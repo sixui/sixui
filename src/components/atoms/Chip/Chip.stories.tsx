@@ -29,7 +29,12 @@ const defaultArgs = {
 } satisfies Partial<IChipProps>;
 
 const states: Array<IComponentPresentation<IChipProps<IAny>>> = [
-  { legend: 'Enabled', props: { label: 'Enabled' } },
+  {
+    legend: 'Enabled',
+    props: {
+      label: 'Enabled',
+    },
+  },
   {
     legend: 'Hovered',
     props: { label: 'Hovered', visualState: { hovered: true } },

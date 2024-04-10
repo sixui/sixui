@@ -402,7 +402,12 @@ export const Chip: IChip = forwardRef(function Chip<
             </div>
           ) : null}
 
-          <div style={hasTrailing ? { position: 'relative' } : undefined}>
+          <div
+            {...sxf(
+              'labelContainer',
+              hasTrailing && 'labelContainer$hasTrailing',
+            )}
+          >
             <span
               {...sxf(
                 'label',

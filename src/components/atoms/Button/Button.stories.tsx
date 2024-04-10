@@ -27,7 +27,12 @@ const defaultArgs = {
 } satisfies Partial<IButtonProps>;
 
 const states: Array<IComponentPresentation<IButtonOwnProps>> = [
-  { legend: 'Enabled', props: { children: 'Enabled' } },
+  {
+    legend: 'Enabled',
+    props: {
+      children: 'Enabled',
+    },
+  },
   {
     legend: 'Hovered',
     props: { children: 'Hovered', visualState: { hovered: true } },

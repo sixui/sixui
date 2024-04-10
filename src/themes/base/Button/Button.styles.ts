@@ -45,11 +45,6 @@ export const styles: MapNamespaces<IButtonStyles> =
       fontWeight: vars.labelTextWeight,
       lineHeight: vars.labelTextLineHeight,
       letterSpacing: vars.labelTextLetterSpacing,
-      // Long labels are cut off with ellipsis by default. `text-overflow` and
-      // `text-wrap` can customize this.
-      textOverflow: 'ellipsis',
-      textWrap: 'nowrap',
-      userSelect: 'none',
       // Override vertical-align with shortest value "top". Vertical-align's
       // default "baseline" value causes buttons to be misaligned next to each
       // other if one button has an icon and the other does not.
@@ -110,8 +105,12 @@ export const styles: MapNamespaces<IButtonStyles> =
     },
     label: {
       position: 'relative',
-      overflow: 'hidden',
       flexGrow: 1,
+      // Long labels are cut off with ellipsis by default. `text-overflow` and
+      // `text-wrap` can customize this.
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      textWrap: 'nowrap',
 
       color: {
         default: vars.labelTextColor,

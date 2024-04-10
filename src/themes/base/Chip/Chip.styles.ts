@@ -158,17 +158,21 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     [chipStateVars.elevation]: vars.selectedFlatContainerElevation$disabled,
   },
   action: {
+    display: 'flex',
     alignItems: 'center',
+    justifyContent: 'center',
     appearance: 'none',
     backgroundColor: 'unset',
     borderStyle: 'unset',
     borderRadius: 'inherit',
-    display: 'flex',
     outline: 'none',
     padding: 0,
     position: 'relative',
     textDecoration: 'none',
     cursor: 'inherit',
+    flexGrow: 1,
+    flexShrink: 1,
+    minWidth: 0,
   },
   action$trailing: {
     alignItems: 'center',
@@ -176,6 +180,8 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     paddingInlineStart: vars.iconLabelSpace,
     paddingInlineEnd: vars.trailingIconTrailingSpace,
     cursor: 'pointer',
+    flexGrow: 0,
+    flexShrink: 0,
   },
   action$primary: {
     paddingInlineStart: vars.leadingSpace,
@@ -223,20 +229,28 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     borderColor: vars.outlineColor$disabled,
     opacity: vars.outlineOpacity$disabled,
   },
+  labelContainer: {
+    minWidth: 0,
+
+    // Long labels are cut off with ellipsis by default. `text-overflow` and
+    // `text-wrap` can customize this.
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    textWrap: 'nowrap',
+  },
+  labelContainer$hasTrailing: {
+    position: 'relative',
+  },
   label: {
     // Place content above background elements
     zIndex: 1,
-    alignItems: 'center',
-    display: 'flex',
     fontFamily: vars.labelTextFont,
     fontSize: vars.labelTextSize,
     lineHeight: vars.labelTextLineHeight,
     letterSpacing: vars.labelTextLetterSpacing,
     fontWeight: vars.labelTextWeight,
     height: '100%',
-    textOverflow: 'ellipsis',
     userSelect: 'none',
-    whiteSpace: 'nowrap',
     color: vars.labelTextColor,
   },
   label$interactive: {
