@@ -1,3 +1,15 @@
+# v0.0.155 (Wed Apr 10 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: ButtonBase is no more truncated by default, but Button, Chip are ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.154 (Wed Apr 10 2024)
 
 #### 🐛 Bug Fix
