@@ -169,8 +169,9 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
   },
   extensibleConnectorContainer: {
     display: 'flex',
-    flexGrow: 1,
     position: 'relative',
+    flexGrow: 1,
+    flexShrink: 0,
   },
   extensibleConnectorContainer$vertical: {
     alignItems: 'stretch',
@@ -211,10 +212,10 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
   },
   connectorContainer$horizontal$rightLabel: {
     flexDirection: 'row',
-    position: 'absolute',
     transform: `translateY(calc(-1 * ((${vars.topSpace} + ${vars.bulletPointSize} + ${vars.bottomSpace}) / 2 - (${vars.topSpace} + ${vars.bulletPointSize} / 2))))`,
-    left: `calc(-1 * ${vars.trailingSpace} + ${vars.bulletPointSpace})`,
-    right: `calc(-1 * ${vars.leadingSpace} + ${vars.bulletPointSpace})`,
+    position: 'relative',
+    marginLeft: `calc(-1 * ${vars.trailingSpace} + ${vars.bulletPointSpace})`,
+    marginRight: `calc(-1 * ${vars.leadingSpace} + ${vars.bulletPointSpace})`,
     borderRadius: vars.connectorShape,
   },
   connectorContainer$horizontal$bottomLabel: {

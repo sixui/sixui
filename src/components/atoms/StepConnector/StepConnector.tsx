@@ -86,6 +86,7 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
       <div
         {...sxf(
           'text',
+          orientation === 'horizontal' && `text$horizontal`,
           orientation === 'vertical' && `text$vertical`,
           stepContext?.completed && 'text$completed',
         )}

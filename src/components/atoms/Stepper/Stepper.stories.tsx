@@ -133,7 +133,7 @@ export const Horizontal: IStory = {
           },
         },
       ]}
-      fullWidth
+      horizontalAlign='start'
     />
   ),
   args: defaultArgs,
