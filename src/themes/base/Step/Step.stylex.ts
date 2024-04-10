@@ -11,14 +11,26 @@ const vars: Partial<IStyleVars<IStepStyleVarKey>> = {
   gap: '8px',
   leadingSpace: '8px',
   trailingSpace: '8px',
+
+  /**
+   * For a proper rendering, should be at least (StepConnector.thickness / 2).
+   */
   topSpace: '8px',
+
+  /**
+   * For a proper rendering, should be at least (StepConnector.thickness / 2).
+   */
   bottomSpace: '8px',
 
+  // bulletPoint
+  bulletPointSpace: '8px',
+
+  // connector
+  connectorShape: shapeVars.corner$full,
+  connectorMinLength: '16px',
+
   // container
-  // &:horizontal
-  containerShape$horizontal: shapeVars.corner$full,
-  // &:vertical
-  containerShape$vertical: shapeVars.corner$md,
+  containerShape: shapeVars.corner$md,
 
   // bulletPoint
   bulletPointSize: '24px',

@@ -8,7 +8,6 @@ import type {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { StepperContext } from '@/components/atoms/Stepper/StepperContext';
 import { StepContext } from '@/components/atoms/Step/StepContext';
 
 export type IStepConnectorProps = IContainerProps<IStepConnectorStyleKey> & {
@@ -43,22 +42,41 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
       [stylesCombinator],
     );
 
-    const stepperContext = useContext(StepperContext);
     const stepContext = useContext(StepContext);
 
     const orientation =
-      orientationProp ?? stepperContext?.orientation ?? 'horizontal';
+      orientationProp ?? stepContext?.orientation ?? 'horizontal';
     const stepLabelPosition =
-      stepLabelPositionProp ?? stepperContext?.labelPosition ?? 'right';
+      stepLabelPositionProp ?? stepContext?.labelPosition ?? 'right';
     const textPosition =
       (orientation === 'horizontal' ? textPositionProp : undefined) ?? 'middle';
 
-    const renderLine = (): React.ReactElement => (
+    const renderLine = (props?: {
+      cutStart?: boolean;
+      cutEnd?: boolean;
+    }): React.ReactElement => (
       <div
         {...sxf(
           'line',
-          `line$${orientation}`,
-          stepContext?.hasContent && `line$hasContent$${orientation}`,
+          orientation === 'horizontal' && [
+            'line$horizontal',
+            props?.cutStart && `line$horizontal$cutStart`,
+            props?.cutEnd && `line$horizontal$cutEnd`,
+            stepLabelPosition === 'right' &&
+              stepContext?.hasText &&
+              'line$horizontal$rightLabel$hasText',
+            !!children &&
+              textPosition === 'middle' &&
+              `line$horizontal$minLength`,
+          ],
+          orientation === 'vertical' && [
+            'line$vertical',
+            props?.cutStart && `line$vertical$cutStart`,
+            props?.cutEnd && `line$vertical$cutEnd`,
+            !!children &&
+              textPosition === 'middle' &&
+              `line$vertical$minLength`,
+          ],
           stepContext?.completed && 'line$completed',
         )}
       />
@@ -68,7 +86,7 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
       <div
         {...sxf(
           'text',
-          `text$${orientation}`,
+          orientation === 'vertical' && `text$vertical`,
           stepContext?.completed && 'text$completed',
         )}
       >
@@ -90,9 +108,9 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
           </>
         ) : (
           <>
-            {renderLine()}
+            {renderLine({ cutEnd: true })}
             {renderText()}
-            {renderLine()}
+            {renderLine({ cutStart: true })}
           </>
         )
       ) : (
@@ -103,26 +121,23 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
       <div
         {...sxf(
           'host',
-          `host$${orientation}`,
-          `host$${stepLabelPosition}Label`,
+          `host$${orientation}$${stepLabelPosition}Label`,
           theme.vars,
           sx,
         )}
         ref={ref}
         {...other}
       >
-        {orientation === 'horizontal' ? (
-          <div
-            {...sxf(
-              'container$horizontal',
+        <div
+          {...sxf(
+            'container',
+            `container$${orientation}`,
+            orientation === 'horizontal' &&
               `container$horizontal$${textPosition}Text`,
-            )}
-          >
-            {renderInner()}
-          </div>
-        ) : (
-          renderInner()
-        )}
+          )}
+        >
+          {renderInner()}
+        </div>
       </div>
     );
   },

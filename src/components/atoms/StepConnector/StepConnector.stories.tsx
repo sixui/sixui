@@ -29,11 +29,17 @@ export const Horizontal: IStory = {
         },
         {
           legend: 'With middle text',
-          props: { textPosition: 'middle', children: 'Lorem ipsum' },
+          props: {
+            textPosition: 'middle',
+            children: 'Lorem ipsum',
+          },
         },
         {
           legend: 'With bottom text',
-          props: { textPosition: 'bottom', children: 'Lorem ipsum' },
+          props: {
+            textPosition: 'bottom',
+            children: 'Lorem ipsum',
+          },
         },
       ]}
       fullWidth
@@ -48,7 +54,11 @@ export const Horizontal: IStory = {
 export const Vertical: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={StepConnector}
+      component={(props) => (
+        <div style={{ display: 'flex', minWidth: 64, minHeight: 128 }}>
+          <StepConnector {...props} />
+        </div>
+      )}
       props={props}
       cols={[
         {
@@ -59,7 +69,7 @@ export const Vertical: IStory = {
           props: { textPosition: 'middle', children: 'Lorem ipsum' },
         },
       ]}
-      align='center'
+      horizontalAlign='start'
     />
   ),
   args: {

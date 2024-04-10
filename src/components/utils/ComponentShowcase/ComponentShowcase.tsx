@@ -24,7 +24,8 @@ export type IComponentShowcaseProps<
   groups?: Array<IComponentPresentation<TComponentProps>>;
   cols?: Array<IComponentPresentation<TComponentProps>>;
   rows?: Array<IComponentPresentation<TComponentProps>>;
-  align?: 'start' | 'center';
+  horizontalAlign?: 'start' | 'center' | 'end' | 'stretch';
+  verticalAlign?: 'start' | 'center' | 'end' | 'stretch';
   rowLegendPosition?: 'start' | 'top' | 'bottom';
   fullWidth?: boolean;
 };
@@ -44,7 +45,8 @@ export const ComponentShowcase = <
     groups,
     cols,
     rows,
-    align = 'center',
+    horizontalAlign = 'center',
+    verticalAlign = 'end',
     rowLegendPosition = 'start',
     fullWidth,
   } = props;
@@ -109,18 +111,13 @@ export const ComponentShowcase = <
         </div>
       ) : null}
 
-      <div {...sxf('cols', 'gap$md', 'itemsStart', fullWidth && 'flex')}>
+      <div {...sxf('cols', 'gap$md', 'align$start', fullWidth && 'flex')}>
         {nonEmptyCols.map((col, colIndex) => (
           <div {...sxf('groupRows', fullWidth && 'flex')} key={colIndex}>
             {nonEmptyGroups.map((group, groupIndex) => (
               <div
                 key={`${colIndex}-${groupIndex}`}
-                {...sxf(
-                  'rows',
-                  'gap$lg',
-                  align === 'start' ? 'itemsStart' : 'itemsCenter',
-                  'flex',
-                )}
+                {...sxf('rows', 'gap$lg', `align$${horizontalAlign}`, 'flex')}
               >
                 {shouldShowColLegends && groupIndex === 0 ? (
                   <div {...sxf('legend', !col.legend && 'invisible')}>
@@ -152,7 +149,14 @@ export const ComponentShowcase = <
                         <div {...sxf('legend')}>{row.legend}</div>
                       ) : null}
 
-                      <div {...sxf('flex', 'cols', 'gap$md', 'itemsEnd')}>
+                      <div
+                        {...sxf(
+                          'flex',
+                          'cols',
+                          'gap$md',
+                          `align$${verticalAlign}`,
+                        )}
+                      >
                         <Component
                           {...componentProps}
                           {...group.props}

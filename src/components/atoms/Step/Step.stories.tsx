@@ -17,7 +17,6 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   index: 1,
-  nextConnector: null,
 } satisfies Partial<IStepProps>;
 
 const rows: Array<IComponentPresentation<IStepProps>> = [
@@ -71,13 +70,13 @@ const cols: Array<IComponentPresentation<IStepProps>> = [
 
 const groups: Array<IComponentPresentation<IStepProps>> = [
   {
-    legend: 'Horizontal',
+    legend: 'Right label',
     props: {
       labelPosition: 'right',
     },
   },
   {
-    legend: 'Vertical',
+    legend: 'Bottom label',
     props: {
       labelPosition: 'bottom',
     },

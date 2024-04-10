@@ -12,24 +12,33 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
     host: {
       display: 'flex',
       flexGrow: 1,
-      position: 'relative',
+      borderRadius: 'inherit',
     },
-    host$horizontal: {
-      alignItems: 'center',
+    host$horizontal$rightLabel: {
+      flexDirection: 'row',
     },
-    host$vertical: {
+    host$horizontal$bottomLabel: {
+      flexDirection: 'row',
+      marginTop: `calc(-1 * ${vars.thickness} / 2 + ${stepVars.topSpace} + ${stepVars.bulletPointSize} / 2)`,
+    },
+    host$vertical$rightLabel: {
       flexDirection: 'column',
-      marginLeft: `calc(${stepVars.leadingSpace} + ${stepVars.bulletPointSize} / 2 - ${vars.thickness} / 2)`,
+      marginLeft: `calc(-1 * ${vars.thickness} / 2 + ${stepVars.leadingSpace} + ${stepVars.bulletPointSize} / 2)`,
     },
-    host$bottomLabel: {
-      position: 'absolute',
-      top: `calc(${stepVars.leadingSpace} + ${stepVars.bulletPointSize} / 2 - ${vars.thickness} / 2)`,
-      left: `calc(50% + ${stepVars.leadingSpace} + ${stepVars.bulletPointSize} / 2)`,
-      right: `calc(-50% + ${stepVars.leadingSpace} + ${stepVars.bulletPointSize} / 2)`,
+    host$vertical$bottomLabel: {
+      // This style is never applied because the vertical orientation does not
+      // support bottom label.
     },
-    host$rightLabel: {},
+    container: {
+      borderRadius: 'inherit',
+    },
     container$horizontal: {
       display: 'flex',
+      flexGrow: 1,
+    },
+    container$vertical: {
+      display: 'flex',
+      flexDirection: 'column',
       flexGrow: 1,
     },
     container$horizontal$topText: {
@@ -51,26 +60,41 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
       display: 'flex',
       flexGrow: 1,
       backgroundColor: vars.color,
-      borderRadius: vars.shape,
+      borderRadius: 'inherit',
     },
     line$completed: {
       backgroundColor: vars.color$completed,
     },
     line$horizontal: {
-      minWidth: vars.minLength$horizontal,
-      height: vars.thickness,
+      minHeight: vars.thickness,
     },
     line$vertical: {
-      minHeight: vars.minLength$vertical,
       width: vars.thickness,
     },
-    line$hasContent$horizontal: {
+    line$horizontal$rightLabel$hasText: {
+      marginLeft: `calc(max(0px, ${stepVars.trailingSpace} - ${stepVars.bulletPointSpace}))`,
+    },
+    line$horizontal$cutStart: {
       borderTopLeftRadius: 0,
       borderBottomLeftRadius: 0,
     },
-    line$hasContent$vertical: {
+    line$horizontal$cutEnd: {
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+    },
+    line$vertical$cutStart: {
       borderTopLeftRadius: 0,
       borderTopRightRadius: 0,
+    },
+    line$vertical$cutEnd: {
+      borderBottomLeftRadius: 0,
+      borderBottomRightRadius: 0,
+    },
+    line$horizontal$minLength: {
+      minWidth: stepVars.connectorMinLength,
+    },
+    line$vertical$minLength: {
+      minHeight: stepVars.connectorMinLength,
     },
     text: {
       color: vars.textColor,
@@ -84,7 +108,6 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
     text$completed: {
       color: vars.textColor$completed,
     },
-    text$horizontal: {},
     text$vertical: {
       paddingTop: vars.textSpace$vertical,
       paddingBottom: vars.textSpace$vertical,

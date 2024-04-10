@@ -20,14 +20,17 @@ export const styles: MapNamespaces<IComponentShowcaseStyles> =
     justifyEnd: {
       justifyContent: 'flex-end',
     },
-    itemsStart: {
+    align$start: {
       alignItems: 'start',
     },
-    itemsCenter: {
+    align$center: {
       alignItems: 'center',
     },
-    itemsEnd: {
+    align$end: {
       alignItems: 'end',
+    },
+    align$stretch: {
+      alignItems: 'stretch',
     },
     textRight: {
       textAlign: 'right',

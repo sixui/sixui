@@ -10,41 +10,47 @@ import { componentVars as stepStateVars } from './Step.states.stylex';
 
 type IStepStyles = IStyles<IStepStyleKey>;
 export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
-  host: {},
-  host$rightLabel: {},
-  host$bottomLabel: {
+  host: {
     position: 'relative',
+  },
+  host$bottomLabel: {
     display: 'flex',
     flexGrow: 1,
     justifyContent: 'center',
   },
-  container: {
-    borderRadius: stepStateVars.containerShape,
-  },
-  container$rightLabel: {
-    // eslint-disable-next-line @stylexjs/valid-styles
-    [stepStateVars.containerShape]: vars.containerShape$horizontal,
-  },
-  container$bottomLabel: {
-    // eslint-disable-next-line @stylexjs/valid-styles
-    [stepStateVars.containerShape]: vars.containerShape$vertical,
-  },
-  inner: {
+  buttonContainer: {
+    position: 'relative',
     display: 'flex',
+    flexDirection: 'row',
     alignItems: 'center',
-    gap: vars.gap,
+    minHeight: `calc(${vars.topSpace} + ${vars.bulletPointSize} + ${vars.bottomSpace} + 2 * ${vars.bulletPointSpace})`,
+  },
+  buttonContainer$bottomLabel: {
+    flexDirection: 'column',
+  },
+  button: {
+    borderRadius: stepStateVars.containerShape,
     paddingLeft: vars.leadingSpace,
     paddingRight: vars.trailingSpace,
     paddingTop: vars.topSpace,
     paddingBottom: vars.bottomSpace,
+
+    // eslint-disable-next-line @stylexjs/valid-styles
+    [stepStateVars.containerShape]: vars.containerShape,
   },
-  inner$rightLabel: {
+  buttonInner: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: vars.gap,
+  },
+  buttonInner$rightLabel: {
     flexDirection: 'row',
   },
-  inner$bottomLabel: {
+  buttonInner$bottomLabel: {
     flexDirection: 'column',
   },
   bulletPoint: {
+    position: 'relative',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -101,12 +107,9 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
   labelContainer: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
   },
-  labelContainer$rightLabel: {
-    alignItems: 'flex-start',
-  },
-  labelContainer$bottomLabel: {},
+  labelContainer$rightLabel: { alignItems: 'start' },
+  labelContainer$bottomLabel: { alignItems: 'center' },
   label: {
     color: vars.labelTextColor,
     fontFamily: vars.labelTextFont,
@@ -153,9 +156,6 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     display: 'flex',
     flexDirection: 'row',
   },
-  contentConnectorContainer: {
-    position: 'absolute',
-  },
   contentText: {
     color: vars.contentTextColor,
     fontFamily: vars.contentTextFont,
@@ -164,8 +164,66 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     lineHeight: vars.contentTextLineHeight,
     letterSpacing: vars.contentTextLetterSpacing,
 
-    paddingLeft: `calc(${vars.leadingSpace} + ${vars.bulletPointSize} + ${vars.gap})`, // iconSize + gap
+    paddingLeft: `calc(${vars.leadingSpace} + ${vars.bulletPointSize} + ${vars.gap})`,
     paddingRight: vars.trailingSpace,
+  },
+  extensibleConnectorContainer: {
+    display: 'flex',
+    flexGrow: 1,
+    position: 'relative',
+  },
+  extensibleConnectorContainer$vertical: {
+    alignItems: 'stretch',
+    minHeight: vars.connectorMinLength,
+  },
+  extensibleConnectorContainer$horizontal: {
+    alignItems: 'center',
+    minWidth: vars.connectorMinLength,
+  },
+  connectorContainer: {
+    display: 'flex',
+    flexGrow: 1,
+    flexBasis: 0,
+    position: 'relative',
+    borderRadius: 'inherit',
+  },
+  connectorContainer$top: {
+    position: 'absolute',
+    display: 'flex',
+    left: 0,
+    top: 0,
+    bottom: `calc(50% + ((${vars.topSpace} + ${vars.bulletPointSize} + ${vars.bottomSpace}) / 2 - (${vars.topSpace} + ${vars.bulletPointSize} / 2)) + ${vars.bulletPointSize} / 2 + ${vars.bulletPointSpace})`,
+    borderBottomLeftRadius: vars.connectorShape,
+    borderBottomRightRadius: vars.connectorShape,
+  },
+  connectorContainer$bottom: {
+    position: 'absolute',
+    display: 'flex',
+    left: 0,
+    top: `calc(50% - ((${vars.topSpace} + ${vars.bulletPointSize} + ${vars.bottomSpace}) / 2 - (${vars.topSpace} + ${vars.bulletPointSize} / 2)) + ${vars.bulletPointSize} / 2 + ${vars.bulletPointSpace})`,
+    bottom: 0,
+    borderTopLeftRadius: vars.connectorShape,
+    borderTopRightRadius: vars.connectorShape,
+  },
+  connectorContainer$content: {
+    display: 'flex',
+    width: 0,
+  },
+  connectorContainer$horizontal$rightLabel: {
+    flexDirection: 'row',
+    position: 'absolute',
+    transform: `translateY(calc(-1 * ((${vars.topSpace} + ${vars.bulletPointSize} + ${vars.bottomSpace}) / 2 - (${vars.topSpace} + ${vars.bulletPointSize} / 2))))`,
+    left: `calc(-1 * ${vars.trailingSpace} + ${vars.bulletPointSpace})`,
+    right: `calc(-1 * ${vars.leadingSpace} + ${vars.bulletPointSpace})`,
+    borderRadius: vars.connectorShape,
+  },
+  connectorContainer$horizontal$bottomLabel: {
+    flexDirection: 'row',
+    position: 'absolute',
+    top: 0,
+    left: `calc(50% - ((${vars.leadingSpace} + ${vars.bulletPointSize} + ${vars.trailingSpace}) / 2 - (${vars.leadingSpace} + ${vars.bulletPointSize} / 2)) + ${vars.bulletPointSize} / 2 + ${vars.bulletPointSpace})`,
+    right: `calc(-50% + ((${vars.leadingSpace} + ${vars.bulletPointSize} + ${vars.trailingSpace}) / 2 - (${vars.leadingSpace} + ${vars.bulletPointSize} / 2)) + ${vars.bulletPointSize} / 2 + ${vars.bulletPointSpace})`,
+    borderRadius: vars.connectorShape,
   },
 });
 

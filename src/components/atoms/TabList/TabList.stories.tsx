@@ -92,7 +92,7 @@ export const Primary: IStory = {
       component={(props) => <TabListDemo {...props} />}
       props={{ ...props, tab: Tab }}
       rows={rows}
-      align='start'
+      horizontalAlign='start'
     />
   ),
   args: defaultArgs,
@@ -104,7 +104,7 @@ export const Secondary: IStory = {
       component={(props) => <TabListDemo {...props} />}
       props={{ ...props, tab: Tab, variant: 'secondary' }}
       rows={rows}
-      align='start'
+      horizontalAlign='start'
     />
   ),
   args: defaultArgs,
