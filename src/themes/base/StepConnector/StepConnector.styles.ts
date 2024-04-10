@@ -72,7 +72,7 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
       width: vars.thickness,
     },
     line$horizontal$rightLabel$hasText: {
-      marginLeft: `calc(max(0px, ${stepVars.trailingSpace} - ${stepVars.bulletPointSpace}))`,
+      marginLeft: `calc(max(8px - ${stepVars.bulletPointSpace}, 0px))`,
     },
     line$horizontal$cutStart: {
       borderTopLeftRadius: 0,
@@ -107,6 +107,10 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
     },
     text$completed: {
       color: vars.textColor$completed,
+    },
+    text$horizontal: {
+      paddingLeft: vars.textSpace$horizontal,
+      paddingRight: vars.textSpace$horizontal,
     },
     text$vertical: {
       paddingTop: vars.textSpace$vertical,
