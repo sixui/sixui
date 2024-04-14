@@ -52,8 +52,6 @@ export const styles: MapNamespaces<IPaperStyles> = stylex.create<IPaperStyles>({
     zIndex: -1,
   },
   content: {
-    display: 'flex',
-    flexDirection: 'column',
     borderRadius: 'inherit',
     position: 'relative',
   },
