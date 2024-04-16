@@ -4,7 +4,10 @@ import type { IAny, IMaybeAsync } from '@/helpers/types';
 
 export type IRadioGroupContext = {
   name?: string;
-  onChange?: (value: string | undefined) => IMaybeAsync<IAny>;
+  onChange?: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    value: string | undefined,
+  ) => IMaybeAsync<IAny>;
   value?: string;
 };
 

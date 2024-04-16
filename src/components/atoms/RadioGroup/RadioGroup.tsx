@@ -81,9 +81,9 @@ export const RadioGroup: IRadioGroup = forwardRef(function RadioGroup<
     () =>
       ({
         name,
-        onChange(value: string | undefined) {
+        onChange(event, value: string | undefined) {
           setValue(value);
-          onChange?.(value);
+          onChange?.(event, value);
         },
         value,
       }) satisfies IRadioGroupContext,

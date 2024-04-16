@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 import { useState } from 'react';
 
+import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { RadioGroup, type IRadioGroupOwnProps } from './RadioGroup';
 import { Radio } from '../Radio';
@@ -22,13 +23,18 @@ const styles = stylex.create({
 
 const defaultArgs = {
   sx: styles.host,
+  onChange: (...args) => sbHandleEvent('change', args),
 } satisfies Partial<IRadioGroupOwnProps>;
 
 const ControlledRadioGroup: React.FC<IRadioGroupOwnProps> = (props) => {
   const [value, setValue] = useState<string | undefined>('2');
 
   return (
-    <RadioGroup {...props} value={value} onChange={setValue}>
+    <RadioGroup
+      {...props}
+      value={value}
+      onChange={(_, value) => setValue(value)}
+    >
       <Radio aria-label='First radio' value='1' />
       <Radio aria-label='Second radio' value='2' />
       <Radio aria-label='Third radio' value='3' />
