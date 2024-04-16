@@ -1,3 +1,15 @@
+# v0.0.167 (Tue Apr 16 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: RadioGroup forward ref ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.166 (Tue Apr 16 2024)
 
 #### ⚠️ Pushed to `main`
