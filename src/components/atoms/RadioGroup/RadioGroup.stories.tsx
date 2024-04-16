@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import stylex from '@stylexjs/stylex';
 import { useState } from 'react';
 
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
-import { type IRadioGroupProps, RadioGroup } from './RadioGroup';
+import { RadioGroup, type IRadioGroupOwnProps } from './RadioGroup';
 import { Radio } from '../Radio';
 
 const meta = {
@@ -11,9 +12,19 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {} satisfies Partial<IRadioGroupProps>;
+const styles = stylex.create({
+  host: {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: '1.5rem',
+  },
+});
 
-const ControlledRadioGroup: React.FC<IRadioGroupProps> = (props) => {
+const defaultArgs = {
+  sx: styles.host,
+} satisfies Partial<IRadioGroupOwnProps>;
+
+const ControlledRadioGroup: React.FC<IRadioGroupOwnProps> = (props) => {
   const [value, setValue] = useState<string | undefined>('2');
 
   return (
@@ -25,7 +36,7 @@ const ControlledRadioGroup: React.FC<IRadioGroupProps> = (props) => {
   );
 };
 
-const UncontrolledRadioGroup: React.FC<IRadioGroupProps> = (props) => (
+const UncontrolledRadioGroup: React.FC<IRadioGroupOwnProps> = (props) => (
   <RadioGroup {...props} defaultValue='2'>
     <Radio aria-label='First radio' value='1' />
     <Radio aria-label='Second radio' value='2' />

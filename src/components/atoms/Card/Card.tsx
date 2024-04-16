@@ -142,6 +142,7 @@ const Card: ICard = forwardRef(function Card<
           variantTheme?.vars,
           sx,
         )}
+        sx={sx}
         ref={handleRef}
         href={actionable && !dragged ? href : undefined}
         onClick={actionable && !dragged ? onClick : undefined}

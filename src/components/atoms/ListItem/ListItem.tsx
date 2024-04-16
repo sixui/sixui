@@ -132,6 +132,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
         theme.vars,
         sx,
       )}
+      sx={sx}
       role={role}
       type={type === 'button' ? 'button' : undefined}
       ref={handleRef}

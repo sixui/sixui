@@ -203,6 +203,7 @@ export const Tab: ITab = forwardRef(function Tab<
         variantTheme?.vars,
         sx,
       )}
+      sx={sx}
       ref={handleRef}
       role='tab'
       aria-controls={id}

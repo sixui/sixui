@@ -161,6 +161,7 @@ export const Dialog: IDialog = forwardRef(function Dialog<
     <Scrim open={open} onClick={handleScrimClick} onMouseDown={handleMouseDown}>
       <Component
         {...sxf('host', theme.vars, sx)}
+        sx={sx}
         ref={ref}
         aria-labelledby={headline ? headlineId : undefined}
         role={type === 'alert' ? 'alertdialog' : undefined}

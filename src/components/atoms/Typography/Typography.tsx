@@ -81,6 +81,7 @@ export const Typography: ITypography = forwardRef(function Typography<
         `${variant}$${size}`,
         sx,
       )}
+      sx={sx}
       ref={ref}
       {...other}
     >

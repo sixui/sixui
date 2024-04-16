@@ -26,7 +26,7 @@ const innerCircleGrowKeyframes = stylex.keyframes({
 type IRadioStyles = IStyles<IRadioStyleKey>;
 export const styles: MapNamespaces<IRadioStyles> = stylex.create<IRadioStyles>({
   host: {
-    display: 'inline',
+    display: 'block',
     width: vars.iconSize,
     height: vars.iconSize,
     outline: 'none',
