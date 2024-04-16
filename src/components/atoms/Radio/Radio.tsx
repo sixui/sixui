@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useMemo, useRef } from 'react';
+import { forwardRef, useMemo, useRef } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -27,7 +27,6 @@ import {
   FocusRing,
   type IFocusRingStyleKey,
 } from '@/components/utils/FocusRing';
-import { useRadioGroupContext } from '../RadioGroup/useRadioGroupContext';
 import { useForkRef } from '@/hooks/useForkRef';
 
 // https://github.com/material-components/material-web/blob/main/radio/internal/radio.ts
@@ -72,8 +71,8 @@ export const Radio: IRadio = forwardRef(function Radio<
     onChange,
     disabled,
     value,
-    checked: checkedProp,
-    name: nameProp,
+    checked,
+    name,
     ...other
   } = props as IWithAsProp<IRadioOwnProps>;
 
@@ -97,32 +96,9 @@ export const Radio: IRadio = forwardRef(function Radio<
     [stylesCombinator, visualState],
   );
 
-  const radioGroupContext = useRadioGroupContext();
-
   // Unique maskId is required because of a Safari bug that fail to persist
   // reference to the mask. This should be removed once the bug is fixed.
   const maskId = useId();
-
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(
-    (event) => {
-      Promise.resolve(
-        radioGroupContext
-          ? radioGroupContext?.onChange?.(value)
-          : onChange?.(event, event.target.checked),
-      ).catch((error: Error) => {
-        throw error;
-      });
-    },
-    [onChange, radioGroupContext, value],
-  );
-
-  const name = radioGroupContext?.name ?? nameProp;
-  const checked = !disabled
-    ? radioGroupContext
-      ? radioGroupContext.value !== undefined &&
-        radioGroupContext.value === value
-      : checkedProp
-    : false;
 
   return (
     <div {...sxf('host', disabled && 'host$disabled', theme.vars, sx)}>
@@ -176,7 +152,7 @@ export const Radio: IRadio = forwardRef(function Radio<
           name={name}
           type='radio'
           checked={checked}
-          onChange={handleChange}
+          onChange={onChange}
           disabled={disabled}
           value={value}
           {...other}
