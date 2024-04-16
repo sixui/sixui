@@ -43,6 +43,9 @@ export * from './components/atoms/Tabs';
 export * from './components/atoms/TextField';
 export * from './components/atoms/Typography';
 
+// molecules
+export * from './components/molecules/ElementWithLabel';
+
 // utils
 export * from './components/utils/Anchored';
 export * from './components/utils/ComponentShowcase';
