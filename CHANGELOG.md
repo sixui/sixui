@@ -1,3 +1,15 @@
+# v0.0.158 (Tue Apr 16 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: loading Checkbox, switchable Disclosure and DisclosureButton ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.157 (Sun Apr 14 2024)
 
 #### ⚠️ Pushed to `main`
