@@ -47,7 +47,10 @@ export type IRadioOwnProps = IContainerProps<IRadioStyleKey> &
     disabled?: boolean;
     checked?: boolean;
     value?: string;
-    onChange?: (checked: boolean) => IMaybeAsync<IAny>;
+    onChange?: (
+      event: React.ChangeEvent<HTMLInputElement>,
+      checked: boolean,
+    ) => IMaybeAsync<IAny>;
   };
 
 export type IRadioProps<TRoot extends React.ElementType = typeof DEFAULT_TAG> =
@@ -105,7 +108,7 @@ export const Radio: IRadio = forwardRef(function Radio<
       Promise.resolve(
         radioGroupContext
           ? radioGroupContext?.onChange?.(value)
-          : onChange?.(event.target.checked),
+          : onChange?.(event, event.target.checked),
       ).catch((error: Error) => {
         throw error;
       });
