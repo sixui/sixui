@@ -29,6 +29,7 @@ export * from './components/atoms/MenuList';
 export * from './components/atoms/Paper';
 export * from './components/atoms/Placeholder';
 export * from './components/atoms/Radio';
+export * from './components/atoms/RadioGroup';
 export * from './components/atoms/Scrim';
 export * from './components/atoms/Select';
 export * from './components/atoms/Step';
