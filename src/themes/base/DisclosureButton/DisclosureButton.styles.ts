@@ -111,7 +111,7 @@ export const styles: MapNamespaces<IDisclosureButtonStyles> =
     },
     button$checkable$switch: {
       // eslint-disable-next-line @stylexjs/valid-styles
-      [listItemVars.leadingSpace]: 'calc(16px + 52px + 12px)',
+      [listItemVars.leadingSpace]: 'calc(16px + 52px + 16px)',
     },
     button$unchecked: {
       // eslint-disable-next-line @stylexjs/valid-styles

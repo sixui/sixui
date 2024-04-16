@@ -21,7 +21,7 @@ const vars: Partial<IStyleVars<IBadgeStyleVarKey>> = {
   containerColor$disabled: colorRolesVars.onSurface,
   containerOpacity$disabled: stateVars.containerOpacity$disabled,
 
-  // label
+  // labelText
   labelTextColor: colorRolesVars.onError,
   labelTextFont: typescaleVars.labelFont$sm,
   labelTextLineHeight: typescaleVars.labelLineHeight$sm,

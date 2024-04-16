@@ -132,6 +132,10 @@ import type {
   IStepConnectorStyleKey,
   IStepConnectorStyleVarKey,
 } from '@/components/atoms/StepConnector';
+import type {
+  IElementWithLabelStyleKey,
+  IElementWithLabelStyleVarKey,
+} from '@/components/molecules/ElementWithLabel';
 
 export type ITemplateTheme = {
   vars?: IStyleVarsTheme<ITemplateStyleVarKey>;
@@ -412,6 +416,10 @@ export type ITheme = {
     StepConnector: {
       vars?: IStyleVarsTheme<IStepConnectorStyleVarKey>;
       styles?: ICompiledStyles<IStepConnectorStyleKey>;
+    };
+    ElementWithLabel: {
+      vars?: IStyleVarsTheme<IElementWithLabelStyleVarKey>;
+      styles?: ICompiledStyles<IElementWithLabelStyleKey>;
     };
   };
 };
