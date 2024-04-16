@@ -64,7 +64,7 @@ const ControlledCheckbox: React.FC<
       checked={checked}
       onChange={(_, checked) => {
         setIndeterminate(false);
-        setChecked(!checked);
+        setChecked(checked);
       }}
       indeterminate={indeterminate}
     />

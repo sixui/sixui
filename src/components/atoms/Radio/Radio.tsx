@@ -1,4 +1,4 @@
-import { forwardRef, useMemo, useRef } from 'react';
+import { forwardRef, useMemo, useRef, useCallback } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -17,6 +17,7 @@ import type { IRadioStyleKey, IRadioStyleVarKey } from './Radio.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useControlled } from '@/hooks/useControlled';
 import { useId } from '@/hooks/useId';
 import { type IVisualState, useVisualState } from '@/hooks/useVisualState';
 import {
@@ -45,6 +46,7 @@ export type IRadioOwnProps = IContainerProps<IRadioStyleKey> &
     required?: boolean;
     disabled?: boolean;
     checked?: boolean;
+    defaultChecked?: boolean;
     value?: string;
     onChange?: (
       event: React.ChangeEvent<HTMLInputElement>,
@@ -71,7 +73,8 @@ export const Radio: IRadio = forwardRef(function Radio<
     onChange,
     disabled,
     value,
-    checked,
+    checked: checkedProp,
+    defaultChecked,
     name,
     ...other
   } = props as IWithAsProp<IRadioOwnProps>;
@@ -99,6 +102,23 @@ export const Radio: IRadio = forwardRef(function Radio<
   // Unique maskId is required because of a Safari bug that fail to persist
   // reference to the mask. This should be removed once the bug is fixed.
   const maskId = useId();
+
+  const [checked, setChecked] = useControlled({
+    controlled: checkedProp,
+    default: !!defaultChecked,
+    name: 'Radio',
+  });
+
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(
+    (event) => {
+      Promise.resolve(onChange?.(event, event.target.checked))
+        .finally(() => setChecked(!event.target.checked))
+        .catch((error: Error) => {
+          throw error;
+        });
+    },
+    [onChange, setChecked],
+  );
 
   return (
     <div {...sxf('host', disabled && 'host$disabled', theme.vars, sx)}>
@@ -152,7 +172,7 @@ export const Radio: IRadio = forwardRef(function Radio<
           name={name}
           type='radio'
           checked={checked}
-          onChange={onChange}
+          onChange={handleChange}
           disabled={disabled}
           value={value}
           {...other}
