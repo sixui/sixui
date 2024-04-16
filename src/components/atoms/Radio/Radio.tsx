@@ -1,4 +1,4 @@
-import { forwardRef, useMemo, useRef, useCallback } from 'react';
+import { forwardRef, useCallback, useMemo, useRef } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -17,7 +17,6 @@ import type { IRadioStyleKey, IRadioStyleVarKey } from './Radio.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { useControlled } from '@/hooks/useControlled';
 import { useId } from '@/hooks/useId';
 import { type IVisualState, useVisualState } from '@/hooks/useVisualState';
 import {
@@ -28,6 +27,7 @@ import {
   FocusRing,
   type IFocusRingStyleKey,
 } from '@/components/utils/FocusRing';
+import { useRadioGroupContext } from '../RadioGroup/useRadioGroupContext';
 import { useForkRef } from '@/hooks/useForkRef';
 
 // https://github.com/material-components/material-web/blob/main/radio/internal/radio.ts
@@ -46,12 +46,8 @@ export type IRadioOwnProps = IContainerProps<IRadioStyleKey> &
     required?: boolean;
     disabled?: boolean;
     checked?: boolean;
-    defaultChecked?: boolean;
     value?: string;
-    onChange?: (
-      event: React.ChangeEvent<HTMLInputElement>,
-      checked: boolean,
-    ) => IMaybeAsync<IAny>;
+    onChange?: (checked: boolean) => IMaybeAsync<IAny>;
   };
 
 export type IRadioProps<TRoot extends React.ElementType = typeof DEFAULT_TAG> =
@@ -74,8 +70,7 @@ export const Radio: IRadio = forwardRef(function Radio<
     disabled,
     value,
     checked: checkedProp,
-    defaultChecked,
-    name,
+    name: nameProp,
     ...other
   } = props as IWithAsProp<IRadioOwnProps>;
 
@@ -99,26 +94,32 @@ export const Radio: IRadio = forwardRef(function Radio<
     [stylesCombinator, visualState],
   );
 
+  const radioGroupContext = useRadioGroupContext();
+
   // Unique maskId is required because of a Safari bug that fail to persist
   // reference to the mask. This should be removed once the bug is fixed.
   const maskId = useId();
 
-  const [checked, setChecked] = useControlled({
-    controlled: checkedProp,
-    default: !!defaultChecked,
-    name: 'Radio',
-  });
-
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(
     (event) => {
-      Promise.resolve(onChange?.(event, event.target.checked))
-        .finally(() => setChecked(!event.target.checked))
-        .catch((error: Error) => {
-          throw error;
-        });
+      Promise.resolve(
+        radioGroupContext
+          ? radioGroupContext?.onChange?.(value)
+          : onChange?.(event.target.checked),
+      ).catch((error: Error) => {
+        throw error;
+      });
     },
-    [onChange, setChecked],
+    [onChange, radioGroupContext, value],
   );
+
+  const name = radioGroupContext?.name ?? nameProp;
+  const checked = !disabled
+    ? radioGroupContext
+      ? radioGroupContext.value !== undefined &&
+        radioGroupContext.value === value
+      : checkedProp
+    : false;
 
   return (
     <div {...sxf('host', disabled && 'host$disabled', theme.vars, sx)}>
@@ -169,8 +170,8 @@ export const Radio: IRadio = forwardRef(function Radio<
         <Component
           {...sxf('input')}
           ref={handleRef}
-          type='radio'
           name={name}
+          type='radio'
           checked={checked}
           onChange={handleChange}
           disabled={disabled}
