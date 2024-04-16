@@ -1,3 +1,15 @@
+# v0.0.161 (Tue Apr 16 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: try to fix Radio with react-hook-form ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.160 (Tue Apr 16 2024)
 
 #### ⚠️ Pushed to `main`
