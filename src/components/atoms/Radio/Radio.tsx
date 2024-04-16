@@ -169,8 +169,8 @@ export const Radio: IRadio = forwardRef(function Radio<
         <Component
           {...sxf('input')}
           ref={handleRef}
-          name={name}
           type='radio'
+          name={name}
           checked={checked}
           onChange={handleChange}
           disabled={disabled}

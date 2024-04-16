@@ -55,6 +55,7 @@ Components
 - [x] Dialog
 - [x] Disclosure
 - [x] Divider
+- [x] ElementWithLabel
 - [x] FAB
 - [x] Field
 - [x] Field Base
@@ -67,7 +68,6 @@ Components
 - [x] Paper
 - [x] Placeholder
 - [x] Radio
-- [x] RadioGroup
 - [x] Scrim
 - [x] Select
 - [x] Stepper

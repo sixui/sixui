@@ -30,7 +30,7 @@ const states: Array<IComponentPresentation<IRadioOwnProps>> = [
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const RadioWithState: React.FC<Omit<IRadioProps, 'onChange' | 'as'>> = (
+const ControlledRadio: React.FC<Omit<IRadioProps, 'onChange' | 'as'>> = (
   props,
 ) => {
   const [value, setValue] = useState('2');
@@ -65,9 +65,9 @@ const RadioWithState: React.FC<Omit<IRadioProps, 'onChange' | 'as'>> = (
   );
 };
 
-export const Demo: IStory = {
+export const Controlled: IStory = {
   render: (props) => (
-    <ComponentShowcase component={RadioWithState} props={props} />
+    <ComponentShowcase component={ControlledRadio} props={props} />
   ),
   args: defaultArgs,
 };
