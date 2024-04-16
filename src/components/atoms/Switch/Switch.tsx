@@ -55,12 +55,8 @@ export type ISwitchOwnProps = IContainerProps<ISwitchStyleKey> &
     disabled?: boolean;
     required?: boolean;
 
-    /**
-     * Puts the switch in the selected state.
-     */
-    selected?: boolean;
-
-    defaultSelected?: boolean;
+    checked?: boolean;
+    defaultChecked?: boolean;
 
     /**
      * Shows both the selected and deselected icons.
@@ -100,8 +96,8 @@ export const Switch: ISwitch = forwardRef(function Switch<
     sx,
     innerStyles,
     visualState: visualStateProp,
-    selected: selectedProp,
-    defaultSelected,
+    checked: checkedProp,
+    defaultChecked,
     disabled: disabledProp,
     loading: loadingProp,
     icons,
@@ -139,8 +135,8 @@ export const Switch: ISwitch = forwardRef(function Switch<
   );
 
   const [selected, setSelected] = useControlled({
-    controlled: selectedProp,
-    default: !!defaultSelected,
+    controlled: checkedProp,
+    default: !!defaultChecked,
     name: 'Switch',
   });
 

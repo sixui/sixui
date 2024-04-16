@@ -9,6 +9,8 @@ export type IDisclosureContext = Pick<
   expanded?: boolean;
   setExpanded?: React.Dispatch<React.SetStateAction<boolean | undefined>>;
   checkable?: boolean;
+  withSwitch?: boolean;
+  loading?: boolean;
   disabled?: boolean;
 };
 
@@ -25,6 +27,8 @@ export const disclosureInitialContext: IDisclosureContext = {
   expanded: false,
   setExpanded: stub,
   checkable: false,
+  withSwitch: false,
+  loading: false,
   disabled: false,
 };
 

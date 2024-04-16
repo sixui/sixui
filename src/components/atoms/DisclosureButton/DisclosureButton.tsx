@@ -1,7 +1,11 @@
 import { forwardRef, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
-import type { IContainerProps } from '@/helpers/types';
+import type {
+  ICompiledStyles,
+  IContainerProps,
+  IZeroOrMore,
+} from '@/helpers/types';
 import type {
   IDisclosureButtonStyleKey,
   IDisclosureButtonStyleVarKey,
@@ -9,14 +13,27 @@ import type {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { IListItemProps, ListItem } from '@/components/atoms/ListItem';
+import { ListItem, type IListItemProps } from '@/components/atoms/ListItem';
 import { ReactComponent as ChevronDown } from '@/assets/ChevronDown.svg';
-import { Checkbox } from '@/components/atoms/Checkbox';
+import { Checkbox, type ICheckboxStyleKey } from '@/components/atoms/Checkbox';
+import { Switch, type ISwitchStyleKey } from '@/components/atoms/Switch';
 import { useDisclosureContext } from '@/components/atoms/Disclosure/useDisclosureContext';
+import {
+  IndeterminateCircularProgressIndicator,
+  type ICircularProgressIndicatorStyleKey,
+} from '@/components/atoms/CircularProgressIndicator';
 
 export type IDisclosureButtonProps =
   IContainerProps<IDisclosureButtonStyleKey> &
-    Omit<IListItemProps, 'children'> & {
+    Omit<IListItemProps, 'children' | 'innerStyles'> & {
+      innerStyles?: {
+        listItem?: IListItemProps['innerStyles'];
+        checkbox?: IZeroOrMore<ICompiledStyles<ICheckboxStyleKey>>;
+        switch?: IZeroOrMore<ICompiledStyles<ISwitchStyleKey>>;
+        circularProgressIndicator?: IZeroOrMore<
+          ICompiledStyles<ICircularProgressIndicatorStyleKey>
+        >;
+      };
       collapseIcon?: React.ReactNode;
       expandIcon?: React.ReactNode;
       children: React.ReactNode;
@@ -83,16 +100,30 @@ export const DisclosureButton = forwardRef<
           stylesCombinator(
             'button',
             context.expanded && 'button$expanded',
-            context.checkable && 'button$checkable',
+            context.checkable &&
+              (context.withSwitch
+                ? 'button$checkable$switch'
+                : 'button$checkable'),
             context.checkable && !context.checked && 'button$unchecked',
           ),
           sx,
           theme.vars,
         ]}
         innerStyles={{
-          item: [theme.itemStyles, ...asArray(innerStyles?.item)],
+          // ...innerStyles?.listItem,
+          item: [theme.itemStyles, ...asArray(innerStyles?.listItem?.item)],
         }}
-        trailingIcon={icon}
+        end={
+          !context.checkable && context.loading ? (
+            <IndeterminateCircularProgressIndicator
+              styles={[
+                theme.circularProgressIndicatorStyles,
+                ...asArray(innerStyles?.circularProgressIndicator),
+              ]}
+            />
+          ) : undefined
+        }
+        trailingIcon={!context.checkable && context.loading ? undefined : icon}
         disabled={disabled ?? (context.checkable && !context.checked)}
         onClick={() => context.setExpanded?.(!context.expanded)}
       >
@@ -101,14 +132,27 @@ export const DisclosureButton = forwardRef<
 
       {context.checkable ? (
         <div {...sxf('checkboxContainer')}>
-          <Checkbox
-            defaultChecked={defaultChecked}
-            checked={context.checked}
-            onChange={handleCheckboxChange}
-            disabled={disabled}
-          />
+          {context.withSwitch ? (
+            <Switch
+              styles={innerStyles?.switch}
+              defaultChecked={defaultChecked}
+              checked={context.checked}
+              onChange={handleCheckboxChange}
+              disabled={disabled}
+              loading={context.loading}
+            />
+          ) : (
+            <Checkbox
+              styles={innerStyles?.checkbox}
+              defaultChecked={defaultChecked}
+              checked={context.checked}
+              onChange={handleCheckboxChange}
+              disabled={disabled}
+              loading={context.loading}
+            />
+          )}
         </div>
-      ) : undefined}
+      ) : null}
     </div>
   );
 });

@@ -20,7 +20,7 @@ import type {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { type IVisualState, useVisualState } from '@/hooks/useVisualState';
+import { useVisualState, type IVisualState } from '@/hooks/useVisualState';
 import { usePrevious } from '@/hooks/usePrevious';
 import { useControlled } from '@/hooks/useControlled';
 import {
@@ -32,6 +32,10 @@ import {
   type IFocusRingStyleKey,
 } from '@/components/utils/FocusRing';
 import { useForkRef } from '@/hooks/useForkRef';
+import {
+  IndeterminateCircularProgressIndicator,
+  type ICircularProgressIndicatorStyleKey,
+} from '@/components/atoms/CircularProgressIndicator';
 
 // https://github.com/material-components/material-web/blob/main/checkbox/internal/checkbox.ts
 
@@ -41,19 +45,23 @@ export type ICheckboxOwnProps = IContainerProps<ICheckboxStyleKey> & {
   innerStyles?: {
     stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
     focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+    circularProgressIndicator?: IZeroOrMore<
+      ICompiledStyles<ICircularProgressIndicatorStyleKey>
+    >;
   };
   visualState?: IVisualState;
   required?: boolean;
   disabled?: boolean;
-  checked?: boolean;
   id?: string;
   name?: string;
+  checked?: boolean;
   defaultChecked?: boolean;
   indeterminate?: boolean;
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
     checked: boolean,
   ) => IMaybeAsync<IAny>;
+  loading?: boolean;
 };
 
 export type ICheckboxProps<
@@ -78,6 +86,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
     indeterminate,
     checked: checkedProp,
     defaultChecked,
+    loading,
     ...other
   } = props as IWithAsProp<ICheckboxOwnProps>;
 
@@ -146,100 +155,112 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
         sx,
       )}
     >
-      <div {...sxf('container')}>
-        <Component
-          {...sxf('input')}
-          ref={handleRef}
-          type='checkbox'
-          aria-checked={indeterminate ? 'mixed' : undefined}
-          disabled={disabled}
-          checked={checkedValue}
-          onChange={handleChange}
-          onClick={handleClick}
-          {...other}
+      {loading ? (
+        <IndeterminateCircularProgressIndicator
+          styles={[
+            theme.circularProgressIndicatorStyles,
+            ...asArray(innerStyles?.circularProgressIndicator),
+          ]}
         />
+      ) : (
+        <div {...sxf('container')}>
+          <Component
+            {...sxf('input')}
+            ref={handleRef}
+            type='checkbox'
+            aria-checked={indeterminate ? 'mixed' : undefined}
+            disabled={disabled}
+            checked={checkedValue}
+            onChange={handleChange}
+            onClick={handleClick}
+            {...other}
+          />
 
-        <div
-          {...sxf(
-            'overlay',
-            'outline',
-            disabled &&
-              (selected ? 'outline$disabled$selected' : 'outline$disabled'),
-          )}
-        />
-        <div
-          {...sxf(
-            'overlay',
-            'background',
-            'backgroundAndIcon',
-            selected && 'backgroundAndIcon$selected',
-            disabled &&
-              (selected
-                ? 'background$disabled$selected'
-                : 'background$disabled'),
-            prevDisabled && 'background$prevDisabled',
-          )}
-        />
-
-        <StateLayer
-          for={actionRef}
-          styles={[theme.stateLayerStyles, ...asArray(innerStyles?.stateLayer)]}
-          disabled={disabled}
-          visualState={visualState}
-        />
-        <FocusRing
-          for={actionRef}
-          styles={[theme.focusRingStyles, ...asArray(innerStyles?.focusRing)]}
-          visualState={visualState}
-        />
-
-        <svg
-          {...sxf(
-            'overlay',
-            'icon',
-            disabled && 'icon$disabled',
-            prevDisabled && 'icon$prevDisabled',
-            'backgroundAndIcon',
-            selected && 'backgroundAndIcon$selected',
-          )}
-          viewBox='0 0 18 18'
-          aria-hidden
-        >
-          <rect
+          <div
             {...sxf(
-              'mark',
-              'mark$short',
-              selected && 'mark$selected',
-              disabled && 'mark$disabled',
-              prevDisabled && 'mark$prevDisabled',
-              prevUnselected && 'mark$prevUnselected',
-              (checked || (prevChecked && unselected)) && [
-                'checkMark',
-                'checkMark$short',
-              ],
-              (indeterminate || (prevIndeterminate && unselected)) &&
-                'indeterminate',
+              'overlay',
+              'outline',
+              disabled &&
+                (selected ? 'outline$disabled$selected' : 'outline$disabled'),
             )}
           />
-          <rect
+          <div
             {...sxf(
-              'mark',
-              'mark$long',
-              selected && 'mark$selected',
-              disabled && 'mark$disabled',
-              prevDisabled && 'mark$prevDisabled',
-              prevUnselected && 'mark$prevUnselected',
-              (checked || (prevChecked && unselected)) && [
-                'checkMark',
-                'checkMark$long',
-              ],
-              (indeterminate || (prevIndeterminate && unselected)) &&
-                'indeterminate',
-              prevUnselected && checked && 'mark$long$prevUnselected$checked',
+              'overlay',
+              'background',
+              'backgroundAndIcon',
+              selected && 'backgroundAndIcon$selected',
+              disabled &&
+                (selected
+                  ? 'background$disabled$selected'
+                  : 'background$disabled'),
+              prevDisabled && 'background$prevDisabled',
             )}
           />
-        </svg>
-      </div>
+
+          <StateLayer
+            for={actionRef}
+            styles={[
+              theme.stateLayerStyles,
+              ...asArray(innerStyles?.stateLayer),
+            ]}
+            disabled={disabled}
+            visualState={visualState}
+          />
+          <FocusRing
+            for={actionRef}
+            styles={[theme.focusRingStyles, ...asArray(innerStyles?.focusRing)]}
+            visualState={visualState}
+          />
+
+          <svg
+            {...sxf(
+              'overlay',
+              'icon',
+              disabled && 'icon$disabled',
+              prevDisabled && 'icon$prevDisabled',
+              'backgroundAndIcon',
+              selected && 'backgroundAndIcon$selected',
+            )}
+            viewBox='0 0 18 18'
+            aria-hidden
+          >
+            <rect
+              {...sxf(
+                'mark',
+                'mark$short',
+                selected && 'mark$selected',
+                disabled && 'mark$disabled',
+                prevDisabled && 'mark$prevDisabled',
+                prevUnselected && 'mark$prevUnselected',
+                (checked || (prevChecked && unselected)) && [
+                  'checkMark',
+                  'checkMark$short',
+                ],
+                (indeterminate || (prevIndeterminate && unselected)) &&
+                  'indeterminate',
+              )}
+            />
+            <rect
+              {...sxf(
+                'mark',
+                'mark$long',
+                selected && 'mark$selected',
+                disabled && 'mark$disabled',
+                prevDisabled && 'mark$prevDisabled',
+                prevUnselected && 'mark$prevUnselected',
+                (checked || (prevChecked && unselected)) && [
+                  'checkMark',
+                  'checkMark$long',
+                ],
+                (indeterminate || (prevIndeterminate && unselected)) &&
+                  'indeterminate',
+                prevUnselected && checked && 'mark$long$prevUnselected$checked',
+              )}
+            />
+          </svg>
+        </div>
+      )}
     </div>
   );
 });

@@ -3,6 +3,7 @@ export type IDisclosureButtonStyleKey =
   | 'button'
   | 'button$expanded'
   | 'button$checkable'
+  | 'button$checkable$switch'
   | 'button$unchecked'
   | 'icon$expanded'
   | 'checkboxContainer';

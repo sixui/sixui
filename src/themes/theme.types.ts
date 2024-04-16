@@ -295,6 +295,7 @@ export type ITheme = {
       styles?: ICompiledStyles<ICheckboxStyleKey>;
       stateLayerStyles: ICompiledStyles<IStateLayerStyleKey>;
       focusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
+      circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
     };
     Item: {
       vars?: IStyleVarsTheme<IItemStyleVarKey>;
@@ -394,6 +395,7 @@ export type ITheme = {
       vars?: IStyleVarsTheme<IDisclosureButtonStyleVarKey>;
       styles?: ICompiledStyles<IDisclosureButtonStyleKey>;
       itemStyles?: ICompiledStyles<IItemStyleKey>;
+      circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
     };
     DisclosurePanel: {
       vars?: IStyleVarsTheme<IDisclosurePanelStyleVarKey>;

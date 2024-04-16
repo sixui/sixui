@@ -39,6 +39,14 @@ export const Disabled: IStory = {
   },
 };
 
+export const Loading: IStory = {
+  render: (props) => <Disclosure {...props} />,
+  args: {
+    ...defaultArgs,
+    loading: true,
+  },
+};
+
 export const DefaultExpanded: IStory = {
   render: (props) => <Disclosure {...props} />,
   args: {
@@ -95,6 +103,16 @@ export const Checkable: IStory = {
   },
 };
 
+export const CheckableLoading: IStory = {
+  render: (props) => <Disclosure {...props} />,
+  args: {
+    ...defaultArgs,
+    checkable: true,
+    loading: true,
+    onChange: (...args) => sbHandleEvent('change', args),
+  },
+};
+
 export const DefaultChecked: IStory = {
   render: (props) => <Disclosure {...props} />,
   args: {
@@ -110,6 +128,49 @@ export const CheckableDisabled: IStory = {
   args: {
     ...defaultArgs,
     checkable: true,
+    onChange: (...args) => sbHandleEvent('change', args),
+    disabled: true,
+  },
+};
+
+export const Switchable: IStory = {
+  render: (props) => <Disclosure {...props} />,
+  args: {
+    ...defaultArgs,
+    checkable: true,
+    withSwitch: true,
+    onChange: (...args) => sbHandleEvent('change', args),
+  },
+};
+
+export const SwitchableLoading: IStory = {
+  render: (props) => <Disclosure {...props} />,
+  args: {
+    ...defaultArgs,
+    checkable: true,
+    withSwitch: true,
+    loading: true,
+    onChange: (...args) => sbHandleEvent('change', args),
+  },
+};
+
+export const DefaultSwitched: IStory = {
+  render: (props) => <Disclosure {...props} />,
+  args: {
+    ...defaultArgs,
+    checkable: true,
+    withSwitch: true,
+    defaultChecked: true,
+    onChange: (...args) => sbHandleEvent('change', args),
+  },
+};
+
+export const SwitchableDisabled: IStory = {
+  render: (props) => <Disclosure {...props} />,
+  args: {
+    ...defaultArgs,
+    checkable: true,
+    withSwitch: true,
     onChange: (...args) => sbHandleEvent('change', args),
     disabled: true,
   },

@@ -4,9 +4,11 @@ import stylex from '@stylexjs/stylex';
 import type { IStyles } from '@/helpers/types';
 import type { IDisclosureButtonStyleKey } from '@/components/atoms/DisclosureButton';
 import type { IItemStyleKey } from '@/components/atoms/Item';
+import type { ICircularProgressIndicatorStyleKey } from '@/components/atoms/CircularProgressIndicator';
 import { componentVars as vars } from './DisclosureButton.stylex';
 import { componentVars as listItemVars } from '../ListItem/ListItem.stylex';
 import { componentVars as itemVars } from '../Item/Item.stylex';
+import { componentVars as circularProgressIndicatorVars } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
 
 type IDisclosureButtonStyles = IStyles<IDisclosureButtonStyleKey>;
 export const styles: MapNamespaces<IDisclosureButtonStyles> =
@@ -105,7 +107,11 @@ export const styles: MapNamespaces<IDisclosureButtonStyles> =
     },
     button$checkable: {
       // eslint-disable-next-line @stylexjs/valid-styles
-      [listItemVars.leadingSpace]: '46px',
+      [listItemVars.leadingSpace]: 'calc(16px + 18px + 12px)',
+    },
+    button$checkable$switch: {
+      // eslint-disable-next-line @stylexjs/valid-styles
+      [listItemVars.leadingSpace]: 'calc(16px + 52px + 12px)',
     },
     button$unchecked: {
       // eslint-disable-next-line @stylexjs/valid-styles
@@ -150,3 +156,13 @@ export const itemStyles: MapNamespaces<IItemStyles> = stylex.create<
     [itemVars.labelTextWeight]: vars.textWeight,
   },
 });
+
+type ICircularProgressIndicatorStyles =
+  IStyles<ICircularProgressIndicatorStyleKey>;
+export const circularProgressIndicatorStyles: MapNamespaces<ICircularProgressIndicatorStyles> =
+  stylex.create<ICircularProgressIndicatorStyles>({
+    host: {
+      // eslint-disable-next-line @stylexjs/valid-styles
+      [circularProgressIndicatorVars.color]: vars.textColor,
+    },
+  });

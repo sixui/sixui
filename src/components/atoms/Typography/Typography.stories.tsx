@@ -97,7 +97,7 @@ const rows: Array<IComponentPresentation<ITypographyOwnProps>> = [
     },
   },
   {
-    legend: `Title (sm) | | ${typographyTagMap.title$sm}`,
+    legend: `Title (sm) | ${typographyTagMap.title$sm}`,
     props: {
       variant: 'title',
       size: 'sm',

@@ -32,6 +32,7 @@ const states: Array<IComponentPresentation<ICheckboxOwnProps>> = [
   { legend: 'Focused', props: { visualState: { focused: true } } },
   { legend: 'Pressed', props: { visualState: { pressed: true } } },
   { legend: 'Disabled', props: { disabled: true } },
+  { legend: 'Loading', props: { loading: true } },
 ];
 
 export const Uncontrolled: IStory = {

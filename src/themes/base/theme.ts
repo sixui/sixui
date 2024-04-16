@@ -106,6 +106,7 @@ import {
   styles as checkboxStyles,
   stateLayerStyles as checkboxStateLayerStyles,
   focusRingStyles as checkboxFocusRingStyles,
+  circularProgressIndicatorStyles as checkboxCircularProgressIndicatorStyles,
 } from './Checkbox/Checkbox.styles';
 
 import { styles as itemStyles } from './Item/Item.styles';
@@ -204,7 +205,8 @@ import { styles as DisclosureStyles } from './Disclosure/Disclosure.styles';
 import { componentTheme as disclosureButtonTheme } from './DisclosureButton/DisclosureButton.stylex';
 import {
   styles as disclosureButtonStyles,
-  itemStyles as buttonItemStyles,
+  itemStyles as disclosureButtonItemStyles,
+  circularProgressIndicatorStyles as disclosureButtonCircularProgressIndicatorStyles,
 } from './DisclosureButton/DisclosureButton.styles';
 
 import { componentTheme as disclosurePanelTheme } from './DisclosurePanel/DisclosurePanel.stylex';
@@ -355,6 +357,7 @@ export const theme: ITheme = {
       styles: checkboxStyles,
       stateLayerStyles: checkboxStateLayerStyles,
       focusRingStyles: checkboxFocusRingStyles,
+      circularProgressIndicatorStyles: checkboxCircularProgressIndicatorStyles,
     },
     Item: {
       vars: itemTheme,
@@ -464,7 +467,9 @@ export const theme: ITheme = {
     DisclosureButton: {
       vars: disclosureButtonTheme,
       styles: disclosureButtonStyles,
-      itemStyles: buttonItemStyles,
+      itemStyles: disclosureButtonItemStyles,
+      circularProgressIndicatorStyles:
+        disclosureButtonCircularProgressIndicatorStyles,
     },
     DisclosurePanel: {
       vars: disclosurePanelTheme,

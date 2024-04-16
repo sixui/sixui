@@ -31,6 +31,8 @@ const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
       checked: checkedProp,
       onChange,
       disabled,
+      withSwitch,
+      loading,
       ...other
     } = props;
 
@@ -62,6 +64,8 @@ const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
       disabled,
       expanded,
       setExpanded,
+      withSwitch,
+      loading,
     };
 
     return (

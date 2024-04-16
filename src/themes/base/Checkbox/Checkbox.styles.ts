@@ -5,10 +5,12 @@ import type { IStyles } from '@/helpers/types';
 import type { ICheckboxStyleKey } from '@/components/atoms/Checkbox';
 import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
+import type { ICircularProgressIndicatorStyleKey } from '@/components/atoms/CircularProgressIndicator';
 import { componentVars as vars } from './Checkbox.stylex';
 import { componentVars as checkboxStateVars } from './Checkbox.states.stylex';
 import { componentVars as statelayerVars } from '../StateLayer/StateLayer.stylex';
 import { componentVars as focusRingVars } from '../FocusRing/FocusRing.stylex';
+import { componentVars as circularProgressIndicatorVars } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { motionVars } from '../vars/motion.stylex';
 import { shapeVars } from '../vars/shape.stylex';
 
@@ -308,3 +310,13 @@ export const focusRingStyles: MapNamespaces<IFocusRingStyles> = stylex.create<
     inset: 'unset',
   },
 });
+
+type ICircularProgressIndicatorStyles =
+  IStyles<ICircularProgressIndicatorStyleKey>;
+export const circularProgressIndicatorStyles: MapNamespaces<ICircularProgressIndicatorStyles> =
+  stylex.create<ICircularProgressIndicatorStyles>({
+    host: {
+      // eslint-disable-next-line @stylexjs/valid-styles
+      [circularProgressIndicatorVars.color]: vars.outlineColor,
+    },
+  });

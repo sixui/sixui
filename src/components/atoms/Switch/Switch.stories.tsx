@@ -59,13 +59,13 @@ export const Uncontrolled: IStory = {
 const ControlledSwitch: React.FC<Omit<ISwitchProps, 'onChange' | 'as'>> = (
   props,
 ) => {
-  const [selected, setSelected] = useState(props.defaultSelected ?? false);
+  const [checked, setChecked] = useState(props.defaultChecked ?? false);
 
   return (
     <Switch
       {...props}
-      selected={selected}
-      onChange={(_, state) => delay(300).then(() => setSelected(state))}
+      checked={checked}
+      onChange={(_, checked) => delay(300).then(() => setChecked(checked))}
     />
   );
 };
@@ -81,7 +81,7 @@ export const Controlled: IStory = {
           legend: 'With selected icon',
           props: {
             showOnlySelectedIcon: true,
-            defaultSelected: true,
+            defaultChecked: true,
           },
         },
         { legend: 'With icons', props: { icons: true } },
