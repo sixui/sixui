@@ -2,9 +2,13 @@ export type IElementWithLabelStyleKey =
   | 'host'
   | 'element'
   | 'labelText'
+  | 'labelText$error'
   | 'labelText$disabled'
   | 'supportingText'
-  | 'supportingText$disabled';
+  | 'supportingText$error'
+  | 'supportingText$disabled'
+  | 'errorText'
+  | 'errorText$disabled';
 
 export type IElementWithLabelStyleVarKey =
   | 'labelTextColor'
@@ -13,6 +17,7 @@ export type IElementWithLabelStyleVarKey =
   | 'labelTextWeight'
   | 'labelTextLineHeight'
   | 'labelTextLetterSpacing'
+  | 'labelTextColor$error'
   | 'labelTextColor$disabled'
   | 'labelTextOpacity$disabled'
   | 'supportingTextColor'
@@ -21,5 +26,6 @@ export type IElementWithLabelStyleVarKey =
   | 'supportingTextWeight'
   | 'supportingTextLineHeight'
   | 'supportingTextLetterSpacing'
+  | 'supportingTextColor$error'
   | 'supportingTextColor$disabled'
   | 'supportingTextOpacity$disabled';

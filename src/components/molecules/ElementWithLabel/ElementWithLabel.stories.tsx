@@ -32,7 +32,15 @@ const rows: Array<IComponentPresentation<IElementWithLabelOwnProps>> = [
   { legend: 'With label' },
   {
     legend: 'With supporting text',
-    props: { supportingText: 'SupportingText' },
+    props: { supportingText: 'Supporting text' },
+  },
+  {
+    legend: 'With error',
+    props: { hasError: true },
+  },
+  {
+    legend: 'With error and error text',
+    props: { hasError: true, errorText: 'Error' },
   },
 ];
 

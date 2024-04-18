@@ -30,6 +30,9 @@ export const styles: MapNamespaces<IElementWithLabelStyles> =
       display: 'flex',
       alignItems: 'center',
     },
+    labelText$error: {
+      color: vars.supportingTextColor$error,
+    },
     labelText$disabled: {
       color: vars.labelTextColor$disabled,
       opacity: vars.labelTextOpacity$disabled,
@@ -41,6 +44,9 @@ export const styles: MapNamespaces<IElementWithLabelStyles> =
       fontWeight: vars.supportingTextWeight,
       lineHeight: vars.supportingTextLineHeight,
       letterSpacing: vars.supportingTextLetterSpacing,
+    },
+    supportingText$error: {
+      color: vars.supportingTextColor$error,
     },
     supportingText$disabled: {
       color: vars.supportingTextColor$disabled,

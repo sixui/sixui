@@ -24,6 +24,8 @@ export type IElementWithLabelOwnProps =
     required?: boolean;
     disabled?: boolean;
     supportingText?: React.ReactNode;
+    errorText?: React.ReactNode;
+    hasError?: boolean;
   };
 
 export type IElementWithLabelProps<
@@ -46,6 +48,8 @@ export const ElementWithLabel: IElementWithLabel = forwardRef(
       label,
       required,
       supportingText,
+      errorText,
+      hasError,
       ...other
     } = props as IWithAsProp<IElementWithLabelOwnProps>;
 
@@ -64,6 +68,8 @@ export const ElementWithLabel: IElementWithLabel = forwardRef(
     );
 
     const id = useId(idProp);
+    const supportingOrErrorText =
+      hasError && errorText ? errorText : supportingText;
 
     return (
       <div {...sxf('host', theme.vars, sx)}>
@@ -72,20 +78,27 @@ export const ElementWithLabel: IElementWithLabel = forwardRef(
         </div>
         <div>
           <label
-            {...sxf('labelText', other.disabled && 'labelText$disabled')}
+            {...sxf(
+              'labelText',
+              other.disabled
+                ? 'labelText$disabled'
+                : hasError && !errorText && 'labelText$error',
+            )}
             htmlFor={id}
           >
             {label}
             {required ? '*' : null}
           </label>
-          {supportingText !== undefined ? (
+          {supportingOrErrorText !== undefined ? (
             <div
               {...sxf(
                 'supportingText',
-                other.disabled && 'supportingText$disabled',
+                other.disabled
+                  ? 'supportingText$disabled'
+                  : hasError && 'supportingText$error',
               )}
             >
-              {supportingText}
+              {supportingOrErrorText}
             </div>
           ) : null}
         </div>
