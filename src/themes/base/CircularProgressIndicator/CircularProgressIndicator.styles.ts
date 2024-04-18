@@ -4,6 +4,9 @@ import stylex from '@stylexjs/stylex';
 import type { IStyles } from '@/helpers/types';
 import type { ICircularProgressIndicatorStyleKey } from '@/components/atoms/CircularProgressIndicator';
 import { componentVars as vars } from './CircularProgressIndicator.stylex';
+import { colorRolesVars } from '../vars/colorRoles.stylex';
+import { typescaleVars } from '../vars/typo.stylex';
+import { stateVars } from '../vars/state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/progress/internal/_circulardeterminate-progress.scss
 
@@ -49,5 +52,21 @@ export const styles: MapNamespaces<ICircularProgressIndicatorStyles> =
     },
     progress$lg: {
       margin: vars.containerPadding$lg,
+    },
+    label: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: '100%',
+      height: '100%',
+      color: colorRolesVars.onSurface,
+      fontFamily: typescaleVars.labelFont$sm,
+      fontSize: typescaleVars.labelSize$sm,
+      fontWeight: typescaleVars.labelWeight$sm,
+      lineHeight: typescaleVars.labelLineHeight$sm,
+      letterSpacing: typescaleVars.labelLetterSpacing$sm,
+    },
+    label$disabled: {
+      opacity: stateVars.opacity$disabled,
     },
   });

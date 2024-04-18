@@ -15,7 +15,9 @@ export type ICircularProgressIndicatorStyleKey =
   | 'right'
   | 'circle'
   | 'leftCircle'
-  | 'rightCircle';
+  | 'rightCircle'
+  | 'label'
+  | 'label$disabled';
 
 export type ICircularProgressIndicatorStyleVarKey =
   | 'color'

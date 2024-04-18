@@ -9,6 +9,7 @@ export type IRadioGroupContext = {
     value: string | undefined,
   ) => IMaybeAsync<IAny>;
   value?: string;
+  disabled?: boolean;
 };
 
 export const RadioGroupContext = createContext<IRadioGroupContext | undefined>(

@@ -81,7 +81,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
     sx,
     innerStyles,
     visualState: visualStateProp,
-    disabled,
+    disabled: disabledProp,
     onChange,
     indeterminate,
     checked: checkedProp,
@@ -91,6 +91,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
   } = props as IWithAsProp<ICheckboxOwnProps>;
 
   const actionRef = useRef<HTMLInputElement>(null);
+  const disabled = disabledProp || loading;
   const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
     disabled,
   });

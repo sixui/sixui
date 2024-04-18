@@ -24,6 +24,7 @@ export type IDeterminateCircularProgressIndicatorProps =
       labelFormatter?: (value: number) => string;
       size?: ICircularProgressIndicatorSize;
       disabled?: boolean;
+      children?: React.ReactNode;
     };
 
 export const DeterminateCircularProgressIndicator = forwardRef<
@@ -41,6 +42,7 @@ export const DeterminateCircularProgressIndicator = forwardRef<
     labelFormatter,
     size = 'md',
     disabled,
+    children,
     ...other
   } = props;
 
@@ -99,11 +101,12 @@ export const DeterminateCircularProgressIndicator = forwardRef<
             strokeDashoffset={dashOffset}
           />
         </svg>
-        {withLabel && size === 'lg' ? (
+        {(withLabel || children) && size === 'lg' ? (
           <div {...sxf('layer', 'label', disabled && 'label$disabled')}>
-            {labelFormatter
-              ? labelFormatter(value)
-              : `${Math.round(pct * 100)}%`}
+            {children ??
+              (labelFormatter
+                ? labelFormatter(value)
+                : `${Math.round(pct * 100)}%`)}
           </div>
         ) : null}
       </div>

@@ -8,6 +8,4 @@ export type IDeterminateCircularProgressIndicatorStyleKey =
   | 'svgCircle$lg'
   | 'track'
   | 'activeTrack'
-  | 'activeTrack$disabled'
-  | 'label'
-  | 'label$disabled';
+  | 'activeTrack$disabled';

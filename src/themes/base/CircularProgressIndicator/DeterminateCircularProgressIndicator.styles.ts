@@ -3,8 +3,6 @@ import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
 import type { IDeterminateCircularProgressIndicatorStyleKey } from '@/components/atoms/CircularProgressIndicator';
-import { colorRolesVars } from '../vars/colorRoles.stylex';
-import { typescaleVars } from '../vars/typo.stylex';
 import { stateVars } from '../vars/state.stylex';
 import { componentVars as vars } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { motionVars } from '../vars/motion.stylex';
@@ -56,21 +54,5 @@ export const styles: MapNamespaces<IDeterminateCircularProgressIndicatorStyles> 
     },
     activeTrack$disabled: {
       stroke: color$disabled,
-    },
-    label: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: '100%',
-      height: '100%',
-      color: colorRolesVars.onSurface,
-      fontFamily: typescaleVars.labelFont$sm,
-      fontSize: typescaleVars.labelSize$sm,
-      fontWeight: typescaleVars.labelWeight$sm,
-      lineHeight: typescaleVars.labelLineHeight$sm,
-      letterSpacing: typescaleVars.labelLetterSpacing$sm,
-    },
-    label$disabled: {
-      opacity: stateVars.opacity$disabled,
     },
   });

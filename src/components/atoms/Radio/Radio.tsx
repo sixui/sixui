@@ -78,13 +78,16 @@ export const Radio: IRadio = forwardRef(function Radio<
     innerStyles,
     visualState: visualStateProp,
     onChange,
-    disabled,
+    disabled: disabledProp,
     value,
     checked: checkedProp,
     name: nameProp,
     loading,
     ...other
   } = props as IWithAsProp<IRadioOwnProps>;
+
+  const radioGroupContext = useRadioGroupContext();
+  const disabled = (disabledProp ?? radioGroupContext?.disabled) || loading;
 
   const actionRef = useRef<HTMLInputElement>(null);
   const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
@@ -106,8 +109,6 @@ export const Radio: IRadio = forwardRef(function Radio<
     [stylesCombinator, visualState],
   );
 
-  const radioGroupContext = useRadioGroupContext();
-
   // Unique maskId is required because of a Safari bug that fail to persist
   // reference to the mask. This should be removed once the bug is fixed.
   const maskId = useId();
@@ -126,13 +127,9 @@ export const Radio: IRadio = forwardRef(function Radio<
   );
 
   const name = radioGroupContext?.name ?? nameProp;
-  const checked = !disabled
-    ? radioGroupContext
-      ? radioGroupContext.value !== undefined &&
-        radioGroupContext.value === value
-      : checkedProp
-    : false;
-
+  const checked = radioGroupContext
+    ? radioGroupContext.value !== undefined && radioGroupContext.value === value
+    : checkedProp;
   return (
     <div {...sxf('host', disabled && 'host$disabled', theme.vars, sx)}>
       <div {...sxf('container', checked && 'container$checked')}>
@@ -142,7 +139,19 @@ export const Radio: IRadio = forwardRef(function Radio<
               theme.circularProgressIndicatorStyles,
               ...asArray(innerStyles?.circularProgressIndicator),
             ]}
-          />
+          >
+            <svg
+              {...sxf('icon', checked && 'icon$checked')}
+              viewBox='0 0 20 20'
+            >
+              <circle
+                {...sxf('circle$inner', checked && 'circle$inner$checked')}
+                cx='10'
+                cy='10'
+                r='5'
+              />
+            </svg>
+          </IndeterminateCircularProgressIndicator>
         ) : (
           <>
             <StateLayer

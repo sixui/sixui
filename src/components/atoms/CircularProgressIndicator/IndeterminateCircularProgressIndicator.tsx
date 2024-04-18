@@ -18,13 +18,14 @@ export type IIndeterminateCircularProgressIndicatorProps =
     Pick<React.AriaAttributes, 'aria-label'> & {
       size?: ICircularProgressIndicatorSize;
       disabled?: boolean;
+      children?: React.ReactNode;
     };
 
 export const IndeterminateCircularProgressIndicator = forwardRef<
   HTMLInputElement,
   IIndeterminateCircularProgressIndicatorProps
 >(function IndeterminateCircularProgressIndicator(props, ref) {
-  const { styles, sx, size = 'md', disabled, ...other } = props;
+  const { styles, sx, size = 'md', disabled, children, ...other } = props;
 
   const { theme, variantTheme } = useComponentTheme(
     'CircularProgressIndicator',
@@ -80,6 +81,11 @@ export const IndeterminateCircularProgressIndicator = forwardRef<
           </div>
         </div>
       </div>
+      {children ? (
+        <div {...sxf('layer', 'label', disabled && 'label$disabled')}>
+          {children}
+        </div>
+      ) : null}
     </div>
   );
 });

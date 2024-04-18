@@ -47,6 +47,7 @@ export const RadioGroup: IRadioGroup = forwardRef(function RadioGroup<
     value: valueProp,
     defaultValue,
     name: nameProp,
+    disabled,
     ...other
   } = props as IWithAsProp<IRadioGroupOwnProps>;
 
@@ -86,8 +87,9 @@ export const RadioGroup: IRadioGroup = forwardRef(function RadioGroup<
           onChange?.(event, value);
         },
         value,
+        disabled,
       }) satisfies IRadioGroupContext,
-    [name, onChange, value, setValue],
+    [name, onChange, value, setValue, disabled],
   );
 
   const Component = as ?? DEFAULT_TAG;
