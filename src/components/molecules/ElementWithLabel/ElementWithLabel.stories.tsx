@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import {
   ElementWithLabel,
   type IElementWithLabelProps,
-  type IElementWithLabelOwnProps,
 } from './ElementWithLabel';
 import {
   ComponentShowcase,
@@ -12,6 +11,7 @@ import {
 import { Checkbox } from '@/components/atoms/Checkbox';
 import { Switch } from '@/components/atoms/Switch';
 import { Radio } from '@/components/atoms/Radio';
+import { TextField } from '@/components/atoms/TextField';
 
 const meta = {
   component: ElementWithLabel,
@@ -23,12 +23,12 @@ const defaultArgs = {
   label: 'Label',
 } satisfies Partial<IElementWithLabelProps>;
 
-const cols: Array<IComponentPresentation<IElementWithLabelOwnProps>> = [
+const cols: Array<IComponentPresentation<IElementWithLabelProps>> = [
   { legend: 'Normal' },
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const rows: Array<IComponentPresentation<IElementWithLabelOwnProps>> = [
+const rows: Array<IComponentPresentation<IElementWithLabelProps>> = [
   { legend: 'With label' },
   {
     legend: 'With supporting text',
@@ -44,6 +44,23 @@ const rows: Array<IComponentPresentation<IElementWithLabelOwnProps>> = [
   },
 ];
 
+export const WithTextField: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={ElementWithLabel}
+      props={props}
+      cols={cols}
+      rows={rows}
+      horizontalAlign='start'
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    labelPosition: 'top',
+    children: ({ id }) => <TextField id={id} />,
+  },
+};
+
 export const WithCheckbox: IStory = {
   render: (props) => (
     <ComponentShowcase
@@ -56,7 +73,8 @@ export const WithCheckbox: IStory = {
   ),
   args: {
     ...defaultArgs,
-    as: Checkbox,
+    labelPosition: 'end',
+    children: ({ id }) => <Checkbox id={id} />,
   },
 };
 
@@ -72,7 +90,8 @@ export const WithRadio: IStory = {
   ),
   args: {
     ...defaultArgs,
-    as: Radio,
+    labelPosition: 'end',
+    children: ({ id }) => <Radio id={id} />,
   },
 };
 
@@ -88,7 +107,8 @@ export const WithSwitch: IStory = {
   ),
   args: {
     ...defaultArgs,
-    as: Switch,
+    labelPosition: 'end',
+    children: ({ id }) => <Switch id={id} />,
   },
 };
 

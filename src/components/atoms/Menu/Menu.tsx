@@ -11,14 +11,14 @@ import { MenuListDivider } from '@/components/atoms/MenuList/MenuListDivider';
 import { useColorScheme } from '@/components/utils/ColorScheme';
 import { MenuItem } from './MenuItem';
 
-type IMenuActionRenderPropArg = {
+type IMenuRenderPropsArg = {
   open: boolean;
 };
 
 export type IMenuProps = Omit<IContainerProps, 'styles'> & {
   action:
     | React.ReactElement
-    | ((bag: IMenuActionRenderPropArg) => React.ReactElement);
+    | ((props: IMenuRenderPropsArg) => React.ReactElement);
   children: Array<React.ReactNode>;
   placement?: Placement;
 };

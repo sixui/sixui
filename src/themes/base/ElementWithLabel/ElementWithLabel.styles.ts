@@ -8,10 +8,15 @@ import { componentVars as vars } from './ElementWithLabel.stylex';
 type IElementWithLabelStyles = IStyles<IElementWithLabelStyleKey>;
 export const styles: MapNamespaces<IElementWithLabelStyles> =
   stylex.create<IElementWithLabelStyles>({
-    host: {
+    host$labelTop: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '0.5rem',
+    },
+    host$labelEnd: {
       display: 'grid',
       gridTemplateColumns: 'min-content auto',
-      gridColumnGap: 16,
+      gridColumnGap: '1rem',
       alignItems: 'center',
     },
     element: {
