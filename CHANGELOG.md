@@ -1,3 +1,15 @@
+# v0.0.177 (Thu Apr 18 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: ElementWithLabel forward more props to children ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.176 (Thu Apr 18 2024)
 
 #### ⚠️ Pushed to `main`
