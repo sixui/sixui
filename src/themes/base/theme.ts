@@ -100,14 +100,12 @@ import {
   styles as radioStyles,
   stateLayerStyles as radioStateLayerStyles,
   focusRingStyles as radioFocusRingStyles,
-  circularProgressIndicatorStyles as radioCircularProgressIndicatorStyles,
 } from './Radio/Radio.styles';
 import { componentTheme as checkboxTheme } from './Checkbox/Checkbox.stylex';
 import {
   styles as checkboxStyles,
   stateLayerStyles as checkboxStateLayerStyles,
   focusRingStyles as checkboxFocusRingStyles,
-  circularProgressIndicatorStyles as checkboxCircularProgressIndicatorStyles,
 } from './Checkbox/Checkbox.styles';
 
 import { styles as itemStyles } from './Item/Item.styles';
@@ -355,14 +353,12 @@ export const theme: ITheme = {
       styles: radioStyles,
       stateLayerStyles: radioStateLayerStyles,
       focusRingStyles: radioFocusRingStyles,
-      circularProgressIndicatorStyles: radioCircularProgressIndicatorStyles,
     },
     Checkbox: {
       vars: checkboxTheme,
       styles: checkboxStyles,
       stateLayerStyles: checkboxStateLayerStyles,
       focusRingStyles: checkboxFocusRingStyles,
-      circularProgressIndicatorStyles: checkboxCircularProgressIndicatorStyles,
     },
     Item: {
       vars: itemTheme,

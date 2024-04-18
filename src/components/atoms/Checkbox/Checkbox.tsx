@@ -160,6 +160,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
             theme.circularProgressIndicatorStyles,
             ...asArray(innerStyles?.circularProgressIndicator),
           ]}
+          disabled
         />
       ) : (
         <div {...sxf('container')}>

@@ -134,24 +134,35 @@ export const Radio: IRadio = forwardRef(function Radio<
     <div {...sxf('host', disabled && 'host$disabled', theme.vars, sx)}>
       <div {...sxf('container', checked && 'container$checked')}>
         {loading ? (
-          <IndeterminateCircularProgressIndicator
-            styles={[
-              theme.circularProgressIndicatorStyles,
-              ...asArray(innerStyles?.circularProgressIndicator),
-            ]}
-          >
+          <>
+            <IndeterminateCircularProgressIndicator
+              styles={[
+                theme.circularProgressIndicatorStyles,
+                ...asArray(innerStyles?.circularProgressIndicator),
+              ]}
+              disabled
+            />
             <svg
-              {...sxf('icon', checked && 'icon$checked')}
+              {...sxf(
+                'icon',
+                checked && 'icon$checked',
+                disabled &&
+                  (checked ? 'icon$checked$disabled' : 'icon$disabled'),
+              )}
               viewBox='0 0 20 20'
             >
               <circle
-                {...sxf('circle$inner', checked && 'circle$inner$checked')}
+                {...sxf(
+                  'circle$inner',
+                  checked && 'circle$inner$checked',
+                  disabled && 'circle$disabled',
+                )}
                 cx='10'
                 cy='10'
                 r='5'
               />
             </svg>
-          </IndeterminateCircularProgressIndicator>
+          </>
         ) : (
           <>
             <StateLayer
