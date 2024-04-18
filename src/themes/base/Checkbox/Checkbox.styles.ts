@@ -35,6 +35,8 @@ export const styles: MapNamespaces<ICheckboxStyles> =
     host: {
       borderRadius: vars.containerShape,
       display: 'inline-flex',
+      justifyContent: 'center',
+      alignItems: 'center',
       width: vars.containerSize,
       height: vars.containerSize,
       position: 'relative',

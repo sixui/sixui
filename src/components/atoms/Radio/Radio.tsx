@@ -29,6 +29,10 @@ import {
 } from '@/components/utils/FocusRing';
 import { useRadioGroupContext } from '../RadioGroup/useRadioGroupContext';
 import { useForkRef } from '@/hooks/useForkRef';
+import {
+  IndeterminateCircularProgressIndicator,
+  type ICircularProgressIndicatorStyleKey,
+} from '@/components/atoms/CircularProgressIndicator';
 
 // https://github.com/material-components/material-web/blob/main/radio/internal/radio.ts
 
@@ -39,6 +43,9 @@ export type IRadioOwnProps = IContainerProps<IRadioStyleKey> &
     innerStyles?: {
       stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
       focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+      circularProgressIndicator?: IZeroOrMore<
+        ICompiledStyles<ICircularProgressIndicatorStyleKey>
+      >;
     };
     visualState?: IVisualState;
     id?: string;
@@ -51,6 +58,7 @@ export type IRadioOwnProps = IContainerProps<IRadioStyleKey> &
       event: React.ChangeEvent<HTMLInputElement>,
       value: string | undefined,
     ) => IMaybeAsync<IAny>;
+    loading?: boolean;
   };
 
 export type IRadioProps<TRoot extends React.ElementType = typeof DEFAULT_TAG> =
@@ -74,6 +82,7 @@ export const Radio: IRadio = forwardRef(function Radio<
     value,
     checked: checkedProp,
     name: nameProp,
+    loading,
     ...other
   } = props as IWithAsProp<IRadioOwnProps>;
 
@@ -127,60 +136,78 @@ export const Radio: IRadio = forwardRef(function Radio<
   return (
     <div {...sxf('host', disabled && 'host$disabled', theme.vars, sx)}>
       <div {...sxf('container', checked && 'container$checked')}>
-        <StateLayer
-          for={actionRef}
-          styles={[theme.stateLayerStyles, ...asArray(innerStyles?.stateLayer)]}
-          disabled={disabled}
-          visualState={visualState}
-        />
-        <FocusRing
-          for={actionRef}
-          styles={[theme.focusRingStyles, ...asArray(innerStyles?.focusRing)]}
-          visualState={visualState}
-        />
-
-        <svg
-          {...sxf(
-            'icon',
-            checked && 'icon$checked',
-            disabled && (checked ? 'icon$checked$disabled' : 'icon$disabled'),
-          )}
-          viewBox='0 0 20 20'
-        >
-          <mask id={maskId}>
-            <rect width='100%' height='100%' fill='white' />
-            <circle cx='10' cy='10' r='8' fill='black' />
-          </mask>
-          <circle
-            {...sxf('circle$outer', disabled && 'circle$disabled')}
-            cx='10'
-            cy='10'
-            r='10'
-            mask={`url(#${maskId})`}
+        {loading ? (
+          <IndeterminateCircularProgressIndicator
+            styles={[
+              theme.circularProgressIndicatorStyles,
+              ...asArray(innerStyles?.circularProgressIndicator),
+            ]}
           />
-          <circle
-            {...sxf(
-              'circle$inner',
-              checked && 'circle$inner$checked',
-              disabled && 'circle$disabled',
-            )}
-            cx='10'
-            cy='10'
-            r='5'
-          />
-        </svg>
+        ) : (
+          <>
+            <StateLayer
+              for={actionRef}
+              styles={[
+                theme.stateLayerStyles,
+                ...asArray(innerStyles?.stateLayer),
+              ]}
+              disabled={disabled}
+              visualState={visualState}
+            />
+            <FocusRing
+              for={actionRef}
+              styles={[
+                theme.focusRingStyles,
+                ...asArray(innerStyles?.focusRing),
+              ]}
+              visualState={visualState}
+            />
 
-        <Component
-          {...sxf('input')}
-          ref={handleRef}
-          name={name}
-          type='radio'
-          checked={checked}
-          onChange={handleChange}
-          disabled={disabled}
-          value={value}
-          {...other}
-        />
+            <svg
+              {...sxf(
+                'icon',
+                checked && 'icon$checked',
+                disabled &&
+                  (checked ? 'icon$checked$disabled' : 'icon$disabled'),
+              )}
+              viewBox='0 0 20 20'
+            >
+              <mask id={maskId}>
+                <rect width='100%' height='100%' fill='white' />
+                <circle cx='10' cy='10' r='8' fill='black' />
+              </mask>
+              <circle
+                {...sxf('circle$outer', disabled && 'circle$disabled')}
+                cx='10'
+                cy='10'
+                r='10'
+                mask={`url(#${maskId})`}
+              />
+              <circle
+                {...sxf(
+                  'circle$inner',
+                  checked && 'circle$inner$checked',
+                  disabled && 'circle$disabled',
+                )}
+                cx='10'
+                cy='10'
+                r='5'
+              />
+            </svg>
+
+            <Component
+              {...sxf('input')}
+              ref={handleRef}
+              name={name}
+              type='radio'
+              checked={checked}
+              onChange={handleChange}
+              disabled={disabled}
+              value={value}
+              {...other}
+            />
+          </>
+        )}
       </div>
     </div>
   );

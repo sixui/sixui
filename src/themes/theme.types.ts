@@ -293,6 +293,7 @@ export type ITheme = {
       styles?: ICompiledStyles<IRadioStyleKey>;
       stateLayerStyles: ICompiledStyles<IStateLayerStyleKey>;
       focusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
+      circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
     };
     Checkbox: {
       vars?: IStyleVarsTheme<ICheckboxStyleVarKey>;

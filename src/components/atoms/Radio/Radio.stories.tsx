@@ -28,6 +28,7 @@ const states: Array<IComponentPresentation<IRadioOwnProps>> = [
   { legend: 'Focused', props: { visualState: { focused: true } } },
   { legend: 'Pressed', props: { visualState: { pressed: true } } },
   { legend: 'Disabled', props: { disabled: true } },
+  { legend: 'Loading', props: { loading: true } },
 ];
 
 const ControlledRadio: React.FC<Omit<IRadioProps, 'onChange' | 'as'>> = (
