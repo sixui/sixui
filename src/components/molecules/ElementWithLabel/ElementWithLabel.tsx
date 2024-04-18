@@ -43,7 +43,7 @@ export const ElementWithLabel = forwardRef<
     errorText,
     children,
     hasError,
-    labelPosition,
+    labelPosition = 'top',
     ...other
   } = props;
 
