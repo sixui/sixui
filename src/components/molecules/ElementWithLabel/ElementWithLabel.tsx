@@ -12,6 +12,9 @@ import { useId } from '@/hooks/useId';
 
 type IElementWithLabelRenderPropsArg = {
   id: string;
+  required?: boolean;
+  disabled?: boolean;
+  hasError?: boolean;
 };
 
 export type IElementWithLabelProps =
@@ -39,6 +42,7 @@ export const ElementWithLabel = forwardRef<
     id: idProp,
     label,
     required,
+    disabled,
     supportingText,
     errorText,
     children,
@@ -70,7 +74,7 @@ export const ElementWithLabel = forwardRef<
       <label
         {...sxf(
           'labelText',
-          other.disabled
+          disabled
             ? 'labelText$disabled'
             : hasError && !errorText && 'labelText$error',
         )}
@@ -83,7 +87,7 @@ export const ElementWithLabel = forwardRef<
         <div
           {...sxf(
             'supportingText',
-            other.disabled
+            disabled
               ? 'supportingText$disabled'
               : hasError && 'supportingText$error',
           )}
@@ -102,10 +106,13 @@ export const ElementWithLabel = forwardRef<
         sx,
       )}
       ref={ref}
+      {...other}
     >
       {labelPosition === 'top' ? renderLabel() : null}
       <div {...sxf('element')}>
-        {typeof children === 'function' ? children({ id }) : children || null}
+        {typeof children === 'function'
+          ? children({ id, required, disabled })
+          : children || null}
       </div>
       {labelPosition === 'end' ? renderLabel() : null}
     </div>
