@@ -1,3 +1,15 @@
+# v0.0.174 (Thu Apr 18 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: ElementWithLabel can have error ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.173 (Thu Apr 18 2024)
 
 #### ⚠️ Pushed to `main`
