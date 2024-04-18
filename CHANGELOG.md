@@ -1,3 +1,15 @@
+# v0.0.175 (Thu Apr 18 2024)
+
+#### ⚠️ Pushed to `main`
+
+- refactor: ElementWithLabel is no more polymorphic and use a children function ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.174 (Thu Apr 18 2024)
 
 #### ⚠️ Pushed to `main`
