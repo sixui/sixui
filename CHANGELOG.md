@@ -1,3 +1,15 @@
+# v0.0.176 (Thu Apr 18 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: TextField flex grow by default, and ElementWithLabel has default top position ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.175 (Thu Apr 18 2024)
 
 #### ⚠️ Pushed to `main`
