@@ -1,3 +1,4 @@
+import stylex from '@stylexjs/stylex';
 import { ThemeProvider } from '@/components/utils/Theme';
 import { theme } from '@/themes/base';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,11 +7,17 @@ import '@/styles/main.css';
 
 import { Select } from '@/components/atoms/Select';
 
+const styles = stylex.create({
+  host: {
+    width: '80%',
+  },
+});
+
 describe('Select', () => {
   it('should open on click inside', () => {
     cy.mount(
       <ThemeProvider value={{ theme }}>
-        <Select>
+        <Select sx={styles.host}>
           <Select.Option value='apple'>Apple</Select.Option>
           <Select.Option value='carrot'>Carrot</Select.Option>
         </Select>
@@ -29,7 +36,7 @@ describe('Select', () => {
     cy.mount(
       <ThemeProvider value={{ theme }}>
         <div style={{ position: 'relative', overflow: 'hidden' }}>
-          <Select>
+          <Select sx={styles.host}>
             <Select.Option value='apple'>Apple</Select.Option>
             <Select.Option value='carrot'>Carrot</Select.Option>
           </Select>
@@ -46,7 +53,7 @@ describe('Select', () => {
   it('should close on click outside', () => {
     cy.mount(
       <ThemeProvider value={{ theme }}>
-        <Select>
+        <Select sx={styles.host}>
           <Select.Option value='apple'>Apple</Select.Option>
           <Select.Option value='carrot'>Carrot</Select.Option>
         </Select>
@@ -67,7 +74,7 @@ describe('Select', () => {
   it('should select an option', () => {
     cy.mount(
       <ThemeProvider value={{ theme }}>
-        <Select>
+        <Select sx={styles.host}>
           <Select.Option value='apple'>Apple</Select.Option>
           <Select.Option value='carrot'>Carrot</Select.Option>
         </Select>
@@ -87,7 +94,7 @@ describe('Select', () => {
   it('should select an empty option', () => {
     cy.mount(
       <ThemeProvider value={{ theme }}>
-        <Select>
+        <Select sx={styles.host}>
           <Select.Option value=''>Empty</Select.Option>
           <Select.Option value='apple'>Apple</Select.Option>
           <Select.Option value='carrot'>Carrot</Select.Option>
@@ -105,7 +112,7 @@ describe('Select', () => {
   it('should select an option and pick its leading icon', () => {
     cy.mount(
       <ThemeProvider value={{ theme }}>
-        <Select>
+        <Select sx={styles.host}>
           <Select.Option
             value='apple'
             leadingIcon={<FontAwesomeIcon icon={faAppleWhole} />}
@@ -132,7 +139,7 @@ describe('Select', () => {
   it('should have a default value', () => {
     cy.mount(
       <ThemeProvider value={{ theme }}>
-        <Select defaultValue='carrot'>
+        <Select sx={styles.host} defaultValue='carrot'>
           <Select.Option value='apple'>Apple</Select.Option>
           <Select.Option value='carrot'>Carrot</Select.Option>
         </Select>
@@ -145,7 +152,7 @@ describe('Select', () => {
   it('should use the option label', () => {
     cy.mount(
       <ThemeProvider value={{ theme }}>
-        <Select defaultValue='carrot'>
+        <Select sx={styles.host} defaultValue='carrot'>
           <Select.Option value='apple' label='golden' />
           <Select.Option value='carrot' label='touchon' />
         </Select>
@@ -159,6 +166,7 @@ describe('Select', () => {
     cy.mount(
       <ThemeProvider value={{ theme }}>
         <Select
+          sx={styles.host}
           limit={2}
           moreOption={({ total, hidden }) => (
             <Select.Option value='more'>
@@ -190,6 +198,7 @@ describe('Select', () => {
     cy.mount(
       <ThemeProvider value={{ theme }}>
         <Select
+          sx={styles.host}
           defaultValue='5'
           limit={2}
           moreOption={({ total, hidden }) => (
