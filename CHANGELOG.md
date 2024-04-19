@@ -1,3 +1,15 @@
+# v0.0.179 (Fri Apr 19 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(FieldBase): flex grow by default ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.178 (Fri Apr 19 2024)
 
 #### ⚠️ Pushed to `main`
