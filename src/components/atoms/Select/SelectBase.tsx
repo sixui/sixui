@@ -62,6 +62,7 @@ const styles = stylex.create({
     position: 'relative',
     cursor: 'pointer',
     width: 'fit-content',
+    display: 'flex',
   },
   host$disabled: {
     cursor: 'default',

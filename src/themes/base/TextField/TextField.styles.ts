@@ -16,6 +16,7 @@ export const styles: MapNamespaces<ITextFieldStyles> =
   stylex.create<ITextFieldStyles>({
     host: {
       display: 'flex',
+      flexGrow: 1,
       outline: 'none',
       resize: 'vertical',
     },
