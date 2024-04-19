@@ -10,7 +10,7 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useId } from '@/hooks/useId';
 
-type IElementWithLabelRenderPropsArg = {
+export type IElementWithLabelRenderPropsArg = {
   id: string;
   required?: boolean;
   disabled?: boolean;

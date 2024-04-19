@@ -11,7 +11,7 @@ import { MenuListDivider } from '@/components/atoms/MenuList/MenuListDivider';
 import { useColorScheme } from '@/components/utils/ColorScheme';
 import { MenuItem } from './MenuItem';
 
-type IMenuRenderPropsArg = {
+export type IMenuRenderPropsArg = {
   open: boolean;
 };
 
