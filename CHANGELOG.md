@@ -1,3 +1,15 @@
+# v0.0.181 (Fri Apr 19 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(Combobox, Selectbase): width auto ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.180 (Fri Apr 19 2024)
 
 #### ⚠️ Pushed to `main`
