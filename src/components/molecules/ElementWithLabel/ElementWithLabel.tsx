@@ -10,7 +10,7 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useId } from '@/hooks/useId';
 
-export type IElementWithLabelRenderPropsArg = {
+export type IElementWithLabelRenderProps = {
   id: string;
   required?: boolean;
   disabled?: boolean;
@@ -27,7 +27,7 @@ export type IElementWithLabelProps =
     errorText?: React.ReactNode;
     children:
       | React.ReactNode
-      | ((props: IElementWithLabelRenderPropsArg) => React.ReactNode);
+      | ((props: IElementWithLabelRenderProps) => React.ReactNode);
     hasError?: boolean;
     labelPosition?: 'top' | 'end';
   };
