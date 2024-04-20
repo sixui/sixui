@@ -50,7 +50,7 @@ export const ElementWithLabel = forwardRef<
     children,
     hasError,
     orientation = 'vertical',
-    labelPosition = 'start',
+    labelPosition = orientation === 'vertical' ? 'start' : 'end',
     supportingTextPosition: supportingTextPositionProp,
     ...other
   } = props;
