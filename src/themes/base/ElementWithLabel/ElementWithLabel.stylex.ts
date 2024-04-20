@@ -20,11 +20,11 @@ const vars: Partial<IStyleVars<IElementWithLabelStyleVarKey>> = {
 
   // supportingText
   supportingTextColor: colorRolesVars.dim,
-  supportingTextFont: typescaleVars.bodyFont$md,
-  supportingTextSize: typescaleVars.bodySize$md,
-  supportingTextWeight: typescaleVars.bodyWeight$md,
-  supportingTextLineHeight: typescaleVars.bodyLineHeight$md,
-  supportingTextLetterSpacing: typescaleVars.bodyLetterSpacing$md,
+  supportingTextFont: typescaleVars.bodyFont$sm,
+  supportingTextSize: typescaleVars.bodySize$sm,
+  supportingTextWeight: typescaleVars.bodyWeight$sm,
+  supportingTextLineHeight: typescaleVars.bodyLineHeight$sm,
+  supportingTextLetterSpacing: typescaleVars.bodyLetterSpacing$sm,
   // &:error
   supportingTextColor$error: colorRolesVars.error,
   // &:disabled
