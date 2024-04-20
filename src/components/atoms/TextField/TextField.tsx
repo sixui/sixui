@@ -183,7 +183,8 @@ export const TextField = forwardRef<
     type = 'text',
     hasError: hasErrorProp,
     errorText: errorTextProp,
-    disabled,
+    disabled: disabledProp,
+    readOnly,
     onChange,
     onFocus,
     onBlur,
@@ -199,6 +200,7 @@ export const TextField = forwardRef<
   const inputOrTextareaRef = useRef<HTMLInputElement | HTMLTextAreaElement>(
     null,
   );
+  const disabled = disabledProp || readOnly;
   const { visualState, ref: inputOrTextareaRefVisualStateRef } = useVisualState(
     visualStateProp,
     {

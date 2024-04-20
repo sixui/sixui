@@ -52,6 +52,7 @@ export type IRadioOwnProps = IContainerProps<IRadioStyleKey> &
     name?: string;
     required?: boolean;
     disabled?: boolean;
+    readOnly?: boolean;
     checked?: boolean;
     value?: string;
     onChange?: (
@@ -79,6 +80,7 @@ export const Radio: IRadio = forwardRef(function Radio<
     visualState: visualStateProp,
     onChange,
     disabled: disabledProp,
+    readOnly,
     value,
     checked: checkedProp,
     name: nameProp,
@@ -87,7 +89,10 @@ export const Radio: IRadio = forwardRef(function Radio<
   } = props as IWithAsProp<IRadioOwnProps>;
 
   const radioGroupContext = useRadioGroupContext();
-  const disabled = (disabledProp ?? radioGroupContext?.disabled) || loading;
+  const disabled =
+    (disabledProp ?? radioGroupContext?.disabled) ||
+    (readOnly ?? radioGroupContext?.readOnly) ||
+    loading;
 
   const actionRef = useRef<HTMLInputElement>(null);
   const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {

@@ -14,6 +14,7 @@ export type IElementWithLabelRenderProps = {
   id: string;
   required?: boolean;
   disabled?: boolean;
+  readOnly?: boolean;
   hasError?: boolean;
 };
 
@@ -23,6 +24,7 @@ export type IElementWithLabelProps =
     label?: React.ReactNode;
     required?: boolean;
     disabled?: boolean;
+    readOnly?: boolean;
     supportingText?: React.ReactNode;
     errorText?: React.ReactNode;
     children:
@@ -45,6 +47,7 @@ export const ElementWithLabel = forwardRef<
     label,
     required,
     disabled,
+    readOnly,
     supportingText,
     errorText,
     children,
@@ -139,7 +142,7 @@ export const ElementWithLabel = forwardRef<
 
       <div {...sxf('element')}>
         {typeof children === 'function'
-          ? children({ id, required, disabled })
+          ? children({ id, required, disabled, readOnly })
           : children || null}
       </div>
 

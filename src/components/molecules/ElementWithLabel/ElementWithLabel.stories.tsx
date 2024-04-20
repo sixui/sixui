@@ -29,6 +29,7 @@ const styles = stylex.create({
 const defaultArgs = {
   label: 'Label',
   sx: styles.host,
+  readOnly: true,
 } satisfies Partial<IElementWithLabelProps>;
 
 const cols: Array<IComponentPresentation<IElementWithLabelProps>> = [
@@ -66,7 +67,7 @@ export const WithTextField: IStory = {
   args: {
     ...defaultArgs,
     orientation: 'vertical',
-    children: ({ id }) => <TextField id={id} />,
+    children: (props) => <TextField {...props} />,
   },
 };
 
@@ -83,7 +84,7 @@ export const WithCheckbox: IStory = {
   args: {
     ...defaultArgs,
     orientation: 'horizontal',
-    children: ({ id }) => <Checkbox id={id} />,
+    children: (props) => <Checkbox {...props} />,
   },
 };
 
@@ -100,7 +101,7 @@ export const WithRadio: IStory = {
   args: {
     ...defaultArgs,
     orientation: 'horizontal',
-    children: ({ id }) => <Radio id={id} />,
+    children: (props) => <Radio {...props} />,
   },
 };
 
@@ -117,7 +118,7 @@ export const WithSwitch: IStory = {
   args: {
     ...defaultArgs,
     orientation: 'horizontal',
-    children: ({ id }) => <Switch id={id} />,
+    children: (props) => <Switch {...props} />,
   },
 };
 

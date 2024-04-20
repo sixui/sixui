@@ -53,6 +53,7 @@ export type ISwitchOwnProps = IContainerProps<ISwitchStyleKey> &
     id?: string;
     name?: string;
     disabled?: boolean;
+    readOnly?: boolean;
     required?: boolean;
 
     checked?: boolean;
@@ -99,6 +100,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
     checked: checkedProp,
     defaultChecked,
     disabled: disabledProp,
+    readOnly,
     loading: loadingProp,
     icons,
     showOnlySelectedIcon: showOnlySelectedIconProp,
@@ -112,7 +114,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
   const [handlingChange, setHandlingChange] = useState(false);
   const loading =
     (loadingProp || handlingChange) && loadingAnimation === 'progressIndicator';
-  const disabled = disabledProp || loading;
+  const disabled = disabledProp || readOnly || loading;
 
   const actionRef = useRef<HTMLInputElement>(null);
   const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {

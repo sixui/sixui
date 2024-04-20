@@ -52,6 +52,7 @@ export type ICheckboxOwnProps = IContainerProps<ICheckboxStyleKey> & {
   visualState?: IVisualState;
   required?: boolean;
   disabled?: boolean;
+  readOnly?: boolean;
   id?: string;
   name?: string;
   checked?: boolean;
@@ -82,6 +83,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
     innerStyles,
     visualState: visualStateProp,
     disabled: disabledProp,
+    readOnly,
     onChange,
     indeterminate,
     checked: checkedProp,
@@ -91,7 +93,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
   } = props as IWithAsProp<ICheckboxOwnProps>;
 
   const actionRef = useRef<HTMLInputElement>(null);
-  const disabled = disabledProp || loading;
+  const disabled = disabledProp || readOnly || loading;
   const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
     disabled,
   });
