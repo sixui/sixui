@@ -24,7 +24,8 @@ const defaultArgs = {
 } satisfies Partial<IElementWithLabelProps>;
 
 const cols: Array<IComponentPresentation<IElementWithLabelProps>> = [
-  { legend: 'Normal' },
+  { legend: 'Start', props: { labelPosition: 'start' } },
+  { legend: 'End', props: { labelPosition: 'end' } },
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
@@ -56,7 +57,7 @@ export const WithTextField: IStory = {
   ),
   args: {
     ...defaultArgs,
-    labelPosition: 'top',
+    orientation: 'vertical',
     children: ({ id }) => <TextField id={id} />,
   },
 };
@@ -73,7 +74,7 @@ export const WithCheckbox: IStory = {
   ),
   args: {
     ...defaultArgs,
-    labelPosition: 'end',
+    orientation: 'horizontal',
     children: ({ id }) => <Checkbox id={id} />,
   },
 };
@@ -90,7 +91,7 @@ export const WithRadio: IStory = {
   ),
   args: {
     ...defaultArgs,
-    labelPosition: 'end',
+    orientation: 'horizontal',
     children: ({ id }) => <Radio id={id} />,
   },
 };
@@ -107,7 +108,7 @@ export const WithSwitch: IStory = {
   ),
   args: {
     ...defaultArgs,
-    labelPosition: 'end',
+    orientation: 'horizontal',
     children: ({ id }) => <Switch id={id} />,
   },
 };

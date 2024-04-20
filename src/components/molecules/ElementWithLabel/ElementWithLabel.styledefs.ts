@@ -1,6 +1,8 @@
 export type IElementWithLabelStyleKey =
-  | 'host$labelTop'
-  | 'host$labelEnd'
+  | 'host$vertical'
+  | 'host$horizontal'
+  | 'host$horizontal$labelPositionStart'
+  | 'host$horizontal$labelPositionEnd'
   | 'element'
   | 'labelText'
   | 'labelText$error'

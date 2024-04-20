@@ -29,7 +29,8 @@ export type IElementWithLabelProps =
       | React.ReactNode
       | ((props: IElementWithLabelRenderProps) => React.ReactNode);
     hasError?: boolean;
-    labelPosition?: 'top' | 'end';
+    orientation?: 'vertical' | 'horizontal';
+    labelPosition?: 'start' | 'end';
   };
 
 export const ElementWithLabel = forwardRef<
@@ -47,6 +48,7 @@ export const ElementWithLabel = forwardRef<
     errorText,
     children,
     hasError,
+    orientation = 'vertical',
     labelPosition = 'top',
     ...other
   } = props;
@@ -71,18 +73,20 @@ export const ElementWithLabel = forwardRef<
 
   const renderLabel = (): React.ReactElement => (
     <div>
-      <label
-        {...sxf(
-          'labelText',
-          disabled
-            ? 'labelText$disabled'
-            : hasError && !errorText && 'labelText$error',
-        )}
-        htmlFor={id}
-      >
-        {label}
-        {required ? '*' : null}
-      </label>
+      {label !== undefined ? (
+        <label
+          {...sxf(
+            'labelText',
+            disabled
+              ? 'labelText$disabled'
+              : hasError && !errorText && 'labelText$error',
+          )}
+          htmlFor={id}
+        >
+          {label}
+          {required ? '*' : null}
+        </label>
+      ) : null}
       {supportingOrErrorText !== undefined ? (
         <div
           {...sxf(
@@ -101,14 +105,21 @@ export const ElementWithLabel = forwardRef<
   return (
     <div
       {...sxf(
-        labelPosition === 'top' ? 'host$labelTop' : 'host$labelEnd',
+        orientation === 'horizontal'
+          ? [
+              'host$horizontal',
+              labelPosition === 'start'
+                ? 'host$horizontal$labelPositionStart'
+                : 'host$horizontal$labelPositionEnd',
+            ]
+          : 'host$vertical',
         theme.vars,
         sx,
       )}
       ref={ref}
       {...other}
     >
-      {labelPosition === 'top' ? renderLabel() : null}
+      {labelPosition === 'start' ? renderLabel() : null}
       <div {...sxf('element')}>
         {typeof children === 'function'
           ? children({ id, required, disabled })
