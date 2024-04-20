@@ -1,3 +1,15 @@
+# v0.0.189 (Sat Apr 20 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(SelectBast, ComboboxBase): flex-grow: 1 ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.188 (Sat Apr 20 2024)
 
 #### ⚠️ Pushed to `main`
