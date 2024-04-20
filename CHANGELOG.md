@@ -1,3 +1,15 @@
+# v0.0.188 (Sat Apr 20 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(ElementWithLabel): readOnly property ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.187 (Sat Apr 20 2024)
 
 #### ⚠️ Pushed to `main`
