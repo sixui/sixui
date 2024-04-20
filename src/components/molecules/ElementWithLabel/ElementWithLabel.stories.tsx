@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import stylex from '@stylexjs/stylex';
 
 import {
   ElementWithLabel,
@@ -19,8 +20,15 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
+const styles = stylex.create({
+  host: {
+    width: 160,
+  },
+});
+
 const defaultArgs = {
   label: 'Label',
+  sx: styles.host,
 } satisfies Partial<IElementWithLabelProps>;
 
 const cols: Array<IComponentPresentation<IElementWithLabelProps>> = [

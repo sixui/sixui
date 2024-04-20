@@ -31,6 +31,7 @@ export type IElementWithLabelProps =
     hasError?: boolean;
     orientation?: 'vertical' | 'horizontal';
     labelPosition?: 'start' | 'end';
+    supportingTextPosition?: 'start' | 'end';
   };
 
 export const ElementWithLabel = forwardRef<
@@ -49,7 +50,8 @@ export const ElementWithLabel = forwardRef<
     children,
     hasError,
     orientation = 'vertical',
-    labelPosition = 'top',
+    labelPosition = 'start',
+    supportingTextPosition: supportingTextPositionProp,
     ...other
   } = props;
 
@@ -70,37 +72,46 @@ export const ElementWithLabel = forwardRef<
   const id = useId(idProp);
   const supportingOrErrorText =
     hasError && errorText ? errorText : supportingText;
+  const supportingTextPosition =
+    orientation === 'vertical'
+      ? supportingTextPositionProp ?? labelPosition
+      : labelPosition;
+  const hasLeading =
+    (label !== undefined && labelPosition === 'start') ||
+    (supportingOrErrorText !== undefined && supportingTextPosition === 'start');
+  const hasTrailing =
+    (label !== undefined && labelPosition === 'end') ||
+    (supportingOrErrorText !== undefined && supportingTextPosition === 'end');
 
-  const renderLabel = (): React.ReactElement => (
-    <div>
-      {label !== undefined ? (
-        <label
-          {...sxf(
-            'labelText',
-            disabled
-              ? 'labelText$disabled'
-              : hasError && !errorText && 'labelText$error',
-          )}
-          htmlFor={id}
-        >
-          {label}
-          {required ? '*' : null}
-        </label>
-      ) : null}
-      {supportingOrErrorText !== undefined ? (
-        <div
-          {...sxf(
-            'supportingText',
-            disabled
-              ? 'supportingText$disabled'
-              : hasError && 'supportingText$error',
-          )}
-        >
-          {supportingOrErrorText}
-        </div>
-      ) : null}
-    </div>
-  );
+  const renderLabel = (): React.ReactNode =>
+    label !== undefined ? (
+      <label
+        {...sxf(
+          'labelText',
+          disabled
+            ? 'labelText$disabled'
+            : hasError && !errorText && 'labelText$error',
+        )}
+        htmlFor={id}
+      >
+        {label}
+        {required ? '*' : null}
+      </label>
+    ) : null;
+
+  const renderSupportingText = (): React.ReactNode =>
+    supportingOrErrorText !== undefined ? (
+      <div
+        {...sxf(
+          'supportingText',
+          disabled
+            ? 'supportingText$disabled'
+            : hasError && 'supportingText$error',
+        )}
+      >
+        {supportingOrErrorText}
+      </div>
+    ) : null;
 
   return (
     <div
@@ -119,13 +130,25 @@ export const ElementWithLabel = forwardRef<
       ref={ref}
       {...other}
     >
-      {labelPosition === 'start' ? renderLabel() : null}
+      {hasLeading ? (
+        <div>
+          {labelPosition === 'start' ? renderLabel() : null}
+          {supportingTextPosition === 'start' ? renderSupportingText() : null}
+        </div>
+      ) : null}
+
       <div {...sxf('element')}>
         {typeof children === 'function'
           ? children({ id, required, disabled })
           : children || null}
       </div>
-      {labelPosition === 'end' ? renderLabel() : null}
+
+      {hasTrailing ? (
+        <div>
+          {labelPosition === 'end' ? renderLabel() : null}
+          {supportingTextPosition === 'end' ? renderSupportingText() : null}
+        </div>
+      ) : null}
     </div>
   );
 });
