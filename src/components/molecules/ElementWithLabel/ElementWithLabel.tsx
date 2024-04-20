@@ -20,7 +20,7 @@ export type IElementWithLabelRenderProps = {
 export type IElementWithLabelProps =
   IContainerProps<IElementWithLabelStyleKey> & {
     id?: string;
-    label: React.ReactNode;
+    label?: React.ReactNode;
     required?: boolean;
     disabled?: boolean;
     supportingText?: React.ReactNode;
