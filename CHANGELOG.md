@@ -1,3 +1,15 @@
+# v0.0.187 (Sat Apr 20 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(ElementWithLabel): optional label ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.186 (Sat Apr 20 2024)
 
 #### ⚠️ Pushed to `main`
