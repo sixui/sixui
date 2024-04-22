@@ -136,17 +136,7 @@ const variants: Array<IComponentPresentation<ISelectProps>> = [
 
 const useCases: Array<IComponentPresentation<ISelectProps>> = [
   { legend: 'Basic', props: { children: options } },
-  {
-    legend: 'With Empty Option',
-    props: {
-      children: [
-        <Select.Option key='empty' value=''>
-          Nothing
-        </Select.Option>,
-        ...options,
-      ],
-    },
-  },
+  { legend: 'Empty', props: { children: [] } },
   { legend: 'With Label', props: { children: options, label: 'Label' } },
   {
     legend: 'With Placeholder',

@@ -107,18 +107,21 @@ const isOption = (element: React.ReactElement): element is IComboboxOption =>
 const emptyArrayStableRef: Array<string> = [];
 
 const getMatchingOptions = (
-  children: Array<React.ReactNode> | undefined | null,
+  options: Array<IComboboxOption>,
   values: string | Array<string>,
 ): Array<IOption | string> =>
   asArray(values).map(
     (value) =>
-      Children.toArray(children)
-        .filter(isValidElement)
-        .filter(isOption)
-        .find((option) => option && option.props.value === value) ?? value,
+      options.find((option) => option && option.props.value === value) ?? value,
   );
 
 const defaultFilter = createFilter<IOption>();
+
+const emptyOption: IComboboxOption = (
+  <ComboboxOption key='__empty' value=''>
+    —
+  </ComboboxOption>
+);
 
 const optionNodeToLabel = (option: IOption | string): string =>
   typeof option === 'string'
@@ -184,9 +187,16 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
 
     const openVisualState: IVisualState = { focused: true };
 
-    const options = Children.toArray(children)
+    // In a MultiCombobox, options are toggled on and off, resulting in an
+    // empty array (rather than null) if nothing is selected.
+    const nullable = multiple ? undefined : nullableProp;
+
+    const childrenOptions = Children.toArray(children)
       .filter(isValidElement)
       .filter(isOption);
+    const options = nullable
+      ? [emptyOption, ...childrenOptions]
+      : childrenOptions;
     const filteredOptions = query
       ? filter(options, {
           query,
@@ -198,10 +208,6 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
     const hasValue = Array.isArray(value) ? !!value.length : !!value?.length;
 
     const lastCloseActionRef = useRef<number>(0);
-
-    // In a MultiCombobox, options are toggled on and off, resulting in an
-    // empty array (rather than null) if nothing is selected.
-    const nullable = multiple ? undefined : nullableProp;
 
     const deleteValue = (valueToDelete: string): void => {
       const updatedValues = Array.isArray(value)
@@ -245,7 +251,7 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
 
     const matchingOptions =
       value !== null && value !== undefined
-        ? getMatchingOptions(children, value)
+        ? getMatchingOptions(options, value)
         : [];
 
     // In a MultiCombobox, the input value is always the query. Once the
@@ -367,7 +373,7 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
                     populated={hasValue}
                   >
                     {multiple && value && hasValue
-                      ? getMatchingOptions(children, value).map(
+                      ? getMatchingOptions(options, value).map(
                           (option, index) =>
                             typeof option === 'string' ? (
                               <InputChip
@@ -412,18 +418,16 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
                     data-cy='options'
                   >
                     <MenuList sx={styles.menuList}>
-                      {visibleOptions?.length === 0 && !!query ? (
-                        allowCustomValues ? (
-                          <ComboboxOption value={query}>
-                            {createOptionText(query)}
-                          </ComboboxOption>
-                        ) : (
-                          <ListItem disabled data-cy='no-options'>
-                            {noOptionsText}
-                          </ListItem>
-                        )
-                      ) : (
+                      {visibleOptions?.length ? (
                         visibleOptions
+                      ) : allowCustomValues ? (
+                        <ComboboxOption value={query}>
+                          {createOptionText(query)}
+                        </ComboboxOption>
+                      ) : (
+                        <ListItem disabled data-cy='no-options'>
+                          {noOptionsText}
+                        </ListItem>
                       )}
                       {hasMore ? (
                         <>

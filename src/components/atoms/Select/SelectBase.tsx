@@ -13,6 +13,7 @@ import { Field, type IFieldProps } from '@/components/atoms/Field';
 import { MenuListDivider } from '@/components/atoms/MenuList/MenuListDivider';
 import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
+import { ListItem } from '@/components/atoms/ListItem';
 import { InputChip } from '@/components/atoms/Chip';
 import { useControlled } from '@/hooks/useControlled';
 import { isElementLike } from '@/helpers/react/isElementLike';
@@ -26,6 +27,7 @@ export type ISelectBaseProps = Omit<
 > & {
   visualState?: IVisualState;
   children?: Array<React.ReactNode> | null;
+  noOptionsText?: string;
   id?: string;
 } & (
     | {
@@ -145,6 +147,7 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
       defaultValue,
       value: valueProp,
       multiple,
+      noOptionsText = 'No options',
       renderOption = multiple
         ? defaultRenderMultiOptions
         : defaultRenderSingleOption,
@@ -287,13 +290,21 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
                   data-cy='options'
                 >
                   <MenuList sx={styles.menuList}>
-                    {visibleOptions}
-                    {hasMore ? (
+                    {visibleOptions?.length ? (
                       <>
-                        <MenuListDivider />
-                        {renderMoreOption()}
+                        {visibleOptions}
+                        {hasMore ? (
+                          <>
+                            <MenuListDivider />
+                            {renderMoreOption()}
+                          </>
+                        ) : null}
                       </>
-                    ) : null}
+                    ) : (
+                      <ListItem disabled data-cy='no-options'>
+                        {noOptionsText}
+                      </ListItem>
+                    )}
                   </MenuList>
                 </Listbox.Options>
               </FloatingPortal>
