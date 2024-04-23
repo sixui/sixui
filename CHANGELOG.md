@@ -1,3 +1,15 @@
+# v0.0.193 (Tue Apr 23 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(Disclosure): defaultExpanded is now dynamic ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.192 (Tue Apr 23 2024)
 
 #### ⚠️ Pushed to `main`
