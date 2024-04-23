@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import stylex from '@stylexjs/stylex';
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faFolderOpen,
@@ -7,13 +9,23 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
+import { Switch } from '@/components/atoms/Switch';
 import { Disclosure, type IDisclosureProps } from './Disclosure';
+import { ElementWithLabel } from '@/components/molecules/ElementWithLabel';
 
 const meta = {
   component: Disclosure,
 } satisfies Meta<typeof Disclosure>;
 
 type IStory = StoryObj<typeof meta>;
+
+const styles = stylex.create({
+  host: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1rem',
+  },
+});
 
 const defaultArgs = {
   children: (
@@ -47,8 +59,24 @@ export const Loading: IStory = {
   },
 };
 
+const DynamicDefaultExpandedDemo: React.FC<IDisclosureProps> = (props) => {
+  const [defaultExpanded, setDefaultExpanded] = useState(false);
+
+  return (
+    <div {...stylex.props(styles.host)}>
+      <ElementWithLabel label='Default expanded' orientation='horizontal'>
+        <Switch
+          checked={defaultExpanded}
+          onChange={(_, enabled) => setDefaultExpanded(enabled)}
+        />
+      </ElementWithLabel>
+      <Disclosure {...props} defaultExpanded={defaultExpanded} />
+    </div>
+  );
+};
+
 export const DefaultExpanded: IStory = {
-  render: (props) => <Disclosure {...props} />,
+  render: (props) => <DynamicDefaultExpandedDemo {...props} />,
   args: {
     ...defaultArgs,
     defaultExpanded: true,

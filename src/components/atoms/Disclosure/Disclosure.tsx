@@ -1,4 +1,4 @@
-import { forwardRef, useMemo, useState } from 'react';
+import { forwardRef, useEffect, useMemo, useState } from 'react';
 
 import type { IContainerProps } from '@/helpers/types';
 import type { IDisclosureStyleKey } from './Disclosure.styledefs';
@@ -42,6 +42,12 @@ const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
       name: 'Disclosure',
     });
     const [expanded, setExpanded] = useState(defaultExpanded || defaultChecked);
+
+    useEffect(() => {
+      if (defaultExpanded || defaultChecked) {
+        setExpanded(true);
+      }
+    }, [defaultExpanded, defaultChecked]);
 
     const { theme } = useComponentTheme('Disclosure');
     const stylesCombinator = useMemo(
