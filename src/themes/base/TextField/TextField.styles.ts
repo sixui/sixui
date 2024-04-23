@@ -53,8 +53,6 @@ export const styles: MapNamespaces<ITextFieldStyles> =
 
       display: {
         default: 'block',
-        // Remove built-in datepicker icon on Chrome
-        '::-webkit-calendar-picker-indicator': 'none',
         // Remove built-in search icons on Chrome when type='search'
         '::-webkit-search-decoration': 'none',
         '::-webkit-search-cancel-button': 'none',

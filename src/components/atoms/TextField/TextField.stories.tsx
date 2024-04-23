@@ -30,7 +30,7 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   host: {
-    width: 200,
+    width: 260,
   },
 });
 
@@ -187,6 +187,12 @@ export const Validation: IStory = {
             label: 'Length',
             maxLength: 10,
             supportingText: 'Max 10 characters',
+          },
+        },
+        {
+          props: {
+            label: 'Datetime',
+            type: 'datetime-local',
           },
         },
         {
