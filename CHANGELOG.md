@@ -1,3 +1,16 @@
+# v0.0.194 (Tue Apr 23 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: date/time input now works in Safari ([@olivierpascal](https://github.com/olivierpascal))
+- feat: Do not remove built-in datepicker icon on Chrome ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.193 (Tue Apr 23 2024)
 
 #### ⚠️ Pushed to `main`
