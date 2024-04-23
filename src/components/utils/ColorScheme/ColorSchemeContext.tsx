@@ -3,7 +3,7 @@ import { createContext } from 'react';
 export type IColorScheme = 'light' | 'dark';
 
 export type IColorSchemeContext = {
-  scheme: IColorScheme;
+  scheme?: IColorScheme;
   root?: React.MutableRefObject<HTMLElement | null>;
 };
 
