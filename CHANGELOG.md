@@ -1,3 +1,15 @@
+# v0.0.192 (Tue Apr 23 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: Portal root is now color scheme root by default ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.191 (Tue Apr 23 2024)
 
 #### ⚠️ Pushed to `main`
