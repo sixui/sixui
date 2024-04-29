@@ -1,3 +1,15 @@
+# v0.0.195 (Mon Apr 29 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(Dialog): keepMounted option ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.194 (Tue Apr 23 2024)
 
 #### ⚠️ Pushed to `main`
