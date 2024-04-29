@@ -1,3 +1,15 @@
+# v0.0.196 (Mon Apr 29 2024)
+
+#### ⚠️ Pushed to `main`
+
+- chore: deps update ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.195 (Mon Apr 29 2024)
 
 #### ⚠️ Pushed to `main`
