@@ -392,7 +392,7 @@ Used to run `yarn release` locally.
 Create a [granular access token](https://www.npmjs.com/settings/olivierpascal/tokens) on npmjs with the following scopes:
 
 - Packages and scopes
-  - @sixui
+  - @sixui: read/write
 
 ## Troubleshooting
 

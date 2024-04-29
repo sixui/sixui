@@ -39,6 +39,7 @@ export type IDialogOwnProps = IContainerProps<IDialogStyleKey> &
       | React.ReactNode
       | ((close?: IOnCloseEventHandler) => React.ReactNode);
     onClose?: IOnCloseEventHandler;
+    keepMounted?: boolean;
   };
 
 export type IDialogProps<TRoot extends React.ElementType = typeof DEFAULT_TAG> =
@@ -63,6 +64,7 @@ export const Dialog: IDialog = forwardRef(function Dialog<
     children,
     actions,
     onClose,
+    keepMounted,
     ...other
   } = props as IWithAsProp<IDialogOwnProps>;
 
@@ -157,7 +159,7 @@ export const Dialog: IDialog = forwardRef(function Dialog<
   // TODO: Reset scroll position if re-opening a dialog with the same content.
   // See https://github.com/material-components/material-web/blob/main/dialog/internal/dialog.ts#L193C8-L193C75
 
-  return (
+  const renderDialog = (): React.ReactNode => (
     <Scrim open={open} onClick={handleScrimClick} onMouseDown={handleMouseDown}>
       <Component
         {...sxf('host', theme.vars, sx)}
@@ -245,4 +247,6 @@ export const Dialog: IDialog = forwardRef(function Dialog<
       </Component>
     </Scrim>
   );
+
+  return keepMounted || open ? renderDialog() : null;
 });
