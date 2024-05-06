@@ -61,6 +61,8 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
   bulletPoint$icon: {
     color: vars.bulletPointColor,
     fontSize: vars.bulletPointSize,
+    width: vars.bulletPointSize,
+    height: vars.bulletPointSize,
   },
   bulletPoint$icon$active: {
     color: vars.bulletPointColor$active,
