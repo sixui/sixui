@@ -1,3 +1,15 @@
+# v0.0.199 (Mon May 06 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: set SVG icons width and height to 1em to match font size ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.198 (Mon May 06 2024)
 
 #### ⚠️ Pushed to `main`
