@@ -21,6 +21,12 @@ import {
 import { ButtonBase, type IButtonBaseOwnProps } from '../ButtonBase';
 import { StepContext, type IStepContext } from './StepContext';
 
+export type IStepRenderProps = {
+  active: boolean;
+  completed: boolean;
+  hasError: boolean;
+};
+
 export type IStepProps = IContainerProps<IStepStyleKey> & {
   innerStyles?: IButtonBaseOwnProps['innerStyles'];
   active?: boolean;
@@ -35,6 +41,7 @@ export type IStepProps = IContainerProps<IStepStyleKey> & {
   onClick?: () => void;
   orientation?: IStepperContext['orientation'];
   nextConnector?: IStepperContext['connector'];
+  alwaysExpanded?: boolean;
 
   /**
    * Only supported in vertical orientation.
@@ -44,7 +51,7 @@ export type IStepProps = IContainerProps<IStepStyleKey> & {
   /**
    * Only supported in vertical orientation.
    */
-  children?: React.ReactNode;
+  children?: React.ReactNode | ((props: IStepRenderProps) => React.ReactNode);
 };
 
 export const Step = forwardRef<HTMLDivElement, IStepProps>(
@@ -65,6 +72,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       orientation: orientationProp,
       labelPosition: labelPositionProp,
       nextConnector: nextConnectorProp,
+      alwaysExpanded,
       children,
       onClick,
       ...other
@@ -103,8 +111,8 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
     const nextConnector =
       nextConnectorProp !== undefined ? nextConnectorProp : context?.connector;
     const orientation = orientationProp ?? context?.orientation ?? 'horizontal';
-    const contentExpanded =
-      isActive && orientation === 'vertical' && !!children;
+    const expanded =
+      orientation === 'vertical' && !!children && (isActive || alwaysExpanded);
     const isFirst = index === 0;
 
     const state = disabled
@@ -119,7 +127,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
 
     const contextValue: IStepContext = {
       completed,
-      hasContent: contentExpanded,
+      hasContent: expanded,
       hasText,
       orientation,
       labelPosition,
@@ -248,7 +256,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
               )}
             </div>
 
-            {contentExpanded ? (
+            {expanded ? (
               <div {...sxf('content')}>
                 {/* Connect the content block to the next connector. */}
                 {!isLast ? (
@@ -258,7 +266,15 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
                     {renderConnectorWithoutChildren()}
                   </div>
                 ) : null}
-                <div {...sxf('contentText')}>{children}</div>
+                <div {...sxf('contentText')}>
+                  {typeof children === 'function'
+                    ? children({
+                        active: !!isActive,
+                        completed,
+                        hasError: !!hasError,
+                      })
+                    : children}
+                </div>
               </div>
             ) : null}
 

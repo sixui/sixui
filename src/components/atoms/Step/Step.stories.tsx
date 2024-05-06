@@ -33,6 +33,7 @@ const rows: Array<IComponentPresentation<IStepProps>> = [
     legend: 'With Label',
     props: {
       label: 'Lorem ipsum',
+      children: 'x',
     },
   },
   {
