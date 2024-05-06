@@ -1,3 +1,15 @@
+# v0.0.197 (Mon May 06 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(Stepper): correct step content alignment ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.196 (Mon Apr 29 2024)
 
 #### ⚠️ Pushed to `main`
