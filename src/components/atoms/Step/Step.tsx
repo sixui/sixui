@@ -83,7 +83,6 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
 
     const context = useContext(StepperContext);
 
-    const isIcon = !!icon || hasError;
     const hasText = !!label || !!supportingText;
 
     const completed =
@@ -91,6 +90,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       (context?.completed ||
         (completedProp ??
           (context?.activeStep !== undefined && index < context.activeStep)));
+    const isIcon = !!icon || hasError;
     const previousCompleted =
       !disabled &&
       context?.activeStep !== undefined &&
