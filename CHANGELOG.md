@@ -1,3 +1,15 @@
+# v0.0.198 (Mon May 06 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(Stepper): bullet point icon size ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.197 (Mon May 06 2024)
 
 #### ⚠️ Pushed to `main`
