@@ -209,6 +209,7 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
   connectorContainer$content: {
     display: 'flex',
     width: 0,
+    flexGrow: 0,
   },
   connectorContainer$horizontal$rightLabel: {
     flexDirection: 'row',
