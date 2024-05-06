@@ -1,3 +1,15 @@
+# v0.0.201 (Mon May 06 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(CardMedia): inherit shape from parent ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.200 (Mon May 06 2024)
 
 #### ⚠️ Pushed to `main`
