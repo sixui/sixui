@@ -53,10 +53,10 @@ export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
     margin: '12px 16px',
   },
   content$hasStart: {
-    marginLeft: 12,
+    marginLeft: 0,
   },
   content$hasEnd: {
-    marginRight: 12,
+    marginRight: 0,
   },
   end: {
     color: vars.endColor,
