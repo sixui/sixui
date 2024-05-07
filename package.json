@@ -1,7 +1,7 @@
 {
   "name": "@sixui/ui",
   "description": "UI components",
-  "version": "0.0.205",
+  "version": "0.0.206",
   "main": "./dist/index.js",
   "sideEffects": false,
   "exports": {
