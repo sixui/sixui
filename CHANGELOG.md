@@ -1,3 +1,15 @@
+# v0.0.203 (Tue May 07 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(Item): start and end slots has no padding ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.202 (Tue May 07 2024)
 
 #### ⚠️ Pushed to `main`
