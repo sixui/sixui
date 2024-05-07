@@ -80,8 +80,8 @@ const variants: Array<IComponentPresentation<IListItemOwnProps>> = [
   {
     props: {
       children: 'With Icons',
-      start: <FontAwesomeIcon icon={faCalendarDays} />,
-      end: <FontAwesomeIcon icon={faChevronRight} />,
+      leadingIcon: <FontAwesomeIcon icon={faCalendarDays} />,
+      trailingIcon: <FontAwesomeIcon icon={faChevronRight} />,
     },
   },
 ];

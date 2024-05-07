@@ -96,7 +96,8 @@ export const styles: MapNamespaces<IListItemStyles> =
       fontSize: vars.leadingIconSize,
       height: vars.leadingIconSize,
       width: vars.leadingIconSize,
-      marginStart: vars.leadingSpace,
+      marginInlineStart: vars.leadingSpace,
+      marginInlineEnd: 12,
 
       color: {
         default: vars.leadingIconColor,
@@ -121,6 +122,7 @@ export const styles: MapNamespaces<IListItemStyles> =
       fontSize: vars.trailingIconSize,
       height: vars.trailingIconSize,
       width: vars.trailingIconSize,
+      marginInlineStart: 12,
       marginInlineEnd: vars.trailingSpace,
 
       color: {
