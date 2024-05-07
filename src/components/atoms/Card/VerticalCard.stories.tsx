@@ -28,6 +28,7 @@ const styles = stylex.create({
   },
   avatar: {
     marginStart: 12,
+    marginEnd: 12,
   },
   media: {
     height: 200,

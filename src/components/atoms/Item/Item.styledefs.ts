@@ -12,16 +12,16 @@ export type IItemStyleKey =
   | 'trailingSupportingText'
   | 'start'
   | 'content'
-  | 'content$hasStart'
-  | 'content$hasEnd'
   | 'end'
   | 'textSlot';
 
 export type IItemStyleVarKey =
   | 'textColor'
   | 'nonTextColor'
-  | 'startColor'
-  | 'endColor'
+  | 'leadingContentColor'
+  | 'leadingContentMinWidth'
+  | 'trailingContentColor'
+  | 'trailingContentMinWidth'
   | 'labelTextColor'
   | 'labelTextFont'
   | 'labelTextLineHeight'

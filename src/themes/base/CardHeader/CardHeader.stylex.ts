@@ -13,8 +13,9 @@ const vars: Partial<IStyleVars<ICardHeaderStyleVarKey>> = {
   // nonText
   nonTextColor: colorRolesVars.onSurfaceVariant,
 
-  // start
-  startColor: 'inherit',
+  // leadingContent
+  leadingContentColor: 'inherit',
+  leadingContentMinWidth: '48px',
 
   // overline
   overlineColor: 'inherit',
@@ -56,8 +57,9 @@ const vars: Partial<IStyleVars<ICardHeaderStyleVarKey>> = {
   trailingSupportingTextLetterSpacing: typescaleVars.labelLetterSpacing$sm,
   trailingSupportingTextWeight: typescaleVars.labelWeight$sm,
 
-  // end
-  endColor: 'inherit',
+  // trailingContent
+  trailingContentColor: 'inherit',
+  trailingContentMinWidth: '48px',
 };
 
 /**

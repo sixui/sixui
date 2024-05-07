@@ -24,6 +24,14 @@ export const styles: MapNamespaces<IListItemStyles> =
 
       [listItemStatesVars.nonTextColor]: vars.nonTextColor,
       [listItemStatesVars.textColor]: vars.textColor,
+      [listItemStatesVars.leadingSpace]: vars.leadingSpace,
+      [listItemStatesVars.trailingSpace]: vars.trailingSpace,
+    },
+    host$hasLeadingContent: {
+      [listItemStatesVars.leadingSpace]: 0,
+    },
+    host$hasTrailingContent: {
+      [listItemStatesVars.trailingSpace]: 0,
     },
     host$interactive: {
       cursor: 'pointer',
@@ -90,7 +98,6 @@ export const styles: MapNamespaces<IListItemStyles> =
       fontSize: vars.leadingIconSize,
       height: vars.leadingIconSize,
       width: vars.leadingIconSize,
-      marginInlineEnd: 12,
 
       color: {
         default: vars.leadingIconColor,
@@ -115,7 +122,6 @@ export const styles: MapNamespaces<IListItemStyles> =
       fontSize: vars.trailingIconSize,
       height: vars.trailingIconSize,
       width: vars.trailingIconSize,
-      marginInlineStart: 12,
 
       color: {
         default: vars.trailingIconColor,
@@ -146,8 +152,8 @@ export const itemStyles: MapNamespaces<IItemStyles> = stylex.create<
     borderRadius: 'inherit',
     minHeight: vars.containerHeight$oneLine,
     WebkitTapHighlightColor: 'transparent',
-    paddingInlineStart: vars.leadingSpace,
-    paddingInlineEnd: vars.trailingSpace,
+    paddingInlineStart: listItemStatesVars.leadingSpace,
+    paddingInlineEnd: listItemStatesVars.trailingSpace,
   },
   nonText: {
     color: listItemStatesVars.nonTextColor,

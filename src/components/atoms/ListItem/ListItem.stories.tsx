@@ -29,7 +29,7 @@ type IStory = StoryObj<typeof meta>;
 
 const listItemStyles = stylex.create({
   host: {
-    width: '180px',
+    width: '220px',
   },
 });
 

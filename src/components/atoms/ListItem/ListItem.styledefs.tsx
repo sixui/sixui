@@ -3,6 +3,8 @@ export type IListItemStyleKey =
   | 'host$interactive'
   | 'host$selected'
   | 'host$disabled'
+  | 'host$hasLeadingContent'
+  | 'host$hasTrailingContent'
   | 'listItem'
   | 'listItem$interactive'
   | 'listItem$disabled'
@@ -83,4 +85,6 @@ export type IListItemStyleStateVarKey =
   | 'nonTextColor'
   | 'nonTextOpacity'
   | 'textColor'
-  | 'textOpacity';
+  | 'textOpacity'
+  | 'leadingSpace'
+  | 'trailingSpace';

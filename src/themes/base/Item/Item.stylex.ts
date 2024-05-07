@@ -14,8 +14,9 @@ const vars: Partial<IStyleVars<IItemStyleVarKey>> = {
   // nonText
   nonTextColor: colorRolesVars.onSurfaceVariant,
 
-  // start
-  startColor: 'inherit',
+  // leadingContent
+  leadingContentColor: 'inherit',
+  leadingContentMinWidth: '48px',
 
   // overline
   overlineColor: 'inherit',
@@ -57,8 +58,9 @@ const vars: Partial<IStyleVars<IItemStyleVarKey>> = {
   trailingSupportingTextLetterSpacing: typescaleVars.labelLetterSpacing$sm,
   trailingSupportingTextWeight: typescaleVars.labelWeight$sm,
 
-  // end
-  endColor: 'inherit',
+  // trailingContent
+  trailingContentColor: 'inherit',
+  trailingContentMinWidth: '48px',
 };
 
 export const componentVars = stylex.defineVars(

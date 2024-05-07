@@ -8,6 +8,8 @@ const vars: IStyleVars<IListItemStyleStateVarKey> = {
   nonTextOpacity: 'unset',
   textColor: 'unset',
   textOpacity: 'unset',
+  leadingSpace: 'unset',
+  trailingSpace: 'unset',
 };
 
 export const componentVars = stylex.defineVars(vars);

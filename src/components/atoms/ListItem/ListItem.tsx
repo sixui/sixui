@@ -118,6 +118,8 @@ export const ListItem: IListItem = forwardRef(function ListItem<
   const selected = !disabled && selectedProp;
   const isInteractive = type !== 'text';
   const target = type === 'link' && targetProp ? targetProp : undefined;
+  const hasLeadingContent = !!leadingIcon || !!start;
+  const hasTrailingContent = !!trailingIcon || !!end;
 
   const Component =
     as ?? (type == 'link' ? 'a' : type === 'button' ? 'button' : 'li');
@@ -129,6 +131,8 @@ export const ListItem: IListItem = forwardRef(function ListItem<
         isInteractive && 'host$interactive',
         selected && 'host$selected',
         disabled && 'host$disabled',
+        hasLeadingContent && 'host$hasLeadingContent',
+        hasTrailingContent && 'host$hasTrailingContent',
         theme.vars,
         sx,
       )}

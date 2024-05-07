@@ -40,9 +40,13 @@ export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
     minHeight: 72,
   },
   start: {
-    color: vars.startColor,
+    color: vars.leadingContentColor,
     borderTopLeftRadius: 'inherit',
     borderBottomLeftRadius: 'inherit',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minWidth: vars.leadingContentMinWidth,
   },
   content: {
     display: 'flex',
@@ -51,16 +55,14 @@ export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  content$hasStart: {
-    marginLeft: 0,
-  },
-  content$hasEnd: {
-    marginRight: 0,
-  },
   end: {
-    color: vars.endColor,
+    color: vars.trailingContentColor,
     borderTopRightRadius: 'inherit',
     borderBottomRightRadius: 'inherit',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minWidth: vars.trailingContentMinWidth,
   },
   overline: {
     color: vars.overlineColor,
