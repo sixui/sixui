@@ -123,7 +123,9 @@ const defaultRenderMultiOptions = (
           label={optionNodeToLabel(option)}
           onDelete={(event) => {
             event.preventDefault();
-            onDelete(option.props.value);
+            if (option.props.value) {
+              onDelete(option.props.value);
+            }
           }}
           icon={option.props.leadingIcon}
           data-cy={`chip-${option.props.value}`}
