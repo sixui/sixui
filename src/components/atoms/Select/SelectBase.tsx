@@ -177,11 +177,7 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
 
     const handleChange = (newValue: (typeof props)['value']): void => {
       setValue(newValue);
-
-      // TODO: check array equality?
-      if (newValue !== null && value !== newValue) {
-        onChange?.(newValue as string & Array<string>);
-      }
+      onChange?.(newValue as string & Array<string>);
     };
 
     const deleteValue = (valueToDelete: string): void => {
