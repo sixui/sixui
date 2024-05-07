@@ -1,3 +1,15 @@
+# v0.0.209 (Tue May 07 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(ListItem): leading and trailing space ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.208 (Tue May 07 2024)
 
 #### ⚠️ Pushed to `main`
