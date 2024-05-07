@@ -96,6 +96,7 @@ export const styles: MapNamespaces<IListItemStyles> =
       fontSize: vars.leadingIconSize,
       height: vars.leadingIconSize,
       width: vars.leadingIconSize,
+      marginStart: vars.leadingSpace,
 
       color: {
         default: vars.leadingIconColor,
@@ -120,6 +121,7 @@ export const styles: MapNamespaces<IListItemStyles> =
       fontSize: vars.trailingIconSize,
       height: vars.trailingIconSize,
       width: vars.trailingIconSize,
+      marginInlineEnd: vars.trailingSpace,
 
       color: {
         default: vars.trailingIconColor,
@@ -149,12 +151,6 @@ export const itemStyles: MapNamespaces<IItemStyles> = stylex.create<
   host: {
     borderRadius: 'inherit',
     minHeight: vars.containerHeight$oneLine,
-    paddingTop: vars.topSpace,
-    paddingBottom: vars.bottomSpace,
-    paddingInlineStart: vars.leadingSpace,
-    paddingInlineEnd: vars.trailingSpace,
-    // Hide android tap color since we have statelayer
-    // eslint-disable-next-line @stylexjs/valid-styles
     WebkitTapHighlightColor: 'transparent',
   },
   nonText: {

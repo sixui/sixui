@@ -56,22 +56,30 @@ export const Item = forwardRef<HTMLDivElement, IItemProps>(
           </div>
         ) : null}
 
-        <div {...sxf('text')}>
-          {overline ? <div {...sxf('overline')}>{overline}</div> : null}
-          <div {...sxf('label')}>{children}</div>
-          {headline ? <div {...sxf('headline')}>{headline}</div> : null}
-          {supportingText ? (
-            <div {...sxf('supportingText')}>{supportingText}</div>
+        <div
+          {...sxf(
+            'content',
+            !!start && 'content$hasStart',
+            !!end && 'content$hasEnd',
+          )}
+        >
+          <div {...sxf('text')}>
+            {overline ? <div {...sxf('overline')}>{overline}</div> : null}
+            <div {...sxf('label')}>{children}</div>
+            {headline ? <div {...sxf('headline')}>{headline}</div> : null}
+            {supportingText ? (
+              <div {...sxf('supportingText')}>{supportingText}</div>
+            ) : null}
+          </div>
+
+          {trailingSupportingText ? (
+            <div {...sxf('nonText')}>
+              <div {...sxf('center', 'trailingSupportingText')}>
+                {trailingSupportingText}
+              </div>
+            </div>
           ) : null}
         </div>
-
-        {trailingSupportingText ? (
-          <div {...sxf('nonText')}>
-            <div {...sxf('center', 'trailingSupportingText')}>
-              {trailingSupportingText}
-            </div>
-          </div>
-        ) : null}
 
         {end ? (
           <div {...sxf('nonText')}>

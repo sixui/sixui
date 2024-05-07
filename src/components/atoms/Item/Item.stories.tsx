@@ -70,39 +70,26 @@ export const Slots: IStory = {
   },
 };
 
-export const ShortText: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      styles={componentShowCaseStyles}
-      component={Item}
-      props={props}
-      cols={[
-        { props: { children: 'Single line item' } },
-        {
-          props: {
-            children: 'Two line item',
-            supportingText: 'Supporting text',
-          },
-        },
-        {
-          props: {
-            children: 'Three line item',
-            supportingText: (
-              <>
-                <div>Second line text</div>
-                <div>Third line text</div>
-              </>
-            ),
-          },
-        },
-      ]}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    styles: itemStyles,
+const shortTextColProps: Array<IComponentPresentation<IItemProps>> = [
+  { props: { children: 'Single line item' } },
+  {
+    props: {
+      children: 'Two line item',
+      supportingText: 'Supporting text',
+    },
   },
-};
+  {
+    props: {
+      children: 'Three line item',
+      supportingText: (
+        <>
+          <div>Second line text</div>
+          <div>Third line text</div>
+        </>
+      ),
+    },
+  },
+];
 
 const longTextColProps: Array<IComponentPresentation<IItemProps>> = [
   {
@@ -144,6 +131,21 @@ const longTextColProps: Array<IComponentPresentation<IItemProps>> = [
     },
   },
 ];
+
+export const ShortText: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      styles={componentShowCaseStyles}
+      component={Item}
+      props={props}
+      cols={shortTextColProps}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    styles: itemStyles,
+  },
+};
 
 export const LongText: IStory = {
   render: (props) => (

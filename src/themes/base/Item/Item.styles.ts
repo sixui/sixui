@@ -10,17 +10,16 @@ import { componentVars as vars } from './Item.stylex';
 type IItemStyles = IStyles<IItemStyleKey>;
 export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
   host: {
-    alignItems: 'center',
+    alignItems: 'stretch',
     display: 'flex',
-    gap: 12,
     minHeight: 56,
     position: 'relative',
-    // padding: '12px 16px',
   },
   nonText: {
     position: 'relative',
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'stretch',
+    borderRadius: 'inherit',
     color: vars.nonTextColor,
   },
   text: {
@@ -42,9 +41,27 @@ export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
   },
   start: {
     color: vars.startColor,
+    borderTopLeftRadius: 'inherit',
+    borderBottomLeftRadius: 'inherit',
+  },
+  content: {
+    display: 'flex',
+    flexGrow: 1,
+    width: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: '12px 16px',
+  },
+  content$hasStart: {
+    marginLeft: 12,
+  },
+  content$hasEnd: {
+    marginRight: 12,
   },
   end: {
     color: vars.endColor,
+    borderTopRightRadius: 'inherit',
+    borderBottomRightRadius: 'inherit',
   },
   overline: {
     color: vars.overlineColor,

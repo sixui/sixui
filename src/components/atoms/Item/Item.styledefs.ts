@@ -10,8 +10,11 @@ export type IItemStyleKey =
   | 'headline'
   | 'supportingText'
   | 'trailingSupportingText'
-  | 'end'
   | 'start'
+  | 'content'
+  | 'content$hasStart'
+  | 'content$hasEnd'
+  | 'end'
   | 'textSlot';
 
 export type IItemStyleVarKey =
