@@ -1,3 +1,15 @@
+# v0.0.207 (Tue May 07 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(SelectOption): value is optional ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.206 (Tue May 07 2024)
 
 #### ⚠️ Pushed to `main`
