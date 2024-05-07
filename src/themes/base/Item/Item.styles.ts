@@ -14,8 +14,8 @@ export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
     display: 'flex',
     gap: 12,
     minHeight: 56,
-    padding: '12px 16px',
     position: 'relative',
+    // padding: '12px 16px',
   },
   nonText: {
     position: 'relative',

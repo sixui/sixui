@@ -26,6 +26,9 @@ const styles = stylex.create({
   card: {
     width: 300,
   },
+  avatar: {
+    marginStart: 12,
+  },
   media: {
     height: 200,
   },
@@ -42,7 +45,10 @@ const NonActionableContent: React.FC<{ headline?: string }> = ({
   <>
     <Card.Header
       start={
-        <Avatar src='https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' />
+        <Avatar
+          sx={styles.avatar}
+          src='https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+        />
       }
       headline='February 21, 2024'
       end={<IconButton icon={<FontAwesomeIcon icon={faEllipsisVertical} />} />}
