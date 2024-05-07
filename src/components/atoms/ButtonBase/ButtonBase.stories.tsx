@@ -38,14 +38,12 @@ const buttonStyles = stylex.create({
 
 const stateLayerStyles = stylex.create({
   host: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [stateLayerVars.color$pressed]: colorRolesVars.primary,
   },
 });
 
 const focusRingStyles = stylex.create({
   host: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [focusRingVars.shape]: shapeVars.corner$md,
   },
 });

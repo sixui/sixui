@@ -110,7 +110,7 @@ export const DisclosureButton = forwardRef<
           theme.vars,
         ]}
         innerStyles={{
-          // ...innerStyles?.listItem,
+          ...innerStyles?.listItem,
           item: [theme.itemStyles, ...asArray(innerStyles?.listItem?.item)],
         }}
         end={

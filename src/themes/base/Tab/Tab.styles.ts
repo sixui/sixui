@@ -42,29 +42,20 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
     textDecoration: 'none',
     paddingBlock: 0,
 
-    // eslint-disable-next-line @stylexjs/valid-styles
     [tabStateVars.stateLayerColor$hover]: vars.stateLayerColor$hover,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [tabStateVars.stateLayerOpacity$hover]: vars.stateLayerOpacity$hover,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [tabStateVars.stateLayerColor$pressed]: vars.stateLayerColor$pressed,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [tabStateVars.stateLayerOpacity$pressed]: vars.stateLayerOpacity$pressed,
   },
   host$disabled: {
     cursor: 'default',
     pointerEvents: 'none',
-    // eslint-disable-next-line @stylexjs/valid-styles
     [tabStateVars.elevation]: vars.containerElevation$disabled,
   },
   host$active: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [tabStateVars.stateLayerColor$hover]: vars.activeStateLayerColor$hover,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [tabStateVars.stateLayerOpacity$hover]: vars.activeStateLayerOpacity$hover,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [tabStateVars.stateLayerColor$pressed]: vars.activeStateLayerColor$pressed,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [tabStateVars.stateLayerOpacity$pressed]:
       vars.activeStateLayerOpacity$pressed,
   },
@@ -167,13 +158,9 @@ export const stateLayerStyles: MapNamespaces<IStateLayerStyles> = stylex.create<
   host: {
     borderRadius: vars.containerShape,
 
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.color$hover]: tabStateVars.stateLayerColor$hover,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.opacity$hover]: tabStateVars.stateLayerOpacity$hover,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.color$pressed]: tabStateVars.stateLayerColor$pressed,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.opacity$pressed]: tabStateVars.stateLayerOpacity$pressed,
   },
 });
@@ -183,7 +170,6 @@ export const focusRingStyles: MapNamespaces<IFocusRingStyles> = stylex.create<
   IStyles<IFocusRingStyleKey>
 >({
   host: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [focusRingVars.shape]: 8,
     zIndex: 1,
   },
@@ -199,7 +185,6 @@ export const elevationStyles: MapNamespaces<IElevationStyles> = stylex.create<
   host: {
     borderRadius: vars.containerShape,
 
-    // eslint-disable-next-line @stylexjs/valid-styles
     [elevationVars.boxShadow]: vars.containerElevation,
   },
 });

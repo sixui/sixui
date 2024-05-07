@@ -23,7 +23,6 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   styles: stylex.create<IStyles<IFocusRingStyleKey>>({
     host: {
-      // eslint-disable-next-line @stylexjs/valid-styles
       [componentVars.shape]: shapeVars.corner$md,
     },
   }),

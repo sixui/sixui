@@ -34,17 +34,12 @@ export const styles: MapNamespaces<IRadioStyles> = stylex.create<IRadioStyles>({
     outline: 'none',
     position: 'relative',
     verticalAlign: 'top', // Fix extra space when placed inside display: block
-    // eslint-disable-next-line @stylexjs/valid-styles
     WebkitTapHighlightColor: 'transparent',
     cursor: 'pointer',
 
-    // eslint-disable-next-line @stylexjs/valid-styles
     [radioStateVars.stateLayerColor$hover]: vars.stateLayerColor$hover,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [radioStateVars.stateLayerOpacity$hover]: vars.stateLayerOpacity$hover,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [radioStateVars.stateLayerColor$pressed]: vars.stateLayerColor$pressed,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [radioStateVars.stateLayerOpacity$pressed]: vars.stateLayerOpacity$pressed,
   },
   host$disabled: {
@@ -59,15 +54,11 @@ export const styles: MapNamespaces<IRadioStyles> = stylex.create<IRadioStyles>({
     placeItems: 'center',
   },
   container$checked: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [radioStateVars.stateLayerColor$hover]: vars.selectedStateLayerColor$hover,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [radioStateVars.stateLayerOpacity$hover]:
       vars.selectedStateLayerOpacity$hover,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [radioStateVars.stateLayerColor$pressed]:
       vars.selectedStateLayerColor$pressed,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [radioStateVars.stateLayerOpacity$pressed]:
       vars.selectedStateLayerOpacity$pressed,
   },
@@ -143,13 +134,9 @@ export const stateLayerStyles: MapNamespaces<IStateLayerStyles> = stylex.create<
     height: vars.stateLayerSize,
     inset: 'unset',
 
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.color$hover]: radioStateVars.stateLayerColor$hover,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.opacity$hover]: radioStateVars.stateLayerOpacity$hover,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.color$pressed]: radioStateVars.stateLayerColor$pressed,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.opacity$pressed]: radioStateVars.stateLayerOpacity$pressed,
   },
 });
@@ -161,7 +148,6 @@ export const focusRingStyles: MapNamespaces<IFocusRingStyles> = stylex.create<
   host: {
     width: 44,
     height: 44,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [focusRingVars.shape]: shapeVars.corner$full,
   },
   host$outward: {

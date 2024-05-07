@@ -20,14 +20,12 @@ import { componentVars as circularProgressIndicatorVars } from '../CircularProgr
 type IChipStyles = IStyles<IChipStyleKey>;
 export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
   host: {
-    // eslint-disable-next-line @stylexjs/valid-styles
-    [chipStateVars.containerShape]: vars.containerShape,
     borderRadius: chipStateVars.containerShape,
     display: 'inline-flex',
     height: vars.containerHeight,
-    // eslint-disable-next-line @stylexjs/valid-styles
-    [chipStateVars.iconColor]: vars.iconColor,
     cursor: 'default',
+    [chipStateVars.containerShape]: vars.containerShape,
+    [chipStateVars.iconColor]: vars.iconColor,
   },
   host$interactive: {
     cursor: 'pointer',
@@ -40,7 +38,6 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     },
   },
   host$avatar: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [chipStateVars.containerShape]: `calc(${vars.containerHeight} / 2)`,
   },
   host$disabled: {
@@ -65,7 +62,6 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     '::before': {
       backgroundColor: vars.flatContainerColor,
     },
-    // eslint-disable-next-line @stylexjs/valid-styles
     [chipStateVars.elevation]: vars.flatContainerElevation,
   },
   flatContainer$interactive: {
@@ -82,14 +78,12 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
       opacity: vars.flatContainerOpacity$disabled,
     },
     pointerEvents: 'none',
-    // eslint-disable-next-line @stylexjs/valid-styles
     [chipStateVars.elevation]: vars.flatContainerElevation$disabled,
   },
   selectedFlatContainer: {
     '::before': {
       backgroundColor: vars.selectedFlatContainerColor,
     },
-    // eslint-disable-next-line @stylexjs/valid-styles
     [chipStateVars.elevation]: vars.flatContainerElevation,
   },
   selectedFlatContainer$interactive: {
@@ -106,14 +100,12 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
       opacity: vars.selectedFlatContainerOpacity$disabled,
     },
     pointerEvents: 'none',
-    // eslint-disable-next-line @stylexjs/valid-styles
     [chipStateVars.elevation]: vars.selectedFlatContainerElevation$disabled,
   },
   elevatedContainer: {
     '::before': {
       backgroundColor: vars.elevatedContainerColor,
     },
-    // eslint-disable-next-line @stylexjs/valid-styles
     [chipStateVars.elevation]: vars.elevatedContainerElevation,
   },
   elevatedContainer$interactive: {
@@ -130,14 +122,12 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
       opacity: vars.elevatedContainerOpacity$disabled,
     },
     pointerEvents: 'none',
-    // eslint-disable-next-line @stylexjs/valid-styles
     [chipStateVars.elevation]: vars.elevatedContainerElevation$disabled,
   },
   selectedElevatedContainer: {
     '::before': {
       backgroundColor: vars.selectedElevatedContainerColor,
     },
-    // eslint-disable-next-line @stylexjs/valid-styles
     [chipStateVars.elevation]: vars.elevatedContainerElevation,
   },
   selectedElevatedContainer$interactive: {
@@ -154,7 +144,6 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
       opacity: vars.selectedFlatContainerOpacity$disabled,
     },
     pointerEvents: 'none',
-    // eslint-disable-next-line @stylexjs/valid-styles
     [chipStateVars.elevation]: vars.selectedFlatContainerElevation$disabled,
   },
   action: {
@@ -331,7 +320,6 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     },
   },
   icon$disabled: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [chipStateVars.iconColor]: vars.iconColor$disabled,
     opacity: vars.iconOpacity$disabled,
   },
@@ -361,13 +349,9 @@ type IStateLayerStyles = IStyles<IStateLayerStyleKey>;
 export const stateLayerStyles: MapNamespaces<IStateLayerStyles> =
   stylex.create<IStateLayerStyles>({
     host: {
-      // eslint-disable-next-line @stylexjs/valid-styles
       [statelayerVars.color$hover]: vars.stateLayerColor$hover,
-      // eslint-disable-next-line @stylexjs/valid-styles
       [statelayerVars.opacity$hover]: vars.stateLayerOpacity$hover,
-      // eslint-disable-next-line @stylexjs/valid-styles
       [statelayerVars.color$pressed]: vars.stateLayerColor$pressed,
-      // eslint-disable-next-line @stylexjs/valid-styles
       [statelayerVars.opacity$pressed]: vars.stateLayerOpacity$pressed,
     },
   });
@@ -376,7 +360,6 @@ type IFocusRingStyles = IStyles<IFocusRingStyleKey>;
 export const focusRingStyles: MapNamespaces<IFocusRingStyles> =
   stylex.create<IFocusRingStyles>({
     host: {
-      // eslint-disable-next-line @stylexjs/valid-styles
       [focusRingVars.shape]: chipStateVars.containerShape,
     },
   });
@@ -386,7 +369,6 @@ export const elevationStyles: MapNamespaces<IElevationStyles> = stylex.create<
   IStyles<IElevationStyleKey>
 >({
   host: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [elevationVars.boxShadow]: chipStateVars.elevation,
   },
 });
@@ -394,7 +376,6 @@ export const elevationStyles: MapNamespaces<IElevationStyles> = stylex.create<
 export const trailingActionFocusRingStyles: MapNamespaces<IFocusRingStyles> =
   stylex.create<IFocusRingStyles>({
     host: {
-      // eslint-disable-next-line @stylexjs/valid-styles
       [focusRingVars.shape]: '50%',
       height: `calc(4 / 3 * ${vars.iconSize})`,
       width: `calc(4 / 3 * ${vars.iconSize})`,
@@ -415,13 +396,9 @@ export const trailingActionStateLayerStyles: MapNamespaces<IStateLayerStyles> =
       width: `calc(4 / 3 * ${vars.iconSize})`,
       inset: 'unset',
 
-      // eslint-disable-next-line @stylexjs/valid-styles
       [statelayerVars.color$hover]: vars.stateLayerColor$hover,
-      // eslint-disable-next-line @stylexjs/valid-styles
       [statelayerVars.opacity$hover]: vars.stateLayerOpacity$hover,
-      // eslint-disable-next-line @stylexjs/valid-styles
       [statelayerVars.color$pressed]: vars.stateLayerColor$pressed,
-      // eslint-disable-next-line @stylexjs/valid-styles
       [statelayerVars.opacity$pressed]: vars.stateLayerOpacity$pressed,
     },
   });
@@ -431,7 +408,6 @@ type ICircularProgressIndicatorStyles =
 export const circularProgressIndicatorStyles: MapNamespaces<ICircularProgressIndicatorStyles> =
   stylex.create<ICircularProgressIndicatorStyles>({
     host: {
-      // eslint-disable-next-line @stylexjs/valid-styles
       [circularProgressIndicatorVars.color]: chipStateVars.iconColor,
     },
   });

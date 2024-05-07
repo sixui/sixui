@@ -22,9 +22,7 @@ export const styles: MapNamespaces<IListItemStyles> =
       textDecoration: 'none',
       textAlign: 'start',
 
-      // eslint-disable-next-line @stylexjs/valid-styles
       [listItemStatesVars.nonTextColor]: vars.nonTextColor,
-      // eslint-disable-next-line @stylexjs/valid-styles
       [listItemStatesVars.textColor]: vars.textColor,
     },
     host$interactive: {
@@ -63,13 +61,9 @@ export const styles: MapNamespaces<IListItemStyles> =
       cursor: 'default',
       pointerEvents: 'none',
 
-      // eslint-disable-next-line @stylexjs/valid-styles
       [listItemStatesVars.nonTextColor]: vars.nonTextColor$disabled,
-      // eslint-disable-next-line @stylexjs/valid-styles
       [listItemStatesVars.nonTextOpacity]: vars.nonTextOpacity$disabled,
-      // eslint-disable-next-line @stylexjs/valid-styles
       [listItemStatesVars.textColor]: vars.textColor$disabled,
-      // eslint-disable-next-line @stylexjs/valid-styles
       [listItemStatesVars.textOpacity]: vars.textOpacity$disabled,
     },
     background: {
@@ -96,7 +90,6 @@ export const styles: MapNamespaces<IListItemStyles> =
       fontSize: vars.leadingIconSize,
       height: vars.leadingIconSize,
       width: vars.leadingIconSize,
-      marginInlineStart: vars.leadingSpace,
       marginInlineEnd: 12,
 
       color: {
@@ -123,7 +116,6 @@ export const styles: MapNamespaces<IListItemStyles> =
       height: vars.trailingIconSize,
       width: vars.trailingIconSize,
       marginInlineStart: 12,
-      marginInlineEnd: vars.trailingSpace,
 
       color: {
         default: vars.trailingIconColor,
@@ -154,6 +146,8 @@ export const itemStyles: MapNamespaces<IItemStyles> = stylex.create<
     borderRadius: 'inherit',
     minHeight: vars.containerHeight$oneLine,
     WebkitTapHighlightColor: 'transparent',
+    paddingInlineStart: vars.leadingSpace,
+    paddingInlineEnd: vars.trailingSpace,
   },
   nonText: {
     color: listItemStatesVars.nonTextColor,
@@ -175,13 +169,9 @@ export const stateLayerStyles: MapNamespaces<IStateLayerStyles> = stylex.create<
   host: {
     borderRadius: 'inherit',
 
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.color$hover]: vars.stateLayerColor$hover,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.opacity$hover]: vars.stateLayerOpacity$hover,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.color$pressed]: vars.stateLayerColor$pressed,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.opacity$pressed]: vars.stateLayerOpacity$pressed,
   },
 });
@@ -192,7 +182,6 @@ export const focusRingStyles: MapNamespaces<IFocusRingStyles> = stylex.create<
 >({
   host: {
     zIndex: 1,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [focusRingVars.shape]: vars.containerShape,
   },
 });

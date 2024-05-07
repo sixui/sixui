@@ -40,16 +40,12 @@ export const styles: MapNamespaces<ISwitchStyles> =
       height: vars.trackHeight,
       borderRadius: vars.trackShape,
 
-      // eslint-disable-next-line @stylexjs/valid-styles
       [switchStateVars.stateLayerColor$hover]: vars.stateLayerColor$hover,
-      // eslint-disable-next-line @stylexjs/valid-styles
       [switchStateVars.stateLayerOpacity$hover]: vars.stateLayerOpacity$hover,
     },
     switch$selected: {
-      // eslint-disable-next-line @stylexjs/valid-styles
       [switchStateVars.stateLayerColor$hover]:
         vars.selectedStateLayerColor$hover,
-      // eslint-disable-next-line @stylexjs/valid-styles
       [switchStateVars.stateLayerOpacity$hover]:
         vars.selectedStateLayerOpacity$hover,
     },
@@ -179,7 +175,6 @@ export const styles: MapNamespaces<ISwitchStyles> =
         ':is([data-pressed])': vars.handleHeight$pressed,
       },
 
-      // eslint-disable-next-line @stylexjs/valid-styles
       [switchStateVars.selectedIconTransform$on]: 'rotate(-45deg)',
     },
     handle$selected: {
@@ -205,7 +200,6 @@ export const styles: MapNamespaces<ISwitchStyles> =
       height: vars.selectedHandleHeight,
     },
     handle$withIcon: {
-      // eslint-disable-next-line @stylexjs/valid-styles
       [switchStateVars.selectedIconTransform$on]: 'none',
 
       width: {
@@ -288,7 +282,6 @@ export const styles: MapNamespaces<ISwitchStyles> =
     icon$on$disabled: {
       transitionProperty: 'none',
 
-      // eslint-disable-next-line @stylexjs/valid-styles
       [switchStateVars.iconColor]: vars.iconColor$disabled,
       opacity: vars.iconOpacity$disabled,
     },
@@ -302,7 +295,6 @@ export const styles: MapNamespaces<ISwitchStyles> =
       opacity: 1,
     },
     icon$on$selected$disabled: {
-      // eslint-disable-next-line @stylexjs/valid-styles
       [switchStateVars.iconColor]: vars.selectedIconColor$disabled,
       opacity: vars.selectedIconOpacity$disabled,
     },
@@ -313,13 +305,9 @@ export const stateLayerStyles: MapNamespaces<IStateLayerStyles> = stylex.create<
   IStyles<IStateLayerStyleKey>
 >({
   host: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.color$hover]: switchStateVars.stateLayerColor$hover,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.opacity$hover]: switchStateVars.stateLayerOpacity$hover,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.color$pressed]: switchStateVars.stateLayerColor$pressed,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.opacity$pressed]: switchStateVars.stateLayerOpacity$pressed,
     borderRadius: vars.stateLayerShape,
     width: vars.stateLayerSize,
@@ -333,7 +321,6 @@ export const focusRingStyles: MapNamespaces<IFocusRingStyles> = stylex.create<
   IStyles<IFocusRingStyleKey>
 >({
   host: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [focusRingVars.shape]: vars.trackShape,
   },
 });
@@ -343,7 +330,6 @@ type ICircularProgressIndicatorStyles =
 export const circularProgressIndicatorStyles: MapNamespaces<ICircularProgressIndicatorStyles> =
   stylex.create<ICircularProgressIndicatorStyles>({
     host: {
-      // eslint-disable-next-line @stylexjs/valid-styles
       [circularProgressIndicatorVars.color]: switchStateVars.iconColor,
     },
   });

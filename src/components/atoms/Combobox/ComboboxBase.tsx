@@ -369,6 +369,7 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
                     autoComplete='off'
                     onChange={(event) => setQuery(event.target.value)}
                     onFocus={(event) => handleFocus(event, open)}
+                    onBlur={() => setQuery('')}
                     onKeyDown={multiple ? handleKeyDown : undefined}
                     populated={hasValue}
                   >

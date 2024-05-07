@@ -35,7 +35,6 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     paddingTop: vars.topSpace,
     paddingBottom: vars.bottomSpace,
 
-    // eslint-disable-next-line @stylexjs/valid-styles
     [stepStateVars.containerShape]: vars.containerShape,
   },
   buttonInner: {
@@ -234,7 +233,6 @@ export const focusRingStyles: MapNamespaces<IFocusRingStyles> = stylex.create<
   IStyles<IFocusRingStyleKey>
 >({
   host: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [focusRingVars.shape]: stepStateVars.containerShape,
   },
 });

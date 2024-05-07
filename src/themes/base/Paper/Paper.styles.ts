@@ -18,27 +18,21 @@ export const styles: MapNamespaces<IPaperStyles> = stylex.create<IPaperStyles>({
     zIndex: 0,
   },
   host$elevation0: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [paperStateVars.elevation]: elevationVars.boxShadow$level0,
   },
   host$elevation1: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [paperStateVars.elevation]: elevationVars.boxShadow$level1,
   },
   host$elevation2: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [paperStateVars.elevation]: elevationVars.boxShadow$level2,
   },
   host$elevation3: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [paperStateVars.elevation]: elevationVars.boxShadow$level3,
   },
   host$elevation4: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [paperStateVars.elevation]: elevationVars.boxShadow$level4,
   },
   host$elevation5: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [paperStateVars.elevation]: elevationVars.boxShadow$level5,
   },
   host$square: {
@@ -72,7 +66,6 @@ export const elevationStyles: MapNamespaces<IElevationStyles> = stylex.create<
   IStyles<IElevationStyleKey>
 >({
   host: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [elevationVars.boxShadow]: paperStateVars.elevation,
 
     borderRadius: 'inherit',

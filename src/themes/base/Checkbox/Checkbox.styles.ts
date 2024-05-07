@@ -39,31 +39,22 @@ export const styles: MapNamespaces<ICheckboxStyles> =
       height: vars.containerSize,
       position: 'relative',
       verticalAlign: 'top', // Fix extra space when placed inside display: block
-      // eslint-disable-next-line @stylexjs/valid-styles
       WebkitTapHighlightColor: 'transparent',
       cursor: 'pointer',
 
-      // eslint-disable-next-line @stylexjs/valid-styles
       [checkboxStateVars.stateLayerColor$hover]: vars.stateLayerColor$hover,
-      // eslint-disable-next-line @stylexjs/valid-styles
       [checkboxStateVars.stateLayerOpacity$hover]: vars.stateLayerOpacity$hover,
-      // eslint-disable-next-line @stylexjs/valid-styles
       [checkboxStateVars.stateLayerColor$pressed]: vars.stateLayerColor$pressed,
-      // eslint-disable-next-line @stylexjs/valid-styles
       [checkboxStateVars.stateLayerOpacity$pressed]:
         vars.stateLayerOpacity$pressed,
     },
     host$selected: {
-      // eslint-disable-next-line @stylexjs/valid-styles
       [checkboxStateVars.stateLayerColor$hover]:
         vars.selectedStateLayerColor$hover,
-      // eslint-disable-next-line @stylexjs/valid-styles
       [checkboxStateVars.stateLayerOpacity$hover]:
         vars.selectedStateLayerOpacity$hover,
-      // eslint-disable-next-line @stylexjs/valid-styles
       [checkboxStateVars.stateLayerColor$pressed]:
         vars.selectedStateLayerColor$pressed,
-      // eslint-disable-next-line @stylexjs/valid-styles
       [checkboxStateVars.stateLayerOpacity$pressed]:
         vars.selectedStateLayerOpacity$pressed,
     },
@@ -281,13 +272,9 @@ export const stateLayerStyles: MapNamespaces<IStateLayerStyles> = stylex.create<
     height: vars.stateLayerSize,
     inset: 'unset',
 
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.color$hover]: checkboxStateVars.stateLayerColor$hover,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.opacity$hover]: checkboxStateVars.stateLayerOpacity$hover,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.color$pressed]: checkboxStateVars.stateLayerColor$pressed,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.opacity$pressed]:
       checkboxStateVars.stateLayerOpacity$pressed,
   },
@@ -300,7 +287,6 @@ export const focusRingStyles: MapNamespaces<IFocusRingStyles> = stylex.create<
   host: {
     width: 44,
     height: 44,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [focusRingVars.shape]: shapeVars.corner$full,
   },
   host$outward: {

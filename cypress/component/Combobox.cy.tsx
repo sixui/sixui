@@ -265,9 +265,39 @@ describe('Combobox', () => {
     cy.get('[data-cy=option-carrot]').should('not.exist');
     cy.get('[data-cy=no-options]').should('exist');
   });
+
+  it('should reset filter on blur', () => {
+    cy.mount(
+      <ThemeProvider value={{ theme }}>
+        <Combobox sx={styles.host} nullable>
+          <Combobox.Option value='apple'>Apple</Combobox.Option>
+          <Combobox.Option value='carrot'>Carrot</Combobox.Option>
+        </Combobox>
+      </ThemeProvider>,
+    );
+
+    cy.get('[data-cy=input]').click();
+    cy.get('[data-cy=input]').type('abcdefg');
+    cy.get('body').click('bottomRight');
+    cy.get('[data-cy=input]').click();
+
+    cy.get('[data-cy=option-apple]').should('exist');
+    cy.get('[data-cy=option-carrot]').should('exist');
+  });
 });
 
 describe('Nullable Combobox', () => {
+  it('should have empty option', () => {
+    cy.mount(
+      <ThemeProvider value={{ theme }}>
+        <Combobox sx={styles.host} nullable />
+      </ThemeProvider>,
+    );
+
+    cy.get('[data-cy=input]').click();
+    cy.get('[data-cy=option-]').should('exist');
+  });
+
   it('should stay empty on blur', () => {
     cy.mount(
       <ThemeProvider value={{ theme }}>

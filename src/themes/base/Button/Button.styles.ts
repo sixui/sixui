@@ -77,7 +77,6 @@ export const styles: MapNamespaces<IButtonStyles> =
     },
     host$disabled: {
       cursor: 'default',
-      // eslint-disable-next-line @stylexjs/valid-styles
       [buttonStateVars.elevation]: vars.containerElevation$disabled,
     },
     host$withLeadingIcon: {
@@ -137,7 +136,6 @@ export const styles: MapNamespaces<IButtonStyles> =
       blockSize: vars.iconSize,
     },
     icon$disabled: {
-      // eslint-disable-next-line @stylexjs/valid-styles
       [buttonStateVars.iconColor]: vars.iconColor$disabled,
       opacity: vars.iconOpacity$disabled,
     },
@@ -187,13 +185,9 @@ export const stateLayerStyles: MapNamespaces<IStateLayerStyles> = stylex.create<
   IStyles<IStateLayerStyleKey>
 >({
   host: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.color$hover]: vars.stateLayerColor$hover,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.opacity$hover]: vars.stateLayerOpacity$hover,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.color$pressed]: vars.stateLayerColor$pressed,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.opacity$pressed]: vars.stateLayerOpacity$pressed,
   },
 });
@@ -203,7 +197,6 @@ export const focusRingStyles: MapNamespaces<IFocusRingStyles> = stylex.create<
   IStyles<IFocusRingStyleKey>
 >({
   host: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [focusRingVars.shape]: vars.containerShape,
   },
 });
@@ -213,7 +206,6 @@ export const elevationStyles: MapNamespaces<IElevationStyles> = stylex.create<
   IStyles<IElevationStyleKey>
 >({
   host: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [elevationVars.boxShadow]: buttonStateVars.elevation,
   },
 });
@@ -223,7 +215,6 @@ type ICircularProgressIndicatorStyles =
 export const circularProgressIndicatorStyles: MapNamespaces<ICircularProgressIndicatorStyles> =
   stylex.create<ICircularProgressIndicatorStyles>({
     host: {
-      // eslint-disable-next-line @stylexjs/valid-styles
       [circularProgressIndicatorVars.color]: buttonStateVars.iconColor,
     },
   });

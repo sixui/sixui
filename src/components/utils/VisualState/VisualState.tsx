@@ -48,7 +48,6 @@ const styles = stylex.create({
 
 const focusRingStyles = stylex.create({
   host: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [focusRingVars.shape]: shapeVars.corner$xl,
   },
 });

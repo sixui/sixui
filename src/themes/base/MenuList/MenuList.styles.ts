@@ -65,7 +65,6 @@ export const focusRingStyles: MapNamespaces<IFocusRingStyles> = stylex.create<
   IStyles<IFocusRingStyleKey>
 >({
   host: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [focusRingVars.shape]: vars.containerShape,
   },
 });
@@ -75,7 +74,6 @@ export const elevationStyles: MapNamespaces<IElevationStyles> = stylex.create<
   IStyles<IElevationStyleKey>
 >({
   host: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [elevationVars.boxShadow]: vars.containerElevation,
   },
 });

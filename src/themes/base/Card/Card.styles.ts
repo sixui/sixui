@@ -57,7 +57,6 @@ export const styles: MapNamespaces<ICardStyles> = stylex.create<ICardStyles>({
   host$disabled: {
     cursor: 'default',
     pointerEvents: 'none',
-    // eslint-disable-next-line @stylexjs/valid-styles
     [cardStateVars.elevation]: vars.containerElevation$disabled,
   },
   background: {
@@ -82,7 +81,6 @@ export const elevationStyles: MapNamespaces<IElevationStyles> = stylex.create<
   IStyles<IElevationStyleKey>
 >({
   host: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [elevationVars.boxShadow]: cardStateVars.elevation,
 
     borderRadius: 'inherit',
@@ -99,19 +97,13 @@ export const stateLayerStyles: MapNamespaces<IStateLayerStyles> = stylex.create<
   IStyles<IStateLayerStyleKey>
 >({
   host: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.color$hover]: vars.stateLayerColor$hover,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.opacity$hover]: vars.stateLayerOpacity$hover,
 
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.color$pressed]: vars.stateLayerColor$pressed,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.opacity$pressed]: vars.stateLayerOpacity$pressed,
 
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.color$dragged]: vars.stateLayerColor$dragged,
-    // eslint-disable-next-line @stylexjs/valid-styles
     [statelayerVars.opacity$dragged]: vars.stateLayerOpacity$dragged,
 
     zIndex: 1,
@@ -123,7 +115,6 @@ export const focusRingStyles: MapNamespaces<IFocusRingStyles> = stylex.create<
   IStyles<IFocusRingStyleKey>
 >({
   host: {
-    // eslint-disable-next-line @stylexjs/valid-styles
     [focusRingVars.shape]: vars.containerShape,
   },
 });

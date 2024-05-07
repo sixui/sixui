@@ -28,7 +28,6 @@ const styles = stylex.create({
   step$noSpace: {
     // TODO: waiting for a fix
     // https://github.com/facebook/stylex/issues/529
-    // eslint-disable-next-line @stylexjs/valid-styles
     [stepVars.bulletPointSpace]: '0.0px',
   },
 });

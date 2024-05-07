@@ -63,7 +63,6 @@ type IFocusRingStyles = IStyles<IFocusRingStyleKey>;
 export const expandButtonFocusRingStyles: MapNamespaces<IFocusRingStyles> =
   stylex.create<IStyles<IFocusRingStyleKey>>({
     host: {
-      // eslint-disable-next-line @stylexjs/valid-styles
       [focusRingVars.shape]: vars.expandButtonContainerShape,
     },
   });

@@ -36,7 +36,6 @@ const componentShowCaseStyles = stylex.create({
 
 const itemStyles = stylex.create({
   host: {
-    borderRadius: '8px',
     outlineWidth: '1px',
     outlineStyle: 'solid',
     outlineColor: colorRolesVars.outline,

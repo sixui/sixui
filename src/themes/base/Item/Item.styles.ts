@@ -50,7 +50,6 @@ export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
     width: 0,
     alignItems: 'center',
     justifyContent: 'center',
-    margin: '12px 16px',
   },
   content$hasStart: {
     marginLeft: 0,
