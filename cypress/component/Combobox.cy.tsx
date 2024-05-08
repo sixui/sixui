@@ -266,6 +266,24 @@ describe('Combobox', () => {
     cy.get('[data-cy=no-options]').should('exist');
   });
 
+  it('should select filtered option', () => {
+    cy.mount(
+      <ThemeProvider value={{ theme }}>
+        <Combobox sx={styles.host}>
+          <Combobox.Option value='apple'>Apple</Combobox.Option>
+          <Combobox.Option value='carrot'>Carrot</Combobox.Option>
+        </Combobox>
+      </ThemeProvider>,
+    );
+
+    cy.get('[data-cy=input]').click();
+    cy.get('[data-cy=input]').type('App');
+    cy.get('[data-cy=option-apple]').click();
+
+    cy.get('[data-cy=options]').should('not.exist');
+    cy.get('[data-cy=input]').should('have.value', 'Apple');
+  });
+
   it('should reset filter on blur', () => {
     cy.mount(
       <ThemeProvider value={{ theme }}>
@@ -329,5 +347,23 @@ describe('Nullable Combobox', () => {
     cy.get('body').click('bottomRight');
 
     cy.get('[data-cy=input]').should('have.value', '');
+  });
+
+  it('should select filtered option', () => {
+    cy.mount(
+      <ThemeProvider value={{ theme }}>
+        <Combobox sx={styles.host} nullable>
+          <Combobox.Option value='apple'>Apple</Combobox.Option>
+          <Combobox.Option value='carrot'>Carrot</Combobox.Option>
+        </Combobox>
+      </ThemeProvider>,
+    );
+
+    cy.get('[data-cy=input]').click();
+    cy.get('[data-cy=input]').type('App');
+    cy.get('[data-cy=option-apple]').click();
+
+    cy.get('[data-cy=options]').should('not.exist');
+    cy.get('[data-cy=input]').should('have.value', 'Apple');
   });
 });

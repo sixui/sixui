@@ -369,7 +369,6 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
                     autoComplete='off'
                     onChange={(event) => setQuery(event.target.value)}
                     onFocus={(event) => handleFocus(event, open)}
-                    onBlur={() => setQuery('')}
                     onKeyDown={multiple ? handleKeyDown : undefined}
                     populated={hasValue}
                   >
@@ -408,9 +407,9 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
               }}
             </Autocomplete.Input>
 
-            {open ? (
-              <FloatingPortal root={root}>
-                <Transition as={Fragment} afterLeave={() => setQuery('')}>
+            <Transition afterLeave={() => setQuery('')}>
+              {open ? (
+                <FloatingPortal root={root}>
                   <Autocomplete.Options
                     {...stylex.props(styles.options)}
                     ref={refs.setFloating}
@@ -438,9 +437,10 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
                       ) : null}
                     </MenuList>
                   </Autocomplete.Options>
-                </Transition>
-              </FloatingPortal>
-            ) : null}
+                  {/* </Transition> */}
+                </FloatingPortal>
+              ) : null}
+            </Transition>
           </>
         )}
       </Autocomplete>
