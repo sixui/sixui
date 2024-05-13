@@ -28,6 +28,7 @@ export const styles: MapNamespaces<IElementWithLabelStyles> =
       flexGrow: 0,
       flexShrink: 0,
       display: 'flex',
+      flexDirection: 'inherit',
       alignItems: 'center',
     },
     labelText: {
