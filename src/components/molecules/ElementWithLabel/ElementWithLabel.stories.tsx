@@ -29,7 +29,6 @@ const styles = stylex.create({
 const defaultArgs = {
   label: 'Label',
   sx: styles.host,
-  readOnly: true,
 } satisfies Partial<IElementWithLabelProps>;
 
 const cols: Array<IComponentPresentation<IElementWithLabelProps>> = [

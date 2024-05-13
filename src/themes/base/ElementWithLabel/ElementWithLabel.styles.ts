@@ -27,8 +27,10 @@ export const styles: MapNamespaces<IElementWithLabelStyles> =
     element: {
       flexGrow: 0,
       flexShrink: 0,
+      flexDirection: 'inherit',
       display: 'flex',
-      alignItems: 'center',
+      alignItems: 'normal',
+      gap: '0.5rem',
     },
     labelText: {
       color: vars.labelTextColor,
