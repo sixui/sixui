@@ -4,6 +4,7 @@ export type IElementWithLabelStyleKey =
   | 'host$horizontal$labelPositionStart'
   | 'host$horizontal$labelPositionEnd'
   | 'element'
+  | 'labelContainer'
   | 'labelText'
   | 'labelText$error'
   | 'labelText$disabled'

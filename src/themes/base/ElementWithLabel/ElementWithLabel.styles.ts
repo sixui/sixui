@@ -32,6 +32,11 @@ export const styles: MapNamespaces<IElementWithLabelStyles> =
       alignItems: 'normal',
       gap: '0.5rem',
     },
+    labelContainer: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '0.125rem',
+    },
     labelText: {
       color: vars.labelTextColor,
       fontFamily: vars.labelTextFont,
@@ -50,6 +55,9 @@ export const styles: MapNamespaces<IElementWithLabelStyles> =
       opacity: vars.labelTextOpacity$disabled,
     },
     supportingText: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '0.125rem',
       color: vars.supportingTextColor,
       fontFamily: vars.supportingTextFont,
       fontSize: vars.supportingTextSize,

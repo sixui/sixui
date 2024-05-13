@@ -134,7 +134,7 @@ export const ElementWithLabel = forwardRef<
       {...other}
     >
       {hasLeading ? (
-        <div>
+        <div {...sxf('labelContainer')}>
           {labelPosition === 'start' ? renderLabel() : null}
           {supportingTextPosition === 'start' ? renderSupportingText() : null}
         </div>
@@ -147,7 +147,7 @@ export const ElementWithLabel = forwardRef<
       </div>
 
       {hasTrailing ? (
-        <div>
+        <div {...sxf('labelContainer')}>
           {labelPosition === 'end' ? renderLabel() : null}
           {supportingTextPosition === 'end' ? renderSupportingText() : null}
         </div>
