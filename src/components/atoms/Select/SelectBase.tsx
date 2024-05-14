@@ -11,8 +11,8 @@ import { IVisualState } from '@/hooks/useVisualState';
 import { useColorScheme } from '@/components/utils/ColorScheme';
 import { Field, type IFieldProps } from '@/components/atoms/Field';
 import { MenuListDivider } from '@/components/atoms/MenuList/MenuListDivider';
-import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
-import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
+import { SvgTriangleUp } from '@/assets/TriangleUp';
+import { SvgTriangleDown } from '@/assets/TriangleDown';
 import { ListItem } from '@/components/atoms/ListItem';
 import { InputChip } from '@/components/atoms/Chip';
 import { useControlled } from '@/hooks/useControlled';
@@ -247,7 +247,7 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
                     )
                   : undefined;
 
-                const TrailingIcon = open ? TriangleUpIcon : TriangleDownIcon;
+                const TrailingIcon = open ? SvgTriangleUp : SvgTriangleDown;
                 const visualState = open
                   ? {
                       ...visualStateProp,

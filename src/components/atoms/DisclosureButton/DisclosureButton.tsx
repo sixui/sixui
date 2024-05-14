@@ -14,7 +14,7 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { ListItem, type IListItemProps } from '@/components/atoms/ListItem';
-import { ReactComponent as ChevronDown } from '@/assets/ChevronDown.svg';
+import { SvgChevronDown } from '@/assets/ChevronDown';
 import { Checkbox, type ICheckboxStyleKey } from '@/components/atoms/Checkbox';
 import { Switch, type ISwitchStyleKey } from '@/components/atoms/Switch';
 import { useDisclosureContext } from '@/components/atoms/Disclosure/useDisclosureContext';
@@ -79,9 +79,9 @@ export const DisclosureButton = forwardRef<
       (expandIcon ? (
         <div {...sxf('icon$expanded')}>{expandIcon}</div>
       ) : (
-        <ChevronDown {...sxf('icon$expanded')} aria-hidden />
+        <SvgChevronDown {...sxf('icon$expanded')} aria-hidden />
       ))
-    : expandIcon ?? <ChevronDown aria-hidden />;
+    : expandIcon ?? <SvgChevronDown aria-hidden />;
 
   const handleCheckboxChange = (
     event: React.ChangeEvent<HTMLInputElement>,

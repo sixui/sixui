@@ -40,8 +40,8 @@ import {
   IndeterminateCircularProgressIndicator,
   type ICircularProgressIndicatorStyleKey,
 } from '@/components/atoms/CircularProgressIndicator';
-import { ReactComponent as CheckMarkIcon } from '@/assets/CheckMark.svg';
-import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
+import { SvgCheckMark } from '@/assets/CheckMark';
+import { SvgXMark } from '@/assets/XMark';
 import { useForkRef } from '@/hooks/useForkRef';
 import { ButtonBase } from '@/components/atoms/ButtonBase';
 import { Avatar } from '../Avatar';
@@ -393,7 +393,7 @@ export const Chip: IChip = forwardRef(function Chip<
                   />
                 ) : null
               ) : selected && variant === 'filter' ? (
-                <CheckMarkIcon aria-hidden />
+                <SvgCheckMark aria-hidden />
               ) : imageUrl ? (
                 <Avatar src={imageUrl} styles={avatarStyles} />
               ) : icon ? (
@@ -496,7 +496,7 @@ export const Chip: IChip = forwardRef(function Chip<
                   />
                 </div>
               ) : (
-                <XMarkIcon aria-hidden />
+                <SvgXMark aria-hidden />
               )}
             </span>
           </ButtonBase>

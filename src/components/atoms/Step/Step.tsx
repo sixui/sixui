@@ -12,8 +12,8 @@ import type { IStepStyleKey, IStepStyleVarKey } from './Step.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { ReactComponent as CheckMarkIcon } from '@/assets/CheckMark.svg';
-import { ReactComponent as ExclamationTriangleIcon } from '@/assets/ExclamationTriangle.svg';
+import { SvgCheckMark } from '@/assets/CheckMark';
+import { SvgExclamationTriangle } from '@/assets/ExclamationTriangle';
 import {
   StepperContext,
   type IStepperContext,
@@ -152,10 +152,10 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
           )}
         >
           {icon ??
-            (hasError ? (
-              <ExclamationTriangleIcon aria-hidden />
-            ) : completed ? (
-              <CheckMarkIcon aria-hidden />
+            (completed ? (
+              <SvgCheckMark aria-hidden />
+            ) : hasError ? (
+              <SvgExclamationTriangle aria-hidden />
             ) : (
               index + 1
             ))}

@@ -21,8 +21,8 @@ import { TextField, type ITextFieldProps } from '@/components/atoms/TextField';
 import { MenuListDivider } from '@/components/atoms/MenuList/MenuListDivider';
 import { IconButton } from '@/components/atoms/IconButton';
 import { ListItem } from '@/components/atoms/ListItem';
-import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
-import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
+import { SvgTriangleUp } from '@/assets/TriangleUp';
+import { SvgTriangleDown } from '@/assets/TriangleDown';
 import { reactNodeToString } from '@/helpers/react/nodeToString';
 import { componentVars as fieldBaseVars } from '@/themes/base/FieldBase/FieldBase.stylex';
 import { InputChip } from '@/components/atoms/Chip';
@@ -340,7 +340,7 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
           <>
             <Autocomplete.Input as={Fragment} displayValue={() => displayValue}>
               {() => {
-                const TrailingIcon = open ? TriangleUpIcon : TriangleDownIcon;
+                const TrailingIcon = open ? SvgTriangleUp : SvgTriangleDown;
                 const visualState = open
                   ? {
                       ...visualStateProp,
