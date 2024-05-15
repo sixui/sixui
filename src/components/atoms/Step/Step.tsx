@@ -152,10 +152,10 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
           )}
         >
           {icon ??
-            (completed ? (
-              <CheckMarkIcon aria-hidden />
-            ) : hasError ? (
+            (hasError ? (
               <ExclamationTriangleIcon aria-hidden />
+            ) : completed ? (
+              <CheckMarkIcon aria-hidden />
             ) : (
               index + 1
             ))}
