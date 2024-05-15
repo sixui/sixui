@@ -1,3 +1,15 @@
+# v0.0.215 (Wed May 15 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(Step): icon on error ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.214 (Mon May 13 2024)
 
 #### ⚠️ Pushed to `main`
