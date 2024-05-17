@@ -57,6 +57,13 @@ export const Horizontal: IStory = {
           },
         },
         {
+          legend: 'Loading',
+          props: {
+            children: makeSteps(),
+            loading: true,
+          },
+        },
+        {
           legend: 'Icons',
           props: {
             children: makeSteps({
@@ -148,6 +155,13 @@ export const Vertical: IStory = {
           legend: 'No label',
           props: {
             children: makeSteps(),
+          },
+        },
+        {
+          legend: 'Loading',
+          props: {
+            children: makeSteps(),
+            loading: true,
           },
         },
         {

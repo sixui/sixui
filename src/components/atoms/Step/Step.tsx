@@ -20,6 +20,7 @@ import {
 } from '@/components/atoms/Stepper/StepperContext';
 import { ButtonBase, type IButtonBaseOwnProps } from '../ButtonBase';
 import { StepContext, type IStepContext } from './StepContext';
+import { CircularProgressIndicator } from '../CircularProgressIndicator';
 
 export type IStepRenderProps = {
   active: boolean;
@@ -38,6 +39,7 @@ export type IStepProps = IContainerProps<IStepStyleKey> & {
   label?: React.ReactNode;
   supportingText?: React.ReactNode;
   hasError?: boolean;
+  loading?: boolean;
   onClick?: () => void;
   orientation?: IStepperContext['orientation'];
   nextConnector?: IStepperContext['connector'];
@@ -69,6 +71,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       label,
       supportingText,
       hasError,
+      loading: loadingProp,
       orientation: orientationProp,
       labelPosition: labelPositionProp,
       nextConnector: nextConnectorProp,
@@ -105,6 +108,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       index <= context.activeStep;
     const isActive =
       !disabled && (activeProp ?? (context && index === context.activeStep));
+    const loading = isActive && (context?.loading || loadingProp);
     const labelPosition = hasText
       ? labelPositionProp ?? context?.labelPosition ?? 'right'
       : 'right';
@@ -141,25 +145,31 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
           labelPosition === 'bottom' && 'buttonInner$bottomLabel',
         )}
       >
-        <div
-          {...sxf(
-            'bulletPoint',
-            isIcon ? 'bulletPoint$icon' : 'bulletPoint$text',
-            state &&
-              (isIcon
-                ? `bulletPoint$icon$${state}`
-                : `bulletPoint$text$${state}`),
-          )}
-        >
-          {icon ??
-            (hasError ? (
-              <ExclamationTriangleIcon aria-hidden />
-            ) : completed ? (
-              <CheckMarkIcon aria-hidden />
-            ) : (
-              index + 1
-            ))}
-        </div>
+        {loading ? (
+          <div {...sxf('bulletPoint', 'bulletPoint$icon')}>
+            <CircularProgressIndicator />
+          </div>
+        ) : (
+          <div
+            {...sxf(
+              'bulletPoint',
+              isIcon ? 'bulletPoint$icon' : 'bulletPoint$text',
+              state &&
+                (isIcon
+                  ? `bulletPoint$icon$${state}`
+                  : `bulletPoint$text$${state}`),
+            )}
+          >
+            {icon ??
+              (hasError ? (
+                <ExclamationTriangleIcon aria-hidden />
+              ) : completed ? (
+                <CheckMarkIcon aria-hidden />
+              ) : (
+                index + 1
+              ))}
+          </div>
+        )}
 
         {hasText ? (
           <div

@@ -19,6 +19,7 @@ import { isElementLike } from '@/helpers/react/isElementLike';
 export type IStepperProps = IContainerProps<IStepperStyleKey> & {
   children: React.ReactNode;
   activeStep?: number;
+  loading?: boolean;
   connector?: React.ReactNode;
   orientation?: 'horizontal' | 'vertical';
   labelPosition?: 'right' | 'bottom';
@@ -34,6 +35,7 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
       sx,
       children,
       activeStep,
+      loading,
       connector = defaultConnector,
       orientation = 'horizontal',
       labelPosition: labelPositionProp = 'right',
@@ -75,6 +77,7 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
           activeStep !== undefined
             ? Math.max(Math.min(activeStep, validChildren.length - 1), 0)
             : undefined,
+        loading,
         connector,
         orientation,
         labelPosition,
@@ -82,6 +85,7 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
       }),
       [
         activeStep,
+        loading,
         validChildren.length,
         connector,
         orientation,

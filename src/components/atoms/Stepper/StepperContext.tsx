@@ -3,8 +3,9 @@ import { createContext } from 'react';
 export type IStepperContext = {
   orientation: 'horizontal' | 'vertical';
   labelPosition: 'right' | 'bottom';
-  completed?: boolean;
   activeStep?: number;
+  loading?: boolean;
+  completed?: boolean;
   connector?: React.ReactNode;
 };
 

@@ -24,6 +24,12 @@ const rows: Array<IComponentPresentation<IStepProps>> = [
     legend: 'Basic',
   },
   {
+    legend: 'Loading',
+    props: {
+      loading: true,
+    },
+  },
+  {
     legend: 'With Icon',
     props: {
       icon: <FontAwesomeIcon icon={faGear} />,
