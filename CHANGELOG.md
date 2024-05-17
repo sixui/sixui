@@ -1,3 +1,16 @@
+# v0.0.215 (Fri May 17 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(Step, Stepper): can be loading ([@olivierpascal](https://github.com/olivierpascal))
+- fix(Step): icon on error ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.214 (Mon May 13 2024)
 
 #### ⚠️ Pushed to `main`
