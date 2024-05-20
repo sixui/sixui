@@ -1,3 +1,19 @@
+# v0.0.215 (Mon May 20 2024)
+
+#### ⚠️ Pushed to `main`
+
+- refactor: get rid of useless use*Context() in profit of native react useContext(*) ([@olivierpascal](https://github.com/olivierpascal))
+- test: e2e componetn testing for Checkbox, Disclosure, RadioGroup, Switch and TextField ([@olivierpascal](https://github.com/olivierpascal))
+- refactor(TextField): no more embedded validation (please rely on react-hook-form or equivalent) ([@olivierpascal](https://github.com/olivierpascal))
+- feat(Step, Stepper): can be loading ([@olivierpascal](https://github.com/olivierpascal))
+- fix(Step): icon on error ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.214 (Mon May 13 2024)
 
 #### ⚠️ Pushed to `main`
