@@ -9,15 +9,16 @@ import { MultiCombobox } from '@/components/atoms/Combobox';
 
 const styles = stylex.create({
   host: {
-    width: '80%',
+    display: 'flex',
+    padding: '1rem',
   },
 });
 
 describe('MultiCombobox', () => {
   it('should select a single option', () => {
     cy.mount(
-      <ThemeProvider value={{ theme }}>
-        <MultiCombobox sx={styles.host}>
+      <ThemeProvider sx={styles.host} value={{ theme }}>
+        <MultiCombobox>
           <MultiCombobox.Option value='apple'>Apple</MultiCombobox.Option>
           <MultiCombobox.Option value='carrot'>Carrot</MultiCombobox.Option>
         </MultiCombobox>
@@ -25,7 +26,7 @@ describe('MultiCombobox', () => {
     );
 
     cy.get('[data-cy=input]').click();
-    cy.get('[data-cy=option-carrot]').click();
+    cy.get('[data-cy=comboboxOption-carrot]').click();
 
     cy.get('[data-cy=chip-carrot]').should('exist');
     cy.get('[data-cy=chip-carrot]').should('have.text', 'Carrot');
@@ -33,8 +34,8 @@ describe('MultiCombobox', () => {
 
   it('should select an option and pick its leading icon', () => {
     cy.mount(
-      <ThemeProvider value={{ theme }}>
-        <MultiCombobox sx={styles.host}>
+      <ThemeProvider sx={styles.host} value={{ theme }}>
+        <MultiCombobox>
           <MultiCombobox.Option
             value='apple'
             leadingIcon={<FontAwesomeIcon icon={faAppleWhole} />}
@@ -53,14 +54,14 @@ describe('MultiCombobox', () => {
 
     cy.get('[data-cy=input]').click();
 
-    cy.get('[data-cy=option-carrot]').click();
+    cy.get('[data-cy=comboboxOption-carrot]').click();
     cy.get('[data-cy=chip-carrot] [data-icon=carrot]').should('exist');
   });
 
   it('should select multiple options', () => {
     cy.mount(
-      <ThemeProvider value={{ theme }}>
-        <MultiCombobox sx={styles.host}>
+      <ThemeProvider sx={styles.host} value={{ theme }}>
+        <MultiCombobox>
           <MultiCombobox.Option value='apple'>Apple</MultiCombobox.Option>
           <MultiCombobox.Option value='carrot'>Carrot</MultiCombobox.Option>
         </MultiCombobox>
@@ -69,17 +70,17 @@ describe('MultiCombobox', () => {
 
     cy.get('[data-cy=input]').click();
 
-    cy.get('[data-cy=option-apple]').click();
+    cy.get('[data-cy=comboboxOption-apple]').click();
     cy.get('[data-cy=chip-apple]').should('exist');
 
-    cy.get('[data-cy=option-carrot]').click();
+    cy.get('[data-cy=comboboxOption-carrot]').click();
     cy.get('[data-cy=chip-carrot]').should('exist');
   });
 
   it('should delete an option by clicking on delete', () => {
     cy.mount(
-      <ThemeProvider value={{ theme }}>
-        <MultiCombobox sx={styles.host}>
+      <ThemeProvider sx={styles.host} value={{ theme }}>
+        <MultiCombobox>
           <MultiCombobox.Option value='apple'>Apple</MultiCombobox.Option>
           <MultiCombobox.Option value='carrot'>Carrot</MultiCombobox.Option>
         </MultiCombobox>
@@ -88,15 +89,15 @@ describe('MultiCombobox', () => {
 
     cy.get('[data-cy=input]').click();
 
-    cy.get('[data-cy=option-apple]').click();
+    cy.get('[data-cy=comboboxOption-apple]').click();
     cy.get('[data-cy=chip-apple] [data-cy=delete]').click();
     cy.get('[data-cy=chip-apple]').should('not.exist');
   });
 
   it('should delete an option by deselecting it', () => {
     cy.mount(
-      <ThemeProvider value={{ theme }}>
-        <MultiCombobox sx={styles.host}>
+      <ThemeProvider sx={styles.host} value={{ theme }}>
+        <MultiCombobox>
           <MultiCombobox.Option value='apple'>Apple</MultiCombobox.Option>
           <MultiCombobox.Option value='carrot'>Carrot</MultiCombobox.Option>
         </MultiCombobox>
@@ -105,15 +106,15 @@ describe('MultiCombobox', () => {
 
     cy.get('[data-cy=input]').click();
 
-    cy.get('[data-cy=option-apple]').click();
-    cy.get('[data-cy=option-apple]').click();
+    cy.get('[data-cy=comboboxOption-apple]').click();
+    cy.get('[data-cy=comboboxOption-apple]').click();
     cy.get('[data-cy=chip-apple]').should('not.exist');
   });
 
   it('should have a single default value', () => {
     cy.mount(
-      <ThemeProvider value={{ theme }}>
-        <MultiCombobox sx={styles.host} defaultValue={['carrot']}>
+      <ThemeProvider sx={styles.host} value={{ theme }}>
+        <MultiCombobox defaultValue={['carrot']}>
           <MultiCombobox.Option value='apple'>Apple</MultiCombobox.Option>
           <MultiCombobox.Option value='carrot'>Carrot</MultiCombobox.Option>
         </MultiCombobox>
@@ -126,8 +127,8 @@ describe('MultiCombobox', () => {
 
   it('should have multiple default values', () => {
     cy.mount(
-      <ThemeProvider value={{ theme }}>
-        <MultiCombobox sx={styles.host} defaultValue={['apple', 'carrot']}>
+      <ThemeProvider sx={styles.host} value={{ theme }}>
+        <MultiCombobox defaultValue={['apple', 'carrot']}>
           <MultiCombobox.Option value='apple'>Apple</MultiCombobox.Option>
           <MultiCombobox.Option value='carrot'>Carrot</MultiCombobox.Option>
         </MultiCombobox>
@@ -140,8 +141,8 @@ describe('MultiCombobox', () => {
 
   it('should stay empty on blur', () => {
     cy.mount(
-      <ThemeProvider value={{ theme }}>
-        <MultiCombobox sx={styles.host}>
+      <ThemeProvider sx={styles.host} value={{ theme }}>
+        <MultiCombobox>
           <MultiCombobox.Option value='apple'>Apple</MultiCombobox.Option>
           <MultiCombobox.Option value='carrot'>Carrot</MultiCombobox.Option>
         </MultiCombobox>

@@ -108,6 +108,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
     onChange,
     icon,
     selectedIcon,
+    'data-cy': dataCy = 'switch',
     ...other
   } = props as IWithAsProp<ISwitchOwnProps>;
 
@@ -176,9 +177,10 @@ export const Switch: ISwitch = forwardRef(function Switch<
           type='checkbox'
           role='switch'
           checked={selected}
-          readOnly={disabled}
+          disabled={disabled}
           tabIndex={disabled ? -1 : 0}
           onChange={disabled ? undefined : handleChange}
+          data-cy={dataCy}
           {...other}
         />
         <FocusRing

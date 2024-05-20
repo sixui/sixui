@@ -285,7 +285,7 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
                   ref={refs.setFloating}
                   style={floatingStyles}
                   static
-                  data-cy='options'
+                  data-cy='selectOptions'
                 >
                   <MenuList sx={styles.menuList}>
                     {visibleOptions?.length ? (

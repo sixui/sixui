@@ -52,6 +52,7 @@ export const DisclosureButton = forwardRef<
     children,
     defaultChecked,
     disabled: disabledProp,
+    'data-cy': dataCy = 'disclosure-button',
     ...other
   } = props;
 
@@ -126,6 +127,7 @@ export const DisclosureButton = forwardRef<
         trailingIcon={!context.checkable && context.loading ? undefined : icon}
         disabled={disabled ?? (context.checkable && !context.checked)}
         onClick={() => context.setExpanded?.(!context.expanded)}
+        data-cy={dataCy}
       >
         {children}
       </ListItem>
@@ -140,6 +142,7 @@ export const DisclosureButton = forwardRef<
               onChange={handleCheckboxChange}
               disabled={disabled}
               loading={context.loading}
+              data-cy='disclosure-switch'
             />
           ) : (
             <Checkbox
@@ -149,6 +152,7 @@ export const DisclosureButton = forwardRef<
               onChange={handleCheckboxChange}
               disabled={disabled}
               loading={context.loading}
+              data-cy='disclosure-checkbox'
             />
           )}
         </div>

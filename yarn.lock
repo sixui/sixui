@@ -3826,6 +3826,7 @@ __metadata:
     babel-plugin-inline-react-svg: "npm:^2.0.2"
     babel-plugin-module-resolver: "npm:^5.0.2"
     cypress: "npm:^13.9.0"
+    cypress-real-events: "npm:^1.12.0"
     eslint: "npm:^8.57.0"
     eslint-config-prettier: "npm:^9.1.0"
     eslint-import-resolver-alias: "npm:^1.1.2"
@@ -7269,6 +7270,15 @@ __metadata:
     execa: "npm:^0.6.1"
     is-git-repository: "npm:^1.0.0"
   checksum: 10/18476127b8ac52930e6d70eefdb688b7306f8a5e89dda57bd4202f74e3e7ee7608d3e3a6ea7ca7fff3c6a6421bf3913f355d3c0818d21b7d97a354402f3a7115
+  languageName: node
+  linkType: hard
+
+"cypress-real-events@npm:^1.12.0":
+  version: 1.12.0
+  resolution: "cypress-real-events@npm:1.12.0"
+  peerDependencies:
+    cypress: ^4.x || ^5.x || ^6.x || ^7.x || ^8.x || ^9.x || ^10.x || ^11.x || ^12.x || ^13.x
+  checksum: 10/d7b7af876925ee4a8c1f19a99659a1265b2a64980504b3b947c93c95d27b5c7a94b2c38b19b64863daef9e01aab207a63644cb0a7d2adc7c30c4e8aec8a4a6f9
   languageName: node
   linkType: hard
 

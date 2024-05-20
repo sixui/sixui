@@ -48,10 +48,11 @@ export const RadioGroup: IRadioGroup = forwardRef(function RadioGroup<
     defaultValue,
     name: nameProp,
     disabled,
+    'data-cy': dataCy = 'radioGroup',
     ...other
   } = props as IWithAsProp<IRadioGroupOwnProps>;
 
-  const hostRef = useRef<HTMLElement>(null);
+  const hostRef = useRef<HTMLInputElement>(null);
   const [value, setValue] = useControlledValue({
     controlled: valueProp,
     default: defaultValue,
@@ -101,6 +102,7 @@ export const RadioGroup: IRadioGroup = forwardRef(function RadioGroup<
         sx={sx}
         ref={handleRef}
         role='radiogroup'
+        data-cy={dataCy}
         {...other}
       >
         {children}

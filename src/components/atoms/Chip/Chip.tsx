@@ -135,7 +135,7 @@ export const Chip: IChip = forwardRef(function Chip<
     href,
     avatar: avatarProp,
     'aria-label-remove': ariaLabelRemove,
-    'data-cy': dataCy,
+    'data-cy': dataCy = 'chip',
     ...other
   } = props as IWithAsProp<IChipOwnProps>;
 

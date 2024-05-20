@@ -415,7 +415,7 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
                     ref={refs.setFloating}
                     style={floatingStyles}
                     static
-                    data-cy='options'
+                    data-cy='comboboxOptions'
                   >
                     <MenuList sx={styles.menuList}>
                       {visibleOptions?.length ? (

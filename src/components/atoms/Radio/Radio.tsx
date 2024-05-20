@@ -85,6 +85,7 @@ export const Radio: IRadio = forwardRef(function Radio<
     checked: checkedProp,
     name: nameProp,
     loading,
+    'data-cy': dataCy = 'radio',
     ...other
   } = props as IWithAsProp<IRadioOwnProps>;
 
@@ -212,6 +213,7 @@ export const Radio: IRadio = forwardRef(function Radio<
           onChange={handleChange}
           disabled={disabled}
           value={value}
+          data-cy={`${dataCy}-${value}`}
           {...other}
         />
       </div>

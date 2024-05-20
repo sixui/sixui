@@ -89,6 +89,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
     checked: checkedProp,
     defaultChecked,
     loading,
+    'data-cy': dataCy = 'checkbox',
     ...other
   } = props as IWithAsProp<ICheckboxOwnProps>;
 
@@ -166,6 +167,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
           checked={checkedValue}
           onChange={handleChange}
           onClick={handleClick}
+          data-cy={dataCy}
           {...other}
         />
 

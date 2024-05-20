@@ -29,7 +29,7 @@ export const SelectOption: React.FC<ISelectOptionProps> = (props) => {
       as={Fragment}
       disabled={props.disabled}
       value={value}
-      data-cy={`option-${value}`}
+      data-cy={`selectOption-${value}`}
     >
       {({ active, selected }) => (
         <ListItem

@@ -10,5 +10,6 @@ export const styles: MapNamespaces<IDisclosureStyles> =
     host: {
       display: 'flex',
       flexDirection: 'column',
+      flexGrow: 1,
     },
   });

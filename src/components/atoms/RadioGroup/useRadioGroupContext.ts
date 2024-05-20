@@ -5,5 +5,11 @@ import {
   RadioGroupContext,
 } from './RadioGroupContext';
 
-export const useRadioGroupContext = (): IRadioGroupContext | undefined =>
-  useContext(RadioGroupContext);
+export const useRadioGroupContext = (): IRadioGroupContext | undefined => {
+  const context = useContext(RadioGroupContext);
+  if (!context) {
+    throw new Error('Radio must be used within a RadioGroup.');
+  }
+
+  return context;
+};
