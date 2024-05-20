@@ -1,4 +1,8 @@
-import { useTheme, type IThemeComponents } from '@/components/utils/Theme';
+import type { IThemeSettings } from '@/themes/theme.types';
+import {
+  useThemeContext,
+  type IThemeComponents,
+} from '@/components/utils/Theme';
 
 export type IUseComponentThemeResult<
   TThemeComponent extends keyof IThemeComponents,
@@ -6,6 +10,7 @@ export type IUseComponentThemeResult<
 > = {
   theme: IThemeComponents[TThemeComponent];
   variantTheme?: IThemeComponents[TVariantThemeComponent];
+  settings?: IThemeSettings;
 };
 
 export const useComponentTheme = <
@@ -15,12 +20,13 @@ export const useComponentTheme = <
   component: TThemeComponent,
   variantComponent?: TVariantThemeComponent,
 ): IUseComponentThemeResult<TThemeComponent, TVariantThemeComponent> => {
-  const theme = useTheme();
+  const themeContext = useThemeContext();
 
   return {
-    theme: theme.components[component],
+    theme: themeContext.theme.components[component],
     variantTheme: variantComponent
-      ? theme.components[variantComponent]
+      ? themeContext.theme.components[variantComponent]
       : undefined,
+    settings: themeContext.settings,
   };
 };

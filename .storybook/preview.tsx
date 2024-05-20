@@ -2,9 +2,10 @@ import type { Decorator, Preview } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 import { themes } from '@storybook/theming';
 
-import { modes } from './modes';
+import type { IThemeSettings } from '@/themes/theme.types';
 import { ThemeProvider } from '@/components/utils/Theme';
 import { ColorSchemeProvider } from '@/components/utils/ColorScheme';
+import { modes } from './modes';
 
 import { theme } from '@/themes/base';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
@@ -59,13 +60,17 @@ export const styles = stylex.create({
   },
 });
 
+const themeSettings: IThemeSettings = {
+  linkAs: 'a',
+};
+
 export const decorators: Array<Decorator> = [
   (Story, context) => {
     const showLightMode = !context.tags.includes('dark-mode-only');
     const showDarkMode = !context.tags.includes('light-mode-only');
 
     return (
-      <ThemeProvider value={{ theme }}>
+      <ThemeProvider value={{ theme, settings: themeSettings }}>
         {/* <div {...stylex.props(colorPaletteTheme, colorRolesTheme, shapeTheme)}> */}
         {showLightMode ? (
           <ColorSchemeProvider scheme='light'>

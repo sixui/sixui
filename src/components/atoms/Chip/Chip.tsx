@@ -155,7 +155,7 @@ export const Chip: IChip = forwardRef(function Chip<
 
   const trailingActionRef = useRef<HTMLButtonElement>(null);
 
-  const { theme, variantTheme } = useComponentTheme(
+  const { theme, variantTheme, settings } = useComponentTheme(
     'Chip',
     variant ? variantMap[variant] : undefined,
   );
@@ -172,7 +172,8 @@ export const Chip: IChip = forwardRef(function Chip<
     [stylesCombinator, visualState],
   );
 
-  const Component = as ?? (href ? 'a' : onClick ? 'button' : 'div');
+  const Component =
+    as ?? (href ? settings?.linkAs ?? 'a' : onClick ? 'button' : 'div');
 
   const interactive = !!href || !!onClick;
   const elevated = variant !== 'input' && elevatedProp;

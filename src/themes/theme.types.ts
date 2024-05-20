@@ -424,3 +424,7 @@ export type ITheme = {
     };
   };
 };
+
+export type IThemeSettings = {
+  linkAs: React.ElementType;
+};

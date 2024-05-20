@@ -119,7 +119,7 @@ export const Tab: ITab = forwardRef(function Tab<
   });
   const handleRef = useForkRef(ref, visualStateRef, actionRef);
 
-  const { theme, variantTheme } = useComponentTheme(
+  const { theme, variantTheme, settings } = useComponentTheme(
     'Tab',
     variant ? variantMap[variant] : undefined,
   );
@@ -198,7 +198,7 @@ export const Tab: ITab = forwardRef(function Tab<
     [active, icon, activeIcon, sxf, disabled],
   );
 
-  const Component = as ?? (href ? 'a' : DEFAULT_TAG);
+  const Component = as ?? (href ? settings?.linkAs ?? 'a' : DEFAULT_TAG);
 
   return (
     <Component
