@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import { ColorSchemeContext, type IColorScheme } from './ColorSchemeContext';
-import { useTheme } from '@/components/utils/Theme';
+import { useThemeContext } from '@/components/utils/Theme';
 
 export type IColorSchemeProviderProps = {
   scheme: IColorScheme;
@@ -24,7 +24,7 @@ export const ColorSchemeProvider: React.FC<IColorSchemeProviderProps> = (
   const { scheme, children } = props;
 
   const root = useRef<HTMLDivElement | null>(null);
-  const theme = useTheme();
+  const themeContext = useThemeContext();
 
   const isDark = scheme === 'dark';
   const isLight = !isDark;
@@ -34,7 +34,10 @@ export const ColorSchemeProvider: React.FC<IColorSchemeProviderProps> = (
       <div
         {...stylex.props(
           isLight && styles.container$light,
-          isDark && [styles.container$dark, theme.colorSchemes.dark],
+          isDark && [
+            styles.container$dark,
+            themeContext.theme?.colorSchemes.dark,
+          ],
         )}
         ref={root}
         data-scheme={scheme}

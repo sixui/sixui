@@ -83,7 +83,7 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
   });
   const handleRef = useForkRef(ref, visualStateRef);
 
-  const { theme } = useComponentTheme('ButtonBase');
+  const { theme, settings } = useComponentTheme('ButtonBase');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],
@@ -93,7 +93,7 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
     [stylesCombinator, visualState],
   );
 
-  const Component = as ?? (href ? 'a' : DEFAULT_TAG);
+  const Component = as ?? (href ? settings?.linkAs ?? 'a' : DEFAULT_TAG);
 
   return (
     <Component

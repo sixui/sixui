@@ -99,7 +99,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
   });
   const handleRef = useForkRef(ref, visualStateRef, actionRef);
 
-  const { theme } = useComponentTheme('ListItem');
+  const { theme, settings } = useComponentTheme('ListItem');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],
@@ -122,7 +122,12 @@ export const ListItem: IListItem = forwardRef(function ListItem<
   const hasTrailingContent = !!trailingIcon || !!end;
 
   const Component =
-    as ?? (type == 'link' ? 'a' : type === 'button' ? 'button' : 'li');
+    as ??
+    (type == 'link'
+      ? settings?.linkAs ?? 'a'
+      : type === 'button'
+        ? 'button'
+        : 'li');
 
   return (
     <Component
