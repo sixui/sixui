@@ -1,3 +1,15 @@
+# v0.0.221 (Mon May 20 2024)
+
+#### ⚠️ Pushed to `main`
+
+- refactor(ThemeProvider): take theme and settings properties ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.220 (Mon May 20 2024)
 
 #### ⚠️ Pushed to `main`
