@@ -1,3 +1,15 @@
+# v0.0.220 (Mon May 20 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: Button default component inherit from ButtonBase ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.219 (Mon May 20 2024)
 
 #### 🐛 Bug Fix
