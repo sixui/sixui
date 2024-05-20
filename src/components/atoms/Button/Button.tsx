@@ -82,7 +82,7 @@ export const Button: IButton = forwardRef(function Button<
   const {
     styles,
     sx,
-    as = DEFAULT_TAG,
+    as,
     innerStyles,
     children,
     onClick,
