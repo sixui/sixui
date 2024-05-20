@@ -1,3 +1,15 @@
+# v0.0.219 (Mon May 20 2024)
+
+#### 🐛 Bug Fix
+
+- feat: global theme settings [#26](https://github.com/sixui/ui/pull/26) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.215 (Mon May 20 2024)
 
 #### ⚠️ Pushed to `main`
