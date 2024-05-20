@@ -1,4 +1,4 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef, useContext, useMemo } from 'react';
 
 import type { IContainerProps } from '@/helpers/types';
 import type {
@@ -8,7 +8,7 @@ import type {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { useDisclosureContext } from '@/components/atoms/Disclosure/useDisclosureContext';
+import { DisclosureContext } from '@/components/atoms/Disclosure';
 
 export type IDisclosureProps = IContainerProps<IDisclosurePanelStyleKey> & {
   children: React.ReactNode;
@@ -38,7 +38,7 @@ export const DisclosurePanel = forwardRef<HTMLDivElement, IDisclosureProps>(
       [stylesCombinator],
     );
 
-    const context = useDisclosureContext();
+    const context = useContext(DisclosureContext);
     const expanded = context.checkable
       ? context.expanded && context.checked
       : context.expanded;

@@ -1,4 +1,4 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef, useContext, useMemo } from 'react';
 
 import type { IContainerProps } from '@/helpers/types';
 import type {
@@ -8,7 +8,7 @@ import type {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { useCardContext } from '../Card/useCardContext';
+import { CardContext } from '@/components/atoms/Card';
 
 export type ICardContentProps = IContainerProps<ICardContentStyleKey> & {
   children?: React.ReactNode;
@@ -31,7 +31,7 @@ export const CardContent = forwardRef<HTMLDivElement, ICardContentProps>(
       [stylesCombinator],
     );
 
-    const context = useCardContext();
+    const context = useContext(CardContext);
     const { actionable } = context ?? {};
 
     return (

@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useMemo, useRef } from 'react';
+import { forwardRef, useCallback, useContext, useMemo, useRef } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -27,12 +27,12 @@ import {
   FocusRing,
   type IFocusRingStyleKey,
 } from '@/components/utils/FocusRing';
-import { useRadioGroupContext } from '../RadioGroup/useRadioGroupContext';
 import { useForkRef } from '@/hooks/useForkRef';
 import {
   IndeterminateCircularProgressIndicator,
   type ICircularProgressIndicatorStyleKey,
 } from '@/components/atoms/CircularProgressIndicator';
+import { RadioGroupContext } from '@/components/atoms/RadioGroup';
 
 // https://github.com/material-components/material-web/blob/main/radio/internal/radio.ts
 
@@ -89,10 +89,10 @@ export const Radio: IRadio = forwardRef(function Radio<
     ...other
   } = props as IWithAsProp<IRadioOwnProps>;
 
-  const radioGroupContext = useRadioGroupContext();
+  const context = useContext(RadioGroupContext);
   const disabled =
-    (disabledProp ?? radioGroupContext?.disabled) ||
-    (readOnly ?? radioGroupContext?.readOnly) ||
+    (disabledProp ?? context?.disabled) ||
+    (readOnly ?? context?.readOnly) ||
     loading;
 
   const actionRef = useRef<HTMLInputElement>(null);
@@ -122,19 +122,19 @@ export const Radio: IRadio = forwardRef(function Radio<
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(
     (event) => {
       Promise.resolve(
-        radioGroupContext
-          ? radioGroupContext?.onChange?.(event, value)
+        context
+          ? context?.onChange?.(event, value)
           : onChange?.(event, event.target.value),
       ).catch((error: Error) => {
         throw error;
       });
     },
-    [onChange, radioGroupContext, value],
+    [onChange, context, value],
   );
 
-  const name = radioGroupContext?.name ?? nameProp;
-  const checked = radioGroupContext
-    ? radioGroupContext.value !== undefined && radioGroupContext.value === value
+  const name = context?.name ?? nameProp;
+  const checked = context
+    ? context.value !== undefined && context.value === value
     : checkedProp;
   return (
     <div {...sxf('host', disabled && 'host$disabled', theme.vars, sx)}>

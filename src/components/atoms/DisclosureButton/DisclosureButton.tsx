@@ -1,4 +1,4 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef, useContext, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -17,11 +17,11 @@ import { ListItem, type IListItemProps } from '@/components/atoms/ListItem';
 import { ReactComponent as ChevronDown } from '@/assets/ChevronDown.svg';
 import { Checkbox, type ICheckboxStyleKey } from '@/components/atoms/Checkbox';
 import { Switch, type ISwitchStyleKey } from '@/components/atoms/Switch';
-import { useDisclosureContext } from '@/components/atoms/Disclosure/useDisclosureContext';
 import {
   IndeterminateCircularProgressIndicator,
   type ICircularProgressIndicatorStyleKey,
 } from '@/components/atoms/CircularProgressIndicator';
+import { DisclosureContext } from '@/components/atoms/Disclosure';
 
 export type IDisclosureButtonProps =
   IContainerProps<IDisclosureButtonStyleKey> &
@@ -70,7 +70,7 @@ export const DisclosureButton = forwardRef<
     [stylesCombinator],
   );
 
-  const context = useDisclosureContext();
+  const context = useContext(DisclosureContext);
   const disabled = disabledProp ?? context.disabled;
   const expanded = context.checkable
     ? context.expanded && context.checked

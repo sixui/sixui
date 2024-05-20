@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
@@ -6,9 +7,6 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { Dialog, type IDialogOwnProps, type IDialogProps } from './Dialog';
 import { Button } from '../Button';
 import { Typography } from '../Typography';
-import { useState } from 'react';
-import { TextField } from '../TextField';
-import { Form } from '@/components/utils/Form';
 
 // https://m3.material.io/components/dialogs/overview
 // https://material-web.dev/components/dialog/
@@ -82,30 +80,6 @@ export const WithIcon: IStory = {
     icon: <FontAwesomeIcon icon={faStar} />,
     headline: 'Headline',
     children: 'Just a simple dialog.',
-  },
-};
-
-export const WithForm: IStory = {
-  render: (props) => <DialogLauncher {...props} />,
-  args: {
-    ...defaultArgs,
-    icon: <FontAwesomeIcon icon={faStar} />,
-    headline: 'Headline',
-    as: Form,
-    children: <TextField sx={styles.field} label='Name' required />,
-    actions: (close) => (
-      <>
-        <Button variant='text' onClick={close}>
-          Cancel
-        </Button>
-        <Button variant='filled' type='submit'>
-          OK
-        </Button>
-      </>
-    ),
-    onSubmit: (event: SubmitEvent) => {
-      event.preventDefault();
-    },
   },
 };
 

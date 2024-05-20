@@ -1,4 +1,11 @@
-import { forwardRef, useCallback, useEffect, useMemo, useRef } from 'react';
+import {
+  forwardRef,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+} from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -30,9 +37,9 @@ import {
   StateLayer,
   type IStateLayerStyleKey,
 } from '@/components/utils/StateLayer';
-import { useTabContext } from '@/components/atoms/Tabs/useTabContext';
 import { Anchored } from '@/components/utils/Anchored';
 import { useForkRef } from '@/hooks/useForkRef';
+import { TabContext } from '@/components/atoms/Tabs';
 
 // https://github.com/material-components/material-web/blob/main/tabs/internal/tab.ts
 
@@ -103,8 +110,8 @@ export const Tab: ITab = forwardRef(function Tab<
     ...other
   } = props as IWithAsProp<ITabOwnProps>;
 
-  const tabContext = useTabContext();
-  const variant = variantProp ?? tabContext?.variant ?? 'primary';
+  const context = useContext(TabContext);
+  const variant = variantProp ?? context?.variant ?? 'primary';
 
   const actionRef = useRef<HTMLButtonElement>(null);
   const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
@@ -135,22 +142,22 @@ export const Tab: ITab = forwardRef(function Tab<
   const stacked = variant === 'primary';
   const hasLabel = !!label;
   const active = !disabled
-    ? tabContext
-      ? tabContext.anchor !== undefined && tabContext.anchor === anchor
+    ? context
+      ? context.anchor !== undefined && context.anchor === anchor
       : activeProp
     : false;
   const hasIcon = active ? !!activeIcon ?? !!icon : !!icon;
-  const id = tabContext && anchor ? `${tabContext.id}-${anchor}` : undefined;
+  const id = context && anchor ? `${context.id}-${anchor}` : undefined;
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = useCallback(
     (event) => {
-      tabContext?.onChange(anchor);
+      context?.onChange(anchor);
 
       Promise.resolve(onClick?.(event)).catch((error: Error) => {
         throw error;
       });
     },
-    [onClick, tabContext, anchor],
+    [onClick, context, anchor],
   );
 
   const indicator = useMemo(
@@ -166,10 +173,10 @@ export const Tab: ITab = forwardRef(function Tab<
   useEffect(() => {
     const activeTab = actionRef.current;
     const indicator = indicatorRef.current;
-    if (tabContext && active && activeTab && indicator) {
-      tabContext.onTabActivated(activeTab, indicator);
+    if (context && active && activeTab && indicator) {
+      context.onTabActivated(activeTab, indicator);
     }
-  }, [active, anchor, tabContext]);
+  }, [active, anchor, context]);
 
   const renderIcon = useCallback(
     (): React.ReactNode | null =>
