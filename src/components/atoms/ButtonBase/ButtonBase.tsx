@@ -93,7 +93,7 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
     [stylesCombinator, visualState],
   );
 
-  const Component = as ?? (href ? settings?.linkAs ?? 'a' : DEFAULT_TAG);
+  const Component = as ?? (href ? settings.linkAs : DEFAULT_TAG);
 
   return (
     <Component

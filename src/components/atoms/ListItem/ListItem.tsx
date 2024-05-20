@@ -123,11 +123,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
 
   const Component =
     as ??
-    (type == 'link'
-      ? settings?.linkAs ?? 'a'
-      : type === 'button'
-        ? 'button'
-        : 'li');
+    (type == 'link' ? settings.linkAs : type === 'button' ? 'button' : 'li');
 
   return (
     <Component

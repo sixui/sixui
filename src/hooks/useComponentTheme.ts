@@ -10,7 +10,7 @@ export type IUseComponentThemeResult<
 > = {
   theme: IThemeComponents[TThemeComponent];
   variantTheme?: IThemeComponents[TVariantThemeComponent];
-  settings?: IThemeSettings;
+  settings: IThemeSettings;
 };
 
 export const useComponentTheme = <

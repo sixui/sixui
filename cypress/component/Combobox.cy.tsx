@@ -15,7 +15,7 @@ const styles = stylex.create({
 describe('Combobox', () => {
   it('should open on click on field', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <Combobox>
           <Combobox.Option value='apple'>Apple</Combobox.Option>
           <Combobox.Option value='carrot'>Carrot</Combobox.Option>
@@ -34,7 +34,7 @@ describe('Combobox', () => {
 
   it('should open on click on input', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <Combobox>
           <Combobox.Option value='apple'>Apple</Combobox.Option>
           <Combobox.Option value='carrot'>Carrot</Combobox.Option>
@@ -54,7 +54,7 @@ describe('Combobox', () => {
   it('should use portal', () => {
     cy.mount(
       <div style={{ position: 'relative', overflow: 'hidden' }}>
-        <ThemeProvider sx={styles.host} value={{ theme }}>
+        <ThemeProvider sx={styles.host} theme={theme}>
           <Combobox>
             <Combobox.Option value='apple'>Apple</Combobox.Option>
             <Combobox.Option value='carrot'>Carrot</Combobox.Option>
@@ -72,7 +72,7 @@ describe('Combobox', () => {
 
   it('should close on click outside', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <Combobox>
           <Combobox.Option value='apple'>Apple</Combobox.Option>
           <Combobox.Option value='carrot'>Carrot</Combobox.Option>
@@ -90,7 +90,7 @@ describe('Combobox', () => {
 
   it('should select the first option if empty on blur', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <Combobox>
           <Combobox.Option value='apple'>Apple</Combobox.Option>
           <Combobox.Option value='carrot'>Carrot</Combobox.Option>
@@ -106,7 +106,7 @@ describe('Combobox', () => {
 
   it('should select an option', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <Combobox>
           <Combobox.Option value='apple'>Apple</Combobox.Option>
           <Combobox.Option value='carrot'>Carrot</Combobox.Option>
@@ -124,7 +124,7 @@ describe('Combobox', () => {
 
   it('should select an empty option', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <Combobox>
           <Combobox.Option value=''>Empty</Combobox.Option>
           <Combobox.Option value='apple'>Apple</Combobox.Option>
@@ -142,7 +142,7 @@ describe('Combobox', () => {
 
   it('should have a default value', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <Combobox defaultValue='carrot'>
           <Combobox.Option value='apple'>Apple</Combobox.Option>
           <Combobox.Option value='carrot'>Carrot</Combobox.Option>
@@ -155,7 +155,7 @@ describe('Combobox', () => {
 
   it('should use the option label', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <Combobox defaultValue='carrot'>
           <Combobox.Option value='apple' label='golden' />
           <Combobox.Option value='carrot' label='touchon' />
@@ -168,7 +168,7 @@ describe('Combobox', () => {
 
   it('should limit options', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <Combobox
           limit={2}
           moreOption={({ total, hidden }) => (
@@ -199,7 +199,7 @@ describe('Combobox', () => {
 
   it('should be able to select a hidden option as default value', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <Combobox
           defaultValue='5'
           limit={2}
@@ -232,7 +232,7 @@ describe('Combobox', () => {
 
   it('should filter options', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <Combobox>
           <Combobox.Option value='apple'>Apple</Combobox.Option>
           <Combobox.Option value='carrot'>Carrot</Combobox.Option>
@@ -268,7 +268,7 @@ describe('Combobox', () => {
 
   it('should select filtered option', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <Combobox>
           <Combobox.Option value='apple'>Apple</Combobox.Option>
           <Combobox.Option value='carrot'>Carrot</Combobox.Option>
@@ -286,7 +286,7 @@ describe('Combobox', () => {
 
   it('should reset filter on blur', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <Combobox nullable>
           <Combobox.Option value='apple'>Apple</Combobox.Option>
           <Combobox.Option value='carrot'>Carrot</Combobox.Option>
@@ -307,7 +307,7 @@ describe('Combobox', () => {
 describe('Nullable Combobox', () => {
   it('should have empty option', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <Combobox nullable />
       </ThemeProvider>,
     );
@@ -318,7 +318,7 @@ describe('Nullable Combobox', () => {
 
   it('should stay empty on blur', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <Combobox nullable>
           <Combobox.Option value='apple'>Apple</Combobox.Option>
           <Combobox.Option value='carrot'>Carrot</Combobox.Option>
@@ -334,7 +334,7 @@ describe('Nullable Combobox', () => {
 
   it('should clear default value', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <Combobox defaultValue='carrot' nullable>
           <Combobox.Option value='apple'>Apple</Combobox.Option>
           <Combobox.Option value='carrot'>Carrot</Combobox.Option>
@@ -351,7 +351,7 @@ describe('Nullable Combobox', () => {
 
   it('should select filtered option', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <Combobox nullable>
           <Combobox.Option value='apple'>Apple</Combobox.Option>
           <Combobox.Option value='carrot'>Carrot</Combobox.Option>

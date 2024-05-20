@@ -125,8 +125,7 @@ const Card: ICard = forwardRef(function Card<
     !!variantTheme?.styles?.outline ||
     asArray(styles).some((styles) => !!styles?.outline);
 
-  const Component =
-    as ?? (!dragged && href ? settings?.linkAs ?? 'a' : DEFAULT_TAG);
+  const Component = as ?? (!dragged && href ? settings.linkAs : DEFAULT_TAG);
 
   const context: ICardContext = {
     actionable,

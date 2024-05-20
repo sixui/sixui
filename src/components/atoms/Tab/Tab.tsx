@@ -198,7 +198,7 @@ export const Tab: ITab = forwardRef(function Tab<
     [active, icon, activeIcon, sxf, disabled],
   );
 
-  const Component = as ?? (href ? settings?.linkAs ?? 'a' : DEFAULT_TAG);
+  const Component = as ?? (href ? settings.linkAs : DEFAULT_TAG);
 
   return (
     <Component

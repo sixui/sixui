@@ -8,7 +8,7 @@ export type { ITheme } from '@/themes/theme.types';
 
 export type IThemeContext = {
   theme: ITheme;
-  settings?: IThemeSettings;
+  settings: IThemeSettings;
 };
 
 export const ThemeContext = createContext<IThemeContext | undefined>(undefined);

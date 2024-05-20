@@ -15,7 +15,7 @@ const styles = stylex.create({
 describe('Uncontrolled TextField', () => {
   it('should have default value', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <TextField defaultValue='Hello World!' />
       </ThemeProvider>,
     );
@@ -25,7 +25,7 @@ describe('Uncontrolled TextField', () => {
 
   it('should change value', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <TextField />
       </ThemeProvider>,
     );
@@ -37,7 +37,7 @@ describe('Uncontrolled TextField', () => {
 
   it('should clear value', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <TextField clearable />
       </ThemeProvider>,
     );
@@ -53,7 +53,7 @@ describe('Uncontrolled TextField', () => {
 describe('Controlled TextField', () => {
   it('should trigger event on value change', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <TextField value='Hello World!' />
       </ThemeProvider>,
     );
@@ -67,7 +67,7 @@ describe('Controlled TextField', () => {
   it('should trigger event on value clear', () => {
     const onChange = cy.stub().as('onChange');
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <TextField value='Hello World!' onChange={onChange} clearable />
       </ThemeProvider>,
     );

@@ -172,8 +172,7 @@ export const Chip: IChip = forwardRef(function Chip<
     [stylesCombinator, visualState],
   );
 
-  const Component =
-    as ?? (href ? settings?.linkAs ?? 'a' : onClick ? 'button' : 'div');
+  const Component = as ?? (href ? settings.linkAs : onClick ? 'button' : 'div');
 
   const interactive = !!href || !!onClick;
   const elevated = variant !== 'input' && elevatedProp;

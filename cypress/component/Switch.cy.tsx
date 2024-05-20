@@ -15,7 +15,7 @@ const styles = stylex.create({
 describe('Uncontrolled Switch', () => {
   it('should be toggled-off by default', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <Switch />
       </ThemeProvider>,
     );
@@ -25,7 +25,7 @@ describe('Uncontrolled Switch', () => {
 
   it('should have a default state', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <Switch defaultChecked />
       </ThemeProvider>,
     );
@@ -35,7 +35,7 @@ describe('Uncontrolled Switch', () => {
 
   it('should have a default value', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <Switch defaultValue='banana' />
       </ThemeProvider>,
     );
@@ -45,7 +45,7 @@ describe('Uncontrolled Switch', () => {
 
   it('should toggle state', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <Switch />
       </ThemeProvider>,
     );
@@ -58,7 +58,7 @@ describe('Uncontrolled Switch', () => {
 describe('Controlled Switch', () => {
   it('should have a controlled state', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <Switch checked />
       </ThemeProvider>,
     );
@@ -68,7 +68,7 @@ describe('Controlled Switch', () => {
 
   it('should have a controlled value', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <Switch value='banana' />
       </ThemeProvider>,
     );
@@ -79,7 +79,7 @@ describe('Controlled Switch', () => {
   it('should trigger event on state change', () => {
     const onChange = cy.stub().as('onChange');
     cy.mount(
-      <ThemeProvider sx={styles.host} value={{ theme }}>
+      <ThemeProvider sx={styles.host} theme={theme}>
         <Switch checked={false} onChange={onChange} />
       </ThemeProvider>,
     );

@@ -36,7 +36,7 @@ export const ColorSchemeProvider: React.FC<IColorSchemeProviderProps> = (
           isLight && styles.container$light,
           isDark && [
             styles.container$dark,
-            themeContext.theme?.colorSchemes.dark,
+            themeContext.theme.colorSchemes.dark,
           ],
         )}
         ref={root}
