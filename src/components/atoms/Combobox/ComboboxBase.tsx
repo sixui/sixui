@@ -26,7 +26,7 @@ import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 import { reactNodeToString } from '@/helpers/react/nodeToString';
 import { componentVars as fieldBaseVars } from '@/themes/base/FieldBase/FieldBase.stylex';
 import { InputChip } from '@/components/atoms/Chip';
-import { useControlled } from '@/hooks/useControlled';
+import { useControlledValue } from '@/hooks/useControlledValue';
 import { isElementLike } from '@/helpers/react/isElementLike';
 import { ComboboxOption, type IComboboxOptionProps } from './ComboboxOption';
 
@@ -154,7 +154,7 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
       ...other
     } = props;
 
-    const [value, setValue] = useControlled({
+    const [value, setValue] = useControlledValue({
       controlled: valueProp,
       default: defaultValue ?? (multiple ? emptyArrayStableRef : null),
       name: 'ComboboxBase',

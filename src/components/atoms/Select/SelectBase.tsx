@@ -15,7 +15,7 @@ import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 import { ListItem } from '@/components/atoms/ListItem';
 import { InputChip } from '@/components/atoms/Chip';
-import { useControlled } from '@/hooks/useControlled';
+import { useControlledValue } from '@/hooks/useControlledValue';
 import { isElementLike } from '@/helpers/react/isElementLike';
 import { SelectOption, type ISelectOptionProps } from './SelectOption';
 
@@ -158,7 +158,7 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
       ...other
     } = props;
 
-    const [value, setValue] = useControlled({
+    const [value, setValue] = useControlledValue({
       controlled: valueProp,
       default: defaultValue ?? (multiple ? emptyArrayStableRef : null),
       name: 'SelectBase',

@@ -9,7 +9,7 @@ import type {
 } from '@/helpers/react/polymorphicComponentTypes';
 import { useForkRef } from '@/hooks/useForkRef';
 import { useId } from '@/hooks/useId';
-import { useControlled } from '@/hooks/useControlled';
+import { useControlledValue } from '@/hooks/useControlledValue';
 import {
   RadioGroupContext,
   type IRadioGroupContext,
@@ -52,7 +52,7 @@ export const RadioGroup: IRadioGroup = forwardRef(function RadioGroup<
   } = props as IWithAsProp<IRadioGroupOwnProps>;
 
   const hostRef = useRef<HTMLElement>(null);
-  const [value, setValue] = useControlled({
+  const [value, setValue] = useControlledValue({
     controlled: valueProp,
     default: defaultValue,
     name: 'RadioGroup',

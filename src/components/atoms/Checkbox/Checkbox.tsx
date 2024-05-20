@@ -22,7 +22,7 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useVisualState, type IVisualState } from '@/hooks/useVisualState';
 import { usePrevious } from '@/hooks/usePrevious';
-import { useControlled } from '@/hooks/useControlled';
+import { useControlledValue } from '@/hooks/useControlledValue';
 import {
   StateLayer,
   type IStateLayerStyleKey,
@@ -113,7 +113,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
     [stylesCombinator, visualState],
   );
 
-  const [checkedValue, setCheckedValue] = useControlled({
+  const [checkedValue, setCheckedValue] = useControlledValue({
     controlled: checkedProp,
     default: !!defaultChecked,
     name: 'Checkbox',

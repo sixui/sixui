@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useRef } from 'react';
 
 import type { IAny, IMaybeAsync } from '@/helpers/types';
-import { useControlled } from '@/hooks/useControlled';
+import { useControlledValue } from '@/hooks/useControlledValue';
 import { EASING } from '@/helpers/animation';
 import { shouldReduceMotion } from '@/helpers/shouldReduceAnimations';
 import { type ITabContext, TabContext } from './TabContext';
@@ -23,7 +23,7 @@ export const Tabs: React.FC<ITabsProps> = (props) => {
     id: idProp,
   } = props;
 
-  const [anchor, setAnchor] = useControlled({
+  const [anchor, setAnchor] = useControlledValue({
     controlled: anchorProp,
     default: defaultAnchor,
     name: 'Tabs',

@@ -22,10 +22,6 @@ type IUseControlledProps<T> = {
    * The name of the state variable displayed in warnings.
    */
   state?: string;
-
-  // TODO: wait for a fix and delete this option.
-  // See: https://github.com/tailwindlabs/headlessui/issues/3044
-  noDefaultStateWarning?: boolean;
 };
 
 type IUseControlledValue<TValue> = [
@@ -35,10 +31,9 @@ type IUseControlledValue<TValue> = [
 
 // https://github.com/mui/material-ui/blob/master/packages/mui-utils/src/useControlled/useControlled.js
 // https://github.com/mui/material-ui/blob/master/packages/mui-utils/src/useControlled/useControlled.d.ts
-export const useControlled = <TValue>({
+export const useControlledValue = <TValue>({
   name,
   state = 'value',
-  noDefaultStateWarning,
   ...props
 }: IUseControlledProps<TValue | undefined>): IUseControlledValue<TValue> => {
   const { current: isControlled } = useRef(props.controlled !== undefined);
@@ -72,11 +67,7 @@ export const useControlled = <TValue>({
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
-      if (
-        !noDefaultStateWarning &&
-        !isControlled &&
-        defaultValue !== props.default
-      ) {
+      if (!isControlled && defaultValue !== props.default) {
         // eslint-disable-next-line no-console
         console.error(
           [
@@ -85,14 +76,7 @@ export const useControlled = <TValue>({
           ].join('\n'),
         );
       }
-    }, [
-      noDefaultStateWarning,
-      isControlled,
-      state,
-      name,
-      defaultValue,
-      props.default,
-    ]);
+    }, [isControlled, state, name, defaultValue, props.default]);
   }
 
   const setValueIfUncontrolled = useCallback(

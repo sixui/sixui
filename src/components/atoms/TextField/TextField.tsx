@@ -18,10 +18,11 @@ import {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { useValidationState } from '@/hooks/useValidationState';
 import { useVisualState } from '@/hooks/useVisualState';
-import { useControlled } from '@/hooks/useControlled';
+import { useControlledValue } from '@/hooks/useControlledValue';
 import { useForkRef } from '@/hooks/useForkRef';
+import { IconButton } from '@/components/atoms/IconButton';
+import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
 
 // https://github.com/material-components/material-web/blob/main/textfield/internal/text-field.ts
 
@@ -128,19 +129,20 @@ export type ITextFieldProps = IContainerProps<ITextFieldStyleKey> &
     defaultValue?: string;
     onChange?: (
       event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-      value: string,
     ) => void;
     onFocus?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
     onBlur?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
     onKeyDown?: React.KeyboardEventHandler<
       HTMLInputElement | HTMLTextAreaElement
     >;
-    reportOnBlur?: boolean;
 
     /**
      * When true, hide the spinner for `type="number"` text fields.
      */
     noSpinner?: boolean;
+
+    clearable?: boolean;
+    clearButtonIcon?: React.ReactNode;
   };
 
 type ITextFieldVariantMap = {
@@ -181,17 +183,15 @@ export const TextField = forwardRef<
     value: valueProp,
     defaultValue,
     type = 'text',
-    hasError: hasErrorProp,
-    errorText: errorTextProp,
+    hasError,
+    errorText,
     disabled: disabledProp,
     readOnly,
-    onChange,
-    onFocus,
-    onBlur,
-    onKeyDown,
-    reportOnBlur,
     children,
     containerRef,
+    clearable,
+    onChange,
+    clearButtonIcon,
     role = 'textbox',
     'aria-label': ariaLabelProp,
     ...other
@@ -231,88 +231,31 @@ export const TextField = forwardRef<
     [stylesCombinator, visualState],
   );
 
-  const hasBeenInteractedWithRef = useRef(false);
-
-  const isControlled = valueProp !== undefined;
-  const [value, setValue] = useControlled({
+  const controlled = valueProp !== undefined;
+  const [value, setValue] = useControlledValue({
     controlled: valueProp,
     default: defaultValue,
     name: 'TextField',
-    // TODO: wait for a fix and delete this option.
-    // See: https://github.com/tailwindlabs/headlessui/issues/3044
-    noDefaultStateWarning: true,
   });
-  const { reportValidity, nativeErrorText } =
-    useValidationState(inputOrTextareaRef);
-
-  /**
-   * `true` when the text field has been interacted with. Native validation
-   * errors only display in response to user interactions.
-   */
-  const isDirtyRef = useRef(false);
 
   const isTextarea = type === 'textarea';
-  const hasError = hasErrorProp || !!nativeErrorText;
-  const errorText = hasErrorProp ? errorTextProp : nativeErrorText;
   const populated =
     populatedProp ?? (!!value || !!inputOrTextareaRef.current?.value);
 
-  const handleChange: React.ChangeEventHandler<
-    HTMLInputElement | HTMLTextAreaElement
-  > = useCallback(
-    (event) => {
-      hasBeenInteractedWithRef.current = true;
-      isDirtyRef.current = true;
-
-      const value = event.currentTarget.value;
-      setValue(value);
-      onChange?.(event, value);
-    },
-    [onChange, setValue],
-  );
-
-  /**
-   * Called when the text field loses focus.
-   */
-  const handleBlur: React.FocusEventHandler<
-    HTMLInputElement | HTMLTextAreaElement
-  > = useCallback(
-    (event) => {
-      onBlur?.(event);
-
-      // If the text field has not been interacted with, do not report validity.
-      // This prevents the text field from showing an error on page load.
-      if (!hasBeenInteractedWithRef.current) {
-        return;
-      }
-
-      // Reset the interaction flag so that the text field cannot be validated anymore until it has
-      // been interacted with again. This prevents a text field in an invalid state from an infinite
-      // loop of reporting validity.
-      hasBeenInteractedWithRef.current = false;
-
-      const validity = inputOrTextareaRef.current?.validity;
-
-      // Report validity if one of the following is true:
-      // - the text field is in a valid state (and clear the native error text) ;
-      // - the text field is in an invalid state (and set the native error text), except if the value
-      //   is missing (missing values are never checked on blur) ;
-      // - the `reportOnBlur` option flag is set (mainly for demo purpose).
-      const shouldReportValidity =
-        validity?.valid ||
-        (hasError && !validity?.valueMissing) ||
-        reportOnBlur;
-
-      if (shouldReportValidity) {
-        // Calling `reportValidity()` may focus the text field. Since we do this on
-        // blur, wait for other focus changes to finish, like tabbing.
-        void new Promise((resolve) => setTimeout(resolve)).then(() =>
-          reportValidity(),
-        );
-      }
-    },
-    [reportValidity, hasError, reportOnBlur, inputOrTextareaRef, onBlur],
-  );
+  const iconButtonRef = useRef<HTMLButtonElement>(null);
+  const handleClearInput = useCallback(() => {
+    iconButtonRef.current?.blur();
+    if (controlled) {
+      setValue('');
+    } else {
+      inputOrTextareaRef.current!.value = '';
+      onChange?.({
+        currentTarget: inputOrTextareaRef.current!,
+        target: inputOrTextareaRef.current!,
+      } as React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>);
+    }
+    inputOrTextareaRef.current?.focus();
+  }, [controlled, setValue, onChange]);
 
   const renderInputOrTextarea = useCallback((): React.ReactNode => {
     const ariaLabel = ariaLabelProp ?? label;
@@ -337,14 +280,11 @@ export const TextField = forwardRef<
           disabled={disabled}
           minLength={hasMinLength ? minLength : undefined}
           maxLength={hasMaxLength ? maxLength : undefined}
-          value={isControlled ? value : undefined}
+          value={controlled ? value : undefined}
           defaultValue={defaultValue}
-          onChange={handleChange}
-          onFocus={onFocus}
-          onBlur={handleBlur}
-          onKeyDown={onKeyDown}
           required={required}
           data-cy='textarea'
+          onChange={onChange}
           {...other}
         />
       );
@@ -372,15 +312,12 @@ export const TextField = forwardRef<
           disabled={disabled}
           minLength={hasMinLength ? minLength : undefined}
           maxLength={hasMaxLength ? maxLength : undefined}
-          value={isControlled ? value : undefined}
+          value={controlled ? value : undefined}
           defaultValue={defaultValue}
-          onChange={handleChange}
-          onFocus={onFocus}
-          onBlur={handleBlur}
-          onKeyDown={onKeyDown}
           required={required}
           type={type}
           data-cy='input'
+          onChange={onChange}
           {...other}
         />
         {suffixText ? (
@@ -395,10 +332,6 @@ export const TextField = forwardRef<
     isTextarea,
     value,
     defaultValue,
-    handleChange,
-    onFocus,
-    handleBlur,
-    onKeyDown,
     ariaLabelProp,
     hasError,
     disabled,
@@ -412,7 +345,8 @@ export const TextField = forwardRef<
     required,
     prefixText,
     suffixText,
-    isControlled,
+    controlled,
+    onChange,
   ]);
 
   return (
@@ -442,7 +376,17 @@ export const TextField = forwardRef<
           errorText={errorText}
           visualState={visualState}
           start={start}
-          end={end}
+          end={
+            end ??
+            (clearable ? (
+              <IconButton
+                data-cy='clearButton'
+                ref={iconButtonRef}
+                icon={clearButtonIcon ?? <XMarkIcon aria-hidden />}
+                onClick={handleClearInput}
+              />
+            ) : undefined)
+          }
           leadingIcon={leadingIcon}
           trailingIcon={trailingIcon}
           label={label}

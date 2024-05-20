@@ -18,7 +18,7 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { type IVisualState, useVisualState } from '@/hooks/useVisualState';
-import { useControlled } from '@/hooks/useControlled';
+import { useControlledValue } from '@/hooks/useControlledValue';
 import {
   FocusRing,
   type IFocusRingStyleKey,
@@ -136,7 +136,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
     [stylesCombinator, visualState],
   );
 
-  const [selected, setSelected] = useControlled({
+  const [selected, setSelected] = useControlledValue({
     controlled: checkedProp,
     default: !!defaultChecked,
     name: 'Switch',

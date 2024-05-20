@@ -7,7 +7,7 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { DisclosureButton } from '@/components/atoms/DisclosureButton';
 import { DisclosurePanel } from '@/components/atoms/DisclosurePanel';
-import { useControlled } from '@/hooks/useControlled';
+import { useControlledValue } from '@/hooks/useControlledValue';
 import {
   DisclosureContext,
   type IDisclosureContext,
@@ -36,7 +36,7 @@ const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
       ...other
     } = props;
 
-    const [checked, setChecked] = useControlled({
+    const [checked, setChecked] = useControlledValue({
       controlled: checkedProp,
       default: !!defaultChecked,
       name: 'Disclosure',
