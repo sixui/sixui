@@ -1,3 +1,16 @@
+# v0.0.223 (Tue May 21 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(ElementWithLabel): support action slot ([@olivierpascal](https://github.com/olivierpascal))
+- fix(Chip): label vertical alignment ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.222 (Tue May 21 2024)
 
 #### ⚠️ Pushed to `main`
