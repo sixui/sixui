@@ -92,7 +92,12 @@ export const Variants: IStory = {
             avatar: true,
           },
         },
-        { props: { variant: 'suggestion', label: 'Suggestion' } },
+        {
+          props: {
+            variant: 'suggestion',
+            label: 'Suggestion',
+          },
+        },
       ]}
     />
   ),

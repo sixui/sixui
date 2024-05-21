@@ -219,13 +219,9 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     opacity: vars.outlineOpacity$disabled,
   },
   labelContainer: {
+    display: 'flex',
+    alignItems: 'center',
     minWidth: 0,
-
-    // Long labels are cut off with ellipsis by default. `text-overflow` and
-    // `text-wrap` can customize this.
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    textWrap: 'nowrap',
   },
   labelContainer$hasTrailing: {
     position: 'relative',
@@ -241,6 +237,12 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     height: '100%',
     userSelect: 'none',
     color: vars.labelTextColor,
+
+    // Long labels are cut off with ellipsis by default. `text-overflow` and
+    // `text-wrap` can customize this.
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    textWrap: 'nowrap',
   },
   label$interactive: {
     color: {
@@ -324,6 +326,8 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     opacity: vars.iconOpacity$disabled,
   },
   icon$avatar: {
+    flexShrink: 0,
+    flexGrow: 0,
     height: vars.avatarSize,
     width: vars.avatarSize,
   },
