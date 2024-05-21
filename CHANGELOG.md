@@ -1,3 +1,15 @@
+# v0.0.224 (Tue May 21 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: IconButton default component inherit from ButtonBase ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.223 (Tue May 21 2024)
 
 #### ⚠️ Pushed to `main`
