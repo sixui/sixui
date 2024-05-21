@@ -7,15 +7,12 @@ import { componentVars as elevationVars } from '../Elevation/Elevation.stylex';
 import { componentVars as baseComponentVars } from './Button.stylex';
 import { stateVars } from '../vars/state.stylex';
 
-// https://github.com/material-components/material-web/blob/main/tokens/_md-comp-filled-tonal-button.scss
-// https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-filled-tonal-button.scss
-
 const vars: Partial<IStyleVars<IButtonStyleVarKey>> = {
   // container
-  containerColor: colorRolesVars.secondaryContainer,
+  containerColor: colorRolesVars.errorContainer,
   containerElevation: elevationVars.boxShadow$level0,
   // &:disabled
-  containerColor$disabled: colorRolesVars.onSurface,
+  containerColor$disabled: colorRolesVars.onErrorContainer,
   containerElevation$disabled: elevationVars.boxShadow$level0,
   containerOpacity$disabled: stateVars.containerOpacity$disabled,
   // &:focus
@@ -27,27 +24,27 @@ const vars: Partial<IStyleVars<IButtonStyleVarKey>> = {
 
   // stateLayer
   // &:hover
-  stateLayerColor$hover: colorRolesVars.onSecondaryContainer,
+  stateLayerColor$hover: colorRolesVars.onErrorContainer,
   // &:pressed
-  stateLayerColor$pressed: colorRolesVars.onSecondaryContainer,
+  stateLayerColor$pressed: colorRolesVars.error,
 
   // label
-  labelTextColor: colorRolesVars.onSecondaryContainer,
+  labelTextColor: colorRolesVars.onErrorContainer,
   // &:focus
-  labelTextColor$focus: colorRolesVars.onSecondaryContainer,
+  labelTextColor$focus: colorRolesVars.onErrorContainer,
   // &:hover
-  labelTextColor$hover: colorRolesVars.onSecondaryContainer,
+  labelTextColor$hover: colorRolesVars.onErrorContainer,
   // &:pressed
-  labelTextColor$pressed: colorRolesVars.onSecondaryContainer,
+  labelTextColor$pressed: colorRolesVars.onErrorContainer,
 
   // icon
-  iconColor: colorRolesVars.onSecondaryContainer,
+  iconColor: colorRolesVars.onErrorContainer,
   // &:focus
-  iconColor$focus: colorRolesVars.onSecondaryContainer,
+  iconColor$focus: colorRolesVars.onErrorContainer,
   // &:hover
-  iconColor$hover: colorRolesVars.onSecondaryContainer,
+  iconColor$hover: colorRolesVars.onErrorContainer,
   // &:pressed
-  iconColor$pressed: colorRolesVars.onSecondaryContainer,
+  iconColor$pressed: colorRolesVars.onErrorContainer,
 };
 
 export const componentTheme = stylex.createTheme(baseComponentVars, vars);

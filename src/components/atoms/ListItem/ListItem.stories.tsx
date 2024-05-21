@@ -5,6 +5,7 @@ import {
   faCalendarDays,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
+import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
@@ -16,6 +17,7 @@ import {
   type IListItemProps,
   type IListItemOwnProps,
 } from './ListItem';
+import { listItemVariants } from './ListItem.styledefs';
 
 // https://m3.material.io/components/items/overview
 // https://material-web.dev/components/item/
@@ -73,27 +75,23 @@ const rows: Array<IComponentPresentation<IListItemOwnProps>> = [
   },
 ];
 
-const variants: Array<IComponentPresentation<IListItemOwnProps>> = [
-  {
-    props: { children: 'One line item' },
-  },
-  {
-    props: {
-      children: 'With Icons',
-      leadingIcon: <FontAwesomeIcon icon={faCalendarDays} />,
-      trailingIcon: <FontAwesomeIcon icon={faChevronRight} />,
-    },
-  },
-];
-
 export const Variants: IStory = {
   render: (props) => (
-    <ComponentShowcase component={ListItem} props={props} cols={variants} />
+    <ComponentShowcase
+      component={ListItem}
+      props={props}
+      cols={listItemVariants.map((variant) => ({
+        props: {
+          variant,
+          children: capitalizeFirstLetter(variant),
+          leadingIcon: <FontAwesomeIcon icon={faCalendarDays} />,
+          trailingIcon: <FontAwesomeIcon icon={faChevronRight} />,
+          href: '#',
+        },
+      }))}
+    />
   ),
-  args: {
-    ...defaultArgs,
-    type: 'link',
-  },
+  args: defaultArgs,
 };
 
 export const Basic: IStory = {
@@ -105,7 +103,10 @@ export const Basic: IStory = {
       rows={rows}
     />
   ),
-  args: defaultArgs as IListItemProps,
+  args: {
+    ...defaultArgs,
+    variant: 'danger',
+  },
 };
 
 export default meta;

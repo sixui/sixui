@@ -151,6 +151,14 @@ export type IButtonTheme = {
   circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
 };
 
+export type IListItemTheme = {
+  vars?: IStyleVarsTheme<IListItemStyleVarKey>;
+  styles?: ICompiledStyles<IListItemStyleKey>;
+  itemStyles?: ICompiledStyles<IItemStyleKey>;
+  stateLayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
+  focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
+};
+
 export type IChipTheme = {
   vars?: IStyleVarsTheme<IChipStyleVarKey>;
   styles?: ICompiledStyles<IChipStyleKey>;
@@ -246,6 +254,7 @@ export type ITheme = {
     FilledTonalButton: IButtonTheme;
     OutlinedButton: IButtonTheme;
     TextButton: IButtonTheme;
+    DangerButton: IButtonTheme;
     CircularProgressIndicator: {
       vars: IStyleVarsTheme<ICircularProgressIndicatorStyleVarKey>;
       styles: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
@@ -272,6 +281,7 @@ export type ITheme = {
     FilledIconButton: IIconButtonTheme;
     FilledTonalIconButton: IIconButtonTheme;
     OutlinedIconButton: IIconButtonTheme;
+    DangerIconButton: IIconButtonTheme;
     Switch: {
       vars: IStyleVarsTheme<ISwitchStyleVarKey>;
       styles: ICompiledStyles<ISwitchStyleKey>;
@@ -306,13 +316,9 @@ export type ITheme = {
       vars?: IStyleVarsTheme<IItemStyleVarKey>;
       styles?: ICompiledStyles<IItemStyleKey>;
     };
-    ListItem: {
-      vars?: IStyleVarsTheme<IListItemStyleVarKey>;
-      styles?: ICompiledStyles<IListItemStyleKey>;
-      itemStyles?: ICompiledStyles<IItemStyleKey>;
-      stateLayerStyles: ICompiledStyles<IStateLayerStyleKey>;
-      focusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
-    };
+    ListItem: IListItemTheme;
+    StandardListItem: IListItemTheme;
+    DangerListItem: IListItemTheme;
     List: {
       styles?: ICompiledStyles<IListStyleKey>;
     };

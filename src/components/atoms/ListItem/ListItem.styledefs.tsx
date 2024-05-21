@@ -1,3 +1,6 @@
+export const listItemVariants = ['standard', 'danger'] as const;
+export type IListItemVariant = (typeof listItemVariants)[number];
+
 export type IListItemStyleKey =
   | 'host'
   | 'host$interactive'

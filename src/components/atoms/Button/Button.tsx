@@ -9,9 +9,9 @@ import type {
 } from '@/helpers/react/polymorphicComponentTypes';
 import type { IThemeComponents } from '@/components/utils/Theme';
 import type {
+  IButtonVariant,
   IButtonStyleKey,
   IButtonStyleVarKey,
-  IButtonVariant,
 } from './Button.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
@@ -61,6 +61,7 @@ type IButtonVariantMap = {
     | 'FilledTonalButton'
     | 'OutlinedButton'
     | 'TextButton'
+    | 'DangerButton'
   >;
 };
 
@@ -70,6 +71,7 @@ const variantMap: IButtonVariantMap = {
   filledTonal: 'FilledTonalButton',
   outlined: 'OutlinedButton',
   text: 'TextButton',
+  danger: 'DangerButton',
 };
 
 type IButton = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(

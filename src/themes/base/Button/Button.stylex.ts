@@ -54,13 +54,8 @@ const vars: Partial<IStyleVars<IButtonStyleVarKey>> = {
   // icon
   iconSize: '18px',
   // &:disabled
+  iconColor$disabled: colorRolesVars.onSurface,
   iconOpacity$disabled: stateVars.opacity$disabled,
-
-  // stateLayer
-  // &:hover
-  stateLayerColor$hover: colorRolesVars.primary,
-  // &:pressed
-  stateLayerColor$pressed: colorRolesVars.primary,
 
   // outline
   outlineStyle: 'none',

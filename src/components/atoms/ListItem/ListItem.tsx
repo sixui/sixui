@@ -11,7 +11,8 @@ import type {
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
-import type { IListItemStyleKey } from './ListItem.styledefs';
+import type { IListItemVariant, IListItemStyleKey } from './ListItem.styledefs';
+import type { IThemeComponents } from '@/components/utils/Theme';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
@@ -44,6 +45,7 @@ export type IListItemOwnProps = IContainerProps<IListItemStyleKey> &
       stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
       focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
     };
+    variant?: IListItemVariant | false;
     visualState?: IVisualState;
     href?: string;
     target?: React.AnchorHTMLAttributes<HTMLAnchorElement>['target'];
@@ -63,6 +65,18 @@ export type IListItemProps<
   TRoot extends React.ElementType = typeof DEFAULT_TAG,
 > = IPolymorphicComponentPropsWithRef<TRoot, IListItemOwnProps>;
 
+type IListItemVariantMap = {
+  [key in IListItemVariant]: keyof Pick<
+    IThemeComponents,
+    'StandardListItem' | 'DangerListItem'
+  >;
+};
+
+const variantMap: IListItemVariantMap = {
+  standard: 'StandardListItem',
+  danger: 'DangerListItem',
+};
+
 type IListItem = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
   props: IListItemProps<TRoot>,
 ) => React.ReactNode;
@@ -75,6 +89,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
     styles,
     sx,
     innerStyles,
+    variant = 'standard',
     visualState: visualStateProp,
     href,
     overline,
@@ -99,10 +114,13 @@ export const ListItem: IListItem = forwardRef(function ListItem<
   });
   const handleRef = useForkRef(ref, visualStateRef, actionRef);
 
-  const { theme, settings } = useComponentTheme('ListItem');
+  const { theme, variantTheme, settings } = useComponentTheme(
+    'ListItem',
+    variant ? variantMap[variant] : undefined,
+  );
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, styles),
-    [theme.styles, styles],
+    () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
+    [theme.styles, variantTheme?.styles, styles],
   );
   const sxf = useMemo(
     () =>
@@ -135,9 +153,9 @@ export const ListItem: IListItem = forwardRef(function ListItem<
         hasLeadingContent && 'host$hasLeadingContent',
         hasTrailingContent && 'host$hasTrailingContent',
         theme.vars,
+        variantTheme?.vars,
         sx,
       )}
-      sx={sx}
       role={role}
       type={type === 'button' ? 'button' : undefined}
       ref={handleRef}
@@ -150,7 +168,11 @@ export const ListItem: IListItem = forwardRef(function ListItem<
       {...other}
     >
       <Item
-        styles={[theme.itemStyles, ...asArray(innerStyles?.item)]}
+        styles={[
+          theme.itemStyles,
+          variantTheme?.itemStyles,
+          ...asArray(innerStyles?.item),
+        ]}
         container={
           <>
             <div
@@ -165,6 +187,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
                 <StateLayer
                   styles={[
                     theme.stateLayerStyles,
+                    variantTheme?.stateLayerStyles,
                     ...asArray(innerStyles?.stateLayer),
                   ]}
                   for={actionRef}
@@ -174,6 +197,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
                 <FocusRing
                   styles={[
                     theme.focusRingStyles,
+                    variantTheme?.focusRingStyles,
                     ...asArray(innerStyles?.focusRing),
                   ]}
                   for={actionRef}

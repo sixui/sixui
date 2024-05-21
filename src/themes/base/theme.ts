@@ -34,6 +34,7 @@ import { styles as buttonBaseStyles } from './Button/ButtonBase.styles';
 import { componentTheme as elevatedButtonTheme } from './Button/ElevatedButton.stylex';
 import { componentTheme as filledButtonTheme } from './Button/FilledButton.stylex';
 import { componentTheme as filledTonalButtonTheme } from './Button/FilledTonalButton.stylex';
+import { componentTheme as dangerButtonTheme } from './Button/DangerButton.stylex';
 import { componentTheme as outlinedButtonTheme } from './Button/OutlinedButton.stylex';
 import { componentTheme as textButtonTheme } from './Button/TextButton.stylex';
 
@@ -71,6 +72,7 @@ import { componentTheme as standardIconButtonTheme } from './IconButton/Standard
 import { componentTheme as filledIconButtonTheme } from './IconButton/FilledIconButton.stylex';
 import { componentTheme as filledTonalIconButtonTheme } from './IconButton/FilledTonalIconButton.stylex';
 import { componentTheme as outlinedIconButtonTheme } from './IconButton/OutlinedIconButton.stylex';
+import { componentTheme as dangerIconButtonTheme } from './IconButton/DangerIconButton.stylex';
 
 import {
   styles as switchStyles,
@@ -113,6 +115,8 @@ import { componentTheme as itemTheme } from './Item/Item.stylex';
 
 import { styles as listStyles } from './List/List.styles';
 import { componentTheme as listItemTheme } from './ListItem/ListItem.stylex';
+import { componentTheme as standardListItemTheme } from './ListItem/StandardListItem.stylex';
+import { componentTheme as dangerListItemTheme } from './ListItem/DangerListItem.stylex';
 import {
   styles as listItemStyles,
   itemStyles as listItemItemStyles,
@@ -278,6 +282,7 @@ export const theme: ITheme = {
     FilledTonalButton: { vars: filledTonalButtonTheme },
     OutlinedButton: { vars: outlinedButtonTheme },
     TextButton: { vars: textButtonTheme },
+    DangerButton: { vars: dangerButtonTheme },
     CircularProgressIndicator: {
       vars: circularProgressIndicatorTheme,
       styles: circularProgressIndicatorStyles,
@@ -319,6 +324,7 @@ export const theme: ITheme = {
     FilledIconButton: { vars: filledIconButtonTheme },
     FilledTonalIconButton: { vars: filledTonalIconButtonTheme },
     OutlinedIconButton: { vars: outlinedIconButtonTheme },
+    DangerIconButton: { vars: dangerIconButtonTheme },
     Switch: {
       vars: switchTheme,
       styles: switchStyles,
@@ -371,6 +377,8 @@ export const theme: ITheme = {
       stateLayerStyles: listItemStateLayerStyles,
       focusRingStyles: listItemFocusRingStyles,
     },
+    StandardListItem: { vars: standardListItemTheme },
+    DangerListItem: { vars: dangerListItemTheme },
     List: {
       styles: listStyles,
     },

@@ -3,6 +3,7 @@ export const iconbuttonVariants = [
   'filled',
   'filledTonal',
   'outlined',
+  'danger',
 ] as const;
 export type IIconButtonVariant = (typeof iconbuttonVariants)[number];
 

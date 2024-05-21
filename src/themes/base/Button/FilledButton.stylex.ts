@@ -42,8 +42,6 @@ const vars: Partial<IStyleVars<IButtonStyleVarKey>> = {
 
   // icon
   iconColor: colorRolesVars.onPrimary,
-  // &:disabled
-  iconColor$disabled: colorRolesVars.onSurface,
   // &:focus
   iconColor$focus: colorRolesVars.onPrimary,
   // &:hover

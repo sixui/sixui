@@ -52,6 +52,7 @@ type IIconButtonVariantMap = {
     | 'FilledIconButton'
     | 'FilledTonalIconButton'
     | 'OutlinedIconButton'
+    | 'DangerIconButton'
   >;
 };
 
@@ -60,6 +61,7 @@ const variantMap: IIconButtonVariantMap = {
   filled: 'FilledIconButton',
   filledTonal: 'FilledTonalIconButton',
   outlined: 'OutlinedIconButton',
+  danger: 'DangerIconButton',
 };
 
 type IIconButton = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
