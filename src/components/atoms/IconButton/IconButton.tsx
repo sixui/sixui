@@ -74,7 +74,7 @@ export const IconButton: IIconButton = forwardRef(function IconButton<
   const {
     styles,
     sx,
-    as = DEFAULT_TAG,
+    as,
     innerStyles,
     variant = 'standard',
     toggle,
