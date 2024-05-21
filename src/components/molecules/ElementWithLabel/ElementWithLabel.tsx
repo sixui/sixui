@@ -22,6 +22,7 @@ export type IElementWithLabelProps =
   IContainerProps<IElementWithLabelStyleKey> & {
     id?: string;
     label?: React.ReactNode;
+    action?: React.ReactNode;
     required?: boolean;
     disabled?: boolean;
     readOnly?: boolean;
@@ -45,6 +46,7 @@ export const ElementWithLabel = forwardRef<
     sx,
     id: idProp,
     label,
+    action,
     required,
     disabled,
     readOnly,
@@ -88,18 +90,23 @@ export const ElementWithLabel = forwardRef<
 
   const renderLabel = (): React.ReactNode =>
     label !== undefined ? (
-      <label
-        {...sxf(
-          'labelText',
-          disabled
-            ? 'labelText$disabled'
-            : hasError && !errorText && 'labelText$error',
-        )}
-        htmlFor={id}
-      >
-        {label}
-        {required ? '*' : null}
-      </label>
+      <div {...sxf('labelContainer')}>
+        <label
+          {...sxf(
+            'label',
+            disabled
+              ? 'label$disabled'
+              : hasError && !errorText && 'label$error',
+          )}
+          htmlFor={id}
+        >
+          {label}
+          {required ? '*' : null}
+        </label>
+        {action ? (
+          <div {...sxf('action', disabled && 'action$disabled')}>{action}</div>
+        ) : null}
+      </div>
     ) : null;
 
   const renderSupportingText = (): React.ReactNode =>
@@ -134,7 +141,7 @@ export const ElementWithLabel = forwardRef<
       {...other}
     >
       {hasLeading ? (
-        <div {...sxf('labelContainer')}>
+        <div {...sxf('header')}>
           {labelPosition === 'start' ? renderLabel() : null}
           {supportingTextPosition === 'start' ? renderSupportingText() : null}
         </div>
@@ -147,7 +154,7 @@ export const ElementWithLabel = forwardRef<
       </div>
 
       {hasTrailing ? (
-        <div {...sxf('labelContainer')}>
+        <div {...sxf('header')}>
           {labelPosition === 'end' ? renderLabel() : null}
           {supportingTextPosition === 'end' ? renderSupportingText() : null}
         </div>

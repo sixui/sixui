@@ -18,6 +18,17 @@ const vars: Partial<IStyleVars<IElementWithLabelStyleVarKey>> = {
   labelTextColor$disabled: colorRolesVars.onSurface,
   labelTextOpacity$disabled: stateVars.opacity$disabled,
 
+  // actionText
+  actionTextColor: colorRolesVars.onSurface,
+  actionTextFont: typescaleVars.labelFont$lg,
+  actionTextSize: typescaleVars.labelSize$lg,
+  actionTextWeight: typescaleVars.labelWeight$lg,
+  actionTextLineHeight: typescaleVars.labelLineHeight$lg,
+  actionTextLetterSpacing: typescaleVars.labelLetterSpacing$lg,
+  // &:disabled
+  actionTextColor$disabled: colorRolesVars.onSurface,
+  actionTextOpacity$disabled: stateVars.opacity$disabled,
+
   // supportingText
   supportingTextColor: colorRolesVars.dim,
   supportingTextFont: typescaleVars.bodyFont$sm,

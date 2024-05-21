@@ -67,6 +67,7 @@ export const WithTextField: IStory = {
     ...defaultArgs,
     orientation: 'vertical',
     children: (props) => <TextField {...props} />,
+    action: 'Action',
   },
 };
 

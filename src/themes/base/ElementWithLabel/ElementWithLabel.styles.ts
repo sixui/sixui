@@ -32,12 +32,18 @@ export const styles: MapNamespaces<IElementWithLabelStyles> =
       alignItems: 'normal',
       gap: '0.5rem',
     },
-    labelContainer: {
+    header: {
       display: 'flex',
       flexDirection: 'column',
       gap: '0.125rem',
     },
-    labelText: {
+    labelContainer: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: '0.25rem',
+    },
+    label: {
       color: vars.labelTextColor,
       fontFamily: vars.labelTextFont,
       fontSize: vars.labelTextSize,
@@ -46,13 +52,29 @@ export const styles: MapNamespaces<IElementWithLabelStyles> =
       letterSpacing: vars.labelTextLetterSpacing,
       display: 'flex',
       alignItems: 'center',
+      flexGrow: 1,
     },
-    labelText$error: {
+    label$error: {
       color: vars.supportingTextColor$error,
     },
-    labelText$disabled: {
+    label$disabled: {
       color: vars.labelTextColor$disabled,
       opacity: vars.labelTextOpacity$disabled,
+    },
+    action: {
+      flexGrow: 0,
+      color: vars.actionTextColor,
+      fontFamily: vars.actionTextFont,
+      fontSize: vars.actionTextSize,
+      fontWeight: vars.actionTextWeight,
+      lineHeight: vars.actionTextLineHeight,
+      letterSpacing: vars.actionTextLetterSpacing,
+      display: 'flex',
+      alignItems: 'center',
+    },
+    action$disabled: {
+      color: vars.actionTextColor$disabled,
+      opacity: vars.actionTextOpacity$disabled,
     },
     supportingText: {
       display: 'flex',
