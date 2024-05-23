@@ -33,6 +33,7 @@ export type IFieldBaseProps = IContainerProps<IFieldBaseStyleKey> & {
   containerRef?: React.Ref<HTMLDivElement>;
   count?: number;
   disabled?: boolean;
+  readOnly?: boolean;
   hasError?: boolean;
   errorText?: string;
   start?: React.ReactNode;
@@ -77,7 +78,8 @@ export const FieldBase = forwardRef<HTMLDivElement, IFieldBaseProps>(
       end: endProp,
       leadingIcon,
       trailingIcon,
-      disabled,
+      disabled: disabledProp,
+      readOnly,
       label,
       labelId,
       required,
@@ -93,6 +95,7 @@ export const FieldBase = forwardRef<HTMLDivElement, IFieldBaseProps>(
       ...other
     } = props;
 
+    const disabled = disabledProp || readOnly;
     const { visualState, ref: visualStateRef } = useVisualState(
       visualStateProp,
       { disabled, retainFocusAfterClick: true },

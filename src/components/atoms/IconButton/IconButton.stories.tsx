@@ -42,8 +42,8 @@ const states: Array<IComponentPresentation<IIconButtonOwnProps>> = [
 
 const rows: Array<IComponentPresentation<IIconButtonOwnProps>> = [
   { legend: 'Basic', props: { toggle: false } },
-  { legend: 'Selectable', props: { toggle: true } },
-  { legend: 'Selected', props: { toggle: true, selected: true } },
+  { legend: 'Togglable', props: { toggle: true } },
+  { legend: 'Toggled', props: { toggle: true, selected: true } },
 ];
 
 export const Variants: IStory = {
