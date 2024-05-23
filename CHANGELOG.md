@@ -1,3 +1,15 @@
+# v0.0.225 (Thu May 23 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(FieldBase): readOnly prop ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.224 (Tue May 21 2024)
 
 #### ⚠️ Pushed to `main`
