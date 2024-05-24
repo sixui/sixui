@@ -136,6 +136,8 @@ export const styles: MapNamespaces<ITabStyles> = stylex.create<ITabStyles>({
       ':is([data-hovered])': vars.iconColor$hover,
       ':is([data-pressed])': vars.iconColor$pressed,
     },
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   icon$disabled: {
     color: vars.iconColor$disabled,

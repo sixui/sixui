@@ -65,7 +65,7 @@ const vars: Partial<IStyleVars<ITabStyleVarKey>> = {
   labelTextColor$pressed: colorRolesVars.onSurface,
 
   // icon
-  iconSize: '24px',
+  iconSize: '18px',
 };
 
 export const componentVars = stylex.defineVars(
