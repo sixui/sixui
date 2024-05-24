@@ -1,3 +1,15 @@
+# v0.0.227 (Fri May 24 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(Tab): icon size and alignment ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.226 (Fri May 24 2024)
 
 #### ⚠️ Pushed to `main`
