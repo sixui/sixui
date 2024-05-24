@@ -20,10 +20,12 @@ export const styles: MapNamespaces<ITabListStyles> =
     },
     tabList: {
       alignItems: 'end',
-      display: 'flex',
       height: '100%',
       overflow: 'inherit',
       justifyContent: 'space-between',
+    },
+    tabList$fullWidth: {
+      display: 'flex',
       width: '100%',
     },
   });

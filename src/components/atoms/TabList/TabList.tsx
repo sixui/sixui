@@ -10,11 +10,12 @@ import { Divider } from '../Divider';
 export type ITabListProps = Pick<React.AriaAttributes, 'aria-label'> &
   Omit<IContainerProps<ITabListStyleKey>, 'theme'> & {
     children?: React.ReactNode;
+    fullWidth?: boolean;
   };
 
 export const TabList = forwardRef<HTMLInputElement, ITabListProps>(
   function TabList(props, ref) {
-    const { styles, sx, children, ...other } = props;
+    const { styles, sx, children, fullWidth, ...other } = props;
 
     const { theme } = useComponentTheme('TabList');
     const stylesCombinator = useMemo(
@@ -34,7 +35,9 @@ export const TabList = forwardRef<HTMLInputElement, ITabListProps>(
         ref={ref}
         {...other}
       >
-        <div {...sxf('tabList')}>{children}</div>
+        <div {...sxf('tabList', fullWidth && 'tabList$fullWidth')}>
+          {children}
+        </div>
         <Divider />
       </div>
     );

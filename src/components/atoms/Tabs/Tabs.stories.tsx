@@ -44,7 +44,7 @@ const TabPanelDemo: React.FC<ITabPanelProps> = ({ children, ...props }) => (
 
 const TabsDemo: React.FC<ITabsProps> = (props) => (
   <div style={{ width: '600px' }}>
-    <Tabs {...props} defaultAnchor={'tab-2'}>
+    <Tabs {...props} defaultAnchor='tab-2'>
       <TabList aria-label='Tabs example'>
         <Tab
           label='Item one'
