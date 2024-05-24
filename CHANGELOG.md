@@ -1,3 +1,15 @@
+# v0.0.226 (Fri May 24 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(TabList): fullWidth prop ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.225 (Thu May 23 2024)
 
 #### ⚠️ Pushed to `main`
