@@ -1,3 +1,15 @@
+# v0.0.228 (Sat May 25 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(Avatar): no shrink and no grow in flexbox ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.227 (Fri May 24 2024)
 
 #### ⚠️ Pushed to `main`
