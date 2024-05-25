@@ -21,6 +21,8 @@ export const styles: MapNamespaces<IAvatarStyles> =
       backgroundColor: vars.containerColor,
       color: vars.labelTextColor,
       textTransform: 'uppercase',
+      flexShrink: 0,
+      flexGrow: 0,
     },
     image: {
       width: '100%',
