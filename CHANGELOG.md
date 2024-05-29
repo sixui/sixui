@@ -1,3 +1,15 @@
+# v0.0.232 (Wed May 29 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(Step): style ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.230 (Wed May 29 2024)
 
 #### ⚠️ Pushed to `main`
