@@ -44,6 +44,7 @@ export type IButtonBaseOwnProps = IContainerProps<IButtonStyleKey> & {
   children?: React.ReactNode;
   inwardFocusRing?: boolean;
   href?: string;
+  target?: React.AnchorHTMLAttributes<HTMLAnchorElement>['target'];
   disabled?: boolean;
   readOnly?: boolean;
   type?: 'button' | 'submit' | 'reset';

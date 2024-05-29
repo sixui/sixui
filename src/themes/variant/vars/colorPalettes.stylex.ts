@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorPalettesVars as baseColorPalettesVars } from '@/themes/base/vars/colorPalettes.stylex';
 import type { IColorPalettes } from '../../colorPalettes.types';
+import { colorPalettesVars as baseColorPalettesVars } from '@/themes/base/vars/colorPalettes.stylex';
 
 // Generate a new color palette with Material Theme Builder:
 // https://m3.material.io/theme-builder#/custom
@@ -9,7 +9,7 @@ import type { IColorPalettes } from '../../colorPalettes.types';
 // - Secondary: #7f9688
 // - Tertiary: #7096a7
 // - Neutral: #8f918e
-// Export to Web (CSS) -> import '--md-ref-palette-*' from css/tokens.css
+// Export to Material Theme (JSON)
 
 // Missing colors:
 // - neutral4 (dark.surfaceContainerLowest)

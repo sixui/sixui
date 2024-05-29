@@ -11,7 +11,7 @@ import type { IColorPalettes } from '../../colorPalettes.types';
 // - Secondary: #958da4
 // - Tertiary: #b58392
 // - Neutral: #938f94
-// Export to Web (CSS) -> import '--md-ref-palette-*' from css/tokens.css
+// Export to Material Theme (JSON)
 
 // Missing colors:
 // - neutral4 (dark.surfaceContainerLowest)
