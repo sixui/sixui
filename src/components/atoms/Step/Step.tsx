@@ -137,7 +137,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       labelPosition,
     };
 
-    const renderButtonInner = (): React.ReactElement => (
+    const renderButtonInner = (isInteractive: boolean): React.ReactElement => (
       <div
         {...sxf(
           'buttonInner',
@@ -180,11 +180,23 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
             )}
           >
             {label ? (
-              <div {...sxf('label', state && `label$${state}`)}>{label}</div>
+              <div
+                {...sxf(
+                  'label',
+                  isInteractive && 'label$interactive',
+                  state && `label$${state}`,
+                )}
+              >
+                {label}
+              </div>
             ) : null}
             {supportingText ? (
               <div
-                {...sxf('supportingText', state && `supportingText$${state}`)}
+                {...sxf(
+                  'supportingText',
+                  isInteractive && 'supportingText$interactive',
+                  state && `supportingText$${state}`,
+                )}
               >
                 {supportingText}
               </div>
@@ -259,10 +271,10 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
                   onClick={onClick}
                   disabled={disabled}
                 >
-                  {renderButtonInner()}
+                  {renderButtonInner(true)}
                 </ButtonBase>
               ) : (
-                <div {...sxf('button')}>{renderButtonInner()}</div>
+                <div {...sxf('button')}>{renderButtonInner(false)}</div>
               )}
             </div>
 

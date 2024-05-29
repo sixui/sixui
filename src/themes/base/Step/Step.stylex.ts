@@ -57,12 +57,14 @@ const vars: Partial<IStyleVars<IStepStyleVarKey>> = {
   bulletPointOpacity$disabled: stateVars.opacity$disabled,
 
   // labelText
-  labelTextColor: colorRolesVars.primary,
+  labelTextColor: colorRolesVars.onSurface,
   labelTextFont: typescaleVars.labelFont$lg,
   labelTextSize: typescaleVars.labelSize$lg,
   labelTextWeight: typescaleVars.labelWeight$lg,
   labelTextLineHeight: typescaleVars.labelLineHeight$lg,
   labelTextLetterSpacing: typescaleVars.labelLetterSpacing$lg,
+  // &:interactive
+  labelTextColor$interactive: colorRolesVars.primary,
   // &:active
   labelTextColor$active: colorRolesVars.onSurface,
   // &:completed
@@ -80,6 +82,8 @@ const vars: Partial<IStyleVars<IStepStyleVarKey>> = {
   supportingTextWeight: typescaleVars.labelWeight$sm,
   supportingTextLineHeight: typescaleVars.labelLineHeight$sm,
   supportingTextLetterSpacing: typescaleVars.labelLetterSpacing$sm,
+  // &:interactive
+  supportingTextColor$interactive: colorRolesVars.onSurface,
   // &:active
   supportingTextColor$active: colorRolesVars.onSurface,
   // &:completed

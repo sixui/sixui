@@ -117,6 +117,9 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     lineHeight: vars.labelTextLineHeight,
     letterSpacing: vars.labelTextLetterSpacing,
   },
+  label$interactive: {
+    color: vars.labelTextColor$interactive,
+  },
   label$active: {
     color: vars.labelTextColor$active,
   },
@@ -137,6 +140,9 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     fontWeight: vars.supportingTextWeight,
     lineHeight: vars.supportingTextLineHeight,
     letterSpacing: vars.supportingTextLetterSpacing,
+  },
+  supportingText$interactive: {
+    color: vars.supportingTextColor$active,
   },
   supportingText$active: {
     color: vars.supportingTextColor$active,
