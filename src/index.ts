@@ -64,4 +64,5 @@ export * from './hooks/useLoaded';
 export * from './hooks/usePrevious';
 export * from './hooks/useVisualState';
 
-export { theme as baseTheme } from './themes/base';
+// themes
+export * from './themes';
