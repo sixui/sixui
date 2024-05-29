@@ -1,3 +1,15 @@
+# v0.0.229 (Wed May 29 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: export theme types ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.228 (Sat May 25 2024)
 
 #### ⚠️ Pushed to `main`
