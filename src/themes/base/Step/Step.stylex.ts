@@ -57,7 +57,7 @@ const vars: Partial<IStyleVars<IStepStyleVarKey>> = {
   bulletPointOpacity$disabled: stateVars.opacity$disabled,
 
   // labelText
-  labelTextColor: colorRolesVars.secondary,
+  labelTextColor: colorRolesVars.primary,
   labelTextFont: typescaleVars.labelFont$lg,
   labelTextSize: typescaleVars.labelSize$lg,
   labelTextWeight: typescaleVars.labelWeight$lg,
@@ -74,7 +74,7 @@ const vars: Partial<IStyleVars<IStepStyleVarKey>> = {
   labelTextColor$error: colorRolesVars.error,
 
   // supportingText
-  supportingTextColor: colorRolesVars.secondary,
+  supportingTextColor: colorRolesVars.onSurface,
   supportingTextFont: typescaleVars.labelFont$sm,
   supportingTextSize: typescaleVars.labelSize$sm,
   supportingTextWeight: typescaleVars.labelWeight$sm,
