@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useMemo, useRef } from 'react';
+import { forwardRef, useCallback, useMemo, useRef, useState } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -23,6 +23,8 @@ import { useControlledValue } from '@/hooks/useControlledValue';
 import { useForkRef } from '@/hooks/useForkRef';
 import { IconButton } from '@/components/atoms/IconButton';
 import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
+import { ReactComponent as EyeIcon } from '@/assets/Eye.svg';
+import { ReactComponent as EyeSlashIcon } from '@/assets/EyeSlash.svg';
 
 // https://github.com/material-components/material-web/blob/main/textfield/internal/text-field.ts
 
@@ -141,6 +143,7 @@ export type ITextFieldProps = IContainerProps<ITextFieldStyleKey> &
      */
     noSpinner?: boolean;
 
+    unmaskable?: boolean;
     clearable?: boolean;
     clearButtonIcon?: React.ReactNode;
   };
@@ -189,6 +192,7 @@ export const TextField = forwardRef<
     readOnly,
     children,
     containerRef,
+    unmaskable: unmaskableProp,
     clearable,
     onChange,
     clearButtonIcon,
@@ -213,6 +217,8 @@ export const TextField = forwardRef<
     inputOrTextareaRefVisualStateRef,
     inputOrTextareaRef,
   );
+  const unmaskable = type === 'password' && unmaskableProp;
+  const [unmasked, setUnmasked] = useState(false);
 
   const { theme, variantTheme } = useComponentTheme(
     'TextField',
@@ -315,7 +321,7 @@ export const TextField = forwardRef<
           value={controlled ? value : undefined}
           defaultValue={defaultValue}
           required={required}
-          type={type}
+          type={type === 'password' ? (unmasked ? 'text' : 'password') : type}
           data-cy='input'
           onChange={onChange}
           {...other}
@@ -347,6 +353,7 @@ export const TextField = forwardRef<
     suffixText,
     controlled,
     onChange,
+    unmasked,
   ]);
 
   return (
@@ -384,6 +391,17 @@ export const TextField = forwardRef<
                 ref={iconButtonRef}
                 icon={clearButtonIcon ?? <XMarkIcon aria-hidden />}
                 onClick={handleClearInput}
+              />
+            ) : unmaskable ? (
+              <IconButton
+                onClick={(event) => {
+                  event.preventDefault();
+                  setUnmasked((unmasked) => !unmasked);
+                }}
+                icon={<EyeIcon />}
+                selectedIcon={<EyeSlashIcon />}
+                selected={unmasked}
+                toggle
               />
             ) : undefined)
           }

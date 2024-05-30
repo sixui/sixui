@@ -56,6 +56,10 @@ const rows: Array<IComponentPresentation<ITextFieldProps>> = [
     },
   },
   { legend: 'Clearable', props: { clearable: true } },
+  {
+    legend: 'Unmaskable',
+    props: { type: 'password', unmaskable: true },
+  },
   { legend: 'Error', props: { defaultValue: 'Value', hasError: true } },
 ];
 
