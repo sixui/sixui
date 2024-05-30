@@ -192,7 +192,7 @@ export const TextField = forwardRef<
     readOnly,
     children,
     containerRef,
-    unmaskable: unmaskableProp,
+    unmaskable: unmaskableProp = true,
     clearable,
     onChange,
     clearButtonIcon,
