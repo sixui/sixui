@@ -7,6 +7,7 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
 export type IBadgeProps = IContainerProps<IBadgeStyleKey> & {
+  children?: React.ReactNode;
   value?: number;
   maxValue?: number;
   showZero?: boolean;
@@ -20,6 +21,7 @@ export const Badge = forwardRef<HTMLDivElement, IBadgeProps>(
     const {
       styles,
       sx,
+      children,
       value,
       maxValue,
       showZero,
@@ -42,7 +44,7 @@ export const Badge = forwardRef<HTMLDivElement, IBadgeProps>(
 
     const invisible =
       invisibleProp ||
-      (value === undefined && !dot) ||
+      (value === undefined && children === undefined && !dot) ||
       (value !== undefined && value <= 0 && !showZero);
 
     const displayValue = useMemo(
@@ -53,8 +55,8 @@ export const Badge = forwardRef<HTMLDivElement, IBadgeProps>(
             ? maxValue !== undefined && value > maxValue
               ? `${maxValue}+`
               : Math.max(0, value)
-            : null,
-      [dot, value, maxValue],
+            : children,
+      [dot, value, maxValue, children],
     );
 
     return (

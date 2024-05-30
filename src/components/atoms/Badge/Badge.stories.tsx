@@ -70,6 +70,13 @@ export const Variants: IStory = {
             maxValue: 999,
           },
         },
+        {
+          props: {
+            anchored: true,
+            shape: 'circular',
+            children: 'Text',
+          },
+        },
       ]}
     />
   ),
