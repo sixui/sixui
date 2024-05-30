@@ -9,7 +9,7 @@ export type IMultiComboboxProps = Omit<
   'multiple'
 >;
 
-const MultiCombobox = forwardRef<HTMLDivElement, IMultiComboboxProps>(
+const MultiCombobox = forwardRef<HTMLInputElement, IMultiComboboxProps>(
   function MultiCombobox(props, ref) {
     return <ComboboxBase {...props} ref={ref} multiple={true} />;
   },

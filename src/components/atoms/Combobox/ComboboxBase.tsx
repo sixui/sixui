@@ -132,7 +132,7 @@ const optionNodeToLabel = (option: IOption | string): string =>
         : undefined) ??
       option.props.value;
 
-const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
+const ComboboxBase = forwardRef<HTMLInputElement, IComboboxBaseProps>(
   function Combobox(props, ref) {
     const {
       sx,
@@ -323,7 +323,6 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
     return (
       <Autocomplete
         {...stylex.props(styles.host, disabled && styles.host$disabled, sx)}
-        ref={ref}
         as='div'
         onChange={handleChange}
         defaultValue={defaultValue}
@@ -351,6 +350,7 @@ const ComboboxBase = forwardRef<HTMLDivElement, IComboboxBaseProps>(
                 return (
                   <TextField
                     {...other}
+                    ref={ref}
                     containerRef={refs.setReference}
                     innerStyles={{ field: fieldStyles }}
                     visualState={visualState}
