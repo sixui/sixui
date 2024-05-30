@@ -1,3 +1,15 @@
+# v0.0.235 (Thu May 30 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(TextField): passwords are unmaskable by default ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.234 (Thu May 30 2024)
 
 #### ⚠️ Pushed to `main`
