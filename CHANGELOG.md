@@ -1,3 +1,15 @@
+# v0.0.234 (Thu May 30 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(TextField): unmaskable property for password type ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.233 (Thu May 30 2024)
 
 #### ⚠️ Pushed to `main`
