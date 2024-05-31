@@ -67,3 +67,8 @@ export type IContainerProps<TStyleKey extends string = never> = {
   sx?: IStyleXStyles;
   'data-cy'?: string;
 };
+
+export type IRange = {
+  min: number;
+  max: number;
+};

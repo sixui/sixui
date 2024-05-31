@@ -1,8 +1,10 @@
 import { useRef } from 'react';
 import stylex from '@stylexjs/stylex';
+import { typescaleVars } from '@/themes/base/vars/typo.stylex';
 
 import { ColorSchemeContext, type IColorScheme } from './ColorSchemeContext';
 import { useThemeContext } from '@/components/utils/Theme';
+import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 
 export type IColorSchemeProviderProps = {
   scheme: IColorScheme;
@@ -10,6 +12,14 @@ export type IColorSchemeProviderProps = {
 };
 
 const styles = stylex.create({
+  host: {
+    color: colorRolesVars.onSurface,
+    fontFamily: typescaleVars.bodyFont$md,
+    fontSize: typescaleVars.bodySize$md,
+    fontWeight: typescaleVars.bodyWeight$md,
+    lineHeight: typescaleVars.bodyLineHeight$md,
+    letterSpacing: typescaleVars.bodyLetterSpacing$md,
+  },
   container$light: {
     colorScheme: 'light',
   },
@@ -33,6 +43,7 @@ export const ColorSchemeProvider: React.FC<IColorSchemeProviderProps> = (
     <ColorSchemeContext.Provider value={{ scheme, root }}>
       <div
         {...stylex.props(
+          styles.host,
           isLight && styles.container$light,
           isDark && [
             styles.container$dark,

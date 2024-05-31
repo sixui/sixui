@@ -136,6 +136,10 @@ import type {
   IElementWithLabelStyleKey,
   IElementWithLabelStyleVarKey,
 } from '@/components/molecules/ElementWithLabel';
+import type {
+  ISkeletonStyleKey,
+  ISkeletonStyleVarKey,
+} from '@/components/atoms/Skeleton';
 
 export type ITemplateTheme = {
   vars?: IStyleVarsTheme<ITemplateStyleVarKey>;
@@ -427,6 +431,10 @@ export type ITheme = {
     ElementWithLabel: {
       vars?: IStyleVarsTheme<IElementWithLabelStyleVarKey>;
       styles?: ICompiledStyles<IElementWithLabelStyleKey>;
+    };
+    Skeleton: {
+      vars?: IStyleVarsTheme<ISkeletonStyleVarKey>;
+      styles?: ICompiledStyles<ISkeletonStyleKey>;
     };
   };
 };

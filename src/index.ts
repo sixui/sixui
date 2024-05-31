@@ -32,6 +32,7 @@ export * from './components/atoms/Radio';
 export * from './components/atoms/RadioGroup';
 export * from './components/atoms/Scrim';
 export * from './components/atoms/Select';
+export * from './components/atoms/Skeleton';
 export * from './components/atoms/Step';
 export * from './components/atoms/StepConnector';
 export * from './components/atoms/Stepper';

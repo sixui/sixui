@@ -70,6 +70,7 @@ Components
 - [x] Radio
 - [x] Scrim
 - [x] Select
+- [x] Skeleton
 - [x] Stepper
 - [x] Switch
 - [x] Tab

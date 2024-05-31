@@ -229,6 +229,9 @@ import { styles as stepConnectorStyles } from './StepConnector/StepConnector.sty
 import { componentTheme as elementWithLabelTheme } from './ElementWithLabel/ElementWithLabel.stylex';
 import { styles as elementWithLabelStyles } from './ElementWithLabel/ElementWithLabel.styles';
 
+import { componentTheme as skeletonTheme } from './Skeleton/Skeleton.stylex';
+import { styles as skeletonStyles } from './Skeleton/Skeleton.styles';
+
 export const theme: ITheme = {
   name: 'Material Design 3',
   colorSchemes: {
@@ -499,6 +502,10 @@ export const theme: ITheme = {
     ElementWithLabel: {
       vars: elementWithLabelTheme,
       styles: elementWithLabelStyles,
+    },
+    Skeleton: {
+      vars: skeletonTheme,
+      styles: skeletonStyles,
     },
   },
 };
