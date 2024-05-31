@@ -1,3 +1,16 @@
+# v0.0.237 (Fri May 31 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: new Skeleton component ([@olivierpascal](https://github.com/olivierpascal))
+- chore: deps update ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.236 (Thu May 30 2024)
 
 #### ⚠️ Pushed to `main`
