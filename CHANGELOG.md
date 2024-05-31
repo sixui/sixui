@@ -1,3 +1,15 @@
+# v0.0.239 (Fri May 31 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(Skeleton): loading prop -> loaded ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.238 (Fri May 31 2024)
 
 #### ⚠️ Pushed to `main`
