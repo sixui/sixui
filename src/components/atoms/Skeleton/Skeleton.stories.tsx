@@ -3,7 +3,6 @@ import stylex from '@stylexjs/stylex';
 
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
 import { Avatar } from '@/components/atoms/Avatar';
 import { Skeleton, type ISkeletonProps } from './Skeleton';
 import { Typography } from '@/components/atoms/Typography';
@@ -17,7 +16,7 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {} satisfies Partial<ISkeletonProps>;
 
 const styles = stylex.create({
-  container: {
+  overlayContainer: {
     position: 'relative',
     overflow: 'hidden',
     display: 'flex',
@@ -28,7 +27,6 @@ const styles = stylex.create({
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: colorRolesVars.outline,
-    borderRadius: shapeVars.corner$md,
   },
 });
 
@@ -89,7 +87,7 @@ export const AsOverlay: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={(props) => (
-        <div {...stylex.props(styles.container)}>
+        <div {...stylex.props(styles.overlayContainer)}>
           <Skeleton {...props} />
         </div>
       )}

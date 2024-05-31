@@ -60,7 +60,7 @@ export const Skeleton = forwardRef<HTMLDivElement, ISkeletonProps>(
         {...sxf(
           'host',
           theme.vars,
-          `variant$${variant}`,
+          `host$${variant}`,
           variant === 'rectangular'
             ? lengthRef.current !== undefined
               ? staticStyles.length(lengthRef.current)

@@ -1,10 +1,10 @@
 export type ISkeletonStyleKey =
   | 'host'
+  | 'host$rectangular'
+  | 'host$circular'
+  | 'host$overlay'
   | 'length'
   | 'hidden'
-  | 'variant$rectangular'
-  | 'variant$circular'
-  | 'variant$overlay'
   | 'animation$pulse'
   | 'animation$wave';
 

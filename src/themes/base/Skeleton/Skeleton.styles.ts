@@ -39,7 +39,6 @@ export const styles: MapNamespaces<ISkeletonStyles> =
       overflow: 'hidden',
       cursor: 'default',
       color: 'transparent',
-      borderRadius: vars.containerShape,
       zIndex: vars.zIndex,
 
       '::before': {
@@ -61,21 +60,22 @@ export const styles: MapNamespaces<ISkeletonStyles> =
         zIndex: vars.zIndex,
       },
     },
-    hidden: {
-      visibility: 'hidden',
-    },
-    variant$rectangular: {
+    host$rectangular: {
       height: 'auto',
+      borderRadius: vars.containerShape,
     },
-    variant$circular: {
+    host$circular: {
       borderRadius: shapeVars.corner$full,
       flexGrow: 0,
       flexShrink: 0,
     },
-    variant$overlay: {
+    host$overlay: {
       position: 'absolute',
       width: '100%',
       height: '100%',
+    },
+    hidden: {
+      visibility: 'hidden',
     },
     animation$pulse: {
       '::after': {
