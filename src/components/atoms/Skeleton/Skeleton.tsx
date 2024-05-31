@@ -13,7 +13,7 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 
 export type ISkeletonProps = IContainerProps<ISkeletonStyleKey> & {
   children?: React.ReactNode;
-  loading?: boolean;
+  loaded?: boolean;
   variant?: 'rectangular' | 'circular' | 'overlay';
   animation?: 'pulse' | 'wave' | false;
   length?: number | IRange;
@@ -31,7 +31,7 @@ export const Skeleton = forwardRef<HTMLDivElement, ISkeletonProps>(
       styles,
       sx,
       children,
-      loading = true,
+      loaded,
       variant = 'rectangular',
       animation = 'pulse',
       length: lengthProp,
@@ -55,7 +55,9 @@ export const Skeleton = forwardRef<HTMLDivElement, ISkeletonProps>(
       typeof lengthProp === 'object' ? randomInRange(lengthProp) : lengthProp,
     );
 
-    return loading ? (
+    return loaded ? (
+      children
+    ) : (
       <div
         {...sxf(
           'host',
@@ -76,8 +78,6 @@ export const Skeleton = forwardRef<HTMLDivElement, ISkeletonProps>(
       >
         <div {...sxf('hidden')}>{children ?? '%'}</div>
       </div>
-    ) : (
-      children
     );
   },
 );

@@ -40,7 +40,7 @@ export const AsContainer: IStory = {
         { legend: 'Loading (not animated)', props: { animation: false } },
         { legend: 'Loading (pulse)', props: { animation: 'pulse' } },
         { legend: 'Loading (wave)', props: { animation: 'wave' } },
-        { legend: 'Loaded', props: { loading: false } },
+        { legend: 'Loaded', props: { loaded: true } },
       ]}
       rows={[
         {
@@ -96,7 +96,7 @@ export const AsOverlay: IStory = {
         { legend: 'Loading (not animated)', props: { animation: false } },
         { legend: 'Loading (pulse)', props: { animation: 'pulse' } },
         { legend: 'Loading (wave)', props: { animation: 'wave' } },
-        { legend: 'Loaded', props: { loading: false } },
+        { legend: 'Loaded', props: { loaded: true } },
       ]}
       rows={[
         {
