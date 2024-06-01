@@ -1,3 +1,15 @@
+# v0.0.240 (Sat Jun 01 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(MultiSelect): when component has a value as prop but no children ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.239 (Fri May 31 2024)
 
 #### ⚠️ Pushed to `main`
