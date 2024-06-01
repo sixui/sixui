@@ -111,8 +111,7 @@ const getMatchingOptions = (
   values: string | Array<string>,
 ): Array<IOption | string> =>
   asArray(values).map(
-    (value) =>
-      options.find((option) => option && option.props.value === value) ?? value,
+    (value) => options.find((option) => option.props.value === value) ?? value,
   );
 
 const defaultFilter = createFilter<IOption>();

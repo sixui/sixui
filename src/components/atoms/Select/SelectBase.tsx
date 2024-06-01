@@ -36,7 +36,7 @@ export type ISelectBaseProps = Omit<
         defaultValue?: string;
         onChange?: (value: string) => void;
         renderOption?: (
-          option: IOption,
+          option: string | IOption | Array<string | IOption>,
           onDelete: (value: string) => void,
         ) => React.ReactNode;
         limit?: number;
@@ -50,7 +50,7 @@ export type ISelectBaseProps = Omit<
         defaultValue?: Array<string>;
         onChange?: (value: Array<string>) => void;
         renderOption?: (
-          options: Array<IOption>,
+          option: string | IOption | Array<string | IOption>,
           onDelete: (value: string) => void,
         ) => React.ReactNode;
         limit?: undefined;
@@ -97,7 +97,7 @@ const getMatchingOptions = (
       Children.toArray(children)
         .filter(isValidElement)
         .filter(isOption)
-        .find((option) => option && option.props.value === value) ?? value,
+        .find((option) => option.props.value === value) ?? value,
   );
 
 const optionNodeToLabel = (option: IOption | string): React.ReactNode =>
@@ -106,11 +106,11 @@ const optionNodeToLabel = (option: IOption | string): React.ReactNode =>
     : option.props.label ?? option.props.children ?? option.props.value;
 
 const defaultRenderSingleOption = (
-  options: IOption | Array<IOption>,
+  options: IOption | string | Array<IOption | string>,
 ): React.ReactNode => asArray(options).map(optionNodeToLabel).join(', ');
 
 const defaultRenderMultiOptions = (
-  options: IOption | Array<IOption>,
+  options: IOption | string | Array<IOption | string>,
   onDelete: (value: string) => void,
 ): React.ReactNode => {
   const optionsArray = asArray(options);
@@ -123,12 +123,20 @@ const defaultRenderMultiOptions = (
           label={optionNodeToLabel(option)}
           onDelete={(event) => {
             event.preventDefault();
-            if (option.props.value) {
+            if (typeof option === 'string') {
+              onDelete(option);
+            } else if (option.props.value) {
               onDelete(option.props.value);
             }
           }}
-          icon={option.props.leadingIcon}
-          data-cy={`chip-${option.props.value}`}
+          icon={
+            typeof option === 'string' ? undefined : option.props.leadingIcon
+          }
+          data-cy={
+            typeof option === 'string'
+              ? `chip-${option}`
+              : `chip-${option.props.value}`
+          }
         />
       ))}
     </div>
@@ -241,10 +249,7 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
                   ? matchingOptions
                   : matchingOption;
                 const displayValue = optionsToRender
-                  ? renderOption(
-                      optionsToRender as IOption & Array<IOption>,
-                      deleteValue,
-                    )
+                  ? renderOption(optionsToRender, deleteValue)
                   : undefined;
 
                 const TrailingIcon = open ? TriangleUpIcon : TriangleDownIcon;

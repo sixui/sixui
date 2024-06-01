@@ -137,7 +137,7 @@ const variants: Array<IComponentPresentation<IMultiSelectProps>> = [
 ];
 
 const useCases: Array<IComponentPresentation<IMultiSelectProps>> = [
-  { legend: 'Basic', props: { children: options } },
+  { legend: 'Basic', props: { children: null } },
   { legend: 'With Label', props: { children: options, label: 'Label' } },
   {
     legend: 'With Placeholder',
