@@ -61,7 +61,13 @@ Components
 ![VerticalCard](doc/card-vertical.png)
 
 - [x] Checkbox
+
+![Checkbox](doc/checkbox.png)
+
 - [x] Chip
+
+![Chip](doc/chip.png)
+
 - [x] Circular Progress Indicator
 - [x] Combobox
 - [x] Dialog
