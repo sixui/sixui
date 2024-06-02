@@ -69,6 +69,10 @@ Components
 ![Chip](doc/chip.png)
 
 - [x] Circular Progress Indicator
+
+![CircularProgressIndicator](doc/determinate-circular-indicator.png)
+![CircularProgressIndicator with label](doc/determinate-circular-indicator-with-label.png)
+
 - [x] Combobox
 - [x] Dialog
 - [x] Disclosure
