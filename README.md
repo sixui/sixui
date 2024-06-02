@@ -46,6 +46,9 @@ Components
 ![Avatar](doc/avatar.png)
 
 - [x] Badge
+
+![Badge](doc/badge.png)
+
 - [x] Breadcrumbs
 - [x] Button
 - [x] Button Base
