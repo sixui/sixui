@@ -56,6 +56,10 @@ Components
 
 - [x] Button Base
 - [x] Card
+
+![HorizontalCard](doc/card-horizontal.png)
+![VerticalCard](doc/card-vertical.png)
+
 - [x] Checkbox
 - [x] Chip
 - [x] Circular Progress Indicator
