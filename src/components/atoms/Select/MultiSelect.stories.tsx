@@ -138,7 +138,7 @@ const variants: Array<IComponentPresentation<IMultiSelectProps>> = [
 
 const useCases: Array<IComponentPresentation<IMultiSelectProps>> = [
   { legend: 'Basic', props: { children: null } },
-  { legend: 'With Label', props: { children: options, label: 'Label' } },
+  { legend: 'With Label', props: { children: options, label: 'Food' } },
   {
     legend: 'With Placeholder',
     props: { children: options, placeholder: 'Food' },
@@ -151,7 +151,7 @@ const useCases: Array<IComponentPresentation<IMultiSelectProps>> = [
     legend: 'With Default Value',
     props: {
       children: options,
-      label: 'Label',
+      label: 'Food',
       defaultValue: ['carrot', 'fish'],
     },
   },

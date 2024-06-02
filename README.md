@@ -75,12 +75,10 @@ Components
 
 - [x] Combobox
 
-TODO:
+![Combobox](doc/combobox.png)
+![MultiCombobox](doc/multi-combobox.png)
 
 - [x] Dialog
-
-TODO:
-
 - [x] Disclosure
 
 ![Disclosure](doc/disclosure.png)
@@ -102,7 +100,7 @@ TODO:
 - [x] ListItem
 - [x] Menu
 
-TODO:
+![Menu](doc/menu.png)
 
 - [x] MenuList
 
@@ -117,12 +115,17 @@ TODO:
 - [x] Scrim
 - [x] Select
 
-TODO:
+![Select](doc/select.png)
+![MultiSelect](doc/multi-select.png)
 
 - [x] Skeleton
+
+![Skeleton](doc/skeleton.png)
+
 - [x] Stepper
 
-TODO:
+![HorizontalStepper](doc/horizontal-stepper.png)
+![VerticalStepper](doc/vertical-stepper.png)
 
 - [x] Switch
 
