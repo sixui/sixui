@@ -43,7 +43,7 @@ Components
 
 - [x] Avatar
 
-![Avatar](doc/avatar.png|height=209)
+![Avatar](doc/avatar.png)
 
 - [x] Badge
 - [x] Breadcrumbs
