@@ -22,6 +22,9 @@ const defaultArgs = {
 } satisfies Partial<IStepperProps>;
 
 const styles = stylex.create({
+  horizontal: {
+    minWidth: 750,
+  },
   vertical: {
     minWidth: 128,
   },
@@ -142,7 +145,10 @@ export const Horizontal: IStory = {
       horizontalAlign='start'
     />
   ),
-  args: defaultArgs,
+  args: {
+    ...defaultArgs,
+    sx: styles.horizontal,
+  },
 };
 
 export const Vertical: IStory = {

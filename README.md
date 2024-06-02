@@ -26,7 +26,7 @@ Open Storybook at http://localhost:6006.
 
 ## Default Color Scheme
 
-![Default Color Scheme](doc/color-scheme.png)
+![Default Color Scheme](doc/images/color-scheme.png)
 
 ## Completed components
 
@@ -43,51 +43,126 @@ Components
 
 - [x] Avatar
 
-![Avatar](doc/avatar.png|height=209)
+![Avatar](doc/images/avatar.png)
 
 - [x] Badge
+
+![Badge](doc/images/badge.png)
+
 - [x] Breadcrumbs
 - [x] Button
+
+![Button](doc/images/button.png)
+
 - [x] Button Base
 - [x] Card
+
+![HorizontalCard](doc/images/card-horizontal.png)
+![VerticalCard](doc/images/card-vertical.png)
+
 - [x] Checkbox
+
+![Checkbox](doc/images/checkbox.png)
+
 - [x] Chip
+
+![Chip](doc/images/chip.png)
+
 - [x] Circular Progress Indicator
+
+![CircularProgressIndicator](doc/images/determinate-circular-indicator.png)
+![CircularProgressIndicator with label](doc/images/determinate-circular-indicator-with-label.png)
+
 - [x] Combobox
+
+![Combobox](doc/images/combobox.png)
+![MultiCombobox](doc/images/multi-combobox.png)
+
 - [x] Dialog
 - [x] Disclosure
+
+![Disclosure](doc/images/disclosure.png)
+
 - [x] Divider
 - [x] ElementWithLabel
 - [x] FAB
+
+![FAB](doc/images/fab.png)
+
 - [x] Field
 - [x] Field Base
 - [x] Icon Button
+
+![IconButton](doc/images/icon-button.png)
+
 - [x] Item
 - [x] List
 - [x] ListItem
 - [x] Menu
+
+![Menu](doc/images/menu.png)
+
 - [x] MenuList
+
+![MenuList](doc/images/menu-list.png)
+
 - [x] Paper
 - [x] Placeholder
 - [x] Radio
+
+![Radio](doc/images/radio.png)
+
 - [x] Scrim
 - [x] Select
+
+![Select](doc/images/select.png)
+![MultiSelect](doc/images/multi-select.png)
+
 - [x] Skeleton
+
+![Skeleton](doc/images/skeleton.png)
+
 - [x] Stepper
+
+![HorizontalStepper](doc/images/horizontal-stepper.png)
+![VerticalStepper](doc/images/vertical-stepper.png)
+
 - [x] Switch
+
+![Switch](doc/images/switch.png)
+
 - [x] Tab
 - [x] TabList
 - [x] TabPanel
 - [x] Tabs
+
+![PrimaryTabs](doc/images/primary-tabs.png)
+![SecondaryTabs](doc/images/secondary-tabs.png)
+
 - [x] Text Field
+
+![TextField](doc/images/text-field.png)
+
 - [x] Typography
 
 Utils
 
 - [x] Anchored
+
+![Anchored](doc/images/anchored.png)
+
 - [x] Component Showcase
+
+![ComponentShowcase](doc/images/component-showcase.png)
+
 - [x] Elevation
+
+![Elevation](doc/images/elevation.png)
+
 - [x] Focus Ring
+
+![FocusRing](doc/images/focus-ring.png)
+
 - [x] Form
 - [x] State Layer
 - [x] Visual State

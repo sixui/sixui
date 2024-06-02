@@ -137,7 +137,7 @@ const variants: Array<IComponentPresentation<ISelectProps>> = [
 const useCases: Array<IComponentPresentation<ISelectProps>> = [
   { legend: 'Basic', props: { children: options } },
   { legend: 'Empty', props: { children: [] } },
-  { legend: 'With Label', props: { children: options, label: 'Label' } },
+  { legend: 'With Label', props: { children: options, label: 'Food' } },
   {
     legend: 'With Placeholder',
     props: { children: options, placeholder: 'Food' },
@@ -148,7 +148,7 @@ const useCases: Array<IComponentPresentation<ISelectProps>> = [
   },
   {
     legend: 'With Default Value',
-    props: { children: options, label: 'Label', defaultValue: 'carrot' },
+    props: { children: options, label: 'Food', defaultValue: 'carrot' },
   },
   {
     legend: 'Controlled',
