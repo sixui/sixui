@@ -152,6 +152,9 @@ Utils
 ![Anchored](doc/images/anchored.png)
 
 - [x] Component Showcase
+
+![ComponentShowcase](doc/images/component-showcase.png)
+
 - [x] Elevation
 
 ![Elevation](doc/images/elevation.png)
