@@ -26,7 +26,7 @@ Open Storybook at http://localhost:6006.
 
 ## Default Color Scheme
 
-![Default Color Scheme](doc/color-scheme.png)
+![Default Color Scheme](doc/images/color-scheme.png)
 
 ## Completed components
 
@@ -43,105 +43,105 @@ Components
 
 - [x] Avatar
 
-![Avatar](doc/avatar.png)
+![Avatar](doc/images/avatar.png)
 
 - [x] Badge
 
-![Badge](doc/badge.png)
+![Badge](doc/images/badge.png)
 
 - [x] Breadcrumbs
 - [x] Button
 
-![Button](doc/button.png)
+![Button](doc/images/button.png)
 
 - [x] Button Base
 - [x] Card
 
-![HorizontalCard](doc/card-horizontal.png)
-![VerticalCard](doc/card-vertical.png)
+![HorizontalCard](doc/images/card-horizontal.png)
+![VerticalCard](doc/images/card-vertical.png)
 
 - [x] Checkbox
 
-![Checkbox](doc/checkbox.png)
+![Checkbox](doc/images/checkbox.png)
 
 - [x] Chip
 
-![Chip](doc/chip.png)
+![Chip](doc/images/chip.png)
 
 - [x] Circular Progress Indicator
 
-![CircularProgressIndicator](doc/determinate-circular-indicator.png)
-![CircularProgressIndicator with label](doc/determinate-circular-indicator-with-label.png)
+![CircularProgressIndicator](doc/images/determinate-circular-indicator.png)
+![CircularProgressIndicator with label](doc/images/determinate-circular-indicator-with-label.png)
 
 - [x] Combobox
 
-![Combobox](doc/combobox.png)
-![MultiCombobox](doc/multi-combobox.png)
+![Combobox](doc/images/combobox.png)
+![MultiCombobox](doc/images/multi-combobox.png)
 
 - [x] Dialog
 - [x] Disclosure
 
-![Disclosure](doc/disclosure.png)
+![Disclosure](doc/images/disclosure.png)
 
 - [x] Divider
 - [x] ElementWithLabel
 - [x] FAB
 
-![FAB](doc/fab.png)
+![FAB](doc/images/fab.png)
 
 - [x] Field
 - [x] Field Base
 - [x] Icon Button
 
-![IconButton](doc/icon-button.png)
+![IconButton](doc/images/icon-button.png)
 
 - [x] Item
 - [x] List
 - [x] ListItem
 - [x] Menu
 
-![Menu](doc/menu.png)
+![Menu](doc/images/menu.png)
 
 - [x] MenuList
 
-![MenuList](doc/menu-list.png)
+![MenuList](doc/images/menu-list.png)
 
 - [x] Paper
 - [x] Placeholder
 - [x] Radio
 
-![Radio](doc/radio.png)
+![Radio](doc/images/radio.png)
 
 - [x] Scrim
 - [x] Select
 
-![Select](doc/select.png)
-![MultiSelect](doc/multi-select.png)
+![Select](doc/images/select.png)
+![MultiSelect](doc/images/multi-select.png)
 
 - [x] Skeleton
 
-![Skeleton](doc/skeleton.png)
+![Skeleton](doc/images/skeleton.png)
 
 - [x] Stepper
 
-![HorizontalStepper](doc/horizontal-stepper.png)
-![VerticalStepper](doc/vertical-stepper.png)
+![HorizontalStepper](doc/images/horizontal-stepper.png)
+![VerticalStepper](doc/images/vertical-stepper.png)
 
 - [x] Switch
 
-![Switch](doc/switch.png)
+![Switch](doc/images/switch.png)
 
 - [x] Tab
 - [x] TabList
 - [x] TabPanel
 - [x] Tabs
 
-![PrimaryTabs](doc/primary-tabs.png)
-![SecondaryTabs](doc/secondary-tabs.png)
+![PrimaryTabs](doc/images/primary-tabs.png)
+![SecondaryTabs](doc/images/secondary-tabs.png)
 
 - [x] Text Field
 
-![TextField](doc/text-field.png)
+![TextField](doc/images/text-field.png)
 
 - [x] Typography
 
@@ -149,16 +149,16 @@ Utils
 
 - [x] Anchored
 
-![Anchored](doc/anchored.png)
+![Anchored](doc/images/anchored.png)
 
 - [x] Component Showcase
 - [x] Elevation
 
-![Elevation](doc/elevation.png)
+![Elevation](doc/images/elevation.png)
 
 - [x] Focus Ring
 
-![FocusRing](doc/focus-ring.png)
+![FocusRing](doc/images/focus-ring.png)
 
 - [x] Form
 - [x] State Layer
