@@ -38,11 +38,13 @@ Features
 - [x] Motion theming
 - [x] Shape theming
 - [x] Typescript-based theming
-- [x] Catalog
 
 Components
 
 - [x] Avatar
+
+![Avatar](doc/avatar.png|height=209)
+
 - [x] Badge
 - [x] Breadcrumbs
 - [x] Button
