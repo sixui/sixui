@@ -1,3 +1,15 @@
+# v0.0.241 (Sun Jun 02 2024)
+
+#### 🐛 Bug Fix
+
+- Doc/screenshots [#27](https://github.com/sixui/ui/pull/27) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.240 (Sat Jun 01 2024)
 
 #### ⚠️ Pushed to `main`
