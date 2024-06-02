@@ -51,6 +51,9 @@ Components
 
 - [x] Breadcrumbs
 - [x] Button
+
+![Button](doc/button.png)
+
 - [x] Button Base
 - [x] Card
 - [x] Checkbox
