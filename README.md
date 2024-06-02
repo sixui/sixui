@@ -74,40 +74,89 @@ Components
 ![CircularProgressIndicator with label](doc/determinate-circular-indicator-with-label.png)
 
 - [x] Combobox
+
+TODO:
+
 - [x] Dialog
+
+TODO:
+
 - [x] Disclosure
+
+![Disclosure](doc/disclosure.png)
+
 - [x] Divider
 - [x] ElementWithLabel
 - [x] FAB
+
+![FAB](doc/fab.png)
+
 - [x] Field
 - [x] Field Base
 - [x] Icon Button
+
+![IconButton](doc/icon-button.png)
+
 - [x] Item
 - [x] List
 - [x] ListItem
 - [x] Menu
+
+TODO:
+
 - [x] MenuList
+
+![MenuList](doc/menu-list.png)
+
 - [x] Paper
 - [x] Placeholder
 - [x] Radio
+
+![Radio](doc/radio.png)
+
 - [x] Scrim
 - [x] Select
+
+TODO:
+
 - [x] Skeleton
 - [x] Stepper
+
+TODO:
+
 - [x] Switch
+
+![Switch](doc/switch.png)
+
 - [x] Tab
 - [x] TabList
 - [x] TabPanel
 - [x] Tabs
+
+![PrimaryTabs](doc/primary-tabs.png)
+![SecondaryTabs](doc/secondary-tabs.png)
+
 - [x] Text Field
+
+![TextField](doc/text-field.png)
+
 - [x] Typography
 
 Utils
 
 - [x] Anchored
+
+![Anchored](doc/anchored.png)
+
 - [x] Component Showcase
 - [x] Elevation
+
+![Elevation](doc/elevation.png)
+
 - [x] Focus Ring
+
+![FocusRing](doc/focus-ring.png)
+
 - [x] Form
 - [x] State Layer
 - [x] Visual State
