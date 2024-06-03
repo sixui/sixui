@@ -8,6 +8,10 @@ Ready-to-use foundational React components.
 - Type-safe APIs, styles and themes.
 - Deploys on [Chromatic](https://65b3729830a9a664ba7336f5-mgbxgkdzhu.chromatic.com/).
 
+## Demo (Storybook)
+
+Visit https://sixui.com to browse the library of components.
+
 ## Prepare
 
 ```sh
@@ -28,7 +32,7 @@ Open Storybook at http://localhost:6006.
 
 ![Default Color Scheme](doc/images/color-scheme.png)
 
-## Completed components
+## Features and components
 
 Features
 
