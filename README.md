@@ -136,7 +136,7 @@ Open Storybook at http://localhost:6006.
 
 ![MultiCombobox](doc/images/combobox-multi.png)
 
-### Dialog ([specs](https://m3.material.io/components/dialogs/overview))
+### Dialog ([specs](https://m3.material.io/components/dialogs/overview))
 
 TODO: screenshot
 
