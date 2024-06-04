@@ -138,11 +138,15 @@ Open Storybook at http://localhost:6006.
 
 ### Dialog ([specs](https://m3.material.io/components/dialogs/overview))
 
+TODO: screenshot
+
 ### Disclosure
 
 ![Disclosure](doc/images/disclosure.png)
 
 ### Divider ([specs](https://m3.material.io/components/divider/overview))
+
+TODO: screenshot
 
 ### Element with label
 
