@@ -436,7 +436,6 @@ const ComboboxBase = forwardRef<HTMLInputElement, IComboboxBaseProps>(
                       ) : null}
                     </MenuList>
                   </Autocomplete.Options>
-                  {/* </Transition> */}
                 </FloatingPortal>
               ) : null}
             </Transition>

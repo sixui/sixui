@@ -58,8 +58,8 @@ const Menu = forwardRef<HTMLElement, IMenuProps>(function Menu(props, ref) {
             }
           </HeadlessMenu.Button>
 
-          {open ? (
-            <FloatingPortal root={root}>
+          <FloatingPortal root={root}>
+            {open ? (
               <HeadlessMenu.Items
                 {...stylex.props(styles.items, sx)}
                 ref={refs.setFloating}
@@ -68,8 +68,8 @@ const Menu = forwardRef<HTMLElement, IMenuProps>(function Menu(props, ref) {
               >
                 <MenuList>{children}</MenuList>
               </HeadlessMenu.Items>
-            </FloatingPortal>
-          ) : null}
+            ) : null}
+          </FloatingPortal>
         </>
       )}
     </HeadlessMenu>

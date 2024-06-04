@@ -156,7 +156,7 @@ const rows: Array<IComponentPresentation<ITypographyOwnProps>> = [
 
 const componentShowcaseStyles = stylex.create({
   host: {
-    maxWidth: '600px',
+    maxWidth: 1200,
   },
 });
 

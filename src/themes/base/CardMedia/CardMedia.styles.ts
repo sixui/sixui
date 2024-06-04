@@ -3,6 +3,7 @@ import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
 import type { ICardMediaStyleKey } from '@/components/atoms/CardMedia';
+import { componentVars as vars } from './CardMedia.stylex';
 
 type ICardMediaStyles = IStyles<ICardMediaStyleKey>;
 export const styles: MapNamespaces<ICardMediaStyles> =
@@ -14,7 +15,7 @@ export const styles: MapNamespaces<ICardMediaStyles> =
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center',
-      borderRadius: 'inherit',
+      borderRadius: vars.containerShape,
       flexShrink: 0,
     },
     host$image: {

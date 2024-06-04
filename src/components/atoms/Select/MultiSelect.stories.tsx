@@ -27,7 +27,9 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   host: {
-    width: 300,
+    width: 350,
+    // Only for screenshot:
+    // paddingBottom: 305,
   },
   pictureOption: {
     width: '100%',
@@ -137,6 +139,10 @@ const variants: Array<IComponentPresentation<IMultiSelectProps>> = [
 ];
 
 const useCases: Array<IComponentPresentation<IMultiSelectProps>> = [
+  // {
+  //   // Only for screenshot
+  //   props: { children: options },
+  // },
   { legend: 'Basic', props: { children: null } },
   { legend: 'With Label', props: { children: options, label: 'Food' } },
   {

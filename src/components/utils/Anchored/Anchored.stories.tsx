@@ -41,27 +41,6 @@ const Badge: React.FC<{ size: 'sm' | 'lg' }> = ({ size }) => (
   <Placeholder styles={size === 'sm' ? badgeStyles$sm : badgeStyles$lg} />
 );
 
-const variants: Array<IComponentPresentation<IAnchoredProps>> = [
-  {
-    props: {
-      overlap: 'rectangular',
-      children: <Placeholder shape='rectangular' />,
-      content: <Badge size='sm' />,
-      verticalOrigin: 'top',
-      horizontalOrigin: 'right',
-    },
-  },
-  {
-    props: {
-      overlap: 'circular',
-      children: <Placeholder shape='circular' />,
-      content: <Badge size='lg' />,
-      verticalOrigin: 'bottom',
-      horizontalOrigin: 'left',
-    },
-  },
-];
-
 const anchors: Array<IComponentPresentation<IAnchoredProps>> = [
   { props: { verticalOrigin: 'top', horizontalOrigin: 'right' } },
   { props: { verticalOrigin: 'bottom', horizontalOrigin: 'right' } },
@@ -76,7 +55,42 @@ const content: Array<IComponentPresentation<IAnchoredProps>> = [
 
 export const Variants: IStory = {
   render: (props) => (
-    <ComponentShowcase component={Anchored} props={props} cols={variants} />
+    <ComponentShowcase
+      component={Anchored}
+      props={props}
+      cols={[
+        {
+          props: {
+            content: <Badge size='sm' />,
+            verticalOrigin: 'top',
+            horizontalOrigin: 'right',
+          },
+        },
+        {
+          props: {
+            content: <Badge size='lg' />,
+            verticalOrigin: 'bottom',
+            horizontalOrigin: 'left',
+          },
+        },
+      ]}
+      rows={[
+        {
+          legend: 'Rectangular',
+          props: {
+            overlap: 'rectangular',
+            children: <Placeholder shape='rectangular' />,
+          },
+        },
+        {
+          legend: 'Circular',
+          props: {
+            overlap: 'circular',
+            children: <Placeholder shape='circular' />,
+          },
+        },
+      ]}
+    />
   ),
   args: defaultArgs as IAnchoredProps,
 };

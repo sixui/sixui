@@ -41,13 +41,10 @@ export const NonInteractive: IStory = {
           <List.Item trailingIcon={<FontAwesomeIcon icon={faLink} />}>
             Single line item
           </List.Item>
-          <List.Item
-            supportingText='Supporting text'
-            trailingSupportingText='1/2'
-          >
+          <List.Item overline='Overline' trailingSupportingText='1/2'>
             Two line item
           </List.Item>
-          <List.Item overline='Overline' supportingText='Supporting text'>
+          <List.Item supportingText='Supporting text'>
             Three line item
           </List.Item>
           <List.Divider />
@@ -83,11 +80,11 @@ export const Interactive: IStory = {
           <List.Item
             onClick={(...args) => sbHandleEvent('click', args)}
             trailingSupportingText='1/2'
-            supportingText='Supporting text'
+            overline='Overline'
           >
             Button item
           </List.Item>
-          <List.Item overline='Overline' supportingText='Supporting text'>
+          <List.Item supportingText='Supporting text'>
             Non-interactive item
           </List.Item>
           <List.Item

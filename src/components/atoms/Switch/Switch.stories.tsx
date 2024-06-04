@@ -46,7 +46,7 @@ export const Uncontrolled: IStory = {
           legend: 'With selected icon',
           props: {
             showOnlySelectedIcon: true,
-            defaultSelected: true,
+            defaultChecked: true,
           },
         },
         { legend: 'With icons', props: { icons: true } },
@@ -91,7 +91,7 @@ export const Controlled: IStory = {
   args: defaultArgs,
 };
 
-export const WithoutIcons: IStory = {
+export const Variants: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={Switch}
@@ -99,66 +99,31 @@ export const WithoutIcons: IStory = {
       cols={states}
       rows={[
         { legend: 'Unselected' },
-        { legend: 'Selected', props: { defaultSelected: true } },
+        { legend: 'Selected', props: { defaultChecked: true } },
+      ]}
+      groups={[
+        {
+          legend: 'Basic',
+        },
+        {
+          legend: 'With selected icons',
+          props: { showOnlySelectedIcon: true },
+        },
+        {
+          legend: 'With icons',
+          props: { icons: true },
+        },
+        {
+          legend: 'With custom icons',
+          props: {
+            icon: <FontAwesomeIcon icon={faMinus} />,
+            selectedIcon: <FontAwesomeIcon icon={faPlus} />,
+          },
+        },
       ]}
     />
   ),
   args: defaultArgs,
-};
-
-export const WithSelectedIcon: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={Switch}
-      props={props}
-      cols={states}
-      rows={[
-        { legend: 'Unselected' },
-        { legend: 'Selected', props: { defaultSelected: true } },
-      ]}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    showOnlySelectedIcon: true,
-  },
-};
-
-export const WithIcons: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={Switch}
-      props={props}
-      cols={states}
-      rows={[
-        { legend: 'Unselected' },
-        { legend: 'Selected', props: { defaultSelected: true } },
-      ]}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    icons: true,
-  },
-};
-
-export const WithCustomIcons: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={Switch}
-      props={props}
-      cols={states}
-      rows={[
-        { legend: 'Unselected' },
-        { legend: 'Selected', props: { defaultSelected: true } },
-      ]}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    icon: <FontAwesomeIcon icon={faMinus} />,
-    selectedIcon: <FontAwesomeIcon icon={faPlus} />,
-  },
 };
 
 export default meta;
