@@ -1,9 +1,7 @@
 {
   "plugins": [
-    "npm"
+    "@auto-it/npm"
   ],
   "owner": "sixui",
-  "repo": "ui",
-  "name": "Olivier Pascal",
-  "email": "olivier@pascal.re"
+  "repo": "ui"
 }
