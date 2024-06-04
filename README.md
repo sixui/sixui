@@ -56,9 +56,17 @@ Components
 - [x] Breadcrumbs
 - [x] Button
 
+### Button
+
 ![Button](doc/images/button.png)
+
+#### Elevated Button
+
 ![ElevatedButton](doc/images/button-elevated.png)
-![ElevatedButton](doc/images/button-filled.png)
+
+#### Filled Button
+
+![FilledButton](doc/images/button-filled.png)
 
 - [x] Button Base
 - [x] Card
