@@ -144,7 +144,7 @@ TODO: screenshot
 
 ![Disclosure](doc/images/disclosure.png)
 
-### Divider ([specs](https://m3.material.io/components/divider/overview))
+### Divider ([specs](https://m3.material.io/components/divider/overview))
 
 TODO: screenshot
 
@@ -276,11 +276,11 @@ TODO: screenshot
 
 ![SecondaryTabs](doc/images/tabs-secondary.png)
 
-### Text Field ([specs](https://m3.material.io/components/text-fields/overview))
+### Text Field ([specs](https://m3.material.io/components/text-fields/overview))
 
 ![TextField](doc/images/text-field.png)
 
-#### Filled text Field ([specs](https://m3.material.io/components/text-fields/specs#6d654d1d-262e-4697-858c-9a75e8e7c81d))
+#### Filled text Field ([specs](https://m3.material.io/components/text-fields/specs#6d654d1d-262e-4697-858c-9a75e8e7c81d))
 
 ![FilledTextField](doc/images/text-field-filled.png)
 
