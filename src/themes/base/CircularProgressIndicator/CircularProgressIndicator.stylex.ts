@@ -9,7 +9,7 @@ import { colorRolesVars } from '../vars/colorRoles.stylex';
 
 const width = 2; // px
 
-const size$md = 20; // px
+const size$md = 18; // px
 const containerPadding$md = 0; // px
 
 const size$lg = 40; // px

@@ -12,7 +12,7 @@ import { shapeVars } from '../vars/shape.stylex';
 const vars: Partial<IStyleVars<ICheckboxStyleVarKey>> = {
   // container
   containerShape: '2px',
-  containerSize: '20px',
+  containerSize: '18px',
   // &:disabled
   containerOpacity$disabled: stateVars.opacity$disabled,
 
@@ -71,7 +71,7 @@ const vars: Partial<IStyleVars<ICheckboxStyleVarKey>> = {
   selectedOutlineWidth$pressed: '0px',
 
   // icon
-  iconSize: '20px',
+  iconSize: '18px',
 
   // selectedIcon
   selectedIconColor: colorRolesVars.onPrimary,

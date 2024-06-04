@@ -57,6 +57,8 @@ Components
 - [x] Button
 
 ![Button](doc/images/button.png)
+![ElevatedButton](doc/images/button-elevated.png)
+![ElevatedButton](doc/images/button-filled.png)
 
 - [x] Button Base
 - [x] Card

@@ -10,7 +10,7 @@ import { stateVars } from '../vars/state.stylex';
 
 const vars: Partial<IStyleVars<IRadioStyleVarKey>> = {
   // icon
-  iconSize: '20px',
+  iconSize: '18px',
   iconColor: colorRolesVars.onSurfaceVariant,
   // &:disabled
   iconColor$disabled: colorRolesVars.onSurface,

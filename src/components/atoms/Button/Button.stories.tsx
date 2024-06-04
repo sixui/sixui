@@ -60,11 +60,11 @@ const states: Array<IComponentPresentation<IButtonOwnProps>> = [
 const rows: Array<IComponentPresentation<IButtonOwnProps>> = [
   { legend: 'Basic' },
   {
-    legend: 'With Leading Icon',
+    legend: 'With leading icon',
     props: { icon: <FontAwesomeIcon icon={faPlus} /> },
   },
   {
-    legend: 'With Leading and Trailing Icons',
+    legend: 'With trailing icon',
     props: {
       icon: <FontAwesomeIcon icon={faPlus} />,
       trailingIcon: true,
@@ -160,6 +160,21 @@ export const Text: IStory = {
   args: {
     ...defaultArgs,
     variant: 'text',
+  },
+};
+
+export const Danger: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={Button}
+      props={props}
+      cols={states}
+      rows={rows}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'danger',
   },
 };
 
