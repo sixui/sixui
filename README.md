@@ -460,7 +460,7 @@ Used to run `yarn release` locally.
 Create a [fine-grained token](https://github.com/settings/tokens?type=beta) on GitHub with the following scopes:
 
 - Repository access
-  - sixui/ui
+  - sixui/sixui
 - Repository permissions
   - repo:issues (rw)
   - repo:workflow (rw)
