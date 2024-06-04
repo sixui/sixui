@@ -1,3 +1,15 @@
+# v0.0.242 (Tue Jun 04 2024)
+
+#### ⚠️ Pushed to `main`
+
+- chore: rename github repository from @sixui/ui to @sixui/sixui ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.241 (Sun Jun 02 2024)
 
 #### 🐛 Bug Fix
