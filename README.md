@@ -117,7 +117,7 @@ Open Storybook at http://localhost:6006.
 
 ![SuggestionChip](doc/images/chip-suggestion.png)
 
-### Circular progress indicator
+### Circular progress indicator ([specs](https://m3.material.io/components/progress-indicators/overview))
 
 #### Determinate circular progress indicator
 
