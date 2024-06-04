@@ -161,23 +161,25 @@ const rows: Array<IComponentPresentation<ICardOwnProps>> = [
 
 const variants: Array<IComponentPresentation<ICardOwnProps>> = [
   {
+    legend: 'Elevated',
     props: {
       variant: 'elevated',
-
       children: <NonActionableContent headline='Non-actionable' />,
     },
   },
   {
-    props: {
-      variant: 'outlined',
-      children: <NonActionableContentVariant headline='Non-actionable' />,
-    },
-  },
-  {
+    legend: 'Filled',
     props: {
       variant: 'filled',
       children: <ActionableContent headline='Actionable' />,
       onClick: () => sbHandleEvent('click:card'),
+    },
+  },
+  {
+    legend: 'Outlined',
+    props: {
+      variant: 'outlined',
+      children: <NonActionableContentVariant headline='Non-actionable' />,
     },
   },
 ];

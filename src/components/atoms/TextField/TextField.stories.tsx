@@ -63,11 +63,6 @@ const rows: Array<IComponentPresentation<ITextFieldProps>> = [
   { legend: 'Error', props: { defaultValue: 'Value', hasError: true } },
 ];
 
-const groups: Array<IComponentPresentation<ITextFieldProps>> = [
-  { legend: 'Input' },
-  { legend: 'Textarea', props: { type: 'textarea' } },
-];
-
 export const Variants: IStory = {
   render: (props) => (
     <ComponentShowcase
@@ -79,19 +74,29 @@ export const Variants: IStory = {
           placeholder: capitalizeFirstLetter(variant),
         },
       }))}
+      rows={[
+        {
+          legend: 'Text field',
+        },
+        {
+          legend: 'Textarea',
+          props: {
+            type: 'textarea',
+          },
+        },
+      ]}
     />
   ),
   args: defaultArgs,
 };
 
-export const Filled: IStory = {
+export const FilledTextField: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={TextField}
       props={props}
       cols={states}
       rows={rows}
-      groups={groups}
     />
   ),
   args: {
@@ -100,19 +105,50 @@ export const Filled: IStory = {
   },
 };
 
-export const Outlined: IStory = {
+export const FilledTextarea: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={TextField}
       props={props}
       cols={states}
       rows={rows}
-      groups={groups}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'filled',
+    type: 'textarea',
+  },
+};
+
+export const OutlinedTextField: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={TextField}
+      props={props}
+      cols={states}
+      rows={rows}
     />
   ),
   args: {
     ...defaultArgs,
     variant: 'outlined',
+  },
+};
+
+export const OutlinedTextarea: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={TextField}
+      props={props}
+      cols={states}
+      rows={rows}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'outlined',
+    type: 'textarea',
   },
 };
 

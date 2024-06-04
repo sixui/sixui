@@ -19,6 +19,10 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
+  action: {
+    // Only for screenshots:
+    marginBottom: 180,
+  },
   clipper: {
     position: 'relative',
     overflow: 'hidden',
@@ -62,6 +66,7 @@ export const FromButton: IStory = {
           />
         }
         trailingIcon
+        sx={styles.action}
       >
         Open
       </Button>
@@ -87,6 +92,7 @@ export const Contained: IStory = {
           />
         }
         trailingIcon
+        sx={styles.action}
       >
         Open
       </Button>

@@ -32,197 +32,280 @@ Open Storybook at http://localhost:6006.
 
 ![Default Color Scheme](doc/images/color-scheme.png)
 
-## Features and components
+## Features
 
-Features
+- Color theming
+- Typography theming
+- Motion theming
+- Shape theming
+- Typescript-based theming
 
-- [x] Catalog
-- [x] Color theming
-- [x] Typography theming
-- [x] Motion theming
-- [x] Shape theming
-- [x] Typescript-based theming
+## Components
 
-Components
-
-- [x] Avatar
+### Avatar
 
 ![Avatar](doc/images/avatar.png)
 
-- [x] Badge
+### Badge ([specs](https://m3.material.io/components/badges/overview))
 
 ![Badge](doc/images/badge.png)
 
-- [x] Breadcrumbs
-- [x] Button
+### Breadcrumbs
 
-### Button
+![Breadcrumbs](doc/images/breadcrumbs.png)
+
+### Button ([specs](https://m3.material.io/components/buttons/overview))
 
 ![Button](doc/images/button.png)
 
-#### Elevated Button
+#### Elevated button ([specs](https://m3.material.io/components/buttons/specs#0eea2a85-b4d7-4c74-b08e-98410b9412c7))
 
 ![ElevatedButton](doc/images/button-elevated.png)
 
-#### Filled Button
+#### Filled button ([specs](https://m3.material.io/components/buttons/specs#0b1b7bd2-3de8-431a-afa1-d692e2e18b0d))
 
 ![FilledButton](doc/images/button-filled.png)
 
-- [x] Button Base
-- [x] Card
+#### Filled tonal button ([specs](https://m3.material.io/components/buttons/specs#158f0a18-67fb-4ac4-9d22-cc4d1adc4579))
+
+![FilledTonalButton](doc/images/button-filled-tonal.png)
+
+#### Outlined button ([specs](https://m3.material.io/components/buttons/specs#de72d8b1-ba16-4cd7-989e-e2ad3293cf63))
+
+![OutlinedButton](doc/images/button-outlined.png)
+
+#### Text button ([specs](https://m3.material.io/components/buttons/specs#899b9107-0127-4a01-8f4c-87f19323a1b4))
+
+![TextButton](doc/images/button-text.png)
+
+#### Danger button
+
+![DangerButton](doc/images/button-danger.png)
+
+### Card ([specs](https://m3.material.io/components/cards/specs))
+
+#### Horizontal card
 
 ![HorizontalCard](doc/images/card-horizontal.png)
+
+#### Vertical card
+
 ![VerticalCard](doc/images/card-vertical.png)
 
-- [x] Checkbox
+### Checkbox ([specs](https://m3.material.io/components/checkbox/specs))
 
 ![Checkbox](doc/images/checkbox.png)
 
-- [x] Chip
+### Chip ([specs](https://m3.material.io/components/chips/overview))
 
 ![Chip](doc/images/chip.png)
 
-- [x] Circular Progress Indicator
+#### Assist chip ([specs](https://m3.material.io/components/chips/specs#a144389c-9478-4fe4-9bd8-ca9f7dd830eb))
 
-![CircularProgressIndicator](doc/images/determinate-circular-indicator.png)
-![CircularProgressIndicator with label](doc/images/determinate-circular-indicator-with-label.png)
+![AssistChip](doc/images/chip-assist.png)
 
-- [x] Combobox
+#### Filter chip ([specs](https://m3.material.io/components/chips/specs#e900592f-75a4-4298-853c-bedd8f462f83))
+
+![FilterChip](doc/images/chip-filter.png)
+
+#### Input chip ([specs](https://m3.material.io/components/chips/specs#facb7c02-74c4-4b81-bd52-6ad10ce351eb))
+
+![InputChip](doc/images/chip-input.png)
+![InputChip](doc/images/chip-input-avatar.png)
+
+#### Suggestion chip ([specs](https://m3.material.io/components/chips/specs#67a358c0-c370-4bf1-b410-7f8dd3f1a60c))
+
+![SuggestionChip](doc/images/chip-suggestion.png)
+
+### Circular progress indicator
+
+#### Determinate circular progress indicator
+
+![DeterminateCircularProgressIndicator](doc/images/circular-indicator-determinate.png)
+![DeterminateCircularProgressIndicator](doc/images/circular-indicator-determinate-with-label.png)
+
+#### Indeterminate circular progress indicator
+
+![IneterminateCircularProgressIndicator](doc/images/circular-indicator-indeterminate.png)
+
+### Combobox ([specs](https://m3.material.io/components/menus/specs#15cc3423-ab1f-4d1c-8ce4-e5c9ae95f19f))
 
 ![Combobox](doc/images/combobox.png)
-![MultiCombobox](doc/images/multi-combobox.png)
 
-- [x] Dialog
-- [x] Disclosure
+#### Multi combobox
+
+![MultiCombobox](doc/images/combobox-multi.png)
+
+### Dialog ([specs](https://m3.material.io/components/dialogs/overview))
+
+### Disclosure
 
 ![Disclosure](doc/images/disclosure.png)
 
-- [x] Divider
-- [x] ElementWithLabel
-- [x] FAB
+### Divider ([specs](https://m3.material.io/components/divider/overview))
 
-![FAB](doc/images/fab.png)
+### Element with label
 
-- [x] Field
-- [x] Field Base
-- [x] Icon Button
+#### With text field
+
+![ElementWithLabel](doc/images/element-with-label-text-field.png)
+
+#### With checkbox
+
+![ElementWithLabel](doc/images/element-with-label-checkbox.png)
+
+### FAB ([specs](https://m3.material.io/components/floating-action-button/overview))
+
+![Fab](doc/images/fab.png)
+
+#### Surface FAB
+
+![SurfaceFab](doc/images/fab-surface.png)
+
+#### Primary FAB
+
+![PrimaryFab](doc/images/fab-primary.png)
+
+#### Secondary FAB
+
+![SecondaryFab](doc/images/fab-secondary.png)
+
+#### Tertiary FAB
+
+![TertiaryFab](doc/images/fab-tertiary.png)
+
+#### Branded FAB
+
+![BrandedFab](doc/images/fab-branded.png)
+
+### Icon button ([specs](https://m3.material.io/components/icon-buttons/overview))
 
 ![IconButton](doc/images/icon-button.png)
 
-- [x] Item
-- [x] List
-- [x] ListItem
-- [x] Menu
+#### Standard icon button ([specs](https://m3.material.io/components/icon-buttons/specs#eca0451e-430b-41e1-bea3-a31cb7ccda76))
+
+![StandardIconButton](doc/images/icon-button-standard.png)
+
+#### Filled icon button ([specs](https://m3.material.io/components/icon-buttons/specs#d4169fb5-4cf8-40b6-9ec3-4044f09cca1f))
+
+![FilledIconButton](doc/images/icon-button-filled.png)
+
+#### Filled tonal icon button ([specs](https://m3.material.io/components/icon-buttons/specs#c2ca424b-2ad7-40e6-8946-47fb1918060a))
+
+![FilledTonalIconButton](doc/images/icon-button-filled-tonal.png)
+
+#### Outlined icon button ([specs](https://m3.material.io/components/icon-buttons/specs#632e1356-8002-4ae1-ae36-48c1f9b17ef2))
+
+![OutlinedIconButton](doc/images/icon-button-outlined.png)
+
+### List ([specs](https://m3.material.io/components/lists/overview))
+
+![ListItem](doc/images/list.png)
+
+### List item ([specs](https://m3.material.io/components/lists/overview))
+
+![ListItem](doc/images/list-item.png)
+
+### Menu ([specs](https://m3.material.io/components/menus/overview))
 
 ![Menu](doc/images/menu.png)
 
-- [x] MenuList
+### Menu list ([specs](https://m3.material.io/components/menus/overview))
 
 ![MenuList](doc/images/menu-list.png)
 
-- [x] Paper
-- [x] Placeholder
-- [x] Radio
+### Paper
+
+![Paper](doc/images/paper.png)
+
+### Placeholder
+
+![Placeholder](doc/images/placeholder.png)
+
+### Radio ([specs](https://m3.material.io/components/radio-button/overview))
 
 ![Radio](doc/images/radio.png)
 
-- [x] Scrim
-- [x] Select
+### Select ([specs](https://m3.material.io/components/menus/specs#15cc3423-ab1f-4d1c-8ce4-e5c9ae95f19f))
 
 ![Select](doc/images/select.png)
-![MultiSelect](doc/images/multi-select.png)
 
-- [x] Skeleton
+#### Multi select
 
-![Skeleton](doc/images/skeleton.png)
+![MultiSelect](doc/images/select-multi.png)
 
-- [x] Stepper
+### Skeleton
 
-![HorizontalStepper](doc/images/horizontal-stepper.png)
-![VerticalStepper](doc/images/vertical-stepper.png)
+#### As container
 
-- [x] Switch
+![Skeleton](doc/images/skeleton-container.png)
+
+#### As overlay
+
+![Skeleton](doc/images/skeleton-overlay.png)
+
+### Stepper
+
+#### Horizontal stepper
+
+![Stepper](doc/images/stepper-horizontal.png)
+
+#### Vertical stepper
+
+![Stepper](doc/images/stepper-vertical.png)
+
+### Switch ([specs](https://m3.material.io/components/switch/overview))
 
 ![Switch](doc/images/switch.png)
 
-- [x] Tab
-- [x] TabList
-- [x] TabPanel
-- [x] Tabs
+#### With icons
 
-![PrimaryTabs](doc/images/primary-tabs.png)
-![SecondaryTabs](doc/images/secondary-tabs.png)
+![Switch](doc/images/switch-variants.png)
 
-- [x] Text Field
+### Tabs ([specs](https://m3.material.io/components/tabs/overview))
+
+#### Primary tabs ([specs](https://m3.material.io/components/tabs/specs#8602158e-a13b-432e-8133-b9cb34d61678))
+
+![PrimaryTabs](doc/images/tabs-primary.png)
+
+#### Secondary tabs ([specs](https://m3.material.io/components/tabs/specs#5bcb7839-3c78-4906-b130-13e59c7d41ac))
+
+![SecondaryTabs](doc/images/tabs-secondary.png)
+
+### Text Field ([specs](https://m3.material.io/components/text-fields/overview))
 
 ![TextField](doc/images/text-field.png)
 
-- [x] Typography
+#### Filled text Field ([specs](https://m3.material.io/components/text-fields/specs#6d654d1d-262e-4697-858c-9a75e8e7c81d))
 
-Utils
+![FilledTextField](doc/images/text-field-filled.png)
 
-- [x] Anchored
+#### Outlined text Field ([specs](https://m3.material.io/components/text-fields/specs#68b00bd6-ab40-4b4f-93d9-ed1fbbc5d06e))
+
+![OutlinedTextField](doc/images/text-field-outlined.png)
+
+### Typography ([specs](https://m3.material.io/styles/typography/overview))
+
+![Typography](doc/images/typography-light.png)
+![Typography](doc/images/typography-dark.png)
+
+## Utils
+
+### Anchored
 
 ![Anchored](doc/images/anchored.png)
 
-- [x] Component Showcase
+### Component showcase
 
 ![ComponentShowcase](doc/images/component-showcase.png)
 
-- [x] Elevation
+### Elevation ([specs](https://m3.material.io/styles/elevation/overview))
 
 ![Elevation](doc/images/elevation.png)
 
-- [x] Focus Ring
+### Focus ring ([specs](https://m3.material.io/foundations/interaction/states/overview))
 
 ![FocusRing](doc/images/focus-ring.png)
-
-- [x] Form
-- [x] State Layer
-- [x] Visual State
-- [x] Fade
-
-## Workflow
-
-Create a new branch.
-
-```sh
-$ git checkout -b button-color
-```
-
-Edit code, ie. `src/components/atoms/Button/Button.tsx`, then commit changes.
-
-```sh
-$ git add .
-$ git commit -m "Button has a new color."
-$ git push -u origin button-color
-```
-
-Open a pull request for the `button-color` branch (via GitHub.com or a VSCode plugin). Once opened, the CI job to publish Storybook will run.
-
-If needed, in the list of PR checks at the bottom of the page, click `Storybook Publish` to view the published Storybook with the new changes and review it.
-
-Now merge the PR, navigate to the package on npm, and hang tight for a few minutes while the package is updated.
-
-Checkout main and delete the merged branch.
-
-```sh
-$ git checkout main
-$ git pull
-$ git branch -d button-color
-```
-
-## Commit skipping CI
-
-```sh
-$ git commit -m "My commit message [skip ci]"
-```
-
-## Update Node.js modules
-
-```sh
-$ npx npm-check-updates -i
-```
 
 ## Importing @sixui/ui as a third-party module
 
@@ -258,95 +341,15 @@ See https://stylexjs.com/docs/learn/installation/.
 
 'use client';
 
-import { ThemeProvider, baseTheme, FilledTextField } from '@sixui/ui';
+import { ThemeProvider, baseTheme, Button } from '@sixui/ui';
 
 const BasicExample: React.FC = () => (
-  <ThemeProvider value={{ theme: baseTheme }}>
-    <FilledTextField label='Label' />
+  <ThemeProvider theme={baseTheme}>
+    <Button>Hello World!</Button>
   </ThemeProvider>
 );
 
 export default BasicExample;
-```
-
-```tsx
-// ThemingExample.tsx
-
-'use client';
-
-import stylex from '@stylexjs/stylex';
-
-import {
-  ThemeProvider,
-  baseTheme,
-  variantTheme,
-  FilledButton,
-} from '@sixui/ui';
-import { componentVars as buttonComponentVars } from '@sixui/ui/themes/base/Button/Button.stylex';
-import { componentTheme as buttonVariantTheme } from '@sixui/ui/themes/variant/Button/FilledButton.stylex';
-import { colorPaletteTheme } from '@sixui/ui/themes/variant/vars/colorPalettes.stylex';
-import {
-  colorRolesTheme,
-  colorRolesVars,
-} from '@sixui/ui/themes/base/vars/colorRoles.stylex';
-import { typescaleVars } from '@sixui/ui/themes/base/vars/typo.stylex';
-
-const layoutStyles = stylex.create({
-  host: {
-    display: 'flex',
-    padding: '1rem',
-    gap: '1rem',
-    alignItems: 'center',
-  },
-  legend: {
-    width: '100px',
-    fontFamily: typescaleVars.labelFont$lg,
-    fontSize: typescaleVars.labelSize$md,
-    fontWeight: typescaleVars.labelWeight$md,
-    lineHeight: typescaleVars.labelLineHeight$md,
-    letterSpacing: typescaleVars.labelTracking$md,
-    color: colorRolesVars.onSurface,
-    opacity: '0.5',
-    display: 'flex',
-    padding: '1rem',
-    justifyContent: 'flex-end',
-  },
-});
-
-const buttonStyles = stylex.create({
-  host: {
-    [buttonComponentVars.labelTextSize]: '1.2rem',
-  },
-  label: {
-    textTransform: 'uppercase',
-  },
-});
-
-const ThemingExample: React.FC = () => (
-  <>
-    <ThemeProvider value={{ theme: baseTheme }}>
-      <div {...stylex.props(layoutStyles.host)}>
-        <div {...stylex.props(layoutStyles.legend)}>Base theme</div>
-        <FilledButton>Default</FilledButton>
-        <FilledButton styles={buttonStyles}>Styled</FilledButton>
-        <FilledButton theme={buttonVariantTheme}>Locally themed</FilledButton>
-      </div>
-    </ThemeProvider>
-
-    <ThemeProvider value={{ theme: variantTheme }}>
-      <div
-        {...stylex.props(layoutStyles.host, colorPaletteTheme, colorRolesTheme)}
-      >
-        <div {...stylex.props(layoutStyles.legend)}>Variant theme</div>
-        <FilledButton>Default</FilledButton>
-        <FilledButton styles={buttonStyles}>Styled</FilledButton>
-        <FilledButton theme={buttonVariantTheme}>Locally themed</FilledButton>
-      </div>
-    </ThemeProvider>
-  </>
-);
-
-export default ThemingExample;
 ```
 
 #### Notes with Next.js
@@ -419,7 +422,7 @@ import {
   Link as RouterLink,
   LinkProps as RouterLinkProps,
 } from 'react-router-dom';
-import { FilledButton } from '@sixui/ui';
+import { Button } from '@sixui/ui';
 
 export const LinkBehavior = forwardRef<
   HTMLAnchorElement,
@@ -432,62 +435,8 @@ export const LinkBehavior = forwardRef<
 });
 
 export const Usage: React.FC = () => (
-  <FilledButton component={LinkBehavior} href='/login'>
+  <Button component={LinkBehavior} href='/login'>
     Login
-  </FilledButton>
+  </Button>
 );
 ```
-
-### Setup Storybook (optional)
-
-```sh
-$ npx storybook@latest init
-```
-
-```js
-// .storybook/main.js
-
-// (...)
-export default {
-  // (...)
-  refs: {
-    'design-system': {
-      title: 'sixui',
-      url: 'https://654a07f6d5de71f31c8d0568-ncheukrqdk.chromatic.com',
-    },
-  },
-};
-
-export default config;
-```
-
-### Tokens (.env)
-
-Used to run `yarn release` locally.
-
-#### GITHUB_TOKEN
-
-Create a [fine-grained token](https://github.com/settings/tokens?type=beta) on GitHub with the following scopes:
-
-- Repository access
-  - sixui/sixui
-- Repository permissions
-  - repo:issues (rw)
-  - repo:workflow (rw)
-  - repo:contents (rw)
-  - repo:pull-requests (r)
-
-### NPM_TOKEN
-
-Used to run `yarn release` locally.
-
-Create a [granular access token](https://www.npmjs.com/settings/olivierpascal/tokens) on npmjs with the following scopes:
-
-- Packages and scopes
-  - @sixui: read/write
-
-## Troubleshooting
-
-> Error: Working directory is not clean, make sure all files are committed
-
-Make sure that `package.json` ends with a newline.

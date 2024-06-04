@@ -28,7 +28,9 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   host: {
-    width: 300,
+    width: 350,
+    // Only for screenshot:
+    // paddingBottom: 305,
   },
   pictureOption: {
     width: '100%',
@@ -147,6 +149,10 @@ const variants: Array<IComponentPresentation<IComboboxProps>> = [
 ];
 
 const useCases: Array<IComponentPresentation<IComboboxProps>> = [
+  // {
+  //   // Only for screenshot
+  //   props: { children: options },
+  // },
   { legend: 'Basic', props: { children: options } },
   { legend: 'Empty', props: { children: [] } },
   { legend: 'With Label', props: { children: options, label: 'Label' } },

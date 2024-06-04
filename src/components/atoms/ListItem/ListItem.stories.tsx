@@ -31,7 +31,7 @@ type IStory = StoryObj<typeof meta>;
 
 const listItemStyles = stylex.create({
   host: {
-    width: '220px',
+    width: '170px',
   },
 });
 
@@ -66,7 +66,7 @@ const rows: Array<IComponentPresentation<IListItemOwnProps>> = [
   },
   { legend: 'Link', props: { href: '#' } },
   {
-    legend: 'Link with Icons',
+    legend: 'With icon',
     props: {
       href: '#',
       leadingIcon: <FontAwesomeIcon icon={faCalendarDays} />,
@@ -105,7 +105,7 @@ export const Basic: IStory = {
   ),
   args: {
     ...defaultArgs,
-    variant: 'danger',
+    variant: 'standard',
   },
 };
 
