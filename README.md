@@ -1,44 +1,30 @@
-# sixui/ui &middot; [![npm bundle size](https://img.shields.io/bundlephobia/minzip/@sixui/ui)](https://bundlephobia.com/package/@sixui/ui@latest)
+<p align="center">
+  <a href="https://sixui.com" rel="noopener" target="_blank"><img width="150" height="150" src="doc/images/logo-transparent.svg" alt="SixUI logo"></a>
+</p>
 
-Ready-to-use foundational React components.
+<h1 align="center">SixUI</h1>
 
-- Implements Google's [Material Design 3](https://m3.material.io/).
+Ready-to-use foundational React components implementing Google's [Material Design 3](https://m3.material.io/).
+
 - Leverages Meta's [StyleX](https://github.com/facebook/stylex/) for near zero-runtime styling.
 - Fully themable through CSS styles or CSS vars.
 - Type-safe APIs, styles and themes.
-- Deploys on [Chromatic](https://65b3729830a9a664ba7336f5-mgbxgkdzhu.chromatic.com/).
 
-## Demo (Storybook)
+<div align="center">
 
-Visit https://sixui.com to browse the library of components.
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/sixui/sixui/blob/HEAD/LICENSE)
+[![npm latest package](https://img.shields.io/npm/v/@sixui/ui/latest.svg)](https://www.npmjs.com/package/@sixui/ui)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@sixui/ui)](https://bundlephobia.com/package/@sixui/ui@latest)
 
-## Prepare
+</div>
 
-```sh
-$ nvm use 18
-$ yarn set version 4.1.0
-$ yarn install
-```
+## Components
 
-## Run for local development
+Browse the library of components on https://sixui.com.
 
-```sh
-$ yarn dev
-```
+## Default color system ([specs](https://m3.material.io/styles/color/roles))
 
-Open Storybook at http://localhost:6006.
-
-## Default Color Scheme
-
-![Default Color Scheme](doc/images/color-scheme.png)
-
-## Features
-
-- Color theming
-- Typography theming
-- Motion theming
-- Shape theming
-- Typescript-based theming
+![Default color scheme](doc/images/color-scheme.png)
 
 ## Components
 

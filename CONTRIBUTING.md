@@ -1,12 +1,37 @@
 # Contributing
 
-Create a new branch.
+## Clone
+
+```sh
+$ git clone https://github.com/sixui/sixui
+$ cd sixui
+```
+
+## Prepare
+
+```sh
+$ nvm use 18
+$ yarn set version 4.1.0
+$ yarn install
+```
+
+## Run for local development
+
+```sh
+$ yarn dev
+```
+
+Open Storybook at http://localhost:6006.
+
+## Work on a new branch
 
 ```sh
 $ git checkout -b button-color
 ```
 
-Edit code, ie. `src/components/atoms/Button/Button.tsx`, then commit changes.
+## Edit code
+
+Ie. `src/components/atoms/Button/Button.tsx`, then commit changes.
 
 ```sh
 $ git add .
@@ -14,19 +39,11 @@ $ git commit -m "feat: button has a new color"
 $ git push -u origin button-color
 ```
 
+## Submit your code
+
 Open a pull request for the `button-color` branch (via GitHub.com or a VSCode plugin). Once opened, the CI job to publish Storybook will run.
 
 If needed, in the list of PR checks at the bottom of the page, click `Storybook Publish` to view the published Storybook with the new changes and review it.
-
-Now merge the PR, navigate to the package on npm, and hang tight for a few minutes while the package is updated.
-
-Checkout main and delete the merged branch.
-
-```sh
-$ git checkout main
-$ git pull
-$ git branch -d button-color
-```
 
 ### Tokens (.env)
 
