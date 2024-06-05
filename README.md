@@ -6,7 +6,7 @@
 
 Ready-to-use foundational React components implementing Google's [Material Design 3](https://m3.material.io/).
 
-- Leverages Meta's [StyleX](https://github.com/facebook/stylex/) for near zero-runtime styling.
+- Leverages Meta's [StyleX](https://github.com/facebook/stylex/) for zero-runtime styling.
 - Fully themable through CSS styles or CSS vars.
 - Type-safe APIs, styles and themes.
 
