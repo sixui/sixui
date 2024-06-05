@@ -60,6 +60,10 @@ const rows: Array<IComponentPresentation<ITextFieldProps>> = [
     legend: 'Password',
     props: { type: 'password' },
   },
+  {
+    legend: 'Date',
+    props: { type: 'datetime-local' },
+  },
   { legend: 'Error', props: { defaultValue: 'Value', hasError: true } },
 ];
 

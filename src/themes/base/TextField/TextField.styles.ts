@@ -49,8 +49,49 @@ export const styles: MapNamespaces<ITextFieldStyles> =
         backgroundColor: fieldBaseVars.contentBackground$selection,
         color: fieldBaseVars.contentColor$selection,
       },
-      color: 'inherit',
-
+      color: {
+        default: 'inherit',
+        '::-webkit-datetime-edit-day-field:focus':
+          fieldBaseVars.contentColor$selection,
+        '::-webkit-datetime-edit-month-field:focus':
+          fieldBaseVars.contentColor$selection,
+        '::-webkit-datetime-edit-year-field:focus':
+          fieldBaseVars.contentColor$selection,
+        '::-webkit-datetime-edit-week-field:focus':
+          fieldBaseVars.contentColor$selection,
+        '::-webkit-datetime-edit-hour-field:focus':
+          fieldBaseVars.contentColor$selection,
+        '::-webkit-datetime-edit-minute-field:focus':
+          fieldBaseVars.contentColor$selection,
+        '::-webkit-datetime-edit-second-field:focus':
+          fieldBaseVars.contentColor$selection,
+        '::-webkit-datetime-edit-millisecond-field:focus':
+          fieldBaseVars.contentColor$selection,
+        '::-webkit-datetime-edit-ampm-field:focus':
+          fieldBaseVars.contentColor$selection,
+      },
+      backgroundColor: {
+        default: 'inherit',
+        // Date input highlight color
+        '::-webkit-datetime-edit-day-field:focus':
+          fieldBaseVars.contentBackground$selection,
+        '::-webkit-datetime-edit-month-field:focus':
+          fieldBaseVars.contentBackground$selection,
+        '::-webkit-datetime-edit-year-field:focus':
+          fieldBaseVars.contentBackground$selection,
+        '::-webkit-datetime-edit-week-field:focus':
+          fieldBaseVars.contentBackground$selection,
+        '::-webkit-datetime-edit-hour-field:focus':
+          fieldBaseVars.contentBackground$selection,
+        '::-webkit-datetime-edit-minute-field:focus':
+          fieldBaseVars.contentBackground$selection,
+        '::-webkit-datetime-edit-second-field:focus':
+          fieldBaseVars.contentBackground$selection,
+        '::-webkit-datetime-edit-millisecond-field:focus':
+          fieldBaseVars.contentBackground$selection,
+        '::-webkit-datetime-edit-ampm-field:focus':
+          fieldBaseVars.contentBackground$selection,
+      },
       display: {
         default: 'block',
         // Remove built-in search icons on Chrome when type='search'
