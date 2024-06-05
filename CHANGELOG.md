@@ -1,3 +1,15 @@
+# v0.0.246 (Wed Jun 05 2024)
+
+#### ⚠️ Pushed to `main`
+
+- doc(README.md): add logo ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.245 (Wed Jun 05 2024)
 
 #### ⚠️ Pushed to `main`
