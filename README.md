@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://sixui.com" rel="noopener" target="_blank"><img width="150" height="150" src="doc/images/logo-transparent.svg" alt="SixUI logo"></a>
+  <a href="https://sixui.com" rel="noopener" target="_blank"><img width="150" height="150" src="doc/images/logo-transparent-nomargin.svg" alt="SixUI logo"></a>
 </p>
 
 <h1 align="center">SixUI</h1>
