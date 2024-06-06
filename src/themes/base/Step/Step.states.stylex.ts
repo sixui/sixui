@@ -4,8 +4,8 @@ import type { IStyleVars } from '@/helpers/types';
 import type { IStepStyleStateVarKey } from '@/components/atoms/Step';
 
 const vars: IStyleVars<IStepStyleStateVarKey> = {
-  // container
   containerShape: 'unset',
+  iconColor: 'unset',
 };
 
 export const componentVars = stylex.defineVars(vars);

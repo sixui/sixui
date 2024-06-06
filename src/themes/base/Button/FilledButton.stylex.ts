@@ -31,7 +31,7 @@ const vars: Partial<IStyleVars<IButtonStyleVarKey>> = {
   // &:pressed
   stateLayerColor$pressed: colorRolesVars.onPrimary,
 
-  // label
+  // labelText
   labelTextColor: colorRolesVars.onPrimary,
   // &:focus
   labelTextColor$focus: colorRolesVars.onPrimary,

@@ -4,8 +4,10 @@ import stylex from '@stylexjs/stylex';
 import type { IStyles } from '@/helpers/types';
 import type { IStepStyleKey } from '@/components/atoms/Step';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
+import type { ICircularProgressIndicatorStyleKey } from '@/components/atoms/CircularProgressIndicator';
 import { componentVars as vars } from './Step.stylex';
 import { componentVars as focusRingVars } from '../FocusRing/FocusRing.stylex';
+import { componentVars as circularProgressIndicatorVars } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { componentVars as stepStateVars } from './Step.states.stylex';
 
 type IStepStyles = IStyles<IStepStyleKey>;
@@ -50,34 +52,60 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
   },
   bulletPoint: {
     position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
     flexShrink: 0,
     width: vars.bulletPointSize,
     height: vars.bulletPointSize,
   },
-  bulletPoint$icon: {
-    color: vars.bulletPointColor,
+  bulletPoint$container: {
+    borderRadius: vars.bulletPointShape,
+  },
+  icon: {
     fontSize: vars.bulletPointSize,
+    fill: 'currentColor',
+    [stepStateVars.iconColor]: vars.bulletPointColor,
+    color: stepStateVars.iconColor,
   },
-  bulletPoint$icon$active: {
-    color: vars.bulletPointColor$active,
-  },
-  bulletPoint$icon$completed: {
-    color: vars.bulletPointColor$completed,
-  },
-  bulletPoint$icon$disabled: {
-    color: vars.bulletPointColor$disabled,
+  icon$disabled: {
+    [stepStateVars.iconColor]: vars.bulletPointColor$disabled,
     opacity: vars.bulletPointOpacity$disabled,
   },
-  bulletPoint$icon$error: {
-    color: vars.bulletPointColor$error,
-    fill: 'currentColor',
+  icon$error: {
+    [stepStateVars.iconColor]: vars.bulletPointColor$error,
   },
-  bulletPoint$text: {
-    borderRadius: vars.bulletPointShape,
+  icon$inactive: {
+    [stepStateVars.iconColor]: vars.bulletPointColor$inactive,
+    opacity: vars.bulletPointOpacity$inactive,
+  },
+  icon$completed: {
+    [stepStateVars.iconColor]: vars.bulletPointColor$completed,
+  },
+  background: {
+    position: 'absolute',
+    inset: 0,
+    borderRadius: 'inherit',
     backgroundColor: vars.bulletPointColor,
+  },
+  background$disabled: {
+    backgroundColor: vars.bulletPointColor$disabled,
+    opacity: vars.bulletPointOpacity$disabled,
+  },
+  background$error: {
+    backgroundColor: vars.bulletPointColor$error,
+  },
+  background$inactive: {
+    backgroundColor: vars.bulletPointColor$inactive,
+    opacity: vars.bulletPointOpacity$inactive,
+  },
+  background$completed: {
+    backgroundColor: vars.bulletPointColor$completed,
+  },
+  text: {
+    position: 'absolute',
+    inset: 0,
+    borderRadius: 'inherit',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     color: vars.bulletPointTextColor,
 
     fontFamily: vars.bulletPointTextFont,
@@ -86,22 +114,18 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     lineHeight: vars.bulletPointTextLineHeight,
     letterSpacing: vars.bulletPointTextLetterSpacing,
   },
-  bulletPoint$text$active: {
-    backgroundColor: vars.bulletPointColor$active,
-    color: vars.bulletPointTextColor$active,
-  },
-  bulletPoint$text$completed: {
-    backgroundColor: vars.bulletPointColor$completed,
-    color: vars.bulletPointTextColor$completed,
-  },
-  bulletPoint$text$disabled: {
-    backgroundColor: vars.bulletPointColor$disabled,
+  text$disabled: {
     color: vars.bulletPointTextColor$disabled,
-    opacity: vars.bulletPointOpacity$disabled,
+    opacity: vars.bulletPointTextOpacity$disabled,
   },
-  bulletPoint$text$error: {
-    backgroundColor: vars.bulletPointColor$error,
+  text$error: {
     color: vars.bulletPointTextColor$error,
+  },
+  text$inactive: {
+    color: vars.bulletPointTextColor$inactive,
+  },
+  text$completed: {
+    color: vars.bulletPointTextColor$completed,
   },
   labelContainer: {
     display: 'flex',
@@ -120,8 +144,8 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
   label$interactive: {
     color: vars.labelTextColor$interactive,
   },
-  label$active: {
-    color: vars.labelTextColor$active,
+  label$inactive: {
+    color: vars.labelTextColor$inactive,
   },
   label$completed: {
     color: vars.labelTextColor$completed,
@@ -142,10 +166,10 @@ export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
     letterSpacing: vars.supportingTextLetterSpacing,
   },
   supportingText$interactive: {
-    color: vars.supportingTextColor$active,
+    color: vars.supportingTextColor,
   },
-  supportingText$active: {
-    color: vars.supportingTextColor$active,
+  supportingText$inactive: {
+    color: vars.supportingTextColor$inactive,
   },
   supportingText$completed: {
     color: vars.supportingTextColor$completed,
@@ -242,3 +266,12 @@ export const focusRingStyles: MapNamespaces<IFocusRingStyles> = stylex.create<
     [focusRingVars.shape]: stepStateVars.containerShape,
   },
 });
+
+type ICircularProgressIndicatorStyles =
+  IStyles<ICircularProgressIndicatorStyleKey>;
+export const circularProgressIndicatorStyles: MapNamespaces<ICircularProgressIndicatorStyles> =
+  stylex.create<ICircularProgressIndicatorStyles>({
+    host: {
+      [circularProgressIndicatorVars.color]: stepStateVars.iconColor,
+    },
+  });

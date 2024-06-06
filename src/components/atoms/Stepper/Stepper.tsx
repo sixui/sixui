@@ -13,8 +13,8 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { Step, type IStepProps } from '@/components/atoms/Step';
 import { StepConnector } from '@/components/atoms/StepConnector';
-import { StepperContext, type IStepperContext } from './StepperContext';
 import { isElementLike } from '@/helpers/react/isElementLike';
+import { StepperContext, type IStepperContext } from './StepperContext';
 
 export type IStepperProps = IContainerProps<IStepperStyleKey> & {
   children: React.ReactNode;
@@ -64,6 +64,7 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
       cloneElement(child, {
         index,
         last: index + 1 >= validChildren.length,
+        loading: loading && activeStep === index,
         ...child.props,
       }),
     );
@@ -77,7 +78,6 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
           activeStep !== undefined
             ? Math.max(Math.min(activeStep, validChildren.length - 1), 0)
             : undefined,
-        loading,
         connector,
         orientation,
         labelPosition,
@@ -85,7 +85,6 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
       }),
       [
         activeStep,
-        loading,
         validChildren.length,
         connector,
         orientation,

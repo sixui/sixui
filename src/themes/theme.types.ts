@@ -423,6 +423,7 @@ export type ITheme = {
       vars?: IStyleVarsTheme<IStepStyleVarKey>;
       styles?: ICompiledStyles<IStepStyleKey>;
       focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
+      circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
     };
     StepConnector: {
       vars?: IStyleVarsTheme<IStepConnectorStyleVarKey>;

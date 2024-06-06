@@ -7,7 +7,7 @@ import {
 } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
-import type { IContainerProps } from '@/helpers/types';
+import type { ICompiledStyles, IContainerProps } from '@/helpers/types';
 import type { IStepStyleKey, IStepStyleVarKey } from './Step.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
@@ -20,7 +20,10 @@ import {
 } from '@/components/atoms/Stepper/StepperContext';
 import { ButtonBase, type IButtonBaseOwnProps } from '../ButtonBase';
 import { StepContext, type IStepContext } from './StepContext';
-import { CircularProgressIndicator } from '../CircularProgressIndicator';
+import {
+  type ICircularProgressIndicatorStyleKey,
+  IndeterminateCircularProgressIndicator,
+} from '@/components/atoms/CircularProgressIndicator';
 
 export type IStepRenderProps = {
   active: boolean;
@@ -29,7 +32,9 @@ export type IStepRenderProps = {
 };
 
 export type IStepProps = IContainerProps<IStepStyleKey> & {
-  innerStyles?: IButtonBaseOwnProps['innerStyles'];
+  innerStyles?: IButtonBaseOwnProps['innerStyles'] & {
+    circularProgressIndicator?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
+  };
   active?: boolean;
   completed?: boolean;
   disabled?: boolean;
@@ -101,14 +106,13 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       (context?.completed ||
         (completedProp ??
           (context?.activeStep !== undefined && index < context.activeStep)));
-    const isIcon = !!icon || hasError;
     const previousCompleted =
       !disabled &&
       context?.activeStep !== undefined &&
       index <= context.activeStep;
     const isActive =
       !disabled && (activeProp ?? (context && index === context.activeStep));
-    const loading = isActive && (context?.loading || loadingProp);
+    const loading = context?.loading || loadingProp;
     const labelPosition = hasText
       ? labelPositionProp ?? context?.labelPosition ?? 'right'
       : 'right';
@@ -123,10 +127,10 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       ? 'disabled'
       : hasError
         ? 'error'
-        : isActive
-          ? 'active'
-          : completed
-            ? 'completed'
+        : completed
+          ? 'completed'
+          : !isActive
+            ? 'inactive'
             : undefined;
 
     const contextValue: IStepContext = {
@@ -145,29 +149,28 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
           labelPosition === 'bottom' && 'buttonInner$bottomLabel',
         )}
       >
-        {loading ? (
-          <div {...sxf('bulletPoint', 'bulletPoint$icon')}>
-            <CircularProgressIndicator />
+        {loading || icon || hasError ? (
+          <div {...sxf('bulletPoint')}>
+            <div {...sxf('icon', state && `icon$${state}`)}>
+              {loading ? (
+                <IndeterminateCircularProgressIndicator
+                  styles={[
+                    theme.circularProgressIndicatorStyles,
+                    ...asArray(innerStyles?.circularProgressIndicator),
+                  ]}
+                />
+              ) : (
+                icon ??
+                (hasError ? <ExclamationTriangleIcon aria-hidden /> : null)
+              )}
+            </div>
           </div>
         ) : (
-          <div
-            {...sxf(
-              'bulletPoint',
-              isIcon ? 'bulletPoint$icon' : 'bulletPoint$text',
-              state &&
-                (isIcon
-                  ? `bulletPoint$icon$${state}`
-                  : `bulletPoint$text$${state}`),
-            )}
-          >
-            {icon ??
-              (hasError ? (
-                <ExclamationTriangleIcon aria-hidden />
-              ) : completed ? (
-                <CheckMarkIcon aria-hidden />
-              ) : (
-                index + 1
-              ))}
+          <div {...sxf('bulletPoint', 'bulletPoint$container')}>
+            <div {...sxf('background', state && `background$${state}`)} />
+            <div {...sxf('text', state && `text$${state}`)}>
+              {completed ? <CheckMarkIcon aria-hidden /> : index + 1}
+            </div>
           </div>
         )}
 

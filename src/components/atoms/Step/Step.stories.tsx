@@ -15,9 +15,7 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {
-  index: 1,
-} satisfies Partial<IStepProps>;
+const defaultArgs = {} satisfies Partial<IStepProps>;
 
 const rows: Array<IComponentPresentation<IStepProps>> = [
   {

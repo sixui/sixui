@@ -221,6 +221,7 @@ import { componentTheme as stepTheme } from './Step/Step.stylex';
 import {
   styles as stepStyles,
   focusRingStyles as stepFocusRingStypes,
+  circularProgressIndicatorStyles as stepCircularProgressIndicatorStyles,
 } from './Step/Step.styles';
 
 import { componentTheme as stepConnectorTheme } from './StepConnector/StepConnector.stylex';
@@ -494,6 +495,7 @@ export const theme: ITheme = {
       vars: stepTheme,
       styles: stepStyles,
       focusRingStyles: stepFocusRingStypes,
+      circularProgressIndicatorStyles: stepCircularProgressIndicatorStyles,
     },
     StepConnector: {
       vars: stepConnectorTheme,

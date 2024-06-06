@@ -35,26 +35,34 @@ const vars: Partial<IStyleVars<IStepStyleVarKey>> = {
   // bulletPoint
   bulletPointSize: '24px',
   bulletPointShape: shapeVars.corner$full,
-  bulletPointColor: colorRolesVars.secondaryContainer,
-  bulletPointTextColor: colorRolesVars.secondary,
+  bulletPointColor: colorRolesVars.primary,
+  // &:inactive
+  bulletPointColor$inactive: colorRolesVars.onSurface,
+  bulletPointOpacity$inactive: '0.16',
+  // &:completed
+  bulletPointColor$completed: colorRolesVars.primary,
+  // &:error
+  bulletPointColor$error: colorRolesVars.error,
+  // &:disabled
+  bulletPointColor$disabled: colorRolesVars.onSurface,
+  bulletPointOpacity$disabled: stateVars.containerOpacity$disabled,
+
+  // bulletPointText
+  bulletPointTextColor: colorRolesVars.onPrimary,
   bulletPointTextFont: typescaleVars.labelFont$md,
   bulletPointTextSize: typescaleVars.labelSize$md,
   bulletPointTextWeight: typescaleVars.labelWeight$md,
   bulletPointTextLineHeight: typescaleVars.labelLineHeight$md,
   bulletPointTextLetterSpacing: typescaleVars.labelLetterSpacing$md,
-  // &:active
-  bulletPointColor$active: colorRolesVars.primary,
-  bulletPointTextColor$active: colorRolesVars.onPrimary,
+  // &:inactive
+  bulletPointTextColor$inactive: colorRolesVars.onSurface,
   // &:completed
-  bulletPointColor$completed: colorRolesVars.primary,
   bulletPointTextColor$completed: colorRolesVars.onPrimary,
   // &:error
-  bulletPointColor$error: colorRolesVars.error,
   bulletPointTextColor$error: colorRolesVars.onError,
   // &:disabled
-  bulletPointColor$disabled: colorRolesVars.onSurface,
-  bulletPointTextColor$disabled: colorRolesVars.surface,
-  bulletPointOpacity$disabled: stateVars.opacity$disabled,
+  bulletPointTextColor$disabled: colorRolesVars.onSurface,
+  bulletPointTextOpacity$disabled: stateVars.opacity$disabled,
 
   // labelText
   labelTextColor: colorRolesVars.onSurface,
@@ -65,8 +73,8 @@ const vars: Partial<IStyleVars<IStepStyleVarKey>> = {
   labelTextLetterSpacing: typescaleVars.labelLetterSpacing$lg,
   // &:interactive
   labelTextColor$interactive: colorRolesVars.primary,
-  // &:active
-  labelTextColor$active: colorRolesVars.onSurface,
+  // &:inactive
+  labelTextColor$inactive: colorRolesVars.onSurface,
   // &:completed
   labelTextColor$completed: colorRolesVars.onSurface,
   // &:disabled
@@ -84,8 +92,8 @@ const vars: Partial<IStyleVars<IStepStyleVarKey>> = {
   supportingTextLetterSpacing: typescaleVars.labelLetterSpacing$sm,
   // &:interactive
   supportingTextColor$interactive: colorRolesVars.onSurface,
-  // &:active
-  supportingTextColor$active: colorRolesVars.onSurface,
+  // &:inactive
+  supportingTextColor$inactive: colorRolesVars.onSurface,
   // &:completed
   supportingTextColor$completed: colorRolesVars.onSurface,
   // &:disabled
