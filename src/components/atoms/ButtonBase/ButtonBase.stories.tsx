@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 
 import { ButtonBase, type IButtonBaseProps } from './ButtonBase';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
@@ -13,8 +15,23 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
+const styles = stylex.create({
+  host: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+  },
+});
+
 const defaultArgs = {
-  children: 'ButtonBase',
+  children: (
+    <div {...stylex.props(styles.host)}>
+      <FontAwesomeIcon icon={faCartPlus} />
+      <span>Add to cart</span>
+    </div>
+  ),
 } satisfies Partial<IButtonBaseProps>;
 
 export const Unstyled: IStory = {

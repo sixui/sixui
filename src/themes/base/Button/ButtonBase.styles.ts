@@ -33,4 +33,7 @@ export const styles: MapNamespaces<IButtonStyles> =
       inset: 0,
       borderRadius: 'inherit',
     },
+    outline: {
+      position: 'absolute',
+    },
   });

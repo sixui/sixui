@@ -115,7 +115,6 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
       {...other}
     >
       <span {...sxf('touchTarget')} />
-
       <Elevation
         styles={[theme.elevationStyles, ...asArray(innerStyles?.elevation)]}
         disabled={disabled}
