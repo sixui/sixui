@@ -1,3 +1,15 @@
+# v0.0.248 (Thu Jun 06 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(Button): allow to style directly button content without side effect ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.247 (Thu Jun 06 2024)
 
 #### ⚠️ Pushed to `main`
