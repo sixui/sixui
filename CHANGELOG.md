@@ -1,3 +1,15 @@
+# v0.0.247 (Thu Jun 06 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(Step): disassociate text from background ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.246 (Wed Jun 05 2024)
 
 #### ⚠️ Pushed to `main`
