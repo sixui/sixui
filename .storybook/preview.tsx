@@ -8,7 +8,7 @@ import { modes } from './modes';
 
 import { theme } from '@/themes/base';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { darkColorRoles } from '@/themes/base/vars/darkColorsRoles';
+import { darkColorRoles } from '@/themes/base/vars/darkColorRoles';
 
 // For theme variant
 // import { theme } from '@/themes/variant';

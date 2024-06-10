@@ -1,6 +1,6 @@
 import type { ITheme } from '../theme.types';
 
-import { darkColorRoles, darkColorRolesTheme } from './vars/darkColorsRoles';
+import { darkColorRoles, darkColorRolesTheme } from './vars/darkColorRoles';
 
 import { componentTheme as templateTheme } from './Template/Template.stylex';
 import { styles as templateStyles } from './Template/Template.styles';
