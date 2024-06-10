@@ -1,3 +1,15 @@
+# v0.0.249 (Mon Jun 10 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: typo darkColorsRoles -> darkColorRoles ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.248 (Thu Jun 06 2024)
 
 #### ⚠️ Pushed to `main`
