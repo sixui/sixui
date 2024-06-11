@@ -1,3 +1,15 @@
+# v0.0.251 (Tue Jun 11 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(TextField): invalid css rule ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.250 (Tue Jun 11 2024)
 
 #### ⚠️ Pushed to `main`
