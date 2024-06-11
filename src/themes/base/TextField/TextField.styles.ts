@@ -65,8 +65,6 @@ export const styles: MapNamespaces<ITextFieldStyles> =
           fieldBaseVars.contentColor$selection,
         '::-webkit-datetime-edit-second-field:focus':
           fieldBaseVars.contentColor$selection,
-        '::-webkit-datetime-edit-millisecond-field:focus':
-          fieldBaseVars.contentColor$selection,
         '::-webkit-datetime-edit-ampm-field:focus':
           fieldBaseVars.contentColor$selection,
       },
@@ -86,8 +84,6 @@ export const styles: MapNamespaces<ITextFieldStyles> =
         '::-webkit-datetime-edit-minute-field:focus':
           fieldBaseVars.contentBackground$selection,
         '::-webkit-datetime-edit-second-field:focus':
-          fieldBaseVars.contentBackground$selection,
-        '::-webkit-datetime-edit-millisecond-field:focus':
           fieldBaseVars.contentBackground$selection,
         '::-webkit-datetime-edit-ampm-field:focus':
           fieldBaseVars.contentBackground$selection,
