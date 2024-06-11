@@ -60,6 +60,11 @@ export const styles: MapNamespaces<ISkeletonStyles> =
         zIndex: vars.zIndex,
       },
     },
+    host$error: {
+      '::before': {
+        backgroundColor: vars.containerColor$error,
+      },
+    },
     host$rectangular: {
       height: 'auto',
       borderRadius: vars.containerShape,

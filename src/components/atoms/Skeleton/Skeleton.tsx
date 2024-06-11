@@ -17,6 +17,7 @@ export type ISkeletonProps = IContainerProps<ISkeletonStyleKey> & {
   variant?: 'rectangular' | 'circular' | 'overlay';
   animation?: 'pulse' | 'wave' | false;
   length?: number | IRange;
+  hasError?: boolean;
 };
 
 const staticStyles = stylex.create({
@@ -33,8 +34,9 @@ export const Skeleton = forwardRef<HTMLDivElement, ISkeletonProps>(
       children,
       loaded,
       variant = 'rectangular',
-      animation = 'pulse',
+      animation: animationProp = 'pulse',
       length: lengthProp,
+      hasError,
       ...other
     } = props;
 
@@ -51,6 +53,7 @@ export const Skeleton = forwardRef<HTMLDivElement, ISkeletonProps>(
       [stylesCombinator],
     );
 
+    const animation = hasError ? undefined : animationProp;
     const lengthRef = useRef(
       typeof lengthProp === 'object' ? randomInRange(lengthProp) : lengthProp,
     );
@@ -61,7 +64,7 @@ export const Skeleton = forwardRef<HTMLDivElement, ISkeletonProps>(
       <div
         {...sxf(
           'host',
-          theme.vars,
+          hasError ? 'host$error' : null,
           `host$${variant}`,
           variant === 'rectangular'
             ? lengthRef.current !== undefined
@@ -71,6 +74,7 @@ export const Skeleton = forwardRef<HTMLDivElement, ISkeletonProps>(
                 : undefined
             : undefined,
           animation ? `animation$${animation}` : undefined,
+          theme.vars,
           sx,
         )}
         ref={ref}

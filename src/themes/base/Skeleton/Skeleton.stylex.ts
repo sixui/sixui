@@ -11,6 +11,8 @@ const vars: Partial<IStyleVars<ISkeletonStyleVarKey>> = {
   // container
   containerShape: `min(0.25em, ${shapeVars.corner$xs})`,
   containerColor: colorRolesVars.surfaceContainerHigh,
+  // &:error
+  containerColor$error: colorRolesVars.errorContainer,
 
   // animation
   animationTargetColor: colorRolesVars.inverseSurface,

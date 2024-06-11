@@ -1,5 +1,6 @@
 export type ISkeletonStyleKey =
   | 'host'
+  | 'host$error'
   | 'host$rectangular'
   | 'host$circular'
   | 'host$overlay'
@@ -12,6 +13,7 @@ export type ISkeletonStyleVarKey =
   | 'zIndex'
   | 'containerShape'
   | 'containerColor'
+  | 'containerColor$error'
   | 'animationTargetColor'
   | 'animationMaxOpacity$pulse'
   | 'animationDuration$pulse'
