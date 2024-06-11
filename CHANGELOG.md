@@ -1,3 +1,15 @@
+# v0.0.250 (Tue Jun 11 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(Skeleton): error state ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.249 (Mon Jun 10 2024)
 
 #### ⚠️ Pushed to `main`
