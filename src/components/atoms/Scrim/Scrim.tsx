@@ -1,7 +1,11 @@
 import { forwardRef, useMemo } from 'react';
 
 import type { IContainerProps } from '@/helpers/types';
-import type { IScrimStyleKey, IScrimStyleVarKey } from './Scrim.styledefs';
+import type {
+  IScrimStyleKey,
+  IScrimStyleVarKey,
+  IScrimVariant,
+} from './Scrim.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
@@ -12,11 +16,22 @@ export type IScrimProps = IContainerProps<IScrimStyleKey> & {
   onClick?: (event: React.MouseEvent) => void;
   children: React.ReactNode;
   onMouseDown?: (event: React.MouseEvent) => void;
+  contained?: boolean;
+  variant?: IScrimVariant;
 };
 
 export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
   function Scrim(props, ref) {
-    const { styles, sx, open, onClick, children, onMouseDown } = props;
+    const {
+      styles,
+      sx,
+      open,
+      onClick,
+      children,
+      onMouseDown,
+      contained,
+      variant = 'darken',
+    } = props;
 
     const { theme } = useComponentTheme('Scrim');
     const stylesCombinator = useMemo(
@@ -33,7 +48,13 @@ export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
       <Fade in={open} timeout={500}>
         {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus, jsx-a11y/click-events-have-key-events */}
         <div
-          {...sxf('host', sx)}
+          {...sxf(
+            'host',
+            `host$${variant}`,
+            contained && 'host$contained',
+            !open && 'host$close',
+            sx,
+          )}
           aria-hidden
           ref={ref}
           onClick={onClick}

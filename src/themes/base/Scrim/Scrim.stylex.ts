@@ -5,7 +5,8 @@ import type { IScrimStyleVarKey } from '@/components/atoms/Scrim';
 import { colorRolesVars } from '../vars/colorRoles.stylex';
 
 const vars: Partial<IStyleVars<IScrimStyleVarKey>> = {
-  containerColor: `color-mix(in srgb, ${colorRolesVars.scrim} 50%, transparent)`,
+  containerColor$darken: `color-mix(in srgb, ${colorRolesVars.scrim} 50%, transparent)`,
+  containerColor$lighten: `rgba(255, 255, 255, 0.5)`,
 };
 
 export const componentVars = stylex.defineVars(

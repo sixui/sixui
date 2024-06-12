@@ -13,8 +13,19 @@ export const styles: MapNamespaces<IScrimStyles> = stylex.create<IScrimStyles>({
     alignItems: 'center',
     justifyContent: 'center',
     inset: 0,
-    backgroundColor: vars.containerColor,
     WebkitTapHighlightColor: 'transparent',
     zIndex: 1000,
+  },
+  host$close: {
+    pointerEvents: 'none',
+  },
+  host$darken: {
+    backgroundColor: vars.containerColor$darken,
+  },
+  host$lighten: {
+    backgroundColor: vars.containerColor$lighten,
+  },
+  host$contained: {
+    position: 'absolute',
   },
 });
