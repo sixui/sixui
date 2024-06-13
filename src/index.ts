@@ -64,6 +64,7 @@ export * from './hooks/useForkRef';
 export * from './hooks/useLoaded';
 export * from './hooks/usePrevious';
 export * from './hooks/useVisualState';
+export * from './hooks/useId';
 
 // themes
 export * from './themes';
