@@ -1,3 +1,15 @@
+# v0.0.255 (Thu Jun 13 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: expose useId hook ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.254 (Thu Jun 13 2024)
 
 #### ⚠️ Pushed to `main`
