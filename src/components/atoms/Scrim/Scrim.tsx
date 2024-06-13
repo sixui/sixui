@@ -10,6 +10,7 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { Fade } from '@/components/utils/Fade';
+import { useHideBodyScroll } from '@/hooks/useHideBodyScroll';
 
 export type IScrimProps = IContainerProps<IScrimStyleKey> & {
   open?: boolean;
@@ -43,6 +44,9 @@ export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
         stylePropsFactory<IScrimStyleKey, IScrimStyleVarKey>(stylesCombinator),
       [stylesCombinator],
     );
+    useHideBodyScroll({
+      disabled: !open,
+    });
 
     return (
       <Fade in={open} timeout={500}>

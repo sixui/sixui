@@ -14,7 +14,7 @@ export const styles: MapNamespaces<IScrimStyles> = stylex.create<IScrimStyles>({
     justifyContent: 'center',
     inset: 0,
     WebkitTapHighlightColor: 'transparent',
-    zIndex: 1000,
+    zIndex: 500,
   },
   host$close: {
     pointerEvents: 'none',
