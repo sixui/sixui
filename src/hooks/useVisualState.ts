@@ -104,8 +104,10 @@ export const useVisualState = <TElement extends Element = HTMLElement>(
     };
   }
 
-  const accumulatedVisualState =
-    accumulate({ focused, hovered, pressed }, inheritedVisualState) ?? {};
+  const accumulatedVisualState = accumulate(
+    { focused, hovered, pressed, dragged: false },
+    inheritedVisualState,
+  );
 
   if (accumulatedVisualState?.dragged) {
     return {
