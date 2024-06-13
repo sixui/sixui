@@ -8,13 +8,13 @@ import { shapeVars } from '../vars/shape.stylex';
 
 const pulseKeyframe = stylex.keyframes({
   '0%': {
-    opacity: 0,
-  },
-  '50%': {
     opacity: vars.animationMaxOpacity$pulse,
   },
-  '100%': {
+  '50%': {
     opacity: 0,
+  },
+  '100%': {
+    opacity: vars.animationMaxOpacity$pulse,
   },
 });
 
@@ -84,7 +84,7 @@ export const styles: MapNamespaces<ISkeletonStyles> =
     },
     animation$pulse: {
       '::after': {
-        opacity: 0,
+        opacity: vars.animationMaxOpacity$pulse,
         animationName: pulseKeyframe,
         animationDuration: vars.animationDuration$pulse,
         animationDelay: vars.animationDelay$pulse,
