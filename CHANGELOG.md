@@ -1,3 +1,15 @@
+# v0.0.254 (Thu Jun 13 2024)
+
+#### ⚠️ Pushed to `main`
+
+- chore: npm deps updated ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.253 (Thu Jun 13 2024)
 
 #### ⚠️ Pushed to `main`
