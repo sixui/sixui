@@ -1,3 +1,15 @@
+# v0.0.253 (Thu Jun 13 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(Scrim): zIndex from 999 to 500; prevent body to scroll when scrim enabled ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.252 (Wed Jun 12 2024)
 
 #### ⚠️ Pushed to `main`
