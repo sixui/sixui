@@ -172,6 +172,13 @@ const useCases: Array<IComponentPresentation<IMultiSelectProps>> = [
   },
 ];
 
+export const Test: IStory = {
+  render: (props) => <MultiSelect {...props}></MultiSelect>,
+  args: {
+    value: [],
+  },
+};
+
 export const Basic: IStory = {
   render: (props) => (
     <ComponentShowcase

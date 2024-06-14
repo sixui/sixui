@@ -16,7 +16,7 @@ const vars: Partial<IStyleVars<IDialogStyleVarKey>> = {
 
   // icon
   iconColor: colorRolesVars.secondary,
-  iconSize: '18px',
+  iconSize: '24px',
 
   // headline
   headlineColor: colorRolesVars.onSurface,
