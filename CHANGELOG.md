@@ -1,3 +1,15 @@
+# v0.0.257 (Fri Jun 14 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: some FormField had wrong empty value ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.256 (Thu Jun 13 2024)
 
 #### ⚠️ Pushed to `main`
