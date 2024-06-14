@@ -1,11 +1,6 @@
 import { forwardRef, useMemo } from 'react';
-import { asArray } from '@olivierpascal/helpers';
 
-import type {
-  IContainerProps,
-  IZeroOrMore,
-  ICompiledStyles,
-} from '@/helpers/types';
+import type { IContainerProps } from '@/helpers/types';
 import type {
   IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
@@ -18,7 +13,7 @@ import type {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { IThemeComponents } from '@/components/utils/Theme';
-import { type IButtonStyleKey, type IButtonOwnProps, Button } from '../Button';
+import { type IButtonOwnProps, Button } from '../Button';
 
 // https://github.com/material-components/material-web/blob/main/iconbutton/internal/icon-button.ts
 
@@ -30,9 +25,6 @@ export type IIconButtonOwnProps = Omit<
 > &
   IContainerProps<IIconButtonStyleKey> &
   Pick<React.AriaAttributes, 'aria-label'> & {
-    innerStyles?: IButtonOwnProps['innerStyles'] & {
-      button?: IZeroOrMore<ICompiledStyles<IButtonStyleKey>>;
-    };
     variant?: IIconButtonVariant | false;
     toggle?: boolean;
     selected?: boolean;
@@ -53,6 +45,7 @@ type IIconButtonVariantMap = {
     | 'FilledTonalIconButton'
     | 'OutlinedIconButton'
     | 'DangerIconButton'
+    | 'SnackbarIconButton'
   >;
 };
 
@@ -62,6 +55,7 @@ const variantMap: IIconButtonVariantMap = {
   filledTonal: 'FilledTonalIconButton',
   outlined: 'OutlinedIconButton',
   danger: 'DangerIconButton',
+  snackbar: 'SnackbarIconButton',
 };
 
 type IIconButton = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
@@ -75,7 +69,6 @@ export const IconButton: IIconButton = forwardRef(function IconButton<
     styles,
     sx,
     as,
-    innerStyles,
     variant = 'standard',
     toggle,
     selected,
@@ -99,13 +92,12 @@ export const IconButton: IIconButton = forwardRef(function IconButton<
     <Button
       ref={ref}
       as={as}
-      styles={asArray(innerStyles?.button)}
+      styles={styles}
       sx={[
         stylesCombinator(
           'host',
           toggle ? (selected ? 'host$toggle$selected' : 'host$toggle') : null,
         ),
-        theme.vars,
         variantTheme?.vars,
         sx,
       ]}

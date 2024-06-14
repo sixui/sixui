@@ -117,4 +117,34 @@ export const Outlined: IStory = {
   },
 };
 
+export const Danger: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={IconButton}
+      props={props}
+      cols={states}
+      rows={rows}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'danger',
+  },
+};
+
+export const Snackbar: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={IconButton}
+      props={props}
+      cols={states}
+      rows={rows}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'snackbar',
+  },
+};
+
 export default meta;

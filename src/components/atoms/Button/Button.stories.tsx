@@ -178,4 +178,19 @@ export const Danger: IStory = {
   },
 };
 
+export const Snackbar: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={Button}
+      props={props}
+      cols={states}
+      rows={rows}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'snackbar',
+  },
+};
+
 export default meta;

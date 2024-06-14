@@ -164,7 +164,7 @@ export const itemStyles: MapNamespaces<IItemStyles> = stylex.create<
     opacity: listItemStatesVars.textOpacity,
   },
   host$multiline: {
-    minHeight: vars.containerHeight$twoLine,
+    minHeight: vars.containerHeight$twoLines,
   },
 });
 

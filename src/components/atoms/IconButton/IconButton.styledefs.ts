@@ -4,6 +4,7 @@ export const iconbuttonVariants = [
   'filledTonal',
   'outlined',
   'danger',
+  'snackbar',
 ] as const;
 export type IIconButtonVariant = (typeof iconbuttonVariants)[number];
 

@@ -39,8 +39,8 @@ export type IButtonBaseOwnProps = IContainerProps<IButtonStyleKey> & {
     elevation?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
   };
   visualState?: IVisualState;
-  withLeadingIcon?: boolean;
-  withTrailingIcon?: boolean;
+  withLeadingIcon?: boolean; // TODO: -> Button
+  withTrailingIcon?: boolean; // TODO: -> Button
   children?: React.ReactNode;
   inwardFocusRing?: boolean;
   href?: string;

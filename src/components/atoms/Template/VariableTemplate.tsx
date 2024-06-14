@@ -62,11 +62,7 @@ export const VariableTemplate = forwardRef<
   );
 
   return (
-    <div
-      {...sxf('host', theme.vars, variantTheme?.vars, sx)}
-      ref={handleRef}
-      {...other}
-    >
+    <div {...sxf('host', variantTheme?.vars, sx)} ref={handleRef} {...other}>
       {children}
     </div>
   );

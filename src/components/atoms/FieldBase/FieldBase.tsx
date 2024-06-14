@@ -557,7 +557,6 @@ export const FieldBase = forwardRef<HTMLDivElement, IFieldBaseProps>(
           'host',
           !!supportingOrErrorText && 'host$withSupportingText',
           disabled && 'host$disabled',
-          theme.vars,
           variantTheme?.vars,
           sx,
         )}

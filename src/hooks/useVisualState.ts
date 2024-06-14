@@ -109,7 +109,7 @@ export const useVisualState = <TElement extends Element = HTMLElement>(
     inheritedVisualState,
   );
 
-  if (accumulatedVisualState?.dragged) {
+  if (accumulatedVisualState.dragged) {
     return {
       visualState: {
         ...accumulatedVisualState,

@@ -34,9 +34,10 @@ import { styles as buttonBaseStyles } from './Button/ButtonBase.styles';
 import { componentTheme as elevatedButtonTheme } from './Button/ElevatedButton.stylex';
 import { componentTheme as filledButtonTheme } from './Button/FilledButton.stylex';
 import { componentTheme as filledTonalButtonTheme } from './Button/FilledTonalButton.stylex';
-import { componentTheme as dangerButtonTheme } from './Button/DangerButton.stylex';
 import { componentTheme as outlinedButtonTheme } from './Button/OutlinedButton.stylex';
 import { componentTheme as textButtonTheme } from './Button/TextButton.stylex';
+import { componentTheme as dangerButtonTheme } from './Button/DangerButton.stylex';
+import { componentTheme as snackbarButtonTheme } from './Button/SnackbarButton.stylex';
 
 import { styles as circularProgressIndicatorStyles } from './CircularProgressIndicator/CircularProgressIndicator.styles';
 import { componentTheme as circularProgressIndicatorTheme } from './CircularProgressIndicator/CircularProgressIndicator.stylex';
@@ -73,6 +74,7 @@ import { componentTheme as filledIconButtonTheme } from './IconButton/FilledIcon
 import { componentTheme as filledTonalIconButtonTheme } from './IconButton/FilledTonalIconButton.stylex';
 import { componentTheme as outlinedIconButtonTheme } from './IconButton/OutlinedIconButton.stylex';
 import { componentTheme as dangerIconButtonTheme } from './IconButton/DangerIconButton.stylex';
+import { componentTheme as snackbarIconButtonTheme } from './IconButton/SnackbarIconButton.stylex';
 
 import {
   styles as switchStyles,
@@ -233,6 +235,12 @@ import { styles as elementWithLabelStyles } from './ElementWithLabel/ElementWith
 import { componentTheme as skeletonTheme } from './Skeleton/Skeleton.stylex';
 import { styles as skeletonStyles } from './Skeleton/Skeleton.styles';
 
+import { componentTheme as snackbarTheme } from './Snackbar/Snackbar.stylex';
+import {
+  styles as snackbarStyles,
+  elevationStyles as snackbarElevationStyles,
+} from './Snackbar/Snackbar.styles';
+
 export const theme: ITheme = {
   name: 'Material Design 3',
   colorSchemes: {
@@ -287,6 +295,7 @@ export const theme: ITheme = {
     OutlinedButton: { vars: outlinedButtonTheme },
     TextButton: { vars: textButtonTheme },
     DangerButton: { vars: dangerButtonTheme },
+    SnackbarButton: { vars: snackbarButtonTheme },
     CircularProgressIndicator: {
       vars: circularProgressIndicatorTheme,
       styles: circularProgressIndicatorStyles,
@@ -329,6 +338,7 @@ export const theme: ITheme = {
     FilledTonalIconButton: { vars: filledTonalIconButtonTheme },
     OutlinedIconButton: { vars: outlinedIconButtonTheme },
     DangerIconButton: { vars: dangerIconButtonTheme },
+    SnackbarIconButton: { vars: snackbarIconButtonTheme },
     Switch: {
       vars: switchTheme,
       styles: switchStyles,
@@ -508,6 +518,11 @@ export const theme: ITheme = {
     Skeleton: {
       vars: skeletonTheme,
       styles: skeletonStyles,
+    },
+    Snackbar: {
+      vars: snackbarTheme,
+      styles: snackbarStyles,
+      elevationStyles: snackbarElevationStyles,
     },
   },
 };

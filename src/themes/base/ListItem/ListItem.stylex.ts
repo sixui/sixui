@@ -19,8 +19,8 @@ const vars: Partial<IStyleVars<IListItemStyleVarKey>> = {
   containerOpacity: '1',
   containerShape: shapeVars.corner$none,
   containerHeight$oneLine: '48px',
-  containerHeight$twoLine: '56px',
-  containerHeight$threeLine: '72px',
+  containerHeight$twoLines: '56px',
+  containerHeight$threeLines: '72px',
   // &:disabled
   containerColor$disabled: 'transparent',
   containerOpacity$disabled: stateVars.containerOpacity$disabled,
