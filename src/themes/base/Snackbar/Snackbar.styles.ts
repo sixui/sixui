@@ -51,8 +51,6 @@ export const styles: MapNamespaces<ISnackbarStyles> =
       gap: vars.gap,
       alignItems: 'center',
       height: vars.supportingTextLineHeight,
-      paddingTop: vars.topSpace,
-      paddingBottom: vars.bottomSpace,
     },
   });
 
