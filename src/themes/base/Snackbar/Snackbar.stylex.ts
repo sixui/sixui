@@ -9,8 +9,8 @@ import { typescaleVars } from '../vars/typo.stylex';
 
 const vars: Partial<IStyleVars<ISnackbarStyleVarKey>> = {
   gap: '12px',
-  topSpace: '12px',
-  bottomSpace: '12px',
+  topSpace: '14px',
+  bottomSpace: '14px',
   leadingSpace: '16px',
   trailingSpace: '16px',
   actionTrailingSpace: '8px',

@@ -1,12 +1,9 @@
 export type ISnackbarStyleKey =
   | 'host'
-  | 'host$long'
   | 'host$trailingAction'
   | 'host$trailingIcon'
   | 'supportingText'
-  | 'supportingText$long'
-  | 'actions'
-  | 'actions$long';
+  | 'actions';
 
 export type ISnackbarStyleVarKey =
   | 'gap'

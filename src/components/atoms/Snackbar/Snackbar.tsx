@@ -33,7 +33,6 @@ export type ISnackbarProps = IContainerProps<ISnackbarStyleKey> & {
   actionLabel?: string;
   onActionClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
   onClose?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
-  long?: boolean;
 };
 
 export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
@@ -45,12 +44,11 @@ export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
       open,
       autoHideDuration,
       // FIXME: position
-      // TODO: auto layout if long text
+      // TODO: Snackbar -> SnackbarContent
       children,
       actionLabel,
       onActionClick,
       onClose,
-      long,
       ...other
     } = props;
 
@@ -76,7 +74,6 @@ export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
             : onClose
               ? 'host$trailingIcon'
               : undefined,
-          long && 'host$long',
           theme.vars,
           sx,
         )}
@@ -86,12 +83,10 @@ export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
         <Elevation
           styles={[theme.elevationStyles, ...asArray(innerStyles?.elevation)]}
         />
-        <div {...sxf('supportingText', long && 'supportingText$long')}>
-          {children}
-        </div>
+        <div {...sxf('supportingText')}>{children}</div>
 
         {actionLabel ?? onClose ? (
-          <div {...sxf('actions', long && 'actions$long')}>
+          <div {...sxf('actions')}>
             {actionLabel ? (
               <Button variant='snackbar' onClick={onActionClick}>
                 {actionLabel}

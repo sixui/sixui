@@ -50,22 +50,32 @@ const rows: Array<IComponentPresentation<ISnackbarProps>> = [
     },
   },
   {
-    legend: 'Longer action',
+    legend: 'Longer text',
     props: {
-      actionLabel: 'Action with a longer label',
+      actionLabel: 'Action',
       onActionClick: (...args) => sbHandleEvent('click', args, 1000),
-      long: true,
     },
   },
 ];
 
-export const Variants: IStory = {
+export const Short: IStory = {
   render: (props) => (
     <ComponentShowcase component={Snackbar} props={props} rows={rows} />
   ),
   args: {
     ...defaultArgs,
     children: 'Lorem ipsum dolor sit amet',
+  },
+};
+
+export const Long: IStory = {
+  render: (props) => (
+    <ComponentShowcase component={Snackbar} props={props} rows={rows} />
+  ),
+  args: {
+    ...defaultArgs,
+    children:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt.',
   },
 };
 

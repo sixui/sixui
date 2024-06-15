@@ -12,25 +12,22 @@ type ISnackbarStyles = IStyles<ISnackbarStyleKey>;
 export const styles: MapNamespaces<ISnackbarStyles> =
   stylex.create<ISnackbarStyles>({
     host: {
+      gap: vars.gap,
       position: 'relative',
       display: 'flex',
+      flexWrap: 'wrap',
       flexDirection: 'row',
       alignItems: 'center',
       minWidth: 320,
       width: 'fit-content',
-      gap: vars.gap,
+      paddingTop: vars.topSpace,
+      paddingBottom: vars.bottomSpace,
       paddingLeft: vars.leadingSpace,
       paddingRight: vars.trailingSpace,
       backgroundColor: vars.containerColor,
       [snackbarStateVars.elevation]: vars.containerElevation,
       borderRadius: vars.containerShape,
       minHeight: vars.containerMinHeight,
-    },
-    host$long: {
-      flexDirection: 'column',
-      alignItems: 'flex-start',
-      paddingTop: vars.topSpace,
-      paddingBottom: vars.bottomSpace,
     },
     host$trailingAction: {
       paddingRight: vars.actionTrailingSpace,
@@ -46,20 +43,16 @@ export const styles: MapNamespaces<ISnackbarStyles> =
       fontWeight: vars.supportingTextWeight,
       lineHeight: vars.supportingTextLineHeight,
       letterSpacing: vars.supportingTextLetterSpacing,
-      paddingTop: vars.topSpace,
-      paddingBottom: vars.bottomSpace,
-    },
-    supportingText$long: {
-      paddingTop: 0,
-      paddingBottom: 0,
     },
     actions: {
       display: 'flex',
       flexDirection: 'row',
-      flexShrink: 0,
-    },
-    actions$long: {
-      alignSelf: 'flex-end',
+      marginLeft: 'auto',
+      gap: vars.gap,
+      alignItems: 'center',
+      height: vars.supportingTextLineHeight,
+      paddingTop: vars.topSpace,
+      paddingBottom: vars.bottomSpace,
     },
   });
 
