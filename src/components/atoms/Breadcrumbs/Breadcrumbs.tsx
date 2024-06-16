@@ -25,13 +25,13 @@ import { isFragment } from '@/helpers/react/isFragment';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import {
   ButtonBase,
-  type IButtonStyleKey,
+  type IButtonBaseStyleKey,
 } from '@/components/atoms/ButtonBase';
 import { ReactComponent as EllipsisHorizontalIcon } from '@/assets/EllipsisHorizontal.svg';
 
 export type IBreadcrumbsProps = IContainerProps<IBreadcrumbsStyleKey> & {
   innerStyles?: {
-    expandButton?: IZeroOrMore<ICompiledStyles<IButtonStyleKey>>;
+    expandButton?: IZeroOrMore<ICompiledStyles<IButtonBaseStyleKey>>;
     expandButtonFocusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
   };
   children: React.ReactNode;

@@ -53,7 +53,6 @@ export * from './components/molecules/ElementWithLabel';
 export * from './components/utils/Anchored';
 export * from './components/utils/ComponentShowcase';
 export * from './components/utils/Elevation';
-export * from './components/utils/Fade';
 export * from './components/utils/FocusRing';
 export * from './components/utils/Portal';
 export * from './components/utils/StateLayer';
