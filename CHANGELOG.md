@@ -1,3 +1,15 @@
+# v0.0.258 (Sun Jun 16 2024)
+
+#### 🐛 Bug Fix
+
+- Feat/snackbar [#29](https://github.com/sixui/sixui/pull/29) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.257 (Fri Jun 14 2024)
 
 #### ⚠️ Pushed to `main`
