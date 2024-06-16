@@ -98,6 +98,7 @@ export const IconButton: IIconButton = forwardRef(function IconButton<
           'host',
           toggle ? (selected ? 'host$toggle$selected' : 'host$toggle') : null,
         ),
+        theme.vars,
         variantTheme?.vars,
         sx,
       ]}

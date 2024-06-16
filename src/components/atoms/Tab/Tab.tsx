@@ -206,6 +206,7 @@ export const Tab: ITab = forwardRef(function Tab<
         'host',
         active && 'host$active',
         disabled && 'host$disabled',
+        theme.vars,
         variantTheme?.vars,
         sx,
       )}

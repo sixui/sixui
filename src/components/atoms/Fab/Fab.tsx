@@ -100,6 +100,7 @@ export const Fab: IFab = forwardRef(function Fab<
           extended && 'host$extended',
           lowered && 'host$lowered',
         ),
+        theme.vars,
         variantTheme?.vars,
         sx,
       ]}

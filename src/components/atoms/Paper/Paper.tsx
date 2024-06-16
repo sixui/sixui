@@ -79,6 +79,7 @@ export const Paper = forwardRef<HTMLDivElement, IPaperProps>(
           'host',
           `host$elevation${elevation}`,
           square && 'host$square',
+          theme.vars,
           variantTheme?.vars,
           sx,
         )}

@@ -295,6 +295,7 @@ export const Chip: IChip = forwardRef(function Chip<
         interactive && 'host$interactive',
         disabled && 'host$disabled',
         avatar && 'host$avatar',
+        theme.vars,
         variantTheme?.vars,
         sx,
       )}

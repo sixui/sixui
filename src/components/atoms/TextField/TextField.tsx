@@ -360,7 +360,7 @@ export const TextField = forwardRef<
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
     <div
-      {...sxf('host', variantTheme?.vars, sx)}
+      {...sxf('host', theme.vars, variantTheme?.vars, sx)}
       onClick={(event) => {
         const isSelf = event.target === inputOrTextareaRef.current;
         if (!isSelf) {

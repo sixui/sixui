@@ -153,6 +153,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
         disabled && 'host$disabled',
         hasLeadingContent && 'host$hasLeadingContent',
         hasTrailingContent && 'host$hasTrailingContent',
+        theme.vars,
         variantTheme?.vars,
         sx,
       )}
