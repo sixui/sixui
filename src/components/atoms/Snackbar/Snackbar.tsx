@@ -30,7 +30,7 @@ export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
       styles,
       sx,
       open,
-      horizontalOrigin,
+      horizontalOrigin = 'center',
       autoHideDuration,
       onClose,
       ...other
