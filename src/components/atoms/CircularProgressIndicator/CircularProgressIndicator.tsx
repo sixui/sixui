@@ -1,6 +1,10 @@
 import { forwardRef } from 'react';
 
-import type { IContainerProps, IMakeOptional } from '@/helpers/types';
+import type {
+  IContainerProps,
+  IOmit,
+  IMakeOptional,
+} from '@/helpers/types';
 import type { IDeterminateCircularProgressIndicatorProps } from './DeterminateCircularProgressIndicator';
 import type { IDeterminateCircularProgressIndicatorStyleKey } from './DeterminateCircularProgressIndicator.styledefs';
 import type { IIndeterminateCircularProgressIndicatorProps } from './IndeterminateCircularProgressIndicator';
@@ -15,10 +19,10 @@ export type ICircularProgressIndicatorProps = IContainerProps<
   | IIndeterminateCircularProgressIndicatorStyleKey
 > &
   IMakeOptional<
-    Omit<IDeterminateCircularProgressIndicatorProps, 'styles'>,
+    IOmit<IDeterminateCircularProgressIndicatorProps, 'styles'>,
     'value'
   > &
-  Omit<IIndeterminateCircularProgressIndicatorProps, 'styles'>;
+  IOmit<IIndeterminateCircularProgressIndicatorProps, 'styles'>;
 
 export const CircularProgressIndicator = forwardRef<
   HTMLInputElement,

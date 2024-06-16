@@ -72,3 +72,6 @@ export type IRange = {
   min: number;
   max: number;
 };
+
+// Omit with keys type checks
+export type IOmit<TType, TKeys extends keyof TType> = Omit<TType, TKeys>;

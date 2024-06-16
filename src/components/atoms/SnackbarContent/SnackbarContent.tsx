@@ -32,6 +32,7 @@ export type ISnackbarContentProps =
     actionLabel?: string;
     onActionClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
     onClose?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
+    showCloseButton?: boolean;
   };
 
 export const SnackbarContent = forwardRef<
@@ -46,6 +47,7 @@ export const SnackbarContent = forwardRef<
     actionLabel,
     onActionClick,
     onClose,
+    showCloseButton,
     ...other
   } = props;
 
@@ -82,14 +84,14 @@ export const SnackbarContent = forwardRef<
       />
       <div {...sxf('supportingText')}>{children}</div>
 
-      {actionLabel ?? onClose ? (
+      {actionLabel ?? showCloseButton ? (
         <div {...sxf('actions')}>
           {actionLabel ? (
             <Button variant='snackbar' onClick={onActionClick}>
               {actionLabel}
             </Button>
           ) : null}
-          {onClose ? (
+          {showCloseButton ? (
             <IconButton
               variant='snackbar'
               icon={<XMarkIcon aria-hidden />}

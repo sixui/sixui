@@ -1,6 +1,6 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/helpers/types';
+import type { IContainerProps, IOmit } from '@/helpers/types';
 import type {
   IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
@@ -19,9 +19,9 @@ import { type IButtonOwnProps, Button } from '../Button';
 
 const DEFAULT_TAG = 'button';
 
-export type IIconButtonOwnProps = Omit<
+export type IIconButtonOwnProps = IOmit<
   IButtonOwnProps,
-  'variant' | 'icon' | 'trailingIcon'
+  'icon' | 'variant' | 'trailingIcon'
 > &
   IContainerProps<IIconButtonStyleKey> &
   Pick<React.AriaAttributes, 'aria-label'> & {

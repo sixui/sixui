@@ -5,6 +5,7 @@ import type {
   IContainerProps,
   IZeroOrMore,
   ICompiledStyles,
+  IOmit,
 } from '@/helpers/types';
 import type { IThemeComponents } from '@/components/utils/Theme';
 import type { ITextFieldStyleKey } from './TextField.styledefs';
@@ -97,7 +98,7 @@ export type ITextFieldProps = IContainerProps<ITextFieldStyleKey> &
     'min' | 'max' | 'step' | 'pattern' | 'multiple'
   > &
   Pick<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'cols' | 'rows'> &
-  Omit<IFieldBaseProps, 'styles' | 'textarea' | 'resizable'> & {
+  IOmit<IFieldBaseProps, 'styles' | 'textarea' | 'resizable'> & {
     innerStyles?: {
       field?: IZeroOrMore<ICompiledStyles<IFieldBaseStyleKey>>;
     };

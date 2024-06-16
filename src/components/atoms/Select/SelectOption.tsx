@@ -2,9 +2,13 @@ import stylex from '@stylexjs/stylex';
 import { Fragment } from 'react';
 import { Listbox } from '@headlessui/react';
 
+import type { IOmit } from '@/helpers/types';
 import { type IListItemProps, ListItem } from '@/components/atoms/ListItem';
 
-export type ISelectOptionProps = Omit<IListItemProps, 'as' | 'type'> & {
+export type ISelectOptionProps = IOmit<
+  IListItemProps,
+  'as' | 'type'
+> & {
   as?: React.ElementType;
   value?: string;
   label?: string;

@@ -1,6 +1,8 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef, useMemo, useRef } from 'react';
+import { CSSTransition } from 'react-transition-group';
+import { useTimeout } from 'usehooks-ts';
 
-import type { IContainerProps } from '@/helpers/types';
+import type { IContainerProps, IOmit } from '@/helpers/types';
 import type {
   ISnackbarStyleKey,
   ISnackbarStyleVarKey,
@@ -12,18 +14,27 @@ import {
   SnackbarContent,
   type ISnackbarContentProps,
 } from '@/components/atoms/SnackbarContent';
+import { useForkRef } from '@/hooks/useForkRef';
 
 export type ISnackbarProps = IContainerProps<ISnackbarStyleKey> &
-  Omit<ISnackbarContentProps, 'styles' | 'sx'> & {
+  IOmit<ISnackbarContentProps, 'styles' | 'sx' | 'onClose'> & {
     open?: boolean;
+    onClose?: () => void;
     horizontalOrigin?: 'left' | 'center';
     autoHideDuration?: number;
   };
 
 export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
   function Snackbar(props, ref) {
-    const { styles, sx, open, horizontalOrigin, autoHideDuration, ...other } =
-      props;
+    const {
+      styles,
+      sx,
+      open,
+      horizontalOrigin,
+      autoHideDuration,
+      onClose,
+      ...other
+    } = props;
 
     const { theme } = useComponentTheme('Snackbar');
     const stylesCombinator = useMemo(
@@ -38,14 +49,39 @@ export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
       [stylesCombinator],
     );
 
-    if (!open) {
-      return null;
-    }
+    useTimeout(() => onClose?.(), open ? autoHideDuration ?? null : null);
+
+    const nodeRef = useRef<HTMLElement>();
+    const handleRef = useForkRef(nodeRef, ref);
 
     return (
-      <div ref={ref}>
-        <SnackbarContent {...other} />
-      </div>
+      <CSSTransition
+        nodeRef={nodeRef}
+        in={open}
+        timeout={1000}
+        classNames={{
+          enter: sxf('onEnter').className,
+          enterActive: sxf('onEnterActive').className,
+          exitActive: sxf('onExitActive').className,
+        }}
+        unmountOnExit
+      >
+        <div
+          ref={handleRef}
+          {...sxf(
+            'host',
+            horizontalOrigin === 'left'
+              ? 'host$left'
+              : horizontalOrigin === 'center'
+                ? 'host$center'
+                : undefined,
+            theme.vars,
+            sx,
+          )}
+        >
+          <SnackbarContent {...other} onClose={onClose} />
+        </div>
+      </CSSTransition>
     );
   },
 );

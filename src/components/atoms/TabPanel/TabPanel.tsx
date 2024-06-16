@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 import { forwardRef, useContext } from 'react';
 
-import type { IContainerProps } from '@/helpers/types';
+import type { IContainerProps, IOmit } from '@/helpers/types';
 import { TabContext } from '@/components/atoms/Tabs';
 
-export type ITabPanelProps = Omit<IContainerProps, 'styles'> & {
+export type ITabPanelProps = IOmit<IContainerProps, 'styles'> & {
   anchor: string;
   children?: React.ReactNode;
 };

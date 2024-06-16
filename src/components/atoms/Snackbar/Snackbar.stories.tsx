@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { Button } from '@/components/atoms/Button';
+import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { Snackbar, type ISnackbarProps } from './Snackbar';
 
 // https://m3.material.io/components/snackbar
@@ -24,13 +25,13 @@ const defaultArgs = {
   sx: styles.snackbar,
 } satisfies Partial<ISnackbarProps>;
 
-const OpenButton: React.FC = (props: Omit<ISnackbarProps, 'open'>) => {
+const Demo: React.FC<ISnackbarProps> = (props: ISnackbarProps) => {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      <Snackbar {...props} open={open} />
-      <Button onClick={() => setOpen(true)}>Open</Button>
+      <Snackbar {...props} open={open} onClose={() => setOpen(false)} />
+      <Button onClick={() => setOpen((open) => !open)}>Open</Button>
     </>
   );
 };
@@ -38,7 +39,7 @@ const OpenButton: React.FC = (props: Omit<ISnackbarProps, 'open'>) => {
 export const Open: IStory = {
   render: (props: ISnackbarProps) => (
     <ComponentShowcase
-      component={OpenButton}
+      component={Demo}
       props={props}
       cols={[
         {
@@ -53,10 +54,39 @@ export const Open: IStory = {
             horizontalOrigin: 'center',
           },
         },
+      ]}
+      rows={[
         {
-          legend: 'Right',
+          legend: 'Auto hide',
           props: {
-            horizontalOrigin: 'right',
+            children: 'Photo has been saved to your album.',
+            autoHideDuration: 2000,
+          },
+        },
+        {
+          legend: 'Actionable',
+          props: {
+            children: "Couldn't send photo.",
+            actionLabel: 'Retry',
+            onActionClick: (...args) => sbHandleEvent('click', args, 1000),
+          },
+        },
+        {
+          legend: 'Actionable and auto hide',
+          props: {
+            children: "Couldn't send photo.",
+            actionLabel: 'Retry',
+            onActionClick: (...args) => sbHandleEvent('click', args, 1000),
+            autoHideDuration: 2000,
+          },
+        },
+        {
+          legend: 'Actionable and closable',
+          props: {
+            children: "Couldn't send photo.",
+            actionLabel: 'Retry',
+            onActionClick: (...args) => sbHandleEvent('click', args, 1000),
+            showCloseButton: true,
           },
         },
       ]}

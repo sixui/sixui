@@ -1,13 +1,13 @@
 import { useCallback, useMemo, useRef } from 'react';
 
-import type { IAny, IMaybeAsync } from '@/helpers/types';
+import type { IAny, IOmit, IMaybeAsync } from '@/helpers/types';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { EASING } from '@/helpers/animation';
 import { shouldReduceMotion } from '@/helpers/shouldReduceAnimations';
 import { type ITabContext, TabContext } from './TabContext';
 import { useId } from '@/hooks/useId';
 
-export type ITabsProps = Omit<ITabContext, 'onChange' | 'onTabActivated'> & {
+export type ITabsProps = IOmit<ITabContext, 'onChange' | 'onTabActivated'> & {
   onChange?: (anchor: string | undefined) => IMaybeAsync<IAny>;
   defaultAnchor?: string;
   children?: React.ReactNode;

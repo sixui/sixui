@@ -49,7 +49,7 @@ export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
     });
 
     return (
-      <Fade in={open} timeout={500}>
+      <Fade in={open}>
         {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus, jsx-a11y/click-events-have-key-events */}
         <div
           {...sxf(

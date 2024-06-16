@@ -4,6 +4,7 @@ import { asArray } from '@olivierpascal/helpers';
 import type {
   IAny,
   ICompiledStyles,
+  IOmit,
   IMaybeAsync,
   IZeroOrMore,
 } from '@/helpers/types';
@@ -39,7 +40,7 @@ import {
 
 const DEFAULT_TAG = 'button';
 
-export type IButtonOwnProps = Omit<
+export type IButtonOwnProps = IOmit<
   IButtonBaseOwnProps,
   'withLeadingIcon' | 'withTrailingIcon'
 > & {

@@ -2,9 +2,13 @@ import stylex from '@stylexjs/stylex';
 import { Fragment } from 'react';
 import { Combobox as Autocomplete } from '@headlessui/react';
 
+import type { IOmit } from '@/helpers/types';
 import { type IListItemProps, ListItem } from '@/components/atoms/ListItem';
 
-export type IComboboxOptionProps = Omit<IListItemProps, 'as' | 'type'> & {
+export type IComboboxOptionProps = IOmit<
+  IListItemProps,
+  'as' | 'type'
+> & {
   as?: React.ElementType;
   value: string;
   label?: string;

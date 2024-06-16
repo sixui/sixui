@@ -4,7 +4,7 @@ import { Menu as HeadlessMenu } from '@headlessui/react';
 import { type Placement, useFloating } from '@floating-ui/react-dom';
 import { FloatingPortal } from '@floating-ui/react';
 
-import type { IContainerProps } from '@/helpers/types';
+import type { IContainerProps, IOmit } from '@/helpers/types';
 import { IVisualState } from '@/hooks/useVisualState';
 import { MenuList } from '@/components/atoms/MenuList';
 import { MenuListDivider } from '@/components/atoms/MenuList/MenuListDivider';
@@ -15,7 +15,7 @@ export type IMenuRenderProps = {
   open: boolean;
 };
 
-export type IMenuProps = Omit<IContainerProps, 'styles'> & {
+export type IMenuProps = IOmit<IContainerProps, 'styles'> & {
   action:
     | React.ReactElement
     | ((props: IMenuRenderProps) => React.ReactElement);

@@ -6,6 +6,7 @@ import { useFloating } from '@floating-ui/react-dom';
 import { size } from '@floating-ui/dom';
 import { FloatingPortal } from '@floating-ui/react';
 
+import type { IOmit } from '@/helpers/types';
 import { MenuList } from '@/components/atoms/MenuList';
 import { IVisualState } from '@/hooks/useVisualState';
 import { useColorScheme } from '@/components/utils/ColorScheme';
@@ -21,10 +22,7 @@ import { SelectOption, type ISelectOptionProps } from './SelectOption';
 
 type IOption = React.ReactElement<ISelectOptionProps>;
 
-export type ISelectBaseProps = Omit<
-  IFieldProps,
-  'end' | 'value' | 'defaultValue'
-> & {
+export type ISelectBaseProps = IOmit<IFieldProps, 'value' | 'end'> & {
   visualState?: IVisualState;
   children?: Array<React.ReactNode> | null;
   noOptionsText?: string;

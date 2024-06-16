@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 import { useImperativeHandle, useMemo, useRef, forwardRef } from 'react';
 
-import type { IContainerProps } from '@/helpers/types';
+import type { IContainerProps, IOmit } from '@/helpers/types';
 import type {
   IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
@@ -20,7 +20,7 @@ import {
 
 const DEFAULT_TAG = 'div';
 
-export type IRadioGroupOwnProps = Omit<IContainerProps, 'styles'> &
+export type IRadioGroupOwnProps = IOmit<IContainerProps, 'styles'> &
   IRadioGroupContext & {
     actions?: React.RefObject<unknown>;
     children?: React.ReactNode;

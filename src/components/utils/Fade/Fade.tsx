@@ -1,4 +1,5 @@
-import { Transition, TransitionStatus } from 'react-transition-group';
+import type { CSSTransitionClassNames } from 'react-transition-group/CSSTransition';
+import { CSSTransition, TransitionStatus } from 'react-transition-group';
 import { cloneElement, forwardRef, useRef } from 'react';
 
 import { motionVars } from '@/themes/base/vars/motion.stylex';
@@ -6,6 +7,8 @@ import { useForkRef } from '@/hooks/useForkRef';
 import { forceReflow } from '@/helpers/forceReflow';
 import { css } from '@/helpers/css';
 import { getTransitionProps } from './getTransitionProps';
+
+// FIXME:
 
 export type IFadeProps = {
   /**
@@ -124,6 +127,7 @@ export type IFadeProps = {
   onExited?: (node: HTMLElement) => void;
 
   style?: React.CSSProperties;
+  classNames?: CSSTransitionClassNames;
 };
 
 const styles: Partial<Record<TransitionStatus, React.CSSProperties>> = {
@@ -135,9 +139,13 @@ const styles: Partial<Record<TransitionStatus, React.CSSProperties>> = {
   },
 };
 
-const ENTER_DURATION = motionVars.duration$medium2;
-const EXIT_DURATION = motionVars.duration$medium2;
+// FIXME:
+// const ENTER_DURATION = motionVars.duration$medium2;
+// const EXIT_DURATION = motionVars.duration$medium2;
 const EASING = 'cubic-bezier(0.2, 0, 0, 1)';
+
+const ENTER_DURATION = '5000';
+const EXIT_DURATION = '5000';
 
 export const Fade: React.FC<IFadeProps> = forwardRef(function Fade(props, ref) {
   const defaultEasing = EASING;
@@ -160,6 +168,7 @@ export const Fade: React.FC<IFadeProps> = forwardRef(function Fade(props, ref) {
     onExiting,
     onExited,
     style,
+    classNames,
   } = props;
 
   const nodeRef = useRef<HTMLElement>();
@@ -236,33 +245,35 @@ export const Fade: React.FC<IFadeProps> = forwardRef(function Fade(props, ref) {
   };
 
   return (
-    <Transition
+    <CSSTransition
       nodeRef={nodeRef}
-      appear={appear}
+      // appear={appear}
       in={transitionIn}
-      onEnter={handleEnter}
-      onEntering={onEntering}
-      onEntered={handleEntered}
-      onExit={handleExit}
-      onExiting={handleExiting}
-      onExited={handleExited}
+      // onEnter={handleEnter}
+      // onEntering={onEntering}
+      // onEntered={handleEntered}
+      // onExit={handleExit}
+      // onExiting={handleExiting}
+      // onExited={handleExited}
       addEndListener={handleAddEndListener}
-      timeout={timeout}
+      timeout={1000}
+      // timeout={timeout}
+      classNames={classNames}
     >
       {(state, childProps) =>
         cloneElement(children, {
-          style: {
-            opacity: 0,
-            visibility:
-              state === 'exited' && !transitionIn ? 'hidden' : 'visible',
-            ...styles[state],
-            ...style,
-            ...children.props.style,
-          },
+          // style: {
+          //   opacity: 0,
+          //   visibility:
+          //     state === 'exited' && !transitionIn ? 'hidden' : 'visible',
+          //   ...styles[state],
+          //   ...style,
+          //   ...children.props.style,
+          // },
           ref: handleRef,
           ...childProps,
         })
       }
-    </Transition>
+    </CSSTransition>
   );
 });

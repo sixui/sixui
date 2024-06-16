@@ -4,6 +4,7 @@ import { asArray } from '@olivierpascal/helpers';
 import type {
   ICompiledStyles,
   IContainerProps,
+  IOmit,
   IZeroOrMore,
 } from '@/helpers/types';
 import type {
@@ -25,7 +26,7 @@ import { DisclosureContext } from '@/components/atoms/Disclosure';
 
 export type IDisclosureButtonProps =
   IContainerProps<IDisclosureButtonStyleKey> &
-    Omit<IListItemProps, 'children' | 'innerStyles'> & {
+    IOmit<Omit<IListItemProps, 'innerStyles'>, 'children'> & {
       innerStyles?: {
         listItem?: IListItemProps['innerStyles'];
         checkbox?: IZeroOrMore<ICompiledStyles<ICheckboxStyleKey>>;

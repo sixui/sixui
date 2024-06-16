@@ -8,7 +8,7 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { Divider } from '../Divider';
 
 export type ITabListProps = Pick<React.AriaAttributes, 'aria-label'> &
-  Omit<IContainerProps<ITabListStyleKey>, 'theme'> & {
+  IContainerProps<ITabListStyleKey> & {
     children?: React.ReactNode;
     fullWidth?: boolean;
   };

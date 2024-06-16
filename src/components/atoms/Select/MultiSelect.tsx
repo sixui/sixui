@@ -1,10 +1,11 @@
 import { forwardRef } from 'react';
 
+import type { IOmit } from '@/helpers/types';
 import { MenuListDivider } from '@/components/atoms/MenuList/MenuListDivider';
 import { SelectBase, type ISelectBaseProps } from './SelectBase';
 import { SelectOption } from './SelectOption';
 
-export type IMultiSelectProps = Omit<
+export type IMultiSelectProps = IOmit<
   Extract<ISelectBaseProps, { multiple: true }>,
   'multiple'
 >;

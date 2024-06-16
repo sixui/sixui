@@ -1,6 +1,6 @@
 import { forwardRef, useEffect, useMemo, useState } from 'react';
 
-import type { IContainerProps } from '@/helpers/types';
+import type { IContainerProps, IOmit } from '@/helpers/types';
 import type { IDisclosureStyleKey } from './Disclosure.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
@@ -14,7 +14,7 @@ import {
 } from './DisclosureContext';
 
 export type IDisclosureProps = IContainerProps<IDisclosureStyleKey> &
-  Omit<IDisclosureContext, 'expanded' | 'setExpanded'> & {
+  IOmit<IDisclosureContext, 'expanded' | 'setExpanded'> & {
     children: React.ReactNode;
     defaultExpanded?: boolean;
   };

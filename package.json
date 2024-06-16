@@ -121,6 +121,7 @@
     "@olivierpascal/helpers": "^0.0.70",
     "modern-normalize": "^2.0.0",
     "react-transition-group": "^4.4.5",
+    "usehooks-ts": "^3.1.0",
     "validate-branch-name": "^1.3.0"
   },
   "peerDependencies": {

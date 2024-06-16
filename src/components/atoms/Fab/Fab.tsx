@@ -5,6 +5,7 @@ import type {
   IContainerProps,
   IZeroOrMore,
   ICompiledStyles,
+  IOmit,
 } from '@/helpers/types';
 import type {
   IPolymorphicComponentPropsWithRef,
@@ -22,7 +23,7 @@ import { type IButtonStyleKey, type IButtonOwnProps, Button } from '../Button';
 
 const DEFAULT_TAG = 'button';
 
-export type IFabOwnProps = Omit<
+export type IFabOwnProps = IOmit<
   IButtonOwnProps,
   'variant' | 'icon' | 'trailingIcon'
 > &

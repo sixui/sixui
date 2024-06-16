@@ -39,6 +39,7 @@ const rows: Array<IComponentPresentation<ISnackbarContentProps>> = [
     legend: 'Closable',
     props: {
       onClose: (...args) => sbHandleEvent('click', args, 1000),
+      showCloseButton: true,
     },
   },
   {
@@ -47,6 +48,7 @@ const rows: Array<IComponentPresentation<ISnackbarContentProps>> = [
       actionLabel: 'Action',
       onActionClick: (...args) => sbHandleEvent('click', args, 1000),
       onClose: (...args) => sbHandleEvent('click', args, 1000),
+      showCloseButton: true,
     },
   },
   {
