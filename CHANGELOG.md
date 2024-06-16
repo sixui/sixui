@@ -1,3 +1,15 @@
+# v0.0.259 (Sun Jun 16 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: Snackbar margins ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.258 (Sun Jun 16 2024)
 
 #### 🐛 Bug Fix
