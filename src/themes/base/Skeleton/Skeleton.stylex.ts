@@ -5,7 +5,7 @@ import type { ISkeletonStyleVarKey } from '@/components/atoms/Skeleton';
 import { colorRolesVars } from '../vars/colorRoles.stylex';
 import { shapeVars } from '../vars/shape.stylex';
 
-const vars: Partial<IStyleVars<ISkeletonStyleVarKey>> = {
+const vars: IStyleVars<ISkeletonStyleVarKey> = {
   zIndex: '9',
 
   // container
@@ -26,9 +26,7 @@ const vars: Partial<IStyleVars<ISkeletonStyleVarKey>> = {
   animationDelay$wave: '0.5s',
 };
 
-export const componentVars = stylex.defineVars(
-  vars as IStyleVars<ISkeletonStyleVarKey>,
-);
+export const componentVars = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that

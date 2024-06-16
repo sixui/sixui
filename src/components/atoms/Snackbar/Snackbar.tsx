@@ -1,13 +1,6 @@
 import { forwardRef, useMemo } from 'react';
-import { asArray } from '@olivierpascal/helpers';
 
-import type {
-  IContainerProps,
-  IZeroOrMore,
-  ICompiledStyles,
-  IMaybeAsync,
-  IAny,
-} from '@/helpers/types';
+import type { IContainerProps } from '@/helpers/types';
 import type {
   ISnackbarStyleKey,
   ISnackbarStyleVarKey,
@@ -16,41 +9,21 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import {
-  Elevation,
-  type IElevationStyleKey,
-} from '@/components/utils/Elevation';
-import { Button } from '@/components/atoms/Button';
-import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
-import { IconButton } from '@/components/atoms/IconButton';
+  SnackbarContent,
+  type ISnackbarContentProps,
+} from '@/components/atoms/SnackbarContent';
 
-export type ISnackbarProps = IContainerProps<ISnackbarStyleKey> & {
-  innerStyles?: {
-    elevation?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
+export type ISnackbarProps = IContainerProps<ISnackbarStyleKey> &
+  Omit<ISnackbarContentProps, 'styles' | 'sx'> & {
+    open?: boolean;
+    horizontalOrigin?: 'left' | 'center';
+    autoHideDuration?: number;
   };
-  open?: string;
-  autoHideDuration?: number;
-  children?: React.ReactNode;
-  actionLabel?: string;
-  onActionClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
-  onClose?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
-};
 
 export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
   function Snackbar(props, ref) {
-    const {
-      styles,
-      sx,
-      innerStyles,
-      open,
-      autoHideDuration,
-      // FIXME: position
-      // TODO: Snackbar -> SnackbarContent
-      children,
-      actionLabel,
-      onActionClick,
-      onClose,
-      ...other
-    } = props;
+    const { styles, sx, open, horizontalOrigin, autoHideDuration, ...other } =
+      props;
 
     const { theme } = useComponentTheme('Snackbar');
     const stylesCombinator = useMemo(
@@ -65,43 +38,13 @@ export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
       [stylesCombinator],
     );
 
-    return (
-      <div
-        {...sxf(
-          'host',
-          actionLabel
-            ? 'host$trailingAction'
-            : onClose
-              ? 'host$trailingIcon'
-              : undefined,
-          theme.vars,
-          sx,
-        )}
-        ref={ref}
-        {...other}
-      >
-        <Elevation
-          styles={[theme.elevationStyles, ...asArray(innerStyles?.elevation)]}
-        />
-        <div {...sxf('supportingText')}>{children}</div>
+    if (!open) {
+      return null;
+    }
 
-        {actionLabel ?? onClose ? (
-          <div {...sxf('actions')}>
-            {actionLabel ? (
-              <Button variant='snackbar' onClick={onActionClick}>
-                {actionLabel}
-              </Button>
-            ) : null}
-            {onClose ? (
-              <IconButton
-                variant='snackbar'
-                icon={<XMarkIcon aria-hidden />}
-                onClick={onClose}
-                aria-label='close'
-              />
-            ) : null}
-          </div>
-        ) : null}
+    return (
+      <div ref={ref}>
+        <SnackbarContent {...other} />
       </div>
     );
   },

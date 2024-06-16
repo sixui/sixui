@@ -7,7 +7,7 @@ import { typescaleVars } from '../vars/typo.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-item.scss
 
-const vars: Partial<IStyleVars<IItemStyleVarKey>> = {
+const vars: IStyleVars<IItemStyleVarKey> = {
   // text
   textColor: colorRolesVars.onSurface,
 
@@ -63,9 +63,7 @@ const vars: Partial<IStyleVars<IItemStyleVarKey>> = {
   trailingContentMinWidth: '48px',
 };
 
-export const componentVars = stylex.defineVars(
-  vars as IStyleVars<IItemStyleVarKey>,
-);
+export const componentVars = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that

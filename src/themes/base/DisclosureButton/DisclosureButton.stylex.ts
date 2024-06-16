@@ -7,7 +7,7 @@ import { shapeVars } from '../vars/shape.stylex';
 import { colorRolesVars } from '../vars/colorRoles.stylex';
 import { stateVars } from '../vars/state.stylex';
 
-const vars: Partial<IStyleVars<IDisclosureButtonStyleVarKey>> = {
+const vars: IStyleVars<IDisclosureButtonStyleVarKey> = {
   // container
   containerShape: shapeVars.corner$sm,
   containerColor: colorRolesVars.secondaryContainer,
@@ -64,9 +64,7 @@ const vars: Partial<IStyleVars<IDisclosureButtonStyleVarKey>> = {
   expandedIconColor$pressed: colorRolesVars.onSecondaryContainer,
 };
 
-export const componentVars = stylex.defineVars(
-  vars as IStyleVars<IDisclosureButtonStyleVarKey>,
-);
+export const componentVars = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that

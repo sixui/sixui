@@ -8,7 +8,7 @@ import { shapeVars } from '../vars/shape.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-divider.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-divider.scss
-const vars: Partial<IStyleVars<IDividerStyleVarKey>> = {
+const vars: IStyleVars<IDividerStyleVarKey> = {
   thickness: '1px',
   shape: shapeVars.corner$none,
   color: colorRolesVars.outlineVariant,
@@ -22,9 +22,7 @@ const vars: Partial<IStyleVars<IDividerStyleVarKey>> = {
   textLetterSpacing: typescaleVars.bodyLetterSpacing$sm,
 };
 
-export const componentVars = stylex.defineVars(
-  vars as IStyleVars<IDividerStyleVarKey>,
-);
+export const componentVars = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that

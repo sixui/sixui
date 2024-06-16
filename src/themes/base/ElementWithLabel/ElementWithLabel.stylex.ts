@@ -6,7 +6,7 @@ import { colorRolesVars } from '../vars/colorRoles.stylex';
 import { typescaleVars } from '../vars/typo.stylex';
 import { stateVars } from '../vars/state.stylex';
 
-const vars: Partial<IStyleVars<IElementWithLabelStyleVarKey>> = {
+const vars: IStyleVars<IElementWithLabelStyleVarKey> = {
   // labelText
   labelTextColor: colorRolesVars.onSurface,
   labelTextFont: typescaleVars.labelFont$lg,
@@ -43,9 +43,7 @@ const vars: Partial<IStyleVars<IElementWithLabelStyleVarKey>> = {
   supportingTextOpacity$disabled: stateVars.opacity$disabled,
 };
 
-export const componentVars = stylex.defineVars(
-  vars as IStyleVars<IElementWithLabelStyleVarKey>,
-);
+export const componentVars = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that

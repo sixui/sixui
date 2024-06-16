@@ -9,15 +9,13 @@ import { componentVars as elevationVars } from '../Elevation/Elevation.stylex';
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-menulist.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-menulist.scss
 
-const vars: Partial<IStyleVars<IMenuListStyleVarKey>> = {
+const vars: IStyleVars<IMenuListStyleVarKey> = {
   containerColor: colorRolesVars.surfaceContainer,
   containerElevation: elevationVars.boxShadow$level2,
   containerShape: shapeVars.corner$xs,
 };
 
-export const componentVars = stylex.defineVars(
-  vars as IStyleVars<IMenuListStyleVarKey>,
-);
+export const componentVars = stylex.defineVars(vars);
 
 // This is a workaround to allow reaplying vars at the component level so that it can uses themed
 // vars. See https://github.com/facebook/stylex/issues/162#issuecomment-1853775396

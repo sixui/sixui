@@ -5,7 +5,7 @@ import type { IComponentShowcaseStyleVarKey } from '@/components/utils/Component
 import { typescaleVars } from '@/themes/base/vars/typo.stylex';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 
-const vars: Partial<IStyleVars<IComponentShowcaseStyleVarKey>> = {
+const vars: IStyleVars<IComponentShowcaseStyleVarKey> = {
   // legend
   legendTextColor: colorRolesVars.secondary,
   legendTextFont: typescaleVars.labelFont$md,
@@ -18,9 +18,7 @@ const vars: Partial<IStyleVars<IComponentShowcaseStyleVarKey>> = {
   groupBorderColor: colorRolesVars.onSurface,
 };
 
-export const componentVars = stylex.defineVars(
-  vars as IStyleVars<IComponentShowcaseStyleVarKey>,
-);
+export const componentVars = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that

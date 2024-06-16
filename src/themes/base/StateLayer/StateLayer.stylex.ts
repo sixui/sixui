@@ -7,7 +7,7 @@ import { stateVars } from '../vars/state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-ripple.scss
 
-const vars: Partial<IStyleVars<IStateLayerStyleVarKey>> = {
+const vars: IStyleVars<IStateLayerStyleVarKey> = {
   color$hover: colorRolesVars.onSurface,
   color$pressed: colorRolesVars.onSurface,
   color$dragged: colorRolesVars.onSurface,
@@ -16,9 +16,7 @@ const vars: Partial<IStyleVars<IStateLayerStyleVarKey>> = {
   opacity$dragged: stateVars.stateLayerOpacity$dragged,
 };
 
-export const componentVars = stylex.defineVars(
-  vars as IStyleVars<IStateLayerStyleVarKey>,
-);
+export const componentVars = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that

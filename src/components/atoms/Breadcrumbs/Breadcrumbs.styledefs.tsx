@@ -8,11 +8,6 @@ export type IBreadcrumbsStyleKey =
 
 export type IBreadcrumbsStyleVarKey =
   | 'itemColor'
-  | 'itemTextFont'
-  | 'itemTextLineHeight'
-  | 'itemTextSize'
-  | 'itemTextLetterSpacing'
-  | 'itemTextWeight'
   | 'separatorColor'
   | 'separatorSize'
   | 'expandButtonContainerColor'

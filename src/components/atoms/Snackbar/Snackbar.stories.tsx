@@ -1,11 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
+import { useState } from 'react';
 
-import {
-  type IComponentPresentation,
-  ComponentShowcase,
-} from '@/components/utils/ComponentShowcase';
-import { sbHandleEvent } from '@/helpers/sbHandleEvent';
+import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
+import { Button } from '@/components/atoms/Button';
 import { Snackbar, type ISnackbarProps } from './Snackbar';
 
 // https://m3.material.io/components/snackbar
@@ -26,56 +24,47 @@ const defaultArgs = {
   sx: styles.snackbar,
 } satisfies Partial<ISnackbarProps>;
 
-const rows: Array<IComponentPresentation<ISnackbarProps>> = [
-  { legend: 'Text' },
-  {
-    legend: 'Actionable',
-    props: {
-      actionLabel: 'Action',
-      onActionClick: (...args) => sbHandleEvent('click', args, 1000),
-    },
-  },
-  {
-    legend: 'Closable',
-    props: {
-      onClose: (...args) => sbHandleEvent('click', args, 1000),
-    },
-  },
-  {
-    legend: 'Actionable and closable',
-    props: {
-      actionLabel: 'Action',
-      onActionClick: (...args) => sbHandleEvent('click', args, 1000),
-      onClose: (...args) => sbHandleEvent('click', args, 1000),
-    },
-  },
-  {
-    legend: 'Longer text',
-    props: {
-      actionLabel: 'Action',
-      onActionClick: (...args) => sbHandleEvent('click', args, 1000),
-    },
-  },
-];
+const OpenButton: React.FC = (props: Omit<ISnackbarProps, 'open'>) => {
+  const [open, setOpen] = useState(false);
 
-export const Short: IStory = {
-  render: (props) => (
-    <ComponentShowcase component={Snackbar} props={props} rows={rows} />
-  ),
-  args: {
-    ...defaultArgs,
-    children: 'Lorem ipsum dolor sit amet',
-  },
+  return (
+    <>
+      <Snackbar {...props} open={open} />
+      <Button onClick={() => setOpen(true)}>Open</Button>
+    </>
+  );
 };
 
-export const Long: IStory = {
-  render: (props) => (
-    <ComponentShowcase component={Snackbar} props={props} rows={rows} />
+export const Open: IStory = {
+  render: (props: ISnackbarProps) => (
+    <ComponentShowcase
+      component={OpenButton}
+      props={props}
+      cols={[
+        {
+          legend: 'Left',
+          props: {
+            horizontalOrigin: 'left',
+          },
+        },
+        {
+          legend: 'Center',
+          props: {
+            horizontalOrigin: 'center',
+          },
+        },
+        {
+          legend: 'Right',
+          props: {
+            horizontalOrigin: 'right',
+          },
+        },
+      ]}
+    />
   ),
   args: {
     ...defaultArgs,
-    children:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt.',
+    children: 'Lorem ipsum dolor sit amet.',
   },
 };
 

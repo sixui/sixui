@@ -8,7 +8,7 @@ import { stateVars } from '../vars/state.stylex';
 import { typescaleVars } from '../vars/typo.stylex';
 import { shapeVars } from '../vars/shape.stylex';
 
-const vars: Partial<IStyleVars<IDialogStyleVarKey>> = {
+const vars: IStyleVars<IDialogStyleVarKey> = {
   // container
   containerColor: colorRolesVars.surfaceContainerHigh,
   containerElevation: elevationVars.boxShadow$level3,
@@ -57,9 +57,7 @@ const vars: Partial<IStyleVars<IDialogStyleVarKey>> = {
   actionStateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
 };
 
-export const componentVars = stylex.defineVars(
-  vars as IStyleVars<IDialogStyleVarKey>,
-);
+export const componentVars = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that

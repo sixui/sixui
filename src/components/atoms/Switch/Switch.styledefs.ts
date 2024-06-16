@@ -95,7 +95,6 @@ export type ISwitchStyleVarKey =
   | 'stateLayerSize'
   | 'stateLayerColor$hover'
   | 'stateLayerOpacity$hover'
-  | 'stateLayerColor$focus'
   | 'stateLayerColor$pressed'
   | 'stateLayerOpacity$pressed'
   | 'selectedStateLayerColor$hover'

@@ -236,10 +236,13 @@ import { componentTheme as skeletonTheme } from './Skeleton/Skeleton.stylex';
 import { styles as skeletonStyles } from './Skeleton/Skeleton.styles';
 
 import { componentTheme as snackbarTheme } from './Snackbar/Snackbar.stylex';
+import { styles as snackbarStyles } from './Snackbar/Snackbar.styles';
+
+import { componentTheme as snackbarContentTheme } from './SnackbarContent/SnackbarContent.stylex';
 import {
-  styles as snackbarStyles,
-  elevationStyles as snackbarElevationStyles,
-} from './Snackbar/Snackbar.styles';
+  styles as snackbarContentStyles,
+  elevationStyles as snackbarContentElevationStyles,
+} from './SnackbarContent/SnackbarContent.styles';
 
 export const theme: ITheme = {
   name: 'Material Design 3',
@@ -522,7 +525,11 @@ export const theme: ITheme = {
     Snackbar: {
       vars: snackbarTheme,
       styles: snackbarStyles,
-      elevationStyles: snackbarElevationStyles,
+    },
+    SnackbarContent: {
+      vars: snackbarContentTheme,
+      styles: snackbarContentStyles,
+      elevationStyles: snackbarContentElevationStyles,
     },
   },
 };

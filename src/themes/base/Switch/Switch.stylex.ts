@@ -9,7 +9,7 @@ import { stateVars } from '../vars/state.stylex';
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-switch.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-switch.scss
 
-const vars: Partial<IStyleVars<ISwitchStyleVarKey>> = {
+const vars: IStyleVars<ISwitchStyleVarKey> = {
   // track
   trackShape: shapeVars.corner$full,
   trackWidth: '52px',
@@ -126,9 +126,7 @@ const vars: Partial<IStyleVars<ISwitchStyleVarKey>> = {
   selectedStateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
 };
 
-export const componentVars = stylex.defineVars(
-  vars as IStyleVars<ISwitchStyleVarKey>,
-);
+export const componentVars = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that
