@@ -4,6 +4,7 @@ import type {
   IContainerProps,
   IZeroOrMore,
   ICompiledStyles,
+  IOmit,
 } from '@/helpers/types';
 import type { IFieldStyleKey } from './Field.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
@@ -16,7 +17,7 @@ import {
 } from '@/components/atoms/FieldBase';
 
 export type IFieldProps = IContainerProps<IFieldStyleKey> &
-  Omit<IFieldBaseProps, 'styles' | 'children' | 'populated'> & {
+  IOmit<IFieldBaseProps, 'styles' | 'children' | 'populated'> & {
     innerStyles?: {
       field?: IZeroOrMore<ICompiledStyles<IFieldBaseStyleKey>>;
     };

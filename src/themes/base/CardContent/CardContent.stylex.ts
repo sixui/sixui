@@ -4,7 +4,7 @@ import type { IStyleVars } from '@/helpers/types';
 import type { ICardContentStyleVarKey } from '@/components/atoms/CardContent';
 import { colorRolesVars } from '../vars/colorRoles.stylex';
 
-const vars: Partial<IStyleVars<ICardContentStyleVarKey>> = {
+const vars: IStyleVars<ICardContentStyleVarKey> = {
   leadingSpace: '16px',
   trailingSpace: '16px',
   topSpace: '16px',
@@ -17,9 +17,7 @@ const vars: Partial<IStyleVars<ICardContentStyleVarKey>> = {
   bottomSpace$actionable: '16px',
 };
 
-export const componentVars = stylex.defineVars(
-  vars as IStyleVars<ICardContentStyleVarKey>,
-);
+export const componentVars = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that

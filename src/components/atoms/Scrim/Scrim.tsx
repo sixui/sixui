@@ -1,4 +1,5 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef, useMemo, useRef } from 'react';
+import { CSSTransition } from 'react-transition-group';
 
 import type { IContainerProps } from '@/helpers/types';
 import type {
@@ -9,8 +10,8 @@ import type {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { Fade } from '@/components/utils/Fade';
 import { useHideBodyScroll } from '@/hooks/useHideBodyScroll';
+import { useForkRef } from '@/hooks/useForkRef';
 
 export type IScrimProps = IContainerProps<IScrimStyleKey> & {
   open?: boolean;
@@ -48,9 +49,21 @@ export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
       disabled: !open,
     });
 
+    const nodeRef = useRef<HTMLDivElement>(null);
+    const handleRef = useForkRef(nodeRef, ref);
+
     return (
-      <Fade in={open} timeout={500}>
-        {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus, jsx-a11y/click-events-have-key-events */}
+      <CSSTransition
+        nodeRef={nodeRef}
+        in={open}
+        timeout={1000}
+        classNames={{
+          enter: sxf('animation$onEnter').className,
+          enterActive: sxf('animation$onEnterActive').className,
+          exitActive: sxf('animation$onExitActive').className,
+        }}
+        unmountOnExit
+      >
         <div
           {...sxf(
             'host',
@@ -60,14 +73,14 @@ export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
             sx,
           )}
           aria-hidden
-          ref={ref}
+          ref={handleRef}
           onClick={onClick}
           role='button'
           onMouseDown={onMouseDown}
         >
           {children}
         </div>
-      </Fade>
+      </CSSTransition>
     );
   },
 );

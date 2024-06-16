@@ -15,6 +15,7 @@ export const styles: MapNamespaces<IIconButtonStyles> =
   stylex.create<IIconButtonStyles>({
     host: {
       width: vars.containerWidth,
+      flexShrink: 0,
 
       [buttonVars.leadingSpace]: '0',
       [buttonVars.trailingSpace]: '0',
@@ -35,6 +36,7 @@ export const styles: MapNamespaces<IIconButtonStyles> =
       [buttonVars.containerColor]: vars.containerColor,
       [buttonVars.containerColor$disabled]: vars.containerColor$disabled,
       [buttonVars.iconSize]: vars.iconSize,
+      [buttonVars.labelTextLineHeight]: vars.iconSize,
       [buttonVars.iconColor$disabled]: vars.iconColor$disabled,
       [buttonVars.iconOpacity$disabled]: vars.iconOpacity$disabled,
       [buttonVars.stateLayerOpacity$hover]: vars.stateLayerOpacity$hover,

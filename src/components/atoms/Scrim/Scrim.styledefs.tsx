@@ -6,7 +6,10 @@ export type IScrimStyleKey =
   | 'host$close'
   | 'host$darken'
   | 'host$lighten'
-  | 'host$contained';
+  | 'host$contained'
+  | 'animation$onEnter'
+  | 'animation$onEnterActive'
+  | 'animation$onExitActive';
 
 export type IScrimStyleVarKey =
   | 'containerColor$darken'

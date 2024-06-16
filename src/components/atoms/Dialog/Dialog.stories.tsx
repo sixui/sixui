@@ -63,16 +63,6 @@ export const Basic: IStory = {
   },
 };
 
-export const KeepMounted: IStory = {
-  render: (props) => <DialogLauncher {...props} />,
-  args: {
-    ...defaultArgs,
-    headline: 'Headline',
-    children: 'Just a simple dialog.',
-    keepMounted: true,
-  },
-};
-
 export const WithIcon: IStory = {
   render: (props) => <DialogLauncher {...props} />,
   args: {

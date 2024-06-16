@@ -140,6 +140,14 @@ import type {
   ISkeletonStyleKey,
   ISkeletonStyleVarKey,
 } from '@/components/atoms/Skeleton';
+import type {
+  ISnackbarStyleKey,
+  ISnackbarStyleVarKey,
+} from '@/components/atoms/Snackbar';
+import type {
+  ISnackbarContentStyleKey,
+  ISnackbarContentStyleVarKey,
+} from '@/components/atoms/SnackbarContent';
 
 export type ITemplateTheme = {
   vars?: IStyleVarsTheme<ITemplateStyleVarKey>;
@@ -259,6 +267,7 @@ export type ITheme = {
     OutlinedButton: IButtonTheme;
     TextButton: IButtonTheme;
     DangerButton: IButtonTheme;
+    SnackbarButton: IButtonTheme;
     CircularProgressIndicator: {
       vars: IStyleVarsTheme<ICircularProgressIndicatorStyleVarKey>;
       styles: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
@@ -286,6 +295,7 @@ export type ITheme = {
     FilledTonalIconButton: IIconButtonTheme;
     OutlinedIconButton: IIconButtonTheme;
     DangerIconButton: IIconButtonTheme;
+    SnackbarIconButton: IIconButtonTheme;
     Switch: {
       vars: IStyleVarsTheme<ISwitchStyleVarKey>;
       styles: ICompiledStyles<ISwitchStyleKey>;
@@ -436,6 +446,16 @@ export type ITheme = {
     Skeleton: {
       vars?: IStyleVarsTheme<ISkeletonStyleVarKey>;
       styles?: ICompiledStyles<ISkeletonStyleKey>;
+    };
+    Snackbar: {
+      vars?: IStyleVarsTheme<ISnackbarStyleVarKey>;
+      styles?: ICompiledStyles<ISnackbarStyleKey>;
+    };
+    SnackbarContent: {
+      vars?: IStyleVarsTheme<ISnackbarContentStyleVarKey>;
+      styles?: ICompiledStyles<ISnackbarContentStyleKey>;
+      elevationStyles?: ICompiledStyles<IElevationStyleKey>;
+      actionButtonStyles?: ICompiledStyles<IButtonStyleKey>;
     };
   };
 };

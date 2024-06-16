@@ -1,9 +1,10 @@
 import { Fragment } from 'react';
 import { Menu as HeadlessMenu } from '@headlessui/react';
 
+import type { IOmit } from '@/helpers/types';
 import { type IListItemProps, ListItem } from '@/components/atoms/ListItem';
 
-export type IMenuItemProps = Omit<IListItemProps, 'as'> & {
+export type IMenuItemProps = IOmit<IListItemProps, 'as'> & {
   as?: React.ElementType;
   children: React.ReactNode;
 };

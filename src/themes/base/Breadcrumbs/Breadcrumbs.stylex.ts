@@ -5,7 +5,7 @@ import type { IBreadcrumbsStyleVarKey } from '@/components/atoms/Breadcrumbs';
 import { typescaleVars } from '../vars/typo.stylex';
 import { colorRolesVars } from '../vars/colorRoles.stylex';
 
-const vars: Partial<IStyleVars<IBreadcrumbsStyleVarKey>> = {
+const vars: IStyleVars<IBreadcrumbsStyleVarKey> = {
   // item
   itemColor: colorRolesVars.onSurface,
 
@@ -31,9 +31,7 @@ const vars: Partial<IStyleVars<IBreadcrumbsStyleVarKey>> = {
   expandButtonLabelTextColor$pressed: colorRolesVars.onSurface,
 };
 
-export const componentVars = stylex.defineVars(
-  vars as IStyleVars<IBreadcrumbsStyleVarKey>,
-);
+export const componentVars = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that

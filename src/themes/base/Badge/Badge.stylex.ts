@@ -7,7 +7,7 @@ import { typescaleVars } from '../vars/typo.stylex';
 import { shapeVars } from '../vars/shape.stylex';
 import { stateVars } from '../vars/state.stylex';
 
-const vars: Partial<IStyleVars<IBadgeStyleVarKey>> = {
+const vars: IStyleVars<IBadgeStyleVarKey> = {
   // container
   containerColor: colorRolesVars.error,
   containerShape: shapeVars.corner$full,
@@ -33,9 +33,7 @@ const vars: Partial<IStyleVars<IBadgeStyleVarKey>> = {
   labelTextOpacity$disabled: stateVars.opacity$disabled,
 };
 
-export const componentVars = stylex.defineVars(
-  vars as IStyleVars<IBadgeStyleVarKey>,
-);
+export const componentVars = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that

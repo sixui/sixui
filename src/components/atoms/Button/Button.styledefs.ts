@@ -5,6 +5,7 @@ export const buttonVariants = [
   'outlined',
   'text',
   'danger',
+  'snackbar',
 ] as const;
 export type IButtonVariant = (typeof buttonVariants)[number];
 

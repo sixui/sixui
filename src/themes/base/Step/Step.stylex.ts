@@ -7,7 +7,7 @@ import { typescaleVars } from '../vars/typo.stylex';
 import { shapeVars } from '../vars/shape.stylex';
 import { stateVars } from '../vars/state.stylex';
 
-const vars: Partial<IStyleVars<IStepStyleVarKey>> = {
+const vars: IStyleVars<IStepStyleVarKey> = {
   gap: '8px',
   leadingSpace: '8px',
   trailingSpace: '8px',
@@ -111,9 +111,7 @@ const vars: Partial<IStyleVars<IStepStyleVarKey>> = {
   contentTextLetterSpacing: typescaleVars.bodyLetterSpacing$md,
 };
 
-export const componentVars = stylex.defineVars(
-  vars as IStyleVars<IStepStyleVarKey>,
-);
+export const componentVars = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that

@@ -8,7 +8,7 @@ import { stateVars } from '../vars/state.stylex';
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-radio.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-radio-button.scss
 
-const vars: Partial<IStyleVars<IRadioStyleVarKey>> = {
+const vars: IStyleVars<IRadioStyleVarKey> = {
   // icon
   iconSize: '18px',
   iconColor: colorRolesVars.onSurfaceVariant,
@@ -52,9 +52,7 @@ const vars: Partial<IStyleVars<IRadioStyleVarKey>> = {
   selectedStateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
 };
 
-export const componentVars = stylex.defineVars(
-  vars as IStyleVars<IRadioStyleVarKey>,
-);
+export const componentVars = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that

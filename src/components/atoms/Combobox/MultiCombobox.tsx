@@ -1,10 +1,11 @@
 import { forwardRef } from 'react';
 
+import type { IOmit } from '@/helpers/types';
 import { MenuListDivider } from '@/components/atoms/MenuList/MenuListDivider';
 import { ComboboxBase, type IComboboxBaseProps } from './ComboboxBase';
 import { ComboboxOption } from './ComboboxOption';
 
-export type IMultiComboboxProps = Omit<
+export type IMultiComboboxProps = IOmit<
   Extract<IComboboxBaseProps, { multiple: true }>,
   'multiple'
 >;

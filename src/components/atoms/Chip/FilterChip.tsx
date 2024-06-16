@@ -1,6 +1,7 @@
+import type { IOmit } from '@/helpers/types';
 import { type IChipProps, Chip } from './Chip';
 
-export type IFilterChipProps = Omit<
+export type IFilterChipProps = IOmit<
   IChipProps,
   'variant' | 'onDelete' | 'icon' | 'imageUrl' | 'href'
 >;

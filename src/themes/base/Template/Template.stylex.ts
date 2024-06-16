@@ -4,13 +4,11 @@ import type { IStyleVars } from '@/helpers/types';
 import type { ITemplateStyleVarKey } from '@/components/atoms/Template';
 import { colorRolesVars } from '../vars/colorRoles.stylex';
 
-const vars: Partial<IStyleVars<ITemplateStyleVarKey>> = {
+const vars: IStyleVars<ITemplateStyleVarKey> = {
   textColor: colorRolesVars.onSurface,
 };
 
-export const componentVars = stylex.defineVars(
-  vars as IStyleVars<ITemplateStyleVarKey>,
-);
+export const componentVars = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that

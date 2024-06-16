@@ -11,7 +11,7 @@ import type {
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
-import type { IButtonStyleKey } from './ButtonBase.styledefs';
+import type { IButtonBaseStyleKey } from './ButtonBase.styledefs';
 import { type IVisualState, useVisualState } from '@/hooks/useVisualState';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
@@ -32,15 +32,15 @@ import {
 
 const DEFAULT_TAG = 'button';
 
-export type IButtonBaseOwnProps = IContainerProps<IButtonStyleKey> & {
+export type IButtonBaseOwnProps = IContainerProps<IButtonBaseStyleKey> & {
   innerStyles?: {
     stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
     focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
     elevation?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
   };
   visualState?: IVisualState;
-  withLeadingIcon?: boolean;
-  withTrailingIcon?: boolean;
+  withLeadingIcon?: boolean; // TODO: -> Button
+  withTrailingIcon?: boolean; // TODO: -> Button
   children?: React.ReactNode;
   inwardFocusRing?: boolean;
   href?: string;
@@ -90,7 +90,7 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
     [theme.styles, styles],
   );
   const sxf = useMemo(
-    () => stylePropsFactory<IButtonStyleKey>(stylesCombinator, visualState),
+    () => stylePropsFactory<IButtonBaseStyleKey>(stylesCombinator, visualState),
     [stylesCombinator, visualState],
   );
 

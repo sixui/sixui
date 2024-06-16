@@ -5,6 +5,7 @@ import type {
   IContainerProps,
   IZeroOrMore,
   ICompiledStyles,
+  IOmit,
 } from '@/helpers/types';
 import type {
   IPolymorphicComponentPropsWithRef,
@@ -39,7 +40,7 @@ const DEFAULT_TAG = 'button';
 
 export type IListItemOwnProps = IContainerProps<IListItemStyleKey> &
   Pick<React.AriaAttributes, 'aria-expanded'> &
-  Omit<IItemProps, 'container'> & {
+  IOmit<IItemProps, 'container'> & {
     innerStyles?: {
       item?: IZeroOrMore<ICompiledStyles<IItemStyleKey>>;
       stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
@@ -152,7 +153,6 @@ export const ListItem: IListItem = forwardRef(function ListItem<
         disabled && 'host$disabled',
         hasLeadingContent && 'host$hasLeadingContent',
         hasTrailingContent && 'host$hasTrailingContent',
-        theme.vars,
         variantTheme?.vars,
         sx,
       )}

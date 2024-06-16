@@ -1,4 +1,4 @@
-export type IButtonStyleKey =
+export type IButtonBaseStyleKey =
   | 'host'
   | 'host$withLeadingIcon'
   | 'host$withTrailingIcon'

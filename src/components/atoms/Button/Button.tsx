@@ -1,7 +1,13 @@
 import { forwardRef, useMemo, useState } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
-import type { IAny, ICompiledStyles, IMaybeAsync } from '@/helpers/types';
+import type {
+  IAny,
+  ICompiledStyles,
+  IOmit,
+  IMaybeAsync,
+  IZeroOrMore,
+} from '@/helpers/types';
 import type {
   IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
@@ -34,20 +40,22 @@ import {
 
 const DEFAULT_TAG = 'button';
 
-export type IButtonOwnProps = Omit<
+export type IButtonOwnProps = IOmit<
   IButtonBaseOwnProps,
   'withLeadingIcon' | 'withTrailingIcon'
 > & {
   innerStyles?: IButtonBaseOwnProps['innerStyles'] & {
-    circularProgressIndicator?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
+    circularProgressIndicator?: IZeroOrMore<
+      ICompiledStyles<ICircularProgressIndicatorStyleKey>
+    >;
   };
   variant?: IButtonVariant | false;
   icon?: React.ReactNode;
   trailingIcon?: boolean;
-  loading?: boolean;
-  loadingAnimation?: 'progressIndicator' | 'halfSpin' | 'none';
-  loadingText?: string;
-  onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
+  loading?: boolean; // TODO: -> Button
+  loadingAnimation?: 'progressIndicator' | 'halfSpin' | 'none'; // TODO: -> Button
+  loadingText?: string; // TODO: -> Button
+  onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>; // TODO: -> ButtonBase
 };
 
 export type IButtonProps<TRoot extends React.ElementType = typeof DEFAULT_TAG> =
@@ -62,6 +70,7 @@ type IButtonVariantMap = {
     | 'OutlinedButton'
     | 'TextButton'
     | 'DangerButton'
+    | 'SnackbarButton'
   >;
 };
 
@@ -72,6 +81,7 @@ const variantMap: IButtonVariantMap = {
   outlined: 'OutlinedButton',
   text: 'TextButton',
   danger: 'DangerButton',
+  snackbar: 'SnackbarButton',
 };
 
 type IButton = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
@@ -165,7 +175,7 @@ export const Button: IButton = forwardRef(function Button<
       ref={ref}
       as={as}
       styles={[theme.styles, variantTheme?.styles, ...asArray(styles)]}
-      sx={[theme.vars, variantTheme?.vars, sx]}
+      sx={[variantTheme?.vars, sx]}
       withLeadingIcon={hasLeadingIcon}
       withTrailingIcon={hasTrailingIcon}
       innerStyles={{

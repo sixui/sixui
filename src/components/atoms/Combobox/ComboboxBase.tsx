@@ -13,6 +13,7 @@ import { useFloating } from '@floating-ui/react-dom';
 import { size } from '@floating-ui/dom';
 import { FloatingPortal } from '@floating-ui/react';
 
+import { IOmit } from '@/helpers/types';
 import { createFilter, type IFilter } from '@/helpers/createFilter';
 import { useColorScheme } from '@/components/utils/ColorScheme';
 import { MenuList } from '@/components/atoms/MenuList';
@@ -34,9 +35,9 @@ const MIN_DELAY_BETWEEN_CLOSE_AND_OPEN = 300;
 
 type IOption = React.ReactElement<IComboboxOptionProps>;
 
-export type IComboboxBaseProps = Omit<
+export type IComboboxBaseProps = IOmit<
   ITextFieldProps,
-  'onChange' | 'end' | 'value' | 'defaultValue' | 'id'
+  'onChange' | 'value' | 'end' | 'defaultValue' | 'id'
 > & {
   visualState?: IVisualState;
   children?: Array<React.ReactNode> | null;

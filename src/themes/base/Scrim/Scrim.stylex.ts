@@ -4,14 +4,12 @@ import type { IStyleVars } from '@/helpers/types';
 import type { IScrimStyleVarKey } from '@/components/atoms/Scrim';
 import { colorRolesVars } from '../vars/colorRoles.stylex';
 
-const vars: Partial<IStyleVars<IScrimStyleVarKey>> = {
+const vars: IStyleVars<IScrimStyleVarKey> = {
   containerColor$darken: `color-mix(in srgb, ${colorRolesVars.scrim} 50%, transparent)`,
   containerColor$lighten: `rgba(255, 255, 255, 0.5)`,
 };
 
-export const componentVars = stylex.defineVars(
-  vars as IStyleVars<IScrimStyleVarKey>,
-);
+export const componentVars = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that

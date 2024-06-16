@@ -6,7 +6,7 @@ import { colorRolesVars } from '../vars/colorRoles.stylex';
 import { typescaleVars } from '../vars/typo.stylex';
 import { shapeVars } from '../vars/shape.stylex';
 
-const vars: Partial<IStyleVars<IAvatarStyleVarKey>> = {
+const vars: IStyleVars<IAvatarStyleVarKey> = {
   // container
   containerShape: shapeVars.corner$full,
   containerWidth: '40px',
@@ -22,9 +22,7 @@ const vars: Partial<IStyleVars<IAvatarStyleVarKey>> = {
   labelTextWeight: typescaleVars.bodyWeight$lg,
 };
 
-export const componentVars = stylex.defineVars(
-  vars as IStyleVars<IAvatarStyleVarKey>,
-);
+export const componentVars = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that

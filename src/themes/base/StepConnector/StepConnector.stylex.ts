@@ -5,7 +5,7 @@ import type { IStepConnectorStyleVarKey } from '@/components/atoms/StepConnector
 import { colorRolesVars } from '../vars/colorRoles.stylex';
 import { typescaleVars } from '../vars/typo.stylex';
 
-const vars: Partial<IStyleVars<IStepConnectorStyleVarKey>> = {
+const vars: IStyleVars<IStepConnectorStyleVarKey> = {
   thickness: '1px',
   color: colorRolesVars.outlineVariant,
   // &:completed
@@ -24,9 +24,7 @@ const vars: Partial<IStyleVars<IStepConnectorStyleVarKey>> = {
   textColor$completed: colorRolesVars.primary,
 };
 
-export const componentVars = stylex.defineVars(
-  vars as IStyleVars<IStepConnectorStyleVarKey>,
-);
+export const componentVars = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that
