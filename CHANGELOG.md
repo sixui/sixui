@@ -1,3 +1,15 @@
+# v0.0.260 (Sun Jun 16 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: theme vars propagation ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.259 (Sun Jun 16 2024)
 
 #### ⚠️ Pushed to `main`
