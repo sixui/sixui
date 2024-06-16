@@ -14,6 +14,7 @@ import {
   SnackbarContent,
   type ISnackbarContentProps,
 } from '@/components/atoms/SnackbarContent';
+import { useForkRef } from '@/hooks/useForkRef';
 
 export type ISnackbarProps = IContainerProps<ISnackbarStyleKey> &
   IOmit<ISnackbarContentProps, 'styles' | 'sx' | 'onClose'> & {
@@ -51,6 +52,7 @@ export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
     useTimeout(() => onClose?.(), open ? autoHideDuration ?? null : null);
 
     const nodeRef = useRef<HTMLDivElement>(null);
+    const handleRef = useForkRef(nodeRef, ref);
 
     return (
       <CSSTransition
@@ -58,14 +60,13 @@ export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
         in={open}
         timeout={1000}
         classNames={{
-          enter: sxf('onEnter').className,
-          enterActive: sxf('onEnterActive').className,
-          exitActive: sxf('onExitActive').className,
+          enter: sxf('animation$onEnter').className,
+          enterActive: sxf('animation$onEnterActive').className,
+          exitActive: sxf('animation$onExitActive').className,
         }}
         unmountOnExit
       >
         <div
-          ref={ref}
           {...sxf(
             'host',
             horizontalOrigin === 'left'
@@ -78,7 +79,7 @@ export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
           )}
         >
           <SnackbarContent
-            ref={nodeRef}
+            ref={handleRef}
             sx={[stylesCombinator('snackbarContent')]}
             {...other}
             onClose={onClose}

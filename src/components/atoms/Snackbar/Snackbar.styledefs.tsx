@@ -3,8 +3,8 @@ export type ISnackbarStyleKey =
   | 'host$left'
   | 'host$center'
   | 'snackbarContent'
-  | 'onEnter'
-  | 'onEnterActive'
-  | 'onExitActive';
+  | 'animation$onEnter'
+  | 'animation$onEnterActive'
+  | 'animation$onExitActive';
 
 export type ISnackbarStyleVarKey = 'fixedHorizontalSpace' | 'fixedBottomSpace';
