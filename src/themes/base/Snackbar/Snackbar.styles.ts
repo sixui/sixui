@@ -10,22 +10,24 @@ type ISnackbarStyles = IStyles<ISnackbarStyleKey>;
 export const styles: MapNamespaces<ISnackbarStyles> =
   stylex.create<ISnackbarStyles>({
     host: {
-      // FIXME: size
-      // maxWidth: `calc(100% - ${vars.fixedHorizontalSpace} * 2)`,
-      transformOrigin: 'bottom',
+      display: 'flex',
+      position: 'fixed',
+      bottom: vars.fixedBottomSpace,
+      zIndex: 499,
+      width: `calc(100% - ${vars.fixedHorizontalSpace} * 2)`,
     },
     host$left: {
-      position: 'fixed',
       left: vars.fixedHorizontalSpace,
-      bottom: vars.fixedBottomSpace,
+      justifyContent: 'start',
     },
     host$center: {
-      position: 'fixed',
-      left: 0,
-      right: 0,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      bottom: vars.fixedBottomSpace,
+      left: '50%',
+      right: 'auto',
+      transform: 'translateX(-50%)',
+      justifyContent: 'center',
+    },
+    snackbarContent: {
+      transformOrigin: 'bottom',
     },
     onEnter: {
       opacity: 0,

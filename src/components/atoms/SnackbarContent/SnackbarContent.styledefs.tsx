@@ -16,6 +16,7 @@ export type ISnackbarContentStyleVarKey =
   | 'containerColor'
   | 'containerElevation'
   | 'containerShape'
+  | 'containerMinWidth'
   | 'containerMinHeight'
   | 'supportingTextColor'
   | 'supportingTextFont'

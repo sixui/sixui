@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
 import { useState } from 'react';
 
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
@@ -15,22 +14,14 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const styles = stylex.create({
-  snackbar: {
-    width: 350,
-  },
-});
-
-const defaultArgs = {
-  sx: styles.snackbar,
-} satisfies Partial<ISnackbarProps>;
+const defaultArgs = {} satisfies Partial<ISnackbarProps>;
 
 const Demo: React.FC<ISnackbarProps> = (props: ISnackbarProps) => {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      <Snackbar {...props} open={open} onClose={() => setOpen(false)} />
+      <Snackbar open={open} onClose={() => setOpen(false)} {...props} />
       <Button onClick={() => setOpen((open) => !open)}>Open</Button>
     </>
   );

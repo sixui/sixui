@@ -18,8 +18,6 @@ export const styles: MapNamespaces<ISnackbarContentStyles> =
       flexWrap: 'wrap',
       flexDirection: 'row',
       alignItems: 'center',
-      minWidth: 320,
-      width: 'fit-content',
       paddingTop: vars.topSpace,
       paddingBottom: vars.bottomSpace,
       paddingLeft: vars.leadingSpace,
@@ -28,6 +26,14 @@ export const styles: MapNamespaces<ISnackbarContentStyles> =
       [snackbarStateVars.elevation]: vars.containerElevation,
       borderRadius: vars.containerShape,
       minHeight: vars.containerMinHeight,
+      flexGrow: {
+        default: 'initial',
+        '@media (max-width: 600px)': 1,
+      },
+      minWidth: {
+        default: vars.containerMinWidth,
+        '@media (max-width: 600px)': 'unset',
+      },
     },
     host$trailingAction: {
       paddingRight: vars.actionTrailingSpace,

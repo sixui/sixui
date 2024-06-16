@@ -20,6 +20,7 @@ const vars: IStyleVars<ISnackbarContentStyleVarKey> = {
   containerColor: colorRolesVars.onSurface,
   containerElevation: elevationVars.boxShadow$level3,
   containerShape: shapeVars.corner$xs,
+  containerMinWidth: '288px',
   containerMinHeight: '48px',
 
   // supportingText

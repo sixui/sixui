@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
 
 import {
   type IComponentPresentation,
@@ -16,15 +15,7 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const styles = stylex.create({
-  snackbarContent: {
-    width: 350,
-  },
-});
-
-const defaultArgs = {
-  sx: styles.snackbarContent,
-} satisfies Partial<ISnackbarContentProps>;
+const defaultArgs = {} satisfies Partial<ISnackbarContentProps>;
 
 const rows: Array<IComponentPresentation<ISnackbarContentProps>> = [
   { legend: 'Text' },
@@ -62,7 +53,12 @@ const rows: Array<IComponentPresentation<ISnackbarContentProps>> = [
 
 export const Short: IStory = {
   render: (props) => (
-    <ComponentShowcase component={SnackbarContent} props={props} rows={rows} />
+    <ComponentShowcase
+      component={SnackbarContent}
+      props={props}
+      rows={rows}
+      horizontalAlign='start'
+    />
   ),
   args: {
     ...defaultArgs,
@@ -72,7 +68,12 @@ export const Short: IStory = {
 
 export const Long: IStory = {
   render: (props) => (
-    <ComponentShowcase component={SnackbarContent} props={props} rows={rows} />
+    <ComponentShowcase
+      component={SnackbarContent}
+      props={props}
+      rows={rows}
+      horizontalAlign='start'
+    />
   ),
   args: {
     ...defaultArgs,

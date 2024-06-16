@@ -4,7 +4,7 @@ import type { IStyleVars } from '@/helpers/types';
 import type { ISnackbarStyleVarKey } from '@/components/atoms/Snackbar';
 
 const vars: IStyleVars<ISnackbarStyleVarKey> = {
-  fixedHorizontalSpace: '16px',
+  fixedHorizontalSpace: '32px',
   fixedBottomSpace: '16px',
 };
 
