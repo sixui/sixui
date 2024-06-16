@@ -18,8 +18,9 @@ import type { IDialogStyleKey, IDialogStyleVarKey } from './Dialog.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { Divider } from '../Divider';
-import { Scrim } from '../Scrim';
+import { Divider } from '@/components/atoms/Divider';
+import { Scrim } from '@/components/atoms/Scrim';
+import { useForkRef } from '@/hooks/useForkRef';
 
 // https://github.com/material-components/material-web/blob/main/dialog/internal/dialog.ts
 
@@ -39,7 +40,6 @@ export type IDialogOwnProps = IContainerProps<IDialogStyleKey> &
       | React.ReactNode
       | ((close?: IOnCloseEventHandler) => React.ReactNode);
     onClose?: IOnCloseEventHandler;
-    keepMounted?: boolean;
   };
 
 export type IDialogProps<TRoot extends React.ElementType = typeof DEFAULT_TAG> =
@@ -64,7 +64,6 @@ export const Dialog: IDialog = forwardRef(function Dialog<
     children,
     actions,
     onClose,
-    keepMounted,
     ...other
   } = props as IWithAsProp<IDialogOwnProps>;
 
@@ -159,17 +158,20 @@ export const Dialog: IDialog = forwardRef(function Dialog<
   // TODO: Reset scroll position if re-opening a dialog with the same content.
   // See https://github.com/material-components/material-web/blob/main/dialog/internal/dialog.ts#L193C8-L193C75
 
-  const renderDialog = (): React.ReactNode => (
+  const nodeRef = useRef<HTMLDivElement>(null);
+  const handleRef = useForkRef(nodeRef, ref);
+
+  return (
     <Scrim open={open} onClick={handleScrimClick} onMouseDown={handleMouseDown}>
       <Component
         {...sxf('host', theme.vars, sx)}
         sx={sx}
-        ref={ref}
+        // ref={handleRef}
         aria-labelledby={headline ? headlineId : undefined}
         role={type === 'alert' ? 'alertdialog' : undefined}
         {...other}
       >
-        <div {...sxf('dialog')}>
+        <div {...sxf('dialog')} ref={handleRef}>
           <div {...sxf('container')}>
             {headline || icon ? (
               <div {...sxf('headline')}>
@@ -247,6 +249,4 @@ export const Dialog: IDialog = forwardRef(function Dialog<
       </Component>
     </Scrim>
   );
-
-  return keepMounted || open ? renderDialog() : null;
 });

@@ -17,7 +17,6 @@ export const styles: MapNamespaces<IScrimStyles> = stylex.create<IScrimStyles>({
     WebkitTapHighlightColor: 'transparent',
     zIndex: 500,
     opacity: 0,
-    visibility: 'hidden',
   },
   host$close: {
     pointerEvents: 'none',
@@ -33,14 +32,12 @@ export const styles: MapNamespaces<IScrimStyles> = stylex.create<IScrimStyles>({
   },
   animation$onEnter: {
     opacity: 0,
-    visibility: 'visible',
   },
   animation$onEnterActive: {
     opacity: 1,
     transitionProperty: 'opacity',
     transitionDuration: motionVars.duration$long2,
     transitionTimingFunction: motionVars.easing$emphasizedDecelerate,
-    visibility: 'visible',
   },
   animation$onExitActive: {
     opacity: 0,

@@ -8,3 +8,5 @@ export type ISnackbarStyleKey =
   | 'animation$onExitActive';
 
 export type ISnackbarStyleVarKey = 'fixedHorizontalSpace' | 'fixedBottomSpace';
+
+export type ISnackbarStyleStateVarKey = 'elevation';
