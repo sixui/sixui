@@ -307,6 +307,7 @@ export const Chip: IChip = forwardRef(function Chip<
           containerStyle,
           interactive && `${containerStyle}$interactive`,
           disabled && `${containerStyle}$disabled`,
+          loading && `${containerStyle}$loading`,
         )}
       >
         <Elevation
@@ -315,7 +316,7 @@ export const Chip: IChip = forwardRef(function Chip<
             variantTheme?.elevationStyles,
             ...asArray(innerStyles?.elevation),
           ]}
-          disabled={disabled}
+          disabled={disabledProp}
         />
         {elevated ? null : (
           <span
@@ -410,7 +411,7 @@ export const Chip: IChip = forwardRef(function Chip<
               {...sxf(
                 'iconContainer',
                 'iconContainer$leading',
-                'iconContainer$hidden',
+                'iconContainer$collapsed',
               )}
             />
           )}
@@ -445,7 +446,6 @@ export const Chip: IChip = forwardRef(function Chip<
                 ) : (
                   <div {...sxf(disabled && 'iconContainer$disabled')}>
                     <IndeterminateCircularProgressIndicator
-                      sx={stylesCombinator('icon')}
                       styles={[
                         theme.circularProgressIndicatorStyles,
                         variantTheme?.circularProgressIndicatorStyles,
