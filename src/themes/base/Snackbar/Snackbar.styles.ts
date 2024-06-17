@@ -14,7 +14,10 @@ export const styles: MapNamespaces<ISnackbarStyles> =
       position: 'fixed',
       bottom: vars.fixedBottomSpace,
       zIndex: 499,
-      width: `calc(100% - ${vars.fixedHorizontalSpace$compact} * 2)`,
+      minWidth: {
+        default: 'unset',
+        '@media (max-width: 600px)': `calc(100% - ${vars.fixedHorizontalSpace$compact} * 2)`,
+      },
     },
     host$left: {
       left: {
