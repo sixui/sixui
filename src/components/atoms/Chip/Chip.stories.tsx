@@ -205,6 +205,24 @@ export const Input: IStory = {
   },
 };
 
+export const InputStateful: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={StatefulChip}
+      props={props}
+      cols={states}
+      rows={[
+        { legend: 'Basic' },
+        { legend: 'Elevated', props: { elevated: true } },
+      ]}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'input',
+  },
+};
+
 export const InputWithIconOrImage: IStory = {
   render: (props) => (
     <ComponentShowcase
