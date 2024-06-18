@@ -32,23 +32,6 @@ const styles = stylex.create({
 
 const defaultArgs = {} satisfies Partial<IMenu2Props>;
 
-const items = [
-  <Menu2.Item
-    key={0}
-    onClick={(...args) => sbHandleEvent('click', args)}
-    disabled
-  >
-    Apple
-  </Menu2.Item>,
-  <Menu2.Divider key={1} />,
-  <Menu2.Item key={2} onClick={(...args) => sbHandleEvent('click', args)}>
-    Banana
-  </Menu2.Item>,
-  <Menu2.Item key={3} onClick={(...args) => sbHandleEvent('click', args)}>
-    Cumcumber
-  </Menu2.Item>,
-];
-
 export const FromButton: IStory = {
   render: (props) => (
     <Menu2 {...props}>
@@ -72,6 +55,23 @@ export const FromButton: IStory = {
       </Menu2>
     </Menu2>
   ),
+  args: {
+    ...defaultArgs,
+    xxxxx: ({ open }) => (
+      <Button
+        icon={
+          <FontAwesomeIcon
+            icon={open ? faChevronUp : faChevronDown}
+            size='xs'
+          />
+        }
+        trailingIcon
+        sx={styles.action}
+      >
+        Open
+      </Button>
+    ),
+  },
 };
 
 export const Demo: IStory = {

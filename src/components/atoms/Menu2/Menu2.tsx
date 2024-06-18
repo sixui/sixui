@@ -48,10 +48,10 @@ export type IMenu2RenderProps = {
 };
 
 export type IMenu2Props = IOmit<IContainerProps, 'styles'> & {
-  action:
+  xxxxx:
     | React.ReactElement
     | ((props: IMenu2RenderProps) => React.ReactElement);
-  children: Array<React.ReactNode>;
+  // children: Array<React.ReactNode>;
 };
 
 // TODO: migrate in theme
@@ -136,7 +136,7 @@ const Menu2 = forwardRef<
 
 const Menu2Component = forwardRef<HTMLButtonElement, IMenu2Props>(
   function Menu2(props, forwardedRef) {
-    const { sx, action, children } = props;
+    const { sx, xxxxx, children } = props;
 
     const [isOpen, setIsOpen] = useState(false);
     const [hasFocusInside, setHasFocusInside] = useState(false);
@@ -308,25 +308,26 @@ const Menu2Component = forwardRef<HTMLButtonElement, IMenu2Props>(
               XXX
             </Menu2Item>
           ) : (
-            <Button
-              ref={mref}
-              data-open={isOpen ? '' : undefined}
-              data-nested={undefined}
-              data-focus-inside={hasFocusInside ? '' : undefined}
-              // aria-controls, aria-expanded, aria-haspopup, id, onClick, onFocus, onKeyDown, onKeyUp, onMouseDown, onPointerDown
-              {...floatingInteractions.getReferenceProps(
-                parent.getItemProps({
-                  ...props,
-                  onFocus(event: React.FocusEvent<HTMLButtonElement>) {
-                    props.onFocus?.(event);
-                    setHasFocusInside(false);
-                    parent.setHasFocusInside(true);
-                  },
-                }),
-              )}
-            >
-              ACTION
-            </Button>
+            <>
+              {cloneElement(typeof xxxxx === 'function' ? xxxxx(bag) : xxxxx, {
+                ...(bag.open ? openProps : undefined),
+                ref: mref,
+                'data-open': isOpen ? '' : undefined,
+                'data-nested': undefined,
+                'data-focus-inside': hasFocusInside ? '' : undefined,
+                // aria-controls, aria-expanded, aria-haspopup, id, onClick, onFocus, onKeyDown, onKeyUp, onMouseDown, onPointerDown
+                ...floatingInteractions.getReferenceProps(
+                  parent.getItemProps({
+                    ...props,
+                    onFocus(event: React.FocusEvent<HTMLButtonElement>) {
+                      props.onFocus?.(event);
+                      setHasFocusInside(false);
+                      parent.setHasFocusInside(true);
+                    },
+                  }),
+                ),
+              })}
+            </>
           )}
 
           <Menu2Context.Provider
