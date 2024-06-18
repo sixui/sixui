@@ -29,7 +29,7 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const listItemStyles = stylex.create({
+const styles = stylex.create({
   host: {
     width: '170px',
   },
@@ -37,7 +37,7 @@ const listItemStyles = stylex.create({
 
 const defaultArgs = {
   children: undefined,
-  styles: listItemStyles,
+  sx: styles.host,
 } satisfies Partial<IListItemProps>;
 
 const states: Array<IComponentPresentation<IListItemOwnProps>> = [
@@ -86,7 +86,8 @@ export const Variants: IStory = {
           children: capitalizeFirstLetter(variant),
           leadingIcon: <FontAwesomeIcon icon={faCalendarDays} />,
           trailingIcon: <FontAwesomeIcon icon={faChevronRight} />,
-          href: '#',
+          onClick: () => {},
+          noWrap: true,
         },
       }))}
     />

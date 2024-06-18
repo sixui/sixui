@@ -21,6 +21,7 @@ export const styles: MapNamespaces<IListItemStyles> =
       borderRadius: vars.containerShape,
       textDecoration: 'none',
       textAlign: 'start',
+      width: 'inherit',
 
       [listItemStatesVars.nonTextColor]: vars.nonTextColor,
       [listItemStatesVars.textColor]: vars.textColor,

@@ -51,9 +51,12 @@ export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
   content: {
     display: 'flex',
     flexGrow: 1,
-    width: 0,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  content$noWrap: {
+    width: 0,
+    whiteSpace: 'nowrap',
   },
   end: {
     color: vars.trailingContentColor,

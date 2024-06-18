@@ -45,13 +45,11 @@ const MenuList = forwardRef<HTMLDivElement, IMenuListProps>(
 
     return (
       <div {...sxf('host', theme.vars, sx)} ref={ref} {...other}>
-        <div {...sxf('menu')}>
-          <Elevation
-            styles={[theme.elevationStyles, ...asArray(innerStyles?.elevation)]}
-          />
-          <div {...sxf('items')}>
-            <div {...sxf('itemPadding')}>{children}</div>
-          </div>
+        <Elevation
+          styles={[theme.elevationStyles, ...asArray(innerStyles?.elevation)]}
+        />
+        <div {...sxf('items')}>
+          <div {...sxf('itemPadding')}>{children}</div>
         </div>
       </div>
     );

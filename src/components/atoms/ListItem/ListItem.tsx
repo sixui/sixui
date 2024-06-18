@@ -106,6 +106,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
     leadingIcon,
     trailingIcon,
     onClick,
+    noWrap,
     ...other
   } = props as IWithAsProp<IListItemOwnProps>;
 
@@ -245,6 +246,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
             end
           )
         }
+        noWrap={noWrap}
       >
         {children}
       </Item>

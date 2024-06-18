@@ -15,11 +15,6 @@ type IMenuListStyles = IStyles<IMenuListStyleKey>;
 export const styles: MapNamespaces<IMenuListStyles> =
   stylex.create<IMenuListStyles>({
     host: {
-      minWidth: '112px',
-      color: 'unset',
-      display: 'contents',
-    },
-    menu: {
       position: 'relative',
       borderRadius: vars.containerShape,
       inset: 'auto',
@@ -33,8 +28,9 @@ export const styles: MapNamespaces<IMenuListStyles> =
       userSelect: 'none',
       maxHeight: 'inherit',
       height: 'inherit',
-      minWidth: 'inherit',
+      minWidth: '112px',
       maxWidth: 'inherit',
+      width: 'fit-content',
     },
     items: {
       listStyleType: 'none',

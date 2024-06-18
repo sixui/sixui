@@ -12,6 +12,7 @@ export type IItemStyleKey =
   | 'trailingSupportingText'
   | 'start'
   | 'content'
+  | 'content$noWrap'
   | 'end'
   | 'textSlot';
 

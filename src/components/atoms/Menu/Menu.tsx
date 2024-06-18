@@ -1,8 +1,11 @@
 import stylex from '@stylexjs/stylex';
 import { Fragment, cloneElement, forwardRef } from 'react';
 import { Menu as HeadlessMenu } from '@headlessui/react';
-import { type Placement, useFloating } from '@floating-ui/react-dom';
-import { FloatingPortal } from '@floating-ui/react';
+import {
+  FloatingPortal,
+  useFloating,
+  type Placement,
+} from '@floating-ui/react';
 
 import type { IContainerProps, IOmit } from '@/helpers/types';
 import { IVisualState } from '@/hooks/useVisualState';
@@ -29,52 +32,58 @@ const styles = stylex.create({
     position: 'relative',
   },
   items: {
-    width: 'max-content',
     zIndex: 999,
   },
 });
 
-const Menu = forwardRef<HTMLElement, IMenuProps>(function Menu(props, ref) {
-  const { sx, action, placement = 'bottom-start', children } = props;
+const Menu = forwardRef<HTMLElement, IMenuProps>(
+  function Menu(props, forwardedRef) {
+    const {
+      sx,
+      action,
+      placement: placementProp = 'bottom-start',
+      children,
+    } = props;
 
-  const { refs, floatingStyles } = useFloating({
-    placement,
-  });
-  const { root } = useColorScheme();
+    const floating = useFloating({
+      placement: placementProp,
+    });
+    const colorScheme = useColorScheme();
 
-  const openVisualState: IVisualState = { hovered: true };
-  const openProps = { visualState: openVisualState };
+    const openVisualState: IVisualState = { hovered: true };
+    const openProps = { visualState: openVisualState };
 
-  return (
-    <HeadlessMenu ref={ref}>
-      {({ open }) => (
-        <>
-          <HeadlessMenu.Button as={Fragment} ref={refs.setReference}>
-            {(bag) =>
-              cloneElement(
-                typeof action === 'function' ? action(bag) : action,
-                bag.open ? openProps : undefined,
-              )
-            }
-          </HeadlessMenu.Button>
+    return (
+      <HeadlessMenu ref={forwardedRef}>
+        {({ open }) => (
+          <>
+            <HeadlessMenu.Button as={Fragment} ref={floating.refs.setReference}>
+              {(bag) =>
+                cloneElement(
+                  typeof action === 'function' ? action(bag) : action,
+                  bag.open ? openProps : undefined,
+                )
+              }
+            </HeadlessMenu.Button>
 
-          <FloatingPortal root={root}>
             {open ? (
-              <HeadlessMenu.Items
-                {...stylex.props(styles.items, sx)}
-                ref={refs.setFloating}
-                style={floatingStyles}
-                static
-              >
-                <MenuList>{children}</MenuList>
-              </HeadlessMenu.Items>
+              <FloatingPortal root={colorScheme.root}>
+                <HeadlessMenu.Items
+                  {...stylex.props(styles.items, sx)}
+                  ref={floating.refs.setFloating}
+                  style={floating.floatingStyles}
+                  static
+                >
+                  <MenuList>{children}</MenuList>
+                </HeadlessMenu.Items>
+              </FloatingPortal>
             ) : null}
-          </FloatingPortal>
-        </>
-      )}
-    </HeadlessMenu>
-  );
-});
+          </>
+        )}
+      </HeadlessMenu>
+    );
+  },
+);
 
 const MenuNamespace = Object.assign(Menu, {
   Item: MenuItem,

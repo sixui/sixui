@@ -12,62 +12,42 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
-  host: {
+  host$fixedWidth: {
     width: 192,
   },
 });
 
-const defaultArgs = {} satisfies Partial<IMenuListProps>;
-
-const items = ['Apple', 'Banana', 'Cumcumber'].map((name) => (
-  <ListItem key={name} onClick={(...args) => sbHandleEvent('click', args)}>
-    {name}
-  </ListItem>
-));
-
-// const MenuListLauncher: React.FC<IMenuList> = (props) => {
-//   const [open, setOpen] = useState(false);
-//   const handleOpen = (): void => setOpen(true);
-//   const handleClose = (): void => setOpen(false);
-
-//   return (
-//     <>
-//       <Dialog
-//         actions={
-//           <>
-//             <Button variant='text' onClick={handleClose}>
-//               Cancel
-//             </Button>
-//             <Button variant='text' onClick={handleClose}>
-//               OK
-//             </Button>
-//           </>
-//         }
-//         {...props}
-//         open={open}
-//         onClose={handleClose}
-//       />
-//       <Button onClick={handleOpen}>Open</Button>
-//     </>
-//   );
-// };
-
-export const Basic: IStory = {
-  render: (props) => (
-    <div {...stylex.props(styles.host)}>
-      <MenuList {...props} />
-    </div>
+const defaultArgs = {
+  children: (
+    <>
+      <ListItem onClick={(...args) => sbHandleEvent('click', args)}>
+        Apple
+      </ListItem>
+      <ListItem onClick={(...args) => sbHandleEvent('click', args)}>
+        Banana
+      </ListItem>
+      <ListItem onClick={(...args) => sbHandleEvent('click', args)}>
+        Cumcumber
+      </ListItem>
+      <ListItem onClick={(...args) => sbHandleEvent('click', args)}>
+        This is a very long and unexpected item
+      </ListItem>
+      <MenuList.Divider />
+      <ListItem onClick={(...args) => sbHandleEvent('click', args)} noWrap>
+        This item will never wrap
+      </ListItem>
+    </>
   ),
-  args: {
-    ...defaultArgs,
-    children: (
-      <>
-        {items}
-        <MenuList.Divider />
-        {items}
-      </>
-    ),
-  },
+} satisfies Partial<IMenuListProps>;
+
+export const AutoWidth: IStory = {
+  render: (props) => <MenuList {...props} />,
+  args: defaultArgs,
+};
+
+export const FixedWidth: IStory = {
+  render: (props) => <MenuList sx={styles.host$fixedWidth} {...props} />,
+  args: defaultArgs,
 };
 
 export default meta;

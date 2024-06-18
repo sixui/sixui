@@ -17,6 +17,7 @@ export type IItemProps = IContainerProps<IItemStyleKey> & {
   supportingText?: React.ReactNode;
   trailingSupportingText?: React.ReactNode;
   end?: React.ReactNode;
+  noWrap?: boolean;
 };
 
 export const Item = forwardRef<HTMLDivElement, IItemProps>(
@@ -32,6 +33,7 @@ export const Item = forwardRef<HTMLDivElement, IItemProps>(
       supportingText,
       trailingSupportingText,
       end,
+      noWrap,
       ...other
     } = props;
 
@@ -56,7 +58,7 @@ export const Item = forwardRef<HTMLDivElement, IItemProps>(
           </div>
         ) : null}
 
-        <div {...sxf('content')}>
+        <div {...sxf('content', noWrap && 'content$noWrap')}>
           <div {...sxf('text')}>
             {overline ? <div {...sxf('overline')}>{overline}</div> : null}
             <div {...sxf('label')}>{children}</div>

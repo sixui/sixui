@@ -1,9 +1,4 @@
-export type IMenuListStyleKey =
-  | 'host'
-  | 'menu'
-  | 'items'
-  | 'itemPadding'
-  | 'divider';
+export type IMenuListStyleKey = 'host' | 'items' | 'itemPadding' | 'divider';
 
 export type IMenuListStyleVarKey =
   | 'containerColor'

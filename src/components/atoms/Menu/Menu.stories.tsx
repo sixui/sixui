@@ -27,14 +27,9 @@ const styles = stylex.create({
     position: 'relative',
     overflow: 'hidden',
   },
-  menu: {
-    width: 160,
-  },
 });
 
-const defaultArgs = {
-  sx: styles.menu,
-} satisfies Partial<IMenuProps>;
+const defaultArgs = {} satisfies Partial<IMenuProps>;
 
 const items = [
   <Menu.Item
