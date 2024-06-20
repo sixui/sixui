@@ -10,11 +10,11 @@ import { DisclosurePanel } from '@/components/atoms/DisclosurePanel';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import {
   DisclosureContext,
-  type IDisclosureContext,
+  type IDisclosureContextValue,
 } from './DisclosureContext';
 
 export type IDisclosureProps = IContainerProps<IDisclosureStyleKey> &
-  IOmit<IDisclosureContext, 'expanded' | 'setExpanded'> & {
+  IOmit<IDisclosureContextValue, 'expanded' | 'setExpanded'> & {
     children: React.ReactNode;
     defaultExpanded?: boolean;
   };
@@ -59,7 +59,7 @@ const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
       [stylesCombinator],
     );
 
-    const context: IDisclosureContext = {
+    const context: IDisclosureContextValue = {
       checkable,
       defaultChecked,
       checked,

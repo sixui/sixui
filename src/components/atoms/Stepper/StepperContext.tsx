@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-export type IStepperContext = {
+export type IStepperContextValue = {
   orientation: 'horizontal' | 'vertical';
   labelPosition: 'right' | 'bottom';
   activeStep?: number;
@@ -9,6 +9,6 @@ export type IStepperContext = {
   connector?: React.ReactNode;
 };
 
-export const StepperContext = createContext<IStepperContext | undefined>(
+export const StepperContext = createContext<IStepperContextValue | undefined>(
   undefined,
 );

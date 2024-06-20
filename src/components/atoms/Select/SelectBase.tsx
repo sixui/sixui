@@ -274,7 +274,7 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
                         ? undefined
                         : matchingOption?.props.leadingIcon
                     }
-                    end={<TrailingIcon height='6' />}
+                    end={<TrailingIcon />}
                     value={displayValue}
                   />
                 );

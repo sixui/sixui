@@ -14,7 +14,7 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { Step, type IStepProps } from '@/components/atoms/Step';
 import { StepConnector } from '@/components/atoms/StepConnector';
 import { isElementLike } from '@/helpers/react/isElementLike';
-import { StepperContext, type IStepperContext } from './StepperContext';
+import { StepperContext, type IStepperContextValue } from './StepperContext';
 
 export type IStepperProps = IContainerProps<IStepperStyleKey> & {
   children: React.ReactNode;
@@ -72,7 +72,7 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
     const labelPosition =
       orientation === 'horizontal' ? labelPositionProp : 'right';
 
-    const contextValue: IStepperContext = useMemo(
+    const contextValue: IStepperContextValue = useMemo(
       () => ({
         activeStep:
           activeStep !== undefined

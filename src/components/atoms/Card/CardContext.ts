@@ -1,7 +1,9 @@
 import { createContext } from 'react';
 
-export type ICardContext = {
+export type ICardContextValue = {
   actionable?: boolean;
 };
 
-export const CardContext = createContext<ICardContext | undefined>(undefined);
+export const CardContext = createContext<ICardContextValue | undefined>(
+  undefined,
+);

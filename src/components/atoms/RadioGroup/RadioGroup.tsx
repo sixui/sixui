@@ -12,7 +12,7 @@ import { useId } from '@/hooks/useId';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import {
   RadioGroupContext,
-  type IRadioGroupContext,
+  type IRadioGroupContextValue,
 } from './RadioGroupContext';
 
 // https://github.com/mui/material-ui/blob/master/packages/mui-material/src/RadioGroup/RadioGroup.js
@@ -21,7 +21,7 @@ import {
 const DEFAULT_TAG = 'div';
 
 export type IRadioGroupOwnProps = IOmit<IContainerProps, 'styles'> &
-  IRadioGroupContext & {
+  IRadioGroupContextValue & {
     actions?: React.RefObject<unknown>;
     children?: React.ReactNode;
     defaultValue?: string;
@@ -89,7 +89,7 @@ export const RadioGroup: IRadioGroup = forwardRef(function RadioGroup<
         },
         value,
         disabled,
-      }) satisfies IRadioGroupContext,
+      }) satisfies IRadioGroupContextValue,
     [name, onChange, value, setValue, disabled],
   );
 

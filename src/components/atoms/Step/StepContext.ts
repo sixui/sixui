@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-export type IStepContext = {
+export type IStepContextValue = {
   orientation: 'horizontal' | 'vertical';
   labelPosition: 'right' | 'bottom';
   completed?: boolean;
@@ -8,4 +8,6 @@ export type IStepContext = {
   hasContent?: boolean;
 };
 
-export const StepContext = createContext<IStepContext | undefined>(undefined);
+export const StepContext = createContext<IStepContextValue | undefined>(
+  undefined,
+);
