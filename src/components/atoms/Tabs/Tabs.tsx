@@ -7,7 +7,10 @@ import { shouldReduceMotion } from '@/helpers/shouldReduceAnimations';
 import { type ITabContextValue, TabContext } from './TabContext';
 import { useId } from '@/hooks/useId';
 
-export type ITabsProps = IOmit<ITabContextValue, 'onChange' | 'onTabActivated'> & {
+export type ITabsProps = IOmit<
+  ITabContextValue,
+  'onChange' | 'onTabActivated'
+> & {
   onChange?: (anchor: string | undefined) => IMaybeAsync<IAny>;
   defaultAnchor?: string;
   children?: React.ReactNode;
