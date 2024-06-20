@@ -30,38 +30,84 @@ import {
   useRole,
   useTransitionStatus,
   useTypeahead,
+  type Placement,
 } from '@floating-ui/react';
 
-import type { IMenuProps } from './Menu';
+import type { IMenuProps, IMenuRenderProps } from './Menu';
 import { IVisualState } from '@/hooks/useVisualState';
 import { MenuList } from '@/components/atoms/MenuList';
 import { useColorScheme } from '@/components/utils/ColorScheme';
+import { motionVars } from '@/themes/base/vars/motion.stylex';
 import { MenuContext } from './MenuContext';
 
 const styles = stylex.create({
-  menuList: {
+  host: {
     zIndex: 499,
-    transitionProperty: 'opacity, transform',
-    transformOrigin: 'top',
-    opacity: {
-      default: 0,
-      ':is([data-status=initial])': 0,
-      ':is([data-status=open])': 1,
-      ':is([data-status=close])': 0,
-    },
-    transitionDuration: {
-      default: 'unset',
-      ':is([data-status=open])': '2500ms',
-      ':is([data-status=close])': '2500ms',
-    },
-    transform: {
-      default: 'scaleY(0)',
-      ':is([data-status=initial])': 'scaleY(0)',
-      ':is([data-status=open])': 'scaleY(1)',
-      ':is([data-status=close])': 'scaleY(0)',
-    },
   },
+  menuList$unmounted: {},
+  menuList$initial: {
+    opacity: 0,
+    transform: 'scaleY(0)',
+  },
+  menuList$open: {
+    opacity: 1,
+    transform: 'scaleY(1)',
+    transitionProperty: 'opacity, transform',
+    transitionDuration: motionVars.duration$long2,
+    transitionTimingFunction: motionVars.easing$emphasizedDecelerate,
+  },
+  menuList$close: {
+    opacity: 0,
+    transform: 'scaleY(0)',
+    transitionProperty: 'opacity, transform',
+    transitionDuration: motionVars.duration$short4,
+    transitionTimingFunction: motionVars.easing$emphasizedAccelerate,
+  },
+  menuList$unmounted$nested: {},
+  menuList$initial$nested: {
+    transform: 'scale(0)',
+  },
+  menuList$open$nested: {
+    transform: 'scale(1)',
+  },
+  menuList$close$nested: {
+    transform: 'scale(0)',
+  },
+  transformOrigin: (placement: Placement) => ({
+    transformOrigin: placementToOrigin(placement),
+  }),
 });
+
+const placementToOrigin = (placement: Placement): string => {
+  switch (placement) {
+    case 'top':
+      return 'bottom';
+    case 'top-start':
+      return 'bottom left';
+    case 'top-end':
+      return 'bottom right';
+    case 'bottom':
+      return 'top';
+    case 'bottom-start':
+      return 'top left';
+    case 'bottom-end':
+      return 'top right';
+    case 'left':
+      return 'right';
+    case 'left-start':
+      return 'top right';
+    case 'left-end':
+      return 'bottom right';
+    case 'right':
+      return 'left';
+    case 'right-start':
+      return 'top left';
+    case 'right-end':
+      return 'bottom left';
+    default:
+      return 'top';
+  }
+};
 
 export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
   function Menu(props, forwardedRef) {
@@ -74,7 +120,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
     } = props;
 
     const [isOpen, setIsOpen] = useState(false);
-    const [hasFocusInside, setHasFocusInside] = useState(false);
+    const [, setHasFocusInside] = useState(false);
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
     const elementsRef = useRef<Array<HTMLButtonElement | null>>([]);
@@ -96,7 +142,9 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
       middleware: [flip(), shift()],
       whileElementsMounted: autoUpdate,
     });
-    const transitionStatus = useTransitionStatus(floating.context);
+    const transitionStatus = useTransitionStatus(floating.context, {
+      duration: 1000,
+    });
     const hover = useHover(floating.context, {
       enabled: isNested,
       delay: { open: 75 },
@@ -162,8 +210,9 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
       };
     }, [tree, nodeId, parentId]);
 
-    const bag = {
+    const bag: IMenuRenderProps = {
       open: isOpen,
+      placement: floating.placement,
     };
     const openVisualState: IVisualState = { hovered: true };
     const openProps = { visualState: openVisualState };
@@ -176,64 +225,69 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
 
     return (
       <FloatingNode id={nodeId}>
-        {cloneElement(typeof button === 'function' ? button(bag) : button, {
-          ...(isOpen ? openProps : undefined),
-          ref: handleRef,
-          tabIndex: isNested
-            ? parent.activeIndex === item.index
-              ? 0
-              : -1
-            : undefined,
-          role: isNested ? 'menuitem' : undefined,
-          'data-open': isOpen ? 'true' : undefined,
-          'data-nested': isNested ? 'true' : undefined,
-          'data-focus-inside': hasFocusInside ? 'true' : undefined,
-          ...floatingInteractions.getReferenceProps(
-            parent.getItemProps({
-              ...other,
-              onFocus(event: React.FocusEvent<HTMLButtonElement>) {
-                other.onFocus?.(event);
-                setHasFocusInside(false);
-                parent.setHasFocusInside(true);
-              },
-            }),
-          ),
-        })}
+        <MenuContext.Provider
+          value={{
+            activeIndex,
+            setActiveIndex,
+            getItemProps: floatingInteractions.getItemProps,
+            setHasFocusInside,
+            isOpen,
+            placement: floating.placement,
+          }}
+        >
+          {cloneElement(typeof button === 'function' ? button(bag) : button, {
+            ...(isOpen ? openProps : undefined),
+            ref: handleRef,
+            tabIndex: isNested
+              ? parent.activeIndex === item.index
+                ? 0
+                : -1
+              : undefined,
+            role: isNested ? 'menuitem' : undefined,
+            ...floatingInteractions.getReferenceProps(
+              parent.getItemProps({
+                ...other,
+                onFocus(event: React.FocusEvent<HTMLButtonElement>) {
+                  other.onFocus?.(event);
+                  setHasFocusInside(false);
+                  parent.setHasFocusInside(true);
+                },
+              }),
+            ),
+          })}
 
-        {transitionStatus.isMounted ? (
-          <MenuContext.Provider
-            value={{
-              activeIndex,
-              setActiveIndex,
-              getItemProps: floatingInteractions.getItemProps,
-              setHasFocusInside,
-              isOpen,
-            }}
-          >
-            <FloatingList elementsRef={elementsRef} labelsRef={labelsRef}>
-              {isOpen && (
-                <FloatingPortal root={colorScheme.root}>
-                  <FloatingFocusManager
-                    context={floating.context}
-                    modal={false}
-                    initialFocus={isNested ? -1 : 0}
-                    returnFocus={!isNested}
+          <FloatingList elementsRef={elementsRef} labelsRef={labelsRef}>
+            {transitionStatus.isMounted ? (
+              <FloatingPortal root={colorScheme.root}>
+                <FloatingFocusManager
+                  context={floating.context}
+                  modal={false}
+                  initialFocus={isNested ? -1 : 0}
+                  returnFocus={!isNested}
+                >
+                  <div
+                    {...stylex.props(styles.host, sx)}
+                    {...floatingInteractions.getFloatingProps()}
+                    ref={floating.refs.setFloating}
+                    style={floating.floatingStyles}
                   >
                     <div
-                      {...stylex.props(styles.menuList, sx)}
-                      {...floatingInteractions.getFloatingProps()}
-                      ref={floating.refs.setFloating}
-                      style={floating.floatingStyles}
-                      data-status={transitionStatus.status}
+                      {...stylex.props(
+                        styles.transformOrigin(floating.placement),
+                        styles[`menuList$${transitionStatus.status}`],
+                        parentId
+                          ? styles[`menuList$${transitionStatus.status}$nested`]
+                          : undefined,
+                      )}
                     >
                       <MenuList>{children}</MenuList>
                     </div>
-                  </FloatingFocusManager>
-                </FloatingPortal>
-              )}
-            </FloatingList>
-          </MenuContext.Provider>
-        ) : null}
+                  </div>
+                </FloatingFocusManager>
+              </FloatingPortal>
+            ) : null}
+          </FloatingList>
+        </MenuContext.Provider>
       </FloatingNode>
     );
   },

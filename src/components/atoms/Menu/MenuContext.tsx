@@ -1,3 +1,4 @@
+import type { Placement } from '@floating-ui/react';
 import { createContext } from 'react';
 
 export type IMenuContextValue = {
@@ -8,6 +9,7 @@ export type IMenuContextValue = {
   setActiveIndex: React.Dispatch<React.SetStateAction<number | null>>;
   setHasFocusInside: React.Dispatch<React.SetStateAction<boolean>>;
   isOpen: boolean;
+  placement?: Placement;
 };
 
 const stub = (): never => {
@@ -22,4 +24,5 @@ export const MenuContext = createContext<IMenuContextValue>({
   setActiveIndex: stub,
   setHasFocusInside: stub,
   isOpen: false,
+  placement: undefined,
 });
