@@ -16,7 +16,7 @@ const vars: IStyleVars<IDialogContentStyleVarKey> = {
 
   // icon
   iconColor: colorRolesVars.secondary,
-  iconSize: '24px',
+  iconSize: '18px',
 
   // headline
   headlineColor: colorRolesVars.onSurface,

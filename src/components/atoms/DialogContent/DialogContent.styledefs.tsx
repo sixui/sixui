@@ -13,6 +13,7 @@ export type IDialogContentStyleKey =
   | 'scroller$scrollable'
   | 'content'
   | 'contentSlot'
+  | 'contentSlot$scrollable'
   | 'contentSlot$hasActions'
   | 'contentSlot$scrollable$hasHeadline'
   | 'actions'

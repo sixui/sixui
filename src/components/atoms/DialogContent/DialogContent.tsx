@@ -37,7 +37,7 @@ export type IDialogContentOwnProps = IContainerProps<IDialogContentStyleKey> &
     icon?: React.ReactNode;
     headline?: React.ReactNode;
     children?: React.ReactNode;
-    actions?:
+    actions:
       | React.ReactNode
       | ((close?: IOnCloseEventHandler) => React.ReactNode);
     onClose?: IOnCloseEventHandler;
@@ -199,36 +199,35 @@ export const DialogContent: IDialogContent = forwardRef(function DialogContent<
               ref={scrollerRef}
               {...sxf('scroller', scrollable && 'scroller$scrollable')}
             >
-              <div ref={topAnchorRef} />
               <div {...sxf('content')}>
                 <div
                   {...sxf(
                     'contentSlot',
+                    scrollable && 'contentSlot$scrollable',
                     !!actions && 'contentSlot$hasActions',
                     scrollable &&
                       !!headline &&
                       'contentSlot$scrollable$hasHeadline',
                   )}
                 >
+                  <div ref={topAnchorRef} />
                   {children}
+                  <div ref={bottomAnchorRef} />
                 </div>
               </div>
-              <div ref={bottomAnchorRef} />
             </div>
           ) : null}
 
-          {actions ? (
-            <div {...sxf('actions')}>
-              <Divider
-                sx={stylesCombinator(
-                  'divider',
-                  'actionsDivider',
-                  showBottomDivider && 'actionsDivide$showBottomDivider',
-                )}
-              />
-              <div {...sxf('actionsSlot')}>{renderActions()}</div>
-            </div>
-          ) : null}
+          <div {...sxf('actions')}>
+            <Divider
+              sx={stylesCombinator(
+                'divider',
+                'actionsDivider',
+                showBottomDivider && 'actionsDivide$showBottomDivider',
+              )}
+            />
+            <div {...sxf('actionsSlot')}>{renderActions()}</div>
+          </div>
         </div>
       </div>
     </Component>

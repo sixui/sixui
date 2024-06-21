@@ -15,7 +15,6 @@ export const styles: MapNamespaces<IDialogContentStyles> =
       display: 'contents',
       maxHeight: 'min(560px, calc(100% - 48px))',
       maxWidth: 'min(560px, calc(100% - 48px))',
-      minHeight: 140,
       minWidth: 280,
       height: 'fit-content',
       width: 'fit-content',
@@ -91,7 +90,7 @@ export const styles: MapNamespaces<IDialogContentStyles> =
       paddingRight: 24,
     },
     headlineSlot$scrollable: {
-      paddingBottom: 24,
+      paddingBottom: 16,
     },
     headlineSlot$hasIcon: {
       justifyContent: 'center',
@@ -139,6 +138,9 @@ export const styles: MapNamespaces<IDialogContentStyles> =
     contentSlot: {
       boxSizing: 'border-box',
       padding: 24,
+    },
+    contentSlot$scrollable: {
+      paddingBottom: 8,
     },
     contentSlot$scrollable$hasHeadline: {
       paddingTop: 8,
