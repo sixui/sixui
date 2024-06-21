@@ -5,6 +5,9 @@ import { setRef } from '@/helpers/setRef';
 // https://github.com/mui/material-ui/blob/master/packages/mui-utils/src/useForkRef/useForkRef.ts
 // https://ollylut.medium.com/what-is-useforkref-hook-4be1c85d2d1b
 
+/**
+ * @deprecated use `useMergeRefs()` from `@floating-ui/react` instead
+ */
 export const useForkRef = <TInstance>(
   ...refs: Array<React.Ref<TInstance> | undefined>
 ): React.RefCallback<TInstance> | null => {

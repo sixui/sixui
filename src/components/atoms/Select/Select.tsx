@@ -11,8 +11,8 @@ export type ISelectProps = IOmit<
 >;
 
 const Select = forwardRef<HTMLDivElement, ISelectProps>(
-  function Select(props, ref) {
-    return <SelectBase {...props} ref={ref} multiple={false} />;
+  function Select(props, forwardedRef) {
+    return <SelectBase {...props} ref={forwardedRef} multiple={false} />;
   },
 );
 

@@ -29,7 +29,7 @@ export type IStepperProps = IContainerProps<IStepperStyleKey> & {
 const defaultConnector = <StepConnector />;
 
 const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
-  function Stepper(props, ref) {
+  function Stepper(props, forwardedRef) {
     const {
       styles,
       sx,
@@ -102,7 +102,7 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
             labelPosition === 'bottom' && 'host$labelBottom',
             sx,
           )}
-          ref={ref}
+          ref={forwardedRef}
           {...other}
         >
           {steps}

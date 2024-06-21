@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { MenuList, type IMenuListProps } from './MenuList';
-import { ListItem } from '../ListItem';
+import { Menu } from '@/components/atoms/Menu';
 
 const meta = {
   component: MenuList,
@@ -20,22 +20,25 @@ const styles = stylex.create({
 const defaultArgs = {
   children: (
     <>
-      <ListItem onClick={(...args) => sbHandleEvent('click', args)}>
+      <Menu.Item onClick={(...args) => sbHandleEvent('click', args)}>
         Apple
-      </ListItem>
-      <ListItem onClick={(...args) => sbHandleEvent('click', args)}>
+      </Menu.Item>
+      <Menu.Item onClick={(...args) => sbHandleEvent('click', args)}>
         Banana
-      </ListItem>
-      <ListItem onClick={(...args) => sbHandleEvent('click', args)}>
+      </Menu.Item>
+      <Menu.Item onClick={(...args) => sbHandleEvent('click', args)}>
         Cumcumber
-      </ListItem>
-      <ListItem onClick={(...args) => sbHandleEvent('click', args)}>
+      </Menu.Item>
+      <Menu.Item onClick={(...args) => sbHandleEvent('click', args)}>
         This is a very long and unexpected item
-      </ListItem>
+      </Menu.Item>
       <MenuList.Divider />
-      <ListItem onClick={(...args) => sbHandleEvent('click', args)} noWrap>
+      <Menu.Item
+        onClick={(...args) => sbHandleEvent('click', args)}
+        maxLines={1}
+      >
         This item will never wrap
-      </ListItem>
+      </Menu.Item>
     </>
   ),
 } satisfies Partial<IMenuListProps>;

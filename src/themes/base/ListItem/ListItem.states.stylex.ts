@@ -10,6 +10,9 @@ const vars: IStyleVars<IListItemStyleStateVarKey> = {
   textOpacity: 'unset',
   leadingSpace: 'unset',
   trailingSpace: 'unset',
+  containerMinHeight: 'unset',
+  topSpace: 'unset',
+  bottomSpace: 'unset',
 };
 
 export const componentVars = stylex.defineVars(vars);

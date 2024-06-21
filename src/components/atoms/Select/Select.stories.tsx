@@ -121,7 +121,7 @@ const options = [
     key='pepperHot'
     value='pepperHot'
     leadingIcon={<FontAwesomeIcon icon={faPepperHot} />}
-    headline='Yummy!'
+    supportingText='Yummy!'
   >
     Pepper Hot
   </Select.Option>,

@@ -5,6 +5,7 @@ import type { IItemStyleKey, IItemStyleVarKey } from './Item.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { commonStyles } from '@/helpers/commonStyles';
 
 // https://github.com/material-components/material-web/blob/main/labs/item/item.ts
 
@@ -13,15 +14,14 @@ export type IItemProps = IContainerProps<IItemStyleKey> & {
   start?: React.ReactNode;
   overline?: React.ReactNode;
   children?: React.ReactNode;
-  headline?: React.ReactNode;
   supportingText?: React.ReactNode;
   trailingSupportingText?: React.ReactNode;
   end?: React.ReactNode;
-  noWrap?: boolean;
+  maxLines?: number;
 };
 
 export const Item = forwardRef<HTMLDivElement, IItemProps>(
-  function Item(props, ref) {
+  function Item(props, forwardedRef) {
     const {
       styles,
       sx,
@@ -29,11 +29,10 @@ export const Item = forwardRef<HTMLDivElement, IItemProps>(
       start,
       overline,
       children,
-      headline,
       supportingText,
       trailingSupportingText,
       end,
-      noWrap,
+      maxLines,
       ...other
     } = props;
 
@@ -49,39 +48,33 @@ export const Item = forwardRef<HTMLDivElement, IItemProps>(
     );
 
     return (
-      <div {...sxf('host', theme.vars, sx)} ref={ref} {...other}>
+      <div {...sxf('host', theme.vars, sx)} ref={forwardedRef} {...other}>
         {container ? <div {...sxf('container')}>{container}</div> : null}
 
-        {start ? (
-          <div {...sxf('nonText')}>
-            <div {...sxf('center', 'start')}>{start}</div>
-          </div>
-        ) : null}
+        {start ? <div {...sxf('nonText', 'nonText$start')}>{start}</div> : null}
 
-        <div {...sxf('content', noWrap && 'content$noWrap')}>
-          <div {...sxf('text')}>
+        <div {...sxf('content')}>
+          <div
+            {...sxf(
+              'text',
+              maxLines ? commonStyles.truncateLines(maxLines) : undefined,
+            )}
+          >
             {overline ? <div {...sxf('overline')}>{overline}</div> : null}
-            <div {...sxf('label')}>{children}</div>
-            {headline ? <div {...sxf('headline')}>{headline}</div> : null}
+            <div {...sxf('headline')}>{children}</div>
             {supportingText ? (
               <div {...sxf('supportingText')}>{supportingText}</div>
             ) : null}
           </div>
-
-          {trailingSupportingText ? (
-            <div {...sxf('nonText')}>
-              <div {...sxf('center', 'trailingSupportingText')}>
-                {trailingSupportingText}
-              </div>
-            </div>
-          ) : null}
         </div>
 
-        {end ? (
-          <div {...sxf('nonText')}>
-            <div {...sxf('center', 'end')}>{end}</div>
+        {trailingSupportingText ? (
+          <div {...sxf('nonText', 'nonText$trailingSupportingText')}>
+            {trailingSupportingText}
           </div>
         ) : null}
+
+        {end ? <div {...sxf('nonText', 'nonText$end')}>{end}</div> : null}
       </div>
     );
   },

@@ -97,12 +97,12 @@ type IItemStyles = IStyles<IItemStyleKey>;
 export const itemStyles: MapNamespaces<IItemStyles> = stylex.create<
   IStyles<IItemStyleKey>
 >({
-  label: {
-    [itemVars.labelTextFont]: vars.textFont,
-    [itemVars.labelTextLineHeight]: vars.textLineHeight,
-    [itemVars.labelTextSize]: vars.textSize,
-    [itemVars.labelTextLetterSpacing]: vars.textLetterSpacing,
-    [itemVars.labelTextWeight]: vars.textWeight,
+  headline: {
+    [itemVars.headlineTextFont]: vars.textFont,
+    [itemVars.headlineTextLineHeight]: vars.textLineHeight,
+    [itemVars.headlineTextSize]: vars.textSize,
+    [itemVars.headlineTextLetterSpacing]: vars.textLetterSpacing,
+    [itemVars.headlineTextWeight]: vars.textWeight,
   },
 });
 

@@ -15,7 +15,7 @@ export type IDisclosureProps = IContainerProps<IDisclosurePanelStyleKey> & {
 };
 
 export const DisclosurePanel = forwardRef<HTMLDivElement, IDisclosureProps>(
-  function DisclosurePanel(props, ref) {
+  function DisclosurePanel(props, forwardedRef) {
     const {
       styles,
       sx,
@@ -47,7 +47,7 @@ export const DisclosurePanel = forwardRef<HTMLDivElement, IDisclosureProps>(
       <div
         {...other}
         {...sxf('host', expanded ? null : 'host$collapsed', theme.vars, sx)}
-        ref={ref}
+        ref={forwardedRef}
         data-cy={dataCy}
       >
         {children}

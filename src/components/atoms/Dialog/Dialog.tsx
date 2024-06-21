@@ -51,7 +51,7 @@ type IDialog = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
 
 export const Dialog: IDialog = forwardRef(function Dialog<
   TRoot extends React.ElementType = typeof DEFAULT_TAG,
->(props: IDialogProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+>(props: IDialogProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     as: Component = DEFAULT_TAG,
     styles,
@@ -159,7 +159,7 @@ export const Dialog: IDialog = forwardRef(function Dialog<
   // See https://github.com/material-components/material-web/blob/main/dialog/internal/dialog.ts#L193C8-L193C75
 
   const nodeRef = useRef<HTMLDivElement>(null);
-  const handleRef = useForkRef(nodeRef, ref);
+  const handleRef = useForkRef(nodeRef, forwardedRef);
 
   return (
     <Scrim open={open} onClick={handleScrimClick} onMouseDown={handleMouseDown}>

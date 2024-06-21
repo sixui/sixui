@@ -11,8 +11,8 @@ export type IMultiSelectProps = IOmit<
 >;
 
 const MultiSelect = forwardRef<HTMLDivElement, IMultiSelectProps>(
-  function MultiSelect(props, ref) {
-    return <SelectBase {...props} ref={ref} multiple={true} />;
+  function MultiSelect(props, forwardedRef) {
+    return <SelectBase {...props} ref={forwardedRef} multiple={true} />;
   },
 );
 

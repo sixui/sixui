@@ -16,7 +16,7 @@ export type IAnchoredProps = IContainerProps<IAnchoredStyleKey> & {
 };
 
 export const Anchored = forwardRef<HTMLDivElement, IAnchoredProps>(
-  function Anchored(props, ref) {
+  function Anchored(props, forwardedRef) {
     const {
       styles,
       sx,
@@ -59,7 +59,7 @@ export const Anchored = forwardRef<HTMLDivElement, IAnchoredProps>(
             : 'content$circular$bottom$left';
 
     return (
-      <div {...sxf('host', sx)} ref={ref} {...other}>
+      <div {...sxf('host', sx)} ref={forwardedRef} {...other}>
         {children}
 
         <div

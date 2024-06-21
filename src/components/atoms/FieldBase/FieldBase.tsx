@@ -66,7 +66,7 @@ const variantMap: IFieldBaseVariantMap = {
 };
 
 export const FieldBase = forwardRef<HTMLDivElement, IFieldBaseProps>(
-  function FieldBase(props, ref) {
+  function FieldBase(props, forwardedRef) {
     const {
       styles,
       sx,
@@ -100,7 +100,7 @@ export const FieldBase = forwardRef<HTMLDivElement, IFieldBaseProps>(
       visualStateProp,
       { disabled, retainFocusAfterClick: true },
     );
-    const handleRef = useForkRef(ref, visualStateRef);
+    const handleRef = useForkRef(forwardedRef, visualStateRef);
 
     const { theme, variantTheme } = useComponentTheme(
       'FieldBase',

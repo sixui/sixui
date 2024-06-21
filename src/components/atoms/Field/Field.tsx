@@ -26,7 +26,7 @@ export type IFieldProps = IContainerProps<IFieldStyleKey> &
   };
 
 export const Field = forwardRef<HTMLDivElement, IFieldProps>(
-  function Field(props, ref) {
+  function Field(props, forwardedRef) {
     const { styles, sx, placeholder, value, ...other } = props;
 
     const { theme } = useComponentTheme('Field');
@@ -42,7 +42,7 @@ export const Field = forwardRef<HTMLDivElement, IFieldProps>(
     const populated = !!value || !!placeholder;
 
     return (
-      <FieldBase sx={sx} ref={ref} populated={populated} {...other}>
+      <FieldBase sx={sx} ref={forwardedRef} populated={populated} {...other}>
         {value ? (
           <div {...sxf('value')} data-cy='value'>
             {value}

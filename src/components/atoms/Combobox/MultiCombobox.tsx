@@ -11,8 +11,8 @@ export type IMultiComboboxProps = IOmit<
 >;
 
 const MultiCombobox = forwardRef<HTMLInputElement, IMultiComboboxProps>(
-  function MultiCombobox(props, ref) {
-    return <ComboboxBase {...props} ref={ref} multiple={true} />;
+  function MultiCombobox(props, forwardedRef) {
+    return <ComboboxBase {...props} ref={forwardedRef} multiple={true} />;
   },
 );
 

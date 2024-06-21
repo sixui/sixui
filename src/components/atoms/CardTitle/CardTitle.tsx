@@ -16,7 +16,7 @@ export type ICardTitleProps = IContainerProps<ICardTitleStyleKey> & {
 };
 
 export const CardTitle = forwardRef<HTMLDivElement, ICardTitleProps>(
-  function CardTitle(props, ref) {
+  function CardTitle(props, forwardedRef) {
     const { styles, sx, headline, subhead, supportingText, ...other } = props;
 
     const { theme } = useComponentTheme('CardTitle');
@@ -33,7 +33,7 @@ export const CardTitle = forwardRef<HTMLDivElement, ICardTitleProps>(
     );
 
     return (
-      <div {...sxf('host', theme.vars, sx)} ref={ref} {...other}>
+      <div {...sxf('host', theme.vars, sx)} ref={forwardedRef} {...other}>
         <div {...sxf('header')}>
           {headline ? <div {...sxf('headline')}>{headline}</div> : null}
           {subhead ? <div {...sxf('subhead')}>{subhead}</div> : null}

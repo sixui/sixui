@@ -27,7 +27,7 @@ export type IMenuListProps = IContainerProps<IMenuListStyleKey> & {
 };
 
 const MenuList = forwardRef<HTMLDivElement, IMenuListProps>(
-  function MenuList(props, ref) {
+  function MenuList(props, forwardedRef) {
     const { styles, sx, innerStyles, children, ...other } = props;
 
     const { theme } = useComponentTheme('MenuList');
@@ -44,7 +44,7 @@ const MenuList = forwardRef<HTMLDivElement, IMenuListProps>(
     );
 
     return (
-      <div {...sxf('host', theme.vars, sx)} ref={ref} {...other}>
+      <div {...sxf('host', theme.vars, sx)} ref={forwardedRef} {...other}>
         <Elevation
           styles={[theme.elevationStyles, ...asArray(innerStyles?.elevation)]}
         />

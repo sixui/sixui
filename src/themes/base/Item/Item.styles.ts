@@ -12,13 +12,14 @@ export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
   host: {
     alignItems: 'stretch',
     display: 'flex',
-    minHeight: 56,
     position: 'relative',
+    gap: vars.gap,
   },
   nonText: {
     position: 'relative',
     display: 'flex',
-    alignItems: 'stretch',
+    alignItems: 'center',
+    justifyContent: 'center',
     borderRadius: 'inherit',
     color: vars.nonTextColor,
   },
@@ -32,21 +33,10 @@ export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
     overflow: 'hidden',
     color: vars.textColor,
   },
-  center: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-  host$multiline: {
-    minHeight: 72,
-  },
-  start: {
+  nonText$start: {
     color: vars.leadingContentColor,
     borderTopLeftRadius: 'inherit',
     borderBottomLeftRadius: 'inherit',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    minWidth: vars.leadingContentMinWidth,
   },
   content: {
     display: 'flex',
@@ -54,18 +44,10 @@ export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  content$noWrap: {
-    width: 0,
-    whiteSpace: 'nowrap',
-  },
-  end: {
+  nonText$end: {
     color: vars.trailingContentColor,
     borderTopRightRadius: 'inherit',
     borderBottomRightRadius: 'inherit',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    minWidth: vars.trailingContentMinWidth,
   },
   overline: {
     color: vars.overlineColor,
@@ -75,14 +57,6 @@ export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
     lineHeight: vars.overlineLineHeight,
     letterSpacing: vars.overlineLetterSpacing,
   },
-  headline: {
-    color: vars.headlineColor,
-    fontFamily: vars.headlineFont,
-    fontSize: vars.headlineSize,
-    fontWeight: vars.headlineWeight,
-    lineHeight: vars.headlineLineHeight,
-    letterSpacing: vars.headlineLetterSpacing,
-  },
   supportingText: {
     color: vars.supportingTextColor,
     fontFamily: vars.supportingTextFont,
@@ -91,7 +65,7 @@ export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
     lineHeight: vars.supportingTextLineHeight,
     letterSpacing: vars.supportingTextLetterSpacing,
   },
-  trailingSupportingText: {
+  nonText$trailingSupportingText: {
     color: vars.trailingSupportingTextColor,
     fontFamily: vars.trailingSupportingTextFont,
     fontSize: vars.trailingSupportingTextSize,
@@ -105,22 +79,18 @@ export const styles: MapNamespaces<IItemStyles> = stylex.create<IItemStyles>({
     position: 'absolute',
     borderRadius: 'inherit',
   },
-  label: {
+  headline: {
     // Needed since the default slot can have just text content, and ellipsis
     // need an inline display.
     display: 'inline',
 
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    color: vars.labelTextColor,
-    fontFamily: vars.labelTextFont,
-    fontSize: vars.labelTextSize,
-    fontWeight: vars.labelTextWeight,
-    lineHeight: vars.labelTextLineHeight,
-    letterSpacing: vars.labelTextLetterSpacing,
-  },
-  textSlot: {
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
+    color: vars.headlineTextColor,
+    fontFamily: vars.headlineTextFont,
+    fontSize: vars.headlineTextSize,
+    fontWeight: vars.headlineTextWeight,
+    lineHeight: vars.headlineTextLineHeight,
+    letterSpacing: vars.headlineTextLetterSpacing,
   },
 });

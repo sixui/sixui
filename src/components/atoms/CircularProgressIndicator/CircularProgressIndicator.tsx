@@ -23,12 +23,16 @@ export type ICircularProgressIndicatorProps = IContainerProps<
 export const CircularProgressIndicator = forwardRef<
   HTMLInputElement,
   ICircularProgressIndicatorProps
->(function CircularProgressIndicator(props, ref) {
+>(function CircularProgressIndicator(props, forwardedRef) {
   const { value } = props;
 
   return value === undefined ? (
-    <IndeterminateCircularProgressIndicator {...props} ref={ref} />
+    <IndeterminateCircularProgressIndicator {...props} ref={forwardedRef} />
   ) : (
-    <DeterminateCircularProgressIndicator {...props} ref={ref} value={value} />
+    <DeterminateCircularProgressIndicator
+      {...props}
+      ref={forwardedRef}
+      value={value}
+    />
   );
 });

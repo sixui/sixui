@@ -164,7 +164,7 @@ const variantMap: ITextFieldVariantMap = {
 export const TextField = forwardRef<
   HTMLInputElement | HTMLTextAreaElement,
   ITextFieldProps
->(function TextField(props, ref) {
+>(function TextField(props, forwardedRef) {
   const {
     styles,
     sx,
@@ -214,7 +214,7 @@ export const TextField = forwardRef<
     },
   );
   const handleRef = useForkRef(
-    ref,
+    forwardedRef,
     inputOrTextareaRefVisualStateRef,
     inputOrTextareaRef,
   );

@@ -11,8 +11,8 @@ export type IComboboxProps = IOmit<
 >;
 
 const Combobox = forwardRef<HTMLInputElement, IComboboxProps>(
-  function Combobox(props, ref) {
-    return <ComboboxBase {...props} ref={ref} multiple={false} />;
+  function Combobox(props, forwardedRef) {
+    return <ComboboxBase {...props} ref={forwardedRef} multiple={false} />;
   },
 );
 

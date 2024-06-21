@@ -62,7 +62,7 @@ export type IStepProps = IContainerProps<IStepStyleKey> & {
 };
 
 export const Step = forwardRef<HTMLDivElement, IStepProps>(
-  function Step(props, ref) {
+  function Step(props, forwardedRef) {
     const {
       styles,
       sx,
@@ -251,7 +251,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
         <div style={{ display: 'contents' }} {...sxf(theme.vars, sx)}>
           <div
             {...sxf('host', labelPosition === 'bottom' && `host$bottomLabel`)}
-            ref={ref}
+            ref={forwardedRef}
             {...other}
           >
             <div

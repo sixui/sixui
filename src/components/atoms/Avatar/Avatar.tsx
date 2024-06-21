@@ -21,7 +21,7 @@ export type IAvatarProps = IContainerProps<IAvatarStyleKey> &
   };
 
 export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
-  function Avatar(props, ref) {
+  function Avatar(props, forwardedRef) {
     const {
       styles,
       sx,
@@ -59,7 +59,7 @@ export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
     const hasImageNotFailing = hasImage && !hasLoadingError;
 
     return (
-      <div {...sxf('host', theme.vars, sx)} ref={ref} {...other}>
+      <div {...sxf('host', theme.vars, sx)} ref={forwardedRef} {...other}>
         {hasImageNotFailing ? (
           <img
             {...sxf('image')}

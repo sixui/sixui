@@ -40,7 +40,7 @@ export type IElementWithLabelProps =
 export const ElementWithLabel = forwardRef<
   HTMLDivElement,
   IElementWithLabelProps
->(function ElementWithLabel(props, ref) {
+>(function ElementWithLabel(props, forwardedRef) {
   const {
     styles,
     sx,
@@ -137,7 +137,7 @@ export const ElementWithLabel = forwardRef<
         theme.vars,
         sx,
       )}
-      ref={ref}
+      ref={forwardedRef}
       {...other}
     >
       {hasLeading ? (

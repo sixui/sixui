@@ -18,7 +18,7 @@ export type IStepConnectorProps = IContainerProps<IStepConnectorStyleKey> & {
 };
 
 export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
-  function StepConnector(props, ref) {
+  function StepConnector(props, forwardedRef) {
     const {
       styles,
       sx,
@@ -126,7 +126,7 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
           theme.vars,
           sx,
         )}
-        ref={ref}
+        ref={forwardedRef}
         {...other}
       >
         <div

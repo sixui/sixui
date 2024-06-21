@@ -12,6 +12,7 @@ import { Button } from '@/components/atoms/Button';
 import { Avatar } from '@/components/atoms/Avatar';
 import { IconButton } from '@/components/atoms/IconButton/IconButton';
 import { Card, type ICardProps, type ICardOwnProps } from './Card';
+import { ListItem } from '../ListItem';
 
 // https://m3.material.io/components/cards
 // https://github.com/material-components/material-web/blob/main/labs/card/demo/stories.ts
@@ -25,10 +26,6 @@ type IStory = StoryObj<typeof meta>;
 const styles = stylex.create({
   card: {
     width: 300,
-  },
-  avatar: {
-    marginStart: 12,
-    marginEnd: 12,
   },
   media: {
     height: 200,
@@ -44,18 +41,17 @@ const NonActionableContent: React.FC<{ headline?: string }> = ({
   headline,
 }) => (
   <>
-    <Card.Header
-      start={
-        <Avatar
-          sx={styles.avatar}
-          src='https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
-        />
+    <ListItem
+      leading={
+        <Avatar src='https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' />
       }
-      headline='February 21, 2024'
-      end={<IconButton icon={<FontAwesomeIcon icon={faEllipsisVertical} />} />}
+      supportingText='February 21, 2024'
+      trailing={
+        <IconButton icon={<FontAwesomeIcon icon={faEllipsisVertical} />} />
+      }
     >
       John Doe
-    </Card.Header>
+    </ListItem>
     <Card.Content>
       <Card.Title headline={headline ?? 'Headline'} />
       <Card.Media

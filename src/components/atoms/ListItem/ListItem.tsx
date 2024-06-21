@@ -1,4 +1,4 @@
-import { forwardRef, useMemo, useRef } from 'react';
+import { forwardRef, useContext, useMemo, useRef } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -33,6 +33,8 @@ import {
   Item,
 } from '@/components/atoms/Item';
 import { useForkRef } from '@/hooks/useForkRef';
+import { commonStyles } from '@/helpers/commonStyles';
+import { ListContext } from '@/components/atoms/List/ListContext';
 
 // https://github.com/material-components/material-web/blob/main/list/internal/listitem/list-item.ts
 
@@ -57,9 +59,15 @@ export type IListItemOwnProps = IContainerProps<IListItemStyleKey> &
     disabled?: boolean;
 
     selected?: boolean;
+    leading?: React.ReactNode;
     leadingIcon?: React.ReactNode;
+    leadingImage?: string;
+    leadingVideo?: Array<{ type: string; src: string }>;
+    trailing?: React.ReactNode;
     trailingIcon?: React.ReactNode;
     onClick?: React.MouseEventHandler;
+    size?: 'sm' | 'md' | 'lg' | 'xl';
+    maxLines?: number;
   };
 
 export type IListItemProps<
@@ -96,17 +104,21 @@ export const ListItem: IListItem = forwardRef(function ListItem<
     overline,
     start,
     children,
-    headline,
     supportingText,
     trailingSupportingText,
     end,
     disabled,
     selected: selectedProp,
     target: targetProp,
+    leading,
     leadingIcon,
+    leadingImage,
+    leadingVideo,
+    trailing,
     trailingIcon,
     onClick,
-    noWrap,
+    size: sizeProp = 'md',
+    maxLines,
     ...other
   } = props as IWithAsProp<IListItemOwnProps>;
 
@@ -133,27 +145,112 @@ export const ListItem: IListItem = forwardRef(function ListItem<
     [stylesCombinator, visualState],
   );
 
+  const listContext = useContext(ListContext);
   const type = href !== undefined ? 'link' : onClick ? 'button' : 'text';
   const role = type === 'text' ? 'listitem' : undefined;
   const selected = !disabled && selectedProp;
   const isInteractive = type !== 'text';
   const target = type === 'link' && targetProp ? targetProp : undefined;
-  const hasLeadingContent = !!leadingIcon || !!start;
-  const hasTrailingContent = !!trailingIcon || !!end;
+  const size = listContext?.size ?? sizeProp;
+  const adaptedSize =
+    size === 'md' && (!!supportingText || !!leadingVideo) ? 'lg' : size;
 
   const Component =
     as ??
     (type == 'link' ? settings.linkAs : type === 'button' ? 'button' : 'li');
 
+  const renderContainer = (): React.ReactNode => (
+    <>
+      <div
+        {...sxf(
+          'background',
+          selected && 'background$selected',
+          disabled && 'background$disabled',
+        )}
+      />
+      {isInteractive ? (
+        <>
+          <StateLayer
+            styles={[
+              theme.stateLayerStyles,
+              variantTheme?.stateLayerStyles,
+              ...asArray(innerStyles?.stateLayer),
+            ]}
+            for={actionRef}
+            disabled={disabled}
+            visualState={visualState}
+          />
+          <FocusRing
+            styles={[
+              theme.focusRingStyles,
+              variantTheme?.focusRingStyles,
+              ...asArray(innerStyles?.focusRing),
+            ]}
+            for={actionRef}
+            visualState={visualState}
+            inward
+          />
+        </>
+      ) : null}
+    </>
+  );
+
+  const renderStart = (): React.ReactNode =>
+    start ??
+    (leadingIcon ? (
+      <div {...sxf('leading')}>
+        <div
+          {...sxf(
+            'icon',
+            'icon$leading',
+            disabled && 'icon$leading$disabled',
+            selected && 'icon$leading$selected',
+          )}
+        >
+          {leadingIcon}
+        </div>
+      </div>
+    ) : leadingImage ? (
+      <div {...sxf('leading')}>
+        <div {...sxf('image', commonStyles.backgroundImage(leadingImage))} />
+      </div>
+    ) : leadingVideo ? (
+      <video {...sxf('video')} autoPlay={!disabled} loop muted>
+        {leadingVideo.map((video, videoIndex) => (
+          <source key={videoIndex} src={video.src} type={video.type} />
+        ))}
+      </video>
+    ) : leading ? (
+      <div {...sxf('leading')}>{leading}</div>
+    ) : undefined);
+
+  const renderEnd = (): React.ReactNode =>
+    end ??
+    (trailingIcon ? (
+      <div
+        {...sxf(
+          'icon',
+          'icon$trailing',
+          disabled && 'icon$trailing$disabled',
+          selected && 'icon$trailing$selected',
+        )}
+      >
+        {trailingIcon}
+      </div>
+    ) : trailing ? (
+      <div {...sxf('trailing')}>{trailing}</div>
+    ) : undefined);
+
   return (
     <Component
       {...sxf(
         'host',
+        `host$${adaptedSize}`,
         isInteractive && 'host$interactive',
         selected && 'host$selected',
         disabled && 'host$disabled',
-        hasLeadingContent && 'host$hasLeadingContent',
-        hasTrailingContent && 'host$hasTrailingContent',
+        !start && !leadingVideo && 'host$leadingSpace',
+        !end && 'host$trailingSpace',
         theme.vars,
         variantTheme?.vars,
         sx,
@@ -175,78 +272,13 @@ export const ListItem: IListItem = forwardRef(function ListItem<
           variantTheme?.itemStyles,
           ...asArray(innerStyles?.item),
         ]}
-        container={
-          <>
-            <div
-              {...sxf(
-                'background',
-                selected && 'background$selected',
-                disabled && 'background$disabled',
-              )}
-            />
-            {isInteractive ? (
-              <>
-                <StateLayer
-                  styles={[
-                    theme.stateLayerStyles,
-                    variantTheme?.stateLayerStyles,
-                    ...asArray(innerStyles?.stateLayer),
-                  ]}
-                  for={actionRef}
-                  disabled={disabled}
-                  visualState={visualState}
-                />
-                <FocusRing
-                  styles={[
-                    theme.focusRingStyles,
-                    variantTheme?.focusRingStyles,
-                    ...asArray(innerStyles?.focusRing),
-                  ]}
-                  for={actionRef}
-                  visualState={visualState}
-                  inward
-                />
-              </>
-            ) : null}
-          </>
-        }
+        container={renderContainer()}
         overline={overline}
-        start={
-          leadingIcon ? (
-            <div
-              {...sxf(
-                'icon',
-                'icon$leading',
-                disabled && 'icon$leading$disabled',
-                selected && 'icon$leading$selected',
-              )}
-            >
-              {leadingIcon}
-            </div>
-          ) : (
-            start
-          )
-        }
-        headline={headline}
+        start={renderStart()}
         supportingText={supportingText}
         trailingSupportingText={trailingSupportingText}
-        end={
-          trailingIcon ? (
-            <div
-              {...sxf(
-                'icon',
-                'icon$trailing',
-                disabled && 'icon$trailing$disabled',
-                selected && 'icon$trailing$selected',
-              )}
-            >
-              {trailingIcon}
-            </div>
-          ) : (
-            end
-          )
-        }
-        noWrap={noWrap}
+        end={renderEnd()}
+        maxLines={maxLines}
       >
         {children}
       </Item>

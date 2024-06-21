@@ -46,21 +46,18 @@ const styles = stylex.create({
   },
   menuList$unmounted: {},
   menuList$initial: {
-    opacity: 0,
     transform: 'scaleY(0)',
   },
   menuList$open: {
-    opacity: 1,
     transform: 'scaleY(1)',
-    transitionProperty: 'opacity, transform',
-    transitionDuration: motionVars.duration$long2,
+    transitionProperty: 'transform',
+    transitionDuration: motionVars.duration$long3,
     transitionTimingFunction: motionVars.easing$emphasizedDecelerate,
   },
   menuList$close: {
-    opacity: 0,
     transform: 'scaleY(0)',
-    transitionProperty: 'opacity, transform',
-    transitionDuration: motionVars.duration$short4,
+    transitionProperty: 'transform',
+    transitionDuration: motionVars.duration$short3,
     transitionTimingFunction: motionVars.easing$emphasizedAccelerate,
   },
   menuList$unmounted$nested: {},
@@ -143,7 +140,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
       whileElementsMounted: autoUpdate,
     });
     const transitionStatus = useTransitionStatus(floating.context, {
-      duration: 1000,
+      duration: 150, // motionVars.duration$short3
     });
     const hover = useHover(floating.context, {
       enabled: isNested,

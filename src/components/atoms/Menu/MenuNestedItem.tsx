@@ -18,12 +18,12 @@ export const MenuNestedItem = forwardRef<
 
   return (
     <MenuItem
-      start={
+      leading={
         placement?.startsWith('left-') ? (
           <TriangleLeft aria-hidden />
         ) : undefined
       }
-      end={
+      trailing={
         placement?.startsWith('right-') || placement === undefined ? (
           <TriangleRight aria-hidden />
         ) : undefined

@@ -27,7 +27,7 @@ const staticStyles = stylex.create({
 });
 
 export const Skeleton = forwardRef<HTMLDivElement, ISkeletonProps>(
-  function Skeleton(props, ref) {
+  function Skeleton(props, forwardedRef) {
     const {
       styles,
       sx,
@@ -77,7 +77,7 @@ export const Skeleton = forwardRef<HTMLDivElement, ISkeletonProps>(
           theme.vars,
           sx,
         )}
-        ref={ref}
+        ref={forwardedRef}
         {...other}
       >
         <div {...sxf('hidden')}>{children ?? '%'}</div>

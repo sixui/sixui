@@ -1,12 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
-import {
-  type IComponentPresentation,
-  ComponentShowcase,
-} from '@/components/utils/ComponentShowcase';
-import type { IStyles } from '@/helpers/types';
-import type { IItemStyleKey } from './Item.styledefs';
+import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { Item, type IItemProps } from './Item';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 
@@ -20,145 +15,114 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const LOREM_IPSUM =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus condimentum rhoncus est volutpat venenatis.';
+const LOREM$XS = 'Lorem ipsum dolor sit amet.';
+const LOREM$SM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
 
-const defaultArgs = { children: undefined } satisfies Partial<IItemProps>;
-
-const componentShowCaseStyles = stylex.create({
-  host: {
-    alignItems: 'flex-start',
-    display: 'flex',
-    gap: '32px',
-    flexWrap: 'wrap',
-  },
-});
-
-const itemStyles = stylex.create({
+const styles = stylex.create({
   host: {
     outlineWidth: '1px',
-    outlineStyle: 'solid',
-    outlineColor: colorRolesVars.outline,
-    width: '200px',
+    outlineStyle: 'dashed',
+    outlineColor: colorRolesVars.outlineVariant,
+  },
+  host$fixedWidth$sm: {
+    width: 320,
+  },
+  host$fixedWidth$xs: {
+    width: 160,
+  },
+  slot: {
+    display: 'flex',
+    flexGrow: 1,
+  },
+  slot$start: {
+    backgroundColor: colorRolesVars.surfaceContainer,
+  },
+  slot$overline: {
+    backgroundColor: colorRolesVars.surfaceContainer,
+  },
+  slot$headline: {
+    backgroundColor: colorRolesVars.primaryContainer,
+    color: colorRolesVars.onPrimaryContainer,
+  },
+  slot$supportingText: {
+    backgroundColor: colorRolesVars.surfaceContainer,
+  },
+  slot$trailingSupportingText: {
+    backgroundColor: colorRolesVars.surfaceContainer,
+  },
+  slot$end: {
+    backgroundColor: colorRolesVars.surfaceContainer,
   },
 });
 
+const defaultArgs = { sx: styles.host } satisfies Partial<IItemProps>;
+
 export const Slots: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      styles={componentShowCaseStyles}
-      component={Item}
-      props={props}
-    />
-  ),
+  render: (props) => <ComponentShowcase component={Item} props={props} />,
   args: {
     ...defaultArgs,
-    styles: [
-      itemStyles,
-      stylex.create<IStyles<IItemStyleKey>>({
-        host: { width: '420px' },
-      }),
-    ],
-    overline: '[overline]',
-    headline: '[headline]',
-    start: '[start]',
-    children: '[children]',
-    end: '[end]',
-    supportingText: '[supportingText]',
-    trailingSupportingText: '[trailingSupportingText]',
+    start: <div {...stylex.props(styles.slot, styles.slot$start)}>Start</div>,
+    overline: (
+      <div {...stylex.props(styles.slot, styles.slot$overline)}>Overline</div>
+    ),
+    children: (
+      <div {...stylex.props(styles.slot, styles.slot$headline)}>Headline</div>
+    ),
+    supportingText: (
+      <div {...stylex.props(styles.slot, styles.slot$supportingText)}>
+        Supporting text
+      </div>
+    ),
+    trailingSupportingText: (
+      <div {...stylex.props(styles.slot, styles.slot$trailingSupportingText)}>
+        Trailing supporting text
+      </div>
+    ),
+    end: <div {...stylex.props(styles.slot, styles.slot$end)}>End</div>,
   },
 };
 
-const shortTextColProps: Array<IComponentPresentation<IItemProps>> = [
-  { props: { children: 'Single line item' } },
-  {
-    props: {
-      children: 'Two line item',
-      supportingText: 'Supporting text',
-    },
-  },
-  {
-    props: {
-      children: 'Three line item',
-      supportingText: (
-        <>
-          <div>Second line text</div>
-          <div>Third line text</div>
-        </>
-      ),
-    },
-  },
-];
-
-const longTextColProps: Array<IComponentPresentation<IItemProps>> = [
-  {
-    props: {
-      children: 'Item with a truncated headline and supporting text.',
-      supportingText: `Supporting text. ${LOREM_IPSUM}`,
-      styles: [
-        itemStyles,
-        stylex.create<IStyles<IItemStyleKey>>({
-          label: {
-            // Prevent lines from wrapping
-            whiteSpace: 'nowrap',
-          },
-        }),
-      ],
-    },
-  },
-  {
-    props: {
-      children: 'Item with clamped lines',
-      supportingText: `Supporting text that wraps up to two lines. ${LOREM_IPSUM}`,
-      styles: [
-        itemStyles,
-        stylex.create<IStyles<IItemStyleKey>>({
-          supportingText: {
-            display: '-webkit-box',
-            WebkitBoxOrient: 'vertical',
-            WebkitLineClamp: '2',
-            wordBreak: 'break-all',
-          },
-        }),
-      ],
-    },
-  },
-  {
-    props: {
-      children: 'Item that always shows long wrapping text.',
-      supportingText: `Supporting text. ${LOREM_IPSUM}`,
-    },
-  },
-];
-
-export const ShortText: IStory = {
+export const Lengths: IStory = {
   render: (props) => (
     <ComponentShowcase
-      styles={componentShowCaseStyles}
+      horizontalAlign='start'
       component={Item}
       props={props}
-      cols={shortTextColProps}
+      rows={[
+        { legend: 'Basic', props: { children: LOREM$XS } },
+        {
+          legend: 'Long text',
+          props: {
+            children: LOREM$SM,
+          },
+        },
+        {
+          legend: 'Fixed width',
+          props: {
+            children: LOREM$SM,
+            sx: [styles.host, styles.host$fixedWidth$sm],
+          },
+        },
+        {
+          legend: 'Fixed width, one line max',
+          props: {
+            children: LOREM$SM,
+            sx: [styles.host, styles.host$fixedWidth$xs],
+            maxLines: 1,
+          },
+        },
+        {
+          legend: 'Fixed width, two lines max',
+          props: {
+            children: LOREM$SM,
+            sx: [styles.host, styles.host$fixedWidth$xs],
+            maxLines: 2,
+          },
+        },
+      ]}
     />
   ),
-  args: {
-    ...defaultArgs,
-    styles: itemStyles,
-  },
-};
-
-export const LongText: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      styles={componentShowCaseStyles}
-      component={Item}
-      props={props}
-      cols={longTextColProps}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    styles: itemStyles,
-  },
+  args: defaultArgs,
 };
 
 export default meta;

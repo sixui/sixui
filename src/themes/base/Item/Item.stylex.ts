@@ -8,6 +8,8 @@ import { typescaleVars } from '../vars/typo.stylex';
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-item.scss
 
 const vars: IStyleVars<IItemStyleVarKey> = {
+  gap: '12px',
+
   // text
   textColor: colorRolesVars.onSurface,
 
@@ -16,34 +18,25 @@ const vars: IStyleVars<IItemStyleVarKey> = {
 
   // leadingContent
   leadingContentColor: 'inherit',
-  leadingContentMinWidth: '48px',
 
   // overline
-  overlineColor: 'inherit',
+  overlineColor: colorRolesVars.onSurfaceVariant,
   overlineFont: typescaleVars.labelFont$sm,
   overlineLineHeight: typescaleVars.labelLineHeight$sm,
   overlineSize: typescaleVars.labelSize$sm,
   overlineLetterSpacing: typescaleVars.labelLetterSpacing$sm,
   overlineWeight: typescaleVars.labelWeight$sm,
 
-  // labelText
-  labelTextColor: 'inherit',
-  labelTextFont: typescaleVars.bodyFont$lg,
-  labelTextLineHeight: typescaleVars.bodyLineHeight$lg,
-  labelTextSize: typescaleVars.bodySize$lg,
-  labelTextLetterSpacing: typescaleVars.bodyLetterSpacing$lg,
-  labelTextWeight: typescaleVars.bodyWeight$lg,
-
-  // headline
-  headlineColor: 'inherit',
-  headlineFont: typescaleVars.labelFont$sm,
-  headlineLineHeight: typescaleVars.labelLineHeight$sm,
-  headlineSize: typescaleVars.labelSize$sm,
-  headlineLetterSpacing: typescaleVars.labelLetterSpacing$sm,
-  headlineWeight: typescaleVars.labelWeight$sm,
+  // headlineText
+  headlineTextColor: colorRolesVars.onSurface,
+  headlineTextFont: typescaleVars.bodyFont$lg,
+  headlineTextLineHeight: typescaleVars.bodyLineHeight$lg,
+  headlineTextSize: typescaleVars.bodySize$lg,
+  headlineTextLetterSpacing: typescaleVars.bodyLetterSpacing$lg,
+  headlineTextWeight: typescaleVars.bodyWeight$lg,
 
   // supportingText
-  supportingTextColor: 'inherit',
+  supportingTextColor: colorRolesVars.onSurfaceVariant,
   supportingTextFont: typescaleVars.bodyFont$sm,
   supportingTextLineHeight: typescaleVars.bodyLineHeight$sm,
   supportingTextSize: typescaleVars.bodySize$sm,
@@ -51,7 +44,7 @@ const vars: IStyleVars<IItemStyleVarKey> = {
   supportingTextWeight: typescaleVars.bodyWeight$sm,
 
   // trailingSupportingText
-  trailingSupportingTextColor: 'inherit',
+  trailingSupportingTextColor: colorRolesVars.onSurfaceVariant,
   trailingSupportingTextFont: typescaleVars.labelFont$sm,
   trailingSupportingTextLineHeight: typescaleVars.labelLineHeight$sm,
   trailingSupportingTextSize: typescaleVars.labelSize$sm,
@@ -60,7 +53,6 @@ const vars: IStyleVars<IItemStyleVarKey> = {
 
   // trailingContent
   trailingContentColor: 'inherit',
-  trailingContentMinWidth: '48px',
 };
 
 export const componentVars = stylex.defineVars(vars);

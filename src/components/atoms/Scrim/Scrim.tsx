@@ -23,7 +23,7 @@ export type IScrimProps = IContainerProps<IScrimStyleKey> & {
 };
 
 export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
-  function Scrim(props, ref) {
+  function Scrim(props, forwardedRef) {
     const {
       styles,
       sx,
@@ -50,7 +50,7 @@ export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
     });
 
     const nodeRef = useRef<HTMLDivElement>(null);
-    const handleRef = useForkRef(nodeRef, ref);
+    const handleRef = useForkRef(nodeRef, forwardedRef);
 
     return (
       <CSSTransition

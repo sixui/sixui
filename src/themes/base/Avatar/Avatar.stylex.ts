@@ -11,15 +11,15 @@ const vars: IStyleVars<IAvatarStyleVarKey> = {
   containerShape: shapeVars.corner$full,
   containerWidth: '40px',
   containerHeight: '40px',
-  containerColor: colorRolesVars.secondaryContainer,
+  containerColor: colorRolesVars.primaryContainer,
 
   // label
-  labelTextColor: colorRolesVars.onSecondaryContainer,
-  labelTextFont: typescaleVars.bodyFont$lg,
-  labelTextLineHeight: typescaleVars.bodyLineHeight$lg,
-  labelTextSize: typescaleVars.bodySize$lg,
-  labelTextLetterSpacing: typescaleVars.bodyLetterSpacing$lg,
-  labelTextWeight: typescaleVars.bodyWeight$lg,
+  labelTextColor: colorRolesVars.onPrimaryContainer,
+  labelTextFont: typescaleVars.titleFont$md,
+  labelTextLineHeight: typescaleVars.titleLineHeight$md,
+  labelTextSize: typescaleVars.titleSize$md,
+  labelTextLetterSpacing: typescaleVars.titleLetterSpacing$md,
+  labelTextWeight: typescaleVars.titleWeight$md,
 };
 
 export const componentVars = stylex.defineVars(vars);

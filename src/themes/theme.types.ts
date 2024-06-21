@@ -114,6 +114,10 @@ import type {
   IDialogStyleVarKey,
 } from '@/components/atoms/Dialog';
 import type {
+  IDialogContentStyleKey,
+  IDialogContentStyleVarKey,
+} from '@/components/atoms/DialogContent';
+import type {
   IMenuListStyleKey,
   IMenuListStyleVarKey,
 } from '@/components/atoms/MenuList';
@@ -350,9 +354,6 @@ export type ITheme = {
       stateLayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
       focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
     };
-    CardHeader: {
-      vars?: IStyleVarsTheme<IItemStyleVarKey>;
-    };
     CardMedia: {
       vars: IStyleVarsTheme<ICardMediaStyleVarKey>;
       styles?: ICompiledStyles<ICardMediaStyleKey>;
@@ -406,6 +407,10 @@ export type ITheme = {
     Dialog: {
       vars?: IStyleVarsTheme<IDialogStyleVarKey>;
       styles?: ICompiledStyles<IDialogStyleKey>;
+    };
+    DialogContent: {
+      vars?: IStyleVarsTheme<IDialogContentStyleVarKey>;
+      styles?: ICompiledStyles<IDialogContentStyleKey>;
     };
     MenuList: {
       vars?: IStyleVarsTheme<IMenuListStyleVarKey>;

@@ -43,7 +43,7 @@ export type IDisclosureButtonProps =
 export const DisclosureButton = forwardRef<
   HTMLButtonElement,
   IDisclosureButtonProps
->(function DisclosureButton(props, ref) {
+>(function DisclosureButton(props, forwardedRef) {
   const {
     styles,
     sx,
@@ -96,8 +96,6 @@ export const DisclosureButton = forwardRef<
   return (
     <div {...sxf('host')}>
       <ListItem
-        {...other}
-        ref={ref}
         sx={[
           stylesCombinator(
             'button',
@@ -115,7 +113,7 @@ export const DisclosureButton = forwardRef<
           ...innerStyles?.listItem,
           item: [theme.itemStyles, ...asArray(innerStyles?.listItem?.item)],
         }}
-        end={
+        trailing={
           !context.checkable && context.loading ? (
             <IndeterminateCircularProgressIndicator
               styles={[
@@ -129,6 +127,8 @@ export const DisclosureButton = forwardRef<
         disabled={disabled ?? (context.checkable && !context.checked)}
         onClick={() => context.setExpanded?.(!context.expanded)}
         data-cy={dataCy}
+        {...other}
+        ref={forwardedRef}
       >
         {children}
       </ListItem>

@@ -12,6 +12,13 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
+const AVATAR_IMAGE_URL_1 =
+  'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80';
+const AVATAR_IMAGE_URL_2 =
+  'https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80';
+const AVATAR_IMAGE_URL_3 =
+  'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80';
+
 const defaultArgs = {} satisfies Partial<IAvatarProps>;
 
 export const Variants: IStory = {
@@ -22,7 +29,7 @@ export const Variants: IStory = {
       cols={[
         {
           props: {
-            src: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            src: AVATAR_IMAGE_URL_1,
           },
         },
         {},
@@ -45,19 +52,19 @@ export const Image: IStory = {
       cols={[
         {
           props: {
-            src: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-            alt: 'John Doe',
-          },
-        },
-        {
-          props: {
-            src: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            src: AVATAR_IMAGE_URL_1,
             alt: 'Jane Doe',
           },
         },
         {
           props: {
-            src: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            src: AVATAR_IMAGE_URL_2,
+            alt: 'John Doe',
+          },
+        },
+        {
+          props: {
+            src: AVATAR_IMAGE_URL_3,
             alt: 'Olivier Pascal',
           },
         },

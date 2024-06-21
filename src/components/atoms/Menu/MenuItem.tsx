@@ -26,6 +26,7 @@ export const MenuItem = forwardRef<HTMLButtonElement, IMenuItemProps>(
         role='menuitem'
         tabIndex={isActive ? 0 : -1}
         disabled={disabled}
+        size='sm'
         {...menu.getItemProps({
           onClick(event: React.MouseEvent<HTMLButtonElement>) {
             props.onClick?.(event);

@@ -45,7 +45,7 @@ export type IBreadcrumbsProps = IContainerProps<IBreadcrumbsStyleKey> & {
 };
 
 export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
-  function Breadcrumbs(props, ref) {
+  function Breadcrumbs(props, forwardedRef) {
     const {
       styles,
       sx,
@@ -172,7 +172,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
       ));
 
     return (
-      <ol {...sxf('host', theme.vars, sx)} ref={ref} {...other}>
+      <ol {...sxf('host', theme.vars, sx)} ref={forwardedRef} {...other}>
         {insertSeparators(
           expanded || (maxItems !== undefined && allItems.length <= maxItems)
             ? allItems

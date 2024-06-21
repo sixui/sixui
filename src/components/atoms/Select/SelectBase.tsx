@@ -144,7 +144,7 @@ const defaultRenderMultiOptions = (
 const emptyArrayStableRef: Array<string> = [];
 
 const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
-  function SelectBase(props, ref) {
+  function SelectBase(props, forwardedRef) {
     const {
       sx,
       children,
@@ -216,7 +216,7 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
     return (
       <Listbox
         {...stylex.props(styles.host, disabled && styles.host$disabled, sx)}
-        ref={ref}
+        ref={forwardedRef}
         as='div'
         id={id}
         onChange={handleChange}

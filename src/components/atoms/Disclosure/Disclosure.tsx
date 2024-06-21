@@ -20,7 +20,7 @@ export type IDisclosureProps = IContainerProps<IDisclosureStyleKey> &
   };
 
 const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
-  function Disclosure(props, ref) {
+  function Disclosure(props, forwardedRef) {
     const {
       styles,
       sx,
@@ -76,7 +76,7 @@ const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
 
     return (
       <DisclosureContext.Provider value={context}>
-        <div {...other} {...sxf('host', sx)} ref={ref}>
+        <div {...other} {...sxf('host', sx)} ref={forwardedRef}>
           {children}
         </div>
       </DisclosureContext.Provider>

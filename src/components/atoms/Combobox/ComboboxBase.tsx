@@ -133,7 +133,7 @@ const optionNodeToLabel = (option: IOption | string): string =>
       option.props.value;
 
 const ComboboxBase = forwardRef<HTMLInputElement, IComboboxBaseProps>(
-  function Combobox(props, ref) {
+  function Combobox(props, forwardedRef) {
     const {
       sx,
       children,
@@ -350,7 +350,7 @@ const ComboboxBase = forwardRef<HTMLInputElement, IComboboxBaseProps>(
                 return (
                   <TextField
                     {...other}
-                    ref={ref}
+                    ref={forwardedRef}
                     containerRef={refs.setReference}
                     innerStyles={{ field: fieldStyles }}
                     visualState={visualState}

@@ -34,7 +34,6 @@ import {
 } from '@/components/utils/StateLayer';
 import { useForkRef } from '@/hooks/useForkRef';
 import { CardContext, type ICardContextValue } from './CardContext';
-import { CardHeader } from '../CardHeader';
 import { CardMedia } from '../CardMedia';
 import { CardContent } from '../CardContent';
 import { CardTitle } from '../CardTitle';
@@ -193,7 +192,6 @@ const Card: ICard = forwardRef(function Card<
 });
 
 const CardNamespace = Object.assign(Card, {
-  Header: CardHeader,
   Media: CardMedia,
   Content: CardContent,
   Title: CardTitle,

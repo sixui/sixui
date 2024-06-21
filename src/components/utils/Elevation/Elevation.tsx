@@ -15,7 +15,7 @@ export type IElevationProps = IContainerProps<IElevationStyleKey> & {
 };
 
 export const Elevation = forwardRef<HTMLDivElement, IElevationProps>(
-  function Elevation(props, ref) {
+  function Elevation(props, forwardedRef) {
     const { styles, sx, level, disabled, ...other } = props;
 
     const { theme } = useComponentTheme('Elevation');
@@ -40,7 +40,7 @@ export const Elevation = forwardRef<HTMLDivElement, IElevationProps>(
           theme.vars,
           sx,
         )}
-        ref={ref}
+        ref={forwardedRef}
         aria-hidden
         {...other}
       />

@@ -149,8 +149,6 @@ import { componentTheme as filledCardTheme } from './Card/FilledCard.stylex';
 import { componentTheme as outlinedCardTheme } from './Card/OutlinedCard.stylex';
 import { styles as outlinedCardStyles } from './Card/OutlinedCard.styles';
 
-import { componentTheme as cardHeaderTheme } from './CardHeader/CardHeader.stylex';
-
 import { componentTheme as cardMediaTheme } from './CardMedia/CardMedia.stylex';
 import { styles as cardMediaStyles } from './CardMedia/CardMedia.styles';
 
@@ -197,6 +195,9 @@ import { styles as scrimStyles } from './Scrim/Scrim.styles';
 
 import { componentTheme as dialogTheme } from './Dialog/Dialog.stylex';
 import { styles as dialogStyles } from './Dialog/Dialog.styles';
+
+import { componentTheme as dialogContentTheme } from './DialogContent/DialogContent.stylex';
+import { styles as dialogContentStyles } from './DialogContent/DialogContent.styles';
 
 import { componentTheme as menuListTheme } from './MenuList/MenuList.stylex';
 import {
@@ -417,9 +418,6 @@ export const theme: ITheme = {
       stateLayerStyles: cardStateLayerStyles,
       focusRingStyles: cardFocusRingStyles,
     },
-    CardHeader: {
-      vars: cardHeaderTheme,
-    },
     CardMedia: {
       vars: cardMediaTheme,
       styles: cardMediaStyles,
@@ -480,6 +478,10 @@ export const theme: ITheme = {
     Dialog: {
       vars: dialogTheme,
       styles: dialogStyles,
+    },
+    DialogContent: {
+      vars: dialogContentTheme,
+      styles: dialogContentStyles,
     },
     MenuList: {
       vars: menuListTheme,

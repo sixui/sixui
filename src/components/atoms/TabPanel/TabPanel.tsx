@@ -10,7 +10,7 @@ export type ITabPanelProps = IOmit<IContainerProps, 'styles'> & {
 };
 
 export const TabPanel = forwardRef<HTMLDivElement, ITabPanelProps>(
-  function TabPanel(props, ref) {
+  function TabPanel(props, forwardedRef) {
     const { sx, anchor, children } = props;
 
     const context = useContext(TabContext);
@@ -22,7 +22,12 @@ export const TabPanel = forwardRef<HTMLDivElement, ITabPanelProps>(
     const id = context && anchor ? `${context.id}-${anchor}` : undefined;
 
     return (
-      <div {...stylex.props(sx)} ref={ref} role='tabpanel' aria-labelledby={id}>
+      <div
+        {...stylex.props(sx)}
+        ref={forwardedRef}
+        role='tabpanel'
+        aria-labelledby={id}
+      >
         {children}
       </div>
     );

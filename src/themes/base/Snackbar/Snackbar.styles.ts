@@ -49,7 +49,7 @@ export const styles: MapNamespaces<ISnackbarStyles> =
     animation$onExitActive: {
       opacity: 0,
       transitionProperty: 'opacity, transform',
-      transitionDuration: motionVars.duration$short4,
+      transitionDuration: motionVars.duration$short2,
       transitionTimingFunction: motionVars.easing$emphasizedAccelerate,
     },
   });

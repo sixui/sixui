@@ -7,30 +7,37 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { MenuListDivider } from '@/components/atoms/MenuList';
 import { ListItem } from '@/components/atoms/ListItem';
+import { ListContext, type IListContextValue } from './ListContext';
 
-export type IListProps = IContainerProps<IListStyleKey> & {
-  children?: React.ReactNode;
-};
+export type IListProps = IContainerProps<IListStyleKey> &
+  IListContextValue & {
+    children?: React.ReactNode;
+  };
 
-const List = forwardRef<HTMLDivElement, IListProps>(function List(props, ref) {
-  const { styles, sx, children, ...other } = props;
+const List = forwardRef<HTMLDivElement, IListProps>(
+  function List(props, forwardedRef) {
+    const { styles, sx, size, children, ...other } = props;
 
-  const { theme } = useComponentTheme('List');
-  const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, styles),
-    [theme.styles, styles],
-  );
-  const sxf = useMemo(
-    () => stylePropsFactory<IListStyleKey, IListStyleVarKey>(stylesCombinator),
-    [stylesCombinator],
-  );
+    const { theme } = useComponentTheme('List');
+    const stylesCombinator = useMemo(
+      () => stylesCombinatorFactory(theme.styles, styles),
+      [theme.styles, styles],
+    );
+    const sxf = useMemo(
+      () =>
+        stylePropsFactory<IListStyleKey, IListStyleVarKey>(stylesCombinator),
+      [stylesCombinator],
+    );
 
-  return (
-    <div {...sxf('host', sx)} ref={ref} {...other}>
-      {children}
-    </div>
-  );
-});
+    return (
+      <ListContext.Provider value={{ size }}>
+        <div {...sxf('host', sx)} ref={forwardedRef} {...other}>
+          {children}
+        </div>
+      </ListContext.Provider>
+    );
+  },
+);
 
 const ListNamespace = Object.assign(List, {
   Item: ListItem,
