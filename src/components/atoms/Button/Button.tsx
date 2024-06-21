@@ -175,7 +175,12 @@ export const Button: IButton = forwardRef(function Button<
       ref={forwardedRef}
       as={as}
       styles={[theme.styles, variantTheme?.styles, ...asArray(styles)]}
-      sx={[theme.vars, variantTheme?.vars, sx]}
+      sx={[
+        loading ? stylesCombinator('host$loading') : undefined,
+        theme.vars,
+        variantTheme?.vars,
+        sx,
+      ]}
       withLeadingIcon={hasLeadingIcon}
       withTrailingIcon={hasTrailingIcon}
       innerStyles={{

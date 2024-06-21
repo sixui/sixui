@@ -11,6 +11,7 @@ export type IButtonVariant = (typeof buttonVariants)[number];
 
 export type IButtonStyleKey =
   | 'host'
+  | 'host$loading'
   | 'host$disabled'
   | 'host$withLeadingIcon'
   | 'host$withTrailingIcon'

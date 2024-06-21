@@ -132,7 +132,7 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     [chipStateVars.elevation]: vars.elevatedContainerElevation$disabled,
   },
   elevatedContainer$loading: {
-    [chipStateVars.elevation]: vars.elevatedContainerElevation,
+    [chipStateVars.elevation]: vars.elevatedContainerElevation$pressed,
   },
   selectedElevatedContainer: {
     '::before': {
