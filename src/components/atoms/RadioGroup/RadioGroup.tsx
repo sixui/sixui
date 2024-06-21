@@ -37,7 +37,7 @@ type IRadioGroup = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
 
 export const RadioGroup: IRadioGroup = forwardRef(function RadioGroup<
   TRoot extends React.ElementType = typeof DEFAULT_TAG,
->(props: IRadioGroupProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+>(props: IRadioGroupProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     as,
     sx,
@@ -76,7 +76,7 @@ export const RadioGroup: IRadioGroup = forwardRef(function RadioGroup<
     [],
   );
 
-  const handleRef = useForkRef(ref, hostRef);
+  const handleRef = useForkRef(forwardedRef, hostRef);
   const name = useId(nameProp);
 
   const contextValue = useMemo(

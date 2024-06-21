@@ -25,13 +25,11 @@ describe('Disclosure', () => {
       </ThemeProvider>,
     );
 
-    cy.get('[data-cy=disclosure-panel]').should('exist');
-    cy.get('[data-cy=disclosure-panel]').should('not.be.visible');
+    cy.get('[data-cy=disclosure-panel]').should('not.exist');
     cy.get('[data-cy=disclosure-button]').click();
     cy.get('[data-cy=disclosure-panel]').should('be.visible');
     cy.get('[data-cy=disclosure-button]').click();
-    cy.get('[data-cy=disclosure-panel]').should('exist');
-    cy.get('[data-cy=disclosure-panel]').should('not.be.visible');
+    cy.get('[data-cy=disclosure-panel]').should('not.exist');
   });
 
   it('should be expand by default', () => {
@@ -48,8 +46,7 @@ describe('Disclosure', () => {
 
     cy.get('[data-cy=disclosure-panel]').should('be.visible');
     cy.get('[data-cy=disclosure-button]').click();
-    cy.get('[data-cy=disclosure-panel]').should('exist');
-    cy.get('[data-cy=disclosure-panel]').should('not.be.visible');
+    cy.get('[data-cy=disclosure-panel]').should('not.exist');
     cy.get('[data-cy=disclosure-button]').click();
     cy.get('[data-cy=disclosure-panel]').should('be.visible');
   });
@@ -68,8 +65,7 @@ describe('Checkable Disclosure', () => {
       </ThemeProvider>,
     );
 
-    cy.get('[data-cy=disclosure-panel]').should('exist');
-    cy.get('[data-cy=disclosure-panel]').should('not.be.visible');
+    cy.get('[data-cy=disclosure-panel]').should('not.exist');
     cy.get('[data-cy=disclosure-button]').should('be.disabled');
     cy.get('[data-cy=disclosure-checkbox]').should('be.enabled');
   });
@@ -86,8 +82,7 @@ describe('Checkable Disclosure', () => {
       </ThemeProvider>,
     );
 
-    cy.get('[data-cy=disclosure-panel]').should('exist');
-    cy.get('[data-cy=disclosure-panel]').should('not.be.visible');
+    cy.get('[data-cy=disclosure-panel]').should('not.exist');
     cy.get('[data-cy=disclosure-button]').should('be.enabled');
     cy.get('[data-cy=disclosure-checkbox]').should('be.enabled');
   });
@@ -145,7 +140,7 @@ describe('Checkable Disclosure', () => {
     cy.get('[data-cy=disclosure-checkbox]').should('not.be.checked');
     cy.get('[data-cy=disclosure-checkbox]').should('be.disabled');
     cy.get('[data-cy=disclosure-button]').should('be.disabled');
-    cy.get('[data-cy=disclosure-panel]').should('not.be.visible');
+    cy.get('[data-cy=disclosure-panel]').should('not.exist');
   });
 });
 
@@ -162,8 +157,7 @@ describe('Switchable Disclosure', () => {
       </ThemeProvider>,
     );
 
-    cy.get('[data-cy=disclosure-panel]').should('exist');
-    cy.get('[data-cy=disclosure-panel]').should('not.be.visible');
+    cy.get('[data-cy=disclosure-panel]').should('not.exist');
     cy.get('[data-cy=disclosure-button]').should('be.disabled');
     cy.get('[data-cy=disclosure-switch]').should('be.enabled');
   });
@@ -180,8 +174,7 @@ describe('Switchable Disclosure', () => {
       </ThemeProvider>,
     );
 
-    cy.get('[data-cy=disclosure-panel]').should('exist');
-    cy.get('[data-cy=disclosure-panel]').should('not.be.visible');
+    cy.get('[data-cy=disclosure-panel]').should('not.exist');
     cy.get('[data-cy=disclosure-button]').should('be.enabled');
     cy.get('[data-cy=disclosure-switch]').should('be.enabled');
   });
@@ -221,7 +214,7 @@ describe('Switchable Disclosure', () => {
 
     cy.get('[data-cy=disclosure-switch]').click();
     cy.get('[data-cy=disclosure-switch]').should('not.be.checked');
-    cy.get('[data-cy=disclosure-panel]').should('not.be.visible');
+    cy.get('[data-cy=disclosure-panel]').should('not.exist');
   });
 
   it('should be disabled', () => {
@@ -239,6 +232,6 @@ describe('Switchable Disclosure', () => {
     cy.get('[data-cy=disclosure-switch]').should('not.be.checked');
     cy.get('[data-cy=disclosure-switch]').should('be.disabled');
     cy.get('[data-cy=disclosure-button]').should('be.disabled');
-    cy.get('[data-cy=disclosure-panel]').should('not.be.visible');
+    cy.get('[data-cy=disclosure-panel]').should('not.exist');
   });
 });

@@ -113,7 +113,7 @@ type IChip = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
 
 export const Chip: IChip = forwardRef(function Chip<
   TRoot extends React.ElementType = typeof DEFAULT_TAG,
->(props: IChipProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+>(props: IChipProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     as,
     styles,
@@ -151,7 +151,11 @@ export const Chip: IChip = forwardRef(function Chip<
   const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
     disabled,
   });
-  const primaryHandleRef = useForkRef(ref, visualStateRef, primaryActionRef);
+  const primaryHandleRef = useForkRef(
+    forwardedRef,
+    visualStateRef,
+    primaryActionRef,
+  );
 
   const trailingActionRef = useRef<HTMLButtonElement>(null);
 

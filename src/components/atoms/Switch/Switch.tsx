@@ -90,7 +90,7 @@ type ISwitch = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
 
 export const Switch: ISwitch = forwardRef(function Switch<
   TRoot extends React.ElementType = typeof DEFAULT_TAG,
->(props: ISwitchProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+>(props: ISwitchProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     as: Component = DEFAULT_TAG,
     styles,
@@ -121,7 +121,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
   const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
     disabled,
   });
-  const handleRef = useForkRef(ref, visualStateRef, actionRef);
+  const handleRef = useForkRef(forwardedRef, visualStateRef, actionRef);
 
   const { theme } = useComponentTheme('Switch');
   const stylesCombinator = useMemo(

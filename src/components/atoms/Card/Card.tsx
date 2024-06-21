@@ -79,7 +79,7 @@ type ICard = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
 
 const Card: ICard = forwardRef(function Card<
   TRoot extends React.ElementType = typeof DEFAULT_TAG,
->(props: ICardProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+>(props: ICardProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     as,
     styles,
@@ -97,7 +97,7 @@ const Card: ICard = forwardRef(function Card<
   const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
     disabled,
   });
-  const handleRef = useForkRef(ref, visualStateRef);
+  const handleRef = useForkRef(forwardedRef, visualStateRef);
 
   const { theme, variantTheme, settings } = useComponentTheme(
     'Card',
@@ -161,7 +161,7 @@ const Card: ICard = forwardRef(function Card<
                 theme.stateLayerStyles,
                 ...asArray(innerStyles?.stateLayer),
               ]}
-              for={ref}
+              for={forwardedRef}
               disabled={disabled}
               visualState={visualState}
             />
@@ -170,7 +170,7 @@ const Card: ICard = forwardRef(function Card<
                 theme.focusRingStyles,
                 ...asArray(innerStyles?.focusRing),
               ]}
-              for={ref}
+              for={forwardedRef}
               visualState={visualState}
             />
           </>

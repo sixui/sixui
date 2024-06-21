@@ -49,7 +49,7 @@ type ITypography = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
 
 export const Typography: ITypography = forwardRef(function Typography<
   TRoot extends React.ElementType = typeof DEFAULT_TAG,
->(props: ITypographyProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+>(props: ITypographyProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     as,
     styles,
@@ -82,7 +82,7 @@ export const Typography: ITypography = forwardRef(function Typography<
         sx,
       )}
       sx={sx}
-      ref={ref}
+      ref={forwardedRef}
       {...other}
     >
       {children}

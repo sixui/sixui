@@ -34,7 +34,10 @@ type IPolymorphicTemplate = <
 export const PolymorphicTemplate: IPolymorphicTemplate = forwardRef(
   function PolymorphicTemplate<
     TRoot extends React.ElementType = typeof DEFAULT_TAG,
-  >(props: IPolymorphicTemplateProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+  >(
+    props: IPolymorphicTemplateProps<TRoot>,
+    forwardedRef?: IPolymorphicRef<TRoot>,
+  ) {
     const {
       as: Component = DEFAULT_TAG,
       styles,
@@ -57,8 +60,8 @@ export const PolymorphicTemplate: IPolymorphicTemplate = forwardRef(
     );
 
     return (
-      <Component {...sxf('host', theme.vars, sx)} sx={sx} ref={ref} {...other}>
-        {children}
+      <Component {...other} sx={[theme.vars, sx]} ref={forwardedRef}>
+        <div {...sxf('host')}>{children}</div>
       </Component>
     );
   },

@@ -9,6 +9,7 @@ import { componentVars as vars } from './DisclosureButton.stylex';
 import { componentVars as listItemVars } from '../ListItem/ListItem.stylex';
 import { componentVars as itemVars } from '../Item/Item.stylex';
 import { componentVars as circularProgressIndicatorVars } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
+import { motionVars } from '../vars/motion.stylex';
 
 type IDisclosureButtonStyles = IStyles<IDisclosureButtonStyleKey>;
 export const styles: MapNamespaces<IDisclosureButtonStyles> =
@@ -79,8 +80,21 @@ export const styles: MapNamespaces<IDisclosureButtonStyles> =
       [listItemVars.containerOpacity$disabled]:
         vars.uncheckedContainerOpacity$disabled,
     },
+    icon: {
+      transform: 'rotate(0)',
+    },
     icon$expanded: {
       transform: 'rotate(180deg)',
+      transitionProperty: 'transform',
+      transitionDuration: motionVars.duration$long2,
+      transitionTimingFunction: motionVars.easing$emphasizedDecelerate,
+      transformOrigin: 'center',
+    },
+    icon$collapsed: {
+      transitionProperty: 'transform',
+      transitionDuration: motionVars.duration$short2,
+      transitionTimingFunction: motionVars.easing$emphasizedAccelerate,
+      transformOrigin: 'center',
     },
     checkboxContainer: {
       position: 'absolute',

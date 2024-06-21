@@ -76,14 +76,19 @@ export const DisclosureButton = forwardRef<
   const expanded = context.checkable
     ? context.expanded && context.checked
     : context.expanded;
-  const icon = expanded
-    ? collapseIcon ??
-      (expandIcon ? (
-        <div {...sxf('icon$expanded')}>{expandIcon}</div>
-      ) : (
-        <ChevronDown {...sxf('icon$expanded')} aria-hidden />
-      ))
-    : expandIcon ?? <ChevronDown aria-hidden />;
+  const icon = expanded ? (
+    collapseIcon ? (
+      <div {...sxf('icon')}>{collapseIcon}</div>
+    ) : expandIcon ? (
+      <div {...sxf('icon', 'icon$expanded')}>{expandIcon}</div>
+    ) : (
+      <ChevronDown {...sxf('icon', 'icon$expanded')} aria-hidden />
+    )
+  ) : expandIcon ? (
+    <div {...sxf('icon', 'icon$collapsed')}>{expandIcon}</div>
+  ) : (
+    <ChevronDown {...sxf('icon', 'icon$collapsed')} aria-hidden />
+  );
 
   const handleCheckboxChange = (
     event: React.ChangeEvent<HTMLInputElement>,

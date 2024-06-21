@@ -149,9 +149,7 @@ export const CustomExpandIcon: IStory = {
     ...defaultArgs,
     children: (
       <>
-        <Disclosure.Button
-          expandIcon={<FontAwesomeIcon icon={faArrowDown} fixedWidth />}
-        >
+        <Disclosure.Button expandIcon={<FontAwesomeIcon icon={faArrowDown} />}>
           Advanced options
         </Disclosure.Button>
         <Disclosure.Panel>

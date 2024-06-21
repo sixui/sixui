@@ -75,7 +75,7 @@ type ICheckbox = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
 
 export const Checkbox: ICheckbox = forwardRef(function Checkbox<
   TRoot extends React.ElementType = typeof DEFAULT_TAG,
->(props: ICheckboxProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+>(props: ICheckboxProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     as: Component = DEFAULT_TAG,
     styles,
@@ -98,7 +98,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
   const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
     disabled,
   });
-  const handleRef = useForkRef(ref, visualStateRef, actionRef);
+  const handleRef = useForkRef(forwardedRef, visualStateRef, actionRef);
 
   const { theme } = useComponentTheme('Checkbox');
   const stylesCombinator = useMemo(

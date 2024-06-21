@@ -92,7 +92,7 @@ type IListItem = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
 
 export const ListItem: IListItem = forwardRef(function ListItem<
   TRoot extends React.ElementType = typeof DEFAULT_TAG,
->(props: IListItemProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+>(props: IListItemProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     as,
     styles,
@@ -126,7 +126,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
   const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
     disabled,
   });
-  const handleRef = useForkRef(ref, visualStateRef, actionRef);
+  const handleRef = useForkRef(forwardedRef, visualStateRef, actionRef);
 
   const { theme, variantTheme, settings } = useComponentTheme(
     'ListItem',

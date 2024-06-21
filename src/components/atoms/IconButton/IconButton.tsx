@@ -64,7 +64,7 @@ type IIconButton = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
 
 export const IconButton: IIconButton = forwardRef(function IconButton<
   TRoot extends React.ElementType = typeof DEFAULT_TAG,
->(props: IIconButtonProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+>(props: IIconButtonProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     styles,
     sx,
@@ -90,7 +90,7 @@ export const IconButton: IIconButton = forwardRef(function IconButton<
 
   return (
     <Button
-      ref={ref}
+      ref={forwardedRef}
       as={as}
       styles={styles}
       sx={[

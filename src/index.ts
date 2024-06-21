@@ -61,6 +61,7 @@ export * from './components/utils/Theme';
 export * from './components/utils/ColorScheme';
 
 // hooks
+export * from './hooks/useElementSize';
 export * from './hooks/useForkRef';
 export * from './hooks/useLoaded';
 export * from './hooks/usePrevious';

@@ -123,6 +123,7 @@ export const styles: MapNamespaces<IListItemStyles> =
       fontSize: vars.leadingIconSize,
       height: vars.leadingIconSize,
       width: vars.leadingIconSize,
+      textAlign: 'center',
 
       color: {
         default: vars.leadingIconColor,
@@ -156,6 +157,7 @@ export const styles: MapNamespaces<IListItemStyles> =
       fontSize: vars.trailingIconSize,
       height: vars.trailingIconSize,
       width: vars.trailingIconSize,
+      textAlign: 'center',
 
       color: {
         default: vars.trailingIconColor,
