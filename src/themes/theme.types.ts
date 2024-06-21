@@ -111,7 +111,6 @@ import type {
 } from '@/components/atoms/Scrim';
 import type {
   IDialogStyleKey,
-  IDialogStyleVarKey,
 } from '@/components/atoms/Dialog';
 import type {
   IDialogContentStyleKey,
@@ -405,7 +404,6 @@ export type ITheme = {
       styles?: ICompiledStyles<IScrimStyleKey>;
     };
     Dialog: {
-      vars?: IStyleVarsTheme<IDialogStyleVarKey>;
       styles?: ICompiledStyles<IDialogStyleKey>;
     };
     DialogContent: {

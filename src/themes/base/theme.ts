@@ -193,7 +193,6 @@ import { styles as avatarStyles } from './Avatar/Avatar.styles';
 import { componentTheme as scrimTheme } from './Scrim/Scrim.stylex';
 import { styles as scrimStyles } from './Scrim/Scrim.styles';
 
-import { componentTheme as dialogTheme } from './Dialog/Dialog.stylex';
 import { styles as dialogStyles } from './Dialog/Dialog.styles';
 
 import { componentTheme as dialogContentTheme } from './DialogContent/DialogContent.stylex';
@@ -476,7 +475,6 @@ export const theme: ITheme = {
       styles: scrimStyles,
     },
     Dialog: {
-      vars: dialogTheme,
       styles: dialogStyles,
     },
     DialogContent: {
