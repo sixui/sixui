@@ -28,19 +28,22 @@ export const styles: MapNamespaces<IDividerStyles> =
       },
     },
     line$inset: {
-      paddingInlineStart: 16,
-      paddingInlineEnd: 16,
+      paddingInlineStart: vars.insetLeadingSpace,
+      paddingInlineEnd: vars.insetTrailingSpace,
     },
     line$insetStart: {
-      paddingInlineStart: 16,
+      paddingInlineStart: vars.insetLeadingSpace,
     },
     line$insetEnd: {
-      paddingInlineEnd: 16,
+      paddingInlineEnd: vars.insetTrailingSpace,
+    },
+    textContainer: {
+      marginInlineStart: vars.textLeadingSpace,
+      marginInlineEnd: vars.textTrailingSpace,
     },
     text: {
       textAlign: 'center',
-      marginInlineStart: 8,
-      marginInlineEnd: 8,
+      transform: 'translateY(-50%)',
 
       color: vars.textColor,
       fontFamily: vars.textFont,

@@ -64,7 +64,9 @@ export const Divider = forwardRef<HTMLDivElement, IDividerProps>(
         {children ? (
           <>
             {renderLine()}
-            <div {...sxf('text')}>{children}</div>
+            <div {...sxf('textContainer')}>
+              <div {...sxf('text')}>{children}</div>
+            </div>
             {renderLine()}
           </>
         ) : (

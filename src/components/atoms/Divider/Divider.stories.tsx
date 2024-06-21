@@ -19,8 +19,8 @@ const defaultArgs = {} satisfies Partial<IDividerProps>;
 const styles = stylex.create({
   ul: {
     borderWidth: '1px',
-    borderStyle: 'solid',
-    borderColor: colorRolesVars.outline,
+    borderStyle: 'dashed',
+    borderColor: colorRolesVars.outlineVariant,
     margin: 0,
     padding: 0,
     width: '256px',

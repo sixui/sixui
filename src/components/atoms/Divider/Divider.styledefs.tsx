@@ -4,12 +4,17 @@ export type IDividerStyleKey =
   | 'line$inset'
   | 'line$insetStart'
   | 'line$insetEnd'
+  | 'textContainer'
   | 'text';
 
 export type IDividerStyleVarKey =
   | 'color'
   | 'thickness'
   | 'shape'
+  | 'insetLeadingSpace'
+  | 'insetTrailingSpace'
+  | 'textLeadingSpace'
+  | 'textTrailingSpace'
   | 'textColor'
   | 'textFont'
   | 'textSize'
