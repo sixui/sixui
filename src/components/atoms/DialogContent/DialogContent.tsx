@@ -68,9 +68,9 @@ export const DialogContent: IDialogContent = forwardRef(function DialogContent<
     ...other
   } = props as IWithAsProp<IDialogContentOwnProps>;
 
-  const { theme } = useComponentTheme('DialogContent');
   const headlineId = useId();
 
+  const { theme } = useComponentTheme('DialogContent');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],

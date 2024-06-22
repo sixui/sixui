@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
 
-import { Dialog, type IDialogOwnProps, type IDialogProps } from './Dialog';
+import { Dialog } from './Dialog';
 import { Button } from '../Button';
 
 // https://m3.material.io/components/dialogs/overview
@@ -14,38 +13,18 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {
-  headline: 'Permanently delete?',
-  children:
-    'Deleting the selected messages will also remove them from all synced devices.',
-};
-
-const DialogLauncher: React.FC<IDialogOwnProps> = (props) => {
-  const [open, setOpen] = useState(false);
-  const handleOpen = (): void => setOpen(true);
-  const handleClose = (): void => setOpen(false);
-
-  return (
-    <>
-      <Dialog
-        {...props}
-        actions={
-          <>
-            <Button variant='text'>Cancel</Button>
-            <Button variant='danger'>Delete</Button>
-          </>
-        }
-        open={open}
-        onClose={handleClose}
-      />
-      <Button onClick={handleOpen}>Open</Button>
-    </>
-  );
-};
+const defaultArgs = {};
 
 export const Basic: IStory = {
-  render: (props) => <DialogLauncher {...props} />,
-  args: defaultArgs as IDialogProps,
+  render: (props) => <Dialog {...props} />,
+  args: {
+    ...defaultArgs,
+    button: <Button>Open</Button>,
+    headline: 'Permanently delete?',
+    children:
+      'Deleting the selected messages will also remove them from all synced devices.',
+    actions: <Button>Cancel</Button>
+  },
 };
 
 export default meta;

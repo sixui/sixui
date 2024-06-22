@@ -11,7 +11,6 @@ import {
   FloatingFocusManager,
   FloatingList,
   FloatingNode,
-  FloatingPortal,
   autoUpdate,
   flip,
   safePolygon,
@@ -38,37 +37,36 @@ import { IVisualState } from '@/hooks/useVisualState';
 import { MenuList } from '@/components/atoms/MenuList';
 import { useColorScheme } from '@/components/utils/ColorScheme';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
+import { Portal } from '@/components/utils/Portal';
 import { MenuContext } from './MenuContext';
 
 const styles = stylex.create({
   host: {
     zIndex: 499,
   },
-  menuList$unmounted: {},
-  menuList$initial: {
+  transition$unmounted: {},
+  transition$initial: {
     transform: 'scaleY(0)',
   },
-  menuList$open: {
+  transition$open: {
     transform: 'scaleY(1)',
     transitionProperty: 'transform',
     transitionDuration: motionVars.duration$long3,
     transitionTimingFunction: motionVars.easing$emphasizedDecelerate,
   },
-  menuList$close: {
+  transition$close: {
     transform: 'scaleY(0)',
     transitionProperty: 'transform',
     transitionDuration: motionVars.duration$short3,
     transitionTimingFunction: motionVars.easing$emphasizedAccelerate,
   },
-  menuList$unmounted$nested: {},
-  menuList$initial$nested: {
-    transform: 'scale(0)',
+  transition$unmounted$nested: {},
+  transition$initial$nested: {},
+  transition$open$nested: {
+    transition: 'none',
   },
-  menuList$open$nested: {
-    transform: 'scale(1)',
-  },
-  menuList$close$nested: {
-    transform: 'scale(0)',
+  transition$close$nested: {
+    transition: 'none',
   },
   transformOrigin: (placement: Placement) => ({
     transformOrigin: placementToOrigin(placement),
@@ -168,7 +166,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
       activeIndex,
     });
 
-    const floatingInteractions = useInteractions([
+    const interactions = useInteractions([
       hover,
       click,
       role,
@@ -226,7 +224,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
           value={{
             activeIndex,
             setActiveIndex,
-            getItemProps: floatingInteractions.getItemProps,
+            getItemProps: interactions.getItemProps,
             setHasFocusInside,
             isOpen,
             placement: floating.placement,
@@ -241,7 +239,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
                 : -1
               : undefined,
             role: isNested ? 'menuitem' : undefined,
-            ...floatingInteractions.getReferenceProps(
+            ...interactions.getReferenceProps(
               parent.getItemProps({
                 ...other,
                 onFocus(event: React.FocusEvent<HTMLButtonElement>) {
@@ -255,7 +253,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
 
           <FloatingList elementsRef={elementsRef} labelsRef={labelsRef}>
             {transitionStatus.isMounted ? (
-              <FloatingPortal root={colorScheme.root}>
+              <Portal>
                 <FloatingFocusManager
                   context={floating.context}
                   modal={false}
@@ -264,16 +262,18 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
                 >
                   <div
                     {...stylex.props(styles.host, sx)}
-                    {...floatingInteractions.getFloatingProps()}
+                    {...interactions.getFloatingProps()}
                     ref={floating.refs.setFloating}
                     style={floating.floatingStyles}
                   >
                     <div
                       {...stylex.props(
                         styles.transformOrigin(floating.placement),
-                        styles[`menuList$${transitionStatus.status}`],
+                        styles[`transition$${transitionStatus.status}`],
                         parentId
-                          ? styles[`menuList$${transitionStatus.status}$nested`]
+                          ? styles[
+                              `transition$${transitionStatus.status}$nested`
+                            ]
                           : undefined,
                       )}
                     >
@@ -281,7 +281,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
                     </div>
                   </div>
                 </FloatingFocusManager>
-              </FloatingPortal>
+              </Portal>
             ) : null}
           </FloatingList>
         </MenuContext.Provider>

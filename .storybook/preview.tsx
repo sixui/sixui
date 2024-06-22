@@ -53,6 +53,7 @@ const preview: Preview = {
 
 export const styles = stylex.create({
   storyWrapper: {
+    position: 'relative',
     backgroundColor: colorRolesVars.surface,
     padding: '2rem',
     width: '100%',
