@@ -41,7 +41,7 @@ const makeSteps = (
 ): Array<React.ReactElement> =>
   createSequence(count).map((index) => (
     <Stepper.Step
-      onClick={() => void sbHandleEvent('click')}
+      onClick={(...args) => void sbHandleEvent('click', args)}
       {...(typeof props === 'function' ? props(index) : props)}
       key={index}
     />
@@ -210,14 +210,14 @@ export const Vertical: IStory = {
             children: [
               <Stepper.Step
                 key={0}
-                onClick={() => void sbHandleEvent('click')}
+                onClick={(...args) => void sbHandleEvent('click', args)}
                 label='Lorem ipsum'
               >
                 Lorem ipsum dolor sit amet.
               </Stepper.Step>,
               <Stepper.Step
                 key={1}
-                onClick={() => void sbHandleEvent('click')}
+                onClick={(...args) => void sbHandleEvent('click', args)}
                 label='Lorem ipsum'
                 supportingText='Supporting text'
                 nextConnector={
@@ -232,7 +232,7 @@ export const Vertical: IStory = {
               </Stepper.Step>,
               <Stepper.Step
                 key={2}
-                onClick={() => void sbHandleEvent('click')}
+                onClick={(...args) => void sbHandleEvent('click', args)}
                 label='Lorem ipsum'
               >
                 Lorem ipsum dolor sit amet.
@@ -246,12 +246,12 @@ export const Vertical: IStory = {
             children: [
               <Stepper.Step
                 key={0}
-                onClick={() => void sbHandleEvent('click')}
+                onClick={(...args) => void sbHandleEvent('click', args)}
                 sx={styles.step$noSpace}
               />,
               <Stepper.Step
                 key={1}
-                onClick={() => void sbHandleEvent('click')}
+                onClick={(...args) => void sbHandleEvent('click', args)}
                 label='Lorem ipsum'
                 sx={styles.step$noSpace}
                 supportingText='Supporting text'
@@ -267,7 +267,7 @@ export const Vertical: IStory = {
               </Stepper.Step>,
               <Stepper.Step
                 key={2}
-                onClick={() => void sbHandleEvent('click')}
+                onClick={(...args) => void sbHandleEvent('click', args)}
                 label='Lorem ipsum'
                 sx={styles.step$noSpace}
               >

@@ -1,7 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useRef, useState } from 'react';
+import stylex from '@stylexjs/stylex';
 
-import { Dialog } from './Dialog';
+import { Dialog, type IDialogProps, type IDialogOwnProps } from './Dialog';
+import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { Button } from '../Button';
+import { TextField } from '../TextField';
+import { commonStyles } from '@/helpers/commonStyles';
 
 // https://m3.material.io/components/dialogs/overview
 // https://material-web.dev/components/dialog/
@@ -9,22 +14,126 @@ import { Button } from '../Button';
 
 const meta = {
   component: Dialog,
-} satisfies Meta<typeof Dialog>;
+} satisfies Meta<IDialogOwnProps>;
 
-type IStory = StoryObj<typeof meta>;
+type IStory = StoryObj<IDialogOwnProps>;
 
-const defaultArgs = {};
+const defaultArgs = {
+  onOpenChange: (...args) => void sbHandleEvent('openChange', args),
+} satisfies Partial<IDialogOwnProps>;
 
-export const Basic: IStory = {
+export const Uncontrolled: IStory = {
   render: (props) => <Dialog {...props} />,
   args: {
     ...defaultArgs,
-    button: <Button>Open</Button>,
     headline: 'Permanently delete?',
     children:
       'Deleting the selected messages will also remove them from all synced devices.',
-    actions: <Button>Cancel</Button>
+    actions: ({ close }) => (
+      <>
+        <Button variant='text' onClick={close}>
+          Cancel
+        </Button>
+        <Button
+          variant='danger'
+          onClick={(...args) =>
+            sbHandleEvent('delete', args, 1000).then((args) => close(...args))
+          }
+        >
+          Delete
+        </Button>
+      </>
+    ),
+    button: <Button>Open</Button>,
   },
+};
+
+const ControlledDialogDemo: React.FC<IDialogProps> = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>Open</Button>
+      <Dialog
+        {...props}
+        open={isOpen}
+        headline='Permanently delete?'
+        onOpenChange={setIsOpen}
+        actions={({ close }) => (
+          <>
+            <Button variant='text' onClick={close}>
+              Cancel
+            </Button>
+            <Button
+              type='submit'
+              onClick={(...args) =>
+                sbHandleEvent('save', args, 1000).then((args) => close(...args))
+              }
+            >
+              Delete
+            </Button>
+          </>
+        )}
+      >
+        Deleting the selected messages will also remove them from all synced
+        devices.
+      </Dialog>
+    </>
+  );
+};
+
+export const Controlled: IStory = {
+  render: (props) => <ControlledDialogDemo {...props} />,
+  args: defaultArgs,
+};
+
+const FormDialogDemo: React.FC<IDialogProps<'form'>> = (props) => {
+  const [name, setName] = useState<string>();
+  const formRef = useRef<HTMLFormElement>(null);
+
+  return (
+    <div {...stylex.props(commonStyles.horizontalLayout)}>
+      <Dialog
+        {...props}
+        ref={formRef}
+        as='form'
+        button={<Button>Open</Button>}
+        headline="What's your name?"
+        actions={({ close }) => (
+          <>
+            <Button variant='text' onClick={close}>
+              Cancel
+            </Button>
+            <Button
+              type='submit'
+              onClick={(...args) =>
+                sbHandleEvent('save', args, 1000).then((args) => {
+                  const formData = formRef.current
+                    ? new FormData(formRef.current)
+                    : undefined;
+                  const formValues = formData
+                    ? Object.fromEntries(formData)
+                    : undefined;
+                  setName(formValues?.name.toString());
+                  close(...args);
+                })
+              }
+            >
+              Save
+            </Button>
+          </>
+        )}
+      >
+        <TextField name='name' />
+      </Dialog>
+      {name ? <div>Name: {name}</div> : null}
+    </div>
+  );
+};
+
+export const Form: IStory = {
+  render: (props) => <FormDialogDemo {...props} />,
+  args: defaultArgs,
 };
 
 export default meta;

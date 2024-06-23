@@ -28,7 +28,9 @@ import { useForkRef } from '@/hooks/useForkRef';
 
 const DEFAULT_TAG = 'div';
 
-type IOnCloseEventHandler = (event: React.MouseEvent, reason?: string) => void;
+export type IDialogActionsRenderProps = {
+  close: (event: React.MouseEvent) => void;
+};
 
 export type IDialogContentOwnProps = IContainerProps<IDialogContentStyleKey> &
   Pick<React.AriaAttributes, 'aria-label'> & {
@@ -36,11 +38,11 @@ export type IDialogContentOwnProps = IContainerProps<IDialogContentStyleKey> &
     scrollable?: boolean;
     icon?: React.ReactNode;
     headline?: React.ReactNode;
-    children?: React.ReactNode;
+    children: React.ReactNode;
     actions:
       | React.ReactNode
-      | ((close?: IOnCloseEventHandler) => React.ReactNode);
-    onClose?: IOnCloseEventHandler;
+      | ((props: IDialogActionsRenderProps) => React.ReactNode);
+    onClose?: (event: React.MouseEvent) => void;
   };
 
 export type IDialogContentProps<
@@ -69,6 +71,7 @@ export const DialogContent: IDialogContent = forwardRef(function DialogContent<
   } = props as IWithAsProp<IDialogContentOwnProps>;
 
   const headlineId = useId();
+  const childrenId = useId();
 
   const { theme } = useComponentTheme('DialogContent');
   const stylesCombinator = useMemo(
@@ -139,7 +142,9 @@ export const DialogContent: IDialogContent = forwardRef(function DialogContent<
   }, [handleAndhorIntersection]);
 
   const renderActions = (): React.ReactNode =>
-    typeof actions === 'function' ? actions(onClose) : actions;
+    typeof actions === 'function'
+      ? actions({ close: (event) => onClose?.(event) })
+      : actions;
 
   // TODO: Reset scroll position if re-opening a dialog with the same content.
   // See https://github.com/material-components/material-web/blob/main/dialog/internal/dialog.ts#L193C8-L193C75
@@ -151,12 +156,13 @@ export const DialogContent: IDialogContent = forwardRef(function DialogContent<
     <Component
       {...sxf('host', theme.vars, sx)}
       sx={sx}
-      // ref={handleRef}
       aria-labelledby={headline ? headlineId : undefined}
+      aria-describedby={childrenId}
       role={type === 'alert' ? 'alertdialog' : undefined}
       {...other}
+      ref={handleRef}
     >
-      <div {...sxf('dialog')} ref={handleRef}>
+      <div {...sxf('dialog')}>
         <div {...sxf('container')}>
           {headline || icon ? (
             <div {...sxf('headline')}>
@@ -194,29 +200,28 @@ export const DialogContent: IDialogContent = forwardRef(function DialogContent<
             </div>
           ) : null}
 
-          {children ? (
-            <div
-              ref={scrollerRef}
-              {...sxf('scroller', scrollable && 'scroller$scrollable')}
-            >
-              <div {...sxf('content')}>
-                <div
-                  {...sxf(
-                    'contentSlot',
-                    scrollable && 'contentSlot$scrollable',
-                    !!actions && 'contentSlot$hasActions',
-                    scrollable &&
-                      !!headline &&
-                      'contentSlot$scrollable$hasHeadline',
-                  )}
-                >
-                  <div ref={topAnchorRef} />
-                  {children}
-                  <div ref={bottomAnchorRef} />
-                </div>
+          <div
+            ref={scrollerRef}
+            {...sxf('scroller', scrollable && 'scroller$scrollable')}
+          >
+            <div {...sxf('content')}>
+              <div
+                {...sxf(
+                  'contentSlot',
+                  scrollable && 'contentSlot$scrollable',
+                  !!actions && 'contentSlot$hasActions',
+                  scrollable &&
+                    !!headline &&
+                    'contentSlot$scrollable$hasHeadline',
+                )}
+                id={childrenId}
+              >
+                <div ref={topAnchorRef} />
+                {children}
+                <div ref={bottomAnchorRef} />
               </div>
             </div>
-          ) : null}
+          </div>
 
           <div {...sxf('actions')}>
             <Divider

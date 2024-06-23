@@ -168,7 +168,7 @@ const variants: Array<IComponentPresentation<ICardOwnProps>> = [
     props: {
       variant: 'filled',
       children: <ActionableContent headline='Actionable' />,
-      onClick: () => sbHandleEvent('click:card'),
+      onClick: (...args) => sbHandleEvent('click:card', args),
     },
   },
   {

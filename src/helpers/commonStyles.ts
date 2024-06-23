@@ -11,4 +11,15 @@ export const commonStyles = stylex.create({
   backgroundImage: (src: string) => ({
     backgroundImage: `url("${src}")`,
   }),
+  horizontalLayout: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: '0.5rem',
+  },
+  verticalLayout: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '0.5rem',
+  },
 });

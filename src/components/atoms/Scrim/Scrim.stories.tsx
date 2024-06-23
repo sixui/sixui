@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
+import stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 import {
   FloatingFocusManager,
@@ -17,6 +18,14 @@ import { Scrim, type IScrimProps } from './Scrim';
 import { scrimVariants } from './Scrim.styledefs';
 
 type IScrimDemoProps = IOmit<IScrimProps, 'context'>;
+
+const styles = stylex.create({
+  host$contained: {
+    position: 'relative',
+    display: 'inline-block',
+    padding: 32,
+  },
+});
 
 const ScrimDemo: React.FC<IScrimDemoProps> = (props) => {
   const { children, ...other } = props;
@@ -41,7 +50,7 @@ const ScrimDemo: React.FC<IScrimDemoProps> = (props) => {
       >
         Show scrim
       </Button>
-      <Scrim context={floating.context} open={isOpen} {...other}>
+      <Scrim context={floating.context} {...other}>
         <FloatingFocusManager context={floating.context}>
           <div
             {...interactions.getFloatingProps()}
@@ -85,7 +94,11 @@ export const Basic: IStory = {
 };
 
 export const Contained: IStory = {
-  render: (props) => <ScrimDemo {...props} />,
+  render: (props) => (
+    <div {...stylex.props(styles.host$contained)}>
+      <ScrimDemo {...props} />
+    </div>
+  ),
   args: {
     ...defaultArgs,
     contained: true,

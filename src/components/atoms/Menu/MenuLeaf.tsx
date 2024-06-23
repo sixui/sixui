@@ -35,7 +35,6 @@ import {
 import type { IMenuProps, IMenuRenderProps } from './Menu';
 import { IVisualState } from '@/hooks/useVisualState';
 import { MenuList } from '@/components/atoms/MenuList';
-import { useColorScheme } from '@/components/utils/ColorScheme';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
 import { Portal } from '@/components/utils/Portal';
 import { MenuContext } from './MenuContext';
@@ -128,7 +127,6 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
     const isNested = parentId != null;
     const item = useListItem();
 
-    const colorScheme = useColorScheme();
     const floating = useFloating<HTMLButtonElement>({
       nodeId,
       open: isOpen,

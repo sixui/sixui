@@ -109,9 +109,7 @@ import type {
   IScrimStyleKey,
   IScrimStyleVarKey,
 } from '@/components/atoms/Scrim';
-import type {
-  IDialogStyleKey,
-} from '@/components/atoms/Dialog';
+import type { IDialogStyleKey } from '@/components/atoms/Dialog';
 import type {
   IDialogContentStyleKey,
   IDialogContentStyleVarKey,

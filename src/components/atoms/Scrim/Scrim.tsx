@@ -19,7 +19,6 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 export type IScrimProps = IContainerProps<IScrimStyleKey> &
   FloatingOverlayProps & {
     context: FloatingContext;
-    open?: boolean;
     contained?: boolean;
     variant?: IScrimVariant;
     children?: React.ReactNode;
@@ -31,7 +30,6 @@ export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
       context,
       styles,
       sx,
-      open,
       contained,
       variant = 'darken',
       children,
@@ -67,7 +65,7 @@ export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
         )}
         ref={forwardedRef}
         {...other}
-        style={contained ? {position: 'absolute'} : undefined}
+        style={contained ? { position: 'absolute' } : undefined}
       >
         {children}
       </FloatingOverlay>
