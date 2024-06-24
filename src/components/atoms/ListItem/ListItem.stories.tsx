@@ -154,7 +154,6 @@ export const Variants: IStory = {
           leadingIcon: <FontAwesomeIcon icon={faCalendarDays} />,
           trailingIcon: <FontAwesomeIcon icon={faChevronRight} />,
           onClick: () => {},
-          noWrap: true,
         },
       }))}
     />

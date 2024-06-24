@@ -5,6 +5,7 @@ import {
   useDismiss,
   useFloating,
   useInteractions,
+  useMergeRefs,
   useRole,
   useTransitionStatus,
   type OpenChangeReason,
@@ -106,13 +107,24 @@ export const Dialog: IDialog = forwardRef(function Dialog<
   const openVisualState: IVisualState = { hovered: true };
   const openProps = { visualState: openVisualState };
 
+  const floatingHandleRef = useMergeRefs([
+    forwardedRef,
+    floating.refs.setFloating,
+  ]);
+  const buttonElement = typeof button === 'function' ? button(bag) : button;
+  const buttonProps = buttonElement?.props as
+    | React.HTMLProps<HTMLButtonElement>
+    | undefined;
+
   return (
     <>
-      {button
-        ? cloneElement(typeof button === 'function' ? button(bag) : button, {
-            ...(transitionStatus.isMounted ? openProps : undefined),
-            ref: floating.refs.setReference,
-            ...interactions.getReferenceProps(),
+      {buttonElement
+        ? cloneElement(buttonElement, {
+            ...interactions.getReferenceProps({
+              ...buttonProps,
+              ...(transitionStatus.isMounted ? openProps : undefined),
+              ref: floating.refs.setReference,
+            }),
           })
         : null}
 
@@ -120,11 +132,7 @@ export const Dialog: IDialog = forwardRef(function Dialog<
         <Portal>
           <Scrim context={floating.context} lockScroll>
             <FloatingFocusManager context={floating.context}>
-              <div
-                {...interactions.getFloatingProps()}
-                {...sxf(`transition$${transitionStatus.status}`)}
-                ref={floating.refs.setFloating}
-              >
+              <div {...sxf(`transition$${transitionStatus.status}`)}>
                 <DialogContent
                   as={as}
                   onClose={(event) =>
@@ -134,8 +142,9 @@ export const Dialog: IDialog = forwardRef(function Dialog<
                       'click',
                     )
                   }
+                  {...interactions.getFloatingProps()}
                   {...other}
-                  ref={forwardedRef}
+                  ref={floatingHandleRef}
                 />
               </div>
             </FloatingFocusManager>

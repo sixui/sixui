@@ -16,31 +16,29 @@ export type IMenuRenderProps = {
   placement: Placement;
 };
 
-export type IMenuProps = IOmit<IContainerProps, 'styles'> &
-  React.HTMLProps<HTMLButtonElement> & {
-    button:
-      | React.ReactElement
-      | ((props: IMenuRenderProps) => React.ReactElement);
-    children: React.ReactNode;
-    placement?: Placement;
-  };
+export type IMenuProps = IOmit<IContainerProps, 'styles'> & {
+  button:
+    | React.ReactElement
+    | ((props: IMenuRenderProps) => React.ReactElement);
+  children: React.ReactNode;
+  placement?: Placement;
+};
 
-const Menu = forwardRef<
-  HTMLButtonElement,
-  IMenuProps & React.HTMLProps<HTMLButtonElement>
->(function MenuParent(props, forwardedRef) {
-  const parentId = useFloatingParentNodeId();
+const Menu = forwardRef<HTMLButtonElement, IMenuProps>(
+  function MenuParent(props, forwardedRef) {
+    const parentId = useFloatingParentNodeId();
 
-  if (parentId === null) {
-    return (
-      <FloatingTree>
-        <MenuLeaf {...props} ref={forwardedRef} />
-      </FloatingTree>
-    );
-  }
+    if (parentId === null) {
+      return (
+        <FloatingTree>
+          <MenuLeaf {...props} ref={forwardedRef} />
+        </FloatingTree>
+      );
+    }
 
-  return <MenuLeaf {...props} ref={forwardedRef} />;
-});
+    return <MenuLeaf {...props} ref={forwardedRef} />;
+  },
+);
 
 const MenuNamespace = Object.assign(Menu, {
   Item: MenuItem,

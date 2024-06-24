@@ -21,6 +21,7 @@ export const styles: MapNamespaces<IMenuListStyles> =
       borderStyle: 'unset',
       padding: 0,
       overflow: 'visible',
+      flexGrow: 1,
       // [popover] adds a canvas background
       backgroundColor: 'transparent',
       color: 'inherit',

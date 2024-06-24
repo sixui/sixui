@@ -6,7 +6,6 @@ import { Divider, type IDividerProps } from '@/components/atoms/Divider';
 export const MenuListDivider = forwardRef<HTMLDivElement, IDividerProps>(
   function MenuListDivider(props, forwardedRef) {
     const { sx, ...other } = props;
-
     const { theme } = useComponentTheme('MenuList');
 
     return (

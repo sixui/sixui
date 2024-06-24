@@ -44,9 +44,10 @@ const ScrimDemo: React.FC<IScrimDemoProps> = (props) => {
   return (
     <>
       <Button
-        ref={floating.refs.setReference}
-        {...interactions.getReferenceProps()}
-        onClick={() => setIsOpen(true)}
+        {...interactions.getReferenceProps({
+          ref: floating.refs.setReference,
+          onClick: () => setIsOpen(true),
+        })}
       >
         Show scrim
       </Button>

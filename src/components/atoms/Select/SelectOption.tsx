@@ -7,7 +7,7 @@ import { type IListItemProps, ListItem } from '@/components/atoms/ListItem';
 
 export type ISelectOptionProps = IOmit<IListItemProps, 'as' | 'type'> & {
   as?: React.ElementType;
-  value?: string;
+  value?: string | null;
   label?: string;
   children?: React.ReactNode;
 };

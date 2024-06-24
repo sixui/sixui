@@ -1,15 +1,15 @@
-import { useFloatingTree, useListItem, useMergeRefs } from '@floating-ui/react';
 import { forwardRef, useContext } from 'react';
+import { useFloatingTree, useListItem, useMergeRefs } from '@floating-ui/react';
 
-import type { IOmit } from '@/helpers/types';
-import { ListItem, type IListItemProps } from '@/components//atoms/ListItem';
+import { ListItem, type IListItemOwnProps } from '@/components/atoms/ListItem';
+import { getFloatingPropsWrapper } from '@/helpers/getFloatingPropsWrapper';
 import { MenuContext } from './MenuContext';
 
-export type IMenuItemProps = IOmit<IListItemProps, 'as'> & {
-  as?: React.ElementType;
-  children: React.ReactNode;
-  keepOpenOnClick?: boolean;
-};
+export type IMenuItemProps = IListItemOwnProps &
+  React.HTMLProps<HTMLButtonElement> & {
+    children: React.ReactNode;
+    keepOpenOnClick?: boolean;
+  };
 
 export const MenuItem = forwardRef<HTMLButtonElement, IMenuItemProps>(
   function MenuItem(props, forwardedRef) {
@@ -22,25 +22,26 @@ export const MenuItem = forwardRef<HTMLButtonElement, IMenuItemProps>(
 
     return (
       <ListItem
-        type='button'
         role='menuitem'
         tabIndex={isActive ? 0 : -1}
         disabled={disabled}
         size='sm'
-        {...menu.getItemProps({
-          onClick(event: React.MouseEvent<HTMLButtonElement>) {
-            props.onClick?.(event);
-
-            if (!keepOpenOnClick) {
-              tree?.events.emit('click');
-            }
+        {...getFloatingPropsWrapper<IListItemOwnProps, HTMLButtonElement>(
+          menu.getItemProps,
+          {
+            ...other,
+            onClick: (event: React.MouseEvent<HTMLButtonElement>) => {
+              props.onClick?.(event);
+              if (!keepOpenOnClick) {
+                tree?.events.emit('click');
+              }
+            },
+            onFocus: (event: React.FocusEvent<HTMLButtonElement>) => {
+              props.onFocus?.(event);
+              menu.setHasFocusInside(true);
+            },
           },
-          onFocus(event: React.FocusEvent<HTMLButtonElement>) {
-            props.onFocus?.(event);
-            menu.setHasFocusInside(true);
-          },
-        })}
-        {...other}
+        )}
         ref={handleRef}
       />
     );

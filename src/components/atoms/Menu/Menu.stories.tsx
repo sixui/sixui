@@ -5,11 +5,13 @@ import {
   faChevronUp,
   faChevronDown,
   faEllipsisVertical,
+  faArrowRight,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { Menu, type IMenuProps } from './Menu';
 import { Button } from '@/components/atoms/Button';
 import { IconButton } from '@/components/atoms/IconButton';
+import { commonStyles } from '@/helpers/commonStyles';
 
 const meta = {
   component: Menu,
@@ -68,16 +70,21 @@ export const FromButton: IStory = {
 };
 
 const fromIconButtonStyles = stylex.create({
-  host: {
-    display: 'flex',
-    justifyContent: 'end',
+  label: {
+    flexGrow: 1,
+  },
+  menu: {
+    flexGrow: 0,
   },
 });
 
 export const FromIconButton: IStory = {
   render: (props) => (
-    <div {...stylex.props(fromIconButtonStyles.host)}>
-      <Menu {...props} />
+    <div {...stylex.props(commonStyles.horizontalLayout)}>
+      <div {...stylex.props(fromIconButtonStyles.label)}>
+        Look right <FontAwesomeIcon icon={faArrowRight} />
+      </div>
+      <Menu sx={fromIconButtonStyles.menu} {...props} />
     </div>
   ),
   args: {

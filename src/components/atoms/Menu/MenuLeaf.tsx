@@ -37,15 +37,17 @@ import { IVisualState } from '@/hooks/useVisualState';
 import { MenuList } from '@/components/atoms/MenuList';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
 import { Portal } from '@/components/utils/Portal';
+import { placementToOrigin } from '@/helpers/placementToOrigin';
 import { MenuContext } from './MenuContext';
 
+// TODO: migrate in theme
 const styles = stylex.create({
   host: {
     zIndex: 499,
   },
   transition$unmounted: {},
   transition$initial: {
-    transform: 'scaleY(0)',
+    transform: 'scaleY(0.5)',
   },
   transition$open: {
     transform: 'scaleY(1)',
@@ -71,37 +73,6 @@ const styles = stylex.create({
     transformOrigin: placementToOrigin(placement),
   }),
 });
-
-const placementToOrigin = (placement: Placement): string => {
-  switch (placement) {
-    case 'top':
-      return 'bottom';
-    case 'top-start':
-      return 'bottom left';
-    case 'top-end':
-      return 'bottom right';
-    case 'bottom':
-      return 'top';
-    case 'bottom-start':
-      return 'top left';
-    case 'bottom-end':
-      return 'top right';
-    case 'left':
-      return 'right';
-    case 'left-start':
-      return 'top right';
-    case 'left-end':
-      return 'bottom right';
-    case 'right':
-      return 'left';
-    case 'right-start':
-      return 'top left';
-    case 'right-end':
-      return 'bottom left';
-    default:
-      return 'top';
-  }
-};
 
 export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
   function Menu(props, forwardedRef) {
@@ -215,6 +186,9 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
       item.ref,
       forwardedRef,
     ]);
+    const buttonElement = typeof button === 'function' ? button(bag) : button;
+    const buttonProps =
+      buttonElement.props as React.HTMLProps<HTMLButtonElement>;
 
     return (
       <FloatingNode id={nodeId}>
@@ -228,30 +202,29 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
             placement: floating.placement,
           }}
         >
-          {cloneElement(typeof button === 'function' ? button(bag) : button, {
-            ...(isOpen ? openProps : undefined),
-            ref: handleRef,
-            tabIndex: isNested
-              ? parent.activeIndex === item.index
-                ? 0
-                : -1
-              : undefined,
-            role: isNested ? 'menuitem' : undefined,
-            ...interactions.getReferenceProps(
-              parent.getItemProps({
-                ...other,
-                onFocus(event: React.FocusEvent<HTMLButtonElement>) {
-                  other.onFocus?.(event);
+          {cloneElement(buttonElement, {
+            ...interactions.getReferenceProps({
+              ...buttonProps,
+              ...(transitionStatus.isMounted ? openProps : undefined),
+              tabIndex: isNested
+                ? parent.activeIndex === item.index
+                  ? 0
+                  : -1
+                : undefined,
+              role: isNested ? 'menuitem' : undefined,
+              ...parent.getItemProps({
+                onFocus: () => {
                   setHasFocusInside(false);
                   parent.setHasFocusInside(true);
                 },
               }),
-            ),
+              ref: handleRef,
+            }),
           })}
 
-          <FloatingList elementsRef={elementsRef} labelsRef={labelsRef}>
-            {transitionStatus.isMounted ? (
-              <Portal>
+          {transitionStatus.isMounted ? (
+            <Portal>
+              <FloatingList elementsRef={elementsRef} labelsRef={labelsRef}>
                 <FloatingFocusManager
                   context={floating.context}
                   modal={false}
@@ -259,7 +232,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
                   returnFocus={!isNested}
                 >
                   <div
-                    {...stylex.props(styles.host, sx)}
+                    {...stylex.props(styles.host)}
                     {...interactions.getFloatingProps()}
                     ref={floating.refs.setFloating}
                     style={floating.floatingStyles}
@@ -275,13 +248,15 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
                           : undefined,
                       )}
                     >
-                      <MenuList>{children}</MenuList>
+                      <MenuList sx={sx} {...other}>
+                        {children}
+                      </MenuList>
                     </div>
                   </div>
                 </FloatingFocusManager>
-              </Portal>
-            ) : null}
-          </FloatingList>
+              </FloatingList>
+            </Portal>
+          ) : null}
         </MenuContext.Provider>
       </FloatingNode>
     );

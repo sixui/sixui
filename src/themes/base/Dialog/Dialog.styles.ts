@@ -17,7 +17,7 @@ export const styles: MapNamespaces<IDialogStyles> =
     },
     transition$open: {
       opacity: 1,
-      transform: 'translateY(0)',
+      transform: 'translateY(0.5)',
       transformOrigin: 'top',
       transitionProperty: 'transform',
       transitionDuration: motionVars.duration$long3,
