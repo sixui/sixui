@@ -17,7 +17,11 @@ import {
   type Placement,
 } from '@floating-ui/react';
 
-import { executeItemsEqual, type IItemRenderer } from './ListItemProps';
+import {
+  executeItemsEqual,
+  type ICreateNewItemRenderer,
+  type IItemRenderer,
+} from './ListItemProps';
 import { Portal } from '@/components/utils/Portal';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
 import { placementToOrigin } from '@/helpers/placementToOrigin';
@@ -87,14 +91,17 @@ export const FloatingQueryList = <TItem,>(
   props: IFloatingQueryListProps<TItem>,
 ): React.ReactNode => {
   const {
+    items: itemsProp,
     children,
     placement = 'bottom-start',
     fill,
     renderer,
     itemRenderer,
+    createNewItemRenderer,
     ...other
   } = props;
 
+  const [items, setItems] = useState(itemsProp);
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -161,27 +168,41 @@ export const FloatingQueryList = <TItem,>(
     duration: 150, // motionVars.duration$short3
   });
 
+  const handleSelect = (
+    index: number,
+    item: TItem,
+    isCreateNewItem?: boolean,
+  ): void => {
+    setSelectedIndex(index);
+    setSelectedItem(item);
+    setIsOpen(false);
+    setItems(isCreateNewItem ? [...itemsProp, item] : itemsProp);
+  };
+
   const rendererWrapper: IQueryListRenderer<TItem> = (listProps) =>
     renderer({
       ...listProps,
       handleQueryChange: (event) => {
         listProps.handleQueryChange(event);
-        // setActiveIndex(0);
+        setActiveIndex(0);
       },
       inputFilterAttributes: {
         ...listProps.inputFilterAttributes,
         onKeyDown: (event) => {
           if (event.key === 'Enter' && activeIndex != null) {
-            setSelectedIndex(activeIndex);
-            setSelectedItem(listProps.filteredItems[activeIndex]);
-            setIsOpen(false);
+            const selectedItem = listProps.filteredItems[activeIndex];
+            const selectedOrCreatedItem =
+              selectedItem ?? other.createNewItemFromQuery?.(listProps.query);
+            if (selectedOrCreatedItem) {
+              handleSelect(activeIndex, selectedOrCreatedItem, !selectedItem);
+            }
           }
         },
       },
     });
 
   const itemRendererWrapper: IItemRenderer<TItem> = (item, itemProps) => {
-    const active = itemProps.index === activeIndex;
+    const active = activeIndex === itemProps.index;
     const selected = executeItemsEqual(other.itemsEqual, item, selectedItem);
 
     return itemRenderer(
@@ -203,9 +224,36 @@ export const FloatingQueryList = <TItem,>(
         tabIndex: active ? 0 : -1,
         'aria-selected': active,
         onClick: () => {
-          setSelectedIndex(itemProps.index);
-          setSelectedItem(item);
-          setIsOpen(false);
+          handleSelect(itemProps.index, item);
+        },
+      }),
+    );
+  };
+
+  const createNewItemRendererWrapper: ICreateNewItemRenderer = (itemProps) => {
+    const active = activeIndex === itemProps.index;
+
+    return createNewItemRenderer?.(
+      {
+        ...itemProps,
+        modifiers: {
+          ...itemProps.modifiers,
+          active,
+        },
+      },
+      (node) => {
+        elementsRef.current[itemProps.index] = node;
+        labelsRef.current[itemProps.index] = null;
+      },
+      interactions.getItemProps({
+        role: 'option',
+        tabIndex: active ? 0 : -1,
+        'aria-selected': active,
+        onClick: () => {
+          const createdItem = other.createNewItemFromQuery?.(itemProps.query);
+          if (createdItem) {
+            handleSelect(itemProps.index, createdItem, true);
+          }
         },
       }),
     );
@@ -245,8 +293,10 @@ export const FloatingQueryList = <TItem,>(
                 <FloatingList elementsRef={elementsRef} labelsRef={labelsRef}>
                   <QueryList
                     {...other}
+                    items={items}
                     renderer={rendererWrapper}
                     itemRenderer={itemRendererWrapper}
+                    createNewItemRenderer={createNewItemRendererWrapper}
                   />
                 </FloatingList>
               </div>

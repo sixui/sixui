@@ -120,6 +120,12 @@ export type IItemRenderer<TItem> = (
   buttonAttributes?: React.HTMLAttributes<HTMLButtonElement>,
 ) => React.ReactNode;
 
+export type ICreateNewItemRenderer = (
+  itemProps: IItemRendererProps,
+  buttonRef?: React.Ref<HTMLButtonElement>,
+  buttonAttributes?: React.HTMLAttributes<HTMLButtonElement>,
+) => React.ReactNode;
+
 // Inspiration:
 // - https://github.com/palantir/blueprint/blob/develop/packages/select/src/common/predicate.ts
 
@@ -269,7 +275,7 @@ export type IListItemsProps<TItem> = {
    * created, either by pressing the `Enter` key or by clicking on the "Create
    * Item" option. It transforms a query string into one or many items type.
    */
-  createNewItemFromQuery?: (query: string) => TItem | Array<TItem>;
+  createNewItemFromQuery?: (query: string) => TItem;
 
   /**
    * Custom renderer to transform the current query string into a selectable
@@ -277,15 +283,7 @@ export type IListItemsProps<TItem> = {
    * option will be rendered at the end of the list of items. If this function
    * is not provided, a "Create Item" option will not be displayed.
    */
-  createNewItemRenderer?: (query: string) => React.ReactNode;
-
-  /**
-   * Determines the position of the `createNewItem` within the list: first or
-   * last. Only relevant when `createNewItemRenderer` is defined.
-   *
-   * @defaultvalue 'last'
-   */
-  createNewItemPosition?: 'first' | 'last';
+  createNewItemRenderer?: ICreateNewItemRenderer;
 
   /**
    * Whether the active item should be reset to the first matching item _when

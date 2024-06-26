@@ -5,6 +5,7 @@ import highlightWords from 'highlight-words';
 
 import { IListItemProps, ListItem } from '../ListItem';
 import {
+  ICreateNewItemRenderer,
   IItemPredicate,
   IItemRenderer,
   IItemRendererProps,
@@ -185,10 +186,18 @@ export const renderFilm: IItemRenderer<IFilm> = (
 /**
  * Renders a menu item to create a single film from a given query string.
  */
-export const renderCreateFilmMenuItem = (query: string): React.ReactNode => (
+export const renderCreateFilmMenuItem: ICreateNewItemRenderer = (
+  props,
+  buttonRef,
+  buttonAttributes,
+): React.ReactNode => (
   <ListItem
+    visualState={{ hovered: props.modifiers.active }}
     leadingIcon={<FontAwesomeIcon icon={faPlus} />}
-  >{`Create "${query}"`}</ListItem>
+    size='sm'
+    {...buttonAttributes}
+    ref={buttonRef}
+  >{`Create "${props.query}"`}</ListItem>
 );
 
 export const filterFilm: IItemPredicate<IFilm> = (
@@ -224,4 +233,4 @@ export const areFilmsEqual = (filmA: IFilm, filmB: IFilm): boolean => {
   return filmA.title.toLowerCase() === filmB.title.toLowerCase();
 };
 
-export const isFilmDisabled = (film: IFilm): boolean => film.year < 2000;
+export const isFilmDisabled = (film: IFilm): boolean => film.year < 1990;

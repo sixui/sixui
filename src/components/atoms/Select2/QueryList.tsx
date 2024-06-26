@@ -106,7 +106,6 @@ export const QueryList = <TItem,>(
     items,
     query: queryProp,
     defaultQuery,
-    createNewItemPosition,
     createNewItemFromQuery,
     createNewItemRenderer,
     itemsEqual,
@@ -118,7 +117,6 @@ export const QueryList = <TItem,>(
     renderer,
     onQueryChange,
   } = props;
-  const isCreateItemFirst = createNewItemPosition === 'first';
   const canCreateItems =
     createNewItemFromQuery != null && createNewItemRenderer != null;
   const [queryValue, setQuery] = useControlledValue({
@@ -145,13 +143,10 @@ export const QueryList = <TItem,>(
       return undefined;
     }
 
-    const createFirst = isCreateItemFirst;
-
     return (
       <>
-        {createFirst && createItemView}
         {menuContent}
-        {!createFirst && createItemView}
+        {createItemView}
       </>
     );
   };
@@ -194,7 +189,16 @@ export const QueryList = <TItem,>(
     if (isCreateItemRendered(createNewItem)) {
       const trimmedQuery = query.trim();
 
-      return createNewItemRenderer?.(trimmedQuery);
+      return createNewItemRenderer?.({
+        index: filteredItemsRef.current.length,
+        query: trimmedQuery,
+        modifiers: {
+          active: false,
+          selected: false,
+          disabled: false,
+          matchesPredicate: false,
+        },
+      });
     }
 
     return null;
