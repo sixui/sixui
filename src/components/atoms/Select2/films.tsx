@@ -143,7 +143,6 @@ export const getFilmItemProps = (
 ): IListItemProps & React.Attributes => {
   return {
     disabled: modifiers.disabled,
-    key: film.rank,
     trailingSupportingText: film.year.toString(),
     children: highlightWords({
       text: `${film.rank}. ${film.title}`,
@@ -173,6 +172,7 @@ export const renderFilm: IItemRenderer<IFilm> = (
 
   return (
     <ListItem
+      key={film.rank}
       {...getFilmItemProps(film, props)}
       visualState={{ hovered: props.modifiers.active }}
       selected={props.modifiers.selected}

@@ -286,6 +286,14 @@ export type IListItemsProps<TItem> = {
   createNewItemRenderer?: ICreateNewItemRenderer;
 
   /**
+   * Determines the position of the `createNewItem` within the list: first or
+   * last. Only relevant when `createNewItemRenderer` is defined.
+   *
+   * @defaultvalue 'last'
+   */
+  createNewItemPosition?: 'first' | 'last';
+
+  /**
    * Whether the active item should be reset to the first matching item _when
    * an item is selected_. The query will also be reset to the empty string.
    *

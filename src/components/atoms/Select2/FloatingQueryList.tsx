@@ -19,6 +19,7 @@ import {
 
 import {
   executeItemsEqual,
+  type IItemsEqualProp,
   type ICreateNewItemRenderer,
   type IItemRenderer,
 } from './ListItemProps';
@@ -86,6 +87,70 @@ const styles = stylex.create({
     transformOrigin: placementToOrigin(placement),
   }),
 });
+
+const arrayContainsItem = <TItem,>(
+  itemsEqualProp: IItemsEqualProp<TItem> | undefined,
+  items: Array<TItem>,
+  itemToFind: TItem,
+): boolean =>
+  items.some((item: TItem) =>
+    executeItemsEqual(itemsEqualProp, item, itemToFind),
+  );
+
+const addItemToArray = <TItem,>(
+  items: Array<TItem>,
+  itemToAdd: TItem,
+): Array<TItem> => [...items, itemToAdd];
+
+const deleteItemFromArray = <TItem,>(
+  items: Array<TItem>,
+  itemToDelete: TItem,
+): Array<TItem> => items.filter((item) => item !== itemToDelete);
+
+const maybeAddCreatedItemToArrays = <TItem,>(
+  itemsEqualProp: IItemsEqualProp<TItem> | undefined,
+  items: Array<TItem>,
+  createdItems: Array<TItem>,
+  item: TItem,
+): { createdItems: Array<TItem>; items: Array<TItem> } => {
+  const isNewlyCreatedItem = !arrayContainsItem(itemsEqualProp, items, item);
+
+  return {
+    createdItems: isNewlyCreatedItem
+      ? addItemToArray(createdItems, item)
+      : createdItems,
+    // Add a created item to `items` so that the item can be deselected.
+    items: isNewlyCreatedItem ? addItemToArray(items, item) : items,
+  };
+};
+
+const maybeDeleteCreatedItemFromArrays = <TItem,>(
+  itemsEqualProp: IItemsEqualProp<TItem> | undefined,
+  items: Array<TItem>,
+  createdItems: Array<TItem>,
+  item: TItem | undefined,
+): { createdItems: Array<TItem>; items: Array<TItem> } => {
+  if (item === undefined) {
+    return {
+      createdItems,
+      items,
+    };
+  }
+
+  const wasItemCreatedByUser = arrayContainsItem(
+    itemsEqualProp,
+    createdItems,
+    item,
+  );
+
+  // Delete the item if the user manually created it.
+  return {
+    createdItems: wasItemCreatedByUser
+      ? deleteItemFromArray(createdItems, item)
+      : createdItems,
+    items: wasItemCreatedByUser ? deleteItemFromArray(items, item) : items,
+  };
+};
 
 export const FloatingQueryList = <TItem,>(
   props: IFloatingQueryListProps<TItem>,
@@ -168,15 +233,26 @@ export const FloatingQueryList = <TItem,>(
     duration: 150, // motionVars.duration$short3
   });
 
-  const handleSelect = (
-    index: number,
-    item: TItem,
-    isCreateNewItem?: boolean,
-  ): void => {
-    setSelectedIndex(index);
-    setSelectedItem(item);
+  const [createdItems, setCreatedItems] = useState<Array<TItem>>([]);
+  const handleSelect = (newSelectedItem: TItem): void => {
+    // Delete the old film from the list if it was newly created.
+    const step1Result = maybeDeleteCreatedItemFromArrays(
+      other.itemsEqual,
+      items,
+      createdItems,
+      selectedItem,
+    );
+    // Add the new film to the list if it is newly created.
+    const step2Result = maybeAddCreatedItemToArrays(
+      other.itemsEqual,
+      step1Result.items,
+      step1Result.createdItems,
+      newSelectedItem,
+    );
+    setCreatedItems(step2Result.createdItems);
+    setSelectedItem(newSelectedItem);
+    setItems(step2Result.items);
     setIsOpen(false);
-    setItems(isCreateNewItem ? [...itemsProp, item] : itemsProp);
   };
 
   const rendererWrapper: IQueryListRenderer<TItem> = (listProps) =>
@@ -194,7 +270,7 @@ export const FloatingQueryList = <TItem,>(
             const selectedOrCreatedItem =
               selectedItem ?? other.createNewItemFromQuery?.(listProps.query);
             if (selectedOrCreatedItem) {
-              handleSelect(activeIndex, selectedOrCreatedItem, !selectedItem);
+              handleSelect(selectedOrCreatedItem);
             }
           }
         },
@@ -223,9 +299,7 @@ export const FloatingQueryList = <TItem,>(
         role: 'option',
         tabIndex: active ? 0 : -1,
         'aria-selected': active,
-        onClick: () => {
-          handleSelect(itemProps.index, item);
-        },
+        onClick: () => handleSelect(item),
       }),
     );
   };
@@ -252,7 +326,7 @@ export const FloatingQueryList = <TItem,>(
         onClick: () => {
           const createdItem = other.createNewItemFromQuery?.(itemProps.query);
           if (createdItem) {
-            handleSelect(itemProps.index, createdItem, true);
+            handleSelect(createdItem);
           }
         },
       }),

@@ -106,6 +106,7 @@ export const QueryList = <TItem,>(
     items,
     query: queryProp,
     defaultQuery,
+    createNewItemPosition,
     createNewItemFromQuery,
     createNewItemRenderer,
     itemsEqual,
@@ -117,6 +118,7 @@ export const QueryList = <TItem,>(
     renderer,
     onQueryChange,
   } = props;
+  const isCreateItemFirst = createNewItemPosition === 'first';
   const canCreateItems =
     createNewItemFromQuery != null && createNewItemRenderer != null;
   const [queryValue, setQuery] = useControlledValue({
@@ -143,10 +145,13 @@ export const QueryList = <TItem,>(
       return undefined;
     }
 
+    const createFirst = isCreateItemFirst;
+
     return (
       <>
+        {createFirst && createItemView}
         {menuContent}
-        {createItemView}
+        {!createFirst && createItemView}
       </>
     );
   };
