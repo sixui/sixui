@@ -49,7 +49,7 @@ export type IFloatingQueryListProps<TItem> = IQueryListProps<TItem> & {
   ) => React.JSX.Element;
 
   placement?: Placement;
-  fill?: boolean;
+  matchTargetWidth?: boolean;
 };
 
 // TODO: migrate in theme
@@ -159,7 +159,7 @@ export const FloatingQueryList = <TItem,>(
     items: itemsProp,
     children,
     placement = 'bottom-start',
-    fill,
+    matchTargetWidth: fill,
     renderer,
     itemRenderer,
     createNewItemRenderer,
@@ -234,7 +234,10 @@ export const FloatingQueryList = <TItem,>(
   });
 
   const [createdItems, setCreatedItems] = useState<Array<TItem>>([]);
-  const handleSelect = (newSelectedItem: TItem): void => {
+  const handleSelect = (
+    newActiveIndex: number,
+    newSelectedItem: TItem,
+  ): void => {
     // Delete the old film from the list if it was newly created.
     const step1Result = maybeDeleteCreatedItemFromArrays(
       other.itemsEqual,
@@ -253,6 +256,15 @@ export const FloatingQueryList = <TItem,>(
     setSelectedItem(newSelectedItem);
     setItems(step2Result.items);
     setIsOpen(false);
+
+    const activeIndex = arrayContainsItem(
+      other.itemsEqual,
+      step2Result.createdItems,
+      newSelectedItem,
+    )
+      ? itemsProp.length + step2Result.createdItems.indexOf(newSelectedItem)
+      : newActiveIndex;
+    setSelectedIndex(activeIndex);
   };
 
   const rendererWrapper: IQueryListRenderer<TItem> = (listProps) =>
@@ -270,7 +282,7 @@ export const FloatingQueryList = <TItem,>(
             const selectedOrCreatedItem =
               selectedItem ?? other.createNewItemFromQuery?.(listProps.query);
             if (selectedOrCreatedItem) {
-              handleSelect(selectedOrCreatedItem);
+              handleSelect(activeIndex, selectedOrCreatedItem);
             }
           }
         },
@@ -299,7 +311,7 @@ export const FloatingQueryList = <TItem,>(
         role: 'option',
         tabIndex: active ? 0 : -1,
         'aria-selected': active,
-        onClick: () => handleSelect(item),
+        onClick: () => handleSelect(itemProps.index, item),
       }),
     );
   };
@@ -326,7 +338,7 @@ export const FloatingQueryList = <TItem,>(
         onClick: () => {
           const createdItem = other.createNewItemFromQuery?.(itemProps.query);
           if (createdItem) {
-            handleSelect(createdItem);
+            handleSelect(itemProps.index, createdItem);
           }
         },
       }),

@@ -31,7 +31,7 @@ export const FloatingQueryListDemo: React.FC<IFloatingQueryListDemoProps> = (
     <FloatingQueryList<IFilm>
       {...props}
       items={TOP_100_FILMS}
-      createNewItemPosition='first'
+      // createNewItemPosition='first'
       renderer={(listProps) => (
         <MenuList
           header={
@@ -57,7 +57,7 @@ export const FloatingQueryListDemo: React.FC<IFloatingQueryListDemoProps> = (
       createNewItemFromQuery={createFilm}
       createNewItemRenderer={renderCreateFilmMenuItem}
       itemDisabled={isFilmDisabled}
-      fill
+      matchTargetWidth
     >
       {(buttonProps) => (
         <Field
