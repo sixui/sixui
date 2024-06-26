@@ -55,7 +55,7 @@ export type IButtonOwnProps = IOmit<
   loading?: boolean; // TODO: -> Button
   loadingAnimation?: 'progressIndicator' | 'halfSpin' | 'none'; // TODO: -> Button
   loadingText?: string; // TODO: -> Button
-  onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>; // TODO: -> ButtonBase
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => IMaybeAsync<IAny>; // TODO: -> ButtonBase
 };
 
 export type IButtonProps<TRoot extends React.ElementType = typeof DEFAULT_TAG> =
@@ -132,7 +132,7 @@ export const Button: IButton = forwardRef(function Button<
 
   const handleAnimationIteration = (): void => setAnimating(handlingClick);
 
-  const handleClick: React.MouseEventHandler<HTMLElement> | undefined = (
+  const handleClick: React.MouseEventHandler<HTMLButtonElement> | undefined = (
     event,
   ) => {
     if (handlingClick) {

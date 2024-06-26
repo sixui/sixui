@@ -12,11 +12,13 @@ import { ListContext, type IListContextValue } from './ListContext';
 export type IListProps = IContainerProps<IListStyleKey> &
   IListContextValue & {
     children?: React.ReactNode;
+    header?: React.ReactNode;
+    footer?: React.ReactNode;
   };
 
 const List = forwardRef<HTMLDivElement, IListProps>(
   function List(props, forwardedRef) {
-    const { styles, sx, size, children, ...other } = props;
+    const { styles, sx, size, children, header, footer, ...other } = props;
 
     const { theme } = useComponentTheme('List');
     const stylesCombinator = useMemo(
@@ -32,7 +34,13 @@ const List = forwardRef<HTMLDivElement, IListProps>(
     return (
       <ListContext.Provider value={{ size }}>
         <div {...sxf('host', sx)} ref={forwardedRef} {...other}>
-          {children}
+          <div {...sxf('inner')}>
+            <div {...sxf('header')}>{header}</div>
+            <div {...sxf('content', !children && 'content$empty')}>
+              {children}
+            </div>
+            <div {...sxf('footer')}>{footer}</div>
+          </div>
         </div>
       </ListContext.Provider>
     );

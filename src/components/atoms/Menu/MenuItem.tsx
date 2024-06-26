@@ -2,7 +2,7 @@ import { forwardRef, useContext } from 'react';
 import { useFloatingTree, useListItem, useMergeRefs } from '@floating-ui/react';
 
 import { ListItem, type IListItemOwnProps } from '@/components/atoms/ListItem';
-import { getFloatingPropsWrapper } from '@/helpers/getFloatingPropsWrapper';
+import { composeFloatingProps } from '@/helpers/composeFloatingProps';
 import { MenuContext } from './MenuContext';
 
 export type IMenuItemProps = IListItemOwnProps &
@@ -26,7 +26,7 @@ export const MenuItem = forwardRef<HTMLButtonElement, IMenuItemProps>(
         tabIndex={isActive ? 0 : -1}
         disabled={disabled}
         size='sm'
-        {...getFloatingPropsWrapper<IListItemOwnProps, HTMLButtonElement>(
+        {...composeFloatingProps<IListItemOwnProps, HTMLButtonElement>(
           menu.getItemProps,
           {
             ...other,

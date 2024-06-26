@@ -202,7 +202,7 @@ import { componentTheme as menuListTheme } from './MenuList/MenuList.stylex';
 import {
   styles as menuListStyles,
   elevationStyles as menuListElevationStyles,
-  focusRingStyles as menuListFocusRingStyles,
+  listStyles as menuListListStyles,
 } from './MenuList/MenuList.styles';
 
 import { styles as DisclosureStyles } from './Disclosure/Disclosure.styles';
@@ -484,8 +484,8 @@ export const theme: ITheme = {
     MenuList: {
       vars: menuListTheme,
       styles: menuListStyles,
-      focusRingStyles: menuListFocusRingStyles,
       elevationStyles: menuListElevationStyles,
+      listStyles: menuListListStyles,
     },
     Disclosure: {
       styles: DisclosureStyles,

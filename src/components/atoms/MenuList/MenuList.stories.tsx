@@ -3,7 +3,8 @@ import stylex from '@stylexjs/stylex';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { MenuList, type IMenuListProps } from './MenuList';
-import { Menu } from '@/components/atoms/Menu';
+import { ListItem } from '../ListItem';
+import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 
 const meta = {
   component: MenuList,
@@ -15,30 +16,39 @@ const styles = stylex.create({
   host$fixedWidth: {
     width: 192,
   },
+  section: {
+    backgroundColor: colorRolesVars.primaryContainer,
+    color: colorRolesVars.onPrimaryContainer,
+    padding: 8,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 'inherit',
+  },
 });
 
 const defaultArgs = {
   children: (
     <>
-      <Menu.Item onClick={(...args) => sbHandleEvent('click', args)}>
+      <ListItem onClick={(...args) => sbHandleEvent('click', args)}>
         Apple
-      </Menu.Item>
-      <Menu.Item onClick={(...args) => sbHandleEvent('click', args)}>
+      </ListItem>
+      <ListItem onClick={(...args) => sbHandleEvent('click', args)}>
         Banana
-      </Menu.Item>
-      <Menu.Item onClick={(...args) => sbHandleEvent('click', args)}>
+      </ListItem>
+      <ListItem onClick={(...args) => sbHandleEvent('click', args)}>
         Cumcumber
-      </Menu.Item>
-      <Menu.Item onClick={(...args) => sbHandleEvent('click', args)}>
+      </ListItem>
+      <ListItem onClick={(...args) => sbHandleEvent('click', args)}>
         This is a very long and unexpected item
-      </Menu.Item>
+      </ListItem>
       <MenuList.Divider />
-      <Menu.Item
+      <ListItem
         onClick={(...args) => sbHandleEvent('click', args)}
         maxLines={1}
       >
         This item will never wrap
-      </Menu.Item>
+      </ListItem>
     </>
   ),
 } satisfies Partial<IMenuListProps>;
@@ -51,6 +61,24 @@ export const AutoWidth: IStory = {
 export const FixedWidth: IStory = {
   render: (props) => <MenuList sx={styles.host$fixedWidth} {...props} />,
   args: defaultArgs,
+};
+
+export const WithHeaderAndFooter: IStory = {
+  render: (props) => <MenuList {...props} />,
+  args: {
+    ...defaultArgs,
+    header: <div {...stylex.props(styles.section)}>Header</div>,
+    footer: <div {...stylex.props(styles.section)}>Footer</div>,
+  },
+};
+
+export const OnlyHeader: IStory = {
+  render: (props) => <MenuList {...props} />,
+  args: {
+    ...defaultArgs,
+    header: <div {...stylex.props(styles.section)}>Header</div>,
+    children: undefined,
+  },
 };
 
 export default meta;

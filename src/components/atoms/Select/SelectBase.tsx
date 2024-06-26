@@ -22,7 +22,7 @@ import { SelectOption, type ISelectOptionProps } from './SelectOption';
 
 type IOption = React.ReactElement<ISelectOptionProps>;
 
-export type ISelectBaseProps = IOmit<IFieldProps, 'value' | 'end'> & {
+export type ISelectBaseProps = IOmit<IFieldProps, 'children' | 'end'> & {
   visualState?: IVisualState;
   children?: Array<React.ReactNode> | null;
   noOptionsText?: string;
@@ -275,8 +275,9 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
                         : matchingOption?.props.leadingIcon
                     }
                     end={<TrailingIcon />}
-                    value={displayValue}
-                  />
+                  >
+                    {displayValue}
+                  </Field>
                 );
               }}
             </Listbox.Button>

@@ -65,7 +65,7 @@ export type IListItemOwnProps = IContainerProps<IListItemStyleKey> &
     leadingVideo?: Array<{ type: string; src: string }>;
     trailing?: React.ReactNode;
     trailingIcon?: React.ReactNode;
-    onClick?: React.MouseEventHandler;
+    onClick?: React.MouseEventHandler<HTMLElement>;
     size?: 'sm' | 'md' | 'lg' | 'xl';
     maxLines?: number;
   };

@@ -2,7 +2,7 @@ import { forwardRef, useContext } from 'react';
 import { useListItem, useMergeRefs } from '@floating-ui/react';
 
 import { ListItem, type IListItemOwnProps } from '@/components/atoms/ListItem';
-import { getFloatingPropsWrapper } from '@/helpers/getFloatingPropsWrapper';
+import { composeFloatingProps } from '@/helpers/composeFloatingProps';
 import { SelectContext } from './SelectContext';
 
 export type ISelectOptionProps = IListItemOwnProps &
@@ -30,13 +30,13 @@ export const SelectOption = forwardRef<HTMLButtonElement, ISelectOptionProps>(
         visualState={{ hovered: isActive }}
         selected={isSelected}
         data-cy={`selectOption-${value}`}
-        {...getFloatingPropsWrapper<IListItemOwnProps, HTMLButtonElement>(
+        {...composeFloatingProps<IListItemOwnProps, HTMLButtonElement>(
           selectContext.getItemProps,
           {
             ...other,
             onClick: (event: React.MouseEvent<HTMLButtonElement>) => {
               props.onClick?.(event);
-              selectContext.handleSelect(listItem.index);
+              selectContext.handleSelect(listItem.index, props);
             },
           },
         )}

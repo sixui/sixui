@@ -4278,6 +4278,7 @@ __metadata:
     "@stylexjs/eslint-plugin": "npm:^0.6.1"
     "@stylexjs/stylex": "npm:^0.6.1"
     "@types/eslint": "npm:^8"
+    "@types/lodash": "npm:^4"
     "@types/node": "npm:^20.14.7"
     "@types/react": "npm:^18"
     "@types/react-dom": "npm:^18"
@@ -4302,8 +4303,10 @@ __metadata:
     eslint-plugin-react-hooks: "npm:^4.6.2"
     eslint-plugin-storybook: "npm:^0.8.0"
     eslint-plugin-tsdoc: "npm:^0.3.0"
+    highlight-words: "npm:^1.2.2"
     husky: "npm:^9.0.11"
     lint-staged: "npm:^15.2.7"
+    lodash: "npm:^4.17.21"
     modern-normalize: "npm:^2.0.0"
     npm-run-all: "npm:^4.1.5"
     pinst: "npm:^3.0.0"
@@ -5555,6 +5558,13 @@ __metadata:
   version: 0.0.29
   resolution: "@types/json5@npm:0.0.29"
   checksum: 10/4e5aed58cabb2bbf6f725da13421aa50a49abb6bc17bfab6c31b8774b073fa7b50d557c61f961a09a85f6056151190f8ac95f13f5b48136ba5841f7d4484ec56
+  languageName: node
+  linkType: hard
+
+"@types/lodash@npm:^4":
+  version: 4.17.5
+  resolution: "@types/lodash@npm:4.17.5"
+  checksum: 10/10e2e9cbeb16998026f4071f9f5f2a38b651eba15302f512e0b8ab904c07c197ca0282d2821f64e53c2b692d7046af0a1ce3ead190fb077cbe4036948fce1924
   languageName: node
   linkType: hard
 
@@ -10005,6 +10015,13 @@ __metadata:
   dependencies:
     "@types/hast": "npm:^3.0.0"
   checksum: 10/b0d51e2cf228edcbed0494755a7f095c5c2b7a0e7564f3ad7b83b89abbabf098b62b3c884e1bb4d3394c0c84486ba39800d78f2ccdbdaa38122be62330dd2357
+  languageName: node
+  linkType: hard
+
+"highlight-words@npm:^1.2.2":
+  version: 1.2.2
+  resolution: "highlight-words@npm:1.2.2"
+  checksum: 10/a5431c550a6d523ecb54eba952075790ddbf0cab9db6ba9e2c6928407ff2a5b27f07169ef2634eb56aaae42b396291acc62381956d152392350c94432dd8d247
   languageName: node
   linkType: hard
 

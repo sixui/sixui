@@ -10,9 +10,13 @@ import { componentVars as elevationVars } from '../Elevation/Elevation.stylex';
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-menulist.scss
 
 const vars: IStyleVars<IMenuListStyleVarKey> = {
+  // container
   containerColor: colorRolesVars.surfaceContainer,
   containerElevation: elevationVars.boxShadow$level2,
   containerShape: shapeVars.corner$xs,
+
+  // content
+  contentMaxHeight: '300px',
 };
 
 export const componentVars = stylex.defineVars(vars);

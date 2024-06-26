@@ -127,7 +127,6 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
       nested: isNested,
       onNavigate: setActiveIndex,
       focusItemOnHover: false,
-      focusItemOnOpen: 'auto',
     });
     const typeahead = useTypeahead(floating.context, {
       listRef: labelsRef,
@@ -224,37 +223,38 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
 
           {transitionStatus.isMounted ? (
             <Portal>
-              <FloatingList elementsRef={elementsRef} labelsRef={labelsRef}>
-                <FloatingFocusManager
-                  context={floating.context}
-                  modal={false}
-                  initialFocus={isNested ? -1 : 0}
-                  returnFocus={!isNested}
+              <FloatingFocusManager
+                context={floating.context}
+                modal={false}
+                initialFocus={isNested ? -1 : 0}
+                returnFocus={!isNested}
+              >
+                <div
+                  {...stylex.props(styles.host)}
+                  {...interactions.getFloatingProps()}
+                  ref={floating.refs.setFloating}
+                  style={floating.floatingStyles}
                 >
                   <div
-                    {...stylex.props(styles.host)}
-                    {...interactions.getFloatingProps()}
-                    ref={floating.refs.setFloating}
-                    style={floating.floatingStyles}
+                    {...stylex.props(
+                      styles.transformOrigin(floating.placement),
+                      styles[`transition$${transitionStatus.status}`],
+                      parentId
+                        ? styles[`transition$${transitionStatus.status}$nested`]
+                        : undefined,
+                    )}
                   >
-                    <div
-                      {...stylex.props(
-                        styles.transformOrigin(floating.placement),
-                        styles[`transition$${transitionStatus.status}`],
-                        parentId
-                          ? styles[
-                              `transition$${transitionStatus.status}$nested`
-                            ]
-                          : undefined,
-                      )}
-                    >
-                      <MenuList sx={sx} {...other}>
+                    <MenuList sx={sx} {...other}>
+                      <FloatingList
+                        elementsRef={elementsRef}
+                        labelsRef={labelsRef}
+                      >
                         {children}
-                      </MenuList>
-                    </div>
+                      </FloatingList>
+                    </MenuList>
                   </div>
-                </FloatingFocusManager>
-              </FloatingList>
+                </div>
+              </FloatingFocusManager>
             </Portal>
           ) : null}
         </MenuContext.Provider>

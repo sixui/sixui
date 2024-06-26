@@ -5,26 +5,30 @@ import type {
   IContainerProps,
   IZeroOrMore,
   ICompiledStyles,
+  IOmit,
 } from '@/helpers/types';
 import type {
   IMenuListStyleKey,
   IMenuListStyleVarKey,
 } from './MenuList.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import {
   Elevation,
   type IElevationStyleKey,
 } from '@/components/utils/Elevation';
+import { IListProps, List } from '@/components/atoms/List';
+import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { MenuListDivider } from './MenuListDivider';
 
-export type IMenuListProps = IContainerProps<IMenuListStyleKey> & {
-  innerStyles?: {
-    elevation?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
+export type IMenuListProps = IContainerProps<IMenuListStyleKey> &
+  IOmit<IListProps, 'styles'> & {
+    innerStyles?: {
+      list?: IZeroOrMore<ICompiledStyles<IMenuListStyleKey>>;
+      elevation?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
+    };
+    children?: React.ReactNode;
   };
-  children?: React.ReactNode;
-};
 
 const MenuList = forwardRef<HTMLDivElement, IMenuListProps>(
   function MenuList(props, forwardedRef) {
@@ -44,13 +48,16 @@ const MenuList = forwardRef<HTMLDivElement, IMenuListProps>(
     );
 
     return (
-      <div {...sxf('host', theme.vars, sx)} ref={forwardedRef} {...other}>
+      <div {...sxf('host', theme.vars, sx)} ref={forwardedRef}>
         <Elevation
           styles={[theme.elevationStyles, ...asArray(innerStyles?.elevation)]}
         />
-        <div {...sxf('items')}>
-          <div {...sxf('itemPadding')}>{children}</div>
-        </div>
+        <List
+          styles={[theme.listStyles, ...asArray(innerStyles?.list)]}
+          {...other}
+        >
+          {children}
+        </List>
       </div>
     );
   },

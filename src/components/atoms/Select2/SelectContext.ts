@@ -1,11 +1,13 @@
 import { useInteractions } from '@floating-ui/react';
 import { createContext } from 'react';
 
+import type { ISelectOptionProps } from './SelectOption';
+
 export type ISelectContextValue = {
   activeIndex: number | null;
   selectedIndex: number | null;
   getItemProps: ReturnType<typeof useInteractions>['getItemProps'];
-  handleSelect: (index: number | null) => void;
+  handleSelect: (index: number | null, props: ISelectOptionProps) => void;
 };
 
 const stub = (): never => {

@@ -11,7 +11,7 @@ import type { IThemeComponents } from '@/components/utils/Theme';
 import type { ITextFieldStyleKey } from './TextField.styledefs';
 import {
   FieldBase,
-  type IFieldBaseProps,
+  type IFieldBaseOwnProps,
   type IFieldBaseStyleKey,
   type IFieldBaseStyleVarKey,
   type IFieldBaseVariant,
@@ -92,17 +92,18 @@ export type ITextFieldProps = IContainerProps<ITextFieldStyleKey> &
     | 'maxLength'
     | 'readOnly'
     | 'role'
+    | 'value'
+    | 'defaultValue'
   > &
   Pick<
     React.InputHTMLAttributes<HTMLInputElement>,
     'min' | 'max' | 'step' | 'pattern' | 'multiple'
   > &
   Pick<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'cols' | 'rows'> &
-  IOmit<IFieldBaseProps, 'styles' | 'textarea' | 'resizable'> & {
+  IOmit<IFieldBaseOwnProps, 'styles' | 'textarea' | 'resizable'> & {
     innerStyles?: {
       field?: IZeroOrMore<ICompiledStyles<IFieldBaseStyleKey>>;
     };
-    value?: string;
     placeholder?: string;
     prefixText?: string;
     suffixText?: string;
@@ -129,10 +130,7 @@ export type ITextFieldProps = IContainerProps<ITextFieldStyleKey> &
      */
     type?: ITextFieldType | IUnsupportedTextFieldType;
 
-    defaultValue?: string;
-    onChange?: (
-      event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    ) => void;
+    onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
     onFocus?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
     onBlur?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
     onKeyDown?: React.KeyboardEventHandler<
@@ -161,266 +159,260 @@ const variantMap: ITextFieldVariantMap = {
   outlined: 'OutlinedTextField',
 };
 
-export const TextField = forwardRef<
-  HTMLInputElement | HTMLTextAreaElement,
-  ITextFieldProps
->(function TextField(props, forwardedRef) {
-  const {
-    styles,
-    sx,
-    innerStyles,
-    visualState: visualStateProp,
-    variant = 'filled',
-    label,
-    required,
-    start,
-    end,
-    populated: populatedProp,
-    leadingIcon,
-    trailingIcon,
-    supportingText,
-    prefixText,
-    suffixText,
-    maxLength = -1,
-    minLength = -1,
-    noSpinner,
-    value: valueProp,
-    defaultValue,
-    type = 'text',
-    hasError,
-    errorText,
-    disabled: disabledProp,
-    readOnly,
-    children,
-    containerRef,
-    unmaskable: unmaskableProp = true,
-    clearable,
-    onChange,
-    clearButtonIcon,
-    role = 'textbox',
-    'aria-label': ariaLabelProp,
-    ...other
-  } = props;
+export const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
+  function TextField(props, forwardedRef) {
+    const {
+      styles,
+      sx,
+      innerStyles,
+      visualState: visualStateProp,
+      variant = 'filled',
+      label,
+      required,
+      start,
+      end,
+      populated: populatedProp,
+      leadingIcon,
+      trailingIcon,
+      supportingText,
+      prefixText,
+      suffixText,
+      maxLength = -1,
+      minLength = -1,
+      noSpinner,
+      value: valueProp,
+      defaultValue,
+      type = 'text',
+      hasError,
+      errorText,
+      disabled: disabledProp,
+      readOnly,
+      children,
+      unmaskable: unmaskableProp = true,
+      clearable,
+      onChange,
+      clearButtonIcon,
+      role = 'textbox',
+      'aria-label': ariaLabelProp,
+      ...other
+    } = props;
 
-  const inputOrTextareaRef = useRef<HTMLInputElement | HTMLTextAreaElement>(
-    null,
-  );
-  const disabled = disabledProp || readOnly;
-  const { visualState, ref: inputOrTextareaRefVisualStateRef } = useVisualState(
-    visualStateProp,
-    {
-      disabled,
-      retainFocusAfterClick: true,
-    },
-  );
-  const handleRef = useForkRef(
-    forwardedRef,
-    inputOrTextareaRefVisualStateRef,
-    inputOrTextareaRef,
-  );
-  const unmaskable = type === 'password' && unmaskableProp;
-  const [unmasked, setUnmasked] = useState(false);
+    const inputOrTextareaRef = useRef<HTMLInputElement | HTMLTextAreaElement>(
+      null,
+    );
+    const disabled = disabledProp || readOnly;
+    const { visualState, ref: inputOrTextareaRefVisualStateRef } =
+      useVisualState(visualStateProp, {
+        disabled,
+        retainFocusAfterClick: true,
+      });
+    const handleRef = useForkRef(
+      forwardedRef,
+      inputOrTextareaRefVisualStateRef,
+      inputOrTextareaRef,
+    );
+    const unmaskable = type === 'password' && unmaskableProp;
+    const [unmasked, setUnmasked] = useState(false);
 
-  const { theme, variantTheme } = useComponentTheme(
-    'TextField',
-    variant ? variantMap[variant] : undefined,
-  );
-  const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
-    [theme.styles, variantTheme?.styles, styles],
-  );
-  const sxf = useMemo(
-    () =>
-      stylePropsFactory<ITextFieldStyleKey, IFieldBaseStyleVarKey>(
-        stylesCombinator,
-        visualState,
-      ),
-    [stylesCombinator, visualState],
-  );
+    const { theme, variantTheme } = useComponentTheme(
+      'TextField',
+      variant ? variantMap[variant] : undefined,
+    );
+    const stylesCombinator = useMemo(
+      () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
+      [theme.styles, variantTheme?.styles, styles],
+    );
+    const sxf = useMemo(
+      () =>
+        stylePropsFactory<ITextFieldStyleKey, IFieldBaseStyleVarKey>(
+          stylesCombinator,
+          visualState,
+        ),
+      [stylesCombinator, visualState],
+    );
 
-  const controlled = valueProp !== undefined;
-  const [value, setValue] = useControlledValue({
-    controlled: valueProp,
-    default: defaultValue,
-    name: 'TextField',
-  });
+    const controlled = valueProp !== undefined;
+    const [value, setValue] = useControlledValue({
+      controlled: valueProp,
+      default: defaultValue,
+      name: 'TextField',
+    });
 
-  const isTextarea = type === 'textarea';
-  const populated =
-    populatedProp ?? (!!value || !!inputOrTextareaRef.current?.value);
+    const isTextarea = type === 'textarea';
+    const populated =
+      populatedProp ?? (!!value || !!inputOrTextareaRef.current?.value);
 
-  const iconButtonRef = useRef<HTMLButtonElement>(null);
-  const handleClearInput = useCallback(() => {
-    iconButtonRef.current?.blur();
-    if (controlled) {
-      setValue('');
-    } else {
+    const iconButtonRef = useRef<HTMLButtonElement>(null);
+    const handleClearInput = useCallback(() => {
+      iconButtonRef.current?.blur();
+      if (controlled) {
+        setValue('');
+      }
       inputOrTextareaRef.current!.value = '';
       onChange?.({
         currentTarget: inputOrTextareaRef.current!,
         target: inputOrTextareaRef.current!,
       } as React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>);
-    }
-    inputOrTextareaRef.current?.focus();
-  }, [controlled, setValue, onChange]);
+      inputOrTextareaRef.current?.focus();
+    }, [controlled, setValue, onChange]);
 
-  const renderInputOrTextarea = useCallback((): React.ReactNode => {
-    const ariaLabel = ariaLabelProp ?? label;
+    const renderInputOrTextarea = useCallback((): React.ReactNode => {
+      const ariaLabel = ariaLabelProp ?? label;
 
-    // These properties may be set to null if the attribute is removed, and
-    // `null > -1` is incorrectly `true`.
-    const hasMinLength = (minLength ?? -1) > -1;
-    const hasMaxLength = (maxLength ?? -1) > -1;
+      // These properties may be set to null if the attribute is removed, and
+      // `null > -1` is incorrectly `true`.
+      const hasMinLength = (minLength ?? -1) > -1;
+      const hasMaxLength = (maxLength ?? -1) > -1;
 
-    if (isTextarea) {
+      if (isTextarea) {
+        return (
+          <textarea
+            {...sxf(
+              'input',
+              hasError && 'input$error',
+              disabled && 'input$disabled',
+            )}
+            ref={handleRef}
+            // TODO: aria-describedby="description"
+            aria-invalid={hasError}
+            aria-label={ariaLabel}
+            disabled={disabled}
+            minLength={hasMinLength ? minLength : undefined}
+            maxLength={hasMaxLength ? maxLength : undefined}
+            value={controlled ? value : undefined}
+            defaultValue={defaultValue}
+            required={required}
+            data-cy='textarea'
+            onChange={onChange}
+            {...other}
+          />
+        );
+      }
+
       return (
-        <textarea
-          {...sxf(
-            'input',
-            hasError && 'input$error',
-            disabled && 'input$disabled',
-          )}
-          ref={handleRef}
-          // TODO: aria-describedby="description"
-          aria-invalid={hasError}
-          aria-label={ariaLabel}
-          disabled={disabled}
-          minLength={hasMinLength ? minLength : undefined}
-          maxLength={hasMaxLength ? maxLength : undefined}
-          value={controlled ? value : undefined}
-          defaultValue={defaultValue}
-          required={required}
-          data-cy='textarea'
-          onChange={onChange}
-          {...other}
-        />
+        <div {...sxf('inputWrapper')}>
+          {prefixText ? (
+            <span {...sxf('prefix', disabled && 'prefix$disabled')}>
+              {prefixText}
+            </span>
+          ) : null}
+          <input
+            {...sxf(
+              'input',
+              hasError && 'input$error',
+              disabled && 'input$disabled',
+              noSpinner && 'input$noSpinner',
+              type === 'number' && 'input$number',
+            )}
+            ref={handleRef}
+            // TODO: aria-describedby="description"
+            aria-invalid={hasError}
+            aria-label={ariaLabel}
+            disabled={disabled}
+            minLength={hasMinLength ? minLength : undefined}
+            maxLength={hasMaxLength ? maxLength : undefined}
+            value={controlled ? value : undefined}
+            defaultValue={defaultValue}
+            required={required}
+            type={type === 'password' ? (unmasked ? 'text' : 'password') : type}
+            data-cy='input'
+            onChange={onChange}
+            {...other}
+          />
+          {suffixText ? (
+            <span {...sxf('suffix', disabled && 'suffix$disabled')}>
+              {suffixText}
+            </span>
+          ) : null}
+        </div>
       );
-    }
+    }, [
+      sxf,
+      isTextarea,
+      value,
+      defaultValue,
+      ariaLabelProp,
+      hasError,
+      disabled,
+      minLength,
+      maxLength,
+      noSpinner,
+      type,
+      other,
+      handleRef,
+      label,
+      required,
+      prefixText,
+      suffixText,
+      controlled,
+      onChange,
+      unmasked,
+    ]);
 
     return (
-      <div {...sxf('inputWrapper')}>
-        {prefixText ? (
-          <span {...sxf('prefix', disabled && 'prefix$disabled')}>
-            {prefixText}
-          </span>
-        ) : null}
-        <input
-          {...sxf(
-            'input',
-            hasError && 'input$error',
-            disabled && 'input$disabled',
-            noSpinner && 'input$noSpinner',
-            type === 'number' && 'input$number',
-          )}
-          ref={handleRef}
-          // TODO: aria-describedby="description"
-          aria-invalid={hasError}
-          aria-label={ariaLabel}
-          disabled={disabled}
-          minLength={hasMinLength ? minLength : undefined}
-          maxLength={hasMaxLength ? maxLength : undefined}
-          value={controlled ? value : undefined}
-          defaultValue={defaultValue}
-          required={required}
-          type={type === 'password' ? (unmasked ? 'text' : 'password') : type}
-          data-cy='input'
-          onChange={onChange}
-          {...other}
-        />
-        {suffixText ? (
-          <span {...sxf('suffix', disabled && 'suffix$disabled')}>
-            {suffixText}
-          </span>
-        ) : null}
+      // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+      <div
+        {...sxf('host', theme.vars, variantTheme?.vars, sx)}
+        onClick={(event) => {
+          const isSelf = event.target === inputOrTextareaRef.current;
+          if (!isSelf) {
+            inputOrTextareaRef.current?.focus();
+          }
+        }}
+        role={role}
+        tabIndex={-1}
+      >
+        <span {...sxf('textField')}>
+          <FieldBase
+            styles={[
+              theme.fieldStyles,
+              variantTheme?.fieldStyles,
+              ...asArray(innerStyles?.field),
+            ]}
+            variant={variant}
+            count={value?.toString().length}
+            disabled={disabled}
+            hasError={hasError}
+            errorText={errorText}
+            visualState={visualState}
+            start={start}
+            end={
+              end ??
+              (clearable ? (
+                <IconButton
+                  data-cy='clearButton'
+                  ref={iconButtonRef}
+                  icon={clearButtonIcon ?? <XMarkIcon aria-hidden />}
+                  onClick={handleClearInput}
+                />
+              ) : unmaskable ? (
+                <IconButton
+                  onClick={(event) => {
+                    event.preventDefault();
+                    setUnmasked((unmasked) => !unmasked);
+                  }}
+                  icon={<EyeIcon />}
+                  selectedIcon={<EyeSlashIcon />}
+                  selected={unmasked}
+                  toggle
+                />
+              ) : undefined)
+            }
+            leadingIcon={leadingIcon}
+            trailingIcon={trailingIcon}
+            label={label}
+            max={maxLength}
+            populated={populated}
+            required={required}
+            resizable={isTextarea}
+            supportingText={supportingText}
+            textarea={isTextarea}
+          >
+            {children}
+            {renderInputOrTextarea()}
+          </FieldBase>
+        </span>
       </div>
     );
-  }, [
-    sxf,
-    isTextarea,
-    value,
-    defaultValue,
-    ariaLabelProp,
-    hasError,
-    disabled,
-    minLength,
-    maxLength,
-    noSpinner,
-    type,
-    other,
-    handleRef,
-    label,
-    required,
-    prefixText,
-    suffixText,
-    controlled,
-    onChange,
-    unmasked,
-  ]);
-
-  return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-    <div
-      {...sxf('host', theme.vars, variantTheme?.vars, sx)}
-      onClick={(event) => {
-        const isSelf = event.target === inputOrTextareaRef.current;
-        if (!isSelf) {
-          inputOrTextareaRef.current?.focus();
-        }
-      }}
-      role={role}
-      tabIndex={-1}
-    >
-      <span {...sxf('textField')}>
-        <FieldBase
-          styles={[
-            theme.fieldStyles,
-            variantTheme?.fieldStyles,
-            ...asArray(innerStyles?.field),
-          ]}
-          variant={variant}
-          count={value?.length}
-          disabled={disabled}
-          hasError={hasError}
-          errorText={errorText}
-          visualState={visualState}
-          start={start}
-          end={
-            end ??
-            (clearable ? (
-              <IconButton
-                data-cy='clearButton'
-                ref={iconButtonRef}
-                icon={clearButtonIcon ?? <XMarkIcon aria-hidden />}
-                onClick={handleClearInput}
-              />
-            ) : unmaskable ? (
-              <IconButton
-                onClick={(event) => {
-                  event.preventDefault();
-                  setUnmasked((unmasked) => !unmasked);
-                }}
-                icon={<EyeIcon />}
-                selectedIcon={<EyeSlashIcon />}
-                selected={unmasked}
-                toggle
-              />
-            ) : undefined)
-          }
-          leadingIcon={leadingIcon}
-          trailingIcon={trailingIcon}
-          label={label}
-          max={maxLength}
-          populated={populated}
-          required={required}
-          resizable={isTextarea}
-          supportingText={supportingText}
-          textarea={isTextarea}
-          containerRef={containerRef}
-        >
-          {children}
-          {renderInputOrTextarea()}
-        </FieldBase>
-      </span>
-    </div>
-  );
-});
+  },
+);

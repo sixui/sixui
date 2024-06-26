@@ -75,3 +75,11 @@ export type IRange = {
 
 // Omit with keys type checks
 export type IOmit<TType, TKeys extends keyof TType> = Omit<TType, TKeys>;
+
+export type IFormFieldProps<TValue, TElement = HTMLElement> = {
+  onChange?: (value: TValue, event?: React.SyntheticEvent<TElement>) => void;
+  onBlur?: React.FocusEventHandler<TElement>;
+  value?: TValue;
+  disabled?: boolean;
+  name?: string;
+};

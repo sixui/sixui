@@ -412,7 +412,7 @@ export type ITheme = {
       vars?: IStyleVarsTheme<IMenuListStyleVarKey>;
       styles?: ICompiledStyles<IMenuListStyleKey>;
       elevationStyles?: ICompiledStyles<IElevationStyleKey>;
-      focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
+      listStyles?: ICompiledStyles<IListStyleKey>;
     };
     Disclosure: {
       styles?: ICompiledStyles<IDisclosureStyleKey>;
