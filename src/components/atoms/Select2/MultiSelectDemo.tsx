@@ -183,6 +183,7 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
       createNewItemRenderer={renderCreateFilmMenuItem}
       itemDisabled={isFilmDisabled}
       matchTargetWidth
+      // resetOnSelect
     >
       {(buttonProps) => (
         <Field

@@ -279,7 +279,9 @@ export const FloatingQueryList = <TItem,>(
   useEffect(() => {
     if (!transitionStatus.isMounted) {
       defaultQueryRef.current = other.resetOnClose ? '' : queryRef.current;
-      setSelectedIndex(other.resetOnClose ? 0 : selectedIndex ?? 0);
+      if (other.resetOnClose) {
+        setSelectedIndex(0);
+      }
     }
   }, [transitionStatus.isMounted, other.resetOnClose, selectedIndex]);
 

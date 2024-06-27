@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useRef } from 'react';
 import { isFunction } from 'lodash';
 
 import { useControlledValue } from '@/hooks/useControlledValue';
@@ -140,7 +140,7 @@ export const QueryList = <TItem,>(
     default: defaultQuery,
     name: 'QueryList',
   });
-  const [filteredItems, setFilteredItems] = useState<Array<TItem>>([]);
+  const filteredItemsRef = useRef<Array<TItem>>(getFilteredItems(query, props));
 
   const renderItemList = (
     listProps: IItemListRendererProps<TItem>,
@@ -174,7 +174,7 @@ export const QueryList = <TItem,>(
   const wouldCreatedItemMatchSomeExistingItem = (
     createNewItem: TItem | Array<TItem>,
   ): boolean =>
-    filteredItems.some((item) => {
+    filteredItemsRef.current.some((item) => {
       const newItems = Array.isArray(createNewItem)
         ? createNewItem
         : [createNewItem];
@@ -192,12 +192,21 @@ export const QueryList = <TItem,>(
     // existing item is much clearer.
     !wouldCreatedItemMatchSomeExistingItem(createNewItem);
 
+  const handleQueryChange = (
+    query: string,
+    event?: React.ChangeEvent<HTMLInputElement>,
+  ): void => {
+    setQuery(query);
+    filteredItemsRef.current = getFilteredItems(query, props);
+    onQueryChange?.(query, event);
+  };
+
   const handleItemSelect = (
     item: TItem,
     event?: React.SyntheticEvent<HTMLElement>,
   ): void => {
     if (resetOnSelect) {
-      setQuery('');
+      handleQueryChange('');
     }
 
     onItemSelect(item, event);
@@ -219,7 +228,7 @@ export const QueryList = <TItem,>(
       };
 
       return createNewItemRenderer?.({
-        index: filteredItems.length,
+        index: filteredItemsRef.current.length,
         modifiers,
         query: trimmedQuery,
         handleClick: (event) => handleItemSelect(createNewItem, event),
@@ -238,7 +247,7 @@ export const QueryList = <TItem,>(
       active: false,
       selected: false,
       disabled: isItemDisabled(item, index, itemDisabled),
-      matchesPredicate: filteredItems.indexOf(item) >= 0,
+      matchesPredicate: filteredItemsRef.current.indexOf(item) >= 0,
     };
 
     return itemRenderer(item, {
@@ -249,26 +258,18 @@ export const QueryList = <TItem,>(
     });
   };
 
-  useEffect(() => {
-    setFilteredItems(getFilteredItems(query, props));
-  }, [query, props]);
-
   return renderer({
-    filteredItems,
+    filteredItems: filteredItemsRef.current,
     query: query ?? '',
     itemList: itemListRenderer({
-      filteredItems,
+      filteredItems: filteredItemsRef.current,
       query,
       items,
       renderCreateItem: renderCreateItemMenuItem,
       renderItem,
     }),
     handleItemSelect: (item, event) => handleItemSelect(item, event),
-    handleQueryChange: (event) => {
-      const newQuery = event.target.value;
-      setQuery(newQuery);
-      onQueryChange?.(newQuery, event);
-    },
+    handleQueryChange: (event) => handleQueryChange(event.target.value),
     disabled,
   });
 };

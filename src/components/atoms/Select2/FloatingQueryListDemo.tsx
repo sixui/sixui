@@ -137,7 +137,7 @@ export const FloatingQueryListDemo = (
       // itemDisabled={isFilmDisabled}
       matchTargetWidth
       resetOnSelect
-      resetOnClose
+      // resetOnClose
       closeOnSelect
     >
       {(buttonProps) => (
