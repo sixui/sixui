@@ -141,19 +141,23 @@ export const getFilmItemProps = (
   film: IFilm,
   { modifiers, query }: IItemRendererProps,
 ): IListItemProps & React.Attributes => {
+  const text = `${film.rank}. ${film.title}`;
+
   return {
     disabled: modifiers.disabled,
     trailingSupportingText: film.year.toString(),
-    children: highlightWords({
-      text: `${film.rank}. ${film.title}`,
-      query,
-    }).map((chunk, index) =>
-      chunk.match ? (
-        <strong key={index}>{chunk.text}</strong>
-      ) : (
-        <span key={index}>{chunk.text}</span>
-      ),
-    ),
+    children: query
+      ? highlightWords({
+          text,
+          query,
+        }).map((chunk, index) =>
+          chunk.match ? (
+            <strong key={index}>{chunk.text}</strong>
+          ) : (
+            <span key={index}>{chunk.text}</span>
+          ),
+        )
+      : text,
   };
 };
 

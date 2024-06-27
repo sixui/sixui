@@ -71,7 +71,7 @@ export const useControlledValue = <TValue>({
         // eslint-disable-next-line no-console
         console.error(
           [
-            `sixui: A component is changing the default ${state} state of an uncontrolled ${name} from "${JSON.stringify(defaultValue)}" to "${JSON.stringify(props.default)}" after being initialized. ` +
+            `sixui: A component is changing the default ${state} state of an uncontrolled ${name} from \`${JSON.stringify(defaultValue)}\` to \`${JSON.stringify(props.default)}\` after being initialized. ` +
               `To suppress this warning opt to use a controlled ${name}.`,
           ].join('\n'),
         );

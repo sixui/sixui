@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { isFunction } from 'lodash';
 
 import { useControlledValue } from '@/hooks/useControlledValue';
@@ -41,6 +41,15 @@ export type IQueryListRendererProps<TItem> = Pick<
   'filteredItems' | 'query'
 > & {
   /**
+   * Selection handler that should be invoked when a new item has been chosen,
+   * perhaps because the user clicked it.
+   */
+  handleItemSelect: (
+    item: TItem,
+    event?: React.SyntheticEvent<HTMLElement>,
+  ) => void;
+
+  /**
    * Change handler for query string. Attach this to an input element to allow
    * `QueryList` to control the query.
    */
@@ -73,9 +82,13 @@ export type IQueryListState<TItem> = {
 };
 
 const getFilteredItems = <TItem,>(
-  query: string,
+  query: string | undefined,
   { items, itemPredicate, itemListPredicate }: IQueryListProps<TItem>,
 ): Array<TItem> => {
+  if (!query) {
+    return items;
+  }
+
   if (itemListPredicate) {
     // note that implementations can reorder the items here
     return itemListPredicate(query, items);
@@ -117,23 +130,22 @@ export const QueryList = <TItem,>(
     noResults,
     renderer,
     onQueryChange,
+    onItemSelect,
+    resetOnSelect,
   } = props;
   const isCreateItemFirst = createNewItemPosition === 'first';
-  const canCreateItems =
-    createNewItemFromQuery != null && createNewItemRenderer != null;
-  const [queryValue, setQuery] = useControlledValue({
+  const canCreateItems = !!createNewItemFromQuery && !!createNewItemRenderer;
+  const [query, setQuery] = useControlledValue({
     controlled: queryProp,
     default: defaultQuery,
     name: 'QueryList',
   });
-  const query = queryValue ?? '';
-  const filteredItemsRef = useRef<Array<TItem>>(getFilteredItems(query, props));
-  const createNewItem = createNewItemFromQuery?.(query);
+  const [filteredItems, setFilteredItems] = useState<Array<TItem>>([]);
 
   const renderItemList = (
     listProps: IItemListRendererProps<TItem>,
   ): React.ReactNode => {
-    // omit noResults if createNewItemFromQuery and createNewItemRenderer are both supplied, and query is not empty
+    // Omit noResults if createNewItemFromQuery and createNewItemRenderer are both supplied, and query is not empty
     const createItemView = listProps.renderCreateItem();
     const maybeNoResults = createItemView != null ? null : noResults;
     const menuContent = renderFilteredItems(
@@ -157,12 +169,12 @@ export const QueryList = <TItem,>(
   };
   const itemListRenderer = props.itemListRenderer ?? renderItemList;
 
+  // Search only the filtered items, not the full items list, because we
+  // only need to check items that match the current query.
   const wouldCreatedItemMatchSomeExistingItem = (
-    createNewItem?: TItem | Array<TItem>,
-  ): boolean => {
-    // search only the filtered items, not the full items list, because we
-    // only need to check items that match the current query.
-    return filteredItemsRef.current.some((item) => {
+    createNewItem: TItem | Array<TItem>,
+  ): boolean =>
+    filteredItems.some((item) => {
       const newItems = Array.isArray(createNewItem)
         ? createNewItem
         : [createNewItem];
@@ -171,19 +183,24 @@ export const QueryList = <TItem,>(
         executeItemsEqual(itemsEqual, item, newItem),
       );
     });
-  };
 
-  const isCreateItemRendered = (
-    createNewItem?: TItem | Array<TItem>,
-  ): boolean => {
-    return (
-      canCreateItems &&
-      query !== '' &&
-      // this check is unfortunately O(N) on the number of items, but
-      // alas, hiding the "Create Item" option when it exactly matches an
-      // existing item is much clearer.
-      !wouldCreatedItemMatchSomeExistingItem(createNewItem)
-    );
+  const isCreateItemRendered = (createNewItem: TItem | Array<TItem>): boolean =>
+    canCreateItems &&
+    !!query?.length &&
+    // this check is unfortunately O(N) on the number of items, but
+    // alas, hiding the "Create Item" option when it exactly matches an
+    // existing item is much clearer.
+    !wouldCreatedItemMatchSomeExistingItem(createNewItem);
+
+  const handleItemSelect = (
+    item: TItem,
+    event?: React.SyntheticEvent<HTMLElement>,
+  ): void => {
+    if (resetOnSelect) {
+      setQuery('');
+    }
+
+    onItemSelect(item, event);
   };
 
   const renderCreateItemMenuItem = (): React.ReactNode => {
@@ -191,18 +208,21 @@ export const QueryList = <TItem,>(
       return undefined;
     }
 
-    if (isCreateItemRendered(createNewItem)) {
+    const createNewItem = createNewItemFromQuery?.(query);
+    if (createNewItem && isCreateItemRendered(createNewItem)) {
       const trimmedQuery = query.trim();
+      const modifiers: IItemModifiers = {
+        active: false,
+        selected: false,
+        disabled: false,
+        matchesPredicate: false,
+      };
 
       return createNewItemRenderer?.({
-        index: filteredItemsRef.current.length,
+        index: filteredItems.length,
+        modifiers,
         query: trimmedQuery,
-        modifiers: {
-          active: false,
-          selected: false,
-          disabled: false,
-          matchesPredicate: false,
-        },
+        handleClick: (event) => handleItemSelect(createNewItem, event),
       });
     }
 
@@ -210,38 +230,43 @@ export const QueryList = <TItem,>(
   };
 
   const renderItem = (item: TItem, index: number): React.ReactNode => {
-    if (disabled !== true) {
-      const modifiers: IItemModifiers = {
-        active: false,
-        selected: false,
-        disabled: isItemDisabled(item, index, itemDisabled),
-        matchesPredicate: filteredItemsRef.current.indexOf(item) >= 0,
-      };
-
-      return itemRenderer(item, {
-        index,
-        modifiers,
-        query,
-      });
+    if (disabled) {
+      return null;
     }
 
-    return null;
+    const modifiers: IItemModifiers = {
+      active: false,
+      selected: false,
+      disabled: isItemDisabled(item, index, itemDisabled),
+      matchesPredicate: filteredItems.indexOf(item) >= 0,
+    };
+
+    return itemRenderer(item, {
+      index,
+      modifiers,
+      query: query ?? '',
+      handleClick: (event) => handleItemSelect(item, event),
+    });
   };
 
+  useEffect(() => {
+    setFilteredItems(getFilteredItems(query, props));
+  }, [query, props]);
+
   return renderer({
-    filteredItems: filteredItemsRef.current,
+    filteredItems,
     query: query ?? '',
     itemList: itemListRenderer({
-      filteredItems: filteredItemsRef.current,
-      query: query ?? '',
+      filteredItems,
+      query,
       items,
       renderCreateItem: renderCreateItemMenuItem,
       renderItem,
     }),
+    handleItemSelect: (item, event) => handleItemSelect(item, event),
     handleQueryChange: (event) => {
       const newQuery = event.target.value;
       setQuery(newQuery);
-      filteredItemsRef.current = getFilteredItems(newQuery, props);
       onQueryChange?.(newQuery, event);
     },
     disabled,

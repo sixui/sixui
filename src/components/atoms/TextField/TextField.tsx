@@ -244,17 +244,19 @@ export const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
 
     const iconButtonRef = useRef<HTMLButtonElement>(null);
     const handleClearInput = useCallback(() => {
-      iconButtonRef.current?.blur();
-      if (controlled) {
-        setValue('');
+      if (value !== '') {
+        iconButtonRef.current?.blur();
+        if (controlled) {
+          setValue('');
+        }
+        inputOrTextareaRef.current!.value = '';
+        onChange?.({
+          currentTarget: inputOrTextareaRef.current!,
+          target: inputOrTextareaRef.current!,
+        } as React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>);
       }
-      inputOrTextareaRef.current!.value = '';
-      onChange?.({
-        currentTarget: inputOrTextareaRef.current!,
-        target: inputOrTextareaRef.current!,
-      } as React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>);
       inputOrTextareaRef.current?.focus();
-    }, [controlled, setValue, onChange]);
+    }, [controlled, setValue, onChange, value]);
 
     const renderInputOrTextarea = useCallback((): React.ReactNode => {
       const ariaLabel = ariaLabelProp ?? label;

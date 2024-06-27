@@ -29,7 +29,7 @@ export type IItemListRendererProps<TItem> = {
   /**
    * The current query string.
    */
-  query: string;
+  query?: string;
 
   /**
    * Call this function to render an item.
@@ -61,7 +61,7 @@ export const renderFilteredItems = (
   noResults?: React.ReactNode,
   initialContent?: React.ReactNode | null,
 ): React.ReactNode => {
-  if (props.query.length === 0 && initialContent !== undefined) {
+  if (!props.query?.length && initialContent !== undefined) {
     return initialContent;
   }
   const items = props.filteredItems
@@ -98,6 +98,9 @@ export type IItemModifiers = {
  * @typeParam TItem - type of the DOM element rendered for this item to which we can attach a ref (defaults to MenuItem's HTMLLIElement)
  */
 export type IItemRendererProps = {
+  /** Click event handler to select this item. */
+  handleClick: React.MouseEventHandler<HTMLElement>;
+
   /** Index of the item in the QueryList items array. */
   index: number;
 
@@ -260,14 +263,21 @@ export type IListItemsProps<TItem> = {
   noResults?: React.ReactNode;
 
   /**
+   * Callback invoked when an item from the list is selected,
+   * typically by clicking or pressing `enter` key.
+   */
+  onItemSelect: (
+    item: TItem,
+    event?: React.SyntheticEvent<HTMLElement>,
+  ) => void;
+
+  /**
    * Callback invoked when the query string changes.
    */
   onQueryChange?: (
     query: string,
     event?: React.ChangeEvent<HTMLInputElement>,
   ) => void;
-
-  onFilteredItemsChange?: (query: string, filteredItems: Array<TItem>) => void;
 
   /**
    * If provided, allows new items to be created using the current query

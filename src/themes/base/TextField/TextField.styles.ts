@@ -43,6 +43,11 @@ export const styles: MapNamespaces<ITextFieldStyles> =
       '::placeholder': {
         WebkitTextFillColor: fieldBaseVars.contentPlaceholderColor,
         color: fieldBaseVars.contentPlaceholderColor,
+        fontFamily: fieldBaseVars.contentFont,
+        fontSize: fieldBaseVars.contentSize,
+        fontWeight: fieldBaseVars.contentWeight,
+        lineHeight: fieldBaseVars.contentLineHeight,
+        letterSpacing: fieldBaseVars.contentLetterSpacing,
         opacity: 1,
       },
       '::selection': {

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import stylex from '@stylexjs/stylex';
 import {
   autoUpdate,
@@ -17,12 +17,8 @@ import {
   type Placement,
 } from '@floating-ui/react';
 
-import {
-  executeItemsEqual,
-  type IItemsEqualProp,
-  type ICreateNewItemRenderer,
-  type IItemRenderer,
-} from './ListItemProps';
+import type { IOmit } from '@/helpers/types';
+import type { ICreateNewItemRenderer, IItemRenderer } from './ListItemProps';
 import { Portal } from '@/components/utils/Portal';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
 import { placementToOrigin } from '@/helpers/placementToOrigin';
@@ -32,32 +28,50 @@ import {
   type IQueryListRenderer,
 } from './QueryList';
 
-export type IFloatingQueryListTriggerButtonRenderProps<TItem> = {
+export type IFloatingQueryListTriggerButtonRenderProps = {
   isOpen: boolean;
-  selectedItem?: TItem | null;
   buttonRef: React.Ref<HTMLButtonElement>;
   buttonAttributes: React.HTMLAttributes<HTMLButtonElement>;
 };
 
-export type IFloatingQueryListProps<TItem> = IQueryListProps<TItem> & {
+export type IFloatingQueryListProps<TItem> = IOmit<
+  IQueryListProps<TItem>,
+  'onItemSelect'
+> & {
   /**
    * Element which triggers the select popover. In most cases, you should display
    * the name or label of the curently selected item here.
    */
   children: (
-    props: IFloatingQueryListTriggerButtonRenderProps<TItem>,
+    props: IFloatingQueryListTriggerButtonRenderProps,
   ) => React.JSX.Element;
+
+  onItemSelect: (
+    item: TItem,
+    event?: React.SyntheticEvent<HTMLElement>,
+  ) => number | undefined;
 
   placement?: Placement;
   matchTargetWidth?: boolean;
+  closeOnSelect?: boolean;
+
+  /**
+   * Whether the active item should be reset to the first matching item _when
+   * the popover closes_. The query will also be reset to the empty string.
+   *
+   * @defaultValue false
+   */
+  resetOnClose?: boolean;
 };
 
 // TODO: migrate in theme
 const styles = stylex.create({
   host: {
     zIndex: 499,
-    flexGrow: 1,
+  },
+  container: {
     display: 'flex',
+    flexGrow: 1,
   },
   transition$unmounted: {},
   transition$initial: {
@@ -88,89 +102,24 @@ const styles = stylex.create({
   }),
 });
 
-const arrayContainsItem = <TItem,>(
-  itemsEqualProp: IItemsEqualProp<TItem> | undefined,
-  items: Array<TItem>,
-  itemToFind: TItem,
-): boolean =>
-  items.some((item: TItem) =>
-    executeItemsEqual(itemsEqualProp, item, itemToFind),
-  );
-
-const addItemToArray = <TItem,>(
-  items: Array<TItem>,
-  itemToAdd: TItem,
-): Array<TItem> => [...items, itemToAdd];
-
-const deleteItemFromArray = <TItem,>(
-  items: Array<TItem>,
-  itemToDelete: TItem,
-): Array<TItem> => items.filter((item) => item !== itemToDelete);
-
-const maybeAddCreatedItemToArrays = <TItem,>(
-  itemsEqualProp: IItemsEqualProp<TItem> | undefined,
-  items: Array<TItem>,
-  createdItems: Array<TItem>,
-  item: TItem,
-): { createdItems: Array<TItem>; items: Array<TItem> } => {
-  const isNewlyCreatedItem = !arrayContainsItem(itemsEqualProp, items, item);
-
-  return {
-    createdItems: isNewlyCreatedItem
-      ? addItemToArray(createdItems, item)
-      : createdItems,
-    // Add a created item to `items` so that the item can be deselected.
-    items: isNewlyCreatedItem ? addItemToArray(items, item) : items,
-  };
-};
-
-const maybeDeleteCreatedItemFromArrays = <TItem,>(
-  itemsEqualProp: IItemsEqualProp<TItem> | undefined,
-  items: Array<TItem>,
-  createdItems: Array<TItem>,
-  item: TItem | undefined,
-): { createdItems: Array<TItem>; items: Array<TItem> } => {
-  if (item === undefined) {
-    return {
-      createdItems,
-      items,
-    };
-  }
-
-  const wasItemCreatedByUser = arrayContainsItem(
-    itemsEqualProp,
-    createdItems,
-    item,
-  );
-
-  // Delete the item if the user manually created it.
-  return {
-    createdItems: wasItemCreatedByUser
-      ? deleteItemFromArray(createdItems, item)
-      : createdItems,
-    items: wasItemCreatedByUser ? deleteItemFromArray(items, item) : items,
-  };
-};
-
 export const FloatingQueryList = <TItem,>(
   props: IFloatingQueryListProps<TItem>,
 ): React.ReactNode => {
   const {
-    items: itemsProp,
     children,
     placement = 'bottom-start',
     matchTargetWidth: fill,
     renderer,
     itemRenderer,
     createNewItemRenderer,
+    onItemSelect,
+    closeOnSelect,
     ...other
   } = props;
 
-  const [items, setItems] = useState(itemsProp);
   const [isOpen, setIsOpen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(0);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const [selectedItem, setSelectedItem] = useState<TItem>();
   const elementsRef = useRef<Array<HTMLElement | null>>([]);
   const labelsRef = useRef<Array<string | null>>([]);
   const floating = useFloating({
@@ -232,39 +181,17 @@ export const FloatingQueryList = <TItem,>(
   const transitionStatus = useTransitionStatus(floating.context, {
     duration: 150, // motionVars.duration$short3
   });
+  const inputFilterRef = useRef<HTMLInputElement | null>(null);
 
-  const [createdItems, setCreatedItems] = useState<Array<TItem>>([]);
-  const handleSelect = (
-    newActiveIndex: number,
-    newSelectedItem: TItem,
-  ): void => {
-    // Delete the old film from the list if it was newly created.
-    const step1Result = maybeDeleteCreatedItemFromArrays(
-      other.itemsEqual,
-      items,
-      createdItems,
-      selectedItem,
-    );
-    // Add the new film to the list if it is newly created.
-    const step2Result = maybeAddCreatedItemToArrays(
-      other.itemsEqual,
-      step1Result.items,
-      step1Result.createdItems,
-      newSelectedItem,
-    );
-    setCreatedItems(step2Result.createdItems);
-    setSelectedItem(newSelectedItem);
-    setItems(step2Result.items);
-    setIsOpen(false);
+  const handleSelect = (item: TItem): void => {
+    if (closeOnSelect) {
+      setIsOpen(false);
+    } else {
+      inputFilterRef.current?.focus();
+    }
 
-    const activeIndex = arrayContainsItem(
-      other.itemsEqual,
-      step2Result.createdItems,
-      newSelectedItem,
-    )
-      ? itemsProp.length + step2Result.createdItems.indexOf(newSelectedItem)
-      : newActiveIndex;
-    setSelectedIndex(activeIndex);
+    const selectedIndex = onItemSelect(item) ?? activeIndex;
+    setSelectedIndex(selectedIndex);
   };
 
   const rendererWrapper: IQueryListRenderer<TItem> = (listProps) =>
@@ -274,15 +201,18 @@ export const FloatingQueryList = <TItem,>(
         listProps.handleQueryChange(event);
         setActiveIndex(0);
       },
+      inputFilterRef: inputFilterRef,
       inputFilterAttributes: {
-        ...listProps.inputFilterAttributes,
         onKeyDown: (event) => {
           if (event.key === 'Enter' && activeIndex != null) {
             const selectedItem = listProps.filteredItems[activeIndex];
             const selectedOrCreatedItem =
-              selectedItem ?? other.createNewItemFromQuery?.(listProps.query);
+              selectedItem ??
+              (listProps.query
+                ? other.createNewItemFromQuery?.(listProps.query)
+                : undefined);
             if (selectedOrCreatedItem) {
-              handleSelect(activeIndex, selectedOrCreatedItem);
+              listProps.handleItemSelect(selectedOrCreatedItem, event);
             }
           }
         },
@@ -291,7 +221,6 @@ export const FloatingQueryList = <TItem,>(
 
   const itemRendererWrapper: IItemRenderer<TItem> = (item, itemProps) => {
     const active = activeIndex === itemProps.index;
-    const selected = executeItemsEqual(other.itemsEqual, item, selectedItem);
 
     return itemRenderer(
       item,
@@ -300,7 +229,6 @@ export const FloatingQueryList = <TItem,>(
         modifiers: {
           ...itemProps.modifiers,
           active,
-          selected,
         },
       },
       (node) => {
@@ -311,7 +239,7 @@ export const FloatingQueryList = <TItem,>(
         role: 'option',
         tabIndex: active ? 0 : -1,
         'aria-selected': active,
-        onClick: () => handleSelect(itemProps.index, item),
+        onClick: itemProps.handleClick,
       }),
     );
   };
@@ -335,20 +263,29 @@ export const FloatingQueryList = <TItem,>(
         role: 'option',
         tabIndex: active ? 0 : -1,
         'aria-selected': active,
-        onClick: () => {
-          const createdItem = other.createNewItemFromQuery?.(itemProps.query);
-          if (createdItem) {
-            handleSelect(itemProps.index, createdItem);
-          }
-        },
+        onClick: itemProps.handleClick,
       }),
     );
   };
 
+  const onQueryChangeWrapper = (query: string): void => {
+    queryRef.current = query;
+    other.onQueryChange?.(query);
+  };
+
+  // Restore the query when the list is re-mounted.
+  const queryRef = useRef<string>();
+  const defaultQueryRef = useRef<string | undefined>(other.defaultQuery);
+  useEffect(() => {
+    if (!transitionStatus.isMounted) {
+      defaultQueryRef.current = other.resetOnClose ? '' : queryRef.current;
+      setSelectedIndex(other.resetOnClose ? 0 : selectedIndex ?? 0);
+    }
+  }, [transitionStatus.isMounted, other.resetOnClose, selectedIndex]);
+
   return (
     <>
       {children({
-        selectedItem,
         isOpen,
         buttonRef: floating.refs.setReference,
         buttonAttributes: {
@@ -371,7 +308,7 @@ export const FloatingQueryList = <TItem,>(
             >
               <div
                 {...stylex.props(
-                  styles.host,
+                  styles.container,
                   styles.transformOrigin(floating.placement),
                   styles[`transition$${transitionStatus.status}`],
                 )}
@@ -379,7 +316,9 @@ export const FloatingQueryList = <TItem,>(
                 <FloatingList elementsRef={elementsRef} labelsRef={labelsRef}>
                   <QueryList
                     {...other}
-                    items={items}
+                    defaultQuery={defaultQueryRef.current}
+                    onQueryChange={onQueryChangeWrapper}
+                    onItemSelect={handleSelect}
                     renderer={rendererWrapper}
                     itemRenderer={itemRendererWrapper}
                     createNewItemRenderer={createNewItemRendererWrapper}

@@ -43,4 +43,10 @@ export const commonStyles = stylex.create({
   gap$3xl: {
     gap: '2rem',
   },
+  wrap: {
+    flexWrap: 'wrap',
+  },
+  hidden: {
+    display: 'none',
+  },
 });
