@@ -16,6 +16,7 @@ export const Basic: IStory = {
   args: {
     ...defaultArgs,
     onChange: (...args) => void sbHandleEvent('onChange', args),
+    onRemove: (...args) => void sbHandleEvent('onRemove', args),
   },
 };
 

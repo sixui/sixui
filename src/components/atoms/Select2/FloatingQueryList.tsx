@@ -28,10 +28,15 @@ import {
   type IQueryListRenderer,
 } from './QueryList';
 
-export type IFloatingQueryListTriggerButtonRenderProps = {
+export type IFloatingQueryListTriggerButtonRenderProps<TItem> = {
   isOpen: boolean;
   buttonRef: React.Ref<HTMLButtonElement>;
   buttonAttributes: React.HTMLAttributes<HTMLButtonElement>;
+  onItemRemove: (
+    item: TItem,
+    index: number,
+    event?: React.SyntheticEvent<HTMLElement>,
+  ) => void;
 };
 
 export type IFloatingQueryListProps<TItem> = IOmit<
@@ -43,13 +48,22 @@ export type IFloatingQueryListProps<TItem> = IOmit<
    * the name or label of the curently selected item here.
    */
   children: (
-    props: IFloatingQueryListTriggerButtonRenderProps,
+    props: IFloatingQueryListTriggerButtonRenderProps<TItem>,
   ) => React.JSX.Element;
 
   onItemSelect: (
     item: TItem,
     event?: React.SyntheticEvent<HTMLElement>,
   ) => number | undefined;
+
+  /**
+   * Callback invoked when an item from the list is removed.
+   */
+  onItemRemove?: (
+    item: TItem,
+    index: number,
+    event?: React.SyntheticEvent<HTMLElement>,
+  ) => void;
 
   placement?: Placement;
   matchTargetWidth?: boolean;
@@ -113,6 +127,7 @@ export const FloatingQueryList = <TItem,>(
     itemRenderer,
     createNewItemRenderer,
     onItemSelect,
+    onItemRemove,
     closeOnSelect,
     ...other
   } = props;
@@ -146,7 +161,7 @@ export const FloatingQueryList = <TItem,>(
     ],
   });
   const click = useClick(floating.context, {
-    event: 'mousedown',
+    event: 'click',
   });
   const role = useRole(floating.context, { role: 'listbox' });
   const dismiss = useDismiss(floating.context);
@@ -295,6 +310,7 @@ export const FloatingQueryList = <TItem,>(
           'aria-autocomplete': 'none',
           ...interactions.getReferenceProps(),
         },
+        onItemRemove: (item, event) => onItemRemove?.(item, event),
       })}
       {transitionStatus.isMounted && (
         <Portal>

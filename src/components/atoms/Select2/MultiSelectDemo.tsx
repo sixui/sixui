@@ -35,10 +35,20 @@ export type IMultiSelectDemoProps = IFloatingQueryListProps<IFilm> & {
   value?: Array<IFilm>;
   defaultValue?: Array<IFilm>;
   onChange: (value: Array<IFilm>) => void;
+
+  /**
+   * Callback invoked when an item is removed from the selection by
+   * removing its tag in the TagInput. This is generally more useful than
+   * `tagInputProps.onRemove`  because it receives the removed value instead of
+   * the value's rendered `ReactNode` tag.
+   *
+   * It is not recommended to supply _both_ this prop and `tagInputProps.onRemove`.
+   */
+  onRemove?: (value: IFilm, index: number) => void;
 };
 
 export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
-  const { value, defaultValue, onChange, ...other } = props;
+  const { value, defaultValue, onChange, onRemove, ...other } = props;
   const [items, setItems] = useState(TOP_100_FILMS);
   const [createdItems, setCreatedItems] = useState<Array<IFilm>>([]);
   const [selectedItems, setSelectedItems] = useControlledValue({
@@ -148,10 +158,16 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
     );
   };
 
+  const handleItemRemove = (item: IFilm, index: number): void => {
+    onChange(deselectFilm(index));
+    onRemove?.(item, index);
+  };
+
   return (
     <FloatingQueryList<IFilm>
       {...other}
       onItemSelect={handleItemSelect}
+      onItemRemove={handleItemRemove}
       items={items}
       // createNewItemPosition='first'
       // defaultSelectedItem={TOP_100_FILMS[3]}
@@ -187,7 +203,6 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
     >
       {(buttonProps) => (
         <Field
-          as='button'
           placeholder='Choose films'
           end={
             buttonProps.isOpen ? (
@@ -203,8 +218,15 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
           <div
             {...stylex.props(commonStyles.horizontalLayout, commonStyles.wrap)}
           >
-            {selectedItems?.map((item, itemIndex) => (
-              <InputChip key={itemIndex} label={item.title} />
+            {selectedItems?.map((item, index) => (
+              <InputChip
+                key={index}
+                label={item.title}
+                onDelete={(event) => {
+                  event.stopPropagation();
+                  buttonProps.onItemRemove(item, index, event);
+                }}
+              />
             ))}
           </div>
         </Field>
