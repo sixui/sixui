@@ -18,7 +18,16 @@ export type IListProps = IContainerProps<IListStyleKey> &
 
 const List = forwardRef<HTMLDivElement, IListProps>(
   function List(props, forwardedRef) {
-    const { styles, sx, size, children, header, footer, ...other } = props;
+    const {
+      styles,
+      sx,
+      size,
+      noFocusRing,
+      children,
+      header,
+      footer,
+      ...other
+    } = props;
 
     const { theme } = useComponentTheme('List');
     const stylesCombinator = useMemo(
@@ -32,7 +41,7 @@ const List = forwardRef<HTMLDivElement, IListProps>(
     );
 
     return (
-      <ListContext.Provider value={{ size }}>
+      <ListContext.Provider value={{ size, noFocusRing }}>
         <div {...sxf('host', sx)} ref={forwardedRef} {...other}>
           <div {...sxf('inner')}>
             <div {...sxf('header')}>{header}</div>

@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
+import { ListItem } from '@/components/atoms/ListItem';
 import {
   FilteredListExample,
   type IFilteredListExampleProps,
 } from './FilteredListExample';
-import { ListItem } from '@/components/atoms/ListItem';
 import { TOP_100_MOVIES } from './movies';
 
 const meta = {

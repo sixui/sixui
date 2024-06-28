@@ -25,7 +25,7 @@ import {
   type IFilteredItemRenderer,
   type IFilteredListProps,
   type IFilteredListRenderer,
-} from '@/components/utils/FilteredList';
+} from '@/components/atoms/FilteredList';
 import { Portal } from '@/components/utils/Portal';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
 import { placementToOrigin } from '@/helpers/placementToOrigin';
@@ -224,6 +224,17 @@ export const FloatingFilteredList = <TItem, TElement extends HTMLElement>(
     selectedIndex,
     onMatch: isOpen ? setActiveIndex : setSelectedIndex,
     enabled: !canFilter,
+    findMatch: other.itemPredicate
+      ? (list, typedString) =>
+          list.find((label) =>
+            label && other.createNewItemFromQuery
+              ? other.itemPredicate?.(
+                  typedString,
+                  other.createNewItemFromQuery(label),
+                )
+              : false,
+          )
+      : undefined,
   });
   const [query, setQuery] = useControlledValue({
     controlled: queryProp,
@@ -264,6 +275,10 @@ export const FloatingFilteredList = <TItem, TElement extends HTMLElement>(
       inputFilterRef.current?.focus();
     } else {
       buttonRef.current?.focus();
+    }
+
+    if (closeOnSelect) {
+      setIsOpen(false);
     }
   };
 
@@ -358,20 +373,17 @@ export const FloatingFilteredList = <TItem, TElement extends HTMLElement>(
   ) => {
     const active = activeIndex === itemProps.index;
 
-    return itemRenderer(
-      item,
-      {
-        ...itemProps,
-        modifiers: {
-          ...itemProps.modifiers,
-          active,
-        },
+    return itemRenderer(item, {
+      ...itemProps,
+      modifiers: {
+        ...itemProps.modifiers,
+        active,
       },
-      (node) => {
+      buttonRef: (node) => {
         elementsRef.current[itemProps.index] = node;
         labelsRef.current[itemProps.index] = node?.textContent ?? null;
       },
-      (userProps) =>
+      getButtonAttributes: (userProps) =>
         interactions.getItemProps({
           ...userProps,
           role: 'option',
@@ -379,7 +391,7 @@ export const FloatingFilteredList = <TItem, TElement extends HTMLElement>(
           'aria-selected': active,
           onClick: itemProps.handleClick,
         }),
-    );
+    });
   };
 
   const createNewItemRendererWrapper: IFilteredCreateNewItemRenderer<
@@ -387,19 +399,17 @@ export const FloatingFilteredList = <TItem, TElement extends HTMLElement>(
   > = (itemProps) => {
     const active = activeIndex === itemProps.index;
 
-    return createNewItemRenderer?.(
-      {
-        ...itemProps,
-        modifiers: {
-          ...itemProps.modifiers,
-          active,
-        },
+    return createNewItemRenderer?.({
+      ...itemProps,
+      modifiers: {
+        ...itemProps.modifiers,
+        active,
       },
-      (node) => {
+      buttonRef: (node) => {
         elementsRef.current[itemProps.index] = node;
-        labelsRef.current[itemProps.index] = null;
+        labelsRef.current[itemProps.index] = node?.textContent ?? null;
       },
-      (userProps) =>
+      getButtonAttributes: (userProps) =>
         interactions.getItemProps({
           ...userProps,
           role: 'option',
@@ -407,7 +417,7 @@ export const FloatingFilteredList = <TItem, TElement extends HTMLElement>(
           'aria-selected': active,
           onClick: itemProps.handleClick,
         }),
-    );
+    });
   };
 
   // Restore the query when the list is re-mounted.

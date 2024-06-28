@@ -67,6 +67,7 @@ export type IListItemOwnProps = IContainerProps<IListItemStyleKey> &
     trailingIcon?: React.ReactNode;
     onClick?: React.MouseEventHandler<HTMLElement>;
     size?: 'sm' | 'md' | 'lg' | 'xl';
+    noFocusRing?: boolean;
     maxLines?: number;
   };
 
@@ -118,6 +119,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
     trailingIcon,
     onClick,
     size: sizeProp = 'md',
+    noFocusRing: noFocusRingProp,
     maxLines,
     ...other
   } = props as IWithAsProp<IListItemOwnProps>;
@@ -154,6 +156,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
   const size = listContext?.size ?? sizeProp;
   const adaptedSize =
     size === 'md' && (!!supportingText || !!leadingVideo) ? 'lg' : size;
+  const noFocusRing = listContext?.noFocusRing ?? noFocusRingProp;
 
   const Component =
     as ??
@@ -180,16 +183,18 @@ export const ListItem: IListItem = forwardRef(function ListItem<
             disabled={disabled}
             visualState={visualState}
           />
-          <FocusRing
-            styles={[
-              theme.focusRingStyles,
-              variantTheme?.focusRingStyles,
-              ...asArray(innerStyles?.focusRing),
-            ]}
-            for={actionRef}
-            visualState={visualState}
-            inward
-          />
+          {noFocusRing ? null : (
+            <FocusRing
+              styles={[
+                theme.focusRingStyles,
+                variantTheme?.focusRingStyles,
+                ...asArray(innerStyles?.focusRing),
+              ]}
+              for={actionRef}
+              visualState={visualState}
+              inward
+            />
+          )}
         </>
       ) : null}
     </>

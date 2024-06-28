@@ -18,19 +18,17 @@ import {
   renderMovieListItem,
   TOP_100_MOVIES,
   type IMovie,
-} from '@/components/utils/FilteredList/movies';
-import {
-  maybeAddCreatedItemToArrays,
-  maybeDeleteCreatedItemFromArrays,
-} from '@/components/utils/FloatingFilteredList/utils';
+} from '@/components/atoms/FilteredList/movies';
 import {
   executeFilteredItemsEqual,
+  maybeAddCreatedItemToArrays,
+  maybeDeleteCreatedItemFromArrays,
   type IFilteredItemRenderer,
-} from '@/components/utils/FilteredList';
+} from '@/components/atoms/FilteredList';
 import {
   FloatingFilteredList,
   type IFloatingFilteredListProps,
-} from '@/components/utils/FloatingFilteredList';
+} from '@/components/atoms/FloatingFilteredList';
 
 export type ISuggestDemoProps = IFloatingFilteredListProps<
   IMovie,

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
-import type { IFilteredItemRenderer } from '@/components/utils/FilteredList';
+import type { IFilteredItemRenderer } from '@/components/atoms/FilteredList';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
 import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
@@ -16,7 +16,7 @@ import { IconButton } from '@/components/atoms/IconButton';
 import {
   FloatingFilteredList,
   type IFloatingFilteredListProps,
-} from '@/components/utils/FloatingFilteredList';
+} from '@/components/atoms/FloatingFilteredList';
 import {
   areMoviesEqual,
   createMovie,
@@ -26,12 +26,12 @@ import {
   renderMovieListItem,
   TOP_100_MOVIES,
   type IMovie,
-} from '@/components/utils/FilteredList/movies';
+} from '@/components/atoms/FilteredList/movies';
 import {
   arrayContainsItem,
   maybeAddCreatedItemToArrays,
   maybeDeleteCreatedItemFromArrays,
-} from '@/components/utils/FloatingFilteredList/utils';
+} from '@/components/atoms/FilteredList';
 
 export type IMultiSelectDemoProps = IFloatingFilteredListProps<IMovie> & {
   value?: Array<IMovie>;
