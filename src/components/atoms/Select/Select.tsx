@@ -20,6 +20,7 @@ import {
 } from '@/components/atoms/FilteredList';
 import {
   FloatingFilteredList,
+  type IFloatingFilteredListTriggerButtonRenderProps,
   type IFloatingFilteredListProps,
 } from '@/components/atoms/FloatingFilteredList';
 
@@ -33,7 +34,10 @@ export type ISelectProps<TItem> = IOmit<
   defaultValue?: TItem;
   onChange: (value?: TItem) => void;
   canFilter?: boolean;
-  getFieldProps?: (value?: TItem) => IFieldOwnProps;
+  getFieldProps?: (
+    buttonProps: IFloatingFilteredListTriggerButtonRenderProps<TItem>,
+    value?: TItem,
+  ) => IFieldOwnProps;
 };
 
 export const Select = <TItem,>(props: ISelectProps<TItem>): React.ReactNode => {
@@ -123,8 +127,8 @@ export const Select = <TItem,>(props: ISelectProps<TItem>): React.ReactNode => {
 
   return (
     <FloatingFilteredList<TItem, HTMLDivElement>
-      onItemSelect={handleItemSelect}
       items={items}
+      onItemSelect={handleItemSelect}
       renderer={(listProps) => (
         <MenuList
           noFocusRing
@@ -177,8 +181,8 @@ export const Select = <TItem,>(props: ISelectProps<TItem>): React.ReactNode => {
           }
           populated={buttonProps.isOpen || !!selectedItem}
           {...buttonProps.getButtonAttributes()}
+          {...getFieldProps?.(buttonProps, selectedItem)}
           ref={buttonProps.buttonRef}
-          {...getFieldProps?.(selectedItem)}
         />
       )}
     </FloatingFilteredList>

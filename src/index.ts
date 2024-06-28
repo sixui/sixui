@@ -38,6 +38,7 @@ export * from './components/atoms/SnackbarContent';
 export * from './components/atoms/Step';
 export * from './components/atoms/StepConnector';
 export * from './components/atoms/Stepper';
+export * from './components/atoms/Suggest';
 export * from './components/atoms/Switch';
 export * from './components/atoms/Tab';
 export * from './components/atoms/TabList';

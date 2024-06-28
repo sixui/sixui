@@ -8,30 +8,33 @@ import {
   TOP_100_MOVIES,
   type IMovie,
 } from '@/components/atoms/FilteredList/movies';
-import { Select, type ISelectProps } from './Select';
+import { Suggest, type ISuggestProps } from './Suggest';
 
-export type ISelectExampleProps = IOmit<
-  ISelectProps<IMovie>,
+export type ISuggestExampleProps = IOmit<
+  ISuggestProps<IMovie>,
   'items' | 'itemRenderer'
 > & {
   canCreate?: boolean;
 };
 
-export const SelectExample = (props: ISelectExampleProps): React.ReactNode => {
+export const SuggestExample = (
+  props: ISuggestExampleProps,
+): React.ReactNode => {
   const { canCreate, ...rest } = props;
 
   return (
-    <Select<IMovie>
+    <Suggest<IMovie>
       items={TOP_100_MOVIES}
       itemRenderer={renderMovieListItem}
       itemsEqual={areMoviesEqual}
       itemPredicate={filterMovie}
       createNewItemFromQuery={canCreate ? createMovie : undefined}
       createNewItemRenderer={canCreate ? renderCreateMovieListItem : undefined}
-      getFieldProps={(_buttonProps, value) => ({
-        variant: 'outlined',
-        label: 'Choose a film',
-        children: value?.title,
+      getTextFieldProps={(buttonProps, value) => ({
+        value: buttonProps.isOpen
+          ? buttonProps.query
+          : buttonProps.query || value?.title,
+        placeholder: value?.title,
       })}
       {...rest}
     />

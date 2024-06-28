@@ -1,24 +1,16 @@
 import { useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
+import type { IOmit } from '@/helpers/types';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
 import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
 import { ListItem } from '@/components/atoms/ListItem';
-import { TextField } from '@/components/atoms/TextField';
+import { TextField, type ITextFieldProps } from '@/components/atoms/TextField';
 import { MenuList } from '@/components/atoms/MenuList';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { commonStyles } from '@/helpers/commonStyles';
 import { IconButton } from '@/components/atoms/IconButton';
-import {
-  areMoviesEqual,
-  createMovie,
-  filterMovie,
-  renderCreateMovieListItem,
-  renderMovieListItem,
-  TOP_100_MOVIES,
-  type IMovie,
-} from '@/components/atoms/FilteredList/movies';
 import {
   executeFilteredItemsEqual,
   maybeAddCreatedItemToArrays,
@@ -27,36 +19,56 @@ import {
 } from '@/components/atoms/FilteredList';
 import {
   FloatingFilteredList,
+  type IFloatingFilteredListTriggerButtonRenderProps,
   type IFloatingFilteredListProps,
 } from '@/components/atoms/FloatingFilteredList';
 
-export type ISuggestDemoProps = IFloatingFilteredListProps<
-  IMovie,
-  HTMLDivElement
+export type ISuggestProps<TItem> = IOmit<
+  IFloatingFilteredListProps<TItem, HTMLDivElement>,
+  | 'onItemSelect'
+  | 'renderer'
+  | 'listRenderer'
+  | 'itemRenderer'
+  | 'children'
+  | 'defaultQuery'
 > & {
-  value?: IMovie;
-  defaultValue?: IMovie;
-  onChange: (value?: IMovie) => void;
+  items: Array<TItem>;
+  itemRenderer: IFilteredItemRenderer<TItem, HTMLDivElement>;
+  value?: TItem;
+  defaultValue?: TItem;
+  onChange: (value?: TItem) => void;
+  getTextFieldProps?: (
+    buttonProps: IFloatingFilteredListTriggerButtonRenderProps<TItem>,
+    value?: TItem,
+  ) => ITextFieldProps;
 };
 
-export const SuggestDemo = (props: ISuggestDemoProps): React.ReactNode => {
-  const { value, defaultValue, onChange, ...other } = props;
-  const [items, setItems] = useState(TOP_100_MOVIES);
-  const [createdItems, setCreatedItems] = useState<Array<IMovie>>([]);
+export const Suggest = <TItem,>(
+  props: ISuggestProps<TItem>,
+): React.ReactNode => {
+  const {
+    items: itemsProp,
+    itemRenderer,
+    value,
+    defaultValue,
+    onChange,
+    getTextFieldProps,
+    ...other
+  } = props;
+  const [items, setItems] = useState(itemsProp);
+  const [createdItems, setCreatedItems] = useState<Array<TItem>>([]);
   const [selectedItem, setSelectedItem] = useControlledValue({
     controlled: value,
     default: defaultValue,
     name: 'FloatingFilteredListDemo',
   });
 
-  const canFilter = true;
-
-  const handleItemSelect = (newSelectedItem: IMovie): number | undefined => {
+  const handleItemSelect = (newSelectedItem: TItem): number | undefined => {
     setSelectedItem(newSelectedItem);
 
     // Delete the old film from the list if it was newly created.
     const step1Result = maybeDeleteCreatedItemFromArrays(
-      areMoviesEqual,
+      other.itemsEqual,
       items,
       createdItems,
       selectedItem,
@@ -64,7 +76,7 @@ export const SuggestDemo = (props: ISuggestDemoProps): React.ReactNode => {
 
     // Add the new film to the list if it is newly created.
     const step2Result = maybeAddCreatedItemToArrays(
-      areMoviesEqual,
+      other.itemsEqual,
       step1Result.items,
       step1Result.createdItems,
       newSelectedItem,
@@ -83,35 +95,28 @@ export const SuggestDemo = (props: ISuggestDemoProps): React.ReactNode => {
     return selectedIndex;
   };
 
-  const itemRendererWrapper: IFilteredItemRenderer<IMovie, HTMLDivElement> = (
+  const itemRendererWrapper: IFilteredItemRenderer<TItem, HTMLDivElement> = (
     item,
     itemProps,
-    buttonRef,
-    buttonAttributes,
   ): React.JSX.Element | null => {
     const selected = executeFilteredItemsEqual(
-      areMoviesEqual,
+      other.itemsEqual,
       item,
       selectedItem,
     );
 
-    return renderMovieListItem(
-      item,
-      {
-        ...itemProps,
-        modifiers: {
-          ...itemProps.modifiers,
-          selected,
-        },
+    return itemRenderer(item, {
+      ...itemProps,
+      modifiers: {
+        ...itemProps.modifiers,
+        selected,
       },
-      buttonRef,
-      buttonAttributes,
-    );
+    });
   };
 
   const handleClear = (
     onItemsRemove: (
-      items: Array<IMovie>,
+      items: Array<TItem>,
       event?: React.SyntheticEvent<HTMLElement>,
     ) => void,
     event?: React.MouseEvent<HTMLButtonElement>,
@@ -125,28 +130,18 @@ export const SuggestDemo = (props: ISuggestDemoProps): React.ReactNode => {
   };
 
   return (
-    <FloatingFilteredList<IMovie, HTMLDivElement>
-      {...other}
-      // disabled
-      onItemSelect={handleItemSelect}
+    <FloatingFilteredList<TItem, HTMLDivElement>
       items={items}
-      // createNewItemPosition='first'
-      // defaultSelectedItem={TOP_100_MOVIES[3]}
-      // selectedItem={TOP_100_MOVIES[3]}
-      // defaultQuery='w'
+      onItemSelect={handleItemSelect}
       renderer={(listProps) => <MenuList>{listProps.filteredList}</MenuList>}
       itemRenderer={itemRendererWrapper}
-      itemsEqual={areMoviesEqual}
-      itemPredicate={canFilter ? filterMovie : undefined}
       noResults={<ListItem disabled>No results.</ListItem>}
-      createNewItemFromQuery={createMovie}
-      createNewItemRenderer={renderCreateMovieListItem}
-      // itemDisabled={isMovieDisabled}
       matchTargetWidth
       resetOnSelect
       resetOnClose
       closeOnSelect
       initialFocus={-1}
+      {...other}
     >
       {(buttonProps) => (
         <TextField
@@ -183,13 +178,9 @@ export const SuggestDemo = (props: ISuggestDemoProps): React.ReactNode => {
             buttonProps.isOpen || !!selectedItem || !!buttonProps.query
           }
           {...buttonProps.getInputFilterAttributes(
-            buttonProps.getButtonAttributes({
-              value: buttonProps.isOpen
-                ? buttonProps.query
-                : buttonProps.query || selectedItem?.title,
-              placeholder: selectedItem?.title,
-            }),
+            buttonProps.getButtonAttributes(),
           )}
+          {...getTextFieldProps?.(buttonProps, selectedItem)}
           ref={buttonProps.buttonRef}
           inputRef={buttonProps.inputFilterRef}
         />
