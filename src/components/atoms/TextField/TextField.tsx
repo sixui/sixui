@@ -383,26 +383,30 @@ export const TextField = forwardRef<HTMLDivElement, ITextFieldProps>(
             visualState={visualState}
             start={start}
             end={
-              end ??
-              (clearable ? (
-                <IconButton
-                  data-cy='clearButton'
-                  ref={iconButtonRef}
-                  icon={clearButtonIcon ?? <XMarkIcon aria-hidden />}
-                  onClick={handleClearInput}
-                />
-              ) : unmaskable ? (
-                <IconButton
-                  onClick={(event) => {
-                    event.preventDefault();
-                    setUnmasked((unmasked) => !unmasked);
-                  }}
-                  icon={<EyeIcon />}
-                  selectedIcon={<EyeSlashIcon />}
-                  selected={unmasked}
-                  toggle
-                />
-              ) : undefined)
+              end ?? clearable ?? unmaskable ? (
+                <>
+                  {end}
+                  {clearable ? (
+                    <IconButton
+                      data-cy='clearButton'
+                      ref={iconButtonRef}
+                      icon={clearButtonIcon ?? <XMarkIcon aria-hidden />}
+                      onClick={handleClearInput}
+                    />
+                  ) : unmaskable ? (
+                    <IconButton
+                      onClick={(event) => {
+                        event.preventDefault();
+                        setUnmasked((unmasked) => !unmasked);
+                      }}
+                      icon={<EyeIcon />}
+                      selectedIcon={<EyeSlashIcon />}
+                      selected={unmasked}
+                      toggle
+                    />
+                  ) : undefined}
+                </>
+              ) : undefined
             }
             leadingIcon={leadingIcon}
             trailingIcon={trailingIcon}

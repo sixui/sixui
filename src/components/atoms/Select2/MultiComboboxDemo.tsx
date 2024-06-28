@@ -1,18 +1,21 @@
 import { useState } from 'react';
 import stylex from '@stylexjs/stylex';
-import {
-  FloatingQueryList,
-  type IFloatingQueryListProps,
-} from './FloatingQueryList';
 
 import type { IItemRenderer } from './ListItemProps';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
+import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
 import { ListItem } from '@/components/atoms/ListItem';
 import { TextField } from '@/components/atoms/TextField';
 import { MenuList } from '@/components/atoms/MenuList';
 import { InputChip } from '@/components/atoms/Chip';
 import { useControlledValue } from '@/hooks/useControlledValue';
+import { commonStyles } from '@/helpers/commonStyles';
+import { IconButton } from '@/components/atoms/IconButton';
+import {
+  FloatingQueryList,
+  type IFloatingQueryListProps,
+} from './FloatingQueryList';
 import {
   areFilmsEqual,
   createFilm,
@@ -28,38 +31,45 @@ import {
   maybeAddCreatedItemToArrays,
   maybeDeleteCreatedItemFromArrays,
 } from './utils';
-import { commonStyles } from '@/helpers/commonStyles';
 
 export type IMultiComboboxDemoProps = IFloatingQueryListProps<IFilm> & {
   value?: Array<IFilm>;
   defaultValue?: Array<IFilm>;
   onChange: (value: Array<IFilm>) => void;
-
-  /**
-   * Callback invoked when an item is removed from the selection by
-   * removing its tag in the TagInput. This is generally more useful than
-   * `tagInputProps.onRemove`  because it receives the removed value instead of
-   * the value's rendered `ReactNode` tag.
-   *
-   * It is not recommended to supply _both_ this prop and `tagInputProps.onRemove`.
-   */
-  onRemove?: (value: IFilm, index: number) => void;
 };
 
+const styles = stylex.create({
+  chip: {
+    marginRight: '0.5rem',
+  },
+});
+
+const fieldStyles = stylex.create({
+  contentSlot: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    rowGap: '0.5rem',
+    flexWrap: 'wrap',
+  },
+});
+
 export const MultiComboboxDemo: React.FC<IMultiComboboxDemoProps> = (props) => {
-  const { value, defaultValue, onChange, onRemove, ...other } = props;
+  const { value, defaultValue, onChange, ...other } = props;
   const [items, setItems] = useState(TOP_100_FILMS);
   const [createdItems, setCreatedItems] = useState<Array<IFilm>>([]);
   const [selectedItems, setSelectedItems] = useControlledValue({
     controlled: value,
-    default: defaultValue,
+    default: defaultValue ?? [],
     name: 'FloatingQueryListDemo',
   });
+  const [focusedSelectedItemIndex, setFocusedSelectedItemIndex] =
+    useState<number>();
 
   const canFilter = true;
 
   const getSelectedFilmIndex = (film: IFilm): number => {
-    const index = selectedItems?.indexOf(film);
+    const index = selectedItems.indexOf(film);
 
     return index !== undefined && index >= 0 ? index : -1;
   };
@@ -69,7 +79,7 @@ export const MultiComboboxDemo: React.FC<IMultiComboboxDemoProps> = (props) => {
 
   const selectFilms = (filmsToSelect: Array<IFilm>): Array<IFilm> => {
     let nextCreatedItems = createdItems.slice();
-    let nextFilms = selectedItems ? selectedItems.slice() : [];
+    let nextFilms = selectedItems.slice();
     let nextItems = items.slice();
 
     filmsToSelect.forEach((filmToSelect) => {
@@ -100,7 +110,7 @@ export const MultiComboboxDemo: React.FC<IMultiComboboxDemoProps> = (props) => {
     selectFilms([filmToSelect]);
 
   const deselectFilm = (index: number): Array<IFilm> => {
-    const film = selectedItems?.[index];
+    const film = selectedItems[index];
     const { createdItems: nextCreatedItems, items: nextItems } =
       maybeDeleteCreatedItemFromArrays(
         areFilmsEqual,
@@ -108,8 +118,7 @@ export const MultiComboboxDemo: React.FC<IMultiComboboxDemoProps> = (props) => {
         createdItems,
         film,
       );
-    const nextSelectedItems =
-      selectedItems?.filter((_film, i) => i !== index) ?? [];
+    const nextSelectedItems = selectedItems.filter((_film, i) => i !== index);
 
     setCreatedItems(nextCreatedItems);
     setSelectedItems(nextSelectedItems);
@@ -119,10 +128,13 @@ export const MultiComboboxDemo: React.FC<IMultiComboboxDemoProps> = (props) => {
   };
 
   const handleItemSelect = (selectedItem: IFilm): undefined => {
+    setFocusedSelectedItemIndex(undefined);
+
     if (isFilmSelected(selectedItem)) {
       const selectedIndex = getSelectedFilmIndex(selectedItem);
       if (selectedIndex !== undefined) {
         onChange(deselectFilm(selectedIndex));
+        other.onItemsRemove?.([selectedItem]);
       }
     } else {
       onChange(selectFilm(selectedItem));
@@ -137,11 +149,7 @@ export const MultiComboboxDemo: React.FC<IMultiComboboxDemoProps> = (props) => {
     buttonRef,
     buttonAttributes,
   ): React.ReactNode => {
-    const selected = arrayContainsItem(
-      areFilmsEqual,
-      selectedItems ?? [],
-      item,
-    );
+    const selected = arrayContainsItem(areFilmsEqual, selectedItems, item);
 
     return renderFilm(
       item,
@@ -159,14 +167,77 @@ export const MultiComboboxDemo: React.FC<IMultiComboboxDemoProps> = (props) => {
 
   const handleItemRemove = (item: IFilm, index: number): void => {
     onChange(deselectFilm(index));
-    onRemove?.(item, index);
+    other.onItemsRemove?.([item]);
+  };
+
+  const handleItemRemoveFocused = (): void => {
+    if (focusedSelectedItemIndex === undefined) {
+      setFocusedSelectedItemIndex(selectedItems.length - 1);
+
+      return;
+    }
+
+    const item = selectedItems[focusedSelectedItemIndex];
+    const isLastFocused = focusedSelectedItemIndex === selectedItems.length - 1;
+    if (isLastFocused) {
+      setFocusedSelectedItemIndex(selectedItems.length - 2);
+    }
+
+    handleItemRemove(item, focusedSelectedItemIndex);
+  };
+
+  const handleItemFocusPreviousSelected = (): void => {
+    if (!selectedItems.length) {
+      return;
+    }
+
+    const previousIndex =
+      focusedSelectedItemIndex === undefined
+        ? selectedItems.length - 1
+        : Math.max(focusedSelectedItemIndex - 1, 0);
+
+    setFocusedSelectedItemIndex(previousIndex);
+  };
+
+  const handleItemFocusNextSelected = (): void => {
+    if (!selectedItems.length) {
+      return;
+    }
+
+    const nextIndex =
+      focusedSelectedItemIndex === undefined ||
+      focusedSelectedItemIndex === selectedItems.length - 1
+        ? undefined
+        : focusedSelectedItemIndex + 1;
+
+    setFocusedSelectedItemIndex(nextIndex);
+  };
+
+  const handleQueryChange = (): void => {
+    setFocusedSelectedItemIndex(undefined);
+  };
+
+  const handleClear = (
+    onItemsRemove: (
+      items: Array<IFilm>,
+      event?: React.SyntheticEvent<HTMLElement>,
+    ) => void,
+    event?: React.MouseEvent<HTMLButtonElement>,
+  ): void => {
+    event?.stopPropagation();
+    if (selectedItems.length) {
+      onChange?.([]);
+      onItemsRemove(selectedItems, event);
+      setSelectedItems([]);
+    }
   };
 
   return (
     <FloatingQueryList<IFilm>
       {...other}
+      // disabled
       onItemSelect={handleItemSelect}
-      onItemRemove={handleItemRemove}
+      onItemRemoveFocused={handleItemRemoveFocused}
       items={items}
       // createNewItemPosition='first'
       // defaultSelectedItem={TOP_100_FILMS[3]}
@@ -181,47 +252,69 @@ export const MultiComboboxDemo: React.FC<IMultiComboboxDemoProps> = (props) => {
       createNewItemRenderer={renderCreateFilmMenuItem}
       itemDisabled={isFilmDisabled}
       matchTargetWidth
-      // resetOnSelect
+      resetOnClose
+      resetOnSelect
       initialFocus={-1}
+      onItemFocusPreviousSelected={handleItemFocusPreviousSelected}
+      onItemFocusNextSelected={handleItemFocusNextSelected}
+      onQueryChange={handleQueryChange}
     >
       {(buttonProps) => (
         <TextField
           end={
-            buttonProps.isOpen ? (
-              <TriangleUpIcon aria-hidden />
-            ) : (
-              <TriangleDownIcon aria-hidden />
-            )
+            <div
+              {...stylex.props(
+                commonStyles.horizontalLayout,
+                commonStyles.gap$none,
+              )}
+            >
+              {selectedItems.length ? (
+                <IconButton
+                  icon={<XMarkIcon aria-hidden />}
+                  onClick={(event) =>
+                    handleClear(buttonProps.onItemsRemove, event)
+                  }
+                />
+              ) : null}
+              <IconButton
+                icon={
+                  buttonProps.isOpen ? (
+                    <TriangleUpIcon aria-hidden />
+                  ) : (
+                    <TriangleDownIcon aria-hidden />
+                  )
+                }
+              />
+            </div>
           }
           variant='outlined'
           label='Label'
           populated={
-            buttonProps.isOpen || !!selectedItems?.length || !!buttonProps.query
+            buttonProps.isOpen || !!selectedItems.length || !!buttonProps.query
           }
           // FIXME: make clearable
           clearable
-          // FIXME: test disabled
-          // disabled={listProps.disabled}
-          // FIXME:
-          {...buttonProps.buttonAttributes({
-            onChange: buttonProps.handleQueryChange,
-          })}
+          innerStyles={{ field: fieldStyles }}
+          {...buttonProps.getInputFilterAttributes(
+            buttonProps.getButtonAttributes(),
+          )}
           ref={buttonProps.buttonRef}
+          inputRef={buttonProps.inputFilterRef}
         >
-          <div
-            {...stylex.props(commonStyles.horizontalLayout, commonStyles.wrap)}
-          >
-            {selectedItems?.map((item, index) => (
-              <InputChip
-                key={index}
-                label={item.title}
-                onDelete={(event) => {
-                  event.stopPropagation();
-                  buttonProps.onItemRemove(item, index, event);
-                }}
-              />
-            ))}
-          </div>
+          {selectedItems.map((item, index) => (
+            <InputChip
+              sx={styles.chip}
+              key={index}
+              label={item.title}
+              visualState={{
+                focused: focusedSelectedItemIndex === index ? true : undefined,
+              }}
+              onDelete={(event) => {
+                event.stopPropagation();
+                buttonProps.onItemRemove(item, index, event);
+              }}
+            />
+          ))}
         </TextField>
       )}
     </FloatingQueryList>

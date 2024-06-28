@@ -28,27 +28,26 @@ import {
   type IQueryListProps,
   type IQueryListRenderer,
 } from './QueryList';
+import { usePrevious } from '@/hooks/usePrevious';
 
 export type IFloatingQueryListTriggerButtonRenderProps<TItem> = {
   isOpen: boolean;
   buttonRef: React.Ref<HTMLButtonElement>;
-  buttonAttributes: (
+  getButtonAttributes: (
     userProps?: React.HTMLProps<Element>,
   ) => Record<string, unknown>;
-  onItemRemove: (
-    item: TItem,
-    index: number,
+  onItemsRemove: (
+    items: Array<TItem>,
     event?: React.SyntheticEvent<HTMLElement>,
   ) => void;
 
-  /**
-   * Change handler for query string. Attach this to an input element to allow
-   * `QueryList` to control the query.
-   */
-  handleQueryChange: React.ChangeEventHandler<HTMLInputElement>;
-
   /** The current query string. */
   query: string;
+
+  inputFilterRef?: React.Ref<HTMLInputElement>;
+  getInputFilterAttributes: (
+    userProps?: React.HTMLProps<HTMLInputElement>,
+  ) => Record<string, unknown>;
 };
 
 export type IFloatingQueryListProps<TItem> = IOmit<
@@ -71,10 +70,18 @@ export type IFloatingQueryListProps<TItem> = IOmit<
   /**
    * Callback invoked when an item from the list is removed.
    */
-  onItemRemove?: (
-    item: TItem,
-    index: number,
+  onItemsRemove?: (
+    item: Array<TItem>,
     event?: React.SyntheticEvent<HTMLElement>,
+  ) => void;
+
+  onItemRemoveFocused?: () => void;
+
+  onItemFocusPreviousSelected?: (
+    inputFilterRef: React.RefObject<HTMLInputElement>,
+  ) => void;
+  onItemFocusNextSelected?: (
+    inputFilterRef: React.RefObject<HTMLInputElement>,
   ) => void;
 
   placement?: Placement;
@@ -149,7 +156,10 @@ export const FloatingQueryList = <TItem,>(
     itemRenderer,
     createNewItemRenderer,
     onItemSelect,
-    onItemRemove,
+    onItemsRemove,
+    onItemRemoveFocused,
+    onItemFocusPreviousSelected,
+    onItemFocusNextSelected,
     closeOnSelect,
     resetOnSelect,
     initialFocus = 0,
@@ -216,7 +226,7 @@ export const FloatingQueryList = <TItem,>(
   });
   const [query, setQuery] = useControlledValue({
     controlled: queryProp,
-    default: defaultQuery,
+    default: defaultQuery ?? '',
     name: 'FloatingQueryList',
   });
   const interactions = useInteractions([
@@ -229,11 +239,11 @@ export const FloatingQueryList = <TItem,>(
   const transitionStatus = useTransitionStatus(floating.context, {
     duration: 150, // motionVars.duration$short3
   });
-  const inputFilterRef = useRef<HTMLInputElement | null>(null);
+  const inputFilterRef = useRef<HTMLInputElement>(null);
 
   const handleSelect = (item: TItem): void => {
     // If both `resetOnSelect` and `closeOnSelect` are true, the user may see a flash of the unfiltered list before it closes due to the closing animation duration. If `resetOnClose` is true, we can avoid this by not resetting the query until the list is actually closed.
-    const shouldResetQuery = resetOnSelect && !closeOnSelect && !resetOnClose;
+    const shouldResetQuery = resetOnSelect && (!closeOnSelect || !resetOnClose);
     if (shouldResetQuery) {
       setQuery('');
     }
@@ -248,33 +258,94 @@ export const FloatingQueryList = <TItem,>(
     setSelectedIndex(selectedIndex);
   };
 
-  const handleRemove = (item: TItem, index: number): void => {
-    onItemRemove?.(item, index);
+  const handleItemsRemove = (items: Array<TItem>): void => {
+    onItemsRemove?.(items);
     inputFilterRef.current?.focus();
   };
+
+  const handleQueryChange = (
+    newQuery: string,
+    event?: React.ChangeEvent<HTMLInputElement>,
+  ): void => {
+    if (query === newQuery) {
+      return;
+    }
+
+    setQuery(newQuery);
+    onQueryChange?.(newQuery, event);
+    setActiveIndex(0);
+  };
+
+  const isEnterKeyPressedRef = useRef(false);
+  const getInputFilterAttributes = (
+    userProps?: React.HTMLProps<HTMLInputElement>,
+  ): Record<string, unknown> => ({
+    ...userProps,
+    value: query,
+    disabled: other.disabled,
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+      handleQueryChange(event.target.value, event);
+      userProps?.onChange?.(event);
+    },
+    onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>): void => {
+      switch (event.key) {
+        case 'Backspace':
+          if (!query) {
+            onItemRemoveFocused?.();
+          }
+          break;
+
+        case 'Enter':
+          if (isOpen) {
+            event.preventDefault();
+            isEnterKeyPressedRef.current = true;
+          } else {
+            userProps?.onKeyDown?.(event);
+          }
+          break;
+
+        case ' ':
+          break;
+
+        case 'ArrowLeft':
+          if (!query) {
+            onItemFocusPreviousSelected?.(inputFilterRef);
+          }
+          break;
+
+        case 'ArrowRight':
+          if (!query) {
+            onItemFocusNextSelected?.(inputFilterRef);
+          }
+          break;
+
+        default:
+          userProps?.onKeyDown?.(event);
+      }
+    },
+    onKeyUp: (event: React.KeyboardEvent<HTMLInputElement>): void => {
+      if (
+        isOpen &&
+        event.key === 'Enter' &&
+        activeIndex != null &&
+        isEnterKeyPressedRef.current
+      ) {
+        // We handle ENTER in keyup here to play nice with the Button component's keyboard clicking. Button is commonly used as the only child of Select. If we were to instead process ENTER on keydown, then Button would click itself on keyup and the Select popover would re-open.
+        event.preventDefault();
+        elementsRef.current[activeIndex]?.click();
+        isEnterKeyPressedRef.current = false;
+      } else {
+        userProps?.onKeyUp?.(event);
+      }
+    },
+  });
 
   const rendererWrapper: IQueryListRenderer<TItem> = (listProps) =>
     renderer({
       ...listProps,
       handleQueryChange: listProps.handleQueryChange,
       inputFilterRef,
-      inputFilterAttributes: (userProps) => ({
-        ...userProps,
-        onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>): void => {
-          if (event.key === 'Enter' && activeIndex != null) {
-            const selectedItem = listProps.filteredItems[activeIndex];
-            const selectedOrCreatedItem =
-              selectedItem ??
-              (listProps.query
-                ? other.createNewItemFromQuery?.(listProps.query)
-                : undefined);
-            if (selectedOrCreatedItem) {
-              listProps.handleItemSelect(selectedOrCreatedItem, event);
-            }
-          }
-          userProps?.onKeyDown?.(event);
-        },
-      }),
+      getInputFilterAttributes,
     });
 
   const itemRendererWrapper: IItemRenderer<TItem> = (item, itemProps) => {
@@ -330,44 +401,39 @@ export const FloatingQueryList = <TItem,>(
     );
   };
 
-  const handleQueryChange = (
-    newQuery: string,
-    event?: React.ChangeEvent<HTMLInputElement>,
-  ): void => {
-    if (query === newQuery) {
-      return;
-    }
-
-    setQuery(newQuery);
-    onQueryChange?.(newQuery, event);
-    setActiveIndex(0);
-  };
-
   // Restore the query when the list is re-mounted.
+  const previousIsMounted = usePrevious(transitionStatus.isMounted);
   useEffect(() => {
-    if (!transitionStatus.isMounted) {
+    if (previousIsMounted && !transitionStatus.isMounted) {
       if (resetOnClose) {
         setQuery('');
         setSelectedIndex(0);
       }
     }
-  }, [transitionStatus.isMounted, resetOnClose, selectedIndex, setQuery]);
+  }, [
+    previousIsMounted,
+    transitionStatus.isMounted,
+    resetOnClose,
+    selectedIndex,
+    setQuery,
+  ]);
 
   return (
     <>
       {children({
         isOpen,
         buttonRef: floating.refs.setReference,
-        buttonAttributes: (userProps?: React.HTMLProps<Element>) =>
+        getButtonAttributes: (userProps?: React.HTMLProps<Element>) =>
           interactions.getReferenceProps({
             ...userProps,
+            disabled: other.disabled,
             tabIndex: 0,
             'aria-autocomplete': 'none',
           }),
-        onItemRemove: handleRemove,
-        handleQueryChange: (event) =>
-          handleQueryChange(event.target.value, event),
-        query: query ?? '',
+        onItemsRemove: handleItemsRemove,
+        query,
+        inputFilterRef,
+        getInputFilterAttributes,
       })}
 
       {transitionStatus.isMounted && (
@@ -375,7 +441,7 @@ export const FloatingQueryList = <TItem,>(
           <FloatingFocusManager
             context={floating.context}
             visuallyHiddenDismiss
-            initialFocus={initialFocus}
+            initialFocus={other.disabled ? -1 : initialFocus}
           >
             <div
               {...stylex.props(styles.host)}
@@ -393,7 +459,8 @@ export const FloatingQueryList = <TItem,>(
                 <FloatingList elementsRef={elementsRef} labelsRef={labelsRef}>
                   <QueryList
                     {...other}
-                    query={query ?? ''}
+                    query={query}
+                    defaultQuery={defaultQuery}
                     onQueryChange={handleQueryChange}
                     onItemSelect={handleSelect}
                     renderer={rendererWrapper}

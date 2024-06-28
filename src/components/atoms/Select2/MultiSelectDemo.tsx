@@ -8,12 +8,15 @@ import {
 import type { IItemRenderer } from './ListItemProps';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
+import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
 import { ListItem } from '@/components/atoms/ListItem';
 import { TextField } from '@/components/atoms/TextField';
 import { Field } from '@/components/atoms/Field';
 import { MenuList } from '@/components/atoms/MenuList';
 import { InputChip } from '@/components/atoms/Chip';
 import { useControlledValue } from '@/hooks/useControlledValue';
+import { commonStyles } from '@/helpers/commonStyles';
+import { IconButton } from '@/components/atoms/IconButton';
 import {
   areFilmsEqual,
   createFilm,
@@ -29,38 +32,27 @@ import {
   maybeAddCreatedItemToArrays,
   maybeDeleteCreatedItemFromArrays,
 } from './utils';
-import { commonStyles } from '@/helpers/commonStyles';
 
 export type IMultiSelectDemoProps = IFloatingQueryListProps<IFilm> & {
   value?: Array<IFilm>;
   defaultValue?: Array<IFilm>;
   onChange: (value: Array<IFilm>) => void;
-
-  /**
-   * Callback invoked when an item is removed from the selection by
-   * removing its tag in the TagInput. This is generally more useful than
-   * `tagInputProps.onRemove`  because it receives the removed value instead of
-   * the value's rendered `ReactNode` tag.
-   *
-   * It is not recommended to supply _both_ this prop and `tagInputProps.onRemove`.
-   */
-  onRemove?: (value: IFilm, index: number) => void;
 };
 
 export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
-  const { value, defaultValue, onChange, onRemove, ...other } = props;
+  const { value, defaultValue, onChange, ...other } = props;
   const [items, setItems] = useState(TOP_100_FILMS);
   const [createdItems, setCreatedItems] = useState<Array<IFilm>>([]);
   const [selectedItems, setSelectedItems] = useControlledValue({
     controlled: value,
-    default: defaultValue,
+    default: defaultValue ?? [],
     name: 'FloatingQueryListDemo',
   });
 
   const canFilter = true;
 
   const getSelectedFilmIndex = (film: IFilm): number => {
-    const index = selectedItems?.indexOf(film);
+    const index = selectedItems.indexOf(film);
 
     return index !== undefined && index >= 0 ? index : -1;
   };
@@ -70,7 +62,7 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
 
   const selectFilms = (filmsToSelect: Array<IFilm>): Array<IFilm> => {
     let nextCreatedItems = createdItems.slice();
-    let nextFilms = selectedItems ? selectedItems.slice() : [];
+    let nextFilms = selectedItems.slice();
     let nextItems = items.slice();
 
     filmsToSelect.forEach((filmToSelect) => {
@@ -101,7 +93,7 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
     selectFilms([filmToSelect]);
 
   const deselectFilm = (index: number): Array<IFilm> => {
-    const film = selectedItems?.[index];
+    const film = selectedItems[index];
     const { createdItems: nextCreatedItems, items: nextItems } =
       maybeDeleteCreatedItemFromArrays(
         areFilmsEqual,
@@ -109,8 +101,7 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
         createdItems,
         film,
       );
-    const nextSelectedItems =
-      selectedItems?.filter((_film, i) => i !== index) ?? [];
+    const nextSelectedItems = selectedItems.filter((_film, i) => i !== index);
 
     setCreatedItems(nextCreatedItems);
     setSelectedItems(nextSelectedItems);
@@ -124,6 +115,7 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
       const selectedIndex = getSelectedFilmIndex(selectedItem);
       if (selectedIndex !== undefined) {
         onChange(deselectFilm(selectedIndex));
+        other.onItemsRemove?.([selectedItem]);
       }
     } else {
       onChange(selectFilm(selectedItem));
@@ -138,11 +130,7 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
     buttonRef,
     buttonAttributes,
   ): React.ReactNode => {
-    const selected = arrayContainsItem(
-      areFilmsEqual,
-      selectedItems ?? [],
-      item,
-    );
+    const selected = arrayContainsItem(areFilmsEqual, selectedItems, item);
 
     return renderFilm(
       item,
@@ -158,16 +146,25 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
     );
   };
 
-  const handleItemRemove = (item: IFilm, index: number): void => {
-    onChange(deselectFilm(index));
-    onRemove?.(item, index);
+  const handleClear = (
+    onItemsRemove: (
+      items: Array<IFilm>,
+      event?: React.SyntheticEvent<HTMLElement>,
+    ) => void,
+    event?: React.MouseEvent<HTMLButtonElement>,
+  ): void => {
+    event?.stopPropagation();
+    if (selectedItems.length) {
+      onChange?.([]);
+      onItemsRemove(selectedItems, event);
+      setSelectedItems([]);
+    }
   };
 
   return (
     <FloatingQueryList<IFilm>
       {...other}
       onItemSelect={handleItemSelect}
-      onItemRemove={handleItemRemove}
       items={items}
       // createNewItemPosition='first'
       // defaultSelectedItem={TOP_100_FILMS[3]}
@@ -178,11 +175,8 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
           header={
             canFilter ? (
               <TextField
-                onChange={listProps.handleQueryChange}
-                value={listProps.query}
-                disabled={listProps.disabled}
                 clearable
-                {...listProps.inputFilterAttributes()}
+                {...listProps.getInputFilterAttributes()}
                 inputRef={listProps.inputFilterRef}
               />
             ) : undefined
@@ -204,28 +198,48 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
       {(buttonProps) => (
         <Field
           end={
-            buttonProps.isOpen ? (
-              <TriangleUpIcon aria-hidden />
-            ) : (
-              <TriangleDownIcon aria-hidden />
-            )
+            <div
+              {...stylex.props(
+                commonStyles.horizontalLayout,
+                commonStyles.gap$none,
+              )}
+            >
+              {selectedItems.length ? (
+                <IconButton
+                  icon={<XMarkIcon aria-hidden />}
+                  onClick={(event) =>
+                    handleClear(buttonProps.onItemsRemove, event)
+                  }
+                />
+              ) : null}
+              <IconButton
+                icon={
+                  buttonProps.isOpen ? (
+                    <TriangleUpIcon aria-hidden />
+                  ) : (
+                    <TriangleDownIcon aria-hidden />
+                  )
+                }
+              />
+            </div>
           }
           variant='outlined'
           label='Label'
-          populated={buttonProps.isOpen || !!selectedItems?.length}
-          {...buttonProps.buttonAttributes()}
+          populated={buttonProps.isOpen || !!selectedItems.length}
+          {...buttonProps.getButtonAttributes()}
           ref={buttonProps.buttonRef}
         >
           <div
             {...stylex.props(commonStyles.horizontalLayout, commonStyles.wrap)}
           >
-            {selectedItems?.map((item, index) => (
+            {selectedItems.map((item, index) => (
               <InputChip
                 key={index}
                 label={item.title}
                 onDelete={(event) => {
                   event.stopPropagation();
-                  buttonProps.onItemRemove(item, index, event);
+                  onChange(deselectFilm(index));
+                  buttonProps.onItemsRemove([item], event);
                 }}
               />
             ))}

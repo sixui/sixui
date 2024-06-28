@@ -1,16 +1,16 @@
 import { useState } from 'react';
-import {
-  FloatingQueryList,
-  type IFloatingQueryListProps,
-} from './FloatingQueryList';
+import stylex from '@stylexjs/stylex';
 
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
+import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
 import { ListItem } from '@/components/atoms/ListItem';
 import { TextField } from '@/components/atoms/TextField';
 import { MenuList } from '@/components/atoms/MenuList';
 import { Field } from '@/components/atoms/Field';
 import { useControlledValue } from '@/hooks/useControlledValue';
+import { commonStyles } from '@/helpers/commonStyles';
+import { IconButton } from '@/components/atoms/IconButton';
 import {
   areFilmsEqual,
   createFilm,
@@ -25,11 +25,15 @@ import {
   maybeDeleteCreatedItemFromArrays,
 } from './utils';
 import { executeItemsEqual, type IItemRenderer } from './ListItemProps';
+import {
+  FloatingQueryList,
+  type IFloatingQueryListProps,
+} from './FloatingQueryList';
 
 export type IFloatingQueryListDemoProps = IFloatingQueryListProps<IFilm> & {
   value?: IFilm;
   defaultValue?: IFilm;
-  onChange: (value: IFilm) => void;
+  onChange: (value?: IFilm) => void;
 };
 
 export const FloatingQueryListDemo = (
@@ -100,9 +104,25 @@ export const FloatingQueryListDemo = (
     );
   };
 
+  const handleClear = (
+    onItemsRemove: (
+      items: Array<IFilm>,
+      event?: React.SyntheticEvent<HTMLElement>,
+    ) => void,
+    event?: React.MouseEvent<HTMLButtonElement>,
+  ): void => {
+    event?.stopPropagation();
+    if (selectedItem) {
+      onChange?.(undefined);
+      onItemsRemove([selectedItem], event);
+      setSelectedItem(undefined);
+    }
+  };
+
   return (
     <FloatingQueryList<IFilm>
       {...other}
+      // disabled
       onItemSelect={handleItemSelect}
       items={items}
       // createNewItemPosition='first'
@@ -114,11 +134,8 @@ export const FloatingQueryListDemo = (
           header={
             canFilter ? (
               <TextField
-                onChange={listProps.handleQueryChange}
-                value={listProps.query}
-                disabled={listProps.disabled}
                 clearable
-                {...listProps.inputFilterAttributes()}
+                {...listProps.getInputFilterAttributes()}
                 inputRef={listProps.inputFilterRef}
               />
             ) : undefined
@@ -140,19 +157,37 @@ export const FloatingQueryListDemo = (
       closeOnSelect
     >
       {(buttonProps) => (
-        // FIXME: clear button
         <Field
-          as='button'
           end={
-            buttonProps.isOpen ? (
-              <TriangleUpIcon aria-hidden />
-            ) : (
-              <TriangleDownIcon aria-hidden />
-            )
+            <div
+              {...stylex.props(
+                commonStyles.horizontalLayout,
+                commonStyles.gap$none,
+              )}
+            >
+              {selectedItem ? (
+                <IconButton
+                  icon={<XMarkIcon aria-hidden />}
+                  onClick={(event) =>
+                    handleClear(buttonProps.onItemsRemove, event)
+                  }
+                />
+              ) : null}
+              <IconButton
+                icon={
+                  buttonProps.isOpen ? (
+                    <TriangleUpIcon aria-hidden />
+                  ) : (
+                    <TriangleDownIcon aria-hidden />
+                  )
+                }
+              />
+            </div>
           }
           variant='outlined'
           label='Label'
-          {...buttonProps.buttonAttributes()}
+          populated={buttonProps.isOpen || !!selectedItem}
+          {...buttonProps.getButtonAttributes()}
           ref={buttonProps.buttonRef}
         >
           {selectedItem?.title}

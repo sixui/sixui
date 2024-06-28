@@ -1,17 +1,18 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { isEqual } from 'lodash';
 
 import { isProduction } from '@/helpers/isProduction';
 
-type IUseControlledProps<T> = {
+type IUseControlledProps<TValue> = {
   /**
    * Holds the component value when it's controlled.
    */
-  controlled?: T;
+  controlled: TValue | undefined;
 
   /**
    * The default value when uncontrolled.
    */
-  default?: T;
+  default: TValue;
 
   /**
    * The component name displayed in warnings.
@@ -25,25 +26,24 @@ type IUseControlledProps<T> = {
 };
 
 type IUseControlledValue<TValue> = [
-  TValue | undefined,
-  (newValue: React.SetStateAction<TValue | undefined>) => void,
+  TValue,
+  (newValue: React.SetStateAction<TValue>) => void,
 ];
 
 // https://github.com/mui/material-ui/blob/master/packages/mui-utils/src/useControlled/useControlled.js
 // https://github.com/mui/material-ui/blob/master/packages/mui-utils/src/useControlled/useControlled.d.ts
-export const useControlledValue = <TValue>({
-  name,
-  state = 'value',
-  ...props
-}: IUseControlledProps<TValue | undefined>): IUseControlledValue<TValue> => {
-  const { current: isControlled } = useRef(props.controlled !== undefined);
-  const [valueState, setValue] = useState(props.default);
-  const value = isControlled ? props.controlled : valueState;
+export const useControlledValue = <TValue>(
+  props: IUseControlledProps<TValue>,
+): IUseControlledValue<TValue> => {
+  const { name, state = 'value', ...other } = props;
+  const { current: isControlled } = useRef(other.controlled !== undefined);
+  const [valueState, setValue] = useState(other.default);
+  const value = other.controlled ?? valueState;
 
   if (!isProduction()) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
-      if (isControlled !== (props.controlled !== undefined)) {
+      if (isControlled !== (other.controlled !== undefined)) {
         const controlledState = (isControlled: boolean): string =>
           isControlled ? 'controlled' : 'uncontrolled';
         const fromState = controlledState(isControlled);
@@ -60,27 +60,27 @@ export const useControlledValue = <TValue>({
           ].join('\n'),
         );
       }
-    }, [isControlled, value, state, name, props.controlled]);
+    }, [isControlled, value, state, name, other.controlled]);
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { current: defaultValue } = useRef(props.default);
+    const { current: defaultValue } = useRef(other.default);
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
-      if (!isControlled && defaultValue !== props.default) {
+      if (!isControlled && !isEqual(defaultValue, other.default)) {
         // eslint-disable-next-line no-console
         console.error(
           [
-            `sixui: A component is changing the default ${state} state of an uncontrolled ${name} from \`${JSON.stringify(defaultValue)}\` to \`${JSON.stringify(props.default)}\` after being initialized. ` +
+            `sixui: A component is changing the default ${state} state of an uncontrolled ${name} from \`${JSON.stringify(defaultValue)}\` to \`${JSON.stringify(other.default)}\` after being initialized. ` +
               `To suppress this warning opt to use a controlled ${name}.`,
           ].join('\n'),
         );
       }
-    }, [isControlled, state, name, defaultValue, props.default]);
+    }, [isControlled, state, name, defaultValue, other.default]);
   }
 
   const setValueIfUncontrolled = useCallback(
-    (newValue: React.SetStateAction<TValue | undefined>) => {
+    (newValue: React.SetStateAction<TValue>) => {
       if (!isControlled) {
         setValue(newValue);
       }

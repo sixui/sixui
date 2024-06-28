@@ -332,28 +332,26 @@ export const Chip: IChip = forwardRef(function Chip<
             )}
           />
         )}
+        <FocusRing
+          styles={[
+            theme.focusRingStyles,
+            variantTheme?.focusRingStyles,
+            ...asArray(innerStyles?.focusRing),
+          ]}
+          for={primaryActionRef}
+          visualState={visualState}
+        />
         {interactive ? (
-          <>
-            <FocusRing
-              styles={[
-                theme.focusRingStyles,
-                variantTheme?.focusRingStyles,
-                ...asArray(innerStyles?.focusRing),
-              ]}
-              for={primaryActionRef}
-              visualState={visualState}
-            />
-            <StateLayer
-              styles={[
-                theme.stateLayerStyles,
-                variantTheme?.stateLayerStyles,
-                ...asArray(innerStyles?.stateLayer),
-              ]}
-              for={primaryActionRef}
-              disabled={disabled}
-              visualState={visualState}
-            />
-          </>
+          <StateLayer
+            styles={[
+              theme.stateLayerStyles,
+              variantTheme?.stateLayerStyles,
+              ...asArray(innerStyles?.stateLayer),
+            ]}
+            for={primaryActionRef}
+            disabled={disabled}
+            visualState={visualState}
+          />
         ) : null}
 
         <Component

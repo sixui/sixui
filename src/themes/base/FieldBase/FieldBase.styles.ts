@@ -90,6 +90,7 @@ export const styles: MapNamespaces<IFieldBaseStyles> =
     section$start: {
       alignItems: 'center',
       justifyContent: 'center',
+      paddingInlineStart: 8,
 
       color: {
         default: vars.leadingContentColor,
@@ -128,7 +129,8 @@ export const styles: MapNamespaces<IFieldBaseStyles> =
     },
     section$end: {
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'end',
+      paddingInlineEnd: 8,
 
       color: {
         default: vars.trailingContentColor,

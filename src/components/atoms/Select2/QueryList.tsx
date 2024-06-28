@@ -9,6 +9,7 @@ import {
   type IItemListRendererProps,
   type IListItemsProps,
 } from './ListItemProps';
+import { usePrevious } from '@/hooks/usePrevious';
 
 // Inspiration:
 // - https://github.com/palantir/blueprint/blob/develop/packages/select/src/components/query-list/queryList.tsx
@@ -41,15 +42,6 @@ export type IQueryListRendererProps<TItem> = Pick<
   'filteredItems' | 'query'
 > & {
   /**
-   * Selection handler that should be invoked when a new item has been chosen,
-   * perhaps because the user clicked it.
-   */
-  handleItemSelect: (
-    item: TItem,
-    event?: React.SyntheticEvent<HTMLElement>,
-  ) => void;
-
-  /**
    * Change handler for query string. Attach this to an input element to allow
    * `QueryList` to control the query.
    */
@@ -61,7 +53,7 @@ export type IQueryListRendererProps<TItem> = Pick<
   disabled?: boolean;
 
   inputFilterRef?: React.Ref<HTMLInputElement>;
-  inputFilterAttributes: (
+  getInputFilterAttributes: (
     userProps?: React.HTMLProps<HTMLInputElement>,
   ) => Record<string, unknown>;
 };
@@ -145,7 +137,7 @@ export const QueryList = <TItem,>(
   const canCreateItems = !!createNewItemFromQuery && !!createNewItemRenderer;
   const [query, setQuery] = useControlledValue({
     controlled: queryProp,
-    default: defaultQuery,
+    default: defaultQuery ?? '',
     name: 'QueryList',
   });
   const [filteredItems, setFilteredItems] = useState<Array<TItem>>(
@@ -156,20 +148,18 @@ export const QueryList = <TItem,>(
     }),
   );
 
+  const previousQuery = usePrevious(query);
   useEffect(() => {
-    if (query === undefined) {
-      // The list has already been filitered with the default query.
-      return;
+    if (previousQuery !== undefined && previousQuery !== query) {
+      setFilteredItems(
+        getFilteredItems(query, {
+          items,
+          itemPredicate,
+          itemListPredicate,
+        }),
+      );
     }
-
-    setFilteredItems(
-      getFilteredItems(query, {
-        items,
-        itemPredicate,
-        itemListPredicate,
-      }),
-    );
-  }, [query, items, itemPredicate, itemListPredicate]);
+  }, [previousQuery, query, items, itemPredicate, itemListPredicate]);
 
   const renderItemList = (
     listProps: IItemListRendererProps<TItem>,
@@ -274,14 +264,14 @@ export const QueryList = <TItem,>(
     return itemRenderer(item, {
       index,
       modifiers,
-      query: query ?? '',
+      query,
       handleClick: (event) => onItemSelect(item, event),
     });
   };
 
   return renderer({
     filteredItems: filteredItems,
-    query: query ?? '',
+    query,
     itemList: itemListRenderer({
       filteredItems: filteredItems,
       query,
@@ -289,9 +279,8 @@ export const QueryList = <TItem,>(
       renderCreateItem: renderCreateItemMenuItem,
       renderItem,
     }),
-    handleItemSelect: onItemSelect,
     handleQueryChange: (event) => handleQueryChange(event.target.value),
     disabled,
-    inputFilterAttributes: (userProps) => ({ ...userProps }),
+    getInputFilterAttributes: (userProps) => ({ ...userProps }),
   });
 };
