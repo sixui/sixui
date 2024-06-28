@@ -175,13 +175,16 @@ export const SuggestDemo = (props: ISuggestDemoProps): React.ReactNode => {
             buttonProps.isOpen || !!selectedItem || !!buttonProps.query
           }
           {...buttonProps.getInputFilterAttributes(
-            buttonProps.getButtonAttributes(),
+            buttonProps.getButtonAttributes({
+              value: buttonProps.isOpen
+                ? buttonProps.query
+                : buttonProps.query || selectedItem?.title,
+              placeholder: selectedItem?.title,
+            }),
           )}
           ref={buttonProps.buttonRef}
           inputRef={buttonProps.inputFilterRef}
-        >
-          {selectedItem?.title}
-        </TextField>
+        />
       )}
     </FloatingQueryList>
   );

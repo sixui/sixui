@@ -203,8 +203,11 @@ export const FloatingQueryList = <TItem,>(
     event: 'click',
   });
   const role = useRole(floating.context, { role: 'listbox' });
+  const inputFilterRef = useRef<HTMLInputElement>(null);
+  const buttonRef = useRef<HTMLElement>(null);
+  const buttonHandleRef = useMergeRefs([buttonRef, floating.refs.setReference]);
   const dismiss = useDismiss(floating.context);
-  const canFilter = !!other.itemPredicate || !!other.itemListPredicate;
+  const canFilter = !!inputFilterRef.current;
   const listNavigation = useListNavigation(floating.context, {
     listRef: elementsRef,
     activeIndex,
@@ -214,15 +217,11 @@ export const FloatingQueryList = <TItem,>(
     loop: true,
     focusItemOnHover: canFilter,
   });
-  const isTypingRef = useRef(false);
   const typeahead = useTypeahead(floating.context, {
     listRef: labelsRef,
     activeIndex,
     selectedIndex,
     onMatch: isOpen ? setActiveIndex : setSelectedIndex,
-    onTypingChange: (isTyping) => {
-      isTypingRef.current = isTyping;
-    },
     enabled: !canFilter,
   });
   const [query, setQuery] = useControlledValue({
@@ -240,9 +239,6 @@ export const FloatingQueryList = <TItem,>(
   const transitionStatus = useTransitionStatus(floating.context, {
     duration: 150, // motionVars.duration$short3
   });
-  const inputFilterRef = useRef<HTMLInputElement>(null);
-  const buttonRef = useRef<HTMLElement>(null);
-  const buttonHandleRef = useMergeRefs([buttonRef, floating.refs.setReference]);
 
   const handleSelect = (item: TItem): void => {
     // If both `resetOnSelect` and `closeOnSelect` are true, the user may see a flash of the unfiltered list before it closes due to the closing animation duration. If `resetOnClose` is true, we can avoid this by not resetting the query until the list is actually closed.
@@ -288,7 +284,7 @@ export const FloatingQueryList = <TItem,>(
     userProps?: React.HTMLProps<HTMLInputElement>,
   ): Record<string, unknown> => ({
     ...userProps,
-    value: query,
+    value: userProps?.value ?? query,
     disabled: other.disabled,
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
       handleQueryChange(event.target.value, event);
