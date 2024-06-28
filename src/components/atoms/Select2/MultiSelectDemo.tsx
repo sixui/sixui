@@ -213,6 +213,7 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
                 />
               ) : null}
               <IconButton
+                tabIndex={-1}
                 icon={
                   buttonProps.isOpen ? (
                     <TriangleUpIcon aria-hidden />

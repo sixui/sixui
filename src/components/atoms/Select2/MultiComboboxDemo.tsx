@@ -277,6 +277,7 @@ export const MultiComboboxDemo: React.FC<IMultiComboboxDemoProps> = (props) => {
                 />
               ) : null}
               <IconButton
+                tabIndex={-1}
                 icon={
                   buttonProps.isOpen ? (
                     <TriangleUpIcon aria-hidden />
@@ -292,8 +293,6 @@ export const MultiComboboxDemo: React.FC<IMultiComboboxDemoProps> = (props) => {
           populated={
             buttonProps.isOpen || !!selectedItems.length || !!buttonProps.query
           }
-          // FIXME: make clearable
-          clearable
           innerStyles={{ field: fieldStyles }}
           {...buttonProps.getInputFilterAttributes(
             buttonProps.getButtonAttributes(),
@@ -311,7 +310,8 @@ export const MultiComboboxDemo: React.FC<IMultiComboboxDemoProps> = (props) => {
               }}
               onDelete={(event) => {
                 event.stopPropagation();
-                buttonProps.onItemRemove(item, index, event);
+                onChange(deselectFilm(index));
+                buttonProps.onItemsRemove([item], event);
               }}
             />
           ))}

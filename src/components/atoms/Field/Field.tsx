@@ -25,7 +25,7 @@ import {
 const fieldDefaultTag = fieldBaseDefaultTag;
 
 export type IFieldOwnProps = IContainerProps<IFieldStyleKey> &
-  IOmit<IFieldBaseOwnProps, 'styles' | 'populated'> & {
+  IOmit<IFieldBaseOwnProps, 'styles'> & {
     innerStyles?: {
       field?: IZeroOrMore<ICompiledStyles<IFieldBaseStyleKey>>;
     };
@@ -43,8 +43,14 @@ type IField = <TRoot extends React.ElementType = typeof fieldDefaultTag>(
 export const Field: IField = forwardRef(function Field<
   TRoot extends React.ElementType = typeof fieldDefaultTag,
 >(props: IFieldProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
-  const { styles, sx, placeholder, children, ...other } =
-    props as IWithAsProp<IFieldOwnProps>;
+  const {
+    styles,
+    sx,
+    populated: populatedProp,
+    placeholder,
+    children,
+    ...other
+  } = props as IWithAsProp<IFieldOwnProps>;
 
   const { theme } = useComponentTheme('Field');
   const stylesCombinator = useMemo(
@@ -56,7 +62,7 @@ export const Field: IField = forwardRef(function Field<
     [stylesCombinator],
   );
 
-  const populated = !!children || !!placeholder;
+  const populated = populatedProp ?? (!!children || !!placeholder);
 
   return (
     <FieldBase sx={sx} ref={forwardedRef} populated={populated} {...other}>

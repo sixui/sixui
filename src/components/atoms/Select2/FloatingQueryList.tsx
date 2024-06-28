@@ -11,6 +11,7 @@ import {
   useFloating,
   useInteractions,
   useListNavigation,
+  useMergeRefs,
   useRole,
   useTransitionStatus,
   useTypeahead,
@@ -32,7 +33,7 @@ import { usePrevious } from '@/hooks/usePrevious';
 
 export type IFloatingQueryListTriggerButtonRenderProps<TItem> = {
   isOpen: boolean;
-  buttonRef: React.Ref<HTMLButtonElement>;
+  buttonRef: React.Ref<HTMLDivElement>;
   getButtonAttributes: (
     userProps?: React.HTMLProps<Element>,
   ) => Record<string, unknown>;
@@ -240,6 +241,8 @@ export const FloatingQueryList = <TItem,>(
     duration: 150, // motionVars.duration$short3
   });
   const inputFilterRef = useRef<HTMLInputElement>(null);
+  const buttonRef = useRef<HTMLElement>(null);
+  const buttonHandleRef = useMergeRefs([buttonRef, floating.refs.setReference]);
 
   const handleSelect = (item: TItem): void => {
     // If both `resetOnSelect` and `closeOnSelect` are true, the user may see a flash of the unfiltered list before it closes due to the closing animation duration. If `resetOnClose` is true, we can avoid this by not resetting the query until the list is actually closed.
@@ -260,7 +263,11 @@ export const FloatingQueryList = <TItem,>(
 
   const handleItemsRemove = (items: Array<TItem>): void => {
     onItemsRemove?.(items);
-    inputFilterRef.current?.focus();
+    if (inputFilterRef.current) {
+      inputFilterRef.current?.focus();
+    } else {
+      buttonRef.current?.focus();
+    }
   };
 
   const handleQueryChange = (
@@ -422,7 +429,7 @@ export const FloatingQueryList = <TItem,>(
     <>
       {children({
         isOpen,
-        buttonRef: floating.refs.setReference,
+        buttonRef: buttonHandleRef,
         getButtonAttributes: (userProps?: React.HTMLProps<Element>) =>
           interactions.getReferenceProps({
             ...userProps,
