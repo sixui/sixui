@@ -252,8 +252,8 @@ export const MultiComboboxDemo: React.FC<IMultiComboboxDemoProps> = (props) => {
       createNewItemRenderer={renderCreateFilmMenuItem}
       itemDisabled={isFilmDisabled}
       matchTargetWidth
-      resetOnClose
       resetOnSelect
+      resetOnClose
       initialFocus={-1}
       onItemFocusPreviousSelected={handleItemFocusPreviousSelected}
       onItemFocusNextSelected={handleItemFocusNextSelected}
