@@ -18,6 +18,7 @@ export const styles: MapNamespaces<IDividerStyles> =
       display: 'flex',
       flexGrow: 1,
       color: 'inherit',
+      height: 'inherit',
 
       '::before': {
         background: 'currentColor',

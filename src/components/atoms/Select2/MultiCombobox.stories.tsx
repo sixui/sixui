@@ -5,7 +5,7 @@ import {
   type IMultiComboboxDemoProps,
 } from './MultiComboboxDemo';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
-// import { TOP_100_FILMS } from './films';
+// import { TOP_100_MOVIES } from './films';
 
 const meta = {
   component: MultiComboboxDemo,
@@ -19,10 +19,10 @@ export const Basic: IStory = {
   render: (props) => <MultiComboboxDemo {...props} />,
   args: {
     ...defaultArgs,
-    // defaultValue: [TOP_100_FILMS[0]],
+    // defaultValue: [TOP_100_MOVIES[0]],
     // defaultQuery: 'xx',
     onChange: (...args) => void sbHandleEvent('onChange', args),
-    onItemRemove: (...args) => void sbHandleEvent('onItemRemove', args),
+    onItemsRemove: (...args) => void sbHandleEvent('onItemsRemove', args),
   },
 };
 

@@ -11,48 +11,51 @@ import { useControlledValue } from '@/hooks/useControlledValue';
 import { commonStyles } from '@/helpers/commonStyles';
 import { IconButton } from '@/components/atoms/IconButton';
 import {
-  areFilmsEqual,
-  createFilm,
-  filterFilm,
-  renderCreateFilmMenuItem,
-  renderFilm,
-  TOP_100_FILMS,
-  type IFilm,
-} from './films';
+  areMoviesEqual,
+  createMovie,
+  filterMovie,
+  renderCreateMovieListItem,
+  renderMovieListItem,
+  TOP_100_MOVIES,
+  type IMovie,
+} from '@/components/utils/FilteredList/movies';
 import {
   maybeAddCreatedItemToArrays,
   maybeDeleteCreatedItemFromArrays,
-} from './utils';
-import { executeItemsEqual, type IItemRenderer } from './ListItemProps';
+} from '@/components/utils/FloatingFilteredList/utils';
 import {
-  FloatingQueryList,
-  type IFloatingQueryListProps,
-} from './FloatingQueryList';
+  executeItemsEqual,
+  type IItemRenderer,
+} from '@/components/utils/FilteredList';
+import {
+  FloatingFilteredList,
+  type IFloatingFilteredListProps,
+} from '@/components/utils/FloatingFilteredList';
 
-export type ISuggestDemoProps = IFloatingQueryListProps<IFilm> & {
-  value?: IFilm;
-  defaultValue?: IFilm;
-  onChange: (value?: IFilm) => void;
+export type ISuggestDemoProps = IFloatingFilteredListProps<IMovie> & {
+  value?: IMovie;
+  defaultValue?: IMovie;
+  onChange: (value?: IMovie) => void;
 };
 
 export const SuggestDemo = (props: ISuggestDemoProps): React.ReactNode => {
   const { value, defaultValue, onChange, ...other } = props;
-  const [items, setItems] = useState(TOP_100_FILMS);
-  const [createdItems, setCreatedItems] = useState<Array<IFilm>>([]);
+  const [items, setItems] = useState(TOP_100_MOVIES);
+  const [createdItems, setCreatedItems] = useState<Array<IMovie>>([]);
   const [selectedItem, setSelectedItem] = useControlledValue({
     controlled: value,
     default: defaultValue,
-    name: 'FloatingQueryListDemo',
+    name: 'FloatingFilteredListDemo',
   });
 
   const canFilter = true;
 
-  const handleItemSelect = (newSelectedItem: IFilm): number | undefined => {
+  const handleItemSelect = (newSelectedItem: IMovie): number | undefined => {
     setSelectedItem(newSelectedItem);
 
     // Delete the old film from the list if it was newly created.
     const step1Result = maybeDeleteCreatedItemFromArrays(
-      areFilmsEqual,
+      areMoviesEqual,
       items,
       createdItems,
       selectedItem,
@@ -60,7 +63,7 @@ export const SuggestDemo = (props: ISuggestDemoProps): React.ReactNode => {
 
     // Add the new film to the list if it is newly created.
     const step2Result = maybeAddCreatedItemToArrays(
-      areFilmsEqual,
+      areMoviesEqual,
       step1Result.items,
       step1Result.createdItems,
       newSelectedItem,
@@ -79,15 +82,15 @@ export const SuggestDemo = (props: ISuggestDemoProps): React.ReactNode => {
     return selectedIndex;
   };
 
-  const itemRendererWrapper: IItemRenderer<IFilm> = (
+  const itemRendererWrapper: IItemRenderer<IMovie> = (
     item,
     itemProps,
     buttonRef,
     buttonAttributes,
   ): React.ReactNode => {
-    const selected = executeItemsEqual(areFilmsEqual, item, selectedItem);
+    const selected = executeItemsEqual(areMoviesEqual, item, selectedItem);
 
-    return renderFilm(
+    return renderMovieListItem(
       item,
       {
         ...itemProps,
@@ -103,7 +106,7 @@ export const SuggestDemo = (props: ISuggestDemoProps): React.ReactNode => {
 
   const handleClear = (
     onItemsRemove: (
-      items: Array<IFilm>,
+      items: Array<IMovie>,
       event?: React.SyntheticEvent<HTMLElement>,
     ) => void,
     event?: React.MouseEvent<HTMLButtonElement>,
@@ -117,23 +120,23 @@ export const SuggestDemo = (props: ISuggestDemoProps): React.ReactNode => {
   };
 
   return (
-    <FloatingQueryList<IFilm>
+    <FloatingFilteredList<IMovie>
       {...other}
       // disabled
       onItemSelect={handleItemSelect}
       items={items}
       // createNewItemPosition='first'
-      // defaultSelectedItem={TOP_100_FILMS[3]}
-      // selectedItem={TOP_100_FILMS[3]}
+      // defaultSelectedItem={TOP_100_MOVIES[3]}
+      // selectedItem={TOP_100_MOVIES[3]}
       // defaultQuery='w'
       renderer={(listProps) => <MenuList>{listProps.itemList}</MenuList>}
       itemRenderer={itemRendererWrapper}
-      itemsEqual={areFilmsEqual}
-      itemPredicate={canFilter ? filterFilm : undefined}
+      itemsEqual={areMoviesEqual}
+      itemPredicate={canFilter ? filterMovie : undefined}
       noResults={<ListItem disabled>No results.</ListItem>}
-      createNewItemFromQuery={createFilm}
-      createNewItemRenderer={renderCreateFilmMenuItem}
-      // itemDisabled={isFilmDisabled}
+      createNewItemFromQuery={createMovie}
+      createNewItemRenderer={renderCreateMovieListItem}
+      // itemDisabled={isMovieDisabled}
       matchTargetWidth
       resetOnSelect
       resetOnClose
@@ -186,6 +189,6 @@ export const SuggestDemo = (props: ISuggestDemoProps): React.ReactNode => {
           inputRef={buttonProps.inputFilterRef}
         />
       )}
-    </FloatingQueryList>
+    </FloatingFilteredList>
   );
 };

@@ -1,21 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import {
-  FloatingQueryListDemo,
-  type IFloatingQueryListDemoProps,
-} from './FloatingQueryListDemo';
+  FloatingFilteredListExample,
+  type IFloatingFilteredListExampleProps,
+} from './FloatingFilteredListExample';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 
 const meta = {
-  component: FloatingQueryListDemo,
-} satisfies Meta<typeof FloatingQueryListDemo>;
+  component: FloatingFilteredListExample,
+} satisfies Meta<typeof FloatingFilteredListExample>;
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {} satisfies Partial<IFloatingQueryListDemoProps>;
+const defaultArgs = {} satisfies Partial<IFloatingFilteredListExampleProps>;
 
 export const Basic: IStory = {
-  render: (props) => <FloatingQueryListDemo {...props} />,
+  render: (props) => <FloatingFilteredListExample {...props} />,
   args: {
     ...defaultArgs,
     onChange: (...args) => void sbHandleEvent('onChange', args),

@@ -89,7 +89,7 @@ export const styles: MapNamespaces<IFieldBaseStyles> =
     },
     section$start: {
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'start',
       paddingInlineStart: 8,
 
       color: {

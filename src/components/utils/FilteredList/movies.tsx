@@ -3,17 +3,17 @@
 
 import highlightWords from 'highlight-words';
 
-import { IListItemProps, ListItem } from '../ListItem';
-import {
+import type {
   ICreateNewItemRenderer,
   IItemPredicate,
   IItemRenderer,
   IItemRendererProps,
-} from './ListItemProps';
+} from './FilteredListProps';
+import { ListItem, type IListItemProps } from '@/components/atoms/ListItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
-export type IFilm = {
+export type IMovie = {
   /** Title of film. */
   title: string;
 
@@ -21,91 +21,82 @@ export type IFilm = {
   year: number;
 
   /** IMDb ranking. */
-  rank: number;
+  rank?: number;
 };
 
 /** Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top */
-export const TOP_100_FILMS: Array<IFilm> = [
+export const TOP_100_MOVIES: Array<IMovie> = [
   { title: 'The Shawshank Redemption', year: 1994 },
   { title: 'The Godfather', year: 1972 },
-  { title: 'The Godfather: Part II', year: 1974 },
   { title: 'The Dark Knight', year: 2008 },
+  { title: 'The Godfather Part II', year: 1974 },
   { title: '12 Angry Men', year: 1957 },
   { title: "Schindler's List", year: 1993 },
-  { title: 'Pulp Fiction', year: 1994 },
   { title: 'The Lord of the Rings: The Return of the King', year: 2003 },
+  { title: 'Pulp Fiction', year: 1994 },
   { title: 'The Good, the Bad and the Ugly', year: 1966 },
-  { title: 'Fight Club', year: 1999 },
   { title: 'The Lord of the Rings: The Fellowship of the Ring', year: 2001 },
-  { title: 'Star Wars: Episode V - The Empire Strikes Back', year: 1980 },
+  { title: 'Fight Club', year: 1999 },
   { title: 'Forrest Gump', year: 1994 },
   { title: 'Inception', year: 2010 },
+  { title: 'Star Wars: Episode V - The Empire Strikes Back', year: 1980 },
   { title: 'The Lord of the Rings: The Two Towers', year: 2002 },
-  { title: "One Flew Over the Cuckoo's Nest", year: 1975 },
-  { title: 'Goodfellas', year: 1990 },
   { title: 'The Matrix', year: 1999 },
-  { title: 'Seven Samurai', year: 1954 },
-  { title: 'Star Wars: Episode IV - A New Hope', year: 1977 },
-  { title: 'City of God', year: 2002 },
+  { title: 'Goodfellas', year: 1990 },
+  { title: "One Flew Over the Cuckoo's Nest", year: 1975 },
   { title: 'Se7en', year: 1995 },
+  { title: 'Seven Samurai', year: 1954 },
+  { title: 'City of God', year: 2002 },
   { title: 'The Silence of the Lambs', year: 1991 },
   { title: "It's a Wonderful Life", year: 1946 },
   { title: 'Life Is Beautiful', year: 1997 },
   { title: 'The Usual Suspects', year: 1995 },
   { title: 'Léon: The Professional', year: 1994 },
-  { title: 'Spirited Away', year: 2001 },
   { title: 'Saving Private Ryan', year: 1998 },
-  { title: 'Once Upon a Time in the West', year: 1968 },
-  { title: 'American History X', year: 1998 },
+  { title: 'Spirited Away', year: 2001 },
   { title: 'Interstellar', year: 2014 },
-  { title: 'Casablanca', year: 1942 },
-  { title: 'City Lights', year: 1931 },
-  { title: 'Psycho', year: 1960 },
   { title: 'The Green Mile', year: 1999 },
+  { title: 'American History X', year: 1998 },
+  { title: 'Parasite', year: 2019 },
+  { title: 'Harakiri', year: 1962 },
+  { title: 'Whiplash', year: 2014 },
   { title: 'The Intouchables', year: 2011 },
-  { title: 'Modern Times', year: 1936 },
-  { title: 'Raiders of the Lost Ark', year: 1981 },
-  { title: 'Rear Window', year: 1954 },
-  { title: 'The Pianist', year: 2002 },
   { title: 'The Departed', year: 2006 },
+  { title: 'The Prestige', year: 2006 },
+  { title: 'The Pianist', year: 2002 },
+  { title: 'Gladiator', year: 2000 },
   { title: 'Terminator 2: Judgment Day', year: 1991 },
   { title: 'Back to the Future', year: 1985 },
-  { title: 'Whiplash', year: 2014 },
-  { title: 'Gladiator', year: 2000 },
-  { title: 'Memento', year: 2000 },
-  { title: 'The Prestige', year: 2006 },
   { title: 'The Lion King', year: 1994 },
+  { title: 'The Lives of Others', year: 2006 },
   { title: 'Apocalypse Now', year: 1979 },
   { title: 'Alien', year: 1979 },
-  { title: 'Sunset Boulevard', year: 1950 },
+  { title: 'Sunset Blvd.', year: 1950 },
   {
     title:
       'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
     year: 1964,
   },
+  { title: 'Memento', year: 2000 },
   { title: 'The Great Dictator', year: 1940 },
   { title: 'Cinema Paradiso', year: 1988 },
-  { title: 'The Lives of Others', year: 2006 },
-  { title: 'Grave of the Fireflies', year: 1988 },
+  { title: 'The Shining', year: 1980 },
   { title: 'Paths of Glory', year: 1957 },
   { title: 'Django Unchained', year: 2012 },
-  { title: 'The Shining', year: 1980 },
   { title: 'WALL·E', year: 2008 },
   { title: 'American Beauty', year: 1999 },
   { title: 'The Dark Knight Rises', year: 2012 },
-  { title: 'Princess Mononoke', year: 1997 },
-  { title: 'Aliens', year: 1986 },
   { title: 'Oldboy', year: 2003 },
-  { title: 'Once Upon a Time in America', year: 1984 },
+  { title: 'Aliens', year: 1986 },
   { title: 'Witness for the Prosecution', year: 1957 },
+  { title: 'Once Upon a Time in America', year: 1984 },
   { title: 'Das Boot', year: 1981 },
   { title: 'Citizen Kane', year: 1941 },
-  { title: 'North by Northwest', year: 1959 },
   { title: 'Vertigo', year: 1958 },
-  { title: 'Star Wars: Episode VI - Return of the Jedi', year: 1983 },
+  { title: 'North by Northwest', year: 1959 },
   { title: 'Reservoir Dogs', year: 1992 },
   { title: 'Braveheart', year: 1995 },
-  { title: 'M', year: 1931 },
+  { title: 'Star Wars: Episode VI - Return of the Jedi', year: 1983 },
   { title: 'Requiem for a Dream', year: 2000 },
   { title: 'Amélie', year: 2001 },
   { title: 'A Clockwork Orange', year: 1971 },
@@ -123,29 +114,32 @@ export const TOP_100_FILMS: Array<IFilm> = [
   { title: 'The Sting', year: 1973 },
   { title: '2001: A Space Odyssey', year: 1968 },
   { title: "Singin' in the Rain", year: 1952 },
-  { title: 'Toy Story', year: 1995 },
   { title: 'Bicycle Thieves', year: 1948 },
-  { title: 'The Kid', year: 1921 },
   { title: 'Inglourious Basterds', year: 2009 },
+  { title: 'The Kid', year: 1921 },
   { title: 'Snatch', year: 2000 },
   { title: '3 Idiots', year: 2009 },
   { title: 'Monty Python and the Holy Grail', year: 1975 },
+  { title: 'L.A. Confidential', year: 1997 },
+  { title: 'Scarface', year: 1983 },
+  { title: 'Rashomon', year: 1950 },
+  { title: 'Indiana Jones and the Last Crusade', year: 1989 },
+  { title: 'The Apartment', year: 1960 },
 ].map((f, index) => ({ ...f, rank: index + 1 }));
 
 /**
- * Takes the same arguments as `ItemRenderer<Film>`, but returns the common menu item
- * props for that item instead of the rendered element itself. This is useful for implementing
- * custom item renderers.
+ * Takes the same arguments as `IItemRenderer<IMovie>`, but returns the common menu item props for that item instead of the rendered element itself. This is useful for implementing custom item renderers.
  */
-export const getFilmItemProps = (
-  film: IFilm,
+export const getMovieItemProps = (
+  movie: IMovie,
   { modifiers, query }: IItemRendererProps,
 ): IListItemProps & React.Attributes => {
-  const text = `${film.rank}. ${film.title}`;
+  const text = movie.title;
 
   return {
     disabled: modifiers.disabled,
-    trailingSupportingText: film.year.toString(),
+    leading: movie.rank ? `${movie.rank.toString()}.` : undefined,
+    trailingSupportingText: movie.year.toString(),
     children: query
       ? highlightWords({
           text,
@@ -162,10 +156,10 @@ export const getFilmItemProps = (
 };
 
 /**
- * Simple film item renderer for "menu" containers. Does not support "selected" appearance.
+ * Simple movie item renderer for "list" containers.
  */
-export const renderFilm: IItemRenderer<IFilm> = (
-  film,
+export const renderMovieListItem: IItemRenderer<IMovie> = (
+  movie,
   props,
   buttonRef,
   buttonAttributes,
@@ -176,11 +170,10 @@ export const renderFilm: IItemRenderer<IFilm> = (
 
   return (
     <ListItem
-      key={film.rank}
-      {...getFilmItemProps(film, props)}
+      key={movie.rank}
+      {...getMovieItemProps(movie, props)}
       visualState={{ hovered: props.modifiers.active }}
       selected={props.modifiers.selected}
-      size='sm'
       {...buttonAttributes?.()}
       ref={buttonRef}
     />
@@ -188,53 +181,61 @@ export const renderFilm: IItemRenderer<IFilm> = (
 };
 
 /**
- * Renders a menu item to create a single film from a given query string.
+ * Renders a list item to create a single movie from a given query string.
  */
-export const renderCreateFilmMenuItem: ICreateNewItemRenderer = (
-  props,
+export const renderCreateMovieListItem: ICreateNewItemRenderer = (
+  { modifiers, query },
   buttonRef,
   buttonAttributes,
 ): React.ReactNode => (
   <ListItem
-    visualState={{ hovered: props.modifiers.active }}
+    visualState={{ hovered: modifiers.active }}
     leadingIcon={<FontAwesomeIcon icon={faPlus} />}
-    size='sm'
     {...buttonAttributes?.()}
     ref={buttonRef}
-  >{`Create "${props.query}"`}</ListItem>
+  >
+    {`Create "${query}"`}
+  </ListItem>
 );
 
-export const filterFilm: IItemPredicate<IFilm> = (
+/**
+ * Filters movie list with a case-insensitive search.
+ */
+export const filterMovie: IItemPredicate<IMovie> = (
   query,
-  film,
+  movie,
   _index,
   exactMatch,
 ) => {
-  const normalizedTitle = film.title.toLowerCase();
+  const normalizedTitle = movie.title.toLowerCase();
   const normalizedQuery = query.toLowerCase();
 
-  if (exactMatch) {
-    return normalizedTitle === normalizedQuery;
-  } else {
-    return (
-      `${film.rank}. ${normalizedTitle} ${film.year}`.indexOf(
+  return exactMatch
+    ? normalizedTitle === normalizedQuery
+    : `${movie.rank}. ${normalizedTitle} ${movie.year}`.indexOf(
         normalizedQuery,
-      ) >= 0
-    );
-  }
+      ) >= 0;
 };
 
-export const createFilm = (title: string): IFilm => {
+/**
+ * Creates a movie from a query string.
+ */
+export const createMovie = (query: string): IMovie => {
   return {
-    rank: 100 + Math.floor(Math.random() * 100 + 1),
-    title,
+    title: query,
     year: new Date().getFullYear(),
   };
 };
 
-export const areFilmsEqual = (filmA: IFilm, filmB: IFilm): boolean => {
+/**
+ * Compares two movies for equality.
+ */
+export const areMoviesEqual = (movieA: IMovie, movieB: IMovie): boolean => {
   // Compare only the titles (ignoring case) just for simplicity.
-  return filmA.title.toLowerCase() === filmB.title.toLowerCase();
+  return movieA.title.toLowerCase() === movieB.title.toLowerCase();
 };
 
-export const isFilmDisabled = (film: IFilm): boolean => film.year < 1990;
+/**
+ * Returns `true` if the movie release year is before 1987.
+ */
+export const isMovieDisabled = (film: IMovie): boolean => film.year < 1987;

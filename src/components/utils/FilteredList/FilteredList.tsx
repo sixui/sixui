@@ -4,26 +4,26 @@ import { isFunction } from 'lodash';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import {
   executeItemsEqual,
-  IItemModifiers,
   renderFilteredItems,
+  type IItemModifiers,
   type IItemListRendererProps,
   type IListItemsProps,
-} from './ListItemProps';
+} from './FilteredListProps';
 import { usePrevious } from '@/hooks/usePrevious';
 
 // Inspiration:
-// - https://github.com/palantir/blueprint/blob/develop/packages/select/src/components/query-list/queryList.tsx
+// - https://github.com/palantir/blueprint/blob/develop/packages/select/src/components/query-list/FilteredList.tsx
 
-export type IQueryListRenderer<TItem> = (
-  listProps: IQueryListRendererProps<TItem>,
+export type IFilteredListRenderer<TItem> = (
+  listProps: IFilteredListRendererProps<TItem>,
 ) => React.ReactNode;
 
-export type IQueryListProps<TItem> = IListItemsProps<TItem> & {
+export type IFilteredListProps<TItem> = IListItemsProps<TItem> & {
   /**
    * Customize rendering of the component.
    * Receives an object with props that should be applied to elements as necessary.
    */
-  renderer: IQueryListRenderer<TItem>;
+  renderer: IFilteredListRenderer<TItem>;
 
   /**
    * Whether the list is disabled.
@@ -34,16 +34,16 @@ export type IQueryListProps<TItem> = IListItemsProps<TItem> & {
 };
 
 /**
- * An object describing how to render a `QueryList`.
- * A `QueryList` `renderer` receives this object as its sole argument.
+ * An object describing how to render a `FilteredList`.
+ * A `FilteredList` `renderer` receives this object as its sole argument.
  */
-export type IQueryListRendererProps<TItem> = Pick<
-  IQueryListState<TItem>,
+export type IFilteredListRendererProps<TItem> = Pick<
+  IFilteredListState<TItem>,
   'filteredItems' | 'query'
 > & {
   /**
    * Change handler for query string. Attach this to an input element to allow
-   * `QueryList` to control the query.
+   * `FilteredList` to control the query.
    */
   handleQueryChange: React.ChangeEventHandler<HTMLInputElement>;
 
@@ -59,7 +59,7 @@ export type IQueryListRendererProps<TItem> = Pick<
 };
 
 /** Exported for testing, not part of public API */
-export type IQueryListState<TItem> = {
+export type IFilteredListState<TItem> = {
   /**
    * The item returned from `createNewItemFromQuery(this.state.query)`, cached
    * to avoid continuous reinstantions within `isCreateItemRendered`, where
@@ -78,7 +78,7 @@ export type IQueryListState<TItem> = {
 const getFilteredItems = <TItem,>(
   query: string | undefined,
   itemsProps: Pick<
-    IQueryListProps<TItem>,
+    IFilteredListProps<TItem>,
     'items' | 'itemPredicate' | 'itemListPredicate'
   >,
 ): Array<TItem> => {
@@ -111,8 +111,8 @@ const isItemDisabled = <TItem,>(
   return !!item[itemDisabled];
 };
 
-export const QueryList = <TItem,>(
-  props: IQueryListProps<TItem>,
+export const FilteredList = <TItem,>(
+  props: IFilteredListProps<TItem>,
 ): React.ReactNode => {
   const {
     items,
@@ -138,7 +138,7 @@ export const QueryList = <TItem,>(
   const [query, setQuery] = useControlledValue({
     controlled: queryProp,
     default: defaultQuery ?? '',
-    name: 'QueryList',
+    name: 'FilteredList',
   });
   const [filteredItems, setFilteredItems] = useState<Array<TItem>>(
     getFilteredItems(query, {

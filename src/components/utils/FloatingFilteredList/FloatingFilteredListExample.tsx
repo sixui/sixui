@@ -12,50 +12,54 @@ import { useControlledValue } from '@/hooks/useControlledValue';
 import { commonStyles } from '@/helpers/commonStyles';
 import { IconButton } from '@/components/atoms/IconButton';
 import {
-  areFilmsEqual,
-  createFilm,
-  filterFilm,
-  renderCreateFilmMenuItem,
-  renderFilm,
-  TOP_100_FILMS,
-  type IFilm,
-} from './films';
+  areMoviesEqual,
+  createMovie,
+  filterMovie,
+  renderCreateMovieListItem,
+  renderMovieListItem,
+  TOP_100_MOVIES,
+  type IMovie,
+} from '@/components/utils/FilteredList/movies';
 import {
   maybeAddCreatedItemToArrays,
   maybeDeleteCreatedItemFromArrays,
 } from './utils';
-import { executeItemsEqual, type IItemRenderer } from './ListItemProps';
 import {
-  FloatingQueryList,
-  type IFloatingQueryListProps,
-} from './FloatingQueryList';
+  executeItemsEqual,
+  type IItemRenderer,
+} from '@/components/utils/FilteredList';
+import {
+  FloatingFilteredList,
+  type IFloatingFilteredListProps,
+} from './FloatingFilteredList';
 
-export type IFloatingQueryListDemoProps = IFloatingQueryListProps<IFilm> & {
-  value?: IFilm;
-  defaultValue?: IFilm;
-  onChange: (value?: IFilm) => void;
-};
+export type IFloatingFilteredListExampleProps =
+  IFloatingFilteredListProps<IMovie> & {
+    value?: IMovie;
+    defaultValue?: IMovie;
+    onChange: (value?: IMovie) => void;
+  };
 
-export const FloatingQueryListDemo = (
-  props: IFloatingQueryListDemoProps,
+export const FloatingFilteredListExample = (
+  props: IFloatingFilteredListExampleProps,
 ): React.ReactNode => {
   const { value, defaultValue, onChange, ...other } = props;
-  const [items, setItems] = useState(TOP_100_FILMS);
-  const [createdItems, setCreatedItems] = useState<Array<IFilm>>([]);
+  const [items, setItems] = useState(TOP_100_MOVIES);
+  const [createdItems, setCreatedItems] = useState<Array<IMovie>>([]);
   const [selectedItem, setSelectedItem] = useControlledValue({
     controlled: value,
     default: defaultValue,
-    name: 'FloatingQueryListDemo',
+    name: 'FloatingFilteredListDemo',
   });
 
   const canFilter = true;
 
-  const handleItemSelect = (newSelectedItem: IFilm): number | undefined => {
+  const handleItemSelect = (newSelectedItem: IMovie): number | undefined => {
     setSelectedItem(newSelectedItem);
 
     // Delete the old film from the list if it was newly created.
     const step1Result = maybeDeleteCreatedItemFromArrays(
-      areFilmsEqual,
+      areMoviesEqual,
       items,
       createdItems,
       selectedItem,
@@ -63,7 +67,7 @@ export const FloatingQueryListDemo = (
 
     // Add the new film to the list if it is newly created.
     const step2Result = maybeAddCreatedItemToArrays(
-      areFilmsEqual,
+      areMoviesEqual,
       step1Result.items,
       step1Result.createdItems,
       newSelectedItem,
@@ -82,15 +86,15 @@ export const FloatingQueryListDemo = (
     return selectedIndex;
   };
 
-  const itemRendererWrapper: IItemRenderer<IFilm> = (
+  const itemRendererWrapper: IItemRenderer<IMovie> = (
     item,
     itemProps,
     buttonRef,
     buttonAttributes,
   ): React.ReactNode => {
-    const selected = executeItemsEqual(areFilmsEqual, item, selectedItem);
+    const selected = executeItemsEqual(areMoviesEqual, item, selectedItem);
 
-    return renderFilm(
+    return renderMovieListItem(
       item,
       {
         ...itemProps,
@@ -106,7 +110,7 @@ export const FloatingQueryListDemo = (
 
   const handleClear = (
     onItemsRemove: (
-      items: Array<IFilm>,
+      items: Array<IMovie>,
       event?: React.SyntheticEvent<HTMLElement>,
     ) => void,
     event?: React.MouseEvent<HTMLButtonElement>,
@@ -120,14 +124,14 @@ export const FloatingQueryListDemo = (
   };
 
   return (
-    <FloatingQueryList<IFilm>
+    <FloatingFilteredList<IMovie>
       {...other}
       // disabled
       onItemSelect={handleItemSelect}
       items={items}
       // createNewItemPosition='first'
-      // defaultSelectedItem={TOP_100_FILMS[3]}
-      // selectedItem={TOP_100_FILMS[3]}
+      // defaultSelectedItem={TOP_100_MOVIES[3]}
+      // selectedItem={TOP_100_MOVIES[3]}
       // defaultQuery='w'
       renderer={(listProps) => (
         <MenuList
@@ -145,12 +149,12 @@ export const FloatingQueryListDemo = (
         </MenuList>
       )}
       itemRenderer={itemRendererWrapper}
-      itemsEqual={areFilmsEqual}
-      itemPredicate={canFilter ? filterFilm : undefined}
+      itemsEqual={areMoviesEqual}
+      itemPredicate={canFilter ? filterMovie : undefined}
       noResults={<ListItem disabled>No results.</ListItem>}
-      createNewItemFromQuery={createFilm}
-      createNewItemRenderer={renderCreateFilmMenuItem}
-      // itemDisabled={isFilmDisabled}
+      createNewItemFromQuery={createMovie}
+      createNewItemRenderer={renderCreateMovieListItem}
+      // itemDisabled={isMovieDisabled}
       matchTargetWidth
       resetOnSelect
       resetOnClose
@@ -194,6 +198,6 @@ export const FloatingQueryListDemo = (
           {selectedItem?.title}
         </Field>
       )}
-    </FloatingQueryList>
+    </FloatingFilteredList>
   );
 };

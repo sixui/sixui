@@ -1,4 +1,7 @@
-import { executeItemsEqual, type IItemsEqualProp } from './ListItemProps';
+import {
+  executeItemsEqual,
+  type IItemsEqualProp,
+} from '@/components/utils/FilteredList';
 
 export const arrayContainsItem = <TItem>(
   itemsEqualProp: IItemsEqualProp<TItem> | undefined,

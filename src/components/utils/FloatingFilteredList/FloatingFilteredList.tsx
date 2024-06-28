@@ -19,19 +19,20 @@ import {
 } from '@floating-ui/react';
 
 import type { IOmit } from '@/helpers/types';
-import type { ICreateNewItemRenderer, IItemRenderer } from './ListItemProps';
+import {
+  ICreateNewItemRenderer,
+  IItemRenderer,
+  FilteredList,
+  type IFilteredListProps,
+  type IFilteredListRenderer,
+} from '@/components/utils/FilteredList';
 import { Portal } from '@/components/utils/Portal';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
 import { placementToOrigin } from '@/helpers/placementToOrigin';
 import { useControlledValue } from '@/hooks/useControlledValue';
-import {
-  QueryList,
-  type IQueryListProps,
-  type IQueryListRenderer,
-} from './QueryList';
 import { usePrevious } from '@/hooks/usePrevious';
 
-export type IFloatingQueryListTriggerButtonRenderProps<TItem> = {
+export type IFloatingFilteredListTriggerButtonRenderProps<TItem> = {
   isOpen: boolean;
   buttonRef: React.Ref<HTMLDivElement>;
   getButtonAttributes: (
@@ -51,8 +52,8 @@ export type IFloatingQueryListTriggerButtonRenderProps<TItem> = {
   ) => Record<string, unknown>;
 };
 
-export type IFloatingQueryListProps<TItem> = IOmit<
-  IQueryListProps<TItem>,
+export type IFloatingFilteredListProps<TItem> = IOmit<
+  IFilteredListProps<TItem>,
   'onItemSelect'
 > & {
   /**
@@ -60,7 +61,7 @@ export type IFloatingQueryListProps<TItem> = IOmit<
    * the name or label of the curently selected item here.
    */
   children: (
-    props: IFloatingQueryListTriggerButtonRenderProps<TItem>,
+    props: IFloatingFilteredListTriggerButtonRenderProps<TItem>,
   ) => React.JSX.Element;
 
   onItemSelect: (
@@ -146,8 +147,8 @@ const styles = stylex.create({
   }),
 });
 
-export const FloatingQueryList = <TItem,>(
-  props: IFloatingQueryListProps<TItem>,
+export const FloatingFilteredList = <TItem,>(
+  props: IFloatingFilteredListProps<TItem>,
 ): React.ReactNode => {
   const {
     children,
@@ -227,7 +228,7 @@ export const FloatingQueryList = <TItem,>(
   const [query, setQuery] = useControlledValue({
     controlled: queryProp,
     default: defaultQuery ?? '',
-    name: 'FloatingQueryList',
+    name: 'FloatingFilteredList',
   });
   const interactions = useInteractions([
     click,
@@ -343,7 +344,7 @@ export const FloatingQueryList = <TItem,>(
     },
   });
 
-  const rendererWrapper: IQueryListRenderer<TItem> = (listProps) =>
+  const rendererWrapper: IFilteredListRenderer<TItem> = (listProps) =>
     renderer({
       ...listProps,
       handleQueryChange: listProps.handleQueryChange,
@@ -460,7 +461,7 @@ export const FloatingQueryList = <TItem,>(
                 )}
               >
                 <FloatingList elementsRef={elementsRef} labelsRef={labelsRef}>
-                  <QueryList
+                  <FilteredList
                     {...other}
                     query={query}
                     defaultQuery={defaultQuery}

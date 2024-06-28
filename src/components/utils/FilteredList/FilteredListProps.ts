@@ -102,7 +102,7 @@ export type IItemRendererProps = {
   /** Click event handler to select this item. */
   handleClick: React.MouseEventHandler<HTMLElement>;
 
-  /** Index of the item in the QueryList items array. */
+  /** Index of the item in the FilteredList items array. */
   index: number;
 
   /** Modifiers that describe how to render this item, such as `active` or `disabled`. */

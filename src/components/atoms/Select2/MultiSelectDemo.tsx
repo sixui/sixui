@@ -1,11 +1,7 @@
 import { useState } from 'react';
 import stylex from '@stylexjs/stylex';
-import {
-  FloatingQueryList,
-  type IFloatingQueryListProps,
-} from './FloatingQueryList';
 
-import type { IItemRenderer } from './ListItemProps';
+import type { IItemRenderer } from '@/components/utils/FilteredList';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
 import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
@@ -18,56 +14,60 @@ import { useControlledValue } from '@/hooks/useControlledValue';
 import { commonStyles } from '@/helpers/commonStyles';
 import { IconButton } from '@/components/atoms/IconButton';
 import {
-  areFilmsEqual,
-  createFilm,
-  filterFilm,
-  isFilmDisabled,
-  renderCreateFilmMenuItem,
-  renderFilm,
-  TOP_100_FILMS,
-  type IFilm,
-} from './films';
+  FloatingFilteredList,
+  type IFloatingFilteredListProps,
+} from '@/components/utils/FloatingFilteredList';
+import {
+  areMoviesEqual,
+  createMovie,
+  filterMovie,
+  isMovieDisabled,
+  renderCreateMovieListItem,
+  renderMovieListItem,
+  TOP_100_MOVIES,
+  type IMovie,
+} from '@/components/utils/FilteredList/movies';
 import {
   arrayContainsItem,
   maybeAddCreatedItemToArrays,
   maybeDeleteCreatedItemFromArrays,
-} from './utils';
+} from '@/components/utils/FloatingFilteredList/utils';
 
-export type IMultiSelectDemoProps = IFloatingQueryListProps<IFilm> & {
-  value?: Array<IFilm>;
-  defaultValue?: Array<IFilm>;
-  onChange: (value: Array<IFilm>) => void;
+export type IMultiSelectDemoProps = IFloatingFilteredListProps<IMovie> & {
+  value?: Array<IMovie>;
+  defaultValue?: Array<IMovie>;
+  onChange: (value: Array<IMovie>) => void;
 };
 
 export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
   const { value, defaultValue, onChange, ...other } = props;
-  const [items, setItems] = useState(TOP_100_FILMS);
-  const [createdItems, setCreatedItems] = useState<Array<IFilm>>([]);
+  const [items, setItems] = useState(TOP_100_MOVIES);
+  const [createdItems, setCreatedItems] = useState<Array<IMovie>>([]);
   const [selectedItems, setSelectedItems] = useControlledValue({
     controlled: value,
     default: defaultValue ?? [],
-    name: 'FloatingQueryListDemo',
+    name: 'FloatingFilteredListDemo',
   });
 
   const canFilter = true;
 
-  const getSelectedFilmIndex = (film: IFilm): number => {
+  const getSelectedFilmIndex = (film: IMovie): number => {
     const index = selectedItems.indexOf(film);
 
     return index !== undefined && index >= 0 ? index : -1;
   };
 
-  const isFilmSelected = (film: IFilm): boolean =>
+  const isFilmSelected = (film: IMovie): boolean =>
     getSelectedFilmIndex(film) >= 0;
 
-  const selectFilms = (filmsToSelect: Array<IFilm>): Array<IFilm> => {
+  const selectFilms = (filmsToSelect: Array<IMovie>): Array<IMovie> => {
     let nextCreatedItems = createdItems.slice();
     let nextFilms = selectedItems.slice();
     let nextItems = items.slice();
 
     filmsToSelect.forEach((filmToSelect) => {
       const results = maybeAddCreatedItemToArrays(
-        areFilmsEqual,
+        areMoviesEqual,
         nextItems,
         nextCreatedItems,
         filmToSelect,
@@ -77,7 +77,7 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
       // Avoid re-creating an item that is already selected (the "Create
       // Item" option will be shown even if it matches an already selected
       // item).
-      nextFilms = !arrayContainsItem(areFilmsEqual, nextFilms, filmToSelect)
+      nextFilms = !arrayContainsItem(areMoviesEqual, nextFilms, filmToSelect)
         ? [...nextFilms, filmToSelect]
         : nextFilms;
     });
@@ -89,14 +89,14 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
     return nextFilms;
   };
 
-  const selectFilm = (filmToSelect: IFilm): Array<IFilm> =>
+  const selectFilm = (filmToSelect: IMovie): Array<IMovie> =>
     selectFilms([filmToSelect]);
 
-  const deselectFilm = (index: number): Array<IFilm> => {
+  const deselectFilm = (index: number): Array<IMovie> => {
     const film = selectedItems[index];
     const { createdItems: nextCreatedItems, items: nextItems } =
       maybeDeleteCreatedItemFromArrays(
-        areFilmsEqual,
+        areMoviesEqual,
         items,
         createdItems,
         film,
@@ -110,7 +110,7 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
     return nextSelectedItems;
   };
 
-  const handleItemSelect = (selectedItem: IFilm): undefined => {
+  const handleItemSelect = (selectedItem: IMovie): undefined => {
     if (isFilmSelected(selectedItem)) {
       const selectedIndex = getSelectedFilmIndex(selectedItem);
       if (selectedIndex !== undefined) {
@@ -124,15 +124,15 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
     return undefined;
   };
 
-  const itemRendererWrapper: IItemRenderer<IFilm> = (
+  const itemRendererWrapper: IItemRenderer<IMovie> = (
     item,
     itemProps,
     buttonRef,
     buttonAttributes,
   ): React.ReactNode => {
-    const selected = arrayContainsItem(areFilmsEqual, selectedItems, item);
+    const selected = arrayContainsItem(areMoviesEqual, selectedItems, item);
 
-    return renderFilm(
+    return renderMovieListItem(
       item,
       {
         ...itemProps,
@@ -148,7 +148,7 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
 
   const handleClear = (
     onItemsRemove: (
-      items: Array<IFilm>,
+      items: Array<IMovie>,
       event?: React.SyntheticEvent<HTMLElement>,
     ) => void,
     event?: React.MouseEvent<HTMLButtonElement>,
@@ -162,13 +162,13 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
   };
 
   return (
-    <FloatingQueryList<IFilm>
+    <FloatingFilteredList<IMovie>
       {...other}
       onItemSelect={handleItemSelect}
       items={items}
       // createNewItemPosition='first'
-      // defaultSelectedItem={TOP_100_FILMS[3]}
-      // selectedItem={TOP_100_FILMS[3]}
+      // defaultSelectedItem={TOP_100_MOVIES[3]}
+      // selectedItem={TOP_100_MOVIES[3]}
       // defaultQuery='w'
       renderer={(listProps) => (
         <MenuList
@@ -186,12 +186,12 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
         </MenuList>
       )}
       itemRenderer={itemRendererWrapper}
-      itemsEqual={areFilmsEqual}
-      itemPredicate={canFilter ? filterFilm : undefined}
+      itemsEqual={areMoviesEqual}
+      itemPredicate={canFilter ? filterMovie : undefined}
       noResults={<ListItem disabled>No results.</ListItem>}
-      createNewItemFromQuery={createFilm}
-      createNewItemRenderer={renderCreateFilmMenuItem}
-      itemDisabled={isFilmDisabled}
+      createNewItemFromQuery={createMovie}
+      createNewItemRenderer={renderCreateMovieListItem}
+      itemDisabled={isMovieDisabled}
       matchTargetWidth
       resetOnClose
     >
@@ -247,6 +247,6 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
           </div>
         </Field>
       )}
-    </FloatingQueryList>
+    </FloatingFilteredList>
   );
 };

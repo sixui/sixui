@@ -31,6 +31,11 @@ export const styles: MapNamespaces<ITextFieldStyles> =
       whiteSpace: 'inherit',
       resize: 'none',
       minWidth: 30,
+      fontFamily: fieldBaseVars.contentFont,
+      fontSize: fieldBaseVars.contentSize,
+      fontWeight: fieldBaseVars.contentWeight,
+      lineHeight: fieldBaseVars.contentLineHeight,
+      letterSpacing: fieldBaseVars.contentLetterSpacing,
 
       width: '100%',
       caretColor: {
@@ -43,11 +48,6 @@ export const styles: MapNamespaces<ITextFieldStyles> =
       '::placeholder': {
         WebkitTextFillColor: fieldBaseVars.contentPlaceholderColor,
         color: fieldBaseVars.contentPlaceholderColor,
-        fontFamily: fieldBaseVars.contentFont,
-        fontSize: fieldBaseVars.contentSize,
-        fontWeight: fieldBaseVars.contentWeight,
-        lineHeight: fieldBaseVars.contentLineHeight,
-        letterSpacing: fieldBaseVars.contentLetterSpacing,
         opacity: 1,
       },
       '::selection': {
