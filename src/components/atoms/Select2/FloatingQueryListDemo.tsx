@@ -32,7 +32,6 @@ export type IFloatingQueryListDemoProps = IFloatingQueryListProps<IFilm> & {
   onChange: (value: IFilm) => void;
 };
 
-// FIXME: should become Select component
 export const FloatingQueryListDemo = (
   props: IFloatingQueryListDemoProps,
 ): React.ReactNode => {
@@ -119,8 +118,8 @@ export const FloatingQueryListDemo = (
                 value={listProps.query}
                 disabled={listProps.disabled}
                 clearable
-                {...listProps.inputFilterAttributes}
-                ref={listProps.inputFilterRef}
+                {...listProps.inputFilterAttributes()}
+                inputRef={listProps.inputFilterRef}
               />
             ) : undefined
           }
@@ -137,13 +136,13 @@ export const FloatingQueryListDemo = (
       // itemDisabled={isFilmDisabled}
       matchTargetWidth
       resetOnSelect
-      // resetOnClose
+      resetOnClose
       closeOnSelect
     >
       {(buttonProps) => (
+        // FIXME: clear button
         <Field
           as='button'
-          placeholder='Choose a film'
           end={
             buttonProps.isOpen ? (
               <TriangleUpIcon aria-hidden />
@@ -152,7 +151,8 @@ export const FloatingQueryListDemo = (
             )
           }
           variant='outlined'
-          {...buttonProps.buttonAttributes}
+          label='Label'
+          {...buttonProps.buttonAttributes()}
           ref={buttonProps.buttonRef}
         >
           {selectedItem?.title}

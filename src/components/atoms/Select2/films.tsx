@@ -181,7 +181,7 @@ export const renderFilm: IItemRenderer<IFilm> = (
       visualState={{ hovered: props.modifiers.active }}
       selected={props.modifiers.selected}
       size='sm'
-      {...buttonAttributes}
+      {...buttonAttributes?.()}
       ref={buttonRef}
     />
   );
@@ -199,7 +199,7 @@ export const renderCreateFilmMenuItem: ICreateNewItemRenderer = (
     visualState={{ hovered: props.modifiers.active }}
     leadingIcon={<FontAwesomeIcon icon={faPlus} />}
     size='sm'
-    {...buttonAttributes}
+    {...buttonAttributes?.()}
     ref={buttonRef}
   >{`Create "${props.query}"`}</ListItem>
 );

@@ -145,6 +145,7 @@ export type ITextFieldProps = IContainerProps<ITextFieldStyleKey> &
     unmaskable?: boolean;
     clearable?: boolean;
     clearButtonIcon?: React.ReactNode;
+    inputRef?: React.Ref<HTMLDivElement>;
   };
 
 type ITextFieldVariantMap = {
@@ -159,7 +160,7 @@ const variantMap: ITextFieldVariantMap = {
   outlined: 'OutlinedTextField',
 };
 
-export const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
+export const TextField = forwardRef<HTMLDivElement, ITextFieldProps>(
   function TextField(props, forwardedRef) {
     const {
       styles,
@@ -194,6 +195,7 @@ export const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
       clearButtonIcon,
       role = 'textbox',
       'aria-label': ariaLabelProp,
+      inputRef,
       ...other
     } = props;
 
@@ -207,7 +209,7 @@ export const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
         retainFocusAfterClick: true,
       });
     const handleRef = useForkRef(
-      forwardedRef,
+      inputRef,
       inputOrTextareaRefVisualStateRef,
       inputOrTextareaRef,
     );
@@ -358,11 +360,13 @@ export const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
         onClick={(event) => {
           const isSelf = event.target === inputOrTextareaRef.current;
           if (!isSelf) {
+            inputOrTextareaRef.current?.click();
             inputOrTextareaRef.current?.focus();
           }
         }}
         role={role}
         tabIndex={-1}
+        ref={forwardedRef}
       >
         <span {...sxf('textField')}>
           <FieldBase

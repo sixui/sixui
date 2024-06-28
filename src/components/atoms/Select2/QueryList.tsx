@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { isFunction } from 'lodash';
 
 import { useControlledValue } from '@/hooks/useControlledValue';
@@ -61,7 +61,9 @@ export type IQueryListRendererProps<TItem> = Pick<
   disabled?: boolean;
 
   inputFilterRef?: React.Ref<HTMLInputElement>;
-  inputFilterAttributes?: React.HTMLAttributes<HTMLInputElement>;
+  inputFilterAttributes: (
+    userProps?: React.HTMLProps<HTMLInputElement>,
+  ) => Record<string, unknown>;
 };
 
 /** Exported for testing, not part of public API */
@@ -83,20 +85,25 @@ export type IQueryListState<TItem> = {
 
 const getFilteredItems = <TItem,>(
   query: string | undefined,
-  { items, itemPredicate, itemListPredicate }: IQueryListProps<TItem>,
+  itemsProps: Pick<
+    IQueryListProps<TItem>,
+    'items' | 'itemPredicate' | 'itemListPredicate'
+  >,
 ): Array<TItem> => {
   if (!query) {
-    return items;
+    return itemsProps.items;
   }
 
-  if (itemListPredicate) {
+  if (itemsProps.itemListPredicate) {
     // note that implementations can reorder the items here
-    return itemListPredicate(query, items);
-  } else if (itemPredicate) {
-    return items.filter((item, index) => itemPredicate(query, item, index));
+    return itemsProps.itemListPredicate(query, itemsProps.items);
+  } else if (itemsProps.itemPredicate) {
+    return itemsProps.items.filter((item, index) =>
+      itemsProps.itemPredicate?.(query, item, index),
+    );
   }
 
-  return items;
+  return itemsProps.items;
 };
 
 const isItemDisabled = <TItem,>(
@@ -131,7 +138,8 @@ export const QueryList = <TItem,>(
     renderer,
     onQueryChange,
     onItemSelect,
-    resetOnSelect,
+    itemPredicate,
+    itemListPredicate,
   } = props;
   const isCreateItemFirst = createNewItemPosition === 'first';
   const canCreateItems = !!createNewItemFromQuery && !!createNewItemRenderer;
@@ -140,7 +148,28 @@ export const QueryList = <TItem,>(
     default: defaultQuery,
     name: 'QueryList',
   });
-  const filteredItemsRef = useRef<Array<TItem>>(getFilteredItems(query, props));
+  const [filteredItems, setFilteredItems] = useState<Array<TItem>>(
+    getFilteredItems(query, {
+      items,
+      itemPredicate,
+      itemListPredicate,
+    }),
+  );
+
+  useEffect(() => {
+    if (query === undefined) {
+      // The list has already been filitered with the default query.
+      return;
+    }
+
+    setFilteredItems(
+      getFilteredItems(query, {
+        items,
+        itemPredicate,
+        itemListPredicate,
+      }),
+    );
+  }, [query, items, itemPredicate, itemListPredicate]);
 
   const renderItemList = (
     listProps: IItemListRendererProps<TItem>,
@@ -174,7 +203,7 @@ export const QueryList = <TItem,>(
   const wouldCreatedItemMatchSomeExistingItem = (
     createNewItem: TItem | Array<TItem>,
   ): boolean =>
-    filteredItemsRef.current.some((item) => {
+    filteredItems.some((item) => {
       const newItems = Array.isArray(createNewItem)
         ? createNewItem
         : [createNewItem];
@@ -193,23 +222,15 @@ export const QueryList = <TItem,>(
     !wouldCreatedItemMatchSomeExistingItem(createNewItem);
 
   const handleQueryChange = (
-    query: string,
+    newQuery: string,
     event?: React.ChangeEvent<HTMLInputElement>,
   ): void => {
-    setQuery(query);
-    filteredItemsRef.current = getFilteredItems(query, props);
-    onQueryChange?.(query, event);
-  };
-
-  const handleItemSelect = (
-    item: TItem,
-    event?: React.SyntheticEvent<HTMLElement>,
-  ): void => {
-    if (resetOnSelect) {
-      handleQueryChange('');
+    if (query === newQuery) {
+      return;
     }
 
-    onItemSelect(item, event);
+    setQuery(newQuery);
+    onQueryChange?.(newQuery, event);
   };
 
   const renderCreateItemMenuItem = (): React.ReactNode => {
@@ -228,10 +249,10 @@ export const QueryList = <TItem,>(
       };
 
       return createNewItemRenderer?.({
-        index: filteredItemsRef.current.length,
+        index: filteredItems.length,
         modifiers,
         query: trimmedQuery,
-        handleClick: (event) => handleItemSelect(createNewItem, event),
+        handleClick: (event) => onItemSelect(createNewItem, event),
       });
     }
 
@@ -247,29 +268,30 @@ export const QueryList = <TItem,>(
       active: false,
       selected: false,
       disabled: isItemDisabled(item, index, itemDisabled),
-      matchesPredicate: filteredItemsRef.current.indexOf(item) >= 0,
+      matchesPredicate: filteredItems.indexOf(item) >= 0,
     };
 
     return itemRenderer(item, {
       index,
       modifiers,
       query: query ?? '',
-      handleClick: (event) => handleItemSelect(item, event),
+      handleClick: (event) => onItemSelect(item, event),
     });
   };
 
   return renderer({
-    filteredItems: filteredItemsRef.current,
+    filteredItems: filteredItems,
     query: query ?? '',
     itemList: itemListRenderer({
-      filteredItems: filteredItemsRef.current,
+      filteredItems: filteredItems,
       query,
       items,
       renderCreateItem: renderCreateItemMenuItem,
       renderItem,
     }),
-    handleItemSelect: (item, event) => handleItemSelect(item, event),
+    handleItemSelect: onItemSelect,
     handleQueryChange: (event) => handleQueryChange(event.target.value),
     disabled,
+    inputFilterAttributes: (userProps) => ({ ...userProps }),
   });
 };

@@ -350,8 +350,8 @@ const ComboboxBase = forwardRef<HTMLInputElement, IComboboxBaseProps>(
                 return (
                   <TextField
                     {...other}
-                    ref={forwardedRef}
-                    containerRef={refs.setReference}
+                    inputRef={forwardedRef}
+                    ref={refs.setReference}
                     innerStyles={{ field: fieldStyles }}
                     visualState={visualState}
                     end={

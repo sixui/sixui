@@ -10,7 +10,6 @@ import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
 import { ListItem } from '@/components/atoms/ListItem';
 import { TextField } from '@/components/atoms/TextField';
-import { Field } from '@/components/atoms/Field';
 import { MenuList } from '@/components/atoms/MenuList';
 import { InputChip } from '@/components/atoms/Chip';
 import { useControlledValue } from '@/hooks/useControlledValue';
@@ -31,7 +30,7 @@ import {
 } from './utils';
 import { commonStyles } from '@/helpers/commonStyles';
 
-export type IMultiSelectDemoProps = IFloatingQueryListProps<IFilm> & {
+export type IMultiComboboxDemoProps = IFloatingQueryListProps<IFilm> & {
   value?: Array<IFilm>;
   defaultValue?: Array<IFilm>;
   onChange: (value: Array<IFilm>) => void;
@@ -47,7 +46,7 @@ export type IMultiSelectDemoProps = IFloatingQueryListProps<IFilm> & {
   onRemove?: (value: IFilm, index: number) => void;
 };
 
-export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
+export const MultiComboboxDemo: React.FC<IMultiComboboxDemoProps> = (props) => {
   const { value, defaultValue, onChange, onRemove, ...other } = props;
   const [items, setItems] = useState(TOP_100_FILMS);
   const [createdItems, setCreatedItems] = useState<Array<IFilm>>([]);
@@ -173,24 +172,7 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
       // defaultSelectedItem={TOP_100_FILMS[3]}
       // selectedItem={TOP_100_FILMS[3]}
       // defaultQuery='w'
-      renderer={(listProps) => (
-        <MenuList
-          header={
-            canFilter ? (
-              <TextField
-                onChange={listProps.handleQueryChange}
-                value={listProps.query}
-                disabled={listProps.disabled}
-                clearable
-                {...listProps.inputFilterAttributes()}
-                inputRef={listProps.inputFilterRef}
-              />
-            ) : undefined
-          }
-        >
-          {listProps.itemList}
-        </MenuList>
-      )}
+      renderer={(listProps) => <MenuList>{listProps.itemList}</MenuList>}
       itemRenderer={itemRendererWrapper}
       itemsEqual={areFilmsEqual}
       itemPredicate={canFilter ? filterFilm : undefined}
@@ -199,10 +181,11 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
       createNewItemRenderer={renderCreateFilmMenuItem}
       itemDisabled={isFilmDisabled}
       matchTargetWidth
-      resetOnClose
+      // resetOnSelect
+      initialFocus={-1}
     >
       {(buttonProps) => (
-        <Field
+        <TextField
           end={
             buttonProps.isOpen ? (
               <TriangleUpIcon aria-hidden />
@@ -212,8 +195,17 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
           }
           variant='outlined'
           label='Label'
-          populated={buttonProps.isOpen || !!selectedItems?.length}
-          {...buttonProps.buttonAttributes()}
+          populated={
+            buttonProps.isOpen || !!selectedItems?.length || !!buttonProps.query
+          }
+          // FIXME: make clearable
+          clearable
+          // FIXME: test disabled
+          // disabled={listProps.disabled}
+          // FIXME:
+          {...buttonProps.buttonAttributes({
+            onChange: buttonProps.handleQueryChange,
+          })}
           ref={buttonProps.buttonRef}
         >
           <div
@@ -230,7 +222,7 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
               />
             ))}
           </div>
-        </Field>
+        </TextField>
       )}
     </FloatingQueryList>
   );

@@ -1,3 +1,4 @@
+import type { UseInteractionsReturn } from '@floating-ui/react';
 import { isFunction } from 'lodash';
 
 import type { IAny } from '@/helpers/types';
@@ -120,13 +121,13 @@ export type IItemRenderer<TItem> = (
   item: TItem,
   itemProps: IItemRendererProps,
   buttonRef?: React.Ref<HTMLButtonElement>,
-  buttonAttributes?: React.HTMLAttributes<HTMLButtonElement>,
+  buttonAttributes?: UseInteractionsReturn['getItemProps'],
 ) => React.ReactNode;
 
 export type ICreateNewItemRenderer = (
   itemProps: IItemRendererProps,
   buttonRef?: React.Ref<HTMLButtonElement>,
-  buttonAttributes?: React.HTMLAttributes<HTMLButtonElement>,
+  buttonAttributes?: UseInteractionsReturn['getItemProps'],
 ) => React.ReactNode;
 
 // Inspiration:
@@ -302,14 +303,6 @@ export type IListItemsProps<TItem> = {
    * @defaultvalue 'last'
    */
   createNewItemPosition?: 'first' | 'last';
-
-  /**
-   * Whether the active item should be reset to the first matching item _when
-   * an item is selected_. The query will also be reset to the empty string.
-   *
-   * @defaultvalue false
-   */
-  resetOnSelect?: boolean;
 
   /**
    * Query string passed to `itemListPredicate` or `itemPredicate` to filter items.

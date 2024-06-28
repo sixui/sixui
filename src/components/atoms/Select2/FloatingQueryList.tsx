@@ -22,6 +22,7 @@ import type { ICreateNewItemRenderer, IItemRenderer } from './ListItemProps';
 import { Portal } from '@/components/utils/Portal';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
 import { placementToOrigin } from '@/helpers/placementToOrigin';
+import { useControlledValue } from '@/hooks/useControlledValue';
 import {
   QueryList,
   type IQueryListProps,
@@ -31,12 +32,23 @@ import {
 export type IFloatingQueryListTriggerButtonRenderProps<TItem> = {
   isOpen: boolean;
   buttonRef: React.Ref<HTMLButtonElement>;
-  buttonAttributes: React.HTMLAttributes<HTMLButtonElement>;
+  buttonAttributes: (
+    userProps?: React.HTMLProps<Element>,
+  ) => Record<string, unknown>;
   onItemRemove: (
     item: TItem,
     index: number,
     event?: React.SyntheticEvent<HTMLElement>,
   ) => void;
+
+  /**
+   * Change handler for query string. Attach this to an input element to allow
+   * `QueryList` to control the query.
+   */
+  handleQueryChange: React.ChangeEventHandler<HTMLInputElement>;
+
+  /** The current query string. */
+  query: string;
 };
 
 export type IFloatingQueryListProps<TItem> = IOmit<
@@ -71,11 +83,21 @@ export type IFloatingQueryListProps<TItem> = IOmit<
 
   /**
    * Whether the active item should be reset to the first matching item _when
+   * an item is selected_. The query will also be reset to the empty string.
+   *
+   * @defaultvalue false
+   */
+  resetOnSelect?: boolean;
+
+  /**
+   * Whether the active item should be reset to the first matching item _when
    * the popover closes_. The query will also be reset to the empty string.
    *
    * @defaultValue false
    */
   resetOnClose?: boolean;
+
+  initialFocus?: number;
 };
 
 // TODO: migrate in theme
@@ -122,13 +144,19 @@ export const FloatingQueryList = <TItem,>(
   const {
     children,
     placement = 'bottom-start',
-    matchTargetWidth: fill,
+    matchTargetWidth,
     renderer,
     itemRenderer,
     createNewItemRenderer,
     onItemSelect,
     onItemRemove,
     closeOnSelect,
+    resetOnSelect,
+    initialFocus = 0,
+    query: queryProp,
+    defaultQuery,
+    onQueryChange,
+    resetOnClose,
     ...other
   } = props;
 
@@ -151,7 +179,7 @@ export const FloatingQueryList = <TItem,>(
               maxHeight: `${availableHeight}px`,
               display: 'flex',
             },
-            fill
+            matchTargetWidth
               ? { width: `${rects.reference.width}px` }
               : { width: 'fit-content', maxWidth: '400px' },
           );
@@ -186,6 +214,11 @@ export const FloatingQueryList = <TItem,>(
     },
     enabled: !canFilter,
   });
+  const [query, setQuery] = useControlledValue({
+    controlled: queryProp,
+    default: defaultQuery,
+    name: 'FloatingQueryList',
+  });
   const interactions = useInteractions([
     click,
     role,
@@ -199,6 +232,12 @@ export const FloatingQueryList = <TItem,>(
   const inputFilterRef = useRef<HTMLInputElement | null>(null);
 
   const handleSelect = (item: TItem): void => {
+    // If both `resetOnSelect` and `closeOnSelect` are true, the user may see a flash of the unfiltered list before it closes due to the closing animation duration. If `resetOnClose` is true, we can avoid this by not resetting the query until the list is actually closed.
+    const shouldResetQuery = resetOnSelect && !closeOnSelect && !resetOnClose;
+    if (shouldResetQuery) {
+      setQuery('');
+    }
+
     if (closeOnSelect) {
       setIsOpen(false);
     } else {
@@ -209,16 +248,19 @@ export const FloatingQueryList = <TItem,>(
     setSelectedIndex(selectedIndex);
   };
 
+  const handleRemove = (item: TItem, index: number): void => {
+    onItemRemove?.(item, index);
+    inputFilterRef.current?.focus();
+  };
+
   const rendererWrapper: IQueryListRenderer<TItem> = (listProps) =>
     renderer({
       ...listProps,
-      handleQueryChange: (event) => {
-        listProps.handleQueryChange(event);
-        setActiveIndex(0);
-      },
-      inputFilterRef: inputFilterRef,
-      inputFilterAttributes: {
-        onKeyDown: (event) => {
+      handleQueryChange: listProps.handleQueryChange,
+      inputFilterRef,
+      inputFilterAttributes: (userProps) => ({
+        ...userProps,
+        onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>): void => {
           if (event.key === 'Enter' && activeIndex != null) {
             const selectedItem = listProps.filteredItems[activeIndex];
             const selectedOrCreatedItem =
@@ -230,8 +272,9 @@ export const FloatingQueryList = <TItem,>(
               listProps.handleItemSelect(selectedOrCreatedItem, event);
             }
           }
+          userProps?.onKeyDown?.(event);
         },
-      },
+      }),
     });
 
   const itemRendererWrapper: IItemRenderer<TItem> = (item, itemProps) => {
@@ -250,12 +293,14 @@ export const FloatingQueryList = <TItem,>(
         elementsRef.current[itemProps.index] = node;
         labelsRef.current[itemProps.index] = node?.textContent ?? null;
       },
-      interactions.getItemProps({
-        role: 'option',
-        tabIndex: active ? 0 : -1,
-        'aria-selected': active,
-        onClick: itemProps.handleClick,
-      }),
+      (userProps) =>
+        interactions.getItemProps({
+          ...userProps,
+          role: 'option',
+          tabIndex: active ? 0 : -1,
+          'aria-selected': active,
+          onClick: itemProps.handleClick,
+        }),
     );
   };
 
@@ -274,49 +319,63 @@ export const FloatingQueryList = <TItem,>(
         elementsRef.current[itemProps.index] = node;
         labelsRef.current[itemProps.index] = null;
       },
-      interactions.getItemProps({
-        role: 'option',
-        tabIndex: active ? 0 : -1,
-        'aria-selected': active,
-        onClick: itemProps.handleClick,
-      }),
+      (userProps) =>
+        interactions.getItemProps({
+          ...userProps,
+          role: 'option',
+          tabIndex: active ? 0 : -1,
+          'aria-selected': active,
+          onClick: itemProps.handleClick,
+        }),
     );
   };
 
-  const onQueryChangeWrapper = (query: string): void => {
-    queryRef.current = query;
-    other.onQueryChange?.(query);
+  const handleQueryChange = (
+    newQuery: string,
+    event?: React.ChangeEvent<HTMLInputElement>,
+  ): void => {
+    if (query === newQuery) {
+      return;
+    }
+
+    setQuery(newQuery);
+    onQueryChange?.(newQuery, event);
+    setActiveIndex(0);
   };
 
   // Restore the query when the list is re-mounted.
-  const queryRef = useRef<string>();
-  const defaultQueryRef = useRef<string | undefined>(other.defaultQuery);
   useEffect(() => {
     if (!transitionStatus.isMounted) {
-      defaultQueryRef.current = other.resetOnClose ? '' : queryRef.current;
-      if (other.resetOnClose) {
+      if (resetOnClose) {
+        setQuery('');
         setSelectedIndex(0);
       }
     }
-  }, [transitionStatus.isMounted, other.resetOnClose, selectedIndex]);
+  }, [transitionStatus.isMounted, resetOnClose, selectedIndex, setQuery]);
 
   return (
     <>
       {children({
         isOpen,
         buttonRef: floating.refs.setReference,
-        buttonAttributes: {
-          tabIndex: 0,
-          'aria-autocomplete': 'none',
-          ...interactions.getReferenceProps(),
-        },
-        onItemRemove: (item, event) => onItemRemove?.(item, event),
+        buttonAttributes: (userProps?: React.HTMLProps<Element>) =>
+          interactions.getReferenceProps({
+            ...userProps,
+            tabIndex: 0,
+            'aria-autocomplete': 'none',
+          }),
+        onItemRemove: handleRemove,
+        handleQueryChange: (event) =>
+          handleQueryChange(event.target.value, event),
+        query: query ?? '',
       })}
+
       {transitionStatus.isMounted && (
         <Portal>
           <FloatingFocusManager
             context={floating.context}
             visuallyHiddenDismiss
+            initialFocus={initialFocus}
           >
             <div
               {...stylex.props(styles.host)}
@@ -334,8 +393,8 @@ export const FloatingQueryList = <TItem,>(
                 <FloatingList elementsRef={elementsRef} labelsRef={labelsRef}>
                   <QueryList
                     {...other}
-                    defaultQuery={defaultQueryRef.current}
-                    onQueryChange={onQueryChangeWrapper}
+                    query={query ?? ''}
+                    onQueryChange={handleQueryChange}
                     onItemSelect={handleSelect}
                     renderer={rendererWrapper}
                     itemRenderer={itemRendererWrapper}
