@@ -3,6 +3,7 @@ import {
   areMoviesEqual,
   createMovie,
   filterMovie,
+  isMovieDisabled,
   renderCreateMovieListItem,
   renderMovieListItem,
   TOP_100_MOVIES,
@@ -20,7 +21,7 @@ export type ISuggestExampleProps = IOmit<
 export const SuggestExample = (
   props: ISuggestExampleProps,
 ): React.ReactNode => {
-  const { canCreate, ...rest } = props;
+  const { canCreate, ...other } = props;
 
   return (
     <Suggest<IMovie>
@@ -28,6 +29,7 @@ export const SuggestExample = (
       itemRenderer={renderMovieListItem}
       itemsEqual={areMoviesEqual}
       itemPredicate={filterMovie}
+      itemDisabled={isMovieDisabled}
       createNewItemFromQuery={canCreate ? createMovie : undefined}
       createNewItemRenderer={canCreate ? renderCreateMovieListItem : undefined}
       getTextFieldProps={(buttonProps, value) => ({
@@ -36,7 +38,7 @@ export const SuggestExample = (
           : buttonProps.query || value?.title,
         placeholder: value?.title,
       })}
-      {...rest}
+      {...other}
     />
   );
 };

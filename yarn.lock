@@ -3429,19 +3429,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@headlessui/react@npm:^1":
-  version: 1.7.19
-  resolution: "@headlessui/react@npm:1.7.19"
-  dependencies:
-    "@tanstack/react-virtual": "npm:^3.0.0-beta.60"
-    client-only: "npm:^0.0.1"
-  peerDependencies:
-    react: ^16 || ^17 || ^18
-    react-dom: ^16 || ^17 || ^18
-  checksum: 10/682dddfb53e4dc1e457f47fa3ee3a35ad02255b552eec90e703a2b4cb6b07428da7c392844c24ac846e8061cd0fb840e1933b6b91b5416fde3d2648f075a6765
-  languageName: node
-  linkType: hard
-
 "@humanwhocodes/config-array@npm:^0.11.14":
   version: 0.11.14
   resolution: "@humanwhocodes/config-array@npm:0.11.14"
@@ -4273,7 +4260,6 @@ __metadata:
     "@fortawesome/free-regular-svg-icons": "npm:^6.5.2"
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.2"
     "@fortawesome/react-fontawesome": "npm:^0.2.2"
-    "@headlessui/react": "npm:^1"
     "@olivierpascal/helpers": "npm:^0.0.70"
     "@storybook/addon-actions": "npm:^8.1.10"
     "@storybook/addon-essentials": "npm:^8.1.10"
@@ -5254,25 +5240,6 @@ __metadata:
   peerDependencies:
     "@svgr/core": "*"
   checksum: 10/0418a9780753d3544912ee2dad5d2cf8d12e1ba74df8053651b3886aeda54d5f0f7d2dece0af5e0d838332c4f139a57f0dabaa3ca1afa4d1a765efce6a7656f2
-  languageName: node
-  linkType: hard
-
-"@tanstack/react-virtual@npm:^3.0.0-beta.60":
-  version: 3.5.0
-  resolution: "@tanstack/react-virtual@npm:3.5.0"
-  dependencies:
-    "@tanstack/virtual-core": "npm:3.5.0"
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 10/ecb1424b9961ada3c7516b8f05a1bb37fb1b75cb88035e06530a9365e4e565e701b5de9668c17f727bbcb3be1bbe6482f7bd37af9e0b144846e5a67fc9dfd57d
-  languageName: node
-  linkType: hard
-
-"@tanstack/virtual-core@npm:3.5.0":
-  version: 3.5.0
-  resolution: "@tanstack/virtual-core@npm:3.5.0"
-  checksum: 10/76a37734118c59f992bfdd540bb5900aa30d040c723909312c1e7071af1619da6ddedabba1834802fee7e0f6497c38d0fe8bc70ab4950d2d09342558b5c89bb2
   languageName: node
   linkType: hard
 
@@ -7110,13 +7077,6 @@ __metadata:
     slice-ansi: "npm:^5.0.0"
     string-width: "npm:^7.0.0"
   checksum: 10/d5149175fd25ca985731bdeec46a55ec237475cf74c1a5e103baea696aceb45e372ac4acbaabf1316f06bd62e348123060f8191ffadfeedebd2a70a2a7fb199d
-  languageName: node
-  linkType: hard
-
-"client-only@npm:^0.0.1":
-  version: 0.0.1
-  resolution: "client-only@npm:0.0.1"
-  checksum: 10/0c16bf660dadb90610553c1d8946a7fdfb81d624adea073b8440b7d795d5b5b08beb3c950c6a2cf16279365a3265158a236876d92bce16423c485c322d7dfaf8
   languageName: node
   linkType: hard
 

@@ -26,6 +26,7 @@ export * from './components/atoms/List';
 export * from './components/atoms/ListItem';
 export * from './components/atoms/Menu';
 export * from './components/atoms/MenuList';
+export * from './components/atoms/MultiSelect';
 export * from './components/atoms/Paper';
 export * from './components/atoms/Placeholder';
 export * from './components/atoms/Radio';

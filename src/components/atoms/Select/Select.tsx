@@ -28,15 +28,15 @@ export type ISelectProps<TItem> = IOmit<
   IFloatingFilteredListProps<TItem, HTMLDivElement>,
   'onItemSelect' | 'renderer' | 'listRenderer' | 'itemRenderer' | 'children'
 > & {
-  items: Array<TItem>;
-  itemRenderer: IFilteredItemRenderer<TItem, HTMLDivElement>;
   value?: TItem;
   defaultValue?: TItem;
   onChange: (value?: TItem) => void;
+  items: Array<TItem>;
+  itemRenderer: IFilteredItemRenderer<TItem, HTMLDivElement>;
   canFilter?: boolean;
   getFieldProps?: (
     buttonProps: IFloatingFilteredListTriggerButtonRenderProps<TItem>,
-    value?: TItem,
+    selectedItem?: TItem,
   ) => IFieldOwnProps;
 };
 

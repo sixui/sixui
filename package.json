@@ -110,6 +110,7 @@
     "storybook": "^8.1.10",
     "tsc-alias": "^1.8.10",
     "typescript": "^5.5.2",
+    "validate-branch-name": "^1.3.0",
     "vite": "^5",
     "vite-plugin-stylex": "^0.9.0",
     "vite-plugin-svgr": "^4.2.0"
@@ -118,14 +119,12 @@
   "readme": "README.md",
   "dependencies": {
     "@floating-ui/react": "^0.26.18",
-    "@headlessui/react": "^1",
     "@olivierpascal/helpers": "^0.0.70",
     "highlight-words": "^1.2.2",
     "lodash": "^4.17.21",
     "modern-normalize": "^2.0.0",
     "react-transition-group": "^4.4.5",
-    "usehooks-ts": "^3.1.0",
-    "validate-branch-name": "^1.3.0"
+    "usehooks-ts": "^3.1.0"
   },
   "peerDependencies": {
     "@stylexjs/stylex": "^0.5.1",

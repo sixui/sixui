@@ -9,20 +9,22 @@ import {
   TOP_100_MOVIES,
   type IMovie,
 } from '@/components/atoms/FilteredList/movies';
-import { Select, type ISelectProps } from './Select';
+import { MultiSelect, type IMultiSelectProps } from './MultiSelect';
 
-export type ISelectExampleProps = IOmit<
-  ISelectProps<IMovie>,
+export type IMultiSelectExampleProps = IOmit<
+  IMultiSelectProps<IMovie>,
   'items' | 'itemRenderer'
 > & {
   canCreate?: boolean;
 };
 
-export const SelectExample = (props: ISelectExampleProps): React.ReactNode => {
+export const MultiSelectExample: React.FC<IMultiSelectExampleProps> = (
+  props,
+) => {
   const { canCreate, ...other } = props;
 
   return (
-    <Select<IMovie>
+    <MultiSelect<IMovie>
       items={TOP_100_MOVIES}
       itemRenderer={renderMovieListItem}
       itemsEqual={areMoviesEqual}
@@ -30,8 +32,8 @@ export const SelectExample = (props: ISelectExampleProps): React.ReactNode => {
       itemDisabled={isMovieDisabled}
       createNewItemFromQuery={canCreate ? createMovie : undefined}
       createNewItemRenderer={canCreate ? renderCreateMovieListItem : undefined}
-      getFieldProps={(_buttonProps, selectedItem) => ({
-        children: selectedItem?.title,
+      getInputChipProps={(_buttonProps, selectedItem) => ({
+        label: selectedItem.title,
       })}
       {...other}
     />

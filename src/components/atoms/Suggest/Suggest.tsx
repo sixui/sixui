@@ -32,14 +32,14 @@ export type ISuggestProps<TItem> = IOmit<
   | 'children'
   | 'defaultQuery'
 > & {
-  items: Array<TItem>;
-  itemRenderer: IFilteredItemRenderer<TItem, HTMLDivElement>;
   value?: TItem;
   defaultValue?: TItem;
   onChange: (value?: TItem) => void;
+  items: Array<TItem>;
+  itemRenderer: IFilteredItemRenderer<TItem, HTMLDivElement>;
   getTextFieldProps?: (
     buttonProps: IFloatingFilteredListTriggerButtonRenderProps<TItem>,
-    value?: TItem,
+    selectedItem?: TItem,
   ) => ITextFieldProps;
 };
 
@@ -60,7 +60,7 @@ export const Suggest = <TItem,>(
   const [selectedItem, setSelectedItem] = useControlledValue({
     controlled: value,
     default: defaultValue,
-    name: 'FloatingFilteredListDemo',
+    name: 'Suggest',
   });
 
   const handleItemSelect = (newSelectedItem: TItem): number | undefined => {
@@ -136,7 +136,6 @@ export const Suggest = <TItem,>(
       renderer={(listProps) => <MenuList>{listProps.filteredList}</MenuList>}
       itemRenderer={itemRendererWrapper}
       noResults={<ListItem disabled>No results.</ListItem>}
-      matchTargetWidth
       resetOnSelect
       resetOnClose
       closeOnSelect
@@ -172,8 +171,6 @@ export const Suggest = <TItem,>(
               />
             </div>
           }
-          variant='outlined'
-          label='Label'
           populated={
             buttonProps.isOpen || !!selectedItem || !!buttonProps.query
           }
