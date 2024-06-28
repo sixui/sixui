@@ -1,27 +1,233 @@
 import { useEffect, useState } from 'react';
 import { isFunction } from 'lodash';
 
-import { useControlledValue } from '@/hooks/useControlledValue';
-import {
-  executeItemsEqual,
-  renderFilteredItems,
-  type IItemModifiers,
-  type IItemListRendererProps,
-  type IListItemsProps,
+import type {
+  IFilteredItemModifiers,
+  IFilteredCreateNewItemRenderer,
+  IFilteredListInternalRenderer,
+  IFilteredItemRenderer,
+  IFilteredItemPredicate,
+  IFilteredListPredicate,
+  IFilteredItemsEqualProp,
+  IFilteredListState,
 } from './FilteredListProps';
+import { useControlledValue } from '@/hooks/useControlledValue';
 import { usePrevious } from '@/hooks/usePrevious';
+import {
+  executeFilteredItemsEqual,
+  renderFilteredItems,
+} from './FilteredListUtils';
 
 // Inspiration:
 // - https://github.com/palantir/blueprint/blob/develop/packages/select/src/components/query-list/FilteredList.tsx
 
+/**
+ * An object describing how to render a `FilteredList`.
+ * A `FilteredList` `renderer` receives this object as its sole argument.
+ *
+ * @typeParam TItem - List item data type
+ */
+export type IFilteredListRendererProps<TItem> = IFilteredListState<TItem> & {
+  /**
+   * Change handler for query string. Attach this to an input element to allow
+   * `FilteredList` to control the query.
+   */
+  handleQueryChange: React.ChangeEventHandler<HTMLInputElement>;
+
+  /**
+   * Rendered elements returned from `filteredListRenderer` prop.
+   */
+  filteredList: React.ReactNode;
+
+  /**
+   * Whether the list is disabled.
+   *
+   * @defaultValue false
+   */
+  disabled?: boolean;
+
+  /**
+   * Ref object for the input element that receives the query string.
+   */
+  inputFilterRef?: React.Ref<HTMLInputElement>;
+
+  /**
+   * Get the attributes to apply to the input element that receives the query
+   * string.
+   *
+   * @param userProps - Additional props
+   */
+  getInputFilterAttributes: (
+    userProps?: React.HTMLProps<HTMLInputElement>,
+  ) => Record<string, unknown>;
+};
+
+/**
+ * Type alias for a function that renders the entire `FilteredList` component.
+ *
+ * @typeParam TItem - List item data type
+ */
 export type IFilteredListRenderer<TItem> = (
   listProps: IFilteredListRendererProps<TItem>,
 ) => React.ReactNode;
 
-export type IFilteredListProps<TItem> = IListItemsProps<TItem> & {
+/**
+ * Props for `FilteredList` component.
+ *
+ * @typeParam TItem - List item data type
+ */
+export type IFilteredListProps<TItem, TElement extends HTMLElement> = {
+  /**
+   * Unfiltered list of items to render in the list.
+   */
+  items: Array<TItem>;
+
+  /**
+   * Specifies how to test if two items are equal.
+   *
+   * By default, simple strict equality (`===`) is used to compare two items.
+   *
+   * If your items have a unique identifier field, simply provide the name of a
+   * property on the item that can be compared with strict equality to determine
+   * equivalence: `itemsEqual="id"` will check `a.id === b.id`.
+   *
+   * If more complex comparison logic is required, provide an equality
+   * comparator function that returns `true` if the two items are equal. The
+   * arguments to this function will never be `null` or `undefined`, as those
+   * values are handled before calling the function.
+   */
+  itemsEqual?: IFilteredItemsEqualProp<TItem>;
+
+  /**
+   * Determine if the given item is disabled.
+   *
+   * Provide a callback function, or simply provide the name of a boolean
+   * property on the item that exposes its disabled state.
+   */
+  itemDisabled?: keyof TItem | ((item: TItem, index: number) => boolean);
+
+  /**
+   * Customize querying of entire `items` array.
+   *
+   * Return new list of items. This method can reorder, add, or remove items at
+   * will. (Supports filter algorithms that operate on the entire set, rather
+   * than individual items.)
+   *
+   * If `itemPredicate` is also defined, this prop takes priority and the other
+   * will be ignored.
+   */
+  listPredicate?: IFilteredListPredicate<TItem>;
+
+  /**
+   * Customize querying of individual items.
+   *
+   * __Filtering a list of items.__ This function is invoked to filter the list
+   * of items as a query is typed. Return `true` to keep the item, or `false` to
+   * hide. This method is invoked once for each item, so it should be
+   * performant. For more complex queries, use `listPredicate` to operate once
+   * on the entire array. For the purposes of filtering the list, this prop is
+   * ignored if `listPredicate` is also defined.
+   */
+  itemPredicate?: IFilteredItemPredicate<TItem>;
+
+  /**
+   * Custom renderer for an item in the filtered list.
+   */
+  itemRenderer: IFilteredItemRenderer<TItem, TElement>;
+
+  /**
+   * Custom renderer for the contents of the list.
+   *
+   * The default implementation invokes `itemRenderer` for each item that passes
+   * the predicate. If the query is empty then `initialContent` is returned, and
+   * if there are no items that match the predicate then `noResults` is
+   * returned.
+   */
+  listRenderer?: IFilteredListInternalRenderer<TItem>;
+
+  /**
+   * React content to render when query is empty.
+   *
+   * If omitted, all items will be rendered (or result of `listPredicate` with
+   * empty query). If explicit `null`, nothing will be rendered when query is
+   * empty.
+   *
+   * This prop is ignored if a custom `listRenderer` is supplied.
+   */
+  initialContent?: React.JSX.Element | null | undefined;
+
+  /**
+   * React content to render when filtering items returns zero results. If
+   * omitted, nothing will be rendered in this case.
+   *
+   * This prop is ignored if a custom `listRenderer` is supplied.
+   */
+  noResults?: React.ReactNode;
+
+  /**
+   * Callback invoked when an item from the list is selected, typically by
+   * clicking or pressing `Enter` key.
+   */
+  onItemSelect: (
+    item: TItem,
+    event?: React.SyntheticEvent<HTMLElement>,
+  ) => void;
+
+  /**
+   * Callback invoked when the query string changes.
+   */
+  onQueryChange?: (
+    query: string,
+    event?: React.ChangeEvent<HTMLInputElement>,
+  ) => void;
+
+  /**
+   * If provided, allows new items to be created using the current query string.
+   *
+   * This is invoked when user interaction causes one or many items to be
+   * created, either by pressing the `Enter` key or by clicking on the "Create
+   * Item" option. It transforms a query string into one or many items type.
+   */
+  createNewItemFromQuery?: (query: string) => TItem;
+
+  /**
+   * Custom renderer to transform the current query string into a selectable
+   * "Create Item" option.
+   *
+   * If this function is provided, a "Create Item" option will be rendered at
+   * the end of the list of items. If this function is not provided, a "Create
+   * Item" option will not be displayed.
+   */
+  createNewItemRenderer?: IFilteredCreateNewItemRenderer<TElement>;
+
+  /**
+   * Determines the position of the `createNewItem` within the list: first or
+   * last. Only relevant when `createNewItemRenderer` is defined.
+   *
+   * @defaultvalue last
+   */
+  createNewItemPosition?: 'first' | 'last';
+
+  /**
+   * Query string passed to `listPredicate` or `itemPredicate` to filter items.
+   *
+   * If defined, this query will be used in controlled mode. If not defined,
+   * this component will manage its own uncontrolled query state.
+   */
+  query?: string;
+
+  /**
+   * Default query string when uncontrolled.
+   *
+   * Do not change this prop after initial render.
+   */
+  defaultQuery?: string;
+
   /**
    * Customize rendering of the component.
-   * Receives an object with props that should be applied to elements as necessary.
+   *
+   * Receives an object with props that should be applied to elements as
+   * necessary.
    */
   renderer: IFilteredListRenderer<TItem>;
 
@@ -33,62 +239,20 @@ export type IFilteredListProps<TItem> = IListItemsProps<TItem> & {
   disabled?: boolean;
 };
 
-/**
- * An object describing how to render a `FilteredList`.
- * A `FilteredList` `renderer` receives this object as its sole argument.
- */
-export type IFilteredListRendererProps<TItem> = Pick<
-  IFilteredListState<TItem>,
-  'filteredItems' | 'query'
-> & {
-  /**
-   * Change handler for query string. Attach this to an input element to allow
-   * `FilteredList` to control the query.
-   */
-  handleQueryChange: React.ChangeEventHandler<HTMLInputElement>;
-
-  /** Rendered elements returned from `itemListRenderer` prop. */
-  itemList: React.ReactNode;
-
-  disabled?: boolean;
-
-  inputFilterRef?: React.Ref<HTMLInputElement>;
-  getInputFilterAttributes: (
-    userProps?: React.HTMLProps<HTMLInputElement>,
-  ) => Record<string, unknown>;
-};
-
-/** Exported for testing, not part of public API */
-export type IFilteredListState<TItem> = {
-  /**
-   * The item returned from `createNewItemFromQuery(this.state.query)`, cached
-   * to avoid continuous reinstantions within `isCreateItemRendered`, where
-   * this element will be used to hide the "Create Item" option if its value
-   * matches the current `query`.
-   */
-  createNewItem: TItem | Array<TItem> | undefined;
-
-  /** The original `items` array filtered by `itemListPredicate` or `itemPredicate`. */
-  filteredItems: Array<TItem>;
-
-  /** The current query string. */
-  query: string;
-};
-
-const getFilteredItems = <TItem,>(
+const getFilteredItems = <TItem, TElement extends HTMLElement>(
   query: string | undefined,
   itemsProps: Pick<
-    IFilteredListProps<TItem>,
-    'items' | 'itemPredicate' | 'itemListPredicate'
+    IFilteredListProps<TItem, TElement>,
+    'items' | 'itemPredicate' | 'listPredicate'
   >,
 ): Array<TItem> => {
   if (!query) {
     return itemsProps.items;
   }
 
-  if (itemsProps.itemListPredicate) {
+  if (itemsProps.listPredicate) {
     // note that implementations can reorder the items here
-    return itemsProps.itemListPredicate(query, itemsProps.items);
+    return itemsProps.listPredicate(query, itemsProps.items);
   } else if (itemsProps.itemPredicate) {
     return itemsProps.items.filter((item, index) =>
       itemsProps.itemPredicate?.(query, item, index),
@@ -98,10 +262,10 @@ const getFilteredItems = <TItem,>(
   return itemsProps.items;
 };
 
-const isItemDisabled = <TItem,>(
+const isItemDisabled = <TItem, TElement extends HTMLElement>(
   item: TItem | null,
   index: number,
-  itemDisabled?: IListItemsProps<TItem>['itemDisabled'],
+  itemDisabled?: IFilteredListProps<TItem, TElement>['itemDisabled'],
 ): boolean => {
   if (itemDisabled == null || item == null) {
     return false;
@@ -111,8 +275,8 @@ const isItemDisabled = <TItem,>(
   return !!item[itemDisabled];
 };
 
-export const FilteredList = <TItem,>(
-  props: IFilteredListProps<TItem>,
+export const FilteredList = <TItem, TElement extends HTMLElement>(
+  props: IFilteredListProps<TItem, TElement>,
 ): React.ReactNode => {
   const {
     items,
@@ -131,7 +295,7 @@ export const FilteredList = <TItem,>(
     onQueryChange,
     onItemSelect,
     itemPredicate,
-    itemListPredicate,
+    listPredicate,
   } = props;
   const isCreateItemFirst = createNewItemPosition === 'first';
   const canCreateItems = !!createNewItemFromQuery && !!createNewItemRenderer;
@@ -144,7 +308,7 @@ export const FilteredList = <TItem,>(
     getFilteredItems(query, {
       items,
       itemPredicate,
-      itemListPredicate,
+      listPredicate,
     }),
   );
 
@@ -155,16 +319,17 @@ export const FilteredList = <TItem,>(
         getFilteredItems(query, {
           items,
           itemPredicate,
-          itemListPredicate,
+          listPredicate,
         }),
       );
     }
-  }, [previousQuery, query, items, itemPredicate, itemListPredicate]);
+  }, [previousQuery, query, items, itemPredicate, listPredicate]);
 
-  const renderItemList = (
-    listProps: IItemListRendererProps<TItem>,
+  const defaultListRenderer: IFilteredListInternalRenderer<TItem> = (
+    listProps,
   ): React.ReactNode => {
-    // Omit noResults if createNewItemFromQuery and createNewItemRenderer are both supplied, and query is not empty
+    // Omit noResults if createNewItemFromQuery and createNewItemRenderer are
+    // both supplied, and query is not empty.
     const createItemView = listProps.renderCreateItem();
     const maybeNoResults = createItemView != null ? null : noResults;
     const menuContent = renderFilteredItems(
@@ -176,17 +341,15 @@ export const FilteredList = <TItem,>(
       return undefined;
     }
 
-    const createFirst = isCreateItemFirst;
-
     return (
       <>
-        {createFirst && createItemView}
+        {isCreateItemFirst && createItemView}
         {menuContent}
-        {!createFirst && createItemView}
+        {!isCreateItemFirst && createItemView}
       </>
     );
   };
-  const itemListRenderer = props.itemListRenderer ?? renderItemList;
+  const itemListRenderer = props.listRenderer ?? defaultListRenderer;
 
   // Search only the filtered items, not the full items list, because we
   // only need to check items that match the current query.
@@ -199,7 +362,7 @@ export const FilteredList = <TItem,>(
         : [createNewItem];
 
       return newItems.some((newItem) =>
-        executeItemsEqual(itemsEqual, item, newItem),
+        executeFilteredItemsEqual(itemsEqual, item, newItem),
       );
     });
 
@@ -223,41 +386,38 @@ export const FilteredList = <TItem,>(
     onQueryChange?.(newQuery, event);
   };
 
-  const renderCreateItemMenuItem = (): React.ReactNode => {
+  const renderCreateItem = (): React.JSX.Element | null | undefined => {
     if (!query) {
       return undefined;
     }
 
     const createNewItem = createNewItemFromQuery?.(query);
-    if (createNewItem && isCreateItemRendered(createNewItem)) {
-      const trimmedQuery = query.trim();
-      const modifiers: IItemModifiers = {
-        active: false,
-        selected: false,
-        disabled: false,
-        matchesPredicate: false,
-      };
-
-      return createNewItemRenderer?.({
-        index: filteredItems.length,
-        modifiers,
-        query: trimmedQuery,
-        handleClick: (event) => onItemSelect(createNewItem, event),
-      });
-    }
-
-    return null;
-  };
-
-  const renderItem = (item: TItem, index: number): React.ReactNode => {
-    if (disabled) {
+    if (!createNewItem || !isCreateItemRendered(createNewItem)) {
       return null;
     }
 
-    const modifiers: IItemModifiers = {
+    const trimmedQuery = query.trim();
+    const modifiers: IFilteredItemModifiers = {
       active: false,
       selected: false,
-      disabled: isItemDisabled(item, index, itemDisabled),
+      disabled: false,
+      matchesPredicate: false,
+    };
+
+    return createNewItemRenderer?.({
+      index: filteredItems.length,
+      modifiers,
+      query: trimmedQuery,
+      handleClick: (event) => onItemSelect(createNewItem, event),
+      getButtonAttributes: (userProps) => ({ ...userProps }),
+    });
+  };
+
+  const renderItem = (item: TItem, index: number): React.ReactNode => {
+    const modifiers: IFilteredItemModifiers = {
+      active: false,
+      selected: false,
+      disabled: disabled || isItemDisabled(item, index, itemDisabled),
       matchesPredicate: filteredItems.indexOf(item) >= 0,
     };
 
@@ -266,17 +426,18 @@ export const FilteredList = <TItem,>(
       modifiers,
       query,
       handleClick: (event) => onItemSelect(item, event),
+      getButtonAttributes: (userProps) => ({ ...userProps }),
     });
   };
 
   return renderer({
-    filteredItems: filteredItems,
+    filteredItems,
     query,
-    itemList: itemListRenderer({
-      filteredItems: filteredItems,
+    filteredList: itemListRenderer({
+      filteredItems,
       query,
       items,
-      renderCreateItem: renderCreateItemMenuItem,
+      renderCreateItem,
       renderItem,
     }),
     handleQueryChange: (event) => handleQueryChange(event.target.value),

@@ -22,7 +22,10 @@ import { SelectOption, type ISelectOptionProps } from './SelectOption';
 
 type IOption = React.ReactElement<ISelectOptionProps>;
 
-export type ISelectBaseProps = IOmit<IFieldProps, 'children' | 'end'> & {
+export type ISelectBaseProps = IOmit<
+  IFieldProps,
+  'children' | 'end' | 'onChange'
+> & {
   visualState?: IVisualState;
   children?: Array<React.ReactNode> | null;
   noOptionsText?: string;
@@ -184,7 +187,7 @@ const SelectBase = forwardRef<HTMLDivElement, ISelectBaseProps>(
     const { root } = useColorScheme();
 
     const handleChange = (newValue: (typeof props)['value']): void => {
-      setValue(newValue);
+      setValue(newValue ?? '');
       onChange?.(newValue as string & Array<string>);
     };
 

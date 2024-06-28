@@ -177,7 +177,7 @@ const ComboboxBase = forwardRef<HTMLInputElement, IComboboxBaseProps>(
     const [query, setQuery] = useState<string>('');
 
     const handleChange = (newValue: (typeof props)['value']): void => {
-      setValue(newValue);
+      setValue(newValue ?? '');
 
       // TODO: check array equality?
       if (value !== newValue) {

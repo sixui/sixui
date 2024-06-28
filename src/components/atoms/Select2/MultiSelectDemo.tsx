@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
-import type { IItemRenderer } from '@/components/utils/FilteredList';
+import type { IFilteredItemRenderer } from '@/components/utils/FilteredList';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
 import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
@@ -124,7 +124,7 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
     return undefined;
   };
 
-  const itemRendererWrapper: IItemRenderer<IMovie> = (
+  const itemRendererWrapper: IFilteredItemRenderer<IMovie> = (
     item,
     itemProps,
     buttonRef,
@@ -182,7 +182,7 @@ export const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
             ) : undefined
           }
         >
-          {listProps.itemList}
+          {listProps.filteredList}
         </MenuList>
       )}
       itemRenderer={itemRendererWrapper}

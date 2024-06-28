@@ -5,7 +5,7 @@ import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { Field, type IFieldProps } from './Field';
+import { Field, type IFieldOwnProps } from './Field';
 
 // https://github.com/material-components/material-web/blob/main/field/demo/stories.ts
 
@@ -23,21 +23,21 @@ const styles = stylex.create({
 
 const defaultArgs = {
   sx: styles.host,
-} satisfies Partial<IFieldProps>;
+} satisfies Partial<IFieldOwnProps>;
 
-const states: Array<IComponentPresentation<IFieldProps>> = [
+const states: Array<IComponentPresentation<IFieldOwnProps>> = [
   { legend: 'Enabled' },
   { legend: 'Hovered', props: { visualState: { hovered: true } } },
   { legend: 'Focused', props: { visualState: { focused: true } } },
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const rows: Array<IComponentPresentation<IFieldProps>> = [
+const rows: Array<IComponentPresentation<IFieldOwnProps>> = [
   { legend: 'Empty' },
   { legend: 'Placeholder', props: { placeholder: 'Placeholder' } },
   {
     legend: 'Value',
-    props: { value: 'Value' },
+    props: { children: 'Value' },
   },
 ];
 

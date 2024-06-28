@@ -4,10 +4,10 @@
 import highlightWords from 'highlight-words';
 
 import type {
-  ICreateNewItemRenderer,
-  IItemPredicate,
-  IItemRenderer,
-  IItemRendererProps,
+  IFilteredCreateNewItemRenderer,
+  IFilteredItemPredicate,
+  IFilteredItemRenderer,
+  IFilteredItemRendererProps,
 } from './FilteredListProps';
 import { ListItem, type IListItemProps } from '@/components/atoms/ListItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -125,14 +125,21 @@ export const TOP_100_MOVIES: Array<IMovie> = [
   { title: 'Rashomon', year: 1950 },
   { title: 'Indiana Jones and the Last Crusade', year: 1989 },
   { title: 'The Apartment', year: 1960 },
+  { title: 'Metropolis', year: 1927 },
+  { title: 'All About Eve', year: 1950 },
+  { title: 'Yojimbo', year: 1961 },
+  { title: 'Batman Begins', year: 2005 },
+  { title: 'Unforgiven', year: 1992 },
 ].map((f, index) => ({ ...f, rank: index + 1 }));
 
 /**
- * Takes the same arguments as `IItemRenderer<IMovie>`, but returns the common menu item props for that item instead of the rendered element itself. This is useful for implementing custom item renderers.
+ * Takes the same arguments as `IItemRenderer<IMovie>`, but returns the common
+ * menu item props for that item instead of the rendered element itself. This is
+ * useful for implementing custom item renderers.
  */
-export const getMovieItemProps = (
+export const getMovieItemProps = <TElement extends HTMLDivElement>(
   movie: IMovie,
-  { modifiers, query }: IItemRendererProps,
+  { modifiers, query }: IFilteredItemRendererProps<TElement>,
 ): IListItemProps & React.Attributes => {
   const text = movie.title;
 
@@ -158,12 +165,10 @@ export const getMovieItemProps = (
 /**
  * Simple movie item renderer for "list" containers.
  */
-export const renderMovieListItem: IItemRenderer<IMovie> = (
-  movie,
-  props,
-  buttonRef,
-  buttonAttributes,
-) => {
+export const renderMovieListItem: IFilteredItemRenderer<
+  IMovie,
+  HTMLDivElement
+> = (movie, props) => {
   if (!props.modifiers.matchesPredicate) {
     return null;
   }
@@ -174,8 +179,11 @@ export const renderMovieListItem: IItemRenderer<IMovie> = (
       {...getMovieItemProps(movie, props)}
       visualState={{ hovered: props.modifiers.active }}
       selected={props.modifiers.selected}
-      {...buttonAttributes?.()}
-      ref={buttonRef}
+      disabled={props.modifiers.disabled}
+      {...props.getButtonAttributes({
+        onClick: props.handleClick,
+      })}
+      ref={props.buttonRef}
     />
   );
 };
@@ -183,25 +191,25 @@ export const renderMovieListItem: IItemRenderer<IMovie> = (
 /**
  * Renders a list item to create a single movie from a given query string.
  */
-export const renderCreateMovieListItem: ICreateNewItemRenderer = (
-  { modifiers, query },
-  buttonRef,
-  buttonAttributes,
-): React.ReactNode => (
+export const renderCreateMovieListItem: IFilteredCreateNewItemRenderer<
+  HTMLDivElement
+> = (props): React.JSX.Element => (
   <ListItem
-    visualState={{ hovered: modifiers.active }}
+    visualState={{ hovered: props.modifiers.active }}
     leadingIcon={<FontAwesomeIcon icon={faPlus} />}
-    {...buttonAttributes?.()}
-    ref={buttonRef}
+    {...props.getButtonAttributes({
+      onClick: props.handleClick,
+    })}
+    ref={props.buttonRef}
   >
-    {`Create "${query}"`}
+    {`Create "${props.query}"`}
   </ListItem>
 );
 
 /**
  * Filters movie list with a case-insensitive search.
  */
-export const filterMovie: IItemPredicate<IMovie> = (
+export const filterMovie: IFilteredItemPredicate<IMovie> = (
   query,
   movie,
   _index,

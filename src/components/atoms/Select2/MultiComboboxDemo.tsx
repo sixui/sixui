@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
-import type { IItemRenderer } from '@/components/utils/FilteredList';
+import type { IFilteredItemRenderer } from '@/components/utils/FilteredList';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
 import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
@@ -143,7 +143,7 @@ export const MultiComboboxDemo: React.FC<IMultiComboboxDemoProps> = (props) => {
     return undefined;
   };
 
-  const itemRendererWrapper: IItemRenderer<IMovie> = (
+  const itemRendererWrapper: IFilteredItemRenderer<IMovie> = (
     item,
     itemProps,
     buttonRef,
@@ -243,7 +243,7 @@ export const MultiComboboxDemo: React.FC<IMultiComboboxDemoProps> = (props) => {
       // defaultSelectedItem={TOP_100_MOVIES[3]}
       // selectedItem={TOP_100_MOVIES[3]}
       // defaultQuery='w'
-      renderer={(listProps) => <MenuList>{listProps.itemList}</MenuList>}
+      renderer={(listProps) => <MenuList>{listProps.filteredList}</MenuList>}
       itemRenderer={itemRendererWrapper}
       itemsEqual={areMoviesEqual}
       itemPredicate={canFilter ? filterMovie : undefined}

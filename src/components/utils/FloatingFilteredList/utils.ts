@@ -1,15 +1,15 @@
 import {
-  executeItemsEqual,
-  type IItemsEqualProp,
+  executeFilteredItemsEqual,
+  type IFilteredItemsEqualProp,
 } from '@/components/utils/FilteredList';
 
 export const arrayContainsItem = <TItem>(
-  itemsEqualProp: IItemsEqualProp<TItem> | undefined,
+  itemsEqualProp: IFilteredItemsEqualProp<TItem> | undefined,
   items: Array<TItem>,
   itemToFind: TItem,
 ): boolean =>
   items.some((item: TItem) =>
-    executeItemsEqual(itemsEqualProp, item, itemToFind),
+    executeFilteredItemsEqual(itemsEqualProp, item, itemToFind),
   );
 
 export const addItemToArray = <TItem>(
@@ -23,7 +23,7 @@ export const deleteItemFromArray = <TItem>(
 ): Array<TItem> => items.filter((item) => item !== itemToDelete);
 
 export const maybeAddCreatedItemToArrays = <TItem>(
-  itemsEqualProp: IItemsEqualProp<TItem> | undefined,
+  itemsEqualProp: IFilteredItemsEqualProp<TItem> | undefined,
   items: Array<TItem>,
   createdItems: Array<TItem>,
   item: TItem,
@@ -40,7 +40,7 @@ export const maybeAddCreatedItemToArrays = <TItem>(
 };
 
 export const maybeDeleteCreatedItemFromArrays = <TItem>(
-  itemsEqualProp: IItemsEqualProp<TItem> | undefined,
+  itemsEqualProp: IFilteredItemsEqualProp<TItem> | undefined,
   items: Array<TItem>,
   createdItems: Array<TItem>,
   item: TItem | undefined,

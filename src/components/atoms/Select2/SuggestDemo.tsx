@@ -24,15 +24,18 @@ import {
   maybeDeleteCreatedItemFromArrays,
 } from '@/components/utils/FloatingFilteredList/utils';
 import {
-  executeItemsEqual,
-  type IItemRenderer,
+  executeFilteredItemsEqual,
+  type IFilteredItemRenderer,
 } from '@/components/utils/FilteredList';
 import {
   FloatingFilteredList,
   type IFloatingFilteredListProps,
 } from '@/components/utils/FloatingFilteredList';
 
-export type ISuggestDemoProps = IFloatingFilteredListProps<IMovie> & {
+export type ISuggestDemoProps = IFloatingFilteredListProps<
+  IMovie,
+  HTMLDivElement
+> & {
   value?: IMovie;
   defaultValue?: IMovie;
   onChange: (value?: IMovie) => void;
@@ -82,13 +85,17 @@ export const SuggestDemo = (props: ISuggestDemoProps): React.ReactNode => {
     return selectedIndex;
   };
 
-  const itemRendererWrapper: IItemRenderer<IMovie> = (
+  const itemRendererWrapper: IFilteredItemRenderer<IMovie, HTMLDivElement> = (
     item,
     itemProps,
     buttonRef,
     buttonAttributes,
-  ): React.ReactNode => {
-    const selected = executeItemsEqual(areMoviesEqual, item, selectedItem);
+  ): React.JSX.Element | null => {
+    const selected = executeFilteredItemsEqual(
+      areMoviesEqual,
+      item,
+      selectedItem,
+    );
 
     return renderMovieListItem(
       item,
@@ -120,7 +127,7 @@ export const SuggestDemo = (props: ISuggestDemoProps): React.ReactNode => {
   };
 
   return (
-    <FloatingFilteredList<IMovie>
+    <FloatingFilteredList<IMovie, HTMLDivElement>
       {...other}
       // disabled
       onItemSelect={handleItemSelect}
@@ -129,7 +136,7 @@ export const SuggestDemo = (props: ISuggestDemoProps): React.ReactNode => {
       // defaultSelectedItem={TOP_100_MOVIES[3]}
       // selectedItem={TOP_100_MOVIES[3]}
       // defaultQuery='w'
-      renderer={(listProps) => <MenuList>{listProps.itemList}</MenuList>}
+      renderer={(listProps) => <MenuList>{listProps.filteredList}</MenuList>}
       itemRenderer={itemRendererWrapper}
       itemsEqual={areMoviesEqual}
       itemPredicate={canFilter ? filterMovie : undefined}

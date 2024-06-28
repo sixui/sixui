@@ -25,20 +25,22 @@ import {
   maybeDeleteCreatedItemFromArrays,
 } from './utils';
 import {
-  executeItemsEqual,
-  type IItemRenderer,
+  executeFilteredItemsEqual,
+  type IFilteredItemRenderer,
 } from '@/components/utils/FilteredList';
 import {
   FloatingFilteredList,
   type IFloatingFilteredListProps,
 } from './FloatingFilteredList';
 
-export type IFloatingFilteredListExampleProps =
-  IFloatingFilteredListProps<IMovie> & {
-    value?: IMovie;
-    defaultValue?: IMovie;
-    onChange: (value?: IMovie) => void;
-  };
+export type IFloatingFilteredListExampleProps = IFloatingFilteredListProps<
+  IMovie,
+  HTMLDivElement
+> & {
+  value?: IMovie;
+  defaultValue?: IMovie;
+  onChange: (value?: IMovie) => void;
+};
 
 export const FloatingFilteredListExample = (
   props: IFloatingFilteredListExampleProps,
@@ -86,13 +88,17 @@ export const FloatingFilteredListExample = (
     return selectedIndex;
   };
 
-  const itemRendererWrapper: IItemRenderer<IMovie> = (
+  const itemRendererWrapper: IFilteredItemRenderer<IMovie, HTMLDivElement> = (
     item,
     itemProps,
     buttonRef,
     buttonAttributes,
-  ): React.ReactNode => {
-    const selected = executeItemsEqual(areMoviesEqual, item, selectedItem);
+  ): React.JSX.Element | null => {
+    const selected = executeFilteredItemsEqual(
+      areMoviesEqual,
+      item,
+      selectedItem,
+    );
 
     return renderMovieListItem(
       item,
@@ -124,7 +130,7 @@ export const FloatingFilteredListExample = (
   };
 
   return (
-    <FloatingFilteredList<IMovie>
+    <FloatingFilteredList<IMovie, HTMLDivElement>
       {...other}
       // disabled
       onItemSelect={handleItemSelect}
@@ -145,7 +151,7 @@ export const FloatingFilteredListExample = (
             ) : undefined
           }
         >
-          {listProps.itemList}
+          {listProps.filteredList}
         </MenuList>
       )}
       itemRenderer={itemRendererWrapper}

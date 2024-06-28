@@ -20,9 +20,9 @@ import {
 
 import type { IOmit } from '@/helpers/types';
 import {
-  ICreateNewItemRenderer,
-  IItemRenderer,
   FilteredList,
+  type IFilteredCreateNewItemRenderer,
+  type IFilteredItemRenderer,
   type IFilteredListProps,
   type IFilteredListRenderer,
 } from '@/components/utils/FilteredList';
@@ -52,10 +52,10 @@ export type IFloatingFilteredListTriggerButtonRenderProps<TItem> = {
   ) => Record<string, unknown>;
 };
 
-export type IFloatingFilteredListProps<TItem> = IOmit<
-  IFilteredListProps<TItem>,
-  'onItemSelect'
-> & {
+export type IFloatingFilteredListProps<
+  TItem,
+  TElement extends HTMLElement,
+> = IOmit<IFilteredListProps<TItem, TElement>, 'onItemSelect'> & {
   /**
    * Element which triggers the select popover. In most cases, you should display
    * the name or label of the curently selected item here.
@@ -147,8 +147,8 @@ const styles = stylex.create({
   }),
 });
 
-export const FloatingFilteredList = <TItem,>(
-  props: IFloatingFilteredListProps<TItem>,
+export const FloatingFilteredList = <TItem, TElement extends HTMLElement>(
+  props: IFloatingFilteredListProps<TItem, TElement>,
 ): React.ReactNode => {
   const {
     children,
@@ -352,7 +352,10 @@ export const FloatingFilteredList = <TItem,>(
       getInputFilterAttributes,
     });
 
-  const itemRendererWrapper: IItemRenderer<TItem> = (item, itemProps) => {
+  const itemRendererWrapper: IFilteredItemRenderer<TItem, TElement> = (
+    item,
+    itemProps,
+  ) => {
     const active = activeIndex === itemProps.index;
 
     return itemRenderer(
@@ -379,7 +382,9 @@ export const FloatingFilteredList = <TItem,>(
     );
   };
 
-  const createNewItemRendererWrapper: ICreateNewItemRenderer = (itemProps) => {
+  const createNewItemRendererWrapper: IFilteredCreateNewItemRenderer<
+    TElement
+  > = (itemProps) => {
     const active = activeIndex === itemProps.index;
 
     return createNewItemRenderer?.(
