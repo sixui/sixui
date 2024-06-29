@@ -74,6 +74,7 @@ export const Select = <TItem,>(props: ISelectProps<TItem>): React.ReactNode => {
       itemRenderer={singleFilterableList.itemRenderer}
       noResults={<ListItem disabled>No results.</ListItem>}
       closeOnSelect
+      resetOnClose
       {...other}
     >
       {(renderProps) => (

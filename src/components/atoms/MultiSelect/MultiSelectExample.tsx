@@ -30,7 +30,7 @@ export const MultiSelectExample: React.FC<IMultiSelectExampleProps> = (
       itemsEqual={areMoviesEqual}
       itemPredicate={filterMovie}
       itemDisabled={isMovieDisabled}
-      createNewItemFromQuery={canCreate ? createMovie : undefined}
+      createNewItemFromQuery={createMovie}
       createNewItemRenderer={canCreate ? renderCreateMovieListItem : undefined}
       getValueFieldProps={(_buttonProps, selectedItem) => ({
         label: selectedItem.title,

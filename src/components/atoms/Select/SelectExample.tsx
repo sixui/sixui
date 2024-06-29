@@ -28,7 +28,7 @@ export const SelectExample = (props: ISelectExampleProps): React.ReactNode => {
       itemsEqual={areMoviesEqual}
       itemPredicate={filterMovie}
       itemDisabled={isMovieDisabled}
-      createNewItemFromQuery={canCreate ? createMovie : undefined}
+      createNewItemFromQuery={createMovie}
       createNewItemRenderer={canCreate ? renderCreateMovieListItem : undefined}
       getValueFieldProps={(_buttonProps, selectedItem) => ({
         children: selectedItem?.title,
