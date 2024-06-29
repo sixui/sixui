@@ -8,7 +8,7 @@ import {
   renderMovieListItem,
   TOP_100_MOVIES,
   type IMovie,
-} from '@/components/atoms/FilteredList/movies';
+} from '@/components/atoms/FilterableList/movies';
 import { Select, type ISelectProps } from './Select';
 
 export type ISelectExampleProps = IOmit<
@@ -30,7 +30,7 @@ export const SelectExample = (props: ISelectExampleProps): React.ReactNode => {
       itemDisabled={isMovieDisabled}
       createNewItemFromQuery={canCreate ? createMovie : undefined}
       createNewItemRenderer={canCreate ? renderCreateMovieListItem : undefined}
-      getFieldProps={(_buttonProps, selectedItem) => ({
+      getValueFieldProps={(_buttonProps, selectedItem) => ({
         children: selectedItem?.title,
       })}
       {...other}

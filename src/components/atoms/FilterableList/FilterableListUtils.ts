@@ -2,19 +2,19 @@ import { isFunction } from 'lodash';
 
 import type { IAny } from '@/helpers/types';
 import type {
-  IFilteredItemsEqualProp,
-  IFilteredListInternalRendererProps,
-} from './FilteredListProps';
+  IFilterableItemsEqualProp,
+  IFilterableListInternalRendererProps,
+} from './FilterableListProps';
 
 /**
- * Utility function for executing the {@link IFilteredListProps#itemsEqual} prop
+ * Utility function for executing the {@link IFilterableListProps#itemsEqual} prop
  * to test for equality between two items.
  *
  * @returns `true` if the two items are equivalent according to
  * `itemsEqualProp`.
  */
-export const executeFilteredItemsEqual = <TItem>(
-  itemsEqualProp: IFilteredItemsEqualProp<TItem> | undefined,
+export const executeFilterableItemsEqual = <TItem>(
+  itemsEqualProp: IFilterableItemsEqualProp<TItem> | undefined,
   itemA: TItem | null | undefined,
   itemB: TItem | null | undefined,
 ): boolean => {
@@ -38,7 +38,7 @@ export const executeFilteredItemsEqual = <TItem>(
 };
 
 /**
- * `IFilteredListInternalRenderer` helper method for rendering each item in
+ * `IFilterableListInternalRenderer` helper method for rendering each item in
  * `filteredItems`, with optional support for `noResults` (when filtered items
  * is empty) and `initialContent` (when query is empty).
  *
@@ -50,8 +50,8 @@ export const executeFilteredItemsEqual = <TItem>(
  * empty query). If explicit `null`, nothing will be rendered when query is
  * empty.
  */
-export const renderFilteredItems = (
-  props: IFilteredListInternalRendererProps<IAny>,
+export const renderFilterableItems = (
+  props: IFilterableListInternalRendererProps<IAny>,
   noResults?: React.ReactNode,
   initialContent?: React.ReactNode | null,
 ): React.ReactNode => {
@@ -67,12 +67,12 @@ export const renderFilteredItems = (
 };
 
 export const arrayContainsItem = <TItem>(
-  itemsEqualProp: IFilteredItemsEqualProp<TItem> | undefined,
+  itemsEqualProp: IFilterableItemsEqualProp<TItem> | undefined,
   items: Array<TItem>,
   itemToFind: TItem,
 ): boolean =>
   items.some((item: TItem) =>
-    executeFilteredItemsEqual(itemsEqualProp, item, itemToFind),
+    executeFilterableItemsEqual(itemsEqualProp, item, itemToFind),
   );
 
 export const addItemToArray = <TItem>(
@@ -86,7 +86,7 @@ export const deleteItemFromArray = <TItem>(
 ): Array<TItem> => items.filter((item) => item !== itemToDelete);
 
 export const maybeAddCreatedItemToArrays = <TItem>(
-  itemsEqualProp: IFilteredItemsEqualProp<TItem> | undefined,
+  itemsEqualProp: IFilterableItemsEqualProp<TItem> | undefined,
   items: Array<TItem>,
   createdItems: Array<TItem>,
   item: TItem,
@@ -103,7 +103,7 @@ export const maybeAddCreatedItemToArrays = <TItem>(
 };
 
 export const maybeDeleteCreatedItemFromArrays = <TItem>(
-  itemsEqualProp: IFilteredItemsEqualProp<TItem> | undefined,
+  itemsEqualProp: IFilterableItemsEqualProp<TItem> | undefined,
   items: Array<TItem>,
   createdItems: Array<TItem>,
   item: TItem | undefined,

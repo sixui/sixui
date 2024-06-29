@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ListItem } from '@/components/atoms/ListItem';
-import { TOP_100_MOVIES } from '@/components/atoms/FilteredList/movies';
+import { TOP_100_MOVIES } from '@/components/atoms/FilterableList/movies';
 import { SelectExample, type ISelectExampleProps } from './SelectExample';
 
 const meta = {
@@ -13,7 +13,6 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   onChange: (...args) => void sbHandleEvent('onChange', args),
-  onItemsRemove: (...args) => void sbHandleEvent('onItemsRemove', args),
   matchTargetWidth: true,
 } satisfies Partial<ISelectExampleProps>;
 

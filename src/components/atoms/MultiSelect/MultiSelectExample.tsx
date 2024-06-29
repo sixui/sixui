@@ -8,7 +8,7 @@ import {
   renderMovieListItem,
   TOP_100_MOVIES,
   type IMovie,
-} from '@/components/atoms/FilteredList/movies';
+} from '@/components/atoms/FilterableList/movies';
 import { MultiSelect, type IMultiSelectProps } from './MultiSelect';
 
 export type IMultiSelectExampleProps = IOmit<
@@ -32,7 +32,7 @@ export const MultiSelectExample: React.FC<IMultiSelectExampleProps> = (
       itemDisabled={isMovieDisabled}
       createNewItemFromQuery={canCreate ? createMovie : undefined}
       createNewItemRenderer={canCreate ? renderCreateMovieListItem : undefined}
-      getInputChipProps={(_buttonProps, selectedItem) => ({
+      getValueFieldProps={(_buttonProps, selectedItem) => ({
         label: selectedItem.title,
       })}
       {...other}

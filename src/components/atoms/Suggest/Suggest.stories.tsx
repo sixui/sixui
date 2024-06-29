@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ListItem } from '@/components/atoms/ListItem';
-import { TOP_100_MOVIES } from '@/components/atoms/FilteredList/movies';
+import { TOP_100_MOVIES } from '@/components/atoms/FilterableList/movies';
 import { SuggestExample, type ISuggestExampleProps } from './SuggestExample';
 
 const meta = {

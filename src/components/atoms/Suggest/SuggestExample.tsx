@@ -8,7 +8,7 @@ import {
   renderMovieListItem,
   TOP_100_MOVIES,
   type IMovie,
-} from '@/components/atoms/FilteredList/movies';
+} from '@/components/atoms/FilterableList/movies';
 import { Suggest, type ISuggestProps } from './Suggest';
 
 export type ISuggestExampleProps = IOmit<
@@ -32,10 +32,10 @@ export const SuggestExample = (
       itemDisabled={isMovieDisabled}
       createNewItemFromQuery={canCreate ? createMovie : undefined}
       createNewItemRenderer={canCreate ? renderCreateMovieListItem : undefined}
-      getTextFieldProps={(buttonProps, value) => ({
+      getValueFieldProps={(buttonProps, value) => ({
         value: buttonProps.isOpen
           ? buttonProps.query
-          : buttonProps.query || value?.title,
+          : buttonProps.query || (value?.title ?? ''),
         placeholder: value?.title,
       })}
       {...other}

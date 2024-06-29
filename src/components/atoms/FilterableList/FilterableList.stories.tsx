@@ -3,28 +3,28 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ListItem } from '@/components/atoms/ListItem';
 import {
-  FilteredListExample,
-  type IFilteredListExampleProps,
-} from './FilteredListExample';
+  FilterableListExample,
+  type IFilterableListExampleProps,
+} from './FilterableListExample';
 import { TOP_100_MOVIES } from './movies';
 
 const meta = {
-  component: FilteredListExample,
-} satisfies Meta<typeof FilteredListExample>;
+  component: FilterableListExample,
+} satisfies Meta<typeof FilterableListExample>;
 
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onItemSelect: (...args) => void sbHandleEvent('onItemsRemove', args),
-} satisfies Partial<IFilteredListExampleProps>;
+  afterItemSelect: (...args) => void sbHandleEvent('onItemsRemove', args),
+} satisfies Partial<IFilterableListExampleProps>;
 
 export const Basic: IStory = {
-  render: (props) => <FilteredListExample {...props} />,
+  render: (props) => <FilterableListExample {...props} />,
   args: defaultArgs,
 };
 
 export const CanFilter: IStory = {
-  render: (props) => <FilteredListExample {...props} />,
+  render: (props) => <FilterableListExample {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -32,7 +32,7 @@ export const CanFilter: IStory = {
 };
 
 export const DefaultQuery: IStory = {
-  render: (props) => <FilteredListExample {...props} />,
+  render: (props) => <FilterableListExample {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -41,7 +41,7 @@ export const DefaultQuery: IStory = {
 };
 
 export const CanCreate: IStory = {
-  render: (props) => <FilteredListExample {...props} />,
+  render: (props) => <FilterableListExample {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -51,7 +51,7 @@ export const CanCreate: IStory = {
 };
 
 export const NoResults: IStory = {
-  render: (props) => <FilteredListExample {...props} />,
+  render: (props) => <FilterableListExample {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -60,7 +60,7 @@ export const NoResults: IStory = {
 };
 
 export const InitialContent: IStory = {
-  render: (props) => <FilteredListExample {...props} />,
+  render: (props) => <FilterableListExample {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -71,7 +71,7 @@ export const InitialContent: IStory = {
 };
 
 export const Disabled: IStory = {
-  render: (props) => <FilteredListExample {...props} />,
+  render: (props) => <FilterableListExample {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,

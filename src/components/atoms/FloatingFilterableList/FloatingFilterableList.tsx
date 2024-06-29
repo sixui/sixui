@@ -20,25 +20,25 @@ import {
 
 import type { IOmit } from '@/helpers/types';
 import {
-  FilteredList,
-  type IFilteredCreateNewItemRenderer,
-  type IFilteredItemRenderer,
-  type IFilteredListProps,
-  type IFilteredListRenderer,
-} from '@/components/atoms/FilteredList';
+  FilterableList,
+  type IFilterableCreateNewItemRenderer,
+  type IFilterableItemRenderer,
+  type IFilterableListProps,
+  type IFilterableListRenderer,
+} from '@/components/atoms/FilterableList';
 import { Portal } from '@/components/utils/Portal';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
 import { placementToOrigin } from '@/helpers/placementToOrigin';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { usePrevious } from '@/hooks/usePrevious';
 
-export type IFloatingFilteredListTriggerButtonRenderProps<TItem> = {
+export type IFloatingFilterableListTriggerButtonRenderProps<TItem> = {
   isOpen: boolean;
   buttonRef: React.Ref<HTMLDivElement>;
   getButtonAttributes: (
     userProps?: React.HTMLProps<Element>,
   ) => Record<string, unknown>;
-  onItemsRemove: (
+  afterItemsRemove: (
     items: Array<TItem>,
     event?: React.SyntheticEvent<HTMLElement>,
   ) => void;
@@ -52,30 +52,22 @@ export type IFloatingFilteredListTriggerButtonRenderProps<TItem> = {
   ) => Record<string, unknown>;
 };
 
-export type IFloatingFilteredListProps<
+export type IFloatingFilterableListProps<
   TItem,
   TElement extends HTMLElement,
-> = IOmit<IFilteredListProps<TItem, TElement>, 'onItemSelect'> & {
+> = IOmit<IFilterableListProps<TItem, TElement>, 'onItemSelect'> & {
   /**
    * Element which triggers the select popover. In most cases, you should display
    * the name or label of the curently selected item here.
    */
   children: (
-    props: IFloatingFilteredListTriggerButtonRenderProps<TItem>,
+    props: IFloatingFilterableListTriggerButtonRenderProps<TItem>,
   ) => React.JSX.Element;
 
   onItemSelect: (
     item: TItem,
     event?: React.SyntheticEvent<HTMLElement>,
   ) => number | undefined;
-
-  /**
-   * Callback invoked when an item from the list is removed.
-   */
-  onItemsRemove?: (
-    item: Array<TItem>,
-    event?: React.SyntheticEvent<HTMLElement>,
-  ) => void;
 
   onItemRemoveFocused?: () => void;
 
@@ -147,8 +139,8 @@ const styles = stylex.create({
   }),
 });
 
-export const FloatingFilteredList = <TItem, TElement extends HTMLElement>(
-  props: IFloatingFilteredListProps<TItem, TElement>,
+export const FloatingFilterableList = <TItem, TElement extends HTMLElement>(
+  props: IFloatingFilterableListProps<TItem, TElement>,
 ): React.ReactNode => {
   const {
     children,
@@ -158,7 +150,6 @@ export const FloatingFilteredList = <TItem, TElement extends HTMLElement>(
     itemRenderer,
     createNewItemRenderer,
     onItemSelect,
-    onItemsRemove,
     onItemRemoveFocused,
     onItemFocusPreviousSelected,
     onItemFocusNextSelected,
@@ -239,7 +230,7 @@ export const FloatingFilteredList = <TItem, TElement extends HTMLElement>(
   const [query, setQuery] = useControlledValue({
     controlled: queryProp,
     default: defaultQuery ?? '',
-    name: 'FloatingFilteredList',
+    name: 'FloatingFilterableList',
   });
   const interactions = useInteractions([
     click,
@@ -252,7 +243,7 @@ export const FloatingFilteredList = <TItem, TElement extends HTMLElement>(
     duration: 150, // motionVars.duration$short3
   });
 
-  const handleSelect = (item: TItem): void => {
+  const handleItemSelect = (item: TItem): void => {
     // If both `resetOnSelect` and `closeOnSelect` are true, the user may see a flash of the unfiltered list before it closes due to the closing animation duration. If `resetOnClose` is true, we can avoid this by not resetting the query until the list is actually closed.
     const shouldResetQuery = resetOnSelect && (!closeOnSelect || !resetOnClose);
     if (shouldResetQuery) {
@@ -269,8 +260,7 @@ export const FloatingFilteredList = <TItem, TElement extends HTMLElement>(
     setSelectedIndex(selectedIndex);
   };
 
-  const handleItemsRemove = (items: Array<TItem>): void => {
-    onItemsRemove?.(items);
+  const handleAfterItemsRemove = (): void => {
     if (inputFilterRef.current) {
       inputFilterRef.current?.focus();
     } else {
@@ -359,7 +349,7 @@ export const FloatingFilteredList = <TItem, TElement extends HTMLElement>(
     },
   });
 
-  const rendererWrapper: IFilteredListRenderer<TItem> = (listProps) =>
+  const rendererWrapper: IFilterableListRenderer<TItem> = (listProps) =>
     renderer({
       ...listProps,
       handleQueryChange: listProps.handleQueryChange,
@@ -367,7 +357,7 @@ export const FloatingFilteredList = <TItem, TElement extends HTMLElement>(
       getInputFilterAttributes,
     });
 
-  const itemRendererWrapper: IFilteredItemRenderer<TItem, TElement> = (
+  const itemRendererWrapper: IFilterableItemRenderer<TItem, TElement> = (
     item,
     itemProps,
   ) => {
@@ -394,7 +384,7 @@ export const FloatingFilteredList = <TItem, TElement extends HTMLElement>(
     });
   };
 
-  const createNewItemRendererWrapper: IFilteredCreateNewItemRenderer<
+  const createNewItemRendererWrapper: IFilterableCreateNewItemRenderer<
     TElement
   > = (itemProps) => {
     const active = activeIndex === itemProps.index;
@@ -449,7 +439,7 @@ export const FloatingFilteredList = <TItem, TElement extends HTMLElement>(
             tabIndex: 0,
             'aria-autocomplete': 'none',
           }),
-        onItemsRemove: handleItemsRemove,
+        afterItemsRemove: handleAfterItemsRemove,
         query,
         inputFilterRef,
         getInputFilterAttributes,
@@ -476,12 +466,12 @@ export const FloatingFilteredList = <TItem, TElement extends HTMLElement>(
                 )}
               >
                 <FloatingList elementsRef={elementsRef} labelsRef={labelsRef}>
-                  <FilteredList
+                  <FilterableList
                     {...other}
                     query={query}
                     defaultQuery={defaultQuery}
                     onQueryChange={handleQueryChange}
-                    onItemSelect={handleSelect}
+                    onItemSelect={handleItemSelect}
                     renderer={rendererWrapper}
                     itemRenderer={itemRendererWrapper}
                     createNewItemRenderer={createNewItemRendererWrapper}

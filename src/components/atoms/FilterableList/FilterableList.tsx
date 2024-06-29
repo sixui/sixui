@@ -2,81 +2,82 @@ import { useEffect, useState } from 'react';
 import { isFunction } from 'lodash';
 
 import type {
-  IFilteredItemModifiers,
-  IFilteredCreateNewItemRenderer,
-  IFilteredListInternalRenderer,
-  IFilteredItemRenderer,
-  IFilteredItemPredicate,
-  IFilteredListPredicate,
-  IFilteredItemsEqualProp,
-  IFilteredListState,
-} from './FilteredListProps';
+  IFilterableItemModifiers,
+  IFilterableCreateNewItemRenderer,
+  IFilterableListInternalRenderer,
+  IFilterableItemRenderer,
+  IFilterableItemPredicate,
+  IFilterableListPredicate,
+  IFilterableItemsEqualProp as IFilterableItemsEqual,
+  IFilterableListState,
+} from './FilterableListProps';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { usePrevious } from '@/hooks/usePrevious';
 import {
-  executeFilteredItemsEqual,
-  renderFilteredItems,
-} from './FilteredListUtils';
+  executeFilterableItemsEqual,
+  renderFilterableItems,
+} from './FilterableListUtils';
 
 // Inspiration:
-// - https://github.com/palantir/blueprint/blob/develop/packages/select/src/components/query-list/FilteredList.tsx
+// - https://github.com/palantir/blueprint/blob/develop/packages/select/src/components/query-list/FilterableList.tsx
 
 /**
- * An object describing how to render a `FilteredList`.
- * A `FilteredList` `renderer` receives this object as its sole argument.
+ * An object describing how to render a `FilterableList`.
+ * A `FilterableList` `renderer` receives this object as its sole argument.
  *
  * @typeParam TItem - List item data type
  */
-export type IFilteredListRendererProps<TItem> = IFilteredListState<TItem> & {
-  /**
-   * Change handler for query string. Attach this to an input element to allow
-   * `FilteredList` to control the query.
-   */
-  handleQueryChange: React.ChangeEventHandler<HTMLInputElement>;
+export type IFilterableListRendererProps<TItem> =
+  IFilterableListState<TItem> & {
+    /**
+     * Change handler for query string. Attach this to an input element to allow
+     * `FilterableList` to control the query.
+     */
+    handleQueryChange: React.ChangeEventHandler<HTMLInputElement>;
 
-  /**
-   * Rendered elements returned from `filteredListRenderer` prop.
-   */
-  filteredList: React.ReactNode;
+    /**
+     * Rendered elements returned from `filteredListRenderer` prop.
+     */
+    filteredList: React.ReactNode;
 
-  /**
-   * Whether the list is disabled.
-   *
-   * @defaultValue false
-   */
-  disabled?: boolean;
+    /**
+     * Whether the list is disabled.
+     *
+     * @defaultValue false
+     */
+    disabled?: boolean;
 
-  /**
-   * Ref object for the input element that receives the query string.
-   */
-  inputFilterRef?: React.Ref<HTMLInputElement>;
+    /**
+     * Ref object for the input element that receives the query string.
+     */
+    inputFilterRef?: React.Ref<HTMLInputElement>;
 
-  /**
-   * Get the attributes to apply to the input element that receives the query
-   * string.
-   *
-   * @param userProps - Additional props
-   */
-  getInputFilterAttributes: (
-    userProps?: React.HTMLProps<HTMLInputElement>,
-  ) => Record<string, unknown>;
-};
+    /**
+     * Get the attributes to apply to the input element that receives the query
+     * string.
+     *
+     * @param userProps - Additional props
+     */
+    getInputFilterAttributes: (
+      userProps?: React.HTMLProps<HTMLInputElement>,
+    ) => Record<string, unknown>;
+  };
 
 /**
- * Type alias for a function that renders the entire `FilteredList` component.
+ * Type alias for a function that renders the entire `FilterableList` component.
  *
  * @typeParam TItem - List item data type
  */
-export type IFilteredListRenderer<TItem> = (
-  listProps: IFilteredListRendererProps<TItem>,
+export type IFilterableListRenderer<TItem> = (
+  listProps: IFilterableListRendererProps<TItem>,
 ) => React.ReactNode;
 
 /**
- * Props for `FilteredList` component.
+ * Props for `FilterableList` component.
  *
  * @typeParam TItem - List item data type
  */
-export type IFilteredListProps<TItem, TElement extends HTMLElement> = {
+export type IFilterableListProps<TItem, TElement extends HTMLElement> = {
   /**
    * Unfiltered list of items to render in the list.
    */
@@ -96,7 +97,7 @@ export type IFilteredListProps<TItem, TElement extends HTMLElement> = {
    * arguments to this function will never be `null` or `undefined`, as those
    * values are handled before calling the function.
    */
-  itemsEqual?: IFilteredItemsEqualProp<TItem>;
+  itemsEqual?: IFilterableItemsEqual<TItem>;
 
   /**
    * Determine if the given item is disabled.
@@ -116,7 +117,7 @@ export type IFilteredListProps<TItem, TElement extends HTMLElement> = {
    * If `itemPredicate` is also defined, this prop takes priority and the other
    * will be ignored.
    */
-  listPredicate?: IFilteredListPredicate<TItem>;
+  listPredicate?: IFilterableListPredicate<TItem>;
 
   /**
    * Customize querying of individual items.
@@ -128,12 +129,12 @@ export type IFilteredListProps<TItem, TElement extends HTMLElement> = {
    * on the entire array. For the purposes of filtering the list, this prop is
    * ignored if `listPredicate` is also defined.
    */
-  itemPredicate?: IFilteredItemPredicate<TItem>;
+  itemPredicate?: IFilterableItemPredicate<TItem>;
 
   /**
    * Custom renderer for an item in the filtered list.
    */
-  itemRenderer: IFilteredItemRenderer<TItem, TElement>;
+  itemRenderer: IFilterableItemRenderer<TItem, TElement>;
 
   /**
    * Custom renderer for the contents of the list.
@@ -143,7 +144,7 @@ export type IFilteredListProps<TItem, TElement extends HTMLElement> = {
    * if there are no items that match the predicate then `noResults` is
    * returned.
    */
-  listRenderer?: IFilteredListInternalRenderer<TItem>;
+  listRenderer?: IFilterableListInternalRenderer<TItem>;
 
   /**
    * React content to render when query is empty.
@@ -198,7 +199,7 @@ export type IFilteredListProps<TItem, TElement extends HTMLElement> = {
    * the end of the list of items. If this function is not provided, a "Create
    * Item" option will not be displayed.
    */
-  createNewItemRenderer?: IFilteredCreateNewItemRenderer<TElement>;
+  createNewItemRenderer?: IFilterableCreateNewItemRenderer<TElement>;
 
   /**
    * Determines the position of the `createNewItem` within the list: first or
@@ -229,7 +230,7 @@ export type IFilteredListProps<TItem, TElement extends HTMLElement> = {
    * Receives an object with props that should be applied to elements as
    * necessary.
    */
-  renderer: IFilteredListRenderer<TItem>;
+  renderer: IFilterableListRenderer<TItem>;
 
   /**
    * Whether the list is disabled.
@@ -239,10 +240,10 @@ export type IFilteredListProps<TItem, TElement extends HTMLElement> = {
   disabled?: boolean;
 };
 
-const getFilteredItems = <TItem, TElement extends HTMLElement>(
+const getFilterableItems = <TItem, TElement extends HTMLElement>(
   query: string | undefined,
   itemsProps: Pick<
-    IFilteredListProps<TItem, TElement>,
+    IFilterableListProps<TItem, TElement>,
     'items' | 'itemPredicate' | 'listPredicate'
   >,
 ): Array<TItem> => {
@@ -265,7 +266,7 @@ const getFilteredItems = <TItem, TElement extends HTMLElement>(
 const isItemDisabled = <TItem, TElement extends HTMLElement>(
   item: TItem | null,
   index: number,
-  itemDisabled?: IFilteredListProps<TItem, TElement>['itemDisabled'],
+  itemDisabled?: IFilterableListProps<TItem, TElement>['itemDisabled'],
 ): boolean => {
   if (itemDisabled == null || item == null) {
     return false;
@@ -275,8 +276,8 @@ const isItemDisabled = <TItem, TElement extends HTMLElement>(
   return !!item[itemDisabled];
 };
 
-export const FilteredList = <TItem, TElement extends HTMLElement>(
-  props: IFilteredListProps<TItem, TElement>,
+export const FilterableList = <TItem, TElement extends HTMLElement>(
+  props: IFilterableListProps<TItem, TElement>,
 ): React.ReactNode => {
   const {
     items,
@@ -302,10 +303,10 @@ export const FilteredList = <TItem, TElement extends HTMLElement>(
   const [query, setQuery] = useControlledValue({
     controlled: queryProp,
     default: defaultQuery ?? '',
-    name: 'FilteredList',
+    name: 'FilterableList',
   });
-  const [filteredItems, setFilteredItems] = useState<Array<TItem>>(
-    getFilteredItems(query, {
+  const [filteredItems, setFilterableItems] = useState<Array<TItem>>(
+    getFilterableItems(query, {
       items,
       itemPredicate,
       listPredicate,
@@ -315,8 +316,8 @@ export const FilteredList = <TItem, TElement extends HTMLElement>(
   const previousQuery = usePrevious(query);
   useEffect(() => {
     if (previousQuery !== undefined && previousQuery !== query) {
-      setFilteredItems(
-        getFilteredItems(query, {
+      setFilterableItems(
+        getFilterableItems(query, {
           items,
           itemPredicate,
           listPredicate,
@@ -325,14 +326,14 @@ export const FilteredList = <TItem, TElement extends HTMLElement>(
     }
   }, [previousQuery, query, items, itemPredicate, listPredicate]);
 
-  const defaultListRenderer: IFilteredListInternalRenderer<TItem> = (
+  const defaultListRenderer: IFilterableListInternalRenderer<TItem> = (
     listProps,
   ): React.ReactNode => {
     // Omit noResults if createNewItemFromQuery and createNewItemRenderer are
     // both supplied, and query is not empty.
     const createItemView = listProps.renderCreateItem();
     const maybeNoResults = createItemView != null ? null : noResults;
-    const menuContent = renderFilteredItems(
+    const menuContent = renderFilterableItems(
       listProps,
       maybeNoResults,
       initialContent,
@@ -362,7 +363,7 @@ export const FilteredList = <TItem, TElement extends HTMLElement>(
         : [createNewItem];
 
       return newItems.some((newItem) =>
-        executeFilteredItemsEqual(itemsEqual, item, newItem),
+        executeFilterableItemsEqual(itemsEqual, item, newItem),
       );
     });
 
@@ -397,7 +398,7 @@ export const FilteredList = <TItem, TElement extends HTMLElement>(
     }
 
     const trimmedQuery = query.trim();
-    const modifiers: IFilteredItemModifiers = {
+    const modifiers: IFilterableItemModifiers = {
       active: false,
       selected: false,
       disabled: false,
@@ -414,7 +415,7 @@ export const FilteredList = <TItem, TElement extends HTMLElement>(
   };
 
   const renderItem = (item: TItem, index: number): React.ReactNode => {
-    const modifiers: IFilteredItemModifiers = {
+    const modifiers: IFilterableItemModifiers = {
       active: false,
       selected: false,
       disabled: disabled || isItemDisabled(item, index, itemDisabled),

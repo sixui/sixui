@@ -4,27 +4,33 @@
 import highlightWords from 'highlight-words';
 
 import type {
-  IFilteredCreateNewItemRenderer,
-  IFilteredItemPredicate,
-  IFilteredItemRenderer,
-  IFilteredItemRendererProps,
-} from './FilteredListProps';
+  IFilterableCreateNewItemRenderer,
+  IFilterableItemPredicate,
+  IFilterableItemRenderer,
+  IFilterableItemRendererProps,
+} from './FilterableListProps';
 import { ListItem, type IListItemProps } from '@/components/atoms/ListItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 export type IMovie = {
-  /** Title of film. */
+  /**
+   * Title of movie
+   */
   title: string;
 
-  /** Release year. */
+  /**
+   * Release year
+   */
   year: number;
 
-  /** IMDb ranking. */
+  /**
+   * IMDb ranking
+   */
   rank?: number;
 };
 
-/** Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top */
+/** Top 100 movies as rated by IMDb users. http://www.imdb.com/chart/top */
 export const TOP_100_MOVIES: Array<IMovie> = [
   { title: 'The Shawshank Redemption', year: 1994 },
   { title: 'The Godfather', year: 1972 },
@@ -139,7 +145,7 @@ export const TOP_100_MOVIES: Array<IMovie> = [
  */
 export const getMovieItemProps = <TElement extends HTMLDivElement>(
   movie: IMovie,
-  { modifiers, query }: IFilteredItemRendererProps<TElement>,
+  { modifiers, query }: IFilterableItemRendererProps<TElement>,
 ): IListItemProps & React.Attributes => {
   const text = movie.title;
 
@@ -165,7 +171,7 @@ export const getMovieItemProps = <TElement extends HTMLDivElement>(
 /**
  * Simple movie item renderer for "list" containers.
  */
-export const renderMovieListItem: IFilteredItemRenderer<
+export const renderMovieListItem: IFilterableItemRenderer<
   IMovie,
   HTMLDivElement
 > = (movie, props) => {
@@ -191,7 +197,7 @@ export const renderMovieListItem: IFilteredItemRenderer<
 /**
  * Renders a list item to create a single movie from a given query string.
  */
-export const renderCreateMovieListItem: IFilteredCreateNewItemRenderer<
+export const renderCreateMovieListItem: IFilterableCreateNewItemRenderer<
   HTMLDivElement
 > = (props): React.JSX.Element => (
   <ListItem
@@ -209,7 +215,7 @@ export const renderCreateMovieListItem: IFilteredCreateNewItemRenderer<
 /**
  * Filters movie list with a case-insensitive search.
  */
-export const filterMovie: IFilteredItemPredicate<IMovie> = (
+export const filterMovie: IFilterableItemPredicate<IMovie> = (
   query,
   movie,
   _index,
@@ -246,4 +252,4 @@ export const areMoviesEqual = (movieA: IMovie, movieB: IMovie): boolean => {
 /**
  * Returns `true` if the movie release year is before 1987.
  */
-export const isMovieDisabled = (film: IMovie): boolean => film.year < 1987;
+export const isMovieDisabled = (movie: IMovie): boolean => movie.year < 1987;

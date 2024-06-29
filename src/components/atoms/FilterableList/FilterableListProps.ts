@@ -1,12 +1,12 @@
 // Inspiration:
 // - https://github.com/palantir/blueprint/blob/develop/packages/select/src/common/itemListRenderer.ts
 
-export type IFilteredListState<TItem> = {
+export type IFilterableListState<TItem> = {
   /**
    * Array of items filtered by `listPredicate` or `itemPredicate`. See `items`
    * for the full list of items.
    *
-   * Use `renderFilteredItems()` utility function from this library to map each
+   * Use `renderFilterableItems()` utility function from this library to map each
    * item in this array through `renderItem`, with support for optional
    * `noResults` and `initialContent` states.
    */
@@ -20,12 +20,12 @@ export type IFilteredListState<TItem> = {
 
 /**
  * An object describing how to render the filtered list of items. An
- * `IFilteredListInternalRenderer` receives this object as its sole argument.
+ * `IFilterableListInternalRenderer` receives this object as its sole argument.
  *
  * @typeParam TItem - List item data type
  */
-export type IFilteredListInternalRendererProps<TItem> =
-  IFilteredListState<TItem> & {
+export type IFilterableListInternalRendererProps<TItem> =
+  IFilterableListState<TItem> & {
     /**
      * Array of all items in the list. See `filteredItems` for a filtered array
      * based on `query` and predicate props.
@@ -54,8 +54,8 @@ export type IFilteredListInternalRendererProps<TItem> =
  *
  * @typeParam TItem - List item data type
  */
-export type IFilteredListInternalRenderer<TItem> = (
-  itemListProps: IFilteredListInternalRendererProps<TItem>,
+export type IFilterableListInternalRenderer<TItem> = (
+  itemListProps: IFilterableListInternalRendererProps<TItem>,
 ) => React.ReactNode;
 
 // Inspiration:
@@ -65,7 +65,7 @@ export type IFilteredListInternalRenderer<TItem> = (
  * Modifiers for an item in a filtered list. These are used to determine how to
  * render the item, such as `active` or `disabled`.
  */
-export type IFilteredItemModifiers = {
+export type IFilterableItemModifiers = {
   /**
    * Whether this is the "active" (focused) item, meaning keyboard interactions
    * will act upon it.
@@ -96,7 +96,7 @@ export type IFilteredItemModifiers = {
  *
  * @typeParam TElement - Type of the DOM element rendered
  */
-export type IFilteredItemRendererProps<TElement extends HTMLElement> = {
+export type IFilterableItemRendererProps<TElement extends HTMLElement> = {
   /**
    * Click event handler to select this item.
    */
@@ -111,7 +111,7 @@ export type IFilteredItemRendererProps<TElement extends HTMLElement> = {
    * Modifiers that describe how to render this item, such as `active` or
    * `disabled`.
    */
-  modifiers: IFilteredItemModifiers;
+  modifiers: IFilterableItemModifiers;
 
   /**
    * The current query string used to filter the items.
@@ -139,9 +139,9 @@ export type IFilteredItemRendererProps<TElement extends HTMLElement> = {
  * @typeParam TItem - Tist item data type
  * @typeParam TElement - Type of the DOM element rendered
  */
-export type IFilteredItemRenderer<TItem, TElement extends HTMLElement> = (
+export type IFilterableItemRenderer<TItem, TElement extends HTMLElement> = (
   item: TItem,
-  itemProps: IFilteredItemRendererProps<TElement>,
+  itemProps: IFilterableItemRendererProps<TElement>,
 ) => React.JSX.Element | null;
 
 /**
@@ -150,8 +150,8 @@ export type IFilteredItemRenderer<TItem, TElement extends HTMLElement> = (
  *
  * @typeParam TElement - Type of the DOM element rendered
  */
-export type IFilteredCreateNewItemRenderer<TElement extends HTMLElement> = (
-  itemProps: IFilteredItemRendererProps<TElement>,
+export type IFilterableCreateNewItemRenderer<TElement extends HTMLElement> = (
+  itemProps: IFilterableItemRendererProps<TElement>,
 ) => React.JSX.Element | undefined;
 
 // Inspiration:
@@ -159,18 +159,18 @@ export type IFilteredCreateNewItemRenderer<TElement extends HTMLElement> = (
 
 /**
  * A custom predicate for returning an entirely new `items` array based on the
- * provided query. See usage sites in `IFilteredListProps`.
+ * provided query. See usage sites in `IFilterableListProps`.
  */
-export type IFilteredListPredicate<TItem> = (
+export type IFilterableListPredicate<TItem> = (
   query: string,
   items: Array<TItem>,
 ) => Array<TItem>;
 
 /**
  * A custom predicate for filtering items based on the provided query. See usage
- * sites in `IFilteredListProps`.
+ * sites in `IFilterableListProps`.
  */
-export type IFilteredItemPredicate<TItem> = (
+export type IFilterableItemPredicate<TItem> = (
   query: string,
   item: TItem,
   index?: number,
@@ -181,19 +181,19 @@ export type IFilteredItemPredicate<TItem> = (
 // - https://github.com/palantir/blueprint/blob/develop/packages/select/src/common/listItemsProps.ts
 
 /**
- * Equality test comparator to determine if two {@link IFilteredListProps} items
+ * Equality test comparator to determine if two {@link IFilterableListProps} items
  * are equivalent.
  *
  * @returns `true` if the two items are equivalent.
  */
-export type IFilteredItemsEqualComparator<TItem> = (
+export type IFilterableItemsEqualComparator<TItem> = (
   itemA: TItem,
   itemB: TItem,
 ) => boolean;
 
 /**
- * Union of all possible types for {@link IFilteredListProps#itemsEqual}.
+ * Union of all possible types for {@link IFilterableListProps#itemsEqual}.
  */
-export type IFilteredItemsEqualProp<TItem> =
-  | IFilteredItemsEqualComparator<TItem>
+export type IFilterableItemsEqualProp<TItem> =
+  | IFilterableItemsEqualComparator<TItem>
   | keyof TItem;
