@@ -207,10 +207,6 @@ export const FloatingFilterableList = <TItem, TElement extends HTMLElement>(
     onNavigate: setActiveIndex,
     virtual: canFilter,
     loop: true,
-    focusItemOnHover: canFilter,
-    scrollItemIntoView: {
-      block: 'end',
-    },
   });
   const typeahead = useTypeahead(floating.context, {
     listRef: labelsRef,

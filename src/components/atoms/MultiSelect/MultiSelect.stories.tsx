@@ -24,11 +24,6 @@ export const Basic: IStory = {
   args: defaultArgs,
 };
 
-export const CanFilter: IStory = {
-  render: (props) => <MultiSelectExample {...props} />,
-  args: defaultArgs,
-};
-
 export const DefaultQuery: IStory = {
   render: (props) => <MultiSelectExample {...props} />,
   args: {
