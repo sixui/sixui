@@ -27,8 +27,9 @@ export type ISuggestProps<TItem> = IOmit<
   onChange: (value?: TItem) => void;
   items: Array<TItem>;
   itemRenderer: IFilterableItemRenderer<TItem, HTMLDivElement>;
+  itemLabel: (item: TItem) => string;
   getValueFieldProps?: (
-    buttonProps: IFloatingFilterableListTriggerButtonRenderProps<TItem>,
+    renderProps: IFloatingFilterableListTriggerButtonRenderProps<TItem>,
     selectedItem?: TItem,
   ) => ITextFieldProps;
 };
@@ -39,6 +40,7 @@ export const Suggest = <TItem,>(
   const {
     items,
     itemRenderer,
+    itemLabel,
     value,
     defaultValue,
     onChange,
@@ -64,6 +66,7 @@ export const Suggest = <TItem,>(
       noResults={<ListItem disabled>No results.</ListItem>}
       resetOnSelect
       resetOnClose
+      resetOnBlur
       closeOnSelect
       initialFocus={-1}
       {...other}
@@ -92,6 +95,19 @@ export const Suggest = <TItem,>(
           {...renderProps.getInputFilterAttributes(
             renderProps.getButtonAttributes(),
           )}
+          value={
+            renderProps.isOpen
+              ? renderProps.query
+              : renderProps.query ||
+                (singleFilterableList.selectedItem
+                  ? itemLabel(singleFilterableList.selectedItem)
+                  : '')
+          }
+          placeholder={
+            singleFilterableList.selectedItem
+              ? itemLabel(singleFilterableList.selectedItem)
+              : ''
+          }
           {...getValueFieldProps?.(
             renderProps,
             singleFilterableList.selectedItem,

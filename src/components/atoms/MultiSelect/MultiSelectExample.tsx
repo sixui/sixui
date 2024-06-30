@@ -5,6 +5,7 @@ import {
   filterMovie,
   isMovieDisabled,
   renderCreateMovieListItem,
+  getMovieLabel,
   renderMovieListItem,
   TOP_100_MOVIES,
   type IMovie,
@@ -13,7 +14,7 @@ import { MultiSelect, type IMultiSelectProps } from './MultiSelect';
 
 export type IMultiSelectExampleProps = IOmit<
   IMultiSelectProps<IMovie>,
-  'items' | 'itemRenderer'
+  'items' | 'itemRenderer' | 'itemLabel'
 > & {
   canCreate?: boolean;
 };
@@ -27,14 +28,12 @@ export const MultiSelectExample: React.FC<IMultiSelectExampleProps> = (
     <MultiSelect<IMovie>
       items={TOP_100_MOVIES}
       itemRenderer={renderMovieListItem}
+      itemLabel={getMovieLabel}
       itemsEqual={areMoviesEqual}
       itemPredicate={filterMovie}
       itemDisabled={isMovieDisabled}
       createNewItemFromQuery={createMovie}
       createNewItemRenderer={canCreate ? renderCreateMovieListItem : undefined}
-      getValueFieldProps={(_buttonProps, selectedItem) => ({
-        label: selectedItem.title,
-      })}
       {...other}
     />
   );

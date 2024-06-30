@@ -23,9 +23,10 @@ export type ISelectProps<TItem> = IOmit<
   onChange?: (value?: TItem) => void;
   items: Array<TItem>;
   itemRenderer: IFilterableItemRenderer<TItem, HTMLDivElement>;
+  itemLabel: (item: TItem) => string;
   canFilter?: boolean;
   getValueFieldProps?: (
-    buttonProps: IFloatingFilterableListTriggerButtonRenderProps<TItem>,
+    renderProps: IFloatingFilterableListTriggerButtonRenderProps<TItem>,
     selectedItem?: TItem,
   ) => IFieldOwnProps;
 };
@@ -34,6 +35,7 @@ export const Select = <TItem,>(props: ISelectProps<TItem>): React.ReactNode => {
   const {
     items,
     itemRenderer,
+    itemLabel,
     value,
     defaultValue,
     onChange,
@@ -100,7 +102,11 @@ export const Select = <TItem,>(props: ISelectProps<TItem>): React.ReactNode => {
             singleFilterableList.selectedItem,
           )}
           ref={renderProps.buttonRef}
-        />
+        >
+          {singleFilterableList.selectedItem
+            ? itemLabel(singleFilterableList.selectedItem)
+            : null}
+        </Field>
       )}
     </FloatingFilterableList>
   );

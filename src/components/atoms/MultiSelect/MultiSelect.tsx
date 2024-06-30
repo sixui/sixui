@@ -25,8 +25,9 @@ export type IMultiSelectProps<TItem> = IOmit<
   onChange?: (value: Array<TItem>) => void;
   items: Array<TItem>;
   itemRenderer: IFilterableItemRenderer<TItem, HTMLDivElement>;
+  itemLabel: (item: TItem) => string;
   getValueFieldProps?: (
-    buttonProps: IFloatingFilterableListTriggerButtonRenderProps<TItem>,
+    renderProps: IFloatingFilterableListTriggerButtonRenderProps<TItem>,
     selectedItem: TItem,
   ) => IInputChipProps;
 };
@@ -55,6 +56,7 @@ export const MultiSelect = <TItem,>(
   const {
     items,
     itemRenderer,
+    itemLabel,
     value,
     defaultValue,
     onChange,
@@ -132,6 +134,7 @@ export const MultiSelect = <TItem,>(
                 onChange?.(multiFilterableList.deselectItemAtIndex(index));
                 renderProps.afterItemsRemove([selectedItem], event);
               }}
+              label={itemLabel(selectedItem)}
               {...getValueFieldProps?.(renderProps, selectedItem)}
             />
           ))}

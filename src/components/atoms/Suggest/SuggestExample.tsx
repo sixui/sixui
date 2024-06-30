@@ -5,6 +5,7 @@ import {
   filterMovie,
   isMovieDisabled,
   renderCreateMovieListItem,
+  getMovieLabel,
   renderMovieListItem,
   TOP_100_MOVIES,
   type IMovie,
@@ -13,7 +14,7 @@ import { Suggest, type ISuggestProps } from './Suggest';
 
 export type ISuggestExampleProps = IOmit<
   ISuggestProps<IMovie>,
-  'items' | 'itemRenderer'
+  'items' | 'itemRenderer' | 'itemLabel'
 > & {
   canCreate?: boolean;
 };
@@ -27,17 +28,12 @@ export const SuggestExample = (
     <Suggest<IMovie>
       items={TOP_100_MOVIES}
       itemRenderer={renderMovieListItem}
+      itemLabel={getMovieLabel}
       itemsEqual={areMoviesEqual}
       itemPredicate={filterMovie}
       itemDisabled={isMovieDisabled}
       createNewItemFromQuery={createMovie}
       createNewItemRenderer={canCreate ? renderCreateMovieListItem : undefined}
-      getValueFieldProps={(buttonProps, value) => ({
-        value: buttonProps.isOpen
-          ? buttonProps.query
-          : buttonProps.query || (value?.title ?? ''),
-        placeholder: value?.title,
-      })}
       {...other}
     />
   );

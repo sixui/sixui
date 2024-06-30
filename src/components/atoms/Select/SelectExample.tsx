@@ -4,6 +4,7 @@ import {
   createMovie,
   filterMovie,
   isMovieDisabled,
+  getMovieLabel,
   renderCreateMovieListItem,
   renderMovieListItem,
   TOP_100_MOVIES,
@@ -13,7 +14,7 @@ import { Select, type ISelectProps } from './Select';
 
 export type ISelectExampleProps = IOmit<
   ISelectProps<IMovie>,
-  'items' | 'itemRenderer'
+  'items' | 'itemLabel' | 'itemRenderer'
 > & {
   canCreate?: boolean;
 };
@@ -25,14 +26,12 @@ export const SelectExample = (props: ISelectExampleProps): React.ReactNode => {
     <Select<IMovie>
       items={TOP_100_MOVIES}
       itemRenderer={renderMovieListItem}
+      itemLabel={getMovieLabel}
       itemsEqual={areMoviesEqual}
       itemPredicate={filterMovie}
       itemDisabled={isMovieDisabled}
       createNewItemFromQuery={createMovie}
       createNewItemRenderer={canCreate ? renderCreateMovieListItem : undefined}
-      getValueFieldProps={(_buttonProps, selectedItem) => ({
-        children: selectedItem?.title,
-      })}
       {...other}
     />
   );

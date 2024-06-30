@@ -183,7 +183,7 @@ export const renderMovieListItem: IFilterableItemRenderer<
     <ListItem
       key={movie.rank}
       {...getMovieItemProps(movie, props)}
-      visualState={{ hovered: props.modifiers.active }}
+      visualState={{ hovered: props.modifiers.active, strategy: 'replace' }}
       selected={props.modifiers.selected}
       disabled={props.modifiers.disabled}
       {...props.getButtonAttributes({
@@ -201,7 +201,7 @@ export const renderCreateMovieListItem: IFilterableCreateNewItemRenderer<
   HTMLDivElement
 > = (props): React.JSX.Element => (
   <ListItem
-    visualState={{ hovered: props.modifiers.active }}
+    visualState={{ hovered: props.modifiers.active, strategy: 'replace' }}
     leadingIcon={<FontAwesomeIcon icon={faPlus} />}
     {...props.getButtonAttributes({
       onClick: props.handleClick,
@@ -253,3 +253,5 @@ export const areMoviesEqual = (movieA: IMovie, movieB: IMovie): boolean => {
  * Returns `true` if the movie release year is before 1987.
  */
 export const isMovieDisabled = (movie: IMovie): boolean => movie.year < 1987;
+
+export const getMovieLabel = (movie: IMovie): string => movie.title;

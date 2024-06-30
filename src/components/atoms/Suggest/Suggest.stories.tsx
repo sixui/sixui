@@ -13,7 +13,6 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   onChange: (...args) => void sbHandleEvent('onChange', args),
-  onItemsRemove: (...args) => void sbHandleEvent('onItemsRemove', args),
   matchTargetWidth: true,
 } satisfies Partial<ISuggestExampleProps>;
 

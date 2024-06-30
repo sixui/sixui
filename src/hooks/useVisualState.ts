@@ -1,11 +1,12 @@
 import { accumulate } from '@olivierpascal/helpers';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export type IVisualState = {
   hovered?: boolean;
   focused?: boolean;
   pressed?: boolean;
   dragged?: boolean;
+  strategy?: 'accumulate' | 'override' | 'replace';
 };
 
 export type IUseVisualStateResult<TElement> = {
@@ -22,7 +23,7 @@ export type IVisualStateOptions = {
 let activeTarget: EventTarget | null = null;
 
 export const useVisualState = <TElement extends Element = HTMLElement>(
-  inheritedVisualState?: IVisualState,
+  visualState?: IVisualState,
   options?: IVisualStateOptions,
 ): IUseVisualStateResult<TElement> => {
   const [hovered, setHovered] = useState(false);
@@ -58,30 +59,37 @@ export const useVisualState = <TElement extends Element = HTMLElement>(
     activeTarget = null;
   }, []);
 
-  useEffect(() => {
-    if (options?.disabled) {
-      setHovered(false);
-      setFocused(false);
-      setPressed(false);
-    }
-  }, [options?.disabled]);
-
   const ref = useCallback(
     (element: TElement) => {
-      if (!element) {
-        return;
+      if (
+        element &&
+        !options?.disabled &&
+        visualState?.strategy !== 'replace'
+      ) {
+        element.addEventListener('mouseenter', handleMouseEnter);
+        element.addEventListener('mouseleave', handleMouseLeave);
+        element.addEventListener('focus', handleFocus);
+        element.addEventListener('blur', handleBlur);
+        element.addEventListener('mousedown', handleMouseDown);
+        element.addEventListener('mouseup', handleMouseUp);
+        element.addEventListener('keydown', handleKeyDown);
+        element.addEventListener('keyup', handleKeyUp);
       }
 
-      element.addEventListener('mouseenter', handleMouseEnter);
-      element.addEventListener('mouseleave', handleMouseLeave);
-      element.addEventListener('focus', handleFocus);
-      element.addEventListener('blur', handleBlur);
-      element.addEventListener('mousedown', handleMouseDown);
-      element.addEventListener('mouseup', handleMouseUp);
-      element.addEventListener('keydown', handleKeyDown);
-      element.addEventListener('keyup', handleKeyUp);
+      return () => {
+        element.removeEventListener('mouseenter', handleMouseEnter);
+        element.removeEventListener('mouseleave', handleMouseLeave);
+        element.removeEventListener('focus', handleFocus);
+        element.removeEventListener('blur', handleBlur);
+        element.removeEventListener('mousedown', handleMouseDown);
+        element.removeEventListener('mouseup', handleMouseUp);
+        element.removeEventListener('keydown', handleKeyDown);
+        element.removeEventListener('keyup', handleKeyUp);
+      };
     },
     [
+      options?.disabled,
+      visualState?.strategy,
       handleMouseEnter,
       handleMouseLeave,
       handleFocus,
@@ -93,26 +101,21 @@ export const useVisualState = <TElement extends Element = HTMLElement>(
     ],
   );
 
-  if (options?.disabled) {
+  const newVisualState =
+    visualState?.strategy === 'replace'
+      ? visualState
+      : {
+          ...accumulate(
+            { focused, hovered, pressed, dragged: false },
+            visualState,
+          ),
+          ...(visualState?.strategy === 'override' ? visualState : undefined),
+        };
+
+  if (newVisualState.dragged) {
     return {
       visualState: {
-        hovered: false,
-        focused: false,
-        pressed: false,
-      },
-      ref,
-    };
-  }
-
-  const accumulatedVisualState = accumulate(
-    { focused, hovered, pressed, dragged: false },
-    inheritedVisualState,
-  );
-
-  if (accumulatedVisualState.dragged) {
-    return {
-      visualState: {
-        ...accumulatedVisualState,
+        ...newVisualState,
         hovered: false,
         pressed: false,
       },
@@ -121,7 +124,7 @@ export const useVisualState = <TElement extends Element = HTMLElement>(
   }
 
   return {
-    visualState: accumulatedVisualState,
+    visualState: newVisualState,
     ref,
   };
 };

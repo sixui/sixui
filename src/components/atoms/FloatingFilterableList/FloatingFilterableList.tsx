@@ -98,6 +98,8 @@ export type IFloatingFilterableListProps<
    */
   resetOnClose?: boolean;
 
+  resetOnBlur?: boolean;
+
   initialFocus?: number;
 };
 
@@ -161,6 +163,7 @@ export const FloatingFilterableList = <TItem, TElement extends HTMLElement>(
     defaultQuery,
     onQueryChange,
     resetOnClose,
+    resetOnBlur,
     ...other
   } = props;
 
@@ -176,13 +179,9 @@ export const FloatingFilterableList = <TItem, TElement extends HTMLElement>(
     whileElementsMounted: autoUpdate,
     middleware: [
       size({
-        apply({ rects, availableHeight, elements }) {
+        apply({ rects, elements }) {
           Object.assign(
             elements.floating.style,
-            {
-              maxHeight: `${availableHeight}px`,
-              display: 'flex',
-            },
             matchTargetWidth
               ? { width: `${rects.reference.width}px` }
               : { width: 'fit-content', maxWidth: '400px' },
@@ -209,6 +208,9 @@ export const FloatingFilterableList = <TItem, TElement extends HTMLElement>(
     virtual: canFilter,
     loop: true,
     focusItemOnHover: canFilter,
+    scrollItemIntoView: {
+      block: 'end',
+    },
   });
   const typeahead = useTypeahead(floating.context, {
     listRef: labelsRef,
@@ -439,6 +441,7 @@ export const FloatingFilterableList = <TItem, TElement extends HTMLElement>(
             disabled: other.disabled,
             tabIndex: 0,
             'aria-autocomplete': 'none',
+            onBlur: resetOnBlur ? () => setQuery('') : undefined,
           }),
         afterItemsRemove: handleAfterItemsRemove,
         query,

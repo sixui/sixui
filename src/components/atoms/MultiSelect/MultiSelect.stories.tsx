@@ -16,7 +16,6 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   onChange: (...args) => void sbHandleEvent('onChange', args),
-  onItemsRemove: (...args) => void sbHandleEvent('onItemsRemove', args),
   matchTargetWidth: true,
 } satisfies Partial<IMultiSelectExampleProps>;
 
@@ -27,17 +26,13 @@ export const Basic: IStory = {
 
 export const CanFilter: IStory = {
   render: (props) => <MultiSelectExample {...props} />,
-  args: {
-    ...defaultArgs,
-    canFilter: true,
-  },
+  args: defaultArgs,
 };
 
 export const DefaultQuery: IStory = {
   render: (props) => <MultiSelectExample {...props} />,
   args: {
     ...defaultArgs,
-    canFilter: true,
     defaultQuery: 'king',
   },
 };
@@ -46,7 +41,6 @@ export const CanCreate: IStory = {
   render: (props) => <MultiSelectExample {...props} />,
   args: {
     ...defaultArgs,
-    canFilter: true,
     canCreate: true,
     defaultQuery: 'king',
   },
@@ -56,7 +50,6 @@ export const NoResults: IStory = {
   render: (props) => <MultiSelectExample {...props} />,
   args: {
     ...defaultArgs,
-    canFilter: true,
     defaultQuery: 'My great movie',
   },
 };
@@ -65,7 +58,6 @@ export const InitialContent: IStory = {
   render: (props) => <MultiSelectExample {...props} />,
   args: {
     ...defaultArgs,
-    canFilter: true,
     initialContent: (
       <ListItem disabled>{TOP_100_MOVIES.length} items loaded.</ListItem>
     ),
@@ -76,7 +68,6 @@ export const Disabled: IStory = {
   render: (props) => <MultiSelectExample {...props} />,
   args: {
     ...defaultArgs,
-    canFilter: true,
     disabled: true,
   },
 };
