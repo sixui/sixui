@@ -1,12 +1,6 @@
 import stylex from '@stylexjs/stylex';
-import {
-  cloneElement,
-  forwardRef,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { forwardRef, useContext, useEffect, useRef, useState } from 'react';
+import { isFunction } from 'lodash';
 import {
   FloatingFocusManager,
   FloatingList,
@@ -15,6 +9,7 @@ import {
   flip,
   safePolygon,
   shift,
+  size,
   useClick,
   useDismiss,
   useFloating,
@@ -32,18 +27,22 @@ import {
   type Placement,
 } from '@floating-ui/react';
 
-import type { IMenuProps, IMenuRenderProps } from './Menu';
-import { IVisualState } from '@/hooks/useVisualState';
+import type { IMenuProps } from './Menu';
 import { MenuList } from '@/components/atoms/MenuList';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
 import { Portal } from '@/components/utils/Portal';
 import { placementToOrigin } from '@/helpers/placementToOrigin';
+import { MenuItemContext } from './MenuItemContext';
 import { MenuContext } from './MenuContext';
 
 // TODO: migrate in theme
 const styles = stylex.create({
   host: {
     zIndex: 499,
+  },
+  inner: {
+    display: 'flex',
+    flexGrow: 1,
   },
   transition$unmounted: {},
   transition$initial: {
@@ -75,22 +74,22 @@ const styles = stylex.create({
 });
 
 export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
-  function Menu(props, forwardedRef) {
+  function MenuLeaf(props, forwardedRef) {
     const {
       sx,
-      button,
+      trigger,
       children,
       placement = 'bottom-start',
+      matchTargetWidth,
       ...other
     } = props;
 
     const [isOpen, setIsOpen] = useState(false);
-    const [, setHasFocusInside] = useState(false);
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
     const elementsRef = useRef<Array<HTMLButtonElement | null>>([]);
     const labelsRef = useRef<Array<string | null>>([]);
-    const parent = useContext(MenuContext);
+    const menuItemContext = useContext(MenuItemContext);
 
     const tree = useFloatingTree();
     const nodeId = useFloatingNodeId();
@@ -103,7 +102,22 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
       open: isOpen,
       onOpenChange: setIsOpen,
       placement: isNested ? 'right-start' : placement,
-      middleware: [flip(), shift()],
+      middleware: [
+        flip({
+          padding: 48,
+        }),
+        size({
+          apply: ({ rects, elements }) => {
+            Object.assign(
+              elements.floating.style,
+              matchTargetWidth
+                ? { width: `${rects.reference.width}px` }
+                : { width: 'fit-content', maxWidth: '400px' },
+            );
+          },
+        }),
+        shift(),
+      ],
       whileElementsMounted: autoUpdate,
     });
     const transitionStatus = useTransitionStatus(floating.context, {
@@ -126,7 +140,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
       activeIndex,
       nested: isNested,
       onNavigate: setActiveIndex,
-      focusItemOnHover: false,
+      loop: true,
     });
     const typeahead = useTypeahead(floating.context, {
       listRef: labelsRef,
@@ -173,90 +187,98 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
       };
     }, [tree, nodeId, parentId]);
 
-    const bag: IMenuRenderProps = {
-      open: isOpen,
-      placement: floating.placement,
-    };
-    const openVisualState: IVisualState = { hovered: true };
-    const openProps = { visualState: openVisualState };
-
-    const handleRef = useMergeRefs([
+    const triggerHandleRef = useMergeRefs([
       floating.refs.setReference,
       item.ref,
       forwardedRef,
     ]);
-    const buttonElement = typeof button === 'function' ? button(bag) : button;
-    const buttonProps =
-      buttonElement.props as React.HTMLProps<HTMLButtonElement>;
+
+    const getTriggerProps = (
+      userProps?: React.HTMLProps<HTMLButtonElement>,
+    ): Record<string, unknown> =>
+      interactions.getReferenceProps({
+        ...userProps,
+        ...(transitionStatus.isMounted
+          ? { visualState: { hovered: true, strategy: 'replace' } }
+          : undefined),
+        tabIndex: isNested
+          ? menuItemContext.activeIndex === item.index
+            ? 0
+            : -1
+          : undefined,
+        role: isNested ? 'menuitem' : undefined,
+        ref: triggerHandleRef,
+      });
+
+    const triggerElement = isFunction(trigger)
+      ? trigger({
+          isOpen,
+          placement: floating.placement,
+          getProps: getTriggerProps,
+        })
+      : trigger;
 
     return (
       <FloatingNode id={nodeId}>
         <MenuContext.Provider
           value={{
-            activeIndex,
-            setActiveIndex,
-            getItemProps: interactions.getItemProps,
-            setHasFocusInside,
-            isOpen,
+            isOpen: transitionStatus.isMounted,
+            getTriggerProps,
+            triggerRef: triggerHandleRef,
             placement: floating.placement,
           }}
         >
-          {cloneElement(buttonElement, {
-            ...interactions.getReferenceProps({
-              ...buttonProps,
-              ...(transitionStatus.isMounted ? openProps : undefined),
-              tabIndex: isNested
-                ? parent.activeIndex === item.index
-                  ? 0
-                  : -1
-                : undefined,
-              role: isNested ? 'menuitem' : undefined,
-              ...parent.getItemProps({
-                onFocus: () => {
-                  setHasFocusInside(false);
-                  parent.setHasFocusInside(true);
-                },
-              }),
-              ref: handleRef,
-            }),
-          })}
+          {triggerElement}
 
-          {transitionStatus.isMounted ? (
-            <Portal>
-              <FloatingFocusManager
-                context={floating.context}
-                modal={false}
-                initialFocus={isNested ? -1 : 0}
-                returnFocus={!isNested}
-              >
-                <div
-                  {...stylex.props(styles.host)}
-                  {...interactions.getFloatingProps()}
-                  ref={floating.refs.setFloating}
-                  style={floating.floatingStyles}
+          <MenuItemContext.Provider
+            value={{
+              activeIndex,
+              setActiveIndex,
+              getItemProps: interactions.getItemProps,
+              isOpen,
+              placement: floating.placement,
+            }}
+          >
+            {transitionStatus.isMounted ? (
+              <Portal>
+                <FloatingFocusManager
+                  context={floating.context}
+                  modal={false}
+                  initialFocus={isNested ? -1 : 0}
+                  returnFocus={!isNested}
                 >
                   <div
-                    {...stylex.props(
-                      styles.transformOrigin(floating.placement),
-                      styles[`transition$${transitionStatus.status}`],
-                      parentId
-                        ? styles[`transition$${transitionStatus.status}$nested`]
-                        : undefined,
-                    )}
+                    {...stylex.props(styles.host)}
+                    {...interactions.getFloatingProps()}
+                    ref={floating.refs.setFloating}
+                    style={floating.floatingStyles}
                   >
-                    <MenuList sx={sx} {...other}>
-                      <FloatingList
-                        elementsRef={elementsRef}
-                        labelsRef={labelsRef}
-                      >
-                        {children}
-                      </FloatingList>
-                    </MenuList>
+                    <div
+                      {...stylex.props(
+                        styles.inner,
+                        styles.transformOrigin(floating.placement),
+                        styles[`transition$${transitionStatus.status}`],
+                        parentId
+                          ? styles[
+                              `transition$${transitionStatus.status}$nested`
+                            ]
+                          : undefined,
+                      )}
+                    >
+                      <MenuList sx={sx} noFocusRing {...other} size='sm'>
+                        <FloatingList
+                          elementsRef={elementsRef}
+                          labelsRef={labelsRef}
+                        >
+                          {children}
+                        </FloatingList>
+                      </MenuList>
+                    </div>
                   </div>
-                </div>
-              </FloatingFocusManager>
-            </Portal>
-          ) : null}
+                </FloatingFocusManager>
+              </Portal>
+            ) : null}
+          </MenuItemContext.Provider>
         </MenuContext.Provider>
       </FloatingNode>
     );

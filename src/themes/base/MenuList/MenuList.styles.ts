@@ -25,10 +25,6 @@ export const styles: MapNamespaces<IMenuListStyles> =
       height: 'inherit',
       width: 'fit-content',
     },
-    divider: {
-      marginTop: 8,
-      marginBottom: 8,
-    },
   });
 
 type IElevationStyles = IStyles<IElevationStyleKey>;
@@ -45,6 +41,10 @@ type IListStyles = IStyles<IListStyleKey>;
 export const listStyles: MapNamespaces<IListStyles> = stylex.create<
   IStyles<IListStyleKey>
 >({
+  host: {
+    height: '100%',
+    overflowY: 'auto',
+  },
   content: {
     maxHeight: vars.contentMaxHeight,
   },

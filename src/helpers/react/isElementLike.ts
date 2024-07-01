@@ -1,5 +1,6 @@
 import { getDisplayName } from '@/helpers/react/getDisplayName';
 import { isProduction } from '@olivierpascal/helpers';
+
 import { isFragment } from './isFragment';
 
 export const isElementLike = <TElement extends React.ReactElement>(

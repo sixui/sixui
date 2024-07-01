@@ -59,7 +59,7 @@ const fieldBaseStyles = stylex.create({
     top: 0,
     left: 0,
     bottom: 0,
-    paddingInlineStart: 19,
+    paddingInlineStart: 16,
     pointerEvents: 'none',
   },
   section$end: {
@@ -67,7 +67,8 @@ const fieldBaseStyles = stylex.create({
     top: 0,
     right: 0,
     bottom: 0,
-    paddingInlineEnd: 19,
+    width: 40,
+    justifyContent: 'center',
     pointerEvents: 'none',
   },
 });

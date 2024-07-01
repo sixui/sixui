@@ -1,4 +1,4 @@
-export type IMenuListStyleKey = 'host' | 'divider';
+export type IMenuListStyleKey = 'host';
 
 export type IMenuListStyleVarKey =
   | 'containerColor'

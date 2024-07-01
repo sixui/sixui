@@ -149,6 +149,10 @@ import type {
   ISnackbarContentStyleKey,
   ISnackbarContentStyleVarKey,
 } from '@/components/atoms/SnackbarContent';
+import type {
+  IPlainTooltipContentStyleKey,
+  IPlainTooltipContentStyleVarKey,
+} from '@/components/atoms/PlainTooltipContent';
 
 export type ITemplateTheme = {
   vars?: IStyleVarsTheme<ITemplateStyleVarKey>;
@@ -457,6 +461,10 @@ export type ITheme = {
       styles?: ICompiledStyles<ISnackbarContentStyleKey>;
       elevationStyles?: ICompiledStyles<IElevationStyleKey>;
       actionButtonStyles?: ICompiledStyles<IButtonStyleKey>;
+    };
+    PlainTooltipContent: {
+      vars?: IStyleVarsTheme<IPlainTooltipContentStyleVarKey>;
+      styles?: ICompiledStyles<IPlainTooltipContentStyleKey>;
     };
   };
 };

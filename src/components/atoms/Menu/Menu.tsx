@@ -6,25 +6,26 @@ import {
 } from '@floating-ui/react';
 
 import type { IContainerProps, IOmit } from '@/helpers/types';
-import { MenuListDivider } from '@/components/atoms/MenuList/MenuListDivider';
 import { MenuLeaf } from './MenuLeaf';
-import { MenuItem } from './MenuItem';
-import { MenuNestedItem } from './MenuNestedItem';
 
-export type IMenuRenderProps = {
-  open: boolean;
+export type IMenuTriggerRenderProps = {
+  isOpen: boolean;
   placement: Placement;
+  getProps: (
+    userProps?: React.HTMLProps<HTMLButtonElement>,
+  ) => Record<string, unknown>;
 };
 
 export type IMenuProps = IOmit<IContainerProps, 'styles'> & {
-  button:
-    | React.ReactElement
-    | ((props: IMenuRenderProps) => React.ReactElement);
+  trigger:
+    | React.ReactNode
+    | ((renderProps: IMenuTriggerRenderProps) => React.ReactNode);
   children: React.ReactNode;
   placement?: Placement;
+  matchTargetWidth?: boolean;
 };
 
-const Menu = forwardRef<HTMLButtonElement, IMenuProps>(
+export const Menu = forwardRef<HTMLButtonElement, IMenuProps>(
   function MenuParent(props, forwardedRef) {
     const parentId = useFloatingParentNodeId();
 
@@ -39,11 +40,3 @@ const Menu = forwardRef<HTMLButtonElement, IMenuProps>(
     return <MenuLeaf {...props} ref={forwardedRef} />;
   },
 );
-
-const MenuNamespace = Object.assign(Menu, {
-  Item: MenuItem,
-  NestedItem: MenuNestedItem,
-  Divider: MenuListDivider,
-});
-
-export { MenuNamespace as Menu };

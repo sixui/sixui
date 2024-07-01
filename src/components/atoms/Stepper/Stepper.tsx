@@ -61,6 +61,7 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
       .filter(isValidElement)
       .filter(isStep);
     const steps = validChildren.map((child, index) =>
+      {/* FIXME: avoid cloneElement */}
       cloneElement(child, {
         index,
         last: index + 1 >= validChildren.length,

@@ -1,3 +1,4 @@
+import { isFunction } from 'lodash';
 import { useEffect, useRef } from 'react';
 
 // https://non-traditional.dev/how-to-use-the-forwarded-ref-in-react-1fb108f4e6af
@@ -12,7 +13,7 @@ export const useForwardedRef = <T>(
       return;
     }
 
-    if (typeof ref === 'function') {
+    if (isFunction(ref)) {
       ref(innerRef.current);
     } else {
       // eslint-disable-next-line no-param-reassign

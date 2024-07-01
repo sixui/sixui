@@ -2,13 +2,11 @@ import type { Placement } from '@floating-ui/react';
 import { createContext } from 'react';
 
 export type IMenuContextValue = {
-  getItemProps: (
+  isOpen: boolean;
+  getTriggerProps: (
     userProps?: React.HTMLProps<HTMLButtonElement>,
   ) => Record<string, unknown>;
-  activeIndex: number | null;
-  setActiveIndex: React.Dispatch<React.SetStateAction<number | null>>;
-  setHasFocusInside: React.Dispatch<React.SetStateAction<boolean>>;
-  isOpen: boolean;
+  triggerRef: React.Ref<HTMLButtonElement>;
   placement?: Placement;
 };
 
@@ -19,10 +17,8 @@ const stub = (): never => {
 };
 
 export const MenuContext = createContext<IMenuContextValue>({
-  getItemProps: () => ({}),
-  activeIndex: null,
-  setActiveIndex: stub,
-  setHasFocusInside: stub,
   isOpen: false,
+  getTriggerProps: stub,
+  triggerRef: stub,
   placement: undefined,
 });

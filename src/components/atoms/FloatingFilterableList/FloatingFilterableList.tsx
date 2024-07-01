@@ -178,8 +178,11 @@ export const FloatingFilterableList = <TItem, TElement extends HTMLElement>(
     onOpenChange: setIsOpen,
     whileElementsMounted: autoUpdate,
     middleware: [
+      flip({
+        padding: 48,
+      }),
       size({
-        apply({ rects, elements }) {
+        apply: ({ rects, elements }) => {
           Object.assign(
             elements.floating.style,
             matchTargetWidth
@@ -188,7 +191,6 @@ export const FloatingFilterableList = <TItem, TElement extends HTMLElement>(
           );
         },
       }),
-      flip(),
     ],
   });
   const click = useClick(floating.context, {

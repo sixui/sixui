@@ -6,6 +6,7 @@ import {
   useMemo,
 } from 'react';
 import { asArray } from '@olivierpascal/helpers';
+import { isFunction } from 'lodash';
 
 import type { ICompiledStyles, IContainerProps } from '@/helpers/types';
 import type { IStepStyleKey, IStepStyleVarKey } from './Step.styledefs';
@@ -292,7 +293,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
                   </div>
                 ) : null}
                 <div {...sxf('contentText')}>
-                  {typeof children === 'function'
+                  {isFunction(children)
                     ? children({
                         active: !!isActive,
                         completed,

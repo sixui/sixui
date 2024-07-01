@@ -244,6 +244,9 @@ import {
   elevationStyles as snackbarContentElevationStyles,
 } from './SnackbarContent/SnackbarContent.styles';
 
+import { componentTheme as plainTooltipContentTheme } from './PlainTooltipContent/PlainTooltipContent.stylex';
+import { styles as plainTooltipContentStyles } from './PlainTooltipContent/PlainTooltipContent.styles';
+
 export const theme: ITheme = {
   name: 'Material Design 3',
   colorSchemes: {
@@ -530,6 +533,10 @@ export const theme: ITheme = {
       vars: snackbarContentTheme,
       styles: snackbarContentStyles,
       elevationStyles: snackbarContentElevationStyles,
+    },
+    PlainTooltipContent: {
+      vars: plainTooltipContentTheme,
+      styles: plainTooltipContentStyles,
     },
   },
 };

@@ -7,6 +7,7 @@ import {
   useRef,
   useState,
 } from 'react';
+import { isFunction } from 'lodash';
 
 import type { IContainerProps } from '@/helpers/types';
 import type {
@@ -142,7 +143,7 @@ export const DialogContent: IDialogContent = forwardRef(function DialogContent<
   }, [handleAndhorIntersection]);
 
   const renderActions = (): React.ReactNode =>
-    typeof actions === 'function'
+    isFunction(actions)
       ? actions({ close: (event) => onClose?.(event) })
       : actions;
 

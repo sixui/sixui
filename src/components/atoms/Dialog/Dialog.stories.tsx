@@ -44,7 +44,7 @@ export const Uncontrolled: IStory = {
         </Button>
       </>
     ),
-    button: <Button>Open</Button>,
+    trigger: <Button>Open</Button>,
   },
 };
 
@@ -97,7 +97,7 @@ const FormDialogDemo: React.FC<IDialogProps<'form'>> = (props) => {
         {...props}
         ref={formRef}
         as='form'
-        button={<Button>Open</Button>}
+        trigger={<Button>Open</Button>}
         headline="What's your name?"
         actions={({ close }) => (
           <>

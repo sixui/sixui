@@ -1,3 +1,5 @@
+import { isFunction } from 'lodash';
+
 // https://github.com/mui/material-ui/blob/master/packages/mui-utils/src/setRef.ts
 
 /**
@@ -21,7 +23,7 @@ export const setRef = <T>(
     | undefined,
   value: T | null,
 ): void => {
-  if (typeof ref === 'function') {
+  if (isFunction(ref)) {
     ref(value);
   } else if (ref) {
     // eslint-disable-next-line no-param-reassign

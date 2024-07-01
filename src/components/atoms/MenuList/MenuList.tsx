@@ -19,7 +19,6 @@ import {
 } from '@/components/utils/Elevation';
 import { IListProps, List } from '@/components/atoms/List';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { MenuListDivider } from './MenuListDivider';
 
 export type IMenuListProps = IContainerProps<IMenuListStyleKey> &
   IOmit<IListProps, 'styles'> & {
@@ -30,7 +29,7 @@ export type IMenuListProps = IContainerProps<IMenuListStyleKey> &
     children?: React.ReactNode;
   };
 
-const MenuList = forwardRef<HTMLDivElement, IMenuListProps>(
+export const MenuList = forwardRef<HTMLDivElement, IMenuListProps>(
   function MenuList(props, forwardedRef) {
     const { styles, sx, innerStyles, children, ...other } = props;
 
@@ -62,9 +61,3 @@ const MenuList = forwardRef<HTMLDivElement, IMenuListProps>(
     );
   },
 );
-
-const MenuListNamespace = Object.assign(MenuList, {
-  Divider: MenuListDivider,
-});
-
-export { MenuListNamespace as MenuList };

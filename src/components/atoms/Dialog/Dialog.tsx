@@ -1,4 +1,5 @@
 import { cloneElement, forwardRef, useMemo } from 'react';
+import { isFunction } from 'lodash';
 import {
   FloatingFocusManager,
   useClick,
@@ -41,7 +42,7 @@ export type IDialogRenderProps = {
 export type IDialogOwnProps = IOmit<IDialogContentOwnProps, 'onClose'> &
   Pick<React.AriaAttributes, 'aria-label'> & {
     open?: boolean;
-    button?:
+    trigger?:
       | React.ReactElement
       | ((props: IDialogRenderProps) => React.ReactElement);
     onOpenChange?: (
@@ -63,7 +64,7 @@ export const Dialog: IDialog = forwardRef(function Dialog<
 >(props: IDialogProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     as,
-    button,
+    trigger: button,
     open: openProp,
     onOpenChange,
     ...other
@@ -111,13 +112,14 @@ export const Dialog: IDialog = forwardRef(function Dialog<
     forwardedRef,
     floating.refs.setFloating,
   ]);
-  const buttonElement = typeof button === 'function' ? button(bag) : button;
+  const buttonElement = isFunction(button) ? button(bag) : button;
   const buttonProps = buttonElement?.props as
     | React.HTMLProps<HTMLButtonElement>
     | undefined;
 
   return (
     <>
+      {/* FIXME: avoid cloneElement */}
       {buttonElement
         ? cloneElement(buttonElement, {
             ...interactions.getReferenceProps({

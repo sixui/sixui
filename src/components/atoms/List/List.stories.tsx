@@ -7,7 +7,7 @@ import {
   faLink,
 } from '@fortawesome/free-solid-svg-icons';
 
-import type { IListItemProps } from '@/components/atoms/ListItem';
+import { ListItem, type IListItemProps } from '@/components/atoms/ListItem';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
@@ -46,9 +46,9 @@ const defaultArgs = {
 
 const renderListItems = (props?: IListItemProps): React.ReactNode =>
   ['A', 'B', 'C', 'D'].map((initials, index) => (
-    <List.Item key={index} leading={<Avatar>{initials}</Avatar>} {...props}>
+    <ListItem key={index} leading={<Avatar>{initials}</Avatar>} {...props}>
       Headline
-    </List.Item>
+    </ListItem>
   ));
 
 export const Sizes: IStory = {
@@ -105,34 +105,34 @@ export const Configuration: IStory = {
     <ComponentShowcase
       component={(args) => (
         <List {...args}>
-          <List.Item>Basic item</List.Item>
-          <List.Item leadingIcon={<FontAwesomeIcon icon={faCheck} />}>
+          <ListItem>Basic item</ListItem>
+          <ListItem leadingIcon={<FontAwesomeIcon icon={faCheck} />}>
             Item with leading icon
-          </List.Item>
-          <List.Item
+          </ListItem>
+          <ListItem
             leadingIcon={<FontAwesomeIcon icon={faCheck} />}
             supportingText='Supporting text that is long enough to fill up multiple lines'
           >
             Item with leading icon
-          </List.Item>
-          <List.Item trailingIcon={<FontAwesomeIcon icon={faLink} />}>
+          </ListItem>
+          <ListItem trailingIcon={<FontAwesomeIcon icon={faLink} />}>
             Item with trailing icon
-          </List.Item>
-          <List.Item leading={<Avatar>A</Avatar>}>
+          </ListItem>
+          <ListItem leading={<Avatar>A</Avatar>}>
             Item with leading element
-          </List.Item>
-          <List.Item
+          </ListItem>
+          <ListItem
             leading={
               <Avatar src='https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' />
             }
             supportingText='Supporting text that is long enough to fill up multiple lines'
           >
             Item with leading element
-          </List.Item>
-          <List.Item leadingImage='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&h=168&w=168'>
+          </ListItem>
+          <ListItem leadingImage='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&h=168&w=168'>
             Item with leading image
-          </List.Item>
-          <List.Item
+          </ListItem>
+          <ListItem
             leadingVideo={[
               {
                 type: 'video/webm',
@@ -145,28 +145,27 @@ export const Configuration: IStory = {
             ]}
           >
             Item with leading video
-          </List.Item>
-          <List.Item trailing={<Checkbox checked />}>
+          </ListItem>
+          <ListItem trailing={<Checkbox checked />}>
             Item with trailing element
-          </List.Item>
-          <List.Item overline='Overline'>Item with overline</List.Item>
-          <List.Item supportingText='Supporting text'>
+          </ListItem>
+          <ListItem overline='Overline'>Item with overline</ListItem>
+          <ListItem supportingText='Supporting text'>
             Item with supporting text
-          </List.Item>
-          <List.Item trailingSupportingText='100+'>
+          </ListItem>
+          <ListItem trailingSupportingText='100+'>
             Item with trailing supporting text
-          </List.Item>
-          <List.Item selected>Selected item</List.Item>
-          <List.Item onClick={(...args) => sbHandleEvent('click', args)}>
+          </ListItem>
+          <ListItem selected>Selected item</ListItem>
+          <ListItem onClick={(...args) => sbHandleEvent('click', args)}>
             Interactive item
-          </List.Item>
-          <List.Divider />
-          <List.Item
+          </ListItem>
+          <ListItem
             leadingIcon={<FontAwesomeIcon icon={faCalendarDays} />}
             disabled
           >
             Disabled item
-          </List.Item>
+          </ListItem>
         </List>
       )}
       props={args}

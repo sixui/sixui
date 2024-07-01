@@ -5,8 +5,6 @@ import type { IListStyleKey, IListStyleVarKey } from './List.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { MenuListDivider } from '@/components/atoms/MenuList';
-import { ListItem } from '@/components/atoms/ListItem';
 import { ListContext, type IListContextValue } from './ListContext';
 
 export type IListProps = IContainerProps<IListStyleKey> &
@@ -16,7 +14,7 @@ export type IListProps = IContainerProps<IListStyleKey> &
     footer?: React.ReactNode;
   };
 
-const List = forwardRef<HTMLDivElement, IListProps>(
+export const List = forwardRef<HTMLDivElement, IListProps>(
   function List(props, forwardedRef) {
     const {
       styles,
@@ -55,10 +53,3 @@ const List = forwardRef<HTMLDivElement, IListProps>(
     );
   },
 );
-
-const ListNamespace = Object.assign(List, {
-  Item: ListItem,
-  Divider: MenuListDivider,
-});
-
-export { ListNamespace as List };

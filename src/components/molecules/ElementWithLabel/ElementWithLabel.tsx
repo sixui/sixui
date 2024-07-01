@@ -1,4 +1,5 @@
 import { forwardRef, useMemo } from 'react';
+import { isFunction } from 'lodash';
 
 import type { IContainerProps } from '@/helpers/types';
 import type {
@@ -148,7 +149,7 @@ export const ElementWithLabel = forwardRef<
       ) : null}
 
       <div {...sxf('element')}>
-        {typeof children === 'function'
+        {isFunction(children)
           ? children({ id, required, disabled, readOnly })
           : children || null}
       </div>

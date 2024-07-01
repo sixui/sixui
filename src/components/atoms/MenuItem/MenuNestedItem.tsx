@@ -1,36 +1,37 @@
-import type { Placement } from '@floating-ui/react';
+import { useMergeRefs } from '@floating-ui/react';
 import { forwardRef, useContext } from 'react';
 import { ReactComponent as TriangleLeft } from '@/assets/TriangleLeft.svg';
 import { ReactComponent as TriangleRight } from '@/assets/TriangleRight.svg';
 
+import { MenuContext } from '@/components/atoms/Menu';
 import { MenuItem, type IMenuItemProps } from './MenuItem';
-import { MenuContext } from './MenuContext';
 
-export type IMenuNestedItemProps = IMenuItemProps & {
-  placement?: Placement;
-};
+export type IMenuNestedItemProps = IMenuItemProps;
 
 export const MenuNestedItem = forwardRef<
   HTMLButtonElement,
   IMenuNestedItemProps
 >(function MenuNestedItem(props, forwardedRef) {
-  const { placement } = useContext(MenuContext);
+  const { ...other } = props;
+  const menuContext = useContext(MenuContext);
+  const handleRef = useMergeRefs([menuContext.triggerRef, forwardedRef]);
 
   return (
     <MenuItem
       leading={
-        placement?.startsWith('left-') ? (
+        menuContext.placement?.startsWith('left-') ? (
           <TriangleLeft aria-hidden />
         ) : undefined
       }
       trailing={
-        placement?.startsWith('right-') || placement === undefined ? (
+        menuContext.placement?.startsWith('left-') ? undefined : (
           <TriangleRight aria-hidden />
-        ) : undefined
+        )
       }
       keepOpenOnClick={true}
-      {...props}
-      ref={forwardedRef}
+      label={other.label}
+      {...menuContext.getTriggerProps(other)}
+      ref={handleRef}
     />
   );
 });

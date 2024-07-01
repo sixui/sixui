@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { isFunction } from 'lodash';
 
 import type { IStepProps } from '@/components/atoms/Step';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
@@ -42,7 +43,7 @@ const makeSteps = (
   createSequence(count).map((index) => (
     <Stepper.Step
       onClick={(...args) => void sbHandleEvent('click', args)}
-      {...(typeof props === 'function' ? props(index) : props)}
+      {...(isFunction(props) ? props(index) : props)}
       key={index}
     />
   ));

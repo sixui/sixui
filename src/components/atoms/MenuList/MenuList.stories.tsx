@@ -2,9 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
-import { MenuList, type IMenuListProps } from './MenuList';
-import { ListItem } from '../ListItem';
+import { ListItem } from '@/components/atoms/ListItem';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { MenuDivider } from '@/components/atoms/MenuDivider';
+import { MenuList, type IMenuListProps } from './MenuList';
 
 const meta = {
   component: MenuList,
@@ -42,7 +43,7 @@ const defaultArgs = {
       <ListItem onClick={(...args) => sbHandleEvent('click', args)}>
         This is a very long and unexpected item
       </ListItem>
-      <MenuList.Divider />
+      <MenuDivider />
       <ListItem
         onClick={(...args) => sbHandleEvent('click', args)}
         maxLines={1}
