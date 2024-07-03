@@ -1,6 +1,6 @@
 import type { IOmit } from '@/helpers/types';
 import { ListItem } from '@/components/atoms/ListItem';
-import { TextField } from '@/components/atoms/TextField';
+import { TextInputField } from '@/components/atoms/TextInputField';
 import { MenuList } from '@/components/atoms/MenuList';
 import { FilterableList, type IFilterableListProps } from './FilterableList';
 import {
@@ -41,7 +41,7 @@ export const FilterableListExample: React.FC<IFilterableListExampleProps> = (
           size='sm'
           header={
             canFilter ? (
-              <TextField
+              <TextInputField
                 onChange={listProps.handleQueryChange}
                 value={listProps.query}
                 disabled={listProps.disabled}

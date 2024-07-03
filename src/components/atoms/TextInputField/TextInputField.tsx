@@ -70,6 +70,15 @@ export const TextInputField = forwardRef<HTMLDivElement, ITextInputFieldProps>(
       </>
     );
 
+    const handleClear = (): void => {
+      if (inputRef.current?.value) {
+        inputRef.current.value = '';
+      }
+      other.onChange?.({
+        target: inputRef.current,
+      } as React.ChangeEvent<HTMLInputElement>);
+    };
+
     return (
       <TextField<HTMLInputElement, ITextInputFieldOwnProps>
         {...other}
@@ -94,11 +103,7 @@ export const TextInputField = forwardRef<HTMLDivElement, ITextInputFieldProps>(
         }
         ref={forwardedRef}
         inputRef={inputHandleRef}
-        onClear={() => {
-          if (inputRef.current?.value) {
-            inputRef.current.value = '';
-          }
-        }}
+        onClear={handleClear}
         forwardHtmlProps
         inputRenderer={inputRenderer}
       />

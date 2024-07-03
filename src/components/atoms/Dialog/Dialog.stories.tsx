@@ -7,7 +7,7 @@ import { Dialog } from './Dialog';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { commonStyles } from '@/helpers/commonStyles';
 import { Button } from '../Button';
-import { TextField } from '../TextField';
+import { TextInputField } from '../TextInputField';
 
 // https://m3.material.io/components/dialogs/overview
 // https://material-web.dev/components/dialog/
@@ -133,7 +133,7 @@ const FormDialogDemo: React.FC<IDialogProps<'form'>> = (props) => {
           </>
         )}
       >
-        <TextField name='name' />
+        <TextInputField name='name' />
       </Dialog>
       {name ? (
         <div>

@@ -1,44 +1,6 @@
 import type { IOmit } from '@/helpers/types';
 import type { ITextFieldProps } from '@/components/atoms/TextField';
 
-/**
- * Input types that are compatible with the component.
- */
-export type ITextFieldType =
-  | 'email'
-  | 'number'
-  | 'password'
-  | 'search'
-  | 'tel'
-  | 'text'
-  | 'url'
-  | 'textarea';
-
-/**
- * Input types that are not fully supported for the component.
- */
-export type ITextFieldUnsupportedType =
-  | 'color'
-  | 'date'
-  | 'datetime-local'
-  | 'file'
-  | 'month'
-  | 'time'
-  | 'week';
-
-/**
- * Input types that are incompatible with the component.
- */
-export type IInvalidTextFieldInvalidType =
-  | 'button'
-  | 'checkbox'
-  | 'hidden'
-  | 'image'
-  | 'radio'
-  | 'range'
-  | 'reset'
-  | 'submit';
-
 export type ITextInputFieldOwnProps = {
   /**
    * The `<input />` type to use, defaults to "text". The type greatly changes
@@ -61,7 +23,7 @@ export type ITextInputFieldOwnProps = {
    *
    * @defaultValue 'text'
    */
-  type?: ITextFieldType | ITextFieldUnsupportedType;
+  type?: string;
 
   /**
    * An optional prefix to display before the input value.

@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 import type { IOmit } from '@/helpers/types';
 import type { IFilterableItemRenderer } from '@/components/atoms/FilterableList';
 import { ListItem } from '@/components/atoms/ListItem';
-import { TextField } from '@/components/atoms/TextField';
+import { TextInputField } from '@/components/atoms/TextInputField';
 import { MenuList } from '@/components/atoms/MenuList';
 import { InputChip, type IInputChipProps } from '@/components/atoms/Chip';
 import {
@@ -92,7 +92,7 @@ export const MultiSelect = <TItem,>(
       {...other}
     >
       {(renderProps) => (
-        <TextField
+        <TextInputField
           end={
             <FilterableListFieldEnd
               renderProps={renderProps}

@@ -12,7 +12,7 @@ import {
 import { Checkbox } from '@/components/atoms/Checkbox';
 import { Switch } from '@/components/atoms/Switch';
 import { Radio } from '@/components/atoms/Radio';
-import { TextField } from '@/components/atoms/TextField';
+import { TextInputField } from '@/components/atoms/TextInputField';
 
 const meta = {
   component: ElementWithLabel,
@@ -66,7 +66,7 @@ export const WithTextField: IStory = {
   args: {
     ...defaultArgs,
     orientation: 'vertical',
-    children: (props) => <TextField {...props} />,
+    children: (props) => <TextInputField {...props} />,
     action: 'Action',
   },
 };

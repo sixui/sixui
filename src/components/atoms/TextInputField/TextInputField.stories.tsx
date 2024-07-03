@@ -25,6 +25,7 @@ const styles = stylex.create({
 
 const defaultArgs = {
   sx: styles.host,
+  onChange: (...args) => void sbHandleEvent('change', args),
   onValueChange: (...args) => void sbHandleEvent('valueChange', args),
 } satisfies Partial<ITextInputFieldProps>;
 

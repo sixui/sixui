@@ -4,12 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { isFunction } from 'lodash';
 
-import type { IStepProps } from '@/components/atoms/Step';
+import { Step, type IStepProps } from '@/components/atoms/Step';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { componentVars as stepVars } from '@/themes/base/Step/Step.stylex';
-import { Stepper, type IStepperProps } from './Stepper';
 import { createSequence } from '@olivierpascal/helpers';
+import { Stepper, type IStepperProps } from './Stepper';
+import { StepConnector } from '../StepConnector';
 
 const meta = {
   component: Stepper,
@@ -41,7 +42,7 @@ const makeSteps = (
   count = 4,
 ): Array<React.ReactElement> =>
   createSequence(count).map((index) => (
-    <Stepper.Step
+    <Step
       onClick={(...args) => void sbHandleEvent('click', args)}
       {...(isFunction(props) ? props(index) : props)}
       key={index}
@@ -80,7 +81,7 @@ export const Horizontal: IStory = {
           props: {
             children: makeSteps((index) => ({
               nextConnector: (
-                <Stepper.Connector
+                <StepConnector
                   textPosition={
                     index === 0
                       ? 'top'
@@ -92,7 +93,7 @@ export const Horizontal: IStory = {
                   }
                 >
                   Lorem ipsum
-                </Stepper.Connector>
+                </StepConnector>
               ),
             })),
           },
@@ -115,7 +116,7 @@ export const Horizontal: IStory = {
               label: index === 1 || index === 2 ? 'Label' : undefined,
               supportingText: index === 2 ? 'Supporting text' : undefined,
               children: 'Lorem ipsum dolor sit amet.',
-              nextConnector: <Stepper.Connector />,
+              nextConnector: <StepConnector />,
               sx: styles.step$noSpace,
             })),
             labelPosition: 'right',
@@ -183,7 +184,7 @@ export const Vertical: IStory = {
           legend: 'Custom connector',
           props: {
             children: makeSteps({
-              nextConnector: <Stepper.Connector>Lorem ipsum</Stepper.Connector>,
+              nextConnector: <StepConnector>Lorem ipsum</StepConnector>,
             }),
           },
         },
@@ -209,35 +210,33 @@ export const Vertical: IStory = {
           legend: 'Content',
           props: {
             children: [
-              <Stepper.Step
+              <Step
                 key={0}
                 onClick={(...args) => void sbHandleEvent('click', args)}
                 label='Lorem ipsum'
               >
                 Lorem ipsum dolor sit amet.
-              </Stepper.Step>,
-              <Stepper.Step
+              </Step>,
+              <Step
                 key={1}
                 onClick={(...args) => void sbHandleEvent('click', args)}
                 label='Lorem ipsum'
                 supportingText='Supporting text'
-                nextConnector={
-                  <Stepper.Connector>Lorem ipsum</Stepper.Connector>
-                }
+                nextConnector={<StepConnector>Lorem ipsum</StepConnector>}
               >
                 Lorem ipsum dolor sit amet.
                 <br />
                 Lorem ipsum dolor sit amet.
                 <br />
                 Lorem ipsum dolor sit amet.
-              </Stepper.Step>,
-              <Stepper.Step
+              </Step>,
+              <Step
                 key={2}
                 onClick={(...args) => void sbHandleEvent('click', args)}
                 label='Lorem ipsum'
               >
                 Lorem ipsum dolor sit amet.
-              </Stepper.Step>,
+              </Step>,
             ],
           },
         },
@@ -245,35 +244,33 @@ export const Vertical: IStory = {
           legend: 'No space',
           props: {
             children: [
-              <Stepper.Step
+              <Step
                 key={0}
                 onClick={(...args) => void sbHandleEvent('click', args)}
                 sx={styles.step$noSpace}
               />,
-              <Stepper.Step
+              <Step
                 key={1}
                 onClick={(...args) => void sbHandleEvent('click', args)}
                 label='Lorem ipsum'
                 sx={styles.step$noSpace}
                 supportingText='Supporting text'
-                nextConnector={
-                  <Stepper.Connector>Lorem ipsum</Stepper.Connector>
-                }
+                nextConnector={<StepConnector>Lorem ipsum</StepConnector>}
               >
                 Lorem ipsum dolor sit amet.
                 <br />
                 Lorem ipsum dolor sit amet.
                 <br />
                 Lorem ipsum dolor sit amet.
-              </Stepper.Step>,
-              <Stepper.Step
+              </Step>,
+              <Step
                 key={2}
                 onClick={(...args) => void sbHandleEvent('click', args)}
                 label='Lorem ipsum'
                 sx={styles.step$noSpace}
               >
                 Lorem ipsum dolor sit amet.
-              </Stepper.Step>,
+              </Step>,
             ],
           },
         },

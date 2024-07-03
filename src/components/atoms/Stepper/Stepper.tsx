@@ -28,7 +28,7 @@ export type IStepperProps = IContainerProps<IStepperStyleKey> & {
 
 const defaultConnector = <StepConnector />;
 
-const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
+export const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
   function Stepper(props, forwardedRef) {
     const {
       styles,
@@ -61,7 +61,7 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
       .filter(isValidElement)
       .filter(isStep);
 
-    // FIXME: avoid cloneElement
+    // TODO: avoid cloneElement
     const steps = validChildren.map((child, index) =>
       cloneElement(child, {
         index,
@@ -113,11 +113,3 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
     );
   },
 );
-
-// FIXME: no namespace
-const StepperNamespace = Object.assign(Stepper, {
-  Step,
-  Connector: StepConnector,
-});
-
-export { StepperNamespace as Stepper };

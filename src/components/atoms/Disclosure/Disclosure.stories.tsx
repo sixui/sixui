@@ -13,6 +13,8 @@ import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { Switch } from '@/components/atoms/Switch';
 import { Disclosure, type IDisclosureProps } from './Disclosure';
 import { ElementWithLabel } from '@/components/molecules/ElementWithLabel';
+import { DisclosureButton } from '../DisclosureButton';
+import { DisclosurePanel } from '../DisclosurePanel';
 
 const meta = {
   component: Disclosure,
@@ -40,10 +42,10 @@ const styles = stylex.create({
 const defaultArgs = {
   children: (
     <>
-      <Disclosure.Button>Advanced options</Disclosure.Button>
-      <Disclosure.Panel sx={styles.panel}>
+      <DisclosureButton>Advanced options</DisclosureButton>
+      <DisclosurePanel sx={styles.panel}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      </Disclosure.Panel>
+      </DisclosurePanel>
     </>
   ),
 } satisfies Partial<IDisclosureProps>;
@@ -149,12 +151,12 @@ export const CustomExpandIcon: IStory = {
     ...defaultArgs,
     children: (
       <>
-        <Disclosure.Button expandIcon={<FontAwesomeIcon icon={faArrowDown} />}>
+        <DisclosureButton expandIcon={<FontAwesomeIcon icon={faArrowDown} />}>
           Advanced options
-        </Disclosure.Button>
-        <Disclosure.Panel>
+        </DisclosureButton>
+        <DisclosurePanel>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </Disclosure.Panel>
+        </DisclosurePanel>
       </>
     ),
   },
@@ -166,15 +168,15 @@ export const CustomIcons: IStory = {
     ...defaultArgs,
     children: (
       <>
-        <Disclosure.Button
+        <DisclosureButton
           expandIcon={<FontAwesomeIcon icon={faFolderClosed} fixedWidth />}
           collapseIcon={<FontAwesomeIcon icon={faFolderOpen} fixedWidth />}
         >
           Advanced options
-        </Disclosure.Button>
-        <Disclosure.Panel>
+        </DisclosureButton>
+        <DisclosurePanel>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </Disclosure.Panel>
+        </DisclosurePanel>
       </>
     ),
   },

@@ -107,7 +107,10 @@ export const TextField = fixedForwardRef(function TextField<
     inputRef.current?.focus();
   }, [setValue, value, onClear, onValueChange]);
 
-  const handleValueChange = (value: string, target: TElement | null): void => {
+  const handleValueChange = (
+    value: string | number | ReadonlyArray<string>,
+    target: TElement | null,
+  ): void => {
     setValue(value);
     onValueChange?.(value, target);
   };
@@ -157,12 +160,13 @@ export const TextField = fixedForwardRef(function TextField<
           }
         >
           {isFunction(inputRenderer)
-            ? ({ forwardedHtmlProps: forwardedRestProps }) =>
+            ? ({ forwardedHtmlProps }) =>
                 inputRenderer({
                   forwardedHtmlProps: {
                     'aria-invalid': other.hasError,
                     'aria-label': other.label,
-                    ...forwardedRestProps,
+                    value,
+                    ...forwardedHtmlProps,
                   },
                   sxf,
                   ref: handleRef,

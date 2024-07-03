@@ -1,6 +1,9 @@
 import type { IOmit } from '@/helpers/types';
 import { ListItem } from '@/components/atoms/ListItem';
-import { TextField, type ITextFieldProps } from '@/components/atoms/TextField';
+import {
+  TextInputField,
+  type ITextInputFieldProps,
+} from '@/components/atoms/TextInputField';
 import { MenuList } from '@/components/atoms/MenuList';
 import {
   useSingleFilterableList,
@@ -31,7 +34,7 @@ export type ISuggestProps<TItem> = IOmit<
   getValueFieldProps?: (
     renderProps: IFloatingFilterableListTriggerRenderProps<TItem>,
     selectedItem?: TItem,
-  ) => ITextFieldProps;
+  ) => ITextInputFieldProps;
 };
 
 export const Suggest = <TItem,>(
@@ -72,7 +75,7 @@ export const Suggest = <TItem,>(
       {...other}
     >
       {(renderProps) => (
-        <TextField
+        <TextInputField
           end={
             <FilterableListFieldEnd
               renderProps={renderProps}

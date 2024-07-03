@@ -1,6 +1,6 @@
 import type { IOmit } from '@/helpers/types';
 import { ListItem } from '@/components/atoms/ListItem';
-import { TextField } from '@/components/atoms/TextField';
+import { TextInputField } from '@/components/atoms/TextInputField';
 import { MenuList } from '@/components/atoms/MenuList';
 import { Field, type IFieldOwnProps } from '@/components/atoms/Field';
 import {
@@ -62,7 +62,7 @@ export const Select = <TItem,>(props: ISelectProps<TItem>): React.ReactNode => {
           noFocusRing
           header={
             canFilter ? (
-              <TextField
+              <TextInputField
                 clearable
                 {...listProps.getInputFilterProps()}
                 type='text'

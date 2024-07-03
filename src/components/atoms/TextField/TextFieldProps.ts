@@ -42,7 +42,7 @@ export type ITextFieldRenderProps<
 export type ITextFieldOwnProps<
   TElement extends HTMLElement,
   TChildrenProps extends object,
-> = IControlledValueProps<string, TElement> & {
+> = IControlledValueProps<string | number | ReadonlyArray<string>, TElement> & {
   innerStyles?: {
     field?: IZeroOrMore<ICompiledStyles<IFieldBaseStyleKey>>;
   };

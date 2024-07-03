@@ -13,6 +13,10 @@ import { Avatar } from '@/components/atoms/Avatar';
 import { IconButton } from '@/components/atoms/IconButton/IconButton';
 import { Card, type ICardProps, type ICardOwnProps } from './Card';
 import { ListItem } from '../ListItem';
+import { CardContent } from '../CardContent';
+import { CardTitle } from '../CardTitle';
+import { CardMedia } from '../CardMedia';
+import { CardActions } from '../CardActions';
 
 // https://m3.material.io/components/cards
 // https://github.com/material-components/material-web/blob/main/labs/card/demo/stories.ts
@@ -52,18 +56,18 @@ const NonActionableContent: React.FC<{ headline?: string }> = ({
     >
       John Doe
     </ListItem>
-    <Card.Content>
-      <Card.Title headline={headline ?? 'Headline'} />
-      <Card.Media
+    <CardContent>
+      <CardTitle headline={headline ?? 'Headline'} />
+      <CardMedia
         sx={styles.media}
         src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
       />
-      <Card.Title
+      <CardTitle
         subhead='Subhead'
         supportingText='Explain more about the topic shown in the headline and subhead through supporting text.'
       />
-    </Card.Content>
-    <Card.Actions>
+    </CardContent>
+    <CardActions>
       <Button
         variant='filled'
         onClick={(...args) => sbHandleEvent('click:primaryAction', args)}
@@ -76,7 +80,7 @@ const NonActionableContent: React.FC<{ headline?: string }> = ({
       >
         Secondary
       </Button>
-    </Card.Actions>
+    </CardActions>
   </>
 );
 
@@ -84,49 +88,49 @@ const NonActionableContentVariant: React.FC<{ headline?: string }> = ({
   headline,
 }) => (
   <>
-    <Card.Media
+    <CardMedia
       sx={styles.media}
       src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
     />
-    <Card.Content>
-      <Card.Title
+    <CardContent>
+      <CardTitle
         headline={headline ?? 'Headline'}
         subhead='Subhead'
         supportingText='Explain more about the topic shown in the headline and subhead through supporting text.'
       />
-    </Card.Content>
-    <Card.Actions>
+    </CardContent>
+    <CardActions>
       <Button
         variant='filled'
         onClick={(...args) => sbHandleEvent('click:primaryAction', args)}
       >
         Primary
       </Button>
-    </Card.Actions>
+    </CardActions>
   </>
 );
 
 const ActionableContent: React.FC<{ headline?: string }> = ({ headline }) => (
   <>
-    <Card.Media
+    <CardMedia
       sx={styles.media}
       src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
     />
-    <Card.Content>
-      <Card.Title
+    <CardContent>
+      <CardTitle
         headline={headline ?? 'Headline'}
         subhead='Subhead'
         supportingText='Explain more about the topic shown in the headline and subhead through supporting text.'
       />
-    </Card.Content>
-    <Card.Actions>
+    </CardContent>
+    <CardActions>
       <Button
         variant='outlined'
         onClick={(...args) => sbHandleEvent('click:secondaryAction', args)}
       >
         Secondary
       </Button>
-    </Card.Actions>
+    </CardActions>
   </>
 );
 

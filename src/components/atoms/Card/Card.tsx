@@ -1,5 +1,6 @@
 import { forwardRef, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
+import { useMergeRefs } from '@floating-ui/react';
 
 import type {
   IContainerProps,
@@ -32,12 +33,7 @@ import {
   StateLayer,
   type IStateLayerStyleKey,
 } from '@/components/utils/StateLayer';
-import { useForkRef } from '@/hooks/useForkRef';
 import { CardContext, type ICardContextValue } from './CardContext';
-import { CardMedia } from '../CardMedia';
-import { CardContent } from '../CardContent';
-import { CardTitle } from '../CardTitle';
-import { CardActions } from '../CardActions';
 
 // https://github.com/material-components/material-web/blob/main/labs/card/internal/card.ts
 
@@ -77,7 +73,7 @@ type ICard = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
   props: ICardProps<TRoot>,
 ) => React.ReactNode;
 
-const Card: ICard = forwardRef(function Card<
+export const Card: ICard = forwardRef(function Card<
   TRoot extends React.ElementType = typeof DEFAULT_TAG,
 >(props: ICardProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
@@ -97,7 +93,7 @@ const Card: ICard = forwardRef(function Card<
   const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
     disabled,
   });
-  const handleRef = useForkRef(forwardedRef, visualStateRef);
+  const handleRef = useMergeRefs([forwardedRef, visualStateRef]);
 
   const { theme, variantTheme, settings } = useComponentTheme(
     'Card',
@@ -190,13 +186,3 @@ const Card: ICard = forwardRef(function Card<
     </CardContext.Provider>
   );
 });
-
-// FIXME: no namespace
-const CardNamespace = Object.assign(Card, {
-  Media: CardMedia,
-  Content: CardContent,
-  Title: CardTitle,
-  Actions: CardActions,
-});
-
-export { CardNamespace as Card };

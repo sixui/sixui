@@ -5,8 +5,6 @@ import type { IDisclosureStyleKey } from './Disclosure.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { DisclosureButton } from '@/components/atoms/DisclosureButton';
-import { DisclosurePanel } from '@/components/atoms/DisclosurePanel';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import {
   DisclosureContext,
@@ -19,7 +17,7 @@ export type IDisclosureProps = IContainerProps<IDisclosureStyleKey> &
     defaultExpanded?: boolean;
   };
 
-const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
+export const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
   function Disclosure(props, forwardedRef) {
     const {
       styles,
@@ -83,11 +81,3 @@ const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
     );
   },
 );
-
-// FIXME: no namespace
-const DisclosureNamespace = Object.assign(Disclosure, {
-  Button: DisclosureButton,
-  Panel: DisclosurePanel,
-});
-
-export { DisclosureNamespace as Disclosure };
