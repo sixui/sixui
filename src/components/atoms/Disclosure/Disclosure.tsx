@@ -84,6 +84,7 @@ const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
   },
 );
 
+// FIXME: no namespace
 const DisclosureNamespace = Object.assign(Disclosure, {
   Button: DisclosureButton,
   Panel: DisclosurePanel,

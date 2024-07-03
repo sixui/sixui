@@ -12,7 +12,6 @@ export * from './components/atoms/CardTitle';
 export * from './components/atoms/Checkbox';
 export * from './components/atoms/Chip';
 export * from './components/atoms/CircularProgressIndicator';
-export * from './components/atoms/Combobox';
 export * from './components/atoms/Dialog';
 export * from './components/atoms/DialogContent';
 export * from './components/atoms/Disclosure';
@@ -25,6 +24,8 @@ export * from './components/atoms/Item';
 export * from './components/atoms/List';
 export * from './components/atoms/ListItem';
 export * from './components/atoms/Menu';
+export * from './components/atoms/MenuDivider';
+export * from './components/atoms/MenuItem';
 export * from './components/atoms/MenuList';
 export * from './components/atoms/MultiSelect';
 export * from './components/atoms/Paper';
@@ -45,7 +46,9 @@ export * from './components/atoms/Tab';
 export * from './components/atoms/TabList';
 export * from './components/atoms/TabPanel';
 export * from './components/atoms/Tabs';
+export * from './components/atoms/TextAreaField';
 export * from './components/atoms/TextField';
+export * from './components/atoms/TextInputField';
 export * from './components/atoms/Typography';
 
 // molecules

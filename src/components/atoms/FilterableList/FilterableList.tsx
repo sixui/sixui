@@ -11,6 +11,7 @@ import type {
   IFilterableItemsEqualProp as IFilterableItemsEqual,
   IFilterableListState,
 } from './FilterableListProps';
+import type { IExtendedFloatingProps } from '@/helpers/extendFloatingProps';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { usePrevious } from '@/hooks/usePrevious';
 import {
@@ -53,14 +54,15 @@ export type IFilterableListRendererProps<TItem> =
     inputFilterRef?: React.Ref<HTMLInputElement>;
 
     /**
-     * Get the attributes to apply to the input element that receives the query
-     * string.
+     * A function that returns the props to apply to the input filter element.
      *
-     * @param userProps - Additional props
+     * @param userProps - All event handlers you pass in should be done so through
+     * the this argument. This is because your handler may be either overwritten
+     * or overwrite one of the Floating UI hooks' handlers.
      */
-    getInputFilterAttributes: (
-      userProps?: React.HTMLProps<HTMLInputElement>,
-    ) => Record<string, unknown>;
+    getInputFilterProps: (
+      userProps?: IExtendedFloatingProps<React.HTMLProps<HTMLInputElement>>,
+    ) => IExtendedFloatingProps<React.HTMLProps<HTMLInputElement>>;
   };
 
 /**
@@ -443,6 +445,6 @@ export const FilterableList = <TItem, TElement extends HTMLElement>(
     }),
     handleQueryChange: (event) => handleQueryChange(event.target.value),
     disabled,
-    getInputFilterAttributes: (userProps) => ({ ...userProps }),
+    getInputFilterProps: (userProps) => ({ ...userProps }),
   });
 };

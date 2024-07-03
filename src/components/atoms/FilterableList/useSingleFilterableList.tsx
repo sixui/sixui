@@ -5,7 +5,7 @@ import type {
   IFilterableItemRenderer,
   IFilterableItemsEqualProp,
 } from './FilterableListProps';
-import type { IFloatingFilterableListTriggerButtonRenderProps } from '@/components/atoms/FloatingFilterableList';
+import type { IFloatingFilterableListTriggerRenderProps } from '@/components/atoms/FloatingFilterableList';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
@@ -36,7 +36,7 @@ export type IUseSingleFilterableListResult<
 > = {
   itemRenderer: IFilterableItemRenderer<TItem, TElement>;
   fieldEndRenderer: (
-    renderProps: IFloatingFilterableListTriggerButtonRenderProps<TItem>,
+    renderProps: IFloatingFilterableListTriggerRenderProps<TItem>,
   ) => React.JSX.Element;
   handleItemSelect: (newSelectedItem: TItem) => number | undefined;
   handleClear: (
@@ -129,7 +129,7 @@ export const useSingleFilterableList = <TItem, TElement extends HTMLElement>(
   };
 
   const fieldEndRenderer = (
-    renderProps: IFloatingFilterableListTriggerButtonRenderProps<TItem>,
+    renderProps: IFloatingFilterableListTriggerRenderProps<TItem>,
   ): React.JSX.Element => (
     <div
       {...stylex.props(commonStyles.horizontalLayout, commonStyles.gap$none)}

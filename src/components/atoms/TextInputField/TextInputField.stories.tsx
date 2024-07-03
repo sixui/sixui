@@ -2,24 +2,20 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
-import type { ITextFieldProps } from './TextFieldProps';
+import type { ITextInputFieldProps } from './TextInputFieldProps';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
 import { fieldBaseVariants } from '@/components/atoms/FieldBase';
-import { TextField } from './TextField';
-
-// https://m3.material.io/components/text-fields/overview
-// https://material-web.dev/components/text-field/
-// https://github.com/material-components/material-web/blob/main/textfield/demo/stories.ts
+import { TextInputField } from './TextInputField';
 
 const meta = {
-  component: TextField,
-} satisfies Meta<typeof TextField>;
+  component: TextInputField,
+} satisfies Meta<typeof TextInputField>;
 
-type IStory = StoryObj<ITextFieldProps>;
+type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   host: {
@@ -30,9 +26,9 @@ const styles = stylex.create({
 const defaultArgs = {
   sx: styles.host,
   onValueChange: (...args) => void sbHandleEvent('valueChange', args),
-} satisfies Partial<ITextFieldProps>;
+} satisfies Partial<ITextInputFieldProps>;
 
-const states: Array<IComponentPresentation<ITextFieldProps>> = [
+const states: Array<IComponentPresentation<ITextInputFieldProps>> = [
   { legend: 'Enabled' },
   {
     legend: 'Hovered',
@@ -47,15 +43,34 @@ const states: Array<IComponentPresentation<ITextFieldProps>> = [
   },
 ];
 
-const rows: Array<IComponentPresentation<ITextFieldProps>> = [
-  { legend: 'Normal' },
+const rows: Array<IComponentPresentation<ITextInputFieldProps>> = [
+  { legend: 'Empty' },
+  { legend: 'Label', props: { label: 'Label' } },
+  { legend: 'Placeholder', props: { placeholder: 'Placeholder' } },
+  {
+    legend: 'Value',
+    props: {
+      defaultValue: 'Value',
+      prefixText: '$',
+      suffixText: '.00',
+    },
+  },
+  { legend: 'Clearable', props: { clearable: true } },
+  {
+    legend: 'Password',
+    props: { type: 'password' },
+  },
+  {
+    legend: 'Date',
+    props: { type: 'datetime-local' },
+  },
   { legend: 'Error', props: { defaultValue: 'Value', hasError: true } },
 ];
 
 export const Variants: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={TextField}
+      component={TextInputField}
       props={props}
       cols={fieldBaseVariants.map((variant) => ({
         props: {
@@ -63,11 +78,6 @@ export const Variants: IStory = {
           placeholder: capitalizeFirstLetter(variant),
         },
       }))}
-      rows={[
-        {
-          legend: 'Text field',
-        },
-      ]}
     />
   ),
   args: defaultArgs,
@@ -76,7 +86,7 @@ export const Variants: IStory = {
 export const Filled: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={TextField}
+      component={TextInputField}
       props={props}
       cols={states}
       rows={rows}
@@ -91,7 +101,7 @@ export const Filled: IStory = {
 export const Outlined: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={TextField}
+      component={TextInputField}
       props={props}
       cols={states}
       rows={rows}

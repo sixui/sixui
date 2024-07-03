@@ -38,6 +38,7 @@ export const styles: MapNamespaces<ITextFieldStyles> =
       letterSpacing: fieldBaseVars.contentLetterSpacing,
 
       width: '100%',
+      height: '100%',
       caretColor: {
         default: vars.caretColor,
         ':is([data-focused])': vars.caretColor$focus,
@@ -162,7 +163,7 @@ export const fieldStyles: MapNamespaces<IFieldBaseStyles> =
     field: {
       width: '100%',
     },
-    field$textarea: {
+    field$textArea: {
       resize: 'inherit',
     },
   });

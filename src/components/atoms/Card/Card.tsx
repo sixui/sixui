@@ -191,6 +191,7 @@ const Card: ICard = forwardRef(function Card<
   );
 });
 
+// FIXME: no namespace
 const CardNamespace = Object.assign(Card, {
   Media: CardMedia,
   Content: CardContent,

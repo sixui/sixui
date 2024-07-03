@@ -6,6 +6,7 @@ import {
   useRef,
   useState,
 } from 'react';
+import { isFunction } from 'lodash';
 
 import type { IContainerProps } from '@/helpers/types';
 import type { IThemeComponents } from '@/components/utils/Theme';
@@ -18,8 +19,8 @@ import type {
 import type {
   IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
-  IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
+import type { IForwardableHtmlProps } from '@/helpers/react/forwardableHtmlPropsTypes';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { usePrevious } from '@/hooks/usePrevious';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
@@ -34,40 +35,34 @@ import { CircularProgressIndicator } from '@/components/atoms/CircularProgressIn
 
 export const fieldBaseDefaultTag = 'div';
 
-export type IFieldBaseOwnProps = IContainerProps<IFieldBaseStyleKey> & {
-  visualState?: IVisualState;
-  variant?: IFieldBaseVariant | false;
-  count?: number;
-  disabled?: boolean;
-  readOnly?: boolean;
-  hasError?: boolean;
-  errorText?: string;
-  start?: React.ReactNode;
-  end?: React.ReactNode;
-  leadingIcon?: React.ReactNode;
-  trailingIcon?: React.ReactNode;
-  label?: string;
-  max?: number | string;
-  populated?: boolean;
-  required?: boolean;
-  resizable?: boolean;
-  supportingText?: React.ReactNode;
-  textarea?: boolean;
-  children?: React.ReactNode;
-  labelId?: string;
-  tabIndex?: number;
-  loading?: boolean;
-};
+export type IFieldBaseOwnProps = IContainerProps<IFieldBaseStyleKey> &
+  IForwardableHtmlProps & {
+    visualState?: IVisualState;
+    variant?: IFieldBaseVariant | false;
+    count?: number;
+    disabled?: boolean;
+    readOnly?: boolean;
+    hasError?: boolean;
+    errorText?: string;
+    start?: React.ReactNode;
+    end?: React.ReactNode;
+    leadingIcon?: React.ReactNode;
+    trailingIcon?: React.ReactNode;
+    label?: string;
+    max?: number | string;
+    populated?: boolean;
+    required?: boolean;
+    resizable?: boolean;
+    supportingText?: React.ReactNode;
+    textArea?: boolean;
+    labelId?: string;
+    loading?: boolean;
+    tabIndex?: number;
+  };
 
 export type IFieldBaseProps<
   TRoot extends React.ElementType = typeof fieldBaseDefaultTag,
 > = IPolymorphicComponentPropsWithRef<TRoot, IFieldBaseOwnProps>;
-
-type IFieldBase = <
-  TRoot extends React.ElementType = typeof fieldBaseDefaultTag,
->(
-  props: IFieldBaseProps<TRoot>,
-) => React.ReactNode;
 
 type IFieldBaseVariantMap = {
   [key in IFieldBaseVariant]: keyof Pick<
@@ -80,6 +75,12 @@ const variantMap: IFieldBaseVariantMap = {
   filled: 'FilledFieldBase',
   outlined: 'OutlinedFieldBase',
 };
+
+type IFieldBase = <
+  TRoot extends React.ElementType = typeof fieldBaseDefaultTag,
+>(
+  props: IFieldBaseProps<TRoot>,
+) => React.ReactNode;
 
 export const FieldBase: IFieldBase = forwardRef(function FieldBase<
   TRoot extends React.ElementType = typeof fieldBaseDefaultTag,
@@ -107,10 +108,12 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
     errorText,
     count = -1,
     max = -1,
-    textarea,
+    textArea,
     loading,
+    forwardHtmlPropsToChildren,
+    tabIndex,
     ...other
-  } = props as IWithAsProp<IFieldBaseOwnProps>;
+  } = props;
 
   const disabled = disabledProp || readOnly;
   const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
@@ -575,13 +578,14 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
       )}
       aria-labelledby={labelId}
       data-cy='field'
-      {...other}
+      tabIndex={tabIndex}
+      {...(forwardHtmlPropsToChildren ? undefined : other)}
       ref={handleRef}
     >
       <div
         {...sxf(
           'field',
-          textarea && 'field$textarea',
+          textArea && 'field$textArea',
           disabled && 'field$disabled',
         )}
       >
@@ -655,13 +659,19 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
                     !hasStart && 'contentSlot$withoutStart',
                     !hasEnd && 'contentSlot$withoutEnd',
                     hasLabel && 'contentSlot$withLabel',
-                    textarea &&
+                    textArea &&
                       (hasLabel
-                        ? 'contentSlot$withLabel$textarea'
-                        : 'contentSlot$textarea'),
+                        ? 'contentSlot$withLabel$textArea'
+                        : 'contentSlot$textArea'),
                   )}
                 >
-                  {children}
+                  {isFunction(children)
+                    ? children({
+                        forwardedHtmlProps: forwardHtmlPropsToChildren
+                          ? other
+                          : undefined,
+                      })
+                    : children}
                 </div>
               </div>
             </div>

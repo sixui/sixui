@@ -3,6 +3,27 @@ import { isEqual } from 'lodash';
 
 import { isProduction } from '@/helpers/isProduction';
 
+export interface IControlledValueProps<
+  TValue,
+  TTargetElement extends HTMLElement = HTMLElement,
+> {
+  /**
+   * Initial value for uncontrolled usage. Mutually exclusive with `value` prop.
+   */
+  defaultValue?: TValue;
+
+  /**
+   * Controlled value. Mutually exclusive with `defaultValue` prop.
+   */
+  value?: TValue;
+
+  /**
+   * Callback invoked when the component value changes, typically via user
+   * interaction, in both controlled and uncontrolled mode.
+   */
+  onValueChange?: (value: TValue, targetElement: TTargetElement | null) => void;
+}
+
 type IUseControlledProps<TValue> = {
   /**
    * Holds the component value when it's controlled.

@@ -12,7 +12,7 @@ import {
 } from '@/components/atoms/FilterableList';
 import {
   FloatingFilterableList,
-  type IFloatingFilterableListTriggerButtonRenderProps,
+  type IFloatingFilterableListTriggerRenderProps,
   type IFloatingFilterableListProps,
 } from '@/components/atoms/FloatingFilterableList';
 
@@ -27,7 +27,7 @@ export type IMultiSelectProps<TItem> = IOmit<
   itemRenderer: IFilterableItemRenderer<TItem, HTMLDivElement>;
   itemLabel: (item: TItem) => string;
   getValueFieldProps?: (
-    renderProps: IFloatingFilterableListTriggerButtonRenderProps<TItem>,
+    renderProps: IFloatingFilterableListTriggerRenderProps<TItem>,
     selectedItem: TItem,
   ) => IInputChipProps;
 };
@@ -113,32 +113,35 @@ export const MultiSelect = <TItem,>(
             !!renderProps.query
           }
           innerStyles={{ field: fieldStyles }}
-          {...renderProps.getInputFilterAttributes(
-            renderProps.getButtonAttributes(),
-          )}
-          ref={renderProps.buttonRef}
+          {...renderProps.getInputFilterProps(renderProps.getTriggerProps())}
+          ref={renderProps.setTriggerRef}
           inputRef={renderProps.inputFilterRef}
-        >
-          {multiFilterableList.selectedItems.map((selectedItem, index) => (
-            <InputChip
-              sx={styles.chip}
-              key={index}
-              visualState={{
-                focused:
-                  multiFilterableList.focusedSelectedItemIndex === index
-                    ? true
-                    : undefined,
-              }}
-              onDelete={(event) => {
-                event.stopPropagation();
-                onChange?.(multiFilterableList.deselectItemAtIndex(index));
-                renderProps.afterItemsRemove([selectedItem], event);
-              }}
-              label={itemLabel(selectedItem)}
-              {...getValueFieldProps?.(renderProps, selectedItem)}
-            />
-          ))}
-        </TextField>
+          start={
+            multiFilterableList.selectedItems.length
+              ? multiFilterableList.selectedItems.map((selectedItem, index) => (
+                  <InputChip
+                    sx={styles.chip}
+                    key={index}
+                    visualState={{
+                      focused:
+                        multiFilterableList.focusedSelectedItemIndex === index
+                          ? true
+                          : undefined,
+                    }}
+                    onDelete={(event) => {
+                      event.stopPropagation();
+                      onChange?.(
+                        multiFilterableList.deselectItemAtIndex(index),
+                      );
+                      renderProps.afterItemsRemove([selectedItem], event);
+                    }}
+                    label={itemLabel(selectedItem)}
+                    {...getValueFieldProps?.(renderProps, selectedItem)}
+                  />
+                ))
+              : undefined
+          }
+        />
       )}
     </FloatingFilterableList>
   );

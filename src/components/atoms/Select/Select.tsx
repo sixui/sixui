@@ -10,7 +10,7 @@ import {
 } from '@/components/atoms/FilterableList';
 import {
   FloatingFilterableList,
-  type IFloatingFilterableListTriggerButtonRenderProps,
+  type IFloatingFilterableListTriggerRenderProps,
   type IFloatingFilterableListProps,
 } from '@/components/atoms/FloatingFilterableList';
 
@@ -26,7 +26,7 @@ export type ISelectProps<TItem> = IOmit<
   itemLabel: (item: TItem) => string;
   canFilter?: boolean;
   getValueFieldProps?: (
-    renderProps: IFloatingFilterableListTriggerButtonRenderProps<TItem>,
+    renderProps: IFloatingFilterableListTriggerRenderProps<TItem>,
     selectedItem?: TItem,
   ) => IFieldOwnProps;
 };
@@ -64,7 +64,8 @@ export const Select = <TItem,>(props: ISelectProps<TItem>): React.ReactNode => {
             canFilter ? (
               <TextField
                 clearable
-                {...listProps.getInputFilterAttributes()}
+                {...listProps.getInputFilterProps()}
+                type='text'
                 inputRef={listProps.inputFilterRef}
               />
             ) : undefined
@@ -96,12 +97,13 @@ export const Select = <TItem,>(props: ISelectProps<TItem>): React.ReactNode => {
             />
           }
           populated={renderProps.isOpen || !!singleFilterableList.selectedItem}
-          {...renderProps.getButtonAttributes()}
+          disabled={other.disabled}
+          {...renderProps.getTriggerProps()}
           {...getValueFieldProps?.(
             renderProps,
             singleFilterableList.selectedItem,
           )}
-          ref={renderProps.buttonRef}
+          ref={renderProps.setTriggerRef}
         >
           {singleFilterableList.selectedItem
             ? itemLabel(singleFilterableList.selectedItem)

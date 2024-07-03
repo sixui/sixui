@@ -236,7 +236,7 @@ export const styles: MapNamespaces<IFieldBaseStyles> =
       paddingTop: vars.topSpace,
       paddingBottom: vars.bottomSpace,
     },
-    contentSlot$textarea: {
+    contentSlot$textArea: {
       paddingTop: 0,
       paddingBottom: 0,
 

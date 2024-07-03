@@ -1,4 +1,4 @@
-import { cloneElement, forwardRef, useMemo } from 'react';
+import { forwardRef, useMemo } from 'react';
 import { isFunction } from 'lodash';
 import {
   FloatingFocusManager,
@@ -9,17 +9,19 @@ import {
   useMergeRefs,
   useRole,
   useTransitionStatus,
-  type OpenChangeReason,
 } from '@floating-ui/react';
 
 import type {
-  IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
-import type { IVisualState } from '@/hooks/useVisualState';
 import type { IDialogStyleKey } from './Dialog.styledefs';
-import type { IOmit } from '@/helpers/types';
+
+import type {
+  IDialogProps,
+  IDialogOwnProps,
+  DIALOG_DEFAULT_TAG,
+} from './DialogProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
@@ -30,42 +32,22 @@ import {
 import { Scrim } from '@/components/atoms/Scrim';
 import { Portal } from '@/components/utils/Portal';
 import { useControlledValue } from '@/hooks/useControlledValue';
+import { extendFloatingProps } from '@/helpers/extendFloatingProps';
 
 // https://github.com/material-components/material-web/blob/main/dialog/internal/dialog.ts
 
-const DEFAULT_TAG = 'div';
-
-export type IDialogRenderProps = {
-  isOpen: boolean;
-};
-
-export type IDialogOwnProps = IOmit<IDialogContentOwnProps, 'onClose'> &
-  Pick<React.AriaAttributes, 'aria-label'> & {
-    open?: boolean;
-    trigger?:
-      | React.ReactElement
-      | ((props: IDialogRenderProps) => React.ReactElement);
-    onOpenChange?: (
-      open: boolean,
-      event?: Event,
-      reason?: OpenChangeReason,
-    ) => void;
-  };
-
-export type IDialogProps<TRoot extends React.ElementType = typeof DEFAULT_TAG> =
-  IPolymorphicComponentPropsWithRef<TRoot, IDialogOwnProps>;
-
-type IDialog = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
+type IDialog = <TRoot extends React.ElementType = typeof DIALOG_DEFAULT_TAG>(
   props: IDialogProps<TRoot>,
 ) => React.ReactNode;
 
 export const Dialog: IDialog = forwardRef(function Dialog<
-  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+  TRoot extends React.ElementType = typeof DIALOG_DEFAULT_TAG,
 >(props: IDialogProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     as,
-    trigger: button,
-    open: openProp,
+    trigger,
+    isOpen: isOpenProp,
+    disabled,
     onOpenChange,
     ...other
   } = props as IWithAsProp<IDialogOwnProps>;
@@ -81,12 +63,12 @@ export const Dialog: IDialog = forwardRef(function Dialog<
   );
 
   const [isOpen, setIsOpen] = useControlledValue({
-    controlled: openProp,
-    default: !!openProp,
+    controlled: isOpenProp,
+    default: !!isOpenProp,
     name: 'Dialog',
   });
-  const floating = useFloating<HTMLButtonElement>({
-    open: isOpen,
+  const floating = useFloating({
+    open: isOpen && !disabled,
     onOpenChange: (isOpen, event, reason) => {
       onOpenChange?.(isOpen, event, reason);
       setIsOpen(isOpen);
@@ -102,33 +84,19 @@ export const Dialog: IDialog = forwardRef(function Dialog<
     duration: 150, // motionVars.duration$short3
   });
 
-  const bag: IDialogRenderProps = {
-    isOpen: !!isOpen,
-  };
-  const openVisualState: IVisualState = { hovered: true };
-  const openProps = { visualState: openVisualState };
+  const triggerElement = isFunction(trigger)
+    ? trigger({
+        isOpen,
+        getProps: interactions.getReferenceProps,
+        setRef: floating.refs.setReference,
+      })
+    : trigger;
 
-  const floatingHandleRef = useMergeRefs([
-    forwardedRef,
-    floating.refs.setFloating,
-  ]);
-  const buttonElement = isFunction(button) ? button(bag) : button;
-  const buttonProps = buttonElement?.props as
-    | React.HTMLProps<HTMLButtonElement>
-    | undefined;
+  const dialogRef = useMergeRefs([forwardedRef, floating.refs.setFloating]);
 
   return (
     <>
-      {/* FIXME: avoid cloneElement */}
-      {buttonElement
-        ? cloneElement(buttonElement, {
-            ...interactions.getReferenceProps({
-              ...buttonProps,
-              ...(transitionStatus.isMounted ? openProps : undefined),
-              ref: floating.refs.setReference,
-            }),
-          })
-        : null}
+      {triggerElement}
 
       {transitionStatus.isMounted ? (
         <Portal>
@@ -144,9 +112,15 @@ export const Dialog: IDialog = forwardRef(function Dialog<
                       'click',
                     )
                   }
-                  {...interactions.getFloatingProps()}
-                  {...other}
-                  ref={floatingHandleRef}
+                  // As `other` may contain event handlers, we need to ensure
+                  // that it is passed to the `getFloatingProps` function so
+                  // that the handlers are correctly merged with the handlers
+                  // from Floating UI hooks.
+                  {...extendFloatingProps<IDialogContentOwnProps>(
+                    interactions.getFloatingProps,
+                    other,
+                  )}
+                  ref={dialogRef}
                 />
               </div>
             </FloatingFocusManager>

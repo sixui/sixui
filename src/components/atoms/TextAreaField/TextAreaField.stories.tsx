@@ -2,24 +2,20 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
-import type { ITextFieldProps } from './TextFieldProps';
+import type { ITextAreaFieldProps } from './TextAreaFieldProps';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
 import { fieldBaseVariants } from '@/components/atoms/FieldBase';
-import { TextField } from './TextField';
-
-// https://m3.material.io/components/text-fields/overview
-// https://material-web.dev/components/text-field/
-// https://github.com/material-components/material-web/blob/main/textfield/demo/stories.ts
+import { TextAreaField } from './TextAreaField';
 
 const meta = {
-  component: TextField,
-} satisfies Meta<typeof TextField>;
+  component: TextAreaField,
+} satisfies Meta<typeof TextAreaField>;
 
-type IStory = StoryObj<ITextFieldProps>;
+type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   host: {
@@ -30,9 +26,9 @@ const styles = stylex.create({
 const defaultArgs = {
   sx: styles.host,
   onValueChange: (...args) => void sbHandleEvent('valueChange', args),
-} satisfies Partial<ITextFieldProps>;
+} satisfies Partial<ITextAreaFieldProps>;
 
-const states: Array<IComponentPresentation<ITextFieldProps>> = [
+const states: Array<IComponentPresentation<ITextAreaFieldProps>> = [
   { legend: 'Enabled' },
   {
     legend: 'Hovered',
@@ -47,15 +43,18 @@ const states: Array<IComponentPresentation<ITextFieldProps>> = [
   },
 ];
 
-const rows: Array<IComponentPresentation<ITextFieldProps>> = [
-  { legend: 'Normal' },
+const rows: Array<IComponentPresentation<ITextAreaFieldProps>> = [
+  { legend: 'Empty' },
+  { legend: 'Label', props: { label: 'Label' } },
+  { legend: 'Placeholder', props: { placeholder: 'Placeholder' } },
+  { legend: 'Clearable', props: { clearable: true } },
   { legend: 'Error', props: { defaultValue: 'Value', hasError: true } },
 ];
 
 export const Variants: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={TextField}
+      component={TextAreaField}
       props={props}
       cols={fieldBaseVariants.map((variant) => ({
         props: {
@@ -63,11 +62,6 @@ export const Variants: IStory = {
           placeholder: capitalizeFirstLetter(variant),
         },
       }))}
-      rows={[
-        {
-          legend: 'Text field',
-        },
-      ]}
     />
   ),
   args: defaultArgs,
@@ -76,7 +70,7 @@ export const Variants: IStory = {
 export const Filled: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={TextField}
+      component={TextAreaField}
       props={props}
       cols={states}
       rows={rows}
@@ -91,7 +85,7 @@ export const Filled: IStory = {
 export const Outlined: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={TextField}
+      component={TextAreaField}
       props={props}
       cols={states}
       rows={rows}

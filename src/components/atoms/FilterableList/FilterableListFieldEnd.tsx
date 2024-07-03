@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IFloatingFilterableListTriggerButtonRenderProps } from '@/components/atoms/FloatingFilterableList';
+import type { IFloatingFilterableListTriggerRenderProps } from '@/components/atoms/FloatingFilterableList';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
 import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
@@ -8,7 +8,7 @@ import { IconButton } from '@/components/atoms/IconButton';
 import { commonStyles } from '@/helpers/commonStyles';
 
 export type IFilterableListFieldEnd<TItem> = {
-  renderProps: IFloatingFilterableListTriggerButtonRenderProps<TItem>;
+  renderProps: IFloatingFilterableListTriggerRenderProps<TItem>;
   onClear?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
 };
 

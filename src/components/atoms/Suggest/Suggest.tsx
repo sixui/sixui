@@ -9,7 +9,7 @@ import {
 } from '@/components/atoms/FilterableList';
 import {
   FloatingFilterableList,
-  type IFloatingFilterableListTriggerButtonRenderProps,
+  type IFloatingFilterableListTriggerRenderProps,
   type IFloatingFilterableListProps,
 } from '@/components/atoms/FloatingFilterableList';
 
@@ -29,7 +29,7 @@ export type ISuggestProps<TItem> = IOmit<
   itemRenderer: IFilterableItemRenderer<TItem, HTMLDivElement>;
   itemLabel: (item: TItem) => string;
   getValueFieldProps?: (
-    renderProps: IFloatingFilterableListTriggerButtonRenderProps<TItem>,
+    renderProps: IFloatingFilterableListTriggerRenderProps<TItem>,
     selectedItem?: TItem,
   ) => ITextFieldProps;
 };
@@ -92,9 +92,7 @@ export const Suggest = <TItem,>(
             !!singleFilterableList.selectedItem ||
             !!renderProps.query
           }
-          {...renderProps.getInputFilterAttributes(
-            renderProps.getButtonAttributes(),
-          )}
+          {...renderProps.getInputFilterProps(renderProps.getTriggerProps())}
           value={
             renderProps.isOpen
               ? renderProps.query
@@ -112,7 +110,7 @@ export const Suggest = <TItem,>(
             renderProps,
             singleFilterableList.selectedItem,
           )}
-          ref={renderProps.buttonRef}
+          ref={renderProps.setTriggerRef}
           inputRef={renderProps.inputFilterRef}
         />
       )}

@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 import { useState } from 'react';
 
-import type { IFloatingFilterableListTriggerButtonRenderProps } from '@/components/atoms/FloatingFilterableList';
+import type { IFloatingFilterableListTriggerRenderProps } from '@/components/atoms/FloatingFilterableList';
 import type {
   IFilterableItemRenderer,
   IFilterableItemsEqualProp,
@@ -36,7 +36,7 @@ export type IUseMultiFilterableListResult<
 > = {
   itemRenderer: IFilterableItemRenderer<TItem, TElement>;
   fieldEndRenderer: (
-    renderProps: IFloatingFilterableListTriggerButtonRenderProps<TItem>,
+    renderProps: IFloatingFilterableListTriggerRenderProps<TItem>,
   ) => React.JSX.Element;
   handleItemSelect: (newSelectedItem: TItem) => number | undefined;
   handleItemRemoveFocused: () => void;
@@ -223,7 +223,7 @@ export const useMultiFilterableList = <TItem, TElement extends HTMLElement>(
   };
 
   const fieldEndRenderer = (
-    renderProps: IFloatingFilterableListTriggerButtonRenderProps<TItem>,
+    renderProps: IFloatingFilterableListTriggerRenderProps<TItem>,
   ): React.JSX.Element => (
     <div
       {...stylex.props(commonStyles.horizontalLayout, commonStyles.gap$none)}

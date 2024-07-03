@@ -2,11 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
-import { Dialog, type IDialogProps, type IDialogOwnProps } from './Dialog';
+import type { IDialogProps, IDialogOwnProps } from './DialogProps';
+import { Dialog } from './Dialog';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
+import { commonStyles } from '@/helpers/commonStyles';
 import { Button } from '../Button';
 import { TextField } from '../TextField';
-import { commonStyles } from '@/helpers/commonStyles';
 
 // https://m3.material.io/components/dialogs/overview
 // https://material-web.dev/components/dialog/
@@ -44,7 +45,11 @@ export const Uncontrolled: IStory = {
         </Button>
       </>
     ),
-    trigger: <Button>Open</Button>,
+    trigger: ({ setRef, getProps }) => (
+      <Button {...getProps()} ref={setRef}>
+        Open
+      </Button>
+    ),
   },
 };
 
@@ -56,7 +61,7 @@ const ControlledDialogDemo: React.FC<IDialogProps> = (props) => {
       <Button onClick={() => setIsOpen(true)}>Open</Button>
       <Dialog
         {...props}
-        open={isOpen}
+        isOpen={isOpen}
         headline='Permanently delete?'
         onOpenChange={setIsOpen}
         actions={({ close }) => (
@@ -92,12 +97,16 @@ const FormDialogDemo: React.FC<IDialogProps<'form'>> = (props) => {
   const formRef = useRef<HTMLFormElement>(null);
 
   return (
-    <div {...stylex.props(commonStyles.horizontalLayout)}>
+    <div {...stylex.props(commonStyles.horizontalLayout, commonStyles.gap$xl)}>
       <Dialog
         {...props}
         ref={formRef}
         as='form'
-        trigger={<Button>Open</Button>}
+        trigger={({ setRef, getProps }) => (
+          <Button {...getProps()} ref={setRef}>
+            Open
+          </Button>
+        )}
         headline="What's your name?"
         actions={({ close }) => (
           <>
@@ -126,7 +135,11 @@ const FormDialogDemo: React.FC<IDialogProps<'form'>> = (props) => {
       >
         <TextField name='name' />
       </Dialog>
-      {name ? <div>Name: {name}</div> : null}
+      {name ? (
+        <div>
+          Hello, <strong>{name}</strong>!
+        </div>
+      ) : null}
     </div>
   );
 };

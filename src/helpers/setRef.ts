@@ -18,7 +18,7 @@ import { isFunction } from 'lodash';
 export const setRef = <T>(
   ref:
     | React.MutableRefObject<T | null>
-    | ((instance: T | null) => void)
+    | React.RefCallback<T>
     | null
     | undefined,
   value: T | null,

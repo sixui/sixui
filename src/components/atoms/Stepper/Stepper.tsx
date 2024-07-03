@@ -60,8 +60,9 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
     const validChildren = Children.toArray(children)
       .filter(isValidElement)
       .filter(isStep);
+
+    // FIXME: avoid cloneElement
     const steps = validChildren.map((child, index) =>
-      {/* FIXME: avoid cloneElement */}
       cloneElement(child, {
         index,
         last: index + 1 >= validChildren.length,
@@ -113,6 +114,7 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
   },
 );
 
+// FIXME: no namespace
 const StepperNamespace = Object.assign(Stepper, {
   Step,
   Connector: StepConnector,

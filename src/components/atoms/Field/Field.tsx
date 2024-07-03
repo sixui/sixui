@@ -1,4 +1,5 @@
 import { forwardRef, useMemo } from 'react';
+import { isFunction } from 'lodash';
 
 import type {
   IContainerProps,
@@ -65,10 +66,19 @@ export const Field: IField = forwardRef(function Field<
   const populated = populatedProp ?? (!!children || !!placeholder);
 
   return (
-    <FieldBase sx={sx} ref={forwardedRef} populated={populated} {...other}>
+    <FieldBase
+      sx={sx}
+      ref={forwardedRef}
+      populated={populated}
+      {...(props.forwardRest ? undefined : other)}
+    >
       {children ? (
         <div {...sxf('value')} data-cy='value'>
-          {children}
+          {isFunction(children)
+            ? children({
+                rest: props.forwardRest ? other : undefined,
+              })
+            : children}
         </div>
       ) : placeholder ? (
         <div

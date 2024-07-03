@@ -18,12 +18,11 @@ import {
   type Placement,
 } from '@floating-ui/react';
 
-import type { IOmit } from '@/helpers/types';
+import type { IFloatingFilterableListProps } from './FloatingFilterableListProps';
 import {
   FilterableList,
   type IFilterableCreateNewItemRenderer,
   type IFilterableItemRenderer,
-  type IFilterableListProps,
   type IFilterableListRenderer,
 } from '@/components/atoms/FilterableList';
 import { Portal } from '@/components/utils/Portal';
@@ -31,77 +30,10 @@ import { motionVars } from '@/themes/base/vars/motion.stylex';
 import { placementToOrigin } from '@/helpers/placementToOrigin';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { usePrevious } from '@/hooks/usePrevious';
-
-export type IFloatingFilterableListTriggerButtonRenderProps<TItem> = {
-  isOpen: boolean;
-  buttonRef: React.Ref<HTMLDivElement>;
-  getButtonAttributes: (
-    userProps?: React.HTMLProps<Element>,
-  ) => Record<string, unknown>;
-  afterItemsRemove: (
-    items: Array<TItem>,
-    event?: React.SyntheticEvent<HTMLElement>,
-  ) => void;
-
-  /** The current query string. */
-  query: string;
-
-  inputFilterRef?: React.Ref<HTMLInputElement>;
-  getInputFilterAttributes: (
-    userProps?: React.HTMLProps<HTMLInputElement>,
-  ) => Record<string, unknown>;
-};
-
-export type IFloatingFilterableListProps<
-  TItem,
-  TElement extends HTMLElement,
-> = IOmit<IFilterableListProps<TItem, TElement>, 'onItemSelect'> & {
-  /**
-   * Element which triggers the select popover. In most cases, you should display
-   * the name or label of the curently selected item here.
-   */
-  children: (
-    props: IFloatingFilterableListTriggerButtonRenderProps<TItem>,
-  ) => React.JSX.Element;
-
-  onItemSelect: (
-    item: TItem,
-    event?: React.SyntheticEvent<HTMLElement>,
-  ) => number | undefined;
-
-  onItemRemoveFocused?: () => void;
-
-  onItemFocusPreviousSelected?: (
-    inputFilterRef: React.RefObject<HTMLInputElement>,
-  ) => void;
-  onItemFocusNextSelected?: (
-    inputFilterRef: React.RefObject<HTMLInputElement>,
-  ) => void;
-
-  placement?: Placement;
-  matchTargetWidth?: boolean;
-  closeOnSelect?: boolean;
-
-  /**
-   * Whether the active item should be reset to the first matching item _when
-   * an item is selected_. The query will also be reset to the empty string.
-   *
-   * @defaultvalue false
-   */
-  resetOnSelect?: boolean;
-
-  /**
-   * Whether the active item should be reset to the first matching item _when
-   * the popover closes_. The query will also be reset to the empty string.
-   *
-   * @defaultValue false
-   */
-  resetOnClose?: boolean;
-
-  resetOnBlur?: boolean;
-
-  initialFocus?: number;
-};
+import {
+  extendFloatingProps,
+  type IExtendedFloatingProps,
+} from '@/helpers/extendFloatingProps';
 
 // TODO: migrate in theme
 const styles = stylex.create({
@@ -287,9 +219,9 @@ export const FloatingFilterableList = <TItem, TElement extends HTMLElement>(
   };
 
   const isEnterKeyPressedRef = useRef(false);
-  const getInputFilterAttributes = (
-    userProps?: React.HTMLProps<HTMLInputElement>,
-  ): Record<string, unknown> => ({
+  const getInputFilterProps = (
+    userProps?: IExtendedFloatingProps<React.HTMLProps<HTMLInputElement>>,
+  ): IExtendedFloatingProps<React.HTMLProps<HTMLInputElement>> => ({
     ...userProps,
     value: userProps?.value ?? query,
     disabled: other.disabled,
@@ -355,7 +287,7 @@ export const FloatingFilterableList = <TItem, TElement extends HTMLElement>(
       ...listProps,
       handleQueryChange: listProps.handleQueryChange,
       inputFilterRef,
-      getInputFilterAttributes,
+      getInputFilterProps,
     });
 
   const itemRendererWrapper: IFilterableItemRenderer<TItem, TElement> = (
@@ -432,19 +364,19 @@ export const FloatingFilterableList = <TItem, TElement extends HTMLElement>(
     <>
       {children({
         isOpen,
-        buttonRef: buttonHandleRef,
-        getButtonAttributes: (userProps?: React.HTMLProps<Element>) =>
-          interactions.getReferenceProps({
+        setTriggerRef: buttonHandleRef,
+        getTriggerProps: (userProps) => ({
+          ...extendFloatingProps(interactions.getReferenceProps, {
             ...userProps,
-            disabled: other.disabled,
             tabIndex: 0,
-            'aria-autocomplete': 'none',
             onBlur: resetOnBlur ? () => setQuery('') : undefined,
           }),
+          'aria-autocomplete': 'none',
+        }),
         afterItemsRemove: handleAfterItemsRemove,
         query,
-        inputFilterRef,
-        getInputFilterAttributes,
+        inputFilterRef: inputFilterRef,
+        getInputFilterProps,
       })}
 
       {transitionStatus.isMounted && (
