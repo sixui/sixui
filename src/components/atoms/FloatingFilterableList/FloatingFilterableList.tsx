@@ -15,7 +15,6 @@ import {
   useRole,
   useTransitionStatus,
   useTypeahead,
-  type Placement,
 } from '@floating-ui/react';
 
 import type { IFloatingFilterableListProps } from './FloatingFilterableListProps';
@@ -27,13 +26,13 @@ import {
 } from '@/components/atoms/FilterableList';
 import { Portal } from '@/components/utils/Portal';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
-import { placementToOrigin } from '@/helpers/placementToOrigin';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { usePrevious } from '@/hooks/usePrevious';
 import {
   extendFloatingProps,
   type IExtendedFloatingProps,
 } from '@/helpers/extendFloatingProps';
+import { commonStyles } from '@/helpers/commonStyles';
 
 // TODO: migrate in theme
 const styles = stylex.create({
@@ -69,9 +68,6 @@ const styles = stylex.create({
   transition$close$nested: {
     transition: 'none',
   },
-  transformOrigin: (placement: Placement) => ({
-    transformOrigin: placementToOrigin(placement),
-  }),
 });
 
 export const FloatingFilterableList = <TItem, TElement extends HTMLElement>(
@@ -395,7 +391,7 @@ export const FloatingFilterableList = <TItem, TElement extends HTMLElement>(
               <div
                 {...stylex.props(
                   styles.container,
-                  styles.transformOrigin(floating.placement),
+                  commonStyles.transformOrigin(floating.placement),
                   styles[`transition$${transitionStatus.status}`],
                 )}
               >

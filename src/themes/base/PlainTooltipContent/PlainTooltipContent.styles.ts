@@ -29,4 +29,7 @@ export const styles: MapNamespaces<IPlainTooltipContentStyles> =
       lineHeight: vars.supportingTextLineHeight,
       letterSpacing: vars.supportingTextLetterSpacing,
     },
+    arrow: {
+      fill: vars.containerColor,
+    },
   });

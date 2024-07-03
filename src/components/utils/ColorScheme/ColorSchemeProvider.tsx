@@ -5,6 +5,7 @@ import { typescaleVars } from '@/themes/base/vars/typo.stylex';
 import { ColorSchemeContext, type IColorScheme } from './ColorSchemeContext';
 import { useThemeContext } from '@/components/utils/Theme';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { FloatingDelayGroup } from '@floating-ui/react';
 
 export type IColorSchemeProviderProps = {
   scheme: IColorScheme;
@@ -41,20 +42,27 @@ export const ColorSchemeProvider: React.FC<IColorSchemeProviderProps> = (
 
   return (
     <ColorSchemeContext.Provider value={{ scheme, root }}>
-      <div
-        {...stylex.props(
-          styles.host,
-          isLight && styles.container$light,
-          isDark && [
-            styles.container$dark,
-            themeContext.theme.colorSchemes.dark,
-          ],
-        )}
-        ref={root}
-        data-scheme={scheme}
+      <FloatingDelayGroup
+        delay={{
+          open: 100,
+          close: 1500,
+        }}
       >
-        {children}
-      </div>
+        <div
+          {...stylex.props(
+            styles.host,
+            isLight && styles.container$light,
+            isDark && [
+              styles.container$dark,
+              themeContext.theme.colorSchemes.dark,
+            ],
+          )}
+          ref={root}
+          data-scheme={scheme}
+        >
+          {children}
+        </div>
+      </FloatingDelayGroup>
     </ColorSchemeContext.Provider>
   );
 };

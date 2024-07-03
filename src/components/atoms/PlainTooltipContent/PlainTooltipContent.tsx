@@ -12,13 +12,16 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 export type IPlainTooltipContentProps =
   IContainerProps<IPlainTooltipContentStyleKey> & {
     children?: React.ReactNode;
+    renderArrow?: (
+      userProps?: React.HTMLAttributes<SVGSVGElement>,
+    ) => React.ReactNode;
   };
 
 export const PlainTooltipContent = forwardRef<
   HTMLDivElement,
   IPlainTooltipContentProps
 >(function PlainTooltipContent(props, forwardedRef) {
-  const { styles, sx, children, ...other } = props;
+  const { styles, sx, children, renderArrow, ...other } = props;
 
   const { theme } = useComponentTheme('PlainTooltipContent');
   const stylesCombinator = useMemo(
@@ -36,6 +39,11 @@ export const PlainTooltipContent = forwardRef<
 
   return (
     <div {...sxf('host', theme.vars, sx)} ref={forwardedRef} {...other}>
+      {renderArrow
+        ? renderArrow({
+            ...sxf('arrow'),
+          })
+        : null}
       <div {...sxf('supportingText')}>{children}</div>
     </div>
   );

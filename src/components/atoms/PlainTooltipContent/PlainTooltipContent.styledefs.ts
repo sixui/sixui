@@ -1,4 +1,4 @@
-export type IPlainTooltipContentStyleKey = 'host' | 'supportingText';
+export type IPlainTooltipContentStyleKey = 'host' | 'supportingText' | 'arrow';
 
 export type IPlainTooltipContentStyleVarKey =
   | 'topSpace'

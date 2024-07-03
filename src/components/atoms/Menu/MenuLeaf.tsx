@@ -24,16 +24,15 @@ import {
   useRole,
   useTransitionStatus,
   useTypeahead,
-  type Placement,
 } from '@floating-ui/react';
 
 import type { IMenuProps } from './Menu';
 import { MenuList } from '@/components/atoms/MenuList';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
 import { Portal } from '@/components/utils/Portal';
-import { placementToOrigin } from '@/helpers/placementToOrigin';
 import { MenuItemContext } from './MenuItemContext';
 import { MenuContext } from './MenuContext';
+import { commonStyles } from '@/helpers/commonStyles';
 
 // TODO: migrate in theme
 const styles = stylex.create({
@@ -68,9 +67,6 @@ const styles = stylex.create({
   transition$close$nested: {
     transition: 'none',
   },
-  transformOrigin: (placement: Placement) => ({
-    transformOrigin: placementToOrigin(placement),
-  }),
 });
 
 export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
@@ -256,7 +252,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
                     <div
                       {...stylex.props(
                         styles.inner,
-                        styles.transformOrigin(floating.placement),
+                        commonStyles.transformOrigin(floating.placement),
                         styles[`transition$${transitionStatus.status}`],
                         parentId
                           ? styles[
