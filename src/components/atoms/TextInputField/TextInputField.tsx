@@ -5,7 +5,7 @@ import type {
   ITextInputFieldOwnProps,
 } from './TextInputFieldProps';
 import { IconButton } from '@/components/atoms/IconButton';
-import { TextField } from '@/components/atoms/TextField';
+import { TextField, type ITextFieldProps } from '@/components/atoms/TextField';
 import { ReactComponent as EyeIcon } from '@/assets/Eye.svg';
 import { ReactComponent as EyeSlashIcon } from '@/assets/EyeSlash.svg';
 import { useMergeRefs } from '@floating-ui/react';
@@ -27,6 +27,48 @@ export const TextInputField = forwardRef<HTMLDivElement, ITextInputFieldProps>(
     const [unmasked, setUnmasked] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
     const inputHandleRef = useMergeRefs([inputRef, inputRefProp]);
+
+    const inputRenderer: ITextFieldProps<HTMLInputElement>['inputRenderer'] = ({
+      sxf,
+      ref,
+      forwardedHtmlProps,
+      modifiers,
+      onValueChange,
+    }) => (
+      <>
+        {prefixText ? (
+          <span {...sxf('prefix', modifiers.disabled && 'prefix$disabled')}>
+            {prefixText}
+          </span>
+        ) : null}
+
+        <div {...sxf('inputWrapper')}>
+          <input
+            {...sxf(
+              'input',
+              modifiers.hasError && 'input$error',
+              modifiers.disabled && 'input$disabled',
+              noSpinner && 'input$noSpinner',
+              type === 'number' && 'input$number',
+            )}
+            type={type === 'password' ? (unmasked ? 'text' : 'password') : type}
+            disabled={modifiers.disabled}
+            {...forwardedHtmlProps}
+            onChange={(event) => {
+              forwardedHtmlProps?.onChange?.(event);
+              onValueChange?.(event.target.value, event.target);
+            }}
+            ref={ref}
+          />
+        </div>
+
+        {suffixText ? (
+          <span {...sxf('suffix', modifiers.disabled && 'suffix$disabled')}>
+            {suffixText}
+          </span>
+        ) : null}
+      </>
+    );
 
     return (
       <TextField<HTMLInputElement, ITextInputFieldOwnProps>
@@ -57,48 +99,9 @@ export const TextInputField = forwardRef<HTMLDivElement, ITextInputFieldProps>(
             inputRef.current.value = '';
           }
         }}
-        forwardHtmlPropsToChildren
-      >
-        {({ sxf, ref, forwardedHtmlProps, modifiers, onValueChange }) => (
-          <>
-            <div {...sxf('inputWrapper')}>
-              {prefixText ? (
-                <span
-                  {...sxf('prefix', modifiers.disabled && 'prefix$disabled')}
-                >
-                  {prefixText}
-                </span>
-              ) : null}
-
-              <input
-                {...sxf(
-                  'input',
-                  modifiers.hasError && 'input$error',
-                  modifiers.disabled && 'input$disabled',
-                  noSpinner && 'input$noSpinner',
-                  type === 'number' && 'input$number',
-                )}
-                type={
-                  type === 'password' ? (unmasked ? 'text' : 'password') : type
-                }
-                disabled={modifiers.disabled}
-                {...forwardedHtmlProps}
-                onChange={(event) => {
-                  forwardedHtmlProps?.onChange?.(event);
-                  onValueChange?.(event.target.value, event.target);
-                }}
-                ref={ref}
-              />
-            </div>
-
-            {suffixText ? (
-              <span {...sxf('suffix', modifiers.disabled && 'suffix$disabled')}>
-                {suffixText}
-              </span>
-            ) : null}
-          </>
-        )}
-      </TextField>
+        forwardHtmlProps
+        inputRenderer={inputRenderer}
+      />
     );
   },
 );

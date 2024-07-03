@@ -49,7 +49,7 @@ export const TextField = fixedForwardRef(function TextField<
     populated: populatedProp,
     value: valueProp,
     disabled: disabledProp,
-    children,
+    inputRenderer,
     onValueChange,
     innerStyles,
     clearable: clearableProp,
@@ -156,9 +156,9 @@ export const TextField = fixedForwardRef(function TextField<
             ) : undefined
           }
         >
-          {isFunction(children)
+          {isFunction(inputRenderer)
             ? ({ forwardedHtmlProps: forwardedRestProps }) =>
-                children({
+                inputRenderer({
                   forwardedHtmlProps: {
                     'aria-invalid': other.hasError,
                     'aria-label': other.label,
@@ -172,7 +172,7 @@ export const TextField = fixedForwardRef(function TextField<
                   },
                   onValueChange: handleValueChange,
                 })
-            : children}
+            : inputRenderer}
         </FieldBase>
       </span>
     </div>

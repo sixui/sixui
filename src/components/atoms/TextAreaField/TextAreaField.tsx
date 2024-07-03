@@ -2,13 +2,31 @@ import { forwardRef, useRef } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { ITextAreaFieldProps } from './TextAreaFieldProps';
-import { TextField } from '@/components/atoms/TextField';
+import { TextField, type ITextFieldProps } from '@/components/atoms/TextField';
 
 export const TextAreaField = forwardRef<HTMLDivElement, ITextAreaFieldProps>(
   function TextAreaField(props, forwardedRef) {
     const { inputRef: inputRefProp, ...other } = props;
     const inputRef = useRef<HTMLTextAreaElement>(null);
     const inputHandleRef = useMergeRefs([inputRef, inputRefProp]);
+
+    const inputRenderer: ITextFieldProps<HTMLTextAreaElement>['inputRenderer'] =
+      ({ sxf, ref, forwardedHtmlProps, modifiers, onValueChange }) => (
+        <textarea
+          {...sxf(
+            'input',
+            modifiers.hasError && 'input$error',
+            modifiers.disabled && 'input$disabled',
+          )}
+          disabled={modifiers.disabled}
+          {...forwardedHtmlProps}
+          onChange={(event) => {
+            forwardedHtmlProps?.onChange?.(event);
+            onValueChange?.(event.target.value, event.target);
+          }}
+          ref={ref}
+        />
+      );
 
     return (
       <TextField<HTMLTextAreaElement, ITextAreaFieldProps>
@@ -22,25 +40,9 @@ export const TextAreaField = forwardRef<HTMLDivElement, ITextAreaFieldProps>(
             inputRef.current.value = '';
           }
         }}
-        forwardHtmlPropsToChildren
-      >
-        {({ sxf, ref, forwardedHtmlProps, modifiers, onValueChange }) => (
-          <textarea
-            {...sxf(
-              'input',
-              modifiers.hasError && 'input$error',
-              modifiers.disabled && 'input$disabled',
-            )}
-            disabled={modifiers.disabled}
-            {...forwardedHtmlProps}
-            onChange={(event) => {
-              forwardedHtmlProps?.onChange?.(event);
-              onValueChange?.(event.target.value, event.target);
-            }}
-            ref={ref}
-          />
-        )}
-      </TextField>
+        forwardHtmlProps
+        inputRenderer={inputRenderer}
+      />
     );
   },
 );

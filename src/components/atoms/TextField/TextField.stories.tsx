@@ -19,7 +19,7 @@ const meta = {
   component: TextField,
 } satisfies Meta<typeof TextField>;
 
-type IStory = StoryObj<ITextFieldProps>;
+type IStory = StoryObj<ITextFieldProps<HTMLElement>>;
 
 const styles = stylex.create({
   host: {
@@ -30,9 +30,9 @@ const styles = stylex.create({
 const defaultArgs = {
   sx: styles.host,
   onValueChange: (...args) => void sbHandleEvent('valueChange', args),
-} satisfies Partial<ITextFieldProps>;
+} satisfies Partial<ITextFieldProps<HTMLElement>>;
 
-const states: Array<IComponentPresentation<ITextFieldProps>> = [
+const states: Array<IComponentPresentation<ITextFieldProps<HTMLElement>>> = [
   { legend: 'Enabled' },
   {
     legend: 'Hovered',
@@ -47,7 +47,7 @@ const states: Array<IComponentPresentation<ITextFieldProps>> = [
   },
 ];
 
-const rows: Array<IComponentPresentation<ITextFieldProps>> = [
+const rows: Array<IComponentPresentation<ITextFieldProps<HTMLElement>>> = [
   { legend: 'Normal' },
   { legend: 'Error', props: { defaultValue: 'Value', hasError: true } },
 ];

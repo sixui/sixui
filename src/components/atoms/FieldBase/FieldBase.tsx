@@ -20,7 +20,10 @@ import type {
   IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
 } from '@/helpers/react/polymorphicComponentTypes';
-import type { IForwardableHtmlProps } from '@/helpers/react/forwardableHtmlPropsTypes';
+import type {
+  IRendererWithForwardedHtmlProps,
+  IForwardableHtmlProps,
+} from '@/helpers/react/forwardableHtmlPropsTypes';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { usePrevious } from '@/hooks/usePrevious';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
@@ -58,6 +61,7 @@ export type IFieldBaseOwnProps = IContainerProps<IFieldBaseStyleKey> &
     labelId?: string;
     loading?: boolean;
     tabIndex?: number;
+    children?: IRendererWithForwardedHtmlProps;
   };
 
 export type IFieldBaseProps<
@@ -110,7 +114,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
     max = -1,
     textArea,
     loading,
-    forwardHtmlPropsToChildren,
+    forwardHtmlProps,
     tabIndex,
     ...other
   } = props;
@@ -579,7 +583,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
       aria-labelledby={labelId}
       data-cy='field'
       tabIndex={tabIndex}
-      {...(forwardHtmlPropsToChildren ? undefined : other)}
+      {...(forwardHtmlProps ? undefined : other)}
       ref={handleRef}
     >
       <div
@@ -667,7 +671,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
                 >
                   {isFunction(children)
                     ? children({
-                        forwardedHtmlProps: forwardHtmlPropsToChildren
+                        forwardedHtmlProps: forwardHtmlProps
                           ? other
                           : undefined,
                       })
