@@ -44,7 +44,6 @@ const styles = stylex.create({
   container: {
     display: 'flex',
     flexGrow: 1,
-    overflow: 'hidden',
   },
   transition$unmounted: {},
   transition$initial: {
