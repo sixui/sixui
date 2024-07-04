@@ -1,4 +1,5 @@
 import { forwardRef, useMemo } from 'react';
+import { isFunction } from 'lodash';
 
 import type {
   IContainerProps,
@@ -6,56 +7,87 @@ import type {
   ICompiledStyles,
   IOmit,
 } from '@/helpers/types';
+import type {
+  IPolymorphicComponentPropsWithRef,
+  IPolymorphicRef,
+  IWithAsProp,
+} from '@/helpers/react/polymorphicComponentTypes';
 import type { IFieldStyleKey } from './Field.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import {
   FieldBase,
+  fieldBaseDefaultTag,
   type IFieldBaseStyleKey,
-  type IFieldBaseProps,
+  type IFieldBaseOwnProps,
 } from '@/components/atoms/FieldBase';
 
-export type IFieldProps = IContainerProps<IFieldStyleKey> &
-  IOmit<IFieldBaseProps, 'styles' | 'children' | 'populated'> & {
+const fieldDefaultTag = fieldBaseDefaultTag;
+
+export type IFieldOwnProps = IContainerProps<IFieldStyleKey> &
+  IOmit<IFieldBaseOwnProps, 'styles'> & {
     innerStyles?: {
       field?: IZeroOrMore<ICompiledStyles<IFieldBaseStyleKey>>;
     };
     placeholder?: string;
-    value?: React.ReactNode;
   };
 
-export const Field = forwardRef<HTMLDivElement, IFieldProps>(
-  function Field(props, ref) {
-    const { styles, sx, placeholder, value, ...other } = props;
+export type IFieldProps<
+  TRoot extends React.ElementType = typeof fieldDefaultTag,
+> = IPolymorphicComponentPropsWithRef<TRoot, IFieldOwnProps>;
 
-    const { theme } = useComponentTheme('Field');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(theme.styles, styles),
-      [theme.styles, styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory<IFieldStyleKey>(stylesCombinator),
-      [stylesCombinator],
-    );
+type IField = <TRoot extends React.ElementType = typeof fieldDefaultTag>(
+  props: IFieldProps<TRoot>,
+) => React.ReactNode;
 
-    const populated = !!value || !!placeholder;
+export const Field: IField = forwardRef(function Field<
+  TRoot extends React.ElementType = typeof fieldDefaultTag,
+>(props: IFieldProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
+  const {
+    styles,
+    sx,
+    populated: populatedProp,
+    placeholder,
+    children,
+    ...other
+  } = props as IWithAsProp<IFieldOwnProps>;
 
-    return (
-      <FieldBase sx={sx} ref={ref} populated={populated} {...other}>
-        {value ? (
-          <div {...sxf('value')} data-cy='value'>
-            {value}
-          </div>
-        ) : placeholder ? (
-          <div
-            {...sxf('placeholder', other.disabled && 'placeholder$disabled')}
-            data-cy='placeholder'
-          >
-            {placeholder}
-          </div>
-        ) : null}
-      </FieldBase>
-    );
-  },
-);
+  const { theme } = useComponentTheme('Field');
+  const stylesCombinator = useMemo(
+    () => stylesCombinatorFactory(theme.styles, styles),
+    [theme.styles, styles],
+  );
+  const sxf = useMemo(
+    () => stylePropsFactory<IFieldStyleKey>(stylesCombinator),
+    [stylesCombinator],
+  );
+
+  const populated = populatedProp ?? (!!children || !!placeholder);
+
+  return (
+    <FieldBase
+      sx={sx}
+      ref={forwardedRef}
+      populated={populated}
+      {...(props.forwardProps ? undefined : other)}
+    >
+      {children ? (
+        <div {...sxf('value')} data-cy='value'>
+          {isFunction(children)
+            ? children({
+                forwardedProps: props.forwardProps ? other : undefined,
+              })
+            : children}
+        </div>
+      ) : placeholder ? (
+        <div
+          {...sxf('placeholder', other.disabled && 'placeholder$disabled')}
+          data-cy='placeholder'
+        >
+          {placeholder}
+        </div>
+      ) : null}
+    </FieldBase>
+  );
+});

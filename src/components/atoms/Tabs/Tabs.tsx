@@ -4,10 +4,13 @@ import type { IAny, IOmit, IMaybeAsync } from '@/helpers/types';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { EASING } from '@/helpers/animation';
 import { shouldReduceMotion } from '@/helpers/shouldReduceAnimations';
-import { type ITabContext, TabContext } from './TabContext';
+import { type ITabContextValue, TabContext } from './TabContext';
 import { useId } from '@/hooks/useId';
 
-export type ITabsProps = IOmit<ITabContext, 'onChange' | 'onTabActivated'> & {
+export type ITabsProps = IOmit<
+  ITabContextValue,
+  'onChange' | 'onTabActivated'
+> & {
   onChange?: (anchor: string | undefined) => IMaybeAsync<IAny>;
   defaultAnchor?: string;
   children?: React.ReactNode;
@@ -100,7 +103,7 @@ export const Tabs: React.FC<ITabsProps> = (props) => {
           setAnchor(anchor);
           onChange?.(anchor);
         },
-      }) satisfies ITabContext,
+      }) satisfies ITabContextValue,
     [id, variant, anchor, getIndicatorKeyframes, setAnchor, onChange],
   );
 

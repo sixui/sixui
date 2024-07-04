@@ -79,6 +79,9 @@ export const styles: MapNamespaces<IButtonStyles> =
       cursor: 'default',
       [buttonStateVars.elevation]: vars.containerElevation$disabled,
     },
+    host$loading: {
+      [buttonStateVars.elevation]: vars.containerElevation$pressed,
+    },
     host$withLeadingIcon: {
       paddingInlineStart: vars.leadingIconLeadingSpace,
       paddingInlineEnd: vars.leadingIconTrailingSpace,

@@ -12,7 +12,7 @@ import { useId } from '@/hooks/useId';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import {
   RadioGroupContext,
-  type IRadioGroupContext,
+  type IRadioGroupContextValue,
 } from './RadioGroupContext';
 
 // https://github.com/mui/material-ui/blob/master/packages/mui-material/src/RadioGroup/RadioGroup.js
@@ -21,7 +21,7 @@ import {
 const DEFAULT_TAG = 'div';
 
 export type IRadioGroupOwnProps = IOmit<IContainerProps, 'styles'> &
-  IRadioGroupContext & {
+  IRadioGroupContextValue & {
     actions?: React.RefObject<unknown>;
     children?: React.ReactNode;
     defaultValue?: string;
@@ -37,7 +37,7 @@ type IRadioGroup = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
 
 export const RadioGroup: IRadioGroup = forwardRef(function RadioGroup<
   TRoot extends React.ElementType = typeof DEFAULT_TAG,
->(props: IRadioGroupProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+>(props: IRadioGroupProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     as,
     sx,
@@ -76,7 +76,7 @@ export const RadioGroup: IRadioGroup = forwardRef(function RadioGroup<
     [],
   );
 
-  const handleRef = useForkRef(ref, hostRef);
+  const handleRef = useForkRef(forwardedRef, hostRef);
   const name = useId(nameProp);
 
   const contextValue = useMemo(
@@ -89,7 +89,7 @@ export const RadioGroup: IRadioGroup = forwardRef(function RadioGroup<
         },
         value,
         disabled,
-      }) satisfies IRadioGroupContext,
+      }) satisfies IRadioGroupContextValue,
     [name, onChange, value, setValue, disabled],
   );
 

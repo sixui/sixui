@@ -37,19 +37,19 @@ export const styles: MapNamespaces<ISnackbarStyles> =
     },
     animation$onEnter: {
       opacity: 0,
-      transform: 'scaleY(0)',
+      transform: 'scaleY(0.5)',
     },
     animation$onEnterActive: {
       opacity: 1,
       transform: 'scaleY(1)',
-      transitionProperty: 'transform, opacity',
-      transitionDuration: motionVars.duration$long2,
+      transitionProperty: 'opacity, transform',
+      transitionDuration: motionVars.duration$long3,
       transitionTimingFunction: motionVars.easing$emphasizedDecelerate,
     },
     animation$onExitActive: {
       opacity: 0,
-      transitionProperty: 'opacity',
-      transitionDuration: motionVars.duration$short4,
+      transitionProperty: 'opacity, transform',
+      transitionDuration: motionVars.duration$short3,
       transitionTimingFunction: motionVars.easing$emphasizedAccelerate,
     },
   });

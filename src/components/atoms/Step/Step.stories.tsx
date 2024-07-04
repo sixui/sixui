@@ -113,7 +113,7 @@ export const Interactive: IStory = {
   ),
   args: {
     ...defaultArgs,
-    onClick: () => void sbHandleEvent('click'),
+    onClick: (...args) => void sbHandleEvent('click', args),
   },
 };
 

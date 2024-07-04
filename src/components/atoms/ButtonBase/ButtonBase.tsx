@@ -60,7 +60,7 @@ type IButtonBase = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
 
 export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
   TRoot extends React.ElementType = typeof DEFAULT_TAG,
->(props: IButtonBaseProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+>(props: IButtonBaseProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     as,
     styles,
@@ -82,7 +82,7 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
   const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
     disabled,
   });
-  const handleRef = useForkRef(ref, visualStateRef);
+  const handleRef = useForkRef(forwardedRef, visualStateRef);
 
   const { theme, settings } = useComponentTheme('ButtonBase');
   const stylesCombinator = useMemo(
@@ -123,13 +123,13 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
       <div {...sxf('background', disabled && 'background$disabled')} />
       <FocusRing
         styles={[theme.focusRingStyles, ...asArray(innerStyles?.focusRing)]}
-        for={ref}
+        for={forwardedRef}
         visualState={visualState}
         inward={inwardFocusRing}
       />
       <StateLayer
         styles={[theme.stateLayerStyles, ...asArray(innerStyles?.stateLayer)]}
-        for={ref}
+        for={forwardedRef}
         disabled={disabled}
         visualState={visualState}
       />

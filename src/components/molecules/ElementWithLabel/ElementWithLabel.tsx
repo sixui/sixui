@@ -1,4 +1,5 @@
 import { forwardRef, useMemo } from 'react';
+import { isFunction } from 'lodash';
 
 import type { IContainerProps } from '@/helpers/types';
 import type {
@@ -40,7 +41,7 @@ export type IElementWithLabelProps =
 export const ElementWithLabel = forwardRef<
   HTMLDivElement,
   IElementWithLabelProps
->(function ElementWithLabel(props, ref) {
+>(function ElementWithLabel(props, forwardedRef) {
   const {
     styles,
     sx,
@@ -137,7 +138,7 @@ export const ElementWithLabel = forwardRef<
         theme.vars,
         sx,
       )}
-      ref={ref}
+      ref={forwardedRef}
       {...other}
     >
       {hasLeading ? (
@@ -148,7 +149,7 @@ export const ElementWithLabel = forwardRef<
       ) : null}
 
       <div {...sxf('element')}>
-        {typeof children === 'function'
+        {isFunction(children)
           ? children({ id, required, disabled, readOnly })
           : children || null}
       </div>

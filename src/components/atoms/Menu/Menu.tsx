@@ -1,84 +1,42 @@
-import stylex from '@stylexjs/stylex';
-import { Fragment, cloneElement, forwardRef } from 'react';
-import { Menu as HeadlessMenu } from '@headlessui/react';
-import { type Placement, useFloating } from '@floating-ui/react-dom';
-import { FloatingPortal } from '@floating-ui/react';
+import { forwardRef } from 'react';
+import {
+  FloatingTree,
+  useFloatingParentNodeId,
+  type Placement,
+} from '@floating-ui/react';
 
 import type { IContainerProps, IOmit } from '@/helpers/types';
-import { IVisualState } from '@/hooks/useVisualState';
-import { MenuList } from '@/components/atoms/MenuList';
-import { MenuListDivider } from '@/components/atoms/MenuList/MenuListDivider';
-import { useColorScheme } from '@/components/utils/ColorScheme';
-import { MenuItem } from './MenuItem';
+import { MenuLeaf } from './MenuLeaf';
 
-export type IMenuRenderProps = {
-  open: boolean;
+export type IMenuTriggerRenderProps = {
+  isOpen: boolean;
+  placement: Placement;
+  getProps: (
+    userProps?: React.HTMLProps<HTMLButtonElement>,
+  ) => Record<string, unknown>;
 };
 
 export type IMenuProps = IOmit<IContainerProps, 'styles'> & {
-  action:
-    | React.ReactElement
-    | ((props: IMenuRenderProps) => React.ReactElement);
-  children: Array<React.ReactNode>;
+  trigger:
+    | React.ReactNode
+    | ((renderProps: IMenuTriggerRenderProps) => React.ReactNode);
+  children: React.ReactNode;
   placement?: Placement;
+  matchTargetWidth?: boolean;
 };
 
-// TODO: migrate in theme
-const styles = stylex.create({
-  host: {
-    position: 'relative',
+export const Menu = forwardRef<HTMLButtonElement, IMenuProps>(
+  function MenuParent(props, forwardedRef) {
+    const parentId = useFloatingParentNodeId();
+
+    if (parentId === null) {
+      return (
+        <FloatingTree>
+          <MenuLeaf {...props} ref={forwardedRef} />
+        </FloatingTree>
+      );
+    }
+
+    return <MenuLeaf {...props} ref={forwardedRef} />;
   },
-  items: {
-    width: 'max-content',
-    zIndex: 999,
-  },
-});
-
-const Menu = forwardRef<HTMLElement, IMenuProps>(function Menu(props, ref) {
-  const { sx, action, placement = 'bottom-start', children } = props;
-
-  const { refs, floatingStyles } = useFloating({
-    placement,
-  });
-  const { root } = useColorScheme();
-
-  const openVisualState: IVisualState = { hovered: true };
-  const openProps = { visualState: openVisualState };
-
-  return (
-    <HeadlessMenu ref={ref}>
-      {({ open }) => (
-        <>
-          <HeadlessMenu.Button as={Fragment} ref={refs.setReference}>
-            {(bag) =>
-              cloneElement(
-                typeof action === 'function' ? action(bag) : action,
-                bag.open ? openProps : undefined,
-              )
-            }
-          </HeadlessMenu.Button>
-
-          <FloatingPortal root={root}>
-            {open ? (
-              <HeadlessMenu.Items
-                {...stylex.props(styles.items, sx)}
-                ref={refs.setFloating}
-                style={floatingStyles}
-                static
-              >
-                <MenuList>{children}</MenuList>
-              </HeadlessMenu.Items>
-            ) : null}
-          </FloatingPortal>
-        </>
-      )}
-    </HeadlessMenu>
-  );
-});
-
-const MenuNamespace = Object.assign(Menu, {
-  Item: MenuItem,
-  Divider: MenuListDivider,
-});
-
-export { MenuNamespace as Menu };
+);

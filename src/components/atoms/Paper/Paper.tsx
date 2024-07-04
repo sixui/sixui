@@ -45,7 +45,7 @@ const variantMap: IPaperVariantMap = {
 };
 
 export const Paper = forwardRef<HTMLDivElement, IPaperProps>(
-  function Paper(props, ref) {
+  function Paper(props, forwardedRef) {
     const {
       styles,
       sx,
@@ -83,7 +83,7 @@ export const Paper = forwardRef<HTMLDivElement, IPaperProps>(
           variantTheme?.vars,
           sx,
         )}
-        ref={ref}
+        ref={forwardedRef}
         {...other}
       >
         <Elevation

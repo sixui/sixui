@@ -1,10 +1,12 @@
+import { isFunction } from 'lodash';
+
 import { isObject } from '../isObject';
 
 export const getDisplayName = (
   element: React.ReactElement,
 ): string | undefined => {
   const type = element.type;
-  if (!isObject(type) && typeof type !== 'function') {
+  if (!isObject(type) && isFunction(type)) {
     return undefined;
   }
 

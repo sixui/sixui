@@ -30,7 +30,7 @@ export type IDeterminateCircularProgressIndicatorProps =
 export const DeterminateCircularProgressIndicator = forwardRef<
   HTMLDivElement,
   IDeterminateCircularProgressIndicatorProps
->(function DeterminateCircularProgressIndicator(props, ref) {
+>(function DeterminateCircularProgressIndicator(props, forwardedRef) {
   const {
     styles,
     sx,
@@ -73,7 +73,11 @@ export const DeterminateCircularProgressIndicator = forwardRef<
   const dashOffset = (1 - pct) * 100;
 
   return (
-    <div {...sxf('host', `host$${size}`, theme.vars, sx)} ref={ref} {...other}>
+    <div
+      {...sxf('host', `host$${size}`, theme.vars, sx)}
+      ref={forwardedRef}
+      {...other}
+    >
       <div
         {...sxf('layer', 'progress', `progress$${size}`)}
         role='progressbar'

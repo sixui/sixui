@@ -9,7 +9,7 @@ import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { FieldBase, type IFieldBaseProps } from './FieldBase';
+import { FieldBase, type IFieldBaseOwnProps } from './FieldBase';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 
 // https://github.com/material-components/material-web/blob/main/field/demo/stories.ts
@@ -37,16 +37,16 @@ const inputStyles = stylex.create({
 const defaultArgs = {
   sx: styles.host,
   children: <div {...stylex.props(inputStyles.placeholder)} />,
-} satisfies Partial<IFieldBaseProps>;
+} satisfies Partial<IFieldBaseOwnProps>;
 
-const states: Array<IComponentPresentation<IFieldBaseProps>> = [
+const states: Array<IComponentPresentation<IFieldBaseOwnProps>> = [
   { legend: 'Enabled' },
   { legend: 'Hovered', props: { visualState: { hovered: true } } },
   { legend: 'Focused', props: { visualState: { focused: true } } },
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const rows: Array<IComponentPresentation<IFieldBaseProps>> = [
+const rows: Array<IComponentPresentation<IFieldBaseOwnProps>> = [
   { legend: 'Empty' },
   {
     legend: 'Label',

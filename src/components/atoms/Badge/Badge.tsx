@@ -17,7 +17,7 @@ export type IBadgeProps = IContainerProps<IBadgeStyleKey> & {
 };
 
 export const Badge = forwardRef<HTMLDivElement, IBadgeProps>(
-  function Badge(props, ref) {
+  function Badge(props, forwardedRef) {
     const {
       styles,
       sx,
@@ -68,7 +68,7 @@ export const Badge = forwardRef<HTMLDivElement, IBadgeProps>(
           theme.vars,
           sx,
         )}
-        ref={ref}
+        ref={forwardedRef}
         {...other}
       >
         <div {...sxf('background', disabled && 'background$disabled')} />

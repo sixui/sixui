@@ -1,4 +1,3 @@
-import stylex from '@stylexjs/stylex';
 import { forwardRef, useMemo } from 'react';
 
 import type { IContainerProps } from '@/helpers/types';
@@ -6,6 +5,7 @@ import type { ICardMediaStyleKey } from './CardMedia.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { commonStyles } from '@/helpers/commonStyles';
 
 export type ICardMediaProps = IContainerProps<ICardMediaStyleKey> & {
   children?: React.ReactNode;
@@ -13,14 +13,8 @@ export type ICardMediaProps = IContainerProps<ICardMediaStyleKey> & {
   title?: string;
 };
 
-const dynamicStyles = stylex.create({
-  image: (src: string) => ({
-    backgroundImage: `url("${src}")`,
-  }),
-});
-
 export const CardMedia = forwardRef<HTMLDivElement, ICardMediaProps>(
-  function CardMedia(props, ref) {
+  function CardMedia(props, forwardedRef) {
     const { styles, sx, children, src, ...other } = props;
 
     const { theme } = useComponentTheme('CardMedia');
@@ -38,11 +32,11 @@ export const CardMedia = forwardRef<HTMLDivElement, ICardMediaProps>(
         {...sxf(
           'host',
           'host$image',
-          src ? dynamicStyles.image(src) : undefined,
+          src ? commonStyles.backgroundImage(src) : undefined,
           sx,
         )}
         role='img'
-        ref={ref}
+        ref={forwardedRef}
         {...other}
       >
         {children}

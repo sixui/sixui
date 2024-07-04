@@ -18,5 +18,7 @@ export const styles: MapNamespaces<IFieldStyles> = stylex.create<IFieldStyles>({
   },
   value: {
     color: 'inherit',
+    display: 'flex',
+    flexGrow: 1,
   },
 });

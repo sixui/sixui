@@ -13,7 +13,13 @@ const vars: IStyleVars<IDividerStyleVarKey> = {
   shape: shapeVars.corner$none,
   color: colorRolesVars.outlineVariant,
 
+  // inset
+  insetLeadingSpace: '16px',
+  insetTrailingSpace: '16px',
+
   // text
+  textLeadingSpace: '8px',
+  textTrailingSpace: '8px',
   textColor: colorRolesVars.outline,
   textFont: typescaleVars.bodyFont$sm,
   textSize: typescaleVars.bodySize$sm,

@@ -1,5 +1,5 @@
 import type { MapNamespaces } from '@stylexjs/stylex/lib/StyleXTypes';
-import * as stylex from '@stylexjs/stylex';
+import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
 import type { IListItemStyleKey } from '@/components/atoms/ListItem';
@@ -21,17 +21,36 @@ export const styles: MapNamespaces<IListItemStyles> =
       borderRadius: vars.containerShape,
       textDecoration: 'none',
       textAlign: 'start',
+      width: 'inherit',
 
       [listItemStatesVars.nonTextColor]: vars.nonTextColor,
       [listItemStatesVars.textColor]: vars.textColor,
+    },
+    host$sm: {
+      [listItemStatesVars.containerMinHeight]: vars.containerMinHeight$sm,
+      [listItemStatesVars.topSpace]: vars.topSpace$sm,
+      [listItemStatesVars.bottomSpace]: vars.bottomSpace$sm,
+    },
+    host$md: {
+      [listItemStatesVars.containerMinHeight]: vars.containerMinHeight$md,
+      [listItemStatesVars.topSpace]: vars.topSpace$md,
+      [listItemStatesVars.bottomSpace]: vars.bottomSpace$md,
+    },
+    host$lg: {
+      [listItemStatesVars.containerMinHeight]: vars.containerMinHeight$lg,
+      [listItemStatesVars.topSpace]: vars.topSpace$lg,
+      [listItemStatesVars.bottomSpace]: vars.bottomSpace$lg,
+    },
+    host$xl: {
+      [listItemStatesVars.containerMinHeight]: vars.containerMinHeight$xl,
+      [listItemStatesVars.topSpace]: vars.topSpace$xl,
+      [listItemStatesVars.bottomSpace]: vars.bottomSpace$xl,
+    },
+    host$leadingSpace: {
       [listItemStatesVars.leadingSpace]: vars.leadingSpace,
+    },
+    host$trailingSpace: {
       [listItemStatesVars.trailingSpace]: vars.trailingSpace,
-    },
-    host$hasLeadingContent: {
-      [listItemStatesVars.leadingSpace]: 0,
-    },
-    host$hasTrailingContent: {
-      [listItemStatesVars.trailingSpace]: 0,
     },
     host$interactive: {
       cursor: 'pointer',
@@ -89,15 +108,22 @@ export const styles: MapNamespaces<IListItemStyles> =
       backgroundColor: vars.containerColor$disabled,
       opacity: vars.containerOpacity$disabled,
     },
-    icon: {
+    leading: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
     },
+    trailing: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    icon: {},
     icon$leading: {
       fontSize: vars.leadingIconSize,
       height: vars.leadingIconSize,
       width: vars.leadingIconSize,
+      textAlign: 'center',
 
       color: {
         default: vars.leadingIconColor,
@@ -118,10 +144,20 @@ export const styles: MapNamespaces<IListItemStyles> =
       color: vars.leadingIconColor$disabled,
       opacity: vars.leadingIconOpacity$disabled,
     },
+    image: {
+      width: vars.imageWidth,
+      height: vars.imageHeight,
+      backgroundSize: 'cover',
+    },
+    video: {
+      height: vars.videoHeight,
+      objectFit: 'cover',
+    },
     icon$trailing: {
       fontSize: vars.trailingIconSize,
       height: vars.trailingIconSize,
       width: vars.trailingIconSize,
+      textAlign: 'center',
 
       color: {
         default: vars.trailingIconColor,
@@ -150,21 +186,21 @@ export const itemStyles: MapNamespaces<IItemStyles> = stylex.create<
 >({
   host: {
     borderRadius: 'inherit',
-    minHeight: vars.containerHeight$oneLine,
+    minHeight: listItemStatesVars.containerMinHeight,
     WebkitTapHighlightColor: 'transparent',
     paddingInlineStart: listItemStatesVars.leadingSpace,
     paddingInlineEnd: listItemStatesVars.trailingSpace,
+    paddingTop: listItemStatesVars.topSpace,
+    paddingBottom: listItemStatesVars.bottomSpace,
   },
   nonText: {
     color: listItemStatesVars.nonTextColor,
     opacity: listItemStatesVars.nonTextOpacity,
   },
+  content: {},
   text: {
     color: listItemStatesVars.textColor,
     opacity: listItemStatesVars.textOpacity,
-  },
-  host$multiline: {
-    minHeight: vars.containerHeight$twoLines,
   },
 });
 

@@ -90,7 +90,7 @@ type ITab = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
 
 export const Tab: ITab = forwardRef(function Tab<
   TRoot extends React.ElementType = typeof DEFAULT_TAG,
->(props: ITabProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+>(props: ITabProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     as,
     styles,
@@ -117,7 +117,7 @@ export const Tab: ITab = forwardRef(function Tab<
   const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
     disabled,
   });
-  const handleRef = useForkRef(ref, visualStateRef, actionRef);
+  const handleRef = useForkRef(forwardedRef, visualStateRef, actionRef);
 
   const { theme, variantTheme, settings } = useComponentTheme(
     'Tab',
@@ -146,7 +146,7 @@ export const Tab: ITab = forwardRef(function Tab<
       ? context.anchor !== undefined && context.anchor === anchor
       : activeProp
     : false;
-  const hasIcon = active ? !!activeIcon ?? !!icon : !!icon;
+  const hasIcon = active ? !!activeIcon || !!icon : !!icon;
   const id = context && anchor ? `${context.id}-${anchor}` : undefined;
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = useCallback(

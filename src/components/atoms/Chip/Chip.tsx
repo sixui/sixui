@@ -113,7 +113,7 @@ type IChip = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
 
 export const Chip: IChip = forwardRef(function Chip<
   TRoot extends React.ElementType = typeof DEFAULT_TAG,
->(props: IChipProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+>(props: IChipProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     as,
     styles,
@@ -151,7 +151,11 @@ export const Chip: IChip = forwardRef(function Chip<
   const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
     disabled,
   });
-  const primaryHandleRef = useForkRef(ref, visualStateRef, primaryActionRef);
+  const primaryHandleRef = useForkRef(
+    forwardedRef,
+    visualStateRef,
+    primaryActionRef,
+  );
 
   const trailingActionRef = useRef<HTMLButtonElement>(null);
 
@@ -307,6 +311,7 @@ export const Chip: IChip = forwardRef(function Chip<
           containerStyle,
           interactive && `${containerStyle}$interactive`,
           disabled && `${containerStyle}$disabled`,
+          loading && `${containerStyle}$loading`,
         )}
       >
         <Elevation
@@ -315,7 +320,7 @@ export const Chip: IChip = forwardRef(function Chip<
             variantTheme?.elevationStyles,
             ...asArray(innerStyles?.elevation),
           ]}
-          disabled={disabled}
+          disabled={disabledProp}
         />
         {elevated ? null : (
           <span
@@ -327,28 +332,26 @@ export const Chip: IChip = forwardRef(function Chip<
             )}
           />
         )}
+        <FocusRing
+          styles={[
+            theme.focusRingStyles,
+            variantTheme?.focusRingStyles,
+            ...asArray(innerStyles?.focusRing),
+          ]}
+          for={primaryActionRef}
+          visualState={visualState}
+        />
         {interactive ? (
-          <>
-            <FocusRing
-              styles={[
-                theme.focusRingStyles,
-                variantTheme?.focusRingStyles,
-                ...asArray(innerStyles?.focusRing),
-              ]}
-              for={primaryActionRef}
-              visualState={visualState}
-            />
-            <StateLayer
-              styles={[
-                theme.stateLayerStyles,
-                variantTheme?.stateLayerStyles,
-                ...asArray(innerStyles?.stateLayer),
-              ]}
-              for={primaryActionRef}
-              disabled={disabled}
-              visualState={visualState}
-            />
-          </>
+          <StateLayer
+            styles={[
+              theme.stateLayerStyles,
+              variantTheme?.stateLayerStyles,
+              ...asArray(innerStyles?.stateLayer),
+            ]}
+            for={primaryActionRef}
+            disabled={disabled}
+            visualState={visualState}
+          />
         ) : null}
 
         <Component
@@ -371,20 +374,21 @@ export const Chip: IChip = forwardRef(function Chip<
           {hasLeading ? (
             <div
               {...sxf(
-                'icon',
-                'icon$leading',
+                'iconContainer',
+                'iconContainer$leading',
                 disabled
-                  ? 'icon$disabled'
+                  ? 'iconContainer$disabled'
                   : selected && [
-                      'icon$selected',
-                      interactive && 'icon$selected$interactive',
+                      'iconContainer$selected',
+                      interactive && 'iconContainer$selected$interactive',
                     ],
-                avatar && 'icon$avatar',
+                avatar && 'iconContainer$avatar',
               )}
             >
               {loading ? (
                 !loadingText ? (
                   <IndeterminateCircularProgressIndicator
+                    sx={stylesCombinator('icon')}
                     styles={[
                       theme.circularProgressIndicatorStyles,
                       variantTheme?.circularProgressIndicatorStyles,
@@ -393,14 +397,26 @@ export const Chip: IChip = forwardRef(function Chip<
                   />
                 ) : null
               ) : selected && variant === 'filter' ? (
-                <CheckMarkIcon aria-hidden />
+                <CheckMarkIcon {...sxf('icon')} aria-hidden />
               ) : imageUrl ? (
-                <Avatar src={imageUrl} styles={avatarStyles} />
+                <Avatar
+                  sx={stylesCombinator('icon')}
+                  src={imageUrl}
+                  styles={avatarStyles}
+                />
               ) : icon ? (
                 icon
               ) : null}
             </div>
-          ) : null}
+          ) : (
+            <div
+              {...sxf(
+                'iconContainer',
+                'iconContainer$leading',
+                'iconContainer$collapsed',
+              )}
+            />
+          )}
 
           <div
             {...sxf(
@@ -430,7 +446,7 @@ export const Chip: IChip = forwardRef(function Chip<
                     {loadingText}
                   </span>
                 ) : (
-                  <div {...sxf(disabled && 'icon$disabled')}>
+                  <div {...sxf(disabled && 'iconContainer$disabled')}>
                     <IndeterminateCircularProgressIndicator
                       styles={[
                         theme.circularProgressIndicatorStyles,
@@ -473,14 +489,15 @@ export const Chip: IChip = forwardRef(function Chip<
           >
             <span
               {...sxf(
-                'icon',
-                'icon$trailing',
-                interactive && 'icon$trailing$interactive',
+                'iconContainer',
+                'iconContainer$trailing',
+                interactive && 'iconContainer$trailing$interactive',
                 disabled
-                  ? 'icon$disabled'
+                  ? 'iconContainer$disabled'
                   : selected && [
-                      'icon$trailing$selected',
-                      interactive && 'icon$trailing$selected$interactive',
+                      'iconContainer$trailing$selected',
+                      interactive &&
+                        'iconContainer$trailing$selected$interactive',
                     ],
               )}
               aria-hidden

@@ -1,252 +1,134 @@
+import { forwardRef, useMemo } from 'react';
+import { isFunction } from 'lodash';
 import {
-  forwardRef,
-  useCallback,
-  useEffect,
-  useId,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+  FloatingFocusManager,
+  useClick,
+  useDismiss,
+  useFloating,
+  useInteractions,
+  useMergeRefs,
+  useRole,
+  useTransitionStatus,
+} from '@floating-ui/react';
 
-import type { IContainerProps } from '@/helpers/types';
 import type {
-  IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
-import type { IDialogStyleKey, IDialogStyleVarKey } from './Dialog.styledefs';
+import type { IDialogStyleKey } from './Dialog.styledefs';
+
+import type {
+  IDialogProps,
+  IDialogOwnProps,
+  DIALOG_DEFAULT_TAG,
+} from './DialogProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { Divider } from '@/components/atoms/Divider';
+import {
+  DialogContent,
+  type IDialogContentOwnProps,
+} from '@/components/atoms/DialogContent';
 import { Scrim } from '@/components/atoms/Scrim';
-import { useForkRef } from '@/hooks/useForkRef';
+import { Portal } from '@/components/utils/Portal';
+import { useControlledValue } from '@/hooks/useControlledValue';
+import { extendFloatingProps } from '@/helpers/extendFloatingProps';
 
 // https://github.com/material-components/material-web/blob/main/dialog/internal/dialog.ts
 
-const DEFAULT_TAG = 'div';
-
-type IOnCloseEventHandler = (event: React.MouseEvent, reason?: string) => void;
-
-export type IDialogOwnProps = IContainerProps<IDialogStyleKey> &
-  Pick<React.AriaAttributes, 'aria-label'> & {
-    open?: boolean;
-    type?: 'alert';
-    scrollable?: boolean;
-    icon?: React.ReactNode;
-    headline?: React.ReactNode;
-    children?: React.ReactNode;
-    actions?:
-      | React.ReactNode
-      | ((close?: IOnCloseEventHandler) => React.ReactNode);
-    onClose?: IOnCloseEventHandler;
-  };
-
-export type IDialogProps<TRoot extends React.ElementType = typeof DEFAULT_TAG> =
-  IPolymorphicComponentPropsWithRef<TRoot, IDialogOwnProps>;
-
-type IDialog = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
+type IDialog = <TRoot extends React.ElementType = typeof DIALOG_DEFAULT_TAG>(
   props: IDialogProps<TRoot>,
 ) => React.ReactNode;
 
 export const Dialog: IDialog = forwardRef(function Dialog<
-  TRoot extends React.ElementType = typeof DEFAULT_TAG,
->(props: IDialogProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+  TRoot extends React.ElementType = typeof DIALOG_DEFAULT_TAG,
+>(props: IDialogProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
-    as: Component = DEFAULT_TAG,
-    styles,
-    sx,
-    open,
-    type,
-    scrollable,
-    headline,
-    icon,
-    children,
-    actions,
-    onClose,
+    as,
+    trigger,
+    isOpen: isOpenProp,
+    disabled,
+    onOpenChange,
+    nonDismissable,
     ...other
   } = props as IWithAsProp<IDialogOwnProps>;
 
   const { theme } = useComponentTheme('Dialog');
-  const headlineId = useId();
-
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, styles),
-    [theme.styles, styles],
+    () => stylesCombinatorFactory(theme.styles),
+    [theme.styles],
   );
   const sxf = useMemo(
-    () =>
-      stylePropsFactory<IDialogStyleKey, IDialogStyleVarKey>(stylesCombinator),
+    () => stylePropsFactory<IDialogStyleKey>(stylesCombinator),
     [stylesCombinator],
   );
 
-  const [isAtScrollTop, setIsAtScrollTop] = useState(true);
-  const [isAtScrollBottom, setIsAtScrollBottom] = useState(false);
-
-  const showTopDivider = scrollable && !isAtScrollTop;
-  const showBottomDivider = scrollable && !isAtScrollBottom;
-
-  const scrollerRef = useRef<HTMLDivElement>(null);
-  const topAnchorRef = useRef<HTMLDivElement>(null);
-  const bottomAnchorRef = useRef<HTMLDivElement>(null);
-
-  const handleAndhorIntersection = useCallback(
-    (entry: IntersectionObserverEntry): void => {
-      const { target, isIntersecting } = entry;
-      if (target === topAnchorRef.current) {
-        setIsAtScrollTop(isIntersecting);
-      }
-
-      if (target === bottomAnchorRef.current) {
-        setIsAtScrollBottom(isIntersecting);
-      }
+  const [isOpen, setIsOpen] = useControlledValue({
+    controlled: isOpenProp,
+    default: !!isOpenProp,
+    name: 'Dialog',
+  });
+  const floating = useFloating({
+    open: isOpen && !disabled,
+    onOpenChange: (isOpen, event, reason) => {
+      onOpenChange?.(isOpen, event, reason);
+      setIsOpen(isOpen);
     },
-    [],
-  );
+  });
+  const click = useClick(floating.context);
+  const role = useRole(floating.context);
+  const dismiss = useDismiss(floating.context, {
+    outsidePressEvent: 'mousedown',
+    enabled: !nonDismissable,
+  });
+  const interactions = useInteractions([click, role, dismiss]);
+  const transitionStatus = useTransitionStatus(floating.context, {
+    duration: 150, // motionVars.duration$short3
+  });
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          handleAndhorIntersection(entry);
-        }
-      },
-      { root: scrollerRef.current },
-    );
+  const triggerElement = isFunction(trigger)
+    ? trigger({
+        isOpen,
+        getProps: interactions.getReferenceProps,
+        setRef: floating.refs.setReference,
+      })
+    : trigger;
 
-    const topAnchorEl = topAnchorRef.current;
-    if (topAnchorEl) {
-      observer.observe(topAnchorRef.current);
-    }
-
-    const bottomAnchorEl = bottomAnchorRef.current;
-    if (bottomAnchorEl) {
-      observer.observe(bottomAnchorRef.current);
-    }
-
-    return () => {
-      if (topAnchorEl) {
-        observer.unobserve(topAnchorEl);
-      }
-
-      if (bottomAnchorEl) {
-        observer.unobserve(bottomAnchorEl);
-      }
-    };
-  }, [handleAndhorIntersection]);
-
-  const backdropClick = useRef(false);
-  const handleMouseDown = (event: React.MouseEvent): void => {
-    // We don't want to close the dialog when clicking the dialog content.
-    // Make sure the event starts and ends on the same DOM element.
-    backdropClick.current = event.target === event.currentTarget;
-  };
-
-  const handleScrimClick = (event: React.MouseEvent): void => {
-    // Ignore the events not coming from the "backdrop".
-    if (!backdropClick.current) {
-      return;
-    }
-
-    backdropClick.current = false;
-    onClose?.(event, 'backdropClick');
-  };
-
-  const renderActions = (): React.ReactNode =>
-    typeof actions === 'function' ? actions(onClose) : actions;
-
-  // TODO: Reset scroll position if re-opening a dialog with the same content.
-  // See https://github.com/material-components/material-web/blob/main/dialog/internal/dialog.ts#L193C8-L193C75
-
-  const nodeRef = useRef<HTMLDivElement>(null);
-  const handleRef = useForkRef(nodeRef, ref);
+  const dialogRef = useMergeRefs([forwardedRef, floating.refs.setFloating]);
 
   return (
-    <Scrim open={open} onClick={handleScrimClick} onMouseDown={handleMouseDown}>
-      <Component
-        {...sxf('host', theme.vars, sx)}
-        sx={sx}
-        // ref={handleRef}
-        aria-labelledby={headline ? headlineId : undefined}
-        role={type === 'alert' ? 'alertdialog' : undefined}
-        {...other}
-      >
-        <div {...sxf('dialog')} ref={handleRef}>
-          <div {...sxf('container')}>
-            {headline || icon ? (
-              <div {...sxf('headline')}>
-                {icon ? (
-                  <div {...sxf('icon')}>
-                    <div {...sxf('iconSlot')}>{icon}</div>
-                  </div>
-                ) : null}
+    <>
+      {triggerElement}
 
-                {headline ? (
-                  <h2
-                    {...sxf('header')}
-                    id={headlineId}
-                    aria-hidden={headline ? undefined : true}
-                  >
-                    <div
-                      {...sxf(
-                        'headlineSlot',
-                        !!icon && 'headlineSlot$hasIcon',
-                        scrollable && 'headlineSlot$scrollable',
-                      )}
-                    >
-                      {headline}
-                    </div>
-                  </h2>
-                ) : null}
-
-                <Divider
-                  sx={stylesCombinator(
-                    'divider',
-                    'headlineDivider',
-                    showTopDivider && 'headlineDivider$showTopDivider',
+      {transitionStatus.isMounted ? (
+        <Portal>
+          <Scrim context={floating.context} lockScroll>
+            <FloatingFocusManager context={floating.context}>
+              <div {...sxf(`transition$${transitionStatus.status}`)}>
+                <DialogContent
+                  as={as}
+                  onClose={(event) =>
+                    floating.context.onOpenChange(
+                      false,
+                      event.nativeEvent,
+                      'click',
+                    )
+                  }
+                  // As `other` may contain event handlers, we need to ensure
+                  // that it is passed to the `getFloatingProps` function so
+                  // that the handlers are correctly merged with the handlers
+                  // from Floating UI hooks.
+                  {...extendFloatingProps<IDialogContentOwnProps>(
+                    interactions.getFloatingProps,
+                    other,
                   )}
+                  ref={dialogRef}
                 />
               </div>
-            ) : null}
-
-            {children ? (
-              <div
-                ref={scrollerRef}
-                {...sxf('scroller', scrollable && 'scroller$scrollable')}
-              >
-                <div ref={topAnchorRef} />
-                <div {...sxf('content')}>
-                  <div
-                    {...sxf(
-                      'contentSlot',
-                      !!actions && 'contentSlot$hasActions',
-                      scrollable &&
-                        !!headline &&
-                        'contentSlot$scrollable$hasHeadline',
-                    )}
-                  >
-                    {children}
-                  </div>
-                </div>
-                <div ref={bottomAnchorRef} />
-              </div>
-            ) : null}
-
-            {actions ? (
-              <div {...sxf('actions')}>
-                <Divider
-                  sx={stylesCombinator(
-                    'divider',
-                    'actionsDivider',
-                    showBottomDivider && 'actionsDivide$showBottomDivider',
-                  )}
-                />
-                <div {...sxf('actionsSlot')}>{renderActions()}</div>
-              </div>
-            ) : null}
-          </div>
-        </div>
-      </Component>
-    </Scrim>
+            </FloatingFocusManager>
+          </Scrim>
+        </Portal>
+      ) : null}
+    </>
   );
 });

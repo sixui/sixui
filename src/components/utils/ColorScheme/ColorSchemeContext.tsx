@@ -2,15 +2,15 @@ import { createContext } from 'react';
 
 export type IColorScheme = 'light' | 'dark';
 
-export type IColorSchemeContext = {
+export type IColorSchemeContextValue = {
   scheme?: IColorScheme;
   root?: React.MutableRefObject<HTMLElement | null>;
 };
 
-export const colorSchemeInitialContext: IColorSchemeContext = {
+export const colorSchemeInitialContextValue: IColorSchemeContextValue = {
   scheme: 'light',
 };
 
-export const ColorSchemeContext = createContext<IColorSchemeContext>(
-  colorSchemeInitialContext,
+export const ColorSchemeContext = createContext<IColorSchemeContextValue>(
+  colorSchemeInitialContextValue,
 );

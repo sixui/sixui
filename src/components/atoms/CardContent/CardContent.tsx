@@ -15,7 +15,7 @@ export type ICardContentProps = IContainerProps<ICardContentStyleKey> & {
 };
 
 export const CardContent = forwardRef<HTMLDivElement, ICardContentProps>(
-  function CardContent(props, ref) {
+  function CardContent(props, forwardedRef) {
     const { styles, sx, children, ...other } = props;
 
     const { theme } = useComponentTheme('CardContent');
@@ -37,7 +37,7 @@ export const CardContent = forwardRef<HTMLDivElement, ICardContentProps>(
     return (
       <div
         {...sxf('host', actionable ? 'host$actionable' : null, theme.vars, sx)}
-        ref={ref}
+        ref={forwardedRef}
         {...other}
       >
         {children}

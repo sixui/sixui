@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 
-import { ThemeContext, type IThemeContext } from './ThemeContext';
+import { ThemeContext, type IThemeContextValue } from './ThemeContext';
 
-export const useThemeContext = (): IThemeContext => {
+export const useThemeContext = (): IThemeContextValue => {
   const themeContext = useContext(ThemeContext);
   if (!themeContext) {
     throw new Error('ThemeProvider not set.');

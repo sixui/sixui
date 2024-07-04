@@ -1,13 +1,12 @@
 import type { MapNamespaces } from '@stylexjs/stylex/lib/StyleXTypes';
-import * as stylex from '@stylexjs/stylex';
+import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
 import type { IMenuListStyleKey } from '@/components/atoms/MenuList';
 import type { IElevationStyleKey } from '@/components/utils/Elevation';
-import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
+import type { IListStyleKey } from '@/components/atoms/List';
 import { componentVars as vars } from './MenuList.stylex';
 import { componentVars as elevationVars } from '../Elevation/Elevation.stylex';
-import { componentVars as focusRingVars } from '../FocusRing/FocusRing.stylex';
 
 // https://github.com/material-components/material-web/blob/main/menulist/internal/_menulist.scss
 
@@ -15,59 +14,18 @@ type IMenuListStyles = IStyles<IMenuListStyleKey>;
 export const styles: MapNamespaces<IMenuListStyles> =
   stylex.create<IMenuListStyles>({
     host: {
-      minWidth: '112px',
-      color: 'unset',
-      display: 'contents',
-    },
-    menu: {
       position: 'relative',
       borderRadius: vars.containerShape,
-      inset: 'auto',
+      backgroundColor: vars.containerColor,
       borderStyle: 'unset',
-      padding: 0,
-      overflow: 'visible',
-      // [popover] adds a canvas background
-      backgroundColor: 'transparent',
+      flexGrow: 1,
       color: 'inherit',
       zIndex: 20,
       userSelect: 'none',
-      maxHeight: 'inherit',
       height: 'inherit',
-      minWidth: 'inherit',
-      maxWidth: 'inherit',
-    },
-    items: {
-      listStyleType: 'none',
-      margin: 0,
-      outline: 'none',
-      boxSizing: 'border-box',
-      backgroundColor: vars.containerColor,
-      height: 'inherit',
-      maxHeight: 'inherit',
-      overflow: 'auto',
-      minWidth: 'inherit',
-      maxWidth: 'inherit',
-      borderRadius: vars.containerShape,
-    },
-    itemPadding: {
-      paddingBlock: '8px',
-      display: 'flex',
-      flexDirection: 'column',
-    },
-    divider: {
-      marginTop: 8,
-      marginBottom: 8,
+      width: 'fit-content',
     },
   });
-
-type IFocusRingStyles = IStyles<IFocusRingStyleKey>;
-export const focusRingStyles: MapNamespaces<IFocusRingStyles> = stylex.create<
-  IStyles<IFocusRingStyleKey>
->({
-  host: {
-    [focusRingVars.shape]: vars.containerShape,
-  },
-});
 
 type IElevationStyles = IStyles<IElevationStyleKey>;
 export const elevationStyles: MapNamespaces<IElevationStyles> = stylex.create<
@@ -75,5 +33,19 @@ export const elevationStyles: MapNamespaces<IElevationStyles> = stylex.create<
 >({
   host: {
     [elevationVars.boxShadow]: vars.containerElevation,
+    borderRadius: vars.containerShape,
+  },
+});
+
+type IListStyles = IStyles<IListStyleKey>;
+export const listStyles: MapNamespaces<IListStyles> = stylex.create<
+  IStyles<IListStyleKey>
+>({
+  host: {
+    height: '100%',
+    overflowY: 'auto',
+  },
+  content: {
+    maxHeight: vars.contentMaxHeight,
   },
 });

@@ -30,7 +30,7 @@ const variantMap: ITemplateVariantMap = {
 export const VariableTemplate = forwardRef<
   HTMLDivElement,
   IVariableTemplateProps
->(function VariableTemplate(props, ref) {
+>(function VariableTemplate(props, forwardedRef) {
   const {
     styles,
     sx,
@@ -42,7 +42,7 @@ export const VariableTemplate = forwardRef<
 
   const actionRef = useRef<HTMLInputElement>(null);
   const { visualState, ref: visualStateRef } = useVisualState(visualStateProp);
-  const handleRef = useForkRef(ref, visualStateRef, actionRef);
+  const handleRef = useForkRef(forwardedRef, visualStateRef, actionRef);
 
   const { theme, variantTheme } = useComponentTheme(
     'Template',

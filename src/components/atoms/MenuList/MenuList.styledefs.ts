@@ -1,11 +1,7 @@
-export type IMenuListStyleKey =
-  | 'host'
-  | 'menu'
-  | 'items'
-  | 'itemPadding'
-  | 'divider';
+export type IMenuListStyleKey = 'host';
 
 export type IMenuListStyleVarKey =
   | 'containerColor'
   | 'containerElevation'
-  | 'containerShape';
+  | 'containerShape'
+  | 'contentMaxHeight';

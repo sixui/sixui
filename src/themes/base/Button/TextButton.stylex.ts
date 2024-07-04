@@ -9,6 +9,13 @@ import { componentVars as baseComponentVars } from './Button.stylex';
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-text-button.scss
 
 const vars: Partial<IStyleVars<IButtonStyleVarKey>> = {
+  leadingSpace: '12px',
+  trailingSpace: '12px',
+  leadingIconLeadingSpace: '12px',
+  leadingIconTrailingSpace: '16px',
+  trailingIconLeadingSpace: '16px',
+  trailingIconTrailingSpace: '12px',
+
   // stateLayer
   // &:hover
   stateLayerColor$hover: colorRolesVars.primary,

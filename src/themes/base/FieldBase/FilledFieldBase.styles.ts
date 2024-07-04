@@ -138,7 +138,7 @@ export const styles: MapNamespaces<IFieldBaseStyles> =
       paddingTop: `calc(${vars.topSpace$withLabel} + ${vars.labelTextPopulatedLineHeight})`,
       paddingBottom: vars.bottomSpace$withLabel,
     },
-    contentSlot$withLabel$textarea: {
+    contentSlot$withLabel$textArea: {
       paddingTop: 0,
       paddingBottom: 0,
 

@@ -38,7 +38,7 @@ export type ISnackbarContentProps =
 export const SnackbarContent = forwardRef<
   HTMLDivElement,
   ISnackbarContentProps
->(function SnackbarContent(props, ref) {
+>(function SnackbarContent(props, forwardedRef) {
   const {
     styles,
     sx,
@@ -76,7 +76,7 @@ export const SnackbarContent = forwardRef<
         theme.vars,
         sx,
       )}
-      ref={ref}
+      ref={forwardedRef}
       {...other}
     >
       <Elevation

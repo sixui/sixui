@@ -50,9 +50,9 @@ import type {
 } from '@/components/atoms/FieldBase';
 import type { IFieldStyleKey } from '@/components/atoms/Field';
 import type {
-  ITextFieldStyleKey,
-  ITextFieldStyleVarKey,
-} from '@/components/atoms/TextField';
+  ITextFieldBaseStyleKey,
+  ITextFieldBaseStyleVarKey,
+} from '@/components/atoms/TextFieldBase';
 import type {
   IRadioStyleKey,
   IRadioStyleVarKey,
@@ -109,10 +109,11 @@ import type {
   IScrimStyleKey,
   IScrimStyleVarKey,
 } from '@/components/atoms/Scrim';
+import type { IDialogStyleKey } from '@/components/atoms/Dialog';
 import type {
-  IDialogStyleKey,
-  IDialogStyleVarKey,
-} from '@/components/atoms/Dialog';
+  IDialogContentStyleKey,
+  IDialogContentStyleVarKey,
+} from '@/components/atoms/DialogContent';
 import type {
   IMenuListStyleKey,
   IMenuListStyleVarKey,
@@ -148,6 +149,14 @@ import type {
   ISnackbarContentStyleKey,
   ISnackbarContentStyleVarKey,
 } from '@/components/atoms/SnackbarContent';
+import type {
+  IPlainTooltipContentStyleKey,
+  IPlainTooltipContentStyleVarKey,
+} from '@/components/atoms/PlainTooltipContent';
+import type {
+  IRichTooltipContentStyleKey,
+  IRichTooltipContentStyleVarKey,
+} from '@/components/atoms/RichTooltipContent';
 
 export type ITemplateTheme = {
   vars?: IStyleVarsTheme<ITemplateStyleVarKey>;
@@ -203,9 +212,9 @@ export type IFieldBaseTheme = {
   styles?: ICompiledStyles<IFieldBaseStyleKey>;
 };
 
-export type ITextFieldTheme = {
-  vars?: IStyleVarsTheme<ITextFieldStyleVarKey>;
-  styles?: ICompiledStyles<ITextFieldStyleKey>;
+export type ITextFieldBaseTheme = {
+  vars?: IStyleVarsTheme<ITextFieldBaseStyleVarKey>;
+  styles?: ICompiledStyles<ITextFieldBaseStyleKey>;
   fieldStyles?: ICompiledStyles<IFieldBaseStyleKey>;
 };
 
@@ -309,9 +318,9 @@ export type ITheme = {
     Field: {
       styles?: ICompiledStyles<IFieldStyleKey>;
     };
-    TextField: ITextFieldTheme;
-    FilledTextField: ITextFieldTheme;
-    OutlinedTextField: ITextFieldTheme;
+    TextFieldBase: ITextFieldBaseTheme;
+    FilledTextField: ITextFieldBaseTheme;
+    OutlinedTextField: ITextFieldBaseTheme;
     Radio: {
       vars?: IStyleVarsTheme<IRadioStyleVarKey>;
       styles?: ICompiledStyles<IRadioStyleKey>;
@@ -349,9 +358,6 @@ export type ITheme = {
       elevationStyles?: ICompiledStyles<IElevationStyleKey>;
       stateLayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
       focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
-    };
-    CardHeader: {
-      vars?: IStyleVarsTheme<IItemStyleVarKey>;
     };
     CardMedia: {
       vars: IStyleVarsTheme<ICardMediaStyleVarKey>;
@@ -404,14 +410,17 @@ export type ITheme = {
       styles?: ICompiledStyles<IScrimStyleKey>;
     };
     Dialog: {
-      vars?: IStyleVarsTheme<IDialogStyleVarKey>;
       styles?: ICompiledStyles<IDialogStyleKey>;
+    };
+    DialogContent: {
+      vars?: IStyleVarsTheme<IDialogContentStyleVarKey>;
+      styles?: ICompiledStyles<IDialogContentStyleKey>;
     };
     MenuList: {
       vars?: IStyleVarsTheme<IMenuListStyleVarKey>;
       styles?: ICompiledStyles<IMenuListStyleKey>;
       elevationStyles?: ICompiledStyles<IElevationStyleKey>;
-      focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
+      listStyles?: ICompiledStyles<IListStyleKey>;
     };
     Disclosure: {
       styles?: ICompiledStyles<IDisclosureStyleKey>;
@@ -456,6 +465,15 @@ export type ITheme = {
       styles?: ICompiledStyles<ISnackbarContentStyleKey>;
       elevationStyles?: ICompiledStyles<IElevationStyleKey>;
       actionButtonStyles?: ICompiledStyles<IButtonStyleKey>;
+    };
+    PlainTooltipContent: {
+      vars?: IStyleVarsTheme<IPlainTooltipContentStyleVarKey>;
+      styles?: ICompiledStyles<IPlainTooltipContentStyleKey>;
+    };
+    RichTooltipContent: {
+      vars?: IStyleVarsTheme<IRichTooltipContentStyleVarKey>;
+      styles?: ICompiledStyles<IRichTooltipContentStyleKey>;
+      elevationStyles?: ICompiledStyles<IElevationStyleKey>;
     };
   };
 };

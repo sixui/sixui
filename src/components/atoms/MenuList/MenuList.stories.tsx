@@ -2,8 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
+import { ListItem } from '@/components/atoms/ListItem';
+import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { MenuDivider } from '@/components/atoms/MenuDivider';
 import { MenuList, type IMenuListProps } from './MenuList';
-import { ListItem } from '../ListItem';
 
 const meta = {
   component: MenuList,
@@ -12,61 +14,71 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
-  host: {
+  host$fixedWidth: {
     width: 192,
+  },
+  section: {
+    backgroundColor: colorRolesVars.primaryContainer,
+    color: colorRolesVars.onPrimaryContainer,
+    padding: 8,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 'inherit',
   },
 });
 
-const defaultArgs = {} satisfies Partial<IMenuListProps>;
-
-const items = ['Apple', 'Banana', 'Cumcumber'].map((name) => (
-  <ListItem key={name} onClick={(...args) => sbHandleEvent('click', args)}>
-    {name}
-  </ListItem>
-));
-
-// const MenuListLauncher: React.FC<IMenuList> = (props) => {
-//   const [open, setOpen] = useState(false);
-//   const handleOpen = (): void => setOpen(true);
-//   const handleClose = (): void => setOpen(false);
-
-//   return (
-//     <>
-//       <Dialog
-//         actions={
-//           <>
-//             <Button variant='text' onClick={handleClose}>
-//               Cancel
-//             </Button>
-//             <Button variant='text' onClick={handleClose}>
-//               OK
-//             </Button>
-//           </>
-//         }
-//         {...props}
-//         open={open}
-//         onClose={handleClose}
-//       />
-//       <Button onClick={handleOpen}>Open</Button>
-//     </>
-//   );
-// };
-
-export const Basic: IStory = {
-  render: (props) => (
-    <div {...stylex.props(styles.host)}>
-      <MenuList {...props} />
-    </div>
+const defaultArgs = {
+  children: (
+    <>
+      <ListItem onClick={(...args) => sbHandleEvent('click', args)}>
+        Apple
+      </ListItem>
+      <ListItem onClick={(...args) => sbHandleEvent('click', args)}>
+        Banana
+      </ListItem>
+      <ListItem onClick={(...args) => sbHandleEvent('click', args)}>
+        Cumcumber
+      </ListItem>
+      <ListItem onClick={(...args) => sbHandleEvent('click', args)}>
+        This is a very long and unexpected item
+      </ListItem>
+      <MenuDivider />
+      <ListItem
+        onClick={(...args) => sbHandleEvent('click', args)}
+        maxLines={1}
+      >
+        This item will never wrap
+      </ListItem>
+    </>
   ),
+} satisfies Partial<IMenuListProps>;
+
+export const AutoWidth: IStory = {
+  render: (props) => <MenuList {...props} />,
+  args: defaultArgs,
+};
+
+export const FixedWidth: IStory = {
+  render: (props) => <MenuList sx={styles.host$fixedWidth} {...props} />,
+  args: defaultArgs,
+};
+
+export const WithHeaderAndFooter: IStory = {
+  render: (props) => <MenuList {...props} />,
   args: {
     ...defaultArgs,
-    children: (
-      <>
-        {items}
-        <MenuList.Divider />
-        {items}
-      </>
-    ),
+    header: <div {...stylex.props(styles.section)}>Header</div>,
+    footer: <div {...stylex.props(styles.section)}>Footer</div>,
+  },
+};
+
+export const OnlyHeader: IStory = {
+  render: (props) => <MenuList {...props} />,
+  args: {
+    ...defaultArgs,
+    header: <div {...stylex.props(styles.section)}>Header</div>,
+    children: undefined,
   },
 };
 

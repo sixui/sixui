@@ -6,9 +6,11 @@ export type IThemeComponents = ITheme['components'];
 
 export type { ITheme } from '@/themes/theme.types';
 
-export type IThemeContext = {
+export type IThemeContextValue = {
   theme: ITheme;
   settings: IThemeSettings;
 };
 
-export const ThemeContext = createContext<IThemeContext | undefined>(undefined);
+export const ThemeContext = createContext<IThemeContextValue | undefined>(
+  undefined,
+);

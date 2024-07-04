@@ -5,22 +5,20 @@ import type { IDisclosureStyleKey } from './Disclosure.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { DisclosureButton } from '@/components/atoms/DisclosureButton';
-import { DisclosurePanel } from '@/components/atoms/DisclosurePanel';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import {
   DisclosureContext,
-  type IDisclosureContext,
+  type IDisclosureContextValue,
 } from './DisclosureContext';
 
 export type IDisclosureProps = IContainerProps<IDisclosureStyleKey> &
-  IOmit<IDisclosureContext, 'expanded' | 'setExpanded'> & {
+  IOmit<IDisclosureContextValue, 'expanded' | 'setExpanded'> & {
     children: React.ReactNode;
     defaultExpanded?: boolean;
   };
 
-const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
-  function Disclosure(props, ref) {
+export const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
+  function Disclosure(props, forwardedRef) {
     const {
       styles,
       sx,
@@ -59,7 +57,7 @@ const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
       [stylesCombinator],
     );
 
-    const context: IDisclosureContext = {
+    const context: IDisclosureContextValue = {
       checkable,
       defaultChecked,
       checked,
@@ -76,17 +74,10 @@ const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
 
     return (
       <DisclosureContext.Provider value={context}>
-        <div {...other} {...sxf('host', sx)} ref={ref}>
+        <div {...other} {...sxf('host', sx)} ref={forwardedRef}>
           {children}
         </div>
       </DisclosureContext.Provider>
     );
   },
 );
-
-const DisclosureNamespace = Object.assign(Disclosure, {
-  Button: DisclosureButton,
-  Panel: DisclosurePanel,
-});
-
-export { DisclosureNamespace as Disclosure };

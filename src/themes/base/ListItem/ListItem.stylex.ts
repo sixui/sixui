@@ -12,15 +12,22 @@ import { stateVars } from '../vars/state.stylex';
 const vars: Partial<IStyleVars<IListItemStyleVarKey>> = {
   leadingSpace: '16px',
   trailingSpace: '16px',
-  topSpace: '12px',
-  bottomSpace: '12px',
+  topSpace$sm: '4px',
+  bottomSpace$sm: '4px',
+  topSpace$md: '8px',
+  bottomSpace$md: '8px',
+  topSpace$lg: '8px',
+  bottomSpace$lg: '8px',
+  topSpace$xl: '12px',
+  bottomSpace$xl: '12px',
 
   // container
   containerOpacity: '1',
   containerShape: shapeVars.corner$none,
-  containerHeight$oneLine: '48px',
-  containerHeight$twoLines: '56px',
-  containerHeight$threeLines: '72px',
+  containerMinHeight$sm: '48px',
+  containerMinHeight$md: '56px',
+  containerMinHeight$lg: '72px',
+  containerMinHeight$xl: '80px',
   // &:disabled
   containerColor$disabled: 'transparent',
   containerOpacity$disabled: stateVars.containerOpacity$disabled,
@@ -46,6 +53,13 @@ const vars: Partial<IStyleVars<IListItemStyleVarKey>> = {
   // &:disabled
   trailingIconColor$disabled: colorRolesVars.onSurface,
   trailingIconOpacity$disabled: stateVars.opacity$disabled,
+
+  // image
+  imageWidth: '56px',
+  imageHeight: '56px',
+
+  // video
+  videoHeight: '64px',
 };
 
 export const componentVars = stylex.defineVars(

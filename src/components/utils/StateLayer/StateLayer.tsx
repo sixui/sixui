@@ -22,7 +22,7 @@ export type IStateLayerProps = IContainerProps<IStateLayerStyleKey> & {
 };
 
 export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
-  function StateLayer(props, ref) {
+  function StateLayer(props, forwardedRef) {
     const {
       styles,
       sx,
@@ -50,7 +50,7 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
       for: forElementRef,
       disabled,
     });
-    const handleRef = useForkRef(ref, setHostRef);
+    const handleRef = useForkRef(forwardedRef, setHostRef);
 
     return (
       <div ref={handleRef} {...sxf('host', theme.vars, sx)}>

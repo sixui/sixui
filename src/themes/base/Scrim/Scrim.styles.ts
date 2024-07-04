@@ -9,17 +9,9 @@ import { motionVars } from '../vars/motion.stylex';
 type IScrimStyles = IStyles<IScrimStyleKey>;
 export const styles: MapNamespaces<IScrimStyles> = stylex.create<IScrimStyles>({
   host: {
-    position: 'fixed',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    inset: 0,
-    WebkitTapHighlightColor: 'transparent',
+    display: 'grid',
+    placeItems: 'center',
     zIndex: 500,
-    opacity: 0,
-  },
-  host$close: {
-    pointerEvents: 'none',
   },
   host$darken: {
     backgroundColor: vars.containerColor$darken,
@@ -27,22 +19,20 @@ export const styles: MapNamespaces<IScrimStyles> = stylex.create<IScrimStyles>({
   host$lighten: {
     backgroundColor: vars.containerColor$lighten,
   },
-  host$contained: {
-    position: 'absolute',
-  },
-  animation$onEnter: {
+  transition$unmounted: {},
+  transition$initial: {
     opacity: 0,
   },
-  animation$onEnterActive: {
+  transition$open: {
     opacity: 1,
     transitionProperty: 'opacity',
-    transitionDuration: motionVars.duration$long2,
+    transitionDuration: motionVars.duration$long3,
     transitionTimingFunction: motionVars.easing$emphasizedDecelerate,
   },
-  animation$onExitActive: {
+  transition$close: {
     opacity: 0,
     transitionProperty: 'opacity',
-    transitionDuration: motionVars.duration$short4,
+    transitionDuration: motionVars.duration$short3,
     transitionTimingFunction: motionVars.easing$emphasizedAccelerate,
   },
 });

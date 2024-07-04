@@ -55,7 +55,7 @@ export type IButtonOwnProps = IOmit<
   loading?: boolean; // TODO: -> Button
   loadingAnimation?: 'progressIndicator' | 'halfSpin' | 'none'; // TODO: -> Button
   loadingText?: string; // TODO: -> Button
-  onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>; // TODO: -> ButtonBase
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => IMaybeAsync<IAny>; // TODO: -> ButtonBase
 };
 
 export type IButtonProps<TRoot extends React.ElementType = typeof DEFAULT_TAG> =
@@ -90,7 +90,7 @@ type IButton = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
 
 export const Button: IButton = forwardRef(function Button<
   TRoot extends React.ElementType = typeof DEFAULT_TAG,
->(props: IButtonProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+>(props: IButtonProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     styles,
     sx,
@@ -132,7 +132,7 @@ export const Button: IButton = forwardRef(function Button<
 
   const handleAnimationIteration = (): void => setAnimating(handlingClick);
 
-  const handleClick: React.MouseEventHandler<HTMLElement> | undefined = (
+  const handleClick: React.MouseEventHandler<HTMLButtonElement> | undefined = (
     event,
   ) => {
     if (handlingClick) {
@@ -172,10 +172,15 @@ export const Button: IButton = forwardRef(function Button<
 
   return (
     <ButtonBase
-      ref={ref}
+      ref={forwardedRef}
       as={as}
       styles={[theme.styles, variantTheme?.styles, ...asArray(styles)]}
-      sx={[theme.vars, variantTheme?.vars, sx]}
+      sx={[
+        loading ? stylesCombinator('host$loading') : undefined,
+        theme.vars,
+        variantTheme?.vars,
+        sx,
+      ]}
       withLeadingIcon={hasLeadingIcon}
       withTrailingIcon={hasTrailingIcon}
       innerStyles={{

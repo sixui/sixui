@@ -13,6 +13,7 @@ import { componentVars as elevationVars } from '../Elevation/Elevation.stylex';
 import { componentVars as focusRingVars } from '../FocusRing/FocusRing.stylex';
 import { componentVars as statelayerVars } from '../StateLayer/StateLayer.stylex';
 import { componentVars as circularProgressIndicatorVars } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
+import { motionVars } from '../vars/motion.stylex';
 
 // https://github.com/material-components/material-web/blob/main/chips/internal/_shared.scss
 // https://github.com/material-components/material-web/blob/main/chips/internal/_elevated.scss
@@ -80,6 +81,9 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     pointerEvents: 'none',
     [chipStateVars.elevation]: vars.flatContainerElevation$disabled,
   },
+  flatContainer$loading: {
+    [chipStateVars.elevation]: vars.flatContainerElevation,
+  },
   selectedFlatContainer: {
     '::before': {
       backgroundColor: vars.selectedFlatContainerColor,
@@ -101,6 +105,9 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     },
     pointerEvents: 'none',
     [chipStateVars.elevation]: vars.selectedFlatContainerElevation$disabled,
+  },
+  selectedFlatContainer$loading: {
+    [chipStateVars.elevation]: vars.flatContainerElevation,
   },
   elevatedContainer: {
     '::before': {
@@ -124,6 +131,9 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     pointerEvents: 'none',
     [chipStateVars.elevation]: vars.elevatedContainerElevation$disabled,
   },
+  elevatedContainer$loading: {
+    [chipStateVars.elevation]: vars.elevatedContainerElevation$pressed,
+  },
   selectedElevatedContainer: {
     '::before': {
       backgroundColor: vars.selectedElevatedContainerColor,
@@ -144,7 +154,10 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
       opacity: vars.selectedFlatContainerOpacity$disabled,
     },
     pointerEvents: 'none',
-    [chipStateVars.elevation]: vars.selectedFlatContainerElevation$disabled,
+    [chipStateVars.elevation]: vars.elevatedContainerElevation$disabled,
+  },
+  selectedElevatedContainer$loading: {
+    [chipStateVars.elevation]: vars.elevatedContainerElevation,
   },
   action: {
     display: 'flex',
@@ -267,7 +280,7 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     color: vars.labelTextColor$disabled,
     opacity: vars.labelTextOpacity$disabled,
   },
-  icon: {
+  iconContainer: {
     // Place content above background elements
     zIndex: 1,
     alignSelf: 'center',
@@ -277,10 +290,10 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  icon$selected: {
+  iconContainer$selected: {
     color: vars.selectedIconColor,
   },
-  icon$selected$interactive: {
+  iconContainer$selected$interactive: {
     color: {
       default: vars.selectedIconColor,
       ':is([data-focused])': vars.selectedIconColor$focus,
@@ -288,21 +301,39 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
       ':is([data-pressed])': vars.selectedIconColor$pressed,
     },
   },
-  icon$leading: {
+  iconContainer$leading: {
+    position: 'relative',
     color: chipStateVars.iconColor,
     marginInlineEnd: vars.iconLabelSpace,
     fontSize: vars.iconSize,
     height: vars.iconSize,
     width: vars.iconSize,
+
+    transitionProperty: 'opacity, width',
+    transitionDuration: motionVars.duration$medium4,
+    transitionTimingFunction: motionVars.easing$emphasizedDecelerate,
+    opacity: 1,
   },
-  icon$trailing: {
+  iconContainer$collapsed: {
+    marginInlineEnd: 0,
+    width: 0,
+    opacity: 0,
+
+    transitionProperty: 'opacity, width',
+    transitionDuration: motionVars.duration$short2,
+    transitionTimingFunction: motionVars.easing$emphasizedAccelerate,
+  },
+  icon: {
+    position: 'absolute',
+  },
+  iconContainer$trailing: {
     position: 'relative',
     fontSize: vars.iconSize,
     height: vars.iconSize,
     width: vars.iconSize,
     color: vars.trailingIconColor,
   },
-  icon$trailing$interactive: {
+  iconContainer$trailing$interactive: {
     color: {
       default: vars.trailingIconColor,
       ':is([data-focused])': vars.trailingIconColor$focus,
@@ -310,10 +341,10 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
       ':is([data-pressed])': vars.trailingIconColor$pressed,
     },
   },
-  icon$trailing$selected: {
+  iconContainer$trailing$selected: {
     color: vars.selectedTrailingIconColor,
   },
-  icon$trailing$selected$interactive: {
+  iconContainer$trailing$selected$interactive: {
     color: {
       default: vars.selectedTrailingIconColor,
       ':is([data-focused])': vars.selectedTrailingIconColor$focus,
@@ -321,11 +352,11 @@ export const styles: MapNamespaces<IChipStyles> = stylex.create<IChipStyles>({
       ':is([data-pressed])': vars.selectedTrailingIconColor$pressed,
     },
   },
-  icon$disabled: {
+  iconContainer$disabled: {
     [chipStateVars.iconColor]: vars.iconColor$disabled,
     opacity: vars.iconOpacity$disabled,
   },
-  icon$avatar: {
+  iconContainer$avatar: {
     flexShrink: 0,
     flexGrow: 0,
     height: vars.avatarSize,

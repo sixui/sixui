@@ -31,7 +31,7 @@ type IFocusRingEvent = Event & {
 };
 
 export const FocusRing = forwardRef<HTMLInputElement, IFocusRingProps>(
-  function FocusRing(props, ref) {
+  function FocusRing(props, forwardedRef) {
     const { styles, sx, visualState, for: forElementRef, inward } = props;
 
     const { theme } = useComponentTheme('FocusRing');
@@ -48,7 +48,7 @@ export const FocusRing = forwardRef<HTMLInputElement, IFocusRingProps>(
     );
 
     const hostRef = useRef<HTMLDivElement>(null);
-    const handleRef = useForkRef(ref, hostRef);
+    const handleRef = useForkRef(forwardedRef, hostRef);
 
     const [visible, setVisible] = useState(false);
 

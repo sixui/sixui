@@ -6,6 +6,7 @@ import {
   useMemo,
 } from 'react';
 import { asArray } from '@olivierpascal/helpers';
+import { isFunction } from 'lodash';
 
 import type { ICompiledStyles, IContainerProps } from '@/helpers/types';
 import type { IStepStyleKey, IStepStyleVarKey } from './Step.styledefs';
@@ -16,10 +17,10 @@ import { ReactComponent as CheckMarkIcon } from '@/assets/CheckMark.svg';
 import { ReactComponent as ExclamationTriangleIcon } from '@/assets/ExclamationTriangle.svg';
 import {
   StepperContext,
-  type IStepperContext,
+  type IStepperContextValue,
 } from '@/components/atoms/Stepper/StepperContext';
 import { ButtonBase, type IButtonBaseOwnProps } from '../ButtonBase';
-import { StepContext, type IStepContext } from './StepContext';
+import { StepContext, type IStepContextValue } from './StepContext';
 import {
   type ICircularProgressIndicatorStyleKey,
   IndeterminateCircularProgressIndicator,
@@ -46,14 +47,14 @@ export type IStepProps = IContainerProps<IStepStyleKey> & {
   hasError?: boolean;
   loading?: boolean;
   onClick?: () => void;
-  orientation?: IStepperContext['orientation'];
-  nextConnector?: IStepperContext['connector'];
+  orientation?: IStepperContextValue['orientation'];
+  nextConnector?: IStepperContextValue['connector'];
   alwaysExpanded?: boolean;
 
   /**
    * Only supported in vertical orientation.
    */
-  labelPosition?: IStepperContext['labelPosition'];
+  labelPosition?: IStepperContextValue['labelPosition'];
 
   /**
    * Only supported in vertical orientation.
@@ -62,7 +63,7 @@ export type IStepProps = IContainerProps<IStepStyleKey> & {
 };
 
 export const Step = forwardRef<HTMLDivElement, IStepProps>(
-  function Step(props, ref) {
+  function Step(props, forwardedRef) {
     const {
       styles,
       sx,
@@ -133,7 +134,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
             ? 'inactive'
             : undefined;
 
-    const contextValue: IStepContext = {
+    const contextValue: IStepContextValue = {
       completed,
       hasContent: expanded,
       hasText,
@@ -251,7 +252,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
         <div style={{ display: 'contents' }} {...sxf(theme.vars, sx)}>
           <div
             {...sxf('host', labelPosition === 'bottom' && `host$bottomLabel`)}
-            ref={ref}
+            ref={forwardedRef}
             {...other}
           >
             <div
@@ -292,7 +293,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
                   </div>
                 ) : null}
                 <div {...sxf('contentText')}>
-                  {typeof children === 'function'
+                  {isFunction(children)
                     ? children({
                         active: !!isActive,
                         completed,

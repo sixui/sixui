@@ -14,7 +14,7 @@ export type IBasicTemplateProps = IContainerProps<ITemplateStyleKey> & {
 };
 
 export const BasicTemplate = forwardRef<HTMLDivElement, IBasicTemplateProps>(
-  function BasicTemplate(props, ref) {
+  function BasicTemplate(props, forwardedRef) {
     const { styles, sx, children, ...other } = props;
 
     const { theme } = useComponentTheme('Template');
@@ -31,7 +31,7 @@ export const BasicTemplate = forwardRef<HTMLDivElement, IBasicTemplateProps>(
     );
 
     return (
-      <div {...sxf('host', theme.vars, sx)} ref={ref} {...other}>
+      <div {...sxf('host', theme.vars, sx)} ref={forwardedRef} {...other}>
         {children}
       </div>
     );

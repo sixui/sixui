@@ -31,7 +31,7 @@ export type IDividerProps = IContainerProps<IDividerStyleKey> & {
 };
 
 export const Divider = forwardRef<HTMLDivElement, IDividerProps>(
-  function Divider(props, ref) {
+  function Divider(props, forwardedRef) {
     const { styles, sx, inset, insetStart, insetEnd, children, ...other } =
       props;
 
@@ -60,11 +60,13 @@ export const Divider = forwardRef<HTMLDivElement, IDividerProps>(
     );
 
     return (
-      <div {...sxf('host', theme.vars, sx)} ref={ref} {...other}>
+      <div {...sxf('host', theme.vars, sx)} ref={forwardedRef} {...other}>
         {children ? (
           <>
             {renderLine()}
-            <div {...sxf('text')}>{children}</div>
+            <div {...sxf('textContainer')}>
+              <div {...sxf('text')}>{children}</div>
+            </div>
             {renderLine()}
           </>
         ) : (

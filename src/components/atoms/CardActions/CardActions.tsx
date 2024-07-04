@@ -13,7 +13,7 @@ export type ICardActionsProps = IContainerProps<ICardActionsStyleKey> & {
 export const CardActions: React.FC<ICardActionsProps> = forwardRef<
   HTMLDivElement,
   ICardActionsProps
->(function CardActions(props, ref) {
+>(function CardActions(props, forwardedRef) {
   const { styles, sx, children, ...other } = props;
 
   const { theme } = useComponentTheme('CardActions');
@@ -27,7 +27,7 @@ export const CardActions: React.FC<ICardActionsProps> = forwardRef<
   );
 
   return (
-    <div {...sxf('host', sx)} ref={ref} {...other}>
+    <div {...sxf('host', sx)} ref={forwardedRef} {...other}>
       {children}
     </div>
   );

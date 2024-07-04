@@ -24,7 +24,7 @@ export type IIndeterminateCircularProgressIndicatorProps =
 export const IndeterminateCircularProgressIndicator = forwardRef<
   HTMLInputElement,
   IIndeterminateCircularProgressIndicatorProps
->(function IndeterminateCircularProgressIndicator(props, ref) {
+>(function IndeterminateCircularProgressIndicator(props, forwardedRef) {
   const { styles, sx, size = 'md', disabled, children, ...other } = props;
 
   const { theme, variantTheme } = useComponentTheme(
@@ -50,7 +50,11 @@ export const IndeterminateCircularProgressIndicator = forwardRef<
   );
 
   return (
-    <div {...sxf('host', `host$${size}`, theme.vars, sx)} ref={ref} {...other}>
+    <div
+      {...sxf('host', `host$${size}`, theme.vars, sx)}
+      ref={forwardedRef}
+      {...other}
+    >
       <div
         {...sxf('layer', 'progress', `progress$${size}`)}
         role='progressbar'

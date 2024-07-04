@@ -94,10 +94,10 @@ import { componentTheme as outlinedFieldBaseTheme } from './FieldBase/OutlinedFi
 import { styles as fieldStyles } from './Field/Field.styles';
 
 import {
-  styles as textFieldStyles,
-  fieldStyles as textFieldFieldStyles,
-} from './TextField/TextField.styles';
-import { componentTheme as textFieldTheme } from './TextField/TextField.stylex';
+  styles as textFieldBaseStyles,
+  fieldStyles as textFieldBaseFieldStyles,
+} from './TextFieldBase/TextFieldBase.styles';
+import { componentTheme as textFieldTheme } from './TextFieldBase/TextFieldBase.stylex';
 
 import { componentTheme as radioTheme } from './Radio/Radio.stylex';
 import {
@@ -149,8 +149,6 @@ import { componentTheme as filledCardTheme } from './Card/FilledCard.stylex';
 import { componentTheme as outlinedCardTheme } from './Card/OutlinedCard.stylex';
 import { styles as outlinedCardStyles } from './Card/OutlinedCard.styles';
 
-import { componentTheme as cardHeaderTheme } from './CardHeader/CardHeader.stylex';
-
 import { componentTheme as cardMediaTheme } from './CardMedia/CardMedia.stylex';
 import { styles as cardMediaStyles } from './CardMedia/CardMedia.styles';
 
@@ -195,14 +193,16 @@ import { styles as avatarStyles } from './Avatar/Avatar.styles';
 import { componentTheme as scrimTheme } from './Scrim/Scrim.stylex';
 import { styles as scrimStyles } from './Scrim/Scrim.styles';
 
-import { componentTheme as dialogTheme } from './Dialog/Dialog.stylex';
 import { styles as dialogStyles } from './Dialog/Dialog.styles';
+
+import { componentTheme as dialogContentTheme } from './DialogContent/DialogContent.stylex';
+import { styles as dialogContentStyles } from './DialogContent/DialogContent.styles';
 
 import { componentTheme as menuListTheme } from './MenuList/MenuList.stylex';
 import {
   styles as menuListStyles,
   elevationStyles as menuListElevationStyles,
-  focusRingStyles as menuListFocusRingStyles,
+  listStyles as menuListListStyles,
 } from './MenuList/MenuList.styles';
 
 import { styles as DisclosureStyles } from './Disclosure/Disclosure.styles';
@@ -243,6 +243,15 @@ import {
   styles as snackbarContentStyles,
   elevationStyles as snackbarContentElevationStyles,
 } from './SnackbarContent/SnackbarContent.styles';
+
+import { componentTheme as plainTooltipContentTheme } from './PlainTooltipContent/PlainTooltipContent.stylex';
+import { styles as plainTooltipContentStyles } from './PlainTooltipContent/PlainTooltipContent.styles';
+
+import { componentTheme as richTooltipContentTheme } from './RichTooltipContent/RichTooltipContent.stylex';
+import {
+  styles as richTooltipContentStyles,
+  elevationStyles as richTooltipElevationStyles,
+} from './RichTooltipContent/RichTooltipContent.styles';
 
 export const theme: ITheme = {
   name: 'Material Design 3',
@@ -364,10 +373,10 @@ export const theme: ITheme = {
     Field: {
       styles: fieldStyles,
     },
-    TextField: {
+    TextFieldBase: {
       vars: textFieldTheme,
-      styles: textFieldStyles,
-      fieldStyles: textFieldFieldStyles,
+      styles: textFieldBaseStyles,
+      fieldStyles: textFieldBaseFieldStyles,
     },
     FilledTextField: {},
     OutlinedTextField: {},
@@ -416,9 +425,6 @@ export const theme: ITheme = {
       elevationStyles: cardElevationStyles,
       stateLayerStyles: cardStateLayerStyles,
       focusRingStyles: cardFocusRingStyles,
-    },
-    CardHeader: {
-      vars: cardHeaderTheme,
     },
     CardMedia: {
       vars: cardMediaTheme,
@@ -478,14 +484,17 @@ export const theme: ITheme = {
       styles: scrimStyles,
     },
     Dialog: {
-      vars: dialogTheme,
       styles: dialogStyles,
+    },
+    DialogContent: {
+      vars: dialogContentTheme,
+      styles: dialogContentStyles,
     },
     MenuList: {
       vars: menuListTheme,
       styles: menuListStyles,
-      focusRingStyles: menuListFocusRingStyles,
       elevationStyles: menuListElevationStyles,
+      listStyles: menuListListStyles,
     },
     Disclosure: {
       styles: DisclosureStyles,
@@ -530,6 +539,15 @@ export const theme: ITheme = {
       vars: snackbarContentTheme,
       styles: snackbarContentStyles,
       elevationStyles: snackbarContentElevationStyles,
+    },
+    PlainTooltipContent: {
+      vars: plainTooltipContentTheme,
+      styles: plainTooltipContentStyles,
+    },
+    RichTooltipContent: {
+      vars: richTooltipContentTheme,
+      styles: richTooltipContentStyles,
+      elevationStyles: richTooltipElevationStyles,
     },
   },
 };

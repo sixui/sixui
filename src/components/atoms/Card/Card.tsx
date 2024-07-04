@@ -1,5 +1,6 @@
 import { forwardRef, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
+import { useMergeRefs } from '@floating-ui/react';
 
 import type {
   IContainerProps,
@@ -32,13 +33,7 @@ import {
   StateLayer,
   type IStateLayerStyleKey,
 } from '@/components/utils/StateLayer';
-import { useForkRef } from '@/hooks/useForkRef';
-import { CardContext, type ICardContext } from './CardContext';
-import { CardHeader } from '../CardHeader';
-import { CardMedia } from '../CardMedia';
-import { CardContent } from '../CardContent';
-import { CardTitle } from '../CardTitle';
-import { CardActions } from '../CardActions';
+import { CardContext, type ICardContextValue } from './CardContext';
 
 // https://github.com/material-components/material-web/blob/main/labs/card/internal/card.ts
 
@@ -78,9 +73,9 @@ type ICard = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
   props: ICardProps<TRoot>,
 ) => React.ReactNode;
 
-const Card: ICard = forwardRef(function Card<
+export const Card: ICard = forwardRef(function Card<
   TRoot extends React.ElementType = typeof DEFAULT_TAG,
->(props: ICardProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+>(props: ICardProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     as,
     styles,
@@ -98,7 +93,7 @@ const Card: ICard = forwardRef(function Card<
   const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
     disabled,
   });
-  const handleRef = useForkRef(ref, visualStateRef);
+  const handleRef = useMergeRefs([forwardedRef, visualStateRef]);
 
   const { theme, variantTheme, settings } = useComponentTheme(
     'Card',
@@ -127,7 +122,7 @@ const Card: ICard = forwardRef(function Card<
 
   const Component = as ?? (!dragged && href ? settings.linkAs : DEFAULT_TAG);
 
-  const context: ICardContext = {
+  const context: ICardContextValue = {
     actionable,
   };
 
@@ -162,7 +157,7 @@ const Card: ICard = forwardRef(function Card<
                 theme.stateLayerStyles,
                 ...asArray(innerStyles?.stateLayer),
               ]}
-              for={ref}
+              for={forwardedRef}
               disabled={disabled}
               visualState={visualState}
             />
@@ -171,7 +166,7 @@ const Card: ICard = forwardRef(function Card<
                 theme.focusRingStyles,
                 ...asArray(innerStyles?.focusRing),
               ]}
-              for={ref}
+              for={forwardedRef}
               visualState={visualState}
             />
           </>
@@ -191,13 +186,3 @@ const Card: ICard = forwardRef(function Card<
     </CardContext.Provider>
   );
 });
-
-const CardNamespace = Object.assign(Card, {
-  Header: CardHeader,
-  Media: CardMedia,
-  Content: CardContent,
-  Title: CardTitle,
-  Actions: CardActions,
-});
-
-export { CardNamespace as Card };

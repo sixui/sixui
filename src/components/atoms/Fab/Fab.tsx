@@ -62,7 +62,7 @@ type IFab = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
 
 export const Fab: IFab = forwardRef(function Fab<
   TRoot extends React.ElementType = typeof DEFAULT_TAG,
->(props: IFabProps<TRoot>, ref?: IPolymorphicRef<TRoot>) {
+>(props: IFabProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     styles,
     sx,
@@ -89,7 +89,7 @@ export const Fab: IFab = forwardRef(function Fab<
 
   return (
     <Button
-      ref={ref}
+      ref={forwardedRef}
       as={as}
       variant={false}
       styles={asArray(innerStyles?.button)}

@@ -4,6 +4,8 @@ import { theme } from '@/themes/base';
 import '@/styles/main.css';
 
 import { Disclosure } from '@/components/atoms/Disclosure';
+import { DisclosureButton } from '@/components/atoms/DisclosureButton';
+import { DisclosurePanel } from '@/components/atoms/DisclosurePanel';
 
 const styles = stylex.create({
   host: {
@@ -17,39 +19,36 @@ describe('Disclosure', () => {
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
         <Disclosure>
-          <Disclosure.Button>Button label</Disclosure.Button>
-          <Disclosure.Panel>
+          <DisclosureButton>Button label</DisclosureButton>
+          <DisclosurePanel>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Disclosure.Panel>
+          </DisclosurePanel>
         </Disclosure>
       </ThemeProvider>,
     );
 
-    cy.get('[data-cy=disclosure-panel]').should('exist');
-    cy.get('[data-cy=disclosure-panel]').should('not.be.visible');
+    cy.get('[data-cy=disclosure-panel]').should('not.exist');
     cy.get('[data-cy=disclosure-button]').click();
     cy.get('[data-cy=disclosure-panel]').should('be.visible');
     cy.get('[data-cy=disclosure-button]').click();
-    cy.get('[data-cy=disclosure-panel]').should('exist');
-    cy.get('[data-cy=disclosure-panel]').should('not.be.visible');
+    cy.get('[data-cy=disclosure-panel]').should('not.exist');
   });
 
   it('should be expand by default', () => {
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
         <Disclosure defaultExpanded>
-          <Disclosure.Button>Button label</Disclosure.Button>
-          <Disclosure.Panel>
+          <DisclosureButton>Button label</DisclosureButton>
+          <DisclosurePanel>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Disclosure.Panel>
+          </DisclosurePanel>
         </Disclosure>
       </ThemeProvider>,
     );
 
     cy.get('[data-cy=disclosure-panel]').should('be.visible');
     cy.get('[data-cy=disclosure-button]').click();
-    cy.get('[data-cy=disclosure-panel]').should('exist');
-    cy.get('[data-cy=disclosure-panel]').should('not.be.visible');
+    cy.get('[data-cy=disclosure-panel]').should('not.exist');
     cy.get('[data-cy=disclosure-button]').click();
     cy.get('[data-cy=disclosure-panel]').should('be.visible');
   });
@@ -60,16 +59,15 @@ describe('Checkable Disclosure', () => {
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
         <Disclosure checkable>
-          <Disclosure.Button>Button label</Disclosure.Button>
-          <Disclosure.Panel>
+          <DisclosureButton>Button label</DisclosureButton>
+          <DisclosurePanel>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Disclosure.Panel>
+          </DisclosurePanel>
         </Disclosure>
       </ThemeProvider>,
     );
 
-    cy.get('[data-cy=disclosure-panel]').should('exist');
-    cy.get('[data-cy=disclosure-panel]').should('not.be.visible');
+    cy.get('[data-cy=disclosure-panel]').should('not.exist');
     cy.get('[data-cy=disclosure-button]').should('be.disabled');
     cy.get('[data-cy=disclosure-checkbox]').should('be.enabled');
   });
@@ -78,16 +76,15 @@ describe('Checkable Disclosure', () => {
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
         <Disclosure checkable checked>
-          <Disclosure.Button>Button label</Disclosure.Button>
-          <Disclosure.Panel>
+          <DisclosureButton>Button label</DisclosureButton>
+          <DisclosurePanel>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Disclosure.Panel>
+          </DisclosurePanel>
         </Disclosure>
       </ThemeProvider>,
     );
 
-    cy.get('[data-cy=disclosure-panel]').should('exist');
-    cy.get('[data-cy=disclosure-panel]').should('not.be.visible');
+    cy.get('[data-cy=disclosure-panel]').should('not.exist');
     cy.get('[data-cy=disclosure-button]').should('be.enabled');
     cy.get('[data-cy=disclosure-checkbox]').should('be.enabled');
   });
@@ -96,10 +93,10 @@ describe('Checkable Disclosure', () => {
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
         <Disclosure checkable>
-          <Disclosure.Button>Button label</Disclosure.Button>
-          <Disclosure.Panel>
+          <DisclosureButton>Button label</DisclosureButton>
+          <DisclosurePanel>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Disclosure.Panel>
+          </DisclosurePanel>
         </Disclosure>
       </ThemeProvider>,
     );
@@ -114,10 +111,10 @@ describe('Checkable Disclosure', () => {
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
         <Disclosure checkable defaultChecked={true}>
-          <Disclosure.Button>Button label</Disclosure.Button>
-          <Disclosure.Panel>
+          <DisclosureButton>Button label</DisclosureButton>
+          <DisclosurePanel>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Disclosure.Panel>
+          </DisclosurePanel>
         </Disclosure>
       </ThemeProvider>,
     );
@@ -134,10 +131,10 @@ describe('Checkable Disclosure', () => {
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
         <Disclosure checkable disabled>
-          <Disclosure.Button>Button label</Disclosure.Button>
-          <Disclosure.Panel>
+          <DisclosureButton>Button label</DisclosureButton>
+          <DisclosurePanel>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Disclosure.Panel>
+          </DisclosurePanel>
         </Disclosure>
       </ThemeProvider>,
     );
@@ -145,7 +142,7 @@ describe('Checkable Disclosure', () => {
     cy.get('[data-cy=disclosure-checkbox]').should('not.be.checked');
     cy.get('[data-cy=disclosure-checkbox]').should('be.disabled');
     cy.get('[data-cy=disclosure-button]').should('be.disabled');
-    cy.get('[data-cy=disclosure-panel]').should('not.be.visible');
+    cy.get('[data-cy=disclosure-panel]').should('not.exist');
   });
 });
 
@@ -154,16 +151,15 @@ describe('Switchable Disclosure', () => {
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
         <Disclosure checkable withSwitch>
-          <Disclosure.Button>Button label</Disclosure.Button>
-          <Disclosure.Panel>
+          <DisclosureButton>Button label</DisclosureButton>
+          <DisclosurePanel>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Disclosure.Panel>
+          </DisclosurePanel>
         </Disclosure>
       </ThemeProvider>,
     );
 
-    cy.get('[data-cy=disclosure-panel]').should('exist');
-    cy.get('[data-cy=disclosure-panel]').should('not.be.visible');
+    cy.get('[data-cy=disclosure-panel]').should('not.exist');
     cy.get('[data-cy=disclosure-button]').should('be.disabled');
     cy.get('[data-cy=disclosure-switch]').should('be.enabled');
   });
@@ -172,16 +168,15 @@ describe('Switchable Disclosure', () => {
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
         <Disclosure checkable withSwitch checked>
-          <Disclosure.Button>Button label</Disclosure.Button>
-          <Disclosure.Panel>
+          <DisclosureButton>Button label</DisclosureButton>
+          <DisclosurePanel>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Disclosure.Panel>
+          </DisclosurePanel>
         </Disclosure>
       </ThemeProvider>,
     );
 
-    cy.get('[data-cy=disclosure-panel]').should('exist');
-    cy.get('[data-cy=disclosure-panel]').should('not.be.visible');
+    cy.get('[data-cy=disclosure-panel]').should('not.exist');
     cy.get('[data-cy=disclosure-button]').should('be.enabled');
     cy.get('[data-cy=disclosure-switch]').should('be.enabled');
   });
@@ -190,10 +185,10 @@ describe('Switchable Disclosure', () => {
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
         <Disclosure checkable withSwitch>
-          <Disclosure.Button>Button label</Disclosure.Button>
-          <Disclosure.Panel>
+          <DisclosureButton>Button label</DisclosureButton>
+          <DisclosurePanel>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Disclosure.Panel>
+          </DisclosurePanel>
         </Disclosure>
       </ThemeProvider>,
     );
@@ -208,10 +203,10 @@ describe('Switchable Disclosure', () => {
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
         <Disclosure checkable withSwitch defaultChecked={true}>
-          <Disclosure.Button>Button label</Disclosure.Button>
-          <Disclosure.Panel>
+          <DisclosureButton>Button label</DisclosureButton>
+          <DisclosurePanel>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Disclosure.Panel>
+          </DisclosurePanel>
         </Disclosure>
       </ThemeProvider>,
     );
@@ -221,17 +216,17 @@ describe('Switchable Disclosure', () => {
 
     cy.get('[data-cy=disclosure-switch]').click();
     cy.get('[data-cy=disclosure-switch]').should('not.be.checked');
-    cy.get('[data-cy=disclosure-panel]').should('not.be.visible');
+    cy.get('[data-cy=disclosure-panel]').should('not.exist');
   });
 
   it('should be disabled', () => {
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
         <Disclosure checkable withSwitch disabled>
-          <Disclosure.Button>Button label</Disclosure.Button>
-          <Disclosure.Panel>
+          <DisclosureButton>Button label</DisclosureButton>
+          <DisclosurePanel>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Disclosure.Panel>
+          </DisclosurePanel>
         </Disclosure>
       </ThemeProvider>,
     );
@@ -239,6 +234,6 @@ describe('Switchable Disclosure', () => {
     cy.get('[data-cy=disclosure-switch]').should('not.be.checked');
     cy.get('[data-cy=disclosure-switch]').should('be.disabled');
     cy.get('[data-cy=disclosure-button]').should('be.disabled');
-    cy.get('[data-cy=disclosure-panel]').should('not.be.visible');
+    cy.get('[data-cy=disclosure-panel]').should('not.exist');
   });
 });

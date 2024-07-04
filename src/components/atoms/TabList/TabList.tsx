@@ -14,7 +14,7 @@ export type ITabListProps = Pick<React.AriaAttributes, 'aria-label'> &
   };
 
 export const TabList = forwardRef<HTMLInputElement, ITabListProps>(
-  function TabList(props, ref) {
+  function TabList(props, forwardedRef) {
     const { styles, sx, children, fullWidth, ...other } = props;
 
     const { theme } = useComponentTheme('TabList');
@@ -32,7 +32,7 @@ export const TabList = forwardRef<HTMLInputElement, ITabListProps>(
         {...sxf('host', sx)}
         role='tablist'
         aria-orientation='horizontal'
-        ref={ref}
+        ref={forwardedRef}
         {...other}
       >
         <div {...sxf('tabList', fullWidth && 'tabList$fullWidth')}>

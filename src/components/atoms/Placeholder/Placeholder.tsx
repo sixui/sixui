@@ -19,7 +19,7 @@ export type IPlaceholderProps = IContainerProps<IPlaceholderStyleKey> & {
 };
 
 export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
-  function Placeholder(props, ref) {
+  function Placeholder(props, forwardedRef) {
     const {
       styles,
       sx,
@@ -55,7 +55,7 @@ export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
           theme.vars,
           sx,
         )}
-        ref={ref}
+        ref={forwardedRef}
         {...other}
       >
         {crosshairs ? <div {...sxf('guides')} /> : null}

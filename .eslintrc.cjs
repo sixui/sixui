@@ -138,7 +138,8 @@ const eslintConfig = {
             },
           },
         ],
-        '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+        // '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+        '@typescript-eslint/consistent-type-definitions': 0,
         'no-restricted-imports': [
           'error',
           {

@@ -14,7 +14,7 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { Step, type IStepProps } from '@/components/atoms/Step';
 import { StepConnector } from '@/components/atoms/StepConnector';
 import { isElementLike } from '@/helpers/react/isElementLike';
-import { StepperContext, type IStepperContext } from './StepperContext';
+import { StepperContext, type IStepperContextValue } from './StepperContext';
 
 export type IStepperProps = IContainerProps<IStepperStyleKey> & {
   children: React.ReactNode;
@@ -28,8 +28,8 @@ export type IStepperProps = IContainerProps<IStepperStyleKey> & {
 
 const defaultConnector = <StepConnector />;
 
-const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
-  function Stepper(props, ref) {
+export const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
+  function Stepper(props, forwardedRef) {
     const {
       styles,
       sx,
@@ -60,6 +60,8 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
     const validChildren = Children.toArray(children)
       .filter(isValidElement)
       .filter(isStep);
+
+    // TODO: avoid cloneElement
     const steps = validChildren.map((child, index) =>
       cloneElement(child, {
         index,
@@ -72,7 +74,7 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
     const labelPosition =
       orientation === 'horizontal' ? labelPositionProp : 'right';
 
-    const contextValue: IStepperContext = useMemo(
+    const contextValue: IStepperContextValue = useMemo(
       () => ({
         activeStep:
           activeStep !== undefined
@@ -102,7 +104,7 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
             labelPosition === 'bottom' && 'host$labelBottom',
             sx,
           )}
-          ref={ref}
+          ref={forwardedRef}
           {...other}
         >
           {steps}
@@ -111,10 +113,3 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
     );
   },
 );
-
-const StepperNamespace = Object.assign(Stepper, {
-  Step,
-  Connector: StepConnector,
-});
-
-export { StepperNamespace as Stepper };

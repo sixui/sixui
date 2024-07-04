@@ -20,6 +20,7 @@ export const styles: MapNamespaces<IFieldBaseStyles> =
     // https://github.com/material-components/material-web/blob/main/field/internal/_shared.scss
     host: {
       display: 'flex',
+      alignItems: 'stretch',
       resize: 'inherit',
       minHeight: 56,
       width: '100%',
@@ -88,7 +89,8 @@ export const styles: MapNamespaces<IFieldBaseStyles> =
     },
     section$start: {
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'start',
+      paddingInlineStart: 8,
 
       color: {
         default: vars.leadingContentColor,
@@ -127,7 +129,8 @@ export const styles: MapNamespaces<IFieldBaseStyles> =
     },
     section$end: {
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'end',
+      paddingInlineEnd: 8,
 
       color: {
         default: vars.trailingContentColor,
@@ -233,7 +236,7 @@ export const styles: MapNamespaces<IFieldBaseStyles> =
       paddingTop: vars.topSpace,
       paddingBottom: vars.bottomSpace,
     },
-    contentSlot$textarea: {
+    contentSlot$textArea: {
       paddingTop: 0,
       paddingBottom: 0,
 

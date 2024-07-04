@@ -5,12 +5,15 @@ import {
   faChevronUp,
   faChevronDown,
   faEllipsisVertical,
+  faArrowRight,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { sbHandleEvent } from '@/helpers/sbHandleEvent';
-import { Menu, type IMenuProps } from './Menu';
 import { Button } from '@/components/atoms/Button';
 import { IconButton } from '@/components/atoms/IconButton';
+import { commonStyles } from '@/helpers/commonStyles';
+import { MenuItem } from '@/components/atoms/MenuItem';
+import { MenuDivider } from '@/components/atoms/MenuDivider';
+import { Menu, type IMenuProps } from './Menu';
 
 const meta = {
   component: Menu,
@@ -18,106 +21,85 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const styles = stylex.create({
-  action: {
-    // Only for screenshots:
-    marginBottom: 180,
-  },
-  clipper: {
-    position: 'relative',
-    overflow: 'hidden',
-  },
-  menu: {
-    width: 160,
-  },
-});
+const items = (
+  <>
+    <MenuItem label='Apple' />
+    <MenuItem label='Banana' />
+    <MenuItem label='Dragonfruit' disabled />
+  </>
+);
+
+const nestedItems = (
+  <>
+    {items}
+    <MenuDivider />
+    <MenuItem label='Other fruits'>
+      {items}
+      <MenuDivider />
+      <MenuItem label='Some fruits again'>
+        {items}
+        <MenuDivider />
+        <MenuItem label='Even more fruits'>
+          {items}
+          <MenuDivider />
+          <MenuItem label='Too many fruits'>{items}</MenuItem>
+        </MenuItem>
+      </MenuItem>
+    </MenuItem>
+  </>
+);
 
 const defaultArgs = {
-  sx: styles.menu,
+  children: nestedItems,
 } satisfies Partial<IMenuProps>;
-
-const items = [
-  <Menu.Item
-    key={0}
-    onClick={(...args) => sbHandleEvent('click', args)}
-    disabled
-  >
-    Apple
-  </Menu.Item>,
-  <Menu.Divider key={1} />,
-  <Menu.Item key={2} onClick={(...args) => sbHandleEvent('click', args)}>
-    Banana
-  </Menu.Item>,
-  <Menu.Item key={3} onClick={(...args) => sbHandleEvent('click', args)}>
-    Cumcumber
-  </Menu.Item>,
-];
 
 export const FromButton: IStory = {
   render: (props) => <Menu {...props} />,
   args: {
     ...defaultArgs,
-    action: ({ open }) => (
+    trigger: ({ isOpen, getProps }) => (
       <Button
         icon={
           <FontAwesomeIcon
-            icon={open ? faChevronUp : faChevronDown}
+            icon={isOpen ? faChevronUp : faChevronDown}
             size='xs'
           />
         }
         trailingIcon
-        sx={styles.action}
+        {...getProps()}
       >
         Open
       </Button>
     ),
-    children: items,
-  },
-};
-
-export const Contained: IStory = {
-  render: (props) => (
-    <div {...stylex.props(styles.clipper)}>
-      <Menu {...props} />
-    </div>
-  ),
-  args: {
-    ...defaultArgs,
-    action: ({ open }) => (
-      <Button
-        icon={
-          <FontAwesomeIcon
-            icon={open ? faChevronUp : faChevronDown}
-            size='xs'
-          />
-        }
-        trailingIcon
-        sx={styles.action}
-      >
-        Open
-      </Button>
-    ),
-    children: items,
   },
 };
 
 const fromIconButtonStyles = stylex.create({
-  host: {
-    display: 'flex',
-    paddingLeft: '20ch',
+  label: {
+    flexGrow: 1,
+  },
+  menu: {
+    flexGrow: 0,
   },
 });
 
 export const FromIconButton: IStory = {
   render: (props) => (
-    <div {...stylex.props(fromIconButtonStyles.host)}>
-      <Menu {...props} />
+    <div {...stylex.props(commonStyles.horizontalLayout)}>
+      <div {...stylex.props(fromIconButtonStyles.label)}>
+        Look right <FontAwesomeIcon icon={faArrowRight} />
+      </div>
+      <Menu sx={fromIconButtonStyles.menu} {...props} />
     </div>
   ),
   args: {
     ...defaultArgs,
-    action: <IconButton icon={<FontAwesomeIcon icon={faEllipsisVertical} />} />,
-    children: items,
+    trigger: ({ getProps }) => (
+      <IconButton
+        icon={<FontAwesomeIcon icon={faEllipsisVertical} />}
+        {...getProps()}
+      />
+    ),
     placement: 'bottom-end',
   },
 };

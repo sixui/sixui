@@ -43,7 +43,7 @@ export type IDisclosureButtonProps =
 export const DisclosureButton = forwardRef<
   HTMLButtonElement,
   IDisclosureButtonProps
->(function DisclosureButton(props, ref) {
+>(function DisclosureButton(props, forwardedRef) {
   const {
     styles,
     sx,
@@ -76,14 +76,19 @@ export const DisclosureButton = forwardRef<
   const expanded = context.checkable
     ? context.expanded && context.checked
     : context.expanded;
-  const icon = expanded
-    ? collapseIcon ??
-      (expandIcon ? (
-        <div {...sxf('icon$expanded')}>{expandIcon}</div>
-      ) : (
-        <ChevronDown {...sxf('icon$expanded')} aria-hidden />
-      ))
-    : expandIcon ?? <ChevronDown aria-hidden />;
+  const icon = expanded ? (
+    collapseIcon ? (
+      <div {...sxf('icon')}>{collapseIcon}</div>
+    ) : expandIcon ? (
+      <div {...sxf('icon', 'icon$expanded')}>{expandIcon}</div>
+    ) : (
+      <ChevronDown {...sxf('icon', 'icon$expanded')} aria-hidden />
+    )
+  ) : expandIcon ? (
+    <div {...sxf('icon', 'icon$collapsed')}>{expandIcon}</div>
+  ) : (
+    <ChevronDown {...sxf('icon', 'icon$collapsed')} aria-hidden />
+  );
 
   const handleCheckboxChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -96,8 +101,6 @@ export const DisclosureButton = forwardRef<
   return (
     <div {...sxf('host')}>
       <ListItem
-        {...other}
-        ref={ref}
         sx={[
           stylesCombinator(
             'button',
@@ -115,7 +118,7 @@ export const DisclosureButton = forwardRef<
           ...innerStyles?.listItem,
           item: [theme.itemStyles, ...asArray(innerStyles?.listItem?.item)],
         }}
-        end={
+        trailing={
           !context.checkable && context.loading ? (
             <IndeterminateCircularProgressIndicator
               styles={[
@@ -129,6 +132,8 @@ export const DisclosureButton = forwardRef<
         disabled={disabled ?? (context.checkable && !context.checked)}
         onClick={() => context.setExpanded?.(!context.expanded)}
         data-cy={dataCy}
+        {...other}
+        ref={forwardedRef}
       >
         {children}
       </ListItem>

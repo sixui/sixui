@@ -20,7 +20,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onClick: (...args) => sbHandleEvent('click', args, 300),
+  onClick: (...args) => sbHandleEvent('click', args, 1000),
 } satisfies Partial<IFabProps>;
 
 const svgColorIcon = (

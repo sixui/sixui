@@ -1,12 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import stylex from '@stylexjs/stylex';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
 
-import { Dialog, type IDialogOwnProps, type IDialogProps } from './Dialog';
+import type { IDialogProps, IDialogOwnProps } from './DialogProps';
+import { Dialog } from './Dialog';
+import { sbHandleEvent } from '@/helpers/sbHandleEvent';
+import { commonStyles } from '@/helpers/commonStyles';
 import { Button } from '../Button';
-import { Typography } from '../Typography';
+import { TextInputField } from '../TextInputField';
 
 // https://m3.material.io/components/dialogs/overview
 // https://material-web.dev/components/dialog/
@@ -14,95 +15,168 @@ import { Typography } from '../Typography';
 
 const meta = {
   component: Dialog,
-} satisfies Meta<typeof Dialog>;
+} satisfies Meta<IDialogOwnProps>;
 
-type IStory = StoryObj<typeof meta>;
+type IStory = StoryObj<IDialogOwnProps>;
 
-const defaultArgs = {} satisfies Partial<IDialogProps>;
+const defaultArgs = {
+  onOpenChange: (...args) => void sbHandleEvent('openChange', args),
+} satisfies Partial<IDialogOwnProps>;
 
-const styles = stylex.create({
-  scrollable: {
-    height: 300,
+export const Uncontrolled: IStory = {
+  render: (props) => <Dialog {...props} />,
+  args: {
+    ...defaultArgs,
+    headline: 'Permanently delete?',
+    children:
+      'Deleting the selected messages will also remove them from all synced devices.',
+    actions: ({ close }) => (
+      <>
+        <Button variant='text' onClick={close}>
+          Cancel
+        </Button>
+        <Button
+          variant='danger'
+          onClick={(...args) =>
+            sbHandleEvent('delete', args, 1000).then((args) => close(...args))
+          }
+        >
+          Delete
+        </Button>
+      </>
+    ),
+    trigger: ({ setRef, getProps }) => (
+      <Button {...getProps()} ref={setRef}>
+        Open
+      </Button>
+    ),
   },
-  field: {
-    width: '100%',
-  },
-});
+};
 
-const DialogLauncher: React.FC<IDialogOwnProps> = (props) => {
-  const [open, setOpen] = useState(false);
-  const handleOpen = (): void => setOpen(true);
-  const handleClose = (): void => setOpen(false);
+const ControlledDialogDemo: React.FC<IDialogProps> = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
+      <Button onClick={() => setIsOpen(true)}>Open</Button>
       <Dialog
-        actions={
+        {...props}
+        isOpen={isOpen}
+        headline='Permanently delete?'
+        onOpenChange={setIsOpen}
+        actions={({ close }) => (
           <>
-            <Button variant='text' onClick={handleClose}>
+            <Button variant='text' onClick={close}>
               Cancel
             </Button>
-            <Button variant='text'>OK</Button>
+            <Button
+              type='submit'
+              onClick={(...args) =>
+                sbHandleEvent('save', args, 1000).then((args) => close(...args))
+              }
+            >
+              Delete
+            </Button>
           </>
-        }
-        {...props}
-        open={open}
-        onClose={handleClose}
-      />
-      <Button onClick={handleOpen}>Open</Button>
+        )}
+      >
+        Deleting the selected messages will also remove them from all synced
+        devices.
+      </Dialog>
     </>
   );
 };
 
-export const Basic: IStory = {
-  render: (props) => <DialogLauncher {...props} />,
-  args: {
-    ...defaultArgs,
-    headline: 'Headline',
-    children: 'Just a simple dialog.',
-  },
+export const Controlled: IStory = {
+  render: (props) => <ControlledDialogDemo {...props} />,
+  args: defaultArgs,
 };
 
-export const WithIcon: IStory = {
-  render: (props) => <DialogLauncher {...props} />,
-  args: {
-    ...defaultArgs,
-    icon: <FontAwesomeIcon icon={faStar} />,
-    headline: 'Headline',
-    children: 'Just a simple dialog.',
-  },
+const FormDialogDemo: React.FC<IDialogProps<'form'>> = (props) => {
+  const [name, setName] = useState<string>();
+  const formRef = useRef<HTMLFormElement>(null);
+
+  return (
+    <div {...stylex.props(commonStyles.horizontalLayout, commonStyles.gap$xl)}>
+      <Dialog
+        {...props}
+        ref={formRef}
+        as='form'
+        trigger={({ setRef, getProps }) => (
+          <Button {...getProps()} ref={setRef}>
+            Open
+          </Button>
+        )}
+        headline="What's your name?"
+        actions={({ close }) => (
+          <>
+            <Button variant='text' onClick={close}>
+              Cancel
+            </Button>
+            <Button
+              type='submit'
+              onClick={(...args) =>
+                sbHandleEvent('save', args, 1000).then((args) => {
+                  const formData = formRef.current
+                    ? new FormData(formRef.current)
+                    : undefined;
+                  const formValues = formData
+                    ? Object.fromEntries(formData)
+                    : undefined;
+                  setName(formValues?.name.toString());
+                  close(...args);
+                })
+              }
+            >
+              Save
+            </Button>
+          </>
+        )}
+      >
+        <TextInputField name='name' />
+      </Dialog>
+      {name ? (
+        <div>
+          Hello, <strong>{name}</strong>!
+        </div>
+      ) : null}
+    </div>
+  );
 };
 
-export const Scrollable: IStory = {
-  render: (props) => <DialogLauncher {...props} />,
+export const Form: IStory = {
+  render: (props) => <FormDialogDemo {...props} />,
+  args: defaultArgs,
+};
+
+export const NonDismissable: IStory = {
+  render: (props) => <Dialog {...props} />,
   args: {
     ...defaultArgs,
-    headline: 'Headline',
-    children: (
+    headline: 'Permanently delete?',
+    children:
+      'Deleting the selected messages will also remove them from all synced devices.',
+    actions: ({ close }) => (
       <>
-        <Typography gutterBottom>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a
-          ullamcorper nisl. In ut diam sapien. Proin orci mauris, pretium ac
-          ante ut, porta fermentum ipsum. Proin at lobortis turpis, a rhoncus
-          massa. Praesent tincidunt, turpis hendrerit cursus dictum, lectus nisi
-          porta velit, non luctus nibh arcu vitae erat. Sed ac imperdiet nisl.
-          Donec pellentesque, nibh in dapibus tristique, lectus justo efficitur
-          lacus, id semper nibh dui vitae erat. Suspendisse suscipit felis quis
-          hendrerit elementum.
-        </Typography>
-        <Typography>
-          Sed posuere vestibulum magna, id fermentum nunc pellentesque nec.
-          Nullam dolor felis, feugiat id venenatis ac, rutrum eu ipsum. Duis
-          tempus eleifend augue eu consequat. Proin venenatis, velit sit amet
-          vehicula dictum, leo eros porta ipsum, sed sodales metus mi a massa.
-          Donec a diam sed nibh viverra rutrum. Duis in elementum metus.
-          Vestibulum a dolor sollicitudin, maximus eros faucibus, commodo diam.
-          Maecenas dictum ornare quam quis imperdiet.
-        </Typography>
+        <Button variant='text' onClick={close}>
+          Cancel
+        </Button>
+        <Button
+          variant='danger'
+          onClick={(...args) =>
+            sbHandleEvent('delete', args, 1000).then((args) => close(...args))
+          }
+        >
+          Delete
+        </Button>
       </>
     ),
-    scrollable: true,
-    sx: styles.scrollable,
+    trigger: ({ setRef, getProps }) => (
+      <Button {...getProps()} ref={setRef}>
+        Open
+      </Button>
+    ),
+    nonDismissable: true,
   },
 };
 

@@ -25,7 +25,7 @@ export type ISnackbarProps = IContainerProps<ISnackbarStyleKey> &
   };
 
 export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
-  function Snackbar(props, ref) {
+  function Snackbar(props, forwardedRef) {
     const {
       styles,
       sx,
@@ -52,7 +52,7 @@ export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
     useTimeout(() => onClose?.(), open ? autoHideDuration ?? null : null);
 
     const nodeRef = useRef<HTMLDivElement>(null);
-    const handleRef = useForkRef(nodeRef, ref);
+    const handleRef = useForkRef(nodeRef, forwardedRef);
 
     return (
       <CSSTransition

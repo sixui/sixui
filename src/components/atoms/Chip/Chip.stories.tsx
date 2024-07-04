@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarDays, faImage } from '@fortawesome/free-solid-svg-icons';
 
@@ -24,7 +25,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onClick: (...args) => sbHandleEvent('click', args, 300),
+  onClick: (...args) => sbHandleEvent('click', args, 1000),
   label: 'Chip',
 } satisfies Partial<IChipProps>;
 
@@ -149,6 +150,36 @@ export const Filter: IStory = {
   },
 };
 
+const StatefulChip: React.FC<IChipProps> = (props) => {
+  const [selected, setSelected] = useState(false);
+
+  return (
+    <Chip
+      {...props}
+      selected={selected}
+      onClick={() => setSelected(!selected)}
+    />
+  );
+};
+
+export const FilterStateful: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={StatefulChip}
+      props={props}
+      cols={states}
+      rows={[
+        { legend: 'Basic' },
+        { legend: 'Elevated', props: { elevated: true } },
+      ]}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'filter',
+  },
+};
+
 export const Input: IStory = {
   render: (props) => (
     <ComponentShowcase
@@ -166,6 +197,24 @@ export const Input: IStory = {
         },
       ]}
       groups={[{}, { legend: 'Selected', props: { selected: true } }]}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'input',
+  },
+};
+
+export const InputStateful: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={StatefulChip}
+      props={props}
+      cols={states}
+      rows={[
+        { legend: 'Basic' },
+        { legend: 'Elevated', props: { elevated: true } },
+      ]}
     />
   ),
   args: {

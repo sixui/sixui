@@ -1,23 +1,23 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
 import { useState } from 'react';
+import stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
+import {
+  FloatingFocusManager,
+  useClick,
+  useDismiss,
+  useFloating,
+  useInteractions,
+} from '@floating-ui/react';
 
+import type { IOmit } from '@/helpers/types';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { Button } from '@/components/atoms/Button';
 import { CircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
 import { Scrim, type IScrimProps } from './Scrim';
 import { scrimVariants } from './Scrim.styledefs';
 
-const meta = {
-  component: Scrim,
-} satisfies Meta<typeof Scrim>;
-
-type IStory = StoryObj<typeof meta>;
-
-const defaultArgs = {
-  children: <CircularProgressIndicator size='lg' />,
-} satisfies Partial<IScrimProps>;
+type IScrimDemoProps = IOmit<IScrimProps, 'context'>;
 
 const styles = stylex.create({
   host$contained: {
@@ -27,18 +27,53 @@ const styles = stylex.create({
   },
 });
 
-const ScrimDemo: React.FC<IScrimProps> = (props) => {
-  const [open, setOpen] = useState(false);
-  const handleOpen = (): void => setOpen(true);
-  const handleClose = (): void => setOpen(false);
+const ScrimDemo: React.FC<IScrimDemoProps> = (props) => {
+  const { children, ...other } = props;
+  const [isOpen, setIsOpen] = useState(false);
+
+  const floating = useFloating<HTMLButtonElement>({
+    open: isOpen,
+    onOpenChange: setIsOpen,
+  });
+  const click = useClick(floating.context);
+  const dismiss = useDismiss(floating.context, {
+    outsidePressEvent: 'mousedown',
+  });
+  const interactions = useInteractions([click, dismiss]);
 
   return (
-    <div {...stylex.props(props.contained && styles.host$contained)}>
-      <Button onClick={handleOpen}>Show scrim</Button>
-      <Scrim {...props} open={open} onClick={handleClose} />
-    </div>
+    <>
+      <Button
+        {...interactions.getReferenceProps({
+          ref: floating.refs.setReference,
+          onClick: () => setIsOpen(true),
+        })}
+      >
+        Show scrim
+      </Button>
+      <Scrim context={floating.context} {...other}>
+        <FloatingFocusManager context={floating.context}>
+          <div
+            {...interactions.getFloatingProps()}
+            ref={floating.refs.setFloating}
+          >
+            {children}
+          </div>
+        </FloatingFocusManager>
+      </Scrim>
+    </>
   );
 };
+
+const meta = {
+  component: ScrimDemo,
+} satisfies Meta<typeof ScrimDemo>;
+
+type IStory = StoryObj<typeof meta>;
+
+const defaultArgs = {
+  children: <CircularProgressIndicator size='lg' />,
+} satisfies Partial<IScrimProps>;
 
 export const Variants: IStory = {
   render: (props) => (
@@ -60,7 +95,11 @@ export const Basic: IStory = {
 };
 
 export const Contained: IStory = {
-  render: (props) => <ScrimDemo {...props} />,
+  render: (props) => (
+    <div {...stylex.props(styles.host$contained)}>
+      <ScrimDemo {...props} />
+    </div>
+  ),
   args: {
     ...defaultArgs,
     contained: true,

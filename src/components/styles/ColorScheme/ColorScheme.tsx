@@ -38,10 +38,10 @@ const styles = stylex.create({
     rowGap: '1rem',
   },
   width$sm: {
-    width: '200px',
+    width: 200,
   },
   width$lg: {
-    width: '600px',
+    width: 600,
   },
 });
 
