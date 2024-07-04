@@ -1,3 +1,15 @@
+# v0.0.268 (Thu Jul 04 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: Select, MultiSelect and Suggest are now optionally clearable ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.267 (Thu Jul 04 2024)
 
 #### ⚠️ Pushed to `main`
