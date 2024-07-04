@@ -15,6 +15,7 @@ import {
   type IFloatingFilterableListBaseTriggerRenderProps,
   type IFloatingFilterableListBaseProps,
 } from '@/components/atoms/FloatingFilterableListBase';
+import { fixedForwardRef } from '@/helpers/fixedForwardRef';
 
 export type ISuggestBaseProps<TItem> = IOmit<
   IFloatingFilterableListBaseProps<TItem, HTMLElement>,
@@ -37,9 +38,10 @@ export type ISuggestBaseProps<TItem> = IOmit<
   ) => ITextInputFieldProps;
 };
 
-export const SuggestBase = <TItem,>(
+export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
   props: ISuggestBaseProps<TItem>,
-): React.ReactNode => {
+  forwardedRef?: React.Ref<HTMLElement>,
+) {
   const {
     items,
     itemRenderer,
@@ -74,6 +76,7 @@ export const SuggestBase = <TItem,>(
       closeOnSelect
       initialFocus={-1}
       {...other}
+      ref={forwardedRef}
     >
       {(renderProps) => (
         <TextInputField
@@ -116,8 +119,9 @@ export const SuggestBase = <TItem,>(
           )}
           ref={renderProps.setTriggerRef}
           inputRef={renderProps.inputFilterRef}
+          spellCheck='false'
         />
       )}
     </FloatingFilterableListBase>
   );
-};
+});

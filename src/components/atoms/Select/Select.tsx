@@ -1,4 +1,5 @@
 import type { IOmit } from '@/helpers/types';
+import { forwardRef } from 'react';
 import {
   areFilterableListItemsEqual,
   filterFilterableListItem,
@@ -17,17 +18,22 @@ export type ISelectProps = IOmit<
   'itemRenderer' | 'itemLabel'
 >;
 
-export const Select: React.FC<ISelectProps> = (props) => (
-  <SelectBase<IFilterableListItem>
-    itemRenderer={renderFilterableListItem}
-    itemLabel={getFilterableListItemLabel}
-    itemsEqual={areFilterableListItemsEqual}
-    itemPredicate={filterFilterableListItem}
-    itemDisabled={isFilterableListItemDisabled}
-    {...props}
-    getValueFieldProps={(_renderProps, selectedItem) => ({
-      leadingIcon: selectedItem?.icon,
-      ...props.getValueFieldProps?.(_renderProps, selectedItem),
-    })}
-  />
+export const Select = forwardRef<HTMLDivElement, ISelectProps>(
+  function Select(props, fowardedRef) {
+    return (
+      <SelectBase<IFilterableListItem>
+        itemRenderer={renderFilterableListItem}
+        itemLabel={getFilterableListItemLabel}
+        itemsEqual={areFilterableListItemsEqual}
+        itemPredicate={filterFilterableListItem}
+        itemDisabled={isFilterableListItemDisabled}
+        {...props}
+        getValueFieldProps={(_renderProps, selectedItem) => ({
+          leadingIcon: selectedItem?.icon,
+          ...props.getValueFieldProps?.(_renderProps, selectedItem),
+        })}
+        ref={fowardedRef}
+      />
+    );
+  },
 );

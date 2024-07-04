@@ -1,4 +1,5 @@
 import type { IOmit } from '@/helpers/types';
+import { forwardRef } from 'react';
 import {
   areFilterableListItemsEqual,
   filterFilterableListItem,
@@ -17,18 +18,23 @@ export type IMultiSelectProps = IOmit<
   'itemRenderer' | 'itemLabel'
 >;
 
-export const MultiSelect: React.FC<IMultiSelectProps> = (props) => (
-  <MultiSelectBase<IFilterableListItem>
-    itemRenderer={renderFilterableListItem}
-    itemLabel={getFilterableListItemLabel}
-    itemsEqual={areFilterableListItemsEqual}
-    itemPredicate={filterFilterableListItem}
-    itemDisabled={isFilterableListItemDisabled}
-    {...props}
-    getValueFieldProps={(_renderProps, item) => ({
-      icon: item.icon,
-      imageUrl: item.imageUrl,
-      ...props.getValueFieldProps?.(_renderProps, item),
-    })}
-  />
+export const MultiSelect = forwardRef<HTMLInputElement, IMultiSelectProps>(
+  function MultiSelect(props, fowardedRef) {
+    return (
+      <MultiSelectBase<IFilterableListItem>
+        itemRenderer={renderFilterableListItem}
+        itemLabel={getFilterableListItemLabel}
+        itemsEqual={areFilterableListItemsEqual}
+        itemPredicate={filterFilterableListItem}
+        itemDisabled={isFilterableListItemDisabled}
+        {...props}
+        getValueFieldProps={(_renderProps, item) => ({
+          icon: item.icon,
+          imageUrl: item.imageUrl,
+          ...props.getValueFieldProps?.(_renderProps, item),
+        })}
+        ref={fowardedRef}
+      />
+    );
+  },
 );

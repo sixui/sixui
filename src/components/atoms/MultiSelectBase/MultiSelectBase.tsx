@@ -15,6 +15,7 @@ import {
   type IFloatingFilterableListBaseTriggerRenderProps,
   type IFloatingFilterableListBaseProps,
 } from '@/components/atoms/FloatingFilterableListBase';
+import { fixedForwardRef } from '@/helpers/fixedForwardRef';
 
 export type IMultiSelectBaseProps<TItem> = IOmit<
   IFloatingFilterableListBaseProps<TItem, HTMLElement>,
@@ -50,9 +51,10 @@ const fieldStyles = stylex.create({
   },
 });
 
-export const MultiSelectBase = <TItem,>(
+export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
   props: IMultiSelectBaseProps<TItem>,
-): React.ReactNode => {
+  forwardedRef?: React.Ref<HTMLInputElement>,
+) {
   const {
     items,
     itemRenderer,
@@ -93,6 +95,7 @@ export const MultiSelectBase = <TItem,>(
       }
       onQueryChange={multiFilterableListBase.handleQueryChange}
       {...other}
+      ref={forwardedRef}
     >
       {(renderProps) => (
         <TextInputField
@@ -147,8 +150,9 @@ export const MultiSelectBase = <TItem,>(
                 )
               : undefined
           }
+          spellCheck='false'
         />
       )}
     </FloatingFilterableListBase>
   );
-};
+});

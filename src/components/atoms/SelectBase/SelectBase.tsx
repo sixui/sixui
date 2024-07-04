@@ -13,6 +13,7 @@ import {
   type IFloatingFilterableListBaseTriggerRenderProps,
   type IFloatingFilterableListBaseProps,
 } from '@/components/atoms/FloatingFilterableListBase';
+import { fixedForwardRef } from '@/helpers/fixedForwardRef';
 
 export type ISelectBaseProps<TItem> = IOmit<
   IFloatingFilterableListBaseProps<TItem, HTMLDivElement>,
@@ -31,9 +32,10 @@ export type ISelectBaseProps<TItem> = IOmit<
   ) => IFieldOwnProps;
 };
 
-export const SelectBase = <TItem,>(
+export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
   props: ISelectBaseProps<TItem>,
-): React.ReactNode => {
+  forwardedRef?: React.Ref<HTMLElement>,
+) {
   const {
     items,
     itemRenderer,
@@ -69,6 +71,7 @@ export const SelectBase = <TItem,>(
                 {...listProps.getInputFilterProps()}
                 type='text'
                 inputRef={listProps.inputFilterRef}
+                spellCheck='false'
               />
             ) : undefined
           }
@@ -82,6 +85,7 @@ export const SelectBase = <TItem,>(
       closeOnSelect
       resetOnClose
       {...other}
+      ref={forwardedRef}
     >
       {(renderProps) => (
         <Field
@@ -117,4 +121,4 @@ export const SelectBase = <TItem,>(
       )}
     </FloatingFilterableListBase>
   );
-};
+});

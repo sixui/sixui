@@ -1,4 +1,5 @@
 import type { IOmit } from '@/helpers/types';
+import { forwardRef } from 'react';
 import {
   areFilterableListItemsEqual,
   filterFilterableListItem,
@@ -17,17 +18,22 @@ export type ISuggestProps = IOmit<
   'itemRenderer' | 'itemLabel'
 >;
 
-export const Suggest: React.FC<ISuggestProps> = (props) => (
-  <SuggestBase<IFilterableListItem>
-    itemRenderer={renderFilterableListItem}
-    itemLabel={getFilterableListItemLabel}
-    itemsEqual={areFilterableListItemsEqual}
-    itemPredicate={filterFilterableListItem}
-    itemDisabled={isFilterableListItemDisabled}
-    {...props}
-    getValueFieldProps={(renderProps, selectedItem) => ({
-      leadingIcon: renderProps.isOpen ? undefined : selectedItem?.icon,
-      ...props.getValueFieldProps?.(renderProps, selectedItem),
-    })}
-  />
+export const Suggest = forwardRef<HTMLInputElement, ISuggestProps>(
+  function MultiSelect(props, fowardedRef) {
+    return (
+      <SuggestBase<IFilterableListItem>
+        itemRenderer={renderFilterableListItem}
+        itemLabel={getFilterableListItemLabel}
+        itemsEqual={areFilterableListItemsEqual}
+        itemPredicate={filterFilterableListItem}
+        itemDisabled={isFilterableListItemDisabled}
+        {...props}
+        getValueFieldProps={(renderProps, selectedItem) => ({
+          leadingIcon: renderProps.isOpen ? undefined : selectedItem?.icon,
+          ...props.getValueFieldProps?.(renderProps, selectedItem),
+        })}
+        ref={fowardedRef}
+      />
+    );
+  },
 );
