@@ -2,7 +2,10 @@ import type { IOmit } from '@/helpers/types';
 import { ListItem } from '@/components/atoms/ListItem';
 import { TextInputField } from '@/components/atoms/TextInputField';
 import { MenuList } from '@/components/atoms/MenuList';
-import { FilterableList, type IFilterableListProps } from './FilterableList';
+import {
+  FilterableListBase,
+  type IFilterableListBaseProps,
+} from './FilterableListBase';
 import {
   areMoviesEqual,
   createMovie,
@@ -13,8 +16,8 @@ import {
   type IMovie,
 } from './movies';
 
-export type IFilterableListExampleProps = IOmit<
-  IFilterableListProps<IMovie, HTMLDivElement>,
+export type IFilterableListBaseExampleProps = IOmit<
+  IFilterableListBaseProps<IMovie, HTMLDivElement>,
   | 'items'
   | 'renderer'
   | 'itemRenderer'
@@ -28,13 +31,13 @@ export type IFilterableListExampleProps = IOmit<
   canCreate?: boolean;
 };
 
-export const FilterableListExample: React.FC<IFilterableListExampleProps> = (
-  props,
-) => {
+export const FilterableListBaseExample: React.FC<
+  IFilterableListBaseExampleProps
+> = (props) => {
   const { canFilter, canCreate, ...other } = props;
 
   return (
-    <FilterableList<IMovie, HTMLDivElement>
+    <FilterableListBase<IMovie, HTMLDivElement>
       items={TOP_100_MOVIES}
       renderer={(listProps) => (
         <MenuList

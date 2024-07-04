@@ -8,7 +8,7 @@ import type {
   IFilterableItemPredicate,
   IFilterableItemRenderer,
   IFilterableItemRendererProps,
-} from './FilterableListProps';
+} from './FilterableListBaseProps';
 import { ListItem, type IListItemProps } from '@/components/atoms/ListItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -139,9 +139,9 @@ export const TOP_100_MOVIES: Array<IMovie> = [
 ].map((f, index) => ({ ...f, rank: index + 1 }));
 
 /**
- * Takes the same arguments as `IItemRenderer<IMovie>`, but returns the common
- * menu item props for that item instead of the rendered element itself. This is
- * useful for implementing custom item renderers.
+ * Takes the same arguments as `IFilterableItemRenderer<IMovie>`, but returns
+ * the common menu item props for that item instead of the rendered element
+ * itself. This is useful for implementing custom item renderers.
  */
 export const getMovieItemProps = <TElement extends HTMLDivElement>(
   movie: IMovie,
@@ -181,8 +181,8 @@ export const renderMovieListItem: IFilterableItemRenderer<
 
   return (
     <ListItem
-      key={props.index}
       {...getMovieItemProps(movie, props)}
+      key={props.index}
       visualState={{ hovered: props.modifiers.active, strategy: 'replace' }}
       selected={props.modifiers.selected}
       disabled={props.modifiers.disabled}

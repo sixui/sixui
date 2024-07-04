@@ -9,23 +9,23 @@ import {
   renderMovieListItem,
   TOP_100_MOVIES,
   type IMovie,
-} from '@/components/atoms/FilterableList/movies';
-import { MultiSelect, type IMultiSelectProps } from './MultiSelect';
+} from '@/components/atoms/FilterableListBase/movies';
+import { SuggestBase, type ISuggestBaseProps } from './SuggestBase';
 
-export type IMultiSelectExampleProps = IOmit<
-  IMultiSelectProps<IMovie>,
+export type ISuggestBaseExampleProps = IOmit<
+  ISuggestBaseProps<IMovie>,
   'items' | 'itemRenderer' | 'itemLabel'
 > & {
   canCreate?: boolean;
 };
 
-export const MultiSelectExample: React.FC<IMultiSelectExampleProps> = (
-  props,
-) => {
+export const SuggestBaseExample = (
+  props: ISuggestBaseExampleProps,
+): React.ReactNode => {
   const { canCreate, ...other } = props;
 
   return (
-    <MultiSelect<IMovie>
+    <SuggestBase<IMovie>
       items={TOP_100_MOVIES}
       itemRenderer={renderMovieListItem}
       itemLabel={getMovieLabel}

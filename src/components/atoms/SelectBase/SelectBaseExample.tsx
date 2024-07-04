@@ -4,28 +4,28 @@ import {
   createMovie,
   filterMovie,
   isMovieDisabled,
-  renderCreateMovieListItem,
   getMovieLabel,
+  renderCreateMovieListItem,
   renderMovieListItem,
   TOP_100_MOVIES,
   type IMovie,
-} from '@/components/atoms/FilterableList/movies';
-import { Suggest, type ISuggestProps } from './Suggest';
+} from '@/components/atoms/FilterableListBase/movies';
+import { SelectBase, type ISelectBaseProps } from './SelectBase';
 
-export type ISuggestExampleProps = IOmit<
-  ISuggestProps<IMovie>,
-  'items' | 'itemRenderer' | 'itemLabel'
+export type ISelectBaseExampleProps = IOmit<
+  ISelectBaseProps<IMovie>,
+  'items' | 'itemLabel' | 'itemRenderer'
 > & {
   canCreate?: boolean;
 };
 
-export const SuggestExample = (
-  props: ISuggestExampleProps,
+export const SelectBaseExample = (
+  props: ISelectBaseExampleProps,
 ): React.ReactNode => {
   const { canCreate, ...other } = props;
 
   return (
-    <Suggest<IMovie>
+    <SelectBase<IMovie>
       items={TOP_100_MOVIES}
       itemRenderer={renderMovieListItem}
       itemLabel={getMovieLabel}

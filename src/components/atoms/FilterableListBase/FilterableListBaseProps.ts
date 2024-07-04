@@ -1,7 +1,7 @@
 // Inspiration:
 // - https://github.com/palantir/blueprint/blob/develop/packages/select/src/common/itemListRenderer.ts
 
-export type IFilterableListState<TItem> = {
+export type IFilterableListBaseState<TItem> = {
   /**
    * Array of items filtered by `listPredicate` or `itemPredicate`. See `items`
    * for the full list of items.
@@ -20,12 +20,12 @@ export type IFilterableListState<TItem> = {
 
 /**
  * An object describing how to render the filtered list of items. An
- * `IFilterableListInternalRenderer` receives this object as its sole argument.
+ * `IFilterableListBaseInternalRenderer` receives this object as its sole argument.
  *
  * @typeParam TItem - List item data type
  */
-export type IFilterableListInternalRendererProps<TItem> =
-  IFilterableListState<TItem> & {
+export type IFilterableListBaseInternalRendererProps<TItem> =
+  IFilterableListBaseState<TItem> & {
     /**
      * Array of all items in the list. See `filteredItems` for a filtered array
      * based on `query` and predicate props.
@@ -54,8 +54,8 @@ export type IFilterableListInternalRendererProps<TItem> =
  *
  * @typeParam TItem - List item data type
  */
-export type IFilterableListInternalRenderer<TItem> = (
-  itemListProps: IFilterableListInternalRendererProps<TItem>,
+export type IFilterableListBaseInternalRenderer<TItem> = (
+  itemListProps: IFilterableListBaseInternalRendererProps<TItem>,
 ) => React.ReactNode;
 
 // Inspiration:
@@ -159,16 +159,16 @@ export type IFilterableCreateNewItemRenderer<TElement extends HTMLElement> = (
 
 /**
  * A custom predicate for returning an entirely new `items` array based on the
- * provided query. See usage sites in `IFilterableListProps`.
+ * provided query. See usage sites in `IFilterableListBaseProps`.
  */
-export type IFilterableListPredicate<TItem> = (
+export type IFilterableListBasePredicate<TItem> = (
   query: string,
   items: Array<TItem>,
 ) => Array<TItem>;
 
 /**
  * A custom predicate for filtering items based on the provided query. See usage
- * sites in `IFilterableListProps`.
+ * sites in `IFilterableListBaseProps`.
  */
 export type IFilterableItemPredicate<TItem> = (
   query: string,
@@ -181,7 +181,7 @@ export type IFilterableItemPredicate<TItem> = (
 // - https://github.com/palantir/blueprint/blob/develop/packages/select/src/common/listItemsProps.ts
 
 /**
- * Equality test comparator to determine if two {@link IFilterableListProps} items
+ * Equality test comparator to determine if two {@link IFilterableListBaseProps} items
  * are equivalent.
  *
  * @returns `true` if the two items are equivalent.
@@ -192,7 +192,7 @@ export type IFilterableItemsEqualComparator<TItem> = (
 ) => boolean;
 
 /**
- * Union of all possible types for {@link IFilterableListProps#itemsEqual}.
+ * Union of all possible types for {@link IFilterableListBaseProps#itemsEqual}.
  */
 export type IFilterableItemsEqualProp<TItem> =
   | IFilterableItemsEqualComparator<TItem>

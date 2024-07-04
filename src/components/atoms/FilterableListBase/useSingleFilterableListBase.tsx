@@ -1,24 +1,17 @@
-import stylex from '@stylexjs/stylex';
 import { useState } from 'react';
 
 import type {
   IFilterableItemRenderer,
   IFilterableItemsEqualProp,
-} from './FilterableListProps';
-import type { IFloatingFilterableListTriggerRenderProps } from '@/components/atoms/FloatingFilterableList';
+} from './FilterableListBaseProps';
 import { useControlledValue } from '@/hooks/useControlledValue';
-import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
-import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
-import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
-import { IconButton } from '@/components/atoms/IconButton';
-import { commonStyles } from '@/helpers/commonStyles';
 import {
   executeFilterableItemsEqual,
   maybeAddCreatedItemToArrays,
   maybeDeleteCreatedItemFromArrays,
-} from './FilterableListUtils';
+} from './FilterableListBaseUtils';
 
-export type IUseSingleFilterableListProps<
+export type IUseSingleFilterableListBaseProps<
   TItem,
   TElement extends HTMLElement,
 > = {
@@ -30,14 +23,11 @@ export type IUseSingleFilterableListProps<
   onChange?: (value?: TItem) => void;
 };
 
-export type IUseSingleFilterableListResult<
+export type IUseSingleFilterableListBaseResult<
   TItem,
   TElement extends HTMLElement,
 > = {
   itemRenderer: IFilterableItemRenderer<TItem, TElement>;
-  fieldEndRenderer: (
-    renderProps: IFloatingFilterableListTriggerRenderProps<TItem>,
-  ) => React.JSX.Element;
   handleItemSelect: (newSelectedItem: TItem) => number | undefined;
   handleClear: (
     afterItemsRemove: (
@@ -50,15 +40,18 @@ export type IUseSingleFilterableListResult<
   selectedItem?: TItem;
 };
 
-export const useSingleFilterableList = <TItem, TElement extends HTMLElement>(
-  props: IUseSingleFilterableListProps<TItem, TElement>,
-): IUseSingleFilterableListResult<TItem, TElement> => {
+export const useSingleFilterableListBase = <
+  TItem,
+  TElement extends HTMLElement,
+>(
+  props: IUseSingleFilterableListBaseProps<TItem, TElement>,
+): IUseSingleFilterableListBaseResult<TItem, TElement> => {
   const [items, setItems] = useState(props.items);
   const [createdItems, setCreatedItems] = useState<Array<TItem>>([]);
   const [selectedItem, setSelectedItem] = useControlledValue({
     controlled: props.value,
     default: props.defaultValue,
-    name: 'useSingleFilterableList',
+    name: 'useSingleFilterableListBase',
   });
 
   const itemRenderer: IFilterableItemRenderer<TItem, TElement> = (
@@ -128,34 +121,8 @@ export const useSingleFilterableList = <TItem, TElement extends HTMLElement>(
     }
   };
 
-  const fieldEndRenderer = (
-    renderProps: IFloatingFilterableListTriggerRenderProps<TItem>,
-  ): React.JSX.Element => (
-    <div
-      {...stylex.props(commonStyles.horizontalLayout, commonStyles.gap$none)}
-    >
-      {selectedItem ? (
-        <IconButton
-          icon={<XMarkIcon aria-hidden />}
-          onClick={(event) => handleClear(renderProps.afterItemsRemove, event)}
-        />
-      ) : null}
-      <IconButton
-        tabIndex={-1}
-        icon={
-          renderProps.isOpen ? (
-            <TriangleUpIcon aria-hidden />
-          ) : (
-            <TriangleDownIcon aria-hidden />
-          )
-        }
-      />
-    </div>
-  );
-
   return {
     itemRenderer,
-    fieldEndRenderer,
     handleItemSelect,
     handleClear,
     items,

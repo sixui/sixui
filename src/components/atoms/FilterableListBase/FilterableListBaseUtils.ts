@@ -3,11 +3,11 @@ import { isFunction } from 'lodash';
 import type { IAny } from '@/helpers/types';
 import type {
   IFilterableItemsEqualProp,
-  IFilterableListInternalRendererProps,
-} from './FilterableListProps';
+  IFilterableListBaseInternalRendererProps,
+} from './FilterableListBaseProps';
 
 /**
- * Utility function for executing the {@link IFilterableListProps#itemsEqual} prop
+ * Utility function for executing the {@link IFilterableListBaseProps#itemsEqual} prop
  * to test for equality between two items.
  *
  * @returns `true` if the two items are equivalent according to
@@ -38,7 +38,7 @@ export const executeFilterableItemsEqual = <TItem>(
 };
 
 /**
- * `IFilterableListInternalRenderer` helper method for rendering each item in
+ * `IFilterableListBaseInternalRenderer` helper method for rendering each item in
  * `filteredItems`, with optional support for `noResults` (when filtered items
  * is empty) and `initialContent` (when query is empty).
  *
@@ -51,7 +51,7 @@ export const executeFilterableItemsEqual = <TItem>(
  * empty.
  */
 export const renderFilterableItems = (
-  props: IFilterableListInternalRendererProps<IAny>,
+  props: IFilterableListBaseInternalRendererProps<IAny>,
   noResults?: React.ReactNode,
   initialContent?: React.ReactNode | null,
 ): React.ReactNode => {

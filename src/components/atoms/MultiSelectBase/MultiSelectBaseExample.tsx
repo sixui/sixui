@@ -4,26 +4,28 @@ import {
   createMovie,
   filterMovie,
   isMovieDisabled,
-  getMovieLabel,
   renderCreateMovieListItem,
+  getMovieLabel,
   renderMovieListItem,
   TOP_100_MOVIES,
   type IMovie,
-} from '@/components/atoms/FilterableList/movies';
-import { Select, type ISelectProps } from './Select';
+} from '@/components/atoms/FilterableListBase/movies';
+import { MultiSelectBase, type IMultiSelectBaseProps } from './MultiSelectBase';
 
-export type ISelectExampleProps = IOmit<
-  ISelectProps<IMovie>,
-  'items' | 'itemLabel' | 'itemRenderer'
+export type IMultiSelectBaseExampleProps = IOmit<
+  IMultiSelectBaseProps<IMovie>,
+  'items' | 'itemRenderer' | 'itemLabel'
 > & {
   canCreate?: boolean;
 };
 
-export const SelectExample = (props: ISelectExampleProps): React.ReactNode => {
+export const MultiSelectBaseExample: React.FC<IMultiSelectBaseExampleProps> = (
+  props,
+) => {
   const { canCreate, ...other } = props;
 
   return (
-    <Select<IMovie>
+    <MultiSelectBase<IMovie>
       items={TOP_100_MOVIES}
       itemRenderer={renderMovieListItem}
       itemLabel={getMovieLabel}

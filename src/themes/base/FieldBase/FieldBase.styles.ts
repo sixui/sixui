@@ -357,6 +357,7 @@ export const styles: MapNamespaces<IFieldBaseStyles> =
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      flexGrow: 1,
     },
     icon$leading: {
       fontSize: vars.leadingIconSize,

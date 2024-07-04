@@ -2,28 +2,30 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ListItem } from '@/components/atoms/ListItem';
-import { fruits } from '@/components/atoms/FilterableList/fruits';
-import { Select, type ISelectProps } from './Select';
+import { TOP_100_MOVIES } from '@/components/atoms/FilterableListBase/movies';
+import {
+  SelectBaseExample,
+  type ISelectBaseExampleProps,
+} from './SelectBaseExample';
 
 const meta = {
-  component: Select,
-} satisfies Meta<typeof Select>;
+  component: SelectBaseExample,
+} satisfies Meta<typeof SelectBaseExample>;
 
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   onChange: (...args) => void sbHandleEvent('onChange', args),
-  items: fruits,
   matchTargetWidth: true,
-} satisfies Partial<ISelectProps>;
+} satisfies Partial<ISelectBaseExampleProps>;
 
 export const Basic: IStory = {
-  render: (props) => <Select {...props} />,
+  render: (props) => <SelectBaseExample {...props} />,
   args: defaultArgs,
 };
 
 export const CanFilter: IStory = {
-  render: (props) => <Select {...props} />,
+  render: (props) => <SelectBaseExample {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -31,7 +33,7 @@ export const CanFilter: IStory = {
 };
 
 export const DefaultQuery: IStory = {
-  render: (props) => <Select {...props} />,
+  render: (props) => <SelectBaseExample {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -39,8 +41,18 @@ export const DefaultQuery: IStory = {
   },
 };
 
+export const CanCreate: IStory = {
+  render: (props) => <SelectBaseExample {...props} />,
+  args: {
+    ...defaultArgs,
+    canFilter: true,
+    canCreate: true,
+    defaultQuery: 'king',
+  },
+};
+
 export const NoResults: IStory = {
-  render: (props) => <Select {...props} />,
+  render: (props) => <SelectBaseExample {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -49,16 +61,18 @@ export const NoResults: IStory = {
 };
 
 export const InitialContent: IStory = {
-  render: (props) => <Select {...props} />,
+  render: (props) => <SelectBaseExample {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,
-    initialContent: <ListItem disabled>{fruits.length} items loaded.</ListItem>,
+    initialContent: (
+      <ListItem disabled>{TOP_100_MOVIES.length} items loaded.</ListItem>
+    ),
   },
 };
 
 export const Disabled: IStory = {
-  render: (props) => <Select {...props} />,
+  render: (props) => <SelectBaseExample {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,

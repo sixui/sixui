@@ -1,24 +1,17 @@
-import stylex from '@stylexjs/stylex';
 import { useState } from 'react';
 
-import type { IFloatingFilterableListTriggerRenderProps } from '@/components/atoms/FloatingFilterableList';
 import type {
   IFilterableItemRenderer,
   IFilterableItemsEqualProp,
-} from './FilterableListProps';
+} from './FilterableListBaseProps';
 import { useControlledValue } from '@/hooks/useControlledValue';
-import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
-import { ReactComponent as TriangleUpIcon } from '@/assets/TriangleUp.svg';
-import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
-import { IconButton } from '@/components/atoms/IconButton';
-import { commonStyles } from '@/helpers/commonStyles';
 import {
   arrayContainsItem,
   maybeAddCreatedItemToArrays,
   maybeDeleteCreatedItemFromArrays,
-} from './FilterableListUtils';
+} from './FilterableListBaseUtils';
 
-export type IUseMultiFilterableListProps<
+export type IUseMultiFilterableListBaseProps<
   TItem,
   TElement extends HTMLElement,
 > = {
@@ -30,14 +23,11 @@ export type IUseMultiFilterableListProps<
   onChange?: (value: Array<TItem>) => void;
 };
 
-export type IUseMultiFilterableListResult<
+export type IUseMultiFilterableListBaseResult<
   TItem,
   TElement extends HTMLElement,
 > = {
   itemRenderer: IFilterableItemRenderer<TItem, TElement>;
-  fieldEndRenderer: (
-    renderProps: IFloatingFilterableListTriggerRenderProps<TItem>,
-  ) => React.JSX.Element;
   handleItemSelect: (newSelectedItem: TItem) => number | undefined;
   handleItemRemoveFocused: () => void;
   handleItemFocusPreviousSelected: () => void;
@@ -56,15 +46,15 @@ export type IUseMultiFilterableListResult<
   deselectItemAtIndex: (index: number) => Array<TItem>;
 };
 
-export const useMultiFilterableList = <TItem, TElement extends HTMLElement>(
-  props: IUseMultiFilterableListProps<TItem, TElement>,
-): IUseMultiFilterableListResult<TItem, TElement> => {
+export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
+  props: IUseMultiFilterableListBaseProps<TItem, TElement>,
+): IUseMultiFilterableListBaseResult<TItem, TElement> => {
   const [items, setItems] = useState(props.items);
   const [createdItems, setCreatedItems] = useState<Array<TItem>>([]);
   const [selectedItems, setSelectedItems] = useControlledValue({
     controlled: props.value,
     default: props.defaultValue ?? [],
-    name: 'useMultiFilterableList',
+    name: 'useMultiFilterableListBase',
   });
   const [focusedSelectedItemIndex, setFocusedSelectedItemIndex] =
     useState<number>();
@@ -222,34 +212,8 @@ export const useMultiFilterableList = <TItem, TElement extends HTMLElement>(
     }
   };
 
-  const fieldEndRenderer = (
-    renderProps: IFloatingFilterableListTriggerRenderProps<TItem>,
-  ): React.JSX.Element => (
-    <div
-      {...stylex.props(commonStyles.horizontalLayout, commonStyles.gap$none)}
-    >
-      {selectedItems.length ? (
-        <IconButton
-          icon={<XMarkIcon aria-hidden />}
-          onClick={(event) => handleClear(renderProps.afterItemsRemove, event)}
-        />
-      ) : null}
-      <IconButton
-        tabIndex={-1}
-        icon={
-          renderProps.isOpen ? (
-            <TriangleUpIcon aria-hidden />
-          ) : (
-            <TriangleDownIcon aria-hidden />
-          )
-        }
-      />
-    </div>
-  );
-
   return {
     itemRenderer,
-    fieldEndRenderer,
     handleItemSelect,
     handleItemRemoveFocused,
     handleItemFocusPreviousSelected,

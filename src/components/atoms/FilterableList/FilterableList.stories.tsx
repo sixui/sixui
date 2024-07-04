@@ -2,29 +2,27 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ListItem } from '@/components/atoms/ListItem';
-import {
-  FilterableListExample,
-  type IFilterableListExampleProps,
-} from './FilterableListExample';
-import { TOP_100_MOVIES } from './movies';
+import { fruits } from './fruits';
+import { FilterableList, type IFilterableListProps } from './FilterableList';
 
 const meta = {
-  component: FilterableListExample,
-} satisfies Meta<typeof FilterableListExample>;
+  component: FilterableList,
+} satisfies Meta<typeof FilterableList>;
 
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onItemSelect: (...args) => void sbHandleEvent('onItemsRemove', args),
-} satisfies Partial<IFilterableListExampleProps>;
+  onItemSelect: (...args) => void sbHandleEvent('onItemSelect', args),
+  items: fruits,
+} satisfies Partial<IFilterableListProps>;
 
 export const Basic: IStory = {
-  render: (props) => <FilterableListExample {...props} />,
+  render: (props) => <FilterableList {...props} />,
   args: defaultArgs,
 };
 
 export const CanFilter: IStory = {
-  render: (props) => <FilterableListExample {...props} />,
+  render: (props) => <FilterableList {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -32,46 +30,34 @@ export const CanFilter: IStory = {
 };
 
 export const DefaultQuery: IStory = {
-  render: (props) => <FilterableListExample {...props} />,
+  render: (props) => <FilterableList {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,
-    defaultQuery: 'king',
-  },
-};
-
-export const CanCreate: IStory = {
-  render: (props) => <FilterableListExample {...props} />,
-  args: {
-    ...defaultArgs,
-    canFilter: true,
-    canCreate: true,
-    defaultQuery: 'king',
+    defaultQuery: 'le',
   },
 };
 
 export const NoResults: IStory = {
-  render: (props) => <FilterableListExample {...props} />,
+  render: (props) => <FilterableList {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,
-    defaultQuery: 'My great movie',
+    defaultQuery: 'My favorite fruit',
   },
 };
 
 export const InitialContent: IStory = {
-  render: (props) => <FilterableListExample {...props} />,
+  render: (props) => <FilterableList {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,
-    initialContent: (
-      <ListItem disabled>{TOP_100_MOVIES.length} items loaded.</ListItem>
-    ),
+    initialContent: <ListItem disabled>{fruits.length} items loaded.</ListItem>,
   },
 };
 
 export const Disabled: IStory = {
-  render: (props) => <FilterableListExample {...props} />,
+  render: (props) => <FilterableList {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,

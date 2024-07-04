@@ -1,13 +1,13 @@
 import type { IOmit } from '@/helpers/types';
 import type { Placement, ReferenceType } from '@floating-ui/react';
 
-import type { IFilterableListProps } from '@/components/atoms/FilterableList';
+import type { IFilterableListBaseProps } from '@/components/atoms/FilterableListBase';
 import type {
   IExtendedFloatingProps,
   IExtendedHtmlFloatingProps,
 } from '@/helpers/extendFloatingProps';
 
-export type IFloatingFilterableListTriggerRenderProps<TItem> = {
+export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
   /**
    * Whether the floating filterable list is open.
    */
@@ -54,16 +54,16 @@ export type IFloatingFilterableListTriggerRenderProps<TItem> = {
   query: string;
 };
 
-export type IFloatingFilterableListProps<
+export type IFloatingFilterableListBaseProps<
   TItem,
   TElement extends HTMLElement,
-> = IOmit<IFilterableListProps<TItem, TElement>, 'onItemSelect'> & {
+> = IOmit<IFilterableListBaseProps<TItem, TElement>, 'onItemSelect'> & {
   /**
    * Element which triggers the select popover. In most cases, you should display
    * the name or label of the curently selected item here.
    */
   children: (
-    props: IFloatingFilterableListTriggerRenderProps<TItem>,
+    props: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
   ) => React.JSX.Element;
 
   onItemSelect: (
