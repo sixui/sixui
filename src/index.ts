@@ -56,7 +56,7 @@ export * from './components/atoms/TabList';
 export * from './components/atoms/TabPanel';
 export * from './components/atoms/Tabs';
 export * from './components/atoms/TextAreaField';
-export * from './components/atoms/TextField';
+export * from './components/atoms/TextFieldBase';
 export * from './components/atoms/TextInputField';
 export * from './components/atoms/TooltipBase';
 export * from './components/atoms/Typography';

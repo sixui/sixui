@@ -146,7 +146,7 @@ export const Tab: ITab = forwardRef(function Tab<
       ? context.anchor !== undefined && context.anchor === anchor
       : activeProp
     : false;
-  const hasIcon = active ? !!activeIcon ?? !!icon : !!icon;
+  const hasIcon = active ? !!activeIcon || !!icon : !!icon;
   const id = context && anchor ? `${context.id}-${anchor}` : undefined;
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = useCallback(

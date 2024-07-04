@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
 import type { IStyleVars } from '@/helpers/types';
-import type { ITextFieldStyleVarKey } from '@/components/atoms/TextField';
+import type { ITextFieldBaseStyleVarKey } from '@/components/atoms/TextFieldBase';
 import { colorRolesVars } from '../vars/colorRoles.stylex';
 
-const vars: Partial<IStyleVars<ITextFieldStyleVarKey>> = {
+const vars: Partial<IStyleVars<ITextFieldBaseStyleVarKey>> = {
   // caret
   caretColor: colorRolesVars.primary,
   // &:focus
@@ -14,7 +14,7 @@ const vars: Partial<IStyleVars<ITextFieldStyleVarKey>> = {
 };
 
 export const componentVars = stylex.defineVars(
-  vars as IStyleVars<ITextFieldStyleVarKey>,
+  vars as IStyleVars<ITextFieldBaseStyleVarKey>,
 );
 
 /**

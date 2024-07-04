@@ -94,10 +94,10 @@ import { componentTheme as outlinedFieldBaseTheme } from './FieldBase/OutlinedFi
 import { styles as fieldStyles } from './Field/Field.styles';
 
 import {
-  styles as textFieldStyles,
-  fieldStyles as textFieldFieldStyles,
-} from './TextField/TextField.styles';
-import { componentTheme as textFieldTheme } from './TextField/TextField.stylex';
+  styles as textFieldBaseStyles,
+  fieldStyles as textFieldBaseFieldStyles,
+} from './TextFieldBase/TextFieldBase.styles';
+import { componentTheme as textFieldTheme } from './TextFieldBase/TextFieldBase.stylex';
 
 import { componentTheme as radioTheme } from './Radio/Radio.stylex';
 import {
@@ -373,10 +373,10 @@ export const theme: ITheme = {
     Field: {
       styles: fieldStyles,
     },
-    TextField: {
+    TextFieldBase: {
       vars: textFieldTheme,
-      styles: textFieldStyles,
-      fieldStyles: textFieldFieldStyles,
+      styles: textFieldBaseStyles,
+      fieldStyles: textFieldBaseFieldStyles,
     },
     FilledTextField: {},
     OutlinedTextField: {},

@@ -50,9 +50,9 @@ import type {
 } from '@/components/atoms/FieldBase';
 import type { IFieldStyleKey } from '@/components/atoms/Field';
 import type {
-  ITextFieldStyleKey,
-  ITextFieldStyleVarKey,
-} from '@/components/atoms/TextField';
+  ITextFieldBaseStyleKey,
+  ITextFieldBaseStyleVarKey,
+} from '@/components/atoms/TextFieldBase';
 import type {
   IRadioStyleKey,
   IRadioStyleVarKey,
@@ -212,9 +212,9 @@ export type IFieldBaseTheme = {
   styles?: ICompiledStyles<IFieldBaseStyleKey>;
 };
 
-export type ITextFieldTheme = {
-  vars?: IStyleVarsTheme<ITextFieldStyleVarKey>;
-  styles?: ICompiledStyles<ITextFieldStyleKey>;
+export type ITextFieldBaseTheme = {
+  vars?: IStyleVarsTheme<ITextFieldBaseStyleVarKey>;
+  styles?: ICompiledStyles<ITextFieldBaseStyleKey>;
   fieldStyles?: ICompiledStyles<IFieldBaseStyleKey>;
 };
 
@@ -318,9 +318,9 @@ export type ITheme = {
     Field: {
       styles?: ICompiledStyles<IFieldStyleKey>;
     };
-    TextField: ITextFieldTheme;
-    FilledTextField: ITextFieldTheme;
-    OutlinedTextField: ITextFieldTheme;
+    TextFieldBase: ITextFieldBaseTheme;
+    FilledTextField: ITextFieldBaseTheme;
+    OutlinedTextField: ITextFieldBaseTheme;
     Radio: {
       vars?: IStyleVarsTheme<IRadioStyleVarKey>;
       styles?: ICompiledStyles<IRadioStyleKey>;

@@ -2,18 +2,18 @@ import type { MapNamespaces } from '@stylexjs/stylex/lib/StyleXTypes';
 import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
-import type { ITextFieldStyleKey } from '@/components/atoms/TextField';
+import type { ITextFieldBaseStyleKey } from '@/components/atoms/TextFieldBase';
 import type { IFieldBaseStyleKey } from '@/components/atoms/FieldBase';
 import { componentVars as fieldBaseVars } from '../FieldBase/FieldBase.stylex';
-import { componentVars as vars } from './TextField.stylex';
+import { componentVars as vars } from './TextFieldBase.stylex';
 
 // https://github.com/material-components/material-web/blob/main/textfield/internal/_shared.scss
 // https://github.com/material-components/material-web/blob/main/textfield/internal/_input.scss
 // https://github.com/material-components/material-web/blob/main/textfield/internal/_icon.scss
 
-type ITextFieldStyles = IStyles<ITextFieldStyleKey>;
-export const styles: MapNamespaces<ITextFieldStyles> =
-  stylex.create<ITextFieldStyles>({
+type ITextFieldBaseStyles = IStyles<ITextFieldBaseStyleKey>;
+export const styles: MapNamespaces<ITextFieldBaseStyles> =
+  stylex.create<ITextFieldBaseStyles>({
     host: {
       display: 'flex',
       flexGrow: 1,

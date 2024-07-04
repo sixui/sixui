@@ -3,9 +3,9 @@ import { asArray } from '@olivierpascal/helpers';
 import { isFunction } from 'lodash';
 import { useMergeRefs } from '@floating-ui/react';
 
-import type { ITextFieldProps } from './TextFieldProps';
+import type { ITextFieldBaseProps } from './TextFieldBaseProps';
 import type { IThemeComponents } from '@/components/utils/Theme';
-import type { ITextFieldStyleKey } from './TextField.styledefs';
+import type { ITextFieldBaseStyleKey } from './TextFieldBase.styledefs';
 import {
   FieldBase,
   type IFieldBaseStyleVarKey,
@@ -22,23 +22,23 @@ import { fixedForwardRef } from '@/helpers/fixedForwardRef';
 
 // https://github.com/material-components/material-web/blob/main/textfield/internal/text-field.ts
 
-type ITextFieldVariantMap = {
+type ITextFieldBaseVariantMap = {
   [key in IFieldBaseVariant]: keyof Pick<
     IThemeComponents,
     'FilledTextField' | 'OutlinedTextField'
   >;
 };
 
-const variantMap: ITextFieldVariantMap = {
+const variantMap: ITextFieldBaseVariantMap = {
   filled: 'FilledTextField',
   outlined: 'OutlinedTextField',
 };
 
-export const TextField = fixedForwardRef(function TextField<
+export const TextFieldBase = fixedForwardRef(function TextField<
   TElement extends HTMLElement = HTMLElement,
   TChildrenProps extends object = object,
 >(
-  props: ITextFieldProps<TElement, TChildrenProps>,
+  props: ITextFieldBaseProps<TElement, TChildrenProps>,
   forwardedRef?: React.Ref<HTMLDivElement>,
 ) {
   const {
@@ -71,7 +71,7 @@ export const TextField = fixedForwardRef(function TextField<
   const handleRef = useMergeRefs([inputRefProp, inputRef, inputVisualStateRef]);
 
   const { theme, variantTheme } = useComponentTheme(
-    'TextField',
+    'TextFieldBase',
     variant ? variantMap[variant] : undefined,
   );
   const stylesCombinator = useMemo(
@@ -80,7 +80,7 @@ export const TextField = fixedForwardRef(function TextField<
   );
   const sxf = useMemo(
     () =>
-      stylePropsFactory<ITextFieldStyleKey, IFieldBaseStyleVarKey>(
+      stylePropsFactory<ITextFieldBaseStyleKey, IFieldBaseStyleVarKey>(
         stylesCombinator,
         visualState,
       ),

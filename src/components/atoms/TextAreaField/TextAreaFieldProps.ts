@@ -1,8 +1,8 @@
 import type { IOmit } from '@/helpers/types';
-import type { ITextFieldProps } from '@/components/atoms/TextField';
+import type { ITextFieldBaseProps } from '@/components/atoms/TextFieldBase';
 
 type ITextAreaFieldInheritedProps = IOmit<
-  ITextFieldProps<HTMLTextAreaElement>,
+  ITextFieldBaseProps<HTMLTextAreaElement>,
   // Props that are controlled by the component and should not be overridden.
   'inputRenderer' | 'forwardProps' | 'textArea' | 'resizable'
 >;

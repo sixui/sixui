@@ -9,7 +9,7 @@ import type {
   IFieldBaseStyleKey,
   IFieldBaseStyleVarKey,
 } from '@/components/atoms/FieldBase';
-import type { ITextFieldStyleKey } from './TextField.styledefs';
+import type { ITextFieldBaseStyleKey } from './TextFieldBase.styledefs';
 import type { IStyleProps } from '@/helpers/stylePropsFactory';
 import type { IControlledValueProps } from '@/hooks/useControlledValue';
 import type {
@@ -17,7 +17,7 @@ import type {
   IForwardableProps,
 } from '@/helpers/react/forwardablePropsTypes';
 
-export type ITextFieldModifiers = {
+export type ITextFieldBaseModifiers = {
   /**
    * When true, the text field will have an error state.
    */
@@ -29,17 +29,20 @@ export type ITextFieldModifiers = {
   disabled?: boolean;
 };
 
-export type ITextFieldRenderProps<
+export type ITextFieldBaseRenderProps<
   TElement extends HTMLElement,
   TChildrenProps extends object,
 > = {
-  sxf: IStyleProps<ITextFieldStyleKey, IFieldBaseStyleVarKey>;
+  sxf: IStyleProps<ITextFieldBaseStyleKey, IFieldBaseStyleVarKey>;
   ref: React.RefObject<TElement> | React.RefCallback<TElement> | null;
-  modifiers: ITextFieldModifiers;
-  onValueChange: ITextFieldOwnProps<TElement, TChildrenProps>['onValueChange'];
+  modifiers: ITextFieldBaseModifiers;
+  onValueChange: ITextFieldBaseOwnProps<
+    TElement,
+    TChildrenProps
+  >['onValueChange'];
 };
 
-export type ITextFieldOwnProps<
+export type ITextFieldBaseOwnProps<
   TElement extends HTMLElement,
   TChildrenProps extends object,
 > = IControlledValueProps<string | number | ReadonlyArray<string>, TElement> & {
@@ -72,19 +75,19 @@ export type ITextFieldOwnProps<
    * Custom renderer for the input element.
    */
   inputRenderer: IRendererWithForwardedProps<
-    ITextFieldRenderProps<TElement, TChildrenProps>,
+    ITextFieldBaseRenderProps<TElement, TChildrenProps>,
     React.InputHTMLAttributes<TElement>
   >;
 };
 
-type ITextFieldInheritedProps<TChildrenProps extends object> =
-  IContainerProps<ITextFieldStyleKey> &
+type ITextFieldBaseInheritedProps<TChildrenProps extends object> =
+  IContainerProps<ITextFieldBaseStyleKey> &
     IForwardableProps &
     IOmit<IFieldBaseOwnProps, 'styles' | 'children'> &
     TChildrenProps;
 
-export type ITextFieldProps<
+export type ITextFieldBaseProps<
   TElement extends HTMLElement,
   TChildrenProps extends object = object,
-> = ITextFieldInheritedProps<TChildrenProps> &
-  ITextFieldOwnProps<TElement, TChildrenProps>;
+> = ITextFieldBaseInheritedProps<TChildrenProps> &
+  ITextFieldBaseOwnProps<TElement, TChildrenProps>;

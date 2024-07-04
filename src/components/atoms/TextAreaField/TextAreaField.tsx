@@ -2,7 +2,10 @@ import { forwardRef, useRef } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { ITextAreaFieldProps } from './TextAreaFieldProps';
-import { TextField, type ITextFieldProps } from '@/components/atoms/TextField';
+import {
+  TextFieldBase,
+  type ITextFieldBaseProps,
+} from '@/components/atoms/TextFieldBase';
 
 export const TextAreaField = forwardRef<HTMLDivElement, ITextAreaFieldProps>(
   function TextAreaField(props, forwardedRef) {
@@ -10,7 +13,7 @@ export const TextAreaField = forwardRef<HTMLDivElement, ITextAreaFieldProps>(
     const inputRef = useRef<HTMLTextAreaElement>(null);
     const inputHandleRef = useMergeRefs([inputRef, inputRefProp]);
 
-    const inputRenderer: ITextFieldProps<HTMLTextAreaElement>['inputRenderer'] =
+    const inputRenderer: ITextFieldBaseProps<HTMLTextAreaElement>['inputRenderer'] =
       ({ sxf, ref, forwardedProps, modifiers, onValueChange }) => (
         <textarea
           {...sxf(
@@ -29,7 +32,7 @@ export const TextAreaField = forwardRef<HTMLDivElement, ITextAreaFieldProps>(
       );
 
     return (
-      <TextField<HTMLTextAreaElement, ITextAreaFieldProps>
+      <TextFieldBase<HTMLTextAreaElement, ITextAreaFieldProps>
         {...other}
         textArea
         resizable

@@ -2,24 +2,24 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
-import type { ITextFieldProps } from './TextFieldProps';
+import type { ITextFieldBaseProps } from './TextFieldBaseProps';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
 import { fieldBaseVariants } from '@/components/atoms/FieldBase';
-import { TextField } from './TextField';
+import { TextFieldBase } from './TextFieldBase';
 
 // https://m3.material.io/components/text-fields/overview
 // https://material-web.dev/components/text-field/
 // https://github.com/material-components/material-web/blob/main/textfield/demo/stories.ts
 
 const meta = {
-  component: TextField<HTMLElement>,
-} satisfies Meta<typeof TextField<HTMLElement>>;
+  component: TextFieldBase<HTMLElement>,
+} satisfies Meta<typeof TextFieldBase<HTMLElement>>;
 
-type IStory = StoryObj<ITextFieldProps<HTMLElement>>;
+type IStory = StoryObj<ITextFieldBaseProps<HTMLElement>>;
 
 const styles = stylex.create({
   host: {
@@ -30,24 +30,25 @@ const styles = stylex.create({
 const defaultArgs = {
   sx: styles.host,
   onValueChange: (...args) => void sbHandleEvent('valueChange', args),
-} satisfies Partial<ITextFieldProps<HTMLElement>>;
+} satisfies Partial<ITextFieldBaseProps<HTMLElement>>;
 
-const states: Array<IComponentPresentation<ITextFieldProps<HTMLElement>>> = [
-  { legend: 'Enabled' },
-  {
-    legend: 'Hovered',
-    props: { visualState: { hovered: true } },
-  },
-  { legend: 'Focused', props: { visualState: { focused: true } } },
-  {
-    legend: 'Disabled',
-    props: {
-      disabled: true,
+const states: Array<IComponentPresentation<ITextFieldBaseProps<HTMLElement>>> =
+  [
+    { legend: 'Enabled' },
+    {
+      legend: 'Hovered',
+      props: { visualState: { hovered: true } },
     },
-  },
-];
+    { legend: 'Focused', props: { visualState: { focused: true } } },
+    {
+      legend: 'Disabled',
+      props: {
+        disabled: true,
+      },
+    },
+  ];
 
-const rows: Array<IComponentPresentation<ITextFieldProps<HTMLElement>>> = [
+const rows: Array<IComponentPresentation<ITextFieldBaseProps<HTMLElement>>> = [
   { legend: 'Normal' },
   { legend: 'Error', props: { defaultValue: 'Value', hasError: true } },
 ];
@@ -55,7 +56,7 @@ const rows: Array<IComponentPresentation<ITextFieldProps<HTMLElement>>> = [
 export const Variants: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={TextField}
+      component={TextFieldBase}
       props={props}
       cols={fieldBaseVariants.map((variant) => ({
         props: {
@@ -76,7 +77,7 @@ export const Variants: IStory = {
 export const Filled: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={TextField}
+      component={TextFieldBase}
       props={props}
       cols={states}
       rows={rows}
@@ -91,7 +92,7 @@ export const Filled: IStory = {
 export const Outlined: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={TextField}
+      component={TextFieldBase}
       props={props}
       cols={states}
       rows={rows}

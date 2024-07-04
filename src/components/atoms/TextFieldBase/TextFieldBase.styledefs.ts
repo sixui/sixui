@@ -1,4 +1,4 @@
-export type ITextFieldStyleKey =
+export type ITextFieldBaseStyleKey =
   | 'host'
   | 'textField'
   | 'inputWrapper'
@@ -12,7 +12,7 @@ export type ITextFieldStyleKey =
   | 'suffix'
   | 'suffix$disabled';
 
-export type ITextFieldStyleVarKey =
+export type ITextFieldBaseStyleVarKey =
   | 'caretColor'
   | 'caretColor$focus'
   | 'caretColor$error$focus';
