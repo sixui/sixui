@@ -8,6 +8,7 @@ import {
   type IComponentPresentation,
 } from '@/components/utils/ComponentShowcase';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { TooltipBase, type ITooltipBaseProps } from './TooltipBase';
 import { IconButton } from '../IconButton';
 
@@ -32,7 +33,9 @@ const styles = stylex.create({
 const TOOLTIP_CONTENT =
   'Grant value is calculated using the closing stock price from the day before the grant date. Amounts do not reflect tax withholding.';
 
-const defaultArgs = {} satisfies Partial<ITooltipBaseProps>;
+const defaultArgs = {
+  onOpenChange: (...args) => void sbHandleEvent('openChange', args),
+} satisfies Partial<ITooltipBaseProps>;
 
 const cols: Array<IComponentPresentation<ITooltipBaseProps>> = [
   {

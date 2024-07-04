@@ -70,13 +70,13 @@ export const Field: IField = forwardRef(function Field<
       sx={sx}
       ref={forwardedRef}
       populated={populated}
-      {...(props.forwardRest ? undefined : other)}
+      {...(props.forwardHtmlProps ? undefined : other)}
     >
       {children ? (
         <div {...sxf('value')} data-cy='value'>
           {isFunction(children)
             ? children({
-                rest: props.forwardRest ? other : undefined,
+                forwardedHtmlProps: props.forwardHtmlProps ? other : undefined,
               })
             : children}
         </div>

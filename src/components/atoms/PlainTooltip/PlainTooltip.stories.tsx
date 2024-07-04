@@ -8,6 +8,7 @@ import {
 } from '@/components/utils/ComponentShowcase';
 import { IconButton } from '@/components/atoms/IconButton';
 import { PlainTooltip, type IPlainTooltipProps } from './PlainTooltip';
+import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 
 const meta = {
   component: PlainTooltip,
@@ -16,6 +17,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
+  onOpenChange: (...args) => void sbHandleEvent('openChange', args),
   supportingText:
     'Grant value is calculated using the closing stock price from the day before the grant date. Amounts do not reflect tax withholding.',
 } satisfies Partial<IPlainTooltipProps>;

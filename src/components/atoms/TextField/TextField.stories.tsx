@@ -16,8 +16,8 @@ import { TextField } from './TextField';
 // https://github.com/material-components/material-web/blob/main/textfield/demo/stories.ts
 
 const meta = {
-  component: TextField,
-} satisfies Meta<typeof TextField>;
+  component: TextField<HTMLElement>,
+} satisfies Meta<typeof TextField<HTMLElement>>;
 
 type IStory = StoryObj<ITextFieldProps<HTMLElement>>;
 

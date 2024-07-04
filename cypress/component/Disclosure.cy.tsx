@@ -4,6 +4,8 @@ import { theme } from '@/themes/base';
 import '@/styles/main.css';
 
 import { Disclosure } from '@/components/atoms/Disclosure';
+import { DisclosureButton } from '@/components/atoms/DisclosureButton';
+import { DisclosurePanel } from '@/components/atoms/DisclosurePanel';
 
 const styles = stylex.create({
   host: {
@@ -17,10 +19,10 @@ describe('Disclosure', () => {
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
         <Disclosure>
-          <Disclosure.Button>Button label</Disclosure.Button>
-          <Disclosure.Panel>
+          <DisclosureButton>Button label</DisclosureButton>
+          <DisclosurePanel>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Disclosure.Panel>
+          </DisclosurePanel>
         </Disclosure>
       </ThemeProvider>,
     );
@@ -36,10 +38,10 @@ describe('Disclosure', () => {
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
         <Disclosure defaultExpanded>
-          <Disclosure.Button>Button label</Disclosure.Button>
-          <Disclosure.Panel>
+          <DisclosureButton>Button label</DisclosureButton>
+          <DisclosurePanel>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Disclosure.Panel>
+          </DisclosurePanel>
         </Disclosure>
       </ThemeProvider>,
     );
@@ -57,10 +59,10 @@ describe('Checkable Disclosure', () => {
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
         <Disclosure checkable>
-          <Disclosure.Button>Button label</Disclosure.Button>
-          <Disclosure.Panel>
+          <DisclosureButton>Button label</DisclosureButton>
+          <DisclosurePanel>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Disclosure.Panel>
+          </DisclosurePanel>
         </Disclosure>
       </ThemeProvider>,
     );
@@ -74,10 +76,10 @@ describe('Checkable Disclosure', () => {
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
         <Disclosure checkable checked>
-          <Disclosure.Button>Button label</Disclosure.Button>
-          <Disclosure.Panel>
+          <DisclosureButton>Button label</DisclosureButton>
+          <DisclosurePanel>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Disclosure.Panel>
+          </DisclosurePanel>
         </Disclosure>
       </ThemeProvider>,
     );
@@ -91,10 +93,10 @@ describe('Checkable Disclosure', () => {
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
         <Disclosure checkable>
-          <Disclosure.Button>Button label</Disclosure.Button>
-          <Disclosure.Panel>
+          <DisclosureButton>Button label</DisclosureButton>
+          <DisclosurePanel>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Disclosure.Panel>
+          </DisclosurePanel>
         </Disclosure>
       </ThemeProvider>,
     );
@@ -109,10 +111,10 @@ describe('Checkable Disclosure', () => {
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
         <Disclosure checkable defaultChecked={true}>
-          <Disclosure.Button>Button label</Disclosure.Button>
-          <Disclosure.Panel>
+          <DisclosureButton>Button label</DisclosureButton>
+          <DisclosurePanel>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Disclosure.Panel>
+          </DisclosurePanel>
         </Disclosure>
       </ThemeProvider>,
     );
@@ -129,10 +131,10 @@ describe('Checkable Disclosure', () => {
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
         <Disclosure checkable disabled>
-          <Disclosure.Button>Button label</Disclosure.Button>
-          <Disclosure.Panel>
+          <DisclosureButton>Button label</DisclosureButton>
+          <DisclosurePanel>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Disclosure.Panel>
+          </DisclosurePanel>
         </Disclosure>
       </ThemeProvider>,
     );
@@ -149,10 +151,10 @@ describe('Switchable Disclosure', () => {
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
         <Disclosure checkable withSwitch>
-          <Disclosure.Button>Button label</Disclosure.Button>
-          <Disclosure.Panel>
+          <DisclosureButton>Button label</DisclosureButton>
+          <DisclosurePanel>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Disclosure.Panel>
+          </DisclosurePanel>
         </Disclosure>
       </ThemeProvider>,
     );
@@ -166,10 +168,10 @@ describe('Switchable Disclosure', () => {
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
         <Disclosure checkable withSwitch checked>
-          <Disclosure.Button>Button label</Disclosure.Button>
-          <Disclosure.Panel>
+          <DisclosureButton>Button label</DisclosureButton>
+          <DisclosurePanel>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Disclosure.Panel>
+          </DisclosurePanel>
         </Disclosure>
       </ThemeProvider>,
     );
@@ -183,10 +185,10 @@ describe('Switchable Disclosure', () => {
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
         <Disclosure checkable withSwitch>
-          <Disclosure.Button>Button label</Disclosure.Button>
-          <Disclosure.Panel>
+          <DisclosureButton>Button label</DisclosureButton>
+          <DisclosurePanel>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Disclosure.Panel>
+          </DisclosurePanel>
         </Disclosure>
       </ThemeProvider>,
     );
@@ -201,10 +203,10 @@ describe('Switchable Disclosure', () => {
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
         <Disclosure checkable withSwitch defaultChecked={true}>
-          <Disclosure.Button>Button label</Disclosure.Button>
-          <Disclosure.Panel>
+          <DisclosureButton>Button label</DisclosureButton>
+          <DisclosurePanel>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Disclosure.Panel>
+          </DisclosurePanel>
         </Disclosure>
       </ThemeProvider>,
     );
@@ -221,10 +223,10 @@ describe('Switchable Disclosure', () => {
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
         <Disclosure checkable withSwitch disabled>
-          <Disclosure.Button>Button label</Disclosure.Button>
-          <Disclosure.Panel>
+          <DisclosureButton>Button label</DisclosureButton>
+          <DisclosurePanel>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Disclosure.Panel>
+          </DisclosurePanel>
         </Disclosure>
       </ThemeProvider>,
     );

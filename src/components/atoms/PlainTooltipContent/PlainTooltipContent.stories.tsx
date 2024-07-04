@@ -14,7 +14,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  children:
+  supportingText:
     'Grant value is calculated using the closing stock price from the day before the grant date. Amounts do not reflect tax withholding.',
 } satisfies Partial<IPlainTooltipContentProps>;
 

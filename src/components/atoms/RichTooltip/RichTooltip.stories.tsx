@@ -9,6 +9,8 @@ import {
 import { IconButton } from '@/components/atoms/IconButton';
 import { Button } from '@/components/atoms/Button';
 import { RichTooltip, type IRichTooltipProps } from './RichTooltip';
+import { sbHandleEvent } from '@/helpers/sbHandleEvent';
+import { PersistentRichTooltipExample } from './PersistentRichTooltipExample';
 
 const meta = {
   component: RichTooltip,
@@ -22,12 +24,13 @@ const defaultArgs = {
     'Grant value is calculated using the closing stock price from the day before the grant date. Amounts do not reflect tax withholding.',
   actions: ({ onClose }) => (
     <>
-      <Button variant='text'>Action</Button>
+      <Button variant='text'>Action 1</Button>
       <Button variant='text' onClick={onClose}>
         Dismiss
       </Button>
     </>
   ),
+  onOpenChange: (...args) => void sbHandleEvent('openChange', args),
 } satisfies Partial<IRichTooltipProps>;
 
 const cols: Array<IComponentPresentation<IRichTooltipProps>> = [
@@ -52,6 +55,11 @@ export const Basic: IStory = {
   render: (props) => (
     <ComponentShowcase component={RichTooltip} props={props} cols={cols} />
   ),
+  args: defaultArgs,
+};
+
+export const Persistent: IStory = {
+  render: (props) => <PersistentRichTooltipExample {...props} />,
   args: defaultArgs,
 };
 

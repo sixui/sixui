@@ -20,7 +20,7 @@ import {
 } from '@/components/utils/Elevation';
 
 export type IRichTooltipContentActionsRenderProps = {
-  onClose?: (event: React.MouseEvent) => void;
+  onClose?: (event?: React.MouseEvent) => void;
 };
 
 export type IRichTooltipContentProps =
@@ -36,7 +36,7 @@ export type IRichTooltipContentProps =
     renderCursor?: (
       userProps?: React.HTMLAttributes<SVGSVGElement>,
     ) => React.ReactNode;
-    onClose?: (event: React.MouseEvent) => void;
+    onClose?: (event?: React.MouseEvent) => void;
   };
 
 export const RichTooltipContent = forwardRef<

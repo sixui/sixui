@@ -16,6 +16,7 @@ import {
   useInteractions,
   useRole,
   useTransitionStatus,
+  type OpenChangeReason,
   type Placement,
 } from '@floating-ui/react';
 
@@ -35,6 +36,7 @@ export type ITooltipBaseContentRendererProps = {
   renderCursor?: (
     userProps?: React.HTMLAttributes<SVGSVGElement>,
   ) => React.ReactNode;
+  onClose: (event?: React.MouseEvent) => void;
 };
 
 export type ITooltipBaseChildrenRendererProps = {
@@ -55,6 +57,12 @@ export type ITooltipBaseProps<TForwardedProps extends object = object> =
     isOpen?: boolean;
     defaultIsOpen?: boolean;
     cursor?: ITooltipCursorType;
+    onOpenChange?: (
+      isOpen: boolean,
+      event?: Event,
+      reason?: OpenChangeReason,
+    ) => void;
+    persistent?: boolean;
   };
 
 // TODO: migrate in theme
@@ -107,12 +115,14 @@ export const TooltipBase = <TForwardedProps extends object = object>(
     isOpen: isOpenProp,
     defaultIsOpen,
     cursor: cursorType = false,
+    onOpenChange,
     forwardHtmlProps,
+    persistent,
     ...other
   } = props;
   const [isOpen, setIsOpen] = useControlledValue({
     controlled: isOpenProp,
-    default: defaultIsOpen,
+    default: defaultIsOpen ?? false,
     name: 'Tooltip',
   });
   const arrowRef = useRef(null);
@@ -120,7 +130,17 @@ export const TooltipBase = <TForwardedProps extends object = object>(
   const floating = useFloating({
     placement,
     open: isOpen,
-    onOpenChange: setIsOpen,
+    onOpenChange: (
+      newIsOpen: boolean,
+      event?: Event,
+      reason?: OpenChangeReason,
+    ) => {
+      setIsOpen(newIsOpen);
+
+      if (isOpen !== newIsOpen) {
+        onOpenChange?.(newIsOpen, event, reason);
+      }
+    },
     whileElementsMounted: autoUpdate,
     middleware: [
       offset(4 + (cursor?.height ?? 0)),
@@ -135,13 +155,20 @@ export const TooltipBase = <TForwardedProps extends object = object>(
       }),
     ],
   });
-  const delayGroup = useDelayGroup(floating.context);
+  const delayGroup = useDelayGroup(floating.context, {
+    id: persistent ? '__persistent' : undefined,
+  });
   const hover = useHover(floating.context, {
     move: false,
     delay: delayGroup.delay,
+    enabled: !persistent,
   });
-  const focus = useFocus(floating.context);
-  const dismiss = useDismiss(floating.context);
+  const focus = useFocus(floating.context, {
+    enabled: !persistent,
+  });
+  const dismiss = useDismiss(floating.context, {
+    enabled: !persistent,
+  });
   const role = useRole(floating.context, { role: 'tooltip' });
   const interactions = useInteractions([hover, focus, dismiss, role]);
   const transitionStatus = useTransitionStatus(floating.context, {
@@ -201,6 +228,12 @@ export const TooltipBase = <TForwardedProps extends object = object>(
                       ? (other as TForwardedProps)
                       : undefined,
                     renderCursor,
+                    onClose: (event) => {
+                      setIsOpen(false);
+                      if (isOpenProp !== undefined) {
+                        onOpenChange?.(false, event?.nativeEvent, 'click');
+                      }
+                    },
                   })
                 : contentRenderer}
             </div>

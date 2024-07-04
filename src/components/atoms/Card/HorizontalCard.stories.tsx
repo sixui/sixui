@@ -8,6 +8,10 @@ import {
 } from '@/components/utils/ComponentShowcase';
 import { Button } from '@/components/atoms/Button';
 import { Card, type ICardProps, type ICardOwnProps } from './Card';
+import { CardContent } from '../CardContent';
+import { CardMedia } from '../CardMedia';
+import { CardTitle } from '../CardTitle';
+import { CardActions } from '../CardActions';
 
 // https://m3.material.io/components/cards
 // https://github.com/material-components/material-web/blob/main/labs/card/demo/stories.ts
@@ -55,17 +59,17 @@ const NonActionableContent: React.FC<{ headline?: string }> = ({
   headline,
 }) => (
   <>
-    <Card.Content sx={styles.content}>
-      <Card.Media
+    <CardContent sx={styles.content}>
+      <CardMedia
         sx={styles.mediaInner}
         src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
       />
       <div {...stylex.props(styles.innerContent)}>
-        <Card.Title
+        <CardTitle
           headline={headline ?? 'Headline'}
           supportingText='Explain more about the topic shown in the headline and subhead through supporting text.'
         />
-        <Card.Actions sx={styles.actions}>
+        <CardActions sx={styles.actions}>
           <Button
             variant='outlined'
             onClick={(...args) => sbHandleEvent('click:secondaryAction', args)}
@@ -77,9 +81,9 @@ const NonActionableContent: React.FC<{ headline?: string }> = ({
           >
             Primary
           </Button>
-        </Card.Actions>
+        </CardActions>
       </div>
-    </Card.Content>
+    </CardContent>
   </>
 );
 
@@ -87,42 +91,42 @@ const NonActionableContentVariant: React.FC<{ headline?: string }> = ({
   headline,
 }) => (
   <>
-    <Card.Media
+    <CardMedia
       sx={styles.media}
       src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
     />
-    <Card.Content sx={styles.content}>
+    <CardContent sx={styles.content}>
       <div {...stylex.props(styles.innerContent)}>
-        <Card.Title
+        <CardTitle
           headline={headline ?? 'Headline'}
           supportingText='Explain more about the topic shown in the headline and subhead through supporting text.'
         />
-        <Card.Actions sx={styles.actions}>
+        <CardActions sx={styles.actions}>
           <Button
             onClick={(...args) => sbHandleEvent('click:primaryAction', args)}
             type='submit'
           >
             Primary
           </Button>
-        </Card.Actions>
+        </CardActions>
       </div>
-    </Card.Content>
+    </CardContent>
   </>
 );
 
 const ActionableContent: React.FC<{ headline?: string }> = ({ headline }) => (
   <>
-    <Card.Media
+    <CardMedia
       sx={styles.media}
       src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
     />
-    <Card.Content sx={styles.content}>
+    <CardContent sx={styles.content}>
       <div {...stylex.props(styles.innerContent)}>
-        <Card.Title
+        <CardTitle
           headline={headline ?? 'Headline'}
           supportingText='Explain more about the topic shown in the headline and subhead through supporting text.'
         />
-        <Card.Actions sx={styles.actions}>
+        <CardActions sx={styles.actions}>
           <Button
             onClick={(...args) => sbHandleEvent('click:secondaryAction', args)}
             type='submit'
@@ -130,9 +134,9 @@ const ActionableContent: React.FC<{ headline?: string }> = ({ headline }) => (
           >
             Secondary
           </Button>
-        </Card.Actions>
+        </CardActions>
       </div>
-    </Card.Content>
+    </CardContent>
   </>
 );
 

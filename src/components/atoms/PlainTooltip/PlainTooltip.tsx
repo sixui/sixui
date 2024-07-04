@@ -10,7 +10,10 @@ import {
   type IPlainTooltipContentProps,
 } from '@/components/atoms/PlainTooltipContent';
 
-type IPlainTooltipInheritedProps = IOmit<ITooltipBaseProps, 'contentRenderer'>;
+type IPlainTooltipInheritedProps = IOmit<
+  ITooltipBaseProps,
+  'contentRenderer' | 'persistent'
+>;
 
 type IPlainTooltipForwardedProps = IOmit<
   IPlainTooltipContentProps,
