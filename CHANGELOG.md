@@ -1,3 +1,15 @@
+# v0.0.263 (Thu Jul 04 2024)
+
+#### ⚠️ Pushed to `main`
+
+- refactor: FilterableList -> FilterableListBase + FilterableList, FloatingFilterableList -> FloatingFilterableListBase + FloatingFilterableList, Select -> SelectBase + Select, MultiSelect -> MultiSelectBase + MultiSelect, Suggest -> SuggestBase + Suggest ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.262 (Thu Jul 04 2024)
 
 #### 🐛 Bug Fix
