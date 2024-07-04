@@ -22,6 +22,14 @@ export const Basic: IStory = {
   args: defaultArgs,
 };
 
+export const DefaultValue: IStory = {
+  render: (props) => <MultiSelect {...props} />,
+  args: {
+    ...defaultArgs,
+    defaultValue: [fruits[1], fruits[3]],
+  },
+};
+
 export const DefaultQuery: IStory = {
   render: (props) => <MultiSelect {...props} />,
   args: {

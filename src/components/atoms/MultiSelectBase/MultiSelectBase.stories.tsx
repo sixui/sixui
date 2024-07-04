@@ -24,6 +24,14 @@ export const Basic: IStory = {
   args: defaultArgs,
 };
 
+export const DefaultValue: IStory = {
+  render: (props) => <MultiSelectBaseExample {...props} />,
+  args: {
+    ...defaultArgs,
+    defaultValue: [TOP_100_MOVIES[2], TOP_100_MOVIES[5]],
+  },
+};
+
 export const DefaultQuery: IStory = {
   render: (props) => <MultiSelectBaseExample {...props} />,
   args: {

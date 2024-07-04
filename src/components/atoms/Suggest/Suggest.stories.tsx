@@ -22,6 +22,14 @@ export const Basic: IStory = {
   args: defaultArgs,
 };
 
+export const DefaultValue: IStory = {
+  render: (props) => <Suggest {...props} />,
+  args: {
+    ...defaultArgs,
+    defaultValue: fruits[1],
+  },
+};
+
 export const InitialContent: IStory = {
   render: (props) => <Suggest {...props} />,
   args: {

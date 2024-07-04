@@ -81,6 +81,7 @@ export const MultiSelectBase = <TItem,>(
       renderer={(listProps) => <MenuList>{listProps.filteredList}</MenuList>}
       itemRenderer={multiFilterableListBase.itemRenderer}
       noResults={<ListItem disabled>No results.</ListItem>}
+      matchTargetWidth
       resetOnSelect
       resetOnClose
       initialFocus={-1}

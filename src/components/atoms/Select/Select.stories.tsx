@@ -22,6 +22,14 @@ export const Basic: IStory = {
   args: defaultArgs,
 };
 
+export const DefaultValue: IStory = {
+  render: (props) => <Select {...props} />,
+  args: {
+    ...defaultArgs,
+    defaultValue: fruits[1],
+  },
+};
+
 export const CanFilter: IStory = {
   render: (props) => <Select {...props} />,
   args: {

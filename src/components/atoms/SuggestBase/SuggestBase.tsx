@@ -67,6 +67,7 @@ export const SuggestBase = <TItem,>(
       renderer={(listProps) => <MenuList>{listProps.filteredList}</MenuList>}
       itemRenderer={singleFilterableListBase.itemRenderer}
       noResults={<ListItem disabled>No results.</ListItem>}
+      matchTargetWidth
       resetOnSelect
       resetOnClose
       resetOnBlur

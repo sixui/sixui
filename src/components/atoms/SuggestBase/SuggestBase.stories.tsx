@@ -24,6 +24,14 @@ export const Basic: IStory = {
   args: defaultArgs,
 };
 
+export const DefaultValue: IStory = {
+  render: (props) => <SuggestBaseExample {...props} />,
+  args: {
+    ...defaultArgs,
+    defaultValue: TOP_100_MOVIES[2],
+  },
+};
+
 export const CanCreate: IStory = {
   render: (props) => <SuggestBaseExample {...props} />,
   args: {

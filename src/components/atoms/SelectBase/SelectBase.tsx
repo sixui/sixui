@@ -78,6 +78,7 @@ export const SelectBase = <TItem,>(
       )}
       itemRenderer={singleFilterableListBase.itemRenderer}
       noResults={<ListItem disabled>No results.</ListItem>}
+      matchTargetWidth
       closeOnSelect
       resetOnClose
       {...other}

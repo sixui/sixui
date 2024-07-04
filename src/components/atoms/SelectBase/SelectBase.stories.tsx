@@ -24,6 +24,14 @@ export const Basic: IStory = {
   args: defaultArgs,
 };
 
+export const DefaultValue: IStory = {
+  render: (props) => <SelectBaseExample {...props} />,
+  args: {
+    ...defaultArgs,
+    defaultValue: TOP_100_MOVIES[2],
+  },
+};
+
 export const CanFilter: IStory = {
   render: (props) => <SelectBaseExample {...props} />,
   args: {

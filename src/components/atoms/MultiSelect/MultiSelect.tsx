@@ -24,10 +24,11 @@ export const MultiSelect: React.FC<IMultiSelectProps> = (props) => (
     itemsEqual={areFilterableListItemsEqual}
     itemPredicate={filterFilterableListItem}
     itemDisabled={isFilterableListItemDisabled}
+    {...props}
     getValueFieldProps={(_renderProps, item) => ({
       icon: item.icon,
       imageUrl: item.imageUrl,
+      ...props.getValueFieldProps?.(_renderProps, item),
     })}
-    {...props}
   />
 );

@@ -24,9 +24,10 @@ export const Select: React.FC<ISelectProps> = (props) => (
     itemsEqual={areFilterableListItemsEqual}
     itemPredicate={filterFilterableListItem}
     itemDisabled={isFilterableListItemDisabled}
+    {...props}
     getValueFieldProps={(_renderProps, selectedItem) => ({
       leadingIcon: selectedItem?.icon,
+      ...props.getValueFieldProps?.(_renderProps, selectedItem),
     })}
-    {...props}
   />
 );

@@ -24,9 +24,10 @@ export const Suggest: React.FC<ISuggestProps> = (props) => (
     itemsEqual={areFilterableListItemsEqual}
     itemPredicate={filterFilterableListItem}
     itemDisabled={isFilterableListItemDisabled}
-    getValueFieldProps={(_renderProps, selectedItem) => ({
-      leadingIcon: selectedItem?.icon,
-    })}
     {...props}
+    getValueFieldProps={(renderProps, selectedItem) => ({
+      leadingIcon: renderProps.isOpen ? undefined : selectedItem?.icon,
+      ...props.getValueFieldProps?.(renderProps, selectedItem),
+    })}
   />
 );
