@@ -153,6 +153,10 @@ import type {
   IPlainTooltipContentStyleKey,
   IPlainTooltipContentStyleVarKey,
 } from '@/components/atoms/PlainTooltipContent';
+import type {
+  IRichTooltipContentStyleKey,
+  IRichTooltipContentStyleVarKey,
+} from '@/components/atoms/RichTooltipContent';
 
 export type ITemplateTheme = {
   vars?: IStyleVarsTheme<ITemplateStyleVarKey>;
@@ -465,6 +469,11 @@ export type ITheme = {
     PlainTooltipContent: {
       vars?: IStyleVarsTheme<IPlainTooltipContentStyleVarKey>;
       styles?: ICompiledStyles<IPlainTooltipContentStyleKey>;
+    };
+    RichTooltipContent: {
+      vars?: IStyleVarsTheme<IRichTooltipContentStyleVarKey>;
+      styles?: ICompiledStyles<IRichTooltipContentStyleKey>;
+      elevationStyles?: ICompiledStyles<IElevationStyleKey>;
     };
   };
 };

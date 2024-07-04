@@ -1,11 +1,11 @@
 import { useRef } from 'react';
 import stylex from '@stylexjs/stylex';
 import { typescaleVars } from '@/themes/base/vars/typo.stylex';
+import { FloatingDelayGroup } from '@floating-ui/react';
 
-import { ColorSchemeContext, type IColorScheme } from './ColorSchemeContext';
 import { useThemeContext } from '@/components/utils/Theme';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { FloatingDelayGroup } from '@floating-ui/react';
+import { ColorSchemeContext, type IColorScheme } from './ColorSchemeContext';
 
 export type IColorSchemeProviderProps = {
   scheme: IColorScheme;

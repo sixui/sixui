@@ -247,6 +247,12 @@ import {
 import { componentTheme as plainTooltipContentTheme } from './PlainTooltipContent/PlainTooltipContent.stylex';
 import { styles as plainTooltipContentStyles } from './PlainTooltipContent/PlainTooltipContent.styles';
 
+import { componentTheme as richTooltipContentTheme } from './RichTooltipContent/RichTooltipContent.stylex';
+import {
+  styles as richTooltipContentStyles,
+  elevationStyles as richTooltipElevationStyles,
+} from './RichTooltipContent/RichTooltipContent.styles';
+
 export const theme: ITheme = {
   name: 'Material Design 3',
   colorSchemes: {
@@ -537,6 +543,11 @@ export const theme: ITheme = {
     PlainTooltipContent: {
       vars: plainTooltipContentTheme,
       styles: plainTooltipContentStyles,
+    },
+    RichTooltipContent: {
+      vars: richTooltipContentTheme,
+      styles: richTooltipContentStyles,
+      elevationStyles: richTooltipElevationStyles,
     },
   },
 };

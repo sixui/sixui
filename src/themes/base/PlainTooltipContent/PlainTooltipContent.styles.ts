@@ -9,6 +9,7 @@ type IPlainTooltipContentStyles = IStyles<IPlainTooltipContentStyleKey>;
 export const styles: MapNamespaces<IPlainTooltipContentStyles> =
   stylex.create<IPlainTooltipContentStyles>({
     host: {
+      position: 'relative',
       display: 'flex',
       alignItems: 'center',
       width: 'max-content',
@@ -29,7 +30,7 @@ export const styles: MapNamespaces<IPlainTooltipContentStyles> =
       lineHeight: vars.supportingTextLineHeight,
       letterSpacing: vars.supportingTextLetterSpacing,
     },
-    arrow: {
+    cursor: {
       fill: vars.containerColor,
     },
   });
