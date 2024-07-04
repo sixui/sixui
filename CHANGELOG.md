@@ -1,3 +1,15 @@
+# v0.0.262 (Thu Jul 04 2024)
+
+#### 🐛 Bug Fix
+
+- Feat/transitions [#30](https://github.com/sixui/sixui/pull/30) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.261 (Mon Jun 17 2024)
 
 #### ⚠️ Pushed to `main`
