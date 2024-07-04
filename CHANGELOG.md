@@ -1,3 +1,15 @@
+# v0.0.265 (Thu Jul 04 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: improve Select, MultiSelect and Suggest ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.264 (Thu Jul 04 2024)
 
 #### ⚠️ Pushed to `main`
