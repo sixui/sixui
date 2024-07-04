@@ -11,7 +11,7 @@ export const TextAreaField = forwardRef<HTMLDivElement, ITextAreaFieldProps>(
     const inputHandleRef = useMergeRefs([inputRef, inputRefProp]);
 
     const inputRenderer: ITextFieldProps<HTMLTextAreaElement>['inputRenderer'] =
-      ({ sxf, ref, forwardedHtmlProps, modifiers, onValueChange }) => (
+      ({ sxf, ref, forwardedProps, modifiers, onValueChange }) => (
         <textarea
           {...sxf(
             'input',
@@ -19,9 +19,9 @@ export const TextAreaField = forwardRef<HTMLDivElement, ITextAreaFieldProps>(
             modifiers.disabled && 'input$disabled',
           )}
           disabled={modifiers.disabled}
-          {...forwardedHtmlProps}
+          {...forwardedProps}
           onChange={(event) => {
-            forwardedHtmlProps?.onChange?.(event);
+            forwardedProps?.onChange?.(event);
             onValueChange?.(event.target.value, event.target);
           }}
           ref={ref}
@@ -40,7 +40,7 @@ export const TextAreaField = forwardRef<HTMLDivElement, ITextAreaFieldProps>(
             inputRef.current.value = '';
           }
         }}
-        forwardHtmlProps
+        forwardProps
         inputRenderer={inputRenderer}
       />
     );

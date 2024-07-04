@@ -64,7 +64,7 @@ export type ITextInputFieldOwnProps = {
 type ITextInputFieldInheritedProps = IOmit<
   ITextFieldProps<HTMLInputElement>,
   // Props that are controlled by the component and should not be overridden.
-  'inputRenderer' | 'forwardHtmlProps' | 'textArea' | 'resizable'
+  'inputRenderer' | 'forwardProps' | 'textArea' | 'resizable'
 >;
 
 export type ITextInputFieldProps = ITextInputFieldInheritedProps &

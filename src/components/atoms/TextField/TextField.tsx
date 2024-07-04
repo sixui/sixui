@@ -160,13 +160,13 @@ export const TextField = fixedForwardRef(function TextField<
           }
         >
           {isFunction(inputRenderer)
-            ? ({ forwardedHtmlProps }) =>
+            ? ({ forwardedProps }) =>
                 inputRenderer({
-                  forwardedHtmlProps: {
+                  forwardedProps: {
                     'aria-invalid': other.hasError,
                     'aria-label': other.label,
                     value,
-                    ...forwardedHtmlProps,
+                    ...forwardedProps,
                   },
                   sxf,
                   ref: handleRef,

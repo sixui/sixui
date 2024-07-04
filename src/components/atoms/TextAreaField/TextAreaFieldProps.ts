@@ -4,7 +4,7 @@ import type { ITextFieldProps } from '@/components/atoms/TextField';
 type ITextAreaFieldInheritedProps = IOmit<
   ITextFieldProps<HTMLTextAreaElement>,
   // Props that are controlled by the component and should not be overridden.
-  'inputRenderer' | 'forwardHtmlProps' | 'textArea' | 'resizable'
+  'inputRenderer' | 'forwardProps' | 'textArea' | 'resizable'
 >;
 
 export type ITextAreaFieldProps = ITextAreaFieldInheritedProps &

@@ -21,9 +21,9 @@ import type {
   IPolymorphicRef,
 } from '@/helpers/react/polymorphicComponentTypes';
 import type {
-  IRendererWithForwardedHtmlProps,
-  IForwardableHtmlProps,
-} from '@/helpers/react/forwardableHtmlPropsTypes';
+  IRendererWithForwardedProps,
+  IForwardableProps,
+} from '@/helpers/react/forwardablePropsTypes';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { usePrevious } from '@/hooks/usePrevious';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
@@ -39,7 +39,7 @@ import { CircularProgressIndicator } from '@/components/atoms/CircularProgressIn
 export const fieldBaseDefaultTag = 'div';
 
 export type IFieldBaseOwnProps = IContainerProps<IFieldBaseStyleKey> &
-  IForwardableHtmlProps & {
+  IForwardableProps & {
     visualState?: IVisualState;
     variant?: IFieldBaseVariant | false;
     count?: number;
@@ -61,7 +61,7 @@ export type IFieldBaseOwnProps = IContainerProps<IFieldBaseStyleKey> &
     labelId?: string;
     loading?: boolean;
     tabIndex?: number;
-    children?: IRendererWithForwardedHtmlProps;
+    children?: IRendererWithForwardedProps;
   };
 
 export type IFieldBaseProps<
@@ -114,7 +114,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
     max = -1,
     textArea,
     loading,
-    forwardHtmlProps,
+    forwardProps,
     tabIndex,
     ...other
   } = props;
@@ -583,7 +583,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
       aria-labelledby={labelId}
       data-cy='field'
       tabIndex={tabIndex}
-      {...(forwardHtmlProps ? undefined : other)}
+      {...(forwardProps ? undefined : other)}
       ref={handleRef}
     >
       <div
@@ -671,9 +671,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
                 >
                   {isFunction(children)
                     ? children({
-                        forwardedHtmlProps: forwardHtmlProps
-                          ? other
-                          : undefined,
+                        forwardedProps: forwardProps ? other : undefined,
                       })
                     : children}
                 </div>

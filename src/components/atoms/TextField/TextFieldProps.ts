@@ -13,9 +13,9 @@ import type { ITextFieldStyleKey } from './TextField.styledefs';
 import type { IStyleProps } from '@/helpers/stylePropsFactory';
 import type { IControlledValueProps } from '@/hooks/useControlledValue';
 import type {
-  IRendererWithForwardedHtmlProps,
-  IForwardableHtmlProps,
-} from '@/helpers/react/forwardableHtmlPropsTypes';
+  IRendererWithForwardedProps,
+  IForwardableProps,
+} from '@/helpers/react/forwardablePropsTypes';
 
 export type ITextFieldModifiers = {
   /**
@@ -71,7 +71,7 @@ export type ITextFieldOwnProps<
   /**
    * Custom renderer for the input element.
    */
-  inputRenderer: IRendererWithForwardedHtmlProps<
+  inputRenderer: IRendererWithForwardedProps<
     ITextFieldRenderProps<TElement, TChildrenProps>,
     React.InputHTMLAttributes<TElement>
   >;
@@ -79,7 +79,7 @@ export type ITextFieldOwnProps<
 
 type ITextFieldInheritedProps<TChildrenProps extends object> =
   IContainerProps<ITextFieldStyleKey> &
-    IForwardableHtmlProps &
+    IForwardableProps &
     IOmit<IFieldBaseOwnProps, 'styles' | 'children'> &
     TChildrenProps;
 

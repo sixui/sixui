@@ -31,7 +31,7 @@ export const TextInputField = forwardRef<HTMLDivElement, ITextInputFieldProps>(
     const inputRenderer: ITextFieldProps<HTMLInputElement>['inputRenderer'] = ({
       sxf,
       ref,
-      forwardedHtmlProps,
+      forwardedProps,
       modifiers,
       onValueChange,
     }) => (
@@ -53,9 +53,9 @@ export const TextInputField = forwardRef<HTMLDivElement, ITextInputFieldProps>(
             )}
             type={type === 'password' ? (unmasked ? 'text' : 'password') : type}
             disabled={modifiers.disabled}
-            {...forwardedHtmlProps}
+            {...forwardedProps}
             onChange={(event) => {
-              forwardedHtmlProps?.onChange?.(event);
+              forwardedProps?.onChange?.(event);
               onValueChange?.(event.target.value, event.target);
             }}
             ref={ref}
@@ -104,7 +104,7 @@ export const TextInputField = forwardRef<HTMLDivElement, ITextInputFieldProps>(
         ref={forwardedRef}
         inputRef={inputHandleRef}
         onClear={handleClear}
-        forwardHtmlProps
+        forwardProps
         inputRenderer={inputRenderer}
       />
     );

@@ -21,9 +21,9 @@ import {
 } from '@floating-ui/react';
 
 import type {
-  IRendererWithForwardedHtmlProps,
-  IForwardableHtmlProps,
-} from '@/helpers/react/forwardableHtmlPropsTypes';
+  IRendererWithForwardedProps,
+  IForwardableProps,
+} from '@/helpers/react/forwardablePropsTypes';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { Portal } from '@/components/utils/Portal';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
@@ -45,8 +45,8 @@ export type ITooltipBaseChildrenRendererProps = {
 };
 
 export type ITooltipBaseProps<TForwardedProps extends object = object> =
-  IForwardableHtmlProps & {
-    contentRenderer: IRendererWithForwardedHtmlProps<
+  IForwardableProps & {
+    contentRenderer: IRendererWithForwardedProps<
       ITooltipBaseContentRendererProps,
       TForwardedProps
     >;
@@ -116,7 +116,7 @@ export const TooltipBase = <TForwardedProps extends object = object>(
     defaultIsOpen,
     cursor: cursorType = false,
     onOpenChange,
-    forwardHtmlProps,
+    forwardProps,
     persistent,
     ...other
   } = props;
@@ -220,11 +220,11 @@ export const TooltipBase = <TForwardedProps extends object = object>(
                   ? styles.transformOrigin(cursor.getTransformOrigin(floating))
                   : undefined,
               )}
-              {...(forwardHtmlProps ? undefined : other)}
+              {...(forwardProps ? undefined : other)}
             >
               {isFunction(contentRenderer)
                 ? contentRenderer({
-                    forwardedHtmlProps: forwardHtmlProps
+                    forwardedProps: forwardProps
                       ? (other as TForwardedProps)
                       : undefined,
                     renderCursor,

@@ -28,9 +28,9 @@ export const PlainTooltip = forwardRef<HTMLDivElement, IPlainTooltipProps>(
     const { ...other } = props;
 
     const renderContent: ITooltipBaseProps<IPlainTooltipForwardedProps>['contentRenderer'] =
-      ({ renderCursor, forwardedHtmlProps }) => (
+      ({ renderCursor, forwardedProps }) => (
         <PlainTooltipContent
-          {...forwardedHtmlProps!}
+          {...forwardedProps!}
           ref={forwardedRef}
           renderCursor={renderCursor}
         />
@@ -41,7 +41,7 @@ export const PlainTooltip = forwardRef<HTMLDivElement, IPlainTooltipProps>(
         {...other}
         contentRenderer={renderContent}
         cursor='arrow'
-        forwardHtmlProps
+        forwardProps
       />
     );
   },

@@ -25,9 +25,9 @@ export const RichTooltip = forwardRef<HTMLDivElement, IRichTooltipProps>(
     const { placement = 'bottom-end', ...other } = props;
 
     const renderContent: ITooltipBaseProps<IRichTooltipForwardedProps>['contentRenderer'] =
-      ({ renderCursor, forwardedHtmlProps, onClose }) => (
+      ({ renderCursor, forwardedProps, onClose }) => (
         <RichTooltipContent
-          {...forwardedHtmlProps!}
+          {...forwardedProps!}
           ref={forwardedRef}
           renderCursor={renderCursor}
           onClose={onClose}
@@ -40,7 +40,7 @@ export const RichTooltip = forwardRef<HTMLDivElement, IRichTooltipProps>(
         placement={placement}
         contentRenderer={renderContent}
         cursor='dot'
-        forwardHtmlProps
+        forwardProps
       />
     );
   },
