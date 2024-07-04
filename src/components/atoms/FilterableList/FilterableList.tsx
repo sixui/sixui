@@ -17,7 +17,7 @@ export type IFilterableListItem = {
   icon?: React.ReactNode;
   imageUrl?: string;
   video?: Array<{ type: string; src: string }>;
-  label: string;
+  label?: string;
   supportingText?: string;
   trailingSupportingText?: string;
   value: string;
@@ -57,19 +57,23 @@ const highlightQueryInText = (
 const getFilterableListItemProps = <TElement extends HTMLElement>(
   item: IFilterableListItem,
   { modifiers, query }: IFilterableItemRendererProps<TElement>,
-): IListItemOwnProps & React.HTMLAttributes<HTMLElement> => ({
-  disabled: modifiers.disabled,
-  leading: item.leading,
-  leadingIcon: item.icon,
-  leadingImage: item.imageUrl,
-  leadingVideo: item.video,
-  supportingText: highlightQueryInText(item.supportingText, query),
-  trailingSupportingText: highlightQueryInText(
-    item.trailingSupportingText,
-    query,
-  ),
-  children: highlightQueryInText(item.label, query),
-});
+): IListItemOwnProps & React.HTMLAttributes<HTMLElement> => {
+  const label = item.label ?? item.value;
+
+  return {
+    disabled: modifiers.disabled,
+    leading: item.leading,
+    leadingIcon: item.icon,
+    leadingImage: item.imageUrl,
+    leadingVideo: item.video,
+    supportingText: highlightQueryInText(item.supportingText, query),
+    trailingSupportingText: highlightQueryInText(
+      item.trailingSupportingText,
+      query,
+    ),
+    children: highlightQueryInText(label, query),
+  };
+};
 
 /**
  * Compares two items for equality.
@@ -85,7 +89,7 @@ export const areFilterableListItemsEqual = (
 export const filterFilterableListItem: IFilterableItemPredicate<
   IFilterableListItem
 > = (query, item, _index, exactMatch) => {
-  const normalizedLabel = item.label.toLowerCase();
+  const normalizedLabel = (item.label ?? item.value).toLowerCase();
   const normalizedSupportingText = item.supportingText?.toLowerCase();
   const normalizedTrailingSupportingText =
     item.trailingSupportingText?.toLowerCase();
@@ -99,7 +103,7 @@ export const filterFilterableListItem: IFilterableItemPredicate<
 };
 
 export const getFilterableListItemLabel = (item: IFilterableListItem): string =>
-  item.label;
+  item.label ?? item.value;
 
 export const isFilterableListItemDisabled = (
   item: IFilterableListItem,

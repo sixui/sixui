@@ -90,3 +90,5 @@ export * from './hooks/useId';
 
 // themes
 export * from './themes';
+
+export * from './helpers/types';
