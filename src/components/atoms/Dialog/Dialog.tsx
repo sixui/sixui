@@ -49,6 +49,7 @@ export const Dialog: IDialog = forwardRef(function Dialog<
     isOpen: isOpenProp,
     disabled,
     onOpenChange,
+    nonDismissable,
     ...other
   } = props as IWithAsProp<IDialogOwnProps>;
 
@@ -78,6 +79,7 @@ export const Dialog: IDialog = forwardRef(function Dialog<
   const role = useRole(floating.context);
   const dismiss = useDismiss(floating.context, {
     outsidePressEvent: 'mousedown',
+    enabled: !nonDismissable,
   });
   const interactions = useInteractions([click, role, dismiss]);
   const transitionStatus = useTransitionStatus(floating.context, {

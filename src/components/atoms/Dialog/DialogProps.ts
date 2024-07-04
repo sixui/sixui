@@ -63,6 +63,8 @@ export type IDialogOwnProps = IOmit<IDialogContentOwnProps, 'onClose'> &
       event?: Event,
       reason?: OpenChangeReason,
     ) => void;
+
+    nonDismissable?: boolean;
   };
 
 export type IDialogProps<

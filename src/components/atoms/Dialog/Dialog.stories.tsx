@@ -149,4 +149,35 @@ export const Form: IStory = {
   args: defaultArgs,
 };
 
+export const NonDismissable: IStory = {
+  render: (props) => <Dialog {...props} />,
+  args: {
+    ...defaultArgs,
+    headline: 'Permanently delete?',
+    children:
+      'Deleting the selected messages will also remove them from all synced devices.',
+    actions: ({ close }) => (
+      <>
+        <Button variant='text' onClick={close}>
+          Cancel
+        </Button>
+        <Button
+          variant='danger'
+          onClick={(...args) =>
+            sbHandleEvent('delete', args, 1000).then((args) => close(...args))
+          }
+        >
+          Delete
+        </Button>
+      </>
+    ),
+    trigger: ({ setRef, getProps }) => (
+      <Button {...getProps()} ref={setRef}>
+        Open
+      </Button>
+    ),
+    nonDismissable: true,
+  },
+};
+
 export default meta;
