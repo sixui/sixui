@@ -1,4 +1,5 @@
 import type { IOmit } from '@/helpers/types';
+import type { IFieldBaseVariant } from '@/components/atoms/FieldBase';
 import { ListItem } from '@/components/atoms/ListItem';
 import { TextInputField } from '@/components/atoms/TextInputField';
 import { MenuList } from '@/components/atoms/MenuList';
@@ -31,6 +32,7 @@ export type ISelectBaseProps<TItem> = IOmit<
     selectedItem?: TItem,
   ) => IFieldOwnProps;
   clearable?: boolean;
+  variant?: IFieldBaseVariant | false;
 };
 
 export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
@@ -47,6 +49,7 @@ export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
     canFilter,
     getValueFieldProps,
     clearable,
+    variant,
     ...other
   } = props;
 
@@ -109,6 +112,7 @@ export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
             renderProps.isOpen || !!singleFilterableListBase.selectedItem
           }
           disabled={other.disabled}
+          variant={variant}
           {...renderProps.getTriggerProps()}
           {...getValueFieldProps?.(
             renderProps,

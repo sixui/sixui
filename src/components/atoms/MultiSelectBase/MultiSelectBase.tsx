@@ -1,6 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import type { IOmit } from '@/helpers/types';
+import type { IFieldBaseVariant } from '@/components/atoms/FieldBase';
 import type { IFilterableItemRenderer } from '@/components/atoms/FilterableListBase';
 import { ListItem } from '@/components/atoms/ListItem';
 import { TextInputField } from '@/components/atoms/TextInputField';
@@ -32,6 +33,7 @@ export type IMultiSelectBaseProps<TItem> = IOmit<
     selectedItem: TItem,
   ) => IInputChipProps;
   clearable?: boolean;
+  variant?: IFieldBaseVariant | false;
 };
 
 // TODO: migrate i n theme
@@ -65,6 +67,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
     onChange,
     getValueFieldProps,
     clearable,
+    variant,
     ...other
   } = props;
 
@@ -121,6 +124,8 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
             !!renderProps.query
           }
           innerStyles={{ field: fieldStyles }}
+          spellCheck='false'
+          variant={variant}
           {...renderProps.getInputFilterProps(renderProps.getTriggerProps())}
           ref={renderProps.setTriggerRef}
           inputRef={renderProps.inputFilterRef}
@@ -152,7 +157,6 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
                 )
               : undefined
           }
-          spellCheck='false'
         />
       )}
     </FloatingFilterableListBase>

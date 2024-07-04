@@ -1,4 +1,5 @@
 import type { IOmit } from '@/helpers/types';
+import type { IFieldBaseVariant } from '@/components/atoms/FieldBase';
 import { ListItem } from '@/components/atoms/ListItem';
 import {
   TextInputField,
@@ -37,6 +38,7 @@ export type ISuggestBaseProps<TItem> = IOmit<
     selectedItem?: TItem,
   ) => ITextInputFieldProps;
   clearable?: boolean;
+  variant?: IFieldBaseVariant;
 };
 
 export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
@@ -52,6 +54,7 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
     onChange,
     getValueFieldProps,
     clearable,
+    variant,
     ...other
   } = props;
 
@@ -115,6 +118,7 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
               ? itemLabel(singleFilterableListBase.selectedItem)
               : ''
           }
+          variant={variant}
           {...getValueFieldProps?.(
             renderProps,
             singleFilterableListBase.selectedItem,
