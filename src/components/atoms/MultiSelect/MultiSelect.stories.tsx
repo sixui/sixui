@@ -30,6 +30,15 @@ export const DefaultValue: IStory = {
   },
 };
 
+export const Clearable: IStory = {
+  render: (props) => <MultiSelect {...props} />,
+  args: {
+    ...defaultArgs,
+    defaultValue: [fruits[1], fruits[3]],
+    clearable: true,
+  },
+};
+
 export const DefaultQuery: IStory = {
   render: (props) => <MultiSelect {...props} />,
   args: {

@@ -32,6 +32,15 @@ export const DefaultValue: IStory = {
   },
 };
 
+export const Clearable: IStory = {
+  render: (props) => <SuggestBaseExample {...props} />,
+  args: {
+    ...defaultArgs,
+    defaultValue: TOP_100_MOVIES[2],
+    clearable: true,
+  },
+};
+
 export const CanCreate: IStory = {
   render: (props) => <SuggestBaseExample {...props} />,
   args: {

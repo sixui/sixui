@@ -36,6 +36,7 @@ export type ISuggestBaseProps<TItem> = IOmit<
     renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
     selectedItem?: TItem,
   ) => ITextInputFieldProps;
+  clearable?: boolean;
 };
 
 export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
@@ -50,6 +51,7 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
     defaultValue,
     onChange,
     getValueFieldProps,
+    clearable,
     ...other
   } = props;
 
@@ -83,7 +85,7 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
           end={
             <FilterableListBaseFieldEnd
               onClear={
-                singleFilterableListBase.selectedItem
+                clearable && singleFilterableListBase.selectedItem
                   ? (event) =>
                       singleFilterableListBase.handleClear(
                         renderProps.afterItemsRemove,

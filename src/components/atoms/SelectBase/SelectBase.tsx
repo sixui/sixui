@@ -30,6 +30,7 @@ export type ISelectBaseProps<TItem> = IOmit<
     renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
     selectedItem?: TItem,
   ) => IFieldOwnProps;
+  clearable?: boolean;
 };
 
 export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
@@ -45,6 +46,7 @@ export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
     onChange,
     canFilter,
     getValueFieldProps,
+    clearable,
     ...other
   } = props;
 
@@ -92,7 +94,7 @@ export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
           end={
             <FilterableListBaseFieldEnd
               onClear={
-                singleFilterableListBase.selectedItem
+                clearable && singleFilterableListBase.selectedItem
                   ? (event) =>
                       singleFilterableListBase.handleClear(
                         renderProps.afterItemsRemove,

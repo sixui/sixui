@@ -31,6 +31,7 @@ export type IMultiSelectBaseProps<TItem> = IOmit<
     renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
     selectedItem: TItem,
   ) => IInputChipProps;
+  clearable?: boolean;
 };
 
 // TODO: migrate i n theme
@@ -63,6 +64,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
     defaultValue,
     onChange,
     getValueFieldProps,
+    clearable,
     ...other
   } = props;
 
@@ -102,7 +104,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
           end={
             <FilterableListBaseFieldEnd
               onClear={
-                multiFilterableListBase.selectedItems.length
+                clearable && multiFilterableListBase.selectedItems.length
                   ? (event) =>
                       multiFilterableListBase.handleClear(
                         renderProps.afterItemsRemove,

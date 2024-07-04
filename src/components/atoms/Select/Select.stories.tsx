@@ -30,6 +30,15 @@ export const DefaultValue: IStory = {
   },
 };
 
+export const Clearable: IStory = {
+  render: (props) => <Select {...props} />,
+  args: {
+    ...defaultArgs,
+    defaultValue: fruits[1],
+    clearable: true,
+  },
+};
+
 export const CanFilter: IStory = {
   render: (props) => <Select {...props} />,
   args: {

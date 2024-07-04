@@ -30,6 +30,15 @@ export const DefaultValue: IStory = {
   },
 };
 
+export const Clearable: IStory = {
+  render: (props) => <Suggest {...props} />,
+  args: {
+    ...defaultArgs,
+    defaultValue: fruits[1],
+    clearable: true,
+  },
+};
+
 export const InitialContent: IStory = {
   render: (props) => <Suggest {...props} />,
   args: {

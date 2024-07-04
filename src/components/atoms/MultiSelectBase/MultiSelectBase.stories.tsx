@@ -32,6 +32,15 @@ export const DefaultValue: IStory = {
   },
 };
 
+export const Clearable: IStory = {
+  render: (props) => <MultiSelectBaseExample {...props} />,
+  args: {
+    ...defaultArgs,
+    defaultValue: [TOP_100_MOVIES[2], TOP_100_MOVIES[5]],
+    clearable: true,
+  },
+};
+
 export const DefaultQuery: IStory = {
   render: (props) => <MultiSelectBaseExample {...props} />,
   args: {
