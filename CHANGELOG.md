@@ -1,3 +1,15 @@
+# v0.0.275 (Fri Jul 05 2024)
+
+#### ⚠️ Pushed to `main`
+
+- chore: remove support from babel-plugin-inline-react-svg ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.274 (Fri Jul 05 2024)
 
 #### ⚠️ Pushed to `main`
