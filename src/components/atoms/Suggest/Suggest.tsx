@@ -23,14 +23,17 @@ export type ISuggestProps = IOmit<
 };
 
 export const Suggest = forwardRef<HTMLInputElement, ISuggestProps>(
-  function MultiSelect(props, fowardedRef) {
+  function Suggest(props, fowardedRef) {
     const { getValueFieldProps, value, defaultValue, onChange, ...other } =
       props;
     const defaultItemRef = useRef(
       other.items.find((item) => item.value === defaultValue) ?? undefined,
     );
     const selectedItem = useMemo(
-      () => other.items.find((item) => item.value === value) ?? undefined,
+      () =>
+        value
+          ? other.items.find((item) => item.value === value) ?? undefined
+          : undefined,
       [other.items, value],
     );
 

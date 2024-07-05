@@ -30,7 +30,10 @@ export const Select = forwardRef<HTMLDivElement, ISelectProps>(
       other.items.find((item) => item.value === defaultValue) ?? undefined,
     );
     const selectedItem = useMemo(
-      () => other.items.find((item) => item.value === value) ?? undefined,
+      () =>
+        value
+          ? other.items.find((item) => item.value === value) ?? undefined
+          : undefined,
       [other.items, value],
     );
 
