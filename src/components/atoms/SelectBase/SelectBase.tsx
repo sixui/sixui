@@ -20,9 +20,9 @@ export type ISelectBaseProps<TItem> = IOmit<
   IFloatingFilterableListBaseProps<TItem, HTMLDivElement>,
   'onItemSelect' | 'renderer' | 'listRenderer' | 'itemRenderer' | 'children'
 > & {
-  value?: TItem;
-  defaultValue?: TItem;
-  onChange?: (value?: TItem) => void;
+  selectedItem?: TItem;
+  defaultItem?: TItem;
+  onItemChange?: (item?: TItem) => void;
   items: Array<TItem>;
   itemRenderer: IFilterableItemRenderer<TItem, HTMLElement>;
   itemLabel: (item: TItem) => string;
@@ -43,9 +43,9 @@ export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
     items,
     itemRenderer,
     itemLabel,
-    value,
-    defaultValue,
-    onChange,
+    selectedItem,
+    defaultItem,
+    onItemChange,
     canFilter,
     getValueFieldProps,
     clearable,
@@ -56,10 +56,10 @@ export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
   const singleFilterableListBase = useSingleFilterableListBase({
     items,
     itemRenderer,
-    value,
-    defaultValue,
+    selectedItem,
+    defaultItem,
     itemsEqual: other.itemsEqual,
-    onChange,
+    onItemChange,
   });
 
   return (

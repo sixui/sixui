@@ -1,5 +1,5 @@
 import type { IOmit } from '@/helpers/types';
-import { forwardRef } from 'react';
+import { forwardRef, useMemo, useRef } from 'react';
 import {
   areFilterableListItemsEqual,
   filterFilterableListItem,
@@ -15,24 +15,50 @@ import {
 
 export type IMultiSelectProps = IOmit<
   IMultiSelectBaseProps<IFilterableListItem>,
-  'itemRenderer' | 'itemLabel'
->;
+  | 'itemRenderer'
+  | 'itemLabel'
+  | 'defaultItems'
+  | 'selectedItems'
+  | 'onItemsChange'
+> & {
+  values?: Array<string>;
+  defaultValues?: Array<string>;
+  onChange?: (values?: Array<string>) => void;
+};
 
 export const MultiSelect = forwardRef<HTMLInputElement, IMultiSelectProps>(
   function MultiSelect(props, fowardedRef) {
+    const { getValueFieldProps, values, defaultValues, onChange, ...other } =
+      props;
+    const defaultItemsRef = useRef(
+      defaultValues
+        ? other.items.filter((item) => defaultValues?.includes(item.value))
+        : undefined,
+    );
+    const selectedItems = useMemo(
+      () =>
+        values
+          ? other.items.filter((item) => values?.includes(item.value))
+          : undefined,
+      [other.items, values],
+    );
+
     return (
       <MultiSelectBase<IFilterableListItem>
-        itemRenderer={renderFilterableListItem}
-        itemLabel={getFilterableListItemLabel}
         itemsEqual={areFilterableListItemsEqual}
         itemPredicate={filterFilterableListItem}
         itemDisabled={isFilterableListItemDisabled}
-        {...props}
-        getValueFieldProps={(_renderProps, item) => ({
+        {...other}
+        itemRenderer={renderFilterableListItem}
+        itemLabel={getFilterableListItemLabel}
+        getValueFieldProps={(renderProps, item) => ({
           icon: item.icon,
           imageUrl: item.imageUrl,
-          ...props.getValueFieldProps?.(_renderProps, item),
+          ...getValueFieldProps?.(renderProps, item),
         })}
+        defaultItems={defaultItemsRef.current}
+        selectedItems={selectedItems}
+        onItemsChange={(items) => onChange?.(items.map((item) => item.value))}
         ref={fowardedRef}
       />
     );

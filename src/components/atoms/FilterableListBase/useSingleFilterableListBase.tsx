@@ -17,10 +17,10 @@ export type IUseSingleFilterableListBaseProps<
 > = {
   items: Array<TItem>;
   itemRenderer: IFilterableItemRenderer<TItem, TElement>;
-  value?: TItem;
-  defaultValue?: TItem;
+  selectedItem?: TItem;
+  defaultItem?: TItem;
   itemsEqual?: IFilterableItemsEqualProp<TItem>;
-  onChange?: (value?: TItem) => void;
+  onItemChange?: (item?: TItem) => void;
 };
 
 export type IUseSingleFilterableListBaseResult<
@@ -49,8 +49,8 @@ export const useSingleFilterableListBase = <
   const [items, setItems] = useState(props.items);
   const [createdItems, setCreatedItems] = useState<Array<TItem>>([]);
   const [selectedItem, setSelectedItem] = useControlledValue({
-    controlled: props.value,
-    default: props.defaultValue,
+    controlled: props.selectedItem,
+    default: props.defaultItem,
     name: 'useSingleFilterableListBase',
   });
 
@@ -94,7 +94,7 @@ export const useSingleFilterableListBase = <
 
     setCreatedItems(step2Result.createdItems);
     setItems(step2Result.items);
-    props.onChange?.(newSelectedItem);
+    props.onItemChange?.(newSelectedItem);
 
     const createdIndex = step2Result.createdItems.indexOf(newSelectedItem);
     const selectedIndex =
@@ -115,7 +115,7 @@ export const useSingleFilterableListBase = <
     event?.stopPropagation();
 
     if (selectedItem) {
-      props.onChange?.(undefined);
+      props.onItemChange?.(undefined);
       afterItemsRemove([selectedItem], event);
       setSelectedItem(undefined);
     }

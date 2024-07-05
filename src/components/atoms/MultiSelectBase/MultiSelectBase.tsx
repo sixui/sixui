@@ -22,9 +22,9 @@ export type IMultiSelectBaseProps<TItem> = IOmit<
   IFloatingFilterableListBaseProps<TItem, HTMLElement>,
   'onItemSelect' | 'renderer' | 'listRenderer' | 'itemRenderer' | 'children'
 > & {
-  value?: Array<TItem>;
-  defaultValue?: Array<TItem>;
-  onChange?: (value: Array<TItem>) => void;
+  selectedItems?: Array<TItem>;
+  defaultItems?: Array<TItem>;
+  onItemsChange?: (value: Array<TItem>) => void;
   items: Array<TItem>;
   itemRenderer: IFilterableItemRenderer<TItem, HTMLElement>;
   itemLabel: (item: TItem) => string;
@@ -36,7 +36,7 @@ export type IMultiSelectBaseProps<TItem> = IOmit<
   variant?: IFieldBaseVariant | false;
 };
 
-// TODO: migrate i n theme
+// TODO: migrate in theme
 const styles = stylex.create({
   chip: {
     marginRight: '0.5rem',
@@ -62,9 +62,9 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
     items,
     itemRenderer,
     itemLabel,
-    value,
-    defaultValue,
-    onChange,
+    selectedItems,
+    defaultItems,
+    onItemsChange,
     getValueFieldProps,
     clearable,
     variant,
@@ -74,10 +74,10 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
   const multiFilterableListBase = useMultiFilterableListBase({
     items,
     itemRenderer,
-    value,
-    defaultValue,
+    selectedItems,
+    defaultItems,
     itemsEqual: other.itemsEqual,
-    onChange,
+    onItemsChange,
   });
 
   return (
@@ -145,7 +145,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
                       }}
                       onDelete={(event) => {
                         event.stopPropagation();
-                        onChange?.(
+                        onItemsChange?.(
                           multiFilterableListBase.deselectItemAtIndex(index),
                         );
                         renderProps.afterItemsRemove([selectedItem], event);

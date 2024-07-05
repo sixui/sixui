@@ -26,7 +26,7 @@ export const DefaultValue: IStory = {
   render: (props) => <MultiSelect {...props} />,
   args: {
     ...defaultArgs,
-    defaultValue: [fruits[1], fruits[3]],
+    defaultValues: [fruits[1].value, fruits[3].value],
   },
 };
 
@@ -34,7 +34,7 @@ export const Clearable: IStory = {
   render: (props) => <MultiSelect {...props} />,
   args: {
     ...defaultArgs,
-    defaultValue: [fruits[1], fruits[3]],
+    defaultValues: [fruits[1].value, fruits[3].value],
     clearable: true,
   },
 };

@@ -1,5 +1,5 @@
 import type { IOmit } from '@/helpers/types';
-import { forwardRef } from 'react';
+import { forwardRef, useMemo, useRef } from 'react';
 import {
   areFilterableListItemsEqual,
   filterFilterableListItem,
@@ -15,23 +15,40 @@ import {
 
 export type ISelectProps = IOmit<
   ISelectBaseProps<IFilterableListItem>,
-  'itemRenderer' | 'itemLabel'
->;
+  'itemRenderer' | 'itemLabel' | 'defaultItem' | 'selectedItem' | 'onItemChange'
+> & {
+  value?: string;
+  defaultValue?: string;
+  onChange?: (value?: string) => void;
+};
 
 export const Select = forwardRef<HTMLDivElement, ISelectProps>(
   function Select(props, fowardedRef) {
+    const { getValueFieldProps, value, defaultValue, onChange, ...other } =
+      props;
+    const defaultItemRef = useRef(
+      other.items.find((item) => item.value === defaultValue) ?? undefined,
+    );
+    const selectedItem = useMemo(
+      () => other.items.find((item) => item.value === value) ?? undefined,
+      [other.items, value],
+    );
+
     return (
       <SelectBase<IFilterableListItem>
-        itemRenderer={renderFilterableListItem}
-        itemLabel={getFilterableListItemLabel}
         itemsEqual={areFilterableListItemsEqual}
         itemPredicate={filterFilterableListItem}
         itemDisabled={isFilterableListItemDisabled}
-        {...props}
-        getValueFieldProps={(_renderProps, selectedItem) => ({
+        {...other}
+        itemRenderer={renderFilterableListItem}
+        itemLabel={getFilterableListItemLabel}
+        getValueFieldProps={(renderProps, selectedItem) => ({
           leadingIcon: selectedItem?.icon,
-          ...props.getValueFieldProps?.(_renderProps, selectedItem),
+          ...getValueFieldProps?.(renderProps, selectedItem),
         })}
+        defaultItem={defaultItemRef.current}
+        selectedItem={selectedItem}
+        onItemChange={(item) => onChange?.(item?.value)}
         ref={fowardedRef}
       />
     );

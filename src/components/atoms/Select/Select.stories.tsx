@@ -26,7 +26,7 @@ export const DefaultValue: IStory = {
   render: (props) => <Select {...props} />,
   args: {
     ...defaultArgs,
-    defaultValue: fruits[1],
+    defaultValue: fruits[1].value,
   },
 };
 
@@ -34,7 +34,7 @@ export const Clearable: IStory = {
   render: (props) => <Select {...props} />,
   args: {
     ...defaultArgs,
-    defaultValue: fruits[1],
+    defaultValue: fruits[1].value,
     clearable: true,
   },
 };

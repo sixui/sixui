@@ -27,9 +27,9 @@ export type ISuggestBaseProps<TItem> = IOmit<
   | 'children'
   | 'defaultQuery'
 > & {
-  value?: TItem;
-  defaultValue?: TItem;
-  onChange: (value?: TItem) => void;
+  selectedItem?: TItem;
+  defaultItem?: TItem;
+  onItemChange: (item?: TItem) => void;
   items: Array<TItem>;
   itemRenderer: IFilterableItemRenderer<TItem, HTMLElement>;
   itemLabel: (item: TItem) => string;
@@ -49,9 +49,9 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
     items,
     itemRenderer,
     itemLabel,
-    value,
-    defaultValue,
-    onChange,
+    selectedItem,
+    defaultItem,
+    onItemChange,
     getValueFieldProps,
     clearable,
     variant,
@@ -61,10 +61,10 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
   const singleFilterableListBase = useSingleFilterableListBase({
     items,
     itemRenderer,
-    value,
-    defaultValue,
+    selectedItem,
+    defaultItem,
     itemsEqual: other.itemsEqual,
-    onChange,
+    onItemChange,
   });
 
   return (

@@ -15,7 +15,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onChange: (...args) => void sbHandleEvent('onChange', args),
+  onItemChange: (...args) => void sbHandleEvent('onChange', args),
   matchTargetWidth: true,
 } satisfies Partial<ISelectBaseExampleProps>;
 
@@ -28,7 +28,7 @@ export const DefaultValue: IStory = {
   render: (props) => <SelectBaseExample {...props} />,
   args: {
     ...defaultArgs,
-    defaultValue: TOP_100_MOVIES[2],
+    defaultItem: TOP_100_MOVIES[2],
   },
 };
 
@@ -36,7 +36,7 @@ export const Clearable: IStory = {
   render: (props) => <SelectBaseExample {...props} />,
   args: {
     ...defaultArgs,
-    defaultValue: TOP_100_MOVIES[2],
+    defaultItem: TOP_100_MOVIES[2],
     clearable: true,
   },
 };

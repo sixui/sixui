@@ -17,10 +17,10 @@ export type IUseMultiFilterableListBaseProps<
 > = {
   items: Array<TItem>;
   itemRenderer: IFilterableItemRenderer<TItem, TElement>;
-  value?: Array<TItem>;
-  defaultValue?: Array<TItem>;
+  selectedItems?: Array<TItem>;
+  defaultItems?: Array<TItem>;
   itemsEqual?: IFilterableItemsEqualProp<TItem>;
-  onChange?: (value: Array<TItem>) => void;
+  onItemsChange?: (items: Array<TItem>) => void;
 };
 
 export type IUseMultiFilterableListBaseResult<
@@ -52,8 +52,8 @@ export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
   const [items, setItems] = useState(props.items);
   const [createdItems, setCreatedItems] = useState<Array<TItem>>([]);
   const [selectedItems, setSelectedItems] = useControlledValue({
-    controlled: props.value,
-    default: props.defaultValue ?? [],
+    controlled: props.selectedItems,
+    default: props.defaultItems ?? [],
     name: 'useMultiFilterableListBase',
   });
   const [focusedSelectedItemIndex, setFocusedSelectedItemIndex] =
@@ -139,17 +139,17 @@ export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
     if (isItemSelected(selectedItem)) {
       const selectedIndex = getSelectedItemIndex(selectedItem);
       if (selectedIndex !== undefined) {
-        props.onChange?.(deselectItemAtIndex(selectedIndex));
+        props.onItemsChange?.(deselectItemAtIndex(selectedIndex));
       }
     } else {
-      props.onChange?.(selectItem(selectedItem));
+      props.onItemsChange?.(selectItem(selectedItem));
     }
 
     return undefined;
   };
 
   const handleItemRemoveAtIndex = (index: number): void => {
-    props.onChange?.(deselectItemAtIndex(index));
+    props.onItemsChange?.(deselectItemAtIndex(index));
   };
 
   const handleItemRemoveFocused = (): void => {
@@ -206,7 +206,7 @@ export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
     event?.stopPropagation();
 
     if (selectedItems.length) {
-      props.onChange?.([]);
+      props.onItemsChange?.([]);
       afterItemsRemove(selectedItems, event);
       setSelectedItems([]);
     }
