@@ -20,12 +20,19 @@ export type ISuggestProps = IOmit<
   value?: string;
   defaultValue?: string;
   onChange?: (value?: string) => void;
+  emptyLabel?: string;
 };
 
 export const Suggest = forwardRef<HTMLInputElement, ISuggestProps>(
   function Suggest(props, fowardedRef) {
-    const { getValueFieldProps, value, defaultValue, onChange, ...other } =
-      props;
+    const {
+      getValueFieldProps,
+      value,
+      defaultValue,
+      onChange,
+      emptyLabel,
+      ...other
+    } = props;
     const defaultItemRef = useRef(
       other.items.find((item) => item.value === defaultValue) ?? undefined,
     );
@@ -42,7 +49,7 @@ export const Suggest = forwardRef<HTMLInputElement, ISuggestProps>(
         itemsEqual={areFilterableListItemsEqual}
         itemPredicate={filterFilterableListItem}
         itemDisabled={isFilterableListItemDisabled}
-        emptyItem={{ label: '', placeholder: '—', value: '' }}
+        emptyItem={{ label: emptyLabel, placeholder: '—', value: '' }}
         {...other}
         itemRenderer={renderFilterableListItem}
         itemLabel={getFilterableListItemLabel}
