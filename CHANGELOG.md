@@ -1,3 +1,15 @@
+# v0.0.280 (Fri Jul 05 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: Select and Suggest can have a no-results label ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.279 (Fri Jul 05 2024)
 
 #### ⚠️ Pushed to `main`
