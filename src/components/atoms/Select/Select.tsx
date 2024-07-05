@@ -42,6 +42,7 @@ export const Select = forwardRef<HTMLDivElement, ISelectProps>(
         itemsEqual={areFilterableListItemsEqual}
         itemPredicate={filterFilterableListItem}
         itemDisabled={isFilterableListItemDisabled}
+        emptyItem={{ label: '', placeholder: '—', value: '' }}
         {...other}
         itemRenderer={renderFilterableListItem}
         itemLabel={getFilterableListItemLabel}

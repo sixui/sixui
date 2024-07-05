@@ -11,7 +11,7 @@ import {
 import {
   useSingleFilterableListBase,
   FilterableListBaseFieldEnd,
-  type IFilterableItemRenderer,
+  type IUseSingleFilterableListBaseProps,
 } from '@/components/atoms/FilterableListBase';
 import {
   FloatingFilterableListBase,
@@ -22,14 +22,15 @@ import { fixedForwardRef } from '@/helpers/fixedForwardRef';
 
 export type ISelectBaseProps<TItem> = IContainerProps<IFieldStyleKey> &
   IOmit<
-    IFloatingFilterableListBaseProps<TItem, HTMLDivElement>,
-    'onItemSelect' | 'renderer' | 'listRenderer' | 'itemRenderer' | 'children'
-  > & {
-    selectedItem?: TItem;
-    defaultItem?: TItem;
-    onItemChange?: (item?: TItem) => void;
-    items: Array<TItem>;
-    itemRenderer: IFilterableItemRenderer<TItem, HTMLElement>;
+    IFloatingFilterableListBaseProps<TItem, HTMLElement>,
+    | 'onItemSelect'
+    | 'renderer'
+    | 'listRenderer'
+    | 'itemRenderer'
+    | 'itemsEqual'
+    | 'children'
+  > &
+  IUseSingleFilterableListBaseProps<TItem, HTMLElement> & {
     itemLabel: (item: TItem) => string;
     canFilter?: boolean;
     getValueFieldProps?: (
@@ -57,16 +58,21 @@ export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
     getValueFieldProps,
     clearable,
     variant,
+    emptyItem,
+    canBeEmptied: canBeEmptiedProp,
     ...other
   } = props;
 
+  const canBeEmptied = canBeEmptiedProp || clearable;
   const singleFilterableListBase = useSingleFilterableListBase({
     items,
     itemRenderer,
-    selectedItem,
+    selectedItem: selectedItem ?? emptyItem,
     defaultItem,
     itemsEqual: other.itemsEqual,
     onItemChange,
+    emptyItem,
+    canBeEmptied,
   });
 
   return (
@@ -104,7 +110,9 @@ export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
           end={
             <FilterableListBaseFieldEnd
               onClear={
-                clearable && singleFilterableListBase.selectedItem
+                clearable &&
+                singleFilterableListBase.selectedItem &&
+                singleFilterableListBase.selectedItem !== emptyItem
                   ? (event) =>
                       singleFilterableListBase.handleClear(
                         renderProps.afterItemsRemove,

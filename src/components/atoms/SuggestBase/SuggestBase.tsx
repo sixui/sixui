@@ -10,7 +10,7 @@ import { MenuList } from '@/components/atoms/MenuList';
 import {
   useSingleFilterableListBase,
   FilterableListBaseFieldEnd,
-  type IFilterableItemRenderer,
+  type IUseSingleFilterableListBaseProps,
 } from '@/components/atoms/FilterableListBase';
 import {
   FloatingFilterableListBase,
@@ -26,14 +26,11 @@ export type ISuggestBaseProps<TItem> = IContainerProps<ITextFieldBaseStyleKey> &
     | 'renderer'
     | 'listRenderer'
     | 'itemRenderer'
+    | 'itemsEqual'
     | 'children'
     | 'defaultQuery'
-  > & {
-    selectedItem?: TItem;
-    defaultItem?: TItem;
-    onItemChange: (item?: TItem) => void;
-    items: Array<TItem>;
-    itemRenderer: IFilterableItemRenderer<TItem, HTMLElement>;
+  > &
+  IUseSingleFilterableListBaseProps<TItem, HTMLElement> & {
     itemLabel: (item: TItem) => string;
     getValueFieldProps?: (
       renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
@@ -59,16 +56,21 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
     getValueFieldProps,
     clearable,
     variant,
+    emptyItem,
+    canBeEmptied: canBeEmptiedProp,
     ...other
   } = props;
 
+  const canBeEmptied = canBeEmptiedProp || clearable;
   const singleFilterableListBase = useSingleFilterableListBase({
     items,
     itemRenderer,
-    selectedItem,
+    selectedItem: selectedItem ?? emptyItem,
     defaultItem,
     itemsEqual: other.itemsEqual,
     onItemChange,
+    emptyItem,
+    canBeEmptied,
   });
 
   return (
@@ -92,7 +94,9 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
           end={
             <FilterableListBaseFieldEnd
               onClear={
-                clearable && singleFilterableListBase.selectedItem
+                clearable &&
+                singleFilterableListBase.selectedItem &&
+                singleFilterableListBase.selectedItem !== emptyItem
                   ? (event) =>
                       singleFilterableListBase.handleClear(
                         renderProps.afterItemsRemove,

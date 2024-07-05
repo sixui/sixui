@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ListItem } from '@/components/atoms/ListItem';
@@ -80,6 +81,30 @@ export const Disabled: IStory = {
     ...defaultArgs,
     canFilter: true,
     disabled: true,
+  },
+};
+
+const ControlledSelect: React.FC<ISelectProps> = (props) => {
+  const [value, setValue] = useState<string>(props.defaultValue ?? '');
+
+  const handleChange = (newValue?: string): void => {
+    setValue(newValue ?? '');
+    props.onChange?.(newValue);
+  };
+
+  return <Select {...props} value={value} onChange={handleChange} />;
+};
+
+export const Controlled: IStory = {
+  render: (props) => <ControlledSelect {...props} />,
+  args: defaultArgs,
+};
+
+export const ControlledAndClearable: IStory = {
+  render: (props) => <ControlledSelect {...props} />,
+  args: {
+    ...defaultArgs,
+    clearable: true,
   },
 };
 

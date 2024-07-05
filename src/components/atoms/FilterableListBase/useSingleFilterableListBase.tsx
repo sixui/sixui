@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import type {
   IFilterableItemRenderer,
@@ -21,6 +21,8 @@ export type IUseSingleFilterableListBaseProps<
   defaultItem?: TItem;
   itemsEqual?: IFilterableItemsEqualProp<TItem>;
   onItemChange?: (item?: TItem) => void;
+  emptyItem?: TItem;
+  canBeEmptied?: boolean;
 };
 
 export type IUseSingleFilterableListBaseResult<
@@ -53,6 +55,10 @@ export const useSingleFilterableListBase = <
     default: props.defaultItem,
     name: 'useSingleFilterableListBase',
   });
+  const [showEmptyItem, setShowEmptyItem] = useState(
+    !!props.emptyItem &&
+      (props.canBeEmptied || props.selectedItem === undefined),
+  );
 
   const itemRenderer: IFilterableItemRenderer<TItem, TElement> = (
     item,
@@ -74,6 +80,10 @@ export const useSingleFilterableListBase = <
   };
 
   const handleItemSelect = (newSelectedItem: TItem): number | undefined => {
+    if (!props.emptyItem) {
+      setShowEmptyItem(false);
+    }
+
     setSelectedItem(newSelectedItem);
 
     // Delete the old item from the list if it was newly created.
@@ -121,11 +131,22 @@ export const useSingleFilterableListBase = <
     }
   };
 
+  const itemsWithEmptyItem = useMemo(
+    () =>
+      showEmptyItem
+        ? [
+            ...(showEmptyItem && props.emptyItem ? [props.emptyItem] : []),
+            ...items,
+          ]
+        : items,
+    [showEmptyItem, props.emptyItem, items],
+  );
+
   return {
     itemRenderer,
     handleItemSelect,
     handleClear,
-    items,
-    selectedItem,
+    items: itemsWithEmptyItem,
+    selectedItem: selectedItem,
   };
 };

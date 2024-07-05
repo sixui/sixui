@@ -18,6 +18,7 @@ export type IFilterableListItem = {
   imageUrl?: string;
   video?: Array<{ type: string; src: string }>;
   label?: string;
+  placeholder?: string;
   supportingText?: string;
   trailingSupportingText?: string;
   value: string;
@@ -58,7 +59,7 @@ const getFilterableListItemProps = <TElement extends HTMLElement>(
   item: IFilterableListItem,
   { modifiers, query }: IFilterableItemRendererProps<TElement>,
 ): IListItemOwnProps & React.HTMLAttributes<HTMLElement> => {
-  const label = item.label ?? item.value;
+  const text = item.label ?? item.value;
 
   return {
     disabled: modifiers.disabled,
@@ -71,7 +72,7 @@ const getFilterableListItemProps = <TElement extends HTMLElement>(
       item.trailingSupportingText,
       query,
     ),
-    children: highlightQueryInText(label, query),
+    children: text ? highlightQueryInText(text, query) : item.placeholder,
   };
 };
 

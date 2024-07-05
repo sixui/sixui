@@ -42,6 +42,7 @@ export const Suggest = forwardRef<HTMLInputElement, ISuggestProps>(
         itemsEqual={areFilterableListItemsEqual}
         itemPredicate={filterFilterableListItem}
         itemDisabled={isFilterableListItemDisabled}
+        emptyItem={{ label: '', placeholder: '—', value: '' }}
         {...other}
         itemRenderer={renderFilterableListItem}
         itemLabel={getFilterableListItemLabel}
