@@ -1,3 +1,16 @@
+# v0.0.273 (Fri Jul 05 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: prevent uncontrolled Select and Suggest to set a value ([@olivierpascal](https://github.com/olivierpascal))
+- fix(FieldBase): does not take 100% width anymore ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.272 (Fri Jul 05 2024)
 
 #### ⚠️ Pushed to `main`
