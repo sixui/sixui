@@ -12,6 +12,7 @@ import {
   MultiSelectBase,
   type IMultiSelectBaseProps,
 } from '@/components/atoms/MultiSelectBase';
+import { ListItem } from '@/components/atoms/ListItem';
 
 export type IMultiSelectProps = IOmit<
   IMultiSelectBaseProps<IFilterableListItem>,
@@ -24,12 +25,19 @@ export type IMultiSelectProps = IOmit<
   values?: Array<string>;
   defaultValues?: Array<string>;
   onChange?: (values?: Array<string>) => void;
+  noResultsLabel?: string;
 };
 
 export const MultiSelect = forwardRef<HTMLInputElement, IMultiSelectProps>(
   function MultiSelect(props, fowardedRef) {
-    const { getValueFieldProps, values, defaultValues, onChange, ...other } =
-      props;
+    const {
+      getValueFieldProps,
+      values,
+      defaultValues,
+      onChange,
+      noResultsLabel,
+      ...other
+    } = props;
     const defaultItemsRef = useRef(
       defaultValues
         ? other.items.filter((item) => defaultValues?.includes(item.value))
@@ -48,6 +56,11 @@ export const MultiSelect = forwardRef<HTMLInputElement, IMultiSelectProps>(
         itemsEqual={areFilterableListItemsEqual}
         itemPredicate={filterFilterableListItem}
         itemDisabled={isFilterableListItemDisabled}
+        noResults={
+          noResultsLabel ? (
+            <ListItem disabled>{noResultsLabel}</ListItem>
+          ) : undefined
+        }
         {...other}
         itemRenderer={renderFilterableListItem}
         itemLabel={getFilterableListItemLabel}

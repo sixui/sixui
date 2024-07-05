@@ -12,6 +12,7 @@ import {
   SelectBase,
   type ISelectBaseProps,
 } from '@/components/atoms/SelectBase';
+import { ListItem } from '@/components/atoms/ListItem';
 
 export type ISelectProps = IOmit<
   ISelectBaseProps<IFilterableListItem>,
@@ -21,6 +22,7 @@ export type ISelectProps = IOmit<
   defaultValue?: string;
   onChange?: (value?: string) => void;
   emptyLabel?: string;
+  noResultsLabel?: string;
 };
 
 export const Select = forwardRef<HTMLDivElement, ISelectProps>(
@@ -31,6 +33,7 @@ export const Select = forwardRef<HTMLDivElement, ISelectProps>(
       defaultValue,
       onChange,
       emptyLabel,
+      noResultsLabel,
       ...other
     } = props;
     const defaultItemRef = useRef(
@@ -56,6 +59,11 @@ export const Select = forwardRef<HTMLDivElement, ISelectProps>(
         itemPredicate={filterFilterableListItem}
         itemDisabled={isFilterableListItemDisabled}
         emptyItem={emptyItem}
+        noResults={
+          noResultsLabel ? (
+            <ListItem disabled>{noResultsLabel}</ListItem>
+          ) : undefined
+        }
         {...other}
         itemRenderer={renderFilterableListItem}
         itemLabel={getFilterableListItemLabel}

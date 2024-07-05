@@ -31,6 +31,14 @@ export const DefaultValue: IStory = {
   },
 };
 
+export const NoResults: IStory = {
+  render: (props) => <Suggest {...props} />,
+  args: {
+    ...defaultArgs,
+    items: [],
+  },
+};
+
 export const Clearable: IStory = {
   render: (props) => <Suggest {...props} />,
   args: {

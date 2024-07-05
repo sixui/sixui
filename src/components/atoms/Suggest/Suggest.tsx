@@ -12,6 +12,7 @@ import {
   SuggestBase,
   type ISuggestBaseProps,
 } from '@/components/atoms/SuggestBase';
+import { ListItem } from '@/components/atoms/ListItem';
 
 export type ISuggestProps = IOmit<
   ISuggestBaseProps<IFilterableListItem>,
@@ -21,6 +22,7 @@ export type ISuggestProps = IOmit<
   defaultValue?: string;
   onChange?: (value?: string) => void;
   emptyLabel?: string;
+  noResultsLabel?: string;
 };
 
 export const Suggest = forwardRef<HTMLInputElement, ISuggestProps>(
@@ -31,6 +33,7 @@ export const Suggest = forwardRef<HTMLInputElement, ISuggestProps>(
       defaultValue,
       onChange,
       emptyLabel,
+      noResultsLabel,
       ...other
     } = props;
     const defaultItemRef = useRef(
@@ -56,6 +59,11 @@ export const Suggest = forwardRef<HTMLInputElement, ISuggestProps>(
         itemPredicate={filterFilterableListItem}
         itemDisabled={isFilterableListItemDisabled}
         emptyItem={emptyItem}
+        noResults={
+          noResultsLabel ? (
+            <ListItem disabled>{noResultsLabel}</ListItem>
+          ) : undefined
+        }
         {...other}
         itemRenderer={renderFilterableListItem}
         itemLabel={getFilterableListItemLabel}
