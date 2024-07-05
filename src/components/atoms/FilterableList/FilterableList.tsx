@@ -82,7 +82,7 @@ const getFilterableListItemProps = <TElement extends HTMLElement>(
 export const areFilterableListItemsEqual = (
   itemA: IFilterableListItem,
   itemB: IFilterableListItem,
-): boolean => itemA.value.toLowerCase() === itemB.value.toLowerCase();
+): boolean => itemA.value === itemB.value;
 
 /**
  * Filters movie list with a case-insensitive search.

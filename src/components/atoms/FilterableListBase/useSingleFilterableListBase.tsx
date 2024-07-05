@@ -85,6 +85,12 @@ export const useSingleFilterableListBase = <
     }
 
     setSelectedItem(newSelectedItem);
+    props.onItemChange?.(newSelectedItem);
+
+    const isEmptyItem = newSelectedItem === props.emptyItem;
+    if (isEmptyItem) {
+      return undefined;
+    }
 
     // Delete the old item from the list if it was newly created.
     const step1Result = maybeDeleteCreatedItemFromArrays(
@@ -104,7 +110,6 @@ export const useSingleFilterableListBase = <
 
     setCreatedItems(step2Result.createdItems);
     setItems(step2Result.items);
-    props.onItemChange?.(newSelectedItem);
 
     const createdIndex = step2Result.createdItems.indexOf(newSelectedItem);
     const selectedIndex =
