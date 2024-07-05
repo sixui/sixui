@@ -65,7 +65,7 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
   const singleFilterableListBase = useSingleFilterableListBase({
     items,
     itemRenderer,
-    selectedItem: selectedItem ?? emptyItem,
+    selectedItem,
     defaultItem,
     itemsEqual: other.itemsEqual,
     onItemChange,

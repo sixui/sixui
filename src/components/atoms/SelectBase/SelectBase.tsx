@@ -67,7 +67,7 @@ export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
   const singleFilterableListBase = useSingleFilterableListBase({
     items,
     itemRenderer,
-    selectedItem: selectedItem ?? emptyItem,
+    selectedItem,
     defaultItem,
     itemsEqual: other.itemsEqual,
     onItemChange,

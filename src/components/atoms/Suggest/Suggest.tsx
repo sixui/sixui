@@ -43,13 +43,19 @@ export const Suggest = forwardRef<HTMLInputElement, ISuggestProps>(
           : undefined,
       [other.items, value],
     );
+    const controlled = value !== undefined;
+    const emptyItem: IFilterableListItem = {
+      label: emptyLabel,
+      placeholder: '—',
+      value: '',
+    };
 
     return (
       <SuggestBase<IFilterableListItem>
         itemsEqual={areFilterableListItemsEqual}
         itemPredicate={filterFilterableListItem}
         itemDisabled={isFilterableListItemDisabled}
-        emptyItem={{ label: emptyLabel, placeholder: '—', value: '' }}
+        emptyItem={emptyItem}
         {...other}
         itemRenderer={renderFilterableListItem}
         itemLabel={getFilterableListItemLabel}
@@ -58,7 +64,7 @@ export const Suggest = forwardRef<HTMLInputElement, ISuggestProps>(
           ...getValueFieldProps?.(renderProps, selectedItem),
         })}
         defaultItem={defaultItemRef.current}
-        selectedItem={selectedItem}
+        selectedItem={selectedItem ?? (controlled ? emptyItem : undefined)}
         onItemChange={(item) => onChange?.(item?.value)}
         ref={fowardedRef}
       />

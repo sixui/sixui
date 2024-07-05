@@ -56,8 +56,7 @@ export const useSingleFilterableListBase = <
     name: 'useSingleFilterableListBase',
   });
   const [showEmptyItem, setShowEmptyItem] = useState(
-    !!props.emptyItem &&
-      (props.canBeEmptied || props.selectedItem === undefined),
+    !!props.emptyItem && props.canBeEmptied,
   );
 
   const itemRenderer: IFilterableItemRenderer<TItem, TElement> = (
@@ -152,6 +151,6 @@ export const useSingleFilterableListBase = <
     handleItemSelect,
     handleClear,
     items: itemsWithEmptyItem,
-    selectedItem: selectedItem,
+    selectedItem,
   };
 };
