@@ -14,6 +14,11 @@ export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
   isOpen: boolean;
 
   /**
+   * Whether the trigger element has focus.
+   */
+  hasFocus: boolean;
+
+  /**
    * A callback to set the trigger element.
    */
   setTriggerRef: ((node: ReferenceType | null) => void) | null;

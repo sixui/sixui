@@ -99,6 +99,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
     } = props;
 
     const [isOpen, setIsOpen] = useState(false);
+    const [hasFocus, setHasFocus] = useState(false);
     const [activeIndex, setActiveIndex] = useState<number | null>(0);
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
     const elementsRef = useRef<Array<HTMLElement | null>>([]);
@@ -364,16 +365,26 @@ export const FloatingFilterableListBase = fixedForwardRef(
       setQuery,
     ]);
 
+    const handleFocus = (): void => setHasFocus(true);
+    const handleBlur = (): void => {
+      if (resetOnBlur) {
+        setQuery('');
+      }
+      setHasFocus(false);
+    };
+
     return (
       <>
         {children({
           isOpen,
+          hasFocus,
           setTriggerRef: buttonHandleRef,
           getTriggerProps: (userProps) => ({
             ...extendFloatingProps(interactions.getReferenceProps, {
               ...userProps,
               tabIndex: 0,
-              onBlur: resetOnBlur ? () => setQuery('') : undefined,
+              onFocus: handleFocus,
+              onBlur: handleBlur,
             }),
             'aria-autocomplete': 'none',
           }),

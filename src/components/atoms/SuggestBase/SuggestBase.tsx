@@ -112,10 +112,11 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
           value={
             renderProps.isOpen
               ? renderProps.query
-              : renderProps.query ||
-                (singleFilterableListBase.selectedItem
+              : renderProps.hasFocus
+                ? renderProps.query
+                : singleFilterableListBase.selectedItem
                   ? itemLabel(singleFilterableListBase.selectedItem)
-                  : '')
+                  : ''
           }
           placeholder={
             singleFilterableListBase.selectedItem
