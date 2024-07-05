@@ -1,3 +1,15 @@
+# v0.0.274 (Fri Jul 05 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: prevent uncontrolled Select and Suggest to set a value ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.273 (Fri Jul 05 2024)
 
 #### ⚠️ Pushed to `main`
