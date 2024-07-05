@@ -31,7 +31,7 @@ export const Select = forwardRef<HTMLDivElement, ISelectProps>(
     );
     const selectedItem = useMemo(
       () =>
-        value
+        value !== undefined
           ? other.items.find((item) => item.value === value) ?? undefined
           : undefined,
       [other.items, value],

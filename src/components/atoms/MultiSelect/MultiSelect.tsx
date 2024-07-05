@@ -37,7 +37,7 @@ export const MultiSelect = forwardRef<HTMLInputElement, IMultiSelectProps>(
     );
     const selectedItems = useMemo(
       () =>
-        values
+        values !== undefined
           ? other.items.filter((item) => values?.includes(item.value))
           : undefined,
       [other.items, values],
