@@ -20,10 +20,10 @@ export const styles: MapNamespaces<IFieldBaseStyles> =
     // https://github.com/material-components/material-web/blob/main/field/internal/_shared.scss
     host: {
       display: 'flex',
+      flexGrow: 1,
       alignItems: 'stretch',
       resize: 'inherit',
       minHeight: 56,
-      width: '100%',
       cursor: 'pointer',
     },
     host$withSupportingText: {
