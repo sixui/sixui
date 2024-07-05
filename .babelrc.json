@@ -28,7 +28,6 @@
           "@": "./src"
         }
       }
-    ],
-    ["inline-react-svg"]
+    ]
   ]
 }
