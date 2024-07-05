@@ -1,8 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IOmit } from '@/helpers/types';
+import type { IContainerProps, IOmit } from '@/helpers/types';
 import type { IFieldBaseVariant } from '@/components/atoms/FieldBase';
 import type { IFilterableItemRenderer } from '@/components/atoms/FilterableListBase';
+import type { ITextFieldBaseStyleKey } from '@/components/atoms/TextFieldBase';
 import { ListItem } from '@/components/atoms/ListItem';
 import { TextInputField } from '@/components/atoms/TextInputField';
 import { MenuList } from '@/components/atoms/MenuList';
@@ -18,26 +19,28 @@ import {
 } from '@/components/atoms/FloatingFilterableListBase';
 import { fixedForwardRef } from '@/helpers/fixedForwardRef';
 
-export type IMultiSelectBaseProps<TItem> = IOmit<
-  IFloatingFilterableListBaseProps<TItem, HTMLElement>,
-  'onItemSelect' | 'renderer' | 'listRenderer' | 'itemRenderer' | 'children'
-> & {
-  selectedItems?: Array<TItem>;
-  defaultItems?: Array<TItem>;
-  onItemsChange?: (value: Array<TItem>) => void;
-  items: Array<TItem>;
-  itemRenderer: IFilterableItemRenderer<TItem, HTMLElement>;
-  itemLabel: (item: TItem) => string;
-  getValueFieldProps?: (
-    renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
-    selectedItem: TItem,
-  ) => IInputChipProps;
-  clearable?: boolean;
-  variant?: IFieldBaseVariant | false;
-};
+export type IMultiSelectBaseProps<TItem> =
+  IContainerProps<ITextFieldBaseStyleKey> &
+    IOmit<
+      IFloatingFilterableListBaseProps<TItem, HTMLElement>,
+      'onItemSelect' | 'renderer' | 'listRenderer' | 'itemRenderer' | 'children'
+    > & {
+      selectedItems?: Array<TItem>;
+      defaultItems?: Array<TItem>;
+      onItemsChange?: (value: Array<TItem>) => void;
+      items: Array<TItem>;
+      itemRenderer: IFilterableItemRenderer<TItem, HTMLElement>;
+      itemLabel: (item: TItem) => string;
+      getValueFieldProps?: (
+        renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
+        selectedItem: TItem,
+      ) => IInputChipProps;
+      clearable?: boolean;
+      variant?: IFieldBaseVariant | false;
+    };
 
 // TODO: migrate in theme
-const styles = stylex.create({
+const localStyles = stylex.create({
   chip: {
     marginRight: '0.5rem',
   },
@@ -59,6 +62,8 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
   forwardedRef?: React.Ref<HTMLInputElement>,
 ) {
   const {
+    sx,
+    styles,
     items,
     itemRenderer,
     itemLabel,
@@ -127,6 +132,8 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
           spellCheck='false'
           variant={variant}
           {...renderProps.getInputFilterProps(renderProps.getTriggerProps())}
+          sx={sx}
+          styles={styles}
           ref={renderProps.setTriggerRef}
           inputRef={renderProps.inputFilterRef}
           start={
@@ -134,7 +141,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
               ? multiFilterableListBase.selectedItems.map(
                   (selectedItem, index) => (
                     <InputChip
-                      sx={styles.chip}
+                      sx={localStyles.chip}
                       key={index}
                       visualState={{
                         focused:

@@ -1,9 +1,13 @@
-import type { IOmit } from '@/helpers/types';
+import type { IContainerProps, IOmit } from '@/helpers/types';
 import type { IFieldBaseVariant } from '@/components/atoms/FieldBase';
 import { ListItem } from '@/components/atoms/ListItem';
 import { TextInputField } from '@/components/atoms/TextInputField';
 import { MenuList } from '@/components/atoms/MenuList';
-import { Field, type IFieldOwnProps } from '@/components/atoms/Field';
+import {
+  Field,
+  type IFieldStyleKey,
+  type IFieldOwnProps,
+} from '@/components/atoms/Field';
 import {
   useSingleFilterableListBase,
   FilterableListBaseFieldEnd,
@@ -16,30 +20,33 @@ import {
 } from '@/components/atoms/FloatingFilterableListBase';
 import { fixedForwardRef } from '@/helpers/fixedForwardRef';
 
-export type ISelectBaseProps<TItem> = IOmit<
-  IFloatingFilterableListBaseProps<TItem, HTMLDivElement>,
-  'onItemSelect' | 'renderer' | 'listRenderer' | 'itemRenderer' | 'children'
-> & {
-  selectedItem?: TItem;
-  defaultItem?: TItem;
-  onItemChange?: (item?: TItem) => void;
-  items: Array<TItem>;
-  itemRenderer: IFilterableItemRenderer<TItem, HTMLElement>;
-  itemLabel: (item: TItem) => string;
-  canFilter?: boolean;
-  getValueFieldProps?: (
-    renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
-    selectedItem?: TItem,
-  ) => IFieldOwnProps;
-  clearable?: boolean;
-  variant?: IFieldBaseVariant | false;
-};
+export type ISelectBaseProps<TItem> = IContainerProps<IFieldStyleKey> &
+  IOmit<
+    IFloatingFilterableListBaseProps<TItem, HTMLDivElement>,
+    'onItemSelect' | 'renderer' | 'listRenderer' | 'itemRenderer' | 'children'
+  > & {
+    selectedItem?: TItem;
+    defaultItem?: TItem;
+    onItemChange?: (item?: TItem) => void;
+    items: Array<TItem>;
+    itemRenderer: IFilterableItemRenderer<TItem, HTMLElement>;
+    itemLabel: (item: TItem) => string;
+    canFilter?: boolean;
+    getValueFieldProps?: (
+      renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
+      selectedItem?: TItem,
+    ) => IFieldOwnProps;
+    clearable?: boolean;
+    variant?: IFieldBaseVariant | false;
+  };
 
 export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
   props: ISelectBaseProps<TItem>,
   forwardedRef?: React.Ref<HTMLElement>,
 ) {
   const {
+    sx,
+    styles,
     items,
     itemRenderer,
     itemLabel,
@@ -118,6 +125,8 @@ export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
             renderProps,
             singleFilterableListBase.selectedItem,
           )}
+          sx={sx}
+          styles={styles}
           ref={renderProps.setTriggerRef}
         >
           {singleFilterableListBase.selectedItem

@@ -1,5 +1,4 @@
 import { forwardRef, useMemo } from 'react';
-import { isFunction } from 'lodash';
 
 import type {
   IContainerProps,
@@ -26,11 +25,12 @@ import {
 const fieldDefaultTag = fieldBaseDefaultTag;
 
 export type IFieldOwnProps = IContainerProps<IFieldStyleKey> &
-  IOmit<IFieldBaseOwnProps, 'styles'> & {
+  IOmit<IFieldBaseOwnProps, 'styles' | 'children' | 'forwardProps'> & {
     innerStyles?: {
-      field?: IZeroOrMore<ICompiledStyles<IFieldBaseStyleKey>>;
+      fieldBase?: IZeroOrMore<ICompiledStyles<IFieldBaseStyleKey>>;
     };
     placeholder?: string;
+    children?: React.ReactNode;
   };
 
 export type IFieldProps<
@@ -46,7 +46,7 @@ export const Field: IField = forwardRef(function Field<
 >(props: IFieldProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     styles,
-    sx,
+    innerStyles,
     populated: populatedProp,
     placeholder,
     children,
@@ -67,18 +67,14 @@ export const Field: IField = forwardRef(function Field<
 
   return (
     <FieldBase
-      sx={sx}
+      styles={innerStyles?.fieldBase}
       ref={forwardedRef}
       populated={populated}
-      {...(props.forwardProps ? undefined : other)}
+      {...other}
     >
       {children ? (
         <div {...sxf('value')} data-cy='value'>
-          {isFunction(children)
-            ? children({
-                forwardedProps: props.forwardProps ? other : undefined,
-              })
-            : children}
+          {children}
         </div>
       ) : placeholder ? (
         <div

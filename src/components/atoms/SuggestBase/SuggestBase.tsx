@@ -1,5 +1,6 @@
-import type { IOmit } from '@/helpers/types';
+import type { IContainerProps, IOmit } from '@/helpers/types';
 import type { IFieldBaseVariant } from '@/components/atoms/FieldBase';
+import type { ITextFieldBaseStyleKey } from '@/components/atoms/TextFieldBase';
 import { ListItem } from '@/components/atoms/ListItem';
 import {
   TextInputField,
@@ -18,34 +19,37 @@ import {
 } from '@/components/atoms/FloatingFilterableListBase';
 import { fixedForwardRef } from '@/helpers/fixedForwardRef';
 
-export type ISuggestBaseProps<TItem> = IOmit<
-  IFloatingFilterableListBaseProps<TItem, HTMLElement>,
-  | 'onItemSelect'
-  | 'renderer'
-  | 'listRenderer'
-  | 'itemRenderer'
-  | 'children'
-  | 'defaultQuery'
-> & {
-  selectedItem?: TItem;
-  defaultItem?: TItem;
-  onItemChange: (item?: TItem) => void;
-  items: Array<TItem>;
-  itemRenderer: IFilterableItemRenderer<TItem, HTMLElement>;
-  itemLabel: (item: TItem) => string;
-  getValueFieldProps?: (
-    renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
-    selectedItem?: TItem,
-  ) => ITextInputFieldProps;
-  clearable?: boolean;
-  variant?: IFieldBaseVariant;
-};
+export type ISuggestBaseProps<TItem> = IContainerProps<ITextFieldBaseStyleKey> &
+  IOmit<
+    IFloatingFilterableListBaseProps<TItem, HTMLElement>,
+    | 'onItemSelect'
+    | 'renderer'
+    | 'listRenderer'
+    | 'itemRenderer'
+    | 'children'
+    | 'defaultQuery'
+  > & {
+    selectedItem?: TItem;
+    defaultItem?: TItem;
+    onItemChange: (item?: TItem) => void;
+    items: Array<TItem>;
+    itemRenderer: IFilterableItemRenderer<TItem, HTMLElement>;
+    itemLabel: (item: TItem) => string;
+    getValueFieldProps?: (
+      renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
+      selectedItem?: TItem,
+    ) => ITextInputFieldProps;
+    clearable?: boolean;
+    variant?: IFieldBaseVariant;
+  };
 
 export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
   props: ISuggestBaseProps<TItem>,
   forwardedRef?: React.Ref<HTMLElement>,
 ) {
   const {
+    sx,
+    styles,
     items,
     itemRenderer,
     itemLabel,
@@ -123,6 +127,8 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
             renderProps,
             singleFilterableListBase.selectedItem,
           )}
+          sx={sx}
+          styles={styles}
           ref={renderProps.setTriggerRef}
           inputRef={renderProps.inputFilterRef}
           spellCheck='false'
