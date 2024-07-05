@@ -1,3 +1,15 @@
+# v0.0.276 (Fri Jul 05 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: Select and Suggest can be emptied ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.275 (Fri Jul 05 2024)
 
 #### ⚠️ Pushed to `main`
