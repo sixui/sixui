@@ -1,3 +1,15 @@
+# v0.0.271 (Fri Jul 05 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: Select, MultiSelect and Suggest now accept sx ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.270 (Fri Jul 05 2024)
 
 #### ⚠️ Pushed to `main`
