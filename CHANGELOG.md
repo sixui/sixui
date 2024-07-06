@@ -1,3 +1,15 @@
+# v0.0.281 (Sat Jul 06 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: Select and Suggest can have an empty item ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.280 (Fri Jul 05 2024)
 
 #### ⚠️ Pushed to `main`
