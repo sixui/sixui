@@ -1,9 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
+import stylex from '@stylexjs/stylex';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ListItem } from '@/components/atoms/ListItem';
-import { fruits } from '@/components/atoms/FilterableList/fruits';
+import { fruits, emptyItem } from '@/components/atoms/FilterableList/fruits';
+import { commonStyles } from '@/helpers/commonStyles';
 import { Suggest, type ISuggestProps } from './Suggest';
 
 const meta = {
@@ -18,29 +20,50 @@ const defaultArgs = {
   matchTargetWidth: true,
 } satisfies Partial<ISuggestProps>;
 
+const SuggestDemo: React.FC<ISuggestProps> = (props) => {
+  const [value, setValue] = useState<string | undefined>(
+    props.value ?? props.defaultValue,
+  );
+
+  const handleChange = (newValue?: string): void => {
+    setValue(newValue);
+    props.onChange?.(newValue);
+  };
+
+  return (
+    <div {...stylex.props(commonStyles.verticalLayout)}>
+      <Suggest {...props} onChange={handleChange} />
+      <div>
+        Value:{' '}
+        {value === undefined ? <em>undefined</em> : JSON.stringify(value)}
+      </div>
+    </div>
+  );
+};
+
 export const Basic: IStory = {
-  render: (props) => <Suggest {...props} />,
+  render: (props) => <SuggestDemo {...props} />,
   args: defaultArgs,
 };
 
+export const WithEmptyItem: IStory = {
+  render: (props) => <SuggestDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    items: [emptyItem, ...fruits],
+  },
+};
+
 export const DefaultValue: IStory = {
-  render: (props) => <Suggest {...props} />,
+  render: (props) => <SuggestDemo {...props} />,
   args: {
     ...defaultArgs,
     defaultValue: fruits[1].value,
   },
 };
 
-export const NoResults: IStory = {
-  render: (props) => <Suggest {...props} />,
-  args: {
-    ...defaultArgs,
-    items: [],
-  },
-};
-
 export const Clearable: IStory = {
-  render: (props) => <Suggest {...props} />,
+  render: (props) => <SuggestDemo {...props} />,
   args: {
     ...defaultArgs,
     defaultValue: fruits[1].value,
@@ -48,8 +71,26 @@ export const Clearable: IStory = {
   },
 };
 
+export const ClearableWithEmptyItem: IStory = {
+  render: (props) => <SuggestDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    defaultValue: fruits[1].value,
+    clearable: true,
+    items: [emptyItem, ...fruits],
+  },
+};
+
+export const NoResults: IStory = {
+  render: (props) => <SuggestDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    items: [],
+  },
+};
+
 export const InitialContent: IStory = {
-  render: (props) => <Suggest {...props} />,
+  render: (props) => <SuggestDemo {...props} />,
   args: {
     ...defaultArgs,
     initialContent: <ListItem disabled>{fruits.length} items loaded.</ListItem>,
@@ -57,14 +98,14 @@ export const InitialContent: IStory = {
 };
 
 export const Disabled: IStory = {
-  render: (props) => <Suggest {...props} />,
+  render: (props) => <SuggestDemo {...props} />,
   args: {
     ...defaultArgs,
     disabled: true,
   },
 };
 
-const ControlledSuggest: React.FC<ISuggestProps> = (props) => {
+const ControlledSuggestDemo: React.FC<ISuggestProps> = (props) => {
   const [value, setValue] = useState<string>(props.defaultValue ?? '');
 
   const handleChange = (newValue?: string): void => {
@@ -72,18 +113,27 @@ const ControlledSuggest: React.FC<ISuggestProps> = (props) => {
     props.onChange?.(newValue);
   };
 
-  return <Suggest {...props} value={value} onChange={handleChange} />;
+  return <SuggestDemo {...props} value={value} onChange={handleChange} />;
 };
 
 export const Controlled: IStory = {
-  render: (props) => <ControlledSuggest {...props} />,
+  render: (props) => <ControlledSuggestDemo {...props} />,
   args: defaultArgs,
 };
 
-export const ControlledAndClearable: IStory = {
-  render: (props) => <ControlledSuggest {...props} />,
+export const ControlledWithEmptyItem: IStory = {
+  render: (props) => <ControlledSuggestDemo {...props} />,
   args: {
     ...defaultArgs,
+    items: [emptyItem, ...fruits],
+  },
+};
+
+export const ControlledAndClearable: IStory = {
+  render: (props) => <ControlledSuggestDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    defaultValue: fruits[1].value,
     clearable: true,
   },
 };

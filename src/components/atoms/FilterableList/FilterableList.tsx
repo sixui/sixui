@@ -85,12 +85,24 @@ export const areFilterableListItemsEqual = (
 ): boolean => itemA.value === itemB.value;
 
 /**
+ * Checks if a list item is a placeholder for an empty value. Used, for example,
+ * to determine if we should hide or show the "clear" button.
+ */
+export const isFilterableListItemEmpty = (item: IFilterableListItem): boolean =>
+  !item.value;
+
+/**
  * Filters movie list with a case-insensitive search.
  */
 export const filterFilterableListItem: IFilterableItemPredicate<
   IFilterableListItem
 > = (query, item, _index, exactMatch) => {
-  const normalizedLabel = (item.label ?? item.value).toLowerCase();
+  const text = item.label ?? item.value;
+  if (!text || !query) {
+    return false;
+  }
+
+  const normalizedLabel = text?.toLowerCase();
   const normalizedSupportingText = item.supportingText?.toLowerCase();
   const normalizedTrailingSupportingText =
     item.trailingSupportingText?.toLowerCase();
@@ -103,8 +115,9 @@ export const filterFilterableListItem: IFilterableItemPredicate<
       ) >= 0;
 };
 
-export const getFilterableListItemLabel = (item: IFilterableListItem): string =>
-  item.label ?? item.value;
+export const getFilterableListItemLabel = (
+  item: IFilterableListItem,
+): string | undefined => item.label ?? item.value;
 
 export const isFilterableListItemDisabled = (
   item: IFilterableListItem,

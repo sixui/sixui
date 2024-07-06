@@ -1,7 +1,8 @@
 import type { IOmit } from '@/helpers/types';
-import { forwardRef, useMemo, useRef } from 'react';
+import { forwardRef } from 'react';
 import {
   areFilterableListItemsEqual,
+  isFilterableListItemEmpty,
   filterFilterableListItem,
   getFilterableListItemLabel,
   isFilterableListItemDisabled,
@@ -13,6 +14,7 @@ import {
   type ISelectBaseProps,
 } from '@/components/atoms/SelectBase';
 import { ListItem } from '@/components/atoms/ListItem';
+import { useSelect } from './useSelect';
 
 export type ISelectProps = IOmit<
   ISelectBaseProps<IFilterableListItem>,
@@ -21,7 +23,6 @@ export type ISelectProps = IOmit<
   value?: string;
   defaultValue?: string;
   onChange?: (value?: string) => void;
-  emptyLabel?: string;
   noResultsLabel?: string;
 };
 
@@ -32,33 +33,22 @@ export const Select = forwardRef<HTMLDivElement, ISelectProps>(
       value,
       defaultValue,
       onChange,
-      emptyLabel,
       noResultsLabel,
       ...other
     } = props;
-    const defaultItemRef = useRef(
-      other.items.find((item) => item.value === defaultValue) ?? undefined,
-    );
-    const selectedItem = useMemo(
-      () =>
-        value !== undefined
-          ? other.items.find((item) => item.value === value) ?? undefined
-          : undefined,
-      [other.items, value],
-    );
-    const controlled = value !== undefined;
-    const emptyItem: IFilterableListItem = {
-      label: emptyLabel,
-      placeholder: '—',
-      value: '',
-    };
+    const { defaultItem, selectedItem } = useSelect({
+      items: other.items,
+      itemEmpty: isFilterableListItemEmpty,
+      defaultValue,
+      value,
+    });
 
     return (
       <SelectBase<IFilterableListItem>
         itemsEqual={areFilterableListItemsEqual}
+        itemEmpty={isFilterableListItemEmpty}
         itemPredicate={filterFilterableListItem}
         itemDisabled={isFilterableListItemDisabled}
-        emptyItem={emptyItem}
         noResults={
           noResultsLabel ? (
             <ListItem disabled>{noResultsLabel}</ListItem>
@@ -71,8 +61,8 @@ export const Select = forwardRef<HTMLDivElement, ISelectProps>(
           leadingIcon: selectedItem?.icon,
           ...getValueFieldProps?.(renderProps, selectedItem),
         })}
-        defaultItem={defaultItemRef.current}
-        selectedItem={selectedItem ?? (controlled ? emptyItem : undefined)}
+        defaultItem={defaultItem}
+        selectedItem={selectedItem}
         onItemChange={(item) => onChange?.(item?.value)}
         ref={fowardedRef}
       />

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 
 import type {
   IFilterableItemRenderer,
@@ -19,10 +19,9 @@ export type IUseSingleFilterableListBaseProps<
   itemRenderer: IFilterableItemRenderer<TItem, TElement>;
   selectedItem?: TItem;
   defaultItem?: TItem;
+  itemEmpty?: (item: TItem) => boolean;
   itemsEqual?: IFilterableItemsEqualProp<TItem>;
   onItemChange?: (item?: TItem) => void;
-  emptyItem?: TItem;
-  canBeEmptied?: boolean;
 };
 
 export type IUseSingleFilterableListBaseResult<
@@ -55,9 +54,6 @@ export const useSingleFilterableListBase = <
     default: props.defaultItem,
     name: 'useSingleFilterableListBase',
   });
-  const [showEmptyItem, setShowEmptyItem] = useState(
-    !!props.emptyItem && props.canBeEmptied,
-  );
 
   const itemRenderer: IFilterableItemRenderer<TItem, TElement> = (
     item,
@@ -79,17 +75,8 @@ export const useSingleFilterableListBase = <
   };
 
   const handleItemSelect = (newSelectedItem: TItem): number | undefined => {
-    if (!props.emptyItem) {
-      setShowEmptyItem(false);
-    }
-
     setSelectedItem(newSelectedItem);
     props.onItemChange?.(newSelectedItem);
-
-    const isEmptyItem = newSelectedItem === props.emptyItem;
-    if (isEmptyItem) {
-      return undefined;
-    }
 
     // Delete the old item from the list if it was newly created.
     const step1Result = maybeDeleteCreatedItemFromArrays(
@@ -129,28 +116,20 @@ export const useSingleFilterableListBase = <
     event?.stopPropagation();
 
     if (selectedItem) {
-      props.onItemChange?.(undefined);
       afterItemsRemove([selectedItem], event);
-      setSelectedItem(undefined);
+      const emptyItem = props.itemEmpty
+        ? items.find(props.itemEmpty)
+        : undefined;
+      props.onItemChange?.(emptyItem);
+      setSelectedItem(emptyItem);
     }
   };
-
-  const itemsWithEmptyItem = useMemo(
-    () =>
-      showEmptyItem
-        ? [
-            ...(showEmptyItem && props.emptyItem ? [props.emptyItem] : []),
-            ...items,
-          ]
-        : items,
-    [showEmptyItem, props.emptyItem, items],
-  );
 
   return {
     itemRenderer,
     handleItemSelect,
     handleClear,
-    items: itemsWithEmptyItem,
+    items,
     selectedItem,
   };
 };

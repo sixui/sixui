@@ -31,7 +31,7 @@ export type ISuggestBaseProps<TItem> = IContainerProps<ITextFieldBaseStyleKey> &
     | 'defaultQuery'
   > &
   IUseSingleFilterableListBaseProps<TItem, HTMLElement> & {
-    itemLabel: (item: TItem) => string;
+    itemLabel: (item: TItem) => string | undefined;
     getValueFieldProps?: (
       renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
       selectedItem?: TItem,
@@ -56,21 +56,17 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
     getValueFieldProps,
     clearable,
     variant,
-    emptyItem,
-    canBeEmptied: canBeEmptiedProp,
     ...other
   } = props;
 
-  const canBeEmptied = canBeEmptiedProp || clearable;
   const singleFilterableListBase = useSingleFilterableListBase({
     items,
     itemRenderer,
     selectedItem,
     defaultItem,
+    itemEmpty: other.itemEmpty,
     itemsEqual: other.itemsEqual,
     onItemChange,
-    emptyItem,
-    canBeEmptied,
   });
 
   return (
@@ -96,7 +92,7 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
               onClear={
                 clearable &&
                 singleFilterableListBase.selectedItem &&
-                singleFilterableListBase.selectedItem !== emptyItem
+                !other.itemEmpty?.(singleFilterableListBase.selectedItem)
                   ? (event) =>
                       singleFilterableListBase.handleClear(
                         renderProps.afterItemsRemove,

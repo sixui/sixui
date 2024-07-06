@@ -8,6 +8,12 @@ import {
 
 import type { IFilterableListItem } from './FilterableList';
 
+export const emptyItem = {
+  label: '—',
+  value: '',
+  placeholder: "I don't like fruits",
+};
+
 export const fruits: Array<IFilterableListItem> = [
   {
     label: 'Apple',

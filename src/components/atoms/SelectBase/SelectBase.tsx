@@ -31,7 +31,7 @@ export type ISelectBaseProps<TItem> = IContainerProps<IFieldStyleKey> &
     | 'children'
   > &
   IUseSingleFilterableListBaseProps<TItem, HTMLElement> & {
-    itemLabel: (item: TItem) => string;
+    itemLabel: (item: TItem) => string | undefined;
     canFilter?: boolean;
     getValueFieldProps?: (
       renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
@@ -58,21 +58,18 @@ export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
     getValueFieldProps,
     clearable,
     variant,
-    emptyItem,
-    canBeEmptied: canBeEmptiedProp,
+    noResults,
     ...other
   } = props;
 
-  const canBeEmptied = canBeEmptiedProp || clearable;
   const singleFilterableListBase = useSingleFilterableListBase({
     items,
     itemRenderer,
     selectedItem,
     defaultItem,
+    itemEmpty: other.itemEmpty,
     itemsEqual: other.itemsEqual,
     onItemChange,
-    emptyItem,
-    canBeEmptied,
   });
 
   return (
@@ -98,11 +95,11 @@ export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
         </MenuList>
       )}
       itemRenderer={singleFilterableListBase.itemRenderer}
-      noResults={<ListItem disabled>No results.</ListItem>}
       matchTargetWidth
       closeOnSelect
       resetOnClose
       {...other}
+      noResults={noResults ?? <ListItem disabled>No results.</ListItem>}
       ref={forwardedRef}
     >
       {(renderProps) => (
@@ -112,7 +109,7 @@ export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
               onClear={
                 clearable &&
                 singleFilterableListBase.selectedItem &&
-                singleFilterableListBase.selectedItem !== emptyItem
+                !other.itemEmpty?.(singleFilterableListBase.selectedItem)
                   ? (event) =>
                       singleFilterableListBase.handleClear(
                         renderProps.afterItemsRemove,

@@ -186,9 +186,7 @@ export const renderMovieListItem: IFilterableItemRenderer<
       visualState={{ hovered: props.modifiers.active, strategy: 'replace' }}
       selected={props.modifiers.selected}
       disabled={props.modifiers.disabled}
-      {...props.getButtonAttributes({
-        onClick: props.handleClick,
-      })}
+      {...props.getButtonAttributes()}
       ref={props.buttonRef}
     />
   );
@@ -204,9 +202,7 @@ export const renderCreateMovieListItem: IFilterableCreateNewItemRenderer<
     key={props.index}
     visualState={{ hovered: props.modifiers.active, strategy: 'replace' }}
     leadingIcon={<FontAwesomeIcon icon={faPlus} />}
-    {...props.getButtonAttributes({
-      onClick: props.handleClick,
-    })}
+    {...props.getButtonAttributes()}
     ref={props.buttonRef}
   >
     {`Create "${props.query}"`}

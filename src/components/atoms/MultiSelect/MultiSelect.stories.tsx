@@ -26,7 +26,7 @@ export const DefaultValue: IStory = {
   render: (props) => <MultiSelect {...props} />,
   args: {
     ...defaultArgs,
-    defaultValues: [fruits[1].value, fruits[3].value],
+    defaultValues: ['lemon', 'flowers'],
   },
 };
 

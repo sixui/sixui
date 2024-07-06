@@ -1,9 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
+import stylex from '@stylexjs/stylex';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ListItem } from '@/components/atoms/ListItem';
-import { fruits } from '@/components/atoms/FilterableList/fruits';
+import { fruits, emptyItem } from '@/components/atoms/FilterableList/fruits';
+import { commonStyles } from '@/helpers/commonStyles';
 import { Select, type ISelectProps } from './Select';
 
 const meta = {
@@ -18,13 +20,42 @@ const defaultArgs = {
   matchTargetWidth: true,
 } satisfies Partial<ISelectProps>;
 
+const SelectDemo: React.FC<ISelectProps> = (props) => {
+  const [value, setValue] = useState<string | undefined>(
+    props.value ?? props.defaultValue,
+  );
+
+  const handleChange = (newValue?: string): void => {
+    setValue(newValue);
+    props.onChange?.(newValue);
+  };
+
+  return (
+    <div {...stylex.props(commonStyles.verticalLayout)}>
+      <Select {...props} onChange={handleChange} />
+      <div>
+        Value:{' '}
+        {value === undefined ? <em>undefined</em> : JSON.stringify(value)}
+      </div>
+    </div>
+  );
+};
+
 export const Basic: IStory = {
-  render: (props) => <Select {...props} />,
+  render: (props) => <SelectDemo {...props} />,
   args: defaultArgs,
 };
 
+export const WithEmptyItem: IStory = {
+  render: (props) => <SelectDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    items: [emptyItem, ...fruits],
+  },
+};
+
 export const DefaultValue: IStory = {
-  render: (props) => <Select {...props} />,
+  render: (props) => <SelectDemo {...props} />,
   args: {
     ...defaultArgs,
     defaultValue: fruits[1].value,
@@ -32,7 +63,7 @@ export const DefaultValue: IStory = {
 };
 
 export const Clearable: IStory = {
-  render: (props) => <Select {...props} />,
+  render: (props) => <SelectDemo {...props} />,
   args: {
     ...defaultArgs,
     defaultValue: fruits[1].value,
@@ -40,8 +71,18 @@ export const Clearable: IStory = {
   },
 };
 
+export const ClearableWithEmptyItem: IStory = {
+  render: (props) => <SelectDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    defaultValue: fruits[1].value,
+    clearable: true,
+    items: [emptyItem, ...fruits],
+  },
+};
+
 export const CanFilter: IStory = {
-  render: (props) => <Select {...props} />,
+  render: (props) => <SelectDemo {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -49,7 +90,7 @@ export const CanFilter: IStory = {
 };
 
 export const DefaultQuery: IStory = {
-  render: (props) => <Select {...props} />,
+  render: (props) => <SelectDemo {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -58,7 +99,7 @@ export const DefaultQuery: IStory = {
 };
 
 export const NoResults: IStory = {
-  render: (props) => <Select {...props} />,
+  render: (props) => <SelectDemo {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -67,7 +108,7 @@ export const NoResults: IStory = {
 };
 
 export const InitialContent: IStory = {
-  render: (props) => <Select {...props} />,
+  render: (props) => <SelectDemo {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -76,7 +117,7 @@ export const InitialContent: IStory = {
 };
 
 export const Disabled: IStory = {
-  render: (props) => <Select {...props} />,
+  render: (props) => <SelectDemo {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -84,7 +125,7 @@ export const Disabled: IStory = {
   },
 };
 
-const ControlledSelect: React.FC<ISelectProps> = (props) => {
+const ControlledSelectDemo: React.FC<ISelectProps> = (props) => {
   const [value, setValue] = useState<string>(props.defaultValue ?? '');
 
   const handleChange = (newValue?: string): void => {
@@ -92,19 +133,38 @@ const ControlledSelect: React.FC<ISelectProps> = (props) => {
     props.onChange?.(newValue);
   };
 
-  return <Select {...props} value={value} onChange={handleChange} />;
+  return <SelectDemo {...props} value={value} onChange={handleChange} />;
 };
 
 export const Controlled: IStory = {
-  render: (props) => <ControlledSelect {...props} />,
+  render: (props) => <ControlledSelectDemo {...props} />,
   args: defaultArgs,
 };
 
-export const ControlledAndClearable: IStory = {
-  render: (props) => <ControlledSelect {...props} />,
+export const ControlledWithEmptyItem: IStory = {
+  render: (props) => <ControlledSelectDemo {...props} />,
   args: {
     ...defaultArgs,
+    items: [emptyItem, ...fruits],
+  },
+};
+
+export const ControlledAndClearable: IStory = {
+  render: (props) => <ControlledSelectDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    defaultValue: fruits[1].value,
     clearable: true,
+  },
+};
+
+export const ControlledAndClearableWithEmptyItem: IStory = {
+  render: (props) => <ControlledSelectDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    defaultValue: fruits[1].value,
+    clearable: true,
+    items: [emptyItem, ...fruits],
   },
 };
 

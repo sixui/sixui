@@ -1,10 +1,11 @@
 import type { IOmit } from '@/helpers/types';
-import { forwardRef, useMemo, useRef } from 'react';
+import { forwardRef } from 'react';
 import {
   areFilterableListItemsEqual,
   filterFilterableListItem,
   getFilterableListItemLabel,
   isFilterableListItemDisabled,
+  isFilterableListItemEmpty,
   renderFilterableListItem,
   type IFilterableListItem,
 } from '@/components/atoms/FilterableList';
@@ -13,6 +14,7 @@ import {
   type ISuggestBaseProps,
 } from '@/components/atoms/SuggestBase';
 import { ListItem } from '@/components/atoms/ListItem';
+import { useSelect } from '@/components/atoms/Select/useSelect';
 
 export type ISuggestProps = IOmit<
   ISuggestBaseProps<IFilterableListItem>,
@@ -32,33 +34,22 @@ export const Suggest = forwardRef<HTMLInputElement, ISuggestProps>(
       value,
       defaultValue,
       onChange,
-      emptyLabel,
       noResultsLabel,
       ...other
     } = props;
-    const defaultItemRef = useRef(
-      other.items.find((item) => item.value === defaultValue) ?? undefined,
-    );
-    const selectedItem = useMemo(
-      () =>
-        value !== undefined
-          ? other.items.find((item) => item.value === value) ?? undefined
-          : undefined,
-      [other.items, value],
-    );
-    const controlled = value !== undefined;
-    const emptyItem: IFilterableListItem = {
-      label: emptyLabel,
-      placeholder: '—',
-      value: '',
-    };
+    const { defaultItem, selectedItem } = useSelect({
+      items: other.items,
+      itemEmpty: isFilterableListItemEmpty,
+      defaultValue,
+      value,
+    });
 
     return (
       <SuggestBase<IFilterableListItem>
         itemsEqual={areFilterableListItemsEqual}
+        itemEmpty={isFilterableListItemEmpty}
         itemPredicate={filterFilterableListItem}
         itemDisabled={isFilterableListItemDisabled}
-        emptyItem={emptyItem}
         noResults={
           noResultsLabel ? (
             <ListItem disabled>{noResultsLabel}</ListItem>
@@ -71,8 +62,8 @@ export const Suggest = forwardRef<HTMLInputElement, ISuggestProps>(
           leadingIcon: renderProps.hasFocus ? undefined : selectedItem?.icon,
           ...getValueFieldProps?.(renderProps, selectedItem),
         })}
-        defaultItem={defaultItemRef.current}
-        selectedItem={selectedItem ?? (controlled ? emptyItem : undefined)}
+        defaultItem={defaultItem}
+        selectedItem={selectedItem}
         onItemChange={(item) => onChange?.(item?.value)}
         ref={fowardedRef}
       />

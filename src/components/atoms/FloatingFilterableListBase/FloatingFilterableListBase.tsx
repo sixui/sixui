@@ -367,10 +367,11 @@ export const FloatingFilterableListBase = fixedForwardRef(
 
     const handleFocus = (): void => setHasFocus(true);
     const handleBlur = (): void => {
-      if (resetOnBlur) {
+      setHasFocus(false);
+
+      if (resetOnBlur && !isOpen) {
         setQuery('');
       }
-      setHasFocus(false);
     };
 
     return (

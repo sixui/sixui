@@ -30,7 +30,7 @@ export type IMultiSelectBaseProps<TItem> =
       onItemsChange?: (value: Array<TItem>) => void;
       items: Array<TItem>;
       itemRenderer: IFilterableItemRenderer<TItem, HTMLElement>;
-      itemLabel: (item: TItem) => string;
+      itemLabel: (item: TItem) => string | undefined;
       getValueFieldProps?: (
         renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
         selectedItem: TItem,

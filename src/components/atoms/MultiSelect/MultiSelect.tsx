@@ -1,5 +1,5 @@
 import type { IOmit } from '@/helpers/types';
-import { forwardRef, useMemo, useRef } from 'react';
+import { forwardRef } from 'react';
 import {
   areFilterableListItemsEqual,
   filterFilterableListItem,
@@ -13,6 +13,7 @@ import {
   type IMultiSelectBaseProps,
 } from '@/components/atoms/MultiSelectBase';
 import { ListItem } from '@/components/atoms/ListItem';
+import { useMultiSelect } from './useMultiSelect';
 
 export type IMultiSelectProps = IOmit<
   IMultiSelectBaseProps<IFilterableListItem>,
@@ -38,18 +39,11 @@ export const MultiSelect = forwardRef<HTMLInputElement, IMultiSelectProps>(
       noResultsLabel,
       ...other
     } = props;
-    const defaultItemsRef = useRef(
-      defaultValues
-        ? other.items.filter((item) => defaultValues?.includes(item.value))
-        : undefined,
-    );
-    const selectedItems = useMemo(
-      () =>
-        values !== undefined
-          ? other.items.filter((item) => values?.includes(item.value))
-          : undefined,
-      [other.items, values],
-    );
+    const { defaultItems, selectedItems } = useMultiSelect({
+      items: other.items,
+      defaultValues,
+      values,
+    });
 
     return (
       <MultiSelectBase<IFilterableListItem>
@@ -69,7 +63,7 @@ export const MultiSelect = forwardRef<HTMLInputElement, IMultiSelectProps>(
           imageUrl: item.imageUrl,
           ...getValueFieldProps?.(renderProps, item),
         })}
-        defaultItems={defaultItemsRef.current}
+        defaultItems={defaultItems}
         selectedItems={selectedItems}
         onItemsChange={(items) => onChange?.(items.map((item) => item.value))}
         ref={fowardedRef}
