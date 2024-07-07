@@ -1,3 +1,15 @@
+# v0.0.282 (Sun Jul 07 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(IFilterableListItem): support for onClick and href props ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.281 (Sat Jul 06 2024)
 
 #### ⚠️ Pushed to `main`
