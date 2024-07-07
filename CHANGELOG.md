@@ -1,3 +1,15 @@
+# v0.0.290 (Sun Jul 07 2024)
+
+#### ⚠️ Pushed to `main`
+
+- refactor(MultiSelect, useMultiSelect): values -> value, defaultValues -> defaultValue ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.289 (Sun Jul 07 2024)
 
 #### ⚠️ Pushed to `main`
