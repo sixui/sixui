@@ -17,15 +17,25 @@ import {
 import { ListItem } from '@/components/atoms/ListItem';
 import { useSelect } from './useSelect';
 
-export type ISelectProps = IOmit<
-  ISelectBaseProps<IFilterableListItem>,
-  'itemRenderer' | 'itemLabel' | 'defaultItem' | 'selectedItem' | 'onItemChange'
-> & {
+export type ISelectOwnProps = {
   value?: string;
   defaultValue?: string;
   onChange?: (value?: string) => void;
   noResultsLabel?: string;
 };
+
+export type ISelectProps = Omit<
+  IOmit<
+    ISelectBaseProps<IFilterableListItem>,
+    | 'itemRenderer'
+    | 'itemLabel'
+    | 'defaultItem'
+    | 'selectedItem'
+    | 'onItemChange'
+  >,
+  keyof ISelectOwnProps
+> &
+  ISelectOwnProps;
 
 export const Select = forwardRef<HTMLDivElement, ISelectProps>(
   function Select(props, fowardedRef) {

@@ -4,7 +4,7 @@ import type { ITextFieldBaseStyleKey } from '@/components/atoms/TextFieldBase';
 import { ListItem } from '@/components/atoms/ListItem';
 import {
   TextInputField,
-  type ITextInputFieldOwnProps,
+  type ITextInputFieldProps,
 } from '@/components/atoms/TextInputField';
 import { MenuList } from '@/components/atoms/MenuList';
 import {
@@ -30,13 +30,13 @@ export type ISuggestBaseProps<TItem> = IContainerProps<ITextFieldBaseStyleKey> &
     | 'children'
     | 'defaultQuery'
   > &
-  ITextInputFieldOwnProps &
+  ITextInputFieldProps &
   IUseSingleFilterableListBaseProps<TItem, HTMLElement> & {
     itemLabel: (item: TItem) => string | undefined;
     getValueFieldProps?: (
       renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
       selectedItem?: TItem,
-    ) => ITextInputFieldOwnProps;
+    ) => ITextInputFieldProps;
     clearable?: boolean;
     variant?: IFieldBaseVariant;
   };

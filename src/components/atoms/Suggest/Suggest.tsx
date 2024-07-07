@@ -17,16 +17,25 @@ import {
 import { ListItem } from '@/components/atoms/ListItem';
 import { useSelect } from '@/components/atoms/Select/useSelect';
 
-export type ISuggestProps = IOmit<
-  ISuggestBaseProps<IFilterableListItem>,
-  'itemRenderer' | 'itemLabel' | 'defaultItem' | 'selectedItem' | 'onItemChange'
-> & {
+export type ISuggestOwnProps = {
   value?: string;
   defaultValue?: string;
   onChange?: (value?: string) => void;
-  emptyLabel?: string;
   noResultsLabel?: string;
 };
+
+export type ISuggestProps = Omit<
+  IOmit<
+    ISuggestBaseProps<IFilterableListItem>,
+    | 'itemRenderer'
+    | 'itemLabel'
+    | 'defaultItem'
+    | 'selectedItem'
+    | 'onItemChange'
+  >,
+  keyof ISuggestOwnProps
+> &
+  ISuggestOwnProps;
 
 export const Suggest = forwardRef<HTMLInputElement, ISuggestProps>(
   function Suggest(props, fowardedRef) {

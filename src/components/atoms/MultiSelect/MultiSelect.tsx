@@ -16,19 +16,25 @@ import {
 import { ListItem } from '@/components/atoms/ListItem';
 import { useMultiSelect } from './useMultiSelect';
 
-export type IMultiSelectProps = IOmit<
-  IMultiSelectBaseProps<IFilterableListItem>,
-  | 'itemRenderer'
-  | 'itemLabel'
-  | 'defaultItems'
-  | 'selectedItems'
-  | 'onItemsChange'
-> & {
+export type IMultiSelectOwnProps = {
   values?: Array<string>;
   defaultValues?: Array<string>;
   onChange?: (values?: Array<string>) => void;
   noResultsLabel?: string;
 };
+
+export type IMultiSelectProps = Omit<
+  IOmit<
+    IMultiSelectBaseProps<IFilterableListItem>,
+    | 'itemRenderer'
+    | 'itemLabel'
+    | 'defaultItems'
+    | 'selectedItems'
+    | 'onItemsChange'
+  >,
+  keyof IMultiSelectOwnProps
+> &
+  IMultiSelectOwnProps;
 
 export const MultiSelect = forwardRef<HTMLInputElement, IMultiSelectProps>(
   function MultiSelect(props, fowardedRef) {
