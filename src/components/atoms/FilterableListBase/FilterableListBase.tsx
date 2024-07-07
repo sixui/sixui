@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { isFunction } from 'lodash';
 
 import type {
-  IFilterableItemModifiers,
-  IFilterableCreateNewItemRenderer,
+  IFilterableListItemModifiers,
+  IFilterableCreateNewListItemRenderer,
   IFilterableListBaseInternalRenderer,
-  IFilterableItemRenderer,
-  IFilterableItemPredicate,
-  IFilterableListBasePredicate,
-  IFilterableItemsEqualProp as IFilterableItemsEqual,
+  IFilterableListItemRenderer,
+  IFilterableListItemPredicate,
+  IFilterableListPredicate,
+  IFilterableListItemsEqualProp as IFilterableItemsEqual,
   IFilterableListBaseState,
 } from './FilterableListBaseProps';
 import type { IExtendedFloatingProps } from '@/helpers/extendFloatingProps';
@@ -122,7 +122,7 @@ export type IFilterableListBaseProps<
    * If `itemPredicate` is also defined, this prop takes priority and the other
    * will be ignored.
    */
-  listPredicate?: IFilterableListBasePredicate<TItem>;
+  listPredicate?: IFilterableListPredicate<TItem>;
 
   /**
    * Customize querying of individual items.
@@ -134,12 +134,12 @@ export type IFilterableListBaseProps<
    * on the entire array. For the purposes of filtering the list, this prop is
    * ignored if `listPredicate` is also defined.
    */
-  itemPredicate?: IFilterableItemPredicate<TItem>;
+  itemPredicate?: IFilterableListItemPredicate<TItem>;
 
   /**
    * Custom renderer for an item in the filtered list.
    */
-  itemRenderer: IFilterableItemRenderer<TItem, TElement>;
+  itemRenderer: IFilterableListItemRenderer<TItem, TElement>;
 
   /**
    * Custom renderer for the contents of the list.
@@ -204,7 +204,7 @@ export type IFilterableListBaseProps<
    * the end of the list of items. If this function is not provided, a "Create
    * Item" option will not be displayed.
    */
-  createNewItemRenderer?: IFilterableCreateNewItemRenderer<TElement>;
+  createNewItemRenderer?: IFilterableCreateNewListItemRenderer<TElement>;
 
   /**
    * Determines the position of the `createNewItem` within the list: first or
@@ -258,10 +258,10 @@ const getFilterableItems = <TItem, TElement extends HTMLElement>(
 
   if (itemsProps.listPredicate) {
     // note that implementations can reorder the items here
-    return itemsProps.listPredicate(query, itemsProps.items);
+    return itemsProps.listPredicate(itemsProps.items, query);
   } else if (itemsProps.itemPredicate) {
     return itemsProps.items.filter((item, index) =>
-      itemsProps.itemPredicate?.(query, item, index),
+      itemsProps.itemPredicate?.(item, query, index),
     );
   }
 
@@ -406,7 +406,7 @@ export const FilterableListBase = <
     }
 
     const trimmedQuery = query.trim();
-    const modifiers: IFilterableItemModifiers = {
+    const modifiers: IFilterableListItemModifiers = {
       active: false,
       selected: false,
       disabled: false,
@@ -423,7 +423,7 @@ export const FilterableListBase = <
   };
 
   const renderItem = (item: TItem, index: number): React.ReactNode => {
-    const modifiers: IFilterableItemModifiers = {
+    const modifiers: IFilterableListItemModifiers = {
       active: false,
       selected: false,
       disabled: disabled || isItemDisabled(item, index, itemDisabled),

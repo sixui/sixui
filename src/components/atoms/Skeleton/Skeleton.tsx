@@ -1,5 +1,6 @@
 import stylex from '@stylexjs/stylex';
 import { forwardRef, useMemo, useRef } from 'react';
+import { random } from 'lodash';
 
 import type { IContainerProps, IRange } from '@/helpers/types';
 import type {
@@ -8,7 +9,6 @@ import type {
 } from './Skeleton.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { randomInRange } from '@/helpers/randomInRange';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
 export type ISkeletonProps = IContainerProps<ISkeletonStyleKey> & {
@@ -55,7 +55,9 @@ export const Skeleton = forwardRef<HTMLDivElement, ISkeletonProps>(
 
     const animation = hasError ? undefined : animationProp;
     const lengthRef = useRef(
-      typeof lengthProp === 'object' ? randomInRange(lengthProp) : lengthProp,
+      typeof lengthProp === 'object'
+        ? random(lengthProp.min, lengthProp.max)
+        : lengthProp,
     );
 
     return loaded ? (

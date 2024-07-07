@@ -1,5 +1,6 @@
 import { forwardRef, useCallback, useMemo, useRef, useState } from 'react';
 import { asArray } from '@olivierpascal/helpers';
+import { useMergeRefs } from '@floating-ui/react';
 
 import type {
   IContainerProps,
@@ -17,7 +18,10 @@ import type { ISwitchStyleKey, ISwitchStyleVarKey } from './Switch.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { type IVisualState, useVisualState } from '@/hooks/useVisualState';
+import {
+  type IVisualState,
+  useVisualState,
+} from '@/components/utils/VisualState';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import {
   FocusRing,
@@ -33,7 +37,6 @@ import {
 } from '@/components/atoms/CircularProgressIndicator';
 import { ReactComponent as CheckMarkIcon } from '@/assets/CheckMark.svg';
 import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
-import { useForkRef } from '@/hooks/useForkRef';
 
 // https://github.com/material-components/material-web/blob/main/switch/internal/switch.ts
 
@@ -118,10 +121,13 @@ export const Switch: ISwitch = forwardRef(function Switch<
   const disabled = disabledProp || readOnly || loading;
 
   const actionRef = useRef<HTMLInputElement>(null);
-  const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
-    disabled,
-  });
-  const handleRef = useForkRef(forwardedRef, visualStateRef, actionRef);
+  const { visualState, setRef: setVisualStateRef } = useVisualState(
+    visualStateProp,
+    {
+      disabled,
+    },
+  );
+  const handleRef = useMergeRefs([forwardedRef, setVisualStateRef, actionRef]);
 
   const { theme } = useComponentTheme('Switch');
   const stylesCombinator = useMemo(

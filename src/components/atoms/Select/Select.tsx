@@ -3,11 +3,12 @@ import { forwardRef } from 'react';
 import {
   areFilterableListItemsEqual,
   isFilterableListItemEmpty,
-  filterFilterableListItem,
+  filterFilterableList,
   getFilterableListItemLabel,
   isFilterableListItemDisabled,
   renderFilterableListItem,
   type IFilterableListItem,
+  filterFilterableListItem,
 } from '@/components/atoms/FilterableList';
 import {
   SelectBase,
@@ -47,6 +48,7 @@ export const Select = forwardRef<HTMLDivElement, ISelectProps>(
       <SelectBase<IFilterableListItem>
         itemsEqual={areFilterableListItemsEqual}
         itemEmpty={isFilterableListItemEmpty}
+        listPredicate={filterFilterableList}
         itemPredicate={filterFilterableListItem}
         itemDisabled={isFilterableListItemDisabled}
         noResults={

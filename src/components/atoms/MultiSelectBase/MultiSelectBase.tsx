@@ -2,7 +2,7 @@ import stylex from '@stylexjs/stylex';
 
 import type { IContainerProps, IOmit } from '@/helpers/types';
 import type { IFieldBaseVariant } from '@/components/atoms/FieldBase';
-import type { IFilterableItemRenderer } from '@/components/atoms/FilterableListBase';
+import type { IFilterableListItemRenderer } from '@/components/atoms/FilterableListBase';
 import type { ITextFieldBaseStyleKey } from '@/components/atoms/TextFieldBase';
 import { ListItem } from '@/components/atoms/ListItem';
 import { TextInputField } from '@/components/atoms/TextInputField';
@@ -29,7 +29,7 @@ export type IMultiSelectBaseProps<TItem> =
       defaultItems?: Array<TItem>;
       onItemsChange?: (value: Array<TItem>) => void;
       items: Array<TItem>;
-      itemRenderer: IFilterableItemRenderer<TItem, HTMLElement>;
+      itemRenderer: IFilterableListItemRenderer<TItem, HTMLElement>;
       itemLabel: (item: TItem) => string | undefined;
       getValueFieldProps?: (
         renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,

@@ -1,6 +1,7 @@
 import { forwardRef, useMemo, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { useTimeout } from 'usehooks-ts';
+import { useMergeRefs } from '@floating-ui/react';
 
 import type { IContainerProps, IOmit } from '@/helpers/types';
 import type {
@@ -14,7 +15,6 @@ import {
   SnackbarContent,
   type ISnackbarContentProps,
 } from '@/components/atoms/SnackbarContent';
-import { useForkRef } from '@/hooks/useForkRef';
 
 export type ISnackbarProps = IContainerProps<ISnackbarStyleKey> &
   IOmit<ISnackbarContentProps, 'styles' | 'sx' | 'onClose'> & {
@@ -52,7 +52,7 @@ export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
     useTimeout(() => onClose?.(), open ? autoHideDuration ?? null : null);
 
     const nodeRef = useRef<HTMLDivElement>(null);
-    const handleRef = useForkRef(nodeRef, forwardedRef);
+    const handleRef = useMergeRefs([nodeRef, forwardedRef]);
 
     return (
       <CSSTransition

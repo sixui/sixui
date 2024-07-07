@@ -4,10 +4,10 @@
 import highlightWords from 'highlight-words';
 
 import type {
-  IFilterableCreateNewItemRenderer,
-  IFilterableItemPredicate,
-  IFilterableItemRenderer,
-  IFilterableItemRendererProps,
+  IFilterableCreateNewListItemRenderer,
+  IFilterableListItemPredicate,
+  IFilterableListItemRenderer,
+  IFilterableListItemRendererProps,
 } from './FilterableListBaseProps';
 import { ListItem, type IListItemProps } from '@/components/atoms/ListItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -145,7 +145,7 @@ export const TOP_100_MOVIES: Array<IMovie> = [
  */
 export const getMovieItemProps = <TElement extends HTMLDivElement>(
   movie: IMovie,
-  { modifiers, query }: IFilterableItemRendererProps<TElement>,
+  { modifiers, query }: IFilterableListItemRendererProps<TElement>,
 ): IListItemProps & React.Attributes => {
   const text = movie.title;
 
@@ -171,7 +171,7 @@ export const getMovieItemProps = <TElement extends HTMLDivElement>(
 /**
  * Simple movie item renderer for "list" containers.
  */
-export const renderMovieListItem: IFilterableItemRenderer<
+export const renderMovieListItem: IFilterableListItemRenderer<
   IMovie,
   HTMLDivElement
 > = (movie, props) => {
@@ -195,7 +195,7 @@ export const renderMovieListItem: IFilterableItemRenderer<
 /**
  * Renders a list item to create a single movie from a given query string.
  */
-export const renderCreateMovieListItem: IFilterableCreateNewItemRenderer<
+export const renderCreateMovieListItem: IFilterableCreateNewListItemRenderer<
   HTMLDivElement
 > = (props): React.JSX.Element => (
   <ListItem
@@ -212,9 +212,9 @@ export const renderCreateMovieListItem: IFilterableCreateNewItemRenderer<
 /**
  * Filters movie list with a case-insensitive search.
  */
-export const filterMovie: IFilterableItemPredicate<IMovie> = (
-  query,
+export const filterMovie: IFilterableListItemPredicate<IMovie> = (
   movie,
+  query,
   _index,
   exactMatch,
 ) => {

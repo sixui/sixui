@@ -14,7 +14,7 @@ import {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { useVisualState } from '@/hooks/useVisualState';
+import { useVisualState } from '@/components/utils/VisualState';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { IconButton } from '@/components/atoms/IconButton';
 import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
@@ -61,14 +61,18 @@ export const TextFieldBase = fixedForwardRef(function TextField<
 
   const inputRef = useRef<TElement>(null);
   const disabled = disabledProp || other.readOnly;
-  const { visualState, ref: inputVisualStateRef } = useVisualState<TElement>(
+  const { visualState, setRef: setInputVisualStateRef } = useVisualState(
     visualStateProp,
     {
       disabled,
       retainFocusAfterClick: true,
     },
   );
-  const handleRef = useMergeRefs([inputRefProp, inputRef, inputVisualStateRef]);
+  const inputHandleRef = useMergeRefs([
+    inputRefProp,
+    inputRef,
+    setInputVisualStateRef,
+  ]);
 
   const { theme, variantTheme } = useComponentTheme(
     'TextFieldBase',
@@ -169,7 +173,7 @@ export const TextFieldBase = fixedForwardRef(function TextField<
                     ...forwardedProps,
                   },
                   sxf,
-                  ref: handleRef,
+                  ref: inputHandleRef,
                   modifiers: {
                     hasError: other.hasError,
                     disabled,

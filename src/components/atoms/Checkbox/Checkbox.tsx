@@ -1,5 +1,6 @@
 import { forwardRef, useCallback, useMemo, useRef } from 'react';
 import { asArray } from '@olivierpascal/helpers';
+import { useMergeRefs } from '@floating-ui/react';
 
 import type {
   IContainerProps,
@@ -20,7 +21,10 @@ import type {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { useVisualState, type IVisualState } from '@/hooks/useVisualState';
+import {
+  useVisualState,
+  type IVisualState,
+} from '@/components/utils/VisualState';
 import { usePrevious } from '@/hooks/usePrevious';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import {
@@ -31,7 +35,6 @@ import {
   FocusRing,
   type IFocusRingStyleKey,
 } from '@/components/utils/FocusRing';
-import { useForkRef } from '@/hooks/useForkRef';
 import {
   IndeterminateCircularProgressIndicator,
   type ICircularProgressIndicatorStyleKey,
@@ -95,10 +98,11 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
 
   const actionRef = useRef<HTMLInputElement>(null);
   const disabled = disabledProp || readOnly || loading;
-  const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
-    disabled,
-  });
-  const handleRef = useForkRef(forwardedRef, visualStateRef, actionRef);
+  const { visualState, setRef: setVisualStateRef } = useVisualState(
+    visualStateProp,
+    { disabled },
+  );
+  const handleRef = useMergeRefs([forwardedRef, setVisualStateRef, actionRef]);
 
   const { theme } = useComponentTheme('Checkbox');
   const stylesCombinator = useMemo(

@@ -2,6 +2,7 @@ import type { IOmit } from '@/helpers/types';
 import { forwardRef } from 'react';
 import {
   areFilterableListItemsEqual,
+  filterFilterableList,
   filterFilterableListItem,
   getFilterableListItemLabel,
   isFilterableListItemDisabled,
@@ -48,6 +49,7 @@ export const Suggest = forwardRef<HTMLInputElement, ISuggestProps>(
       <SuggestBase<IFilterableListItem>
         itemsEqual={areFilterableListItemsEqual}
         itemEmpty={isFilterableListItemEmpty}
+        listPredicate={filterFilterableList}
         itemPredicate={filterFilterableListItem}
         itemDisabled={isFilterableListItemDisabled}
         noResults={

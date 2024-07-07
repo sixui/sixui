@@ -2,7 +2,7 @@ import { isFunction } from 'lodash';
 
 import type { IAny } from '@/helpers/types';
 import type {
-  IFilterableItemsEqualProp,
+  IFilterableListItemsEqualProp,
   IFilterableListBaseInternalRendererProps,
 } from './FilterableListBaseProps';
 
@@ -14,7 +14,7 @@ import type {
  * `itemsEqualProp`.
  */
 export const executeFilterableItemsEqual = <TItem>(
-  itemsEqualProp: IFilterableItemsEqualProp<TItem> | undefined,
+  itemsEqualProp: IFilterableListItemsEqualProp<TItem> | undefined,
   itemA: TItem | null | undefined,
   itemB: TItem | null | undefined,
 ): boolean => {
@@ -67,7 +67,7 @@ export const renderFilterableItems = (
 };
 
 export const arrayContainsItem = <TItem>(
-  itemsEqualProp: IFilterableItemsEqualProp<TItem> | undefined,
+  itemsEqualProp: IFilterableListItemsEqualProp<TItem> | undefined,
   items: Array<TItem>,
   itemToFind: TItem,
 ): boolean =>
@@ -86,7 +86,7 @@ export const deleteItemFromArray = <TItem>(
 ): Array<TItem> => items.filter((item) => item !== itemToDelete);
 
 export const maybeAddCreatedItemToArrays = <TItem>(
-  itemsEqualProp: IFilterableItemsEqualProp<TItem> | undefined,
+  itemsEqualProp: IFilterableListItemsEqualProp<TItem> | undefined,
   items: Array<TItem>,
   createdItems: Array<TItem>,
   item: TItem,
@@ -103,7 +103,7 @@ export const maybeAddCreatedItemToArrays = <TItem>(
 };
 
 export const maybeDeleteCreatedItemFromArrays = <TItem>(
-  itemsEqualProp: IFilterableItemsEqualProp<TItem> | undefined,
+  itemsEqualProp: IFilterableListItemsEqualProp<TItem> | undefined,
   items: Array<TItem>,
   createdItems: Array<TItem>,
   item: TItem | undefined,

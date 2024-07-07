@@ -2,6 +2,7 @@ import type { IOmit } from '@/helpers/types';
 import { forwardRef } from 'react';
 import {
   areFilterableListItemsEqual,
+  filterFilterableList,
   filterFilterableListItem,
   getFilterableListItemLabel,
   isFilterableListItemDisabled,
@@ -48,6 +49,7 @@ export const MultiSelect = forwardRef<HTMLInputElement, IMultiSelectProps>(
     return (
       <MultiSelectBase<IFilterableListItem>
         itemsEqual={areFilterableListItemsEqual}
+        listPredicate={filterFilterableList}
         itemPredicate={filterFilterableListItem}
         itemDisabled={isFilterableListItemDisabled}
         noResults={

@@ -23,7 +23,10 @@ import type {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { type IVisualState, useVisualState } from '@/hooks/useVisualState';
+import {
+  type IVisualState,
+  useVisualState,
+} from '@/components/utils/VisualState';
 import { Elevation, IElevationStyleKey } from '@/components/utils/Elevation';
 import {
   FocusRing,
@@ -90,10 +93,11 @@ export const Card: ICard = forwardRef(function Card<
     ...other
   } = props as IWithAsProp<ICardOwnProps>;
 
-  const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
-    disabled,
-  });
-  const handleRef = useMergeRefs([forwardedRef, visualStateRef]);
+  const { visualState, setRef: setVisualStateRef } = useVisualState(
+    visualStateProp,
+    { disabled },
+  );
+  const handleRef = useMergeRefs([forwardedRef, setVisualStateRef]);
 
   const { theme, variantTheme, settings } = useComponentTheme(
     'Card',

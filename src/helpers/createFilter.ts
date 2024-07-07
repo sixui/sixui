@@ -1,47 +1,47 @@
 import { filterUndefineds } from '@olivierpascal/helpers';
 
 import {
-  type INormalizeStringOptions,
   normalizeString,
+  type INormalizeStringOptions,
 } from './normalizeString';
 
 export type ICreateFilterOptions<TItem> = INormalizeStringOptions & {
   limit?: number;
   matchFrom?: 'any' | 'start';
-  stringify?: (option: TItem) => string;
+  getSearchableText: (
+    item: TItem,
+  ) => string | Array<string | undefined> | undefined;
 };
 
-export type IFilterItemsState<TItem> = {
+export type IFilterItemsState = {
   query: string;
-  getSearchableText: (
-    option: TItem,
-  ) => string | Array<string | undefined> | undefined;
 };
 
 export type IFilter<TItem> = (
   items: Array<TItem>,
-  state: IFilterItemsState<TItem>,
+  query: string,
 ) => Array<TItem>;
 
-const defaultOptions: ICreateFilterOptions<unknown> = {
+const defaultOptions: Partial<ICreateFilterOptions<unknown>> = {
   limit: 100,
   matchFrom: 'any',
 };
 
 export const createFilter = <TItem>(
-  options?: ICreateFilterOptions<TItem>,
+  userOptions: ICreateFilterOptions<TItem>,
 ): IFilter<TItem> => {
-  const { limit, matchFrom, stringify } = { ...defaultOptions, ...options };
+  const options: ICreateFilterOptions<TItem> = {
+    ...defaultOptions,
+    ...userOptions,
+  };
+  const { limit, matchFrom, getSearchableText } = options;
 
-  return (
-    items: Array<TItem>,
-    { query, getSearchableText: getItemLabel }: IFilterItemsState<TItem>,
-  ) => {
+  return (items: Array<TItem>, query: string) => {
     const normalizedQuery = normalizeString(query, options);
 
     const filteredOptions = normalizedQuery
       ? items.filter((option) => {
-          const candidate = (stringify ?? getItemLabel)(option);
+          const candidate = getSearchableText(option);
           const candidates = Array.isArray(candidate) ? candidate : [candidate];
           const normalizedCandidates = filterUndefineds(candidates).map(
             (candidate) => normalizeString(candidate),

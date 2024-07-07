@@ -71,22 +71,20 @@ export * from './components/molecules/ElementWithLabel';
 
 // utils
 export * from './components/utils/Anchored';
+export * from './components/utils/ColorScheme';
 export * from './components/utils/ComponentShowcase';
 export * from './components/utils/Elevation';
 export * from './components/utils/FocusRing';
 export * from './components/utils/Portal';
 export * from './components/utils/StateLayer';
-export * from './components/utils/VisualState';
 export * from './components/utils/Theme';
-export * from './components/utils/ColorScheme';
+export * from './components/utils/VisualState';
 
 // hooks
 export * from './hooks/useElementSize';
-export * from './hooks/useForkRef';
+export * from './hooks/useId';
 export * from './hooks/useLoaded';
 export * from './hooks/usePrevious';
-export * from './hooks/useVisualState';
-export * from './hooks/useId';
 
 // themes
 export * from './themes';

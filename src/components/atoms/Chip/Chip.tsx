@@ -1,6 +1,7 @@
 import { forwardRef, useCallback, useMemo, useRef, useState } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 import stylex from '@stylexjs/stylex';
+import { useMergeRefs } from '@floating-ui/react';
 
 import type {
   IContainerProps,
@@ -23,7 +24,10 @@ import type {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { type IVisualState, useVisualState } from '@/hooks/useVisualState';
+import {
+  type IVisualState,
+  useVisualState,
+} from '@/components/utils/VisualState';
 import {
   Elevation,
   type IElevationStyleKey,
@@ -42,9 +46,9 @@ import {
 } from '@/components/atoms/CircularProgressIndicator';
 import { ReactComponent as CheckMarkIcon } from '@/assets/CheckMark.svg';
 import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
-import { useForkRef } from '@/hooks/useForkRef';
+
 import { ButtonBase } from '@/components/atoms/ButtonBase';
-import { Avatar } from '../Avatar';
+import { Avatar } from '@/components/atoms/Avatar';
 
 // https://github.com/material-components/material-web/blob/main/chips/internal/chip.ts
 // https://github.com/material-components/material-web/blob/main/chips/internal/assist-chip.ts
@@ -148,14 +152,15 @@ export const Chip: IChip = forwardRef(function Chip<
   const disabled = disabledProp || loading || deleting;
 
   const primaryActionRef = useRef<HTMLElement>(null);
-  const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
-    disabled,
-  });
-  const primaryHandleRef = useForkRef(
-    forwardedRef,
-    visualStateRef,
-    primaryActionRef,
+  const { visualState, setRef: setVisualStateRef } = useVisualState(
+    visualStateProp,
+    { disabled },
   );
+  const primaryHandleRef = useMergeRefs([
+    forwardedRef,
+    setVisualStateRef,
+    primaryActionRef,
+  ]);
 
   const trailingActionRef = useRef<HTMLButtonElement>(null);
 

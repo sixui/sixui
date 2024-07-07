@@ -21,9 +21,10 @@ import {
 import type { IFloatingFilterableListBaseProps } from './FloatingFilterableListBaseProps';
 import {
   FilterableListBase,
-  type IFilterableCreateNewItemRenderer,
-  type IFilterableItemRenderer,
+  type IFilterableCreateNewListItemRenderer,
+  type IFilterableListItemRenderer,
   type IFilterableListBaseRenderer,
+  type IFilterableListItemRendererProps,
 } from '@/components/atoms/FilterableListBase';
 import { Portal } from '@/components/utils/Portal';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
@@ -157,8 +158,8 @@ export const FloatingFilterableListBase = fixedForwardRef(
             list.find((label) =>
               label && other.createNewItemFromQuery
                 ? other.itemPredicate?.(
-                    typedString,
                     other.createNewItemFromQuery(label),
+                    typedString,
                   )
                 : false,
             )
@@ -295,13 +296,12 @@ export const FloatingFilterableListBase = fixedForwardRef(
         getInputFilterProps,
       });
 
-    const itemRendererWrapper: IFilterableItemRenderer<TItem, TItemElement> = (
-      item,
-      itemProps,
-    ) => {
+    const getItemRendererProps = (
+      itemProps: IFilterableListItemRendererProps<TItemElement>,
+    ): IFilterableListItemRendererProps<TItemElement> => {
       const active = activeIndex === itemProps.index;
 
-      return itemRenderer(item, {
+      return {
         ...itemProps,
         modifiers: {
           ...itemProps.modifiers,
@@ -317,36 +317,23 @@ export const FloatingFilterableListBase = fixedForwardRef(
             role: 'option',
             tabIndex: active ? 0 : -1,
             'aria-selected': active,
-            onClick: itemProps.handleClick,
+            onClick: (event: React.MouseEvent<TItemElement, MouseEvent>) => {
+              userProps?.onClick?.(event);
+              itemProps.handleClick(event);
+            },
           }),
-      });
+      };
     };
 
-    const createNewItemRendererWrapper: IFilterableCreateNewItemRenderer<
+    const itemRendererWrapper: IFilterableListItemRenderer<
+      TItem,
       TItemElement
-    > = (itemProps) => {
-      const active = activeIndex === itemProps.index;
+    > = (item, itemProps) =>
+      itemRenderer(item, getItemRendererProps(itemProps));
 
-      return createNewItemRenderer?.({
-        ...itemProps,
-        modifiers: {
-          ...itemProps.modifiers,
-          active,
-        },
-        buttonRef: (node) => {
-          elementsRef.current[itemProps.index] = node;
-          labelsRef.current[itemProps.index] = node?.textContent ?? null;
-        },
-        getButtonAttributes: (userProps) =>
-          interactions.getItemProps({
-            ...userProps,
-            role: 'option',
-            tabIndex: active ? 0 : -1,
-            'aria-selected': active,
-            onClick: itemProps.handleClick,
-          }),
-      });
-    };
+    const createNewItemRendererWrapper: IFilterableCreateNewListItemRenderer<
+      TItemElement
+    > = (itemProps) => createNewItemRenderer?.(getItemRendererProps(itemProps));
 
     // Restore the query when the list is re-mounted.
     const previousIsMounted = usePrevious(transitionStatus.isMounted);

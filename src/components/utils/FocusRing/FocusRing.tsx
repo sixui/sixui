@@ -6,17 +6,17 @@ import {
   useRef,
   useState,
 } from 'react';
+import { useMergeRefs } from '@floating-ui/react';
 
 import type { IContainerProps } from '@/helpers/types';
 import type {
   IFocusRingStyleKey,
   IFocusRingStyleVarKey,
 } from './FocusRing.styledefs';
-import type { IVisualState } from '@/hooks/useVisualState';
+import type { IVisualState } from '@/components/utils/VisualState';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { useForkRef } from '@/hooks/useForkRef';
 
 export type IFocusRingProps = IContainerProps<IFocusRingStyleKey> & {
   visualState?: IVisualState;
@@ -48,7 +48,7 @@ export const FocusRing = forwardRef<HTMLInputElement, IFocusRingProps>(
     );
 
     const hostRef = useRef<HTMLDivElement>(null);
-    const handleRef = useForkRef(forwardedRef, hostRef);
+    const handleRef = useMergeRefs([forwardedRef, hostRef]);
 
     const [visible, setVisible] = useState(false);
 

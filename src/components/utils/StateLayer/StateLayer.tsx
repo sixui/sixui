@@ -1,16 +1,16 @@
 import { forwardRef, useMemo } from 'react';
+import { useMergeRefs } from '@floating-ui/react';
 
 import type { IContainerProps } from '@/helpers/types';
 import type {
   IStateLayerStyleKey,
   IStateLayerStyleVarKey,
 } from './StateLayer.styledefs';
-import type { IVisualState } from '@/hooks/useVisualState';
+import type { IVisualState } from '@/components/utils/VisualState';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useRipple } from './useRipple';
-import { useForkRef } from '@/hooks/useForkRef';
 
 // https://github.com/material-components/material-web/blob/main/ripple/internal/ripple.ts
 
@@ -50,7 +50,7 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
       for: forElementRef,
       disabled,
     });
-    const handleRef = useForkRef(forwardedRef, setHostRef);
+    const handleRef = useMergeRefs([forwardedRef, setHostRef]);
 
     return (
       <div ref={handleRef} {...sxf('host', theme.vars, sx)}>

@@ -8,6 +8,7 @@ import {
   useState,
 } from 'react';
 import { isFunction } from 'lodash';
+import { useMergeRefs } from '@floating-ui/react';
 
 import type { IContainerProps } from '@/helpers/types';
 import type {
@@ -23,7 +24,6 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { Divider } from '@/components/atoms/Divider';
-import { useForkRef } from '@/hooks/useForkRef';
 
 // https://github.com/material-components/material-web/blob/main/dialog/internal/dialog.ts
 
@@ -151,7 +151,7 @@ export const DialogContent: IDialogContent = forwardRef(function DialogContent<
   // See https://github.com/material-components/material-web/blob/main/dialog/internal/dialog.ts#L193C8-L193C75
 
   const nodeRef = useRef<HTMLDivElement>(null);
-  const handleRef = useForkRef(nodeRef, forwardedRef);
+  const handleRef = useMergeRefs([nodeRef, forwardedRef]);
 
   return (
     <Component

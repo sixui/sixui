@@ -1,4 +1,5 @@
 import { forwardRef, useMemo, useRef } from 'react';
+import { useMergeRefs } from '@floating-ui/react';
 
 import type { IContainerProps } from '@/helpers/types';
 import type { IThemeComponents } from '@/components/utils/Theme';
@@ -7,11 +8,13 @@ import type {
   ITemplateStyleVarKey,
   ITemplateVariant,
 } from './Template.styledefs';
-import { type IVisualState, useVisualState } from '@/hooks/useVisualState';
+import {
+  type IVisualState,
+  useVisualState,
+} from '@/components/utils/VisualState';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { useForkRef } from '@/hooks/useForkRef';
 
 export type IVariableTemplateProps = IContainerProps<ITemplateStyleKey> & {
   visualState?: IVisualState;
@@ -41,8 +44,9 @@ export const VariableTemplate = forwardRef<
   } = props;
 
   const actionRef = useRef<HTMLInputElement>(null);
-  const { visualState, ref: visualStateRef } = useVisualState(visualStateProp);
-  const handleRef = useForkRef(forwardedRef, visualStateRef, actionRef);
+  const { visualState, setRef: setVisualStateRef } =
+    useVisualState(visualStateProp);
+  const handleRef = useMergeRefs([forwardedRef, actionRef, setVisualStateRef]);
 
   const { theme, variantTheme } = useComponentTheme(
     'Template',

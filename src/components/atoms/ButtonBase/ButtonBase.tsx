@@ -1,5 +1,6 @@
 import { forwardRef, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
+import { useMergeRefs } from '@floating-ui/react';
 
 import type {
   IContainerProps,
@@ -12,10 +13,12 @@ import type {
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
 import type { IButtonBaseStyleKey } from './ButtonBase.styledefs';
-import { type IVisualState, useVisualState } from '@/hooks/useVisualState';
+import {
+  type IVisualState,
+  useVisualState,
+} from '@/components/utils/VisualState';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useForkRef } from '@/hooks/useForkRef';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import {
   Elevation,
@@ -79,10 +82,13 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
   } = props as IWithAsProp<IButtonBaseOwnProps>;
 
   const disabled = disabledProp || readOnly;
-  const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
-    disabled,
-  });
-  const handleRef = useForkRef(forwardedRef, visualStateRef);
+  const { visualState, setRef: setVisualStateRef } = useVisualState(
+    visualStateProp,
+    {
+      disabled,
+    },
+  );
+  const handleRef = useMergeRefs([forwardedRef, setVisualStateRef]);
 
   const { theme, settings } = useComponentTheme('ButtonBase');
   const stylesCombinator = useMemo(

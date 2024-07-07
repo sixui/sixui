@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 import type {
-  IFilterableItemRenderer,
-  IFilterableItemsEqualProp,
+  IFilterableListItemRenderer,
+  IFilterableListItemsEqualProp,
 } from './FilterableListBaseProps';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import {
@@ -16,10 +16,10 @@ export type IUseMultiFilterableListBaseProps<
   TElement extends HTMLElement,
 > = {
   items: Array<TItem>;
-  itemRenderer: IFilterableItemRenderer<TItem, TElement>;
+  itemRenderer: IFilterableListItemRenderer<TItem, TElement>;
   selectedItems?: Array<TItem>;
   defaultItems?: Array<TItem>;
-  itemsEqual?: IFilterableItemsEqualProp<TItem>;
+  itemsEqual?: IFilterableListItemsEqualProp<TItem>;
   onItemsChange?: (items: Array<TItem>) => void;
 };
 
@@ -27,7 +27,7 @@ export type IUseMultiFilterableListBaseResult<
   TItem,
   TElement extends HTMLElement,
 > = {
-  itemRenderer: IFilterableItemRenderer<TItem, TElement>;
+  itemRenderer: IFilterableListItemRenderer<TItem, TElement>;
   handleItemSelect: (newSelectedItem: TItem) => number | undefined;
   handleItemRemoveFocused: () => void;
   handleItemFocusPreviousSelected: () => void;
@@ -59,7 +59,7 @@ export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
   const [focusedSelectedItemIndex, setFocusedSelectedItemIndex] =
     useState<number>();
 
-  const itemRenderer: IFilterableItemRenderer<TItem, TElement> = (
+  const itemRenderer: IFilterableListItemRenderer<TItem, TElement> = (
     item,
     itemProps,
   ): React.JSX.Element | null => {

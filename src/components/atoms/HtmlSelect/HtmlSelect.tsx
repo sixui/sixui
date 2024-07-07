@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 import { useMergeRefs } from '@floating-ui/react';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 
-import { useVisualState } from '@/hooks/useVisualState';
+import { useVisualState } from '@/components/utils/VisualState';
 import { componentVars as fieldBaseVars } from '@/themes/base/FieldBase/FieldBase.stylex';
 import {
   FieldBase,
@@ -77,15 +77,15 @@ export const HtmlSelect = forwardRef<HTMLSelectElement, IHtmlSelectProps>(
   function HtmlSelect(props, forwardedRef) {
     const { options, slotProps, ...other } = props;
 
-    const { visualState, ref: visualStateRef } =
-      useVisualState<HTMLSelectElement>(slotProps?.fieldBase?.visualState, {
-        disabled: other.disabled,
-      });
+    const { visualState, setRef: setVisualStateRef } = useVisualState(
+      slotProps?.fieldBase?.visualState,
+      { disabled: other.disabled },
+    );
 
     const selectRef = useRef<HTMLSelectElement | null>(null);
     const selectHandleRef = useMergeRefs([
       selectRef,
-      visualStateRef,
+      setVisualStateRef,
       forwardedRef,
     ]);
 

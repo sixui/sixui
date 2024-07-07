@@ -1,8 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
-import { type IVisualState, useVisualState } from '@/hooks/useVisualState';
+import {
+  type IVisualState,
+  useVisualState,
+} from '@/components/utils/VisualState';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { useForkRef } from '@/hooks/useForkRef';
 import { ButtonBase } from '@/components/atoms/ButtonBase';
 import { shapeVars } from '@/themes/base/vars/shape.stylex';
 import { componentVars as focusRingVars } from '@/themes/base/FocusRing/FocusRing.stylex';
@@ -55,15 +57,14 @@ const focusRingStyles = stylex.create({
 export const VisualState: React.FC<IVisualStateProps> = (props) => {
   const { visualState: visualStateProp, disabled, children } = props;
 
-  const { visualState, ref } = useVisualState(visualStateProp, {
+  const { visualState, setRef } = useVisualState(visualStateProp, {
     disabled,
   });
-  const handleRef = useForkRef(ref);
 
   return (
     <ButtonBase
       sx={styles.host}
-      ref={handleRef}
+      ref={setRef}
       innerStyles={{ focusRing: focusRingStyles }}
       draggable={true}
       disabled={disabled}

@@ -6,11 +6,13 @@ import { TextInputField } from '@/components/atoms/TextInputField';
 import { ListItem, type IListItemOwnProps } from '@/components/atoms/ListItem';
 import {
   FilterableListBase,
-  type IFilterableItemPredicate,
-  type IFilterableItemRenderer,
-  type IFilterableItemRendererProps,
+  type IFilterableListItemRenderer,
+  type IFilterableListItemRendererProps,
   type IFilterableListBaseProps,
+  type IFilterableListPredicate,
+  type IFilterableListItemPredicate,
 } from '@/components/atoms/FilterableListBase';
+import { createFilter } from '@/helpers/createFilter';
 
 export type IFilterableListItem = {
   leading?: React.ReactNode;
@@ -23,6 +25,8 @@ export type IFilterableListItem = {
   trailingSupportingText?: string;
   value: string;
   disabled?: boolean;
+  onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  href?: string;
 };
 
 export type IFilterableListProps = IOmit<
@@ -57,8 +61,8 @@ const highlightQueryInText = (
  */
 const getFilterableListItemProps = <TElement extends HTMLElement>(
   item: IFilterableListItem,
-  { modifiers, query }: IFilterableItemRendererProps<TElement>,
-): IListItemOwnProps & React.HTMLAttributes<HTMLElement> => {
+  { modifiers, query }: IFilterableListItemRendererProps<TElement>,
+): IListItemOwnProps => {
   const text = item.label ?? item.value;
 
   return {
@@ -73,6 +77,8 @@ const getFilterableListItemProps = <TElement extends HTMLElement>(
       query,
     ),
     children: text ? highlightQueryInText(text, query) : item.placeholder,
+    onClick: item.onClick,
+    href: item.href,
   };
 };
 
@@ -91,12 +97,17 @@ export const areFilterableListItemsEqual = (
 export const isFilterableListItemEmpty = (item: IFilterableListItem): boolean =>
   !item.value;
 
+export const filterFilterableList: IFilterableListPredicate<IFilterableListItem> =
+  createFilter<IFilterableListItem>({
+    getSearchableText: (item) => [item.label, item.value, item.supportingText],
+  });
+
 /**
- * Filters movie list with a case-insensitive search.
+ * Filters item list with a case-insensitive search.
  */
-export const filterFilterableListItem: IFilterableItemPredicate<
+export const filterFilterableListItem: IFilterableListItemPredicate<
   IFilterableListItem
-> = (query, item, _index, exactMatch) => {
+> = (item, query, _index, exactMatch) => {
   const text = item.label ?? item.value;
   if (!text || !query) {
     return false;
@@ -126,23 +137,29 @@ export const isFilterableListItemDisabled = (
 /**
  * Basic list item renderer for "list" containers.
  */
-export const renderFilterableListItem: IFilterableItemRenderer<
+export const renderFilterableListItem: IFilterableListItemRenderer<
   IFilterableListItem,
   HTMLElement
-> = (movie, props) => {
+> = (item, props) => {
   if (!props.modifiers.matchesPredicate) {
     return null;
   }
 
+  const listItemProps = getFilterableListItemProps(item, props);
+
   return (
     <ListItem
-      {...getFilterableListItemProps(movie, props)}
+      {...listItemProps}
       key={props.index}
       visualState={{ hovered: props.modifiers.active, strategy: 'replace' }}
       selected={props.modifiers.selected}
       disabled={props.modifiers.disabled}
       {...props.getButtonAttributes({
-        onClick: props.handleClick,
+        onClick: (event) => {
+          listItemProps.onClick?.(event);
+          item.onClick?.(event);
+          props.handleClick(event);
+        },
       })}
       ref={props.buttonRef}
     />
@@ -175,6 +192,7 @@ export const FilterableList: React.FC<IFilterableListProps> = (
       )}
       itemRenderer={renderFilterableListItem}
       itemsEqual={areFilterableListItemsEqual}
+      listPredicate={filterFilterableList}
       itemPredicate={filterFilterableListItem}
       noResults={<ListItem disabled>No results.</ListItem>}
       {...other}

@@ -1,5 +1,6 @@
 import { forwardRef, useContext, useMemo, useRef } from 'react';
 import { asArray } from '@olivierpascal/helpers';
+import { useMergeRefs } from '@floating-ui/react';
 
 import type {
   IContainerProps,
@@ -17,7 +18,10 @@ import type { IThemeComponents } from '@/components/utils/Theme';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { type IVisualState, useVisualState } from '@/hooks/useVisualState';
+import {
+  useVisualState,
+  type IVisualState,
+} from '@/components/utils/VisualState';
 import {
   StateLayer,
   type IStateLayerStyleKey,
@@ -32,7 +36,6 @@ import {
   type IItemStyleKey,
   Item,
 } from '@/components/atoms/Item';
-import { useForkRef } from '@/hooks/useForkRef';
 import { commonStyles } from '@/helpers/commonStyles';
 import { ListContext } from '@/components/atoms/List/ListContext';
 
@@ -125,10 +128,11 @@ export const ListItem: IListItem = forwardRef(function ListItem<
   } = props as IWithAsProp<IListItemOwnProps>;
 
   const actionRef = useRef<HTMLInputElement>(null);
-  const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
-    disabled,
-  });
-  const handleRef = useForkRef(forwardedRef, visualStateRef, actionRef);
+  const { visualState, setRef: setVisualStateRef } = useVisualState(
+    visualStateProp,
+    { disabled },
+  );
+  const handleRef = useMergeRefs([forwardedRef, setVisualStateRef, actionRef]);
 
   const { theme, variantTheme, settings } = useComponentTheme(
     'ListItem',

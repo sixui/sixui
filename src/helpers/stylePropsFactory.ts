@@ -2,7 +2,7 @@ import stylex from '@stylexjs/stylex';
 import { CompiledStyles } from '@stylexjs/stylex/lib/StyleXTypes';
 
 import type { IStylesCombinator } from '@/helpers/stylesCombinatorFactory';
-import type { IVisualState } from '@/hooks/useVisualState';
+import type { IVisualState } from '@/components/utils/VisualState';
 import type { IStyleVarsTheme, IStyleXStyles } from './types';
 import { dataProps } from '@/helpers/dataProps';
 

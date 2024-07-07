@@ -9,9 +9,9 @@ export type IVisualState = {
   strategy?: 'accumulate' | 'override' | 'replace';
 };
 
-export type IUseVisualStateResult<TElement> = {
+export type IUseVisualStateResult = {
   visualState: IVisualState;
-  ref: (element: TElement) => void;
+  setRef: (element: Element | null) => void;
 };
 
 export type IVisualStateOptions = {
@@ -22,10 +22,10 @@ export type IVisualStateOptions = {
 // Used to handle overlapping surfaces.
 let activeTarget: EventTarget | null = null;
 
-export const useVisualState = <TElement extends Element = HTMLElement>(
+export const useVisualState = (
   visualState?: IVisualState,
   options?: IVisualStateOptions,
-): IUseVisualStateResult<TElement> => {
+): IUseVisualStateResult => {
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
   const [pressed, setPressed] = useState(false);
@@ -59,8 +59,8 @@ export const useVisualState = <TElement extends Element = HTMLElement>(
     activeTarget = null;
   }, []);
 
-  const ref = useCallback(
-    (element: TElement) => {
+  const setRef = useCallback(
+    (element: Element | null) => {
       if (
         element &&
         !options?.disabled &&
@@ -74,18 +74,18 @@ export const useVisualState = <TElement extends Element = HTMLElement>(
         element.addEventListener('mouseup', handleMouseUp);
         element.addEventListener('keydown', handleKeyDown);
         element.addEventListener('keyup', handleKeyUp);
-      }
 
-      return () => {
-        element.removeEventListener('mouseenter', handleMouseEnter);
-        element.removeEventListener('mouseleave', handleMouseLeave);
-        element.removeEventListener('focus', handleFocus);
-        element.removeEventListener('blur', handleBlur);
-        element.removeEventListener('mousedown', handleMouseDown);
-        element.removeEventListener('mouseup', handleMouseUp);
-        element.removeEventListener('keydown', handleKeyDown);
-        element.removeEventListener('keyup', handleKeyUp);
-      };
+        return () => {
+          element.removeEventListener('mouseenter', handleMouseEnter);
+          element.removeEventListener('mouseleave', handleMouseLeave);
+          element.removeEventListener('focus', handleFocus);
+          element.removeEventListener('blur', handleBlur);
+          element.removeEventListener('mousedown', handleMouseDown);
+          element.removeEventListener('mouseup', handleMouseUp);
+          element.removeEventListener('keydown', handleKeyDown);
+          element.removeEventListener('keyup', handleKeyUp);
+        };
+      }
     },
     [
       options?.disabled,
@@ -119,12 +119,12 @@ export const useVisualState = <TElement extends Element = HTMLElement>(
         hovered: false,
         pressed: false,
       },
-      ref,
+      setRef,
     };
   }
 
   return {
     visualState: newVisualState,
-    ref,
+    setRef,
   };
 };

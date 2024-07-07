@@ -1,5 +1,6 @@
 import stylex from '@stylexjs/stylex';
 import { useImperativeHandle, useMemo, useRef, forwardRef } from 'react';
+import { useMergeRefs } from '@floating-ui/react';
 
 import type { IContainerProps, IOmit } from '@/helpers/types';
 import type {
@@ -7,7 +8,6 @@ import type {
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
-import { useForkRef } from '@/hooks/useForkRef';
 import { useId } from '@/hooks/useId';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import {
@@ -76,7 +76,7 @@ export const RadioGroup: IRadioGroup = forwardRef(function RadioGroup<
     [],
   );
 
-  const handleRef = useForkRef(forwardedRef, hostRef);
+  const handleRef = useMergeRefs([forwardedRef, hostRef]);
   const name = useId(nameProp);
 
   const contextValue = useMemo(

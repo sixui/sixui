@@ -7,6 +7,7 @@ import {
   useRef,
 } from 'react';
 import { asArray } from '@olivierpascal/helpers';
+import { useMergeRefs } from '@floating-ui/react';
 
 import type {
   IContainerProps,
@@ -30,7 +31,10 @@ import { Badge, type IBadgeProps } from '../Badge';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { type IVisualState, useVisualState } from '@/hooks/useVisualState';
+import {
+  type IVisualState,
+  useVisualState,
+} from '@/components/utils/VisualState';
 import { Elevation, IElevationStyleKey } from '@/components/utils/Elevation';
 import { FocusRing, IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import {
@@ -38,7 +42,6 @@ import {
   type IStateLayerStyleKey,
 } from '@/components/utils/StateLayer';
 import { Anchored } from '@/components/utils/Anchored';
-import { useForkRef } from '@/hooks/useForkRef';
 import { TabContext } from '@/components/atoms/Tabs';
 
 // https://github.com/material-components/material-web/blob/main/tabs/internal/tab.ts
@@ -114,10 +117,13 @@ export const Tab: ITab = forwardRef(function Tab<
   const variant = variantProp ?? context?.variant ?? 'primary';
 
   const actionRef = useRef<HTMLButtonElement>(null);
-  const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
-    disabled,
-  });
-  const handleRef = useForkRef(forwardedRef, visualStateRef, actionRef);
+  const { visualState, setRef: visualStateRef } = useVisualState(
+    visualStateProp,
+    {
+      disabled,
+    },
+  );
+  const handleRef = useMergeRefs([forwardedRef, visualStateRef, actionRef]);
 
   const { theme, variantTheme, settings } = useComponentTheme(
     'Tab',

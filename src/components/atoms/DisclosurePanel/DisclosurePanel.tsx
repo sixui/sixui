@@ -1,6 +1,7 @@
 import { forwardRef, useContext, useMemo, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import stylex from '@stylexjs/stylex';
+import { useMergeRefs } from '@floating-ui/react';
 
 import type { IContainerProps } from '@/helpers/types';
 import type {
@@ -11,7 +12,6 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { DisclosureContext } from '@/components/atoms/Disclosure';
-import { useForkRef } from '@/hooks/useForkRef';
 import { useElementSize } from '@/hooks/useElementSize';
 
 export type IDisclosurePanelProps =
@@ -62,7 +62,7 @@ export const DisclosurePanel = forwardRef<
     ref: contentRef,
     expanded,
   });
-  const handleRef = useForkRef(nodeRef, forwardedRef);
+  const handleRef = useMergeRefs([nodeRef, forwardedRef]);
 
   return (
     <CSSTransition

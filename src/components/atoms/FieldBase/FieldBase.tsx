@@ -7,10 +7,14 @@ import {
   useState,
 } from 'react';
 import { isFunction } from 'lodash';
+import { useMergeRefs } from '@floating-ui/react';
 
 import type { IContainerProps } from '@/helpers/types';
 import type { IThemeComponents } from '@/components/utils/Theme';
-import { useVisualState, type IVisualState } from '@/hooks/useVisualState';
+import {
+  useVisualState,
+  type IVisualState,
+} from '@/components/utils/VisualState';
 import type {
   IFieldBaseVariant,
   IFieldBaseStyleKey,
@@ -29,7 +33,6 @@ import { usePrevious } from '@/hooks/usePrevious';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { EASING } from '@/helpers/animation';
-import { useForkRef } from '@/hooks/useForkRef';
 import { CircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
 
 // https://github.com/material-components/material-web/blob/main/field/internal/filled-field.ts
@@ -120,11 +123,14 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
   } = props;
 
   const disabled = disabledProp || readOnly;
-  const { visualState, ref: visualStateRef } = useVisualState(visualStateProp, {
-    disabled,
-    retainFocusAfterClick: true,
-  });
-  const handleRef = useForkRef(forwardedRef, visualStateRef);
+  const { visualState, setRef: setVisualStateRef } = useVisualState(
+    visualStateProp,
+    {
+      disabled,
+      retainFocusAfterClick: true,
+    },
+  );
+  const handleRef = useMergeRefs([forwardedRef, setVisualStateRef]);
 
   const { theme, variantTheme } = useComponentTheme(
     'FieldBase',

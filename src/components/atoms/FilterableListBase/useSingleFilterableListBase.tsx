@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 import type {
-  IFilterableItemRenderer,
-  IFilterableItemsEqualProp,
+  IFilterableListItemRenderer,
+  IFilterableListItemsEqualProp,
 } from './FilterableListBaseProps';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import {
@@ -16,11 +16,11 @@ export type IUseSingleFilterableListBaseProps<
   TElement extends HTMLElement,
 > = {
   items: Array<TItem>;
-  itemRenderer: IFilterableItemRenderer<TItem, TElement>;
+  itemRenderer: IFilterableListItemRenderer<TItem, TElement>;
   selectedItem?: TItem;
   defaultItem?: TItem;
   itemEmpty?: (item: TItem) => boolean;
-  itemsEqual?: IFilterableItemsEqualProp<TItem>;
+  itemsEqual?: IFilterableListItemsEqualProp<TItem>;
   onItemChange?: (item?: TItem) => void;
 };
 
@@ -28,7 +28,7 @@ export type IUseSingleFilterableListBaseResult<
   TItem,
   TElement extends HTMLElement,
 > = {
-  itemRenderer: IFilterableItemRenderer<TItem, TElement>;
+  itemRenderer: IFilterableListItemRenderer<TItem, TElement>;
   handleItemSelect: (newSelectedItem: TItem) => number | undefined;
   handleClear: (
     afterItemsRemove: (
@@ -55,7 +55,7 @@ export const useSingleFilterableListBase = <
     name: 'useSingleFilterableListBase',
   });
 
-  const itemRenderer: IFilterableItemRenderer<TItem, TElement> = (
+  const itemRenderer: IFilterableListItemRenderer<TItem, TElement> = (
     item,
     itemProps,
   ): React.JSX.Element | null => {

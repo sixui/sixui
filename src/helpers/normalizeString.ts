@@ -6,7 +6,7 @@ export type INormalizeStringOptions = {
   ignoreAccents?: boolean;
 };
 
-const defaultOptions: INormalizeStringOptions = {
+const defaultOptions: Partial<INormalizeStringOptions> = {
   trim: true,
   ignoreCase: true,
   ignoreAccents: true,
@@ -14,12 +14,13 @@ const defaultOptions: INormalizeStringOptions = {
 
 export const normalizeString = (
   input: string,
-  options?: INormalizeStringOptions,
+  userOptions?: INormalizeStringOptions,
 ): string => {
-  const { trim, ignoreCase, ignoreAccents } = {
+  const options: INormalizeStringOptions = {
     ...defaultOptions,
-    ...options,
+    ...userOptions,
   };
+  const { trim, ignoreCase, ignoreAccents } = options;
 
   const inputTrimPass = trim ? input.trim() : input;
   const inputCasePass = ignoreCase
