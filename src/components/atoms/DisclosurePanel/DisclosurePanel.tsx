@@ -68,7 +68,7 @@ export const DisclosurePanel = forwardRef<
     <CSSTransition
       nodeRef={nodeRef}
       in={expanded}
-      timeout={100} // motionVars.duration$short2
+      timeout={500} // motionVars.duration$long2
       classNames={{
         enterActive: sxf('animation$onEnterActive').className,
         exitActive: sxf('animation$onExitActive').className,
