@@ -1,3 +1,15 @@
+# v0.0.287 (Sun Jul 07 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(Suggest): imroved UX ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.286 (Sun Jul 07 2024)
 
 #### ⚠️ Pushed to `main`
