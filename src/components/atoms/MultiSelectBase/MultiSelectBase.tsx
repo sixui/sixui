@@ -5,7 +5,10 @@ import type { IFieldBaseVariant } from '@/components/atoms/FieldBase';
 import type { IFilterableListItemRenderer } from '@/components/atoms/FilterableListBase';
 import type { ITextFieldBaseStyleKey } from '@/components/atoms/TextFieldBase';
 import { ListItem } from '@/components/atoms/ListItem';
-import { TextInputField } from '@/components/atoms/TextInputField';
+import {
+  ITextInputFieldOwnProps,
+  TextInputField,
+} from '@/components/atoms/TextInputField';
 import { MenuList } from '@/components/atoms/MenuList';
 import { InputChip, type IInputChipProps } from '@/components/atoms/Chip';
 import {
@@ -24,7 +27,8 @@ export type IMultiSelectBaseProps<TItem> =
     IOmit<
       IFloatingFilterableListBaseProps<TItem, HTMLElement>,
       'onItemSelect' | 'renderer' | 'listRenderer' | 'itemRenderer' | 'children'
-    > & {
+    > &
+    ITextInputFieldOwnProps & {
       selectedItems?: Array<TItem>;
       defaultItems?: Array<TItem>;
       onItemsChange?: (value: Array<TItem>) => void;
@@ -73,6 +77,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
     getValueFieldProps,
     clearable,
     variant,
+    noResults,
     ...other
   } = props;
 
@@ -92,7 +97,6 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
       onItemRemoveFocused={multiFilterableListBase.handleItemRemoveFocused}
       renderer={(listProps) => <MenuList>{listProps.filteredList}</MenuList>}
       itemRenderer={multiFilterableListBase.itemRenderer}
-      noResults={<ListItem disabled>No results.</ListItem>}
       matchTargetWidth
       resetOnSelect
       resetOnClose
@@ -105,6 +109,8 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
       }
       onQueryChange={multiFilterableListBase.handleQueryChange}
       {...other}
+      forwardProps
+      noResults={noResults ?? <ListItem disabled>No results.</ListItem>}
       ref={forwardedRef}
     >
       {(renderProps) => (
@@ -164,6 +170,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
                 )
               : undefined
           }
+          {...renderProps.forwardedProps}
         />
       )}
     </FloatingFilterableListBase>

@@ -6,6 +6,10 @@ import type {
   IExtendedFloatingProps,
   IExtendedHtmlFloatingProps,
 } from '@/helpers/extendFloatingProps';
+import type {
+  IRendererWithForwardedProps,
+  IForwardableProps,
+} from '@/helpers/react/forwardablePropsTypes';
 
 export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
   /**
@@ -62,50 +66,51 @@ export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
 export type IFloatingFilterableListBaseProps<
   TItem,
   TElement extends HTMLElement,
-> = IOmit<IFilterableListBaseProps<TItem, TElement>, 'onItemSelect'> & {
-  /**
-   * Element which triggers the select popover. In most cases, you should display
-   * the name or label of the curently selected item here.
-   */
-  children: (
-    props: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
-  ) => React.JSX.Element;
+> = IOmit<IFilterableListBaseProps<TItem, TElement>, 'onItemSelect'> &
+  IForwardableProps & {
+    /**
+     * Element which triggers the select popover. In most cases, you should display
+     * the name or label of the curently selected item here.
+     */
+    children: IRendererWithForwardedProps<
+      IFloatingFilterableListBaseTriggerRenderProps<TItem>
+    >;
 
-  onItemSelect: (
-    item: TItem,
-    event?: React.SyntheticEvent<HTMLElement>,
-  ) => number | undefined;
+    onItemSelect: (
+      item: TItem,
+      event?: React.SyntheticEvent<HTMLElement>,
+    ) => number | undefined;
 
-  onItemRemoveFocused?: () => void;
+    onItemRemoveFocused?: () => void;
 
-  onItemFocusPreviousSelected?: (
-    inputFilterRef: React.RefObject<HTMLInputElement>,
-  ) => void;
-  onItemFocusNextSelected?: (
-    inputFilterRef: React.RefObject<HTMLInputElement>,
-  ) => void;
+    onItemFocusPreviousSelected?: (
+      inputFilterRef: React.RefObject<HTMLInputElement>,
+    ) => void;
+    onItemFocusNextSelected?: (
+      inputFilterRef: React.RefObject<HTMLInputElement>,
+    ) => void;
 
-  placement?: Placement;
-  matchTargetWidth?: boolean;
-  closeOnSelect?: boolean;
+    placement?: Placement;
+    matchTargetWidth?: boolean;
+    closeOnSelect?: boolean;
 
-  /**
-   * Whether the active item should be reset to the first matching item _when
-   * an item is selected_. The query will also be reset to the empty string.
-   *
-   * @defaultvalue false
-   */
-  resetOnSelect?: boolean;
+    /**
+     * Whether the active item should be reset to the first matching item _when
+     * an item is selected_. The query will also be reset to the empty string.
+     *
+     * @defaultvalue false
+     */
+    resetOnSelect?: boolean;
 
-  /**
-   * Whether the active item should be reset to the first matching item _when
-   * the popover closes_. The query will also be reset to the empty string.
-   *
-   * @defaultValue false
-   */
-  resetOnClose?: boolean;
+    /**
+     * Whether the active item should be reset to the first matching item _when
+     * the popover closes_. The query will also be reset to the empty string.
+     *
+     * @defaultValue false
+     */
+    resetOnClose?: boolean;
 
-  resetOnBlur?: boolean;
+    resetOnBlur?: boolean;
 
-  initialFocus?: number;
-};
+    initialFocus?: number;
+  };

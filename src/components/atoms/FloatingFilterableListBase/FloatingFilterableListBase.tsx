@@ -17,6 +17,7 @@ import {
   useTypeahead,
   type ReferenceType,
 } from '@floating-ui/react';
+import { isFunction } from 'lodash';
 
 import type { IFloatingFilterableListBaseProps } from './FloatingFilterableListBaseProps';
 import {
@@ -96,6 +97,18 @@ export const FloatingFilterableListBase = fixedForwardRef(
       onQueryChange,
       resetOnClose,
       resetOnBlur,
+      forwardProps,
+      disabled,
+      items,
+      itemsEqual,
+      itemDisabled,
+      listPredicate,
+      itemPredicate,
+      listRenderer,
+      initialContent,
+      noResults,
+      createNewItemFromQuery,
+      createNewItemPosition,
       ...other
     } = props;
 
@@ -153,14 +166,11 @@ export const FloatingFilterableListBase = fixedForwardRef(
       selectedIndex,
       onMatch: isOpen ? setActiveIndex : setSelectedIndex,
       enabled: !canFilter,
-      findMatch: other.itemPredicate
+      findMatch: itemPredicate
         ? (list, typedString) =>
             list.find((label) =>
-              label && other.createNewItemFromQuery
-                ? other.itemPredicate?.(
-                    other.createNewItemFromQuery(label),
-                    typedString,
-                  )
+              label && createNewItemFromQuery
+                ? itemPredicate?.(createNewItemFromQuery(label), typedString)
                 : false,
             )
         : undefined,
@@ -230,7 +240,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
     ): IExtendedFloatingProps<React.HTMLProps<HTMLInputElement>> => ({
       ...userProps,
       value: userProps?.value ?? query,
-      disabled: other.disabled,
+      disabled,
       onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
         handleQueryChange(event.target.value, event);
         userProps?.onChange?.(event);
@@ -363,31 +373,34 @@ export const FloatingFilterableListBase = fixedForwardRef(
 
     return (
       <>
-        {children({
-          isOpen,
-          hasFocus,
-          setTriggerRef: buttonHandleRef,
-          getTriggerProps: (userProps) => ({
-            ...extendFloatingProps(interactions.getReferenceProps, {
-              ...userProps,
-              tabIndex: 0,
-              onFocus: handleFocus,
-              onBlur: handleBlur,
-            }),
-            'aria-autocomplete': 'none',
-          }),
-          afterItemsRemove: handleAfterItemsRemove,
-          query,
-          inputFilterRef: inputFilterRef,
-          getInputFilterProps,
-        })}
+        {isFunction(children)
+          ? children({
+              isOpen,
+              hasFocus,
+              setTriggerRef: buttonHandleRef,
+              getTriggerProps: (userProps) => ({
+                ...extendFloatingProps(interactions.getReferenceProps, {
+                  ...userProps,
+                  tabIndex: 0,
+                  onFocus: handleFocus,
+                  onBlur: handleBlur,
+                }),
+                'aria-autocomplete': 'none',
+              }),
+              afterItemsRemove: handleAfterItemsRemove,
+              query,
+              inputFilterRef: inputFilterRef,
+              getInputFilterProps,
+              forwardedProps: forwardProps ? other : undefined,
+            })
+          : children}
 
         {transitionStatus.isMounted && (
           <Portal>
             <FloatingFocusManager
               context={floating.context}
               visuallyHiddenDismiss
-              initialFocus={other.disabled ? -1 : initialFocus}
+              initialFocus={disabled ? -1 : initialFocus}
             >
               <div
                 {...stylex.props(styles.host)}
@@ -404,7 +417,6 @@ export const FloatingFilterableListBase = fixedForwardRef(
                 >
                   <FloatingList elementsRef={elementsRef} labelsRef={labelsRef}>
                     <FilterableListBase
-                      {...other}
                       query={query}
                       defaultQuery={defaultQuery}
                       onQueryChange={handleQueryChange}
@@ -412,6 +424,18 @@ export const FloatingFilterableListBase = fixedForwardRef(
                       renderer={rendererWrapper}
                       itemRenderer={itemRendererWrapper}
                       createNewItemRenderer={createNewItemRendererWrapper}
+                      disabled={disabled}
+                      items={items}
+                      itemsEqual={itemsEqual}
+                      itemDisabled={itemDisabled}
+                      listPredicate={listPredicate}
+                      itemPredicate={itemPredicate}
+                      listRenderer={listRenderer}
+                      initialContent={initialContent}
+                      noResults={noResults}
+                      createNewItemFromQuery={createNewItemFromQuery}
+                      createNewItemPosition={createNewItemPosition}
+                      {...(forwardProps ? undefined : other)}
                     />
                   </FloatingList>
                 </div>

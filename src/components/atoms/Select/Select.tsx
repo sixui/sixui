@@ -66,6 +66,7 @@ export const Select = forwardRef<HTMLDivElement, ISelectProps>(
         defaultItem={defaultItem}
         selectedItem={selectedItem}
         onItemChange={(item) => onChange?.(item?.value)}
+        leadingIcon={selectedItem?.icon}
         ref={fowardedRef}
       />
     );

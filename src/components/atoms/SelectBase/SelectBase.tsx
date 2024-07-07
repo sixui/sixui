@@ -30,6 +30,7 @@ export type ISelectBaseProps<TItem> = IContainerProps<IFieldStyleKey> &
     | 'itemsEqual'
     | 'children'
   > &
+  IFieldOwnProps &
   IUseSingleFilterableListBaseProps<TItem, HTMLElement> & {
     itemLabel: (item: TItem) => string | undefined;
     canFilter?: boolean;
@@ -99,6 +100,7 @@ export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
       closeOnSelect
       resetOnClose
       {...other}
+      forwardProps
       noResults={noResults ?? <ListItem disabled>No results.</ListItem>}
       ref={forwardedRef}
     >
@@ -133,6 +135,7 @@ export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
           sx={sx}
           styles={styles}
           ref={renderProps.setTriggerRef}
+          {...renderProps.forwardedProps}
         >
           {singleFilterableListBase.selectedItem
             ? itemLabel(singleFilterableListBase.selectedItem)

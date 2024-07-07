@@ -4,7 +4,7 @@ import type { ITextFieldBaseStyleKey } from '@/components/atoms/TextFieldBase';
 import { ListItem } from '@/components/atoms/ListItem';
 import {
   TextInputField,
-  type ITextInputFieldProps,
+  type ITextInputFieldOwnProps,
 } from '@/components/atoms/TextInputField';
 import { MenuList } from '@/components/atoms/MenuList';
 import {
@@ -30,12 +30,13 @@ export type ISuggestBaseProps<TItem> = IContainerProps<ITextFieldBaseStyleKey> &
     | 'children'
     | 'defaultQuery'
   > &
+  ITextInputFieldOwnProps &
   IUseSingleFilterableListBaseProps<TItem, HTMLElement> & {
     itemLabel: (item: TItem) => string | undefined;
     getValueFieldProps?: (
       renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
       selectedItem?: TItem,
-    ) => ITextInputFieldProps;
+    ) => ITextInputFieldOwnProps;
     clearable?: boolean;
     variant?: IFieldBaseVariant;
   };
@@ -56,6 +57,7 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
     getValueFieldProps,
     clearable,
     variant,
+    noResults,
     ...other
   } = props;
 
@@ -75,7 +77,6 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
       onItemSelect={singleFilterableListBase.handleItemSelect}
       renderer={(listProps) => <MenuList>{listProps.filteredList}</MenuList>}
       itemRenderer={singleFilterableListBase.itemRenderer}
-      noResults={<ListItem disabled>No results.</ListItem>}
       matchTargetWidth
       resetOnSelect
       resetOnClose
@@ -83,6 +84,8 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
       closeOnSelect
       initialFocus={-1}
       {...other}
+      forwardProps
+      noResults={noResults ?? <ListItem disabled>No results.</ListItem>}
       ref={forwardedRef}
     >
       {(renderProps) => (
@@ -133,6 +136,7 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
           ref={renderProps.setTriggerRef}
           inputRef={renderProps.inputFilterRef}
           spellCheck='false'
+          {...renderProps.forwardedProps}
         />
       )}
     </FloatingFilterableListBase>
