@@ -1,3 +1,15 @@
+# v0.0.283 (Sun Jul 07 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(Scrim): z-index ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.282 (Sun Jul 07 2024)
 
 #### ⚠️ Pushed to `main`
