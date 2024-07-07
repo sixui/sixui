@@ -1,8 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
+import stylex from '@stylexjs/stylex';
 
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ListItem } from '@/components/atoms/ListItem';
 import { fruits } from '@/components/atoms/FilterableList/fruits';
+import { commonStyles } from '@/helpers/commonStyles';
 import { MultiSelect, type IMultiSelectProps } from './MultiSelect';
 
 const meta = {
@@ -17,30 +20,51 @@ const defaultArgs = {
   matchTargetWidth: true,
 } satisfies Partial<IMultiSelectProps>;
 
+const MultiSelectDemo: React.FC<IMultiSelectProps> = (props) => {
+  const [value, setValue] = useState<Array<string> | undefined>(
+    props.value ?? props.defaultValue,
+  );
+
+  const handleChange = (newValues?: Array<string>): void => {
+    setValue(newValues);
+    props.onChange?.(newValues);
+  };
+
+  return (
+    <div {...stylex.props(commonStyles.verticalLayout)}>
+      <MultiSelect {...props} onChange={handleChange} />
+      <div>
+        Values:{' '}
+        {value === undefined ? <em>undefined</em> : JSON.stringify(value)}
+      </div>
+    </div>
+  );
+};
+
 export const Basic: IStory = {
-  render: (props) => <MultiSelect {...props} />,
+  render: (props) => <MultiSelectDemo {...props} />,
   args: defaultArgs,
 };
 
 export const DefaultValue: IStory = {
-  render: (props) => <MultiSelect {...props} />,
+  render: (props) => <MultiSelectDemo {...props} />,
   args: {
     ...defaultArgs,
-    defaultValues: ['lemon', 'flowers'],
+    defaultValue: ['lemon', 'flowers'],
   },
 };
 
 export const Clearable: IStory = {
-  render: (props) => <MultiSelect {...props} />,
+  render: (props) => <MultiSelectDemo {...props} />,
   args: {
     ...defaultArgs,
-    defaultValues: [fruits[1].value, fruits[3].value],
+    defaultValue: [fruits[1].value, fruits[3].value],
     clearable: true,
   },
 };
 
 export const DefaultQuery: IStory = {
-  render: (props) => <MultiSelect {...props} />,
+  render: (props) => <MultiSelectDemo {...props} />,
   args: {
     ...defaultArgs,
     defaultQuery: 'king',
@@ -48,7 +72,7 @@ export const DefaultQuery: IStory = {
 };
 
 export const NoResults: IStory = {
-  render: (props) => <MultiSelect {...props} />,
+  render: (props) => <MultiSelectDemo {...props} />,
   args: {
     ...defaultArgs,
     defaultQuery: 'My great movie',
@@ -56,7 +80,7 @@ export const NoResults: IStory = {
 };
 
 export const InitialContent: IStory = {
-  render: (props) => <MultiSelect {...props} />,
+  render: (props) => <MultiSelectDemo {...props} />,
   args: {
     ...defaultArgs,
     initialContent: <ListItem disabled>{fruits.length} items loaded.</ListItem>,
@@ -64,10 +88,35 @@ export const InitialContent: IStory = {
 };
 
 export const Disabled: IStory = {
-  render: (props) => <MultiSelect {...props} />,
+  render: (props) => <MultiSelectDemo {...props} />,
   args: {
     ...defaultArgs,
     disabled: true,
+  },
+};
+
+const ControlledMultiSelectDemo: React.FC<IMultiSelectProps> = (props) => {
+  const [value, setValue] = useState<Array<string>>(props.defaultValue ?? []);
+
+  const handleChange = (newValue?: Array<string>): void => {
+    setValue(newValue ?? []);
+    props.onChange?.(newValue);
+  };
+
+  return <MultiSelectDemo {...props} value={value} onChange={handleChange} />;
+};
+
+export const Controlled: IStory = {
+  render: (props) => <ControlledMultiSelectDemo {...props} />,
+  args: defaultArgs,
+};
+
+export const ControlledAndClearable: IStory = {
+  render: (props) => <ControlledMultiSelectDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    defaultValue: [fruits[1].value],
+    clearable: true,
   },
 };
 

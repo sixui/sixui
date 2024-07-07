@@ -4,8 +4,8 @@ import type { IFilterableListItem } from '@/components/atoms/FilterableList';
 
 export type IUseSelectProps = {
   items: Array<IFilterableListItem>;
-  defaultValues?: Array<string>;
-  values?: Array<string>;
+  defaultValue?: Array<string>;
+  value?: Array<string>;
 };
 
 export type IUseSelectResult = {
@@ -14,18 +14,18 @@ export type IUseSelectResult = {
 };
 
 export const useMultiSelect = (props: IUseSelectProps): IUseSelectResult => {
-  const { items, defaultValues, values } = props;
+  const { items, defaultValue, value } = props;
   const defaultItemsRef = useRef(
-    defaultValues
-      ? items.filter((item) => defaultValues?.includes(item.value))
+    defaultValue
+      ? items.filter((item) => defaultValue?.includes(item.value))
       : undefined,
   );
   const selectedItems = useMemo(
     () =>
-      values !== undefined
-        ? items.filter((item) => values?.includes(item.value))
+      value !== undefined
+        ? items.filter((item) => value?.includes(item.value))
         : undefined,
-    [items, values],
+    [items, value],
   );
 
   return {
