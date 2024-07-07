@@ -1,7 +1,11 @@
 import type { IOmit } from '@/helpers/types';
 import type { ITextFieldBaseProps } from '@/components/atoms/TextFieldBase';
 
-export type ITextInputFieldOwnProps = {
+export type ITextInputFieldOwnProps = IOmit<
+  ITextFieldBaseProps<HTMLInputElement>,
+  // Props that are controlled by the component and should not be overridden.
+  'inputRenderer' | 'forwardProps' | 'textArea' | 'resizable'
+> & {
   /**
    * The `<input />` type to use, defaults to "text". The type greatly changes
    * how the text field behaves.
@@ -61,15 +65,8 @@ export type ITextInputFieldOwnProps = {
   unmaskIcon?: React.ReactNode;
 };
 
-type ITextInputFieldInheritedProps = IOmit<
-  ITextFieldBaseProps<HTMLInputElement>,
-  // Props that are controlled by the component and should not be overridden.
-  'inputRenderer' | 'forwardProps' | 'textArea' | 'resizable'
->;
-
-export type ITextInputFieldProps = ITextInputFieldInheritedProps &
-  Omit<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    keyof (ITextInputFieldInheritedProps | ITextInputFieldOwnProps)
-  > &
+export type ITextInputFieldProps = Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  keyof ITextInputFieldOwnProps
+> &
   ITextInputFieldOwnProps;
