@@ -20,7 +20,6 @@ export const styles: MapNamespaces<IMenuListStyles> =
       borderStyle: 'unset',
       flexGrow: 1,
       color: 'inherit',
-      zIndex: 20,
       userSelect: 'none',
       height: 'inherit',
       width: 'fit-content',

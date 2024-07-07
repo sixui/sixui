@@ -11,7 +11,7 @@ export const styles: MapNamespaces<IScrimStyles> = stylex.create<IScrimStyles>({
   host: {
     display: 'grid',
     placeItems: 'center',
-    zIndex: 500,
+    zIndex: 499,
   },
   host$darken: {
     backgroundColor: vars.containerColor$darken,
