@@ -1,3 +1,15 @@
+# v0.0.294 (Sun Jul 07 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(Disclosure): observe height change ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.293 (Sun Jul 07 2024)
 
 #### ⚠️ Pushed to `main`
