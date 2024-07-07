@@ -23,7 +23,7 @@ export type IDisclosureProps = IContainerProps<IDisclosureStyleKey> &
     trigger:
       | React.ReactNode
       | ((renderProps: IDisclosureTriggerRenderProps) => React.ReactNode);
-    children: React.ReactNode;
+    children?: React.ReactNode;
     defaultExpanded?: boolean;
   };
 
@@ -38,7 +38,7 @@ export const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
       defaultChecked,
       checked: checkedProp,
       onChange,
-      disabled,
+      disabled: disabledProp,
       withSwitch,
       loading,
       trigger,
@@ -68,6 +68,7 @@ export const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
       [stylesCombinator],
     );
 
+    const disabled = disabledProp ?? loading;
     const context: IDisclosureContextValue = {
       checkable,
       defaultChecked,
