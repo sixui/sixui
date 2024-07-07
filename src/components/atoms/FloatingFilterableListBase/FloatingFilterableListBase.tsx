@@ -382,8 +382,14 @@ export const FloatingFilterableListBase = fixedForwardRef(
                 ...extendFloatingProps(interactions.getReferenceProps, {
                   ...userProps,
                   tabIndex: 0,
-                  onFocus: handleFocus,
-                  onBlur: handleBlur,
+                  onFocus: (...args) => {
+                    handleFocus();
+                    userProps?.onFocus?.(...args);
+                  },
+                  onBlur: (...args) => {
+                    handleBlur();
+                    userProps?.onBlur?.(...args);
+                  },
                 }),
                 'aria-autocomplete': 'none',
               }),

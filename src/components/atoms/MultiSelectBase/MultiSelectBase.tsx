@@ -137,7 +137,9 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
           innerStyles={{ field: fieldStyles }}
           spellCheck='false'
           variant={variant}
-          {...renderProps.getInputFilterProps(renderProps.getTriggerProps())}
+          {...renderProps.getInputFilterProps(
+            renderProps.getTriggerProps(renderProps.forwardedProps),
+          )}
           sx={sx}
           styles={styles}
           ref={renderProps.setTriggerRef}
@@ -171,7 +173,6 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
               : undefined
           }
           autoComplete='off'
-          {...renderProps.forwardedProps}
         />
       )}
     </FloatingFilterableListBase>

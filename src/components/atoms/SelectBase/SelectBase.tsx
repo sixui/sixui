@@ -128,7 +128,7 @@ export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
           }
           disabled={other.disabled}
           variant={variant}
-          {...renderProps.getTriggerProps()}
+          {...renderProps.getTriggerProps(renderProps.forwardedProps)}
           {...getValueFieldProps?.(
             renderProps,
             singleFilterableListBase.selectedItem,
@@ -136,7 +136,6 @@ export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
           sx={sx}
           styles={styles}
           ref={renderProps.setTriggerRef}
-          {...renderProps.forwardedProps}
         >
           {singleFilterableListBase.selectedItem
             ? itemLabel(singleFilterableListBase.selectedItem)

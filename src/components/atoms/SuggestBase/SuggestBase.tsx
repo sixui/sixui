@@ -112,7 +112,9 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
             !!singleFilterableListBase.selectedItem ||
             !!renderProps.query
           }
-          {...renderProps.getInputFilterProps(renderProps.getTriggerProps())}
+          {...renderProps.getInputFilterProps(
+            renderProps.getTriggerProps(renderProps.forwardedProps),
+          )}
           value={
             renderProps.isOpen || renderProps.hasFocus
               ? renderProps.query
@@ -137,7 +139,6 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
           inputRef={renderProps.inputFilterRef}
           spellCheck='false'
           autoComplete='off'
-          {...renderProps.forwardedProps}
         />
       )}
     </FloatingFilterableListBase>
