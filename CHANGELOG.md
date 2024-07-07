@@ -1,3 +1,15 @@
+# v0.0.293 (Sun Jul 07 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: correct transition delays ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.292 (Sun Jul 07 2024)
 
 #### ⚠️ Pushed to `main`
