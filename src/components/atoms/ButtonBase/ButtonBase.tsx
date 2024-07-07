@@ -50,7 +50,7 @@ export type IButtonBaseOwnProps = IContainerProps<IButtonBaseStyleKey> & {
   target?: React.AnchorHTMLAttributes<HTMLAnchorElement>['target'];
   disabled?: boolean;
   readOnly?: boolean;
-  type?: 'button' | 'submit' | 'reset';
+  type?: string;
 };
 
 export type IButtonBaseProps<
@@ -84,9 +84,7 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
   const disabled = disabledProp || readOnly;
   const { visualState, setRef: setVisualStateRef } = useVisualState(
     visualStateProp,
-    {
-      disabled,
-    },
+    { disabled },
   );
   const handleRef = useMergeRefs([forwardedRef, setVisualStateRef]);
 

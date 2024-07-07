@@ -1,4 +1,5 @@
 import { forwardRef, useEffect, useMemo, useState } from 'react';
+import { isFunction } from 'lodash';
 
 import type { IContainerProps, IOmit } from '@/helpers/types';
 import type { IDisclosureStyleKey } from './Disclosure.styledefs';
@@ -6,13 +7,22 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useControlledValue } from '@/hooks/useControlledValue';
+import { DisclosurePanel } from '@/components/atoms/DisclosurePanel';
 import {
   DisclosureContext,
   type IDisclosureContextValue,
 } from './DisclosureContext';
 
+export type IDisclosureTriggerRenderProps = IDisclosureContextValue;
+
 export type IDisclosureProps = IContainerProps<IDisclosureStyleKey> &
-  IOmit<IDisclosureContextValue, 'expanded' | 'setExpanded'> & {
+  IOmit<
+    IDisclosureContextValue,
+    'expanded' | 'setExpanded' | 'getTriggerProps'
+  > & {
+    trigger:
+      | React.ReactNode
+      | ((renderProps: IDisclosureTriggerRenderProps) => React.ReactNode);
     children: React.ReactNode;
     defaultExpanded?: boolean;
   };
@@ -31,6 +41,7 @@ export const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
       disabled,
       withSwitch,
       loading,
+      trigger,
       ...other
     } = props;
 
@@ -70,12 +81,28 @@ export const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
       setExpanded,
       withSwitch,
       loading,
+      getTriggerProps: (userProps) => ({
+        ...userProps,
+        disabled: disabled ?? (checkable && !checked),
+        onClick: (event: React.MouseEvent<HTMLButtonElement>) => {
+          userProps?.onClick?.(event);
+          setExpanded(!expanded);
+        },
+      }),
     };
+
+    const triggerElement = isFunction(trigger) ? trigger(context) : trigger;
 
     return (
       <DisclosureContext.Provider value={context}>
-        <div {...other} {...sxf('host', sx)} ref={forwardedRef}>
-          {children}
+        <div
+          {...other}
+          {...sxf('host', sx)}
+          ref={forwardedRef}
+          aria-expanded={expanded}
+        >
+          {triggerElement}
+          <DisclosurePanel>{children}</DisclosurePanel>
         </div>
       </DisclosureContext.Provider>
     );

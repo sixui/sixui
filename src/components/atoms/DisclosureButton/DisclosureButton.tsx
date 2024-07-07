@@ -129,10 +129,9 @@ export const DisclosureButton = forwardRef<
           ) : undefined
         }
         trailingIcon={!context.checkable && context.loading ? undefined : icon}
-        disabled={disabled ?? (context.checkable && !context.checked)}
-        onClick={() => context.setExpanded?.(!context.expanded)}
         data-cy={dataCy}
         {...other}
+        {...context.getTriggerProps()}
         ref={forwardedRef}
       >
         {children}

@@ -6,8 +6,11 @@ export type IDisclosureContextValue = Pick<
   ICheckboxProps,
   'defaultChecked' | 'checked' | 'onChange'
 > & {
+  setExpanded: React.Dispatch<React.SetStateAction<boolean | undefined>>;
+  getTriggerProps: (
+    userProps?: React.HTMLProps<HTMLButtonElement>,
+  ) => Record<string, unknown>;
   expanded?: boolean;
-  setExpanded?: React.Dispatch<React.SetStateAction<boolean | undefined>>;
   checkable?: boolean;
   withSwitch?: boolean;
   loading?: boolean;
@@ -30,6 +33,7 @@ export const disclosureInitialContext: IDisclosureContextValue = {
   withSwitch: false,
   loading: false,
   disabled: false,
+  getTriggerProps: stub,
 };
 
 export const DisclosureContext = createContext<IDisclosureContextValue>(

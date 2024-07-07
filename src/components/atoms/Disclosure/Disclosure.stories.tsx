@@ -15,6 +15,7 @@ import { Disclosure, type IDisclosureProps } from './Disclosure';
 import { ElementWithLabel } from '@/components/molecules/ElementWithLabel';
 import { DisclosureButton } from '../DisclosureButton';
 import { DisclosurePanel } from '../DisclosurePanel';
+import { Button } from '../Button';
 
 const meta = {
   component: Disclosure,
@@ -32,22 +33,11 @@ const styles = stylex.create({
     flexDirection: 'column',
     gap: '1rem',
   },
-  panel: {
-    // Only for screenshots:
-    // position: 'absolute',
-    // marginTop: 50,
-  },
 });
 
 const defaultArgs = {
-  children: (
-    <>
-      <DisclosureButton>Advanced options</DisclosureButton>
-      <DisclosurePanel sx={styles.panel}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      </DisclosurePanel>
-    </>
-  ),
+  trigger: <DisclosureButton>Advanced options</DisclosureButton>,
+  children: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 } satisfies Partial<IDisclosureProps>;
 
 export const Variants: IStory = {
@@ -261,6 +251,18 @@ export const SwitchableDisabled: IStory = {
     withSwitch: true,
     onChange: (...args) => sbHandleEvent('change', args),
     disabled: true,
+  },
+};
+
+export const WithCustomTrigger: IStory = {
+  render: (props) => <Disclosure {...props} />,
+  args: {
+    ...defaultArgs,
+    trigger: ({ getTriggerProps }) => (
+      <Button {...getTriggerProps()} variant='text'>
+        Click to open
+      </Button>
+    ),
   },
 };
 

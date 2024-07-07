@@ -20,8 +20,8 @@ export type IDisclosurePanelProps =
   };
 
 const localStyles = stylex.create({
-  height: (height: number) => ({
-    height,
+  minHeight: (minHeight: number) => ({
+    minHeight,
     overflow: 'hidden',
   }),
 });
@@ -68,7 +68,7 @@ export const DisclosurePanel = forwardRef<
     <CSSTransition
       nodeRef={nodeRef}
       in={expanded}
-      timeout={1000}
+      timeout={100} // motionVars.duration$short2
       classNames={{
         enterActive: sxf('animation$onEnterActive').className,
         exitActive: sxf('animation$onExitActive').className,
@@ -76,7 +76,12 @@ export const DisclosurePanel = forwardRef<
       unmountOnExit
     >
       <div
-        {...sxf('host', localStyles.height(contentSize.height), theme.vars, sx)}
+        {...sxf(
+          'host',
+          localStyles.minHeight(contentSize.height),
+          theme.vars,
+          sx,
+        )}
         data-cy={dataCy}
         {...other}
         ref={handleRef}
