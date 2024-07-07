@@ -1,3 +1,15 @@
+# v0.0.286 (Sun Jul 07 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: SelectBase, MultiSelectBase and SuggestBase now forward other props ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.285 (Sun Jul 07 2024)
 
 #### ⚠️ Pushed to `main`
