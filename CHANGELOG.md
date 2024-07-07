@@ -1,3 +1,15 @@
+# v0.0.291 (Sun Jul 07 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(Disclosure): using trigger and auto height ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.290 (Sun Jul 07 2024)
 
 #### ⚠️ Pushed to `main`
