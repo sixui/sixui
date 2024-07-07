@@ -172,7 +172,7 @@ export const TooltipBase = <TForwardedProps extends object = object>(
   const role = useRole(floating.context, { role: 'tooltip' });
   const interactions = useInteractions([hover, focus, dismiss, role]);
   const transitionStatus = useTransitionStatus(floating.context, {
-    duration: 550, // motionVars.duration$long3
+    duration: 150, // motionVars.duration$short3
   });
 
   const triggerElement = isFunction(children)

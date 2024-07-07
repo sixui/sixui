@@ -188,7 +188,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
       typeahead,
     ]);
     const transitionStatus = useTransitionStatus(floating.context, {
-      duration: 550, // motionVars.duration$long3
+      duration: 150, // motionVars.duration$short3
     });
 
     const handleItemSelect = (item: TItem): void => {

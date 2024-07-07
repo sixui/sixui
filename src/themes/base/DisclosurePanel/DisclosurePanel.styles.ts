@@ -20,13 +20,13 @@ export const styles: MapNamespaces<IDisclosurePanelStyles> =
     animation$onEnterActive: {
       opacity: 1,
       transitionProperty: 'opacity, height',
-      transitionDuration: motionVars.duration$long2,
+      transitionDuration: motionVars.duration$long3,
       transitionTimingFunction: motionVars.easing$emphasizedDecelerate,
     },
     animation$onExitActive: {
       opacity: 0,
       transitionProperty: 'opacity, height',
-      transitionDuration: motionVars.duration$short2,
+      transitionDuration: motionVars.duration$short3,
       transitionTimingFunction: motionVars.easing$emphasizedAccelerate,
     },
   });

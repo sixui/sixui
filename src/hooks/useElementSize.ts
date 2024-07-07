@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 
 export type IUseElementSizeProps = {
   ref: React.RefObject<HTMLElement>;
-  expanded?: boolean;
+  enabled?: boolean;
+  observe?: boolean;
 };
 
 export type IUseElementSizeResult = {
@@ -12,11 +13,11 @@ export type IUseElementSizeResult = {
 export const useElementSize = (
   props: IUseElementSizeProps,
 ): IUseElementSizeResult => {
-  const { ref: elementRef, expanded } = props;
+  const { ref: elementRef, enabled, observe } = props;
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
-    if (!expanded) {
+    if (!enabled) {
       setHeight(0);
 
       return;
@@ -32,7 +33,16 @@ export const useElementSize = (
     const elementHeight = element.offsetHeight;
     element.style.overflow = prevOverflow;
     setHeight(elementHeight);
-  }, [elementRef, expanded]);
+
+    if (observe) {
+      const resizeObserver = new ResizeObserver(() => {
+        setHeight(element.offsetHeight);
+      });
+      resizeObserver.observe(elementRef.current);
+
+      return () => resizeObserver.disconnect();
+    }
+  }, [elementRef, enabled, observe]);
 
   return { height };
 };
