@@ -128,6 +128,12 @@ export const TextFieldBase = fixedForwardRef(function TextField<
         if (!isSelf) {
           event.stopPropagation();
           inputRef.current?.click();
+        }
+      }}
+      onFocus={(event) => {
+        const isSelf = event.nativeEvent.target === inputRef.current;
+        if (!isSelf) {
+          event.stopPropagation();
           inputRef.current?.focus();
         }
       }}

@@ -70,7 +70,10 @@ export const Suggest = forwardRef<HTMLInputElement, ISuggestProps>(
         itemRenderer={renderFilterableListItem}
         itemLabel={getFilterableListItemLabel}
         getValueFieldProps={(renderProps, selectedItem) => ({
-          leadingIcon: renderProps.hasFocus ? undefined : selectedItem?.icon,
+          leadingIcon:
+            renderProps.hasFocus && renderProps.query
+              ? undefined
+              : selectedItem?.icon,
           ...getValueFieldProps?.(renderProps, selectedItem),
         })}
         defaultItem={defaultItem}

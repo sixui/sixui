@@ -170,6 +170,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
                 )
               : undefined
           }
+          autoComplete='off'
           {...renderProps.forwardedProps}
         />
       )}

@@ -53,6 +53,7 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
     itemLabel,
     selectedItem,
     defaultItem,
+    itemEmpty,
     onItemChange,
     getValueFieldProps,
     clearable,
@@ -66,7 +67,7 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
     itemRenderer,
     selectedItem,
     defaultItem,
-    itemEmpty: other.itemEmpty,
+    itemEmpty,
     itemsEqual: other.itemsEqual,
     onItemChange,
   });
@@ -95,7 +96,7 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
               onClear={
                 clearable &&
                 singleFilterableListBase.selectedItem &&
-                !other.itemEmpty?.(singleFilterableListBase.selectedItem)
+                !itemEmpty?.(singleFilterableListBase.selectedItem)
                   ? (event) =>
                       singleFilterableListBase.handleClear(
                         renderProps.afterItemsRemove,
@@ -136,6 +137,7 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
           ref={renderProps.setTriggerRef}
           inputRef={renderProps.inputFilterRef}
           spellCheck='false'
+          autoComplete='off'
           {...renderProps.forwardedProps}
         />
       )}

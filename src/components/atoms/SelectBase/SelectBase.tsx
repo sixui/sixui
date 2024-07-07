@@ -54,6 +54,7 @@ export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
     itemLabel,
     selectedItem,
     defaultItem,
+    itemEmpty,
     onItemChange,
     canFilter,
     getValueFieldProps,
@@ -68,7 +69,7 @@ export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
     itemRenderer,
     selectedItem,
     defaultItem,
-    itemEmpty: other.itemEmpty,
+    itemEmpty,
     itemsEqual: other.itemsEqual,
     onItemChange,
   });
@@ -111,7 +112,7 @@ export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
               onClear={
                 clearable &&
                 singleFilterableListBase.selectedItem &&
-                !other.itemEmpty?.(singleFilterableListBase.selectedItem)
+                !itemEmpty?.(singleFilterableListBase.selectedItem)
                   ? (event) =>
                       singleFilterableListBase.handleClear(
                         renderProps.afterItemsRemove,
