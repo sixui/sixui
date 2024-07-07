@@ -1,3 +1,15 @@
+# v0.0.292 (Sun Jul 07 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(Disclosure): can have no children (ie. for loading state) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.291 (Sun Jul 07 2024)
 
 #### ⚠️ Pushed to `main`
