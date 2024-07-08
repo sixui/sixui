@@ -2,12 +2,6 @@ import { forwardRef, useRef } from 'react';
 import { isFunction } from 'lodash';
 import stylex from '@stylexjs/stylex';
 import { CSSTransition } from 'react-transition-group';
-import {
-  ENTERED,
-  ENTERING,
-  EXITED,
-  EXITING,
-} from 'react-transition-group/Transition';
 
 import type {
   IContainerProps,
@@ -169,7 +163,7 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
               {...stylex.props(
                 sx,
                 styles.host,
-                status === EXITED
+                status === 'exited'
                   ? styles.animation$exited(
                       collapsedSize,
                       parseInt(`${collapsedSize.width}`) === 0 ||
@@ -177,14 +171,14 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
                         ? 'hidden'
                         : 'visible',
                     )
-                  : status === ENTERING
+                  : status === 'entering'
                     ? styles.animation$entering(
                         expandedSize,
                         transitionProperty,
                       )
-                    : status === ENTERED
+                    : status === 'entered'
                       ? styles.animation$exit(expandedSize)
-                      : status === EXITING
+                      : status === 'exiting'
                         ? styles.animation$exiting(
                             collapsedSize,
                             transitionProperty,
