@@ -36,7 +36,7 @@ const defaultArgs = {
       value: 'goldfish',
     },
   ],
-  onChange: (...args) => void sbHandleEvent('onChange', ...args),
+  onChange: (...args) => void sbHandleEvent('change', ...args),
 } satisfies Partial<IHtmlSelectProps>;
 
 export const Basic: IStory = {

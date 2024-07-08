@@ -60,7 +60,7 @@ export const PolymorphicTemplate: IPolymorphicTemplate = forwardRef(
     );
 
     return (
-      <Component {...other} sx={[theme.vars, sx]} ref={forwardedRef}>
+      <Component sx={[theme.vars, sx]} {...other} ref={forwardedRef}>
         <div {...sxf('host')}>{children}</div>
       </Component>
     );

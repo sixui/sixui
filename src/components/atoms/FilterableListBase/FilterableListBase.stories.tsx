@@ -15,7 +15,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onItemSelect: (...args) => void sbHandleEvent('onItemsRemove', args),
+  onItemSelect: (...args) => void sbHandleEvent('itemSelect', args),
 } satisfies Partial<IFilterableListBaseExampleProps>;
 
 export const Basic: IStory = {

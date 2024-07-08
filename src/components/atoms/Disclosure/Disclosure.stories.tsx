@@ -38,23 +38,21 @@ const styles = stylex.create({
 const defaultArgs = {
   trigger: <DisclosureButton>Advanced options</DisclosureButton>,
   children: (
-    <>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Et leo duis ut diam
-        quam nulla porttitor. Tortor dignissim convallis aenean et tortor.
-        Vulputate mi sit amet mauris commodo. Ac turpis egestas sed tempus. Id
-        nibh tortor id aliquet lectus. Sed risus pretium quam vulputate.
-        Vulputate dignissim suspendisse in est ante in nibh mauris cursus.
-        Viverra ipsum nunc aliquet bibendum enim. Mauris in aliquam sem
-        fringilla. Vitae aliquet nec ullamcorper sit amet risus nullam eget. Nec
-        feugiat nisl pretium fusce id velit. Suspendisse sed nisi lacus sed
-        viverra tellus in hac habitasse. At augue eget arcu dictum varius duis
-        at. In fermentum et sollicitudin ac orci phasellus egestas tellus
-        rutrum. Sem fringilla ut morbi tincidunt augue interdum. Viverra
-        accumsan in nisl nisi scelerisque eu ultrices vitae auctor.
-      </p>
-    </>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Et leo duis ut diam
+      quam nulla porttitor. Tortor dignissim convallis aenean et tortor.
+      Vulputate mi sit amet mauris commodo. Ac turpis egestas sed tempus. Id
+      nibh tortor id aliquet lectus. Sed risus pretium quam vulputate. Vulputate
+      dignissim suspendisse in est ante in nibh mauris cursus. Viverra ipsum
+      nunc aliquet bibendum enim. Mauris in aliquam sem fringilla. Vitae aliquet
+      nec ullamcorper sit amet risus nullam eget. Nec feugiat nisl pretium fusce
+      id velit. Suspendisse sed nisi lacus sed viverra tellus in hac habitasse.
+      At augue eget arcu dictum varius duis at. In fermentum et sollicitudin ac
+      orci phasellus egestas tellus rutrum. Sem fringilla ut morbi tincidunt
+      augue interdum. Viverra accumsan in nisl nisi scelerisque eu ultrices
+      vitae auctor.
+    </p>
   ),
 } satisfies Partial<IDisclosureProps>;
 

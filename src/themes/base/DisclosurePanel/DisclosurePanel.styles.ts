@@ -17,13 +17,13 @@ export const styles: MapNamespaces<IDisclosurePanelStyles> =
       paddingTop: '1rem',
       paddingLeft: listItemVars.leadingSpace,
     },
-    animation$onEnterActive: {
+    animation$enterActive: {
       opacity: 1,
       transitionProperty: 'opacity, height',
       transitionDuration: motionVars.duration$long3,
       transitionTimingFunction: motionVars.easing$emphasizedDecelerate,
     },
-    animation$onExitActive: {
+    animation$exitActive: {
       opacity: 0,
       transitionProperty: 'opacity, height',
       transitionDuration: motionVars.duration$short3,

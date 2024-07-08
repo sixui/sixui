@@ -38,9 +38,6 @@ const defaultArgs = {
         Banana
       </ListItem>
       <ListItem onClick={(...args) => sbHandleEvent('click', args)}>
-        Cumcumber
-      </ListItem>
-      <ListItem onClick={(...args) => sbHandleEvent('click', args)}>
         This is a very long and unexpected item
       </ListItem>
       <MenuDivider />

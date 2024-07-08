@@ -60,7 +60,7 @@ export const DisclosurePanel = forwardRef<
   const contentRef = useRef<HTMLDivElement>(null);
   const contentSize = useElementSize({
     ref: contentRef,
-    enabled: expanded,
+    disabled: !expanded,
     observe: true,
   });
   const handleRef = useMergeRefs([nodeRef, forwardedRef]);
@@ -69,10 +69,10 @@ export const DisclosurePanel = forwardRef<
     <CSSTransition
       nodeRef={nodeRef}
       in={expanded}
-      timeout={150} // motionVars.duration$short3
+      timeout={550} // motionVars.duration$long3
       classNames={{
-        enterActive: sxf('animation$onEnterActive').className,
-        exitActive: sxf('animation$onExitActive').className,
+        enterActive: sxf('animation$enterActive').className,
+        exitActive: sxf('animation$exitActive').className,
       }}
       unmountOnExit
     >

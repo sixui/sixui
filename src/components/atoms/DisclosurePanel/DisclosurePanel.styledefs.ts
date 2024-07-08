@@ -1,7 +1,7 @@
 export type IDisclosurePanelStyleKey =
   | 'host'
   | 'content'
-  | 'animation$onEnterActive'
-  | 'animation$onExitActive';
+  | 'animation$enterActive'
+  | 'animation$exitActive';
 
 export type IDisclosurePanelStyleVarKey = 'textColor';

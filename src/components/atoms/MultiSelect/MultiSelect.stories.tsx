@@ -15,7 +15,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onChange: (...args) => void sbHandleEvent('onChange', args),
+  onChange: (...args) => void sbHandleEvent('change', args),
   items: fruits,
   matchTargetWidth: true,
 } satisfies Partial<IMultiSelectProps>;
