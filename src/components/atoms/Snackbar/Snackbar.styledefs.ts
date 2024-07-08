@@ -3,9 +3,9 @@ export type ISnackbarStyleKey =
   | 'host$left'
   | 'host$center'
   | 'snackbarContent'
-  | 'animation$onEnter'
-  | 'animation$onEnterActive'
-  | 'animation$onExitActive';
+  | 'animation$enter'
+  | 'animation$enterActive'
+  | 'animation$exitActive';
 
 export type ISnackbarStyleVarKey =
   | 'fixedHorizontalSpace'

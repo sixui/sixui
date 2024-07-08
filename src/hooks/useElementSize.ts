@@ -1,48 +1,65 @@
 import { useEffect, useState } from 'react';
 
+import type { IOrientation, ISize } from '@/helpers/types';
+
 export type IUseElementSizeProps = {
   ref: React.RefObject<HTMLElement>;
-  enabled?: boolean;
   observe?: boolean;
+  orientation?: IOrientation;
 };
 
-export type IUseElementSizeResult = {
-  height: number;
+const getElementSize = (
+  element: HTMLElement,
+  orientation: IOrientation,
+): ISize => {
+  const prevOverflow = element.style.overflow;
+  const prevPosition = element.style.position;
+
+  // eslint-disable-next-line no-param-reassign
+  element.style.overflow = 'hidden';
+
+  if (orientation === 'horizontal') {
+    // eslint-disable-next-line no-param-reassign
+    element.style.position = 'absolute';
+  }
+
+  const width = element.clientWidth;
+  const height = element.clientHeight;
+
+  // eslint-disable-next-line no-param-reassign
+  element.style.overflow = prevOverflow;
+  // eslint-disable-next-line no-param-reassign
+  element.style.position = prevPosition;
+
+  return { width, height };
 };
 
 export const useElementSize = (
   props: IUseElementSizeProps,
-): IUseElementSizeResult => {
-  const { ref: elementRef, enabled, observe } = props;
-  const [height, setHeight] = useState(0);
+): ISize | undefined => {
+  const { ref: elementRef, orientation = 'vertical', observe } = props;
+  const [size, setSize] = useState<ISize | undefined>(
+    elementRef.current
+      ? getElementSize(elementRef.current, orientation)
+      : undefined,
+  );
 
   useEffect(() => {
-    if (!enabled) {
-      setHeight(0);
-
-      return;
-    }
-
     const element = elementRef.current;
     if (!element) {
       return;
     }
 
-    const prevOverflow = element.style.overflow;
-    element.style.overflow = 'hidden';
-    const elementHeight = element.offsetHeight;
-    element.style.overflow = prevOverflow;
-    setHeight(elementHeight);
-
     if (observe) {
       const resizeObserver = new ResizeObserver(() => {
-        setHeight(element.offsetHeight);
+        const size = getElementSize(element, orientation);
+        setSize(size);
       });
       resizeObserver.observe(elementRef.current);
 
       return () => resizeObserver.disconnect();
     }
-  }, [elementRef, enabled, observe]);
+  }, [elementRef, observe, orientation]);
 
-  return { height };
+  return size;
 };

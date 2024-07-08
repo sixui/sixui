@@ -1,6 +1,6 @@
 import { forwardRef, useContext, useMemo } from 'react';
 
-import type { IContainerProps } from '@/helpers/types';
+import type { IContainerProps, IOrientation } from '@/helpers/types';
 import type {
   IStepConnectorStyleKey,
   IStepConnectorStyleVarKey,
@@ -12,7 +12,7 @@ import { StepContext } from '@/components/atoms/Step/StepContext';
 
 export type IStepConnectorProps = IContainerProps<IStepConnectorStyleKey> & {
   children?: React.ReactNode;
-  orientation?: 'horizontal' | 'vertical';
+  orientation?: IOrientation;
   stepLabelPosition?: 'right' | 'bottom';
   textPosition?: 'top' | 'middle' | 'bottom';
 };

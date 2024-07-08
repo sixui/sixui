@@ -83,3 +83,12 @@ export type IFormFieldProps<TValue, TElement = HTMLElement> = {
   disabled?: boolean;
   name?: string;
 };
+
+export type ICssSizeValue = number | string;
+
+export type ISize<TSize = number> = {
+  width: TSize;
+  height: TSize;
+};
+
+export type IOrientation = 'vertical' | 'horizontal';

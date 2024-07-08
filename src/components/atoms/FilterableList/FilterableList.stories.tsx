@@ -12,7 +12,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onItemSelect: (...args) => void sbHandleEvent('onItemSelect', args),
+  onItemSelect: (...args) => void sbHandleEvent('itemSelect', args),
   items: fruits,
 } satisfies Partial<IFilterableListProps>;
 

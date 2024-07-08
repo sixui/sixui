@@ -1,7 +1,7 @@
 import { forwardRef, useMemo } from 'react';
 import { isFunction } from 'lodash';
 
-import type { IContainerProps } from '@/helpers/types';
+import type { IContainerProps, IOrientation } from '@/helpers/types';
 import type {
   IElementWithLabelStyleKey,
   IElementWithLabelStyleVarKey,
@@ -33,7 +33,7 @@ export type IElementWithLabelProps =
       | React.ReactNode
       | ((props: IElementWithLabelRenderProps) => React.ReactNode);
     hasError?: boolean;
-    orientation?: 'vertical' | 'horizontal';
+    orientation?: IOrientation;
     labelPosition?: 'start' | 'end';
     supportingTextPosition?: 'start' | 'end';
   };

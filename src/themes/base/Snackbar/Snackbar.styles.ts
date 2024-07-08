@@ -35,18 +35,18 @@ export const styles: MapNamespaces<ISnackbarStyles> =
     snackbarContent: {
       transformOrigin: 'bottom',
     },
-    animation$onEnter: {
+    animation$enter: {
       opacity: 0,
       transform: 'scaleY(0.5)',
     },
-    animation$onEnterActive: {
+    animation$enterActive: {
       opacity: 1,
       transform: 'scaleY(1)',
       transitionProperty: 'opacity, transform',
       transitionDuration: motionVars.duration$long3,
       transitionTimingFunction: motionVars.easing$emphasizedDecelerate,
     },
-    animation$onExitActive: {
+    animation$exitActive: {
       opacity: 0,
       transitionProperty: 'opacity, transform',
       transitionDuration: motionVars.duration$short3,

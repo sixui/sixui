@@ -17,6 +17,7 @@ export const styles: MapNamespaces<IDisclosureButtonStyles> =
     host: {
       position: 'relative',
       display: 'flex',
+      flexGrow: 1,
     },
     button: {
       flexGrow: 1,
@@ -69,10 +70,10 @@ export const styles: MapNamespaces<IDisclosureButtonStyles> =
     button$checkable: {
       [listItemVars.leadingSpace]: 'calc(16px + 18px + 12px)',
     },
-    button$checkable$switch: {
+    button$switchable: {
       [listItemVars.leadingSpace]: 'calc(16px + 52px + 16px)',
     },
-    button$unchecked: {
+    button$toggledOff: {
       [listItemVars.containerColor]: vars.uncheckedContainerColor,
       [listItemVars.containerOpacity]: vars.uncheckedContainerOpacity,
       [listItemVars.containerColor$disabled]:
@@ -96,7 +97,7 @@ export const styles: MapNamespaces<IDisclosureButtonStyles> =
       transitionTimingFunction: motionVars.easing$emphasizedAccelerate,
       transformOrigin: 'center',
     },
-    checkboxContainer: {
+    toggleContainer: {
       position: 'absolute',
       top: 0,
       left: 0,

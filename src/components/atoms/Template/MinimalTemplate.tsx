@@ -11,7 +11,7 @@ export const MinimalTemplate = forwardRef<
   const { children, ...other } = props;
 
   return (
-    <div ref={forwardedRef} {...other}>
+    <div {...other} ref={forwardedRef}>
       {children}
     </div>
   );

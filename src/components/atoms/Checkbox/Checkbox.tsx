@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useMemo, useRef } from 'react';
+import { forwardRef, useCallback, useMemo, useRef, useState } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 import { useMergeRefs } from '@floating-ui/react';
 
@@ -6,8 +6,8 @@ import type {
   IContainerProps,
   IZeroOrMore,
   ICompiledStyles,
-  IAny,
   IMaybeAsync,
+  IAny,
 } from '@/helpers/types';
 import type {
   IPolymorphicComponentPropsWithRef,
@@ -39,6 +39,7 @@ import {
   IndeterminateCircularProgressIndicator,
   type ICircularProgressIndicatorStyleKey,
 } from '@/components/atoms/CircularProgressIndicator';
+import { executeLazyPromise } from '@/helpers/executeLazyPromise';
 
 // https://github.com/material-components/material-web/blob/main/checkbox/internal/checkbox.ts
 
@@ -91,12 +92,14 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
     indeterminate,
     checked: checkedProp,
     defaultChecked,
-    loading,
+    loading: loadingProp,
     'data-cy': dataCy = 'checkbox',
     ...other
   } = props as IWithAsProp<ICheckboxOwnProps>;
 
   const actionRef = useRef<HTMLInputElement>(null);
+  const [handlingChange, setHandlingChange] = useState(false);
+  const loading = loadingProp || handlingChange;
   const disabled = disabledProp || readOnly || loading;
   const { visualState, setRef: setVisualStateRef } = useVisualState(
     visualStateProp,
@@ -139,17 +142,17 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(
     (event) => {
-      Promise.resolve(onChange?.(event, event.target.checked))
-        .finally(() => setCheckedValue(!event.target.checked))
-        .catch((error: Error) => {
-          throw error;
-        });
-    },
-    [onChange, setCheckedValue],
-  );
+      if (handlingChange) {
+        return;
+      }
 
-  const handleClick: React.MouseEventHandler<HTMLInputElement> = (event) =>
-    event.preventDefault();
+      void executeLazyPromise(
+        () => onChange?.(event, event.target.checked) as void,
+        setHandlingChange,
+      ).finally(() => setCheckedValue(!event.target.checked));
+    },
+    [handlingChange, onChange, setCheckedValue],
+  );
 
   return (
     <div
@@ -170,7 +173,6 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
           disabled={disabled}
           checked={checkedValue}
           onChange={handleChange}
-          onClick={handleClick}
           data-cy={dataCy}
           {...other}
         />

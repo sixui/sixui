@@ -100,7 +100,7 @@ export const Sizes: IStory = {
   },
 };
 
-export const Configuration: IStory = {
+export const Configurations: IStory = {
   render: (args) => (
     <ComponentShowcase
       component={(args) => (

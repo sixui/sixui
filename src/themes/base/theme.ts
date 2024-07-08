@@ -205,7 +205,8 @@ import {
   listStyles as menuListListStyles,
 } from './MenuList/MenuList.styles';
 
-import { styles as DisclosureStyles } from './Disclosure/Disclosure.styles';
+import { componentTheme as disclosureTheme } from './Disclosure/Disclosure.stylex';
+import { styles as disclosureStyles } from './Disclosure/Disclosure.styles';
 
 import { componentTheme as disclosureButtonTheme } from './DisclosureButton/DisclosureButton.stylex';
 import {
@@ -213,9 +214,6 @@ import {
   itemStyles as disclosureButtonItemStyles,
   circularProgressIndicatorStyles as disclosureButtonCircularProgressIndicatorStyles,
 } from './DisclosureButton/DisclosureButton.styles';
-
-import { componentTheme as disclosurePanelTheme } from './DisclosurePanel/DisclosurePanel.stylex';
-import { styles as disclosurePanelStyles } from './DisclosurePanel/DisclosurePanel.styles';
 
 import { styles as stepperStyles } from './Stepper/Stepper.styles';
 
@@ -497,7 +495,8 @@ export const theme: ITheme = {
       listStyles: menuListListStyles,
     },
     Disclosure: {
-      styles: DisclosureStyles,
+      vars: disclosureTheme,
+      styles: disclosureStyles,
     },
     DisclosureButton: {
       vars: disclosureButtonTheme,
@@ -505,10 +504,6 @@ export const theme: ITheme = {
       itemStyles: disclosureButtonItemStyles,
       circularProgressIndicatorStyles:
         disclosureButtonCircularProgressIndicatorStyles,
-    },
-    DisclosurePanel: {
-      vars: disclosurePanelTheme,
-      styles: disclosurePanelStyles,
     },
     Stepper: {
       styles: stepperStyles,

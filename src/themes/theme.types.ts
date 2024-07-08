@@ -118,15 +118,14 @@ import type {
   IMenuListStyleKey,
   IMenuListStyleVarKey,
 } from '@/components/atoms/MenuList';
-import type { IDisclosureStyleKey } from '@/components/atoms/Disclosure';
+import type {
+  IDisclosureStyleKey,
+  IDisclosureStyleVarKey,
+} from '@/components/atoms/Disclosure';
 import type {
   IDisclosureButtonStyleKey,
   IDisclosureButtonStyleVarKey,
 } from '@/components/atoms/DisclosureButton';
-import type {
-  IDisclosurePanelStyleKey,
-  IDisclosurePanelStyleVarKey,
-} from '@/components/atoms/DisclosurePanel';
 import type { IStepperStyleKey } from '@/components/atoms/Stepper';
 import type { IStepStyleKey, IStepStyleVarKey } from '@/components/atoms/Step';
 import type {
@@ -423,6 +422,7 @@ export type ITheme = {
       listStyles?: ICompiledStyles<IListStyleKey>;
     };
     Disclosure: {
+      vars?: IStyleVarsTheme<IDisclosureStyleVarKey>;
       styles?: ICompiledStyles<IDisclosureStyleKey>;
     };
     DisclosureButton: {
@@ -430,10 +430,6 @@ export type ITheme = {
       styles?: ICompiledStyles<IDisclosureButtonStyleKey>;
       itemStyles?: ICompiledStyles<IItemStyleKey>;
       circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
-    };
-    DisclosurePanel: {
-      vars?: IStyleVarsTheme<IDisclosurePanelStyleVarKey>;
-      styles?: ICompiledStyles<IDisclosurePanelStyleKey>;
     };
     Stepper: {
       styles?: ICompiledStyles<IStepperStyleKey>;

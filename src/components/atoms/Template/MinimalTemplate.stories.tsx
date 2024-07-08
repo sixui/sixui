@@ -12,7 +12,7 @@ const defaultArgs = {
   children: 'MinimalTemplate',
 } satisfies Partial<IMinimalTemplateProps>;
 
-export const Minimal: IStory = {
+export const Basic: IStory = {
   render: (props) => <MinimalTemplate {...props} />,
   args: defaultArgs,
 };

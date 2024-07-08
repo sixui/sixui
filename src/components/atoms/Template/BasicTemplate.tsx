@@ -31,7 +31,7 @@ export const BasicTemplate = forwardRef<HTMLDivElement, IBasicTemplateProps>(
     );
 
     return (
-      <div {...sxf('host', theme.vars, sx)} ref={forwardedRef} {...other}>
+      <div {...sxf('host', theme.vars, sx)} {...other} ref={forwardedRef}>
         {children}
       </div>
     );
