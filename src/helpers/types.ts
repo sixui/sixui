@@ -90,3 +90,5 @@ export type ISize<TSize = number> = {
   width: TSize;
   height: TSize;
 };
+
+export type IOrientation = 'vertical' | 'horizontal';

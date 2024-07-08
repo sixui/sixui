@@ -6,7 +6,7 @@ import {
   useMemo,
 } from 'react';
 
-import type { IContainerProps } from '@/helpers/types';
+import type { IContainerProps, IOrientation } from '@/helpers/types';
 import type { IStepperStyleKey } from './Stepper.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
@@ -21,7 +21,7 @@ export type IStepperProps = IContainerProps<IStepperStyleKey> & {
   activeStep?: number;
   loading?: boolean;
   connector?: React.ReactNode;
-  orientation?: 'horizontal' | 'vertical';
+  orientation?: IOrientation;
   labelPosition?: 'right' | 'bottom';
   completed?: boolean;
 };

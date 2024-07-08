@@ -1,20 +1,27 @@
 import { useEffect, useState } from 'react';
 
-import type { ISize } from '@/helpers/types';
+import type { IOrientation, ISize } from '@/helpers/types';
 
 export type IUseElementSizeProps = {
   ref: React.RefObject<HTMLElement>;
   observe?: boolean;
+  orientation?: IOrientation;
 };
 
-const getElementSize = (element: HTMLElement): ISize => {
+const getElementSize = (
+  element: HTMLElement,
+  orientation: IOrientation,
+): ISize => {
   const prevOverflow = element.style.overflow;
   const prevPosition = element.style.position;
 
   // eslint-disable-next-line no-param-reassign
   element.style.overflow = 'hidden';
-  // eslint-disable-next-line no-param-reassign
-  element.style.position = 'absolute';
+
+  if (orientation === 'horizontal') {
+    // eslint-disable-next-line no-param-reassign
+    element.style.position = 'absolute';
+  }
 
   const width = element.clientWidth;
   const height = element.clientHeight;
@@ -30,9 +37,11 @@ const getElementSize = (element: HTMLElement): ISize => {
 export const useElementSize = (
   props: IUseElementSizeProps,
 ): ISize | undefined => {
-  const { ref: elementRef, observe } = props;
+  const { ref: elementRef, orientation = 'vertical', observe } = props;
   const [size, setSize] = useState<ISize | undefined>(
-    elementRef.current ? getElementSize(elementRef.current) : undefined,
+    elementRef.current
+      ? getElementSize(elementRef.current, orientation)
+      : undefined,
   );
 
   useEffect(() => {
@@ -43,14 +52,14 @@ export const useElementSize = (
 
     if (observe) {
       const resizeObserver = new ResizeObserver(() => {
-        const size = getElementSize(element);
+        const size = getElementSize(element, orientation);
         setSize(size);
       });
       resizeObserver.observe(elementRef.current);
 
       return () => resizeObserver.disconnect();
     }
-  }, [elementRef, observe]);
+  }, [elementRef, observe, orientation]);
 
   return size;
 };

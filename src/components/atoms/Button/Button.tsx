@@ -30,6 +30,7 @@ import {
   ButtonBase,
   type IButtonBaseOwnProps,
 } from '@/components/atoms/ButtonBase';
+import { executeLazyPromise } from '@/helpers/executeLazyPromise';
 
 // https://github.com/material-components/material-web/blob/main/button/internal/button.ts
 // https://github.com/material-components/material-web/blob/main/button/internal/elevated-button.ts
@@ -145,14 +146,8 @@ export const Button: IButton = forwardRef(function Button<
 
     event.stopPropagation();
 
-    setHandlingClick(true);
     setAnimating(true);
-
-    Promise.resolve(onClick(event))
-      .finally(() => setHandlingClick(false))
-      .catch((error: Error) => {
-        throw error;
-      });
+    void executeLazyPromise(() => onClick(event) as void, setHandlingClick);
   };
 
   const loading =

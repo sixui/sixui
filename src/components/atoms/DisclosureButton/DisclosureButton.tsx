@@ -1,9 +1,11 @@
-import { forwardRef, useContext, useMemo } from 'react';
+import { forwardRef, useContext, useEffect, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type {
+  IAny,
   ICompiledStyles,
   IContainerProps,
+  IMaybeAsync,
   IOmit,
   IZeroOrMore,
 } from '@/helpers/types';
@@ -14,7 +16,7 @@ import type {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { ListItem, type IListItemProps } from '@/components/atoms/ListItem';
+import { ListItem, type IListItemOwnProps } from '@/components/atoms/ListItem';
 import { ReactComponent as ChevronDown } from '@/assets/ChevronDown.svg';
 import { Checkbox, type ICheckboxStyleKey } from '@/components/atoms/Checkbox';
 import { Switch, type ISwitchStyleKey } from '@/components/atoms/Switch';
@@ -22,13 +24,14 @@ import {
   IndeterminateCircularProgressIndicator,
   type ICircularProgressIndicatorStyleKey,
 } from '@/components/atoms/CircularProgressIndicator';
-import { DisclosureContext } from '@/components/atoms/Disclosure';
+import { useControlledValue } from '@/hooks/useControlledValue';
+import { ExpandableContext } from '@/components/utils/Expandable';
 
 export type IDisclosureButtonProps =
   IContainerProps<IDisclosureButtonStyleKey> &
-    IOmit<Omit<IListItemProps, 'innerStyles'>, 'children'> & {
+    IOmit<IListItemOwnProps, 'innerStyles'> & {
       innerStyles?: {
-        listItem?: IListItemProps['innerStyles'];
+        listItem?: IListItemOwnProps['innerStyles'];
         checkbox?: IZeroOrMore<ICompiledStyles<ICheckboxStyleKey>>;
         switch?: IZeroOrMore<ICompiledStyles<ISwitchStyleKey>>;
         circularProgressIndicator?: IZeroOrMore<
@@ -37,7 +40,16 @@ export type IDisclosureButtonProps =
       };
       collapseIcon?: React.ReactNode;
       expandIcon?: React.ReactNode;
-      children: React.ReactNode;
+      expanded?: boolean;
+      checkable?: boolean;
+      onChange?: (
+        event: React.ChangeEvent<HTMLInputElement>,
+        checked: boolean,
+      ) => IMaybeAsync<IAny>;
+      checked?: boolean;
+      defaultChecked?: boolean;
+      loading?: boolean;
+      switchable?: boolean;
     };
 
 export const DisclosureButton = forwardRef<
@@ -51,9 +63,15 @@ export const DisclosureButton = forwardRef<
     collapseIcon,
     expandIcon,
     children,
-    defaultChecked,
     disabled: disabledProp,
     'data-cy': dataCy = 'disclosure-button',
+    expanded: expandedProp,
+    checkable,
+    switchable,
+    checked: checkedProp,
+    defaultChecked,
+    onChange,
+    loading,
     ...other
   } = props;
 
@@ -71,11 +89,16 @@ export const DisclosureButton = forwardRef<
     [stylesCombinator],
   );
 
-  const context = useContext(DisclosureContext);
-  const disabled = disabledProp ?? context.disabled;
-  const expanded = context.checkable
-    ? context.expanded && context.checked
-    : context.expanded;
+  const expandableContext = useContext(ExpandableContext);
+  const disabled = disabledProp ?? expandableContext.disabled;
+  const togglable = checkable || switchable;
+  const [checked, setChecked] = useControlledValue({
+    controlled: checkedProp,
+    default: !!defaultChecked,
+    name: 'DisclosureButton',
+  });
+  const expanded =
+    (expandedProp ?? expandableContext.expanded) && (!togglable || checked);
   const icon = expanded ? (
     collapseIcon ? (
       <div {...sxf('icon')}>{collapseIcon}</div>
@@ -90,36 +113,39 @@ export const DisclosureButton = forwardRef<
     <ChevronDown {...sxf('icon', 'icon$collapsed')} aria-hidden />
   );
 
-  const handleCheckboxChange = (
+  useEffect(() => {
+    // Panel should be collapsed if DisclosureButton is disabled, or togglable
+    // and not checked.
+    if (expandableContext && expanded !== expandableContext.expanded) {
+      expandableContext.expand(!!expanded);
+    }
+  }, [expanded, expandableContext]);
+
+  const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
     checked: boolean,
-  ): void => {
-    context.onChange?.(event, checked);
-    context.setExpanded?.(checked);
-  };
+  ): Promise<void> =>
+    Promise.resolve(onChange?.(event, checked)).then(() => {
+      setChecked(checked);
+      expandableContext?.expand(checked);
+    });
 
   return (
-    <div {...sxf('host')}>
+    <div {...sxf('host', sx, theme.vars)}>
       <ListItem
-        sx={[
-          stylesCombinator(
-            'button',
-            context.expanded && 'button$expanded',
-            context.checkable &&
-              (context.withSwitch
-                ? 'button$checkable$switch'
-                : 'button$checkable'),
-            context.checkable && !context.checked && 'button$unchecked',
-          ),
-          sx,
-          theme.vars,
-        ]}
+        sx={stylesCombinator(
+          'button',
+          expanded && 'button$expanded',
+          switchable && 'button$switchable',
+          checkable && 'button$checkable',
+          togglable && !checked && 'button$toggledOff',
+        )}
         innerStyles={{
           ...innerStyles?.listItem,
           item: [theme.itemStyles, ...asArray(innerStyles?.listItem?.item)],
         }}
         trailing={
-          !context.checkable && context.loading ? (
+          !togglable && loading ? (
             <IndeterminateCircularProgressIndicator
               styles={[
                 theme.circularProgressIndicatorStyles,
@@ -128,35 +154,40 @@ export const DisclosureButton = forwardRef<
             />
           ) : undefined
         }
-        trailingIcon={!context.checkable && context.loading ? undefined : icon}
+        trailingIcon={!togglable && loading ? undefined : icon}
         data-cy={dataCy}
+        disabled={disabled ?? (togglable && !checked)}
+        onClick={(event) => {
+          expandableContext?.expand(!expanded);
+
+          return other.onClick?.(event);
+        }}
         {...other}
-        {...context.getTriggerProps()}
         ref={forwardedRef}
       >
         {children}
       </ListItem>
 
-      {context.checkable ? (
-        <div {...sxf('checkboxContainer')}>
-          {context.withSwitch ? (
+      {togglable ? (
+        <div {...sxf('toggleContainer')}>
+          {switchable ? (
             <Switch
               styles={innerStyles?.switch}
               defaultChecked={defaultChecked}
-              checked={context.checked}
-              onChange={handleCheckboxChange}
+              checked={checked}
+              onChange={handleChange}
               disabled={disabled}
-              loading={context.loading}
+              loading={loading}
               data-cy='disclosure-switch'
             />
           ) : (
             <Checkbox
               styles={innerStyles?.checkbox}
               defaultChecked={defaultChecked}
-              checked={context.checked}
-              onChange={handleCheckboxChange}
+              checked={checked}
+              onChange={handleChange}
               disabled={disabled}
-              loading={context.loading}
+              loading={loading}
               data-cy='disclosure-checkbox'
             />
           )}

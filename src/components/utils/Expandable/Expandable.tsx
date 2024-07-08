@@ -9,7 +9,16 @@ import {
   EXITING,
 } from 'react-transition-group/Transition';
 
-import type { IContainerProps, ICssSizeValue, ISize } from '@/helpers/types';
+import type {
+  IContainerProps,
+  ICssSizeValue,
+  IOmit,
+  ISize,
+} from '@/helpers/types';
+import {
+  ExpandableContext,
+  type IExpandableContextValue,
+} from './ExpandableContext';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
 import { useMergeRefs } from '@floating-ui/react';
@@ -21,18 +30,15 @@ export type IExpandableTriggerRenderProps = {
   expanded?: boolean;
 };
 
-export type IExpandableProps = IContainerProps & {
-  trigger:
-    | React.ReactNode
-    | ((renderProps: IExpandableTriggerRenderProps) => React.ReactNode);
-  children?: React.ReactNode;
-  onChange?: (expanded: boolean) => void;
-  disabled?: boolean;
-  expanded?: boolean;
-  defaultExpanded?: boolean;
-  orientation?: 'vertical' | 'horizontal';
-  collapsedSize?: ICssSizeValue;
-};
+export type IExpandableProps = IContainerProps &
+  IOmit<IExpandableContextValue, 'expand'> & {
+    trigger:
+      | React.ReactNode
+      | ((renderProps: IExpandableTriggerRenderProps) => React.ReactNode);
+    children?: React.ReactNode;
+    onChange?: (expanded: boolean) => void;
+    collapsedSize?: ICssSizeValue;
+  };
 
 const styles = stylex.create({
   host: {
@@ -114,6 +120,7 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
     const contentSize = useElementSize({
       ref: contentWrapperRef,
       observe: true,
+      orientation,
     });
 
     const transitionProperty =
@@ -127,9 +134,9 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
         ? { width: contentSize?.width }
         : { height: contentSize?.height };
 
-    const expand = (): void => {
-      setExpanded(!expanded);
-      onChange?.(!expanded);
+    const expand = (expanded: boolean): void => {
+      setExpanded(expanded);
+      onChange?.(expanded);
     };
 
     const triggerElement = isFunction(trigger)
@@ -140,8 +147,16 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
         })
       : trigger;
 
+    const context: IExpandableContextValue = {
+      expand,
+      disabled,
+      expanded,
+      defaultExpanded,
+      orientation,
+    };
+
     return (
-      <>
+      <ExpandableContext.Provider value={context}>
         {triggerElement}
 
         <CSSTransition
@@ -188,7 +203,7 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
             </div>
           )}
         </CSSTransition>
-      </>
+      </ExpandableContext.Provider>
     );
   },
 );

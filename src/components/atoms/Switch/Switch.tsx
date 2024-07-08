@@ -37,6 +37,7 @@ import {
 } from '@/components/atoms/CircularProgressIndicator';
 import { ReactComponent as CheckMarkIcon } from '@/assets/CheckMark.svg';
 import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
+import { executeLazyPromise } from '@/helpers/executeLazyPromise';
 
 // https://github.com/material-components/material-web/blob/main/switch/internal/switch.ts
 
@@ -155,16 +156,10 @@ export const Switch: ISwitch = forwardRef(function Switch<
         return;
       }
 
-      setHandlingChange(true);
-
-      Promise.resolve(onChange?.(event, !selected))
-        .finally(() => {
-          setHandlingChange(false);
-          setSelected(!selected);
-        })
-        .catch((error: Error) => {
-          throw error;
-        });
+      void executeLazyPromise(
+        () => onChange?.(event, !selected) as void,
+        setHandlingChange,
+      ).finally(() => setSelected(!selected));
     },
     [handlingChange, onChange, selected, setSelected],
   );

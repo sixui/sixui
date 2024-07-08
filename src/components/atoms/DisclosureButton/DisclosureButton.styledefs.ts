@@ -3,12 +3,12 @@ export type IDisclosureButtonStyleKey =
   | 'button'
   | 'button$expanded'
   | 'button$checkable'
-  | 'button$checkable$switch'
-  | 'button$unchecked'
+  | 'button$switchable'
+  | 'button$toggledOff'
   | 'icon'
   | 'icon$expanded'
   | 'icon$collapsed'
-  | 'checkboxContainer';
+  | 'toggleContainer';
 
 export type IDisclosureButtonStyleVarKey =
   | 'containerShape'

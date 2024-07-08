@@ -49,6 +49,7 @@ import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
 
 import { ButtonBase } from '@/components/atoms/ButtonBase';
 import { Avatar } from '@/components/atoms/Avatar';
+import { executeLazyPromise } from '@/helpers/executeLazyPromise';
 
 // https://github.com/material-components/material-web/blob/main/chips/internal/chip.ts
 // https://github.com/material-components/material-web/blob/main/chips/internal/assist-chip.ts
@@ -200,13 +201,7 @@ export const Chip: IChip = forwardRef(function Chip<
         return;
       }
 
-      setHandlingClick(true);
-
-      Promise.resolve(onClick?.(event))
-        .finally(() => setHandlingClick(false))
-        .catch((error: Error) => {
-          throw error;
-        });
+      void executeLazyPromise(() => onClick?.(event) as void, setHandlingClick);
     },
     [handlingClick, onClick],
   );

@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
 import type { IStyleVars } from '@/helpers/types';
-import type { IDisclosurePanelStyleVarKey } from '@/components/atoms/DisclosurePanel';
+import type { IDisclosureStyleVarKey } from '@/components/atoms/Disclosure';
 import { colorRolesVars } from '../vars/colorRoles.stylex';
 
-const vars: IStyleVars<IDisclosurePanelStyleVarKey> = {
+const vars: IStyleVars<IDisclosureStyleVarKey> = {
   textColor: colorRolesVars.onSurface,
 };
 

@@ -44,7 +44,6 @@ import { ListContext } from '@/components/atoms/List/ListContext';
 const DEFAULT_TAG = 'button';
 
 export type IListItemOwnProps = IContainerProps<IListItemStyleKey> &
-  Pick<React.AriaAttributes, 'aria-expanded'> &
   IOmit<IItemProps, 'container'> & {
     innerStyles?: {
       item?: IZeroOrMore<ICompiledStyles<IItemStyleKey>>;
