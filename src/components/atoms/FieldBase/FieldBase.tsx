@@ -9,67 +9,25 @@ import {
 import { isFunction } from 'lodash';
 import { useMergeRefs } from '@floating-ui/react';
 
-import type { IContainerProps } from '@/helpers/types';
 import type { IThemeComponents } from '@/components/utils/Theme';
-import {
-  useVisualState,
-  type IVisualState,
-} from '@/components/utils/VisualState';
+import type { IPolymorphicRef } from '@/helpers/react/polymorphicComponentTypes';
 import type {
   IFieldBaseVariant,
   IFieldBaseStyleKey,
   IFieldBaseStyleVarKey,
 } from './FieldBase.styledefs';
-import type {
-  IPolymorphicComponentPropsWithRef,
-  IPolymorphicRef,
-} from '@/helpers/react/polymorphicComponentTypes';
-import type {
-  IRendererWithForwardedProps,
-  IForwardableProps,
-} from '@/helpers/react/forwardablePropsTypes';
+import { useVisualState } from '@/components/utils/VisualState';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { usePrevious } from '@/hooks/usePrevious';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { EASING } from '@/helpers/animation';
 import { CircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
+import { FIELD_BASE_DEFAULT_TAG, type IFieldBaseProps } from './FieldBaseProps';
 
 // https://github.com/material-components/material-web/blob/main/field/internal/filled-field.ts
 // https://github.com/material-components/material-web/blob/main/field/internal/outlined-field.ts
 // https://github.com/material-components/material-web/blob/main/field/internal/field.ts
-
-export const fieldBaseDefaultTag = 'div';
-
-export type IFieldBaseOwnProps = IContainerProps<IFieldBaseStyleKey> &
-  IForwardableProps & {
-    visualState?: IVisualState;
-    variant?: IFieldBaseVariant | false;
-    count?: number;
-    disabled?: boolean;
-    readOnly?: boolean;
-    hasError?: boolean;
-    errorText?: string;
-    start?: React.ReactNode;
-    end?: React.ReactNode;
-    leadingIcon?: React.ReactNode;
-    trailingIcon?: React.ReactNode;
-    label?: string;
-    max?: number | string;
-    populated?: boolean;
-    required?: boolean;
-    resizable?: boolean;
-    supportingText?: React.ReactNode;
-    textArea?: boolean;
-    labelId?: string;
-    loading?: boolean;
-    tabIndex?: number;
-    children?: IRendererWithForwardedProps;
-  };
-
-export type IFieldBaseProps<
-  TRoot extends React.ElementType = typeof fieldBaseDefaultTag,
-> = IPolymorphicComponentPropsWithRef<TRoot, IFieldBaseOwnProps>;
 
 type IFieldBaseVariantMap = {
   [key in IFieldBaseVariant]: keyof Pick<
@@ -84,16 +42,16 @@ const variantMap: IFieldBaseVariantMap = {
 };
 
 type IFieldBase = <
-  TRoot extends React.ElementType = typeof fieldBaseDefaultTag,
+  TRoot extends React.ElementType = typeof FIELD_BASE_DEFAULT_TAG,
 >(
   props: IFieldBaseProps<TRoot>,
 ) => React.ReactNode;
 
 export const FieldBase: IFieldBase = forwardRef(function FieldBase<
-  TRoot extends React.ElementType = typeof fieldBaseDefaultTag,
+  TRoot extends React.ElementType = typeof FIELD_BASE_DEFAULT_TAG,
 >(props: IFieldBaseProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
-    as: Component = fieldBaseDefaultTag,
+    as: Component = FIELD_BASE_DEFAULT_TAG,
     styles,
     sx,
     visualState: visualStateProp,

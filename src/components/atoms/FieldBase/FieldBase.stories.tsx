@@ -4,12 +4,13 @@ import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
 
+import type { IFieldBaseOwnProps } from './FieldBaseProps';
 import { fieldBaseVariants } from './FieldBase.styledefs';
 import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { FieldBase, type IFieldBaseOwnProps } from './FieldBase';
+import { FieldBase } from './FieldBase';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 
 // https://github.com/material-components/material-web/blob/main/field/demo/stories.ts

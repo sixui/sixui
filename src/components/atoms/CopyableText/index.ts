@@ -1,2 +1,2 @@
-export * from './CopyableText';
 export * from './CopyableTextProps';
+export * from './CopyableText';

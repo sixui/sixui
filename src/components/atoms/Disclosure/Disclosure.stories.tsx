@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
-import { Disclosure, type IDisclosureProps } from './Disclosure';
+import type { IDisclosureProps } from './DisclosureProps';
+import { Disclosure } from './Disclosure';
 import { DisclosureButton } from '../DisclosureButton';
 
 const meta = {

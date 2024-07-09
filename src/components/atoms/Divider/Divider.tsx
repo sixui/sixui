@@ -1,34 +1,15 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/helpers/types';
 import type {
   IDividerStyleKey,
   IDividerStyleVarKey,
 } from './Divider.styledefs';
+import type { IDividerProps } from './DividerProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
 // https://github.com/material-components/material-web/blob/main/divider/internal/divider.ts
-
-export type IDividerProps = IContainerProps<IDividerStyleKey> & {
-  /**
-   * Indents the divider with equal padding on both sides.
-   */
-  inset?: boolean;
-
-  /**
-   * Indents the divider with padding on the leading side.
-   */
-  insetStart?: boolean;
-
-  /**
-   * Indents the divider with padding on the trailing side.
-   */
-  insetEnd?: boolean;
-
-  children?: React.ReactNode;
-};
 
 export const Divider = forwardRef<HTMLDivElement, IDividerProps>(
   function Divider(props, forwardedRef) {

@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
+import type { IDividerProps } from './DividerProps';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { Divider, type IDividerProps } from './Divider';
+import { Divider } from './Divider';
 
 // https://m3.material.io/components/divider/
 // https://material-web.dev/components/divider/

@@ -2,55 +2,20 @@ import { forwardRef, useContext, useEffect, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type {
-  IAny,
-  ICompiledStyles,
-  IContainerProps,
-  IMaybeAsync,
-  IOmit,
-  IZeroOrMore,
-} from '@/helpers/types';
-import type {
   IDisclosureButtonStyleKey,
   IDisclosureButtonStyleVarKey,
 } from './DisclosureButton.styledefs';
+import type { IDisclosureButtonProps } from './DisclosureButtonProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { ListItem, type IListItemOwnProps } from '@/components/atoms/ListItem';
+import { ListItem } from '@/components/atoms/ListItem';
 import { ReactComponent as ChevronDown } from '@/assets/ChevronDown.svg';
-import { Checkbox, type ICheckboxStyleKey } from '@/components/atoms/Checkbox';
-import { Switch, type ISwitchStyleKey } from '@/components/atoms/Switch';
-import {
-  IndeterminateCircularProgressIndicator,
-  type ICircularProgressIndicatorStyleKey,
-} from '@/components/atoms/CircularProgressIndicator';
+import { Checkbox } from '@/components/atoms/Checkbox';
+import { Switch } from '@/components/atoms/Switch';
+import { IndeterminateCircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { ExpandableContext } from '@/components/utils/Expandable';
-
-export type IDisclosureButtonProps =
-  IContainerProps<IDisclosureButtonStyleKey> &
-    IOmit<IListItemOwnProps, 'innerStyles'> & {
-      innerStyles?: {
-        listItem?: IListItemOwnProps['innerStyles'];
-        checkbox?: IZeroOrMore<ICompiledStyles<ICheckboxStyleKey>>;
-        switch?: IZeroOrMore<ICompiledStyles<ISwitchStyleKey>>;
-        circularProgressIndicator?: IZeroOrMore<
-          ICompiledStyles<ICircularProgressIndicatorStyleKey>
-        >;
-      };
-      collapseIcon?: React.ReactNode;
-      expandIcon?: React.ReactNode;
-      expanded?: boolean;
-      checkable?: boolean;
-      onChange?: (
-        event: React.ChangeEvent<HTMLInputElement>,
-        checked: boolean,
-      ) => IMaybeAsync<IAny>;
-      value?: boolean;
-      defaultValue?: boolean;
-      loading?: boolean;
-      switchable?: boolean;
-    };
 
 export const DisclosureButton = forwardRef<
   HTMLButtonElement,

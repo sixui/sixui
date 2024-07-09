@@ -1,13 +1,6 @@
 import { forwardRef, useMemo } from 'react';
 
 import type {
-  IContainerProps,
-  IZeroOrMore,
-  ICompiledStyles,
-  IOmit,
-} from '@/helpers/types';
-import type {
-  IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
@@ -15,34 +8,19 @@ import type { IFieldStyleKey } from './Field.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { FieldBase } from '@/components/atoms/FieldBase';
 import {
-  FieldBase,
-  fieldBaseDefaultTag,
-  type IFieldBaseStyleKey,
-  type IFieldBaseOwnProps,
-} from '@/components/atoms/FieldBase';
+  FIELD_DEFAULT_TAG,
+  type IFieldOwnProps,
+  type IFieldProps,
+} from './FieldProps';
 
-const fieldDefaultTag = fieldBaseDefaultTag;
-
-export type IFieldOwnProps = IContainerProps<IFieldStyleKey> &
-  IOmit<IFieldBaseOwnProps, 'styles' | 'children' | 'forwardProps'> & {
-    innerStyles?: {
-      fieldBase?: IZeroOrMore<ICompiledStyles<IFieldBaseStyleKey>>;
-    };
-    placeholder?: string;
-    children?: React.ReactNode;
-  };
-
-export type IFieldProps<
-  TRoot extends React.ElementType = typeof fieldDefaultTag,
-> = IPolymorphicComponentPropsWithRef<TRoot, IFieldOwnProps>;
-
-type IField = <TRoot extends React.ElementType = typeof fieldDefaultTag>(
+type IField = <TRoot extends React.ElementType = typeof FIELD_DEFAULT_TAG>(
   props: IFieldProps<TRoot>,
 ) => React.ReactNode;
 
 export const Field: IField = forwardRef(function Field<
-  TRoot extends React.ElementType = typeof fieldDefaultTag,
+  TRoot extends React.ElementType = typeof FIELD_DEFAULT_TAG,
 >(props: IFieldProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     styles,

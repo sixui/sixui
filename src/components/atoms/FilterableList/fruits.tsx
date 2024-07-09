@@ -1,3 +1,4 @@
+import type { IFilterableListItem } from './FilterableListProps';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faAppleWhole,
@@ -5,8 +6,6 @@ import {
   faLemon,
   faPepperHot,
 } from '@fortawesome/free-solid-svg-icons';
-
-import type { IFilterableListItem } from './FilterableList';
 
 export const emptyItem = {
   label: '—',

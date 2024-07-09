@@ -2,12 +2,13 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
+import type { IFabProps, IFabOwnProps } from './FabProps';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { Fab, type IFabProps, type IFabOwnProps } from './Fab';
+import { Fab } from './Fab';
 
 // https://m3.material.io/components/floating-action-button/overview
 // https://material-web.dev/components/fab/

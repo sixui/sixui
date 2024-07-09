@@ -3,7 +3,8 @@ import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
 
-import { DialogContent, type IDialogContentProps } from './DialogContent';
+import type { IDialogContentProps } from './DialogContentProps';
+import { DialogContent } from './DialogContent';
 import { Typography } from '../Typography';
 import { Button } from '../Button';
 

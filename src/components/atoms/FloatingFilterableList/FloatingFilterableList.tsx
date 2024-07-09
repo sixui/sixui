@@ -1,13 +1,5 @@
-import type { IFilterableListItem } from '@/components/atoms/FilterableList';
-import {
-  FloatingFilterableListBase,
-  type IFloatingFilterableListBaseProps,
-} from '@/components/atoms/FloatingFilterableListBase';
-
-export type IFloatingFilterableListProps = IFloatingFilterableListBaseProps<
-  IFilterableListItem,
-  HTMLButtonElement
->;
+import type { IFloatingFilterableListProps } from './FloatingFilterableListProps';
+import { FloatingFilterableListBase } from '@/components/atoms/FloatingFilterableListBase';
 
 export const FloatingFilterableList: React.FC<IFloatingFilterableListProps> = (
   props,

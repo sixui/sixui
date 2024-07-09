@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { IFilterableListProps } from './FilterableListProps';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ListItem } from '@/components/atoms/ListItem';
 import { fruits } from './fruits';
-import { FilterableList, type IFilterableListProps } from './FilterableList';
+import { FilterableList } from './FilterableList';
 
 const meta = {
   component: FilterableList,
