@@ -126,10 +126,12 @@ export const DisclosureButton = forwardRef<
     newChecked: boolean,
   ): void => {
     if (newChecked === checked) {
-      onChange?.(event, newChecked);
-      setChecked(newChecked);
-      expandableContext?.expand(newChecked);
+      return;
     }
+
+    onChange?.(event, newChecked);
+    setChecked(newChecked);
+    expandableContext?.expand(newChecked);
   };
 
   return (
