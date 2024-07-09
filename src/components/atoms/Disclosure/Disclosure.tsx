@@ -25,6 +25,7 @@ export const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
       disabled,
       expanded,
       defaultExpanded,
+      initiallyExpanded,
       ...other
     } = props;
 
@@ -46,6 +47,7 @@ export const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
           disabled={disabled}
           expanded={expanded}
           defaultExpanded={defaultExpanded}
+          initiallyExpanded={initiallyExpanded}
         >
           {children}
         </Expandable>
