@@ -1,3 +1,15 @@
+# v0.0.301 (Tue Jul 09 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(Expandable): initiallyExpanded prop ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.300 (Tue Jul 09 2024)
 
 #### ⚠️ Pushed to `main`
