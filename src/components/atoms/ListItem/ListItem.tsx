@@ -3,13 +3,6 @@ import { asArray } from '@olivierpascal/helpers';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type {
-  IContainerProps,
-  IZeroOrMore,
-  ICompiledStyles,
-  IOmit,
-} from '@/helpers/types';
-import type {
-  IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
@@ -18,64 +11,19 @@ import type { IThemeComponents } from '@/components/utils/Theme';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import {
-  useVisualState,
-  type IVisualState,
-} from '@/components/utils/VisualState';
-import {
-  StateLayer,
-  type IStateLayerStyleKey,
-} from '@/components/utils/StateLayer';
-import {
-  FocusRing,
-  type IFocusRingStyleKey,
-} from '@/components/utils/FocusRing';
-import {
-  type IItemProps,
-  type IItemStyleVarKey,
-  type IItemStyleKey,
-  Item,
-} from '@/components/atoms/Item';
+import { useVisualState } from '@/components/utils/VisualState';
+import { StateLayer } from '@/components/utils/StateLayer';
+import { FocusRing } from '@/components/utils/FocusRing';
+import { Item, type IItemStyleVarKey } from '@/components/atoms/Item';
 import { commonStyles } from '@/helpers/commonStyles';
 import { ListContext } from '@/components/atoms/List/ListContext';
+import {
+  LIST_ITEM_DEFAULT_TAG,
+  type IListItemOwnProps,
+  type IListItemProps,
+} from './ListItemProps';
 
 // https://github.com/material-components/material-web/blob/main/list/internal/listitem/list-item.ts
-
-const DEFAULT_TAG = 'button';
-
-export type IListItemOwnProps = IContainerProps<IListItemStyleKey> &
-  IOmit<IItemProps, 'container'> & {
-    innerStyles?: {
-      item?: IZeroOrMore<ICompiledStyles<IItemStyleKey>>;
-      stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
-      focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-    };
-    variant?: IListItemVariant | false;
-    visualState?: IVisualState;
-    href?: string;
-    target?: React.AnchorHTMLAttributes<HTMLAnchorElement>['target'];
-
-    /**
-     * Disables the item and makes it non-selectable and non-interactive.
-     */
-    disabled?: boolean;
-
-    selected?: boolean;
-    leading?: React.ReactNode;
-    leadingIcon?: React.ReactNode;
-    leadingImage?: string;
-    leadingVideo?: Array<{ type: string; src: string }>;
-    trailing?: React.ReactNode;
-    trailingIcon?: React.ReactNode;
-    onClick?: React.MouseEventHandler<HTMLElement>;
-    size?: 'sm' | 'md' | 'lg' | 'xl';
-    noFocusRing?: boolean;
-    maxLines?: number;
-  };
-
-export type IListItemProps<
-  TRoot extends React.ElementType = typeof DEFAULT_TAG,
-> = IPolymorphicComponentPropsWithRef<TRoot, IListItemOwnProps>;
 
 type IListItemVariantMap = {
   [key in IListItemVariant]: keyof Pick<
@@ -89,12 +37,14 @@ const variantMap: IListItemVariantMap = {
   danger: 'DangerListItem',
 };
 
-type IListItem = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
+type IListItem = <
+  TRoot extends React.ElementType = typeof LIST_ITEM_DEFAULT_TAG,
+>(
   props: IListItemProps<TRoot>,
 ) => React.ReactNode;
 
 export const ListItem: IListItem = forwardRef(function ListItem<
-  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+  TRoot extends React.ElementType = typeof LIST_ITEM_DEFAULT_TAG,
 >(props: IListItemProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     as,

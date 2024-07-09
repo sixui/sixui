@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
+import type { IItemProps } from './ItemProps';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
-import { Item, type IItemProps } from './Item';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { Item } from './Item';
 
 // https://m3.material.io/components/items/overview
 // https://material-web.dev/components/item/

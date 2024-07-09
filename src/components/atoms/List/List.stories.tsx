@@ -7,13 +7,14 @@ import {
   faLink,
 } from '@fortawesome/free-solid-svg-icons';
 
+import type { IListProps } from './ListProps';
 import { ListItem, type IListItemProps } from '@/components/atoms/ListItem';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { Avatar } from '@/components/atoms/Avatar';
 import { Checkbox } from '@/components/atoms/Checkbox';
-import { List, type IListProps } from './List';
+import { List } from './List';
 
 // https://m3.material.io/components/lists/overview
 // https://material-web.dev/components/list/
