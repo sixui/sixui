@@ -2,32 +2,15 @@ import { forwardRef, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type {
-  IContainerProps,
-  IZeroOrMore,
-  ICompiledStyles,
-  IOmit,
-} from '@/helpers/types';
-import type {
   IMenuListStyleKey,
   IMenuListStyleVarKey,
 } from './MenuList.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import {
-  Elevation,
-  type IElevationStyleKey,
-} from '@/components/utils/Elevation';
-import { IListProps, List } from '@/components/atoms/List';
+import { Elevation } from '@/components/utils/Elevation';
+import { List } from '@/components/atoms/List';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-
-export type IMenuListProps = IContainerProps<IMenuListStyleKey> &
-  IOmit<IListProps, 'styles'> & {
-    innerStyles?: {
-      list?: IZeroOrMore<ICompiledStyles<IMenuListStyleKey>>;
-      elevation?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
-    };
-    children?: React.ReactNode;
-  };
+import { IMenuListProps } from './MenuListProps';
 
 export const MenuList = forwardRef<HTMLDivElement, IMenuListProps>(
   function MenuList(props, forwardedRef) {
