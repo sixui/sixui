@@ -51,8 +51,8 @@ export type ITooltipBaseProps<TForwardedProps extends object = object> =
       TForwardedProps
     >;
     children?:
-      | React.ReactElement
-      | ((props: ITooltipBaseChildrenRendererProps) => React.ReactElement);
+      | React.ReactNode
+      | ((props: ITooltipBaseChildrenRendererProps) => React.ReactNode);
     placement?: Placement;
     isOpen?: boolean;
     defaultIsOpen?: boolean;

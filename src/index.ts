@@ -24,6 +24,7 @@ export * from './components/atoms/FilterableList';
 export * from './components/atoms/FilterableListBase';
 export * from './components/atoms/FloatingFilterableList';
 export * from './components/atoms/FloatingFilterableListBase';
+export * from './components/atoms/FluidButton';
 export * from './components/atoms/HtmlSelect';
 export * from './components/atoms/IconButton';
 export * from './components/atoms/Item';

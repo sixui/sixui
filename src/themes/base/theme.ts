@@ -251,6 +251,14 @@ import {
   elevationStyles as richTooltipElevationStyles,
 } from './RichTooltipContent/RichTooltipContent.styles';
 
+import { componentTheme as fluidButtonTheme } from './FluidButton/FluidButton.stylex';
+import {
+  styles as fluidButtonStyles,
+  buttonBaseStyles as fluidButtonButtonBaseStyles,
+  stateLayerStyles as fluidButtonStateLayerStyles,
+  focusRingStyles as fluidButtonFocusRingStyles,
+} from './FluidButton/FluidButton.styles';
+
 export const theme: ITheme = {
   name: 'Material Design 3',
   colorSchemes: {
@@ -543,6 +551,13 @@ export const theme: ITheme = {
       vars: richTooltipContentTheme,
       styles: richTooltipContentStyles,
       elevationStyles: richTooltipElevationStyles,
+    },
+    FluidButton: {
+      vars: fluidButtonTheme,
+      styles: fluidButtonStyles,
+      buttonBaseStyles: fluidButtonButtonBaseStyles,
+      focusRingStyles: fluidButtonFocusRingStyles,
+      stateLayerStyles: fluidButtonStateLayerStyles,
     },
   },
 };

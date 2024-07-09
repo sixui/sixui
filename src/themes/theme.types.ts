@@ -156,6 +156,11 @@ import type {
   IRichTooltipContentStyleKey,
   IRichTooltipContentStyleVarKey,
 } from '@/components/atoms/RichTooltipContent';
+import type {
+  IFluidButtonStyleKey,
+  IFluidButtonStyleVarKey,
+} from '@/components/atoms/FluidButton';
+import type { IButtonBaseStyleKey } from '@/components/atoms/ButtonBase';
 
 export type ITemplateTheme = {
   vars?: IStyleVarsTheme<ITemplateStyleVarKey>;
@@ -470,6 +475,13 @@ export type ITheme = {
       vars?: IStyleVarsTheme<IRichTooltipContentStyleVarKey>;
       styles?: ICompiledStyles<IRichTooltipContentStyleKey>;
       elevationStyles?: ICompiledStyles<IElevationStyleKey>;
+    };
+    FluidButton: {
+      vars?: IStyleVarsTheme<IFluidButtonStyleVarKey>;
+      styles?: ICompiledStyles<IFluidButtonStyleKey>;
+      buttonBaseStyles?: ICompiledStyles<IButtonBaseStyleKey>;
+      focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
+      stateLayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
     };
   };
 };
