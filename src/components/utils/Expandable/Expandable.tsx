@@ -192,10 +192,8 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
               {...other}
               ref={transitionNodeHandleRef}
             >
-              <div ref={contentWrapperRef}>
-                <div {...stylex.props(styles.content(expandedSize))}>
-                  {children}
-                </div>
+              <div {...stylex.props(styles.content(expandedSize))}>
+                <div ref={contentWrapperRef}>{children}</div>
               </div>
             </div>
           )}
