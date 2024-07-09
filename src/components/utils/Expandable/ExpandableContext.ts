@@ -7,6 +7,7 @@ export type IExpandableContextValue = {
   disabled?: boolean;
   expanded?: boolean;
   defaultExpanded?: boolean;
+  initiallyExpanded?: boolean;
   orientation?: IOrientation;
 };
 

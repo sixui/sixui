@@ -95,11 +95,14 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
       onChange,
       disabled,
       expanded: expandedProp,
-      defaultExpanded,
+      defaultExpanded: defaultExpandedProp,
+      initiallyExpanded: initiallyExpandedProp,
       orientation = 'vertical',
       collapsedSize: collapsedSizeProp = 0,
       ...other
     } = props;
+    const initiallyExpandedRef = useRef(initiallyExpandedProp);
+    const defaultExpanded = initiallyExpandedRef.current ?? defaultExpandedProp;
     const [expanded, setExpanded] = useControlledValue({
       controlled: expandedProp,
       default: !!defaultExpanded,

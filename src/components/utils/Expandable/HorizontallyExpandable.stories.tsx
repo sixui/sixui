@@ -106,4 +106,16 @@ export const DefaultExpanded: IStory = {
   },
 };
 
+export const InitiallyExpanded: IStory = {
+  render: (props) => (
+    <div {...stylex.props(styles.container)}>
+      <Expandable {...props} />
+    </div>
+  ),
+  args: {
+    ...defaultArgs,
+    initiallyExpanded: true,
+  },
+};
+
 export default meta;
