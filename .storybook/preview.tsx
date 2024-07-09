@@ -12,7 +12,10 @@ import { darkColorRoles } from '@/themes/base/vars/darkColorRoles';
 
 // For theme variant
 // import { theme } from '@/themes/variant';
-// import { colorRolesTheme } from '@/themes/base/vars/colorRoles.stylex';
+// import {
+//   colorRolesVars,
+//   colorRolesTheme,
+// } from '@/themes/base/vars/colorRoles.stylex';
 // import { colorPaletteTheme } from '@/themes/variant/vars/colorPalettes.stylex';
 // import { shapeTheme } from '@/themes/variant/vars/shape.stylex';
 
@@ -67,6 +70,7 @@ export const decorators: Array<Decorator> = [
 
     return (
       <ThemeProvider theme={theme}>
+        {/* For theme variant: */}
         {/* <div {...stylex.props(colorPaletteTheme, colorRolesTheme, shapeTheme)}> */}
         {showLightMode ? (
           <ColorSchemeProvider scheme='light'>

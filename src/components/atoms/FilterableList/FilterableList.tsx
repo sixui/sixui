@@ -154,13 +154,7 @@ export const renderFilterableListItem: IFilterableListItemRenderer<
       visualState={{ hovered: props.modifiers.active, strategy: 'replace' }}
       selected={props.modifiers.selected}
       disabled={props.modifiers.disabled}
-      {...props.getButtonAttributes({
-        onClick: (event) => {
-          listItemProps.onClick?.(event);
-          item.onClick?.(event);
-          props.handleClick(event);
-        },
-      })}
+      {...props.getButtonAttributes()}
       ref={props.buttonRef}
     />
   );
