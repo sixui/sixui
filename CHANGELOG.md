@@ -1,3 +1,15 @@
+# v0.0.303 (Tue Jul 09 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(Expandable): correctly observe size ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.302 (Tue Jul 09 2024)
 
 #### 🐛 Bug Fix
