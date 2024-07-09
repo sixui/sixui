@@ -123,12 +123,14 @@ export const DisclosureButton = forwardRef<
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
-    checked: boolean,
-  ): Promise<void> =>
-    Promise.resolve(onChange?.(event, checked)).then(() => {
-      setChecked(checked);
-      expandableContext?.expand(checked);
-    });
+    newChecked: boolean,
+  ): void => {
+    if (newChecked === checked) {
+      onChange?.(event, newChecked);
+      setChecked(newChecked);
+      expandableContext?.expand(newChecked);
+    }
+  };
 
   return (
     <div {...sxf('host', sx, theme.vars)}>
