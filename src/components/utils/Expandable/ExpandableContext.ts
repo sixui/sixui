@@ -11,12 +11,6 @@ export type IExpandableContextValue = {
   orientation?: IOrientation;
 };
 
-const stub = (): never => {
-  throw new Error(
-    'You forgot to wrap your component in <ExpandableContext.Provider />.',
-  );
-};
-
-export const ExpandableContext = createContext<IExpandableContextValue>({
-  expand: stub,
-});
+export const ExpandableContext = createContext<
+  IExpandableContextValue | undefined
+>(undefined);

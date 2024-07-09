@@ -90,7 +90,7 @@ export const DisclosureButton = forwardRef<
   );
 
   const expandableContext = useContext(ExpandableContext);
-  const disabled = disabledProp ?? expandableContext.disabled;
+  const disabled = disabledProp ?? expandableContext?.disabled;
   const togglable = checkable || switchable;
   const [value, setValue] = useControlledValue({
     controlled: valueProp,
@@ -98,7 +98,7 @@ export const DisclosureButton = forwardRef<
     name: 'DisclosureButton',
   });
   const expanded =
-    (expandedProp ?? expandableContext.expanded) && (!togglable || value);
+    (expandedProp ?? expandableContext?.expanded) && (!togglable || value);
   const icon = expanded ? (
     collapseIcon ? (
       <div {...sxf('icon')}>{collapseIcon}</div>
