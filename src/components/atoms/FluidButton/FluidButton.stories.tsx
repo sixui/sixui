@@ -7,7 +7,7 @@ import {
   type IComponentPresentation,
 } from '@/components/utils/ComponentShowcase';
 import { Typography } from '@/components/atoms/Typography';
-import { FluidButton, type IFluidButtonProps } from './FluidButton';
+import { FluidButton, type IFluidButtonOwnProps } from './FluidButton';
 
 const meta = {
   component: FluidButton,
@@ -17,16 +17,16 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   // disabled: true,
-} satisfies Partial<IFluidButtonProps>;
+} satisfies Partial<IFluidButtonOwnProps>;
 
-const FluidButtonInText: React.FC<IFluidButtonProps> = (props) => (
+const FluidButtonInText: React.FC<IFluidButtonOwnProps> = (props) => (
   <>
     Lorem ipsum dolor sit amet <FluidButton {...props} />, consectetur
     adipiscing elit
   </>
 );
 
-const rows: Array<IComponentPresentation<IFluidButtonProps>> = [
+const rows: Array<IComponentPresentation<IFluidButtonOwnProps>> = [
   {
     component: (props) => (
       <Typography variant='display'>

@@ -30,7 +30,11 @@ export const buttonBaseStyles: MapNamespaces<IButtonBaseStyles> = stylex.create<
   IStyles<IButtonBaseStyleKey>
 >({
   host: {
+    display: 'inline-flex',
     minWidth: '1em',
+    height: '1em',
+    verticalAlign: 'baseline',
+    alignItems: 'center',
     borderRadius: vars.containerShape,
   },
   background: {

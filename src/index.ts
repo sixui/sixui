@@ -12,6 +12,7 @@ export * from './components/atoms/CardTitle';
 export * from './components/atoms/Checkbox';
 export * from './components/atoms/Chip';
 export * from './components/atoms/CircularProgressIndicator';
+export * from './components/atoms/CopyableText';
 export * from './components/atoms/Dialog';
 export * from './components/atoms/DialogContent';
 export * from './components/atoms/Disclosure';

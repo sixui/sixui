@@ -53,7 +53,7 @@ const styles = stylex.create({
     transitionDuration: motionVars.duration$long3,
     transitionTimingFunction: motionVars.easing$emphasizedDecelerate,
   }),
-  animation$exit: (expandedSize: Partial<ISize<ICssSizeValue>>) => ({
+  animation$entered: (expandedSize: Partial<ISize<ICssSizeValue>>) => ({
     width: expandedSize.width,
     height: expandedSize.height,
   }),
@@ -180,7 +180,7 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
                         transitionProperty,
                       )
                     : status === 'entered'
-                      ? styles.animation$exit(expandedSize)
+                      ? styles.animation$entered(expandedSize)
                       : status === 'exiting'
                         ? styles.animation$exiting(
                             collapsedSize,

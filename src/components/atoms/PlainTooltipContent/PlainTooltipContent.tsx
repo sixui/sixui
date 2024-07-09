@@ -11,7 +11,7 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 
 export type IPlainTooltipContentProps =
   IContainerProps<IPlainTooltipContentStyleKey> & {
-    supportingText?: React.ReactNode;
+    supportingText: React.ReactNode;
     renderCursor?: (
       userProps?: React.HTMLAttributes<SVGSVGElement>,
     ) => React.ReactNode;

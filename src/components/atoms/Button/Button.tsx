@@ -167,7 +167,6 @@ export const Button: IButton = forwardRef(function Button<
 
   return (
     <ButtonBase
-      ref={forwardedRef}
       as={as}
       styles={[theme.styles, variantTheme?.styles, ...asArray(styles)]}
       sx={[
@@ -200,6 +199,7 @@ export const Button: IButton = forwardRef(function Button<
       disabled={disabled}
       data-cy='button'
       {...other}
+      ref={forwardedRef}
     >
       {hasLeadingIcon ? (
         <div

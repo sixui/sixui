@@ -63,6 +63,7 @@ export type ITooltipBaseProps<TForwardedProps extends object = object> =
       reason?: OpenChangeReason,
     ) => void;
     persistent?: boolean;
+    disabled?: boolean;
   };
 
 // TODO: migrate in theme
@@ -118,6 +119,7 @@ export const TooltipBase = <TForwardedProps extends object = object>(
     onOpenChange,
     forwardProps,
     persistent,
+    disabled,
     ...other
   } = props;
   const [isOpen, setIsOpen] = useControlledValue({
@@ -161,13 +163,13 @@ export const TooltipBase = <TForwardedProps extends object = object>(
   const hover = useHover(floating.context, {
     move: false,
     delay: delayGroup.delay,
-    enabled: !persistent,
+    enabled: !persistent && !disabled,
   });
   const focus = useFocus(floating.context, {
-    enabled: !persistent,
+    enabled: !persistent && !disabled,
   });
   const dismiss = useDismiss(floating.context, {
-    enabled: !persistent,
+    enabled: !persistent && !disabled,
   });
   const role = useRole(floating.context, { role: 'tooltip' });
   const interactions = useInteractions([hover, focus, dismiss, role]);
