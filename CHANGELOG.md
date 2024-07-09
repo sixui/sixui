@@ -1,3 +1,15 @@
+# v0.0.302 (Tue Jul 09 2024)
+
+#### 🐛 Bug Fix
+
+- Feat/copyable [#32](https://github.com/sixui/sixui/pull/32) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.301 (Tue Jul 09 2024)
 
 #### ⚠️ Pushed to `main`
