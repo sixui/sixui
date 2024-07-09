@@ -1,46 +1,14 @@
-import type { IContainerProps, IOmit } from '@/helpers/types';
-import type { IFieldBaseVariant } from '@/components/atoms/FieldBase';
+import type { ISelectBaseProps } from './SelectBaseProps';
 import { ListItem } from '@/components/atoms/ListItem';
 import { TextInputField } from '@/components/atoms/TextInputField';
 import { MenuList } from '@/components/atoms/MenuList';
-import {
-  Field,
-  type IFieldStyleKey,
-  type IFieldOwnProps,
-} from '@/components/atoms/Field';
+import { Field } from '@/components/atoms/Field';
 import {
   useSingleFilterableListBase,
   FilterableListBaseFieldEnd,
-  type IUseSingleFilterableListBaseProps,
 } from '@/components/atoms/FilterableListBase';
-import {
-  FloatingFilterableListBase,
-  type IFloatingFilterableListBaseTriggerRenderProps,
-  type IFloatingFilterableListBaseProps,
-} from '@/components/atoms/FloatingFilterableListBase';
+import { FloatingFilterableListBase } from '@/components/atoms/FloatingFilterableListBase';
 import { fixedForwardRef } from '@/helpers/fixedForwardRef';
-
-export type ISelectBaseProps<TItem> = IContainerProps<IFieldStyleKey> &
-  IOmit<
-    IFloatingFilterableListBaseProps<TItem, HTMLElement>,
-    | 'onItemSelect'
-    | 'renderer'
-    | 'listRenderer'
-    | 'itemRenderer'
-    | 'itemsEqual'
-    | 'children'
-  > &
-  IFieldOwnProps &
-  IUseSingleFilterableListBaseProps<TItem, HTMLElement> & {
-    itemLabel: (item: TItem) => string | undefined;
-    canFilter?: boolean;
-    getValueFieldProps?: (
-      renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
-      selectedItem?: TItem,
-    ) => IFieldOwnProps;
-    clearable?: boolean;
-    variant?: IFieldBaseVariant | false;
-  };
 
 export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
   props: ISelectBaseProps<TItem>,

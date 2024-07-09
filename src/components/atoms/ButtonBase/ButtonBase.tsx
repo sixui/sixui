@@ -3,66 +3,31 @@ import { asArray } from '@olivierpascal/helpers';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type {
-  IContainerProps,
-  IZeroOrMore,
-  ICompiledStyles,
-} from '@/helpers/types';
-import type {
-  IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
 import type { IButtonBaseStyleKey } from './ButtonBase.styledefs';
-import {
-  type IVisualState,
-  useVisualState,
-} from '@/components/utils/VisualState';
+import { useVisualState } from '@/components/utils/VisualState';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { Elevation } from '@/components/utils/Elevation';
+import { FocusRing } from '@/components/utils/FocusRing';
+import { StateLayer } from '@/components/utils/StateLayer';
 import {
-  Elevation,
-  type IElevationStyleKey,
-} from '@/components/utils/Elevation';
-import {
-  FocusRing,
-  type IFocusRingStyleKey,
-} from '@/components/utils/FocusRing';
-import {
-  StateLayer,
-  type IStateLayerStyleKey,
-} from '@/components/utils/StateLayer';
+  BUTTON_BASE_DEFAULT_TAG,
+  type IButtonBaseProps,
+  type IButtonBaseOwnProps,
+} from './ButtonBaseProps';
 
-const DEFAULT_TAG = 'button';
-
-export type IButtonBaseOwnProps = IContainerProps<IButtonBaseStyleKey> & {
-  innerStyles?: {
-    stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
-    focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-    elevation?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
-  };
-  visualState?: IVisualState;
-  withLeadingIcon?: boolean; // TODO: -> Button
-  withTrailingIcon?: boolean; // TODO: -> Button
-  children?: React.ReactNode;
-  inwardFocusRing?: boolean;
-  href?: string;
-  target?: React.AnchorHTMLAttributes<HTMLAnchorElement>['target'];
-  disabled?: boolean;
-  readOnly?: boolean;
-  type?: string;
-};
-
-export type IButtonBaseProps<
-  TRoot extends React.ElementType = typeof DEFAULT_TAG,
-> = IPolymorphicComponentPropsWithRef<TRoot, IButtonBaseOwnProps>;
-
-type IButtonBase = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
+type IButtonBase = <
+  TRoot extends React.ElementType = typeof BUTTON_BASE_DEFAULT_TAG,
+>(
   props: IButtonBaseProps<TRoot>,
 ) => React.ReactNode;
 
 export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
-  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+  TRoot extends React.ElementType = typeof BUTTON_BASE_DEFAULT_TAG,
 >(props: IButtonBaseProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     as,
@@ -98,7 +63,7 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
     [stylesCombinator, visualState],
   );
 
-  const Component = as ?? (href ? settings.linkAs : DEFAULT_TAG);
+  const Component = as ?? (href ? settings.linkAs : BUTTON_BASE_DEFAULT_TAG);
 
   return (
     <Component

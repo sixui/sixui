@@ -1,3 +1,4 @@
 export * from './Card.styledefs';
-export * from './Card';
+export * from './CardProps';
 export * from './CardContext';
+export * from './Card';

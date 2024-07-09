@@ -1,4 +1,5 @@
 import type { IOmit } from '@/helpers/types';
+import type { ISelectBaseProps } from './SelectBaseProps';
 import {
   areMoviesEqual,
   createMovie,
@@ -10,7 +11,7 @@ import {
   TOP_100_MOVIES,
   type IMovie,
 } from '@/components/atoms/FilterableListBase/movies';
-import { SelectBase, type ISelectBaseProps } from './SelectBase';
+import { SelectBase } from './SelectBase';
 
 export type ISelectBaseExampleProps = IOmit<
   ISelectBaseProps<IMovie>,

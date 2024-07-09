@@ -2,38 +2,17 @@ import { forwardRef, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type {
-  IContainerProps,
-  IZeroOrMore,
-  ICompiledStyles,
-  IMaybeAsync,
-  IAny,
-} from '@/helpers/types';
-import type {
   ISnackbarContentStyleKey,
   ISnackbarContentStyleVarKey,
 } from './SnackbarContent.styledefs';
+import type { ISnackbarContentProps } from './SnackbarContentProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import {
-  Elevation,
-  type IElevationStyleKey,
-} from '@/components/utils/Elevation';
+import { Elevation } from '@/components/utils/Elevation';
 import { Button } from '@/components/atoms/Button';
 import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
 import { IconButton } from '@/components/atoms/IconButton';
-
-export type ISnackbarContentProps =
-  IContainerProps<ISnackbarContentStyleKey> & {
-    innerStyles?: {
-      elevation?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
-    };
-    children?: React.ReactNode;
-    actionLabel?: string;
-    onActionClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
-    onClose?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
-    showCloseButton?: boolean;
-  };
 
 export const SnackbarContent = forwardRef<
   HTMLDivElement,

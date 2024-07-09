@@ -1,2 +1,3 @@
-export * from './ButtonBase';
 export * from './ButtonBase.styledefs';
+export * from './ButtonBaseProps';
+export * from './ButtonBase';

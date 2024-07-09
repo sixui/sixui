@@ -2,29 +2,11 @@ import { forwardRef, useState } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 import stylex from '@stylexjs/stylex';
 
-import type { IContainerProps } from '@/helpers/types';
+import type { ICopyableTextProps } from './CopyableTextProps';
 import { ReactComponent as CopyToClipboardIcon } from '@/assets/CopyToCliboard.svg';
 import { copyToClipboard } from '@/helpers/copyToClipboard';
 import { PlainTooltip } from '@/components/atoms/PlainTooltip';
-import {
-  FluidButton,
-  IFluidButtonOwnProps,
-} from '@/components/atoms/FluidButton';
-
-export type ICopyableTextTriggerRenderProps = {
-  copy: () => Promise<void>;
-  disabled?: boolean;
-};
-
-export type ICopyableTextProps = IContainerProps &
-  IFluidButtonOwnProps & {
-    children?: React.ReactNode;
-    text?: string;
-    disabled?: boolean;
-    copySupportingText?: string;
-    copiedSupportingText?: string;
-    icon?: React.ReactNode;
-  };
+import { FluidButton } from '@/components/atoms/FluidButton';
 
 const styles = stylex.create({
   container: {

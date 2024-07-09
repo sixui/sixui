@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { ISnackbarContentProps } from './SnackbarContentProps';
 import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
-import { SnackbarContent, type ISnackbarContentProps } from './SnackbarContent';
+import { SnackbarContent } from './SnackbarContent';
 
 // https://m3.material.io/components/snackbar
 

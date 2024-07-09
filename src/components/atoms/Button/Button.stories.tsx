@@ -3,13 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
+import type { IButtonOwnProps } from './ButtonProps';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
 import { buttonVariants } from './Button.styledefs';
-import { type IButtonProps, type IButtonOwnProps, Button } from './Button';
+import { Button } from './Button';
 
 // https://m3.material.io/components/buttons/overview
 // https://material-web.dev/components/button/
@@ -24,7 +25,7 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   onClick: (...args) => sbHandleEvent('click', args, 1000),
   children: 'Button',
-} satisfies Partial<IButtonProps>;
+} satisfies Partial<IButtonOwnProps>;
 
 const states: Array<IComponentPresentation<IButtonOwnProps>> = [
   {

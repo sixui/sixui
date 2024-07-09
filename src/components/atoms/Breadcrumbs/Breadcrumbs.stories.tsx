@@ -3,8 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { createSequence } from '@olivierpascal/helpers';
 
+import type { IBreadcrumbsProps } from './BreadcrumbsProps';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
-import { Breadcrumbs, type IBreadcrumbsProps } from './Breadcrumbs';
+import { Breadcrumbs } from './Breadcrumbs';
 
 const meta = {
   component: Breadcrumbs,

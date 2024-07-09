@@ -3,14 +3,6 @@ import { asArray } from '@olivierpascal/helpers';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type {
-  IContainerProps,
-  IZeroOrMore,
-  ICompiledStyles,
-  IMaybeAsync,
-  IAny,
-} from '@/helpers/types';
-import type {
-  IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
@@ -21,67 +13,32 @@ import type {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import {
-  useVisualState,
-  type IVisualState,
-} from '@/components/utils/VisualState';
+import { useVisualState } from '@/components/utils/VisualState';
 import { usePrevious } from '@/hooks/usePrevious';
 import { useControlledValue } from '@/hooks/useControlledValue';
-import {
-  StateLayer,
-  type IStateLayerStyleKey,
-} from '@/components/utils/StateLayer';
-import {
-  FocusRing,
-  type IFocusRingStyleKey,
-} from '@/components/utils/FocusRing';
-import {
-  IndeterminateCircularProgressIndicator,
-  type ICircularProgressIndicatorStyleKey,
-} from '@/components/atoms/CircularProgressIndicator';
+import { StateLayer } from '@/components/utils/StateLayer';
+import { FocusRing } from '@/components/utils/FocusRing';
+import { IndeterminateCircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
 import { executeLazyPromise } from '@/helpers/executeLazyPromise';
+import {
+  CHECKBOX_DEFAULT_TAG,
+  type ICheckboxOwnProps,
+  type ICheckboxProps,
+} from './CheckboxProps';
 
 // https://github.com/material-components/material-web/blob/main/checkbox/internal/checkbox.ts
 
-const DEFAULT_TAG = 'input';
-
-export type ICheckboxOwnProps = IContainerProps<ICheckboxStyleKey> & {
-  innerStyles?: {
-    stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
-    focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-    circularProgressIndicator?: IZeroOrMore<
-      ICompiledStyles<ICircularProgressIndicatorStyleKey>
-    >;
-  };
-  visualState?: IVisualState;
-  required?: boolean;
-  disabled?: boolean;
-  readOnly?: boolean;
-  id?: string;
-  name?: string;
-  checked?: boolean;
-  defaultChecked?: boolean;
-  indeterminate?: boolean;
-  onChange?: (
-    event: React.ChangeEvent<HTMLInputElement>,
-    checked: boolean,
-  ) => IMaybeAsync<IAny>;
-  loading?: boolean;
-};
-
-export type ICheckboxProps<
-  TRoot extends React.ElementType = typeof DEFAULT_TAG,
-> = IPolymorphicComponentPropsWithRef<TRoot, ICheckboxOwnProps>;
-
-type ICheckbox = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
+type ICheckbox = <
+  TRoot extends React.ElementType = typeof CHECKBOX_DEFAULT_TAG,
+>(
   props: ICheckboxProps<TRoot>,
 ) => React.ReactNode;
 
 export const Checkbox: ICheckbox = forwardRef(function Checkbox<
-  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+  TRoot extends React.ElementType = typeof CHECKBOX_DEFAULT_TAG,
 >(props: ICheckboxProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
-    as: Component = DEFAULT_TAG,
+    as: Component = CHECKBOX_DEFAULT_TAG,
     styles,
     sx,
     innerStyles,

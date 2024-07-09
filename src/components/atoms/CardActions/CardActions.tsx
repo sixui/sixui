@@ -1,14 +1,10 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/helpers/types';
 import type { ICardActionsStyleKey } from './CardActions.styledefs';
+import type { ICardActionsProps } from './CardActionsProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-
-export type ICardActionsProps = IContainerProps<ICardActionsStyleKey> & {
-  children: React.ReactNode;
-};
 
 export const CardActions = forwardRef<HTMLDivElement, ICardActionsProps>(
   function CardActions(props, forwardedRef) {

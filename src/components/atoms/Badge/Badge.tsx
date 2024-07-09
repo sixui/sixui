@@ -1,20 +1,10 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/helpers/types';
 import type { IBadgeStyleKey, IBadgeStyleVarKey } from './Badge.styledefs';
+import type { IBadgeProps } from './BadgeProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-
-export type IBadgeProps = IContainerProps<IBadgeStyleKey> & {
-  children?: React.ReactNode;
-  value?: number;
-  maxValue?: number;
-  showZero?: boolean;
-  dot?: boolean;
-  invisible?: boolean;
-  disabled?: boolean;
-};
 
 export const Badge = forwardRef<HTMLDivElement, IBadgeProps>(
   function Badge(props, forwardedRef) {

@@ -4,14 +4,6 @@ import stylex from '@stylexjs/stylex';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type {
-  IContainerProps,
-  IZeroOrMore,
-  ICompiledStyles,
-  IAny,
-  IMaybeAsync,
-} from '@/helpers/types';
-import type {
-  IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
@@ -24,72 +16,27 @@ import type {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import {
-  type IVisualState,
-  useVisualState,
-} from '@/components/utils/VisualState';
-import {
-  Elevation,
-  type IElevationStyleKey,
-} from '@/components/utils/Elevation';
-import {
-  FocusRing,
-  type IFocusRingStyleKey,
-} from '@/components/utils/FocusRing';
-import {
-  StateLayer,
-  type IStateLayerStyleKey,
-} from '@/components/utils/StateLayer';
-import {
-  IndeterminateCircularProgressIndicator,
-  type ICircularProgressIndicatorStyleKey,
-} from '@/components/atoms/CircularProgressIndicator';
+import { useVisualState } from '@/components/utils/VisualState';
+import { Elevation } from '@/components/utils/Elevation';
+import { FocusRing } from '@/components/utils/FocusRing';
+import { StateLayer } from '@/components/utils/StateLayer';
+import { IndeterminateCircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
 import { ReactComponent as CheckMarkIcon } from '@/assets/CheckMark.svg';
 import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
-
 import { ButtonBase } from '@/components/atoms/ButtonBase';
 import { Avatar } from '@/components/atoms/Avatar';
 import { executeLazyPromise } from '@/helpers/executeLazyPromise';
+import {
+  CHIP_DEFAULT_TAG,
+  type IChipOwnProps,
+  type IChipProps,
+} from './ChipProps';
 
 // https://github.com/material-components/material-web/blob/main/chips/internal/chip.ts
 // https://github.com/material-components/material-web/blob/main/chips/internal/assist-chip.ts
 // https://github.com/material-components/material-web/blob/main/chips/internal/filter-chip.ts
 // https://github.com/material-components/material-web/blob/main/chips/internal/input-chip.ts
 // https://github.com/material-components/material-web/blob/main/chips/internal/suggestion-chip.ts
-
-const DEFAULT_TAG = 'div';
-
-export type IChipOwnProps = IContainerProps<IChipStyleKey> & {
-  innerStyles?: {
-    stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
-    focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-    elevation?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
-    trailingActionFocusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-    trailingActionStateLayer?: IZeroOrMore<
-      ICompiledStyles<IStateLayerStyleKey>
-    >;
-    circularProgressIndicator?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
-  };
-  visualState?: IVisualState;
-  onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
-  onDelete?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
-  variant?: IChipVariant | false;
-  label?: React.ReactNode;
-  disabled?: boolean;
-  elevated?: boolean;
-  selected?: boolean;
-  icon?: React.ReactNode;
-  href?: string;
-  imageUrl?: string;
-  loading?: boolean;
-  loadingText?: string;
-  deleting?: boolean;
-  avatar?: boolean;
-  'aria-label-remove'?: React.AriaAttributes['aria-label'];
-};
-
-export type IChipProps<TRoot extends React.ElementType = typeof DEFAULT_TAG> =
-  IPolymorphicComponentPropsWithRef<TRoot, IChipOwnProps>;
 
 type IChipVariantMap = {
   [key in IChipVariant]: keyof Pick<
@@ -112,12 +59,12 @@ const avatarStyles = stylex.create({
   },
 });
 
-type IChip = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
+type IChip = <TRoot extends React.ElementType = typeof CHIP_DEFAULT_TAG>(
   props: IChipProps<TRoot>,
 ) => React.ReactNode;
 
 export const Chip: IChip = forwardRef(function Chip<
-  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+  TRoot extends React.ElementType = typeof CHIP_DEFAULT_TAG,
 >(props: IChipProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     as,

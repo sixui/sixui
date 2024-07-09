@@ -2,14 +2,6 @@ import { forwardRef, useMemo, useState } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type {
-  IAny,
-  ICompiledStyles,
-  IOmit,
-  IMaybeAsync,
-  IZeroOrMore,
-} from '@/helpers/types';
-import type {
-  IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
@@ -19,17 +11,16 @@ import type {
   IButtonStyleKey,
   IButtonStyleVarKey,
 } from './Button.styledefs';
+import type {
+  BUTTON_DEFAULT_TAG,
+  IButtonOwnProps,
+  IButtonProps,
+} from './ButtonProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import {
-  type ICircularProgressIndicatorStyleKey,
-  IndeterminateCircularProgressIndicator,
-} from '@/components/atoms/CircularProgressIndicator';
-import {
-  ButtonBase,
-  type IButtonBaseOwnProps,
-} from '@/components/atoms/ButtonBase';
+import { IndeterminateCircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
+import { ButtonBase } from '@/components/atoms/ButtonBase';
 import { executeLazyPromise } from '@/helpers/executeLazyPromise';
 
 // https://github.com/material-components/material-web/blob/main/button/internal/button.ts
@@ -38,29 +29,6 @@ import { executeLazyPromise } from '@/helpers/executeLazyPromise';
 // https://github.com/material-components/material-web/blob/main/button/internal/filled-tonal-button.ts
 // https://github.com/material-components/material-web/blob/main/button/internal/outlined-button.ts
 // https://github.com/material-components/material-web/blob/main/button/internal/text-button.ts
-
-const DEFAULT_TAG = 'button';
-
-export type IButtonOwnProps = IOmit<
-  IButtonBaseOwnProps,
-  'withLeadingIcon' | 'withTrailingIcon'
-> & {
-  innerStyles?: IButtonBaseOwnProps['innerStyles'] & {
-    circularProgressIndicator?: IZeroOrMore<
-      ICompiledStyles<ICircularProgressIndicatorStyleKey>
-    >;
-  };
-  variant?: IButtonVariant | false;
-  icon?: React.ReactNode;
-  trailingIcon?: boolean;
-  loading?: boolean; // TODO: -> Button
-  loadingAnimation?: 'progressIndicator' | 'halfSpin' | 'none'; // TODO: -> Button
-  loadingText?: string; // TODO: -> Button
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => IMaybeAsync<IAny>; // TODO: -> ButtonBase
-};
-
-export type IButtonProps<TRoot extends React.ElementType = typeof DEFAULT_TAG> =
-  IPolymorphicComponentPropsWithRef<TRoot, IButtonOwnProps>;
 
 type IButtonVariantMap = {
   [key in IButtonVariant]: keyof Pick<
@@ -85,12 +53,12 @@ const variantMap: IButtonVariantMap = {
   snackbar: 'SnackbarButton',
 };
 
-type IButton = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
+type IButton = <TRoot extends React.ElementType = typeof BUTTON_DEFAULT_TAG>(
   props: IButtonProps<TRoot>,
 ) => React.ReactNode;
 
 export const Button: IButton = forwardRef(function Button<
-  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+  TRoot extends React.ElementType = typeof BUTTON_DEFAULT_TAG,
 >(props: IButtonProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     styles,

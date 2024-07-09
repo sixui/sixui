@@ -3,26 +3,15 @@ import { CSSTransition } from 'react-transition-group';
 import { useTimeout } from 'usehooks-ts';
 import { useMergeRefs } from '@floating-ui/react';
 
-import type { IContainerProps, IOmit } from '@/helpers/types';
 import type {
   ISnackbarStyleKey,
   ISnackbarStyleVarKey,
 } from './Snackbar.styledefs';
+import type { ISnackbarProps } from './SnackbarProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import {
-  SnackbarContent,
-  type ISnackbarContentProps,
-} from '@/components/atoms/SnackbarContent';
-
-export type ISnackbarProps = IContainerProps<ISnackbarStyleKey> &
-  IOmit<ISnackbarContentProps, 'styles' | 'sx' | 'onClose'> & {
-    open?: boolean;
-    onClose?: () => void;
-    horizontalOrigin?: 'left' | 'center';
-    autoHideDuration?: number;
-  };
+import { SnackbarContent } from '@/components/atoms/SnackbarContent';
 
 export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
   function Snackbar(props, forwardedRef) {

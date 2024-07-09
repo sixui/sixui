@@ -1,17 +1,11 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/helpers/types';
 import type { ICardMediaStyleKey } from './CardMedia.styledefs';
+import type { ICardMediaProps } from './CardMediaProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { commonStyles } from '@/helpers/commonStyles';
-
-export type ICardMediaProps = IContainerProps<ICardMediaStyleKey> & {
-  children?: React.ReactNode;
-  src?: string;
-  title?: string;
-};
 
 export const CardMedia = forwardRef<HTMLDivElement, ICardMediaProps>(
   function CardMedia(props, forwardedRef) {

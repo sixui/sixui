@@ -1,24 +1,12 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/helpers/types';
 import type { IAvatarStyleKey, IAvatarStyleVarKey } from './Avatar.styledefs';
+import type { IAvatarProps } from './AvatarProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useLoaded } from '@/hooks/useLoaded';
 import { ReactComponent as PersonIcon } from '@/assets/Person.svg';
-
-export type IAvatarProps = IContainerProps<IAvatarStyleKey> &
-  Pick<
-    React.ImgHTMLAttributes<HTMLImageElement>,
-    'alt' | 'crossOrigin' | 'referrerPolicy' | 'src' | 'srcSet' | 'sizes'
-  > & {
-    /**
-     * Used to render icon or text elements inside the Avatar if `src` is not set. This can be an
-     * element, or just a string.
-     */
-    children?: React.ReactNode;
-  };
 
 export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
   function Avatar(props, forwardedRef) {
