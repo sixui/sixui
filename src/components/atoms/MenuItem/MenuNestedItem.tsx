@@ -3,8 +3,9 @@ import { forwardRef, useContext } from 'react';
 import { ReactComponent as TriangleLeft } from '@/assets/TriangleLeft.svg';
 import { ReactComponent as TriangleRight } from '@/assets/TriangleRight.svg';
 
+import type { IMenuItemProps } from './MenuItemProps';
 import { MenuContext } from '@/components/atoms/Menu';
-import { MenuItem, type IMenuItemProps } from './MenuItem';
+import { MenuItem } from './MenuItem';
 
 export type IMenuNestedItemProps = IMenuItemProps;
 
