@@ -1,3 +1,15 @@
+# v0.0.306 (Thu Jul 11 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(RichTooltip): support overriding props ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.305 (Thu Jul 11 2024)
 
 #### 🐛 Bug Fix
