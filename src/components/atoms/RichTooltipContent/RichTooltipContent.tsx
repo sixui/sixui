@@ -49,8 +49,10 @@ export const RichTooltipContent = forwardRef<
       />
       {renderCursor ? renderCursor(sxf('cursor')) : null}
       <div {...sxf('content')}>
-        <div {...sxf('subhead')}>{subhead}</div>
-        <div {...sxf('supportingText')}>{supportingText}</div>
+        {subhead ? <div {...sxf('subhead')}>{subhead}</div> : null}
+        {supportingText ? (
+          <div {...sxf('supportingText')}>{supportingText}</div>
+        ) : null}
       </div>
       {actions ? (
         <div {...sxf('actions')}>
