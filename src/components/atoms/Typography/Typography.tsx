@@ -36,7 +36,6 @@ export type ITypographyOwnProps = IContainerProps<ITypographyStyleKey> & {
   size?: 'lg' | 'md' | 'sm';
   children?: React.ReactNode;
   gutterBottom?: boolean;
-  component?: React.ElementType;
 };
 
 export type ITypographyProps<

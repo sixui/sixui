@@ -56,6 +56,7 @@ export const TextFieldBase = fixedForwardRef(function TextField<
     clearIcon = <XMarkIcon aria-hidden />,
     inputRef: inputRefProp,
     onClear,
+    defaultValue,
     ...other
   } = props;
 
@@ -93,7 +94,7 @@ export const TextFieldBase = fixedForwardRef(function TextField<
 
   const [value, setValue] = useControlledValue({
     controlled: valueProp,
-    default: other.defaultValue,
+    default: defaultValue ?? '',
     name: 'TextField',
   });
 
