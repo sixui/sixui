@@ -2,13 +2,14 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
+import type { IPaperProps } from './PaperProps';
 import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { Paper, type IPaperProps } from './Paper';
+import { Typography } from '@/components/atoms/Typography';
 import { paperVariants } from './Paper.styledefs';
-import { Typography } from '../Typography';
+import { Paper } from './Paper';
 
 // https://material.io/blog/tone-based-surface-color-m3
 // https://m3.material.io/styles/elevation/overview

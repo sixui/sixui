@@ -2,13 +2,14 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faBolt, faCloud } from '@fortawesome/free-solid-svg-icons';
 
+import type { IPlainTooltipProps } from './PlainTooltipProps';
 import {
   ComponentShowcase,
   type IComponentPresentation,
 } from '@/components/utils/ComponentShowcase';
 import { IconButton } from '@/components/atoms/IconButton';
-import { PlainTooltip, type IPlainTooltipProps } from './PlainTooltip';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
+import { PlainTooltip } from './PlainTooltip';
 
 const meta = {
   component: PlainTooltip,

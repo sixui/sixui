@@ -1,25 +1,17 @@
 import { forwardRef, useMemo } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
-import type { IContainerProps } from '@/helpers/types';
 import type {
   IStateLayerStyleKey,
   IStateLayerStyleVarKey,
 } from './StateLayer.styledefs';
-import type { IVisualState } from '@/components/utils/VisualState';
+import type { IStateLayerProps } from './StateLayerProps';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useRipple } from './useRipple';
 
 // https://github.com/material-components/material-web/blob/main/ripple/internal/ripple.ts
-
-export type IStateLayerProps = IContainerProps<IStateLayerStyleKey> & {
-  visualState?: IVisualState;
-  for?: React.RefObject<HTMLElement>;
-  disabled?: boolean;
-  children?: React.ReactNode;
-};
 
 export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
   function StateLayer(props, forwardedRef) {

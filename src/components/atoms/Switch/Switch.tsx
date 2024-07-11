@@ -3,14 +3,6 @@ import { asArray } from '@olivierpascal/helpers';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type {
-  IContainerProps,
-  IZeroOrMore,
-  ICompiledStyles,
-  IAny,
-  IMaybeAsync,
-} from '@/helpers/types';
-import type {
-  IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
@@ -18,85 +10,31 @@ import type { ISwitchStyleKey, ISwitchStyleVarKey } from './Switch.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import {
-  type IVisualState,
-  useVisualState,
-} from '@/components/utils/VisualState';
+import { useVisualState } from '@/components/utils/VisualState';
 import { useControlledValue } from '@/hooks/useControlledValue';
-import {
-  FocusRing,
-  type IFocusRingStyleKey,
-} from '@/components/utils/FocusRing';
-import {
-  StateLayer,
-  type IStateLayerStyleKey,
-} from '@/components/utils/StateLayer';
-import {
-  IndeterminateCircularProgressIndicator,
-  type ICircularProgressIndicatorStyleKey,
-} from '@/components/atoms/CircularProgressIndicator';
+import { FocusRing } from '@/components/utils/FocusRing';
+import { StateLayer } from '@/components/utils/StateLayer';
+import { IndeterminateCircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
 import { ReactComponent as CheckMarkIcon } from '@/assets/CheckMark.svg';
 import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
 import { executeLazyPromise } from '@/helpers/executeLazyPromise';
+import {
+  SWITCH_DEFAULT_TAG,
+  type ISwitchOwnProps,
+  type ISwitchProps,
+} from './SwitchProps';
 
 // https://github.com/material-components/material-web/blob/main/switch/internal/switch.ts
 
-const DEFAULT_TAG = 'input';
-
-export type ISwitchOwnProps = IContainerProps<ISwitchStyleKey> &
-  Pick<React.AriaAttributes, 'aria-label'> & {
-    innerStyles?: {
-      stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
-      focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-      circularProgressIndicator?: IZeroOrMore<
-        ICompiledStyles<ICircularProgressIndicatorStyleKey>
-      >;
-    };
-    visualState?: IVisualState;
-
-    id?: string;
-    name?: string;
-    disabled?: boolean;
-    readOnly?: boolean;
-    required?: boolean;
-
-    checked?: boolean;
-    defaultChecked?: boolean;
-
-    /**
-     * Shows both the selected and deselected icons.
-     */
-    icons?: boolean;
-
-    /**
-     * Shows only the selected icon, and not the deselected icon. If `true`,
-     * overrides the behavior of the `icons` property.
-     */
-    showOnlySelectedIcon?: boolean;
-
-    loading?: boolean;
-    loadingAnimation?: 'progressIndicator' | 'none';
-    onChange?: (
-      event: React.ChangeEvent<HTMLInputElement>,
-      enabled: boolean,
-    ) => IMaybeAsync<IAny>;
-    icon?: React.ReactNode;
-    selectedIcon?: React.ReactNode;
-    onClick?: React.MouseEventHandler<HTMLInputElement>;
-  };
-
-export type ISwitchProps<TRoot extends React.ElementType = typeof DEFAULT_TAG> =
-  IPolymorphicComponentPropsWithRef<TRoot, ISwitchOwnProps>;
-
-type ISwitch = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
+type ISwitch = <TRoot extends React.ElementType = typeof SWITCH_DEFAULT_TAG>(
   props: ISwitchProps<TRoot>,
 ) => React.ReactNode;
 
 export const Switch: ISwitch = forwardRef(function Switch<
-  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+  TRoot extends React.ElementType = typeof SWITCH_DEFAULT_TAG,
 >(props: ISwitchProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
-    as: Component = DEFAULT_TAG,
+    as: Component = SWITCH_DEFAULT_TAG,
     styles,
     sx,
     innerStyles,
@@ -124,9 +62,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
   const actionRef = useRef<HTMLInputElement>(null);
   const { visualState, setRef: setVisualStateRef } = useVisualState(
     visualStateProp,
-    {
-      disabled,
-    },
+    { disabled },
   );
   const handleRef = useMergeRefs([forwardedRef, setVisualStateRef, actionRef]);
 

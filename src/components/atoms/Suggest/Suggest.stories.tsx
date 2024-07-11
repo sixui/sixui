@@ -2,11 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
+import type { ISuggestProps } from './SuggestProps';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ListItem } from '@/components/atoms/ListItem';
 import { fruits, emptyItem } from '@/components/atoms/FilterableList/fruits';
 import { commonStyles } from '@/helpers/commonStyles';
-import { Suggest, type ISuggestProps } from './Suggest';
+import { Suggest } from './Suggest';
 
 const meta = {
   component: Suggest,

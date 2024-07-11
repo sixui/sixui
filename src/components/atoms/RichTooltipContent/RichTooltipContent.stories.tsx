@@ -1,10 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import {
-  RichTooltipContent,
-  type IRichTooltipContentProps,
-} from './RichTooltipContent';
-import { Button } from '../Button';
+import type { IRichTooltipContentProps } from './RichTooltipContentProps';
+import { Button } from '@/components/atoms/Button';
+import { RichTooltipContent } from './RichTooltipContent';
 
 // https://m3.material.io/components/richtooltips/overview
 

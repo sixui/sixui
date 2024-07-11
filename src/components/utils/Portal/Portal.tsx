@@ -1,13 +1,9 @@
 import { FloatingPortal } from '@floating-ui/react';
 
+import type { IPortalProps } from './PortalProps';
 import { useColorScheme } from '@/components/utils/ColorScheme';
 
-export type IBasicTemplateProps = {
-  root?: HTMLElement | null | React.MutableRefObject<HTMLElement | null>;
-  children?: React.ReactNode;
-};
-
-export const Portal: React.FC<IBasicTemplateProps> = (props) => {
+export const Portal: React.FC<IPortalProps> = (props) => {
   const { root: rootProp, children } = props;
   const { root: rootColorScheme } = useColorScheme();
 

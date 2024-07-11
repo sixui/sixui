@@ -1,45 +1,13 @@
-import type { IContainerProps, IOmit } from '@/helpers/types';
-import type { IFieldBaseVariant } from '@/components/atoms/FieldBase';
-import type { ITextFieldBaseStyleKey } from '@/components/atoms/TextFieldBase';
+import type { ISuggestBaseProps } from './SuggestBaseProps';
 import { ListItem } from '@/components/atoms/ListItem';
-import {
-  TextInputField,
-  type ITextInputFieldProps,
-} from '@/components/atoms/TextInputField';
+import { TextInputField } from '@/components/atoms/TextInputField';
 import { MenuList } from '@/components/atoms/MenuList';
 import {
   useSingleFilterableListBase,
   FilterableListBaseFieldEnd,
-  type IUseSingleFilterableListBaseProps,
 } from '@/components/atoms/FilterableListBase';
-import {
-  FloatingFilterableListBase,
-  type IFloatingFilterableListBaseTriggerRenderProps,
-  type IFloatingFilterableListBaseProps,
-} from '@/components/atoms/FloatingFilterableListBase';
+import { FloatingFilterableListBase } from '@/components/atoms/FloatingFilterableListBase';
 import { fixedForwardRef } from '@/helpers/fixedForwardRef';
-
-export type ISuggestBaseProps<TItem> = IContainerProps<ITextFieldBaseStyleKey> &
-  IOmit<
-    IFloatingFilterableListBaseProps<TItem, HTMLElement>,
-    | 'onItemSelect'
-    | 'renderer'
-    | 'listRenderer'
-    | 'itemRenderer'
-    | 'itemsEqual'
-    | 'children'
-    | 'defaultQuery'
-  > &
-  ITextInputFieldProps &
-  IUseSingleFilterableListBaseProps<TItem, HTMLElement> & {
-    itemLabel: (item: TItem) => string | undefined;
-    getValueFieldProps?: (
-      renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
-      selectedItem?: TItem,
-    ) => ITextInputFieldProps;
-    clearable?: boolean;
-    variant?: IFieldBaseVariant;
-  };
 
 export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
   props: ISuggestBaseProps<TItem>,

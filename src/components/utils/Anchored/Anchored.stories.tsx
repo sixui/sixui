@@ -2,13 +2,14 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useEffect, useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
+import type { IAnchoredProps } from './AnchoredProps';
 import {
+  ComponentShowcase,
   type IComponentPresentation,
   type IComponentShowcaseProps,
-  ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
 import { Placeholder } from '@/components/atoms/Placeholder';
-import { Anchored, type IAnchoredProps } from './Anchored';
+import { Anchored } from './Anchored';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 
 const meta = {

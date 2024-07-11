@@ -1,2 +1,2 @@
-export * from './TextInputField';
 export * from './TextInputFieldProps';
+export * from './TextInputField';

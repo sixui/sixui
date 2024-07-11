@@ -1,2 +1,3 @@
-export * from './Tabs';
 export * from './TabContext';
+export * from './TabsProps';
+export * from './Tabs';

@@ -1,21 +1,14 @@
 import { forwardRef, useContext, useMemo } from 'react';
 
-import type { IContainerProps, IOrientation } from '@/helpers/types';
 import type {
   IStepConnectorStyleKey,
   IStepConnectorStyleVarKey,
 } from './StepConnector.styledefs';
+import type { IStepConnectorProps } from './StepConnectorProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { StepContext } from '@/components/atoms/Step/StepContext';
-
-export type IStepConnectorProps = IContainerProps<IStepConnectorStyleKey> & {
-  children?: React.ReactNode;
-  orientation?: IOrientation;
-  stepLabelPosition?: 'right' | 'bottom';
-  textPosition?: 'top' | 'middle' | 'bottom';
-};
 
 export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
   function StepConnector(props, forwardedRef) {

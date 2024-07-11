@@ -5,12 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { delay } from '@olivierpascal/helpers';
 
+import type { ISwitchOwnProps } from './SwitchProps';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { Switch, type ISwitchProps, type ISwitchOwnProps } from './Switch';
+import { Switch } from './Switch';
 
 // https://m3.material.io/components/switch/overview
 // https://material-web.dev/components/switch/
@@ -24,7 +25,7 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   onChange: (...args) => sbHandleEvent('change', args, 300),
-} satisfies Partial<ISwitchProps>;
+} satisfies Partial<ISwitchOwnProps>;
 
 const states: Array<IComponentPresentation<ISwitchOwnProps>> = [
   { legend: 'Enabled' },
@@ -56,7 +57,7 @@ export const Uncontrolled: IStory = {
   args: defaultArgs,
 };
 
-const ControlledSwitch: React.FC<Omit<ISwitchProps, 'onChange' | 'as'>> = (
+const ControlledSwitch: React.FC<Omit<ISwitchOwnProps, 'onChange'>> = (
   props,
 ) => {
   const [checked, setChecked] = useState(props.defaultChecked ?? false);

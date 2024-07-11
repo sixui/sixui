@@ -10,14 +10,6 @@ import { asArray } from '@olivierpascal/helpers';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type {
-  IContainerProps,
-  IZeroOrMore,
-  ICompiledStyles,
-  IAny,
-  IMaybeAsync,
-} from '@/helpers/types';
-import type {
-  IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
@@ -27,53 +19,19 @@ import type {
   ITabStyleVarKey,
   ITabVariant,
 } from './Tab.styledefs';
-import { Badge, type IBadgeProps } from '../Badge';
+import { Badge } from '@/components/atoms/Badge';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import {
-  type IVisualState,
-  useVisualState,
-} from '@/components/utils/VisualState';
-import { Elevation, IElevationStyleKey } from '@/components/utils/Elevation';
-import { FocusRing, IFocusRingStyleKey } from '@/components/utils/FocusRing';
-import {
-  StateLayer,
-  type IStateLayerStyleKey,
-} from '@/components/utils/StateLayer';
+import { useVisualState } from '@/components/utils/VisualState';
+import { Elevation } from '@/components/utils/Elevation';
+import { FocusRing } from '@/components/utils/FocusRing';
+import { StateLayer } from '@/components/utils/StateLayer';
 import { Anchored } from '@/components/utils/Anchored';
 import { TabContext } from '@/components/atoms/Tabs';
+import { TAB_DEFAULT_TAG, type ITabOwnProps, type ITabProps } from './TabProps';
 
 // https://github.com/material-components/material-web/blob/main/tabs/internal/tab.ts
-
-const DEFAULT_TAG = 'button';
-
-export type ITabOwnProps = IContainerProps<ITabStyleKey> & {
-  innerStyles?: {
-    stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
-    focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-    elevation?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
-  };
-  visualState?: IVisualState;
-  variant?: ITabVariant | false;
-
-  /**
-   * Whether or not the tab is selected.
-   **/
-  active?: boolean;
-
-  icon?: React.ReactNode;
-  activeIcon?: React.ReactNode;
-  onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
-  label?: string;
-  href?: string;
-  anchor?: string;
-  disabled?: boolean;
-  badge?: IBadgeProps;
-};
-
-export type ITabProps<TRoot extends React.ElementType = typeof DEFAULT_TAG> =
-  IPolymorphicComponentPropsWithRef<TRoot, ITabOwnProps>;
 
 type ITabVariantMap = {
   [key in ITabVariant]: keyof Pick<
@@ -87,12 +45,12 @@ const variantMap: ITabVariantMap = {
   secondary: 'SecondaryTab',
 };
 
-type ITab = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
+type ITab = <TRoot extends React.ElementType = typeof TAB_DEFAULT_TAG>(
   props: ITabProps<TRoot>,
 ) => React.ReactNode;
 
 export const Tab: ITab = forwardRef(function Tab<
-  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+  TRoot extends React.ElementType = typeof TAB_DEFAULT_TAG,
 >(props: ITabProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     as,
@@ -204,7 +162,7 @@ export const Tab: ITab = forwardRef(function Tab<
     [active, icon, activeIcon, sxf, disabled],
   );
 
-  const Component = as ?? (href ? settings.linkAs : DEFAULT_TAG);
+  const Component = as ?? (href ? settings.linkAs : TAB_DEFAULT_TAG);
 
   return (
     <Component

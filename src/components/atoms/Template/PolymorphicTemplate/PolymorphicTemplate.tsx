@@ -1,45 +1,37 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/helpers/types';
 import type {
-  IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
 import type {
-  ITemplateStyleKey,
-  ITemplateStyleVarKey,
-} from './Template.styledefs';
+  IPolymorphicTemplateStyleKey,
+  IPolymorphicTemplateStyleVarKey,
+} from './PolymorphicTemplate.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-
-const DEFAULT_TAG = 'div';
-
-export type IPolymorphicTemplateOwnProps =
-  IContainerProps<ITemplateStyleKey> & {
-    children?: React.ReactNode;
-  };
-
-export type IPolymorphicTemplateProps<
-  TRoot extends React.ElementType = typeof DEFAULT_TAG,
-> = IPolymorphicComponentPropsWithRef<TRoot, IPolymorphicTemplateOwnProps>;
+import {
+  POLYMORPHIC_TEMPLATE_DEFAULT_TAG,
+  type IPolymorphicTemplateOwnProps,
+  type IPolymorphicTemplateProps,
+} from './PolymorphicTemplateProps';
 
 type IPolymorphicTemplate = <
-  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+  TRoot extends React.ElementType = typeof POLYMORPHIC_TEMPLATE_DEFAULT_TAG,
 >(
   props: IPolymorphicTemplateProps<TRoot>,
 ) => React.ReactNode;
 
 export const PolymorphicTemplate: IPolymorphicTemplate = forwardRef(
   function PolymorphicTemplate<
-    TRoot extends React.ElementType = typeof DEFAULT_TAG,
+    TRoot extends React.ElementType = typeof POLYMORPHIC_TEMPLATE_DEFAULT_TAG,
   >(
     props: IPolymorphicTemplateProps<TRoot>,
     forwardedRef?: IPolymorphicRef<TRoot>,
   ) {
     const {
-      as: Component = DEFAULT_TAG,
+      as: Component = POLYMORPHIC_TEMPLATE_DEFAULT_TAG,
       styles,
       sx,
       children,
@@ -53,9 +45,10 @@ export const PolymorphicTemplate: IPolymorphicTemplate = forwardRef(
     );
     const sxf = useMemo(
       () =>
-        stylePropsFactory<ITemplateStyleKey, ITemplateStyleVarKey>(
-          styleCombinator,
-        ),
+        stylePropsFactory<
+          IPolymorphicTemplateStyleKey,
+          IPolymorphicTemplateStyleVarKey
+        >(styleCombinator),
       [styleCombinator],
     );
 

@@ -1,4 +1,5 @@
 import type { IOmit } from '@/helpers/types';
+import type { ISuggestBaseProps } from './SuggestBaseProps';
 import {
   areMoviesEqual,
   createMovie,
@@ -10,7 +11,7 @@ import {
   TOP_100_MOVIES,
   type IMovie,
 } from '@/components/atoms/FilterableListBase/movies';
-import { SuggestBase, type ISuggestBaseProps } from './SuggestBase';
+import { SuggestBase } from './SuggestBase';
 
 export type ISuggestBaseExampleProps = IOmit<
   ISuggestBaseProps<IMovie>,

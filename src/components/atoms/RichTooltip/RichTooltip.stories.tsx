@@ -2,15 +2,16 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faBolt, faCloud } from '@fortawesome/free-solid-svg-icons';
 
+import type { IRichTooltipProps } from './RichTooltipProps';
 import {
   ComponentShowcase,
   type IComponentPresentation,
 } from '@/components/utils/ComponentShowcase';
 import { IconButton } from '@/components/atoms/IconButton';
 import { Button } from '@/components/atoms/Button';
-import { RichTooltip, type IRichTooltipProps } from './RichTooltip';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { PersistentRichTooltipExample } from './PersistentRichTooltipExample';
+import { RichTooltip } from './RichTooltip';
 
 const meta = {
   component: RichTooltip,

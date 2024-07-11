@@ -1,10 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
-import {
-  ElementWithLabel,
-  type IElementWithLabelProps,
-} from './ElementWithLabel';
+import { IElementWithLabelProps } from './ElementWithLabelProps';
 import {
   ComponentShowcase,
   type IComponentPresentation,
@@ -13,6 +10,7 @@ import { Checkbox } from '@/components/atoms/Checkbox';
 import { Switch } from '@/components/atoms/Switch';
 import { Radio } from '@/components/atoms/Radio';
 import { TextInputField } from '@/components/atoms/TextInputField';
+import { ElementWithLabel } from './ElementWithLabel';
 
 const meta = {
   component: ElementWithLabel,

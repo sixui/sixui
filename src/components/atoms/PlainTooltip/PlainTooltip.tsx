@@ -1,27 +1,14 @@
 import { forwardRef } from 'react';
 
-import type { IOmit } from '@/helpers/types';
 import {
   TooltipBase,
   type ITooltipBaseProps,
 } from '@/components/atoms/TooltipBase';
-import {
-  PlainTooltipContent,
-  type IPlainTooltipContentProps,
-} from '@/components/atoms/PlainTooltipContent';
-
-type IPlainTooltipInheritedProps = IOmit<
-  ITooltipBaseProps,
-  'contentRenderer' | 'persistent'
->;
-
-type IPlainTooltipForwardedProps = IOmit<
-  IPlainTooltipContentProps,
-  'renderCursor'
->;
-
-export type IPlainTooltipProps = IPlainTooltipInheritedProps &
-  IPlainTooltipForwardedProps;
+import type {
+  IPlainTooltipForwardedProps,
+  IPlainTooltipProps,
+} from './PlainTooltipProps';
+import { PlainTooltipContent } from '@/components/atoms/PlainTooltipContent';
 
 export const PlainTooltip = forwardRef<HTMLDivElement, IPlainTooltipProps>(
   function PlainTooltip(props, forwardedRef) {

@@ -1,29 +1,23 @@
 import { forwardRef, useMemo, useRef } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
-import type { IContainerProps } from '@/helpers/types';
 import type { IThemeComponents } from '@/components/utils/Theme';
 import type {
-  ITemplateStyleKey,
-  ITemplateStyleVarKey,
-  ITemplateVariant,
-} from './Template.styledefs';
-import {
-  type IVisualState,
-  useVisualState,
-} from '@/components/utils/VisualState';
+  IVariableTemplateStyleKey,
+  IVariableTemplateStyleVarKey,
+  IVariableTemplateVariant,
+} from './VariableTemplate.styledefs';
+import type { IVariableTemplateProps } from './VariableTemplateProps';
+import { useVisualState } from '@/components/utils/VisualState';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
-export type IVariableTemplateProps = IContainerProps<ITemplateStyleKey> & {
-  visualState?: IVisualState;
-  variant?: ITemplateVariant | false;
-  children?: React.ReactNode;
-};
-
 type ITemplateVariantMap = {
-  [key in ITemplateVariant]: keyof Pick<IThemeComponents, 'VariantTemplate'>;
+  [key in IVariableTemplateVariant]: keyof Pick<
+    IThemeComponents,
+    'VariantTemplate'
+  >;
 };
 
 const variantMap: ITemplateVariantMap = {
@@ -58,10 +52,10 @@ export const VariableTemplate = forwardRef<
   );
   const sxf = useMemo(
     () =>
-      stylePropsFactory<ITemplateStyleKey, ITemplateStyleVarKey>(
-        stylesCombinator,
-        visualState,
-      ),
+      stylePropsFactory<
+        IVariableTemplateStyleKey,
+        IVariableTemplateStyleVarKey
+      >(stylesCombinator, visualState),
     [stylesCombinator, visualState],
   );
 

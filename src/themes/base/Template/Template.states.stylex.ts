@@ -1,9 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
 import type { IStyleVars } from '@/helpers/types';
-import type { ITemplateStyleStateVarKey } from '@/components/atoms/Template';
+import { IBasicTemplateStyleStateVarKey } from '@/components/atoms/Template/BasicTemplate';
 
-const vars: IStyleVars<ITemplateStyleStateVarKey> = {
+const vars: IStyleVars<IBasicTemplateStyleStateVarKey> = {
   varA: 'unset',
 };
 

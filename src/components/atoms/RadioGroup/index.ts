@@ -1,2 +1,3 @@
-export * from './RadioGroup';
 export * from './RadioGroupContext';
+export * from './RadioGroupProps';
+export * from './RadioGroup';

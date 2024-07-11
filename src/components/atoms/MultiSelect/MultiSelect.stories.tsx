@@ -2,11 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
+import type { IMultiSelectProps } from './MultiSelectProps';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ListItem } from '@/components/atoms/ListItem';
 import { fruits } from '@/components/atoms/FilterableList/fruits';
 import { commonStyles } from '@/helpers/commonStyles';
-import { MultiSelect, type IMultiSelectProps } from './MultiSelect';
+import { MultiSelect } from './MultiSelect';
 
 const meta = {
   component: MultiSelect,

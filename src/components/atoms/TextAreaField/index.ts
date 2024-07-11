@@ -1,2 +1,2 @@
-export * from './TextAreaField';
 export * from './TextAreaFieldProps';
+export * from './TextAreaField';

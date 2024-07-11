@@ -2,12 +2,13 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 
+import type { IStepProps } from './StepProps';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { Step, type IStepProps } from './Step';
+import { Step } from './Step';
 
 const meta = {
   component: Step,

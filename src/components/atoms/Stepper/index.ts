@@ -1,3 +1,4 @@
 export * from './Stepper.styledefs';
-export * from './Stepper';
 export * from './StepperContext';
+export * from './StepperProps';
+export * from './Stepper';

@@ -3,12 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope as faEnvelopeSolid } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
+import type { ITabOwnProps } from './TabProps';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { Tab, type ITabProps, type ITabOwnProps } from './Tab';
+import { Tab } from './Tab';
 
 // https://m3.material.io/components/tabs/overview
 // https://material-web.dev/components/tabs/
@@ -22,7 +23,7 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   onClick: (...args) => sbHandleEvent('click', args),
-} satisfies Partial<ITabProps>;
+} satisfies Partial<ITabOwnProps>;
 
 const states: Array<IComponentPresentation<ITabOwnProps>> = [
   { legend: 'Enabled', props: { label: 'Enabled' } },

@@ -1,8 +1,6 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/helpers/types';
 import type {
-  IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
@@ -10,8 +8,11 @@ import type { ITypographyStyleKey } from './Typography.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-
-const DEFAULT_TAG = 'span';
+import {
+  TYPOGRAPHY_DEFAULT_TAG,
+  type ITypographyOwnProps,
+  type ITypographyProps,
+} from './TypographyProps';
 
 export const typographyTagMap = {
   display$lg: 'span',
@@ -31,23 +32,14 @@ export const typographyTagMap = {
   label$sm: 'span',
 };
 
-export type ITypographyOwnProps = IContainerProps<ITypographyStyleKey> & {
-  variant?: 'display' | 'headline' | 'title' | 'body' | 'label';
-  size?: 'lg' | 'md' | 'sm';
-  children?: React.ReactNode;
-  gutterBottom?: boolean;
-};
-
-export type ITypographyProps<
-  TRoot extends React.ElementType = typeof DEFAULT_TAG,
-> = IPolymorphicComponentPropsWithRef<TRoot, ITypographyOwnProps>;
-
-type ITypography = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
+type ITypography = <
+  TRoot extends React.ElementType = typeof TYPOGRAPHY_DEFAULT_TAG,
+>(
   props: ITypographyProps<TRoot>,
 ) => React.ReactNode;
 
 export const Typography: ITypography = forwardRef(function Typography<
-  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+  TRoot extends React.ElementType = typeof TYPOGRAPHY_DEFAULT_TAG,
 >(props: ITypographyProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     as,

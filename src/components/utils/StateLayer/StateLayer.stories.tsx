@@ -6,9 +6,10 @@ import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { StateLayer, type IStateLayerProps } from './StateLayer';
+import type { IStateLayerProps } from './StateLayerProps';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { StateLayer } from './StateLayer';
 
 // https://material-web.dev/components/ripple/
 // https://github.com/material-components/material-web/blob/main/ripple/demo/stories.ts

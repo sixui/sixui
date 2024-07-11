@@ -3,13 +3,14 @@ import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faBolt, faCloud } from '@fortawesome/free-solid-svg-icons';
 
+import type { ITooltipBaseProps } from './TooltipBaseProps';
 import {
   ComponentShowcase,
   type IComponentPresentation,
 } from '@/components/utils/ComponentShowcase';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
-import { TooltipBase, type ITooltipBaseProps } from './TooltipBase';
+import { TooltipBase } from './TooltipBase';
 import { IconButton } from '../IconButton';
 
 const meta = {

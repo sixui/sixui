@@ -1,2 +1,3 @@
-export * from './PlainTooltipContent';
 export * from './PlainTooltipContent.styledefs';
+export * from './PlainTooltipContentProps';
+export * from './PlainTooltipContent';

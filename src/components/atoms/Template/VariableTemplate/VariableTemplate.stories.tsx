@@ -1,13 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { IVariableTemplateProps } from './VariableTemplateProps';
 import {
-  type IComponentPresentation,
   ComponentShowcase,
+  type IComponentPresentation,
 } from '@/components/utils/ComponentShowcase';
-import {
-  VariableTemplate,
-  type IVariableTemplateProps,
-} from './VariableTemplate';
+import { VariableTemplate } from './VariableTemplate';
 
 const meta = {
   component: VariableTemplate,

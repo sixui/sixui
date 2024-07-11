@@ -3,14 +3,6 @@ import { asArray } from '@olivierpascal/helpers';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type {
-  IContainerProps,
-  IZeroOrMore,
-  ICompiledStyles,
-  IAny,
-  IMaybeAsync,
-} from '@/helpers/types';
-import type {
-  IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
@@ -19,64 +11,28 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useId } from '@/hooks/useId';
-import {
-  type IVisualState,
-  useVisualState,
-} from '@/components/utils/VisualState';
-import {
-  StateLayer,
-  type IStateLayerStyleKey,
-} from '@/components/utils/StateLayer';
-import {
-  FocusRing,
-  type IFocusRingStyleKey,
-} from '@/components/utils/FocusRing';
-import {
-  IndeterminateCircularProgressIndicator,
-  type ICircularProgressIndicatorStyleKey,
-} from '@/components/atoms/CircularProgressIndicator';
+import { useVisualState } from '@/components/utils/VisualState';
+import { StateLayer } from '@/components/utils/StateLayer';
+import { FocusRing } from '@/components/utils/FocusRing';
+import { IndeterminateCircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
 import { RadioGroupContext } from '@/components/atoms/RadioGroup';
+import {
+  RADIO_DEFAULT_TAG,
+  type IRadioProps,
+  type IRadioOwnProps,
+} from './RadioProps';
 
 // https://github.com/material-components/material-web/blob/main/radio/internal/radio.ts
 
-const DEFAULT_TAG = 'input';
-
-export type IRadioOwnProps = IContainerProps<IRadioStyleKey> &
-  Pick<React.AriaAttributes, 'aria-label'> & {
-    innerStyles?: {
-      stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
-      focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-      circularProgressIndicator?: IZeroOrMore<
-        ICompiledStyles<ICircularProgressIndicatorStyleKey>
-      >;
-    };
-    visualState?: IVisualState;
-    id?: string;
-    name?: string;
-    required?: boolean;
-    disabled?: boolean;
-    readOnly?: boolean;
-    checked?: boolean;
-    value?: string;
-    onChange?: (
-      event: React.ChangeEvent<HTMLInputElement>,
-      value: string | undefined,
-    ) => IMaybeAsync<IAny>;
-    loading?: boolean;
-  };
-
-export type IRadioProps<TRoot extends React.ElementType = typeof DEFAULT_TAG> =
-  IPolymorphicComponentPropsWithRef<TRoot, IRadioOwnProps>;
-
-type IRadio = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
+type IRadio = <TRoot extends React.ElementType = typeof RADIO_DEFAULT_TAG>(
   props: IRadioProps<TRoot>,
 ) => React.ReactNode;
 
 export const Radio: IRadio = forwardRef(function Radio<
-  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+  TRoot extends React.ElementType = typeof RADIO_DEFAULT_TAG,
 >(props: IRadioProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
-    as: Component = DEFAULT_TAG,
+    as: Component = RADIO_DEFAULT_TAG,
     styles,
     sx,
     innerStyles,

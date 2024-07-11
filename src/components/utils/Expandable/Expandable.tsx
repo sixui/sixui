@@ -3,12 +3,8 @@ import { isFunction } from 'lodash';
 import stylex from '@stylexjs/stylex';
 import { CSSTransition } from 'react-transition-group';
 
-import type {
-  IContainerProps,
-  ICssSizeValue,
-  IOmit,
-  ISize,
-} from '@/helpers/types';
+import type { ICssSizeValue, ISize } from '@/helpers/types';
+import type { IExpandableProps } from './ExpandableProps';
 import {
   ExpandableContext,
   type IExpandableContextValue,
@@ -17,22 +13,6 @@ import { useControlledValue } from '@/hooks/useControlledValue';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
 import { useMergeRefs } from '@floating-ui/react';
 import { useElementSize } from '@/hooks/useElementSize';
-
-export type IExpandableTriggerRenderProps = {
-  expand: (expanded: boolean) => void;
-  disabled?: boolean;
-  expanded?: boolean;
-};
-
-export type IExpandableProps = IContainerProps &
-  IOmit<IExpandableContextValue, 'expand'> & {
-    trigger:
-      | React.ReactNode
-      | ((renderProps: IExpandableTriggerRenderProps) => React.ReactNode);
-    children?: React.ReactNode;
-    onChange?: (expanded: boolean) => void;
-    collapsedSize?: ICssSizeValue;
-  };
 
 const styles = stylex.create({
   host: {

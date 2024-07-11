@@ -5,12 +5,13 @@ import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
 import type { IFocusRingStyleKey } from './FocusRing.styledefs';
-import { type IFocusRingProps, FocusRing } from './FocusRing';
+import type { IFocusRingProps } from './FocusRingProps';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { Placeholder } from '@/components/atoms/Placeholder';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { shapeVars } from '@/themes/base/vars/shape.stylex';
 import { componentVars } from '@/themes/base/FocusRing/FocusRing.stylex';
+import { FocusRing } from './FocusRing';
 
 // https://github.com/material-components/material-web/blob/main/focus/demo/stories.ts
 

@@ -2,10 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 import { useState } from 'react';
 
+import type { IRadioGroupOwnProps } from './RadioGroupProps';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
-import { RadioGroup, type IRadioGroupOwnProps } from './RadioGroup';
-import { Radio } from '../Radio';
+import { Radio } from '@/components/atoms/Radio';
+import { RadioGroup } from './RadioGroup';
 
 const meta = {
   component: RadioGroup,

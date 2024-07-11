@@ -1,17 +1,13 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/helpers/types';
 import type {
-  ITemplateStyleKey,
-  ITemplateStyleVarKey,
-} from './Template.styledefs';
+  IBasicTemplateStyleKey,
+  IBasicTemplateStyleVarKey,
+} from './BasicTemplate.styledefs';
+import type { IBasicTemplateProps } from './BasicTemplateProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-
-export type IBasicTemplateProps = IContainerProps<ITemplateStyleKey> & {
-  children?: React.ReactNode;
-};
 
 export const BasicTemplate = forwardRef<HTMLDivElement, IBasicTemplateProps>(
   function BasicTemplate(props, forwardedRef) {
@@ -24,7 +20,7 @@ export const BasicTemplate = forwardRef<HTMLDivElement, IBasicTemplateProps>(
     );
     const sxf = useMemo(
       () =>
-        stylePropsFactory<ITemplateStyleKey, ITemplateStyleVarKey>(
+        stylePropsFactory<IBasicTemplateStyleKey, IBasicTemplateStyleVarKey>(
           stylesCombinator,
         ),
       [stylesCombinator],

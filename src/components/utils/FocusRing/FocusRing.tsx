@@ -8,21 +8,14 @@ import {
 } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
-import type { IContainerProps } from '@/helpers/types';
 import type {
   IFocusRingStyleKey,
   IFocusRingStyleVarKey,
 } from './FocusRing.styledefs';
-import type { IVisualState } from '@/components/utils/VisualState';
+import type { IFocusRingProps } from './FocusRingProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-
-export type IFocusRingProps = IContainerProps<IFocusRingStyleKey> & {
-  visualState?: IVisualState;
-  for?: React.RefObject<HTMLElement>;
-  inward?: boolean;
-};
 
 const HANDLED_BY_FOCUS_RING = Symbol('handledByFocusRing');
 

@@ -1,21 +1,13 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/helpers/types';
 import type {
   IPlainTooltipContentStyleKey,
   IPlainTooltipContentStyleVarKey,
 } from './PlainTooltipContent.styledefs';
+import type { IPlainTooltipContentProps } from './PlainTooltipContentProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-
-export type IPlainTooltipContentProps =
-  IContainerProps<IPlainTooltipContentStyleKey> & {
-    supportingText: React.ReactNode;
-    renderCursor?: (
-      userProps?: React.HTMLAttributes<SVGSVGElement>,
-    ) => React.ReactNode;
-  };
 
 export const PlainTooltipContent = forwardRef<
   HTMLDivElement,

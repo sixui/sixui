@@ -2,11 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
+import type { ISelectProps } from './SelectProps';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ListItem } from '@/components/atoms/ListItem';
 import { fruits, emptyItem } from '@/components/atoms/FilterableList/fruits';
 import { commonStyles } from '@/helpers/commonStyles';
-import { Select, type ISelectProps } from './Select';
+import { Select } from './Select';
 
 const meta = {
   component: Select,

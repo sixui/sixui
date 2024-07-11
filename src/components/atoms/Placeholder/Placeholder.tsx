@@ -1,22 +1,13 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/helpers/types';
 import type {
   IPlaceholderStyleKey,
   IPlaceholderStyleVarKey,
 } from './Placeholder.styledefs';
+import type { IPlaceholderProps } from './PlaceholderProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-
-export type IPlaceholderProps = IContainerProps<IPlaceholderStyleKey> & {
-  label?: string;
-  children?: React.ReactNode;
-  role?: string;
-  tabIndex?: number;
-  crosshairs?: boolean;
-  shape?: 'rounded' | 'rectangular' | 'circular';
-};
 
 export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
   function Placeholder(props, forwardedRef) {

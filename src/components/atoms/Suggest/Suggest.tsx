@@ -1,5 +1,6 @@
-import type { IOmit } from '@/helpers/types';
 import { forwardRef } from 'react';
+
+import type { ISuggestProps } from './SuggestProps';
 import {
   areFilterableListItemsEqual,
   filterFilterableList,
@@ -10,32 +11,9 @@ import {
   renderFilterableListItem,
   type IFilterableListItem,
 } from '@/components/atoms/FilterableList';
-import {
-  SuggestBase,
-  type ISuggestBaseProps,
-} from '@/components/atoms/SuggestBase';
+import { SuggestBase } from '@/components/atoms/SuggestBase';
 import { ListItem } from '@/components/atoms/ListItem';
 import { useSelect } from '@/components/atoms/Select/useSelect';
-
-export type ISuggestOwnProps = {
-  value?: string;
-  defaultValue?: string;
-  onChange?: (value?: string) => void;
-  noResultsLabel?: string;
-};
-
-export type ISuggestProps = Omit<
-  IOmit<
-    ISuggestBaseProps<IFilterableListItem>,
-    | 'itemRenderer'
-    | 'itemLabel'
-    | 'defaultItem'
-    | 'selectedItem'
-    | 'onItemChange'
-  >,
-  keyof ISuggestOwnProps
-> &
-  ISuggestOwnProps;
 
 export const Suggest = forwardRef<HTMLInputElement, ISuggestProps>(
   function Suggest(props, fowardedRef) {

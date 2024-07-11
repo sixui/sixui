@@ -8,59 +8,17 @@ import {
 import { asArray } from '@olivierpascal/helpers';
 import { isFunction } from 'lodash';
 
-import type { ICompiledStyles, IContainerProps } from '@/helpers/types';
 import type { IStepStyleKey, IStepStyleVarKey } from './Step.styledefs';
+import type { IStepProps } from './StepProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { ReactComponent as CheckMarkIcon } from '@/assets/CheckMark.svg';
 import { ReactComponent as ExclamationTriangleIcon } from '@/assets/ExclamationTriangle.svg';
-import {
-  StepperContext,
-  type IStepperContextValue,
-} from '@/components/atoms/Stepper/StepperContext';
-import { ButtonBase, type IButtonBaseOwnProps } from '../ButtonBase';
+import { StepperContext } from '@/components/atoms/Stepper/StepperContext';
+import { ButtonBase } from '../ButtonBase';
 import { StepContext, type IStepContextValue } from './StepContext';
-import {
-  type ICircularProgressIndicatorStyleKey,
-  IndeterminateCircularProgressIndicator,
-} from '@/components/atoms/CircularProgressIndicator';
-
-export type IStepRenderProps = {
-  active: boolean;
-  completed: boolean;
-  hasError: boolean;
-};
-
-export type IStepProps = IContainerProps<IStepStyleKey> & {
-  innerStyles?: IButtonBaseOwnProps['innerStyles'] & {
-    circularProgressIndicator?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
-  };
-  active?: boolean;
-  completed?: boolean;
-  disabled?: boolean;
-  index?: number;
-  last?: boolean;
-  icon?: React.ReactNode;
-  label?: React.ReactNode;
-  supportingText?: React.ReactNode;
-  hasError?: boolean;
-  loading?: boolean;
-  onClick?: () => void;
-  orientation?: IStepperContextValue['orientation'];
-  nextConnector?: IStepperContextValue['connector'];
-  alwaysExpanded?: boolean;
-
-  /**
-   * Only supported in vertical orientation.
-   */
-  labelPosition?: IStepperContextValue['labelPosition'];
-
-  /**
-   * Only supported in vertical orientation.
-   */
-  children?: React.ReactNode | ((props: IStepRenderProps) => React.ReactNode);
-};
+import { IndeterminateCircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
 
 export const Step = forwardRef<HTMLDivElement, IStepProps>(
   function Step(props, forwardedRef) {
