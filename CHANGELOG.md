@@ -1,3 +1,15 @@
+# v0.0.305 (Thu Jul 11 2024)
+
+#### 🐛 Bug Fix
+
+- Feat/refactor props [#33](https://github.com/sixui/sixui/pull/33) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.304 (Tue Jul 09 2024)
 
 #### ⚠️ Pushed to `main`
