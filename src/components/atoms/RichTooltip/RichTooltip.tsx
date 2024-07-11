@@ -26,10 +26,10 @@ export const RichTooltip = forwardRef<HTMLDivElement, IRichTooltipProps>(
 
     return (
       <TooltipBase<IRichTooltipForwardedProps>
+        cursor='dot'
         {...other}
         placement={placement}
         contentRenderer={renderContent}
-        cursor='dot'
         forwardProps
       />
     );
