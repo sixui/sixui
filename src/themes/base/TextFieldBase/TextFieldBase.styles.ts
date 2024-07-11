@@ -55,6 +55,16 @@ export const styles: MapNamespaces<ITextFieldBaseStyles> =
         backgroundColor: fieldBaseVars.contentBackground$selection,
         color: fieldBaseVars.contentColor$selection,
       },
+      borderStyle: {
+        default: 'unset',
+        '::-moz-color-swatch': 'unset',
+        '::-webkit-color-swatch': 'unset',
+        '::-webkit-color-swatch-wrapper': 'unset',
+      },
+      padding: {
+        default: 0,
+        '::-webkit-color-swatch-wrapper': 0,
+      },
       color: {
         default: 'inherit',
         '::-webkit-datetime-edit-day-field:focus':
@@ -133,6 +143,7 @@ export const styles: MapNamespaces<ITextFieldBaseStyles> =
       flexShrink: 1,
       flexBasis: '0%',
       display: 'flex',
+      height: '100%',
     },
     prefix: {
       color: fieldBaseVars.contentPrefixColor,

@@ -14,11 +14,12 @@ import {
   faCalendar,
 } from '@fortawesome/free-regular-svg-icons';
 
-import { type ITabsProps, Tabs } from './Tabs';
-import { Tab } from '../Tab';
-import { TabList } from '../TabList';
-import { type ITabPanelProps, TabPanel } from '../TabPanel';
-import { Typography } from '../Typography';
+import type { ITabsProps } from './TabsProps';
+import { Tab } from '@/components/atoms/Tab';
+import { TabList } from '@/components/atoms/TabList';
+import { TabPanel, type ITabPanelProps } from '@/components/atoms/TabPanel';
+import { Typography } from '@/components/atoms/Typography';
+import { Tabs } from './Tabs';
 
 const meta = {
   component: Tabs,

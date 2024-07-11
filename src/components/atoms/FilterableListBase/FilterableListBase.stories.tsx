@@ -1,11 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { IFilterableListBaseExampleProps } from './FilterableListBaseExampleProps';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ListItem } from '@/components/atoms/ListItem';
-import {
-  FilterableListBaseExample,
-  type IFilterableListBaseExampleProps,
-} from './FilterableListBaseExample';
+import { FilterableListBaseExample } from './FilterableListBaseExample';
 import { TOP_100_MOVIES } from './movies';
 
 const meta = {

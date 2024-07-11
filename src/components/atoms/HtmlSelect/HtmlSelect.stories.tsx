@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { IHtmlSelectProps } from './HtmlSelect';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
-import { HtmlSelect, type IHtmlSelectProps } from './HtmlSelect';
+import { HtmlSelect } from './HtmlSelect';
 
 const meta = {
   component: HtmlSelect,

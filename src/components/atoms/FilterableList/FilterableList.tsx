@@ -1,6 +1,9 @@
 import highlightWords from 'highlight-words';
 
-import type { IOmit } from '@/helpers/types';
+import type {
+  IFilterableListItem,
+  IFilterableListProps,
+} from './FilterableListProps';
 import { MenuList } from '@/components/atoms/MenuList';
 import { TextInputField } from '@/components/atoms/TextInputField';
 import { ListItem, type IListItemOwnProps } from '@/components/atoms/ListItem';
@@ -8,33 +11,10 @@ import {
   FilterableListBase,
   type IFilterableListItemRenderer,
   type IFilterableListItemRendererProps,
-  type IFilterableListBaseProps,
   type IFilterableListPredicate,
   type IFilterableListItemPredicate,
 } from '@/components/atoms/FilterableListBase';
 import { createFilter } from '@/helpers/createFilter';
-
-export type IFilterableListItem = {
-  leading?: React.ReactNode;
-  icon?: React.ReactNode;
-  imageUrl?: string;
-  video?: Array<{ type: string; src: string }>;
-  label?: string;
-  placeholder?: string;
-  supportingText?: string;
-  trailingSupportingText?: string;
-  value: string;
-  disabled?: boolean;
-  onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
-  href?: string;
-};
-
-export type IFilterableListProps = IOmit<
-  IFilterableListBaseProps<IFilterableListItem, HTMLElement>,
-  'renderer' | 'itemRenderer'
-> & {
-  canFilter?: boolean;
-};
 
 const highlightQueryInText = (
   text?: string,
@@ -154,13 +134,7 @@ export const renderFilterableListItem: IFilterableListItemRenderer<
       visualState={{ hovered: props.modifiers.active, strategy: 'replace' }}
       selected={props.modifiers.selected}
       disabled={props.modifiers.disabled}
-      {...props.getButtonAttributes({
-        onClick: (event) => {
-          listItemProps.onClick?.(event);
-          item.onClick?.(event);
-          props.handleClick(event);
-        },
-      })}
+      {...props.getButtonAttributes()}
       ref={props.buttonRef}
     />
   );

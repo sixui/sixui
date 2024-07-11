@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
+import type { IMenuListProps } from './MenuListProps';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ListItem } from '@/components/atoms/ListItem';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { MenuDivider } from '@/components/atoms/MenuDivider';
-import { MenuList, type IMenuListProps } from './MenuList';
+import { MenuList } from './MenuList';
 
 const meta = {
   component: MenuList,

@@ -2,12 +2,6 @@ import { forwardRef, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type {
-  ICompiledStyles,
-  IContainerProps,
-  IZeroOrMore,
-} from '@/helpers/types';
-import type {
-  IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
@@ -16,34 +10,23 @@ import type {
   IFluidButtonStyleVarKey,
 } from './FluidButton.styledefs';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import {
-  ButtonBase,
-  IButtonBaseStyleKey,
-  type IButtonBaseOwnProps,
-} from '@/components/atoms/ButtonBase';
+import { ButtonBase } from '@/components/atoms/ButtonBase';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
+import {
+  FLUID_BUTTON_DEFAULT_TAG,
+  type IFluidButtonOwnProps,
+  type IFluidButtonProps,
+} from './FluidButtonProps';
 
-const DEFAULT_TAG = 'button';
-
-export type IFluidButtonOwnProps = IContainerProps<IFluidButtonStyleKey> &
-  IButtonBaseOwnProps & {
-    innerStyles?: IButtonBaseOwnProps['innerStyles'] & {
-      buttonBase?: IZeroOrMore<ICompiledStyles<IButtonBaseStyleKey>>;
-    };
-    children?: React.ReactNode;
-  };
-
-export type IFluidButtonProps<
-  TRoot extends React.ElementType = typeof DEFAULT_TAG,
-> = IPolymorphicComponentPropsWithRef<TRoot, IFluidButtonOwnProps>;
-
-type IFluidButton = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
+type IFluidButton = <
+  TRoot extends React.ElementType = typeof FLUID_BUTTON_DEFAULT_TAG,
+>(
   props: IFluidButtonProps<TRoot>,
 ) => React.ReactNode;
 
 export const FluidButton: IFluidButton = forwardRef(function FluidButton<
-  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+  TRoot extends React.ElementType = typeof FLUID_BUTTON_DEFAULT_TAG,
 >(props: IFluidButtonProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const { styles, sx, as, innerStyles, children, ...other } =
     props as IWithAsProp<IFluidButtonOwnProps>;

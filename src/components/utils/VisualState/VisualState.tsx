@@ -1,19 +1,11 @@
 import stylex from '@stylexjs/stylex';
 
-import {
-  type IVisualState,
-  useVisualState,
-} from '@/components/utils/VisualState';
+import type { IVisualStateProps } from './VisualStateProps';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { ButtonBase } from '@/components/atoms/ButtonBase';
 import { shapeVars } from '@/themes/base/vars/shape.stylex';
 import { componentVars as focusRingVars } from '@/themes/base/FocusRing/FocusRing.stylex';
-
-export type IVisualStateProps = {
-  visualState?: IVisualState;
-  disabled?: boolean;
-  children?: React.ReactNode;
-};
+import { useVisualState } from './useVisualState';
 
 const styles = stylex.create({
   host: {

@@ -48,14 +48,14 @@ const rows: Array<IComponentPresentation<ITextInputFieldProps>> = [
   { legend: 'Empty' },
   { legend: 'Label', props: { label: 'Label' } },
   { legend: 'Placeholder', props: { placeholder: 'Placeholder' } },
-  {
-    legend: 'Value',
-    props: {
-      defaultValue: 'Value',
-      prefixText: '$',
-      suffixText: '.00',
-    },
-  },
+  // {
+  //   legend: 'Value',
+  //   props: {
+  //     defaultValue: 'Value',
+  //     prefixText: '$',
+  //     suffixText: '.00',
+  //   },
+  // },
   { legend: 'Clearable', props: { clearable: true } },
   {
     legend: 'Password',
@@ -64,6 +64,10 @@ const rows: Array<IComponentPresentation<ITextInputFieldProps>> = [
   {
     legend: 'Date',
     props: { type: 'datetime-local' },
+  },
+  {
+    legend: 'Color',
+    props: { type: 'color', defaultValue: '#0000ff' },
   },
   { legend: 'Error', props: { defaultValue: 'Value', hasError: true } },
 ];

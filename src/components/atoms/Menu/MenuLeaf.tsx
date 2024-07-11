@@ -26,7 +26,7 @@ import {
   useTypeahead,
 } from '@floating-ui/react';
 
-import type { IMenuProps } from './Menu';
+import type { IMenuProps } from './MenuProps';
 import { MenuList } from '@/components/atoms/MenuList';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
 import { Portal } from '@/components/utils/Portal';

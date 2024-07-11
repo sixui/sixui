@@ -2,12 +2,13 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-regular-svg-icons';
 
+import type { IFluidButtonOwnProps } from './FluidButtonProps';
 import {
   ComponentShowcase,
   type IComponentPresentation,
 } from '@/components/utils/ComponentShowcase';
 import { Typography } from '@/components/atoms/Typography';
-import { FluidButton, type IFluidButtonOwnProps } from './FluidButton';
+import { FluidButton } from './FluidButton';
 
 const meta = {
   component: FluidButton,

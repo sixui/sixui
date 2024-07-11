@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
+import type { ISkeletonProps } from './SkeletonProps';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { Avatar } from '@/components/atoms/Avatar';
-import { Skeleton, type ISkeletonProps } from './Skeleton';
 import { Typography } from '@/components/atoms/Typography';
+import { Skeleton } from './Skeleton';
 
 const meta = {
   component: Skeleton,

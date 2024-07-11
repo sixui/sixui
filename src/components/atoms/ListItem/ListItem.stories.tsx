@@ -9,6 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
+import type { IListItemProps, IListItemOwnProps } from './ListItemProps';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
@@ -18,11 +19,7 @@ import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { Avatar } from '@/components/atoms/Avatar';
 import { listItemVariants } from './ListItem.styledefs';
 import { Checkbox } from '@/components/atoms/Checkbox';
-import {
-  ListItem,
-  type IListItemProps,
-  type IListItemOwnProps,
-} from './ListItem';
+import { ListItem } from './ListItem';
 
 // https://m3.material.io/components/items/overview
 // https://material-web.dev/components/item/

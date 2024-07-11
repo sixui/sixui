@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
-import type { IDialogProps, IDialogOwnProps } from './DialogProps';
+import type { IDialogOwnProps, IDialogProps } from './DialogProps';
 import { Dialog } from './Dialog';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { commonStyles } from '@/helpers/commonStyles';
@@ -53,7 +53,7 @@ export const Uncontrolled: IStory = {
   },
 };
 
-const ControlledDialogDemo: React.FC<IDialogProps> = (props) => {
+const ControlledDialogDemo: React.FC<IDialogOwnProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (

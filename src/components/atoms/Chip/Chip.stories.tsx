@@ -3,13 +3,14 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarDays, faImage } from '@fortawesome/free-solid-svg-icons';
 
+import type { IChipProps } from './ChipProps';
 import { IAny } from '@/helpers/types';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   ComponentShowcase,
   type IComponentPresentation,
 } from '@/components/utils/ComponentShowcase';
-import { type IChipProps, Chip } from './Chip';
+import { Chip } from './Chip';
 
 // https://m3.material.io/components/chips/overview
 // https://material-web.dev/components/chip/

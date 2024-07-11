@@ -6,8 +6,8 @@ import {
   useMemo,
 } from 'react';
 
-import type { IContainerProps, IOrientation } from '@/helpers/types';
 import type { IStepperStyleKey } from './Stepper.styledefs';
+import type { IStepperProps } from './StepperProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
@@ -15,16 +15,6 @@ import { Step, type IStepProps } from '@/components/atoms/Step';
 import { StepConnector } from '@/components/atoms/StepConnector';
 import { isElementLike } from '@/helpers/react/isElementLike';
 import { StepperContext, type IStepperContextValue } from './StepperContext';
-
-export type IStepperProps = IContainerProps<IStepperStyleKey> & {
-  children: React.ReactNode;
-  activeStep?: number;
-  loading?: boolean;
-  connector?: React.ReactNode;
-  orientation?: IOrientation;
-  labelPosition?: 'right' | 'bottom';
-  completed?: boolean;
-};
 
 const defaultConnector = <StepConnector />;
 

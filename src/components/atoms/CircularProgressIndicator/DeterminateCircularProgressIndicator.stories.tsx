@@ -1,10 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { IDeterminateCircularProgressIndicatorProps } from './DeterminateCircularProgressIndicatorProps';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
-import {
-  DeterminateCircularProgressIndicator,
-  type IDeterminateCircularProgressIndicatorProps,
-} from './DeterminateCircularProgressIndicator';
+import { DeterminateCircularProgressIndicator } from './DeterminateCircularProgressIndicator';
 import { circularProgressIndicatorSizes } from './CircularProgressIndicator.styledefs';
 
 // https://m3.material.io/components/progress-indicators/overview

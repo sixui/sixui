@@ -3,11 +3,12 @@ import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 
-import { ButtonBase, type IButtonBaseProps } from './ButtonBase';
+import type { IButtonBaseProps } from './ButtonBaseProps';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { shapeVars } from '@/themes/base/vars/shape.stylex';
 import { componentVars as stateLayerVars } from '@/themes/base/StateLayer/StateLayer.stylex';
 import { componentVars as focusRingVars } from '@/themes/base/FocusRing/FocusRing.stylex';
+import { ButtonBase } from './ButtonBase';
 
 const meta = {
   component: ButtonBase,

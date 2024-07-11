@@ -3,14 +3,6 @@ import { asArray } from '@olivierpascal/helpers';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type {
-  IContainerProps,
-  IZeroOrMore,
-  ICompiledStyles,
-  IMaybeAsync,
-  IAny,
-} from '@/helpers/types';
-import type {
-  IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
@@ -23,41 +15,18 @@ import type {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import {
-  type IVisualState,
-  useVisualState,
-} from '@/components/utils/VisualState';
-import { Elevation, IElevationStyleKey } from '@/components/utils/Elevation';
-import {
-  FocusRing,
-  type IFocusRingStyleKey,
-} from '@/components/utils/FocusRing';
-import {
-  StateLayer,
-  type IStateLayerStyleKey,
-} from '@/components/utils/StateLayer';
+import { useVisualState } from '@/components/utils/VisualState';
+import { Elevation } from '@/components/utils/Elevation';
+import { FocusRing } from '@/components/utils/FocusRing';
+import { StateLayer } from '@/components/utils/StateLayer';
 import { CardContext, type ICardContextValue } from './CardContext';
+import {
+  CARD_DEFAULT_TAG,
+  type ICardOwnProps,
+  type ICardProps,
+} from './CardProps';
 
 // https://github.com/material-components/material-web/blob/main/labs/card/internal/card.ts
-
-const DEFAULT_TAG = 'div';
-
-export type ICardOwnProps = IContainerProps<ICardStyleKey> & {
-  innerStyles?: {
-    elevation?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
-    stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
-    focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-  };
-  visualState?: IVisualState;
-  variant?: ICardVariant | false;
-  children: React.ReactNode;
-  onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
-  href?: string;
-  disabled?: boolean;
-};
-
-export type ICardProps<TRoot extends React.ElementType = typeof DEFAULT_TAG> =
-  IPolymorphicComponentPropsWithRef<TRoot, ICardOwnProps>;
 
 type ICardVariantMap = {
   [key in ICardVariant]: keyof Pick<
@@ -72,12 +41,12 @@ const variantMap: ICardVariantMap = {
   outlined: 'OutlinedCard',
 };
 
-type ICard = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
+type ICard = <TRoot extends React.ElementType = typeof CARD_DEFAULT_TAG>(
   props: ICardProps<TRoot>,
 ) => React.ReactNode;
 
 export const Card: ICard = forwardRef(function Card<
-  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+  TRoot extends React.ElementType = typeof CARD_DEFAULT_TAG,
 >(props: ICardProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
     as,
@@ -124,7 +93,8 @@ export const Card: ICard = forwardRef(function Card<
     !!variantTheme?.styles?.outline ||
     asArray(styles).some((styles) => !!styles?.outline);
 
-  const Component = as ?? (!dragged && href ? settings.linkAs : DEFAULT_TAG);
+  const Component =
+    as ?? (!dragged && href ? settings.linkAs : CARD_DEFAULT_TAG);
 
   const context: ICardContextValue = {
     actionable,

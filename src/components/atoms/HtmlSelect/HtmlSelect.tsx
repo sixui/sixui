@@ -3,17 +3,13 @@ import stylex from '@stylexjs/stylex';
 import { useMergeRefs } from '@floating-ui/react';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 
+import type { IHtmlSelectOption } from './HtmlSelectProps';
 import { useVisualState } from '@/components/utils/VisualState';
 import { componentVars as fieldBaseVars } from '@/themes/base/FieldBase/FieldBase.stylex';
 import {
   FieldBase,
   type IFieldBaseOwnProps,
 } from '@/components/atoms/FieldBase';
-
-export type IHtmlSelectOption = {
-  value: string | number;
-  label?: string;
-};
 
 export interface IHtmlSelectProps
   extends React.SelectHTMLAttributes<HTMLSelectElement> {

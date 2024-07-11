@@ -1,13 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
+import type { ICardProps, ICardOwnProps } from './CardProps';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
 import { Button } from '@/components/atoms/Button';
-import { Card, type ICardProps, type ICardOwnProps } from './Card';
+import { Card } from './Card';
 import { CardContent } from '../CardContent';
 import { CardMedia } from '../CardMedia';
 import { CardTitle } from '../CardTitle';

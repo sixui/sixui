@@ -6,10 +6,11 @@ import {
   faChevronCircleRight,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { Expandable, type IExpandableProps } from './Expandable';
+import type { IExpandableProps } from './ExpandableProps';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { IconButton } from '@/components/atoms/IconButton';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { Expandable } from './Expandable';
 
 const meta = {
   component: Expandable,

@@ -2,16 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
+import type { ITypographyOwnProps } from './TypographyProps';
 import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import {
-  Typography,
-  type ITypographyProps,
-  type ITypographyOwnProps,
-  typographyTagMap,
-} from './Typography';
+import { Typography, typographyTagMap } from './Typography';
 
 // https://m3.material.io/styles/typography/overview
 // https://material-web.dev/theming/typography/
@@ -22,7 +18,7 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {} satisfies Partial<ITypographyProps>;
+const defaultArgs = {} satisfies Partial<ITypographyOwnProps>;
 
 const LOREM$XS = 'Lorem ipsum dolor sit amet.';
 const LOREM$SM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';

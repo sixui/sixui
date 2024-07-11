@@ -1,5 +1,6 @@
-import type { IOmit } from '@/helpers/types';
 import { forwardRef } from 'react';
+
+import type { IMultiSelectProps } from './MultiSelectProps';
 import {
   areFilterableListItemsEqual,
   filterFilterableList,
@@ -9,32 +10,9 @@ import {
   renderFilterableListItem,
   type IFilterableListItem,
 } from '@/components/atoms/FilterableList';
-import {
-  MultiSelectBase,
-  type IMultiSelectBaseProps,
-} from '@/components/atoms/MultiSelectBase';
+import { MultiSelectBase } from '@/components/atoms/MultiSelectBase';
 import { ListItem } from '@/components/atoms/ListItem';
 import { useMultiSelect } from './useMultiSelect';
-
-export type IMultiSelectOwnProps = {
-  value?: Array<string>;
-  defaultValue?: Array<string>;
-  onChange?: (value?: Array<string>) => void;
-  noResultsLabel?: string;
-};
-
-export type IMultiSelectProps = Omit<
-  IOmit<
-    IMultiSelectBaseProps<IFilterableListItem>,
-    | 'itemRenderer'
-    | 'itemLabel'
-    | 'defaultItems'
-    | 'selectedItems'
-    | 'onItemsChange'
-  >,
-  keyof IMultiSelectOwnProps
-> &
-  IMultiSelectOwnProps;
 
 export const MultiSelect = forwardRef<HTMLInputElement, IMultiSelectProps>(
   function MultiSelect(props, fowardedRef) {

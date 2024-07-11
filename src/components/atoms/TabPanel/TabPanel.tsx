@@ -1,13 +1,8 @@
 import stylex from '@stylexjs/stylex';
 import { forwardRef, useContext } from 'react';
 
-import type { IContainerProps, IOmit } from '@/helpers/types';
+import type { ITabPanelProps } from './TabPanelProps';
 import { TabContext } from '@/components/atoms/Tabs';
-
-export type ITabPanelProps = IOmit<IContainerProps, 'styles'> & {
-  anchor: string;
-  children?: React.ReactNode;
-};
 
 export const TabPanel = forwardRef<HTMLDivElement, ITabPanelProps>(
   function TabPanel(props, forwardedRef) {

@@ -2,10 +2,10 @@ import type { MapNamespaces } from '@stylexjs/stylex/lib/StyleXTypes';
 import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
-import type { ITemplateStyleKey } from '@/components/atoms/Template';
+import type { IVariableTemplateStyleKey } from '@/components/atoms/Template/VariableTemplate';
 
-type ITemplateStyles = IStyles<ITemplateStyleKey>;
-export const styles: MapNamespaces<ITemplateStyles> =
-  stylex.create<ITemplateStyles>({
+type IVariantTemplateStyles = IStyles<IVariableTemplateStyleKey>;
+export const styles: MapNamespaces<IVariantTemplateStyles> =
+  stylex.create<IVariantTemplateStyles>({
     host: {},
   });

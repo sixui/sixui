@@ -1,20 +1,11 @@
 import { useCallback, useMemo, useRef } from 'react';
 
-import type { IAny, IOmit, IMaybeAsync } from '@/helpers/types';
+import type { ITabsProps } from './TabsProps';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { EASING } from '@/helpers/animation';
 import { shouldReduceMotion } from '@/helpers/shouldReduceAnimations';
-import { type ITabContextValue, TabContext } from './TabContext';
 import { useId } from '@/hooks/useId';
-
-export type ITabsProps = IOmit<
-  ITabContextValue,
-  'onChange' | 'onTabActivated'
-> & {
-  onChange?: (anchor: string | undefined) => IMaybeAsync<IAny>;
-  defaultAnchor?: string;
-  children?: React.ReactNode;
-};
+import { TabContext, type ITabContextValue } from './TabContext';
 
 export const Tabs: React.FC<ITabsProps> = (props) => {
   const {

@@ -1,9 +1,13 @@
 import type { ICompiledStyles, IStyleVarsTheme } from '@/helpers/types';
 import type { IColorRoles } from './colorRoles.types';
 import type {
-  ITemplateStyleKey,
-  ITemplateStyleVarKey,
-} from '@/components/atoms/Template';
+  IBasicTemplateStyleKey,
+  IBasicTemplateStyleVarKey,
+} from '@/components/atoms/Template/BasicTemplate';
+import type {
+  IVariableTemplateStyleKey,
+  IVariableTemplateStyleVarKey,
+} from '@/components/atoms/Template/VariableTemplate';
 import type {
   IComponentShowcaseStyleKey,
   IComponentShowcaseStyleVarKey,
@@ -162,9 +166,14 @@ import type {
 } from '@/components/atoms/FluidButton';
 import type { IButtonBaseStyleKey } from '@/components/atoms/ButtonBase';
 
-export type ITemplateTheme = {
-  vars?: IStyleVarsTheme<ITemplateStyleVarKey>;
-  styles?: ICompiledStyles<ITemplateStyleKey>;
+export type IBasicTemplateTheme = {
+  vars?: IStyleVarsTheme<IBasicTemplateStyleVarKey>;
+  styles?: ICompiledStyles<IBasicTemplateStyleKey>;
+};
+
+export type IVariableTemplateTheme = {
+  vars?: IStyleVarsTheme<IVariableTemplateStyleVarKey>;
+  styles?: ICompiledStyles<IVariableTemplateStyleKey>;
 };
 
 export type IButtonTheme = {
@@ -250,8 +259,8 @@ export type ITheme = {
     dark: IColorRoles;
   };
   components: {
-    Template: ITemplateTheme;
-    VariantTemplate: ITemplateTheme;
+    Template: IBasicTemplateTheme;
+    VariantTemplate: IVariableTemplateTheme;
     ComponentShowcase: {
       vars: IStyleVarsTheme<IComponentShowcaseStyleVarKey>;
       styles: ICompiledStyles<IComponentShowcaseStyleKey>;

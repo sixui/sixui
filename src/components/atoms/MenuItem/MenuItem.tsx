@@ -1,15 +1,10 @@
 import { forwardRef, useContext } from 'react';
 import { useFloatingTree, useListItem, useMergeRefs } from '@floating-ui/react';
 
-import { ListItem, type IListItemOwnProps } from '@/components/atoms/ListItem';
+import type { IMenuItemProps } from './MenuItemProps';
+import { ListItem } from '@/components/atoms/ListItem';
 import { Menu, MenuItemContext } from '@/components/atoms/Menu';
 import { MenuNestedItem } from './MenuNestedItem';
-
-export type IMenuItemProps = IListItemOwnProps &
-  React.HTMLProps<HTMLButtonElement> & {
-    label: React.ReactNode;
-    keepOpenOnClick?: boolean;
-  };
 
 export const MenuItem = forwardRef<HTMLButtonElement, IMenuItemProps>(
   function MenuItem(props, forwardedRef) {

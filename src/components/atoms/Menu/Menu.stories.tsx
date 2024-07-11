@@ -8,12 +8,13 @@ import {
   faArrowRight,
 } from '@fortawesome/free-solid-svg-icons';
 
+import type { IMenuProps } from './MenuProps';
 import { Button } from '@/components/atoms/Button';
 import { IconButton } from '@/components/atoms/IconButton';
 import { commonStyles } from '@/helpers/commonStyles';
 import { MenuItem } from '@/components/atoms/MenuItem';
 import { MenuDivider } from '@/components/atoms/MenuDivider';
-import { Menu, type IMenuProps } from './Menu';
+import { Menu } from './Menu';
 
 const meta = {
   component: Menu,

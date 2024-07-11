@@ -1,47 +1,16 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IContainerProps, IOmit } from '@/helpers/types';
-import type { IFieldBaseVariant } from '@/components/atoms/FieldBase';
-import type { IFilterableListItemRenderer } from '@/components/atoms/FilterableListBase';
-import type { ITextFieldBaseStyleKey } from '@/components/atoms/TextFieldBase';
+import type { IMultiSelectBaseProps } from './MultiSelectBaseProps';
 import { ListItem } from '@/components/atoms/ListItem';
-import {
-  ITextInputFieldOwnProps,
-  TextInputField,
-} from '@/components/atoms/TextInputField';
+import { TextInputField } from '@/components/atoms/TextInputField';
 import { MenuList } from '@/components/atoms/MenuList';
-import { InputChip, type IInputChipProps } from '@/components/atoms/Chip';
+import { InputChip } from '@/components/atoms/Chip';
 import {
   useMultiFilterableListBase,
   FilterableListBaseFieldEnd,
 } from '@/components/atoms/FilterableListBase';
-import {
-  FloatingFilterableListBase,
-  type IFloatingFilterableListBaseTriggerRenderProps,
-  type IFloatingFilterableListBaseProps,
-} from '@/components/atoms/FloatingFilterableListBase';
+import { FloatingFilterableListBase } from '@/components/atoms/FloatingFilterableListBase';
 import { fixedForwardRef } from '@/helpers/fixedForwardRef';
-
-export type IMultiSelectBaseProps<TItem> =
-  IContainerProps<ITextFieldBaseStyleKey> &
-    IOmit<
-      IFloatingFilterableListBaseProps<TItem, HTMLElement>,
-      'onItemSelect' | 'renderer' | 'listRenderer' | 'itemRenderer' | 'children'
-    > &
-    ITextInputFieldOwnProps & {
-      selectedItems?: Array<TItem>;
-      defaultItems?: Array<TItem>;
-      onItemsChange?: (value: Array<TItem>) => void;
-      items: Array<TItem>;
-      itemRenderer: IFilterableListItemRenderer<TItem, HTMLElement>;
-      itemLabel: (item: TItem) => string | undefined;
-      getValueFieldProps?: (
-        renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
-        selectedItem: TItem,
-      ) => IInputChipProps;
-      clearable?: boolean;
-      variant?: IFieldBaseVariant | false;
-    };
 
 // TODO: migrate in theme
 const localStyles = stylex.create({

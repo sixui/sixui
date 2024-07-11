@@ -1,25 +1,14 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/helpers/types';
-import type {
-  ICircularProgressIndicatorStyleVarKey,
-  ICircularProgressIndicatorSize,
-} from '../CircularProgressIndicator';
+import type { ICircularProgressIndicatorStyleVarKey } from '../CircularProgressIndicator';
 import type { IIndeterminateCircularProgressIndicatorStyleKey } from './IndeterminateCircularProgressIndicator.styledefs';
+import type { IIndeterminateCircularProgressIndicatorProps } from './IndeterminateCircularProgressIndicatorProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 
 // https://github.com/material-components/material-web/blob/main/progress/internal/progress.ts
 // https://github.com/material-components/material-web/blob/main/progress/internal/circular-progress.ts
-
-export type IIndeterminateCircularProgressIndicatorProps =
-  IContainerProps<IIndeterminateCircularProgressIndicatorStyleKey> &
-    Pick<React.AriaAttributes, 'aria-label'> & {
-      size?: ICircularProgressIndicatorSize;
-      disabled?: boolean;
-      children?: React.ReactNode;
-    };
 
 export const IndeterminateCircularProgressIndicator = forwardRef<
   HTMLInputElement,

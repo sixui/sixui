@@ -1,19 +1,10 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/helpers/types';
 import type { IAnchoredStyleKey } from './Anchored.styledefs';
+import type { IAnchoredProps } from './AnchoredProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-
-export type IAnchoredProps = IContainerProps<IAnchoredStyleKey> & {
-  verticalOrigin?: 'top' | 'bottom';
-  horizontalOrigin?: 'left' | 'right';
-  overlap?: 'rectangular' | 'circular';
-  children: React.ReactNode;
-  content?: React.ReactNode;
-  invisible?: boolean;
-};
 
 export const Anchored = forwardRef<HTMLDivElement, IAnchoredProps>(
   function Anchored(props, forwardedRef) {

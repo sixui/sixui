@@ -1,19 +1,13 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/helpers/types';
 import type {
   ICardTitleStyleKey,
   ICardTitleStyleVarKey,
 } from './CardTitle.styledefs';
+import type { ICardTitleProps } from './CardTitleProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-
-export type ICardTitleProps = IContainerProps<ICardTitleStyleKey> & {
-  headline?: React.ReactNode;
-  subhead?: React.ReactNode;
-  supportingText?: React.ReactNode;
-};
 
 export const CardTitle = forwardRef<HTMLDivElement, ICardTitleProps>(
   function CardTitle(props, forwardedRef) {

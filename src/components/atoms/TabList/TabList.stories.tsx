@@ -11,12 +11,13 @@ import {
   faBookmark,
 } from '@fortawesome/free-regular-svg-icons';
 
+import type { ITabListProps } from './TabListProps';
 import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { TabList, type ITabListProps } from './TabList';
-import { Tab } from '../Tab';
+import { Tab } from '@/components/atoms/Tab';
+import { TabList } from './TabList';
 
 const meta = {
   component: TabList,

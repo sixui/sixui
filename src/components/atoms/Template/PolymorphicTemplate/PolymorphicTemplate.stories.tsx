@@ -1,9 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import {
-  PolymorphicTemplate,
-  type IPolymorphicTemplateProps,
-} from './PolymorphicTemplate';
+import type { IPolymorphicTemplateProps } from './PolymorphicTemplateProps';
+import { PolymorphicTemplate } from './PolymorphicTemplate';
 
 const meta = {
   component: PolymorphicTemplate,

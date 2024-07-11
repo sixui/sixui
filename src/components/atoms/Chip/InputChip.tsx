@@ -1,7 +1,5 @@
-import type { IOmit } from '@/helpers/types';
-import { type IChipProps, Chip } from './Chip';
-
-export type IInputChipProps = IOmit<IChipProps, 'variant' | 'elevated'>;
+import type { IInputChipProps } from './InputChipProps';
+import { Chip } from './Chip';
 
 export const InputChip: React.FC<IInputChipProps> = (props) => (
   <Chip {...props} variant='input' />

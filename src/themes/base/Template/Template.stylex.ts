@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
 import type { IStyleVars } from '@/helpers/types';
-import type { ITemplateStyleVarKey } from '@/components/atoms/Template';
+import type { IBasicTemplateStyleVarKey } from '@/components/atoms/Template/BasicTemplate';
 import { colorRolesVars } from '../vars/colorRoles.stylex';
 
-const vars: IStyleVars<ITemplateStyleVarKey> = {
+const vars: IStyleVars<IBasicTemplateStyleVarKey> = {
   textColor: colorRolesVars.onSurface,
 };
 

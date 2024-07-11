@@ -1,42 +1,15 @@
 import { forwardRef, useMemo } from 'react';
 import { isFunction } from 'lodash';
 
-import type { IContainerProps, IOrientation } from '@/helpers/types';
 import type {
   IElementWithLabelStyleKey,
   IElementWithLabelStyleVarKey,
 } from './ElementWithLabel.styledefs';
+import type { IElementWithLabelProps } from './ElementWithLabelProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useId } from '@/hooks/useId';
-
-export type IElementWithLabelRenderProps = {
-  id: string;
-  required?: boolean;
-  disabled?: boolean;
-  readOnly?: boolean;
-  hasError?: boolean;
-};
-
-export type IElementWithLabelProps =
-  IContainerProps<IElementWithLabelStyleKey> & {
-    id?: string;
-    label?: React.ReactNode;
-    action?: React.ReactNode;
-    required?: boolean;
-    disabled?: boolean;
-    readOnly?: boolean;
-    supportingText?: React.ReactNode;
-    errorText?: React.ReactNode;
-    children:
-      | React.ReactNode
-      | ((props: IElementWithLabelRenderProps) => React.ReactNode);
-    hasError?: boolean;
-    orientation?: IOrientation;
-    labelPosition?: 'start' | 'end';
-    supportingTextPosition?: 'start' | 'end';
-  };
 
 export const ElementWithLabel = forwardRef<
   HTMLDivElement,

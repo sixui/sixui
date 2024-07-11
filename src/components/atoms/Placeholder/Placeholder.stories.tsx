@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
+import type { IPlaceholderProps } from './PlaceholderProps';
 import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { Placeholder, type IPlaceholderProps } from './Placeholder';
+import { Placeholder } from './Placeholder';
 
 const meta = {
   component: Placeholder,

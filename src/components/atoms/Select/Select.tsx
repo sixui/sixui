@@ -1,5 +1,6 @@
-import type { IOmit } from '@/helpers/types';
 import { forwardRef } from 'react';
+
+import type { ISelectProps } from './SelectProps';
 import {
   areFilterableListItemsEqual,
   isFilterableListItemEmpty,
@@ -10,32 +11,9 @@ import {
   type IFilterableListItem,
   filterFilterableListItem,
 } from '@/components/atoms/FilterableList';
-import {
-  SelectBase,
-  type ISelectBaseProps,
-} from '@/components/atoms/SelectBase';
+import { SelectBase } from '@/components/atoms/SelectBase';
 import { ListItem } from '@/components/atoms/ListItem';
 import { useSelect } from './useSelect';
-
-export type ISelectOwnProps = {
-  value?: string;
-  defaultValue?: string;
-  onChange?: (value?: string) => void;
-  noResultsLabel?: string;
-};
-
-export type ISelectProps = Omit<
-  IOmit<
-    ISelectBaseProps<IFilterableListItem>,
-    | 'itemRenderer'
-    | 'itemLabel'
-    | 'defaultItem'
-    | 'selectedItem'
-    | 'onItemChange'
-  >,
-  keyof ISelectOwnProps
-> &
-  ISelectOwnProps;
 
 export const Select = forwardRef<HTMLDivElement, ISelectProps>(
   function Select(props, fowardedRef) {

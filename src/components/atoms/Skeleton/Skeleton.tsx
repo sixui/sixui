@@ -2,23 +2,14 @@ import stylex from '@stylexjs/stylex';
 import { forwardRef, useMemo, useRef } from 'react';
 import { random } from 'lodash';
 
-import type { IContainerProps, IRange } from '@/helpers/types';
 import type {
   ISkeletonStyleKey,
   ISkeletonStyleVarKey,
 } from './Skeleton.styledefs';
+import type { ISkeletonProps } from './SkeletonProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-
-export type ISkeletonProps = IContainerProps<ISkeletonStyleKey> & {
-  children?: React.ReactNode;
-  loaded?: boolean;
-  variant?: 'rectangular' | 'circular' | 'overlay';
-  animation?: 'pulse' | 'wave' | false;
-  length?: number | IRange;
-  hasError?: boolean;
-};
 
 const staticStyles = stylex.create({
   length: (length?: number) => ({

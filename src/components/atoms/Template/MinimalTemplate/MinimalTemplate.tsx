@@ -1,8 +1,6 @@
 import { forwardRef } from 'react';
 
-export type IMinimalTemplateProps = {
-  children?: React.ReactNode;
-};
+import type { IMinimalTemplateProps } from './MinimalTemplateProps';
 
 export const MinimalTemplate = forwardRef<
   HTMLDivElement,

@@ -1,10 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { ICircularProgressIndicatorProps } from './CircularProgressIndicatorProps';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
-import {
-  CircularProgressIndicator,
-  type ICircularProgressIndicatorProps,
-} from './CircularProgressIndicator';
+import { CircularProgressIndicator } from './CircularProgressIndicator';
 
 // https://m3.material.io/components/progress-indicators/overview
 // https://material-web.dev/components/progress/

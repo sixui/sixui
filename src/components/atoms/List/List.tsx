@@ -1,18 +1,11 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/helpers/types';
 import type { IListStyleKey, IListStyleVarKey } from './List.styledefs';
+import type { IListProps } from './ListProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { ListContext, type IListContextValue } from './ListContext';
-
-export type IListProps = IContainerProps<IListStyleKey> &
-  IListContextValue & {
-    children?: React.ReactNode;
-    header?: React.ReactNode;
-    footer?: React.ReactNode;
-  };
+import { ListContext } from './ListContext';
 
 export const List = forwardRef<HTMLDivElement, IListProps>(
   function List(props, forwardedRef) {

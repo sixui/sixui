@@ -3,16 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 
+import type { IIconButtonProps, IIconButtonOwnProps } from './IconButtonProps';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import {
-  IconButton,
-  type IIconButtonProps,
-  type IIconButtonOwnProps,
-} from './IconButton';
+import { IconButton } from './IconButton';
 import { iconbuttonVariants } from './IconButton.styledefs';
 
 // https://m3.material.io/components/icon-buttons/overview

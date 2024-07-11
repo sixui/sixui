@@ -10,9 +10,7 @@ import {
 import { isFunction } from 'lodash';
 import { useMergeRefs } from '@floating-ui/react';
 
-import type { IContainerProps } from '@/helpers/types';
 import type {
-  IPolymorphicComponentPropsWithRef,
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
@@ -24,41 +22,25 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { Divider } from '@/components/atoms/Divider';
+import {
+  DIALOG_CONTENT_DEFAULT_TAG,
+  type IDialogContentOwnProps,
+  type IDialogContentProps,
+} from './DialogContentProps';
 
 // https://github.com/material-components/material-web/blob/main/dialog/internal/dialog.ts
 
-const DEFAULT_TAG = 'div';
-
-export type IDialogActionsRenderProps = {
-  close: (event: React.MouseEvent) => void;
-};
-
-export type IDialogContentOwnProps = IContainerProps<IDialogContentStyleKey> &
-  Pick<React.AriaAttributes, 'aria-label'> & {
-    type?: 'alert';
-    scrollable?: boolean;
-    icon?: React.ReactNode;
-    headline?: React.ReactNode;
-    children: React.ReactNode;
-    actions:
-      | React.ReactNode
-      | ((props: IDialogActionsRenderProps) => React.ReactNode);
-    onClose?: (event: React.MouseEvent) => void;
-  };
-
-export type IDialogContentProps<
-  TRoot extends React.ElementType = typeof DEFAULT_TAG,
-> = IPolymorphicComponentPropsWithRef<TRoot, IDialogContentOwnProps>;
-
-type IDialogContent = <TRoot extends React.ElementType = typeof DEFAULT_TAG>(
+type IDialogContent = <
+  TRoot extends React.ElementType = typeof DIALOG_CONTENT_DEFAULT_TAG,
+>(
   props: IDialogContentProps<TRoot>,
 ) => React.ReactNode;
 
 export const DialogContent: IDialogContent = forwardRef(function DialogContent<
-  TRoot extends React.ElementType = typeof DEFAULT_TAG,
+  TRoot extends React.ElementType = typeof DIALOG_CONTENT_DEFAULT_TAG,
 >(props: IDialogContentProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
-    as: Component = DEFAULT_TAG,
+    as: Component = DIALOG_CONTENT_DEFAULT_TAG,
     styles,
     sx,
     type,

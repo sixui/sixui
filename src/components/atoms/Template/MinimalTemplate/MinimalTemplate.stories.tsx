@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { MinimalTemplate, type IMinimalTemplateProps } from './MinimalTemplate';
+import type { IMinimalTemplateProps } from './MinimalTemplateProps';
+import { MinimalTemplate } from './MinimalTemplate';
 
 const meta = {
   component: MinimalTemplate,

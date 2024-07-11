@@ -1,18 +1,13 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/helpers/types';
 import type {
   IElevationStyleKey,
   IElevationStyleVarKey,
 } from './Elevation.styledefs';
+import type { IElevationProps } from './ElevationProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-
-export type IElevationProps = IContainerProps<IElevationStyleKey> & {
-  level?: 0 | 1 | 2 | 3 | 4 | 5;
-  disabled?: boolean;
-};
 
 export const Elevation = forwardRef<HTMLDivElement, IElevationProps>(
   function Elevation(props, forwardedRef) {

@@ -1,4 +1,5 @@
 import type { IOmit } from '@/helpers/types';
+import type { IMultiSelectBaseProps } from './MultiSelectBaseProps';
 import {
   areMoviesEqual,
   createMovie,
@@ -10,7 +11,7 @@ import {
   TOP_100_MOVIES,
   type IMovie,
 } from '@/components/atoms/FilterableListBase/movies';
-import { MultiSelectBase, type IMultiSelectBaseProps } from './MultiSelectBase';
+import { MultiSelectBase } from './MultiSelectBase';
 
 export type IMultiSelectBaseExampleProps = IOmit<
   IMultiSelectBaseProps<IMovie>,

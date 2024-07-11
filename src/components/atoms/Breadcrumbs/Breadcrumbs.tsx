@@ -9,40 +9,17 @@ import {
 import { asArray } from '@olivierpascal/helpers';
 
 import type {
-  IContainerProps,
-  IZeroOrMore,
-  ICompiledStyles,
-} from '@/helpers/types';
-import type {
   IBreadcrumbsStyleKey,
   IBreadcrumbsStyleVarKey,
 } from './Breadcrumbs.styledefs';
-import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
+import type { IBreadcrumbsProps } from './BreadcrumbsProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { isProduction } from '@/helpers/isProduction';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { isFragment } from '@/helpers/react/isFragment';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import {
-  ButtonBase,
-  type IButtonBaseStyleKey,
-} from '@/components/atoms/ButtonBase';
+import { ButtonBase } from '@/components/atoms/ButtonBase';
 import { ReactComponent as EllipsisHorizontalIcon } from '@/assets/EllipsisHorizontal.svg';
-
-export type IBreadcrumbsProps = IContainerProps<IBreadcrumbsStyleKey> & {
-  innerStyles?: {
-    expandButton?: IZeroOrMore<ICompiledStyles<IButtonBaseStyleKey>>;
-    expandButtonFocusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-  };
-  children: React.ReactNode;
-  expandText?: string;
-  itemCountBeforeCollapse?: number;
-  itemCountAfterCollapse?: number;
-  maxItems?: number;
-  separator?: React.ReactNode;
-  showTrailingSeparator?: boolean;
-  'aria-label'?: string;
-};
 
 export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
   function Breadcrumbs(props, forwardedRef) {

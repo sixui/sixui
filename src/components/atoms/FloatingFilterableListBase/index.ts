@@ -1,2 +1,2 @@
-export * from './FloatingFilterableListBase';
 export * from './FloatingFilterableListBaseProps';
+export * from './FloatingFilterableListBase';

@@ -1,17 +1,11 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/helpers/types';
 import type { ITabListStyleKey } from './TabList.styledefs';
+import type { ITabListProps } from './TabListProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { Divider } from '../Divider';
-
-export type ITabListProps = Pick<React.AriaAttributes, 'aria-label'> &
-  IContainerProps<ITabListStyleKey> & {
-    children?: React.ReactNode;
-    fullWidth?: boolean;
-  };
 
 export const TabList = forwardRef<HTMLInputElement, ITabListProps>(
   function TabList(props, forwardedRef) {

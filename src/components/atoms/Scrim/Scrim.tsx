@@ -1,28 +1,11 @@
 import { forwardRef, useMemo } from 'react';
-import {
-  FloatingContext,
-  FloatingOverlay,
-  useTransitionStatus,
-  type FloatingOverlayProps,
-} from '@floating-ui/react';
+import { FloatingOverlay, useTransitionStatus } from '@floating-ui/react';
 
-import type { IContainerProps } from '@/helpers/types';
-import type {
-  IScrimStyleKey,
-  IScrimStyleVarKey,
-  IScrimVariant,
-} from './Scrim.styledefs';
+import type { IScrimStyleKey, IScrimStyleVarKey } from './Scrim.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-
-export type IScrimProps = IContainerProps<IScrimStyleKey> &
-  FloatingOverlayProps & {
-    context: FloatingContext;
-    contained?: boolean;
-    variant?: IScrimVariant;
-    children?: React.ReactNode;
-  };
+import { IScrimProps } from './ScrimProps';
 
 export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
   function Scrim(props, forwardedRef) {

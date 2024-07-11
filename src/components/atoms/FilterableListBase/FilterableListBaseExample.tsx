@@ -1,11 +1,8 @@
-import type { IOmit } from '@/helpers/types';
 import { ListItem } from '@/components/atoms/ListItem';
 import { TextInputField } from '@/components/atoms/TextInputField';
 import { MenuList } from '@/components/atoms/MenuList';
-import {
-  FilterableListBase,
-  type IFilterableListBaseProps,
-} from './FilterableListBase';
+import { FilterableListBase } from './FilterableListBase';
+import type { IFilterableListBaseExampleProps } from './FilterableListBaseExampleProps';
 import {
   areMoviesEqual,
   createMovie,
@@ -15,21 +12,6 @@ import {
   TOP_100_MOVIES,
   type IMovie,
 } from './movies';
-
-export type IFilterableListBaseExampleProps = IOmit<
-  IFilterableListBaseProps<IMovie, HTMLDivElement>,
-  | 'items'
-  | 'renderer'
-  | 'itemRenderer'
-  | 'itemsEqual'
-  | 'itemPredicate'
-  | 'noResults'
-  | 'createNewItemFromQuery'
-  | 'createNewItemRenderer'
-> & {
-  canFilter?: boolean;
-  canCreate?: boolean;
-};
 
 export const FilterableListBaseExample: React.FC<
   IFilterableListBaseExampleProps

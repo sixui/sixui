@@ -1,19 +1,11 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps, IOmit } from '@/helpers/types';
 import type { IDisclosureStyleKey } from './Disclosure.styledefs';
+import type { IDisclosureProps } from './DisclosureProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import {
-  Expandable,
-  type IExpandableContextValue,
-  type IExpandableProps,
-} from '@/components/utils/Expandable';
-
-export type IDisclosureProps = IContainerProps<IDisclosureStyleKey> &
-  IOmit<IExpandableContextValue, 'expand'> &
-  Pick<IExpandableProps, 'trigger' | 'children'>;
+import { Expandable } from '@/components/utils/Expandable';
 
 export const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
   function Disclosure(props, forwardedRef) {

@@ -1,18 +1,14 @@
 import { forwardRef, useContext, useMemo } from 'react';
 
-import type { IContainerProps } from '@/helpers/types';
 import type {
   ICardContentStyleKey,
   ICardContentStyleVarKey,
 } from './CardContent.styledefs';
+import type { ICardContentProps } from './CardContentProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { CardContext } from '@/components/atoms/Card';
-
-export type ICardContentProps = IContainerProps<ICardContentStyleKey> & {
-  children?: React.ReactNode;
-};
 
 export const CardContent = forwardRef<HTMLDivElement, ICardContentProps>(
   function CardContent(props, forwardedRef) {

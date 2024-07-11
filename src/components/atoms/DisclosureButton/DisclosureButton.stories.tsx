@@ -3,15 +3,13 @@ import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
-import {
-  DisclosureButton,
-  type IDisclosureButtonProps,
-} from './DisclosureButton';
+import type { IDisclosureButtonProps } from './DisclosureButtonProps';
+import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   ComponentShowcase,
   type IComponentPresentation,
 } from '@/components/utils/ComponentShowcase';
-import { sbHandleEvent } from '@/helpers/sbHandleEvent';
+import { DisclosureButton } from './DisclosureButton';
 
 const meta = {
   component: DisclosureButton,

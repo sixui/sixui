@@ -11,10 +11,11 @@ import {
 } from '@floating-ui/react';
 
 import type { IOmit } from '@/helpers/types';
+import type { IScrimProps } from './ScrimProps';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { Button } from '@/components/atoms/Button';
 import { CircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
-import { Scrim, type IScrimProps } from './Scrim';
+import { Scrim } from './Scrim';
 import { scrimVariants } from './Scrim.styledefs';
 
 type IScrimDemoProps = IOmit<IScrimProps, 'context'>;

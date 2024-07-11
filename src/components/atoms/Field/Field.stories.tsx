@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
+import type { IFieldOwnProps } from './FieldProps';
 import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { Field, type IFieldOwnProps } from './Field';
+import { Field } from './Field';
 
 // https://github.com/material-components/material-web/blob/main/field/demo/stories.ts
 

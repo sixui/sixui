@@ -1,36 +1,19 @@
 import { forwardRef, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
-import type {
-  IContainerProps,
-  IZeroOrMore,
-  ICompiledStyles,
-} from '@/helpers/types';
 import type { IThemeComponents } from '@/components/utils/Theme';
 import type {
   IPaperStyleKey,
   IPaperStyleVarKey,
   IPaperVariant,
 } from './Paper.styledefs';
+import type { IPaperProps } from './PaperProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import {
-  Elevation,
-  type IElevationStyleKey,
-} from '@/components/utils/Elevation';
+import { Elevation } from '@/components/utils/Elevation';
 
 // https://github.com/material-components/material-web/blob/main/labs/paper/internal/paper.ts
-
-export type IPaperProps = IContainerProps<IPaperStyleKey> & {
-  variant?: IPaperVariant | false;
-  innerStyles?: {
-    elevation?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
-  };
-  children?: React.ReactNode;
-  elevation?: 0 | 1 | 2 | 3 | 4 | 5;
-  square?: boolean;
-};
 
 type IPaperVariantMap = {
   [key in IPaperVariant]: keyof Pick<

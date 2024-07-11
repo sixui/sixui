@@ -1,16 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
+import type { ICheckboxOwnProps } from './CheckboxProps';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import {
-  Checkbox,
-  type ICheckboxProps,
-  type ICheckboxOwnProps,
-} from './Checkbox';
+import { Checkbox } from './Checkbox';
 
 // https://m3.material.io/components/checkbox/overview
 // https://material-web.dev/components/checkbox/
@@ -24,7 +21,7 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   onChange: (...args) => sbHandleEvent('change', args),
-} satisfies Partial<ICheckboxProps>;
+} satisfies Partial<ICheckboxOwnProps>;
 
 const states: Array<IComponentPresentation<ICheckboxOwnProps>> = [
   { legend: 'Enabled' },
@@ -51,7 +48,7 @@ export const Uncontrolled: IStory = {
 };
 
 const ControlledCheckbox: React.FC<
-  Omit<ICheckboxProps, 'onChange' | 'checked' | 'as'>
+  Omit<ICheckboxOwnProps, 'onChange' | 'checked'>
 > = (props) => {
   const [checked, setChecked] = useState(props.defaultChecked ?? false);
   const [indeterminate, setIndeterminate] = useState(

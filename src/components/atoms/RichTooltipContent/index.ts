@@ -1,2 +1,3 @@
-export * from './RichTooltipContent';
 export * from './RichTooltipContent.styledefs';
+export * from './RichTooltipContentProps';
+export * from './RichTooltipContent';

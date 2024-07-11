@@ -1,24 +1,13 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IContainerProps } from '@/helpers/types';
 import type { IItemStyleKey, IItemStyleVarKey } from './Item.styledefs';
+import type { IItemProps } from './ItemProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { commonStyles } from '@/helpers/commonStyles';
 
 // https://github.com/material-components/material-web/blob/main/labs/item/item.ts
-
-export type IItemProps = IContainerProps<IItemStyleKey> & {
-  container?: React.ReactNode;
-  start?: React.ReactNode;
-  overline?: React.ReactNode;
-  children?: React.ReactNode;
-  supportingText?: React.ReactNode;
-  trailingSupportingText?: React.ReactNode;
-  end?: React.ReactNode;
-  maxLines?: number;
-};
 
 export const Item = forwardRef<HTMLDivElement, IItemProps>(
   function Item(props, forwardedRef) {
