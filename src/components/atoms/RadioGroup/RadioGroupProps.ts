@@ -6,7 +6,6 @@ export const RADIO_GROUP_DEFAULT_TAG = 'div';
 
 export type IRadioGroupOwnProps = IOmit<IContainerProps, 'styles'> &
   IRadioGroupContextValue & {
-    actions?: React.RefObject<unknown>;
     children?: React.ReactNode;
     defaultValue?: string;
   };

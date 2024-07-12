@@ -33,7 +33,6 @@ export const RadioGroup: IRadioGroup = forwardRef(function RadioGroup<
   const {
     as,
     sx,
-    actions,
     children,
     onChange,
     value: valueProp,
@@ -52,7 +51,7 @@ export const RadioGroup: IRadioGroup = forwardRef(function RadioGroup<
   });
 
   useImperativeHandle(
-    actions,
+    forwardedRef,
     () => ({
       focus: () => {
         const input =
