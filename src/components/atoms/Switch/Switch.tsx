@@ -39,8 +39,6 @@ export const Switch: ISwitch = forwardRef(function Switch<
     sx,
     innerStyles,
     visualState: visualStateProp,
-    value: valueProp,
-    defaultValue,
     checked: checkedProp,
     defaultChecked,
     disabled: disabledProp,
@@ -82,9 +80,9 @@ export const Switch: ISwitch = forwardRef(function Switch<
     [stylesCombinator, visualState],
   );
 
-  const [toggledOn, setToggledOn] = useControlledValue({
-    controlled: checkedProp ?? valueProp,
-    default: !!defaultChecked || !!defaultValue,
+  const [checked, setChecked] = useControlledValue({
+    controlled: checkedProp,
+    default: !!defaultChecked,
     name: 'Switch',
   });
 
@@ -95,11 +93,15 @@ export const Switch: ISwitch = forwardRef(function Switch<
       }
 
       void executeLazyPromise(
-        () => onChange?.(event, !toggledOn) as void,
+        () =>
+          onChange?.(
+            event,
+            event.target.checked ? event.target.value : undefined,
+          ) as void,
         setHandlingChange,
-      ).finally(() => setToggledOn(!toggledOn));
+      ).finally(() => setChecked(!event.target.checked));
     },
-    [handlingChange, onChange, toggledOn, setToggledOn],
+    [handlingChange, onChange, setChecked],
   );
 
   const hasCustomIcons = !!icon || !!selectedIcon;
@@ -109,13 +111,13 @@ export const Switch: ISwitch = forwardRef(function Switch<
 
   return (
     <div {...sxf('host', disabled && 'host$disabled', theme.vars, sx)}>
-      <div {...sxf('switch', toggledOn && 'switch$selected')}>
+      <div {...sxf('switch', checked && 'switch$selected')}>
         <Component
           {...sxf('input')}
           ref={handleRef}
           type='checkbox'
           role='switch'
-          checked={toggledOn}
+          checked={checked}
           disabled={disabled}
           tabIndex={disabled ? -1 : 0}
           onChange={disabled ? undefined : handleChange}
@@ -134,9 +136,9 @@ export const Switch: ISwitch = forwardRef(function Switch<
               'background',
               disabled && 'background$disabled',
               'trackBackground',
-              toggledOn && 'trackBackground$selected',
+              checked && 'trackBackground$selected',
               disabled &&
-                (toggledOn
+                (checked
                   ? 'trackBackground$disabled$selected'
                   : 'trackBackground$disabled'),
             )}
@@ -144,7 +146,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
           <span
             {...sxf(
               'handleContainer',
-              toggledOn && 'handleContainer$selected',
+              checked && 'handleContainer$selected',
               disabled && 'handleContainer$disabled',
             )}
           >
@@ -160,11 +162,11 @@ export const Switch: ISwitch = forwardRef(function Switch<
             <span
               {...sxf(
                 'handle',
-                toggledOn && 'handle$selected',
+                checked && 'handle$selected',
                 loading && 'handle$loading',
                 disabled &&
-                  (toggledOn ? 'handle$disabled$selected' : 'handle$disabled'),
-                (showOnlySelectedIcon ? toggledOn : hasIcons) &&
+                  (checked ? 'handle$disabled$selected' : 'handle$disabled'),
+                (showOnlySelectedIcon ? checked : hasIcons) &&
                   'handle$withIcon',
               )}
             >
@@ -172,9 +174,9 @@ export const Switch: ISwitch = forwardRef(function Switch<
                 {...sxf(
                   'background',
                   'handleBackground',
-                  toggledOn && 'handleBackground$selected',
+                  checked && 'handleBackground$selected',
                   disabled &&
-                    (toggledOn
+                    (checked
                       ? 'handleBackground$disabled$selected'
                       : 'handleBackground$disabled'),
                 )}
@@ -186,9 +188,9 @@ export const Switch: ISwitch = forwardRef(function Switch<
                     {...sxf(
                       'icon',
                       !loading &&
-                        (toggledOn ? 'icon$size$selected' : 'icon$size'),
-                      toggledOn && 'icon$on$selected',
-                      toggledOn && disabled && 'icon$on$selected$disabled',
+                        (checked ? 'icon$size$selected' : 'icon$size'),
+                      checked && 'icon$on$selected',
+                      checked && disabled && 'icon$on$selected$disabled',
                     )}
                   >
                     {loading ? (
@@ -210,9 +212,9 @@ export const Switch: ISwitch = forwardRef(function Switch<
                       {...sxf(
                         'icon',
                         !loading &&
-                          (toggledOn ? 'icon$size$selected' : 'icon$size'),
-                        !toggledOn && 'icon$on',
-                        !toggledOn && disabled && 'icon$on$disabled',
+                          (checked ? 'icon$size$selected' : 'icon$size'),
+                        !checked && 'icon$on',
+                        !checked && disabled && 'icon$on$disabled',
                       )}
                     >
                       {loading ? (

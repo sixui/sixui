@@ -53,7 +53,7 @@ const rows: Array<IComponentPresentation<IDisclosureButtonProps>> = [
     legend: 'Checkable (toggled on)',
     props: {
       checkable: true,
-      defaultValue: true,
+      defaultChecked: true,
     },
   },
   {
@@ -66,7 +66,7 @@ const rows: Array<IComponentPresentation<IDisclosureButtonProps>> = [
     legend: 'Switchable (toggled on)',
     props: {
       switchable: true,
-      defaultValue: true,
+      defaultChecked: true,
     },
   },
   {

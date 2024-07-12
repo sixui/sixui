@@ -14,15 +14,9 @@ export const styles: MapNamespaces<IElementWithLabelStyles> =
       gap: '0.5rem',
     },
     host$horizontal: {
-      display: 'grid',
+      display: 'flex',
       gridColumnGap: '1rem',
       alignItems: 'center',
-    },
-    host$horizontal$labelPositionStart: {
-      gridTemplateColumns: 'auto min-content',
-    },
-    host$horizontal$labelPositionEnd: {
-      gridTemplateColumns: 'min-content auto',
     },
     element: {
       flexGrow: 0,
@@ -34,6 +28,7 @@ export const styles: MapNamespaces<IElementWithLabelStyles> =
     },
     header: {
       display: 'flex',
+      flexGrow: 1,
       flexDirection: 'column',
       gap: '0.125rem',
     },
@@ -53,6 +48,7 @@ export const styles: MapNamespaces<IElementWithLabelStyles> =
       display: 'flex',
       alignItems: 'center',
       flexGrow: 1,
+      cursor: 'pointer',
     },
     label$error: {
       color: vars.supportingTextColor$error,

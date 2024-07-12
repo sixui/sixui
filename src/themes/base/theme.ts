@@ -259,6 +259,12 @@ import {
   focusRingStyles as fluidButtonFocusRingStyles,
 } from './FluidButton/FluidButton.styles';
 
+import { componentTheme as optionCardTheme } from './OptionCard/OptionCard.stylex';
+import {
+  styles as optionCardStyles,
+  cardStyles as optionCardCardStyles,
+} from './OptionCard/OptionCard.styles';
+
 export const theme: ITheme = {
   name: 'Material Design 3',
   colorSchemes: {
@@ -558,6 +564,11 @@ export const theme: ITheme = {
       buttonBaseStyles: fluidButtonButtonBaseStyles,
       focusRingStyles: fluidButtonFocusRingStyles,
       stateLayerStyles: fluidButtonStateLayerStyles,
+    },
+    OptionCard: {
+      vars: optionCardTheme,
+      styles: optionCardStyles,
+      cardStyles: optionCardCardStyles,
     },
   },
 };

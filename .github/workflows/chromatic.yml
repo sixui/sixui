@@ -13,10 +13,10 @@ jobs:
         with:
           #👇 Fetches all history so Chromatic can compare against previous builds
           fetch-depth: 0
-      - name: Use Node.js 18.x
+      - name: Use Node.js 20.x
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
       - run: yarn set version 4.1.0
       - run: yarn
       - uses: chromaui/action@v1

@@ -29,10 +29,10 @@ export type IDisclosureButtonProps =
       checkable?: boolean;
       onChange?: (
         event: React.ChangeEvent<HTMLInputElement>,
-        checked: boolean,
+        value: React.InputHTMLAttributes<HTMLInputElement>['value'],
       ) => IMaybeAsync<IAny>;
-      value?: boolean;
-      defaultValue?: boolean;
+      checked?: boolean;
+      defaultChecked?: boolean;
       loading?: boolean;
       switchable?: boolean;
     };

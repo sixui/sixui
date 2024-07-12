@@ -23,7 +23,7 @@ export type ICardOwnProps = IContainerProps<ICardStyleKey> & {
   visualState?: IVisualState;
   variant?: ICardVariant | false;
   children: React.ReactNode;
-  onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
+  onClick?: (event?: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
   href?: string;
   disabled?: boolean;
 };

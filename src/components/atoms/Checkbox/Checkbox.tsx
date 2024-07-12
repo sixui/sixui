@@ -47,8 +47,6 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
     readOnly,
     onChange,
     indeterminate,
-    value: valueProp,
-    defaultValue,
     checked: checkedProp,
     defaultChecked,
     loading: loadingProp,
@@ -80,12 +78,12 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
     [stylesCombinator, visualState],
   );
 
-  const [value, setValue] = useControlledValue({
-    controlled: checkedProp ?? valueProp,
-    default: !!defaultChecked || !!defaultValue,
+  const [checkedValue, setCheckedValue] = useControlledValue({
+    controlled: checkedProp,
+    default: !!defaultChecked,
     name: 'Checkbox',
   });
-  const checked = value && !indeterminate;
+  const checked = checkedValue && !indeterminate;
   const selected = checked || indeterminate;
   const unselected = !selected;
 
@@ -106,11 +104,15 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
       }
 
       void executeLazyPromise(
-        () => onChange?.(event, event.target.checked) as void,
+        () =>
+          onChange?.(
+            event,
+            event.target.checked ? event.target.value : undefined,
+          ) as void,
         setHandlingChange,
-      ).finally(() => setValue(!event.target.checked));
+      ).finally(() => setCheckedValue(!event.target.checked));
     },
-    [handlingChange, onChange, setValue],
+    [handlingChange, onChange, setCheckedValue],
   );
 
   return (
@@ -130,7 +132,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
           type='checkbox'
           aria-checked={indeterminate ? 'mixed' : undefined}
           disabled={disabled}
-          checked={value}
+          checked={checkedValue}
           onChange={handleChange}
           data-cy={dataCy}
           {...other}

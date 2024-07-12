@@ -49,10 +49,10 @@ export const Uncontrolled: IStory = {
   args: defaultArgs,
 };
 
-const ControlledCheckbox: React.FC<
-  IOmit<ICheckboxOwnProps, 'checked' | 'value'>
-> = (props) => {
-  const [value, setValue] = useState(props.defaultValue ?? false);
+const ControlledCheckbox: React.FC<IOmit<ICheckboxOwnProps, 'checked'>> = (
+  props,
+) => {
+  const [checked, setChecked] = useState(props.defaultChecked ?? false);
   const [indeterminate, setIndeterminate] = useState(
     props.indeterminate ?? false,
   );
@@ -60,14 +60,16 @@ const ControlledCheckbox: React.FC<
   return (
     <Checkbox
       {...props}
-      value={value}
-      onChange={(event, value) =>
-        delay(300).then(() => {
+      checked={checked}
+      onChange={(event, value) => {
+        const checked = value !== undefined;
+
+        return delay(300).then(() => {
           setIndeterminate(false);
-          setValue(value);
+          setChecked(checked);
           props.onChange?.(event, value);
-        })
-      }
+        });
+      }}
       indeterminate={indeterminate}
     />
   );
@@ -80,7 +82,7 @@ export const Controlled: IStory = {
       props={props}
       cols={[
         {},
-        { props: { defaultValue: true } },
+        { props: { defaultChecked: true } },
         { props: { indeterminate: true } },
       ]}
     />

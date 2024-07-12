@@ -115,6 +115,18 @@ export const Card: ICard = forwardRef(function Card<
         ref={handleRef}
         href={actionable && !dragged ? href : undefined}
         onClick={actionable && !dragged ? onClick : undefined}
+        onKeyDown={(event: React.KeyboardEvent<HTMLElement>) => {
+          // if Enter or Space, trigger onClick
+          if (
+            actionable &&
+            !dragged &&
+            (event.key === 'Enter' || event.key === ' ')
+          ) {
+            event.preventDefault();
+            onClick?.();
+          }
+          // actionable && !dragged ? onClick : undefined;
+        }}
         role={actionable ? 'button' : undefined}
         tabIndex={disabled || !actionable ? -1 : 0}
         disabled={disabled}

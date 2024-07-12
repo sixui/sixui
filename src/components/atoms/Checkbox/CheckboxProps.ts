@@ -9,7 +9,7 @@ import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorp
 import type { ICheckboxStyleKey } from './Checkbox.styledefs';
 import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
-import type { ICircularProgressIndicatorStyleKey } from '../CircularProgressIndicator';
+import type { ICircularProgressIndicatorStyleKey } from '@/components/atoms/CircularProgressIndicator';
 import type { IVisualState } from '@/components/utils/VisualState';
 
 export const CHECKBOX_DEFAULT_TAG = 'input';
@@ -28,14 +28,12 @@ export type ICheckboxOwnProps = IContainerProps<ICheckboxStyleKey> & {
   readOnly?: boolean;
   id?: string;
   name?: string;
-  value?: boolean;
-  defaultValue?: boolean;
   checked?: boolean;
   defaultChecked?: boolean;
   indeterminate?: boolean;
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
-    checked: boolean,
+    value: React.InputHTMLAttributes<HTMLInputElement>['value'],
   ) => IMaybeAsync<IAny>;
   loading?: boolean;
 };

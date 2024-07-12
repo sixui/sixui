@@ -110,14 +110,7 @@ export const ElementWithLabel = forwardRef<
   return (
     <div
       {...sxf(
-        orientation === 'horizontal'
-          ? [
-              'host$horizontal',
-              labelPosition === 'start'
-                ? 'host$horizontal$labelPositionStart'
-                : 'host$horizontal$labelPositionEnd',
-            ]
-          : 'host$vertical',
+        orientation === 'horizontal' ? 'host$horizontal' : 'host$vertical',
         theme.vars,
         sx,
       )}
@@ -131,11 +124,13 @@ export const ElementWithLabel = forwardRef<
         </div>
       ) : null}
 
-      <div {...sxf('element')}>
-        {isFunction(children)
-          ? children({ id, required, disabled, readOnly })
-          : children || null}
-      </div>
+      {children ? (
+        <div {...sxf('element')}>
+          {isFunction(children)
+            ? children({ id, required, disabled, readOnly })
+            : children}
+        </div>
+      ) : null}
 
       {hasTrailing ? (
         <div {...sxf('header')}>

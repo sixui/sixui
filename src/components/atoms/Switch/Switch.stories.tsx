@@ -58,21 +58,23 @@ export const Uncontrolled: IStory = {
   args: defaultArgs,
 };
 
-const ControlledSwitch: React.FC<
-  IOmit<ISwitchOwnProps, 'checked' | 'value'>
-> = (props) => {
-  const [value, setValue] = useState(props.defaultValue ?? false);
+const ControlledSwitch: React.FC<IOmit<ISwitchOwnProps, 'checked'>> = (
+  props,
+) => {
+  const [checked, setChecked] = useState(props.defaultChecked ?? false);
 
   return (
     <Switch
       {...props}
-      value={value}
-      onChange={(event, value) =>
-        delay(300).then(() => {
-          setValue(value);
+      checked={checked}
+      onChange={(event, value) => {
+        const checked = value !== undefined;
+
+        return delay(300).then(() => {
+          setChecked(checked);
           props.onChange?.(event, value);
-        })
-      }
+        });
+      }}
     />
   );
 };
@@ -88,7 +90,7 @@ export const Controlled: IStory = {
           legend: 'With selected icon',
           props: {
             showOnlySelectedIcon: true,
-            defaultValue: true,
+            defaultChecked: true,
           },
         },
         { legend: 'With icons', props: { icons: true } },

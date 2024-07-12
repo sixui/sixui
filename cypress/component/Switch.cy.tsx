@@ -33,6 +33,16 @@ describe('Uncontrolled Switch', () => {
     cy.get('[data-cy=switch]').should('be.checked');
   });
 
+  it('should have a default value', () => {
+    cy.mount(
+      <ThemeProvider sx={styles.host} theme={theme}>
+        <Switch defaultValue='banana' />
+      </ThemeProvider>,
+    );
+
+    cy.get('[data-cy=switch]').should('have.value', 'banana');
+  });
+
   it('should toggle state', () => {
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
@@ -56,15 +66,25 @@ describe('Controlled Switch', () => {
     cy.get('[data-cy=switch]').should('be.checked');
   });
 
+  it('should have a controlled value', () => {
+    cy.mount(
+      <ThemeProvider sx={styles.host} theme={theme}>
+        <Switch value='banana' />
+      </ThemeProvider>,
+    );
+
+    cy.get('[data-cy=switch]').should('have.value', 'banana');
+  });
+
   it('should trigger event on state change', () => {
     const onChange = cy.stub().as('onChange');
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
-        <Switch onChange={onChange} />
+        <Switch checked={false} onChange={onChange} />
       </ThemeProvider>,
     );
 
     cy.get('[data-cy=switch]').click();
-    cy.get('[data-cy=switch]').should('be.checked');
+    cy.get('[data-cy=switch]').should('not.be.checked');
   });
 });

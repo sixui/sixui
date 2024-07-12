@@ -165,6 +165,10 @@ import type {
   IFluidButtonStyleVarKey,
 } from '@/components/atoms/FluidButton';
 import type { IButtonBaseStyleKey } from '@/components/atoms/ButtonBase';
+import type {
+  IOptionCardStyleKey,
+  IOptionCardStyleVarKey,
+} from '@/components/atoms/OptionCard';
 
 export type IBasicTemplateTheme = {
   vars?: IStyleVarsTheme<IBasicTemplateStyleVarKey>;
@@ -491,6 +495,11 @@ export type ITheme = {
       buttonBaseStyles?: ICompiledStyles<IButtonBaseStyleKey>;
       focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
       stateLayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
+    };
+    OptionCard: {
+      vars?: IStyleVarsTheme<IOptionCardStyleVarKey>;
+      styles?: ICompiledStyles<IOptionCardStyleKey>;
+      cardStyles?: ICompiledStyles<ICardStyleKey>;
     };
   };
 };

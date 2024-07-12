@@ -33,8 +33,8 @@ export const DisclosureButton = forwardRef<
     expanded: expandedProp,
     checkable,
     switchable,
-    value: valueProp,
-    defaultValue,
+    checked: checkedProp,
+    defaultChecked,
     onChange,
     loading,
     ...other
@@ -57,13 +57,13 @@ export const DisclosureButton = forwardRef<
   const expandableContext = useContext(ExpandableContext);
   const disabled = disabledProp ?? expandableContext?.disabled;
   const togglable = checkable || switchable;
-  const [value, setValue] = useControlledValue({
-    controlled: valueProp,
-    default: !!defaultValue,
+  const [checked, setChecked] = useControlledValue({
+    controlled: checkedProp,
+    default: !!defaultChecked,
     name: 'DisclosureButton',
   });
   const expanded =
-    (expandedProp ?? expandableContext?.expanded) && (!togglable || value);
+    (expandedProp ?? expandableContext?.expanded) && (!togglable || checked);
   const icon = expanded ? (
     collapseIcon ? (
       <div {...sxf('icon')}>{collapseIcon}</div>
@@ -88,15 +88,16 @@ export const DisclosureButton = forwardRef<
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
-    newValue: boolean,
+    value: React.InputHTMLAttributes<HTMLInputElement>['value'],
   ): void => {
-    if (newValue === value) {
+    const newChecked = value !== undefined;
+    if (newChecked === checked) {
       return;
     }
 
-    onChange?.(event, newValue);
-    setValue(newValue);
-    expandableContext?.expand(newValue);
+    onChange?.(event, value);
+    setChecked(newChecked);
+    expandableContext?.expand(newChecked);
   };
 
   return (
@@ -107,7 +108,7 @@ export const DisclosureButton = forwardRef<
           expanded && 'button$expanded',
           switchable && 'button$switchable',
           checkable && 'button$checkable',
-          togglable && !value && 'button$toggledOff',
+          togglable && !checked && 'button$toggledOff',
         )}
         innerStyles={{
           ...innerStyles?.listItem,
@@ -125,7 +126,7 @@ export const DisclosureButton = forwardRef<
         }
         trailingIcon={!togglable && loading ? undefined : icon}
         data-cy={dataCy}
-        disabled={disabled ?? (togglable && !value)}
+        disabled={disabled ?? (togglable && !checked)}
         onClick={(event) => {
           expandableContext?.expand(!expanded);
 
@@ -142,8 +143,8 @@ export const DisclosureButton = forwardRef<
           {switchable ? (
             <Switch
               styles={innerStyles?.switch}
-              defaultValue={defaultValue}
-              value={value}
+              defaultChecked={defaultChecked}
+              checked={checked}
               onChange={handleChange}
               disabled={disabled}
               loading={loading}
@@ -152,8 +153,8 @@ export const DisclosureButton = forwardRef<
           ) : (
             <Checkbox
               styles={innerStyles?.checkbox}
-              defaultValue={defaultValue}
-              value={value}
+              defaultChecked={defaultChecked}
+              checked={checked}
               onChange={handleChange}
               disabled={disabled}
               loading={loading}

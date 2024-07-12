@@ -31,8 +31,6 @@ export type ISwitchOwnProps = IContainerProps<ISwitchStyleKey> &
     readOnly?: boolean;
     required?: boolean;
 
-    value?: boolean;
-    defaultValue?: boolean;
     checked?: boolean;
     defaultChecked?: boolean;
 
@@ -51,7 +49,7 @@ export type ISwitchOwnProps = IContainerProps<ISwitchStyleKey> &
     loadingAnimation?: 'progressIndicator' | 'none';
     onChange?: (
       event: React.ChangeEvent<HTMLInputElement>,
-      value: boolean,
+      value: React.InputHTMLAttributes<HTMLInputElement>['value'],
     ) => IMaybeAsync<IAny>;
     icon?: React.ReactNode;
     selectedIcon?: React.ReactNode;

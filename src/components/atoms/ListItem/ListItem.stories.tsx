@@ -116,7 +116,7 @@ const rows: Array<IComponentPresentation<IListItemOwnProps>> = [
   {
     legend: 'With trailing element',
     props: {
-      trailing: <Checkbox value />,
+      trailing: <Checkbox checked />,
     },
   },
   {

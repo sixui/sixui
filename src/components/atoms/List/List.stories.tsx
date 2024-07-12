@@ -147,7 +147,7 @@ export const Configurations: IStory = {
           >
             Item with leading video
           </ListItem>
-          <ListItem trailing={<Checkbox value />}>
+          <ListItem trailing={<Checkbox checked />}>
             Item with trailing element
           </ListItem>
           <ListItem overline='Overline'>Item with overline</ListItem>
