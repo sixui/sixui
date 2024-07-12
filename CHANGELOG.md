@@ -1,3 +1,15 @@
+# v0.0.308 (Fri Jul 12 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(RadioGroup): expose a focus() imperatif handle ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.307 (Thu Jul 11 2024)
 
 #### ⚠️ Pushed to `main`
