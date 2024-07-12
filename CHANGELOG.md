@@ -1,3 +1,15 @@
+# v0.0.315 (Fri Jul 12 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(OptionCard): correct state in RadioContext ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.314 (Fri Jul 12 2024)
 
 #### ⚠️ Pushed to `main`
