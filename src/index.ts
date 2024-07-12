@@ -37,6 +37,7 @@ export * from './components/atoms/MenuItem';
 export * from './components/atoms/MenuList';
 export * from './components/atoms/MultiSelect';
 export * from './components/atoms/MultiSelectBase';
+export * from './components/atoms/OptionCard';
 export * from './components/atoms/Paper';
 export * from './components/atoms/Placeholder';
 export * from './components/atoms/PlainTooltip';
