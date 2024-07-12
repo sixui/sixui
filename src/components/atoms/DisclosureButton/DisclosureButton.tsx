@@ -142,8 +142,8 @@ export const DisclosureButton = forwardRef<
           {switchable ? (
             <Switch
               styles={innerStyles?.switch}
-              defaultChecked={defaultValue}
-              checked={value}
+              defaultValue={defaultValue}
+              value={value}
               onChange={handleChange}
               disabled={disabled}
               loading={loading}
@@ -152,8 +152,8 @@ export const DisclosureButton = forwardRef<
           ) : (
             <Checkbox
               styles={innerStyles?.checkbox}
-              defaultChecked={defaultValue}
-              checked={value}
+              defaultValue={defaultValue}
+              value={value}
               onChange={handleChange}
               disabled={disabled}
               loading={loading}

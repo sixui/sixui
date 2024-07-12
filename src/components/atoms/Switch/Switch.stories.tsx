@@ -6,6 +6,7 @@ import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { delay } from '@olivierpascal/helpers';
 
 import type { ISwitchOwnProps } from './SwitchProps';
+import type { IOmit } from '@/helpers/types';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
@@ -47,7 +48,7 @@ export const Uncontrolled: IStory = {
           legend: 'With selected icon',
           props: {
             showOnlySelectedIcon: true,
-            defaultChecked: true,
+            defaultValue: true,
           },
         },
         { legend: 'With icons', props: { icons: true } },
@@ -57,16 +58,16 @@ export const Uncontrolled: IStory = {
   args: defaultArgs,
 };
 
-const ControlledSwitch: React.FC<Omit<ISwitchOwnProps, 'onChange'>> = (
-  props,
-) => {
-  const [checked, setChecked] = useState(props.defaultChecked ?? false);
+const ControlledSwitch: React.FC<
+  IOmit<ISwitchOwnProps, 'onChange' | 'value'>
+> = (props) => {
+  const [value, setValue] = useState(props.defaultValue ?? false);
 
   return (
     <Switch
       {...props}
-      checked={checked}
-      onChange={(_, checked) => delay(300).then(() => setChecked(checked))}
+      value={value}
+      onChange={(_, value) => delay(300).then(() => setValue(value))}
     />
   );
 };
@@ -82,7 +83,7 @@ export const Controlled: IStory = {
           legend: 'With selected icon',
           props: {
             showOnlySelectedIcon: true,
-            defaultChecked: true,
+            defaultValue: true,
           },
         },
         { legend: 'With icons', props: { icons: true } },
@@ -100,7 +101,7 @@ export const Variants: IStory = {
       cols={states}
       rows={[
         { legend: 'Unselected' },
-        { legend: 'Selected', props: { defaultChecked: true } },
+        { legend: 'Selected', props: { defaultValue: true } },
       ]}
       groups={[
         {

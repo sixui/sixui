@@ -28,6 +28,8 @@ export type ICheckboxOwnProps = IContainerProps<ICheckboxStyleKey> & {
   readOnly?: boolean;
   id?: string;
   name?: string;
+  value?: boolean;
+  defaultValue?: boolean;
   checked?: boolean;
   defaultChecked?: boolean;
   indeterminate?: boolean;

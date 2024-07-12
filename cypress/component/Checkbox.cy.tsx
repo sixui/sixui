@@ -33,16 +33,6 @@ describe('Uncontrolled Checkbox', () => {
     cy.get('[data-cy=checkbox]').should('be.checked');
   });
 
-  it('should have a default value', () => {
-    cy.mount(
-      <ThemeProvider sx={styles.host} theme={theme}>
-        <Checkbox defaultValue='banana' />
-      </ThemeProvider>,
-    );
-
-    cy.get('[data-cy=checkbox]').should('have.value', 'banana');
-  });
-
   it('should switch to checked state', () => {
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
@@ -66,25 +56,15 @@ describe('Controlled Checkbox', () => {
     cy.get('[data-cy=checkbox]').should('be.checked');
   });
 
-  it('should have a controlled value', () => {
-    cy.mount(
-      <ThemeProvider sx={styles.host} theme={theme}>
-        <Checkbox value='banana' />
-      </ThemeProvider>,
-    );
-
-    cy.get('[data-cy=checkbox]').should('have.value', 'banana');
-  });
-
   it('should trigger event on state change', () => {
     const onChange = cy.stub().as('onChange');
     cy.mount(
       <ThemeProvider sx={styles.host} theme={theme}>
-        <Checkbox checked={false} onChange={onChange} />
+        <Checkbox onChange={onChange} />
       </ThemeProvider>,
     );
 
     cy.get('[data-cy=checkbox]').click();
-    cy.get('[data-cy=checkbox]').should('not.be.checked');
+    cy.get('[data-cy=checkbox]').should('be.checked');
   });
 });

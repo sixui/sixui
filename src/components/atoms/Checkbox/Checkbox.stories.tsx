@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
 import type { ICheckboxOwnProps } from './CheckboxProps';
+import type { IOmit } from '@/helpers/types';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
@@ -39,7 +40,7 @@ export const Uncontrolled: IStory = {
       props={props}
       cols={[
         {},
-        { props: { defaultChecked: true } },
+        { props: { defaultValue: true } },
         { props: { indeterminate: true } },
       ]}
     />
@@ -48,9 +49,9 @@ export const Uncontrolled: IStory = {
 };
 
 const ControlledCheckbox: React.FC<
-  Omit<ICheckboxOwnProps, 'onChange' | 'checked'>
+  IOmit<ICheckboxOwnProps, 'onChange' | 'checked' | 'value'>
 > = (props) => {
-  const [checked, setChecked] = useState(props.defaultChecked ?? false);
+  const [value, setValue] = useState(props.defaultValue ?? false);
   const [indeterminate, setIndeterminate] = useState(
     props.indeterminate ?? false,
   );
@@ -58,10 +59,10 @@ const ControlledCheckbox: React.FC<
   return (
     <Checkbox
       {...props}
-      checked={checked}
-      onChange={(_, checked) => {
+      value={value}
+      onChange={(_, value) => {
         setIndeterminate(false);
-        setChecked(checked);
+        setValue(value);
       }}
       indeterminate={indeterminate}
     />
@@ -75,7 +76,7 @@ export const Controlled: IStory = {
       props={props}
       cols={[
         {},
-        { props: { defaultChecked: true } },
+        { props: { defaultValue: true } },
         { props: { indeterminate: true } },
       ]}
     />
@@ -91,7 +92,7 @@ export const Basic: IStory = {
       cols={states}
       rows={[
         { legend: 'Unchecked' },
-        { legend: 'Checked', props: { defaultChecked: true } },
+        { legend: 'Checked', props: { defaultValue: true } },
         { legend: 'Indeterminate', props: { indeterminate: true } },
       ]}
     />
