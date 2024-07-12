@@ -6,6 +6,10 @@ import type {
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
+import type {
+  IOptionCardStyleKey,
+  IOptionCardStyleVarKey,
+} from './OptionCard.styledefs';
 import { CardContent } from '@/components/atoms/CardContent';
 import { Card } from '@/components/atoms/Card';
 import {
@@ -17,11 +21,8 @@ import { useControlledValue } from '@/hooks/useControlledValue';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import {
-  IOptionCardStyleKey,
-  IOptionCardStyleVarKey,
-} from './OptionCard.styledefs';
 import { RadioGroupContext } from '@/components/atoms/RadioGroup';
+import { commonStyles } from '@/helpers/commonStyles';
 
 type IOptionCard = <TRoot extends React.ElementType>(
   props: IOptionCardProps<TRoot>,
@@ -98,7 +99,7 @@ export const OptionCard: IOptionCard = forwardRef(function OptionCard<
         />
       )}
 
-      <CardContent>
+      <CardContent sx={commonStyles.gap$md}>
         <ElementWithLabel
           orientation='horizontal'
           label={label}

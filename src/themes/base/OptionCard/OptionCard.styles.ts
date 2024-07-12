@@ -12,7 +12,7 @@ type IOptionCardStyles = IStyles<IOptionCardStyleKey>;
 export const styles: MapNamespaces<IOptionCardStyles> =
   stylex.create<IOptionCardStyles>({
     host: {
-      [cardVars.containerColor]: 'unset',
+      [cardVars.containerColor]: vars.containerColor,
     },
     host$selected: {
       [cardVars.outlineColor]: vars.selectedOutlineColor,

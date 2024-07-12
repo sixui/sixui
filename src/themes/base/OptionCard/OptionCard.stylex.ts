@@ -7,6 +7,9 @@ import { typescaleVars } from '../vars/typo.stylex';
 import { stateVars } from '../vars/state.stylex';
 
 const vars: IStyleVars<IOptionCardStyleVarKey> = {
+  // container
+  containerColor: colorRolesVars.surfaceContainerHigh,
+
   // selectedOutline
   selectedOutlineColor: colorRolesVars.primary,
   selectedOutlineWidth: '2px',

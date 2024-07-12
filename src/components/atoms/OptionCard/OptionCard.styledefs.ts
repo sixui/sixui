@@ -8,6 +8,7 @@ export type IOptionCardStyleKey =
   | 'text$disabled';
 
 export type IOptionCardStyleVarKey =
+  | 'containerColor'
   | 'selectedOutlineColor'
   | 'selectedOutlineWidth'
   | 'selectedOutlineColor$disabled'

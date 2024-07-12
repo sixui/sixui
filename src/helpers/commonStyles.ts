@@ -34,6 +34,9 @@ export const commonStyles = stylex.create({
   gap$sm: {
     gap: '0.25rem',
   },
+  gap$md: {
+    gap: '0.5rem',
+  },
   gap$lg: {
     gap: '0.75rem',
   },
