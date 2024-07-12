@@ -26,11 +26,11 @@ const vars: IStyleVars<IOptionCardStyleVarKey> = {
 
   // text
   textColor: colorRolesVars.onSurface,
-  textFont: typescaleVars.bodyFont$md,
-  textSize: typescaleVars.bodySize$md,
-  textLineHeight: typescaleVars.bodyLineHeight$md,
-  textLetterSpacing: typescaleVars.bodyLetterSpacing$md,
-  textWeight: typescaleVars.bodyWeight$md,
+  textFont: typescaleVars.bodyFont$sm,
+  textSize: typescaleVars.bodySize$sm,
+  textLineHeight: typescaleVars.bodyLineHeight$sm,
+  textLetterSpacing: typescaleVars.bodyLetterSpacing$sm,
+  textWeight: typescaleVars.bodyWeight$sm,
   // &:disabled
   textColor$disabled: colorRolesVars.onSurface,
   textOpacity$disabled: stateVars.opacity$disabled,
