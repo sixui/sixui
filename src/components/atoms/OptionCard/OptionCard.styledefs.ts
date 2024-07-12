@@ -2,6 +2,7 @@ import type { ICardStyleKey } from '@/components/atoms/Card';
 
 export type IOptionCardStyleKey =
   | ICardStyleKey
+  | 'host'
   | 'host$selected'
   | 'text'
   | 'text$disabled';

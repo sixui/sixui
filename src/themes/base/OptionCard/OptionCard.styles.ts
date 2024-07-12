@@ -11,6 +11,9 @@ import { motionVars } from '../vars/motion.stylex';
 type IOptionCardStyles = IStyles<IOptionCardStyleKey>;
 export const styles: MapNamespaces<IOptionCardStyles> =
   stylex.create<IOptionCardStyles>({
+    host: {
+      [cardVars.containerColor]: 'unset',
+    },
     host$selected: {
       [cardVars.outlineColor]: vars.selectedOutlineColor,
       [cardVars.outlineWidth]: vars.selectedOutlineWidth,

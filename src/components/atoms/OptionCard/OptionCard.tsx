@@ -75,7 +75,12 @@ export const OptionCard: IOptionCard = forwardRef(function OptionCard<
       onClick={() => controlRef.current?.click()}
       disabled={other.disabled}
       styles={[theme.styles, ...asArray(styles)]}
-      sx={[checked && stylesCombinator('host$selected'), theme.vars, sx]}
+      sx={[
+        stylesCombinator('host'),
+        checked && stylesCombinator('host$selected'),
+        theme.vars,
+        sx,
+      ]}
     >
       {Component ? null : (
         <input
@@ -105,9 +110,11 @@ export const OptionCard: IOptionCard = forwardRef(function OptionCard<
             />
           ) : null}
         </ElementWithLabel>
-        <div {...sxf(['text', other.disabled && 'text$disabled'])}>
-          {children}
-        </div>
+        {children ? (
+          <div {...sxf(['text', other.disabled && 'text$disabled'])}>
+            {children}
+          </div>
+        ) : null}
       </CardContent>
     </Card>
   );
