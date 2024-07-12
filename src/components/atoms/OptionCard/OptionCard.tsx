@@ -1,6 +1,7 @@
 import { forwardRef, useContext, useMemo, useRef } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 import { asArray } from '@olivierpascal/helpers';
+import { isFunction } from 'lodash';
 
 import type {
   IPolymorphicRef,
@@ -118,7 +119,7 @@ export const OptionCard: IOptionCard = forwardRef(function OptionCard<
         </ElementWithLabel>
         {children ? (
           <div {...sxf(['text', other.disabled && 'text$disabled'])}>
-            {children}
+            {isFunction(children) ? children({ checked }) : children}
           </div>
         ) : null}
       </CardContent>

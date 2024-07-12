@@ -6,10 +6,16 @@ export type IOptionCardControlRenderProps = {
   ref: React.Ref<HTMLInputElement>;
 };
 
+export type IOptionCardRenderProps = {
+  checked?: boolean;
+};
+
 export type IOptionCardOwnProps = IContainerProps<IOptionCardStyleKey> & {
   label: string;
   supportingText?: string;
-  children?: React.ReactNode;
+  children?:
+    | React.ReactNode
+    | ((renderProps: IOptionCardRenderProps) => React.ReactNode);
   checked?: boolean;
   defaultChecked?: boolean;
   onChange?: (
