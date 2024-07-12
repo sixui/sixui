@@ -1,4 +1,4 @@
-import { forwardRef, useMemo, useRef } from 'react';
+import { forwardRef, useContext, useMemo, useRef } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 import { asArray } from '@olivierpascal/helpers';
 
@@ -21,6 +21,7 @@ import {
   IOptionCardStyleKey,
   IOptionCardStyleVarKey,
 } from './OptionCard.styledefs';
+import { RadioGroupContext } from '@/components/atoms/RadioGroup';
 
 type IOptionCard = <TRoot extends React.ElementType>(
   props: IOptionCardProps<TRoot>,
@@ -41,6 +42,7 @@ export const OptionCard: IOptionCard = forwardRef(function OptionCard<
     onChange,
     ...other
   } = props as IWithAsProp<IOptionCardOwnProps>;
+  const radioGroupContext = useContext(RadioGroupContext);
 
   const { theme } = useComponentTheme('OptionCard');
   const stylesCombinator = useMemo(
@@ -57,15 +59,18 @@ export const OptionCard: IOptionCard = forwardRef(function OptionCard<
 
   const controlRef = useRef<HTMLInputElement>(null);
   const controlHandleRef = useMergeRefs([controlRef, forwardedRef]);
-  const [checked, setChecked] = useControlledValue({
+  const [checkedValue, setCheckedValue] = useControlledValue({
     controlled: checkedProp,
     default: !!defaultChecked,
     name: 'OptionCard',
   });
+  const checked = radioGroupContext
+    ? radioGroupContext.value === other.value
+    : checkedValue;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     event.preventDefault();
-    setChecked(event.target.checked);
+    setCheckedValue(event.target.checked);
     onChange?.(event, event.target.checked ? event.target.value : undefined);
   };
 
@@ -74,7 +79,7 @@ export const OptionCard: IOptionCard = forwardRef(function OptionCard<
       variant='outlined'
       onClick={() => controlRef.current?.click()}
       disabled={other.disabled}
-      styles={[theme.styles, ...asArray(styles)]}
+      styles={[theme.styles, theme.cardStyles, ...asArray(styles)]}
       sx={[
         stylesCombinator('host'),
         checked && stylesCombinator('host$selected'),
@@ -87,7 +92,7 @@ export const OptionCard: IOptionCard = forwardRef(function OptionCard<
           ref={controlHandleRef}
           type='checkbox'
           onChange={handleChange}
-          checked={checked}
+          checked={checkedValue}
           tabIndex={-1}
           hidden
         />

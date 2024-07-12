@@ -48,10 +48,10 @@ export const Radio: IRadio = forwardRef(function Radio<
     ...other
   } = props as IWithAsProp<IRadioOwnProps>;
 
-  const context = useContext(RadioGroupContext);
+  const radioGroupContext = useContext(RadioGroupContext);
   const disabled =
-    (disabledProp ?? context?.disabled) ||
-    (readOnly ?? context?.readOnly) ||
+    (disabledProp ?? radioGroupContext?.disabled) ||
+    (readOnly ?? radioGroupContext?.readOnly) ||
     loading;
 
   const actionRef = useRef<HTMLInputElement>(null);
@@ -82,19 +82,19 @@ export const Radio: IRadio = forwardRef(function Radio<
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(
     (event) => {
       Promise.resolve(
-        context
-          ? context?.onChange?.(event, value)
+        radioGroupContext
+          ? radioGroupContext?.onChange?.(event, value)
           : onChange?.(event, event.target.value),
       ).catch((error: Error) => {
         throw error;
       });
     },
-    [onChange, context, value],
+    [onChange, radioGroupContext, value],
   );
 
-  const name = context?.name ?? nameProp;
-  const checked = context
-    ? context.value !== undefined && context.value === value
+  const name = radioGroupContext?.name ?? nameProp;
+  const checked = radioGroupContext
+    ? radioGroupContext.value !== undefined && radioGroupContext.value === value
     : checkedProp;
   return (
     <div {...sxf('host', disabled && 'host$disabled', theme.vars, sx)}>

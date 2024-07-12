@@ -17,6 +17,7 @@ export type IOptionCardOwnProps = IContainerProps<IOptionCardStyleKey> & {
     value: React.InputHTMLAttributes<HTMLInputElement>['value'],
   ) => IMaybeAsync<IAny>;
   disabled?: boolean;
+  value?: React.InputHTMLAttributes<HTMLInputElement>['value'];
 };
 
 export type IOptionCardProps<TRoot extends React.ElementType> =
