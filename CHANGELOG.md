@@ -1,3 +1,17 @@
+# v0.0.309 (Fri Jul 12 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(Checkbox, Switch): value = checked, defaultValue = defaultChecked ([@olivierpascal](https://github.com/olivierpascal))
+- feat(Checkbox, Switch): value = checked, defaultValue = defaultChecked ([@olivierpascal](https://github.com/olivierpascal))
+- fix(ElementWithLabel): show errorText in addition to supportingText ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.308 (Fri Jul 12 2024)
 
 #### ⚠️ Pushed to `main`
