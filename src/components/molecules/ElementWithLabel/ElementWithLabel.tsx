@@ -25,9 +25,9 @@ export const ElementWithLabel = forwardRef<
     disabled,
     readOnly,
     supportingText,
-    errorText,
+    errorText: errorTextProp,
     children,
-    hasError,
+    hasError: hasErrorProp,
     orientation = 'vertical',
     labelPosition = orientation === 'vertical' ? 'start' : 'end',
     supportingTextPosition: supportingTextPositionProp,
@@ -49,18 +49,18 @@ export const ElementWithLabel = forwardRef<
   );
 
   const id = useId(idProp);
-  const supportingOrErrorText =
-    hasError && errorText ? errorText : supportingText;
+  const hasError = hasErrorProp && !disabled;
+  const errorText = hasError ? errorTextProp : undefined;
   const supportingTextPosition =
     orientation === 'vertical'
       ? supportingTextPositionProp ?? labelPosition
       : labelPosition;
   const hasLeading =
-    (label !== undefined && labelPosition === 'start') ||
-    (supportingOrErrorText !== undefined && supportingTextPosition === 'start');
+    (!!label && labelPosition === 'start') ||
+    ((!!supportingText || !!errorText) && supportingTextPosition === 'start');
   const hasTrailing =
-    (label !== undefined && labelPosition === 'end') ||
-    (supportingOrErrorText !== undefined && supportingTextPosition === 'end');
+    (!!label && labelPosition === 'end') ||
+    ((!!supportingText || !!errorText) && supportingTextPosition === 'end');
 
   const renderLabel = (): React.ReactNode =>
     label !== undefined ? (
@@ -84,17 +84,27 @@ export const ElementWithLabel = forwardRef<
     ) : null;
 
   const renderSupportingText = (): React.ReactNode =>
-    supportingOrErrorText !== undefined ? (
-      <div
-        {...sxf(
-          'supportingText',
-          disabled
-            ? 'supportingText$disabled'
-            : hasError && 'supportingText$error',
-        )}
-      >
-        {supportingOrErrorText}
-      </div>
+    supportingText || errorText ? (
+      <>
+        {supportingText ? (
+          <div
+            {...sxf('supportingText', disabled && 'supportingText$disabled')}
+          >
+            {supportingText}
+          </div>
+        ) : null}
+        {errorText ? (
+          <div
+            {...sxf(
+              'supportingText',
+              'supportingText$error',
+              disabled && 'supportingText$disabled',
+            )}
+          >
+            {errorText}
+          </div>
+        ) : null}
+      </>
     ) : null;
 
   return (

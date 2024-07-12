@@ -20,7 +20,7 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   host: {
-    width: 200,
+    width: 260,
   },
 });
 
@@ -48,6 +48,14 @@ const rows: Array<IComponentPresentation<IElementWithLabelProps>> = [
   {
     legend: 'With error and error text',
     props: { hasError: true, errorText: 'Error' },
+  },
+  {
+    legend: 'With error, error text and supporting text',
+    props: {
+      hasError: true,
+      errorText: 'Error',
+      supportingText: 'Supporting text',
+    },
   },
 ];
 
