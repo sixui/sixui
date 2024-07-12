@@ -59,7 +59,7 @@ export const Uncontrolled: IStory = {
 };
 
 const ControlledSwitch: React.FC<
-  IOmit<ISwitchOwnProps, 'onChange' | 'value'>
+  IOmit<ISwitchOwnProps, 'checked' | 'value'>
 > = (props) => {
   const [value, setValue] = useState(props.defaultValue ?? false);
 
@@ -67,7 +67,12 @@ const ControlledSwitch: React.FC<
     <Switch
       {...props}
       value={value}
-      onChange={(_, value) => delay(300).then(() => setValue(value))}
+      onChange={(event, value) =>
+        delay(300).then(() => {
+          setValue(value);
+          props.onChange?.(event, value);
+        })
+      }
     />
   );
 };

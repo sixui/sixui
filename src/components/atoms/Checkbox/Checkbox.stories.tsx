@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
+import { delay } from '@olivierpascal/helpers';
 
 import type { ICheckboxOwnProps } from './CheckboxProps';
 import type { IOmit } from '@/helpers/types';
@@ -49,7 +50,7 @@ export const Uncontrolled: IStory = {
 };
 
 const ControlledCheckbox: React.FC<
-  IOmit<ICheckboxOwnProps, 'onChange' | 'checked' | 'value'>
+  IOmit<ICheckboxOwnProps, 'checked' | 'value'>
 > = (props) => {
   const [value, setValue] = useState(props.defaultValue ?? false);
   const [indeterminate, setIndeterminate] = useState(
@@ -60,10 +61,13 @@ const ControlledCheckbox: React.FC<
     <Checkbox
       {...props}
       value={value}
-      onChange={(_, value) => {
-        setIndeterminate(false);
-        setValue(value);
-      }}
+      onChange={(event, value) =>
+        delay(300).then(() => {
+          setIndeterminate(false);
+          setValue(value);
+          props.onChange?.(event, value);
+        })
+      }
       indeterminate={indeterminate}
     />
   );
