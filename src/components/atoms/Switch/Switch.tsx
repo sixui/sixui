@@ -83,7 +83,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
   );
 
   const [toggledOn, setToggledOn] = useControlledValue({
-    controlled: checkedProp || valueProp,
+    controlled: checkedProp ?? valueProp,
     default: !!defaultChecked || !!defaultValue,
     name: 'Switch',
   });

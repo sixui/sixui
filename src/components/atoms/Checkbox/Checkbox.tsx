@@ -81,7 +81,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
   );
 
   const [value, setValue] = useControlledValue({
-    controlled: checkedProp || valueProp,
+    controlled: checkedProp ?? valueProp,
     default: !!defaultChecked || !!defaultValue,
     name: 'Checkbox',
   });
