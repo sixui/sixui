@@ -1,3 +1,15 @@
+# v0.0.313 (Fri Jul 12 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(OptionCard): transparent background ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.312 (Fri Jul 12 2024)
 
 #### ⚠️ Pushed to `main`
