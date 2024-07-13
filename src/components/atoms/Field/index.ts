@@ -1,3 +1,3 @@
-export * from './Field.styledefs';
-export * from './FieldProps';
+export * from './Field.types';
+export * from './Field.styles';
 export * from './Field';

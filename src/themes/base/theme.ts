@@ -46,8 +46,6 @@ import { componentTheme as filledFieldBaseTheme } from './FieldBase/FilledFieldB
 import { styles as outlinedFieldBaseStyles } from './FieldBase/OutlinedFieldBase.styles';
 import { componentTheme as outlinedFieldBaseTheme } from './FieldBase/OutlinedFieldBase.stylex';
 
-import { styles as fieldStyles } from './Field/Field.styles';
-
 import {
   styles as textFieldBaseStyles,
   fieldStyles as textFieldBaseFieldStyles,
@@ -225,9 +223,6 @@ export const theme: ITheme = {
     OutlinedFieldBase: {
       vars: outlinedFieldBaseTheme,
       styles: outlinedFieldBaseStyles,
-    },
-    Field: {
-      styles: fieldStyles,
     },
     TextFieldBase: {
       vars: textFieldTheme,

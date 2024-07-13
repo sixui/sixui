@@ -5,7 +5,7 @@ import type {
   IOmit,
 } from '@/helpers/types';
 import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
-import type { IFieldStyleKey } from './Field.styledefs';
+import type { IFieldStyleKey } from './Field.styles';
 import {
   FIELD_BASE_DEFAULT_TAG,
   type IFieldBaseStyleKey,

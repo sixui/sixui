@@ -40,7 +40,6 @@ import type {
   IFieldBaseStyleKey,
   IFieldBaseStyleVarKey,
 } from '@/components/atoms/FieldBase';
-import type { IFieldStyleKey } from '@/components/atoms/Field';
 import type {
   ITextFieldBaseStyleKey,
   ITextFieldBaseStyleVarKey,
@@ -210,9 +209,6 @@ export type ITheme = {
     FieldBase: IFieldBaseTheme;
     FilledFieldBase: IFieldBaseTheme;
     OutlinedFieldBase: IFieldBaseTheme;
-    Field: {
-      styles?: ICompiledStyles<IFieldStyleKey>;
-    };
     TextFieldBase: ITextFieldBaseTheme;
     FilledTextField: ITextFieldBaseTheme;
     OutlinedTextField: ITextFieldBaseTheme;

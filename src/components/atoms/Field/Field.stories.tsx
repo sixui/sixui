@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
-import type { IFieldOwnProps } from './FieldProps';
+import type { IFieldOwnProps } from './Field.types';
 import {
   type IComponentPresentation,
   ComponentShowcase,
