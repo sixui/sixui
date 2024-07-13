@@ -73,17 +73,9 @@ import type {
   IScrimStyleVarKey,
 } from '@/components/atoms/Scrim';
 import type {
-  IDialogContentStyleKey,
-  IDialogContentStyleVarKey,
-} from '@/components/atoms/DialogContent';
-import type {
   IMenuListStyleKey,
   IMenuListStyleVarKey,
 } from '@/components/atoms/MenuList';
-import type {
-  IDisclosureStyleKey,
-  IDisclosureStyleVarKey,
-} from '@/components/atoms/Disclosure';
 import type {
   IDisclosureButtonStyleKey,
   IDisclosureButtonStyleVarKey,
@@ -288,19 +280,11 @@ export type ITheme = {
       vars?: IStyleVarsTheme<IScrimStyleVarKey>;
       styles?: ICompiledStyles<IScrimStyleKey>;
     };
-    DialogContent: {
-      vars?: IStyleVarsTheme<IDialogContentStyleVarKey>;
-      styles?: ICompiledStyles<IDialogContentStyleKey>;
-    };
     MenuList: {
       vars?: IStyleVarsTheme<IMenuListStyleVarKey>;
       styles?: ICompiledStyles<IMenuListStyleKey>;
       elevationStyles?: ICompiledStyles<IElevationStyleKey>;
       listStyles?: ICompiledStyles<IListStyleKey>;
-    };
-    Disclosure: {
-      vars?: IStyleVarsTheme<IDisclosureStyleVarKey>;
-      styles?: ICompiledStyles<IDisclosureStyleKey>;
     };
     DisclosureButton: {
       vars?: IStyleVarsTheme<IDisclosureButtonStyleVarKey>;

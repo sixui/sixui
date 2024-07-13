@@ -1,14 +1,12 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IStyleVars } from '@/helpers/types';
-import type { IDialogContentStyleVarKey } from '@/components/atoms/DialogContent';
-import { componentVars as elevationVars } from '../Elevation/Elevation.stylex';
-import { colorRolesVars } from '../vars/colorRoles.stylex';
-import { stateVars } from '../vars/state.stylex';
-import { typescaleVars } from '../vars/typo.stylex';
-import { shapeVars } from '../vars/shape.stylex';
+import { componentVars as elevationVars } from '@/themes/base/Elevation/Elevation.stylex';
+import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { stateVars } from '@/themes/base/vars/state.stylex';
+import { typescaleVars } from '@/themes/base/vars/typo.stylex';
+import { shapeVars } from '@/themes/base/vars/shape.stylex';
 
-const vars: IStyleVars<IDialogContentStyleVarKey> = {
+const vars = {
   // container
   containerColor: colorRolesVars.surfaceContainerHigh,
   containerElevation: elevationVars.boxShadow$level3,
@@ -57,7 +55,7 @@ const vars: IStyleVars<IDialogContentStyleVarKey> = {
   actionStateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
 };
 
-export const componentVars = stylex.defineVars(vars);
+export const dialogContentTokens = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that
@@ -65,4 +63,4 @@ export const componentVars = stylex.defineVars(vars);
  *
  * @see https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
  */
-export const componentTheme = stylex.createTheme(componentVars, vars);
+export const dialogContentTheme = stylex.createTheme(dialogContentTokens, vars);

@@ -1,11 +1,12 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IDisclosureStyleKey } from './Disclosure.styledefs';
-import type { IDisclosureProps } from './DisclosureProps';
+import type { IDisclosureProps } from './Disclosure.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { Expandable } from '@/components/utils/Expandable';
+import { disclosureStyles } from './Disclosure.styles';
+import { disclosureTheme } from './Disclosure.stylex';
 
 export const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
   function Disclosure(props, forwardedRef) {
@@ -21,18 +22,22 @@ export const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
       ...other
     } = props;
 
-    const { theme } = useComponentThemeOld('Disclosure');
+    const { overridenStyles } = useComponentTheme('Disclosure');
     const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(theme.styles, styles),
-      [theme.styles, styles],
+      () => stylesCombinatorFactory(disclosureStyles, styles),
+      [styles],
     );
     const sxf = useMemo(
-      () => stylePropsFactory<IDisclosureStyleKey>(stylesCombinator),
+      () => stylePropsFactory(stylesCombinator),
       [stylesCombinator],
     );
 
     return (
-      <div {...sxf('host', sx, theme.vars)} {...other} ref={forwardedRef}>
+      <div
+        {...sxf(disclosureTheme, overridenStyles, 'host', sx)}
+        {...other}
+        ref={forwardedRef}
+      >
         <Expandable
           trigger={trigger}
           sx={stylesCombinator('panel')}

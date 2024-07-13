@@ -14,19 +14,17 @@ import type {
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
-import type {
-  IDialogContentStyleKey,
-  IDialogContentStyleVarKey,
-} from './DialogContent.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { Divider } from '@/components/atoms/Divider';
 import {
   DIALOG_CONTENT_DEFAULT_TAG,
   type IDialogContentOwnProps,
   type IDialogContentProps,
-} from './DialogContentProps';
+} from './DialogContent.types';
+import { dialogContentStyles } from './DialogContent.styles';
+import { dialogContentTheme } from './DialogContent.stylex';
 
 // https://github.com/material-components/material-web/blob/main/dialog/internal/dialog.ts
 
@@ -56,16 +54,13 @@ export const DialogContent: IDialogContent = forwardRef(function DialogContent<
   const headlineId = useId();
   const childrenId = useId();
 
-  const { theme } = useComponentThemeOld('DialogContent');
+  const { overridenStyles } = useComponentTheme('DialogContent');
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, styles),
-    [theme.styles, styles],
+    () => stylesCombinatorFactory(dialogContentStyles, styles),
+    [styles],
   );
   const sxf = useMemo(
-    () =>
-      stylePropsFactory<IDialogContentStyleKey, IDialogContentStyleVarKey>(
-        stylesCombinator,
-      ),
+    () => stylePropsFactory(stylesCombinator),
     [stylesCombinator],
   );
 
@@ -137,7 +132,7 @@ export const DialogContent: IDialogContent = forwardRef(function DialogContent<
 
   return (
     <Component
-      {...sxf('host', theme.vars, sx)}
+      {...sxf(dialogContentTheme, overridenStyles, 'host', sx)}
       sx={sx}
       aria-labelledby={headline ? headlineId : undefined}
       aria-describedby={childrenId}

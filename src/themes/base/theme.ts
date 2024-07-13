@@ -114,18 +114,12 @@ import { styles as anchoredStyles } from './Anchored/Anchored.styles';
 import { componentTheme as scrimTheme } from './Scrim/Scrim.stylex';
 import { styles as scrimStyles } from './Scrim/Scrim.styles';
 
-import { componentTheme as dialogContentTheme } from './DialogContent/DialogContent.stylex';
-import { styles as dialogContentStyles } from './DialogContent/DialogContent.styles';
-
 import { componentTheme as menuListTheme } from './MenuList/MenuList.stylex';
 import {
   styles as menuListStyles,
   elevationStyles as menuListElevationStyles,
   listStyles as menuListListStyles,
 } from './MenuList/MenuList.styles';
-
-import { componentTheme as disclosureTheme } from './Disclosure/Disclosure.stylex';
-import { styles as disclosureStyles } from './Disclosure/Disclosure.styles';
 
 import { componentTheme as disclosureButtonTheme } from './DisclosureButton/DisclosureButton.stylex';
 import {
@@ -324,19 +318,11 @@ export const theme: ITheme = {
       vars: scrimTheme,
       styles: scrimStyles,
     },
-    DialogContent: {
-      vars: dialogContentTheme,
-      styles: dialogContentStyles,
-    },
     MenuList: {
       vars: menuListTheme,
       styles: menuListStyles,
       elevationStyles: menuListElevationStyles,
       listStyles: menuListListStyles,
-    },
-    Disclosure: {
-      vars: disclosureTheme,
-      styles: disclosureStyles,
     },
     DisclosureButton: {
       vars: disclosureButtonTheme,
