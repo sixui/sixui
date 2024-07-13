@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 import { componentVars as elevationVars } from '@/themes/base/Elevation/Elevation.stylex';
 import { componentVars as focusRingVars } from '@/themes/base/FocusRing/FocusRing.stylex';
 import { componentVars as statelayerVars } from '@/themes/base/StateLayer/StateLayer.stylex';
-import { componentVars as circularProgressIndicatorVars } from '@/themes/base/CircularProgressIndicator/CircularProgressIndicator.stylex';
+import { circularProgressIndicatorTokens } from '@/components/atoms/CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
 import { chipTokens } from './Chip.stylex';
 import { chipStateTokens } from './Chip.state.stylex';
@@ -425,6 +425,6 @@ export const chipTrailingActionStateLayerStyles = stylex.create({
 
 export const chipCircularProgressIndicatorStyles = stylex.create({
   host: {
-    [circularProgressIndicatorVars.color]: chipStateTokens.iconColor,
+    [circularProgressIndicatorTokens.color]: chipStateTokens.iconColor,
   },
 });

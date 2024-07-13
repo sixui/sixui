@@ -1,8 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IStyleVars } from '@/helpers/types';
-import type { ICircularProgressIndicatorStyleVarKey } from '@/components/atoms/CircularProgressIndicator';
-import { colorRolesVars } from '../vars/colorRoles.stylex';
+import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-circular-progress-indicator.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-circular-progress-indicator.scss
@@ -15,7 +13,7 @@ const containerPadding$md = 0; // px
 const size$lg = 40; // px
 const containerPadding$lg = 0; // px
 
-const vars: IStyleVars<ICircularProgressIndicatorStyleVarKey> = {
+const vars = {
   color: colorRolesVars.primary,
   color$disabled: colorRolesVars.onSurface,
   size$md: `${size$md}px`,
@@ -26,7 +24,7 @@ const vars: IStyleVars<ICircularProgressIndicatorStyleVarKey> = {
   widthPct$lg: `calc((${width} / (${size$lg} - ${containerPadding$lg} * 2)) * 100)`,
 };
 
-export const componentVars = stylex.defineVars(vars);
+export const circularProgressIndicatorTokens = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that
@@ -34,4 +32,7 @@ export const componentVars = stylex.defineVars(vars);
  *
  * @see https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
  */
-export const componentTheme = stylex.createTheme(componentVars, vars);
+export const circularProgressIndicatorTheme = stylex.createTheme(
+  circularProgressIndicatorTokens,
+  vars,
+);

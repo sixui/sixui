@@ -14,7 +14,7 @@ import type {
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { IndeterminateCircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
+import { IndeterminateCircularProgressIndicator } from '@/components/atoms/IndeterminateCircularProgressIndicator';
 import { ButtonBase } from '@/components/atoms/ButtonBase';
 import { executeLazyPromise } from '@/helpers/executeLazyPromise';
 import { useVisualState } from '@/components/utils/VisualState';
@@ -123,10 +123,10 @@ export const Button: IButton = forwardRef(function Button<
     <ButtonBase
       sx={[
         buttonTheme,
+        overridenStyles,
         loading ? stylesCombinator('host$loading') : undefined,
         hasLeadingIcon && stylesCombinator('host$withLeadingIcon'),
         hasTrailingIcon && stylesCombinator('host$withTrailingIcon'),
-        overridenStyles,
         sx,
       ]}
       styles={[buttonStyles, variantStyles]}

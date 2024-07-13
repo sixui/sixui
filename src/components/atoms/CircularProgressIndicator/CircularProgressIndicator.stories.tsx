@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { ICircularProgressIndicatorProps } from './CircularProgressIndicatorProps';
+import type { ICircularProgressIndicatorProps } from './CircularProgressIndicator.types';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { CircularProgressIndicator } from './CircularProgressIndicator';
 

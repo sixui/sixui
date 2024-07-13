@@ -9,7 +9,7 @@ import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorp
 import type { IRadioStyleKey } from './Radio.styledefs';
 import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
-import type { ICircularProgressIndicatorStyleKey } from '../CircularProgressIndicator';
+import type { ICircularProgressIndicatorStyleKey } from '@/components/atoms/CircularProgressIndicator';
 import type { IVisualState } from '@/components/utils/VisualState';
 
 export const RADIO_DEFAULT_TAG = 'input';

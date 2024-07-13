@@ -14,7 +14,7 @@ import { useId } from '@/hooks/useId';
 import { useVisualState } from '@/components/utils/VisualState';
 import { StateLayer } from '@/components/utils/StateLayer';
 import { FocusRing } from '@/components/utils/FocusRing';
-import { IndeterminateCircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
+import { IndeterminateCircularProgressIndicator } from '@/components/atoms/IndeterminateCircularProgressIndicator';
 import { RadioGroupContext } from '@/components/atoms/RadioGroup';
 import {
   RADIO_DEFAULT_TAG,

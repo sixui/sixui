@@ -1,10 +1,7 @@
-import type { MapNamespaces } from '@stylexjs/stylex/lib/StyleXTypes';
 import stylex from '@stylexjs/stylex';
 
-import type { IStyles } from '@/helpers/types';
-import type { IIndeterminateCircularProgressIndicatorStyleKey } from '@/components/atoms/CircularProgressIndicator';
-import { stateVars } from '../vars/state.stylex';
-import { componentVars as vars } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
+import { stateVars } from '@/themes/base/vars/state.stylex';
+import { circularProgressIndicatorTokens } from '@/components/atoms/CircularProgressIndicator/CircularProgressIndicator.stylex';
 
 // https://github.com/material-components/material-web/blob/main/progress/internal/_circular-progress.scss
 
@@ -71,70 +68,69 @@ const linearRotateKeyframes = stylex.keyframes({
   '100%': { transform: 'rotate(360deg)' },
 });
 
-const color$disabled = `color-mix(in srgb, ${vars.color$disabled} calc(${stateVars.opacity$disabled} * 100%), transparent)`;
+const color$disabled = `color-mix(in srgb, ${circularProgressIndicatorTokens.color$disabled} calc(${stateVars.opacity$disabled} * 100%), transparent)`;
 
-type IIndeterminateCircularProgressIndicatorStyles =
-  IStyles<IIndeterminateCircularProgressIndicatorStyleKey>;
-export const styles: MapNamespaces<IIndeterminateCircularProgressIndicatorStyles> =
-  stylex.create<IIndeterminateCircularProgressIndicatorStyles>({
-    host: {
-      borderColor: vars.color,
-    },
-    progress: {
-      animationTimingFunction: 'linear',
-      animationIterationCount: 'infinite',
-      animationName: linearRotateKeyframes,
-      animationDuration: linearRotateDuration,
-    },
-    spinner: {
-      animationIterationCount: 'infinite',
-      animationFillMode: 'both',
-      animationName: rotateArcKeyframes,
-      animationDuration: cycleDuration,
-      animationTimingFunction: indeterminateEasing,
-    },
-    left: {
-      overflow: 'hidden',
-      inset: '0 50% 0 0',
-    },
-    right: {
-      overflow: 'hidden',
-      inset: '0 0 0 50%',
-    },
-    circle: {
-      borderRadius: '50%',
-      // match size to svg stroke width, which is a fraction of the overall
-      // padding box width.
-      borderStyle: 'solid',
-      borderTopColor: 'inherit',
-      borderRightColor: 'inherit',
-      borderBottomColor: 'transparent',
-      borderLeftColor: 'transparent',
-      animationName: expandArcKeyframes,
-      animationIterationCount: 'infinite',
-      animationFillMode: 'both',
-      animationDuration: `${arcDuration}, ${cycleDuration}`,
-      animationTimingFunction: indeterminateEasing,
-    },
-    circle$disabled: {
-      borderTopColor: color$disabled,
-      borderRightColor: color$disabled,
-      borderBottomColor: 'transparent',
-      borderLeftColor: 'transparent',
-    },
-    circle$md: {
-      borderWidth: `calc(${vars.widthPct$md} / 100 * calc(${vars.size$md} - (2 * ${vars.containerPadding$md})))`,
-    },
-    circle$lg: {
-      borderWidth: `calc(${vars.widthPct$lg} / 100 * calc(${vars.size$lg} - (2 * ${vars.containerPadding$lg})))`,
-    },
-    leftCircle: {
-      rotate: '135deg',
-      inset: '0 -100% 0 0',
-    },
-    rightCircle: {
-      rotate: '100deg',
-      inset: '0 0 0 -100%',
-      animationDelay: `calc(-0.5 * ${arcDuration}), 0ms`,
-    },
-  });
+export type IIndeterminateCircularProgressIndicatorStyleKey =
+  keyof typeof indeterminateCircularProgressIndicatorStyles;
+export const indeterminateCircularProgressIndicatorStyles = stylex.create({
+  host: {
+    borderColor: circularProgressIndicatorTokens.color,
+  },
+  progress: {
+    animationTimingFunction: 'linear',
+    animationIterationCount: 'infinite',
+    animationName: linearRotateKeyframes,
+    animationDuration: linearRotateDuration,
+  },
+  spinner: {
+    animationIterationCount: 'infinite',
+    animationFillMode: 'both',
+    animationName: rotateArcKeyframes,
+    animationDuration: cycleDuration,
+    animationTimingFunction: indeterminateEasing,
+  },
+  left: {
+    overflow: 'hidden',
+    inset: '0 50% 0 0',
+  },
+  right: {
+    overflow: 'hidden',
+    inset: '0 0 0 50%',
+  },
+  circle: {
+    borderRadius: '50%',
+    // match size to svg stroke width, which is a fraction of the overall
+    // padding box width.
+    borderStyle: 'solid',
+    borderTopColor: 'inherit',
+    borderRightColor: 'inherit',
+    borderBottomColor: 'transparent',
+    borderLeftColor: 'transparent',
+    animationName: expandArcKeyframes,
+    animationIterationCount: 'infinite',
+    animationFillMode: 'both',
+    animationDuration: `${arcDuration}, ${cycleDuration}`,
+    animationTimingFunction: indeterminateEasing,
+  },
+  circle$disabled: {
+    borderTopColor: color$disabled,
+    borderRightColor: color$disabled,
+    borderBottomColor: 'transparent',
+    borderLeftColor: 'transparent',
+  },
+  circle$md: {
+    borderWidth: `calc(${circularProgressIndicatorTokens.widthPct$md} / 100 * calc(${circularProgressIndicatorTokens.size$md} - (2 * ${circularProgressIndicatorTokens.containerPadding$md})))`,
+  },
+  circle$lg: {
+    borderWidth: `calc(${circularProgressIndicatorTokens.widthPct$lg} / 100 * calc(${circularProgressIndicatorTokens.size$lg} - (2 * ${circularProgressIndicatorTokens.containerPadding$lg})))`,
+  },
+  leftCircle: {
+    rotate: '135deg',
+    inset: '0 -100% 0 0',
+  },
+  rightCircle: {
+    rotate: '100deg',
+    inset: '0 0 0 -100%',
+    animationDelay: `calc(-0.5 * ${arcDuration}), 0ms`,
+  },
+});

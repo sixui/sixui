@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 import { componentVars as elevationVars } from '@/themes/base/Elevation/Elevation.stylex';
 import { componentVars as focusRingVars } from '@/themes/base/FocusRing/FocusRing.stylex';
 import { componentVars as statelayerVars } from '@/themes/base/StateLayer/StateLayer.stylex';
-import { componentVars as circularProgressIndicatorVars } from '@/themes/base/CircularProgressIndicator/CircularProgressIndicator.stylex';
+import { circularProgressIndicatorTokens } from '@/components/atoms/CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
 import { buttonTokens } from './Button.stylex';
 import { buttonStateTokens } from './Button.state.stylex';
@@ -194,6 +194,6 @@ export const buttonElevationStyles = stylex.create({
 
 export const buttonCircularProgressIndicatorStyles = stylex.create({
   host: {
-    [circularProgressIndicatorVars.color]: buttonStateTokens.iconColor,
+    [circularProgressIndicatorTokens.color]: buttonStateTokens.iconColor,
   },
 });

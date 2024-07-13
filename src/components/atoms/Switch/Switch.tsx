@@ -14,7 +14,7 @@ import { useVisualState } from '@/components/utils/VisualState';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { FocusRing } from '@/components/utils/FocusRing';
 import { StateLayer } from '@/components/utils/StateLayer';
-import { IndeterminateCircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
+import { IndeterminateCircularProgressIndicator } from '@/components/atoms/IndeterminateCircularProgressIndicator';
 import { ReactComponent as CheckMarkIcon } from '@/assets/CheckMark.svg';
 import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
 import { executeLazyPromise } from '@/helpers/executeLazyPromise';

@@ -5,10 +5,10 @@ import type { IStyles } from '@/helpers/types';
 import type { IDisclosureButtonStyleKey } from '@/components/atoms/DisclosureButton';
 import type { IItemStyleKey } from '@/components/atoms/Item';
 import type { ICircularProgressIndicatorStyleKey } from '@/components/atoms/CircularProgressIndicator';
+import { circularProgressIndicatorTokens } from '@/components/atoms/CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { componentVars as vars } from './DisclosureButton.stylex';
 import { componentVars as listItemVars } from '../ListItem/ListItem.stylex';
 import { componentVars as itemVars } from '../Item/Item.stylex';
-import { componentVars as circularProgressIndicatorVars } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { motionVars } from '../vars/motion.stylex';
 
 type IDisclosureButtonStyles = IStyles<IDisclosureButtonStyleKey>;
@@ -126,6 +126,6 @@ type ICircularProgressIndicatorStyles =
 export const circularProgressIndicatorStyles: MapNamespaces<ICircularProgressIndicatorStyles> =
   stylex.create<ICircularProgressIndicatorStyles>({
     host: {
-      [circularProgressIndicatorVars.color]: vars.textColor,
+      [circularProgressIndicatorTokens.color]: vars.textColor,
     },
   });

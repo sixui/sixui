@@ -6,12 +6,12 @@ import type { ISwitchStyleKey } from '@/components/atoms/Switch';
 import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import type { ICircularProgressIndicatorStyleKey } from '@/components/atoms/CircularProgressIndicator';
+import { circularProgressIndicatorTokens } from '@/components/atoms/CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { componentVars as switchStateVars } from './Switch.states.stylex';
 import { componentVars as vars } from './Switch.stylex';
 import { componentVars as statelayerVars } from '../StateLayer/StateLayer.stylex';
 import { componentVars as focusRingVars } from '../FocusRing/FocusRing.stylex';
 import { motionVars } from '../vars/motion.stylex';
-import { componentVars as circularProgressIndicatorVars } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
 
 // https://github.com/material-components/material-web/blob/main/switch/internal/_switch.scss
 // https://github.com/material-components/material-web/blob/main/switch/internal/_track.scss
@@ -330,6 +330,6 @@ type ICircularProgressIndicatorStyles =
 export const circularProgressIndicatorStyles: MapNamespaces<ICircularProgressIndicatorStyles> =
   stylex.create<ICircularProgressIndicatorStyles>({
     host: {
-      [circularProgressIndicatorVars.color]: switchStateVars.iconColor,
+      [circularProgressIndicatorTokens.color]: switchStateVars.iconColor,
     },
   });

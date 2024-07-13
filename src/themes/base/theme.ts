@@ -22,11 +22,6 @@ import { componentTheme as elevationTheme } from './Elevation/Elevation.stylex';
 import { styles as focusRingStyles } from './FocusRing/FocusRing.styles';
 import { componentTheme as focusRingTheme } from './FocusRing/FocusRing.stylex';
 
-import { styles as circularProgressIndicatorStyles } from './CircularProgressIndicator/CircularProgressIndicator.styles';
-import { componentTheme as circularProgressIndicatorTheme } from './CircularProgressIndicator/CircularProgressIndicator.stylex';
-import { styles as indeterminateCircularProgressIndicatorStyles } from './CircularProgressIndicator/IndeterminateCircularProgressIndicator.styles';
-import { styles as determinateCircularProgressIndicatorStyles } from './CircularProgressIndicator/DeterminateCircularProgressIndicator.styles';
-
 import { styles as fabStyles } from './Fab/Fab.styles';
 import { componentTheme as fabTheme } from './Fab/Fab.stylex';
 import { componentTheme as surfaceFabTheme } from './Fab/SurfaceFab.stylex';
@@ -227,16 +222,6 @@ export const theme: ITheme = {
     FocusRing: {
       vars: focusRingTheme,
       styles: focusRingStyles,
-    },
-    CircularProgressIndicator: {
-      vars: circularProgressIndicatorTheme,
-      styles: circularProgressIndicatorStyles,
-    },
-    IndeterminateCircularProgressIndicator: {
-      styles: indeterminateCircularProgressIndicatorStyles,
-    },
-    DeterminateCircularProgressIndicator: {
-      styles: determinateCircularProgressIndicatorStyles,
     },
     Fab: {
       vars: fabTheme,

@@ -1,6 +1,6 @@
 import type { IContainerProps } from '@/helpers/types';
-import type { ICircularProgressIndicatorSize } from './CircularProgressIndicator.styledefs';
-import type { IDeterminateCircularProgressIndicatorStyleKey } from './DeterminateCircularProgressIndicator.styledefs';
+import type { ICircularProgressIndicatorSize } from '@/components/atoms/CircularProgressIndicator';
+import type { IDeterminateCircularProgressIndicatorStyleKey } from './DeterminateCircularProgressIndicator.styles';
 
 export type IDeterminateCircularProgressIndicatorProps =
   IContainerProps<IDeterminateCircularProgressIndicatorStyleKey> &

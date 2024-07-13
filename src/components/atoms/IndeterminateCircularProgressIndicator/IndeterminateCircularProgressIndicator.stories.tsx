@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IIndeterminateCircularProgressIndicatorProps } from './IndeterminateCircularProgressIndicatorProps';
+import type { ICircularProgressIndicatorSize } from '@/components/atoms/CircularProgressIndicator';
+import type { IIndeterminateCircularProgressIndicatorProps } from './IndeterminateCircularProgressIndicator.types';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { IndeterminateCircularProgressIndicator } from './IndeterminateCircularProgressIndicator';
-import { circularProgressIndicatorSizes } from '../CircularProgressIndicator';
 
 // https://m3.material.io/components/progress-indicators/overview
 // https://material-web.dev/components/progress/
@@ -23,7 +23,9 @@ export const Sizes: IStory = {
     <ComponentShowcase
       component={IndeterminateCircularProgressIndicator}
       props={props}
-      cols={circularProgressIndicatorSizes.map((size) => ({ props: { size } }))}
+      cols={(['md', 'lg'] as Array<ICircularProgressIndicatorSize>).map(
+        (size) => ({ props: { size } }),
+      )}
     />
   ),
   args: defaultArgs,

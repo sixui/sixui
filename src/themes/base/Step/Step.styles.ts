@@ -5,10 +5,10 @@ import type { IStyles } from '@/helpers/types';
 import type { IStepStyleKey } from '@/components/atoms/Step';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import type { ICircularProgressIndicatorStyleKey } from '@/components/atoms/CircularProgressIndicator';
+import { circularProgressIndicatorTokens } from '@/components/atoms/CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { componentVars as vars } from './Step.stylex';
-import { componentVars as focusRingVars } from '../FocusRing/FocusRing.stylex';
-import { componentVars as circularProgressIndicatorVars } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { componentVars as stepStateVars } from './Step.states.stylex';
+import { componentVars as focusRingVars } from '../FocusRing/FocusRing.stylex';
 
 type IStepStyles = IStyles<IStepStyleKey>;
 export const styles: MapNamespaces<IStepStyles> = stylex.create<IStepStyles>({
@@ -272,6 +272,6 @@ type ICircularProgressIndicatorStyles =
 export const circularProgressIndicatorStyles: MapNamespaces<ICircularProgressIndicatorStyles> =
   stylex.create<ICircularProgressIndicatorStyles>({
     host: {
-      [circularProgressIndicatorVars.color]: stepStateVars.iconColor,
+      [circularProgressIndicatorTokens.color]: stepStateVars.iconColor,
     },
   });

@@ -1,11 +1,18 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { ICircularProgressIndicatorStyleVarKey } from '../CircularProgressIndicator';
-import type { IIndeterminateCircularProgressIndicatorStyleKey } from './IndeterminateCircularProgressIndicator.styledefs';
-import type { IIndeterminateCircularProgressIndicatorProps } from './IndeterminateCircularProgressIndicatorProps';
+import type { IIndeterminateCircularProgressIndicatorProps } from './IndeterminateCircularProgressIndicator.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { circularProgressIndicatorTheme } from '@/components/atoms/CircularProgressIndicator/CircularProgressIndicator.stylex';
+import {
+  circularProgressIndicatorStyles,
+  type ICircularProgressIndicatorStyleKey,
+} from '@/components/atoms/CircularProgressIndicator';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
+import {
+  indeterminateCircularProgressIndicatorStyles,
+  type IIndeterminateCircularProgressIndicatorStyleKey,
+} from './IndeterminateCircularProgressIndicator.styles';
 
 // https://github.com/material-components/material-web/blob/main/progress/internal/progress.ts
 // https://github.com/material-components/material-web/blob/main/progress/internal/circular-progress.ts
@@ -16,31 +23,33 @@ export const IndeterminateCircularProgressIndicator = forwardRef<
 >(function IndeterminateCircularProgressIndicator(props, forwardedRef) {
   const { styles, sx, size = 'md', disabled, children, ...other } = props;
 
-  const { theme, variantTheme } = useComponentThemeOld(
-    'CircularProgressIndicator',
-    'IndeterminateCircularProgressIndicator',
-  );
+  const { overridenStyles } = useComponentTheme('CircularProgressIndicator');
   const stylesCombinator = useMemo(
     () =>
-      stylesCombinatorFactory<IIndeterminateCircularProgressIndicatorStyleKey>(
-        theme.styles,
-        variantTheme?.styles,
+      stylesCombinatorFactory<
+        | ICircularProgressIndicatorStyleKey
+        | IIndeterminateCircularProgressIndicatorStyleKey
+      >(
+        circularProgressIndicatorStyles,
+        indeterminateCircularProgressIndicatorStyles,
         styles,
       ),
-    [theme.styles, variantTheme?.styles, styles],
+    [styles],
   );
   const sxf = useMemo(
-    () =>
-      stylePropsFactory<
-        IIndeterminateCircularProgressIndicatorStyleKey,
-        ICircularProgressIndicatorStyleVarKey
-      >(stylesCombinator),
+    () => stylePropsFactory(stylesCombinator),
     [stylesCombinator],
   );
 
   return (
     <div
-      {...sxf('host', `host$${size}`, theme.vars, sx)}
+      {...sxf(
+        circularProgressIndicatorTheme,
+        overridenStyles,
+        'host',
+        `host$${size}`,
+        sx,
+      )}
       ref={forwardedRef}
       {...other}
     >

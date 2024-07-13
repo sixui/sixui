@@ -14,7 +14,7 @@ import type { IOmit } from '@/helpers/types';
 import type { IScrimProps } from './ScrimProps';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { Button } from '@/components/atoms/Button';
-import { CircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
+import { IndeterminateCircularProgressIndicator } from '@/components/atoms/IndeterminateCircularProgressIndicator';
 import { Scrim } from './Scrim';
 import { scrimVariants } from './Scrim.styledefs';
 
@@ -73,7 +73,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  children: <CircularProgressIndicator size='lg' />,
+  children: <IndeterminateCircularProgressIndicator size='lg' />,
 } satisfies Partial<IScrimProps>;
 
 export const Variants: IStory = {

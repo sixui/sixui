@@ -14,7 +14,7 @@ import { usePrevious } from '@/hooks/usePrevious';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { StateLayer } from '@/components/utils/StateLayer';
 import { FocusRing } from '@/components/utils/FocusRing';
-import { IndeterminateCircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
+import { IndeterminateCircularProgressIndicator } from '@/components/atoms/IndeterminateCircularProgressIndicator';
 import { executeLazyPromise } from '@/helpers/executeLazyPromise';
 import {
   CHECKBOX_DEFAULT_TAG,

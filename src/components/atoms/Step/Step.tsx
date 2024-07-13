@@ -16,9 +16,9 @@ import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { ReactComponent as CheckMarkIcon } from '@/assets/CheckMark.svg';
 import { ReactComponent as ExclamationTriangleIcon } from '@/assets/ExclamationTriangle.svg';
 import { StepperContext } from '@/components/atoms/Stepper/StepperContext';
-import { ButtonBase } from '../ButtonBase';
+import { IndeterminateCircularProgressIndicator } from '@/components/atoms/IndeterminateCircularProgressIndicator';
 import { StepContext, type IStepContextValue } from './StepContext';
-import { IndeterminateCircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
+import { ButtonBase } from '../ButtonBase';
 
 export const Step = forwardRef<HTMLDivElement, IStepProps>(
   function Step(props, forwardedRef) {

@@ -28,12 +28,6 @@ import type {
   IFocusRingStyleKey,
   IFocusRingStyleVarKey,
 } from '@/components/utils/FocusRing';
-import type {
-  ICircularProgressIndicatorStyleKey,
-  ICircularProgressIndicatorStyleVarKey,
-  IIndeterminateCircularProgressIndicatorStyleKey,
-  IDeterminateCircularProgressIndicatorStyleKey,
-} from '@/components/atoms/CircularProgressIndicator';
 import type { IFabStyleKey, IFabStyleVarKey } from '@/components/atoms/Fab';
 import type {
   IIconButtonStyleKey,
@@ -136,6 +130,7 @@ import type {
 } from '@/components/atoms/OptionCard';
 import type { IButtonStyleKey } from '@/components/atoms/Button';
 import type { ICardStyleKey } from '@/components/atoms/Card/Card.styles';
+import type { ICircularProgressIndicatorStyleKey } from '@/components/atoms/CircularProgressIndicator';
 
 export type IBasicTemplateTheme = {
   vars?: IStyleVarsTheme<IBasicTemplateStyleVarKey>;
@@ -222,16 +217,6 @@ export type ITheme = {
     FocusRing: {
       vars: IStyleVarsTheme<IFocusRingStyleVarKey>;
       styles: ICompiledStyles<IFocusRingStyleKey>;
-    };
-    CircularProgressIndicator: {
-      vars: IStyleVarsTheme<ICircularProgressIndicatorStyleVarKey>;
-      styles: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
-    };
-    IndeterminateCircularProgressIndicator: {
-      styles: ICompiledStyles<IIndeterminateCircularProgressIndicatorStyleKey>;
-    };
-    DeterminateCircularProgressIndicator: {
-      styles: ICompiledStyles<IDeterminateCircularProgressIndicatorStyleKey>;
     };
     Fab: IFabTheme;
     SurfaceFab: IFabTheme;
