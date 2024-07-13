@@ -120,9 +120,6 @@ import {
 import { componentTheme as filledPaperTheme } from './Paper/FilledPaper.stylex';
 import { componentTheme as outlinedPaperTheme } from './Paper/OutlinedPaper.stylex';
 
-import { componentTheme as cardTitleTheme } from './CardTitle/CardTitle.stylex';
-import { styles as cardTitleStyles } from './CardTitle/CardTitle.styles';
-
 import { componentTheme as tabTheme } from './Tab/Tab.stylex';
 import {
   styles as tabStyles,
@@ -363,10 +360,6 @@ export const theme: ITheme = {
     },
     FilledPaper: { vars: filledPaperTheme },
     OutlinedPaper: { vars: outlinedPaperTheme },
-    CardTitle: {
-      vars: cardTitleTheme,
-      styles: cardTitleStyles,
-    },
     Tab: {
       vars: tabTheme,
       styles: tabStyles,

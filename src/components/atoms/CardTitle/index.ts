@@ -1,3 +1,3 @@
-export * from './CardTitle.styledefs';
-export * from './CardTitleProps';
+export * from './CardTitle.types';
+export * from './CardTitle.styles';
 export * from './CardTitle';

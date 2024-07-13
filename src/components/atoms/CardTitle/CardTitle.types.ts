@@ -1,5 +1,5 @@
 import type { IContainerProps } from '@/helpers/types';
-import type { ICardTitleStyleKey } from './CardTitle.styledefs';
+import type { ICardTitleStyleKey } from './CardTitle.styles';
 
 export type ICardTitleProps = IContainerProps<ICardTitleStyleKey> & {
   headline?: React.ReactNode;

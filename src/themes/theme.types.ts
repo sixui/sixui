@@ -75,10 +75,6 @@ import type {
   IPaperStyleKey,
   IPaperStyleVarKey,
 } from '@/components/atoms/Paper';
-import type {
-  ICardTitleStyleKey,
-  ICardTitleStyleVarKey,
-} from '@/components/atoms/CardTitle';
 import type { ITabStyleKey, ITabStyleVarKey } from '@/components/atoms/Tab';
 import type { ITabListStyleKey } from '@/components/atoms/TabList';
 import type { ITypographyStyleKey } from '@/components/atoms/Typography';
@@ -323,10 +319,6 @@ export type ITheme = {
     FilledPaper: IPaperTheme;
     OutlinedPaper: IPaperTheme & {
       styles?: ICompiledStyles<IPaperStyleKey>;
-    };
-    CardTitle: {
-      vars: IStyleVarsTheme<ICardTitleStyleVarKey>;
-      styles?: ICompiledStyles<ICardTitleStyleKey>;
     };
     Tab: ITabTheme;
     PrimaryTab: ITabTheme;
