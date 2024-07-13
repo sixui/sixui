@@ -12,7 +12,7 @@ const vars: IStyleVars<IOptionCardStyleVarKey> = {
 
   // selectedOutline
   selectedOutlineColor: colorRolesVars.primary,
-  selectedOutlineWidth: '2px',
+  selectedOutlineWidth: '3px',
   // &:disabled
   selectedOutlineColor$disabled: colorRolesVars.outline,
   selectedOutlineOpacity$disabled: stateVars.containerOpacity$disabled,

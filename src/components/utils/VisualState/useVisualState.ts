@@ -1,5 +1,5 @@
 import { accumulate } from '@olivierpascal/helpers';
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 export type IVisualState = {
   hovered?: boolean;
@@ -29,18 +29,24 @@ export const useVisualState = (
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
   const [pressed, setPressed] = useState(false);
+  const focusFromRef = useRef<'mouse'>();
 
   const handleMouseEnter = useCallback(() => setHovered(true), []);
   const handleMouseLeave = useCallback(() => {
     setHovered(false);
     setPressed(false);
   }, []);
-  const handleFocus = useCallback(
-    () => setFocused(options?.retainFocusAfterClick ? true : !pressed),
-    [options?.retainFocusAfterClick, pressed],
-  );
-  const handleBlur = useCallback(() => setFocused(false), []);
+  const handleFocus = useCallback(() => {
+    setFocused(
+      options?.retainFocusAfterClick ? true : focusFromRef.current !== 'mouse',
+    );
+  }, [options?.retainFocusAfterClick]);
+  const handleBlur = useCallback(() => {
+    focusFromRef.current = undefined;
+    setFocused(false);
+  }, []);
   const handleMouseDown = useCallback((event: MouseEvent | Event) => {
+    focusFromRef.current = 'mouse';
     const pressed = !activeTarget && (event as MouseEvent).button === 0;
     setPressed(pressed);
     activeTarget = event.target;
@@ -123,8 +129,17 @@ export const useVisualState = (
     };
   }
 
-  return {
-    visualState: newVisualState,
+  const result = {
+    visualState: {
+      ...newVisualState,
+      focused: newVisualState.focused
+        ? options?.retainFocusAfterClick
+          ? newVisualState.focused
+          : focusFromRef.current !== 'mouse'
+        : false,
+    },
     setRef,
   };
+
+  return result;
 };
