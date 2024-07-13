@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { ICopyableTextProps } from './CopyableTextProps';
+import type { ICopyableTextProps } from './CopyableText.types';
 import { CopyableText } from './CopyableText';
 import {
   ComponentShowcase,

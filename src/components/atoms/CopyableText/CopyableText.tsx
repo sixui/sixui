@@ -1,30 +1,22 @@
-import { forwardRef, useState } from 'react';
+import { forwardRef, useMemo, useState } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
-import stylex from '@stylexjs/stylex';
 
-import type { ICopyableTextProps } from './CopyableTextProps';
+import type { ICopyableTextProps } from './CopyableText.types';
 import { ReactComponent as CopyToClipboardIcon } from '@/assets/CopyToCliboard.svg';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { copyToClipboard } from '@/helpers/copyToClipboard';
 import { PlainTooltip } from '@/components/atoms/PlainTooltip';
 import { FluidButton } from '@/components/atoms/FluidButton';
-
-const styles = stylex.create({
-  container: {
-    display: 'inline-flex',
-    gap: '0.375em',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  text: {
-    textDecoration: 'underline',
-    textDecorationStyle: 'dashed',
-  },
-});
+import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '@/helpers/stylePropsFactory';
+import { copyableTextStyles } from './CopyableText.styles';
 
 export const CopyableText = forwardRef<HTMLElement, ICopyableTextProps>(
   function CopyableText(props, forwardedRef) {
     const {
+      styles,
       sx,
+      innerStyles,
       icon,
       children,
       text,
@@ -33,6 +25,17 @@ export const CopyableText = forwardRef<HTMLElement, ICopyableTextProps>(
       copiedSupportingText = 'Copied!',
       ...other
     } = props;
+
+    const { overridenStyles } = useComponentTheme('CopyableText');
+    const stylesCombinator = useMemo(
+      () => stylesCombinatorFactory(copyableTextStyles, styles),
+      [styles],
+    );
+    const sxf = useMemo(
+      () => stylePropsFactory(stylesCombinator),
+      [stylesCombinator],
+    );
+
     const containerHandleRef = useMergeRefs([forwardedRef]);
     const [copied, setCopied] = useState(false);
     const isTriggerVisible = !disabled;
@@ -61,16 +64,14 @@ export const CopyableText = forwardRef<HTMLElement, ICopyableTextProps>(
         disabled={disabled}
       >
         <FluidButton
-          sx={sx}
           onClick={handleCopy}
           disabled={disabled}
+          styles={innerStyles?.fluidButton}
           {...other}
           ref={containerHandleRef}
         >
-          <div {...stylex.props(styles.container)}>
-            {children ? (
-              <div {...stylex.props(styles.text)}>{children}</div>
-            ) : null}
+          <div {...sxf(overridenStyles, 'host', sx)}>
+            {children ? <div {...sxf('text')}>{children}</div> : null}
             {isTriggerVisible
               ? icon ?? <CopyToClipboardIcon aria-hidden />
               : null}
