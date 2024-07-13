@@ -87,7 +87,6 @@ import type {
   ICardTitleStyleKey,
   ICardTitleStyleVarKey,
 } from '@/components/atoms/CardTitle';
-import type { ICardActionsStyleKey } from '@/components/atoms/CardActions';
 import type { ITabStyleKey, ITabStyleVarKey } from '@/components/atoms/Tab';
 import type { ITabListStyleKey } from '@/components/atoms/TabList';
 import type { ITypographyStyleKey } from '@/components/atoms/Typography';
@@ -344,9 +343,6 @@ export type ITheme = {
     CardTitle: {
       vars: IStyleVarsTheme<ICardTitleStyleVarKey>;
       styles?: ICompiledStyles<ICardTitleStyleKey>;
-    };
-    CardActions: {
-      styles?: ICompiledStyles<ICardActionsStyleKey>;
     };
     Tab: ITabTheme;
     PrimaryTab: ITabTheme;

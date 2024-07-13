@@ -1,3 +1,3 @@
-export * from './CardActions.styledefs';
-export * from './CardActionsProps';
+export * from './CardActions.types';
+export * from './CardActions.styles';
 export * from './CardActions';

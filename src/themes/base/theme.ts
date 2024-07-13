@@ -129,8 +129,6 @@ import { styles as cardContentStyles } from './CardContent/CardContent.styles';
 import { componentTheme as cardTitleTheme } from './CardTitle/CardTitle.stylex';
 import { styles as cardTitleStyles } from './CardTitle/CardTitle.styles';
 
-import { styles as cardActionsStyles } from './CardActions/CardActions.styles';
-
 import { componentTheme as tabTheme } from './Tab/Tab.stylex';
 import {
   styles as tabStyles,
@@ -382,9 +380,6 @@ export const theme: ITheme = {
     CardTitle: {
       vars: cardTitleTheme,
       styles: cardTitleStyles,
-    },
-    CardActions: {
-      styles: cardActionsStyles,
     },
     Tab: {
       vars: tabTheme,
