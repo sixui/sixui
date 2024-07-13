@@ -120,9 +120,6 @@ import {
 import { componentTheme as filledPaperTheme } from './Paper/FilledPaper.stylex';
 import { componentTheme as outlinedPaperTheme } from './Paper/OutlinedPaper.stylex';
 
-import { componentTheme as cardMediaTheme } from './CardMedia/CardMedia.stylex';
-import { styles as cardMediaStyles } from './CardMedia/CardMedia.styles';
-
 import { componentTheme as cardTitleTheme } from './CardTitle/CardTitle.stylex';
 import { styles as cardTitleStyles } from './CardTitle/CardTitle.styles';
 
@@ -366,10 +363,6 @@ export const theme: ITheme = {
     },
     FilledPaper: { vars: filledPaperTheme },
     OutlinedPaper: { vars: outlinedPaperTheme },
-    CardMedia: {
-      vars: cardMediaTheme,
-      styles: cardMediaStyles,
-    },
     CardTitle: {
       vars: cardTitleTheme,
       styles: cardTitleStyles,

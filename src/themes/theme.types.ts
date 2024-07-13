@@ -76,10 +76,6 @@ import type {
   IPaperStyleVarKey,
 } from '@/components/atoms/Paper';
 import type {
-  ICardMediaStyleKey,
-  ICardMediaStyleVarKey,
-} from '@/components/atoms/CardMedia';
-import type {
   ICardTitleStyleKey,
   ICardTitleStyleVarKey,
 } from '@/components/atoms/CardTitle';
@@ -327,10 +323,6 @@ export type ITheme = {
     FilledPaper: IPaperTheme;
     OutlinedPaper: IPaperTheme & {
       styles?: ICompiledStyles<IPaperStyleKey>;
-    };
-    CardMedia: {
-      vars: IStyleVarsTheme<ICardMediaStyleVarKey>;
-      styles?: ICompiledStyles<ICardMediaStyleKey>;
     };
     CardTitle: {
       vars: IStyleVarsTheme<ICardTitleStyleVarKey>;

@@ -1,3 +1,3 @@
-export * from './CardMedia.styledefs';
-export * from './CardMediaProps';
+export * from './CardMedia.types';
+export * from './CardMedia.styles';
 export * from './CardMedia';
