@@ -1,15 +1,13 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IStyleVars } from '@/helpers/types';
-import type { ICheckboxStyleVarKey } from '@/components/atoms/Checkbox';
-import { colorRolesVars } from '../vars/colorRoles.stylex';
-import { stateVars } from '../vars/state.stylex';
-import { shapeVars } from '../vars/shape.stylex';
+import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { stateVars } from '@/themes/base/vars/state.stylex';
+import { shapeVars } from '@/themes/base/vars/shape.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-checkbox.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-checkbox.scss
 
-const vars: Partial<IStyleVars<ICheckboxStyleVarKey>> = {
+const vars = {
   // container
   containerShape: '2px',
   containerSize: '18px',
@@ -117,9 +115,7 @@ const vars: Partial<IStyleVars<ICheckboxStyleVarKey>> = {
   selectedStateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
 };
 
-export const componentVars = stylex.defineVars(
-  vars as IStyleVars<ICheckboxStyleVarKey>,
-);
+export const checkboxTokens = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that
@@ -127,4 +123,4 @@ export const componentVars = stylex.defineVars(
  *
  * @see https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
  */
-export const componentTheme = stylex.createTheme(componentVars, vars);
+export const checkboxTheme = stylex.createTheme(checkboxTokens, vars);

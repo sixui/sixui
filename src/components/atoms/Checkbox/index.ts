@@ -1,3 +1,3 @@
-export * from './Checkbox.styledefs';
-export * from './CheckboxProps';
+export * from './Checkbox.types';
+export * from './Checkbox.styles';
 export * from './Checkbox';

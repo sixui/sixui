@@ -88,12 +88,6 @@ import {
   stateLayerStyles as radioStateLayerStyles,
   focusRingStyles as radioFocusRingStyles,
 } from './Radio/Radio.styles';
-import { componentTheme as checkboxTheme } from './Checkbox/Checkbox.stylex';
-import {
-  styles as checkboxStyles,
-  stateLayerStyles as checkboxStateLayerStyles,
-  focusRingStyles as checkboxFocusRingStyles,
-} from './Checkbox/Checkbox.styles';
 
 import { styles as itemStyles } from './Item/Item.styles';
 import { componentTheme as itemTheme } from './Item/Item.stylex';
@@ -326,12 +320,6 @@ export const theme: ITheme = {
       styles: radioStyles,
       stateLayerStyles: radioStateLayerStyles,
       focusRingStyles: radioFocusRingStyles,
-    },
-    Checkbox: {
-      vars: checkboxTheme,
-      styles: checkboxStyles,
-      stateLayerStyles: checkboxStateLayerStyles,
-      focusRingStyles: checkboxFocusRingStyles,
     },
     Item: {
       vars: itemTheme,

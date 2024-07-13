@@ -6,7 +6,7 @@ import type {
   IAny,
 } from '@/helpers/types';
 import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
-import type { ICheckboxStyleKey } from './Checkbox.styledefs';
+import type { ICheckboxStyleKey } from './Checkbox.styles';
 import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import type { ICircularProgressIndicatorStyleKey } from '@/components/atoms/CircularProgressIndicator';

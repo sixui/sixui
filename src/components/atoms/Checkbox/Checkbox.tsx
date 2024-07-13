@@ -6,13 +6,9 @@ import type {
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
-import type {
-  ICheckboxStyleKey,
-  ICheckboxStyleVarKey,
-} from './Checkbox.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useVisualState } from '@/components/utils/VisualState';
 import { usePrevious } from '@/hooks/usePrevious';
 import { useControlledValue } from '@/hooks/useControlledValue';
@@ -24,7 +20,13 @@ import {
   CHECKBOX_DEFAULT_TAG,
   type ICheckboxOwnProps,
   type ICheckboxProps,
-} from './CheckboxProps';
+} from './Checkbox.types';
+import {
+  checkboxFocusRingStyles,
+  checkboxStateLayerStyles,
+  checkboxStyles,
+} from './Checkbox.styles';
+import { checkboxTheme } from './Checkbox.stylex';
 
 // https://github.com/material-components/material-web/blob/main/checkbox/internal/checkbox.ts
 
@@ -64,17 +66,13 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
   );
   const handleRef = useMergeRefs([forwardedRef, setVisualStateRef, actionRef]);
 
-  const { theme } = useComponentThemeOld('Checkbox');
+  const { overridenStyles } = useComponentTheme('Checkbox');
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, styles),
-    [theme.styles, styles],
+    () => stylesCombinatorFactory(checkboxStyles, styles),
+    [styles],
   );
   const sxf = useMemo(
-    () =>
-      stylePropsFactory<ICheckboxStyleKey, ICheckboxStyleVarKey>(
-        stylesCombinator,
-        visualState,
-      ),
+    () => stylePropsFactory(stylesCombinator, visualState),
     [stylesCombinator, visualState],
   );
 
@@ -118,10 +116,11 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
   return (
     <div
       {...sxf(
+        checkboxTheme,
+        overridenStyles,
         'host',
         selected && 'host$selected',
         disabled && 'host$disabled',
-        theme.vars,
         sx,
       )}
     >
@@ -140,10 +139,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
 
         {loading ? (
           <IndeterminateCircularProgressIndicator
-            styles={[
-              theme.circularProgressIndicatorStyles,
-              ...asArray(innerStyles?.circularProgressIndicator),
-            ]}
+            styles={innerStyles?.circularProgressIndicator}
             disabled
           />
         ) : (
@@ -173,7 +169,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
             <StateLayer
               for={actionRef}
               styles={[
-                theme.stateLayerStyles,
+                checkboxStateLayerStyles,
                 ...asArray(innerStyles?.stateLayer),
               ]}
               disabled={disabled}
@@ -182,7 +178,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
             <FocusRing
               for={actionRef}
               styles={[
-                theme.focusRingStyles,
+                checkboxFocusRingStyles,
                 ...asArray(innerStyles?.focusRing),
               ]}
               visualState={visualState}

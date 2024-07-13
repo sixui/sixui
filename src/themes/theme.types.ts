@@ -57,10 +57,6 @@ import type {
   IRadioStyleKey,
   IRadioStyleVarKey,
 } from '@/components/atoms/Radio';
-import type {
-  ICheckboxStyleKey,
-  ICheckboxStyleVarKey,
-} from '@/components/atoms/Checkbox';
 import type { IItemStyleKey, IItemStyleVarKey } from '@/components/atoms/Item';
 import type { IListStyleKey } from '@/components/atoms/List';
 import type {
@@ -290,13 +286,6 @@ export type ITheme = {
     Radio: {
       vars?: IStyleVarsTheme<IRadioStyleVarKey>;
       styles?: ICompiledStyles<IRadioStyleKey>;
-      stateLayerStyles: ICompiledStyles<IStateLayerStyleKey>;
-      focusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
-      circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
-    };
-    Checkbox: {
-      vars?: IStyleVarsTheme<ICheckboxStyleVarKey>;
-      styles?: ICompiledStyles<ICheckboxStyleKey>;
       stateLayerStyles: ICompiledStyles<IStateLayerStyleKey>;
       focusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
       circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
