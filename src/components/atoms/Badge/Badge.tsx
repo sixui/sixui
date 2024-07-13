@@ -4,8 +4,8 @@ import type { IBadgeProps } from './Badge.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { badgeStyles, type IBadgeStyleKey } from './Badge.styles';
-import { badgeTheme, type IBadgeToken } from './Badge.stylex';
+import { badgeStyles } from './Badge.styles';
+import { badgeTheme } from './Badge.stylex';
 
 export const Badge = forwardRef<HTMLDivElement, IBadgeProps>(
   function Badge(props, forwardedRef) {
@@ -28,7 +28,7 @@ export const Badge = forwardRef<HTMLDivElement, IBadgeProps>(
       [styles],
     );
     const sxf = useMemo(
-      () => stylePropsFactory<IBadgeStyleKey, IBadgeToken>(stylesCombinator),
+      () => stylePropsFactory(stylesCombinator),
       [stylesCombinator],
     );
 

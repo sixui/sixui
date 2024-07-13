@@ -19,12 +19,8 @@ import { ReactComponent as EllipsisHorizontalIcon } from '@/assets/EllipsisHoriz
 import {
   breadcrumbsExpandButtonFocusRingStyles,
   breadcrumbsStyles,
-  type IBreadcrumbsStyleKey,
 } from './Breadcrumbs.styles';
-import {
-  breadscrumbsTheme,
-  type IBreadcrumbsToken,
-} from './Breadcrumbs.stylex';
+import { breadscrumbsTheme } from './Breadcrumbs.stylex';
 
 export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
   function Breadcrumbs(props, forwardedRef) {
@@ -48,10 +44,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
       [styles],
     );
     const sxf = useMemo(
-      () =>
-        stylePropsFactory<IBreadcrumbsStyleKey, IBreadcrumbsToken>(
-          stylesCombinator,
-        ),
+      () => stylePropsFactory(stylesCombinator),
       [stylesCombinator],
     );
 

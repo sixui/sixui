@@ -2,7 +2,6 @@ import stylex from '@stylexjs/stylex';
 
 import { avatarTokens } from './Avatar.stylex';
 
-export type IAvatarStyleKey = keyof typeof avatarStyles;
 export const avatarStyles = stylex.create({
   host: {
     position: 'relative',

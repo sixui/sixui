@@ -6,8 +6,8 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useLoaded } from '@/hooks/useLoaded';
 import { ReactComponent as PersonIcon } from '@/assets/Person.svg';
-import { avatarStyles, type IAvatarStyleKey } from './Avatar.styles';
-import { avatarTheme, type IAvatarToken } from './Avatar.stylex';
+import { avatarStyles } from './Avatar.styles';
+import { avatarTheme } from './Avatar.stylex';
 
 export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
   function Avatar(props, forwardedRef) {
@@ -30,7 +30,7 @@ export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
       [styles],
     );
     const sxf = useMemo(
-      () => stylePropsFactory<IAvatarStyleKey, IAvatarToken>(stylesCombinator),
+      () => stylePropsFactory(stylesCombinator),
       [stylesCombinator],
     );
 

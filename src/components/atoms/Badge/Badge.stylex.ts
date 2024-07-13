@@ -31,8 +31,6 @@ const vars = {
   labelTextOpacity$disabled: stateVars.opacity$disabled,
 };
 
-export type IBadgeToken = keyof typeof vars;
-
 export const badgeTokens = stylex.defineVars(vars);
 
 /**

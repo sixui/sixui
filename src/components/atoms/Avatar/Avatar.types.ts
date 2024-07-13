@@ -1,7 +1,7 @@
 import type { IContainerProps } from '@/helpers/types';
-import type { IAvatarStyleKey } from './Avatar.styles';
+import type { avatarStyles } from './Avatar.styles';
 
-export type IAvatarProps = IContainerProps<IAvatarStyleKey> &
+export type IAvatarProps = IContainerProps<keyof typeof avatarStyles> &
   Pick<
     React.ImgHTMLAttributes<HTMLImageElement>,
     'alt' | 'crossOrigin' | 'referrerPolicy' | 'src' | 'srcSet' | 'sizes'

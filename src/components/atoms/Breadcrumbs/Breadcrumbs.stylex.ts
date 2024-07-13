@@ -29,8 +29,6 @@ const vars = {
   expandButtonLabelTextColor$pressed: colorRolesVars.onSurface,
 };
 
-export type IBreadcrumbsToken = keyof typeof vars;
-
 export const breadcrumbsTokens = stylex.defineVars(vars);
 
 /**

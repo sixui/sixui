@@ -20,8 +20,6 @@ const vars = {
   labelTextWeight: typescaleVars.titleWeight$md,
 };
 
-export type IAvatarToken = keyof typeof vars;
-
 export const avatarTokens = stylex.defineVars(vars);
 
 /**
