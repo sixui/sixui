@@ -8,18 +8,23 @@ import {
 } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
-import type {
-  IBreadcrumbsStyleKey,
-  IBreadcrumbsStyleVarKey,
-} from './Breadcrumbs.styledefs';
-import type { IBreadcrumbsProps } from './BreadcrumbsProps';
+import type { IBreadcrumbsProps } from './Breadcrumbs.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { isProduction } from '@/helpers/isProduction';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { isFragment } from '@/helpers/react/isFragment';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { ButtonBase } from '@/components/atoms/ButtonBase';
 import { ReactComponent as EllipsisHorizontalIcon } from '@/assets/EllipsisHorizontal.svg';
+import {
+  breadcrumbsExpandButtonFocusRingStyles,
+  breadcrumbsStyles,
+  type IBreadcrumbsStyleKey,
+} from './Breadcrumbs.styles';
+import {
+  breadscrumbsTheme,
+  type IBreadcrumbsToken,
+} from './Breadcrumbs.stylex';
 
 export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
   function Breadcrumbs(props, forwardedRef) {
@@ -37,14 +42,14 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
       ...other
     } = props;
 
-    const { theme } = useComponentThemeOld('Breadcrumbs');
+    const { overridenStyles } = useComponentTheme('Breadcrumbs');
     const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(theme.styles, styles),
-      [theme.styles, styles],
+      () => stylesCombinatorFactory(breadcrumbsStyles, styles),
+      [styles],
     );
     const sxf = useMemo(
       () =>
-        stylePropsFactory<IBreadcrumbsStyleKey, IBreadcrumbsStyleVarKey>(
+        stylePropsFactory<IBreadcrumbsStyleKey, IBreadcrumbsToken>(
           stylesCombinator,
         ),
       [stylesCombinator],
@@ -105,13 +110,11 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
         ...items.slice(0, itemCountBeforeCollapse),
         <li key='ellipsis' {...sxf('item')}>
           <ButtonBase
-            styles={[
-              theme.expandButtonStyles,
-              ...asArray(innerStyles?.expandButton),
-            ]}
+            sx={breadcrumbsStyles.expandButton}
+            styles={innerStyles?.expandButton}
             innerStyles={{
               focusRing: [
-                theme.expandButtonFocusRingStyles,
+                breadcrumbsExpandButtonFocusRingStyles,
                 ...asArray(innerStyles?.expandButtonFocusRing),
               ],
             }}
@@ -149,7 +152,11 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
       ));
 
     return (
-      <ol {...sxf('host', theme.vars, sx)} ref={forwardedRef} {...other}>
+      <ol
+        {...sxf('host', breadscrumbsTheme, overridenStyles, sx)}
+        ref={forwardedRef}
+        {...other}
+      >
         {insertSeparators(
           expanded || (maxItems !== undefined && allItems.length <= maxItems)
             ? allItems

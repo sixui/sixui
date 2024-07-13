@@ -96,10 +96,6 @@ import type { ICardActionsStyleKey } from '@/components/atoms/CardActions';
 import type { ITabStyleKey, ITabStyleVarKey } from '@/components/atoms/Tab';
 import type { ITabListStyleKey } from '@/components/atoms/TabList';
 import type { ITypographyStyleKey } from '@/components/atoms/Typography';
-import type {
-  IBreadcrumbsStyleKey,
-  IBreadcrumbsStyleVarKey,
-} from '@/components/atoms/Breadcrumbs';
 import type { IAnchoredStyleKey } from '@/components/utils/Anchored';
 import type {
   IScrimStyleKey,
@@ -396,12 +392,6 @@ export type ITheme = {
     };
     Typography: {
       styles?: ICompiledStyles<ITypographyStyleKey>;
-    };
-    Breadcrumbs: {
-      vars?: IStyleVarsTheme<IBreadcrumbsStyleVarKey>;
-      styles?: ICompiledStyles<IBreadcrumbsStyleKey>;
-      expandButtonStyles?: ICompiledStyles<IButtonStyleKey>;
-      expandButtonFocusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
     };
     Anchored: {
       styles?: ICompiledStyles<IAnchoredStyleKey>;

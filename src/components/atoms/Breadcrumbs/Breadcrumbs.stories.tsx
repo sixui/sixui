@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { createSequence } from '@olivierpascal/helpers';
 
-import type { IBreadcrumbsProps } from './BreadcrumbsProps';
+import type { IBreadcrumbsProps } from './Breadcrumbs.types';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { Breadcrumbs } from './Breadcrumbs';
 

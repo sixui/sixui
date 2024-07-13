@@ -5,7 +5,7 @@ import type {
 } from '@/helpers/types';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import type { IButtonBaseStyleKey } from '@/components/atoms/ButtonBase';
-import type { IBreadcrumbsStyleKey } from './Breadcrumbs.styledefs';
+import type { IBreadcrumbsStyleKey } from './Breadcrumbs.styles';
 
 export type IBreadcrumbsProps = IContainerProps<IBreadcrumbsStyleKey> & {
   innerStyles?: {

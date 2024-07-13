@@ -1,3 +1,3 @@
-export * from './Breadcrumbs.styledefs';
-export * from './BreadcrumbsProps';
+export * from './Breadcrumbs.styles';
+export * from './Breadcrumbs.types';
 export * from './Breadcrumbs';

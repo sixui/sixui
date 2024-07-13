@@ -175,13 +175,6 @@ import { styles as tabListStyles } from './TabList/TabList.styles';
 
 import { styles as typographyStyles } from './Typography/Typography.styles';
 
-import { componentTheme as breadcrumbsTheme } from './Breadcrumbs/Breadcrumbs.stylex';
-import {
-  styles as breadcrumbsStyles,
-  expandButtonStyles as breadcrumbsExpandButtonStyles,
-  expandButtonFocusRingStyles as breadcrumbsExpandButtonFocusRingStyles,
-} from './Breadcrumbs/Breadcrumbs.styles';
-
 import { styles as anchoredStyles } from './Anchored/Anchored.styles';
 
 import { componentTheme as scrimTheme } from './Scrim/Scrim.stylex';
@@ -467,12 +460,6 @@ export const theme: ITheme = {
     },
     Typography: {
       styles: typographyStyles,
-    },
-    Breadcrumbs: {
-      vars: breadcrumbsTheme,
-      styles: breadcrumbsStyles,
-      expandButtonStyles: breadcrumbsExpandButtonStyles,
-      expandButtonFocusRingStyles: breadcrumbsExpandButtonFocusRingStyles,
     },
     Anchored: {
       styles: anchoredStyles,

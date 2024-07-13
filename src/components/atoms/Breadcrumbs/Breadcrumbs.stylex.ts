@@ -1,11 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IStyleVars } from '@/helpers/types';
-import type { IBreadcrumbsStyleVarKey } from '@/components/atoms/Breadcrumbs';
-import { typescaleVars } from '../vars/typo.stylex';
-import { colorRolesVars } from '../vars/colorRoles.stylex';
+import { typescaleVars } from '@/themes/base/vars/typo.stylex';
+import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 
-const vars: IStyleVars<IBreadcrumbsStyleVarKey> = {
+const vars = {
   // item
   itemColor: colorRolesVars.onSurface,
 
@@ -31,7 +29,9 @@ const vars: IStyleVars<IBreadcrumbsStyleVarKey> = {
   expandButtonLabelTextColor$pressed: colorRolesVars.onSurface,
 };
 
-export const componentVars = stylex.defineVars(vars);
+export type IBreadcrumbsToken = keyof typeof vars;
+
+export const breadcrumbsTokens = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that
@@ -39,4 +39,4 @@ export const componentVars = stylex.defineVars(vars);
  *
  * @see https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
  */
-export const componentTheme = stylex.createTheme(componentVars, vars);
+export const breadscrumbsTheme = stylex.createTheme(breadcrumbsTokens, vars);
