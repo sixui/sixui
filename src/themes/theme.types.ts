@@ -28,7 +28,6 @@ import type {
   IFocusRingStyleKey,
   IFocusRingStyleVarKey,
 } from '@/components/utils/FocusRing';
-import type { IFabStyleKey, IFabStyleVarKey } from '@/components/atoms/Fab';
 import type {
   IIconButtonStyleKey,
   IIconButtonStyleVarKey,
@@ -133,13 +132,6 @@ export type IListItemTheme = {
   focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
 };
 
-export type IFabTheme = {
-  vars?: IStyleVarsTheme<IFabStyleVarKey>;
-  styles?: ICompiledStyles<IFabStyleKey>;
-};
-
-export type IFabVariantTheme = IFabTheme;
-
 export type IIconButtonTheme = {
   vars?: IStyleVarsTheme<IIconButtonStyleVarKey>;
   styles?: ICompiledStyles<IIconButtonStyleKey>;
@@ -201,12 +193,6 @@ export type ITheme = {
       vars: IStyleVarsTheme<IFocusRingStyleVarKey>;
       styles: ICompiledStyles<IFocusRingStyleKey>;
     };
-    Fab: IFabTheme;
-    SurfaceFab: IFabTheme;
-    PrimaryFab: IFabTheme;
-    SecondaryFab: IFabTheme;
-    TertiaryFab: IFabTheme;
-    BrandedFab: IFabTheme;
     IconButton: IIconButtonTheme;
     StandardIconButton: IIconButtonTheme;
     FilledIconButton: IIconButtonTheme;

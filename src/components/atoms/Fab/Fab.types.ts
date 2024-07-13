@@ -9,7 +9,16 @@ import type {
   IButtonOwnProps,
   IButtonStyleKey,
 } from '@/components/atoms/Button';
-import type { IFabSize, IFabStyleKey, IFabVariant } from './Fab.styledefs';
+import type { IFabStyleKey } from './Fab.styles';
+
+export type IFabVariant =
+  | 'surface'
+  | 'primary'
+  | 'secondary'
+  | 'tertiary'
+  | 'branded';
+
+export type IFabSize = 'sm' | 'md' | 'lg';
 
 export const FAB_DEFAULT_TAG = 'button';
 

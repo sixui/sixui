@@ -22,14 +22,6 @@ import { componentTheme as elevationTheme } from './Elevation/Elevation.stylex';
 import { styles as focusRingStyles } from './FocusRing/FocusRing.styles';
 import { componentTheme as focusRingTheme } from './FocusRing/FocusRing.stylex';
 
-import { styles as fabStyles } from './Fab/Fab.styles';
-import { componentTheme as fabTheme } from './Fab/Fab.stylex';
-import { componentTheme as surfaceFabTheme } from './Fab/SurfaceFab.stylex';
-import { componentTheme as primaryFabTheme } from './Fab/PrimaryFab.stylex';
-import { componentTheme as secondaryFabTheme } from './Fab/SecondaryFab.stylex';
-import { componentTheme as tertiaryFabTheme } from './Fab/TertiaryFab.stylex';
-import { componentTheme as brandedFabTheme } from './Fab/BrandedFab.stylex';
-
 import { styles as iconButtonStyles } from './IconButton/IconButton.styles';
 import { componentTheme as iconButtonTheme } from './IconButton/IconButton.stylex';
 import { componentTheme as standardIconButtonTheme } from './IconButton/StandardIconButton.stylex';
@@ -205,15 +197,6 @@ export const theme: ITheme = {
       vars: focusRingTheme,
       styles: focusRingStyles,
     },
-    Fab: {
-      vars: fabTheme,
-      styles: fabStyles,
-    },
-    SurfaceFab: { vars: surfaceFabTheme },
-    PrimaryFab: { vars: primaryFabTheme },
-    SecondaryFab: { vars: secondaryFabTheme },
-    TertiaryFab: { vars: tertiaryFabTheme },
-    BrandedFab: { vars: brandedFabTheme },
     IconButton: {
       vars: iconButtonTheme,
       styles: iconButtonStyles,

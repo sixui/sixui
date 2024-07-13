@@ -1,17 +1,16 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IStyleVars } from '@/helpers/types';
-import type { IFabStyleVarKey } from '@/components/atoms/Fab';
-import { componentVars as elevationVars } from '../Elevation/Elevation.stylex';
-import { colorRolesVars } from '../vars/colorRoles.stylex';
-import { shapeVars } from '../vars/shape.stylex';
-import { stateVars } from '../vars/state.stylex';
-import { typescaleVars } from '../vars/typo.stylex';
+import { componentVars as elevationVars } from '@/themes/base/Elevation/Elevation.stylex';
+import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { stateVars } from '@/themes/base/vars/state.stylex';
+import { typescaleVars } from '@/themes/base/vars/typo.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-fab-primary.scss
 
-const vars: Partial<IStyleVars<IFabStyleVarKey>> = {
+const vars = {
   // container
+  containerColor: 'inherit',
   containerWidth$sm: '40px',
   containerHeight$sm: '40px',
   containerWidth$md: '56px',
@@ -34,6 +33,7 @@ const vars: Partial<IStyleVars<IFabStyleVarKey>> = {
   containerElevation$pressed: elevationVars.boxShadow$level3,
 
   // loweredContainer
+  loweredContainerColor: 'inherit',
   loweredContainerElevation: elevationVars.boxShadow$level1,
   // &hover
   loweredContainerElevation$hover: elevationVars.boxShadow$level2,
@@ -43,33 +43,47 @@ const vars: Partial<IStyleVars<IFabStyleVarKey>> = {
   loweredContainerElevation$pressed: elevationVars.boxShadow$level1,
 
   // icon
+  iconColor: 'inherit',
   iconSize$sm: '24px',
   iconSize$md: '24px',
   iconSize$lg: '36px',
   iconColor$disabled: colorRolesVars.onSurface,
+  // &:hover
+  iconColor$hover: 'inherit',
+  // &:focus
+  iconColor$focus: 'inherit',
+  // &:pressed
+  iconColor$pressed: 'inherit',
   // &:disabled
   iconOpacity$disabled: stateVars.opacity$disabled,
 
   // stateLayer
   // &:hover
+  stateLayerColor$hover: 'inherit',
   stateLayerOpacity$hover: stateVars.stateLayerOpacity$hover,
   // &:pressed
+  stateLayerColor$pressed: 'inherit',
   stateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
 
   // label
+  labelTextColor: 'inherit',
   labelTextFont: typescaleVars.labelFont$lg,
   labelTextLineHeight: typescaleVars.labelLineHeight$lg,
   labelTextSize: typescaleVars.labelSize$lg,
   labelTextLetterSpacing: typescaleVars.labelLetterSpacing$lg,
   labelTextWeight: typescaleVars.labelWeight$lg,
+  // &:hover
+  labelTextColor$hover: 'inherit',
+  // &:focus
+  labelTextColor$focus: 'inherit',
+  // &:pressed
+  labelTextColor$pressed: 'inherit',
   // &:disabled
   labelTextColor$disabled: colorRolesVars.onSurface,
   labelTextOpacity$disabled: stateVars.opacity$disabled,
 };
 
-export const componentVars = stylex.defineVars(
-  vars as IStyleVars<IFabStyleVarKey>,
-);
+export const fabTokens = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that
@@ -77,4 +91,4 @@ export const componentVars = stylex.defineVars(
  *
  * @see https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
  */
-export const componentTheme = stylex.createTheme(componentVars, vars);
+export const fabTheme = stylex.createTheme(fabTokens, vars);

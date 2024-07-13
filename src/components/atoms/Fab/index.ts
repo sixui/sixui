@@ -1,3 +1,3 @@
-export * from './Fab.styledefs';
-export * from './FabProps';
+export * from './Fab.types';
+export * from './Fab.styles';
 export * from './Fab';
