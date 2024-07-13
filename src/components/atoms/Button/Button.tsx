@@ -24,6 +24,7 @@ import {
   buttonFocusRingStyles,
   buttonStateLayerStyles,
   buttonStyles,
+  type IButtonStyleKey,
 } from './Button.styles';
 import { buttonTheme } from './Button.stylex';
 import { elevatedButtonStyles } from './ElevatedButton.styles';
@@ -80,7 +81,12 @@ export const Button: IButton = forwardRef(function Button<
   const variantStyles = variant ? variantMap[variant] : undefined;
 
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(buttonStyles, variantStyles, styles),
+    () =>
+      stylesCombinatorFactory<IButtonStyleKey>(
+        buttonStyles,
+        variantStyles,
+        styles,
+      ),
     [variantStyles, styles],
   );
   const sxf = useMemo(

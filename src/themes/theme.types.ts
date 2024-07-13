@@ -153,6 +153,7 @@ import type {
   IOptionCardStyleKey,
   IOptionCardStyleVarKey,
 } from '@/components/atoms/OptionCard';
+import type { IButtonStyleKey } from '@/components/atoms/Button';
 
 export type IBasicTemplateTheme = {
   vars?: IStyleVarsTheme<IBasicTemplateStyleVarKey>;
