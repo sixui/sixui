@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 
-import type { IButtonBaseProps } from './ButtonBaseProps';
+import type { IButtonBaseProps } from './ButtonBase.types';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { shapeVars } from '@/themes/base/vars/shape.stylex';
 import { componentVars as stateLayerVars } from '@/themes/base/StateLayer/StateLayer.stylex';
@@ -42,15 +42,17 @@ export const Unstyled: IStory = {
 
 const buttonStyles = stylex.create({
   host: {
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: colorRolesVars.outline,
     padding: 8,
     borderRadius: shapeVars.corner$md,
     color: {
       default: colorRolesVars.onSurface,
       ':is([data-pressed])': colorRolesVars.onSurface,
     },
+  },
+  outline: {
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: colorRolesVars.outline,
   },
 });
 
@@ -70,7 +72,7 @@ export const Styled: IStory = {
   render: (props) => <ButtonBase {...props} />,
   args: {
     ...defaultArgs,
-    sx: buttonStyles.host,
+    styles: buttonStyles,
     innerStyles: {
       stateLayer: stateLayerStyles,
       focusRing: focusRingStyles,

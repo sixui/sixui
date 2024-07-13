@@ -30,7 +30,7 @@ import {
   focusRingStyles as buttonFocusRingStyles,
   circularProgressIndicatorStyles as buttonCircularProgressIndicatorStyles,
 } from './Button/Button.styles';
-import { styles as buttonBaseStyles } from './Button/ButtonBase.styles';
+import { buttonBaseStyles } from '@/components/atoms/ButtonBase/ButtonBase.styles';
 import { componentTheme as elevatedButtonTheme } from './Button/ElevatedButton.stylex';
 import { componentTheme as filledButtonTheme } from './Button/FilledButton.stylex';
 import { componentTheme as filledTonalButtonTheme } from './Button/FilledTonalButton.stylex';

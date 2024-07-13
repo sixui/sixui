@@ -1,7 +1,7 @@
 import type { IContainerProps } from '@/helpers/types';
-import type { badgeStyles } from './Badge.styles';
+import type { IBadgeStyleKey } from './Badge.styles';
 
-export type IBadgeProps = IContainerProps<keyof typeof badgeStyles> & {
+export type IBadgeProps = IContainerProps<IBadgeStyleKey> & {
   children?: React.ReactNode;
   value?: number;
   maxValue?: number;

@@ -4,11 +4,11 @@ import type {
   ICompiledStyles,
 } from '@/helpers/types';
 import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
-import type { IButtonBaseStyleKey } from './ButtonBase.styledefs';
 import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import type { IElevationStyleKey } from '@/components/utils/Elevation';
 import type { IVisualState } from '@/components/utils/VisualState';
+import type { IButtonBaseStyleKey } from './ButtonBase.styles';
 
 export const BUTTON_BASE_DEFAULT_TAG = 'button';
 
@@ -19,8 +19,6 @@ export type IButtonBaseOwnProps = IContainerProps<IButtonBaseStyleKey> & {
     elevation?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
   };
   visualState?: IVisualState;
-  withLeadingIcon?: boolean; // TODO: -> Button
-  withTrailingIcon?: boolean; // TODO: -> Button
   children?: React.ReactNode;
   inwardFocusRing?: boolean;
   href?: string;

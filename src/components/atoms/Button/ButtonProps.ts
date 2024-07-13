@@ -1,7 +1,6 @@
 import type {
   IAny,
   ICompiledStyles,
-  IOmit,
   IMaybeAsync,
   IZeroOrMore,
 } from '@/helpers/types';
@@ -12,21 +11,20 @@ import type { IButtonVariant } from './Button.styledefs';
 
 export const BUTTON_DEFAULT_TAG = 'button';
 
-export type IButtonOwnProps = IOmit<
-  IButtonBaseOwnProps,
-  'withLeadingIcon' | 'withTrailingIcon'
-> & {
+export type IButtonOwnProps = IButtonBaseOwnProps & {
   innerStyles?: IButtonBaseOwnProps['innerStyles'] & {
     circularProgressIndicator?: IZeroOrMore<
       ICompiledStyles<ICircularProgressIndicatorStyleKey>
     >;
   };
+  withLeadingIcon?: boolean;
+  withTrailingIcon?: boolean;
   variant?: IButtonVariant | false;
   icon?: React.ReactNode;
   trailingIcon?: boolean;
-  loading?: boolean; // TODO: -> Button
-  loadingAnimation?: 'progressIndicator' | 'halfSpin' | 'none'; // TODO: -> Button
-  loadingText?: string; // TODO: -> Button
+  loading?: boolean;
+  loadingAnimation?: 'progressIndicator' | 'halfSpin' | 'none';
+  loadingText?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => IMaybeAsync<IAny>; // TODO: -> ButtonBase
 };
 

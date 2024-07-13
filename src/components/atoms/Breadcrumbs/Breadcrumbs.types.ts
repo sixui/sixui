@@ -5,11 +5,9 @@ import type {
 } from '@/helpers/types';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import type { IButtonBaseStyleKey } from '@/components/atoms/ButtonBase';
-import type { breadcrumbsStyles } from './Breadcrumbs.styles';
+import type { IBreadcrumbsStyleKey } from './Breadcrumbs.styles';
 
-export type IBreadcrumbsProps = IContainerProps<
-  keyof typeof breadcrumbsStyles
-> & {
+export type IBreadcrumbsProps = IContainerProps<IBreadcrumbsStyleKey> & {
   innerStyles?: {
     expandButton?: IZeroOrMore<ICompiledStyles<IButtonBaseStyleKey>>;
     expandButtonFocusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;

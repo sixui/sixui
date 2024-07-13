@@ -142,11 +142,11 @@ export const Button: IButton = forwardRef(function Button<
         loading ? stylesCombinator('host$loading') : undefined,
         theme.vars,
         variantTheme?.vars,
+        hasLeadingIcon && stylesCombinator('host$withLeadingIcon'),
+        hasTrailingIcon && stylesCombinator('host$withTrailingIcon'),
         overridenStyles,
         sx,
       ]}
-      withLeadingIcon={hasLeadingIcon}
-      withTrailingIcon={hasTrailingIcon}
       innerStyles={{
         ...innerStyles,
         stateLayer: [
