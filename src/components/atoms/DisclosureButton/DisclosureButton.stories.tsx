@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
-import type { IDisclosureButtonProps } from './DisclosureButtonProps';
+import type { IDisclosureButtonProps } from './DisclosureButton.types';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   ComponentShowcase,

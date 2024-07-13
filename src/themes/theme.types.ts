@@ -76,10 +76,6 @@ import type {
   IMenuListStyleKey,
   IMenuListStyleVarKey,
 } from '@/components/atoms/MenuList';
-import type {
-  IDisclosureButtonStyleKey,
-  IDisclosureButtonStyleVarKey,
-} from '@/components/atoms/DisclosureButton';
 import type { IStepperStyleKey } from '@/components/atoms/Stepper';
 import type { IStepStyleKey, IStepStyleVarKey } from '@/components/atoms/Step';
 import type {
@@ -285,12 +281,6 @@ export type ITheme = {
       styles?: ICompiledStyles<IMenuListStyleKey>;
       elevationStyles?: ICompiledStyles<IElevationStyleKey>;
       listStyles?: ICompiledStyles<IListStyleKey>;
-    };
-    DisclosureButton: {
-      vars?: IStyleVarsTheme<IDisclosureButtonStyleVarKey>;
-      styles?: ICompiledStyles<IDisclosureButtonStyleKey>;
-      itemStyles?: ICompiledStyles<IItemStyleKey>;
-      circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
     };
     Stepper: {
       styles?: ICompiledStyles<IStepperStyleKey>;

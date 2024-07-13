@@ -121,13 +121,6 @@ import {
   listStyles as menuListListStyles,
 } from './MenuList/MenuList.styles';
 
-import { componentTheme as disclosureButtonTheme } from './DisclosureButton/DisclosureButton.stylex';
-import {
-  styles as disclosureButtonStyles,
-  itemStyles as disclosureButtonItemStyles,
-  circularProgressIndicatorStyles as disclosureButtonCircularProgressIndicatorStyles,
-} from './DisclosureButton/DisclosureButton.styles';
-
 import { styles as stepperStyles } from './Stepper/Stepper.styles';
 
 import { componentTheme as stepTheme } from './Step/Step.stylex';
@@ -323,13 +316,6 @@ export const theme: ITheme = {
       styles: menuListStyles,
       elevationStyles: menuListElevationStyles,
       listStyles: menuListListStyles,
-    },
-    DisclosureButton: {
-      vars: disclosureButtonTheme,
-      styles: disclosureButtonStyles,
-      itemStyles: disclosureButtonItemStyles,
-      circularProgressIndicatorStyles:
-        disclosureButtonCircularProgressIndicatorStyles,
     },
     Stepper: {
       styles: stepperStyles,

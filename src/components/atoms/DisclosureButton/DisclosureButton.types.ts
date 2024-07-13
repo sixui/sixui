@@ -6,7 +6,7 @@ import type {
   IOmit,
   IZeroOrMore,
 } from '@/helpers/types';
-import type { IDisclosureButtonStyleKey } from './DisclosureButton.styledefs';
+import type { IDisclosureButtonStyleKey } from './DisclosureButton.styles';
 import type { IListItemOwnProps } from '../ListItem';
 import type { ICheckboxStyleKey } from '../Checkbox';
 import type { ISwitchStyleKey } from '../Switch';

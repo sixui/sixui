@@ -1,21 +1,24 @@
 import { forwardRef, useContext, useEffect, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
-import type {
-  IDisclosureButtonStyleKey,
-  IDisclosureButtonStyleVarKey,
-} from './DisclosureButton.styledefs';
-import type { IDisclosureButtonProps } from './DisclosureButtonProps';
+import type { IDisclosureButtonProps } from './DisclosureButton.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
-import { ListItem } from '@/components/atoms/ListItem';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { IListItemStyleKey, ListItem } from '@/components/atoms/ListItem';
 import { ReactComponent as ChevronDown } from '@/assets/ChevronDown.svg';
 import { Checkbox } from '@/components/atoms/Checkbox';
 import { Switch } from '@/components/atoms/Switch';
 import { IndeterminateCircularProgressIndicator } from '@/components/atoms/IndeterminateCircularProgressIndicator';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { ExpandableContext } from '@/components/utils/Expandable';
+import {
+  disclosureButtonCircularProgressIndicatorStyles,
+  disclosureButtonItemStyles,
+  disclosureButtonStyles,
+  type IDisclosureButtonStyleKey,
+} from './DisclosureButton.styles';
+import { disclosureButtonTheme } from './DisclosureButton.stylex';
 
 export const DisclosureButton = forwardRef<
   HTMLButtonElement,
@@ -40,17 +43,17 @@ export const DisclosureButton = forwardRef<
     ...other
   } = props;
 
-  const { theme, overridenStyles } = useComponentThemeOld('DisclosureButton');
+  const { overridenStyles } = useComponentTheme('DisclosureButton');
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, styles),
-    [theme.styles, styles],
+    () =>
+      stylesCombinatorFactory<IListItemStyleKey | IDisclosureButtonStyleKey>(
+        disclosureButtonStyles,
+        styles,
+      ),
+    [styles],
   );
   const sxf = useMemo(
-    () =>
-      stylePropsFactory<
-        IDisclosureButtonStyleKey,
-        IDisclosureButtonStyleVarKey
-      >(stylesCombinator),
+    () => stylePropsFactory(stylesCombinator),
     [stylesCombinator],
   );
 
@@ -101,7 +104,7 @@ export const DisclosureButton = forwardRef<
   };
 
   return (
-    <div {...sxf('host', theme.vars, overridenStyles, sx)}>
+    <div {...sxf(disclosureButtonTheme, overridenStyles, 'host', sx)}>
       <ListItem
         sx={stylesCombinator(
           'button',
@@ -112,13 +115,16 @@ export const DisclosureButton = forwardRef<
         )}
         innerStyles={{
           ...innerStyles?.listItem,
-          item: [theme.itemStyles, ...asArray(innerStyles?.listItem?.item)],
+          item: [
+            disclosureButtonItemStyles,
+            ...asArray(innerStyles?.listItem?.item),
+          ],
         }}
         trailing={
           !togglable && loading ? (
             <IndeterminateCircularProgressIndicator
               styles={[
-                theme.circularProgressIndicatorStyles,
+                disclosureButtonCircularProgressIndicatorStyles,
                 ...asArray(innerStyles?.circularProgressIndicator),
               ]}
             />
