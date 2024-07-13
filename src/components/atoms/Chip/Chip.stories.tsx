@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarDays, faImage } from '@fortawesome/free-solid-svg-icons';
 
-import type { IChipProps } from './ChipProps';
+import type { IChipProps } from './Chip.types';
 import { IAny } from '@/helpers/types';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {

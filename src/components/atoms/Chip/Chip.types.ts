@@ -6,12 +6,14 @@ import type {
   IMaybeAsync,
 } from '@/helpers/types';
 import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
-import type { IChipStyleKey, IChipVariant } from './Chip.styledefs';
 import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import type { IElevationStyleKey } from '@/components/utils/Elevation';
 import type { IVisualState } from '@/components/utils/VisualState';
 import type { ICircularProgressIndicatorStyleKey } from '@/components/atoms/CircularProgressIndicator';
+import type { IChipStyleKey } from './Chip.styles';
+
+export type IChipVariant = 'assist' | 'filter' | 'input' | 'suggestion';
 
 export const CHIP_DEFAULT_TAG = 'div';
 

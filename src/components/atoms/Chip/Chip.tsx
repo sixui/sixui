@@ -7,15 +7,10 @@ import type {
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
-import type { IThemeComponents } from '@/components/utils/Theme';
-import type {
-  IChipStyleKey,
-  IChipStyleVarKey,
-  IChipVariant,
-} from './Chip.styledefs';
+import type { CHIP_DEFAULT_TAG, IChipOwnProps, IChipProps } from './Chip.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useVisualState } from '@/components/utils/VisualState';
 import { Elevation } from '@/components/utils/Elevation';
 import { FocusRing } from '@/components/utils/FocusRing';
@@ -26,31 +21,23 @@ import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
 import { ButtonBase } from '@/components/atoms/ButtonBase';
 import { Avatar } from '@/components/atoms/Avatar';
 import { executeLazyPromise } from '@/helpers/executeLazyPromise';
+import { chipVariantStyles } from './variants';
 import {
-  CHIP_DEFAULT_TAG,
-  type IChipOwnProps,
-  type IChipProps,
-} from './ChipProps';
+  chipCircularProgressIndicatorStyles,
+  chipElevationStyles,
+  chipFocusRingStyles,
+  chipSstateLayerStyles,
+  chipStyles,
+  chipTrailingActionFocusRingStyles,
+  chipTrailingActionStateLayerStyles,
+} from './Chip.styles';
+import { chipTheme } from './Chip.stylex';
 
 // https://github.com/material-components/material-web/blob/main/chips/internal/chip.ts
 // https://github.com/material-components/material-web/blob/main/chips/internal/assist-chip.ts
 // https://github.com/material-components/material-web/blob/main/chips/internal/filter-chip.ts
 // https://github.com/material-components/material-web/blob/main/chips/internal/input-chip.ts
 // https://github.com/material-components/material-web/blob/main/chips/internal/suggestion-chip.ts
-
-type IChipVariantMap = {
-  [key in IChipVariant]: keyof Pick<
-    IThemeComponents,
-    'AssistChip' | 'FilterChip' | 'InputChip' | 'SuggestionChip'
-  >;
-};
-
-const variantMap: IChipVariantMap = {
-  assist: 'AssistChip',
-  filter: 'FilterChip',
-  input: 'InputChip',
-  suggestion: 'SuggestionChip',
-};
 
 const avatarStyles = stylex.create({
   host: {
@@ -112,20 +99,15 @@ export const Chip: IChip = forwardRef(function Chip<
 
   const trailingActionRef = useRef<HTMLButtonElement>(null);
 
-  const { theme, variantTheme, settings } = useComponentThemeOld(
-    'Chip',
-    variant ? variantMap[variant] : undefined,
-  );
+  const { overridenStyles, settings } = useComponentTheme('Chip');
+  const variantStyles = variant ? chipVariantStyles[variant] : undefined;
+
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
-    [theme.styles, variantTheme?.styles, styles],
+    () => stylesCombinatorFactory(chipStyles, variantStyles, styles),
+    [variantStyles, styles],
   );
   const sxf = useMemo(
-    () =>
-      stylePropsFactory<IChipStyleKey, IChipStyleVarKey>(
-        stylesCombinator,
-        visualState,
-      ),
+    () => stylePropsFactory(stylesCombinator, visualState),
     [stylesCombinator, visualState],
   );
 
@@ -242,12 +224,12 @@ export const Chip: IChip = forwardRef(function Chip<
   return (
     <div
       {...sxf(
+        chipTheme,
+        overridenStyles,
         'host',
         interactive && 'host$interactive',
         disabled && 'host$disabled',
         avatar && 'host$avatar',
-        theme.vars,
-        variantTheme?.vars,
         sx,
       )}
       data-cy={dataCy}
@@ -262,11 +244,7 @@ export const Chip: IChip = forwardRef(function Chip<
         )}
       >
         <Elevation
-          styles={[
-            theme.elevationStyles,
-            variantTheme?.elevationStyles,
-            ...asArray(innerStyles?.elevation),
-          ]}
+          styles={[chipElevationStyles, ...asArray(innerStyles?.elevation)]}
           disabled={disabledProp}
         />
         {elevated ? null : (
@@ -280,19 +258,14 @@ export const Chip: IChip = forwardRef(function Chip<
           />
         )}
         <FocusRing
-          styles={[
-            theme.focusRingStyles,
-            variantTheme?.focusRingStyles,
-            ...asArray(innerStyles?.focusRing),
-          ]}
+          styles={[chipFocusRingStyles, ...asArray(innerStyles?.focusRing)]}
           for={primaryActionRef}
           visualState={visualState}
         />
         {interactive ? (
           <StateLayer
             styles={[
-              theme.stateLayerStyles,
-              variantTheme?.stateLayerStyles,
+              chipSstateLayerStyles,
               ...asArray(innerStyles?.stateLayer),
             ]}
             for={primaryActionRef}
@@ -337,8 +310,7 @@ export const Chip: IChip = forwardRef(function Chip<
                   <IndeterminateCircularProgressIndicator
                     sx={stylesCombinator('icon')}
                     styles={[
-                      theme.circularProgressIndicatorStyles,
-                      variantTheme?.circularProgressIndicatorStyles,
+                      chipCircularProgressIndicatorStyles,
                       ...asArray(innerStyles?.circularProgressIndicator),
                     ]}
                   />
@@ -396,8 +368,7 @@ export const Chip: IChip = forwardRef(function Chip<
                   <div {...sxf(disabled && 'iconContainer$disabled')}>
                     <IndeterminateCircularProgressIndicator
                       styles={[
-                        theme.circularProgressIndicatorStyles,
-                        variantTheme?.circularProgressIndicatorStyles,
+                        chipCircularProgressIndicatorStyles,
                         ...asArray(innerStyles?.circularProgressIndicator),
                       ]}
                     />
@@ -416,13 +387,11 @@ export const Chip: IChip = forwardRef(function Chip<
             sx={[...stylesCombinator('action', 'action$trailing')]}
             innerStyles={{
               focusRing: [
-                theme.trailingActionFocusRingStyles,
-                variantTheme?.trailingActionFocusRingStyles,
+                chipTrailingActionFocusRingStyles,
                 ...asArray(innerStyles?.trailingActionFocusRing),
               ],
               stateLayer: [
-                theme.trailingActionStateLayerStyles,
-                variantTheme?.trailingActionStateLayerStyles,
+                chipTrailingActionStateLayerStyles,
                 ...asArray(innerStyles?.trailingActionStateLayer),
               ],
             }}
@@ -453,8 +422,7 @@ export const Chip: IChip = forwardRef(function Chip<
                 <div {...sxf('overlay')}>
                   <IndeterminateCircularProgressIndicator
                     styles={[
-                      theme.circularProgressIndicatorStyles,
-                      variantTheme?.circularProgressIndicatorStyles,
+                      chipCircularProgressIndicatorStyles,
                       ...asArray(innerStyles?.circularProgressIndicator),
                     ]}
                   />

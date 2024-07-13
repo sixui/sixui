@@ -12,10 +12,11 @@ import { darkColorRoles } from '@/themes/base/vars/darkColorRoles';
 // For theme variant
 // import { colorPalettesTheme as variantColorPalettesTheme } from '@/themes/variant/colorPalettes.stylex';
 // import { shapeTheme as variantShapeTheme } from '@/themes/variant/shape.stylex';
-// import { componentVars as buttonVars } from '@/themes/base/Button/Button.stylex';
+// import { buttonTokens } from '@/components/atoms/Button/Button.stylex';
 // import { componentVars as disclosureButtonVars } from '@/themes/base/DisclosureButton/DisclosureButton.stylex';
 // import { avatarTokens } from '@/components/atoms/Avatar/Avatar.stylex';
 // import { badgeTokens } from '@/components/atoms/Badge/Badge.stylex';
+// import { checkboxTokens } from '@/components/atoms/Checkbox/Checkbox.stylex';
 
 import '@/styles/main.css';
 import '@/styles/storybook.css';
@@ -62,7 +63,7 @@ const styles = stylex.create({
 
 // const componentsStyles = stylex.create({
 //   Button: {
-//     [buttonVars.containerShape]: '0',
+//     [buttonTokens.containerShape]: '0',
 //   },
 //   DisclosureButton: {
 //     [disclosureButtonVars.containerShape]: '0',
@@ -72,6 +73,9 @@ const styles = stylex.create({
 //   },
 //   Badge: {
 //     [badgeTokens.containerShape]: '0',
+//   },
+//   Checkbox: {
+//     [checkboxTokens.containerShape]: '999px',
 //   },
 // });
 

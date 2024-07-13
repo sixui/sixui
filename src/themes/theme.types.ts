@@ -34,7 +34,6 @@ import type {
   IIndeterminateCircularProgressIndicatorStyleKey,
   IDeterminateCircularProgressIndicatorStyleKey,
 } from '@/components/atoms/CircularProgressIndicator';
-import type { IChipStyleKey, IChipStyleVarKey } from '@/components/atoms/Chip';
 import type { IFabStyleKey, IFabStyleVarKey } from '@/components/atoms/Fab';
 import type {
   IIconButtonStyleKey,
@@ -156,21 +155,6 @@ export type IListItemTheme = {
   focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
 };
 
-export type IChipTheme = {
-  vars?: IStyleVarsTheme<IChipStyleVarKey>;
-  styles?: ICompiledStyles<IChipStyleKey>;
-  stateLayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
-  focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
-  elevationStyles?: ICompiledStyles<IElevationStyleKey>;
-  trailingActionFocusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
-  trailingActionStateLayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
-  circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
-};
-
-export type IChipVariantTheme = IChipTheme & {
-  statelayerTheme?: IStyleVarsTheme<IStateLayerStyleVarKey>;
-};
-
 export type IFabTheme = {
   vars?: IStyleVarsTheme<IFabStyleVarKey>;
   styles?: ICompiledStyles<IFabStyleKey>;
@@ -249,11 +233,6 @@ export type ITheme = {
     DeterminateCircularProgressIndicator: {
       styles: ICompiledStyles<IDeterminateCircularProgressIndicatorStyleKey>;
     };
-    Chip: IChipTheme;
-    AssistChip: IChipTheme;
-    FilterChip: IChipTheme;
-    InputChip: IChipTheme;
-    SuggestionChip: IChipTheme;
     Fab: IFabTheme;
     SurfaceFab: IFabTheme;
     PrimaryFab: IFabTheme;

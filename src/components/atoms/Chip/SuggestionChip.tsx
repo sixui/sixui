@@ -1,4 +1,4 @@
-import type { ISuggestionChipProps } from './SuggestionChipProps';
+import type { ISuggestionChipProps } from './SuggestionChip.types';
 import { Chip } from './Chip';
 
 export const SuggestionChip: React.FC<ISuggestionChipProps> = (props) => (

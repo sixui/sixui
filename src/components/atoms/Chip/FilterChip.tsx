@@ -1,4 +1,4 @@
-import type { IFilterChipProps } from './FilterChipProps';
+import type { IFilterChipProps } from './FilterChip.types';
 import { Chip } from './Chip';
 
 export const FilterChip: React.FC<IFilterChipProps> = (props) => (

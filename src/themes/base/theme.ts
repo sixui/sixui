@@ -27,21 +27,6 @@ import { componentTheme as circularProgressIndicatorTheme } from './CircularProg
 import { styles as indeterminateCircularProgressIndicatorStyles } from './CircularProgressIndicator/IndeterminateCircularProgressIndicator.styles';
 import { styles as determinateCircularProgressIndicatorStyles } from './CircularProgressIndicator/DeterminateCircularProgressIndicator.styles';
 
-import { componentTheme as chipTheme } from './Chip/Chip.stylex';
-import {
-  styles as chipStyles,
-  stateLayerStyles as chipStateLayerStyles,
-  elevationStyles as chipElevationStyles,
-  focusRingStyles as chipFocusRingStyles,
-  trailingActionFocusRingStyles as chipTrailingActionFocusRingStyles,
-  trailingActionStateLayerStyles as chipTrailingActionStateLayerStyles,
-  circularProgressIndicatorStyles as chipCircularProgressIndicatorStyles,
-} from './Chip/Chip.styles';
-import { componentTheme as assistChipTheme } from './Chip/AssistChip.stylex';
-import { componentTheme as filterChipTheme } from './Chip/FilterChip.stylex';
-import { componentTheme as inputChipTheme } from './Chip/InputChip.stylex';
-import { componentTheme as suggestionChipTheme } from './Chip/SuggestionChip.stylex';
-
 import { styles as fabStyles } from './Fab/Fab.styles';
 import { componentTheme as fabTheme } from './Fab/Fab.stylex';
 import { componentTheme as surfaceFabTheme } from './Fab/SurfaceFab.stylex';
@@ -253,20 +238,6 @@ export const theme: ITheme = {
     DeterminateCircularProgressIndicator: {
       styles: determinateCircularProgressIndicatorStyles,
     },
-    Chip: {
-      vars: chipTheme,
-      styles: chipStyles,
-      stateLayerStyles: chipStateLayerStyles,
-      focusRingStyles: chipFocusRingStyles,
-      elevationStyles: chipElevationStyles,
-      trailingActionFocusRingStyles: chipTrailingActionFocusRingStyles,
-      trailingActionStateLayerStyles: chipTrailingActionStateLayerStyles,
-      circularProgressIndicatorStyles: chipCircularProgressIndicatorStyles,
-    },
-    AssistChip: { vars: assistChipTheme },
-    FilterChip: { vars: filterChipTheme },
-    InputChip: { vars: inputChipTheme },
-    SuggestionChip: { vars: suggestionChipTheme },
     Fab: {
       vars: fabTheme,
       styles: fabStyles,

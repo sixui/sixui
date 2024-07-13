@@ -1,4 +1,4 @@
-import type { IAssistChipProps } from './AssistChipProps';
+import type { IAssistChipProps } from './AssistChip.types';
 import { Chip } from './Chip';
 
 export const AssistChip: React.FC<IAssistChipProps> = (props) => (
