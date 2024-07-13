@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
-import type { IDialogOwnProps, IDialogProps } from './DialogProps';
+import type { IDialogOwnProps, IDialogProps } from './Dialog.types';
 import { Dialog } from './Dialog';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { commonStyles } from '@/helpers/commonStyles';

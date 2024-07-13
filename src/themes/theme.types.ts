@@ -72,7 +72,6 @@ import type {
   IScrimStyleKey,
   IScrimStyleVarKey,
 } from '@/components/atoms/Scrim';
-import type { IDialogStyleKey } from '@/components/atoms/Dialog';
 import type {
   IDialogContentStyleKey,
   IDialogContentStyleVarKey,
@@ -288,9 +287,6 @@ export type ITheme = {
     Scrim: {
       vars?: IStyleVarsTheme<IScrimStyleVarKey>;
       styles?: ICompiledStyles<IScrimStyleKey>;
-    };
-    Dialog: {
-      styles?: ICompiledStyles<IDialogStyleKey>;
     };
     DialogContent: {
       vars?: IStyleVarsTheme<IDialogContentStyleVarKey>;

@@ -15,16 +15,14 @@ import type {
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
-import type { IDialogStyleKey } from './Dialog.styledefs';
-
 import type {
   IDialogProps,
   IDialogOwnProps,
   DIALOG_DEFAULT_TAG,
-} from './DialogProps';
+} from './Dialog.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import {
   DialogContent,
   type IDialogContentOwnProps,
@@ -33,6 +31,7 @@ import { Scrim } from '@/components/atoms/Scrim';
 import { Portal } from '@/components/utils/Portal';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { extendFloatingProps } from '@/helpers/extendFloatingProps';
+import { dialogStyles, type IDialogStyleKey } from './Dialog.styles';
 
 // https://github.com/material-components/material-web/blob/main/dialog/internal/dialog.ts
 
@@ -44,6 +43,9 @@ export const Dialog: IDialog = forwardRef(function Dialog<
   TRoot extends React.ElementType = typeof DIALOG_DEFAULT_TAG,
 >(props: IDialogProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
+    styles,
+    sx,
+    innerStyles,
     as,
     trigger,
     isOpen: isOpenProp,
@@ -53,10 +55,10 @@ export const Dialog: IDialog = forwardRef(function Dialog<
     ...other
   } = props as IWithAsProp<IDialogOwnProps>;
 
-  const { theme } = useComponentThemeOld('Dialog');
+  const { overridenStyles } = useComponentTheme('Dialog');
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles),
-    [theme.styles],
+    () => stylesCombinatorFactory(dialogStyles, styles),
+    [styles],
   );
   const sxf = useMemo(
     () => stylePropsFactory<IDialogStyleKey>(stylesCombinator),
@@ -104,9 +106,16 @@ export const Dialog: IDialog = forwardRef(function Dialog<
         <Portal>
           <Scrim context={floating.context} lockScroll>
             <FloatingFocusManager context={floating.context}>
-              <div {...sxf(`transition$${transitionStatus.status}`)}>
+              <div
+                {...sxf(
+                  overridenStyles,
+                  `transition$${transitionStatus.status}`,
+                  sx,
+                )}
+              >
                 <DialogContent
                   as={as}
+                  styles={innerStyles?.dialogContent}
                   onClose={(event) =>
                     floating.context.onOpenChange(
                       false,

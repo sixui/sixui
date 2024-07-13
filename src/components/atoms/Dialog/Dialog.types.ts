@@ -1,9 +1,18 @@
-import type { IOmit } from '@/helpers/types';
 import type { OpenChangeReason, ReferenceType } from '@floating-ui/react';
 
+import type {
+  IContainerProps,
+  IOmit,
+  IZeroOrMore,
+  ICompiledStyles,
+} from '@/helpers/types';
 import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
-import type { IDialogContentOwnProps } from '@/components/atoms/DialogContent';
-import { IExtendedHtmlFloatingProps } from '@/helpers/extendFloatingProps';
+import type {
+  IDialogContentOwnProps,
+  IDialogContentStyleKey,
+} from '@/components/atoms/DialogContent';
+import type { IExtendedHtmlFloatingProps } from '@/helpers/extendFloatingProps';
+import type { IDialogStyleKey } from './Dialog.styles';
 
 export const DIALOG_DEFAULT_TAG = 'div';
 
@@ -30,8 +39,13 @@ export type IDialogTriggerRenderProps = {
   ) => IExtendedHtmlFloatingProps;
 };
 
-export type IDialogOwnProps = IOmit<IDialogContentOwnProps, 'onClose'> &
+export type IDialogOwnProps = IContainerProps<IDialogStyleKey> &
+  IOmit<IDialogContentOwnProps, 'onClose' | 'styles'> &
   Pick<React.AriaAttributes, 'aria-label'> & {
+    innerStyles?: {
+      dialogContent?: IZeroOrMore<ICompiledStyles<IDialogContentStyleKey>>;
+    };
+
     /**
      * Whether the dialog is visible. Passing this prop puts the dialog in
      * controlled mode, where the only way to change its visibility is by

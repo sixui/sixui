@@ -1,3 +1,3 @@
-export * from './Dialog.styledefs';
-export * from './DialogProps';
+export * from './Dialog.types';
+export * from './Dialog.styles';
 export * from './Dialog';

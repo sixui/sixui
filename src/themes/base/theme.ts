@@ -114,8 +114,6 @@ import { styles as anchoredStyles } from './Anchored/Anchored.styles';
 import { componentTheme as scrimTheme } from './Scrim/Scrim.stylex';
 import { styles as scrimStyles } from './Scrim/Scrim.styles';
 
-import { styles as dialogStyles } from './Dialog/Dialog.styles';
-
 import { componentTheme as dialogContentTheme } from './DialogContent/DialogContent.stylex';
 import { styles as dialogContentStyles } from './DialogContent/DialogContent.styles';
 
@@ -325,9 +323,6 @@ export const theme: ITheme = {
     Scrim: {
       vars: scrimTheme,
       styles: scrimStyles,
-    },
-    Dialog: {
-      styles: dialogStyles,
     },
     DialogContent: {
       vars: dialogContentTheme,
