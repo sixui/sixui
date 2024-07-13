@@ -1,4 +1,3 @@
-import type { StyleXStyles } from '@stylexjs/stylex';
 import { forwardRef, useMemo, useState } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
@@ -10,7 +9,6 @@ import type {
   BUTTON_DEFAULT_TAG,
   IButtonOwnProps,
   IButtonProps,
-  IButtonVariant,
 } from './Button.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
@@ -27,15 +25,7 @@ import {
   type IButtonStyleKey,
 } from './Button.styles';
 import { buttonTheme } from './Button.stylex';
-import {
-  elevatedButtonStyles,
-  filledButtonStyles,
-  filledTonalButtonStyles,
-  outlinedButtonStyles,
-  textButtonStyles,
-  dangerButtonStyles,
-  snackbarButtonStyles,
-} from './variants';
+import { buttonVariantStyles } from './variants';
 
 // https://github.com/material-components/material-web/blob/main/button/internal/button.ts
 // https://github.com/material-components/material-web/blob/main/button/internal/elevated-button.ts
@@ -43,18 +33,6 @@ import {
 // https://github.com/material-components/material-web/blob/main/button/internal/filled-tonal-button.ts
 // https://github.com/material-components/material-web/blob/main/button/internal/outlined-button.ts
 // https://github.com/material-components/material-web/blob/main/button/internal/text-button.ts
-
-const variantMap: {
-  [key in IButtonVariant]: Record<string, StyleXStyles>;
-} = {
-  elevated: elevatedButtonStyles,
-  filled: filledButtonStyles,
-  filledTonal: filledTonalButtonStyles,
-  outlined: outlinedButtonStyles,
-  text: textButtonStyles,
-  danger: dangerButtonStyles,
-  snackbar: snackbarButtonStyles,
-};
 
 type IButton = <TRoot extends React.ElementType = typeof BUTTON_DEFAULT_TAG>(
   props: IButtonProps<TRoot>,
@@ -80,7 +58,7 @@ export const Button: IButton = forwardRef(function Button<
   } = props as IWithAsProp<IButtonOwnProps>;
 
   const { overridenStyles } = useComponentTheme('Button');
-  const variantStyles = variant ? variantMap[variant] : undefined;
+  const variantStyles = variant ? buttonVariantStyles[variant] : undefined;
 
   const stylesCombinator = useMemo(
     () =>
