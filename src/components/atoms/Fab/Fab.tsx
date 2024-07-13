@@ -7,7 +7,7 @@ import type {
 } from '@/helpers/react/polymorphicComponentTypes';
 import type { IFabVariant } from './Fab.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { IThemeComponents } from '@/components/utils/Theme';
 import { Button } from '@/components/atoms/Button';
 import { FAB_DEFAULT_TAG, type IFabProps, type IFabOwnProps } from './FabProps';
@@ -50,7 +50,7 @@ export const Fab: IFab = forwardRef(function Fab<
     ...other
   } = props as IWithAsProp<IFabOwnProps>;
 
-  const { theme, variantTheme } = useComponentTheme(
+  const { theme, variantTheme } = useComponentThemeOld(
     'Fab',
     variant ? variantMap[variant] : undefined,
   );

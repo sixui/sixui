@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IColorPalettes } from '../../colorPalettes.types';
+import type { IColorPalettesThemeVars } from '../colorPalettes.types';
 import { colorPalettesVars as baseColorPalettesVars } from '@/themes/base/vars/colorPalettes.stylex';
 
 // Generate a new color palette with Material Theme Builder:
@@ -147,7 +147,7 @@ const errorPalette = {
   error100: '#fff',
 };
 
-export const colorPalettesVars = stylex.defineVars<IColorPalettes>({
+export const colorPalettesVars = stylex.defineVars<IColorPalettesThemeVars>({
   white: '#fff',
   black: '#000',
 
@@ -159,7 +159,7 @@ export const colorPalettesVars = stylex.defineVars<IColorPalettes>({
   ...errorPalette,
 });
 
-export const colorPaletteTheme = stylex.createTheme(
+export const colorPalettesTheme = stylex.createTheme(
   baseColorPalettesVars,
   colorPalettesVars,
 );

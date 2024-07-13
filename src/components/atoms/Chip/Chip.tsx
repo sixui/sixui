@@ -15,7 +15,7 @@ import type {
 } from './Chip.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { useVisualState } from '@/components/utils/VisualState';
 import { Elevation } from '@/components/utils/Elevation';
 import { FocusRing } from '@/components/utils/FocusRing';
@@ -112,7 +112,7 @@ export const Chip: IChip = forwardRef(function Chip<
 
   const trailingActionRef = useRef<HTMLButtonElement>(null);
 
-  const { theme, variantTheme, settings } = useComponentTheme(
+  const { theme, variantTheme, settings } = useComponentThemeOld(
     'Chip',
     variant ? variantMap[variant] : undefined,
   );

@@ -6,7 +6,7 @@ import type {
   IMenuListStyleVarKey,
 } from './MenuList.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { Elevation } from '@/components/utils/Elevation';
 import { List } from '@/components/atoms/List';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
@@ -16,7 +16,7 @@ export const MenuList = forwardRef<HTMLDivElement, IMenuListProps>(
   function MenuList(props, forwardedRef) {
     const { styles, sx, innerStyles, children, ...other } = props;
 
-    const { theme } = useComponentTheme('MenuList');
+    const { theme } = useComponentThemeOld('MenuList');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

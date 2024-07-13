@@ -1,19 +1,19 @@
 import stylex from '@stylexjs/stylex';
 
 import type {
-  IColorRolesAddOns,
-  IColorRolesAddOnsDim,
-  IColorRolesAddOnsFixed,
-  IColorRolesAddOnsOnFixed,
-  IColorRolesAddOnsOnFixedVariant,
-  IColorRolesError,
-  IColorRolesOutline,
-  IColorRolesPrimary,
-  IColorRolesSecondary,
-  IColorRolesSurface,
-  IColorRolesSurfaceInverse,
-  IColorRolesTertiary,
-  IColorRoles,
+  IColorRolesAddOnsThemeVars,
+  IColorRolesAddOnsDimThemeVars,
+  IColorRolesAddOnsFixedThemeVars,
+  IColorRolesAddOnsOnFixedThemeVars,
+  IColorRolesAddOnsOnFixedVariantThemeVars,
+  IColorRolesErrorThemeVars,
+  IColorRolesOutlineThemeVars,
+  IColorRolesPrimaryThemeVars,
+  IColorRolesSecondaryThemeVars,
+  IColorRolesSurfaceThemeVars,
+  IColorRolesSurfaceInverseThemeVars,
+  IColorRolesTertiaryThemeVars,
+  IColorRolesThemeVars,
 } from '../../colorRoles.types';
 import { colorPalettesVars } from './colorPalettes.stylex';
 
@@ -26,41 +26,41 @@ import { colorPalettesVars } from './colorPalettes.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-sys-color.scss
 
-const primary: IColorRolesPrimary = {
+const primary: IColorRolesPrimaryThemeVars = {
   primary: colorPalettesVars.primary40,
   onPrimary: colorPalettesVars.primary100,
   primaryContainer: colorPalettesVars.primary90,
   onPrimaryContainer: colorPalettesVars.primary10,
 };
 
-const secondary: IColorRolesSecondary = {
+const secondary: IColorRolesSecondaryThemeVars = {
   secondary: colorPalettesVars.secondary40,
   onSecondary: colorPalettesVars.secondary100,
   secondaryContainer: colorPalettesVars.secondary90,
   onSecondaryContainer: colorPalettesVars.secondary10,
 };
 
-const tertiary: IColorRolesTertiary = {
+const tertiary: IColorRolesTertiaryThemeVars = {
   tertiary: colorPalettesVars.tertiary40,
   onTertiary: colorPalettesVars.tertiary100,
   tertiaryContainer: colorPalettesVars.tertiary90,
   onTertiaryContainer: colorPalettesVars.tertiary10,
 };
 
-const error: IColorRolesError = {
+const error: IColorRolesErrorThemeVars = {
   error: colorPalettesVars.error40,
   onError: colorPalettesVars.error100,
   errorContainer: colorPalettesVars.error90,
   onErrorContainer: colorPalettesVars.error10,
 };
 
-const surfaceInverse: IColorRolesSurfaceInverse = {
+const surfaceInverse: IColorRolesSurfaceInverseThemeVars = {
   inverseSurface: colorPalettesVars.neutral20,
   inverseOnSurface: colorPalettesVars.neutral95,
   inversePrimary: colorPalettesVars.primary80,
 };
 
-const surface: IColorRolesSurface = {
+const surface: IColorRolesSurfaceThemeVars = {
   surface: colorPalettesVars.neutral98,
   onSurface: colorPalettesVars.neutral10,
   onSurfaceVariant: colorPalettesVars.neutralVariant30,
@@ -72,37 +72,37 @@ const surface: IColorRolesSurface = {
   ...surfaceInverse,
 };
 
-const outline: IColorRolesOutline = {
+const outline: IColorRolesOutlineThemeVars = {
   outline: colorPalettesVars.neutralVariant50,
   outlineVariant: colorPalettesVars.neutralVariant80,
 };
 
-const addOnsFixed: IColorRolesAddOnsFixed = {
+const addOnsFixed: IColorRolesAddOnsFixedThemeVars = {
   primaryFixed: colorPalettesVars.primary90,
   secondaryFixed: colorPalettesVars.secondary90,
   tertiaryFixed: colorPalettesVars.tertiary90,
 };
 
-const addOnsDim: IColorRolesAddOnsDim = {
+const addOnsDim: IColorRolesAddOnsDimThemeVars = {
   primaryFixedDim: colorPalettesVars.primary80,
   secondaryFixedDim: colorPalettesVars.secondary80,
   tertiaryFixedDim: colorPalettesVars.tertiary80,
   dim: colorPalettesVars.neutralVariant50,
 };
 
-const addOnsOnFixed: IColorRolesAddOnsOnFixed = {
+const addOnsOnFixed: IColorRolesAddOnsOnFixedThemeVars = {
   onPrimaryFixed: colorPalettesVars.primary10,
   onSecondaryFixed: colorPalettesVars.secondary10,
   onTertiaryFixed: colorPalettesVars.tertiary10,
 };
 
-const addOnsOnFixedVariant: IColorRolesAddOnsOnFixedVariant = {
+const addOnsOnFixedVariant: IColorRolesAddOnsOnFixedVariantThemeVars = {
   onPrimaryFixedVariant: colorPalettesVars.primary30,
   onSecondaryFixedVariant: colorPalettesVars.secondary30,
   onTertiaryFixedVariant: colorPalettesVars.tertiary30,
 };
 
-const addOns: IColorRolesAddOns = {
+const addOns: IColorRolesAddOnsThemeVars = {
   ...addOnsFixed,
   ...addOnsDim,
   ...addOnsOnFixed,
@@ -112,7 +112,7 @@ const addOns: IColorRolesAddOns = {
   surfacePlaceholder: colorPalettesVars.neutralVariant80,
 };
 
-const colorRoles: IColorRoles = {
+const colorRoles: IColorRolesThemeVars = {
   ...primary,
   ...secondary,
   ...tertiary,

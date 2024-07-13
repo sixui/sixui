@@ -12,7 +12,7 @@ import type { IStepStyleKey, IStepStyleVarKey } from './Step.styledefs';
 import type { IStepProps } from './StepProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { ReactComponent as CheckMarkIcon } from '@/assets/CheckMark.svg';
 import { ReactComponent as ExclamationTriangleIcon } from '@/assets/ExclamationTriangle.svg';
 import { StepperContext } from '@/components/atoms/Stepper/StepperContext';
@@ -45,7 +45,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       ...other
     } = props;
 
-    const { theme } = useComponentTheme('Step');
+    const { theme } = useComponentThemeOld('Step');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

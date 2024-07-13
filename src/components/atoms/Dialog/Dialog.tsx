@@ -24,7 +24,7 @@ import type {
 } from './DialogProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import {
   DialogContent,
   type IDialogContentOwnProps,
@@ -53,7 +53,7 @@ export const Dialog: IDialog = forwardRef(function Dialog<
     ...other
   } = props as IWithAsProp<IDialogOwnProps>;
 
-  const { theme } = useComponentTheme('Dialog');
+  const { theme } = useComponentThemeOld('Dialog');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(theme.styles),
     [theme.styles],

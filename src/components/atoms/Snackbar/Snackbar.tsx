@@ -10,7 +10,7 @@ import type {
 import type { ISnackbarProps } from './SnackbarProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { SnackbarContent } from '@/components/atoms/SnackbarContent';
 
 export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
@@ -25,7 +25,7 @@ export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
       ...other
     } = props;
 
-    const { theme } = useComponentTheme('Snackbar');
+    const { theme } = useComponentThemeOld('Snackbar');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

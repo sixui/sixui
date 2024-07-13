@@ -18,7 +18,7 @@ import type {
 } from './ButtonProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { IndeterminateCircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
 import { ButtonBase } from '@/components/atoms/ButtonBase';
 import { executeLazyPromise } from '@/helpers/executeLazyPromise';
@@ -77,10 +77,11 @@ export const Button: IButton = forwardRef(function Button<
     ...other
   } = props as IWithAsProp<IButtonOwnProps>;
 
-  const { theme, variantTheme } = useComponentTheme(
+  const { theme, variantTheme, overridenStyles } = useComponentThemeOld(
     'Button',
     variant ? variantMap[variant] : undefined,
   );
+
   const stylesCombinator = useMemo(
     () =>
       stylesCombinatorFactory<IButtonStyleKey>(
@@ -141,6 +142,7 @@ export const Button: IButton = forwardRef(function Button<
         loading ? stylesCombinator('host$loading') : undefined,
         theme.vars,
         variantTheme?.vars,
+        overridenStyles,
         sx,
       ]}
       withLeadingIcon={hasLeadingIcon}

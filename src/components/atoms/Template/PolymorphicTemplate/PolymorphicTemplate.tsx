@@ -10,7 +10,7 @@ import type {
 } from './PolymorphicTemplate.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import {
   POLYMORPHIC_TEMPLATE_DEFAULT_TAG,
   type IPolymorphicTemplateOwnProps,
@@ -38,7 +38,7 @@ export const PolymorphicTemplate: IPolymorphicTemplate = forwardRef(
       ...other
     } = props as IWithAsProp<IPolymorphicTemplateOwnProps>;
 
-    const { theme } = useComponentTheme('Template');
+    const { theme } = useComponentThemeOld('Template');
     const styleCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

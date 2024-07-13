@@ -17,7 +17,7 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { isProduction } from '@/helpers/isProduction';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { isFragment } from '@/helpers/react/isFragment';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { ButtonBase } from '@/components/atoms/ButtonBase';
 import { ReactComponent as EllipsisHorizontalIcon } from '@/assets/EllipsisHorizontal.svg';
 
@@ -37,7 +37,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
       ...other
     } = props;
 
-    const { theme } = useComponentTheme('Breadcrumbs');
+    const { theme } = useComponentThemeOld('Breadcrumbs');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

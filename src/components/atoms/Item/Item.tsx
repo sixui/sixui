@@ -4,7 +4,7 @@ import type { IItemStyleKey, IItemStyleVarKey } from './Item.styledefs';
 import type { IItemProps } from './ItemProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { commonStyles } from '@/helpers/commonStyles';
 
 // https://github.com/material-components/material-web/blob/main/labs/item/item.ts
@@ -25,7 +25,7 @@ export const Item = forwardRef<HTMLDivElement, IItemProps>(
       ...other
     } = props;
 
-    const { theme } = useComponentTheme('Item');
+    const { theme } = useComponentThemeOld('Item');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

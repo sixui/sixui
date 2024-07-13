@@ -11,7 +11,7 @@ import type { IVariableTemplateProps } from './VariableTemplateProps';
 import { useVisualState } from '@/components/utils/VisualState';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 
 type ITemplateVariantMap = {
   [key in IVariableTemplateVariant]: keyof Pick<
@@ -42,7 +42,7 @@ export const VariableTemplate = forwardRef<
     useVisualState(visualStateProp);
   const handleRef = useMergeRefs([forwardedRef, actionRef, setVisualStateRef]);
 
-  const { theme, variantTheme } = useComponentTheme(
+  const { theme, variantTheme } = useComponentThemeOld(
     'Template',
     variant ? variantMap[variant] : undefined,
   );

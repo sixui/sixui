@@ -20,7 +20,7 @@ import type {
 } from './DialogContent.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { Divider } from '@/components/atoms/Divider';
 import {
   DIALOG_CONTENT_DEFAULT_TAG,
@@ -56,7 +56,7 @@ export const DialogContent: IDialogContent = forwardRef(function DialogContent<
   const headlineId = useId();
   const childrenId = useId();
 
-  const { theme } = useComponentTheme('DialogContent');
+  const { theme } = useComponentThemeOld('DialogContent');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],

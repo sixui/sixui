@@ -7,14 +7,14 @@ import type {
 import type { ICardContentProps } from './CardContentProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { CardContext } from '@/components/atoms/Card';
 
 export const CardContent = forwardRef<HTMLDivElement, ICardContentProps>(
   function CardContent(props, forwardedRef) {
     const { styles, sx, children, ...other } = props;
 
-    const { theme } = useComponentTheme('CardContent');
+    const { theme } = useComponentThemeOld('CardContent');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

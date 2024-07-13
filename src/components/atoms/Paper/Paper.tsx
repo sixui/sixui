@@ -10,7 +10,7 @@ import type {
 import type { IPaperProps } from './PaperProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { Elevation } from '@/components/utils/Elevation';
 
 // https://github.com/material-components/material-web/blob/main/labs/paper/internal/paper.ts
@@ -40,7 +40,7 @@ export const Paper = forwardRef<HTMLDivElement, IPaperProps>(
       ...other
     } = props;
 
-    const { theme, variantTheme } = useComponentTheme(
+    const { theme, variantTheme } = useComponentThemeOld(
       'Paper',
       variant ? variantMap[variant] : undefined,
     );

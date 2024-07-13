@@ -7,13 +7,13 @@ import type {
 import type { IElevationProps } from './ElevationProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 
 export const Elevation = forwardRef<HTMLDivElement, IElevationProps>(
   function Elevation(props, forwardedRef) {
     const { styles, sx, level, disabled, ...other } = props;
 
-    const { theme } = useComponentTheme('Elevation');
+    const { theme } = useComponentThemeOld('Elevation');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

@@ -15,7 +15,7 @@ export const styles: MapNamespaces<IElementWithLabelStyles> =
     },
     host$horizontal: {
       display: 'flex',
-      gridColumnGap: '1rem',
+      gridColumnGap: '0.75rem',
       alignItems: 'center',
     },
     element: {

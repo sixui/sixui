@@ -5,7 +5,7 @@ import type { IIndeterminateCircularProgressIndicatorStyleKey } from './Indeterm
 import type { IIndeterminateCircularProgressIndicatorProps } from './IndeterminateCircularProgressIndicatorProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 
 // https://github.com/material-components/material-web/blob/main/progress/internal/progress.ts
 // https://github.com/material-components/material-web/blob/main/progress/internal/circular-progress.ts
@@ -16,7 +16,7 @@ export const IndeterminateCircularProgressIndicator = forwardRef<
 >(function IndeterminateCircularProgressIndicator(props, forwardedRef) {
   const { styles, sx, size = 'md', disabled, children, ...other } = props;
 
-  const { theme, variantTheme } = useComponentTheme(
+  const { theme, variantTheme } = useComponentThemeOld(
     'CircularProgressIndicator',
     'IndeterminateCircularProgressIndicator',
   );

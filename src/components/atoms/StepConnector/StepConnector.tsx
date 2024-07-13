@@ -7,7 +7,7 @@ import type {
 import type { IStepConnectorProps } from './StepConnectorProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { StepContext } from '@/components/atoms/Step/StepContext';
 
 export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
@@ -22,7 +22,7 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
       ...other
     } = props;
 
-    const { theme } = useComponentTheme('StepConnector');
+    const { theme } = useComponentThemeOld('StepConnector');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

@@ -7,7 +7,7 @@ import type {
 import type { ITypographyStyleKey } from './Typography.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import {
   TYPOGRAPHY_DEFAULT_TAG,
   type ITypographyOwnProps,
@@ -52,7 +52,7 @@ export const Typography: ITypography = forwardRef(function Typography<
     ...other
   } = props as IWithAsProp<ITypographyOwnProps>;
 
-  const { theme } = useComponentTheme('Typography');
+  const { theme } = useComponentThemeOld('Typography');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],

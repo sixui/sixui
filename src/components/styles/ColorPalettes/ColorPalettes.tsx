@@ -1,7 +1,7 @@
 import type { StyleXVar } from '@stylexjs/stylex/lib/StyleXTypes';
 import stylex from '@stylexjs/stylex';
 
-import type { IColorPalettes } from '@/themes/colorPalettes.types';
+import type { IColorPalettesThemeVars } from '@/themes/colorPalettes.types';
 import { typescaleVars } from '@/themes/base/vars/typo.stylex';
 import { colorPalettesVars } from '@/themes/base/vars/colorPalettes.stylex';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
@@ -55,7 +55,7 @@ const styles = stylex.create({
   },
 });
 
-type ITone = { luminance: number; key: keyof IColorPalettes };
+type ITone = { luminance: number; key: keyof IColorPalettesThemeVars };
 
 type ITonalPalette = {
   title: string;

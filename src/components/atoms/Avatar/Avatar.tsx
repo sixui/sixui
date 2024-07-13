@@ -7,6 +7,8 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useLoaded } from '@/hooks/useLoaded';
 import { ReactComponent as PersonIcon } from '@/assets/Person.svg';
+import { avatarStyles } from './Avatar.styles';
+import { avatarTheme } from './Avatar.stylex';
 
 export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
   function Avatar(props, forwardedRef) {
@@ -23,10 +25,10 @@ export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
       ...other
     } = props;
 
-    const { theme } = useComponentTheme('Avatar');
+    const { overridenStyles } = useComponentTheme('Avatar');
     const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(theme.styles, styles),
-      [theme.styles, styles],
+      () => stylesCombinatorFactory(avatarStyles, styles),
+      [styles],
     );
     const sxf = useMemo(
       () =>
@@ -47,7 +49,11 @@ export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
     const hasImageNotFailing = hasImage && !hasLoadingError;
 
     return (
-      <div {...sxf('host', theme.vars, sx)} ref={forwardedRef} {...other}>
+      <div
+        {...sxf('host', avatarTheme, overridenStyles, sx)}
+        ref={forwardedRef}
+        {...other}
+      >
         {hasImageNotFailing ? (
           <img
             {...sxf('image')}

@@ -9,7 +9,7 @@ import type {
 import type { ISwitchStyleKey, ISwitchStyleVarKey } from './Switch.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { useVisualState } from '@/components/utils/VisualState';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { FocusRing } from '@/components/utils/FocusRing';
@@ -66,7 +66,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
   );
   const handleRef = useMergeRefs([forwardedRef, setVisualStateRef, actionRef]);
 
-  const { theme } = useComponentTheme('Switch');
+  const { theme } = useComponentThemeOld('Switch');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],

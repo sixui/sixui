@@ -19,7 +19,7 @@ import {
 } from './OptionCardProps';
 import { ElementWithLabel } from '@/components/molecules/ElementWithLabel';
 import { useControlledValue } from '@/hooks/useControlledValue';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { RadioGroupContext } from '@/components/atoms/RadioGroup';
@@ -46,7 +46,7 @@ export const OptionCard: IOptionCard = forwardRef(function OptionCard<
   } = props as IWithAsProp<IOptionCardOwnProps>;
   const radioGroupContext = useContext(RadioGroupContext);
 
-  const { theme } = useComponentTheme('OptionCard');
+  const { theme } = useComponentThemeOld('OptionCard');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],

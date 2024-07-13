@@ -9,7 +9,7 @@ import type {
 import type { IRadioStyleKey, IRadioStyleVarKey } from './Radio.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { useId } from '@/hooks/useId';
 import { useVisualState } from '@/components/utils/VisualState';
 import { StateLayer } from '@/components/utils/StateLayer';
@@ -61,7 +61,7 @@ export const Radio: IRadio = forwardRef(function Radio<
   );
   const handleRef = useMergeRefs([forwardedRef, setVisualStateRef, actionRef]);
 
-  const { theme } = useComponentTheme('Radio');
+  const { theme } = useComponentThemeOld('Radio');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],

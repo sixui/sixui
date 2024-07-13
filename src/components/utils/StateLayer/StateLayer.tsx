@@ -6,7 +6,7 @@ import type {
   IStateLayerStyleVarKey,
 } from './StateLayer.styledefs';
 import type { IStateLayerProps } from './StateLayerProps';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useRipple } from './useRipple';
@@ -24,7 +24,7 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
       children,
     } = props;
 
-    const { theme } = useComponentTheme('StateLayer');
+    const { theme } = useComponentThemeOld('StateLayer');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

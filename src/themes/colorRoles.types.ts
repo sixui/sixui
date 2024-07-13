@@ -2,7 +2,7 @@
  * Use primary roles for the most prominent components across the UI, such as the FAB, high-emphasis buttons, and active states.
  * https://m3.material.io/styles/color/roles#41f55188-5c63-4107-ac41-822ebca8ae1b
  */
-export type IColorRolesPrimary = {
+export type IColorRolesPrimaryThemeVars = {
   /**
    * High-emphasis fills, texts, and icons against surface
    */
@@ -28,7 +28,7 @@ export type IColorRolesPrimary = {
  * Use secondary roles for less prominent components in the UI such as filter chips.
  * https://m3.material.io/styles/color/roles#290bcc49-b728-414c-8cc5-04336c1c799c
  */
-export type IColorRolesSecondary = {
+export type IColorRolesSecondaryThemeVars = {
   /**
    * Less prominent fills, text, and icons against surface
    */
@@ -54,7 +54,7 @@ export type IColorRolesSecondary = {
  * Use tertiary roles for contrasting accents that balance primary and secondary colors or bring heightened attention to an element such as an input field.
  * https://m3.material.io/styles/color/roles#727a0bf8-c95f-4f83-bc43-290d20f24e8e
  */
-export type IColorRolesTertiary = {
+export type IColorRolesTertiaryThemeVars = {
   /**
    * Complementary fills, text, and icons against surface
    */
@@ -80,7 +80,7 @@ export type IColorRolesTertiary = {
  * Use error roles to communicate error states, such as an incorrect password entered into a text field.
  * https://m3.material.io/styles/color/roles#47a25970-8a80-43be-8307-c12e0f7a2b43
  */
-export type IColorRolesError = {
+export type IColorRolesErrorThemeVars = {
   /**
    * Attention-grabbing color against surface for fills, icons, and text, indicating urgency
    */
@@ -106,7 +106,7 @@ export type IColorRolesError = {
  * Inverse roles are applied selectively to components to achieve colors that are the reverse of those in the surrounding UI, creating a contrasting effect.
  * https://m3.material.io/styles/color/roles#7fc6b47e-db22-4e98-8359-7649a099e4a1
  */
-export type IColorRolesSurfaceInverse = {
+export type IColorRolesSurfaceInverseThemeVars = {
   /**
    * Background fills for elements which contrast against surface
    */
@@ -127,7 +127,7 @@ export type IColorRolesSurfaceInverse = {
  * Use surface roles for more neutral backgrounds, and container colors for components like cards, sheets, and dialogs.
  * https://m3.material.io/styles/color/roles#89f972b1-e372-494c-aabc-69aea34ed591
  */
-export type IColorRolesSurface = IColorRolesSurfaceInverse & {
+export type IColorRolesSurfaceThemeVars = IColorRolesSurfaceInverseThemeVars & {
   /**
    * Default color for backgrounds
    */
@@ -172,7 +172,7 @@ export type IColorRolesSurface = IColorRolesSurfaceInverse & {
 /**
  * https://m3.material.io/styles/color/roles#e7d72e44-72e2-4ce9-a18d-df07b1433d18
  */
-export type IColorRolesOutline = {
+export type IColorRolesOutlineThemeVars = {
   /**
    * Important boundaries, such as a text field outline
    */
@@ -187,7 +187,7 @@ export type IColorRolesOutline = {
 /**
  * Primary fixed, secondary fixed, and tertiary fixed are fill colors used against surface. These colors maintain the same tone in light and dark themes, as opposed to regular container colors, which change in tone between these themes. The fixed color role may be used instead of the equivalent container role in situations where such fixed behavior is desired.
  */
-export type IColorRolesAddOnsFixed = {
+export type IColorRolesAddOnsFixedThemeVars = {
   primaryFixed: string;
   secondaryFixed: string;
   tertiaryFixed: string;
@@ -196,7 +196,7 @@ export type IColorRolesAddOnsFixed = {
 /**
  * The primary fixed dim, secondary fixed dim, and tertiary fixed dim roles provide a stronger, more emphasized tone relative to the equivalent fixed color. They may be used where a deeper color but the same fixed behavior is desired.
  */
-export type IColorRolesAddOnsDim = {
+export type IColorRolesAddOnsDimThemeVars = {
   primaryFixedDim: string;
   secondaryFixedDim: string;
   tertiaryFixedDim: string;
@@ -210,7 +210,7 @@ export type IColorRolesAddOnsDim = {
 /**
  * On fixed colors are used for text and icons which sit on top of the corresponding Fixed color. For example, on primary fixed is used for text and icons against the primary fixed color. The same usage applies for the equivalent secondary and tertiary colors.
  */
-export type IColorRolesAddOnsOnFixed = {
+export type IColorRolesAddOnsOnFixedThemeVars = {
   onPrimaryFixed: string;
   onSecondaryFixed: string;
   onTertiaryFixed: string;
@@ -219,7 +219,7 @@ export type IColorRolesAddOnsOnFixed = {
 /**
  * On fixed variant colors are used for text and icons needing lower emphasis against the corresponding fixed color. For example, on primary fixed variant is used for low emphasis text and icons against the primary fixed color. The same usage applies for the equivalent secondary and tertiary colors.
  */
-export type IColorRolesAddOnsOnFixedVariant = {
+export type IColorRolesAddOnsOnFixedVariantThemeVars = {
   onPrimaryFixedVariant: string;
   onSecondaryFixedVariant: string;
   onTertiaryFixedVariant: string;
@@ -229,10 +229,10 @@ export type IColorRolesAddOnsOnFixedVariant = {
  * Most products won't need to use these add-on color roles. However, some products require the greater flexibility and control that add-on roles provide. If you aren't sure whether your product should use the add-on roles, it probably shouldn't and you can ignore them.
  * https://m3.material.io/styles/color/roles#a5f6ea3d-d457-4c5d-94f4-55f3cdf6470b
  */
-export type IColorRolesAddOns = IColorRolesAddOnsFixed &
-  IColorRolesAddOnsDim &
-  IColorRolesAddOnsOnFixed &
-  IColorRolesAddOnsOnFixedVariant & {
+export type IColorRolesAddOnsThemeVars = IColorRolesAddOnsFixedThemeVars &
+  IColorRolesAddOnsDimThemeVars &
+  IColorRolesAddOnsOnFixedThemeVars &
+  IColorRolesAddOnsOnFixedVariantThemeVars & {
     /**
      * Dimmest surface color in light and dark themes
      */
@@ -253,13 +253,13 @@ export type IColorRolesAddOns = IColorRolesAddOnsFixed &
  * Color roles are like the "numbers" in a paint-by-number canvas. They're the connective tissue between elements of the UI and what color goes where.
  * https://m3.material.io/styles/color/roles#e9fc5b00-8355-4641-b35f-58b0bac639f3
  */
-export type IColorRoles = IColorRolesPrimary &
-  IColorRolesSecondary &
-  IColorRolesTertiary &
-  IColorRolesError &
-  IColorRolesSurface &
-  IColorRolesOutline &
-  IColorRolesAddOns & {
+export type IColorRolesThemeVars = IColorRolesPrimaryThemeVars &
+  IColorRolesSecondaryThemeVars &
+  IColorRolesTertiaryThemeVars &
+  IColorRolesErrorThemeVars &
+  IColorRolesSurfaceThemeVars &
+  IColorRolesOutlineThemeVars &
+  IColorRolesAddOnsThemeVars & {
     /**
      * Shadows can express the degree of elevation between surfaces in ways that other techniques cannot.
      * Both a shadow’s size and amount of softness or diffusion express the degree of distance between two surfaces. For example, a surface with a shadow that is small and sharp indicates a surface’s close proximity to the surface behind it. Larger, softer shadows express more distance.

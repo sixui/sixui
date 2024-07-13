@@ -1,15 +1,28 @@
-import stylex from '@stylexjs/stylex';
+import stylex, { type Theme, type VarGroup } from '@stylexjs/stylex';
 
-import type { IContainerProps } from '@/helpers/types';
-import type { ITheme, IThemeSettings } from '@/themes/theme.types';
-import { ThemeContext } from './ThemeContext';
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import type { IContainerProps, IMakeOptional } from '@/helpers/types';
+import type { IColorPalettesThemeVars } from '@/themes';
+import type { IShapeThemeVars } from '@/themes/shape.types';
+import type { IMotionThemeVars } from '@/themes/motion.types';
+import type {
+  ITypefaceThemeVars,
+  ITypescaleThemeVars,
+} from '@/themes/typo.types';
+import {
+  colorRolesVars,
+  colorRolesTheme,
+} from '@/themes/base/vars/colorRoles.stylex';
+import { ThemeContext, type IThemeContextValue } from './ThemeContext';
 
-export type IThemeProviderProps = IContainerProps & {
-  children: React.ReactNode;
-  theme: ITheme;
-  settings?: IThemeSettings;
-};
+export type IThemeProviderProps = IContainerProps &
+  IMakeOptional<IThemeContextValue, 'settings'> & {
+    children: React.ReactNode;
+    colorPalettesTheme?: Theme<VarGroup<IColorPalettesThemeVars>>;
+    shapeTheme?: Theme<VarGroup<IShapeThemeVars>>;
+    motionTheme?: Theme<VarGroup<IMotionThemeVars>>;
+    typefaceTheme?: Theme<VarGroup<ITypefaceThemeVars>>;
+    typescaleTheme?: Theme<VarGroup<ITypescaleThemeVars>>;
+  };
 
 const styles = stylex.create({
   wrapper: {
@@ -21,7 +34,19 @@ const styles = stylex.create({
 });
 
 export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
-  const { sx, children, theme, settings, ...other } = props;
+  const {
+    sx,
+    children,
+    theme,
+    settings,
+    colorPalettesTheme,
+    shapeTheme,
+    motionTheme,
+    typefaceTheme,
+    typescaleTheme,
+    componentsStyles,
+    ...other
+  } = props;
 
   return (
     <ThemeContext.Provider
@@ -31,9 +56,23 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
           linkAs: 'a',
           ...settings,
         },
+        componentsStyles,
       }}
     >
-      <div {...stylex.props([styles.wrapper, sx])} {...other}>
+      <div
+        {...stylex.props([
+          colorPalettesTheme
+            ? [colorPalettesTheme, colorRolesTheme]
+            : undefined,
+          shapeTheme,
+          motionTheme,
+          typefaceTheme,
+          typescaleTheme,
+          styles.wrapper,
+          sx,
+        ])}
+        {...other}
+      >
         {children}
       </div>
     </ThemeContext.Provider>

@@ -7,7 +7,7 @@ import type {
 import type { IPlaceholderProps } from './PlaceholderProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 
 export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
   function Placeholder(props, forwardedRef) {
@@ -21,7 +21,7 @@ export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
       ...other
     } = props;
 
-    const { theme } = useComponentTheme('Placeholder');
+    const { theme } = useComponentThemeOld('Placeholder');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

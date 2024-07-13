@@ -5,7 +5,7 @@ import type { IDeterminateCircularProgressIndicatorStyleKey } from './Determinat
 import type { IDeterminateCircularProgressIndicatorProps } from './DeterminateCircularProgressIndicatorProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 
 // https://github.com/material-components/material-web/blob/main/progress/internal/progress.ts
 // https://github.com/material-components/material-web/blob/main/progress/internal/circulardeterminate-progress.ts
@@ -29,7 +29,7 @@ export const DeterminateCircularProgressIndicator = forwardRef<
     ...other
   } = props;
 
-  const { theme, variantTheme } = useComponentTheme(
+  const { theme, variantTheme } = useComponentThemeOld(
     'CircularProgressIndicator',
     'DeterminateCircularProgressIndicator',
   );

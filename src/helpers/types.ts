@@ -31,6 +31,10 @@ export type IPoint = {
   y: number;
 };
 
+export type IStaticStyles<TKey extends string> = {
+  [key in TKey]?: UserAuthoredStyles;
+};
+
 export type IStyles<TKey extends string> = {
   [key in TKey]?: UserAuthoredStyles | ((...props: IAny) => UserAuthoredStyles);
 };

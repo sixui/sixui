@@ -15,7 +15,7 @@ import type {
 import type { IFocusRingProps } from './FocusRingProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 
 const HANDLED_BY_FOCUS_RING = Symbol('handledByFocusRing');
 
@@ -27,7 +27,7 @@ export const FocusRing = forwardRef<HTMLInputElement, IFocusRingProps>(
   function FocusRing(props, forwardedRef) {
     const { styles, sx, visualState, for: forElementRef, inward } = props;
 
-    const { theme } = useComponentTheme('FocusRing');
+    const { theme } = useComponentThemeOld('FocusRing');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

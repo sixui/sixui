@@ -8,7 +8,7 @@ import type {
 import type { IDisclosureButtonProps } from './DisclosureButtonProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { ListItem } from '@/components/atoms/ListItem';
 import { ReactComponent as ChevronDown } from '@/assets/ChevronDown.svg';
 import { Checkbox } from '@/components/atoms/Checkbox';
@@ -40,7 +40,7 @@ export const DisclosureButton = forwardRef<
     ...other
   } = props;
 
-  const { theme } = useComponentTheme('DisclosureButton');
+  const { theme, overridenStyles } = useComponentThemeOld('DisclosureButton');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],
@@ -101,7 +101,7 @@ export const DisclosureButton = forwardRef<
   };
 
   return (
-    <div {...sxf('host', sx, theme.vars)}>
+    <div {...sxf('host', theme.vars, overridenStyles, sx)}>
       <ListItem
         sx={stylesCombinator(
           'button',

@@ -1,6 +1,5 @@
 import type { Decorator, Preview } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
-import { themes } from '@storybook/theming';
 
 import { ThemeProvider } from '@/components/utils/Theme';
 import { ColorSchemeProvider } from '@/components/utils/ColorScheme';
@@ -11,13 +10,11 @@ import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { darkColorRoles } from '@/themes/base/vars/darkColorRoles';
 
 // For theme variant
-// import { theme } from '@/themes/variant';
-// import {
-//   colorRolesVars,
-//   colorRolesTheme,
-// } from '@/themes/base/vars/colorRoles.stylex';
-// import { colorPaletteTheme } from '@/themes/variant/vars/colorPalettes.stylex';
-// import { shapeTheme } from '@/themes/variant/vars/shape.stylex';
+// import { colorPalettesTheme as variantColorPalettesTheme } from '@/themes/variant/colorPalettes.stylex';
+// import { shapeTheme as variantShapeTheme } from '@/themes/variant/shape.stylex';
+// import { componentVars as buttonVars } from '@/themes/base/Button/Button.stylex';
+// import { componentVars as disclosureButtonVars } from '@/themes/base/DisclosureButton/DisclosureButton.stylex';
+// import { avatarTokens } from '@/components/atoms/Avatar/Avatar.stylex';
 
 import '@/styles/main.css';
 import '@/styles/storybook.css';
@@ -26,7 +23,6 @@ const preview: Preview = {
   parameters: {
     // https://github.com/storybookjs/storybook/issues/17098#issuecomment-1049679681
     docs: {
-      theme: themes.dark,
       source: {
         type: 'code',
       },
@@ -54,7 +50,7 @@ const preview: Preview = {
   },
 };
 
-export const styles = stylex.create({
+const styles = stylex.create({
   storyWrapper: {
     position: 'relative',
     backgroundColor: colorRolesVars.surface,
@@ -63,15 +59,30 @@ export const styles = stylex.create({
   },
 });
 
+// const componentsStyles = stylex.create({
+//   Button: {
+//     [buttonVars.containerShape]: '0',
+//   },
+//   DisclosureButton: {
+//     [disclosureButtonVars.containerShape]: '0',
+//   },
+//   Avatar: {
+//     [avatarTokens.containerShape]: '0',
+//   },
+// });
+
 export const decorators: Array<Decorator> = [
   (Story, context) => {
     const showLightMode = !context.tags.includes('dark-mode-only');
     const showDarkMode = !context.tags.includes('light-mode-only');
 
     return (
-      <ThemeProvider theme={theme}>
-        {/* For theme variant: */}
-        {/* <div {...stylex.props(colorPaletteTheme, colorRolesTheme, shapeTheme)}> */}
+      <ThemeProvider
+        theme={theme}
+        // colorPalettesTheme={variantColorPalettesTheme}
+        // shapeTheme={variantShapeTheme}
+        // componentsStyles={componentsStyles}
+      >
         {showLightMode ? (
           <ColorSchemeProvider scheme='light'>
             <div {...stylex.props(styles.storyWrapper)}>
@@ -87,7 +98,6 @@ export const decorators: Array<Decorator> = [
             </div>
           </ColorSchemeProvider>
         ) : null}
-        {/* </div> */}
       </ThemeProvider>
     );
   },

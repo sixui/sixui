@@ -1,4 +1,4 @@
-export type IColorPalettes = {
+export type IColorPalettesThemeVars = {
   black: string;
   white: string;
 

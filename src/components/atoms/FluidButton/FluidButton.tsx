@@ -9,7 +9,7 @@ import type {
   IFluidButtonStyleKey,
   IFluidButtonStyleVarKey,
 } from './FluidButton.styledefs';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { ButtonBase } from '@/components/atoms/ButtonBase';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
@@ -31,7 +31,7 @@ export const FluidButton: IFluidButton = forwardRef(function FluidButton<
   const { styles, sx, as, innerStyles, children, ...other } =
     props as IWithAsProp<IFluidButtonOwnProps>;
 
-  const { theme } = useComponentTheme('FluidButton');
+  const { theme } = useComponentThemeOld('FluidButton');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],

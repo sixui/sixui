@@ -10,7 +10,7 @@ import type {
 } from './ComponentShowcaseProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 
 const DUMMY_TEXT = '.';
 
@@ -33,7 +33,7 @@ export const ComponentShowcase = <
     fullWidth,
   } = props;
 
-  const { theme } = useComponentTheme('ComponentShowcase');
+  const { theme } = useComponentThemeOld('ComponentShowcase');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],

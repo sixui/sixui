@@ -4,7 +4,7 @@ import type { IBadgeStyleKey, IBadgeStyleVarKey } from './Badge.styledefs';
 import type { IBadgeProps } from './BadgeProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 
 export const Badge = forwardRef<HTMLDivElement, IBadgeProps>(
   function Badge(props, forwardedRef) {
@@ -21,7 +21,7 @@ export const Badge = forwardRef<HTMLDivElement, IBadgeProps>(
       ...other
     } = props;
 
-    const { theme } = useComponentTheme('Badge');
+    const { theme } = useComponentThemeOld('Badge');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

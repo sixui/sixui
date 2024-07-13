@@ -10,7 +10,7 @@ import type { IStepperStyleKey } from './Stepper.styledefs';
 import type { IStepperProps } from './StepperProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { Step, type IStepProps } from '@/components/atoms/Step';
 import { StepConnector } from '@/components/atoms/StepConnector';
 import { isElementLike } from '@/helpers/react/isElementLike';
@@ -33,7 +33,7 @@ export const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
       ...other
     } = props;
 
-    const { theme } = useComponentTheme('Stepper');
+    const { theme } = useComponentThemeOld('Stepper');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

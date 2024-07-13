@@ -13,7 +13,7 @@ import {
 } from '../FieldBase';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { useVisualState } from '@/components/utils/VisualState';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { IconButton } from '@/components/atoms/IconButton';
@@ -75,7 +75,7 @@ export const TextFieldBase = fixedForwardRef(function TextField<
     setInputVisualStateRef,
   ]);
 
-  const { theme, variantTheme } = useComponentTheme(
+  const { theme, variantTheme } = useComponentThemeOld(
     'TextFieldBase',
     variant ? variantMap[variant] : undefined,
   );

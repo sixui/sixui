@@ -9,7 +9,7 @@ import type {
 import type { ISkeletonProps } from './SkeletonProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 
 const staticStyles = stylex.create({
   length: (length?: number) => ({
@@ -31,7 +31,7 @@ export const Skeleton = forwardRef<HTMLDivElement, ISkeletonProps>(
       ...other
     } = props;
 
-    const { theme } = useComponentTheme('Skeleton');
+    const { theme } = useComponentThemeOld('Skeleton');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

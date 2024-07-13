@@ -4,14 +4,14 @@ import type { ICardMediaStyleKey } from './CardMedia.styledefs';
 import type { ICardMediaProps } from './CardMediaProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { commonStyles } from '@/helpers/commonStyles';
 
 export const CardMedia = forwardRef<HTMLDivElement, ICardMediaProps>(
   function CardMedia(props, forwardedRef) {
     const { styles, sx, children, src, ...other } = props;
 
-    const { theme } = useComponentTheme('CardMedia');
+    const { theme } = useComponentThemeOld('CardMedia');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

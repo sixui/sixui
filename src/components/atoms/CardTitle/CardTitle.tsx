@@ -7,13 +7,13 @@ import type {
 import type { ICardTitleProps } from './CardTitleProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 
 export const CardTitle = forwardRef<HTMLDivElement, ICardTitleProps>(
   function CardTitle(props, forwardedRef) {
     const { styles, sx, headline, subhead, supportingText, ...other } = props;
 
-    const { theme } = useComponentTheme('CardTitle');
+    const { theme } = useComponentThemeOld('CardTitle');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

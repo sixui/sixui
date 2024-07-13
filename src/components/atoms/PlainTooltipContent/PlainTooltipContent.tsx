@@ -7,7 +7,7 @@ import type {
 import type { IPlainTooltipContentProps } from './PlainTooltipContentProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 
 export const PlainTooltipContent = forwardRef<
   HTMLDivElement,
@@ -15,7 +15,7 @@ export const PlainTooltipContent = forwardRef<
 >(function PlainTooltipContent(props, forwardedRef) {
   const { styles, sx, supportingText, renderCursor, ...other } = props;
 
-  const { theme } = useComponentTheme('PlainTooltipContent');
+  const { theme } = useComponentThemeOld('PlainTooltipContent');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],

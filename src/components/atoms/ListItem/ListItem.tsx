@@ -10,7 +10,7 @@ import type { IListItemVariant, IListItemStyleKey } from './ListItem.styledefs';
 import type { IThemeComponents } from '@/components/utils/Theme';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { useVisualState } from '@/components/utils/VisualState';
 import { StateLayer } from '@/components/utils/StateLayer';
 import { FocusRing } from '@/components/utils/FocusRing';
@@ -83,7 +83,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
   );
   const handleRef = useMergeRefs([forwardedRef, setVisualStateRef, actionRef]);
 
-  const { theme, variantTheme, settings } = useComponentTheme(
+  const { theme, variantTheme, settings } = useComponentThemeOld(
     'ListItem',
     variant ? variantMap[variant] : undefined,
   );

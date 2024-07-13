@@ -8,7 +8,7 @@ import type {
 import type { ISnackbarContentProps } from './SnackbarContentProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { Elevation } from '@/components/utils/Elevation';
 import { Button } from '@/components/atoms/Button';
 import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
@@ -30,7 +30,7 @@ export const SnackbarContent = forwardRef<
     ...other
   } = props;
 
-  const { theme } = useComponentTheme('SnackbarContent');
+  const { theme } = useComponentThemeOld('SnackbarContent');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],

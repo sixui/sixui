@@ -10,7 +10,7 @@ import type { IButtonBaseStyleKey } from './ButtonBase.styledefs';
 import { useVisualState } from '@/components/utils/VisualState';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { Elevation } from '@/components/utils/Elevation';
 import { FocusRing } from '@/components/utils/FocusRing';
 import { StateLayer } from '@/components/utils/StateLayer';
@@ -53,7 +53,7 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
   );
   const handleRef = useMergeRefs([forwardedRef, setVisualStateRef]);
 
-  const { theme, settings } = useComponentTheme('ButtonBase');
+  const { theme, settings } = useComponentThemeOld('ButtonBase');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],

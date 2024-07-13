@@ -1,15 +1,12 @@
 import stylex from '@stylexjs/stylex';
 
-export type ITypescaleSize = 'sm' | 'md' | 'lg';
-export type ITypescaleUsage =
-  | 'display'
-  | 'headline'
-  | 'body'
-  | 'label'
-  | 'title';
+import type {
+  ITypefaceThemeVars,
+  ITypescaleThemeVars,
+} from '@/themes/typo.types';
 
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-ref-typeface.scss
-export const typefaceVars = stylex.defineVars({
+export const typefaceVars = stylex.defineVars<ITypefaceThemeVars>({
   brand: 'Roboto',
   plain: 'Roboto',
   weightBold: '700',
@@ -22,7 +19,7 @@ export const typefaceVars = stylex.defineVars({
 // Export to Web (CSS) -> import '--md-sys-typescale-*' from css/tokens.css
 
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-sys-typescale.scss
-export const typescaleVars = stylex.defineVars({
+export const typescaleVars = stylex.defineVars<ITypescaleThemeVars>({
   // display-large
   displayFont$lg: typefaceVars.brand,
   displayLineHeight$lg: '4rem',

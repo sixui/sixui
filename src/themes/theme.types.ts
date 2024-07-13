@@ -1,5 +1,5 @@
 import type { ICompiledStyles, IStyleVarsTheme } from '@/helpers/types';
-import type { IColorRoles } from './colorRoles.types';
+import type { IColorRolesThemeVars } from './colorRoles.types';
 import type {
   IBasicTemplateStyleKey,
   IBasicTemplateStyleVarKey,
@@ -105,10 +105,6 @@ import type {
   IBadgeStyleKey,
   IBadgeStyleVarKey,
 } from '@/components/atoms/Badge';
-import type {
-  IAvatarStyleKey,
-  IAvatarStyleVarKey,
-} from '@/components/atoms/Avatar';
 import type {
   IScrimStyleKey,
   IScrimStyleVarKey,
@@ -257,10 +253,10 @@ export type ITabTheme = {
 export type ITheme = {
   name: string;
   colorSchemes: {
-    dark: IStyleVarsTheme<keyof IColorRoles>;
+    dark: IStyleVarsTheme<keyof IColorRolesThemeVars>;
   };
   colorRoles: {
-    dark: IColorRoles;
+    dark: IColorRolesThemeVars;
   };
   components: {
     Template: IBasicTemplateTheme;
@@ -417,10 +413,6 @@ export type ITheme = {
     Badge: {
       vars?: IStyleVarsTheme<IBadgeStyleVarKey>;
       styles?: ICompiledStyles<IBadgeStyleKey>;
-    };
-    Avatar: {
-      vars?: IStyleVarsTheme<IAvatarStyleVarKey>;
-      styles?: ICompiledStyles<IAvatarStyleKey>;
     };
     Scrim: {
       vars?: IStyleVarsTheme<IScrimStyleVarKey>;

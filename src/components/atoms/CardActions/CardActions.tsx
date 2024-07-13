@@ -4,13 +4,13 @@ import type { ICardActionsStyleKey } from './CardActions.styledefs';
 import type { ICardActionsProps } from './CardActionsProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 
 export const CardActions = forwardRef<HTMLDivElement, ICardActionsProps>(
   function CardActions(props, forwardedRef) {
     const { styles, sx, children, ...other } = props;
 
-    const { theme } = useComponentTheme('CardActions');
+    const { theme } = useComponentThemeOld('CardActions');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

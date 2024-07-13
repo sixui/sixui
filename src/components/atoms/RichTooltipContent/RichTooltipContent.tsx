@@ -9,7 +9,7 @@ import type {
 } from './RichTooltipContent.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { Elevation } from '@/components/utils/Elevation';
 
 export const RichTooltipContent = forwardRef<
@@ -28,7 +28,7 @@ export const RichTooltipContent = forwardRef<
     ...other
   } = props;
 
-  const { theme } = useComponentTheme('RichTooltipContent');
+  const { theme } = useComponentThemeOld('RichTooltipContent');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(theme.styles, styles),
     [theme.styles, styles],

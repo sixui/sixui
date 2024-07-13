@@ -17,7 +17,7 @@ import type {
   IFieldBaseStyleVarKey,
 } from './FieldBase.styledefs';
 import { useVisualState } from '@/components/utils/VisualState';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { usePrevious } from '@/hooks/usePrevious';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
@@ -90,7 +90,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
   );
   const handleRef = useMergeRefs([forwardedRef, setVisualStateRef]);
 
-  const { theme, variantTheme } = useComponentTheme(
+  const { theme, variantTheme } = useComponentThemeOld(
     'FieldBase',
     variant ? variantMap[variant] : undefined,
   );

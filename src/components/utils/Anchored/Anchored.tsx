@@ -4,7 +4,7 @@ import type { IAnchoredStyleKey } from './Anchored.styledefs';
 import type { IAnchoredProps } from './AnchoredProps';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 
 export const Anchored = forwardRef<HTMLDivElement, IAnchoredProps>(
   function Anchored(props, forwardedRef) {
@@ -20,7 +20,7 @@ export const Anchored = forwardRef<HTMLDivElement, IAnchoredProps>(
       ...other
     } = props;
 
-    const { theme } = useComponentTheme('Anchored');
+    const { theme } = useComponentThemeOld('Anchored');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(theme.styles, styles),
       [theme.styles, styles],

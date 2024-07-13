@@ -22,7 +22,7 @@ import type {
 import { Badge } from '@/components/atoms/Badge';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { useVisualState } from '@/components/utils/VisualState';
 import { Elevation } from '@/components/utils/Elevation';
 import { FocusRing } from '@/components/utils/FocusRing';
@@ -83,7 +83,7 @@ export const Tab: ITab = forwardRef(function Tab<
   );
   const handleRef = useMergeRefs([forwardedRef, visualStateRef, actionRef]);
 
-  const { theme, variantTheme, settings } = useComponentTheme(
+  const { theme, variantTheme, settings } = useComponentThemeOld(
     'Tab',
     variant ? variantMap[variant] : undefined,
   );
