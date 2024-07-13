@@ -1,12 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IStyleVars } from '@/helpers/types';
-import type { IAvatarStyleVarKey } from '@/components/atoms/Avatar';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { typescaleVars } from '@/themes/base/vars/typo.stylex';
 import { shapeVars } from '@/themes/base/vars/shape.stylex';
 
-const vars: IStyleVars<IAvatarStyleVarKey> = {
+const vars = {
   // container
   containerShape: shapeVars.corner$full,
   containerWidth: '40px',
@@ -21,6 +19,8 @@ const vars: IStyleVars<IAvatarStyleVarKey> = {
   labelTextLetterSpacing: typescaleVars.titleLetterSpacing$md,
   labelTextWeight: typescaleVars.titleWeight$md,
 };
+
+export type IAvatarToken = keyof typeof vars;
 
 export const avatarTokens = stylex.defineVars(vars);
 

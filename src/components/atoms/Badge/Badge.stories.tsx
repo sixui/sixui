@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IBadgeProps } from './BadgeProps';
+import type { IBadgeProps } from './Badge.types';
 import {
   type IComponentPresentation,
   ComponentShowcase,

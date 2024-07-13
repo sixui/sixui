@@ -166,6 +166,8 @@ type ISelectableTrailingIconStyleVarKey =
   | 'selectedTrailingIconColor$hover'
   | 'selectedTrailingIconColor$pressed';
 
+type IAvatarStyleVarKey = 'avatarShape' | 'avatarSize';
+
 type ISelectableChipStyleVarKey =
   | IOutlineStyleVarKey
   | IContainerStyleVarKey
@@ -182,8 +184,6 @@ type ISelectableChipStyleVarKey =
   | ISelectableTrailingIconStyleVarKey
   | ISelectableStateLayerStyleVarKey
   | ISelectableLabelStyleVarKey;
-
-type IAvatarStyleVarKey = 'avatarShape' | 'avatarSize';
 
 export type IChipStyleVarKey =
   | ISelectableChipStyleVarKey

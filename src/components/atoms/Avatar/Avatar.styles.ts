@@ -1,10 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IStyles } from '@/helpers/types';
-import type { IAvatarStyleKey } from '@/components/atoms/Avatar';
 import { avatarTokens } from './Avatar.stylex';
 
-export const avatarStyles = stylex.create<IStyles<IAvatarStyleKey>>({
+export const avatarStyles = stylex.create({
   host: {
     position: 'relative',
     display: 'flex',
@@ -50,3 +48,5 @@ export const avatarStyles = stylex.create<IStyles<IAvatarStyleKey>>({
     height: '100%',
   },
 });
+
+export type IAvatarStyleKey = keyof typeof avatarStyles;

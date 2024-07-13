@@ -2,13 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faBolt, faCloud } from '@fortawesome/free-solid-svg-icons';
 
-import type { IAvatarProps } from './AvatarProps';
+import type { IAvatarProps } from './Avatar.types';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { Avatar } from './Avatar';
 
 const meta = {
   component: Avatar,
-  // tags: ['autodocs'],
 } satisfies Meta<typeof Avatar>;
 
 type IStory = StoryObj<typeof meta>;

@@ -102,10 +102,6 @@ import type {
 } from '@/components/atoms/Breadcrumbs';
 import type { IAnchoredStyleKey } from '@/components/utils/Anchored';
 import type {
-  IBadgeStyleKey,
-  IBadgeStyleVarKey,
-} from '@/components/atoms/Badge';
-import type {
   IScrimStyleKey,
   IScrimStyleVarKey,
 } from '@/components/atoms/Scrim';
@@ -409,10 +405,6 @@ export type ITheme = {
     };
     Anchored: {
       styles?: ICompiledStyles<IAnchoredStyleKey>;
-    };
-    Badge: {
-      vars?: IStyleVarsTheme<IBadgeStyleVarKey>;
-      styles?: ICompiledStyles<IBadgeStyleKey>;
     };
     Scrim: {
       vars?: IStyleVarsTheme<IScrimStyleVarKey>;

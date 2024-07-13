@@ -15,6 +15,7 @@ import { darkColorRoles } from '@/themes/base/vars/darkColorRoles';
 // import { componentVars as buttonVars } from '@/themes/base/Button/Button.stylex';
 // import { componentVars as disclosureButtonVars } from '@/themes/base/DisclosureButton/DisclosureButton.stylex';
 // import { avatarTokens } from '@/components/atoms/Avatar/Avatar.stylex';
+// import { badgeTokens } from '@/components/atoms/Badge/Badge.stylex';
 
 import '@/styles/main.css';
 import '@/styles/storybook.css';
@@ -68,6 +69,9 @@ const styles = stylex.create({
 //   },
 //   Avatar: {
 //     [avatarTokens.containerShape]: '0',
+//   },
+//   Badge: {
+//     [badgeTokens.containerShape]: '0',
 //   },
 // });
 

@@ -1,13 +1,11 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IStyleVars } from '@/helpers/types';
-import type { IBadgeStyleVarKey } from '@/components/atoms/Badge';
-import { colorRolesVars } from '../vars/colorRoles.stylex';
-import { typescaleVars } from '../vars/typo.stylex';
-import { shapeVars } from '../vars/shape.stylex';
-import { stateVars } from '../vars/state.stylex';
+import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { typescaleVars } from '@/themes/base/vars/typo.stylex';
+import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { stateVars } from '@/themes/base/vars/state.stylex';
 
-const vars: IStyleVars<IBadgeStyleVarKey> = {
+const vars = {
   // container
   containerColor: colorRolesVars.error,
   containerShape: shapeVars.corner$full,
@@ -33,7 +31,9 @@ const vars: IStyleVars<IBadgeStyleVarKey> = {
   labelTextOpacity$disabled: stateVars.opacity$disabled,
 };
 
-export const componentVars = stylex.defineVars(vars);
+export type IBadgeToken = keyof typeof vars;
+
+export const badgeTokens = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that
@@ -41,4 +41,4 @@ export const componentVars = stylex.defineVars(vars);
  *
  * @see https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
  */
-export const componentTheme = stylex.createTheme(componentVars, vars);
+export const badgeTheme = stylex.createTheme(badgeTokens, vars);

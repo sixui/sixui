@@ -1,5 +1,5 @@
 import type { IContainerProps } from '@/helpers/types';
-import type { IBadgeStyleKey } from './Badge.styledefs';
+import type { IBadgeStyleKey } from './Badge.styles';
 
 export type IBadgeProps = IContainerProps<IBadgeStyleKey> & {
   children?: React.ReactNode;

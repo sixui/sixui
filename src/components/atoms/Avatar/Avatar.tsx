@@ -1,14 +1,13 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IAvatarStyleKey, IAvatarStyleVarKey } from './Avatar.styledefs';
-import type { IAvatarProps } from './AvatarProps';
+import type { IAvatarProps } from './Avatar.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useLoaded } from '@/hooks/useLoaded';
 import { ReactComponent as PersonIcon } from '@/assets/Person.svg';
-import { avatarStyles } from './Avatar.styles';
-import { avatarTheme } from './Avatar.stylex';
+import { avatarStyles, type IAvatarStyleKey } from './Avatar.styles';
+import { avatarTheme, type IAvatarToken } from './Avatar.stylex';
 
 export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
   function Avatar(props, forwardedRef) {
@@ -31,10 +30,7 @@ export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
       [styles],
     );
     const sxf = useMemo(
-      () =>
-        stylePropsFactory<IAvatarStyleKey, IAvatarStyleVarKey>(
-          stylesCombinator,
-        ),
+      () => stylePropsFactory<IAvatarStyleKey, IAvatarToken>(stylesCombinator),
       [stylesCombinator],
     );
 
@@ -51,8 +47,8 @@ export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
     return (
       <div
         {...sxf('host', avatarTheme, overridenStyles, sx)}
-        ref={forwardedRef}
         {...other}
+        ref={forwardedRef}
       >
         {hasImageNotFailing ? (
           <img

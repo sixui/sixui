@@ -1,3 +1,3 @@
-export * from './Badge.styledefs';
-export * from './BadgeProps';
+export * from './Badge.styles';
+export * from './Badge.types';
 export * from './Badge';
