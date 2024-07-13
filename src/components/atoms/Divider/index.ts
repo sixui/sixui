@@ -1,3 +1,3 @@
-export * from './Divider.styledefs';
-export * from './DividerProps';
+export * from './Divider.types';
+export * from './Divider.styles';
 export * from './Divider';

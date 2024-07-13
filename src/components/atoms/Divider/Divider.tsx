@@ -1,13 +1,11 @@
 import { forwardRef, useMemo } from 'react';
 
-import type {
-  IDividerStyleKey,
-  IDividerStyleVarKey,
-} from './Divider.styledefs';
-import type { IDividerProps } from './DividerProps';
+import type { IDividerProps } from './Divider.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { dividerStyles } from './Divider.styles';
+import { dividerTheme } from './Divider.stylex';
 
 // https://github.com/material-components/material-web/blob/main/divider/internal/divider.ts
 
@@ -16,16 +14,13 @@ export const Divider = forwardRef<HTMLDivElement, IDividerProps>(
     const { styles, sx, inset, insetStart, insetEnd, children, ...other } =
       props;
 
-    const { theme } = useComponentThemeOld('Divider');
+    const { overridenStyles } = useComponentTheme('Divider');
     const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(theme.styles, styles),
-      [theme.styles, styles],
+      () => stylesCombinatorFactory(dividerStyles, styles),
+      [styles],
     );
     const sxf = useMemo(
-      () =>
-        stylePropsFactory<IDividerStyleKey, IDividerStyleVarKey>(
-          stylesCombinator,
-        ),
+      () => stylePropsFactory(stylesCombinator),
       [stylesCombinator],
     );
 
@@ -41,7 +36,11 @@ export const Divider = forwardRef<HTMLDivElement, IDividerProps>(
     );
 
     return (
-      <div {...sxf('host', theme.vars, sx)} ref={forwardedRef} {...other}>
+      <div
+        {...sxf(dividerTheme, overridenStyles, 'host', sx)}
+        ref={forwardedRef}
+        {...other}
+      >
         {children ? (
           <>
             {renderLine()}

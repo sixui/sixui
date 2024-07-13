@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
-import type { IDividerProps } from './DividerProps';
+import type { IDividerProps } from './Divider.types';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { Divider } from './Divider';
 

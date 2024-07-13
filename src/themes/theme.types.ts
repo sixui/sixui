@@ -57,10 +57,6 @@ import type {
   IListItemStyleVarKey,
 } from '@/components/atoms/ListItem';
 import type {
-  IDividerStyleKey,
-  IDividerStyleVarKey,
-} from '@/components/atoms/Divider';
-import type {
   IPaperStyleKey,
   IPaperStyleVarKey,
 } from '@/components/atoms/Paper';
@@ -250,10 +246,6 @@ export type ITheme = {
     DangerListItem: IListItemTheme;
     List: {
       styles?: ICompiledStyles<IListStyleKey>;
-    };
-    Divider: {
-      vars?: IStyleVarsTheme<IDividerStyleVarKey>;
-      styles?: ICompiledStyles<IDividerStyleKey>;
     };
     Paper: IPaperTheme;
     FilledPaper: IPaperTheme;

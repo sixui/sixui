@@ -83,9 +83,6 @@ import {
   focusRingStyles as listItemFocusRingStyles,
 } from './ListItem/ListItem.styles';
 
-import { componentTheme as dividerTheme } from './Divider/Divider.stylex';
-import { styles as dividerStyles } from './Divider/Divider.styles';
-
 import { componentTheme as paperTheme } from './Paper/Paper.stylex';
 import {
   styles as paperStyles,
@@ -277,10 +274,6 @@ export const theme: ITheme = {
     DangerListItem: { vars: dangerListItemTheme },
     List: {
       styles: listStyles,
-    },
-    Divider: {
-      vars: dividerTheme,
-      styles: dividerStyles,
     },
     Paper: {
       vars: paperTheme,
