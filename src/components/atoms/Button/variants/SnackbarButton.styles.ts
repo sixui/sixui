@@ -2,7 +2,7 @@ import stylex from '@stylexjs/stylex';
 
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { shapeVars } from '@/themes/base/vars/shape.stylex';
-import { buttonTokens } from './Button.stylex';
+import { buttonTokens } from '../Button.stylex';
 
 export const snackbarButtonStyles = stylex.create({
   host: {

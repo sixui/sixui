@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { componentVars as elevationVars } from '@/themes/base/Elevation/Elevation.stylex';
 import { stateVars } from '@/themes/base/vars/state.stylex';
-import { buttonTokens } from './Button.stylex';
+import { buttonTokens } from '../Button.stylex';
 
 export const filledTonalButtonStyles = stylex.create({
   host: {

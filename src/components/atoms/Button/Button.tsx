@@ -27,13 +27,15 @@ import {
   type IButtonStyleKey,
 } from './Button.styles';
 import { buttonTheme } from './Button.stylex';
-import { elevatedButtonStyles } from './ElevatedButton.styles';
-import { filledButtonStyles } from './FilledButton.styles';
-import { filledTonalButtonStyles } from './FilledTonalButton.styles';
-import { outlinedButtonStyles } from './OutlinedButton.styles';
-import { textButtonStyles } from './TextButton.styles';
-import { dangerButtonStyles } from './DangerButton.styles';
-import { snackbarButtonStyles } from './SnackbarButton.styles';
+import {
+  elevatedButtonStyles,
+  filledButtonStyles,
+  filledTonalButtonStyles,
+  outlinedButtonStyles,
+  textButtonStyles,
+  dangerButtonStyles,
+  snackbarButtonStyles,
+} from './variants';
 
 // https://github.com/material-components/material-web/blob/main/button/internal/button.ts
 // https://github.com/material-components/material-web/blob/main/button/internal/elevated-button.ts
@@ -135,10 +137,10 @@ export const Button: IButton = forwardRef(function Button<
     <ButtonBase
       sx={[
         buttonTheme,
-        overridenStyles,
         loading ? stylesCombinator('host$loading') : undefined,
         hasLeadingIcon && stylesCombinator('host$withLeadingIcon'),
         hasTrailingIcon && stylesCombinator('host$withTrailingIcon'),
+        overridenStyles,
         sx,
       ]}
       styles={[buttonStyles, variantStyles]}
