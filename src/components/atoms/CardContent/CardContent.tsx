@@ -1,29 +1,24 @@
 import { forwardRef, useContext, useMemo } from 'react';
 
-import type {
-  ICardContentStyleKey,
-  ICardContentStyleVarKey,
-} from './CardContent.styledefs';
-import type { ICardContentProps } from './CardContentProps';
+import type { ICardContentProps } from './CardContent.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { CardContext } from '@/components/atoms/Card';
+import { cardContentStyles } from './CardContent.styles';
+import { cardContentTheme } from './CardContent.stylex';
 
 export const CardContent = forwardRef<HTMLDivElement, ICardContentProps>(
   function CardContent(props, forwardedRef) {
     const { styles, sx, children, ...other } = props;
 
-    const { theme } = useComponentThemeOld('CardContent');
+    const { overridenStyles } = useComponentTheme('CardContent');
     const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(theme.styles, styles),
-      [theme.styles, styles],
+      () => stylesCombinatorFactory(cardContentStyles, styles),
+      [styles],
     );
     const sxf = useMemo(
-      () =>
-        stylePropsFactory<ICardContentStyleKey, ICardContentStyleVarKey>(
-          stylesCombinator,
-        ),
+      () => stylePropsFactory(stylesCombinator),
       [stylesCombinator],
     );
 
@@ -32,7 +27,13 @@ export const CardContent = forwardRef<HTMLDivElement, ICardContentProps>(
 
     return (
       <div
-        {...sxf('host', actionable ? 'host$actionable' : null, theme.vars, sx)}
+        {...sxf(
+          cardContentTheme,
+          overridenStyles,
+          'host',
+          actionable ? 'host$actionable' : null,
+          sx,
+        )}
         ref={forwardedRef}
         {...other}
       >

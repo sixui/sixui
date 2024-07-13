@@ -1,10 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IStyleVars } from '@/helpers/types';
-import type { ICardContentStyleVarKey } from '@/components/atoms/CardContent';
-import { colorRolesVars } from '../vars/colorRoles.stylex';
+import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 
-const vars: IStyleVars<ICardContentStyleVarKey> = {
+const vars = {
   leadingSpace: '16px',
   trailingSpace: '16px',
   topSpace: '16px',
@@ -17,7 +15,7 @@ const vars: IStyleVars<ICardContentStyleVarKey> = {
   bottomSpace$actionable: '16px',
 };
 
-export const componentVars = stylex.defineVars(vars);
+export const cardContentTokens = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that
@@ -25,4 +23,4 @@ export const componentVars = stylex.defineVars(vars);
  *
  * @see https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
  */
-export const componentTheme = stylex.createTheme(componentVars, vars);
+export const cardContentTheme = stylex.createTheme(cardContentTokens, vars);

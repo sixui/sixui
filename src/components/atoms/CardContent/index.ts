@@ -1,3 +1,3 @@
-export * from './CardContent.styledefs';
-export * from './CardContentProps';
+export * from './CardContent.types';
+export * from './CardContent.styles';
 export * from './CardContent';

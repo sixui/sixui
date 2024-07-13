@@ -123,9 +123,6 @@ import { componentTheme as outlinedPaperTheme } from './Paper/OutlinedPaper.styl
 import { componentTheme as cardMediaTheme } from './CardMedia/CardMedia.stylex';
 import { styles as cardMediaStyles } from './CardMedia/CardMedia.styles';
 
-import { componentTheme as cardContentTheme } from './CardContent/CardContent.stylex';
-import { styles as cardContentStyles } from './CardContent/CardContent.styles';
-
 import { componentTheme as cardTitleTheme } from './CardTitle/CardTitle.stylex';
 import { styles as cardTitleStyles } from './CardTitle/CardTitle.styles';
 
@@ -372,10 +369,6 @@ export const theme: ITheme = {
     CardMedia: {
       vars: cardMediaTheme,
       styles: cardMediaStyles,
-    },
-    CardContent: {
-      vars: cardContentTheme,
-      styles: cardContentStyles,
     },
     CardTitle: {
       vars: cardTitleTheme,

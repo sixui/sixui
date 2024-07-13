@@ -80,10 +80,6 @@ import type {
   ICardMediaStyleVarKey,
 } from '@/components/atoms/CardMedia';
 import type {
-  ICardContentStyleKey,
-  ICardContentStyleVarKey,
-} from '@/components/atoms/CardContent';
-import type {
   ICardTitleStyleKey,
   ICardTitleStyleVarKey,
 } from '@/components/atoms/CardTitle';
@@ -335,10 +331,6 @@ export type ITheme = {
     CardMedia: {
       vars: IStyleVarsTheme<ICardMediaStyleVarKey>;
       styles?: ICompiledStyles<ICardMediaStyleKey>;
-    };
-    CardContent: {
-      vars: IStyleVarsTheme<ICardContentStyleVarKey>;
-      styles?: ICompiledStyles<ICardContentStyleKey>;
     };
     CardTitle: {
       vars: IStyleVarsTheme<ICardTitleStyleVarKey>;
