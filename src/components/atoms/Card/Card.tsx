@@ -6,40 +6,29 @@ import type {
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
-import type { IThemeComponents } from '@/components/utils/Theme';
-import type {
-  ICardStyleKey,
-  ICardStyleVarKey,
-  ICardVariant,
-} from './Card.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useVisualState } from '@/components/utils/VisualState';
 import { Elevation } from '@/components/utils/Elevation';
 import { FocusRing } from '@/components/utils/FocusRing';
 import { StateLayer } from '@/components/utils/StateLayer';
-import { CardContext, type ICardContextValue } from './CardContext';
 import {
-  CARD_DEFAULT_TAG,
   type ICardOwnProps,
   type ICardProps,
-} from './CardProps';
+  CARD_DEFAULT_TAG,
+} from './Card.types';
+import { CardContext, type ICardContextValue } from './CardContext';
+import { cardVariantStyles } from './variants';
+import {
+  cardElevationStyles,
+  cardFocusRingStyles,
+  cardStateLayerStyles,
+  cardStyles,
+} from './Card.styles';
+import { cardTheme } from './Card.stylex';
 
 // https://github.com/material-components/material-web/blob/main/labs/card/internal/card.ts
-
-type ICardVariantMap = {
-  [key in ICardVariant]: keyof Pick<
-    IThemeComponents,
-    'ElevatedCard' | 'FilledCard' | 'OutlinedCard'
-  >;
-};
-
-const variantMap: ICardVariantMap = {
-  elevated: 'ElevatedCard',
-  filled: 'FilledCard',
-  outlined: 'OutlinedCard',
-};
 
 type ICard = <TRoot extends React.ElementType = typeof CARD_DEFAULT_TAG>(
   props: ICardProps<TRoot>,
@@ -68,20 +57,15 @@ export const Card: ICard = forwardRef(function Card<
   );
   const handleRef = useMergeRefs([forwardedRef, setVisualStateRef]);
 
-  const { theme, variantTheme, settings } = useComponentThemeOld(
-    'Card',
-    variant ? variantMap[variant] : undefined,
-  );
+  const { overridenStyles, settings } = useComponentTheme('Card');
+  const variantStyles = variant ? cardVariantStyles[variant] : undefined;
+
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
-    [theme.styles, variantTheme?.styles, styles],
+    () => stylesCombinatorFactory(cardStyles, variantStyles, styles),
+    [variantStyles, styles],
   );
   const sxf = useMemo(
-    () =>
-      stylePropsFactory<ICardStyleKey, ICardStyleVarKey>(
-        stylesCombinator,
-        visualState,
-      ),
+    () => stylePropsFactory(stylesCombinator, visualState),
     [stylesCombinator, visualState],
   );
 
@@ -89,8 +73,8 @@ export const Card: ICard = forwardRef(function Card<
   const dragged = visualState?.dragged;
 
   const hasOutline =
-    !!theme.styles?.outline ||
-    !!variantTheme?.styles?.outline ||
+    !!cardStyles.outline ||
+    !!variantStyles?.outline ||
     asArray(styles).some((styles) => !!styles?.outline);
 
   const Component =
@@ -104,11 +88,11 @@ export const Card: ICard = forwardRef(function Card<
     <CardContext.Provider value={context}>
       <Component
         {...sxf(
+          cardTheme,
           'host',
           actionable && 'host$actionable',
           disabled && 'host$disabled',
-          theme.vars,
-          variantTheme?.vars,
+          overridenStyles,
           sx,
         )}
         sx={sx}
@@ -133,14 +117,14 @@ export const Card: ICard = forwardRef(function Card<
         {...other}
       >
         <Elevation
-          styles={[theme.elevationStyles, ...asArray(innerStyles?.elevation)]}
+          styles={[cardElevationStyles, ...asArray(innerStyles?.elevation)]}
           disabled={disabled}
         />
         {actionable ? (
           <>
             <StateLayer
               styles={[
-                theme.stateLayerStyles,
+                cardStateLayerStyles,
                 ...asArray(innerStyles?.stateLayer),
               ]}
               for={forwardedRef}
@@ -148,24 +132,13 @@ export const Card: ICard = forwardRef(function Card<
               visualState={visualState}
             />
             <FocusRing
-              styles={[
-                theme.focusRingStyles,
-                ...asArray(innerStyles?.focusRing),
-              ]}
+              styles={[cardFocusRingStyles, ...asArray(innerStyles?.focusRing)]}
               for={forwardedRef}
               visualState={visualState}
             />
           </>
         ) : null}
-        {hasOutline ? (
-          <div
-            {...sxf(
-              'outline',
-              actionable && 'outline$actionable',
-              disabled && 'outline$disabled',
-            )}
-          />
-        ) : null}
+        {hasOutline ? <div {...sxf('outline')} /> : null}
         <div {...sxf('background', disabled && 'background$disabled')} />
         {children}
       </Component>

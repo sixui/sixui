@@ -3,26 +3,27 @@ import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
 import type { IOptionCardStyleKey } from '@/components/atoms/OptionCard';
-import type { ICardStyleKey } from '@/components/atoms/Card';
 import { componentVars as vars } from './OptionCard.stylex';
-import { componentVars as cardVars } from '../Card/Card.stylex';
+import { cardTokens } from '@/components/atoms/Card/Card.stylex';
 import { motionVars } from '../vars/motion.stylex';
+import { ICardStyleKey } from '@/components/atoms/Card/Card.styles';
 
 type IOptionCardStyles = IStyles<IOptionCardStyleKey>;
 export const styles: MapNamespaces<IOptionCardStyles> =
   stylex.create<IOptionCardStyles>({
     host: {
-      [cardVars.containerColor]: vars.containerColor,
+      [cardTokens.containerColor]: vars.containerColor,
     },
     host$selected: {
-      [cardVars.outlineColor]: vars.selectedOutlineColor,
-      [cardVars.outlineWidth]: vars.selectedOutlineWidth,
-      [cardVars.outlineColor$disabled]: vars.selectedOutlineColor$disabled,
-      [cardVars.outlineOpacity$disabled]: vars.selectedOutlineOpacity$disabled,
-      [cardVars.outlineColor$focus]: vars.selectedOutlineColor$focus,
-      [cardVars.outlineColor$hover]: vars.selectedOutlineColor$hover,
-      [cardVars.outlineColor$pressed]: vars.selectedOutlineColor$pressed,
-      [cardVars.outlineColor$dragged]: vars.selectedOutlineColor$dragged,
+      [cardTokens.outlineColor]: vars.selectedOutlineColor,
+      [cardTokens.outlineWidth]: vars.selectedOutlineWidth,
+      [cardTokens.outlineColor$disabled]: vars.selectedOutlineColor$disabled,
+      [cardTokens.outlineOpacity$disabled]:
+        vars.selectedOutlineOpacity$disabled,
+      [cardTokens.outlineColor$focus]: vars.selectedOutlineColor$focus,
+      [cardTokens.outlineColor$hover]: vars.selectedOutlineColor$hover,
+      [cardTokens.outlineColor$pressed]: vars.selectedOutlineColor$pressed,
+      [cardTokens.outlineColor$dragged]: vars.selectedOutlineColor$dragged,
     },
     text: {
       fontFamily: vars.textFont,

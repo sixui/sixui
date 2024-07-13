@@ -1,5 +1,6 @@
 import { forwardRef, useMemo, useState } from 'react';
 import { asArray } from '@olivierpascal/helpers';
+import { useMergeRefs } from '@floating-ui/react';
 
 import type {
   IPolymorphicRef,
@@ -16,6 +17,7 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { IndeterminateCircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
 import { ButtonBase } from '@/components/atoms/ButtonBase';
 import { executeLazyPromise } from '@/helpers/executeLazyPromise';
+import { useVisualState } from '@/components/utils/VisualState';
 import {
   buttonCircularProgressIndicatorStyles,
   buttonElevationStyles,
@@ -26,8 +28,6 @@ import {
 } from './Button.styles';
 import { buttonTheme } from './Button.stylex';
 import { buttonVariantStyles } from './variants';
-import { useVisualState } from '@/components/utils/VisualState';
-import { useMergeRefs } from '@floating-ui/react';
 
 // https://github.com/material-components/material-web/blob/main/button/internal/button.ts
 // https://github.com/material-components/material-web/blob/main/button/internal/elevated-button.ts

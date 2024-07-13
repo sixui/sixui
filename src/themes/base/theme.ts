@@ -120,18 +120,6 @@ import {
 import { componentTheme as filledPaperTheme } from './Paper/FilledPaper.stylex';
 import { componentTheme as outlinedPaperTheme } from './Paper/OutlinedPaper.stylex';
 
-import { componentTheme as cardTheme } from './Card/Card.stylex';
-import {
-  styles as cardStyles,
-  elevationStyles as cardElevationStyles,
-  stateLayerStyles as cardStateLayerStyles,
-  focusRingStyles as cardFocusRingStyles,
-} from './Card/Card.styles';
-import { componentTheme as elevatedCardTheme } from './Card/ElevatedCard.stylex';
-import { componentTheme as filledCardTheme } from './Card/FilledCard.stylex';
-import { componentTheme as outlinedCardTheme } from './Card/OutlinedCard.stylex';
-import { styles as outlinedCardStyles } from './Card/OutlinedCard.styles';
-
 import { componentTheme as cardMediaTheme } from './CardMedia/CardMedia.stylex';
 import { styles as cardMediaStyles } from './CardMedia/CardMedia.styles';
 
@@ -383,13 +371,6 @@ export const theme: ITheme = {
     },
     FilledPaper: { vars: filledPaperTheme },
     OutlinedPaper: { vars: outlinedPaperTheme },
-    Card: {
-      vars: cardTheme,
-      styles: cardStyles,
-      elevationStyles: cardElevationStyles,
-      stateLayerStyles: cardStateLayerStyles,
-      focusRingStyles: cardFocusRingStyles,
-    },
     CardMedia: {
       vars: cardMediaTheme,
       styles: cardMediaStyles,
@@ -404,12 +385,6 @@ export const theme: ITheme = {
     },
     CardActions: {
       styles: cardActionsStyles,
-    },
-    ElevatedCard: { vars: elevatedCardTheme },
-    FilledCard: { vars: filledCardTheme },
-    OutlinedCard: {
-      vars: outlinedCardTheme,
-      styles: outlinedCardStyles,
     },
     Tab: {
       vars: tabTheme,

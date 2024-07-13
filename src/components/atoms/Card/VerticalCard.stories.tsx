@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 
-import type { ICardProps, ICardOwnProps } from './CardProps';
+import type { ICardProps, ICardOwnProps } from './Card.types';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,

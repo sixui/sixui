@@ -6,11 +6,13 @@ import type {
   IAny,
 } from '@/helpers/types';
 import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
-import type { ICardStyleKey, ICardVariant } from './Card.styledefs';
 import type { IElevationStyleKey } from '@/components/utils/Elevation';
 import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import type { IVisualState } from '@/components/utils/VisualState';
+import type { ICardStyleKey } from './Card.styles';
+
+export type ICardVariant = 'elevated' | 'filled' | 'outlined';
 
 export const CARD_DEFAULT_TAG = 'div';
 

@@ -1,4 +1,4 @@
-import type { ICardStyleKey } from '@/components/atoms/Card';
+import { ICardStyleKey } from '@/components/atoms/Card/Card.styles';
 
 export type IOptionCardStyleKey =
   | ICardStyleKey

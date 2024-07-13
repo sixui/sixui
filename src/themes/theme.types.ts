@@ -75,7 +75,6 @@ import type {
   IPaperStyleKey,
   IPaperStyleVarKey,
 } from '@/components/atoms/Paper';
-import type { ICardStyleKey, ICardStyleVarKey } from '@/components/atoms/Card';
 import type {
   ICardMediaStyleKey,
   ICardMediaStyleVarKey,
@@ -154,6 +153,7 @@ import type {
   IOptionCardStyleVarKey,
 } from '@/components/atoms/OptionCard';
 import type { IButtonStyleKey } from '@/components/atoms/Button';
+import type { ICardStyleKey } from '@/components/atoms/Card/Card.styles';
 
 export type IBasicTemplateTheme = {
   vars?: IStyleVarsTheme<IBasicTemplateStyleVarKey>;
@@ -215,11 +215,6 @@ export type IPaperTheme = {
   vars?: IStyleVarsTheme<IPaperStyleVarKey>;
   styles?: ICompiledStyles<IPaperStyleKey>;
   elevationStyles?: ICompiledStyles<IElevationStyleKey>;
-};
-
-export type ICardTheme = {
-  vars?: IStyleVarsTheme<ICardStyleVarKey>;
-  styles?: ICompiledStyles<ICardStyleKey>;
 };
 
 export type ITabTheme = {
@@ -338,11 +333,6 @@ export type ITheme = {
     OutlinedPaper: IPaperTheme & {
       styles?: ICompiledStyles<IPaperStyleKey>;
     };
-    Card: ICardTheme & {
-      elevationStyles?: ICompiledStyles<IElevationStyleKey>;
-      stateLayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
-      focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
-    };
     CardMedia: {
       vars: IStyleVarsTheme<ICardMediaStyleVarKey>;
       styles?: ICompiledStyles<ICardMediaStyleKey>;
@@ -357,11 +347,6 @@ export type ITheme = {
     };
     CardActions: {
       styles?: ICompiledStyles<ICardActionsStyleKey>;
-    };
-    ElevatedCard: ICardTheme;
-    FilledCard: ICardTheme;
-    OutlinedCard: ICardTheme & {
-      styles?: ICompiledStyles<ICardStyleKey>;
     };
     Tab: ITabTheme;
     PrimaryTab: ITabTheme;
