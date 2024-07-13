@@ -4,7 +4,7 @@ import stylex from '@stylexjs/stylex';
 import type { IStyles } from '@/helpers/types';
 import type { IFabStyleKey } from '@/components/atoms/Fab';
 import { componentVars as vars } from './Fab.stylex';
-import { componentVars as buttonVars } from '../Button/Button.stylex';
+import { buttonTokens as buttonVars } from '@/components/atoms/Button/Button.stylex';
 
 // https://github.com/material-components/material-web/blob/main/fab/internal/_shared.scss
 // https://github.com/material-components/material-web/blob/main/fab/internal/_fab.scss

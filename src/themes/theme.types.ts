@@ -29,10 +29,6 @@ import type {
   IFocusRingStyleVarKey,
 } from '@/components/utils/FocusRing';
 import type {
-  IButtonStyleKey,
-  IButtonStyleVarKey,
-} from '@/components/atoms/Button';
-import type {
   ICircularProgressIndicatorStyleKey,
   ICircularProgressIndicatorStyleVarKey,
   IIndeterminateCircularProgressIndicatorStyleKey,
@@ -168,15 +164,6 @@ export type IVariableTemplateTheme = {
   styles?: ICompiledStyles<IVariableTemplateStyleKey>;
 };
 
-export type IButtonTheme = {
-  vars?: IStyleVarsTheme<IButtonStyleVarKey>;
-  styles?: ICompiledStyles<IButtonStyleKey>;
-  stateLayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
-  focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
-  elevationStyles?: ICompiledStyles<IElevationStyleKey>;
-  circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
-};
-
 export type IListItemTheme = {
   vars?: IStyleVarsTheme<IListItemStyleVarKey>;
   styles?: ICompiledStyles<IListItemStyleKey>;
@@ -273,15 +260,6 @@ export type ITheme = {
       vars: IStyleVarsTheme<IFocusRingStyleVarKey>;
       styles: ICompiledStyles<IFocusRingStyleKey>;
     };
-    ButtonBase: IButtonTheme;
-    Button: IButtonTheme;
-    ElevatedButton: IButtonTheme;
-    FilledButton: IButtonTheme;
-    FilledTonalButton: IButtonTheme;
-    OutlinedButton: IButtonTheme;
-    TextButton: IButtonTheme;
-    DangerButton: IButtonTheme;
-    SnackbarButton: IButtonTheme;
     CircularProgressIndicator: {
       vars: IStyleVarsTheme<ICircularProgressIndicatorStyleVarKey>;
       styles: ICompiledStyles<ICircularProgressIndicatorStyleKey>;

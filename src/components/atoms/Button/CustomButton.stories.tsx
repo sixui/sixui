@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
-import type { IButtonProps } from './ButtonProps';
-import { componentVars as buttonVars } from '@/themes/base/Button/Button.stylex';
+import type { IButtonProps } from './Button.types';
+import { buttonTokens } from './Button.stylex';
 import { Button } from './Button';
 
 const meta = {
@@ -13,7 +13,7 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   squared: {
-    [buttonVars.containerShape]: '0',
+    [buttonTokens.containerShape]: '0',
   },
 });
 

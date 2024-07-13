@@ -7,7 +7,15 @@ import type {
 import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
 import type { ICircularProgressIndicatorStyleKey } from '@/components/atoms/CircularProgressIndicator';
 import type { IButtonBaseOwnProps } from '@/components/atoms/ButtonBase';
-import type { IButtonVariant } from './Button.styledefs';
+
+export type IButtonVariant =
+  | 'elevated'
+  | 'filled'
+  | 'filledTonal'
+  | 'outlined'
+  | 'text'
+  | 'danger'
+  | 'snackbar';
 
 export const BUTTON_DEFAULT_TAG = 'button';
 

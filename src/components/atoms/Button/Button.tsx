@@ -1,3 +1,4 @@
+import type { StyleXStyles } from '@stylexjs/stylex';
 import { forwardRef, useMemo, useState } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
@@ -5,23 +6,33 @@ import type {
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
-import type { IThemeComponents } from '@/components/utils/Theme';
-import type {
-  IButtonVariant,
-  IButtonStyleKey,
-  IButtonStyleVarKey,
-} from './Button.styledefs';
 import type {
   BUTTON_DEFAULT_TAG,
   IButtonOwnProps,
   IButtonProps,
-} from './ButtonProps';
+  IButtonVariant,
+} from './Button.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { IndeterminateCircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
 import { ButtonBase } from '@/components/atoms/ButtonBase';
 import { executeLazyPromise } from '@/helpers/executeLazyPromise';
+import {
+  buttonCircularProgressIndicatorStyles,
+  buttonElevationStyles,
+  buttonFocusRingStyles,
+  buttonStateLayerStyles,
+  buttonStyles,
+} from './Button.styles';
+import { buttonTheme } from './Button.stylex';
+import { elevatedButtonStyles } from './ElevatedButton.styles';
+import { filledButtonStyles } from './FilledButton.styles';
+import { filledTonalButtonStyles } from './FilledTonalButton.styles';
+import { outlinedButtonStyles } from './OutlinedButton.styles';
+import { textButtonStyles } from './TextButton.styles';
+import { dangerButtonStyles } from './DangerButton.styles';
+import { snackbarButtonStyles } from './SnackbarButton.styles';
 
 // https://github.com/material-components/material-web/blob/main/button/internal/button.ts
 // https://github.com/material-components/material-web/blob/main/button/internal/elevated-button.ts
@@ -30,27 +41,16 @@ import { executeLazyPromise } from '@/helpers/executeLazyPromise';
 // https://github.com/material-components/material-web/blob/main/button/internal/outlined-button.ts
 // https://github.com/material-components/material-web/blob/main/button/internal/text-button.ts
 
-type IButtonVariantMap = {
-  [key in IButtonVariant]: keyof Pick<
-    IThemeComponents,
-    | 'ElevatedButton'
-    | 'FilledButton'
-    | 'FilledTonalButton'
-    | 'OutlinedButton'
-    | 'TextButton'
-    | 'DangerButton'
-    | 'SnackbarButton'
-  >;
-};
-
-const variantMap: IButtonVariantMap = {
-  elevated: 'ElevatedButton',
-  filled: 'FilledButton',
-  filledTonal: 'FilledTonalButton',
-  outlined: 'OutlinedButton',
-  text: 'TextButton',
-  danger: 'DangerButton',
-  snackbar: 'SnackbarButton',
+const variantMap: {
+  [key in IButtonVariant]: Record<string, StyleXStyles>;
+} = {
+  elevated: elevatedButtonStyles,
+  filled: filledButtonStyles,
+  filledTonal: filledTonalButtonStyles,
+  outlined: outlinedButtonStyles,
+  text: textButtonStyles,
+  danger: dangerButtonStyles,
+  snackbar: snackbarButtonStyles,
 };
 
 type IButton = <TRoot extends React.ElementType = typeof BUTTON_DEFAULT_TAG>(
@@ -63,7 +63,6 @@ export const Button: IButton = forwardRef(function Button<
   const {
     styles,
     sx,
-    as,
     innerStyles,
     children,
     onClick,
@@ -77,23 +76,15 @@ export const Button: IButton = forwardRef(function Button<
     ...other
   } = props as IWithAsProp<IButtonOwnProps>;
 
-  const { theme, variantTheme, overridenStyles } = useComponentThemeOld(
-    'Button',
-    variant ? variantMap[variant] : undefined,
-  );
+  const { overridenStyles } = useComponentTheme('Button');
+  const variantStyles = variant ? variantMap[variant] : undefined;
 
   const stylesCombinator = useMemo(
-    () =>
-      stylesCombinatorFactory<IButtonStyleKey>(
-        theme.styles,
-        variantTheme?.styles,
-        styles,
-      ),
-    [theme.styles, variantTheme?.styles, styles],
+    () => stylesCombinatorFactory(buttonStyles, variantStyles, styles),
+    [variantStyles, styles],
   );
   const sxf = useMemo(
-    () =>
-      stylePropsFactory<IButtonStyleKey, IButtonStyleVarKey>(stylesCombinator),
+    () => stylePropsFactory(stylesCombinator),
     [stylesCombinator],
   );
 
@@ -136,34 +127,23 @@ export const Button: IButton = forwardRef(function Button<
 
   return (
     <ButtonBase
-      as={as}
-      styles={[theme.styles, variantTheme?.styles, ...asArray(styles)]}
       sx={[
+        buttonTheme,
+        overridenStyles,
         loading ? stylesCombinator('host$loading') : undefined,
-        theme.vars,
-        variantTheme?.vars,
         hasLeadingIcon && stylesCombinator('host$withLeadingIcon'),
         hasTrailingIcon && stylesCombinator('host$withTrailingIcon'),
-        overridenStyles,
         sx,
       ]}
+      styles={[buttonStyles, variantStyles]}
       innerStyles={{
         ...innerStyles,
         stateLayer: [
-          theme.stateLayerStyles,
-          variantTheme?.stateLayerStyles,
+          buttonStateLayerStyles,
           ...asArray(innerStyles?.stateLayer),
         ],
-        focusRing: [
-          theme.focusRingStyles,
-          variantTheme?.focusRingStyles,
-          ...asArray(innerStyles?.focusRing),
-        ],
-        elevation: [
-          theme.elevationStyles,
-          variantTheme?.stateLayerStyles,
-          ...asArray(innerStyles?.elevation),
-        ],
+        focusRing: [buttonFocusRingStyles, ...asArray(innerStyles?.focusRing)],
+        elevation: [buttonElevationStyles, ...asArray(innerStyles?.elevation)],
       }}
       onClick={handleClick}
       disabled={disabled}
@@ -182,8 +162,7 @@ export const Button: IButton = forwardRef(function Button<
           {loading ? (
             <IndeterminateCircularProgressIndicator
               styles={[
-                theme.circularProgressIndicatorStyles,
-                variantTheme?.circularProgressIndicatorStyles,
+                buttonCircularProgressIndicatorStyles,
                 ...asArray(innerStyles?.circularProgressIndicator),
               ]}
             />
@@ -220,8 +199,7 @@ export const Button: IButton = forwardRef(function Button<
             <div {...sxf(disabled && 'icon$disabled')}>
               <IndeterminateCircularProgressIndicator
                 styles={[
-                  theme.circularProgressIndicatorStyles,
-                  variantTheme?.circularProgressIndicatorStyles,
+                  buttonCircularProgressIndicatorStyles,
                   ...asArray(innerStyles?.circularProgressIndicator),
                 ]}
               />
@@ -240,8 +218,7 @@ export const Button: IButton = forwardRef(function Button<
           >
             <IndeterminateCircularProgressIndicator
               styles={[
-                theme.circularProgressIndicatorStyles,
-                variantTheme?.circularProgressIndicatorStyles,
+                buttonCircularProgressIndicatorStyles,
                 ...asArray(innerStyles?.circularProgressIndicator),
               ]}
             />

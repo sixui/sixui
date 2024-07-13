@@ -52,11 +52,11 @@ export const Badge = forwardRef<HTMLDivElement, IBadgeProps>(
     return (
       <div
         {...sxf(
+          badgeTheme,
+          overridenStyles,
           'host',
           invisible && 'host$invisible',
           dot && 'host$dot',
-          badgeTheme,
-          overridenStyles,
           sx,
         )}
         ref={forwardedRef}

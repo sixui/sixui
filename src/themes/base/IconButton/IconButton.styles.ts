@@ -4,7 +4,7 @@ import stylex from '@stylexjs/stylex';
 import type { IStyles } from '@/helpers/types';
 import type { IIconButtonStyleKey } from '@/components/atoms/IconButton';
 import { componentVars as vars } from './IconButton.stylex';
-import { componentVars as buttonVars } from '../Button/Button.stylex';
+import { buttonTokens as buttonVars } from '@/components/atoms/Button/Button.stylex';
 import { componentVars as elevationVars } from '../Elevation/Elevation.stylex';
 
 // https://github.com/material-components/material-web/blob/main/iconbutton/internal/_shared.scss

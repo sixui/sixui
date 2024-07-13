@@ -46,7 +46,7 @@ export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
 
     return (
       <div
-        {...sxf('host', avatarTheme, overridenStyles, sx)}
+        {...sxf(avatarTheme, overridenStyles, 'host', sx)}
         {...other}
         ref={forwardedRef}
       >

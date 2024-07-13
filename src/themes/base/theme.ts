@@ -22,23 +22,6 @@ import { componentTheme as elevationTheme } from './Elevation/Elevation.stylex';
 import { styles as focusRingStyles } from './FocusRing/FocusRing.styles';
 import { componentTheme as focusRingTheme } from './FocusRing/FocusRing.stylex';
 
-import { componentTheme as buttonTheme } from './Button/Button.stylex';
-import {
-  styles as buttonStyles,
-  stateLayerStyles as buttonStateLayerStyles,
-  elevationStyles as buttonElevationStyles,
-  focusRingStyles as buttonFocusRingStyles,
-  circularProgressIndicatorStyles as buttonCircularProgressIndicatorStyles,
-} from './Button/Button.styles';
-import { buttonBaseStyles } from '@/components/atoms/ButtonBase/ButtonBase.styles';
-import { componentTheme as elevatedButtonTheme } from './Button/ElevatedButton.stylex';
-import { componentTheme as filledButtonTheme } from './Button/FilledButton.stylex';
-import { componentTheme as filledTonalButtonTheme } from './Button/FilledTonalButton.stylex';
-import { componentTheme as outlinedButtonTheme } from './Button/OutlinedButton.stylex';
-import { componentTheme as textButtonTheme } from './Button/TextButton.stylex';
-import { componentTheme as dangerButtonTheme } from './Button/DangerButton.stylex';
-import { componentTheme as snackbarButtonTheme } from './Button/SnackbarButton.stylex';
-
 import { styles as circularProgressIndicatorStyles } from './CircularProgressIndicator/CircularProgressIndicator.styles';
 import { componentTheme as circularProgressIndicatorTheme } from './CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { styles as indeterminateCircularProgressIndicatorStyles } from './CircularProgressIndicator/IndeterminateCircularProgressIndicator.styles';
@@ -289,24 +272,6 @@ export const theme: ITheme = {
       vars: focusRingTheme,
       styles: focusRingStyles,
     },
-    ButtonBase: {
-      styles: buttonBaseStyles,
-    },
-    Button: {
-      vars: buttonTheme,
-      styles: buttonStyles,
-      stateLayerStyles: buttonStateLayerStyles,
-      focusRingStyles: buttonFocusRingStyles,
-      elevationStyles: buttonElevationStyles,
-      circularProgressIndicatorStyles: buttonCircularProgressIndicatorStyles,
-    },
-    ElevatedButton: { vars: elevatedButtonTheme },
-    FilledButton: { vars: filledButtonTheme },
-    FilledTonalButton: { vars: filledTonalButtonTheme },
-    OutlinedButton: { vars: outlinedButtonTheme },
-    TextButton: { vars: textButtonTheme },
-    DangerButton: { vars: dangerButtonTheme },
-    SnackbarButton: { vars: snackbarButtonTheme },
     CircularProgressIndicator: {
       vars: circularProgressIndicatorTheme,
       styles: circularProgressIndicatorStyles,

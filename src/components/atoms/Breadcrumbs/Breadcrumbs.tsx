@@ -146,7 +146,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
 
     return (
       <ol
-        {...sxf('host', breadscrumbsTheme, overridenStyles, sx)}
+        {...sxf(breadscrumbsTheme, overridenStyles, 'host', sx)}
         ref={forwardedRef}
         {...other}
       >
