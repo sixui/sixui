@@ -26,6 +26,8 @@ import {
 } from './Button.styles';
 import { buttonTheme } from './Button.stylex';
 import { buttonVariantStyles } from './variants';
+import { useVisualState } from '@/components/utils/VisualState';
+import { useMergeRefs } from '@floating-ui/react';
 
 // https://github.com/material-components/material-web/blob/main/button/internal/button.ts
 // https://github.com/material-components/material-web/blob/main/button/internal/elevated-button.ts
@@ -45,6 +47,7 @@ export const Button: IButton = forwardRef(function Button<
     styles,
     sx,
     innerStyles,
+    visualState: visualStateProp,
     children,
     onClick,
     variant = 'filled',
@@ -56,6 +59,17 @@ export const Button: IButton = forwardRef(function Button<
     disabled: disabledProp,
     ...other
   } = props as IWithAsProp<IButtonOwnProps>;
+  const [handlingClick, setHandlingClick] = useState(false);
+  const [animating, setAnimating] = useState(false);
+  const loading =
+    (loadingProp || handlingClick) && loadingAnimation === 'progressIndicator';
+  const disabled = disabledProp || loading || other.readOnly;
+
+  const { visualState, setRef: setVisualStateRef } = useVisualState(
+    visualStateProp,
+    { disabled },
+  );
+  const handleRef = useMergeRefs([forwardedRef, setVisualStateRef]);
 
   const { overridenStyles } = useComponentTheme('Button');
   const variantStyles = variant ? buttonVariantStyles[variant] : undefined;
@@ -70,12 +84,9 @@ export const Button: IButton = forwardRef(function Button<
     [variantStyles, styles],
   );
   const sxf = useMemo(
-    () => stylePropsFactory(stylesCombinator),
-    [stylesCombinator],
+    () => stylePropsFactory(stylesCombinator, visualState),
+    [stylesCombinator, visualState],
   );
-
-  const [handlingClick, setHandlingClick] = useState(false);
-  const [animating, setAnimating] = useState(false);
 
   const handleAnimationIteration = (): void => setAnimating(handlingClick);
 
@@ -96,9 +107,6 @@ export const Button: IButton = forwardRef(function Button<
     void executeLazyPromise(() => onClick(event) as void, setHandlingClick);
   };
 
-  const loading =
-    (loadingProp || handlingClick) && loadingAnimation === 'progressIndicator';
-  const disabled = disabledProp || loading;
   const hasIcon = !!icon;
   const hasLeadingIcon = hasIcon && !trailingIcon;
   const hasTrailingIcon = hasIcon && !!trailingIcon;
@@ -134,8 +142,9 @@ export const Button: IButton = forwardRef(function Button<
       onClick={handleClick}
       disabled={disabled}
       data-cy='button'
+      visualState={visualState}
       {...other}
-      ref={forwardedRef}
+      ref={handleRef}
     >
       {hasLeadingIcon ? (
         <div

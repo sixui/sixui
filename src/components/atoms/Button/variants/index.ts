@@ -9,7 +9,7 @@ import { textButtonStyles } from './TextButton.styles';
 import { dangerButtonStyles } from './DangerButton.styles';
 import { snackbarButtonStyles } from './SnackbarButton.styles';
 
-export const buttonVariants: {
+export const buttonVariantStyles: {
   [key in IButtonVariant]: Record<string, StyleXStyles>;
 } = {
   elevated: elevatedButtonStyles,
