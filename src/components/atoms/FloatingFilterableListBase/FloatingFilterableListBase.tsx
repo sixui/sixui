@@ -19,7 +19,7 @@ import {
 } from '@floating-ui/react';
 import { isFunction } from 'lodash';
 
-import type { IFloatingFilterableListBaseProps } from './FloatingFilterableListBaseProps';
+import type { IFloatingFilterableListBaseProps } from './FloatingFilterableListBase.types';
 import {
   FilterableListBase,
   type IFilterableCreateNewListItemRenderer,
