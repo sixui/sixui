@@ -1,16 +1,20 @@
 import type {
   ICompiledStyles,
   IContainerProps,
+  IOmit,
   IZeroOrMore,
 } from '@/helpers/types';
 import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
-import { IFluidButtonStyleKey } from './FluidButton.styledefs';
-import { IButtonBaseOwnProps, IButtonBaseStylesKey } from '../ButtonBase';
+import type {
+  IButtonBaseOwnProps,
+  IButtonBaseStylesKey,
+} from '@/components/atoms/ButtonBase';
+import type { IFluidButtonStylesKey } from './FluidButton.styles';
 
 export const FLUID_BUTTON_DEFAULT_TAG = 'button';
 
-export type IFluidButtonOwnProps = IContainerProps<IFluidButtonStyleKey> &
-  IButtonBaseOwnProps & {
+export type IFluidButtonOwnProps = IContainerProps<IFluidButtonStylesKey> &
+  IOmit<IButtonBaseOwnProps, 'styles'> & {
     innerStyles?: IButtonBaseOwnProps['innerStyles'] & {
       buttonBase?: IZeroOrMore<ICompiledStyles<IButtonBaseStylesKey>>;
     };

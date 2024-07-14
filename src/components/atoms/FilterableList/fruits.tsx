@@ -1,4 +1,4 @@
-import type { IFilterableListItem } from './FilterableListProps';
+import type { IFilterableListItem } from './FilterableList.types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faAppleWhole,

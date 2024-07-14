@@ -4,39 +4,19 @@ import type {
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
-import type { IIconButtonVariant } from './IconButton.styledefs';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
-import { IThemeComponents } from '@/components/utils/Theme';
-import { Button } from '@/components/atoms/Button';
-import {
+import type {
   ICON_BUTTON_DEFAULT_TAG,
   IIconButtonOwnProps,
-  type IIconButtonProps,
-} from './IconButtonProps';
+  IIconButtonProps,
+} from './IconButton.types';
+import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { Button } from '@/components/atoms/Button';
+import { iconButtonStyles } from './IconButton.styles';
+import { iconButtonVariantStyles } from './variants';
+import { iconButtonTheme } from './IconButton.stylex';
 
 // https://github.com/material-components/material-web/blob/main/iconbutton/internal/icon-button.ts
-
-type IIconButtonVariantMap = {
-  [key in IIconButtonVariant]: keyof Pick<
-    IThemeComponents,
-    | 'StandardIconButton'
-    | 'FilledIconButton'
-    | 'FilledTonalIconButton'
-    | 'OutlinedIconButton'
-    | 'DangerIconButton'
-    | 'SnackbarIconButton'
-  >;
-};
-
-const variantMap: IIconButtonVariantMap = {
-  standard: 'StandardIconButton',
-  filled: 'FilledIconButton',
-  filledTonal: 'FilledTonalIconButton',
-  outlined: 'OutlinedIconButton',
-  danger: 'DangerIconButton',
-  snackbar: 'SnackbarIconButton',
-};
 
 type IIconButton = <
   TRoot extends React.ElementType = typeof ICON_BUTTON_DEFAULT_TAG,
@@ -61,27 +41,25 @@ export const IconButton: IIconButton = forwardRef(function IconButton<
     ...other
   } = props as IWithAsProp<IIconButtonOwnProps>;
 
-  const { theme, variantTheme } = useComponentThemeOld(
-    'IconButton',
-    variant ? variantMap[variant] : undefined,
-  );
+  const { overridenStyles } = useComponentTheme('IconButton');
+  const variantStyles = variant ? iconButtonVariantStyles[variant] : undefined;
+
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
-    [theme.styles, variantTheme?.styles, styles],
+    () => stylesCombinatorFactory(iconButtonStyles, variantStyles, styles),
+    [variantStyles, styles],
   );
 
   return (
     <Button
       ref={forwardedRef}
       as={as}
-      styles={styles}
       sx={[
+        iconButtonTheme,
+        overridenStyles,
         stylesCombinator(
           'host',
           toggle ? (selected ? 'host$toggle$selected' : 'host$toggle') : null,
         ),
-        theme.vars,
-        variantTheme?.vars,
         sx,
       ]}
       icon={selected ? selectedIcon ?? icon : icon}

@@ -1,77 +1,32 @@
-import { forwardRef, useRef } from 'react';
-import stylex from '@stylexjs/stylex';
+import { forwardRef, useMemo, useRef } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
+import { asArray } from '@olivierpascal/helpers';
 
-import type { IHtmlSelectOption } from './HtmlSelectProps';
+import type { IHtmlSelectOption, IHtmlSelectProps } from './HtmlSelect.types';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useVisualState } from '@/components/utils/VisualState';
-import { fieldBaseTokens } from '@/components/atoms/FieldBase/FieldBase.stylex';
+import { FieldBase } from '@/components/atoms/FieldBase';
 import {
-  FieldBase,
-  type IFieldBaseOwnProps,
-} from '@/components/atoms/FieldBase';
-
-export interface IHtmlSelectProps
-  extends React.SelectHTMLAttributes<HTMLSelectElement> {
-  /**
-   * Shorthand for supplying options: an array of basic types or
-   * `{ label?, value }` objects. If no `label` is supplied, `value`
-   * will be used as the labÒel.
-   */
-  options: ReadonlyArray<string | number | IHtmlSelectOption>;
-
-  /**
-   * Multiple select is not supported.
-   */
-  multiple?: never;
-
-  slotProps?: {
-    fieldBase?: IFieldBaseOwnProps;
-  };
-}
-
-const styles = stylex.create({
-  select: {
-    flexGrow: 1,
-    cursor: 'pointer',
-    appearance: 'none',
-    height: '100%',
-    paddingLeft: 16,
-    paddingRight: 16,
-    paddingTop: 12,
-    paddingBottom: 12,
-  },
-});
-
-const fieldBaseStyles = stylex.create({
-  host: {
-    [fieldBaseTokens.topSpace]: '0px',
-    [fieldBaseTokens.bottomSpace]: '0px',
-    [fieldBaseTokens.leadingSpace]: '0px',
-    [fieldBaseTokens.trailingSpace]: '0px',
-  },
-  section$start: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    paddingInlineStart: 16,
-    pointerEvents: 'none',
-  },
-  section$end: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    width: 40,
-    justifyContent: 'center',
-    pointerEvents: 'none',
-  },
-});
+  htmlSelectFieldBaseStyles,
+  htmlSelectStyles,
+} from './HtmlSelect.styles';
 
 export const HtmlSelect = forwardRef<HTMLSelectElement, IHtmlSelectProps>(
   function HtmlSelect(props, forwardedRef) {
-    const { options, slotProps, ...other } = props;
+    const { styles, sx, innerStyles, options, slotProps, ...other } = props;
+
+    const { overridenStyles } = useComponentTheme('HtmlSelect');
+    const stylesCombinator = useMemo(
+      () => stylesCombinatorFactory(htmlSelectStyles, styles),
+      [styles],
+    );
+    const sxf = useMemo(
+      () => stylePropsFactory(stylesCombinator),
+      [stylesCombinator],
+    );
 
     const { visualState, setRef: setVisualStateRef } = useVisualState(
       slotProps?.fieldBase?.visualState,
@@ -87,16 +42,17 @@ export const HtmlSelect = forwardRef<HTMLSelectElement, IHtmlSelectProps>(
 
     return (
       <FieldBase
-        styles={fieldBaseStyles}
+        sx={[overridenStyles, sx]}
+        styles={[htmlSelectFieldBaseStyles, ...asArray(innerStyles?.fieldBase)]}
         disabled={other.disabled}
         trailingIcon={<TriangleDownIcon aria-hidden />}
         {...slotProps?.fieldBase}
         visualState={visualState}
       >
         <select
-          {...stylex.props(styles.select)}
-          ref={selectHandleRef}
+          {...sxf('select')}
           {...other}
+          ref={selectHandleRef}
           multiple={false}
         >
           {options.map((option) => {

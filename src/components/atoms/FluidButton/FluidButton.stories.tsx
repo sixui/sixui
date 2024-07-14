@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-regular-svg-icons';
 
-import type { IFluidButtonOwnProps } from './FluidButtonProps';
+import type { IFluidButtonOwnProps } from './FluidButton.types';
 import {
   ComponentShowcase,
   type IComponentPresentation,

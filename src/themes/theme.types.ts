@@ -29,10 +29,6 @@ import type {
   IFocusRingStyleVarKey,
 } from '@/components/utils/FocusRing';
 import type {
-  IIconButtonStyleKey,
-  IIconButtonStyleVarKey,
-} from '@/components/atoms/IconButton';
-import type {
   ISwitchStyleKey,
   ISwitchStyleVarKey,
 } from '@/components/atoms/Switch';
@@ -98,11 +94,6 @@ import type {
   IRichTooltipContentStyleVarKey,
 } from '@/components/atoms/RichTooltipContent';
 import type {
-  IFluidButtonStyleKey,
-  IFluidButtonStyleVarKey,
-} from '@/components/atoms/FluidButton';
-import type { IButtonBaseStylesKey } from '@/components/atoms/ButtonBase';
-import type {
   IOptionCardStyleKey,
   IOptionCardStyleVarKey,
 } from '@/components/atoms/OptionCard';
@@ -126,11 +117,6 @@ export type IListItemTheme = {
   itemStyles?: ICompiledStyles<IItemStyleKey>;
   stateLayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
   focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
-};
-
-export type IIconButtonTheme = {
-  vars?: IStyleVarsTheme<IIconButtonStyleVarKey>;
-  styles?: ICompiledStyles<IIconButtonStyleKey>;
 };
 
 export type ITextFieldBaseTheme = {
@@ -184,13 +170,6 @@ export type ITheme = {
       vars: IStyleVarsTheme<IFocusRingStyleVarKey>;
       styles: ICompiledStyles<IFocusRingStyleKey>;
     };
-    IconButton: IIconButtonTheme;
-    StandardIconButton: IIconButtonTheme;
-    FilledIconButton: IIconButtonTheme;
-    FilledTonalIconButton: IIconButtonTheme;
-    OutlinedIconButton: IIconButtonTheme;
-    DangerIconButton: IIconButtonTheme;
-    SnackbarIconButton: IIconButtonTheme;
     Switch: {
       vars: IStyleVarsTheme<ISwitchStyleVarKey>;
       styles: ICompiledStyles<ISwitchStyleKey>;
@@ -281,13 +260,6 @@ export type ITheme = {
       vars?: IStyleVarsTheme<IRichTooltipContentStyleVarKey>;
       styles?: ICompiledStyles<IRichTooltipContentStyleKey>;
       elevationStyles?: ICompiledStyles<IElevationStyleKey>;
-    };
-    FluidButton: {
-      vars?: IStyleVarsTheme<IFluidButtonStyleVarKey>;
-      styles?: ICompiledStyles<IFluidButtonStyleKey>;
-      buttonBaseStyles?: ICompiledStyles<IButtonBaseStylesKey>;
-      focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
-      stateLayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
     };
     OptionCard: {
       vars?: IStyleVarsTheme<IOptionCardStyleVarKey>;

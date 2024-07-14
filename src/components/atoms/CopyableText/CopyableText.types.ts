@@ -6,7 +6,7 @@ import type {
 } from '@/helpers/types';
 import type {
   IFluidButtonOwnProps,
-  IFluidButtonStyleKey,
+  IFluidButtonStylesKey,
 } from '@/components/atoms/FluidButton';
 import type { ICopyableTextStylesKey } from './CopyableText.styles';
 
@@ -18,7 +18,7 @@ export type ICopyableTextTriggerRenderProps = {
 export type ICopyableTextProps = IContainerProps<ICopyableTextStylesKey> &
   IOmit<IFluidButtonOwnProps, 'styles'> & {
     innerStyles?: {
-      fluidButton?: IZeroOrMore<ICompiledStyles<IFluidButtonStyleKey>>;
+      fluidButton?: IZeroOrMore<ICompiledStyles<IFluidButtonStylesKey>>;
     };
     children?: React.ReactNode;
     text?: string;

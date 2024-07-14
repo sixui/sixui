@@ -6,18 +6,21 @@ import type {
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
 import type {
-  IFluidButtonStyleKey,
-  IFluidButtonStyleVarKey,
-} from './FluidButton.styledefs';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
-import { ButtonBase } from '@/components/atoms/ButtonBase';
+  FLUID_BUTTON_DEFAULT_TAG,
+  IFluidButtonOwnProps,
+  IFluidButtonProps,
+} from './FluidButton.types';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
+import { ButtonBase } from '@/components/atoms/ButtonBase';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import {
-  FLUID_BUTTON_DEFAULT_TAG,
-  type IFluidButtonOwnProps,
-  type IFluidButtonProps,
-} from './FluidButtonProps';
+  fluidButtonButtonBaseStyles,
+  fluidButtonFocusRingStyles,
+  fluidButtonStateLayerStyles,
+  fluidButtonStyles,
+} from './FluidButton.styles';
+import { fluidButtonTheme } from './FluidButton.stylex';
 
 type IFluidButton = <
   TRoot extends React.ElementType = typeof FLUID_BUTTON_DEFAULT_TAG,
@@ -31,16 +34,13 @@ export const FluidButton: IFluidButton = forwardRef(function FluidButton<
   const { styles, sx, as, innerStyles, children, ...other } =
     props as IWithAsProp<IFluidButtonOwnProps>;
 
-  const { theme } = useComponentThemeOld('FluidButton');
+  const { overridenStyles } = useComponentTheme('FluidButton');
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, styles),
-    [theme.styles, styles],
+    () => stylesCombinatorFactory(fluidButtonStyles, styles),
+    [styles],
   );
   const sxf = useMemo(
-    () =>
-      stylePropsFactory<IFluidButtonStyleKey, IFluidButtonStyleVarKey>(
-        stylesCombinator,
-      ),
+    () => stylePropsFactory(stylesCombinator),
     [stylesCombinator],
   );
 
@@ -49,15 +49,21 @@ export const FluidButton: IFluidButton = forwardRef(function FluidButton<
   return (
     <ButtonBase
       as={as}
-      styles={[theme.buttonBaseStyles, ...asArray(innerStyles?.buttonBase)]}
-      sx={[theme.vars, sx]}
+      sx={[fluidButtonTheme, overridenStyles, sx]}
+      styles={[
+        fluidButtonButtonBaseStyles,
+        ...asArray(innerStyles?.buttonBase),
+      ]}
       innerStyles={{
         ...innerStyles,
         stateLayer: [
-          theme.stateLayerStyles,
+          fluidButtonStateLayerStyles,
           ...asArray(innerStyles?.stateLayer),
         ],
-        focusRing: [theme.focusRingStyles, ...asArray(innerStyles?.focusRing)],
+        focusRing: [
+          fluidButtonFocusRingStyles,
+          ...asArray(innerStyles?.focusRing),
+        ],
       }}
       ref={forwardedRef}
       {...other}

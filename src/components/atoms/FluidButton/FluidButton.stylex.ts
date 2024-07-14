@@ -1,12 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IStyleVars } from '@/helpers/types';
-import type { IFluidButtonStyleVarKey } from '@/components/atoms/FluidButton';
-import { colorRolesVars } from '../vars/colorRoles.stylex';
-import { shapeVars } from '../vars/shape.stylex';
-import { stateVars } from '../vars/state.stylex';
+import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { stateVars } from '@/themes/base/vars/state.stylex';
 
-const vars: IStyleVars<IFluidButtonStyleVarKey> = {
+const vars = {
   // container
   containerColor: 'unset',
   containerShape: shapeVars.corner$full,
@@ -36,7 +34,7 @@ const vars: IStyleVars<IFluidButtonStyleVarKey> = {
   focusRingOutwardOffset: '3px',
 };
 
-export const componentVars = stylex.defineVars(vars);
+export const fluidButtonTokens = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that
@@ -44,4 +42,4 @@ export const componentVars = stylex.defineVars(vars);
  *
  * @see https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
  */
-export const componentTheme = stylex.createTheme(componentVars, vars);
+export const fluidButtonTheme = stylex.createTheme(fluidButtonTokens, vars);

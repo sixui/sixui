@@ -22,15 +22,6 @@ import { componentTheme as elevationTheme } from './Elevation/Elevation.stylex';
 import { styles as focusRingStyles } from './FocusRing/FocusRing.styles';
 import { componentTheme as focusRingTheme } from './FocusRing/FocusRing.stylex';
 
-import { styles as iconButtonStyles } from './IconButton/IconButton.styles';
-import { componentTheme as iconButtonTheme } from './IconButton/IconButton.stylex';
-import { componentTheme as standardIconButtonTheme } from './IconButton/StandardIconButton.stylex';
-import { componentTheme as filledIconButtonTheme } from './IconButton/FilledIconButton.stylex';
-import { componentTheme as filledTonalIconButtonTheme } from './IconButton/FilledTonalIconButton.stylex';
-import { componentTheme as outlinedIconButtonTheme } from './IconButton/OutlinedIconButton.stylex';
-import { componentTheme as dangerIconButtonTheme } from './IconButton/DangerIconButton.stylex';
-import { componentTheme as snackbarIconButtonTheme } from './IconButton/SnackbarIconButton.stylex';
-
 import {
   styles as switchStyles,
   stateLayerStyles as switchStateLayerStyles,
@@ -136,14 +127,6 @@ import {
   elevationStyles as richTooltipElevationStyles,
 } from './RichTooltipContent/RichTooltipContent.styles';
 
-import { componentTheme as fluidButtonTheme } from './FluidButton/FluidButton.stylex';
-import {
-  styles as fluidButtonStyles,
-  buttonBaseStyles as fluidButtonButtonBaseStyles,
-  stateLayerStyles as fluidButtonStateLayerStyles,
-  focusRingStyles as fluidButtonFocusRingStyles,
-} from './FluidButton/FluidButton.styles';
-
 import { componentTheme as optionCardTheme } from './OptionCard/OptionCard.stylex';
 import {
   styles as optionCardStyles,
@@ -187,16 +170,6 @@ export const theme: ITheme = {
       vars: focusRingTheme,
       styles: focusRingStyles,
     },
-    IconButton: {
-      vars: iconButtonTheme,
-      styles: iconButtonStyles,
-    },
-    StandardIconButton: { vars: standardIconButtonTheme },
-    FilledIconButton: { vars: filledIconButtonTheme },
-    FilledTonalIconButton: { vars: filledTonalIconButtonTheme },
-    OutlinedIconButton: { vars: outlinedIconButtonTheme },
-    DangerIconButton: { vars: dangerIconButtonTheme },
-    SnackbarIconButton: { vars: snackbarIconButtonTheme },
     Switch: {
       vars: switchTheme,
       styles: switchStyles,
@@ -303,13 +276,6 @@ export const theme: ITheme = {
       vars: richTooltipContentTheme,
       styles: richTooltipContentStyles,
       elevationStyles: richTooltipElevationStyles,
-    },
-    FluidButton: {
-      vars: fluidButtonTheme,
-      styles: fluidButtonStyles,
-      buttonBaseStyles: fluidButtonButtonBaseStyles,
-      focusRingStyles: fluidButtonFocusRingStyles,
-      stateLayerStyles: fluidButtonStateLayerStyles,
     },
     OptionCard: {
       vars: optionCardTheme,

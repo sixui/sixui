@@ -1,3 +1,3 @@
-export * from './IconButton.styledefs';
-export * from './IconButtonProps';
+export * from './IconButton.types';
+export * from './IconButton.styles';
 export * from './IconButton';

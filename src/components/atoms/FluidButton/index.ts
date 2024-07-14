@@ -1,3 +1,3 @@
-export * from './FluidButton.styledefs';
-export * from './FluidButtonProps';
+export * from './FluidButton.types';
+export * from './FluidButton.styles';
 export * from './FluidButton';

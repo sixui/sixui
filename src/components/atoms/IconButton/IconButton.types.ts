@@ -1,18 +1,23 @@
 import type { IContainerProps, IOmit } from '@/helpers/types';
 import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
 import type { IButtonOwnProps } from '@/components/atoms/Button';
-import type {
-  IIconButtonStyleKey,
-  IIconButtonVariant,
-} from './IconButton.styledefs';
+import type { IIconButtonStylesKey } from './IconButton.styles';
 
 export const ICON_BUTTON_DEFAULT_TAG = 'button';
+
+export type IIconButtonVariant =
+  | 'standard'
+  | 'filled'
+  | 'filledTonal'
+  | 'outlined'
+  | 'danger'
+  | 'snackbar';
 
 export type IIconButtonOwnProps = IOmit<
   IButtonOwnProps,
   'icon' | 'variant' | 'trailingIcon'
 > &
-  IContainerProps<IIconButtonStyleKey> &
+  IContainerProps<IIconButtonStylesKey> &
   Pick<React.AriaAttributes, 'aria-label'> & {
     variant?: IIconButtonVariant | false;
     toggle?: boolean;
