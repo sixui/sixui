@@ -8,7 +8,7 @@ import {
   faArrowRight,
 } from '@fortawesome/free-solid-svg-icons';
 
-import type { IMenuProps } from './MenuProps';
+import type { IMenuProps } from './Menu.types';
 import { Button } from '@/components/atoms/Button';
 import { IconButton } from '@/components/atoms/IconButton';
 import { commonStyles } from '@/helpers/commonStyles';
