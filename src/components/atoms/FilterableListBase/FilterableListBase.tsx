@@ -5,7 +5,7 @@ import type {
   IFilterableListItemModifiers,
   IFilterableListBaseInternalRenderer,
   IFilterableListBaseProps,
-} from './FilterableListBaseProps';
+} from './FilterableListBase.types';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { usePrevious } from '@/hooks/usePrevious';
 import {

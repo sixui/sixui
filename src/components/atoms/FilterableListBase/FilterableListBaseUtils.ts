@@ -4,7 +4,7 @@ import type { IAny } from '@/helpers/types';
 import type {
   IFilterableListItemsEqualProp,
   IFilterableListBaseInternalRendererProps,
-} from './FilterableListBaseProps';
+} from './FilterableListBase.types';
 
 /**
  * Utility function for executing the {@link IFilterableListBaseProps#itemsEqual} prop

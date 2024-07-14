@@ -1,8 +1,8 @@
+import type { IFilterableListBaseExampleProps } from './FilterableListBaseExample.types';
 import { ListItem } from '@/components/atoms/ListItem';
 import { TextInputField } from '@/components/atoms/TextInputField';
 import { MenuList } from '@/components/atoms/MenuList';
 import { FilterableListBase } from './FilterableListBase';
-import type { IFilterableListBaseExampleProps } from './FilterableListBaseExampleProps';
 import {
   areMoviesEqual,
   createMovie,

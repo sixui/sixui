@@ -1,5 +1,5 @@
 import type { IOmit } from '@/helpers/types';
-import type { IFilterableListBaseProps } from './FilterableListBaseProps';
+import type { IFilterableListBaseProps } from './FilterableListBase.types';
 import type { IMovie } from './movies';
 
 export type IFilterableListBaseExampleProps = IOmit<

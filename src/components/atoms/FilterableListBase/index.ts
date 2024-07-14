@@ -1,4 +1,4 @@
-export * from './FilterableListBaseProps';
+export * from './FilterableListBase.types';
 export * from './FilterableListBaseUtils';
 export * from './useSingleFilterableListBase';
 export * from './useMultiFilterableListBase';

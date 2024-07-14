@@ -3,7 +3,7 @@ import { useState } from 'react';
 import type {
   IFilterableListItemRenderer,
   IFilterableListItemsEqualProp,
-} from './FilterableListBaseProps';
+} from './FilterableListBase.types';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import {
   arrayContainsItem,
