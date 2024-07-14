@@ -1,11 +1,12 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IItemStyleKey, IItemStyleVarKey } from './Item.styledefs';
-import type { IItemProps } from './ItemProps';
+import type { IItemProps } from './Item.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { commonStyles } from '@/helpers/commonStyles';
+import { itemStyles } from './Item.styles';
+import { itemTheme } from './Item.stylex';
 
 // https://github.com/material-components/material-web/blob/main/labs/item/item.ts
 
@@ -25,19 +26,22 @@ export const Item = forwardRef<HTMLDivElement, IItemProps>(
       ...other
     } = props;
 
-    const { theme } = useComponentThemeOld('Item');
+    const { overridenStyles } = useComponentTheme('Item');
     const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(theme.styles, styles),
-      [theme.styles, styles],
+      () => stylesCombinatorFactory(itemStyles, styles),
+      [styles],
     );
     const sxf = useMemo(
-      () =>
-        stylePropsFactory<IItemStyleKey, IItemStyleVarKey>(stylesCombinator),
+      () => stylePropsFactory(stylesCombinator),
       [stylesCombinator],
     );
 
     return (
-      <div {...sxf('host', theme.vars, sx)} ref={forwardedRef} {...other}>
+      <div
+        {...sxf(itemTheme, overridenStyles, 'host', sx)}
+        ref={forwardedRef}
+        {...other}
+      >
         {container ? <div {...sxf('container')}>{container}</div> : null}
 
         {start ? <div {...sxf('nonText', 'nonText$start')}>{start}</div> : null}

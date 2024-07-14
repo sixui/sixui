@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
-import stylex from '@stylexjs/stylex';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   autoUpdate,
   flip,
@@ -28,7 +27,6 @@ import {
   type IFilterableListItemRendererProps,
 } from '@/components/atoms/FilterableListBase';
 import { Portal } from '@/components/utils/Portal';
-import { motionVars } from '@/themes/base/vars/motion.stylex';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { usePrevious } from '@/hooks/usePrevious';
 import {
@@ -37,41 +35,10 @@ import {
 } from '@/helpers/extendFloatingProps';
 import { commonStyles } from '@/helpers/commonStyles';
 import { fixedForwardRef } from '@/helpers/fixedForwardRef';
-
-// TODO: migrate in theme
-const styles = stylex.create({
-  host: {
-    zIndex: 499,
-  },
-  container: {
-    display: 'flex',
-    flexGrow: 1,
-  },
-  transition$unmounted: {},
-  transition$initial: {
-    transform: 'scaleY(0.5)',
-  },
-  transition$open: {
-    transform: 'scaleY(1)',
-    transitionProperty: 'transform',
-    transitionDuration: motionVars.duration$long3,
-    transitionTimingFunction: motionVars.easing$emphasizedDecelerate,
-  },
-  transition$close: {
-    transform: 'scaleY(0)',
-    transitionProperty: 'transform',
-    transitionDuration: motionVars.duration$short3,
-    transitionTimingFunction: motionVars.easing$emphasizedAccelerate,
-  },
-  transition$unmounted$nested: {},
-  transition$initial$nested: {},
-  transition$open$nested: {
-    transition: 'none',
-  },
-  transition$close$nested: {
-    transition: 'none',
-  },
-});
+import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '@/helpers/stylePropsFactory';
+import { floatingFilterableListBaseStyles } from './FloatingFilterableListBase.styles';
 
 export const FloatingFilterableListBase = fixedForwardRef(
   function FloatingFilterableListBase<TItem, TItemElement extends HTMLElement>(
@@ -79,6 +46,8 @@ export const FloatingFilterableListBase = fixedForwardRef(
     forwardedRef?: React.Ref<ReferenceType>,
   ) {
     const {
+      styles,
+      sx,
       children,
       placement = 'bottom-start',
       matchTargetWidth,
@@ -111,6 +80,16 @@ export const FloatingFilterableListBase = fixedForwardRef(
       createNewItemPosition,
       ...other
     } = props;
+
+    const { overridenStyles } = useComponentTheme('FloatingFilterableListBase');
+    const stylesCombinator = useMemo(
+      () => stylesCombinatorFactory(floatingFilterableListBaseStyles, styles),
+      [styles],
+    );
+    const sxf = useMemo(
+      () => stylePropsFactory(stylesCombinator),
+      [stylesCombinator],
+    );
 
     const [isOpen, setIsOpen] = useState(false);
     const [hasFocus, setHasFocus] = useState(false);
@@ -409,16 +388,16 @@ export const FloatingFilterableListBase = fixedForwardRef(
               initialFocus={disabled ? -1 : initialFocus}
             >
               <div
-                {...stylex.props(styles.host)}
+                {...sxf(overridenStyles, 'host', sx)}
                 {...interactions.getFloatingProps()}
                 ref={floating.refs.setFloating}
                 style={floating.floatingStyles}
               >
                 <div
-                  {...stylex.props(
-                    styles.container,
+                  {...sxf(
                     commonStyles.transformOrigin(floating.placement),
-                    styles[`transition$${transitionStatus.status}`],
+                    'container',
+                    `transition$${transitionStatus.status}`,
                   )}
                 >
                   <FloatingList elementsRef={elementsRef} labelsRef={labelsRef}>

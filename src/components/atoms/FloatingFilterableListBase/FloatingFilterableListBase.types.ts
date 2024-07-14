@@ -1,4 +1,4 @@
-import type { IOmit } from '@/helpers/types';
+import type { IContainerProps, IOmit } from '@/helpers/types';
 import type { Placement, ReferenceType } from '@floating-ui/react';
 
 import type { IFilterableListBaseProps } from '@/components/atoms/FilterableListBase';
@@ -10,6 +10,7 @@ import type {
   IRendererWithForwardedProps,
   IForwardableProps,
 } from '@/helpers/react/forwardablePropsTypes';
+import type { IFloatingFilterableListBaseStylesKey } from './FloatingFilterableListBase.styles';
 
 export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
   /**
@@ -66,7 +67,8 @@ export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
 export type IFloatingFilterableListBaseProps<
   TItem,
   TElement extends HTMLElement,
-> = IOmit<IFilterableListBaseProps<TItem, TElement>, 'onItemSelect'> &
+> = IContainerProps<IFloatingFilterableListBaseStylesKey> &
+  IOmit<IFilterableListBaseProps<TItem, TElement>, 'onItemSelect'> &
   IForwardableProps & {
     /**
      * Element which triggers the select popover. In most cases, you should display

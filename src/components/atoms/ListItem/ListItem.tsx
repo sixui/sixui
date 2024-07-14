@@ -14,7 +14,7 @@ import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { useVisualState } from '@/components/utils/VisualState';
 import { StateLayer } from '@/components/utils/StateLayer';
 import { FocusRing } from '@/components/utils/FocusRing';
-import { Item, type IItemStyleVarKey } from '@/components/atoms/Item';
+import { Item } from '@/components/atoms/Item';
 import { commonStyles } from '@/helpers/commonStyles';
 import { ListContext } from '@/components/atoms/List/ListContext';
 import {
@@ -93,7 +93,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
   );
   const sxf = useMemo(
     () =>
-      stylePropsFactory<IListItemStyleKey, IItemStyleVarKey>(
+      stylePropsFactory<IListItemStyleKey, never>(
         stylesCombinator,
         visualState,
       ),

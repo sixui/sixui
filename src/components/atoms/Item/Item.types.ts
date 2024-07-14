@@ -1,7 +1,7 @@
 import type { IContainerProps } from '@/helpers/types';
-import type { IItemStyleKey } from './Item.styledefs';
+import type { IItemStylesKey } from './Item.styles';
 
-export type IItemProps = IContainerProps<IItemStyleKey> & {
+export type IItemProps = IContainerProps<IItemStylesKey> & {
   container?: React.ReactNode;
   start?: React.ReactNode;
   overline?: React.ReactNode;

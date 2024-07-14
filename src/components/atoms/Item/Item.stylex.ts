@@ -1,13 +1,11 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IStyleVars } from '@/helpers/types';
-import type { IItemStyleVarKey } from '@/components/atoms/Item';
-import { colorRolesVars } from '../vars/colorRoles.stylex';
-import { typescaleVars } from '../vars/typo.stylex';
+import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { typescaleVars } from '@/themes/base/vars/typo.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-item.scss
 
-const vars: IStyleVars<IItemStyleVarKey> = {
+const vars = {
   gap: '12px',
 
   // text
@@ -55,7 +53,7 @@ const vars: IStyleVars<IItemStyleVarKey> = {
   trailingContentColor: 'inherit',
 };
 
-export const componentVars = stylex.defineVars(vars);
+export const itemTokens = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that
@@ -63,4 +61,4 @@ export const componentVars = stylex.defineVars(vars);
  *
  * @see https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
  */
-export const componentTheme = stylex.createTheme(componentVars, vars);
+export const itemTheme = stylex.createTheme(itemTokens, vars);

@@ -5,18 +5,18 @@ import type {
   IOmit,
 } from '@/helpers/types';
 import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
-import type { IListItemStyleKey, IListItemVariant } from './ListItem.styledefs';
-import type { IItemProps, IItemStyleKey } from '../Item';
+import type { IItemProps, IItemStylesKey } from '@/components/atoms/Item';
 import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import type { IVisualState } from '@/components/utils/VisualState';
+import type { IListItemStyleKey, IListItemVariant } from './ListItem.styledefs';
 
 export const LIST_ITEM_DEFAULT_TAG = 'button';
 
 export type IListItemOwnProps = IContainerProps<IListItemStyleKey> &
   IOmit<IItemProps, 'container'> & {
     innerStyles?: {
-      item?: IZeroOrMore<ICompiledStyles<IItemStyleKey>>;
+      item?: IZeroOrMore<ICompiledStyles<IItemStylesKey>>;
       stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
       focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
     };

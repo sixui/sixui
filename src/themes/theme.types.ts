@@ -41,7 +41,6 @@ import type {
   IRadioStyleKey,
   IRadioStyleVarKey,
 } from '@/components/atoms/Radio';
-import type { IItemStyleKey, IItemStyleVarKey } from '@/components/atoms/Item';
 import type { IListStylesKey } from '@/components/atoms/List';
 import type {
   IListItemStyleKey,
@@ -100,6 +99,7 @@ import type {
 import type { IButtonStylesKey } from '@/components/atoms/Button';
 import type { ICardStylesKey } from '@/components/atoms/Card/Card.styles';
 import type { ICircularProgressIndicatorStylesKey } from '@/components/atoms/CircularProgressIndicator';
+import type { IItemStylesKey } from '@/components/atoms/Item';
 
 export type IBasicTemplateTheme = {
   vars?: IStyleVarsTheme<IBasicTemplateStyleVarKey>;
@@ -114,7 +114,7 @@ export type IVariableTemplateTheme = {
 export type IListItemTheme = {
   vars?: IStyleVarsTheme<IListItemStyleVarKey>;
   styles?: ICompiledStyles<IListItemStyleKey>;
-  itemStyles?: ICompiledStyles<IItemStyleKey>;
+  itemStyles?: ICompiledStyles<IItemStylesKey>;
   stateLayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
   focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
 };
@@ -186,10 +186,6 @@ export type ITheme = {
       stateLayerStyles: ICompiledStyles<IStateLayerStyleKey>;
       focusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
       circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStylesKey>;
-    };
-    Item: {
-      vars?: IStyleVarsTheme<IItemStyleVarKey>;
-      styles?: ICompiledStyles<IItemStyleKey>;
     };
     ListItem: IListItemTheme;
     StandardListItem: IListItemTheme;

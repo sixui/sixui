@@ -2,7 +2,7 @@ import stylex from '@stylexjs/stylex';
 
 import { circularProgressIndicatorTokens } from '@/components/atoms/CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { componentVars as listItemVars } from '@/themes/base/ListItem/ListItem.stylex';
-import { componentVars as itemVars } from '@/themes/base/Item/Item.stylex';
+import { itemTokens } from '@/components/atoms/Item/Item.stylex';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
 import { disclosureButtonTokens } from './DisclosureButton.stylex';
 
@@ -130,12 +130,12 @@ export const disclosureButtonStyles = stylex.create({
 
 export const disclosureButtonItemStyles = stylex.create({
   headline: {
-    [itemVars.headlineTextFont]: disclosureButtonTokens.textFont,
-    [itemVars.headlineTextLineHeight]: disclosureButtonTokens.textLineHeight,
-    [itemVars.headlineTextSize]: disclosureButtonTokens.textSize,
-    [itemVars.headlineTextLetterSpacing]:
+    [itemTokens.headlineTextFont]: disclosureButtonTokens.textFont,
+    [itemTokens.headlineTextLineHeight]: disclosureButtonTokens.textLineHeight,
+    [itemTokens.headlineTextSize]: disclosureButtonTokens.textSize,
+    [itemTokens.headlineTextLetterSpacing]:
       disclosureButtonTokens.textLetterSpacing,
-    [itemVars.headlineTextWeight]: disclosureButtonTokens.textWeight,
+    [itemTokens.headlineTextWeight]: disclosureButtonTokens.textWeight,
   },
 });
 

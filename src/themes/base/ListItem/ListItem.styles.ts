@@ -5,7 +5,7 @@ import type { IStyles } from '@/helpers/types';
 import type { IListItemStyleKey } from '@/components/atoms/ListItem';
 import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
-import type { IItemStyleKey } from '@/components/atoms/Item';
+import type { IItemStylesKey } from '@/components/atoms/Item';
 import { componentVars as vars } from './ListItem.stylex';
 import { componentVars as listItemStatesVars } from './ListItem.states.stylex';
 import { componentVars as statelayerVars } from '../StateLayer/StateLayer.stylex';
@@ -180,9 +180,9 @@ export const styles: MapNamespaces<IListItemStyles> =
     },
   });
 
-type IItemStyles = IStyles<IItemStyleKey>;
+type IItemStyles = IStyles<IItemStylesKey>;
 export const itemStyles: MapNamespaces<IItemStyles> = stylex.create<
-  IStyles<IItemStyleKey>
+  IStyles<IItemStylesKey>
 >({
   host: {
     borderRadius: 'inherit',
