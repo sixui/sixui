@@ -36,10 +36,7 @@ import type {
   ISwitchStyleKey,
   ISwitchStyleVarKey,
 } from '@/components/atoms/Switch';
-import type {
-  IFieldBaseStyleKey,
-  IFieldBaseStyleVarKey,
-} from '@/components/atoms/FieldBase';
+import type { IFieldBaseStylesKey } from '@/components/atoms/FieldBase';
 import type {
   ITextFieldBaseStyleKey,
   ITextFieldBaseStyleVarKey,
@@ -136,15 +133,10 @@ export type IIconButtonTheme = {
   styles?: ICompiledStyles<IIconButtonStyleKey>;
 };
 
-export type IFieldBaseTheme = {
-  vars?: IStyleVarsTheme<IFieldBaseStyleVarKey>;
-  styles?: ICompiledStyles<IFieldBaseStyleKey>;
-};
-
 export type ITextFieldBaseTheme = {
   vars?: IStyleVarsTheme<ITextFieldBaseStyleVarKey>;
   styles?: ICompiledStyles<ITextFieldBaseStyleKey>;
-  fieldStyles?: ICompiledStyles<IFieldBaseStyleKey>;
+  fieldStyles?: ICompiledStyles<IFieldBaseStylesKey>;
 };
 
 export type IPaperTheme = {
@@ -206,9 +198,6 @@ export type ITheme = {
       focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
       circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStylesKey>;
     };
-    FieldBase: IFieldBaseTheme;
-    FilledFieldBase: IFieldBaseTheme;
-    OutlinedFieldBase: IFieldBaseTheme;
     TextFieldBase: ITextFieldBaseTheme;
     FilledTextField: ITextFieldBaseTheme;
     OutlinedTextField: ITextFieldBaseTheme;

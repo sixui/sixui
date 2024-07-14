@@ -6,8 +6,7 @@ import type {
 } from '@/helpers/types';
 import type {
   IFieldBaseOwnProps,
-  IFieldBaseStyleKey,
-  IFieldBaseStyleVarKey,
+  IFieldBaseStylesKey,
 } from '@/components/atoms/FieldBase';
 import type { ITextFieldBaseStyleKey } from './TextFieldBase.styledefs';
 import type { IStyleProps } from '@/helpers/stylePropsFactory';
@@ -33,7 +32,7 @@ export type ITextFieldBaseRenderProps<
   TElement extends HTMLElement,
   TChildrenProps extends object,
 > = {
-  sxf: IStyleProps<ITextFieldBaseStyleKey, IFieldBaseStyleVarKey>;
+  sxf: IStyleProps<ITextFieldBaseStyleKey, never>;
   ref: React.RefObject<TElement> | React.RefCallback<TElement> | null;
   modifiers: ITextFieldBaseModifiers;
   onValueChange: ITextFieldBaseOwnProps<
@@ -47,7 +46,7 @@ export type ITextFieldBaseOwnProps<
   TChildrenProps extends object,
 > = IControlledValueProps<string | number | ReadonlyArray<string>, TElement> & {
   innerStyles?: {
-    field?: IZeroOrMore<ICompiledStyles<IFieldBaseStyleKey>>;
+    field?: IZeroOrMore<ICompiledStyles<IFieldBaseStylesKey>>;
   };
 
   /**

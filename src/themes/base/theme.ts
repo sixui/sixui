@@ -39,13 +39,6 @@ import {
 } from './Switch/Switch.styles';
 import { componentTheme as switchTheme } from './Switch/Switch.stylex';
 
-import { styles as fieldBaseStyles } from './FieldBase/FieldBase.styles';
-import { componentTheme as fieldBaseTheme } from './FieldBase/FieldBase.stylex';
-import { styles as filledFieldBaseStyles } from './FieldBase/FilledFieldBase.styles';
-import { componentTheme as filledFieldBaseTheme } from './FieldBase/FilledFieldBase.stylex';
-import { styles as outlinedFieldBaseStyles } from './FieldBase/OutlinedFieldBase.styles';
-import { componentTheme as outlinedFieldBaseTheme } from './FieldBase/OutlinedFieldBase.stylex';
-
 import {
   styles as textFieldBaseStyles,
   fieldStyles as textFieldBaseFieldStyles,
@@ -210,18 +203,6 @@ export const theme: ITheme = {
       stateLayerStyles: switchStateLayerStyles,
       focusRingStyles: switchFocusRingStyles,
       circularProgressIndicatorStyles: switchCircularProgressIndicatorStyles,
-    },
-    FieldBase: {
-      vars: fieldBaseTheme,
-      styles: fieldBaseStyles,
-    },
-    FilledFieldBase: {
-      vars: filledFieldBaseTheme,
-      styles: filledFieldBaseStyles,
-    },
-    OutlinedFieldBase: {
-      vars: outlinedFieldBaseTheme,
-      styles: outlinedFieldBaseStyles,
     },
     TextFieldBase: {
       vars: textFieldTheme,

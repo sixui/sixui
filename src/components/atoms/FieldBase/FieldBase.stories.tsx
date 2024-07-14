@@ -4,8 +4,7 @@ import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
 
-import type { IFieldBaseOwnProps } from './FieldBaseProps';
-import { fieldBaseVariants } from './FieldBase.styledefs';
+import type { IFieldBaseOwnProps, IFieldBaseVariant } from './FieldBase.types';
 import {
   type IComponentPresentation,
   ComponentShowcase,
@@ -81,12 +80,14 @@ export const Variants: IStory = {
     <ComponentShowcase
       component={FieldBase}
       props={props}
-      cols={fieldBaseVariants.map((variant) => ({
-        props: {
-          variant,
-          label: capitalizeFirstLetter(variant),
-        },
-      }))}
+      cols={(['filled', 'outlined'] as Array<IFieldBaseVariant>).map(
+        (variant) => ({
+          props: {
+            variant,
+            label: capitalizeFirstLetter(variant),
+          },
+        }),
+      )}
     />
   ),
   args: defaultArgs,

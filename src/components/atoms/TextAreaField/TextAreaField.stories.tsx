@@ -3,12 +3,12 @@ import stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { ITextAreaFieldProps } from './TextAreaFieldProps';
+import type { IFieldBaseVariant } from '@/components/atoms/FieldBase';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { fieldBaseVariants } from '@/components/atoms/FieldBase';
 import { TextAreaField } from './TextAreaField';
 
 const meta = {
@@ -56,12 +56,14 @@ export const Variants: IStory = {
     <ComponentShowcase
       component={TextAreaField}
       props={props}
-      cols={fieldBaseVariants.map((variant) => ({
-        props: {
-          variant,
-          placeholder: capitalizeFirstLetter(variant),
-        },
-      }))}
+      cols={(['filled', 'outlined'] as Array<IFieldBaseVariant>).map(
+        (variant) => ({
+          props: {
+            variant,
+            placeholder: capitalizeFirstLetter(variant),
+          },
+        }),
+      )}
     />
   ),
   args: defaultArgs,

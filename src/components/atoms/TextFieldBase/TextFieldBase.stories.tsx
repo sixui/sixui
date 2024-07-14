@@ -3,12 +3,12 @@ import stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { ITextFieldBaseProps } from './TextFieldBaseProps';
+import type { IFieldBaseVariant } from '@/components/atoms/FieldBase';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { fieldBaseVariants } from '@/components/atoms/FieldBase';
 import { TextFieldBase } from './TextFieldBase';
 
 // https://m3.material.io/components/text-fields/overview
@@ -58,12 +58,14 @@ export const Variants: IStory = {
     <ComponentShowcase
       component={TextFieldBase}
       props={props}
-      cols={fieldBaseVariants.map((variant) => ({
-        props: {
-          variant,
-          placeholder: capitalizeFirstLetter(variant),
-        },
-      }))}
+      cols={(['filled', 'outlined'] as Array<IFieldBaseVariant>).map(
+        (variant) => ({
+          props: {
+            variant,
+            placeholder: capitalizeFirstLetter(variant),
+          },
+        }),
+      )}
       rows={[
         {
           legend: 'Text field',

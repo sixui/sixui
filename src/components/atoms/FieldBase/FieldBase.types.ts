@@ -5,14 +5,13 @@ import type {
 import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
 import type { IContainerProps } from '@/helpers/types';
 import type { IVisualState } from '@/components/utils/VisualState';
-import type {
-  IFieldBaseStyleKey,
-  IFieldBaseVariant,
-} from './FieldBase.styledefs';
+import type { IFieldBaseStylesKey } from './FieldBase.styles';
 
 export const FIELD_BASE_DEFAULT_TAG = 'div';
 
-export type IFieldBaseOwnProps = IContainerProps<IFieldBaseStyleKey> &
+export type IFieldBaseVariant = 'filled' | 'outlined';
+
+export type IFieldBaseOwnProps = IContainerProps<IFieldBaseStylesKey> &
   IForwardableProps & {
     visualState?: IVisualState;
     variant?: IFieldBaseVariant | false;

@@ -3,8 +3,8 @@ import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
 import type { ITextFieldBaseStyleKey } from '@/components/atoms/TextFieldBase';
-import type { IFieldBaseStyleKey } from '@/components/atoms/FieldBase';
-import { componentVars as fieldBaseVars } from '../FieldBase/FieldBase.stylex';
+import type { IFieldBaseStylesKey } from '@/components/atoms/FieldBase';
+import { fieldBaseTokens } from '@/components/atoms/FieldBase/FieldBase.stylex';
 import { componentVars as vars } from './TextFieldBase.stylex';
 
 // https://github.com/material-components/material-web/blob/main/textfield/internal/_shared.scss
@@ -31,11 +31,11 @@ export const styles: MapNamespaces<ITextFieldBaseStyles> =
       whiteSpace: 'inherit',
       resize: 'none',
       minWidth: 30,
-      fontFamily: fieldBaseVars.contentFont,
-      fontSize: fieldBaseVars.contentSize,
-      fontWeight: fieldBaseVars.contentWeight,
-      lineHeight: fieldBaseVars.contentLineHeight,
-      letterSpacing: fieldBaseVars.contentLetterSpacing,
+      fontFamily: fieldBaseTokens.contentFont,
+      fontSize: fieldBaseTokens.contentSize,
+      fontWeight: fieldBaseTokens.contentWeight,
+      lineHeight: fieldBaseTokens.contentLineHeight,
+      letterSpacing: fieldBaseTokens.contentLetterSpacing,
 
       width: '100%',
       height: '100%',
@@ -47,13 +47,13 @@ export const styles: MapNamespaces<ITextFieldBaseStyles> =
       overflowX: 'hidden',
       textAlign: 'inherit',
       '::placeholder': {
-        WebkitTextFillColor: fieldBaseVars.contentPlaceholderColor,
-        color: fieldBaseVars.contentPlaceholderColor,
+        WebkitTextFillColor: fieldBaseTokens.contentPlaceholderColor,
+        color: fieldBaseTokens.contentPlaceholderColor,
         opacity: 1,
       },
       '::selection': {
-        backgroundColor: fieldBaseVars.contentBackground$selection,
-        color: fieldBaseVars.contentColor$selection,
+        backgroundColor: fieldBaseTokens.contentBackground$selection,
+        color: fieldBaseTokens.contentColor$selection,
       },
       borderStyle: {
         default: 'unset',
@@ -68,45 +68,45 @@ export const styles: MapNamespaces<ITextFieldBaseStyles> =
       color: {
         default: 'inherit',
         '::-webkit-datetime-edit-day-field:focus':
-          fieldBaseVars.contentColor$selection,
+          fieldBaseTokens.contentColor$selection,
         '::-webkit-datetime-edit-month-field:focus':
-          fieldBaseVars.contentColor$selection,
+          fieldBaseTokens.contentColor$selection,
         '::-webkit-datetime-edit-year-field:focus':
-          fieldBaseVars.contentColor$selection,
+          fieldBaseTokens.contentColor$selection,
         '::-webkit-datetime-edit-week-field:focus':
-          fieldBaseVars.contentColor$selection,
+          fieldBaseTokens.contentColor$selection,
         '::-webkit-datetime-edit-hour-field:focus':
-          fieldBaseVars.contentColor$selection,
+          fieldBaseTokens.contentColor$selection,
         '::-webkit-datetime-edit-minute-field:focus':
-          fieldBaseVars.contentColor$selection,
+          fieldBaseTokens.contentColor$selection,
         '::-webkit-datetime-edit-second-field:focus':
-          fieldBaseVars.contentColor$selection,
+          fieldBaseTokens.contentColor$selection,
         '::-webkit-datetime-edit-millisecond-field:focus':
-          fieldBaseVars.contentColor$selection,
+          fieldBaseTokens.contentColor$selection,
         '::-webkit-datetime-edit-ampm-field:focus':
-          fieldBaseVars.contentColor$selection,
+          fieldBaseTokens.contentColor$selection,
       },
       backgroundColor: {
         default: 'inherit',
         // Date input highlight color
         '::-webkit-datetime-edit-day-field:focus':
-          fieldBaseVars.contentBackground$selection,
+          fieldBaseTokens.contentBackground$selection,
         '::-webkit-datetime-edit-month-field:focus':
-          fieldBaseVars.contentBackground$selection,
+          fieldBaseTokens.contentBackground$selection,
         '::-webkit-datetime-edit-year-field:focus':
-          fieldBaseVars.contentBackground$selection,
+          fieldBaseTokens.contentBackground$selection,
         '::-webkit-datetime-edit-week-field:focus':
-          fieldBaseVars.contentBackground$selection,
+          fieldBaseTokens.contentBackground$selection,
         '::-webkit-datetime-edit-hour-field:focus':
-          fieldBaseVars.contentBackground$selection,
+          fieldBaseTokens.contentBackground$selection,
         '::-webkit-datetime-edit-minute-field:focus':
-          fieldBaseVars.contentBackground$selection,
+          fieldBaseTokens.contentBackground$selection,
         '::-webkit-datetime-edit-second-field:focus':
-          fieldBaseVars.contentBackground$selection,
+          fieldBaseTokens.contentBackground$selection,
         '::-webkit-datetime-edit-millisecond-field:focus':
-          fieldBaseVars.contentBackground$selection,
+          fieldBaseTokens.contentBackground$selection,
         '::-webkit-datetime-edit-ampm-field:focus':
-          fieldBaseVars.contentBackground$selection,
+          fieldBaseTokens.contentBackground$selection,
       },
       display: {
         default: 'block',
@@ -146,26 +146,26 @@ export const styles: MapNamespaces<ITextFieldBaseStyles> =
       height: '100%',
     },
     prefix: {
-      color: fieldBaseVars.contentPrefixColor,
+      color: fieldBaseTokens.contentPrefixColor,
       textWrap: 'nowrap',
       width: 'min-content',
-      paddingInlineEnd: fieldBaseVars.contentPrefixTrailingSpace,
+      paddingInlineEnd: fieldBaseTokens.contentPrefixTrailingSpace,
     },
     prefix$disabled: {
       color: 'inherit',
     },
     suffix: {
-      color: fieldBaseVars.contentSuffixColor,
+      color: fieldBaseTokens.contentSuffixColor,
       textWrap: 'nowrap',
       width: 'min-content',
-      paddingInlineStart: fieldBaseVars.contentSuffixLeadingSpace,
+      paddingInlineStart: fieldBaseTokens.contentSuffixLeadingSpace,
     },
     suffix$disabled: {
       color: 'inherit',
     },
   });
 
-type IFieldBaseStyles = IStyles<IFieldBaseStyleKey>;
+type IFieldBaseStyles = IStyles<IFieldBaseStylesKey>;
 export const fieldStyles: MapNamespaces<IFieldBaseStyles> =
   stylex.create<IFieldBaseStyles>({
     host: {

@@ -1,3 +1,3 @@
-export * from './FieldBase.styledefs';
-export * from './FieldBaseProps';
+export * from './FieldBase.types';
+export * from './FieldBase.styles';
 export * from './FieldBase';

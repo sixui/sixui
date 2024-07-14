@@ -8,7 +8,7 @@ import type { IThemeComponents } from '@/components/utils/Theme';
 import type { ITextFieldBaseStyleKey } from './TextFieldBase.styledefs';
 import {
   FieldBase,
-  type IFieldBaseStyleVarKey,
+  type IFieldBaseStylesKey,
   type IFieldBaseVariant,
 } from '../FieldBase';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
@@ -85,7 +85,7 @@ export const TextFieldBase = fixedForwardRef(function TextField<
   );
   const sxf = useMemo(
     () =>
-      stylePropsFactory<ITextFieldBaseStyleKey, IFieldBaseStyleVarKey>(
+      stylePropsFactory<ITextFieldBaseStyleKey, IFieldBaseStylesKey>(
         stylesCombinator,
         visualState,
       ),

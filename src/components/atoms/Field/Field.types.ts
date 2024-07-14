@@ -8,7 +8,7 @@ import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorp
 import type { IFieldStylesKey } from './Field.styles';
 import {
   FIELD_BASE_DEFAULT_TAG,
-  type IFieldBaseStyleKey,
+  type IFieldBaseStylesKey,
   type IFieldBaseOwnProps,
 } from '@/components/atoms/FieldBase';
 
@@ -17,7 +17,7 @@ export const FIELD_DEFAULT_TAG = FIELD_BASE_DEFAULT_TAG;
 export type IFieldOwnProps = IContainerProps<IFieldStylesKey> &
   IOmit<IFieldBaseOwnProps, 'styles' | 'children' | 'forwardProps'> & {
     innerStyles?: {
-      fieldBase?: IZeroOrMore<ICompiledStyles<IFieldBaseStyleKey>>;
+      fieldBase?: IZeroOrMore<ICompiledStyles<IFieldBaseStylesKey>>;
     };
     placeholder?: string;
     children?: React.ReactNode;

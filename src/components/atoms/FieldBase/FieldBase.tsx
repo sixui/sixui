@@ -9,37 +9,27 @@ import {
 import { isFunction } from 'lodash';
 import { useMergeRefs } from '@floating-ui/react';
 
-import type { IThemeComponents } from '@/components/utils/Theme';
 import type { IPolymorphicRef } from '@/helpers/react/polymorphicComponentTypes';
-import type {
-  IFieldBaseVariant,
-  IFieldBaseStyleKey,
-  IFieldBaseStyleVarKey,
-} from './FieldBase.styledefs';
+import type { IFilledFieldBaseStylesKey } from './variants/FilledFieldBase.styles';
+import type { IOutlinedFieldBaseStylesKey } from './variants/OutlinedFieldBase.styles';
 import { useVisualState } from '@/components/utils/VisualState';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { usePrevious } from '@/hooks/usePrevious';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { EASING } from '@/helpers/animation';
 import { CircularProgressIndicator } from '@/components/atoms/CircularProgressIndicator';
-import { FIELD_BASE_DEFAULT_TAG, type IFieldBaseProps } from './FieldBaseProps';
+import {
+  FIELD_BASE_DEFAULT_TAG,
+  type IFieldBaseProps,
+} from './FieldBase.types';
+import { fieldBaseVariantStyles } from './variants';
+import { fieldBaseStyles, type IFieldBaseStylesKey } from './FieldBase.styles';
+import { fieldBaseTheme } from './FieldBase.stylex';
 
 // https://github.com/material-components/material-web/blob/main/field/internal/filled-field.ts
 // https://github.com/material-components/material-web/blob/main/field/internal/outlined-field.ts
 // https://github.com/material-components/material-web/blob/main/field/internal/field.ts
-
-type IFieldBaseVariantMap = {
-  [key in IFieldBaseVariant]: keyof Pick<
-    IThemeComponents,
-    'FilledFieldBase' | 'OutlinedFieldBase'
-  >;
-};
-
-const variantMap: IFieldBaseVariantMap = {
-  filled: 'FilledFieldBase',
-  outlined: 'OutlinedFieldBase',
-};
 
 type IFieldBase = <
   TRoot extends React.ElementType = typeof FIELD_BASE_DEFAULT_TAG,
@@ -90,20 +80,20 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
   );
   const handleRef = useMergeRefs([forwardedRef, setVisualStateRef]);
 
-  const { theme, variantTheme } = useComponentThemeOld(
-    'FieldBase',
-    variant ? variantMap[variant] : undefined,
-  );
+  const { overridenStyles } = useComponentTheme('FieldBase');
+  const variantStyles = variant ? fieldBaseVariantStyles[variant] : undefined;
+
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
-    [theme.styles, variantTheme?.styles, styles],
+    () =>
+      stylesCombinatorFactory<
+        | IFieldBaseStylesKey
+        | IFilledFieldBaseStylesKey
+        | IOutlinedFieldBaseStylesKey
+      >(fieldBaseStyles, variantStyles, styles),
+    [variantStyles, styles],
   );
   const sxf = useMemo(
-    () =>
-      stylePropsFactory<IFieldBaseStyleKey, IFieldBaseStyleVarKey>(
-        stylesCombinator,
-        visualState,
-      ),
+    () => stylePropsFactory(stylesCombinator, visualState),
     [stylesCombinator, visualState],
   );
 
@@ -537,11 +527,11 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
   return (
     <Component
       {...sxf(
+        fieldBaseTheme,
+        overridenStyles,
         'host',
         !!supportingOrErrorText && 'host$withSupportingText',
         disabled && 'host$disabled',
-        theme.vars,
-        variantTheme?.vars,
         sx,
       )}
       aria-labelledby={labelId}

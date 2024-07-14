@@ -1,21 +1,36 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IStyleVars } from '@/helpers/types';
-import type { IFieldBaseStyleVarKey } from '@/components/atoms/FieldBase';
-import { typescaleVars } from '../vars/typo.stylex';
-import { stateVars } from '../vars/state.stylex';
-import { colorRolesVars } from '../vars/colorRoles.stylex';
+import { typescaleVars } from '@/themes/base/vars/typo.stylex';
+import { stateVars } from '@/themes/base/vars/state.stylex';
+import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-filled-text-field.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-filled-text-field.scss
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-outlined-text-field.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-outlined-text-field.scss
 
-const vars: Partial<IStyleVars<IFieldBaseStyleVarKey>> = {
+const vars = {
   leadingSpace: '16px',
   trailingSpace: '16px',
   topSpace: '12px',
+  topSpace$withLabel: '8px',
   bottomSpace: '12px',
+  bottomSpace$withLabel: '8px',
+
+  // container
+  containerShape: 'unset',
+  containerColor: 'inherit',
+  // &:disabled
+  containerColor$disabled: 'inherit',
+  containerOpacity$disabled: 'unset',
+
+  // stateLayer
+  // &:hover
+  stateLayerColor$hover: 'inherit',
+  stateLayerOpacity$hover: stateVars.stateLayerOpacity$hover,
+  // &:error
+  stateLayerColor$error$hover: 'inherit',
+  stateLayerOpacity$error$hover: 'unset',
 
   // content
   contentColor: colorRolesVars.onSurface,
@@ -45,7 +60,7 @@ const vars: Partial<IStyleVars<IFieldBaseStyleVarKey>> = {
   // &:hover
   contentColor$hover: colorRolesVars.onSurface,
 
-  // label
+  // labelText
   labelTextColor: colorRolesVars.onSurfaceVariant,
   labelTextFont: typescaleVars.bodyFont$lg,
   labelTextSize: typescaleVars.bodySize$lg,
@@ -54,11 +69,14 @@ const vars: Partial<IStyleVars<IFieldBaseStyleVarKey>> = {
   labelTextWeight: typescaleVars.bodyWeight$lg,
   labelTextPopulatedLineHeight: typescaleVars.bodyLineHeight$sm,
   labelTextPopulatedSize: typescaleVars.bodySize$sm,
+  labelTextPaddingBottom: '8px',
+  // &:hover
+  labelTextColor$hover: colorRolesVars.onSurfaceVariant,
+  // &:focus
+  labelTextColor$focus: colorRolesVars.primary,
   // &:disabled
   labelTextColor$disabled: colorRolesVars.onSurface,
   labelTextOpacity$disabled: stateVars.opacity$disabled,
-  // &:focus
-  labelTextColor$focus: colorRolesVars.primary,
   // &:error
   labelTextColor$error: colorRolesVars.error,
   // &:error:focus
@@ -129,11 +147,52 @@ const vars: Partial<IStyleVars<IFieldBaseStyleVarKey>> = {
   supportingTextColor$error$focus: colorRolesVars.error,
   // &:error:hover
   supportingTextColor$error$hover: colorRolesVars.error,
+
+  // activeIndicator
+  activeIndicatorColor: colorRolesVars.onSurfaceVariant,
+  activeIndicatorHeight: '1px',
+  // &:hover
+  activeIndicatorColor$hover: colorRolesVars.onSurface,
+  activeIndicatorHeight$hover: '1px',
+  // &:focus
+  activeIndicatorColor$focus: colorRolesVars.primary,
+  activeIndicatorHeight$focus: '3px',
+  // &:disabled
+  activeIndicatorColor$disabled: colorRolesVars.onSurface,
+  activeIndicatorHeight$disabled: '1px',
+  activeIndicatorOpacity$disabled: stateVars.opacity$disabled,
+  // &:error
+  activeIndicatorColor$error: colorRolesVars.error,
+  // &:error:hover
+  activeIndicatorColor$error$hover: colorRolesVars.onErrorContainer,
+  // &:error:focus
+  activeIndicatorColor$error$focus: colorRolesVars.error,
+
+  // outline
+  outlineColor: colorRolesVars.outline,
+  outlineWidth: '1px',
+  // &:hover
+  outlineColor$hover: colorRolesVars.onSurface,
+  outlineWidth$hover: '1px',
+  // &:focus
+  outlineColor$focus: colorRolesVars.primary,
+  outlineWidth$focus: '3px',
+  // &:disabled
+  outlineWidth$disabled: '1px',
+  outlineColor$disabled: colorRolesVars.onSurface,
+  outlineOpacity$disabled: stateVars.outlineOpacity$disabled,
+  // &:error
+  outlineColor$error: colorRolesVars.error,
+  // &:error:hover
+  outlineColor$error$hover: colorRolesVars.onErrorContainer,
+  // &:error:focus
+  outlineColor$error$focus: colorRolesVars.error,
+
+  // outlineLabel
+  outlineLabelPadding: '4px',
 };
 
-export const componentVars = stylex.defineVars(
-  vars as IStyleVars<IFieldBaseStyleVarKey>,
-);
+export const fieldBaseTokens = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that
@@ -141,4 +200,4 @@ export const componentVars = stylex.defineVars(
  *
  * @see https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
  */
-export const componentTheme = stylex.createTheme(componentVars, vars);
+export const fieldBaseTheme = stylex.createTheme(fieldBaseTokens, vars);

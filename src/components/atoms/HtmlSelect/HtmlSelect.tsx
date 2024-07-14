@@ -5,7 +5,7 @@ import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 
 import type { IHtmlSelectOption } from './HtmlSelectProps';
 import { useVisualState } from '@/components/utils/VisualState';
-import { componentVars as fieldBaseVars } from '@/themes/base/FieldBase/FieldBase.stylex';
+import { fieldBaseTokens } from '@/components/atoms/FieldBase/FieldBase.stylex';
 import {
   FieldBase,
   type IFieldBaseOwnProps,
@@ -45,10 +45,10 @@ const styles = stylex.create({
 
 const fieldBaseStyles = stylex.create({
   host: {
-    [fieldBaseVars.topSpace]: '0px',
-    [fieldBaseVars.bottomSpace]: '0px',
-    [fieldBaseVars.leadingSpace]: '0px',
-    [fieldBaseVars.trailingSpace]: '0px',
+    [fieldBaseTokens.topSpace]: '0px',
+    [fieldBaseTokens.bottomSpace]: '0px',
+    [fieldBaseTokens.leadingSpace]: '0px',
+    [fieldBaseTokens.trailingSpace]: '0px',
   },
   section$start: {
     position: 'absolute',
