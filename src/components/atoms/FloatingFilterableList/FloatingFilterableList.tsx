@@ -1,4 +1,4 @@
-import type { IFloatingFilterableListProps } from './FloatingFilterableListProps';
+import type { IFloatingFilterableListProps } from './FloatingFilterableList.types';
 import { FloatingFilterableListBase } from '@/components/atoms/FloatingFilterableListBase';
 
 export const FloatingFilterableList: React.FC<IFloatingFilterableListProps> = (
