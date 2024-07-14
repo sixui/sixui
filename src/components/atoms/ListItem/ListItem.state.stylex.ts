@@ -1,9 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IStyleVars } from '@/helpers/types';
-import type { IListItemStyleStateVarKey } from '@/components/atoms/ListItem';
-
-const vars: IStyleVars<IListItemStyleStateVarKey> = {
+const vars = {
   nonTextColor: 'unset',
   nonTextOpacity: 'unset',
   textColor: 'unset',
@@ -15,4 +12,4 @@ const vars: IStyleVars<IListItemStyleStateVarKey> = {
   bottomSpace: 'unset',
 };
 
-export const componentVars = stylex.defineVars(vars);
+export const listItemStateTokens = stylex.defineVars(vars);

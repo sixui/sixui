@@ -43,16 +43,6 @@ import {
   focusRingStyles as radioFocusRingStyles,
 } from './Radio/Radio.styles';
 
-import { componentTheme as listItemTheme } from './ListItem/ListItem.stylex';
-import { componentTheme as standardListItemTheme } from './ListItem/StandardListItem.stylex';
-import { componentTheme as dangerListItemTheme } from './ListItem/DangerListItem.stylex';
-import {
-  styles as listItemStyles,
-  itemStyles as listItemItemStyles,
-  stateLayerStyles as listItemStateLayerStyles,
-  focusRingStyles as listItemFocusRingStyles,
-} from './ListItem/ListItem.styles';
-
 import { componentTheme as paperTheme } from './Paper/Paper.stylex';
 import {
   styles as paperStyles,
@@ -187,15 +177,6 @@ export const theme: ITheme = {
       stateLayerStyles: radioStateLayerStyles,
       focusRingStyles: radioFocusRingStyles,
     },
-    ListItem: {
-      vars: listItemTheme,
-      styles: listItemStyles,
-      itemStyles: listItemItemStyles,
-      stateLayerStyles: listItemStateLayerStyles,
-      focusRingStyles: listItemFocusRingStyles,
-    },
-    StandardListItem: { vars: standardListItemTheme },
-    DangerListItem: { vars: dangerListItemTheme },
     Paper: {
       vars: paperTheme,
       styles: paperStyles,

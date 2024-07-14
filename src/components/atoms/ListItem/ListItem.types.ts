@@ -9,11 +9,13 @@ import type { IItemProps, IItemStylesKey } from '@/components/atoms/Item';
 import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import type { IVisualState } from '@/components/utils/VisualState';
-import type { IListItemStyleKey, IListItemVariant } from './ListItem.styledefs';
+import type { IListItemStylesKey } from './ListItem.styles';
 
 export const LIST_ITEM_DEFAULT_TAG = 'button';
 
-export type IListItemOwnProps = IContainerProps<IListItemStyleKey> &
+export type IListItemVariant = 'standard' | 'danger';
+
+export type IListItemOwnProps = IContainerProps<IListItemStylesKey> &
   IOmit<IItemProps, 'container'> & {
     innerStyles?: {
       item?: IZeroOrMore<ICompiledStyles<IItemStylesKey>>;

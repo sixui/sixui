@@ -5,7 +5,7 @@ import type { IDisclosureButtonProps } from './DisclosureButton.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { IListItemStyleKey, ListItem } from '@/components/atoms/ListItem';
+import { IListItemStylesKey, ListItem } from '@/components/atoms/ListItem';
 import { ReactComponent as ChevronDown } from '@/assets/ChevronDown.svg';
 import { Checkbox } from '@/components/atoms/Checkbox';
 import { Switch } from '@/components/atoms/Switch';
@@ -46,7 +46,7 @@ export const DisclosureButton = forwardRef<
   const { overridenStyles } = useComponentTheme('DisclosureButton');
   const stylesCombinator = useMemo(
     () =>
-      stylesCombinatorFactory<IListItemStyleKey | IDisclosureButtonStylesKey>(
+      stylesCombinatorFactory<IListItemStylesKey | IDisclosureButtonStylesKey>(
         disclosureButtonStyles,
         styles,
       ),

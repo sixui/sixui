@@ -1,3 +1,3 @@
-export * from './ListItem.styledefs';
-export * from './ListItemProps';
+export * from './ListItem.types';
+export * from './ListItem.styles';
 export * from './ListItem';

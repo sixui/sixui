@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import { circularProgressIndicatorTokens } from '@/components/atoms/CircularProgressIndicator/CircularProgressIndicator.stylex';
-import { componentVars as listItemVars } from '@/themes/base/ListItem/ListItem.stylex';
+import { listItemTokens } from '@/components/atoms/ListItem/ListItem.stylex';
 import { itemTokens } from '@/components/atoms/Item/Item.stylex';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
 import { disclosureButtonTokens } from './DisclosureButton.stylex';
@@ -16,89 +16,91 @@ export const disclosureButtonStyles = stylex.create({
   button: {
     flexGrow: 1,
 
-    [listItemVars.containerShape]: disclosureButtonTokens.containerShape,
-    [listItemVars.containerColor]: disclosureButtonTokens.containerColor,
-    [listItemVars.containerOpacity]: disclosureButtonTokens.containerOpacity,
-    [listItemVars.containerColor$disabled]:
+    [listItemTokens.containerShape]: disclosureButtonTokens.containerShape,
+    [listItemTokens.containerColor]: disclosureButtonTokens.containerColor,
+    [listItemTokens.containerOpacity]: disclosureButtonTokens.containerOpacity,
+    [listItemTokens.containerColor$disabled]:
       disclosureButtonTokens.containerColor$disabled,
-    [listItemVars.containerOpacity$disabled]:
+    [listItemTokens.containerOpacity$disabled]:
       disclosureButtonTokens.containerOpacity$disabled,
-    [listItemVars.textColor]: disclosureButtonTokens.textColor,
-    [listItemVars.textColor$disabled]:
+    [listItemTokens.textColor]: disclosureButtonTokens.textColor,
+    [listItemTokens.textColor$disabled]:
       disclosureButtonTokens.textColor$disabled,
-    [listItemVars.textColor$focus]: disclosureButtonTokens.textColor$focus,
-    [listItemVars.textColor$hover]: disclosureButtonTokens.textColor$hover,
-    [listItemVars.textColor$pressed]: disclosureButtonTokens.textColor$pressed,
-    [listItemVars.leadingIconColor]: disclosureButtonTokens.iconColor,
-    [listItemVars.leadingIconColor$disabled]:
+    [listItemTokens.textColor$focus]: disclosureButtonTokens.textColor$focus,
+    [listItemTokens.textColor$hover]: disclosureButtonTokens.textColor$hover,
+    [listItemTokens.textColor$pressed]:
+      disclosureButtonTokens.textColor$pressed,
+    [listItemTokens.leadingIconColor]: disclosureButtonTokens.iconColor,
+    [listItemTokens.leadingIconColor$disabled]:
       disclosureButtonTokens.iconColor$disabled,
-    [listItemVars.leadingIconColor$focus]:
+    [listItemTokens.leadingIconColor$focus]:
       disclosureButtonTokens.iconColor$focus,
-    [listItemVars.leadingIconColor$hover]:
+    [listItemTokens.leadingIconColor$hover]:
       disclosureButtonTokens.iconColor$hover,
-    [listItemVars.leadingIconColor$pressed]:
+    [listItemTokens.leadingIconColor$pressed]:
       disclosureButtonTokens.iconColor$pressed,
-    [listItemVars.trailingIconColor]: disclosureButtonTokens.iconColor,
-    [listItemVars.trailingIconColor$disabled]:
+    [listItemTokens.trailingIconColor]: disclosureButtonTokens.iconColor,
+    [listItemTokens.trailingIconColor$disabled]:
       disclosureButtonTokens.iconColor$disabled,
-    [listItemVars.trailingIconColor$focus]:
+    [listItemTokens.trailingIconColor$focus]:
       disclosureButtonTokens.iconColor$focus,
-    [listItemVars.trailingIconColor$hover]:
+    [listItemTokens.trailingIconColor$hover]:
       disclosureButtonTokens.iconColor$hover,
-    [listItemVars.trailingIconColor$pressed]:
+    [listItemTokens.trailingIconColor$pressed]:
       disclosureButtonTokens.iconColor$pressed,
   },
   button$expanded: {
-    [listItemVars.containerColor]:
+    [listItemTokens.containerColor]:
       disclosureButtonTokens.expandedContainerColor,
-    [listItemVars.containerOpacity]:
+    [listItemTokens.containerOpacity]:
       disclosureButtonTokens.expandedContainerOpacity,
-    [listItemVars.containerColor$disabled]:
+    [listItemTokens.containerColor$disabled]:
       disclosureButtonTokens.expandedContainerColor$disabled,
-    [listItemVars.containerOpacity$disabled]:
+    [listItemTokens.containerOpacity$disabled]:
       disclosureButtonTokens.expandedContainerOpacity$disabled,
-    [listItemVars.textColor]: disclosureButtonTokens.expandedTextColor,
-    [listItemVars.textColor$disabled]:
+    [listItemTokens.textColor]: disclosureButtonTokens.expandedTextColor,
+    [listItemTokens.textColor$disabled]:
       disclosureButtonTokens.expandedTextColor$disabled,
-    [listItemVars.textColor$focus]:
+    [listItemTokens.textColor$focus]:
       disclosureButtonTokens.expandedTextColor$focus,
-    [listItemVars.textColor$hover]:
+    [listItemTokens.textColor$hover]:
       disclosureButtonTokens.expandedTextColor$hover,
-    [listItemVars.textColor$pressed]:
+    [listItemTokens.textColor$pressed]:
       disclosureButtonTokens.expandedTextColor$pressed,
-    [listItemVars.leadingIconColor]: disclosureButtonTokens.expandedIconColor,
-    [listItemVars.leadingIconColor$disabled]:
+    [listItemTokens.leadingIconColor]: disclosureButtonTokens.expandedIconColor,
+    [listItemTokens.leadingIconColor$disabled]:
       disclosureButtonTokens.expandedIconColor$disabled,
-    [listItemVars.leadingIconColor$focus]:
+    [listItemTokens.leadingIconColor$focus]:
       disclosureButtonTokens.expandedIconColor$focus,
-    [listItemVars.leadingIconColor$hover]:
+    [listItemTokens.leadingIconColor$hover]:
       disclosureButtonTokens.expandedIconColor$hover,
-    [listItemVars.leadingIconColor$pressed]:
+    [listItemTokens.leadingIconColor$pressed]:
       disclosureButtonTokens.expandedIconColor$pressed,
-    [listItemVars.trailingIconColor]: disclosureButtonTokens.expandedIconColor,
-    [listItemVars.trailingIconColor$disabled]:
+    [listItemTokens.trailingIconColor]:
+      disclosureButtonTokens.expandedIconColor,
+    [listItemTokens.trailingIconColor$disabled]:
       disclosureButtonTokens.expandedIconColor$disabled,
-    [listItemVars.trailingIconColor$focus]:
+    [listItemTokens.trailingIconColor$focus]:
       disclosureButtonTokens.expandedIconColor$focus,
-    [listItemVars.trailingIconColor$hover]:
+    [listItemTokens.trailingIconColor$hover]:
       disclosureButtonTokens.expandedIconColor$hover,
-    [listItemVars.trailingIconColor$pressed]:
+    [listItemTokens.trailingIconColor$pressed]:
       disclosureButtonTokens.expandedIconColor$pressed,
   },
   button$checkable: {
-    [listItemVars.leadingSpace]: 'calc(16px + 18px + 12px)',
+    [listItemTokens.leadingSpace]: 'calc(16px + 18px + 12px)',
   },
   button$switchable: {
-    [listItemVars.leadingSpace]: 'calc(16px + 52px + 16px)',
+    [listItemTokens.leadingSpace]: 'calc(16px + 52px + 16px)',
   },
   button$toggledOff: {
-    [listItemVars.containerColor]:
+    [listItemTokens.containerColor]:
       disclosureButtonTokens.uncheckedContainerColor,
-    [listItemVars.containerOpacity]:
+    [listItemTokens.containerOpacity]:
       disclosureButtonTokens.uncheckedContainerOpacity,
-    [listItemVars.containerColor$disabled]:
+    [listItemTokens.containerColor$disabled]:
       disclosureButtonTokens.uncheckedContainerColor$disabled,
-    [listItemVars.containerOpacity$disabled]:
+    [listItemTokens.containerOpacity$disabled]:
       disclosureButtonTokens.uncheckedContainerOpacity$disabled,
   },
   icon: {

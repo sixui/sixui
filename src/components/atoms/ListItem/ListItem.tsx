@@ -6,36 +6,31 @@ import type {
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
-import type { IListItemVariant, IListItemStyleKey } from './ListItem.styledefs';
-import type { IThemeComponents } from '@/components/utils/Theme';
+import type {
+  LIST_ITEM_DEFAULT_TAG,
+  IListItemOwnProps,
+  IListItemProps,
+} from './ListItem.types';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
 import { useVisualState } from '@/components/utils/VisualState';
 import { StateLayer } from '@/components/utils/StateLayer';
 import { FocusRing } from '@/components/utils/FocusRing';
 import { Item } from '@/components/atoms/Item';
 import { commonStyles } from '@/helpers/commonStyles';
 import { ListContext } from '@/components/atoms/List/ListContext';
+import { listItemVariantStyles } from './variants';
 import {
-  LIST_ITEM_DEFAULT_TAG,
-  type IListItemOwnProps,
-  type IListItemProps,
-} from './ListItemProps';
+  listItemFocusRingStyles,
+  listItemItemStyles,
+  listItemStateLayerStyles,
+  listItemStyles,
+  type IListItemStylesKey,
+} from './ListItem.styles';
+import { listItemTheme } from './ListItem.stylex';
 
 // https://github.com/material-components/material-web/blob/main/list/internal/listitem/list-item.ts
-
-type IListItemVariantMap = {
-  [key in IListItemVariant]: keyof Pick<
-    IThemeComponents,
-    'StandardListItem' | 'DangerListItem'
-  >;
-};
-
-const variantMap: IListItemVariantMap = {
-  standard: 'StandardListItem',
-  danger: 'DangerListItem',
-};
 
 type IListItem = <
   TRoot extends React.ElementType = typeof LIST_ITEM_DEFAULT_TAG,
@@ -83,20 +78,20 @@ export const ListItem: IListItem = forwardRef(function ListItem<
   );
   const handleRef = useMergeRefs([forwardedRef, setVisualStateRef, actionRef]);
 
-  const { theme, variantTheme, settings } = useComponentThemeOld(
-    'ListItem',
-    variant ? variantMap[variant] : undefined,
-  );
+  const { overridenStyles, settings } = useComponentTheme('ListItem');
+  const variantStyles = variant ? listItemVariantStyles[variant] : undefined;
+
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
-    [theme.styles, variantTheme?.styles, styles],
+    () =>
+      stylesCombinatorFactory<IListItemStylesKey>(
+        listItemStyles,
+        variantStyles,
+        styles,
+      ),
+    [variantStyles, styles],
   );
   const sxf = useMemo(
-    () =>
-      stylePropsFactory<IListItemStyleKey, never>(
-        stylesCombinator,
-        visualState,
-      ),
+    () => stylePropsFactory(stylesCombinator, visualState),
     [stylesCombinator, visualState],
   );
 
@@ -128,8 +123,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
         <>
           <StateLayer
             styles={[
-              theme.stateLayerStyles,
-              variantTheme?.stateLayerStyles,
+              listItemStateLayerStyles,
               ...asArray(innerStyles?.stateLayer),
             ]}
             for={actionRef}
@@ -139,8 +133,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
           {noFocusRing ? null : (
             <FocusRing
               styles={[
-                theme.focusRingStyles,
-                variantTheme?.focusRingStyles,
+                listItemFocusRingStyles,
                 ...asArray(innerStyles?.focusRing),
               ]}
               for={actionRef}
@@ -202,6 +195,8 @@ export const ListItem: IListItem = forwardRef(function ListItem<
   return (
     <Component
       {...sxf(
+        listItemTheme,
+        overridenStyles,
         'host',
         `host$${adaptedSize}`,
         isInteractive && 'host$interactive',
@@ -209,8 +204,6 @@ export const ListItem: IListItem = forwardRef(function ListItem<
         disabled && 'host$disabled',
         !start && !leadingVideo && 'host$leadingSpace',
         !end && 'host$trailingSpace',
-        theme.vars,
-        variantTheme?.vars,
         sx,
       )}
       role={role}
@@ -225,11 +218,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
       {...other}
     >
       <Item
-        styles={[
-          theme.itemStyles,
-          variantTheme?.itemStyles,
-          ...asArray(innerStyles?.item),
-        ]}
+        styles={[listItemItemStyles, ...asArray(innerStyles?.item)]}
         container={renderContainer()}
         overline={overline}
         start={renderStart()}

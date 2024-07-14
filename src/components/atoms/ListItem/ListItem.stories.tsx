@@ -9,7 +9,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
-import type { IListItemProps, IListItemOwnProps } from './ListItemProps';
+import type {
+  IListItemProps,
+  IListItemOwnProps,
+  IListItemVariant,
+} from './ListItem.types';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
@@ -17,7 +21,6 @@ import {
 } from '@/components/utils/ComponentShowcase';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { Avatar } from '@/components/atoms/Avatar';
-import { listItemVariants } from './ListItem.styledefs';
 import { Checkbox } from '@/components/atoms/Checkbox';
 import { ListItem } from './ListItem';
 
@@ -144,15 +147,17 @@ export const Variants: IStory = {
     <ComponentShowcase
       component={ListItem}
       props={props}
-      cols={listItemVariants.map((variant) => ({
-        props: {
-          variant,
-          children: capitalizeFirstLetter(variant),
-          leadingIcon: <FontAwesomeIcon icon={faCalendarDays} />,
-          trailingIcon: <FontAwesomeIcon icon={faChevronRight} />,
-          onClick: () => {},
-        },
-      }))}
+      cols={(['standard', 'danger'] as Array<IListItemVariant>).map(
+        (variant) => ({
+          props: {
+            variant,
+            children: capitalizeFirstLetter(variant),
+            leadingIcon: <FontAwesomeIcon icon={faCalendarDays} />,
+            trailingIcon: <FontAwesomeIcon icon={faChevronRight} />,
+            onClick: () => {},
+          },
+        }),
+      )}
     />
   ),
   args: defaultArgs,

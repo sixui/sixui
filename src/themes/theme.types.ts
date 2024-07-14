@@ -43,10 +43,6 @@ import type {
 } from '@/components/atoms/Radio';
 import type { IListStylesKey } from '@/components/atoms/List';
 import type {
-  IListItemStyleKey,
-  IListItemStyleVarKey,
-} from '@/components/atoms/ListItem';
-import type {
   IPaperStyleKey,
   IPaperStyleVarKey,
 } from '@/components/atoms/Paper';
@@ -99,7 +95,6 @@ import type {
 import type { IButtonStylesKey } from '@/components/atoms/Button';
 import type { ICardStylesKey } from '@/components/atoms/Card/Card.styles';
 import type { ICircularProgressIndicatorStylesKey } from '@/components/atoms/CircularProgressIndicator';
-import type { IItemStylesKey } from '@/components/atoms/Item';
 
 export type IBasicTemplateTheme = {
   vars?: IStyleVarsTheme<IBasicTemplateStyleVarKey>;
@@ -109,14 +104,6 @@ export type IBasicTemplateTheme = {
 export type IVariableTemplateTheme = {
   vars?: IStyleVarsTheme<IVariableTemplateStyleVarKey>;
   styles?: ICompiledStyles<IVariableTemplateStyleKey>;
-};
-
-export type IListItemTheme = {
-  vars?: IStyleVarsTheme<IListItemStyleVarKey>;
-  styles?: ICompiledStyles<IListItemStyleKey>;
-  itemStyles?: ICompiledStyles<IItemStylesKey>;
-  stateLayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
-  focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
 };
 
 export type ITextFieldBaseTheme = {
@@ -187,9 +174,6 @@ export type ITheme = {
       focusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
       circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStylesKey>;
     };
-    ListItem: IListItemTheme;
-    StandardListItem: IListItemTheme;
-    DangerListItem: IListItemTheme;
     Paper: IPaperTheme;
     FilledPaper: IPaperTheme;
     OutlinedPaper: IPaperTheme & {
