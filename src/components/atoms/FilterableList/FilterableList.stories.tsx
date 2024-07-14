@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IFilterableListProps } from './FilterableListProps';
+import type { IFilterableListProps } from './FilterableList.types';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ListItem } from '@/components/atoms/ListItem';
 import { fruits } from './fruits';

@@ -3,7 +3,7 @@ import highlightWords from 'highlight-words';
 import type {
   IFilterableListItem,
   IFilterableListProps,
-} from './FilterableListProps';
+} from './FilterableList.types';
 import { MenuList } from '@/components/atoms/MenuList';
 import { TextInputField } from '@/components/atoms/TextInputField';
 import { ListItem, type IListItemOwnProps } from '@/components/atoms/ListItem';

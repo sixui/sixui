@@ -1,2 +1,2 @@
-export * from './FilterableListProps';
+export * from './FilterableList.types';
 export * from './FilterableList';
