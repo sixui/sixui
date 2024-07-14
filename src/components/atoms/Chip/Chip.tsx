@@ -1,6 +1,5 @@
 import { forwardRef, useCallback, useMemo, useRef, useState } from 'react';
 import { asArray } from '@olivierpascal/helpers';
-import stylex from '@stylexjs/stylex';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type {
@@ -38,13 +37,6 @@ import { chipTheme } from './Chip.stylex';
 // https://github.com/material-components/material-web/blob/main/chips/internal/filter-chip.ts
 // https://github.com/material-components/material-web/blob/main/chips/internal/input-chip.ts
 // https://github.com/material-components/material-web/blob/main/chips/internal/suggestion-chip.ts
-
-const avatarStyles = stylex.create({
-  host: {
-    width: '100%',
-    height: '100%',
-  },
-});
 
 type IChip = <TRoot extends React.ElementType = typeof CHIP_DEFAULT_TAG>(
   props: IChipProps<TRoot>,
@@ -319,9 +311,8 @@ export const Chip: IChip = forwardRef(function Chip<
                 <CheckMarkIcon {...sxf('icon')} aria-hidden />
               ) : imageUrl ? (
                 <Avatar
-                  sx={stylesCombinator('icon')}
+                  sx={stylesCombinator('icon', 'icon$avatar')}
                   src={imageUrl}
-                  styles={avatarStyles}
                 />
               ) : icon ? (
                 icon

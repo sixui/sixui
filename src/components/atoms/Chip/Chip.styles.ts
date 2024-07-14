@@ -320,6 +320,10 @@ export const chipStyles = stylex.create({
   icon: {
     position: 'absolute',
   },
+  icon$avatar: {
+    width: '100%',
+    height: '100%',
+  },
   iconContainer$trailing: {
     position: 'relative',
     fontSize: chipTokens.iconSize,
