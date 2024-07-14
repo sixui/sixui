@@ -7,7 +7,7 @@ import { circularProgressIndicatorTokens } from './CircularProgressIndicator.sty
 
 // https://github.com/material-components/material-web/blob/main/progress/internal/_circulardeterminate-progress.scss
 
-export type ICircularProgressIndicatorStyleKey =
+export type ICircularProgressIndicatorStylesKey =
   keyof typeof circularProgressIndicatorStyles;
 export const circularProgressIndicatorStyles = stylex.create({
   host: {

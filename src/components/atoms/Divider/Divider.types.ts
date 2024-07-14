@@ -1,7 +1,7 @@
 import type { IContainerProps } from '@/helpers/types';
-import type { IDividerStyleKey } from './Divider.styles';
+import type { IDividerStylesKey } from './Divider.styles';
 
-export type IDividerProps = IContainerProps<IDividerStyleKey> & {
+export type IDividerProps = IContainerProps<IDividerStylesKey> & {
   /**
    * Indents the divider with equal padding on both sides.
    */

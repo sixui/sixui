@@ -7,7 +7,7 @@ import {
   faLink,
 } from '@fortawesome/free-solid-svg-icons';
 
-import type { IListProps } from './ListProps';
+import type { IListProps } from './List.types';
 import { ListItem, type IListItemProps } from '@/components/atoms/ListItem';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';

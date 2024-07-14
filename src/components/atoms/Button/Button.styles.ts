@@ -20,7 +20,7 @@ const halfSpinKeyframes = stylex.keyframes({
   },
 });
 
-export type IButtonStyleKey = keyof typeof buttonStyles;
+export type IButtonStylesKey = keyof typeof buttonStyles;
 export const buttonStyles = stylex.create({
   host: {
     alignContent: 'center',

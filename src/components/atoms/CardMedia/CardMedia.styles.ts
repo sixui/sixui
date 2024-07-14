@@ -2,7 +2,7 @@ import stylex from '@stylexjs/stylex';
 
 import { cardMediaTokens as vars } from './CardMedia.stylex';
 
-export type ICardMediaStyleKey = keyof typeof cardMediaStyles;
+export type ICardMediaStylesKey = keyof typeof cardMediaStyles;
 export const cardMediaStyles = stylex.create({
   host: {
     display: 'flex',

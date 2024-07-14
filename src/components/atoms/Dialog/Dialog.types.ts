@@ -9,10 +9,10 @@ import type {
 import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
 import type {
   IDialogContentOwnProps,
-  IDialogContentStyleKey,
+  IDialogContentStylesKey,
 } from '@/components/atoms/DialogContent';
 import type { IExtendedHtmlFloatingProps } from '@/helpers/extendFloatingProps';
-import type { IDialogStyleKey } from './Dialog.styles';
+import type { IDialogStylesKey } from './Dialog.styles';
 
 export const DIALOG_DEFAULT_TAG = 'div';
 
@@ -39,11 +39,11 @@ export type IDialogTriggerRenderProps = {
   ) => IExtendedHtmlFloatingProps;
 };
 
-export type IDialogOwnProps = IContainerProps<IDialogStyleKey> &
+export type IDialogOwnProps = IContainerProps<IDialogStylesKey> &
   IOmit<IDialogContentOwnProps, 'onClose' | 'styles'> &
   Pick<React.AriaAttributes, 'aria-label'> & {
     innerStyles?: {
-      dialogContent?: IZeroOrMore<ICompiledStyles<IDialogContentStyleKey>>;
+      dialogContent?: IZeroOrMore<ICompiledStyles<IDialogContentStylesKey>>;
     };
 
     /**

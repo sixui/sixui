@@ -5,7 +5,7 @@ import type { IStyles } from '@/helpers/types';
 import type { ISwitchStyleKey } from '@/components/atoms/Switch';
 import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
-import type { ICircularProgressIndicatorStyleKey } from '@/components/atoms/CircularProgressIndicator';
+import type { ICircularProgressIndicatorStylesKey } from '@/components/atoms/CircularProgressIndicator';
 import { circularProgressIndicatorTokens } from '@/components/atoms/CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { componentVars as switchStateVars } from './Switch.states.stylex';
 import { componentVars as vars } from './Switch.stylex';
@@ -326,7 +326,7 @@ export const focusRingStyles: MapNamespaces<IFocusRingStyles> = stylex.create<
 });
 
 type ICircularProgressIndicatorStyles =
-  IStyles<ICircularProgressIndicatorStyleKey>;
+  IStyles<ICircularProgressIndicatorStylesKey>;
 export const circularProgressIndicatorStyles: MapNamespaces<ICircularProgressIndicatorStyles> =
   stylex.create<ICircularProgressIndicatorStyles>({
     host: {

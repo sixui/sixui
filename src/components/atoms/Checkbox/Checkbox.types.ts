@@ -6,20 +6,20 @@ import type {
   IAny,
 } from '@/helpers/types';
 import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
-import type { ICheckboxStyleKey } from './Checkbox.styles';
+import type { ICheckboxStylesKey } from './Checkbox.styles';
 import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
-import type { ICircularProgressIndicatorStyleKey } from '@/components/atoms/CircularProgressIndicator';
+import type { ICircularProgressIndicatorStylesKey } from '@/components/atoms/CircularProgressIndicator';
 import type { IVisualState } from '@/components/utils/VisualState';
 
 export const CHECKBOX_DEFAULT_TAG = 'input';
 
-export type ICheckboxOwnProps = IContainerProps<ICheckboxStyleKey> & {
+export type ICheckboxOwnProps = IContainerProps<ICheckboxStylesKey> & {
   innerStyles?: {
     stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
     focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
     circularProgressIndicator?: IZeroOrMore<
-      ICompiledStyles<ICircularProgressIndicatorStyleKey>
+      ICompiledStyles<ICircularProgressIndicatorStylesKey>
     >;
   };
   visualState?: IVisualState;

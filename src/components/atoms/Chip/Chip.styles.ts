@@ -11,7 +11,7 @@ import { chipStateTokens } from './Chip.state.stylex';
 // https://github.com/material-components/material-web/blob/main/chips/internal/_shared.scss
 // https://github.com/material-components/material-web/blob/main/chips/internal/_elevated.scss
 
-export type IChipStyleKey = keyof typeof chipStyles;
+export type IChipStylesKey = keyof typeof chipStyles;
 export const chipStyles = stylex.create({
   host: {
     borderRadius: chipStateTokens.containerShape,

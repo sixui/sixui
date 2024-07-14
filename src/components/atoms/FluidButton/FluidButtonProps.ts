@@ -5,14 +5,14 @@ import type {
 } from '@/helpers/types';
 import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
 import { IFluidButtonStyleKey } from './FluidButton.styledefs';
-import { IButtonBaseOwnProps, IButtonBaseStyleKey } from '../ButtonBase';
+import { IButtonBaseOwnProps, IButtonBaseStylesKey } from '../ButtonBase';
 
 export const FLUID_BUTTON_DEFAULT_TAG = 'button';
 
 export type IFluidButtonOwnProps = IContainerProps<IFluidButtonStyleKey> &
   IButtonBaseOwnProps & {
     innerStyles?: IButtonBaseOwnProps['innerStyles'] & {
-      buttonBase?: IZeroOrMore<ICompiledStyles<IButtonBaseStyleKey>>;
+      buttonBase?: IZeroOrMore<ICompiledStyles<IButtonBaseStylesKey>>;
     };
     children?: React.ReactNode;
   };

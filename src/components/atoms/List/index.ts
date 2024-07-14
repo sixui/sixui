@@ -1,3 +1,3 @@
-export * from './List.styledefs';
-export * from './ListProps';
+export * from './List.types';
+export * from './List.styles';
 export * from './List';

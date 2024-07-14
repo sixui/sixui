@@ -3,8 +3,8 @@ import type {
   IExpandableContextValue,
   IExpandableProps,
 } from '@/components/utils/Expandable';
-import type { IDisclosureStyleKey } from './Disclosure.styles';
+import type { IDisclosureStylesKey } from './Disclosure.styles';
 
-export type IDisclosureProps = IContainerProps<IDisclosureStyleKey> &
+export type IDisclosureProps = IContainerProps<IDisclosureStylesKey> &
   IOmit<IExpandableContextValue, 'expand'> &
   Pick<IExpandableProps, 'trigger' | 'children'>;

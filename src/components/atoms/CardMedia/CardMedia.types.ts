@@ -1,7 +1,7 @@
 import type { IContainerProps } from '@/helpers/types';
-import type { ICardMediaStyleKey } from './CardMedia.styles';
+import type { ICardMediaStylesKey } from './CardMedia.styles';
 
-export type ICardMediaProps = IContainerProps<ICardMediaStyleKey> & {
+export type ICardMediaProps = IContainerProps<ICardMediaStylesKey> & {
   children?: React.ReactNode;
   src?: string;
   title?: string;

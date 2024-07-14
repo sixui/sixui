@@ -1,7 +1,7 @@
-import { ICardStyleKey } from '@/components/atoms/Card/Card.styles';
+import { ICardStylesKey } from '@/components/atoms/Card/Card.styles';
 
 export type IOptionCardStyleKey =
-  | ICardStyleKey
+  | ICardStylesKey
   | 'host'
   | 'host$selected'
   | 'text'

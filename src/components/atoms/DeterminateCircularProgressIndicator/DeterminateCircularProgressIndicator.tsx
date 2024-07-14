@@ -6,12 +6,12 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import {
   circularProgressIndicatorStyles,
-  type ICircularProgressIndicatorStyleKey,
+  type ICircularProgressIndicatorStylesKey,
 } from '@/components/atoms/CircularProgressIndicator';
 import { circularProgressIndicatorTheme } from '@/components/atoms/CircularProgressIndicator/CircularProgressIndicator.stylex';
 import {
   determinateCircularProgressIndicatorStyles,
-  type IDeterminateCircularProgressIndicatorStyleKey,
+  type IDeterminateCircularProgressIndicatorStylesKey,
 } from './DeterminateCircularProgressIndicator.styles';
 
 // https://github.com/material-components/material-web/blob/main/progress/internal/progress.ts
@@ -40,8 +40,8 @@ export const DeterminateCircularProgressIndicator = forwardRef<
   const stylesCombinator = useMemo(
     () =>
       stylesCombinatorFactory<
-        | ICircularProgressIndicatorStyleKey
-        | IDeterminateCircularProgressIndicatorStyleKey
+        | ICircularProgressIndicatorStylesKey
+        | IDeterminateCircularProgressIndicatorStylesKey
       >(
         circularProgressIndicatorStyles,
         determinateCircularProgressIndicatorStyles,

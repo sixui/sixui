@@ -8,14 +8,14 @@ import type {
   IFluidButtonOwnProps,
   IFluidButtonStyleKey,
 } from '@/components/atoms/FluidButton';
-import type { ICopyableTextStyleKey } from './CopyableText.styles';
+import type { ICopyableTextStylesKey } from './CopyableText.styles';
 
 export type ICopyableTextTriggerRenderProps = {
   copy: () => Promise<void>;
   disabled?: boolean;
 };
 
-export type ICopyableTextProps = IContainerProps<ICopyableTextStyleKey> &
+export type ICopyableTextProps = IContainerProps<ICopyableTextStylesKey> &
   IOmit<IFluidButtonOwnProps, 'styles'> & {
     innerStyles?: {
       fluidButton?: IZeroOrMore<ICompiledStyles<IFluidButtonStyleKey>>;

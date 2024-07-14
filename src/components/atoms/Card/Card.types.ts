@@ -10,13 +10,13 @@ import type { IElevationStyleKey } from '@/components/utils/Elevation';
 import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import type { IVisualState } from '@/components/utils/VisualState';
-import type { ICardStyleKey } from './Card.styles';
+import type { ICardStylesKey } from './Card.styles';
 
 export type ICardVariant = 'elevated' | 'filled' | 'outlined';
 
 export const CARD_DEFAULT_TAG = 'div';
 
-export type ICardOwnProps = IContainerProps<ICardStyleKey> & {
+export type ICardOwnProps = IContainerProps<ICardStylesKey> & {
   innerStyles?: {
     elevation?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
     stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;

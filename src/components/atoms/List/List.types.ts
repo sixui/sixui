@@ -1,8 +1,8 @@
 import type { IContainerProps } from '@/helpers/types';
-import type { IListStyleKey } from './List.styledefs';
+import type { IListStylesKey } from './List.styles';
 import type { IListContextValue } from './ListContext';
 
-export type IListProps = IContainerProps<IListStyleKey> &
+export type IListProps = IContainerProps<IListStylesKey> &
   IListContextValue & {
     children?: React.ReactNode;
     header?: React.ReactNode;

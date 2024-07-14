@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
 import { badgeTokens } from './Badge.stylex';
 
-export type IBadgeStyleKey = keyof typeof badgeStyles;
+export type IBadgeStylesKey = keyof typeof badgeStyles;
 export const badgeStyles = stylex.create({
   host: {
     position: 'relative',

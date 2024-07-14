@@ -5,7 +5,7 @@ import type {
   IOmit,
 } from '@/helpers/types';
 import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
-import type { IFieldStyleKey } from './Field.styles';
+import type { IFieldStylesKey } from './Field.styles';
 import {
   FIELD_BASE_DEFAULT_TAG,
   type IFieldBaseStyleKey,
@@ -14,7 +14,7 @@ import {
 
 export const FIELD_DEFAULT_TAG = FIELD_BASE_DEFAULT_TAG;
 
-export type IFieldOwnProps = IContainerProps<IFieldStyleKey> &
+export type IFieldOwnProps = IContainerProps<IFieldStylesKey> &
   IOmit<IFieldBaseOwnProps, 'styles' | 'children' | 'forwardProps'> & {
     innerStyles?: {
       fieldBase?: IZeroOrMore<ICompiledStyles<IFieldBaseStyleKey>>;

@@ -4,7 +4,7 @@ import { dialogContentTokens as vars } from './DialogContent.stylex';
 
 // https://github.com/material-components/material-web/blob/main/dialog/internal/_dialog.scss
 
-export type IDialogContentStyleKey = keyof typeof dialogContentStyles;
+export type IDialogContentStylesKey = keyof typeof dialogContentStyles;
 export const dialogContentStyles = stylex.create({
   host: {
     borderRadius: vars.containerShape,

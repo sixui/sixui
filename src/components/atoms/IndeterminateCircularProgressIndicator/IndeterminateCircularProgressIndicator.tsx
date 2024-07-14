@@ -6,7 +6,7 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { circularProgressIndicatorTheme } from '@/components/atoms/CircularProgressIndicator/CircularProgressIndicator.stylex';
 import {
   circularProgressIndicatorStyles,
-  type ICircularProgressIndicatorStyleKey,
+  type ICircularProgressIndicatorStylesKey,
 } from '@/components/atoms/CircularProgressIndicator';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import {
@@ -27,7 +27,7 @@ export const IndeterminateCircularProgressIndicator = forwardRef<
   const stylesCombinator = useMemo(
     () =>
       stylesCombinatorFactory<
-        | ICircularProgressIndicatorStyleKey
+        | ICircularProgressIndicatorStylesKey
         | IIndeterminateCircularProgressIndicatorStyleKey
       >(
         circularProgressIndicatorStyles,

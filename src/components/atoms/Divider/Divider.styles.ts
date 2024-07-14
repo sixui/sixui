@@ -2,7 +2,7 @@ import stylex from '@stylexjs/stylex';
 
 import { dividerTokens as vars } from './Divider.stylex';
 
-export type IDividerStyleKey = keyof typeof dividerStyles;
+export type IDividerStylesKey = keyof typeof dividerStyles;
 export const dividerStyles = stylex.create({
   host: {
     display: 'flex',

@@ -16,7 +16,7 @@ import {
   disclosureButtonCircularProgressIndicatorStyles,
   disclosureButtonItemStyles,
   disclosureButtonStyles,
-  type IDisclosureButtonStyleKey,
+  type IDisclosureButtonStylesKey,
 } from './DisclosureButton.styles';
 import { disclosureButtonTheme } from './DisclosureButton.stylex';
 
@@ -46,7 +46,7 @@ export const DisclosureButton = forwardRef<
   const { overridenStyles } = useComponentTheme('DisclosureButton');
   const stylesCombinator = useMemo(
     () =>
-      stylesCombinatorFactory<IListItemStyleKey | IDisclosureButtonStyleKey>(
+      stylesCombinatorFactory<IListItemStyleKey | IDisclosureButtonStylesKey>(
         disclosureButtonStyles,
         styles,
       ),

@@ -6,7 +6,7 @@ import { fabTokens } from './Fab.stylex';
 // https://github.com/material-components/material-web/blob/main/fab/internal/_shared.scss
 // https://github.com/material-components/material-web/blob/main/fab/internal/_fab.scss
 
-export type IFabStyleKey = keyof typeof fabStyles;
+export type IFabStylesKey = keyof typeof fabStyles;
 export const fabStyles = stylex.create({
   host: {
     [buttonVars.leadingSpace]: '0',

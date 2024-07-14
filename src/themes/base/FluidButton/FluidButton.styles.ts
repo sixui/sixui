@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
 import type { IFluidButtonStyleKey } from '@/components/atoms/FluidButton';
-import type { IButtonBaseStyleKey } from '@/components/atoms/ButtonBase';
+import type { IButtonBaseStylesKey } from '@/components/atoms/ButtonBase';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
 import { componentVars as focusRingVars } from '@/themes/base/FocusRing/FocusRing.stylex';
@@ -25,9 +25,9 @@ export const styles: MapNamespaces<IFluidButtonStyles> = stylex.create<
   },
 });
 
-type IButtonBaseStyles = IStyles<IButtonBaseStyleKey>;
+type IButtonBaseStyles = IStyles<IButtonBaseStylesKey>;
 export const buttonBaseStyles: MapNamespaces<IButtonBaseStyles> = stylex.create<
-  IStyles<IButtonBaseStyleKey>
+  IStyles<IButtonBaseStylesKey>
 >({
   host: {
     display: 'inline-flex',

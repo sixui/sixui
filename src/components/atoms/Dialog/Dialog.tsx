@@ -31,7 +31,7 @@ import { Scrim } from '@/components/atoms/Scrim';
 import { Portal } from '@/components/utils/Portal';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { extendFloatingProps } from '@/helpers/extendFloatingProps';
-import { dialogStyles, type IDialogStyleKey } from './Dialog.styles';
+import { dialogStyles, type IDialogStylesKey } from './Dialog.styles';
 
 // https://github.com/material-components/material-web/blob/main/dialog/internal/dialog.ts
 
@@ -61,7 +61,7 @@ export const Dialog: IDialog = forwardRef(function Dialog<
     [styles],
   );
   const sxf = useMemo(
-    () => stylePropsFactory<IDialogStyleKey>(stylesCombinator),
+    () => stylePropsFactory<IDialogStylesKey>(stylesCombinator),
     [stylesCombinator],
   );
 

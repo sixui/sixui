@@ -49,7 +49,7 @@ import type {
   IRadioStyleVarKey,
 } from '@/components/atoms/Radio';
 import type { IItemStyleKey, IItemStyleVarKey } from '@/components/atoms/Item';
-import type { IListStyleKey } from '@/components/atoms/List';
+import type { IListStylesKey } from '@/components/atoms/List';
 import type {
   IListItemStyleKey,
   IListItemStyleVarKey,
@@ -104,14 +104,14 @@ import type {
   IFluidButtonStyleKey,
   IFluidButtonStyleVarKey,
 } from '@/components/atoms/FluidButton';
-import type { IButtonBaseStyleKey } from '@/components/atoms/ButtonBase';
+import type { IButtonBaseStylesKey } from '@/components/atoms/ButtonBase';
 import type {
   IOptionCardStyleKey,
   IOptionCardStyleVarKey,
 } from '@/components/atoms/OptionCard';
-import type { IButtonStyleKey } from '@/components/atoms/Button';
-import type { ICardStyleKey } from '@/components/atoms/Card/Card.styles';
-import type { ICircularProgressIndicatorStyleKey } from '@/components/atoms/CircularProgressIndicator';
+import type { IButtonStylesKey } from '@/components/atoms/Button';
+import type { ICardStylesKey } from '@/components/atoms/Card/Card.styles';
+import type { ICircularProgressIndicatorStylesKey } from '@/components/atoms/CircularProgressIndicator';
 
 export type IBasicTemplateTheme = {
   vars?: IStyleVarsTheme<IBasicTemplateStyleVarKey>;
@@ -204,7 +204,7 @@ export type ITheme = {
       styles: ICompiledStyles<ISwitchStyleKey>;
       stateLayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
       focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
-      circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
+      circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStylesKey>;
     };
     FieldBase: IFieldBaseTheme;
     FilledFieldBase: IFieldBaseTheme;
@@ -217,7 +217,7 @@ export type ITheme = {
       styles?: ICompiledStyles<IRadioStyleKey>;
       stateLayerStyles: ICompiledStyles<IStateLayerStyleKey>;
       focusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
-      circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
+      circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStylesKey>;
     };
     Item: {
       vars?: IStyleVarsTheme<IItemStyleVarKey>;
@@ -226,9 +226,6 @@ export type ITheme = {
     ListItem: IListItemTheme;
     StandardListItem: IListItemTheme;
     DangerListItem: IListItemTheme;
-    List: {
-      styles?: ICompiledStyles<IListStyleKey>;
-    };
     Paper: IPaperTheme;
     FilledPaper: IPaperTheme;
     OutlinedPaper: IPaperTheme & {
@@ -254,7 +251,7 @@ export type ITheme = {
       vars?: IStyleVarsTheme<IMenuListStyleVarKey>;
       styles?: ICompiledStyles<IMenuListStyleKey>;
       elevationStyles?: ICompiledStyles<IElevationStyleKey>;
-      listStyles?: ICompiledStyles<IListStyleKey>;
+      listStyles?: ICompiledStyles<IListStylesKey>;
     };
     Stepper: {
       styles?: ICompiledStyles<IStepperStyleKey>;
@@ -263,7 +260,7 @@ export type ITheme = {
       vars?: IStyleVarsTheme<IStepStyleVarKey>;
       styles?: ICompiledStyles<IStepStyleKey>;
       focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
-      circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
+      circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStylesKey>;
     };
     StepConnector: {
       vars?: IStyleVarsTheme<IStepConnectorStyleVarKey>;
@@ -285,7 +282,7 @@ export type ITheme = {
       vars?: IStyleVarsTheme<ISnackbarContentStyleVarKey>;
       styles?: ICompiledStyles<ISnackbarContentStyleKey>;
       elevationStyles?: ICompiledStyles<IElevationStyleKey>;
-      actionButtonStyles?: ICompiledStyles<IButtonStyleKey>;
+      actionButtonStyles?: ICompiledStyles<IButtonStylesKey>;
     };
     PlainTooltipContent: {
       vars?: IStyleVarsTheme<IPlainTooltipContentStyleVarKey>;
@@ -299,14 +296,14 @@ export type ITheme = {
     FluidButton: {
       vars?: IStyleVarsTheme<IFluidButtonStyleVarKey>;
       styles?: ICompiledStyles<IFluidButtonStyleKey>;
-      buttonBaseStyles?: ICompiledStyles<IButtonBaseStyleKey>;
+      buttonBaseStyles?: ICompiledStyles<IButtonBaseStylesKey>;
       focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
       stateLayerStyles?: ICompiledStyles<IStateLayerStyleKey>;
     };
     OptionCard: {
       vars?: IStyleVarsTheme<IOptionCardStyleVarKey>;
       styles?: ICompiledStyles<IOptionCardStyleKey>;
-      cardStyles?: ICompiledStyles<ICardStyleKey>;
+      cardStyles?: ICompiledStyles<ICardStylesKey>;
     };
   };
 };

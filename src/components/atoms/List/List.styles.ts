@@ -1,14 +1,11 @@
-import type { MapNamespaces } from '@stylexjs/stylex/lib/StyleXTypes';
 import stylex from '@stylexjs/stylex';
 
-import type { IStyles } from '@/helpers/types';
-import type { IListStyleKey } from '@/components/atoms/List';
-import { componentVars as vars } from './List.stylex';
+import { listTokens as vars } from './List.stylex';
 
 // https://github.com/material-components/material-web/blob/main/list/internal/_list.scss
 
-type IListStyles = IStyles<IListStyleKey>;
-export const styles: MapNamespaces<IListStyles> = stylex.create<IListStyles>({
+export type IListStylesKey = keyof typeof listStyles;
+export const listStyles = stylex.create({
   host: {
     color: 'unset',
     outline: 'none',

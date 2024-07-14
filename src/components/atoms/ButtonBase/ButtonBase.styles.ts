@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 // https://github.com/material-components/material-web/blob/main/button/internal/_shared.scss
 // https://github.com/material-components/material-web/blob/main/button/internal/_elevation.scss
 
-export type IButtonBaseStyleKey = keyof typeof buttonBaseStyles;
+export type IButtonBaseStylesKey = keyof typeof buttonBaseStyles;
 export const buttonBaseStyles = stylex.create({
   host: {
     display: 'inline-flex',

@@ -62,7 +62,6 @@ import {
 import { styles as itemStyles } from './Item/Item.styles';
 import { componentTheme as itemTheme } from './Item/Item.stylex';
 
-import { styles as listStyles } from './List/List.styles';
 import { componentTheme as listItemTheme } from './ListItem/ListItem.stylex';
 import { componentTheme as standardListItemTheme } from './ListItem/StandardListItem.stylex';
 import { componentTheme as dangerListItemTheme } from './ListItem/DangerListItem.stylex';
@@ -250,9 +249,6 @@ export const theme: ITheme = {
     },
     StandardListItem: { vars: standardListItemTheme },
     DangerListItem: { vars: dangerListItemTheme },
-    List: {
-      styles: listStyles,
-    },
     Paper: {
       vars: paperTheme,
       styles: paperStyles,

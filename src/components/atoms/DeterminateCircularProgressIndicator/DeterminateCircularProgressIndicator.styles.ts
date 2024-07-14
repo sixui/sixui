@@ -8,7 +8,7 @@ import { circularProgressIndicatorTokens } from '@/components/atoms/CircularProg
 
 const color$disabled = `color-mix(in srgb, ${circularProgressIndicatorTokens.color$disabled} calc(${stateVars.opacity$disabled} * 100%), transparent)`;
 
-export type IDeterminateCircularProgressIndicatorStyleKey =
+export type IDeterminateCircularProgressIndicatorStylesKey =
   keyof typeof determinateCircularProgressIndicatorStyles;
 export const determinateCircularProgressIndicatorStyles = stylex.create({
   svg: {

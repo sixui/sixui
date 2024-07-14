@@ -24,7 +24,7 @@ import {
   buttonFocusRingStyles,
   buttonStateLayerStyles,
   buttonStyles,
-  type IButtonStyleKey,
+  type IButtonStylesKey,
 } from './Button.styles';
 import { buttonTheme } from './Button.stylex';
 import { buttonVariantStyles } from './variants';
@@ -76,7 +76,7 @@ export const Button: IButton = forwardRef(function Button<
 
   const stylesCombinator = useMemo(
     () =>
-      stylesCombinatorFactory<IButtonStyleKey>(
+      stylesCombinatorFactory<IButtonStylesKey>(
         buttonStyles,
         variantStyles,
         styles,

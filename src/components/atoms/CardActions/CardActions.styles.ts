@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-export type ICardActionsStyleKey = keyof typeof cardActionsStyles;
+export type ICardActionsStyleKsey = keyof typeof cardActionsStyles;
 export const cardActionsStyles = stylex.create({
   host: {
     display: 'flex',

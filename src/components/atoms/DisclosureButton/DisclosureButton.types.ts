@@ -6,21 +6,21 @@ import type {
   IOmit,
   IZeroOrMore,
 } from '@/helpers/types';
-import type { IDisclosureButtonStyleKey } from './DisclosureButton.styles';
+import type { IDisclosureButtonStylesKey } from './DisclosureButton.styles';
 import type { IListItemOwnProps } from '../ListItem';
-import type { ICheckboxStyleKey } from '../Checkbox';
+import type { ICheckboxStylesKey } from '../Checkbox';
 import type { ISwitchStyleKey } from '../Switch';
-import type { ICircularProgressIndicatorStyleKey } from '../CircularProgressIndicator';
+import type { ICircularProgressIndicatorStylesKey } from '../CircularProgressIndicator';
 
 export type IDisclosureButtonProps =
-  IContainerProps<IDisclosureButtonStyleKey> &
+  IContainerProps<IDisclosureButtonStylesKey> &
     IOmit<IListItemOwnProps, 'innerStyles'> & {
       innerStyles?: {
         listItem?: IListItemOwnProps['innerStyles'];
-        checkbox?: IZeroOrMore<ICompiledStyles<ICheckboxStyleKey>>;
+        checkbox?: IZeroOrMore<ICompiledStyles<ICheckboxStylesKey>>;
         switch?: IZeroOrMore<ICompiledStyles<ISwitchStyleKey>>;
         circularProgressIndicator?: IZeroOrMore<
-          ICompiledStyles<ICircularProgressIndicatorStyleKey>
+          ICompiledStyles<ICircularProgressIndicatorStylesKey>
         >;
       };
       collapseIcon?: React.ReactNode;

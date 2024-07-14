@@ -4,7 +4,7 @@ import { motionVars } from '@/themes/base/vars/motion.stylex';
 
 // https://github.com/material-components/material-web/blob/main/dialog/internal/_dialog.scss
 
-export type IDialogStyleKey = keyof typeof dialogStyles;
+export type IDialogStylesKey = keyof typeof dialogStyles;
 export const dialogStyles = stylex.create({
   transition$unmounted: {},
   transition$initial: {

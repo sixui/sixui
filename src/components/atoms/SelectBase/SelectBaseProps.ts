@@ -1,13 +1,13 @@
 import type { IContainerProps, IOmit } from '@/helpers/types';
 import type { IFieldBaseVariant } from '@/components/atoms/FieldBase';
-import type { IFieldStyleKey, IFieldOwnProps } from '@/components/atoms/Field';
+import type { IFieldStylesKey, IFieldOwnProps } from '@/components/atoms/Field';
 import type { IUseSingleFilterableListBaseProps } from '@/components/atoms/FilterableListBase';
 import type {
   IFloatingFilterableListBaseProps,
   IFloatingFilterableListBaseTriggerRenderProps,
 } from '@/components/atoms/FloatingFilterableListBase';
 
-export type ISelectBaseProps<TItem> = IContainerProps<IFieldStyleKey> &
+export type ISelectBaseProps<TItem> = IContainerProps<IFieldStylesKey> &
   IOmit<
     IFloatingFilterableListBaseProps<TItem, HTMLElement>,
     | 'onItemSelect'

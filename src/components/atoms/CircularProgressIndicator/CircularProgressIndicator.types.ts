@@ -1,19 +1,19 @@
 import type { IContainerProps, IOmit, IMakeOptional } from '@/helpers/types';
 import type {
   IDeterminateCircularProgressIndicatorProps,
-  IDeterminateCircularProgressIndicatorStyleKey,
+  IDeterminateCircularProgressIndicatorStylesKey,
 } from '@/components/atoms/DeterminateCircularProgressIndicator';
 import type {
   IIndeterminateCircularProgressIndicatorProps,
   IIndeterminateCircularProgressIndicatorStyleKey,
 } from '@/components/atoms/IndeterminateCircularProgressIndicator';
-import type { ICircularProgressIndicatorStyleKey } from './CircularProgressIndicator.styles';
+import type { ICircularProgressIndicatorStylesKey } from './CircularProgressIndicator.styles';
 
 export type ICircularProgressIndicatorSize = 'md' | 'lg';
 
 export type ICircularProgressIndicatorProps = IContainerProps<
-  | ICircularProgressIndicatorStyleKey
-  | IDeterminateCircularProgressIndicatorStyleKey
+  | ICircularProgressIndicatorStylesKey
+  | IDeterminateCircularProgressIndicatorStylesKey
   | IIndeterminateCircularProgressIndicatorStyleKey
 > &
   IMakeOptional<

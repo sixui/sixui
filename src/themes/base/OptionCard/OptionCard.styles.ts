@@ -6,7 +6,7 @@ import type { IOptionCardStyleKey } from '@/components/atoms/OptionCard';
 import { componentVars as vars } from './OptionCard.stylex';
 import { cardTokens } from '@/components/atoms/Card/Card.stylex';
 import { motionVars } from '../vars/motion.stylex';
-import { ICardStyleKey } from '@/components/atoms/Card/Card.styles';
+import { ICardStylesKey } from '@/components/atoms/Card/Card.styles';
 
 type IOptionCardStyles = IStyles<IOptionCardStyleKey>;
 export const styles: MapNamespaces<IOptionCardStyles> =
@@ -39,7 +39,7 @@ export const styles: MapNamespaces<IOptionCardStyles> =
     },
   });
 
-type ICardStyles = IStyles<ICardStyleKey>;
+type ICardStyles = IStyles<ICardStylesKey>;
 export const cardStyles: MapNamespaces<ICardStyles> =
   stylex.create<ICardStyles>({
     outline: {

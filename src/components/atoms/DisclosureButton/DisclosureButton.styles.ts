@@ -6,7 +6,7 @@ import { componentVars as itemVars } from '@/themes/base/Item/Item.stylex';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
 import { disclosureButtonTokens } from './DisclosureButton.stylex';
 
-export type IDisclosureButtonStyleKey = keyof typeof disclosureButtonStyles;
+export type IDisclosureButtonStylesKey = keyof typeof disclosureButtonStyles;
 export const disclosureButtonStyles = stylex.create({
   host: {
     position: 'relative',

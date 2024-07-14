@@ -5,7 +5,7 @@ import type {
   IZeroOrMore,
 } from '@/helpers/types';
 import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
-import type { ICircularProgressIndicatorStyleKey } from '@/components/atoms/CircularProgressIndicator';
+import type { ICircularProgressIndicatorStylesKey } from '@/components/atoms/CircularProgressIndicator';
 import type { IButtonBaseOwnProps } from '@/components/atoms/ButtonBase';
 
 export type IButtonVariant =
@@ -22,7 +22,7 @@ export const BUTTON_DEFAULT_TAG = 'button';
 export type IButtonOwnProps = IButtonBaseOwnProps & {
   innerStyles?: IButtonBaseOwnProps['innerStyles'] & {
     circularProgressIndicator?: IZeroOrMore<
-      ICompiledStyles<ICircularProgressIndicatorStyleKey>
+      ICompiledStyles<ICircularProgressIndicatorStylesKey>
     >;
   };
   withLeadingIcon?: boolean;

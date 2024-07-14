@@ -8,11 +8,11 @@ import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import type { IElevationStyleKey } from '@/components/utils/Elevation';
 import type { IVisualState } from '@/components/utils/VisualState';
-import type { IButtonBaseStyleKey } from './ButtonBase.styles';
+import type { IButtonBaseStylesKey } from './ButtonBase.styles';
 
 export const BUTTON_BASE_DEFAULT_TAG = 'button';
 
-export type IButtonBaseOwnProps = IContainerProps<IButtonBaseStyleKey> & {
+export type IButtonBaseOwnProps = IContainerProps<IButtonBaseStylesKey> & {
   innerStyles?: {
     stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
     focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;

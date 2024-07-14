@@ -1,9 +1,9 @@
 import type { IContainerProps } from '@/helpers/types';
 import type { ICircularProgressIndicatorSize } from '@/components/atoms/CircularProgressIndicator';
-import type { IDeterminateCircularProgressIndicatorStyleKey } from './DeterminateCircularProgressIndicator.styles';
+import type { IDeterminateCircularProgressIndicatorStylesKey } from './DeterminateCircularProgressIndicator.styles';
 
 export type IDeterminateCircularProgressIndicatorProps =
-  IContainerProps<IDeterminateCircularProgressIndicatorStyleKey> &
+  IContainerProps<IDeterminateCircularProgressIndicatorStylesKey> &
     Pick<React.AriaAttributes, 'aria-label'> & {
       value: number;
       withLabel?: boolean;

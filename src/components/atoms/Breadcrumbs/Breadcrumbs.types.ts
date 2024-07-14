@@ -4,12 +4,12 @@ import type {
   ICompiledStyles,
 } from '@/helpers/types';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
-import type { IButtonBaseStyleKey } from '@/components/atoms/ButtonBase';
-import type { IBreadcrumbsStyleKey } from './Breadcrumbs.styles';
+import type { IButtonBaseStylesKey } from '@/components/atoms/ButtonBase';
+import type { IBreadcrumbsStylesKey } from './Breadcrumbs.styles';
 
-export type IBreadcrumbsProps = IContainerProps<IBreadcrumbsStyleKey> & {
+export type IBreadcrumbsProps = IContainerProps<IBreadcrumbsStylesKey> & {
   innerStyles?: {
-    expandButton?: IZeroOrMore<ICompiledStyles<IButtonBaseStyleKey>>;
+    expandButton?: IZeroOrMore<ICompiledStyles<IButtonBaseStylesKey>>;
     expandButtonFocusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
   };
   children: React.ReactNode;

@@ -1,11 +1,12 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IListStyleKey, IListStyleVarKey } from './List.styledefs';
-import type { IListProps } from './ListProps';
+import type { IListProps } from './List.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { ListContext } from './ListContext';
+import { listStyles } from './List.styles';
+import { listTheme } from './List.stylex';
 
 export const List = forwardRef<HTMLDivElement, IListProps>(
   function List(props, forwardedRef) {
@@ -20,20 +21,23 @@ export const List = forwardRef<HTMLDivElement, IListProps>(
       ...other
     } = props;
 
-    const { theme } = useComponentThemeOld('List');
+    const { overridenStyles } = useComponentTheme('List');
     const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(theme.styles, styles),
-      [theme.styles, styles],
+      () => stylesCombinatorFactory(listStyles, styles),
+      [styles],
     );
     const sxf = useMemo(
-      () =>
-        stylePropsFactory<IListStyleKey, IListStyleVarKey>(stylesCombinator),
+      () => stylePropsFactory(stylesCombinator),
       [stylesCombinator],
     );
 
     return (
       <ListContext.Provider value={{ size, noFocusRing }}>
-        <div {...sxf('host', sx)} ref={forwardedRef} {...other}>
+        <div
+          {...sxf(listTheme, overridenStyles, 'host', sx)}
+          ref={forwardedRef}
+          {...other}
+        >
           <div {...sxf('inner')}>
             <div {...sxf('header')}>{header}</div>
             <div {...sxf('content', !children && 'content$empty')}>

@@ -1,6 +1,6 @@
 import type { IContainerProps } from '@/helpers/types';
-import type { ICardActionsStyleKey } from './CardActions.styles';
+import type { ICardActionsStyleKsey } from './CardActions.styles';
 
-export type ICardActionsProps = IContainerProps<ICardActionsStyleKey> & {
+export type ICardActionsProps = IContainerProps<ICardActionsStyleKsey> & {
   children: React.ReactNode;
 };

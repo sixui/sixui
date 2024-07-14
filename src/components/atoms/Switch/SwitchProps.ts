@@ -8,7 +8,7 @@ import type {
 import type { ISwitchStyleKey } from './Switch.styledefs';
 import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
-import type { ICircularProgressIndicatorStyleKey } from '@/components/atoms/CircularProgressIndicator';
+import type { ICircularProgressIndicatorStylesKey } from '@/components/atoms/CircularProgressIndicator';
 import type { IVisualState } from '@/components/utils/VisualState';
 import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
 
@@ -20,7 +20,7 @@ export type ISwitchOwnProps = IContainerProps<ISwitchStyleKey> &
       stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
       focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
       circularProgressIndicator?: IZeroOrMore<
-        ICompiledStyles<ICircularProgressIndicatorStyleKey>
+        ICompiledStyles<ICircularProgressIndicatorStylesKey>
       >;
     };
     visualState?: IVisualState;

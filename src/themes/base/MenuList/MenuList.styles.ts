@@ -4,7 +4,7 @@ import stylex from '@stylexjs/stylex';
 import type { IStyles } from '@/helpers/types';
 import type { IMenuListStyleKey } from '@/components/atoms/MenuList';
 import type { IElevationStyleKey } from '@/components/utils/Elevation';
-import type { IListStyleKey } from '@/components/atoms/List';
+import type { IListStylesKey } from '@/components/atoms/List';
 import { componentVars as vars } from './MenuList.stylex';
 import { componentVars as elevationVars } from '../Elevation/Elevation.stylex';
 
@@ -36,9 +36,9 @@ export const elevationStyles: MapNamespaces<IElevationStyles> = stylex.create<
   },
 });
 
-type IListStyles = IStyles<IListStyleKey>;
+type IListStyles = IStyles<IListStylesKey>;
 export const listStyles: MapNamespaces<IListStyles> = stylex.create<
-  IStyles<IListStyleKey>
+  IStyles<IListStylesKey>
 >({
   host: {
     height: '100%',

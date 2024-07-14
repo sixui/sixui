@@ -8,7 +8,7 @@ import { cardStateTokens } from './Card.state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/labs/card/internal/_shared.scss
 
-export type ICardStyleKey = keyof typeof cardStyles;
+export type ICardStylesKey = keyof typeof cardStyles;
 export const cardStyles = stylex.create({
   host: {
     display: 'flex',

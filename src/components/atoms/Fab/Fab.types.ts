@@ -7,9 +7,9 @@ import type {
 import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
 import type {
   IButtonOwnProps,
-  IButtonStyleKey,
+  IButtonStylesKey,
 } from '@/components/atoms/Button';
-import type { IFabStyleKey } from './Fab.styles';
+import type { IFabStylesKey } from './Fab.styles';
 
 export type IFabVariant =
   | 'surface'
@@ -26,9 +26,9 @@ export type IFabOwnProps = IOmit<
   IButtonOwnProps,
   'variant' | 'icon' | 'trailingIcon'
 > &
-  IContainerProps<IFabStyleKey> & {
+  IContainerProps<IFabStylesKey> & {
     innerStyles?: IButtonOwnProps['innerStyles'] & {
-      button?: IZeroOrMore<ICompiledStyles<IButtonStyleKey>>;
+      button?: IZeroOrMore<ICompiledStyles<IButtonStylesKey>>;
     };
     children?: React.ReactNode;
     size?: IFabSize;

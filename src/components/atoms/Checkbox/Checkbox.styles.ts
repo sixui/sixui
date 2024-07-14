@@ -22,7 +22,7 @@ const prevUnselectedToCheckedKeyframes = stylex.keyframes({
   },
 });
 
-export type ICheckboxStyleKey = keyof typeof checkboxStyles;
+export type ICheckboxStylesKey = keyof typeof checkboxStyles;
 export const checkboxStyles = stylex.create({
   host: {
     borderRadius: vars.containerShape,

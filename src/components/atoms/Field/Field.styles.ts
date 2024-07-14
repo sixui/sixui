@@ -2,7 +2,7 @@ import stylex from '@stylexjs/stylex';
 
 import { componentVars as vars } from '@/themes/base/FieldBase/FieldBase.stylex';
 
-export type IFieldStyleKey = keyof typeof fieldStyles;
+export type IFieldStylesKey = keyof typeof fieldStyles;
 export const fieldStyles = stylex.create({
   placeholder: {
     WebkitTextFillColor: vars.contentPlaceholderColor,

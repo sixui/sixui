@@ -10,14 +10,14 @@ import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import type { IElevationStyleKey } from '@/components/utils/Elevation';
 import type { IVisualState } from '@/components/utils/VisualState';
-import type { ICircularProgressIndicatorStyleKey } from '@/components/atoms/CircularProgressIndicator';
-import type { IChipStyleKey } from './Chip.styles';
+import type { ICircularProgressIndicatorStylesKey } from '@/components/atoms/CircularProgressIndicator';
+import type { IChipStylesKey } from './Chip.styles';
 
 export type IChipVariant = 'assist' | 'filter' | 'input' | 'suggestion';
 
 export const CHIP_DEFAULT_TAG = 'div';
 
-export type IChipOwnProps = IContainerProps<IChipStyleKey> & {
+export type IChipOwnProps = IContainerProps<IChipStylesKey> & {
   innerStyles?: {
     stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
     focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
@@ -26,7 +26,7 @@ export type IChipOwnProps = IContainerProps<IChipStyleKey> & {
     trailingActionStateLayer?: IZeroOrMore<
       ICompiledStyles<IStateLayerStyleKey>
     >;
-    circularProgressIndicator?: ICompiledStyles<ICircularProgressIndicatorStyleKey>;
+    circularProgressIndicator?: ICompiledStyles<ICircularProgressIndicatorStylesKey>;
   };
   visualState?: IVisualState;
   onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
