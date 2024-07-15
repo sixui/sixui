@@ -1,15 +1,12 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IStyleVars } from '@/helpers/types';
-import type { ISnackbarStyleVarKey } from '@/components/atoms/Snackbar';
-
-const vars: IStyleVars<ISnackbarStyleVarKey> = {
+const vars = {
   fixedHorizontalSpace: '24px',
   fixedHorizontalSpace$compact: '32px',
   fixedBottomSpace: '24px',
 };
 
-export const componentVars = stylex.defineVars(vars);
+export const snackbarTokens = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that
@@ -17,4 +14,4 @@ export const componentVars = stylex.defineVars(vars);
  *
  * @see https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
  */
-export const componentTheme = stylex.createTheme(componentVars, vars);
+export const snackbarTheme = stylex.createTheme(snackbarTokens, vars);

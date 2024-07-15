@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
-import type { ISnackbarProps } from './SnackbarProps';
+import type { ISnackbarProps } from './Snackbar.types';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { Button } from '@/components/atoms/Button';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';

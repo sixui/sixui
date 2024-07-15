@@ -3,15 +3,13 @@ import { CSSTransition } from 'react-transition-group';
 import { useTimeout } from 'usehooks-ts';
 import { useMergeRefs } from '@floating-ui/react';
 
-import type {
-  ISnackbarStyleKey,
-  ISnackbarStyleVarKey,
-} from './Snackbar.styledefs';
-import type { ISnackbarProps } from './SnackbarProps';
+import type { ISnackbarProps } from './Snackbar.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { SnackbarContent } from '@/components/atoms/SnackbarContent';
+import { snackbarStyles } from './Snackbar.styles';
+import { snackbarTheme } from './Snackbar.stylex';
 
 export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
   function Snackbar(props, forwardedRef) {
@@ -25,16 +23,13 @@ export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
       ...other
     } = props;
 
-    const { theme } = useComponentThemeOld('Snackbar');
+    const { overridenStyles } = useComponentTheme('Snackbar');
     const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(theme.styles, styles),
-      [theme.styles, styles],
+      () => stylesCombinatorFactory(snackbarStyles, styles),
+      [styles],
     );
     const sxf = useMemo(
-      () =>
-        stylePropsFactory<ISnackbarStyleKey, ISnackbarStyleVarKey>(
-          stylesCombinator,
-        ),
+      () => stylePropsFactory(stylesCombinator),
       [stylesCombinator],
     );
 
@@ -57,13 +52,14 @@ export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
       >
         <div
           {...sxf(
+            snackbarTheme,
+            overridenStyles,
             'host',
             horizontalOrigin === 'left'
               ? 'host$left'
               : horizontalOrigin === 'center'
                 ? 'host$center'
                 : undefined,
-            theme.vars,
             sx,
           )}
         >
