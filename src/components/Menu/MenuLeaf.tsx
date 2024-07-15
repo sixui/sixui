@@ -252,7 +252,9 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
                     <div
                       {...stylex.props(
                         styles.inner,
-                        commonStyles.transformOrigin(floating.placement),
+                        commonStyles.placementToTransformOrigin(
+                          floating.placement,
+                        ),
                         styles[`transition$${transitionStatus.status}`],
                         parentId
                           ? styles[
