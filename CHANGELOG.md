@@ -1,3 +1,15 @@
+# v0.0.316 (Mon Jul 15 2024)
+
+#### 🐛 Bug Fix
+
+- Feat/refactor theming [#34](https://github.com/sixui/sixui/pull/34) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.315 (Fri Jul 12 2024)
 
 #### ⚠️ Pushed to `main`
