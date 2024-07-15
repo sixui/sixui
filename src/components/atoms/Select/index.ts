@@ -1,2 +1,2 @@
-export * from './SelectProps';
+export * from './Select.types';
 export * from './Select';

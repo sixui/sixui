@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 
-import type { ISelectProps } from './SelectProps';
+import type { ISelectProps } from './Select.types';
 import {
   areFilterableListItemsEqual,
   isFilterableListItemEmpty,

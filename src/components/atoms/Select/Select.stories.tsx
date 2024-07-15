@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
-import type { ISelectProps } from './SelectProps';
+import type { ISelectProps } from './Select.types';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ListItem } from '@/components/atoms/ListItem';
 import { fruits, emptyItem } from '@/components/atoms/FilterableList/fruits';
