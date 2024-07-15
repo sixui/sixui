@@ -1,6 +1,5 @@
-import type { IThemeSettings } from '@/themes/theme.types';
 import type { StyleXStyles } from '@stylexjs/stylex';
-import { useThemeContext } from '@/components/utils/Theme';
+import { useThemeContext, type IThemeSettings } from '@/components/utils/Theme';
 
 export type IUseComponentThemeResult = {
   settings: IThemeSettings;

@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
-import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { shapeTokens } from '@/themes/base/shape.stylex';
 import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-menulist.scss

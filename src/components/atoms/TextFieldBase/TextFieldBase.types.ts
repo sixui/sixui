@@ -32,8 +32,7 @@ export type ITextFieldBaseRenderProps<
   TElement extends HTMLElement,
   TChildrenProps extends object,
 > = {
-  // FIXME: refactor (remove never)
-  sxf: IStyleProps<ITextFieldBaseStylesKey, never>;
+  sxf: IStyleProps<ITextFieldBaseStylesKey>;
   ref: React.RefObject<TElement> | React.RefCallback<TElement> | null;
   modifiers: ITextFieldBaseModifiers;
   onValueChange: ITextFieldBaseOwnProps<

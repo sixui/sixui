@@ -6,8 +6,8 @@ import stylex from '@stylexjs/stylex';
 import type { IFocusRingProps } from './FocusRing.types';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { Placeholder } from '@/components/atoms/Placeholder';
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
-import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { shapeTokens } from '@/themes/base/shape.stylex';
 import { FocusRing } from './FocusRing';
 import { focusRingTokens } from './FocusRing.stylex';
 

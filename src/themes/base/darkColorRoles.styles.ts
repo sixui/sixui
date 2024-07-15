@@ -14,12 +14,13 @@ import type {
   IColorRolesSurfaceInverseThemeVars,
   IColorRolesTertiaryThemeVars,
   IColorRolesThemeVars,
-} from '../../colorRoles.types';
+} from './colorRoles.types';
 import { colorPalettesTokens } from './colorPalettes.stylex';
+import { colorRolesTokens as baseColorRolesVars } from './colorRoles.stylex';
 
 // Generate a new color palette with Material Theme Builder:
 // https://m3.material.io/theme-builder#/custom
-// Export to Web (CSS) -> import '--md-sys-color-*-light' from css/tokens.css
+// Export to Web (CSS) -> import '--md-sys-color-*-dark' from css/tokens.css
 
 // https://m3.material.io/styles/color/roles
 // https://m3.material.io/styles/color/static/baseline
@@ -27,54 +28,54 @@ import { colorPalettesTokens } from './colorPalettes.stylex';
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-sys-color.scss
 
 const primary: IColorRolesPrimaryThemeVars = {
-  primary: colorPalettesTokens.primary40,
-  onPrimary: colorPalettesTokens.primary100,
-  primaryContainer: colorPalettesTokens.primary90,
-  onPrimaryContainer: colorPalettesTokens.primary10,
+  primary: colorPalettesTokens.primary80,
+  onPrimary: colorPalettesTokens.primary20,
+  primaryContainer: colorPalettesTokens.primary30,
+  onPrimaryContainer: colorPalettesTokens.primary90,
 };
 
 const secondary: IColorRolesSecondaryThemeVars = {
-  secondary: colorPalettesTokens.secondary40,
-  onSecondary: colorPalettesTokens.secondary100,
-  secondaryContainer: colorPalettesTokens.secondary90,
-  onSecondaryContainer: colorPalettesTokens.secondary10,
+  secondary: colorPalettesTokens.secondary80,
+  onSecondary: colorPalettesTokens.secondary20,
+  secondaryContainer: colorPalettesTokens.secondary30,
+  onSecondaryContainer: colorPalettesTokens.secondary90,
 };
 
 const tertiary: IColorRolesTertiaryThemeVars = {
-  tertiary: colorPalettesTokens.tertiary40,
-  onTertiary: colorPalettesTokens.tertiary100,
-  tertiaryContainer: colorPalettesTokens.tertiary90,
-  onTertiaryContainer: colorPalettesTokens.tertiary10,
+  tertiary: colorPalettesTokens.tertiary80,
+  onTertiary: colorPalettesTokens.tertiary20,
+  tertiaryContainer: colorPalettesTokens.tertiary30,
+  onTertiaryContainer: colorPalettesTokens.tertiary90,
 };
 
 const error: IColorRolesErrorThemeVars = {
-  error: colorPalettesTokens.error40,
-  onError: colorPalettesTokens.error100,
-  errorContainer: colorPalettesTokens.error90,
-  onErrorContainer: colorPalettesTokens.error10,
+  error: colorPalettesTokens.error80,
+  onError: colorPalettesTokens.error20,
+  errorContainer: colorPalettesTokens.error30,
+  onErrorContainer: colorPalettesTokens.error90,
 };
 
 const surfaceInverse: IColorRolesSurfaceInverseThemeVars = {
-  inverseSurface: colorPalettesTokens.neutral20,
-  inverseOnSurface: colorPalettesTokens.neutral95,
-  inversePrimary: colorPalettesTokens.primary80,
+  inverseSurface: colorPalettesTokens.neutral90,
+  inverseOnSurface: colorPalettesTokens.neutral20,
+  inversePrimary: colorPalettesTokens.primary40,
 };
 
 const surface: IColorRolesSurfaceThemeVars = {
-  surface: colorPalettesTokens.neutral98,
-  onSurface: colorPalettesTokens.neutral10,
-  onSurfaceVariant: colorPalettesTokens.neutralVariant30,
-  surfaceContainerLowest: colorPalettesTokens.neutral100,
-  surfaceContainerLow: colorPalettesTokens.neutral96,
-  surfaceContainer: colorPalettesTokens.neutral94,
-  surfaceContainerHigh: colorPalettesTokens.neutral92,
-  surfaceContainerHighest: colorPalettesTokens.neutral90,
+  surface: colorPalettesTokens.neutral6,
+  onSurface: colorPalettesTokens.neutral90,
+  onSurfaceVariant: colorPalettesTokens.neutralVariant80,
+  surfaceContainerLowest: colorPalettesTokens.neutral4,
+  surfaceContainerLow: colorPalettesTokens.neutral10,
+  surfaceContainer: colorPalettesTokens.neutral12,
+  surfaceContainerHigh: colorPalettesTokens.neutral17,
+  surfaceContainerHighest: colorPalettesTokens.neutral22,
   ...surfaceInverse,
 };
 
 const outline: IColorRolesOutlineThemeVars = {
-  outline: colorPalettesTokens.neutralVariant50,
-  outlineVariant: colorPalettesTokens.neutralVariant80,
+  outline: colorPalettesTokens.neutralVariant60,
+  outlineVariant: colorPalettesTokens.neutralVariant30,
 };
 
 const addOnsFixed: IColorRolesAddOnsFixedThemeVars = {
@@ -87,7 +88,7 @@ const addOnsDim: IColorRolesAddOnsDimThemeVars = {
   primaryFixedDim: colorPalettesTokens.primary80,
   secondaryFixedDim: colorPalettesTokens.secondary80,
   tertiaryFixedDim: colorPalettesTokens.tertiary80,
-  dim: colorPalettesTokens.neutralVariant50,
+  dim: colorPalettesTokens.neutralVariant60,
 };
 
 const addOnsOnFixed: IColorRolesAddOnsOnFixedThemeVars = {
@@ -107,12 +108,12 @@ const addOns: IColorRolesAddOnsThemeVars = {
   ...addOnsDim,
   ...addOnsOnFixed,
   ...addOnsOnFixedVariant,
-  surfaceDim: colorPalettesTokens.neutral87,
-  surfaceBright: colorPalettesTokens.neutral98,
-  surfacePlaceholder: colorPalettesTokens.neutralVariant80,
+  surfaceDim: colorPalettesTokens.neutral6,
+  surfaceBright: colorPalettesTokens.neutral24,
+  surfacePlaceholder: colorPalettesTokens.neutralVariant30,
 };
 
-const colorRoles: IColorRolesThemeVars = {
+export const darkColorRolesVars: IColorRolesThemeVars = {
   ...primary,
   ...secondary,
   ...tertiary,
@@ -122,15 +123,10 @@ const colorRoles: IColorRolesThemeVars = {
   ...addOns,
   shadow: colorPalettesTokens.neutral0,
   scrim: colorPalettesTokens.neutral0,
-  surfaceSelection: colorPalettesTokens.neutralVariant70,
+  surfaceSelection: colorPalettesTokens.neutralVariant50,
 };
 
-export const colorRolesTokens = stylex.defineVars(colorRoles);
-
-/**
- * This is a workaround to allow reaplying vars at the component level so that
- * it can uses themed vars.
- *
- * @see https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
- */
-export const colorRolesTheme = stylex.createTheme(colorRolesTokens, colorRoles);
+export const darkColorRolesTheme = stylex.createTheme(
+  baseColorRolesVars,
+  darkColorRolesVars,
+);

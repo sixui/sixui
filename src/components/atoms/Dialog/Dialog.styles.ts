@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { motionTokens } from '@/themes/base/tokens/motion.stylex';
+import { motionTokens } from '@/themes/base/motion.stylex';
 
 // https://github.com/material-components/material-web/blob/main/dialog/internal/_dialog.scss
 

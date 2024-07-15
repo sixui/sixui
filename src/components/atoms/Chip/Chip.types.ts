@@ -6,9 +6,9 @@ import type {
   IMaybeAsync,
 } from '@/helpers/types';
 import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
-import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
-import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
-import type { IElevationStyleKey } from '@/components/utils/Elevation';
+import type { IStateLayerStylesKey } from '@/components/utils/StateLayer';
+import type { IFocusRingStylesKey } from '@/components/utils/FocusRing';
+import type { IElevationStylesKey } from '@/components/utils/Elevation';
 import type { IVisualState } from '@/components/utils/VisualState';
 import type { ICircularProgressIndicatorStylesKey } from '@/components/atoms/CircularProgressIndicator';
 import type { IChipStylesKey } from './Chip.styles';
@@ -19,12 +19,12 @@ export const CHIP_DEFAULT_TAG = 'div';
 
 export type IChipOwnProps = IContainerProps<IChipStylesKey> & {
   innerStyles?: {
-    stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
-    focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-    elevation?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
-    trailingActionFocusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+    stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStylesKey>>;
+    focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStylesKey>>;
+    elevation?: IZeroOrMore<ICompiledStyles<IElevationStylesKey>>;
+    trailingActionFocusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStylesKey>>;
     trailingActionStateLayer?: IZeroOrMore<
-      ICompiledStyles<IStateLayerStyleKey>
+      ICompiledStyles<IStateLayerStylesKey>
     >;
     circularProgressIndicator?: ICompiledStyles<ICircularProgressIndicatorStylesKey>;
   };

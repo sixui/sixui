@@ -7,9 +7,9 @@ import type {
   IZeroOrMore,
 } from '@/helpers/types';
 import type { IDisclosureButtonStylesKey } from './DisclosureButton.styles';
-import type { IListItemOwnProps } from '../ListItem';
-import type { ICheckboxStylesKey } from '../Checkbox';
-import type { ISwitchStyleKey } from '../Switch';
+import type { IListItemOwnProps } from '@/components/atoms/ListItem';
+import type { ICheckboxStylesKey } from '@/components/atoms/Checkbox';
+import type { ISwitchStylesKey } from '@/components/atoms/Switch';
 import type { ICircularProgressIndicatorStylesKey } from '../CircularProgressIndicator';
 
 export type IDisclosureButtonProps =
@@ -18,7 +18,7 @@ export type IDisclosureButtonProps =
       innerStyles?: {
         listItem?: IListItemOwnProps['innerStyles'];
         checkbox?: IZeroOrMore<ICompiledStyles<ICheckboxStylesKey>>;
-        switch?: IZeroOrMore<ICompiledStyles<ISwitchStyleKey>>;
+        switch?: IZeroOrMore<ICompiledStyles<ISwitchStylesKey>>;
         circularProgressIndicator?: IZeroOrMore<
           ICompiledStyles<ICircularProgressIndicatorStylesKey>
         >;

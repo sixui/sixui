@@ -6,9 +6,9 @@ import type {
   IMaybeAsync,
 } from '@/helpers/types';
 import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
-import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
-import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
-import type { IElevationStyleKey } from '@/components/utils/Elevation';
+import type { IStateLayerStylesKey } from '@/components/utils/StateLayer';
+import type { IFocusRingStylesKey } from '@/components/utils/FocusRing';
+import type { IElevationStylesKey } from '@/components/utils/Elevation';
 import type { IVisualState } from '@/components/utils/VisualState';
 import type { IBadgeProps } from '@/components/atoms/Badge';
 import type { ITabStylesKey } from './Tab.styles';
@@ -19,9 +19,9 @@ export type ITabVariant = 'primary' | 'secondary';
 
 export type ITabOwnProps = IContainerProps<ITabStylesKey> & {
   innerStyles?: {
-    stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
-    focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
-    elevation?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
+    stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStylesKey>>;
+    focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStylesKey>>;
+    elevation?: IZeroOrMore<ICompiledStyles<IElevationStylesKey>>;
   };
   visualState?: IVisualState;
   variant?: ITabVariant | false;

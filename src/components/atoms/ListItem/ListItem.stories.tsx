@@ -19,7 +19,7 @@ import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
 import { Avatar } from '@/components/atoms/Avatar';
 import { Checkbox } from '@/components/atoms/Checkbox';
 import { ListItem } from './ListItem';

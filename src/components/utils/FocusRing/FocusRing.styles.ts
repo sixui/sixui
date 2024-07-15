@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { motionTokens } from '@/themes/base/tokens/motion.stylex';
+import { motionTokens } from '@/themes/base/motion.stylex';
 import { focusRingTokens } from './FocusRing.stylex';
 
 // https://github.com/material-components/material-web/blob/main/focus/internal/_focus-ring.scss

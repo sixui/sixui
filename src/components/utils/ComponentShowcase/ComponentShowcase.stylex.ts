@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { typescaleTokens } from '@/themes/base/typo.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
 
 const vars = {
   // legend

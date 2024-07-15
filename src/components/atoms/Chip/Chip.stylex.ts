@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
 import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
-import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
-import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
-import { stateTokens } from '@/themes/base/tokens/state.stylex';
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { shapeTokens } from '@/themes/base/shape.stylex';
+import { typescaleTokens } from '@/themes/base/typo.stylex';
+import { stateTokens } from '@/themes/base/state.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
 
 const vars = {
   // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-assist-chip.scss#L93

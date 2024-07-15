@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
 import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
-import { stateTokens } from '@/themes/base/tokens/state.stylex';
-import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
-import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { stateTokens } from '@/themes/base/state.stylex';
+import { typescaleTokens } from '@/themes/base/typo.stylex';
+import { shapeTokens } from '@/themes/base/shape.stylex';
 
 const vars = {
   // container

@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
 import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
 import { cardTokens } from '../Card.stylex';
 

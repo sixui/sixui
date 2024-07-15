@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
-import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { shapeTokens } from '@/themes/base/shape.stylex';
 import { buttonTokens } from '../Button.stylex';
 
 export const snackbarButtonStyles = stylex.create({

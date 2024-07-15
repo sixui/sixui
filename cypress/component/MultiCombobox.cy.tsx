@@ -17,7 +17,7 @@
 // describe('MultiCombobox', () => {
 //   it('should select a single option', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <MultiCombobox>
 //           <MultiCombobox.Option value='apple'>Apple</MultiCombobox.Option>
 //           <MultiCombobox.Option value='carrot'>Carrot</MultiCombobox.Option>
@@ -34,7 +34,7 @@
 
 //   it('should select an option and pick its leading icon', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <MultiCombobox>
 //           <MultiCombobox.Option
 //             value='apple'
@@ -60,7 +60,7 @@
 
 //   it('should select multiple options', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <MultiCombobox>
 //           <MultiCombobox.Option value='apple'>Apple</MultiCombobox.Option>
 //           <MultiCombobox.Option value='carrot'>Carrot</MultiCombobox.Option>
@@ -79,7 +79,7 @@
 
 //   it('should delete an option by clicking on delete', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <MultiCombobox>
 //           <MultiCombobox.Option value='apple'>Apple</MultiCombobox.Option>
 //           <MultiCombobox.Option value='carrot'>Carrot</MultiCombobox.Option>
@@ -96,7 +96,7 @@
 
 //   it('should delete an option by deselecting it', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <MultiCombobox>
 //           <MultiCombobox.Option value='apple'>Apple</MultiCombobox.Option>
 //           <MultiCombobox.Option value='carrot'>Carrot</MultiCombobox.Option>
@@ -113,7 +113,7 @@
 
 //   it('should have a single default value', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <MultiCombobox defaultValue={['carrot']}>
 //           <MultiCombobox.Option value='apple'>Apple</MultiCombobox.Option>
 //           <MultiCombobox.Option value='carrot'>Carrot</MultiCombobox.Option>
@@ -127,7 +127,7 @@
 
 //   it('should have multiple default values', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <MultiCombobox defaultValue={['apple', 'carrot']}>
 //           <MultiCombobox.Option value='apple'>Apple</MultiCombobox.Option>
 //           <MultiCombobox.Option value='carrot'>Carrot</MultiCombobox.Option>
@@ -141,7 +141,7 @@
 
 //   it('should stay empty on blur', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <MultiCombobox>
 //           <MultiCombobox.Option value='apple'>Apple</MultiCombobox.Option>
 //           <MultiCombobox.Option value='carrot'>Carrot</MultiCombobox.Option>

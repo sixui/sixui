@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
-import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
-import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { typescaleTokens } from '@/themes/base/typo.stylex';
+import { shapeTokens } from '@/themes/base/shape.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-divider.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-divider.scss

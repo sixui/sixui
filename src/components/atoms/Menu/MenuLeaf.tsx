@@ -28,7 +28,7 @@ import {
 
 import type { IMenuProps } from './Menu.types';
 import { MenuList } from '@/components/atoms/MenuList';
-import { motionTokens } from '@/themes/base/tokens/motion.stylex';
+import { motionTokens } from '@/themes/base/motion.stylex';
 import { Portal } from '@/components/utils/Portal';
 import { MenuItemContext } from './MenuItemContext';
 import { MenuContext } from './MenuContext';

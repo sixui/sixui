@@ -4,7 +4,7 @@ import stylex from '@stylexjs/stylex';
 import type { IMenuListProps } from './MenuList.types';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ListItem } from '@/components/atoms/ListItem';
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
 import { MenuDivider } from '@/components/atoms/MenuDivider';
 import { MenuList } from './MenuList';
 

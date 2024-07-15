@@ -3,8 +3,8 @@ import stylex from '@stylexjs/stylex';
 import { checkboxTokens } from './Checkbox.stylex';
 import { stateLayerTokens } from '@/components/utils/StateLayer/StateLayer.stylex';
 import { focusRingTokens } from '@/components/utils/FocusRing/FocusRing.stylex';
-import { motionTokens } from '@/themes/base/tokens/motion.stylex';
-import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
+import { motionTokens } from '@/themes/base/motion.stylex';
+import { shapeTokens } from '@/themes/base/shape.stylex';
 import { checkboxStateTokens } from './Checkbox.state.stylex';
 
 // The stroke width of the icon marks.

@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { motionTokens } from '@/themes/base/tokens/motion.stylex';
+import { motionTokens } from '@/themes/base/motion.stylex';
 import { snackbarTokens } from './Snackbar.stylex';
 
 export type ISnackbarStylesKey = keyof typeof snackbarStyles;

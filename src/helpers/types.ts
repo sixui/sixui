@@ -1,11 +1,8 @@
-// FIXME: refactor
-
 import type {
   CompiledStyles,
   InlineStyles,
   StyleXArray,
   StyleXStyles,
-  StyleXVar,
   Theme,
   UserAuthoredStyles,
   VarGroup,
@@ -45,13 +42,11 @@ export type ICompiledStyles<TKey extends string> = {
   [key in TKey]?: CompiledStyles;
 };
 
-export type IStyleVars<TKey extends string> = {
-  [key in TKey]: string | StyleXVar<string>;
-};
+export type IStyleVars = Record<string, string>;
 
-export type IStyleVarGroup<TKey extends string> = VarGroup<IStyleVars<TKey>>;
+export type IStyleVarGroup = VarGroup<IStyleVars>;
 
-export type IStyleVarsTheme<TKey extends string> = Theme<IStyleVarGroup<TKey>>;
+export type IStyleVarsTheme = Theme<IStyleVarGroup>;
 
 export type IZeroOrMore<T> = undefined | T | Array<T | undefined>;
 

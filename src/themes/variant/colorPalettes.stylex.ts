@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IColorPalettesThemeVars } from '../colorPalettes.types';
-import { colorPalettesTokens } from '@/themes/base/tokens/colorPalettes.stylex';
+import type { IColorPalettesThemeVars } from '@/themes/base/colorPalettes.types';
+import { colorPalettesTokens } from '@/themes/base/colorPalettes.stylex';
 
 // Generate a new color palette with Material Theme Builder:
 // https://m3.material.io/theme-builder#/custom

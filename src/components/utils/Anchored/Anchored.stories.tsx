@@ -10,7 +10,7 @@ import {
 } from '@/components/utils/ComponentShowcase';
 import { Placeholder } from '@/components/atoms/Placeholder';
 import { Anchored } from './Anchored';
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
 
 const meta = {
   component: Anchored,

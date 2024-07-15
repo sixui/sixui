@@ -5,8 +5,8 @@ import type {
   IAny,
   IMaybeAsync,
 } from '@/helpers/types';
-import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
-import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
+import type { IStateLayerStylesKey } from '@/components/utils/StateLayer';
+import type { IFocusRingStylesKey } from '@/components/utils/FocusRing';
 import type { ICircularProgressIndicatorStylesKey } from '@/components/atoms/CircularProgressIndicator';
 import type { IVisualState } from '@/components/utils/VisualState';
 import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
@@ -17,8 +17,8 @@ export const SWITCH_DEFAULT_TAG = 'input';
 export type ISwitchOwnProps = IContainerProps<ISwitchStylesKey> &
   Pick<React.AriaAttributes, 'aria-label'> & {
     innerStyles?: {
-      stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
-      focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+      stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStylesKey>>;
+      focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStylesKey>>;
       circularProgressIndicator?: IZeroOrMore<
         ICompiledStyles<ICircularProgressIndicatorStylesKey>
       >;

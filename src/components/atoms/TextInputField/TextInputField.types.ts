@@ -1,9 +1,6 @@
 import type { IOmit } from '@/helpers/types';
 import type { ITextFieldBaseProps } from '@/components/atoms/TextFieldBase';
 
-// FIXME:
-export type ITextInputStylesKey = never;
-
 export type ITextInputFieldOwnProps = IOmit<
   ITextFieldBaseProps<HTMLInputElement>,
   // Props that are controlled by the component and should not be overridden.

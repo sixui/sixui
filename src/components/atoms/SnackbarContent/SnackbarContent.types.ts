@@ -6,12 +6,12 @@ import type {
   IAny,
 } from '@/helpers/types';
 import type { ISnackbarContentStylesKey } from './SnackbarContent.styles';
-import type { IElevationStyleKey } from '@/components/utils/Elevation';
+import type { IElevationStylesKey } from '@/components/utils/Elevation';
 
 export type ISnackbarContentProps =
   IContainerProps<ISnackbarContentStylesKey> & {
     innerStyles?: {
-      elevation?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
+      elevation?: IZeroOrMore<ICompiledStyles<IElevationStylesKey>>;
     };
     children?: React.ReactNode;
     actionLabel?: string;

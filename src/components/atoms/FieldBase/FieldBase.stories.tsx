@@ -10,7 +10,7 @@ import {
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
 import { FieldBase } from './FieldBase';
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
 
 // https://github.com/material-components/material-web/blob/main/field/demo/stories.ts
 

@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
-import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
-import { colorPalettesTokens } from '@/themes/base/tokens/colorPalettes.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { typescaleTokens } from '@/themes/base/typo.stylex';
+import { colorPalettesTokens } from '@/themes/base/colorPalettes.stylex';
 import { ColorBox } from './ColorBox';
 
 export type IColorSchemeProps = Record<string, never>;

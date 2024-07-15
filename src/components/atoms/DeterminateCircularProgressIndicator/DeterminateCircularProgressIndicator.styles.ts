@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { stateTokens } from '@/themes/base/tokens/state.stylex';
-import { motionTokens } from '@/themes/base/tokens/motion.stylex';
+import { stateTokens } from '@/themes/base/state.stylex';
+import { motionTokens } from '@/themes/base/motion.stylex';
 import { circularProgressIndicatorTokens } from '@/components/atoms/CircularProgressIndicator/CircularProgressIndicator.stylex';
 
 // https://github.com/material-components/material-web/blob/main/progress/internal/_circulardeterminate-progress.scss

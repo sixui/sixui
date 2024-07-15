@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
+import { typescaleTokens } from '@/themes/base/typo.stylex';
 
 export type ITypographyStylesKey = keyof typeof typographyStyles;
 export const typographyStyles = stylex.create({

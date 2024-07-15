@@ -7,8 +7,8 @@ import {
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
 import type { IStateLayerProps } from './StateLayer.types';
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
-import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { shapeTokens } from '@/themes/base/shape.stylex';
 import { StateLayer } from './StateLayer';
 
 // https://material-web.dev/components/ripple/

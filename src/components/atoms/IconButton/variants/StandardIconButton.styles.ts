@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
 import { iconButtonTokens } from '../IconButton.stylex';
 
 export const standardIconButtonStyles = stylex.create({

@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
 
 const vars = {
   containerColor$darken: `color-mix(in srgb, ${colorRolesTokens.scrim} 50%, transparent)`,

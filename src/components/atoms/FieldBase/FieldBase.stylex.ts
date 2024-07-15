@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
-import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
-import { stateTokens } from '@/themes/base/tokens/state.stylex';
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { typescaleTokens } from '@/themes/base/typo.stylex';
+import { stateTokens } from '@/themes/base/state.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-filled-text-field.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-filled-text-field.scss

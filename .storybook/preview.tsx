@@ -5,9 +5,8 @@ import { ThemeProvider } from '@/components/utils/Theme';
 import { ColorSchemeProvider } from '@/components/utils/ColorScheme';
 import { modes } from './modes';
 
-import { theme } from '@/themes/base';
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
-import { darkColorRolesTokens } from '@/themes/base/tokens/darkColorRoles';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { darkColorRolesVars } from '@/themes/base/darkColorRoles.styles';
 
 // For theme variant
 // import { colorPalettesTheme as variantColorPalettesTheme } from '@/themes/variant/colorPalettes.stylex';
@@ -43,7 +42,7 @@ const preview: Preview = {
       default: 'dark',
       values: [
         { name: 'light', value: colorRolesTokens.surface },
-        { name: 'dark', value: darkColorRolesTokens.surface },
+        { name: 'dark', value: darkColorRolesVars.surface },
       ],
     },
     chromatic: { modes },
@@ -86,10 +85,9 @@ export const decorators: Array<Decorator> = [
 
     return (
       <ThemeProvider
-        theme={theme}
-        // colorPalettesTheme={variantColorPalettesTheme}
-        // shapeTheme={variantShapeTheme}
-        // componentsStyles={componentsStyles}
+      // colorPalettesTheme={variantColorPalettesTheme}
+      // shapeTheme={variantShapeTheme}
+      // componentsStyles={componentsStyles}
       >
         {showLightMode ? (
           <ColorSchemeProvider scheme='light'>

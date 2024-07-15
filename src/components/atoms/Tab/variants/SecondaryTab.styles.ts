@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
 import { tabTokens } from '../Tab.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tabs/internal/_primary-tab.scss

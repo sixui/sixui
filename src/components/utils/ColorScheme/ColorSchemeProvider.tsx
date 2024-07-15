@@ -1,10 +1,10 @@
 import { useRef } from 'react';
 import stylex from '@stylexjs/stylex';
-import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
+import { typescaleTokens } from '@/themes/base/typo.stylex';
 import { FloatingDelayGroup } from '@floating-ui/react';
 
-import { useThemeContext } from '@/components/utils/Theme';
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { darkColorRolesTheme } from '@/themes/base/darkColorRoles.styles';
 import { ColorSchemeContext, type IColorScheme } from './ColorSchemeContext';
 
 export type IColorSchemeProviderProps = {
@@ -35,7 +35,6 @@ export const ColorSchemeProvider: React.FC<IColorSchemeProviderProps> = (
   const { scheme, children } = props;
 
   const root = useRef<HTMLDivElement | null>(null);
-  const themeContext = useThemeContext();
 
   const isDark = scheme === 'dark';
   const isLight = !isDark;
@@ -52,10 +51,7 @@ export const ColorSchemeProvider: React.FC<IColorSchemeProviderProps> = (
           {...stylex.props(
             styles.host,
             isLight && styles.container$light,
-            isDark && [
-              styles.container$dark,
-              themeContext.theme.colorSchemes.dark,
-            ],
+            isDark && [styles.container$dark, darkColorRolesTheme],
           )}
           ref={root}
           data-scheme={scheme}

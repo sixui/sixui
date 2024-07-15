@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { motionTokens } from '@/themes/base/tokens/motion.stylex';
+import { motionTokens } from '@/themes/base/motion.stylex';
 
 export type ITooltipBaseStylesKey = keyof typeof tooltipBaseStyles;
 export const tooltipBaseStyles = stylex.create({

@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
-import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
-import { stateTokens } from '@/themes/base/tokens/state.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { typescaleTokens } from '@/themes/base/typo.stylex';
+import { stateTokens } from '@/themes/base/state.stylex';
 import { circularProgressIndicatorTokens } from './CircularProgressIndicator.stylex';
 
 // https://github.com/material-components/material-web/blob/main/progress/internal/_circulardeterminate-progress.scss

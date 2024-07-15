@@ -1,17 +1,17 @@
 import stylex, { type Theme, type VarGroup } from '@stylexjs/stylex';
 
 import type { IContainerProps, IMakeOptional } from '@/helpers/types';
-import type { IColorPalettesThemeVars } from '@/themes';
-import type { IShapeThemeVars } from '@/themes/shape.types';
-import type { IMotionThemeVars } from '@/themes/motion.types';
+import type { IColorPalettesThemeVars } from '@/themes/base/colorPalettes.types';
+import type { IShapeThemeVars } from '@/themes/base/shape.types';
+import type { IMotionThemeVars } from '@/themes/base/motion.types';
 import type {
   ITypefaceThemeVars,
   ITypescaleThemeVars,
-} from '@/themes/typo.types';
+} from '@/themes/base/typo.types';
 import {
   colorRolesTokens,
   colorRolesTheme,
-} from '@/themes/base/tokens/colorRoles.stylex';
+} from '@/themes/base/colorRoles.stylex';
 import { ThemeContext, type IThemeContextValue } from './ThemeContext';
 
 export type IThemeProviderProps = IContainerProps &
@@ -37,7 +37,6 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
   const {
     sx,
     children,
-    theme,
     settings,
     colorPalettesTheme,
     shapeTheme,
@@ -51,7 +50,6 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
   return (
     <ThemeContext.Provider
       value={{
-        theme,
         settings: {
           linkAs: 'a',
           ...settings,

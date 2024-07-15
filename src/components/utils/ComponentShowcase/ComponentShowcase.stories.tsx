@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { ComponentShowcase } from './ComponentShowcase';
 import { type IDemoComponentProps, DemoComponent } from './DemoComponent';
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
 
 const meta = {
   component: DemoComponent,

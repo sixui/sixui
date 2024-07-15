@@ -10,11 +10,9 @@ import type {
   IFloatingFilterableListBaseProps,
   IFloatingFilterableListBaseTriggerRenderProps,
 } from '@/components/atoms/FloatingFilterableListBase';
-import type {
-  ITextInputFieldOwnProps,
-  ITextInputStylesKey,
-} from '@/components/atoms/TextInputField';
+import type { ITextInputFieldOwnProps } from '@/components/atoms/TextInputField';
 import type { IInputChipProps } from '@/components/atoms/Chip';
+import type { ITextFieldBaseStylesKey } from '@/components/atoms/TextFieldBase';
 import type { IMultiSelectBaseStylesKey } from './MultiSelectBase.styles';
 
 export type IMultiSelectBaseProps<TItem> =
@@ -30,7 +28,7 @@ export type IMultiSelectBaseProps<TItem> =
     > &
     IOmit<ITextInputFieldOwnProps, 'styles'> & {
       innerStyles?: {
-        textInputField?: IZeroOrMore<ICompiledStyles<ITextInputStylesKey>>;
+        textInputField?: IZeroOrMore<ICompiledStyles<ITextFieldBaseStylesKey>>;
       };
       selectedItems?: Array<TItem>;
       defaultItems?: Array<TItem>;

@@ -12,33 +12,24 @@ type IClassName<TStyleKey extends string> =
   | undefined
   | false;
 
-type IStyles<TStyleVarKey extends string> =
-  | IStyleVarsTheme<TStyleVarKey>
-  | CompiledStyles
-  | null
-  | false
-  | undefined;
+type IStyles = IStyleVarsTheme | CompiledStyles | null | false | undefined;
 
-// FIXME: refactor types
-export type IStyleProps<
-  TStyleKey extends string,
-  TStyleVarKey extends string,
-> = (
+export type IStyleProps<TStyleKey extends string> = (
   ...styleKeys: Array<
     | IClassName<TStyleKey>
     | Array<IClassName<TStyleKey>>
     | IStyleXStyles
-    | IStyles<TStyleVarKey>
+    | IStyles
   >
 ) => ReturnType<typeof stylex.props> & {
   [key in `data-${keyof IVisualState}`]?: string;
 };
 
 export const stylePropsFactory =
-  <TStyleKey extends string, TStyleVarKey extends string = never>(
+  <TStyleKey extends string>(
     combineStyles: IStylesCombinator<TStyleKey>,
     visualState?: IVisualState,
-  ): IStyleProps<TStyleKey, TStyleVarKey> =>
+  ): IStyleProps<TStyleKey> =>
   (...styleKeys) => ({
     ...stylex.props(
       ...(styleKeys

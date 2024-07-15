@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
-import { stateTokens } from '@/themes/base/tokens/state.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { stateTokens } from '@/themes/base/state.stylex';
 import { listItemTokens } from '../ListItem.stylex';
 
 export const standardListItemStyles = stylex.create({
@@ -38,7 +38,8 @@ export const standardListItemStyles = stylex.create({
       colorRolesTokens.onPrimaryContainer,
 
     [listItemTokens.stateLayerColor$hover]: colorRolesTokens.onSurface,
-    [listItemTokens.stateLayerOpacity$hover]: stateTokens.stateLayerOpacity$hover,
+    [listItemTokens.stateLayerOpacity$hover]:
+      stateTokens.stateLayerOpacity$hover,
     [listItemTokens.stateLayerColor$pressed]: colorRolesTokens.primary,
     [listItemTokens.stateLayerOpacity$pressed]:
       stateTokens.stateLayerOpacity$pressed,

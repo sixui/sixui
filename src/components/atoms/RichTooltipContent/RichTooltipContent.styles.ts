@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
 import { richTooltipContentTokens } from './RichTooltipContent.stylex';
 
 export type IRichTooltipContentStylesKey =

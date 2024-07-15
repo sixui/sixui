@@ -10,7 +10,7 @@ import {
   type IExpandableContextValue,
 } from './ExpandableContext';
 import { useControlledValue } from '@/hooks/useControlledValue';
-import { motionTokens } from '@/themes/base/tokens/motion.stylex';
+import { motionTokens } from '@/themes/base/motion.stylex';
 import { useMergeRefs } from '@floating-ui/react';
 import { useElementSize } from '@/hooks/useElementSize';
 import { useComponentTheme } from '@/hooks/useComponentTheme';

@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
-import { stateTokens } from '@/themes/base/tokens/state.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { stateTokens } from '@/themes/base/state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-ripple.scss
 

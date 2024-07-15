@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 
 import type { IItemProps } from './Item.types';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
 import { Item } from './Item';
 
 // https://m3.material.io/components/items/overview

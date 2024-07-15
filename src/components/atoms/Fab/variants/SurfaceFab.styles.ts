@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
 import { fabTokens } from '../Fab.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-fab-surface.scss

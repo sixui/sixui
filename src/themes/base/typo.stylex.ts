@@ -1,9 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import type {
-  ITypefaceThemeVars,
-  ITypescaleThemeVars,
-} from '@/themes/typo.types';
+import type { ITypefaceThemeVars, ITypescaleThemeVars } from './typo.types';
 
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-ref-typeface.scss
 export const typefaceTokens = stylex.defineVars<ITypefaceThemeVars>({

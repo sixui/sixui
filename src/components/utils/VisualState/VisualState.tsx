@@ -1,9 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
 import type { IVisualStateProps } from './VisualState.types';
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
 import { ButtonBase } from '@/components/atoms/ButtonBase';
-import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
+import { shapeTokens } from '@/themes/base/shape.stylex';
 import { focusRingTokens } from '@/components/utils/FocusRing/FocusRing.stylex';
 import { useVisualState } from './useVisualState';
 

@@ -3,7 +3,7 @@ import type {
   IZeroOrMore,
   ICompiledStyles,
 } from '@/helpers/types';
-import type { IElevationStyleKey } from '@/components/utils/Elevation';
+import type { IElevationStylesKey } from '@/components/utils/Elevation';
 import type { IRichTooltipContentStylesKey } from './RichTooltipContent.styles';
 
 export type IRichTooltipContentActionsRenderProps = {
@@ -13,7 +13,7 @@ export type IRichTooltipContentActionsRenderProps = {
 export type IRichTooltipContentProps =
   IContainerProps<IRichTooltipContentStylesKey> & {
     innerStyles?: {
-      elevation?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
+      elevation?: IZeroOrMore<ICompiledStyles<IElevationStylesKey>>;
     };
     subhead?: React.ReactNode;
     supportingText: React.ReactNode;

@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IStateThemeVars } from '@/themes/state.types';
+import type { IStateThemeVars } from './state.types';
 
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-sys-state.scss
 

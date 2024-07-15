@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
 import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
-import { stateTokens } from '@/themes/base/tokens/state.stylex';
+import { stateTokens } from '@/themes/base/state.stylex';
 import { buttonTokens } from '../Button.stylex';
 
 export const elevatedButtonStyles = stylex.create({

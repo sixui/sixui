@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 
 import type { ISkeletonProps } from './Skeleton.types';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
 import { Avatar } from '@/components/atoms/Avatar';
 import { Typography } from '@/components/atoms/Typography';
 import { Skeleton } from './Skeleton';

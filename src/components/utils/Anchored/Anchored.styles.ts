@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { motionTokens } from '@/themes/base/tokens/motion.stylex';
+import { motionTokens } from '@/themes/base/motion.stylex';
 
 export type IAnchoredStylesKey = keyof typeof anchoredStyles;
 export const anchoredStyles = stylex.create({

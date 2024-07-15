@@ -17,7 +17,7 @@
 // describe('MultiSelect', () => {
 //   it('should select a single option', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <MultiSelect>
 //           <MultiSelect.Option value='apple'>Apple</MultiSelect.Option>
 //           <MultiSelect.Option value='carrot'>Carrot</MultiSelect.Option>
@@ -34,7 +34,7 @@
 
 //   it('should select an option and pick its leading icon', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <MultiSelect>
 //           <MultiSelect.Option
 //             value='apple'
@@ -59,7 +59,7 @@
 
 //   it('should select multiple options', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <MultiSelect>
 //           <MultiSelect.Option value='apple'>Apple</MultiSelect.Option>
 //           <MultiSelect.Option value='carrot'>Carrot</MultiSelect.Option>
@@ -78,7 +78,7 @@
 
 //   it('should delete an option by clicking on delete', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <MultiSelect>
 //           <MultiSelect.Option value='apple'>Apple</MultiSelect.Option>
 //           <MultiSelect.Option value='carrot'>Carrot</MultiSelect.Option>
@@ -95,7 +95,7 @@
 
 //   it('should delete an option by deselecting it', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <MultiSelect>
 //           <MultiSelect.Option value='apple'>Apple</MultiSelect.Option>
 //           <MultiSelect.Option value='carrot'>Carrot</MultiSelect.Option>
@@ -112,7 +112,7 @@
 
 //   it('should have a single default value', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <MultiSelect defaultValue={['carrot']}>
 //           <MultiSelect.Option value='apple'>Apple</MultiSelect.Option>
 //           <MultiSelect.Option value='carrot'>Carrot</MultiSelect.Option>
@@ -126,7 +126,7 @@
 
 //   it('should have multiple default values', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <MultiSelect defaultValue={['apple', 'carrot']}>
 //           <MultiSelect.Option value='apple'>Apple</MultiSelect.Option>
 //           <MultiSelect.Option value='carrot'>Carrot</MultiSelect.Option>

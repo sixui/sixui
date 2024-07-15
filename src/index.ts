@@ -89,7 +89,4 @@ export * from './hooks/useId';
 export * from './hooks/useLoaded';
 export * from './hooks/usePrevious';
 
-// themes
-export * from './themes';
-
 export * from './helpers/types';

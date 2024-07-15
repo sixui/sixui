@@ -6,9 +6,9 @@ import type {
   IAny,
 } from '@/helpers/types';
 import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
-import type { IElevationStyleKey } from '@/components/utils/Elevation';
-import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
-import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
+import type { IElevationStylesKey } from '@/components/utils/Elevation';
+import type { IStateLayerStylesKey } from '@/components/utils/StateLayer';
+import type { IFocusRingStylesKey } from '@/components/utils/FocusRing';
 import type { IVisualState } from '@/components/utils/VisualState';
 import type { ICardStylesKey } from './Card.styles';
 
@@ -18,9 +18,9 @@ export const CARD_DEFAULT_TAG = 'div';
 
 export type ICardOwnProps = IContainerProps<ICardStylesKey> & {
   innerStyles?: {
-    elevation?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
-    stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
-    focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+    elevation?: IZeroOrMore<ICompiledStyles<IElevationStylesKey>>;
+    stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStylesKey>>;
+    focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStylesKey>>;
   };
   visualState?: IVisualState;
   variant?: ICardVariant | false;

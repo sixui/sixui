@@ -1,9 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
-import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
-import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
-import { stateTokens } from '@/themes/base/tokens/state.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { typescaleTokens } from '@/themes/base/typo.stylex';
+import { shapeTokens } from '@/themes/base/shape.stylex';
+import { stateTokens } from '@/themes/base/state.stylex';
 
 const vars = {
   // container

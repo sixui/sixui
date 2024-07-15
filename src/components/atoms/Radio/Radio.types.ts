@@ -6,8 +6,8 @@ import type {
   IMaybeAsync,
 } from '@/helpers/types';
 import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
-import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
-import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
+import type { IStateLayerStylesKey } from '@/components/utils/StateLayer';
+import type { IFocusRingStylesKey } from '@/components/utils/FocusRing';
 import type { ICircularProgressIndicatorStylesKey } from '@/components/atoms/CircularProgressIndicator';
 import type { IVisualState } from '@/components/utils/VisualState';
 import type { IRadioStylesKey } from './Radio.styles';
@@ -17,8 +17,8 @@ export const RADIO_DEFAULT_TAG = 'input';
 export type IRadioOwnProps = IContainerProps<IRadioStylesKey> &
   Pick<React.AriaAttributes, 'aria-label'> & {
     innerStyles?: {
-      stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
-      focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+      stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStylesKey>>;
+      focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStylesKey>>;
       circularProgressIndicator?: IZeroOrMore<
         ICompiledStyles<ICircularProgressIndicatorStylesKey>
       >;

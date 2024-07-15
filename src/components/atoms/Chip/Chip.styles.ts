@@ -4,7 +4,7 @@ import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
 import { focusRingTokens } from '@/components/utils/FocusRing/FocusRing.stylex';
 import { stateLayerTokens } from '@/components/utils/StateLayer/StateLayer.stylex';
 import { circularProgressIndicatorTokens } from '@/components/atoms/CircularProgressIndicator/CircularProgressIndicator.stylex';
-import { motionTokens } from '@/themes/base/tokens/motion.stylex';
+import { motionTokens } from '@/themes/base/motion.stylex';
 import { chipTokens } from './Chip.stylex';
 import { chipStateTokens } from './Chip.state.stylex';
 

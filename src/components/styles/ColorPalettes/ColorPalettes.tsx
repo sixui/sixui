@@ -1,10 +1,10 @@
 import type { StyleXVar } from '@stylexjs/stylex/lib/StyleXTypes';
 import stylex from '@stylexjs/stylex';
 
-import type { IColorPalettesThemeVars } from '@/themes/colorPalettes.types';
-import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
-import { colorPalettesTokens } from '@/themes/base/tokens/colorPalettes.stylex';
-import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import type { IColorPalettesThemeVars } from '@/themes/base/colorPalettes.types';
+import { typescaleTokens } from '@/themes/base/typo.stylex';
+import { colorPalettesTokens } from '@/themes/base/colorPalettes.stylex';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
 
 export type IColorPalettesProps = Record<string, never>;
 

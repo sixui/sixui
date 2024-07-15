@@ -6,8 +6,8 @@ import type {
 } from '@/helpers/types';
 import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
 import type { IItemProps, IItemStylesKey } from '@/components/atoms/Item';
-import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
-import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
+import type { IStateLayerStylesKey } from '@/components/utils/StateLayer';
+import type { IFocusRingStylesKey } from '@/components/utils/FocusRing';
 import type { IVisualState } from '@/components/utils/VisualState';
 import type { IListItemStylesKey } from './ListItem.styles';
 
@@ -19,8 +19,8 @@ export type IListItemOwnProps = IContainerProps<IListItemStylesKey> &
   IOmit<IItemProps, 'container'> & {
     innerStyles?: {
       item?: IZeroOrMore<ICompiledStyles<IItemStylesKey>>;
-      stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
-      focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;
+      stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStylesKey>>;
+      focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStylesKey>>;
     };
     variant?: IListItemVariant | false;
     visualState?: IVisualState;

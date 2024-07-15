@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IShapeThemeVars } from '@/themes/shape.types';
-import { shapeTokens as baseshapeTokens } from '@/themes/base/tokens/shape.stylex';
+import type { IShapeThemeVars } from '@/themes/base/shape.types';
+import { shapeTokens as baseshapeTokens } from '@/themes/base/shape.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-sys-shape.scss
 
