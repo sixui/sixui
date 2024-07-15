@@ -1,9 +1,8 @@
 import stylex from '@stylexjs/stylex';
-import { CompiledStyles } from '@stylexjs/stylex/lib/StyleXTypes';
 
 import type { IStylesCombinator } from '@/helpers/stylesCombinatorFactory';
 import type { IVisualState } from '@/components/utils/VisualState';
-import type { IStyleVarsTheme, IStyleXStyles } from './types';
+import type { IStyleXStyles } from './types';
 import { dataProps } from '@/helpers/dataProps';
 
 type IClassName<TStyleKey extends string> =
@@ -12,14 +11,9 @@ type IClassName<TStyleKey extends string> =
   | undefined
   | false;
 
-type IStyles = IStyleVarsTheme | CompiledStyles | null | false | undefined;
-
 export type IStyleProps<TStyleKey extends string> = (
   ...styleKeys: Array<
-    | IClassName<TStyleKey>
-    | Array<IClassName<TStyleKey>>
-    | IStyleXStyles
-    | IStyles
+    IClassName<TStyleKey> | Array<IClassName<TStyleKey>> | IStyleXStyles
   >
 ) => ReturnType<typeof stylex.props> & {
   [key in `data-${keyof IVisualState}`]?: string;

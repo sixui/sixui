@@ -3,9 +3,7 @@ import type {
   InlineStyles,
   StyleXArray,
   StyleXStyles,
-  Theme,
   UserAuthoredStyles,
-  VarGroup,
 } from '@stylexjs/stylex/lib/StyleXTypes';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -42,12 +40,6 @@ export type ICompiledStyles<TKey extends string> = {
   [key in TKey]?: CompiledStyles;
 };
 
-export type IStyleVars = Record<string, string>;
-
-export type IStyleVarGroup = VarGroup<IStyleVars>;
-
-export type IStyleVarsTheme = Theme<IStyleVarGroup>;
-
 export type IZeroOrMore<T> = undefined | T | Array<T | undefined>;
 
 export type IArrayElement<TArray> =
@@ -76,14 +68,6 @@ export type IRange = {
 
 // Omit with keys type checks
 export type IOmit<TType, TKeys extends keyof TType> = Omit<TType, TKeys>;
-
-export type IFormFieldProps<TValue, TElement = HTMLElement> = {
-  onChange?: (value: TValue, event?: React.SyntheticEvent<TElement>) => void;
-  onBlur?: React.FocusEventHandler<TElement>;
-  value?: TValue;
-  disabled?: boolean;
-  name?: string;
-};
 
 export type ICssSizeValue = number | string;
 
