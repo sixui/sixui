@@ -1,2 +1,2 @@
-export * from './MultiSelectProps';
+export * from './MultiSelect.types';
 export * from './MultiSelect';

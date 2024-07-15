@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 
-import type { IMultiSelectProps } from './MultiSelectProps';
+import type { IMultiSelectProps } from './MultiSelect.types';
 import {
   areFilterableListItemsEqual,
   filterFilterableList,
