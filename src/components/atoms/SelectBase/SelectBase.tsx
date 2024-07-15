@@ -1,4 +1,4 @@
-import type { ISelectBaseProps } from './SelectBaseProps';
+import type { ISelectBaseProps } from './SelectBase.types';
 import { ListItem } from '@/components/atoms/ListItem';
 import { TextInputField } from '@/components/atoms/TextInputField';
 import { MenuList } from '@/components/atoms/MenuList';

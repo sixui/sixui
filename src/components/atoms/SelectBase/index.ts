@@ -1,2 +1,2 @@
-export * from './SelectBaseProps';
+export * from './SelectBase.types';
 export * from './SelectBase';

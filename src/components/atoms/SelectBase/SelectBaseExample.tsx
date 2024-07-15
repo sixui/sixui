@@ -1,5 +1,5 @@
 import type { IOmit } from '@/helpers/types';
-import type { ISelectBaseProps } from './SelectBaseProps';
+import type { ISelectBaseProps } from './SelectBase.types';
 import {
   areMoviesEqual,
   createMovie,
