@@ -1,2 +1,2 @@
-export * from './SuggestBaseProps';
+export * from './SuggestBase.types';
 export * from './SuggestBase';

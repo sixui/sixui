@@ -1,4 +1,4 @@
-import type { ISuggestBaseProps } from './SuggestBaseProps';
+import type { ISuggestBaseProps } from './SuggestBase.types';
 import { ListItem } from '@/components/atoms/ListItem';
 import { TextInputField } from '@/components/atoms/TextInputField';
 import { MenuList } from '@/components/atoms/MenuList';
