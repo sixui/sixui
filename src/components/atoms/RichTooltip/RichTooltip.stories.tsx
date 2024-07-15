@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faBolt, faCloud } from '@fortawesome/free-solid-svg-icons';
 
-import type { IRichTooltipProps } from './RichTooltipProps';
+import type { IRichTooltipProps } from './RichTooltip.types';
 import {
   ComponentShowcase,
   type IComponentPresentation,

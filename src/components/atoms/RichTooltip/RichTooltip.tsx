@@ -3,7 +3,7 @@ import { forwardRef } from 'react';
 import type {
   IRichTooltipForwardedProps,
   IRichTooltipProps,
-} from './RichTooltipProps';
+} from './RichTooltip.types';
 import {
   TooltipBase,
   type ITooltipBaseProps,

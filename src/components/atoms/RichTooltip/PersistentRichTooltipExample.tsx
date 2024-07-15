@@ -2,7 +2,7 @@ import { useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import type { IOmit } from '@/helpers/types';
-import type { IRichTooltipProps } from './RichTooltipProps';
+import type { IRichTooltipProps } from './RichTooltip.types';
 import { commonStyles } from '@/helpers/commonStyles';
 import { Button } from '@/components/atoms/Button';
 import { RichTooltip } from './RichTooltip';
