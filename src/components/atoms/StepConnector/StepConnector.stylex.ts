@@ -1,11 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IStyleVars } from '@/helpers/types';
-import type { IStepConnectorStyleVarKey } from '@/components/atoms/StepConnector';
-import { colorRolesVars } from '../vars/colorRoles.stylex';
-import { typescaleVars } from '../vars/typo.stylex';
+import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { typescaleVars } from '@/themes/base/vars/typo.stylex';
 
-const vars: IStyleVars<IStepConnectorStyleVarKey> = {
+const vars = {
   thickness: '1px',
   color: colorRolesVars.outlineVariant,
   // &:completed
@@ -24,7 +22,7 @@ const vars: IStyleVars<IStepConnectorStyleVarKey> = {
   textColor$completed: colorRolesVars.primary,
 };
 
-export const componentVars = stylex.defineVars(vars);
+export const stepConnectorTokens = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that
@@ -32,4 +30,4 @@ export const componentVars = stylex.defineVars(vars);
  *
  * @see https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
  */
-export const componentTheme = stylex.createTheme(componentVars, vars);
+export const stepConnectorTheme = stylex.createTheme(stepConnectorTokens, vars);

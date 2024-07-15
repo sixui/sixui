@@ -1,14 +1,12 @@
 import { forwardRef, useContext, useMemo } from 'react';
 
-import type {
-  IStepConnectorStyleKey,
-  IStepConnectorStyleVarKey,
-} from './StepConnector.styledefs';
-import type { IStepConnectorProps } from './StepConnectorProps';
+import type { IStepConnectorProps } from './StepConnector.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { StepContext } from '@/components/atoms/Step/StepContext';
+import { stepStyles } from '../Step/Step.styles';
+import { stepConnectorTheme } from './StepConnector.stylex';
 
 export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
   function StepConnector(props, forwardedRef) {
@@ -22,16 +20,13 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
       ...other
     } = props;
 
-    const { theme } = useComponentThemeOld('StepConnector');
+    const { overridenStyles } = useComponentTheme('StepConnector');
     const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(theme.styles, styles),
-      [theme.styles, styles],
+      () => stylesCombinatorFactory(stepStyles, styles),
+      [styles],
     );
     const sxf = useMemo(
-      () =>
-        stylePropsFactory<IStepConnectorStyleKey, IStepConnectorStyleVarKey>(
-          stylesCombinator,
-        ),
+      () => stylePropsFactory(stylesCombinator),
       [stylesCombinator],
     );
 
@@ -114,9 +109,10 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
     return (
       <div
         {...sxf(
+          stepConnectorTheme,
+          overridenStyles,
           'host',
           `host$${orientation}$${stepLabelPosition}Label`,
-          theme.vars,
           sx,
         )}
         ref={forwardedRef}

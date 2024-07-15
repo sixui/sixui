@@ -1,7 +1,7 @@
 import type { IContainerProps, IOrientation } from '@/helpers/types';
-import type { IStepConnectorStyleKey } from './StepConnector.styledefs';
+import type { IStepConnectorStylesKey } from './StepConnector.styles';
 
-export type IStepConnectorProps = IContainerProps<IStepConnectorStyleKey> & {
+export type IStepConnectorProps = IContainerProps<IStepConnectorStylesKey> & {
   children?: React.ReactNode;
   orientation?: IOrientation;
   stepLabelPosition?: 'right' | 'bottom';

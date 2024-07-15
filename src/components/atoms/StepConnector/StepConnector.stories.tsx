@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IStepConnectorProps } from './StepConnectorProps';
+import type { IStepConnectorProps } from './StepConnector.types';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { StepConnector } from './StepConnector';
 

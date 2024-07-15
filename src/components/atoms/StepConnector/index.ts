@@ -1,3 +1,3 @@
-export * from './StepConnector.styledefs';
-export * from './StepConnectorProps';
+export * from './StepConnector.types';
+export * from './StepConnector.styles';
 export * from './StepConnector';
