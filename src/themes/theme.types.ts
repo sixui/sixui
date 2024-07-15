@@ -41,10 +41,6 @@ import type {
   IRadioStyleKey,
   IRadioStyleVarKey,
 } from '@/components/atoms/Radio';
-import type {
-  IPaperStyleKey,
-  IPaperStyleVarKey,
-} from '@/components/atoms/Paper';
 import type { ITabStyleKey, ITabStyleVarKey } from '@/components/atoms/Tab';
 import type { ITabListStyleKey } from '@/components/atoms/TabList';
 import type { ITypographyStyleKey } from '@/components/atoms/Typography';
@@ -102,12 +98,6 @@ export type ITextFieldBaseTheme = {
   fieldStyles?: ICompiledStyles<IFieldBaseStylesKey>;
 };
 
-export type IPaperTheme = {
-  vars?: IStyleVarsTheme<IPaperStyleVarKey>;
-  styles?: ICompiledStyles<IPaperStyleKey>;
-  elevationStyles?: ICompiledStyles<IElevationStyleKey>;
-};
-
 export type ITabTheme = {
   vars?: IStyleVarsTheme<ITabStyleVarKey>;
   styles?: ICompiledStyles<ITabStyleKey>;
@@ -163,11 +153,6 @@ export type ITheme = {
       stateLayerStyles: ICompiledStyles<IStateLayerStyleKey>;
       focusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
       circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStylesKey>;
-    };
-    Paper: IPaperTheme;
-    FilledPaper: IPaperTheme;
-    OutlinedPaper: IPaperTheme & {
-      styles?: ICompiledStyles<IPaperStyleKey>;
     };
     Tab: ITabTheme;
     PrimaryTab: ITabTheme;

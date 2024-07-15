@@ -3,10 +3,12 @@ import type {
   IZeroOrMore,
   ICompiledStyles,
 } from '@/helpers/types';
-import type { IPaperStyleKey, IPaperVariant } from './Paper.styledefs';
+import type { IPaperStylesKey } from './Paper.styles';
 import type { IElevationStyleKey } from '@/components/utils/Elevation';
 
-export type IPaperProps = IContainerProps<IPaperStyleKey> & {
+export type IPaperVariant = 'filled' | 'outlined';
+
+export type IPaperProps = IContainerProps<IPaperStylesKey> & {
   variant?: IPaperVariant | false;
   innerStyles?: {
     elevation?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;

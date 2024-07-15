@@ -1,31 +1,16 @@
 import { forwardRef, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
-import type { IThemeComponents } from '@/components/utils/Theme';
-import type {
-  IPaperStyleKey,
-  IPaperStyleVarKey,
-  IPaperVariant,
-} from './Paper.styledefs';
-import type { IPaperProps } from './PaperProps';
+import type { IPaperProps } from './Paper.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { Elevation } from '@/components/utils/Elevation';
+import { paperVariantStyles } from './variants';
+import { paperElevationStyles, paperStyles } from './Paper.styles';
+import { paperTheme } from './Paper.stylex';
 
 // https://github.com/material-components/material-web/blob/main/labs/paper/internal/paper.ts
-
-type IPaperVariantMap = {
-  [key in IPaperVariant]: keyof Pick<
-    IThemeComponents,
-    'FilledPaper' | 'OutlinedPaper'
-  >;
-};
-
-const variantMap: IPaperVariantMap = {
-  filled: 'FilledPaper',
-  outlined: 'OutlinedPaper',
-};
 
 export const Paper = forwardRef<HTMLDivElement, IPaperProps>(
   function Paper(props, forwardedRef) {
@@ -40,17 +25,15 @@ export const Paper = forwardRef<HTMLDivElement, IPaperProps>(
       ...other
     } = props;
 
-    const { theme, variantTheme } = useComponentThemeOld(
-      'Paper',
-      variant ? variantMap[variant] : undefined,
-    );
+    const { overridenStyles } = useComponentTheme('Paper');
+    const variantStyles = variant ? paperVariantStyles[variant] : undefined;
+
     const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
-      [theme.styles, variantTheme?.styles, styles],
+      () => stylesCombinatorFactory(paperStyles, variantStyles, styles),
+      [variantStyles, styles],
     );
     const sxf = useMemo(
-      () =>
-        stylePropsFactory<IPaperStyleKey, IPaperStyleVarKey>(stylesCombinator),
+      () => stylePropsFactory(stylesCombinator),
       [stylesCombinator],
     );
 
@@ -59,22 +42,18 @@ export const Paper = forwardRef<HTMLDivElement, IPaperProps>(
     return (
       <div
         {...sxf(
+          paperTheme,
+          overridenStyles,
           'host',
           `host$elevation${elevation}`,
           square && 'host$square',
-          theme.vars,
-          variantTheme?.vars,
           sx,
         )}
         ref={forwardedRef}
         {...other}
       >
         <Elevation
-          styles={[
-            theme.elevationStyles,
-            variantTheme?.elevationStyles,
-            ...asArray(innerStyles?.elevation),
-          ]}
+          styles={[paperElevationStyles, ...asArray(innerStyles?.elevation)]}
         />
         <div {...sxf('outline')} />
         <div {...sxf('background')} />

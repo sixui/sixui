@@ -2,13 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
-import type { IPaperProps } from './PaperProps';
+import type { IPaperProps, IPaperVariant } from './Paper.types';
 import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
 import { Typography } from '@/components/atoms/Typography';
-import { paperVariants } from './Paper.styledefs';
 import { Paper } from './Paper';
 
 // https://material.io/blog/tone-based-surface-color-m3
@@ -64,7 +63,7 @@ export const Variants: IStory = {
     <ComponentShowcase
       component={PaperWithContent}
       props={props}
-      cols={paperVariants.map((variant) => ({
+      cols={(['filled', 'outlined'] as Array<IPaperVariant>).map((variant) => ({
         props: {
           variant,
           children: capitalizeFirstLetter(variant),

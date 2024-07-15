@@ -1,17 +1,13 @@
-import type { MapNamespaces } from '@stylexjs/stylex/lib/StyleXTypes';
 import stylex from '@stylexjs/stylex';
 
-import type { IStyles } from '@/helpers/types';
-import type { IPaperStyleKey } from '@/components/atoms/Paper';
-import type { IElevationStyleKey } from '@/components/utils/Elevation';
-import { componentVars as vars } from './Paper.stylex';
-import { componentVars as paperStateVars } from './Paper.states.stylex';
-import { componentVars as elevationVars } from '../Elevation/Elevation.stylex';
+import { componentVars as elevationVars } from '@/themes/base/Elevation/Elevation.stylex';
+import { paperTokens as vars } from './Paper.stylex';
+import { paperStateTokens as paperStateVars } from './Paper.state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/labs/Paper/internal/_shared.scss
 
-type IPaperStyles = IStyles<IPaperStyleKey>;
-export const styles: MapNamespaces<IPaperStyles> = stylex.create<IPaperStyles>({
+export type IPaperStylesKey = keyof typeof paperStyles;
+export const paperStyles = stylex.create({
   host: {
     borderRadius: vars.containerShape,
     position: 'relative',
@@ -61,10 +57,7 @@ export const styles: MapNamespaces<IPaperStyles> = stylex.create<IPaperStyles>({
   },
 });
 
-type IElevationStyles = IStyles<IElevationStyleKey>;
-export const elevationStyles: MapNamespaces<IElevationStyles> = stylex.create<
-  IStyles<IElevationStyleKey>
->({
+export const paperElevationStyles = stylex.create({
   host: {
     [elevationVars.boxShadow]: paperStateVars.elevation,
 

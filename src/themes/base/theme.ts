@@ -43,14 +43,6 @@ import {
   focusRingStyles as radioFocusRingStyles,
 } from './Radio/Radio.styles';
 
-import { componentTheme as paperTheme } from './Paper/Paper.stylex';
-import {
-  styles as paperStyles,
-  elevationStyles as paperElevationStyles,
-} from './Paper/Paper.styles';
-import { componentTheme as filledPaperTheme } from './Paper/FilledPaper.stylex';
-import { componentTheme as outlinedPaperTheme } from './Paper/OutlinedPaper.stylex';
-
 import { componentTheme as tabTheme } from './Tab/Tab.stylex';
 import {
   styles as tabStyles,
@@ -164,13 +156,6 @@ export const theme: ITheme = {
       stateLayerStyles: radioStateLayerStyles,
       focusRingStyles: radioFocusRingStyles,
     },
-    Paper: {
-      vars: paperTheme,
-      styles: paperStyles,
-      elevationStyles: paperElevationStyles,
-    },
-    FilledPaper: { vars: filledPaperTheme },
-    OutlinedPaper: { vars: outlinedPaperTheme },
     Tab: {
       vars: tabTheme,
       styles: tabStyles,
