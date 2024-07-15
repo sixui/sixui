@@ -1,19 +1,17 @@
 import stylex from '@stylexjs/stylex';
+import { CompiledStyles } from '@stylexjs/stylex/lib/StyleXTypes';
 
 import type { IStylesCombinator } from '@/helpers/stylesCombinatorFactory';
 import type { IVisualState } from '@/components/utils/VisualState';
 import type { IStyleXStyles } from './types';
 import { dataProps } from '@/helpers/dataProps';
 
-type IClassName<TStyleKey extends string> =
-  | TStyleKey
-  | null
-  | undefined
-  | false;
+type IStyleKey<TStyleKey extends string> = TStyleKey | null | undefined | false;
+type ITheme = CompiledStyles | null | undefined | false;
 
 export type IStyleProps<TStyleKey extends string> = (
   ...styleKeys: Array<
-    IClassName<TStyleKey> | Array<IClassName<TStyleKey>> | IStyleXStyles
+    IStyleKey<TStyleKey> | Array<IStyleKey<TStyleKey>> | IStyleXStyles | ITheme
   >
 ) => ReturnType<typeof stylex.props> & {
   [key in `data-${keyof IVisualState}`]?: string;
@@ -27,7 +25,7 @@ export const stylePropsFactory =
   (...styleKeys) => ({
     ...stylex.props(
       ...(styleKeys
-        ? combineStyles(...(styleKeys.flat() as Array<IClassName<TStyleKey>>))
+        ? combineStyles(...(styleKeys.flat() as Array<IStyleKey<TStyleKey>>))
         : []),
     ),
     ...dataProps(visualState),
