@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 
-import type { ITextFieldBaseStyleKey } from '@/components/atoms/TextFieldBase';
 import type { IMultiSelectBaseProps } from './MultiSelectBase.types';
 import { ListItem } from '@/components/atoms/ListItem';
 import { TextInputField } from '@/components/atoms/TextInputField';
@@ -17,7 +16,6 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import {
   multiSelectBaseFieldStyles,
   multiSelectBaseStyles,
-  type IMultiSelectBaseStylesKey,
 } from './MultiSelectBase.styles';
 
 export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
@@ -27,6 +25,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
   const {
     sx,
     styles,
+    innerStyles,
     items,
     itemRenderer,
     itemLabel,
@@ -42,10 +41,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
 
   const { overridenStyles } = useComponentTheme('MultiSelectBase');
   const stylesCombinator = useMemo(
-    () =>
-      stylesCombinatorFactory<
-        IMultiSelectBaseStylesKey | ITextFieldBaseStyleKey
-      >(multiSelectBaseStyles, styles),
+    () => stylesCombinatorFactory(multiSelectBaseStyles, styles),
     [styles],
   );
 
@@ -84,7 +80,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
       {(renderProps) => (
         <TextInputField
           sx={[overridenStyles, sx]}
-          styles={styles}
+          styles={innerStyles?.textInputField}
           end={
             <FilterableListBaseFieldEnd
               onClear={

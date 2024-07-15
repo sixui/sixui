@@ -1,3 +1,3 @@
-export * from './OptionCard.styledefs';
-export * from './OptionCardProps';
+export * from './OptionCard.types';
+export * from './OptionCard.styles';
 export * from './OptionCard';

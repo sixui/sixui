@@ -83,12 +83,7 @@ import type {
   IRichTooltipContentStyleKey,
   IRichTooltipContentStyleVarKey,
 } from '@/components/atoms/RichTooltipContent';
-import type {
-  IOptionCardStyleKey,
-  IOptionCardStyleVarKey,
-} from '@/components/atoms/OptionCard';
 import type { IButtonStylesKey } from '@/components/atoms/Button';
-import type { ICardStylesKey } from '@/components/atoms/Card/Card.styles';
 import type { ICircularProgressIndicatorStylesKey } from '@/components/atoms/CircularProgressIndicator';
 
 export type IBasicTemplateTheme = {
@@ -229,11 +224,6 @@ export type ITheme = {
       vars?: IStyleVarsTheme<IRichTooltipContentStyleVarKey>;
       styles?: ICompiledStyles<IRichTooltipContentStyleKey>;
       elevationStyles?: ICompiledStyles<IElevationStyleKey>;
-    };
-    OptionCard: {
-      vars?: IStyleVarsTheme<IOptionCardStyleVarKey>;
-      styles?: ICompiledStyles<IOptionCardStyleKey>;
-      cardStyles?: ICompiledStyles<ICardStylesKey>;
     };
   };
 };

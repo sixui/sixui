@@ -1,21 +1,37 @@
-import type { IContainerProps, IOmit } from '@/helpers/types';
+import type {
+  ICompiledStyles,
+  IContainerProps,
+  IOmit,
+  IZeroOrMore,
+} from '@/helpers/types';
 import type { IFieldBaseVariant } from '@/components/atoms/FieldBase';
 import type { IFilterableListItemRenderer } from '@/components/atoms/FilterableListBase';
-import type { ITextFieldBaseStyleKey } from '@/components/atoms/TextFieldBase';
 import type {
   IFloatingFilterableListBaseProps,
   IFloatingFilterableListBaseTriggerRenderProps,
 } from '@/components/atoms/FloatingFilterableListBase';
-import type { ITextInputFieldOwnProps } from '@/components/atoms/TextInputField';
+import type {
+  ITextInputFieldOwnProps,
+  ITextInputStylesKey,
+} from '@/components/atoms/TextInputField';
 import type { IInputChipProps } from '@/components/atoms/Chip';
+import type { IMultiSelectBaseStylesKey } from './MultiSelectBase.styles';
 
 export type IMultiSelectBaseProps<TItem> =
-  IContainerProps<ITextFieldBaseStyleKey> &
+  IContainerProps<IMultiSelectBaseStylesKey> &
     IOmit<
       IFloatingFilterableListBaseProps<TItem, HTMLElement>,
-      'onItemSelect' | 'renderer' | 'listRenderer' | 'itemRenderer' | 'children'
+      | 'styles'
+      | 'onItemSelect'
+      | 'renderer'
+      | 'listRenderer'
+      | 'itemRenderer'
+      | 'children'
     > &
-    ITextInputFieldOwnProps & {
+    IOmit<ITextInputFieldOwnProps, 'styles'> & {
+      innerStyles?: {
+        textInputField?: IZeroOrMore<ICompiledStyles<ITextInputStylesKey>>;
+      };
       selectedItems?: Array<TItem>;
       defaultItems?: Array<TItem>;
       onItemsChange?: (value: Array<TItem>) => void;

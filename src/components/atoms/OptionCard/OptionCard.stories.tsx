@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
-import type { IOptionCardOwnProps } from './OptionCardProps';
+import type { IOptionCardOwnProps } from './OptionCard.types';
 import { Switch } from '@/components/atoms/Switch';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { Checkbox } from '@/components/atoms/Checkbox';

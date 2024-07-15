@@ -14,7 +14,7 @@ import type { ICircularProgressIndicatorStylesKey } from '../CircularProgressInd
 
 export type IDisclosureButtonProps =
   IContainerProps<IDisclosureButtonStylesKey> &
-    IOmit<IListItemOwnProps, 'innerStyles'> & {
+    IOmit<IListItemOwnProps, 'styles' | 'innerStyles'> & {
       innerStyles?: {
         listItem?: IListItemOwnProps['innerStyles'];
         checkbox?: IZeroOrMore<ICompiledStyles<ICheckboxStylesKey>>;

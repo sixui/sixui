@@ -107,12 +107,6 @@ import {
   elevationStyles as richTooltipElevationStyles,
 } from './RichTooltipContent/RichTooltipContent.styles';
 
-import { componentTheme as optionCardTheme } from './OptionCard/OptionCard.stylex';
-import {
-  styles as optionCardStyles,
-  cardStyles as optionCardCardStyles,
-} from './OptionCard/OptionCard.styles';
-
 export const theme: ITheme = {
   name: 'Material Design 3',
   colorSchemes: {
@@ -237,11 +231,6 @@ export const theme: ITheme = {
       vars: richTooltipContentTheme,
       styles: richTooltipContentStyles,
       elevationStyles: richTooltipElevationStyles,
-    },
-    OptionCard: {
-      vars: optionCardTheme,
-      styles: optionCardStyles,
-      cardStyles: optionCardCardStyles,
     },
   },
 };

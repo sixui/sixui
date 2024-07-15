@@ -3,27 +3,22 @@ import { useMergeRefs } from '@floating-ui/react';
 import { asArray } from '@olivierpascal/helpers';
 import { isFunction } from 'lodash';
 
+import type { IOptionCardOwnProps, IOptionCardProps } from './OptionCard.types';
 import type {
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
-import type {
-  IOptionCardStyleKey,
-  IOptionCardStyleVarKey,
-} from './OptionCard.styledefs';
 import { CardContent } from '@/components/atoms/CardContent';
 import { Card } from '@/components/atoms/Card';
-import {
-  type IOptionCardOwnProps,
-  type IOptionCardProps,
-} from './OptionCardProps';
 import { ElementWithLabel } from '@/components/molecules/ElementWithLabel';
 import { useControlledValue } from '@/hooks/useControlledValue';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { RadioGroupContext } from '@/components/atoms/RadioGroup';
 import { commonStyles } from '@/helpers/commonStyles';
+import { optionCardCardStyles, optionCardStyles } from './OptionCard.styles';
+import { optionCardTheme } from './OptionCard.stylex';
 
 type IOptionCard = <TRoot extends React.ElementType>(
   props: IOptionCardProps<TRoot>,
@@ -36,6 +31,7 @@ export const OptionCard: IOptionCard = forwardRef(function OptionCard<
     as: Component,
     styles,
     sx,
+    innerStyles,
     label,
     supportingText,
     checked: checkedProp,
@@ -46,16 +42,13 @@ export const OptionCard: IOptionCard = forwardRef(function OptionCard<
   } = props as IWithAsProp<IOptionCardOwnProps>;
   const radioGroupContext = useContext(RadioGroupContext);
 
-  const { theme } = useComponentThemeOld('OptionCard');
+  const { overridenStyles } = useComponentTheme('OptionCard');
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, styles),
-    [theme.styles, styles],
+    () => stylesCombinatorFactory(optionCardStyles, styles),
+    [styles],
   );
   const sxf = useMemo(
-    () =>
-      stylePropsFactory<IOptionCardStyleKey, IOptionCardStyleVarKey>(
-        stylesCombinator,
-      ),
+    () => stylePropsFactory(stylesCombinator),
     [stylesCombinator],
   );
 
@@ -81,13 +74,14 @@ export const OptionCard: IOptionCard = forwardRef(function OptionCard<
       variant='outlined'
       onClick={() => controlRef.current?.click()}
       disabled={other.disabled}
-      styles={[theme.styles, theme.cardStyles, ...asArray(styles)]}
       sx={[
+        optionCardTheme,
+        overridenStyles,
         stylesCombinator('host'),
         checked && stylesCombinator('host$selected'),
-        theme.vars,
         sx,
       ]}
+      styles={[optionCardCardStyles, ...asArray(innerStyles?.card)]}
     >
       {Component ? null : (
         <input
