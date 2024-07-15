@@ -1,32 +1,18 @@
-import type { IThemeSettings } from '@/themes/theme.types';
-import {
-  useThemeContext,
-  type IThemeComponents,
-} from '@/components/utils/Theme';
+import type { StyleXStyles } from '@stylexjs/stylex';
+import { useThemeContext, type IThemeSettings } from '@/components/Theme';
 
-export type IUseComponentThemeResult<
-  TThemeComponent extends keyof IThemeComponents,
-  TVariantThemeComponent extends keyof IThemeComponents = never,
-> = {
-  theme: IThemeComponents[TThemeComponent];
-  variantTheme?: IThemeComponents[TVariantThemeComponent];
+export type IUseComponentThemeResult = {
   settings: IThemeSettings;
+  overridenStyles?: StyleXStyles;
 };
 
-export const useComponentTheme = <
-  TThemeComponent extends keyof IThemeComponents,
-  TVariantThemeComponent extends keyof IThemeComponents = never,
->(
-  component: TThemeComponent,
-  variantComponent?: TVariantThemeComponent,
-): IUseComponentThemeResult<TThemeComponent, TVariantThemeComponent> => {
+export const useComponentTheme = (
+  componentName: string,
+): IUseComponentThemeResult => {
   const themeContext = useThemeContext();
 
   return {
-    theme: themeContext.theme.components[component],
-    variantTheme: variantComponent
-      ? themeContext.theme.components[variantComponent]
-      : undefined,
     settings: themeContext.settings,
+    overridenStyles: themeContext.componentsStyles?.[componentName],
   };
 };

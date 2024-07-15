@@ -1,11 +1,11 @@
 // import stylex from '@stylexjs/stylex';
-// import { ThemeProvider } from '@/components/utils/Theme';
+// import { ThemeProvider } from '@/components/Theme';
 // import { theme } from '@/themes/base';
 // import '@/styles/main.css';
 
-// import { Disclosure } from '@/components/atoms/Disclosure';
-// import { DisclosureButton } from '@/components/atoms/DisclosureButton';
-// import { DisclosurePanel } from '@/components/atoms/DisclosurePanel';
+// import { Disclosure } from '@/components/Disclosure';
+// import { DisclosureButton } from '@/components/DisclosureButton';
+// import { DisclosurePanel } from '@/components/DisclosurePanel';
 
 // const styles = stylex.create({
 //   host: {
@@ -17,7 +17,7 @@
 // describe('Disclosure', () => {
 //   it('should expand and collapse on click', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <Disclosure>
 //           <DisclosureButton>Button label</DisclosureButton>
 //           <DisclosurePanel>
@@ -36,7 +36,7 @@
 
 //   it('should be expand by default', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <Disclosure defaultExpanded>
 //           <DisclosureButton>Button label</DisclosureButton>
 //           <DisclosurePanel>
@@ -57,7 +57,7 @@
 // describe('Checkable Disclosure', () => {
 //   it('should be unchecked and collapsed by default', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <Disclosure checkable>
 //           <DisclosureButton>Button label</DisclosureButton>
 //           <DisclosurePanel>
@@ -74,7 +74,7 @@
 
 //   it('should be checked and collapsed by default', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <Disclosure checkable checked>
 //           <DisclosureButton>Button label</DisclosureButton>
 //           <DisclosurePanel>
@@ -91,7 +91,7 @@
 
 //   it('should expand if checked', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <Disclosure checkable>
 //           <DisclosureButton>Button label</DisclosureButton>
 //           <DisclosurePanel>
@@ -109,7 +109,7 @@
 
 //   it('should collapse if unchecked', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <Disclosure checkable defaultChecked={true}>
 //           <DisclosureButton>Button label</DisclosureButton>
 //           <DisclosurePanel>
@@ -129,7 +129,7 @@
 
 //   it('should be disabled', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <Disclosure checkable disabled>
 //           <DisclosureButton>Button label</DisclosureButton>
 //           <DisclosurePanel>
@@ -149,7 +149,7 @@
 // describe('Switchable Disclosure', () => {
 //   it('should be toggled-off and collapsed by default', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <Disclosure checkable withSwitch>
 //           <DisclosureButton>Button label</DisclosureButton>
 //           <DisclosurePanel>
@@ -166,7 +166,7 @@
 
 //   it('should be toggled-on and collapsed by default', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <Disclosure checkable withSwitch checked>
 //           <DisclosureButton>Button label</DisclosureButton>
 //           <DisclosurePanel>
@@ -183,7 +183,7 @@
 
 //   it('should expand if toggled-on', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <Disclosure checkable withSwitch>
 //           <DisclosureButton>Button label</DisclosureButton>
 //           <DisclosurePanel>
@@ -201,7 +201,7 @@
 
 //   it('should collapse if toggled-off', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <Disclosure checkable withSwitch defaultChecked={true}>
 //           <DisclosureButton>Button label</DisclosureButton>
 //           <DisclosurePanel>
@@ -221,7 +221,7 @@
 
 //   it('should be disabled', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <Disclosure checkable withSwitch disabled>
 //           <DisclosureButton>Button label</DisclosureButton>
 //           <DisclosurePanel>

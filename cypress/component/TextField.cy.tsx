@@ -1,9 +1,9 @@
 // import stylex from '@stylexjs/stylex';
-// import { ThemeProvider } from '@/components/utils/Theme';
+// import { ThemeProvider } from '@/components/Theme';
 // import { theme } from '@/themes/base';
 // import '@/styles/main.css';
 
-// import { TextField } from '@/components/atoms/TextField';
+// import { TextField } from '@/components/TextField';
 
 // const styles = stylex.create({
 //   host: {
@@ -15,7 +15,7 @@
 // describe('Uncontrolled TextField', () => {
 //   it('should have default value', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <TextField defaultValue='Hello World!' />
 //       </ThemeProvider>,
 //     );
@@ -25,7 +25,7 @@
 
 //   it('should change value', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <TextField />
 //       </ThemeProvider>,
 //     );
@@ -37,7 +37,7 @@
 
 //   it('should clear value', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <TextField clearable />
 //       </ThemeProvider>,
 //     );
@@ -53,7 +53,7 @@
 // describe('Controlled TextField', () => {
 //   it('should trigger event on value change', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <TextField value='Hello World!' />
 //       </ThemeProvider>,
 //     );
@@ -67,7 +67,7 @@
 //   it('should trigger event on value clear', () => {
 //     const onChange = cy.stub().as('onChange');
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <TextField value='Hello World!' onChange={onChange} clearable />
 //       </ThemeProvider>,
 //     );

@@ -1,9 +1,8 @@
 import stylex from '@stylexjs/stylex';
-import { ThemeProvider } from '@/components/utils/Theme';
-import { theme } from '@/themes/base';
+import { ThemeProvider } from '@/components/Theme';
 import '@/styles/main.css';
 
-import { Switch } from '@/components/atoms/Switch';
+import { Switch } from '@/components/Switch';
 
 const styles = stylex.create({
   host: {
@@ -15,7 +14,7 @@ const styles = stylex.create({
 describe('Uncontrolled Switch', () => {
   it('should be toggled-off by default', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} theme={theme}>
+      <ThemeProvider sx={styles.host}>
         <Switch />
       </ThemeProvider>,
     );
@@ -25,7 +24,7 @@ describe('Uncontrolled Switch', () => {
 
   it('should have a default state', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} theme={theme}>
+      <ThemeProvider sx={styles.host}>
         <Switch defaultChecked />
       </ThemeProvider>,
     );
@@ -35,7 +34,7 @@ describe('Uncontrolled Switch', () => {
 
   it('should have a default value', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} theme={theme}>
+      <ThemeProvider sx={styles.host}>
         <Switch defaultValue='banana' />
       </ThemeProvider>,
     );
@@ -45,7 +44,7 @@ describe('Uncontrolled Switch', () => {
 
   it('should toggle state', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} theme={theme}>
+      <ThemeProvider sx={styles.host}>
         <Switch />
       </ThemeProvider>,
     );
@@ -58,7 +57,7 @@ describe('Uncontrolled Switch', () => {
 describe('Controlled Switch', () => {
   it('should have a controlled state', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} theme={theme}>
+      <ThemeProvider sx={styles.host}>
         <Switch checked />
       </ThemeProvider>,
     );
@@ -68,7 +67,7 @@ describe('Controlled Switch', () => {
 
   it('should have a controlled value', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} theme={theme}>
+      <ThemeProvider sx={styles.host}>
         <Switch value='banana' />
       </ThemeProvider>,
     );
@@ -79,7 +78,7 @@ describe('Controlled Switch', () => {
   it('should trigger event on state change', () => {
     const onChange = cy.stub().as('onChange');
     cy.mount(
-      <ThemeProvider sx={styles.host} theme={theme}>
+      <ThemeProvider sx={styles.host}>
         <Switch checked={false} onChange={onChange} />
       </ThemeProvider>,
     );

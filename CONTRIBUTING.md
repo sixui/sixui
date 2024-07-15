@@ -31,7 +31,7 @@ $ git checkout -b button-color
 
 ## Edit code
 
-Ie. `src/components/atoms/Button/Button.tsx`, then commit changes.
+Ie. `src/components/Button/Button.tsx`, then commit changes.
 
 ```sh
 $ git add .

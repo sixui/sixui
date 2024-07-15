@@ -1,23 +1,21 @@
 import type { Decorator, Preview } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
-import { themes } from '@storybook/theming';
 
-import { ThemeProvider } from '@/components/utils/Theme';
-import { ColorSchemeProvider } from '@/components/utils/ColorScheme';
+import { ThemeProvider } from '@/components/Theme';
+import { ColorSchemeProvider } from '@/components/ColorScheme';
 import { modes } from './modes';
 
-import { theme } from '@/themes/base';
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { darkColorRoles } from '@/themes/base/vars/darkColorRoles';
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { darkColorRolesVars } from '@/themes/base/darkColorRoles.styles';
 
 // For theme variant
-// import { theme } from '@/themes/variant';
-// import {
-//   colorRolesVars,
-//   colorRolesTheme,
-// } from '@/themes/base/vars/colorRoles.stylex';
-// import { colorPaletteTheme } from '@/themes/variant/vars/colorPalettes.stylex';
-// import { shapeTheme } from '@/themes/variant/vars/shape.stylex';
+// import { colorPalettesTheme as variantColorPalettesTheme } from '@/themes/variant/colorPalettes.stylex';
+// import { shapeTheme as variantShapeTheme } from '@/themes/variant/shape.stylex';
+// import { buttonTokens } from '@/components/Button/Button.stylex';
+// import { disclosureButtonTokens } from '@/components/DisclosureButton/DisclosureButton.stylex';
+// import { avatarTokens } from '@/components/Avatar/Avatar.stylex';
+// import { badgeTokens } from '@/components/Badge/Badge.stylex';
+// import { checkboxTokens } from '@/components/Checkbox/Checkbox.stylex';
 
 import '@/styles/main.css';
 import '@/styles/storybook.css';
@@ -26,7 +24,6 @@ const preview: Preview = {
   parameters: {
     // https://github.com/storybookjs/storybook/issues/17098#issuecomment-1049679681
     docs: {
-      theme: themes.dark,
       source: {
         type: 'code',
       },
@@ -44,8 +41,8 @@ const preview: Preview = {
     backgrounds: {
       default: 'dark',
       values: [
-        { name: 'light', value: colorRolesVars.surface },
-        { name: 'dark', value: darkColorRoles.surface },
+        { name: 'light', value: colorRolesTokens.surface },
+        { name: 'dark', value: darkColorRolesVars.surface },
       ],
     },
     chromatic: { modes },
@@ -54,14 +51,32 @@ const preview: Preview = {
   },
 };
 
-export const styles = stylex.create({
+const styles = stylex.create({
   storyWrapper: {
     position: 'relative',
-    backgroundColor: colorRolesVars.surface,
+    backgroundColor: colorRolesTokens.surface,
     padding: '2rem',
     width: '100%',
   },
 });
+
+// const componentsStyles = stylex.create({
+//   Button: {
+//     [buttonTokens.containerShape]: '0',
+//   },
+//   DisclosureButton: {
+//     [disclosureButtonTokens.containerShape]: '0',
+//   },
+//   Avatar: {
+//     [avatarTokens.containerShape]: '0',
+//   },
+//   Badge: {
+//     [badgeTokens.containerShape]: '0',
+//   },
+//   Checkbox: {
+//     [checkboxTokens.containerShape]: '999px',
+//   },
+// });
 
 export const decorators: Array<Decorator> = [
   (Story, context) => {
@@ -69,9 +84,11 @@ export const decorators: Array<Decorator> = [
     const showDarkMode = !context.tags.includes('light-mode-only');
 
     return (
-      <ThemeProvider theme={theme}>
-        {/* For theme variant: */}
-        {/* <div {...stylex.props(colorPaletteTheme, colorRolesTheme, shapeTheme)}> */}
+      <ThemeProvider
+      // colorPalettesTheme={variantColorPalettesTheme}
+      // shapeTheme={variantShapeTheme}
+      // componentsStyles={componentsStyles}
+      >
         {showLightMode ? (
           <ColorSchemeProvider scheme='light'>
             <div {...stylex.props(styles.storyWrapper)}>
@@ -87,7 +104,6 @@ export const decorators: Array<Decorator> = [
             </div>
           </ColorSchemeProvider>
         ) : null}
-        {/* </div> */}
       </ThemeProvider>
     );
   },

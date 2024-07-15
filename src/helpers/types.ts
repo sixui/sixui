@@ -3,10 +3,7 @@ import type {
   InlineStyles,
   StyleXArray,
   StyleXStyles,
-  StyleXVar,
-  Theme,
   UserAuthoredStyles,
-  VarGroup,
 } from '@stylexjs/stylex/lib/StyleXTypes';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -31,6 +28,10 @@ export type IPoint = {
   y: number;
 };
 
+export type IStaticStyles<TKey extends string> = {
+  [key in TKey]?: UserAuthoredStyles;
+};
+
 export type IStyles<TKey extends string> = {
   [key in TKey]?: UserAuthoredStyles | ((...props: IAny) => UserAuthoredStyles);
 };
@@ -38,14 +39,6 @@ export type IStyles<TKey extends string> = {
 export type ICompiledStyles<TKey extends string> = {
   [key in TKey]?: CompiledStyles;
 };
-
-export type IStyleVars<TKey extends string> = {
-  [key in TKey]: string | StyleXVar<string>;
-};
-
-export type IStyleVarGroup<TKey extends string> = VarGroup<IStyleVars<TKey>>;
-
-export type IStyleVarsTheme<TKey extends string> = Theme<IStyleVarGroup<TKey>>;
 
 export type IZeroOrMore<T> = undefined | T | Array<T | undefined>;
 
@@ -75,14 +68,6 @@ export type IRange = {
 
 // Omit with keys type checks
 export type IOmit<TType, TKeys extends keyof TType> = Omit<TType, TKeys>;
-
-export type IFormFieldProps<TValue, TElement = HTMLElement> = {
-  onChange?: (value: TValue, event?: React.SyntheticEvent<TElement>) => void;
-  onBlur?: React.FocusEventHandler<TElement>;
-  value?: TValue;
-  disabled?: boolean;
-  name?: string;
-};
 
 export type ICssSizeValue = number | string;
 

@@ -1,0 +1,25 @@
+export type IMotionThemeVars = {
+  duration$extraLong1: string;
+  duration$extraLong2: string;
+  duration$extraLong3: string;
+  duration$extraLong4: string;
+  duration$long1: string;
+  duration$long2: string;
+  duration$long3: string;
+  duration$long4: string;
+  duration$medium1: string;
+  duration$medium2: string;
+  duration$medium3: string;
+  duration$medium4: string;
+  duration$short1: string;
+  duration$short2: string;
+  duration$short3: string;
+  duration$short4: string;
+  easing$emphasized: string;
+  easing$emphasizedAccelerate: string;
+  easing$emphasizedDecelerate: string;
+  easing$linear: string;
+  easing$standard: string;
+  easing$standardAccelerate: string;
+  easing$standardDecelerate: string;
+};

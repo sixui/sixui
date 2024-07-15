@@ -55,7 +55,10 @@ export const commonStyles = stylex.create({
   hidden: {
     display: 'none',
   },
-  transformOrigin: (placement: Placement) => ({
+  placementToTransformOrigin: (placement: Placement) => ({
     transformOrigin: placementToOrigin(placement),
+  }),
+  transformOrigin: (transformOrigin: string) => ({
+    transformOrigin,
   }),
 });

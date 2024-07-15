@@ -1,0 +1,45 @@
+import stylex from '@stylexjs/stylex';
+
+import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { shapeTokens } from '@/themes/base/shape.stylex';
+import { stateTokens } from '@/themes/base/state.stylex';
+
+const vars = {
+  // container
+  containerColor: 'unset',
+  containerShape: shapeTokens.corner$full,
+  // &:disabled
+  containerColor$disabled: 'unset',
+  containerOpacity$disabled: stateTokens.containerOpacity$disabled,
+
+  // labelText
+  labelTextColor: colorRolesTokens.primary,
+  // &:disabled
+  labelTextColor$disabled: colorRolesTokens.onSurface,
+  labelTextOpacity$disabled: stateTokens.opacity$disabled,
+
+  // stateLayer
+  stateLayerSpace: '1em',
+  // &:hover
+  stateLayerColor$hover: colorRolesTokens.onSurface,
+  stateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,
+  // &:pressed
+  stateLayerColor$pressed: colorRolesTokens.onSurface,
+  stateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
+
+  // touchTarget
+  touchTargetSpace: 'max(1em, 16px)',
+
+  // focusRing
+  focusRingOutwardOffset: '3px',
+};
+
+export const fluidButtonTokens = stylex.defineVars(vars);
+
+/**
+ * This is a workaround to allow reaplying vars at the component level so that
+ * it can uses themed vars.
+ *
+ * @see https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
+ */
+export const fluidButtonTheme = stylex.createTheme(fluidButtonTokens, vars);

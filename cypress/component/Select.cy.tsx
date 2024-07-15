@@ -1,11 +1,11 @@
 // import stylex from '@stylexjs/stylex';
-// import { ThemeProvider } from '@/components/utils/Theme';
+// import { ThemeProvider } from '@/components/Theme';
 // import { theme } from '@/themes/base';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faAppleWhole, faCarrot } from '@fortawesome/free-solid-svg-icons';
 // import '@/styles/main.css';
 
-// import { Select } from '@/components/atoms/Select';
+// import { Select } from '@/components/Select';
 
 // const styles = stylex.create({
 //   host: {
@@ -17,7 +17,7 @@
 // describe('Select', () => {
 //   it('should open on click inside', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <Select>
 //           <Select.Option value='apple'>Apple</Select.Option>
 //           <Select.Option value='carrot'>Carrot</Select.Option>
@@ -36,7 +36,7 @@
 //   it('should use portal', () => {
 //     cy.mount(
 //       <div style={{ position: 'relative', overflow: 'hidden' }}>
-//         <ThemeProvider sx={styles.host} theme={theme}>
+//         <ThemeProvider sx={styles.host}>
 //           <Select>
 //             <Select.Option value='apple'>Apple</Select.Option>
 //             <Select.Option value='carrot'>Carrot</Select.Option>
@@ -54,7 +54,7 @@
 
 //   it('should close on click outside', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <Select>
 //           <Select.Option value='apple'>Apple</Select.Option>
 //           <Select.Option value='carrot'>Carrot</Select.Option>
@@ -75,7 +75,7 @@
 
 //   it('should select an option', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <Select>
 //           <Select.Option value='apple'>Apple</Select.Option>
 //           <Select.Option value='carrot'>Carrot</Select.Option>
@@ -95,7 +95,7 @@
 
 //   it('should select an empty option', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <Select>
 //           <Select.Option value=''>Empty</Select.Option>
 //           <Select.Option value='apple'>Apple</Select.Option>
@@ -113,7 +113,7 @@
 
 //   it('should select an option and pick its leading icon', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <Select>
 //           <Select.Option
 //             value='apple'
@@ -140,7 +140,7 @@
 
 //   it('should have a default value', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <Select defaultValue='carrot'>
 //           <Select.Option value='apple'>Apple</Select.Option>
 //           <Select.Option value='carrot'>Carrot</Select.Option>
@@ -153,7 +153,7 @@
 
 //   it('should use the option label', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <Select defaultValue='carrot'>
 //           <Select.Option value='apple' label='golden' />
 //           <Select.Option value='carrot' label='touchon' />
@@ -166,7 +166,7 @@
 
 //   it('should limit options', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <Select
 //           limit={2}
 //           moreOption={({ total, hidden }) => (
@@ -197,7 +197,7 @@
 
 //   it('should be able to select a hidden option as default value', () => {
 //     cy.mount(
-//       <ThemeProvider sx={styles.host} theme={theme}>
+//       <ThemeProvider sx={styles.host}>
 //         <Select
 //           defaultValue='5'
 //           limit={2}

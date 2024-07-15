@@ -1,11 +1,11 @@
 import stylex from '@stylexjs/stylex';
-import { ThemeProvider } from '@/components/utils/Theme';
+import { ThemeProvider } from '@/components/Theme';
 import { theme } from '@/themes/base';
 import 'cypress-real-events';
 import '@/styles/main.css';
 
-import { RadioGroup } from '@/components/atoms/RadioGroup';
-import { Radio } from '@/components/atoms/Radio';
+import { RadioGroup } from '@/components/RadioGroup';
+import { Radio } from '@/components/Radio';
 
 const styles = stylex.create({
   host: {
@@ -22,7 +22,7 @@ const styles = stylex.create({
 describe('Uncontrolled RadioGroup', () => {
   it('should be unchecked by default', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} theme={theme}>
+      <ThemeProvider sx={styles.host}>
         <RadioGroup sx={styles.radioGroup}>
           <Radio value='1' />
           <Radio value='2' />
@@ -39,7 +39,7 @@ describe('Uncontrolled RadioGroup', () => {
 
   it('should have a default checked item', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} theme={theme}>
+      <ThemeProvider sx={styles.host}>
         <RadioGroup sx={styles.radioGroup} defaultValue='2'>
           <Radio value='1' />
           <Radio value='2' />
@@ -56,7 +56,7 @@ describe('Uncontrolled RadioGroup', () => {
 
   it('should select one item', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} theme={theme}>
+      <ThemeProvider sx={styles.host}>
         <RadioGroup sx={styles.radioGroup}>
           <Radio value='1' />
           <Radio value='2' />
@@ -78,7 +78,7 @@ describe('Uncontrolled RadioGroup', () => {
 
   it('should use keyboard navigation', () => {
     cy.mount(
-      <ThemeProvider sx={styles.host} theme={theme}>
+      <ThemeProvider sx={styles.host}>
         <RadioGroup sx={styles.radioGroup}>
           <Radio value='1' />
           <Radio value='2' />
@@ -114,7 +114,7 @@ describe('Controlled RadioGroup', () => {
   it('should trigger event on value change', () => {
     const onChange = cy.stub().as('onChange');
     cy.mount(
-      <ThemeProvider sx={styles.host} theme={theme}>
+      <ThemeProvider sx={styles.host}>
         <RadioGroup sx={styles.radioGroup} onChange={onChange} value='2'>
           <Radio value='1' />
           <Radio value='2' />
