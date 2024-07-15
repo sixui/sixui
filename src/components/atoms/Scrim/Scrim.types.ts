@@ -1,9 +1,11 @@
 import type { FloatingContext, FloatingOverlayProps } from '@floating-ui/react';
 
 import type { IContainerProps } from '@/helpers/types';
-import type { IScrimStyleKey, IScrimVariant } from './Scrim.styledefs';
+import type { IScrimStylesKey } from './Scrim.styles';
 
-export type IScrimProps = IContainerProps<IScrimStyleKey> &
+export type IScrimVariant = 'darken' | 'lighten';
+
+export type IScrimProps = IContainerProps<IScrimStylesKey> &
   FloatingOverlayProps & {
     context: FloatingContext;
     contained?: boolean;

@@ -1,23 +1,20 @@
-import type { MapNamespaces } from '@stylexjs/stylex/lib/StyleXTypes';
 import stylex from '@stylexjs/stylex';
 
-import type { IStyles } from '@/helpers/types';
-import type { IScrimStyleKey } from '@/components/atoms/Scrim';
-import { componentVars as vars } from './Scrim.stylex';
-import { motionVars } from '../vars/motion.stylex';
+import { motionVars } from '@/themes/base/vars/motion.stylex';
+import { scrimTokens } from './Scrim.stylex';
 
-type IScrimStyles = IStyles<IScrimStyleKey>;
-export const styles: MapNamespaces<IScrimStyles> = stylex.create<IScrimStyles>({
+export type IScrimStylesKey = keyof typeof scrimStyles;
+export const scrimStyles = stylex.create({
   host: {
     display: 'grid',
     placeItems: 'center',
     zIndex: 499,
   },
   host$darken: {
-    backgroundColor: vars.containerColor$darken,
+    backgroundColor: scrimTokens.containerColor$darken,
   },
   host$lighten: {
-    backgroundColor: vars.containerColor$lighten,
+    backgroundColor: scrimTokens.containerColor$lighten,
   },
   transition$unmounted: {},
   transition$initial: {

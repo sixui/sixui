@@ -50,9 +50,6 @@ import { styles as typographyStyles } from './Typography/Typography.styles';
 
 import { styles as anchoredStyles } from './Anchored/Anchored.styles';
 
-import { componentTheme as scrimTheme } from './Scrim/Scrim.stylex';
-import { styles as scrimStyles } from './Scrim/Scrim.styles';
-
 import { styles as stepperStyles } from './Stepper/Stepper.styles';
 
 import { componentTheme as stepTheme } from './Step/Step.stylex';
@@ -79,12 +76,6 @@ import {
   styles as snackbarContentStyles,
   elevationStyles as snackbarContentElevationStyles,
 } from './SnackbarContent/SnackbarContent.styles';
-
-import { componentTheme as richTooltipContentTheme } from './RichTooltipContent/RichTooltipContent.stylex';
-import {
-  styles as richTooltipContentStyles,
-  elevationStyles as richTooltipElevationStyles,
-} from './RichTooltipContent/RichTooltipContent.styles';
 
 export const theme: ITheme = {
   name: 'Material Design 3',
@@ -151,10 +142,6 @@ export const theme: ITheme = {
     Anchored: {
       styles: anchoredStyles,
     },
-    Scrim: {
-      vars: scrimTheme,
-      styles: scrimStyles,
-    },
     Stepper: {
       styles: stepperStyles,
     },
@@ -184,11 +171,6 @@ export const theme: ITheme = {
       vars: snackbarContentTheme,
       styles: snackbarContentStyles,
       elevationStyles: snackbarContentElevationStyles,
-    },
-    RichTooltipContent: {
-      vars: richTooltipContentTheme,
-      styles: richTooltipContentStyles,
-      elevationStyles: richTooltipElevationStyles,
     },
   },
 };

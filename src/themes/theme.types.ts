@@ -37,10 +37,6 @@ import type { ITabStyleKey, ITabStyleVarKey } from '@/components/atoms/Tab';
 import type { ITabListStyleKey } from '@/components/atoms/TabList';
 import type { ITypographyStyleKey } from '@/components/atoms/Typography';
 import type { IAnchoredStyleKey } from '@/components/utils/Anchored';
-import type {
-  IScrimStyleKey,
-  IScrimStyleVarKey,
-} from '@/components/atoms/Scrim';
 import type { IStepperStyleKey } from '@/components/atoms/Stepper';
 import type { IStepStyleKey, IStepStyleVarKey } from '@/components/atoms/Step';
 import type {
@@ -63,10 +59,6 @@ import type {
   ISnackbarContentStyleKey,
   ISnackbarContentStyleVarKey,
 } from '@/components/atoms/SnackbarContent';
-import type {
-  IRichTooltipContentStyleKey,
-  IRichTooltipContentStyleVarKey,
-} from '@/components/atoms/RichTooltipContent';
 import type { IButtonStylesKey } from '@/components/atoms/Button';
 import type { ICircularProgressIndicatorStylesKey } from '@/components/atoms/CircularProgressIndicator';
 
@@ -143,10 +135,6 @@ export type ITheme = {
     Anchored: {
       styles?: ICompiledStyles<IAnchoredStyleKey>;
     };
-    Scrim: {
-      vars?: IStyleVarsTheme<IScrimStyleVarKey>;
-      styles?: ICompiledStyles<IScrimStyleKey>;
-    };
     Stepper: {
       styles?: ICompiledStyles<IStepperStyleKey>;
     };
@@ -177,11 +165,6 @@ export type ITheme = {
       styles?: ICompiledStyles<ISnackbarContentStyleKey>;
       elevationStyles?: ICompiledStyles<IElevationStyleKey>;
       actionButtonStyles?: ICompiledStyles<IButtonStylesKey>;
-    };
-    RichTooltipContent: {
-      vars?: IStyleVarsTheme<IRichTooltipContentStyleVarKey>;
-      styles?: ICompiledStyles<IRichTooltipContentStyleKey>;
-      elevationStyles?: ICompiledStyles<IElevationStyleKey>;
     };
   };
 };

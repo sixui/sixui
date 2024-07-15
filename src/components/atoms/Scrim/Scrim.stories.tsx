@@ -11,12 +11,11 @@ import {
 } from '@floating-ui/react';
 
 import type { IOmit } from '@/helpers/types';
-import type { IScrimProps } from './ScrimProps';
+import type { IScrimProps, IScrimVariant } from './Scrim.types';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { Button } from '@/components/atoms/Button';
 import { IndeterminateCircularProgressIndicator } from '@/components/atoms/IndeterminateCircularProgressIndicator';
 import { Scrim } from './Scrim';
-import { scrimVariants } from './Scrim.styledefs';
 
 type IScrimDemoProps = IOmit<IScrimProps, 'context'>;
 
@@ -81,7 +80,7 @@ export const Variants: IStory = {
     <ComponentShowcase
       component={(props) => <ScrimDemo {...props} />}
       props={props}
-      cols={scrimVariants.map((variant) => ({
+      cols={(['darken', 'lighten'] as Array<IScrimVariant>).map((variant) => ({
         legend: capitalizeFirstLetter(variant),
         props: { variant },
       }))}
