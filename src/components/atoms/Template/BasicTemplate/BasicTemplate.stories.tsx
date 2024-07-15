@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IBasicTemplateProps } from './BasicTemplateProps';
+import type { IBasicTemplateProps } from './BasicTemplate.types';
 import { BasicTemplate } from './BasicTemplate';
 
 const meta = {

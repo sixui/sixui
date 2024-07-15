@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useRef } from 'react';
 
-import type { ITabsProps } from './TabsProps';
+import type { ITabsProps } from './Tabs.types';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { EASING } from '@/helpers/animation';
 import { shouldReduceMotion } from '@/helpers/shouldReduceAnimations';

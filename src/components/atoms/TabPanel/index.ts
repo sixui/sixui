@@ -1,2 +1,2 @@
-export * from './TabPanelProps';
+export * from './TabPanel.types';
 export * from './TabPanel';

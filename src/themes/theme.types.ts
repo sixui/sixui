@@ -1,14 +1,6 @@
 import type { ICompiledStyles, IStyleVarsTheme } from '@/helpers/types';
 import type { IColorRolesThemeVars } from './colorRoles.types';
 import type {
-  IBasicTemplateStyleKey,
-  IBasicTemplateStyleVarKey,
-} from '@/components/atoms/Template/BasicTemplate';
-import type {
-  IVariableTemplateStyleKey,
-  IVariableTemplateStyleVarKey,
-} from '@/components/atoms/Template/VariableTemplate';
-import type {
   IComponentShowcaseStyleKey,
   IComponentShowcaseStyleVarKey,
 } from '@/components/utils/ComponentShowcase';
@@ -36,16 +28,6 @@ import type {
   IElementWithLabelStyleVarKey,
 } from '@/components/molecules/ElementWithLabel';
 
-export type IBasicTemplateTheme = {
-  vars?: IStyleVarsTheme<IBasicTemplateStyleVarKey>;
-  styles?: ICompiledStyles<IBasicTemplateStyleKey>;
-};
-
-export type IVariableTemplateTheme = {
-  vars?: IStyleVarsTheme<IVariableTemplateStyleVarKey>;
-  styles?: ICompiledStyles<IVariableTemplateStyleKey>;
-};
-
 export type ITextFieldBaseTheme = {
   vars?: IStyleVarsTheme<ITextFieldBaseStyleVarKey>;
   styles?: ICompiledStyles<ITextFieldBaseStyleKey>;
@@ -61,8 +43,6 @@ export type ITheme = {
     dark: IColorRolesThemeVars;
   };
   components: {
-    Template: IBasicTemplateTheme;
-    VariantTemplate: IVariableTemplateTheme;
     ComponentShowcase: {
       vars: IStyleVarsTheme<IComponentShowcaseStyleVarKey>;
       styles: ICompiledStyles<IComponentShowcaseStyleKey>;

@@ -1,12 +1,24 @@
-import stylex from '@stylexjs/stylex';
-import { forwardRef, useContext } from 'react';
+import { forwardRef, useContext, useMemo } from 'react';
 
-import type { ITabPanelProps } from './TabPanelProps';
+import type { ITabPanelProps } from './TabPanel.types';
 import { TabContext } from '@/components/atoms/Tabs';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 
 export const TabPanel = forwardRef<HTMLDivElement, ITabPanelProps>(
   function TabPanel(props, forwardedRef) {
-    const { sx, anchor, children } = props;
+    const { styles, sx, anchor, children } = props;
+
+    const { overridenStyles } = useComponentTheme('TabPanel');
+    const stylesCombinator = useMemo(
+      () => stylesCombinatorFactory(styles),
+      [styles],
+    );
+    const sxf = useMemo(
+      () => stylePropsFactory(stylesCombinator),
+      [stylesCombinator],
+    );
 
     const context = useContext(TabContext);
 
@@ -18,7 +30,7 @@ export const TabPanel = forwardRef<HTMLDivElement, ITabPanelProps>(
 
     return (
       <div
-        {...stylex.props(sx)}
+        {...sxf(overridenStyles, 'host', sx)}
         ref={forwardedRef}
         role='tabpanel'
         aria-labelledby={id}

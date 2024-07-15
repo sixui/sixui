@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IPolymorphicTemplateProps } from './PolymorphicTemplateProps';
+import type { IPolymorphicTemplateProps } from './PolymorphicTemplate.types';
 import { PolymorphicTemplate } from './PolymorphicTemplate';
 
 const meta = {

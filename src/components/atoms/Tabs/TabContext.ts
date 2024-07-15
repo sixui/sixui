@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 
 import type { IAny, IMaybeAsync } from '@/helpers/types';
-import type { ITabVariant } from '../Tab/Tab.styledefs';
+import type { ITabVariant } from '@/components/atoms/Tab/Tab.types';
 
 export type ITabContextValue = {
   id?: string;

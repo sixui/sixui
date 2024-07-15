@@ -1,6 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
-import type { IVariableTemplateProps } from './VariableTemplateProps';
+import type {
+  IVariableTemplateProps,
+  IVariableTemplateVariant,
+} from './VariableTemplate.types';
 import {
   ComponentShowcase,
   type IComponentPresentation,
@@ -30,13 +34,20 @@ export const Variants: IStory = {
     <ComponentShowcase
       component={VariableTemplate}
       props={props}
-      cols={[{ props: { variant: 'variant' } }]}
+      cols={(['primary', 'secondary'] as Array<IVariableTemplateVariant>).map(
+        (variant) => ({
+          props: {
+            variant,
+            children: capitalizeFirstLetter(variant),
+          },
+        }),
+      )}
     />
   ),
   args: defaultArgs,
 };
 
-export const Variant: IStory = {
+export const Primary: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={VariableTemplate}
@@ -46,7 +57,21 @@ export const Variant: IStory = {
   ),
   args: {
     ...defaultArgs,
-    variant: 'variant',
+    variant: 'primary',
+  },
+};
+
+export const Secondary: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={VariableTemplate}
+      props={props}
+      cols={states}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'secondary',
   },
 };
 

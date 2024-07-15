@@ -14,7 +14,7 @@ import {
   faCalendar,
 } from '@fortawesome/free-regular-svg-icons';
 
-import type { ITabsProps } from './TabsProps';
+import type { ITabsProps } from './Tabs.types';
 import { Tab } from '@/components/atoms/Tab';
 import { TabList } from '@/components/atoms/TabList';
 import { TabPanel, type ITabPanelProps } from '@/components/atoms/TabPanel';

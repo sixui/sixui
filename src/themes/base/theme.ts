@@ -2,11 +2,6 @@ import type { ITheme } from '../theme.types';
 
 import { darkColorRoles, darkColorRolesTheme } from './vars/darkColorRoles';
 
-import { componentTheme as templateTheme } from './Template/Template.stylex';
-import { styles as templateStyles } from './Template/Template.styles';
-import { componentTheme as variantTemplateTheme } from './Template/VariantTemplate.stylex';
-import { styles as variantTemplateStyles } from './Template/VariantTemplate.styles';
-
 import { componentTheme as componentShowcaseTheme } from './ComponentShowcase/ComponentShowcase.stylex';
 import { styles as componentShowcaseStyles } from './ComponentShowcase/ComponentShowcase.styles';
 
@@ -41,14 +36,6 @@ export const theme: ITheme = {
     dark: darkColorRoles,
   },
   components: {
-    Template: {
-      vars: templateTheme,
-      styles: templateStyles,
-    },
-    VariantTemplate: {
-      vars: variantTemplateTheme,
-      styles: variantTemplateStyles,
-    },
     ComponentShowcase: {
       vars: componentShowcaseTheme,
       styles: componentShowcaseStyles,

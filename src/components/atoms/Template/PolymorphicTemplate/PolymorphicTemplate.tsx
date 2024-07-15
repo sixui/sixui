@@ -4,18 +4,16 @@ import type {
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
-import type {
-  IPolymorphicTemplateStyleKey,
-  IPolymorphicTemplateStyleVarKey,
-} from './PolymorphicTemplate.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+// import { stylePropsFactory } from '@/helpers/stylePropsFactory';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import {
   POLYMORPHIC_TEMPLATE_DEFAULT_TAG,
   type IPolymorphicTemplateOwnProps,
   type IPolymorphicTemplateProps,
-} from './PolymorphicTemplateProps';
+} from './PolymorphicTemplate.types';
+import { polymorphicTemplateTheme } from './PolymorphicTemplate.stylex';
+import { polymorphicTemplateStyles } from './PolymorphicTemplate.styles';
 
 type IPolymorphicTemplate = <
   TRoot extends React.ElementType = typeof POLYMORPHIC_TEMPLATE_DEFAULT_TAG,
@@ -38,23 +36,28 @@ export const PolymorphicTemplate: IPolymorphicTemplate = forwardRef(
       ...other
     } = props as IWithAsProp<IPolymorphicTemplateOwnProps>;
 
-    const { theme } = useComponentThemeOld('Template');
+    const { overridenStyles } = useComponentTheme('PolymorphicTemplate');
     const styleCombinator = useMemo(
-      () => stylesCombinatorFactory(theme.styles, styles),
-      [theme.styles, styles],
+      () => stylesCombinatorFactory(polymorphicTemplateStyles, styles),
+      [styles],
     );
-    const sxf = useMemo(
-      () =>
-        stylePropsFactory<
-          IPolymorphicTemplateStyleKey,
-          IPolymorphicTemplateStyleVarKey
-        >(styleCombinator),
-      [styleCombinator],
-    );
+    // const sxf = useMemo(
+    //   () => stylePropsFactory(styleCombinator),
+    //   [styleCombinator],
+    // );
 
     return (
-      <Component sx={[theme.vars, sx]} {...other} ref={forwardedRef}>
-        <div {...sxf('host')}>{children}</div>
+      <Component
+        sx={[
+          polymorphicTemplateTheme,
+          overridenStyles,
+          styleCombinator('host'),
+          sx,
+        ]}
+        {...other}
+        ref={forwardedRef}
+      >
+        {children}
       </Component>
     );
   },

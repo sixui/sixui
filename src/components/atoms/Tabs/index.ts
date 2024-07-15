@@ -1,3 +1,3 @@
+export * from './Tabs.types';
 export * from './TabContext';
-export * from './TabsProps';
 export * from './Tabs';
