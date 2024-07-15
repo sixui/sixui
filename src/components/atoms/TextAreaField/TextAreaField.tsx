@@ -1,7 +1,7 @@
 import { forwardRef, useRef } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
-import type { ITextAreaFieldProps } from './TextAreaFieldProps';
+import type { ITextAreaFieldProps } from './TextAreaField.types';
 import {
   TextFieldBase,
   type ITextFieldBaseProps,
