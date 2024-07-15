@@ -77,7 +77,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       !disabled && (activeProp ?? (context && index === context.activeStep));
     const loading = context?.loading || loadingProp;
     const labelPosition = hasText
-      ? labelPositionProp ?? context?.labelPosition ?? 'right'
+      ? (labelPositionProp ?? context?.labelPosition ?? 'right')
       : 'right';
     const nextConnector =
       nextConnectorProp !== undefined ? nextConnectorProp : context?.connector;
@@ -123,8 +123,8 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
                   ]}
                 />
               ) : (
-                icon ??
-                (hasError ? <ExclamationTriangleIcon aria-hidden /> : null)
+                (icon ??
+                (hasError ? <ExclamationTriangleIcon aria-hidden /> : null))
               )}
             </div>
           </div>

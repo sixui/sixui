@@ -33,7 +33,7 @@ export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
       [stylesCombinator],
     );
 
-    useTimeout(() => onClose?.(), open ? autoHideDuration ?? null : null);
+    useTimeout(() => onClose?.(), open ? (autoHideDuration ?? null) : null);
 
     const nodeRef = useRef<HTMLDivElement>(null);
     const handleRef = useMergeRefs([nodeRef, forwardedRef]);

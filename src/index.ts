@@ -89,3 +89,6 @@ export * from './hooks/useLoaded';
 export * from './hooks/usePrevious';
 
 export * from './helpers/types';
+
+// themes
+export * from './themes/base/colorPalettes.types';

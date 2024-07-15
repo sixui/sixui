@@ -131,7 +131,7 @@ export const TextFieldBase = fixedForwardRef(function TextField<
           populated={populated}
           {...other}
           end={
-            other.end ?? clearable ? (
+            (other.end ?? clearable) ? (
               <>
                 {other.end}
                 {clearable ? (

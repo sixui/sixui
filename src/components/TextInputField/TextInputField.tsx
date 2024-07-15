@@ -83,7 +83,7 @@ export const TextInputField = forwardRef<HTMLDivElement, ITextInputFieldProps>(
       <TextFieldBase<HTMLInputElement, ITextInputFieldOwnProps>
         {...other}
         end={
-          other.end ?? unmaskable ? (
+          (other.end ?? unmaskable) ? (
             <>
               {other.end}
               {unmaskable ? (

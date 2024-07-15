@@ -61,9 +61,9 @@ export const IconButton: IIconButton = forwardRef(function IconButton<
         ),
         sx,
       ]}
-      icon={selected ? selectedIcon ?? icon : icon}
+      icon={selected ? (selectedIcon ?? icon) : icon}
       aria-label={
-        toggle && selected ? ariaLabelSelected ?? ariaLabel : ariaLabel
+        toggle && selected ? (ariaLabelSelected ?? ariaLabel) : ariaLabel
       }
       {...other}
       ref={forwardedRef}

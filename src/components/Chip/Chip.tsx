@@ -276,7 +276,7 @@ export const Chip: IChip = forwardRef(function Chip<
           )}
           ref={primaryHandleRef}
           href={href}
-          onClick={href ?? !onClick ? undefined : handleClick}
+          onClick={(href ?? !onClick) ? undefined : handleClick}
           role='button'
           disabled={disabled}
           tabIndex={!interactive || disabled ? -1 : 0}

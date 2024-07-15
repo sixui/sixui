@@ -73,7 +73,7 @@ export const CopyableText = forwardRef<HTMLElement, ICopyableTextProps>(
           <div {...sxf(overridenStyles, 'host', sx)}>
             {children ? <div {...sxf('text')}>{children}</div> : null}
             {isTriggerVisible
-              ? icon ?? <CopyToClipboardIcon aria-hidden />
+              ? (icon ?? <CopyToClipboardIcon aria-hidden />)
               : null}
           </div>
         </FluidButton>

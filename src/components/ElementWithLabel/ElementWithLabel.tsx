@@ -47,7 +47,7 @@ export const ElementWithLabel = forwardRef<
   const errorText = hasError ? errorTextProp : undefined;
   const supportingTextPosition =
     orientation === 'vertical'
-      ? supportingTextPositionProp ?? labelPosition
+      ? (supportingTextPositionProp ?? labelPosition)
       : labelPosition;
   const hasLeading =
     (!!label && labelPosition === 'start') ||

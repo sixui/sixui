@@ -24,7 +24,7 @@ export const useSelect = (props: IUseSelectProps): IUseSelectResult => {
   const emptyItem = useMemo(() => items.find(itemEmpty), [items, itemEmpty]);
   const defaultItemRef = useRef(
     defaultValue !== undefined
-      ? items.find((item) => item.value === defaultValue) ?? undefined
+      ? (items.find((item) => item.value === defaultValue) ?? undefined)
       : value !== undefined
         ? defaultValue
         : emptyItem,
@@ -32,9 +32,9 @@ export const useSelect = (props: IUseSelectProps): IUseSelectResult => {
   const selectedItem = useMemo(
     () =>
       value !== undefined
-        ? items.find((item) => item.value === value) ??
+        ? (items.find((item) => item.value === value) ??
           emptyItem ??
-          DEFAUL_EMPTY_ITEM
+          DEFAUL_EMPTY_ITEM)
         : undefined,
     [items, value, emptyItem],
   );

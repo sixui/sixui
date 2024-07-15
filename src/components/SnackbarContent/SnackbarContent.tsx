@@ -65,7 +65,7 @@ export const SnackbarContent = forwardRef<
       />
       <div {...sxf('supportingText')}>{children}</div>
 
-      {actionLabel ?? showCloseButton ? (
+      {(actionLabel ?? showCloseButton) ? (
         <div {...sxf('actions')}>
           {actionLabel ? (
             <Button variant='snackbar' onClick={onActionClick}>
