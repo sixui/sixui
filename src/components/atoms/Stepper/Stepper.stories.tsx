@@ -8,7 +8,7 @@ import type { IStepperProps } from './StepperProps';
 import { Step, type IStepProps } from '@/components/atoms/Step';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
-import { componentVars as stepVars } from '@/themes/base/Step/Step.stylex';
+import { stepTokens } from '@/components/atoms/Step/Step.stylex';
 import { createSequence } from '@olivierpascal/helpers';
 import { StepConnector } from '@/components/atoms/StepConnector';
 import { Stepper } from './Stepper';
@@ -34,7 +34,7 @@ const styles = stylex.create({
   step$noSpace: {
     // TODO: waiting for a fix
     // https://github.com/facebook/stylex/issues/529
-    [stepVars.bulletPointSpace]: '0.0px',
+    [stepTokens.bulletPointSpace]: '0.0px',
   },
 });
 

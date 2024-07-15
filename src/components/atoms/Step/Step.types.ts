@@ -2,7 +2,7 @@ import type { ICompiledStyles, IContainerProps } from '@/helpers/types';
 import type { IButtonBaseOwnProps } from '@/components/atoms/ButtonBase';
 import type { ICircularProgressIndicatorStylesKey } from '@/components/atoms/CircularProgressIndicator';
 import type { IStepperContextValue } from '@/components/atoms/Stepper';
-import type { IStepStyleKey } from './Step.styledefs';
+import type { IStepStylesKey } from './Step.styles';
 
 export type IStepRenderProps = {
   active: boolean;
@@ -10,7 +10,7 @@ export type IStepRenderProps = {
   hasError: boolean;
 };
 
-export type IStepProps = IContainerProps<IStepStyleKey> & {
+export type IStepProps = IContainerProps<IStepStylesKey> & {
   innerStyles?: IButtonBaseOwnProps['innerStyles'] & {
     circularProgressIndicator?: ICompiledStyles<ICircularProgressIndicatorStylesKey>;
   };

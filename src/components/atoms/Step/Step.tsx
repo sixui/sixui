@@ -8,17 +8,22 @@ import {
 import { asArray } from '@olivierpascal/helpers';
 import { isFunction } from 'lodash';
 
-import type { IStepStyleKey, IStepStyleVarKey } from './Step.styledefs';
-import type { IStepProps } from './StepProps';
+import type { IStepProps } from './Step.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { ReactComponent as CheckMarkIcon } from '@/assets/CheckMark.svg';
 import { ReactComponent as ExclamationTriangleIcon } from '@/assets/ExclamationTriangle.svg';
 import { StepperContext } from '@/components/atoms/Stepper/StepperContext';
 import { IndeterminateCircularProgressIndicator } from '@/components/atoms/IndeterminateCircularProgressIndicator';
 import { StepContext, type IStepContextValue } from './StepContext';
 import { ButtonBase } from '../ButtonBase';
+import {
+  stepCircularProgressIndicatorStyles,
+  stepFocusRingStyles,
+  stepStyles,
+} from './Step.styles';
+import { stepTheme } from './Step.stylex';
 
 export const Step = forwardRef<HTMLDivElement, IStepProps>(
   function Step(props, forwardedRef) {
@@ -45,14 +50,13 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       ...other
     } = props;
 
-    const { theme } = useComponentThemeOld('Step');
+    const { overridenStyles } = useComponentTheme('Step');
     const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(theme.styles, styles),
-      [theme.styles, styles],
+      () => stylesCombinatorFactory(stepStyles, styles),
+      [styles],
     );
     const sxf = useMemo(
-      () =>
-        stylePropsFactory<IStepStyleKey, IStepStyleVarKey>(stylesCombinator),
+      () => stylePropsFactory(stylesCombinator),
       [stylesCombinator],
     );
 
@@ -114,7 +118,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
               {loading ? (
                 <IndeterminateCircularProgressIndicator
                   styles={[
-                    theme.circularProgressIndicatorStyles,
+                    stepCircularProgressIndicatorStyles,
                     ...asArray(innerStyles?.circularProgressIndicator),
                   ]}
                 />
@@ -207,97 +211,101 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
 
     return (
       <StepContext.Provider value={contextValue}>
-        <div style={{ display: 'contents' }} {...sxf(theme.vars, sx)}>
+        <div
+          {...sxf(
+            stepTheme,
+            overridenStyles,
+            'host',
+            labelPosition === 'bottom' && `host$bottomLabel`,
+            sx,
+          )}
+          ref={forwardedRef}
+          {...other}
+        >
           <div
-            {...sxf('host', labelPosition === 'bottom' && `host$bottomLabel`)}
-            ref={forwardedRef}
-            {...other}
+            {...sxf(
+              'buttonContainer',
+              labelPosition === 'bottom' && 'buttonContainer$bottomLabel',
+            )}
           >
-            <div
-              {...sxf(
-                'buttonContainer',
-                labelPosition === 'bottom' && 'buttonContainer$bottomLabel',
-              )}
-            >
-              {orientation === 'vertical' ? renderInnerConnectors() : null}
-              {onClick ? (
-                <ButtonBase
-                  sx={stylesCombinator('button')}
-                  innerStyles={{
-                    ...innerStyles,
-                    focusRing: [
-                      theme.focusRingStyles,
-                      ...asArray(innerStyles?.focusRing),
-                    ],
-                  }}
-                  onClick={onClick}
-                  disabled={disabled}
-                >
-                  {renderButtonInner(true)}
-                </ButtonBase>
-              ) : (
-                <div {...sxf('button')}>{renderButtonInner(false)}</div>
-              )}
-            </div>
-
-            {expanded ? (
-              <div {...sxf('content')}>
-                {/* Connect the content block to the next connector. */}
-                {!isLast ? (
-                  <div
-                    {...sxf('connectorContainer', 'connectorContainer$content')}
-                  >
-                    {renderConnectorWithoutChildren()}
-                  </div>
-                ) : null}
-                <div {...sxf('contentText')}>
-                  {isFunction(children)
-                    ? children({
-                        active: !!isActive,
-                        completed,
-                        hasError: !!hasError,
-                      })
-                    : children}
-                </div>
-              </div>
-            ) : null}
-
-            {!isLast &&
-            orientation === 'horizontal' &&
-            labelPosition === 'bottom' ? (
-              <div
-                {...sxf(
-                  'connectorContainer',
-                  'connectorContainer$horizontal$bottomLabel',
-                )}
+            {orientation === 'vertical' ? renderInnerConnectors() : null}
+            {onClick ? (
+              <ButtonBase
+                sx={stylesCombinator('button')}
+                innerStyles={{
+                  ...innerStyles,
+                  focusRing: [
+                    stepFocusRingStyles,
+                    ...asArray(innerStyles?.focusRing),
+                  ],
+                }}
+                onClick={onClick}
+                disabled={disabled}
               >
-                {nextConnector}
-              </div>
-            ) : null}
+                {renderButtonInner(true)}
+              </ButtonBase>
+            ) : (
+              <div {...sxf('button')}>{renderButtonInner(false)}</div>
+            )}
           </div>
 
-          {!isLast && labelPosition === 'right' ? (
-            <div
-              {...sxf(
-                'extensibleConnectorContainer',
-                orientation === 'horizontal' &&
-                  'extensibleConnectorContainer$horizontal',
-                orientation === 'vertical' &&
-                  'extensibleConnectorContainer$vertical',
-              )}
-            >
-              <div
-                {...sxf(
-                  'connectorContainer',
-                  orientation === 'horizontal' &&
-                    'connectorContainer$horizontal$rightLabel',
-                )}
-              >
-                {nextConnector}
+          {expanded ? (
+            <div {...sxf('content')}>
+              {/* Connect the content block to the next connector. */}
+              {!isLast ? (
+                <div
+                  {...sxf('connectorContainer', 'connectorContainer$content')}
+                >
+                  {renderConnectorWithoutChildren()}
+                </div>
+              ) : null}
+              <div {...sxf('contentText')}>
+                {isFunction(children)
+                  ? children({
+                      active: !!isActive,
+                      completed,
+                      hasError: !!hasError,
+                    })
+                  : children}
               </div>
             </div>
           ) : null}
+
+          {!isLast &&
+          orientation === 'horizontal' &&
+          labelPosition === 'bottom' ? (
+            <div
+              {...sxf(
+                'connectorContainer',
+                'connectorContainer$horizontal$bottomLabel',
+              )}
+            >
+              {nextConnector}
+            </div>
+          ) : null}
         </div>
+
+        {!isLast && labelPosition === 'right' ? (
+          <div
+            {...sxf(
+              'extensibleConnectorContainer',
+              orientation === 'horizontal' &&
+                'extensibleConnectorContainer$horizontal',
+              orientation === 'vertical' &&
+                'extensibleConnectorContainer$vertical',
+            )}
+          >
+            <div
+              {...sxf(
+                'connectorContainer',
+                orientation === 'horizontal' &&
+                  'connectorContainer$horizontal$rightLabel',
+              )}
+            >
+              {nextConnector}
+            </div>
+          </div>
+        ) : null}
       </StepContext.Provider>
     );
   },

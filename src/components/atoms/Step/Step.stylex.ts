@@ -1,13 +1,11 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IStyleVars } from '@/helpers/types';
-import type { IStepStyleVarKey } from '@/components/atoms/Step';
-import { colorRolesVars } from '../vars/colorRoles.stylex';
-import { typescaleVars } from '../vars/typo.stylex';
-import { shapeVars } from '../vars/shape.stylex';
-import { stateVars } from '../vars/state.stylex';
+import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { typescaleVars } from '@/themes/base/vars/typo.stylex';
+import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { stateVars } from '@/themes/base/vars/state.stylex';
 
-const vars: IStyleVars<IStepStyleVarKey> = {
+const vars = {
   gap: '8px',
   leadingSpace: '8px',
   trailingSpace: '8px',
@@ -111,7 +109,7 @@ const vars: IStyleVars<IStepStyleVarKey> = {
   contentTextLetterSpacing: typescaleVars.bodyLetterSpacing$md,
 };
 
-export const componentVars = stylex.defineVars(vars);
+export const stepTokens = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that
@@ -119,4 +117,4 @@ export const componentVars = stylex.defineVars(vars);
  *
  * @see https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
  */
-export const componentTheme = stylex.createTheme(componentVars, vars);
+export const stepTheme = stylex.createTheme(stepTokens, vars);

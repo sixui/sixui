@@ -52,13 +52,6 @@ import { styles as anchoredStyles } from './Anchored/Anchored.styles';
 
 import { styles as stepperStyles } from './Stepper/Stepper.styles';
 
-import { componentTheme as stepTheme } from './Step/Step.stylex';
-import {
-  styles as stepStyles,
-  focusRingStyles as stepFocusRingStypes,
-  circularProgressIndicatorStyles as stepCircularProgressIndicatorStyles,
-} from './Step/Step.styles';
-
 import { componentTheme as stepConnectorTheme } from './StepConnector/StepConnector.stylex';
 import { styles as stepConnectorStyles } from './StepConnector/StepConnector.styles';
 
@@ -132,12 +125,6 @@ export const theme: ITheme = {
     },
     Stepper: {
       styles: stepperStyles,
-    },
-    Step: {
-      vars: stepTheme,
-      styles: stepStyles,
-      focusRingStyles: stepFocusRingStypes,
-      circularProgressIndicatorStyles: stepCircularProgressIndicatorStyles,
     },
     StepConnector: {
       vars: stepConnectorTheme,

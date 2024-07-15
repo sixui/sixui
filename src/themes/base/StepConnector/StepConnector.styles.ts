@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 
 import type { IStyles } from '@/helpers/types';
 import type { IStepConnectorStyleKey } from '@/components/atoms/StepConnector';
-import { componentVars as stepVars } from '../Step/Step.stylex';
+import { stepTokens } from '@/components/atoms/Step/Step.stylex';
 import { componentVars as vars } from './StepConnector.stylex';
 
 type IStepConnectorStyles = IStyles<IStepConnectorStyleKey>;
@@ -19,11 +19,11 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
     },
     host$horizontal$bottomLabel: {
       flexDirection: 'row',
-      marginTop: `calc(-1 * ${vars.thickness} / 2 + ${stepVars.topSpace} + ${stepVars.bulletPointSize} / 2)`,
+      marginTop: `calc(-1 * ${vars.thickness} / 2 + ${stepTokens.topSpace} + ${stepTokens.bulletPointSize} / 2)`,
     },
     host$vertical$rightLabel: {
       flexDirection: 'column',
-      marginLeft: `calc(-1 * ${vars.thickness} / 2 + ${stepVars.leadingSpace} + ${stepVars.bulletPointSize} / 2)`,
+      marginLeft: `calc(-1 * ${vars.thickness} / 2 + ${stepTokens.leadingSpace} + ${stepTokens.bulletPointSize} / 2)`,
     },
     host$vertical$bottomLabel: {
       // This style is never applied because the vertical orientation does not
@@ -72,7 +72,7 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
       width: vars.thickness,
     },
     line$horizontal$rightLabel$hasText: {
-      marginLeft: `calc(max(8px - ${stepVars.bulletPointSpace}, 0px))`,
+      marginLeft: `calc(max(8px - ${stepTokens.bulletPointSpace}, 0px))`,
     },
     line$horizontal$cutStart: {
       borderTopLeftRadius: 0,
@@ -91,10 +91,10 @@ export const styles: MapNamespaces<IStepConnectorStyles> =
       borderBottomRightRadius: 0,
     },
     line$horizontal$minLength: {
-      minWidth: stepVars.connectorMinLength,
+      minWidth: stepTokens.connectorMinLength,
     },
     line$vertical$minLength: {
-      minHeight: stepVars.connectorMinLength,
+      minHeight: stepTokens.connectorMinLength,
     },
     text: {
       color: vars.textColor,

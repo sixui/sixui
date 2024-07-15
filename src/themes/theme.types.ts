@@ -38,7 +38,6 @@ import type { ITabListStyleKey } from '@/components/atoms/TabList';
 import type { ITypographyStyleKey } from '@/components/atoms/Typography';
 import type { IAnchoredStyleKey } from '@/components/utils/Anchored';
 import type { IStepperStyleKey } from '@/components/atoms/Stepper';
-import type { IStepStyleKey, IStepStyleVarKey } from '@/components/atoms/Step';
 import type {
   IStepConnectorStyleKey,
   IStepConnectorStyleVarKey,
@@ -124,12 +123,6 @@ export type ITheme = {
     };
     Stepper: {
       styles?: ICompiledStyles<IStepperStyleKey>;
-    };
-    Step: {
-      vars?: IStyleVarsTheme<IStepStyleVarKey>;
-      styles?: ICompiledStyles<IStepStyleKey>;
-      focusRingStyles?: ICompiledStyles<IFocusRingStyleKey>;
-      circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStylesKey>;
     };
     StepConnector: {
       vars?: IStyleVarsTheme<IStepConnectorStyleVarKey>;
