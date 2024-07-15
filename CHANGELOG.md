@@ -1,3 +1,19 @@
+# v0.0.320 (Mon Jul 15 2024)
+
+#### 🐛 Bug Fix
+
+- refactor: yarn -> pnpm [#35](https://github.com/sixui/sixui/pull/35) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### ⚠️ Pushed to `main`
+
+- fix: yarn -> pnpm ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.319 (Mon Jul 15 2024)
 
 #### ⚠️ Pushed to `main`
