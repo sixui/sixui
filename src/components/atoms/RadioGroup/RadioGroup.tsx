@@ -16,7 +16,7 @@ import {
   RADIO_GROUP_DEFAULT_TAG,
   type IRadioGroupOwnProps,
   type IRadioGroupProps,
-} from './RadioGroupProps';
+} from './RadioGroup.types';
 
 // https://github.com/mui/material-ui/blob/master/packages/mui-material/src/RadioGroup/RadioGroup.js
 // https://github.com/mui/material-ui/blob/master/packages/mui-material/src/RadioGroup/RadioGroup.d.ts

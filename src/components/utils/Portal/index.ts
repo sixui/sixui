@@ -1,2 +1,2 @@
-export * from './PortalProps';
+export * from './Portal.types';
 export * from './Portal';

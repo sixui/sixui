@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IVisualStateProps } from './VisualStateProps';
+import type { IVisualStateProps } from './VisualState.types';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { ButtonBase } from '@/components/atoms/ButtonBase';
 import { shapeVars } from '@/themes/base/vars/shape.stylex';

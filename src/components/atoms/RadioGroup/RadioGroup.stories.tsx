@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 import { useRef, useState } from 'react';
 
-import type { IRadioGroupOwnProps } from './RadioGroupProps';
+import type { IRadioGroupOwnProps } from './RadioGroup.types';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { Radio } from '@/components/atoms/Radio';

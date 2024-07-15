@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IVisualStateProps } from './VisualStateProps';
+import type { IVisualStateProps } from './VisualState.types';
 import {
   ComponentShowcase,
   type IComponentPresentation,

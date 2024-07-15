@@ -3,8 +3,8 @@ import { isFunction } from 'lodash';
 import stylex from '@stylexjs/stylex';
 import { CSSTransition } from 'react-transition-group';
 
+import type { IExpandableProps } from './Expandable.types';
 import type { ICssSizeValue, ISize } from '@/helpers/types';
-import type { IExpandableProps } from './ExpandableProps';
 import {
   ExpandableContext,
   type IExpandableContextValue,

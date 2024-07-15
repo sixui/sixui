@@ -6,7 +6,7 @@ import {
   faChevronCircleUp,
 } from '@fortawesome/free-solid-svg-icons';
 
-import type { IExpandableProps } from './ExpandableProps';
+import type { IExpandableProps } from './Expandable.types';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { IconButton } from '@/components/atoms/IconButton';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
