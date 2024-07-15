@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { isFunction } from 'lodash';
 
-import type { IStepperProps } from './StepperProps';
+import type { IStepperProps } from './Stepper.types';
 import { Step, type IStepProps } from '@/components/atoms/Step';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';

@@ -37,11 +37,6 @@ import type { ITabStyleKey, ITabStyleVarKey } from '@/components/atoms/Tab';
 import type { ITabListStyleKey } from '@/components/atoms/TabList';
 import type { ITypographyStyleKey } from '@/components/atoms/Typography';
 import type { IAnchoredStyleKey } from '@/components/utils/Anchored';
-import type { IStepperStyleKey } from '@/components/atoms/Stepper';
-import type {
-  IStepConnectorStyleKey,
-  IStepConnectorStyleVarKey,
-} from '@/components/atoms/StepConnector';
 import type {
   IElementWithLabelStyleKey,
   IElementWithLabelStyleVarKey,
@@ -120,13 +115,6 @@ export type ITheme = {
     };
     Anchored: {
       styles?: ICompiledStyles<IAnchoredStyleKey>;
-    };
-    Stepper: {
-      styles?: ICompiledStyles<IStepperStyleKey>;
-    };
-    StepConnector: {
-      vars?: IStyleVarsTheme<IStepConnectorStyleVarKey>;
-      styles?: ICompiledStyles<IStepConnectorStyleKey>;
     };
     ElementWithLabel: {
       vars?: IStyleVarsTheme<IElementWithLabelStyleVarKey>;

@@ -6,15 +6,15 @@ import {
   useMemo,
 } from 'react';
 
-import type { IStepperStyleKey } from './Stepper.styledefs';
-import type { IStepperProps } from './StepperProps';
+import type { IStepperProps } from './Stepper.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { Step, type IStepProps } from '@/components/atoms/Step';
 import { StepConnector } from '@/components/atoms/StepConnector';
 import { isElementLike } from '@/helpers/react/isElementLike';
 import { StepperContext, type IStepperContextValue } from './StepperContext';
+import { stepperStyles } from './Stepper.styles';
 
 const defaultConnector = <StepConnector />;
 
@@ -33,13 +33,13 @@ export const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
       ...other
     } = props;
 
-    const { theme } = useComponentThemeOld('Stepper');
+    const { overridenStyles } = useComponentTheme('Stepper');
     const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(theme.styles, styles),
-      [theme.styles, styles],
+      () => stylesCombinatorFactory(stepperStyles, styles),
+      [styles],
     );
     const sxf = useMemo(
-      () => stylePropsFactory<IStepperStyleKey>(stylesCombinator),
+      () => stylePropsFactory(stylesCombinator),
       [stylesCombinator],
     );
 
@@ -89,6 +89,7 @@ export const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
       <StepperContext.Provider value={contextValue}>
         <div
           {...sxf(
+            overridenStyles,
             'host',
             `host$${orientation}`,
             labelPosition === 'bottom' && 'host$labelBottom',
