@@ -88,7 +88,8 @@ export * from './hooks/useId';
 export * from './hooks/useLoaded';
 export * from './hooks/usePrevious';
 
+// helpers
 export * from './helpers/types';
 
 // themes
-export * from './themes/base/colorPalettes.types';
+export * from './themes/base';
