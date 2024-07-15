@@ -11,11 +11,13 @@ import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import type { IElevationStyleKey } from '@/components/utils/Elevation';
 import type { IVisualState } from '@/components/utils/VisualState';
 import type { IBadgeProps } from '@/components/atoms/Badge';
-import type { ITabStyleKey, ITabVariant } from './Tab.styledefs';
+import type { ITabStylesKey } from './Tab.styles';
 
 export const TAB_DEFAULT_TAG = 'button';
 
-export type ITabOwnProps = IContainerProps<ITabStyleKey> & {
+export type ITabVariant = 'primary' | 'secondary';
+
+export type ITabOwnProps = IContainerProps<ITabStylesKey> & {
   innerStyles?: {
     stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;
     focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStyleKey>>;

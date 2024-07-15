@@ -13,37 +13,31 @@ import type {
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
-import type { IThemeComponents } from '@/components/utils/Theme';
-import type {
-  ITabStyleKey,
-  ITabStyleVarKey,
-  ITabVariant,
-} from './Tab.styledefs';
 import { Badge } from '@/components/atoms/Badge';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useVisualState } from '@/components/utils/VisualState';
 import { Elevation } from '@/components/utils/Elevation';
 import { FocusRing } from '@/components/utils/FocusRing';
 import { StateLayer } from '@/components/utils/StateLayer';
 import { Anchored } from '@/components/utils/Anchored';
 import { TabContext } from '@/components/atoms/Tabs';
-import { TAB_DEFAULT_TAG, type ITabOwnProps, type ITabProps } from './TabProps';
+import {
+  TAB_DEFAULT_TAG,
+  type ITabOwnProps,
+  type ITabProps,
+} from './Tab.types';
+import { tabVariantStyles } from './variants';
+import {
+  tabElevationStyles,
+  tabFocusRingStyles,
+  tabStateLayerStyles,
+  tabStyles,
+} from './Tab.styles';
+import { tabTheme } from './Tab.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tabs/internal/tab.ts
-
-type ITabVariantMap = {
-  [key in ITabVariant]: keyof Pick<
-    IThemeComponents,
-    'PrimaryTab' | 'SecondaryTab'
-  >;
-};
-
-const variantMap: ITabVariantMap = {
-  primary: 'PrimaryTab',
-  secondary: 'SecondaryTab',
-};
 
 type ITab = <TRoot extends React.ElementType = typeof TAB_DEFAULT_TAG>(
   props: ITabProps<TRoot>,
@@ -83,20 +77,15 @@ export const Tab: ITab = forwardRef(function Tab<
   );
   const handleRef = useMergeRefs([forwardedRef, visualStateRef, actionRef]);
 
-  const { theme, variantTheme, settings } = useComponentThemeOld(
-    'Tab',
-    variant ? variantMap[variant] : undefined,
-  );
+  const { overridenStyles, settings } = useComponentTheme('Tab');
+  const variantStyles = variant ? tabVariantStyles[variant] : undefined;
+
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
-    [theme.styles, variantTheme?.styles, styles],
+    () => stylesCombinatorFactory(tabStyles, variantStyles, styles),
+    [variantStyles, styles],
   );
   const sxf = useMemo(
-    () =>
-      stylePropsFactory<ITabStyleKey, ITabStyleVarKey>(
-        stylesCombinator,
-        visualState,
-      ),
+    () => stylePropsFactory(stylesCombinator, visualState),
     [stylesCombinator, visualState],
   );
 
@@ -167,11 +156,11 @@ export const Tab: ITab = forwardRef(function Tab<
   return (
     <Component
       {...sxf(
+        tabTheme,
+        overridenStyles,
         'host',
         active && 'host$active',
         disabled && 'host$disabled',
-        theme.vars,
-        variantTheme?.vars,
         sx,
       )}
       sx={sx}
@@ -184,30 +173,18 @@ export const Tab: ITab = forwardRef(function Tab<
       {...other}
     >
       <Elevation
-        styles={[
-          theme.elevationStyles,
-          variantTheme?.elevationStyles,
-          ...asArray(innerStyles?.elevation),
-        ]}
+        styles={[tabElevationStyles, ...asArray(innerStyles?.elevation)]}
         disabled={disabled}
       />
       <div {...sxf('background', disabled && 'background$disabled')} />
       <StateLayer
-        styles={[
-          theme.stateLayerStyles,
-          variantTheme?.stateLayerStyles,
-          ...asArray(innerStyles?.stateLayer),
-        ]}
+        styles={[tabStateLayerStyles, ...asArray(innerStyles?.stateLayer)]}
         for={actionRef}
         disabled={disabled}
         visualState={visualState}
       />
       <FocusRing
-        styles={[
-          theme.focusRingStyles,
-          variantTheme?.focusRingStyles,
-          ...asArray(innerStyles?.focusRing),
-        ]}
+        styles={[tabFocusRingStyles, ...asArray(innerStyles?.focusRing)]}
         for={actionRef}
         visualState={visualState}
       />

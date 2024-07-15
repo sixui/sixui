@@ -5,16 +5,16 @@ import type {
   IAny,
   IMaybeAsync,
 } from '@/helpers/types';
-import type { ISwitchStyleKey } from './Switch.styledefs';
 import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
 import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
 import type { ICircularProgressIndicatorStylesKey } from '@/components/atoms/CircularProgressIndicator';
 import type { IVisualState } from '@/components/utils/VisualState';
 import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
+import type { ISwitchStylesKey } from './Switch.styles';
 
 export const SWITCH_DEFAULT_TAG = 'input';
 
-export type ISwitchOwnProps = IContainerProps<ISwitchStyleKey> &
+export type ISwitchOwnProps = IContainerProps<ISwitchStylesKey> &
   Pick<React.AriaAttributes, 'aria-label'> & {
     innerStyles?: {
       stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStyleKey>>;

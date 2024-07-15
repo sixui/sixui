@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { delay } from '@olivierpascal/helpers';
 
-import type { ISwitchOwnProps } from './SwitchProps';
+import type { ISwitchOwnProps } from './Switch.types';
 import type { IOmit } from '@/helpers/types';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {
@@ -100,7 +100,7 @@ export const Controlled: IStory = {
   args: defaultArgs,
 };
 
-export const Variants: IStory = {
+export const Configurations: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={Switch}
@@ -108,7 +108,7 @@ export const Variants: IStory = {
       cols={states}
       rows={[
         { legend: 'Unselected' },
-        { legend: 'Selected', props: { defaultValue: true } },
+        { legend: 'Selected', props: { defaultChecked: true } },
       ]}
       groups={[
         {

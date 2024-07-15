@@ -1,29 +1,29 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { ITabListStyleKey } from './TabList.styledefs';
-import type { ITabListProps } from './TabListProps';
+import type { ITabListProps } from './TabList.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
-import { Divider } from '../Divider';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { Divider } from '@/components/atoms/Divider';
+import { tabListStyles } from './TabList.styles';
 
 export const TabList = forwardRef<HTMLInputElement, ITabListProps>(
   function TabList(props, forwardedRef) {
     const { styles, sx, children, fullWidth, ...other } = props;
 
-    const { theme } = useComponentThemeOld('TabList');
+    const { overridenStyles } = useComponentTheme('TabList');
     const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(theme.styles, styles),
-      [theme.styles, styles],
+      () => stylesCombinatorFactory(tabListStyles, styles),
+      [styles],
     );
     const sxf = useMemo(
-      () => stylePropsFactory<ITabListStyleKey>(stylesCombinator),
+      () => stylePropsFactory(stylesCombinator),
       [stylesCombinator],
     );
 
     return (
       <div
-        {...sxf('host', sx)}
+        {...sxf(overridenStyles, 'host', sx)}
         role='tablist'
         aria-orientation='horizontal'
         ref={forwardedRef}

@@ -1,9 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IStyleVars } from '@/helpers/types';
-import type { ISwitchStyleStateVarKey } from '@/components/atoms/Switch';
-
-const vars: IStyleVars<ISwitchStyleStateVarKey> = {
+const vars = {
   trackColor: 'unset',
   stateLayerColor$hover: 'unset',
   stateLayerOpacity$hover: 'unset',
@@ -13,4 +10,4 @@ const vars: IStyleVars<ISwitchStyleStateVarKey> = {
   iconColor: 'unset',
 };
 
-export const componentVars = stylex.defineVars(vars);
+export const switchStateTokens = stylex.defineVars(vars);

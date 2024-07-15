@@ -1,3 +1,3 @@
-export * from './Tab.styledefs';
-export * from './TabProps';
+export * from './Tab.types';
+export * from './Tab.styles';
 export * from './Tab';

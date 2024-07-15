@@ -20,31 +20,10 @@ import { styles as focusRingStyles } from './FocusRing/FocusRing.styles';
 import { componentTheme as focusRingTheme } from './FocusRing/FocusRing.stylex';
 
 import {
-  styles as switchStyles,
-  stateLayerStyles as switchStateLayerStyles,
-  focusRingStyles as switchFocusRingStyles,
-  circularProgressIndicatorStyles as switchCircularProgressIndicatorStyles,
-} from './Switch/Switch.styles';
-import { componentTheme as switchTheme } from './Switch/Switch.stylex';
-
-import {
   styles as textFieldBaseStyles,
   fieldStyles as textFieldBaseFieldStyles,
 } from './TextFieldBase/TextFieldBase.styles';
 import { componentTheme as textFieldTheme } from './TextFieldBase/TextFieldBase.stylex';
-
-import { componentTheme as tabTheme } from './Tab/Tab.stylex';
-import {
-  styles as tabStyles,
-  stateLayerStyles as tabStateLayerStyles,
-  elevationStyles as tabElevationStyles,
-  focusRingStyles as tabFocusRingStyles,
-} from './Tab/Tab.styles';
-import { componentTheme as primaryTabTheme } from './Tab/PrimaryTab.stylex';
-import { styles as primaryTabStyles } from './Tab/PrimaryTab.styles';
-import { componentTheme as secondaryTabTheme } from './Tab/SecondaryTab.stylex';
-
-import { styles as tabListStyles } from './TabList/TabList.styles';
 
 import { styles as typographyStyles } from './Typography/Typography.styles';
 
@@ -86,13 +65,6 @@ export const theme: ITheme = {
       vars: focusRingTheme,
       styles: focusRingStyles,
     },
-    Switch: {
-      vars: switchTheme,
-      styles: switchStyles,
-      stateLayerStyles: switchStateLayerStyles,
-      focusRingStyles: switchFocusRingStyles,
-      circularProgressIndicatorStyles: switchCircularProgressIndicatorStyles,
-    },
     TextFieldBase: {
       vars: textFieldTheme,
       styles: textFieldBaseStyles,
@@ -100,18 +72,6 @@ export const theme: ITheme = {
     },
     FilledTextField: {},
     OutlinedTextField: {},
-    Tab: {
-      vars: tabTheme,
-      styles: tabStyles,
-      stateLayerStyles: tabStateLayerStyles,
-      focusRingStyles: tabFocusRingStyles,
-      elevationStyles: tabElevationStyles,
-    },
-    PrimaryTab: { vars: primaryTabTheme, styles: primaryTabStyles },
-    SecondaryTab: { vars: secondaryTabTheme },
-    TabList: {
-      styles: tabListStyles,
-    },
     Typography: {
       styles: typographyStyles,
     },

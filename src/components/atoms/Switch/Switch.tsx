@@ -6,10 +6,9 @@ import type {
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
-import type { ISwitchStyleKey, ISwitchStyleVarKey } from './Switch.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useVisualState } from '@/components/utils/VisualState';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { FocusRing } from '@/components/utils/FocusRing';
@@ -22,7 +21,14 @@ import {
   SWITCH_DEFAULT_TAG,
   type ISwitchOwnProps,
   type ISwitchProps,
-} from './SwitchProps';
+} from './Switch.types';
+import { switchTheme } from './Switch.stylex';
+import {
+  switchCircularProgressIndicatorStyles,
+  switchFocusRingStyles,
+  switchStateLayerStyles,
+  switchStyles,
+} from './Switch.styles';
 
 // https://github.com/material-components/material-web/blob/main/switch/internal/switch.ts
 
@@ -66,17 +72,13 @@ export const Switch: ISwitch = forwardRef(function Switch<
   );
   const handleRef = useMergeRefs([forwardedRef, setVisualStateRef, actionRef]);
 
-  const { theme } = useComponentThemeOld('Switch');
+  const { overridenStyles } = useComponentTheme('Switch');
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, styles),
-    [theme.styles, styles],
+    () => stylesCombinatorFactory(switchStyles, styles),
+    [styles],
   );
   const sxf = useMemo(
-    () =>
-      stylePropsFactory<ISwitchStyleKey, ISwitchStyleVarKey>(
-        stylesCombinator,
-        visualState,
-      ),
+    () => stylePropsFactory(stylesCombinator, visualState),
     [stylesCombinator, visualState],
   );
 
@@ -110,7 +112,15 @@ export const Switch: ISwitch = forwardRef(function Switch<
   const shouldShowIcons = hasIcons || showOnlySelectedIcon;
 
   return (
-    <div {...sxf('host', disabled && 'host$disabled', theme.vars, sx)}>
+    <div
+      {...sxf(
+        switchTheme,
+        overridenStyles,
+        'host',
+        disabled && 'host$disabled',
+        sx,
+      )}
+    >
       <div {...sxf('switch', checked && 'switch$selected')}>
         <Component
           {...sxf('input')}
@@ -125,7 +135,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
           {...other}
         />
         <FocusRing
-          styles={[theme.focusRingStyles, ...asArray(innerStyles?.focusRing)]}
+          styles={[switchFocusRingStyles, ...asArray(innerStyles?.focusRing)]}
           for={actionRef}
           visualState={visualState}
         />
@@ -152,7 +162,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
           >
             <StateLayer
               styles={[
-                theme.stateLayerStyles,
+                switchStateLayerStyles,
                 ...asArray(innerStyles?.stateLayer),
               ]}
               for={actionRef}
@@ -196,7 +206,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
                     {loading ? (
                       <IndeterminateCircularProgressIndicator
                         styles={[
-                          theme.circularProgressIndicatorStyles,
+                          switchCircularProgressIndicatorStyles,
                           ...asArray(innerStyles?.circularProgressIndicator),
                         ]}
                       />
@@ -220,7 +230,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
                       {loading ? (
                         <IndeterminateCircularProgressIndicator
                           styles={[
-                            theme.circularProgressIndicatorStyles,
+                            switchCircularProgressIndicatorStyles,
                             ...asArray(innerStyles?.circularProgressIndicator),
                           ]}
                         />

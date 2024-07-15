@@ -1,3 +1,3 @@
-export * from './Switch.styledefs';
-export * from './SwitchProps';
+export * from './Switch.types';
+export * from './Switch.styles';
 export * from './Switch';

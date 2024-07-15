@@ -1,3 +1,3 @@
-export * from './TabList.styledefs';
-export * from './TabListProps';
+export * from './TabList.types';
+export * from './TabList.styles';
 export * from './TabList';

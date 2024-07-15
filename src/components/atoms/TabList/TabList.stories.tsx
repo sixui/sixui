@@ -11,7 +11,7 @@ import {
   faBookmark,
 } from '@fortawesome/free-regular-svg-icons';
 
-import type { ITabListProps } from './TabListProps';
+import type { ITabListProps } from './TabList.types';
 import {
   type IComponentPresentation,
   ComponentShowcase,

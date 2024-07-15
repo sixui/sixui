@@ -1,8 +1,8 @@
 import type { IContainerProps } from '@/helpers/types';
-import type { ITabListStyleKey } from './TabList.styledefs';
+import type { ITabListStylesKey } from './TabList.styles';
 
 export type ITabListProps = Pick<React.AriaAttributes, 'aria-label'> &
-  IContainerProps<ITabListStyleKey> & {
+  IContainerProps<ITabListStylesKey> & {
     children?: React.ReactNode;
     fullWidth?: boolean;
   };

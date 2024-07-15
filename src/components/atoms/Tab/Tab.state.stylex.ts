@@ -1,9 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IStyleVars } from '@/helpers/types';
-import type { ITabStyleStateVarKey } from '@/components/atoms/Tab';
-
-const vars: IStyleVars<ITabStyleStateVarKey> = {
+const vars = {
   elevation: 'unset',
 
   // stateLayer
@@ -17,4 +14,4 @@ const vars: IStyleVars<ITabStyleStateVarKey> = {
   stateLayerOpacity$pressed: 'unset',
 };
 
-export const componentVars = stylex.defineVars(vars);
+export const tabStateTokens = stylex.defineVars(vars);

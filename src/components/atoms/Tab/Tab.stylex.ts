@@ -1,26 +1,27 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IStyleVars } from '@/helpers/types';
-import type { ITabStyleVarKey } from '@/components/atoms/Tab';
-import { componentVars as elevationVars } from '../Elevation/Elevation.stylex';
-import { colorRolesVars } from '../vars/colorRoles.stylex';
-import { shapeVars } from '../vars/shape.stylex';
-import { stateVars } from '../vars/state.stylex';
-import { typescaleVars } from '../vars/typo.stylex';
+import { componentVars as elevationVars } from '@/themes/base/Elevation/Elevation.stylex';
+import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { stateVars } from '@/themes/base/vars/state.stylex';
+import { typescaleVars } from '@/themes/base/vars/typo.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-primary-tab.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-primary-navigation-tab.scss
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-secondary-tab.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-secondary-navigation-tab.scss
 
-const vars: Partial<IStyleVars<ITabStyleVarKey>> = {
+const vars = {
   // activeIndicator
+  activeIndicatorShape: 'unset',
+  activeIndicatorHeight: 'unset',
   activeIndicatorColor: colorRolesVars.primary,
 
-  // containerColor
+  // container
   containerColor: colorRolesVars.surface,
   containerElevation: elevationVars.boxShadow$level0,
   containerHeight: '48px',
+  containerHeight$withIconAndLabelText: 'unset',
   containerShape: shapeVars.corner$none,
   // &:disabled
   containerElevation$disabled: elevationVars.boxShadow$level0,
@@ -35,6 +36,14 @@ const vars: Partial<IStyleVars<ITabStyleVarKey>> = {
   stateLayerColor$pressed: colorRolesVars.primary,
   stateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
 
+  // activeStateLayer
+  // &:hover
+  activeStateLayerColor$hover: 'unset',
+  activeStateLayerOpacity$hover: stateVars.stateLayerOpacity$hover,
+  // &:pressed
+  activeStateLayerColor$pressed: 'unset',
+  activeStateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
+
   // icon
   iconColor: colorRolesVars.onSurfaceVariant,
   // &:disabled
@@ -46,6 +55,15 @@ const vars: Partial<IStyleVars<ITabStyleVarKey>> = {
   iconColor$hover: colorRolesVars.onSurface,
   // &:pressed
   iconColor$pressed: colorRolesVars.onSurface,
+
+  // actionIcon
+  activeIconColor: 'inherit',
+  // &:focus
+  activeIconColor$focus: 'inherit',
+  // &:hover
+  activeIconColor$hover: 'inherit',
+  // &:pressed
+  activeIconColor$pressed: 'inherit',
 
   // labelText
   labelTextColor: colorRolesVars.onSurfaceVariant,
@@ -64,13 +82,20 @@ const vars: Partial<IStyleVars<ITabStyleVarKey>> = {
   // &:pressed
   labelTextColor$pressed: colorRolesVars.onSurface,
 
+  // activeLabelText
+  activeLabelTextColor: 'inherit',
+  // &:focus
+  activeLabelTextColor$focus: 'inherit',
+  // &:hover
+  activeLabelTextColor$hover: 'inherit',
+  // &:pressed
+  activeLabelTextColor$pressed: 'inherit',
+
   // icon
   iconSize: '18px',
 };
 
-export const componentVars = stylex.defineVars(
-  vars as IStyleVars<ITabStyleVarKey>,
-);
+export const tabTokens = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that
@@ -78,4 +103,4 @@ export const componentVars = stylex.defineVars(
  *
  * @see https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
  */
-export const componentTheme = stylex.createTheme(componentVars, vars);
+export const tabTheme = stylex.createTheme(tabTokens, vars);
