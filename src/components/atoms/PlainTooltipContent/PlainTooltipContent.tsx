@@ -1,13 +1,11 @@
 import { forwardRef, useMemo } from 'react';
 
-import type {
-  IPlainTooltipContentStyleKey,
-  IPlainTooltipContentStyleVarKey,
-} from './PlainTooltipContent.styledefs';
-import type { IPlainTooltipContentProps } from './PlainTooltipContentProps';
+import type { IPlainTooltipContentProps } from './PlainTooltipContent.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { plainTooltipContentStyles } from './PlainTooltipContent.styles';
+import { plainTooltipContentTheme } from './PlainTooltipContent.stylex';
 
 export const PlainTooltipContent = forwardRef<
   HTMLDivElement,
@@ -15,22 +13,22 @@ export const PlainTooltipContent = forwardRef<
 >(function PlainTooltipContent(props, forwardedRef) {
   const { styles, sx, supportingText, renderCursor, ...other } = props;
 
-  const { theme } = useComponentThemeOld('PlainTooltipContent');
+  const { overridenStyles } = useComponentTheme('PlainTooltipContent');
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, styles),
-    [theme.styles, styles],
+    () => stylesCombinatorFactory(plainTooltipContentStyles, styles),
+    [styles],
   );
   const sxf = useMemo(
-    () =>
-      stylePropsFactory<
-        IPlainTooltipContentStyleKey,
-        IPlainTooltipContentStyleVarKey
-      >(stylesCombinator),
+    () => stylePropsFactory(stylesCombinator),
     [stylesCombinator],
   );
 
   return (
-    <div {...sxf('host', theme.vars, sx)} ref={forwardedRef} {...other}>
+    <div
+      {...sxf(plainTooltipContentTheme, overridenStyles, 'host', sx)}
+      ref={forwardedRef}
+      {...other}
+    >
       {renderCursor ? renderCursor(sxf('cursor')) : null}
       <div {...sxf('supportingText')}>{supportingText}</div>
     </div>

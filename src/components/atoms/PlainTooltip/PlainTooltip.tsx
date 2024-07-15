@@ -7,7 +7,7 @@ import {
 import type {
   IPlainTooltipForwardedProps,
   IPlainTooltipProps,
-} from './PlainTooltipProps';
+} from './PlainTooltip.types';
 import { PlainTooltipContent } from '@/components/atoms/PlainTooltipContent';
 
 export const PlainTooltip = forwardRef<HTMLDivElement, IPlainTooltipProps>(

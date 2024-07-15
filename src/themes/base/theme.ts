@@ -10,9 +10,6 @@ import { styles as variantTemplateStyles } from './Template/VariantTemplate.styl
 import { componentTheme as componentShowcaseTheme } from './ComponentShowcase/ComponentShowcase.stylex';
 import { styles as componentShowcaseStyles } from './ComponentShowcase/ComponentShowcase.styles';
 
-import { styles as placeholderStyles } from './Placeholder/Placeholder.styles';
-import { componentTheme as placeholderTheme } from './Placeholder/Placeholder.stylex';
-
 import { styles as stateLayerStyles } from './StateLayer/StateLayer.styles';
 import { componentTheme as statelayerTheme } from './StateLayer/StateLayer.stylex';
 
@@ -90,9 +87,6 @@ import {
   elevationStyles as snackbarContentElevationStyles,
 } from './SnackbarContent/SnackbarContent.styles';
 
-import { componentTheme as plainTooltipContentTheme } from './PlainTooltipContent/PlainTooltipContent.stylex';
-import { styles as plainTooltipContentStyles } from './PlainTooltipContent/PlainTooltipContent.styles';
-
 import { componentTheme as richTooltipContentTheme } from './RichTooltipContent/RichTooltipContent.stylex';
 import {
   styles as richTooltipContentStyles,
@@ -119,10 +113,6 @@ export const theme: ITheme = {
     ComponentShowcase: {
       vars: componentShowcaseTheme,
       styles: componentShowcaseStyles,
-    },
-    Placeholder: {
-      vars: placeholderTheme,
-      styles: placeholderStyles,
     },
     StateLayer: {
       vars: statelayerTheme,
@@ -207,10 +197,6 @@ export const theme: ITheme = {
       vars: snackbarContentTheme,
       styles: snackbarContentStyles,
       elevationStyles: snackbarContentElevationStyles,
-    },
-    PlainTooltipContent: {
-      vars: plainTooltipContentTheme,
-      styles: plainTooltipContentStyles,
     },
     RichTooltipContent: {
       vars: richTooltipContentTheme,

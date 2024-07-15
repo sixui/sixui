@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IPlainTooltipContentProps } from './PlainTooltipContentProps';
+import type { IPlainTooltipContentProps } from './PlainTooltipContent.types';
 import { PlainTooltipContent } from './PlainTooltipContent';
 
 // https://m3.material.io/components/plaintooltips/overview

@@ -13,10 +13,6 @@ import type {
   IComponentShowcaseStyleVarKey,
 } from '@/components/utils/ComponentShowcase';
 import type {
-  IPlaceholderStyleKey,
-  IPlaceholderStyleVarKey,
-} from '@/components/atoms/Placeholder';
-import type {
   IStateLayerStyleKey,
   IStateLayerStyleVarKey,
 } from '@/components/utils/StateLayer';
@@ -72,10 +68,6 @@ import type {
   ISnackbarContentStyleVarKey,
 } from '@/components/atoms/SnackbarContent';
 import type {
-  IPlainTooltipContentStyleKey,
-  IPlainTooltipContentStyleVarKey,
-} from '@/components/atoms/PlainTooltipContent';
-import type {
   IRichTooltipContentStyleKey,
   IRichTooltipContentStyleVarKey,
 } from '@/components/atoms/RichTooltipContent';
@@ -120,10 +112,6 @@ export type ITheme = {
     ComponentShowcase: {
       vars: IStyleVarsTheme<IComponentShowcaseStyleVarKey>;
       styles: ICompiledStyles<IComponentShowcaseStyleKey>;
-    };
-    Placeholder: {
-      vars: IStyleVarsTheme<IPlaceholderStyleVarKey>;
-      styles: ICompiledStyles<IPlaceholderStyleKey>;
     };
     StateLayer: {
       vars: IStyleVarsTheme<IStateLayerStyleVarKey>;
@@ -200,10 +188,6 @@ export type ITheme = {
       styles?: ICompiledStyles<ISnackbarContentStyleKey>;
       elevationStyles?: ICompiledStyles<IElevationStyleKey>;
       actionButtonStyles?: ICompiledStyles<IButtonStylesKey>;
-    };
-    PlainTooltipContent: {
-      vars?: IStyleVarsTheme<IPlainTooltipContentStyleVarKey>;
-      styles?: ICompiledStyles<IPlainTooltipContentStyleKey>;
     };
     RichTooltipContent: {
       vars?: IStyleVarsTheme<IRichTooltipContentStyleVarKey>;
