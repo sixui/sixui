@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
-import type { ITextFieldBaseProps } from './TextFieldBaseProps';
+import type { ITextFieldBaseProps } from './TextFieldBase.types';
 import type { IFieldBaseVariant } from '@/components/atoms/FieldBase';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import {

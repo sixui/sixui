@@ -14,12 +14,6 @@ import { componentTheme as elevationTheme } from './Elevation/Elevation.stylex';
 import { styles as focusRingStyles } from './FocusRing/FocusRing.styles';
 import { componentTheme as focusRingTheme } from './FocusRing/FocusRing.stylex';
 
-import {
-  styles as textFieldBaseStyles,
-  fieldStyles as textFieldBaseFieldStyles,
-} from './TextFieldBase/TextFieldBase.styles';
-import { componentTheme as textFieldTheme } from './TextFieldBase/TextFieldBase.stylex';
-
 import { styles as typographyStyles } from './Typography/Typography.styles';
 
 import { styles as anchoredStyles } from './Anchored/Anchored.styles';
@@ -52,13 +46,6 @@ export const theme: ITheme = {
       vars: focusRingTheme,
       styles: focusRingStyles,
     },
-    TextFieldBase: {
-      vars: textFieldTheme,
-      styles: textFieldBaseStyles,
-      fieldStyles: textFieldBaseFieldStyles,
-    },
-    FilledTextField: {},
-    OutlinedTextField: {},
     Typography: {
       styles: typographyStyles,
     },

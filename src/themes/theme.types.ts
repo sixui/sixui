@@ -16,23 +16,12 @@ import type {
   IFocusRingStyleKey,
   IFocusRingStyleVarKey,
 } from '@/components/utils/FocusRing';
-import type { IFieldBaseStylesKey } from '@/components/atoms/FieldBase';
-import type {
-  ITextFieldBaseStyleKey,
-  ITextFieldBaseStyleVarKey,
-} from '@/components/atoms/TextFieldBase';
 import type { ITypographyStyleKey } from '@/components/atoms/Typography';
 import type { IAnchoredStyleKey } from '@/components/utils/Anchored';
 import type {
   IElementWithLabelStyleKey,
   IElementWithLabelStyleVarKey,
 } from '@/components/molecules/ElementWithLabel';
-
-export type ITextFieldBaseTheme = {
-  vars?: IStyleVarsTheme<ITextFieldBaseStyleVarKey>;
-  styles?: ICompiledStyles<ITextFieldBaseStyleKey>;
-  fieldStyles?: ICompiledStyles<IFieldBaseStylesKey>;
-};
 
 export type ITheme = {
   name: string;
@@ -59,9 +48,6 @@ export type ITheme = {
       vars: IStyleVarsTheme<IFocusRingStyleVarKey>;
       styles: ICompiledStyles<IFocusRingStyleKey>;
     };
-    TextFieldBase: ITextFieldBaseTheme;
-    FilledTextField: ITextFieldBaseTheme;
-    OutlinedTextField: ITextFieldBaseTheme;
     Typography: {
       styles?: ICompiledStyles<ITypographyStyleKey>;
     };

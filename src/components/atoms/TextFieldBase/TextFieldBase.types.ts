@@ -8,7 +8,7 @@ import type {
   IFieldBaseOwnProps,
   IFieldBaseStylesKey,
 } from '@/components/atoms/FieldBase';
-import type { ITextFieldBaseStyleKey } from './TextFieldBase.styledefs';
+import type { ITextFieldBaseStylesKey } from './TextFieldBase.styles';
 import type { IStyleProps } from '@/helpers/stylePropsFactory';
 import type { IControlledValueProps } from '@/hooks/useControlledValue';
 import type {
@@ -32,7 +32,8 @@ export type ITextFieldBaseRenderProps<
   TElement extends HTMLElement,
   TChildrenProps extends object,
 > = {
-  sxf: IStyleProps<ITextFieldBaseStyleKey, never>;
+  // FIXME: refactor (remove never)
+  sxf: IStyleProps<ITextFieldBaseStylesKey, never>;
   ref: React.RefObject<TElement> | React.RefCallback<TElement> | null;
   modifiers: ITextFieldBaseModifiers;
   onValueChange: ITextFieldBaseOwnProps<
@@ -80,7 +81,7 @@ export type ITextFieldBaseOwnProps<
 };
 
 type ITextFieldBaseInheritedProps<TChildrenProps extends object> =
-  IContainerProps<ITextFieldBaseStyleKey> &
+  IContainerProps<ITextFieldBaseStylesKey> &
     IForwardableProps &
     IOmit<IFieldBaseOwnProps, 'styles' | 'children'> &
     TChildrenProps;

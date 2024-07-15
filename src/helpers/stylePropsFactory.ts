@@ -19,6 +19,7 @@ type IStyles<TStyleVarKey extends string> =
   | false
   | undefined;
 
+// FIXME: refactor types
 export type IStyleProps<
   TStyleKey extends string,
   TStyleVarKey extends string,

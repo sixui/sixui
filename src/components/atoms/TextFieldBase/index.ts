@@ -1,3 +1,3 @@
-export * from './TextFieldBase.styledefs';
-export * from './TextFieldBaseProps';
+export * from './TextFieldBase.types';
+export * from './TextFieldBase.styles';
 export * from './TextFieldBase';

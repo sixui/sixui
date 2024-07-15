@@ -3,36 +3,23 @@ import { asArray } from '@olivierpascal/helpers';
 import { isFunction } from 'lodash';
 import { useMergeRefs } from '@floating-ui/react';
 
-import type { ITextFieldBaseProps } from './TextFieldBaseProps';
-import type { IThemeComponents } from '@/components/utils/Theme';
-import type { ITextFieldBaseStyleKey } from './TextFieldBase.styledefs';
-import {
-  FieldBase,
-  type IFieldBaseStylesKey,
-  type IFieldBaseVariant,
-} from '../FieldBase';
+import type { ITextFieldBaseProps } from './TextFieldBase.types';
+import { FieldBase } from '@/components/atoms/FieldBase';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useVisualState } from '@/components/utils/VisualState';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { IconButton } from '@/components/atoms/IconButton';
 import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
 import { fixedForwardRef } from '@/helpers/fixedForwardRef';
+import {
+  textFieldBaseFieldStyles,
+  textFieldBaseStyles,
+} from './TextFieldBase.styles';
+import { textFieldBaseTheme } from './TextFieldBase.stylex';
 
 // https://github.com/material-components/material-web/blob/main/textfield/internal/text-field.ts
-
-type ITextFieldBaseVariantMap = {
-  [key in IFieldBaseVariant]: keyof Pick<
-    IThemeComponents,
-    'FilledTextField' | 'OutlinedTextField'
-  >;
-};
-
-const variantMap: ITextFieldBaseVariantMap = {
-  filled: 'FilledTextField',
-  outlined: 'OutlinedTextField',
-};
 
 export const TextFieldBase = fixedForwardRef(function TextField<
   TElement extends HTMLElement = HTMLElement,
@@ -75,20 +62,13 @@ export const TextFieldBase = fixedForwardRef(function TextField<
     setInputVisualStateRef,
   ]);
 
-  const { theme, variantTheme } = useComponentThemeOld(
-    'TextFieldBase',
-    variant ? variantMap[variant] : undefined,
-  );
+  const { overridenStyles } = useComponentTheme('TextFieldBase');
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, variantTheme?.styles, styles),
-    [theme.styles, variantTheme?.styles, styles],
+    () => stylesCombinatorFactory(textFieldBaseStyles, styles),
+    [styles],
   );
   const sxf = useMemo(
-    () =>
-      stylePropsFactory<ITextFieldBaseStyleKey, IFieldBaseStylesKey>(
-        stylesCombinator,
-        visualState,
-      ),
+    () => stylePropsFactory(stylesCombinator, visualState),
     [stylesCombinator, visualState],
   );
 
@@ -123,7 +103,7 @@ export const TextFieldBase = fixedForwardRef(function TextField<
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
     <div
-      {...sxf('host', theme.vars, variantTheme?.vars, sx)}
+      {...sxf(textFieldBaseTheme, overridenStyles, 'host', sx)}
       onClick={(event) => {
         const isSelf = event.target === inputRef.current;
         if (!isSelf) {
@@ -143,11 +123,7 @@ export const TextFieldBase = fixedForwardRef(function TextField<
     >
       <span {...sxf('textField')}>
         <FieldBase
-          styles={[
-            theme.fieldStyles,
-            variantTheme?.fieldStyles,
-            ...asArray(innerStyles?.field),
-          ]}
+          styles={[textFieldBaseFieldStyles, ...asArray(innerStyles?.field)]}
           variant={variant}
           count={value?.toString().length}
           disabled={disabled}

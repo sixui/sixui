@@ -1,3 +1,5 @@
+// FIXME: refactor
+
 import type {
   CompiledStyles,
   InlineStyles,

@@ -1,3 +1,3 @@
-export * from './VariableTemplate.styledefs';
-export * from './VariableTemplateProps';
+export * from './VariableTemplate.types';
+export * from './VariableTemplate.styles';
 export * from './VariableTemplate';
