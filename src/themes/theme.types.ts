@@ -33,10 +33,6 @@ import type {
   ITextFieldBaseStyleKey,
   ITextFieldBaseStyleVarKey,
 } from '@/components/atoms/TextFieldBase';
-import type {
-  IRadioStyleKey,
-  IRadioStyleVarKey,
-} from '@/components/atoms/Radio';
 import type { ITabStyleKey, ITabStyleVarKey } from '@/components/atoms/Tab';
 import type { ITabListStyleKey } from '@/components/atoms/TabList';
 import type { ITypographyStyleKey } from '@/components/atoms/Typography';
@@ -135,13 +131,6 @@ export type ITheme = {
     TextFieldBase: ITextFieldBaseTheme;
     FilledTextField: ITextFieldBaseTheme;
     OutlinedTextField: ITextFieldBaseTheme;
-    Radio: {
-      vars?: IStyleVarsTheme<IRadioStyleVarKey>;
-      styles?: ICompiledStyles<IRadioStyleKey>;
-      stateLayerStyles: ICompiledStyles<IStateLayerStyleKey>;
-      focusRingStyles: ICompiledStyles<IFocusRingStyleKey>;
-      circularProgressIndicatorStyles?: ICompiledStyles<ICircularProgressIndicatorStylesKey>;
-    };
     Tab: ITabTheme;
     PrimaryTab: ITabTheme;
     SecondaryTab: ITabTheme;

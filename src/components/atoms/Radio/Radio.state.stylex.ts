@@ -1,9 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IStyleVars } from '@/helpers/types';
-import type { IRadioStyleStateVarKey } from '@/components/atoms/Radio';
-
-const vars: IStyleVars<IRadioStyleStateVarKey> = {
+const vars = {
   // stateLayer
   // &:hover
   stateLayerColor$hover: 'unset',
@@ -13,4 +10,4 @@ const vars: IStyleVars<IRadioStyleStateVarKey> = {
   stateLayerOpacity$pressed: 'unset',
 };
 
-export const componentVars = stylex.defineVars(vars);
+export const radioStateTokens = stylex.defineVars(vars);

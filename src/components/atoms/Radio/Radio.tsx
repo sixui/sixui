@@ -6,10 +6,9 @@ import type {
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
-import type { IRadioStyleKey, IRadioStyleVarKey } from './Radio.styledefs';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useId } from '@/hooks/useId';
 import { useVisualState } from '@/components/utils/VisualState';
 import { StateLayer } from '@/components/utils/StateLayer';
@@ -20,7 +19,13 @@ import {
   RADIO_DEFAULT_TAG,
   type IRadioProps,
   type IRadioOwnProps,
-} from './RadioProps';
+} from './Radio.types';
+import {
+  radioFocusRingStyles,
+  radioStateLayerStyles,
+  radioStyles,
+} from './Radio.styles';
+import { radioTheme } from './Radio.stylex';
 
 // https://github.com/material-components/material-web/blob/main/radio/internal/radio.ts
 
@@ -61,17 +66,13 @@ export const Radio: IRadio = forwardRef(function Radio<
   );
   const handleRef = useMergeRefs([forwardedRef, setVisualStateRef, actionRef]);
 
-  const { theme } = useComponentThemeOld('Radio');
+  const { overridenStyles } = useComponentTheme('Radio');
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, styles),
-    [theme.styles, styles],
+    () => stylesCombinatorFactory(radioStyles, styles),
+    [styles],
   );
   const sxf = useMemo(
-    () =>
-      stylePropsFactory<IRadioStyleKey, IRadioStyleVarKey>(
-        stylesCombinator,
-        visualState,
-      ),
+    () => stylePropsFactory(stylesCombinator, visualState),
     [stylesCombinator, visualState],
   );
 
@@ -97,14 +98,19 @@ export const Radio: IRadio = forwardRef(function Radio<
     ? radioGroupContext.value !== undefined && radioGroupContext.value === value
     : checkedProp;
   return (
-    <div {...sxf('host', disabled && 'host$disabled', theme.vars, sx)}>
+    <div
+      {...sxf(
+        radioTheme,
+        overridenStyles,
+        'host',
+        disabled && 'host$disabled',
+        sx,
+      )}
+    >
       <div {...sxf('container', checked && 'container$checked')}>
         {loading ? (
           <IndeterminateCircularProgressIndicator
-            styles={[
-              theme.circularProgressIndicatorStyles,
-              ...asArray(innerStyles?.circularProgressIndicator),
-            ]}
+            styles={innerStyles?.circularProgressIndicator}
             disabled
           />
         ) : (
@@ -112,7 +118,7 @@ export const Radio: IRadio = forwardRef(function Radio<
             <StateLayer
               for={actionRef}
               styles={[
-                theme.stateLayerStyles,
+                radioStateLayerStyles,
                 ...asArray(innerStyles?.stateLayer),
               ]}
               disabled={disabled}
@@ -121,7 +127,7 @@ export const Radio: IRadio = forwardRef(function Radio<
             <FocusRing
               for={actionRef}
               styles={[
-                theme.focusRingStyles,
+                radioFocusRingStyles,
                 ...asArray(innerStyles?.focusRing),
               ]}
               visualState={visualState}

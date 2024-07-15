@@ -1,2 +1,2 @@
-export * from './PlainTooltipProps';
+export * from './PlainTooltip.types';
 export * from './PlainTooltip';

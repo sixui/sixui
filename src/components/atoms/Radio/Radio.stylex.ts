@@ -1,14 +1,12 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IStyleVars } from '@/helpers/types';
-import type { IRadioStyleVarKey } from '@/components/atoms/Radio';
-import { colorRolesVars } from '../vars/colorRoles.stylex';
-import { stateVars } from '../vars/state.stylex';
+import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { stateVars } from '@/themes/base/vars/state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-radio.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-radio-button.scss
 
-const vars: IStyleVars<IRadioStyleVarKey> = {
+const vars = {
   // icon
   iconSize: '18px',
   iconColor: colorRolesVars.onSurfaceVariant,
@@ -52,7 +50,7 @@ const vars: IStyleVars<IRadioStyleVarKey> = {
   selectedStateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
 };
 
-export const componentVars = stylex.defineVars(vars);
+export const radioTokens = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that
@@ -60,4 +58,4 @@ export const componentVars = stylex.defineVars(vars);
  *
  * @see https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
  */
-export const componentTheme = stylex.createTheme(componentVars, vars);
+export const radioTheme = stylex.createTheme(radioTokens, vars);

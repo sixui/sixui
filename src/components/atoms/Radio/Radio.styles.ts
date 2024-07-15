@@ -1,16 +1,11 @@
-import type { MapNamespaces } from '@stylexjs/stylex/lib/StyleXTypes';
 import stylex from '@stylexjs/stylex';
 
-import type { IStyles } from '@/helpers/types';
-import type { IRadioStyleKey } from '@/components/atoms/Radio';
-import type { IStateLayerStyleKey } from '@/components/utils/StateLayer';
-import type { IFocusRingStyleKey } from '@/components/utils/FocusRing';
-import { componentVars as vars } from './Radio.stylex';
-import { componentVars as radioStateVars } from './Radio.states.stylex';
-import { componentVars as statelayerVars } from '../StateLayer/StateLayer.stylex';
-import { componentVars as focusRingVars } from '../FocusRing/FocusRing.stylex';
-import { motionVars } from '../vars/motion.stylex';
-import { shapeVars } from '../vars/shape.stylex';
+import { radioTokens as vars } from './Radio.stylex';
+import { componentVars as statelayerVars } from '@/themes/base/StateLayer/StateLayer.stylex';
+import { componentVars as focusRingVars } from '@/themes/base/FocusRing/FocusRing.stylex';
+import { motionVars } from '@/themes/base/vars/motion.stylex';
+import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { radioStateTokens } from './Radio.state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/radio/internal/_radio.scss
 
@@ -23,8 +18,8 @@ const innerCircleGrowKeyframes = stylex.keyframes({
   },
 });
 
-type IRadioStyles = IStyles<IRadioStyleKey>;
-export const styles: MapNamespaces<IRadioStyles> = stylex.create<IRadioStyles>({
+export type IRadioStylesKey = keyof typeof radioStyles;
+export const radioStyles = stylex.create({
   host: {
     display: 'block',
     justifyContent: 'center',
@@ -37,10 +32,11 @@ export const styles: MapNamespaces<IRadioStyles> = stylex.create<IRadioStyles>({
     WebkitTapHighlightColor: 'transparent',
     cursor: 'pointer',
 
-    [radioStateVars.stateLayerColor$hover]: vars.stateLayerColor$hover,
-    [radioStateVars.stateLayerOpacity$hover]: vars.stateLayerOpacity$hover,
-    [radioStateVars.stateLayerColor$pressed]: vars.stateLayerColor$pressed,
-    [radioStateVars.stateLayerOpacity$pressed]: vars.stateLayerOpacity$pressed,
+    [radioStateTokens.stateLayerColor$hover]: vars.stateLayerColor$hover,
+    [radioStateTokens.stateLayerOpacity$hover]: vars.stateLayerOpacity$hover,
+    [radioStateTokens.stateLayerColor$pressed]: vars.stateLayerColor$pressed,
+    [radioStateTokens.stateLayerOpacity$pressed]:
+      vars.stateLayerOpacity$pressed,
   },
   host$disabled: {
     cursor: 'default',
@@ -54,12 +50,13 @@ export const styles: MapNamespaces<IRadioStyles> = stylex.create<IRadioStyles>({
     placeItems: 'center',
   },
   container$checked: {
-    [radioStateVars.stateLayerColor$hover]: vars.selectedStateLayerColor$hover,
-    [radioStateVars.stateLayerOpacity$hover]:
+    [radioStateTokens.stateLayerColor$hover]:
+      vars.selectedStateLayerColor$hover,
+    [radioStateTokens.stateLayerOpacity$hover]:
       vars.selectedStateLayerOpacity$hover,
-    [radioStateVars.stateLayerColor$pressed]:
+    [radioStateTokens.stateLayerColor$pressed]:
       vars.selectedStateLayerColor$pressed,
-    [radioStateVars.stateLayerOpacity$pressed]:
+    [radioStateTokens.stateLayerOpacity$pressed]:
       vars.selectedStateLayerOpacity$pressed,
   },
   input: {
@@ -124,27 +121,22 @@ export const styles: MapNamespaces<IRadioStyles> = stylex.create<IRadioStyles>({
   },
 });
 
-type IStateLayerStyles = IStyles<IStateLayerStyleKey>;
-export const stateLayerStyles: MapNamespaces<IStateLayerStyles> = stylex.create<
-  IStyles<IStateLayerStyleKey>
->({
+export const radioStateLayerStyles = stylex.create({
   host: {
     borderRadius: '50%',
     width: vars.stateLayerSize,
     height: vars.stateLayerSize,
     inset: 'unset',
 
-    [statelayerVars.color$hover]: radioStateVars.stateLayerColor$hover,
-    [statelayerVars.opacity$hover]: radioStateVars.stateLayerOpacity$hover,
-    [statelayerVars.color$pressed]: radioStateVars.stateLayerColor$pressed,
-    [statelayerVars.opacity$pressed]: radioStateVars.stateLayerOpacity$pressed,
+    [statelayerVars.color$hover]: radioStateTokens.stateLayerColor$hover,
+    [statelayerVars.opacity$hover]: radioStateTokens.stateLayerOpacity$hover,
+    [statelayerVars.color$pressed]: radioStateTokens.stateLayerColor$pressed,
+    [statelayerVars.opacity$pressed]:
+      radioStateTokens.stateLayerOpacity$pressed,
   },
 });
 
-type IFocusRingStyles = IStyles<IFocusRingStyleKey>;
-export const focusRingStyles: MapNamespaces<IFocusRingStyles> = stylex.create<
-  IStyles<IFocusRingStyleKey>
->({
+export const radioFocusRingStyles = stylex.create({
   host: {
     width: 44,
     height: 44,

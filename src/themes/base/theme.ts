@@ -33,13 +33,6 @@ import {
 } from './TextFieldBase/TextFieldBase.styles';
 import { componentTheme as textFieldTheme } from './TextFieldBase/TextFieldBase.stylex';
 
-import { componentTheme as radioTheme } from './Radio/Radio.stylex';
-import {
-  styles as radioStyles,
-  stateLayerStyles as radioStateLayerStyles,
-  focusRingStyles as radioFocusRingStyles,
-} from './Radio/Radio.styles';
-
 import { componentTheme as tabTheme } from './Tab/Tab.stylex';
 import {
   styles as tabStyles,
@@ -140,12 +133,6 @@ export const theme: ITheme = {
     },
     FilledTextField: {},
     OutlinedTextField: {},
-    Radio: {
-      vars: radioTheme,
-      styles: radioStyles,
-      stateLayerStyles: radioStateLayerStyles,
-      focusRingStyles: radioFocusRingStyles,
-    },
     Tab: {
       vars: tabTheme,
       styles: tabStyles,
