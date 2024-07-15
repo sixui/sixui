@@ -4,7 +4,7 @@ import type { IVisualStateProps } from './VisualStateProps';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { ButtonBase } from '@/components/atoms/ButtonBase';
 import { shapeVars } from '@/themes/base/vars/shape.stylex';
-import { componentVars as focusRingVars } from '@/themes/base/FocusRing/FocusRing.stylex';
+import { focusRingTokens } from '@/components/utils/FocusRing/FocusRing.stylex';
 import { useVisualState } from './useVisualState';
 
 const styles = stylex.create({
@@ -42,7 +42,7 @@ const styles = stylex.create({
 
 const focusRingStyles = stylex.create({
   host: {
-    [focusRingVars.shape]: shapeVars.corner$xl,
+    [focusRingTokens.shape]: shapeVars.corner$xl,
   },
 });
 

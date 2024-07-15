@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { componentVars as elevationVars } from '@/themes/base/Elevation/Elevation.stylex';
+import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
 import { shapeVars } from '@/themes/base/vars/shape.stylex';
 import { typescaleVars } from '@/themes/base/vars/typo.stylex';
 import { stateVars } from '@/themes/base/vars/state.stylex';
@@ -27,7 +27,7 @@ const vars = {
 
   // flatContainer
   flatContainerColor: 'inherit',
-  flatContainerElevation: elevationVars.boxShadow$level0,
+  flatContainerElevation: elevationTokens.boxShadow$level0,
   // &:hover
   flatContainerElevation$hover: 'unset',
   // &:focus
@@ -55,17 +55,17 @@ const vars = {
 
   // elevatedContainer
   elevatedContainerColor: colorRolesVars.surfaceContainerLow,
-  elevatedContainerElevation: elevationVars.boxShadow$level1,
+  elevatedContainerElevation: elevationTokens.boxShadow$level1,
   // &:disabled
   elevatedContainerColor$disabled: colorRolesVars.onSurface,
-  elevatedContainerElevation$disabled: elevationVars.boxShadow$level0,
+  elevatedContainerElevation$disabled: elevationTokens.boxShadow$level0,
   elevatedContainerOpacity$disabled: stateVars.containerOpacity$disabled,
   // &:focus
-  elevatedContainerElevation$focus: elevationVars.boxShadow$level1,
+  elevatedContainerElevation$focus: elevationTokens.boxShadow$level1,
   // &:hover
-  elevatedContainerElevation$hover: elevationVars.boxShadow$level2,
+  elevatedContainerElevation$hover: elevationTokens.boxShadow$level2,
   // &:pressed
-  elevatedContainerElevation$pressed: elevationVars.boxShadow$level1,
+  elevatedContainerElevation$pressed: elevationTokens.boxShadow$level1,
 
   // selectedElevatedContainer
   selectedElevatedContainerColor: 'inherit',

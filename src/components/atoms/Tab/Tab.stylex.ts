@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { componentVars as elevationVars } from '@/themes/base/Elevation/Elevation.stylex';
+import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { shapeVars } from '@/themes/base/vars/shape.stylex';
 import { stateVars } from '@/themes/base/vars/state.stylex';
@@ -19,12 +19,12 @@ const vars = {
 
   // container
   containerColor: colorRolesVars.surface,
-  containerElevation: elevationVars.boxShadow$level0,
+  containerElevation: elevationTokens.boxShadow$level0,
   containerHeight: '48px',
   containerHeight$withIconAndLabelText: 'unset',
   containerShape: shapeVars.corner$none,
   // &:disabled
-  containerElevation$disabled: elevationVars.boxShadow$level0,
+  containerElevation$disabled: elevationTokens.boxShadow$level0,
   containerColor$disabled: colorRolesVars.surface,
   containerOpacity$disabled: stateVars.opacity$disabled,
 

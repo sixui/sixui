@@ -19,6 +19,7 @@ export * from './components/atoms/DialogContent';
 export * from './components/atoms/Disclosure';
 export * from './components/atoms/DisclosureButton';
 export * from './components/atoms/Divider';
+export * from './components/atoms/ElementWithLabel';
 export * from './components/atoms/Fab';
 export * from './components/atoms/Field';
 export * from './components/atoms/FieldBase';
@@ -69,9 +70,6 @@ export * from './components/atoms/TextFieldBase';
 export * from './components/atoms/TextInputField';
 export * from './components/atoms/TooltipBase';
 export * from './components/atoms/Typography';
-
-// molecules
-export * from './components/molecules/ElementWithLabel';
 
 // utils
 export * from './components/utils/Anchored';

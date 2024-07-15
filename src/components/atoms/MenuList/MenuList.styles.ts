@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { componentVars as elevationVars } from '@/themes/base/Elevation/Elevation.stylex';
+import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
 import { menuListTokens as vars } from './MenuList.stylex';
 
 // https://github.com/material-components/material-web/blob/main/menulist/internal/_menulist.scss
@@ -22,7 +22,7 @@ export const menuListStyles = stylex.create({
 
 export const menuListElevationStyles = stylex.create({
   host: {
-    [elevationVars.boxShadow]: vars.containerElevation,
+    [elevationTokens.boxShadow]: vars.containerElevation,
     borderRadius: vars.containerShape,
   },
 });

@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { componentVars as elevationVars } from '@/themes/base/Elevation/Elevation.stylex';
+import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { shapeVars } from '@/themes/base/vars/shape.stylex';
 import { stateVars } from '@/themes/base/vars/state.stylex';
@@ -20,27 +20,27 @@ const vars = {
   containerShape$sm: shapeVars.corner$md,
   containerShape$md: shapeVars.corner$lg,
   containerShape$lg: shapeVars.corner$xl,
-  containerElevation: elevationVars.boxShadow$level3,
+  containerElevation: elevationTokens.boxShadow$level3,
   // &:disabled
   containerColor$disabled: colorRolesVars.onSurface,
-  containerElevation$disabled: elevationVars.boxShadow$level0,
+  containerElevation$disabled: elevationTokens.boxShadow$level0,
   containerOpacity$disabled: stateVars.containerOpacity$disabled,
   // &:hover
-  containerElevation$hover: elevationVars.boxShadow$level4,
+  containerElevation$hover: elevationTokens.boxShadow$level4,
   // &:focus
-  containerElevation$focus: elevationVars.boxShadow$level3,
+  containerElevation$focus: elevationTokens.boxShadow$level3,
   // &:pressed
-  containerElevation$pressed: elevationVars.boxShadow$level3,
+  containerElevation$pressed: elevationTokens.boxShadow$level3,
 
   // loweredContainer
   loweredContainerColor: 'inherit',
-  loweredContainerElevation: elevationVars.boxShadow$level1,
+  loweredContainerElevation: elevationTokens.boxShadow$level1,
   // &hover
-  loweredContainerElevation$hover: elevationVars.boxShadow$level2,
+  loweredContainerElevation$hover: elevationTokens.boxShadow$level2,
   // &:focus
-  loweredContainerElevation$focus: elevationVars.boxShadow$level1,
+  loweredContainerElevation$focus: elevationTokens.boxShadow$level1,
   // &:pressed
-  loweredContainerElevation$pressed: elevationVars.boxShadow$level1,
+  loweredContainerElevation$pressed: elevationTokens.boxShadow$level1,
 
   // icon
   iconColor: 'inherit',

@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { componentVars as focusRingVars } from '@/themes/base/FocusRing/FocusRing.stylex';
+import { focusRingTokens } from '@/components/utils/FocusRing/FocusRing.stylex';
 import { breadcrumbsTokens } from './Breadcrumbs.stylex';
 
 export type IBreadcrumbsStylesKey = keyof typeof breadcrumbsStyles;
@@ -50,6 +50,6 @@ export const breadcrumbsStyles = stylex.create({
 
 export const breadcrumbsExpandButtonFocusRingStyles = stylex.create({
   host: {
-    [focusRingVars.shape]: breadcrumbsTokens.expandButtonContainerShape,
+    [focusRingTokens.shape]: breadcrumbsTokens.expandButtonContainerShape,
   },
 });

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useEffect, useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
-import type { IAnchoredProps } from './AnchoredProps';
+import type { IAnchoredProps } from './Anchored.types';
 import {
   ComponentShowcase,
   type IComponentPresentation,

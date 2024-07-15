@@ -10,7 +10,7 @@ import type {
 } from '@/helpers/react/polymorphicComponentTypes';
 import { CardContent } from '@/components/atoms/CardContent';
 import { Card } from '@/components/atoms/Card';
-import { ElementWithLabel } from '@/components/molecules/ElementWithLabel';
+import { ElementWithLabel } from '@/components/atoms/ElementWithLabel';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';

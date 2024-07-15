@@ -1,15 +1,13 @@
 import { forwardRef, useMemo } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
-import type {
-  IStateLayerStyleKey,
-  IStateLayerStyleVarKey,
-} from './StateLayer.styledefs';
-import type { IStateLayerProps } from './StateLayerProps';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import type { IStateLayerProps } from './StateLayer.types';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useRipple } from './useRipple';
+import { stateLayerStyles } from './StateLayer.styles';
+import { stateLayerTheme } from './StateLayer.stylex';
 
 // https://github.com/material-components/material-web/blob/main/ripple/internal/ripple.ts
 
@@ -22,18 +20,16 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
       for: forElementRef,
       disabled,
       children,
+      ...other
     } = props;
 
-    const { theme } = useComponentThemeOld('StateLayer');
+    const { overridenStyles } = useComponentTheme('StateLayer');
     const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(theme.styles, styles),
-      [theme.styles, styles],
+      () => stylesCombinatorFactory(stateLayerStyles, styles),
+      [styles],
     );
     const sxf = useMemo(
-      () =>
-        stylePropsFactory<IStateLayerStyleKey, IStateLayerStyleVarKey>(
-          stylesCombinator,
-        ),
+      () => stylePropsFactory(stylesCombinator),
       [stylesCombinator],
     );
 
@@ -45,7 +41,12 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
     const handleRef = useMergeRefs([forwardedRef, setHostRef]);
 
     return (
-      <div ref={handleRef} {...sxf('host', theme.vars, sx)}>
+      <div
+        {...sxf(stateLayerTheme, overridenStyles, 'host', sx)}
+        aria-hidden
+        {...other}
+        ref={handleRef}
+      >
         <div
           {...sxf(
             'rippleSurface',

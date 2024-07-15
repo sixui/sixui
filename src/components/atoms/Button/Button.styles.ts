@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { componentVars as elevationVars } from '@/themes/base/Elevation/Elevation.stylex';
-import { componentVars as focusRingVars } from '@/themes/base/FocusRing/FocusRing.stylex';
+import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
+import { focusRingTokens } from '@/components/utils/FocusRing/FocusRing.stylex';
 import { componentVars as statelayerVars } from '@/themes/base/StateLayer/StateLayer.stylex';
 import { circularProgressIndicatorTokens } from '@/components/atoms/CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
@@ -182,13 +182,13 @@ export const buttonStateLayerStyles = stylex.create({
 
 export const buttonFocusRingStyles = stylex.create({
   host: {
-    [focusRingVars.shape]: buttonTokens.containerShape,
+    [focusRingTokens.shape]: buttonTokens.containerShape,
   },
 });
 
 export const buttonElevationStyles = stylex.create({
   host: {
-    [elevationVars.boxShadow]: buttonStateTokens.elevation,
+    [elevationTokens.boxShadow]: buttonStateTokens.elevation,
   },
 });
 

@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { componentVars as elevationVars } from '@/themes/base/Elevation/Elevation.stylex';
+import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
 import { paperTokens as vars } from './Paper.stylex';
 import { paperStateTokens as paperStateVars } from './Paper.state.stylex';
 
@@ -14,22 +14,22 @@ export const paperStyles = stylex.create({
     zIndex: 0,
   },
   host$elevation0: {
-    [paperStateVars.elevation]: elevationVars.boxShadow$level0,
+    [paperStateVars.elevation]: elevationTokens.boxShadow$level0,
   },
   host$elevation1: {
-    [paperStateVars.elevation]: elevationVars.boxShadow$level1,
+    [paperStateVars.elevation]: elevationTokens.boxShadow$level1,
   },
   host$elevation2: {
-    [paperStateVars.elevation]: elevationVars.boxShadow$level2,
+    [paperStateVars.elevation]: elevationTokens.boxShadow$level2,
   },
   host$elevation3: {
-    [paperStateVars.elevation]: elevationVars.boxShadow$level3,
+    [paperStateVars.elevation]: elevationTokens.boxShadow$level3,
   },
   host$elevation4: {
-    [paperStateVars.elevation]: elevationVars.boxShadow$level4,
+    [paperStateVars.elevation]: elevationTokens.boxShadow$level4,
   },
   host$elevation5: {
-    [paperStateVars.elevation]: elevationVars.boxShadow$level5,
+    [paperStateVars.elevation]: elevationTokens.boxShadow$level5,
   },
   host$square: {
     borderRadius: 0,
@@ -59,7 +59,7 @@ export const paperStyles = stylex.create({
 
 export const paperElevationStyles = stylex.create({
   host: {
-    [elevationVars.boxShadow]: paperStateVars.elevation,
+    [elevationTokens.boxShadow]: paperStateVars.elevation,
 
     borderRadius: 'inherit',
     inset: 0,

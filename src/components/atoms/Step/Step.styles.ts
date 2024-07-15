@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import { circularProgressIndicatorTokens } from '@/components/atoms/CircularProgressIndicator/CircularProgressIndicator.stylex';
-import { componentVars as focusRingVars } from '@/themes/base/FocusRing/FocusRing.stylex';
+import { focusRingTokens } from '@/components/utils/FocusRing/FocusRing.stylex';
 import { stepTokens } from './Step.stylex';
 import { stepStateTokens } from './Step.state.stylex';
 
@@ -255,7 +255,7 @@ export const stepStyles = stylex.create({
 
 export const stepFocusRingStyles = stylex.create({
   host: {
-    [focusRingVars.shape]: stepStateTokens.containerShape,
+    [focusRingTokens.shape]: stepStateTokens.containerShape,
   },
 });
 

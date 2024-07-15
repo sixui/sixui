@@ -6,7 +6,7 @@ import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import type { IStateLayerProps } from './StateLayerProps';
+import type { IStateLayerProps } from './StateLayer.types';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { shapeVars } from '@/themes/base/vars/shape.stylex';
 import { StateLayer } from './StateLayer';

@@ -1,10 +1,10 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IAnchoredStyleKey } from './Anchored.styledefs';
-import type { IAnchoredProps } from './AnchoredProps';
+import type { IAnchoredProps } from './Anchored.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { anchoredStyles } from './Anchored.styles';
 
 export const Anchored = forwardRef<HTMLDivElement, IAnchoredProps>(
   function Anchored(props, forwardedRef) {
@@ -20,13 +20,13 @@ export const Anchored = forwardRef<HTMLDivElement, IAnchoredProps>(
       ...other
     } = props;
 
-    const { theme } = useComponentThemeOld('Anchored');
+    const { overridenStyles } = useComponentTheme('Anchored');
     const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(theme.styles, styles),
-      [theme.styles, styles],
+      () => stylesCombinatorFactory(anchoredStyles, styles),
+      [styles],
     );
     const sxf = useMemo(
-      () => stylePropsFactory<IAnchoredStyleKey>(stylesCombinator),
+      () => stylePropsFactory(stylesCombinator),
       [stylesCombinator],
     );
 
@@ -50,7 +50,7 @@ export const Anchored = forwardRef<HTMLDivElement, IAnchoredProps>(
             : 'content$circular$bottom$left';
 
     return (
-      <div {...sxf('host', sx)} ref={forwardedRef} {...other}>
+      <div {...sxf(overridenStyles, 'host', sx)} ref={forwardedRef} {...other}>
         {children}
 
         <div

@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { componentVars as elevationVars } from '@/themes/base/Elevation/Elevation.stylex';
+import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { richTooltipContentTokens } from './RichTooltipContent.stylex';
 
@@ -54,6 +54,6 @@ export const richTooltipContentStyles = stylex.create({
 
 export const richTooltipContentElevationStyles = stylex.create({
   host: {
-    [elevationVars.boxShadow]: richTooltipContentTokens.containerElevation,
+    [elevationTokens.boxShadow]: richTooltipContentTokens.containerElevation,
   },
 });

@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { componentVars as elevationVars } from '@/themes/base/Elevation/Elevation.stylex';
+import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
 import { snackbarContentTokens as vars } from './SnackbarContent.stylex';
 import { snackbarContentStateTokens } from './SnackbarContent.state.stylex';
 
@@ -57,6 +57,6 @@ export const snackbarContentStyles = stylex.create({
 
 export const snackbarContentElevationStyles = stylex.create({
   host: {
-    [elevationVars.boxShadow]: snackbarContentStateTokens.elevation,
+    [elevationTokens.boxShadow]: snackbarContentStateTokens.elevation,
   },
 });

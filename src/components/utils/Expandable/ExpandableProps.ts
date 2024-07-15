@@ -1,5 +1,6 @@
 import type { IContainerProps, ICssSizeValue, IOmit } from '@/helpers/types';
 import type { IExpandableContextValue } from './ExpandableContext';
+import type { IExpandableStylesKey } from './Expandable.styles';
 
 export type IExpandableTriggerRenderProps = {
   expand: (expanded: boolean) => void;
@@ -8,6 +9,7 @@ export type IExpandableTriggerRenderProps = {
 };
 
 export type IExpandableProps = IContainerProps &
+  IContainerProps<IExpandableStylesKey> &
   IOmit<IExpandableContextValue, 'expand'> & {
     trigger:
       | React.ReactNode

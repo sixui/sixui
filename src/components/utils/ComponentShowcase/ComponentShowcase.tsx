@@ -1,16 +1,14 @@
 import { useMemo } from 'react';
 
 import type {
-  IComponentShowcaseStyleKey,
-  IComponentShowcaseStyleVarKey,
-} from './ComponentShowcase.styledefs';
-import type {
   IComponentPresentation,
   IComponentShowcaseProps,
-} from './ComponentShowcaseProps';
+} from './ComponentShowcase.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { componentShowcaseTheme } from './ComponentShowcase.stylex';
+import { componentShowcaseStyles } from './ComponentShowcase.styles';
 
 const DUMMY_TEXT = '.';
 
@@ -33,17 +31,13 @@ export const ComponentShowcase = <
     fullWidth,
   } = props;
 
-  const { theme } = useComponentThemeOld('ComponentShowcase');
+  const { overridenStyles } = useComponentTheme('ComponentShowcase');
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, styles),
-    [theme.styles, styles],
+    () => stylesCombinatorFactory(componentShowcaseStyles, styles),
+    [styles],
   );
   const sxf = useMemo(
-    () =>
-      stylePropsFactory<
-        IComponentShowcaseStyleKey,
-        IComponentShowcaseStyleVarKey
-      >(stylesCombinator),
+    () => stylePropsFactory(stylesCombinator),
     [stylesCombinator],
   );
 
@@ -57,7 +51,16 @@ export const ComponentShowcase = <
   const nonEmptyRows = rows ?? [placeholder];
 
   return (
-    <div {...sxf('host', 'cols', 'gap$md', theme.vars, sx)}>
+    <div
+      {...sxf(
+        componentShowcaseTheme,
+        overridenStyles,
+        'host',
+        'cols',
+        'gap$md',
+        sx,
+      )}
+    >
       {shouldShowRowLegends && rowLegendPosition === 'start' ? (
         <div {...sxf('rows', 'gap$lg')}>
           {shouldShowColLegends ? (

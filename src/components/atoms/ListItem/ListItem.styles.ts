@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import { componentVars as statelayerVars } from '@/themes/base/StateLayer/StateLayer.stylex';
-import { componentVars as focusRingVars } from '@/themes/base/FocusRing/FocusRing.stylex';
+import { focusRingTokens } from '@/components/utils/FocusRing/FocusRing.stylex';
 import { listItemStateTokens } from './ListItem.state.stylex';
 import { listItemTokens } from './ListItem.stylex';
 
@@ -213,6 +213,6 @@ export const listItemStateLayerStyles = stylex.create({
 export const listItemFocusRingStyles = stylex.create({
   host: {
     zIndex: 1,
-    [focusRingVars.shape]: listItemTokens.containerShape,
+    [focusRingTokens.shape]: listItemTokens.containerShape,
   },
 });

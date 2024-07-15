@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { componentVars as elevationVars } from '@/themes/base/Elevation/Elevation.stylex';
+import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
 import { cardTokens } from '../Card.stylex';
 
 // https://github.com/material-components/material-web/blob/main/labs/card/internal/_outlined-card.scss
@@ -9,14 +9,14 @@ import { cardTokens } from '../Card.stylex';
 export const outlinedCardStyles = stylex.create({
   host: {
     [cardTokens.containerColor]: colorRolesVars.surface,
-    [cardTokens.containerElevation]: elevationVars.boxShadow$level0,
+    [cardTokens.containerElevation]: elevationTokens.boxShadow$level0,
     [cardTokens.containerColor$disabled]:
       colorRolesVars.surfaceContainerHighest,
-    [cardTokens.containerElevation$disabled]: elevationVars.boxShadow$level0,
-    [cardTokens.containerElevation$focus]: elevationVars.boxShadow$level0,
-    [cardTokens.containerElevation$hover]: elevationVars.boxShadow$level0,
-    [cardTokens.containerElevation$pressed]: elevationVars.boxShadow$level0,
-    [cardTokens.containerElevation$dragged]: elevationVars.boxShadow$level3,
+    [cardTokens.containerElevation$disabled]: elevationTokens.boxShadow$level0,
+    [cardTokens.containerElevation$focus]: elevationTokens.boxShadow$level0,
+    [cardTokens.containerElevation$hover]: elevationTokens.boxShadow$level0,
+    [cardTokens.containerElevation$pressed]: elevationTokens.boxShadow$level0,
+    [cardTokens.containerElevation$dragged]: elevationTokens.boxShadow$level3,
 
     [cardTokens.outlineColor]: colorRolesVars.outlineVariant,
     [cardTokens.outlineWidth]: '1px',

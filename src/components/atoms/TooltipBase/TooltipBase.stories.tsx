@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faBolt, faCloud } from '@fortawesome/free-solid-svg-icons';
 
-import type { ITooltipBaseProps } from './TooltipBaseProps';
+import type { ITooltipBaseProps } from './TooltipBase.types';
 import {
   ComponentShowcase,
   type IComponentPresentation,

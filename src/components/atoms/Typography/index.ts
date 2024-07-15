@@ -1,3 +1,3 @@
-export * from './Typography.styledefs';
-export * from './TypographyProps';
+export * from './Typography.types';
+export * from './Typography.styles';
 export * from './Typography';

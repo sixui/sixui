@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { componentVars as focusRingVars } from '@/themes/base/FocusRing/FocusRing.stylex';
+import { focusRingTokens } from '@/components/utils/FocusRing/FocusRing.stylex';
 import { componentVars as statelayerVars } from '@/themes/base/StateLayer/StateLayer.stylex';
 import { fluidButtonTokens } from './FluidButton.stylex';
 
@@ -47,7 +47,7 @@ export const fluidButtonButtonBaseStyles = stylex.create({
 
 export const fluidButtonFocusRingStyles = stylex.create({
   host$outward: {
-    [focusRingVars.shape]: fluidButtonTokens.containerShape,
+    [focusRingTokens.shape]: fluidButtonTokens.containerShape,
     inset: `calc(-0.5 * ${fluidButtonTokens.stateLayerSpace} - ${fluidButtonTokens.focusRingOutwardOffset})`,
   },
 });

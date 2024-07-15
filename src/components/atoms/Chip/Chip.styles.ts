@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { componentVars as elevationVars } from '@/themes/base/Elevation/Elevation.stylex';
-import { componentVars as focusRingVars } from '@/themes/base/FocusRing/FocusRing.stylex';
+import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
+import { focusRingTokens } from '@/components/utils/FocusRing/FocusRing.stylex';
 import { componentVars as statelayerVars } from '@/themes/base/StateLayer/StateLayer.stylex';
 import { circularProgressIndicatorTokens } from '@/components/atoms/CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
@@ -389,19 +389,19 @@ export const chipSstateLayerStyles = stylex.create({
 
 export const chipFocusRingStyles = stylex.create({
   host: {
-    [focusRingVars.shape]: chipStateTokens.containerShape,
+    [focusRingTokens.shape]: chipStateTokens.containerShape,
   },
 });
 
 export const chipElevationStyles = stylex.create({
   host: {
-    [elevationVars.boxShadow]: chipStateTokens.elevation,
+    [elevationTokens.boxShadow]: chipStateTokens.elevation,
   },
 });
 
 export const chipTrailingActionFocusRingStyles = stylex.create({
   host: {
-    [focusRingVars.shape]: '50%',
+    [focusRingTokens.shape]: '50%',
     height: `calc(4 / 3 * ${chipTokens.iconSize})`,
     width: `calc(4 / 3 * ${chipTokens.iconSize})`,
   },

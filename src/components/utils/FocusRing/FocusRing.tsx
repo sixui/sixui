@@ -8,14 +8,12 @@ import {
 } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
-import type {
-  IFocusRingStyleKey,
-  IFocusRingStyleVarKey,
-} from './FocusRing.styledefs';
-import type { IFocusRingProps } from './FocusRingProps';
+import type { IFocusRingProps } from './FocusRing.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { focusRingStyles } from './FocusRing.styles';
+import { focusRingTheme } from './FocusRing.stylex';
 
 const HANDLED_BY_FOCUS_RING = Symbol('handledByFocusRing');
 
@@ -27,16 +25,13 @@ export const FocusRing = forwardRef<HTMLInputElement, IFocusRingProps>(
   function FocusRing(props, forwardedRef) {
     const { styles, sx, visualState, for: forElementRef, inward } = props;
 
-    const { theme } = useComponentThemeOld('FocusRing');
+    const { overridenStyles } = useComponentTheme('FocusRing');
     const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(theme.styles, styles),
-      [theme.styles, styles],
+      () => stylesCombinatorFactory(focusRingStyles, styles),
+      [styles],
     );
     const sxf = useMemo(
-      () =>
-        stylePropsFactory<IFocusRingStyleKey, IFocusRingStyleVarKey>(
-          stylesCombinator,
-        ),
+      () => stylePropsFactory(stylesCombinator),
       [stylesCombinator],
     );
 
@@ -99,10 +94,11 @@ export const FocusRing = forwardRef<HTMLInputElement, IFocusRingProps>(
       <div
         ref={handleRef}
         {...sxf(
+          focusRingTheme,
+          overridenStyles,
           'host',
           (visible || visibleOnInit) && 'host$visible',
           inward ? 'host$inward' : 'host$outward',
-          theme.vars,
           sx,
         )}
       />

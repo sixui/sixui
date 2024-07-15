@@ -1,3 +1,3 @@
-export * from './ComponentShowcase.styledefs';
-export * from './ComponentShowcaseProps';
+export * from './ComponentShowcase.types';
+export * from './ComponentShowcase.styles';
 export * from './ComponentShowcase';

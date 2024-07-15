@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { componentVars as elevationVars } from '@/themes/base/Elevation/Elevation.stylex';
+import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
 import { shapeVars } from '@/themes/base/vars/shape.stylex';
 import { typescaleVars } from '@/themes/base/vars/typo.stylex';
 
@@ -16,7 +16,7 @@ const vars = {
 
   // container
   containerColor: colorRolesVars.onSurface,
-  containerElevation: elevationVars.boxShadow$level3,
+  containerElevation: elevationTokens.boxShadow$level3,
   containerShape: shapeVars.corner$xs,
   containerMinWidth: '288px',
   containerMinHeight: '48px',

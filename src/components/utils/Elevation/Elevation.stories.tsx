@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
-import type { IElevationProps } from './ElevationProps';
+import type { IElevationProps } from './Elevation.types';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { Placeholder } from '@/components/atoms/Placeholder';
 import { Elevation } from './Elevation';

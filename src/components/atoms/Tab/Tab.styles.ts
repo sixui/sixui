@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { componentVars as elevationVars } from '@/themes/base/Elevation/Elevation.stylex';
-import { componentVars as focusRingVars } from '@/themes/base/FocusRing/FocusRing.stylex';
+import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
+import { focusRingTokens } from '@/components/utils/FocusRing/FocusRing.stylex';
 import { componentVars as statelayerVars } from '@/themes/base/StateLayer/StateLayer.stylex';
 import { tabTokens } from './Tab.stylex';
 import { tabStateTokens } from './Tab.state.stylex';
@@ -166,7 +166,7 @@ export const tabStateLayerStyles = stylex.create({
 
 export const tabFocusRingStyles = stylex.create({
   host: {
-    [focusRingVars.shape]: 8,
+    [focusRingTokens.shape]: 8,
     zIndex: 1,
   },
   host$outward: {
@@ -178,6 +178,6 @@ export const tabElevationStyles = stylex.create({
   host: {
     borderRadius: tabTokens.containerShape,
 
-    [elevationVars.boxShadow]: tabTokens.containerElevation,
+    [elevationTokens.boxShadow]: tabTokens.containerElevation,
   },
 });

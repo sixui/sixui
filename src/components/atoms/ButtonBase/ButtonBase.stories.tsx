@@ -7,7 +7,7 @@ import type { IButtonBaseProps } from './ButtonBase.types';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { shapeVars } from '@/themes/base/vars/shape.stylex';
 import { componentVars as stateLayerVars } from '@/themes/base/StateLayer/StateLayer.stylex';
-import { componentVars as focusRingVars } from '@/themes/base/FocusRing/FocusRing.stylex';
+import { focusRingTokens } from '@/components/utils/FocusRing/FocusRing.stylex';
 import { ButtonBase } from './ButtonBase';
 
 const meta = {
@@ -64,7 +64,7 @@ const stateLayerStyles = stylex.create({
 
 const focusRingStyles = stylex.create({
   host: {
-    [focusRingVars.shape]: shapeVars.corner$md,
+    [focusRingTokens.shape]: shapeVars.corner$md,
   },
 });
 

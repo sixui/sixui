@@ -4,15 +4,15 @@ import type {
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
-import type { ITypographyStyleKey } from './Typography.styledefs';
+import type {
+  TYPOGRAPHY_DEFAULT_TAG,
+  ITypographyOwnProps,
+  ITypographyProps,
+} from './Typography.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
-import {
-  TYPOGRAPHY_DEFAULT_TAG,
-  type ITypographyOwnProps,
-  type ITypographyProps,
-} from './TypographyProps';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { typographyStyles } from './Typography.styles';
 
 export const typographyTagMap = {
   display$lg: 'span',
@@ -52,13 +52,13 @@ export const Typography: ITypography = forwardRef(function Typography<
     ...other
   } = props as IWithAsProp<ITypographyOwnProps>;
 
-  const { theme } = useComponentThemeOld('Typography');
+  const { overridenStyles } = useComponentTheme('Typography');
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, styles),
-    [theme.styles, styles],
+    () => stylesCombinatorFactory(typographyStyles, styles),
+    [styles],
   );
   const sxf = useMemo(
-    () => stylePropsFactory<ITypographyStyleKey>(stylesCombinator),
+    () => stylePropsFactory(stylesCombinator),
     [stylesCombinator],
   );
 
@@ -67,6 +67,7 @@ export const Typography: ITypography = forwardRef(function Typography<
   return (
     <Component
       {...sxf(
+        overridenStyles,
         'host',
         gutterBottom && 'host$gutterBottom',
         `${variant}$${size}`,

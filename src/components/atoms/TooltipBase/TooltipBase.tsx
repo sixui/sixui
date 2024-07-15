@@ -1,5 +1,4 @@
-import { useRef } from 'react';
-import stylex from '@stylexjs/stylex';
+import { useMemo, useRef } from 'react';
 import { isFunction } from 'lodash';
 import {
   arrow,
@@ -19,56 +18,22 @@ import {
   type OpenChangeReason,
 } from '@floating-ui/react';
 
-import type { ITooltipBaseProps } from './TooltipBaseProps';
+import type { ITooltipBaseProps } from './TooltipBase.types';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { Portal } from '@/components/utils/Portal';
-import { motionVars } from '@/themes/base/vars/motion.stylex';
 import { useTooltipCursor } from '@/hooks/useTooltipCursor';
-
-// TODO: migrate in theme
-const styles = stylex.create({
-  host: {
-    zIndex: 499,
-  },
-  container: {
-    transformOrigin: 'center',
-  },
-  transition$unmounted: {},
-  transition$initial: {
-    transform: 'scale(0)',
-    opacity: 0,
-  },
-  transition$open: {
-    transform: 'scale(1)',
-    opacity: 1,
-    transitionProperty: 'transform, opacity',
-    transitionDuration: motionVars.duration$long1,
-    transitionTimingFunction: motionVars.easing$emphasizedDecelerate,
-  },
-  transition$close: {
-    transform: 'scale(0)',
-    opacity: 0,
-    transitionProperty: 'transform, opacity',
-    transitionDuration: motionVars.duration$short1,
-    transitionTimingFunction: motionVars.easing$emphasizedAccelerate,
-  },
-  transition$unmounted$nested: {},
-  transition$initial$nested: {},
-  transition$open$nested: {
-    transition: 'none',
-  },
-  transition$close$nested: {
-    transition: 'none',
-  },
-  transformOrigin: (transformOrigin: string) => ({
-    transformOrigin,
-  }),
-});
+import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '@/helpers/stylePropsFactory';
+import { tooltipBaseStyles } from './TooltipBase.styles';
+import { commonStyles } from '@/helpers/commonStyles';
 
 export const TooltipBase = <TForwardedProps extends object = object>(
   props: ITooltipBaseProps<TForwardedProps>,
 ): React.ReactNode => {
   const {
+    styles,
+    sx,
     contentRenderer,
     children,
     placement = 'top',
@@ -81,10 +46,21 @@ export const TooltipBase = <TForwardedProps extends object = object>(
     disabled,
     ...other
   } = props;
+
+  const { overridenStyles } = useComponentTheme('TooltipBase');
+  const stylesCombinator = useMemo(
+    () => stylesCombinatorFactory(tooltipBaseStyles, styles),
+    [styles],
+  );
+  const sxf = useMemo(
+    () => stylePropsFactory(stylesCombinator),
+    [stylesCombinator],
+  );
+
   const [isOpen, setIsOpen] = useControlledValue({
     controlled: isOpenProp,
     default: defaultIsOpen ?? false,
-    name: 'Tooltip',
+    name: 'TooltipBase',
   });
   const arrowRef = useRef(null);
   const cursor = useTooltipCursor({ type: cursorType });
@@ -168,17 +144,19 @@ export const TooltipBase = <TForwardedProps extends object = object>(
       {transitionStatus.isMounted ? (
         <Portal>
           <div
-            {...stylex.props(styles.host)}
+            {...sxf(overridenStyles, 'host', sx)}
             {...interactions.getFloatingProps()}
             ref={floating.refs.setFloating}
             style={floating.floatingStyles}
           >
             <div
-              {...stylex.props(
-                styles.container,
-                styles[`transition$${transitionStatus.status}`],
+              {...sxf(
+                'container',
+                `transition$${transitionStatus.status}`,
                 cursor
-                  ? styles.transformOrigin(cursor.getTransformOrigin(floating))
+                  ? commonStyles.transformOrigin(
+                      cursor.getTransformOrigin(floating),
+                    )
                   : undefined,
               )}
               {...(forwardProps ? undefined : other)}

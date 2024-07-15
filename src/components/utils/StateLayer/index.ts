@@ -1,3 +1,3 @@
-export * from './StateLayer.styledefs';
-export * from './StateLayerProps';
+export * from './StateLayer.types';
+export * from './StateLayer.styles';
 export * from './StateLayer';

@@ -395,7 +395,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
               >
                 <div
                   {...sxf(
-                    commonStyles.transformOrigin(floating.placement),
+                    commonStyles.placementToTransformOrigin(floating.placement),
                     'container',
                     `transition$${transitionStatus.status}`,
                   )}

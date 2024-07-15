@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
-import type { ITypographyOwnProps } from './TypographyProps';
+import type { ITypographyOwnProps } from './Typography.types';
 import {
   type IComponentPresentation,
   ComponentShowcase,

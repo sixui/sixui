@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import { buttonTokens as buttonVars } from '@/components/atoms/Button/Button.stylex';
-import { componentVars as elevationVars } from '@/themes/base/Elevation/Elevation.stylex';
+import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
 import { iconButtonTokens } from './IconButton.stylex';
 
 // https://github.com/material-components/material-web/blob/main/iconbutton/internal/_shared.scss
@@ -20,11 +20,11 @@ export const iconButtonStyles = stylex.create({
     [buttonVars.trailingIconLeadingSpace]: '0',
     [buttonVars.trailingIconTrailingSpace]: '0',
 
-    [buttonVars.containerElevation$disabled]: elevationVars.boxShadow$level0,
-    [buttonVars.containerElevation]: elevationVars.boxShadow$level0,
-    [buttonVars.containerElevation$focus]: elevationVars.boxShadow$level0,
-    [buttonVars.containerElevation$hover]: elevationVars.boxShadow$level0,
-    [buttonVars.containerElevation$pressed]: elevationVars.boxShadow$level0,
+    [buttonVars.containerElevation$disabled]: elevationTokens.boxShadow$level0,
+    [buttonVars.containerElevation]: elevationTokens.boxShadow$level0,
+    [buttonVars.containerElevation$focus]: elevationTokens.boxShadow$level0,
+    [buttonVars.containerElevation$hover]: elevationTokens.boxShadow$level0,
+    [buttonVars.containerElevation$pressed]: elevationTokens.boxShadow$level0,
 
     [buttonVars.containerHeight]: iconButtonTokens.containerHeight,
     [buttonVars.containerShape]: iconButtonTokens.containerShape,

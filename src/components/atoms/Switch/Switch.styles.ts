@@ -2,7 +2,7 @@ import stylex from '@stylexjs/stylex';
 
 import { circularProgressIndicatorTokens } from '@/components/atoms/CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { componentVars as statelayerVars } from '@/themes/base/StateLayer/StateLayer.stylex';
-import { componentVars as focusRingVars } from '@/themes/base/FocusRing/FocusRing.stylex';
+import { focusRingTokens } from '@/components/utils/FocusRing/FocusRing.stylex';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
 import { switchStateTokens } from './Switch.state.stylex';
 import { switchTokens } from './Switch.stylex';
@@ -311,7 +311,7 @@ export const switchStateLayerStyles = stylex.create({
 
 export const switchFocusRingStyles = stylex.create({
   host: {
-    [focusRingVars.shape]: switchTokens.trackShape,
+    [focusRingTokens.shape]: switchTokens.trackShape,
   },
 });
 

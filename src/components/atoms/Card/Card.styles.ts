@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
-import { componentVars as focusRingVars } from '@/themes/base/FocusRing/FocusRing.stylex';
+import { focusRingTokens } from '@/components/utils/FocusRing/FocusRing.stylex';
 import { componentVars as statelayerVars } from '@/themes/base/StateLayer/StateLayer.stylex';
-import { componentVars as elevationVars } from '@/themes/base/Elevation/Elevation.stylex';
+import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
 import { cardTokens } from './Card.stylex';
 import { cardStateTokens } from './Card.state.stylex';
 
@@ -72,7 +72,7 @@ export const cardStyles = stylex.create({
 
 export const cardElevationStyles = stylex.create({
   host: {
-    [elevationVars.boxShadow]: cardStateTokens.elevation,
+    [elevationTokens.boxShadow]: cardStateTokens.elevation,
 
     borderRadius: 'inherit',
     inset: 0,
@@ -100,6 +100,6 @@ export const cardStateLayerStyles = stylex.create({
 
 export const cardFocusRingStyles = stylex.create({
   host: {
-    [focusRingVars.shape]: cardTokens.containerShape,
+    [focusRingTokens.shape]: cardTokens.containerShape,
   },
 });

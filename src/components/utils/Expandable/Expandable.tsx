@@ -1,4 +1,4 @@
-import { forwardRef, useRef } from 'react';
+import { forwardRef, useMemo, useRef } from 'react';
 import { isFunction } from 'lodash';
 import stylex from '@stylexjs/stylex';
 import { CSSTransition } from 'react-transition-group';
@@ -13,11 +13,12 @@ import { useControlledValue } from '@/hooks/useControlledValue';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
 import { useMergeRefs } from '@floating-ui/react';
 import { useElementSize } from '@/hooks/useElementSize';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '@/helpers/stylePropsFactory';
+import { expandableStyles } from './Expandable.styles';
 
-const styles = stylex.create({
-  host: {
-    overflow: 'hidden',
-  },
+const localStyles = stylex.create({
   content: (expandedSize: Partial<ISize<ICssSizeValue>>) => ({
     overflow: 'hidden',
     width: expandedSize.width,
@@ -55,9 +56,6 @@ const styles = stylex.create({
     height: size.height,
     visibility,
   }),
-  host$collapsed: {
-    overflow: 'hidden',
-  },
   width: (width: number | string) => ({
     width,
   }),
@@ -69,6 +67,7 @@ const styles = stylex.create({
 export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
   function Expandable(props, forwardedRef) {
     const {
+      styles,
       sx,
       trigger,
       children,
@@ -81,6 +80,17 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
       collapsedSize: collapsedSizeProp = 0,
       ...other
     } = props;
+
+    const { overridenStyles } = useComponentTheme('Expandable');
+    const stylesCombinator = useMemo(
+      () => stylesCombinatorFactory(expandableStyles, styles),
+      [styles],
+    );
+    const sxf = useMemo(
+      () => stylePropsFactory(stylesCombinator),
+      [stylesCombinator],
+    );
+
     const initiallyExpandedRef = useRef(initiallyExpandedProp);
     const defaultExpanded = initiallyExpandedRef.current ?? defaultExpandedProp;
     const [expanded, setExpanded] = useControlledValue({
@@ -143,11 +153,11 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
         >
           {(status) => (
             <div
-              {...stylex.props(
-                sx,
-                styles.host,
+              {...sxf(
+                overridenStyles,
+                'host',
                 status === 'exited'
-                  ? styles.animation$exited(
+                  ? localStyles.animation$exited(
                       collapsedSize,
                       parseInt(`${collapsedSize.width}`) === 0 ||
                         parseInt(`${collapsedSize.height}`) === 0
@@ -155,24 +165,25 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
                         : 'visible',
                     )
                   : status === 'entering'
-                    ? styles.animation$entering(
+                    ? localStyles.animation$entering(
                         expandedSize,
                         transitionProperty,
                       )
                     : status === 'entered'
-                      ? styles.animation$entered(expandedSize)
+                      ? localStyles.animation$entered(expandedSize)
                       : status === 'exiting'
-                        ? styles.animation$exiting(
+                        ? localStyles.animation$exiting(
                             collapsedSize,
                             transitionProperty,
                           )
                         : undefined,
+                sx,
               )}
               aria-expanded={expanded}
               {...other}
               ref={transitionNodeHandleRef}
             >
-              <div {...stylex.props(styles.content(expandedSize))}>
+              <div {...stylex.props(localStyles.content(expandedSize))}>
                 <div ref={contentWrapperRef}>{children}</div>
               </div>
             </div>

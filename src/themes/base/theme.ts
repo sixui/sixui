@@ -2,25 +2,7 @@ import type { ITheme } from '../theme.types';
 
 import { darkColorRoles, darkColorRolesTheme } from './vars/darkColorRoles';
 
-import { componentTheme as componentShowcaseTheme } from './ComponentShowcase/ComponentShowcase.stylex';
-import { styles as componentShowcaseStyles } from './ComponentShowcase/ComponentShowcase.styles';
-
-import { styles as stateLayerStyles } from './StateLayer/StateLayer.styles';
-import { componentTheme as statelayerTheme } from './StateLayer/StateLayer.stylex';
-
-import { styles as elevationStyles } from './Elevation/Elevation.styles';
-import { componentTheme as elevationTheme } from './Elevation/Elevation.stylex';
-
-import { styles as focusRingStyles } from './FocusRing/FocusRing.styles';
-import { componentTheme as focusRingTheme } from './FocusRing/FocusRing.stylex';
-
-import { styles as typographyStyles } from './Typography/Typography.styles';
-
-import { styles as anchoredStyles } from './Anchored/Anchored.styles';
-
-import { componentTheme as elementWithLabelTheme } from './ElementWithLabel/ElementWithLabel.stylex';
-import { styles as elementWithLabelStyles } from './ElementWithLabel/ElementWithLabel.styles';
-
+// FIXME: refactor
 export const theme: ITheme = {
   name: 'Material Design 3',
   colorSchemes: {
@@ -28,33 +10,5 @@ export const theme: ITheme = {
   },
   colorRoles: {
     dark: darkColorRoles,
-  },
-  components: {
-    ComponentShowcase: {
-      vars: componentShowcaseTheme,
-      styles: componentShowcaseStyles,
-    },
-    StateLayer: {
-      vars: statelayerTheme,
-      styles: stateLayerStyles,
-    },
-    Elevation: {
-      vars: elevationTheme,
-      styles: elevationStyles,
-    },
-    FocusRing: {
-      vars: focusRingTheme,
-      styles: focusRingStyles,
-    },
-    Typography: {
-      styles: typographyStyles,
-    },
-    Anchored: {
-      styles: anchoredStyles,
-    },
-    ElementWithLabel: {
-      vars: elementWithLabelTheme,
-      styles: elementWithLabelStyles,
-    },
   },
 };

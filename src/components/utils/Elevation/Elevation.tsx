@@ -1,43 +1,39 @@
 import { forwardRef, useMemo } from 'react';
 
-import type {
-  IElevationStyleKey,
-  IElevationStyleVarKey,
-} from './Elevation.styledefs';
-import type { IElevationProps } from './ElevationProps';
+import type { IElevationProps } from './Elevation.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { elevationStyles } from './Elevation.styles';
+import { elevationTheme } from './Elevation.stylex';
 
 export const Elevation = forwardRef<HTMLDivElement, IElevationProps>(
   function Elevation(props, forwardedRef) {
     const { styles, sx, level, disabled, ...other } = props;
 
-    const { theme } = useComponentThemeOld('Elevation');
+    const { overridenStyles } = useComponentTheme('Elevation');
     const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(theme.styles, styles),
-      [theme.styles, styles],
+      () => stylesCombinatorFactory(elevationStyles, styles),
+      [styles],
     );
     const sxf = useMemo(
-      () =>
-        stylePropsFactory<IElevationStyleKey, IElevationStyleVarKey>(
-          stylesCombinator,
-        ),
+      () => stylePropsFactory(stylesCombinator),
       [stylesCombinator],
     );
 
     return (
       <div
         {...sxf(
+          elevationTheme,
+          overridenStyles,
           'host',
           level !== undefined && `host$level${level}`,
           disabled && 'host$disabled',
-          theme.vars,
           sx,
         )}
-        ref={forwardedRef}
         aria-hidden
         {...other}
+        ref={forwardedRef}
       />
     );
   },

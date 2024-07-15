@@ -2,7 +2,7 @@ import stylex from '@stylexjs/stylex';
 
 import { checkboxTokens as vars } from './Checkbox.stylex';
 import { componentVars as statelayerVars } from '@/themes/base/StateLayer/StateLayer.stylex';
-import { componentVars as focusRingVars } from '@/themes/base/FocusRing/FocusRing.stylex';
+import { focusRingTokens } from '@/components/utils/FocusRing/FocusRing.stylex';
 import { motionVars } from '@/themes/base/vars/motion.stylex';
 import { shapeVars } from '@/themes/base/vars/shape.stylex';
 import { checkboxStateTokens } from './Checkbox.state.stylex';
@@ -275,7 +275,7 @@ export const checkboxFocusRingStyles = stylex.create({
   host: {
     width: 44,
     height: 44,
-    [focusRingVars.shape]: shapeVars.corner$full,
+    [focusRingTokens.shape]: shapeVars.corner$full,
   },
   host$outward: {
     inset: 'unset',
