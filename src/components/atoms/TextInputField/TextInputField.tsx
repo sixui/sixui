@@ -3,7 +3,7 @@ import { forwardRef, useRef, useState } from 'react';
 import type {
   ITextInputFieldProps,
   ITextInputFieldOwnProps,
-} from './TextInputFieldProps';
+} from './TextInputField.types';
 import { IconButton } from '@/components/atoms/IconButton';
 import {
   TextFieldBase,

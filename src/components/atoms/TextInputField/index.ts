@@ -1,2 +1,2 @@
-export * from './TextInputFieldProps';
+export * from './TextInputField.types';
 export * from './TextInputField';
