@@ -1,6 +1,7 @@
-import stylex from '@stylexjs/stylex';
+import { useMemo } from 'react';
 
-import type { IMultiSelectBaseProps } from './MultiSelectBaseProps';
+import type { ITextFieldBaseStyleKey } from '@/components/atoms/TextFieldBase';
+import type { IMultiSelectBaseProps } from './MultiSelectBase.types';
 import { ListItem } from '@/components/atoms/ListItem';
 import { TextInputField } from '@/components/atoms/TextInputField';
 import { MenuList } from '@/components/atoms/MenuList';
@@ -11,24 +12,13 @@ import {
 } from '@/components/atoms/FilterableListBase';
 import { FloatingFilterableListBase } from '@/components/atoms/FloatingFilterableListBase';
 import { fixedForwardRef } from '@/helpers/fixedForwardRef';
-
-// TODO: migrate in theme
-const localStyles = stylex.create({
-  chip: {
-    marginRight: '0.5rem',
-  },
-});
-
-// TODO: migrate in theme
-const fieldStyles = stylex.create({
-  contentSlot: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    rowGap: '0.5rem',
-    flexWrap: 'wrap',
-  },
-});
+import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
+import {
+  multiSelectBaseFieldStyles,
+  multiSelectBaseStyles,
+  type IMultiSelectBaseStylesKey,
+} from './MultiSelectBase.styles';
 
 export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
   props: IMultiSelectBaseProps<TItem>,
@@ -49,6 +39,15 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
     noResults,
     ...other
   } = props;
+
+  const { overridenStyles } = useComponentTheme('MultiSelectBase');
+  const stylesCombinator = useMemo(
+    () =>
+      stylesCombinatorFactory<
+        IMultiSelectBaseStylesKey | ITextFieldBaseStyleKey
+      >(multiSelectBaseStyles, styles),
+    [styles],
+  );
 
   const multiFilterableListBase = useMultiFilterableListBase({
     items,
@@ -84,6 +83,8 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
     >
       {(renderProps) => (
         <TextInputField
+          sx={[overridenStyles, sx]}
+          styles={styles}
           end={
             <FilterableListBaseFieldEnd
               onClear={
@@ -103,14 +104,12 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
             !!multiFilterableListBase.selectedItems.length ||
             !!renderProps.query
           }
-          innerStyles={{ field: fieldStyles }}
+          innerStyles={{ field: multiSelectBaseFieldStyles }}
           spellCheck='false'
           variant={variant}
           {...renderProps.getInputFilterProps(
             renderProps.getTriggerProps(renderProps.forwardedProps),
           )}
-          sx={sx}
-          styles={styles}
           ref={renderProps.setTriggerRef}
           inputRef={renderProps.inputFilterRef}
           start={
@@ -118,7 +117,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
               ? multiFilterableListBase.selectedItems.map(
                   (selectedItem, index) => (
                     <InputChip
-                      sx={localStyles.chip}
+                      sx={stylesCombinator('chip')}
                       key={index}
                       visualState={{
                         focused:

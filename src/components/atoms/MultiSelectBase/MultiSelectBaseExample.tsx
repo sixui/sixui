@@ -1,5 +1,5 @@
 import type { IOmit } from '@/helpers/types';
-import type { IMultiSelectBaseProps } from './MultiSelectBaseProps';
+import type { IMultiSelectBaseProps } from './MultiSelectBase.types';
 import {
   areMoviesEqual,
   createMovie,

@@ -1,2 +1,3 @@
-export * from './MultiSelectBaseProps';
+export * from './MultiSelectBase.types';
+export * from './MultiSelectBase.styles';
 export * from './MultiSelectBase';
