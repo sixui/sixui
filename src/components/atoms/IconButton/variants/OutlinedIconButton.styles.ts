@@ -12,6 +12,7 @@ export const outlinedIconButtonStyles = stylex.create({
     [iconButtonTokens.iconColor$focus]: colorRolesVars.onSurfaceVariant,
     [iconButtonTokens.iconColor$hover]: colorRolesVars.onSurfaceVariant,
     [iconButtonTokens.iconColor$pressed]: colorRolesVars.onSurfaceVariant,
+    [iconButtonTokens.iconColor$disabled]: colorRolesVars.onSurfaceVariant,
 
     [iconButtonTokens.toggleIconColor]: colorRolesVars.onSurfaceVariant,
     [iconButtonTokens.toggleIconColor$focus]: colorRolesVars.onSurfaceVariant,

@@ -51,7 +51,6 @@ export const IconButton: IIconButton = forwardRef(function IconButton<
 
   return (
     <Button
-      ref={forwardedRef}
       as={as}
       sx={[
         iconButtonTheme,
@@ -67,6 +66,7 @@ export const IconButton: IIconButton = forwardRef(function IconButton<
         toggle && selected ? ariaLabelSelected ?? ariaLabel : ariaLabel
       }
       {...other}
+      ref={forwardedRef}
     />
   );
 });

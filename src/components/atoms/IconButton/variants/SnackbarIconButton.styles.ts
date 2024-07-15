@@ -18,6 +18,7 @@ export const snackbarIconButtonStyles = stylex.create({
     [iconButtonTokens.iconColor$focus]: colorRolesVars.inverseOnSurface,
     [iconButtonTokens.iconColor$hover]: colorRolesVars.inverseOnSurface,
     [iconButtonTokens.iconColor$pressed]: colorRolesVars.inverseOnSurface,
+    [iconButtonTokens.iconColor$disabled]: colorRolesVars.inverseOnSurface,
 
     [iconButtonTokens.toggleIconColor]: colorRolesVars.inverseOnSurface,
     [iconButtonTokens.toggleIconColor$focus]: colorRolesVars.inverseOnSurface,

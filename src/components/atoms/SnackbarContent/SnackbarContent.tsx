@@ -1,18 +1,19 @@
 import { forwardRef, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
-import type {
-  ISnackbarContentStyleKey,
-  ISnackbarContentStyleVarKey,
-} from './SnackbarContent.styledefs';
-import type { ISnackbarContentProps } from './SnackbarContentProps';
+import type { ISnackbarContentProps } from './SnackbarContent.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { Elevation } from '@/components/utils/Elevation';
 import { Button } from '@/components/atoms/Button';
 import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
 import { IconButton } from '@/components/atoms/IconButton';
+import {
+  snackbarContentElevationStyles,
+  snackbarContentStyles,
+} from './SnackbarContent.styles';
+import { snackbarContentTheme } from './SnackbarContent.stylex';
 
 export const SnackbarContent = forwardRef<
   HTMLDivElement,
@@ -30,36 +31,37 @@ export const SnackbarContent = forwardRef<
     ...other
   } = props;
 
-  const { theme } = useComponentThemeOld('SnackbarContent');
+  const { overridenStyles } = useComponentTheme('SnackbarContent');
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, styles),
-    [theme.styles, styles],
+    () => stylesCombinatorFactory(snackbarContentStyles, styles),
+    [styles],
   );
   const sxf = useMemo(
-    () =>
-      stylePropsFactory<ISnackbarContentStyleKey, ISnackbarContentStyleVarKey>(
-        stylesCombinator,
-      ),
+    () => stylePropsFactory(stylesCombinator),
     [stylesCombinator],
   );
 
   return (
     <div
       {...sxf(
+        snackbarContentTheme,
+        overridenStyles,
         'host',
         actionLabel
           ? 'host$trailingAction'
           : onClose
             ? 'host$trailingIcon'
             : undefined,
-        theme.vars,
         sx,
       )}
       ref={forwardedRef}
       {...other}
     >
       <Elevation
-        styles={[theme.elevationStyles, ...asArray(innerStyles?.elevation)]}
+        styles={[
+          snackbarContentElevationStyles,
+          ...asArray(innerStyles?.elevation),
+        ]}
       />
       <div {...sxf('supportingText')}>{children}</div>
 

@@ -47,15 +47,6 @@ import type {
   IElementWithLabelStyleKey,
   IElementWithLabelStyleVarKey,
 } from '@/components/molecules/ElementWithLabel';
-import type {
-  ISnackbarStyleKey,
-  ISnackbarStyleVarKey,
-} from '@/components/atoms/Snackbar';
-import type {
-  ISnackbarContentStyleKey,
-  ISnackbarContentStyleVarKey,
-} from '@/components/atoms/SnackbarContent';
-import type { IButtonStylesKey } from '@/components/atoms/Button';
 import type { ICircularProgressIndicatorStylesKey } from '@/components/atoms/CircularProgressIndicator';
 
 export type IBasicTemplateTheme = {
@@ -147,16 +138,6 @@ export type ITheme = {
     ElementWithLabel: {
       vars?: IStyleVarsTheme<IElementWithLabelStyleVarKey>;
       styles?: ICompiledStyles<IElementWithLabelStyleKey>;
-    };
-    Snackbar: {
-      vars?: IStyleVarsTheme<ISnackbarStyleVarKey>;
-      styles?: ICompiledStyles<ISnackbarStyleKey>;
-    };
-    SnackbarContent: {
-      vars?: IStyleVarsTheme<ISnackbarContentStyleVarKey>;
-      styles?: ICompiledStyles<ISnackbarContentStyleKey>;
-      elevationStyles?: ICompiledStyles<IElevationStyleKey>;
-      actionButtonStyles?: ICompiledStyles<IButtonStylesKey>;
     };
   };
 };

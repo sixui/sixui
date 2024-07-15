@@ -1,13 +1,11 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IStyleVars } from '@/helpers/types';
-import type { ISnackbarContentStyleVarKey } from '@/components/atoms/SnackbarContent';
-import { colorRolesVars } from '../vars/colorRoles.stylex';
-import { componentVars as elevationVars } from '../Elevation/Elevation.stylex';
-import { shapeVars } from '../vars/shape.stylex';
-import { typescaleVars } from '../vars/typo.stylex';
+import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { componentVars as elevationVars } from '@/themes/base/Elevation/Elevation.stylex';
+import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { typescaleVars } from '@/themes/base/vars/typo.stylex';
 
-const vars: IStyleVars<ISnackbarContentStyleVarKey> = {
+const vars = {
   gap: '12px',
   topSpace: '14px',
   bottomSpace: '14px',
@@ -32,7 +30,7 @@ const vars: IStyleVars<ISnackbarContentStyleVarKey> = {
   supportingTextLetterSpacing: typescaleVars.bodyLetterSpacing$md,
 };
 
-export const componentVars = stylex.defineVars(vars);
+export const snackbarContentTokens = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that
@@ -40,4 +38,7 @@ export const componentVars = stylex.defineVars(vars);
  *
  * @see https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
  */
-export const componentTheme = stylex.createTheme(componentVars, vars);
+export const snackbarContentTheme = stylex.createTheme(
+  snackbarContentTokens,
+  vars,
+);

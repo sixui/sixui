@@ -65,15 +65,6 @@ import { styles as stepConnectorStyles } from './StepConnector/StepConnector.sty
 import { componentTheme as elementWithLabelTheme } from './ElementWithLabel/ElementWithLabel.stylex';
 import { styles as elementWithLabelStyles } from './ElementWithLabel/ElementWithLabel.styles';
 
-import { componentTheme as snackbarTheme } from './Snackbar/Snackbar.stylex';
-import { styles as snackbarStyles } from './Snackbar/Snackbar.styles';
-
-import { componentTheme as snackbarContentTheme } from './SnackbarContent/SnackbarContent.stylex';
-import {
-  styles as snackbarContentStyles,
-  elevationStyles as snackbarContentElevationStyles,
-} from './SnackbarContent/SnackbarContent.styles';
-
 export const theme: ITheme = {
   name: 'Material Design 3',
   colorSchemes: {
@@ -155,15 +146,6 @@ export const theme: ITheme = {
     ElementWithLabel: {
       vars: elementWithLabelTheme,
       styles: elementWithLabelStyles,
-    },
-    Snackbar: {
-      vars: snackbarTheme,
-      styles: snackbarStyles,
-    },
-    SnackbarContent: {
-      vars: snackbarContentTheme,
-      styles: snackbarContentStyles,
-      elevationStyles: snackbarContentElevationStyles,
     },
   },
 };

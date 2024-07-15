@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { ISnackbarContentProps } from './SnackbarContentProps';
+import type { ISnackbarContentProps } from './SnackbarContent.types';
 import {
   type IComponentPresentation,
   ComponentShowcase,

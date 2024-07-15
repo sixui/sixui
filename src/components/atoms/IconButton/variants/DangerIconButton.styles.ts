@@ -17,6 +17,7 @@ export const dangerIconButtonStyles = stylex.create({
     [iconButtonTokens.iconColor$focus]: colorRolesVars.onErrorContainer,
     [iconButtonTokens.iconColor$hover]: colorRolesVars.onErrorContainer,
     [iconButtonTokens.iconColor$pressed]: colorRolesVars.onErrorContainer,
+    [iconButtonTokens.iconColor$disabled]: colorRolesVars.onErrorContainer,
 
     [iconButtonTokens.toggleIconColor]: colorRolesVars.onErrorContainer,
     [iconButtonTokens.toggleIconColor$focus]: colorRolesVars.onErrorContainer,

@@ -1,3 +1,3 @@
-export * from './SnackbarContent.styledefs';
-export * from './SnackbarContentProps';
+export * from './SnackbarContent.types';
+export * from './SnackbarContent.styles';
 export * from './SnackbarContent';

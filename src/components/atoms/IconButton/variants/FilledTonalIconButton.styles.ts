@@ -18,6 +18,7 @@ export const filledTonalIconButtonStyles = stylex.create({
     [iconButtonTokens.iconColor$focus]: colorRolesVars.onSecondaryContainer,
     [iconButtonTokens.iconColor$hover]: colorRolesVars.onSecondaryContainer,
     [iconButtonTokens.iconColor$pressed]: colorRolesVars.onSecondaryContainer,
+    [iconButtonTokens.iconColor$disabled]: colorRolesVars.onSecondaryContainer,
 
     [iconButtonTokens.toggleIconColor]: colorRolesVars.onSurfaceVariant,
     [iconButtonTokens.toggleIconColor$focus]: colorRolesVars.onSurfaceVariant,
