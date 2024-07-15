@@ -1,7 +1,7 @@
 import type { IContainerProps } from '@/helpers/types';
-import type { IPlaceholderStyleKey } from './Placeholder.styledefs';
+import type { IPlaceholderStylesKey } from './Placeholder.styles';
 
-export type IPlaceholderProps = IContainerProps<IPlaceholderStyleKey> & {
+export type IPlaceholderProps = IContainerProps<IPlaceholderStylesKey> & {
   label?: string;
   children?: React.ReactNode;
   role?: string;

@@ -1,3 +1,3 @@
-export * from './Placeholder.styledefs';
-export * from './PlaceholderProps';
+export * from './Placeholder.types';
+export * from './Placeholder.styles';
 export * from './Placeholder';

@@ -1,13 +1,11 @@
 import { forwardRef, useMemo } from 'react';
 
-import type {
-  IPlaceholderStyleKey,
-  IPlaceholderStyleVarKey,
-} from './Placeholder.styledefs';
-import type { IPlaceholderProps } from './PlaceholderProps';
+import type { IPlaceholderProps } from './Placeholder.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { placeholderStyles } from './Placeholder.styles';
+import { placeholderTheme } from './Placeholder.stylex';
 
 export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
   function Placeholder(props, forwardedRef) {
@@ -21,29 +19,27 @@ export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
       ...other
     } = props;
 
-    const { theme } = useComponentThemeOld('Placeholder');
+    const { overridenStyles } = useComponentTheme('Placeholder');
     const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(theme.styles, styles),
-      [theme.styles, styles],
+      () => stylesCombinatorFactory(placeholderStyles, styles),
+      [styles],
     );
     const sxf = useMemo(
-      () =>
-        stylePropsFactory<IPlaceholderStyleKey, IPlaceholderStyleVarKey>(
-          stylesCombinator,
-        ),
+      () => stylePropsFactory(stylesCombinator),
       [stylesCombinator],
     );
 
     return (
       <div
         {...sxf(
+          placeholderTheme,
+          overridenStyles,
           'host',
           shape === 'rectangular'
             ? 'host$rectangular'
             : shape === 'circular'
               ? 'host$circular'
               : null,
-          theme.vars,
           sx,
         )}
         ref={forwardedRef}

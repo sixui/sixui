@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
-import type { IPlaceholderProps } from './PlaceholderProps';
+import type { IPlaceholderProps } from './Placeholder.types';
 import {
   type IComponentPresentation,
   ComponentShowcase,
