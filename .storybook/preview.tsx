@@ -1,8 +1,8 @@
 import type { Decorator, Preview } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
-import { ThemeProvider } from '@/components/utils/Theme';
-import { ColorSchemeProvider } from '@/components/utils/ColorScheme';
+import { ThemeProvider } from '@/components/Theme';
+import { ColorSchemeProvider } from '@/components/ColorScheme';
 import { modes } from './modes';
 
 import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
@@ -11,11 +11,11 @@ import { darkColorRolesVars } from '@/themes/base/darkColorRoles.styles';
 // For theme variant
 // import { colorPalettesTheme as variantColorPalettesTheme } from '@/themes/variant/colorPalettes.stylex';
 // import { shapeTheme as variantShapeTheme } from '@/themes/variant/shape.stylex';
-// import { buttonTokens } from '@/components/atoms/Button/Button.stylex';
-// import { disclosureButtonTokens } from '@/components/atoms/DisclosureButton/DisclosureButton.stylex';
-// import { avatarTokens } from '@/components/atoms/Avatar/Avatar.stylex';
-// import { badgeTokens } from '@/components/atoms/Badge/Badge.stylex';
-// import { checkboxTokens } from '@/components/atoms/Checkbox/Checkbox.stylex';
+// import { buttonTokens } from '@/components/Button/Button.stylex';
+// import { disclosureButtonTokens } from '@/components/DisclosureButton/DisclosureButton.stylex';
+// import { avatarTokens } from '@/components/Avatar/Avatar.stylex';
+// import { badgeTokens } from '@/components/Badge/Badge.stylex';
+// import { checkboxTokens } from '@/components/Checkbox/Checkbox.stylex';
 
 import '@/styles/main.css';
 import '@/styles/storybook.css';

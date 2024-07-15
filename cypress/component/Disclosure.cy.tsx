@@ -1,11 +1,11 @@
 // import stylex from '@stylexjs/stylex';
-// import { ThemeProvider } from '@/components/utils/Theme';
+// import { ThemeProvider } from '@/components/Theme';
 // import { theme } from '@/themes/base';
 // import '@/styles/main.css';
 
-// import { Disclosure } from '@/components/atoms/Disclosure';
-// import { DisclosureButton } from '@/components/atoms/DisclosureButton';
-// import { DisclosurePanel } from '@/components/atoms/DisclosurePanel';
+// import { Disclosure } from '@/components/Disclosure';
+// import { DisclosureButton } from '@/components/DisclosureButton';
+// import { DisclosurePanel } from '@/components/DisclosurePanel';
 
 // const styles = stylex.create({
 //   host: {

@@ -1,11 +1,11 @@
 import stylex from '@stylexjs/stylex';
-import { ThemeProvider } from '@/components/utils/Theme';
+import { ThemeProvider } from '@/components/Theme';
 import { theme } from '@/themes/base';
 import 'cypress-real-events';
 import '@/styles/main.css';
 
-import { RadioGroup } from '@/components/atoms/RadioGroup';
-import { Radio } from '@/components/atoms/Radio';
+import { RadioGroup } from '@/components/RadioGroup';
+import { Radio } from '@/components/Radio';
 
 const styles = stylex.create({
   host: {

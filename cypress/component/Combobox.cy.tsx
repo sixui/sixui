@@ -1,9 +1,9 @@
 // import stylex from '@stylexjs/stylex';
-// import { ThemeProvider } from '@/components/utils/Theme';
+// import { ThemeProvider } from '@/components/Theme';
 // import { theme } from '@/themes/base';
 // import '@/styles/main.css';
 
-// import { Combobox } from '@/components/atoms/Combobox';
+// import { Combobox } from '@/components/Combobox';
 
 // const styles = stylex.create({
 //   host: {

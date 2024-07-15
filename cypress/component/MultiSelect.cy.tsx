@@ -1,11 +1,11 @@
 // import stylex from '@stylexjs/stylex';
-// import { ThemeProvider } from '@/components/utils/Theme';
+// import { ThemeProvider } from '@/components/Theme';
 // import { theme } from '@/themes/base';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faAppleWhole, faCarrot } from '@fortawesome/free-solid-svg-icons';
 // import '@/styles/main.css';
 
-// import { MultiSelect } from '@/components/atoms/MultiSelect';
+// import { MultiSelect } from '@/components/MultiSelect';
 
 // const styles = stylex.create({
 //   host: {
