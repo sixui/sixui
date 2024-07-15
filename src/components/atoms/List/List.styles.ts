@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { listTokens as vars } from './List.stylex';
+import { listTokens } from './List.stylex';
 
 // https://github.com/material-components/material-web/blob/main/list/internal/_list.scss
 
@@ -24,8 +24,8 @@ export const listStyles = stylex.create({
   header: {},
   footer: {},
   content: {
-    paddingTop: vars.topSpace,
-    paddingBottom: vars.bottomSpace,
+    paddingTop: listTokens.topSpace,
+    paddingBottom: listTokens.bottomSpace,
     display: 'flex',
     flexDirection: 'column',
     borderRadius: 'inherit',

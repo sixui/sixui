@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
 import { chipTokens } from '../Chip.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-filter-chip.scss
@@ -8,49 +8,53 @@ import { chipTokens } from '../Chip.stylex';
 
 export const filterChipStyles = stylex.create({
   host: {
-    [chipTokens.flatContainerColor]: colorRolesVars.surfaceContainerLow,
+    [chipTokens.flatContainerColor]: colorRolesTokens.surfaceContainerLow,
 
-    [chipTokens.selectedFlatContainerColor]: colorRolesVars.secondaryContainer,
-    [chipTokens.selectedFlatContainerColor$disabled]: colorRolesVars.onSurface,
+    [chipTokens.selectedFlatContainerColor]:
+      colorRolesTokens.secondaryContainer,
+    [chipTokens.selectedFlatContainerColor$disabled]:
+      colorRolesTokens.onSurface,
 
     [chipTokens.selectedOutlineWidth]: '0',
 
     [chipTokens.selectedElevatedContainerColor]:
-      colorRolesVars.secondaryContainer,
+      colorRolesTokens.secondaryContainer,
 
-    [chipTokens.selectedLabelTextColor]: colorRolesVars.onSecondaryContainer,
+    [chipTokens.selectedLabelTextColor]: colorRolesTokens.onSecondaryContainer,
     [chipTokens.selectedLabelTextColor$hover]:
-      colorRolesVars.onSecondaryContainer,
+      colorRolesTokens.onSecondaryContainer,
     [chipTokens.selectedLabelTextColor$focus]:
-      colorRolesVars.onSecondaryContainer,
+      colorRolesTokens.onSecondaryContainer,
     [chipTokens.selectedLabelTextColor$pressed]:
-      colorRolesVars.onSecondaryContainer,
+      colorRolesTokens.onSecondaryContainer,
 
-    [chipTokens.stateLayerColor$hover]: colorRolesVars.onSurfaceVariant,
-    [chipTokens.stateLayerColor$pressed]: colorRolesVars.onSecondaryContainer,
+    [chipTokens.stateLayerColor$hover]: colorRolesTokens.onSurfaceVariant,
+    [chipTokens.stateLayerColor$pressed]: colorRolesTokens.onSecondaryContainer,
 
     [chipTokens.selectedStateLayerColor$hover]:
-      colorRolesVars.onSecondaryContainer,
+      colorRolesTokens.onSecondaryContainer,
     [chipTokens.selectedStateLayerColor$pressed]:
-      colorRolesVars.onSurfaceVariant,
+      colorRolesTokens.onSurfaceVariant,
 
-    [chipTokens.selectedIconColor]: colorRolesVars.onSecondaryContainer,
-    [chipTokens.selectedIconColor$focus]: colorRolesVars.onSecondaryContainer,
-    [chipTokens.selectedIconColor$hover]: colorRolesVars.onSecondaryContainer,
-    [chipTokens.selectedIconColor$pressed]: colorRolesVars.onSecondaryContainer,
+    [chipTokens.selectedIconColor]: colorRolesTokens.onSecondaryContainer,
+    [chipTokens.selectedIconColor$focus]: colorRolesTokens.onSecondaryContainer,
+    [chipTokens.selectedIconColor$hover]: colorRolesTokens.onSecondaryContainer,
+    [chipTokens.selectedIconColor$pressed]:
+      colorRolesTokens.onSecondaryContainer,
 
-    [chipTokens.trailingIconColor]: colorRolesVars.onSurfaceVariant,
-    [chipTokens.trailingIconColor$disabled]: colorRolesVars.onSurface,
-    [chipTokens.trailingIconColor$focus]: colorRolesVars.onSurfaceVariant,
-    [chipTokens.trailingIconColor$hover]: colorRolesVars.onSurfaceVariant,
-    [chipTokens.trailingIconColor$pressed]: colorRolesVars.onSurfaceVariant,
+    [chipTokens.trailingIconColor]: colorRolesTokens.onSurfaceVariant,
+    [chipTokens.trailingIconColor$disabled]: colorRolesTokens.onSurface,
+    [chipTokens.trailingIconColor$focus]: colorRolesTokens.onSurfaceVariant,
+    [chipTokens.trailingIconColor$hover]: colorRolesTokens.onSurfaceVariant,
+    [chipTokens.trailingIconColor$pressed]: colorRolesTokens.onSurfaceVariant,
 
-    [chipTokens.selectedTrailingIconColor]: colorRolesVars.onSecondaryContainer,
+    [chipTokens.selectedTrailingIconColor]:
+      colorRolesTokens.onSecondaryContainer,
     [chipTokens.selectedTrailingIconColor$focus]:
-      colorRolesVars.onSecondaryContainer,
+      colorRolesTokens.onSecondaryContainer,
     [chipTokens.selectedTrailingIconColor$hover]:
-      colorRolesVars.onSecondaryContainer,
+      colorRolesTokens.onSecondaryContainer,
     [chipTokens.selectedTrailingIconColor$pressed]:
-      colorRolesVars.onSecondaryContainer,
+      colorRolesTokens.onSecondaryContainer,
   },
 });

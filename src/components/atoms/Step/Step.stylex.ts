@@ -1,9 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { typescaleVars } from '@/themes/base/vars/typo.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
-import { stateVars } from '@/themes/base/vars/state.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
+import { stateTokens } from '@/themes/base/tokens/state.stylex';
 
 const vars = {
   gap: '8px',
@@ -24,89 +24,89 @@ const vars = {
   bulletPointSpace: '8px',
 
   // connector
-  connectorShape: shapeVars.corner$full,
+  connectorShape: shapeTokens.corner$full,
   connectorMinLength: '16px',
 
   // container
-  containerShape: shapeVars.corner$md,
+  containerShape: shapeTokens.corner$md,
 
   // bulletPoint
   bulletPointSize: '24px',
-  bulletPointShape: shapeVars.corner$full,
-  bulletPointColor: colorRolesVars.primary,
+  bulletPointShape: shapeTokens.corner$full,
+  bulletPointColor: colorRolesTokens.primary,
   // &:inactive
-  bulletPointColor$inactive: colorRolesVars.onSurface,
+  bulletPointColor$inactive: colorRolesTokens.onSurface,
   bulletPointOpacity$inactive: '0.16',
   // &:completed
-  bulletPointColor$completed: colorRolesVars.primary,
+  bulletPointColor$completed: colorRolesTokens.primary,
   // &:error
-  bulletPointColor$error: colorRolesVars.error,
+  bulletPointColor$error: colorRolesTokens.error,
   // &:disabled
-  bulletPointColor$disabled: colorRolesVars.onSurface,
-  bulletPointOpacity$disabled: stateVars.containerOpacity$disabled,
+  bulletPointColor$disabled: colorRolesTokens.onSurface,
+  bulletPointOpacity$disabled: stateTokens.containerOpacity$disabled,
 
   // bulletPointText
-  bulletPointTextColor: colorRolesVars.onPrimary,
-  bulletPointTextFont: typescaleVars.labelFont$md,
-  bulletPointTextSize: typescaleVars.labelSize$md,
-  bulletPointTextWeight: typescaleVars.labelWeight$md,
-  bulletPointTextLineHeight: typescaleVars.labelLineHeight$md,
-  bulletPointTextLetterSpacing: typescaleVars.labelLetterSpacing$md,
+  bulletPointTextColor: colorRolesTokens.onPrimary,
+  bulletPointTextFont: typescaleTokens.labelFont$md,
+  bulletPointTextSize: typescaleTokens.labelSize$md,
+  bulletPointTextWeight: typescaleTokens.labelWeight$md,
+  bulletPointTextLineHeight: typescaleTokens.labelLineHeight$md,
+  bulletPointTextLetterSpacing: typescaleTokens.labelLetterSpacing$md,
   // &:inactive
-  bulletPointTextColor$inactive: colorRolesVars.onSurface,
+  bulletPointTextColor$inactive: colorRolesTokens.onSurface,
   // &:completed
-  bulletPointTextColor$completed: colorRolesVars.onPrimary,
+  bulletPointTextColor$completed: colorRolesTokens.onPrimary,
   // &:error
-  bulletPointTextColor$error: colorRolesVars.onError,
+  bulletPointTextColor$error: colorRolesTokens.onError,
   // &:disabled
-  bulletPointTextColor$disabled: colorRolesVars.onSurface,
-  bulletPointTextOpacity$disabled: stateVars.opacity$disabled,
+  bulletPointTextColor$disabled: colorRolesTokens.onSurface,
+  bulletPointTextOpacity$disabled: stateTokens.opacity$disabled,
 
   // labelText
-  labelTextColor: colorRolesVars.onSurface,
-  labelTextFont: typescaleVars.labelFont$lg,
-  labelTextSize: typescaleVars.labelSize$lg,
-  labelTextWeight: typescaleVars.labelWeight$lg,
-  labelTextLineHeight: typescaleVars.labelLineHeight$lg,
-  labelTextLetterSpacing: typescaleVars.labelLetterSpacing$lg,
+  labelTextColor: colorRolesTokens.onSurface,
+  labelTextFont: typescaleTokens.labelFont$lg,
+  labelTextSize: typescaleTokens.labelSize$lg,
+  labelTextWeight: typescaleTokens.labelWeight$lg,
+  labelTextLineHeight: typescaleTokens.labelLineHeight$lg,
+  labelTextLetterSpacing: typescaleTokens.labelLetterSpacing$lg,
   // &:interactive
-  labelTextColor$interactive: colorRolesVars.primary,
+  labelTextColor$interactive: colorRolesTokens.primary,
   // &:inactive
-  labelTextColor$inactive: colorRolesVars.onSurface,
+  labelTextColor$inactive: colorRolesTokens.onSurface,
   // &:completed
-  labelTextColor$completed: colorRolesVars.onSurface,
+  labelTextColor$completed: colorRolesTokens.onSurface,
   // &:disabled
-  labelTextColor$disabled: colorRolesVars.onSurface,
-  labelTextOpacity$disabled: stateVars.opacity$disabled,
+  labelTextColor$disabled: colorRolesTokens.onSurface,
+  labelTextOpacity$disabled: stateTokens.opacity$disabled,
   // &:error
-  labelTextColor$error: colorRolesVars.error,
+  labelTextColor$error: colorRolesTokens.error,
 
   // supportingText
-  supportingTextColor: colorRolesVars.onSurface,
-  supportingTextFont: typescaleVars.labelFont$sm,
-  supportingTextSize: typescaleVars.labelSize$sm,
-  supportingTextWeight: typescaleVars.labelWeight$sm,
-  supportingTextLineHeight: typescaleVars.labelLineHeight$sm,
-  supportingTextLetterSpacing: typescaleVars.labelLetterSpacing$sm,
+  supportingTextColor: colorRolesTokens.onSurface,
+  supportingTextFont: typescaleTokens.labelFont$sm,
+  supportingTextSize: typescaleTokens.labelSize$sm,
+  supportingTextWeight: typescaleTokens.labelWeight$sm,
+  supportingTextLineHeight: typescaleTokens.labelLineHeight$sm,
+  supportingTextLetterSpacing: typescaleTokens.labelLetterSpacing$sm,
   // &:interactive
-  supportingTextColor$interactive: colorRolesVars.onSurface,
+  supportingTextColor$interactive: colorRolesTokens.onSurface,
   // &:inactive
-  supportingTextColor$inactive: colorRolesVars.onSurface,
+  supportingTextColor$inactive: colorRolesTokens.onSurface,
   // &:completed
-  supportingTextColor$completed: colorRolesVars.onSurface,
+  supportingTextColor$completed: colorRolesTokens.onSurface,
   // &:disabled
-  supportingTextColor$disabled: colorRolesVars.onSurface,
-  supportingTextOpacity$disabled: stateVars.opacity$disabled,
+  supportingTextColor$disabled: colorRolesTokens.onSurface,
+  supportingTextOpacity$disabled: stateTokens.opacity$disabled,
   // &:error
-  supportingTextColor$error: colorRolesVars.error,
+  supportingTextColor$error: colorRolesTokens.error,
 
   // contentText
-  contentTextColor: colorRolesVars.onSurface,
-  contentTextFont: typescaleVars.bodyFont$md,
-  contentTextSize: typescaleVars.bodySize$md,
-  contentTextWeight: typescaleVars.bodyWeight$md,
-  contentTextLineHeight: typescaleVars.bodyLineHeight$md,
-  contentTextLetterSpacing: typescaleVars.bodyLetterSpacing$md,
+  contentTextColor: colorRolesTokens.onSurface,
+  contentTextFont: typescaleTokens.bodyFont$md,
+  contentTextSize: typescaleTokens.bodySize$md,
+  contentTextWeight: typescaleTokens.bodyWeight$md,
+  contentTextLineHeight: typescaleTokens.bodyLineHeight$md,
+  contentTextLetterSpacing: typescaleTokens.bodyLetterSpacing$md,
 };
 
 export const stepTokens = stylex.defineVars(vars);

@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import { stepTokens } from '@/components/atoms/Step/Step.stylex';
-import { stepConnectorTokens as vars } from './StepConnector.stylex';
+import { stepConnectorTokens } from './StepConnector.stylex';
 
 export type IStepConnectorStylesKey = keyof typeof stepConnectorStyles;
 export const stepConnectorStyles = stylex.create({
@@ -15,11 +15,11 @@ export const stepConnectorStyles = stylex.create({
   },
   host$horizontal$bottomLabel: {
     flexDirection: 'row',
-    marginTop: `calc(-1 * ${vars.thickness} / 2 + ${stepTokens.topSpace} + ${stepTokens.bulletPointSize} / 2)`,
+    marginTop: `calc(-1 * ${stepConnectorTokens.thickness} / 2 + ${stepTokens.topSpace} + ${stepTokens.bulletPointSize} / 2)`,
   },
   host$vertical$rightLabel: {
     flexDirection: 'column',
-    marginLeft: `calc(-1 * ${vars.thickness} / 2 + ${stepTokens.leadingSpace} + ${stepTokens.bulletPointSize} / 2)`,
+    marginLeft: `calc(-1 * ${stepConnectorTokens.thickness} / 2 + ${stepTokens.leadingSpace} + ${stepTokens.bulletPointSize} / 2)`,
   },
   host$vertical$bottomLabel: {
     // This style is never applied because the vertical orientation does not
@@ -39,33 +39,33 @@ export const stepConnectorStyles = stylex.create({
   },
   container$horizontal$topText: {
     flexDirection: 'column',
-    gap: vars.textSpace$vertical,
-    transform: `translateY(calc(-50% + ${vars.thickness} / 2))`,
+    gap: stepConnectorTokens.textSpace$vertical,
+    transform: `translateY(calc(-50% + ${stepConnectorTokens.thickness} / 2))`,
   },
   container$horizontal$bottomText: {
     flexDirection: 'column',
-    gap: vars.textSpace$vertical,
-    transform: `translateY(calc(50% - ${vars.thickness} / 2))`,
+    gap: stepConnectorTokens.textSpace$vertical,
+    transform: `translateY(calc(50% - ${stepConnectorTokens.thickness} / 2))`,
   },
   container$horizontal$middleText: {
     flexDirection: 'row',
-    gap: vars.textSpace$horizontal,
+    gap: stepConnectorTokens.textSpace$horizontal,
     alignItems: 'center',
   },
   line: {
     display: 'flex',
     flexGrow: 1,
-    backgroundColor: vars.color,
+    backgroundColor: stepConnectorTokens.color,
     borderRadius: 'inherit',
   },
   line$completed: {
-    backgroundColor: vars.color$completed,
+    backgroundColor: stepConnectorTokens.color$completed,
   },
   line$horizontal: {
-    minHeight: vars.thickness,
+    minHeight: stepConnectorTokens.thickness,
   },
   line$vertical: {
-    width: vars.thickness,
+    width: stepConnectorTokens.thickness,
   },
   line$horizontal$rightLabel$hasText: {
     marginLeft: `calc(max(8px - ${stepTokens.bulletPointSpace}, 0px))`,
@@ -93,24 +93,24 @@ export const stepConnectorStyles = stylex.create({
     minHeight: stepTokens.connectorMinLength,
   },
   text: {
-    color: vars.textColor,
-    fontFamily: vars.textFont,
-    fontSize: vars.textSize,
-    fontWeight: vars.textWeight,
-    lineHeight: vars.textLineHeight,
-    letterSpacing: vars.textLetterSpacing,
+    color: stepConnectorTokens.textColor,
+    fontFamily: stepConnectorTokens.textFont,
+    fontSize: stepConnectorTokens.textSize,
+    fontWeight: stepConnectorTokens.textWeight,
+    lineHeight: stepConnectorTokens.textLineHeight,
+    letterSpacing: stepConnectorTokens.textLetterSpacing,
     textAlign: 'center',
   },
   text$completed: {
-    color: vars.textColor$completed,
+    color: stepConnectorTokens.textColor$completed,
   },
   text$horizontal: {
-    paddingLeft: vars.textSpace$horizontal,
-    paddingRight: vars.textSpace$horizontal,
+    paddingLeft: stepConnectorTokens.textSpace$horizontal,
+    paddingRight: stepConnectorTokens.textSpace$horizontal,
   },
   text$vertical: {
-    paddingTop: vars.textSpace$vertical,
-    paddingBottom: vars.textSpace$vertical,
-    transform: `translateX(calc(-50% + ${vars.thickness} / 2))`,
+    paddingTop: stepConnectorTokens.textSpace$vertical,
+    paddingBottom: stepConnectorTokens.textSpace$vertical,
+    transform: `translateX(calc(-50% + ${stepConnectorTokens.thickness} / 2))`,
   },
 });

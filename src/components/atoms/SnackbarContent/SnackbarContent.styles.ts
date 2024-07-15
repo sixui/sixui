@@ -1,57 +1,58 @@
 import stylex from '@stylexjs/stylex';
 
 import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
-import { snackbarContentTokens as vars } from './SnackbarContent.stylex';
+import { snackbarContentTokens } from './SnackbarContent.stylex';
 import { snackbarContentStateTokens } from './SnackbarContent.state.stylex';
 
 export type ISnackbarContentStylesKey = keyof typeof snackbarContentStyles;
 export const snackbarContentStyles = stylex.create({
   host: {
-    gap: vars.gap,
+    gap: snackbarContentTokens.gap,
     position: 'relative',
     display: 'flex',
     flexWrap: 'wrap',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingTop: vars.topSpace,
-    paddingBottom: vars.bottomSpace,
-    paddingLeft: vars.leadingSpace,
-    paddingRight: vars.trailingSpace,
-    backgroundColor: vars.containerColor,
-    [snackbarContentStateTokens.elevation]: vars.containerElevation,
-    borderRadius: vars.containerShape,
-    minHeight: vars.containerMinHeight,
+    paddingTop: snackbarContentTokens.topSpace,
+    paddingBottom: snackbarContentTokens.bottomSpace,
+    paddingLeft: snackbarContentTokens.leadingSpace,
+    paddingRight: snackbarContentTokens.trailingSpace,
+    backgroundColor: snackbarContentTokens.containerColor,
+    [snackbarContentStateTokens.elevation]:
+      snackbarContentTokens.containerElevation,
+    borderRadius: snackbarContentTokens.containerShape,
+    minHeight: snackbarContentTokens.containerMinHeight,
     flexGrow: {
       default: 'initial',
       '@media (max-width: 600px)': 1,
     },
     minWidth: {
-      default: vars.containerMinWidth,
+      default: snackbarContentTokens.containerMinWidth,
       '@media (max-width: 600px)': 'unset',
     },
   },
   host$trailingAction: {
-    paddingRight: vars.actionTrailingSpace,
+    paddingRight: snackbarContentTokens.actionTrailingSpace,
   },
   host$trailingIcon: {
-    paddingRight: vars.iconTrailingSpace,
+    paddingRight: snackbarContentTokens.iconTrailingSpace,
   },
   supportingText: {
     flexGrow: 1,
-    color: vars.supportingTextColor,
-    fontFamily: vars.supportingTextFont,
-    fontSize: vars.supportingTextSize,
-    fontWeight: vars.supportingTextWeight,
-    lineHeight: vars.supportingTextLineHeight,
-    letterSpacing: vars.supportingTextLetterSpacing,
+    color: snackbarContentTokens.supportingTextColor,
+    fontFamily: snackbarContentTokens.supportingTextFont,
+    fontSize: snackbarContentTokens.supportingTextSize,
+    fontWeight: snackbarContentTokens.supportingTextWeight,
+    lineHeight: snackbarContentTokens.supportingTextLineHeight,
+    letterSpacing: snackbarContentTokens.supportingTextLetterSpacing,
   },
   actions: {
     display: 'flex',
     flexDirection: 'row',
     marginLeft: 'auto',
-    gap: vars.gap,
+    gap: snackbarContentTokens.gap,
     alignItems: 'center',
-    height: vars.supportingTextLineHeight,
+    height: snackbarContentTokens.supportingTextLineHeight,
   },
 });
 

@@ -1,14 +1,14 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
-import { stateVars } from '@/themes/base/vars/state.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
+import { stateTokens } from '@/themes/base/tokens/state.stylex';
 
 const vars = {
   // container
   containerColor: 'inherit',
   containerElevation: 'unset',
-  containerShape: shapeVars.corner$md,
+  containerShape: shapeTokens.corner$md,
   // &:hover
   containerElevation$hover: 'unset',
   // &:focus
@@ -24,14 +24,14 @@ const vars = {
 
   // stateLayer
   // &:hover
-  stateLayerColor$hover: colorRolesVars.onSurface,
-  stateLayerOpacity$hover: stateVars.stateLayerOpacity$hover,
+  stateLayerColor$hover: colorRolesTokens.onSurface,
+  stateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,
   // &:pressed
-  stateLayerColor$pressed: colorRolesVars.onSurface,
-  stateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
+  stateLayerColor$pressed: colorRolesTokens.onSurface,
+  stateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
   // &:dragged
-  stateLayerColor$dragged: colorRolesVars.onSurface,
-  stateLayerOpacity$dragged: stateVars.stateLayerOpacity$dragged,
+  stateLayerColor$dragged: colorRolesTokens.onSurface,
+  stateLayerOpacity$dragged: stateTokens.stateLayerOpacity$dragged,
 
   // outline
   outlineColor: 'unset',

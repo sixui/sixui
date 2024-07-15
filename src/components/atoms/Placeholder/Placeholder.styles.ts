@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { placeholderTokens as vars } from './Placeholder.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { placeholderTokens } from './Placeholder.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
 
 export type IPlaceholderStylesKey = keyof typeof placeholderStyles;
 export const placeholderStyles = stylex.create({
@@ -10,20 +10,20 @@ export const placeholderStyles = stylex.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: vars.containerShape,
-    backgroundColor: vars.containerColor,
-    color: vars.labelTextColor,
-    fontFamily: vars.labelTextFont,
-    lineHeight: vars.labelTextLineHeight,
-    fontWeight: vars.labelTextWeight,
+    borderRadius: placeholderTokens.containerShape,
+    backgroundColor: placeholderTokens.containerColor,
+    color: placeholderTokens.labelTextColor,
+    fontFamily: placeholderTokens.labelTextFont,
+    lineHeight: placeholderTokens.labelTextLineHeight,
+    fontWeight: placeholderTokens.labelTextWeight,
     width: 64,
     height: 64,
   },
   host$rectangular: {
-    borderRadius: shapeVars.corner$none,
+    borderRadius: shapeTokens.corner$none,
   },
   host$circular: {
-    borderRadius: shapeVars.corner$full,
+    borderRadius: shapeTokens.corner$full,
   },
   guides: {
     overflow: 'hidden',
@@ -36,7 +36,7 @@ export const placeholderStyles = stylex.create({
       top: 0,
       borderTopWidth: 1,
       borderTopStyle: 'solid',
-      borderTopColor: vars.crosshairsColor,
+      borderTopColor: placeholderTokens.crosshairsColor,
       width: '150%',
       transformOrigin: 'top left',
       transform: 'rotate(45deg)',
@@ -47,7 +47,7 @@ export const placeholderStyles = stylex.create({
       bottom: 0,
       borderBottomWidth: 1,
       borderBottomStyle: 'solid',
-      borderBottomColor: vars.crosshairsColor,
+      borderBottomColor: placeholderTokens.crosshairsColor,
       width: '150%',
       transformOrigin: 'top left',
       transform: 'rotate(-45deg)',
@@ -55,11 +55,11 @@ export const placeholderStyles = stylex.create({
   },
   label: {
     padding: '0.5rem',
-    fontFamily: vars.labelTextFont,
-    fontSize: vars.labelTextSize,
-    lineHeight: vars.labelTextLineHeight,
-    letterSpacing: vars.labelTextLetterSpacing,
-    fontWeight: vars.labelTextWeight,
+    fontFamily: placeholderTokens.labelTextFont,
+    fontSize: placeholderTokens.labelTextSize,
+    lineHeight: placeholderTokens.labelTextLineHeight,
+    letterSpacing: placeholderTokens.labelTextLetterSpacing,
+    fontWeight: placeholderTokens.labelTextWeight,
     zIndex: 1,
   },
 });

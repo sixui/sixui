@@ -1,9 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
 import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
-import { typescaleVars } from '@/themes/base/vars/typo.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
+import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
 
 const vars = {
   gap: '12px',
@@ -15,19 +15,19 @@ const vars = {
   iconTrailingSpace: '12px',
 
   // container
-  containerColor: colorRolesVars.onSurface,
+  containerColor: colorRolesTokens.onSurface,
   containerElevation: elevationTokens.boxShadow$level3,
-  containerShape: shapeVars.corner$xs,
+  containerShape: shapeTokens.corner$xs,
   containerMinWidth: '288px',
   containerMinHeight: '48px',
 
   // supportingText
-  supportingTextColor: colorRolesVars.inverseOnSurface,
-  supportingTextFont: typescaleVars.bodyFont$md,
-  supportingTextSize: typescaleVars.bodySize$md,
-  supportingTextWeight: typescaleVars.bodyWeight$md,
-  supportingTextLineHeight: typescaleVars.bodyLineHeight$md,
-  supportingTextLetterSpacing: typescaleVars.bodyLetterSpacing$md,
+  supportingTextColor: colorRolesTokens.inverseOnSurface,
+  supportingTextFont: typescaleTokens.bodyFont$md,
+  supportingTextSize: typescaleTokens.bodySize$md,
+  supportingTextWeight: typescaleTokens.bodyWeight$md,
+  supportingTextLineHeight: typescaleTokens.bodyLineHeight$md,
+  supportingTextLetterSpacing: typescaleTokens.bodyLetterSpacing$md,
 };
 
 export const snackbarContentTokens = stylex.defineVars(vars);

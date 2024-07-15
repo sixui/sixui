@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import type { IColorPalettesThemeVars } from '../colorPalettes.types';
-import { colorPalettesVars as baseColorPalettesVars } from '@/themes/base/vars/colorPalettes.stylex';
+import { colorPalettesTokens } from '@/themes/base/tokens/colorPalettes.stylex';
 
 // Generate a new color palette with Material Theme Builder:
 // https://m3.material.io/theme-builder#/custom
@@ -160,6 +160,6 @@ export const colorPalettesVars = stylex.defineVars<IColorPalettesThemeVars>({
 });
 
 export const colorPalettesTheme = stylex.createTheme(
-  baseColorPalettesVars,
+  colorPalettesTokens,
   colorPalettesVars,
 );

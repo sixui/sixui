@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { typescaleVars } from '@/themes/base/vars/typo.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-item.scss
 
@@ -9,45 +9,45 @@ const vars = {
   gap: '12px',
 
   // text
-  textColor: colorRolesVars.onSurface,
+  textColor: colorRolesTokens.onSurface,
 
   // nonText
-  nonTextColor: colorRolesVars.onSurfaceVariant,
+  nonTextColor: colorRolesTokens.onSurfaceVariant,
 
   // leadingContent
   leadingContentColor: 'inherit',
 
   // overline
-  overlineColor: colorRolesVars.onSurfaceVariant,
-  overlineFont: typescaleVars.labelFont$sm,
-  overlineLineHeight: typescaleVars.labelLineHeight$sm,
-  overlineSize: typescaleVars.labelSize$sm,
-  overlineLetterSpacing: typescaleVars.labelLetterSpacing$sm,
-  overlineWeight: typescaleVars.labelWeight$sm,
+  overlineColor: colorRolesTokens.onSurfaceVariant,
+  overlineFont: typescaleTokens.labelFont$sm,
+  overlineLineHeight: typescaleTokens.labelLineHeight$sm,
+  overlineSize: typescaleTokens.labelSize$sm,
+  overlineLetterSpacing: typescaleTokens.labelLetterSpacing$sm,
+  overlineWeight: typescaleTokens.labelWeight$sm,
 
   // headlineText
-  headlineTextColor: colorRolesVars.onSurface,
-  headlineTextFont: typescaleVars.bodyFont$lg,
-  headlineTextLineHeight: typescaleVars.bodyLineHeight$lg,
-  headlineTextSize: typescaleVars.bodySize$lg,
-  headlineTextLetterSpacing: typescaleVars.bodyLetterSpacing$lg,
-  headlineTextWeight: typescaleVars.bodyWeight$lg,
+  headlineTextColor: colorRolesTokens.onSurface,
+  headlineTextFont: typescaleTokens.bodyFont$lg,
+  headlineTextLineHeight: typescaleTokens.bodyLineHeight$lg,
+  headlineTextSize: typescaleTokens.bodySize$lg,
+  headlineTextLetterSpacing: typescaleTokens.bodyLetterSpacing$lg,
+  headlineTextWeight: typescaleTokens.bodyWeight$lg,
 
   // supportingText
-  supportingTextColor: colorRolesVars.onSurfaceVariant,
-  supportingTextFont: typescaleVars.bodyFont$sm,
-  supportingTextLineHeight: typescaleVars.bodyLineHeight$sm,
-  supportingTextSize: typescaleVars.bodySize$sm,
-  supportingTextLetterSpacing: typescaleVars.bodyLetterSpacing$sm,
-  supportingTextWeight: typescaleVars.bodyWeight$sm,
+  supportingTextColor: colorRolesTokens.onSurfaceVariant,
+  supportingTextFont: typescaleTokens.bodyFont$sm,
+  supportingTextLineHeight: typescaleTokens.bodyLineHeight$sm,
+  supportingTextSize: typescaleTokens.bodySize$sm,
+  supportingTextLetterSpacing: typescaleTokens.bodyLetterSpacing$sm,
+  supportingTextWeight: typescaleTokens.bodyWeight$sm,
 
   // trailingSupportingText
-  trailingSupportingTextColor: colorRolesVars.onSurfaceVariant,
-  trailingSupportingTextFont: typescaleVars.labelFont$sm,
-  trailingSupportingTextLineHeight: typescaleVars.labelLineHeight$sm,
-  trailingSupportingTextSize: typescaleVars.labelSize$sm,
-  trailingSupportingTextLetterSpacing: typescaleVars.labelLetterSpacing$sm,
-  trailingSupportingTextWeight: typescaleVars.labelWeight$sm,
+  trailingSupportingTextColor: colorRolesTokens.onSurfaceVariant,
+  trailingSupportingTextFont: typescaleTokens.labelFont$sm,
+  trailingSupportingTextLineHeight: typescaleTokens.labelLineHeight$sm,
+  trailingSupportingTextSize: typescaleTokens.labelSize$sm,
+  trailingSupportingTextLetterSpacing: typescaleTokens.labelLetterSpacing$sm,
+  trailingSupportingTextWeight: typescaleTokens.labelWeight$sm,
 
   // trailingContent
   trailingContentColor: 'inherit',

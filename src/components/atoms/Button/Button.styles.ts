@@ -2,9 +2,9 @@ import stylex from '@stylexjs/stylex';
 
 import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
 import { focusRingTokens } from '@/components/utils/FocusRing/FocusRing.stylex';
-import { componentVars as statelayerVars } from '@/themes/base/StateLayer/StateLayer.stylex';
+import { stateLayerTokens } from '@/components/utils/StateLayer/StateLayer.stylex';
 import { circularProgressIndicatorTokens } from '@/components/atoms/CircularProgressIndicator/CircularProgressIndicator.stylex';
-import { motionVars } from '@/themes/base/vars/motion.stylex';
+import { motionTokens } from '@/themes/base/tokens/motion.stylex';
 import { buttonTokens } from './Button.stylex';
 import { buttonStateTokens } from './Button.state.stylex';
 
@@ -136,7 +136,7 @@ export const buttonStyles = stylex.create({
   },
   icon$halfSpin: {
     animationName: halfSpinKeyframes,
-    animationDuration: motionVars.duration$long2,
+    animationDuration: motionTokens.duration$long2,
     animationTimingFunction: 'linear',
     animationIterationCount: 'infinite',
   },
@@ -173,10 +173,10 @@ export const buttonStyles = stylex.create({
 
 export const buttonStateLayerStyles = stylex.create({
   host: {
-    [statelayerVars.color$hover]: buttonTokens.stateLayerColor$hover,
-    [statelayerVars.opacity$hover]: buttonTokens.stateLayerOpacity$hover,
-    [statelayerVars.color$pressed]: buttonTokens.stateLayerColor$pressed,
-    [statelayerVars.opacity$pressed]: buttonTokens.stateLayerOpacity$pressed,
+    [stateLayerTokens.color$hover]: buttonTokens.stateLayerColor$hover,
+    [stateLayerTokens.opacity$hover]: buttonTokens.stateLayerOpacity$hover,
+    [stateLayerTokens.color$pressed]: buttonTokens.stateLayerColor$pressed,
+    [stateLayerTokens.opacity$pressed]: buttonTokens.stateLayerOpacity$pressed,
   },
 });
 

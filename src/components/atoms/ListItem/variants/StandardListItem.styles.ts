@@ -1,64 +1,69 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { stateVars } from '@/themes/base/vars/state.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { stateTokens } from '@/themes/base/tokens/state.stylex';
 import { listItemTokens } from '../ListItem.stylex';
 
 export const standardListItemStyles = stylex.create({
   host: {
     [listItemTokens.containerColor]: 'transparent',
 
-    [listItemTokens.selectedContainerColor]: colorRolesVars.primaryContainer,
+    [listItemTokens.selectedContainerColor]: colorRolesTokens.primaryContainer,
     [listItemTokens.selectedContainerOpacity]: '1',
 
-    [listItemTokens.textColor]: colorRolesVars.onSurface,
-    [listItemTokens.textColor$focus]: colorRolesVars.onSurface,
-    [listItemTokens.textColor$hover]: colorRolesVars.onSurface,
-    [listItemTokens.textColor$pressed]: colorRolesVars.onSurface,
+    [listItemTokens.textColor]: colorRolesTokens.onSurface,
+    [listItemTokens.textColor$focus]: colorRolesTokens.onSurface,
+    [listItemTokens.textColor$hover]: colorRolesTokens.onSurface,
+    [listItemTokens.textColor$pressed]: colorRolesTokens.onSurface,
 
-    [listItemTokens.selectedTextColor]: colorRolesVars.onPrimaryContainer,
-    [listItemTokens.selectedTextColor$focus]: colorRolesVars.onPrimaryContainer,
-    [listItemTokens.selectedTextColor$hover]: colorRolesVars.onPrimaryContainer,
+    [listItemTokens.selectedTextColor]: colorRolesTokens.onPrimaryContainer,
+    [listItemTokens.selectedTextColor$focus]:
+      colorRolesTokens.onPrimaryContainer,
+    [listItemTokens.selectedTextColor$hover]:
+      colorRolesTokens.onPrimaryContainer,
     [listItemTokens.selectedTextColor$pressed]:
-      colorRolesVars.onPrimaryContainer,
+      colorRolesTokens.onPrimaryContainer,
 
-    [listItemTokens.nonTextColor]: colorRolesVars.onSurfaceVariant,
-    [listItemTokens.nonTextColor$focus]: colorRolesVars.onSurfaceVariant,
-    [listItemTokens.nonTextColor$hover]: colorRolesVars.onSurfaceVariant,
-    [listItemTokens.nonTextColor$pressed]: colorRolesVars.onSurfaceVariant,
+    [listItemTokens.nonTextColor]: colorRolesTokens.onSurfaceVariant,
+    [listItemTokens.nonTextColor$focus]: colorRolesTokens.onSurfaceVariant,
+    [listItemTokens.nonTextColor$hover]: colorRolesTokens.onSurfaceVariant,
+    [listItemTokens.nonTextColor$pressed]: colorRolesTokens.onSurfaceVariant,
 
-    [listItemTokens.selectedNonTextColor]: colorRolesVars.onPrimaryContainer,
+    [listItemTokens.selectedNonTextColor]: colorRolesTokens.onPrimaryContainer,
     [listItemTokens.selectedNonTextColor$focus]:
-      colorRolesVars.onPrimaryContainer,
+      colorRolesTokens.onPrimaryContainer,
     [listItemTokens.selectedNonTextColor$hover]:
-      colorRolesVars.onPrimaryContainer,
+      colorRolesTokens.onPrimaryContainer,
     [listItemTokens.selectedNonTextColor$pressed]:
-      colorRolesVars.onPrimaryContainer,
+      colorRolesTokens.onPrimaryContainer,
 
-    [listItemTokens.stateLayerColor$hover]: colorRolesVars.onSurface,
-    [listItemTokens.stateLayerOpacity$hover]: stateVars.stateLayerOpacity$hover,
-    [listItemTokens.stateLayerColor$pressed]: colorRolesVars.primary,
+    [listItemTokens.stateLayerColor$hover]: colorRolesTokens.onSurface,
+    [listItemTokens.stateLayerOpacity$hover]: stateTokens.stateLayerOpacity$hover,
+    [listItemTokens.stateLayerColor$pressed]: colorRolesTokens.primary,
     [listItemTokens.stateLayerOpacity$pressed]:
-      stateVars.stateLayerOpacity$pressed,
+      stateTokens.stateLayerOpacity$pressed,
 
-    [listItemTokens.leadingIconColor]: colorRolesVars.onSurfaceVariant,
-    [listItemTokens.leadingIconColor$focus]: colorRolesVars.onSurfaceVariant,
-    [listItemTokens.leadingIconColor$hover]: colorRolesVars.onSurfaceVariant,
-    [listItemTokens.leadingIconColor$pressed]: colorRolesVars.onSurfaceVariant,
+    [listItemTokens.leadingIconColor]: colorRolesTokens.onSurfaceVariant,
+    [listItemTokens.leadingIconColor$focus]: colorRolesTokens.onSurfaceVariant,
+    [listItemTokens.leadingIconColor$hover]: colorRolesTokens.onSurfaceVariant,
+    [listItemTokens.leadingIconColor$pressed]:
+      colorRolesTokens.onSurfaceVariant,
 
-    [listItemTokens.selectedLeadingIconColor]: colorRolesVars.primary,
-    [listItemTokens.selectedLeadingIconColor$focus]: colorRolesVars.primary,
-    [listItemTokens.selectedLeadingIconColor$hover]: colorRolesVars.primary,
-    [listItemTokens.selectedLeadingIconColor$pressed]: colorRolesVars.primary,
+    [listItemTokens.selectedLeadingIconColor]: colorRolesTokens.primary,
+    [listItemTokens.selectedLeadingIconColor$focus]: colorRolesTokens.primary,
+    [listItemTokens.selectedLeadingIconColor$hover]: colorRolesTokens.primary,
+    [listItemTokens.selectedLeadingIconColor$pressed]: colorRolesTokens.primary,
 
-    [listItemTokens.trailingIconColor]: colorRolesVars.onSurfaceVariant,
-    [listItemTokens.trailingIconColor$focus]: colorRolesVars.onSurfaceVariant,
-    [listItemTokens.trailingIconColor$hover]: colorRolesVars.onSurfaceVariant,
-    [listItemTokens.trailingIconColor$pressed]: colorRolesVars.onSurfaceVariant,
+    [listItemTokens.trailingIconColor]: colorRolesTokens.onSurfaceVariant,
+    [listItemTokens.trailingIconColor$focus]: colorRolesTokens.onSurfaceVariant,
+    [listItemTokens.trailingIconColor$hover]: colorRolesTokens.onSurfaceVariant,
+    [listItemTokens.trailingIconColor$pressed]:
+      colorRolesTokens.onSurfaceVariant,
 
-    [listItemTokens.selectedTrailingIconColor]: colorRolesVars.primary,
-    [listItemTokens.selectedTrailingIconColor$focus]: colorRolesVars.primary,
-    [listItemTokens.selectedTrailingIconColor$hover]: colorRolesVars.primary,
-    [listItemTokens.selectedTrailingIconColor$pressed]: colorRolesVars.primary,
+    [listItemTokens.selectedTrailingIconColor]: colorRolesTokens.primary,
+    [listItemTokens.selectedTrailingIconColor$focus]: colorRolesTokens.primary,
+    [listItemTokens.selectedTrailingIconColor$hover]: colorRolesTokens.primary,
+    [listItemTokens.selectedTrailingIconColor$pressed]:
+      colorRolesTokens.primary,
   },
 });

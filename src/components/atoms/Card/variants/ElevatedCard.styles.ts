@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
 import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
 import { cardTokens } from '../Card.stylex';
 
@@ -9,9 +9,9 @@ import { cardTokens } from '../Card.stylex';
 
 export const elevatedCardStyles = stylex.create({
   host: {
-    [cardTokens.containerColor]: colorRolesVars.surfaceContainerLow,
+    [cardTokens.containerColor]: colorRolesTokens.surfaceContainerLow,
     [cardTokens.containerElevation]: elevationTokens.boxShadow$level1,
-    [cardTokens.containerColor$disabled]: colorRolesVars.surface,
+    [cardTokens.containerColor$disabled]: colorRolesTokens.surface,
     [cardTokens.containerElevation$disabled]: elevationTokens.boxShadow$level1,
     [cardTokens.containerElevation$focus]: elevationTokens.boxShadow$level1,
     [cardTokens.containerElevation$hover]: elevationTokens.boxShadow$level2,

@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { typescaleVars } from '@/themes/base/vars/typo.stylex';
-import { stateVars } from '@/themes/base/vars/state.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
+import { stateTokens } from '@/themes/base/tokens/state.stylex';
 import { circularProgressIndicatorTokens } from './CircularProgressIndicator.stylex';
 
 // https://github.com/material-components/material-web/blob/main/progress/internal/_circulardeterminate-progress.scss
@@ -55,14 +55,14 @@ export const circularProgressIndicatorStyles = stylex.create({
     justifyContent: 'center',
     width: '100%',
     height: '100%',
-    color: colorRolesVars.onSurface,
-    fontFamily: typescaleVars.labelFont$sm,
-    fontSize: typescaleVars.labelSize$sm,
-    fontWeight: typescaleVars.labelWeight$sm,
-    lineHeight: typescaleVars.labelLineHeight$sm,
-    letterSpacing: typescaleVars.labelLetterSpacing$sm,
+    color: colorRolesTokens.onSurface,
+    fontFamily: typescaleTokens.labelFont$sm,
+    fontSize: typescaleTokens.labelSize$sm,
+    fontWeight: typescaleTokens.labelWeight$sm,
+    lineHeight: typescaleTokens.labelLineHeight$sm,
+    letterSpacing: typescaleTokens.labelLetterSpacing$sm,
   },
   label$disabled: {
-    opacity: stateVars.opacity$disabled,
+    opacity: stateTokens.opacity$disabled,
   },
 });

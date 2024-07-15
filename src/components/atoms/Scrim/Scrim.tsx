@@ -31,7 +31,7 @@ export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
     );
 
     const transitionStatus = useTransitionStatus(context, {
-      duration: 150, // motionVars.duration$short3
+      duration: 150, // motionTokens.duration$short3
     });
 
     if (!transitionStatus.isMounted) {

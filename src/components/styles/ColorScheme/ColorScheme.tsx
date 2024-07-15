@@ -1,19 +1,19 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { typescaleVars } from '@/themes/base/vars/typo.stylex';
-import { colorPalettesVars } from '@/themes/base/vars/colorPalettes.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
+import { colorPalettesTokens } from '@/themes/base/tokens/colorPalettes.stylex';
 import { ColorBox } from './ColorBox';
 
 export type IColorSchemeProps = Record<string, never>;
 
 const styles = stylex.create({
   host: {
-    fontFamily: typescaleVars.labelFont$sm,
-    fontSize: typescaleVars.labelSize$sm,
-    fontWeight: typescaleVars.labelWeight$sm,
-    lineHeight: typescaleVars.labelLineHeight$sm,
-    letterSpacing: typescaleVars.labelLetterSpacing$sm,
+    fontFamily: typescaleTokens.labelFont$sm,
+    fontSize: typescaleTokens.labelSize$sm,
+    fontWeight: typescaleTokens.labelWeight$sm,
+    lineHeight: typescaleTokens.labelLineHeight$sm,
+    letterSpacing: typescaleTokens.labelLetterSpacing$sm,
   },
   flex: {
     display: 'flex',
@@ -59,42 +59,42 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                 <ColorBox
                   label='Primary'
                   size='md'
-                  backgroundColor={colorRolesVars.primary}
-                  textColor={colorRolesVars.onPrimary}
+                  backgroundColor={colorRolesTokens.primary}
+                  textColor={colorRolesTokens.onPrimary}
                 />
                 <ColorBox
                   label='On Primary'
                   size='sm'
-                  backgroundColor={colorRolesVars.onPrimary}
-                  textColor={colorRolesVars.primary}
+                  backgroundColor={colorRolesTokens.onPrimary}
+                  textColor={colorRolesTokens.primary}
                 />
               </div>
               <div {...stylex.props(styles.flex, styles.flexCol, styles.grow)}>
                 <ColorBox
                   label='Secondary'
                   size='md'
-                  backgroundColor={colorRolesVars.secondary}
-                  textColor={colorRolesVars.onSecondary}
+                  backgroundColor={colorRolesTokens.secondary}
+                  textColor={colorRolesTokens.onSecondary}
                 />
                 <ColorBox
                   label='On Secondary'
                   size='sm'
-                  backgroundColor={colorRolesVars.onSecondary}
-                  textColor={colorRolesVars.secondary}
+                  backgroundColor={colorRolesTokens.onSecondary}
+                  textColor={colorRolesTokens.secondary}
                 />
               </div>
               <div {...stylex.props(styles.flex, styles.flexCol, styles.grow)}>
                 <ColorBox
                   label='Tertiary'
                   size='md'
-                  backgroundColor={colorRolesVars.tertiary}
-                  textColor={colorRolesVars.onTertiary}
+                  backgroundColor={colorRolesTokens.tertiary}
+                  textColor={colorRolesTokens.onTertiary}
                 />
                 <ColorBox
                   label='On Tertiary'
                   size='sm'
-                  backgroundColor={colorRolesVars.onTertiary}
-                  textColor={colorRolesVars.tertiary}
+                  backgroundColor={colorRolesTokens.onTertiary}
+                  textColor={colorRolesTokens.tertiary}
                 />
               </div>
             </div>
@@ -104,14 +104,14 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
               <ColorBox
                 label='Error'
                 size='md'
-                backgroundColor={colorRolesVars.error}
-                textColor={colorRolesVars.onError}
+                backgroundColor={colorRolesTokens.error}
+                textColor={colorRolesTokens.onError}
               />
               <ColorBox
                 label='On Error'
                 size='sm'
-                backgroundColor={colorRolesVars.onError}
-                textColor={colorRolesVars.error}
+                backgroundColor={colorRolesTokens.onError}
+                textColor={colorRolesTokens.error}
               />
             </div>
           </div>
@@ -124,42 +124,42 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                 <ColorBox
                   label='Primary Container'
                   size='md'
-                  backgroundColor={colorRolesVars.primaryContainer}
-                  textColor={colorRolesVars.onPrimaryContainer}
+                  backgroundColor={colorRolesTokens.primaryContainer}
+                  textColor={colorRolesTokens.onPrimaryContainer}
                 />
                 <ColorBox
                   label='On Primary Container'
                   size='sm'
-                  backgroundColor={colorRolesVars.onPrimaryContainer}
-                  textColor={colorRolesVars.primaryContainer}
+                  backgroundColor={colorRolesTokens.onPrimaryContainer}
+                  textColor={colorRolesTokens.primaryContainer}
                 />
               </div>
               <div {...stylex.props(styles.flex, styles.flexCol, styles.grow)}>
                 <ColorBox
                   label='Secondary Container'
                   size='md'
-                  backgroundColor={colorRolesVars.secondaryContainer}
-                  textColor={colorRolesVars.onSecondaryContainer}
+                  backgroundColor={colorRolesTokens.secondaryContainer}
+                  textColor={colorRolesTokens.onSecondaryContainer}
                 />
                 <ColorBox
                   label='On Secondary Container'
                   size='sm'
-                  backgroundColor={colorRolesVars.onSecondaryContainer}
-                  textColor={colorRolesVars.secondaryContainer}
+                  backgroundColor={colorRolesTokens.onSecondaryContainer}
+                  textColor={colorRolesTokens.secondaryContainer}
                 />
               </div>
               <div {...stylex.props(styles.flex, styles.flexCol, styles.grow)}>
                 <ColorBox
                   label='Tertiary Container'
                   size='md'
-                  backgroundColor={colorRolesVars.tertiaryContainer}
-                  textColor={colorRolesVars.onTertiaryContainer}
+                  backgroundColor={colorRolesTokens.tertiaryContainer}
+                  textColor={colorRolesTokens.onTertiaryContainer}
                 />
                 <ColorBox
                   label='On Tertiary Container'
                   size='sm'
-                  backgroundColor={colorRolesVars.onTertiaryContainer}
-                  textColor={colorRolesVars.tertiaryContainer}
+                  backgroundColor={colorRolesTokens.onTertiaryContainer}
+                  textColor={colorRolesTokens.tertiaryContainer}
                 />
               </div>
             </div>
@@ -169,14 +169,14 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
               <ColorBox
                 label='Error Container'
                 size='md'
-                backgroundColor={colorRolesVars.errorContainer}
-                textColor={colorRolesVars.onErrorContainer}
+                backgroundColor={colorRolesTokens.errorContainer}
+                textColor={colorRolesTokens.onErrorContainer}
               />
               <ColorBox
                 label='On Error Container'
                 size='sm'
-                backgroundColor={colorRolesVars.onErrorContainer}
-                textColor={colorRolesVars.errorContainer}
+                backgroundColor={colorRolesTokens.onErrorContainer}
+                textColor={colorRolesTokens.errorContainer}
               />
             </div>
           </div>
@@ -193,27 +193,27 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   <ColorBox
                     label='Primary Fixed'
                     size='md'
-                    backgroundColor={colorRolesVars.primaryFixed}
-                    textColor={colorRolesVars.onPrimaryFixed}
+                    backgroundColor={colorRolesTokens.primaryFixed}
+                    textColor={colorRolesTokens.onPrimaryFixed}
                   />
                   <ColorBox
                     label='Primary Fixed Dim'
                     size='md'
-                    backgroundColor={colorRolesVars.primaryFixedDim}
-                    textColor={colorRolesVars.onPrimaryFixed}
+                    backgroundColor={colorRolesTokens.primaryFixedDim}
+                    textColor={colorRolesTokens.onPrimaryFixed}
                   />
                 </div>
                 <ColorBox
                   label='On Primary Fixed'
                   size='xs'
-                  backgroundColor={colorRolesVars.onPrimaryFixed}
-                  textColor={colorRolesVars.primaryFixed}
+                  backgroundColor={colorRolesTokens.onPrimaryFixed}
+                  textColor={colorRolesTokens.primaryFixed}
                 />
                 <ColorBox
                   label='On Primary Fixed Variant'
                   size='xs'
-                  backgroundColor={colorRolesVars.onPrimaryFixedVariant}
-                  textColor={colorRolesVars.primaryFixed}
+                  backgroundColor={colorRolesTokens.onPrimaryFixedVariant}
+                  textColor={colorRolesTokens.primaryFixed}
                 />
               </div>
               <div {...stylex.props(styles.flex, styles.flexCol, styles.grow)}>
@@ -221,27 +221,27 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   <ColorBox
                     label='Secondary Fixed'
                     size='md'
-                    backgroundColor={colorRolesVars.secondaryFixed}
-                    textColor={colorRolesVars.onSecondaryFixed}
+                    backgroundColor={colorRolesTokens.secondaryFixed}
+                    textColor={colorRolesTokens.onSecondaryFixed}
                   />
                   <ColorBox
                     label='Secondary Fixed Dim'
                     size='md'
-                    backgroundColor={colorRolesVars.secondaryFixedDim}
-                    textColor={colorRolesVars.onSecondaryFixed}
+                    backgroundColor={colorRolesTokens.secondaryFixedDim}
+                    textColor={colorRolesTokens.onSecondaryFixed}
                   />
                 </div>
                 <ColorBox
                   label='On Secondary Fixed'
                   size='xs'
-                  backgroundColor={colorRolesVars.onSecondaryFixed}
-                  textColor={colorRolesVars.secondaryFixed}
+                  backgroundColor={colorRolesTokens.onSecondaryFixed}
+                  textColor={colorRolesTokens.secondaryFixed}
                 />
                 <ColorBox
                   label='On Secondary Fixed Variant'
                   size='xs'
-                  backgroundColor={colorRolesVars.onSecondaryFixedVariant}
-                  textColor={colorRolesVars.secondaryFixed}
+                  backgroundColor={colorRolesTokens.onSecondaryFixedVariant}
+                  textColor={colorRolesTokens.secondaryFixed}
                 />
               </div>
               <div {...stylex.props(styles.flex, styles.flexCol, styles.grow)}>
@@ -249,27 +249,27 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   <ColorBox
                     label='Tertiary Fixed'
                     size='md'
-                    backgroundColor={colorRolesVars.tertiaryFixed}
-                    textColor={colorRolesVars.onTertiaryFixed}
+                    backgroundColor={colorRolesTokens.tertiaryFixed}
+                    textColor={colorRolesTokens.onTertiaryFixed}
                   />
                   <ColorBox
                     label='Tertiary Fixed Dim'
                     size='md'
-                    backgroundColor={colorRolesVars.tertiaryFixedDim}
-                    textColor={colorRolesVars.onTertiaryFixed}
+                    backgroundColor={colorRolesTokens.tertiaryFixedDim}
+                    textColor={colorRolesTokens.onTertiaryFixed}
                   />
                 </div>
                 <ColorBox
                   label='On Tertiary Fixed'
                   size='xs'
-                  backgroundColor={colorRolesVars.onTertiaryFixed}
-                  textColor={colorRolesVars.tertiaryFixed}
+                  backgroundColor={colorRolesTokens.onTertiaryFixed}
+                  textColor={colorRolesTokens.tertiaryFixed}
                 />
                 <ColorBox
                   label='On Tertiary Fixed Variant'
                   size='xs'
-                  backgroundColor={colorRolesVars.onTertiaryFixedVariant}
-                  textColor={colorRolesVars.tertiaryFixed}
+                  backgroundColor={colorRolesTokens.onTertiaryFixedVariant}
+                  textColor={colorRolesTokens.tertiaryFixed}
                 />
               </div>
             </div>
@@ -294,8 +294,8 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   <ColorBox
                     label='Surface Dim'
                     size='lg'
-                    backgroundColor={colorRolesVars.surfaceDim}
-                    textColor={colorRolesVars.onSurface}
+                    backgroundColor={colorRolesTokens.surfaceDim}
+                    textColor={colorRolesTokens.onSurface}
                   />
                 </div>
                 <div
@@ -304,8 +304,8 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   <ColorBox
                     label='Surface'
                     size='lg'
-                    backgroundColor={colorRolesVars.surface}
-                    textColor={colorRolesVars.onSurface}
+                    backgroundColor={colorRolesTokens.surface}
+                    textColor={colorRolesTokens.onSurface}
                   />
                 </div>
                 <div
@@ -314,8 +314,8 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   <ColorBox
                     label='Surface Bright'
                     size='lg'
-                    backgroundColor={colorRolesVars.surfaceBright}
-                    textColor={colorRolesVars.onSurface}
+                    backgroundColor={colorRolesTokens.surfaceBright}
+                    textColor={colorRolesTokens.onSurface}
                   />
                 </div>
               </div>
@@ -326,8 +326,8 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   <ColorBox
                     label='Surface Container Lowest'
                     size='xl'
-                    backgroundColor={colorRolesVars.surfaceContainerLowest}
-                    textColor={colorRolesVars.onSurface}
+                    backgroundColor={colorRolesTokens.surfaceContainerLowest}
+                    textColor={colorRolesTokens.onSurface}
                   />
                 </div>
                 <div
@@ -336,8 +336,8 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   <ColorBox
                     label='Surface Container Low'
                     size='xl'
-                    backgroundColor={colorRolesVars.surfaceContainerLow}
-                    textColor={colorRolesVars.onSurface}
+                    backgroundColor={colorRolesTokens.surfaceContainerLow}
+                    textColor={colorRolesTokens.onSurface}
                   />
                 </div>
                 <div
@@ -346,8 +346,8 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   <ColorBox
                     label='Surface Container'
                     size='xl'
-                    backgroundColor={colorRolesVars.surfaceContainer}
-                    textColor={colorRolesVars.onSurface}
+                    backgroundColor={colorRolesTokens.surfaceContainer}
+                    textColor={colorRolesTokens.onSurface}
                   />
                 </div>
                 <div
@@ -356,8 +356,8 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   <ColorBox
                     label='Surface Container High'
                     size='xl'
-                    backgroundColor={colorRolesVars.surfaceContainerHigh}
-                    textColor={colorRolesVars.onSurface}
+                    backgroundColor={colorRolesTokens.surfaceContainerHigh}
+                    textColor={colorRolesTokens.onSurface}
                   />
                 </div>
                 <div
@@ -366,8 +366,8 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   <ColorBox
                     label='Surface Container Highest'
                     size='xl'
-                    backgroundColor={colorRolesVars.surfaceContainerHighest}
-                    textColor={colorRolesVars.onSurface}
+                    backgroundColor={colorRolesTokens.surfaceContainerHighest}
+                    textColor={colorRolesTokens.onSurface}
                   />
                 </div>
               </div>
@@ -385,22 +385,22 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                 <ColorBox
                   label='Inverse Surface'
                   size='md'
-                  backgroundColor={colorRolesVars.inverseSurface}
-                  textColor={colorRolesVars.inverseOnSurface}
+                  backgroundColor={colorRolesTokens.inverseSurface}
+                  textColor={colorRolesTokens.inverseOnSurface}
                 />
                 <ColorBox
                   label='Inverse On Surface'
                   size='sm'
-                  backgroundColor={colorRolesVars.inverseOnSurface}
-                  textColor={colorRolesVars.inverseSurface}
+                  backgroundColor={colorRolesTokens.inverseOnSurface}
+                  textColor={colorRolesTokens.inverseSurface}
                 />
               </div>
 
               <ColorBox
                 label='Inverse Primary'
                 size='sm'
-                backgroundColor={colorRolesVars.inversePrimary}
-                textColor={colorRolesVars.onPrimaryContainer}
+                backgroundColor={colorRolesTokens.inversePrimary}
+                textColor={colorRolesTokens.onPrimaryContainer}
               />
             </div>
           </div>
@@ -421,8 +421,8 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   <ColorBox
                     label='On Surface'
                     size='sm'
-                    backgroundColor={colorRolesVars.onSurface}
-                    textColor={colorRolesVars.surface}
+                    backgroundColor={colorRolesTokens.onSurface}
+                    textColor={colorRolesTokens.surface}
                   />
                 </div>
                 <div
@@ -431,8 +431,8 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   <ColorBox
                     label='On Surface Variant'
                     size='sm'
-                    backgroundColor={colorRolesVars.onSurfaceVariant}
-                    textColor={colorRolesVars.surface}
+                    backgroundColor={colorRolesTokens.onSurfaceVariant}
+                    textColor={colorRolesTokens.surface}
                   />
                 </div>
                 <div
@@ -441,8 +441,8 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   <ColorBox
                     label='Outline'
                     size='sm'
-                    backgroundColor={colorRolesVars.outline}
-                    textColor={colorRolesVars.surface}
+                    backgroundColor={colorRolesTokens.outline}
+                    textColor={colorRolesTokens.surface}
                   />
                 </div>
                 <div
@@ -451,8 +451,8 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   <ColorBox
                     label='Outline Variant'
                     size='sm'
-                    backgroundColor={colorRolesVars.outlineVariant}
-                    textColor={colorRolesVars.onSurface}
+                    backgroundColor={colorRolesTokens.outlineVariant}
+                    textColor={colorRolesTokens.onSurface}
                   />
                 </div>
               </div>
@@ -464,16 +464,16 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                 <ColorBox
                   label='Scrim'
                   size='sm'
-                  backgroundColor={colorRolesVars.scrim}
-                  textColor={colorPalettesVars.white}
+                  backgroundColor={colorRolesTokens.scrim}
+                  textColor={colorPalettesTokens.white}
                 />
               </div>
               <div {...stylex.props(styles.flex, styles.flexCol, styles.grow)}>
                 <ColorBox
                   label='Shadow'
                   size='sm'
-                  backgroundColor={colorRolesVars.scrim}
-                  textColor={colorPalettesVars.white}
+                  backgroundColor={colorRolesTokens.scrim}
+                  textColor={colorPalettesTokens.white}
                 />
               </div>
             </div>

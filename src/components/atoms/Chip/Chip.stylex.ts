@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
 import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
-import { typescaleVars } from '@/themes/base/vars/typo.stylex';
-import { stateVars } from '@/themes/base/vars/state.stylex';
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
+import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
+import { stateTokens } from '@/themes/base/tokens/state.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
 
 const vars = {
   // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-assist-chip.scss#L93
@@ -23,7 +23,7 @@ const vars = {
 
   // container
   containerHeight: '32px',
-  containerShape: shapeVars.corner$sm,
+  containerShape: shapeTokens.corner$sm,
 
   // flatContainer
   flatContainerColor: 'inherit',
@@ -37,7 +37,7 @@ const vars = {
   // &:disabled
   flatContainerColor$disabled: 'inherit',
   flatContainerElevation$disabled: 'unset',
-  flatContainerOpacity$disabled: stateVars.containerOpacity$disabled,
+  flatContainerOpacity$disabled: stateTokens.containerOpacity$disabled,
 
   // selectedFlatContainer
   selectedFlatContainerColor: 'inherit',
@@ -51,15 +51,15 @@ const vars = {
   // &:disabled
   selectedFlatContainerColor$disabled: 'inherit',
   selectedFlatContainerElevation$disabled: 'unset',
-  selectedFlatContainerOpacity$disabled: stateVars.containerOpacity$disabled,
+  selectedFlatContainerOpacity$disabled: stateTokens.containerOpacity$disabled,
 
   // elevatedContainer
-  elevatedContainerColor: colorRolesVars.surfaceContainerLow,
+  elevatedContainerColor: colorRolesTokens.surfaceContainerLow,
   elevatedContainerElevation: elevationTokens.boxShadow$level1,
   // &:disabled
-  elevatedContainerColor$disabled: colorRolesVars.onSurface,
+  elevatedContainerColor$disabled: colorRolesTokens.onSurface,
   elevatedContainerElevation$disabled: elevationTokens.boxShadow$level0,
-  elevatedContainerOpacity$disabled: stateVars.containerOpacity$disabled,
+  elevatedContainerOpacity$disabled: stateTokens.containerOpacity$disabled,
   // &:focus
   elevatedContainerElevation$focus: elevationTokens.boxShadow$level1,
   // &:hover
@@ -72,14 +72,14 @@ const vars = {
 
   // outline
   outlineWidth: '1px',
-  outlineColor: colorRolesVars.outline,
+  outlineColor: colorRolesTokens.outline,
   // &:disabled
-  outlineColor$disabled: colorRolesVars.onSurface,
-  outlineOpacity$disabled: stateVars.outlineOpacity$disabled,
+  outlineColor$disabled: colorRolesTokens.onSurface,
+  outlineOpacity$disabled: stateTokens.outlineOpacity$disabled,
   // &:focus
-  outlineColor$focus: colorRolesVars.outline,
+  outlineColor$focus: colorRolesTokens.outline,
   // &:pressed
-  outlineColor$pressed: colorRolesVars.outline,
+  outlineColor$pressed: colorRolesTokens.outline,
 
   // selectedOutline
   selectedOutlineWidth: 'unset',
@@ -87,10 +87,10 @@ const vars = {
   // stateLayer
   // &:hover
   stateLayerColor$hover: 'inherit',
-  stateLayerOpacity$hover: stateVars.stateLayerOpacity$hover,
+  stateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,
   // &:pressed
   stateLayerColor$pressed: 'inherit',
-  stateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
+  stateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
 
   // selectedStateLayer
   // &:hover
@@ -100,26 +100,26 @@ const vars = {
 
   // selectedStateLayer
   // &:hover
-  selectedStateLayerOpacity$hover: stateVars.stateLayerOpacity$hover,
+  selectedStateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,
   // &:pressed
-  selectedStateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
+  selectedStateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
 
   // labelText
-  labelTextColor: colorRolesVars.onSurface,
-  labelTextFont: typescaleVars.labelFont$lg,
-  labelTextLineHeight: typescaleVars.labelLineHeight$lg,
-  labelTextSize: typescaleVars.labelSize$lg,
-  labelTextLetterSpacing: typescaleVars.labelLetterSpacing$lg,
-  labelTextWeight: typescaleVars.labelWeight$lg,
+  labelTextColor: colorRolesTokens.onSurface,
+  labelTextFont: typescaleTokens.labelFont$lg,
+  labelTextLineHeight: typescaleTokens.labelLineHeight$lg,
+  labelTextSize: typescaleTokens.labelSize$lg,
+  labelTextLetterSpacing: typescaleTokens.labelLetterSpacing$lg,
+  labelTextWeight: typescaleTokens.labelWeight$lg,
   // &:disabled
-  labelTextColor$disabled: colorRolesVars.onSurface,
-  labelTextOpacity$disabled: stateVars.opacity$disabled,
+  labelTextColor$disabled: colorRolesTokens.onSurface,
+  labelTextOpacity$disabled: stateTokens.opacity$disabled,
   // &:focus
-  labelTextColor$focus: colorRolesVars.onSurface,
+  labelTextColor$focus: colorRolesTokens.onSurface,
   // &:hover
-  labelTextColor$hover: colorRolesVars.onSurface,
+  labelTextColor$hover: colorRolesTokens.onSurface,
   // &:pressed
-  labelTextColor$pressed: colorRolesVars.onSurface,
+  labelTextColor$pressed: colorRolesTokens.onSurface,
 
   // selectedLabelText
   selectedLabelTextColor: 'inherit',
@@ -132,17 +132,17 @@ const vars = {
 
   // icon
   iconSize: '18px',
-  iconColor: colorRolesVars.onSurfaceVariant,
-  iconColor$interactive: colorRolesVars.primary,
+  iconColor: colorRolesTokens.onSurfaceVariant,
+  iconColor$interactive: colorRolesTokens.primary,
   // &:disabled
-  iconColor$disabled: colorRolesVars.onSurface,
-  iconOpacity$disabled: stateVars.opacity$disabled,
+  iconColor$disabled: colorRolesTokens.onSurface,
+  iconOpacity$disabled: stateTokens.opacity$disabled,
   // &:focus
-  iconColor$focus: colorRolesVars.primary,
+  iconColor$focus: colorRolesTokens.primary,
   // &:hover
-  iconColor$hover: colorRolesVars.primary,
+  iconColor$hover: colorRolesTokens.primary,
   // &:pressed
-  iconColor$pressed: colorRolesVars.primary,
+  iconColor$pressed: colorRolesTokens.primary,
 
   // selectedIcon
   selectedIconColor: 'inherit',
@@ -164,7 +164,7 @@ const vars = {
   trailingIconColor$pressed: 'inherit',
   // &:disabled
   trailingIconColor$disabled: 'inherit',
-  trailingIconOpacity$disabled: stateVars.opacity$disabled,
+  trailingIconOpacity$disabled: stateTokens.opacity$disabled,
 
   // selectedTrailingIcon
   selectedTrailingIconColor: 'inherit',

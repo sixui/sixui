@@ -1,24 +1,24 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { typescaleVars } from '@/themes/base/vars/typo.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
 
 const vars = {
   // container
-  containerColor: colorRolesVars.surfaceContainer,
-  containerShape: shapeVars.corner$md,
+  containerColor: colorRolesTokens.surfaceContainer,
+  containerShape: shapeTokens.corner$md,
 
   // crosshairs
-  crosshairsColor: colorRolesVars.surfaceContainerHighest,
+  crosshairsColor: colorRolesTokens.surfaceContainerHighest,
 
   // labelText
-  labelTextColor: colorRolesVars.onSurface,
-  labelTextFont: typescaleVars.labelFont$sm,
-  labelTextSize: typescaleVars.labelSize$sm,
-  labelTextLineHeight: typescaleVars.labelLineHeight$sm,
-  labelTextLetterSpacing: typescaleVars.labelLetterSpacing$sm,
-  labelTextWeight: typescaleVars.labelWeight$sm,
+  labelTextColor: colorRolesTokens.onSurface,
+  labelTextFont: typescaleTokens.labelFont$sm,
+  labelTextSize: typescaleTokens.labelSize$sm,
+  labelTextLineHeight: typescaleTokens.labelLineHeight$sm,
+  labelTextLetterSpacing: typescaleTokens.labelLetterSpacing$sm,
+  labelTextWeight: typescaleTokens.labelWeight$sm,
 };
 
 export const placeholderTokens = stylex.defineVars(vars);

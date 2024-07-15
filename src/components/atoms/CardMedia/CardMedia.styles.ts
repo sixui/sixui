@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { cardMediaTokens as vars } from './CardMedia.stylex';
+import { cardMediaTokens } from './CardMedia.stylex';
 
 export type ICardMediaStylesKey = keyof typeof cardMediaStyles;
 export const cardMediaStyles = stylex.create({
@@ -11,7 +11,7 @@ export const cardMediaStyles = stylex.create({
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
-    borderRadius: vars.containerShape,
+    borderRadius: cardMediaTokens.containerShape,
     flexShrink: 0,
   },
   host$image: {

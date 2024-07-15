@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
 import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
 import { cardTokens } from '../Card.stylex';
 
@@ -8,23 +8,23 @@ import { cardTokens } from '../Card.stylex';
 
 export const outlinedCardStyles = stylex.create({
   host: {
-    [cardTokens.containerColor]: colorRolesVars.surface,
+    [cardTokens.containerColor]: colorRolesTokens.surface,
     [cardTokens.containerElevation]: elevationTokens.boxShadow$level0,
     [cardTokens.containerColor$disabled]:
-      colorRolesVars.surfaceContainerHighest,
+      colorRolesTokens.surfaceContainerHighest,
     [cardTokens.containerElevation$disabled]: elevationTokens.boxShadow$level0,
     [cardTokens.containerElevation$focus]: elevationTokens.boxShadow$level0,
     [cardTokens.containerElevation$hover]: elevationTokens.boxShadow$level0,
     [cardTokens.containerElevation$pressed]: elevationTokens.boxShadow$level0,
     [cardTokens.containerElevation$dragged]: elevationTokens.boxShadow$level3,
 
-    [cardTokens.outlineColor]: colorRolesVars.outlineVariant,
+    [cardTokens.outlineColor]: colorRolesTokens.outlineVariant,
     [cardTokens.outlineWidth]: '1px',
-    [cardTokens.outlineColor$focus]: colorRolesVars.outlineVariant,
-    [cardTokens.outlineColor$hover]: colorRolesVars.outlineVariant,
-    [cardTokens.outlineColor$pressed]: colorRolesVars.outlineVariant,
-    [cardTokens.outlineColor$dragged]: colorRolesVars.outlineVariant,
-    [cardTokens.outlineColor$disabled]: colorRolesVars.outline,
+    [cardTokens.outlineColor$focus]: colorRolesTokens.outlineVariant,
+    [cardTokens.outlineColor$hover]: colorRolesTokens.outlineVariant,
+    [cardTokens.outlineColor$pressed]: colorRolesTokens.outlineVariant,
+    [cardTokens.outlineColor$dragged]: colorRolesTokens.outlineVariant,
+    [cardTokens.outlineColor$disabled]: colorRolesTokens.outline,
     [cardTokens.outlineOpacity$disabled]: cardTokens.containerOpacity$disabled,
   },
   outline: {

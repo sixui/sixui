@@ -1,127 +1,127 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
-import { stateVars } from '@/themes/base/vars/state.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
+import { stateTokens } from '@/themes/base/tokens/state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-switch.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-switch.scss
 
 const vars = {
   // track
-  trackShape: shapeVars.corner$full,
+  trackShape: shapeTokens.corner$full,
   trackWidth: '52px',
   trackHeight: '32px',
-  trackColor: colorRolesVars.surfaceContainerHighest,
+  trackColor: colorRolesTokens.surfaceContainerHighest,
   // &:disabled
-  trackColor$disabled: colorRolesVars.surfaceContainerHighest,
-  trackOpacity$disabled: stateVars.containerOpacity$disabled,
+  trackColor$disabled: colorRolesTokens.surfaceContainerHighest,
+  trackOpacity$disabled: stateTokens.containerOpacity$disabled,
   // &:focus
-  trackColor$focus: colorRolesVars.surfaceContainerHighest,
+  trackColor$focus: colorRolesTokens.surfaceContainerHighest,
   // &:hover
-  trackColor$hover: colorRolesVars.surfaceContainerHighest,
+  trackColor$hover: colorRolesTokens.surfaceContainerHighest,
   // &:pressed
-  trackColor$pressed: colorRolesVars.surfaceContainerHighest,
+  trackColor$pressed: colorRolesTokens.surfaceContainerHighest,
 
   // selectedTrack
-  selectedTrackColor: colorRolesVars.primary,
+  selectedTrackColor: colorRolesTokens.primary,
   // &:disabled
-  selectedTrackColor$disabled: colorRolesVars.onSurface,
+  selectedTrackColor$disabled: colorRolesTokens.onSurface,
   // &:focus
-  selectedTrackColor$focus: colorRolesVars.primary,
+  selectedTrackColor$focus: colorRolesTokens.primary,
   // &:hover
-  selectedTrackColor$hover: colorRolesVars.primary,
+  selectedTrackColor$hover: colorRolesTokens.primary,
   // &:pressed
-  selectedTrackColor$pressed: colorRolesVars.primary,
+  selectedTrackColor$pressed: colorRolesTokens.primary,
 
   // trackOutline
   trackOutlineWidth: '2px',
-  trackOutlineColor: colorRolesVars.outline,
+  trackOutlineColor: colorRolesTokens.outline,
   // &:disabled
-  trackOutlineColor$disabled: colorRolesVars.onSurface,
+  trackOutlineColor$disabled: colorRolesTokens.onSurface,
   // &:focus
-  trackOutlineColor$focus: colorRolesVars.outline,
+  trackOutlineColor$focus: colorRolesTokens.outline,
   // &:hover
-  trackOutlineColor$hover: colorRolesVars.outline,
+  trackOutlineColor$hover: colorRolesTokens.outline,
   // &:pressed
-  trackOutlineColor$pressed: colorRolesVars.outline,
+  trackOutlineColor$pressed: colorRolesTokens.outline,
 
   // handle
-  handleShape: shapeVars.corner$full,
-  handleColor: colorRolesVars.outline,
+  handleShape: shapeTokens.corner$full,
+  handleColor: colorRolesTokens.outline,
   handleWidth: '16px',
   handleHeight: '16px',
   handleWidth$withIcon: '24px',
   handleHeight$withIcon: '24px',
   // &:disabled
-  handleColor$disabled: colorRolesVars.onSurfaceVariant,
-  handleOpacity$disabled: stateVars.opacity$disabled,
+  handleColor$disabled: colorRolesTokens.onSurfaceVariant,
+  handleOpacity$disabled: stateTokens.opacity$disabled,
   // &:hover
-  handleColor$hover: colorRolesVars.onSurfaceVariant,
+  handleColor$hover: colorRolesTokens.onSurfaceVariant,
   // &:focus
-  handleColor$focus: colorRolesVars.onSurfaceVariant,
+  handleColor$focus: colorRolesTokens.onSurfaceVariant,
   // &:pressed
-  handleColor$pressed: colorRolesVars.onSurfaceVariant,
+  handleColor$pressed: colorRolesTokens.onSurfaceVariant,
   handleWidth$pressed: '28px',
   handleHeight$pressed: '28px',
 
   // selectedHandle
-  selectedHandleColor: colorRolesVars.onPrimary,
+  selectedHandleColor: colorRolesTokens.onPrimary,
   selectedHandleWidth: '24px',
   selectedHandleHeight: '24px',
   // &:disabled
-  selectedHandleColor$disabled: colorRolesVars.surface,
+  selectedHandleColor$disabled: colorRolesTokens.surface,
   selectedHandleOpacity$disabled: '1',
   // &:focus
-  selectedHandleColor$focus: colorRolesVars.primaryContainer,
+  selectedHandleColor$focus: colorRolesTokens.primaryContainer,
   // &:hover
-  selectedHandleColor$hover: colorRolesVars.primaryContainer,
+  selectedHandleColor$hover: colorRolesTokens.primaryContainer,
   // &:pressed
-  selectedHandleColor$pressed: colorRolesVars.primaryContainer,
+  selectedHandleColor$pressed: colorRolesTokens.primaryContainer,
 
   // icon
-  iconColor: colorRolesVars.surfaceContainerHighest,
+  iconColor: colorRolesTokens.surfaceContainerHighest,
   iconSize: '16px',
   // &:disabled
-  iconColor$disabled: colorRolesVars.surface,
+  iconColor$disabled: colorRolesTokens.surface,
   iconOpacity$disabled: '0.76',
   // &:focus
-  iconColor$focus: colorRolesVars.surfaceContainerHighest,
+  iconColor$focus: colorRolesTokens.surfaceContainerHighest,
   // &:hover
-  iconColor$hover: colorRolesVars.surfaceContainerHighest,
+  iconColor$hover: colorRolesTokens.surfaceContainerHighest,
   // &:pressed
-  iconColor$pressed: colorRolesVars.surfaceContainerHighest,
+  iconColor$pressed: colorRolesTokens.surfaceContainerHighest,
 
   // selectedIcon
-  selectedIconColor: colorRolesVars.onPrimaryContainer,
+  selectedIconColor: colorRolesTokens.onPrimaryContainer,
   selectedIconSize: '16px',
   // &:disabled
-  selectedIconColor$disabled: colorRolesVars.onSurface,
-  selectedIconOpacity$disabled: stateVars.opacity$disabled,
+  selectedIconColor$disabled: colorRolesTokens.onSurface,
+  selectedIconOpacity$disabled: stateTokens.opacity$disabled,
   // &:focus
-  selectedIconColor$focus: colorRolesVars.onPrimaryContainer,
+  selectedIconColor$focus: colorRolesTokens.onPrimaryContainer,
   // &:hover
-  selectedIconColor$hover: colorRolesVars.onPrimaryContainer,
+  selectedIconColor$hover: colorRolesTokens.onPrimaryContainer,
   // &:pressed
-  selectedIconColor$pressed: colorRolesVars.onPrimaryContainer,
+  selectedIconColor$pressed: colorRolesTokens.onPrimaryContainer,
 
   // stateLayer
-  stateLayerShape: shapeVars.corner$full,
+  stateLayerShape: shapeTokens.corner$full,
   stateLayerSize: '40px',
   // &:hover
-  stateLayerColor$hover: colorRolesVars.onSurface,
-  stateLayerOpacity$hover: stateVars.stateLayerOpacity$hover,
+  stateLayerColor$hover: colorRolesTokens.onSurface,
+  stateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,
   // &:pressed
-  stateLayerColor$pressed: colorRolesVars.onSurface,
-  stateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
+  stateLayerColor$pressed: colorRolesTokens.onSurface,
+  stateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
 
   // selectedStateLayer
   // &:hover
-  selectedStateLayerColor$hover: colorRolesVars.primary,
-  selectedStateLayerOpacity$hover: stateVars.stateLayerOpacity$hover,
+  selectedStateLayerColor$hover: colorRolesTokens.primary,
+  selectedStateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,
   // &:pressed
-  selectedStateLayerColor$pressed: colorRolesVars.primary,
-  selectedStateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
+  selectedStateLayerColor$pressed: colorRolesTokens.primary,
+  selectedStateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
 };
 
 export const switchTokens = stylex.defineVars(vars);

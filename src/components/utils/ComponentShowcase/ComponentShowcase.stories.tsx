@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { ComponentShowcase } from './ComponentShowcase';
 import { type IDemoComponentProps, DemoComponent } from './DemoComponent';
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
 
 const meta = {
   component: DemoComponent,
@@ -11,7 +11,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  color: colorRolesVars.primary,
+  color: colorRolesTokens.primary,
 } satisfies Partial<IDemoComponentProps>;
 
 export const One: IStory = {
@@ -27,9 +27,9 @@ export const OneRow: IStory = {
       component={DemoComponent}
       props={props}
       cols={[
-        { props: { color: colorRolesVars.primary } },
-        { props: { color: colorRolesVars.secondary } },
-        { props: { color: colorRolesVars.tertiary } },
+        { props: { color: colorRolesTokens.primary } },
+        { props: { color: colorRolesTokens.secondary } },
+        { props: { color: colorRolesTokens.tertiary } },
       ]}
     />
   ),
@@ -42,9 +42,9 @@ export const OneRowWithLegend: IStory = {
       component={DemoComponent}
       props={props}
       cols={[
-        { legend: 'Primary', props: { color: colorRolesVars.primary } },
-        { legend: 'Secondary', props: { color: colorRolesVars.secondary } },
-        { legend: 'Tertiary', props: { color: colorRolesVars.tertiary } },
+        { legend: 'Primary', props: { color: colorRolesTokens.primary } },
+        { legend: 'Secondary', props: { color: colorRolesTokens.secondary } },
+        { legend: 'Tertiary', props: { color: colorRolesTokens.tertiary } },
       ]}
     />
   ),
@@ -83,9 +83,9 @@ export const RowsAndCols: IStory = {
       component={DemoComponent}
       props={props}
       cols={[
-        { legend: 'Primary', props: { color: colorRolesVars.primary } },
-        { legend: 'Secondary', props: { color: colorRolesVars.secondary } },
-        { legend: 'Tertiary', props: { color: colorRolesVars.tertiary } },
+        { legend: 'Primary', props: { color: colorRolesTokens.primary } },
+        { legend: 'Secondary', props: { color: colorRolesTokens.secondary } },
+        { legend: 'Tertiary', props: { color: colorRolesTokens.tertiary } },
       ]}
       rows={[
         { legend: 'Small', props: { size: 'sm' } },
@@ -103,9 +103,9 @@ export const Groups: IStory = {
       component={DemoComponent}
       props={props}
       cols={[
-        { legend: 'Primary', props: { color: colorRolesVars.primary } },
-        { legend: 'Secondary', props: { color: colorRolesVars.secondary } },
-        { legend: 'Tertiary', props: { color: colorRolesVars.tertiary } },
+        { legend: 'Primary', props: { color: colorRolesTokens.primary } },
+        { legend: 'Secondary', props: { color: colorRolesTokens.secondary } },
+        { legend: 'Tertiary', props: { color: colorRolesTokens.tertiary } },
       ]}
       rows={[
         { legend: 'Small', props: { size: 'sm' } },

@@ -1,31 +1,31 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
-import { stateVars } from '@/themes/base/vars/state.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
+import { stateTokens } from '@/themes/base/tokens/state.stylex';
 
 const vars = {
   // container
   containerColor: 'unset',
-  containerShape: shapeVars.corner$full,
+  containerShape: shapeTokens.corner$full,
   // &:disabled
   containerColor$disabled: 'unset',
-  containerOpacity$disabled: stateVars.containerOpacity$disabled,
+  containerOpacity$disabled: stateTokens.containerOpacity$disabled,
 
   // labelText
-  labelTextColor: colorRolesVars.primary,
+  labelTextColor: colorRolesTokens.primary,
   // &:disabled
-  labelTextColor$disabled: colorRolesVars.onSurface,
-  labelTextOpacity$disabled: stateVars.opacity$disabled,
+  labelTextColor$disabled: colorRolesTokens.onSurface,
+  labelTextOpacity$disabled: stateTokens.opacity$disabled,
 
   // stateLayer
   stateLayerSpace: '1em',
   // &:hover
-  stateLayerColor$hover: colorRolesVars.onSurface,
-  stateLayerOpacity$hover: stateVars.stateLayerOpacity$hover,
+  stateLayerColor$hover: colorRolesTokens.onSurface,
+  stateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,
   // &:pressed
-  stateLayerColor$pressed: colorRolesVars.onSurface,
-  stateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
+  stateLayerColor$pressed: colorRolesTokens.onSurface,
+  stateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
 
   // touchTarget
   touchTargetSpace: 'max(1em, 16px)',

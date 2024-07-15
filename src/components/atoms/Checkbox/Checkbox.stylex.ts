@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { stateVars } from '@/themes/base/vars/state.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { stateTokens } from '@/themes/base/tokens/state.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-checkbox.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-checkbox.scss
@@ -12,52 +12,52 @@ const vars = {
   containerShape: '2px',
   containerSize: '18px',
   // &:disabled
-  containerOpacity$disabled: stateVars.opacity$disabled,
+  containerOpacity$disabled: stateTokens.opacity$disabled,
 
   // selectedContainer
-  selectedContainerColor: colorRolesVars.primary,
+  selectedContainerColor: colorRolesTokens.primary,
   // &:disabled
   selectedContainerOutlineWidth$disabled: '0px',
-  selectedContainerColor$disabled: colorRolesVars.onSurface,
-  selectedContainerOpacity$disabled: stateVars.opacity$disabled,
+  selectedContainerColor$disabled: colorRolesTokens.onSurface,
+  selectedContainerOpacity$disabled: stateTokens.opacity$disabled,
   // &:focus
-  selectedContainerColor$focus: colorRolesVars.primary,
+  selectedContainerColor$focus: colorRolesTokens.primary,
   // &:hover
-  selectedContainerColor$hover: colorRolesVars.primary,
+  selectedContainerColor$hover: colorRolesTokens.primary,
   // &:error
-  selectedContainerColor$error: colorRolesVars.error,
+  selectedContainerColor$error: colorRolesTokens.error,
   // &:pressed
-  selectedContainerColor$pressed: colorRolesVars.primary,
+  selectedContainerColor$pressed: colorRolesTokens.primary,
   // &:error:focus
-  selectedContainerColor$error$focus: colorRolesVars.error,
+  selectedContainerColor$error$focus: colorRolesTokens.error,
   // &:error:hover
-  selectedContainerColor$error$hover: colorRolesVars.error,
+  selectedContainerColor$error$hover: colorRolesTokens.error,
   // &:error:pressed
-  selectedContainerColor$error$pressed: colorRolesVars.error,
+  selectedContainerColor$error$pressed: colorRolesTokens.error,
 
   // outline
-  outlineColor: colorRolesVars.onSurfaceVariant,
+  outlineColor: colorRolesTokens.onSurfaceVariant,
   outlineWidth: '2px',
   // &:disabled
-  outlineColor$disabled: colorRolesVars.onSurface,
+  outlineColor$disabled: colorRolesTokens.onSurface,
   outlineWidth$disabled: '2px',
   // &:focus
-  outlineColor$focus: colorRolesVars.onSurface,
+  outlineColor$focus: colorRolesTokens.onSurface,
   outlineWidth$focus: '2px',
   // &:hover
-  outlineColor$hover: colorRolesVars.onSurface,
+  outlineColor$hover: colorRolesTokens.onSurface,
   outlineWidth$hover: '2px',
   // &:pressed
-  outlineColor$pressed: colorRolesVars.onSurface,
+  outlineColor$pressed: colorRolesTokens.onSurface,
   outlineWidth$pressed: '2px',
   // &:error
-  outlineColor$error: colorRolesVars.error,
+  outlineColor$error: colorRolesTokens.error,
   // &:error:focus
-  outlineColor$error$focus: colorRolesVars.error,
+  outlineColor$error$focus: colorRolesTokens.error,
   // &:error:hover
-  outlineColor$error$hover: colorRolesVars.error,
+  outlineColor$error$hover: colorRolesTokens.error,
   // &:error:pressed
-  outlineColor$error$pressed: colorRolesVars.error,
+  outlineColor$error$pressed: colorRolesTokens.error,
 
   // selectedOutline
   selectedOutlineWidth: '0px',
@@ -72,47 +72,47 @@ const vars = {
   iconSize: '18px',
 
   // selectedIcon
-  selectedIconColor: colorRolesVars.onPrimary,
+  selectedIconColor: colorRolesTokens.onPrimary,
   // &:disabled
-  selectedIconColor$disabled: colorRolesVars.surface,
+  selectedIconColor$disabled: colorRolesTokens.surface,
   // &:focus
-  selectedIconColor$focus: colorRolesVars.onPrimary,
+  selectedIconColor$focus: colorRolesTokens.onPrimary,
   // &:hover
-  selectedIconColor$hover: colorRolesVars.onPrimary,
+  selectedIconColor$hover: colorRolesTokens.onPrimary,
   // &:pressed
-  selectedIconColor$pressed: colorRolesVars.onPrimary,
+  selectedIconColor$pressed: colorRolesTokens.onPrimary,
   // &:error
-  selectedIconColor$error: colorRolesVars.onError,
+  selectedIconColor$error: colorRolesTokens.onError,
   // &:error:focus
-  selectedIconColor$error$focus: colorRolesVars.onError,
+  selectedIconColor$error$focus: colorRolesTokens.onError,
   // &:error:hover
-  selectedIconColor$error$hover: colorRolesVars.onError,
+  selectedIconColor$error$hover: colorRolesTokens.onError,
   // &:error:pressed
-  selectedIconColor$error$pressed: colorRolesVars.onError,
+  selectedIconColor$error$pressed: colorRolesTokens.onError,
 
   // stateLayer
-  stateLayerShape: shapeVars.corner$full,
+  stateLayerShape: shapeTokens.corner$full,
   stateLayerSize: '40px',
   // &:hover
-  stateLayerColor$hover: colorRolesVars.onSurface,
-  stateLayerOpacity$hover: stateVars.stateLayerOpacity$hover,
+  stateLayerColor$hover: colorRolesTokens.onSurface,
+  stateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,
   // &:pressed
-  stateLayerColor$pressed: colorRolesVars.primary,
-  stateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
+  stateLayerColor$pressed: colorRolesTokens.primary,
+  stateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
   // &:error:hover
-  stateLayerColor$error$hover: colorRolesVars.error,
-  stateLayerOpacity$error$hover: stateVars.stateLayerOpacity$hover,
+  stateLayerColor$error$hover: colorRolesTokens.error,
+  stateLayerOpacity$error$hover: stateTokens.stateLayerOpacity$hover,
   // &:error:pressed
-  stateLayerColor$error$pressed: colorRolesVars.error,
-  stateLayerOpacity$error$pressed: stateVars.stateLayerOpacity$pressed,
+  stateLayerColor$error$pressed: colorRolesTokens.error,
+  stateLayerOpacity$error$pressed: stateTokens.stateLayerOpacity$pressed,
 
   // selectedStateLayer
   // &:hover
-  selectedStateLayerColor$hover: colorRolesVars.primary,
-  selectedStateLayerOpacity$hover: stateVars.stateLayerOpacity$hover,
+  selectedStateLayerColor$hover: colorRolesTokens.primary,
+  selectedStateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,
   // &:pressed
-  selectedStateLayerColor$pressed: colorRolesVars.onSurface,
-  selectedStateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
+  selectedStateLayerColor$pressed: colorRolesTokens.onSurface,
+  selectedStateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
 };
 
 export const checkboxTokens = stylex.defineVars(vars);

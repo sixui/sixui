@@ -11,7 +11,7 @@ import type { IListProps } from './List.types';
 import { ListItem, type IListItemProps } from '@/components/atoms/ListItem';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
 import { Avatar } from '@/components/atoms/Avatar';
 import { Checkbox } from '@/components/atoms/Checkbox';
 import { List } from './List';
@@ -31,7 +31,7 @@ const styles = stylex.create({
   host: {
     outlineWidth: '1px',
     outlineStyle: 'dashed',
-    outlineColor: colorRolesVars.outlineVariant,
+    outlineColor: colorRolesTokens.outlineVariant,
   },
   host$fixedSize: {
     width: 280,

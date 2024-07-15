@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { stateLayerTokens as vars } from './StateLayer.stylex';
+import { stateLayerTokens } from './StateLayer.stylex';
 
 // https://github.com/material-components/material-web/blob/main/ripple/internal/_ripple.scss
 
@@ -28,7 +28,7 @@ export const stateLayerStyles = stylex.create({
       position: 'absolute',
       inset: 0,
 
-      backgroundColor: vars.color$hover,
+      backgroundColor: stateLayerTokens.color$hover,
       transitionProperty: 'opacity, background-color',
       transitionDuration: '15ms, 15ms',
       transitionTimingFunction: 'linear, linear',
@@ -39,7 +39,7 @@ export const stateLayerStyles = stylex.create({
       position: 'absolute',
 
       // press ripple fade-out
-      backgroundImage: `radial-gradient(closest-side, ${vars.color$pressed} max(calc(100% - 70px), 65%), transparent 100%)`,
+      backgroundImage: `radial-gradient(closest-side, ${stateLayerTokens.color$pressed} max(calc(100% - 70px), 65%), transparent 100%)`,
       transformOrigin: 'center center',
       transitionProperty: 'opacity',
       transitionDuration: '375ms',
@@ -48,32 +48,32 @@ export const stateLayerStyles = stylex.create({
   },
   rippleSurface$hover: {
     '::before': {
-      opacity: vars.opacity$hover,
+      opacity: stateLayerTokens.opacity$hover,
     },
   },
   rippleSurface$pressed: {
     '::after': {
       // press ripple fade-in
-      opacity: vars.opacity$pressed,
+      opacity: stateLayerTokens.opacity$pressed,
       transitionDuration: '105ms',
     },
   },
   rippleSurface$pressedStatic: {
     '::before': {
-      backgroundColor: vars.color$hover,
-      opacity: vars.opacity$hover,
+      backgroundColor: stateLayerTokens.color$hover,
+      opacity: stateLayerTokens.opacity$hover,
     },
 
     '::after': {
       inset: 0,
-      backgroundColor: vars.color$pressed,
-      opacity: vars.opacity$pressed,
+      backgroundColor: stateLayerTokens.color$pressed,
+      opacity: stateLayerTokens.opacity$pressed,
     },
   },
   rippleSurface$dragged: {
     '::before': {
-      backgroundColor: vars.color$dragged,
-      opacity: vars.opacity$dragged,
+      backgroundColor: stateLayerTokens.color$dragged,
+      opacity: stateLayerTokens.opacity$dragged,
     },
 
     '::after': {

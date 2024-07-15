@@ -1,10 +1,10 @@
 import { useRef } from 'react';
 import stylex from '@stylexjs/stylex';
-import { typescaleVars } from '@/themes/base/vars/typo.stylex';
+import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
 import { FloatingDelayGroup } from '@floating-ui/react';
 
 import { useThemeContext } from '@/components/utils/Theme';
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
 import { ColorSchemeContext, type IColorScheme } from './ColorSchemeContext';
 
 export type IColorSchemeProviderProps = {
@@ -14,12 +14,12 @@ export type IColorSchemeProviderProps = {
 
 const styles = stylex.create({
   host: {
-    color: colorRolesVars.onSurface,
-    fontFamily: typescaleVars.bodyFont$md,
-    fontSize: typescaleVars.bodySize$md,
-    fontWeight: typescaleVars.bodyWeight$md,
-    lineHeight: typescaleVars.bodyLineHeight$md,
-    letterSpacing: typescaleVars.bodyLetterSpacing$md,
+    color: colorRolesTokens.onSurface,
+    fontFamily: typescaleTokens.bodyFont$md,
+    fontSize: typescaleTokens.bodySize$md,
+    fontWeight: typescaleTokens.bodyWeight$md,
+    lineHeight: typescaleTokens.bodyLineHeight$md,
+    letterSpacing: typescaleTokens.bodyLetterSpacing$md,
   },
   container$light: {
     colorScheme: 'light',

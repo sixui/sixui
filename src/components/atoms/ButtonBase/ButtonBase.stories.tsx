@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 
 import type { IButtonBaseProps } from './ButtonBase.types';
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
-import { componentVars as stateLayerVars } from '@/themes/base/StateLayer/StateLayer.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
+import { stateLayerTokens } from '@/components/utils/StateLayer/StateLayer.stylex';
 import { focusRingTokens } from '@/components/utils/FocusRing/FocusRing.stylex';
 import { ButtonBase } from './ButtonBase';
 
@@ -43,28 +43,28 @@ export const Unstyled: IStory = {
 const buttonStyles = stylex.create({
   host: {
     padding: 8,
-    borderRadius: shapeVars.corner$md,
+    borderRadius: shapeTokens.corner$md,
     color: {
-      default: colorRolesVars.onSurface,
-      ':is([data-pressed])': colorRolesVars.onSurface,
+      default: colorRolesTokens.onSurface,
+      ':is([data-pressed])': colorRolesTokens.onSurface,
     },
   },
   outline: {
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: colorRolesVars.outline,
+    borderColor: colorRolesTokens.outline,
   },
 });
 
 const stateLayerStyles = stylex.create({
   host: {
-    [stateLayerVars.color$pressed]: colorRolesVars.primary,
+    [stateLayerTokens.color$pressed]: colorRolesTokens.primary,
   },
 });
 
 const focusRingStyles = stylex.create({
   host: {
-    [focusRingTokens.shape]: shapeVars.corner$md,
+    [focusRingTokens.shape]: shapeTokens.corner$md,
   },
 });
 

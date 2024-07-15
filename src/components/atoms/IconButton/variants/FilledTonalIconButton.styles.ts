@@ -1,52 +1,54 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
 import { iconButtonTokens } from '../IconButton.stylex';
 
 export const filledTonalIconButtonStyles = stylex.create({
   host: {
-    [iconButtonTokens.containerColor]: colorRolesVars.secondaryContainer,
-    [iconButtonTokens.containerColor$disabled]: colorRolesVars.onSurface,
+    [iconButtonTokens.containerColor]: colorRolesTokens.secondaryContainer,
+    [iconButtonTokens.containerColor$disabled]: colorRolesTokens.onSurface,
 
     [iconButtonTokens.unselectedContainerColor]:
-      colorRolesVars.surfaceContainerHighest,
+      colorRolesTokens.surfaceContainerHighest,
 
     [iconButtonTokens.selectedContainerColor]:
-      colorRolesVars.secondaryContainer,
+      colorRolesTokens.secondaryContainer,
 
-    [iconButtonTokens.iconColor]: colorRolesVars.onSecondaryContainer,
-    [iconButtonTokens.iconColor$focus]: colorRolesVars.onSecondaryContainer,
-    [iconButtonTokens.iconColor$hover]: colorRolesVars.onSecondaryContainer,
-    [iconButtonTokens.iconColor$pressed]: colorRolesVars.onSecondaryContainer,
-    [iconButtonTokens.iconColor$disabled]: colorRolesVars.onSecondaryContainer,
+    [iconButtonTokens.iconColor]: colorRolesTokens.onSecondaryContainer,
+    [iconButtonTokens.iconColor$focus]: colorRolesTokens.onSecondaryContainer,
+    [iconButtonTokens.iconColor$hover]: colorRolesTokens.onSecondaryContainer,
+    [iconButtonTokens.iconColor$pressed]: colorRolesTokens.onSecondaryContainer,
+    [iconButtonTokens.iconColor$disabled]:
+      colorRolesTokens.onSecondaryContainer,
 
-    [iconButtonTokens.toggleIconColor]: colorRolesVars.onSurfaceVariant,
-    [iconButtonTokens.toggleIconColor$focus]: colorRolesVars.onSurfaceVariant,
-    [iconButtonTokens.toggleIconColor$hover]: colorRolesVars.onSurfaceVariant,
-    [iconButtonTokens.toggleIconColor$pressed]: colorRolesVars.onSurfaceVariant,
+    [iconButtonTokens.toggleIconColor]: colorRolesTokens.onSurfaceVariant,
+    [iconButtonTokens.toggleIconColor$focus]: colorRolesTokens.onSurfaceVariant,
+    [iconButtonTokens.toggleIconColor$hover]: colorRolesTokens.onSurfaceVariant,
+    [iconButtonTokens.toggleIconColor$pressed]:
+      colorRolesTokens.onSurfaceVariant,
 
     [iconButtonTokens.toggleSelectedIconColor]:
-      colorRolesVars.onSecondaryContainer,
+      colorRolesTokens.onSecondaryContainer,
     [iconButtonTokens.toggleSelectedIconColor$focus]:
-      colorRolesVars.onSecondaryContainer,
+      colorRolesTokens.onSecondaryContainer,
     [iconButtonTokens.toggleSelectedIconColor$hover]:
-      colorRolesVars.onSecondaryContainer,
+      colorRolesTokens.onSecondaryContainer,
     [iconButtonTokens.toggleSelectedIconColor$pressed]:
-      colorRolesVars.onSecondaryContainer,
+      colorRolesTokens.onSecondaryContainer,
 
     [iconButtonTokens.stateLayerColor$hover]:
-      colorRolesVars.onSecondaryContainer,
+      colorRolesTokens.onSecondaryContainer,
     [iconButtonTokens.stateLayerColor$pressed]:
-      colorRolesVars.onSecondaryContainer,
+      colorRolesTokens.onSecondaryContainer,
 
     [iconButtonTokens.toggleStateLayerColor$hover]:
-      colorRolesVars.onSurfaceVariant,
+      colorRolesTokens.onSurfaceVariant,
     [iconButtonTokens.toggleStateLayerColor$pressed]:
-      colorRolesVars.onSurfaceVariant,
+      colorRolesTokens.onSurfaceVariant,
 
     [iconButtonTokens.toggleSelectedStateLayerColor$hover]:
-      colorRolesVars.onSecondaryContainer,
+      colorRolesTokens.onSecondaryContainer,
     [iconButtonTokens.toggleSelectedStateLayerColor$pressed]:
-      colorRolesVars.onSecondaryContainer,
+      colorRolesTokens.onSecondaryContainer,
   },
 });

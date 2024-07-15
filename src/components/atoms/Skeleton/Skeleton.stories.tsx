@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 
 import type { ISkeletonProps } from './Skeleton.types';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
 import { Avatar } from '@/components/atoms/Avatar';
 import { Typography } from '@/components/atoms/Typography';
 import { Skeleton } from './Skeleton';
@@ -27,7 +27,7 @@ const styles = stylex.create({
     height: 100,
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: colorRolesVars.outline,
+    borderColor: colorRolesTokens.outline,
   },
 });
 

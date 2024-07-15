@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
-import { checkboxTokens as vars } from './Checkbox.stylex';
-import { componentVars as statelayerVars } from '@/themes/base/StateLayer/StateLayer.stylex';
+import { checkboxTokens } from './Checkbox.stylex';
+import { stateLayerTokens } from '@/components/utils/StateLayer/StateLayer.stylex';
 import { focusRingTokens } from '@/components/utils/FocusRing/FocusRing.stylex';
-import { motionVars } from '@/themes/base/vars/motion.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { motionTokens } from '@/themes/base/tokens/motion.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
 import { checkboxStateTokens } from './Checkbox.state.stylex';
 
 // The stroke width of the icon marks.
@@ -25,32 +25,35 @@ const prevUnselectedToCheckedKeyframes = stylex.keyframes({
 export type ICheckboxStylesKey = keyof typeof checkboxStyles;
 export const checkboxStyles = stylex.create({
   host: {
-    borderRadius: vars.containerShape,
+    borderRadius: checkboxTokens.containerShape,
     display: 'inline-flex',
     justifyContent: 'center',
     alignItems: 'center',
-    width: vars.containerSize,
-    height: vars.containerSize,
+    width: checkboxTokens.containerSize,
+    height: checkboxTokens.containerSize,
     position: 'relative',
     verticalAlign: 'top', // Fix extra space when placed inside display: block
     WebkitTapHighlightColor: 'transparent',
     cursor: 'pointer',
 
-    [checkboxStateTokens.stateLayerColor$hover]: vars.stateLayerColor$hover,
-    [checkboxStateTokens.stateLayerOpacity$hover]: vars.stateLayerOpacity$hover,
-    [checkboxStateTokens.stateLayerColor$pressed]: vars.stateLayerColor$pressed,
+    [checkboxStateTokens.stateLayerColor$hover]:
+      checkboxTokens.stateLayerColor$hover,
+    [checkboxStateTokens.stateLayerOpacity$hover]:
+      checkboxTokens.stateLayerOpacity$hover,
+    [checkboxStateTokens.stateLayerColor$pressed]:
+      checkboxTokens.stateLayerColor$pressed,
     [checkboxStateTokens.stateLayerOpacity$pressed]:
-      vars.stateLayerOpacity$pressed,
+      checkboxTokens.stateLayerOpacity$pressed,
   },
   host$selected: {
     [checkboxStateTokens.stateLayerColor$hover]:
-      vars.selectedStateLayerColor$hover,
+      checkboxTokens.selectedStateLayerColor$hover,
     [checkboxStateTokens.stateLayerOpacity$hover]:
-      vars.selectedStateLayerOpacity$hover,
+      checkboxTokens.selectedStateLayerOpacity$hover,
     [checkboxStateTokens.stateLayerColor$pressed]:
-      vars.selectedStateLayerColor$pressed,
+      checkboxTokens.selectedStateLayerColor$pressed,
     [checkboxStateTokens.stateLayerOpacity$pressed]:
-      vars.selectedStateLayerOpacity$pressed,
+      checkboxTokens.selectedStateLayerOpacity$pressed,
   },
   host$disabled: {
     cursor: 'default',
@@ -85,22 +88,22 @@ export const checkboxStyles = stylex.create({
     borderStyle: 'solid',
 
     borderColor: {
-      default: vars.outlineColor,
-      ':is([data-focused])': vars.outlineColor$focus,
-      ':is([data-hovered])': vars.outlineColor$hover,
-      ':is([data-pressed])': vars.outlineColor$pressed,
+      default: checkboxTokens.outlineColor,
+      ':is([data-focused])': checkboxTokens.outlineColor$focus,
+      ':is([data-hovered])': checkboxTokens.outlineColor$hover,
+      ':is([data-pressed])': checkboxTokens.outlineColor$pressed,
     },
     borderWidth: {
-      default: vars.outlineWidth,
-      ':is([data-focused])': vars.outlineWidth$focus,
-      ':is([data-hovered])': vars.outlineWidth$hover,
-      ':is([data-pressed])': vars.outlineWidth$pressed,
+      default: checkboxTokens.outlineWidth,
+      ':is([data-focused])': checkboxTokens.outlineWidth$focus,
+      ':is([data-hovered])': checkboxTokens.outlineWidth$hover,
+      ':is([data-pressed])': checkboxTokens.outlineWidth$pressed,
     },
   },
   outline$disabled: {
-    borderColor: vars.outlineColor$disabled,
-    borderWidth: vars.outlineWidth$disabled,
-    opacity: vars.containerOpacity$disabled,
+    borderColor: checkboxTokens.outlineColor$disabled,
+    borderWidth: checkboxTokens.outlineWidth$disabled,
+    opacity: checkboxTokens.containerOpacity$disabled,
   },
   outline$disabled$selected: {
     // Hide the outline behind the transparent selected container color.
@@ -111,10 +114,10 @@ export const checkboxStyles = stylex.create({
     borderRadius: 'inherit',
 
     backgroundColor: {
-      default: vars.selectedContainerColor,
-      ':is([data-focused])': vars.selectedContainerColor$focus,
-      ':is([data-hovered])': vars.selectedContainerColor$hover,
-      ':is([data-pressed])': vars.selectedContainerColor$pressed,
+      default: checkboxTokens.selectedContainerColor,
+      ':is([data-focused])': checkboxTokens.selectedContainerColor$focus,
+      ':is([data-hovered])': checkboxTokens.selectedContainerColor$hover,
+      ':is([data-pressed])': checkboxTokens.selectedContainerColor$pressed,
     },
   },
   background$disabled: {
@@ -127,8 +130,8 @@ export const checkboxStyles = stylex.create({
   background$disabled$selected: {
     // Set disabled opacity only when selected since opacity is used to show
     // or hide the container background.
-    background: vars.selectedContainerColor$disabled,
-    opacity: vars.selectedContainerOpacity$disabled,
+    background: checkboxTokens.selectedContainerColor$disabled,
+    opacity: checkboxTokens.selectedContainerOpacity$disabled,
   },
   background$prevDisabled: {
     // Don't animate to/from disabled states because the outline is hidden when
@@ -140,14 +143,14 @@ export const checkboxStyles = stylex.create({
   backgroundAndIcon: {
     opacity: 0, // Background and icon fade in
     transitionProperty: 'transform, opacity',
-    transitionDuration: `${motionVars.duration$short3}, ${motionVars.duration$short1}`, // Exit duration for scale and opacity
-    transitionTimingFunction: `${motionVars.easing$emphasizedAccelerate}, linear`, // Exit easing function for scale, linear for opacity
+    transitionDuration: `${motionTokens.duration$short3}, ${motionTokens.duration$short1}`, // Exit duration for scale and opacity
+    transitionTimingFunction: `${motionTokens.easing$emphasizedAccelerate}, linear`, // Exit easing function for scale, linear for opacity
     transform: 'scale(0.6)',
   },
   backgroundAndIcon$selected: {
     opacity: 1,
-    transitionDuration: `${motionVars.duration$medium3}, ${motionVars.duration$short1}`, // Enter duration for scale and opacity.
-    transitionTimingFunction: `${motionVars.easing$emphasizedDecelerate}, linear`, // Enter easing function for scale, linear for opacity
+    transitionDuration: `${motionTokens.duration$medium3}, ${motionTokens.duration$short1}`, // Enter duration for scale and opacity.
+    transitionTimingFunction: `${motionTokens.easing$emphasizedDecelerate}, linear`, // Enter easing function for scale, linear for opacity
     transform: 'scale(1)',
   },
   icon: {
@@ -158,14 +161,14 @@ export const checkboxStyles = stylex.create({
     // 2. Long end
     //   - the larger trailing part of the checkmark
     //   - the entirety of the indeterminate mark
-    width: vars.iconSize,
-    height: vars.iconSize,
+    width: checkboxTokens.iconSize,
+    height: checkboxTokens.iconSize,
 
     fill: {
-      default: vars.selectedIconColor,
-      ':is([data-focused])': vars.selectedIconColor$focus,
-      ':is([data-hovered])': vars.selectedIconColor$hover,
-      ':is([data-pressed])': vars.selectedIconColor$pressed,
+      default: checkboxTokens.selectedIconColor,
+      ':is([data-focused])': checkboxTokens.selectedIconColor$focus,
+      ':is([data-hovered])': checkboxTokens.selectedIconColor$hover,
+      ':is([data-pressed])': checkboxTokens.selectedIconColor$pressed,
     },
   },
   icon$disabled: {
@@ -175,7 +178,7 @@ export const checkboxStyles = stylex.create({
     animationDuration: '0s',
     transitionDuration: '0s',
 
-    fill: vars.selectedIconColor$disabled,
+    fill: checkboxTokens.selectedIconColor$disabled,
   },
   icon$prevDisabled: {
     // Don't animate to/from disabled states because the outline is hidden when
@@ -186,15 +189,15 @@ export const checkboxStyles = stylex.create({
   },
   mark: {
     // Exit duration and easing.
-    animationDuration: motionVars.duration$short3,
-    animationTimingFunction: motionVars.easing$emphasizedAccelerate,
-    transitionDuration: motionVars.duration$short3,
-    transitionTimingFunction: motionVars.easing$emphasizedAccelerate,
+    animationDuration: motionTokens.duration$short3,
+    animationTimingFunction: motionTokens.easing$emphasizedAccelerate,
+    transitionDuration: motionTokens.duration$short3,
+    transitionTimingFunction: motionTokens.easing$emphasizedAccelerate,
   },
   mark$selected: {
     // Enter duration and easing.
-    animationDuration: motionVars.duration$medium3,
-    animationTimingFunction: motionVars.easing$emphasizedDecelerate,
+    animationDuration: motionTokens.duration$medium3,
+    animationTimingFunction: motionTokens.easing$emphasizedDecelerate,
   },
   mark$disabled: {
     // Don't animate to/from disabled states because the outline is hidden when
@@ -258,15 +261,17 @@ export const checkboxStyles = stylex.create({
 
 export const checkboxStateLayerStyles = stylex.create({
   host: {
-    borderRadius: vars.stateLayerShape,
-    width: vars.stateLayerSize,
-    height: vars.stateLayerSize,
+    borderRadius: checkboxTokens.stateLayerShape,
+    width: checkboxTokens.stateLayerSize,
+    height: checkboxTokens.stateLayerSize,
     inset: 'unset',
 
-    [statelayerVars.color$hover]: checkboxStateTokens.stateLayerColor$hover,
-    [statelayerVars.opacity$hover]: checkboxStateTokens.stateLayerOpacity$hover,
-    [statelayerVars.color$pressed]: checkboxStateTokens.stateLayerColor$pressed,
-    [statelayerVars.opacity$pressed]:
+    [stateLayerTokens.color$hover]: checkboxStateTokens.stateLayerColor$hover,
+    [stateLayerTokens.opacity$hover]:
+      checkboxStateTokens.stateLayerOpacity$hover,
+    [stateLayerTokens.color$pressed]:
+      checkboxStateTokens.stateLayerColor$pressed,
+    [stateLayerTokens.opacity$pressed]:
       checkboxStateTokens.stateLayerOpacity$pressed,
   },
 });
@@ -275,7 +280,7 @@ export const checkboxFocusRingStyles = stylex.create({
   host: {
     width: 44,
     height: 44,
-    [focusRingTokens.shape]: shapeVars.corner$full,
+    [focusRingTokens.shape]: shapeTokens.corner$full,
   },
   host$outward: {
     inset: 'unset',

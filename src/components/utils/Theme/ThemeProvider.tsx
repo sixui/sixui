@@ -9,9 +9,9 @@ import type {
   ITypescaleThemeVars,
 } from '@/themes/typo.types';
 import {
-  colorRolesVars,
+  colorRolesTokens,
   colorRolesTheme,
-} from '@/themes/base/vars/colorRoles.stylex';
+} from '@/themes/base/tokens/colorRoles.stylex';
 import { ThemeContext, type IThemeContextValue } from './ThemeContext';
 
 export type IThemeProviderProps = IContainerProps &
@@ -28,7 +28,7 @@ const styles = stylex.create({
   wrapper: {
     scrollbarWidth: 'thin',
     scrollbarColor: {
-      '@media (pointer: fine)': `${colorRolesVars.primary} transparent`,
+      '@media (pointer: fine)': `${colorRolesTokens.primary} transparent`,
     },
   },
 });

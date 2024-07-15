@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
-import { motionVars } from '@/themes/base/vars/motion.stylex';
+import { motionTokens } from '@/themes/base/tokens/motion.stylex';
 import { fieldBaseTokens } from './FieldBase.stylex';
 
 // Duration of the label animation.
-const labelDuration = motionVars.duration$short3;
+const labelDuration = motionTokens.duration$short3;
 // Duration of the content's visibility animation.
 const visibleDuration = `calc(${labelDuration} * 5 / 9)`;
 // Short delay when entering (focusing/populating) so that the label may move
@@ -160,7 +160,7 @@ export const fieldBaseStyles = stylex.create({
     flexBasis: '0%',
     transitionProperty: 'opacity',
     transitionDuration: visibleDuration,
-    transitionTimingFunction: motionVars.easing$emphasized,
+    transitionTimingFunction: motionTokens.easing$emphasized,
 
     // Used to set the color of autofilled text in Chrome.
     WebkitTextFillColor: {

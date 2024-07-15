@@ -1,13 +1,13 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
 
 const vars = {
   leadingSpace: '16px',
   trailingSpace: '16px',
   topSpace: '16px',
   bottomSpace: '16px',
-  textColor: colorRolesVars.onSurface,
+  textColor: colorRolesTokens.onSurface,
   // &:actionable
   leadingSpace$actionable: '16px',
   trailingSpace$actionable: '16px',

@@ -1,25 +1,25 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { typescaleVars } from '@/themes/base/vars/typo.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
 
 const vars = {
   thickness: '1px',
-  color: colorRolesVars.outlineVariant,
+  color: colorRolesTokens.outlineVariant,
   // &:completed
-  color$completed: colorRolesVars.primary,
+  color$completed: colorRolesTokens.primary,
 
   // text
   textSpace$horizontal: '8px',
   textSpace$vertical: '4px',
-  textColor: colorRolesVars.outline,
-  textFont: typescaleVars.bodyFont$sm,
-  textSize: typescaleVars.bodySize$sm,
-  textWeight: typescaleVars.bodyWeight$sm,
-  textLineHeight: typescaleVars.bodyLineHeight$sm,
-  textLetterSpacing: typescaleVars.bodyLetterSpacing$sm,
+  textColor: colorRolesTokens.outline,
+  textFont: typescaleTokens.bodyFont$sm,
+  textSize: typescaleTokens.bodySize$sm,
+  textWeight: typescaleTokens.bodyWeight$sm,
+  textLineHeight: typescaleTokens.bodyLineHeight$sm,
+  textLetterSpacing: typescaleTokens.bodyLetterSpacing$sm,
   // &:completed
-  textColor$completed: colorRolesVars.primary,
+  textColor$completed: colorRolesTokens.primary,
 };
 
 export const stepConnectorTokens = stylex.defineVars(vars);

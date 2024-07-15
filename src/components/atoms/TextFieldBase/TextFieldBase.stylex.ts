@@ -1,14 +1,14 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
 
 const vars = {
   // caret
-  caretColor: colorRolesVars.primary,
+  caretColor: colorRolesTokens.primary,
   // &:focus
-  caretColor$focus: colorRolesVars.primary,
+  caretColor$focus: colorRolesTokens.primary,
   // &:error:focus
-  caretColor$error$focus: colorRolesVars.error,
+  caretColor$error$focus: colorRolesTokens.error,
 };
 
 export const textFieldBaseTokens = stylex.defineVars(vars);

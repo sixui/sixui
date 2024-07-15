@@ -10,7 +10,7 @@ import {
   type IExpandableContextValue,
 } from './ExpandableContext';
 import { useControlledValue } from '@/hooks/useControlledValue';
-import { motionVars } from '@/themes/base/vars/motion.stylex';
+import { motionTokens } from '@/themes/base/tokens/motion.stylex';
 import { useMergeRefs } from '@floating-ui/react';
 import { useElementSize } from '@/hooks/useElementSize';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
@@ -31,8 +31,8 @@ const localStyles = stylex.create({
     width: expandedSize.width,
     height: expandedSize.height,
     transitionProperty,
-    transitionDuration: motionVars.duration$long3,
-    transitionTimingFunction: motionVars.easing$emphasizedDecelerate,
+    transitionDuration: motionTokens.duration$long3,
+    transitionTimingFunction: motionTokens.easing$emphasizedDecelerate,
   }),
   animation$entered: (expandedSize: Partial<ISize<ICssSizeValue>>) => ({
     width: expandedSize.width,
@@ -45,8 +45,8 @@ const localStyles = stylex.create({
     width: collapsedSize.width,
     height: collapsedSize.height,
     transitionProperty,
-    transitionDuration: motionVars.duration$short3,
-    transitionTimingFunction: motionVars.easing$emphasizedAccelerate,
+    transitionDuration: motionTokens.duration$short3,
+    transitionTimingFunction: motionTokens.easing$emphasizedAccelerate,
   }),
   animation$exited: (
     size: Partial<ISize<ICssSizeValue>>,
@@ -149,7 +149,7 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
         <CSSTransition
           nodeRef={transitionNodeRef}
           in={expanded}
-          timeout={550} // motionVars.duration$long3
+          timeout={550} // motionTokens.duration$long3
         >
           {(status) => (
             <div

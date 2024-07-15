@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
-import { typescaleVars } from '@/themes/base/vars/typo.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
+import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
 
 const vars = {
   topSpace: '8px',
@@ -11,18 +11,18 @@ const vars = {
   trailingSpace: '8px',
 
   // container
-  containerColor: colorRolesVars.inverseSurface,
-  containerShape: shapeVars.corner$xs,
+  containerColor: colorRolesTokens.inverseSurface,
+  containerShape: shapeTokens.corner$xs,
   containerMaxWidth: '215px',
   containerMinHeight: '24px',
 
   // supportingText
-  supportingTextColor: colorRolesVars.inverseOnSurface,
-  supportingTextFont: typescaleVars.bodyFont$sm,
-  supportingTextSize: typescaleVars.bodySize$sm,
-  supportingTextWeight: typescaleVars.bodyWeight$sm,
-  supportingTextLineHeight: typescaleVars.bodyLineHeight$sm,
-  supportingTextLetterSpacing: typescaleVars.bodyLetterSpacing$sm,
+  supportingTextColor: colorRolesTokens.inverseOnSurface,
+  supportingTextFont: typescaleTokens.bodyFont$sm,
+  supportingTextSize: typescaleTokens.bodySize$sm,
+  supportingTextWeight: typescaleTokens.bodyWeight$sm,
+  supportingTextLineHeight: typescaleTokens.bodyLineHeight$sm,
+  supportingTextLetterSpacing: typescaleTokens.bodyLetterSpacing$sm,
 };
 
 export const plainTooltipContentTokens = stylex.defineVars(vars);

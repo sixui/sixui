@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { motionVars } from '@/themes/base/vars/motion.stylex';
+import { motionTokens } from '@/themes/base/tokens/motion.stylex';
 
 export type IFloatingFilterableListBaseStylesKey =
   keyof typeof floatingFilterableListBaseStyles;
@@ -19,14 +19,14 @@ export const floatingFilterableListBaseStyles = stylex.create({
   transition$open: {
     transform: 'scaleY(1)',
     transitionProperty: 'transform',
-    transitionDuration: motionVars.duration$long3,
-    transitionTimingFunction: motionVars.easing$emphasizedDecelerate,
+    transitionDuration: motionTokens.duration$long3,
+    transitionTimingFunction: motionTokens.easing$emphasizedDecelerate,
   },
   transition$close: {
     transform: 'scaleY(0)',
     transitionProperty: 'transform',
-    transitionDuration: motionVars.duration$short3,
-    transitionTimingFunction: motionVars.easing$emphasizedAccelerate,
+    transitionDuration: motionTokens.duration$short3,
+    transitionTimingFunction: motionTokens.easing$emphasizedAccelerate,
   },
   transition$unmounted$nested: {},
   transition$initial$nested: {},

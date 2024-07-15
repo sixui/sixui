@@ -1,19 +1,19 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
 
 const vars = {
   zIndex: '9',
 
   // container
-  containerShape: `min(0.25em, ${shapeVars.corner$xs})`,
-  containerColor: colorRolesVars.surfaceContainerHigh,
+  containerShape: `min(0.25em, ${shapeTokens.corner$xs})`,
+  containerColor: colorRolesTokens.surfaceContainerHigh,
   // &:error
-  containerColor$error: colorRolesVars.errorContainer,
+  containerColor$error: colorRolesTokens.errorContainer,
 
   // animation
-  animationTargetColor: colorRolesVars.inverseSurface,
+  animationTargetColor: colorRolesTokens.inverseSurface,
   // &:pulse
   animationMaxOpacity$pulse: '0.12',
   animationDuration$pulse: '2s',

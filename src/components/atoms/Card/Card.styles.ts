@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import { focusRingTokens } from '@/components/utils/FocusRing/FocusRing.stylex';
-import { componentVars as statelayerVars } from '@/themes/base/StateLayer/StateLayer.stylex';
+import { stateLayerTokens } from '@/components/utils/StateLayer/StateLayer.stylex';
 import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
 import { cardTokens } from './Card.stylex';
 import { cardStateTokens } from './Card.state.stylex';
@@ -85,14 +85,14 @@ export const cardElevationStyles = stylex.create({
 
 export const cardStateLayerStyles = stylex.create({
   host: {
-    [statelayerVars.color$hover]: cardTokens.stateLayerColor$hover,
-    [statelayerVars.opacity$hover]: cardTokens.stateLayerOpacity$hover,
+    [stateLayerTokens.color$hover]: cardTokens.stateLayerColor$hover,
+    [stateLayerTokens.opacity$hover]: cardTokens.stateLayerOpacity$hover,
 
-    [statelayerVars.color$pressed]: cardTokens.stateLayerColor$pressed,
-    [statelayerVars.opacity$pressed]: cardTokens.stateLayerOpacity$pressed,
+    [stateLayerTokens.color$pressed]: cardTokens.stateLayerColor$pressed,
+    [stateLayerTokens.opacity$pressed]: cardTokens.stateLayerOpacity$pressed,
 
-    [statelayerVars.color$dragged]: cardTokens.stateLayerColor$dragged,
-    [statelayerVars.opacity$dragged]: cardTokens.stateLayerOpacity$dragged,
+    [stateLayerTokens.color$dragged]: cardTokens.stateLayerColor$dragged,
+    [stateLayerTokens.opacity$dragged]: cardTokens.stateLayerOpacity$dragged,
 
     zIndex: 1,
   },

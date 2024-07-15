@@ -1,17 +1,17 @@
 import stylex from '@stylexjs/stylex';
 
-import { skeletonTokens as vars } from './Skeleton.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { skeletonTokens } from './Skeleton.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
 
 const pulseKeyframe = stylex.keyframes({
   '0%': {
-    opacity: vars.animationMaxOpacity$pulse,
+    opacity: skeletonTokens.animationMaxOpacity$pulse,
   },
   '50%': {
     opacity: 0,
   },
   '100%': {
-    opacity: vars.animationMaxOpacity$pulse,
+    opacity: skeletonTokens.animationMaxOpacity$pulse,
   },
 });
 
@@ -35,7 +35,7 @@ export const skeletonStyles = stylex.create({
     overflow: 'hidden',
     cursor: 'default',
     color: 'transparent',
-    zIndex: vars.zIndex,
+    zIndex: skeletonTokens.zIndex,
 
     '::before': {
       content: '',
@@ -43,8 +43,8 @@ export const skeletonStyles = stylex.create({
       position: 'absolute',
       inset: 0,
       borderRadius: 'inherit',
-      zIndex: vars.zIndex,
-      backgroundColor: vars.containerColor,
+      zIndex: skeletonTokens.zIndex,
+      backgroundColor: skeletonTokens.containerColor,
     },
 
     '::after': {
@@ -53,20 +53,20 @@ export const skeletonStyles = stylex.create({
       position: 'absolute',
       inset: 0,
       borderRadius: 'inherit',
-      zIndex: vars.zIndex,
+      zIndex: skeletonTokens.zIndex,
     },
   },
   host$error: {
     '::before': {
-      backgroundColor: vars.containerColor$error,
+      backgroundColor: skeletonTokens.containerColor$error,
     },
   },
   host$rectangular: {
     height: 'auto',
-    borderRadius: vars.containerShape,
+    borderRadius: skeletonTokens.containerShape,
   },
   host$circular: {
-    borderRadius: shapeVars.corner$full,
+    borderRadius: shapeTokens.corner$full,
     flexGrow: 0,
     flexShrink: 0,
   },
@@ -80,24 +80,24 @@ export const skeletonStyles = stylex.create({
   },
   animation$pulse: {
     '::after': {
-      opacity: vars.animationMaxOpacity$pulse,
+      opacity: skeletonTokens.animationMaxOpacity$pulse,
       animationName: pulseKeyframe,
-      animationDuration: vars.animationDuration$pulse,
-      animationDelay: vars.animationDelay$pulse,
+      animationDuration: skeletonTokens.animationDuration$pulse,
+      animationDelay: skeletonTokens.animationDelay$pulse,
       animationTimingFunction: 'ease-in-out',
       animationIterationCount: 'infinite',
-      backgroundColor: vars.animationTargetColor,
+      backgroundColor: skeletonTokens.animationTargetColor,
     },
   },
   animation$wave: {
     '::after': {
-      opacity: vars.animationMaxOpacity$wave,
+      opacity: skeletonTokens.animationMaxOpacity$wave,
       animationName: waveKeyframe,
-      animationDuration: vars.animationDuration$wave,
-      animationDelay: vars.animationDelay$wave,
+      animationDuration: skeletonTokens.animationDuration$wave,
+      animationDelay: skeletonTokens.animationDelay$wave,
       animationTimingFunction: 'linear',
       animationIterationCount: 'infinite',
-      background: `linear-gradient(90deg, transparent, ${vars.animationTargetColor}, transparent)`,
+      background: `linear-gradient(90deg, transparent, ${skeletonTokens.animationTargetColor}, transparent)`,
 
       transform: 'translateX(-100%)',
       inset: 0,

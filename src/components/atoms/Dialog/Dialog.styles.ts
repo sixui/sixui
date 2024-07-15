@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { motionVars } from '@/themes/base/vars/motion.stylex';
+import { motionTokens } from '@/themes/base/tokens/motion.stylex';
 
 // https://github.com/material-components/material-web/blob/main/dialog/internal/_dialog.scss
 
@@ -16,15 +16,15 @@ export const dialogStyles = stylex.create({
     transform: 'translateY(0.5)',
     transformOrigin: 'top',
     transitionProperty: 'transform',
-    transitionDuration: motionVars.duration$long3,
-    transitionTimingFunction: motionVars.easing$emphasizedDecelerate,
+    transitionDuration: motionTokens.duration$long3,
+    transitionTimingFunction: motionTokens.easing$emphasizedDecelerate,
   },
   transition$close: {
     opacity: 0,
     transform: 'translateY(-50%)',
     transformOrigin: 'top',
     transitionProperty: 'opacity, transform',
-    transitionDuration: motionVars.duration$short3,
-    transitionTimingFunction: motionVars.easing$emphasizedAccelerate,
+    transitionDuration: motionTokens.duration$short3,
+    transitionTimingFunction: motionTokens.easing$emphasizedAccelerate,
   },
 });

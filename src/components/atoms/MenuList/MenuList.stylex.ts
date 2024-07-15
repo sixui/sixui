@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
 import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-menulist.scss
@@ -9,9 +9,9 @@ import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
 
 const vars = {
   // container
-  containerColor: colorRolesVars.surfaceContainer,
+  containerColor: colorRolesTokens.surfaceContainer,
   containerElevation: elevationTokens.boxShadow$level2,
-  containerShape: shapeVars.corner$xs,
+  containerShape: shapeTokens.corner$xs,
 
   // content
   contentMaxHeight: '300px',

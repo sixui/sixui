@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { stateVars } from '@/themes/base/vars/state.stylex';
+import { stateTokens } from '@/themes/base/tokens/state.stylex';
 import { circularProgressIndicatorTokens } from '@/components/atoms/CircularProgressIndicator/CircularProgressIndicator.stylex';
 
 // https://github.com/material-components/material-web/blob/main/progress/internal/_circular-progress.scss
@@ -68,7 +68,7 @@ const linearRotateKeyframes = stylex.keyframes({
   '100%': { transform: 'rotate(360deg)' },
 });
 
-const color$disabled = `color-mix(in srgb, ${circularProgressIndicatorTokens.color$disabled} calc(${stateVars.opacity$disabled} * 100%), transparent)`;
+const color$disabled = `color-mix(in srgb, ${circularProgressIndicatorTokens.color$disabled} calc(${stateTokens.opacity$disabled} * 100%), transparent)`;
 
 export type IIndeterminateCircularProgressIndicatorStyleKey =
   keyof typeof indeterminateCircularProgressIndicatorStyles;

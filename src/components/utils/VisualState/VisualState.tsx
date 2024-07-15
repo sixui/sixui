@@ -1,9 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
 import type { IVisualStateProps } from './VisualState.types';
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
 import { ButtonBase } from '@/components/atoms/ButtonBase';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
 import { focusRingTokens } from '@/components/utils/FocusRing/FocusRing.stylex';
 import { useVisualState } from './useVisualState';
 
@@ -15,10 +15,10 @@ const styles = stylex.create({
     minHeight: 96,
     minWidth: 96,
     outlineWidth: '1px',
-    outlineColor: colorRolesVars.outline,
-    borderRadius: shapeVars.corner$xl,
+    outlineColor: colorRolesTokens.outline,
+    borderRadius: shapeTokens.corner$xl,
     outlineStyle: 'solid',
-    color: colorRolesVars.onSurface,
+    color: colorRolesTokens.onSurface,
     justifyContent: 'center',
   },
   inner: {
@@ -33,16 +33,16 @@ const styles = stylex.create({
     alignItems: 'center',
   },
   on: {
-    color: colorRolesVars.primary,
+    color: colorRolesTokens.primary,
   },
   off: {
-    color: colorRolesVars.surfacePlaceholder,
+    color: colorRolesTokens.surfacePlaceholder,
   },
 });
 
 const focusRingStyles = stylex.create({
   host: {
-    [focusRingTokens.shape]: shapeVars.corner$xl,
+    [focusRingTokens.shape]: shapeTokens.corner$xl,
   },
 });
 

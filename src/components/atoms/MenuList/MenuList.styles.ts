@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
-import { menuListTokens as vars } from './MenuList.stylex';
+import { menuListTokens } from './MenuList.stylex';
 
 // https://github.com/material-components/material-web/blob/main/menulist/internal/_menulist.scss
 
@@ -9,8 +9,8 @@ export type IMenuListStylesKey = keyof typeof menuListStyles;
 export const menuListStyles = stylex.create({
   host: {
     position: 'relative',
-    borderRadius: vars.containerShape,
-    backgroundColor: vars.containerColor,
+    borderRadius: menuListTokens.containerShape,
+    backgroundColor: menuListTokens.containerColor,
     borderStyle: 'unset',
     flexGrow: 1,
     color: 'inherit',
@@ -22,8 +22,8 @@ export const menuListStyles = stylex.create({
 
 export const menuListElevationStyles = stylex.create({
   host: {
-    [elevationTokens.boxShadow]: vars.containerElevation,
-    borderRadius: vars.containerShape,
+    [elevationTokens.boxShadow]: menuListTokens.containerElevation,
+    borderRadius: menuListTokens.containerShape,
   },
 });
 
@@ -33,6 +33,6 @@ export const menuListListStyles = stylex.create({
     overflowY: 'auto',
   },
   content: {
-    maxHeight: vars.contentMaxHeight,
+    maxHeight: menuListTokens.contentMaxHeight,
   },
 });

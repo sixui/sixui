@@ -1,13 +1,13 @@
 import stylex from '@stylexjs/stylex';
 
-import { dialogContentTokens as vars } from './DialogContent.stylex';
+import { dialogContentTokens } from './DialogContent.stylex';
 
 // https://github.com/material-components/material-web/blob/main/dialog/internal/_dialog.scss
 
 export type IDialogContentStylesKey = keyof typeof dialogContentStyles;
 export const dialogContentStyles = stylex.create({
   host: {
-    borderRadius: vars.containerShape,
+    borderRadius: dialogContentTokens.containerShape,
     display: 'contents',
     maxHeight: 'min(560px, calc(100% - 48px))',
     maxWidth: 'min(560px, calc(100% - 48px))',
@@ -44,7 +44,7 @@ export const dialogContentStyles = stylex.create({
     transformOrigin: 'top',
 
     '::before': {
-      background: vars.containerColor,
+      background: dialogContentTokens.containerColor,
       borderRadius: 'inherit',
       content: '',
       inset: 0,
@@ -53,14 +53,14 @@ export const dialogContentStyles = stylex.create({
   },
   headline: {
     alignItems: 'center',
-    color: vars.headlineColor,
+    color: dialogContentTokens.headlineColor,
     display: 'flex',
     flexDirection: 'column',
-    fontFamily: vars.headlineFont,
-    fontSize: vars.headlineSize,
-    fontWeight: vars.headlineWeight,
-    lineHeight: vars.headlineLineHeight,
-    letterSpacing: vars.headlineLetterSpacing,
+    fontFamily: dialogContentTokens.headlineFont,
+    fontSize: dialogContentTokens.headlineSize,
+    fontWeight: dialogContentTokens.headlineWeight,
+    lineHeight: dialogContentTokens.headlineLineHeight,
+    letterSpacing: dialogContentTokens.headlineLetterSpacing,
     position: 'relative',
   },
   header: {
@@ -96,12 +96,12 @@ export const dialogContentStyles = stylex.create({
     display: 'flex',
   },
   iconSlot: {
-    color: vars.iconColor,
+    color: dialogContentTokens.iconColor,
     fill: 'currentColor',
-    fontSize: vars.iconSize,
+    fontSize: dialogContentTokens.iconSize,
     marginTop: 24,
-    height: vars.iconSize,
-    width: vars.iconSize,
+    height: dialogContentTokens.iconSize,
+    width: dialogContentTokens.iconSize,
   },
   scroller: {
     display: 'flex',
@@ -123,11 +123,11 @@ export const dialogContentStyles = stylex.create({
     overflowY: 'scroll',
   },
   content: {
-    color: vars.supportingTextColor,
-    fontFamily: vars.supportingTextFont,
-    fontSize: vars.supportingTextSize,
-    fontWeight: vars.supportingTextWeight,
-    letterSpacing: vars.supportingTextLetterSpacing,
+    color: dialogContentTokens.supportingTextColor,
+    fontFamily: dialogContentTokens.supportingTextFont,
+    fontSize: dialogContentTokens.supportingTextSize,
+    fontWeight: dialogContentTokens.supportingTextWeight,
+    letterSpacing: dialogContentTokens.supportingTextLetterSpacing,
     height: 'min-content', // Needed for Safari
     position: 'relative',
   },

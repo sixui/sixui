@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
 import { fieldBaseTokens } from '../FieldBase.stylex';
-import { motionVars } from '@/themes/base/vars/motion.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { motionTokens } from '@/themes/base/tokens/motion.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
 
 // https://github.com/material-components/material-web/blob/main/field/internal/_outlined-field.scss
 
@@ -16,7 +16,7 @@ const endSpace = `${fieldBaseTokens.trailingSpace}`;
 export type IOutlinedFieldBaseStylesKey = keyof typeof outlinedFieldBaseStyles;
 export const outlinedFieldBaseStyles = stylex.create({
   host: {
-    [fieldBaseTokens.containerShape]: shapeVars.corner$xs,
+    [fieldBaseTokens.containerShape]: shapeTokens.corner$xs,
   },
   container$resizable: {
     // Move the container up and to the left so that the resize handle doesn't
@@ -106,8 +106,8 @@ export const outlinedFieldBaseStyles = stylex.create({
       ':is([data-focused])': 1,
     },
     transitionProperty: 'opacity',
-    transitionDuration: motionVars.duration$short3,
-    transitionTimingFunction: motionVars.easing$emphasized,
+    transitionDuration: motionTokens.duration$short3,
+    transitionTimingFunction: motionTokens.easing$emphasized,
     borderWidth: fieldBaseTokens.outlineWidth$focus,
   },
   outlineSection$panel$inactive: {
@@ -159,8 +159,8 @@ export const outlinedFieldBaseStyles = stylex.create({
       ':is([data-focused])': 1,
     },
     transitionProperty: 'opacity',
-    transitionDuration: motionVars.duration$short3,
-    transitionTimingFunction: motionVars.easing$emphasized,
+    transitionDuration: motionTokens.duration$short3,
+    transitionTimingFunction: motionTokens.easing$emphasized,
     borderWidth: fieldBaseTokens.outlineWidth$focus,
   },
   outlineBorder$active$end: {},
@@ -177,8 +177,8 @@ export const outlinedFieldBaseStyles = stylex.create({
     borderBottomStyle: 'unset',
     bottom: 'auto',
     transitionProperty: 'transform',
-    transitionDuration: motionVars.duration$short3,
-    transitionTimingFunction: motionVars.easing$emphasized,
+    transitionDuration: motionTokens.duration$short3,
+    transitionTimingFunction: motionTokens.easing$emphasized,
 
     transform: {
       default: 'scaleX(1)',

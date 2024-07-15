@@ -1,27 +1,27 @@
 import stylex from '@stylexjs/stylex';
 
 import { fieldBaseTokens } from '../FieldBase.stylex';
-import { motionVars } from '@/themes/base/vars/motion.stylex';
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { stateVars } from '@/themes/base/vars/state.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { motionTokens } from '@/themes/base/tokens/motion.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { stateTokens } from '@/themes/base/tokens/state.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
 
 // https://github.com/material-components/material-web/blob/main/field/internal/_filled-field.scss
 
 export type IFilledFieldBaseStylesKey = keyof typeof filledFieldBaseStyles;
 export const filledFieldBaseStyles = stylex.create({
   host: {
-    [fieldBaseTokens.containerColor]: colorRolesVars.surfaceContainerHighest,
-    [fieldBaseTokens.containerShape]: shapeVars.cornerTop$xs,
-    [fieldBaseTokens.containerColor$disabled]: colorRolesVars.onSurface,
+    [fieldBaseTokens.containerColor]: colorRolesTokens.surfaceContainerHighest,
+    [fieldBaseTokens.containerShape]: shapeTokens.cornerTop$xs,
+    [fieldBaseTokens.containerColor$disabled]: colorRolesTokens.onSurface,
     [fieldBaseTokens.containerOpacity$disabled]: '0.04',
 
-    [fieldBaseTokens.stateLayerColor$hover]: colorRolesVars.onSurface,
+    [fieldBaseTokens.stateLayerColor$hover]: colorRolesTokens.onSurface,
     [fieldBaseTokens.stateLayerOpacity$hover]:
-      stateVars.stateLayerOpacity$hover,
-    [fieldBaseTokens.stateLayerColor$error$hover]: colorRolesVars.onSurface,
+      stateTokens.stateLayerOpacity$hover,
+    [fieldBaseTokens.stateLayerColor$error$hover]: colorRolesTokens.onSurface,
     [fieldBaseTokens.stateLayerOpacity$error$hover]:
-      stateVars.stateLayerOpacity$hover,
+      stateTokens.stateLayerOpacity$hover,
   },
   container$resizable: {
     // Move the container up so that the resize handle doesn't overlap the focus
@@ -127,8 +127,8 @@ export const filledFieldBaseStyles = stylex.create({
     borderBottomColor: fieldBaseTokens.activeIndicatorColor$focus,
 
     transitionProperty: 'opacity',
-    transitionDuration: motionVars.duration$short3,
-    transitionTimingFunction: motionVars.easing$emphasized,
+    transitionDuration: motionTokens.duration$short3,
+    transitionTimingFunction: motionTokens.easing$emphasized,
 
     opacity: {
       default: 0,

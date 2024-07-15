@@ -1,52 +1,55 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { stateVars } from '@/themes/base/vars/state.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { stateTokens } from '@/themes/base/tokens/state.stylex';
 import { iconButtonTokens } from '../IconButton.stylex';
 
 export const outlinedIconButtonStyles = stylex.create({
   host: {
-    [iconButtonTokens.selectedContainerColor]: colorRolesVars.inverseSurface,
+    [iconButtonTokens.selectedContainerColor]: colorRolesTokens.inverseSurface,
 
-    [iconButtonTokens.iconColor]: colorRolesVars.onSurfaceVariant,
-    [iconButtonTokens.iconColor$focus]: colorRolesVars.onSurfaceVariant,
-    [iconButtonTokens.iconColor$hover]: colorRolesVars.onSurfaceVariant,
-    [iconButtonTokens.iconColor$pressed]: colorRolesVars.onSurfaceVariant,
-    [iconButtonTokens.iconColor$disabled]: colorRolesVars.onSurfaceVariant,
+    [iconButtonTokens.iconColor]: colorRolesTokens.onSurfaceVariant,
+    [iconButtonTokens.iconColor$focus]: colorRolesTokens.onSurfaceVariant,
+    [iconButtonTokens.iconColor$hover]: colorRolesTokens.onSurfaceVariant,
+    [iconButtonTokens.iconColor$pressed]: colorRolesTokens.onSurfaceVariant,
+    [iconButtonTokens.iconColor$disabled]: colorRolesTokens.onSurfaceVariant,
 
-    [iconButtonTokens.toggleIconColor]: colorRolesVars.onSurfaceVariant,
-    [iconButtonTokens.toggleIconColor$focus]: colorRolesVars.onSurfaceVariant,
-    [iconButtonTokens.toggleIconColor$hover]: colorRolesVars.onSurfaceVariant,
-    [iconButtonTokens.toggleIconColor$pressed]: colorRolesVars.onSurfaceVariant,
+    [iconButtonTokens.toggleIconColor]: colorRolesTokens.onSurfaceVariant,
+    [iconButtonTokens.toggleIconColor$focus]: colorRolesTokens.onSurfaceVariant,
+    [iconButtonTokens.toggleIconColor$hover]: colorRolesTokens.onSurfaceVariant,
+    [iconButtonTokens.toggleIconColor$pressed]:
+      colorRolesTokens.onSurfaceVariant,
 
-    [iconButtonTokens.toggleSelectedIconColor]: colorRolesVars.inverseOnSurface,
+    [iconButtonTokens.toggleSelectedIconColor]:
+      colorRolesTokens.inverseOnSurface,
     [iconButtonTokens.toggleSelectedIconColor$focus]:
-      colorRolesVars.inverseOnSurface,
+      colorRolesTokens.inverseOnSurface,
     [iconButtonTokens.toggleSelectedIconColor$hover]:
-      colorRolesVars.inverseOnSurface,
+      colorRolesTokens.inverseOnSurface,
     [iconButtonTokens.toggleSelectedIconColor$pressed]:
-      colorRolesVars.inverseOnSurface,
+      colorRolesTokens.inverseOnSurface,
 
-    [iconButtonTokens.stateLayerColor$hover]: colorRolesVars.onSurfaceVariant,
-    [iconButtonTokens.stateLayerColor$pressed]: colorRolesVars.onSurfaceVariant,
+    [iconButtonTokens.stateLayerColor$hover]: colorRolesTokens.onSurfaceVariant,
+    [iconButtonTokens.stateLayerColor$pressed]:
+      colorRolesTokens.onSurfaceVariant,
 
     [iconButtonTokens.toggleStateLayerColor$hover]:
-      colorRolesVars.onSurfaceVariant,
+      colorRolesTokens.onSurfaceVariant,
     [iconButtonTokens.toggleStateLayerColor$pressed]:
-      colorRolesVars.onSurfaceVariant,
+      colorRolesTokens.onSurfaceVariant,
 
     [iconButtonTokens.toggleSelectedStateLayerColor$hover]:
-      colorRolesVars.inverseOnSurface,
+      colorRolesTokens.inverseOnSurface,
     [iconButtonTokens.toggleSelectedStateLayerColor$pressed]:
-      colorRolesVars.inverseOnSurface,
+      colorRolesTokens.inverseOnSurface,
 
     [iconButtonTokens.outlineStyle]: 'solid',
     [iconButtonTokens.outlineWidth]: '1px',
-    [iconButtonTokens.outlineColor]: colorRolesVars.outline,
-    [iconButtonTokens.outlineColor$disabled]: colorRolesVars.onSurface,
+    [iconButtonTokens.outlineColor]: colorRolesTokens.outline,
+    [iconButtonTokens.outlineColor$disabled]: colorRolesTokens.onSurface,
     [iconButtonTokens.outlineOpacity$disabled]:
-      stateVars.outlineOpacity$disabled,
-    [iconButtonTokens.outlineColor$focus]: colorRolesVars.outline,
-    [iconButtonTokens.outlineColor$pressed]: colorRolesVars.outline,
+      stateTokens.outlineOpacity$disabled,
+    [iconButtonTokens.outlineColor$focus]: colorRolesTokens.outline,
+    [iconButtonTokens.outlineColor$pressed]: colorRolesTokens.outline,
   },
 });

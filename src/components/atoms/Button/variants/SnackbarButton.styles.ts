@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
 import { buttonTokens } from '../Button.stylex';
 
 export const snackbarButtonStyles = stylex.create({
@@ -17,25 +17,25 @@ export const snackbarButtonStyles = stylex.create({
 
     [buttonTokens.containerHeight]: '32px',
     [buttonTokens.containerColor]: 'transparent',
-    [buttonTokens.containerShape]: shapeVars.corner$xs,
+    [buttonTokens.containerShape]: shapeTokens.corner$xs,
 
-    [buttonTokens.stateLayerColor$hover]: colorRolesVars.inversePrimary,
-    [buttonTokens.stateLayerColor$pressed]: colorRolesVars.inversePrimary,
+    [buttonTokens.stateLayerColor$hover]: colorRolesTokens.inversePrimary,
+    [buttonTokens.stateLayerColor$pressed]: colorRolesTokens.inversePrimary,
 
-    [buttonTokens.labelTextColor]: colorRolesVars.inversePrimary,
-    [buttonTokens.labelTextColor$focus]: colorRolesVars.inversePrimary,
-    [buttonTokens.labelTextColor$hover]: colorRolesVars.inversePrimary,
-    [buttonTokens.labelTextColor$pressed]: colorRolesVars.inversePrimary,
-    [buttonTokens.labelTextColor$disabled]: colorRolesVars.inversePrimary,
+    [buttonTokens.labelTextColor]: colorRolesTokens.inversePrimary,
+    [buttonTokens.labelTextColor$focus]: colorRolesTokens.inversePrimary,
+    [buttonTokens.labelTextColor$hover]: colorRolesTokens.inversePrimary,
+    [buttonTokens.labelTextColor$pressed]: colorRolesTokens.inversePrimary,
+    [buttonTokens.labelTextColor$disabled]: colorRolesTokens.inversePrimary,
 
-    [buttonTokens.iconColor]: colorRolesVars.inversePrimary,
-    [buttonTokens.iconColor$focus]: colorRolesVars.inversePrimary,
-    [buttonTokens.iconColor$hover]: colorRolesVars.inversePrimary,
-    [buttonTokens.iconColor$pressed]: colorRolesVars.inversePrimary,
-    [buttonTokens.iconColor$disabled]: colorRolesVars.inversePrimary,
+    [buttonTokens.iconColor]: colorRolesTokens.inversePrimary,
+    [buttonTokens.iconColor$focus]: colorRolesTokens.inversePrimary,
+    [buttonTokens.iconColor$hover]: colorRolesTokens.inversePrimary,
+    [buttonTokens.iconColor$pressed]: colorRolesTokens.inversePrimary,
+    [buttonTokens.iconColor$disabled]: colorRolesTokens.inversePrimary,
 
-    [buttonTokens.outlineColor]: colorRolesVars.outline,
+    [buttonTokens.outlineColor]: colorRolesTokens.outline,
     [buttonTokens.outlineWidth]: '1px',
-    [buttonTokens.outlineColor$pressed]: colorRolesVars.outline,
+    [buttonTokens.outlineColor$pressed]: colorRolesTokens.outline,
   },
 });

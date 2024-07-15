@@ -1,9 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
 import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
-import { typescaleVars } from '@/themes/base/vars/typo.stylex';
+import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
 
 const vars = {
   topSpace: '12px',
@@ -14,26 +14,26 @@ const vars = {
   gap: '4px',
 
   // container
-  containerColor: colorRolesVars.surfaceContainer,
+  containerColor: colorRolesTokens.surfaceContainer,
   containerElevation: elevationTokens.boxShadow$level2,
-  containerShape: shapeVars.corner$md,
+  containerShape: shapeTokens.corner$md,
   containerMaxWidth: '315px',
 
   // subhead
-  subheadColor: colorRolesVars.onSurfaceVariant,
-  subheadFont: typescaleVars.titleFont$sm,
-  subheadSize: typescaleVars.titleSize$sm,
-  subheadWeight: typescaleVars.titleWeight$sm,
-  subheadLineHeight: typescaleVars.titleLineHeight$sm,
-  subheadLetterSpacing: typescaleVars.titleLetterSpacing$sm,
+  subheadColor: colorRolesTokens.onSurfaceVariant,
+  subheadFont: typescaleTokens.titleFont$sm,
+  subheadSize: typescaleTokens.titleSize$sm,
+  subheadWeight: typescaleTokens.titleWeight$sm,
+  subheadLineHeight: typescaleTokens.titleLineHeight$sm,
+  subheadLetterSpacing: typescaleTokens.titleLetterSpacing$sm,
 
   // supportingText
-  supportingTextColor: colorRolesVars.onSurfaceVariant,
-  supportingTextFont: typescaleVars.bodyFont$md,
-  supportingTextSize: typescaleVars.bodySize$md,
-  supportingTextWeight: typescaleVars.bodyWeight$md,
-  supportingTextLineHeight: typescaleVars.bodyLineHeight$md,
-  supportingTextLetterSpacing: typescaleVars.bodyLetterSpacing$md,
+  supportingTextColor: colorRolesTokens.onSurfaceVariant,
+  supportingTextFont: typescaleTokens.bodyFont$md,
+  supportingTextSize: typescaleTokens.bodySize$md,
+  supportingTextWeight: typescaleTokens.bodyWeight$md,
+  supportingTextLineHeight: typescaleTokens.bodyLineHeight$md,
+  supportingTextLetterSpacing: typescaleTokens.bodyLetterSpacing$md,
 };
 
 export const richTooltipContentTokens = stylex.defineVars(vars);

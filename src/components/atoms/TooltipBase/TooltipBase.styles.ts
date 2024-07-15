@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { motionVars } from '@/themes/base/vars/motion.stylex';
+import { motionTokens } from '@/themes/base/tokens/motion.stylex';
 
 export type ITooltipBaseStylesKey = keyof typeof tooltipBaseStyles;
 export const tooltipBaseStyles = stylex.create({
@@ -19,15 +19,15 @@ export const tooltipBaseStyles = stylex.create({
     transform: 'scale(1)',
     opacity: 1,
     transitionProperty: 'transform, opacity',
-    transitionDuration: motionVars.duration$long1,
-    transitionTimingFunction: motionVars.easing$emphasizedDecelerate,
+    transitionDuration: motionTokens.duration$long1,
+    transitionTimingFunction: motionTokens.easing$emphasizedDecelerate,
   },
   transition$close: {
     transform: 'scale(0)',
     opacity: 0,
     transitionProperty: 'transform, opacity',
-    transitionDuration: motionVars.duration$short1,
-    transitionTimingFunction: motionVars.easing$emphasizedAccelerate,
+    transitionDuration: motionTokens.duration$short1,
+    transitionTimingFunction: motionTokens.easing$emphasizedAccelerate,
   },
   transition$unmounted$nested: {},
   transition$initial$nested: {},

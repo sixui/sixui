@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { cardTitleTokens as vars } from './CardTitle.stylex';
+import { cardTitleTokens } from './CardTitle.stylex';
 
 export type ICardTitleStylesKey = keyof typeof cardTitleStyles;
 export const cardTitleStyles = stylex.create({
@@ -14,27 +14,27 @@ export const cardTitleStyles = stylex.create({
     flexDirection: 'column',
   },
   headline: {
-    color: vars.headlineColor,
-    fontFamily: vars.headlineFont,
-    fontSize: vars.headlineSize,
-    fontWeight: vars.headlineWeight,
-    lineHeight: vars.headlineLineHeight,
-    letterSpacing: vars.headlineLetterSpacing,
+    color: cardTitleTokens.headlineColor,
+    fontFamily: cardTitleTokens.headlineFont,
+    fontSize: cardTitleTokens.headlineSize,
+    fontWeight: cardTitleTokens.headlineWeight,
+    lineHeight: cardTitleTokens.headlineLineHeight,
+    letterSpacing: cardTitleTokens.headlineLetterSpacing,
   },
   subhead: {
-    color: vars.subheadColor,
-    fontFamily: vars.subheadFont,
-    fontSize: vars.subheadSize,
-    fontWeight: vars.subheadWeight,
-    lineHeight: vars.subheadLineHeight,
-    letterSpacing: vars.subheadLetterSpacing,
+    color: cardTitleTokens.subheadColor,
+    fontFamily: cardTitleTokens.subheadFont,
+    fontSize: cardTitleTokens.subheadSize,
+    fontWeight: cardTitleTokens.subheadWeight,
+    lineHeight: cardTitleTokens.subheadLineHeight,
+    letterSpacing: cardTitleTokens.subheadLetterSpacing,
   },
   supportingText: {
-    color: vars.supportingTextColor,
-    fontFamily: vars.supportingTextTextFont,
-    fontSize: vars.supportingTextTextSize,
-    fontWeight: vars.supportingTextTextWeight,
-    lineHeight: vars.supportingTextTextLineHeight,
-    letterSpacing: vars.supportingTextTextLetterSpacing,
+    color: cardTitleTokens.supportingTextColor,
+    fontFamily: cardTitleTokens.supportingTextTextFont,
+    fontSize: cardTitleTokens.supportingTextTextSize,
+    fontWeight: cardTitleTokens.supportingTextTextWeight,
+    lineHeight: cardTitleTokens.supportingTextTextLineHeight,
+    letterSpacing: cardTitleTokens.supportingTextTextLetterSpacing,
   },
 });

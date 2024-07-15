@@ -1,17 +1,17 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
 
 const vars = {
   // container
   containerColor: 'unset',
   containerElevation: 'unset',
-  containerShape: shapeVars.corner$md,
+  containerShape: shapeTokens.corner$md,
 
   // outline
   outlineStyle: 'none',
-  outlineColor: colorRolesVars.outlineVariant,
+  outlineColor: colorRolesTokens.outlineVariant,
   outlineWidth: '1px',
 };
 

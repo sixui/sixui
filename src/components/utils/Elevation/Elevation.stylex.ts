@@ -1,14 +1,14 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { motionVars } from '@/themes/base/vars/motion.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { motionTokens } from '@/themes/base/tokens/motion.stylex';
 
-const color1 = `color-mix(in srgb, ${colorRolesVars.shadow} 30%, transparent)`;
-const color2 = `color-mix(in srgb, ${colorRolesVars.shadow} 15%, transparent)`;
+const color1 = `color-mix(in srgb, ${colorRolesTokens.shadow} 30%, transparent)`;
+const color2 = `color-mix(in srgb, ${colorRolesTokens.shadow} 15%, transparent)`;
 
 const vars = {
-  transitionDuration: motionVars.duration$medium2,
-  transitionTimingFunction: motionVars.easing$emphasized,
+  transitionDuration: motionTokens.duration$medium2,
+  transitionTimingFunction: motionTokens.easing$emphasized,
   boxShadow: undefined,
   boxShadow$level0: 'none',
   boxShadow$level1: `0 1px 2px 0 ${color1}, 0 1px 3px 1px ${color2}`,

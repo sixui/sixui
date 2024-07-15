@@ -1,41 +1,41 @@
 import stylex from '@stylexjs/stylex';
 
 import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
-import { paperTokens as vars } from './Paper.stylex';
-import { paperStateTokens as paperStateVars } from './Paper.state.stylex';
+import { paperTokens } from './Paper.stylex';
+import { paperStateTokens as paperstateTokens } from './Paper.state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/labs/Paper/internal/_shared.scss
 
 export type IPaperStylesKey = keyof typeof paperStyles;
 export const paperStyles = stylex.create({
   host: {
-    borderRadius: vars.containerShape,
+    borderRadius: paperTokens.containerShape,
     position: 'relative',
     zIndex: 0,
   },
   host$elevation0: {
-    [paperStateVars.elevation]: elevationTokens.boxShadow$level0,
+    [paperstateTokens.elevation]: elevationTokens.boxShadow$level0,
   },
   host$elevation1: {
-    [paperStateVars.elevation]: elevationTokens.boxShadow$level1,
+    [paperstateTokens.elevation]: elevationTokens.boxShadow$level1,
   },
   host$elevation2: {
-    [paperStateVars.elevation]: elevationTokens.boxShadow$level2,
+    [paperstateTokens.elevation]: elevationTokens.boxShadow$level2,
   },
   host$elevation3: {
-    [paperStateVars.elevation]: elevationTokens.boxShadow$level3,
+    [paperstateTokens.elevation]: elevationTokens.boxShadow$level3,
   },
   host$elevation4: {
-    [paperStateVars.elevation]: elevationTokens.boxShadow$level4,
+    [paperstateTokens.elevation]: elevationTokens.boxShadow$level4,
   },
   host$elevation5: {
-    [paperStateVars.elevation]: elevationTokens.boxShadow$level5,
+    [paperstateTokens.elevation]: elevationTokens.boxShadow$level5,
   },
   host$square: {
     borderRadius: 0,
   },
   background: {
-    backgroundColor: vars.containerColor,
+    backgroundColor: paperTokens.containerColor,
     borderRadius: 'inherit',
     inset: 0,
     position: 'absolute',
@@ -49,17 +49,17 @@ export const paperStyles = stylex.create({
     zIndex: 1,
     inset: 0,
     pointerEvents: 'none',
-    borderStyle: vars.outlineStyle,
-    borderWidth: vars.outlineWidth,
+    borderStyle: paperTokens.outlineStyle,
+    borderWidth: paperTokens.outlineWidth,
     position: 'absolute',
-    borderColor: vars.outlineColor,
+    borderColor: paperTokens.outlineColor,
     borderRadius: 'inherit',
   },
 });
 
 export const paperElevationStyles = stylex.create({
   host: {
-    [elevationTokens.boxShadow]: paperStateVars.elevation,
+    [elevationTokens.boxShadow]: paperstateTokens.elevation,
 
     borderRadius: 'inherit',
     inset: 0,

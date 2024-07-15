@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
 import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
-import { stateVars } from '@/themes/base/vars/state.stylex';
-import { typescaleVars } from '@/themes/base/vars/typo.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
+import { stateTokens } from '@/themes/base/tokens/state.stylex';
+import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-fab-primary.scss
 
@@ -17,14 +17,14 @@ const vars = {
   containerHeight$md: '56px',
   containerWidth$lg: '96px',
   containerHeight$lg: '96px',
-  containerShape$sm: shapeVars.corner$md,
-  containerShape$md: shapeVars.corner$lg,
-  containerShape$lg: shapeVars.corner$xl,
+  containerShape$sm: shapeTokens.corner$md,
+  containerShape$md: shapeTokens.corner$lg,
+  containerShape$lg: shapeTokens.corner$xl,
   containerElevation: elevationTokens.boxShadow$level3,
   // &:disabled
-  containerColor$disabled: colorRolesVars.onSurface,
+  containerColor$disabled: colorRolesTokens.onSurface,
   containerElevation$disabled: elevationTokens.boxShadow$level0,
-  containerOpacity$disabled: stateVars.containerOpacity$disabled,
+  containerOpacity$disabled: stateTokens.containerOpacity$disabled,
   // &:hover
   containerElevation$hover: elevationTokens.boxShadow$level4,
   // &:focus
@@ -47,7 +47,7 @@ const vars = {
   iconSize$sm: '24px',
   iconSize$md: '24px',
   iconSize$lg: '36px',
-  iconColor$disabled: colorRolesVars.onSurface,
+  iconColor$disabled: colorRolesTokens.onSurface,
   // &:hover
   iconColor$hover: 'inherit',
   // &:focus
@@ -55,23 +55,23 @@ const vars = {
   // &:pressed
   iconColor$pressed: 'inherit',
   // &:disabled
-  iconOpacity$disabled: stateVars.opacity$disabled,
+  iconOpacity$disabled: stateTokens.opacity$disabled,
 
   // stateLayer
   // &:hover
   stateLayerColor$hover: 'inherit',
-  stateLayerOpacity$hover: stateVars.stateLayerOpacity$hover,
+  stateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,
   // &:pressed
   stateLayerColor$pressed: 'inherit',
-  stateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
+  stateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
 
   // label
   labelTextColor: 'inherit',
-  labelTextFont: typescaleVars.labelFont$lg,
-  labelTextLineHeight: typescaleVars.labelLineHeight$lg,
-  labelTextSize: typescaleVars.labelSize$lg,
-  labelTextLetterSpacing: typescaleVars.labelLetterSpacing$lg,
-  labelTextWeight: typescaleVars.labelWeight$lg,
+  labelTextFont: typescaleTokens.labelFont$lg,
+  labelTextLineHeight: typescaleTokens.labelLineHeight$lg,
+  labelTextSize: typescaleTokens.labelSize$lg,
+  labelTextLetterSpacing: typescaleTokens.labelLetterSpacing$lg,
+  labelTextWeight: typescaleTokens.labelWeight$lg,
   // &:hover
   labelTextColor$hover: 'inherit',
   // &:focus
@@ -79,8 +79,8 @@ const vars = {
   // &:pressed
   labelTextColor$pressed: 'inherit',
   // &:disabled
-  labelTextColor$disabled: colorRolesVars.onSurface,
-  labelTextOpacity$disabled: stateVars.opacity$disabled,
+  labelTextColor$disabled: colorRolesTokens.onSurface,
+  labelTextOpacity$disabled: stateTokens.opacity$disabled,
 };
 
 export const fabTokens = stylex.defineVars(vars);

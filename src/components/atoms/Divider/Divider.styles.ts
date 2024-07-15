@@ -1,14 +1,14 @@
 import stylex from '@stylexjs/stylex';
 
-import { dividerTokens as vars } from './Divider.stylex';
+import { dividerTokens } from './Divider.stylex';
 
 export type IDividerStylesKey = keyof typeof dividerStyles;
 export const dividerStyles = stylex.create({
   host: {
     display: 'flex',
     width: '100%',
-    height: vars.thickness,
-    color: vars.color,
+    height: dividerTokens.thickness,
+    color: dividerTokens.color,
   },
   line: {
     display: 'flex',
@@ -21,32 +21,32 @@ export const dividerStyles = stylex.create({
       content: '',
       width: '100%',
       height: '100%',
-      borderRadius: vars.shape,
+      borderRadius: dividerTokens.shape,
     },
   },
   line$inset: {
-    paddingInlineStart: vars.insetLeadingSpace,
-    paddingInlineEnd: vars.insetTrailingSpace,
+    paddingInlineStart: dividerTokens.insetLeadingSpace,
+    paddingInlineEnd: dividerTokens.insetTrailingSpace,
   },
   line$insetStart: {
-    paddingInlineStart: vars.insetLeadingSpace,
+    paddingInlineStart: dividerTokens.insetLeadingSpace,
   },
   line$insetEnd: {
-    paddingInlineEnd: vars.insetTrailingSpace,
+    paddingInlineEnd: dividerTokens.insetTrailingSpace,
   },
   textContainer: {
-    marginInlineStart: vars.textLeadingSpace,
-    marginInlineEnd: vars.textTrailingSpace,
+    marginInlineStart: dividerTokens.textLeadingSpace,
+    marginInlineEnd: dividerTokens.textTrailingSpace,
   },
   text: {
     textAlign: 'center',
     transform: 'translateY(-50%)',
 
-    color: vars.textColor,
-    fontFamily: vars.textFont,
-    fontSize: vars.textSize,
-    fontWeight: vars.textWeight,
-    lineHeight: vars.textLineHeight,
-    letterSpacing: vars.textLetterSpacing,
+    color: dividerTokens.textColor,
+    fontFamily: dividerTokens.textFont,
+    fontSize: dividerTokens.textSize,
+    fontWeight: dividerTokens.textWeight,
+    lineHeight: dividerTokens.textLineHeight,
+    letterSpacing: dividerTokens.textLetterSpacing,
   },
 });

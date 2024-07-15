@@ -1,9 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
 import { circularProgressIndicatorTokens } from '@/components/atoms/CircularProgressIndicator/CircularProgressIndicator.stylex';
-import { componentVars as statelayerVars } from '@/themes/base/StateLayer/StateLayer.stylex';
+import { stateLayerTokens } from '@/components/utils/StateLayer/StateLayer.stylex';
 import { focusRingTokens } from '@/components/utils/FocusRing/FocusRing.stylex';
-import { motionVars } from '@/themes/base/vars/motion.stylex';
+import { motionTokens } from '@/themes/base/tokens/motion.stylex';
 import { switchStateTokens } from './Switch.state.stylex';
 import { switchTokens } from './Switch.stylex';
 
@@ -153,7 +153,7 @@ export const switchStyles = stylex.create({
 
     transitionProperty: 'width, height',
     transitionTimingFunction: {
-      default: motionVars.easing$standard,
+      default: motionTokens.easing$standard,
       ':is([data-pressed])': 'linear',
     },
     transitionDuration: {
@@ -250,7 +250,7 @@ export const switchStyles = stylex.create({
 
     transitionProperty: 'fill, opacity, transform',
     transitionDuration: '67ms, 67ms, 167ms',
-    transitionTimingFunction: `linear, linear, ${motionVars.easing$standard}`,
+    transitionTimingFunction: `linear, linear, ${motionTokens.easing$standard}`,
 
     color: switchStateTokens.iconColor,
     opacity: 0,
@@ -297,10 +297,10 @@ export const switchStyles = stylex.create({
 
 export const switchStateLayerStyles = stylex.create({
   host: {
-    [statelayerVars.color$hover]: switchStateTokens.stateLayerColor$hover,
-    [statelayerVars.opacity$hover]: switchStateTokens.stateLayerOpacity$hover,
-    [statelayerVars.color$pressed]: switchStateTokens.stateLayerColor$pressed,
-    [statelayerVars.opacity$pressed]:
+    [stateLayerTokens.color$hover]: switchStateTokens.stateLayerColor$hover,
+    [stateLayerTokens.opacity$hover]: switchStateTokens.stateLayerOpacity$hover,
+    [stateLayerTokens.color$pressed]: switchStateTokens.stateLayerColor$pressed,
+    [stateLayerTokens.opacity$pressed]:
       switchStateTokens.stateLayerOpacity$pressed,
     borderRadius: switchTokens.stateLayerShape,
     width: switchTokens.stateLayerSize,

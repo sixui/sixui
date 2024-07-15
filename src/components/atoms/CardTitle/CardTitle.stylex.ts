@@ -1,32 +1,32 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { typescaleVars } from '@/themes/base/vars/typo.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
 
 const vars = {
   // headline
-  headlineColor: colorRolesVars.onSurface,
-  headlineFont: typescaleVars.titleFont$lg,
-  headlineLineHeight: typescaleVars.titleLineHeight$lg,
-  headlineSize: typescaleVars.titleSize$lg,
-  headlineLetterSpacing: typescaleVars.titleLetterSpacing$lg,
-  headlineWeight: typescaleVars.titleWeight$lg,
+  headlineColor: colorRolesTokens.onSurface,
+  headlineFont: typescaleTokens.titleFont$lg,
+  headlineLineHeight: typescaleTokens.titleLineHeight$lg,
+  headlineSize: typescaleTokens.titleSize$lg,
+  headlineLetterSpacing: typescaleTokens.titleLetterSpacing$lg,
+  headlineWeight: typescaleTokens.titleWeight$lg,
 
   // subhead
-  subheadColor: colorRolesVars.onSurface,
-  subheadFont: typescaleVars.titleFont$md,
-  subheadLineHeight: typescaleVars.titleLineHeight$md,
-  subheadSize: typescaleVars.titleSize$md,
-  subheadLetterSpacing: typescaleVars.titleLetterSpacing$md,
-  subheadWeight: typescaleVars.titleWeight$md,
+  subheadColor: colorRolesTokens.onSurface,
+  subheadFont: typescaleTokens.titleFont$md,
+  subheadLineHeight: typescaleTokens.titleLineHeight$md,
+  subheadSize: typescaleTokens.titleSize$md,
+  subheadLetterSpacing: typescaleTokens.titleLetterSpacing$md,
+  subheadWeight: typescaleTokens.titleWeight$md,
 
   // supportingText
-  supportingTextColor: colorRolesVars.onSurfaceVariant,
-  supportingTextTextFont: typescaleVars.bodyFont$md,
-  supportingTextTextLineHeight: typescaleVars.bodyLineHeight$md,
-  supportingTextTextSize: typescaleVars.bodySize$md,
-  supportingTextTextLetterSpacing: typescaleVars.bodyLetterSpacing$md,
-  supportingTextTextWeight: typescaleVars.bodyWeight$md,
+  supportingTextColor: colorRolesTokens.onSurfaceVariant,
+  supportingTextTextFont: typescaleTokens.bodyFont$md,
+  supportingTextTextLineHeight: typescaleTokens.bodyLineHeight$md,
+  supportingTextTextSize: typescaleTokens.bodySize$md,
+  supportingTextTextLetterSpacing: typescaleTokens.bodyLetterSpacing$md,
+  supportingTextTextWeight: typescaleTokens.bodyWeight$md,
 };
 
 export const cardTitleTokens = stylex.defineVars(vars);

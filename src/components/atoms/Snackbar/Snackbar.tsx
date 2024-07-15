@@ -42,7 +42,7 @@ export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
       <CSSTransition
         nodeRef={nodeRef}
         in={open}
-        timeout={550} // motionVars.duration$long3
+        timeout={550} // motionTokens.duration$long3
         classNames={{
           enter: sxf('animation$enter').className,
           enterActive: sxf('animation$enterActive').className,

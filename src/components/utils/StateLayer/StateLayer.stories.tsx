@@ -7,8 +7,8 @@ import {
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
 import type { IStateLayerProps } from './StateLayer.types';
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
 import { StateLayer } from './StateLayer';
 
 // https://material-web.dev/components/ripple/
@@ -40,19 +40,19 @@ const styles = stylex.create({
     width: 96,
     height: 96,
     outlineWidth: '1px',
-    outlineColor: colorRolesVars.outline,
+    outlineColor: colorRolesTokens.outline,
   },
   container$inner: {
     position: 'absolute',
     width: 48,
     height: 48,
-    borderRadius: shapeVars.corner$lg,
+    borderRadius: shapeTokens.corner$lg,
     outlineStyle: 'solid',
     inset: '50%',
     transform: 'translate(-50%, -50%)',
   },
   container$bounded: {
-    borderRadius: shapeVars.corner$xl,
+    borderRadius: shapeTokens.corner$xl,
     outlineStyle: 'solid',
   },
   container$unbounded: {
@@ -72,10 +72,10 @@ const styles = stylex.create({
     height: '1.5rem',
     placeContent: 'center',
     placeItems: 'center',
-    backgroundColor: colorRolesVars.primaryContainer,
+    backgroundColor: colorRolesTokens.primaryContainer,
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: colorRolesVars.outline,
+    borderColor: colorRolesTokens.outline,
   },
 });
 

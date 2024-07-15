@@ -1,34 +1,34 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { typescaleVars } from '@/themes/base/vars/typo.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
-import { stateVars } from '@/themes/base/vars/state.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
+import { stateTokens } from '@/themes/base/tokens/state.stylex';
 
 const vars = {
   // container
-  containerColor: colorRolesVars.error,
-  containerShape: shapeVars.corner$full,
-  containerShape$dot: shapeVars.corner$full,
+  containerColor: colorRolesTokens.error,
+  containerShape: shapeTokens.corner$full,
+  containerShape$dot: shapeTokens.corner$full,
   containerMinWidth: '16px',
   containerHeight: '16px',
   containerWidth$dot: '8px',
   containerHeight$dot: '8px',
   containerPadding: '4px',
   // &:disabled
-  containerColor$disabled: colorRolesVars.onSurface,
-  containerOpacity$disabled: stateVars.containerOpacity$disabled,
+  containerColor$disabled: colorRolesTokens.onSurface,
+  containerOpacity$disabled: stateTokens.containerOpacity$disabled,
 
   // labelText
-  labelTextColor: colorRolesVars.onError,
-  labelTextFont: typescaleVars.labelFont$sm,
-  labelTextLineHeight: typescaleVars.labelLineHeight$sm,
-  labelTextSize: typescaleVars.labelSize$sm,
-  labelTextLetterSpacing: typescaleVars.labelLetterSpacing$sm,
-  labelTextWeight: typescaleVars.labelWeight$sm,
+  labelTextColor: colorRolesTokens.onError,
+  labelTextFont: typescaleTokens.labelFont$sm,
+  labelTextLineHeight: typescaleTokens.labelLineHeight$sm,
+  labelTextSize: typescaleTokens.labelSize$sm,
+  labelTextLetterSpacing: typescaleTokens.labelLetterSpacing$sm,
+  labelTextWeight: typescaleTokens.labelWeight$sm,
   // &:disabled
-  labelTextColor$disabled: colorRolesVars.onSurface,
-  labelTextOpacity$disabled: stateVars.opacity$disabled,
+  labelTextColor$disabled: colorRolesTokens.onSurface,
+  labelTextOpacity$disabled: stateTokens.opacity$disabled,
 };
 
 export const badgeTokens = stylex.defineVars(vars);

@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { elementWithLabelTokens as vars } from './ElementWithLabel.stylex';
+import { elementWithLabelTokens } from './ElementWithLabel.stylex';
 
 export type IElementWithLabelStylesKey = keyof typeof elementWithLabelStyles;
 export const elementWithLabelStyles = stylex.create({
@@ -35,55 +35,55 @@ export const elementWithLabelStyles = stylex.create({
     gap: '0.25rem',
   },
   label: {
-    color: vars.labelTextColor,
-    fontFamily: vars.labelTextFont,
-    fontSize: vars.labelTextSize,
-    fontWeight: vars.labelTextWeight,
-    lineHeight: vars.labelTextLineHeight,
-    letterSpacing: vars.labelTextLetterSpacing,
+    color: elementWithLabelTokens.labelTextColor,
+    fontFamily: elementWithLabelTokens.labelTextFont,
+    fontSize: elementWithLabelTokens.labelTextSize,
+    fontWeight: elementWithLabelTokens.labelTextWeight,
+    lineHeight: elementWithLabelTokens.labelTextLineHeight,
+    letterSpacing: elementWithLabelTokens.labelTextLetterSpacing,
     display: 'flex',
     alignItems: 'center',
     flexGrow: 1,
     cursor: 'pointer',
   },
   label$error: {
-    color: vars.supportingTextColor$error,
+    color: elementWithLabelTokens.supportingTextColor$error,
   },
   label$disabled: {
-    color: vars.labelTextColor$disabled,
-    opacity: vars.labelTextOpacity$disabled,
+    color: elementWithLabelTokens.labelTextColor$disabled,
+    opacity: elementWithLabelTokens.labelTextOpacity$disabled,
   },
   action: {
     flexGrow: 0,
-    color: vars.actionTextColor,
-    fontFamily: vars.actionTextFont,
-    fontSize: vars.actionTextSize,
-    fontWeight: vars.actionTextWeight,
-    lineHeight: vars.actionTextLineHeight,
-    letterSpacing: vars.actionTextLetterSpacing,
+    color: elementWithLabelTokens.actionTextColor,
+    fontFamily: elementWithLabelTokens.actionTextFont,
+    fontSize: elementWithLabelTokens.actionTextSize,
+    fontWeight: elementWithLabelTokens.actionTextWeight,
+    lineHeight: elementWithLabelTokens.actionTextLineHeight,
+    letterSpacing: elementWithLabelTokens.actionTextLetterSpacing,
     display: 'flex',
     alignItems: 'center',
   },
   action$disabled: {
-    color: vars.actionTextColor$disabled,
-    opacity: vars.actionTextOpacity$disabled,
+    color: elementWithLabelTokens.actionTextColor$disabled,
+    opacity: elementWithLabelTokens.actionTextOpacity$disabled,
   },
   supportingText: {
     display: 'flex',
     flexDirection: 'column',
     gap: '0.125rem',
-    color: vars.supportingTextColor,
-    fontFamily: vars.supportingTextFont,
-    fontSize: vars.supportingTextSize,
-    fontWeight: vars.supportingTextWeight,
-    lineHeight: vars.supportingTextLineHeight,
-    letterSpacing: vars.supportingTextLetterSpacing,
+    color: elementWithLabelTokens.supportingTextColor,
+    fontFamily: elementWithLabelTokens.supportingTextFont,
+    fontSize: elementWithLabelTokens.supportingTextSize,
+    fontWeight: elementWithLabelTokens.supportingTextWeight,
+    lineHeight: elementWithLabelTokens.supportingTextLineHeight,
+    letterSpacing: elementWithLabelTokens.supportingTextLetterSpacing,
   },
   supportingText$error: {
-    color: vars.supportingTextColor$error,
+    color: elementWithLabelTokens.supportingTextColor$error,
   },
   supportingText$disabled: {
-    color: vars.supportingTextColor$disabled,
-    opacity: vars.supportingTextOpacity$disabled,
+    color: elementWithLabelTokens.supportingTextColor$disabled,
+    opacity: elementWithLabelTokens.supportingTextOpacity$disabled,
   },
 });

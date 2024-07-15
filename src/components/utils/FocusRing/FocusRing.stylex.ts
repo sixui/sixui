@@ -1,18 +1,18 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { motionVars } from '@/themes/base/vars/motion.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { motionTokens } from '@/themes/base/tokens/motion.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-focus-ring.scss
 
 const vars = {
   activeWidth: '8px',
-  color: colorRolesVars.secondary,
-  duration: motionVars.duration$long4,
+  color: colorRolesTokens.secondary,
+  duration: motionTokens.duration$long4,
   inwardOffset: '0px',
   outwardOffset: '2px',
-  shape: shapeVars.corner$none,
+  shape: shapeTokens.corner$none,
   width: '3px',
 };
 

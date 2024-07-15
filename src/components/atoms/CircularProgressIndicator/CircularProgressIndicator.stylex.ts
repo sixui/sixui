@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-circular-progress-indicator.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-circular-progress-indicator.scss
@@ -14,8 +14,8 @@ const size$lg = 40; // px
 const containerPadding$lg = 0; // px
 
 const vars = {
-  color: colorRolesVars.primary,
-  color$disabled: colorRolesVars.onSurface,
+  color: colorRolesTokens.primary,
+  color$disabled: colorRolesTokens.onSurface,
   size$md: `${size$md}px`,
   size$lg: `${size$lg}px`,
   containerPadding$md: `${containerPadding$md}px`,

@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { cardContentTokens as vars } from './CardContent.stylex';
+import { cardContentTokens } from './CardContent.stylex';
 
 export type ICardContentStylesKey = keyof typeof cardContentStyles;
 export const cardContentStyles = stylex.create({
@@ -8,17 +8,17 @@ export const cardContentStyles = stylex.create({
     display: 'flex',
     flexDirection: 'column',
     gap: 16,
-    color: vars.textColor,
+    color: cardContentTokens.textColor,
 
-    paddingTop: vars.topSpace,
-    paddingBottom: vars.bottomSpace,
-    paddingLeft: vars.leadingSpace,
-    paddingRight: vars.trailingSpace,
+    paddingTop: cardContentTokens.topSpace,
+    paddingBottom: cardContentTokens.bottomSpace,
+    paddingLeft: cardContentTokens.leadingSpace,
+    paddingRight: cardContentTokens.trailingSpace,
   },
   host$actionable: {
-    paddingTop: vars.topSpace$actionable,
-    paddingBottom: vars.bottomSpace$actionable,
-    paddingLeft: vars.leadingSpace$actionable,
-    paddingRight: vars.trailingSpace$actionable,
+    paddingTop: cardContentTokens.topSpace$actionable,
+    paddingBottom: cardContentTokens.bottomSpace$actionable,
+    paddingLeft: cardContentTokens.leadingSpace$actionable,
+    paddingRight: cardContentTokens.trailingSpace$actionable,
   },
 });

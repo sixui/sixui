@@ -1,16 +1,16 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { typescaleVars } from '@/themes/base/vars/typo.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-divider.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-divider.scss
 
 const vars = {
   thickness: '1px',
-  shape: shapeVars.corner$none,
-  color: colorRolesVars.outlineVariant,
+  shape: shapeTokens.corner$none,
+  color: colorRolesTokens.outlineVariant,
 
   // inset
   insetLeadingSpace: '16px',
@@ -19,12 +19,12 @@ const vars = {
   // text
   textLeadingSpace: '8px',
   textTrailingSpace: '8px',
-  textColor: colorRolesVars.outline,
-  textFont: typescaleVars.bodyFont$sm,
-  textSize: typescaleVars.bodySize$sm,
-  textWeight: typescaleVars.bodyWeight$sm,
-  textLineHeight: typescaleVars.bodyLineHeight$sm,
-  textLetterSpacing: typescaleVars.bodyLetterSpacing$sm,
+  textColor: colorRolesTokens.outline,
+  textFont: typescaleTokens.bodyFont$sm,
+  textSize: typescaleTokens.bodySize$sm,
+  textWeight: typescaleTokens.bodyWeight$sm,
+  textLineHeight: typescaleTokens.bodyLineHeight$sm,
+  textLetterSpacing: typescaleTokens.bodyLetterSpacing$sm,
 };
 
 export const dividerTokens = stylex.defineVars(vars);

@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { motionVars } from '@/themes/base/vars/motion.stylex';
+import { motionTokens } from '@/themes/base/tokens/motion.stylex';
 
 export type IAnchoredStylesKey = keyof typeof anchoredStyles;
 export const anchoredStyles = stylex.create({
@@ -13,8 +13,8 @@ export const anchoredStyles = stylex.create({
     position: 'absolute',
     display: 'flex',
     transitionProperty: 'transform',
-    transitionDuration: motionVars.duration$short3,
-    transitionTimingFunction: motionVars.easing$emphasized,
+    transitionDuration: motionTokens.duration$short3,
+    transitionTimingFunction: motionTokens.easing$emphasized,
   },
   content$rectangular$top$right: {
     top: 0,

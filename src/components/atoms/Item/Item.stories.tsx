@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 
 import type { IItemProps } from './Item.types';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
 import { Item } from './Item';
 
 // https://m3.material.io/components/items/overview
@@ -23,7 +23,7 @@ const styles = stylex.create({
   host: {
     outlineWidth: '1px',
     outlineStyle: 'dashed',
-    outlineColor: colorRolesVars.outlineVariant,
+    outlineColor: colorRolesTokens.outlineVariant,
   },
   host$fixedWidth$sm: {
     width: 320,
@@ -36,23 +36,23 @@ const styles = stylex.create({
     flexGrow: 1,
   },
   slot$start: {
-    backgroundColor: colorRolesVars.surfaceContainer,
+    backgroundColor: colorRolesTokens.surfaceContainer,
   },
   slot$overline: {
-    backgroundColor: colorRolesVars.surfaceContainer,
+    backgroundColor: colorRolesTokens.surfaceContainer,
   },
   slot$headline: {
-    backgroundColor: colorRolesVars.primaryContainer,
-    color: colorRolesVars.onPrimaryContainer,
+    backgroundColor: colorRolesTokens.primaryContainer,
+    color: colorRolesTokens.onPrimaryContainer,
   },
   slot$supportingText: {
-    backgroundColor: colorRolesVars.surfaceContainer,
+    backgroundColor: colorRolesTokens.surfaceContainer,
   },
   slot$trailingSupportingText: {
-    backgroundColor: colorRolesVars.surfaceContainer,
+    backgroundColor: colorRolesTokens.surfaceContainer,
   },
   slot$end: {
-    backgroundColor: colorRolesVars.surfaceContainer,
+    backgroundColor: colorRolesTokens.surfaceContainer,
   },
 });
 

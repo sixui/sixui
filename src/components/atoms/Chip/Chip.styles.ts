@@ -2,9 +2,9 @@ import stylex from '@stylexjs/stylex';
 
 import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
 import { focusRingTokens } from '@/components/utils/FocusRing/FocusRing.stylex';
-import { componentVars as statelayerVars } from '@/themes/base/StateLayer/StateLayer.stylex';
+import { stateLayerTokens } from '@/components/utils/StateLayer/StateLayer.stylex';
 import { circularProgressIndicatorTokens } from '@/components/atoms/CircularProgressIndicator/CircularProgressIndicator.stylex';
-import { motionVars } from '@/themes/base/vars/motion.stylex';
+import { motionTokens } from '@/themes/base/tokens/motion.stylex';
 import { chipTokens } from './Chip.stylex';
 import { chipStateTokens } from './Chip.state.stylex';
 
@@ -304,8 +304,8 @@ export const chipStyles = stylex.create({
     width: chipTokens.iconSize,
 
     transitionProperty: 'opacity, width',
-    transitionDuration: motionVars.duration$medium4,
-    transitionTimingFunction: motionVars.easing$emphasizedDecelerate,
+    transitionDuration: motionTokens.duration$medium4,
+    transitionTimingFunction: motionTokens.easing$emphasizedDecelerate,
     opacity: 1,
   },
   iconContainer$collapsed: {
@@ -314,8 +314,8 @@ export const chipStyles = stylex.create({
     opacity: 0,
 
     transitionProperty: 'opacity, width',
-    transitionDuration: motionVars.duration$short2,
-    transitionTimingFunction: motionVars.easing$emphasizedAccelerate,
+    transitionDuration: motionTokens.duration$short2,
+    transitionTimingFunction: motionTokens.easing$emphasizedAccelerate,
   },
   icon: {
     position: 'absolute',
@@ -380,10 +380,10 @@ export const chipStyles = stylex.create({
 
 export const chipSstateLayerStyles = stylex.create({
   host: {
-    [statelayerVars.color$hover]: chipTokens.stateLayerColor$hover,
-    [statelayerVars.opacity$hover]: chipTokens.stateLayerOpacity$hover,
-    [statelayerVars.color$pressed]: chipTokens.stateLayerColor$pressed,
-    [statelayerVars.opacity$pressed]: chipTokens.stateLayerOpacity$pressed,
+    [stateLayerTokens.color$hover]: chipTokens.stateLayerColor$hover,
+    [stateLayerTokens.opacity$hover]: chipTokens.stateLayerOpacity$hover,
+    [stateLayerTokens.color$pressed]: chipTokens.stateLayerColor$pressed,
+    [stateLayerTokens.opacity$pressed]: chipTokens.stateLayerOpacity$pressed,
   },
 });
 
@@ -420,10 +420,10 @@ export const chipTrailingActionStateLayerStyles = stylex.create({
     width: `calc(4 / 3 * ${chipTokens.iconSize})`,
     inset: 'unset',
 
-    [statelayerVars.color$hover]: chipTokens.stateLayerColor$hover,
-    [statelayerVars.opacity$hover]: chipTokens.stateLayerOpacity$hover,
-    [statelayerVars.color$pressed]: chipTokens.stateLayerColor$pressed,
-    [statelayerVars.opacity$pressed]: chipTokens.stateLayerOpacity$pressed,
+    [stateLayerTokens.color$hover]: chipTokens.stateLayerColor$hover,
+    [stateLayerTokens.opacity$hover]: chipTokens.stateLayerOpacity$hover,
+    [stateLayerTokens.color$pressed]: chipTokens.stateLayerColor$pressed,
+    [stateLayerTokens.opacity$pressed]: chipTokens.stateLayerOpacity$pressed,
   },
 });
 

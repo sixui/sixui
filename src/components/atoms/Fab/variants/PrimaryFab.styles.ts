@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
 import { fabTokens } from '../Fab.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-fab-primary.scss
@@ -8,21 +8,21 @@ import { fabTokens } from '../Fab.stylex';
 
 export const primaryFabStyles = stylex.create({
   host: {
-    [fabTokens.containerColor]: colorRolesVars.primaryContainer,
+    [fabTokens.containerColor]: colorRolesTokens.primaryContainer,
 
-    [fabTokens.loweredContainerColor]: colorRolesVars.primaryContainer,
+    [fabTokens.loweredContainerColor]: colorRolesTokens.primaryContainer,
 
-    [fabTokens.iconColor]: colorRolesVars.onPrimaryContainer,
-    [fabTokens.iconColor$hover]: colorRolesVars.onPrimaryContainer,
-    [fabTokens.iconColor$focus]: colorRolesVars.onPrimaryContainer,
-    [fabTokens.iconColor$pressed]: colorRolesVars.onPrimaryContainer,
+    [fabTokens.iconColor]: colorRolesTokens.onPrimaryContainer,
+    [fabTokens.iconColor$hover]: colorRolesTokens.onPrimaryContainer,
+    [fabTokens.iconColor$focus]: colorRolesTokens.onPrimaryContainer,
+    [fabTokens.iconColor$pressed]: colorRolesTokens.onPrimaryContainer,
 
-    [fabTokens.stateLayerColor$hover]: colorRolesVars.onPrimaryContainer,
-    [fabTokens.stateLayerColor$pressed]: colorRolesVars.onPrimaryContainer,
+    [fabTokens.stateLayerColor$hover]: colorRolesTokens.onPrimaryContainer,
+    [fabTokens.stateLayerColor$pressed]: colorRolesTokens.onPrimaryContainer,
 
-    [fabTokens.labelTextColor]: colorRolesVars.onPrimaryContainer,
-    [fabTokens.labelTextColor$hover]: colorRolesVars.onPrimaryContainer,
-    [fabTokens.labelTextColor$focus]: colorRolesVars.onPrimaryContainer,
-    [fabTokens.labelTextColor$pressed]: colorRolesVars.onPrimaryContainer,
+    [fabTokens.labelTextColor]: colorRolesTokens.onPrimaryContainer,
+    [fabTokens.labelTextColor$hover]: colorRolesTokens.onPrimaryContainer,
+    [fabTokens.labelTextColor$focus]: colorRolesTokens.onPrimaryContainer,
+    [fabTokens.labelTextColor$pressed]: colorRolesTokens.onPrimaryContainer,
   },
 });

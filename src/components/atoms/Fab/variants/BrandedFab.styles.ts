@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
 import { fabTokens } from '../Fab.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-fab-branded.scss
@@ -8,19 +8,19 @@ import { fabTokens } from '../Fab.stylex';
 
 export const brandedFabStyles = stylex.create({
   host: {
-    [fabTokens.containerColor]: colorRolesVars.surfaceContainerHigh,
+    [fabTokens.containerColor]: colorRolesTokens.surfaceContainerHigh,
 
-    [fabTokens.loweredContainerColor]: colorRolesVars.surfaceContainerLow,
+    [fabTokens.loweredContainerColor]: colorRolesTokens.surfaceContainerLow,
 
     [fabTokens.iconSize$md]: '36px',
     [fabTokens.iconSize$lg]: '48px',
 
-    [fabTokens.stateLayerColor$hover]: colorRolesVars.primary,
-    [fabTokens.stateLayerColor$pressed]: colorRolesVars.primary,
+    [fabTokens.stateLayerColor$hover]: colorRolesTokens.primary,
+    [fabTokens.stateLayerColor$pressed]: colorRolesTokens.primary,
 
-    [fabTokens.labelTextColor]: colorRolesVars.primary,
-    [fabTokens.labelTextColor$hover]: colorRolesVars.primary,
-    [fabTokens.labelTextColor$focus]: colorRolesVars.primary,
-    [fabTokens.labelTextColor$pressed]: colorRolesVars.primary,
+    [fabTokens.labelTextColor]: colorRolesTokens.primary,
+    [fabTokens.labelTextColor$hover]: colorRolesTokens.primary,
+    [fabTokens.labelTextColor$focus]: colorRolesTokens.primary,
+    [fabTokens.labelTextColor$pressed]: colorRolesTokens.primary,
   },
 });

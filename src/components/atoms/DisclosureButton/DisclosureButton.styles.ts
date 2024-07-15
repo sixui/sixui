@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 import { circularProgressIndicatorTokens } from '@/components/atoms/CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { listItemTokens } from '@/components/atoms/ListItem/ListItem.stylex';
 import { itemTokens } from '@/components/atoms/Item/Item.stylex';
-import { motionVars } from '@/themes/base/vars/motion.stylex';
+import { motionTokens } from '@/themes/base/tokens/motion.stylex';
 import { disclosureButtonTokens } from './DisclosureButton.stylex';
 
 export type IDisclosureButtonStylesKey = keyof typeof disclosureButtonStyles;
@@ -109,14 +109,14 @@ export const disclosureButtonStyles = stylex.create({
   icon$expanded: {
     transform: 'rotate(180deg)',
     transitionProperty: 'transform',
-    transitionDuration: motionVars.duration$long2,
-    transitionTimingFunction: motionVars.easing$emphasizedDecelerate,
+    transitionDuration: motionTokens.duration$long2,
+    transitionTimingFunction: motionTokens.easing$emphasizedDecelerate,
     transformOrigin: 'center',
   },
   icon$collapsed: {
     transitionProperty: 'transform',
-    transitionDuration: motionVars.duration$short2,
-    transitionTimingFunction: motionVars.easing$emphasizedAccelerate,
+    transitionDuration: motionTokens.duration$short2,
+    transitionTimingFunction: motionTokens.easing$emphasizedAccelerate,
     transformOrigin: 'center',
   },
   toggleContainer: {

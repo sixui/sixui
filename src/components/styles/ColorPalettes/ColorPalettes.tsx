@@ -2,9 +2,9 @@ import type { StyleXVar } from '@stylexjs/stylex/lib/StyleXTypes';
 import stylex from '@stylexjs/stylex';
 
 import type { IColorPalettesThemeVars } from '@/themes/colorPalettes.types';
-import { typescaleVars } from '@/themes/base/vars/typo.stylex';
-import { colorPalettesVars } from '@/themes/base/vars/colorPalettes.stylex';
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
+import { colorPalettesTokens } from '@/themes/base/tokens/colorPalettes.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
 
 export type IColorPalettesProps = Record<string, never>;
 
@@ -13,14 +13,14 @@ const styles = stylex.create({
     display: 'flex',
     flexDirection: 'column',
     rowGap: '2rem',
-    fontFamily: typescaleVars.labelFont$lg,
-    fontSize: typescaleVars.labelSize$lg,
-    fontWeight: typescaleVars.labelWeight$lg,
-    lineHeight: typescaleVars.labelLineHeight$lg,
-    letterSpacing: typescaleVars.labelLetterSpacing$lg,
+    fontFamily: typescaleTokens.labelFont$lg,
+    fontSize: typescaleTokens.labelSize$lg,
+    fontWeight: typescaleTokens.labelWeight$lg,
+    lineHeight: typescaleTokens.labelLineHeight$lg,
+    letterSpacing: typescaleTokens.labelLetterSpacing$lg,
   },
   title: {
-    color: colorRolesVars.onSurface,
+    color: colorRolesTokens.onSurface,
   },
   tonalPalette: {
     display: 'flex',
@@ -197,10 +197,10 @@ export const ColorPalettes: React.FC<IColorPalettesProps> = () => (
               {...stylex.props(
                 styles.tone,
                 styles.toneColor(
-                  colorPalettesVars[key],
+                  colorPalettesTokens[key],
                   luminance > 50
-                    ? colorPalettesVars.black
-                    : colorPalettesVars.white,
+                    ? colorPalettesTokens.black
+                    : colorPalettesTokens.white,
                 ),
               )}
               key={luminance}

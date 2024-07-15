@@ -1,11 +1,11 @@
 import stylex from '@stylexjs/stylex';
 
 import type { IShapeThemeVars } from '@/themes/shape.types';
-import { shapeVars as baseShapeVars } from '@/themes/base/vars/shape.stylex';
+import { shapeTokens as baseshapeTokens } from '@/themes/base/tokens/shape.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-sys-shape.scss
 
-export const shapeVars = stylex.defineVars<IShapeThemeVars>({
+export const shapeTokens = stylex.defineVars<IShapeThemeVars>({
   corner$full: '999px',
 
   corner$xl: '28px',
@@ -26,4 +26,4 @@ export const shapeVars = stylex.defineVars<IShapeThemeVars>({
   corner$none: '0',
 });
 
-export const shapeTheme = stylex.createTheme(baseShapeVars, shapeVars);
+export const shapeTheme = stylex.createTheme(baseshapeTokens, shapeTokens);

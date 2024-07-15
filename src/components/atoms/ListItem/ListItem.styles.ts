@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { componentVars as statelayerVars } from '@/themes/base/StateLayer/StateLayer.stylex';
+import { stateLayerTokens } from '@/components/utils/StateLayer/StateLayer.stylex';
 import { focusRingTokens } from '@/components/utils/FocusRing/FocusRing.stylex';
 import { listItemStateTokens } from './ListItem.state.stylex';
 import { listItemTokens } from './ListItem.stylex';
@@ -203,10 +203,11 @@ export const listItemStateLayerStyles = stylex.create({
   host: {
     borderRadius: 'inherit',
 
-    [statelayerVars.color$hover]: listItemTokens.stateLayerColor$hover,
-    [statelayerVars.opacity$hover]: listItemTokens.stateLayerOpacity$hover,
-    [statelayerVars.color$pressed]: listItemTokens.stateLayerColor$pressed,
-    [statelayerVars.opacity$pressed]: listItemTokens.stateLayerOpacity$pressed,
+    [stateLayerTokens.color$hover]: listItemTokens.stateLayerColor$hover,
+    [stateLayerTokens.opacity$hover]: listItemTokens.stateLayerOpacity$hover,
+    [stateLayerTokens.color$pressed]: listItemTokens.stateLayerColor$pressed,
+    [stateLayerTokens.opacity$pressed]:
+      listItemTokens.stateLayerOpacity$pressed,
   },
 });
 

@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
-import { radioTokens as vars } from './Radio.stylex';
-import { componentVars as statelayerVars } from '@/themes/base/StateLayer/StateLayer.stylex';
+import { radioTokens } from './Radio.stylex';
+import { stateLayerTokens } from '@/components/utils/StateLayer/StateLayer.stylex';
 import { focusRingTokens } from '@/components/utils/FocusRing/FocusRing.stylex';
-import { motionVars } from '@/themes/base/vars/motion.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { motionTokens } from '@/themes/base/tokens/motion.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
 import { radioStateTokens } from './Radio.state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/radio/internal/_radio.scss
@@ -24,19 +24,21 @@ export const radioStyles = stylex.create({
     display: 'block',
     justifyContent: 'center',
     alignItems: 'center',
-    width: vars.iconSize,
-    height: vars.iconSize,
+    width: radioTokens.iconSize,
+    height: radioTokens.iconSize,
     outline: 'none',
     position: 'relative',
     verticalAlign: 'top', // Fix extra space when placed inside display: block
     WebkitTapHighlightColor: 'transparent',
     cursor: 'pointer',
 
-    [radioStateTokens.stateLayerColor$hover]: vars.stateLayerColor$hover,
-    [radioStateTokens.stateLayerOpacity$hover]: vars.stateLayerOpacity$hover,
-    [radioStateTokens.stateLayerColor$pressed]: vars.stateLayerColor$pressed,
+    [radioStateTokens.stateLayerColor$hover]: radioTokens.stateLayerColor$hover,
+    [radioStateTokens.stateLayerOpacity$hover]:
+      radioTokens.stateLayerOpacity$hover,
+    [radioStateTokens.stateLayerColor$pressed]:
+      radioTokens.stateLayerColor$pressed,
     [radioStateTokens.stateLayerOpacity$pressed]:
-      vars.stateLayerOpacity$pressed,
+      radioTokens.stateLayerOpacity$pressed,
   },
   host$disabled: {
     cursor: 'default',
@@ -51,13 +53,13 @@ export const radioStyles = stylex.create({
   },
   container$checked: {
     [radioStateTokens.stateLayerColor$hover]:
-      vars.selectedStateLayerColor$hover,
+      radioTokens.selectedStateLayerColor$hover,
     [radioStateTokens.stateLayerOpacity$hover]:
-      vars.selectedStateLayerOpacity$hover,
+      radioTokens.selectedStateLayerOpacity$hover,
     [radioStateTokens.stateLayerColor$pressed]:
-      vars.selectedStateLayerColor$pressed,
+      radioTokens.selectedStateLayerColor$pressed,
     [radioStateTokens.stateLayerOpacity$pressed]:
-      vars.selectedStateLayerOpacity$pressed,
+      radioTokens.selectedStateLayerOpacity$pressed,
   },
   input: {
     // <input> is also the touch target
@@ -73,45 +75,45 @@ export const radioStyles = stylex.create({
     position: 'absolute',
 
     fill: {
-      default: vars.iconColor,
-      ':is([data-focused])': vars.iconColor$focus,
-      ':is([data-hovered])': vars.iconColor$hover,
-      ':is([data-pressed])': vars.iconColor$pressed,
+      default: radioTokens.iconColor,
+      ':is([data-focused])': radioTokens.iconColor$focus,
+      ':is([data-hovered])': radioTokens.iconColor$hover,
+      ':is([data-pressed])': radioTokens.iconColor$pressed,
     },
   },
   icon$disabled: {
-    fill: vars.iconColor$disabled,
-    opacity: vars.iconOpacity$disabled,
+    fill: radioTokens.iconColor$disabled,
+    opacity: radioTokens.iconOpacity$disabled,
   },
   icon$checked: {
     fill: {
-      default: vars.selectedIconColor,
-      ':is([data-focused])': vars.selectedIconColor$focus,
-      ':is([data-hovered])': vars.selectedIconColor$hover,
-      ':is([data-pressed])': vars.selectedIconColor$pressed,
+      default: radioTokens.selectedIconColor,
+      ':is([data-focused])': radioTokens.selectedIconColor$focus,
+      ':is([data-hovered])': radioTokens.selectedIconColor$hover,
+      ':is([data-pressed])': radioTokens.selectedIconColor$pressed,
     },
   },
   icon$checked$disabled: {
-    fill: vars.selectedIconColor$disabled,
-    opacity: vars.selectedIconOpacity$disabled,
+    fill: radioTokens.selectedIconColor$disabled,
+    opacity: radioTokens.selectedIconOpacity$disabled,
   },
   circle$outer: {
     // Outline color enter/exit transition
     transitionProperty: 'fill',
-    transitionDuration: motionVars.duration$short1,
+    transitionDuration: motionTokens.duration$short1,
     transitionTimingFunction: 'linear',
   },
   circle$inner: {
     opacity: 0,
     transformOrigin: 'center',
     transitionProperty: 'opacity',
-    transitionDuration: motionVars.duration$short1,
+    transitionDuration: motionTokens.duration$short1,
     transitionTimingFunction: 'linear',
   },
   circle$inner$checked: {
     animationName: innerCircleGrowKeyframes,
-    animationDuration: motionVars.duration$medium2,
-    animationTimingFunction: motionVars.easing$emphasizedDecelerate,
+    animationDuration: motionTokens.duration$medium2,
+    animationTimingFunction: motionTokens.easing$emphasizedDecelerate,
     opacity: 1,
   },
   circle$disabled: {
@@ -124,14 +126,14 @@ export const radioStyles = stylex.create({
 export const radioStateLayerStyles = stylex.create({
   host: {
     borderRadius: '50%',
-    width: vars.stateLayerSize,
-    height: vars.stateLayerSize,
+    width: radioTokens.stateLayerSize,
+    height: radioTokens.stateLayerSize,
     inset: 'unset',
 
-    [statelayerVars.color$hover]: radioStateTokens.stateLayerColor$hover,
-    [statelayerVars.opacity$hover]: radioStateTokens.stateLayerOpacity$hover,
-    [statelayerVars.color$pressed]: radioStateTokens.stateLayerColor$pressed,
-    [statelayerVars.opacity$pressed]:
+    [stateLayerTokens.color$hover]: radioStateTokens.stateLayerColor$hover,
+    [stateLayerTokens.opacity$hover]: radioStateTokens.stateLayerOpacity$hover,
+    [stateLayerTokens.color$pressed]: radioStateTokens.stateLayerColor$pressed,
+    [stateLayerTokens.opacity$pressed]:
       radioStateTokens.stateLayerOpacity$pressed,
   },
 });
@@ -140,7 +142,7 @@ export const radioFocusRingStyles = stylex.create({
   host: {
     width: 44,
     height: 44,
-    [focusRingTokens.shape]: shapeVars.corner$full,
+    [focusRingTokens.shape]: shapeTokens.corner$full,
   },
   host$outward: {
     inset: 'unset',

@@ -158,7 +158,7 @@ const errorPalette = {
   error100: '#fff',
 };
 
-export const colorPalettesVars = stylex.defineVars<IColorPalettesThemeVars>({
+export const colorPalettesTokens = stylex.defineVars<IColorPalettesThemeVars>({
   white: '#fff',
   black: '#000',
 

@@ -6,14 +6,14 @@ import { ColorSchemeProvider } from '@/components/utils/ColorScheme';
 import { modes } from './modes';
 
 import { theme } from '@/themes/base';
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { darkColorRoles } from '@/themes/base/vars/darkColorRoles';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { darkColorRolesTokens } from '@/themes/base/tokens/darkColorRoles';
 
 // For theme variant
 // import { colorPalettesTheme as variantColorPalettesTheme } from '@/themes/variant/colorPalettes.stylex';
 // import { shapeTheme as variantShapeTheme } from '@/themes/variant/shape.stylex';
 // import { buttonTokens } from '@/components/atoms/Button/Button.stylex';
-// import { componentVars as disclosureButtonVars } from '@/themes/base/DisclosureButton/DisclosureButton.stylex';
+// import { disclosureButtonTokens } from '@/components/atoms/DisclosureButton/DisclosureButton.stylex';
 // import { avatarTokens } from '@/components/atoms/Avatar/Avatar.stylex';
 // import { badgeTokens } from '@/components/atoms/Badge/Badge.stylex';
 // import { checkboxTokens } from '@/components/atoms/Checkbox/Checkbox.stylex';
@@ -42,8 +42,8 @@ const preview: Preview = {
     backgrounds: {
       default: 'dark',
       values: [
-        { name: 'light', value: colorRolesVars.surface },
-        { name: 'dark', value: darkColorRoles.surface },
+        { name: 'light', value: colorRolesTokens.surface },
+        { name: 'dark', value: darkColorRolesTokens.surface },
       ],
     },
     chromatic: { modes },
@@ -55,7 +55,7 @@ const preview: Preview = {
 const styles = stylex.create({
   storyWrapper: {
     position: 'relative',
-    backgroundColor: colorRolesVars.surface,
+    backgroundColor: colorRolesTokens.surface,
     padding: '2rem',
     width: '100%',
   },
@@ -66,7 +66,7 @@ const styles = stylex.create({
 //     [buttonTokens.containerShape]: '0',
 //   },
 //   DisclosureButton: {
-//     [disclosureButtonVars.containerShape]: '0',
+//     [disclosureButtonTokens.containerShape]: '0',
 //   },
 //   Avatar: {
 //     [avatarTokens.containerShape]: '0',

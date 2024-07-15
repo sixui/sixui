@@ -10,7 +10,7 @@ import {
 } from '@/components/utils/ComponentShowcase';
 import { Placeholder } from '@/components/atoms/Placeholder';
 import { Anchored } from './Anchored';
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
 
 const meta = {
   component: Anchored,
@@ -25,7 +25,7 @@ const badgeStyles$sm = stylex.create({
     height: 16,
     width: 16,
     borderRadius: '999px',
-    backgroundColor: colorRolesVars.primary,
+    backgroundColor: colorRolesTokens.primary,
   },
 });
 
@@ -34,7 +34,7 @@ const badgeStyles$lg = stylex.create({
     height: 16,
     width: 32,
     borderRadius: '999px',
-    backgroundColor: colorRolesVars.primary,
+    backgroundColor: colorRolesTokens.primary,
   },
 });
 

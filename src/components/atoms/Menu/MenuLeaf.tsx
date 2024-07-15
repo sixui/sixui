@@ -28,7 +28,7 @@ import {
 
 import type { IMenuProps } from './Menu.types';
 import { MenuList } from '@/components/atoms/MenuList';
-import { motionVars } from '@/themes/base/vars/motion.stylex';
+import { motionTokens } from '@/themes/base/tokens/motion.stylex';
 import { Portal } from '@/components/utils/Portal';
 import { MenuItemContext } from './MenuItemContext';
 import { MenuContext } from './MenuContext';
@@ -50,14 +50,14 @@ const styles = stylex.create({
   transition$open: {
     transform: 'scaleY(1)',
     transitionProperty: 'transform',
-    transitionDuration: motionVars.duration$long3,
-    transitionTimingFunction: motionVars.easing$emphasizedDecelerate,
+    transitionDuration: motionTokens.duration$long3,
+    transitionTimingFunction: motionTokens.easing$emphasizedDecelerate,
   },
   transition$close: {
     transform: 'scaleY(0)',
     transitionProperty: 'transform',
-    transitionDuration: motionVars.duration$short3,
-    transitionTimingFunction: motionVars.easing$emphasizedAccelerate,
+    transitionDuration: motionTokens.duration$short3,
+    transitionTimingFunction: motionTokens.easing$emphasizedAccelerate,
   },
   transition$unmounted$nested: {},
   transition$initial$nested: {},
@@ -117,7 +117,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
       whileElementsMounted: autoUpdate,
     });
     const transitionStatus = useTransitionStatus(floating.context, {
-      duration: 150, // motionVars.duration$short3
+      duration: 150, // motionTokens.duration$short3
     });
     const hover = useHover(floating.context, {
       enabled: isNested,

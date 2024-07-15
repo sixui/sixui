@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
 import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
 import { paperTokens } from '../Paper.stylex';
 
@@ -9,7 +9,7 @@ import { paperTokens } from '../Paper.stylex';
 
 export const filledPaperStyles = stylex.create({
   host: {
-    [paperTokens.containerColor]: colorRolesVars.surfaceContainer,
+    [paperTokens.containerColor]: colorRolesTokens.surfaceContainer,
     [paperTokens.containerElevation]: elevationTokens.boxShadow$level0,
   },
 });

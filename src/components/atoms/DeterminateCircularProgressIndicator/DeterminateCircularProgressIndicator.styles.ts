@@ -1,12 +1,12 @@
 import stylex from '@stylexjs/stylex';
 
-import { stateVars } from '@/themes/base/vars/state.stylex';
-import { motionVars } from '@/themes/base/vars/motion.stylex';
+import { stateTokens } from '@/themes/base/tokens/state.stylex';
+import { motionTokens } from '@/themes/base/tokens/motion.stylex';
 import { circularProgressIndicatorTokens } from '@/components/atoms/CircularProgressIndicator/CircularProgressIndicator.stylex';
 
 // https://github.com/material-components/material-web/blob/main/progress/internal/_circulardeterminate-progress.scss
 
-const color$disabled = `color-mix(in srgb, ${circularProgressIndicatorTokens.color$disabled} calc(${stateVars.opacity$disabled} * 100%), transparent)`;
+const color$disabled = `color-mix(in srgb, ${circularProgressIndicatorTokens.color$disabled} calc(${stateTokens.opacity$disabled} * 100%), transparent)`;
 
 export type IDeterminateCircularProgressIndicatorStylesKey =
   keyof typeof determinateCircularProgressIndicatorStyles;
@@ -44,7 +44,7 @@ export const determinateCircularProgressIndicatorStyles = stylex.create({
   activeTrack: {
     // note, these value come from the m2 version but match current gm3 values.
     transitionProperty: 'stroke-dashoffset',
-    transitionDuration: motionVars.duration$long2,
+    transitionDuration: motionTokens.duration$long2,
     transitionTimingFunction: 'cubic-bezier(0, 0, 0.2, 1)',
     stroke: circularProgressIndicatorTokens.color,
   },

@@ -19,7 +19,7 @@ import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '@/components/utils/ComponentShowcase';
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
 import { Avatar } from '@/components/atoms/Avatar';
 import { Checkbox } from '@/components/atoms/Checkbox';
 import { ListItem } from './ListItem';
@@ -41,7 +41,7 @@ const styles = stylex.create({
   host: {
     outlineWidth: '1px',
     outlineStyle: 'dashed',
-    outlineColor: colorRolesVars.outlineVariant,
+    outlineColor: colorRolesTokens.outlineVariant,
   },
   host$fixedWidth$xs: {
     width: 160,

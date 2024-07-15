@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { motionVars } from '@/themes/base/vars/motion.stylex';
+import { motionTokens } from '@/themes/base/tokens/motion.stylex';
 import { scrimTokens } from './Scrim.stylex';
 
 export type IScrimStylesKey = keyof typeof scrimStyles;
@@ -23,13 +23,13 @@ export const scrimStyles = stylex.create({
   transition$open: {
     opacity: 1,
     transitionProperty: 'opacity',
-    transitionDuration: motionVars.duration$long3,
-    transitionTimingFunction: motionVars.easing$emphasizedDecelerate,
+    transitionDuration: motionTokens.duration$long3,
+    transitionTimingFunction: motionTokens.easing$emphasizedDecelerate,
   },
   transition$close: {
     opacity: 0,
     transitionProperty: 'opacity',
-    transitionDuration: motionVars.duration$short3,
-    transitionTimingFunction: motionVars.easing$emphasizedAccelerate,
+    transitionDuration: motionTokens.duration$short3,
+    transitionTimingFunction: motionTokens.easing$emphasizedAccelerate,
   },
 });

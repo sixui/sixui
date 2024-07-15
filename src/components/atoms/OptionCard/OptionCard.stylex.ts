@@ -1,37 +1,37 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { typescaleVars } from '@/themes/base/vars/typo.stylex';
-import { stateVars } from '@/themes/base/vars/state.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
+import { stateTokens } from '@/themes/base/tokens/state.stylex';
 
 const vars = {
   // container
-  containerColor: colorRolesVars.surfaceContainerHigh,
+  containerColor: colorRolesTokens.surfaceContainerHigh,
 
   // selectedOutline
-  selectedOutlineColor: colorRolesVars.primary,
+  selectedOutlineColor: colorRolesTokens.primary,
   selectedOutlineWidth: '3px',
   // &:disabled
-  selectedOutlineColor$disabled: colorRolesVars.outline,
-  selectedOutlineOpacity$disabled: stateVars.containerOpacity$disabled,
+  selectedOutlineColor$disabled: colorRolesTokens.outline,
+  selectedOutlineOpacity$disabled: stateTokens.containerOpacity$disabled,
   // &:focus
-  selectedOutlineColor$focus: colorRolesVars.primary,
+  selectedOutlineColor$focus: colorRolesTokens.primary,
   // &:hover
-  selectedOutlineColor$hover: colorRolesVars.primary,
+  selectedOutlineColor$hover: colorRolesTokens.primary,
   // &:pressed
-  selectedOutlineColor$pressed: colorRolesVars.primary,
-  selectedOutlineColor$dragged: colorRolesVars.primary,
+  selectedOutlineColor$pressed: colorRolesTokens.primary,
+  selectedOutlineColor$dragged: colorRolesTokens.primary,
 
   // text
-  textColor: colorRolesVars.onSurface,
-  textFont: typescaleVars.bodyFont$sm,
-  textSize: typescaleVars.bodySize$sm,
-  textLineHeight: typescaleVars.bodyLineHeight$sm,
-  textLetterSpacing: typescaleVars.bodyLetterSpacing$sm,
-  textWeight: typescaleVars.bodyWeight$sm,
+  textColor: colorRolesTokens.onSurface,
+  textFont: typescaleTokens.bodyFont$sm,
+  textSize: typescaleTokens.bodySize$sm,
+  textLineHeight: typescaleTokens.bodyLineHeight$sm,
+  textLetterSpacing: typescaleTokens.bodyLetterSpacing$sm,
+  textWeight: typescaleTokens.bodyWeight$sm,
   // &:disabled
-  textColor$disabled: colorRolesVars.onSurface,
-  textOpacity$disabled: stateVars.opacity$disabled,
+  textColor$disabled: colorRolesTokens.onSurface,
+  textOpacity$disabled: stateTokens.opacity$disabled,
 };
 
 export const optionCardTokens = stylex.defineVars(vars);

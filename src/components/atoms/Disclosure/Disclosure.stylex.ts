@@ -1,9 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
 
 const vars = {
-  textColor: colorRolesVars.onSurface,
+  textColor: colorRolesTokens.onSurface,
 };
 
 export const disclosureTokens = stylex.defineVars(vars);

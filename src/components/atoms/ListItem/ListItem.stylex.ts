@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
-import { stateVars } from '@/themes/base/vars/state.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
+import { stateTokens } from '@/themes/base/tokens/state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-list-item.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-list.scss
@@ -22,14 +22,14 @@ const vars = {
   // container
   containerColor: 'unset',
   containerOpacity: '1',
-  containerShape: shapeVars.corner$none,
+  containerShape: shapeTokens.corner$none,
   containerMinHeight$sm: '48px',
   containerMinHeight$md: '56px',
   containerMinHeight$lg: '72px',
   containerMinHeight$xl: '80px',
   // &:disabled
   containerColor$disabled: 'transparent',
-  containerOpacity$disabled: stateVars.containerOpacity$disabled,
+  containerOpacity$disabled: stateTokens.containerOpacity$disabled,
 
   // selectedContainer
   selectedContainerColor: 'unset',
@@ -44,8 +44,8 @@ const vars = {
   // &:pressed
   textColor$pressed: 'inherit',
   // &:disabled
-  textColor$disabled: colorRolesVars.onSurface,
-  textOpacity$disabled: stateVars.opacity$disabled,
+  textColor$disabled: colorRolesTokens.onSurface,
+  textOpacity$disabled: stateTokens.opacity$disabled,
 
   // nonText
   nonTextColor: 'inherit',
@@ -56,8 +56,8 @@ const vars = {
   // &:pressed
   nonTextColor$pressed: 'inherit',
   // &:disabled
-  nonTextColor$disabled: colorRolesVars.onSurfaceVariant,
-  nonTextOpacity$disabled: stateVars.opacity$disabled,
+  nonTextColor$disabled: colorRolesTokens.onSurfaceVariant,
+  nonTextOpacity$disabled: stateTokens.opacity$disabled,
 
   // selectedText
   selectedTextColor: 'inherit',
@@ -87,8 +87,8 @@ const vars = {
   leadingIconColor$pressed: 'inherit',
   leadingIconSize: '18px',
   // &:disabled
-  leadingIconColor$disabled: colorRolesVars.onSurface,
-  leadingIconOpacity$disabled: stateVars.opacity$disabled,
+  leadingIconColor$disabled: colorRolesTokens.onSurface,
+  leadingIconOpacity$disabled: stateTokens.opacity$disabled,
 
   // selectedLeadingIcon
   selectedLeadingIconColor: 'inherit',
@@ -109,8 +109,8 @@ const vars = {
   // &:pressed
   trailingIconColor$pressed: 'inherit',
   // &:disabled
-  trailingIconColor$disabled: colorRolesVars.onSurface,
-  trailingIconOpacity$disabled: stateVars.opacity$disabled,
+  trailingIconColor$disabled: colorRolesTokens.onSurface,
+  trailingIconOpacity$disabled: stateTokens.opacity$disabled,
 
   // selectedTrailingIcon
   selectedTrailingIconColor: 'inherit',
@@ -124,10 +124,10 @@ const vars = {
   // stateLayer
   // &:hover
   stateLayerColor$hover: 'unset',
-  stateLayerOpacity$hover: stateVars.stateLayerOpacity$hover,
+  stateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,
   // &:pressed
   stateLayerColor$pressed: 'unset',
-  stateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
+  stateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
 
   // image
   imageWidth: '56px',

@@ -1,9 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
-import { typescaleVars } from '@/themes/base/vars/typo.stylex';
-import { stateVars } from '@/themes/base/vars/state.stylex';
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
+import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
+import { stateTokens } from '@/themes/base/tokens/state.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
 
 const vars = {
   gap: '8px',
@@ -30,7 +30,7 @@ const vars = {
   containerColor: 'unset',
   containerElevation: 'unset',
   containerHeight: '40px',
-  containerShape: shapeVars.corner$full,
+  containerShape: shapeTokens.corner$full,
   // &:disabled
   containerColor$disabled: 'unset',
   containerElevation$disabled: 'unset',
@@ -45,21 +45,21 @@ const vars = {
   // stateLayer
   // &:hover
   stateLayerColor$hover: 'unset',
-  stateLayerOpacity$hover: stateVars.stateLayerOpacity$hover,
+  stateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,
   // &:pressed
   stateLayerColor$pressed: 'unset',
-  stateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
+  stateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
 
   // touch
   touchTargetSpace: '8px',
 
   // labelText
   labelTextColor: 'inherit',
-  labelTextFont: typescaleVars.labelFont$lg,
-  labelTextLineHeight: typescaleVars.labelLineHeight$lg,
-  labelTextSize: typescaleVars.labelSize$lg,
-  labelTextLetterSpacing: typescaleVars.labelLetterSpacing$lg,
-  labelTextWeight: typescaleVars.labelWeight$lg,
+  labelTextFont: typescaleTokens.labelFont$lg,
+  labelTextLineHeight: typescaleTokens.labelLineHeight$lg,
+  labelTextSize: typescaleTokens.labelSize$lg,
+  labelTextLetterSpacing: typescaleTokens.labelLetterSpacing$lg,
+  labelTextWeight: typescaleTokens.labelWeight$lg,
   // &:focus
   labelTextColor$focus: 'inherit',
   // &:hover
@@ -67,8 +67,8 @@ const vars = {
   // &:pressed
   labelTextColor$pressed: 'inherit',
   // &:disabled
-  labelTextColor$disabled: colorRolesVars.onSurface,
-  labelTextOpacity$disabled: stateVars.opacity$disabled,
+  labelTextColor$disabled: colorRolesTokens.onSurface,
+  labelTextOpacity$disabled: stateTokens.opacity$disabled,
 
   // icon
   iconSize: '18px',
@@ -80,20 +80,20 @@ const vars = {
   // &:pressed
   iconColor$pressed: 'inherit',
   // &:disabled
-  iconColor$disabled: colorRolesVars.onSurface,
-  iconOpacity$disabled: stateVars.opacity$disabled,
+  iconColor$disabled: colorRolesTokens.onSurface,
+  iconOpacity$disabled: stateTokens.opacity$disabled,
 
   // outline
   outlineStyle: 'none',
   outlineWidth: '1px',
-  outlineColor: colorRolesVars.outline,
+  outlineColor: colorRolesTokens.outline,
   // &:disabled
-  outlineColor$disabled: colorRolesVars.onSurface,
-  outlineOpacity$disabled: stateVars.outlineOpacity$disabled,
+  outlineColor$disabled: colorRolesTokens.onSurface,
+  outlineOpacity$disabled: stateTokens.outlineOpacity$disabled,
   // &:focus
-  outlineColor$focus: colorRolesVars.outline,
+  outlineColor$focus: colorRolesTokens.outline,
   // &:pressed
-  outlineColor$pressed: colorRolesVars.outline,
+  outlineColor$pressed: colorRolesTokens.outline,
 };
 
 export const buttonTokens = stylex.defineVars(vars);

@@ -1,6 +1,9 @@
 import type { ITheme } from '../theme.types';
 
-import { darkColorRoles, darkColorRolesTheme } from './vars/darkColorRoles';
+import {
+  darkColorRolesTokens,
+  darkColorRolesTheme,
+} from './tokens/darkColorRoles';
 
 // FIXME: refactor
 export const theme: ITheme = {
@@ -9,6 +12,6 @@ export const theme: ITheme = {
     dark: darkColorRolesTheme,
   },
   colorRoles: {
-    dark: darkColorRoles,
+    dark: darkColorRolesTokens,
   },
 };

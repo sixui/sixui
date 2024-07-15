@@ -6,8 +6,8 @@ import stylex from '@stylexjs/stylex';
 import type { IFocusRingProps } from './FocusRing.types';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { Placeholder } from '@/components/atoms/Placeholder';
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
 import { FocusRing } from './FocusRing';
 import { focusRingTokens } from './FocusRing.stylex';
 
@@ -22,7 +22,7 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   styles: stylex.create({
     host: {
-      [focusRingTokens.shape]: shapeVars.corner$md,
+      [focusRingTokens.shape]: shapeTokens.corner$md,
     },
   }),
 } satisfies Partial<IFocusRingProps>;
@@ -33,7 +33,7 @@ const placeholderStyles = stylex.create({
     height: '6rem',
     outlineWidth: '1px',
     outlineStyle: 'solid',
-    outlineColor: colorRolesVars.outline,
+    outlineColor: colorRolesTokens.outline,
     padding: '1rem',
   },
 });
@@ -44,7 +44,7 @@ const dashedPlaceholderStyles = stylex.create({
     height: '6rem',
     outlineWidth: '1px',
     outlineStyle: 'dashed',
-    outlineColor: colorRolesVars.outline,
+    outlineColor: colorRolesTokens.outline,
     padding: '1rem',
   },
 });
@@ -56,8 +56,8 @@ const styles = stylex.create({
     textAlign: 'center',
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: colorRolesVars.outline,
-    borderRadius: shapeVars.corner$md,
+    borderColor: colorRolesTokens.outline,
+    borderRadius: shapeTokens.corner$md,
   },
 });
 

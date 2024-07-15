@@ -2,7 +2,7 @@ import stylex from '@stylexjs/stylex';
 
 import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
 import { focusRingTokens } from '@/components/utils/FocusRing/FocusRing.stylex';
-import { componentVars as statelayerVars } from '@/themes/base/StateLayer/StateLayer.stylex';
+import { stateLayerTokens } from '@/components/utils/StateLayer/StateLayer.stylex';
 import { tabTokens } from './Tab.stylex';
 import { tabStateTokens } from './Tab.state.stylex';
 
@@ -157,10 +157,11 @@ export const tabStateLayerStyles = stylex.create({
   host: {
     borderRadius: tabTokens.containerShape,
 
-    [statelayerVars.color$hover]: tabStateTokens.stateLayerColor$hover,
-    [statelayerVars.opacity$hover]: tabStateTokens.stateLayerOpacity$hover,
-    [statelayerVars.color$pressed]: tabStateTokens.stateLayerColor$pressed,
-    [statelayerVars.opacity$pressed]: tabStateTokens.stateLayerOpacity$pressed,
+    [stateLayerTokens.color$hover]: tabStateTokens.stateLayerColor$hover,
+    [stateLayerTokens.opacity$hover]: tabStateTokens.stateLayerOpacity$hover,
+    [stateLayerTokens.color$pressed]: tabStateTokens.stateLayerColor$pressed,
+    [stateLayerTokens.opacity$pressed]:
+      tabStateTokens.stateLayerOpacity$pressed,
   },
 });
 

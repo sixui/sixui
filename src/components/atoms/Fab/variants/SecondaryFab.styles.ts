@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
 import { fabTokens } from '../Fab.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-fab-secondary.scss
@@ -8,21 +8,21 @@ import { fabTokens } from '../Fab.stylex';
 
 export const secondaryFabStyles = stylex.create({
   host: {
-    [fabTokens.containerColor]: colorRolesVars.secondaryContainer,
+    [fabTokens.containerColor]: colorRolesTokens.secondaryContainer,
 
-    [fabTokens.loweredContainerColor]: colorRolesVars.secondaryContainer,
+    [fabTokens.loweredContainerColor]: colorRolesTokens.secondaryContainer,
 
-    [fabTokens.iconColor]: colorRolesVars.onSecondaryContainer,
-    [fabTokens.iconColor$hover]: colorRolesVars.onSecondaryContainer,
-    [fabTokens.iconColor$focus]: colorRolesVars.onSecondaryContainer,
-    [fabTokens.iconColor$pressed]: colorRolesVars.onSecondaryContainer,
+    [fabTokens.iconColor]: colorRolesTokens.onSecondaryContainer,
+    [fabTokens.iconColor$hover]: colorRolesTokens.onSecondaryContainer,
+    [fabTokens.iconColor$focus]: colorRolesTokens.onSecondaryContainer,
+    [fabTokens.iconColor$pressed]: colorRolesTokens.onSecondaryContainer,
 
-    [fabTokens.stateLayerColor$hover]: colorRolesVars.onSecondaryContainer,
-    [fabTokens.stateLayerColor$pressed]: colorRolesVars.onSecondaryContainer,
+    [fabTokens.stateLayerColor$hover]: colorRolesTokens.onSecondaryContainer,
+    [fabTokens.stateLayerColor$pressed]: colorRolesTokens.onSecondaryContainer,
 
-    [fabTokens.labelTextColor]: colorRolesVars.onSecondaryContainer,
-    [fabTokens.labelTextColor$hover]: colorRolesVars.onSecondaryContainer,
-    [fabTokens.labelTextColor$focus]: colorRolesVars.onSecondaryContainer,
-    [fabTokens.labelTextColor$pressed]: colorRolesVars.onSecondaryContainer,
+    [fabTokens.labelTextColor]: colorRolesTokens.onSecondaryContainer,
+    [fabTokens.labelTextColor$hover]: colorRolesTokens.onSecondaryContainer,
+    [fabTokens.labelTextColor$focus]: colorRolesTokens.onSecondaryContainer,
+    [fabTokens.labelTextColor$pressed]: colorRolesTokens.onSecondaryContainer,
   },
 });

@@ -1,58 +1,58 @@
 import stylex from '@stylexjs/stylex';
 
 import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { stateVars } from '@/themes/base/vars/state.stylex';
-import { typescaleVars } from '@/themes/base/vars/typo.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { stateTokens } from '@/themes/base/tokens/state.stylex';
+import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
 
 const vars = {
   // container
-  containerColor: colorRolesVars.surfaceContainerHigh,
+  containerColor: colorRolesTokens.surfaceContainerHigh,
   containerElevation: elevationTokens.boxShadow$level3,
-  containerShape: shapeVars.corner$xl,
+  containerShape: shapeTokens.corner$xl,
 
   // icon
-  iconColor: colorRolesVars.secondary,
+  iconColor: colorRolesTokens.secondary,
   iconSize: '18px',
 
   // headline
-  headlineColor: colorRolesVars.onSurface,
-  headlineFont: typescaleVars.headlineFont$sm,
-  headlineLineHeight: typescaleVars.headlineLineHeight$sm,
-  headlineSize: typescaleVars.headlineSize$sm,
-  headlineLetterSpacing: typescaleVars.headlineLetterSpacing$sm,
-  headlineWeight: typescaleVars.headlineWeight$sm,
+  headlineColor: colorRolesTokens.onSurface,
+  headlineFont: typescaleTokens.headlineFont$sm,
+  headlineLineHeight: typescaleTokens.headlineLineHeight$sm,
+  headlineSize: typescaleTokens.headlineSize$sm,
+  headlineLetterSpacing: typescaleTokens.headlineLetterSpacing$sm,
+  headlineWeight: typescaleTokens.headlineWeight$sm,
 
   // supportingText
-  supportingTextColor: colorRolesVars.onSurfaceVariant,
-  supportingTextFont: typescaleVars.bodyFont$md,
-  supportingTextLineHeight: typescaleVars.bodyLineHeight$md,
-  supportingTextSize: typescaleVars.bodySize$md,
-  supportingTextLetterSpacing: typescaleVars.bodyLetterSpacing$md,
-  supportingTextWeight: typescaleVars.bodyWeight$md,
+  supportingTextColor: colorRolesTokens.onSurfaceVariant,
+  supportingTextFont: typescaleTokens.bodyFont$md,
+  supportingTextLineHeight: typescaleTokens.bodyLineHeight$md,
+  supportingTextSize: typescaleTokens.bodySize$md,
+  supportingTextLetterSpacing: typescaleTokens.bodyLetterSpacing$md,
+  supportingTextWeight: typescaleTokens.bodyWeight$md,
 
   // actionLabelText
-  actionLabelTextColor: colorRolesVars.primary,
-  actionLabelTextFont: typescaleVars.labelFont$lg,
-  actionLabelTextLineHeight: typescaleVars.labelLineHeight$lg,
-  actionLabelTextSize: typescaleVars.labelSize$lg,
-  actionLabelTextLetterSpacing: typescaleVars.labelLetterSpacing$lg,
-  actionLabelTextWeight: typescaleVars.labelWeight$lg,
+  actionLabelTextColor: colorRolesTokens.primary,
+  actionLabelTextFont: typescaleTokens.labelFont$lg,
+  actionLabelTextLineHeight: typescaleTokens.labelLineHeight$lg,
+  actionLabelTextSize: typescaleTokens.labelSize$lg,
+  actionLabelTextLetterSpacing: typescaleTokens.labelLetterSpacing$lg,
+  actionLabelTextWeight: typescaleTokens.labelWeight$lg,
   // &:focus
-  actionLabelTextColor$focus: colorRolesVars.primary,
+  actionLabelTextColor$focus: colorRolesTokens.primary,
   // &:hover
-  actionLabelTextColor$hover: colorRolesVars.primary,
+  actionLabelTextColor$hover: colorRolesTokens.primary,
   // &:pressed
-  actionLabelTextColor$pressed: colorRolesVars.primary,
+  actionLabelTextColor$pressed: colorRolesTokens.primary,
 
   // actionStateLayer
   // &:hover
-  actionStateLayerColor$hover: colorRolesVars.primary,
-  actionStateLayerOpacity$hover: stateVars.stateLayerOpacity$hover,
+  actionStateLayerColor$hover: colorRolesTokens.primary,
+  actionStateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,
   // &:pressed
-  actionStateLayerColor$pressed: colorRolesVars.primary,
-  actionStateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
+  actionStateLayerColor$pressed: colorRolesTokens.primary,
+  actionStateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
 };
 
 export const dialogContentTokens = stylex.defineVars(vars);

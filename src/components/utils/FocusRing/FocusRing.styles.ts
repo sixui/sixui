@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { motionVars } from '@/themes/base/vars/motion.stylex';
+import { motionTokens } from '@/themes/base/tokens/motion.stylex';
 import { focusRingTokens } from './FocusRing.stylex';
 
 // https://github.com/material-components/material-web/blob/main/focus/internal/_focus-ring.scss
@@ -28,7 +28,7 @@ export const focusRingStyles = stylex.create({
   host: {
     animationDelay: `0s, calc(${focusRingTokens.duration} * 0.25)`,
     animationDuration: `calc(${focusRingTokens.duration} * 0.25), calc(${focusRingTokens.duration} * 0.75)`,
-    animationTimingFunction: motionVars.easing$emphasized,
+    animationTimingFunction: motionTokens.easing$emphasized,
     color: focusRingTokens.color,
     display: 'none',
     pointerEvents: 'none',

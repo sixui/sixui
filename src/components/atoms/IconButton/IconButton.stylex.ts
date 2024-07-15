@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { shapeVars } from '@/themes/base/vars/shape.stylex';
-import { stateVars } from '@/themes/base/vars/state.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { shapeTokens } from '@/themes/base/tokens/shape.stylex';
+import { stateTokens } from '@/themes/base/tokens/state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-icon-button.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-icon-button.scss
@@ -12,10 +12,10 @@ const vars = {
   containerColor: 'unset',
   containerWidth: '40px',
   containerHeight: '40px',
-  containerShape: shapeVars.corner$full,
+  containerShape: shapeTokens.corner$full,
   // &:disabled
   containerColor$disabled: 'unset',
-  containerOpacity$disabled: stateVars.containerOpacity$disabled,
+  containerOpacity$disabled: stateTokens.containerOpacity$disabled,
 
   // selectedContainer
   selectedContainerColor: 'unset',
@@ -33,8 +33,8 @@ const vars = {
   // &:pressed
   iconColor$pressed: 'inherit',
   // &:disabled
-  iconColor$disabled: colorRolesVars.onSurface,
-  iconOpacity$disabled: stateVars.opacity$disabled,
+  iconColor$disabled: colorRolesTokens.onSurface,
+  iconOpacity$disabled: stateTokens.opacity$disabled,
 
   // toggleIcon
   toggleIconColor: 'inherit',
@@ -57,10 +57,10 @@ const vars = {
   // stateLayer
   // &:hover
   stateLayerColor$hover: 'unset',
-  stateLayerOpacity$hover: stateVars.stateLayerOpacity$hover,
+  stateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,
   // &:pressed
   stateLayerColor$pressed: 'unset',
-  stateLayerOpacity$pressed: stateVars.stateLayerOpacity$pressed,
+  stateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
 
   // toggleStateLayer
   // &:hover
@@ -84,7 +84,7 @@ const vars = {
   outlineColor$pressed: 'unset',
   // &:disabled
   outlineColor$disabled: 'unset',
-  outlineOpacity$disabled: stateVars.outlineOpacity$disabled,
+  outlineOpacity$disabled: stateTokens.outlineOpacity$disabled,
 };
 
 export const iconButtonTokens = stylex.defineVars(vars);

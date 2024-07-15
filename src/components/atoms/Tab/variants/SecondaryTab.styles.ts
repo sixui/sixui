@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
 import { tabTokens } from '../Tab.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tabs/internal/_primary-tab.scss
@@ -10,7 +10,7 @@ export const secondaryTabStyles = stylex.create({
     [tabTokens.activeIndicatorHeight]: '2px',
     [tabTokens.activeIndicatorShape]: '0',
 
-    [tabTokens.activeLabelTextColor]: colorRolesVars.onSurface,
+    [tabTokens.activeLabelTextColor]: colorRolesTokens.onSurface,
 
     [tabTokens.activeIconColor]: tabTokens.iconColor,
     [tabTokens.activeIconColor$focus]: tabTokens.iconColor$focus,

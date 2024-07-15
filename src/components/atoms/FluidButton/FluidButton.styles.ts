@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import { focusRingTokens } from '@/components/utils/FocusRing/FocusRing.stylex';
-import { componentVars as statelayerVars } from '@/themes/base/StateLayer/StateLayer.stylex';
+import { stateLayerTokens } from '@/components/utils/StateLayer/StateLayer.stylex';
 import { fluidButtonTokens } from './FluidButton.stylex';
 
 export type IFluidButtonStylesKey = keyof typeof fluidButtonStyles;
@@ -56,10 +56,10 @@ export const fluidButtonStateLayerStyles = stylex.create({
   host: {
     borderRadius: fluidButtonTokens.containerShape,
     inset: `calc(-0.5 * ${fluidButtonTokens.stateLayerSpace})`,
-    [statelayerVars.color$hover]: fluidButtonTokens.stateLayerColor$hover,
-    [statelayerVars.opacity$hover]: fluidButtonTokens.stateLayerOpacity$hover,
-    [statelayerVars.color$pressed]: fluidButtonTokens.stateLayerColor$pressed,
-    [statelayerVars.opacity$pressed]:
+    [stateLayerTokens.color$hover]: fluidButtonTokens.stateLayerColor$hover,
+    [stateLayerTokens.opacity$hover]: fluidButtonTokens.stateLayerOpacity$hover,
+    [stateLayerTokens.color$pressed]: fluidButtonTokens.stateLayerColor$pressed,
+    [stateLayerTokens.opacity$pressed]:
       fluidButtonTokens.stateLayerOpacity$pressed,
   },
 });

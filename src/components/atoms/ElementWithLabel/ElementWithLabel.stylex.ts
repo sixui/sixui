@@ -1,44 +1,44 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
-import { typescaleVars } from '@/themes/base/vars/typo.stylex';
-import { stateVars } from '@/themes/base/vars/state.stylex';
+import { colorRolesTokens } from '@/themes/base/tokens/colorRoles.stylex';
+import { typescaleTokens } from '@/themes/base/tokens/typo.stylex';
+import { stateTokens } from '@/themes/base/tokens/state.stylex';
 
 const vars = {
   // labelText
-  labelTextColor: colorRolesVars.onSurface,
-  labelTextFont: typescaleVars.labelFont$lg,
-  labelTextSize: typescaleVars.labelSize$lg,
-  labelTextWeight: typescaleVars.labelWeight$lg,
-  labelTextLineHeight: typescaleVars.labelLineHeight$lg,
-  labelTextLetterSpacing: typescaleVars.labelLetterSpacing$lg,
+  labelTextColor: colorRolesTokens.onSurface,
+  labelTextFont: typescaleTokens.labelFont$lg,
+  labelTextSize: typescaleTokens.labelSize$lg,
+  labelTextWeight: typescaleTokens.labelWeight$lg,
+  labelTextLineHeight: typescaleTokens.labelLineHeight$lg,
+  labelTextLetterSpacing: typescaleTokens.labelLetterSpacing$lg,
   // &:disabled
-  labelTextColor$disabled: colorRolesVars.onSurface,
-  labelTextOpacity$disabled: stateVars.opacity$disabled,
+  labelTextColor$disabled: colorRolesTokens.onSurface,
+  labelTextOpacity$disabled: stateTokens.opacity$disabled,
 
   // actionText
-  actionTextColor: colorRolesVars.onSurface,
-  actionTextFont: typescaleVars.labelFont$lg,
-  actionTextSize: typescaleVars.labelSize$lg,
-  actionTextWeight: typescaleVars.labelWeight$lg,
-  actionTextLineHeight: typescaleVars.labelLineHeight$lg,
-  actionTextLetterSpacing: typescaleVars.labelLetterSpacing$lg,
+  actionTextColor: colorRolesTokens.onSurface,
+  actionTextFont: typescaleTokens.labelFont$lg,
+  actionTextSize: typescaleTokens.labelSize$lg,
+  actionTextWeight: typescaleTokens.labelWeight$lg,
+  actionTextLineHeight: typescaleTokens.labelLineHeight$lg,
+  actionTextLetterSpacing: typescaleTokens.labelLetterSpacing$lg,
   // &:disabled
-  actionTextColor$disabled: colorRolesVars.onSurface,
-  actionTextOpacity$disabled: stateVars.opacity$disabled,
+  actionTextColor$disabled: colorRolesTokens.onSurface,
+  actionTextOpacity$disabled: stateTokens.opacity$disabled,
 
   // supportingText
-  supportingTextColor: colorRolesVars.dim,
-  supportingTextFont: typescaleVars.bodyFont$sm,
-  supportingTextSize: typescaleVars.bodySize$sm,
-  supportingTextWeight: typescaleVars.bodyWeight$sm,
-  supportingTextLineHeight: typescaleVars.bodyLineHeight$sm,
-  supportingTextLetterSpacing: typescaleVars.bodyLetterSpacing$sm,
+  supportingTextColor: colorRolesTokens.dim,
+  supportingTextFont: typescaleTokens.bodyFont$sm,
+  supportingTextSize: typescaleTokens.bodySize$sm,
+  supportingTextWeight: typescaleTokens.bodyWeight$sm,
+  supportingTextLineHeight: typescaleTokens.bodyLineHeight$sm,
+  supportingTextLetterSpacing: typescaleTokens.bodyLetterSpacing$sm,
   // &:error
-  supportingTextColor$error: colorRolesVars.error,
+  supportingTextColor$error: colorRolesTokens.error,
   // &:disabled
-  supportingTextColor$disabled: colorRolesVars.onSurface,
-  supportingTextOpacity$disabled: stateVars.opacity$disabled,
+  supportingTextColor$disabled: colorRolesTokens.onSurface,
+  supportingTextOpacity$disabled: stateTokens.opacity$disabled,
 };
 
 export const elementWithLabelTokens = stylex.defineVars(vars);

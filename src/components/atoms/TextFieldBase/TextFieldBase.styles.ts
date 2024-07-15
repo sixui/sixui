@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import { fieldBaseTokens } from '@/components/atoms/FieldBase/FieldBase.stylex';
-import { textFieldBaseTokens as vars } from './TextFieldBase.stylex';
+import { textFieldBaseTokens } from './TextFieldBase.stylex';
 
 // https://github.com/material-components/material-web/blob/main/textfield/internal/_shared.scss
 // https://github.com/material-components/material-web/blob/main/textfield/internal/_input.scss
@@ -35,8 +35,8 @@ export const textFieldBaseStyles = stylex.create({
     width: '100%',
     height: '100%',
     caretColor: {
-      default: vars.caretColor,
-      ':is([data-focused])': vars.caretColor$focus,
+      default: textFieldBaseTokens.caretColor,
+      ':is([data-focused])': textFieldBaseTokens.caretColor$focus,
     },
     // remove extra height added by horizontal scrollbars
     overflowX: 'hidden',
@@ -118,7 +118,7 @@ export const textFieldBaseStyles = stylex.create({
   },
   input$error: {
     caretColor: {
-      ':is([data-focused])': vars.caretColor$error$focus,
+      ':is([data-focused])': textFieldBaseTokens.caretColor$error$focus,
     },
   },
   input$noSpinner: {

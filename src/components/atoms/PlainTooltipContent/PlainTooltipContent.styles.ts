@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { plainTooltipContentTokens as vars } from './PlainTooltipContent.stylex';
+import { plainTooltipContentTokens } from './PlainTooltipContent.stylex';
 
 export type IPlainTooltipContentStylesKey =
   keyof typeof plainTooltipContentStyles;
@@ -10,24 +10,24 @@ export const plainTooltipContentStyles = stylex.create({
     display: 'flex',
     alignItems: 'center',
     width: 'max-content',
-    borderRadius: vars.containerShape,
-    backgroundColor: vars.containerColor,
-    paddingTop: vars.topSpace,
-    paddingBottom: vars.bottomSpace,
-    paddingLeft: vars.leadingSpace,
-    paddingRight: vars.trailingSpace,
-    maxWidth: vars.containerMaxWidth,
-    minHeight: vars.containerMinHeight,
+    borderRadius: plainTooltipContentTokens.containerShape,
+    backgroundColor: plainTooltipContentTokens.containerColor,
+    paddingTop: plainTooltipContentTokens.topSpace,
+    paddingBottom: plainTooltipContentTokens.bottomSpace,
+    paddingLeft: plainTooltipContentTokens.leadingSpace,
+    paddingRight: plainTooltipContentTokens.trailingSpace,
+    maxWidth: plainTooltipContentTokens.containerMaxWidth,
+    minHeight: plainTooltipContentTokens.containerMinHeight,
   },
   supportingText: {
-    color: vars.supportingTextColor,
-    fontFamily: vars.supportingTextFont,
-    fontSize: vars.supportingTextSize,
-    fontWeight: vars.supportingTextWeight,
-    lineHeight: vars.supportingTextLineHeight,
-    letterSpacing: vars.supportingTextLetterSpacing,
+    color: plainTooltipContentTokens.supportingTextColor,
+    fontFamily: plainTooltipContentTokens.supportingTextFont,
+    fontSize: plainTooltipContentTokens.supportingTextSize,
+    fontWeight: plainTooltipContentTokens.supportingTextWeight,
+    lineHeight: plainTooltipContentTokens.supportingTextLineHeight,
+    letterSpacing: plainTooltipContentTokens.supportingTextLetterSpacing,
   },
   cursor: {
-    fill: vars.containerColor,
+    fill: plainTooltipContentTokens.containerColor,
   },
 });

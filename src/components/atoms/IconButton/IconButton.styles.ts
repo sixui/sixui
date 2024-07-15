@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { buttonTokens as buttonVars } from '@/components/atoms/Button/Button.stylex';
+import { buttonTokens } from '@/components/atoms/Button/Button.stylex';
 import { elevationTokens } from '@/components/utils/Elevation/Elevation.stylex';
 import { iconButtonTokens } from './IconButton.stylex';
 
@@ -13,74 +13,77 @@ export const iconButtonStyles = stylex.create({
     width: iconButtonTokens.containerWidth,
     flexShrink: 0,
 
-    [buttonVars.leadingSpace]: '0',
-    [buttonVars.trailingSpace]: '0',
-    [buttonVars.leadingIconLeadingSpace]: '0',
-    [buttonVars.leadingIconTrailingSpace]: '0',
-    [buttonVars.trailingIconLeadingSpace]: '0',
-    [buttonVars.trailingIconTrailingSpace]: '0',
+    [buttonTokens.leadingSpace]: '0',
+    [buttonTokens.trailingSpace]: '0',
+    [buttonTokens.leadingIconLeadingSpace]: '0',
+    [buttonTokens.leadingIconTrailingSpace]: '0',
+    [buttonTokens.trailingIconLeadingSpace]: '0',
+    [buttonTokens.trailingIconTrailingSpace]: '0',
 
-    [buttonVars.containerElevation$disabled]: elevationTokens.boxShadow$level0,
-    [buttonVars.containerElevation]: elevationTokens.boxShadow$level0,
-    [buttonVars.containerElevation$focus]: elevationTokens.boxShadow$level0,
-    [buttonVars.containerElevation$hover]: elevationTokens.boxShadow$level0,
-    [buttonVars.containerElevation$pressed]: elevationTokens.boxShadow$level0,
+    [buttonTokens.containerElevation$disabled]:
+      elevationTokens.boxShadow$level0,
+    [buttonTokens.containerElevation]: elevationTokens.boxShadow$level0,
+    [buttonTokens.containerElevation$focus]: elevationTokens.boxShadow$level0,
+    [buttonTokens.containerElevation$hover]: elevationTokens.boxShadow$level0,
+    [buttonTokens.containerElevation$pressed]: elevationTokens.boxShadow$level0,
 
-    [buttonVars.containerHeight]: iconButtonTokens.containerHeight,
-    [buttonVars.containerShape]: iconButtonTokens.containerShape,
-    [buttonVars.containerOpacity$disabled]:
+    [buttonTokens.containerHeight]: iconButtonTokens.containerHeight,
+    [buttonTokens.containerShape]: iconButtonTokens.containerShape,
+    [buttonTokens.containerOpacity$disabled]:
       iconButtonTokens.containerOpacity$disabled,
-    [buttonVars.containerColor]: iconButtonTokens.containerColor,
-    [buttonVars.containerColor$disabled]:
+    [buttonTokens.containerColor]: iconButtonTokens.containerColor,
+    [buttonTokens.containerColor$disabled]:
       iconButtonTokens.containerColor$disabled,
-    [buttonVars.iconSize]: iconButtonTokens.iconSize,
-    [buttonVars.labelTextLineHeight]: iconButtonTokens.iconSize,
-    [buttonVars.iconColor$disabled]: iconButtonTokens.iconColor$disabled,
-    [buttonVars.iconOpacity$disabled]: iconButtonTokens.iconOpacity$disabled,
-    [buttonVars.stateLayerOpacity$hover]:
+    [buttonTokens.iconSize]: iconButtonTokens.iconSize,
+    [buttonTokens.labelTextLineHeight]: iconButtonTokens.iconSize,
+    [buttonTokens.iconColor$disabled]: iconButtonTokens.iconColor$disabled,
+    [buttonTokens.iconOpacity$disabled]: iconButtonTokens.iconOpacity$disabled,
+    [buttonTokens.stateLayerOpacity$hover]:
       iconButtonTokens.stateLayerOpacity$hover,
-    [buttonVars.stateLayerOpacity$pressed]:
+    [buttonTokens.stateLayerOpacity$pressed]:
       iconButtonTokens.stateLayerOpacity$pressed,
-    [buttonVars.iconColor]: iconButtonTokens.iconColor,
-    [buttonVars.iconColor$hover]: iconButtonTokens.iconColor$hover,
-    [buttonVars.iconColor$focus]: iconButtonTokens.iconColor$focus,
-    [buttonVars.iconColor$pressed]: iconButtonTokens.iconColor$pressed,
-    [buttonVars.stateLayerColor$hover]: iconButtonTokens.stateLayerColor$hover,
-    [buttonVars.stateLayerColor$pressed]:
+    [buttonTokens.iconColor]: iconButtonTokens.iconColor,
+    [buttonTokens.iconColor$hover]: iconButtonTokens.iconColor$hover,
+    [buttonTokens.iconColor$focus]: iconButtonTokens.iconColor$focus,
+    [buttonTokens.iconColor$pressed]: iconButtonTokens.iconColor$pressed,
+    [buttonTokens.stateLayerColor$hover]:
+      iconButtonTokens.stateLayerColor$hover,
+    [buttonTokens.stateLayerColor$pressed]:
       iconButtonTokens.stateLayerColor$pressed,
-    [buttonVars.outlineStyle]: iconButtonTokens.outlineStyle,
-    [buttonVars.outlineWidth]: iconButtonTokens.outlineWidth,
-    [buttonVars.outlineWidth]: iconButtonTokens.outlineWidth,
-    [buttonVars.outlineColor]: iconButtonTokens.outlineColor,
-    [buttonVars.outlineColor$disabled]: iconButtonTokens.outlineColor$disabled,
-    [buttonVars.outlineOpacity$disabled]:
+    [buttonTokens.outlineStyle]: iconButtonTokens.outlineStyle,
+    [buttonTokens.outlineWidth]: iconButtonTokens.outlineWidth,
+    [buttonTokens.outlineWidth]: iconButtonTokens.outlineWidth,
+    [buttonTokens.outlineColor]: iconButtonTokens.outlineColor,
+    [buttonTokens.outlineColor$disabled]:
+      iconButtonTokens.outlineColor$disabled,
+    [buttonTokens.outlineOpacity$disabled]:
       iconButtonTokens.outlineOpacity$disabled,
-    [buttonVars.outlineColor$focus]: iconButtonTokens.outlineColor$focus,
-    [buttonVars.outlineColor$pressed]: iconButtonTokens.outlineColor$pressed,
+    [buttonTokens.outlineColor$focus]: iconButtonTokens.outlineColor$focus,
+    [buttonTokens.outlineColor$pressed]: iconButtonTokens.outlineColor$pressed,
   },
   host$toggle: {
-    [buttonVars.stateLayerColor$hover]:
+    [buttonTokens.stateLayerColor$hover]:
       iconButtonTokens.toggleStateLayerColor$hover,
-    [buttonVars.stateLayerColor$pressed]:
+    [buttonTokens.stateLayerColor$pressed]:
       iconButtonTokens.toggleStateLayerColor$pressed,
-    [buttonVars.containerColor]: iconButtonTokens.unselectedContainerColor,
-    [buttonVars.iconColor]: iconButtonTokens.toggleIconColor,
-    [buttonVars.iconColor$hover]: iconButtonTokens.toggleIconColor$hover,
-    [buttonVars.iconColor$focus]: iconButtonTokens.toggleIconColor$focus,
-    [buttonVars.iconColor$pressed]: iconButtonTokens.toggleIconColor$pressed,
+    [buttonTokens.containerColor]: iconButtonTokens.unselectedContainerColor,
+    [buttonTokens.iconColor]: iconButtonTokens.toggleIconColor,
+    [buttonTokens.iconColor$hover]: iconButtonTokens.toggleIconColor$hover,
+    [buttonTokens.iconColor$focus]: iconButtonTokens.toggleIconColor$focus,
+    [buttonTokens.iconColor$pressed]: iconButtonTokens.toggleIconColor$pressed,
   },
   host$toggle$selected: {
-    [buttonVars.stateLayerColor$hover]:
+    [buttonTokens.stateLayerColor$hover]:
       iconButtonTokens.toggleSelectedStateLayerColor$hover,
-    [buttonVars.stateLayerColor$pressed]:
+    [buttonTokens.stateLayerColor$pressed]:
       iconButtonTokens.toggleSelectedStateLayerColor$pressed,
-    [buttonVars.containerColor]: iconButtonTokens.selectedContainerColor,
-    [buttonVars.iconColor]: iconButtonTokens.toggleSelectedIconColor,
-    [buttonVars.iconColor$hover]:
+    [buttonTokens.containerColor]: iconButtonTokens.selectedContainerColor,
+    [buttonTokens.iconColor]: iconButtonTokens.toggleSelectedIconColor,
+    [buttonTokens.iconColor$hover]:
       iconButtonTokens.toggleSelectedIconColor$hover,
-    [buttonVars.iconColor$focus]:
+    [buttonTokens.iconColor$focus]:
       iconButtonTokens.toggleSelectedIconColor$focus,
-    [buttonVars.iconColor$pressed]:
+    [buttonTokens.iconColor$pressed]:
       iconButtonTokens.toggleSelectedIconColor$pressed,
   },
 });

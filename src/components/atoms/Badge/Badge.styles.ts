@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { motionVars } from '@/themes/base/vars/motion.stylex';
+import { motionTokens } from '@/themes/base/tokens/motion.stylex';
 import { badgeTokens } from './Badge.stylex';
 
 export type IBadgeStylesKey = keyof typeof badgeStyles;
@@ -19,8 +19,8 @@ export const badgeStyles = stylex.create({
     height: badgeTokens.containerHeight,
     padding: badgeTokens.containerPadding,
     transitionProperty: 'transform',
-    transitionDuration: motionVars.duration$short3,
-    transitionTimingFunction: motionVars.easing$emphasized,
+    transitionDuration: motionTokens.duration$short3,
+    transitionTimingFunction: motionTokens.easing$emphasized,
   },
   background: {
     position: 'absolute',
