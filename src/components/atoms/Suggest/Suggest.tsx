@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 
-import type { ISuggestProps } from './SuggestProps';
+import type { ISuggestProps } from './Suggest.types';
 import {
   areFilterableListItemsEqual,
   filterFilterableList,
