@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
-import type { IMenuListProps } from './MenuListProps';
+import type { IMenuListProps } from './MenuList.types';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ListItem } from '@/components/atoms/ListItem';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';

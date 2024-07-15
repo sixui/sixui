@@ -71,13 +71,6 @@ import { styles as anchoredStyles } from './Anchored/Anchored.styles';
 import { componentTheme as scrimTheme } from './Scrim/Scrim.stylex';
 import { styles as scrimStyles } from './Scrim/Scrim.styles';
 
-import { componentTheme as menuListTheme } from './MenuList/MenuList.stylex';
-import {
-  styles as menuListStyles,
-  elevationStyles as menuListElevationStyles,
-  listStyles as menuListListStyles,
-} from './MenuList/MenuList.styles';
-
 import { styles as stepperStyles } from './Stepper/Stepper.styles';
 
 import { componentTheme as stepTheme } from './Step/Step.stylex';
@@ -205,12 +198,6 @@ export const theme: ITheme = {
     Scrim: {
       vars: scrimTheme,
       styles: scrimStyles,
-    },
-    MenuList: {
-      vars: menuListTheme,
-      styles: menuListStyles,
-      elevationStyles: menuListElevationStyles,
-      listStyles: menuListListStyles,
     },
     Stepper: {
       styles: stepperStyles,

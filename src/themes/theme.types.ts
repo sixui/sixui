@@ -41,7 +41,6 @@ import type {
   IRadioStyleKey,
   IRadioStyleVarKey,
 } from '@/components/atoms/Radio';
-import type { IListStylesKey } from '@/components/atoms/List';
 import type {
   IPaperStyleKey,
   IPaperStyleVarKey,
@@ -54,10 +53,6 @@ import type {
   IScrimStyleKey,
   IScrimStyleVarKey,
 } from '@/components/atoms/Scrim';
-import type {
-  IMenuListStyleKey,
-  IMenuListStyleVarKey,
-} from '@/components/atoms/MenuList';
 import type { IStepperStyleKey } from '@/components/atoms/Stepper';
 import type { IStepStyleKey, IStepStyleVarKey } from '@/components/atoms/Step';
 import type {
@@ -194,12 +189,6 @@ export type ITheme = {
     Scrim: {
       vars?: IStyleVarsTheme<IScrimStyleVarKey>;
       styles?: ICompiledStyles<IScrimStyleKey>;
-    };
-    MenuList: {
-      vars?: IStyleVarsTheme<IMenuListStyleVarKey>;
-      styles?: ICompiledStyles<IMenuListStyleKey>;
-      elevationStyles?: ICompiledStyles<IElevationStyleKey>;
-      listStyles?: ICompiledStyles<IListStylesKey>;
     };
     Stepper: {
       styles?: ICompiledStyles<IStepperStyleKey>;

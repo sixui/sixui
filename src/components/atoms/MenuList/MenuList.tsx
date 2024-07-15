@@ -1,41 +1,43 @@
 import { forwardRef, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
-import type {
-  IMenuListStyleKey,
-  IMenuListStyleVarKey,
-} from './MenuList.styledefs';
+import type { IMenuListProps } from './MenuList.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { Elevation } from '@/components/utils/Elevation';
 import { List } from '@/components/atoms/List';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { IMenuListProps } from './MenuListProps';
+import {
+  menuListElevationStyles,
+  menuListListStyles,
+  menuListStyles,
+} from './MenuList.styles';
+import { menuListTheme } from './MenuList.stylex';
 
 export const MenuList = forwardRef<HTMLDivElement, IMenuListProps>(
   function MenuList(props, forwardedRef) {
     const { styles, sx, innerStyles, children, ...other } = props;
 
-    const { theme } = useComponentThemeOld('MenuList');
+    const { overridenStyles } = useComponentTheme('MenuList');
     const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(theme.styles, styles),
-      [theme.styles, styles],
+      () => stylesCombinatorFactory(menuListStyles, styles),
+      [styles],
     );
     const sxf = useMemo(
-      () =>
-        stylePropsFactory<IMenuListStyleKey, IMenuListStyleVarKey>(
-          stylesCombinator,
-        ),
+      () => stylePropsFactory(stylesCombinator),
       [stylesCombinator],
     );
 
     return (
-      <div {...sxf('host', theme.vars, sx)} ref={forwardedRef}>
+      <div
+        {...sxf(menuListTheme, overridenStyles, 'host', sx)}
+        ref={forwardedRef}
+      >
         <Elevation
-          styles={[theme.elevationStyles, ...asArray(innerStyles?.elevation)]}
+          styles={[menuListElevationStyles, ...asArray(innerStyles?.elevation)]}
         />
         <List
-          styles={[theme.listStyles, ...asArray(innerStyles?.list)]}
+          styles={[menuListListStyles, ...asArray(innerStyles?.list)]}
           {...other}
         >
           {children}

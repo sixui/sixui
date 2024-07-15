@@ -1,7 +1,7 @@
 import { forwardRef, useContext } from 'react';
 import { useFloatingTree, useListItem, useMergeRefs } from '@floating-ui/react';
 
-import type { IMenuItemProps } from './MenuItemProps';
+import type { IMenuItemProps } from './MenuItem.types';
 import { ListItem } from '@/components/atoms/ListItem';
 import { Menu, MenuItemContext } from '@/components/atoms/Menu';
 import { MenuNestedItem } from './MenuNestedItem';

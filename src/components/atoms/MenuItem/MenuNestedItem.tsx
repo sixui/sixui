@@ -3,7 +3,7 @@ import { forwardRef, useContext } from 'react';
 import { ReactComponent as TriangleLeft } from '@/assets/TriangleLeft.svg';
 import { ReactComponent as TriangleRight } from '@/assets/TriangleRight.svg';
 
-import type { IMenuItemProps } from './MenuItemProps';
+import type { IMenuItemProps } from './MenuItem.types';
 import { MenuContext } from '@/components/atoms/Menu';
 import { MenuItem } from './MenuItem';
 
