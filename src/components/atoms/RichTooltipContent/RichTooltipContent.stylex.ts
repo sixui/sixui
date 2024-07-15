@@ -1,13 +1,11 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IStyleVars } from '@/helpers/types';
-import type { IRichTooltipContentStyleVarKey } from '@/components/atoms/RichTooltipContent';
-import { colorRolesVars } from '../vars/colorRoles.stylex';
-import { shapeVars } from '../vars/shape.stylex';
-import { componentVars as elevationVars } from '../Elevation/Elevation.stylex';
-import { typescaleVars } from '../vars/typo.stylex';
+import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
+import { shapeVars } from '@/themes/base/vars/shape.stylex';
+import { componentVars as elevationVars } from '@/themes/base/Elevation/Elevation.stylex';
+import { typescaleVars } from '@/themes/base/vars/typo.stylex';
 
-const vars: IStyleVars<IRichTooltipContentStyleVarKey> = {
+const vars = {
   topSpace: '12px',
   bottomSpace: '12px',
   actionsBottomSpace: '8px',
@@ -38,7 +36,7 @@ const vars: IStyleVars<IRichTooltipContentStyleVarKey> = {
   supportingTextLetterSpacing: typescaleVars.bodyLetterSpacing$md,
 };
 
-export const componentVars = stylex.defineVars(vars);
+export const richTooltipContentTokens = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that
@@ -46,4 +44,7 @@ export const componentVars = stylex.defineVars(vars);
  *
  * @see https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
  */
-export const componentTheme = stylex.createTheme(componentVars, vars);
+export const richTooltipContentTheme = stylex.createTheme(
+  richTooltipContentTokens,
+  vars,
+);

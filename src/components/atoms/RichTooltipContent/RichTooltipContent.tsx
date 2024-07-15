@@ -2,15 +2,16 @@ import { forwardRef, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 import { isFunction } from 'lodash';
 
-import type { IRichTooltipContentProps } from './RichTooltipContentProps';
-import type {
-  IRichTooltipContentStyleKey,
-  IRichTooltipContentStyleVarKey,
-} from './RichTooltipContent.styledefs';
+import type { IRichTooltipContentProps } from './RichTooltipContent.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { Elevation } from '@/components/utils/Elevation';
+import {
+  richTooltipContentElevationStyles,
+  richTooltipContentStyles,
+} from './RichTooltipContent.styles';
+import { richTooltipContentTheme } from './RichTooltipContent.stylex';
 
 export const RichTooltipContent = forwardRef<
   HTMLDivElement,
@@ -28,24 +29,27 @@ export const RichTooltipContent = forwardRef<
     ...other
   } = props;
 
-  const { theme } = useComponentThemeOld('RichTooltipContent');
+  const { overridenStyles } = useComponentTheme('RichTooltipContent');
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(theme.styles, styles),
-    [theme.styles, styles],
+    () => stylesCombinatorFactory(richTooltipContentStyles, styles),
+    [styles],
   );
   const sxf = useMemo(
-    () =>
-      stylePropsFactory<
-        IRichTooltipContentStyleKey,
-        IRichTooltipContentStyleVarKey
-      >(stylesCombinator),
+    () => stylePropsFactory(stylesCombinator),
     [stylesCombinator],
   );
 
   return (
-    <div {...sxf('host', theme.vars, sx)} ref={forwardedRef} {...other}>
+    <div
+      {...sxf(richTooltipContentTheme, overridenStyles, 'host', sx)}
+      ref={forwardedRef}
+      {...other}
+    >
       <Elevation
-        styles={[theme.elevationStyles, ...asArray(innerStyles?.elevation)]}
+        styles={[
+          richTooltipContentElevationStyles,
+          ...asArray(innerStyles?.elevation),
+        ]}
       />
       {renderCursor ? renderCursor(sxf('cursor')) : null}
       <div {...sxf('content')}>

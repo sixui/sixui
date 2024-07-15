@@ -4,14 +4,14 @@ import type {
   ICompiledStyles,
 } from '@/helpers/types';
 import type { IElevationStyleKey } from '@/components/utils/Elevation';
-import type { IRichTooltipContentStyleKey } from './RichTooltipContent.styledefs';
+import type { IRichTooltipContentStylesKey } from './RichTooltipContent.styles';
 
 export type IRichTooltipContentActionsRenderProps = {
   onClose?: (event?: React.MouseEvent) => void;
 };
 
 export type IRichTooltipContentProps =
-  IContainerProps<IRichTooltipContentStyleKey> & {
+  IContainerProps<IRichTooltipContentStylesKey> & {
     innerStyles?: {
       elevation?: IZeroOrMore<ICompiledStyles<IElevationStyleKey>>;
     };

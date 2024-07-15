@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IRichTooltipContentProps } from './RichTooltipContentProps';
+import type { IRichTooltipContentProps } from './RichTooltipContent.types';
 import { Button } from '@/components/atoms/Button';
 import { RichTooltipContent } from './RichTooltipContent';
 
