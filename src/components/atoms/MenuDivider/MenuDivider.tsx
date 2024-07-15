@@ -1,20 +1,26 @@
-import { forwardRef } from 'react';
-import stylex from '@stylexjs/stylex';
+import { forwardRef, useMemo } from 'react';
 
 import { Divider, type IDividerProps } from '@/components/atoms/Divider';
-
-// TODO: migrate in theme
-const styles = stylex.create({
-  host: {
-    marginTop: 8,
-    marginBottom: 8,
-  },
-});
+import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
+import { menuDividerStyles } from './MenuDivider.styles';
 
 export const MenuDivider = forwardRef<HTMLDivElement, IDividerProps>(
   function MenuDivider(props, forwardedRef) {
-    const { sx, ...other } = props;
+    const { styles, sx, ...other } = props;
 
-    return <Divider sx={[styles.host, sx]} ref={forwardedRef} {...other} />;
+    const { overridenStyles } = useComponentTheme('MenuDivider');
+    const stylesCombinator = useMemo(
+      () => stylesCombinatorFactory(menuDividerStyles, styles),
+      [styles],
+    );
+
+    return (
+      <Divider
+        sx={[overridenStyles, stylesCombinator('host'), sx]}
+        ref={forwardedRef}
+        {...other}
+      />
+    );
   },
 );
