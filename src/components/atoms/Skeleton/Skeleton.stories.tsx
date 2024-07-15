@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
-import type { ISkeletonProps } from './SkeletonProps';
+import type { ISkeletonProps } from './Skeleton.types';
 import { ComponentShowcase } from '@/components/utils/ComponentShowcase';
 import { colorRolesVars } from '@/themes/base/vars/colorRoles.stylex';
 import { Avatar } from '@/components/atoms/Avatar';

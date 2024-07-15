@@ -48,10 +48,6 @@ import type {
   IElementWithLabelStyleVarKey,
 } from '@/components/molecules/ElementWithLabel';
 import type {
-  ISkeletonStyleKey,
-  ISkeletonStyleVarKey,
-} from '@/components/atoms/Skeleton';
-import type {
   ISnackbarStyleKey,
   ISnackbarStyleVarKey,
 } from '@/components/atoms/Snackbar';
@@ -151,10 +147,6 @@ export type ITheme = {
     ElementWithLabel: {
       vars?: IStyleVarsTheme<IElementWithLabelStyleVarKey>;
       styles?: ICompiledStyles<IElementWithLabelStyleKey>;
-    };
-    Skeleton: {
-      vars?: IStyleVarsTheme<ISkeletonStyleVarKey>;
-      styles?: ICompiledStyles<ISkeletonStyleKey>;
     };
     Snackbar: {
       vars?: IStyleVarsTheme<ISnackbarStyleVarKey>;

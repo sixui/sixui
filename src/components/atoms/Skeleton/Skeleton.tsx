@@ -2,14 +2,12 @@ import stylex from '@stylexjs/stylex';
 import { forwardRef, useMemo, useRef } from 'react';
 import { random } from 'lodash';
 
-import type {
-  ISkeletonStyleKey,
-  ISkeletonStyleVarKey,
-} from './Skeleton.styledefs';
-import type { ISkeletonProps } from './SkeletonProps';
+import type { ISkeletonProps } from './Skeleton.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentThemeOld } from '@/hooks/useComponentThemeOld';
+import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { skeletonStyles } from './Skeleton.styles';
+import { skeletonTheme } from './Skeleton.stylex';
 
 const staticStyles = stylex.create({
   length: (length?: number) => ({
@@ -31,16 +29,13 @@ export const Skeleton = forwardRef<HTMLDivElement, ISkeletonProps>(
       ...other
     } = props;
 
-    const { theme } = useComponentThemeOld('Skeleton');
+    const { overridenStyles } = useComponentTheme('Skeleton');
     const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(theme.styles, styles),
-      [theme.styles, styles],
+      () => stylesCombinatorFactory(skeletonStyles, styles),
+      [styles],
     );
     const sxf = useMemo(
-      () =>
-        stylePropsFactory<ISkeletonStyleKey, ISkeletonStyleVarKey>(
-          stylesCombinator,
-        ),
+      () => stylePropsFactory(stylesCombinator),
       [stylesCombinator],
     );
 
@@ -56,6 +51,8 @@ export const Skeleton = forwardRef<HTMLDivElement, ISkeletonProps>(
     ) : (
       <div
         {...sxf(
+          skeletonTheme,
+          overridenStyles,
           'host',
           hasError ? 'host$error' : null,
           `host$${variant}`,
@@ -67,7 +64,6 @@ export const Skeleton = forwardRef<HTMLDivElement, ISkeletonProps>(
                 : undefined
             : undefined,
           animation ? `animation$${animation}` : undefined,
-          theme.vars,
           sx,
         )}
         ref={forwardedRef}
