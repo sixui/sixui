@@ -124,7 +124,6 @@
     "@floating-ui/react": "^0.26.19",
     "@olivierpascal/helpers": "^0.0.70",
     "highlight-words": "^1.2.2",
-    "lodash": "^4.17.21",
     "modern-normalize": "^2.0.0",
     "react-transition-group": "^4.4.5",
     "usehooks-ts": "^3.1.0"

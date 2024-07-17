@@ -1,6 +1,6 @@
 import { forwardRef, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
-import { isFunction } from 'lodash';
+import { isFunction } from '@/helpers/isFunction';
 
 import type { IRichTooltipContentProps } from './RichTooltipContent.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';

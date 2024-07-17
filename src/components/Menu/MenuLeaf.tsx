@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 import { forwardRef, useContext, useEffect, useRef, useState } from 'react';
-import { isFunction } from 'lodash';
+import { isFunction } from '@/helpers/isFunction';
 import {
   FloatingFocusManager,
   FloatingList,

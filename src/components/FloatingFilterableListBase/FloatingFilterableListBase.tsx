@@ -16,9 +16,9 @@ import {
   useTypeahead,
   type ReferenceType,
 } from '@floating-ui/react';
-import { isFunction } from 'lodash';
 
 import type { IFloatingFilterableListBaseProps } from './FloatingFilterableListBase.types';
+import { isFunction } from '@/helpers/isFunction';
 import {
   FilterableListBase,
   type IFilterableCreateNewListItemRenderer,

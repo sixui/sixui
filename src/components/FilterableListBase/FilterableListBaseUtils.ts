@@ -1,10 +1,9 @@
-import { isFunction } from 'lodash';
-
 import type { IAny } from '@/helpers/types';
 import type {
   IFilterableListItemsEqualProp,
   IFilterableListBaseInternalRendererProps,
 } from './FilterableListBase.types';
+import { isFunction } from '@/helpers/isFunction';
 
 /**
  * Utility function for executing the {@link IFilterableListBaseProps#itemsEqual} prop

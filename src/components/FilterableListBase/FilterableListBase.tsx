@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { isFunction } from 'lodash';
 
 import type {
   IFilterableListItemModifiers,
   IFilterableListBaseInternalRenderer,
   IFilterableListBaseProps,
 } from './FilterableListBase.types';
+import { isFunction } from '@/helpers/isFunction';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { usePrevious } from '@/hooks/usePrevious';
 import {

@@ -1,13 +1,13 @@
 import { forwardRef, useContext, useMemo, useRef } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 import { asArray } from '@olivierpascal/helpers';
-import { isFunction } from 'lodash';
 
 import type { IOptionCardOwnProps, IOptionCardProps } from './OptionCard.types';
 import type {
   IPolymorphicRef,
   IWithAsProp,
 } from '@/helpers/react/polymorphicComponentTypes';
+import { isFunction } from '@/helpers/isFunction';
 import { CardContent } from '@/components/CardContent';
 import { Card } from '@/components/Card';
 import { ElementWithLabel } from '@/components/ElementWithLabel';

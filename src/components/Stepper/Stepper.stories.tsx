@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
-import { isFunction } from 'lodash';
 
 import type { IStepperProps } from './Stepper.types';
+import { isFunction } from '@/helpers/isFunction';
 import { Step, type IStepProps } from '@/components/Step';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ComponentShowcase } from '@/components/ComponentShowcase';

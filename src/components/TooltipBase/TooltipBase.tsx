@@ -1,5 +1,4 @@
 import { useMemo, useRef } from 'react';
-import { isFunction } from 'lodash';
 import {
   arrow,
   autoUpdate,
@@ -19,6 +18,7 @@ import {
 } from '@floating-ui/react';
 
 import type { ITooltipBaseProps } from './TooltipBase.types';
+import { isFunction } from '@/helpers/isFunction';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { Portal } from '@/components/Portal';
 import { useTooltipCursor } from '@/hooks/useTooltipCursor';

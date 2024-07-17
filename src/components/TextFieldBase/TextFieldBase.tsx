@@ -1,9 +1,9 @@
 import { useCallback, useMemo, useRef } from 'react';
 import { asArray } from '@olivierpascal/helpers';
-import { isFunction } from 'lodash';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { ITextFieldBaseProps } from './TextFieldBase.types';
+import { isFunction } from '@/helpers/isFunction';
 import { FieldBase } from '@/components/FieldBase';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';

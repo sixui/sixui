@@ -6,12 +6,12 @@ import {
   useRef,
   useState,
 } from 'react';
-import { isFunction } from 'lodash';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { IPolymorphicRef } from '@/helpers/react/polymorphicComponentTypes';
 import type { IFilledFieldBaseStylesKey } from './variants/FilledFieldBase.styles';
 import type { IOutlinedFieldBaseStylesKey } from './variants/OutlinedFieldBase.styles';
+import { isFunction } from '@/helpers/isFunction';
 import { useVisualState } from '@/components/VisualState';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { usePrevious } from '@/hooks/usePrevious';

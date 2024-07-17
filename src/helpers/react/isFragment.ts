@@ -1,4 +1,4 @@
-import { isObject } from 'lodash';
+import { isObject } from '@/helpers/isObject';
 
 const REACT_FRAGMENT_TYPE = Symbol.for('react.fragment');
 

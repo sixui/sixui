@@ -1,9 +1,9 @@
 import stylex from '@stylexjs/stylex';
 import { forwardRef, useMemo, useRef } from 'react';
-import { random } from 'lodash';
 
 import type { ISkeletonProps } from './Skeleton.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
+import { random } from '@/helpers/random';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { skeletonStyles } from './Skeleton.styles';
@@ -41,9 +41,7 @@ export const Skeleton = forwardRef<HTMLDivElement, ISkeletonProps>(
 
     const animation = hasError ? undefined : animationProp;
     const lengthRef = useRef(
-      typeof lengthProp === 'object'
-        ? random(lengthProp.min, lengthProp.max)
-        : lengthProp,
+      typeof lengthProp === 'object' ? random(lengthProp) : lengthProp,
     );
 
     return loaded ? (

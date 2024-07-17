@@ -1,4 +1,5 @@
-import { isFunction, isObject } from 'lodash';
+import { isFunction } from '@/helpers/isFunction';
+import { isObject } from '@/helpers/isObject';
 
 export const getDisplayName = (
   element: React.ReactElement,

@@ -1,5 +1,4 @@
 import { forwardRef, useMemo } from 'react';
-import { isFunction } from 'lodash';
 import {
   FloatingFocusManager,
   useClick,
@@ -20,6 +19,7 @@ import type {
   IDialogOwnProps,
   DIALOG_DEFAULT_TAG,
 } from './Dialog.types';
+import { isFunction } from '@/helpers/isFunction';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';

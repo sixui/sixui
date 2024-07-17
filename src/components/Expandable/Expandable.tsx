@@ -1,5 +1,4 @@
 import { forwardRef, useMemo, useRef } from 'react';
-import { isFunction } from 'lodash';
 import stylex from '@stylexjs/stylex';
 import { CSSTransition } from 'react-transition-group';
 
@@ -9,6 +8,7 @@ import {
   ExpandableContext,
   type IExpandableContextValue,
 } from './ExpandableContext';
+import { isFunction } from '@/helpers/isFunction';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { motionTokens } from '@/themes/base/motion.stylex';
 import { useMergeRefs } from '@floating-ui/react';

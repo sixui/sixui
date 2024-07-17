@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { isEqual } from 'lodash';
 
 import { isProduction } from '@/helpers/isProduction';
 
@@ -88,7 +87,10 @@ export const useControlledValue = <TValue>(
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
-      if (!isControlled && !isEqual(defaultValue, other.default)) {
+      if (
+        !isControlled &&
+        JSON.stringify(defaultValue) !== JSON.stringify(other.default)
+      ) {
         // eslint-disable-next-line no-console
         console.error(
           [
