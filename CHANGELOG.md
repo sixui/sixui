@@ -1,3 +1,15 @@
+# v0.0.321 (Wed Jul 17 2024)
+
+#### 🐛 Bug Fix
+
+- Feat/dynamic theme [#36](https://github.com/sixui/sixui/pull/36) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.320 (Mon Jul 15 2024)
 
 #### 🐛 Bug Fix
