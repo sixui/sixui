@@ -1,3 +1,15 @@
+# v0.0.323 (Wed Jul 17 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: build ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.322 (Wed Jul 17 2024)
 
 #### ⚠️ Pushed to `main`
