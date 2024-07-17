@@ -8,6 +8,6 @@ export const IconTriangleDown = (props: { [key: string]: any }) => (
     height='1em'
     {...props}
   >
-    <polygon stroke='none' fill-rule='evenodd' points='1 1 6 6 11 1' />
+    <polygon stroke='none' fillRule='evenodd' points='1 1 6 6 11 1' />
   </svg>
 );

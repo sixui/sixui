@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+pnpm generate-icons
 pnpm lint-staged
 pnpm check:all
 # pnpm test
