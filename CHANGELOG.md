@@ -1,3 +1,15 @@
+# v0.0.326 (Wed Jul 17 2024)
+
+#### ⚠️ Pushed to `main`
+
+- refactor: get rid of usehooks-ts ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.325 (Wed Jul 17 2024)
 
 #### ⚠️ Pushed to `main`
