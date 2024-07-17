@@ -1,8 +1,0 @@
-{
-  "extends": "./.babelrc.json",
-  "ignore": [
-    "**/*.test.ts",
-    "**/*.stories.tsx",
-    "**/*.spec.tsx"
-  ]
-}

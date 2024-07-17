@@ -7,8 +7,8 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { Elevation } from '@/components/Elevation';
 import { Button } from '@/components/Button';
-import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
 import { IconButton } from '@/components/IconButton';
+import { IconXMark } from '@/components/Icons';
 import {
   snackbarContentElevationStyles,
   snackbarContentStyles,
@@ -75,7 +75,7 @@ export const SnackbarContent = forwardRef<
           {showCloseButton ? (
             <IconButton
               variant='snackbar'
-              icon={<XMarkIcon aria-hidden />}
+              icon={<IconXMark aria-hidden />}
               onClick={onClose}
               aria-label='close'
             />

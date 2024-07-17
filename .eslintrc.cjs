@@ -10,6 +10,7 @@ const eslintConfig = {
     sourceType: 'module',
   },
   plugins: ['@stylexjs/eslint-plugin', 'fp', 'eslint-plugin-tsdoc', 'cypress'],
+  ignorePatterns: ['src/components/Icons/build/*'],
   extends: [
     'prettier',
     'plugin:prettier/recommended',

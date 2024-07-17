@@ -14,9 +14,8 @@ import { useControlledValue } from '@/hooks/useControlledValue';
 import { FocusRing } from '@/components/FocusRing';
 import { StateLayer } from '@/components/StateLayer';
 import { IndeterminateCircularProgressIndicator } from '@/components/IndeterminateCircularProgressIndicator';
-import { ReactComponent as CheckMarkIcon } from '@/assets/CheckMark.svg';
-import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
 import { executeLazyPromise } from '@/helpers/executeLazyPromise';
+import { IconCheckMark, IconXMark } from '@/components/Icons';
 import {
   SWITCH_DEFAULT_TAG,
   type ISwitchOwnProps,
@@ -213,7 +212,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
                     ) : selectedIcon ? (
                       selectedIcon
                     ) : !hasCustomIcons ? (
-                      <CheckMarkIcon aria-hidden />
+                      <IconCheckMark alt='' aria-hidden />
                     ) : null}
                   </div>
 
@@ -237,7 +236,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
                       ) : icon ? (
                         icon
                       ) : !hasCustomIcons ? (
-                        <XMarkIcon aria-hidden />
+                        <IconXMark alt='' aria-hidden />
                       ) : null}
                     </div>
                   )}

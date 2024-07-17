@@ -1,6 +1,5 @@
 import { forwardRef, useMemo, useRef } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
-import { ReactComponent as TriangleDownIcon } from '@/assets/TriangleDown.svg';
 import { asArray } from '@olivierpascal/helpers';
 
 import type { IHtmlSelectOption, IHtmlSelectProps } from './HtmlSelect.types';
@@ -9,6 +8,7 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useVisualState } from '@/components/VisualState';
 import { FieldBase } from '@/components/FieldBase';
+import { IconTriangleDown } from '@/components/Icons';
 import {
   htmlSelectFieldBaseStyles,
   htmlSelectStyles,
@@ -45,7 +45,7 @@ export const HtmlSelect = forwardRef<HTMLSelectElement, IHtmlSelectProps>(
         sx={[overridenStyles, sx]}
         styles={[htmlSelectFieldBaseStyles, ...asArray(innerStyles?.fieldBase)]}
         disabled={other.disabled}
-        trailingIcon={<TriangleDownIcon aria-hidden />}
+        trailingIcon={<IconTriangleDown aria-hidden />}
         {...slotProps?.fieldBase}
         visualState={visualState}
       >

@@ -15,11 +15,10 @@ import { Elevation } from '@/components/Elevation';
 import { FocusRing } from '@/components/FocusRing';
 import { StateLayer } from '@/components/StateLayer';
 import { IndeterminateCircularProgressIndicator } from '@/components/IndeterminateCircularProgressIndicator';
-import { ReactComponent as CheckMarkIcon } from '@/assets/CheckMark.svg';
-import { ReactComponent as XMarkIcon } from '@/assets/XMark.svg';
 import { ButtonBase } from '@/components/ButtonBase';
 import { Avatar } from '@/components/Avatar';
 import { executeLazyPromise } from '@/helpers/executeLazyPromise';
+import { IconCheckMark, IconXMark } from '@/components/Icons';
 import { chipVariantStyles } from './variants';
 import {
   chipCircularProgressIndicatorStyles,
@@ -308,7 +307,7 @@ export const Chip: IChip = forwardRef(function Chip<
                   />
                 ) : null
               ) : selected && variant === 'filter' ? (
-                <CheckMarkIcon {...sxf('icon')} aria-hidden />
+                <IconCheckMark {...sxf('icon')} aria-hidden />
               ) : imageUrl ? (
                 <Avatar
                   sx={stylesCombinator('icon', 'icon$avatar')}
@@ -419,7 +418,7 @@ export const Chip: IChip = forwardRef(function Chip<
                   />
                 </div>
               ) : (
-                <XMarkIcon aria-hidden />
+                <IconXMark aria-hidden />
               )}
             </span>
           </ButtonBase>
