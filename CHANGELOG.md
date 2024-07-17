@@ -1,3 +1,15 @@
+# v0.0.325 (Wed Jul 17 2024)
+
+#### ⚠️ Pushed to `main`
+
+- chore: package.json preinstall -> prepare ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.324 (Wed Jul 17 2024)
 
 #### ⚠️ Pushed to `main`
