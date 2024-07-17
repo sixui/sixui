@@ -12,18 +12,17 @@ import type { IStepProps } from './Step.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { ReactComponent as CheckMarkIcon } from '@/assets/CheckMark.svg';
-import { ReactComponent as ExclamationTriangleIcon } from '@/assets/ExclamationTriangle.svg';
 import { StepperContext } from '@/components/Stepper/StepperContext';
 import { IndeterminateCircularProgressIndicator } from '@/components/IndeterminateCircularProgressIndicator';
-import { StepContext, type IStepContextValue } from './StepContext';
-import { ButtonBase } from '../ButtonBase';
+import { ButtonBase } from '@/components/ButtonBase';
+import { IconCheckMark, IconExclamationTriangle } from '@/components/Icons';
 import {
   stepCircularProgressIndicatorStyles,
   stepFocusRingStyles,
   stepStyles,
 } from './Step.styles';
 import { stepTheme } from './Step.stylex';
+import { StepContext, type IStepContextValue } from './StepContext';
 
 export const Step = forwardRef<HTMLDivElement, IStepProps>(
   function Step(props, forwardedRef) {
@@ -124,7 +123,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
                 />
               ) : (
                 (icon ??
-                (hasError ? <ExclamationTriangleIcon aria-hidden /> : null))
+                (hasError ? <IconExclamationTriangle aria-hidden /> : null))
               )}
             </div>
           </div>
@@ -132,7 +131,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
           <div {...sxf('bulletPoint', 'bulletPoint$container')}>
             <div {...sxf('background', state && `background$${state}`)} />
             <div {...sxf('text', state && `text$${state}`)}>
-              {completed ? <CheckMarkIcon aria-hidden /> : index + 1}
+              {completed ? <IconCheckMark aria-hidden /> : index + 1}
             </div>
           </div>
         )}

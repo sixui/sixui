@@ -15,7 +15,7 @@ import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { isFragment } from '@/helpers/react/isFragment';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { ButtonBase } from '@/components/ButtonBase';
-import { ReactComponent as EllipsisHorizontalIcon } from '@/assets/EllipsisHorizontal.svg';
+import { IconEllipsisHorizontal } from '@/components/Icons';
 import {
   breadcrumbsExpandButtonFocusRingStyles,
   breadcrumbsStyles,
@@ -115,7 +115,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
             key='ellipsis'
             onClick={handleClickExpand}
           >
-            <EllipsisHorizontalIcon {...sxf('icon')} aria-hidden />
+            <IconEllipsisHorizontal {...sxf('icon')} aria-hidden />
           </ButtonBase>
         </li>,
         ...items.slice(items.length - itemCountAfterCollapse, items.length),

@@ -5,7 +5,7 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useLoaded } from '@/hooks/useLoaded';
-import { ReactComponent as PersonIcon } from '@/assets/Person.svg';
+import { IconAvatarPlaceholder } from '@/components/Icons';
 import { avatarStyles } from './Avatar.styles';
 import { avatarTheme } from './Avatar.stylex';
 
@@ -65,7 +65,10 @@ export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
         ) : hasImage && !!alt ? (
           <div {...sxf('content')}>{alt[0]}</div>
         ) : (
-          <PersonIcon {...sxf('content', 'content$fallback')} aria-hidden />
+          <IconAvatarPlaceholder
+            {...sxf('content', 'content$fallback')}
+            aria-hidden
+          />
         )}
       </div>
     );

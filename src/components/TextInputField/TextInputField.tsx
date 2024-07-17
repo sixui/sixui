@@ -1,4 +1,5 @@
 import { forwardRef, useRef, useState } from 'react';
+import { useMergeRefs } from '@floating-ui/react';
 
 import type {
   ITextInputFieldProps,
@@ -9,9 +10,7 @@ import {
   TextFieldBase,
   type ITextFieldBaseProps,
 } from '@/components/TextFieldBase';
-import { ReactComponent as EyeIcon } from '@/assets/Eye.svg';
-import { ReactComponent as EyeSlashIcon } from '@/assets/EyeSlash.svg';
-import { useMergeRefs } from '@floating-ui/react';
+import { IconEye, IconEyeSlash } from '@/components/Icons';
 
 export const TextInputField = forwardRef<HTMLDivElement, ITextInputFieldProps>(
   function TextInputField(props, forwardedRef) {
@@ -21,8 +20,8 @@ export const TextInputField = forwardRef<HTMLDivElement, ITextInputFieldProps>(
       suffixText,
       noSpinner,
       unmaskable: unmaskableProp = true,
-      maskIcon = <EyeSlashIcon aria-hidden />,
-      unmaskIcon = <EyeIcon aria-hidden />,
+      maskIcon = <IconEyeSlash aria-hidden />,
+      unmaskIcon = <IconEye aria-hidden />,
       inputRef: inputRefProp,
       ...other
     } = props;

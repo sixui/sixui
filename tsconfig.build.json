@@ -3,8 +3,11 @@
   "compilerOptions": {
     "declaration": true,
     "declarationDir": "./dist",
-    "emitDeclarationOnly": true,
     "declarationMap": true
   },
-  "exclude": ["src/**/*.test.ts", "src/**/*.stories.tsx", "src/**/*.spec.tsx"]
+  "exclude": [
+    "src/**/*.test.ts",
+    "src/**/*.stories.tsx",
+    "src/**/*.cy.tsx"
+  ]
 }

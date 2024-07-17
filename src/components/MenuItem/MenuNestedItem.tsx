@@ -1,10 +1,9 @@
 import { useMergeRefs } from '@floating-ui/react';
 import { forwardRef, useContext } from 'react';
-import { ReactComponent as TriangleLeft } from '@/assets/TriangleLeft.svg';
-import { ReactComponent as TriangleRight } from '@/assets/TriangleRight.svg';
 
 import type { IMenuItemProps } from './MenuItem.types';
 import { MenuContext } from '@/components/Menu';
+import { IconTriangleLeft, IconTriangleRight } from '@/components/Icons';
 import { MenuItem } from './MenuItem';
 
 export type IMenuNestedItemProps = IMenuItemProps;
@@ -21,12 +20,12 @@ export const MenuNestedItem = forwardRef<
     <MenuItem
       leading={
         menuContext.placement?.startsWith('left-') ? (
-          <TriangleLeft aria-hidden />
+          <IconTriangleLeft aria-hidden />
         ) : undefined
       }
       trailing={
         menuContext.placement?.startsWith('left-') ? undefined : (
-          <TriangleRight aria-hidden />
+          <IconTriangleRight aria-hidden />
         )
       }
       keepOpenOnClick={true}

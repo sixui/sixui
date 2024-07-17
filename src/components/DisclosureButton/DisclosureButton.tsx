@@ -6,12 +6,12 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { ListItem } from '@/components/ListItem';
-import { ReactComponent as ChevronDown } from '@/assets/ChevronDown.svg';
 import { Checkbox } from '@/components/Checkbox';
 import { Switch } from '@/components/Switch';
 import { IndeterminateCircularProgressIndicator } from '@/components/IndeterminateCircularProgressIndicator';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { ExpandableContext } from '@/components/Expandable';
+import { IconChevronDown } from '@/components/Icons';
 import {
   disclosureButtonCircularProgressIndicatorStyles,
   disclosureButtonItemStyles,
@@ -68,12 +68,12 @@ export const DisclosureButton = forwardRef<
     ) : expandIcon ? (
       <div {...sxf('icon', 'icon$expanded')}>{expandIcon}</div>
     ) : (
-      <ChevronDown {...sxf('icon', 'icon$expanded')} aria-hidden />
+      <IconChevronDown {...sxf('icon', 'icon$expanded')} aria-hidden />
     )
   ) : expandIcon ? (
     <div {...sxf('icon', 'icon$collapsed')}>{expandIcon}</div>
   ) : (
-    <ChevronDown {...sxf('icon', 'icon$collapsed')} aria-hidden />
+    <IconChevronDown {...sxf('icon', 'icon$collapsed')} aria-hidden />
   );
 
   useEffect(() => {

@@ -2,11 +2,11 @@ import { forwardRef, useMemo, useState } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { ICopyableTextProps } from './CopyableText.types';
-import { ReactComponent as CopyToClipboardIcon } from '@/assets/CopyToCliboard.svg';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { copyToClipboard } from '@/helpers/copyToClipboard';
 import { PlainTooltip } from '@/components/PlainTooltip';
 import { FluidButton } from '@/components/FluidButton';
+import { IconCopyToCliboard } from '@/components/Icons';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { copyableTextStyles } from './CopyableText.styles';
@@ -73,7 +73,7 @@ export const CopyableText = forwardRef<HTMLElement, ICopyableTextProps>(
           <div {...sxf(overridenStyles, 'host', sx)}>
             {children ? <div {...sxf('text')}>{children}</div> : null}
             {isTriggerVisible
-              ? (icon ?? <CopyToClipboardIcon aria-hidden />)
+              ? (icon ?? <IconCopyToCliboard aria-hidden />)
               : null}
           </div>
         </FluidButton>

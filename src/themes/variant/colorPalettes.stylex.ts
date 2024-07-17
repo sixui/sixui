@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IColorPalettesThemeVars } from '@/themes/base/colorPalettes.types';
+import type { IColorPalettesThemeVars } from '@/themes/base';
 import { colorPalettesTokens } from '@/themes/base/colorPalettes.stylex';
 
 // Generate a new color palette with Material Theme Builder:

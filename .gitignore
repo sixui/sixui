@@ -31,8 +31,6 @@ dist
 /storybook-static
 
 # custom
-.env.local
-/_trash
 vite.config.ts.timestamp-*
 *.local
 *.local.*
