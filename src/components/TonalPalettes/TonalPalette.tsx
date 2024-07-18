@@ -9,12 +9,12 @@ export const TonalPalette: React.FC<ITonalPaletteProps> = (props) => {
 
   return (
     <div {...stylex.props(tonalPaletteStyles.host)}>
-      {tones.map(({ luminance, key }) => (
+      {tones.map(({ luminance, color }) => (
         <div
           {...stylex.props(
             tonalPaletteStyles.tone,
             tonalPaletteStyles.toneColor(
-              tonalPalettesTokens[key],
+              color,
               luminance > 50
                 ? tonalPalettesTokens.black
                 : tonalPalettesTokens.white,
