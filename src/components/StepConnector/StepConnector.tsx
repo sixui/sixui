@@ -5,7 +5,7 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { StepContext } from '@/components/Step/StepContext';
-import { stepStyles } from '../Step/Step.styles';
+import { stepConnectorStyles } from './StepConnector.styles';
 import { stepConnectorTheme } from './StepConnector.stylex';
 
 export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
@@ -22,7 +22,7 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
 
     const componentTheme = useComponentTheme('StepConnector');
     const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(stepStyles, styles),
+      () => stylesCombinatorFactory(stepConnectorStyles, styles),
       [styles],
     );
     const sxf = useMemo(
