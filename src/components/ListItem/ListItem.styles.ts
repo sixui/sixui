@@ -2,6 +2,7 @@ import stylex from '@stylexjs/stylex';
 
 import { stateLayerTokens } from '@/components/StateLayer/StateLayer.stylex';
 import { focusRingTokens } from '@/components/FocusRing/FocusRing.stylex';
+import { itemTokens } from '@/components/Item/Item.stylex';
 import { listItemStateTokens } from './ListItem.state.stylex';
 import { listItemTokens } from './ListItem.stylex';
 
@@ -187,14 +188,18 @@ export const listItemItemStyles = stylex.create({
     paddingInlineEnd: listItemStateTokens.trailingSpace,
     paddingTop: listItemStateTokens.topSpace,
     paddingBottom: listItemStateTokens.bottomSpace,
+
+    [itemTokens.textColor]: listItemStateTokens.textColor,
+    [itemTokens.nonTextColor]: listItemStateTokens.nonTextColor,
+    [itemTokens.overlineColor]: listItemStateTokens.textColor,
+    [itemTokens.headlineTextColor]: listItemStateTokens.textColor,
+    [itemTokens.supportingTextColor]: listItemStateTokens.textColor,
+    [itemTokens.trailingSupportingTextColor]: listItemStateTokens.textColor,
   },
   nonText: {
-    color: listItemStateTokens.nonTextColor,
     opacity: listItemStateTokens.nonTextOpacity,
   },
-  content: {},
   text: {
-    color: listItemStateTokens.textColor,
     opacity: listItemStateTokens.textOpacity,
   },
 });
