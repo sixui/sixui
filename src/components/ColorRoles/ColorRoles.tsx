@@ -1,96 +1,94 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
-import { typescaleTokens } from '@/themes/base/typo.stylex';
-import { colorPalettesTokens } from '@/themes/base/colorPalettes.stylex';
-import { ColorBox } from './ColorBox';
 
-export type IColorSchemeProps = Record<string, never>;
+import type { IColorRolesProps } from './ColorRoles.types';
+import { tonalPalettesTokens } from '@/themes/base/tonalPalettes.stylex';
+import { ColorRole } from './ColorRole';
+import { colorRolesStyles } from './ColorRoles.styles';
 
-const styles = stylex.create({
-  host: {
-    fontFamily: typescaleTokens.labelFont$sm,
-    fontSize: typescaleTokens.labelSize$sm,
-    fontWeight: typescaleTokens.labelWeight$sm,
-    lineHeight: typescaleTokens.labelLineHeight$sm,
-    letterSpacing: typescaleTokens.labelLetterSpacing$sm,
-  },
-  flex: {
-    display: 'flex',
-  },
-  flexCol: {
-    flexDirection: 'column',
-  },
-  grow: {
-    flexGrow: 1,
-    flexBasis: 0,
-  },
-  gapX$sm: {
-    columnGap: '0.25rem',
-  },
-  gapX$lg: {
-    columnGap: '1rem',
-  },
-  gapY$sm: {
-    rowGap: '0.25rem',
-  },
-  gapY$lg: {
-    rowGap: '1rem',
-  },
-  width$sm: {
-    width: 200,
-  },
-  width$lg: {
-    width: 600,
-  },
-});
-
-export const ColorScheme: React.FC<IColorSchemeProps> = () => {
+export const ColorRoles: React.FC<IColorRolesProps> = () => {
   return (
-    <div {...stylex.props(styles.host)}>
-      <div {...stylex.props(styles.flex, styles.flexCol, styles.gapY$lg)}>
+    <div {...stylex.props(colorRolesStyles.host)}>
+      <div
+        {...stylex.props(
+          colorRolesStyles.flex,
+          colorRolesStyles.flexCol,
+          colorRolesStyles.gapY$lg,
+        )}
+      >
         {/* Row 1 */}
-        <div {...stylex.props(styles.flex, styles.flexCol, styles.gapY$sm)}>
-          <div {...stylex.props(styles.flex, styles.gapX$lg)}>
+        <div
+          {...stylex.props(
+            colorRolesStyles.flex,
+            colorRolesStyles.flexCol,
+            colorRolesStyles.gapY$sm,
+          )}
+        >
+          <div
+            {...stylex.props(colorRolesStyles.flex, colorRolesStyles.gapX$lg)}
+          >
             <div
-              {...stylex.props(styles.flex, styles.gapX$sm, styles.width$lg)}
+              {...stylex.props(
+                colorRolesStyles.flex,
+                colorRolesStyles.gapX$sm,
+                colorRolesStyles.width$lg,
+              )}
             >
-              <div {...stylex.props(styles.flex, styles.flexCol, styles.grow)}>
-                <ColorBox
+              <div
+                {...stylex.props(
+                  colorRolesStyles.flex,
+                  colorRolesStyles.flexCol,
+                  colorRolesStyles.grow,
+                )}
+              >
+                <ColorRole
                   label='Primary'
                   size='md'
                   backgroundColor={colorRolesTokens.primary}
                   textColor={colorRolesTokens.onPrimary}
                 />
-                <ColorBox
+                <ColorRole
                   label='On Primary'
                   size='sm'
                   backgroundColor={colorRolesTokens.onPrimary}
                   textColor={colorRolesTokens.primary}
                 />
               </div>
-              <div {...stylex.props(styles.flex, styles.flexCol, styles.grow)}>
-                <ColorBox
+              <div
+                {...stylex.props(
+                  colorRolesStyles.flex,
+                  colorRolesStyles.flexCol,
+                  colorRolesStyles.grow,
+                )}
+              >
+                <ColorRole
                   label='Secondary'
                   size='md'
                   backgroundColor={colorRolesTokens.secondary}
                   textColor={colorRolesTokens.onSecondary}
                 />
-                <ColorBox
+                <ColorRole
                   label='On Secondary'
                   size='sm'
                   backgroundColor={colorRolesTokens.onSecondary}
                   textColor={colorRolesTokens.secondary}
                 />
               </div>
-              <div {...stylex.props(styles.flex, styles.flexCol, styles.grow)}>
-                <ColorBox
+              <div
+                {...stylex.props(
+                  colorRolesStyles.flex,
+                  colorRolesStyles.flexCol,
+                  colorRolesStyles.grow,
+                )}
+              >
+                <ColorRole
                   label='Tertiary'
                   size='md'
                   backgroundColor={colorRolesTokens.tertiary}
                   textColor={colorRolesTokens.onTertiary}
                 />
-                <ColorBox
+                <ColorRole
                   label='On Tertiary'
                   size='sm'
                   backgroundColor={colorRolesTokens.onTertiary}
@@ -99,15 +97,19 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
               </div>
             </div>
             <div
-              {...stylex.props(styles.flex, styles.flexCol, styles.width$sm)}
+              {...stylex.props(
+                colorRolesStyles.flex,
+                colorRolesStyles.flexCol,
+                colorRolesStyles.width$sm,
+              )}
             >
-              <ColorBox
+              <ColorRole
                 label='Error'
                 size='md'
                 backgroundColor={colorRolesTokens.error}
                 textColor={colorRolesTokens.onError}
               />
-              <ColorBox
+              <ColorRole
                 label='On Error'
                 size='sm'
                 backgroundColor={colorRolesTokens.onError}
@@ -116,46 +118,70 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
             </div>
           </div>
 
-          <div {...stylex.props(styles.flex, styles.gapX$lg)}>
+          <div
+            {...stylex.props(colorRolesStyles.flex, colorRolesStyles.gapX$lg)}
+          >
             <div
-              {...stylex.props(styles.flex, styles.gapX$sm, styles.width$lg)}
+              {...stylex.props(
+                colorRolesStyles.flex,
+                colorRolesStyles.gapX$sm,
+                colorRolesStyles.width$lg,
+              )}
             >
-              <div {...stylex.props(styles.flex, styles.flexCol, styles.grow)}>
-                <ColorBox
+              <div
+                {...stylex.props(
+                  colorRolesStyles.flex,
+                  colorRolesStyles.flexCol,
+                  colorRolesStyles.grow,
+                )}
+              >
+                <ColorRole
                   label='Primary Container'
                   size='md'
                   backgroundColor={colorRolesTokens.primaryContainer}
                   textColor={colorRolesTokens.onPrimaryContainer}
                 />
-                <ColorBox
+                <ColorRole
                   label='On Primary Container'
                   size='sm'
                   backgroundColor={colorRolesTokens.onPrimaryContainer}
                   textColor={colorRolesTokens.primaryContainer}
                 />
               </div>
-              <div {...stylex.props(styles.flex, styles.flexCol, styles.grow)}>
-                <ColorBox
+              <div
+                {...stylex.props(
+                  colorRolesStyles.flex,
+                  colorRolesStyles.flexCol,
+                  colorRolesStyles.grow,
+                )}
+              >
+                <ColorRole
                   label='Secondary Container'
                   size='md'
                   backgroundColor={colorRolesTokens.secondaryContainer}
                   textColor={colorRolesTokens.onSecondaryContainer}
                 />
-                <ColorBox
+                <ColorRole
                   label='On Secondary Container'
                   size='sm'
                   backgroundColor={colorRolesTokens.onSecondaryContainer}
                   textColor={colorRolesTokens.secondaryContainer}
                 />
               </div>
-              <div {...stylex.props(styles.flex, styles.flexCol, styles.grow)}>
-                <ColorBox
+              <div
+                {...stylex.props(
+                  colorRolesStyles.flex,
+                  colorRolesStyles.flexCol,
+                  colorRolesStyles.grow,
+                )}
+              >
+                <ColorRole
                   label='Tertiary Container'
                   size='md'
                   backgroundColor={colorRolesTokens.tertiaryContainer}
                   textColor={colorRolesTokens.onTertiaryContainer}
                 />
-                <ColorBox
+                <ColorRole
                   label='On Tertiary Container'
                   size='sm'
                   backgroundColor={colorRolesTokens.onTertiaryContainer}
@@ -164,15 +190,19 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
               </div>
             </div>
             <div
-              {...stylex.props(styles.flex, styles.flexCol, styles.width$sm)}
+              {...stylex.props(
+                colorRolesStyles.flex,
+                colorRolesStyles.flexCol,
+                colorRolesStyles.width$sm,
+              )}
             >
-              <ColorBox
+              <ColorRole
                 label='Error Container'
                 size='md'
                 backgroundColor={colorRolesTokens.errorContainer}
                 textColor={colorRolesTokens.onErrorContainer}
               />
-              <ColorBox
+              <ColorRole
                 label='On Error Container'
                 size='sm'
                 backgroundColor={colorRolesTokens.onErrorContainer}
@@ -183,89 +213,128 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
         </div>
 
         {/* Row 2 */}
-        <div {...stylex.props(styles.flex, styles.flexCol)}>
-          <div {...stylex.props(styles.flex, styles.gapX$lg)}>
+        <div {...stylex.props(colorRolesStyles.flex, colorRolesStyles.flexCol)}>
+          <div
+            {...stylex.props(colorRolesStyles.flex, colorRolesStyles.gapX$lg)}
+          >
             <div
-              {...stylex.props(styles.flex, styles.gapX$sm, styles.width$lg)}
+              {...stylex.props(
+                colorRolesStyles.flex,
+                colorRolesStyles.gapX$sm,
+                colorRolesStyles.width$lg,
+              )}
             >
-              <div {...stylex.props(styles.flex, styles.flexCol, styles.grow)}>
-                <div {...stylex.props(styles.flex, styles.grow)}>
-                  <ColorBox
+              <div
+                {...stylex.props(
+                  colorRolesStyles.flex,
+                  colorRolesStyles.flexCol,
+                  colorRolesStyles.grow,
+                )}
+              >
+                <div
+                  {...stylex.props(
+                    colorRolesStyles.flex,
+                    colorRolesStyles.grow,
+                  )}
+                >
+                  <ColorRole
                     label='Primary Fixed'
                     size='md'
                     backgroundColor={colorRolesTokens.primaryFixed}
                     textColor={colorRolesTokens.onPrimaryFixed}
                   />
-                  <ColorBox
+                  <ColorRole
                     label='Primary Fixed Dim'
                     size='md'
                     backgroundColor={colorRolesTokens.primaryFixedDim}
                     textColor={colorRolesTokens.onPrimaryFixed}
                   />
                 </div>
-                <ColorBox
+                <ColorRole
                   label='On Primary Fixed'
                   size='xs'
                   backgroundColor={colorRolesTokens.onPrimaryFixed}
                   textColor={colorRolesTokens.primaryFixed}
                 />
-                <ColorBox
+                <ColorRole
                   label='On Primary Fixed Variant'
                   size='xs'
                   backgroundColor={colorRolesTokens.onPrimaryFixedVariant}
                   textColor={colorRolesTokens.primaryFixed}
                 />
               </div>
-              <div {...stylex.props(styles.flex, styles.flexCol, styles.grow)}>
-                <div {...stylex.props(styles.flex, styles.grow)}>
-                  <ColorBox
+              <div
+                {...stylex.props(
+                  colorRolesStyles.flex,
+                  colorRolesStyles.flexCol,
+                  colorRolesStyles.grow,
+                )}
+              >
+                <div
+                  {...stylex.props(
+                    colorRolesStyles.flex,
+                    colorRolesStyles.grow,
+                  )}
+                >
+                  <ColorRole
                     label='Secondary Fixed'
                     size='md'
                     backgroundColor={colorRolesTokens.secondaryFixed}
                     textColor={colorRolesTokens.onSecondaryFixed}
                   />
-                  <ColorBox
+                  <ColorRole
                     label='Secondary Fixed Dim'
                     size='md'
                     backgroundColor={colorRolesTokens.secondaryFixedDim}
                     textColor={colorRolesTokens.onSecondaryFixed}
                   />
                 </div>
-                <ColorBox
+                <ColorRole
                   label='On Secondary Fixed'
                   size='xs'
                   backgroundColor={colorRolesTokens.onSecondaryFixed}
                   textColor={colorRolesTokens.secondaryFixed}
                 />
-                <ColorBox
+                <ColorRole
                   label='On Secondary Fixed Variant'
                   size='xs'
                   backgroundColor={colorRolesTokens.onSecondaryFixedVariant}
                   textColor={colorRolesTokens.secondaryFixed}
                 />
               </div>
-              <div {...stylex.props(styles.flex, styles.flexCol, styles.grow)}>
-                <div {...stylex.props(styles.flex, styles.grow)}>
-                  <ColorBox
+              <div
+                {...stylex.props(
+                  colorRolesStyles.flex,
+                  colorRolesStyles.flexCol,
+                  colorRolesStyles.grow,
+                )}
+              >
+                <div
+                  {...stylex.props(
+                    colorRolesStyles.flex,
+                    colorRolesStyles.grow,
+                  )}
+                >
+                  <ColorRole
                     label='Tertiary Fixed'
                     size='md'
                     backgroundColor={colorRolesTokens.tertiaryFixed}
                     textColor={colorRolesTokens.onTertiaryFixed}
                   />
-                  <ColorBox
+                  <ColorRole
                     label='Tertiary Fixed Dim'
                     size='md'
                     backgroundColor={colorRolesTokens.tertiaryFixedDim}
                     textColor={colorRolesTokens.onTertiaryFixed}
                   />
                 </div>
-                <ColorBox
+                <ColorRole
                   label='On Tertiary Fixed'
                   size='xs'
                   backgroundColor={colorRolesTokens.onTertiaryFixed}
                   textColor={colorRolesTokens.tertiaryFixed}
                 />
-                <ColorBox
+                <ColorRole
                   label='On Tertiary Fixed Variant'
                   size='xs'
                   backgroundColor={colorRolesTokens.onTertiaryFixedVariant}
@@ -277,21 +346,35 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
         </div>
 
         {/* Row 3 */}
-        <div {...stylex.props(styles.flex, styles.flexCol, styles.gapY$sm)}>
-          <div {...stylex.props(styles.flex, styles.gapX$lg)}>
+        <div
+          {...stylex.props(
+            colorRolesStyles.flex,
+            colorRolesStyles.flexCol,
+            colorRolesStyles.gapY$sm,
+          )}
+        >
+          <div
+            {...stylex.props(colorRolesStyles.flex, colorRolesStyles.gapX$lg)}
+          >
             <div
               {...stylex.props(
-                styles.flex,
-                styles.flexCol,
-                styles.gapY$sm,
-                styles.width$lg,
+                colorRolesStyles.flex,
+                colorRolesStyles.flexCol,
+                colorRolesStyles.gapY$sm,
+                colorRolesStyles.width$lg,
               )}
             >
-              <div {...stylex.props(styles.flex, styles.grow)}>
+              <div
+                {...stylex.props(colorRolesStyles.flex, colorRolesStyles.grow)}
+              >
                 <div
-                  {...stylex.props(styles.flex, styles.flexCol, styles.grow)}
+                  {...stylex.props(
+                    colorRolesStyles.flex,
+                    colorRolesStyles.flexCol,
+                    colorRolesStyles.grow,
+                  )}
                 >
-                  <ColorBox
+                  <ColorRole
                     label='Surface Dim'
                     size='lg'
                     backgroundColor={colorRolesTokens.surfaceDim}
@@ -299,9 +382,13 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   />
                 </div>
                 <div
-                  {...stylex.props(styles.flex, styles.flexCol, styles.grow)}
+                  {...stylex.props(
+                    colorRolesStyles.flex,
+                    colorRolesStyles.flexCol,
+                    colorRolesStyles.grow,
+                  )}
                 >
-                  <ColorBox
+                  <ColorRole
                     label='Surface'
                     size='lg'
                     backgroundColor={colorRolesTokens.surface}
@@ -309,9 +396,13 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   />
                 </div>
                 <div
-                  {...stylex.props(styles.flex, styles.flexCol, styles.grow)}
+                  {...stylex.props(
+                    colorRolesStyles.flex,
+                    colorRolesStyles.flexCol,
+                    colorRolesStyles.grow,
+                  )}
                 >
-                  <ColorBox
+                  <ColorRole
                     label='Surface Bright'
                     size='lg'
                     backgroundColor={colorRolesTokens.surfaceBright}
@@ -319,11 +410,17 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   />
                 </div>
               </div>
-              <div {...stylex.props(styles.flex, styles.grow)}>
+              <div
+                {...stylex.props(colorRolesStyles.flex, colorRolesStyles.grow)}
+              >
                 <div
-                  {...stylex.props(styles.flex, styles.flexCol, styles.grow)}
+                  {...stylex.props(
+                    colorRolesStyles.flex,
+                    colorRolesStyles.flexCol,
+                    colorRolesStyles.grow,
+                  )}
                 >
-                  <ColorBox
+                  <ColorRole
                     label='Surface Container Lowest'
                     size='xl'
                     backgroundColor={colorRolesTokens.surfaceContainerLowest}
@@ -331,9 +428,13 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   />
                 </div>
                 <div
-                  {...stylex.props(styles.flex, styles.flexCol, styles.grow)}
+                  {...stylex.props(
+                    colorRolesStyles.flex,
+                    colorRolesStyles.flexCol,
+                    colorRolesStyles.grow,
+                  )}
                 >
-                  <ColorBox
+                  <ColorRole
                     label='Surface Container Low'
                     size='xl'
                     backgroundColor={colorRolesTokens.surfaceContainerLow}
@@ -341,9 +442,13 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   />
                 </div>
                 <div
-                  {...stylex.props(styles.flex, styles.flexCol, styles.grow)}
+                  {...stylex.props(
+                    colorRolesStyles.flex,
+                    colorRolesStyles.flexCol,
+                    colorRolesStyles.grow,
+                  )}
                 >
-                  <ColorBox
+                  <ColorRole
                     label='Surface Container'
                     size='xl'
                     backgroundColor={colorRolesTokens.surfaceContainer}
@@ -351,9 +456,13 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   />
                 </div>
                 <div
-                  {...stylex.props(styles.flex, styles.flexCol, styles.grow)}
+                  {...stylex.props(
+                    colorRolesStyles.flex,
+                    colorRolesStyles.flexCol,
+                    colorRolesStyles.grow,
+                  )}
                 >
-                  <ColorBox
+                  <ColorRole
                     label='Surface Container High'
                     size='xl'
                     backgroundColor={colorRolesTokens.surfaceContainerHigh}
@@ -361,9 +470,13 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   />
                 </div>
                 <div
-                  {...stylex.props(styles.flex, styles.flexCol, styles.grow)}
+                  {...stylex.props(
+                    colorRolesStyles.flex,
+                    colorRolesStyles.flexCol,
+                    colorRolesStyles.grow,
+                  )}
                 >
-                  <ColorBox
+                  <ColorRole
                     label='Surface Container Highest'
                     size='xl'
                     backgroundColor={colorRolesTokens.surfaceContainerHighest}
@@ -375,20 +488,25 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
 
             <div
               {...stylex.props(
-                styles.flex,
-                styles.flexCol,
-                styles.gapY$sm,
-                styles.width$sm,
+                colorRolesStyles.flex,
+                colorRolesStyles.flexCol,
+                colorRolesStyles.gapY$sm,
+                colorRolesStyles.width$sm,
               )}
             >
-              <div {...stylex.props(styles.flex, styles.flexCol)}>
-                <ColorBox
+              <div
+                {...stylex.props(
+                  colorRolesStyles.flex,
+                  colorRolesStyles.flexCol,
+                )}
+              >
+                <ColorRole
                   label='Inverse Surface'
                   size='md'
                   backgroundColor={colorRolesTokens.inverseSurface}
                   textColor={colorRolesTokens.inverseOnSurface}
                 />
-                <ColorBox
+                <ColorRole
                   label='Inverse On Surface'
                   size='sm'
                   backgroundColor={colorRolesTokens.inverseOnSurface}
@@ -396,7 +514,7 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                 />
               </div>
 
-              <ColorBox
+              <ColorRole
                 label='Inverse Primary'
                 size='sm'
                 backgroundColor={colorRolesTokens.inversePrimary}
@@ -405,20 +523,28 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
             </div>
           </div>
 
-          <div {...stylex.props(styles.flex, styles.gapX$lg)}>
+          <div
+            {...stylex.props(colorRolesStyles.flex, colorRolesStyles.gapX$lg)}
+          >
             <div
               {...stylex.props(
-                styles.flex,
-                styles.flexCol,
-                styles.gapY$sm,
-                styles.width$lg,
+                colorRolesStyles.flex,
+                colorRolesStyles.flexCol,
+                colorRolesStyles.gapY$sm,
+                colorRolesStyles.width$lg,
               )}
             >
-              <div {...stylex.props(styles.flex, styles.grow)}>
+              <div
+                {...stylex.props(colorRolesStyles.flex, colorRolesStyles.grow)}
+              >
                 <div
-                  {...stylex.props(styles.flex, styles.flexCol, styles.grow)}
+                  {...stylex.props(
+                    colorRolesStyles.flex,
+                    colorRolesStyles.flexCol,
+                    colorRolesStyles.grow,
+                  )}
                 >
-                  <ColorBox
+                  <ColorRole
                     label='On Surface'
                     size='sm'
                     backgroundColor={colorRolesTokens.onSurface}
@@ -426,9 +552,13 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   />
                 </div>
                 <div
-                  {...stylex.props(styles.flex, styles.flexCol, styles.grow)}
+                  {...stylex.props(
+                    colorRolesStyles.flex,
+                    colorRolesStyles.flexCol,
+                    colorRolesStyles.grow,
+                  )}
                 >
-                  <ColorBox
+                  <ColorRole
                     label='On Surface Variant'
                     size='sm'
                     backgroundColor={colorRolesTokens.onSurfaceVariant}
@@ -436,9 +566,13 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   />
                 </div>
                 <div
-                  {...stylex.props(styles.flex, styles.flexCol, styles.grow)}
+                  {...stylex.props(
+                    colorRolesStyles.flex,
+                    colorRolesStyles.flexCol,
+                    colorRolesStyles.grow,
+                  )}
                 >
-                  <ColorBox
+                  <ColorRole
                     label='Outline'
                     size='sm'
                     backgroundColor={colorRolesTokens.outline}
@@ -446,9 +580,13 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   />
                 </div>
                 <div
-                  {...stylex.props(styles.flex, styles.flexCol, styles.grow)}
+                  {...stylex.props(
+                    colorRolesStyles.flex,
+                    colorRolesStyles.flexCol,
+                    colorRolesStyles.grow,
+                  )}
                 >
-                  <ColorBox
+                  <ColorRole
                     label='Outline Variant'
                     size='sm'
                     backgroundColor={colorRolesTokens.outlineVariant}
@@ -458,22 +596,38 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
               </div>
             </div>
             <div
-              {...stylex.props(styles.flex, styles.gapX$lg, styles.width$sm)}
+              {...stylex.props(
+                colorRolesStyles.flex,
+                colorRolesStyles.gapX$lg,
+                colorRolesStyles.width$sm,
+              )}
             >
-              <div {...stylex.props(styles.flex, styles.flexCol, styles.grow)}>
-                <ColorBox
+              <div
+                {...stylex.props(
+                  colorRolesStyles.flex,
+                  colorRolesStyles.flexCol,
+                  colorRolesStyles.grow,
+                )}
+              >
+                <ColorRole
                   label='Scrim'
                   size='sm'
                   backgroundColor={colorRolesTokens.scrim}
-                  textColor={colorPalettesTokens.white}
+                  textColor={tonalPalettesTokens.white}
                 />
               </div>
-              <div {...stylex.props(styles.flex, styles.flexCol, styles.grow)}>
-                <ColorBox
+              <div
+                {...stylex.props(
+                  colorRolesStyles.flex,
+                  colorRolesStyles.flexCol,
+                  colorRolesStyles.grow,
+                )}
+              >
+                <ColorRole
                   label='Shadow'
                   size='sm'
                   backgroundColor={colorRolesTokens.scrim}
-                  textColor={colorPalettesTokens.white}
+                  textColor={tonalPalettesTokens.white}
                 />
               </div>
             </div>

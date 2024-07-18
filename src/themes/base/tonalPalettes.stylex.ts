@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IColorPalettesThemeVars } from './colorPalettes.types';
+import type { ITonalPalettesThemeVars } from './tonalPalettes.types';
 
 // https://github.com/material-components/material-components-android/blob/master/docs/theming/Color.md#color-theming
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-ref-palette.scss
@@ -158,7 +158,7 @@ const errorPalette = {
   error100: '#fff',
 };
 
-export const colorPalettesTokens = stylex.defineVars<IColorPalettesThemeVars>({
+export const tonalPalettesTokens = stylex.defineVars<ITonalPalettesThemeVars>({
   white: '#fff',
   black: '#000',
 

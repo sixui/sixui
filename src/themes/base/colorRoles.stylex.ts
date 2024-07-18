@@ -15,7 +15,7 @@ import type {
   IColorRolesTertiaryThemeVars,
   IColorRolesThemeVars,
 } from './colorRoles.types';
-import { colorPalettesTokens } from './colorPalettes.stylex';
+import { tonalPalettesTokens } from './tonalPalettes.stylex';
 
 // Generate a new color palette with Material Theme Builder:
 // https://m3.material.io/theme-builder#/custom
@@ -27,79 +27,79 @@ import { colorPalettesTokens } from './colorPalettes.stylex';
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-sys-color.scss
 
 const primary: IColorRolesPrimaryThemeVars = {
-  primary: colorPalettesTokens.primary40,
-  onPrimary: colorPalettesTokens.primary100,
-  primaryContainer: colorPalettesTokens.primary90,
-  onPrimaryContainer: colorPalettesTokens.primary10,
+  primary: tonalPalettesTokens.primary40,
+  onPrimary: tonalPalettesTokens.primary100,
+  primaryContainer: tonalPalettesTokens.primary90,
+  onPrimaryContainer: tonalPalettesTokens.primary10,
 };
 
 const secondary: IColorRolesSecondaryThemeVars = {
-  secondary: colorPalettesTokens.secondary40,
-  onSecondary: colorPalettesTokens.secondary100,
-  secondaryContainer: colorPalettesTokens.secondary90,
-  onSecondaryContainer: colorPalettesTokens.secondary10,
+  secondary: tonalPalettesTokens.secondary40,
+  onSecondary: tonalPalettesTokens.secondary100,
+  secondaryContainer: tonalPalettesTokens.secondary90,
+  onSecondaryContainer: tonalPalettesTokens.secondary10,
 };
 
 const tertiary: IColorRolesTertiaryThemeVars = {
-  tertiary: colorPalettesTokens.tertiary40,
-  onTertiary: colorPalettesTokens.tertiary100,
-  tertiaryContainer: colorPalettesTokens.tertiary90,
-  onTertiaryContainer: colorPalettesTokens.tertiary10,
+  tertiary: tonalPalettesTokens.tertiary40,
+  onTertiary: tonalPalettesTokens.tertiary100,
+  tertiaryContainer: tonalPalettesTokens.tertiary90,
+  onTertiaryContainer: tonalPalettesTokens.tertiary10,
 };
 
 const error: IColorRolesErrorThemeVars = {
-  error: colorPalettesTokens.error40,
-  onError: colorPalettesTokens.error100,
-  errorContainer: colorPalettesTokens.error90,
-  onErrorContainer: colorPalettesTokens.error10,
+  error: tonalPalettesTokens.error40,
+  onError: tonalPalettesTokens.error100,
+  errorContainer: tonalPalettesTokens.error90,
+  onErrorContainer: tonalPalettesTokens.error10,
 };
 
 const surfaceInverse: IColorRolesSurfaceInverseThemeVars = {
-  inverseSurface: colorPalettesTokens.neutral20,
-  inverseOnSurface: colorPalettesTokens.neutral95,
-  inversePrimary: colorPalettesTokens.primary80,
+  inverseSurface: tonalPalettesTokens.neutral20,
+  inverseOnSurface: tonalPalettesTokens.neutral95,
+  inversePrimary: tonalPalettesTokens.primary80,
 };
 
 const surface: IColorRolesSurfaceThemeVars = {
-  surface: colorPalettesTokens.neutral98,
-  onSurface: colorPalettesTokens.neutral10,
-  onSurfaceVariant: colorPalettesTokens.neutralVariant30,
-  surfaceContainerLowest: colorPalettesTokens.neutral100,
-  surfaceContainerLow: colorPalettesTokens.neutral96,
-  surfaceContainer: colorPalettesTokens.neutral94,
-  surfaceContainerHigh: colorPalettesTokens.neutral92,
-  surfaceContainerHighest: colorPalettesTokens.neutral90,
+  surface: tonalPalettesTokens.neutral98,
+  onSurface: tonalPalettesTokens.neutral10,
+  onSurfaceVariant: tonalPalettesTokens.neutralVariant30,
+  surfaceContainerLowest: tonalPalettesTokens.neutral100,
+  surfaceContainerLow: tonalPalettesTokens.neutral96,
+  surfaceContainer: tonalPalettesTokens.neutral94,
+  surfaceContainerHigh: tonalPalettesTokens.neutral92,
+  surfaceContainerHighest: tonalPalettesTokens.neutral90,
   ...surfaceInverse,
 };
 
 const outline: IColorRolesOutlineThemeVars = {
-  outline: colorPalettesTokens.neutralVariant50,
-  outlineVariant: colorPalettesTokens.neutralVariant80,
+  outline: tonalPalettesTokens.neutralVariant50,
+  outlineVariant: tonalPalettesTokens.neutralVariant80,
 };
 
 const addOnsFixed: IColorRolesAddOnsFixedThemeVars = {
-  primaryFixed: colorPalettesTokens.primary90,
-  secondaryFixed: colorPalettesTokens.secondary90,
-  tertiaryFixed: colorPalettesTokens.tertiary90,
+  primaryFixed: tonalPalettesTokens.primary90,
+  secondaryFixed: tonalPalettesTokens.secondary90,
+  tertiaryFixed: tonalPalettesTokens.tertiary90,
 };
 
 const addOnsDim: IColorRolesAddOnsDimThemeVars = {
-  primaryFixedDim: colorPalettesTokens.primary80,
-  secondaryFixedDim: colorPalettesTokens.secondary80,
-  tertiaryFixedDim: colorPalettesTokens.tertiary80,
-  dim: colorPalettesTokens.neutralVariant50,
+  primaryFixedDim: tonalPalettesTokens.primary80,
+  secondaryFixedDim: tonalPalettesTokens.secondary80,
+  tertiaryFixedDim: tonalPalettesTokens.tertiary80,
+  dim: tonalPalettesTokens.neutralVariant50,
 };
 
 const addOnsOnFixed: IColorRolesAddOnsOnFixedThemeVars = {
-  onPrimaryFixed: colorPalettesTokens.primary10,
-  onSecondaryFixed: colorPalettesTokens.secondary10,
-  onTertiaryFixed: colorPalettesTokens.tertiary10,
+  onPrimaryFixed: tonalPalettesTokens.primary10,
+  onSecondaryFixed: tonalPalettesTokens.secondary10,
+  onTertiaryFixed: tonalPalettesTokens.tertiary10,
 };
 
 const addOnsOnFixedVariant: IColorRolesAddOnsOnFixedVariantThemeVars = {
-  onPrimaryFixedVariant: colorPalettesTokens.primary30,
-  onSecondaryFixedVariant: colorPalettesTokens.secondary30,
-  onTertiaryFixedVariant: colorPalettesTokens.tertiary30,
+  onPrimaryFixedVariant: tonalPalettesTokens.primary30,
+  onSecondaryFixedVariant: tonalPalettesTokens.secondary30,
+  onTertiaryFixedVariant: tonalPalettesTokens.tertiary30,
 };
 
 const addOns: IColorRolesAddOnsThemeVars = {
@@ -107,9 +107,9 @@ const addOns: IColorRolesAddOnsThemeVars = {
   ...addOnsDim,
   ...addOnsOnFixed,
   ...addOnsOnFixedVariant,
-  surfaceDim: colorPalettesTokens.neutral87,
-  surfaceBright: colorPalettesTokens.neutral98,
-  surfacePlaceholder: colorPalettesTokens.neutralVariant80,
+  surfaceDim: tonalPalettesTokens.neutral87,
+  surfaceBright: tonalPalettesTokens.neutral98,
+  surfacePlaceholder: tonalPalettesTokens.neutralVariant80,
 };
 
 const colorRoles: IColorRolesThemeVars = {
@@ -120,9 +120,9 @@ const colorRoles: IColorRolesThemeVars = {
   ...surface,
   ...outline,
   ...addOns,
-  shadow: colorPalettesTokens.neutral0,
-  scrim: colorPalettesTokens.neutral0,
-  surfaceSelection: colorPalettesTokens.neutralVariant70,
+  shadow: tonalPalettesTokens.neutral0,
+  scrim: tonalPalettesTokens.neutral0,
+  surfaceSelection: tonalPalettesTokens.neutralVariant70,
 };
 
 export const colorRolesTokens = stylex.defineVars(colorRoles);

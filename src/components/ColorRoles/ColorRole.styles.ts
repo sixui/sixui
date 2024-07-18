@@ -1,14 +1,7 @@
 import type { StyleXVar } from '@stylexjs/stylex/lib/StyleXTypes';
 import stylex from '@stylexjs/stylex';
 
-export type IColorBoxProps = {
-  label: string;
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  backgroundColor: string | StyleXVar<string>;
-  textColor: string | StyleXVar<string>;
-};
-
-const styles = stylex.create({
+export const colorRoleStyles = stylex.create({
   host: {
     flexGrow: 1,
     paddingLeft: '0.75rem',
@@ -35,20 +28,3 @@ const styles = stylex.create({
     backgroundColor: 'unset',
   },
 });
-
-export const ColorBox: React.FC<IColorBoxProps> = ({
-  label,
-  size = 'md',
-  backgroundColor,
-  textColor,
-}) => (
-  <div
-    {...stylex.props(
-      styles.host,
-      styles[`height$${size}`],
-      styles.color(backgroundColor, textColor),
-    )}
-  >
-    {label}
-  </div>
-);

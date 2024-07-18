@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IColorPalettesThemeVars } from '@/themes/base';
-import { colorPalettesTokens } from '@/themes/base/colorPalettes.stylex';
+import type { ITonalPalettesThemeVars } from '@/themes/base';
+import { tonalPalettesTokens } from '@/themes/base/tonalPalettes.stylex';
 
 // Generate a new color palette with Material Theme Builder:
 // https://m3.material.io/theme-builder#/custom
@@ -147,7 +147,7 @@ const errorPalette = {
   error100: '#fff',
 };
 
-export const colorPalettesVars = stylex.defineVars<IColorPalettesThemeVars>({
+export const tonalPalettesVars = stylex.defineVars<ITonalPalettesThemeVars>({
   white: '#fff',
   black: '#000',
 
@@ -159,7 +159,7 @@ export const colorPalettesVars = stylex.defineVars<IColorPalettesThemeVars>({
   ...errorPalette,
 });
 
-export const colorPalettesTheme = stylex.createTheme(
-  colorPalettesTokens,
-  colorPalettesVars,
+export const tonalPalettesTheme = stylex.createTheme(
+  tonalPalettesTokens,
+  tonalPalettesVars,
 );

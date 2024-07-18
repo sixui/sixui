@@ -1,66 +1,9 @@
-import type { StyleXVar } from '@stylexjs/stylex/lib/StyleXTypes';
 import stylex from '@stylexjs/stylex';
 
-import type { IColorPalettesThemeVars } from '@/themes/base/colorPalettes.types';
-import { typescaleTokens } from '@/themes/base/typo.stylex';
-import { colorPalettesTokens } from '@/themes/base/colorPalettes.stylex';
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
-
-export type IColorPalettesProps = Record<string, never>;
-
-const styles = stylex.create({
-  host: {
-    display: 'flex',
-    flexDirection: 'column',
-    rowGap: '2rem',
-    fontFamily: typescaleTokens.labelFont$lg,
-    fontSize: typescaleTokens.labelSize$lg,
-    fontWeight: typescaleTokens.labelWeight$lg,
-    lineHeight: typescaleTokens.labelLineHeight$lg,
-    letterSpacing: typescaleTokens.labelLetterSpacing$lg,
-  },
-  title: {
-    color: colorRolesTokens.onSurface,
-  },
-  tonalPalette: {
-    display: 'flex',
-    flexDirection: 'column',
-    rowGap: '0.5rem',
-  },
-  tonalRow: {
-    display: 'flex',
-    height: '72px',
-    justifyContent: 'space-evenly',
-  },
-  tone: {
-    flexGrow: 1,
-    flexShrink: 1,
-    flexBasis: '0%',
-    position: 'relative',
-  },
-  toneColor: (
-    bg: string | StyleXVar<string>,
-    text: string | StyleXVar<string>,
-  ) => ({
-    backgroundColor: bg,
-    color: text,
-  }),
-  toneLabel: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    overflowWrap: 'break-word',
-    textTransform: 'capitalize',
-  },
-});
-
-type ITone = { luminance: number; key: keyof IColorPalettesThemeVars };
-
-type ITonalPalette = {
-  title: string;
-  tones: Array<ITone>;
-};
+import type { ITonalPalette } from './TonalPalette.types';
+import type { ITonalPalettesProps } from './TonalPalettes.types';
+import { tonalPalettesStyles } from './TonalPalettes.styles';
+import { TonalPalette } from './TonalPalette';
 
 const tonalPalettes: Array<ITonalPalette> = [
   {
@@ -186,30 +129,15 @@ const tonalPalettes: Array<ITonalPalette> = [
   },
 ];
 
-export const ColorPalettes: React.FC<IColorPalettesProps> = () => (
-  <div {...stylex.props(styles.host)}>
+export const TonalPalettes: React.FC<ITonalPalettesProps> = () => (
+  <div {...stylex.props(tonalPalettesStyles.host)}>
     {tonalPalettes.map((palette) => (
-      <div {...stylex.props(styles.tonalPalette)} key={palette.title}>
-        <div {...stylex.props(styles.title)}>{palette.title}</div>
-        <div {...stylex.props(styles.tonalRow)}>
-          {palette.tones.map(({ luminance, key }) => (
-            <div
-              {...stylex.props(
-                styles.tone,
-                styles.toneColor(
-                  colorPalettesTokens[key],
-                  luminance > 50
-                    ? colorPalettesTokens.black
-                    : colorPalettesTokens.white,
-                ),
-              )}
-              key={luminance}
-              title={`Luminance ${luminance}`}
-            >
-              <div {...stylex.props(styles.toneLabel)}>{luminance}</div>
-            </div>
-          ))}
-        </div>
+      <div
+        {...stylex.props(tonalPalettesStyles.tonalPalette)}
+        key={palette.title}
+      >
+        <div {...stylex.props(tonalPalettesStyles.title)}>{palette.title}</div>
+        <TonalPalette palette={palette} key={palette.title} />
       </div>
     ))}
   </div>

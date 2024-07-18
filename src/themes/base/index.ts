@@ -1,4 +1,4 @@
-export * from './colorPalettes.types';
+export * from './tonalPalettes.types';
 export * from './colorRoles.types';
 export * from './darkColorRoles.styles';
 export * from './motion.types';

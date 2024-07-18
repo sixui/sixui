@@ -1,7 +1,7 @@
 import stylex, { type Theme, type VarGroup } from '@stylexjs/stylex';
 
 import type { IContainerProps, IMakeOptional } from '@/helpers/types';
-import type { IColorPalettesThemeVars } from '@/themes/base/colorPalettes.types';
+import type { ITonalPalettesThemeVars } from '@/themes/base/tonalPalettes.types';
 import type { IShapeThemeVars } from '@/themes/base/shape.types';
 import type { IMotionThemeVars } from '@/themes/base/motion.types';
 import type {
@@ -17,7 +17,7 @@ import { ThemeContext, type IThemeContextValue } from './ThemeContext';
 export type IThemeProviderProps = IContainerProps &
   IMakeOptional<IThemeContextValue, 'settings'> & {
     children: React.ReactNode;
-    colorPalettesTheme?: Theme<VarGroup<IColorPalettesThemeVars>>;
+    tonalPalettesTheme?: Theme<VarGroup<ITonalPalettesThemeVars>>;
     shapeTheme?: Theme<VarGroup<IShapeThemeVars>>;
     motionTheme?: Theme<VarGroup<IMotionThemeVars>>;
     typefaceTheme?: Theme<VarGroup<ITypefaceThemeVars>>;
@@ -38,7 +38,7 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
     sx,
     children,
     settings,
-    colorPalettesTheme,
+    tonalPalettesTheme,
     shapeTheme,
     motionTheme,
     typefaceTheme,
@@ -59,8 +59,8 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
     >
       <div
         {...stylex.props([
-          colorPalettesTheme
-            ? [colorPalettesTheme, colorRolesTheme]
+          tonalPalettesTheme
+            ? [tonalPalettesTheme, colorRolesTheme]
             : undefined,
           shapeTheme,
           motionTheme,

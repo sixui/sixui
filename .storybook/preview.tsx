@@ -9,7 +9,7 @@ import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
 import { darkColorRolesVars } from '@/themes/base/darkColorRoles.styles';
 
 // For theme variant
-// import { colorPalettesTheme as variantColorPalettesTheme } from '@/themes/variant/colorPalettes.stylex';
+// import { tonalPalettesTheme as variantTonalPalettesTheme } from '@/themes/variant/tonalPalettes.stylex';
 // import { shapeTheme as variantShapeTheme } from '@/themes/variant/shape.stylex';
 // import { buttonTokens } from '@/components/Button/Button.stylex';
 // import { disclosureButtonTokens } from '@/components/DisclosureButton/DisclosureButton.stylex';
@@ -85,7 +85,7 @@ export const decorators: Array<Decorator> = [
 
     return (
       <ThemeProvider
-      // colorPalettesTheme={variantColorPalettesTheme}
+      // tonalPalettesTheme={variantTonalPalettesTheme}
       // shapeTheme={variantShapeTheme}
       // componentsStyles={componentsStyles}
       >
