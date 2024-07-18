@@ -1,3 +1,15 @@
+# v0.0.333 (Thu Jul 18 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(ListItem): styling ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.332 (Thu Jul 18 2024)
 
 #### ⚠️ Pushed to `main`
