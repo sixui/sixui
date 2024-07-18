@@ -50,11 +50,14 @@ export const standardListItemStyles = stylex.create({
     [listItemTokens.leadingIconColor$pressed]:
       colorSchemeTokens.onSurfaceVariant,
 
-    [listItemTokens.selectedLeadingIconColor]: colorSchemeTokens.primary,
-    [listItemTokens.selectedLeadingIconColor$focus]: colorSchemeTokens.primary,
-    [listItemTokens.selectedLeadingIconColor$hover]: colorSchemeTokens.primary,
+    [listItemTokens.selectedLeadingIconColor]:
+      colorSchemeTokens.onPrimaryContainer,
+    [listItemTokens.selectedLeadingIconColor$focus]:
+      colorSchemeTokens.onPrimaryContainer,
+    [listItemTokens.selectedLeadingIconColor$hover]:
+      colorSchemeTokens.onPrimaryContainer,
     [listItemTokens.selectedLeadingIconColor$pressed]:
-      colorSchemeTokens.primary,
+      colorSchemeTokens.onPrimaryContainer,
 
     [listItemTokens.trailingIconColor]: colorSchemeTokens.onSurfaceVariant,
     [listItemTokens.trailingIconColor$focus]:
@@ -64,10 +67,13 @@ export const standardListItemStyles = stylex.create({
     [listItemTokens.trailingIconColor$pressed]:
       colorSchemeTokens.onSurfaceVariant,
 
-    [listItemTokens.selectedTrailingIconColor]: colorSchemeTokens.primary,
-    [listItemTokens.selectedTrailingIconColor$focus]: colorSchemeTokens.primary,
-    [listItemTokens.selectedTrailingIconColor$hover]: colorSchemeTokens.primary,
+    [listItemTokens.selectedTrailingIconColor]:
+      colorSchemeTokens.onPrimaryContainer,
+    [listItemTokens.selectedTrailingIconColor$focus]:
+      colorSchemeTokens.onPrimaryContainer,
+    [listItemTokens.selectedTrailingIconColor$hover]:
+      colorSchemeTokens.onPrimaryContainer,
     [listItemTokens.selectedTrailingIconColor$pressed]:
-      colorSchemeTokens.primary,
+      colorSchemeTokens.onPrimaryContainer,
   },
 });
