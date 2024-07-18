@@ -1,3 +1,15 @@
+# v0.0.328 (Thu Jul 18 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: exporting ColorRoles and TonalPalettes ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.327 (Wed Jul 17 2024)
 
 #### ⚠️ Pushed to `main`
