@@ -19,9 +19,7 @@ export const isElementLike = <TElement extends React.ReactElement>(
   const elementDisplayName = getDisplayName(element);
   // eslint-disable-next-line no-console
   console.log('__elementDisplayName', elementDisplayName);
-  const isLike =
-    elementDisplayName !== undefined &&
-    elementDisplayName === expectedDisplayName;
+  const isLike = !!elementDisplayName?.endsWith(expectedDisplayName);
 
   return isLike;
 };
