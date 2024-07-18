@@ -70,19 +70,17 @@ export const RadioGroup: IRadioGroup = forwardRef(function RadioGroup<
   const handleRef = useMergeRefs([forwardedRef, hostRef]);
   const name = useId(nameProp);
 
-  const contextValue = useMemo(
-    () =>
-      ({
-        name,
-        onChange(event, value: string | undefined) {
-          setValue(value);
-          onChange?.(event, value);
-        },
-        value,
-        disabled,
-      }) satisfies IRadioGroupContextValue,
-    [name, onChange, value, setValue, disabled],
-  );
+  const contextValue = useMemo(() => {
+    return {
+      name,
+      onChange: (event, value) => {
+        setValue(value);
+        onChange?.(event, value);
+      },
+      value,
+      disabled,
+    } satisfies IRadioGroupContextValue;
+  }, [name, onChange, value, setValue, disabled]);
 
   const Component = as ?? RADIO_GROUP_DEFAULT_TAG;
 

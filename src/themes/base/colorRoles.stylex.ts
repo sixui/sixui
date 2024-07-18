@@ -87,7 +87,6 @@ const addOnsDim: IColorRolesAddOnsDimThemeVars = {
   primaryFixedDim: tonalPalettesTokens.primary80,
   secondaryFixedDim: tonalPalettesTokens.secondary80,
   tertiaryFixedDim: tonalPalettesTokens.tertiary80,
-  dim: tonalPalettesTokens.neutralVariant50,
 };
 
 const addOnsOnFixed: IColorRolesAddOnsOnFixedThemeVars = {
@@ -109,7 +108,6 @@ const addOns: IColorRolesAddOnsThemeVars = {
   ...addOnsOnFixedVariant,
   surfaceDim: tonalPalettesTokens.neutral87,
   surfaceBright: tonalPalettesTokens.neutral98,
-  surfacePlaceholder: tonalPalettesTokens.neutralVariant80,
 };
 
 const colorRoles: IColorRolesThemeVars = {
@@ -122,7 +120,6 @@ const colorRoles: IColorRolesThemeVars = {
   ...addOns,
   shadow: tonalPalettesTokens.neutral0,
   scrim: tonalPalettesTokens.neutral0,
-  surfaceSelection: tonalPalettesTokens.neutralVariant70,
 };
 
 export const colorRolesTokens = stylex.defineVars(colorRoles);

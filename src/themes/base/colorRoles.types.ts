@@ -200,11 +200,6 @@ export type IColorRolesAddOnsDimThemeVars = {
   primaryFixedDim: string;
   secondaryFixedDim: string;
   tertiaryFixedDim: string;
-
-  /**
-   * Placeholder text color
-   */
-  dim: string;
 };
 
 /**
@@ -242,11 +237,6 @@ export type IColorRolesAddOnsThemeVars = IColorRolesAddOnsFixedThemeVars &
      * Brightest surface color in light and dark themes
      */
     surfaceBright: string;
-
-    /**
-     * Placeholder container color
-     */
-    surfacePlaceholder: string;
   };
 
 /**
@@ -273,6 +263,4 @@ export type IColorRolesThemeVars = IColorRolesPrimaryThemeVars &
      * https://m3.material.io/styles/elevation/applying-elevation#92b9fb39-f0c4-4829-8e4d-97ac512976aa
      */
     scrim: string;
-
-    surfaceSelection: string;
   };

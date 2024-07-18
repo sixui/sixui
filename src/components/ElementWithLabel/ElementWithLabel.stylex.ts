@@ -28,7 +28,7 @@ const vars = {
   actionTextOpacity$disabled: stateTokens.opacity$disabled,
 
   // supportingText
-  supportingTextColor: colorRolesTokens.dim,
+  supportingTextColor: colorRolesTokens.onSurfaceVariant,
   supportingTextFont: typescaleTokens.bodyFont$sm,
   supportingTextSize: typescaleTokens.bodySize$sm,
   supportingTextWeight: typescaleTokens.bodyWeight$sm,

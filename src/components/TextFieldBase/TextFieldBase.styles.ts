@@ -48,7 +48,8 @@ export const textFieldBaseStyles = stylex.create({
     },
     '::selection': {
       backgroundColor: fieldBaseTokens.contentBackground$selection,
-      color: fieldBaseTokens.contentColor$selection,
+
+      // color: fieldBaseTokens.contentColor$selection,
     },
     borderStyle: {
       default: 'unset',
@@ -60,27 +61,27 @@ export const textFieldBaseStyles = stylex.create({
       default: 0,
       '::-webkit-color-swatch-wrapper': 0,
     },
-    color: {
-      default: 'inherit',
-      '::-webkit-datetime-edit-day-field:focus':
-        fieldBaseTokens.contentColor$selection,
-      '::-webkit-datetime-edit-month-field:focus':
-        fieldBaseTokens.contentColor$selection,
-      '::-webkit-datetime-edit-year-field:focus':
-        fieldBaseTokens.contentColor$selection,
-      '::-webkit-datetime-edit-week-field:focus':
-        fieldBaseTokens.contentColor$selection,
-      '::-webkit-datetime-edit-hour-field:focus':
-        fieldBaseTokens.contentColor$selection,
-      '::-webkit-datetime-edit-minute-field:focus':
-        fieldBaseTokens.contentColor$selection,
-      '::-webkit-datetime-edit-second-field:focus':
-        fieldBaseTokens.contentColor$selection,
-      '::-webkit-datetime-edit-millisecond-field:focus':
-        fieldBaseTokens.contentColor$selection,
-      '::-webkit-datetime-edit-ampm-field:focus':
-        fieldBaseTokens.contentColor$selection,
-    },
+    // color: {
+    //   default: 'inherit',
+    //   '::-webkit-datetime-edit-day-field:focus':
+    //     fieldBaseTokens.contentColor$selection,
+    //   '::-webkit-datetime-edit-month-field:focus':
+    //     fieldBaseTokens.contentColor$selection,
+    //   '::-webkit-datetime-edit-year-field:focus':
+    //     fieldBaseTokens.contentColor$selection,
+    //   '::-webkit-datetime-edit-week-field:focus':
+    //     fieldBaseTokens.contentColor$selection,
+    //   '::-webkit-datetime-edit-hour-field:focus':
+    //     fieldBaseTokens.contentColor$selection,
+    //   '::-webkit-datetime-edit-minute-field:focus':
+    //     fieldBaseTokens.contentColor$selection,
+    //   '::-webkit-datetime-edit-second-field:focus':
+    //     fieldBaseTokens.contentColor$selection,
+    //   '::-webkit-datetime-edit-millisecond-field:focus':
+    //     fieldBaseTokens.contentColor$selection,
+    //   '::-webkit-datetime-edit-ampm-field:focus':
+    //     fieldBaseTokens.contentColor$selection,
+    // },
     backgroundColor: {
       default: 'inherit',
       // Date input highlight color
