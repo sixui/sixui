@@ -1,9 +1,14 @@
 import stylex from '@stylexjs/stylex';
 
-import type { ITonalPalette } from './TonalPalette.types';
+import type { ITone } from './TonalPalette.types';
 import type { ITonalPalettesProps } from './TonalPalettes.types';
 import { tonalPalettesStyles } from './TonalPalettes.styles';
 import { TonalPalette } from './TonalPalette';
+
+type ITonalPalette = {
+  title: string;
+  tones: Array<ITone>;
+};
 
 const tonalPalettes: Array<ITonalPalette> = [
   {
@@ -137,7 +142,7 @@ export const TonalPalettes: React.FC<ITonalPalettesProps> = () => (
         key={palette.title}
       >
         <div {...stylex.props(tonalPalettesStyles.title)}>{palette.title}</div>
-        <TonalPalette palette={palette} key={palette.title} />
+        <TonalPalette tones={palette.tones} key={palette.title} />
       </div>
     ))}
   </div>

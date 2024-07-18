@@ -5,11 +5,11 @@ import { tonalPalettesTokens } from '@/themes/base/tonalPalettes.stylex';
 import { tonalPaletteStyles } from './TonalPalette.styles';
 
 export const TonalPalette: React.FC<ITonalPaletteProps> = (props) => {
-  const { palette } = props;
+  const { tones } = props;
 
   return (
     <div {...stylex.props(tonalPaletteStyles.host)}>
-      {palette.tones.map(({ luminance, key }) => (
+      {tones.map(({ luminance, key }) => (
         <div
           {...stylex.props(
             tonalPaletteStyles.tone,
