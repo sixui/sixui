@@ -20,7 +20,7 @@ export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
       ...other
     } = props;
 
-    const { overridenStyles } = useComponentTheme('Scrim');
+    const componentTheme = useComponentTheme('Scrim');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(scrimStyles, styles),
       [styles],
@@ -42,7 +42,7 @@ export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
       <FloatingOverlay
         {...sxf(
           scrimTheme,
-          overridenStyles,
+          componentTheme.overridenStyles,
           'host',
           `host$${variant}`,
           `transition$${transitionStatus.status}`,

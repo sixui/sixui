@@ -24,7 +24,7 @@ export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
       ...other
     } = props;
 
-    const { overridenStyles } = useComponentTheme('Avatar');
+    const componentTheme = useComponentTheme('Avatar');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(avatarStyles, styles),
       [styles],
@@ -46,7 +46,7 @@ export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
 
     return (
       <div
-        {...sxf(avatarTheme, overridenStyles, 'host', sx)}
+        {...sxf(avatarTheme, componentTheme.overridenStyles, 'host', sx)}
         {...other}
         ref={forwardedRef}
       >

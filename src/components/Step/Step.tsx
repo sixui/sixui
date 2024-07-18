@@ -49,7 +49,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       ...other
     } = props;
 
-    const { overridenStyles } = useComponentTheme('Step');
+    const componentTheme = useComponentTheme('Step');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(stepStyles, styles),
       [styles],
@@ -213,7 +213,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
         <div
           {...sxf(
             stepTheme,
-            overridenStyles,
+            componentTheme.overridenStyles,
             'host',
             labelPosition === 'bottom' && `host$bottomLabel`,
             sx,

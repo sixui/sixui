@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
 import { elevationTokens } from '@/components/Elevation/Elevation.stylex';
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { shapeTokens } from '@/themes/base/shape.stylex';
 import { stateTokens } from '@/themes/base/state.stylex';
-import { typescaleTokens } from '@/themes/base/typo.stylex';
+import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-primary-tab.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-primary-navigation-tab.scss
@@ -15,25 +15,25 @@ const vars = {
   // activeIndicator
   activeIndicatorShape: 'unset',
   activeIndicatorHeight: 'unset',
-  activeIndicatorColor: colorRolesTokens.primary,
+  activeIndicatorColor: colorSchemeTokens.primary,
 
   // container
-  containerColor: colorRolesTokens.surface,
+  containerColor: colorSchemeTokens.surface,
   containerElevation: elevationTokens.boxShadow$level0,
   containerHeight: '48px',
   containerHeight$withIconAndLabelText: 'unset',
   containerShape: shapeTokens.corner$none,
   // &:disabled
   containerElevation$disabled: elevationTokens.boxShadow$level0,
-  containerColor$disabled: colorRolesTokens.surface,
+  containerColor$disabled: colorSchemeTokens.surface,
   containerOpacity$disabled: stateTokens.opacity$disabled,
 
   // stateLayer
   // &:hover
-  stateLayerColor$hover: colorRolesTokens.onSurface,
+  stateLayerColor$hover: colorSchemeTokens.onSurface,
   stateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,
   // &:pressed
-  stateLayerColor$pressed: colorRolesTokens.primary,
+  stateLayerColor$pressed: colorSchemeTokens.primary,
   stateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
 
   // activeStateLayer
@@ -45,16 +45,16 @@ const vars = {
   activeStateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
 
   // icon
-  iconColor: colorRolesTokens.onSurfaceVariant,
+  iconColor: colorSchemeTokens.onSurfaceVariant,
   // &:disabled
-  iconColor$disabled: colorRolesTokens.onSurface,
+  iconColor$disabled: colorSchemeTokens.onSurface,
   iconOpacity$disabled: stateTokens.opacity$disabled,
   // &:focus
-  iconColor$focus: colorRolesTokens.onSurface,
+  iconColor$focus: colorSchemeTokens.onSurface,
   // &:hover
-  iconColor$hover: colorRolesTokens.onSurface,
+  iconColor$hover: colorSchemeTokens.onSurface,
   // &:pressed
-  iconColor$pressed: colorRolesTokens.onSurface,
+  iconColor$pressed: colorSchemeTokens.onSurface,
 
   // actionIcon
   activeIconColor: 'inherit',
@@ -66,21 +66,21 @@ const vars = {
   activeIconColor$pressed: 'inherit',
 
   // labelText
-  labelTextColor: colorRolesTokens.onSurfaceVariant,
-  labelTextFont: typescaleTokens.titleFont$sm,
-  labelTextLineHeight: typescaleTokens.titleLineHeight$sm,
-  labelTextSize: typescaleTokens.titleSize$sm,
-  labelTextLetterSpacing: typescaleTokens.titleLetterSpacing$sm,
-  labelTextWeight: typescaleTokens.titleWeight$sm,
+  labelTextColor: colorSchemeTokens.onSurfaceVariant,
+  labelTextFont: typeScaleTokens.titleFont$sm,
+  labelTextLineHeight: typeScaleTokens.titleLineHeight$sm,
+  labelTextSize: typeScaleTokens.titleSize$sm,
+  labelTextLetterSpacing: typeScaleTokens.titleLetterSpacing$sm,
+  labelTextWeight: typeScaleTokens.titleWeight$sm,
   // &:disabled
-  labelTextColor$disabled: colorRolesTokens.onSurface,
+  labelTextColor$disabled: colorSchemeTokens.onSurface,
   labelTextOpacity$disabled: stateTokens.opacity$disabled,
   // &:focus
-  labelTextColor$focus: colorRolesTokens.onSurface,
+  labelTextColor$focus: colorSchemeTokens.onSurface,
   // &:hover
-  labelTextColor$hover: colorRolesTokens.onSurface,
+  labelTextColor$hover: colorSchemeTokens.onSurface,
   // &:pressed
-  labelTextColor$pressed: colorRolesTokens.onSurface,
+  labelTextColor$pressed: colorSchemeTokens.onSurface,
 
   // activeLabelText
   activeLabelTextColor: 'inherit',

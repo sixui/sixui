@@ -2,7 +2,7 @@ import stylex from '@stylexjs/stylex';
 
 import { fieldBaseTokens } from '../FieldBase.stylex';
 import { motionTokens } from '@/themes/base/motion.stylex';
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { stateTokens } from '@/themes/base/state.stylex';
 import { shapeTokens } from '@/themes/base/shape.stylex';
 
@@ -11,15 +11,15 @@ import { shapeTokens } from '@/themes/base/shape.stylex';
 export type IFilledFieldBaseStylesKey = keyof typeof filledFieldBaseStyles;
 export const filledFieldBaseStyles = stylex.create({
   host: {
-    [fieldBaseTokens.containerColor]: colorRolesTokens.surfaceContainerHighest,
+    [fieldBaseTokens.containerColor]: colorSchemeTokens.surfaceContainerHighest,
     [fieldBaseTokens.containerShape]: shapeTokens.cornerTop$xs,
-    [fieldBaseTokens.containerColor$disabled]: colorRolesTokens.onSurface,
+    [fieldBaseTokens.containerColor$disabled]: colorSchemeTokens.onSurface,
     [fieldBaseTokens.containerOpacity$disabled]: '0.04',
 
-    [fieldBaseTokens.stateLayerColor$hover]: colorRolesTokens.onSurface,
+    [fieldBaseTokens.stateLayerColor$hover]: colorSchemeTokens.onSurface,
     [fieldBaseTokens.stateLayerOpacity$hover]:
       stateTokens.stateLayerOpacity$hover,
-    [fieldBaseTokens.stateLayerColor$error$hover]: colorRolesTokens.onSurface,
+    [fieldBaseTokens.stateLayerColor$error$hover]: colorSchemeTokens.onSurface,
     [fieldBaseTokens.stateLayerOpacity$error$hover]:
       stateTokens.stateLayerOpacity$hover,
   },

@@ -1,4 +1,4 @@
-export type IShapeThemeVars = {
+export type IShapeTheme = {
   corner$full: string;
   corner$xl: string;
   cornerTop$xl: string;

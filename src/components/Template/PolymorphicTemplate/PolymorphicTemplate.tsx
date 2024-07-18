@@ -36,7 +36,7 @@ export const PolymorphicTemplate: IPolymorphicTemplate = forwardRef(
       ...other
     } = props as IWithAsProp<IPolymorphicTemplateOwnProps>;
 
-    const { overridenStyles } = useComponentTheme('PolymorphicTemplate');
+    const componentTheme = useComponentTheme('PolymorphicTemplate');
     const styleCombinator = useMemo(
       () => stylesCombinatorFactory(polymorphicTemplateStyles, styles),
       [styles],
@@ -50,7 +50,7 @@ export const PolymorphicTemplate: IPolymorphicTemplate = forwardRef(
       <Component
         sx={[
           polymorphicTemplateTheme,
-          overridenStyles,
+          componentTheme.overridenStyles,
           styleCombinator('host'),
           sx,
         ]}

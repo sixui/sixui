@@ -22,7 +22,7 @@ export const Badge = forwardRef<HTMLDivElement, IBadgeProps>(
       ...other
     } = props;
 
-    const { overridenStyles } = useComponentTheme('Badge');
+    const componentTheme = useComponentTheme('Badge');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(badgeStyles, styles),
       [styles],
@@ -53,7 +53,7 @@ export const Badge = forwardRef<HTMLDivElement, IBadgeProps>(
       <div
         {...sxf(
           badgeTheme,
-          overridenStyles,
+          componentTheme.overridenStyles,
           'host',
           invisible && 'host$invisible',
           dot && 'host$dot',

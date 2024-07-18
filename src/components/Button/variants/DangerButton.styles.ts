@@ -1,15 +1,15 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { elevationTokens } from '@/components/Elevation/Elevation.stylex';
 import { stateTokens } from '@/themes/base/state.stylex';
 import { buttonTokens } from '../Button.stylex';
 
 export const dangerButtonStyles = stylex.create({
   host: {
-    [buttonTokens.containerColor]: colorRolesTokens.errorContainer,
+    [buttonTokens.containerColor]: colorSchemeTokens.errorContainer,
     [buttonTokens.containerElevation]: elevationTokens.boxShadow$level0,
-    [buttonTokens.containerColor$disabled]: colorRolesTokens.onErrorContainer,
+    [buttonTokens.containerColor$disabled]: colorSchemeTokens.onErrorContainer,
     [buttonTokens.containerElevation$disabled]:
       elevationTokens.boxShadow$level0,
     [buttonTokens.containerOpacity$disabled]:
@@ -18,17 +18,17 @@ export const dangerButtonStyles = stylex.create({
     [buttonTokens.containerElevation$hover]: elevationTokens.boxShadow$level1,
     [buttonTokens.containerElevation$pressed]: elevationTokens.boxShadow$level0,
 
-    [buttonTokens.stateLayerColor$hover]: colorRolesTokens.onErrorContainer,
-    [buttonTokens.stateLayerColor$pressed]: colorRolesTokens.error,
+    [buttonTokens.stateLayerColor$hover]: colorSchemeTokens.onErrorContainer,
+    [buttonTokens.stateLayerColor$pressed]: colorSchemeTokens.error,
 
-    [buttonTokens.labelTextColor]: colorRolesTokens.onErrorContainer,
-    [buttonTokens.labelTextColor$focus]: colorRolesTokens.onErrorContainer,
-    [buttonTokens.labelTextColor$hover]: colorRolesTokens.onErrorContainer,
-    [buttonTokens.labelTextColor$pressed]: colorRolesTokens.onErrorContainer,
+    [buttonTokens.labelTextColor]: colorSchemeTokens.onErrorContainer,
+    [buttonTokens.labelTextColor$focus]: colorSchemeTokens.onErrorContainer,
+    [buttonTokens.labelTextColor$hover]: colorSchemeTokens.onErrorContainer,
+    [buttonTokens.labelTextColor$pressed]: colorSchemeTokens.onErrorContainer,
 
-    [buttonTokens.iconColor]: colorRolesTokens.onErrorContainer,
-    [buttonTokens.iconColor$focus]: colorRolesTokens.onErrorContainer,
-    [buttonTokens.iconColor$hover]: colorRolesTokens.onErrorContainer,
-    [buttonTokens.iconColor$pressed]: colorRolesTokens.onErrorContainer,
+    [buttonTokens.iconColor]: colorSchemeTokens.onErrorContainer,
+    [buttonTokens.iconColor$focus]: colorSchemeTokens.onErrorContainer,
+    [buttonTokens.iconColor$hover]: colorSchemeTokens.onErrorContainer,
+    [buttonTokens.iconColor$pressed]: colorSchemeTokens.onErrorContainer,
   },
 });

@@ -18,7 +18,7 @@ export const HtmlSelect = forwardRef<HTMLSelectElement, IHtmlSelectProps>(
   function HtmlSelect(props, forwardedRef) {
     const { styles, sx, innerStyles, options, slotProps, ...other } = props;
 
-    const { overridenStyles } = useComponentTheme('HtmlSelect');
+    const componentTheme = useComponentTheme('HtmlSelect');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(htmlSelectStyles, styles),
       [styles],
@@ -42,7 +42,7 @@ export const HtmlSelect = forwardRef<HTMLSelectElement, IHtmlSelectProps>(
 
     return (
       <FieldBase
-        sx={[overridenStyles, sx]}
+        sx={[componentTheme.overridenStyles, sx]}
         styles={[htmlSelectFieldBaseStyles, ...asArray(innerStyles?.fieldBase)]}
         disabled={other.disabled}
         trailingIcon={<IconTriangleDown aria-hidden />}

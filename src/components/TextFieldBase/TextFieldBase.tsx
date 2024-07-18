@@ -62,7 +62,7 @@ export const TextFieldBase = fixedForwardRef(function TextField<
     setInputVisualStateRef,
   ]);
 
-  const { overridenStyles } = useComponentTheme('TextFieldBase');
+  const componentTheme = useComponentTheme('TextFieldBase');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(textFieldBaseStyles, styles),
     [styles],
@@ -103,7 +103,7 @@ export const TextFieldBase = fixedForwardRef(function TextField<
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
     <div
-      {...sxf(textFieldBaseTheme, overridenStyles, 'host', sx)}
+      {...sxf(textFieldBaseTheme, componentTheme.overridenStyles, 'host', sx)}
       onClick={(event) => {
         const isSelf = event.target === inputRef.current;
         if (!isSelf) {

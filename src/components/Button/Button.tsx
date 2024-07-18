@@ -71,7 +71,7 @@ export const Button: IButton = forwardRef(function Button<
   );
   const handleRef = useMergeRefs([forwardedRef, setVisualStateRef]);
 
-  const { overridenStyles } = useComponentTheme('Button');
+  const componentTheme = useComponentTheme('Button');
   const variantStyles = variant ? buttonVariantStyles[variant] : undefined;
 
   const stylesCombinator = useMemo(
@@ -123,7 +123,7 @@ export const Button: IButton = forwardRef(function Button<
     <ButtonBase
       sx={[
         buttonTheme,
-        overridenStyles,
+        componentTheme.overridenStyles,
         loading ? stylesCombinator('host$loading') : undefined,
         hasLeadingIcon && stylesCombinator('host$withLeadingIcon'),
         hasTrailingIcon && stylesCombinator('host$withTrailingIcon'),

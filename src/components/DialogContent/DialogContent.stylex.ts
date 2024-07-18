@@ -1,57 +1,57 @@
 import stylex from '@stylexjs/stylex';
 
 import { elevationTokens } from '@/components/Elevation/Elevation.stylex';
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { stateTokens } from '@/themes/base/state.stylex';
-import { typescaleTokens } from '@/themes/base/typo.stylex';
+import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
 import { shapeTokens } from '@/themes/base/shape.stylex';
 
 const vars = {
   // container
-  containerColor: colorRolesTokens.surfaceContainerHigh,
+  containerColor: colorSchemeTokens.surfaceContainerHigh,
   containerElevation: elevationTokens.boxShadow$level3,
   containerShape: shapeTokens.corner$xl,
 
   // icon
-  iconColor: colorRolesTokens.secondary,
+  iconColor: colorSchemeTokens.secondary,
   iconSize: '18px',
 
   // headline
-  headlineColor: colorRolesTokens.onSurface,
-  headlineFont: typescaleTokens.headlineFont$sm,
-  headlineLineHeight: typescaleTokens.headlineLineHeight$sm,
-  headlineSize: typescaleTokens.headlineSize$sm,
-  headlineLetterSpacing: typescaleTokens.headlineLetterSpacing$sm,
-  headlineWeight: typescaleTokens.headlineWeight$sm,
+  headlineColor: colorSchemeTokens.onSurface,
+  headlineFont: typeScaleTokens.headlineFont$sm,
+  headlineLineHeight: typeScaleTokens.headlineLineHeight$sm,
+  headlineSize: typeScaleTokens.headlineSize$sm,
+  headlineLetterSpacing: typeScaleTokens.headlineLetterSpacing$sm,
+  headlineWeight: typeScaleTokens.headlineWeight$sm,
 
   // supportingText
-  supportingTextColor: colorRolesTokens.onSurfaceVariant,
-  supportingTextFont: typescaleTokens.bodyFont$md,
-  supportingTextLineHeight: typescaleTokens.bodyLineHeight$md,
-  supportingTextSize: typescaleTokens.bodySize$md,
-  supportingTextLetterSpacing: typescaleTokens.bodyLetterSpacing$md,
-  supportingTextWeight: typescaleTokens.bodyWeight$md,
+  supportingTextColor: colorSchemeTokens.onSurfaceVariant,
+  supportingTextFont: typeScaleTokens.bodyFont$md,
+  supportingTextLineHeight: typeScaleTokens.bodyLineHeight$md,
+  supportingTextSize: typeScaleTokens.bodySize$md,
+  supportingTextLetterSpacing: typeScaleTokens.bodyLetterSpacing$md,
+  supportingTextWeight: typeScaleTokens.bodyWeight$md,
 
   // actionLabelText
-  actionLabelTextColor: colorRolesTokens.primary,
-  actionLabelTextFont: typescaleTokens.labelFont$lg,
-  actionLabelTextLineHeight: typescaleTokens.labelLineHeight$lg,
-  actionLabelTextSize: typescaleTokens.labelSize$lg,
-  actionLabelTextLetterSpacing: typescaleTokens.labelLetterSpacing$lg,
-  actionLabelTextWeight: typescaleTokens.labelWeight$lg,
+  actionLabelTextColor: colorSchemeTokens.primary,
+  actionLabelTextFont: typeScaleTokens.labelFont$lg,
+  actionLabelTextLineHeight: typeScaleTokens.labelLineHeight$lg,
+  actionLabelTextSize: typeScaleTokens.labelSize$lg,
+  actionLabelTextLetterSpacing: typeScaleTokens.labelLetterSpacing$lg,
+  actionLabelTextWeight: typeScaleTokens.labelWeight$lg,
   // &:focus
-  actionLabelTextColor$focus: colorRolesTokens.primary,
+  actionLabelTextColor$focus: colorSchemeTokens.primary,
   // &:hover
-  actionLabelTextColor$hover: colorRolesTokens.primary,
+  actionLabelTextColor$hover: colorSchemeTokens.primary,
   // &:pressed
-  actionLabelTextColor$pressed: colorRolesTokens.primary,
+  actionLabelTextColor$pressed: colorSchemeTokens.primary,
 
   // actionStateLayer
   // &:hover
-  actionStateLayerColor$hover: colorRolesTokens.primary,
+  actionStateLayerColor$hover: colorSchemeTokens.primary,
   actionStateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,
   // &:pressed
-  actionStateLayerColor$pressed: colorRolesTokens.primary,
+  actionStateLayerColor$pressed: colorSchemeTokens.primary,
   actionStateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
 };
 

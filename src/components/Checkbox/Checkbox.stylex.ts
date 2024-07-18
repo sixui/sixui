@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { stateTokens } from '@/themes/base/state.stylex';
 import { shapeTokens } from '@/themes/base/shape.stylex';
 
@@ -15,49 +15,49 @@ const vars = {
   containerOpacity$disabled: stateTokens.opacity$disabled,
 
   // selectedContainer
-  selectedContainerColor: colorRolesTokens.primary,
+  selectedContainerColor: colorSchemeTokens.primary,
   // &:disabled
   selectedContainerOutlineWidth$disabled: '0px',
-  selectedContainerColor$disabled: colorRolesTokens.onSurface,
+  selectedContainerColor$disabled: colorSchemeTokens.onSurface,
   selectedContainerOpacity$disabled: stateTokens.opacity$disabled,
   // &:focus
-  selectedContainerColor$focus: colorRolesTokens.primary,
+  selectedContainerColor$focus: colorSchemeTokens.primary,
   // &:hover
-  selectedContainerColor$hover: colorRolesTokens.primary,
+  selectedContainerColor$hover: colorSchemeTokens.primary,
   // &:error
-  selectedContainerColor$error: colorRolesTokens.error,
+  selectedContainerColor$error: colorSchemeTokens.error,
   // &:pressed
-  selectedContainerColor$pressed: colorRolesTokens.primary,
+  selectedContainerColor$pressed: colorSchemeTokens.primary,
   // &:error:focus
-  selectedContainerColor$error$focus: colorRolesTokens.error,
+  selectedContainerColor$error$focus: colorSchemeTokens.error,
   // &:error:hover
-  selectedContainerColor$error$hover: colorRolesTokens.error,
+  selectedContainerColor$error$hover: colorSchemeTokens.error,
   // &:error:pressed
-  selectedContainerColor$error$pressed: colorRolesTokens.error,
+  selectedContainerColor$error$pressed: colorSchemeTokens.error,
 
   // outline
-  outlineColor: colorRolesTokens.onSurfaceVariant,
+  outlineColor: colorSchemeTokens.onSurfaceVariant,
   outlineWidth: '2px',
   // &:disabled
-  outlineColor$disabled: colorRolesTokens.onSurface,
+  outlineColor$disabled: colorSchemeTokens.onSurface,
   outlineWidth$disabled: '2px',
   // &:focus
-  outlineColor$focus: colorRolesTokens.onSurface,
+  outlineColor$focus: colorSchemeTokens.onSurface,
   outlineWidth$focus: '2px',
   // &:hover
-  outlineColor$hover: colorRolesTokens.onSurface,
+  outlineColor$hover: colorSchemeTokens.onSurface,
   outlineWidth$hover: '2px',
   // &:pressed
-  outlineColor$pressed: colorRolesTokens.onSurface,
+  outlineColor$pressed: colorSchemeTokens.onSurface,
   outlineWidth$pressed: '2px',
   // &:error
-  outlineColor$error: colorRolesTokens.error,
+  outlineColor$error: colorSchemeTokens.error,
   // &:error:focus
-  outlineColor$error$focus: colorRolesTokens.error,
+  outlineColor$error$focus: colorSchemeTokens.error,
   // &:error:hover
-  outlineColor$error$hover: colorRolesTokens.error,
+  outlineColor$error$hover: colorSchemeTokens.error,
   // &:error:pressed
-  outlineColor$error$pressed: colorRolesTokens.error,
+  outlineColor$error$pressed: colorSchemeTokens.error,
 
   // selectedOutline
   selectedOutlineWidth: '0px',
@@ -72,46 +72,46 @@ const vars = {
   iconSize: '18px',
 
   // selectedIcon
-  selectedIconColor: colorRolesTokens.onPrimary,
+  selectedIconColor: colorSchemeTokens.onPrimary,
   // &:disabled
-  selectedIconColor$disabled: colorRolesTokens.surface,
+  selectedIconColor$disabled: colorSchemeTokens.surface,
   // &:focus
-  selectedIconColor$focus: colorRolesTokens.onPrimary,
+  selectedIconColor$focus: colorSchemeTokens.onPrimary,
   // &:hover
-  selectedIconColor$hover: colorRolesTokens.onPrimary,
+  selectedIconColor$hover: colorSchemeTokens.onPrimary,
   // &:pressed
-  selectedIconColor$pressed: colorRolesTokens.onPrimary,
+  selectedIconColor$pressed: colorSchemeTokens.onPrimary,
   // &:error
-  selectedIconColor$error: colorRolesTokens.onError,
+  selectedIconColor$error: colorSchemeTokens.onError,
   // &:error:focus
-  selectedIconColor$error$focus: colorRolesTokens.onError,
+  selectedIconColor$error$focus: colorSchemeTokens.onError,
   // &:error:hover
-  selectedIconColor$error$hover: colorRolesTokens.onError,
+  selectedIconColor$error$hover: colorSchemeTokens.onError,
   // &:error:pressed
-  selectedIconColor$error$pressed: colorRolesTokens.onError,
+  selectedIconColor$error$pressed: colorSchemeTokens.onError,
 
   // stateLayer
   stateLayerShape: shapeTokens.corner$full,
   stateLayerSize: '40px',
   // &:hover
-  stateLayerColor$hover: colorRolesTokens.onSurface,
+  stateLayerColor$hover: colorSchemeTokens.onSurface,
   stateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,
   // &:pressed
-  stateLayerColor$pressed: colorRolesTokens.primary,
+  stateLayerColor$pressed: colorSchemeTokens.primary,
   stateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
   // &:error:hover
-  stateLayerColor$error$hover: colorRolesTokens.error,
+  stateLayerColor$error$hover: colorSchemeTokens.error,
   stateLayerOpacity$error$hover: stateTokens.stateLayerOpacity$hover,
   // &:error:pressed
-  stateLayerColor$error$pressed: colorRolesTokens.error,
+  stateLayerColor$error$pressed: colorSchemeTokens.error,
   stateLayerOpacity$error$pressed: stateTokens.stateLayerOpacity$pressed,
 
   // selectedStateLayer
   // &:hover
-  selectedStateLayerColor$hover: colorRolesTokens.primary,
+  selectedStateLayerColor$hover: colorSchemeTokens.primary,
   selectedStateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,
   // &:pressed
-  selectedStateLayerColor$pressed: colorRolesTokens.onSurface,
+  selectedStateLayerColor$pressed: colorSchemeTokens.onSurface,
   selectedStateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
 };
 

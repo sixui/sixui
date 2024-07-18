@@ -1,43 +1,43 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
-import { typescaleTokens } from '@/themes/base/typo.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
+import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
 import { stateTokens } from '@/themes/base/state.stylex';
 
 const vars = {
   // labelText
-  labelTextColor: colorRolesTokens.onSurface,
-  labelTextFont: typescaleTokens.labelFont$lg,
-  labelTextSize: typescaleTokens.labelSize$lg,
-  labelTextWeight: typescaleTokens.labelWeight$lg,
-  labelTextLineHeight: typescaleTokens.labelLineHeight$lg,
-  labelTextLetterSpacing: typescaleTokens.labelLetterSpacing$lg,
+  labelTextColor: colorSchemeTokens.onSurface,
+  labelTextFont: typeScaleTokens.labelFont$lg,
+  labelTextSize: typeScaleTokens.labelSize$lg,
+  labelTextWeight: typeScaleTokens.labelWeight$lg,
+  labelTextLineHeight: typeScaleTokens.labelLineHeight$lg,
+  labelTextLetterSpacing: typeScaleTokens.labelLetterSpacing$lg,
   // &:disabled
-  labelTextColor$disabled: colorRolesTokens.onSurface,
+  labelTextColor$disabled: colorSchemeTokens.onSurface,
   labelTextOpacity$disabled: stateTokens.opacity$disabled,
 
   // actionText
-  actionTextColor: colorRolesTokens.onSurface,
-  actionTextFont: typescaleTokens.labelFont$lg,
-  actionTextSize: typescaleTokens.labelSize$lg,
-  actionTextWeight: typescaleTokens.labelWeight$lg,
-  actionTextLineHeight: typescaleTokens.labelLineHeight$lg,
-  actionTextLetterSpacing: typescaleTokens.labelLetterSpacing$lg,
+  actionTextColor: colorSchemeTokens.onSurface,
+  actionTextFont: typeScaleTokens.labelFont$lg,
+  actionTextSize: typeScaleTokens.labelSize$lg,
+  actionTextWeight: typeScaleTokens.labelWeight$lg,
+  actionTextLineHeight: typeScaleTokens.labelLineHeight$lg,
+  actionTextLetterSpacing: typeScaleTokens.labelLetterSpacing$lg,
   // &:disabled
-  actionTextColor$disabled: colorRolesTokens.onSurface,
+  actionTextColor$disabled: colorSchemeTokens.onSurface,
   actionTextOpacity$disabled: stateTokens.opacity$disabled,
 
   // supportingText
-  supportingTextColor: colorRolesTokens.onSurfaceVariant,
-  supportingTextFont: typescaleTokens.bodyFont$sm,
-  supportingTextSize: typescaleTokens.bodySize$sm,
-  supportingTextWeight: typescaleTokens.bodyWeight$sm,
-  supportingTextLineHeight: typescaleTokens.bodyLineHeight$sm,
-  supportingTextLetterSpacing: typescaleTokens.bodyLetterSpacing$sm,
+  supportingTextColor: colorSchemeTokens.onSurfaceVariant,
+  supportingTextFont: typeScaleTokens.bodyFont$sm,
+  supportingTextSize: typeScaleTokens.bodySize$sm,
+  supportingTextWeight: typeScaleTokens.bodyWeight$sm,
+  supportingTextLineHeight: typeScaleTokens.bodyLineHeight$sm,
+  supportingTextLetterSpacing: typeScaleTokens.bodyLetterSpacing$sm,
   // &:error
-  supportingTextColor$error: colorRolesTokens.error,
+  supportingTextColor$error: colorSchemeTokens.error,
   // &:disabled
-  supportingTextColor$disabled: colorRolesTokens.onSurface,
+  supportingTextColor$disabled: colorSchemeTokens.onSurface,
   supportingTextOpacity$disabled: stateTokens.opacity$disabled,
 };
 

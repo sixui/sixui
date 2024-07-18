@@ -11,7 +11,7 @@ export const CardTitle = forwardRef<HTMLDivElement, ICardTitleProps>(
   function CardTitle(props, forwardedRef) {
     const { styles, sx, headline, subhead, supportingText, ...other } = props;
 
-    const { overridenStyles } = useComponentTheme('CardTitle');
+    const componentTheme = useComponentTheme('CardTitle');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(cardTitleStyles, styles),
       [styles],
@@ -23,7 +23,7 @@ export const CardTitle = forwardRef<HTMLDivElement, ICardTitleProps>(
 
     return (
       <div
-        {...sxf(cardTitleTheme, overridenStyles, 'host', sx)}
+        {...sxf(cardTitleTheme, componentTheme.overridenStyles, 'host', sx)}
         ref={forwardedRef}
         {...other}
       >

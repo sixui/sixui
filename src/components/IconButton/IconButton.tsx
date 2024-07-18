@@ -41,7 +41,7 @@ export const IconButton: IIconButton = forwardRef(function IconButton<
     ...other
   } = props as IWithAsProp<IIconButtonOwnProps>;
 
-  const { overridenStyles } = useComponentTheme('IconButton');
+  const componentTheme = useComponentTheme('IconButton');
   const variantStyles = variant ? iconButtonVariantStyles[variant] : undefined;
 
   const stylesCombinator = useMemo(
@@ -54,7 +54,7 @@ export const IconButton: IIconButton = forwardRef(function IconButton<
       as={as}
       sx={[
         iconButtonTheme,
-        overridenStyles,
+        componentTheme.overridenStyles,
         stylesCombinator(
           'host',
           toggle ? (selected ? 'host$toggle$selected' : 'host$toggle') : null,

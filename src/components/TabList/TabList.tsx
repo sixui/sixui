@@ -11,7 +11,7 @@ export const TabList = forwardRef<HTMLInputElement, ITabListProps>(
   function TabList(props, forwardedRef) {
     const { styles, sx, children, fullWidth, ...other } = props;
 
-    const { overridenStyles } = useComponentTheme('TabList');
+    const componentTheme = useComponentTheme('TabList');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(tabListStyles, styles),
       [styles],
@@ -23,7 +23,7 @@ export const TabList = forwardRef<HTMLInputElement, ITabListProps>(
 
     return (
       <div
-        {...sxf(overridenStyles, 'host', sx)}
+        {...sxf(componentTheme.overridenStyles, 'host', sx)}
         role='tablist'
         aria-orientation='horizontal'
         ref={forwardedRef}

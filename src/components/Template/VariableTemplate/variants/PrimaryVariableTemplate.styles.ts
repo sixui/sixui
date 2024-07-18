@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { variableTemplateTokens } from '../VariableTemplate.stylex';
 
 export const primaryVariableTemplateStyles = stylex.create({
   host: {
-    [variableTemplateTokens.textColor]: colorRolesTokens.primary,
+    [variableTemplateTokens.textColor]: colorSchemeTokens.primary,
   },
 });

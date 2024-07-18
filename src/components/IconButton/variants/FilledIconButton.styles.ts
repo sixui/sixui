@@ -1,46 +1,46 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { iconButtonTokens } from '../IconButton.stylex';
 
 export const filledIconButtonStyles = stylex.create({
   host: {
-    [iconButtonTokens.containerColor]: colorRolesTokens.primary,
-    [iconButtonTokens.containerColor$disabled]: colorRolesTokens.onSurface,
+    [iconButtonTokens.containerColor]: colorSchemeTokens.primary,
+    [iconButtonTokens.containerColor$disabled]: colorSchemeTokens.onSurface,
 
     [iconButtonTokens.unselectedContainerColor]:
-      colorRolesTokens.surfaceContainerHighest,
+      colorSchemeTokens.surfaceContainerHighest,
 
-    [iconButtonTokens.selectedContainerColor]: colorRolesTokens.primary,
+    [iconButtonTokens.selectedContainerColor]: colorSchemeTokens.primary,
 
-    [iconButtonTokens.iconColor]: colorRolesTokens.onPrimary,
-    [iconButtonTokens.iconColor$focus]: colorRolesTokens.onPrimary,
-    [iconButtonTokens.iconColor$hover]: colorRolesTokens.onPrimary,
-    [iconButtonTokens.iconColor$pressed]: colorRolesTokens.onPrimary,
-    [iconButtonTokens.iconColor$disabled]: colorRolesTokens.onPrimary,
+    [iconButtonTokens.iconColor]: colorSchemeTokens.onPrimary,
+    [iconButtonTokens.iconColor$focus]: colorSchemeTokens.onPrimary,
+    [iconButtonTokens.iconColor$hover]: colorSchemeTokens.onPrimary,
+    [iconButtonTokens.iconColor$pressed]: colorSchemeTokens.onPrimary,
+    [iconButtonTokens.iconColor$disabled]: colorSchemeTokens.onPrimary,
 
-    [iconButtonTokens.toggleIconColor]: colorRolesTokens.primary,
-    [iconButtonTokens.toggleIconColor$focus]: colorRolesTokens.primary,
-    [iconButtonTokens.toggleIconColor$hover]: colorRolesTokens.primary,
-    [iconButtonTokens.toggleIconColor$pressed]: colorRolesTokens.primary,
+    [iconButtonTokens.toggleIconColor]: colorSchemeTokens.primary,
+    [iconButtonTokens.toggleIconColor$focus]: colorSchemeTokens.primary,
+    [iconButtonTokens.toggleIconColor$hover]: colorSchemeTokens.primary,
+    [iconButtonTokens.toggleIconColor$pressed]: colorSchemeTokens.primary,
 
-    [iconButtonTokens.toggleSelectedIconColor]: colorRolesTokens.onPrimary,
+    [iconButtonTokens.toggleSelectedIconColor]: colorSchemeTokens.onPrimary,
     [iconButtonTokens.toggleSelectedIconColor$focus]:
-      colorRolesTokens.onPrimary,
+      colorSchemeTokens.onPrimary,
     [iconButtonTokens.toggleSelectedIconColor$hover]:
-      colorRolesTokens.onPrimary,
+      colorSchemeTokens.onPrimary,
     [iconButtonTokens.toggleSelectedIconColor$pressed]:
-      colorRolesTokens.onPrimary,
+      colorSchemeTokens.onPrimary,
 
-    [iconButtonTokens.stateLayerColor$hover]: colorRolesTokens.onPrimary,
-    [iconButtonTokens.stateLayerColor$pressed]: colorRolesTokens.onPrimary,
+    [iconButtonTokens.stateLayerColor$hover]: colorSchemeTokens.onPrimary,
+    [iconButtonTokens.stateLayerColor$pressed]: colorSchemeTokens.onPrimary,
 
-    [iconButtonTokens.toggleStateLayerColor$hover]: colorRolesTokens.primary,
-    [iconButtonTokens.toggleStateLayerColor$pressed]: colorRolesTokens.primary,
+    [iconButtonTokens.toggleStateLayerColor$hover]: colorSchemeTokens.primary,
+    [iconButtonTokens.toggleStateLayerColor$pressed]: colorSchemeTokens.primary,
 
     [iconButtonTokens.toggleSelectedStateLayerColor$hover]:
-      colorRolesTokens.onPrimary,
+      colorSchemeTokens.onPrimary,
     [iconButtonTokens.toggleSelectedStateLayerColor$pressed]:
-      colorRolesTokens.onPrimary,
+      colorSchemeTokens.onPrimary,
   },
 });

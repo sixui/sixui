@@ -20,7 +20,7 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
       ...other
     } = props;
 
-    const { overridenStyles } = useComponentTheme('StepConnector');
+    const componentTheme = useComponentTheme('StepConnector');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(stepStyles, styles),
       [styles],
@@ -110,7 +110,7 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
       <div
         {...sxf(
           stepConnectorTheme,
-          overridenStyles,
+          componentTheme.overridenStyles,
           'host',
           `host$${orientation}$${stepLabelPosition}Label`,
           sx,

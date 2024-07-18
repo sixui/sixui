@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { motionTokens } from '@/themes/base/motion.stylex';
 
-const color1 = `color-mix(in srgb, ${colorRolesTokens.shadow} 30%, transparent)`;
-const color2 = `color-mix(in srgb, ${colorRolesTokens.shadow} 15%, transparent)`;
+const color1 = `color-mix(in srgb, ${colorSchemeTokens.shadow} 30%, transparent)`;
+const color2 = `color-mix(in srgb, ${colorSchemeTokens.shadow} 15%, transparent)`;
 
 const vars = {
   transitionDuration: motionTokens.duration$medium2,

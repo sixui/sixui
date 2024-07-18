@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { chipTokens } from '../Chip.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-suggestion-chip.scss
@@ -8,9 +8,9 @@ import { chipTokens } from '../Chip.stylex';
 
 export const suggestionChipStyles = stylex.create({
   host: {
-    [chipTokens.flatContainerColor]: colorRolesTokens.surfaceContainerLow,
+    [chipTokens.flatContainerColor]: colorSchemeTokens.surfaceContainerLow,
 
-    [chipTokens.stateLayerColor$hover]: colorRolesTokens.onSurface,
-    [chipTokens.stateLayerColor$pressed]: colorRolesTokens.onSurface,
+    [chipTokens.stateLayerColor$hover]: colorSchemeTokens.onSurface,
+    [chipTokens.stateLayerColor$pressed]: colorSchemeTokens.onSurface,
   },
 });

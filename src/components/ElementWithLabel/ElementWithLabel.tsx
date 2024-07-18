@@ -32,7 +32,7 @@ export const ElementWithLabel = forwardRef<
     ...other
   } = props;
 
-  const { overridenStyles } = useComponentTheme('ElementWithLabel');
+  const componentTheme = useComponentTheme('ElementWithLabel');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(elementWithLabelStyles, styles),
     [styles],
@@ -105,7 +105,7 @@ export const ElementWithLabel = forwardRef<
     <div
       {...sxf(
         elementWithLabelTheme,
-        overridenStyles,
+        componentTheme.overridenStyles,
         orientation === 'horizontal' ? 'host$horizontal' : 'host$vertical',
         sx,
       )}

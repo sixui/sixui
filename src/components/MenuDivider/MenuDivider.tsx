@@ -9,7 +9,7 @@ export const MenuDivider = forwardRef<HTMLDivElement, IDividerProps>(
   function MenuDivider(props, forwardedRef) {
     const { styles, sx, ...other } = props;
 
-    const { overridenStyles } = useComponentTheme('MenuDivider');
+    const componentTheme = useComponentTheme('MenuDivider');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(menuDividerStyles, styles),
       [styles],
@@ -17,7 +17,7 @@ export const MenuDivider = forwardRef<HTMLDivElement, IDividerProps>(
 
     return (
       <Divider
-        sx={[overridenStyles, stylesCombinator('host'), sx]}
+        sx={[componentTheme.overridenStyles, stylesCombinator('host'), sx]}
         ref={forwardedRef}
         {...other}
       />

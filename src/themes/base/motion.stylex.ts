@@ -1,11 +1,11 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IMotionThemeVars } from './motion.types';
+import type { IMotionTheme } from './motion.types';
 
 // https://m3.material.io/styles/motion/easing-and-duration/applying-easing-and-duration
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-sys-motion.scss
 
-export const motionTokens = stylex.defineVars<IMotionThemeVars>({
+export const motionTokens = stylex.defineVars<IMotionTheme>({
   duration$extraLong1: '700ms',
   duration$extraLong2: '800ms',
   duration$extraLong3: '900ms',

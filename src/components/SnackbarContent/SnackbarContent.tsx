@@ -31,7 +31,7 @@ export const SnackbarContent = forwardRef<
     ...other
   } = props;
 
-  const { overridenStyles } = useComponentTheme('SnackbarContent');
+  const componentTheme = useComponentTheme('SnackbarContent');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(snackbarContentStyles, styles),
     [styles],
@@ -45,7 +45,7 @@ export const SnackbarContent = forwardRef<
     <div
       {...sxf(
         snackbarContentTheme,
-        overridenStyles,
+        componentTheme.overridenStyles,
         'host',
         actionLabel
           ? 'host$trailingAction'

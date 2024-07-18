@@ -10,7 +10,7 @@ export const CardActions = forwardRef<HTMLDivElement, ICardActionsProps>(
   function CardActions(props, forwardedRef) {
     const { styles, sx, children, ...other } = props;
 
-    const { overridenStyles } = useComponentTheme('CardActions');
+    const componentTheme = useComponentTheme('CardActions');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(cardActionsStyles, styles),
       [styles],
@@ -21,7 +21,11 @@ export const CardActions = forwardRef<HTMLDivElement, ICardActionsProps>(
     );
 
     return (
-      <div {...sxf(overridenStyles, 'host', sx)} ref={forwardedRef} {...other}>
+      <div
+        {...sxf(componentTheme.overridenStyles, 'host', sx)}
+        ref={forwardedRef}
+        {...other}
+      >
         {children}
       </div>
     );

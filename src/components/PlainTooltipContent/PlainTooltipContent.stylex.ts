@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { shapeTokens } from '@/themes/base/shape.stylex';
-import { typescaleTokens } from '@/themes/base/typo.stylex';
+import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
 
 const vars = {
   topSpace: '8px',
@@ -11,18 +11,18 @@ const vars = {
   trailingSpace: '8px',
 
   // container
-  containerColor: colorRolesTokens.inverseSurface,
+  containerColor: colorSchemeTokens.inverseSurface,
   containerShape: shapeTokens.corner$xs,
   containerMaxWidth: '215px',
   containerMinHeight: '24px',
 
   // supportingText
-  supportingTextColor: colorRolesTokens.inverseOnSurface,
-  supportingTextFont: typescaleTokens.bodyFont$sm,
-  supportingTextSize: typescaleTokens.bodySize$sm,
-  supportingTextWeight: typescaleTokens.bodyWeight$sm,
-  supportingTextLineHeight: typescaleTokens.bodyLineHeight$sm,
-  supportingTextLetterSpacing: typescaleTokens.bodyLetterSpacing$sm,
+  supportingTextColor: colorSchemeTokens.inverseOnSurface,
+  supportingTextFont: typeScaleTokens.bodyFont$sm,
+  supportingTextSize: typeScaleTokens.bodySize$sm,
+  supportingTextWeight: typeScaleTokens.bodyWeight$sm,
+  supportingTextLineHeight: typeScaleTokens.bodyLineHeight$sm,
+  supportingTextLetterSpacing: typeScaleTokens.bodyLetterSpacing$sm,
 };
 
 export const plainTooltipContentTokens = stylex.defineVars(vars);

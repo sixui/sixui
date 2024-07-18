@@ -29,7 +29,7 @@ export const RichTooltipContent = forwardRef<
     ...other
   } = props;
 
-  const { overridenStyles } = useComponentTheme('RichTooltipContent');
+  const componentTheme = useComponentTheme('RichTooltipContent');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(richTooltipContentStyles, styles),
     [styles],
@@ -41,7 +41,12 @@ export const RichTooltipContent = forwardRef<
 
   return (
     <div
-      {...sxf(richTooltipContentTheme, overridenStyles, 'host', sx)}
+      {...sxf(
+        richTooltipContentTheme,
+        componentTheme.overridenStyles,
+        'host',
+        sx,
+      )}
       ref={forwardedRef}
       {...other}
     >

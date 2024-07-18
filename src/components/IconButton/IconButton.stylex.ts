@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { shapeTokens } from '@/themes/base/shape.stylex';
 import { stateTokens } from '@/themes/base/state.stylex';
 
@@ -33,7 +33,7 @@ const vars = {
   // &:pressed
   iconColor$pressed: 'inherit',
   // &:disabled
-  iconColor$disabled: colorRolesTokens.onSurface,
+  iconColor$disabled: colorSchemeTokens.onSurface,
   iconOpacity$disabled: stateTokens.opacity$disabled,
 
   // toggleIcon

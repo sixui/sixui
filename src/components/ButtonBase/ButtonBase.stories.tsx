@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 
 import type { IButtonBaseProps } from './ButtonBase.types';
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { shapeTokens } from '@/themes/base/shape.stylex';
 import { stateLayerTokens } from '@/components/StateLayer/StateLayer.stylex';
 import { focusRingTokens } from '@/components/FocusRing/FocusRing.stylex';
@@ -45,20 +45,20 @@ const buttonStyles = stylex.create({
     padding: 8,
     borderRadius: shapeTokens.corner$md,
     color: {
-      default: colorRolesTokens.onSurface,
-      ':is([data-pressed])': colorRolesTokens.onSurface,
+      default: colorSchemeTokens.onSurface,
+      ':is([data-pressed])': colorSchemeTokens.onSurface,
     },
   },
   outline: {
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: colorRolesTokens.outline,
+    borderColor: colorSchemeTokens.outline,
   },
 });
 
 const stateLayerStyles = stylex.create({
   host: {
-    [stateLayerTokens.color$pressed]: colorRolesTokens.primary,
+    [stateLayerTokens.color$pressed]: colorSchemeTokens.primary,
   },
 });
 

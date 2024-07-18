@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { stateTokens } from '@/themes/base/state.stylex';
 import { listItemTokens } from '../ListItem.stylex';
 
@@ -8,67 +8,71 @@ export const dangerListItemStyles = stylex.create({
   host: {
     [listItemTokens.containerColor]: 'transparent',
 
-    [listItemTokens.selectedContainerColor]: colorRolesTokens.errorContainer,
+    [listItemTokens.selectedContainerColor]: colorSchemeTokens.errorContainer,
     [listItemTokens.selectedContainerOpacity]: '1',
 
-    [listItemTokens.textColor]: colorRolesTokens.error,
-    [listItemTokens.textColor$focus]: colorRolesTokens.error,
-    [listItemTokens.textColor$hover]: colorRolesTokens.onErrorContainer,
-    [listItemTokens.textColor$pressed]: colorRolesTokens.onErrorContainer,
+    [listItemTokens.textColor]: colorSchemeTokens.error,
+    [listItemTokens.textColor$focus]: colorSchemeTokens.error,
+    [listItemTokens.textColor$hover]: colorSchemeTokens.onErrorContainer,
+    [listItemTokens.textColor$pressed]: colorSchemeTokens.onErrorContainer,
 
-    [listItemTokens.selectedTextColor]: colorRolesTokens.onErrorContainer,
-    [listItemTokens.selectedTextColor$focus]: colorRolesTokens.onErrorContainer,
-    [listItemTokens.selectedTextColor$hover]: colorRolesTokens.onErrorContainer,
+    [listItemTokens.selectedTextColor]: colorSchemeTokens.onErrorContainer,
+    [listItemTokens.selectedTextColor$focus]:
+      colorSchemeTokens.onErrorContainer,
+    [listItemTokens.selectedTextColor$hover]:
+      colorSchemeTokens.onErrorContainer,
     [listItemTokens.selectedTextColor$pressed]:
-      colorRolesTokens.onErrorContainer,
+      colorSchemeTokens.onErrorContainer,
 
-    [listItemTokens.nonTextColor]: colorRolesTokens.error,
-    [listItemTokens.nonTextColor$focus]: colorRolesTokens.onErrorContainer,
-    [listItemTokens.nonTextColor$hover]: colorRolesTokens.onErrorContainer,
-    [listItemTokens.nonTextColor$pressed]: colorRolesTokens.onErrorContainer,
+    [listItemTokens.nonTextColor]: colorSchemeTokens.error,
+    [listItemTokens.nonTextColor$focus]: colorSchemeTokens.onErrorContainer,
+    [listItemTokens.nonTextColor$hover]: colorSchemeTokens.onErrorContainer,
+    [listItemTokens.nonTextColor$pressed]: colorSchemeTokens.onErrorContainer,
 
-    [listItemTokens.selectedNonTextColor]: colorRolesTokens.onErrorContainer,
+    [listItemTokens.selectedNonTextColor]: colorSchemeTokens.onErrorContainer,
     [listItemTokens.selectedNonTextColor$focus]:
-      colorRolesTokens.onErrorContainer,
+      colorSchemeTokens.onErrorContainer,
     [listItemTokens.selectedNonTextColor$hover]:
-      colorRolesTokens.onErrorContainer,
+      colorSchemeTokens.onErrorContainer,
     [listItemTokens.selectedNonTextColor$pressed]:
-      colorRolesTokens.onErrorContainer,
+      colorSchemeTokens.onErrorContainer,
 
-    [listItemTokens.stateLayerColor$hover]: colorRolesTokens.errorContainer,
+    [listItemTokens.stateLayerColor$hover]: colorSchemeTokens.errorContainer,
     [listItemTokens.stateLayerOpacity$hover]: '1',
-    [listItemTokens.stateLayerColor$pressed]: colorRolesTokens.error,
+    [listItemTokens.stateLayerColor$pressed]: colorSchemeTokens.error,
     [listItemTokens.stateLayerOpacity$pressed]:
       stateTokens.stateLayerOpacity$pressed,
 
-    [listItemTokens.leadingIconColor]: colorRolesTokens.error,
-    [listItemTokens.leadingIconColor$focus]: colorRolesTokens.onErrorContainer,
-    [listItemTokens.leadingIconColor$hover]: colorRolesTokens.onErrorContainer,
+    [listItemTokens.leadingIconColor]: colorSchemeTokens.error,
+    [listItemTokens.leadingIconColor$focus]: colorSchemeTokens.onErrorContainer,
+    [listItemTokens.leadingIconColor$hover]: colorSchemeTokens.onErrorContainer,
     [listItemTokens.leadingIconColor$pressed]:
-      colorRolesTokens.onErrorContainer,
+      colorSchemeTokens.onErrorContainer,
 
     [listItemTokens.selectedLeadingIconColor]:
-      colorRolesTokens.onErrorContainer,
+      colorSchemeTokens.onErrorContainer,
     [listItemTokens.selectedLeadingIconColor$focus]:
-      colorRolesTokens.onErrorContainer,
+      colorSchemeTokens.onErrorContainer,
     [listItemTokens.selectedLeadingIconColor$hover]:
-      colorRolesTokens.onErrorContainer,
+      colorSchemeTokens.onErrorContainer,
     [listItemTokens.selectedLeadingIconColor$pressed]:
-      colorRolesTokens.onErrorContainer,
+      colorSchemeTokens.onErrorContainer,
 
-    [listItemTokens.trailingIconColor]: colorRolesTokens.onSurfaceVariant,
-    [listItemTokens.trailingIconColor$focus]: colorRolesTokens.onErrorContainer,
-    [listItemTokens.trailingIconColor$hover]: colorRolesTokens.onErrorContainer,
+    [listItemTokens.trailingIconColor]: colorSchemeTokens.onSurfaceVariant,
+    [listItemTokens.trailingIconColor$focus]:
+      colorSchemeTokens.onErrorContainer,
+    [listItemTokens.trailingIconColor$hover]:
+      colorSchemeTokens.onErrorContainer,
     [listItemTokens.trailingIconColor$pressed]:
-      colorRolesTokens.onErrorContainer,
+      colorSchemeTokens.onErrorContainer,
 
     [listItemTokens.selectedTrailingIconColor]:
-      colorRolesTokens.onErrorContainer,
+      colorSchemeTokens.onErrorContainer,
     [listItemTokens.selectedTrailingIconColor$focus]:
-      colorRolesTokens.onErrorContainer,
+      colorSchemeTokens.onErrorContainer,
     [listItemTokens.selectedTrailingIconColor$hover]:
-      colorRolesTokens.onErrorContainer,
+      colorSchemeTokens.onErrorContainer,
     [listItemTokens.selectedTrailingIconColor$pressed]:
-      colorRolesTokens.onErrorContainer,
+      colorSchemeTokens.onErrorContainer,
   },
 });

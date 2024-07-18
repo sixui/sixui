@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
 import { elevationTokens } from '@/components/Elevation/Elevation.stylex';
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { shapeTokens } from '@/themes/base/shape.stylex';
 import { stateTokens } from '@/themes/base/state.stylex';
-import { typescaleTokens } from '@/themes/base/typo.stylex';
+import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-fab-primary.scss
 
@@ -22,7 +22,7 @@ const vars = {
   containerShape$lg: shapeTokens.corner$xl,
   containerElevation: elevationTokens.boxShadow$level3,
   // &:disabled
-  containerColor$disabled: colorRolesTokens.onSurface,
+  containerColor$disabled: colorSchemeTokens.onSurface,
   containerElevation$disabled: elevationTokens.boxShadow$level0,
   containerOpacity$disabled: stateTokens.containerOpacity$disabled,
   // &:hover
@@ -47,7 +47,7 @@ const vars = {
   iconSize$sm: '24px',
   iconSize$md: '24px',
   iconSize$lg: '36px',
-  iconColor$disabled: colorRolesTokens.onSurface,
+  iconColor$disabled: colorSchemeTokens.onSurface,
   // &:hover
   iconColor$hover: 'inherit',
   // &:focus
@@ -67,11 +67,11 @@ const vars = {
 
   // label
   labelTextColor: 'inherit',
-  labelTextFont: typescaleTokens.labelFont$lg,
-  labelTextLineHeight: typescaleTokens.labelLineHeight$lg,
-  labelTextSize: typescaleTokens.labelSize$lg,
-  labelTextLetterSpacing: typescaleTokens.labelLetterSpacing$lg,
-  labelTextWeight: typescaleTokens.labelWeight$lg,
+  labelTextFont: typeScaleTokens.labelFont$lg,
+  labelTextLineHeight: typeScaleTokens.labelLineHeight$lg,
+  labelTextSize: typeScaleTokens.labelSize$lg,
+  labelTextLetterSpacing: typeScaleTokens.labelLetterSpacing$lg,
+  labelTextWeight: typeScaleTokens.labelWeight$lg,
   // &:hover
   labelTextColor$hover: 'inherit',
   // &:focus
@@ -79,7 +79,7 @@ const vars = {
   // &:pressed
   labelTextColor$pressed: 'inherit',
   // &:disabled
-  labelTextColor$disabled: colorRolesTokens.onSurface,
+  labelTextColor$disabled: colorSchemeTokens.onSurface,
   labelTextOpacity$disabled: stateTokens.opacity$disabled,
 };
 

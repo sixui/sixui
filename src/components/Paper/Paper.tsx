@@ -25,7 +25,7 @@ export const Paper = forwardRef<HTMLDivElement, IPaperProps>(
       ...other
     } = props;
 
-    const { overridenStyles } = useComponentTheme('Paper');
+    const componentTheme = useComponentTheme('Paper');
     const variantStyles = variant ? paperVariantStyles[variant] : undefined;
 
     const stylesCombinator = useMemo(
@@ -43,7 +43,7 @@ export const Paper = forwardRef<HTMLDivElement, IPaperProps>(
       <div
         {...sxf(
           paperTheme,
-          overridenStyles,
+          componentTheme.overridenStyles,
           'host',
           `host$elevation${elevation}`,
           square && 'host$square',

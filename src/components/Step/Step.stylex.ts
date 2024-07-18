@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
-import { typescaleTokens } from '@/themes/base/typo.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
+import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
 import { shapeTokens } from '@/themes/base/shape.stylex';
 import { stateTokens } from '@/themes/base/state.stylex';
 
@@ -33,80 +33,80 @@ const vars = {
   // bulletPoint
   bulletPointSize: '24px',
   bulletPointShape: shapeTokens.corner$full,
-  bulletPointColor: colorRolesTokens.primary,
+  bulletPointColor: colorSchemeTokens.primary,
   // &:inactive
-  bulletPointColor$inactive: colorRolesTokens.onSurface,
+  bulletPointColor$inactive: colorSchemeTokens.onSurface,
   bulletPointOpacity$inactive: '0.16',
   // &:completed
-  bulletPointColor$completed: colorRolesTokens.primary,
+  bulletPointColor$completed: colorSchemeTokens.primary,
   // &:error
-  bulletPointColor$error: colorRolesTokens.error,
+  bulletPointColor$error: colorSchemeTokens.error,
   // &:disabled
-  bulletPointColor$disabled: colorRolesTokens.onSurface,
+  bulletPointColor$disabled: colorSchemeTokens.onSurface,
   bulletPointOpacity$disabled: stateTokens.containerOpacity$disabled,
 
   // bulletPointText
-  bulletPointTextColor: colorRolesTokens.onPrimary,
-  bulletPointTextFont: typescaleTokens.labelFont$md,
-  bulletPointTextSize: typescaleTokens.labelSize$md,
-  bulletPointTextWeight: typescaleTokens.labelWeight$md,
-  bulletPointTextLineHeight: typescaleTokens.labelLineHeight$md,
-  bulletPointTextLetterSpacing: typescaleTokens.labelLetterSpacing$md,
+  bulletPointTextColor: colorSchemeTokens.onPrimary,
+  bulletPointTextFont: typeScaleTokens.labelFont$md,
+  bulletPointTextSize: typeScaleTokens.labelSize$md,
+  bulletPointTextWeight: typeScaleTokens.labelWeight$md,
+  bulletPointTextLineHeight: typeScaleTokens.labelLineHeight$md,
+  bulletPointTextLetterSpacing: typeScaleTokens.labelLetterSpacing$md,
   // &:inactive
-  bulletPointTextColor$inactive: colorRolesTokens.onSurface,
+  bulletPointTextColor$inactive: colorSchemeTokens.onSurface,
   // &:completed
-  bulletPointTextColor$completed: colorRolesTokens.onPrimary,
+  bulletPointTextColor$completed: colorSchemeTokens.onPrimary,
   // &:error
-  bulletPointTextColor$error: colorRolesTokens.onError,
+  bulletPointTextColor$error: colorSchemeTokens.onError,
   // &:disabled
-  bulletPointTextColor$disabled: colorRolesTokens.onSurface,
+  bulletPointTextColor$disabled: colorSchemeTokens.onSurface,
   bulletPointTextOpacity$disabled: stateTokens.opacity$disabled,
 
   // labelText
-  labelTextColor: colorRolesTokens.onSurface,
-  labelTextFont: typescaleTokens.labelFont$lg,
-  labelTextSize: typescaleTokens.labelSize$lg,
-  labelTextWeight: typescaleTokens.labelWeight$lg,
-  labelTextLineHeight: typescaleTokens.labelLineHeight$lg,
-  labelTextLetterSpacing: typescaleTokens.labelLetterSpacing$lg,
+  labelTextColor: colorSchemeTokens.onSurface,
+  labelTextFont: typeScaleTokens.labelFont$lg,
+  labelTextSize: typeScaleTokens.labelSize$lg,
+  labelTextWeight: typeScaleTokens.labelWeight$lg,
+  labelTextLineHeight: typeScaleTokens.labelLineHeight$lg,
+  labelTextLetterSpacing: typeScaleTokens.labelLetterSpacing$lg,
   // &:interactive
-  labelTextColor$interactive: colorRolesTokens.primary,
+  labelTextColor$interactive: colorSchemeTokens.primary,
   // &:inactive
-  labelTextColor$inactive: colorRolesTokens.onSurface,
+  labelTextColor$inactive: colorSchemeTokens.onSurface,
   // &:completed
-  labelTextColor$completed: colorRolesTokens.onSurface,
+  labelTextColor$completed: colorSchemeTokens.onSurface,
   // &:disabled
-  labelTextColor$disabled: colorRolesTokens.onSurface,
+  labelTextColor$disabled: colorSchemeTokens.onSurface,
   labelTextOpacity$disabled: stateTokens.opacity$disabled,
   // &:error
-  labelTextColor$error: colorRolesTokens.error,
+  labelTextColor$error: colorSchemeTokens.error,
 
   // supportingText
-  supportingTextColor: colorRolesTokens.onSurface,
-  supportingTextFont: typescaleTokens.labelFont$sm,
-  supportingTextSize: typescaleTokens.labelSize$sm,
-  supportingTextWeight: typescaleTokens.labelWeight$sm,
-  supportingTextLineHeight: typescaleTokens.labelLineHeight$sm,
-  supportingTextLetterSpacing: typescaleTokens.labelLetterSpacing$sm,
+  supportingTextColor: colorSchemeTokens.onSurface,
+  supportingTextFont: typeScaleTokens.labelFont$sm,
+  supportingTextSize: typeScaleTokens.labelSize$sm,
+  supportingTextWeight: typeScaleTokens.labelWeight$sm,
+  supportingTextLineHeight: typeScaleTokens.labelLineHeight$sm,
+  supportingTextLetterSpacing: typeScaleTokens.labelLetterSpacing$sm,
   // &:interactive
-  supportingTextColor$interactive: colorRolesTokens.onSurface,
+  supportingTextColor$interactive: colorSchemeTokens.onSurface,
   // &:inactive
-  supportingTextColor$inactive: colorRolesTokens.onSurface,
+  supportingTextColor$inactive: colorSchemeTokens.onSurface,
   // &:completed
-  supportingTextColor$completed: colorRolesTokens.onSurface,
+  supportingTextColor$completed: colorSchemeTokens.onSurface,
   // &:disabled
-  supportingTextColor$disabled: colorRolesTokens.onSurface,
+  supportingTextColor$disabled: colorSchemeTokens.onSurface,
   supportingTextOpacity$disabled: stateTokens.opacity$disabled,
   // &:error
-  supportingTextColor$error: colorRolesTokens.error,
+  supportingTextColor$error: colorSchemeTokens.error,
 
   // contentText
-  contentTextColor: colorRolesTokens.onSurface,
-  contentTextFont: typescaleTokens.bodyFont$md,
-  contentTextSize: typescaleTokens.bodySize$md,
-  contentTextWeight: typescaleTokens.bodyWeight$md,
-  contentTextLineHeight: typescaleTokens.bodyLineHeight$md,
-  contentTextLetterSpacing: typescaleTokens.bodyLetterSpacing$md,
+  contentTextColor: colorSchemeTokens.onSurface,
+  contentTextFont: typeScaleTokens.bodyFont$md,
+  contentTextSize: typeScaleTokens.bodySize$md,
+  contentTextWeight: typeScaleTokens.bodyWeight$md,
+  contentTextLineHeight: typeScaleTokens.bodyLineHeight$md,
+  contentTextLetterSpacing: typeScaleTokens.bodyLetterSpacing$md,
 };
 
 export const stepTokens = stylex.defineVars(vars);

@@ -1,24 +1,24 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
-import { typescaleTokens } from '@/themes/base/typo.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
+import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
 import { shapeTokens } from '@/themes/base/shape.stylex';
 
 const vars = {
   // container
-  containerColor: colorRolesTokens.surfaceContainer,
+  containerColor: colorSchemeTokens.surfaceContainer,
   containerShape: shapeTokens.corner$md,
 
   // crosshairs
-  crosshairsColor: colorRolesTokens.surfaceContainerHighest,
+  crosshairsColor: colorSchemeTokens.surfaceContainerHighest,
 
   // labelText
-  labelTextColor: colorRolesTokens.onSurface,
-  labelTextFont: typescaleTokens.labelFont$sm,
-  labelTextSize: typescaleTokens.labelSize$sm,
-  labelTextLineHeight: typescaleTokens.labelLineHeight$sm,
-  labelTextLetterSpacing: typescaleTokens.labelLetterSpacing$sm,
-  labelTextWeight: typescaleTokens.labelWeight$sm,
+  labelTextColor: colorSchemeTokens.onSurface,
+  labelTextFont: typeScaleTokens.labelFont$sm,
+  labelTextSize: typeScaleTokens.labelSize$sm,
+  labelTextLineHeight: typeScaleTokens.labelLineHeight$sm,
+  labelTextLetterSpacing: typeScaleTokens.labelLetterSpacing$sm,
+  labelTextWeight: typeScaleTokens.labelWeight$sm,
 };
 
 export const placeholderTokens = stylex.defineVars(vars);

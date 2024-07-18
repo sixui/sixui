@@ -1,72 +1,31 @@
-import stylex, { type Theme, type VarGroup } from '@stylexjs/stylex';
+import stylex from '@stylexjs/stylex';
 
-import type { IContainerProps, IMakeOptional } from '@/helpers/types';
-import type { ITonalPalettesThemeVars } from '@/themes/base/tonalPalettes.types';
-import type { IShapeThemeVars } from '@/themes/base/shape.types';
-import type { IMotionThemeVars } from '@/themes/base/motion.types';
-import type {
-  ITypefaceThemeVars,
-  ITypescaleThemeVars,
-} from '@/themes/base/typo.types';
-import {
-  colorRolesTokens,
-  colorRolesTheme,
-} from '@/themes/base/colorRoles.stylex';
-import { ThemeContext, type IThemeContextValue } from './ThemeContext';
-
-export type IThemeProviderProps = IContainerProps &
-  IMakeOptional<IThemeContextValue, 'settings'> & {
-    children: React.ReactNode;
-    tonalPalettesTheme?: Theme<VarGroup<ITonalPalettesThemeVars>>;
-    shapeTheme?: Theme<VarGroup<IShapeThemeVars>>;
-    motionTheme?: Theme<VarGroup<IMotionThemeVars>>;
-    typefaceTheme?: Theme<VarGroup<ITypefaceThemeVars>>;
-    typescaleTheme?: Theme<VarGroup<ITypescaleThemeVars>>;
-  };
-
-const styles = stylex.create({
-  wrapper: {
-    scrollbarWidth: 'thin',
-    scrollbarColor: {
-      '@media (pointer: fine)': `${colorRolesTokens.primary} transparent`,
-    },
-  },
-});
+import type { IThemeProviderProps } from './ThemeProvider.types';
+import { ThemeContext } from './ThemeContext';
+import { themeProviderStyles } from './ThemeProvider.styles';
 
 export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
-  const {
-    sx,
-    children,
-    settings,
-    tonalPalettesTheme,
-    shapeTheme,
-    motionTheme,
-    typefaceTheme,
-    typescaleTheme,
-    componentsStyles,
-    ...other
-  } = props;
+  const { sx, children, theme, settings, componentsStyles, ...other } = props;
 
   return (
     <ThemeContext.Provider
       value={{
-        settings: {
-          linkAs: 'a',
-          ...settings,
-        },
+        theme,
+        settings,
         componentsStyles,
       }}
     >
       <div
         {...stylex.props([
-          tonalPalettesTheme
-            ? [tonalPalettesTheme, colorRolesTheme]
-            : undefined,
-          shapeTheme,
-          motionTheme,
-          typefaceTheme,
-          typescaleTheme,
-          styles.wrapper,
+          theme?.schemes &&
+            themeProviderStyles.dynamicScheme(theme.schemes.light),
+          theme?.shape && themeProviderStyles.dynamicShape(theme.shape),
+          theme?.motion && themeProviderStyles.dynamicMotion(theme.motion),
+          theme?.typeFace &&
+            themeProviderStyles.dynamicTypeFace(theme.typeFace),
+          theme?.typeScale &&
+            themeProviderStyles.dynamicTypeScale(theme.typeScale),
+          themeProviderStyles.wrapper,
           sx,
         ])}
         {...other}

@@ -1,22 +1,22 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { buttonTokens } from '../Button.stylex';
 
 export const outlinedButtonStyles = stylex.create({
   host: {
-    [buttonTokens.stateLayerColor$hover]: colorRolesTokens.primary,
-    [buttonTokens.stateLayerColor$pressed]: colorRolesTokens.primary,
+    [buttonTokens.stateLayerColor$hover]: colorSchemeTokens.primary,
+    [buttonTokens.stateLayerColor$pressed]: colorSchemeTokens.primary,
 
-    [buttonTokens.labelTextColor]: colorRolesTokens.primary,
-    [buttonTokens.labelTextColor$focus]: colorRolesTokens.primary,
-    [buttonTokens.labelTextColor$hover]: colorRolesTokens.primary,
-    [buttonTokens.labelTextColor$pressed]: colorRolesTokens.primary,
+    [buttonTokens.labelTextColor]: colorSchemeTokens.primary,
+    [buttonTokens.labelTextColor$focus]: colorSchemeTokens.primary,
+    [buttonTokens.labelTextColor$hover]: colorSchemeTokens.primary,
+    [buttonTokens.labelTextColor$pressed]: colorSchemeTokens.primary,
 
-    [buttonTokens.iconColor]: colorRolesTokens.primary,
-    [buttonTokens.iconColor$focus]: colorRolesTokens.primary,
-    [buttonTokens.iconColor$hover]: colorRolesTokens.primary,
-    [buttonTokens.iconColor$pressed]: colorRolesTokens.primary,
+    [buttonTokens.iconColor]: colorSchemeTokens.primary,
+    [buttonTokens.iconColor$focus]: colorSchemeTokens.primary,
+    [buttonTokens.iconColor$hover]: colorSchemeTokens.primary,
+    [buttonTokens.iconColor$pressed]: colorSchemeTokens.primary,
 
     [buttonTokens.outlineStyle]: 'solid',
   },

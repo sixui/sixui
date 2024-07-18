@@ -47,7 +47,7 @@ export const TooltipBase = <TForwardedProps extends object = object>(
     ...other
   } = props;
 
-  const { overridenStyles } = useComponentTheme('TooltipBase');
+  const componentTheme = useComponentTheme('TooltipBase');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(tooltipBaseStyles, styles),
     [styles],
@@ -144,7 +144,7 @@ export const TooltipBase = <TForwardedProps extends object = object>(
       {transitionStatus.isMounted ? (
         <Portal>
           <div
-            {...sxf(overridenStyles, 'host', sx)}
+            {...sxf(componentTheme.overridenStyles, 'host', sx)}
             {...interactions.getFloatingProps()}
             ref={floating.refs.setFloating}
             style={floating.floatingStyles}

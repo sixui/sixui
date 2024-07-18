@@ -1,13 +1,18 @@
-import type { StyleXStyles } from '@stylexjs/stylex/lib/StyleXTypes';
 import { createContext } from 'react';
+
+import type { ITheme } from '@/themes/base';
+import type { StyleXStyles } from '@stylexjs/stylex/lib/StyleXTypes';
 
 export type IThemeSettings = {
   linkAs: React.ElementType;
 };
 
+export type IThemeComponentStyles = Record<string, StyleXStyles>;
+
 export type IThemeContextValue = {
-  settings: IThemeSettings;
-  componentsStyles?: Record<string, StyleXStyles>;
+  theme?: ITheme;
+  settings?: IThemeSettings;
+  componentsStyles?: IThemeComponentStyles;
 };
 
 export const ThemeContext = createContext<IThemeContextValue | undefined>(

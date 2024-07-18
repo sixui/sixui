@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { shapeTokens } from '@/themes/base/shape.stylex';
 
 const vars = {
@@ -11,7 +11,7 @@ const vars = {
 
   // outline
   outlineStyle: 'none',
-  outlineColor: colorRolesTokens.outlineVariant,
+  outlineColor: colorSchemeTokens.outlineVariant,
   outlineWidth: '1px',
 };
 

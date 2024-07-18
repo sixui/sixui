@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import { elevationTokens } from '@/components/Elevation/Elevation.stylex';
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { richTooltipContentTokens } from './RichTooltipContent.stylex';
 
 export type IRichTooltipContentStylesKey =
@@ -48,7 +48,7 @@ export const richTooltipContentStyles = stylex.create({
     marginLeft: -8,
   },
   cursor: {
-    fill: colorRolesTokens.primary,
+    fill: colorSchemeTokens.primary,
   },
 });
 

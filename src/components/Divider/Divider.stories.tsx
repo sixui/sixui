@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
 import type { IDividerProps } from './Divider.types';
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { Divider } from './Divider';
 
 // https://m3.material.io/components/divider/
@@ -21,13 +21,13 @@ const styles = stylex.create({
   ul: {
     borderWidth: '1px',
     borderStyle: 'dashed',
-    borderColor: colorRolesTokens.outlineVariant,
+    borderColor: colorSchemeTokens.outlineVariant,
     margin: 0,
     padding: 0,
     width: '256px',
   },
   li: {
-    color: colorRolesTokens.onSurface,
+    color: colorSchemeTokens.onSurface,
     fontFamily: 'system-ui',
     listStyle: 'none',
     margin: '16px',

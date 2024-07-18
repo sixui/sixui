@@ -57,7 +57,7 @@ export const Card: ICard = forwardRef(function Card<
   );
   const handleRef = useMergeRefs([forwardedRef, setVisualStateRef]);
 
-  const { overridenStyles, settings } = useComponentTheme('Card');
+  const componentTheme = useComponentTheme('Card');
   const variantStyles = variant ? cardVariantStyles[variant] : undefined;
 
   const stylesCombinator = useMemo(
@@ -78,7 +78,10 @@ export const Card: ICard = forwardRef(function Card<
     asArray(styles).some((styles) => !!styles?.outline);
 
   const Component =
-    as ?? (!dragged && href ? settings.linkAs : CARD_DEFAULT_TAG);
+    as ??
+    (!dragged && href
+      ? (componentTheme.settings?.linkAs ?? 'a')
+      : CARD_DEFAULT_TAG);
 
   const context: ICardContextValue = {
     actionable,
@@ -89,10 +92,10 @@ export const Card: ICard = forwardRef(function Card<
       <Component
         {...sxf(
           cardTheme,
+          componentTheme.overridenStyles,
           'host',
           actionable && 'host$actionable',
           disabled && 'host$disabled',
-          overridenStyles,
           sx,
         )}
         sx={sx}

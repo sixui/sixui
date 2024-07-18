@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { motionTokens } from '@/themes/base/motion.stylex';
 import { shapeTokens } from '@/themes/base/shape.stylex';
 
@@ -8,7 +8,7 @@ import { shapeTokens } from '@/themes/base/shape.stylex';
 
 const vars = {
   activeWidth: '8px',
-  color: colorRolesTokens.secondary,
+  color: colorSchemeTokens.secondary,
   duration: motionTokens.duration$long4,
   inwardOffset: '0px',
   outwardOffset: '2px',

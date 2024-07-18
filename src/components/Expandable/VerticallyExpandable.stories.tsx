@@ -9,7 +9,7 @@ import {
 import type { IExpandableProps } from './Expandable.types';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { IconButton } from '@/components/IconButton';
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { Expandable } from './Expandable';
 
 const meta = {
@@ -31,7 +31,7 @@ const styles = stylex.create({
   innerPanel: {
     borderWidth: 1,
     borderStyle: 'dashed',
-    borderColor: colorRolesTokens.outline,
+    borderColor: colorSchemeTokens.outline,
     padding: 16,
   },
 });

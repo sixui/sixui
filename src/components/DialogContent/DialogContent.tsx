@@ -54,7 +54,7 @@ export const DialogContent: IDialogContent = forwardRef(function DialogContent<
   const headlineId = useId();
   const childrenId = useId();
 
-  const { overridenStyles } = useComponentTheme('DialogContent');
+  const componentTheme = useComponentTheme('DialogContent');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(dialogContentStyles, styles),
     [styles],
@@ -132,7 +132,7 @@ export const DialogContent: IDialogContent = forwardRef(function DialogContent<
 
   return (
     <Component
-      {...sxf(dialogContentTheme, overridenStyles, 'host', sx)}
+      {...sxf(dialogContentTheme, componentTheme.overridenStyles, 'host', sx)}
       sx={sx}
       aria-labelledby={headline ? headlineId : undefined}
       aria-describedby={childrenId}

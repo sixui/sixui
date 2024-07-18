@@ -23,7 +23,7 @@ export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
       ...other
     } = props;
 
-    const { overridenStyles } = useComponentTheme('Snackbar');
+    const componentTheme = useComponentTheme('Snackbar');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(snackbarStyles, styles),
       [styles],
@@ -53,7 +53,7 @@ export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
         <div
           {...sxf(
             snackbarTheme,
-            overridenStyles,
+            componentTheme.overridenStyles,
             'host',
             horizontalOrigin === 'left'
               ? 'host$left'

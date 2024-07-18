@@ -81,7 +81,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
       ...other
     } = props;
 
-    const { overridenStyles } = useComponentTheme('FloatingFilterableListBase');
+    const componentTheme = useComponentTheme('FloatingFilterableListBase');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(floatingFilterableListBaseStyles, styles),
       [styles],
@@ -388,7 +388,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
               initialFocus={disabled ? -1 : initialFocus}
             >
               <div
-                {...sxf(overridenStyles, 'host', sx)}
+                {...sxf(componentTheme.overridenStyles, 'host', sx)}
                 {...interactions.getFloatingProps()}
                 ref={floating.refs.setFloating}
                 style={floating.floatingStyles}

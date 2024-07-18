@@ -1,9 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
 import { shapeTokens } from '@/themes/base/shape.stylex';
-import { typescaleTokens } from '@/themes/base/typo.stylex';
+import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
 import { stateTokens } from '@/themes/base/state.stylex';
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 
 const vars = {
   gap: '8px',
@@ -55,11 +55,11 @@ const vars = {
 
   // labelText
   labelTextColor: 'inherit',
-  labelTextFont: typescaleTokens.labelFont$lg,
-  labelTextLineHeight: typescaleTokens.labelLineHeight$lg,
-  labelTextSize: typescaleTokens.labelSize$lg,
-  labelTextLetterSpacing: typescaleTokens.labelLetterSpacing$lg,
-  labelTextWeight: typescaleTokens.labelWeight$lg,
+  labelTextFont: typeScaleTokens.labelFont$lg,
+  labelTextLineHeight: typeScaleTokens.labelLineHeight$lg,
+  labelTextSize: typeScaleTokens.labelSize$lg,
+  labelTextLetterSpacing: typeScaleTokens.labelLetterSpacing$lg,
+  labelTextWeight: typeScaleTokens.labelWeight$lg,
   // &:focus
   labelTextColor$focus: 'inherit',
   // &:hover
@@ -67,7 +67,7 @@ const vars = {
   // &:pressed
   labelTextColor$pressed: 'inherit',
   // &:disabled
-  labelTextColor$disabled: colorRolesTokens.onSurface,
+  labelTextColor$disabled: colorSchemeTokens.onSurface,
   labelTextOpacity$disabled: stateTokens.opacity$disabled,
 
   // icon
@@ -80,20 +80,20 @@ const vars = {
   // &:pressed
   iconColor$pressed: 'inherit',
   // &:disabled
-  iconColor$disabled: colorRolesTokens.onSurface,
+  iconColor$disabled: colorSchemeTokens.onSurface,
   iconOpacity$disabled: stateTokens.opacity$disabled,
 
   // outline
   outlineStyle: 'none',
   outlineWidth: '1px',
-  outlineColor: colorRolesTokens.outline,
+  outlineColor: colorSchemeTokens.outline,
   // &:disabled
-  outlineColor$disabled: colorRolesTokens.onSurface,
+  outlineColor$disabled: colorSchemeTokens.onSurface,
   outlineOpacity$disabled: stateTokens.outlineOpacity$disabled,
   // &:focus
-  outlineColor$focus: colorRolesTokens.outline,
+  outlineColor$focus: colorSchemeTokens.outline,
   // &:pressed
-  outlineColor$pressed: colorRolesTokens.outline,
+  outlineColor$pressed: colorSchemeTokens.outline,
 };
 
 export const buttonTokens = stylex.defineVars(vars);

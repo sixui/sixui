@@ -12,7 +12,7 @@ export const CardMedia = forwardRef<HTMLDivElement, ICardMediaProps>(
   function CardMedia(props, forwardedRef) {
     const { styles, sx, children, src, ...other } = props;
 
-    const { overridenStyles } = useComponentTheme('CardMedia');
+    const componentTheme = useComponentTheme('CardMedia');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(cardMediaStyles, styles),
       [styles],
@@ -26,7 +26,7 @@ export const CardMedia = forwardRef<HTMLDivElement, ICardMediaProps>(
       <div
         {...sxf(
           cardMediaTheme,
-          overridenStyles,
+          componentTheme.overridenStyles,
           'host',
           'host$image',
           src ? commonStyles.backgroundImage(src) : undefined,

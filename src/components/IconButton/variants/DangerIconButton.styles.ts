@@ -1,50 +1,53 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { iconButtonTokens } from '../IconButton.stylex';
 
 export const dangerIconButtonStyles = stylex.create({
   host: {
-    [iconButtonTokens.containerColor]: colorRolesTokens.errorContainer,
+    [iconButtonTokens.containerColor]: colorSchemeTokens.errorContainer,
     [iconButtonTokens.containerColor$disabled]:
-      colorRolesTokens.onErrorContainer,
+      colorSchemeTokens.onErrorContainer,
 
     [iconButtonTokens.unselectedContainerColor]:
-      colorRolesTokens.surfaceContainerHighest,
+      colorSchemeTokens.surfaceContainerHighest,
 
-    [iconButtonTokens.selectedContainerColor]: colorRolesTokens.errorContainer,
+    [iconButtonTokens.selectedContainerColor]: colorSchemeTokens.errorContainer,
 
-    [iconButtonTokens.iconColor]: colorRolesTokens.onErrorContainer,
-    [iconButtonTokens.iconColor$focus]: colorRolesTokens.onErrorContainer,
-    [iconButtonTokens.iconColor$hover]: colorRolesTokens.onErrorContainer,
-    [iconButtonTokens.iconColor$pressed]: colorRolesTokens.onErrorContainer,
-    [iconButtonTokens.iconColor$disabled]: colorRolesTokens.onErrorContainer,
+    [iconButtonTokens.iconColor]: colorSchemeTokens.onErrorContainer,
+    [iconButtonTokens.iconColor$focus]: colorSchemeTokens.onErrorContainer,
+    [iconButtonTokens.iconColor$hover]: colorSchemeTokens.onErrorContainer,
+    [iconButtonTokens.iconColor$pressed]: colorSchemeTokens.onErrorContainer,
+    [iconButtonTokens.iconColor$disabled]: colorSchemeTokens.onErrorContainer,
 
-    [iconButtonTokens.toggleIconColor]: colorRolesTokens.onErrorContainer,
-    [iconButtonTokens.toggleIconColor$focus]: colorRolesTokens.onErrorContainer,
-    [iconButtonTokens.toggleIconColor$hover]: colorRolesTokens.onErrorContainer,
+    [iconButtonTokens.toggleIconColor]: colorSchemeTokens.onErrorContainer,
+    [iconButtonTokens.toggleIconColor$focus]:
+      colorSchemeTokens.onErrorContainer,
+    [iconButtonTokens.toggleIconColor$hover]:
+      colorSchemeTokens.onErrorContainer,
     [iconButtonTokens.toggleIconColor$pressed]:
-      colorRolesTokens.onErrorContainer,
+      colorSchemeTokens.onErrorContainer,
 
     [iconButtonTokens.toggleSelectedIconColor]:
-      colorRolesTokens.onErrorContainer,
+      colorSchemeTokens.onErrorContainer,
     [iconButtonTokens.toggleSelectedIconColor$focus]:
-      colorRolesTokens.onErrorContainer,
+      colorSchemeTokens.onErrorContainer,
     [iconButtonTokens.toggleSelectedIconColor$hover]:
-      colorRolesTokens.onErrorContainer,
+      colorSchemeTokens.onErrorContainer,
     [iconButtonTokens.toggleSelectedIconColor$pressed]:
-      colorRolesTokens.onErrorContainer,
+      colorSchemeTokens.onErrorContainer,
 
-    [iconButtonTokens.stateLayerColor$hover]: colorRolesTokens.onErrorContainer,
+    [iconButtonTokens.stateLayerColor$hover]:
+      colorSchemeTokens.onErrorContainer,
     [iconButtonTokens.stateLayerColor$pressed]:
-      colorRolesTokens.onErrorContainer,
+      colorSchemeTokens.onErrorContainer,
 
-    [iconButtonTokens.toggleStateLayerColor$hover]: colorRolesTokens.error,
-    [iconButtonTokens.toggleStateLayerColor$pressed]: colorRolesTokens.error,
+    [iconButtonTokens.toggleStateLayerColor$hover]: colorSchemeTokens.error,
+    [iconButtonTokens.toggleStateLayerColor$pressed]: colorSchemeTokens.error,
 
     [iconButtonTokens.toggleSelectedStateLayerColor$hover]:
-      colorRolesTokens.onErrorContainer,
+      colorSchemeTokens.onErrorContainer,
     [iconButtonTokens.toggleSelectedStateLayerColor$pressed]:
-      colorRolesTokens.onErrorContainer,
+      colorSchemeTokens.onErrorContainer,
   },
 });

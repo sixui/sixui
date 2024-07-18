@@ -78,7 +78,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
   );
   const handleRef = useMergeRefs([forwardedRef, setVisualStateRef, actionRef]);
 
-  const { overridenStyles, settings } = useComponentTheme('ListItem');
+  const componentTheme = useComponentTheme('ListItem');
   const variantStyles = variant ? listItemVariantStyles[variant] : undefined;
 
   const stylesCombinator = useMemo(
@@ -108,7 +108,11 @@ export const ListItem: IListItem = forwardRef(function ListItem<
 
   const Component =
     as ??
-    (type == 'link' ? settings.linkAs : type === 'button' ? 'button' : 'li');
+    (type == 'link'
+      ? (componentTheme.settings?.linkAs ?? 'a')
+      : type === 'button'
+        ? 'button'
+        : 'li');
 
   const renderContainer = (): React.ReactNode => (
     <>
@@ -196,7 +200,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
     <Component
       {...sxf(
         listItemTheme,
-        overridenStyles,
+        componentTheme.overridenStyles,
         'host',
         `host$${adaptedSize}`,
         isInteractive && 'host$interactive',

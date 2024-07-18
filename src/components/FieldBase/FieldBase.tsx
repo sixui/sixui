@@ -80,7 +80,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
   );
   const handleRef = useMergeRefs([forwardedRef, setVisualStateRef]);
 
-  const { overridenStyles } = useComponentTheme('FieldBase');
+  const componentTheme = useComponentTheme('FieldBase');
   const variantStyles = variant ? fieldBaseVariantStyles[variant] : undefined;
 
   const stylesCombinator = useMemo(
@@ -528,7 +528,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
     <Component
       {...sxf(
         fieldBaseTheme,
-        overridenStyles,
+        componentTheme.overridenStyles,
         'host',
         !!supportingOrErrorText && 'host$withSupportingText',
         disabled && 'host$disabled',

@@ -18,7 +18,7 @@ export const MenuList = forwardRef<HTMLDivElement, IMenuListProps>(
   function MenuList(props, forwardedRef) {
     const { styles, sx, innerStyles, children, ...other } = props;
 
-    const { overridenStyles } = useComponentTheme('MenuList');
+    const componentTheme = useComponentTheme('MenuList');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(menuListStyles, styles),
       [styles],
@@ -30,7 +30,7 @@ export const MenuList = forwardRef<HTMLDivElement, IMenuListProps>(
 
     return (
       <div
-        {...sxf(menuListTheme, overridenStyles, 'host', sx)}
+        {...sxf(menuListTheme, componentTheme.overridenStyles, 'host', sx)}
         ref={forwardedRef}
       >
         <Elevation

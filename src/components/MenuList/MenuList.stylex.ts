@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { shapeTokens } from '@/themes/base/shape.stylex';
 import { elevationTokens } from '@/components/Elevation/Elevation.stylex';
 
@@ -9,7 +9,7 @@ import { elevationTokens } from '@/components/Elevation/Elevation.stylex';
 
 const vars = {
   // container
-  containerColor: colorRolesTokens.surfaceContainer,
+  containerColor: colorSchemeTokens.surfaceContainer,
   containerElevation: elevationTokens.boxShadow$level2,
   containerShape: shapeTokens.corner$xs,
 

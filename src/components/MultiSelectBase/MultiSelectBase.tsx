@@ -39,7 +39,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
     ...other
   } = props;
 
-  const { overridenStyles } = useComponentTheme('MultiSelectBase');
+  const componentTheme = useComponentTheme('MultiSelectBase');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(multiSelectBaseStyles, styles),
     [styles],
@@ -79,7 +79,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
     >
       {(renderProps) => (
         <TextInputField
-          sx={[overridenStyles, sx]}
+          sx={[componentTheme.overridenStyles, sx]}
           styles={innerStyles?.textInputField}
           end={
             <FilterableListBaseFieldEnd

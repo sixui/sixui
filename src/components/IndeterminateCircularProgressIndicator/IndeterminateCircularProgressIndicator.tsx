@@ -23,7 +23,7 @@ export const IndeterminateCircularProgressIndicator = forwardRef<
 >(function IndeterminateCircularProgressIndicator(props, forwardedRef) {
   const { styles, sx, size = 'md', disabled, children, ...other } = props;
 
-  const { overridenStyles } = useComponentTheme('CircularProgressIndicator');
+  const componentTheme = useComponentTheme('CircularProgressIndicator');
   const stylesCombinator = useMemo(
     () =>
       stylesCombinatorFactory<
@@ -45,7 +45,7 @@ export const IndeterminateCircularProgressIndicator = forwardRef<
     <div
       {...sxf(
         circularProgressIndicatorTheme,
-        overridenStyles,
+        componentTheme.overridenStyles,
         'host',
         `host$${size}`,
         sx,

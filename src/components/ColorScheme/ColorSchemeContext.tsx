@@ -1,9 +1,9 @@
 import { createContext } from 'react';
 
-export type IColorScheme = 'light' | 'dark';
+export type IColorSchemeVariant = 'light' | 'dark';
 
 export type IColorSchemeContextValue = {
-  scheme?: IColorScheme;
+  scheme?: IColorSchemeVariant;
   root?: React.MutableRefObject<HTMLElement | null>;
 };
 

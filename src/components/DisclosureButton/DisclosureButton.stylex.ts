@@ -1,65 +1,65 @@
 import stylex from '@stylexjs/stylex';
 
-import { typescaleTokens } from '@/themes/base/typo.stylex';
+import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
 import { shapeTokens } from '@/themes/base/shape.stylex';
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { stateTokens } from '@/themes/base/state.stylex';
 
 const vars = {
   // container
   containerShape: shapeTokens.corner$sm,
-  containerColor: colorRolesTokens.secondaryContainer,
+  containerColor: colorSchemeTokens.secondaryContainer,
   containerOpacity: '1',
   // &:disabled
-  containerColor$disabled: colorRolesTokens.onSurface,
+  containerColor$disabled: colorSchemeTokens.onSurface,
   containerOpacity$disabled: stateTokens.containerOpacity$disabled,
 
   // expandedContainer
-  expandedContainerColor: colorRolesTokens.secondaryContainer,
+  expandedContainerColor: colorSchemeTokens.secondaryContainer,
   expandedContainerOpacity: '1',
   // &:disabled
-  expandedContainerColor$disabled: colorRolesTokens.onSurface,
+  expandedContainerColor$disabled: colorSchemeTokens.onSurface,
   expandedContainerOpacity$disabled: stateTokens.containerOpacity$disabled,
 
   // uncheckedContainer
-  uncheckedContainerColor: colorRolesTokens.onSurface,
+  uncheckedContainerColor: colorSchemeTokens.onSurface,
   uncheckedContainerOpacity: stateTokens.containerOpacity$disabled,
   // &:disabled
-  uncheckedContainerColor$disabled: colorRolesTokens.onSurface,
+  uncheckedContainerColor$disabled: colorSchemeTokens.onSurface,
   uncheckedContainerOpacity$disabled: stateTokens.containerOpacity$disabled,
 
   // text
-  textColor: colorRolesTokens.onSecondaryContainer,
-  textColor$disabled: colorRolesTokens.onSurface,
-  textColor$focus: colorRolesTokens.onSecondaryContainer,
-  textColor$hover: colorRolesTokens.onSecondaryContainer,
-  textColor$pressed: colorRolesTokens.onSecondaryContainer,
-  textFont: typescaleTokens.titleFont$md,
-  textLineHeight: typescaleTokens.titleLineHeight$md,
-  textSize: typescaleTokens.titleSize$md,
-  textLetterSpacing: typescaleTokens.titleLetterSpacing$md,
-  textWeight: typescaleTokens.titleWeight$md,
+  textColor: colorSchemeTokens.onSecondaryContainer,
+  textColor$disabled: colorSchemeTokens.onSurface,
+  textColor$focus: colorSchemeTokens.onSecondaryContainer,
+  textColor$hover: colorSchemeTokens.onSecondaryContainer,
+  textColor$pressed: colorSchemeTokens.onSecondaryContainer,
+  textFont: typeScaleTokens.titleFont$md,
+  textLineHeight: typeScaleTokens.titleLineHeight$md,
+  textSize: typeScaleTokens.titleSize$md,
+  textLetterSpacing: typeScaleTokens.titleLetterSpacing$md,
+  textWeight: typeScaleTokens.titleWeight$md,
 
   // expandedText
-  expandedTextColor: colorRolesTokens.onSecondaryContainer,
-  expandedTextColor$disabled: colorRolesTokens.onSurface,
-  expandedTextColor$focus: colorRolesTokens.onSecondaryContainer,
-  expandedTextColor$hover: colorRolesTokens.onSecondaryContainer,
-  expandedTextColor$pressed: colorRolesTokens.onSecondaryContainer,
+  expandedTextColor: colorSchemeTokens.onSecondaryContainer,
+  expandedTextColor$disabled: colorSchemeTokens.onSurface,
+  expandedTextColor$focus: colorSchemeTokens.onSecondaryContainer,
+  expandedTextColor$hover: colorSchemeTokens.onSecondaryContainer,
+  expandedTextColor$pressed: colorSchemeTokens.onSecondaryContainer,
 
   // icon
-  iconColor: colorRolesTokens.onSecondaryContainer,
-  iconColor$disabled: colorRolesTokens.onSurface,
-  iconColor$focus: colorRolesTokens.onSecondaryContainer,
-  iconColor$hover: colorRolesTokens.onSecondaryContainer,
-  iconColor$pressed: colorRolesTokens.onSecondaryContainer,
+  iconColor: colorSchemeTokens.onSecondaryContainer,
+  iconColor$disabled: colorSchemeTokens.onSurface,
+  iconColor$focus: colorSchemeTokens.onSecondaryContainer,
+  iconColor$hover: colorSchemeTokens.onSecondaryContainer,
+  iconColor$pressed: colorSchemeTokens.onSecondaryContainer,
 
   // expandedIcon
-  expandedIconColor: colorRolesTokens.onSecondaryContainer,
-  expandedIconColor$disabled: colorRolesTokens.onSurface,
-  expandedIconColor$focus: colorRolesTokens.onSecondaryContainer,
-  expandedIconColor$hover: colorRolesTokens.onSecondaryContainer,
-  expandedIconColor$pressed: colorRolesTokens.onSecondaryContainer,
+  expandedIconColor: colorSchemeTokens.onSecondaryContainer,
+  expandedIconColor$disabled: colorSchemeTokens.onSurface,
+  expandedIconColor$focus: colorSchemeTokens.onSecondaryContainer,
+  expandedIconColor$hover: colorSchemeTokens.onSecondaryContainer,
+  expandedIconColor$pressed: colorSchemeTokens.onSecondaryContainer,
 };
 
 export const disclosureButtonTokens = stylex.defineVars(vars);

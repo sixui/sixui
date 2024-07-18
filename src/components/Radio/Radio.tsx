@@ -66,7 +66,7 @@ export const Radio: IRadio = forwardRef(function Radio<
   );
   const handleRef = useMergeRefs([forwardedRef, setVisualStateRef, actionRef]);
 
-  const { overridenStyles } = useComponentTheme('Radio');
+  const componentTheme = useComponentTheme('Radio');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(radioStyles, styles),
     [styles],
@@ -101,7 +101,7 @@ export const Radio: IRadio = forwardRef(function Radio<
     <div
       {...sxf(
         radioTheme,
-        overridenStyles,
+        componentTheme.overridenStyles,
         'host',
         disabled && 'host$disabled',
         sx,

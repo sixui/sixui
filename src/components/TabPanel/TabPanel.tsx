@@ -10,7 +10,7 @@ export const TabPanel = forwardRef<HTMLDivElement, ITabPanelProps>(
   function TabPanel(props, forwardedRef) {
     const { styles, sx, anchor, children } = props;
 
-    const { overridenStyles } = useComponentTheme('TabPanel');
+    const componentTheme = useComponentTheme('TabPanel');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(styles),
       [styles],
@@ -30,7 +30,7 @@ export const TabPanel = forwardRef<HTMLDivElement, ITabPanelProps>(
 
     return (
       <div
-        {...sxf(overridenStyles, 'host', sx)}
+        {...sxf(componentTheme.overridenStyles, 'host', sx)}
         ref={forwardedRef}
         role='tabpanel'
         aria-labelledby={id}

@@ -14,7 +14,7 @@ export const Divider = forwardRef<HTMLDivElement, IDividerProps>(
     const { styles, sx, inset, insetStart, insetEnd, children, ...other } =
       props;
 
-    const { overridenStyles } = useComponentTheme('Divider');
+    const componentTheme = useComponentTheme('Divider');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(dividerStyles, styles),
       [styles],
@@ -37,7 +37,7 @@ export const Divider = forwardRef<HTMLDivElement, IDividerProps>(
 
     return (
       <div
-        {...sxf(dividerTheme, overridenStyles, 'host', sx)}
+        {...sxf(dividerTheme, componentTheme.overridenStyles, 'host', sx)}
         ref={forwardedRef}
         {...other}
       >

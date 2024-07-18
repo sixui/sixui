@@ -1,13 +1,13 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
-import { typescaleTokens } from '@/themes/base/typo.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
+import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
 import { shapeTokens } from '@/themes/base/shape.stylex';
 import { stateTokens } from '@/themes/base/state.stylex';
 
 const vars = {
   // container
-  containerColor: colorRolesTokens.error,
+  containerColor: colorSchemeTokens.error,
   containerShape: shapeTokens.corner$full,
   containerShape$dot: shapeTokens.corner$full,
   containerMinWidth: '16px',
@@ -16,18 +16,18 @@ const vars = {
   containerHeight$dot: '8px',
   containerPadding: '4px',
   // &:disabled
-  containerColor$disabled: colorRolesTokens.onSurface,
+  containerColor$disabled: colorSchemeTokens.onSurface,
   containerOpacity$disabled: stateTokens.containerOpacity$disabled,
 
   // labelText
-  labelTextColor: colorRolesTokens.onError,
-  labelTextFont: typescaleTokens.labelFont$sm,
-  labelTextLineHeight: typescaleTokens.labelLineHeight$sm,
-  labelTextSize: typescaleTokens.labelSize$sm,
-  labelTextLetterSpacing: typescaleTokens.labelLetterSpacing$sm,
-  labelTextWeight: typescaleTokens.labelWeight$sm,
+  labelTextColor: colorSchemeTokens.onError,
+  labelTextFont: typeScaleTokens.labelFont$sm,
+  labelTextLineHeight: typeScaleTokens.labelLineHeight$sm,
+  labelTextSize: typeScaleTokens.labelSize$sm,
+  labelTextLetterSpacing: typeScaleTokens.labelLetterSpacing$sm,
+  labelTextWeight: typeScaleTokens.labelWeight$sm,
   // &:disabled
-  labelTextColor$disabled: colorRolesTokens.onSurface,
+  labelTextColor$disabled: colorSchemeTokens.onSurface,
   labelTextOpacity$disabled: stateTokens.opacity$disabled,
 };
 

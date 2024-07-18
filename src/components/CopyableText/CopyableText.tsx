@@ -26,7 +26,7 @@ export const CopyableText = forwardRef<HTMLElement, ICopyableTextProps>(
       ...other
     } = props;
 
-    const { overridenStyles } = useComponentTheme('CopyableText');
+    const componentTheme = useComponentTheme('CopyableText');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(copyableTextStyles, styles),
       [styles],
@@ -70,7 +70,7 @@ export const CopyableText = forwardRef<HTMLElement, ICopyableTextProps>(
           {...other}
           ref={containerHandleRef}
         >
-          <div {...sxf(overridenStyles, 'host', sx)}>
+          <div {...sxf(componentTheme.overridenStyles, 'host', sx)}>
             {children ? <div {...sxf('text')}>{children}</div> : null}
             {isTriggerVisible
               ? (icon ?? <IconCopyToCliboard aria-hidden />)

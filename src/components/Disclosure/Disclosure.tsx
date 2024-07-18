@@ -22,7 +22,7 @@ export const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
       ...other
     } = props;
 
-    const { overridenStyles } = useComponentTheme('Disclosure');
+    const componentTheme = useComponentTheme('Disclosure');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(disclosureStyles, styles),
       [styles],
@@ -34,7 +34,7 @@ export const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
 
     return (
       <div
-        {...sxf(disclosureTheme, overridenStyles, 'host', sx)}
+        {...sxf(disclosureTheme, componentTheme.overridenStyles, 'host', sx)}
         {...other}
         ref={forwardedRef}
       >

@@ -13,7 +13,6 @@ export * from './components/CardTitle';
 export * from './components/Checkbox';
 export * from './components/Chip';
 export * from './components/CircularProgressIndicator';
-export * from './components/ColorRoles';
 export * from './components/ColorScheme';
 export * from './components/ComponentShowcase';
 export * from './components/CopyableText';

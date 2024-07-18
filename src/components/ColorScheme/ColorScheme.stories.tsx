@@ -1,21 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IColorRolesProps } from './ColorRoles.types';
-import { ColorRoles } from './ColorRoles';
+import type { IColorSchemeProps } from './ColorScheme.types';
+import { ColorScheme } from './ColorScheme';
 
 // https://m3.material.io/styles/color/roles
 // https://material-web.dev/theming/color/
 
 const meta = {
-  component: ColorRoles,
-} satisfies Meta<typeof ColorRoles>;
+  component: ColorScheme,
+} satisfies Meta<typeof ColorScheme>;
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {} satisfies Partial<IColorRolesProps>;
+const defaultArgs = {} satisfies Partial<IColorSchemeProps>;
 
 export const BaselineColors: IStory = {
-  render: (props) => <ColorRoles {...props} />,
+  render: (props) => <ColorScheme {...props} />,
   args: defaultArgs,
 };
 

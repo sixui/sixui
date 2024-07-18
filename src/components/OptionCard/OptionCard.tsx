@@ -42,7 +42,7 @@ export const OptionCard: IOptionCard = forwardRef(function OptionCard<
   } = props as IWithAsProp<IOptionCardOwnProps>;
   const radioGroupContext = useContext(RadioGroupContext);
 
-  const { overridenStyles } = useComponentTheme('OptionCard');
+  const componentTheme = useComponentTheme('OptionCard');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(optionCardStyles, styles),
     [styles],
@@ -76,7 +76,7 @@ export const OptionCard: IOptionCard = forwardRef(function OptionCard<
       disabled={other.disabled}
       sx={[
         optionCardTheme,
-        overridenStyles,
+        componentTheme.overridenStyles,
         stylesCombinator('host'),
         checked && stylesCombinator('host$selected'),
         sx,

@@ -11,7 +11,7 @@ export const Elevation = forwardRef<HTMLDivElement, IElevationProps>(
   function Elevation(props, forwardedRef) {
     const { styles, sx, level, disabled, ...other } = props;
 
-    const { overridenStyles } = useComponentTheme('Elevation');
+    const componentTheme = useComponentTheme('Elevation');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(elevationStyles, styles),
       [styles],
@@ -25,7 +25,7 @@ export const Elevation = forwardRef<HTMLDivElement, IElevationProps>(
       <div
         {...sxf(
           elevationTheme,
-          overridenStyles,
+          componentTheme.overridenStyles,
           'host',
           level !== undefined && `host$level${level}`,
           disabled && 'host$disabled',

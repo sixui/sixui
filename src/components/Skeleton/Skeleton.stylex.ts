@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { shapeTokens } from '@/themes/base/shape.stylex';
 
 const vars = {
@@ -8,12 +8,12 @@ const vars = {
 
   // container
   containerShape: `min(0.25em, ${shapeTokens.corner$xs})`,
-  containerColor: colorRolesTokens.surfaceContainerHigh,
+  containerColor: colorSchemeTokens.surfaceContainerHigh,
   // &:error
-  containerColor$error: colorRolesTokens.errorContainer,
+  containerColor$error: colorSchemeTokens.errorContainer,
 
   // animation
-  animationTargetColor: colorRolesTokens.inverseSurface,
+  animationTargetColor: colorSchemeTokens.inverseSurface,
   // &:pulse
   animationMaxOpacity$pulse: '0.12',
   animationDuration$pulse: '2s',

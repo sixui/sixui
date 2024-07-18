@@ -1,14 +1,14 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { stateTokens } from '@/themes/base/state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-ripple.scss
 
 const vars = {
-  color$hover: colorRolesTokens.onSurface,
-  color$pressed: colorRolesTokens.onSurface,
-  color$dragged: colorRolesTokens.onSurface,
+  color$hover: colorSchemeTokens.onSurface,
+  color$pressed: colorSchemeTokens.onSurface,
+  color$dragged: colorSchemeTokens.onSurface,
   opacity$hover: stateTokens.stateLayerOpacity$hover,
   opacity$pressed: stateTokens.stateLayerOpacity$pressed,
   opacity$dragged: stateTokens.stateLayerOpacity$dragged,

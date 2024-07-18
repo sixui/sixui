@@ -34,7 +34,7 @@ export const FluidButton: IFluidButton = forwardRef(function FluidButton<
   const { styles, sx, as, innerStyles, children, ...other } =
     props as IWithAsProp<IFluidButtonOwnProps>;
 
-  const { overridenStyles } = useComponentTheme('FluidButton');
+  const componentTheme = useComponentTheme('FluidButton');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(fluidButtonStyles, styles),
     [styles],
@@ -49,7 +49,7 @@ export const FluidButton: IFluidButton = forwardRef(function FluidButton<
   return (
     <ButtonBase
       as={as}
-      sx={[fluidButtonTheme, overridenStyles, sx]}
+      sx={[fluidButtonTheme, componentTheme.overridenStyles, sx]}
       styles={[
         fluidButtonButtonBaseStyles,
         ...asArray(innerStyles?.buttonBase),

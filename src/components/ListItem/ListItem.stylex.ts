@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { shapeTokens } from '@/themes/base/shape.stylex';
 import { stateTokens } from '@/themes/base/state.stylex';
 
@@ -44,7 +44,7 @@ const vars = {
   // &:pressed
   textColor$pressed: 'inherit',
   // &:disabled
-  textColor$disabled: colorRolesTokens.onSurface,
+  textColor$disabled: colorSchemeTokens.onSurface,
   textOpacity$disabled: stateTokens.opacity$disabled,
 
   // nonText
@@ -56,7 +56,7 @@ const vars = {
   // &:pressed
   nonTextColor$pressed: 'inherit',
   // &:disabled
-  nonTextColor$disabled: colorRolesTokens.onSurfaceVariant,
+  nonTextColor$disabled: colorSchemeTokens.onSurfaceVariant,
   nonTextOpacity$disabled: stateTokens.opacity$disabled,
 
   // selectedText
@@ -87,7 +87,7 @@ const vars = {
   leadingIconColor$pressed: 'inherit',
   leadingIconSize: '18px',
   // &:disabled
-  leadingIconColor$disabled: colorRolesTokens.onSurface,
+  leadingIconColor$disabled: colorSchemeTokens.onSurface,
   leadingIconOpacity$disabled: stateTokens.opacity$disabled,
 
   // selectedLeadingIcon
@@ -109,7 +109,7 @@ const vars = {
   // &:pressed
   trailingIconColor$pressed: 'inherit',
   // &:disabled
-  trailingIconColor$disabled: colorRolesTokens.onSurface,
+  trailingIconColor$disabled: colorSchemeTokens.onSurface,
   trailingIconOpacity$disabled: stateTokens.opacity$disabled,
 
   // selectedTrailingIcon

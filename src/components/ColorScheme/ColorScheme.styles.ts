@@ -1,14 +1,14 @@
 import stylex from '@stylexjs/stylex';
 
-import { typescaleTokens } from '@/themes/base/typo.stylex';
+import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
 
-export const colorRolesStyles = stylex.create({
+export const colorSchemeStyles = stylex.create({
   host: {
-    fontFamily: typescaleTokens.labelFont$sm,
-    fontSize: typescaleTokens.labelSize$sm,
-    fontWeight: typescaleTokens.labelWeight$sm,
-    lineHeight: typescaleTokens.labelLineHeight$sm,
-    letterSpacing: typescaleTokens.labelLetterSpacing$sm,
+    fontFamily: typeScaleTokens.labelFont$sm,
+    fontSize: typeScaleTokens.labelSize$sm,
+    fontWeight: typeScaleTokens.labelWeight$sm,
+    lineHeight: typeScaleTokens.labelLineHeight$sm,
+    letterSpacing: typeScaleTokens.labelLetterSpacing$sm,
   },
   flex: {
     display: 'flex',

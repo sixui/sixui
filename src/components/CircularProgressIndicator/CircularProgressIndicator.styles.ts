@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
-import { typescaleTokens } from '@/themes/base/typo.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
+import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
 import { stateTokens } from '@/themes/base/state.stylex';
 import { circularProgressIndicatorTokens } from './CircularProgressIndicator.stylex';
 
@@ -55,12 +55,12 @@ export const circularProgressIndicatorStyles = stylex.create({
     justifyContent: 'center',
     width: '100%',
     height: '100%',
-    color: colorRolesTokens.onSurface,
-    fontFamily: typescaleTokens.labelFont$sm,
-    fontSize: typescaleTokens.labelSize$sm,
-    fontWeight: typescaleTokens.labelWeight$sm,
-    lineHeight: typescaleTokens.labelLineHeight$sm,
-    letterSpacing: typescaleTokens.labelLetterSpacing$sm,
+    color: colorSchemeTokens.onSurface,
+    fontFamily: typeScaleTokens.labelFont$sm,
+    fontSize: typeScaleTokens.labelSize$sm,
+    fontWeight: typeScaleTokens.labelWeight$sm,
+    lineHeight: typeScaleTokens.labelLineHeight$sm,
+    letterSpacing: typeScaleTokens.labelLetterSpacing$sm,
   },
   label$disabled: {
     opacity: stateTokens.opacity$disabled,

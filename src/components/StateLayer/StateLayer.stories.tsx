@@ -7,7 +7,7 @@ import {
   ComponentShowcase,
 } from '@/components/ComponentShowcase';
 import type { IStateLayerProps } from './StateLayer.types';
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { shapeTokens } from '@/themes/base/shape.stylex';
 import { StateLayer } from './StateLayer';
 
@@ -40,7 +40,7 @@ const styles = stylex.create({
     width: 96,
     height: 96,
     outlineWidth: '1px',
-    outlineColor: colorRolesTokens.outline,
+    outlineColor: colorSchemeTokens.outline,
   },
   container$inner: {
     position: 'absolute',
@@ -72,10 +72,10 @@ const styles = stylex.create({
     height: '1.5rem',
     placeContent: 'center',
     placeItems: 'center',
-    backgroundColor: colorRolesTokens.primaryContainer,
+    backgroundColor: colorSchemeTokens.primaryContainer,
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: colorRolesTokens.outline,
+    borderColor: colorSchemeTokens.outline,
   },
 });
 

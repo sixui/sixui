@@ -32,7 +32,7 @@ export const Field: IField = forwardRef(function Field<
     ...other
   } = props as IWithAsProp<IFieldOwnProps>;
 
-  const { overridenStyles } = useComponentTheme('Field');
+  const componentTheme = useComponentTheme('Field');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(fieldStyles, styles),
     [styles],
@@ -46,7 +46,7 @@ export const Field: IField = forwardRef(function Field<
 
   return (
     <FieldBase
-      sx={[overridenStyles, sx]}
+      sx={[componentTheme.overridenStyles, sx]}
       styles={innerStyles?.fieldBase}
       ref={forwardedRef}
       populated={populated}

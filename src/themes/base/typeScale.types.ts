@@ -1,12 +1,4 @@
-export type ITypefaceThemeVars = {
-  brand: string;
-  plain: string;
-  weightBold: string;
-  weightMedium: string;
-  weightRegular: string;
-};
-
-export type ITypescaleThemeVars = {
+export type ITypeScaleTheme = {
   // display-large
   displayFont$lg: string;
   displayLineHeight$lg: string;

@@ -1,4 +1,4 @@
-export type IMotionThemeVars = {
+export type IMotionTheme = {
   duration$extraLong1: string;
   duration$extraLong2: string;
   duration$extraLong3: string;

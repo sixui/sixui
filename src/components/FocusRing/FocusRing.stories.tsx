@@ -6,7 +6,7 @@ import stylex from '@stylexjs/stylex';
 import type { IFocusRingProps } from './FocusRing.types';
 import { ComponentShowcase } from '@/components/ComponentShowcase';
 import { Placeholder } from '@/components/Placeholder';
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { shapeTokens } from '@/themes/base/shape.stylex';
 import { FocusRing } from './FocusRing';
 import { focusRingTokens } from './FocusRing.stylex';
@@ -33,7 +33,7 @@ const placeholderStyles = stylex.create({
     height: '6rem',
     outlineWidth: '1px',
     outlineStyle: 'solid',
-    outlineColor: colorRolesTokens.outline,
+    outlineColor: colorSchemeTokens.outline,
     padding: '1rem',
   },
 });
@@ -44,7 +44,7 @@ const dashedPlaceholderStyles = stylex.create({
     height: '6rem',
     outlineWidth: '1px',
     outlineStyle: 'dashed',
-    outlineColor: colorRolesTokens.outline,
+    outlineColor: colorSchemeTokens.outline,
     padding: '1rem',
   },
 });
@@ -56,7 +56,7 @@ const styles = stylex.create({
     textAlign: 'center',
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: colorRolesTokens.outline,
+    borderColor: colorSchemeTokens.outline,
     borderRadius: shapeTokens.corner$md,
   },
 });

@@ -77,7 +77,7 @@ export const Tab: ITab = forwardRef(function Tab<
   );
   const handleRef = useMergeRefs([forwardedRef, visualStateRef, actionRef]);
 
-  const { overridenStyles, settings } = useComponentTheme('Tab');
+  const componentTheme = useComponentTheme('Tab');
   const variantStyles = variant ? tabVariantStyles[variant] : undefined;
 
   const stylesCombinator = useMemo(
@@ -151,13 +151,14 @@ export const Tab: ITab = forwardRef(function Tab<
     [active, icon, activeIcon, sxf, disabled],
   );
 
-  const Component = as ?? (href ? settings.linkAs : TAB_DEFAULT_TAG);
+  const Component =
+    as ?? (href ? (componentTheme.settings?.linkAs ?? 'a') : TAB_DEFAULT_TAG);
 
   return (
     <Component
       {...sxf(
         tabTheme,
-        overridenStyles,
+        componentTheme.overridenStyles,
         'host',
         active && 'host$active',
         disabled && 'host$disabled',

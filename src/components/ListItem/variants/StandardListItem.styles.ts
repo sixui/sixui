@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { stateTokens } from '@/themes/base/state.stylex';
 import { listItemTokens } from '../ListItem.stylex';
 
@@ -8,63 +8,66 @@ export const standardListItemStyles = stylex.create({
   host: {
     [listItemTokens.containerColor]: 'transparent',
 
-    [listItemTokens.selectedContainerColor]: colorRolesTokens.primaryContainer,
+    [listItemTokens.selectedContainerColor]: colorSchemeTokens.primaryContainer,
     [listItemTokens.selectedContainerOpacity]: '1',
 
-    [listItemTokens.textColor]: colorRolesTokens.onSurface,
-    [listItemTokens.textColor$focus]: colorRolesTokens.onSurface,
-    [listItemTokens.textColor$hover]: colorRolesTokens.onSurface,
-    [listItemTokens.textColor$pressed]: colorRolesTokens.onSurface,
+    [listItemTokens.textColor]: colorSchemeTokens.onSurface,
+    [listItemTokens.textColor$focus]: colorSchemeTokens.onSurface,
+    [listItemTokens.textColor$hover]: colorSchemeTokens.onSurface,
+    [listItemTokens.textColor$pressed]: colorSchemeTokens.onSurface,
 
-    [listItemTokens.selectedTextColor]: colorRolesTokens.onPrimaryContainer,
+    [listItemTokens.selectedTextColor]: colorSchemeTokens.onPrimaryContainer,
     [listItemTokens.selectedTextColor$focus]:
-      colorRolesTokens.onPrimaryContainer,
+      colorSchemeTokens.onPrimaryContainer,
     [listItemTokens.selectedTextColor$hover]:
-      colorRolesTokens.onPrimaryContainer,
+      colorSchemeTokens.onPrimaryContainer,
     [listItemTokens.selectedTextColor$pressed]:
-      colorRolesTokens.onPrimaryContainer,
+      colorSchemeTokens.onPrimaryContainer,
 
-    [listItemTokens.nonTextColor]: colorRolesTokens.onSurfaceVariant,
-    [listItemTokens.nonTextColor$focus]: colorRolesTokens.onSurfaceVariant,
-    [listItemTokens.nonTextColor$hover]: colorRolesTokens.onSurfaceVariant,
-    [listItemTokens.nonTextColor$pressed]: colorRolesTokens.onSurfaceVariant,
+    [listItemTokens.nonTextColor]: colorSchemeTokens.onSurfaceVariant,
+    [listItemTokens.nonTextColor$focus]: colorSchemeTokens.onSurfaceVariant,
+    [listItemTokens.nonTextColor$hover]: colorSchemeTokens.onSurfaceVariant,
+    [listItemTokens.nonTextColor$pressed]: colorSchemeTokens.onSurfaceVariant,
 
-    [listItemTokens.selectedNonTextColor]: colorRolesTokens.onPrimaryContainer,
+    [listItemTokens.selectedNonTextColor]: colorSchemeTokens.onPrimaryContainer,
     [listItemTokens.selectedNonTextColor$focus]:
-      colorRolesTokens.onPrimaryContainer,
+      colorSchemeTokens.onPrimaryContainer,
     [listItemTokens.selectedNonTextColor$hover]:
-      colorRolesTokens.onPrimaryContainer,
+      colorSchemeTokens.onPrimaryContainer,
     [listItemTokens.selectedNonTextColor$pressed]:
-      colorRolesTokens.onPrimaryContainer,
+      colorSchemeTokens.onPrimaryContainer,
 
-    [listItemTokens.stateLayerColor$hover]: colorRolesTokens.onSurface,
+    [listItemTokens.stateLayerColor$hover]: colorSchemeTokens.onSurface,
     [listItemTokens.stateLayerOpacity$hover]:
       stateTokens.stateLayerOpacity$hover,
-    [listItemTokens.stateLayerColor$pressed]: colorRolesTokens.primary,
+    [listItemTokens.stateLayerColor$pressed]: colorSchemeTokens.primary,
     [listItemTokens.stateLayerOpacity$pressed]:
       stateTokens.stateLayerOpacity$pressed,
 
-    [listItemTokens.leadingIconColor]: colorRolesTokens.onSurfaceVariant,
-    [listItemTokens.leadingIconColor$focus]: colorRolesTokens.onSurfaceVariant,
-    [listItemTokens.leadingIconColor$hover]: colorRolesTokens.onSurfaceVariant,
+    [listItemTokens.leadingIconColor]: colorSchemeTokens.onSurfaceVariant,
+    [listItemTokens.leadingIconColor$focus]: colorSchemeTokens.onSurfaceVariant,
+    [listItemTokens.leadingIconColor$hover]: colorSchemeTokens.onSurfaceVariant,
     [listItemTokens.leadingIconColor$pressed]:
-      colorRolesTokens.onSurfaceVariant,
+      colorSchemeTokens.onSurfaceVariant,
 
-    [listItemTokens.selectedLeadingIconColor]: colorRolesTokens.primary,
-    [listItemTokens.selectedLeadingIconColor$focus]: colorRolesTokens.primary,
-    [listItemTokens.selectedLeadingIconColor$hover]: colorRolesTokens.primary,
-    [listItemTokens.selectedLeadingIconColor$pressed]: colorRolesTokens.primary,
+    [listItemTokens.selectedLeadingIconColor]: colorSchemeTokens.primary,
+    [listItemTokens.selectedLeadingIconColor$focus]: colorSchemeTokens.primary,
+    [listItemTokens.selectedLeadingIconColor$hover]: colorSchemeTokens.primary,
+    [listItemTokens.selectedLeadingIconColor$pressed]:
+      colorSchemeTokens.primary,
 
-    [listItemTokens.trailingIconColor]: colorRolesTokens.onSurfaceVariant,
-    [listItemTokens.trailingIconColor$focus]: colorRolesTokens.onSurfaceVariant,
-    [listItemTokens.trailingIconColor$hover]: colorRolesTokens.onSurfaceVariant,
+    [listItemTokens.trailingIconColor]: colorSchemeTokens.onSurfaceVariant,
+    [listItemTokens.trailingIconColor$focus]:
+      colorSchemeTokens.onSurfaceVariant,
+    [listItemTokens.trailingIconColor$hover]:
+      colorSchemeTokens.onSurfaceVariant,
     [listItemTokens.trailingIconColor$pressed]:
-      colorRolesTokens.onSurfaceVariant,
+      colorSchemeTokens.onSurfaceVariant,
 
-    [listItemTokens.selectedTrailingIconColor]: colorRolesTokens.primary,
-    [listItemTokens.selectedTrailingIconColor$focus]: colorRolesTokens.primary,
-    [listItemTokens.selectedTrailingIconColor$hover]: colorRolesTokens.primary,
+    [listItemTokens.selectedTrailingIconColor]: colorSchemeTokens.primary,
+    [listItemTokens.selectedTrailingIconColor$focus]: colorSchemeTokens.primary,
+    [listItemTokens.selectedTrailingIconColor$hover]: colorSchemeTokens.primary,
     [listItemTokens.selectedTrailingIconColor$pressed]:
-      colorRolesTokens.primary,
+      colorSchemeTokens.primary,
   },
 });

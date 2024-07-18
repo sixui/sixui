@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { fabTokens } from '../Fab.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-fab-secondary.scss
@@ -8,21 +8,21 @@ import { fabTokens } from '../Fab.stylex';
 
 export const secondaryFabStyles = stylex.create({
   host: {
-    [fabTokens.containerColor]: colorRolesTokens.secondaryContainer,
+    [fabTokens.containerColor]: colorSchemeTokens.secondaryContainer,
 
-    [fabTokens.loweredContainerColor]: colorRolesTokens.secondaryContainer,
+    [fabTokens.loweredContainerColor]: colorSchemeTokens.secondaryContainer,
 
-    [fabTokens.iconColor]: colorRolesTokens.onSecondaryContainer,
-    [fabTokens.iconColor$hover]: colorRolesTokens.onSecondaryContainer,
-    [fabTokens.iconColor$focus]: colorRolesTokens.onSecondaryContainer,
-    [fabTokens.iconColor$pressed]: colorRolesTokens.onSecondaryContainer,
+    [fabTokens.iconColor]: colorSchemeTokens.onSecondaryContainer,
+    [fabTokens.iconColor$hover]: colorSchemeTokens.onSecondaryContainer,
+    [fabTokens.iconColor$focus]: colorSchemeTokens.onSecondaryContainer,
+    [fabTokens.iconColor$pressed]: colorSchemeTokens.onSecondaryContainer,
 
-    [fabTokens.stateLayerColor$hover]: colorRolesTokens.onSecondaryContainer,
-    [fabTokens.stateLayerColor$pressed]: colorRolesTokens.onSecondaryContainer,
+    [fabTokens.stateLayerColor$hover]: colorSchemeTokens.onSecondaryContainer,
+    [fabTokens.stateLayerColor$pressed]: colorSchemeTokens.onSecondaryContainer,
 
-    [fabTokens.labelTextColor]: colorRolesTokens.onSecondaryContainer,
-    [fabTokens.labelTextColor$hover]: colorRolesTokens.onSecondaryContainer,
-    [fabTokens.labelTextColor$focus]: colorRolesTokens.onSecondaryContainer,
-    [fabTokens.labelTextColor$pressed]: colorRolesTokens.onSecondaryContainer,
+    [fabTokens.labelTextColor]: colorSchemeTokens.onSecondaryContainer,
+    [fabTokens.labelTextColor$hover]: colorSchemeTokens.onSecondaryContainer,
+    [fabTokens.labelTextColor$focus]: colorSchemeTokens.onSecondaryContainer,
+    [fabTokens.labelTextColor$pressed]: colorSchemeTokens.onSecondaryContainer,
   },
 });

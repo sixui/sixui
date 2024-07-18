@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { fabTokens } from '../Fab.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-fab-primary.scss
@@ -8,21 +8,21 @@ import { fabTokens } from '../Fab.stylex';
 
 export const primaryFabStyles = stylex.create({
   host: {
-    [fabTokens.containerColor]: colorRolesTokens.primaryContainer,
+    [fabTokens.containerColor]: colorSchemeTokens.primaryContainer,
 
-    [fabTokens.loweredContainerColor]: colorRolesTokens.primaryContainer,
+    [fabTokens.loweredContainerColor]: colorSchemeTokens.primaryContainer,
 
-    [fabTokens.iconColor]: colorRolesTokens.onPrimaryContainer,
-    [fabTokens.iconColor$hover]: colorRolesTokens.onPrimaryContainer,
-    [fabTokens.iconColor$focus]: colorRolesTokens.onPrimaryContainer,
-    [fabTokens.iconColor$pressed]: colorRolesTokens.onPrimaryContainer,
+    [fabTokens.iconColor]: colorSchemeTokens.onPrimaryContainer,
+    [fabTokens.iconColor$hover]: colorSchemeTokens.onPrimaryContainer,
+    [fabTokens.iconColor$focus]: colorSchemeTokens.onPrimaryContainer,
+    [fabTokens.iconColor$pressed]: colorSchemeTokens.onPrimaryContainer,
 
-    [fabTokens.stateLayerColor$hover]: colorRolesTokens.onPrimaryContainer,
-    [fabTokens.stateLayerColor$pressed]: colorRolesTokens.onPrimaryContainer,
+    [fabTokens.stateLayerColor$hover]: colorSchemeTokens.onPrimaryContainer,
+    [fabTokens.stateLayerColor$pressed]: colorSchemeTokens.onPrimaryContainer,
 
-    [fabTokens.labelTextColor]: colorRolesTokens.onPrimaryContainer,
-    [fabTokens.labelTextColor$hover]: colorRolesTokens.onPrimaryContainer,
-    [fabTokens.labelTextColor$focus]: colorRolesTokens.onPrimaryContainer,
-    [fabTokens.labelTextColor$pressed]: colorRolesTokens.onPrimaryContainer,
+    [fabTokens.labelTextColor]: colorSchemeTokens.onPrimaryContainer,
+    [fabTokens.labelTextColor$hover]: colorSchemeTokens.onPrimaryContainer,
+    [fabTokens.labelTextColor$focus]: colorSchemeTokens.onPrimaryContainer,
+    [fabTokens.labelTextColor$pressed]: colorSchemeTokens.onPrimaryContainer,
   },
 });

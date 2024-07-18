@@ -25,7 +25,7 @@ export const FocusRing = forwardRef<HTMLInputElement, IFocusRingProps>(
   function FocusRing(props, forwardedRef) {
     const { styles, sx, visualState, for: forElementRef, inward } = props;
 
-    const { overridenStyles } = useComponentTheme('FocusRing');
+    const componentTheme = useComponentTheme('FocusRing');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(focusRingStyles, styles),
       [styles],
@@ -95,7 +95,7 @@ export const FocusRing = forwardRef<HTMLInputElement, IFocusRingProps>(
         ref={handleRef}
         {...sxf(
           focusRingTheme,
-          overridenStyles,
+          componentTheme.overridenStyles,
           'host',
           (visible || visibleOnInit) && 'host$visible',
           inward ? 'host$inward' : 'host$outward',

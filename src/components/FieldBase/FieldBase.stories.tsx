@@ -10,7 +10,7 @@ import {
   ComponentShowcase,
 } from '@/components/ComponentShowcase';
 import { FieldBase } from './FieldBase';
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { stateTokens } from '@/themes/base/state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/field/demo/stories.ts
@@ -31,7 +31,7 @@ const inputStyles = stylex.create({
   placeholder: {
     width: '100%',
     height: 24,
-    backgroundColor: colorRolesTokens.onSurface,
+    backgroundColor: colorSchemeTokens.onSurface,
     opacity: stateTokens.opacity$disabled,
   },
 });

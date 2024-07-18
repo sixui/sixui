@@ -12,7 +12,7 @@ export const CardContent = forwardRef<HTMLDivElement, ICardContentProps>(
   function CardContent(props, forwardedRef) {
     const { styles, sx, children, ...other } = props;
 
-    const { overridenStyles } = useComponentTheme('CardContent');
+    const componentTheme = useComponentTheme('CardContent');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(cardContentStyles, styles),
       [styles],
@@ -29,7 +29,7 @@ export const CardContent = forwardRef<HTMLDivElement, ICardContentProps>(
       <div
         {...sxf(
           cardContentTheme,
-          overridenStyles,
+          componentTheme.overridenStyles,
           'host',
           actionable ? 'host$actionable' : null,
           sx,

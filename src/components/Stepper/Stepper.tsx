@@ -33,7 +33,7 @@ export const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
       ...other
     } = props;
 
-    const { overridenStyles } = useComponentTheme('Stepper');
+    const componentTheme = useComponentTheme('Stepper');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(stepperStyles, styles),
       [styles],
@@ -89,7 +89,7 @@ export const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
       <StepperContext.Provider value={contextValue}>
         <div
           {...sxf(
-            overridenStyles,
+            componentTheme.overridenStyles,
             'host',
             `host$${orientation}`,
             labelPosition === 'bottom' && 'host$labelBottom',

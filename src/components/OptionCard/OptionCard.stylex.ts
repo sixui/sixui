@@ -1,36 +1,36 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
-import { typescaleTokens } from '@/themes/base/typo.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
+import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
 import { stateTokens } from '@/themes/base/state.stylex';
 
 const vars = {
   // container
-  containerColor: colorRolesTokens.surfaceContainerHigh,
+  containerColor: colorSchemeTokens.surfaceContainerHigh,
 
   // selectedOutline
-  selectedOutlineColor: colorRolesTokens.primary,
+  selectedOutlineColor: colorSchemeTokens.primary,
   selectedOutlineWidth: '3px',
   // &:disabled
-  selectedOutlineColor$disabled: colorRolesTokens.outline,
+  selectedOutlineColor$disabled: colorSchemeTokens.outline,
   selectedOutlineOpacity$disabled: stateTokens.containerOpacity$disabled,
   // &:focus
-  selectedOutlineColor$focus: colorRolesTokens.primary,
+  selectedOutlineColor$focus: colorSchemeTokens.primary,
   // &:hover
-  selectedOutlineColor$hover: colorRolesTokens.primary,
+  selectedOutlineColor$hover: colorSchemeTokens.primary,
   // &:pressed
-  selectedOutlineColor$pressed: colorRolesTokens.primary,
-  selectedOutlineColor$dragged: colorRolesTokens.primary,
+  selectedOutlineColor$pressed: colorSchemeTokens.primary,
+  selectedOutlineColor$dragged: colorSchemeTokens.primary,
 
   // text
-  textColor: colorRolesTokens.onSurface,
-  textFont: typescaleTokens.bodyFont$sm,
-  textSize: typescaleTokens.bodySize$sm,
-  textLineHeight: typescaleTokens.bodyLineHeight$sm,
-  textLetterSpacing: typescaleTokens.bodyLetterSpacing$sm,
-  textWeight: typescaleTokens.bodyWeight$sm,
+  textColor: colorSchemeTokens.onSurface,
+  textFont: typeScaleTokens.bodyFont$sm,
+  textSize: typeScaleTokens.bodySize$sm,
+  textLineHeight: typeScaleTokens.bodyLineHeight$sm,
+  textLetterSpacing: typeScaleTokens.bodyLetterSpacing$sm,
+  textWeight: typeScaleTokens.bodyWeight$sm,
   // &:disabled
-  textColor$disabled: colorRolesTokens.onSurface,
+  textColor$disabled: colorSchemeTokens.onSurface,
   textOpacity$disabled: stateTokens.opacity$disabled,
 };
 

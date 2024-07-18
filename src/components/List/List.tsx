@@ -21,7 +21,7 @@ export const List = forwardRef<HTMLDivElement, IListProps>(
       ...other
     } = props;
 
-    const { overridenStyles } = useComponentTheme('List');
+    const componentTheme = useComponentTheme('List');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(listStyles, styles),
       [styles],
@@ -34,7 +34,7 @@ export const List = forwardRef<HTMLDivElement, IListProps>(
     return (
       <ListContext.Provider value={{ size, noFocusRing }}>
         <div
-          {...sxf(listTheme, overridenStyles, 'host', sx)}
+          {...sxf(listTheme, componentTheme.overridenStyles, 'host', sx)}
           ref={forwardedRef}
           {...other}
         >

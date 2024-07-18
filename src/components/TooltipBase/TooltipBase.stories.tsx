@@ -8,7 +8,7 @@ import {
   ComponentShowcase,
   type IComponentPresentation,
 } from '@/components/ComponentShowcase';
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { TooltipBase } from './TooltipBase';
 import { IconButton } from '../IconButton';
@@ -21,13 +21,13 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   tooltip: {
-    backgroundColor: colorRolesTokens.inverseSurface,
-    color: colorRolesTokens.inverseOnSurface,
+    backgroundColor: colorSchemeTokens.inverseSurface,
+    color: colorSchemeTokens.inverseOnSurface,
     padding: 8,
     maxWidth: 200,
   },
   cursor: {
-    fill: colorRolesTokens.inverseSurface,
+    fill: colorSchemeTokens.inverseSurface,
   },
 });
 

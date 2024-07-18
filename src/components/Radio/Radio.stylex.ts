@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { stateTokens } from '@/themes/base/state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-radio.scss
@@ -9,44 +9,44 @@ import { stateTokens } from '@/themes/base/state.stylex';
 const vars = {
   // icon
   iconSize: '18px',
-  iconColor: colorRolesTokens.onSurfaceVariant,
+  iconColor: colorSchemeTokens.onSurfaceVariant,
   // &:disabled
-  iconColor$disabled: colorRolesTokens.onSurface,
+  iconColor$disabled: colorSchemeTokens.onSurface,
   iconOpacity$disabled: stateTokens.opacity$disabled,
   // &:focus
-  iconColor$focus: colorRolesTokens.onSurface,
+  iconColor$focus: colorSchemeTokens.onSurface,
   // &:hover
-  iconColor$hover: colorRolesTokens.onSurface,
+  iconColor$hover: colorSchemeTokens.onSurface,
   // &:pressed
-  iconColor$pressed: colorRolesTokens.onSurface,
+  iconColor$pressed: colorSchemeTokens.onSurface,
 
   // selectedIcon
-  selectedIconColor: colorRolesTokens.primary,
+  selectedIconColor: colorSchemeTokens.primary,
   // &:disabled
-  selectedIconColor$disabled: colorRolesTokens.onSurface,
+  selectedIconColor$disabled: colorSchemeTokens.onSurface,
   selectedIconOpacity$disabled: stateTokens.opacity$disabled,
   // &:focus
-  selectedIconColor$focus: colorRolesTokens.primary,
+  selectedIconColor$focus: colorSchemeTokens.primary,
   // &:hover
-  selectedIconColor$hover: colorRolesTokens.primary,
+  selectedIconColor$hover: colorSchemeTokens.primary,
   // &:pressed
-  selectedIconColor$pressed: colorRolesTokens.primary,
+  selectedIconColor$pressed: colorSchemeTokens.primary,
 
   // stateLayer
   stateLayerSize: '40px',
   // &:hover
-  stateLayerColor$hover: colorRolesTokens.onSurface,
+  stateLayerColor$hover: colorSchemeTokens.onSurface,
   stateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,
   // &:pressed
-  stateLayerColor$pressed: colorRolesTokens.primary,
+  stateLayerColor$pressed: colorSchemeTokens.primary,
   stateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
 
   // selectedStateLayer
   // &:hover
-  selectedStateLayerColor$hover: colorRolesTokens.primary,
+  selectedStateLayerColor$hover: colorSchemeTokens.primary,
   selectedStateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,
   // &:pressed
-  selectedStateLayerColor$pressed: colorRolesTokens.onSurface,
+  selectedStateLayerColor$pressed: colorSchemeTokens.onSurface,
   selectedStateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
 };
 

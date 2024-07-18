@@ -29,7 +29,7 @@ export const Skeleton = forwardRef<HTMLDivElement, ISkeletonProps>(
       ...other
     } = props;
 
-    const { overridenStyles } = useComponentTheme('Skeleton');
+    const componentTheme = useComponentTheme('Skeleton');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(skeletonStyles, styles),
       [styles],
@@ -50,7 +50,7 @@ export const Skeleton = forwardRef<HTMLDivElement, ISkeletonProps>(
       <div
         {...sxf(
           skeletonTheme,
-          overridenStyles,
+          componentTheme.overridenStyles,
           'host',
           hasError ? 'host$error' : null,
           `host$${variant}`,

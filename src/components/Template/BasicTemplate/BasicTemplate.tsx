@@ -10,7 +10,7 @@ export const BasicTemplate = forwardRef<HTMLDivElement, IBasicTemplateProps>(
   function BasicTemplate(props, forwardedRef) {
     const { styles, sx, children, ...other } = props;
 
-    const { overridenStyles } = useComponentTheme('BasicTemplate');
+    const componentTheme = useComponentTheme('BasicTemplate');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(basicTemplateStyles, styles),
       [styles],
@@ -21,7 +21,11 @@ export const BasicTemplate = forwardRef<HTMLDivElement, IBasicTemplateProps>(
     );
 
     return (
-      <div {...sxf(overridenStyles, 'host', sx)} {...other} ref={forwardedRef}>
+      <div
+        {...sxf(componentTheme.overridenStyles, 'host', sx)}
+        {...other}
+        ref={forwardedRef}
+      >
         {children}
       </div>
     );

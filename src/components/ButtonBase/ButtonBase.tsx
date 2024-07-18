@@ -50,7 +50,7 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
   );
   const handleRef = useMergeRefs([forwardedRef, setVisualStateRef]);
 
-  const { overridenStyles, settings } = useComponentTheme('ButtonBase');
+  const componentTheme = useComponentTheme('ButtonBase');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(buttonBaseStyles, styles),
     [styles],
@@ -60,11 +60,19 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
     [stylesCombinator, visualState],
   );
 
-  const Component = as ?? (href ? settings.linkAs : BUTTON_BASE_DEFAULT_TAG);
+  const Component =
+    (as ?? href)
+      ? (componentTheme.settings?.linkAs ?? 'a')
+      : BUTTON_BASE_DEFAULT_TAG;
 
   return (
     <Component
-      {...sxf('host', disabled && 'host$disabled', overridenStyles, sx)}
+      {...sxf(
+        'host',
+        disabled && 'host$disabled',
+        componentTheme.overridenStyles,
+        sx,
+      )}
       ref={handleRef}
       href={href}
       role='button'

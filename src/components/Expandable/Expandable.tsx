@@ -81,7 +81,7 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
       ...other
     } = props;
 
-    const { overridenStyles } = useComponentTheme('Expandable');
+    const componentTheme = useComponentTheme('Expandable');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(expandableStyles, styles),
       [styles],
@@ -154,7 +154,7 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
           {(status) => (
             <div
               {...sxf(
-                overridenStyles,
+                componentTheme.overridenStyles,
                 'host',
                 status === 'exited'
                   ? localStyles.animation$exited(

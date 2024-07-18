@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { iconButtonTokens } from '../IconButton.stylex';
 
 export const snackbarIconButtonStyles = stylex.create({
@@ -14,39 +14,42 @@ export const snackbarIconButtonStyles = stylex.create({
 
     [iconButtonTokens.selectedContainerColor]: 'transparent',
 
-    [iconButtonTokens.iconColor]: colorRolesTokens.inverseOnSurface,
-    [iconButtonTokens.iconColor$focus]: colorRolesTokens.inverseOnSurface,
-    [iconButtonTokens.iconColor$hover]: colorRolesTokens.inverseOnSurface,
-    [iconButtonTokens.iconColor$pressed]: colorRolesTokens.inverseOnSurface,
-    [iconButtonTokens.iconColor$disabled]: colorRolesTokens.inverseOnSurface,
+    [iconButtonTokens.iconColor]: colorSchemeTokens.inverseOnSurface,
+    [iconButtonTokens.iconColor$focus]: colorSchemeTokens.inverseOnSurface,
+    [iconButtonTokens.iconColor$hover]: colorSchemeTokens.inverseOnSurface,
+    [iconButtonTokens.iconColor$pressed]: colorSchemeTokens.inverseOnSurface,
+    [iconButtonTokens.iconColor$disabled]: colorSchemeTokens.inverseOnSurface,
 
-    [iconButtonTokens.toggleIconColor]: colorRolesTokens.inverseOnSurface,
-    [iconButtonTokens.toggleIconColor$focus]: colorRolesTokens.inverseOnSurface,
-    [iconButtonTokens.toggleIconColor$hover]: colorRolesTokens.inverseOnSurface,
+    [iconButtonTokens.toggleIconColor]: colorSchemeTokens.inverseOnSurface,
+    [iconButtonTokens.toggleIconColor$focus]:
+      colorSchemeTokens.inverseOnSurface,
+    [iconButtonTokens.toggleIconColor$hover]:
+      colorSchemeTokens.inverseOnSurface,
     [iconButtonTokens.toggleIconColor$pressed]:
-      colorRolesTokens.inverseOnSurface,
+      colorSchemeTokens.inverseOnSurface,
 
     [iconButtonTokens.toggleSelectedIconColor]:
-      colorRolesTokens.inverseOnSurface,
+      colorSchemeTokens.inverseOnSurface,
     [iconButtonTokens.toggleSelectedIconColor$focus]:
-      colorRolesTokens.inverseOnSurface,
+      colorSchemeTokens.inverseOnSurface,
     [iconButtonTokens.toggleSelectedIconColor$hover]:
-      colorRolesTokens.inverseOnSurface,
+      colorSchemeTokens.inverseOnSurface,
     [iconButtonTokens.toggleSelectedIconColor$pressed]:
-      colorRolesTokens.inverseOnSurface,
+      colorSchemeTokens.inverseOnSurface,
 
-    [iconButtonTokens.stateLayerColor$hover]: colorRolesTokens.inverseOnSurface,
+    [iconButtonTokens.stateLayerColor$hover]:
+      colorSchemeTokens.inverseOnSurface,
     [iconButtonTokens.stateLayerColor$pressed]:
-      colorRolesTokens.inverseOnSurface,
+      colorSchemeTokens.inverseOnSurface,
 
     [iconButtonTokens.toggleStateLayerColor$hover]:
-      colorRolesTokens.inverseOnSurface,
+      colorSchemeTokens.inverseOnSurface,
     [iconButtonTokens.toggleStateLayerColor$pressed]:
-      colorRolesTokens.inverseOnSurface,
+      colorSchemeTokens.inverseOnSurface,
 
     [iconButtonTokens.toggleSelectedStateLayerColor$hover]:
-      colorRolesTokens.inverseOnSurface,
+      colorSchemeTokens.inverseOnSurface,
     [iconButtonTokens.toggleSelectedStateLayerColor$pressed]:
-      colorRolesTokens.inverseOnSurface,
+      colorSchemeTokens.inverseOnSurface,
   },
 });

@@ -1,19 +1,19 @@
 import stylex from '@stylexjs/stylex';
 
-import { typescaleTokens } from '@/themes/base/typo.stylex';
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 
 const vars = {
   // legend
-  legendTextColor: colorRolesTokens.secondary,
-  legendTextFont: typescaleTokens.labelFont$md,
-  legendTextLineHeight: typescaleTokens.labelLineHeight$md,
-  legendTextSize: typescaleTokens.labelSize$md,
-  legendTextLetterSpacing: typescaleTokens.labelLetterSpacing$md,
-  legendTextWeight: typescaleTokens.labelWeight$md,
+  legendTextColor: colorSchemeTokens.secondary,
+  legendTextFont: typeScaleTokens.labelFont$md,
+  legendTextLineHeight: typeScaleTokens.labelLineHeight$md,
+  legendTextSize: typeScaleTokens.labelSize$md,
+  legendTextLetterSpacing: typeScaleTokens.labelLetterSpacing$md,
+  legendTextWeight: typeScaleTokens.labelWeight$md,
 
   // groupBorder
-  groupBorderColor: colorRolesTokens.onSurface,
+  groupBorderColor: colorSchemeTokens.onSurface,
 };
 
 export const componentShowcaseTokens = stylex.defineVars(vars);

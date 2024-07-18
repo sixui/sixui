@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { shapeTokens } from '@/themes/base/shape.stylex';
 import { stateTokens } from '@/themes/base/state.stylex';
 
@@ -13,18 +13,18 @@ const vars = {
   containerOpacity$disabled: stateTokens.containerOpacity$disabled,
 
   // labelText
-  labelTextColor: colorRolesTokens.primary,
+  labelTextColor: colorSchemeTokens.primary,
   // &:disabled
-  labelTextColor$disabled: colorRolesTokens.onSurface,
+  labelTextColor$disabled: colorSchemeTokens.onSurface,
   labelTextOpacity$disabled: stateTokens.opacity$disabled,
 
   // stateLayer
   stateLayerSpace: '1em',
   // &:hover
-  stateLayerColor$hover: colorRolesTokens.onSurface,
+  stateLayerColor$hover: colorSchemeTokens.onSurface,
   stateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,
   // &:pressed
-  stateLayerColor$pressed: colorRolesTokens.onSurface,
+  stateLayerColor$pressed: colorSchemeTokens.onSurface,
   stateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
 
   // touchTarget

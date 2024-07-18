@@ -1,55 +1,58 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { stateTokens } from '@/themes/base/state.stylex';
 import { iconButtonTokens } from '../IconButton.stylex';
 
 export const outlinedIconButtonStyles = stylex.create({
   host: {
-    [iconButtonTokens.selectedContainerColor]: colorRolesTokens.inverseSurface,
+    [iconButtonTokens.selectedContainerColor]: colorSchemeTokens.inverseSurface,
 
-    [iconButtonTokens.iconColor]: colorRolesTokens.onSurfaceVariant,
-    [iconButtonTokens.iconColor$focus]: colorRolesTokens.onSurfaceVariant,
-    [iconButtonTokens.iconColor$hover]: colorRolesTokens.onSurfaceVariant,
-    [iconButtonTokens.iconColor$pressed]: colorRolesTokens.onSurfaceVariant,
-    [iconButtonTokens.iconColor$disabled]: colorRolesTokens.onSurfaceVariant,
+    [iconButtonTokens.iconColor]: colorSchemeTokens.onSurfaceVariant,
+    [iconButtonTokens.iconColor$focus]: colorSchemeTokens.onSurfaceVariant,
+    [iconButtonTokens.iconColor$hover]: colorSchemeTokens.onSurfaceVariant,
+    [iconButtonTokens.iconColor$pressed]: colorSchemeTokens.onSurfaceVariant,
+    [iconButtonTokens.iconColor$disabled]: colorSchemeTokens.onSurfaceVariant,
 
-    [iconButtonTokens.toggleIconColor]: colorRolesTokens.onSurfaceVariant,
-    [iconButtonTokens.toggleIconColor$focus]: colorRolesTokens.onSurfaceVariant,
-    [iconButtonTokens.toggleIconColor$hover]: colorRolesTokens.onSurfaceVariant,
+    [iconButtonTokens.toggleIconColor]: colorSchemeTokens.onSurfaceVariant,
+    [iconButtonTokens.toggleIconColor$focus]:
+      colorSchemeTokens.onSurfaceVariant,
+    [iconButtonTokens.toggleIconColor$hover]:
+      colorSchemeTokens.onSurfaceVariant,
     [iconButtonTokens.toggleIconColor$pressed]:
-      colorRolesTokens.onSurfaceVariant,
+      colorSchemeTokens.onSurfaceVariant,
 
     [iconButtonTokens.toggleSelectedIconColor]:
-      colorRolesTokens.inverseOnSurface,
+      colorSchemeTokens.inverseOnSurface,
     [iconButtonTokens.toggleSelectedIconColor$focus]:
-      colorRolesTokens.inverseOnSurface,
+      colorSchemeTokens.inverseOnSurface,
     [iconButtonTokens.toggleSelectedIconColor$hover]:
-      colorRolesTokens.inverseOnSurface,
+      colorSchemeTokens.inverseOnSurface,
     [iconButtonTokens.toggleSelectedIconColor$pressed]:
-      colorRolesTokens.inverseOnSurface,
+      colorSchemeTokens.inverseOnSurface,
 
-    [iconButtonTokens.stateLayerColor$hover]: colorRolesTokens.onSurfaceVariant,
+    [iconButtonTokens.stateLayerColor$hover]:
+      colorSchemeTokens.onSurfaceVariant,
     [iconButtonTokens.stateLayerColor$pressed]:
-      colorRolesTokens.onSurfaceVariant,
+      colorSchemeTokens.onSurfaceVariant,
 
     [iconButtonTokens.toggleStateLayerColor$hover]:
-      colorRolesTokens.onSurfaceVariant,
+      colorSchemeTokens.onSurfaceVariant,
     [iconButtonTokens.toggleStateLayerColor$pressed]:
-      colorRolesTokens.onSurfaceVariant,
+      colorSchemeTokens.onSurfaceVariant,
 
     [iconButtonTokens.toggleSelectedStateLayerColor$hover]:
-      colorRolesTokens.inverseOnSurface,
+      colorSchemeTokens.inverseOnSurface,
     [iconButtonTokens.toggleSelectedStateLayerColor$pressed]:
-      colorRolesTokens.inverseOnSurface,
+      colorSchemeTokens.inverseOnSurface,
 
     [iconButtonTokens.outlineStyle]: 'solid',
     [iconButtonTokens.outlineWidth]: '1px',
-    [iconButtonTokens.outlineColor]: colorRolesTokens.outline,
-    [iconButtonTokens.outlineColor$disabled]: colorRolesTokens.onSurface,
+    [iconButtonTokens.outlineColor]: colorSchemeTokens.outline,
+    [iconButtonTokens.outlineColor$disabled]: colorSchemeTokens.onSurface,
     [iconButtonTokens.outlineOpacity$disabled]:
       stateTokens.outlineOpacity$disabled,
-    [iconButtonTokens.outlineColor$focus]: colorRolesTokens.outline,
-    [iconButtonTokens.outlineColor$pressed]: colorRolesTokens.outline,
+    [iconButtonTokens.outlineColor$focus]: colorSchemeTokens.outline,
+    [iconButtonTokens.outlineColor$pressed]: colorSchemeTokens.outline,
   },
 });

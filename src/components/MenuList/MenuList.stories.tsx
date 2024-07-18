@@ -4,7 +4,7 @@ import stylex from '@stylexjs/stylex';
 import type { IMenuListProps } from './MenuList.types';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { ListItem } from '@/components/ListItem';
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { MenuDivider } from '@/components/MenuDivider';
 import { MenuList } from './MenuList';
 
@@ -19,8 +19,8 @@ const styles = stylex.create({
     width: 192,
   },
   section: {
-    backgroundColor: colorRolesTokens.primaryContainer,
-    color: colorRolesTokens.onPrimaryContainer,
+    backgroundColor: colorSchemeTokens.primaryContainer,
+    color: colorSchemeTokens.onPrimaryContainer,
     padding: 8,
     display: 'flex',
     justifyContent: 'center',

@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { fabTokens } from '../Fab.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-fab-surface.scss
@@ -8,21 +8,21 @@ import { fabTokens } from '../Fab.stylex';
 
 export const surfaceFabStyles = stylex.create({
   host: {
-    [fabTokens.containerColor]: colorRolesTokens.surfaceContainerHigh,
+    [fabTokens.containerColor]: colorSchemeTokens.surfaceContainerHigh,
 
-    [fabTokens.loweredContainerColor]: colorRolesTokens.surfaceContainerLow,
+    [fabTokens.loweredContainerColor]: colorSchemeTokens.surfaceContainerLow,
 
-    [fabTokens.iconColor]: colorRolesTokens.primary,
-    [fabTokens.iconColor$hover]: colorRolesTokens.primary,
-    [fabTokens.iconColor$focus]: colorRolesTokens.primary,
-    [fabTokens.iconColor$pressed]: colorRolesTokens.primary,
+    [fabTokens.iconColor]: colorSchemeTokens.primary,
+    [fabTokens.iconColor$hover]: colorSchemeTokens.primary,
+    [fabTokens.iconColor$focus]: colorSchemeTokens.primary,
+    [fabTokens.iconColor$pressed]: colorSchemeTokens.primary,
 
-    [fabTokens.stateLayerColor$hover]: colorRolesTokens.primary,
-    [fabTokens.stateLayerColor$pressed]: colorRolesTokens.primary,
+    [fabTokens.stateLayerColor$hover]: colorSchemeTokens.primary,
+    [fabTokens.stateLayerColor$pressed]: colorSchemeTokens.primary,
 
-    [fabTokens.labelTextColor]: colorRolesTokens.primary,
-    [fabTokens.labelTextColor$hover]: colorRolesTokens.primary,
-    [fabTokens.labelTextColor$focus]: colorRolesTokens.primary,
-    [fabTokens.labelTextColor$pressed]: colorRolesTokens.primary,
+    [fabTokens.labelTextColor]: colorSchemeTokens.primary,
+    [fabTokens.labelTextColor$hover]: colorSchemeTokens.primary,
+    [fabTokens.labelTextColor$focus]: colorSchemeTokens.primary,
+    [fabTokens.labelTextColor$pressed]: colorSchemeTokens.primary,
   },
 });

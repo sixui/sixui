@@ -66,7 +66,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
   );
   const handleRef = useMergeRefs([forwardedRef, setVisualStateRef, actionRef]);
 
-  const { overridenStyles } = useComponentTheme('Checkbox');
+  const componentTheme = useComponentTheme('Checkbox');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(checkboxStyles, styles),
     [styles],
@@ -117,7 +117,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
     <div
       {...sxf(
         checkboxTheme,
-        overridenStyles,
+        componentTheme.overridenStyles,
         'host',
         selected && 'host$selected',
         disabled && 'host$disabled',

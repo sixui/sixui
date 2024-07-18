@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { fabTokens } from '../Fab.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-fab-tertiary.scss
@@ -8,21 +8,21 @@ import { fabTokens } from '../Fab.stylex';
 
 export const tertiaryFabStyles = stylex.create({
   host: {
-    [fabTokens.containerColor]: colorRolesTokens.tertiaryContainer,
+    [fabTokens.containerColor]: colorSchemeTokens.tertiaryContainer,
 
-    [fabTokens.loweredContainerColor]: colorRolesTokens.tertiaryContainer,
+    [fabTokens.loweredContainerColor]: colorSchemeTokens.tertiaryContainer,
 
-    [fabTokens.iconColor]: colorRolesTokens.onTertiaryContainer,
-    [fabTokens.iconColor$hover]: colorRolesTokens.onTertiaryContainer,
-    [fabTokens.iconColor$focus]: colorRolesTokens.onTertiaryContainer,
-    [fabTokens.iconColor$pressed]: colorRolesTokens.onTertiaryContainer,
+    [fabTokens.iconColor]: colorSchemeTokens.onTertiaryContainer,
+    [fabTokens.iconColor$hover]: colorSchemeTokens.onTertiaryContainer,
+    [fabTokens.iconColor$focus]: colorSchemeTokens.onTertiaryContainer,
+    [fabTokens.iconColor$pressed]: colorSchemeTokens.onTertiaryContainer,
 
-    [fabTokens.stateLayerColor$hover]: colorRolesTokens.onTertiaryContainer,
-    [fabTokens.stateLayerColor$pressed]: colorRolesTokens.onTertiaryContainer,
+    [fabTokens.stateLayerColor$hover]: colorSchemeTokens.onTertiaryContainer,
+    [fabTokens.stateLayerColor$pressed]: colorSchemeTokens.onTertiaryContainer,
 
-    [fabTokens.labelTextColor]: colorRolesTokens.onTertiaryContainer,
-    [fabTokens.labelTextColor$hover]: colorRolesTokens.onTertiaryContainer,
-    [fabTokens.labelTextColor$focus]: colorRolesTokens.onTertiaryContainer,
-    [fabTokens.labelTextColor$pressed]: colorRolesTokens.onTertiaryContainer,
+    [fabTokens.labelTextColor]: colorSchemeTokens.onTertiaryContainer,
+    [fabTokens.labelTextColor$hover]: colorSchemeTokens.onTertiaryContainer,
+    [fabTokens.labelTextColor$focus]: colorSchemeTokens.onTertiaryContainer,
+    [fabTokens.labelTextColor$pressed]: colorSchemeTokens.onTertiaryContainer,
   },
 });

@@ -26,7 +26,7 @@ export const Item = forwardRef<HTMLDivElement, IItemProps>(
       ...other
     } = props;
 
-    const { overridenStyles } = useComponentTheme('Item');
+    const componentTheme = useComponentTheme('Item');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(itemStyles, styles),
       [styles],
@@ -38,7 +38,7 @@ export const Item = forwardRef<HTMLDivElement, IItemProps>(
 
     return (
       <div
-        {...sxf(itemTheme, overridenStyles, 'host', sx)}
+        {...sxf(itemTheme, componentTheme.overridenStyles, 'host', sx)}
         ref={forwardedRef}
         {...other}
       >

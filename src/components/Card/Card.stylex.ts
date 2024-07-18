@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { shapeTokens } from '@/themes/base/shape.stylex';
 import { stateTokens } from '@/themes/base/state.stylex';
 
@@ -24,13 +24,13 @@ const vars = {
 
   // stateLayer
   // &:hover
-  stateLayerColor$hover: colorRolesTokens.onSurface,
+  stateLayerColor$hover: colorSchemeTokens.onSurface,
   stateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,
   // &:pressed
-  stateLayerColor$pressed: colorRolesTokens.onSurface,
+  stateLayerColor$pressed: colorSchemeTokens.onSurface,
   stateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
   // &:dragged
-  stateLayerColor$dragged: colorRolesTokens.onSurface,
+  stateLayerColor$dragged: colorSchemeTokens.onSurface,
   stateLayerOpacity$dragged: stateTokens.stateLayerOpacity$dragged,
 
   // outline

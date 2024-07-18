@@ -28,7 +28,7 @@ export const VariableTemplate = forwardRef<
     useVisualState(visualStateProp);
   const handleRef = useMergeRefs([forwardedRef, actionRef, setVisualStateRef]);
 
-  const { overridenStyles } = useComponentTheme('VariableTemplate');
+  const componentTheme = useComponentTheme('VariableTemplate');
   const variantStyles = variant
     ? variableTemplateVariantStyles[variant]
     : undefined;
@@ -45,7 +45,12 @@ export const VariableTemplate = forwardRef<
 
   return (
     <div
-      {...sxf(variableTemplateTheme, overridenStyles, 'host', sx)}
+      {...sxf(
+        variableTemplateTheme,
+        componentTheme.overridenStyles,
+        'host',
+        sx,
+      )}
       {...other}
       ref={handleRef}
     >

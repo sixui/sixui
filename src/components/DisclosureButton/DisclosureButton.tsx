@@ -42,7 +42,7 @@ export const DisclosureButton = forwardRef<
     ...other
   } = props;
 
-  const { overridenStyles } = useComponentTheme('DisclosureButton');
+  const componentTheme = useComponentTheme('DisclosureButton');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(disclosureButtonStyles, styles),
     [styles],
@@ -99,7 +99,14 @@ export const DisclosureButton = forwardRef<
   };
 
   return (
-    <div {...sxf(disclosureButtonTheme, overridenStyles, 'host', sx)}>
+    <div
+      {...sxf(
+        disclosureButtonTheme,
+        componentTheme.overridenStyles,
+        'host',
+        sx,
+      )}
+    >
       <ListItem
         sx={stylesCombinator(
           'button',

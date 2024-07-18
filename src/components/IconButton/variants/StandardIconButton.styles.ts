@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { iconButtonTokens } from '../IconButton.stylex';
 
 export const standardIconButtonStyles = stylex.create({
@@ -8,35 +8,38 @@ export const standardIconButtonStyles = stylex.create({
     [iconButtonTokens.containerColor]: 'transparent',
     [iconButtonTokens.containerColor$disabled]: 'transparent',
 
-    [iconButtonTokens.iconColor]: colorRolesTokens.onSurfaceVariant,
-    [iconButtonTokens.iconColor$focus]: colorRolesTokens.onSurfaceVariant,
-    [iconButtonTokens.iconColor$hover]: colorRolesTokens.onSurfaceVariant,
-    [iconButtonTokens.iconColor$pressed]: colorRolesTokens.onSurfaceVariant,
+    [iconButtonTokens.iconColor]: colorSchemeTokens.onSurfaceVariant,
+    [iconButtonTokens.iconColor$focus]: colorSchemeTokens.onSurfaceVariant,
+    [iconButtonTokens.iconColor$hover]: colorSchemeTokens.onSurfaceVariant,
+    [iconButtonTokens.iconColor$pressed]: colorSchemeTokens.onSurfaceVariant,
 
-    [iconButtonTokens.toggleIconColor]: colorRolesTokens.onSurfaceVariant,
-    [iconButtonTokens.toggleIconColor$focus]: colorRolesTokens.onSurfaceVariant,
-    [iconButtonTokens.toggleIconColor$hover]: colorRolesTokens.onSurfaceVariant,
+    [iconButtonTokens.toggleIconColor]: colorSchemeTokens.onSurfaceVariant,
+    [iconButtonTokens.toggleIconColor$focus]:
+      colorSchemeTokens.onSurfaceVariant,
+    [iconButtonTokens.toggleIconColor$hover]:
+      colorSchemeTokens.onSurfaceVariant,
     [iconButtonTokens.toggleIconColor$pressed]:
-      colorRolesTokens.onSurfaceVariant,
+      colorSchemeTokens.onSurfaceVariant,
 
-    [iconButtonTokens.toggleSelectedIconColor]: colorRolesTokens.primary,
-    [iconButtonTokens.toggleSelectedIconColor$focus]: colorRolesTokens.primary,
-    [iconButtonTokens.toggleSelectedIconColor$hover]: colorRolesTokens.primary,
+    [iconButtonTokens.toggleSelectedIconColor]: colorSchemeTokens.primary,
+    [iconButtonTokens.toggleSelectedIconColor$focus]: colorSchemeTokens.primary,
+    [iconButtonTokens.toggleSelectedIconColor$hover]: colorSchemeTokens.primary,
     [iconButtonTokens.toggleSelectedIconColor$pressed]:
-      colorRolesTokens.primary,
+      colorSchemeTokens.primary,
 
-    [iconButtonTokens.stateLayerColor$hover]: colorRolesTokens.onSurfaceVariant,
+    [iconButtonTokens.stateLayerColor$hover]:
+      colorSchemeTokens.onSurfaceVariant,
     [iconButtonTokens.stateLayerColor$pressed]:
-      colorRolesTokens.onSurfaceVariant,
+      colorSchemeTokens.onSurfaceVariant,
 
     [iconButtonTokens.toggleStateLayerColor$hover]:
-      colorRolesTokens.onSurfaceVariant,
+      colorSchemeTokens.onSurfaceVariant,
     [iconButtonTokens.toggleStateLayerColor$pressed]:
-      colorRolesTokens.onSurfaceVariant,
+      colorSchemeTokens.onSurfaceVariant,
 
     [iconButtonTokens.toggleSelectedStateLayerColor$hover]:
-      colorRolesTokens.onSurfaceVariant,
+      colorSchemeTokens.onSurfaceVariant,
     [iconButtonTokens.toggleSelectedStateLayerColor$pressed]:
-      colorRolesTokens.onSurfaceVariant,
+      colorSchemeTokens.onSurfaceVariant,
   },
 });

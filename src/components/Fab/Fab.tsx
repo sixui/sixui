@@ -40,7 +40,7 @@ export const Fab: IFab = forwardRef(function Fab<
     ...other
   } = props as IWithAsProp<IFabOwnProps>;
 
-  const { overridenStyles } = useComponentTheme('Fab');
+  const componentTheme = useComponentTheme('Fab');
   const variantStyles = variant ? fabVariantStyles[variant] : undefined;
 
   const stylesCombinator = useMemo(
@@ -58,7 +58,7 @@ export const Fab: IFab = forwardRef(function Fab<
       styles={asArray(innerStyles?.button)}
       sx={[
         fabTheme,
-        overridenStyles,
+        componentTheme.overridenStyles,
         stylesCombinator(
           'host',
           extended ? 'host$md' : `host$${size}`,

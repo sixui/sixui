@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
-import { typescaleTokens } from '@/themes/base/typo.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
+import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
 import { shapeTokens } from '@/themes/base/shape.stylex';
 
 const vars = {
@@ -9,15 +9,15 @@ const vars = {
   containerShape: shapeTokens.corner$full,
   containerWidth: '40px',
   containerHeight: '40px',
-  containerColor: colorRolesTokens.primaryContainer,
+  containerColor: colorSchemeTokens.primaryContainer,
 
   // label
-  labelTextColor: colorRolesTokens.onPrimaryContainer,
-  labelTextFont: typescaleTokens.titleFont$md,
-  labelTextLineHeight: typescaleTokens.titleLineHeight$md,
-  labelTextSize: typescaleTokens.titleSize$md,
-  labelTextLetterSpacing: typescaleTokens.titleLetterSpacing$md,
-  labelTextWeight: typescaleTokens.titleWeight$md,
+  labelTextColor: colorSchemeTokens.onPrimaryContainer,
+  labelTextFont: typeScaleTokens.titleFont$md,
+  labelTextLineHeight: typeScaleTokens.titleLineHeight$md,
+  labelTextSize: typeScaleTokens.titleSize$md,
+  labelTextLetterSpacing: typeScaleTokens.titleLetterSpacing$md,
+  labelTextWeight: typeScaleTokens.titleWeight$md,
 };
 
 export const avatarTokens = stylex.defineVars(vars);

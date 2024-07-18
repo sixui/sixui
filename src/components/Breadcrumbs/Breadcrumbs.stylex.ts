@@ -1,32 +1,32 @@
 import stylex from '@stylexjs/stylex';
 
-import { typescaleTokens } from '@/themes/base/typo.stylex';
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 
 const vars = {
   // item
-  itemColor: colorRolesTokens.onSurface,
+  itemColor: colorSchemeTokens.onSurface,
 
   // separator
-  separatorColor: colorRolesTokens.onSurface,
-  separatorSize: typescaleTokens.bodySize$md,
+  separatorColor: colorSchemeTokens.onSurface,
+  separatorSize: typeScaleTokens.bodySize$md,
 
   // expandButton
   expandButtonContainerShape: '2px',
-  expandButtonContainerColor: colorRolesTokens.surfaceContainer,
+  expandButtonContainerColor: colorSchemeTokens.surfaceContainer,
   expandButtonContainerWidth: '24px',
   expandButtonContainerHeight: '16px',
   expandButtonLeadingSpace: '4px',
   expandButtonTrailingSpace: '4px',
 
   // expandButtonLabelText
-  expandButtonLabelTextColor: colorRolesTokens.onSurface,
+  expandButtonLabelTextColor: colorSchemeTokens.onSurface,
   // &:hover
-  expandButtonLabelTextColor$hover: colorRolesTokens.onSurface,
+  expandButtonLabelTextColor$hover: colorSchemeTokens.onSurface,
   // &:focus
-  expandButtonLabelTextColor$focus: colorRolesTokens.onSurface,
+  expandButtonLabelTextColor$focus: colorSchemeTokens.onSurface,
   // &:pressed
-  expandButtonLabelTextColor$pressed: colorRolesTokens.onSurface,
+  expandButtonLabelTextColor$pressed: colorSchemeTokens.onSurface,
 };
 
 export const breadcrumbsTokens = stylex.defineVars(vars);

@@ -52,7 +52,7 @@ export const Typography: ITypography = forwardRef(function Typography<
     ...other
   } = props as IWithAsProp<ITypographyOwnProps>;
 
-  const { overridenStyles } = useComponentTheme('Typography');
+  const componentTheme = useComponentTheme('Typography');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(typographyStyles, styles),
     [styles],
@@ -67,7 +67,7 @@ export const Typography: ITypography = forwardRef(function Typography<
   return (
     <Component
       {...sxf(
-        overridenStyles,
+        componentTheme.overridenStyles,
         'host',
         gutterBottom && 'host$gutterBottom',
         `${variant}$${size}`,

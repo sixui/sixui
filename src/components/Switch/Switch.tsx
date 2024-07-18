@@ -71,7 +71,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
   );
   const handleRef = useMergeRefs([forwardedRef, setVisualStateRef, actionRef]);
 
-  const { overridenStyles } = useComponentTheme('Switch');
+  const componentTheme = useComponentTheme('Switch');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(switchStyles, styles),
     [styles],
@@ -114,7 +114,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
     <div
       {...sxf(
         switchTheme,
-        overridenStyles,
+        componentTheme.overridenStyles,
         'host',
         disabled && 'host$disabled',
         sx,

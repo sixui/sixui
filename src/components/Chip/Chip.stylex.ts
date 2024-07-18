@@ -2,9 +2,9 @@ import stylex from '@stylexjs/stylex';
 
 import { elevationTokens } from '@/components/Elevation/Elevation.stylex';
 import { shapeTokens } from '@/themes/base/shape.stylex';
-import { typescaleTokens } from '@/themes/base/typo.stylex';
+import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
 import { stateTokens } from '@/themes/base/state.stylex';
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 
 const vars = {
   // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-assist-chip.scss#L93
@@ -54,10 +54,10 @@ const vars = {
   selectedFlatContainerOpacity$disabled: stateTokens.containerOpacity$disabled,
 
   // elevatedContainer
-  elevatedContainerColor: colorRolesTokens.surfaceContainerLow,
+  elevatedContainerColor: colorSchemeTokens.surfaceContainerLow,
   elevatedContainerElevation: elevationTokens.boxShadow$level1,
   // &:disabled
-  elevatedContainerColor$disabled: colorRolesTokens.onSurface,
+  elevatedContainerColor$disabled: colorSchemeTokens.onSurface,
   elevatedContainerElevation$disabled: elevationTokens.boxShadow$level0,
   elevatedContainerOpacity$disabled: stateTokens.containerOpacity$disabled,
   // &:focus
@@ -72,14 +72,14 @@ const vars = {
 
   // outline
   outlineWidth: '1px',
-  outlineColor: colorRolesTokens.outline,
+  outlineColor: colorSchemeTokens.outline,
   // &:disabled
-  outlineColor$disabled: colorRolesTokens.onSurface,
+  outlineColor$disabled: colorSchemeTokens.onSurface,
   outlineOpacity$disabled: stateTokens.outlineOpacity$disabled,
   // &:focus
-  outlineColor$focus: colorRolesTokens.outline,
+  outlineColor$focus: colorSchemeTokens.outline,
   // &:pressed
-  outlineColor$pressed: colorRolesTokens.outline,
+  outlineColor$pressed: colorSchemeTokens.outline,
 
   // selectedOutline
   selectedOutlineWidth: 'unset',
@@ -105,21 +105,21 @@ const vars = {
   selectedStateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
 
   // labelText
-  labelTextColor: colorRolesTokens.onSurface,
-  labelTextFont: typescaleTokens.labelFont$lg,
-  labelTextLineHeight: typescaleTokens.labelLineHeight$lg,
-  labelTextSize: typescaleTokens.labelSize$lg,
-  labelTextLetterSpacing: typescaleTokens.labelLetterSpacing$lg,
-  labelTextWeight: typescaleTokens.labelWeight$lg,
+  labelTextColor: colorSchemeTokens.onSurface,
+  labelTextFont: typeScaleTokens.labelFont$lg,
+  labelTextLineHeight: typeScaleTokens.labelLineHeight$lg,
+  labelTextSize: typeScaleTokens.labelSize$lg,
+  labelTextLetterSpacing: typeScaleTokens.labelLetterSpacing$lg,
+  labelTextWeight: typeScaleTokens.labelWeight$lg,
   // &:disabled
-  labelTextColor$disabled: colorRolesTokens.onSurface,
+  labelTextColor$disabled: colorSchemeTokens.onSurface,
   labelTextOpacity$disabled: stateTokens.opacity$disabled,
   // &:focus
-  labelTextColor$focus: colorRolesTokens.onSurface,
+  labelTextColor$focus: colorSchemeTokens.onSurface,
   // &:hover
-  labelTextColor$hover: colorRolesTokens.onSurface,
+  labelTextColor$hover: colorSchemeTokens.onSurface,
   // &:pressed
-  labelTextColor$pressed: colorRolesTokens.onSurface,
+  labelTextColor$pressed: colorSchemeTokens.onSurface,
 
   // selectedLabelText
   selectedLabelTextColor: 'inherit',
@@ -132,17 +132,17 @@ const vars = {
 
   // icon
   iconSize: '18px',
-  iconColor: colorRolesTokens.onSurfaceVariant,
-  iconColor$interactive: colorRolesTokens.primary,
+  iconColor: colorSchemeTokens.onSurfaceVariant,
+  iconColor$interactive: colorSchemeTokens.primary,
   // &:disabled
-  iconColor$disabled: colorRolesTokens.onSurface,
+  iconColor$disabled: colorSchemeTokens.onSurface,
   iconOpacity$disabled: stateTokens.opacity$disabled,
   // &:focus
-  iconColor$focus: colorRolesTokens.primary,
+  iconColor$focus: colorSchemeTokens.primary,
   // &:hover
-  iconColor$hover: colorRolesTokens.primary,
+  iconColor$hover: colorSchemeTokens.primary,
   // &:pressed
-  iconColor$pressed: colorRolesTokens.primary,
+  iconColor$pressed: colorSchemeTokens.primary,
 
   // selectedIcon
   selectedIconColor: 'inherit',

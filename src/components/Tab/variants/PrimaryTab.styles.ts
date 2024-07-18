@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { tabTokens } from '../Tab.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tabs/internal/_primary-tab.scss
@@ -10,24 +10,24 @@ export const primaryTabStyles = stylex.create({
     [tabTokens.activeIndicatorHeight]: '3px',
     [tabTokens.activeIndicatorShape]: '3px 3px 0 0',
 
-    [tabTokens.activeStateLayerColor$hover]: colorRolesTokens.primary,
+    [tabTokens.activeStateLayerColor$hover]: colorSchemeTokens.primary,
     [tabTokens.activeStateLayerOpacity$hover]:
       tabTokens.stateLayerOpacity$hover,
-    [tabTokens.activeStateLayerColor$pressed]: colorRolesTokens.primary,
+    [tabTokens.activeStateLayerColor$pressed]: colorSchemeTokens.primary,
     [tabTokens.activeStateLayerOpacity$pressed]:
       tabTokens.stateLayerOpacity$pressed,
 
     [tabTokens.containerHeight$withIconAndLabelText]: '64px',
 
-    [tabTokens.activeIconColor]: colorRolesTokens.primary,
-    [tabTokens.activeIconColor$focus]: colorRolesTokens.primary,
-    [tabTokens.activeIconColor$hover]: colorRolesTokens.primary,
-    [tabTokens.activeIconColor$pressed]: colorRolesTokens.primary,
+    [tabTokens.activeIconColor]: colorSchemeTokens.primary,
+    [tabTokens.activeIconColor$focus]: colorSchemeTokens.primary,
+    [tabTokens.activeIconColor$hover]: colorSchemeTokens.primary,
+    [tabTokens.activeIconColor$pressed]: colorSchemeTokens.primary,
 
-    [tabTokens.activeLabelTextColor]: colorRolesTokens.primary,
-    [tabTokens.activeLabelTextColor$focus]: colorRolesTokens.primary,
-    [tabTokens.activeLabelTextColor$hover]: colorRolesTokens.primary,
-    [tabTokens.activeLabelTextColor$pressed]: colorRolesTokens.primary,
+    [tabTokens.activeLabelTextColor]: colorSchemeTokens.primary,
+    [tabTokens.activeLabelTextColor$focus]: colorSchemeTokens.primary,
+    [tabTokens.activeLabelTextColor$hover]: colorSchemeTokens.primary,
+    [tabTokens.activeLabelTextColor$pressed]: colorSchemeTokens.primary,
   },
   content$stacked: {
     flexDirection: 'column',

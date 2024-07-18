@@ -23,7 +23,7 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
       ...other
     } = props;
 
-    const { overridenStyles } = useComponentTheme('StateLayer');
+    const componentTheme = useComponentTheme('StateLayer');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(stateLayerStyles, styles),
       [styles],
@@ -42,7 +42,7 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
 
     return (
       <div
-        {...sxf(stateLayerTheme, overridenStyles, 'host', sx)}
+        {...sxf(stateLayerTheme, componentTheme.overridenStyles, 'host', sx)}
         aria-hidden
         {...other}
         ref={handleRef}

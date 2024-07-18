@@ -13,7 +13,7 @@ export const PlainTooltipContent = forwardRef<
 >(function PlainTooltipContent(props, forwardedRef) {
   const { styles, sx, supportingText, renderCursor, ...other } = props;
 
-  const { overridenStyles } = useComponentTheme('PlainTooltipContent');
+  const componentTheme = useComponentTheme('PlainTooltipContent');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(plainTooltipContentStyles, styles),
     [styles],
@@ -25,7 +25,12 @@ export const PlainTooltipContent = forwardRef<
 
   return (
     <div
-      {...sxf(plainTooltipContentTheme, overridenStyles, 'host', sx)}
+      {...sxf(
+        plainTooltipContentTheme,
+        componentTheme.overridenStyles,
+        'host',
+        sx,
+      )}
       ref={forwardedRef}
       {...other}
     >

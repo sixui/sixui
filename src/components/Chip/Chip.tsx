@@ -90,7 +90,7 @@ export const Chip: IChip = forwardRef(function Chip<
 
   const trailingActionRef = useRef<HTMLButtonElement>(null);
 
-  const { overridenStyles, settings } = useComponentTheme('Chip');
+  const componentTheme = useComponentTheme('Chip');
   const variantStyles = variant ? chipVariantStyles[variant] : undefined;
 
   const stylesCombinator = useMemo(
@@ -102,7 +102,13 @@ export const Chip: IChip = forwardRef(function Chip<
     [stylesCombinator, visualState],
   );
 
-  const Component = as ?? (href ? settings.linkAs : onClick ? 'button' : 'div');
+  const Component =
+    as ??
+    (href
+      ? (componentTheme.settings?.linkAs ?? 'a')
+      : onClick
+        ? 'button'
+        : 'div');
 
   const interactive = !!href || !!onClick;
   const elevated = variant !== 'input' && elevatedProp;
@@ -216,7 +222,7 @@ export const Chip: IChip = forwardRef(function Chip<
     <div
       {...sxf(
         chipTheme,
-        overridenStyles,
+        componentTheme.overridenStyles,
         'host',
         interactive && 'host$interactive',
         disabled && 'host$disabled',

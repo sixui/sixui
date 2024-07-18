@@ -1,32 +1,32 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
-import { typescaleTokens } from '@/themes/base/typo.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
+import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
 
 const vars = {
   // headline
-  headlineColor: colorRolesTokens.onSurface,
-  headlineFont: typescaleTokens.titleFont$lg,
-  headlineLineHeight: typescaleTokens.titleLineHeight$lg,
-  headlineSize: typescaleTokens.titleSize$lg,
-  headlineLetterSpacing: typescaleTokens.titleLetterSpacing$lg,
-  headlineWeight: typescaleTokens.titleWeight$lg,
+  headlineColor: colorSchemeTokens.onSurface,
+  headlineFont: typeScaleTokens.titleFont$lg,
+  headlineLineHeight: typeScaleTokens.titleLineHeight$lg,
+  headlineSize: typeScaleTokens.titleSize$lg,
+  headlineLetterSpacing: typeScaleTokens.titleLetterSpacing$lg,
+  headlineWeight: typeScaleTokens.titleWeight$lg,
 
   // subhead
-  subheadColor: colorRolesTokens.onSurface,
-  subheadFont: typescaleTokens.titleFont$md,
-  subheadLineHeight: typescaleTokens.titleLineHeight$md,
-  subheadSize: typescaleTokens.titleSize$md,
-  subheadLetterSpacing: typescaleTokens.titleLetterSpacing$md,
-  subheadWeight: typescaleTokens.titleWeight$md,
+  subheadColor: colorSchemeTokens.onSurface,
+  subheadFont: typeScaleTokens.titleFont$md,
+  subheadLineHeight: typeScaleTokens.titleLineHeight$md,
+  subheadSize: typeScaleTokens.titleSize$md,
+  subheadLetterSpacing: typeScaleTokens.titleLetterSpacing$md,
+  subheadWeight: typeScaleTokens.titleWeight$md,
 
   // supportingText
-  supportingTextColor: colorRolesTokens.onSurfaceVariant,
-  supportingTextTextFont: typescaleTokens.bodyFont$md,
-  supportingTextTextLineHeight: typescaleTokens.bodyLineHeight$md,
-  supportingTextTextSize: typescaleTokens.bodySize$md,
-  supportingTextTextLetterSpacing: typescaleTokens.bodyLetterSpacing$md,
-  supportingTextTextWeight: typescaleTokens.bodyWeight$md,
+  supportingTextColor: colorSchemeTokens.onSurfaceVariant,
+  supportingTextTextFont: typeScaleTokens.bodyFont$md,
+  supportingTextTextLineHeight: typeScaleTokens.bodyLineHeight$md,
+  supportingTextTextSize: typeScaleTokens.bodySize$md,
+  supportingTextTextLetterSpacing: typeScaleTokens.bodyLetterSpacing$md,
+  supportingTextTextWeight: typeScaleTokens.bodyWeight$md,
 };
 
 export const cardTitleTokens = stylex.defineVars(vars);

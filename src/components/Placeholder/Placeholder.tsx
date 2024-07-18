@@ -19,7 +19,7 @@ export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
       ...other
     } = props;
 
-    const { overridenStyles } = useComponentTheme('Placeholder');
+    const componentTheme = useComponentTheme('Placeholder');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(placeholderStyles, styles),
       [styles],
@@ -33,7 +33,7 @@ export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
       <div
         {...sxf(
           placeholderTheme,
-          overridenStyles,
+          componentTheme.overridenStyles,
           'host',
           shape === 'rectangular'
             ? 'host$rectangular'

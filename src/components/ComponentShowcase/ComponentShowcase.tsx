@@ -31,7 +31,7 @@ export const ComponentShowcase = <
     fullWidth,
   } = props;
 
-  const { overridenStyles } = useComponentTheme('ComponentShowcase');
+  const componentTheme = useComponentTheme('ComponentShowcase');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(componentShowcaseStyles, styles),
     [styles],
@@ -54,7 +54,7 @@ export const ComponentShowcase = <
     <div
       {...sxf(
         componentShowcaseTheme,
-        overridenStyles,
+        componentTheme.overridenStyles,
         'host',
         'cols',
         'gap$md',

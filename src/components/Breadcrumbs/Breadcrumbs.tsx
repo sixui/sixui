@@ -38,7 +38,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
       ...other
     } = props;
 
-    const { overridenStyles } = useComponentTheme('Breadcrumbs');
+    const componentTheme = useComponentTheme('Breadcrumbs');
     const stylesCombinator = useMemo(
       () => stylesCombinatorFactory(breadcrumbsStyles, styles),
       [styles],
@@ -146,7 +146,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
 
     return (
       <ol
-        {...sxf(breadscrumbsTheme, overridenStyles, 'host', sx)}
+        {...sxf(breadscrumbsTheme, componentTheme.overridenStyles, 'host', sx)}
         ref={forwardedRef}
         {...other}
       >

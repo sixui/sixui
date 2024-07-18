@@ -55,7 +55,7 @@ export const Dialog: IDialog = forwardRef(function Dialog<
     ...other
   } = props as IWithAsProp<IDialogOwnProps>;
 
-  const { overridenStyles } = useComponentTheme('Dialog');
+  const componentTheme = useComponentTheme('Dialog');
   const stylesCombinator = useMemo(
     () => stylesCombinatorFactory(dialogStyles, styles),
     [styles],
@@ -108,7 +108,7 @@ export const Dialog: IDialog = forwardRef(function Dialog<
             <FloatingFocusManager context={floating.context}>
               <div
                 {...sxf(
-                  overridenStyles,
+                  componentTheme.overridenStyles,
                   `transition$${transitionStatus.status}`,
                   sx,
                 )}

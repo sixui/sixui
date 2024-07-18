@@ -1,18 +1,18 @@
 import stylex from '@stylexjs/stylex';
 
-import { typescaleTokens } from '@/themes/base/typo.stylex';
-import { colorRolesTokens } from '@/themes/base/colorRoles.stylex';
+import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 
 export const tonalPalettesStyles = stylex.create({
   host: {
     display: 'flex',
     flexDirection: 'column',
     rowGap: '2rem',
-    fontFamily: typescaleTokens.labelFont$lg,
-    fontSize: typescaleTokens.labelSize$lg,
-    fontWeight: typescaleTokens.labelWeight$lg,
-    lineHeight: typescaleTokens.labelLineHeight$lg,
-    letterSpacing: typescaleTokens.labelLetterSpacing$lg,
+    fontFamily: typeScaleTokens.labelFont$lg,
+    fontSize: typeScaleTokens.labelSize$lg,
+    fontWeight: typeScaleTokens.labelWeight$lg,
+    lineHeight: typeScaleTokens.labelLineHeight$lg,
+    letterSpacing: typeScaleTokens.labelLetterSpacing$lg,
   },
   tonalPalette: {
     display: 'flex',
@@ -20,6 +20,6 @@ export const tonalPalettesStyles = stylex.create({
     rowGap: '0.5rem',
   },
   title: {
-    color: colorRolesTokens.onSurface,
+    color: colorSchemeTokens.onSurface,
   },
 });
