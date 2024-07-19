@@ -6,4 +6,6 @@ export type ITonalColorPickerContentProps =
   IContainerProps<ITonalColorPickerContentStylesKey> & {
     fixedColorScheme?: boolean;
     primaryColor?: string | Record<IColorSchemeVariant, string>;
+    selectedColor?: string;
+    customColors?: Array<string>;
   };

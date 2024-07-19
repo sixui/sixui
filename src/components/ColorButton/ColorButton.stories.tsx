@@ -24,23 +24,20 @@ export const Configurations: IStory = {
         {
           legend: 'With color',
           props: {
-            backgroundColorHex: '#6750a4',
-            foregroundColorHex: '#ffffff',
+            backgroundColor: '#6750a4',
           },
         },
         {
           legend: 'With label',
           props: {
-            backgroundColorHex: '#6750a4',
-            foregroundColorHex: '#ffffff',
+            backgroundColor: '#6750a4',
             children: '#6750a4',
           },
         },
         {
           legend: 'Selected',
           props: {
-            backgroundColorHex: '#6750a4',
-            foregroundColorHex: '#ffffff',
+            backgroundColor: '#6750a4',
             selected: true,
           },
         },

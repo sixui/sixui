@@ -88,8 +88,8 @@ export const TonalColorPickerContent = forwardRef<
                     return (
                       <ColorButton
                         key={toneIndex}
-                        backgroundColorHex={tone.colorHex}
-                        foregroundColorHex={hexFromArgb(
+                        backgroundColor={tone.colorHex}
+                        foregroundColor={hexFromArgb(
                           palette.tone(getForegroundLuminance(tone.luminance)),
                         )}
                         sx={[

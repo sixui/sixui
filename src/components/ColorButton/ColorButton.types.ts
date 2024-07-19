@@ -1,4 +1,5 @@
 import type {
+  IColor,
   ICompiledStyles,
   IContainerProps,
   IOmit,
@@ -20,8 +21,8 @@ export type IColorButtonOwnProps = IContainerProps<IColorButtonStylesKey> &
     };
     children?: React.ReactNode;
     selected?: boolean;
-    backgroundColorHex?: string;
-    foregroundColorHex?: string;
+    backgroundColor?: IColor;
+    foregroundColor?: IColor;
   };
 
 export type IColorButtonProps<

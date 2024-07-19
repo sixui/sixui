@@ -15,14 +15,16 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { ButtonBase } from '@/components/ButtonBase';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
+import { colorButtonTokens, colorButtonTheme } from './ColorButton.stylex';
+import { IconCheckMark } from '@/components/Icons';
+import { colorToHex } from '@/helpers/colors/colorToHex';
+import { getTextContrastColor } from '@/helpers/colors/getTextContrastColor';
 import {
   colorButtonButtonBaseStyles,
   colorButtonFocusRingStyles,
   colorButtonStateLayerStyles,
   colorButtonStyles,
 } from './ColorButton.styles';
-import { colorButtonTokens, colorButtonTheme } from './ColorButton.stylex';
-import { IconCheckMark } from '../Icons';
 
 const localStyles = stylex.create({
   backgroundColor: (color: string) => ({
@@ -50,8 +52,8 @@ export const ColorButton: IColorButton = forwardRef(function ColorButton<
     innerStyles,
     children,
     selected,
-    backgroundColorHex,
-    foregroundColorHex,
+    backgroundColor,
+    foregroundColor,
     ...other
   } = props as IWithAsProp<IColorButtonOwnProps>;
 
@@ -64,6 +66,15 @@ export const ColorButton: IColorButton = forwardRef(function ColorButton<
     () => stylePropsFactory(stylesCombinator),
     [stylesCombinator],
   );
+
+  const backgroundColorHex = backgroundColor
+    ? colorToHex(backgroundColor)
+    : undefined;
+  const foregroundColorHex = foregroundColor
+    ? colorToHex(foregroundColor)
+    : backgroundColorHex
+      ? colorToHex(getTextContrastColor(backgroundColorHex))
+      : undefined;
 
   return (
     <ButtonBase
