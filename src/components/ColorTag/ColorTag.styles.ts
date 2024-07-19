@@ -5,7 +5,6 @@ import { colorTagTokens } from './ColorTag.stylex';
 export type IColorTagStylesKey = keyof typeof colorTagStyles;
 export const colorTagStyles = stylex.create({
   host: {
-    position: 'relative',
     minWidth: colorTagTokens.containerMinWidth,
     height: colorTagTokens.containerHeight,
     borderRadius: colorTagTokens.containerShape,
@@ -49,11 +48,13 @@ export const colorTagStyles = stylex.create({
     },
   },
   host$empty: {
+    position: 'relative',
     backgroundColor: colorTagTokens.containerColor$empty,
     borderWidth: colorTagTokens.containerOutlineWidth$empty,
     borderColor: colorTagTokens.containerOutlineColor$empty,
   },
   host$invalid: {
+    position: 'relative',
     backgroundColor: colorTagTokens.containerColor$invalid,
     borderWidth: colorTagTokens.containerOutlineWidth$invalid,
     borderColor: colorTagTokens.containerOutlineColor$invalid,
