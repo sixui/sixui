@@ -40,13 +40,13 @@ export const focusRingStyles = stylex.create({
   },
   host$outward: {
     animationName: `${outwardGrowKeyframes}, ${outwardShrinkKeyframes}`,
-    borderRadius: `calc(${focusRingTokens.shape} + ${focusRingTokens.outwardOffset})`,
+    borderRadius: focusRingTokens.shape,
     inset: `calc(-1 * ${focusRingTokens.outwardOffset})`,
     outline: `${focusRingTokens.width} solid currentColor`,
   },
   host$inward: {
     animationName: `${inwardGrowKeyframes}, ${inwardShrinkKeyframes}`,
-    borderRadius: `calc(${focusRingTokens.shape} - ${focusRingTokens.inwardOffset})`,
+    borderRadius: focusRingTokens.shape,
     borderWidth: focusRingTokens.width,
     borderStyle: 'solid',
     borderColor: 'currentColor',
