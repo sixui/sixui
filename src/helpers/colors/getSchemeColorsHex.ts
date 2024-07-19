@@ -1,12 +1,13 @@
 import type { IColorSchemeVariant } from '@/components/ColorScheme';
 import type { IColorScheme, IThemeSchemes } from '@/themes/base';
+import type { IColor } from '@/helpers/types';
 import { isObject } from '@/helpers/isObject';
 
 export const getSchemeColorsHex = (
   token: keyof IColorScheme,
   themeSchemes: IThemeSchemes,
-  fallbackColor?: string | Record<IColorSchemeVariant, string>,
-): Record<IColorSchemeVariant, string> => {
+  fallbackColor?: IColor | Record<IColorSchemeVariant, IColor>,
+): Record<IColorSchemeVariant, IColor> => {
   const lightSourceColorHex = isObject(fallbackColor)
     ? fallbackColor.light
     : (fallbackColor ?? themeSchemes.light[token]);

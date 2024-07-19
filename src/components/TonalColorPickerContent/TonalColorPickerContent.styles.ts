@@ -9,8 +9,8 @@ export const basicTemplateStyles = stylex.create({
   host: {
     width: 'min-content',
   },
-  inner: {
-    padding: 8,
+  section: {
+    padding: 12,
   },
   grid: {
     display: 'flex',

@@ -1,11 +1,20 @@
-import type { IContainerProps } from '@/helpers/types';
+import type {
+  IColor,
+  ICompiledStyles,
+  IContainerProps,
+  IZeroOrMore,
+} from '@/helpers/types';
 import type { ITonalColorPickerContentStylesKey } from './TonalColorPickerContent.styles';
-import type { IColorSchemeVariant } from '../ColorScheme';
+import type { IColorSchemeVariant } from '@/components/ColorScheme';
+import type { IPaperStylesKey } from '@/components/Paper';
 
 export type ITonalColorPickerContentProps =
   IContainerProps<ITonalColorPickerContentStylesKey> & {
+    innerStyles?: {
+      paper?: IZeroOrMore<ICompiledStyles<IPaperStylesKey>>;
+    };
     fixedColorScheme?: boolean;
-    primaryColor?: string | Record<IColorSchemeVariant, string>;
-    selectedColor?: string;
-    customColors?: Array<string>;
+    sourceColor?: IColor | Record<IColorSchemeVariant, IColor>;
+    selectedColor?: IColor;
+    customColors?: Array<IColor>;
   };

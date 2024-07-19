@@ -1,10 +1,5 @@
 import { forwardRef, useMemo } from 'react';
 import stylex from '@stylexjs/stylex';
-import {
-  argbFromHex,
-  Hct,
-  hexFromArgb,
-} from '@material/material-color-utilities';
 
 import type { ITonalColorPickerContentProps } from './TonalColorPickerContent.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
@@ -20,14 +15,23 @@ import { generateTonalPalettes } from '@/helpers/colors/generateTonalPalettes';
 import { generateTones } from '@/helpers/colors/generateTones';
 import { ColorButton } from '@/components/ColorButton';
 import { getSchemeColorsHex } from '@/helpers/colors/getSchemeColorsHex';
-import { getForegroundLuminance } from '@/helpers/colors/getForegroundLuminance';
+import { areColorEquals } from '@/helpers/colors/areColorEquals';
 import { basicTemplateStyles } from './TonalColorPickerContent.styles';
 
 export const TonalColorPickerContent = forwardRef<
   HTMLDivElement,
   ITonalColorPickerContentProps
 >(function TonalColorPickerContent(props, forwardedRef) {
-  const { styles, sx, fixedColorScheme, primaryColor, ...other } = props;
+  const {
+    styles,
+    sx,
+    innerStyles,
+    fixedColorScheme,
+    sourceColor,
+    selectedColor,
+    customColors,
+    ...other
+  } = props;
 
   const componentTheme = useComponentTheme('TonalColorPickerContent');
   const stylesCombinator = useMemo(
@@ -50,66 +54,84 @@ export const TonalColorPickerContent = forwardRef<
   const primaryColorsHex = getSchemeColorsHex(
     primaryToken,
     themeSchemes,
-    primaryColor,
+    sourceColor,
   );
-  const primaryColorHex = primaryColorsHex[colorScheme.variant];
-  const primaryColorHct = Hct.fromInt(argbFromHex(primaryColorHex));
   const primaryTonalPalettes = generateTonalPalettes(
-    primaryColorHct,
+    primaryColorsHex[colorScheme.variant],
     paletteSize,
   );
 
-  const luminances = [80, 50, 30];
+  const luminances = [80, 50, 20];
 
   return (
-    <div
-      {...sxf(componentTheme.overridenStyles, 'host', sx)}
+    <Paper
+      sx={[componentTheme.overridenStyles, stylesCombinator('host'), sx]}
+      elevation={2}
+      styles={innerStyles?.paper}
       {...other}
       ref={forwardedRef}
     >
-      <Paper elevation={5}>
-        <div
-          {...sxf(commonStyles.verticalLayout, commonStyles.gap$xl, 'inner')}
-        >
-          <div {...sxf('grid')}>
-            {primaryTonalPalettes.map((palette, paletteIndex) => (
-              <div
-                key={paletteIndex}
-                {...stylex.props(
-                  commonStyles.verticalLayout,
-                  commonStyles.gap$none,
-                )}
-              >
-                <div {...sxf('tones')}>
-                  {generateTones(palette, luminances).map((tone, toneIndex) => {
-                    const isFirst = toneIndex === 0;
-                    const isLast = toneIndex === luminances.length - 1;
+      <div
+        {...sxf(commonStyles.verticalLayout, commonStyles.gap$xl, 'section')}
+      >
+        <div {...sxf('grid')}>
+          {primaryTonalPalettes.map((palette, paletteIndex) => (
+            <div
+              key={paletteIndex}
+              {...stylex.props(
+                commonStyles.verticalLayout,
+                commonStyles.gap$none,
+              )}
+            >
+              <div {...sxf('tones')}>
+                {generateTones(palette, luminances).map((tone, toneIndex) => {
+                  const isFirst = toneIndex === 0;
+                  const isLast = toneIndex === luminances.length - 1;
 
-                    return (
+                  return (
+                    <>
                       <ColorButton
                         key={toneIndex}
                         backgroundColor={tone.colorHex}
-                        foregroundColor={hexFromArgb(
-                          palette.tone(getForegroundLuminance(tone.luminance)),
-                        )}
                         sx={[
                           stylesCombinator('colorButton'),
                           isFirst && stylesCombinator('colorButton$first'),
                           isLast && stylesCombinator('colorButton$last'),
                         ]}
+                        selected={
+                          selectedColor
+                            ? areColorEquals(tone.colorHex, selectedColor)
+                            : undefined
+                        }
                       />
-                    );
-                  })}
-                </div>
+                    </>
+                  );
+                })}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+        </div>
+      </div>
 
+      {customColors ? (
+        <>
           <Divider />
 
-          <div {...sxf('grid')}>Custom colors</div>
-        </div>
-      </Paper>
-    </div>
+          <div {...sxf(commonStyles.horizontalLayout, 'section')}>
+            {customColors?.map((color, colorIndex) => (
+              <ColorButton
+                key={colorIndex}
+                backgroundColor={color}
+                selected={
+                  selectedColor
+                    ? areColorEquals(color, selectedColor)
+                    : undefined
+                }
+              />
+            ))}
+          </div>
+        </>
+      ) : undefined}
+    </Paper>
   );
 });

@@ -1,12 +1,14 @@
 import {
   DynamicScheme,
-  Hct,
   TonalPalette,
 } from '@material/material-color-utilities';
 import { createSequence } from '@olivierpascal/helpers';
 
+import type { IColor } from '@/helpers/types';
+import { colorToHct } from './colorToHct';
+
 export const generateTonalPalettes = (
-  sourceColorHct: Hct,
+  sourceColor: IColor,
   count: number,
 ): Array<TonalPalette> => {
   const rotationStep = 360 / count;
@@ -26,6 +28,7 @@ export const generateTonalPalettes = (
     330, // magenta-red
   ];
 
+  const sourceColorHct = colorToHct(sourceColor);
   const palettes = rotations.map((rotationIndex) => {
     const rotation = rotationIndex * rotationStep;
     const rotatedColorArgb = DynamicScheme.getRotatedHue(
