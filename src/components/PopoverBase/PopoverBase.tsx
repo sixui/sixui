@@ -6,6 +6,7 @@ import {
   FloatingArrow,
   offset,
   shift,
+  useClick,
   useDelayGroup,
   useDismiss,
   useFloating,
@@ -17,7 +18,7 @@ import {
   type OpenChangeReason,
 } from '@floating-ui/react';
 
-import type { ITooltipBaseProps } from './TooltipBase.types';
+import type { IPopoverBaseProps } from './PopoverBase.types';
 import { isFunction } from '@/helpers/isFunction';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { Portal } from '@/components/Portal';
@@ -25,11 +26,11 @@ import { useTooltipCursor } from '@/hooks/useTooltipCursor';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { tooltipBaseStyles } from './TooltipBase.styles';
+import { popoverBaseStyles } from './PopoverBase.styles';
 import { commonStyles } from '@/helpers/commonStyles';
 
-export const TooltipBase = <TForwardedProps extends object = object>(
-  props: ITooltipBaseProps<TForwardedProps>,
+export const PopoverBase = <TForwardedProps extends object = object>(
+  props: IPopoverBaseProps<TForwardedProps>,
 ): React.ReactNode => {
   const {
     styles,
@@ -42,14 +43,18 @@ export const TooltipBase = <TForwardedProps extends object = object>(
     cursor: cursorType = false,
     onOpenChange,
     forwardProps,
-    persistent,
     disabled,
+    role: roleProp,
+    openOnHover,
+    openOnFocus,
+    openOnClick,
+    nonDismissable,
     ...other
   } = props;
 
-  const componentTheme = useComponentTheme('TooltipBase');
+  const componentTheme = useComponentTheme('PopoverBase');
   const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(tooltipBaseStyles, styles),
+    () => stylesCombinatorFactory(popoverBaseStyles, styles),
     [styles],
   );
   const sxf = useMemo(
@@ -60,7 +65,7 @@ export const TooltipBase = <TForwardedProps extends object = object>(
   const [isOpen, setIsOpen] = useControlledValue({
     controlled: isOpenProp,
     default: defaultIsOpen ?? false,
-    name: 'TooltipBase',
+    name: 'PopoverBase',
   });
   const arrowRef = useRef(null);
   const cursor = useTooltipCursor({ type: cursorType });
@@ -93,21 +98,24 @@ export const TooltipBase = <TForwardedProps extends object = object>(
     ],
   });
   const delayGroup = useDelayGroup(floating.context, {
-    id: persistent ? '__persistent' : undefined,
+    id: openOnHover ? undefined : '__persistent',
   });
   const hover = useHover(floating.context, {
     move: false,
     delay: delayGroup.delay,
-    enabled: !persistent && !disabled,
+    enabled: !!openOnHover && !disabled,
+  });
+  const click = useClick(floating.context, {
+    enabled: !!openOnClick && !disabled,
   });
   const focus = useFocus(floating.context, {
-    enabled: !persistent && !disabled,
+    enabled: !!openOnFocus && !disabled,
   });
   const dismiss = useDismiss(floating.context, {
-    enabled: !persistent && !disabled,
+    enabled: !nonDismissable && !disabled,
   });
-  const role = useRole(floating.context, { role: 'tooltip' });
-  const interactions = useInteractions([hover, focus, dismiss, role]);
+  const role = useRole(floating.context, { role: roleProp });
+  const interactions = useInteractions([hover, focus, click, dismiss, role]);
   const transitionStatus = useTransitionStatus(floating.context, {
     duration: 150, // motionTokens.duration$short3
   });
@@ -167,7 +175,7 @@ export const TooltipBase = <TForwardedProps extends object = object>(
                       ? (other as TForwardedProps)
                       : undefined,
                     renderCursor,
-                    onClose: (event) => {
+                    close: (event) => {
                       setIsOpen(false);
                       if (isOpenProp !== undefined) {
                         onOpenChange?.(false, event?.nativeEvent, 'click');

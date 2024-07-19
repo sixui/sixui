@@ -2,8 +2,8 @@ import stylex from '@stylexjs/stylex';
 
 import { motionTokens } from '@/themes/base/motion.stylex';
 
-export type ITooltipBaseStylesKey = keyof typeof tooltipBaseStyles;
-export const tooltipBaseStyles = stylex.create({
+export type IPopoverBaseStylesKey = keyof typeof popoverBaseStyles;
+export const popoverBaseStyles = stylex.create({
   host: {
     zIndex: 499,
   },

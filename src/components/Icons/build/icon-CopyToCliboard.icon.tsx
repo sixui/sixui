@@ -4,6 +4,8 @@ export const IconCopyToCliboard = (props: { [key: string]: any }) => (
     xmlns='http://www.w3.org/2000/svg'
     viewBox='0 0 16 16'
     fill='currentColor'
+    width='1em'
+    height='1em'
     data-source='heroicicons'
     data-name='micro/clipboard-document'
     {...props}

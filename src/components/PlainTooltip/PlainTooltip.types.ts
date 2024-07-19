@@ -1,10 +1,10 @@
 import type { IOmit } from '@/helpers/types';
-import type { ITooltipBaseProps } from '@/components/TooltipBase';
+import type { IPopoverBaseProps } from '@/components/PopoverBase';
 import type { IPlainTooltipContentProps } from '@/components/PlainTooltipContent';
 
 export type IPlainTooltipInheritedProps = IOmit<
-  ITooltipBaseProps,
-  'contentRenderer' | 'persistent'
+  IPopoverBaseProps,
+  'contentRenderer'
 >;
 
 export type IPlainTooltipForwardedProps = IOmit<

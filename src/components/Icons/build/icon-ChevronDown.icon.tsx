@@ -4,6 +4,8 @@ export const IconChevronDown = (props: { [key: string]: any }) => (
     xmlns='http://www.w3.org/2000/svg'
     viewBox='0 0 24 24'
     fill='currentColor'
+    width='1em'
+    height='1em'
     data-source='heroicicons'
     data-name='solid/chevron-down'
     {...props}

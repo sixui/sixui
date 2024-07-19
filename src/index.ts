@@ -51,6 +51,7 @@ export * from './components/Paper';
 export * from './components/Placeholder';
 export * from './components/PlainTooltip';
 export * from './components/PlainTooltipContent';
+export * from './components/PopoverBase';
 export * from './components/Portal';
 export * from './components/Radio';
 export * from './components/RadioGroup';
@@ -78,7 +79,6 @@ export * from './components/TextFieldBase';
 export * from './components/TextInputField';
 export * from './components/Theme';
 export * from './components/TonalPalettes';
-export * from './components/TooltipBase';
 export * from './components/Typography';
 export * from './components/VisualState';
 

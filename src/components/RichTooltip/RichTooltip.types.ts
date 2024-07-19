@@ -1,9 +1,9 @@
 import type { IOmit } from '@/helpers/types';
-import type { ITooltipBaseProps } from '@/components/TooltipBase';
+import type { IPopoverBaseProps } from '@/components/PopoverBase';
 import type { IRichTooltipContentProps } from '@/components/RichTooltipContent';
 
 export type IRichTooltipInheritedProps = IOmit<
-  ITooltipBaseProps,
+  IPopoverBaseProps,
   'contentRenderer'
 >;
 
@@ -13,4 +13,6 @@ export type IRichTooltipForwardedProps = IOmit<
 >;
 
 export type IRichTooltipProps = IRichTooltipInheritedProps &
-  IRichTooltipForwardedProps;
+  IRichTooltipForwardedProps & {
+    persistent?: boolean;
+  };

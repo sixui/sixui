@@ -6,6 +6,8 @@ export const IconEyeSlash = (props: { [key: string]: any }) => (
     viewBox='0 0 24 24'
     stroke-width='1.5'
     stroke='currentColor'
+    width='1em'
+    height='1em'
     data-source='heroicicons'
     data-name='solid/eye-slash'
     {...props}

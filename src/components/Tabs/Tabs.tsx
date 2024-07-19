@@ -60,43 +60,41 @@ export const Tabs: React.FC<ITabsProps> = (props) => {
     [],
   );
 
-  const contextValue = useMemo(
-    () =>
-      ({
-        id,
-        anchor,
-        variant,
-        onTabActivated(activeTab, indicator) {
-          if (!previousTabRef.current) {
-            previousTabRef.current = activeTab;
+  const contextValue = useMemo(() => {
+    return {
+      id,
+      anchor,
+      variant,
+      onTabActivated: (activeTab, indicator) => {
+        if (!previousTabRef.current) {
+          previousTabRef.current = activeTab;
 
-            return;
+          return;
+        }
+
+        indicator?.getAnimations().forEach((animation) => animation.cancel());
+
+        if (activeTab) {
+          const previousTab = previousTabRef.current;
+          if (previousTab && indicator) {
+            indicatorAnimationRef.current = indicator.animate(
+              getIndicatorKeyframes(previousTab, activeTab),
+              {
+                duration: 150,
+                easing: EASING.EMPHASIZED,
+              },
+            );
           }
 
-          indicator?.getAnimations().forEach((animation) => animation.cancel());
-
-          if (activeTab) {
-            const previousTab = previousTabRef.current;
-            if (previousTab && indicator) {
-              indicatorAnimationRef.current = indicator.animate(
-                getIndicatorKeyframes(previousTab, activeTab),
-                {
-                  duration: 150,
-                  easing: EASING.EMPHASIZED,
-                },
-              );
-            }
-
-            previousTabRef.current = activeTab;
-          }
-        },
-        onChange(anchor) {
-          setAnchor(anchor);
-          onChange?.(anchor);
-        },
-      }) satisfies ITabContextValue,
-    [id, variant, anchor, getIndicatorKeyframes, setAnchor, onChange],
-  );
+          previousTabRef.current = activeTab;
+        }
+      },
+      onChange(anchor) {
+        setAnchor(anchor);
+        onChange?.(anchor);
+      },
+    } satisfies ITabContextValue;
+  }, [id, variant, anchor, getIndicatorKeyframes, setAnchor, onChange]);
 
   return (
     <TabContext.Provider value={contextValue}>{children}</TabContext.Provider>

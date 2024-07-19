@@ -20,11 +20,7 @@ const COPYABLE_TEXT = '+1 (323) 462-1831';
 const rows: Array<IComponentPresentation<ICopyableTextProps>> = [
   {
     legend: 'Icon only',
-    component: (props) => (
-      <>
-        <CopyableText {...props} />
-      </>
-    ),
+    component: (props) => <CopyableText {...props} />,
     props: {
       text: COPYABLE_TEXT,
     },

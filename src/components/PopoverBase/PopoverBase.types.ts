@@ -1,4 +1,8 @@
-import type { OpenChangeReason, Placement } from '@floating-ui/react';
+import type {
+  OpenChangeReason,
+  Placement,
+  UseRoleProps,
+} from '@floating-ui/react';
 
 import type { IContainerProps } from '@/helpers/types';
 import type {
@@ -6,30 +10,30 @@ import type {
   IForwardableProps,
 } from '@/helpers/react/forwardablePropsTypes';
 import type { ITooltipCursorType } from '@/hooks/useTooltipCursor';
-import type { ITooltipBaseStylesKey } from './TooltipBase.styles';
+import type { IPopoverBaseStylesKey } from './PopoverBase.styles';
 
-export type ITooltipBaseContentRendererProps = {
+export type IPopoverBaseContentRendererProps = {
   renderCursor?: (
     userProps?: React.HTMLAttributes<SVGSVGElement>,
   ) => React.ReactNode;
-  onClose: (event?: React.MouseEvent) => void;
+  close: (event?: React.MouseEvent) => void;
 };
 
-export type ITooltipBaseChildrenRendererProps = {
+export type IPopoverBaseChildrenRendererProps = {
   isOpen: boolean;
   placement: Placement;
 };
 
-export type ITooltipBaseProps<TForwardedProps extends object = object> =
-  IContainerProps<ITooltipBaseStylesKey> &
+export type IPopoverBaseProps<TForwardedProps extends object = object> =
+  IContainerProps<IPopoverBaseStylesKey> &
     IForwardableProps & {
       contentRenderer: IRendererWithForwardedProps<
-        ITooltipBaseContentRendererProps,
+        IPopoverBaseContentRendererProps,
         TForwardedProps
       >;
       children?:
         | React.ReactNode
-        | ((props: ITooltipBaseChildrenRendererProps) => React.ReactNode);
+        | ((props: IPopoverBaseChildrenRendererProps) => React.ReactNode);
       placement?: Placement;
       isOpen?: boolean;
       defaultIsOpen?: boolean;
@@ -39,6 +43,10 @@ export type ITooltipBaseProps<TForwardedProps extends object = object> =
         event?: Event,
         reason?: OpenChangeReason,
       ) => void;
-      persistent?: boolean;
       disabled?: boolean;
+      role?: UseRoleProps['role'];
+      openOnHover?: boolean;
+      openOnFocus?: boolean;
+      openOnClick?: boolean;
+      nonDismissable?: boolean;
     };
