@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { ITonalColorPickerContentProps } from './TonalColorPickerContent.types';
+import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { TonalColorPickerContent } from './TonalColorPickerContent';
 
 const meta = {
@@ -9,7 +10,9 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {} satisfies Partial<ITonalColorPickerContentProps>;
+const defaultArgs = {
+  onClick: (...args) => void sbHandleEvent('click', args),
+} satisfies Partial<ITonalColorPickerContentProps>;
 
 export const Basic: IStory = {
   render: (props) => <TonalColorPickerContent {...props} />,
@@ -65,6 +68,14 @@ export const SourceScheme: IStory = {
       light: '#00ff00',
       dark: '#92d78f',
     },
+  },
+};
+
+export const InvalidSourceColor: IStory = {
+  render: (props) => <TonalColorPickerContent {...props} />,
+  args: {
+    ...defaultArgs,
+    sourceColor: 'invalid',
   },
 };
 

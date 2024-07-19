@@ -17,4 +17,10 @@ export type ITonalColorPickerContentProps =
     sourceColor?: IColor | Record<IColorSchemeVariant, IColor>;
     selectedColor?: IColor;
     customColors?: Array<IColor>;
+    onClick?: (
+      event: React.MouseEvent<HTMLButtonElement>,
+      colorHex: string,
+    ) => void;
+    palettesCount?: number;
+    tones?: Array<number>;
   };

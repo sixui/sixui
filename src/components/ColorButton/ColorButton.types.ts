@@ -10,14 +10,15 @@ import type {
   IButtonBaseOwnProps,
   IButtonBaseStylesKey,
 } from '@/components/ButtonBase';
-import type { IColorButtonStylesKey } from './ColorButton.styles';
+import type { IColorTagStylesKey } from '@/components/ColorTag';
 
-export const FLUID_BUTTON_DEFAULT_TAG = 'button';
+export const COLOR_BUTTON_DEFAULT_TAG = 'button';
 
-export type IColorButtonOwnProps = IContainerProps<IColorButtonStylesKey> &
+export type IColorButtonOwnProps = IContainerProps<never> &
   IOmit<IButtonBaseOwnProps, 'styles'> & {
     innerStyles?: IButtonBaseOwnProps['innerStyles'] & {
       buttonBase?: IZeroOrMore<ICompiledStyles<IButtonBaseStylesKey>>;
+      colorTag?: IZeroOrMore<ICompiledStyles<IColorTagStylesKey>>;
     };
     children?: React.ReactNode;
     selected?: boolean;
@@ -26,5 +27,5 @@ export type IColorButtonOwnProps = IContainerProps<IColorButtonStylesKey> &
   };
 
 export type IColorButtonProps<
-  TRoot extends React.ElementType = typeof FLUID_BUTTON_DEFAULT_TAG,
+  TRoot extends React.ElementType = typeof COLOR_BUTTON_DEFAULT_TAG,
 > = IPolymorphicComponentPropsWithRef<TRoot, IColorButtonOwnProps>;

@@ -16,6 +16,7 @@ import { generateTones } from '@/helpers/colors/generateTones';
 import { ColorButton } from '@/components/ColorButton';
 import { getSchemeColorsHex } from '@/helpers/colors/getSchemeColorsHex';
 import { areColorEquals } from '@/helpers/colors/areColorEquals';
+import { colorToHex } from '@/helpers/colors/colorToHex';
 import { basicTemplateStyles } from './TonalColorPickerContent.styles';
 
 export const TonalColorPickerContent = forwardRef<
@@ -30,6 +31,9 @@ export const TonalColorPickerContent = forwardRef<
     sourceColor,
     selectedColor,
     customColors,
+    onClick,
+    palettesCount = 8,
+    tones = [80, 50, 20],
     ...other
   } = props;
 
@@ -48,8 +52,6 @@ export const TonalColorPickerContent = forwardRef<
 
   const themeSchemes = themeContext.theme?.schemes ?? baseTheme.schemes;
 
-  const paletteSize = 8;
-
   const primaryToken = fixedColorScheme ? 'primaryFixed' : 'primary';
   const primaryColorsHex = getSchemeColorsHex(
     primaryToken,
@@ -58,10 +60,8 @@ export const TonalColorPickerContent = forwardRef<
   );
   const primaryTonalPalettes = generateTonalPalettes(
     primaryColorsHex[colorScheme.variant],
-    paletteSize,
+    palettesCount,
   );
-
-  const luminances = [80, 50, 20];
 
   return (
     <Paper
@@ -84,27 +84,31 @@ export const TonalColorPickerContent = forwardRef<
               )}
             >
               <div {...sxf('tones')}>
-                {generateTones(palette, luminances).map((tone, toneIndex) => {
+                {generateTones(palette, tones).map((tone, toneIndex) => {
                   const isFirst = toneIndex === 0;
-                  const isLast = toneIndex === luminances.length - 1;
+                  const isLast = toneIndex === tones.length - 1;
 
                   return (
-                    <>
-                      <ColorButton
-                        key={toneIndex}
-                        backgroundColor={tone.colorHex}
-                        sx={[
-                          stylesCombinator('colorButton'),
-                          isFirst && stylesCombinator('colorButton$first'),
-                          isLast && stylesCombinator('colorButton$last'),
-                        ]}
-                        selected={
-                          selectedColor
-                            ? areColorEquals(tone.colorHex, selectedColor)
-                            : undefined
-                        }
-                      />
-                    </>
+                    <ColorButton
+                      key={toneIndex}
+                      backgroundColor={tone.colorHex}
+                      sx={[
+                        stylesCombinator('colorButton'),
+                        isFirst && stylesCombinator('colorButton$first'),
+                        isLast && stylesCombinator('colorButton$last'),
+                      ]}
+                      selected={
+                        selectedColor
+                          ? areColorEquals(tone.colorHex, selectedColor)
+                          : undefined
+                      }
+                      onClick={
+                        onClick
+                          ? (event: React.MouseEvent<HTMLButtonElement>) =>
+                              onClick(event, tone.colorHex)
+                          : undefined
+                      }
+                    />
                   );
                 })}
               </div>
@@ -125,6 +129,12 @@ export const TonalColorPickerContent = forwardRef<
                 selected={
                   selectedColor
                     ? areColorEquals(color, selectedColor)
+                    : undefined
+                }
+                onClick={
+                  onClick
+                    ? (event: React.MouseEvent<HTMLButtonElement>) =>
+                        onClick(event, colorToHex(color))
                     : undefined
                 }
               />
