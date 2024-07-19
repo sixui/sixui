@@ -5,6 +5,8 @@ import { shapeTokens } from '@/themes/base/shape.stylex';
 import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
 
 const vars = {
+  emptyCrosshairsColor: colorSchemeTokens.outlineVariant,
+
   // container
   containerMinWidth: '40px',
   containerHeight: '40px',
@@ -12,10 +14,14 @@ const vars = {
   containerColor: colorSchemeTokens.surfaceContainerHighest,
   containerOutlineWidth: '0',
   containerOutlineColor: 'unset',
+  // &:empty
+  containerColor$empty: 'transparent',
+  containerOutlineWidth$empty: '1px',
+  containerOutlineColor$empty: colorSchemeTokens.outline,
   // &:invalid
   containerColor$invalid: 'transparent',
   containerOutlineWidth$invalid: '1px',
-  containerOutlineColor$invalid: colorSchemeTokens.outlineVariant,
+  containerOutlineColor$invalid: colorSchemeTokens.outline,
 
   // labelText
   labelTextColor: colorSchemeTokens.onSurface,

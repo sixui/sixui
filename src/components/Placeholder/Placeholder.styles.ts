@@ -25,7 +25,7 @@ export const placeholderStyles = stylex.create({
   host$circular: {
     borderRadius: shapeTokens.corner$full,
   },
-  guides: {
+  crosshairs: {
     overflow: 'hidden',
     borderRadius: 'inherit',
     position: 'absolute',

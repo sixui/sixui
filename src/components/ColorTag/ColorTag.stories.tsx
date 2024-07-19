@@ -20,7 +20,7 @@ export const Configurations: IStory = {
       props={props}
       cols={[
         {
-          legend: 'Normal',
+          legend: 'Empty',
         },
         {
           legend: 'With color',

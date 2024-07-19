@@ -52,6 +52,9 @@ export const ColorTag = forwardRef<HTMLDivElement, IColorTagProps>(
       : backgroundColorHex
         ? colorToHex(getTextContrastColor(backgroundColorHex))
         : undefined;
+    const isEmpty = !backgroundColorHex;
+    const isInvalid =
+      !!backgroundColorHex && !isValidHexColor(backgroundColorHex);
 
     return (
       <div
@@ -59,8 +62,8 @@ export const ColorTag = forwardRef<HTMLDivElement, IColorTagProps>(
           colorTagTheme,
           componentTheme.overridenStyles,
           'host',
-          (!backgroundColorHex || !isValidHexColor(backgroundColorHex)) &&
-            'host$invalid',
+          isEmpty && 'host$empty',
+          isInvalid && 'host$invalid',
           backgroundColorHex && isValidHexColor(backgroundColorHex)
             ? localStyles.backgroundColor(backgroundColorHex)
             : undefined,
@@ -72,6 +75,7 @@ export const ColorTag = forwardRef<HTMLDivElement, IColorTagProps>(
         {...other}
         ref={forwardedRef}
       >
+        {isEmpty || isInvalid ? <div {...sxf('emptyCrosshairs')} /> : null}
         {icon ? (
           <div {...sxf('icon')}>{icon}</div>
         ) : label ? (
