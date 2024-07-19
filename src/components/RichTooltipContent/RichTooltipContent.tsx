@@ -24,6 +24,7 @@ export const RichTooltipContent = forwardRef<
     subhead,
     supportingText,
     actions,
+    renderCursor,
     onClose,
     ...other
   } = props;
@@ -55,6 +56,7 @@ export const RichTooltipContent = forwardRef<
           ...asArray(innerStyles?.elevation),
         ]}
       />
+      {renderCursor ? renderCursor(sxf('cursor')) : null}
       <div {...sxf('content')}>
         {subhead ? <div {...sxf('subhead')}>{subhead}</div> : null}
         {supportingText ? (

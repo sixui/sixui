@@ -12,10 +12,11 @@ export const RichTooltip = forwardRef<HTMLDivElement, IRichTooltipProps>(
     const { placement = 'bottom-end', persistent, ...other } = props;
 
     const renderContent: IPopoverBaseProps<IRichTooltipForwardedProps>['contentRenderer'] =
-      ({ forwardedProps, close: onClose }) => (
+      ({ renderCursor, forwardedProps, close: onClose }) => (
         <RichTooltipContent
           {...forwardedProps!}
           ref={forwardedRef}
+          renderCursor={renderCursor}
           onClose={onClose}
         />
       );

@@ -180,20 +180,25 @@ export const PopoverBase = <TForwardedProps extends object = object>(
               )}
               {...(forwardProps ? undefined : other)}
             >
-              {renderCursor()}
-              {isFunction(contentRenderer)
-                ? contentRenderer({
-                    forwardedProps: forwardProps
-                      ? (other as TForwardedProps)
-                      : undefined,
-                    close: (event) => {
-                      setIsOpen(false);
-                      if (isOpenProp !== undefined) {
-                        onOpenChange?.(false, event?.nativeEvent, 'click');
-                      }
-                    },
-                  })
-                : contentRenderer}
+              {isFunction(contentRenderer) ? (
+                contentRenderer({
+                  forwardedProps: forwardProps
+                    ? (other as TForwardedProps)
+                    : undefined,
+                  renderCursor,
+                  close: (event) => {
+                    setIsOpen(false);
+                    if (isOpenProp !== undefined) {
+                      onOpenChange?.(false, event?.nativeEvent, 'click');
+                    }
+                  },
+                })
+              ) : (
+                <>
+                  {renderCursor()}
+                  contentRenderer
+                </>
+              )}
             </div>
           </div>
         </Portal>
