@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -20,7 +20,9 @@ import {
   colorButtonColorTagStyles,
   colorButtonFocusRingStyles,
   colorButtonStateLayerStyles,
+  colorButtonStyles,
 } from './ColorButton.styles';
+import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 
 type IColorButton = <
   TRoot extends React.ElementType = typeof COLOR_BUTTON_DEFAULT_TAG,
@@ -32,6 +34,7 @@ export const ColorButton: IColorButton = forwardRef(function ColorButton<
   TRoot extends React.ElementType = typeof COLOR_BUTTON_DEFAULT_TAG,
 >(props: IColorButtonProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
+    styles,
     sx,
     as,
     innerStyles,
@@ -43,11 +46,20 @@ export const ColorButton: IColorButton = forwardRef(function ColorButton<
   } = props as IWithAsProp<IColorButtonOwnProps>;
 
   const componentTheme = useComponentTheme('ColorButton');
+  const stylesCombinator = useMemo(
+    () => stylesCombinatorFactory(colorButtonStyles, styles),
+    [styles],
+  );
 
   return (
     <ButtonBase
       as={as}
-      sx={[colorButtonTheme, componentTheme.overridenStyles, sx]}
+      sx={[
+        colorButtonTheme,
+        componentTheme.overridenStyles,
+        stylesCombinator('host'),
+        sx,
+      ]}
       styles={[
         colorButtonButtonBaseStyles,
         ...asArray(innerStyles?.buttonBase),

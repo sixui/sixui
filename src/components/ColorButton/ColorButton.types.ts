@@ -11,10 +11,11 @@ import type {
   IButtonBaseStylesKey,
 } from '@/components/ButtonBase';
 import type { IColorTagStylesKey } from '@/components/ColorTag';
+import type { IColorButtonStylesKey } from './ColorButton.styles';
 
 export const COLOR_BUTTON_DEFAULT_TAG = 'button';
 
-export type IColorButtonOwnProps = IContainerProps<never> &
+export type IColorButtonOwnProps = IContainerProps<IColorButtonStylesKey> &
   IOmit<IButtonBaseOwnProps, 'styles'> & {
     innerStyles?: IButtonBaseOwnProps['innerStyles'] & {
       buttonBase?: IZeroOrMore<ICompiledStyles<IButtonBaseStylesKey>>;
