@@ -3,12 +3,12 @@ import { createContext } from 'react';
 export type IColorSchemeVariant = 'light' | 'dark';
 
 export type IColorSchemeContextValue = {
-  scheme?: IColorSchemeVariant;
+  variant: IColorSchemeVariant;
   root?: React.MutableRefObject<HTMLElement | null>;
 };
 
 export const colorSchemeInitialContextValue: IColorSchemeContextValue = {
-  scheme: 'light',
+  variant: 'light',
 };
 
 export const ColorSchemeContext = createContext<IColorSchemeContextValue>(

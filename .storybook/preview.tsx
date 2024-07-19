@@ -62,7 +62,7 @@ export const decorators: Array<Decorator> = [
       // theme={variantTheme}
       >
         {showLightMode ? (
-          <ColorSchemeProvider scheme='light'>
+          <ColorSchemeProvider variant='light'>
             <div {...stylex.props(styles.storyWrapper)}>
               <Story />
             </div>
@@ -70,7 +70,7 @@ export const decorators: Array<Decorator> = [
         ) : null}
 
         {showDarkMode ? (
-          <ColorSchemeProvider scheme='dark'>
+          <ColorSchemeProvider variant='dark'>
             <div {...stylex.props(styles.storyWrapper)}>
               <Story />
             </div>

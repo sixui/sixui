@@ -1,51 +1,33 @@
 import { useRef } from 'react';
 import stylex from '@stylexjs/stylex';
-import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
 import { FloatingDelayGroup } from '@floating-ui/react';
 
-import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { darkColorSchemeTheme } from '@/themes/base/darkColorScheme.styles';
 import { themeProviderStyles, useThemeContext } from '@/components/Theme';
 import {
   ColorSchemeContext,
   type IColorSchemeVariant,
 } from './ColorSchemeContext';
+import { colorSchemeProviderStyles } from './ColorSchemeProvider.styles';
 
 export type IColorSchemeProviderProps = {
-  scheme: IColorSchemeVariant;
+  variant: IColorSchemeVariant;
   children: React.ReactNode;
 };
-
-const styles = stylex.create({
-  host: {
-    color: colorSchemeTokens.onSurface,
-    fontFamily: typeScaleTokens.bodyFont$md,
-    fontSize: typeScaleTokens.bodySize$md,
-    fontWeight: typeScaleTokens.bodyWeight$md,
-    lineHeight: typeScaleTokens.bodyLineHeight$md,
-    letterSpacing: typeScaleTokens.bodyLetterSpacing$md,
-  },
-  container$light: {
-    colorScheme: 'light',
-  },
-  container$dark: {
-    colorScheme: 'dark',
-  },
-});
 
 export const ColorSchemeProvider: React.FC<IColorSchemeProviderProps> = (
   props,
 ) => {
-  const { scheme, children } = props;
+  const { variant, children } = props;
 
   const root = useRef<HTMLDivElement | null>(null);
   const themeContext = useThemeContext();
 
-  const isDark = scheme === 'dark';
+  const isDark = variant === 'dark';
   const isLight = !isDark;
 
   return (
-    <ColorSchemeContext.Provider value={{ scheme, root }}>
+    <ColorSchemeContext.Provider value={{ variant, root }}>
       <FloatingDelayGroup
         delay={{
           open: 100,
@@ -54,10 +36,10 @@ export const ColorSchemeProvider: React.FC<IColorSchemeProviderProps> = (
       >
         <div
           {...stylex.props(
-            styles.host,
-            isLight && styles.container$light,
+            colorSchemeProviderStyles.host,
+            isLight && colorSchemeProviderStyles.container$light,
             isDark && [
-              styles.container$dark,
+              colorSchemeProviderStyles.container$dark,
               darkColorSchemeTheme,
               themeContext.theme?.schemes &&
                 themeProviderStyles.dynamicScheme(
@@ -66,7 +48,7 @@ export const ColorSchemeProvider: React.FC<IColorSchemeProviderProps> = (
             ],
           )}
           ref={root}
-          data-scheme={scheme}
+          data-scheme={variant}
         >
           {children}
         </div>

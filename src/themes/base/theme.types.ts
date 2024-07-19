@@ -5,6 +5,8 @@ import type { IShapeTheme } from './shape.types';
 import type { ITypeFaceTheme } from './typeFace.types';
 import type { ITypeScaleTheme } from './typeScale.types';
 
+export type IThemeSchemes = Record<IColorSchemeVariant, IColorScheme>;
+
 export type ITheme = {
   name: string;
   source: {
@@ -12,7 +14,7 @@ export type ITheme = {
     schemeVariant: string;
     contrast: number;
   };
-  schemes?: Record<IColorSchemeVariant, IColorScheme>;
+  schemes?: IThemeSchemes;
   shape?: IShapeTheme;
   motion?: IMotionTheme;
   typeFace?: ITypeFaceTheme;

@@ -122,7 +122,8 @@
   "readme": "README.md",
   "dependencies": {
     "@floating-ui/react": "^0.26.19",
-    "@olivierpascal/helpers": "^0.0.70",
+    "@material/material-color-utilities": "^0.3.0",
+    "@olivierpascal/helpers": "^0.0.71",
     "highlight-words": "^1.2.2",
     "modern-normalize": "^2.0.0",
     "react-transition-group": "^4.4.5"
