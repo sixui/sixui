@@ -1,6 +1,8 @@
 import type { Placement, UseFloatingReturn } from '@floating-ui/react';
 import { useCallback } from 'react';
 
+import type { ISize } from '@/helpers/types';
+
 const TOOLTIP_ARROW_WIDTH = 14;
 const TOOLTIP_ARROW_HEIGHT = 7;
 const TOOLTIP_ARROW_SVG_PATH = undefined;
@@ -57,26 +59,63 @@ const placementToCursorTip = (
   }
 };
 
+type ICursorProps = {
+  size: ISize;
+  svgPath?: string;
+};
+
+const getCursorProps = (type: ITooltipCursorType): ICursorProps => {
+  switch (type) {
+    case 'arrow':
+      return {
+        size: {
+          width: TOOLTIP_ARROW_WIDTH,
+          height: TOOLTIP_ARROW_HEIGHT,
+        },
+        svgPath: TOOLTIP_ARROW_SVG_PATH,
+      };
+
+    case 'dot':
+      return {
+        size: {
+          width: TOOLTIP_DOT_WIDTH,
+          height: TOOLTIP_DOT_HEIGHT,
+        },
+        svgPath: TOOLTIP_DOT_SVG_PATH,
+      };
+
+    default:
+      return {
+        size: {
+          width: 0,
+          height: 0,
+        },
+        svgPath: undefined,
+      };
+  }
+};
+
 export const useTooltipCursor = (
   props: IUseTooltipCursorProps,
-): IUseTooltipCursorResult | undefined => {
+): IUseTooltipCursorResult => {
   const { type } = props;
-  const width = type === 'dot' ? TOOLTIP_DOT_WIDTH : TOOLTIP_ARROW_WIDTH;
-  const height =
-    props.type === 'dot' ? TOOLTIP_DOT_HEIGHT : TOOLTIP_ARROW_HEIGHT;
-  const svgPath =
-    props.type === 'dot' ? TOOLTIP_DOT_SVG_PATH : TOOLTIP_ARROW_SVG_PATH;
+  const cursorProps = getCursorProps(type);
 
   const getTransformOrigin = useCallback(
     (floating: UseFloatingReturn): string =>
       placementToCursorTip(floating.placement, {
-        width,
-        height,
-        x: floating.middlewareData.arrow?.x ?? 0 + width / 2,
-        y: floating.middlewareData.arrow?.y ?? 0 + height,
+        width: cursorProps.size.width,
+        height: cursorProps.size.height,
+        x: floating.middlewareData.arrow?.x ?? 0 + cursorProps.size.width / 2,
+        y: floating.middlewareData.arrow?.y ?? 0 + cursorProps.size.height,
       }),
-    [width, height],
+    [cursorProps],
   );
 
-  return type ? { width, height, svgPath, getTransformOrigin } : undefined;
+  return {
+    width: cursorProps.size.width,
+    height: cursorProps.size.height,
+    svgPath: cursorProps.svgPath,
+    getTransformOrigin,
+  };
 };

@@ -12,8 +12,9 @@ import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { sbHandleEvent } from '@/helpers/sbHandleEvent';
 import { IconButton } from '@/components/IconButton';
 import { Button } from '@/components/Button';
-// import { Paper } from '@/components/Paper';
+import { Paper } from '@/components/Paper';
 import { PopoverBase } from './PopoverBase';
+import { commonStyles } from '@/helpers/commonStyles';
 
 const meta = {
   component: PopoverBase,
@@ -29,14 +30,17 @@ const styles = stylex.create({
     maxWidth: 200,
   },
   cursor: {
+    fill: colorSchemeTokens.inverseSurface,
+  },
+  cursor$paper: {
     fill: colorSchemeTokens.surfaceContainer,
   },
-  // test: {
-  //   maxWidth: 200,
-  // },
-  // testInner: {
-  //   padding: '1rem',
-  // },
+  paper: {
+    maxWidth: 200,
+  },
+  paperInner: {
+    padding: '1rem',
+  },
 });
 
 const TOOLTIP_CONTENT =
@@ -46,7 +50,7 @@ const defaultArgs = {
   onOpenChange: (...args) => void sbHandleEvent('openChange', args),
   contentRenderer: ({ renderCursor }) => (
     <div {...stylex.props(styles.tooltip)}>
-      <div {...stylex.props(styles.cursor)}>{renderCursor?.()}</div>
+      <div {...stylex.props(styles.cursor)}>{renderCursor()}</div>
       {TOOLTIP_CONTENT}
     </div>
   ),
@@ -133,6 +137,18 @@ export const OpenOnFocus: IStory = {
   },
 };
 
+export const MatchTargetWidth: IStory = {
+  render: (props) => (
+    <ComponentShowcase component={PopoverBase} props={props} />
+  ),
+  args: {
+    ...defaultArgs,
+    openOnClick: true,
+    matchTargetWidth: true,
+    children: <Button>Click to open</Button>,
+  },
+};
+
 export const NonDismissable: IStory = {
   render: (props) => (
     <ComponentShowcase
@@ -148,7 +164,7 @@ export const NonDismissable: IStory = {
     nonDismissable: true,
     contentRenderer: ({ renderCursor, close }) => (
       <div {...stylex.props(styles.tooltip)}>
-        <div {...stylex.props(styles.cursor)}>{renderCursor?.()}</div>
+        <div {...stylex.props(styles.cursor)}>{renderCursor()}</div>
         {TOOLTIP_CONTENT}
         <Button onClick={close} variant='snackbar'>
           Close
@@ -158,30 +174,28 @@ export const NonDismissable: IStory = {
   },
 };
 
-// export const WithCard: IStory = {
-//   render: (props) => (
-//     <ComponentShowcase
-//       component={PopoverBase}
-//       props={props}
-//       cols={cols}
-//       rows={rows}
-//     />
-//   ),
-//   args: {
-//     ...defaultArgs,
-//     openOnClick: true,
-//     contentRenderer: ({ renderCursor, close }) => (
-//       <>
-//         <div {...stylex.props(styles.cursor)}>{renderCursor?.()}</div>
-//         <Paper sx={styles.test} elevation={4}>
-//           <div {...stylex.props(styles.testInner)}>
-//             {TOOLTIP_CONTENT}
-//             <Button onClick={close}>Close</Button>
-//           </div>
-//         </Paper>
-//       </>
-//     ),
-//   },
-// };
+export const WithPaper: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={PopoverBase}
+      props={props}
+      cols={cols}
+      rows={rows}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    openOnClick: true,
+    contentRenderer: ({ renderCursor, close }) => (
+      <Paper sx={styles.paper} elevation={4}>
+        <div {...stylex.props(commonStyles.verticalLayout, styles.paperInner)}>
+          <div {...stylex.props(styles.cursor$paper)}>{renderCursor()}</div>
+          <div>{TOOLTIP_CONTENT}</div>
+          <Button onClick={close}>Close</Button>
+        </div>
+      </Paper>
+    ),
+  },
+};
 
 export default meta;
