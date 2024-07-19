@@ -21,6 +21,7 @@ export const shapeTokens = stylex.defineVars<IShapeTheme>({
 
   corner$xs: '6px',
   cornerTop$xs: '6px 6px 0 0',
+  cornerBottom$xs: '0 0 6px 6px',
 
   corner$none: '0',
 });

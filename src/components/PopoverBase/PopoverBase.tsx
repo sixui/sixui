@@ -6,6 +6,7 @@ import {
   FloatingArrow,
   offset,
   shift,
+  size,
   useClick,
   useDelayGroup,
   useDismiss,
@@ -49,6 +50,7 @@ export const PopoverBase = <TForwardedProps extends object = object>(
     openOnFocus,
     openOnClick,
     nonDismissable,
+    matchTargetWidth,
     ...other
   } = props;
 
@@ -85,7 +87,7 @@ export const PopoverBase = <TForwardedProps extends object = object>(
     },
     whileElementsMounted: autoUpdate,
     middleware: [
-      offset(4 + (cursor?.height ?? 0)),
+      offset(4 + cursor.height),
       flip({
         crossAxis: placement.includes('-'),
         fallbackAxisSideDirection: 'start',
@@ -95,6 +97,15 @@ export const PopoverBase = <TForwardedProps extends object = object>(
       arrow({
         element: arrowRef,
       }),
+      matchTargetWidth
+        ? size({
+            apply: ({ rects, elements }) => {
+              Object.assign(elements.floating.style, {
+                width: `${rects.reference.width}px`,
+              });
+            },
+          })
+        : undefined,
     ],
   });
   const delayGroup = useDelayGroup(floating.context, {
@@ -127,18 +138,18 @@ export const PopoverBase = <TForwardedProps extends object = object>(
       })
     : children;
 
-  const renderCursor = cursor
-    ? (userProps?: React.HTMLAttributes<SVGSVGElement>): React.ReactNode => (
-        <FloatingArrow
-          {...userProps}
-          ref={arrowRef}
-          context={floating.context}
-          width={cursor.width}
-          height={cursor.height}
-          d={cursor.svgPath}
-        />
-      )
-    : undefined;
+  const renderCursor = (
+    userProps?: React.HTMLAttributes<SVGSVGElement>,
+  ): React.ReactNode => (
+    <FloatingArrow
+      {...userProps}
+      ref={arrowRef}
+      context={floating.context}
+      width={cursor.width}
+      height={cursor.height}
+      d={cursor.svgPath}
+    />
+  );
 
   return (
     <>
@@ -169,20 +180,25 @@ export const PopoverBase = <TForwardedProps extends object = object>(
               )}
               {...(forwardProps ? undefined : other)}
             >
-              {isFunction(contentRenderer)
-                ? contentRenderer({
-                    forwardedProps: forwardProps
-                      ? (other as TForwardedProps)
-                      : undefined,
-                    renderCursor,
-                    close: (event) => {
-                      setIsOpen(false);
-                      if (isOpenProp !== undefined) {
-                        onOpenChange?.(false, event?.nativeEvent, 'click');
-                      }
-                    },
-                  })
-                : contentRenderer}
+              {isFunction(contentRenderer) ? (
+                contentRenderer({
+                  forwardedProps: forwardProps
+                    ? (other as TForwardedProps)
+                    : undefined,
+                  renderCursor,
+                  close: (event) => {
+                    setIsOpen(false);
+                    if (isOpenProp !== undefined) {
+                      onOpenChange?.(false, event?.nativeEvent, 'click');
+                    }
+                  },
+                })
+              ) : (
+                <>
+                  {renderCursor()}
+                  contentRenderer
+                </>
+              )}
             </div>
           </div>
         </Portal>

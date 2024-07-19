@@ -45,7 +45,7 @@ export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
         ref={forwardedRef}
         {...other}
       >
-        {crosshairs ? <div {...sxf('guides')} /> : null}
+        {crosshairs ? <div {...sxf('crosshairs')} /> : null}
         {label ? <div {...sxf('label')}>{label}</div> : null}
         {children}
       </div>

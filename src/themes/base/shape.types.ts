@@ -10,5 +10,6 @@ export type IShapeTheme = {
   corner$sm: string;
   corner$xs: string;
   cornerTop$xs: string;
+  cornerBottom$xs: string;
   corner$none: string;
 };
