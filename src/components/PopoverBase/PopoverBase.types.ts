@@ -13,9 +13,6 @@ import type { ITooltipCursorType } from '@/hooks/useTooltipCursor';
 import type { IPopoverBaseStylesKey } from './PopoverBase.styles';
 
 export type IPopoverBaseContentRendererProps = {
-  renderCursor: (
-    userProps?: React.HTMLAttributes<SVGSVGElement>,
-  ) => React.ReactNode;
   close: (event?: React.MouseEvent) => void;
 };
 

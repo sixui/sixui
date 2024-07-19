@@ -20,8 +20,5 @@ export type IRichTooltipContentProps =
     actions?:
       | React.ReactNode
       | ((props: IRichTooltipContentActionsRenderProps) => React.ReactNode);
-    renderCursor?: (
-      userProps?: React.HTMLAttributes<SVGSVGElement>,
-    ) => React.ReactNode;
     onClose?: (event?: React.MouseEvent) => void;
   };

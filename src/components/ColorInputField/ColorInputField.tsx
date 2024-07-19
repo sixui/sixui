@@ -55,6 +55,7 @@ export const ColorInputField = forwardRef<
             } as React.ChangeEvent<HTMLInputElement>);
             close();
           }}
+          selectedColor={value}
         />
       )}
       openOnClick

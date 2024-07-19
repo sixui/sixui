@@ -23,4 +23,5 @@ export type ITonalColorPickerContentProps =
     ) => void;
     palettesCount?: number;
     tones?: Array<number>;
+    children?: React.ReactNode;
   };

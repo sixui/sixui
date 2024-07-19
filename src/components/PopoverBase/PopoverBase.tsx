@@ -180,12 +180,12 @@ export const PopoverBase = <TForwardedProps extends object = object>(
               )}
               {...(forwardProps ? undefined : other)}
             >
+              {renderCursor()}
               {isFunction(contentRenderer)
                 ? contentRenderer({
                     forwardedProps: forwardProps
                       ? (other as TForwardedProps)
                       : undefined,
-                    renderCursor,
                     close: (event) => {
                       setIsOpen(false);
                       if (isOpenProp !== undefined) {

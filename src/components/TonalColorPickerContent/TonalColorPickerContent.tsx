@@ -34,6 +34,7 @@ export const TonalColorPickerContent = forwardRef<
     onClick,
     palettesCount = 8,
     tones = [80, 50, 20],
+    children,
     ...other
   } = props;
 
@@ -142,6 +143,7 @@ export const TonalColorPickerContent = forwardRef<
           </div>
         </>
       ) : undefined}
+      {children}
     </Paper>
   );
 });
