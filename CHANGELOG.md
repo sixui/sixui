@@ -1,3 +1,15 @@
+# v0.0.341 (Fri Jul 19 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(ColorInputField): correct placement ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.340 (Fri Jul 19 2024)
 
 #### 🐛 Bug Fix
