@@ -22,6 +22,7 @@ export const paperBaseStyles = stylex.create({
   content: {
     borderRadius: 'inherit',
     position: 'relative',
+    color: paperBaseTokens.textColor,
   },
   outline: {
     zIndex: 1,

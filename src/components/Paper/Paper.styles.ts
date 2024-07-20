@@ -1,71 +1,95 @@
 import stylex from '@stylexjs/stylex';
 
 import { elevationTokens } from '@/components/Elevation/Elevation.stylex';
-import { paperTokens } from './Paper.stylex';
-import { paperStateTokens as paperstateTokens } from './Paper.state.stylex';
+import { shapeTokens } from '@/themes/base/shape.stylex';
+import { paperBaseTokens } from '@/components/PaperBase/PaperBase.stylex';
+import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 
 // https://github.com/material-components/material-web/blob/main/labs/Paper/internal/_shared.scss
 
 export type IPaperStylesKey = keyof typeof paperStyles;
 export const paperStyles = stylex.create({
   host: {
-    borderRadius: paperTokens.containerShape,
-    position: 'relative',
-    zIndex: 0,
+    [paperBaseTokens.textColor]: colorSchemeTokens.onSurface,
   },
-  host$elevation0: {
-    [paperstateTokens.elevation]: elevationTokens.boxShadow$level0,
+  host$outlined: {
+    [paperBaseTokens.outlineStyle]: 'solid',
   },
-  host$elevation1: {
-    [paperstateTokens.elevation]: elevationTokens.boxShadow$level1,
+  elevation$0: {
+    [paperBaseTokens.containerElevation]: elevationTokens.boxShadow$level0,
   },
-  host$elevation2: {
-    [paperstateTokens.elevation]: elevationTokens.boxShadow$level2,
+  elevation$1: {
+    [paperBaseTokens.containerElevation]: elevationTokens.boxShadow$level1,
   },
-  host$elevation3: {
-    [paperstateTokens.elevation]: elevationTokens.boxShadow$level3,
+  elevation$2: {
+    [paperBaseTokens.containerElevation]: elevationTokens.boxShadow$level2,
   },
-  host$elevation4: {
-    [paperstateTokens.elevation]: elevationTokens.boxShadow$level4,
+  elevation$3: {
+    [paperBaseTokens.containerElevation]: elevationTokens.boxShadow$level3,
   },
-  host$elevation5: {
-    [paperstateTokens.elevation]: elevationTokens.boxShadow$level5,
+  elevation$4: {
+    [paperBaseTokens.containerElevation]: elevationTokens.boxShadow$level4,
   },
-  host$square: {
-    borderRadius: 0,
+  elevation$5: {
+    [paperBaseTokens.containerElevation]: elevationTokens.boxShadow$level5,
   },
-  background: {
-    backgroundColor: paperTokens.containerColor,
-    borderRadius: 'inherit',
-    inset: 0,
-    position: 'absolute',
-    zIndex: -1,
+  corner$none: {
+    [paperBaseTokens.containerShape]: shapeTokens.corner$none,
   },
-  content: {
-    borderRadius: 'inherit',
-    position: 'relative',
+  corner$xs: {
+    [paperBaseTokens.containerShape]: shapeTokens.corner$xs,
   },
-  outline: {
-    zIndex: 1,
-    inset: 0,
-    pointerEvents: 'none',
-    borderStyle: paperTokens.outlineStyle,
-    borderWidth: paperTokens.outlineWidth,
-    position: 'absolute',
-    borderColor: paperTokens.outlineColor,
-    borderRadius: 'inherit',
+  corner$sm: {
+    [paperBaseTokens.containerShape]: shapeTokens.corner$sm,
   },
-});
-
-export const paperElevationStyles = stylex.create({
-  host: {
-    [elevationTokens.boxShadow]: paperstateTokens.elevation,
-
-    borderRadius: 'inherit',
-    inset: 0,
-    pointerEvents: 'none',
-    position: 'absolute',
-
-    zIndex: -1,
+  corner$md: {
+    [paperBaseTokens.containerShape]: shapeTokens.corner$md,
+  },
+  corner$lg: {
+    [paperBaseTokens.containerShape]: shapeTokens.corner$lg,
+  },
+  corner$xl: {
+    [paperBaseTokens.containerShape]: shapeTokens.corner$xl,
+  },
+  corner$full: {
+    [paperBaseTokens.containerShape]: shapeTokens.corner$full,
+  },
+  surface$none: {
+    [paperBaseTokens.containerColor]: colorSchemeTokens.surface,
+  },
+  surface$lowest: {
+    [paperBaseTokens.containerColor]: colorSchemeTokens.surfaceContainerLowest,
+  },
+  surface$low: {
+    [paperBaseTokens.containerColor]: colorSchemeTokens.surfaceContainerLow,
+  },
+  surface$medium: {
+    [paperBaseTokens.containerColor]: colorSchemeTokens.surfaceContainer,
+  },
+  surface$high: {
+    [paperBaseTokens.containerColor]: colorSchemeTokens.surfaceContainerHigh,
+  },
+  surface$highest: {
+    [paperBaseTokens.containerColor]: colorSchemeTokens.surfaceContainerHighest,
+  },
+  surface$inverse: {
+    [paperBaseTokens.containerColor]: colorSchemeTokens.inverseSurface,
+    [paperBaseTokens.textColor]: colorSchemeTokens.inverseOnSurface,
+  },
+  surface$primary: {
+    [paperBaseTokens.containerColor]: colorSchemeTokens.primaryContainer,
+    [paperBaseTokens.textColor]: colorSchemeTokens.onPrimaryContainer,
+  },
+  surface$secondary: {
+    [paperBaseTokens.containerColor]: colorSchemeTokens.secondaryContainer,
+    [paperBaseTokens.textColor]: colorSchemeTokens.onSecondaryContainer,
+  },
+  surface$tertiary: {
+    [paperBaseTokens.containerColor]: colorSchemeTokens.tertiaryContainer,
+    [paperBaseTokens.textColor]: colorSchemeTokens.onTertiaryContainer,
+  },
+  surface$error: {
+    [paperBaseTokens.containerColor]: colorSchemeTokens.errorContainer,
+    [paperBaseTokens.textColor]: colorSchemeTokens.onErrorContainer,
   },
 });

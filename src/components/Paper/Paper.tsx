@@ -1,14 +1,10 @@
 import { forwardRef, useMemo } from 'react';
-import { asArray } from '@olivierpascal/helpers';
 
 import type { IPaperProps } from './Paper.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { Elevation } from '@/components/Elevation';
-import { paperVariantStyles } from './variants';
-import { paperElevationStyles, paperStyles } from './Paper.styles';
-import { paperTheme } from './Paper.stylex';
+import { PaperBase } from '@/components/PaperBase';
+import { paperStyles } from './Paper.styles';
 
 // https://github.com/material-components/material-web/blob/main/labs/paper/internal/paper.ts
 
@@ -17,48 +13,41 @@ export const Paper = forwardRef<HTMLDivElement, IPaperProps>(
     const {
       styles,
       sx,
-      variant = 'filled',
       innerStyles,
       children,
       elevation: elevationProp,
-      square,
+      corner,
+      surface: surfaceProp,
+      outlined,
       ...other
     } = props;
 
     const componentTheme = useComponentTheme('Paper');
-    const variantStyles = variant ? paperVariantStyles[variant] : undefined;
-
     const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(paperStyles, variantStyles, styles),
-      [variantStyles, styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
+      () => stylesCombinatorFactory(paperStyles, styles),
+      [styles],
     );
 
-    const elevation = variant === 'outlined' ? 0 : (elevationProp ?? 0);
+    const elevation = outlined ? 0 : (elevationProp ?? 0);
+    const surface = outlined ? 'none' : surfaceProp;
 
     return (
-      <div
-        {...sxf(
-          paperTheme,
+      <PaperBase
+        sx={[
           componentTheme.overridenStyles,
-          'host',
-          `host$elevation${elevation}`,
-          square && 'host$square',
+          stylesCombinator('host'),
+          stylesCombinator(`elevation$${elevation ?? '0'}`),
+          stylesCombinator(`corner$${corner ?? 'none'}`),
+          stylesCombinator(`surface$${surface ?? 'none'}`),
+          outlined && stylesCombinator('host$outlined'),
           sx,
-        )}
+        ]}
+        styles={innerStyles?.paperBase}
         ref={forwardedRef}
         {...other}
       >
-        <Elevation
-          styles={[paperElevationStyles, ...asArray(innerStyles?.elevation)]}
-        />
-        <div {...sxf('outline')} />
-        <div {...sxf('background')} />
-        <div {...sxf('content')}>{children}</div>
-      </div>
+        {children}
+      </PaperBase>
     );
   },
 );

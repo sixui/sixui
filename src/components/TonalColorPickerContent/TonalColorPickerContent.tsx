@@ -5,7 +5,7 @@ import type { ITonalColorPickerContentProps } from './TonalColorPickerContent.ty
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { Paper } from '@/components/Paper';
+import { PaperBase } from '@/components/PaperBase';
 import baseTheme from '@/themes/base/theme.json';
 import { useThemeContext } from '@/components/Theme';
 import { useColorScheme } from '@/components/ColorScheme';
@@ -65,10 +65,9 @@ export const TonalColorPickerContent = forwardRef<
   );
 
   return (
-    <Paper
+    <PaperBase
       sx={[componentTheme.overridenStyles, stylesCombinator('host'), sx]}
-      elevation={2}
-      styles={innerStyles?.paper}
+      styles={innerStyles?.paperBase}
       {...other}
       ref={forwardedRef}
     >
@@ -144,6 +143,6 @@ export const TonalColorPickerContent = forwardRef<
         </>
       ) : undefined}
       {children}
-    </Paper>
+    </PaperBase>
   );
 });

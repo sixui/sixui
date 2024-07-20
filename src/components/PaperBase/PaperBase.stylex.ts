@@ -14,6 +14,9 @@ const vars = {
   outlineStyle: 'none',
   outlineColor: colorSchemeTokens.outlineVariant,
   outlineWidth: '1px',
+
+  // text
+  textColor: colorSchemeTokens.onSurface,
 };
 
 export const paperBaseTokens = stylex.defineVars(vars);
