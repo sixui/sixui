@@ -51,6 +51,7 @@ export * from './components/MultiSelect';
 export * from './components/MultiSelectBase';
 export * from './components/OptionCard';
 export * from './components/Paper';
+export * from './components/PaperBase';
 export * from './components/Placeholder';
 export * from './components/PlainTooltip';
 export * from './components/PlainTooltipContent';
