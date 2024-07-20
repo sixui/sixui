@@ -43,7 +43,7 @@ export const ColorInputField = forwardRef<
 
   return (
     <PopoverBase
-      contentRenderer={({ close, renderCursor }) => (
+      contentRenderer={({ close }) => (
         <TonalColorPickerContent
           onClick={(_, colorHex) => {
             setValue(colorHex);
@@ -56,9 +56,7 @@ export const ColorInputField = forwardRef<
             close();
           }}
           selectedColor={value}
-        >
-          {renderCursor()}
-        </TonalColorPickerContent>
+        />
       )}
       openOnClick
       openOnFocus

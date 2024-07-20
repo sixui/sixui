@@ -5,7 +5,7 @@ import { shapeTokens } from '@/themes/base/shape.stylex';
 import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
 
 const vars = {
-  emptyCrosshairsColor: colorSchemeTokens.outlineVariant,
+  emptyCrosshairsColor: colorSchemeTokens.outline,
 
   // container
   containerMinWidth: '40px',

@@ -23,7 +23,7 @@ import type { IPopoverBaseProps } from './PopoverBase.types';
 import { isFunction } from '@/helpers/isFunction';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { Portal } from '@/components/Portal';
-import { useTooltipCursor } from '@/hooks/useTooltipCursor';
+import { usePopoverCursor } from '@/hooks/usePopoverCursor';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
@@ -70,7 +70,7 @@ export const PopoverBase = <TForwardedProps extends object = object>(
     name: 'PopoverBase',
   });
   const arrowRef = useRef(null);
-  const cursor = useTooltipCursor({ type: cursorType });
+  const cursor = usePopoverCursor({ type: cursorType });
   const floating = useFloating({
     placement,
     open: isOpen,

@@ -9,7 +9,7 @@ import type {
   IRendererWithForwardedProps,
   IForwardableProps,
 } from '@/helpers/react/forwardablePropsTypes';
-import type { ITooltipCursorType } from '@/hooks/useTooltipCursor';
+import type { IPopoverCursorType } from '@/hooks/usePopoverCursor';
 import type { IPopoverBaseStylesKey } from './PopoverBase.styles';
 
 export type IPopoverBaseContentRendererProps = {
@@ -37,7 +37,7 @@ export type IPopoverBaseProps<TForwardedProps extends object = object> =
       placement?: Placement;
       isOpen?: boolean;
       defaultIsOpen?: boolean;
-      cursor?: ITooltipCursorType;
+      cursor?: IPopoverCursorType;
       onOpenChange?: (
         isOpen: boolean,
         event?: Event,
