@@ -5,7 +5,6 @@ import type {
   IZeroOrMore,
 } from '@/helpers/types';
 import type { ITonalColorPickerContentStylesKey } from './TonalColorPickerContent.styles';
-import type { IColorSchemeVariant } from '@/components/ColorScheme';
 import type { IPaperBaseStylesKey } from '@/components/PaperBase';
 
 export type ITonalColorPickerContentProps =
@@ -13,8 +12,7 @@ export type ITonalColorPickerContentProps =
     innerStyles?: {
       paperBase?: IZeroOrMore<ICompiledStyles<IPaperBaseStylesKey>>;
     };
-    fixedColorScheme?: boolean;
-    sourceColor?: IColor | Record<IColorSchemeVariant, IColor>;
+    sourceColor?: IColor;
     selectedColor?: IColor;
     customColors?: Array<IColor>;
     onClick?: (

@@ -43,6 +43,12 @@ type IUseControlledProps<TValue> = {
    * The name of the state variable displayed in warnings.
    */
   state?: string;
+
+  /**
+   * Callback invoked when the component value changes, typically via user
+   * interaction, in both controlled and uncontrolled mode.
+   */
+  onValueChange?: (value: TValue) => void;
 };
 
 type IUseControlledValue<TValue> = [
@@ -55,7 +61,7 @@ type IUseControlledValue<TValue> = [
 export const useControlledValue = <TValue>(
   props: IUseControlledProps<TValue>,
 ): IUseControlledValue<TValue> => {
-  const { name, state = 'value', ...other } = props;
+  const { name, state = 'value', onValueChange, ...other } = props;
   const { current: isControlled } = useRef(other.controlled !== undefined);
   const [valueState, setValue] = useState(other.default);
   const value = other.controlled ?? valueState;
@@ -107,8 +113,14 @@ export const useControlledValue = <TValue>(
       if (!isControlled) {
         setValue(newValue);
       }
+
+      onValueChange?.(
+        typeof newValue === 'function'
+          ? (newValue as (prev: TValue) => TValue)(value)
+          : newValue,
+      );
     },
-    [isControlled],
+    [isControlled, onValueChange, value],
   );
 
   return [value, setValueIfUncontrolled];

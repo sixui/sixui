@@ -8,7 +8,6 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { PaperBase } from '@/components/PaperBase';
 import baseTheme from '@/themes/base/theme.json';
 import { useThemeContext } from '@/components/Theme';
-import { useColorScheme } from '@/components/ColorScheme';
 import { commonStyles } from '@/helpers/commonStyles';
 import { Divider } from '@/components/Divider';
 import { generateTonalPalettes } from '@/helpers/colors/generateTonalPalettes';
@@ -27,13 +26,12 @@ export const TonalColorPickerContent = forwardRef<
     styles,
     sx,
     innerStyles,
-    fixedColorScheme,
     sourceColor,
     selectedColor,
     customColors,
     onClick,
     palettesCount = 8,
-    tones = [80, 50, 20],
+    tones = [85, 70, 55, 40, 25],
     children,
     ...other
   } = props;
@@ -48,19 +46,18 @@ export const TonalColorPickerContent = forwardRef<
     [stylesCombinator],
   );
 
-  const colorScheme = useColorScheme();
   const themeContext = useThemeContext();
 
   const themeSchemes = themeContext.theme?.schemes ?? baseTheme.schemes;
 
-  const primaryToken = fixedColorScheme ? 'primaryFixed' : 'primary';
+  const primaryToken = 'primary';
   const primaryColorsHex = getSchemeColorsHex(
     primaryToken,
     themeSchemes,
     sourceColor,
   );
   const primaryTonalPalettes = generateTonalPalettes(
-    primaryColorsHex[colorScheme.variant],
+    primaryColorsHex.light,
     palettesCount,
   );
 

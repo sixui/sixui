@@ -23,15 +23,7 @@ export const Selected: IStory = {
   render: (props) => <TonalColorPickerContent {...props} />,
   args: {
     ...defaultArgs,
-    selectedColor: '#8069bf',
-  },
-};
-
-export const Fixed: IStory = {
-  render: (props) => <TonalColorPickerContent {...props} />,
-  args: {
-    ...defaultArgs,
-    fixedColorScheme: true,
+    selectedColor: '#6750a4',
   },
 };
 
@@ -39,7 +31,7 @@ export const CustomColors: IStory = {
   render: (props) => <TonalColorPickerContent {...props} />,
   args: {
     ...defaultArgs,
-    customColors: ['#000', '#444', '#888', '#ccc'],
+    customColors: ['#000000', '#444444', '#888888', '#cccccc'],
   },
 };
 
@@ -47,27 +39,16 @@ export const CustomSelected: IStory = {
   render: (props) => <TonalColorPickerContent {...props} />,
   args: {
     ...defaultArgs,
-    customColors: ['#000', '#444', '#888', '#ccc'],
-    selectedColor: '#444',
+    customColors: ['#000000', '#444444', '#888888', '#cccccc'],
+    selectedColor: '#444444',
   },
 };
 
-export const SourceColor: IStory = {
+export const CustomSourceColor: IStory = {
   render: (props) => <TonalColorPickerContent {...props} />,
   args: {
     ...defaultArgs,
     sourceColor: '#00ff00',
-  },
-};
-
-export const SourceScheme: IStory = {
-  render: (props) => <TonalColorPickerContent {...props} />,
-  args: {
-    ...defaultArgs,
-    sourceColor: {
-      light: '#00ff00',
-      dark: '#92d78f',
-    },
   },
 };
 

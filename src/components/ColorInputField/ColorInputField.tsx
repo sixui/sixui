@@ -47,12 +47,13 @@ export const ColorInputField = forwardRef<
         <TonalColorPickerContent
           onClick={(_, colorHex) => {
             setValue(colorHex);
-            if (inputRef.current) {
-              inputRef.current.value = colorHex;
-            }
-            other.onChange?.({
-              target: inputRef.current,
-            } as React.ChangeEvent<HTMLInputElement>);
+            // Only call the `onChange` callback after the value has been set
+            // in the next tick.
+            setTimeout(() => {
+              other.onChange?.({
+                target: inputRef.current,
+              } as React.ChangeEvent<HTMLInputElement>);
+            });
             close();
           }}
           selectedColor={value}
