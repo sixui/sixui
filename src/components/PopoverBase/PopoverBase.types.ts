@@ -10,6 +10,7 @@ import type {
   IForwardableProps,
 } from '@/helpers/react/forwardablePropsTypes';
 import type { IPopoverCursorType } from '@/hooks/usePopoverCursor';
+import type { IFloatingTransitionOrigin } from '@/components/FloatingTransition';
 import type { IPopoverBaseStylesKey } from './PopoverBase.styles';
 
 export type IPopoverBaseContentRendererProps = {
@@ -35,6 +36,7 @@ export type IPopoverBaseProps<TForwardedProps extends object = object> =
         | React.ReactNode
         | ((props: IPopoverBaseChildrenRendererProps) => React.ReactNode);
       placement?: Placement;
+      transitionOrigin?: IFloatingTransitionOrigin;
       isOpen?: boolean;
       defaultIsOpen?: boolean;
       cursor?: IPopoverCursorType;

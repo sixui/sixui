@@ -1,7 +1,7 @@
 import type { Placement, UseFloatingReturn } from '@floating-ui/react';
 import { useCallback } from 'react';
 
-import type { ISize } from '@/helpers/types';
+import type { IPosition, ISize } from '@/helpers/types';
 
 const POPOVER_CURSOR_ARROW_WIDTH = 14;
 const POPOVER_CURSOR_ARROW_HEIGHT = 7;
@@ -18,78 +18,42 @@ export type IUsePopoverCursorProps = {
   type: IPopoverCursorType;
 };
 
-export type IPopoverCursorTransform = {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
+export type IPopoverCursor = {
+  position: IPosition;
+  size: ISize;
 };
 
 export type IUsePopoverCursorResult = {
-  width: number;
-  height: number;
+  size: ISize;
   svgPath?: string;
-  getTransformOrigin: (floating: UseFloatingReturn) => string;
-};
-
-const getAbsoluteTransformOrigin = (placement: Placement): string => {
-  switch (placement) {
-    case 'bottom':
-      return '50% 0';
-    case 'bottom-start':
-      return '0 0';
-    case 'bottom-end':
-      return '100% 0';
-
-    case 'left':
-      return '100% 50%';
-    case 'left-start':
-      return '100% 0';
-    case 'left-end':
-      return '100% 100%';
-
-    case 'right':
-      return '0 50%';
-    case 'right-start':
-      return '0 0';
-    case 'right-end':
-      return '0 100%';
-
-    case 'top':
-      return '50% 100%';
-    case 'top-start':
-      return '0 100%';
-    case 'top-end':
-    default:
-      return '100% 100%';
-  }
+  getTransformOrigin: (floating: UseFloatingReturn) => string | undefined;
 };
 
 const getCursorTipTransformOrigin = (
   placement: Placement,
-  transform: IPopoverCursorTransform,
+  cursor: IPopoverCursor,
 ): string => {
   switch (placement) {
     case 'bottom':
     case 'bottom-start':
     case 'bottom-end':
-      return `${transform.x}px ${-transform.height}px`;
+      return `${cursor.position.x}px ${-cursor.size.height}px`;
 
     case 'left':
     case 'left-start':
     case 'left-end':
-      return `calc(100% + ${transform.height}px) ${transform.y}px`;
+      return `calc(100% + ${cursor.size.height}px) ${cursor.position.y}px`;
 
     case 'right':
     case 'right-start':
     case 'right-end':
-      return `${-transform.height}px ${transform.y}px`;
+      return `${-cursor.size.height}px ${cursor.position.y}px`;
 
     case 'top':
     case 'top-start':
     case 'top-end':
     default:
-      return `${transform.x}px calc(100% + ${transform.height}px)`;
+      return `${cursor.position.x}px calc(100% + ${cursor.size.height}px)`;
   }
 };
 
@@ -137,31 +101,25 @@ export const usePopoverCursor = (
 
   const getTransformOrigin = useCallback(
     (floating: UseFloatingReturn): string => {
-      if (type) {
-        const transform: IPopoverCursorTransform = {
-          width: cursorProps.size.width,
-          height: cursorProps.size.height,
+      const cursor: IPopoverCursor = {
+        size: cursorProps.size,
+        position: {
           x: floating.middlewareData.arrow?.x ?? 0 + cursorProps.size.width / 2,
           y: floating.middlewareData.arrow?.y ?? 0 + cursorProps.size.height,
-        };
-        const transformOrigin = getCursorTipTransformOrigin(
-          floating.placement,
-          transform,
-        );
+        },
+      };
+      const transformOrigin = getCursorTipTransformOrigin(
+        floating.placement,
+        cursor,
+      );
 
-        return transformOrigin;
-      } else {
-        const transformOrigin = getAbsoluteTransformOrigin(floating.placement);
-
-        return transformOrigin;
-      }
+      return transformOrigin;
     },
-    [type, cursorProps],
+    [cursorProps],
   );
 
   return {
-    width: cursorProps.size.width,
-    height: cursorProps.size.height,
+    size: cursorProps.size,
     svgPath: cursorProps.svgPath,
     getTransformOrigin,
   };

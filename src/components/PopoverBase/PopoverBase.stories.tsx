@@ -1,7 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faBolt, faCloud } from '@fortawesome/free-solid-svg-icons';
+import {
+  faStar,
+  faBolt,
+  faCloud,
+  faSmile,
+} from '@fortawesome/free-solid-svg-icons';
 
 import type { IPopoverBaseProps } from './PopoverBase.types';
 import {
@@ -32,19 +37,19 @@ const styles = stylex.create({
   cursor: {
     fill: colorSchemeTokens.inverseSurface,
   },
-  cursor$paper: {
-    fill: colorSchemeTokens.surfaceContainer,
-  },
   paper: {
     maxWidth: 200,
   },
   paperInner: {
     padding: '1rem',
   },
+  padding: {
+    padding: 100,
+  },
 });
 
 const TOOLTIP_CONTENT =
-  'Grant value is calculated using the closing stock price from the day before the grant date. Amounts do not reflect tax withholding.';
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
 
 const defaultArgs = {
   onOpenChange: (...args) => void sbHandleEvent('openChange', args),
@@ -187,13 +192,167 @@ export const WithPaper: IStory = {
     ...defaultArgs,
     openOnClick: true,
     contentRenderer: ({ renderCursor, close }) => (
-      <Paper sx={styles.paper} elevation={4}>
+      <Paper sx={styles.paper} elevation={2} corner='md'>
+        <div {...stylex.props(styles.cursor)}>{renderCursor()}</div>
         <div {...stylex.props(commonStyles.verticalLayout, styles.paperInner)}>
-          <div {...stylex.props(styles.cursor$paper)}>{renderCursor()}</div>
           <div>{TOOLTIP_CONTENT}</div>
           <Button onClick={close}>Close</Button>
         </div>
       </Paper>
+    ),
+  },
+};
+
+export const Placement: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      sx={styles.padding}
+      component={PopoverBase}
+      props={props}
+      rows={[
+        {
+          legend: 'top-start',
+          props: {
+            placement: 'top-start',
+          },
+        },
+        {
+          legend: 'top',
+          props: {
+            placement: 'top',
+          },
+        },
+        {
+          legend: 'top-end',
+          props: {
+            placement: 'top-end',
+          },
+        },
+        {
+          legend: 'left-start',
+          props: {
+            placement: 'left-start',
+          },
+        },
+        {
+          legend: 'left',
+          props: {
+            placement: 'left',
+          },
+        },
+        {
+          legend: 'left-end',
+          props: {
+            placement: 'left-end',
+          },
+        },
+        {
+          legend: 'right-start',
+          props: {
+            placement: 'right-start',
+          },
+        },
+        {
+          legend: 'right',
+          props: {
+            placement: 'right',
+          },
+        },
+        {
+          legend: 'right-end',
+          props: {
+            placement: 'right-end',
+          },
+        },
+        {
+          legend: 'bottom-start',
+          props: {
+            placement: 'bottom-start',
+          },
+        },
+        {
+          legend: 'bottom',
+          props: {
+            placement: 'bottom',
+          },
+        },
+        {
+          legend: 'bottom-end',
+          props: {
+            placement: 'bottom-end',
+          },
+        },
+      ]}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    openOnClick: true,
+    openOnFocus: true,
+    cursor: 'arrow',
+    children: <IconButton icon={<FontAwesomeIcon icon={faStar} />} />,
+    contentRenderer: ({ renderCursor }) => (
+      <div {...stylex.props(styles.tooltip)}>
+        <div {...stylex.props(styles.cursor)}>{renderCursor()}</div>
+        Hello <FontAwesomeIcon icon={faSmile} />
+        <br />I am a popover.
+        <br />I can be placed anywhere.
+      </div>
+    ),
+  },
+};
+
+export const TransitionOrigin: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={PopoverBase}
+      props={props}
+      rows={[
+        {
+          legend: 'center',
+          props: {
+            transitionOrigin: 'center',
+            placement: 'bottom-end',
+          },
+        },
+        {
+          legend: 'corner',
+          props: {
+            transitionOrigin: 'corner',
+            placement: 'bottom-end',
+          },
+        },
+        {
+          legend: 'edge',
+          props: {
+            transitionOrigin: 'edge',
+            placement: 'bottom-end',
+          },
+        },
+        {
+          legend: 'cursor',
+          props: {
+            transitionOrigin: 'cursor',
+            placement: 'bottom-end',
+            cursor: 'arrow',
+          },
+        },
+      ]}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    openOnClick: true,
+    openOnFocus: true,
+    placement: 'bottom-end',
+    children: <IconButton icon={<FontAwesomeIcon icon={faStar} />} />,
+    contentRenderer: ({ renderCursor }) => (
+      <div {...stylex.props(styles.tooltip)}>
+        <div {...stylex.props(styles.cursor)}>{renderCursor()}</div>
+        Hello <FontAwesomeIcon icon={faSmile} />
+        <br />I am a popover.
+        <br />I can be placed anywhere.
+      </div>
     ),
   },
 };

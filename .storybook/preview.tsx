@@ -33,8 +33,8 @@ const preview: Preview = {
     backgrounds: {
       default: 'dark',
       values: [
-        { name: 'light', value: colorSchemeTokens.surface },
-        { name: 'dark', value: darkColorScheme.surface },
+        { name: 'light', value: colorSchemeTokens.surfaceContainerLowest },
+        { name: 'dark', value: darkColorScheme.surfaceContainerLowest },
       ],
     },
     chromatic: { modes },
@@ -46,7 +46,7 @@ const preview: Preview = {
 const styles = stylex.create({
   storyWrapper: {
     position: 'relative',
-    backgroundColor: colorSchemeTokens.surface,
+    backgroundColor: colorSchemeTokens.surfaceContainerLowest,
     padding: '2rem',
     width: '100%',
   },

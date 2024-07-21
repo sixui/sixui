@@ -28,7 +28,7 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { popoverBaseStyles } from './PopoverBase.styles';
-import { commonStyles } from '@/helpers/commonStyles';
+import { FloatingTransition } from '@/components/FloatingTransition';
 
 export const PopoverBase = <TForwardedProps extends object = object>(
   props: IPopoverBaseProps<TForwardedProps>,
@@ -39,6 +39,7 @@ export const PopoverBase = <TForwardedProps extends object = object>(
     contentRenderer,
     children,
     placement = 'top',
+    transitionOrigin = 'cursor',
     isOpen: isOpenProp,
     defaultIsOpen,
     cursor: cursorType = false,
@@ -87,7 +88,7 @@ export const PopoverBase = <TForwardedProps extends object = object>(
     },
     whileElementsMounted: autoUpdate,
     middleware: [
-      offset(4 + cursor.height),
+      offset(cursorType ? 4 + cursor.size.height : undefined),
       flip({
         crossAxis: placement.includes('-'),
         fallbackAxisSideDirection: 'start',
@@ -145,8 +146,8 @@ export const PopoverBase = <TForwardedProps extends object = object>(
       {...userProps}
       ref={arrowRef}
       context={floating.context}
-      width={cursor.width}
-      height={cursor.height}
+      width={cursor.size.width}
+      height={cursor.size.height}
       d={cursor.svgPath}
     />
   );
@@ -168,17 +169,11 @@ export const PopoverBase = <TForwardedProps extends object = object>(
             ref={floating.refs.setFloating}
             style={floating.floatingStyles}
           >
-            <div
-              {...sxf(
-                'container',
-                `transition$${transitionStatus.status}`,
-                cursor
-                  ? commonStyles.transformOrigin(
-                      cursor.getTransformOrigin(floating),
-                    )
-                  : undefined,
-              )}
-              {...(forwardProps ? undefined : other)}
+            <FloatingTransition
+              placement={floating.placement}
+              status={transitionStatus.status}
+              origin={transitionOrigin}
+              cursorTransformOrigin={cursor.getTransformOrigin(floating)}
             >
               {isFunction(contentRenderer) ? (
                 contentRenderer({
@@ -199,7 +194,7 @@ export const PopoverBase = <TForwardedProps extends object = object>(
                   contentRenderer
                 </>
               )}
-            </div>
+            </FloatingTransition>
           </div>
         </Portal>
       ) : null}

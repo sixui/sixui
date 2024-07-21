@@ -71,6 +71,11 @@ export type IOmit<TType, TKeys extends keyof TType> = Omit<TType, TKeys>;
 
 export type ICssSizeValue = number | string;
 
+export type IPosition = {
+  x: number;
+  y: number;
+};
+
 export type ISize<TSize = number> = {
   width: TSize;
   height: TSize;

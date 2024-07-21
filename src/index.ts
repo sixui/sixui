@@ -35,6 +35,7 @@ export * from './components/FilterableList';
 export * from './components/FilterableListBase';
 export * from './components/FloatingFilterableList';
 export * from './components/FloatingFilterableListBase';
+export * from './components/FloatingTransition';
 export * from './components/FluidButton';
 export * from './components/FocusRing';
 export * from './components/HtmlSelect';
