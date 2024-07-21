@@ -52,6 +52,7 @@ export const PopoverBase = <TForwardedProps extends object = object>(
     openOnClick,
     nonDismissable,
     matchTargetWidth,
+    middleware,
     ...other
   } = props;
 
@@ -107,6 +108,7 @@ export const PopoverBase = <TForwardedProps extends object = object>(
             },
           })
         : undefined,
+      ...(middleware ?? []),
     ],
   });
   const delayGroup = useDelayGroup(floating.context, {

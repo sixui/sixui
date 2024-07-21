@@ -1,4 +1,5 @@
 import type {
+  Middleware,
   OpenChangeReason,
   Placement,
   UseRoleProps,
@@ -52,4 +53,5 @@ export type IPopoverBaseProps<TForwardedProps extends object = object> =
       openOnClick?: boolean;
       nonDismissable?: boolean;
       matchTargetWidth?: boolean;
+      middleware?: Array<Middleware | null | undefined | false>;
     };
