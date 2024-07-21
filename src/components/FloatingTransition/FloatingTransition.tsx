@@ -22,6 +22,7 @@ export const FloatingTransition = forwardRef<
     origin = 'center',
     cursorTransformOrigin,
     pattern = 'enterExit',
+    orientation: orientationProp,
     ...other
   } = props;
 
@@ -34,18 +35,24 @@ export const FloatingTransition = forwardRef<
     () => stylePropsFactory(stylesCombinator),
     [stylesCombinator],
   );
-  const orientation = ['top', 'bottom'].includes(placement)
-    ? 'vertical'
-    : ['left', 'right'].includes(placement)
-      ? 'horizontal'
-      : undefined;
+  const orientation =
+    orientationProp ??
+    (['top', 'bottom'].includes(placement)
+      ? 'vertical'
+      : ['left', 'right'].includes(placement)
+        ? 'horizontal'
+        : undefined);
 
   return (
     <div
       {...sxf(
         componentTheme.overridenStyles,
-        `transition$${pattern}$${status}`,
-        orientation && `transition$${pattern}$${status}$${orientation}`,
+        pattern
+          ? [
+              `transition$${pattern}$${status}`,
+              orientation && `transition$${pattern}$${status}$${orientation}`,
+            ]
+          : undefined,
         commonStyles.transformOrigin(
           origin === 'corner'
             ? getPlacementTransformOrigin(placement)

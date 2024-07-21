@@ -28,11 +28,10 @@ import {
 
 import type { IMenuProps } from './Menu.types';
 import { MenuList } from '@/components/MenuList';
-import { motionTokens } from '@/themes/base/motion.stylex';
 import { Portal } from '@/components/Portal';
+import { FloatingTransition } from '@/components/FloatingTransition';
 import { MenuItemContext } from './MenuItemContext';
 import { MenuContext } from './MenuContext';
-import { commonStyles } from '@/helpers/commonStyles';
 
 // TODO: migrate in theme
 const styles = stylex.create({
@@ -43,30 +42,6 @@ const styles = stylex.create({
     display: 'flex',
     flexGrow: 1,
   },
-  transition$unmounted: {},
-  transition$initial: {
-    transform: 'scaleY(0.5)',
-  },
-  transition$open: {
-    transform: 'scaleY(1)',
-    transitionProperty: 'transform',
-    transitionDuration: motionTokens.duration$long3,
-    transitionTimingFunction: motionTokens.easing$emphasizedDecelerate,
-  },
-  transition$close: {
-    transform: 'scaleY(0)',
-    transitionProperty: 'transform',
-    transitionDuration: motionTokens.duration$short3,
-    transitionTimingFunction: motionTokens.easing$emphasizedAccelerate,
-  },
-  transition$unmounted$nested: {},
-  transition$initial$nested: {},
-  transition$open$nested: {
-    transition: 'none',
-  },
-  transition$close$nested: {
-    transition: 'none',
-  },
 });
 
 export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
@@ -76,6 +51,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
       trigger,
       children,
       placement = 'bottom-start',
+      orientation = 'vertical',
       matchTargetWidth,
       ...other
     } = props;
@@ -249,19 +225,13 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
                     ref={floating.refs.setFloating}
                     style={floating.floatingStyles}
                   >
-                    <div
-                      {...stylex.props(
-                        styles.inner,
-                        commonStyles.placementToTransformOrigin(
-                          floating.placement,
-                        ),
-                        styles[`transition$${transitionStatus.status}`],
-                        parentId
-                          ? styles[
-                              `transition$${transitionStatus.status}$nested`
-                            ]
-                          : undefined,
-                      )}
+                    <FloatingTransition
+                      sx={styles.inner}
+                      placement={floating.placement}
+                      status={transitionStatus.status}
+                      origin='edge'
+                      orientation={orientation}
+                      pattern={parentId ? false : 'enterExit'}
                     >
                       <MenuList sx={sx} noFocusRing {...other} size='sm'>
                         <FloatingList
@@ -271,7 +241,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
                           {children}
                         </FloatingList>
                       </MenuList>
-                    </div>
+                    </FloatingTransition>
                   </div>
                 </FloatingFocusManager>
               </Portal>

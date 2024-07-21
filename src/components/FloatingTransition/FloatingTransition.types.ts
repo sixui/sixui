@@ -1,6 +1,6 @@
 import type { Placement } from '@floating-ui/react';
 
-import type { IContainerProps } from '@/helpers/types';
+import type { IContainerProps, IOrientation } from '@/helpers/types';
 import type { IFloatingTransitionStylesKey } from './FloatingTransition.styles';
 
 export type IFloatingTransitionStatus =
@@ -17,6 +17,7 @@ export type IFloatingTransitionProps =
     placement: Placement;
     status: IFloatingTransitionStatus;
     origin?: IFloatingTransitionOrigin;
+    orientation?: IOrientation;
     cursorTransformOrigin?: string;
-    pattern?: 'enterExit';
+    pattern?: false | 'enterExit';
   };

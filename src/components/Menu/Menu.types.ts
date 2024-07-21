@@ -1,6 +1,6 @@
 import type { Placement } from '@floating-ui/react';
 
-import type { IContainerProps, IOmit } from '@/helpers/types';
+import type { IContainerProps, IOmit, IOrientation } from '@/helpers/types';
 
 export type IMenuTriggerRenderProps = {
   isOpen: boolean;
@@ -16,5 +16,6 @@ export type IMenuProps = IOmit<IContainerProps, 'styles'> & {
     | ((renderProps: IMenuTriggerRenderProps) => React.ReactNode);
   children: React.ReactNode;
   placement?: Placement;
+  orientation?: IOrientation;
   matchTargetWidth?: boolean;
 };

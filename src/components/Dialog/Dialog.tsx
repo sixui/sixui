@@ -1,4 +1,4 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 import {
   FloatingFocusManager,
   useClick,
@@ -20,8 +20,6 @@ import type {
   DIALOG_DEFAULT_TAG,
 } from './Dialog.types';
 import { isFunction } from '@/helpers/isFunction';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import {
   DialogContent,
@@ -29,9 +27,9 @@ import {
 } from '@/components/DialogContent';
 import { Scrim } from '@/components/Scrim';
 import { Portal } from '@/components/Portal';
+import { FloatingTransition } from '@/components/FloatingTransition';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { extendFloatingProps } from '@/helpers/extendFloatingProps';
-import { dialogStyles } from './Dialog.styles';
 
 // https://github.com/material-components/material-web/blob/main/dialog/internal/dialog.ts
 
@@ -43,7 +41,6 @@ export const Dialog: IDialog = forwardRef(function Dialog<
   TRoot extends React.ElementType = typeof DIALOG_DEFAULT_TAG,
 >(props: IDialogProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
-    styles,
     sx,
     innerStyles,
     as,
@@ -56,14 +53,6 @@ export const Dialog: IDialog = forwardRef(function Dialog<
   } = props as IWithAsProp<IDialogOwnProps>;
 
   const componentTheme = useComponentTheme('Dialog');
-  const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(dialogStyles, styles),
-    [styles],
-  );
-  const sxf = useMemo(
-    () => stylePropsFactory(stylesCombinator),
-    [stylesCombinator],
-  );
 
   const [isOpen, setIsOpen] = useControlledValue({
     controlled: isOpenProp,
@@ -106,12 +95,11 @@ export const Dialog: IDialog = forwardRef(function Dialog<
         <Portal>
           <Scrim context={floating.context} lockScroll>
             <FloatingFocusManager context={floating.context}>
-              <div
-                {...sxf(
-                  componentTheme.overridenStyles,
-                  `transition$${transitionStatus.status}`,
-                  sx,
-                )}
+              <FloatingTransition
+                sx={[componentTheme.overridenStyles, sx]}
+                status={transitionStatus.status}
+                placement='bottom'
+                origin='edge'
               >
                 <DialogContent
                   as={as}
@@ -133,7 +121,7 @@ export const Dialog: IDialog = forwardRef(function Dialog<
                   )}
                   ref={dialogRef}
                 />
-              </div>
+              </FloatingTransition>
             </FloatingFocusManager>
           </Scrim>
         </Portal>

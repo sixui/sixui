@@ -1,4 +1,4 @@
-import type { IContainerProps, IOmit } from '@/helpers/types';
+import type { IContainerProps, IOmit, IOrientation } from '@/helpers/types';
 import type { Placement, ReferenceType } from '@floating-ui/react';
 
 import type { IFilterableListBaseProps } from '@/components/FilterableListBase';
@@ -93,6 +93,7 @@ export type IFloatingFilterableListBaseProps<
     ) => void;
 
     placement?: Placement;
+    orientation?: IOrientation;
     matchTargetWidth?: boolean;
     closeOnSelect?: boolean;
 

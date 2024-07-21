@@ -33,11 +33,11 @@ import {
   extendFloatingProps,
   type IExtendedFloatingProps,
 } from '@/helpers/extendFloatingProps';
-import { commonStyles } from '@/helpers/commonStyles';
 import { fixedForwardRef } from '@/helpers/fixedForwardRef';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
+import { FloatingTransition } from '@/components/FloatingTransition';
 import { floatingFilterableListBaseStyles } from './FloatingFilterableListBase.styles';
 
 export const FloatingFilterableListBase = fixedForwardRef(
@@ -50,6 +50,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
       sx,
       children,
       placement = 'bottom-start',
+      orientation = 'vertical',
       matchTargetWidth,
       renderer,
       itemRenderer,
@@ -393,12 +394,12 @@ export const FloatingFilterableListBase = fixedForwardRef(
                 ref={floating.refs.setFloating}
                 style={floating.floatingStyles}
               >
-                <div
-                  {...sxf(
-                    commonStyles.placementToTransformOrigin(floating.placement),
-                    'container',
-                    `transition$${transitionStatus.status}`,
-                  )}
+                <FloatingTransition
+                  sx={stylesCombinator('container')}
+                  placement={floating.placement}
+                  status={transitionStatus.status}
+                  origin='edge'
+                  orientation={orientation}
                 >
                   <FloatingList elementsRef={elementsRef} labelsRef={labelsRef}>
                     <FilterableListBase
@@ -423,7 +424,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
                       {...(forwardProps ? undefined : other)}
                     />
                   </FloatingList>
-                </div>
+                </FloatingTransition>
               </div>
             </FloatingFocusManager>
           </Portal>

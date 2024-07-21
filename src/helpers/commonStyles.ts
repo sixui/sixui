@@ -1,7 +1,4 @@
-import type { Placement } from '@floating-ui/react';
 import stylex from '@stylexjs/stylex';
-
-import { placementToOrigin } from './placementToOrigin';
 
 export const commonStyles = stylex.create({
   truncateLines: (lineCount: number) => ({
@@ -55,9 +52,6 @@ export const commonStyles = stylex.create({
   hidden: {
     display: 'none',
   },
-  placementToTransformOrigin: (placement: Placement) => ({
-    transformOrigin: placementToOrigin(placement),
-  }),
   transformOrigin: (transformOrigin: string) => ({
     transformOrigin,
   }),

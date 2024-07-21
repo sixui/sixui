@@ -12,7 +12,6 @@ import type {
   IDialogContentStylesKey,
 } from '@/components/DialogContent';
 import type { IExtendedHtmlFloatingProps } from '@/helpers/extendFloatingProps';
-import type { IDialogStylesKey } from './Dialog.styles';
 
 export const DIALOG_DEFAULT_TAG = 'div';
 
@@ -39,7 +38,7 @@ export type IDialogTriggerRenderProps = {
   ) => IExtendedHtmlFloatingProps;
 };
 
-export type IDialogOwnProps = IContainerProps<IDialogStylesKey> &
+export type IDialogOwnProps = IContainerProps<never> &
   IOmit<IDialogContentOwnProps, 'onClose' | 'styles'> &
   Pick<React.AriaAttributes, 'aria-label'> & {
     innerStyles?: {
