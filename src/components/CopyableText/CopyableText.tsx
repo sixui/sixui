@@ -74,7 +74,12 @@ export const CopyableText = forwardRef<HTMLElement, ICopyableTextProps>(
           <div {...sxf(componentTheme.overridenStyles, 'host', sx)}>
             {children ? <div {...sxf('text')}>{children}</div> : null}
             {isTriggerVisible
-              ? (icon ?? <SvgIcon icon={iconCopyToCliboard} />)
+              ? (icon ?? (
+                  <SvgIcon
+                    sx={stylesCombinator('icon')}
+                    icon={iconCopyToCliboard}
+                  />
+                ))
               : null}
           </div>
         </FluidButton>
