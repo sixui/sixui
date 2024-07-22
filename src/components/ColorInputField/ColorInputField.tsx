@@ -1,16 +1,23 @@
 import { forwardRef, useMemo, useRef } from 'react';
+import { useMergeRefs } from '@floating-ui/react';
 
-import type { IColorInputFieldProps } from './ColorInputField.types';
+import type {
+  IColorInputFieldColorPickerRendererProps,
+  IColorInputFieldProps,
+} from './ColorInputField.types';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { TextInputField } from '@/components/TextInputField';
 import { PopoverBase } from '@/components/PopoverBase';
-import { TonalColorPickerContent } from '@/components/TonalColorPickerContent';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { isValidHexColor } from '@/helpers/colors/isValidHexColor';
 import { ColorTag } from '@/components/ColorTag';
+import { HslColorPickerContent } from '@/components/HslColorPickerContent';
 import { colorInputFieldStyles } from './ColorInputField.styles';
-import { useMergeRefs } from '@floating-ui/react';
+
+const defaultColorPickerRenderer = (
+  props: IColorInputFieldColorPickerRendererProps,
+): JSX.Element => <HslColorPickerContent {...props} />;
 
 export const ColorInputField = forwardRef<
   HTMLInputElement,
@@ -23,6 +30,7 @@ export const ColorInputField = forwardRef<
     value: valueProp,
     defaultValue,
     inputRef: inputRefProp,
+    colorPickerRenderer = defaultColorPickerRenderer,
     ...other
   } = props;
 
@@ -43,9 +51,9 @@ export const ColorInputField = forwardRef<
 
   return (
     <PopoverBase
-      contentRenderer={({ close }) => (
-        <TonalColorPickerContent
-          onClick={(_, colorHex) => {
+      contentRenderer={({ close }) =>
+        colorPickerRenderer({
+          onClick: (_, colorHex) => {
             setValue(colorHex);
             // Only call the `onChange` callback after the value has been set
             // in the next tick.
@@ -55,10 +63,10 @@ export const ColorInputField = forwardRef<
               } as React.ChangeEvent<HTMLInputElement>);
             });
             close();
-          }}
-          selectedColor={value}
-        />
-      )}
+          },
+          selectedColor: value,
+        })
+      }
       openOnClick
       openOnFocus
       placement={placement}

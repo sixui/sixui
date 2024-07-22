@@ -16,6 +16,8 @@ export const stateLayerStyles = stylex.create({
     overflow: 'hidden',
     pointerEvents: 'none',
   },
+  host$hover: {},
+  host$pressed: {},
   rippleSurface: {
     borderRadius: 'inherit',
     position: 'absolute',

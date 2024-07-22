@@ -1,25 +1,22 @@
 import type {
-  IColor,
   ICompiledStyles,
   IContainerProps,
   IZeroOrMore,
 } from '@/helpers/types';
-import type { ITonalColorPickerContentStylesKey } from './TonalColorPickerContent.styles';
+import type { IColorPickerContentStylesKey } from './ColorPickerContent.styles';
 import type { IPaperBaseStylesKey } from '@/components/PaperBase';
 
-export type ITonalColorPickerContentProps =
-  IContainerProps<ITonalColorPickerContentStylesKey> & {
+export type IColorPickerContentProps =
+  IContainerProps<IColorPickerContentStylesKey> & {
     innerStyles?: {
       paperBase?: IZeroOrMore<ICompiledStyles<IPaperBaseStylesKey>>;
     };
-    sourceColor?: IColor;
-    selectedColor?: IColor;
-    customColors?: Array<IColor>;
+    selectedColor?: string;
     onClick?: (
       event: React.MouseEvent<HTMLButtonElement>,
-      colorHex: string,
+      color: string,
     ) => void;
-    palettesCount?: number;
-    tones?: Array<number>;
+    customColors?: Array<string>;
+    palettes: Array<Array<string>>;
     children?: React.ReactNode;
   };

@@ -1,5 +1,6 @@
 import { forwardRef, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
+import stylex from '@stylexjs/stylex';
 
 import type {
   IPolymorphicRef,
@@ -12,7 +13,6 @@ import type {
 } from './ColorButton.types';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { ButtonBase } from '@/components/ButtonBase';
-import { colorButtonTheme } from './ColorButton.stylex';
 import { IconCheckMark } from '@/components/Icons';
 import { ColorTag } from '@/components/ColorTag';
 import {
@@ -23,6 +23,14 @@ import {
   colorButtonStyles,
 } from './ColorButton.styles';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
+import { colorButtonStateTokens } from './ColorButton.state.stylex';
+import { colorButtonTheme } from './ColorButton.stylex';
+
+const localStyles = stylex.create({
+  stateLayerColor: (color: string) => ({
+    [colorButtonStateTokens.stateLayerColor]: color,
+  }),
+});
 
 type IColorButton = <
   TRoot extends React.ElementType = typeof COLOR_BUTTON_DEFAULT_TAG,
@@ -58,6 +66,9 @@ export const ColorButton: IColorButton = forwardRef(function ColorButton<
         colorButtonTheme,
         componentTheme.overridenStyles,
         stylesCombinator('host'),
+        backgroundColor
+          ? localStyles.stateLayerColor(backgroundColor)
+          : undefined,
         sx,
       ]}
       styles={[

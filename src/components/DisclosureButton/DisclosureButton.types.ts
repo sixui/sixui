@@ -10,7 +10,7 @@ import type { IDisclosureButtonStylesKey } from './DisclosureButton.styles';
 import type { IListItemOwnProps } from '@/components/ListItem';
 import type { ICheckboxStylesKey } from '@/components/Checkbox';
 import type { ISwitchStylesKey } from '@/components/Switch';
-import type { ICircularProgressIndicatorStylesKey } from '../CircularProgressIndicator';
+import type { ICircularProgressIndicatorStylesKey } from '@/components/CircularProgressIndicator';
 
 export type IDisclosureButtonProps =
   IContainerProps<IDisclosureButtonStylesKey> &

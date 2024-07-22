@@ -1,15 +1,14 @@
-import { TonalPalette } from '@material/material-color-utilities';
+import { hexFromArgb, TonalPalette } from '@material/material-color-utilities';
 
-import type { IColor } from '@/helpers/types';
-import { colorToHct } from './colorToHct';
+import { hctFromHexColor } from './hctFromHexColor';
 
-export const getTextContrastColor = (backgroundColor: IColor): IColor => {
-  const backgroundColorHct = colorToHct(backgroundColor);
+export const getTextContrastColor = (backgroundColor: string): string => {
+  const backgroundColorHct = hctFromHexColor(backgroundColor);
   const colorPalette = TonalPalette.fromHueAndChroma(
     backgroundColorHct.hue,
     backgroundColorHct.chroma,
   );
   const contrastLuminance = backgroundColorHct.tone >= 60 ? 5 : 95;
 
-  return colorPalette.tone(contrastLuminance);
+  return hexFromArgb(colorPalette.tone(contrastLuminance));
 };

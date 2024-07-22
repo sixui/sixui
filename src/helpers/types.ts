@@ -83,4 +83,8 @@ export type ISize<TSize = number> = {
 
 export type IOrientation = 'vertical' | 'horizontal';
 
-export type IColor = string | number; // hex or ARGB
+export type IHslColor = {
+  hue: number;
+  saturation: number;
+  lightness: number;
+};

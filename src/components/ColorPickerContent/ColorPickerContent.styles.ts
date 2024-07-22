@@ -4,10 +4,9 @@ import { shapeTokens } from '@/themes/base/shape.stylex';
 import { colorButtonTokens } from '@/components/ColorButton/ColorButton.stylex';
 import { paperBaseTokens } from '@/components/PaperBase/PaperBase.stylex';
 import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
-import { elevationTokens } from '../Elevation/Elevation.stylex';
+import { elevationTokens } from '@/components/Elevation/Elevation.stylex';
 
-export type ITonalColorPickerContentStylesKey =
-  keyof typeof basicTemplateStyles;
+export type IColorPickerContentStylesKey = keyof typeof basicTemplateStyles;
 export const basicTemplateStyles = stylex.create({
   host: {
     width: 'min-content',

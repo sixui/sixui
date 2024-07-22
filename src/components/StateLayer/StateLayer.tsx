@@ -42,7 +42,14 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
 
     return (
       <div
-        {...sxf(stateLayerTheme, componentTheme.overridenStyles, 'host', sx)}
+        {...sxf(
+          stateLayerTheme,
+          componentTheme.overridenStyles,
+          'host',
+          visualState?.hovered && 'host$hover',
+          pressed && 'host$pressed',
+          sx,
+        )}
         aria-hidden
         {...other}
         ref={handleRef}

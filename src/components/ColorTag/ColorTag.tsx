@@ -6,7 +6,6 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { colorTagTokens, colorTagTheme } from './ColorTag.stylex';
-import { colorToHex } from '@/helpers/colors/colorToHex';
 import { getTextContrastColor } from '@/helpers/colors/getTextContrastColor';
 import { colorTagStyles } from './ColorTag.styles';
 import { isValidHexColor } from '@/helpers/colors/isValidHexColor';
@@ -44,17 +43,11 @@ export const ColorTag = forwardRef<HTMLDivElement, IColorTagProps>(
       [stylesCombinator],
     );
 
-    const backgroundColorHex = backgroundColor
-      ? colorToHex(backgroundColor)
-      : undefined;
-    const foregroundColorHex = foregroundColor
-      ? colorToHex(foregroundColor)
-      : backgroundColorHex
-        ? colorToHex(getTextContrastColor(backgroundColorHex))
-        : undefined;
-    const isEmpty = !backgroundColorHex;
-    const isInvalid =
-      !!backgroundColorHex && !isValidHexColor(backgroundColorHex);
+    const foregroundColorHex =
+      foregroundColor ??
+      (backgroundColor ? getTextContrastColor(backgroundColor) : undefined);
+    const isEmpty = !backgroundColor;
+    const isInvalid = !!backgroundColor && !isValidHexColor(backgroundColor);
 
     return (
       <div
@@ -64,8 +57,8 @@ export const ColorTag = forwardRef<HTMLDivElement, IColorTagProps>(
           'host',
           isEmpty && 'host$empty',
           isInvalid && 'host$invalid',
-          backgroundColorHex && isValidHexColor(backgroundColorHex)
-            ? localStyles.backgroundColor(backgroundColorHex)
+          backgroundColor && isValidHexColor(backgroundColor)
+            ? localStyles.backgroundColor(backgroundColor)
             : undefined,
           foregroundColorHex
             ? localStyles.foregroundColor(foregroundColorHex)
