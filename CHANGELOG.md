@@ -1,3 +1,15 @@
+# v0.0.349 (Mon Jul 22 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(ColorInputField): supports transitionOrientation ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.348 (Mon Jul 22 2024)
 
 #### ⚠️ Pushed to `main`
