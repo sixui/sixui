@@ -1,3 +1,15 @@
+# v0.0.348 (Mon Jul 22 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: DynamicThemeProvider inherit from Theme context ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.347 (Mon Jul 22 2024)
 
 #### ⚠️ Pushed to `main`
