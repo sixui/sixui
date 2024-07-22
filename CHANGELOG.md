@@ -1,3 +1,15 @@
+# v0.0.347 (Mon Jul 22 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: exporting DynamicThemeProvider ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.346 (Mon Jul 22 2024)
 
 #### ⚠️ Pushed to `main`
