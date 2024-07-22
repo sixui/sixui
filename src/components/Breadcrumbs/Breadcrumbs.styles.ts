@@ -24,11 +24,12 @@ export const breadcrumbsStyles = stylex.create({
     fontSize: breadcrumbsTokens.separatorSize,
   },
   icon: {
-    width: 24,
-    height: 16,
+    width: 18,
   },
   expandButton: {
     display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     borderStyle: 'unset',
     outline: 'none',
     marginLeft: breadcrumbsTokens.expandButtonLeadingSpace,

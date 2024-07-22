@@ -39,7 +39,7 @@
     "build:sb": "storybook build",
     "build:ts": "tsc --project tsconfig.build.json && tsc-alias",
     "build:copy-files": "cp -R src/styles dist/",
-    "build": "run-s generate-icons build:ts build:copy-files",
+    "build": "run-s build:ts build:copy-files",
     "release": "auto shipit",
     "prettify:fix:file": "prettier --write",
     "lint:fix:file": "eslint --fix",

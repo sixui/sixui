@@ -5,7 +5,8 @@ export const svgIconStyles = stylex.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '1rem',
-    height: '1rem',
+    width: 'inherit',
+    height: 'inherit',
+    fontSize: 'inherit',
   },
 });
