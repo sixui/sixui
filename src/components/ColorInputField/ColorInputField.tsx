@@ -51,15 +51,7 @@ export const ColorInputField = forwardRef<
     controlled: valueProp,
     default: defaultValue ?? '',
     name: 'ColorInputField',
-    onValueChange: () => {
-      // Only call the `onChange` callback after the value has been set
-      // in the next tick.
-      setTimeout(() => {
-        other.onChange?.({
-          target: inputRef.current,
-        } as React.ChangeEvent<HTMLInputElement>);
-      });
-    },
+    onValueChange: (color) => other.onChange?.(color),
   });
 
   const [isQuantizing, setIsQuantizing] = useState(false);
@@ -138,10 +130,7 @@ export const ColorInputField = forwardRef<
             sx={(componentTheme.overridenStyles, 'host', sx)}
             value={value}
             hasError={(!!value && !isValidHexColor(value)) || other.hasError}
-            onChange={(event) => {
-              other.onChange?.(event);
-              setValue(event.target.value);
-            }}
+            onChange={(event) => setValue(event.target.value)}
             ref={forwardedRef}
             inputRef={inputHandleRef}
           />
