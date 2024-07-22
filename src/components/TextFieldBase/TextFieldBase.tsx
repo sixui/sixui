@@ -84,7 +84,6 @@ export const TextFieldBase = fixedForwardRef(function TextField<
   const iconButtonRef = useRef<HTMLButtonElement>(null);
   const handleClearInput = useCallback(() => {
     if (value !== '') {
-      inputRef.current?.focus();
       setValue('');
       onClear?.();
       onValueChange?.('', inputRef.current);
@@ -113,7 +112,14 @@ export const TextFieldBase = fixedForwardRef(function TextField<
       }}
       onFocus={(event) => {
         const isSelf = event.nativeEvent.target === inputRef.current;
-        if (!isSelf) {
+        const isTargetInteractive = [
+          'BUTTON',
+          'A',
+          'INPUT',
+          'SELECT',
+          'TEXTAREA',
+        ].includes(event.target.tagName);
+        if (!isSelf && !isTargetInteractive) {
           event.stopPropagation();
           inputRef.current?.focus();
         }

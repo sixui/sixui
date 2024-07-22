@@ -1,5 +1,9 @@
-import { forwardRef, useMemo, useRef } from 'react';
+import { forwardRef, useMemo, useRef, useState } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
+import {
+  hexFromArgb,
+  sourceColorFromImage,
+} from '@material/material-color-utilities';
 
 import type {
   IColorInputFieldColorPickerRendererProps,
@@ -13,6 +17,8 @@ import { useControlledValue } from '@/hooks/useControlledValue';
 import { isValidHexColor } from '@/helpers/colors/isValidHexColor';
 import { ColorTag } from '@/components/ColorTag';
 import { HslColorPickerContent } from '@/components/HslColorPickerContent';
+import { IconButton } from '@/components/IconButton';
+import { IconPhoto } from '@/components/Icons';
 import { colorInputFieldStyles } from './ColorInputField.styles';
 
 const defaultColorPickerRenderer = (
@@ -44,53 +50,102 @@ export const ColorInputField = forwardRef<
     controlled: valueProp,
     default: defaultValue ?? '',
     name: 'ColorInputField',
+    onValueChange: () => {
+      // Only call the `onChange` callback after the value has been set
+      // in the next tick.
+      setTimeout(() => {
+        other.onChange?.({
+          target: inputRef.current,
+        } as React.ChangeEvent<HTMLInputElement>);
+      });
+    },
   });
 
+  const [isQuantizing, setIsQuantizing] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const inputHandleRef = useMergeRefs([inputRef, inputRefProp]);
+  const inputFileRef = useRef<HTMLInputElement>(null);
+
+  const handleUploadImage: React.MouseEventHandler = () => {
+    inputFileRef.current?.click();
+  };
+
+  const handleFileChange: React.ChangeEventHandler<HTMLInputElement> = (
+    event,
+  ) => {
+    const files = event.target.files;
+    const file = files?.[0];
+    if (!file) {
+      return;
+    }
+
+    setIsQuantizing(true);
+
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      const image = new Image();
+      image.src = fileReader.result as string;
+      void sourceColorFromImage(image)
+        .then((sourceColor) => setValue(hexFromArgb(sourceColor)))
+        .finally(() => setIsQuantizing(false));
+    };
+    fileReader.readAsDataURL(file);
+  };
 
   return (
-    <PopoverBase
-      contentRenderer={({ close }) =>
-        colorPickerRenderer({
-          onClick: (_, colorHex) => {
-            setValue(colorHex);
-            // Only call the `onChange` callback after the value has been set
-            // in the next tick.
-            setTimeout(() => {
-              other.onChange?.({
-                target: inputRef.current,
-              } as React.ChangeEvent<HTMLInputElement>);
-            });
-            close();
-          },
-          selectedColor: value,
-        })
-      }
-      openOnClick
-      openOnFocus
-      placement={placement}
-    >
-      <TextInputField
-        {...other}
-        sx={(componentTheme.overridenStyles, 'host', sx)}
-        start={
-          other.start ?? (
-            <ColorTag
-              backgroundColor={value}
-              sx={stylesCombinator('colorTag')}
-            />
-          )
-        }
-        value={value}
-        hasError={(!!value && !isValidHexColor(value)) || other.hasError}
-        onChange={(event) => {
-          other.onChange?.(event);
-          setValue(event.target.value);
-        }}
-        ref={forwardedRef}
-        inputRef={inputHandleRef}
+    <>
+      <input
+        type='file'
+        ref={inputFileRef}
+        accept='image/*'
+        style={{ display: 'none' }}
+        onChange={handleFileChange}
       />
-    </PopoverBase>
+      <PopoverBase
+        contentRenderer={({ close }) =>
+          colorPickerRenderer({
+            onClick: (_, colorHex) => {
+              setValue(colorHex);
+              close();
+            },
+            selectedColor: value,
+          })
+        }
+        placement={placement}
+        openOnClick
+        trapFocus
+      >
+        {({ close }) => (
+          <TextInputField
+            start={
+              <ColorTag
+                backgroundColor={value}
+                sx={stylesCombinator('colorTag')}
+              />
+            }
+            end={
+              <IconButton
+                icon={<IconPhoto />}
+                onClick={(event) => {
+                  handleUploadImage(event);
+                  close();
+                }}
+                loading={isQuantizing}
+              />
+            }
+            {...other}
+            sx={(componentTheme.overridenStyles, 'host', sx)}
+            value={value}
+            hasError={(!!value && !isValidHexColor(value)) || other.hasError}
+            onChange={(event) => {
+              other.onChange?.(event);
+              setValue(event.target.value);
+            }}
+            ref={forwardedRef}
+            inputRef={inputHandleRef}
+          />
+        )}
+      </PopoverBase>
+    </>
   );
 });

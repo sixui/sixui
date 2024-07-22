@@ -4,6 +4,7 @@ import {
   autoUpdate,
   flip,
   FloatingArrow,
+  FloatingFocusManager,
   offset,
   shift,
   size,
@@ -51,6 +52,7 @@ export const PopoverBase = <TForwardedProps extends object = object>(
     openOnFocus,
     openOnClick,
     nonDismissable,
+    trapFocus,
     matchTargetWidth,
     middleware,
     ...other
@@ -138,6 +140,7 @@ export const PopoverBase = <TForwardedProps extends object = object>(
     ? children({
         isOpen: !!isOpen,
         placement: floating.placement,
+        close: () => setIsOpen(false),
       })
     : children;
 
@@ -171,32 +174,38 @@ export const PopoverBase = <TForwardedProps extends object = object>(
             ref={floating.refs.setFloating}
             style={floating.floatingStyles}
           >
-            <FloatingTransition
-              placement={floating.placement}
-              status={transitionStatus.status}
-              origin={transitionOrigin}
-              cursorTransformOrigin={cursor.getTransformOrigin(floating)}
+            <FloatingFocusManager
+              context={floating.context}
+              modal={false}
+              disabled={!trapFocus}
             >
-              {isFunction(contentRenderer) ? (
-                contentRenderer({
-                  forwardedProps: forwardProps
-                    ? (other as TForwardedProps)
-                    : undefined,
-                  renderCursor,
-                  close: (event) => {
-                    setIsOpen(false);
-                    if (isOpenProp !== undefined) {
-                      onOpenChange?.(false, event?.nativeEvent, 'click');
-                    }
-                  },
-                })
-              ) : (
-                <>
-                  {renderCursor()}
-                  contentRenderer
-                </>
-              )}
-            </FloatingTransition>
+              <FloatingTransition
+                placement={floating.placement}
+                status={transitionStatus.status}
+                origin={transitionOrigin}
+                cursorTransformOrigin={cursor.getTransformOrigin(floating)}
+              >
+                {isFunction(contentRenderer) ? (
+                  contentRenderer({
+                    forwardedProps: forwardProps
+                      ? (other as TForwardedProps)
+                      : undefined,
+                    renderCursor,
+                    close: (event) => {
+                      setIsOpen(false);
+                      if (isOpenProp !== undefined) {
+                        onOpenChange?.(false, event?.nativeEvent, 'click');
+                      }
+                    },
+                  })
+                ) : (
+                  <>
+                    {renderCursor()}
+                    contentRenderer
+                  </>
+                )}
+              </FloatingTransition>
+            </FloatingFocusManager>
           </div>
         </Portal>
       ) : null}

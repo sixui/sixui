@@ -10,6 +10,7 @@ export * from './build/icon-ExclamationTriangle.icon';
 export * from './build/icon-Eye.icon';
 export * from './build/icon-EyeSlash.icon';
 export * from './build/icon-Person.icon';
+export * from './build/icon-Photo.icon';
 export * from './build/icon-TriangleDown.icon';
 export * from './build/icon-TriangleLeft.icon';
 export * from './build/icon-TriangleRight.icon';

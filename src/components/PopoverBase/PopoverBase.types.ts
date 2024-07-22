@@ -24,6 +24,7 @@ export type IPopoverBaseContentRendererProps = {
 export type IPopoverBaseChildrenRendererProps = {
   isOpen: boolean;
   placement: Placement;
+  close: (event?: React.MouseEvent) => void;
 };
 
 export type IPopoverBaseProps<TForwardedProps extends object = object> =
@@ -52,6 +53,7 @@ export type IPopoverBaseProps<TForwardedProps extends object = object> =
       openOnFocus?: boolean;
       openOnClick?: boolean;
       nonDismissable?: boolean;
+      trapFocus?: boolean;
       matchTargetWidth?: boolean;
       middleware?: Array<Middleware | null | undefined | false>;
     };

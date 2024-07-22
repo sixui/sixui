@@ -61,9 +61,8 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
   );
 
   const Component =
-    (as ?? href)
-      ? (componentTheme.settings?.linkAs ?? 'a')
-      : BUTTON_BASE_DEFAULT_TAG;
+    as ??
+    (href ? (componentTheme.settings?.linkAs ?? 'a') : BUTTON_BASE_DEFAULT_TAG);
 
   return (
     <Component
