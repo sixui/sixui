@@ -28,7 +28,7 @@
     "clean": "rimraf ./dist",
     "preinstall": "npx only-allow pnpm",
     "generate-icons:convert": "svg-to-ts-files",
-    "generate-icons:format": "prettier --write src/assets/icons/*",
+    "generate-icons:format": "eslint src/assets/icons --ext .js,.ts,.jsx,.tsx --fix",
     "generate-icons": "run-s generate-icons:convert generate-icons:format",
     "prepack": "pinst --disable",
     "postpack": "pinst --enable",
@@ -139,7 +139,7 @@
     "srcFiles": [
       "./src/assets/*.svg"
     ],
-    "iconsFolderName": "dist",
+    "iconsFolderName": "lib",
     "outputDirectory": "./src/assets/icons",
     "interfaceName": "IIcon",
     "prefix": "icon",
