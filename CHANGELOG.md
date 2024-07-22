@@ -1,3 +1,28 @@
+# v0.0.342 (Mon Jul 22 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: build ([@olivierpascal](https://github.com/olivierpascal))
+- fix(SvgIcon): inherit size ([@olivierpascal](https://github.com/olivierpascal))
+- fix: popover does not steal focus anymore ([@olivierpascal](https://github.com/olivierpascal))
+- feat: SvgIcon ([@olivierpascal](https://github.com/olivierpascal))
+- feat(ColorInputField): color from image ([@olivierpascal](https://github.com/olivierpascal))
+- feat: Hsl and Hct color pickers ([@olivierpascal](https://github.com/olivierpascal))
+- feat(TonalColorPickerContent): better color palette ([@olivierpascal](https://github.com/olivierpascal))
+- feat: can provide extra middlewares to PopoverBase ([@olivierpascal](https://github.com/olivierpascal))
+- refactor: using FloatingTransition for Dialog, FloatingFilterableListBase and Menu ([@olivierpascal](https://github.com/olivierpascal))
+- feat: FloatingTransition ([@olivierpascal](https://github.com/olivierpascal))
+- feat: Paper and TonalColorPickerContent now using PaperBase ([@olivierpascal](https://github.com/olivierpascal))
+- feat: PaperBase ([@olivierpascal](https://github.com/olivierpascal))
+- fix(usePopoverCursor): correct origin without cursor ([@olivierpascal](https://github.com/olivierpascal))
+- fix(ColorTag): correct styles ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.341 (Fri Jul 19 2024)
 
 #### ⚠️ Pushed to `main`
