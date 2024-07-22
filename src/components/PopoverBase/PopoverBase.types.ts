@@ -6,7 +6,7 @@ import type {
   UseRoleProps,
 } from '@floating-ui/react';
 
-import type { IContainerProps } from '@/helpers/types';
+import type { IContainerProps, IOrientation } from '@/helpers/types';
 import type {
   IRendererWithForwardedProps,
   IForwardableProps,
@@ -58,6 +58,7 @@ export type IPopoverBaseProps<TForwardedProps extends object = object> =
         | ((props: IPopoverBaseTriggerRendererProps) => React.ReactNode)
         | React.ReactNode;
       placement?: Placement;
+      transitionOrientation?: IOrientation;
       transitionOrigin?: IFloatingTransitionOrigin;
       isOpen?: boolean;
       defaultIsOpen?: boolean;

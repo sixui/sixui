@@ -1,6 +1,6 @@
 import type { Placement } from '@floating-ui/react';
 
-import type { IContainerProps, IOmit } from '@/helpers/types';
+import type { IContainerProps, IOmit, IOrientation } from '@/helpers/types';
 import type { IColorInputFieldStylesKey } from './ColorInputField.styles';
 import type { ITextInputFieldProps } from '@/components/TextInputField';
 
@@ -15,6 +15,7 @@ export type IColorInputFieldProps = IContainerProps<IColorInputFieldStylesKey> &
     'styles' | 'value' | 'defaultValue' | 'onChange'
   > & {
     placement?: Placement;
+    transitionOrientation?: IOrientation;
     value?: string;
     defaultValue?: string;
     onChange?: (color: string) => void;

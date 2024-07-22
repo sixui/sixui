@@ -35,6 +35,7 @@ export const ColorInputField = forwardRef<
     styles,
     sx,
     placement = 'bottom-start',
+    transitionOrientation = 'vertical',
     value: valueProp,
     defaultValue,
     inputRef: inputRefProp,
@@ -107,6 +108,7 @@ export const ColorInputField = forwardRef<
           })
         }
         placement={placement}
+        transitionOrientation={transitionOrientation}
         openOnClick
         trapFocus
       >

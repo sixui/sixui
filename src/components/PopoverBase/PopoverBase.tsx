@@ -40,6 +40,7 @@ export const PopoverBase = <TForwardedProps extends object = object>(
     contentRenderer,
     children,
     placement = 'top',
+    transitionOrientation,
     transitionOrigin = 'cursor',
     isOpen: isOpenProp,
     defaultIsOpen,
@@ -182,6 +183,7 @@ export const PopoverBase = <TForwardedProps extends object = object>(
                 status={transitionStatus.status}
                 origin={transitionOrigin}
                 cursorTransformOrigin={cursor.getTransformOrigin(floating)}
+                orientation={transitionOrientation}
               >
                 {isFunction(contentRenderer) ? (
                   contentRenderer({
