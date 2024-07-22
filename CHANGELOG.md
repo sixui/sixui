@@ -1,3 +1,15 @@
+# v0.0.343 (Mon Jul 22 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(CopyableText): correct icon size ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.342 (Mon Jul 22 2024)
 
 #### ⚠️ Pushed to `main`
