@@ -11,13 +11,14 @@ import { Switch } from '@/components/Switch';
 import { IndeterminateCircularProgressIndicator } from '@/components/IndeterminateCircularProgressIndicator';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { ExpandableContext } from '@/components/Expandable';
-import { IconChevronDown } from '@/components/Icons';
+import { SvgIcon } from '@/components/SvgIcon';
 import {
   disclosureButtonCircularProgressIndicatorStyles,
   disclosureButtonItemStyles,
   disclosureButtonStyles,
 } from './DisclosureButton.styles';
 import { disclosureButtonTheme } from './DisclosureButton.stylex';
+import { iconChevronDown } from '@/assets/icons';
 
 export const DisclosureButton = forwardRef<
   HTMLButtonElement,
@@ -68,12 +69,18 @@ export const DisclosureButton = forwardRef<
     ) : expandIcon ? (
       <div {...sxf('icon', 'icon$expanded')}>{expandIcon}</div>
     ) : (
-      <IconChevronDown {...sxf('icon', 'icon$expanded')} aria-hidden />
+      <SvgIcon
+        sx={[stylesCombinator('icon'), stylesCombinator('icon$expanded')]}
+        icon={iconChevronDown}
+      />
     )
   ) : expandIcon ? (
     <div {...sxf('icon', 'icon$collapsed')}>{expandIcon}</div>
   ) : (
-    <IconChevronDown {...sxf('icon', 'icon$collapsed')} aria-hidden />
+    <SvgIcon
+      sx={[stylesCombinator('icon'), stylesCombinator('icon$collapsed')]}
+      icon={iconChevronDown}
+    />
   );
 
   useEffect(() => {

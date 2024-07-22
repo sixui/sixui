@@ -12,7 +12,8 @@ import { useVisualState } from '@/components/VisualState';
 import { useControlledValue } from '@/hooks/useControlledValue';
 import { IconButton } from '@/components/IconButton';
 import { fixedForwardRef } from '@/helpers/fixedForwardRef';
-import { IconXMark } from '@/components/Icons';
+import { SvgIcon } from '@/components/SvgIcon';
+import { iconXMark } from '@/assets/icons';
 import {
   textFieldBaseFieldStyles,
   textFieldBaseStyles,
@@ -40,7 +41,7 @@ export const TextFieldBase = fixedForwardRef(function TextField<
     onValueChange,
     innerStyles,
     clearable: clearableProp,
-    clearIcon = <IconXMark aria-hidden />,
+    clearIcon = <SvgIcon icon={iconXMark} />,
     inputRef: inputRefProp,
     onClear,
     defaultValue,

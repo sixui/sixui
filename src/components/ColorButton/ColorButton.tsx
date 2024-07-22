@@ -13,7 +13,8 @@ import type {
 } from './ColorButton.types';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { ButtonBase } from '@/components/ButtonBase';
-import { IconCheckMark } from '@/components/Icons';
+import { SvgIcon } from '@/components/SvgIcon';
+import { iconCheckMark } from '@/assets/icons';
 import { ColorTag } from '@/components/ColorTag';
 import {
   colorButtonButtonBaseStyles,
@@ -94,7 +95,7 @@ export const ColorButton: IColorButton = forwardRef(function ColorButton<
         backgroundColor={backgroundColor}
         foregroundColor={foregroundColor}
         label={children}
-        icon={selected ? <IconCheckMark aria-hidden /> : undefined}
+        icon={selected ? <SvgIcon icon={iconCheckMark} /> : undefined}
       />
     </ButtonBase>
   );

@@ -2,7 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IColorTagProps } from './ColorTag.types';
 import { ComponentShowcase } from '@/components/ComponentShowcase';
-import { IconCheckMark } from '@/components/Icons';
+import { SvgIcon } from '@/components/SvgIcon';
+import { iconCheckMark } from '@/assets/icons';
 import { ColorTag } from './ColorTag';
 
 const meta = {
@@ -39,7 +40,7 @@ export const Configurations: IStory = {
           legend: 'With icon',
           props: {
             backgroundColor: '#6750a4',
-            icon: <IconCheckMark aria-hidden />,
+            icon: <SvgIcon icon={iconCheckMark} />,
           },
         },
         {

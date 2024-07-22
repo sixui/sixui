@@ -3,8 +3,9 @@ import { forwardRef, useContext } from 'react';
 
 import type { IMenuItemProps } from './MenuItem.types';
 import { MenuContext } from '@/components/Menu';
-import { IconTriangleLeft, IconTriangleRight } from '@/components/Icons';
+import { SvgIcon } from '@/components/SvgIcon';
 import { MenuItem } from './MenuItem';
+import { iconTriangleLeft, iconTriangleRight } from '@/assets/icons';
 
 export type IMenuNestedItemProps = IMenuItemProps;
 
@@ -20,12 +21,12 @@ export const MenuNestedItem = forwardRef<
     <MenuItem
       leading={
         menuContext.placement?.startsWith('left-') ? (
-          <IconTriangleLeft aria-hidden />
+          <SvgIcon icon={iconTriangleLeft} />
         ) : undefined
       }
       trailing={
         menuContext.placement?.startsWith('left-') ? undefined : (
-          <IconTriangleRight aria-hidden />
+          <SvgIcon icon={iconTriangleRight} />
         )
       }
       keepOpenOnClick={true}

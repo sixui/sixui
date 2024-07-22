@@ -8,7 +8,8 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { Elevation } from '@/components/Elevation';
 import { Button } from '@/components/Button';
 import { IconButton } from '@/components/IconButton';
-import { IconXMark } from '@/components/Icons';
+import { SvgIcon } from '@/components/SvgIcon';
+import { iconXMark } from '@/assets/icons';
 import {
   snackbarContentElevationStyles,
   snackbarContentStyles,
@@ -75,7 +76,7 @@ export const SnackbarContent = forwardRef<
           {showCloseButton ? (
             <IconButton
               variant='snackbar'
-              icon={<IconXMark aria-hidden />}
+              icon={<SvgIcon icon={iconXMark} />}
               onClick={onClose}
               aria-label='close'
             />

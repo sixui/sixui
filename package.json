@@ -28,7 +28,7 @@
     "clean": "rimraf ./dist",
     "preinstall": "npx only-allow pnpm",
     "generate-icons:convert": "svg-to-ts-files",
-    "generate-icons:format": "prettier --write src/components/Icons/*",
+    "generate-icons:format": "prettier --write src/assets/icons/*",
     "generate-icons": "run-s generate-icons:convert generate-icons:format",
     "prepack": "pinst --disable",
     "postpack": "pinst --enable",
@@ -133,13 +133,14 @@
     "react": "^18"
   },
   "svg-to-ts": {
-    "tsx": true,
+    "conversionType": "files",
     "generateType": true,
     "typeName": "IIcons",
     "srcFiles": [
       "./src/assets/*.svg"
     ],
-    "outputDirectory": "./src/components/Icons",
+    "iconsFolderName": "dist",
+    "outputDirectory": "./src/assets/icons",
     "interfaceName": "IIcon",
     "prefix": "icon",
     "svgoConfig": {

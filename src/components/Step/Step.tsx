@@ -15,7 +15,8 @@ import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { StepperContext } from '@/components/Stepper/StepperContext';
 import { IndeterminateCircularProgressIndicator } from '@/components/IndeterminateCircularProgressIndicator';
 import { ButtonBase } from '@/components/ButtonBase';
-import { IconCheckMark, IconExclamationTriangle } from '@/components/Icons';
+import { SvgIcon } from '@/components/SvgIcon';
+import { iconCheckMark, iconExclamationTriangle } from '@/assets/icons';
 import {
   stepCircularProgressIndicatorStyles,
   stepFocusRingStyles,
@@ -123,7 +124,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
                 />
               ) : (
                 (icon ??
-                (hasError ? <IconExclamationTriangle aria-hidden /> : null))
+                (hasError ? <SvgIcon icon={iconExclamationTriangle} /> : null))
               )}
             </div>
           </div>
@@ -131,7 +132,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
           <div {...sxf('bulletPoint', 'bulletPoint$container')}>
             <div {...sxf('background', state && `background$${state}`)} />
             <div {...sxf('text', state && `text$${state}`)}>
-              {completed ? <IconCheckMark aria-hidden /> : index + 1}
+              {completed ? <SvgIcon icon={iconCheckMark} /> : index + 1}
             </div>
           </div>
         )}

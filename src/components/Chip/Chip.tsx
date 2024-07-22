@@ -18,7 +18,8 @@ import { IndeterminateCircularProgressIndicator } from '@/components/Indetermina
 import { ButtonBase } from '@/components/ButtonBase';
 import { Avatar } from '@/components/Avatar';
 import { executeLazyPromise } from '@/helpers/executeLazyPromise';
-import { IconCheckMark, IconXMark } from '@/components/Icons';
+import { SvgIcon } from '@/components/SvgIcon';
+import { iconCheckMark, iconXMark } from '@/assets/icons';
 import { chipVariantStyles } from './variants';
 import {
   chipCircularProgressIndicatorStyles,
@@ -313,7 +314,7 @@ export const Chip: IChip = forwardRef(function Chip<
                   />
                 ) : null
               ) : selected && variant === 'filter' ? (
-                <IconCheckMark {...sxf('icon')} aria-hidden />
+                <SvgIcon sx={stylesCombinator('icon')} icon={iconCheckMark} />
               ) : imageUrl ? (
                 <Avatar
                   sx={stylesCombinator('icon', 'icon$avatar')}
@@ -424,7 +425,7 @@ export const Chip: IChip = forwardRef(function Chip<
                   />
                 </div>
               ) : (
-                <IconXMark aria-hidden />
+                <SvgIcon icon={iconXMark} />
               )}
             </span>
           </ButtonBase>

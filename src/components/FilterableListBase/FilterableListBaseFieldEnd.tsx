@@ -2,11 +2,8 @@ import stylex from '@stylexjs/stylex';
 
 import { IconButton } from '@/components/IconButton';
 import { commonStyles } from '@/helpers/commonStyles';
-import {
-  IconTriangleDown,
-  IconTriangleUp,
-  IconXMark,
-} from '@/components/Icons';
+import { SvgIcon } from '@/components/SvgIcon';
+import { iconTriangleDown, iconTriangleUp, iconXMark } from '@/assets/icons';
 
 export type IFilterableListBaseFieldEnd = {
   isOpen?: boolean;
@@ -18,15 +15,15 @@ export const FilterableListBaseFieldEnd = (
 ): React.ReactNode => (
   <div {...stylex.props(commonStyles.horizontalLayout, commonStyles.gap$none)}>
     {props.onClear ? (
-      <IconButton icon={<IconXMark aria-hidden />} onClick={props.onClear} />
+      <IconButton icon={<SvgIcon icon={iconXMark} />} onClick={props.onClear} />
     ) : null}
     <IconButton
       tabIndex={-1}
       icon={
         props.isOpen ? (
-          <IconTriangleUp aria-hidden />
+          <SvgIcon icon={iconTriangleUp} />
         ) : (
-          <IconTriangleDown aria-hidden />
+          <SvgIcon icon={iconTriangleDown} />
         )
       }
     />

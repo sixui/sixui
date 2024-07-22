@@ -18,7 +18,8 @@ import { isValidHexColor } from '@/helpers/colors/isValidHexColor';
 import { ColorTag } from '@/components/ColorTag';
 import { HslColorPickerContent } from '@/components/HslColorPickerContent';
 import { IconButton } from '@/components/IconButton';
-import { IconPhoto } from '@/components/Icons';
+import { SvgIcon } from '@/components/SvgIcon';
+import { iconPhoto } from '@/assets/icons';
 import { colorInputFieldStyles } from './ColorInputField.styles';
 
 const defaultColorPickerRenderer = (
@@ -125,7 +126,7 @@ export const ColorInputField = forwardRef<
             }
             end={
               <IconButton
-                icon={<IconPhoto />}
+                icon={<SvgIcon icon={iconPhoto} />}
                 onClick={(event) => {
                   handleUploadImage(event);
                   close();

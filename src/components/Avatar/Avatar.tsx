@@ -5,7 +5,8 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { useLoaded } from '@/hooks/useLoaded';
-import { IconAvatarPlaceholder } from '@/components/Icons';
+import { SvgIcon } from '@/components/SvgIcon';
+import { iconAvatarPlaceholder } from '@/assets/icons';
 import { avatarStyles } from './Avatar.styles';
 import { avatarTheme } from './Avatar.stylex';
 
@@ -65,9 +66,12 @@ export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
         ) : hasImage && !!alt ? (
           <div {...sxf('content')}>{alt[0]}</div>
         ) : (
-          <IconAvatarPlaceholder
-            {...sxf('content', 'content$fallback')}
-            aria-hidden
+          <SvgIcon
+            sx={[
+              stylesCombinator('content'),
+              stylesCombinator('content$fallback'),
+            ]}
+            icon={iconAvatarPlaceholder}
           />
         )}
       </div>

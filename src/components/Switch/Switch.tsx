@@ -15,7 +15,8 @@ import { FocusRing } from '@/components/FocusRing';
 import { StateLayer } from '@/components/StateLayer';
 import { IndeterminateCircularProgressIndicator } from '@/components/IndeterminateCircularProgressIndicator';
 import { executeLazyPromise } from '@/helpers/executeLazyPromise';
-import { IconCheckMark, IconXMark } from '@/components/Icons';
+import { SvgIcon } from '@/components/SvgIcon';
+import { iconCheckMark, iconXMark } from '@/assets/icons';
 import {
   SWITCH_DEFAULT_TAG,
   type ISwitchOwnProps,
@@ -212,7 +213,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
                     ) : selectedIcon ? (
                       selectedIcon
                     ) : !hasCustomIcons ? (
-                      <IconCheckMark alt='' aria-hidden />
+                      <SvgIcon icon={iconCheckMark} />
                     ) : null}
                   </div>
 
@@ -236,7 +237,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
                       ) : icon ? (
                         icon
                       ) : !hasCustomIcons ? (
-                        <IconXMark alt='' aria-hidden />
+                        <SvgIcon icon={iconXMark} />
                       ) : null}
                     </div>
                   )}

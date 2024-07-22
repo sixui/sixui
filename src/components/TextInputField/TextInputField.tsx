@@ -10,7 +10,8 @@ import {
   TextFieldBase,
   type ITextFieldBaseProps,
 } from '@/components/TextFieldBase';
-import { IconEye, IconEyeSlash } from '@/components/Icons';
+import { SvgIcon } from '@/components/SvgIcon';
+import { iconEye, iconEyeSlash } from '@/assets/icons';
 
 export const TextInputField = forwardRef<HTMLDivElement, ITextInputFieldProps>(
   function TextInputField(props, forwardedRef) {
@@ -20,8 +21,8 @@ export const TextInputField = forwardRef<HTMLDivElement, ITextInputFieldProps>(
       suffixText,
       noSpinner,
       unmaskable: unmaskableProp = true,
-      maskIcon = <IconEyeSlash aria-hidden />,
-      unmaskIcon = <IconEye aria-hidden />,
+      maskIcon = <SvgIcon icon={iconEyeSlash} />,
+      unmaskIcon = <SvgIcon icon={iconEye} />,
       inputRef: inputRefProp,
       ...other
     } = props;

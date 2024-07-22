@@ -8,11 +8,12 @@ import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
 import { useVisualState } from '@/components/VisualState';
 import { FieldBase } from '@/components/FieldBase';
-import { IconTriangleDown } from '@/components/Icons';
+import { SvgIcon } from '@/components/SvgIcon';
 import {
   htmlSelectFieldBaseStyles,
   htmlSelectStyles,
 } from './HtmlSelect.styles';
+import { iconTriangleDown } from '@/assets/icons';
 
 export const HtmlSelect = forwardRef<HTMLSelectElement, IHtmlSelectProps>(
   function HtmlSelect(props, forwardedRef) {
@@ -45,7 +46,7 @@ export const HtmlSelect = forwardRef<HTMLSelectElement, IHtmlSelectProps>(
         sx={[componentTheme.overridenStyles, sx]}
         styles={[htmlSelectFieldBaseStyles, ...asArray(innerStyles?.fieldBase)]}
         disabled={other.disabled}
-        trailingIcon={<IconTriangleDown aria-hidden />}
+        trailingIcon={<SvgIcon icon={iconTriangleDown} />}
         {...slotProps?.fieldBase}
         visualState={visualState}
       >
