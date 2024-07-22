@@ -1,3 +1,15 @@
+# v0.0.344 (Mon Jul 22 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(ColorInputField): onChange event return correct color ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.343 (Mon Jul 22 2024)
 
 #### ⚠️ Pushed to `main`
