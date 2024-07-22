@@ -9,7 +9,7 @@ import type {
   IColorPickerContentStylesKey,
 } from '@/components/ColorPickerContent';
 
-export type IHslColorPickerContentProps = IContainerProps<never> &
+export type IHslColorPickerContentProps = IContainerProps &
   IOmit<IColorPickerContentProps, 'styles' | 'innerStyles' | 'palettes'> & {
     innerStyles?: IColorPickerContentProps['innerStyles'] & {
       colorPickerContent?: IZeroOrMore<

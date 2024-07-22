@@ -38,7 +38,7 @@ export type IDialogTriggerRenderProps = {
   ) => IExtendedHtmlFloatingProps;
 };
 
-export type IDialogOwnProps = IContainerProps<never> &
+export type IDialogOwnProps = IContainerProps &
   IOmit<IDialogContentOwnProps, 'onClose' | 'styles'> &
   Pick<React.AriaAttributes, 'aria-label'> & {
     innerStyles?: {

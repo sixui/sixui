@@ -17,7 +17,7 @@ export type IColorInputFieldProps = IContainerProps<IColorInputFieldStylesKey> &
     placement?: Placement;
     value?: string;
     defaultValue?: string;
-    onChange?: (color?: string) => void;
+    onChange?: (color: string) => void;
     colorPickerRenderer?: (
       props: IColorInputFieldColorPickerRendererProps,
     ) => JSX.Element;
