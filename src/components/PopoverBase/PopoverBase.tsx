@@ -177,6 +177,7 @@ export const PopoverBase = <TForwardedProps extends object = object>(
             <FloatingFocusManager
               context={floating.context}
               modal={false}
+              initialFocus={-1}
               disabled={!trapFocus}
             >
               <FloatingTransition
