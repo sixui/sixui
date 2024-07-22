@@ -64,17 +64,35 @@ const defaultArgs = {
 const cols: Array<IComponentPresentation<IPopoverBaseProps>> = [
   {
     props: {
-      children: <IconButton icon={<FontAwesomeIcon icon={faStar} />} />,
+      children: ({ getProps, setRef }) => (
+        <IconButton
+          {...getProps()}
+          ref={setRef}
+          icon={<FontAwesomeIcon icon={faStar} />}
+        />
+      ),
     },
   },
   {
     props: {
-      children: <IconButton icon={<FontAwesomeIcon icon={faBolt} />} />,
+      children: ({ getProps, setRef }) => (
+        <IconButton
+          {...getProps()}
+          ref={setRef}
+          icon={<FontAwesomeIcon icon={faBolt} />}
+        />
+      ),
     },
   },
   {
     props: {
-      children: <IconButton icon={<FontAwesomeIcon icon={faCloud} />} />,
+      children: ({ getProps, setRef }) => (
+        <IconButton
+          {...getProps()}
+          ref={setRef}
+          icon={<FontAwesomeIcon icon={faCloud} />}
+        />
+      ),
     },
   },
 ];
@@ -150,7 +168,11 @@ export const MatchTargetWidth: IStory = {
     ...defaultArgs,
     openOnClick: true,
     matchTargetWidth: true,
-    children: <Button>Click to open</Button>,
+    children: ({ getProps, setRef }) => (
+      <Button {...getProps()} ref={setRef}>
+        Click to open
+      </Button>
+    ),
   },
 };
 
@@ -290,7 +312,13 @@ export const Placement: IStory = {
     openOnClick: true,
     openOnFocus: true,
     cursor: 'arrow',
-    children: <IconButton icon={<FontAwesomeIcon icon={faStar} />} />,
+    children: ({ getProps, setRef }) => (
+      <IconButton
+        {...getProps()}
+        ref={setRef}
+        icon={<FontAwesomeIcon icon={faStar} />}
+      />
+    ),
     contentRenderer: ({ renderCursor }) => (
       <div {...stylex.props(styles.tooltip)}>
         <div {...stylex.props(styles.cursor)}>{renderCursor()}</div>
@@ -345,7 +373,13 @@ export const TransitionOrigin: IStory = {
     openOnClick: true,
     openOnFocus: true,
     placement: 'bottom-end',
-    children: <IconButton icon={<FontAwesomeIcon icon={faStar} />} />,
+    children: ({ getProps, setRef }) => (
+      <IconButton
+        {...getProps()}
+        ref={setRef}
+        icon={<FontAwesomeIcon icon={faStar} />}
+      />
+    ),
     contentRenderer: ({ renderCursor }) => (
       <div {...stylex.props(styles.tooltip)}>
         <div {...stylex.props(styles.cursor)}>{renderCursor()}</div>

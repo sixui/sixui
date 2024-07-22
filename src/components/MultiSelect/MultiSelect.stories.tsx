@@ -121,4 +121,13 @@ export const ControlledAndClearable: IStory = {
   },
 };
 
+export const WithErrorText: IStory = {
+  render: (props) => <ControlledMultiSelectDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    hasError: true,
+    errorText: 'Error text',
+  },
+};
+
 export default meta;

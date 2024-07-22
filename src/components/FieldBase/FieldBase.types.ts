@@ -35,6 +35,7 @@ export type IFieldBaseOwnProps = IContainerProps<IFieldBaseStylesKey> &
     loading?: boolean;
     tabIndex?: number;
     children?: IRendererWithForwardedProps;
+    containerRef?: React.Ref<HTMLDivElement>;
   };
 
 export type IFieldBaseProps<

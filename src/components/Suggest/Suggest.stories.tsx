@@ -139,4 +139,13 @@ export const ControlledAndClearable: IStory = {
   },
 };
 
+export const WithErrorText: IStory = {
+  render: (props) => <ControlledSuggestDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    hasError: true,
+    errorText: 'Error text',
+  },
+};
+
 export default meta;

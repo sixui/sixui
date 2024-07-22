@@ -4,6 +4,7 @@ import {
   hexFromArgb,
   sourceColorFromImage,
 } from '@material/material-color-utilities';
+import { asArray } from '@olivierpascal/helpers';
 
 import type {
   IColorInputFieldColorPickerRendererProps,
@@ -56,7 +57,7 @@ export const ColorInputField = forwardRef<
 
   const [isQuantizing, setIsQuantizing] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-  const inputHandleRef = useMergeRefs([inputRef, inputRefProp]);
+  const inputHandleRef = useMergeRefs([inputRef, ...asArray(inputRefProp)]);
   const inputFileRef = useRef<HTMLInputElement>(null);
 
   const handleUploadImage: React.MouseEventHandler = () => {
@@ -94,6 +95,7 @@ export const ColorInputField = forwardRef<
         style={{ display: 'none' }}
         onChange={handleFileChange}
       />
+
       <PopoverBase
         contentRenderer={({ close }) =>
           colorPickerRenderer({
@@ -108,7 +110,7 @@ export const ColorInputField = forwardRef<
         openOnClick
         trapFocus
       >
-        {({ close }) => (
+        {({ getProps, setRef, close }) => (
           <TextInputField
             start={
               <ColorTag
@@ -126,13 +128,14 @@ export const ColorInputField = forwardRef<
                 loading={isQuantizing}
               />
             }
-            {...other}
+            {...getProps(other)}
             sx={(componentTheme.overridenStyles, 'host', sx)}
             value={value}
             hasError={(!!value && !isValidHexColor(value)) || other.hasError}
             onChange={(event) => setValue(event.target.value)}
             ref={forwardedRef}
             inputRef={inputHandleRef}
+            containerRef={setRef}
           />
         )}
       </PopoverBase>

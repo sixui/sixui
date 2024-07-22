@@ -67,4 +67,13 @@ export const Disabled: IStory = {
   },
 };
 
+export const WithErrorText: IStory = {
+  render: (props) => <SuggestBaseExample {...props} />,
+  args: {
+    ...defaultArgs,
+    hasError: true,
+    errorText: 'Error text',
+  },
+};
+
 export default meta;

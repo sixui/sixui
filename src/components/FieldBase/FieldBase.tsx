@@ -67,6 +67,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
     loading,
     forwardProps,
     tabIndex,
+    containerRef,
     ...other
   } = props;
 
@@ -547,7 +548,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
           disabled && 'field$disabled',
         )}
       >
-        <div {...sxf('containerOverflow')}>
+        <div {...sxf('containerOverflow')} ref={containerRef}>
           {variant === 'filled' ? renderBackground() : null}
           {variant === 'filled' ? renderIndicator() : null}
           {variant === 'filled' ? null : renderOutline()}

@@ -10,7 +10,10 @@ export type IColorInputFieldColorPickerRendererProps = {
 };
 
 export type IColorInputFieldProps = IContainerProps<IColorInputFieldStylesKey> &
-  IOmit<ITextInputFieldProps, 'styles' | 'value' | 'defaultValue'> & {
+  IOmit<
+    ITextInputFieldProps,
+    'styles' | 'value' | 'defaultValue' | 'onChange'
+  > & {
     placement?: Placement;
     value?: string;
     defaultValue?: string;

@@ -103,7 +103,7 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
           )}
           sx={sx}
           styles={styles}
-          ref={renderProps.setTriggerRef}
+          containerRef={renderProps.setTriggerRef}
           inputRef={renderProps.inputFilterRef}
           spellCheck='false'
           autoComplete='off'

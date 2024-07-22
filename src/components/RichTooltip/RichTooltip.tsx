@@ -6,10 +6,11 @@ import type {
 } from './RichTooltip.types';
 import { PopoverBase, type IPopoverBaseProps } from '@/components/PopoverBase';
 import { RichTooltipContent } from '@/components/RichTooltipContent';
+import { isFunction } from '@/helpers/isFunction';
 
 export const RichTooltip = forwardRef<HTMLDivElement, IRichTooltipProps>(
   function RichTooltip(props, forwardedRef) {
-    const { placement = 'bottom-end', persistent, ...other } = props;
+    const { children, placement = 'bottom-end', persistent, ...other } = props;
 
     const renderContent: IPopoverBaseProps<IRichTooltipForwardedProps>['contentRenderer'] =
       ({ renderCursor, forwardedProps, close: onClose }) => (
@@ -32,7 +33,13 @@ export const RichTooltip = forwardRef<HTMLDivElement, IRichTooltipProps>(
         openOnHover={!persistent}
         openOnFocus={!persistent}
         nonDismissable={persistent}
-      />
+      >
+        {(renderProps) => (
+          <span {...renderProps.getProps()} ref={renderProps.setRef}>
+            {isFunction(children) ? children(renderProps) : children}
+          </span>
+        )}
+      </PopoverBase>
     );
   },
 );

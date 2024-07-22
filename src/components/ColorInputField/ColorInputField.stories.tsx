@@ -57,4 +57,26 @@ export const HctVariants: IStory = {
   },
 };
 
+export const WithErrorText: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={ColorInputField}
+      props={props}
+      cols={(['filled', 'outlined'] as Array<IFieldBaseVariant>).map(
+        (variant) => ({
+          props: {
+            variant,
+            placeholder: capitalizeFirstLetter(variant),
+          },
+        }),
+      )}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    hasError: true,
+    errorText: 'Error text',
+  },
+};
+
 export default meta;

@@ -136,14 +136,6 @@ export const PopoverBase = <TForwardedProps extends object = object>(
     duration: 150, // motionTokens.duration$short3
   });
 
-  const triggerElement = isFunction(children)
-    ? children({
-        isOpen: !!isOpen,
-        placement: floating.placement,
-        close: () => setIsOpen(false),
-      })
-    : children;
-
   const renderCursor = (
     userProps?: React.HTMLAttributes<SVGSVGElement>,
   ): React.ReactNode => (
@@ -157,14 +149,19 @@ export const PopoverBase = <TForwardedProps extends object = object>(
     />
   );
 
+  const triggerElement = isFunction(children)
+    ? children({
+        isOpen,
+        placement: floating.placement,
+        getProps: interactions.getReferenceProps,
+        setRef: floating.refs.setReference,
+        close: () => setIsOpen(false),
+      })
+    : children;
+
   return (
     <>
-      <span
-        {...interactions.getReferenceProps()}
-        ref={floating.refs.setReference}
-      >
-        {triggerElement}
-      </span>
+      {triggerElement}
 
       {transitionStatus.isMounted ? (
         <Portal>
@@ -188,16 +185,13 @@ export const PopoverBase = <TForwardedProps extends object = object>(
               >
                 {isFunction(contentRenderer) ? (
                   contentRenderer({
+                    isOpen,
+                    placement: floating.placement,
+                    close: () => setIsOpen(false),
                     forwardedProps: forwardProps
                       ? (other as TForwardedProps)
                       : undefined,
                     renderCursor,
-                    close: (event) => {
-                      setIsOpen(false);
-                      if (isOpenProp !== undefined) {
-                        onOpenChange?.(false, event?.nativeEvent, 'click');
-                      }
-                    },
                   })
                 ) : (
                   <>

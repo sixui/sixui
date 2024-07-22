@@ -6,10 +6,11 @@ import type {
   IPlainTooltipProps,
 } from './PlainTooltip.types';
 import { PlainTooltipContent } from '@/components/PlainTooltipContent';
+import { isFunction } from '@/helpers/isFunction';
 
 export const PlainTooltip = forwardRef<HTMLDivElement, IPlainTooltipProps>(
   function PlainTooltip(props, forwardedRef) {
-    const { ...other } = props;
+    const { children, ...other } = props;
 
     const renderContent: IPopoverBaseProps<IPlainTooltipForwardedProps>['contentRenderer'] =
       ({ renderCursor, forwardedProps }) => (
@@ -29,7 +30,13 @@ export const PlainTooltip = forwardRef<HTMLDivElement, IPlainTooltipProps>(
         forwardProps
         openOnHover
         openOnFocus
-      />
+      >
+        {(renderProps) => (
+          <span {...renderProps.getProps()} ref={renderProps.setRef}>
+            {isFunction(children) ? children(renderProps) : children}
+          </span>
+        )}
+      </PopoverBase>
     );
   },
 );

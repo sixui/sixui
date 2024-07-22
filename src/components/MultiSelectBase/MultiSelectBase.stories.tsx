@@ -84,4 +84,13 @@ export const Disabled: IStory = {
   },
 };
 
+export const WithErrorText: IStory = {
+  render: (props) => <MultiSelectBaseExample {...props} />,
+  args: {
+    ...defaultArgs,
+    hasError: true,
+    errorText: 'Error text',
+  },
+};
+
 export default meta;

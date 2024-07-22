@@ -44,7 +44,11 @@ const SelectDemo: React.FC<ISelectProps> = (props) => {
 
 export const Basic: IStory = {
   render: (props) => <SelectDemo {...props} />,
-  args: defaultArgs,
+  args: {
+    ...defaultArgs,
+    hasError: true,
+    errorText: 'x',
+  },
 };
 
 export const WithEmptyItem: IStory = {
@@ -166,6 +170,15 @@ export const ControlledAndClearableWithEmptyItem: IStory = {
     defaultValue: fruits[1].value,
     clearable: true,
     items: [emptyItem, ...fruits],
+  },
+};
+
+export const WithErrorText: IStory = {
+  render: (props) => <ControlledSelectDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    hasError: true,
+    errorText: 'Error text',
   },
 };
 

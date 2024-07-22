@@ -106,7 +106,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
           {...renderProps.getInputFilterProps(
             renderProps.getTriggerProps(renderProps.forwardedProps),
           )}
-          ref={renderProps.setTriggerRef}
+          containerRef={renderProps.setTriggerRef}
           inputRef={renderProps.inputFilterRef}
           start={
             multiFilterableListBase.selectedItems.length
