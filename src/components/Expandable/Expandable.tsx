@@ -24,6 +24,9 @@ const localStyles = stylex.create({
     width: expandedSize.width,
     height: expandedSize.height,
   }),
+  content$expanded: {
+    overflow: 'visible',
+  },
   animation$entering: (
     expandedSize: Partial<ISize<ICssSizeValue>>,
     transitionProperty: string,
@@ -184,7 +187,14 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
               {...other}
               ref={transitionNodeHandleRef}
             >
-              <div {...stylex.props(localStyles.content(expandedSize))}>
+              <div
+                {...stylex.props(
+                  localStyles.content(expandedSize),
+                  expanded && status === 'entered'
+                    ? localStyles.content$expanded
+                    : undefined,
+                )}
+              >
                 <div ref={contentWrapperRef}>{children}</div>
               </div>
             </div>
