@@ -68,7 +68,22 @@ export const extractPaletteFromImage = async (
   // Convert Pixels to Material Colors
   const quantizationResult = QuantizerCelebi.quantize(pixels, 128);
   const rankedColors = Score.score(quantizationResult);
-  const colorPalette = rankedColors
+
+  // The scoring algorithm from material-color-utilities will return a list of
+  // colors sorted by suitability for a UI theme. The most suitable color is the
+  // first item, the least suitable is the last. There will always be at least
+  // one color returned. If all the input colors were not suitable for a theme,
+  // a default fallback color will be provided, Google Blue (#4285f4).
+  // We will remove this fallback color.
+  const originalFallbackColor = '#4285f4';
+
+  const fixedRankedColors =
+    rankedColors.length === 1 &&
+    hexFromArgb(rankedColors[0]) === originalFallbackColor
+      ? []
+      : rankedColors;
+
+  const colorPalette = fixedRankedColors
     .slice(0, count)
     .concat(
       [...quantizationResult.keys()].slice(
@@ -76,6 +91,7 @@ export const extractPaletteFromImage = async (
         Math.max(0, count - rankedColors.length),
       ),
     );
+  const colorPaletteHex = colorPalette.map(hexFromArgb);
 
-  return colorPalette.map(hexFromArgb);
+  return colorPaletteHex;
 };

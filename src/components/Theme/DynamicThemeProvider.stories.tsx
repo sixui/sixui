@@ -9,6 +9,7 @@ import { DynamicThemeProvider } from './DynamicThemeProvider';
 import { commonStyles } from '@/helpers/commonStyles';
 import baseTheme from '@/themes/base/theme.json';
 import { ColorScheme } from '../ColorScheme';
+import { isValidHexColor } from '@/helpers/colors/isValidHexColor';
 
 const meta = {
   component: DynamicThemeProvider,
@@ -40,7 +41,9 @@ const DynamicThemeProviderDemo: React.FC<IDynamicThemeProviderProps> = (
       <DynamicThemeProvider
         {...other}
         sx={[commonStyles.verticalLayout, commonStyles.gap$lg]}
-        sourceColor={sourceColor}
+        sourceColor={
+          isValidHexColor(sourceColor) ? sourceColor : baseTheme.source.color
+        }
       >
         <ColorInputField onChange={setSourceColor} />
 

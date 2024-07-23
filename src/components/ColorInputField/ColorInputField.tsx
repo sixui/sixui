@@ -107,7 +107,7 @@ export const ColorInputField = forwardRef<
               close();
             },
             selectedColor: value,
-            customColors: quantizedColors,
+            customColors: quantizedColors ?? [],
           })
         }
         placement={placement}
