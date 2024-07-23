@@ -88,7 +88,7 @@ export const ColorPickerContent = forwardRef<
         </div>
       </div>
 
-      {customColors ? (
+      {customColors?.length ? (
         <>
           <Divider />
 
