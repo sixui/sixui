@@ -132,6 +132,7 @@ export const ColorInputField = forwardRef<
                 loading={isQuantizing}
               />
             }
+            autoComplete='off'
             {...getProps(other)}
             sx={(componentTheme.overridenStyles, 'host', sx)}
             value={value}

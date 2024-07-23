@@ -5,4 +5,7 @@ export const expandableStyles = stylex.create({
   host: {
     overflow: 'hidden',
   },
+  host$expanded: {
+    overflow: 'visible',
+  },
 });

@@ -8,5 +8,8 @@ export const svgIconStyles = stylex.create({
     width: 'inherit',
     height: 'inherit',
     fontSize: 'inherit',
+    fill: 'inherit',
+    color: 'inherit',
+    flexBasis: '1rem',
   },
 });

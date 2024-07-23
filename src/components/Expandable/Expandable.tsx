@@ -156,6 +156,7 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
               {...sxf(
                 componentTheme.overridenStyles,
                 'host',
+                expanded && status === 'entered' ? 'host$expanded' : undefined,
                 status === 'exited'
                   ? localStyles.animation$exited(
                       collapsedSize,
