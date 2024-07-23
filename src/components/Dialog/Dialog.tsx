@@ -96,13 +96,13 @@ export const Dialog: IDialog = forwardRef(function Dialog<
           <Scrim context={floating.context} lockScroll>
             <FloatingFocusManager context={floating.context}>
               <FloatingTransition
-                sx={[componentTheme.overridenStyles, sx]}
                 status={transitionStatus.status}
                 placement='bottom'
                 origin='edge'
               >
                 <DialogContent
                   as={as}
+                  sx={[componentTheme.overridenStyles, sx]}
                   styles={innerStyles?.dialogContent}
                   onClose={(event) =>
                     floating.context.onOpenChange(
