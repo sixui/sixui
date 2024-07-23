@@ -1,3 +1,15 @@
+# v0.0.350 (Tue Jul 23 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(ColorInputField): extract color palette instead of single color ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.349 (Mon Jul 22 2024)
 
 #### ⚠️ Pushed to `main`
