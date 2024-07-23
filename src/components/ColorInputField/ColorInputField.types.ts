@@ -7,6 +7,7 @@ import type { ITextInputFieldProps } from '@/components/TextInputField';
 export type IColorInputFieldColorPickerRendererProps = {
   onClick: (event: React.MouseEvent<HTMLButtonElement>, color: string) => void;
   selectedColor?: string;
+  customColors?: Array<string>;
 };
 
 export type IColorInputFieldProps = IContainerProps<IColorInputFieldStylesKey> &
@@ -22,4 +23,5 @@ export type IColorInputFieldProps = IContainerProps<IColorInputFieldStylesKey> &
     colorPickerRenderer?: (
       props: IColorInputFieldColorPickerRendererProps,
     ) => JSX.Element;
+    quantizeColorCount?: number;
   };

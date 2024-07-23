@@ -44,11 +44,7 @@ const SelectDemo: React.FC<ISelectProps> = (props) => {
 
 export const Basic: IStory = {
   render: (props) => <SelectDemo {...props} />,
-  args: {
-    ...defaultArgs,
-    hasError: true,
-    errorText: 'x',
-  },
+  args: defaultArgs,
 };
 
 export const WithEmptyItem: IStory = {

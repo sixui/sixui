@@ -1,9 +1,5 @@
 import { forwardRef, useMemo, useRef, useState } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
-import {
-  hexFromArgb,
-  sourceColorFromImage,
-} from '@material/material-color-utilities';
 import { asArray } from '@olivierpascal/helpers';
 
 import type {
@@ -21,6 +17,7 @@ import { HslColorPickerContent } from '@/components/HslColorPickerContent';
 import { IconButton } from '@/components/IconButton';
 import { SvgIcon } from '@/components/SvgIcon';
 import { iconPhoto } from '@/assets/icons';
+import { extractPaletteFromImage } from '@/helpers/colors/extractPaletteFromImage';
 import { colorInputFieldStyles } from './ColorInputField.styles';
 
 const defaultColorPickerRenderer = (
@@ -40,6 +37,7 @@ export const ColorInputField = forwardRef<
     defaultValue,
     inputRef: inputRefProp,
     colorPickerRenderer = defaultColorPickerRenderer,
+    quantizeColorCount = 8,
     ...other
   } = props;
 
@@ -56,6 +54,7 @@ export const ColorInputField = forwardRef<
     onValueChange: (color) => other.onChange?.(color),
   });
 
+  const [quantizedColors, setQuantizedColors] = useState<Array<string>>();
   const [isQuantizing, setIsQuantizing] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const inputHandleRef = useMergeRefs([inputRef, ...asArray(inputRefProp)]);
@@ -80,8 +79,11 @@ export const ColorInputField = forwardRef<
     fileReader.onload = () => {
       const image = new Image();
       image.src = fileReader.result as string;
-      void sourceColorFromImage(image)
-        .then((sourceColor) => setValue(hexFromArgb(sourceColor)))
+      void extractPaletteFromImage(image, quantizeColorCount)
+        .then((palette) => {
+          setQuantizedColors(palette);
+          setValue(palette[0]);
+        })
         .finally(() => setIsQuantizing(false));
     };
     fileReader.readAsDataURL(file);
@@ -105,6 +107,7 @@ export const ColorInputField = forwardRef<
               close();
             },
             selectedColor: value,
+            customColors: quantizedColors,
           })
         }
         placement={placement}
@@ -112,7 +115,7 @@ export const ColorInputField = forwardRef<
         openOnClick
         trapFocus
       >
-        {({ getProps, setRef, close }) => (
+        {({ getProps, setRef }) => (
           <TextInputField
             start={
               <ColorTag
@@ -125,7 +128,6 @@ export const ColorInputField = forwardRef<
                 icon={<SvgIcon icon={iconPhoto} />}
                 onClick={(event) => {
                   handleUploadImage(event);
-                  close();
                 }}
                 loading={isQuantizing}
               />
