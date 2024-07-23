@@ -13,7 +13,7 @@ export const dialogContentStyles = stylex.create({
     maxWidth: 'min(560px, calc(100% - 48px))',
     minWidth: 280,
     height: 'fit-content',
-    width: 'fit-content',
+    width: 'min-content',
   },
   dialog: {
     background: 'transparent',
