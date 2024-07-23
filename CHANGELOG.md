@@ -1,3 +1,16 @@
+# v0.0.352 (Tue Jul 23 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: DialogContent can be styled from Dialog.sx ([@olivierpascal](https://github.com/olivierpascal))
+- fix(ColorPickerContent): style when no custom colors ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.351 (Tue Jul 23 2024)
 
 #### ⚠️ Pushed to `main`
