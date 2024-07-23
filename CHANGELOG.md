@@ -1,3 +1,15 @@
+# v0.0.357 (Tue Jul 23 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(SvgIcon): styles ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.356 (Tue Jul 23 2024)
 
 #### ⚠️ Pushed to `main`
