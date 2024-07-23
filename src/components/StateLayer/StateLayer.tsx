@@ -29,8 +29,8 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
       [styles],
     );
     const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
+      () => stylePropsFactory(stylesCombinator, visualState),
+      [stylesCombinator, visualState],
     );
 
     const { setHostRef, surfaceRef, pressed } = useRipple({
@@ -42,14 +42,7 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
 
     return (
       <div
-        {...sxf(
-          stateLayerTheme,
-          componentTheme.overridenStyles,
-          'host',
-          visualState?.hovered && 'host$hover',
-          pressed && 'host$pressed',
-          sx,
-        )}
+        {...sxf(stateLayerTheme, componentTheme.overridenStyles, 'host', sx)}
         aria-hidden
         {...other}
         ref={handleRef}

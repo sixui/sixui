@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 const vars = {
-  stateLayerColor: 'unset',
+  containerColor: 'unset',
 };
 
 export const colorButtonStateTokens = stylex.defineVars(vars);

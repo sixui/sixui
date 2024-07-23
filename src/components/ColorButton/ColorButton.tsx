@@ -28,8 +28,8 @@ import { colorButtonStateTokens } from './ColorButton.state.stylex';
 import { colorButtonTheme } from './ColorButton.stylex';
 
 const localStyles = stylex.create({
-  stateLayerColor: (color: string) => ({
-    [colorButtonStateTokens.stateLayerColor]: color,
+  backgroundColor: (color: string) => ({
+    [colorButtonStateTokens.containerColor]: color,
   }),
 });
 
@@ -68,7 +68,7 @@ export const ColorButton: IColorButton = forwardRef(function ColorButton<
         componentTheme.overridenStyles,
         stylesCombinator('host'),
         backgroundColor
-          ? localStyles.stateLayerColor(backgroundColor)
+          ? localStyles.backgroundColor(backgroundColor)
           : undefined,
         sx,
       ]}

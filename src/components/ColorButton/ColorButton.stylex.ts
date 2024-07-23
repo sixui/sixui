@@ -3,6 +3,7 @@ import stylex from '@stylexjs/stylex';
 import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
 import { shapeTokens } from '@/themes/base/shape.stylex';
 import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
+import { stateTokens } from '@/themes/base/state.stylex';
 
 const vars = {
   // container
@@ -14,9 +15,11 @@ const vars = {
 
   // stateLayer
   // &:hover
-  stateLayerOpacity$hover: '1',
+  stateLayerColor$hover: colorSchemeTokens.onSurface,
+  stateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,
   // &:pressed
-  stateLayerOpacity$pressed: '1',
+  stateLayerColor$pressed: colorSchemeTokens.onSurface,
+  stateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
 
   // labelText
   labelTextColor: colorSchemeTokens.onSurface,
