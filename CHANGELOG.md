@@ -1,3 +1,15 @@
+# v0.0.354 (Tue Jul 23 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(Expandable): overflow issue ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.353 (Tue Jul 23 2024)
 
 #### ⚠️ Pushed to `main`
