@@ -2,14 +2,7 @@ import stylex from '@stylexjs/stylex';
 
 export const svgIconStyles = stylex.create({
   host: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 'inherit',
-    height: 'inherit',
-    fontSize: 'inherit',
-    fill: 'inherit',
-    color: 'inherit',
-    flexBasis: '1rem',
+    width: '1em',
+    height: '1em',
   },
 });
