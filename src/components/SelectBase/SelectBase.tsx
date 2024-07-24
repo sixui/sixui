@@ -67,7 +67,7 @@ export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
       itemRenderer={singleFilterableListBase.itemRenderer}
       matchTargetWidth
       closeOnSelect
-      resetOnClose
+      resetOnClose={canFilter}
       {...other}
       forwardProps
       noResults={noResults ?? <ListItem disabled>No results.</ListItem>}

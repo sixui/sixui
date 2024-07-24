@@ -147,12 +147,19 @@ export const FloatingFilterableListBase = fixedForwardRef(
       onMatch: isOpen ? setActiveIndex : setSelectedIndex,
       enabled: !canFilter,
       findMatch: itemPredicate
-        ? (list, typedString) =>
-            list.find((label) =>
-              label && createNewItemFromQuery
-                ? itemPredicate?.(createNewItemFromQuery(label), typedString)
-                : false,
-            )
+        ? (list, typedString) => {
+            const normalizedTypedString = typedString.toLowerCase();
+            const matchingItem = list.find((label) => {
+              const normalizedLabel = label?.toLowerCase();
+              const isMatching = normalizedLabel?.includes(
+                normalizedTypedString,
+              );
+
+              return isMatching;
+            });
+
+            return matchingItem;
+          }
         : undefined,
     });
     const [query, setQuery] = useControlledValue({
@@ -268,7 +275,11 @@ export const FloatingFilterableListBase = fixedForwardRef(
           activeIndex != null &&
           isEnterKeyPressedRef.current
         ) {
-          // We handle ENTER in keyup here to play nice with the Button component's keyboard clicking. Button is commonly used as the only child of Select. If we were to instead process ENTER on keydown, then Button would click itself on keyup and the Select popover would re-open.
+          // We handle ENTER in keyup here to play nice with the Button
+          // component's keyboard clicking. Button is commonly used as the only
+          // child of Select. If we were to instead process ENTER on keydown,
+          // then Button would click itself on keyup and the Select popover
+          // would re-open.
           event.preventDefault();
           elementsRef.current[activeIndex]?.click();
           isEnterKeyPressedRef.current = false;
