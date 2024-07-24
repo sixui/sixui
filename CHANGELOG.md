@@ -1,3 +1,15 @@
+# v0.0.359 (Wed Jul 24 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(FieldBase): tabIndex ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.358 (Wed Jul 24 2024)
 
 #### ⚠️ Pushed to `main`
