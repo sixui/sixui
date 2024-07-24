@@ -66,7 +66,6 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
     textArea,
     loading,
     forwardProps,
-    tabIndex,
     containerRef,
     ...other
   } = props;
@@ -537,7 +536,6 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
       )}
       aria-labelledby={labelId}
       data-cy='field'
-      tabIndex={tabIndex}
       {...(forwardProps ? undefined : other)}
       ref={handleRef}
     >
