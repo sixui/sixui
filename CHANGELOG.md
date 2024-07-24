@@ -1,3 +1,16 @@
+# v0.0.358 (Wed Jul 24 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(FieldBase): forward tabIndex ([@olivierpascal](https://github.com/olivierpascal))
+- fix(SvgIcon): styles ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.357 (Tue Jul 23 2024)
 
 #### ⚠️ Pushed to `main`
