@@ -1,3 +1,15 @@
+# v0.0.366 (Thu Jul 25 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(FieldBase): loading state ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.365 (Thu Jul 25 2024)
 
 #### ⚠️ Pushed to `main`
