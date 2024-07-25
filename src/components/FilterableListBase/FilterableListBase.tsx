@@ -7,7 +7,6 @@ import type {
 } from './FilterableListBase.types';
 import { isFunction } from '@/helpers/isFunction';
 import { useControlledValue } from '@/hooks/useControlledValue';
-import { usePrevious } from '@/hooks/usePrevious';
 import {
   executeFilterableItemsEqual,
   renderFilterableItems,
@@ -84,7 +83,7 @@ export const FilterableListBase = <
     default: defaultQuery ?? '',
     name: 'FilterableListBase',
   });
-  const [filteredItems, setFilterableItems] = useState<Array<TItem>>(
+  const [filteredItems, setFilteredItems] = useState<Array<TItem>>(
     getFilterableItems(query, {
       items,
       itemPredicate,
@@ -92,18 +91,15 @@ export const FilterableListBase = <
     }),
   );
 
-  const previousQuery = usePrevious(query);
   useEffect(() => {
-    if (previousQuery !== undefined && previousQuery !== query) {
-      setFilterableItems(
-        getFilterableItems(query, {
-          items,
-          itemPredicate,
-          listPredicate,
-        }),
-      );
-    }
-  }, [previousQuery, query, items, itemPredicate, listPredicate]);
+    setFilteredItems(
+      getFilterableItems(query, {
+        items,
+        itemPredicate,
+        listPredicate,
+      }),
+    );
+  }, [query, items, itemPredicate, listPredicate]);
 
   const defaultListRenderer: IFilterableListBaseInternalRenderer<TItem> = (
     listProps,
