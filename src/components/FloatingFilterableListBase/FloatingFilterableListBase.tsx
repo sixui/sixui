@@ -219,6 +219,10 @@ export const FloatingFilterableListBase = fixedForwardRef(
       setQuery(newQuery);
       onQueryChange?.(newQuery, event);
       setActiveIndex(0);
+
+      if (!isOpen) {
+        setIsOpen(true);
+      }
     };
 
     const isEnterKeyPressedRef = useRef(false);
