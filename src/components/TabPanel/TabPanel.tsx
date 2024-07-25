@@ -1,42 +1,59 @@
 import { forwardRef, useContext, useMemo } from 'react';
 
-import type { ITabPanelProps } from './TabPanel.types';
+import type {
+  IPolymorphicRef,
+  IWithAsProp,
+} from '@/helpers/react/polymorphicComponentTypes';
 import { TabContext } from '@/components/Tabs';
 import { useComponentTheme } from '@/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '@/helpers/stylePropsFactory';
+import {
+  TAB_PANEL_DEFAULT_TAG,
+  type ITabPanelProps,
+  type ITabPanelOwnProps,
+} from './TabPanel.types';
 
-export const TabPanel = forwardRef<HTMLDivElement, ITabPanelProps>(
-  function TabPanel(props, forwardedRef) {
-    const { styles, sx, anchor, children } = props;
+type ITabPanel = <
+  TRoot extends React.ElementType = typeof TAB_PANEL_DEFAULT_TAG,
+>(
+  props: ITabPanelProps<TRoot>,
+) => React.ReactNode;
 
-    const componentTheme = useComponentTheme('TabPanel');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+export const TabPanel: ITabPanel = forwardRef(function TabPanel<
+  TRoot extends React.ElementType = typeof TAB_PANEL_DEFAULT_TAG,
+>(props: ITabPanelProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
+  const { styles, sx, as, anchor, children } =
+    props as IWithAsProp<ITabPanelOwnProps>;
 
-    const tabContext = useContext(TabContext);
+  const componentTheme = useComponentTheme('TabPanel');
+  const stylesCombinator = useMemo(
+    () => stylesCombinatorFactory(styles),
+    [styles],
+  );
+  const sxf = useMemo(
+    () => stylePropsFactory(stylesCombinator),
+    [stylesCombinator],
+  );
 
-    if (tabContext?.disabled || tabContext?.anchor !== anchor) {
-      return null;
-    }
+  const tabContext = useContext(TabContext);
 
-    const id = tabContext && anchor ? `${tabContext.id}-${anchor}` : undefined;
+  if (tabContext?.disabled || tabContext?.anchor !== anchor) {
+    return null;
+  }
 
-    return (
-      <div
-        {...sxf(componentTheme.overridenStyles, 'host', sx)}
-        ref={forwardedRef}
-        role='tabpanel'
-        aria-labelledby={id}
-      >
-        {children}
-      </div>
-    );
-  },
-);
+  const id = tabContext && anchor ? `${tabContext.id}-${anchor}` : undefined;
+  const Component = as ?? TAB_PANEL_DEFAULT_TAG;
+
+  return (
+    <Component
+      {...sxf(componentTheme.overridenStyles, 'host', sx)}
+      sx={[componentTheme.overridenStyles, stylesCombinator('host'), sx]}
+      ref={forwardedRef}
+      role='tabpanel'
+      aria-labelledby={id}
+    >
+      {children}
+    </Component>
+  );
+});

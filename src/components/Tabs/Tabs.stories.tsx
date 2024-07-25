@@ -17,8 +17,7 @@ import {
 import type { ITabsProps } from './Tabs.types';
 import { Tab } from '@/components/Tab';
 import { TabList } from '@/components/TabList';
-import { TabPanel, type ITabPanelProps } from '@/components/TabPanel';
-import { Typography } from '@/components/Typography';
+import { TabPanel } from '@/components/TabPanel';
 import { Tabs } from './Tabs';
 
 const meta = {
@@ -34,14 +33,6 @@ const styles = stylex.create({
     padding: '16px',
   },
 });
-
-const TabPanelDemo: React.FC<ITabPanelProps> = ({ children, ...props }) => (
-  <TabPanel {...props}>
-    <div {...stylex.props(styles.tabPanel)}>
-      <Typography>{children}</Typography>
-    </div>
-  </TabPanel>
-);
 
 const TabsDemo: React.FC<ITabsProps> = (props) => (
   <div style={{ width: '600px' }}>
@@ -74,10 +65,18 @@ const TabsDemo: React.FC<ITabsProps> = (props) => (
         />
       </TabList>
 
-      <TabPanelDemo anchor='tab-1'>Content A</TabPanelDemo>
-      <TabPanelDemo anchor='tab-2'>Content B</TabPanelDemo>
-      <TabPanelDemo anchor='tab-3'>Content C</TabPanelDemo>
-      <TabPanelDemo anchor='tab-4'>Content D</TabPanelDemo>
+      <TabPanel sx={styles.tabPanel} anchor='tab-1'>
+        Content A
+      </TabPanel>
+      <TabPanel sx={styles.tabPanel} anchor='tab-2'>
+        Content B
+      </TabPanel>
+      <TabPanel sx={styles.tabPanel} anchor='tab-3'>
+        Content C
+      </TabPanel>
+      <TabPanel sx={styles.tabPanel} anchor='tab-4'>
+        Content D
+      </TabPanel>
     </Tabs>
   </div>
 );
