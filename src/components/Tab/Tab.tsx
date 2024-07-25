@@ -60,20 +60,19 @@ export const Tab: ITab = forwardRef(function Tab<
     href,
     label,
     anchor,
-    disabled,
+    disabled: disabledProp,
     badge,
     ...other
   } = props as IWithAsProp<ITabOwnProps>;
 
-  const context = useContext(TabContext);
-  const variant = variantProp ?? context?.variant ?? 'primary';
+  const tabContext = useContext(TabContext);
+  const variant = variantProp ?? tabContext?.variant ?? 'primary';
+  const disabled = disabledProp ?? tabContext?.disabled;
 
   const actionRef = useRef<HTMLButtonElement>(null);
   const { visualState, setRef: visualStateRef } = useVisualState(
     visualStateProp,
-    {
-      disabled,
-    },
+    { disabled },
   );
   const handleRef = useMergeRefs([forwardedRef, visualStateRef, actionRef]);
 
@@ -95,22 +94,22 @@ export const Tab: ITab = forwardRef(function Tab<
   const stacked = variant === 'primary';
   const hasLabel = !!label;
   const active = !disabled
-    ? context
-      ? context.anchor !== undefined && context.anchor === anchor
+    ? tabContext
+      ? tabContext.anchor !== undefined && tabContext.anchor === anchor
       : activeProp
     : false;
   const hasIcon = active ? !!activeIcon || !!icon : !!icon;
-  const id = context && anchor ? `${context.id}-${anchor}` : undefined;
+  const id = tabContext && anchor ? `${tabContext.id}-${anchor}` : undefined;
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = useCallback(
     (event) => {
-      context?.onChange(anchor);
+      tabContext?.onChange(anchor);
 
       Promise.resolve(onClick?.(event)).catch((error: Error) => {
         throw error;
       });
     },
-    [onClick, context, anchor],
+    [onClick, tabContext, anchor],
   );
 
   const indicator = useMemo(
@@ -126,10 +125,10 @@ export const Tab: ITab = forwardRef(function Tab<
   useEffect(() => {
     const activeTab = actionRef.current;
     const indicator = indicatorRef.current;
-    if (context && active && activeTab && indicator) {
-      context.onTabActivated(activeTab, indicator);
+    if (tabContext && active && activeTab && indicator) {
+      tabContext.onTabActivated(activeTab, indicator);
     }
-  }, [active, anchor, context]);
+  }, [active, anchor, tabContext]);
 
   const renderIcon = useCallback(
     (): React.ReactNode | null =>

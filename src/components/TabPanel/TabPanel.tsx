@@ -20,13 +20,13 @@ export const TabPanel = forwardRef<HTMLDivElement, ITabPanelProps>(
       [stylesCombinator],
     );
 
-    const context = useContext(TabContext);
+    const tabContext = useContext(TabContext);
 
-    if (context?.anchor !== anchor) {
+    if (tabContext?.disabled || tabContext?.anchor !== anchor) {
       return null;
     }
 
-    const id = context && anchor ? `${context.id}-${anchor}` : undefined;
+    const id = tabContext && anchor ? `${tabContext.id}-${anchor}` : undefined;
 
     return (
       <div

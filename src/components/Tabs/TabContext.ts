@@ -9,6 +9,7 @@ export type ITabContextValue = {
   onTabActivated: (activeTab: HTMLElement, indicator: HTMLElement) => void;
   onChange: (anchor: string | undefined) => IMaybeAsync<IAny>;
   variant?: ITabVariant;
+  disabled?: boolean;
 };
 
 export const TabContext = createContext<ITabContextValue | undefined>(

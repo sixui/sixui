@@ -90,11 +90,29 @@ export const Primary: IStory = {
   },
 };
 
+export const PrimaryDisabled: IStory = {
+  render: (props) => <TabsDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    variant: 'primary',
+    disabled: true,
+  },
+};
+
 export const Secondary: IStory = {
   render: (props) => <TabsDemo {...props} />,
   args: {
     ...defaultArgs,
     variant: 'secondary',
+  },
+};
+
+export const SecondaryDisabled: IStory = {
+  render: (props) => <TabsDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    variant: 'secondary',
+    disabled: true,
   },
 };
 

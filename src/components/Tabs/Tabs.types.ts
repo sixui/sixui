@@ -8,4 +8,5 @@ export type ITabsProps = IOmit<
   onChange?: (anchor: string | undefined) => IMaybeAsync<IAny>;
   defaultAnchor?: string;
   children?: React.ReactNode;
+  disabled?: boolean;
 };

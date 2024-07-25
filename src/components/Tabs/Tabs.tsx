@@ -15,6 +15,7 @@ export const Tabs: React.FC<ITabsProps> = (props) => {
     anchor: anchorProp,
     defaultAnchor,
     id: idProp,
+    disabled,
   } = props;
 
   const [anchor, setAnchor] = useControlledValue({
@@ -93,8 +94,17 @@ export const Tabs: React.FC<ITabsProps> = (props) => {
         setAnchor(anchor);
         onChange?.(anchor);
       },
+      disabled,
     } satisfies ITabContextValue;
-  }, [id, variant, anchor, getIndicatorKeyframes, setAnchor, onChange]);
+  }, [
+    id,
+    variant,
+    anchor,
+    getIndicatorKeyframes,
+    setAnchor,
+    onChange,
+    disabled,
+  ]);
 
   return (
     <TabContext.Provider value={contextValue}>{children}</TabContext.Provider>
