@@ -1,3 +1,15 @@
+# v0.0.362 (Thu Jul 25 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(Tab): prevent default on click ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.361 (Thu Jul 25 2024)
 
 #### ⚠️ Pushed to `main`
