@@ -48,9 +48,9 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
     variant = 'filled',
     children,
     start,
-    end: endProp,
+    end,
     leadingIcon,
-    trailingIcon,
+    trailingIcon: trailingIconProp,
     disabled: disabledProp,
     readOnly,
     label,
@@ -98,7 +98,11 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
     [stylesCombinator, visualState],
   );
 
-  const end = loading ? <CircularProgressIndicator /> : endProp;
+  const trailingIcon = loading ? (
+    <CircularProgressIndicator />
+  ) : (
+    trailingIconProp
+  );
 
   const [refreshErrorAlert, setRefreshErrorAlert] = useState(false);
   const labelAnimationRef = useRef<Animation>();
@@ -572,8 +576,10 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
                   disabled && 'section$start$disabled',
                 )}
               >
-                {start ?? (
+                {leadingIcon ? (
                   <span {...sxf('icon', 'icon$leading')}>{leadingIcon}</span>
+                ) : (
+                  start
                 )}
               </div>
             ) : null}
@@ -644,8 +650,10 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
                   disabled && 'section$end$disabled',
                 )}
               >
-                {end ?? (
+                {trailingIcon ? (
                   <span {...sxf('icon', 'icon$trailing')}>{trailingIcon}</span>
+                ) : (
+                  end
                 )}
               </div>
             ) : null}
