@@ -103,6 +103,7 @@ export const Tab: ITab = forwardRef(function Tab<
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = useCallback(
     (event) => {
+      event.preventDefault();
       tabContext?.onChange(anchor);
 
       Promise.resolve(onClick?.(event)).catch((error: Error) => {
