@@ -1,3 +1,15 @@
+# v0.0.365 (Thu Jul 25 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(useSingleFilterableListBase, useMultiFilterableListBase): items can be updated ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.364 (Thu Jul 25 2024)
 
 #### ⚠️ Pushed to `main`
