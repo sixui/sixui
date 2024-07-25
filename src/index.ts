@@ -90,6 +90,7 @@ export * from './components/Typography';
 export * from './components/VisualState';
 
 // hooks
+export * from './hooks/useControlledValue';
 export * from './hooks/useElementSize';
 export * from './hooks/useId';
 export * from './hooks/useLoaded';
