@@ -55,14 +55,14 @@ export const DisclosureButton = forwardRef<
 
   const expandableContext = useContext(ExpandableContext);
   const disabled = disabledProp ?? expandableContext?.disabled;
-  const togglable = checkable || switchable;
+  const toggleable = checkable || switchable;
   const [checked, setChecked] = useControlledValue({
     controlled: checkedProp,
     default: !!defaultChecked,
     name: 'DisclosureButton',
   });
   const expanded =
-    (expandedProp ?? expandableContext?.expanded) && (!togglable || checked);
+    (expandedProp ?? expandableContext?.expanded) && (!toggleable || checked);
   const icon = expanded ? (
     collapseIcon ? (
       <div {...sxf('icon')}>{collapseIcon}</div>
@@ -84,7 +84,7 @@ export const DisclosureButton = forwardRef<
   );
 
   useEffect(() => {
-    // Panel should be collapsed if DisclosureButton is disabled, or togglable
+    // Panel should be collapsed if DisclosureButton is disabled, or toggleable
     // and not checked.
     if (expandableContext && expanded !== expandableContext.expanded) {
       expandableContext.expand(!!expanded);
@@ -120,7 +120,7 @@ export const DisclosureButton = forwardRef<
           expanded && 'button$expanded',
           switchable && 'button$switchable',
           checkable && 'button$checkable',
-          togglable && !checked && 'button$toggledOff',
+          toggleable && !checked && 'button$toggledOff',
         )}
         innerStyles={{
           ...innerStyles?.listItem,
@@ -130,7 +130,7 @@ export const DisclosureButton = forwardRef<
           ],
         }}
         trailing={
-          !togglable && loading ? (
+          !toggleable && loading ? (
             <IndeterminateCircularProgressIndicator
               styles={[
                 disclosureButtonCircularProgressIndicatorStyles,
@@ -139,9 +139,9 @@ export const DisclosureButton = forwardRef<
             />
           ) : undefined
         }
-        trailingIcon={!togglable && loading ? undefined : icon}
+        trailingIcon={!toggleable && loading ? undefined : icon}
         data-cy={dataCy}
-        disabled={disabled ?? (togglable && !checked)}
+        disabled={disabled ?? (toggleable && !checked)}
         onClick={(event) => {
           expandableContext?.expand(!expanded);
 
@@ -153,7 +153,7 @@ export const DisclosureButton = forwardRef<
         {children}
       </ListItem>
 
-      {togglable ? (
+      {toggleable ? (
         <div {...sxf('toggleContainer')}>
           {switchable ? (
             <Switch
