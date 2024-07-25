@@ -98,6 +98,7 @@ export * from './hooks/usePrevious';
 
 // helpers
 export * from './helpers/types';
+export * from './helpers/colors/getTextContrastColor';
 
 // themes
 export * from './themes/base';
