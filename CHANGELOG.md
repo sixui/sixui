@@ -1,3 +1,15 @@
+# v0.0.368 (Thu Jul 25 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: export getTextContrastColor helper ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.367 (Thu Jul 25 2024)
 
 #### ⚠️ Pushed to `main`
