@@ -2,6 +2,11 @@ import { useMemo, useRef } from 'react';
 
 import type { IFilterableListItem } from '@/components/FilterableList';
 
+const DEFAUL_EMPTY_ITEM: IFilterableListItem = {
+  label: '',
+  value: '',
+};
+
 export type IUseSelectProps = {
   items: Array<IFilterableListItem>;
   itemEmpty: (item: IFilterableListItem) => boolean;
@@ -27,7 +32,9 @@ export const useSelect = (props: IUseSelectProps): IUseSelectResult => {
   const selectedItem = useMemo(
     () =>
       value !== undefined
-        ? (items.find((item) => item.value === value) ?? emptyItem)
+        ? (items.find((item) => item.value === value) ??
+          emptyItem ??
+          DEFAUL_EMPTY_ITEM)
         : undefined,
     [items, value, emptyItem],
   );

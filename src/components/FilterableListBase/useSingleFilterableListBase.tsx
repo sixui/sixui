@@ -48,10 +48,19 @@ export const useSingleFilterableListBase = <
 >(
   props: IUseSingleFilterableListBaseProps<TItem, TElement>,
 ): IUseSingleFilterableListBaseResult<TItem, TElement> => {
+  const {
+    selectedItem: selectedItemProp,
+    defaultItem,
+    itemsEqual,
+    itemRenderer: itemRendererProp,
+    onItemChange,
+    items,
+    itemEmpty,
+  } = props;
   const [createdItems, setCreatedItems] = useState<Array<TItem>>([]);
   const [selectedItem, setSelectedItem] = useControlledValue({
-    controlled: props.selectedItem,
-    default: props.defaultItem,
+    controlled: selectedItemProp,
+    default: defaultItem,
     name: 'useSingleFilterableListBase',
   });
 
@@ -60,12 +69,12 @@ export const useSingleFilterableListBase = <
     itemProps,
   ): React.JSX.Element | null => {
     const selected = executeFilterableItemsEqual(
-      props.itemsEqual,
+      itemsEqual,
       item,
       selectedItem,
     );
 
-    return props.itemRenderer(item, {
+    return itemRendererProp(item, {
       ...itemProps,
       modifiers: {
         ...itemProps.modifiers,
@@ -76,19 +85,19 @@ export const useSingleFilterableListBase = <
 
   const handleItemSelect = (newSelectedItem: TItem): number | undefined => {
     setSelectedItem(newSelectedItem);
-    props.onItemChange?.(newSelectedItem);
+    onItemChange?.(newSelectedItem);
 
     // Delete the old item from the list if it was newly created.
     const step1Result = maybeDeleteCreatedItemFromArrays(
-      props.itemsEqual,
-      props.items,
+      itemsEqual,
+      items,
       createdItems,
       selectedItem,
     );
 
     // Add the new item to the list if it is newly created.
     const step2Result = maybeAddCreatedItemToArrays(
-      props.itemsEqual,
+      itemsEqual,
       step1Result.items,
       step1Result.createdItems,
       newSelectedItem,
@@ -115,38 +124,31 @@ export const useSingleFilterableListBase = <
     ): void => {
       event?.stopPropagation();
 
-      if (selectedItem) {
+      if (selectedItem && !itemEmpty?.(selectedItem)) {
         afterItemsRemove?.([selectedItem], event);
-        const emptyItem = props.itemEmpty
-          ? props.items.find(props.itemEmpty)
-          : undefined;
-        props.onItemChange?.(emptyItem);
+        const emptyItem = itemEmpty ? items.find(itemEmpty) : undefined;
+        onItemChange?.(emptyItem);
         setSelectedItem(emptyItem);
       }
     },
-    [selectedItem, props, setSelectedItem],
+    [selectedItem, itemEmpty, setSelectedItem, onItemChange, items],
   );
 
   useEffect(() => {
     if (
       selectedItem &&
-      !arrayContainsItem(props.itemsEqual, props.items, selectedItem)
+      !itemEmpty?.(selectedItem) &&
+      !arrayContainsItem(itemsEqual, items, selectedItem)
     ) {
       handleClear();
     }
-  }, [
-    props.itemsEqual,
-    props.items,
-    selectedItem,
-    setSelectedItem,
-    handleClear,
-  ]);
+  }, [itemEmpty, items, itemsEqual, selectedItem, handleClear]);
 
   return {
     itemRenderer,
     handleItemSelect,
     handleClear,
-    items: [...props.items, ...createdItems],
+    items: [...items, ...createdItems],
     selectedItem,
   };
 };

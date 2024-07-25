@@ -49,10 +49,18 @@ export type IUseMultiFilterableListBaseResult<
 export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
   props: IUseMultiFilterableListBaseProps<TItem, TElement>,
 ): IUseMultiFilterableListBaseResult<TItem, TElement> => {
+  const {
+    selectedItems: selectedItemsProp,
+    defaultItems,
+    itemsEqual,
+    itemRenderer: itemRendererProp,
+    items,
+    onItemsChange,
+  } = props;
   const [createdItems, setCreatedItems] = useState<Array<TItem>>([]);
   const [selectedItems, setSelectedItems] = useControlledValue({
-    controlled: props.selectedItems,
-    default: props.defaultItems ?? [],
+    controlled: selectedItemsProp,
+    default: defaultItems ?? [],
     name: 'useMultiFilterableListBase',
   });
   const [focusedSelectedItemIndex, setFocusedSelectedItemIndex] =
@@ -62,9 +70,9 @@ export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
     item,
     itemProps,
   ): React.JSX.Element | null => {
-    const selected = arrayContainsItem(props.itemsEqual, selectedItems, item);
+    const selected = arrayContainsItem(itemsEqual, selectedItems, item);
 
-    return props.itemRenderer(item, {
+    return itemRendererProp(item, {
       ...itemProps,
       modifiers: {
         ...itemProps.modifiers,
@@ -82,11 +90,11 @@ export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
   const selectItems = (itemsToSelect: Array<TItem>): Array<TItem> => {
     let nextCreatedItems = createdItems.slice();
     let nextSelectedItems = selectedItems.slice();
-    let nextItems = props.items.slice();
+    let nextItems = items.slice();
 
     itemsToSelect.forEach((itemToSelect) => {
       const results = maybeAddCreatedItemToArrays(
-        props.itemsEqual,
+        itemsEqual,
         nextItems,
         nextCreatedItems,
         itemToSelect,
@@ -96,7 +104,7 @@ export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
       // Avoid re-creating an item that is already selected (the "Create Item"
       // option will be shown even if it matches an already selected item).
       nextSelectedItems = !arrayContainsItem(
-        props.itemsEqual,
+        itemsEqual,
         nextSelectedItems,
         itemToSelect,
       )
@@ -116,8 +124,8 @@ export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
   const deselectItemAtIndex = (index: number): Array<TItem> => {
     const selectedItem = selectedItems[index];
     const { createdItems: nextCreatedItems } = maybeDeleteCreatedItemFromArrays(
-      props.itemsEqual,
-      props.items,
+      itemsEqual,
+      items,
       createdItems,
       selectedItem,
     );
@@ -135,17 +143,17 @@ export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
     if (isItemSelected(selectedItem)) {
       const selectedIndex = getSelectedItemIndex(selectedItem);
       if (selectedIndex !== undefined) {
-        props.onItemsChange?.(deselectItemAtIndex(selectedIndex));
+        onItemsChange?.(deselectItemAtIndex(selectedIndex));
       }
     } else {
-      props.onItemsChange?.(selectItem(selectedItem));
+      onItemsChange?.(selectItem(selectedItem));
     }
 
     return undefined;
   };
 
   const handleItemRemoveAtIndex = (index: number): void => {
-    props.onItemsChange?.(deselectItemAtIndex(index));
+    onItemsChange?.(deselectItemAtIndex(index));
   };
 
   const handleItemRemoveFocused = (): void => {
@@ -202,7 +210,7 @@ export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
     event?.stopPropagation();
 
     if (selectedItems.length) {
-      props.onItemsChange?.([]);
+      onItemsChange?.([]);
       afterItemsRemove(selectedItems, event);
       setSelectedItems([]);
     }
@@ -217,7 +225,7 @@ export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
     handleQueryChange,
     handleClear,
     deselectItemAtIndex,
-    items: [...props.items, ...createdItems],
+    items: [...items, ...createdItems],
     selectedItems,
     focusedSelectedItemIndex,
   };
