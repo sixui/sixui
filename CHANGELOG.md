@@ -1,3 +1,15 @@
+# v0.0.360 (Thu Jul 25 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(Tabs): can be entirely disabled ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.359 (Wed Jul 24 2024)
 
 #### ⚠️ Pushed to `main`
