@@ -1,3 +1,15 @@
+# v0.0.370 (Thu Jul 25 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(useSelect): bug ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.369 (Thu Jul 25 2024)
 
 #### ⚠️ Pushed to `main`
