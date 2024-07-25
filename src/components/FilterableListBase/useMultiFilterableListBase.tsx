@@ -49,7 +49,6 @@ export type IUseMultiFilterableListBaseResult<
 export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
   props: IUseMultiFilterableListBaseProps<TItem, TElement>,
 ): IUseMultiFilterableListBaseResult<TItem, TElement> => {
-  const [items, setItems] = useState(props.items);
   const [createdItems, setCreatedItems] = useState<Array<TItem>>([]);
   const [selectedItems, setSelectedItems] = useControlledValue({
     controlled: props.selectedItems,
@@ -83,7 +82,7 @@ export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
   const selectItems = (itemsToSelect: Array<TItem>): Array<TItem> => {
     let nextCreatedItems = createdItems.slice();
     let nextSelectedItems = selectedItems.slice();
-    let nextItems = items.slice();
+    let nextItems = props.items.slice();
 
     itemsToSelect.forEach((itemToSelect) => {
       const results = maybeAddCreatedItemToArrays(
@@ -107,7 +106,6 @@ export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
 
     setCreatedItems(nextCreatedItems);
     setSelectedItems(nextSelectedItems);
-    setItems(nextItems);
 
     return nextSelectedItems;
   };
@@ -117,18 +115,16 @@ export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
 
   const deselectItemAtIndex = (index: number): Array<TItem> => {
     const selectedItem = selectedItems[index];
-    const { createdItems: nextCreatedItems, items: nextItems } =
-      maybeDeleteCreatedItemFromArrays(
-        props.itemsEqual,
-        items,
-        createdItems,
-        selectedItem,
-      );
+    const { createdItems: nextCreatedItems } = maybeDeleteCreatedItemFromArrays(
+      props.itemsEqual,
+      props.items,
+      createdItems,
+      selectedItem,
+    );
     const nextSelectedItems = selectedItems.filter((_item, i) => i !== index);
 
     setCreatedItems(nextCreatedItems);
     setSelectedItems(nextSelectedItems);
-    setItems(nextItems);
 
     return nextSelectedItems;
   };
@@ -221,7 +217,7 @@ export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
     handleQueryChange,
     handleClear,
     deselectItemAtIndex,
-    items,
+    items: [...props.items, ...createdItems],
     selectedItems,
     focusedSelectedItemIndex,
   };
