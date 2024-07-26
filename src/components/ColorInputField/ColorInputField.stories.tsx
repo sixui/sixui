@@ -83,12 +83,12 @@ export const WithErrorText: IStory = {
   },
 };
 
-export const Group: IStory = {
+export const PaletteGroup: IStory = {
   render: (props) => (
     <div {...stylex.props(commonStyles.verticalLayout, commonStyles.gap$xl)}>
       <ColorPaletteGroupProvider customColors={['#ff2d55']}>
         <ColorInputField {...props} />
-        <ColorInputField {...props} />
+        <ColorInputField {...props} customColors={['#000000']} />
         <ColorInputField {...props} />
       </ColorPaletteGroupProvider>
     </div>

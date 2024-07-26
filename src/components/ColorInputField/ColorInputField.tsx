@@ -38,6 +38,7 @@ export const ColorInputField = forwardRef<
     defaultValue,
     inputRef: inputRefProp,
     colorPickerRenderer = defaultColorPickerRenderer,
+    customColors: customColorsProp,
     onColorsQuantized,
     quantizeColorCount = 8,
     ...other
@@ -95,6 +96,11 @@ export const ColorInputField = forwardRef<
     fileReader.readAsDataURL(file);
   };
 
+  const customColors = [
+    ...(customColorsProp ?? []),
+    ...((colorPaletteGroupContext ? undefined : quantizedColors) ?? []),
+  ];
+
   return (
     <>
       <input
@@ -113,7 +119,7 @@ export const ColorInputField = forwardRef<
               close();
             },
             selectedColor: value,
-            customColors: quantizedColors ?? [],
+            customColors,
           })
         }
         placement={placement}

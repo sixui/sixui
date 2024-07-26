@@ -2,7 +2,8 @@ import { createContext } from 'react';
 
 export type IColorPaletteGroupContextValue = {
   customColors?: Array<string>;
-  setQuantizedPalette: (quantizedPalette: Array<string>) => void;
+  quantizedPalette?: Array<string>;
+  setQuantizedPalette: (palette: Array<string>) => void;
 };
 
 export const ColorPaletteGroupContext = createContext<

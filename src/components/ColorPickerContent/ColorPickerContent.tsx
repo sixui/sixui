@@ -42,9 +42,11 @@ export const ColorPickerContent = forwardRef<
     [...new Set(colors)].slice(0, palettes.length);
 
   const colorPaletteGroupContext = useContext(ColorPaletteGroupContext);
-  const customColors = mergeColors(
-    colorPaletteGroupContext?.customColors ?? customColorsProp ?? [],
-  );
+  const customColors = mergeColors([
+    ...(customColorsProp ?? []),
+    ...(colorPaletteGroupContext?.customColors ?? []),
+    ...(colorPaletteGroupContext?.quantizedPalette ?? []),
+  ]);
 
   return (
     <PaperBase

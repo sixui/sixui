@@ -13,7 +13,8 @@ export const ColorPaletteGroupProvider: React.FC<
   const [quantizedPalette, setQuantizedPalette] = useState<Array<string>>();
 
   const contextValue: IColorPaletteGroupContextValue = {
-    customColors: [...(customColors ?? []), ...(quantizedPalette ?? [])],
+    customColors,
+    quantizedPalette,
     setQuantizedPalette,
   };
 
