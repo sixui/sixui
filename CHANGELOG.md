@@ -1,3 +1,15 @@
+# v0.0.383 (Fri Jul 26 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(ThemeSetterContext): memoize context value ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.382 (Fri Jul 26 2024)
 
 #### ⚠️ Pushed to `main`
