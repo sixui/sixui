@@ -23,5 +23,6 @@ export type IColorInputFieldProps = IContainerProps<IColorInputFieldStylesKey> &
     colorPickerRenderer?: (
       props: IColorInputFieldColorPickerRendererProps,
     ) => JSX.Element;
+    onColorsQuantized?: (colors: Array<string>) => void;
     quantizeColorCount?: number;
   };

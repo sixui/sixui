@@ -1,4 +1,4 @@
-import { forwardRef, useMemo, useRef, useState } from 'react';
+import { forwardRef, useContext, useMemo, useRef, useState } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 import { asArray } from '@olivierpascal/helpers';
 
@@ -18,6 +18,7 @@ import { IconButton } from '~/components/IconButton';
 import { SvgIcon } from '~/components/SvgIcon';
 import { iconPhoto } from '~/assets/icons';
 import { extractPaletteFromImage } from '~/helpers/colors/extractPaletteFromImage';
+import { ColorPaletteGroupContext } from '~/components/ColorPaletteGroup';
 import { colorInputFieldStyles } from './ColorInputField.styles';
 
 const defaultColorPickerRenderer = (
@@ -37,6 +38,7 @@ export const ColorInputField = forwardRef<
     defaultValue,
     inputRef: inputRefProp,
     colorPickerRenderer = defaultColorPickerRenderer,
+    onColorsQuantized,
     quantizeColorCount = 8,
     ...other
   } = props;
@@ -60,6 +62,8 @@ export const ColorInputField = forwardRef<
   const inputHandleRef = useMergeRefs([inputRef, ...asArray(inputRefProp)]);
   const inputFileRef = useRef<HTMLInputElement>(null);
 
+  const colorPaletteGroupContext = useContext(ColorPaletteGroupContext);
+
   const handleUploadImage: React.MouseEventHandler = () => {
     inputFileRef.current?.click();
   };
@@ -80,9 +84,11 @@ export const ColorInputField = forwardRef<
       const image = new Image();
       image.src = fileReader.result as string;
       void extractPaletteFromImage(image, quantizeColorCount)
-        .then((palette) => {
-          setQuantizedColors(palette);
-          setValue(palette[0]);
+        .then((quantizedPalette) => {
+          setQuantizedColors(quantizedPalette);
+          setValue(quantizedPalette[0]);
+          onColorsQuantized?.(quantizedPalette);
+          colorPaletteGroupContext?.setQuantizedPalette(quantizedPalette);
         })
         .finally(() => setIsQuantizing(false));
     };

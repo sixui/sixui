@@ -15,6 +15,7 @@ export * from './components/Chip';
 export * from './components/CircularProgressIndicator';
 export * from './components/ColorButton';
 export * from './components/ColorInputField';
+export * from './components/ColorPaletteGroup';
 export * from './components/ColorScheme';
 export * from './components/ColorTag';
 export * from './components/ComponentShowcase';

@@ -1,4 +1,4 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef, useContext, useMemo } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import type { IColorPickerContentProps } from './ColorPickerContent.types';
@@ -9,6 +9,7 @@ import { PaperBase } from '~/components/PaperBase';
 import { commonStyles } from '~/helpers/commonStyles';
 import { Divider } from '~/components/Divider';
 import { ColorButton } from '~/components/ColorButton';
+import { ColorPaletteGroupContext } from '~/components/ColorPaletteGroup';
 import { basicTemplateStyles } from './ColorPickerContent.styles';
 
 export const ColorPickerContent = forwardRef<
@@ -20,7 +21,7 @@ export const ColorPickerContent = forwardRef<
     sx,
     innerStyles,
     selectedColor,
-    customColors,
+    customColors: customColorsProp,
     onClick,
     palettes,
     children,
@@ -35,6 +36,14 @@ export const ColorPickerContent = forwardRef<
   const sxf = useMemo(
     () => stylePropsFactory(stylesCombinator),
     [stylesCombinator],
+  );
+
+  const mergeColors = (colors: Array<string>): Array<string> =>
+    [...new Set(colors)].slice(0, palettes.length);
+
+  const colorPaletteGroupContext = useContext(ColorPaletteGroupContext);
+  const customColors = mergeColors(
+    colorPaletteGroupContext?.customColors ?? customColorsProp ?? [],
   );
 
   return (
