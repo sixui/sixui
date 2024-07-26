@@ -19,4 +19,5 @@ export type IHctColorPickerContentProps = IContainerProps &
     sourceColor?: string;
     hueCount?: number;
     tones?: Array<number>;
+    hideNeutral?: boolean;
   };

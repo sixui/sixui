@@ -19,5 +19,5 @@ export type IHslColorPickerContentProps = IContainerProps &
     hueCount?: number;
     saturation?: number;
     lightnesses?: Array<number>;
-    noGrayscale?: boolean;
+    hideNeutral?: boolean;
   };

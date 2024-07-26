@@ -19,11 +19,11 @@ export const Basic: IStory = {
   args: defaultArgs,
 };
 
-export const NoGrayscale: IStory = {
+export const HideNeutral: IStory = {
   render: (props) => <HslColorPickerContent {...props} />,
   args: {
     ...defaultArgs,
-    noGrayscale: true,
+    hideNeutral: true,
   },
 };
 

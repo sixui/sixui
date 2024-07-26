@@ -19,6 +19,14 @@ export const Basic: IStory = {
   args: defaultArgs,
 };
 
+export const HideNeutral: IStory = {
+  render: (props) => <HctColorPickerContent {...props} />,
+  args: {
+    ...defaultArgs,
+    hideNeutral: true,
+  },
+};
+
 export const CustomSourceColor: IStory = {
   render: (props) => <HctColorPickerContent {...props} />,
   args: {

@@ -14,7 +14,7 @@ export const HslColorPickerContent = forwardRef<
     hueCount = 8,
     saturation = 80,
     lightnesses = [80, 65, 50, 35, 20],
-    noGrayscale,
+    hideNeutral,
     ...other
   } = props;
 
@@ -24,7 +24,7 @@ export const HslColorPickerContent = forwardRef<
     lightnesses,
   );
 
-  if (!noGrayscale) {
+  if (!hideNeutral) {
     palettes.push(
       generateAnalogousColorPalette(
         0,

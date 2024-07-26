@@ -14,6 +14,7 @@ export const HctColorPickerContent = forwardRef<
     sourceColor: sourceColorProp,
     hueCount = 8,
     tones = [85, 70, 55, 40, 25],
+    hideNeutral,
     ...other
   } = props;
 
@@ -23,7 +24,12 @@ export const HctColorPickerContent = forwardRef<
     sourceColorProp ??
     themeContext.theme?.source.color ??
     baseTheme.source.color;
-  const palettes = generateTonalColorPalettes(sourceColor, hueCount, tones);
+  const palettes = generateTonalColorPalettes(
+    sourceColor,
+    hueCount,
+    tones,
+    hideNeutral,
+  );
 
   return (
     <ColorPickerContent
