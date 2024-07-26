@@ -1,3 +1,15 @@
+# v0.0.376 (Fri Jul 26 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: ColorPaletteGroup ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.375 (Fri Jul 26 2024)
 
 #### ⚠️ Pushed to `main`
