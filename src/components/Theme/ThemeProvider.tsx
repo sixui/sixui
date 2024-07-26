@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import type { IThemeProviderProps } from './ThemeProvider.types';
+import type { ITheme } from '~/themes/base';
 import { ThemeContext } from './ThemeContext';
 import { themeProviderStyles } from './ThemeProvider.styles';
 import { ThemeSetterContext } from './ThemeSetterContext';
@@ -17,12 +18,13 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
   } = props;
   const [theme, setTheme] = useState(themeProp);
 
+  const setThemeCallback = useCallback(
+    (newTheme: ITheme | undefined) => setTheme(newTheme ?? themeProp),
+    [themeProp],
+  );
+
   return (
-    <ThemeSetterContext.Provider
-      value={{
-        setTheme: (newTheme) => setTheme(newTheme ?? themeProp),
-      }}
-    >
+    <ThemeSetterContext.Provider value={{ setTheme: setThemeCallback }}>
       <ThemeContext.Provider
         value={{
           theme,
