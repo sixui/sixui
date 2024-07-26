@@ -1,3 +1,15 @@
+# v0.0.373 (Fri Jul 26 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(HctColorPickerContent): neutral palette ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.372 (Fri Jul 26 2024)
 
 #### ⚠️ Pushed to `main`
