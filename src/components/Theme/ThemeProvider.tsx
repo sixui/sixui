@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import type { IThemeProviderProps } from './ThemeProvider.types';
@@ -5,7 +6,15 @@ import { ThemeContext } from './ThemeContext';
 import { themeProviderStyles } from './ThemeProvider.styles';
 
 export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
-  const { sx, children, theme, settings, componentsStyles, ...other } = props;
+  const {
+    sx,
+    children,
+    theme: themeProp,
+    settings,
+    componentsStyles,
+    ...other
+  } = props;
+  const [theme, setTheme] = useState(themeProp);
 
   return (
     <ThemeContext.Provider
@@ -13,6 +22,7 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
         theme,
         settings,
         componentsStyles,
+        setTheme: (newTheme) => setTheme(newTheme ?? themeProp),
       }}
     >
       <div
