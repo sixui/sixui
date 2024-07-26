@@ -1,4 +1,4 @@
-import type { IContainerProps, IOrientation } from '@/helpers/types';
+import type { IContainerProps, IOrientation } from '~/helpers/types';
 import type { IStepperStylesKey } from './Stepper.styles';
 
 export type IStepperProps = IContainerProps<IStepperStylesKey> & {

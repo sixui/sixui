@@ -1,10 +1,10 @@
 import type {
   IForwardableProps,
   IRendererWithForwardedProps,
-} from '@/helpers/react/forwardablePropsTypes';
-import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
-import type { IContainerProps } from '@/helpers/types';
-import type { IVisualState } from '@/components/VisualState';
+} from '~/helpers/react/forwardablePropsTypes';
+import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
+import type { IContainerProps } from '~/helpers/types';
+import type { IVisualState } from '~/components/VisualState';
 import type { IFieldBaseStylesKey } from './FieldBase.styles';
 
 export const FIELD_BASE_DEFAULT_TAG = 'div';

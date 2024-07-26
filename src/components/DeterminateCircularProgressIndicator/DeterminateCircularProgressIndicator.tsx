@@ -1,14 +1,14 @@
 import { forwardRef, useMemo } from 'react';
 
 import type { IDeterminateCircularProgressIndicatorProps } from './DeterminateCircularProgressIndicator.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
 import {
   circularProgressIndicatorStyles,
   type ICircularProgressIndicatorStylesKey,
-} from '@/components/CircularProgressIndicator';
-import { circularProgressIndicatorTheme } from '@/components/CircularProgressIndicator/CircularProgressIndicator.stylex';
+} from '~/components/CircularProgressIndicator';
+import { circularProgressIndicatorTheme } from '~/components/CircularProgressIndicator/CircularProgressIndicator.stylex';
 import {
   determinateCircularProgressIndicatorStyles,
   type IDeterminateCircularProgressIndicatorStylesKey,

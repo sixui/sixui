@@ -1,10 +1,10 @@
 import { forwardRef, useMemo } from 'react';
 
 import type { IItemProps } from './Item.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { commonStyles } from '@/helpers/commonStyles';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { commonStyles } from '~/helpers/commonStyles';
 import { itemStyles } from './Item.styles';
 import { itemTheme } from './Item.stylex';
 

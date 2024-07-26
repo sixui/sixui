@@ -1,4 +1,4 @@
-import type { IContainerProps } from '@/helpers/types';
+import type { IContainerProps } from '~/helpers/types';
 import type { IItemStylesKey } from './Item.styles';
 
 export type IItemProps = IContainerProps<IItemStylesKey> & {

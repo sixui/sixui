@@ -5,21 +5,21 @@ import { useMergeRefs } from '@floating-ui/react';
 import type {
   IPolymorphicRef,
   IWithAsProp,
-} from '@/helpers/react/polymorphicComponentTypes';
+} from '~/helpers/react/polymorphicComponentTypes';
 import type {
   LIST_ITEM_DEFAULT_TAG,
   IListItemOwnProps,
   IListItemProps,
 } from './ListItem.types';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useVisualState } from '@/components/VisualState';
-import { StateLayer } from '@/components/StateLayer';
-import { FocusRing } from '@/components/FocusRing';
-import { Item } from '@/components/Item';
-import { commonStyles } from '@/helpers/commonStyles';
-import { ListContext } from '@/components/List/ListContext';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useVisualState } from '~/components/VisualState';
+import { StateLayer } from '~/components/StateLayer';
+import { FocusRing } from '~/components/FocusRing';
+import { Item } from '~/components/Item';
+import { commonStyles } from '~/helpers/commonStyles';
+import { ListContext } from '~/components/List/ListContext';
 import { listItemVariantStyles } from './variants';
 import {
   listItemFocusRingStyles,

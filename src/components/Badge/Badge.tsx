@@ -1,9 +1,9 @@
 import { forwardRef, useMemo } from 'react';
 
 import type { IBadgeProps } from './Badge.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { badgeStyles } from './Badge.styles';
 import { badgeTheme } from './Badge.stylex';
 

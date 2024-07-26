@@ -1,4 +1,4 @@
-import { getDisplayName } from '@/helpers/react/getDisplayName';
+import { getDisplayName } from '~/helpers/react/getDisplayName';
 import { isProduction } from '@olivierpascal/helpers';
 
 import { isFragment } from './isFragment';

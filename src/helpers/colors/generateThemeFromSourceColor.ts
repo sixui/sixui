@@ -1,6 +1,6 @@
 import { argbFromHex } from '@material/material-color-utilities';
 
-import type { ITheme } from '@/themes/base';
+import type { ITheme } from '~/themes/base';
 import { IDynamicSchemeVariant } from './getMaterialDynamicSchemeClass';
 import { getRolesFromMaterialScheme } from './getRolesFromMaterialScheme';
 import { getMaterialSchemeFromSourceColor } from './getMaterialSchemeFromSourceColor';

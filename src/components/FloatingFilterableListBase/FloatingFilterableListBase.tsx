@@ -18,26 +18,26 @@ import {
 } from '@floating-ui/react';
 
 import type { IFloatingFilterableListBaseProps } from './FloatingFilterableListBase.types';
-import { isFunction } from '@/helpers/isFunction';
+import { isFunction } from '~/helpers/isFunction';
 import {
   FilterableListBase,
   type IFilterableCreateNewListItemRenderer,
   type IFilterableListItemRenderer,
   type IFilterableListBaseRenderer,
   type IFilterableListItemRendererProps,
-} from '@/components/FilterableListBase';
-import { Portal } from '@/components/Portal';
-import { useControlledValue } from '@/hooks/useControlledValue';
-import { usePrevious } from '@/hooks/usePrevious';
+} from '~/components/FilterableListBase';
+import { Portal } from '~/components/Portal';
+import { useControlledValue } from '~/hooks/useControlledValue';
+import { usePrevious } from '~/hooks/usePrevious';
 import {
   extendFloatingProps,
   type IExtendedFloatingProps,
-} from '@/helpers/extendFloatingProps';
-import { fixedForwardRef } from '@/helpers/fixedForwardRef';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { FloatingTransition } from '@/components/FloatingTransition';
+} from '~/helpers/extendFloatingProps';
+import { fixedForwardRef } from '~/helpers/fixedForwardRef';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { FloatingTransition } from '~/components/FloatingTransition';
 import { floatingFilterableListBaseStyles } from './FloatingFilterableListBase.styles';
 
 export const FloatingFilterableListBase = fixedForwardRef(

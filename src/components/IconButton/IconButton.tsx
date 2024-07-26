@@ -3,15 +3,15 @@ import { forwardRef, useMemo } from 'react';
 import type {
   IPolymorphicRef,
   IWithAsProp,
-} from '@/helpers/react/polymorphicComponentTypes';
+} from '~/helpers/react/polymorphicComponentTypes';
 import type {
   ICON_BUTTON_DEFAULT_TAG,
   IIconButtonOwnProps,
   IIconButtonProps,
 } from './IconButton.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { Button } from '@/components/Button';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { Button } from '~/components/Button';
 import { iconButtonStyles } from './IconButton.styles';
 import { iconButtonVariantStyles } from './variants';
 import { iconButtonTheme } from './IconButton.stylex';

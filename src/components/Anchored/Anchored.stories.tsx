@@ -7,10 +7,10 @@ import {
   ComponentShowcase,
   type IComponentPresentation,
   type IComponentShowcaseProps,
-} from '@/components/ComponentShowcase';
-import { Placeholder } from '@/components/Placeholder';
+} from '~/components/ComponentShowcase';
+import { Placeholder } from '~/components/Placeholder';
 import { Anchored } from './Anchored';
-import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 
 const meta = {
   component: Anchored,

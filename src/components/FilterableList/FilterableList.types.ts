@@ -1,5 +1,5 @@
-import type { IOmit } from '@/helpers/types';
-import type { IFilterableListBaseProps } from '@/components/FilterableListBase';
+import type { IOmit } from '~/helpers/types';
+import type { IFilterableListBaseProps } from '~/components/FilterableListBase';
 
 export type IFilterableListItem = {
   leading?: React.ReactNode;

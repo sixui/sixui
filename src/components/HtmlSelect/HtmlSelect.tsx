@@ -3,17 +3,17 @@ import { useMergeRefs } from '@floating-ui/react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type { IHtmlSelectOption, IHtmlSelectProps } from './HtmlSelect.types';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useVisualState } from '@/components/VisualState';
-import { FieldBase } from '@/components/FieldBase';
-import { SvgIcon } from '@/components/SvgIcon';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useVisualState } from '~/components/VisualState';
+import { FieldBase } from '~/components/FieldBase';
+import { SvgIcon } from '~/components/SvgIcon';
 import {
   htmlSelectFieldBaseStyles,
   htmlSelectStyles,
 } from './HtmlSelect.styles';
-import { iconTriangleDown } from '@/assets/icons';
+import { iconTriangleDown } from '~/assets/icons';
 
 export const HtmlSelect = forwardRef<HTMLSelectElement, IHtmlSelectProps>(
   function HtmlSelect(props, forwardedRef) {

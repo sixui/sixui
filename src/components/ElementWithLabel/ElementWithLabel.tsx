@@ -1,11 +1,11 @@
 import { forwardRef, useMemo } from 'react';
 
 import type { IElementWithLabelProps } from './ElementWithLabel.types';
-import { isFunction } from '@/helpers/isFunction';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { useId } from '@/hooks/useId';
+import { isFunction } from '~/helpers/isFunction';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { useId } from '~/hooks/useId';
 import { elementWithLabelStyles } from './ElementWithLabel.styles';
 import { elementWithLabelTheme } from './ElementWithLabel.stylex';
 

@@ -1,6 +1,6 @@
-import type { IContainerProps } from '@/helpers/types';
+import type { IContainerProps } from '~/helpers/types';
 import type { IDialogContentStylesKey } from './DialogContent.styles';
-import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
+import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
 
 export const DIALOG_CONTENT_DEFAULT_TAG = 'div';
 

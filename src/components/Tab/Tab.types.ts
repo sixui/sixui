@@ -4,13 +4,13 @@ import type {
   ICompiledStyles,
   IAny,
   IMaybeAsync,
-} from '@/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
-import type { IStateLayerStylesKey } from '@/components/StateLayer';
-import type { IFocusRingStylesKey } from '@/components/FocusRing';
-import type { IElevationStylesKey } from '@/components/Elevation';
-import type { IVisualState } from '@/components/VisualState';
-import type { IBadgeProps } from '@/components/Badge';
+} from '~/helpers/types';
+import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
+import type { IStateLayerStylesKey } from '~/components/StateLayer';
+import type { IFocusRingStylesKey } from '~/components/FocusRing';
+import type { IElevationStylesKey } from '~/components/Elevation';
+import type { IVisualState } from '~/components/VisualState';
+import type { IBadgeProps } from '~/components/Badge';
 import type { ITabStylesKey } from './Tab.styles';
 
 export const TAB_DEFAULT_TAG = 'button';

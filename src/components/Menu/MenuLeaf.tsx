@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 import { forwardRef, useContext, useEffect, useRef, useState } from 'react';
-import { isFunction } from '@/helpers/isFunction';
+import { isFunction } from '~/helpers/isFunction';
 import {
   FloatingFocusManager,
   FloatingList,
@@ -27,9 +27,9 @@ import {
 } from '@floating-ui/react';
 
 import type { IMenuProps } from './Menu.types';
-import { MenuList } from '@/components/MenuList';
-import { Portal } from '@/components/Portal';
-import { FloatingTransition } from '@/components/FloatingTransition';
+import { MenuList } from '~/components/MenuList';
+import { Portal } from '~/components/Portal';
+import { FloatingTransition } from '~/components/FloatingTransition';
 import { MenuItemContext } from './MenuItemContext';
 import { MenuContext } from './MenuContext';
 

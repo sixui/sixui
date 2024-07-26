@@ -2,7 +2,7 @@ import stylex from '@stylexjs/stylex';
 
 import type { ITone } from './TonalPalette.types';
 import type { ITonalPalettesProps } from './TonalPalettes.types';
-import { tonalPalettesTokens } from '@/themes/base/tonalPalettes.stylex';
+import { tonalPalettesTokens } from '~/themes/base/tonalPalettes.stylex';
 import { tonalPalettesStyles } from './TonalPalettes.styles';
 import { TonalPalette } from './TonalPalette';
 

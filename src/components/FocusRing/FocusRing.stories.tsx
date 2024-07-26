@@ -4,10 +4,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
 import type { IFocusRingProps } from './FocusRing.types';
-import { ComponentShowcase } from '@/components/ComponentShowcase';
-import { Placeholder } from '@/components/Placeholder';
-import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
-import { shapeTokens } from '@/themes/base/shape.stylex';
+import { ComponentShowcase } from '~/components/ComponentShowcase';
+import { Placeholder } from '~/components/Placeholder';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { shapeTokens } from '~/themes/base/shape.stylex';
 import { FocusRing } from './FocusRing';
 import { focusRingTokens } from './FocusRing.stylex';
 

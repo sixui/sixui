@@ -6,17 +6,17 @@ import type { IOptionCardOwnProps, IOptionCardProps } from './OptionCard.types';
 import type {
   IPolymorphicRef,
   IWithAsProp,
-} from '@/helpers/react/polymorphicComponentTypes';
-import { isFunction } from '@/helpers/isFunction';
-import { CardContent } from '@/components/CardContent';
-import { Card } from '@/components/Card';
-import { ElementWithLabel } from '@/components/ElementWithLabel';
-import { useControlledValue } from '@/hooks/useControlledValue';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { RadioGroupContext } from '@/components/RadioGroup';
-import { commonStyles } from '@/helpers/commonStyles';
+} from '~/helpers/react/polymorphicComponentTypes';
+import { isFunction } from '~/helpers/isFunction';
+import { CardContent } from '~/components/CardContent';
+import { Card } from '~/components/Card';
+import { ElementWithLabel } from '~/components/ElementWithLabel';
+import { useControlledValue } from '~/hooks/useControlledValue';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { RadioGroupContext } from '~/components/RadioGroup';
+import { commonStyles } from '~/helpers/commonStyles';
 import { optionCardCardStyles, optionCardStyles } from './OptionCard.styles';
 import { optionCardTheme } from './OptionCard.stylex';
 

@@ -1,5 +1,5 @@
-import type { IContainerProps } from '@/helpers/types';
-import type { IVisualState } from '@/components/VisualState';
+import type { IContainerProps } from '~/helpers/types';
+import type { IVisualState } from '~/components/VisualState';
 import type { IFocusRingStylesKey } from './FocusRing.styles';
 
 export type IFocusRingProps = IContainerProps<IFocusRingStylesKey> & {

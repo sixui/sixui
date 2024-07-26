@@ -1,6 +1,6 @@
 import type { FloatingContext, FloatingOverlayProps } from '@floating-ui/react';
 
-import type { IContainerProps } from '@/helpers/types';
+import type { IContainerProps } from '~/helpers/types';
 import type { IScrimStylesKey } from './Scrim.styles';
 
 export type IScrimVariant = 'darken' | 'lighten';

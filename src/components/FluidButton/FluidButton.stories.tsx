@@ -6,8 +6,8 @@ import type { IFluidButtonOwnProps } from './FluidButton.types';
 import {
   ComponentShowcase,
   type IComponentPresentation,
-} from '@/components/ComponentShowcase';
-import { Typography } from '@/components/Typography';
+} from '~/components/ComponentShowcase';
+import { Typography } from '~/components/Typography';
 import { FluidButton } from './FluidButton';
 
 const meta = {

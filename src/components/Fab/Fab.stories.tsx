@@ -3,11 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 import type { IFabProps, IFabOwnProps } from './Fab.types';
-import { sbHandleEvent } from '@/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '@/components/ComponentShowcase';
+} from '~/components/ComponentShowcase';
 import { Fab } from './Fab';
 
 // https://m3.material.io/components/floating-action-button/overview

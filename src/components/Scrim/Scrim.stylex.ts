@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 
 const vars = {
   containerColor$darken: `color-mix(in srgb, ${colorSchemeTokens.scrim} 50%, transparent)`,

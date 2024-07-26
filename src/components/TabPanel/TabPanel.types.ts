@@ -1,5 +1,5 @@
-import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
-import type { IContainerProps } from '@/helpers/types';
+import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
+import type { IContainerProps } from '~/helpers/types';
 import type { ITabPanelStylesKey } from './TabPanel.styes';
 
 export const TAB_PANEL_DEFAULT_TAG = 'div';

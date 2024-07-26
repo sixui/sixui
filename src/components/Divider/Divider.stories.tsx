@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
 import type { IDividerProps } from './Divider.types';
-import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { Divider } from './Divider';
 
 // https://m3.material.io/components/divider/

@@ -6,18 +6,18 @@ import type {
   IColorInputFieldColorPickerRendererProps,
   IColorInputFieldProps,
 } from './ColorInputField.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { TextInputField } from '@/components/TextInputField';
-import { PopoverBase } from '@/components/PopoverBase';
-import { useControlledValue } from '@/hooks/useControlledValue';
-import { isValidHexColor } from '@/helpers/colors/isValidHexColor';
-import { ColorTag } from '@/components/ColorTag';
-import { HslColorPickerContent } from '@/components/HslColorPickerContent';
-import { IconButton } from '@/components/IconButton';
-import { SvgIcon } from '@/components/SvgIcon';
-import { iconPhoto } from '@/assets/icons';
-import { extractPaletteFromImage } from '@/helpers/colors/extractPaletteFromImage';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { TextInputField } from '~/components/TextInputField';
+import { PopoverBase } from '~/components/PopoverBase';
+import { useControlledValue } from '~/hooks/useControlledValue';
+import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
+import { ColorTag } from '~/components/ColorTag';
+import { HslColorPickerContent } from '~/components/HslColorPickerContent';
+import { IconButton } from '~/components/IconButton';
+import { SvgIcon } from '~/components/SvgIcon';
+import { iconPhoto } from '~/assets/icons';
+import { extractPaletteFromImage } from '~/helpers/colors/extractPaletteFromImage';
 import { colorInputFieldStyles } from './ColorInputField.styles';
 
 const defaultColorPickerRenderer = (

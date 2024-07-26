@@ -1,4 +1,4 @@
-import type { IContainerProps, IRange } from '@/helpers/types';
+import type { IContainerProps, IRange } from '~/helpers/types';
 import type { ISkeletonStylesKey } from './Skeleton.styles';
 
 export type ISkeletonProps = IContainerProps<ISkeletonStylesKey> & {

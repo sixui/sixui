@@ -4,10 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 
 import type { IButtonBaseProps } from './ButtonBase.types';
-import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
-import { shapeTokens } from '@/themes/base/shape.stylex';
-import { stateLayerTokens } from '@/components/StateLayer/StateLayer.stylex';
-import { focusRingTokens } from '@/components/FocusRing/FocusRing.stylex';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { shapeTokens } from '~/themes/base/shape.stylex';
+import { stateLayerTokens } from '~/components/StateLayer/StateLayer.stylex';
+import { focusRingTokens } from '~/components/FocusRing/FocusRing.stylex';
 import { ButtonBase } from './ButtonBase';
 
 const meta = {

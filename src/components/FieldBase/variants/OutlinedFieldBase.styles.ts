@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
 import { fieldBaseTokens } from '../FieldBase.stylex';
-import { motionTokens } from '@/themes/base/motion.stylex';
-import { shapeTokens } from '@/themes/base/shape.stylex';
+import { motionTokens } from '~/themes/base/motion.stylex';
+import { shapeTokens } from '~/themes/base/shape.stylex';
 
 // https://github.com/material-components/material-web/blob/main/field/internal/_outlined-field.scss
 

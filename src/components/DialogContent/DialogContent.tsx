@@ -12,12 +12,12 @@ import { useMergeRefs } from '@floating-ui/react';
 import type {
   IPolymorphicRef,
   IWithAsProp,
-} from '@/helpers/react/polymorphicComponentTypes';
-import { isFunction } from '@/helpers/isFunction';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { Divider } from '@/components/Divider';
+} from '~/helpers/react/polymorphicComponentTypes';
+import { isFunction } from '~/helpers/isFunction';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { Divider } from '~/components/Divider';
 import {
   DIALOG_CONTENT_DEFAULT_TAG,
   type IDialogContentOwnProps,

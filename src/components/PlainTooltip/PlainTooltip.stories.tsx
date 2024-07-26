@@ -6,9 +6,9 @@ import type { IPlainTooltipProps } from './PlainTooltip.types';
 import {
   ComponentShowcase,
   type IComponentPresentation,
-} from '@/components/ComponentShowcase';
-import { IconButton } from '@/components/IconButton';
-import { sbHandleEvent } from '@/helpers/sbHandleEvent';
+} from '~/components/ComponentShowcase';
+import { IconButton } from '~/components/IconButton';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { PlainTooltip } from './PlainTooltip';
 
 const meta = {

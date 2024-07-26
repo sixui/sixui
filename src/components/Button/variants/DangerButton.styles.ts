@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
-import { elevationTokens } from '@/components/Elevation/Elevation.stylex';
-import { stateTokens } from '@/themes/base/state.stylex';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { elevationTokens } from '~/components/Elevation/Elevation.stylex';
+import { stateTokens } from '~/themes/base/state.stylex';
 import { buttonTokens } from '../Button.stylex';
 
 export const dangerButtonStyles = stylex.create({

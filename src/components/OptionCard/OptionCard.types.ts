@@ -4,9 +4,9 @@ import type {
   IContainerProps,
   IMaybeAsync,
   IZeroOrMore,
-} from '@/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
-import type { ICardStylesKey } from '@/components/Card';
+} from '~/helpers/types';
+import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
+import type { ICardStylesKey } from '~/components/Card';
 import type { IOptionCardStylesKey } from './OptionCard.styles';
 
 export type IOptionCardControlRenderProps = {

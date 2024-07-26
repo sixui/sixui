@@ -3,11 +3,11 @@ import type {
   ICompiledStyles,
   IContainerProps,
   IOmit,
-} from '@/helpers/types';
+} from '~/helpers/types';
 import type {
   IFluidButtonOwnProps,
   IFluidButtonStylesKey,
-} from '@/components/FluidButton';
+} from '~/components/FluidButton';
 import type { ICopyableTextStylesKey } from './CopyableText.styles';
 
 export type ICopyableTextTriggerRenderProps = {

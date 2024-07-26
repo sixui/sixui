@@ -3,14 +3,14 @@ import type {
   IZeroOrMore,
   ICompiledStyles,
   IOmit,
-} from '@/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
+} from '~/helpers/types';
+import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
 import type { IFieldStylesKey } from './Field.styles';
 import {
   FIELD_BASE_DEFAULT_TAG,
   type IFieldBaseStylesKey,
   type IFieldBaseOwnProps,
-} from '@/components/FieldBase';
+} from '~/components/FieldBase';
 
 export const FIELD_DEFAULT_TAG = FIELD_BASE_DEFAULT_TAG;
 

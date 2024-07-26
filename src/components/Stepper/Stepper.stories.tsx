@@ -4,13 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
 import type { IStepperProps } from './Stepper.types';
-import { isFunction } from '@/helpers/isFunction';
-import { Step, type IStepProps } from '@/components/Step';
-import { sbHandleEvent } from '@/helpers/sbHandleEvent';
-import { ComponentShowcase } from '@/components/ComponentShowcase';
-import { stepTokens } from '@/components/Step/Step.stylex';
+import { isFunction } from '~/helpers/isFunction';
+import { Step, type IStepProps } from '~/components/Step';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { ComponentShowcase } from '~/components/ComponentShowcase';
+import { stepTokens } from '~/components/Step/Step.stylex';
 import { createSequence } from '@olivierpascal/helpers';
-import { StepConnector } from '@/components/StepConnector';
+import { StepConnector } from '~/components/StepConnector';
 import { Stepper } from './Stepper';
 
 const meta = {

@@ -1,10 +1,10 @@
 import { forwardRef, useMemo } from 'react';
 
 import type { ICardMediaProps } from './CardMedia.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { commonStyles } from '@/helpers/commonStyles';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { commonStyles } from '~/helpers/commonStyles';
 import { cardMediaStyles } from './CardMedia.styles';
 import { cardMediaTheme } from './CardMedia.stylex';
 

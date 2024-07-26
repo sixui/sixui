@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { stepTokens } from '@/components/Step/Step.stylex';
+import { stepTokens } from '~/components/Step/Step.stylex';
 import { stepConnectorTokens } from './StepConnector.stylex';
 
 export type IStepConnectorStylesKey = keyof typeof stepConnectorStyles;

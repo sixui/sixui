@@ -1,5 +1,5 @@
-import type { IContainerProps } from '@/helpers/types';
-import type { IVisualState } from '@/components/VisualState';
+import type { IContainerProps } from '~/helpers/types';
+import type { IVisualState } from '~/components/VisualState';
 import type { IStateLayerStylesKey } from './StateLayer.styles';
 
 export type IStateLayerProps = IContainerProps<IStateLayerStylesKey> & {

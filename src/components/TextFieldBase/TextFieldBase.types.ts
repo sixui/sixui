@@ -3,18 +3,18 @@ import type {
   IZeroOrMore,
   ICompiledStyles,
   IOmit,
-} from '@/helpers/types';
+} from '~/helpers/types';
 import type {
   IFieldBaseOwnProps,
   IFieldBaseStylesKey,
-} from '@/components/FieldBase';
+} from '~/components/FieldBase';
 import type { ITextFieldBaseStylesKey } from './TextFieldBase.styles';
-import type { IStyleProps } from '@/helpers/stylePropsFactory';
-import type { IControlledValueProps } from '@/hooks/useControlledValue';
+import type { IStyleProps } from '~/helpers/stylePropsFactory';
+import type { IControlledValueProps } from '~/hooks/useControlledValue';
 import type {
   IRendererWithForwardedProps,
   IForwardableProps,
-} from '@/helpers/react/forwardablePropsTypes';
+} from '~/helpers/react/forwardablePropsTypes';
 
 export type ITextFieldBaseModifiers = {
   /**

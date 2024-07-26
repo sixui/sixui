@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
-import { shapeTokens } from '@/themes/base/shape.stylex';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { shapeTokens } from '~/themes/base/shape.stylex';
 import { buttonTokens } from '../Button.stylex';
 
 export const snackbarButtonStyles = stylex.create({

@@ -1,9 +1,8 @@
 import stylex from '@stylexjs/stylex';
-import { ThemeProvider } from '@/components/Theme';
-import { theme } from '@/themes/base';
-import '@/styles/main.css';
+import { ThemeProvider } from '~/components/Theme';
+import '~/styles/main.css';
 
-import { Checkbox } from '@/components/Checkbox';
+import { Checkbox } from '~/components/Checkbox';
 
 const styles = stylex.create({
   host: {

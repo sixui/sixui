@@ -4,11 +4,11 @@ import { faEnvelope as faEnvelopeSolid } from '@fortawesome/free-solid-svg-icons
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
 import type { ITabOwnProps } from './Tab.types';
-import { sbHandleEvent } from '@/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '@/components/ComponentShowcase';
+} from '~/components/ComponentShowcase';
 import { Tab } from './Tab';
 
 // https://m3.material.io/components/tabs/overview

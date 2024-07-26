@@ -5,10 +5,10 @@ import stylex from '@stylexjs/stylex';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '@/components/ComponentShowcase';
+} from '~/components/ComponentShowcase';
 import type { IStateLayerProps } from './StateLayer.types';
-import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
-import { shapeTokens } from '@/themes/base/shape.stylex';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { shapeTokens } from '~/themes/base/shape.stylex';
 import { StateLayer } from './StateLayer';
 
 // https://material-web.dev/components/ripple/

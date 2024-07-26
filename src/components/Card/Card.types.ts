@@ -4,12 +4,12 @@ import type {
   ICompiledStyles,
   IMaybeAsync,
   IAny,
-} from '@/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
-import type { IElevationStylesKey } from '@/components/Elevation';
-import type { IStateLayerStylesKey } from '@/components/StateLayer';
-import type { IFocusRingStylesKey } from '@/components/FocusRing';
-import type { IVisualState } from '@/components/VisualState';
+} from '~/helpers/types';
+import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
+import type { IElevationStylesKey } from '~/components/Elevation';
+import type { IStateLayerStylesKey } from '~/components/StateLayer';
+import type { IFocusRingStylesKey } from '~/components/FocusRing';
+import type { IVisualState } from '~/components/VisualState';
 import type { ICardStylesKey } from './Card.styles';
 
 export type ICardVariant = 'elevated' | 'filled' | 'outlined';

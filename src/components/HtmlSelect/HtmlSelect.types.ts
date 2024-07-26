@@ -1,12 +1,12 @@
 import type {
   IFieldBaseOwnProps,
   IFieldBaseStylesKey,
-} from '@/components/FieldBase';
+} from '~/components/FieldBase';
 import type {
   ICompiledStyles,
   IContainerProps,
   IZeroOrMore,
-} from '@/helpers/types';
+} from '~/helpers/types';
 import type { IHtmlSelectStylesKey } from './HtmlSelect.styles';
 
 export type IHtmlSelectOption = {

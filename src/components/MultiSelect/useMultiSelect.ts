@@ -1,6 +1,6 @@
 import { useMemo, useRef } from 'react';
 
-import type { IFilterableListItem } from '@/components/FilterableList';
+import type { IFilterableListItem } from '~/components/FilterableList';
 
 export type IUseSelectProps = {
   items: Array<IFilterableListItem>;

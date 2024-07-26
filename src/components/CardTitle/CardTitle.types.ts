@@ -1,4 +1,4 @@
-import type { IContainerProps } from '@/helpers/types';
+import type { IContainerProps } from '~/helpers/types';
 import type { ICardTitleStylesKey } from './CardTitle.styles';
 
 export type ICardTitleProps = IContainerProps<ICardTitleStylesKey> & {

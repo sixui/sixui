@@ -2,14 +2,14 @@ import { forwardRef, useMemo, useState } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { ICopyableTextProps } from './CopyableText.types';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { copyToClipboard } from '@/helpers/copyToClipboard';
-import { PlainTooltip } from '@/components/PlainTooltip';
-import { FluidButton } from '@/components/FluidButton';
-import { SvgIcon } from '@/components/SvgIcon';
-import { iconCopyToCliboard } from '@/assets/icons';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { copyToClipboard } from '~/helpers/copyToClipboard';
+import { PlainTooltip } from '~/components/PlainTooltip';
+import { FluidButton } from '~/components/FluidButton';
+import { SvgIcon } from '~/components/SvgIcon';
+import { iconCopyToCliboard } from '~/assets/icons';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { copyableTextStyles } from './CopyableText.styles';
 
 export const CopyableText = forwardRef<HTMLElement, ICopyableTextProps>(

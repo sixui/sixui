@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { motionTokens } from '@/themes/base/motion.stylex';
+import { motionTokens } from '~/themes/base/motion.stylex';
 import { scrimTokens } from './Scrim.stylex';
 
 export type IScrimStylesKey = keyof typeof scrimStyles;

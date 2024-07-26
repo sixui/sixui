@@ -1,15 +1,15 @@
-import type { IContainerProps, IOmit, IOrientation } from '@/helpers/types';
+import type { IContainerProps, IOmit, IOrientation } from '~/helpers/types';
 import type { Placement, ReferenceType } from '@floating-ui/react';
 
-import type { IFilterableListBaseProps } from '@/components/FilterableListBase';
+import type { IFilterableListBaseProps } from '~/components/FilterableListBase';
 import type {
   IExtendedFloatingProps,
   IExtendedHtmlFloatingProps,
-} from '@/helpers/extendFloatingProps';
+} from '~/helpers/extendFloatingProps';
 import type {
   IRendererWithForwardedProps,
   IForwardableProps,
-} from '@/helpers/react/forwardablePropsTypes';
+} from '~/helpers/react/forwardablePropsTypes';
 import type { IFloatingFilterableListBaseStylesKey } from './FloatingFilterableListBase.styles';
 
 export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {

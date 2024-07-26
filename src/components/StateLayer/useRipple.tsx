@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import type { IVisualState } from '@/components/VisualState';
-import type { IPoint } from '@/helpers/types';
-import { EASING } from '@/helpers/animation';
+import type { IVisualState } from '~/components/VisualState';
+import type { IPoint } from '~/helpers/types';
+import { EASING } from '~/helpers/animation';
 
 // https://github.com/material-components/material-web/blob/main/ripple/internal/ripple.ts
 

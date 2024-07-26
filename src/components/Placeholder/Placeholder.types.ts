@@ -1,4 +1,4 @@
-import type { IContainerProps } from '@/helpers/types';
+import type { IContainerProps } from '~/helpers/types';
 import type { IPlaceholderStylesKey } from './Placeholder.styles';
 
 export type IPlaceholderProps = IContainerProps<IPlaceholderStylesKey> & {

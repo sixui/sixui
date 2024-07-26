@@ -1,4 +1,4 @@
-import type { IContainerProps } from '@/helpers/types';
+import type { IContainerProps } from '~/helpers/types';
 import type { IColorTagStylesKey } from './ColorTag.styles';
 
 export type IColorTagProps = IContainerProps<IColorTagStylesKey> & {

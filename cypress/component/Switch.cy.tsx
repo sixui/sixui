@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
-import { ThemeProvider } from '@/components/Theme';
-import '@/styles/main.css';
+import { ThemeProvider } from '~/components/Theme';
+import '~/styles/main.css';
 
-import { Switch } from '@/components/Switch';
+import { Switch } from '~/components/Switch';
 
 const styles = stylex.create({
   host: {

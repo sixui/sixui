@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-import type { IAny, IMaybeAsync } from '@/helpers/types';
+import type { IAny, IMaybeAsync } from '~/helpers/types';
 
 export type IRadioGroupContextValue = {
   name?: string;

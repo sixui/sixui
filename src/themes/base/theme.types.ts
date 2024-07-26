@@ -1,4 +1,4 @@
-import type { IColorSchemeVariant } from '@/components/ColorScheme';
+import type { IColorSchemeVariant } from '~/components/ColorScheme';
 import type { IColorScheme } from './colorScheme.types';
 import type { IMotionTheme } from './motion.types';
 import type { IShapeTheme } from './shape.types';

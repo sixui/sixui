@@ -3,16 +3,16 @@ import { forwardRef, useMemo } from 'react';
 import type {
   IPolymorphicRef,
   IWithAsProp,
-} from '@/helpers/react/polymorphicComponentTypes';
+} from '~/helpers/react/polymorphicComponentTypes';
 import type {
   FIELD_DEFAULT_TAG,
   IFieldOwnProps,
   IFieldProps,
 } from './Field.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { FieldBase } from '@/components/FieldBase';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { FieldBase } from '~/components/FieldBase';
 import { fieldStyles } from './Field.styles';
 
 type IField = <TRoot extends React.ElementType = typeof FIELD_DEFAULT_TAG>(

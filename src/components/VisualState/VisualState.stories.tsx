@@ -4,7 +4,7 @@ import type { IVisualStateProps } from './VisualState.types';
 import {
   ComponentShowcase,
   type IComponentPresentation,
-} from '@/components/ComponentShowcase';
+} from '~/components/ComponentShowcase';
 import { VisualState } from './VisualState';
 
 const meta = {

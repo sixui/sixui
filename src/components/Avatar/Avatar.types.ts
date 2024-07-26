@@ -1,4 +1,4 @@
-import type { IContainerProps } from '@/helpers/types';
+import type { IContainerProps } from '~/helpers/types';
 import type { IAvatarStylesKey } from './Avatar.styles';
 
 export type IAvatarProps = IContainerProps<IAvatarStylesKey> &

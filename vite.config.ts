@@ -10,7 +10,7 @@ export default defineConfig({
   resolve: {
     alias: [
       {
-        find: '@',
+        find: '~',
         // eslint-disable-next-line no-undef
         replacement: resolve(__dirname, 'src'),
       },

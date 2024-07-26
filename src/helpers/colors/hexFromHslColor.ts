@@ -1,4 +1,4 @@
-import type { IHslColor } from '@/helpers/types';
+import type { IHslColor } from '~/helpers/types';
 
 export const hexFromHslColor = (hsl: IHslColor): string => {
   const { hue, saturation, lightness } = hsl;

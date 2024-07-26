@@ -5,7 +5,7 @@ import type { IFieldOwnProps } from './Field.types';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '@/components/ComponentShowcase';
+} from '~/components/ComponentShowcase';
 import { Field } from './Field';
 
 // https://github.com/material-components/material-web/blob/main/field/demo/stories.ts

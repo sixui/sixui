@@ -5,18 +5,18 @@ import { useMergeRefs } from '@floating-ui/react';
 import type {
   IPolymorphicRef,
   IWithAsProp,
-} from '@/helpers/react/polymorphicComponentTypes';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { useVisualState } from '@/components/VisualState';
-import { useControlledValue } from '@/hooks/useControlledValue';
-import { FocusRing } from '@/components/FocusRing';
-import { StateLayer } from '@/components/StateLayer';
-import { IndeterminateCircularProgressIndicator } from '@/components/IndeterminateCircularProgressIndicator';
-import { executeLazyPromise } from '@/helpers/executeLazyPromise';
-import { SvgIcon } from '@/components/SvgIcon';
-import { iconCheckMark, iconXMark } from '@/assets/icons';
+} from '~/helpers/react/polymorphicComponentTypes';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { useVisualState } from '~/components/VisualState';
+import { useControlledValue } from '~/hooks/useControlledValue';
+import { FocusRing } from '~/components/FocusRing';
+import { StateLayer } from '~/components/StateLayer';
+import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
+import { executeLazyPromise } from '~/helpers/executeLazyPromise';
+import { SvgIcon } from '~/components/SvgIcon';
+import { iconCheckMark, iconXMark } from '~/assets/icons';
 import {
   SWITCH_DEFAULT_TAG,
   type ISwitchOwnProps,

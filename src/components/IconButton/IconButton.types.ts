@@ -1,6 +1,6 @@
-import type { IContainerProps, IOmit } from '@/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
-import type { IButtonOwnProps } from '@/components/Button';
+import type { IContainerProps, IOmit } from '~/helpers/types';
+import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
+import type { IButtonOwnProps } from '~/components/Button';
 import type { IIconButtonStylesKey } from './IconButton.styles';
 
 export const ICON_BUTTON_DEFAULT_TAG = 'button';

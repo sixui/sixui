@@ -3,11 +3,11 @@ import type {
   IContainerProps,
   IOmit,
   IZeroOrMore,
-} from '@/helpers/types';
+} from '~/helpers/types';
 import type {
   IColorPickerContentProps,
   IColorPickerContentStylesKey,
-} from '@/components/ColorPickerContent';
+} from '~/components/ColorPickerContent';
 
 export type IHctColorPickerContentProps = IContainerProps &
   IOmit<IColorPickerContentProps, 'styles' | 'innerStyles' | 'palettes'> & {

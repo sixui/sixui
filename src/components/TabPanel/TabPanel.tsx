@@ -3,11 +3,11 @@ import { forwardRef, useContext, useMemo } from 'react';
 import type {
   IPolymorphicRef,
   IWithAsProp,
-} from '@/helpers/react/polymorphicComponentTypes';
-import { TabContext } from '@/components/Tabs';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
+} from '~/helpers/react/polymorphicComponentTypes';
+import { TabContext } from '~/components/Tabs';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import {
   TAB_PANEL_DEFAULT_TAG,
   type ITabPanelProps,

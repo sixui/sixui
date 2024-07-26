@@ -1,5 +1,5 @@
-import type { IContainerProps } from '@/helpers/types';
-import type { IVisualState } from '@/components/VisualState';
+import type { IContainerProps } from '~/helpers/types';
+import type { IVisualState } from '~/components/VisualState';
 import type { IVariableTemplateStylesKey } from './VariableTemplate.styles';
 
 export type IVariableTemplateVariant = 'primary' | 'secondary';

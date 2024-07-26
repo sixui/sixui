@@ -1,8 +1,8 @@
 import { forwardRef } from 'react';
 
 import type { ICircularProgressIndicatorProps } from './CircularProgressIndicator.types';
-import { DeterminateCircularProgressIndicator } from '@/components/DeterminateCircularProgressIndicator';
-import { IndeterminateCircularProgressIndicator } from '@/components/IndeterminateCircularProgressIndicator';
+import { DeterminateCircularProgressIndicator } from '~/components/DeterminateCircularProgressIndicator';
+import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
 
 export const CircularProgressIndicator = forwardRef<
   HTMLInputElement,

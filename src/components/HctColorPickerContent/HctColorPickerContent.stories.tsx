@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IHctColorPickerContentProps } from './HctColorPickerContent.types';
-import { sbHandleEvent } from '@/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { HctColorPickerContent } from './HctColorPickerContent';
 
 const meta = {

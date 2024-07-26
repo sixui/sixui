@@ -4,11 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 import type { IDisclosureButtonProps } from './DisclosureButton.types';
-import { sbHandleEvent } from '@/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   ComponentShowcase,
   type IComponentPresentation,
-} from '@/components/ComponentShowcase';
+} from '~/components/ComponentShowcase';
 import { DisclosureButton } from './DisclosureButton';
 
 const meta = {

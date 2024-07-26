@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
 import { radioTokens } from './Radio.stylex';
-import { stateLayerTokens } from '@/components/StateLayer/StateLayer.stylex';
-import { focusRingTokens } from '@/components/FocusRing/FocusRing.stylex';
-import { motionTokens } from '@/themes/base/motion.stylex';
-import { shapeTokens } from '@/themes/base/shape.stylex';
+import { stateLayerTokens } from '~/components/StateLayer/StateLayer.stylex';
+import { focusRingTokens } from '~/components/FocusRing/FocusRing.stylex';
+import { motionTokens } from '~/themes/base/motion.stylex';
+import { shapeTokens } from '~/themes/base/shape.stylex';
 import { radioStateTokens } from './Radio.state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/radio/internal/_radio.scss

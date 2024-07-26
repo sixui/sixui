@@ -1,14 +1,14 @@
 import type { ISelectBaseProps } from './SelectBase.types';
-import { ListItem } from '@/components/ListItem';
-import { TextInputField } from '@/components/TextInputField';
-import { MenuList } from '@/components/MenuList';
-import { Field } from '@/components/Field';
+import { ListItem } from '~/components/ListItem';
+import { TextInputField } from '~/components/TextInputField';
+import { MenuList } from '~/components/MenuList';
+import { Field } from '~/components/Field';
 import {
   useSingleFilterableListBase,
   FilterableListBaseFieldEnd,
-} from '@/components/FilterableListBase';
-import { FloatingFilterableListBase } from '@/components/FloatingFilterableListBase';
-import { fixedForwardRef } from '@/helpers/fixedForwardRef';
+} from '~/components/FilterableListBase';
+import { FloatingFilterableListBase } from '~/components/FloatingFilterableListBase';
+import { fixedForwardRef } from '~/helpers/fixedForwardRef';
 
 export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
   props: ISelectBaseProps<TItem>,

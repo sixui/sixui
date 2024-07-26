@@ -4,16 +4,16 @@ import { asArray } from '@olivierpascal/helpers';
 import type {
   IPolymorphicRef,
   IWithAsProp,
-} from '@/helpers/react/polymorphicComponentTypes';
+} from '~/helpers/react/polymorphicComponentTypes';
 import type {
   FLUID_BUTTON_DEFAULT_TAG,
   IFluidButtonOwnProps,
   IFluidButtonProps,
 } from './FluidButton.types';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { ButtonBase } from '@/components/ButtonBase';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { ButtonBase } from '~/components/ButtonBase';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import {
   fluidButtonButtonBaseStyles,
   fluidButtonFocusRingStyles,

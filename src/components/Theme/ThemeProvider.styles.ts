@@ -1,17 +1,17 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IColorScheme } from '@/themes/base/colorScheme.types';
+import type { IColorScheme } from '~/themes/base/colorScheme.types';
 import type {
   IMotionTheme,
   IShapeTheme,
   ITypeFaceTheme,
   ITypeScaleTheme,
-} from '@/themes/base';
-import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
-import { shapeTokens } from '@/themes/base/shape.stylex';
-import { motionTokens } from '@/themes/base/motion.stylex';
-import { typeFaceTokens } from '@/themes/base/typeFace.stylex';
-import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
+} from '~/themes/base';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { shapeTokens } from '~/themes/base/shape.stylex';
+import { motionTokens } from '~/themes/base/motion.stylex';
+import { typeFaceTokens } from '~/themes/base/typeFace.stylex';
+import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 
 export const themeProviderStyles = stylex.create({
   wrapper: {

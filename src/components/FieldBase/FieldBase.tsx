@@ -8,17 +8,17 @@ import {
 } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
-import type { IPolymorphicRef } from '@/helpers/react/polymorphicComponentTypes';
+import type { IPolymorphicRef } from '~/helpers/react/polymorphicComponentTypes';
 import type { IFilledFieldBaseStylesKey } from './variants/FilledFieldBase.styles';
 import type { IOutlinedFieldBaseStylesKey } from './variants/OutlinedFieldBase.styles';
-import { isFunction } from '@/helpers/isFunction';
-import { useVisualState } from '@/components/VisualState';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { usePrevious } from '@/hooks/usePrevious';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { EASING } from '@/helpers/animation';
-import { CircularProgressIndicator } from '@/components/CircularProgressIndicator';
+import { isFunction } from '~/helpers/isFunction';
+import { useVisualState } from '~/components/VisualState';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { usePrevious } from '~/hooks/usePrevious';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { EASING } from '~/helpers/animation';
+import { CircularProgressIndicator } from '~/components/CircularProgressIndicator';
 import {
   FIELD_BASE_DEFAULT_TAG,
   type IFieldBaseProps,

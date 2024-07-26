@@ -4,7 +4,7 @@ import type {
   IFilterableListItemRenderer,
   IFilterableListItemsEqualProp,
 } from './FilterableListBase.types';
-import { useControlledValue } from '@/hooks/useControlledValue';
+import { useControlledValue } from '~/hooks/useControlledValue';
 import {
   arrayContainsItem,
   maybeAddCreatedItemToArrays,

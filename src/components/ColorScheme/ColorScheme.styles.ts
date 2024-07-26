@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
+import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 
 export const colorSchemeStyles = stylex.create({
   host: {

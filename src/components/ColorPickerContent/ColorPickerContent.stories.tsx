@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IColorPickerContentProps } from './ColorPickerContent.types';
-import { sbHandleEvent } from '@/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { ColorPickerContent } from './ColorPickerContent';
 
 const meta = {

@@ -4,12 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarDays, faImage } from '@fortawesome/free-solid-svg-icons';
 
 import type { IChipProps } from './Chip.types';
-import { IAny } from '@/helpers/types';
-import { sbHandleEvent } from '@/helpers/sbHandleEvent';
+import { IAny } from '~/helpers/types';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   ComponentShowcase,
   type IComponentPresentation,
-} from '@/components/ComponentShowcase';
+} from '~/components/ComponentShowcase';
 import { Chip } from './Chip';
 
 // https://m3.material.io/components/chips/overview

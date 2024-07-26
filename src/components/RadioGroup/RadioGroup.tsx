@@ -5,9 +5,9 @@ import { useMergeRefs } from '@floating-ui/react';
 import type {
   IPolymorphicRef,
   IWithAsProp,
-} from '@/helpers/react/polymorphicComponentTypes';
-import { useId } from '@/hooks/useId';
-import { useControlledValue } from '@/hooks/useControlledValue';
+} from '~/helpers/react/polymorphicComponentTypes';
+import { useId } from '~/hooks/useId';
+import { useControlledValue } from '~/hooks/useControlledValue';
 import {
   RadioGroupContext,
   type IRadioGroupContextValue,

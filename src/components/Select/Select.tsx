@@ -10,9 +10,9 @@ import {
   renderFilterableListItem,
   type IFilterableListItem,
   filterFilterableListItem,
-} from '@/components/FilterableList';
-import { SelectBase } from '@/components/SelectBase';
-import { ListItem } from '@/components/ListItem';
+} from '~/components/FilterableList';
+import { SelectBase } from '~/components/SelectBase';
+import { ListItem } from '~/components/ListItem';
 import { useSelect } from './useSelect';
 
 export const Select = forwardRef<HTMLDivElement, ISelectProps>(

@@ -5,11 +5,11 @@ import { IElementWithLabelProps } from './ElementWithLabel.types';
 import {
   ComponentShowcase,
   type IComponentPresentation,
-} from '@/components/ComponentShowcase';
-import { Checkbox } from '@/components/Checkbox';
-import { Switch } from '@/components/Switch';
-import { Radio } from '@/components/Radio';
-import { TextInputField } from '@/components/TextInputField';
+} from '~/components/ComponentShowcase';
+import { Checkbox } from '~/components/Checkbox';
+import { Switch } from '~/components/Switch';
+import { Radio } from '~/components/Radio';
+import { TextInputField } from '~/components/TextInputField';
 import { ElementWithLabel } from './ElementWithLabel';
 
 const meta = {

@@ -4,10 +4,10 @@ import { asArray } from '@olivierpascal/helpers';
 import type {
   IPolymorphicRef,
   IWithAsProp,
-} from '@/helpers/react/polymorphicComponentTypes';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { Button } from '@/components/Button';
+} from '~/helpers/react/polymorphicComponentTypes';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { Button } from '~/components/Button';
 import {
   FAB_DEFAULT_TAG,
   type IFabProps,

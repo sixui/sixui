@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IColorTagProps } from './ColorTag.types';
-import { ComponentShowcase } from '@/components/ComponentShowcase';
-import { SvgIcon } from '@/components/SvgIcon';
-import { iconCheckMark } from '@/assets/icons';
+import { ComponentShowcase } from '~/components/ComponentShowcase';
+import { SvgIcon } from '~/components/SvgIcon';
+import { iconCheckMark } from '~/assets/icons';
 import { ColorTag } from './ColorTag';
 
 const meta = {

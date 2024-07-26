@@ -2,9 +2,9 @@ import { forwardRef, useMemo } from 'react';
 import { FloatingOverlay, useTransitionStatus } from '@floating-ui/react';
 
 import type { IScrimProps } from './Scrim.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { scrimStyles } from './Scrim.styles';
 import { scrimTheme } from './Scrim.stylex';
 

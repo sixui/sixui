@@ -1,6 +1,6 @@
-import type { IOmit } from '@/helpers/types';
-import type { ISuggestBaseProps } from '@/components/SuggestBase';
-import type { IFilterableListItem } from '@/components/FilterableList';
+import type { IOmit } from '~/helpers/types';
+import type { ISuggestBaseProps } from '~/components/SuggestBase';
+import type { IFilterableListItem } from '~/components/FilterableList';
 
 export type ISuggestOwnProps = {
   value?: string;

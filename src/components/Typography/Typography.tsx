@@ -3,15 +3,15 @@ import { forwardRef, useMemo } from 'react';
 import type {
   IPolymorphicRef,
   IWithAsProp,
-} from '@/helpers/react/polymorphicComponentTypes';
+} from '~/helpers/react/polymorphicComponentTypes';
 import type {
   TYPOGRAPHY_DEFAULT_TAG,
   ITypographyOwnProps,
   ITypographyProps,
 } from './Typography.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { typographyStyles } from './Typography.styles';
 
 export const typographyTagMap = {

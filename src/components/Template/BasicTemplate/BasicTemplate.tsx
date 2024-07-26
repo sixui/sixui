@@ -1,9 +1,9 @@
 import { forwardRef, useMemo } from 'react';
 
 import type { IBasicTemplateProps } from './BasicTemplate.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { basicTemplateStyles } from './BasicTemplate.styles';
 
 export const BasicTemplate = forwardRef<HTMLDivElement, IBasicTemplateProps>(

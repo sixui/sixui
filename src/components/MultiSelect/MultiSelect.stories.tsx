@@ -3,10 +3,10 @@ import { useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import type { IMultiSelectProps } from './MultiSelect.types';
-import { sbHandleEvent } from '@/helpers/sbHandleEvent';
-import { ListItem } from '@/components/ListItem';
-import { fruits } from '@/components/FilterableList/fruits';
-import { commonStyles } from '@/helpers/commonStyles';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { ListItem } from '~/components/ListItem';
+import { fruits } from '~/components/FilterableList/fruits';
+import { commonStyles } from '~/helpers/commonStyles';
 import { MultiSelect } from './MultiSelect';
 
 const meta = {

@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
-import { elevationTokens } from '@/components/Elevation/Elevation.stylex';
-import { focusRingTokens } from '@/components/FocusRing/FocusRing.stylex';
-import { stateLayerTokens } from '@/components/StateLayer/StateLayer.stylex';
+import { elevationTokens } from '~/components/Elevation/Elevation.stylex';
+import { focusRingTokens } from '~/components/FocusRing/FocusRing.stylex';
+import { stateLayerTokens } from '~/components/StateLayer/StateLayer.stylex';
 import { tabTokens } from './Tab.stylex';
 import { tabStateTokens } from './Tab.state.stylex';
 

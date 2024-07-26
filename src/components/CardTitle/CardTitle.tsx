@@ -1,9 +1,9 @@
 import { forwardRef, useMemo } from 'react';
 
 import type { ICardTitleProps } from './CardTitle.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { cardTitleStyles } from './CardTitle.styles';
 import { cardTitleTheme } from './CardTitle.stylex';
 

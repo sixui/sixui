@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faBolt, faCloud } from '@fortawesome/free-solid-svg-icons';
 
 import type { IAvatarProps } from './Avatar.types';
-import { ComponentShowcase } from '@/components/ComponentShowcase';
+import { ComponentShowcase } from '~/components/ComponentShowcase';
 import { Avatar } from './Avatar';
 
 const meta = {

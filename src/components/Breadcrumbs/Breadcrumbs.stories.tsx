@@ -4,7 +4,7 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { createSequence } from '@olivierpascal/helpers';
 
 import type { IBreadcrumbsProps } from './Breadcrumbs.types';
-import { ComponentShowcase } from '@/components/ComponentShowcase';
+import { ComponentShowcase } from '~/components/ComponentShowcase';
 import { Breadcrumbs } from './Breadcrumbs';
 
 const meta = {

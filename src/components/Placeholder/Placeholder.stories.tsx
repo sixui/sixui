@@ -5,7 +5,7 @@ import type { IPlaceholderProps } from './Placeholder.types';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '@/components/ComponentShowcase';
+} from '~/components/ComponentShowcase';
 import { Placeholder } from './Placeholder';
 
 const meta = {

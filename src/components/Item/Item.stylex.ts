@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
-import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-item.scss
 

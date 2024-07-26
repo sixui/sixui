@@ -8,7 +8,7 @@ import type {
 import {
   ComponentShowcase,
   type IComponentPresentation,
-} from '@/components/ComponentShowcase';
+} from '~/components/ComponentShowcase';
 import { VariableTemplate } from './VariableTemplate';
 
 const meta = {

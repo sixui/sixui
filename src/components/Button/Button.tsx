@@ -5,19 +5,19 @@ import { useMergeRefs } from '@floating-ui/react';
 import type {
   IPolymorphicRef,
   IWithAsProp,
-} from '@/helpers/react/polymorphicComponentTypes';
+} from '~/helpers/react/polymorphicComponentTypes';
 import type {
   BUTTON_DEFAULT_TAG,
   IButtonOwnProps,
   IButtonProps,
 } from './Button.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { IndeterminateCircularProgressIndicator } from '@/components/IndeterminateCircularProgressIndicator';
-import { ButtonBase } from '@/components/ButtonBase';
-import { executeLazyPromise } from '@/helpers/executeLazyPromise';
-import { useVisualState } from '@/components/VisualState';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
+import { ButtonBase } from '~/components/ButtonBase';
+import { executeLazyPromise } from '~/helpers/executeLazyPromise';
+import { useVisualState } from '~/components/VisualState';
 import {
   buttonCircularProgressIndicatorStyles,
   buttonElevationStyles,

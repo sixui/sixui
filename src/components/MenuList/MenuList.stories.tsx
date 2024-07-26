@@ -2,10 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
 import type { IMenuListProps } from './MenuList.types';
-import { sbHandleEvent } from '@/helpers/sbHandleEvent';
-import { ListItem } from '@/components/ListItem';
-import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
-import { MenuDivider } from '@/components/MenuDivider';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { ListItem } from '~/components/ListItem';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { MenuDivider } from '~/components/MenuDivider';
 import { MenuList } from './MenuList';
 
 const meta = {

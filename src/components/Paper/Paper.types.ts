@@ -2,8 +2,8 @@ import type {
   IContainerProps,
   IZeroOrMore,
   ICompiledStyles,
-} from '@/helpers/types';
-import type { IPaperBaseStylesKey } from '@/components/PaperBase';
+} from '~/helpers/types';
+import type { IPaperBaseStylesKey } from '~/components/PaperBase';
 import type { IPaperStylesKey } from './Paper.styles';
 
 export type IPaperVariant = 'filled' | 'outlined';

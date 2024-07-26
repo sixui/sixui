@@ -1,9 +1,9 @@
 import { forwardRef, useMemo } from 'react';
 
 import type { IPlaceholderProps } from './Placeholder.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { placeholderStyles } from './Placeholder.styles';
 import { placeholderTheme } from './Placeholder.stylex';
 

@@ -1,9 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 
 import type { IColorSchemeProps } from './ColorScheme.types';
-import { tonalPalettesTokens } from '@/themes/base/tonalPalettes.stylex';
+import { tonalPalettesTokens } from '~/themes/base/tonalPalettes.stylex';
 import { ColorRole } from './ColorRole';
 import { colorSchemeStyles } from './ColorScheme.styles';
 

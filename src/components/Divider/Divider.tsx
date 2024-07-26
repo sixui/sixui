@@ -1,9 +1,9 @@
 import { forwardRef, useMemo } from 'react';
 
 import type { IDividerProps } from './Divider.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { dividerStyles } from './Divider.styles';
 import { dividerTheme } from './Divider.stylex';
 

@@ -4,8 +4,8 @@ import type { ISnackbarContentProps } from './SnackbarContent.types';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '@/components/ComponentShowcase';
-import { sbHandleEvent } from '@/helpers/sbHandleEvent';
+} from '~/components/ComponentShowcase';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { SnackbarContent } from './SnackbarContent';
 
 // https://m3.material.io/components/snackbar

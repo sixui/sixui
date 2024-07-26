@@ -3,9 +3,9 @@ import type {
   IZeroOrMore,
   ICompiledStyles,
   IOmit,
-} from '@/helpers/types';
-import type { IElevationStylesKey } from '@/components/Elevation';
-import type { IListProps } from '@/components/List';
+} from '~/helpers/types';
+import type { IElevationStylesKey } from '~/components/Elevation';
+import type { IListProps } from '~/components/List';
 import type { IMenuListStylesKey } from './MenuList.styles';
 
 export type IMenuListProps = IContainerProps<IMenuListStylesKey> &

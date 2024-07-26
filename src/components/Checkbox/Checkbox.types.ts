@@ -4,13 +4,13 @@ import type {
   ICompiledStyles,
   IMaybeAsync,
   IAny,
-} from '@/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
+} from '~/helpers/types';
+import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
 import type { ICheckboxStylesKey } from './Checkbox.styles';
-import type { IStateLayerStylesKey } from '@/components/StateLayer';
-import type { IFocusRingStylesKey } from '@/components/FocusRing';
-import type { ICircularProgressIndicatorStylesKey } from '@/components/CircularProgressIndicator';
-import type { IVisualState } from '@/components/VisualState';
+import type { IStateLayerStylesKey } from '~/components/StateLayer';
+import type { IFocusRingStylesKey } from '~/components/FocusRing';
+import type { ICircularProgressIndicatorStylesKey } from '~/components/CircularProgressIndicator';
+import type { IVisualState } from '~/components/VisualState';
 
 export const CHECKBOX_DEFAULT_TAG = 'input';
 

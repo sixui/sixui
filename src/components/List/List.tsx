@@ -1,9 +1,9 @@
 import { forwardRef, useMemo } from 'react';
 
 import type { IListProps } from './List.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { ListContext } from './ListContext';
 import { listStyles } from './List.styles';
 import { listTheme } from './List.stylex';

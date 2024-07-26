@@ -1,9 +1,9 @@
 import { forwardRef, useMemo } from 'react';
 
 import type { IPlainTooltipContentProps } from './PlainTooltipContent.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { plainTooltipContentStyles } from './PlainTooltipContent.styles';
 import { plainTooltipContentTheme } from './PlainTooltipContent.stylex';
 

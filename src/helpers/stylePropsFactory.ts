@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 import { CompiledStyles } from '@stylexjs/stylex/lib/StyleXTypes';
 
-import type { IStylesCombinator } from '@/helpers/stylesCombinatorFactory';
-import type { IVisualState } from '@/components/VisualState';
+import type { IStylesCombinator } from '~/helpers/stylesCombinatorFactory';
+import type { IVisualState } from '~/components/VisualState';
 import type { IStyleXStyles } from './types';
-import { dataProps } from '@/helpers/dataProps';
+import { dataProps } from '~/helpers/dataProps';
 
 type IStyleKey<TStyleKey extends string> = TStyleKey | null | undefined | false;
 type ITheme = CompiledStyles | null | undefined | false;

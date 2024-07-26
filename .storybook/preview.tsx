@@ -1,16 +1,16 @@
 import type { Decorator, Preview } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
-import { ThemeProvider } from '@/components/Theme';
-import { ColorSchemeProvider } from '@/components/ColorScheme';
+import { ThemeProvider } from '~/components/Theme';
+import { ColorSchemeProvider } from '~/components/ColorScheme';
 import { modes } from './modes';
 
-import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
-import { darkColorScheme } from '@/themes/base/darkColorScheme.styles';
-// import variantTheme from '@/themes/variant/theme.json';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { darkColorScheme } from '~/themes/base/darkColorScheme.styles';
+// import variantTheme from '~/themes/variant/theme.json';
 
-import '@/styles/main.css';
-import '@/styles/storybook.css';
+import '~/styles/main.css';
+import '~/styles/storybook.css';
 
 const preview: Preview = {
   parameters: {

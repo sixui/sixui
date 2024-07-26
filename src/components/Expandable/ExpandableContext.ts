@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-import type { IOrientation } from '@/helpers/types';
+import type { IOrientation } from '~/helpers/types';
 
 export type IExpandableContextValue = {
   expand: (expanded: boolean) => void;

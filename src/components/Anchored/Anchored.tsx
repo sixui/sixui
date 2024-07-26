@@ -1,9 +1,9 @@
 import { forwardRef, useMemo } from 'react';
 
 import type { IAnchoredProps } from './Anchored.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { anchoredStyles } from './Anchored.styles';
 
 export const Anchored = forwardRef<HTMLDivElement, IAnchoredProps>(

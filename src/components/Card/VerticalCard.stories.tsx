@@ -4,14 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 
 import type { ICardProps, ICardOwnProps } from './Card.types';
-import { sbHandleEvent } from '@/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '@/components/ComponentShowcase';
-import { Button } from '@/components/Button';
-import { Avatar } from '@/components/Avatar';
-import { IconButton } from '@/components/IconButton/IconButton';
+} from '~/components/ComponentShowcase';
+import { Button } from '~/components/Button';
+import { Avatar } from '~/components/Avatar';
+import { IconButton } from '~/components/IconButton/IconButton';
 import { Card } from './Card';
 import { ListItem } from '../ListItem';
 import { CardContent } from '../CardContent';

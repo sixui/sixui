@@ -1,4 +1,4 @@
-import type { IContainerProps } from '@/helpers/types';
+import type { IContainerProps } from '~/helpers/types';
 import type { IBadgeStylesKey } from './Badge.styles';
 
 export type IBadgeProps = IContainerProps<IBadgeStylesKey> & {

@@ -4,17 +4,17 @@ import type {
   IFilterableListItem,
   IFilterableListProps,
 } from './FilterableList.types';
-import { MenuList } from '@/components/MenuList';
-import { TextInputField } from '@/components/TextInputField';
-import { ListItem, type IListItemOwnProps } from '@/components/ListItem';
+import { MenuList } from '~/components/MenuList';
+import { TextInputField } from '~/components/TextInputField';
+import { ListItem, type IListItemOwnProps } from '~/components/ListItem';
 import {
   FilterableListBase,
   type IFilterableListItemRenderer,
   type IFilterableListItemRendererProps,
   type IFilterableListPredicate,
   type IFilterableListItemPredicate,
-} from '@/components/FilterableListBase';
-import { createFilter } from '@/helpers/createFilter';
+} from '~/components/FilterableListBase';
+import { createFilter } from '~/helpers/createFilter';
 
 const highlightQueryInText = (
   text?: string,

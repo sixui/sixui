@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
-import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
-import { stateTokens } from '@/themes/base/state.stylex';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
+import { stateTokens } from '~/themes/base/state.stylex';
 
 const vars = {
   // container

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { ComponentShowcase } from './ComponentShowcase';
 import { type IDemoComponentProps, DemoComponent } from './DemoComponent';
-import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 
 const meta = {
   component: DemoComponent,

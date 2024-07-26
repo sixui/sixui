@@ -5,7 +5,7 @@ import type { ITextAreaFieldProps } from './TextAreaField.types';
 import {
   TextFieldBase,
   type ITextFieldBaseProps,
-} from '@/components/TextFieldBase';
+} from '~/components/TextFieldBase';
 
 export const TextAreaField = forwardRef<HTMLDivElement, ITextAreaFieldProps>(
   function TextAreaField(props, forwardedRef) {

@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-import type { IListItemProps } from '@/components/ListItem';
+import type { IListItemProps } from '~/components/ListItem';
 
 export type IListContextValue = {
   size?: IListItemProps['size'];

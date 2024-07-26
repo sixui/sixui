@@ -2,13 +2,13 @@ import { forwardRef, useMemo } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import type { IColorPickerContentProps } from './ColorPickerContent.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { PaperBase } from '@/components/PaperBase';
-import { commonStyles } from '@/helpers/commonStyles';
-import { Divider } from '@/components/Divider';
-import { ColorButton } from '@/components/ColorButton';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { PaperBase } from '~/components/PaperBase';
+import { commonStyles } from '~/helpers/commonStyles';
+import { Divider } from '~/components/Divider';
+import { ColorButton } from '~/components/ColorButton';
 import { basicTemplateStyles } from './ColorPickerContent.styles';
 
 export const ColorPickerContent = forwardRef<

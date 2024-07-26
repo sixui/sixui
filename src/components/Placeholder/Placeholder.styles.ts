@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import { placeholderTokens } from './Placeholder.stylex';
-import { shapeTokens } from '@/themes/base/shape.stylex';
+import { shapeTokens } from '~/themes/base/shape.stylex';
 
 export type IPlaceholderStylesKey = keyof typeof placeholderStyles;
 export const placeholderStyles = stylex.create({

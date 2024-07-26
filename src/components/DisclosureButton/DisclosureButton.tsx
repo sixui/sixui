@@ -2,23 +2,23 @@ import { forwardRef, useContext, useEffect, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type { IDisclosureButtonProps } from './DisclosureButton.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { ListItem } from '@/components/ListItem';
-import { Checkbox } from '@/components/Checkbox';
-import { Switch } from '@/components/Switch';
-import { IndeterminateCircularProgressIndicator } from '@/components/IndeterminateCircularProgressIndicator';
-import { useControlledValue } from '@/hooks/useControlledValue';
-import { ExpandableContext } from '@/components/Expandable';
-import { SvgIcon } from '@/components/SvgIcon';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { ListItem } from '~/components/ListItem';
+import { Checkbox } from '~/components/Checkbox';
+import { Switch } from '~/components/Switch';
+import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
+import { useControlledValue } from '~/hooks/useControlledValue';
+import { ExpandableContext } from '~/components/Expandable';
+import { SvgIcon } from '~/components/SvgIcon';
 import {
   disclosureButtonCircularProgressIndicatorStyles,
   disclosureButtonItemStyles,
   disclosureButtonStyles,
 } from './DisclosureButton.styles';
 import { disclosureButtonTheme } from './DisclosureButton.stylex';
-import { iconChevronDown } from '@/assets/icons';
+import { iconChevronDown } from '~/assets/icons';
 
 export const DisclosureButton = forwardRef<
   HTMLButtonElement,

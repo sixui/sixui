@@ -1,4 +1,4 @@
-import type { IContainerProps } from '@/helpers/types';
+import type { IContainerProps } from '~/helpers/types';
 import type { IElevationStylesKey } from './Elevation.styles';
 
 export type IElevationProps = IContainerProps<IElevationStylesKey> & {

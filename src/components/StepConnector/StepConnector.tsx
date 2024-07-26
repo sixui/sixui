@@ -1,10 +1,10 @@
 import { forwardRef, useContext, useMemo } from 'react';
 
 import type { IStepConnectorProps } from './StepConnector.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { StepContext } from '@/components/Step/StepContext';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { StepContext } from '~/components/Step/StepContext';
 import { stepConnectorStyles } from './StepConnector.styles';
 import { stepConnectorTheme } from './StepConnector.stylex';
 

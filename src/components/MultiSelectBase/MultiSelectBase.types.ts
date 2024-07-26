@@ -3,16 +3,16 @@ import type {
   IContainerProps,
   IOmit,
   IZeroOrMore,
-} from '@/helpers/types';
-import type { IFieldBaseVariant } from '@/components/FieldBase';
-import type { IFilterableListItemRenderer } from '@/components/FilterableListBase';
+} from '~/helpers/types';
+import type { IFieldBaseVariant } from '~/components/FieldBase';
+import type { IFilterableListItemRenderer } from '~/components/FilterableListBase';
 import type {
   IFloatingFilterableListBaseProps,
   IFloatingFilterableListBaseTriggerRenderProps,
-} from '@/components/FloatingFilterableListBase';
-import type { ITextInputFieldOwnProps } from '@/components/TextInputField';
-import type { IInputChipProps } from '@/components/Chip';
-import type { ITextFieldBaseStylesKey } from '@/components/TextFieldBase';
+} from '~/components/FloatingFilterableListBase';
+import type { ITextInputFieldOwnProps } from '~/components/TextInputField';
+import type { IInputChipProps } from '~/components/Chip';
+import type { ITextFieldBaseStylesKey } from '~/components/TextFieldBase';
 import type { IMultiSelectBaseStylesKey } from './MultiSelectBase.styles';
 
 export type IMultiSelectBaseProps<TItem> =

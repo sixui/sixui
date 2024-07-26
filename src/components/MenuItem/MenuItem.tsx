@@ -2,8 +2,8 @@ import { forwardRef, useContext } from 'react';
 import { useFloatingTree, useListItem, useMergeRefs } from '@floating-ui/react';
 
 import type { IMenuItemProps } from './MenuItem.types';
-import { ListItem } from '@/components/ListItem';
-import { Menu, MenuItemContext } from '@/components/Menu';
+import { ListItem } from '~/components/ListItem';
+import { Menu, MenuItemContext } from '~/components/Menu';
 import { MenuNestedItem } from './MenuNestedItem';
 
 export const MenuItem = forwardRef<HTMLButtonElement, IMenuItemProps>(

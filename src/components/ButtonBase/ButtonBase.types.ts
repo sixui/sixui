@@ -2,12 +2,12 @@ import type {
   IContainerProps,
   IZeroOrMore,
   ICompiledStyles,
-} from '@/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
-import type { IStateLayerStylesKey } from '@/components/StateLayer';
-import type { IFocusRingStylesKey } from '@/components/FocusRing';
-import type { IElevationStylesKey } from '@/components/Elevation';
-import type { IVisualState } from '@/components/VisualState';
+} from '~/helpers/types';
+import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
+import type { IStateLayerStylesKey } from '~/components/StateLayer';
+import type { IFocusRingStylesKey } from '~/components/FocusRing';
+import type { IElevationStylesKey } from '~/components/Elevation';
+import type { IVisualState } from '~/components/VisualState';
 import type { IButtonBaseStylesKey } from './ButtonBase.styles';
 
 export const BUTTON_BASE_DEFAULT_TAG = 'button';

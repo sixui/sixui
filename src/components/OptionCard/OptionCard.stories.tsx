@@ -2,13 +2,13 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
 import type { IOptionCardOwnProps } from './OptionCard.types';
-import { Switch } from '@/components/Switch';
-import { ComponentShowcase } from '@/components/ComponentShowcase';
-import { Checkbox } from '@/components/Checkbox';
+import { Switch } from '~/components/Switch';
+import { ComponentShowcase } from '~/components/ComponentShowcase';
+import { Checkbox } from '~/components/Checkbox';
 import { OptionCard } from './OptionCard';
-import { sbHandleEvent } from '@/helpers/sbHandleEvent';
-import { RadioGroup } from '@/components/RadioGroup';
-import { Radio } from '@/components/Radio';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { RadioGroup } from '~/components/RadioGroup';
+import { Radio } from '~/components/Radio';
 
 const meta = {
   component: OptionCard,

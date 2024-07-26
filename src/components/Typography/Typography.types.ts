@@ -1,5 +1,5 @@
-import type { IContainerProps } from '@/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
+import type { IContainerProps } from '~/helpers/types';
+import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
 import type { ITypographyStylesKey } from './Typography.styles';
 
 export const TYPOGRAPHY_DEFAULT_TAG = 'span';

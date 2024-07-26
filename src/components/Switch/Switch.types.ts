@@ -4,12 +4,12 @@ import type {
   ICompiledStyles,
   IAny,
   IMaybeAsync,
-} from '@/helpers/types';
-import type { IStateLayerStylesKey } from '@/components/StateLayer';
-import type { IFocusRingStylesKey } from '@/components/FocusRing';
-import type { ICircularProgressIndicatorStylesKey } from '@/components/CircularProgressIndicator';
-import type { IVisualState } from '@/components/VisualState';
-import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
+} from '~/helpers/types';
+import type { IStateLayerStylesKey } from '~/components/StateLayer';
+import type { IFocusRingStylesKey } from '~/components/FocusRing';
+import type { ICircularProgressIndicatorStylesKey } from '~/components/CircularProgressIndicator';
+import type { IVisualState } from '~/components/VisualState';
+import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
 import type { ISwitchStylesKey } from './Switch.styles';
 
 export const SWITCH_DEFAULT_TAG = 'input';

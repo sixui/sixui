@@ -4,9 +4,9 @@ import type {
   IRichTooltipForwardedProps,
   IRichTooltipProps,
 } from './RichTooltip.types';
-import { PopoverBase, type IPopoverBaseProps } from '@/components/PopoverBase';
-import { RichTooltipContent } from '@/components/RichTooltipContent';
-import { isFunction } from '@/helpers/isFunction';
+import { PopoverBase, type IPopoverBaseProps } from '~/components/PopoverBase';
+import { RichTooltipContent } from '~/components/RichTooltipContent';
+import { isFunction } from '~/helpers/isFunction';
 
 export const RichTooltip = forwardRef<HTMLDivElement, IRichTooltipProps>(
   function RichTooltip(props, forwardedRef) {

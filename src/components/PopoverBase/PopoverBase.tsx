@@ -21,15 +21,15 @@ import {
 } from '@floating-ui/react';
 
 import type { IPopoverBaseProps } from './PopoverBase.types';
-import { isFunction } from '@/helpers/isFunction';
-import { useControlledValue } from '@/hooks/useControlledValue';
-import { Portal } from '@/components/Portal';
-import { usePopoverCursor } from '@/hooks/usePopoverCursor';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
+import { isFunction } from '~/helpers/isFunction';
+import { useControlledValue } from '~/hooks/useControlledValue';
+import { Portal } from '~/components/Portal';
+import { usePopoverCursor } from '~/hooks/usePopoverCursor';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { popoverBaseStyles } from './PopoverBase.styles';
-import { FloatingTransition } from '@/components/FloatingTransition';
+import { FloatingTransition } from '~/components/FloatingTransition';
 
 export const PopoverBase = <TForwardedProps extends object = object>(
   props: IPopoverBaseProps<TForwardedProps>,

@@ -1,9 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
-import { circularProgressIndicatorTokens } from '@/components/CircularProgressIndicator/CircularProgressIndicator.stylex';
-import { listItemTokens } from '@/components/ListItem/ListItem.stylex';
-import { itemTokens } from '@/components/Item/Item.stylex';
-import { motionTokens } from '@/themes/base/motion.stylex';
+import { circularProgressIndicatorTokens } from '~/components/CircularProgressIndicator/CircularProgressIndicator.stylex';
+import { listItemTokens } from '~/components/ListItem/ListItem.stylex';
+import { itemTokens } from '~/components/Item/Item.stylex';
+import { motionTokens } from '~/themes/base/motion.stylex';
 import { disclosureButtonTokens } from './DisclosureButton.stylex';
 
 export type IDisclosureButtonStylesKey = keyof typeof disclosureButtonStyles;

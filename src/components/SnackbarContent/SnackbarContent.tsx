@@ -2,14 +2,14 @@ import { forwardRef, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type { ISnackbarContentProps } from './SnackbarContent.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { Elevation } from '@/components/Elevation';
-import { Button } from '@/components/Button';
-import { IconButton } from '@/components/IconButton';
-import { SvgIcon } from '@/components/SvgIcon';
-import { iconXMark } from '@/assets/icons';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { Elevation } from '~/components/Elevation';
+import { Button } from '~/components/Button';
+import { IconButton } from '~/components/IconButton';
+import { SvgIcon } from '~/components/SvgIcon';
+import { iconXMark } from '~/assets/icons';
 import {
   snackbarContentElevationStyles,
   snackbarContentStyles,

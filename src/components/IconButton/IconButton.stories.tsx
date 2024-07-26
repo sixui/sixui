@@ -8,11 +8,11 @@ import type {
   IIconButtonOwnProps,
   IIconButtonVariant,
 } from './IconButton.types';
-import { sbHandleEvent } from '@/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '@/components/ComponentShowcase';
+} from '~/components/ComponentShowcase';
 import { IconButton } from './IconButton';
 
 // https://m3.material.io/components/icon-buttons/overview

@@ -3,10 +3,10 @@ import { useRef, useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import type { IDialogOwnProps, IDialogProps } from './Dialog.types';
-import { sbHandleEvent } from '@/helpers/sbHandleEvent';
-import { commonStyles } from '@/helpers/commonStyles';
-import { Button } from '@/components/Button';
-import { TextInputField } from '@/components/TextInputField';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { commonStyles } from '~/helpers/commonStyles';
+import { Button } from '~/components/Button';
+import { TextInputField } from '~/components/TextInputField';
 import { Dialog } from './Dialog';
 
 // https://m3.material.io/components/dialogs/overview

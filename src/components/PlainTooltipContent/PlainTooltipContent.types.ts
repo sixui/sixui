@@ -1,4 +1,4 @@
-import type { IContainerProps } from '@/helpers/types';
+import type { IContainerProps } from '~/helpers/types';
 import type { IPlainTooltipContentStylesKey } from './PlainTooltipContent.styles';
 
 export type IPlainTooltipContentProps =

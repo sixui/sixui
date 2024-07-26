@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import { skeletonTokens } from './Skeleton.stylex';
-import { shapeTokens } from '@/themes/base/shape.stylex';
+import { shapeTokens } from '~/themes/base/shape.stylex';
 
 const pulseKeyframe = stylex.keyframes({
   '0%': {

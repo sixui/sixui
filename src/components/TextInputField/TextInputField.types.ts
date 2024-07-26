@@ -1,5 +1,5 @@
-import type { IOmit } from '@/helpers/types';
-import type { ITextFieldBaseProps } from '@/components/TextFieldBase';
+import type { IOmit } from '~/helpers/types';
+import type { ITextFieldBaseProps } from '~/components/TextFieldBase';
 
 export type ITextInputFieldOwnProps = IOmit<
   ITextFieldBaseProps<HTMLInputElement>,

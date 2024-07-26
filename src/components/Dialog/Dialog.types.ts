@@ -5,13 +5,13 @@ import type {
   IOmit,
   IZeroOrMore,
   ICompiledStyles,
-} from '@/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
+} from '~/helpers/types';
+import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
 import type {
   IDialogContentOwnProps,
   IDialogContentStylesKey,
-} from '@/components/DialogContent';
-import type { IExtendedHtmlFloatingProps } from '@/helpers/extendFloatingProps';
+} from '~/components/DialogContent';
+import type { IExtendedHtmlFloatingProps } from '~/helpers/extendFloatingProps';
 
 export const DIALOG_DEFAULT_TAG = 'div';
 

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 
-import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect';
+import { useIsomorphicLayoutEffect } from '~/hooks/useIsomorphicLayoutEffect';
 
 export function useTimeout(callback: () => void, delay: number | null): void {
   const savedCallback = useRef(callback);

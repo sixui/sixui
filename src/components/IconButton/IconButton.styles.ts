@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { buttonTokens } from '@/components/Button/Button.stylex';
-import { elevationTokens } from '@/components/Elevation/Elevation.stylex';
+import { buttonTokens } from '~/components/Button/Button.stylex';
+import { elevationTokens } from '~/components/Elevation/Elevation.stylex';
 import { iconButtonTokens } from './IconButton.stylex';
 
 // https://github.com/material-components/material-web/blob/main/iconbutton/internal/_shared.scss

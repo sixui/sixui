@@ -3,17 +3,17 @@ import { asArray } from '@olivierpascal/helpers';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { ITextFieldBaseProps } from './TextFieldBase.types';
-import { isFunction } from '@/helpers/isFunction';
-import { FieldBase } from '@/components/FieldBase';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { useVisualState } from '@/components/VisualState';
-import { useControlledValue } from '@/hooks/useControlledValue';
-import { IconButton } from '@/components/IconButton';
-import { fixedForwardRef } from '@/helpers/fixedForwardRef';
-import { SvgIcon } from '@/components/SvgIcon';
-import { iconXMark } from '@/assets/icons';
+import { isFunction } from '~/helpers/isFunction';
+import { FieldBase } from '~/components/FieldBase';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { useVisualState } from '~/components/VisualState';
+import { useControlledValue } from '~/hooks/useControlledValue';
+import { IconButton } from '~/components/IconButton';
+import { fixedForwardRef } from '~/helpers/fixedForwardRef';
+import { SvgIcon } from '~/components/SvgIcon';
+import { iconXMark } from '~/assets/icons';
 import {
   textFieldBaseFieldStyles,
   textFieldBaseStyles,

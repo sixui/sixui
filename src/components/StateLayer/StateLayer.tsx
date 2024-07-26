@@ -2,9 +2,9 @@ import { forwardRef, useMemo } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { IStateLayerProps } from './StateLayer.types';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { useRipple } from './useRipple';
 import { stateLayerStyles } from './StateLayer.styles';
 import { stateLayerTheme } from './StateLayer.stylex';

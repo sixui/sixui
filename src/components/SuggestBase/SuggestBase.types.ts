@@ -1,12 +1,12 @@
-import type { IContainerProps, IOmit } from '@/helpers/types';
-import type { IFieldBaseVariant } from '@/components/FieldBase';
-import type { ITextFieldBaseStylesKey } from '@/components/TextFieldBase';
+import type { IContainerProps, IOmit } from '~/helpers/types';
+import type { IFieldBaseVariant } from '~/components/FieldBase';
+import type { ITextFieldBaseStylesKey } from '~/components/TextFieldBase';
 import type {
   IFloatingFilterableListBaseProps,
   IFloatingFilterableListBaseTriggerRenderProps,
-} from '@/components/FloatingFilterableListBase';
-import type { ITextInputFieldProps } from '@/components/TextInputField';
-import type { IUseSingleFilterableListBaseProps } from '@/components/FilterableListBase';
+} from '~/components/FloatingFilterableListBase';
+import type { ITextInputFieldProps } from '~/components/TextInputField';
+import type { IUseSingleFilterableListBaseProps } from '~/components/FilterableListBase';
 
 export type ISuggestBaseProps<TItem> =
   IContainerProps<ITextFieldBaseStylesKey> &

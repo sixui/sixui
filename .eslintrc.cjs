@@ -25,17 +25,8 @@ const eslintConfig = {
   settings: {
     'import/extensions': 'always',
     'import/resolver': {
-      alias: {
-        map: [['@', './src']],
-        extensions: [
-          '.tsx',
-          '.ts',
-          '.styledefs.ts',
-          '.styles.ts',
-          '.stylex.ts',
-          '.svg',
-          '.json',
-        ],
+      typescript: {
+        alwaysTryTypes: true,
       },
     },
     react: {

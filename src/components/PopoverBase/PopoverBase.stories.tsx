@@ -12,14 +12,14 @@ import type { IPopoverBaseProps } from './PopoverBase.types';
 import {
   ComponentShowcase,
   type IComponentPresentation,
-} from '@/components/ComponentShowcase';
-import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
-import { sbHandleEvent } from '@/helpers/sbHandleEvent';
-import { IconButton } from '@/components/IconButton';
-import { Button } from '@/components/Button';
-import { Paper } from '@/components/Paper';
+} from '~/components/ComponentShowcase';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { IconButton } from '~/components/IconButton';
+import { Button } from '~/components/Button';
+import { Paper } from '~/components/Paper';
 import { PopoverBase } from './PopoverBase';
-import { commonStyles } from '@/helpers/commonStyles';
+import { commonStyles } from '~/helpers/commonStyles';
 
 const meta = {
   component: PopoverBase,

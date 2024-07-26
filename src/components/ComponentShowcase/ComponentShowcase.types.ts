@@ -1,4 +1,4 @@
-import type { IContainerProps } from '@/helpers/types';
+import type { IContainerProps } from '~/helpers/types';
 import type { IComponentShowcaseStylesKey } from './ComponentShowcase.styles';
 
 export type IComponentPresentation<TComponentProps> = {

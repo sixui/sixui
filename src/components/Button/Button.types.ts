@@ -3,10 +3,10 @@ import type {
   ICompiledStyles,
   IMaybeAsync,
   IZeroOrMore,
-} from '@/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
-import type { ICircularProgressIndicatorStylesKey } from '@/components/CircularProgressIndicator';
-import type { IButtonBaseOwnProps } from '@/components/ButtonBase';
+} from '~/helpers/types';
+import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
+import type { ICircularProgressIndicatorStylesKey } from '~/components/CircularProgressIndicator';
+import type { IButtonBaseOwnProps } from '~/components/ButtonBase';
 
 export type IButtonVariant =
   | 'elevated'

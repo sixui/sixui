@@ -5,17 +5,17 @@ import stylex from '@stylexjs/stylex';
 import type {
   IPolymorphicRef,
   IWithAsProp,
-} from '@/helpers/react/polymorphicComponentTypes';
+} from '~/helpers/react/polymorphicComponentTypes';
 import type {
   COLOR_BUTTON_DEFAULT_TAG,
   IColorButtonOwnProps,
   IColorButtonProps,
 } from './ColorButton.types';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { ButtonBase } from '@/components/ButtonBase';
-import { SvgIcon } from '@/components/SvgIcon';
-import { iconCheckMark } from '@/assets/icons';
-import { ColorTag } from '@/components/ColorTag';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { ButtonBase } from '~/components/ButtonBase';
+import { SvgIcon } from '~/components/SvgIcon';
+import { iconCheckMark } from '~/assets/icons';
+import { ColorTag } from '~/components/ColorTag';
 import {
   colorButtonButtonBaseStyles,
   colorButtonColorTagStyles,
@@ -23,7 +23,7 @@ import {
   colorButtonStateLayerStyles,
   colorButtonStyles,
 } from './ColorButton.styles';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { colorButtonStateTokens } from './ColorButton.state.stylex';
 import { colorButtonTheme } from './ColorButton.stylex';
 

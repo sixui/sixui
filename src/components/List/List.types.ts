@@ -1,4 +1,4 @@
-import type { IContainerProps } from '@/helpers/types';
+import type { IContainerProps } from '~/helpers/types';
 import type { IListStylesKey } from './List.styles';
 import type { IListContextValue } from './ListContext';
 

@@ -1,4 +1,4 @@
-import type { IAny } from '@/helpers/types';
+import type { IAny } from '~/helpers/types';
 
 declare module 'react' {
   function forwardRef<TRef, TProps = IAny>(

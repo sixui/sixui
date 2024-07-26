@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
 import { optionCardTokens } from './OptionCard.stylex';
-import { cardTokens } from '@/components/Card/Card.stylex';
-import { motionTokens } from '@/themes/base/motion.stylex';
+import { cardTokens } from '~/components/Card/Card.stylex';
+import { motionTokens } from '~/themes/base/motion.stylex';
 
 export type IOptionCardStylesKey = keyof typeof optionCardStyles;
 export const optionCardStyles = stylex.create({

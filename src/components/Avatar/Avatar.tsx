@@ -1,12 +1,12 @@
 import { forwardRef, useMemo } from 'react';
 
 import type { IAvatarProps } from './Avatar.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { useLoaded } from '@/hooks/useLoaded';
-import { SvgIcon } from '@/components/SvgIcon';
-import { iconAvatarPlaceholder } from '@/assets/icons';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { useLoaded } from '~/hooks/useLoaded';
+import { SvgIcon } from '~/components/SvgIcon';
+import { iconAvatarPlaceholder } from '~/assets/icons';
 import { avatarStyles } from './Avatar.styles';
 import { avatarTheme } from './Avatar.stylex';
 

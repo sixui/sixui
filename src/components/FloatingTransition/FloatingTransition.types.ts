@@ -1,6 +1,6 @@
 import type { Placement } from '@floating-ui/react';
 
-import type { IContainerProps, IOrientation } from '@/helpers/types';
+import type { IContainerProps, IOrientation } from '~/helpers/types';
 import type { IFloatingTransitionStylesKey } from './FloatingTransition.styles';
 
 export type IFloatingTransitionStatus =

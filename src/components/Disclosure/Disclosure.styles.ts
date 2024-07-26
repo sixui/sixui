@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { listItemTokens } from '@/components/ListItem/ListItem.stylex';
+import { listItemTokens } from '~/components/ListItem/ListItem.stylex';
 import { disclosureTokens } from './Disclosure.stylex';
 
 export type IDisclosureStylesKey = keyof typeof disclosureStyles;

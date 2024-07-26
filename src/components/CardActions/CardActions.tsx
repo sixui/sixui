@@ -1,9 +1,9 @@
 import { forwardRef, useMemo } from 'react';
 
 import type { ICardActionsProps } from './CardActions.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { cardActionsStyles } from './CardActions.styles';
 
 export const CardActions = forwardRef<HTMLDivElement, ICardActionsProps>(

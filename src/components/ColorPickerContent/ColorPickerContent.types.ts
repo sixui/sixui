@@ -2,9 +2,9 @@ import type {
   ICompiledStyles,
   IContainerProps,
   IZeroOrMore,
-} from '@/helpers/types';
+} from '~/helpers/types';
 import type { IColorPickerContentStylesKey } from './ColorPickerContent.styles';
-import type { IPaperBaseStylesKey } from '@/components/PaperBase';
+import type { IPaperBaseStylesKey } from '~/components/PaperBase';
 
 export type IColorPickerContentProps =
   IContainerProps<IColorPickerContentStylesKey> & {

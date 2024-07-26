@@ -1,4 +1,4 @@
-import type { IContainerProps } from '@/helpers/types';
+import type { IContainerProps } from '~/helpers/types';
 import type { IDividerStylesKey } from './Divider.styles';
 
 export type IDividerProps = IContainerProps<IDividerStylesKey> & {

@@ -1,6 +1,6 @@
-import type { IOmit } from '@/helpers/types';
-import type { ISelectBaseProps } from '@/components/SelectBase';
-import type { IFilterableListItem } from '@/components/FilterableList';
+import type { IOmit } from '~/helpers/types';
+import type { ISelectBaseProps } from '~/components/SelectBase';
+import type { IFilterableListItem } from '~/components/FilterableList';
 
 export type ISelectOwnProps = {
   value?: string;

@@ -2,12 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
 import type { ICardProps, ICardOwnProps } from './Card.types';
-import { sbHandleEvent } from '@/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '@/components/ComponentShowcase';
-import { Button } from '@/components/Button';
+} from '~/components/ComponentShowcase';
+import { Button } from '~/components/Button';
 import { Card } from './Card';
 import { CardContent } from '../CardContent';
 import { CardMedia } from '../CardMedia';

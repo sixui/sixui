@@ -7,9 +7,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import type { IExpandableProps } from './Expandable.types';
-import { sbHandleEvent } from '@/helpers/sbHandleEvent';
-import { IconButton } from '@/components/IconButton';
-import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { IconButton } from '~/components/IconButton';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { Expandable } from './Expandable';
 
 const meta = {

@@ -9,9 +9,9 @@ import {
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { IFocusRingProps } from './FocusRing.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { focusRingStyles } from './FocusRing.styles';
 import { focusRingTheme } from './FocusRing.stylex';
 

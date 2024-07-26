@@ -2,13 +2,13 @@ import { forwardRef, useMemo } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import type { IColorTagProps } from './ColorTag.types';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { colorTagTokens, colorTagTheme } from './ColorTag.stylex';
-import { getTextContrastColor } from '@/helpers/colors/getTextContrastColor';
+import { getTextContrastColor } from '~/helpers/colors/getTextContrastColor';
 import { colorTagStyles } from './ColorTag.styles';
-import { isValidHexColor } from '@/helpers/colors/isValidHexColor';
+import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
 
 const localStyles = stylex.create({
   backgroundColor: (color: string) => ({

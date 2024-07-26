@@ -9,14 +9,14 @@ import {
 import { asArray } from '@olivierpascal/helpers';
 
 import type { IBreadcrumbsProps } from './Breadcrumbs.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { isProduction } from '@/helpers/isProduction';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { isFragment } from '@/helpers/react/isFragment';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { ButtonBase } from '@/components/ButtonBase';
-import { SvgIcon } from '@/components/SvgIcon';
-import { iconEllipsisHorizontal } from '@/assets/icons';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { isProduction } from '~/helpers/isProduction';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { isFragment } from '~/helpers/react/isFragment';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { ButtonBase } from '~/components/ButtonBase';
+import { SvgIcon } from '~/components/SvgIcon';
+import { iconEllipsisHorizontal } from '~/assets/icons';
 import {
   breadcrumbsExpandButtonFocusRingStyles,
   breadcrumbsStyles,

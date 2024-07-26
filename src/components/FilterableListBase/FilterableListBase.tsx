@@ -5,8 +5,8 @@ import type {
   IFilterableListBaseInternalRenderer,
   IFilterableListBaseProps,
 } from './FilterableListBase.types';
-import { isFunction } from '@/helpers/isFunction';
-import { useControlledValue } from '@/hooks/useControlledValue';
+import { isFunction } from '~/helpers/isFunction';
+import { useControlledValue } from '~/hooks/useControlledValue';
 import {
   executeFilterableItemsEqual,
   renderFilterableItems,

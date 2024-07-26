@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-import type { ITheme } from '@/themes/base';
+import type { ITheme } from '~/themes/base';
 import type { StyleXStyles } from '@stylexjs/stylex/lib/StyleXTypes';
 
 export type IThemeSettings = {

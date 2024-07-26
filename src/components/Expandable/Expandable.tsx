@@ -3,19 +3,19 @@ import stylex from '@stylexjs/stylex';
 import { CSSTransition } from 'react-transition-group';
 
 import type { IExpandableProps } from './Expandable.types';
-import type { ICssSizeValue, ISize } from '@/helpers/types';
+import type { ICssSizeValue, ISize } from '~/helpers/types';
 import {
   ExpandableContext,
   type IExpandableContextValue,
 } from './ExpandableContext';
-import { isFunction } from '@/helpers/isFunction';
-import { useControlledValue } from '@/hooks/useControlledValue';
-import { motionTokens } from '@/themes/base/motion.stylex';
+import { isFunction } from '~/helpers/isFunction';
+import { useControlledValue } from '~/hooks/useControlledValue';
+import { motionTokens } from '~/themes/base/motion.stylex';
 import { useMergeRefs } from '@floating-ui/react';
-import { useElementSize } from '@/hooks/useElementSize';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
+import { useElementSize } from '~/hooks/useElementSize';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { expandableStyles } from './Expandable.styles';
 
 const localStyles = stylex.create({

@@ -3,10 +3,10 @@ import stylex from '@stylexjs/stylex';
 import { useRef, useState } from 'react';
 
 import type { IRadioGroupOwnProps } from './RadioGroup.types';
-import { sbHandleEvent } from '@/helpers/sbHandleEvent';
-import { ComponentShowcase } from '@/components/ComponentShowcase';
-import { Radio } from '@/components/Radio';
-import { Button } from '@/components/Button';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { ComponentShowcase } from '~/components/ComponentShowcase';
+import { Radio } from '~/components/Radio';
+import { Button } from '~/components/Button';
 import { RadioGroup } from './RadioGroup';
 
 const meta = {

@@ -1,18 +1,18 @@
 import { useMemo } from 'react';
 
 import type { IMultiSelectBaseProps } from './MultiSelectBase.types';
-import { ListItem } from '@/components/ListItem';
-import { TextInputField } from '@/components/TextInputField';
-import { MenuList } from '@/components/MenuList';
-import { InputChip } from '@/components/Chip';
+import { ListItem } from '~/components/ListItem';
+import { TextInputField } from '~/components/TextInputField';
+import { MenuList } from '~/components/MenuList';
+import { InputChip } from '~/components/Chip';
 import {
   useMultiFilterableListBase,
   FilterableListBaseFieldEnd,
-} from '@/components/FilterableListBase';
-import { FloatingFilterableListBase } from '@/components/FloatingFilterableListBase';
-import { fixedForwardRef } from '@/helpers/fixedForwardRef';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
+} from '~/components/FilterableListBase';
+import { FloatingFilterableListBase } from '~/components/FloatingFilterableListBase';
+import { fixedForwardRef } from '~/helpers/fixedForwardRef';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import {
   multiSelectBaseFieldStyles,
   multiSelectBaseStyles,

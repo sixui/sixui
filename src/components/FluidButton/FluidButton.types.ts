@@ -3,12 +3,12 @@ import type {
   IContainerProps,
   IOmit,
   IZeroOrMore,
-} from '@/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
+} from '~/helpers/types';
+import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
 import type {
   IButtonBaseOwnProps,
   IButtonBaseStylesKey,
-} from '@/components/ButtonBase';
+} from '~/components/ButtonBase';
 import type { IFluidButtonStylesKey } from './FluidButton.styles';
 
 export const FLUID_BUTTON_DEFAULT_TAG = 'button';

@@ -1,7 +1,7 @@
 import type { IFilterableListBaseExampleProps } from './FilterableListBaseExample.types';
-import { ListItem } from '@/components/ListItem';
-import { TextInputField } from '@/components/TextInputField';
-import { MenuList } from '@/components/MenuList';
+import { ListItem } from '~/components/ListItem';
+import { TextInputField } from '~/components/TextInputField';
+import { MenuList } from '~/components/MenuList';
 import { FilterableListBase } from './FilterableListBase';
 import {
   areMoviesEqual,

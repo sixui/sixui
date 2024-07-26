@@ -5,17 +5,17 @@ import { useMergeRefs } from '@floating-ui/react';
 import type {
   IPolymorphicRef,
   IWithAsProp,
-} from '@/helpers/react/polymorphicComponentTypes';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { useVisualState } from '@/components/VisualState';
-import { usePrevious } from '@/hooks/usePrevious';
-import { useControlledValue } from '@/hooks/useControlledValue';
-import { StateLayer } from '@/components/StateLayer';
-import { FocusRing } from '@/components/FocusRing';
-import { IndeterminateCircularProgressIndicator } from '@/components/IndeterminateCircularProgressIndicator';
-import { executeLazyPromise } from '@/helpers/executeLazyPromise';
+} from '~/helpers/react/polymorphicComponentTypes';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { useVisualState } from '~/components/VisualState';
+import { usePrevious } from '~/hooks/usePrevious';
+import { useControlledValue } from '~/hooks/useControlledValue';
+import { StateLayer } from '~/components/StateLayer';
+import { FocusRing } from '~/components/FocusRing';
+import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
+import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import {
   CHECKBOX_DEFAULT_TAG,
   type ICheckboxOwnProps,

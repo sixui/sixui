@@ -1,6 +1,6 @@
 import type { IDynamicThemeProviderProps } from './DynamicThemeProvider.types';
-import { generateThemeFromSourceColor } from '@/helpers/colors/generateThemeFromSourceColor';
-import { IDynamicSchemeVariant } from '@/helpers/colors/getMaterialDynamicSchemeClass';
+import { generateThemeFromSourceColor } from '~/helpers/colors/generateThemeFromSourceColor';
+import { IDynamicSchemeVariant } from '~/helpers/colors/getMaterialDynamicSchemeClass';
 import { ThemeProvider } from './ThemeProvider';
 import { useThemeContext } from './useThemeContext';
 

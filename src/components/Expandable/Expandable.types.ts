@@ -1,4 +1,4 @@
-import type { IContainerProps, ICssSizeValue, IOmit } from '@/helpers/types';
+import type { IContainerProps, ICssSizeValue, IOmit } from '~/helpers/types';
 import type { IExpandableContextValue } from './ExpandableContext';
 import type { IExpandableStylesKey } from './Expandable.styles';
 

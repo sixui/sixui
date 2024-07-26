@@ -6,12 +6,12 @@ import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { delay } from '@olivierpascal/helpers';
 
 import type { ISwitchOwnProps } from './Switch.types';
-import type { IOmit } from '@/helpers/types';
-import { sbHandleEvent } from '@/helpers/sbHandleEvent';
+import type { IOmit } from '~/helpers/types';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '@/components/ComponentShowcase';
+} from '~/components/ComponentShowcase';
 import { Switch } from './Switch';
 
 // https://m3.material.io/components/switch/overview

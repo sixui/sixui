@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { motionTokens } from '@/themes/base/motion.stylex';
+import { motionTokens } from '~/themes/base/motion.stylex';
 
 export type IFloatingTransitionStylesKey =
   keyof typeof floatingTransitionStyles;

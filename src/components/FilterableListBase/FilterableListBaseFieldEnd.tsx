@@ -1,9 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
-import { IconButton } from '@/components/IconButton';
-import { commonStyles } from '@/helpers/commonStyles';
-import { SvgIcon } from '@/components/SvgIcon';
-import { iconTriangleDown, iconTriangleUp, iconXMark } from '@/assets/icons';
+import { IconButton } from '~/components/IconButton';
+import { commonStyles } from '~/helpers/commonStyles';
+import { SvgIcon } from '~/components/SvgIcon';
+import { iconTriangleDown, iconTriangleUp, iconXMark } from '~/assets/icons';
 
 export type IFilterableListBaseFieldEnd = {
   isOpen?: boolean;

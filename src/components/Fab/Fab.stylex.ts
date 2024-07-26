@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
-import { elevationTokens } from '@/components/Elevation/Elevation.stylex';
-import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
-import { shapeTokens } from '@/themes/base/shape.stylex';
-import { stateTokens } from '@/themes/base/state.stylex';
-import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
+import { elevationTokens } from '~/components/Elevation/Elevation.stylex';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { shapeTokens } from '~/themes/base/shape.stylex';
+import { stateTokens } from '~/themes/base/state.stylex';
+import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-fab-primary.scss
 

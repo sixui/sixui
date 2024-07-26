@@ -2,8 +2,8 @@ import type {
   IContainerProps,
   IZeroOrMore,
   ICompiledStyles,
-} from '@/helpers/types';
-import type { IElevationStylesKey } from '@/components/Elevation';
+} from '~/helpers/types';
+import type { IElevationStylesKey } from '~/components/Elevation';
 import type { IRichTooltipContentStylesKey } from './RichTooltipContent.styles';
 
 export type IRichTooltipContentActionsRenderProps = {

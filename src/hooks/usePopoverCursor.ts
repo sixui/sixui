@@ -1,7 +1,7 @@
 import type { Placement, UseFloatingReturn } from '@floating-ui/react';
 import { useCallback } from 'react';
 
-import type { IPosition, ISize } from '@/helpers/types';
+import type { IPosition, ISize } from '~/helpers/types';
 
 const POPOVER_CURSOR_ARROW_WIDTH = 14;
 const POPOVER_CURSOR_ARROW_HEIGHT = 7;

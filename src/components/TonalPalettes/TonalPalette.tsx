@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import type { ITonalPaletteProps } from './TonalPalette.types';
-import { tonalPalettesTokens } from '@/themes/base/tonalPalettes.stylex';
+import { tonalPalettesTokens } from '~/themes/base/tonalPalettes.stylex';
 import { tonalPaletteStyles } from './TonalPalette.styles';
 
 export const TonalPalette: React.FC<ITonalPaletteProps> = (props) => {

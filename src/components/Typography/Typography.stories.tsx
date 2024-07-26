@@ -6,7 +6,7 @@ import type { ITypographyOwnProps } from './Typography.types';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '@/components/ComponentShowcase';
+} from '~/components/ComponentShowcase';
 import { Typography, typographyTagMap } from './Typography';
 
 // https://m3.material.io/styles/typography/overview

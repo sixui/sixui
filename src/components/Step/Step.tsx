@@ -8,15 +8,15 @@ import {
 import { asArray } from '@olivierpascal/helpers';
 
 import type { IStepProps } from './Step.types';
-import { isFunction } from '@/helpers/isFunction';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { StepperContext } from '@/components/Stepper/StepperContext';
-import { IndeterminateCircularProgressIndicator } from '@/components/IndeterminateCircularProgressIndicator';
-import { ButtonBase } from '@/components/ButtonBase';
-import { SvgIcon } from '@/components/SvgIcon';
-import { iconCheckMark, iconExclamationTriangle } from '@/assets/icons';
+import { isFunction } from '~/helpers/isFunction';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { StepperContext } from '~/components/Stepper/StepperContext';
+import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
+import { ButtonBase } from '~/components/ButtonBase';
+import { SvgIcon } from '~/components/SvgIcon';
+import { iconCheckMark, iconExclamationTriangle } from '~/assets/icons';
 import {
   stepCircularProgressIndicatorStyles,
   stepFocusRingStyles,

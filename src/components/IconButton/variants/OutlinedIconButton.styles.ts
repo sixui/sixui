@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
-import { stateTokens } from '@/themes/base/state.stylex';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { stateTokens } from '~/themes/base/state.stylex';
 import { iconButtonTokens } from '../IconButton.stylex';
 
 export const outlinedIconButtonStyles = stylex.create({

@@ -9,7 +9,7 @@ import type {
   IFilterableListItemRenderer,
   IFilterableListItemRendererProps,
 } from './FilterableListBase.types';
-import { ListItem, type IListItemProps } from '@/components/ListItem';
+import { ListItem, type IListItemProps } from '~/components/ListItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 

@@ -1,10 +1,10 @@
 import { forwardRef, useContext, useMemo } from 'react';
 
 import type { ICardContentProps } from './CardContent.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { CardContext } from '@/components/Card';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { CardContext } from '~/components/Card';
 import { cardContentStyles } from './CardContent.styles';
 import { cardContentTheme } from './CardContent.stylex';
 

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IColorButtonProps } from './ColorButton.types';
-import { ComponentShowcase } from '@/components/ComponentShowcase';
+import { ComponentShowcase } from '~/components/ComponentShowcase';
 import { ColorButton } from './ColorButton';
 
 const meta = {

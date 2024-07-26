@@ -1,12 +1,12 @@
 import { forwardRef, useMemo } from 'react';
 import { asArray } from '@olivierpascal/helpers';
-import { isFunction } from '@/helpers/isFunction';
+import { isFunction } from '~/helpers/isFunction';
 
 import type { IRichTooltipContentProps } from './RichTooltipContent.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { Elevation } from '@/components/Elevation';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { Elevation } from '~/components/Elevation';
 import {
   richTooltipContentElevationStyles,
   richTooltipContentStyles,

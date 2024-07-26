@@ -1,4 +1,4 @@
-import type { IContainerProps, IOrientation } from '@/helpers/types';
+import type { IContainerProps, IOrientation } from '~/helpers/types';
 import type { IElementWithLabelStylesKey } from './ElementWithLabel.styles';
 
 export type IElementWithLabelRenderProps = {

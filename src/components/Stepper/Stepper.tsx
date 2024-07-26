@@ -7,12 +7,12 @@ import {
 } from 'react';
 
 import type { IStepperProps } from './Stepper.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { Step, type IStepProps } from '@/components/Step';
-import { StepConnector } from '@/components/StepConnector';
-import { isElementLike } from '@/helpers/react/isElementLike';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { Step, type IStepProps } from '~/components/Step';
+import { StepConnector } from '~/components/StepConnector';
+import { isElementLike } from '~/helpers/react/isElementLike';
 import { StepperContext, type IStepperContextValue } from './StepperContext';
 import { stepperStyles } from './Stepper.styles';
 

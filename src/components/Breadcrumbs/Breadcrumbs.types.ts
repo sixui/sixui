@@ -2,9 +2,9 @@ import type {
   IContainerProps,
   IZeroOrMore,
   ICompiledStyles,
-} from '@/helpers/types';
-import type { IFocusRingStylesKey } from '@/components/FocusRing';
-import type { IButtonBaseStylesKey } from '@/components/ButtonBase';
+} from '~/helpers/types';
+import type { IFocusRingStylesKey } from '~/components/FocusRing';
+import type { IButtonBaseStylesKey } from '~/components/ButtonBase';
 import type { IBreadcrumbsStylesKey } from './Breadcrumbs.styles';
 
 export type IBreadcrumbsProps = IContainerProps<IBreadcrumbsStylesKey> & {

@@ -1,11 +1,10 @@
 // import stylex from '@stylexjs/stylex';
-// import { ThemeProvider } from '@/components/Theme';
-// import { theme } from '@/themes/base';
+// import { ThemeProvider } from '~/components/Theme';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faAppleWhole, faCarrot } from '@fortawesome/free-solid-svg-icons';
-// import '@/styles/main.css';
+// import '~/styles/main.css';
 
-// import { MultiCombobox } from '@/components/Combobox';
+// import { MultiCombobox } from '~/components/Combobox';
 
 // const styles = stylex.create({
 //   host: {

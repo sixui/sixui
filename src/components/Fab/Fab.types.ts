@@ -3,9 +3,9 @@ import type {
   IZeroOrMore,
   ICompiledStyles,
   IOmit,
-} from '@/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
-import type { IButtonOwnProps, IButtonStylesKey } from '@/components/Button';
+} from '~/helpers/types';
+import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
+import type { IButtonOwnProps, IButtonStylesKey } from '~/components/Button';
 import type { IFabStylesKey } from './Fab.styles';
 
 export type IFabVariant =

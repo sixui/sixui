@@ -4,10 +4,10 @@ import type { IBadgeProps } from './Badge.types';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '@/components/ComponentShowcase';
-import { type IPlaceholderProps, Placeholder } from '@/components/Placeholder';
+} from '~/components/ComponentShowcase';
+import { type IPlaceholderProps, Placeholder } from '~/components/Placeholder';
 import { Badge } from './Badge';
-import { Anchored } from '@/components/Anchored';
+import { Anchored } from '~/components/Anchored';
 
 // https://m3.material.io/components/badges/overview
 

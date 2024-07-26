@@ -1,9 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
-import { shapeTokens } from '@/themes/base/shape.stylex';
-import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
-import { stateTokens } from '@/themes/base/state.stylex';
-import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
+import { shapeTokens } from '~/themes/base/shape.stylex';
+import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
+import { stateTokens } from '~/themes/base/state.stylex';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 
 const vars = {
   gap: '8px',

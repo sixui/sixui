@@ -2,10 +2,10 @@ import stylex from '@stylexjs/stylex';
 import { forwardRef, useMemo, useRef } from 'react';
 
 import type { ISkeletonProps } from './Skeleton.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { random } from '@/helpers/random';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { random } from '~/helpers/random';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { skeletonStyles } from './Skeleton.styles';
 import { skeletonTheme } from './Skeleton.stylex';
 

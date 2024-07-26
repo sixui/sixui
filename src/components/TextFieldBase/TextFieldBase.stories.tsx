@@ -3,12 +3,12 @@ import stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { ITextFieldBaseProps } from './TextFieldBase.types';
-import type { IFieldBaseVariant } from '@/components/FieldBase';
-import { sbHandleEvent } from '@/helpers/sbHandleEvent';
+import type { IFieldBaseVariant } from '~/components/FieldBase';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '@/components/ComponentShowcase';
+} from '~/components/ComponentShowcase';
 import { TextFieldBase } from './TextFieldBase';
 
 // https://m3.material.io/components/text-fields/overview

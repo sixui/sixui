@@ -1,5 +1,5 @@
-import type { IContainerProps } from '@/helpers/types';
-import type { IDynamicSchemeVariant } from '@/helpers/colors/getMaterialDynamicSchemeClass';
+import type { IContainerProps } from '~/helpers/types';
+import type { IDynamicSchemeVariant } from '~/helpers/colors/getMaterialDynamicSchemeClass';
 import type { IThemeProviderProps } from './ThemeProvider.types';
 
 export type IDynamicThemeProviderProps = IContainerProps &

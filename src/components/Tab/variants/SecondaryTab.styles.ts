@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { tabTokens } from '../Tab.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tabs/internal/_primary-tab.scss

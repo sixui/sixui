@@ -15,9 +15,9 @@ import {
 } from '@fortawesome/free-regular-svg-icons';
 
 import type { ITabsProps } from './Tabs.types';
-import { Tab } from '@/components/Tab';
-import { TabList } from '@/components/TabList';
-import { TabPanel } from '@/components/TabPanel';
+import { Tab } from '~/components/Tab';
+import { TabList } from '~/components/TabList';
+import { TabPanel } from '~/components/TabPanel';
 import { Tabs } from './Tabs';
 
 const meta = {

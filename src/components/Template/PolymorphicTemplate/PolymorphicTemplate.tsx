@@ -3,10 +3,10 @@ import { forwardRef, useMemo } from 'react';
 import type {
   IPolymorphicRef,
   IWithAsProp,
-} from '@/helpers/react/polymorphicComponentTypes';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-// import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+} from '~/helpers/react/polymorphicComponentTypes';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+// import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
 import {
   POLYMORPHIC_TEMPLATE_DEFAULT_TAG,
   type IPolymorphicTemplateOwnProps,

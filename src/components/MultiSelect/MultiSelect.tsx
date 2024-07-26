@@ -9,9 +9,9 @@ import {
   isFilterableListItemDisabled,
   renderFilterableListItem,
   type IFilterableListItem,
-} from '@/components/FilterableList';
-import { MultiSelectBase } from '@/components/MultiSelectBase';
-import { ListItem } from '@/components/ListItem';
+} from '~/components/FilterableList';
+import { MultiSelectBase } from '~/components/MultiSelectBase';
+import { ListItem } from '~/components/ListItem';
 import { useMultiSelect } from './useMultiSelect';
 
 export const MultiSelect = forwardRef<HTMLInputElement, IMultiSelectProps>(

@@ -1,5 +1,5 @@
-import type { IContainerProps, IOmit } from '@/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
+import type { IContainerProps, IOmit } from '~/helpers/types';
+import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
 import type { IRadioGroupContextValue } from './RadioGroupContext';
 
 export const RADIO_GROUP_DEFAULT_TAG = 'div';

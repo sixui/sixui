@@ -3,11 +3,11 @@ import stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { IPaperBaseProps, IPaperBaseVariant } from './PaperBase.types';
-import { ComponentShowcase } from '@/components/ComponentShowcase';
-import { Typography } from '@/components/Typography';
+import { ComponentShowcase } from '~/components/ComponentShowcase';
+import { Typography } from '~/components/Typography';
 import { PaperBase } from './PaperBase';
 import { paperBaseTokens } from './PaperBase.stylex';
-import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { elevationTokens } from '../Elevation/Elevation.stylex';
 
 // https://material.io/blog/tone-based-surface-color-m3

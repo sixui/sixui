@@ -3,13 +3,13 @@ import type {
   IContainerProps,
   IOmit,
   IZeroOrMore,
-} from '@/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
+} from '~/helpers/types';
+import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
 import type {
   IButtonBaseOwnProps,
   IButtonBaseStylesKey,
-} from '@/components/ButtonBase';
-import type { IColorTagStylesKey } from '@/components/ColorTag';
+} from '~/components/ButtonBase';
+import type { IColorTagStylesKey } from '~/components/ColorTag';
 import type { IColorButtonStylesKey } from './ColorButton.styles';
 
 export const COLOR_BUTTON_DEFAULT_TAG = 'button';

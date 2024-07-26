@@ -1,13 +1,13 @@
 import type { ISuggestBaseProps } from './SuggestBase.types';
-import { ListItem } from '@/components/ListItem';
-import { TextInputField } from '@/components/TextInputField';
-import { MenuList } from '@/components/MenuList';
+import { ListItem } from '~/components/ListItem';
+import { TextInputField } from '~/components/TextInputField';
+import { MenuList } from '~/components/MenuList';
 import {
   useSingleFilterableListBase,
   FilterableListBaseFieldEnd,
-} from '@/components/FilterableListBase';
-import { FloatingFilterableListBase } from '@/components/FloatingFilterableListBase';
-import { fixedForwardRef } from '@/helpers/fixedForwardRef';
+} from '~/components/FilterableListBase';
+import { FloatingFilterableListBase } from '~/components/FloatingFilterableListBase';
+import { fixedForwardRef } from '~/helpers/fixedForwardRef';
 
 export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
   props: ISuggestBaseProps<TItem>,

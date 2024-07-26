@@ -4,9 +4,9 @@ import type {
   ICompiledStyles,
   IMaybeAsync,
   IAny,
-} from '@/helpers/types';
+} from '~/helpers/types';
 import type { ISnackbarContentStylesKey } from './SnackbarContent.styles';
-import type { IElevationStylesKey } from '@/components/Elevation';
+import type { IElevationStylesKey } from '~/components/Elevation';
 
 export type ISnackbarContentProps =
   IContainerProps<ISnackbarContentStylesKey> & {

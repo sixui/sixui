@@ -5,13 +5,13 @@ import type {
   ITextInputFieldProps,
   ITextInputFieldOwnProps,
 } from './TextInputField.types';
-import { IconButton } from '@/components/IconButton';
+import { IconButton } from '~/components/IconButton';
 import {
   TextFieldBase,
   type ITextFieldBaseProps,
-} from '@/components/TextFieldBase';
-import { SvgIcon } from '@/components/SvgIcon';
-import { iconEye, iconEyeSlash } from '@/assets/icons';
+} from '~/components/TextFieldBase';
+import { SvgIcon } from '~/components/SvgIcon';
+import { iconEye, iconEyeSlash } from '~/assets/icons';
 
 export const TextInputField = forwardRef<HTMLDivElement, ITextInputFieldProps>(
   function TextInputField(props, forwardedRef) {

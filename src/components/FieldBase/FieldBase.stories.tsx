@@ -8,10 +8,10 @@ import type { IFieldBaseOwnProps, IFieldBaseVariant } from './FieldBase.types';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '@/components/ComponentShowcase';
+} from '~/components/ComponentShowcase';
 import { FieldBase } from './FieldBase';
-import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
-import { stateTokens } from '@/themes/base/state.stylex';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { stateTokens } from '~/themes/base/state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/field/demo/stories.ts
 

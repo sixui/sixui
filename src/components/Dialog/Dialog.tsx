@@ -13,23 +13,23 @@ import {
 import type {
   IPolymorphicRef,
   IWithAsProp,
-} from '@/helpers/react/polymorphicComponentTypes';
+} from '~/helpers/react/polymorphicComponentTypes';
 import type {
   IDialogProps,
   IDialogOwnProps,
   DIALOG_DEFAULT_TAG,
 } from './Dialog.types';
-import { isFunction } from '@/helpers/isFunction';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
+import { isFunction } from '~/helpers/isFunction';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
 import {
   DialogContent,
   type IDialogContentOwnProps,
-} from '@/components/DialogContent';
-import { Scrim } from '@/components/Scrim';
-import { Portal } from '@/components/Portal';
-import { FloatingTransition } from '@/components/FloatingTransition';
-import { useControlledValue } from '@/hooks/useControlledValue';
-import { extendFloatingProps } from '@/helpers/extendFloatingProps';
+} from '~/components/DialogContent';
+import { Scrim } from '~/components/Scrim';
+import { Portal } from '~/components/Portal';
+import { FloatingTransition } from '~/components/FloatingTransition';
+import { useControlledValue } from '~/hooks/useControlledValue';
+import { extendFloatingProps } from '~/helpers/extendFloatingProps';
 
 // https://github.com/material-components/material-web/blob/main/dialog/internal/dialog.ts
 

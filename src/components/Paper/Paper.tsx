@@ -1,9 +1,9 @@
 import { forwardRef, useMemo } from 'react';
 
 import type { IPaperProps } from './Paper.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { PaperBase } from '@/components/PaperBase';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { PaperBase } from '~/components/PaperBase';
 import { paperStyles } from './Paper.styles';
 
 // https://github.com/material-components/material-web/blob/main/labs/paper/internal/paper.ts

@@ -1,5 +1,5 @@
-import type { IContainerProps } from '@/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '@/helpers/react/polymorphicComponentTypes';
+import type { IContainerProps } from '~/helpers/types';
+import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
 import type { IPolymorphicTemplateStylesKey } from './PolymorphicTemplate.styles';
 
 export const POLYMORPHIC_TEMPLATE_DEFAULT_TAG = 'div';

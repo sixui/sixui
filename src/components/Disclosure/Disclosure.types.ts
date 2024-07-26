@@ -1,8 +1,8 @@
-import type { IContainerProps, IOmit } from '@/helpers/types';
+import type { IContainerProps, IOmit } from '~/helpers/types';
 import type {
   IExpandableContextValue,
   IExpandableProps,
-} from '@/components/Expandable';
+} from '~/components/Expandable';
 import type { IDisclosureStylesKey } from './Disclosure.styles';
 
 export type IDisclosureProps = IContainerProps<IDisclosureStylesKey> &

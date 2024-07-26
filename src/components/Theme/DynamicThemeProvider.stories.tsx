@@ -3,13 +3,13 @@ import { useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import type { IDynamicThemeProviderProps } from './DynamicThemeProvider.types';
-import { ColorInputField } from '@/components/ColorInputField';
-import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
+import { ColorInputField } from '~/components/ColorInputField';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { DynamicThemeProvider } from './DynamicThemeProvider';
-import { commonStyles } from '@/helpers/commonStyles';
-import baseTheme from '@/themes/base/theme.json';
+import { commonStyles } from '~/helpers/commonStyles';
+import baseTheme from '~/themes/base/theme.json';
 import { ColorScheme } from '../ColorScheme';
-import { isValidHexColor } from '@/helpers/colors/isValidHexColor';
+import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
 
 const meta = {
   component: DynamicThemeProvider,

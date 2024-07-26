@@ -1,4 +1,4 @@
-import type { IContainerProps } from '@/helpers/types';
+import type { IContainerProps } from '~/helpers/types';
 import type { IBasicTemplateStylesKey } from './BasicTemplate.styles';
 
 export type IBasicTemplateProps = IContainerProps<IBasicTemplateStylesKey> & {

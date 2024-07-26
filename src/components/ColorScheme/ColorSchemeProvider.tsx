@@ -2,8 +2,8 @@ import { useRef } from 'react';
 import stylex from '@stylexjs/stylex';
 import { FloatingDelayGroup } from '@floating-ui/react';
 
-import { darkColorSchemeTheme } from '@/themes/base/darkColorScheme.styles';
-import { themeProviderStyles, useThemeContext } from '@/components/Theme';
+import { darkColorSchemeTheme } from '~/themes/base/darkColorScheme.styles';
+import { themeProviderStyles, useThemeContext } from '~/components/Theme';
 import {
   ColorSchemeContext,
   type IColorSchemeVariant,

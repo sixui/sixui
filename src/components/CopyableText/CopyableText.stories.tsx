@@ -5,7 +5,7 @@ import { CopyableText } from './CopyableText';
 import {
   ComponentShowcase,
   type IComponentPresentation,
-} from '@/components/ComponentShowcase';
+} from '~/components/ComponentShowcase';
 
 const meta = {
   component: CopyableText,

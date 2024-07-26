@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorSchemeTokens } from '@/themes/base/colorScheme.stylex';
-import { typeScaleTokens } from '@/themes/base/typeScale.stylex';
-import { shapeTokens } from '@/themes/base/shape.stylex';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
+import { shapeTokens } from '~/themes/base/shape.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-divider.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-divider.scss
