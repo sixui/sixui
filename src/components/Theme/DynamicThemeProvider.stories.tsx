@@ -7,7 +7,6 @@ import { ColorInputField } from '~/components/ColorInputField';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { DynamicThemeProvider } from './DynamicThemeProvider';
 import { commonStyles } from '~/helpers/commonStyles';
-import baseTheme from '~/themes/base/theme.json';
 import { ColorScheme } from '../ColorScheme';
 import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
 
@@ -26,9 +25,7 @@ const styles = stylex.create({
   },
 });
 
-const defaultArgs = {
-  sourceColor: baseTheme.source.color,
-} satisfies Partial<IDynamicThemeProviderProps>;
+const defaultArgs = {} satisfies Partial<IDynamicThemeProviderProps>;
 
 const DynamicThemeProviderDemo: React.FC<IDynamicThemeProviderProps> = (
   props,
@@ -42,10 +39,14 @@ const DynamicThemeProviderDemo: React.FC<IDynamicThemeProviderProps> = (
         {...other}
         sx={[commonStyles.verticalLayout, commonStyles.gap$lg]}
         sourceColor={
-          isValidHexColor(sourceColor) ? sourceColor : baseTheme.source.color
+          sourceColor && isValidHexColor(sourceColor) ? sourceColor : undefined
         }
       >
-        <ColorInputField onChange={setSourceColor} />
+        <ColorInputField
+          onChange={setSourceColor}
+          value={sourceColor}
+          clearable
+        />
 
         <div {...stylex.props(styles.inner)}>
           <ColorScheme />

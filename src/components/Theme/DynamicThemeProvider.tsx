@@ -1,3 +1,5 @@
+import stylex from '@stylexjs/stylex';
+
 import type { IDynamicThemeProviderProps } from './DynamicThemeProvider.types';
 import { generateThemeFromSourceColor } from '~/helpers/colors/generateThemeFromSourceColor';
 import { IDynamicSchemeVariant } from '~/helpers/colors/getMaterialDynamicSchemeClass';
@@ -13,22 +15,24 @@ export const DynamicThemeProvider: React.FC<IDynamicThemeProviderProps> = (
     contrast = 0.0,
     settings,
     componentsStyles,
+    sx,
+    children,
     ...other
   } = props;
 
   const themeContext = useThemeContext();
-  const theme = generateThemeFromSourceColor(
-    sourceColor,
-    schemeVariant,
-    contrast,
-  );
 
-  return (
+  return sourceColor ? (
     <ThemeProvider
+      sx={sx}
       {...other}
       settings={settings ?? themeContext.settings}
       componentsStyles={componentsStyles ?? themeContext.componentsStyles}
-      theme={theme}
-    />
+      theme={generateThemeFromSourceColor(sourceColor, schemeVariant, contrast)}
+    >
+      {children}
+    </ThemeProvider>
+  ) : (
+    <div {...stylex.props(sx)}>{children}</div>
   );
 };
