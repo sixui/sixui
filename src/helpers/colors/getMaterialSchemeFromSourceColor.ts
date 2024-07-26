@@ -1,7 +1,9 @@
-import { Hct, type SchemeContent } from '@material/material-color-utilities';
+import { Hct, SchemeContent } from '@material/material-color-utilities';
 
-import { getMaterialDynamicSchemeClass } from './getMaterialDynamicSchemeClass';
-import { IDynamicSchemeVariant } from './generateThemeFromSourceColor';
+import {
+  getMaterialDynamicSchemeClass,
+  IDynamicSchemeVariant,
+} from './generateThemeFromSourceColor';
 
 /**
  * Generate a scheme from a source color
@@ -18,7 +20,6 @@ export const getMaterialSchemeFromSourceColor = (
   schemeVariant = IDynamicSchemeVariant.tonalSpot,
   isDark = false,
   contrastLevel = 0.0,
-  // customColors = []
 ): SchemeContent => {
   const sourceColorHct = Hct.fromInt(sourceColorArgb);
   const dynamicSchemeClass = getMaterialDynamicSchemeClass(schemeVariant);

@@ -1,8 +1,20 @@
-import { argbFromHex } from '@material/material-color-utilities';
+import {
+  SchemeContent,
+  SchemeExpressive,
+  SchemeFidelity,
+  SchemeFruitSalad,
+  SchemeMonochrome,
+  SchemeNeutral,
+  SchemeRainbow,
+  SchemeTonalSpot,
+  SchemeVibrant,
+  argbFromHex,
+} from '@material/material-color-utilities';
 
 import type { ITheme } from '~/themes/base';
 import { getRolesFromMaterialScheme } from './getRolesFromMaterialScheme';
 import { getMaterialSchemeFromSourceColor } from './getMaterialSchemeFromSourceColor';
+import { SixuiMaterialDynamicScheme } from './materialDynamicSchemes';
 
 export enum IDynamicSchemeVariant {
   /**
@@ -68,6 +80,26 @@ export enum IDynamicSchemeVariant {
 
   sixui,
 }
+
+const materialDynamicSchemeClasses: Record<
+  IDynamicSchemeVariant,
+  typeof SchemeTonalSpot
+> = {
+  [IDynamicSchemeVariant.content]: SchemeContent,
+  [IDynamicSchemeVariant.expressive]: SchemeExpressive,
+  [IDynamicSchemeVariant.fidelity]: SchemeFidelity,
+  [IDynamicSchemeVariant.fruitSalad]: SchemeFruitSalad,
+  [IDynamicSchemeVariant.monochrome]: SchemeMonochrome,
+  [IDynamicSchemeVariant.neutral]: SchemeNeutral,
+  [IDynamicSchemeVariant.rainbow]: SchemeRainbow,
+  [IDynamicSchemeVariant.tonalSpot]: SchemeTonalSpot,
+  [IDynamicSchemeVariant.vibrant]: SchemeVibrant,
+  [IDynamicSchemeVariant.sixui]: SixuiMaterialDynamicScheme,
+};
+
+export const getMaterialDynamicSchemeClass = (
+  variant: IDynamicSchemeVariant,
+): typeof SchemeTonalSpot => materialDynamicSchemeClasses[variant];
 
 export const generateThemeFromSourceColor = (
   sourceColor: string,
