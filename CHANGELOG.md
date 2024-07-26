@@ -1,3 +1,15 @@
+# v0.0.379 (Fri Jul 26 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: export generateThemeFromSourceColor ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.378 (Fri Jul 26 2024)
 
 #### ⚠️ Pushed to `main`
