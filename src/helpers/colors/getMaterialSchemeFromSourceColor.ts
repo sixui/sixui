@@ -1,9 +1,7 @@
 import { Hct, type SchemeContent } from '@material/material-color-utilities';
 
-import {
-  getMaterialDynamicSchemeClass,
-  IDynamicSchemeVariant,
-} from './getMaterialDynamicSchemeClass';
+import { getMaterialDynamicSchemeClass } from './getMaterialDynamicSchemeClass';
+import { IDynamicSchemeVariant } from './generateThemeFromSourceColor';
 
 /**
  * Generate a scheme from a source color

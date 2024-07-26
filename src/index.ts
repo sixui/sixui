@@ -101,6 +101,7 @@ export * from './hooks/usePrevious';
 export * from './helpers/types';
 export * from './helpers/colors/getTextContrastColor';
 export * from './helpers/colors/isValidHexColor';
+export * from './helpers/colors/generateThemeFromSourceColor';
 
 // themes
 export * from './themes/base';
