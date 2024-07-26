@@ -1,3 +1,15 @@
+# v0.0.381 (Fri Jul 26 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: ThemeSetterContext ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.380 (Fri Jul 26 2024)
 
 #### ⚠️ Pushed to `main`
