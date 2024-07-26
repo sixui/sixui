@@ -1,11 +1,13 @@
-import { useCallback, useState } from 'react';
+import { useMemo, useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import type { IThemeProviderProps } from './ThemeProvider.types';
-import type { ITheme } from '~/themes/base';
 import { ThemeContext } from './ThemeContext';
 import { themeProviderStyles } from './ThemeProvider.styles';
-import { ThemeSetterContext } from './ThemeSetterContext';
+import {
+  IThemeSetterContextValue,
+  ThemeSetterContext,
+} from './ThemeSetterContext';
 
 export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
   const {
@@ -18,16 +20,16 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
   } = props;
   const [theme, setTheme] = useState(themeProp);
 
-  const setThemeCallback = useCallback(
-    (newTheme: ITheme | undefined) => setTheme(newTheme ?? themeProp),
-    [themeProp],
+  const themeSetterContextValue: IThemeSetterContextValue = useMemo(
+    () => ({ setTheme }),
+    [],
   );
 
   return (
-    <ThemeSetterContext.Provider value={{ setTheme: setThemeCallback }}>
+    <ThemeSetterContext.Provider value={themeSetterContextValue}>
       <ThemeContext.Provider
         value={{
-          theme,
+          theme: theme ?? themeProp,
           settings,
           componentsStyles,
         }}
