@@ -140,7 +140,6 @@ export const TextFieldBase = fixedForwardRef(function TextField<
           end={
             (other.end ?? clearable) ? (
               <>
-                {other.end}
                 {clearable ? (
                   <IconButton
                     data-cy='clearButton'
@@ -149,6 +148,7 @@ export const TextFieldBase = fixedForwardRef(function TextField<
                     onClick={handleClearInput}
                   />
                 ) : undefined}
+                {other.end}
               </>
             ) : undefined
           }

@@ -107,7 +107,7 @@ export const FilterableListBase = <
     // Omit noResults if createNewItemFromQuery and createNewItemRenderer are
     // both supplied, and query is not empty.
     const createItemView = listProps.renderCreateItem();
-    const maybeNoResults = createItemView != null ? null : noResults;
+    const maybeNoResults = createItemView != null ? undefined : noResults;
     const menuContent = renderFilterableItems(
       listProps,
       maybeNoResults,

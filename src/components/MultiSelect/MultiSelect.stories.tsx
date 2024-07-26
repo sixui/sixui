@@ -47,6 +47,14 @@ export const Basic: IStory = {
   args: defaultArgs,
 };
 
+export const Empty: IStory = {
+  render: (props) => <MultiSelectDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    items: [],
+  },
+};
+
 export const DefaultValue: IStory = {
   render: (props) => <MultiSelectDemo {...props} />,
   args: {

@@ -47,6 +47,14 @@ export const Basic: IStory = {
   args: defaultArgs,
 };
 
+export const Empty: IStory = {
+  render: (props) => <SuggestDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    items: [],
+  },
+};
+
 export const WithEmptyItem: IStory = {
   render: (props) => <SuggestDemo {...props} />,
   args: {
