@@ -27,6 +27,7 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
     clearable,
     variant,
     noResults,
+    placeholder,
     ...other
   } = props;
 
@@ -94,7 +95,7 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
             (renderProps.isOpen || renderProps.hasFocus) &&
             singleFilterableListBase.selectedItem
               ? itemLabel(singleFilterableListBase.selectedItem)
-              : undefined
+              : placeholder
           }
           variant={variant}
           {...getValueFieldProps?.(
