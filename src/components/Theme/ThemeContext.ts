@@ -13,7 +13,6 @@ export type IThemeContextValue = {
   theme?: ITheme;
   settings?: IThemeSettings;
   componentsStyles?: IThemeComponentStyles;
-  setTheme: (theme: ITheme | undefined) => void;
 };
 
 export const ThemeContext = createContext<IThemeContextValue | undefined>(

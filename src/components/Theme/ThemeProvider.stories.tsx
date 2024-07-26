@@ -6,10 +6,11 @@ import { ColorInputField } from '~/components/ColorInputField';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { commonStyles } from '~/helpers/commonStyles';
 import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
-import { useThemeContext } from './useThemeContext';
 import { ColorScheme } from '../ColorScheme';
 import { generateThemeFromSourceColor } from '~/helpers/colors/generateThemeFromSourceColor';
 import { ThemeProvider } from './ThemeProvider';
+import { useContext } from 'react';
+import { ThemeSetterContext } from './ThemeSetterContext';
 
 const meta = {
   component: ThemeProvider,
@@ -29,10 +30,10 @@ const styles = stylex.create({
 const defaultArgs = {} satisfies Partial<IThemeProviderProps>;
 
 const DynamicThemeProviderDemo: React.FC = () => {
-  const themeContext = useThemeContext();
+  const themeSetterContext = useContext(ThemeSetterContext);
 
   const handleChange = (color: string): void => {
-    themeContext.setTheme(
+    themeSetterContext?.setTheme(
       isValidHexColor(color) ? generateThemeFromSourceColor(color) : undefined,
     );
   };
