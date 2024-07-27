@@ -50,7 +50,11 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
       items={singleFilterableListBase.items}
       onItemSelect={singleFilterableListBase.handleItemSelect}
       renderer={(listProps) => (
-        <MenuList cols={other.cols}>{listProps.filteredList}</MenuList>
+        <MenuList
+          cols={listProps.filteredItems.length > 0 ? other.cols : undefined}
+        >
+          {listProps.filteredList}
+        </MenuList>
       )}
       itemRenderer={singleFilterableListBase.itemRenderer}
       matchTargetWidth
