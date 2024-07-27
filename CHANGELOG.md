@@ -1,3 +1,15 @@
+# v0.0.386 (Sat Jul 27 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: icon focus mode disable supportingText ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.385 (Sat Jul 27 2024)
 
 #### ⚠️ Pushed to `main`
