@@ -1,3 +1,16 @@
+# v0.0.384 (Sat Jul 27 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: grid mode for FloatingFilterableListBase ([@olivierpascal](https://github.com/olivierpascal))
+- feat(ColorTag): remove crosshairs if empty or invalid, which can be misleading ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.383 (Fri Jul 26 2024)
 
 #### ⚠️ Pushed to `main`
