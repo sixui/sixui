@@ -68,7 +68,6 @@ export const ColorTag = forwardRef<HTMLDivElement, IColorTagProps>(
         {...other}
         ref={forwardedRef}
       >
-        {isEmpty || isInvalid ? <div {...sxf('emptyCrosshairs')} /> : null}
         {icon ? (
           <div {...sxf('icon')}>{icon}</div>
         ) : label ? (
