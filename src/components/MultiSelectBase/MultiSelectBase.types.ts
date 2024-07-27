@@ -35,7 +35,7 @@ export type IMultiSelectBaseProps<TItem> =
       onItemsChange?: (value: Array<TItem>) => void;
       items: Array<TItem>;
       itemRenderer: IFilterableListItemRenderer<TItem, HTMLElement>;
-      itemLabel: (item: TItem) => string | undefined;
+      itemLabel: (item: TItem) => React.ReactNode | undefined;
       getValueFieldProps?: (
         renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
         selectedItem: TItem,

@@ -8,8 +8,8 @@ import {
   getFilterableListItemLabel,
   isFilterableListItemDisabled,
   renderFilterableListItem,
-  type IFilterableListItem,
   filterFilterableListItem,
+  type IFilterableListItem,
 } from '~/components/FilterableList';
 import { SelectBase } from '~/components/SelectBase';
 import { ListItem } from '~/components/ListItem';

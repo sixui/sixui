@@ -75,6 +75,7 @@ export const FilterableListBase = <
     onItemSelect,
     itemPredicate,
     listPredicate,
+    cols = 1,
   } = props;
   const isCreateItemFirst = createNewItemPosition === 'first';
   const canCreateItems = !!createNewItemFromQuery && !!createNewItemRenderer;
@@ -215,6 +216,7 @@ export const FilterableListBase = <
       items,
       renderCreateItem,
       renderItem,
+      cols,
     }),
     handleQueryChange: (event) => handleQueryChange(event.target.value),
     disabled,

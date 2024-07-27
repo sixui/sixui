@@ -6,7 +6,7 @@ export type IFilterableListItem = {
   icon?: React.ReactNode;
   imageUrl?: string;
   video?: Array<{ type: string; src: string }>;
-  label?: string;
+  label?: React.ReactNode;
   placeholder?: string;
   supportingText?: string;
   trailingSupportingText?: string;

@@ -1,4 +1,5 @@
 import highlightWords from 'highlight-words';
+import stylex from '@stylexjs/stylex';
 
 import type {
   IFilterableListItem,
@@ -15,6 +16,10 @@ import {
   type IFilterableListItemPredicate,
 } from '~/components/FilterableListBase';
 import { createFilter } from '~/helpers/createFilter';
+import {
+  filterableListItemFocusStyles,
+  filterableListItemStyles,
+} from './FilterableList.styles';
 
 const highlightQueryInText = (
   text?: string,
@@ -41,24 +46,49 @@ const highlightQueryInText = (
  */
 const getFilterableListItemProps = <TElement extends HTMLElement>(
   item: IFilterableListItem,
-  { modifiers, query }: IFilterableListItemRendererProps<TElement>,
+  { modifiers, query, focus }: IFilterableListItemRendererProps<TElement>,
 ): IListItemOwnProps => {
   const text = item.label ?? item.value;
 
   return {
     disabled: modifiers.disabled,
-    leading: item.leading,
-    leadingIcon: item.icon,
-    leadingImage: item.imageUrl,
-    leadingVideo: item.video,
-    supportingText: highlightQueryInText(item.supportingText, query),
-    trailingSupportingText: highlightQueryInText(
-      item.trailingSupportingText,
-      query,
-    ),
-    children: text ? highlightQueryInText(text, query) : item.placeholder,
     onClick: item.onClick,
     href: item.href,
+    ...(focus === 'icon'
+      ? {
+          innerStyles: { item: filterableListItemFocusStyles },
+          leading: undefined,
+          leadingIcon: undefined,
+          leadingImage: undefined,
+          leadingVideo: undefined,
+          supportingText: item.icon
+            ? (item.label ?? item.supportingText)
+            : item.supportingText,
+          trailingSupportingText: undefined,
+          children: item.icon ? (
+            <div {...stylex.props(filterableListItemStyles.content$iconFocus)}>
+              {item.icon}
+            </div>
+          ) : (
+            item.label
+          ),
+        }
+      : {
+          leading: item.leading,
+          leadingIcon: item.icon,
+          leadingImage: item.imageUrl,
+          leadingVideo: item.video,
+          supportingText: highlightQueryInText(item.supportingText, query),
+          trailingSupportingText: highlightQueryInText(
+            item.trailingSupportingText,
+            query,
+          ),
+          children: text
+            ? typeof text === 'string'
+              ? highlightQueryInText(text, query)
+              : text
+            : item.placeholder,
+        }),
   };
 };
 
@@ -79,7 +109,11 @@ export const isFilterableListItemEmpty = (item: IFilterableListItem): boolean =>
 
 export const filterFilterableList: IFilterableListPredicate<IFilterableListItem> =
   createFilter<IFilterableListItem>({
-    getSearchableText: (item) => [item.label, item.value, item.supportingText],
+    getSearchableText: (item) => [
+      typeof item.label === 'string' ? item.label : undefined,
+      item.value,
+      item.supportingText,
+    ],
   });
 
 /**
@@ -93,14 +127,15 @@ export const filterFilterableListItem: IFilterableListItemPredicate<
     return false;
   }
 
-  const normalizedLabel = text?.toLowerCase();
+  const normalizedLabel =
+    typeof text === 'string' ? text.toLowerCase() : undefined;
   const normalizedSupportingText = item.supportingText?.toLowerCase();
   const normalizedTrailingSupportingText =
     item.trailingSupportingText?.toLowerCase();
   const normalizedQuery = query.toLowerCase();
 
   return exactMatch
-    ? normalizedLabel === normalizedQuery
+    ? normalizedLabel !== undefined && normalizedLabel === normalizedQuery
     : `${normalizedLabel} ${normalizedSupportingText ?? ''} ${normalizedTrailingSupportingText ?? ''}`.indexOf(
         normalizedQuery,
       ) >= 0;
@@ -108,7 +143,7 @@ export const filterFilterableListItem: IFilterableListItemPredicate<
 
 export const getFilterableListItemLabel = (
   item: IFilterableListItem,
-): string | undefined => item.label ?? item.value;
+): React.ReactNode | undefined => item.label ?? item.value;
 
 export const isFilterableListItemDisabled = (
   item: IFilterableListItem,

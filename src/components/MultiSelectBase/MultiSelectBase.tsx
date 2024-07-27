@@ -59,7 +59,9 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
       items={multiFilterableListBase.items}
       onItemSelect={multiFilterableListBase.handleItemSelect}
       onItemRemoveFocused={multiFilterableListBase.handleItemRemoveFocused}
-      renderer={(listProps) => <MenuList>{listProps.filteredList}</MenuList>}
+      renderer={(listProps) => (
+        <MenuList cols={other.cols}>{listProps.filteredList}</MenuList>
+      )}
       itemRenderer={multiFilterableListBase.itemRenderer}
       matchTargetWidth
       resetOnSelect

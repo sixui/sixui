@@ -41,11 +41,17 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
     onItemChange,
   });
 
+  const selectedItemLabel = singleFilterableListBase.selectedItem
+    ? itemLabel(singleFilterableListBase.selectedItem)
+    : undefined;
+
   return (
     <FloatingFilterableListBase<TItem, HTMLElement>
       items={singleFilterableListBase.items}
       onItemSelect={singleFilterableListBase.handleItemSelect}
-      renderer={(listProps) => <MenuList>{listProps.filteredList}</MenuList>}
+      renderer={(listProps) => (
+        <MenuList cols={other.cols}>{listProps.filteredList}</MenuList>
+      )}
       itemRenderer={singleFilterableListBase.itemRenderer}
       matchTargetWidth
       resetOnSelect
@@ -87,14 +93,15 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
           value={
             renderProps.isOpen || renderProps.hasFocus
               ? renderProps.query
-              : singleFilterableListBase.selectedItem
-                ? itemLabel(singleFilterableListBase.selectedItem)
-                : ''
+              : ((typeof selectedItemLabel === 'string'
+                  ? selectedItemLabel
+                  : undefined) ?? '')
           }
           placeholder={
-            (renderProps.isOpen || renderProps.hasFocus) &&
-            singleFilterableListBase.selectedItem
-              ? itemLabel(singleFilterableListBase.selectedItem)
+            (renderProps.isOpen || renderProps.hasFocus) && selectedItemLabel
+              ? typeof selectedItemLabel === 'string'
+                ? selectedItemLabel
+                : undefined
               : placeholder
           }
           variant={variant}

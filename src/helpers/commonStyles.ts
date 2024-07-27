@@ -55,4 +55,7 @@ export const commonStyles = stylex.create({
   transformOrigin: (transformOrigin: string) => ({
     transformOrigin,
   }),
+  gridTemplateColumns: (gridTemplateColumns: string) => ({
+    gridTemplateColumns,
+  }),
 });

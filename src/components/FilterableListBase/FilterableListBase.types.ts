@@ -49,6 +49,8 @@ export type IFilterableListBaseInternalRendererProps<TItem> =
      * the `createNewItemRenderer` returns undefined.
      */
     renderCreateItem: () => React.JSX.Element | null | undefined;
+
+    cols: number;
   };
 
 /**
@@ -91,6 +93,8 @@ export type IFilterableListItemModifiers = {
   matchesPredicate: boolean;
 };
 
+export type IFilterableListItemFocus = 'icon';
+
 /**
  * An object describing how to render a particular filtered item. An
  * `itemRenderer` receives the item as its first argument, and this object as
@@ -132,6 +136,8 @@ export type IFilterableListItemRendererProps<TElement extends HTMLElement> = {
   getButtonAttributes: (
     userProps?: React.HTMLProps<TElement>,
   ) => Record<string, unknown>;
+
+  focus?: IFilterableListItemFocus;
 };
 
 /**
@@ -422,4 +428,6 @@ export type IFilterableListBaseProps<
    * @defaultValue false
    */
   disabled?: boolean;
+
+  cols?: number;
 };

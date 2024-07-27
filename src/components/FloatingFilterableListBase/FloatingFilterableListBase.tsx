@@ -79,6 +79,8 @@ export const FloatingFilterableListBase = fixedForwardRef(
       noResults,
       createNewItemFromQuery,
       createNewItemPosition,
+      cols = 1,
+      itemFocus,
       ...other
     } = props;
 
@@ -139,6 +141,8 @@ export const FloatingFilterableListBase = fixedForwardRef(
       onNavigate: setActiveIndex,
       virtual: canFilter,
       loop: true,
+      cols,
+      orientation: cols > 1 ? 'both' : 'vertical',
     });
     const typeahead = useTypeahead(floating.context, {
       listRef: labelsRef,
@@ -312,6 +316,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
           ...itemProps.modifiers,
           active,
         },
+        focus: itemFocus,
         buttonRef: (node) => {
           elementsRef.current[itemProps.index] = node;
           labelsRef.current[itemProps.index] = node?.textContent ?? null;
@@ -436,6 +441,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
                       noResults={noResults}
                       createNewItemFromQuery={createNewItemFromQuery}
                       createNewItemPosition={createNewItemPosition}
+                      cols={cols}
                       {...(forwardProps ? undefined : other)}
                     />
                   </FloatingList>

@@ -22,7 +22,7 @@ export type ISuggestBaseProps<TItem> =
     > &
     ITextInputFieldProps &
     IUseSingleFilterableListBaseProps<TItem, HTMLElement> & {
-      itemLabel: (item: TItem) => string | undefined;
+      itemLabel: (item: TItem) => React.ReactNode | undefined;
       getValueFieldProps?: (
         renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
         selectedItem?: TItem,

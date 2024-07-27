@@ -1,7 +1,10 @@
 import type { IContainerProps, IOmit, IOrientation } from '~/helpers/types';
 import type { Placement, ReferenceType } from '@floating-ui/react';
 
-import type { IFilterableListBaseProps } from '~/components/FilterableListBase';
+import type {
+  IFilterableListBaseProps,
+  IFilterableListItemFocus,
+} from '~/components/FilterableListBase';
 import type {
   IExtendedFloatingProps,
   IExtendedHtmlFloatingProps,
@@ -114,6 +117,7 @@ export type IFloatingFilterableListBaseProps<
     resetOnClose?: boolean;
 
     resetOnBlur?: boolean;
-
     initialFocus?: number;
+    cols?: number;
+    itemFocus?: IFilterableListItemFocus;
   };

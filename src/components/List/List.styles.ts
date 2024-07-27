@@ -35,4 +35,8 @@ export const listStyles = stylex.create({
     paddingTop: 0,
     paddingBottom: 0,
   },
+  content$grid: {
+    display: 'grid',
+    gridAutoRows: '1fr',
+  },
 });

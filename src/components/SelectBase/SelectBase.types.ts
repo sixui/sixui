@@ -10,16 +10,17 @@ import type {
 export type ISelectBaseProps<TItem> = IContainerProps<IFieldStylesKey> &
   IOmit<
     IFloatingFilterableListBaseProps<TItem, HTMLElement>,
-    | 'onItemSelect'
-    | 'renderer'
-    | 'listRenderer'
-    | 'itemRenderer'
-    | 'itemsEqual'
-    | 'children'
+    'onItemSelect' | 'renderer' | 'itemRenderer' | 'itemsEqual' | 'children'
+  > &
+  Partial<
+    Pick<
+      IFloatingFilterableListBaseProps<TItem, HTMLElement>,
+      'onItemSelect' | 'renderer' | 'itemRenderer'
+    >
   > &
   IFieldOwnProps &
   IUseSingleFilterableListBaseProps<TItem, HTMLElement> & {
-    itemLabel: (item: TItem) => string | undefined;
+    itemLabel: (item: TItem) => React.ReactNode | undefined;
     canFilter?: boolean;
     getValueFieldProps?: (
       renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,

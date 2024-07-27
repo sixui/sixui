@@ -186,4 +186,13 @@ export const WithErrorText: IStory = {
   },
 };
 
+export const Grid: IStory = {
+  render: (props) => <SelectDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    cols: 3,
+    itemFocus: 'icon',
+  },
+};
+
 export default meta;

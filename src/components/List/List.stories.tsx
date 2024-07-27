@@ -6,6 +6,7 @@ import {
   faCheck,
   faLink,
 } from '@fortawesome/free-solid-svg-icons';
+import { createSequence } from '@olivierpascal/helpers';
 
 import type { IListProps } from './List.types';
 import { ListItem, type IListItemProps } from '~/components/ListItem';
@@ -45,15 +46,15 @@ const defaultArgs = {
   sx: styles.host,
 } satisfies Partial<IListProps>;
 
-const renderListItems = (props?: IListItemProps): React.ReactNode =>
-  ['A', 'B', 'C', 'D'].map((initials, index) => (
+const renderListItems = (props?: IListItemProps, count = 4): React.ReactNode =>
+  createSequence(count, 1).map((initials, index) => (
     <ListItem key={index} leading={<Avatar>{initials}</Avatar>} {...props}>
       Headline
     </ListItem>
   ));
 
 export const Sizes: IStory = {
-  render: (args) => (
+  render: (props) => (
     <ComponentShowcase
       component={(props) => <List {...props} />}
       verticalAlign='start'
@@ -92,7 +93,7 @@ export const Sizes: IStory = {
           },
         },
       ]}
-      props={args}
+      props={props}
     />
   ),
   args: {
@@ -101,8 +102,22 @@ export const Sizes: IStory = {
   },
 };
 
+export const Grid: IStory = {
+  render: (props) => <List {...props} />,
+  args: {
+    ...defaultArgs,
+    cols: 3,
+    children: renderListItems(
+      {
+        supportingText: 'Supporting text',
+      },
+      8,
+    ),
+  },
+};
+
 export const Configurations: IStory = {
-  render: (args) => (
+  render: (props) => (
     <ComponentShowcase
       component={(args) => (
         <List {...args}>
@@ -169,7 +184,7 @@ export const Configurations: IStory = {
           </ListItem>
         </List>
       )}
-      props={args}
+      props={props}
     />
   ),
   args: defaultArgs,

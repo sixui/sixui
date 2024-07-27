@@ -10,6 +10,7 @@ export const itemStyles = stylex.create({
     alignItems: 'stretch',
     display: 'flex',
     position: 'relative',
+    height: '100%',
     gap: itemTokens.gap,
   },
   nonText: {

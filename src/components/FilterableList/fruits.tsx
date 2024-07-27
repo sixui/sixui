@@ -5,6 +5,7 @@ import {
   faCarrot,
   faLemon,
   faPepperHot,
+  faLeaf,
 } from '@fortawesome/free-solid-svg-icons';
 
 export const emptyItem = {
@@ -43,5 +44,10 @@ export const fruits: Array<IFilterableListItem> = [
     supportingText: 'Spicy!',
     icon: <FontAwesomeIcon icon={faPepperHot} />,
     disabled: true,
+  },
+  {
+    label: 'Leaf',
+    value: 'leaf',
+    icon: <FontAwesomeIcon icon={faLeaf} />,
   },
 ];

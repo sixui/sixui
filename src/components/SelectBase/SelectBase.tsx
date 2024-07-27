@@ -60,6 +60,7 @@ export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
               />
             ) : undefined
           }
+          cols={other.cols}
         >
           {listProps.filteredList}
         </MenuList>
