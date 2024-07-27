@@ -61,9 +61,7 @@ const getFilterableListItemProps = <TElement extends HTMLElement>(
           leadingIcon: undefined,
           leadingImage: undefined,
           leadingVideo: undefined,
-          supportingText: item.icon
-            ? (item.label ?? item.supportingText)
-            : item.supportingText,
+          supportingText: undefined,
           trailingSupportingText: undefined,
           children: item.icon ? (
             <div {...stylex.props(filterableListItemStyles.content$iconFocus)}>
