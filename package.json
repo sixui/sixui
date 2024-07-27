@@ -1,7 +1,7 @@
 {
   "name": "@sixui/ui",
   "description": "UI components",
-  "version": "0.0.385",
+  "version": "0.0.386",
   "author": "Olivier Pascal <olivier@pascal.re>",
   "main": "./dist/index.js",
   "sideEffects": false,
