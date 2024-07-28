@@ -57,7 +57,7 @@ export const colorButtonStateLayerStyles = stylex.create({
     },
 
     [stateLayerTokens.color$hover]: colorButtonTokens.stateLayerColor$hover,
-    [stateLayerTokens.opacity$hover]: colorButtonTokens.stateLayerOpacity$hover,
+    [stateLayerTokens.opacity$hover]: '0',
     [stateLayerTokens.color$pressed]: colorButtonTokens.stateLayerColor$pressed,
     [stateLayerTokens.opacity$pressed]:
       colorButtonTokens.stateLayerOpacity$pressed,

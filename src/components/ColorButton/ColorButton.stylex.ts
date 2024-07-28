@@ -16,7 +16,6 @@ const vars = {
   // stateLayer
   // &:hover
   stateLayerColor$hover: colorSchemeTokens.onSurface,
-  stateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,
   // &:pressed
   stateLayerColor$pressed: colorSchemeTokens.onSurface,
   stateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
