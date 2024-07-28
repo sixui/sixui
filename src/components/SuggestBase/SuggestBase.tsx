@@ -51,6 +51,7 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
       onItemSelect={singleFilterableListBase.handleItemSelect}
       renderer={(listProps) => (
         <MenuList
+          noFocusRing
           cols={listProps.filteredItems.length > 0 ? other.cols : undefined}
         >
           {listProps.filteredList}

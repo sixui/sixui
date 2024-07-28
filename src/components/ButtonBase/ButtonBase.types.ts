@@ -2,6 +2,8 @@ import type {
   IContainerProps,
   IZeroOrMore,
   ICompiledStyles,
+  IMaybeAsync,
+  IAny,
 } from '~/helpers/types';
 import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
 import type { IStateLayerStylesKey } from '~/components/StateLayer';
@@ -24,6 +26,7 @@ export type IButtonBaseOwnProps = IContainerProps<IButtonBaseStylesKey> & {
   href?: string;
   target?: React.AnchorHTMLAttributes<HTMLAnchorElement>['target'];
   disabled?: boolean;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => IMaybeAsync<IAny>;
 
   /**
    * If `true`, the component will be rendered in a disabled state, but will

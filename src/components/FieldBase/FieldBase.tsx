@@ -51,7 +51,6 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
     end,
     leadingIcon,
     trailingIcon: trailingIconProp,
-    disabled: disabledProp,
     readOnly,
     label,
     labelId,
@@ -71,11 +70,11 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
     ...other
   } = props;
 
-  const disabled = disabledProp || readOnly;
+  const visuallyDisabled = !!other.disabled || readOnly;
   const { visualState, setRef: setVisualStateRef } = useVisualState(
     visualStateProp,
     {
-      disabled,
+      disabled: visuallyDisabled,
       retainFocusAfterClick: true,
     },
   );
@@ -113,7 +112,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
 
   const supportingOrErrorText =
     hasError && errorText ? errorText : supportingText;
-  const focused = !disabled && visualState?.focused;
+  const focused = !other.disabled && visualState?.focused;
   const hasStart = !!leadingIcon || !!start;
   const hasEnd = !!trailingIcon || !!end;
   const hasLabel = !!label;
@@ -230,7 +229,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
   );
 
   useEffect(() => {
-    if (disabled) {
+    if (visuallyDisabled) {
       disableTransitionsRef.current = true;
     }
 
@@ -252,7 +251,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
       });
     }
   }, [
-    disabled,
+    visuallyDisabled,
     animateLabelIfNeeded,
     wasFocused,
     wasPopulated,
@@ -289,7 +288,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
             'label',
             floating ? 'label$floating' : 'label$resting',
             hasError && 'label$error',
-            disabled && 'label$disabled',
+            visuallyDisabled && 'label$disabled',
             !visible && 'label$invisible',
           )}
           aria-hidden={!visible}
@@ -300,7 +299,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
       );
     },
     [
-      disabled,
+      visuallyDisabled,
       hasError,
       wasFocused,
       focused,
@@ -333,7 +332,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
         {...sxf(
           'supportingText',
           hasError && 'supportingText$error',
-          disabled && 'supportingText$disabled',
+          visuallyDisabled && 'supportingText$disabled',
         )}
         role={role}
       >
@@ -346,7 +345,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
       </div>
     );
   }, [
-    disabled,
+    visuallyDisabled,
     hasError,
     errorText,
     getCounterText,
@@ -358,17 +357,19 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
   const renderBackground = useCallback(
     (): React.ReactNode => (
       <>
-        <div {...sxf('background', disabled && 'background$disabled')} />
+        <div
+          {...sxf('background', visuallyDisabled && 'background$disabled')}
+        />
         <div
           {...sxf(
             'stateLayer',
             hasError && 'stateLayer$error',
-            disabled && 'stateLayer$disabled',
+            visuallyDisabled && 'stateLayer$disabled',
           )}
         />
       </>
     ),
-    [sxf, disabled, hasError],
+    [sxf, visuallyDisabled, hasError],
   );
 
   const renderIndicator = useCallback(
@@ -378,7 +379,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
           {...sxf(
             'activeIndicatorBackground',
             hasError && 'activeIndicatorBackground$error',
-            disabled && 'activeIndicatorBackground$disabled',
+            visuallyDisabled && 'activeIndicatorBackground$disabled',
           )}
         />
         <div
@@ -390,7 +391,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
         />
       </div>
     ),
-    [sxf, disabled, hasError],
+    [sxf, visuallyDisabled, hasError],
   );
 
   const renderOutline = useCallback(
@@ -399,7 +400,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
         {...sxf(
           'outline',
           hasError && 'outline$error',
-          disabled && 'outline$disabled',
+          visuallyDisabled && 'outline$disabled',
         )}
       >
         <div
@@ -407,7 +408,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
             'outlineSection',
             'outlineSection$startEnd',
             'outlineSection$start',
-            disabled && 'outlineSection$startEnd$disabled',
+            visuallyDisabled && 'outlineSection$startEnd$disabled',
           )}
         >
           <div
@@ -418,7 +419,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
               'outlineBorder$inactive',
               'outlineBorder$inactive$startEnd',
               'outlineBorder$inactive$start',
-              disabled && 'outlineBorder$inactive$startEnd$disabled',
+              visuallyDisabled && 'outlineBorder$inactive$startEnd$disabled',
             )}
           />
           <div
@@ -438,7 +439,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
               'outlineSection',
               'outlineSection$panel',
               'outlineSection$panel$inactive',
-              disabled && 'outlineSection$panel$inactive$disabled',
+              visuallyDisabled && 'outlineSection$panel$inactive$disabled',
             )}
           >
             <div
@@ -449,7 +450,8 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
                 'outlineBorder$inactive$panel',
                 'outlineBorder$inactive$panel$inactive',
                 populated && 'outlineBorder$panel$populated',
-                disabled && 'outlineBorder$inactive$panel$inactive$disabled',
+                visuallyDisabled &&
+                  'outlineBorder$inactive$panel$inactive$disabled',
               )}
             />
             <div
@@ -460,7 +462,8 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
                 'outlineBorder$active$panel',
                 'outlineBorder$active$panel$inactive',
                 populated && 'outlineBorder$panel$populated',
-                disabled && 'outlineBorder$active$panel$inactive$disabled',
+                visuallyDisabled &&
+                  'outlineBorder$active$panel$inactive$disabled',
               )}
             />
           </div>
@@ -499,7 +502,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
             'outlineSection',
             'outlineSection$startEnd',
             'outlineSection$end',
-            disabled && 'outlineSection$startEnd$disabled',
+            visuallyDisabled && 'outlineSection$startEnd$disabled',
           )}
         >
           <div
@@ -510,7 +513,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
               'outlineBorder$inactive',
               'outlineBorder$inactive$startEnd',
               'outlineBorder$inactive$end',
-              disabled && 'outlineBorder$inactive$startEnd$disabled',
+              visuallyDisabled && 'outlineBorder$inactive$startEnd$disabled',
             )}
           />
           <div
@@ -526,7 +529,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
         </div>
       </div>
     ),
-    [sxf, hasLabel, populated, disabled, hasError, floatingLabel],
+    [sxf, hasLabel, populated, visuallyDisabled, hasError, floatingLabel],
   );
 
   return (
@@ -536,7 +539,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
         componentTheme.overridenStyles,
         'host',
         !!supportingOrErrorText && 'host$withSupportingText',
-        disabled && 'host$disabled',
+        visuallyDisabled && 'host$disabled',
         sx,
       )}
       aria-labelledby={labelId}
@@ -549,7 +552,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
         {...sxf(
           'field',
           textArea && 'field$textArea',
-          disabled && 'field$disabled',
+          visuallyDisabled && 'field$disabled',
         )}
       >
         <div {...sxf('containerOverflow')} ref={containerRef}>
@@ -560,7 +563,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
             {...sxf(
               'container',
               resizable &&
-                (disabled
+                (visuallyDisabled
                   ? 'container$disabled$resizable'
                   : 'container$resizable'),
             )}
@@ -573,7 +576,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
                   resizable && 'section$resizable',
                   hasStart && 'section$start$withStart',
                   hasError && 'section$start$error',
-                  disabled && 'section$start$disabled',
+                  visuallyDisabled && 'section$start$disabled',
                 )}
               >
                 {leadingIcon ? (
@@ -609,8 +612,8 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
                   !hasLabel && 'content$noLabel',
                   populated && 'content$populated',
                   hasError && 'content$error',
-                  disabled && 'content$disabled',
-                  disabled &&
+                  visuallyDisabled && 'content$disabled',
+                  visuallyDisabled &&
                     (!label
                       ? 'content$noLabel$disabled'
                       : populated
@@ -647,7 +650,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
                   'section$end',
                   hasEnd && 'section$end$withEnd',
                   hasError && 'section$end$error',
-                  disabled && 'section$end$disabled',
+                  visuallyDisabled && 'section$end$disabled',
                 )}
               >
                 {trailingIcon ? (

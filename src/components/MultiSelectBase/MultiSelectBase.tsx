@@ -64,6 +64,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
       onItemSelect={multiFilterableListBase.handleItemSelect}
       renderer={(listProps) => (
         <MenuList
+          noFocusRing
           cols={listProps.filteredItems.length > 0 ? other.cols : undefined}
         >
           {listProps.filteredList}

@@ -1,9 +1,4 @@
-import type {
-  IAny,
-  ICompiledStyles,
-  IMaybeAsync,
-  IZeroOrMore,
-} from '~/helpers/types';
+import type { ICompiledStyles, IZeroOrMore } from '~/helpers/types';
 import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
 import type { ICircularProgressIndicatorStylesKey } from '~/components/CircularProgressIndicator';
 import type { IButtonBaseOwnProps } from '~/components/ButtonBase';
@@ -33,7 +28,6 @@ export type IButtonOwnProps = IButtonBaseOwnProps & {
   loading?: boolean;
   loadingAnimation?: 'progressIndicator' | 'halfSpin' | 'none';
   loadingText?: string;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => IMaybeAsync<IAny>; // TODO: -> ButtonBase
 };
 
 export type IButtonProps<
