@@ -16,7 +16,7 @@ export const generateTonalColorPalettes = (
     (hueRotationIndex) =>
       generateTonalColorPalette(
         sourceColorHct.hue + hueRotationIndex * hueRotationStep,
-        sourceColorHct.chroma,
+        sourceColorHct.chroma < 10 ? 100 : sourceColorHct.chroma,
         tones,
       ),
     [] as Array<string>,
