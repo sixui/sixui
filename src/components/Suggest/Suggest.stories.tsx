@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
+import type { IFilterableListItem } from '~/components/FilterableList';
 import type { ISuggestProps } from './Suggest.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { ListItem } from '~/components/ListItem';
@@ -115,7 +116,7 @@ export const Disabled: IStory = {
 };
 
 const ControlledSuggestDemo: React.FC<ISuggestProps> = (props) => {
-  const [value, setValue] = useState<string>(props.defaultValue ?? '');
+  const [value, setValue] = useState(props.defaultValue ?? '');
 
   const handleChange = (newValue?: string): void => {
     setValue(newValue ?? '');
@@ -157,11 +158,45 @@ export const WithErrorText: IStory = {
 };
 
 export const Grid: IStory = {
-  render: (props) => <ControlledSuggestDemo {...props} />,
+  render: (props) => <SuggestDemo {...props} />,
   args: {
     ...defaultArgs,
     cols: 3,
     itemFocus: 'icon',
+  },
+};
+
+const AsyncControlledSuggestDemo: React.FC<ISuggestProps> = (props) => {
+  const [items, setItems] = useState<Array<IFilterableListItem>>([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleQueryChange = (): void => {
+    setItems([]);
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setItems(fruits);
+      setIsLoading(false);
+    }, 1000);
+  };
+
+  return (
+    <SuggestDemo
+      {...props}
+      onQueryChange={handleQueryChange}
+      items={items}
+      loading={isLoading}
+    />
+  );
+};
+
+export const AsyncGrid: IStory = {
+  render: (props) => <AsyncControlledSuggestDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    cols: 3,
+    itemFocus: 'icon',
+    items: [],
   },
 };
 

@@ -94,7 +94,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
 
     const [isOpen, setIsOpen] = useState(false);
     const [hasFocus, setHasFocus] = useState(false);
-    const [activeIndex, setActiveIndex] = useState<number | null>(0);
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
     const elementsRef = useRef<Array<HTMLElement | null>>([]);
     const labelsRef = useRef<Array<string | null>>([]);
@@ -224,7 +224,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
 
       setQuery(newQuery);
       onQueryChange?.(newQuery, event);
-      setActiveIndex(0);
+      setActiveIndex(null);
 
       if (!isOpen) {
         setIsOpen(true);
@@ -335,7 +335,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
       if (previousIsMounted && !transitionStatus.isMounted) {
         if (resetOnClose) {
           setQuery('');
-          setSelectedIndex(0);
+          setSelectedIndex(null);
         }
       }
     }, [
