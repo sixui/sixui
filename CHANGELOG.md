@@ -1,3 +1,15 @@
+# v0.0.391 (Sun Jul 28 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: better active state ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.390 (Sun Jul 28 2024)
 
 #### ⚠️ Pushed to `main`
