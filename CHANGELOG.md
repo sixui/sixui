@@ -1,3 +1,16 @@
+# v0.0.389 (Sun Jul 28 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: better keyboard navigation in Select/Suggest/MultiSelect ([@olivierpascal](https://github.com/olivierpascal))
+- fix(useMultiSelect): preserve select order ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.388 (Sun Jul 28 2024)
 
 #### ⚠️ Pushed to `main`
