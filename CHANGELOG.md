@@ -1,3 +1,15 @@
+# v0.0.388 (Sun Jul 28 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(FloatingFilterableListBase): allow keyboard navigation in grid view if query is empty ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.387 (Sun Jul 28 2024)
 
 #### ⚠️ Pushed to `main`
