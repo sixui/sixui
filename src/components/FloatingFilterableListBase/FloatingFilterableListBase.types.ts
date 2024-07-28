@@ -90,16 +90,6 @@ export type IFloatingFilterableListBaseProps<
       event?: React.SyntheticEvent<HTMLElement>,
     ) => number | undefined;
 
-    onItemRemoveFocused?: () => void;
-
-    onItemFocusPreviousSelected?: (
-      inputFilterRef: React.RefObject<HTMLInputElement>,
-    ) => boolean;
-    onItemFocusNextSelected?: (
-      inputFilterRef: React.RefObject<HTMLInputElement>,
-    ) => boolean;
-    onItemFocusUnselected?: () => boolean;
-
     placement?: Placement;
     orientation?: IOrientation;
     matchTargetWidth?: boolean;

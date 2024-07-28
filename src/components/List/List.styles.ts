@@ -38,5 +38,6 @@ export const listStyles = stylex.create({
   content$grid: {
     display: 'grid',
     gridAutoRows: '1fr',
+    gap: listTokens.gridSpace,
   },
 });

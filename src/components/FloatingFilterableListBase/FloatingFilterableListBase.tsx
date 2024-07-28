@@ -56,10 +56,6 @@ export const FloatingFilterableListBase = fixedForwardRef(
       itemRenderer,
       createNewItemRenderer,
       onItemSelect,
-      onItemRemoveFocused,
-      onItemFocusPreviousSelected,
-      onItemFocusNextSelected,
-      onItemFocusUnselected,
       closeOnSelect,
       resetOnSelect,
       initialFocus = 0,
@@ -148,7 +144,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
       virtual: canFilter,
       loop: true,
       cols,
-      orientation: cols > 1 ? 'both' : 'vertical',
+      orientation: isGrid ? 'both' : 'vertical',
     });
     const typeahead = useTypeahead(floating.context, {
       listRef: labelsRef,
@@ -248,12 +244,6 @@ export const FloatingFilterableListBase = fixedForwardRef(
       },
       onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>): void => {
         switch (event.key) {
-          case 'Backspace':
-            if (!query) {
-              onItemRemoveFocused?.();
-            }
-            break;
-
           case 'Enter':
             if (isOpen) {
               event.preventDefault();
@@ -264,57 +254,6 @@ export const FloatingFilterableListBase = fixedForwardRef(
             break;
 
           case ' ':
-            break;
-
-          case 'ArrowLeft':
-            {
-              if (query || (isGrid && isOpen)) {
-                const isSelectionAtStart =
-                  inputFilterRef.current?.selectionStart === 0;
-                if (isSelectionAtStart) {
-                  userProps?.onKeyDown?.(event);
-                }
-
-                if (isGrid) {
-                  onItemFocusUnselected?.();
-                }
-              } else {
-                const hasPrevious =
-                  onItemFocusPreviousSelected?.(inputFilterRef);
-                if (!hasPrevious) {
-                  userProps?.onKeyDown?.(event);
-                }
-              }
-            }
-            break;
-
-          case 'ArrowRight':
-            {
-              if (query || (isGrid && isOpen)) {
-                const isSelectionAtEnd =
-                  inputFilterRef.current?.selectionEnd === query.length;
-                if (isSelectionAtEnd) {
-                  userProps?.onKeyDown?.(event);
-                }
-
-                if (isGrid) {
-                  onItemFocusUnselected?.();
-                }
-              } else {
-                const hasNext = onItemFocusNextSelected?.(inputFilterRef);
-                if (!hasNext) {
-                  userProps?.onKeyDown?.(event);
-                }
-              }
-            }
-            break;
-
-          case 'Escape':
-            if (isOpen) {
-              onItemFocusUnselected?.();
-            } else {
-              userProps?.onKeyDown?.(event);
-            }
             break;
 
           default:
@@ -409,7 +348,6 @@ export const FloatingFilterableListBase = fixedForwardRef(
 
     const handleFocus = (): void => setHasFocus(true);
     const handleBlur = (): void => {
-      onItemFocusUnselected?.();
       setHasFocus(false);
 
       if (resetOnBlur && !isOpen) {

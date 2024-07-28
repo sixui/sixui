@@ -29,10 +29,10 @@ export type IUseMultiFilterableListBaseResult<
 > = {
   itemRenderer: IFilterableListItemRenderer<TItem, TElement>;
   handleItemSelect: (newSelectedItem: TItem) => number | undefined;
-  handleItemRemoveFocused: () => void;
-  handleItemFocusPreviousSelected: () => boolean;
-  handleItemFocusNextSelected: () => boolean;
-  handleItemFocusUnselected: () => boolean;
+  handleRemoveFocusedChip: () => void;
+  handleFocusPreviousChip: () => boolean;
+  handleFocusNextChip: () => boolean;
+  handleBlurChip: () => boolean;
   handleQueryChange: () => void;
   handleClear: (
     afterItemsRemove: (
@@ -41,6 +41,7 @@ export type IUseMultiFilterableListBaseResult<
     ) => void,
     event?: React.MouseEvent<HTMLElement>,
   ) => void;
+  getFocusedChipIndex: () => number | undefined;
   items: Array<TItem>;
   selectedItems: Array<TItem>;
   focusedSelectedItemIndex?: number;
@@ -157,22 +158,28 @@ export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
     onItemsChange?.(deselectItemAtIndex(index));
   };
 
-  const handleItemRemoveFocused = (): void => {
+  const handleRemoveFocusedChip = (): void => {
     if (focusedSelectedItemIndex === undefined) {
-      setFocusedSelectedItemIndex(selectedItems.length - 1);
+      const nextSelectedItemIndex = selectedItems.length - 1;
+      setFocusedSelectedItemIndex(
+        nextSelectedItemIndex < 0 ? undefined : nextSelectedItemIndex,
+      );
 
       return;
     }
 
     const isLastFocused = focusedSelectedItemIndex === selectedItems.length - 1;
+    const nextSelectedItemIndex = selectedItems.length - 2;
     if (isLastFocused) {
-      setFocusedSelectedItemIndex(selectedItems.length - 2);
+      setFocusedSelectedItemIndex(
+        nextSelectedItemIndex < 0 ? undefined : nextSelectedItemIndex,
+      );
     }
 
     handleItemRemoveAtIndex(focusedSelectedItemIndex);
   };
 
-  const handleItemFocusPreviousSelected = (): boolean => {
+  const handleFocusPreviousChip = (): boolean => {
     if (!selectedItems.length) {
       return false;
     }
@@ -187,7 +194,7 @@ export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
     return previousIndex >= 0;
   };
 
-  const handleItemFocusNextSelected = (): boolean => {
+  const handleFocusNextChip = (): boolean => {
     if (!selectedItems.length) {
       return false;
     }
@@ -203,7 +210,7 @@ export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
     return focusedSelectedItemIndex !== undefined || nextIndex !== undefined;
   };
 
-  const handleItemFocusUnselected = (): boolean => {
+  const handleBlurChip = (): boolean => {
     setFocusedSelectedItemIndex(undefined);
 
     return focusedSelectedItemIndex !== undefined;
@@ -230,12 +237,13 @@ export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
   return {
     itemRenderer,
     handleItemSelect,
-    handleItemRemoveFocused,
-    handleItemFocusPreviousSelected,
-    handleItemFocusNextSelected,
-    handleItemFocusUnselected,
+    handleRemoveFocusedChip,
+    handleFocusPreviousChip,
+    handleFocusNextChip,
+    handleBlurChip,
     handleQueryChange,
     handleClear,
+    getFocusedChipIndex: () => focusedSelectedItemIndex,
     deselectItemAtIndex,
     items: [...items, ...createdItems],
     selectedItems,

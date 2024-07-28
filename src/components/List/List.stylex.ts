@@ -3,6 +3,7 @@ import stylex from '@stylexjs/stylex';
 const vars = {
   topSpace: '8px',
   bottomSpace: '8px',
+  gridSpace: '4px',
 };
 
 export const listTokens = stylex.defineVars(vars);
