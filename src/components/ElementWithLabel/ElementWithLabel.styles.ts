@@ -28,11 +28,16 @@ export const elementWithLabelStyles = stylex.create({
     flexDirection: 'column',
     gap: '0.125rem',
   },
-  labelContainer: {
+  labelAndActionContainer: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     gap: '0.25rem',
+  },
+  labelContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    flexGrow: 1,
   },
   label: {
     color: elementWithLabelTokens.labelTextColor,
@@ -41,9 +46,6 @@ export const elementWithLabelStyles = stylex.create({
     fontWeight: elementWithLabelTokens.labelTextWeight,
     lineHeight: elementWithLabelTokens.labelTextLineHeight,
     letterSpacing: elementWithLabelTokens.labelTextLetterSpacing,
-    display: 'flex',
-    alignItems: 'center',
-    flexGrow: 1,
     cursor: 'pointer',
   },
   label$error: {

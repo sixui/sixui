@@ -56,21 +56,23 @@ export const ElementWithLabel = forwardRef<
     (!!label && labelPosition === 'end') ||
     ((!!supportingText || !!errorText) && supportingTextPosition === 'end');
 
-  const renderLabel = (): React.ReactNode =>
+  const renderLabelAndAction = (): React.ReactNode =>
     label !== undefined ? (
-      <div {...sxf('labelContainer')}>
-        <label
-          {...sxf(
-            'label',
-            disabled
-              ? 'label$disabled'
-              : hasError && !errorText && 'label$error',
-          )}
-          htmlFor={id}
-        >
-          {label}
-          {required ? '*' : null}
-        </label>
+      <div {...sxf('labelAndActionContainer')}>
+        <div {...sxf('labelContainer')}>
+          <label
+            {...sxf(
+              'label',
+              disabled
+                ? 'label$disabled'
+                : hasError && !errorText && 'label$error',
+            )}
+            htmlFor={id}
+          >
+            {label}
+            {required ? '*' : null}
+          </label>
+        </div>
         {action ? (
           <div {...sxf('action', disabled && 'action$disabled')}>{action}</div>
         ) : null}
@@ -114,7 +116,7 @@ export const ElementWithLabel = forwardRef<
     >
       {hasLeading ? (
         <div {...sxf('header')}>
-          {labelPosition === 'start' ? renderLabel() : null}
+          {labelPosition === 'start' ? renderLabelAndAction() : null}
           {supportingTextPosition === 'start' ? renderSupportingText() : null}
         </div>
       ) : null}
@@ -129,7 +131,7 @@ export const ElementWithLabel = forwardRef<
 
       {hasTrailing ? (
         <div {...sxf('header')}>
-          {labelPosition === 'end' ? renderLabel() : null}
+          {labelPosition === 'end' ? renderLabelAndAction() : null}
           {supportingTextPosition === 'end' ? renderSupportingText() : null}
         </div>
       ) : null}
