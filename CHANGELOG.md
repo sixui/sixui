@@ -1,3 +1,16 @@
+# v0.0.399 (Sun Jul 28 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(Avatar): squared variant and random color fallback ([@olivierpascal](https://github.com/olivierpascal))
+- feat(ColorButton): disable opacity hover state layer for a correct visual representation of the selected color ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.398 (Sun Jul 28 2024)
 
 #### ⚠️ Pushed to `main`
