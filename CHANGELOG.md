@@ -1,3 +1,15 @@
+# v0.0.393 (Sun Jul 28 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(ElementLabel): label clickable region does not take full width anymore ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.392 (Sun Jul 28 2024)
 
 #### ⚠️ Pushed to `main`
