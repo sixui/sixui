@@ -4,7 +4,7 @@ import { TextInputField } from '~/components/TextInputField';
 import { MenuList } from '~/components/MenuList';
 import {
   useSingleFilterableListBase,
-  FilterableListBaseFieldEnd,
+  FilterableListBaseFieldTrailingIcon,
 } from '~/components/FilterableListBase';
 import { FloatingFilterableListBase } from '~/components/FloatingFilterableListBase';
 import { fixedForwardRef } from '~/helpers/fixedForwardRef';
@@ -70,8 +70,8 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
     >
       {(renderProps) => (
         <TextInputField
-          end={
-            <FilterableListBaseFieldEnd
+          trailingIcon={
+            <FilterableListBaseFieldTrailingIcon
               onClear={
                 clearable &&
                 singleFilterableListBase.selectedItem &&

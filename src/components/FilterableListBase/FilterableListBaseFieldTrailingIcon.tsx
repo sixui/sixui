@@ -5,13 +5,13 @@ import { commonStyles } from '~/helpers/commonStyles';
 import { SvgIcon } from '~/components/SvgIcon';
 import { iconTriangleDown, iconTriangleUp, iconXMark } from '~/assets/icons';
 
-export type IFilterableListBaseFieldEnd = {
+export type IFilterableListBaseFieldTrailingIcon = {
   isOpen?: boolean;
   onClear?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-export const FilterableListBaseFieldEnd = (
-  props: IFilterableListBaseFieldEnd,
+export const FilterableListBaseFieldTrailingIcon = (
+  props: IFilterableListBaseFieldTrailingIcon,
 ): React.ReactNode => (
   <div {...stylex.props(commonStyles.horizontalLayout, commonStyles.gap$none)}>
     {props.onClear ? (

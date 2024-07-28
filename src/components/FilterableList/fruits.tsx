@@ -24,12 +24,13 @@ export const fruits: Array<IFilterableListItem> = [
   {
     label: 'Lemon',
     value: 'lemon',
-    trailingSupportingText: 'Sour!',
+    trailingSupportingText: 'Sour',
     icon: <FontAwesomeIcon icon={faLemon} />,
   },
   {
     label: 'Carrot',
     value: 'carrot',
+    trailingSupportingText: 'Sweet',
     icon: <FontAwesomeIcon icon={faCarrot} />,
   },
   {

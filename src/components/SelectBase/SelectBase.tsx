@@ -5,7 +5,7 @@ import { MenuList } from '~/components/MenuList';
 import { Field } from '~/components/Field';
 import {
   useSingleFilterableListBase,
-  FilterableListBaseFieldEnd,
+  FilterableListBaseFieldTrailingIcon,
 } from '~/components/FilterableListBase';
 import { FloatingFilterableListBase } from '~/components/FloatingFilterableListBase';
 import { fixedForwardRef } from '~/helpers/fixedForwardRef';
@@ -76,8 +76,8 @@ export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
     >
       {(renderProps) => (
         <Field
-          end={
-            <FilterableListBaseFieldEnd
+          trailingIcon={
+            <FilterableListBaseFieldTrailingIcon
               onClear={
                 clearable &&
                 singleFilterableListBase.selectedItem &&

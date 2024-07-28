@@ -8,7 +8,7 @@ import { MenuList } from '~/components/MenuList';
 import { InputChip } from '~/components/Chip';
 import {
   useMultiFilterableListBase,
-  FilterableListBaseFieldEnd,
+  FilterableListBaseFieldTrailingIcon,
 } from '~/components/FilterableListBase';
 import { FloatingFilterableListBase } from '~/components/FloatingFilterableListBase';
 import { fixedForwardRef } from '~/helpers/fixedForwardRef';
@@ -222,8 +222,8 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
           <TextInputField
             sx={[componentTheme.overridenStyles, sx]}
             styles={innerStyles?.textInputField}
-            end={
-              <FilterableListBaseFieldEnd
+            trailingIcon={
+              <FilterableListBaseFieldTrailingIcon
                 onClear={
                   clearable && multiFilterableListBase.selectedItems.length
                     ? (event) =>

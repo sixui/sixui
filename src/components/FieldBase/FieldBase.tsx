@@ -114,8 +114,8 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
   const supportingOrErrorText =
     hasError && errorText ? errorText : supportingText;
   const focused = !disabled && visualState?.focused;
-  const hasStart = !!start || !!leadingIcon;
-  const hasEnd = !!end || !!trailingIcon;
+  const hasStart = !!leadingIcon || !!start;
+  const hasEnd = !!trailingIcon || !!end;
   const hasLabel = !!label;
 
   const wasFocused = usePrevious(focused);
