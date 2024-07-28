@@ -47,8 +47,6 @@ export const Switch: ISwitch = forwardRef(function Switch<
     visualState: visualStateProp,
     checked: checkedProp,
     defaultChecked,
-    disabled: disabledProp,
-    readOnly,
     loading: loadingProp,
     icons,
     showOnlySelectedIcon: showOnlySelectedIconProp,
@@ -57,18 +55,20 @@ export const Switch: ISwitch = forwardRef(function Switch<
     icon,
     selectedIcon,
     'data-cy': dataCy = 'switch',
+    softDisabled: softDisabledProp,
     ...other
   } = props as IWithAsProp<ISwitchOwnProps>;
 
   const [handlingChange, setHandlingChange] = useState(false);
   const loading =
     (loadingProp || handlingChange) && loadingAnimation === 'progressIndicator';
-  const disabled = disabledProp || readOnly || loading;
+  const softDisabled = softDisabledProp || loading;
+  const visuallyDisabled = other.disabled || softDisabled;
 
   const actionRef = useRef<HTMLInputElement>(null);
   const { visualState, setRef: setVisualStateRef } = useVisualState(
     visualStateProp,
-    { disabled },
+    { disabled: visuallyDisabled },
   );
   const handleRef = useMergeRefs([forwardedRef, setVisualStateRef, actionRef]);
 
@@ -117,7 +117,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
         switchTheme,
         componentTheme.overridenStyles,
         'host',
-        disabled && 'host$disabled',
+        visuallyDisabled && 'host$disabled',
         sx,
       )}
     >
@@ -128,9 +128,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
           type='checkbox'
           role='switch'
           checked={checked}
-          disabled={disabled}
-          tabIndex={disabled ? -1 : 0}
-          onChange={disabled ? undefined : handleChange}
+          onChange={visuallyDisabled ? undefined : handleChange}
           data-cy={dataCy}
           {...other}
         />
@@ -144,10 +142,10 @@ export const Switch: ISwitch = forwardRef(function Switch<
           <div
             {...sxf(
               'background',
-              disabled && 'background$disabled',
+              visuallyDisabled && 'background$disabled',
               'trackBackground',
               checked && 'trackBackground$selected',
-              disabled &&
+              visuallyDisabled &&
                 (checked
                   ? 'trackBackground$disabled$selected'
                   : 'trackBackground$disabled'),
@@ -157,7 +155,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
             {...sxf(
               'handleContainer',
               checked && 'handleContainer$selected',
-              disabled && 'handleContainer$disabled',
+              visuallyDisabled && 'handleContainer$disabled',
             )}
           >
             <StateLayer
@@ -166,7 +164,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
                 ...asArray(innerStyles?.stateLayer),
               ]}
               for={actionRef}
-              disabled={disabled}
+              disabled={visuallyDisabled}
               visualState={visualState}
             />
             <span
@@ -174,7 +172,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
                 'handle',
                 checked && 'handle$selected',
                 loading && 'handle$loading',
-                disabled &&
+                visuallyDisabled &&
                   (checked ? 'handle$disabled$selected' : 'handle$disabled'),
                 (showOnlySelectedIcon ? checked : hasIcons) &&
                   'handle$withIcon',
@@ -185,7 +183,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
                   'background',
                   'handleBackground',
                   checked && 'handleBackground$selected',
-                  disabled &&
+                  visuallyDisabled &&
                     (checked
                       ? 'handleBackground$disabled$selected'
                       : 'handleBackground$disabled'),
@@ -200,7 +198,9 @@ export const Switch: ISwitch = forwardRef(function Switch<
                       !loading &&
                         (checked ? 'icon$size$selected' : 'icon$size'),
                       checked && 'icon$on$selected',
-                      checked && disabled && 'icon$on$selected$disabled',
+                      checked &&
+                        visuallyDisabled &&
+                        'icon$on$selected$disabled',
                     )}
                   >
                     {loading ? (
@@ -224,7 +224,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
                         !loading &&
                           (checked ? 'icon$size$selected' : 'icon$size'),
                         !checked && 'icon$on',
-                        !checked && disabled && 'icon$on$disabled',
+                        !checked && visuallyDisabled && 'icon$on$disabled',
                       )}
                     >
                       {loading ? (

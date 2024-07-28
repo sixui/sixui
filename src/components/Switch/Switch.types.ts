@@ -28,7 +28,6 @@ export type ISwitchOwnProps = IContainerProps<ISwitchStylesKey> &
     id?: string;
     name?: string;
     disabled?: boolean;
-    readOnly?: boolean;
     required?: boolean;
 
     checked?: boolean;
@@ -38,6 +37,12 @@ export type ISwitchOwnProps = IContainerProps<ISwitchStylesKey> &
      * Shows both the selected and deselected icons.
      */
     icons?: boolean;
+
+    /**
+     * If `true`, the component will be rendered in a disabled state, but will
+     * still be focusable.
+     */
+    softDisabled?: boolean;
 
     /**
      * Shows only the selected icon, and not the deselected icon. If `true`,
