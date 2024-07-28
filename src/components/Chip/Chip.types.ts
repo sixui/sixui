@@ -46,8 +46,8 @@ export type IChipOwnProps = IContainerProps<IChipStylesKey> & {
   'aria-label-remove'?: React.AriaAttributes['aria-label'];
 
   /**
-   * If `true`, the button will be rendered in a disabled state, but will still
-   * be focusable.
+   * If `true`, the component will be rendered in a disabled state, but will
+   * still be focusable.
    */
   softDisabled?: boolean;
 };

@@ -25,7 +25,6 @@ export type ICheckboxOwnProps = IContainerProps<ICheckboxStylesKey> & {
   visualState?: IVisualState;
   required?: boolean;
   disabled?: boolean;
-  readOnly?: boolean;
   id?: string;
   name?: string;
   checked?: boolean;
@@ -36,6 +35,12 @@ export type ICheckboxOwnProps = IContainerProps<ICheckboxStylesKey> & {
     value: React.InputHTMLAttributes<HTMLInputElement>['value'],
   ) => IMaybeAsync<IAny>;
   loading?: boolean;
+
+  /**
+   * If `true`, the component will be rendered in a disabled state, but will
+   * still be focusable.
+   */
+  softDisabled?: boolean;
 };
 
 export type ICheckboxProps<

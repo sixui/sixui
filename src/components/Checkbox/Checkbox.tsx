@@ -45,24 +45,25 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
     sx,
     innerStyles,
     visualState: visualStateProp,
-    disabled: disabledProp,
-    readOnly,
     onChange,
     indeterminate,
     checked: checkedProp,
     defaultChecked,
     loading: loadingProp,
     'data-cy': dataCy = 'checkbox',
+    softDisabled: softDisabledProp,
     ...other
   } = props as IWithAsProp<ICheckboxOwnProps>;
 
   const actionRef = useRef<HTMLInputElement>(null);
   const [handlingChange, setHandlingChange] = useState(false);
   const loading = loadingProp || handlingChange;
-  const disabled = disabledProp || readOnly || loading;
+  const softDisabled = softDisabledProp || loading;
+  const visuallyDisabled = other.disabled || softDisabled;
+
   const { visualState, setRef: setVisualStateRef } = useVisualState(
     visualStateProp,
-    { disabled },
+    { disabled: visuallyDisabled },
   );
   const handleRef = useMergeRefs([forwardedRef, setVisualStateRef, actionRef]);
 
@@ -87,13 +88,13 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
 
   const wasChecked = usePrevious(checked) ?? false;
   const wasIndeterminate = usePrevious(indeterminate) ?? false;
-  const wasDisabled = usePrevious(disabled) ?? false;
+  const wasVisuallyDisabled = usePrevious(visuallyDisabled) ?? false;
 
   const prevNone = !wasChecked && !wasIndeterminate;
   const prevUnselected = prevNone;
   const prevChecked = wasChecked && !wasIndeterminate;
   const prevIndeterminate = wasIndeterminate;
-  const prevDisabled = wasDisabled;
+  const prevDisabled = wasVisuallyDisabled;
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(
     (event) => {
@@ -120,7 +121,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
         componentTheme.overridenStyles,
         'host',
         selected && 'host$selected',
-        disabled && 'host$disabled',
+        visuallyDisabled && 'host$disabled',
         sx,
       )}
     >
@@ -130,7 +131,6 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
           ref={handleRef}
           type='checkbox'
           aria-checked={indeterminate ? 'mixed' : undefined}
-          disabled={disabled}
           checked={checkedValue}
           onChange={handleChange}
           data-cy={dataCy}
@@ -148,7 +148,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
               {...sxf(
                 'overlay',
                 'outline',
-                disabled &&
+                visuallyDisabled &&
                   (selected ? 'outline$disabled$selected' : 'outline$disabled'),
               )}
             />
@@ -158,7 +158,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
                 'background',
                 'backgroundAndIcon',
                 selected && 'backgroundAndIcon$selected',
-                disabled &&
+                visuallyDisabled &&
                   (selected
                     ? 'background$disabled$selected'
                     : 'background$disabled'),
@@ -172,23 +172,25 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
                 checkboxStateLayerStyles,
                 ...asArray(innerStyles?.stateLayer),
               ]}
-              disabled={disabled}
+              disabled={visuallyDisabled}
               visualState={visualState}
             />
-            <FocusRing
-              for={actionRef}
-              styles={[
-                checkboxFocusRingStyles,
-                ...asArray(innerStyles?.focusRing),
-              ]}
-              visualState={visualState}
-            />
+            {visuallyDisabled ? null : (
+              <FocusRing
+                for={actionRef}
+                styles={[
+                  checkboxFocusRingStyles,
+                  ...asArray(innerStyles?.focusRing),
+                ]}
+                visualState={visualState}
+              />
+            )}
 
             <svg
               {...sxf(
                 'overlay',
                 'icon',
-                disabled && 'icon$disabled',
+                visuallyDisabled && 'icon$disabled',
                 prevDisabled && 'icon$prevDisabled',
                 'backgroundAndIcon',
                 selected && 'backgroundAndIcon$selected',
@@ -201,7 +203,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
                   'mark',
                   'mark$short',
                   selected && 'mark$selected',
-                  disabled && 'mark$disabled',
+                  visuallyDisabled && 'mark$disabled',
                   prevDisabled && 'mark$prevDisabled',
                   prevUnselected && 'mark$prevUnselected',
                   (checked || (prevChecked && unselected)) && [
@@ -217,7 +219,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
                   'mark',
                   'mark$long',
                   selected && 'mark$selected',
-                  disabled && 'mark$disabled',
+                  visuallyDisabled && 'mark$disabled',
                   prevDisabled && 'mark$prevDisabled',
                   prevUnselected && 'mark$prevUnselected',
                   (checked || (prevChecked && unselected)) && [
