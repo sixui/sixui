@@ -142,7 +142,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
       virtual: canFilter,
       loop: true,
       cols,
-      orientation: cols > 1 ? 'both' : 'vertical',
+      orientation: cols > 1 ? 'horizontal' : 'vertical',
     });
     const typeahead = useTypeahead(floating.context, {
       listRef: labelsRef,
@@ -263,12 +263,14 @@ export const FloatingFilterableListBase = fixedForwardRef(
           case 'ArrowLeft':
             if (!query) {
               onItemFocusPreviousSelected?.(inputFilterRef);
+              userProps?.onKeyDown?.(event);
             }
             break;
 
           case 'ArrowRight':
             if (!query) {
               onItemFocusNextSelected?.(inputFilterRef);
+              userProps?.onKeyDown?.(event);
             }
             break;
 
