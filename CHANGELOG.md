@@ -1,3 +1,15 @@
+# v0.0.392 (Sun Jul 28 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: correct focus handling ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.391 (Sun Jul 28 2024)
 
 #### ⚠️ Pushed to `main`
