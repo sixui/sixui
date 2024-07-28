@@ -54,7 +54,6 @@ export const Chip: IChip = forwardRef(function Chip<
     selected: selectedProp,
     elevated: elevatedProp,
     loading: loadingProp,
-    disabled: disabledProp,
     deleting: deletingProp,
     label,
     onClick,
@@ -67,6 +66,7 @@ export const Chip: IChip = forwardRef(function Chip<
     avatar: avatarProp,
     'aria-label-remove': ariaLabelRemove,
     'data-cy': dataCy = 'chip',
+    softDisabled: softDisabledProp,
     ...other
   } = props as IWithAsProp<IChipOwnProps>;
 
@@ -76,12 +76,13 @@ export const Chip: IChip = forwardRef(function Chip<
   const loading = loadingProp || handlingClick;
   const isDeletable = variant === 'input' && onDelete;
   const deleting = !loading && isDeletable && (deletingProp || handlingDelete);
-  const disabled = disabledProp || loading || deleting;
+  const softDisabled = softDisabledProp || loading || deleting;
+  const visuallyDisabled = other.disabled || softDisabled;
 
   const primaryActionRef = useRef<HTMLElement>(null);
   const { visualState, setRef: setVisualStateRef } = useVisualState(
     visualStateProp,
-    { disabled },
+    { disabled: visuallyDisabled },
   );
   const primaryHandleRef = useMergeRefs([
     forwardedRef,
@@ -226,7 +227,7 @@ export const Chip: IChip = forwardRef(function Chip<
         componentTheme.overridenStyles,
         'host',
         interactive && 'host$interactive',
-        disabled && 'host$disabled',
+        visuallyDisabled && 'host$disabled',
         avatar && 'host$avatar',
         sx,
       )}
@@ -237,13 +238,13 @@ export const Chip: IChip = forwardRef(function Chip<
           'container',
           containerStyle,
           interactive && `${containerStyle}$interactive`,
-          disabled && `${containerStyle}$disabled`,
+          visuallyDisabled && `${containerStyle}$disabled`,
           loading && `${containerStyle}$loading`,
         )}
       >
         <Elevation
           styles={[chipElevationStyles, ...asArray(innerStyles?.elevation)]}
-          disabled={disabledProp}
+          disabled={visuallyDisabled}
         />
         {elevated ? null : (
           <span
@@ -251,15 +252,17 @@ export const Chip: IChip = forwardRef(function Chip<
               'outline',
               interactive && 'outline$interactive',
               selected && 'outline$selected',
-              disabled && 'outline$disabled',
+              visuallyDisabled && 'outline$disabled',
             )}
           />
         )}
-        <FocusRing
-          styles={[chipFocusRingStyles, ...asArray(innerStyles?.focusRing)]}
-          for={primaryActionRef}
-          visualState={visualState}
-        />
+        {visuallyDisabled ? null : (
+          <FocusRing
+            styles={[chipFocusRingStyles, ...asArray(innerStyles?.focusRing)]}
+            for={primaryActionRef}
+            visualState={visualState}
+          />
+        )}
         {interactive ? (
           <StateLayer
             styles={[
@@ -267,7 +270,7 @@ export const Chip: IChip = forwardRef(function Chip<
               ...asArray(innerStyles?.stateLayer),
             ]}
             for={primaryActionRef}
-            disabled={disabled}
+            disabled={visuallyDisabled}
             visualState={visualState}
           />
         ) : null}
@@ -284,8 +287,7 @@ export const Chip: IChip = forwardRef(function Chip<
           href={href}
           onClick={(href ?? !onClick) ? undefined : handleClick}
           role='button'
-          disabled={disabled}
-          tabIndex={!interactive || disabled ? -1 : 0}
+          tabIndex={!interactive || other.disabled ? -1 : 0}
           onKeyDown={handleKeyDown}
           {...other}
         >
@@ -294,7 +296,7 @@ export const Chip: IChip = forwardRef(function Chip<
               {...sxf(
                 'iconContainer',
                 'iconContainer$leading',
-                disabled
+                visuallyDisabled
                   ? 'iconContainer$disabled'
                   : selected && [
                       'iconContainer$selected',
@@ -348,7 +350,7 @@ export const Chip: IChip = forwardRef(function Chip<
                   'label$selected',
                   interactive && 'label$selected$interactive',
                 ],
-                disabled && 'label$disabled',
+                visuallyDisabled && 'label$disabled',
                 hasOverlay ? 'invisible' : null,
               )}
             >
@@ -358,11 +360,11 @@ export const Chip: IChip = forwardRef(function Chip<
             {hasOverlay ? (
               <div {...sxf('overlay')}>
                 {loadingText ? (
-                  <span {...sxf('label', disabled && 'label$disabled')}>
+                  <span {...sxf('label', visuallyDisabled && 'label$disabled')}>
                     {loadingText}
                   </span>
                 ) : (
-                  <div {...sxf(disabled && 'iconContainer$disabled')}>
+                  <div {...sxf(visuallyDisabled && 'iconContainer$disabled')}>
                     <IndeterminateCircularProgressIndicator
                       styles={[
                         chipCircularProgressIndicatorStyles,
@@ -397,7 +399,8 @@ export const Chip: IChip = forwardRef(function Chip<
             onClick={handleDelete}
             onKeyDown={handleKeyDown}
             onFocus={handleTrailingActionFocus}
-            disabled={disabled}
+            disabled={other.disabled}
+            softDisabled={softDisabled}
             data-cy='delete'
           >
             <span
@@ -405,7 +408,7 @@ export const Chip: IChip = forwardRef(function Chip<
                 'iconContainer',
                 'iconContainer$trailing',
                 interactive && 'iconContainer$trailing$interactive',
-                disabled
+                visuallyDisabled
                   ? 'iconContainer$disabled'
                   : selected && [
                       'iconContainer$trailing$selected',

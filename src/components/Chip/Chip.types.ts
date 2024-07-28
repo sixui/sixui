@@ -44,6 +44,12 @@ export type IChipOwnProps = IContainerProps<IChipStylesKey> & {
   deleting?: boolean;
   avatar?: boolean;
   'aria-label-remove'?: React.AriaAttributes['aria-label'];
+
+  /**
+   * If `true`, the button will be rendered in a disabled state, but will still
+   * be focusable.
+   */
+  softDisabled?: boolean;
 };
 
 export type IChipProps<

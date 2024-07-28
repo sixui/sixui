@@ -63,7 +63,7 @@ export const Button: IButton = forwardRef(function Button<
   const [animating, setAnimating] = useState(false);
   const loading =
     (loadingProp || handlingClick) && loadingAnimation === 'progressIndicator';
-  const softDisabled = loading || softDisabledProp;
+  const softDisabled = softDisabledProp || loading;
   const visuallyDisabled = other.disabled || softDisabled;
 
   const { visualState, setRef: setVisualStateRef } = useVisualState(
