@@ -24,7 +24,7 @@ export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
       srcSet,
       sizes,
       children,
-      randomColorOnFallback,
+      fallbackToRandomColor,
       randomColorSourceString: randomColorSourceStringProp,
       variant = 'rounded',
       ...other
@@ -59,10 +59,10 @@ export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
       src;
     const randomColor = useMemo(
       () =>
-        randomColorOnFallback && randomColorSourceString !== undefined
+        fallbackToRandomColor && randomColorSourceString !== undefined
           ? hslColorFromString(randomColorSourceString)
           : undefined,
-      [randomColorOnFallback, randomColorSourceString],
+      [fallbackToRandomColor, randomColorSourceString],
     );
 
     return (

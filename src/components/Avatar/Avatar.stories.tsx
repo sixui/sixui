@@ -151,7 +151,7 @@ export const Colors: IStory = {
   ),
   args: {
     ...defaultArgs,
-    randomColorOnFallback: true,
+    fallbackToRandomColor: true,
   },
 };
 

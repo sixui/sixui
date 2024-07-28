@@ -13,7 +13,7 @@ export type IAvatarProps = IContainerProps<IAvatarStylesKey> &
      * set. This can be an element, or just a string.
      */
     children?: React.ReactNode;
-    randomColorOnFallback?: boolean;
+    fallbackToRandomColor?: boolean;
     randomColorSourceString?: string;
     variant?: IAvatarVariant;
   };
