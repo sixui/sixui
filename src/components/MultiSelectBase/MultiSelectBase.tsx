@@ -77,6 +77,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
       onItemFocusNextSelected={
         multiFilterableListBase.handleItemFocusNextSelected
       }
+      onItemFocusUnselected={multiFilterableListBase.handleItemFocusUnselected}
       onQueryChange={multiFilterableListBase.handleQueryChange}
       {...other}
       forwardProps

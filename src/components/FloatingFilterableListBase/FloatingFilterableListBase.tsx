@@ -59,6 +59,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
       onItemRemoveFocused,
       onItemFocusPreviousSelected,
       onItemFocusNextSelected,
+      onItemFocusUnselected,
       closeOnSelect,
       resetOnSelect,
       initialFocus = 0,
@@ -81,6 +82,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
       createNewItemPosition,
       cols = 1,
       itemFocus,
+      onOpenChange,
       ...other
     } = props;
 
@@ -103,7 +105,10 @@ export const FloatingFilterableListBase = fixedForwardRef(
     const floating = useFloating({
       placement: placement,
       open: isOpen,
-      onOpenChange: setIsOpen,
+      onOpenChange: (isOpen, event, reason) => {
+        setIsOpen(isOpen);
+        onOpenChange?.(isOpen, event, reason);
+      },
       whileElementsMounted: autoUpdate,
       middleware: [
         flip({
@@ -134,6 +139,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
     ]);
     const dismiss = useDismiss(floating.context);
     const canFilter = !!inputFilterRef.current;
+    const isGrid = cols > 1;
     const listNavigation = useListNavigation(floating.context, {
       listRef: elementsRef,
       activeIndex,
@@ -142,7 +148,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
       virtual: canFilter,
       loop: true,
       cols,
-      orientation: cols > 1 ? 'horizontal' : 'vertical',
+      orientation: cols > 1 ? 'both' : 'vertical',
     });
     const typeahead = useTypeahead(floating.context, {
       listRef: labelsRef,
@@ -261,15 +267,52 @@ export const FloatingFilterableListBase = fixedForwardRef(
             break;
 
           case 'ArrowLeft':
-            if (!query) {
-              onItemFocusPreviousSelected?.(inputFilterRef);
-              userProps?.onKeyDown?.(event);
+            {
+              if (query || (isGrid && isOpen)) {
+                const isSelectionAtStart =
+                  inputFilterRef.current?.selectionStart === 0;
+                if (isSelectionAtStart) {
+                  userProps?.onKeyDown?.(event);
+                }
+
+                if (isGrid) {
+                  onItemFocusUnselected?.();
+                }
+              } else {
+                const hasPrevious =
+                  onItemFocusPreviousSelected?.(inputFilterRef);
+                if (!hasPrevious) {
+                  userProps?.onKeyDown?.(event);
+                }
+              }
             }
             break;
 
           case 'ArrowRight':
-            if (!query) {
-              onItemFocusNextSelected?.(inputFilterRef);
+            {
+              if (query || (isGrid && isOpen)) {
+                const isSelectionAtEnd =
+                  inputFilterRef.current?.selectionEnd === query.length;
+                if (isSelectionAtEnd) {
+                  userProps?.onKeyDown?.(event);
+                }
+
+                if (isGrid) {
+                  onItemFocusUnselected?.();
+                }
+              } else {
+                const hasNext = onItemFocusNextSelected?.(inputFilterRef);
+                if (!hasNext) {
+                  userProps?.onKeyDown?.(event);
+                }
+              }
+            }
+            break;
+
+          case 'Escape':
+            if (isOpen) {
+              onItemFocusUnselected?.();
+            } else {
               userProps?.onKeyDown?.(event);
             }
             break;
@@ -366,6 +409,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
 
     const handleFocus = (): void => setHasFocus(true);
     const handleBlur = (): void => {
+      onItemFocusUnselected?.();
       setHasFocus(false);
 
       if (resetOnBlur && !isOpen) {

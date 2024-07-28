@@ -30,8 +30,9 @@ export type IUseMultiFilterableListBaseResult<
   itemRenderer: IFilterableListItemRenderer<TItem, TElement>;
   handleItemSelect: (newSelectedItem: TItem) => number | undefined;
   handleItemRemoveFocused: () => void;
-  handleItemFocusPreviousSelected: () => void;
-  handleItemFocusNextSelected: () => void;
+  handleItemFocusPreviousSelected: () => boolean;
+  handleItemFocusNextSelected: () => boolean;
+  handleItemFocusUnselected: () => boolean;
   handleQueryChange: () => void;
   handleClear: (
     afterItemsRemove: (
@@ -171,22 +172,24 @@ export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
     handleItemRemoveAtIndex(focusedSelectedItemIndex);
   };
 
-  const handleItemFocusPreviousSelected = (): void => {
+  const handleItemFocusPreviousSelected = (): boolean => {
     if (!selectedItems.length) {
-      return;
+      return false;
     }
 
     const previousIndex =
       focusedSelectedItemIndex === undefined
         ? selectedItems.length - 1
-        : Math.max(focusedSelectedItemIndex - 1, 0);
+        : focusedSelectedItemIndex - 1;
 
-    setFocusedSelectedItemIndex(previousIndex);
+    setFocusedSelectedItemIndex(Math.max(previousIndex, 0));
+
+    return previousIndex >= 0;
   };
 
-  const handleItemFocusNextSelected = (): void => {
+  const handleItemFocusNextSelected = (): boolean => {
     if (!selectedItems.length) {
-      return;
+      return false;
     }
 
     const nextIndex =
@@ -196,6 +199,14 @@ export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
         : focusedSelectedItemIndex + 1;
 
     setFocusedSelectedItemIndex(nextIndex);
+
+    return focusedSelectedItemIndex !== undefined || nextIndex !== undefined;
+  };
+
+  const handleItemFocusUnselected = (): boolean => {
+    setFocusedSelectedItemIndex(undefined);
+
+    return focusedSelectedItemIndex !== undefined;
   };
 
   const handleQueryChange = (): void => setFocusedSelectedItemIndex(undefined);
@@ -222,6 +233,7 @@ export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
     handleItemRemoveFocused,
     handleItemFocusPreviousSelected,
     handleItemFocusNextSelected,
+    handleItemFocusUnselected,
     handleQueryChange,
     handleClear,
     deselectItemAtIndex,

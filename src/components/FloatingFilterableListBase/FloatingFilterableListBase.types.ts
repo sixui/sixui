@@ -1,5 +1,9 @@
 import type { IContainerProps, IOmit, IOrientation } from '~/helpers/types';
-import type { Placement, ReferenceType } from '@floating-ui/react';
+import type {
+  OpenChangeReason,
+  Placement,
+  ReferenceType,
+} from '@floating-ui/react';
 
 import type {
   IFilterableListBaseProps,
@@ -90,10 +94,11 @@ export type IFloatingFilterableListBaseProps<
 
     onItemFocusPreviousSelected?: (
       inputFilterRef: React.RefObject<HTMLInputElement>,
-    ) => void;
+    ) => boolean;
     onItemFocusNextSelected?: (
       inputFilterRef: React.RefObject<HTMLInputElement>,
-    ) => void;
+    ) => boolean;
+    onItemFocusUnselected?: () => boolean;
 
     placement?: Placement;
     orientation?: IOrientation;
@@ -120,4 +125,9 @@ export type IFloatingFilterableListBaseProps<
     initialFocus?: number;
     cols?: number;
     itemFocus?: IFilterableListItemFocus;
+    onOpenChange?: (
+      isOpen: boolean,
+      event?: Event,
+      reason?: OpenChangeReason,
+    ) => void;
   };
