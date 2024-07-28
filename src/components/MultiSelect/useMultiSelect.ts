@@ -14,7 +14,7 @@ export type IUseSelectResult = {
 };
 
 export const useMultiSelect = (props: IUseSelectProps): IUseSelectResult => {
-  const { items, defaultValue, value } = props;
+  const { items, defaultValue, value: values } = props;
   const defaultItemsRef = useRef(
     defaultValue
       ? items.filter((item) => defaultValue?.includes(item.value))
@@ -22,10 +22,12 @@ export const useMultiSelect = (props: IUseSelectProps): IUseSelectResult => {
   );
   const selectedItems = useMemo(
     () =>
-      value !== undefined
-        ? items.filter((item) => value?.includes(item.value))
+      values !== undefined
+        ? values
+            .map((value) => items.find((item) => item.value === value))
+            .filter((item) => !!item)
         : undefined,
-    [items, value],
+    [items, values],
   );
 
   return {
