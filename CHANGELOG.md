@@ -1,3 +1,15 @@
+# v0.0.387 (Sun Jul 28 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(HctColorPickerContent): correction for low chroma source colors ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.386 (Sat Jul 27 2024)
 
 #### ⚠️ Pushed to `main`
