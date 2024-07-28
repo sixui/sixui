@@ -1,5 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
+import type { IHslColor } from '~/helpers/types';
 import { avatarTokens } from './Avatar.stylex';
 
 export type IAvatarStylesKey = keyof typeof avatarStyles;
@@ -48,4 +49,11 @@ export const avatarStyles = stylex.create({
     width: '100%',
     height: '100%',
   },
+});
+
+export const avatarDynamicStyles = stylex.create({
+  backgroundColor: (backgroundColor: IHslColor) => ({
+    backgroundColor: `hsl(${backgroundColor.hue % 360}, ${backgroundColor.saturation}%, ${backgroundColor.lightness}%)`,
+    color: '#000',
+  }),
 });

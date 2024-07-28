@@ -3,7 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faBolt, faCloud } from '@fortawesome/free-solid-svg-icons';
 
 import type { IAvatarProps } from './Avatar.types';
-import { ComponentShowcase } from '~/components/ComponentShowcase';
+import {
+  ComponentShowcase,
+  type IComponentPresentation,
+} from '~/components/ComponentShowcase';
 import { Avatar } from './Avatar';
 
 const meta = {
@@ -21,6 +24,11 @@ const AVATAR_IMAGE_URL_3 =
 
 const defaultArgs = {} satisfies Partial<IAvatarProps>;
 
+const rows: Array<IComponentPresentation<IAvatarProps>> = [
+  { legend: 'Rounded', props: { variant: 'rounded' } },
+  { legend: 'Squared', props: { variant: 'squared' } },
+];
+
 export const Variants: IStory = {
   render: (props) => (
     <ComponentShowcase
@@ -37,6 +45,7 @@ export const Variants: IStory = {
         { props: { children: <FontAwesomeIcon icon={faStar} /> } },
         { props: { src: '/broken-image.jpg', alt: 'Olivier' } },
       ]}
+      rows={rows}
     />
   ),
   args: {
@@ -69,6 +78,7 @@ export const Image: IStory = {
           },
         },
       ]}
+      rows={rows}
     />
   ),
   args: defaultArgs,
@@ -99,6 +109,7 @@ export const Icon: IStory = {
         { props: { children: <FontAwesomeIcon icon={faBolt} /> } },
         { props: { children: <FontAwesomeIcon icon={faCloud} /> } },
       ]}
+      rows={rows}
     />
   ),
   args: defaultArgs,
@@ -114,9 +125,34 @@ export const Fallback: IStory = {
         { props: { src: '/broken-image.jpg', alt: 'Richard Roe' } },
         { props: { src: '/broken-image.jpg' } },
       ]}
+      rows={rows}
     />
   ),
   args: defaultArgs,
+};
+
+export const Colors: IStory = {
+  render: (props) => (
+    <ComponentShowcase
+      component={Avatar}
+      props={props}
+      cols={[
+        { props: { children: 'AB' } },
+        { props: { children: 'CD' } },
+        { props: { children: 'EF' } },
+        { props: { children: 'GH' } },
+        { props: { children: 'IJ' } },
+        { props: { children: 'KL' } },
+        { props: { children: 'MN' } },
+        { props: { children: 'OP' } },
+      ]}
+      rows={rows}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    randomColorOnFallback: true,
+  },
 };
 
 export default meta;

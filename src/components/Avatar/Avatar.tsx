@@ -6,9 +6,11 @@ import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { useLoaded } from '~/hooks/useLoaded';
 import { SvgIcon } from '~/components/SvgIcon';
+import { hslColorFromString } from '~/helpers/colors/hslColorFromString';
 import { iconAvatarPlaceholder } from '~/assets/icons';
-import { avatarStyles } from './Avatar.styles';
+import { avatarStyles, avatarDynamicStyles } from './Avatar.styles';
 import { avatarTheme } from './Avatar.stylex';
+import { avatarVariantStyles } from './variants';
 
 export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
   function Avatar(props, forwardedRef) {
@@ -22,13 +24,18 @@ export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
       srcSet,
       sizes,
       children,
+      randomColorOnFallback,
+      randomColorSourceString: randomColorSourceStringProp,
+      variant = 'rounded',
       ...other
     } = props;
 
     const componentTheme = useComponentTheme('Avatar');
+    const variantStyles = variant ? avatarVariantStyles[variant] : undefined;
+
     const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(avatarStyles, styles),
-      [styles],
+      () => stylesCombinatorFactory(avatarStyles, variantStyles, styles),
+      [variantStyles, styles],
     );
     const sxf = useMemo(
       () => stylePropsFactory(stylesCombinator),
@@ -45,9 +52,30 @@ export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
     const hasImage = !!src || !!srcSet;
     const hasImageNotFailing = hasImage && !hasLoadingError;
 
+    const randomColorSourceString =
+      randomColorSourceStringProp ??
+      (typeof children === 'string' ? children : undefined) ??
+      alt ??
+      src;
+    const randomColor = useMemo(
+      () =>
+        randomColorOnFallback && randomColorSourceString !== undefined
+          ? hslColorFromString(randomColorSourceString)
+          : undefined,
+      [randomColorOnFallback, randomColorSourceString],
+    );
+
     return (
       <div
-        {...sxf(avatarTheme, componentTheme.overridenStyles, 'host', sx)}
+        {...sxf(
+          avatarTheme,
+          componentTheme.overridenStyles,
+          'host',
+          randomColor
+            ? avatarDynamicStyles.backgroundColor(randomColor)
+            : undefined,
+          sx,
+        )}
         {...other}
         ref={forwardedRef}
       >

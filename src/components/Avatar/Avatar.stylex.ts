@@ -2,11 +2,10 @@ import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
-import { shapeTokens } from '~/themes/base/shape.stylex';
 
 const vars = {
   // container
-  containerShape: shapeTokens.corner$full,
+  containerShape: 'unset',
   containerWidth: '40px',
   containerHeight: '40px',
   containerColor: colorSchemeTokens.primaryContainer,

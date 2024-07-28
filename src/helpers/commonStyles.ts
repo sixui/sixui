@@ -8,6 +8,9 @@ export const commonStyles = stylex.create({
     hyphens: 'auto',
     WebkitLineClamp: lineCount,
   }),
+  backgroundColor: (color: string) => ({
+    backgroundColor: color,
+  }),
   backgroundImage: (src: string) => ({
     backgroundImage: `url("${src}")`,
   }),
