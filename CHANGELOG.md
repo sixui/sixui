@@ -1,3 +1,15 @@
+# v0.0.394 (Sun Jul 28 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(PopoverBase): supports scrim prop ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.393 (Sun Jul 28 2024)
 
 #### ⚠️ Pushed to `main`
