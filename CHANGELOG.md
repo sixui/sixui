@@ -1,3 +1,15 @@
+# v0.0.401 (Sun Jul 28 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: disable item predicate for lists in favour of list predicate ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.400 (Sun Jul 28 2024)
 
 #### ⚠️ Pushed to `main`
