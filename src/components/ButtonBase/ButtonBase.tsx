@@ -36,17 +36,16 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
     visualState: visualStateProp,
     children,
     inwardFocusRing,
-    disabled: disabledProp,
-    readOnly,
+    softDisabled,
     type = 'button',
     href,
     ...other
   } = props as IWithAsProp<IButtonBaseOwnProps>;
 
-  const disabled = disabledProp || readOnly;
+  const visuallyDisabled = other.disabled || softDisabled;
   const { visualState, setRef: setVisualStateRef } = useVisualState(
     visualStateProp,
-    { disabled },
+    { disabled: visuallyDisabled },
   );
   const handleRef = useMergeRefs([forwardedRef, setVisualStateRef]);
 
@@ -68,32 +67,33 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
     <Component
       {...sxf(
         'host',
-        disabled && 'host$disabled',
+        visuallyDisabled && 'host$disabled',
         componentTheme.overridenStyles,
         sx,
       )}
       ref={handleRef}
       href={href}
       role='button'
-      tabIndex={disabled ? -1 : 0}
-      disabled={disabled}
+      tabIndex={visuallyDisabled ? -1 : 0}
       type={type}
       {...other}
     >
       <span {...sxf('touchTarget')} />
-      <Elevation styles={innerStyles?.elevation} disabled={disabled} />
-      <div {...sxf('outline', disabled && 'outline$disabled')} />
-      <div {...sxf('background', disabled && 'background$disabled')} />
-      <FocusRing
-        styles={innerStyles?.focusRing}
-        for={forwardedRef}
-        visualState={visualState}
-        inward={inwardFocusRing}
-      />
+      <Elevation styles={innerStyles?.elevation} disabled={visuallyDisabled} />
+      <div {...sxf('outline', visuallyDisabled && 'outline$disabled')} />
+      <div {...sxf('background', visuallyDisabled && 'background$disabled')} />
+      {visuallyDisabled ? null : (
+        <FocusRing
+          styles={innerStyles?.focusRing}
+          for={forwardedRef}
+          visualState={visualState}
+          inward={inwardFocusRing}
+        />
+      )}
       <StateLayer
         styles={innerStyles?.stateLayer}
         for={forwardedRef}
-        disabled={disabled}
+        disabled={visuallyDisabled}
         visualState={visualState}
       />
       {children}

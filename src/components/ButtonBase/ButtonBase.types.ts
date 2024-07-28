@@ -24,7 +24,13 @@ export type IButtonBaseOwnProps = IContainerProps<IButtonBaseStylesKey> & {
   href?: string;
   target?: React.AnchorHTMLAttributes<HTMLAnchorElement>['target'];
   disabled?: boolean;
-  readOnly?: boolean;
+
+  /**
+   * If `true`, the button will be rendered in a disabled state, but will still
+   * be focusable.
+   */
+  softDisabled?: boolean;
+
   type?: string;
 };
 

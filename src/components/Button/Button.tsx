@@ -56,18 +56,19 @@ export const Button: IButton = forwardRef(function Button<
     loading: loadingProp,
     loadingAnimation = 'progressIndicator',
     loadingText,
-    disabled: disabledProp,
+    softDisabled: softDisabledProp,
     ...other
   } = props as IWithAsProp<IButtonOwnProps>;
   const [handlingClick, setHandlingClick] = useState(false);
   const [animating, setAnimating] = useState(false);
   const loading =
     (loadingProp || handlingClick) && loadingAnimation === 'progressIndicator';
-  const disabled = disabledProp || loading || other.readOnly;
+  const softDisabled = loading || softDisabledProp;
+  const visuallyDisabled = other.disabled || softDisabled;
 
   const { visualState, setRef: setVisualStateRef } = useVisualState(
     visualStateProp,
-    { disabled },
+    { disabled: visuallyDisabled },
   );
   const handleRef = useMergeRefs([forwardedRef, setVisualStateRef]);
 
@@ -140,9 +141,9 @@ export const Button: IButton = forwardRef(function Button<
         elevation: [buttonElevationStyles, ...asArray(innerStyles?.elevation)],
       }}
       onClick={handleClick}
-      disabled={disabled}
       data-cy='button'
       visualState={visualState}
+      softDisabled={softDisabled}
       {...other}
       ref={handleRef}
     >
@@ -150,7 +151,7 @@ export const Button: IButton = forwardRef(function Button<
         <div
           {...sxf(
             'icon',
-            disabled && 'icon$disabled',
+            visuallyDisabled && 'icon$disabled',
             hasOverlay ? 'invisible' : null,
           )}
         >
@@ -176,7 +177,7 @@ export const Button: IButton = forwardRef(function Button<
         <span
           {...sxf(
             'label',
-            disabled && 'label$disabled',
+            visuallyDisabled && 'label$disabled',
             hasOverlay ? 'invisible' : null,
           )}
         >
@@ -187,11 +188,11 @@ export const Button: IButton = forwardRef(function Button<
       {hasOverlay ? (
         <div {...sxf('overlay')}>
           {loadingText ? (
-            <span {...sxf('label', disabled && 'label$disabled')}>
+            <span {...sxf('label', visuallyDisabled && 'label$disabled')}>
               {loadingText}
             </span>
           ) : (
-            <div {...sxf(disabled && 'icon$disabled')}>
+            <div {...sxf(visuallyDisabled && 'icon$disabled')}>
               <IndeterminateCircularProgressIndicator
                 styles={[
                   buttonCircularProgressIndicatorStyles,
@@ -208,7 +209,7 @@ export const Button: IButton = forwardRef(function Button<
           <div
             {...sxf(
               hasOverlay ? 'invisible' : null,
-              disabled && 'icon$disabled',
+              visuallyDisabled && 'icon$disabled',
             )}
           >
             <IndeterminateCircularProgressIndicator
@@ -222,7 +223,7 @@ export const Button: IButton = forwardRef(function Button<
           <div
             {...sxf(
               'icon',
-              disabled && 'icon$disabled',
+              visuallyDisabled && 'icon$disabled',
               iconAnimation && `icon$${iconAnimation}`,
             )}
             onAnimationIteration={handleAnimationIteration}

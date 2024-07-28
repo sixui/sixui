@@ -44,7 +44,7 @@ export const FluidButton: IFluidButton = forwardRef(function FluidButton<
     [stylesCombinator],
   );
 
-  const disabled = other.disabled || other.readOnly;
+  const visuallyDisabled = other.disabled || other.softDisabled;
 
   return (
     <ButtonBase
@@ -68,7 +68,7 @@ export const FluidButton: IFluidButton = forwardRef(function FluidButton<
       ref={forwardedRef}
       {...other}
     >
-      <div {...sxf('textLabel', disabled && 'textLabel$disabled')}>
+      <div {...sxf('textLabel', visuallyDisabled && 'textLabel$disabled')}>
         {children}
       </div>
     </ButtonBase>
