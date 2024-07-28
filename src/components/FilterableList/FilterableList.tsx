@@ -13,7 +13,6 @@ import {
   type IFilterableListItemRenderer,
   type IFilterableListItemRendererProps,
   type IFilterableListPredicate,
-  type IFilterableListItemPredicate,
 } from '~/components/FilterableListBase';
 import { createFilter } from '~/helpers/createFilter';
 import {
@@ -114,31 +113,6 @@ export const filterFilterableList: IFilterableListPredicate<IFilterableListItem>
     ],
   });
 
-/**
- * Filters item list with a case-insensitive search.
- */
-export const filterFilterableListItem: IFilterableListItemPredicate<
-  IFilterableListItem
-> = (item, query, _index, exactMatch) => {
-  const text = item.label ?? item.value;
-  if (!text || !query) {
-    return false;
-  }
-
-  const normalizedLabel =
-    typeof text === 'string' ? text.toLowerCase() : undefined;
-  const normalizedSupportingText = item.supportingText?.toLowerCase();
-  const normalizedTrailingSupportingText =
-    item.trailingSupportingText?.toLowerCase();
-  const normalizedQuery = query.toLowerCase();
-
-  return exactMatch
-    ? normalizedLabel !== undefined && normalizedLabel === normalizedQuery
-    : `${normalizedLabel} ${normalizedSupportingText ?? ''} ${normalizedTrailingSupportingText ?? ''}`.indexOf(
-        normalizedQuery,
-      ) >= 0;
-};
-
 export const getFilterableListItemLabel = (
   item: IFilterableListItem,
 ): React.ReactNode | undefined => item.label ?? item.value;
@@ -201,7 +175,6 @@ export const FilterableList: React.FC<IFilterableListProps> = (
       itemRenderer={renderFilterableListItem}
       itemsEqual={areFilterableListItemsEqual}
       listPredicate={filterFilterableList}
-      itemPredicate={filterFilterableListItem}
       noResults={<ListItem disabled>No results.</ListItem>}
       {...other}
     />

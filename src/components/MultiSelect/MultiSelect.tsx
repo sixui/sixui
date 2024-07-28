@@ -4,7 +4,6 @@ import type { IMultiSelectProps } from './MultiSelect.types';
 import {
   areFilterableListItemsEqual,
   filterFilterableList,
-  filterFilterableListItem,
   getFilterableListItemLabel,
   isFilterableListItemDisabled,
   renderFilterableListItem,
@@ -34,7 +33,6 @@ export const MultiSelect = forwardRef<HTMLInputElement, IMultiSelectProps>(
       <MultiSelectBase<IFilterableListItem>
         itemsEqual={areFilterableListItemsEqual}
         listPredicate={filterFilterableList}
-        itemPredicate={filterFilterableListItem}
         itemDisabled={isFilterableListItemDisabled}
         noResults={
           noResultsLabel ? (

@@ -8,7 +8,6 @@ import {
   getFilterableListItemLabel,
   isFilterableListItemDisabled,
   renderFilterableListItem,
-  filterFilterableListItem,
   type IFilterableListItem,
 } from '~/components/FilterableList';
 import { SelectBase } from '~/components/SelectBase';
@@ -37,7 +36,6 @@ export const Select = forwardRef<HTMLDivElement, ISelectProps>(
         itemsEqual={areFilterableListItemsEqual}
         itemEmpty={isFilterableListItemEmpty}
         listPredicate={filterFilterableList}
-        itemPredicate={filterFilterableListItem}
         itemDisabled={isFilterableListItemDisabled}
         noResults={
           noResultsLabel ? (

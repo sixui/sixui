@@ -4,7 +4,6 @@ import type { ISuggestProps } from './Suggest.types';
 import {
   areFilterableListItemsEqual,
   filterFilterableList,
-  filterFilterableListItem,
   getFilterableListItemLabel,
   isFilterableListItemDisabled,
   isFilterableListItemEmpty,
@@ -37,7 +36,6 @@ export const Suggest = forwardRef<HTMLInputElement, ISuggestProps>(
         itemsEqual={areFilterableListItemsEqual}
         itemEmpty={isFilterableListItemEmpty}
         listPredicate={filterFilterableList}
-        itemPredicate={filterFilterableListItem}
         itemDisabled={isFilterableListItemDisabled}
         noResults={
           noResultsLabel ? (
