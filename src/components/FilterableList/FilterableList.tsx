@@ -168,6 +168,7 @@ export const renderFilterableListItem: IFilterableListItemRenderer<
       selected={props.modifiers.selected}
       disabled={props.modifiers.disabled}
       {...props.getButtonAttributes()}
+      tabIndex={props.modifiers.active ? 0 : -1}
       ref={props.buttonRef}
     />
   );

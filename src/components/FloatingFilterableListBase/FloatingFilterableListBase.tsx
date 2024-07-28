@@ -365,7 +365,6 @@ export const FloatingFilterableListBase = fixedForwardRef(
               getTriggerProps: (userProps) => ({
                 ...extendFloatingProps(interactions.getReferenceProps, {
                   ...userProps,
-                  tabIndex: 0,
                   onFocus: (...args) => {
                     handleFocus();
                     userProps?.onFocus?.(...args);
