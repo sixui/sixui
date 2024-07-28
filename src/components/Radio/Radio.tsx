@@ -43,26 +43,25 @@ export const Radio: IRadio = forwardRef(function Radio<
     innerStyles,
     visualState: visualStateProp,
     onChange,
-    disabled: disabledProp,
-    readOnly,
     value,
     checked: checkedProp,
     name: nameProp,
     loading,
     'data-cy': dataCy = 'radio',
+    softDisabled: softDisabledProp,
     ...other
   } = props as IWithAsProp<IRadioOwnProps>;
 
   const radioGroupContext = useContext(RadioGroupContext);
-  const disabled =
-    (disabledProp ?? radioGroupContext?.disabled) ||
-    (readOnly ?? radioGroupContext?.readOnly) ||
-    loading;
+  const softDisabled =
+    (softDisabledProp ?? radioGroupContext?.softDisabled) || loading;
+  const visuallyDisabled =
+    (other.disabled ?? radioGroupContext?.disabled) || softDisabled;
 
   const actionRef = useRef<HTMLInputElement>(null);
   const { visualState, setRef: setVisualStateRef } = useVisualState(
     visualStateProp,
-    { disabled },
+    { disabled: visuallyDisabled },
   );
   const handleRef = useMergeRefs([forwardedRef, setVisualStateRef, actionRef]);
 
@@ -103,7 +102,7 @@ export const Radio: IRadio = forwardRef(function Radio<
         radioTheme,
         componentTheme.overridenStyles,
         'host',
-        disabled && 'host$disabled',
+        visuallyDisabled && 'host$disabled',
         sx,
       )}
     >
@@ -121,17 +120,19 @@ export const Radio: IRadio = forwardRef(function Radio<
                 radioStateLayerStyles,
                 ...asArray(innerStyles?.stateLayer),
               ]}
-              disabled={disabled}
+              disabled={visuallyDisabled}
               visualState={visualState}
             />
-            <FocusRing
-              for={actionRef}
-              styles={[
-                radioFocusRingStyles,
-                ...asArray(innerStyles?.focusRing),
-              ]}
-              visualState={visualState}
-            />
+            {visuallyDisabled ? null : (
+              <FocusRing
+                for={actionRef}
+                styles={[
+                  radioFocusRingStyles,
+                  ...asArray(innerStyles?.focusRing),
+                ]}
+                visualState={visualState}
+              />
+            )}
           </>
         )}
 
@@ -139,7 +140,8 @@ export const Radio: IRadio = forwardRef(function Radio<
           {...sxf(
             'icon',
             checked && 'icon$checked',
-            disabled && (checked ? 'icon$checked$disabled' : 'icon$disabled'),
+            visuallyDisabled &&
+              (checked ? 'icon$checked$disabled' : 'icon$disabled'),
           )}
           viewBox='0 0 20 20'
         >
@@ -150,7 +152,7 @@ export const Radio: IRadio = forwardRef(function Radio<
                 <circle cx='10' cy='10' r='8' fill='black' />
               </mask>
               <circle
-                {...sxf('circle$outer', disabled && 'circle$disabled')}
+                {...sxf('circle$outer', visuallyDisabled && 'circle$disabled')}
                 cx='10'
                 cy='10'
                 r='10'
@@ -162,7 +164,7 @@ export const Radio: IRadio = forwardRef(function Radio<
             {...sxf(
               'circle$inner',
               checked && 'circle$inner$checked',
-              disabled && 'circle$disabled',
+              visuallyDisabled && 'circle$disabled',
             )}
             cx='10'
             cy='10'
@@ -177,7 +179,6 @@ export const Radio: IRadio = forwardRef(function Radio<
           type='radio'
           checked={checked}
           onChange={handleChange}
-          disabled={disabled}
           value={value}
           data-cy={`${dataCy}-${value}`}
           {...other}

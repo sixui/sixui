@@ -28,7 +28,6 @@ export type IRadioOwnProps = IContainerProps<IRadioStylesKey> &
     name?: string;
     required?: boolean;
     disabled?: boolean;
-    readOnly?: boolean;
     checked?: boolean;
     value?: string;
     onChange?: (
@@ -36,6 +35,12 @@ export type IRadioOwnProps = IContainerProps<IRadioStylesKey> &
       value: string | undefined,
     ) => IMaybeAsync<IAny>;
     loading?: boolean;
+
+    /**
+     * If `true`, the component will be rendered in a disabled state, but will
+     * still be focusable.
+     */
+    softDisabled?: boolean;
   };
 
 export type IRadioProps<
