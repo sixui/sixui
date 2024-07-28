@@ -1,3 +1,15 @@
+# v0.0.397 (Sun Jul 28 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: Checkbox supports softDisabled ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.396 (Sun Jul 28 2024)
 
 #### ⚠️ Pushed to `main`
