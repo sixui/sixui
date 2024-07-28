@@ -78,4 +78,5 @@ export type IPopoverBaseProps<TForwardedProps extends object = object> =
       matchTargetWidth?: boolean;
       middleware?: Array<Middleware | null | undefined | false>;
       referenceRef?: React.RefObject<HTMLElement>;
+      scrim?: boolean;
     };

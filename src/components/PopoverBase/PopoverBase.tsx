@@ -28,8 +28,9 @@ import { usePopoverCursor } from '~/hooks/usePopoverCursor';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { popoverBaseStyles } from './PopoverBase.styles';
 import { FloatingTransition } from '~/components/FloatingTransition';
+import { Scrim } from '~/components/Scrim';
+import { popoverBaseStyles } from './PopoverBase.styles';
 
 export const PopoverBase = <TForwardedProps extends object = object>(
   props: IPopoverBaseProps<TForwardedProps>,
@@ -56,6 +57,7 @@ export const PopoverBase = <TForwardedProps extends object = object>(
     trapFocus,
     matchTargetWidth,
     middleware,
+    scrim,
     ...other
   } = props;
 
@@ -160,50 +162,60 @@ export const PopoverBase = <TForwardedProps extends object = object>(
       })
     : children;
 
+  const renderPopover = (): JSX.Element => (
+    <div
+      {...sxf(componentTheme.overridenStyles, 'host', sx)}
+      {...interactions.getFloatingProps()}
+      ref={floating.refs.setFloating}
+      style={floating.floatingStyles}
+    >
+      <FloatingFocusManager
+        context={floating.context}
+        modal={false}
+        initialFocus={-1}
+        disabled={!trapFocus}
+      >
+        <FloatingTransition
+          placement={floating.placement}
+          status={transitionStatus.status}
+          origin={transitionOrigin}
+          cursorTransformOrigin={cursor.getTransformOrigin(floating)}
+          orientation={transitionOrientation}
+        >
+          {isFunction(contentRenderer) ? (
+            contentRenderer({
+              isOpen,
+              placement: floating.placement,
+              close: () => setIsOpen(false),
+              forwardedProps: forwardProps
+                ? (other as TForwardedProps)
+                : undefined,
+              renderCursor,
+            })
+          ) : (
+            <>
+              {renderCursor()}
+              contentRenderer
+            </>
+          )}
+        </FloatingTransition>
+      </FloatingFocusManager>
+    </div>
+  );
+
   return (
     <>
       {triggerElement}
 
       {transitionStatus.isMounted ? (
         <Portal>
-          <div
-            {...sxf(componentTheme.overridenStyles, 'host', sx)}
-            {...interactions.getFloatingProps()}
-            ref={floating.refs.setFloating}
-            style={floating.floatingStyles}
-          >
-            <FloatingFocusManager
-              context={floating.context}
-              modal={false}
-              initialFocus={-1}
-              disabled={!trapFocus}
-            >
-              <FloatingTransition
-                placement={floating.placement}
-                status={transitionStatus.status}
-                origin={transitionOrigin}
-                cursorTransformOrigin={cursor.getTransformOrigin(floating)}
-                orientation={transitionOrientation}
-              >
-                {isFunction(contentRenderer) ? (
-                  contentRenderer({
-                    isOpen,
-                    placement: floating.placement,
-                    close: () => setIsOpen(false),
-                    forwardedProps: forwardProps
-                      ? (other as TForwardedProps)
-                      : undefined,
-                    renderCursor,
-                  })
-                ) : (
-                  <>
-                    {renderCursor()}
-                    contentRenderer
-                  </>
-                )}
-              </FloatingTransition>
-            </FloatingFocusManager>
-          </div>
+          {scrim ? (
+            <Scrim context={floating.context} lockScroll>
+              {renderPopover()}
+            </Scrim>
+          ) : (
+            renderPopover()
+          )}
         </Portal>
       ) : null}
     </>

@@ -10,5 +10,5 @@ export type IScrimProps = IContainerProps<IScrimStylesKey> &
     context: FloatingContext;
     contained?: boolean;
     variant?: IScrimVariant;
-    children?: React.ReactNode;
+    children: React.ReactNode;
   };

@@ -113,6 +113,12 @@ const rows: Array<IComponentPresentation<IPopoverBaseProps>> = [
       cursor: 'dot',
     },
   },
+  {
+    legend: 'With scrim',
+    props: {
+      scrim: true,
+    },
+  },
 ];
 
 export const OpenOnHover: IStory = {
