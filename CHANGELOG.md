@@ -1,3 +1,15 @@
+# v0.0.400 (Sun Jul 28 2024)
+
+#### ⚠️ Pushed to `main`
+
+- refactor(Avatar): randomColorOnFallback -> fallbackToRandomColor ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.399 (Sun Jul 28 2024)
 
 #### ⚠️ Pushed to `main`
