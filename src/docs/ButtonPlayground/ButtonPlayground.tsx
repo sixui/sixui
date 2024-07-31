@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
-import type { IPlaygroundSections } from './Playground.types';
+import type { IPlaygroundSections } from '~/docs/Playground';
 import { Button, type IButtonOwnProps } from '~/components/Button';
-import { Playground } from './Playground';
+import { Playground } from '~/docs/Playground';
 
 const defaultSections: IPlaygroundSections<IButtonOwnProps> = [
   {

@@ -1,24 +1,30 @@
-import type { IPlaygroundSections } from './Playground.types';
+import type { IPlaygroundSections } from '~/docs/Playground';
 import type { IOmit } from '~/helpers/types';
-import { Checkbox, type ICheckboxOwnProps } from '~/components/Checkbox';
+import { Switch, type ISwitchOwnProps } from '~/components/Switch';
 import { Labeled, type ILabeledOwnProps } from '~/components/Labeled';
-import { Playground } from './Playground';
+import { Playground } from '~/docs/Playground';
 
-type ICheckboxGroupDemoProps = IOmit<
-  ICheckboxOwnProps,
+type ISwitchGroupDemoProps = IOmit<
+  ISwitchOwnProps,
   'styles' | 'checked' | 'onChange'
 > &
   IOmit<ILabeledOwnProps, 'styles'>;
 
-const CheckboxGroupDemo: React.FC<ICheckboxGroupDemoProps> = (props) => (
-  <Labeled label='Extras'>
-    <Labeled {...props} label='Pickles' as={Checkbox} />
-    <Labeled {...props} label='Tomato' as={Checkbox} defaultIndeterminate />
-    <Labeled {...props} label='Lettuce' as={Checkbox} defaultChecked />
+const SwitchGroupDemo: React.FC<ISwitchGroupDemoProps> = (props) => (
+  <Labeled label='General'>
+    <Labeled {...props} label='Wi-Fi' as={Switch} />
+    <Labeled {...props} label='Bluetooth' as={Switch} defaultChecked />
+    <Labeled
+      {...props}
+      label='Airplane mode'
+      as={Switch}
+      defaultChecked
+      icons
+    />
   </Labeled>
 );
 
-const defaultSections: IPlaygroundSections<ICheckboxGroupDemoProps> = [
+const defaultSections: IPlaygroundSections<ISwitchGroupDemoProps> = [
   {
     title: 'Props',
     options: [
@@ -72,7 +78,7 @@ const defaultSections: IPlaygroundSections<ICheckboxGroupDemoProps> = [
       {
         label: 'Supporting text',
         props: {
-          supportingText: "That's one of my favorite things!",
+          supportingText: 'Supporting text',
         },
         modifiers: {
           off: true,
@@ -91,13 +97,13 @@ const defaultSections: IPlaygroundSections<ICheckboxGroupDemoProps> = [
   },
 ];
 
-export const CheckboxPlayground: React.FC = (props) => {
+export const SwitchPlayground: React.FC = (props) => {
   return (
-    <Playground<ICheckboxGroupDemoProps>
+    <Playground<ISwitchGroupDemoProps>
       {...props}
       defaultSections={defaultSections}
       componentRenderer={(componentProps) => (
-        <CheckboxGroupDemo {...componentProps} />
+        <SwitchGroupDemo {...componentProps} />
       )}
     />
   );
