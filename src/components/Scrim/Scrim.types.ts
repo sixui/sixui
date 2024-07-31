@@ -7,7 +7,7 @@ export type IScrimVariant = 'darken' | 'lighten';
 
 export type IScrimProps = IContainerProps<IScrimStylesKey> &
   FloatingOverlayProps & {
-    context: FloatingContext;
+    floatingContext: FloatingContext;
     contained?: boolean;
     variant?: IScrimVariant;
     children: React.ReactNode;

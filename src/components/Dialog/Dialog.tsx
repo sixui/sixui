@@ -93,7 +93,7 @@ export const Dialog: IDialog = forwardRef(function Dialog<
 
       {transitionStatus.isMounted ? (
         <Portal>
-          <Scrim context={floating.context} lockScroll>
+          <Scrim floatingContext={floating.context} lockScroll>
             <FloatingFocusManager context={floating.context}>
               <FloatingTransition
                 status={transitionStatus.status}

@@ -12,6 +12,7 @@ export const playgroundStyles = stylex.create({
     gap: 8,
   },
   componentPanel: {
+    position: 'relative',
     display: 'flex',
     borderRadius: shapeTokens.corner$md,
     borderWidth: 1,

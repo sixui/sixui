@@ -17,7 +17,7 @@ import { Button } from '~/components/Button';
 import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
 import { Scrim } from './Scrim';
 
-type IScrimDemoProps = IOmit<IScrimProps, 'context'>;
+type IScrimDemoProps = IOmit<IScrimProps, 'floatingContext'>;
 
 const styles = stylex.create({
   host$contained: {
@@ -51,7 +51,7 @@ const ScrimDemo: React.FC<IScrimDemoProps> = (props) => {
       >
         Show scrim
       </Button>
-      <Scrim context={floating.context} {...other}>
+      <Scrim floatingContext={floating.context} {...other}>
         <FloatingFocusManager context={floating.context}>
           <div
             {...interactions.getFloatingProps()}
