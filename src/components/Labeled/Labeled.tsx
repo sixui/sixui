@@ -63,15 +63,19 @@ export const Labeled: ILabeled = forwardRef(function Labeled<
     : 'horizontal';
   const isLabelAtStart = ['top', 'left'].includes(labelPosition);
   const supportingTextPosition =
-    orientation === 'vertical'
-      ? (supportingTextPositionProp ?? labelPosition)
-      : labelPosition;
+    labelPosition === 'top'
+      ? (supportingTextPositionProp ?? 'start')
+      : labelPosition === 'bottom'
+        ? (supportingTextPositionProp ?? 'end')
+        : labelPosition === 'left'
+          ? 'start'
+          : 'end';
   const hasLeading =
     (!!label && isLabelAtStart) ||
-    ((!!supportingText || !!errorText) && supportingTextPosition === 'top');
+    ((!!supportingText || !!errorText) && supportingTextPosition === 'start');
   const hasTrailing =
     (!!label && !isLabelAtStart) ||
-    ((!!supportingText || !!errorText) && supportingTextPosition === 'bottom');
+    ((!!supportingText || !!errorText) && supportingTextPosition === 'end');
 
   const renderLabelAndAction = (): React.ReactNode =>
     label !== undefined ? (
@@ -163,7 +167,7 @@ export const Labeled: ILabeled = forwardRef(function Labeled<
         {hasLeading ? (
           <div {...sxf('header')}>
             {isLabelAtStart ? renderLabelAndAction() : null}
-            {supportingTextPosition === 'top' ? renderSupportingText() : null}
+            {supportingTextPosition === 'start' ? renderSupportingText() : null}
           </div>
         ) : null}
 
@@ -187,9 +191,7 @@ export const Labeled: ILabeled = forwardRef(function Labeled<
         {hasTrailing ? (
           <div {...sxf('header')}>
             {isLabelAtStart ? null : renderLabelAndAction()}
-            {supportingTextPosition === 'bottom'
-              ? renderSupportingText()
-              : null}
+            {supportingTextPosition === 'end' ? renderSupportingText() : null}
           </div>
         ) : null}
       </div>

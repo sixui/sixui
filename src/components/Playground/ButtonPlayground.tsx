@@ -58,6 +58,20 @@ const defaultSections: IPlaygroundSections<IButtonOwnProps> = [
         },
       },
       {
+        label: 'Loading text',
+        input: {
+          type: 'string',
+          value: 'Wait...',
+          targetProp: 'loadingText',
+        },
+        modifiers: {
+          off: true,
+        },
+        getModifiers: (props) => ({
+          disabled: !props?.loading,
+        }),
+      },
+      {
         label: 'Icon',
         props: {
           icon: <FontAwesomeIcon icon={faPaperPlane} />,
@@ -74,20 +88,6 @@ const defaultSections: IPlaygroundSections<IButtonOwnProps> = [
         modifiers: {
           off: true,
         },
-      },
-      {
-        label: 'Loading text',
-        input: {
-          type: 'string',
-          value: 'Wait...',
-          targetProp: 'loadingText',
-        },
-        modifiers: {
-          off: true,
-        },
-        getModifiers: (props) => ({
-          disabled: !props?.loading,
-        }),
       },
     ],
   },

@@ -44,7 +44,9 @@ export const PlaygroundSections = fixedForwardRef(function PlaygroundSections<
     >
       {sections.map((section, sectionIndex) => (
         <div {...stylex.props(commonStyles.verticalLayout)} key={sectionIndex}>
-          <Typography variant='title'>{section.title}</Typography>
+          {section.title ? (
+            <Typography variant='title'>{section.title}</Typography>
+          ) : null}
           <div
             {...stylex.props(commonStyles.verticalLayout, commonStyles.gap$xl)}
           >

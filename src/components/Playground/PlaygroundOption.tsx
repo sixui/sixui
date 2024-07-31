@@ -98,28 +98,24 @@ export const PlaygroundOption = fixedForwardRef(function PlaygroundOption<
           required={modifiers?.required}
           disabled={modifiers?.disabled}
         >
-          {(elementProps) =>
-            modifiers?.required ? (
-              renderInputField(option, {
-                ...elementProps,
-                disabled: modifiers.disabled || modifiers.off,
-              })
-            ) : (
-              <Checkbox
-                {...elementProps}
-                checked={!modifiers?.off}
-                onChange={(_event, checked) =>
-                  onChange({
-                    ...option,
-                    modifiers: {
-                      ...option.modifiers,
-                      off: !checked,
-                    },
-                  })
-                }
-              />
-            )
-          }
+          {modifiers?.required ? (
+            renderInputField(option, {
+              disabled: modifiers.disabled || modifiers.off,
+            })
+          ) : (
+            <Checkbox
+              checked={!modifiers?.off}
+              onChange={(_event, checked) =>
+                onChange({
+                  ...option,
+                  modifiers: {
+                    ...option.modifiers,
+                    off: !checked,
+                  },
+                })
+              }
+            />
+          )}
         </Labeled>
 
         {modifiers?.required

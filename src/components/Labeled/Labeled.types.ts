@@ -22,7 +22,7 @@ export type ILabeledOwnProps = IContainerProps<ILabeledStylesKey> &
       | React.ReactNode
       | ((props: ILabeledRenderProps) => React.ReactNode);
     labelPosition?: 'top' | 'bottom' | 'left' | 'right';
-    supportingTextPosition?: 'top' | 'bottom';
+    supportingTextPosition?: 'start' | 'end';
   };
 
 export type ILabeledProps<TRoot extends React.ElementType> =

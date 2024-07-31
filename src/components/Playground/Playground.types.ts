@@ -36,7 +36,7 @@ export type IPlaygroundOptions<TComponentProps> = Array<
 >;
 
 export type IPlaygroundSections<TComponentProps> = Array<{
-  title: string;
+  title?: string;
   options: IPlaygroundOptions<TComponentProps>;
 }>;
 
