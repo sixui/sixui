@@ -20,8 +20,6 @@ export type IButtonOwnProps = IButtonBaseOwnProps & {
       ICompiledStyles<ICircularProgressIndicatorStylesKey>
     >;
   };
-  withLeadingIcon?: boolean;
-  withTrailingIcon?: boolean;
   variant?: IButtonVariant | false;
   icon?: React.ReactNode;
   trailingIcon?: boolean;

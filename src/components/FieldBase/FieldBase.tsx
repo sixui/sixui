@@ -538,7 +538,6 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
         fieldBaseTheme,
         componentTheme.overridenStyles,
         'host',
-        !!supportingOrErrorText && 'host$withSupportingText',
         visuallyDisabled && 'host$disabled',
         sx,
       )}

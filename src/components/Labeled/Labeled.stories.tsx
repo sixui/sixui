@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
-import { IElementWithLabelProps } from './ElementWithLabel.types';
+import type { ILabeledOwnProps } from './Labeled.types';
 import {
   ComponentShowcase,
   type IComponentPresentation,
@@ -10,32 +10,39 @@ import { Checkbox } from '~/components/Checkbox';
 import { Switch } from '~/components/Switch';
 import { Radio } from '~/components/Radio';
 import { TextInputField } from '~/components/TextInputField';
-import { ElementWithLabel } from './ElementWithLabel';
+import { Labeled } from './Labeled';
 
 const meta = {
-  component: ElementWithLabel,
-} satisfies Meta<typeof ElementWithLabel>;
+  component: Labeled,
+} satisfies Meta<typeof Labeled>;
 
 type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   host: {
-    width: 260,
+    width: 120,
+  },
+  host$lg: {
+    width: 240,
   },
 });
 
 const defaultArgs = {
   label: 'Label',
   sx: styles.host,
-} satisfies Partial<IElementWithLabelProps>;
+} satisfies Partial<ILabeledOwnProps>;
 
-const cols: Array<IComponentPresentation<IElementWithLabelProps>> = [
-  { legend: 'Start', props: { labelPosition: 'start' } },
-  { legend: 'End', props: { labelPosition: 'end' } },
-  { legend: 'Disabled', props: { disabled: true } },
+const colsHorizontal: Array<IComponentPresentation<ILabeledOwnProps>> = [
+  { legend: 'Left', props: { labelPosition: 'left' } },
+  { legend: 'Right', props: { labelPosition: 'right' } },
 ];
 
-const rows: Array<IComponentPresentation<IElementWithLabelProps>> = [
+const colsVertical: Array<IComponentPresentation<ILabeledOwnProps>> = [
+  { legend: 'Top', props: { labelPosition: 'top' } },
+  { legend: 'Bottom', props: { labelPosition: 'bottom' } },
+];
+
+const rows: Array<IComponentPresentation<ILabeledOwnProps>> = [
   { legend: 'With label' },
   {
     legend: 'With supporting text',
@@ -62,9 +69,9 @@ const rows: Array<IComponentPresentation<IElementWithLabelProps>> = [
 export const WithTextField: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={ElementWithLabel}
+      component={Labeled}
       props={props}
-      cols={cols}
+      cols={colsVertical}
       rows={rows}
       horizontalAlign='start'
     />
@@ -74,15 +81,16 @@ export const WithTextField: IStory = {
     orientation: 'vertical',
     children: (props) => <TextInputField {...props} />,
     action: 'Action',
+    sx: styles.host$lg,
   },
 };
 
 export const WithCheckbox: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={ElementWithLabel}
+      component={Labeled}
       props={props}
-      cols={cols}
+      cols={colsHorizontal}
       rows={rows}
       horizontalAlign='start'
     />
@@ -97,9 +105,9 @@ export const WithCheckbox: IStory = {
 export const WithRadio: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={ElementWithLabel}
+      component={Labeled}
       props={props}
-      cols={cols}
+      cols={colsHorizontal}
       rows={rows}
       horizontalAlign='start'
     />
@@ -114,9 +122,9 @@ export const WithRadio: IStory = {
 export const WithSwitch: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={ElementWithLabel}
+      component={Labeled}
       props={props}
-      cols={cols}
+      cols={colsHorizontal}
       rows={rows}
       horizontalAlign='start'
     />

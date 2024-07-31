@@ -19,11 +19,7 @@ export const fieldBaseStyles = stylex.create({
     flexGrow: 1,
     alignItems: 'stretch',
     resize: 'inherit',
-    minHeight: 56,
     cursor: 'pointer',
-  },
-  host$withSupportingText: {
-    minHeight: 76,
   },
   host$disabled: {
     pointerEvents: 'none',
@@ -57,7 +53,7 @@ export const fieldBaseStyles = stylex.create({
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: '0%',
-    minHeight: '100%',
+    minHeight: fieldBaseTokens.containerHeight,
     maxHeight: '100%',
     minWidth: 'min-content',
     position: 'relative',

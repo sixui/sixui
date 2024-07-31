@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
-import { elementWithLabelTokens } from './ElementWithLabel.stylex';
+import { elementWithLabelTokens } from './Labeled.stylex';
 
-export type IElementWithLabelStylesKey = keyof typeof elementWithLabelStyles;
+export type ILabeledStylesKey = keyof typeof elementWithLabelStyles;
 export const elementWithLabelStyles = stylex.create({
   host$vertical: {
     display: 'flex',
@@ -20,7 +20,7 @@ export const elementWithLabelStyles = stylex.create({
     flexDirection: 'inherit',
     display: 'flex',
     alignItems: 'normal',
-    gap: '0.5rem',
+    gap: '1rem',
   },
   header: {
     display: 'flex',

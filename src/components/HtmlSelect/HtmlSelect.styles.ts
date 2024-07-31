@@ -9,20 +9,16 @@ export const htmlSelectStyles = stylex.create({
     cursor: 'pointer',
     appearance: 'none',
     height: '100%',
-    paddingLeft: 16,
-    paddingRight: 16,
-    paddingTop: 12,
-    paddingBottom: 12,
+    position: 'absolute',
+    inset: 0,
+    paddingLeft: fieldBaseTokens.leadingSpace,
+    paddingRight: fieldBaseTokens.trailingSpace,
+    paddingTop: fieldBaseTokens.topSpace,
+    paddingBottom: fieldBaseTokens.bottomSpace,
   },
 });
 
 export const htmlSelectFieldBaseStyles = stylex.create({
-  host: {
-    [fieldBaseTokens.topSpace]: '0px',
-    [fieldBaseTokens.bottomSpace]: '0px',
-    [fieldBaseTokens.leadingSpace]: '0px',
-    [fieldBaseTokens.trailingSpace]: '0px',
-  },
   section$start: {
     position: 'absolute',
     top: 0,

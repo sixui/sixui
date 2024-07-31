@@ -15,7 +15,7 @@ import { fixedForwardRef } from '~/helpers/fixedForwardRef';
 import { SvgIcon } from '~/components/SvgIcon';
 import { iconXMark } from '~/assets/icons';
 import {
-  textFieldBaseFieldStyles,
+  textFieldBaseFieldBaseStyles,
   textFieldBaseStyles,
 } from './TextFieldBase.styles';
 import { textFieldBaseTheme } from './TextFieldBase.stylex';
@@ -130,7 +130,10 @@ export const TextFieldBase = fixedForwardRef(function TextField<
     >
       <span {...sxf('textField')}>
         <FieldBase
-          styles={[textFieldBaseFieldStyles, ...asArray(innerStyles?.field)]}
+          styles={[
+            textFieldBaseFieldBaseStyles,
+            ...asArray(innerStyles?.fieldBase),
+          ]}
           variant={variant}
           count={value?.toString().length}
           disabled={disabled}

@@ -11,7 +11,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  options: [
+  items: [
     {
       label: 'Dog',
       value: 'dog',

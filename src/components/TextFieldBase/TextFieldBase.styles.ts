@@ -161,7 +161,7 @@ export const textFieldBaseStyles = stylex.create({
   },
 });
 
-export const textFieldBaseFieldStyles = stylex.create({
+export const textFieldBaseFieldBaseStyles = stylex.create({
   host: {
     cursor: 'text',
   },

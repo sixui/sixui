@@ -46,7 +46,7 @@ export type ITextFieldBaseOwnProps<
   TChildrenProps extends object,
 > = IControlledValueProps<string | number | ReadonlyArray<string>, TElement> & {
   innerStyles?: {
-    field?: IZeroOrMore<ICompiledStyles<IFieldBaseStylesKey>>;
+    fieldBase?: IZeroOrMore<ICompiledStyles<IFieldBaseStylesKey>>;
   };
 
   /**

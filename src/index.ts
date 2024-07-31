@@ -26,7 +26,7 @@ export * from './components/DialogContent';
 export * from './components/Disclosure';
 export * from './components/DisclosureButton';
 export * from './components/Divider';
-export * from './components/ElementWithLabel';
+export * from './components/Labeled';
 export * from './components/Elevation';
 export * from './components/Expandable';
 export * from './components/Fab';

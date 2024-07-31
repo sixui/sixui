@@ -1,12 +1,12 @@
 import { useMemo, useState } from 'react';
 
-import type { IPlaygroundOption, IPlaygroundProps } from './Playground.types';
-import { stylesCombinatorFactory } from '@/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '@/helpers/stylePropsFactory';
-import { useComponentTheme } from '@/hooks/useComponentTheme';
-import { fixedForwardRef } from '@/helpers/fixedForwardRef';
+import type { IPlaygroundProps } from './Playground.types';
+import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { fixedForwardRef } from '~/helpers/fixedForwardRef';
 import { playgroundStyles } from './Playground.styles';
-import { PlaygroundOptions } from './PlaygroundOptions';
+import { PlaygroundSections } from './PlaygroundSections';
 
 export const Playground = fixedForwardRef(function Playground<
   TComponentProps extends Record<string, unknown>,
@@ -14,7 +14,14 @@ export const Playground = fixedForwardRef(function Playground<
   props: IPlaygroundProps<TComponentProps>,
   forwardedRef?: React.Ref<HTMLDivElement>,
 ) {
-  const { styles, sx, componentRenderer, options, ...other } = props;
+  const {
+    styles,
+    sx,
+    componentRenderer,
+    defaultSections,
+    initialProps,
+    ...other
+  } = props;
 
   const componentTheme = useComponentTheme('Playground');
   const stylesCombinator = useMemo(
@@ -26,26 +33,27 @@ export const Playground = fixedForwardRef(function Playground<
     [stylesCombinator],
   );
 
-  const optionsEntries = Object.entries(options) as Array<
-    [keyof TComponentProps, IPlaygroundOption]
-  >;
-  const defaultComponentProps = optionsEntries.reduce(
-    (acc, [propName, option]) => {
-      if (option.modifiers?.disabled) {
-        return acc;
-      }
+  const [sections, setSections] = useState(defaultSections);
 
-      return {
-        ...acc,
-        [propName]: option.defaultValue,
-      };
-    },
-    {} as TComponentProps,
-  );
+  const componentProps = sections
+    .map(({ options }) => options)
+    .flat()
+    .reduce(
+      (acc, option) => {
+        if (option.modifiers?.disabled || option.modifiers?.off) {
+          return acc;
+        }
 
-  const [componentProps, setComponentProps] = useState<TComponentProps>(
-    defaultComponentProps,
-  );
+        return {
+          ...acc,
+          ...option.props,
+          ...(option.input
+            ? { [option.input.targetProp]: option.input.value }
+            : undefined),
+        };
+      },
+      (initialProps ?? {}) as TComponentProps,
+    );
 
   return (
     <div
@@ -53,13 +61,19 @@ export const Playground = fixedForwardRef(function Playground<
       {...other}
       ref={forwardedRef}
     >
-      {componentRenderer(componentProps)}
+      <div {...sxf('componentPanel')}>
+        <div {...sxf('componentWrapper')}>
+          {componentRenderer(componentProps)}
+        </div>
+      </div>
 
-      <PlaygroundOptions<TComponentProps>
-        options={options}
-        defaultComponentProps={defaultComponentProps}
-        onComponentPropsChange={setComponentProps}
-      />
+      <div {...sxf(stylesCombinator('optionsPanel'))}>
+        <PlaygroundSections<TComponentProps>
+          sections={sections}
+          onSectionsChange={setSections}
+          componentProps={componentProps}
+        />
+      </div>
     </div>
   );
 });

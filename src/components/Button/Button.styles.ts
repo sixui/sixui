@@ -155,6 +155,8 @@ export const buttonStyles = stylex.create({
     whiteSpace: 'nowrap',
     textAlign: 'center',
     justifyContent: 'center',
+    paddingInlineStart: buttonTokens.leadingSpace,
+    paddingInlineEnd: buttonTokens.trailingSpace,
   },
   outline: {
     borderStyle: buttonTokens.outlineStyle,

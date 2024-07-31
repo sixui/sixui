@@ -42,7 +42,7 @@ export const Uncontrolled: IStory = {
       cols={[
         {},
         { props: { defaultValue: true } },
-        { props: { indeterminate: true } },
+        { props: { defaultIndeterminate: true } },
       ]}
     />
   ),
