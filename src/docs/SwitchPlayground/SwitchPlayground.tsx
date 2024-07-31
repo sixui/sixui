@@ -11,7 +11,7 @@ type ISwitchGroupDemoProps = IOmit<
   IOmit<ILabeledOwnProps, 'styles'>;
 
 const SwitchGroupDemo: React.FC<ISwitchGroupDemoProps> = (props) => (
-  <Labeled label='General'>
+  <Labeled label='General settings'>
     <Labeled {...props} label='Wi-Fi' as={Switch} />
     <Labeled {...props} label='Bluetooth' as={Switch} defaultChecked />
     <Labeled

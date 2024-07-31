@@ -36,7 +36,7 @@ export const PlaygroundSections = fixedForwardRef(function PlaygroundSections<
       {...stylex.props(
         componentTheme.overridenStyles,
         commonStyles.verticalLayout,
-        commonStyles.gap$xl,
+        commonStyles.gap$2xl,
         sx,
       )}
       {...other}
