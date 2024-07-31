@@ -4,6 +4,7 @@ import type {
   ICompiledStyles,
   IAny,
   IMaybeAsync,
+  IOmit,
 } from '~/helpers/types';
 import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
 import type { IStateLayerStylesKey } from '~/components/StateLayer';
@@ -15,7 +16,7 @@ import type { IRadioStylesKey } from './Radio.styles';
 export const RADIO_DEFAULT_TAG = 'input';
 
 export type IRadioOwnProps = IContainerProps<IRadioStylesKey> &
-  Pick<React.AriaAttributes, 'aria-label'> & {
+  IOmit<React.ComponentPropsWithoutRef<'input'>, 'onChange'> & {
     innerStyles?: {
       stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStylesKey>>;
       focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStylesKey>>;
@@ -24,10 +25,6 @@ export type IRadioOwnProps = IContainerProps<IRadioStylesKey> &
       >;
     };
     visualState?: IVisualState;
-    id?: string;
-    name?: string;
-    required?: boolean;
-    disabled?: boolean;
     checked?: boolean;
     value?: string;
     onChange?: (

@@ -9,8 +9,6 @@ export type IRadioGroupContextValue = {
     value: string | undefined,
   ) => IMaybeAsync<IAny>;
   value?: string;
-  disabled?: boolean;
-  softDisabled?: boolean;
 };
 
 export const RadioGroupContext = createContext<

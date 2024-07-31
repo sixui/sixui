@@ -4,18 +4,20 @@ import type {
   ICompiledStyles,
   IAny,
   IMaybeAsync,
+  IOmit,
 } from '~/helpers/types';
 import type { IStateLayerStylesKey } from '~/components/StateLayer';
 import type { IFocusRingStylesKey } from '~/components/FocusRing';
 import type { ICircularProgressIndicatorStylesKey } from '~/components/CircularProgressIndicator';
 import type { IVisualState } from '~/components/VisualState';
+import type { ILabeledOwnProps } from '~/components/Labeled';
 import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
 import type { ISwitchStylesKey } from './Switch.styles';
 
 export const SWITCH_DEFAULT_TAG = 'input';
 
 export type ISwitchOwnProps = IContainerProps<ISwitchStylesKey> &
-  Pick<React.AriaAttributes, 'aria-label'> & {
+  IOmit<ILabeledOwnProps, 'styles'> & {
     innerStyles?: {
       stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStylesKey>>;
       focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStylesKey>>;
@@ -24,11 +26,6 @@ export type ISwitchOwnProps = IContainerProps<ISwitchStylesKey> &
       >;
     };
     visualState?: IVisualState;
-
-    id?: string;
-    name?: string;
-    disabled?: boolean;
-    required?: boolean;
 
     checked?: boolean;
     defaultChecked?: boolean;
@@ -39,18 +36,11 @@ export type ISwitchOwnProps = IContainerProps<ISwitchStylesKey> &
     icons?: boolean;
 
     /**
-     * If `true`, the component will be rendered in a disabled state, but will
-     * still be focusable.
-     */
-    softDisabled?: boolean;
-
-    /**
      * Shows only the selected icon, and not the deselected icon. If `true`,
      * overrides the behavior of the `icons` property.
      */
     showOnlySelectedIcon?: boolean;
 
-    loading?: boolean;
     loadingAnimation?: 'progressIndicator' | 'none';
     onChange?: (
       event: React.ChangeEvent<HTMLInputElement>,
