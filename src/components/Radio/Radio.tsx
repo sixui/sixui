@@ -184,6 +184,7 @@ export const Radio: IRadio = forwardRef(function Radio<
           onChange={handleChange}
           value={value}
           data-cy={`${dataCy}-${value}`}
+          id={labeledContext?.id}
           {...other}
         />
       </div>
