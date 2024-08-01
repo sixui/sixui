@@ -54,8 +54,8 @@ export const chipPlaygroundSections: IPlaygroundSections<IAssistChipPlaygroundDe
           modifiers: {
             off: true,
           },
-          getModifiers: (props) => ({
-            disabled: !props?.assistChip.imageUrl,
+          getModifiers: (sectionProps) => ({
+            disabled: !sectionProps?.assistChip.imageUrl,
           }),
         },
         {
@@ -95,8 +95,8 @@ export const chipPlaygroundSections: IPlaygroundSections<IAssistChipPlaygroundDe
           modifiers: {
             off: true,
           },
-          getModifiers: (props) => ({
-            disabled: !props?.assistChip.loading,
+          getModifiers: (sectionProps) => ({
+            disabled: !sectionProps?.assistChip.loading,
           }),
         },
       ],

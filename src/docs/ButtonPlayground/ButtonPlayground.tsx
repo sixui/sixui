@@ -54,8 +54,8 @@ export const buttonPlaygroundSections: IPlaygroundSections<IButtonPlaygroundDemo
           props: {
             trailingIcon: true,
           },
-          getModifiers: (props) => ({
-            disabled: !props?.button.icon,
+          getModifiers: (sectionProps) => ({
+            disabled: !sectionProps?.button.icon,
           }),
           modifiers: {
             off: true,
@@ -89,8 +89,8 @@ export const buttonPlaygroundSections: IPlaygroundSections<IButtonPlaygroundDemo
           modifiers: {
             off: true,
           },
-          getModifiers: (props) => ({
-            disabled: !props?.button.loading,
+          getModifiers: (sectionProps) => ({
+            disabled: !sectionProps?.button.loading,
           }),
         },
       ],

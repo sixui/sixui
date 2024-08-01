@@ -34,6 +34,7 @@ export type IPlaygroundOption<
     | IPlaygroundOptionValue<'boolean', boolean>
   );
   props?: Partial<TSectionProps>;
+  getProps?: (sectionsProps?: TSectionsProps) => Partial<TSectionProps>;
   modifiers?: IPlaygroundOptionModifiers;
   getModifiers?: (sectionsProps?: TSectionsProps) => IPlaygroundOptionModifiers;
 };

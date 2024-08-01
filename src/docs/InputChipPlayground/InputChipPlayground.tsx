@@ -54,8 +54,8 @@ export const chipPlaygroundSections: IPlaygroundSections<IInputChipPlaygroundDem
           modifiers: {
             off: true,
           },
-          getModifiers: (props) => ({
-            disabled: !props?.inputChip.imageUrl,
+          getModifiers: (sectionProps) => ({
+            disabled: !sectionProps?.inputChip.imageUrl,
           }),
         },
         {
@@ -104,8 +104,8 @@ export const chipPlaygroundSections: IPlaygroundSections<IInputChipPlaygroundDem
           modifiers: {
             off: true,
           },
-          getModifiers: (props) => ({
-            disabled: !props?.inputChip.loading,
+          getModifiers: (sectionProps) => ({
+            disabled: !sectionProps?.inputChip.loading,
           }),
         },
       ],

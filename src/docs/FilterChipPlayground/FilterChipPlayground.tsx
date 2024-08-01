@@ -70,8 +70,8 @@ export const chipPlaygroundSections: IPlaygroundSections<IFilterChipPlaygroundDe
           modifiers: {
             off: true,
           },
-          getModifiers: (props) => ({
-            disabled: !props?.filterChip.loading,
+          getModifiers: (sectionProps) => ({
+            disabled: !sectionProps?.filterChip.loading,
           }),
         },
       ],

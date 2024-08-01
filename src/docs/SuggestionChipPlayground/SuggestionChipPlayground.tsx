@@ -52,8 +52,8 @@ export const chipPlaygroundSections: IPlaygroundSections<ISuggestionChipPlaygrou
           modifiers: {
             off: true,
           },
-          getModifiers: (props) => ({
-            disabled: !props?.suggestionChip.loading,
+          getModifiers: (sectionProps) => ({
+            disabled: !sectionProps?.suggestionChip.loading,
           }),
         },
       ],

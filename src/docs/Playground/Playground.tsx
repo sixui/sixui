@@ -44,34 +44,41 @@ export const Playground = fixedForwardRef(function Playground<
 
   const [sections, setSections] = useState(defaultSections);
 
-  const sectionsProps = Object.keys(sections).reduce((acc, sectionKey) => {
-    const section = sections[sectionKey];
+  const sectionsProps = Object.keys(sections).reduce(
+    (sectionPropsAcc, sectionKey) => {
+      const section = sections[sectionKey];
 
-    return {
-      ...acc,
-      [sectionKey]: section.options.reduce((acc, option) => {
-        if (option.modifiers?.disabled || option.modifiers?.off) {
+      return {
+        ...sectionPropsAcc,
+        [sectionKey]: section.options.reduce((optionPropsAcc, option) => {
+          if (option.modifiers?.disabled || option.modifiers?.off) {
+            return {
+              ...optionPropsAcc,
+              ...section.props,
+            };
+          }
+
           return {
-            ...acc,
+            ...optionPropsAcc,
             ...section.props,
+            ...option.props,
+            ...option.getProps?.({
+              ...sectionPropsAcc,
+              [sectionKey]: optionPropsAcc,
+            }),
+            ...(option.input
+              ? {
+                  [option.input.targetProp]: option.input.getValue
+                    ? option.input.getValue(option.input.value)
+                    : convertValue(option.input.value, option.input.type),
+                }
+              : undefined),
           };
-        }
-
-        return {
-          ...acc,
-          ...section.props,
-          ...option.props,
-          ...(option.input
-            ? {
-                [option.input.targetProp]: option.input.getValue
-                  ? option.input.getValue(option.input.value)
-                  : convertValue(option.input.value, option.input.type),
-              }
-            : undefined),
-        };
-      }, {}),
-    };
-  }, {} as TSectionsProps);
+        }, {}),
+      };
+    },
+    {} as TSectionsProps,
+  );
 
   return (
     <div
