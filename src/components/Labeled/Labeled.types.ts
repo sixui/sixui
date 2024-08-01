@@ -23,7 +23,7 @@ export type ILabeledOwnProps = IContainerProps<ILabeledStylesKey> &
       | ((props: ILabeledRenderProps) => React.ReactNode);
     labelPosition?: 'top' | 'bottom' | 'left' | 'right';
     supportingTextPosition?: 'start' | 'end';
-    // FIXME: errorPosition
+    // FIXME: errorPosition?: 'start' | 'end'; (default: comme label)
   };
 
 export type ILabeledProps<TRoot extends React.ElementType> =

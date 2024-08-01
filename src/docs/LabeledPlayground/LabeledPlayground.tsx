@@ -14,7 +14,7 @@ export const labeledPlaygroundSections: IPlaygroundSections<ILabeledPlaygroundDe
           label: 'Label',
           input: {
             type: 'string',
-            value: 'First name',
+            value: 'Username',
             targetProp: 'label',
           },
           modifiers: {
@@ -54,7 +54,7 @@ export const labeledPlaygroundSections: IPlaygroundSections<ILabeledPlaygroundDe
           label: 'Supporting text',
           input: {
             type: 'string',
-            value: 'How should we address you?',
+            value: 'Should be at least 2 characters',
             targetProp: 'supportingText',
           },
           modifiers: {
