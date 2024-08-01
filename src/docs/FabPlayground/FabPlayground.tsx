@@ -22,6 +22,14 @@ export const fabPlaygroundSections: IPlaygroundSections<IFabPlaygroundDemoProps>
   {
     fab: {
       title: 'Fab',
+      getProps: (sectionProps) => ({
+        children:
+          sectionProps?.fab.variant === 'branded' ? (
+            svgColorIcon
+          ) : (
+            <FontAwesomeIcon icon={faPaperPlane} />
+          ),
+      }),
       options: [
         {
           label: 'Variant',
@@ -56,17 +64,6 @@ export const fabPlaygroundSections: IPlaygroundSections<IFabPlaygroundDemoProps>
           modifiers: {
             required: true,
           },
-        },
-        {
-          label: 'Icon',
-          getProps: (sectionProps) => ({
-            children:
-              sectionProps?.fab.variant === 'branded' ? (
-                svgColorIcon
-              ) : (
-                <FontAwesomeIcon icon={faPaperPlane} />
-              ),
-          }),
         },
         {
           label: 'Disabled',

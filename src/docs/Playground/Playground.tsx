@@ -47,20 +47,17 @@ export const Playground = fixedForwardRef(function Playground<
   const sectionsProps = Object.keys(sections).reduce(
     (sectionPropsAcc, sectionKey) => {
       const section = sections[sectionKey];
-
-      return {
-        ...sectionPropsAcc,
-        [sectionKey]: section.options.reduce((optionPropsAcc, option) => {
+      const sectionProps = {
+        ...section.props,
+        ...section.options.reduce((optionPropsAcc, option) => {
           if (option.modifiers?.disabled || option.modifiers?.off) {
             return {
               ...optionPropsAcc,
-              ...section.props,
             };
           }
 
           return {
             ...optionPropsAcc,
-            ...section.props,
             ...option.props,
             ...option.getProps?.({
               ...sectionPropsAcc,
@@ -75,6 +72,17 @@ export const Playground = fixedForwardRef(function Playground<
               : undefined),
           };
         }, {}),
+      };
+
+      return {
+        ...sectionPropsAcc,
+        [sectionKey]: {
+          ...sectionProps,
+          ...section.getProps?.({
+            ...sectionPropsAcc,
+            [sectionKey]: sectionProps,
+          }),
+        },
       };
     },
     {} as TSectionsProps,
