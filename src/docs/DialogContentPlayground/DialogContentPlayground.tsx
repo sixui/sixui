@@ -1,3 +1,6 @@
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import type { IPlaygroundSections } from '~/docs/Playground';
 import { Playground } from '~/docs/Playground';
 import { Button } from '~/components/Button';
@@ -6,8 +9,6 @@ import {
   DialogContentPlaygroundDemo,
   IDialogContentPlaygroundDemoProps,
 } from './DialogContentPlaygroundDemo';
-import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const dialogcontentPlaygroundSections: IPlaygroundSections<IDialogContentPlaygroundDemoProps> =
   {
