@@ -1,25 +1,9 @@
 import type { IPlaygroundSections } from '~/docs/Playground';
-import type { IOmit } from '~/helpers/types';
-import { RadioGroup } from '~/components/RadioGroup';
-import { Radio, type IRadioOwnProps } from '~/components/Radio';
-import { Labeled, type ILabeledOwnProps } from '~/components/Labeled';
 import { Playground } from '~/docs/Playground';
-
-type IRadioGroupGroupDemoProps = IOmit<
-  IRadioOwnProps,
-  'styles' | 'checked' | 'onChange'
-> &
-  IOmit<ILabeledOwnProps, 'styles'>;
-
-const RadioGroupGroupDemo: React.FC<IRadioGroupGroupDemoProps> = (props) => (
-  <RadioGroup>
-    <Labeled label='Extras'>
-      <Labeled {...props} label='Pickles' value='pickles' as={Radio} />
-      <Labeled {...props} label='Tomato' value='tomato' as={Radio} />
-      <Labeled {...props} label='Lettuce' value='lettuce' as={Radio} />
-    </Labeled>
-  </RadioGroup>
-);
+import {
+  RadioGroupGroupDemo,
+  type IRadioGroupGroupDemoProps,
+} from './RadioGroupGroupDemo';
 
 const defaultSections: IPlaygroundSections<IRadioGroupGroupDemoProps> = [
   {

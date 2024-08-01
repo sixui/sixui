@@ -1,22 +1,9 @@
 import type { IPlaygroundSections } from '~/docs/Playground';
-import type { IOmit } from '~/helpers/types';
-import { Checkbox, type ICheckboxOwnProps } from '~/components/Checkbox';
-import { Labeled, type ILabeledOwnProps } from '~/components/Labeled';
 import { Playground } from '~/docs/Playground';
-
-type ICheckboxGroupDemoProps = IOmit<
-  ICheckboxOwnProps,
-  'styles' | 'checked' | 'onChange'
-> &
-  IOmit<ILabeledOwnProps, 'styles'>;
-
-const CheckboxGroupDemo: React.FC<ICheckboxGroupDemoProps> = (props) => (
-  <Labeled label='Extras'>
-    <Labeled {...props} label='Pickles' as={Checkbox} />
-    <Labeled {...props} label='Tomato' as={Checkbox} defaultIndeterminate />
-    <Labeled {...props} label='Lettuce' as={Checkbox} defaultChecked />
-  </Labeled>
-);
+import {
+  CheckboxGroupDemo,
+  type ICheckboxGroupDemoProps,
+} from './CheckboxGroupDemo';
 
 const defaultSections: IPlaygroundSections<ICheckboxGroupDemoProps> = [
   {
