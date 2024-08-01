@@ -30,6 +30,7 @@ import { Portal } from '~/components/Portal';
 import { FloatingTransition } from '~/components/FloatingTransition';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { extendFloatingProps } from '~/helpers/extendFloatingProps';
+import { dialogStyles } from './Dialog.styles';
 
 // https://github.com/material-components/material-web/blob/main/dialog/internal/dialog.ts
 
@@ -102,7 +103,11 @@ export const Dialog: IDialog = forwardRef(function Dialog<
               >
                 <DialogContent
                   as={as}
-                  sx={[componentTheme.overridenStyles, sx]}
+                  sx={[
+                    componentTheme.overridenStyles,
+                    dialogStyles.dialogContent,
+                    sx,
+                  ]}
                   styles={innerStyles?.dialogContent}
                   onClose={(event) =>
                     floating.context.onOpenChange(

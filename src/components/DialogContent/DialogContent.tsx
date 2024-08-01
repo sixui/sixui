@@ -119,11 +119,6 @@ export const DialogContent: IDialogContent = forwardRef(function DialogContent<
     };
   }, [handleAndhorIntersection]);
 
-  const renderActions = (): React.ReactNode =>
-    isFunction(actions)
-      ? actions({ close: (event) => onClose?.(event) })
-      : actions;
-
   // TODO: Reset scroll position if re-opening a dialog with the same content.
   // See https://github.com/material-components/material-web/blob/main/dialog/internal/dialog.ts#L193C8-L193C75
 
@@ -142,41 +137,37 @@ export const DialogContent: IDialogContent = forwardRef(function DialogContent<
     >
       <div {...sxf('dialog')}>
         <div {...sxf('container')}>
-          {headline || icon ? (
-            <div {...sxf('headline')}>
-              {icon ? (
-                <div {...sxf('icon')}>
-                  <div {...sxf('iconSlot')}>{icon}</div>
-                </div>
-              ) : null}
+          <div {...sxf('header')}>
+            {icon ? (
+              <div {...sxf('icon')}>
+                <div {...sxf('iconSlot')}>{icon}</div>
+              </div>
+            ) : null}
 
-              {headline ? (
-                <h2
-                  {...sxf('header')}
-                  id={headlineId}
-                  aria-hidden={headline ? undefined : true}
-                >
-                  <div
-                    {...sxf(
-                      'headlineSlot',
-                      !!icon && 'headlineSlot$hasIcon',
-                      scrollable && 'headlineSlot$scrollable',
-                    )}
-                  >
-                    {headline}
-                  </div>
-                </h2>
-              ) : null}
-
-              <Divider
-                sx={stylesCombinator(
-                  'divider',
-                  'headlineDivider',
-                  showTopDivider && 'headlineDivider$showTopDivider',
+            <h2
+              {...sxf('headline')}
+              id={headlineId}
+              aria-hidden={headline ? undefined : true}
+            >
+              <div
+                {...sxf(
+                  'headlineSlot',
+                  !!icon && 'headlineSlot$hasIcon',
+                  scrollable && 'headlineSlot$scrollable',
                 )}
-              />
-            </div>
-          ) : null}
+              >
+                {headline}
+              </div>
+            </h2>
+
+            <Divider
+              sx={stylesCombinator(
+                'divider',
+                'headlineDivider',
+                showTopDivider && 'headlineDivider$showTopDivider',
+              )}
+            />
+          </div>
 
           <div
             ref={scrollerRef}
@@ -187,7 +178,7 @@ export const DialogContent: IDialogContent = forwardRef(function DialogContent<
                 {...sxf(
                   'contentSlot',
                   scrollable && 'contentSlot$scrollable',
-                  !!actions && 'contentSlot$hasActions',
+                  !!headline && 'contentSlot$hasHeadline',
                   scrollable &&
                     !!headline &&
                     'contentSlot$scrollable$hasHeadline',
@@ -201,7 +192,7 @@ export const DialogContent: IDialogContent = forwardRef(function DialogContent<
             </div>
           </div>
 
-          <div {...sxf('actions')}>
+          <div {...sxf('footer', !!actions && 'footer$hasActions')}>
             <Divider
               sx={stylesCombinator(
                 'divider',
@@ -209,7 +200,13 @@ export const DialogContent: IDialogContent = forwardRef(function DialogContent<
                 showBottomDivider && 'actionsDivide$showBottomDivider',
               )}
             />
-            <div {...sxf('actionsSlot')}>{renderActions()}</div>
+            {actions ? (
+              <div {...sxf('actions')}>
+                {isFunction(actions)
+                  ? actions({ close: (event) => onClose?.(event) })
+                  : actions}
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
