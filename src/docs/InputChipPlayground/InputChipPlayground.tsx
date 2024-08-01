@@ -1,19 +1,19 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendarPlus } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 import type { IPlaygroundSections } from '~/docs/Playground';
 import { Playground } from '~/docs/Playground';
 import {
-  AssistChipPlaygroundDemo,
-  type IAssistChipPlaygroundDemoProps,
-} from './AssistChipPlaygroundDemo';
+  InputChipPlaygroundDemo,
+  type IInputChipPlaygroundDemoProps,
+} from './InputChipPlaygroundDemo';
 
 const IMAGE_URL = 'https://avatars.githubusercontent.com/u/2182039?v=4&s=48';
 
-export const chipPlaygroundSections: IPlaygroundSections<IAssistChipPlaygroundDemoProps> =
+export const chipPlaygroundSections: IPlaygroundSections<IInputChipPlaygroundDemoProps> =
   {
-    assistChip: {
-      title: 'Assist Chip',
+    inputChip: {
+      title: 'Input Chip',
       props: {
         onClick: () => {},
       },
@@ -22,7 +22,7 @@ export const chipPlaygroundSections: IPlaygroundSections<IAssistChipPlaygroundDe
           label: 'Label',
           input: {
             type: 'string',
-            value: 'Add to calendar',
+            value: 'Olivier Pascal',
             targetProp: 'label',
           },
           modifiers: {
@@ -32,7 +32,7 @@ export const chipPlaygroundSections: IPlaygroundSections<IAssistChipPlaygroundDe
         {
           label: 'Icon',
           props: {
-            icon: <FontAwesomeIcon icon={faCalendarPlus} />,
+            icon: <FontAwesomeIcon icon={faUser} />,
           },
         },
         {
@@ -55,13 +55,22 @@ export const chipPlaygroundSections: IPlaygroundSections<IAssistChipPlaygroundDe
             off: true,
           },
           getModifiers: (props) => ({
-            disabled: !props?.assistChip.imageUrl,
+            disabled: !props?.inputChip.imageUrl,
           }),
         },
         {
-          label: 'Elevated',
+          label: 'Deletable',
           props: {
-            elevated: true,
+            onDelete: () => {},
+          },
+          modifiers: {
+            off: true,
+          },
+        },
+        {
+          label: 'Selected',
+          props: {
+            selected: true,
           },
           modifiers: {
             off: true,
@@ -96,19 +105,19 @@ export const chipPlaygroundSections: IPlaygroundSections<IAssistChipPlaygroundDe
             off: true,
           },
           getModifiers: (props) => ({
-            disabled: !props?.assistChip.loading,
+            disabled: !props?.inputChip.loading,
           }),
         },
       ],
     },
   };
 
-export const AssistChipPlayground: React.FC = (props) => {
+export const InputChipPlayground: React.FC = (props) => {
   return (
-    <Playground<IAssistChipPlaygroundDemoProps>
+    <Playground<IInputChipPlaygroundDemoProps>
       {...props}
       defaultSections={chipPlaygroundSections}
-      componentRenderer={(props) => <AssistChipPlaygroundDemo {...props} />}
+      componentRenderer={(props) => <InputChipPlaygroundDemo {...props} />}
     />
   );
 };

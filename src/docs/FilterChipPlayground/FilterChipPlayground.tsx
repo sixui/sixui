@@ -1,19 +1,14 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendarPlus } from '@fortawesome/free-solid-svg-icons';
-
 import type { IPlaygroundSections } from '~/docs/Playground';
 import { Playground } from '~/docs/Playground';
 import {
-  AssistChipPlaygroundDemo,
-  type IAssistChipPlaygroundDemoProps,
-} from './AssistChipPlaygroundDemo';
+  FilterChipPlaygroundDemo,
+  type IFilterChipPlaygroundDemoProps,
+} from './FilterChipPlaygroundDemo';
 
-const IMAGE_URL = 'https://avatars.githubusercontent.com/u/2182039?v=4&s=48';
-
-export const chipPlaygroundSections: IPlaygroundSections<IAssistChipPlaygroundDemoProps> =
+export const chipPlaygroundSections: IPlaygroundSections<IFilterChipPlaygroundDemoProps> =
   {
-    assistChip: {
-      title: 'Assist Chip',
+    filterChip: {
+      title: 'Filter Chip',
       props: {
         onClick: () => {},
       },
@@ -22,7 +17,7 @@ export const chipPlaygroundSections: IPlaygroundSections<IAssistChipPlaygroundDe
           label: 'Label',
           input: {
             type: 'string',
-            value: 'Add to calendar',
+            value: 'Private bathroom',
             targetProp: 'label',
           },
           modifiers: {
@@ -30,33 +25,13 @@ export const chipPlaygroundSections: IPlaygroundSections<IAssistChipPlaygroundDe
           },
         },
         {
-          label: 'Icon',
+          label: 'Selected',
           props: {
-            icon: <FontAwesomeIcon icon={faCalendarPlus} />,
-          },
-        },
-        {
-          label: 'Image',
-          input: {
-            type: 'string',
-            targetProp: 'imageUrl',
-            value: IMAGE_URL,
+            selected: true,
           },
           modifiers: {
             off: true,
           },
-        },
-        {
-          label: 'Avatar',
-          props: {
-            avatar: true,
-          },
-          modifiers: {
-            off: true,
-          },
-          getModifiers: (props) => ({
-            disabled: !props?.assistChip.imageUrl,
-          }),
         },
         {
           label: 'Elevated',
@@ -96,19 +71,19 @@ export const chipPlaygroundSections: IPlaygroundSections<IAssistChipPlaygroundDe
             off: true,
           },
           getModifiers: (props) => ({
-            disabled: !props?.assistChip.loading,
+            disabled: !props?.filterChip.loading,
           }),
         },
       ],
     },
   };
 
-export const AssistChipPlayground: React.FC = (props) => {
+export const FilterChipPlayground: React.FC = (props) => {
   return (
-    <Playground<IAssistChipPlaygroundDemoProps>
+    <Playground<IFilterChipPlaygroundDemoProps>
       {...props}
       defaultSections={chipPlaygroundSections}
-      componentRenderer={(props) => <AssistChipPlaygroundDemo {...props} />}
+      componentRenderer={(props) => <FilterChipPlaygroundDemo {...props} />}
     />
   );
 };

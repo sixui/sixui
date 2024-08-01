@@ -2,12 +2,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 import type { IPlaygroundSections } from '~/docs/Playground';
-import { Button, type IButtonOwnProps } from '~/components/Button';
 import { Playground } from '~/docs/Playground';
-
-type IButtonPlaygroundDemoProps = {
-  button: IButtonOwnProps;
-};
+import {
+  ButtonPlaygroundDemo,
+  type IButtonPlaygroundDemoProps,
+} from './ButtonPlaygroundDemo';
 
 export const buttonPlaygroundSections: IPlaygroundSections<IButtonPlaygroundDemoProps> =
   {
@@ -103,7 +102,7 @@ export const ButtonPlayground: React.FC = (props) => {
     <Playground<IButtonPlaygroundDemoProps>
       {...props}
       defaultSections={buttonPlaygroundSections}
-      componentRenderer={(props) => <Button {...props.button} />}
+      componentRenderer={(props) => <ButtonPlaygroundDemo {...props} />}
     />
   );
 };

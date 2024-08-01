@@ -3,5 +3,5 @@ import type { IChipProps } from './Chip.types';
 
 export type IFilterChipProps = IOmit<
   IChipProps,
-  'variant' | 'onDelete' | 'icon' | 'imageUrl' | 'href'
+  'variant' | 'onDelete' | 'icon' | 'imageUrl' | 'href' | 'avatar'
 >;
