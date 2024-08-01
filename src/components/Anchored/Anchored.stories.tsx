@@ -9,8 +9,9 @@ import {
   type IComponentShowcaseProps,
 } from '~/components/ComponentShowcase';
 import { Placeholder } from '~/components/Placeholder';
-import { Anchored } from './Anchored';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { shapeTokens } from '~/themes/base/shape.stylex';
+import { Anchored } from './Anchored';
 
 const meta = {
   component: Anchored,
@@ -20,26 +21,25 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {} satisfies Partial<IAnchoredProps>;
 
-const badgeStyles$sm = stylex.create({
-  host: {
-    height: 16,
-    width: 16,
-    borderRadius: '999px',
+const styles = stylex.create({
+  badge: {
+    borderRadius: shapeTokens.corner$full,
     backgroundColor: colorSchemeTokens.primary,
   },
-});
-
-const badgeStyles$lg = stylex.create({
-  host: {
+  badge$sm: {
+    height: 16,
+    width: 16,
+  },
+  badge$lg: {
     height: 16,
     width: 32,
-    borderRadius: '999px',
-    backgroundColor: colorSchemeTokens.primary,
   },
 });
 
 const Badge: React.FC<{ size: 'sm' | 'lg' }> = ({ size }) => (
-  <Placeholder styles={size === 'sm' ? badgeStyles$sm : badgeStyles$lg} />
+  <Placeholder
+    sx={[styles.badge, size === 'sm' ? styles.badge$sm : styles.badge$lg]}
+  />
 );
 
 const anchors: Array<IComponentPresentation<IAnchoredProps>> = [
