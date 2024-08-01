@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import {
   FloatingFocusManager,
   useClick,
@@ -18,14 +18,22 @@ type IScrimDemoProps = IOmit<IScrimProps, 'floatingContext'>;
 const ScrimDemo: React.FC<IScrimDemoProps> = (props) => {
   const { children, ...other } = props;
   const [isOpen, setIsOpen] = useState(false);
-
+  const scrimRef = useRef<HTMLDivElement>(null);
   const floating = useFloating<HTMLButtonElement>({
     open: isOpen,
     onOpenChange: setIsOpen,
   });
   const click = useClick(floating.context);
   const dismiss = useDismiss(floating.context, {
-    outsidePressEvent: 'mousedown',
+    outsidePressEvent: 'pointerdown',
+    outsidePress: (mouseEvent) => {
+      // Make sure that the scrim is dismissed only when clicking on the scrim
+      // element.
+      if (scrimRef.current && mouseEvent.target instanceof Node) {
+        return scrimRef.current.contains(mouseEvent.target);
+      }
+      return true;
+    },
   });
   const interactions = useInteractions([click, dismiss]);
 
@@ -39,7 +47,12 @@ const ScrimDemo: React.FC<IScrimDemoProps> = (props) => {
       >
         Show scrim
       </Button>
-      <Scrim floatingContext={floating.context} lockScroll={true} {...other}>
+      <Scrim
+        lockScroll={true}
+        {...other}
+        floatingContext={floating.context}
+        ref={scrimRef}
+      >
         <FloatingFocusManager context={floating.context}>
           <div
             {...interactions.getFloatingProps()}

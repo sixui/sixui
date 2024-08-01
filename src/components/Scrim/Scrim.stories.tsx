@@ -37,7 +37,7 @@ const ScrimDemo: React.FC<IScrimDemoProps> = (props) => {
   });
   const click = useClick(floating.context);
   const dismiss = useDismiss(floating.context, {
-    outsidePressEvent: 'mousedown',
+    outsidePressEvent: 'pointerdown',
   });
   const interactions = useInteractions([click, dismiss]);
 

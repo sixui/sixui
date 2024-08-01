@@ -69,7 +69,7 @@ export const Dialog: IDialog = forwardRef(function Dialog<
   const click = useClick(floating.context);
   const role = useRole(floating.context);
   const dismiss = useDismiss(floating.context, {
-    outsidePressEvent: 'mousedown',
+    outsidePressEvent: 'pointerdown',
     enabled: !nonDismissable,
   });
   const interactions = useInteractions([click, role, dismiss]);
