@@ -17,7 +17,7 @@ export const filledIconButtonStyles = stylex.create({
     [iconButtonTokens.iconColor$focus]: colorSchemeTokens.onPrimary,
     [iconButtonTokens.iconColor$hover]: colorSchemeTokens.onPrimary,
     [iconButtonTokens.iconColor$pressed]: colorSchemeTokens.onPrimary,
-    [iconButtonTokens.iconColor$disabled]: colorSchemeTokens.onPrimary,
+    [iconButtonTokens.iconColor$disabled]: colorSchemeTokens.onSurface,
 
     [iconButtonTokens.toggleIconColor]: colorSchemeTokens.primary,
     [iconButtonTokens.toggleIconColor$focus]: colorSchemeTokens.primary,
