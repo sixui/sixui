@@ -40,6 +40,7 @@ export const Playground = fixedForwardRef(function Playground<
 
         return {
           ...acc,
+          ...section.props,
           ...option.props,
           ...(option.input
             ? { [option.input.targetProp]: option.input.value }

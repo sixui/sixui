@@ -20,6 +20,10 @@ export const chipStyles = stylex.create({
     cursor: 'default',
     [chipStateTokens.containerShape]: chipTokens.containerShape,
     [chipStateTokens.iconColor]: chipTokens.iconColor,
+
+    transitionProperty: 'border-radius',
+    transitionDuration: motionTokens.duration$medium4,
+    transitionTimingFunction: motionTokens.easing$emphasizedDecelerate,
   },
   host$interactive: {
     cursor: 'pointer',

@@ -121,7 +121,11 @@ export const Chip: IChip = forwardRef(function Chip<
   const hasLeading = (variant === 'filter' && (loading || selected)) || hasIcon;
   const hasTrailing = isDeletable;
   const hasOverlay = loading && (loadingText ?? !hasLeading);
-  const avatar = variant === 'input' && !!imageUrl && avatarProp;
+  const avatar =
+    variant !== false &&
+    ['assist', 'input'].includes(variant) &&
+    !!imageUrl &&
+    avatarProp;
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = useCallback(
     (event) => {

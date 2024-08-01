@@ -17,7 +17,8 @@ type IStory = StoryObj<typeof meta>;
 
 // https://images.unsplash.com/photo-1557053910-d9eadeed1c58?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjQxfHxWaXNhZ2V8ZW58MHx8MHx8fDI%3D
 
-const AVATAR_IMAGE_URL_1 = 'https://avatars.githubusercontent.com/u/2182039';
+const AVATAR_IMAGE_URL_1 =
+  'https://avatars.githubusercontent.com/u/2182039?v=4&s=256';
 const AVATAR_IMAGE_URL_2 =
   'https://images.unsplash.com/photo-1557053910-d9eadeed1c58?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80';
 const AVATAR_IMAGE_URL_3 =
@@ -36,12 +37,12 @@ export const Variants: IStory = {
       component={Avatar}
       props={props}
       cols={[
+        {},
         {
           props: {
             src: AVATAR_IMAGE_URL_1,
           },
         },
-        {},
         { props: { children: 'OP' } },
         { props: { children: <FontAwesomeIcon icon={faStar} /> } },
         { props: { src: '/broken-image.jpg', alt: 'Olivier' } },

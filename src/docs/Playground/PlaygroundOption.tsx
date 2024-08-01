@@ -1,4 +1,5 @@
 import stylex from '@stylexjs/stylex';
+import { accumulate } from '@olivierpascal/helpers';
 
 import type { IPlaygroundOptionProps } from './PlaygroundOption.types';
 import type { IPlaygroundOption } from './Playground.types';
@@ -69,10 +70,10 @@ export const PlaygroundOption = fixedForwardRef(function PlaygroundOption<
     }
   };
 
-  const modifiers = {
-    ...option.modifiers,
-    ...option.getModifiers?.(sectionsProps),
-  };
+  const modifiers = accumulate(
+    option.getModifiers?.(sectionsProps) ?? {},
+    option.modifiers,
+  );
 
   if (modifiers?.hidden) {
     return null;

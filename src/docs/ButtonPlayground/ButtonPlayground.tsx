@@ -45,6 +45,24 @@ export const buttonPlaygroundSections: IPlaygroundSections<IButtonPlaygroundDemo
           },
         },
         {
+          label: 'Icon',
+          props: {
+            icon: <FontAwesomeIcon icon={faPaperPlane} />,
+          },
+        },
+        {
+          label: 'Icon in trailing position',
+          props: {
+            trailingIcon: true,
+          },
+          getModifiers: (props) => ({
+            disabled: !props?.button.icon,
+          }),
+          modifiers: {
+            off: true,
+          },
+        },
+        {
           label: 'Disabled',
           props: {
             disabled: true,
@@ -75,24 +93,6 @@ export const buttonPlaygroundSections: IPlaygroundSections<IButtonPlaygroundDemo
           getModifiers: (props) => ({
             disabled: !props?.button.loading,
           }),
-        },
-        {
-          label: 'Icon',
-          props: {
-            icon: <FontAwesomeIcon icon={faPaperPlane} />,
-          },
-        },
-        {
-          label: 'Icon in trailing position',
-          props: {
-            trailingIcon: true,
-          },
-          getModifiers: (props) => ({
-            disabled: !props?.button.icon,
-          }),
-          modifiers: {
-            off: true,
-          },
         },
       ],
     },

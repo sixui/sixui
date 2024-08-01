@@ -54,6 +54,7 @@ export const elementWithLabelStyles = stylex.create({
   label$disabled: {
     color: elementWithLabelTokens.labelTextColor$disabled,
     opacity: elementWithLabelTokens.labelTextOpacity$disabled,
+    pointerEvents: 'none',
   },
   action: {
     flexGrow: 0,
