@@ -19,6 +19,17 @@ export const badgePlaygroundSections: IPlaygroundSections<IBadgePlaygroundDemoPr
           },
         },
         {
+          label: 'Max value',
+          input: {
+            type: 'number',
+            value: 99,
+            targetProp: 'maxValue',
+          },
+          modifiers: {
+            off: true,
+          },
+        },
+        {
           label: 'Dot',
           props: {
             dot: true,
@@ -28,7 +39,7 @@ export const badgePlaygroundSections: IPlaygroundSections<IBadgePlaygroundDemoPr
           },
         },
         {
-          label: 'Show zero',
+          label: 'Show zero value',
           props: {
             showZero: true,
           },
