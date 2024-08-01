@@ -80,14 +80,14 @@ export const Variants: IStory = {
           legend: 'Rectangular',
           props: {
             overlap: 'rectangular',
-            children: <Placeholder shape='rectangular' />,
+            children: <Placeholder corner='md' />,
           },
         },
         {
           legend: 'Circular',
           props: {
             overlap: 'circular',
-            children: <Placeholder shape='circular' />,
+            children: <Placeholder corner='full' />,
           },
         },
       ]}
@@ -128,7 +128,7 @@ export const RectangularOverlap: IStory = {
   args: {
     ...defaultArgs,
     overlap: 'rectangular',
-    children: <Placeholder shape='rectangular' />,
+    children: <Placeholder corner='md' />,
   } as IAnchoredProps,
 };
 
@@ -144,7 +144,7 @@ export const CircularOverlap: IStory = {
   args: {
     ...defaultArgs,
     overlap: 'circular',
-    children: <Placeholder shape='circular' />,
+    children: <Placeholder corner='full' />,
   } as IAnchoredProps,
 };
 

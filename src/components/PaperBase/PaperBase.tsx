@@ -39,7 +39,7 @@ export const PaperBase = forwardRef<HTMLDivElement, IPaperBaseProps>(
         />
         <div {...sxf('outline')} />
         <div {...sxf('background')} />
-        <div {...sxf('content')}>{children}</div>
+        {children}
       </div>
     );
   },

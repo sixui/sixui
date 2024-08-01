@@ -4,20 +4,13 @@ import type { IPlaceholderProps } from './Placeholder.types';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { Paper } from '~/components/Paper';
 import { placeholderStyles } from './Placeholder.styles';
 import { placeholderTheme } from './Placeholder.stylex';
 
 export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
   function Placeholder(props, forwardedRef) {
-    const {
-      styles,
-      sx,
-      label,
-      children,
-      crosshairs,
-      shape = 'rounded',
-      ...other
-    } = props;
+    const { innerStyles, styles, sx, label, crosshairs, ...other } = props;
 
     const componentTheme = useComponentTheme('Placeholder');
     const stylesCombinator = useMemo(
@@ -30,25 +23,21 @@ export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
     );
 
     return (
-      <div
-        {...sxf(
+      <Paper
+        sx={[
           placeholderTheme,
           componentTheme.overridenStyles,
-          'host',
-          shape === 'rectangular'
-            ? 'host$rectangular'
-            : shape === 'circular'
-              ? 'host$circular'
-              : null,
+          stylesCombinator('host'),
           sx,
-        )}
+        ]}
         ref={forwardedRef}
+        styles={innerStyles?.paper}
+        innerStyles={innerStyles}
         {...other}
       >
         {crosshairs ? <div {...sxf('crosshairs')} /> : null}
         {label ? <div {...sxf('label')}>{label}</div> : null}
-        {children}
-      </div>
+      </Paper>
     );
   },
 );

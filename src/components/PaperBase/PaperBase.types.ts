@@ -6,12 +6,10 @@ import type {
 import type { IPaperBaseStylesKey } from './PaperBase.styles';
 import type { IElevationStylesKey } from '~/components/Elevation';
 
-export type IPaperBaseVariant = 'filled' | 'elevated' | 'outlined';
-
-export type IPaperBaseProps = IContainerProps<IPaperBaseStylesKey> & {
-  variant?: IPaperBaseVariant | false;
-  innerStyles?: {
-    elevation?: IZeroOrMore<ICompiledStyles<IElevationStylesKey>>;
+export type IPaperBaseProps = IContainerProps<IPaperBaseStylesKey> &
+  React.ComponentPropsWithoutRef<'div'> & {
+    innerStyles?: {
+      elevation?: IZeroOrMore<ICompiledStyles<IElevationStylesKey>>;
+    };
+    children?: React.ReactNode;
   };
-  children?: React.ReactNode;
-};

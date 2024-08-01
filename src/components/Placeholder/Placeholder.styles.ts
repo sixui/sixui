@@ -1,29 +1,15 @@
 import stylex from '@stylexjs/stylex';
 
 import { placeholderTokens } from './Placeholder.stylex';
-import { shapeTokens } from '~/themes/base/shape.stylex';
 
 export type IPlaceholderStylesKey = keyof typeof placeholderStyles;
 export const placeholderStyles = stylex.create({
   host: {
-    position: 'relative',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: placeholderTokens.containerShape,
-    backgroundColor: placeholderTokens.containerColor,
-    color: placeholderTokens.labelTextColor,
-    fontFamily: placeholderTokens.labelTextFont,
-    lineHeight: placeholderTokens.labelTextLineHeight,
-    fontWeight: placeholderTokens.labelTextWeight,
     width: 64,
     height: 64,
-  },
-  host$rectangular: {
-    borderRadius: shapeTokens.corner$none,
-  },
-  host$circular: {
-    borderRadius: shapeTokens.corner$full,
   },
   crosshairs: {
     overflow: 'hidden',

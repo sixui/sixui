@@ -4,6 +4,9 @@ import type { IPlaygroundStylesKey } from './Playground.styles';
 
 export type IPlaygroundOptionModifiers = {
   required?: boolean;
+  /**
+   * @deprecated - use `on`
+   */
   off?: boolean;
   disabled?: boolean;
   hidden?: boolean;

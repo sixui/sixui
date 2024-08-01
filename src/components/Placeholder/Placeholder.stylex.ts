@@ -2,18 +2,13 @@ import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
-import { shapeTokens } from '~/themes/base/shape.stylex';
 
 const vars = {
-  // container
-  containerColor: colorSchemeTokens.surfaceContainer,
-  containerShape: shapeTokens.corner$md,
-
   // crosshairs
-  crosshairsColor: colorSchemeTokens.surfaceContainerHighest,
+  crosshairsColor: colorSchemeTokens.outlineVariant,
 
   // labelText
-  labelTextColor: colorSchemeTokens.onSurface,
+  labelTextColor: colorSchemeTokens.onSurfaceVariant,
   labelTextFont: typeScaleTokens.labelFont$sm,
   labelTextSize: typeScaleTokens.labelSize$sm,
   labelTextLineHeight: typeScaleTokens.labelLineHeight$sm,

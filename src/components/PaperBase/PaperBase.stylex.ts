@@ -8,7 +8,10 @@ const vars = {
   // container
   containerColor: colorSchemeTokens.surface,
   containerElevation: elevationTokens.boxShadow$level0,
-  containerShape: shapeTokens.corner$md,
+  containerShape$topLeft: shapeTokens.corner$none,
+  containerShape$topRight: shapeTokens.corner$none,
+  containerShape$bottomRight: shapeTokens.corner$none,
+  containerShape$bottomLeft: shapeTokens.corner$none,
 
   // outline
   outlineStyle: 'none',

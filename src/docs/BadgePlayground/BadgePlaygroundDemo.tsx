@@ -11,6 +11,8 @@ export const BadgePlaygroundDemo: React.FC<IBadgePlaygroundDemoProps> = (
   props,
 ) => (
   <Anchored {...props.anchored} content={<Badge {...props.badge} />}>
-    <Placeholder shape={props.anchored.overlap} />
+    <Placeholder
+      corner={props.anchored.overlap === 'circular' ? 'full' : 'sm'}
+    />
   </Anchored>
 );

@@ -94,26 +94,26 @@ export const Elevations: IStory = {
   },
 };
 
-export const SurfaceContainer: IStory = {
+const surfaces: Array<IPaperProps['surface']> = [
+  undefined,
+  'surfaceContainerLowest',
+  'surfaceContainerLow',
+  'surfaceContainer',
+  'surfaceContainerHigh',
+  'surfaceContainerHighest',
+  'inverseSurface',
+  'primaryContainer',
+  'secondaryContainer',
+  'tertiaryContainer',
+  'errorContainer',
+];
+
+export const Surface: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={PaperWithContent}
       props={props}
-      rows={(
-        [
-          undefined,
-          'lowest',
-          'low',
-          'medium',
-          'high',
-          'highest',
-          'inverse',
-          'primary',
-          'secondary',
-          'tertiary',
-          'error',
-        ] as Array<IPaperProps['surface']>
-      ).map((surface) => ({
+      rows={surfaces.map((surface) => ({
         legend: `Surface (${surface})`,
         props: {
           surface,

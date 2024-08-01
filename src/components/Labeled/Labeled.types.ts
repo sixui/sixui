@@ -15,7 +15,7 @@ export type ILabeledRenderProps = {
 
 export type ILabeledOwnProps = IContainerProps<ILabeledStylesKey> &
   ILabeledContextValue & {
-    label?: React.ReactNode;
+    label: React.ReactNode;
     action?: React.ReactNode;
     supportingText?: React.ReactNode;
     children?:
@@ -23,6 +23,7 @@ export type ILabeledOwnProps = IContainerProps<ILabeledStylesKey> &
       | ((props: ILabeledRenderProps) => React.ReactNode);
     labelPosition?: 'top' | 'bottom' | 'left' | 'right';
     supportingTextPosition?: 'start' | 'end';
+    // FIXME: errorPosition
   };
 
 export type ILabeledProps<TRoot extends React.ElementType> =
