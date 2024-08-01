@@ -1,14 +1,14 @@
 import type { IPlaygroundSections } from '~/docs/Playground';
 import { Playground } from '~/docs/Playground';
 import {
-  SwitchPlaygroundDemo,
-  type ISwitchPlaygroundDemoProps,
-} from './SwitchPlaygroundDemo';
+  RadioPlaygroundDemo,
+  type IRadioPlaygroundDemoProps,
+} from './RadioPlaygroundDemo';
 
-export const switchPlaygroundSections: IPlaygroundSections<ISwitchPlaygroundDemoProps> =
+export const radioPlaygroundSections: IPlaygroundSections<IRadioPlaygroundDemoProps> =
   {
-    switch: {
-      title: 'Switch',
+    radio: {
+      title: 'Radio Group',
       options: [
         {
           label: 'Disabled',
@@ -80,12 +80,12 @@ export const switchPlaygroundSections: IPlaygroundSections<ISwitchPlaygroundDemo
     },
   };
 
-export const SwitchPlayground: React.FC = (props) => {
+export const RadioPlayground: React.FC = (props) => {
   return (
-    <Playground<ISwitchPlaygroundDemoProps>
+    <Playground<IRadioPlaygroundDemoProps>
       {...props}
-      defaultSections={switchPlaygroundSections}
-      componentRenderer={(props) => <SwitchPlaygroundDemo {...props} />}
+      defaultSections={radioPlaygroundSections}
+      componentRenderer={(props) => <RadioPlaygroundDemo {...props} />}
     />
   );
 };

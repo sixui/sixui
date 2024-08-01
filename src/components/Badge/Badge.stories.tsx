@@ -30,11 +30,6 @@ const cols: Array<IComponentPresentation<IExtendedBadgeProps>> = [
   { props: { anchored: true, shape: 'circular' } },
 ];
 
-const rows: Array<IComponentPresentation<IExtendedBadgeProps>> = [
-  { legend: 'Enabled' },
-  { legend: 'Disabled', props: { disabled: true } },
-];
-
 const BadgeDemo: React.FC<IExtendedBadgeProps> = ({
   anchored,
   shape,
@@ -42,7 +37,7 @@ const BadgeDemo: React.FC<IExtendedBadgeProps> = ({
 }) =>
   anchored ? (
     <Anchored
-      content={<Badge {...props} invisible={props.invisible} />}
+      content={<Badge {...props} />}
       overlap={shape === 'circular' ? 'circular' : undefined}
     >
       <Placeholder shape={shape} />
@@ -72,7 +67,7 @@ export const Variants: IStory = {
           props: {
             anchored: true,
             shape: 'circular',
-            children: 'Text',
+            value: 'Text',
           },
         },
       ]}
@@ -87,7 +82,6 @@ export const Dot: IStory = {
       component={(props) => <BadgeDemo {...props} />}
       props={props}
       cols={cols}
-      rows={rows}
     />
   ),
   args: {
@@ -102,7 +96,6 @@ export const SingleDigit: IStory = {
       component={(props) => <BadgeDemo {...props} />}
       props={props}
       cols={cols}
-      rows={rows}
     />
   ),
   args: {
@@ -117,7 +110,6 @@ export const MultipleDigits: IStory = {
       component={(props) => <BadgeDemo {...props} />}
       props={props}
       cols={cols}
-      rows={rows}
     />
   ),
   args: {
@@ -132,7 +124,6 @@ export const MultipleDigitsThresholded: IStory = {
       component={(props) => <BadgeDemo {...props} />}
       props={props}
       cols={cols}
-      rows={rows}
     />
   ),
   args: {
@@ -148,7 +139,6 @@ export const ShowZeroValue: IStory = {
       component={(props) => <BadgeDemo {...props} />}
       props={props}
       cols={cols}
-      rows={rows}
     />
   ),
   args: {
@@ -164,7 +154,6 @@ export const HideZeroValue: IStory = {
       component={(props) => <BadgeDemo {...props} />}
       props={props}
       cols={cols}
-      rows={rows}
     />
   ),
   args: {

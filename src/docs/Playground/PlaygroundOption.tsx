@@ -12,12 +12,12 @@ import { HtmlSelect } from '~/components/HtmlSelect';
 import { playgroundOptionFieldBaseStyles } from './PlaygroundOption.styles';
 
 export const PlaygroundOption = fixedForwardRef(function PlaygroundOption<
-  TComponentProps extends object,
+  TSectionsProps extends Record<string, object>,
 >(
-  props: IPlaygroundOptionProps<TComponentProps>,
+  props: IPlaygroundOptionProps<TSectionsProps>,
   forwardedRef?: React.Ref<HTMLDivElement>,
 ) {
-  const { sx, componentProps, option, onChange, ...other } = props;
+  const { sx, sectionsProps, option, onChange, ...other } = props;
 
   const componentTheme = useComponentTheme('PlaygroundOption');
 
@@ -33,7 +33,7 @@ export const PlaygroundOption = fixedForwardRef(function PlaygroundOption<
     });
 
   const renderInputField = (
-    option: IPlaygroundOption<TComponentProps>,
+    option: IPlaygroundOption<TSectionsProps>,
     elementProps?: Partial<ILabeledRenderProps>,
   ): React.ReactNode => {
     const { input } = option;
@@ -71,7 +71,7 @@ export const PlaygroundOption = fixedForwardRef(function PlaygroundOption<
 
   const modifiers = {
     ...option.modifiers,
-    ...option.getModifiers?.(componentProps),
+    ...option.getModifiers?.(sectionsProps),
   };
 
   if (modifiers?.hidden) {

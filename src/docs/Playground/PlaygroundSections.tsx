@@ -1,7 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
 import type { IPlaygroundSectionsProps } from './PlaygroundSections.types';
-import type { IPlaygroundOption } from './Playground.types';
+import type {
+  IPlaygroundOption,
+  IPlaygroundSections,
+} from './Playground.types';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { fixedForwardRef } from '~/helpers/fixedForwardRef';
 import { commonStyles } from '~/helpers/commonStyles';
@@ -9,26 +12,33 @@ import { Typography } from '~/components/Typography';
 import { PlaygroundOption } from './PlaygroundOption';
 
 export const PlaygroundSections = fixedForwardRef(function PlaygroundSections<
-  TComponentProps extends object,
+  TSectionsProps extends Record<string, object>,
 >(
-  props: IPlaygroundSectionsProps<TComponentProps>,
+  props: IPlaygroundSectionsProps<TSectionsProps>,
   forwardedRef?: React.Ref<HTMLDivElement>,
 ) {
-  const { sx, sections, onSectionsChange, componentProps, ...other } = props;
+  const { sx, sections, onSectionsChange, sectionsProps, ...other } = props;
 
   const componentTheme = useComponentTheme('PlaygroundOptions');
 
   const handleOptionChange = (
-    targetOption: IPlaygroundOption<TComponentProps>,
-    newOption: IPlaygroundOption<TComponentProps>,
+    targetOption: IPlaygroundOption<TSectionsProps>,
+    newOption: IPlaygroundOption<TSectionsProps>,
   ): void =>
     onSectionsChange?.(
-      sections.map((section) => ({
-        ...section,
-        options: section.options.map((option) =>
-          option === targetOption ? newOption : option,
-        ),
-      })),
+      Object.keys(sections).reduce((acc, sectionKey) => {
+        const section = sections[sectionKey];
+
+        return {
+          ...acc,
+          [sectionKey]: {
+            ...section,
+            options: section.options.map((option) =>
+              option === targetOption ? newOption : option,
+            ),
+          },
+        };
+      }, {} as IPlaygroundSections<TSectionsProps>),
     );
 
   return (
@@ -42,25 +52,37 @@ export const PlaygroundSections = fixedForwardRef(function PlaygroundSections<
       {...other}
       ref={forwardedRef}
     >
-      {sections.map((section, sectionIndex) => (
-        <div {...stylex.props(commonStyles.verticalLayout)} key={sectionIndex}>
-          {section.title ? (
-            <Typography variant='title'>{section.title}</Typography>
-          ) : null}
+      {Object.keys(sections).map((sectionKey, sectionIndex) => {
+        const section = sections[sectionKey];
+
+        return (
           <div
-            {...stylex.props(commonStyles.verticalLayout, commonStyles.gap$xl)}
+            {...stylex.props(commonStyles.verticalLayout)}
+            key={sectionIndex}
           >
-            {section.options.map((option, optionIndex) => (
-              <PlaygroundOption
-                key={optionIndex}
-                option={option}
-                onChange={(newOption) => handleOptionChange(option, newOption)}
-                componentProps={componentProps}
-              />
-            ))}
+            {section.title ? (
+              <Typography variant='title'>{section.title}</Typography>
+            ) : null}
+            <div
+              {...stylex.props(
+                commonStyles.verticalLayout,
+                commonStyles.gap$xl,
+              )}
+            >
+              {section.options.map((option, optionIndex) => (
+                <PlaygroundOption
+                  key={optionIndex}
+                  sectionsProps={sectionsProps}
+                  option={option}
+                  onChange={(newOption) =>
+                    handleOptionChange(option, newOption)
+                  }
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 });

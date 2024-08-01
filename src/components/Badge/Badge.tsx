@@ -6,21 +6,11 @@ import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { badgeStyles } from './Badge.styles';
 import { badgeTheme } from './Badge.stylex';
+import { isNumeric } from '~/helpers/isNumeric';
 
 export const Badge = forwardRef<HTMLDivElement, IBadgeProps>(
   function Badge(props, forwardedRef) {
-    const {
-      styles,
-      sx,
-      children,
-      value,
-      maxValue,
-      showZero,
-      dot,
-      invisible: invisibleProp,
-      disabled,
-      ...other
-    } = props;
+    const { styles, sx, value, maxValue, showZero, dot, ...other } = props;
 
     const componentTheme = useComponentTheme('Badge');
     const stylesCombinator = useMemo(
@@ -32,21 +22,21 @@ export const Badge = forwardRef<HTMLDivElement, IBadgeProps>(
       [stylesCombinator],
     );
 
+    const valueAsNumber = isNumeric(value) ? Number(value) : undefined;
     const invisible =
-      invisibleProp ||
-      (value === undefined && children === undefined && !dot) ||
-      (value !== undefined && value <= 0 && !showZero);
+      (value === undefined && !dot) ||
+      (valueAsNumber !== undefined && valueAsNumber <= 0 && !showZero);
 
     const displayValue = useMemo(
       () =>
         dot
           ? null
-          : value !== undefined
-            ? maxValue !== undefined && value > maxValue
+          : valueAsNumber !== undefined
+            ? maxValue !== undefined && valueAsNumber > maxValue
               ? `${maxValue}+`
-              : Math.max(0, value)
-            : children,
-      [dot, value, maxValue, children],
+              : Math.max(0, valueAsNumber)
+            : value,
+      [dot, value, maxValue, valueAsNumber],
     );
 
     return (
@@ -62,10 +52,8 @@ export const Badge = forwardRef<HTMLDivElement, IBadgeProps>(
         ref={forwardedRef}
         {...other}
       >
-        <div {...sxf('background', disabled && 'background$disabled')} />
-        <div {...sxf('label', disabled && 'label$disabled')}>
-          {displayValue}
-        </div>
+        <div {...sxf('background')} />
+        <div {...sxf('label')}>{displayValue}</div>
       </div>
     );
   },

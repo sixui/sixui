@@ -15,35 +15,34 @@ export type IPlaygroundOptionValue<TTypeName extends string, TType> = {
   items?: IHtmlSelectProps['items'];
 };
 
-export type IPlaygroundOption<TComponentProps> = {
+export type IPlaygroundOption<
+  TSectionsProps extends Record<string, object>,
+  TSectionKey extends keyof TSectionsProps = keyof TSectionsProps,
+  TSectionProps = TSectionsProps[TSectionKey],
+> = {
   label?: string;
   supportingText?: string;
   input?: {
-    targetProp: keyof TComponentProps;
+    targetProp: keyof TSectionProps;
   } & (
     | IPlaygroundOptionValue<'string', string>
     | IPlaygroundOptionValue<'boolean', boolean>
   );
-  props?: Partial<TComponentProps>;
+  props?: Partial<TSectionProps>;
   modifiers?: IPlaygroundOptionModifiers;
-  getModifiers?: (
-    componentProps?: TComponentProps,
-  ) => IPlaygroundOptionModifiers;
+  getModifiers?: (sectionsProps?: TSectionsProps) => IPlaygroundOptionModifiers;
 };
 
-export type IPlaygroundOptions<TComponentProps> = Array<
-  IPlaygroundOption<TComponentProps>
->;
+export type IPlaygroundSections<TSectionsProps extends Record<string, object>> =
+  {
+    [sectionPropsKey in keyof TSectionsProps]: {
+      title?: string;
+      options: Array<IPlaygroundOption<TSectionsProps, sectionPropsKey>>;
+    };
+  };
 
-export type IPlaygroundSections<TComponentProps> = Array<{
-  title?: string;
-  options: IPlaygroundOptions<TComponentProps>;
-}>;
-
-export type IPlaygroundProps<
-  TComponentProps extends object = Record<string, never>,
-> = IContainerProps<IPlaygroundStylesKey> & {
-  defaultSections: IPlaygroundSections<TComponentProps>;
-  componentRenderer: (props: TComponentProps) => JSX.Element;
-  initialProps?: Partial<TComponentProps>;
-};
+export type IPlaygroundProps<TSectionsProps extends Record<string, object>> =
+  IContainerProps<IPlaygroundStylesKey> & {
+    defaultSections: IPlaygroundSections<TSectionsProps>;
+    componentRenderer: (sectionsProps: TSectionsProps) => JSX.Element;
+  };

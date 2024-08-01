@@ -1,31 +1,33 @@
 import type { IPlaygroundSections } from '~/docs/Playground';
 import { Playground } from '~/docs/Playground';
-import { TemplateDemo, ITemplateDemoProps } from './TemplateDemo';
+import {
+  TemplatePlaygroundDemo,
+  ITemplatePlaygroundDemoProps,
+} from './TemplatePlaygroundDemo';
 
-const defaultSections: IPlaygroundSections<ITemplateDemoProps> = [
+export const templatePlaygroundSections: IPlaygroundSections<ITemplatePlaygroundDemoProps> =
   {
-    title: 'Props',
-    options: [
-      {
-        label: 'Children',
-        input: {
-          type: 'string',
-          value: 'Hello, world!',
-          targetProp: 'children',
+    template: {
+      title: 'Template',
+      options: [
+        {
+          label: 'Children',
+          input: {
+            type: 'string',
+            value: 'Hello, world!',
+            targetProp: 'children',
+          },
         },
-      },
-    ],
-  },
-];
+      ],
+    },
+  };
 
 export const TemplatePlayground: React.FC = (props) => {
   return (
-    <Playground<ITemplateDemoProps>
+    <Playground<ITemplatePlaygroundDemoProps>
       {...props}
-      defaultSections={defaultSections}
-      componentRenderer={(componentProps) => (
-        <TemplateDemo {...componentProps} />
-      )}
+      defaultSections={templatePlaygroundSections}
+      componentRenderer={(props) => <TemplatePlaygroundDemo {...props} />}
     />
   );
 };

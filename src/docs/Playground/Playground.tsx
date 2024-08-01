@@ -9,19 +9,12 @@ import { playgroundStyles } from './Playground.styles';
 import { PlaygroundSections } from './PlaygroundSections';
 
 export const Playground = fixedForwardRef(function Playground<
-  TComponentProps extends Record<string, unknown>,
+  TSectionsProps extends Record<string, object>,
 >(
-  props: IPlaygroundProps<TComponentProps>,
+  props: IPlaygroundProps<TSectionsProps>,
   forwardedRef?: React.Ref<HTMLDivElement>,
 ) {
-  const {
-    styles,
-    sx,
-    componentRenderer,
-    defaultSections,
-    initialProps,
-    ...other
-  } = props;
+  const { styles, sx, componentRenderer, defaultSections, ...other } = props;
 
   const componentTheme = useComponentTheme('Playground');
   const stylesCombinator = useMemo(
@@ -35,11 +28,12 @@ export const Playground = fixedForwardRef(function Playground<
 
   const [sections, setSections] = useState(defaultSections);
 
-  const componentProps = sections
-    .map(({ options }) => options)
-    .flat()
-    .reduce(
-      (acc, option) => {
+  const sectionsProps = Object.keys(sections).reduce((acc, sectionKey) => {
+    const section = sections[sectionKey];
+
+    return {
+      ...acc,
+      [sectionKey]: section.options.reduce((acc, option) => {
         if (option.modifiers?.disabled || option.modifiers?.off) {
           return acc;
         }
@@ -51,9 +45,9 @@ export const Playground = fixedForwardRef(function Playground<
             ? { [option.input.targetProp]: option.input.value }
             : undefined),
         };
-      },
-      (initialProps ?? {}) as TComponentProps,
-    );
+      }, {}),
+    };
+  }, {} as TSectionsProps);
 
   return (
     <div
@@ -63,15 +57,15 @@ export const Playground = fixedForwardRef(function Playground<
     >
       <div {...sxf('componentPanel')}>
         <div {...sxf('componentWrapper')}>
-          {componentRenderer(componentProps)}
+          {componentRenderer(sectionsProps)}
         </div>
       </div>
 
       <div {...sxf(stylesCombinator('optionsPanel'))}>
-        <PlaygroundSections<TComponentProps>
+        <PlaygroundSections<TSectionsProps>
           sections={sections}
           onSectionsChange={setSections}
-          componentProps={componentProps}
+          sectionsProps={sectionsProps}
         />
       </div>
     </div>

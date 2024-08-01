@@ -7,14 +7,17 @@ import {
   useInteractions,
 } from '@floating-ui/react';
 
-import type { IOmit } from '~/helpers/types';
 import { Scrim, type IScrimProps } from '~/components/Scrim';
 import { Button } from '~/components/Button';
 
-export type IScrimDemoProps = IOmit<IScrimProps, 'floatingContext'>;
+export type IScrimPlaygroundDemoProps = {
+  scrim: IScrimProps;
+};
 
-export const ScrimDemo: React.FC<IScrimDemoProps> = (props) => {
-  const { children, ...other } = props;
+export const ScrimPlaygroundDemo: React.FC<IScrimPlaygroundDemoProps> = (
+  props,
+) => {
+  const { children, ...scrimProps } = props.scrim;
   const [isOpen, setIsOpen] = useState(false);
   const scrimRef = useRef<HTMLDivElement>(null);
   const floating = useFloating<HTMLButtonElement>({
@@ -47,7 +50,7 @@ export const ScrimDemo: React.FC<IScrimDemoProps> = (props) => {
       </Button>
       <Scrim
         lockScroll={true}
-        {...other}
+        {...scrimProps}
         floatingContext={floating.context}
         ref={scrimRef}
       >

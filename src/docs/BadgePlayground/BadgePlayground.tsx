@@ -1,13 +1,45 @@
 import type { IPlaygroundSections } from '~/docs/Playground';
 import { Playground } from '~/docs/Playground';
 import {
-  AnchoredPlaygroundDemo,
-  IAnchoredPlaygroundDemoProps,
-} from './AnchoredPlaygroundDemo';
+  BadgePlaygroundDemo,
+  IBadgePlaygroundDemoProps,
+} from './BadgePlaygroundDemo';
 
-export const anchoredPlaygroundSections: IPlaygroundSections<IAnchoredPlaygroundDemoProps> =
+export const badgePlaygroundSections: IPlaygroundSections<IBadgePlaygroundDemoProps> =
   {
+    badge: {
+      title: 'Badge',
+      options: [
+        {
+          label: 'Value',
+          input: {
+            type: 'string',
+            value: '8',
+            targetProp: 'value',
+          },
+        },
+        {
+          label: 'Dot',
+          props: {
+            dot: true,
+          },
+          modifiers: {
+            off: true,
+          },
+        },
+        {
+          label: 'Show zero',
+          props: {
+            showZero: true,
+          },
+          modifiers: {
+            off: true,
+          },
+        },
+      ],
+    },
     anchored: {
+      // TODO: link to Anchored component
       title: 'Anchored',
       options: [
         {
@@ -68,12 +100,12 @@ export const anchoredPlaygroundSections: IPlaygroundSections<IAnchoredPlayground
     },
   };
 
-export const AnchoredPlayground: React.FC = (props) => {
+export const BadgePlayground: React.FC = (props) => {
   return (
-    <Playground<IAnchoredPlaygroundDemoProps>
+    <Playground<IBadgePlaygroundDemoProps>
       {...props}
-      defaultSections={anchoredPlaygroundSections}
-      componentRenderer={(props) => <AnchoredPlaygroundDemo {...props} />}
+      defaultSections={badgePlaygroundSections}
+      componentRenderer={(props) => <BadgePlaygroundDemo {...props} />}
     />
   );
 };
