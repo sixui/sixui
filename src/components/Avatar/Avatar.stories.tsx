@@ -15,12 +15,13 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const AVATAR_IMAGE_URL_1 =
-  'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80';
+// https://images.unsplash.com/photo-1557053910-d9eadeed1c58?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjQxfHxWaXNhZ2V8ZW58MHx8MHx8fDI%3D
+
+const AVATAR_IMAGE_URL_1 = 'https://avatars.githubusercontent.com/u/2182039';
 const AVATAR_IMAGE_URL_2 =
-  'https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80';
+  'https://images.unsplash.com/photo-1557053910-d9eadeed1c58?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80';
 const AVATAR_IMAGE_URL_3 =
-  'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80';
+  'https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80';
 
 const defaultArgs = {} satisfies Partial<IAvatarProps>;
 

@@ -45,10 +45,6 @@ export const avatarStyles = stylex.create({
     letterSpacing: avatarTokens.labelTextLetterSpacing,
     fontWeight: avatarTokens.labelTextWeight,
   },
-  content$fallback: {
-    width: '100%',
-    height: '100%',
-  },
 });
 
 export const avatarDynamicStyles = stylex.create({
