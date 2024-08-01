@@ -9,10 +9,11 @@ export type IPlaygroundOptionModifiers = {
   hidden?: boolean;
 };
 
-export type IPlaygroundOptionValue<TTypeName extends string, TType> = {
+export type IPlaygroundOptionValue<TTypeName extends string, TValueType> = {
   type: TTypeName;
-  value?: TType;
+  value?: TValueType;
   items?: IHtmlSelectProps['items'];
+  getValue?: (value: unknown) => TValueType;
 };
 
 export type IPlaygroundOption<
@@ -26,6 +27,10 @@ export type IPlaygroundOption<
     targetProp: keyof TSectionProps;
   } & (
     | IPlaygroundOptionValue<'string', string>
+    | (IPlaygroundOptionValue<'number', number> & {
+        min?: number;
+        max?: number;
+      })
     | IPlaygroundOptionValue<'boolean', boolean>
   );
   props?: Partial<TSectionProps>;

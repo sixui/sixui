@@ -67,6 +67,22 @@ export const PlaygroundOption = fixedForwardRef(function PlaygroundOption<
           }
         />
       );
+    } else if (input.type === 'number') {
+      return (
+        <TextInputField
+          {...elementProps}
+          innerStyles={{
+            fieldBase: playgroundOptionFieldBaseStyles,
+          }}
+          value={input?.value ?? ''}
+          onChange={(event) =>
+            option.input ? handleValueChange(event?.target.value) : undefined
+          }
+          type='number'
+          min={input.min}
+          max={input.max}
+        />
+      );
     }
   };
 

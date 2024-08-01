@@ -61,7 +61,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
     hasError,
     errorText,
     count = -1,
-    max = -1,
+    maxLength = -1,
     textArea,
     loading,
     forwardProps,
@@ -260,14 +260,14 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
 
   const getCounterText = useCallback(() => {
     const countAsNumber = count ?? -1;
-    const maxAsNumber = Number(max) ?? -1;
+    const maxLengthAsNumber = Number(maxLength) ?? -1;
     // Counter does not show if count is negative or 0, or max is negative or 0.
-    if (countAsNumber <= 0 || maxAsNumber <= 0) {
+    if (countAsNumber <= 0 || maxLengthAsNumber <= 0) {
       return undefined;
     }
 
-    return `${countAsNumber} / ${maxAsNumber}`;
-  }, [count, max]);
+    return `${countAsNumber} / ${maxLengthAsNumber}`;
+  }, [count, maxLength]);
 
   const renderLabel = useCallback(
     (floating = false): React.ReactNode | null => {

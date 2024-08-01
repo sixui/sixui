@@ -8,6 +8,22 @@ import { fixedForwardRef } from '~/helpers/fixedForwardRef';
 import { playgroundStyles } from './Playground.styles';
 import { PlaygroundSections } from './PlaygroundSections';
 
+const convertValue = (
+  value: unknown,
+  type: 'string' | 'number' | 'boolean',
+): unknown => {
+  switch (type) {
+    case 'string':
+      return value as string;
+    case 'number':
+      return Number(value);
+    case 'boolean':
+      return Boolean(value);
+    default:
+      return value;
+  }
+};
+
 export const Playground = fixedForwardRef(function Playground<
   TSectionsProps extends Record<string, object>,
 >(
@@ -43,7 +59,11 @@ export const Playground = fixedForwardRef(function Playground<
           ...section.props,
           ...option.props,
           ...(option.input
-            ? { [option.input.targetProp]: option.input.value }
+            ? {
+                [option.input.targetProp]: option.input.getValue
+                  ? option.input.getValue(option.input.value)
+                  : convertValue(option.input.value, option.input.type),
+              }
             : undefined),
         };
       }, {}),
