@@ -53,7 +53,7 @@ export const PlaygroundSections = fixedForwardRef(function PlaygroundSections<
       ref={forwardedRef}
     >
       {Object.keys(sections).map((sectionKey, sectionIndex) => {
-        const section = sections[sectionKey];
+        const section = sections[sectionKey as keyof TSectionsProps];
 
         return (
           <div
@@ -70,7 +70,7 @@ export const PlaygroundSections = fixedForwardRef(function PlaygroundSections<
               )}
             >
               {section.options.map((option, optionIndex) => (
-                <PlaygroundOption
+                <PlaygroundOption<TSectionsProps>
                   key={optionIndex}
                   sectionsProps={sectionsProps}
                   option={option}

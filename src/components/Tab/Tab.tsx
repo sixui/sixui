@@ -200,9 +200,7 @@ export const Tab: ITab = forwardRef(function Tab<
         {hasIcon ? (
           badge && (variant === 'primary' || !hasLabel) ? (
             <Anchored
-              content={
-                badge ? <Badge {...badge} disabled={disabled} /> : undefined
-              }
+              content={badge && !disabled ? <Badge {...badge} /> : undefined}
             >
               {renderIcon()}
             </Anchored>
@@ -223,8 +221,8 @@ export const Tab: ITab = forwardRef(function Tab<
               {label}
             </div>
 
-            {!!badge && (!hasIcon || variant === 'secondary') ? (
-              <Badge {...badge} disabled={disabled} />
+            {badge && !disabled && (!hasIcon || variant === 'secondary') ? (
+              <Badge {...badge} />
             ) : null}
           </div>
         ) : null}

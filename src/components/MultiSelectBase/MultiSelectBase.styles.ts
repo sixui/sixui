@@ -7,7 +7,7 @@ export const multiSelectBaseStyles = stylex.create({
   },
 });
 
-export const multiSelectBaseFieldStyles = stylex.create({
+export const multiSelectBaseFieldBaseStyles = stylex.create({
   contentSlot: {
     display: 'flex',
     flexDirection: 'row',
