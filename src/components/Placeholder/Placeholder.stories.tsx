@@ -32,7 +32,7 @@ export const Basic: IStory = {
   ),
   args: {
     ...defaultArgs,
-    label: 'Label',
+    children: 'Label',
     crosshairs: true,
   },
 };

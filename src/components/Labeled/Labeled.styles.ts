@@ -7,32 +7,36 @@ export const elementWithLabelStyles = stylex.create({
   host$vertical: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '0.5rem',
+    gap: 8,
   },
   host$horizontal: {
     display: 'flex',
-    gridColumnGap: '0.75rem',
+    gridColumnGap: 12,
     alignItems: 'center',
   },
-  element: {
+  content: {
     flexGrow: 0,
     flexShrink: 0,
-    flexDirection: 'inherit',
     display: 'flex',
+    flexDirection: 'inherit',
     alignItems: 'normal',
-    gap: '1rem',
+    gap: 4,
   },
-  header: {
+  element: {
+    display: 'flex',
+    flexDirection: 'inherit',
+    gap: 12,
+  },
+  rows: {
     display: 'flex',
     flexGrow: 1,
     flexDirection: 'column',
-    gap: '0.125rem',
   },
   labelAndActionContainer: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: '0.25rem',
+    gap: 8,
   },
   labelContainer: {
     display: 'flex',

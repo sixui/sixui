@@ -14,7 +14,7 @@ export const labeledPlaygroundSections: IPlaygroundSections<ILabeledPlaygroundDe
           label: 'Label',
           input: {
             type: 'string',
-            value: 'Username',
+            value: 'Label',
             targetProp: 'label',
           },
           modifiers: {
@@ -51,10 +51,21 @@ export const labeledPlaygroundSections: IPlaygroundSections<ILabeledPlaygroundDe
           },
         },
         {
+          label: 'Trailing action',
+          input: {
+            type: 'string',
+            value: 'Trailing action',
+            targetProp: 'trailingAction',
+          },
+          modifiers: {
+            off: true,
+          },
+        },
+        {
           label: 'Supporting text',
           input: {
             type: 'string',
-            value: 'Should be at least 2 characters',
+            value: 'Supporting text',
             targetProp: 'supportingText',
           },
           modifiers: {
@@ -79,8 +90,58 @@ export const labeledPlaygroundSections: IPlaygroundSections<ILabeledPlaygroundDe
             targetProp: 'supportingTextPosition',
           },
           modifiers: {
-            required: true,
+            off: true,
           },
+          getModifiers: (sectionsProps) => ({
+            disabled: !sectionsProps?.labeled.supportingText,
+          }),
+        },
+        {
+          label: 'Error',
+          props: {
+            hasError: true,
+          },
+          modifiers: {
+            off: true,
+          },
+        },
+        {
+          label: 'Error text',
+          input: {
+            type: 'string',
+            value: 'Error text',
+            targetProp: 'errorText',
+          },
+          modifiers: {
+            off: true,
+          },
+          getModifiers: (sectionsProps) => ({
+            disabled: !sectionsProps?.labeled.hasError,
+          }),
+        },
+        {
+          label: 'Error text position',
+          input: {
+            type: 'string',
+            value: 'start',
+            items: [
+              {
+                label: 'Start',
+                value: 'start',
+              },
+              {
+                label: 'End',
+                value: 'end',
+              },
+            ],
+            targetProp: 'errorTextPosition',
+          },
+          modifiers: {
+            off: true,
+          },
+          getModifiers: (sectionsProps) => ({
+            disabled: !sectionsProps?.labeled.errorText,
+          }),
         },
         {
           label: 'Required',
@@ -99,29 +160,6 @@ export const labeledPlaygroundSections: IPlaygroundSections<ILabeledPlaygroundDe
           modifiers: {
             off: true,
           },
-        },
-        {
-          label: 'Error',
-          props: {
-            hasError: true,
-          },
-          modifiers: {
-            off: true,
-          },
-        },
-        {
-          label: 'Error text',
-          input: {
-            type: 'string',
-            value: 'This field is required',
-            targetProp: 'errorText',
-          },
-          modifiers: {
-            off: true,
-          },
-          getModifiers: (sectionsProps) => ({
-            disabled: !sectionsProps?.labeled.hasError,
-          }),
         },
       ],
     },

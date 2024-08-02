@@ -27,7 +27,7 @@ export const Labeled: ILabeled = forwardRef(function Labeled<
     sx,
     id: idProp,
     label,
-    action,
+    trailingAction,
     required,
     readOnly,
     supportingText,
@@ -36,6 +36,7 @@ export const Labeled: ILabeled = forwardRef(function Labeled<
     hasError: hasErrorProp,
     labelPosition = 'top',
     supportingTextPosition: supportingTextPositionProp,
+    errorTextPosition: errorTextPositionProp,
     disabled,
     softDisabled: softDisabledProp,
     loading,
@@ -70,12 +71,15 @@ export const Labeled: ILabeled = forwardRef(function Labeled<
         : labelPosition === 'left'
           ? 'start'
           : 'end';
+  const errorTextPosition = errorTextPositionProp ?? supportingTextPosition;
   const hasLeading =
     (!!label && isLabelAtStart) ||
-    ((!!supportingText || !!errorText) && supportingTextPosition === 'start');
+    ((!!supportingText || !!errorText) && supportingTextPosition === 'start') ||
+    (!!errorText && errorTextPosition === 'start');
   const hasTrailing =
     (!!label && !isLabelAtStart) ||
-    ((!!supportingText || !!errorText) && supportingTextPosition === 'end');
+    ((!!supportingText || !!errorText) && supportingTextPosition === 'end') ||
+    (!!errorText && errorTextPosition === 'end');
 
   const renderLabelAndAction = (): React.ReactNode =>
     label !== undefined ? (
@@ -94,39 +98,37 @@ export const Labeled: ILabeled = forwardRef(function Labeled<
             {required ? '*' : null}
           </label>
         </div>
-        {action ? (
+        {trailingAction ? (
           <div {...sxf('action', visuallyDisabled && 'action$disabled')}>
-            {action}
+            {trailingAction}
           </div>
         ) : null}
       </div>
     ) : null;
 
   const renderSupportingText = (): React.ReactNode =>
-    supportingText || errorText ? (
-      <>
-        {supportingText ? (
-          <div
-            {...sxf(
-              'supportingText',
-              visuallyDisabled && 'supportingText$disabled',
-            )}
-          >
-            {supportingText}
-          </div>
-        ) : null}
-        {errorText ? (
-          <div
-            {...sxf(
-              'supportingText',
-              'supportingText$error',
-              visuallyDisabled && 'supportingText$disabled',
-            )}
-          >
-            {errorText}
-          </div>
-        ) : null}
-      </>
+    supportingText ? (
+      <div
+        {...sxf(
+          'supportingText',
+          visuallyDisabled && 'supportingText$disabled',
+        )}
+      >
+        {supportingText}
+      </div>
+    ) : null;
+
+  const renderErrorText = (): React.ReactNode =>
+    errorText ? (
+      <div
+        {...sxf(
+          'supportingText',
+          'supportingText$error',
+          visuallyDisabled && 'supportingText$disabled',
+        )}
+      >
+        {errorText}
+      </div>
     ) : null;
 
   const labeledContextValue = useMemo(
@@ -165,33 +167,44 @@ export const Labeled: ILabeled = forwardRef(function Labeled<
         {...(Component ? undefined : other)}
       >
         {hasLeading ? (
-          <div {...sxf('header')}>
+          <div {...sxf('rows')}>
             {isLabelAtStart ? renderLabelAndAction() : null}
             {supportingTextPosition === 'start' ? renderSupportingText() : null}
+            {errorTextPosition === 'start' ? renderErrorText() : null}
           </div>
         ) : null}
 
-        {Component ? <Component {...other} /> : null}
-
-        {children ? (
+        <div {...sxf('content')}>
           <div {...sxf('element')}>
-            {isFunction(children)
-              ? children({
-                  id,
-                  required,
-                  disabled,
-                  softDisabled,
-                  readOnly,
-                  loading,
-                })
-              : children}
+            {Component ? (
+              <Component {...other} />
+            ) : isFunction(children) ? (
+              children({
+                id,
+                required,
+                disabled,
+                softDisabled,
+                readOnly,
+                loading,
+              })
+            ) : (
+              children
+            )}
           </div>
-        ) : null}
 
-        {hasTrailing ? (
-          <div {...sxf('header')}>
-            {isLabelAtStart ? null : renderLabelAndAction()}
+          {hasTrailing && isLabelAtStart ? (
+            <div {...sxf('rows')}>
+              {supportingTextPosition === 'end' ? renderSupportingText() : null}
+              {errorTextPosition === 'end' ? renderErrorText() : null}
+            </div>
+          ) : null}
+        </div>
+
+        {hasTrailing && !isLabelAtStart ? (
+          <div {...sxf('rows')}>
+            {renderLabelAndAction()}
             {supportingTextPosition === 'end' ? renderSupportingText() : null}
+            {errorTextPosition === 'end' ? renderErrorText() : null}
           </div>
         ) : null}
       </div>

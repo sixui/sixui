@@ -80,7 +80,7 @@ export const WithTextField: IStory = {
     ...defaultArgs,
     orientation: 'vertical',
     as: TextInputField,
-    action: 'Action',
+    trailingAction: 'Action',
     sx: styles.host$lg,
   },
 };
