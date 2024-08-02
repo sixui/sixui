@@ -93,9 +93,6 @@ importers:
       '@types/eslint':
         specifier: ^8
         version: 8.56.10
-      '@types/lodash':
-        specifier: ^4
-        version: 4.17.6
       '@types/node':
         specifier: ^22.1.0
         version: 22.1.0
@@ -180,9 +177,6 @@ importers:
       prettier:
         specifier: ^3.3.3
         version: 3.3.3
-      prop-types:
-        specifier: ^15.8.1
-        version: 15.8.1
       react:
         specifier: ^18.3.1
         version: 18.3.1

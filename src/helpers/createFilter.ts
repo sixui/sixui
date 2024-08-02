@@ -51,7 +51,7 @@ export const createFilter = <TItem>(
             normalizedCandidate
               ? matchFrom === 'start'
                 ? normalizedCandidate.startsWith(normalizedQuery)
-                : normalizedCandidate.indexOf(normalizedQuery) > -1
+                : normalizedCandidate.includes(normalizedQuery)
               : false,
           );
         })

@@ -27,6 +27,11 @@ const eslintConfig = {
     'import/resolver': {
       typescript: {
         alwaysTryTypes: true,
+        project: [
+          './tsconfig.json',
+          './tsconfig.node.json',
+          './tsconfig.app.json',
+        ],
       },
     },
     react: {

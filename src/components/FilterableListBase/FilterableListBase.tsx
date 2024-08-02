@@ -195,7 +195,7 @@ export const FilterableListBase = <
       active: false,
       selected: false,
       disabled: disabled || isItemDisabled(item, index, itemDisabled),
-      matchesPredicate: filteredItems.indexOf(item) >= 0,
+      matchesPredicate: filteredItems.includes(item),
     };
 
     return itemRenderer(item, {
