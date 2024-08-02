@@ -45,7 +45,7 @@ export type IPlaygroundOption<
 export type IPlaygroundSections<TSectionsProps extends Record<string, object>> =
   {
     [sectionPropsKey in keyof TSectionsProps]: {
-      title?: string;
+      title: string;
       props?: Partial<TSectionsProps[sectionPropsKey]>;
       getProps?: (
         sectionsProps?: TSectionsProps,

@@ -13,7 +13,7 @@ export type ICheckboxPlaygroundDemoProps = {
 export const CheckboxPlaygroundDemo: React.FC<ICheckboxPlaygroundDemoProps> = (
   props,
 ) => (
-  <div {...stylex.props(commonStyles.verticalLayout, commonStyles.gap$xl)}>
+  <div {...stylex.props(commonStyles.verticalLayout, commonStyles.gap$lg)}>
     <Labeled {...props.checkbox} {...props.labeled} as={Checkbox} />
     <Labeled
       {...props.checkbox}

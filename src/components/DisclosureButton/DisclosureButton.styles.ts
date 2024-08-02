@@ -4,6 +4,7 @@ import { circularProgressIndicatorTokens } from '~/components/CircularProgressIn
 import { listItemTokens } from '~/components/ListItem/ListItem.stylex';
 import { itemTokens } from '~/components/Item/Item.stylex';
 import { motionTokens } from '~/themes/base/motion.stylex';
+import { buttonTokens } from '~/components/Button/Button.stylex';
 import { disclosureButtonTokens } from './DisclosureButton.stylex';
 
 export type IDisclosureButtonStylesKey = keyof typeof disclosureButtonStyles;
@@ -16,6 +17,7 @@ export const disclosureButtonStyles = stylex.create({
   button: {
     flexGrow: 1,
 
+    [listItemTokens.containerMinHeight$md]: buttonTokens.containerHeight,
     [listItemTokens.containerShape]: disclosureButtonTokens.containerShape,
     [listItemTokens.containerColor]: disclosureButtonTokens.containerColor,
     [listItemTokens.containerOpacity]: disclosureButtonTokens.containerOpacity,

@@ -1,4 +1,5 @@
 import { forwardRef, useMemo } from 'react';
+import stylex from '@stylexjs/stylex';
 
 import type { IDisclosureProps } from './Disclosure.types';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
@@ -40,13 +41,12 @@ export const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
       >
         <Expandable
           trigger={trigger}
-          sx={stylesCombinator('panel')}
           disabled={disabled}
           expanded={expanded}
           defaultExpanded={defaultExpanded}
           initiallyExpanded={initiallyExpanded}
         >
-          {children}
+          <div {...stylex.props(stylesCombinator('panel'))}>{children}</div>
         </Expandable>
       </div>
     );

@@ -6,7 +6,7 @@ import {
   type ICheckboxPlaygroundDemoProps,
 } from './CheckboxPlaygroundDemo';
 
-export const checkboxPlaygroundSection: IPlaygroundSections<ICheckboxPlaygroundDemoProps> =
+export const checkboxPlaygroundSections: IPlaygroundSections<ICheckboxPlaygroundDemoProps> =
   {
     checkbox: {
       title: 'Props',
@@ -38,7 +38,7 @@ export const CheckboxPlayground: React.FC = (props) => {
   return (
     <Playground<ICheckboxPlaygroundDemoProps>
       {...props}
-      defaultSections={checkboxPlaygroundSection}
+      defaultSections={checkboxPlaygroundSections}
       componentRenderer={(props) => <CheckboxPlaygroundDemo {...props} />}
       initialProps={{
         labeled: {

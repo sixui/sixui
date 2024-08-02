@@ -8,6 +8,8 @@ import type {
 import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { fixedForwardRef } from '~/helpers/fixedForwardRef';
 import { commonStyles } from '~/helpers/commonStyles';
+import { Disclosure } from '~/components/Disclosure';
+import { DisclosureButton } from '~/components/DisclosureButton';
 import { Typography } from '~/components/Typography';
 import { PlaygroundOption } from './PlaygroundOption';
 
@@ -41,6 +43,23 @@ export const PlaygroundSections = fixedForwardRef(function PlaygroundSections<
       }, {} as IPlaygroundSections<TSectionsProps>),
     );
 
+  const renderSection = (
+    section: IPlaygroundSections<TSectionsProps>[keyof TSectionsProps],
+    sectionKey: keyof TSectionsProps,
+  ): JSX.Element => (
+    <div {...stylex.props(commonStyles.verticalLayout, commonStyles.gap$xl)}>
+      {section.options.map((option, optionIndex) => (
+        <PlaygroundOption<TSectionsProps>
+          key={optionIndex}
+          option={option}
+          onChange={(newOption) => handleOptionChange(option, newOption)}
+          sectionKey={sectionKey}
+          sectionsProps={sectionsProps}
+        />
+      ))}
+    </div>
+  );
+
   return (
     <div
       {...stylex.props(
@@ -52,36 +71,25 @@ export const PlaygroundSections = fixedForwardRef(function PlaygroundSections<
       {...other}
       ref={forwardedRef}
     >
-      {Object.keys(sections).map((sectionKey, sectionIndex) => {
-        const section = sections[sectionKey as keyof TSectionsProps];
+      {Object.keys(sections).map((key, sectionIndex) => {
+        const sectionKey = key as keyof TSectionsProps;
+        const section = sections[sectionKey];
 
-        return (
+        return sectionIndex === 0 ? (
           <div
             {...stylex.props(commonStyles.verticalLayout)}
             key={sectionIndex}
           >
-            {section.title ? (
-              <Typography variant='title'>{section.title}</Typography>
-            ) : null}
-            <div
-              {...stylex.props(
-                commonStyles.verticalLayout,
-                commonStyles.gap$xl,
-              )}
-            >
-              {section.options.map((option, optionIndex) => (
-                <PlaygroundOption<TSectionsProps>
-                  key={optionIndex}
-                  option={option}
-                  onChange={(newOption) =>
-                    handleOptionChange(option, newOption)
-                  }
-                  sectionKey={sectionKey}
-                  sectionsProps={sectionsProps}
-                />
-              ))}
-            </div>
+            <Typography variant='title'>{section.title}</Typography>
+            {renderSection(section, sectionKey)}
           </div>
+        ) : (
+          <Disclosure
+            trigger={<DisclosureButton>{section.title}</DisclosureButton>}
+            key={sectionIndex}
+          >
+            {renderSection(section, sectionKey)}
+          </Disclosure>
         );
       })}
     </div>
