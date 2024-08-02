@@ -15,7 +15,7 @@ import { fixedForwardRef } from '~/helpers/fixedForwardRef';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import {
-  multiSelectBaseFieldStyles,
+  multiSelectBaseFieldBaseStyles,
   multiSelectBaseStyles,
 } from './MultiSelectBase.styles';
 
@@ -242,7 +242,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
               !!multiFilterableListBase.selectedItems.length ||
               !!renderProps.query
             }
-            innerStyles={{ field: multiSelectBaseFieldStyles }}
+            innerStyles={{ fieldBase: multiSelectBaseFieldBaseStyles }}
             spellCheck='false'
             variant={variant}
             {...getInputProps(

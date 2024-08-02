@@ -8,8 +8,12 @@ import { paperBaseTokens } from './PaperBase.stylex';
 export type IPaperBaseStylesKey = keyof typeof paperBaseStyles;
 export const paperBaseStyles = stylex.create({
   host: {
-    borderRadius: paperBaseTokens.containerShape,
+    borderTopLeftRadius: paperBaseTokens.containerShape$topLeft,
+    borderTopRightRadius: paperBaseTokens.containerShape$topRight,
+    borderBottomRightRadius: paperBaseTokens.containerShape$bottomRight,
+    borderBottomLeftRadius: paperBaseTokens.containerShape$bottomLeft,
     position: 'relative',
+    color: paperBaseTokens.textColor,
     zIndex: 0,
   },
   background: {
@@ -18,11 +22,6 @@ export const paperBaseStyles = stylex.create({
     inset: 0,
     position: 'absolute',
     zIndex: -1,
-  },
-  content: {
-    borderRadius: 'inherit',
-    position: 'relative',
-    color: paperBaseTokens.textColor,
   },
   outline: {
     zIndex: 1,

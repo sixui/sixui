@@ -17,7 +17,7 @@ import { iconTriangleDown } from '~/assets/icons';
 
 export const HtmlSelect = forwardRef<HTMLSelectElement, IHtmlSelectProps>(
   function HtmlSelect(props, forwardedRef) {
-    const { styles, sx, innerStyles, options, slotProps, ...other } = props;
+    const { styles, sx, innerStyles, items, slotProps, ...other } = props;
 
     const componentTheme = useComponentTheme('HtmlSelect');
     const stylesCombinator = useMemo(
@@ -56,7 +56,7 @@ export const HtmlSelect = forwardRef<HTMLSelectElement, IHtmlSelectProps>(
           ref={selectHandleRef}
           multiple={false}
         >
-          {options.map((option) => {
+          {items.map((option) => {
             const optionProps: IHtmlSelectOption =
               typeof option === 'object' ? option : { value: option };
 

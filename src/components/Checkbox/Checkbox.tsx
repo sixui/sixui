@@ -1,4 +1,11 @@
-import { forwardRef, useCallback, useMemo, useRef, useState } from 'react';
+import {
+  forwardRef,
+  useCallback,
+  useContext,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { asArray } from '@olivierpascal/helpers';
 import { useMergeRefs } from '@floating-ui/react';
 
@@ -16,6 +23,7 @@ import { StateLayer } from '~/components/StateLayer';
 import { FocusRing } from '~/components/FocusRing';
 import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
 import { executeLazyPromise } from '~/helpers/executeLazyPromise';
+import { LabeledContext } from '~/components/Labeled';
 import {
   CHECKBOX_DEFAULT_TAG,
   type ICheckboxOwnProps,
@@ -46,7 +54,8 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
     innerStyles,
     visualState: visualStateProp,
     onChange,
-    indeterminate,
+    indeterminate: indeterminateProp,
+    defaultIndeterminate,
     checked: checkedProp,
     defaultChecked,
     loading: loadingProp,
@@ -55,11 +64,14 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
     ...other
   } = props as IWithAsProp<ICheckboxOwnProps>;
 
+  const labeledContext = useContext(LabeledContext);
   const actionRef = useRef<HTMLInputElement>(null);
   const [handlingChange, setHandlingChange] = useState(false);
-  const loading = loadingProp || handlingChange;
-  const softDisabled = softDisabledProp || loading;
-  const visuallyDisabled = other.disabled || softDisabled;
+  const loading = loadingProp || handlingChange || labeledContext?.loading;
+  const softDisabled =
+    softDisabledProp || loading || labeledContext?.softDisabled;
+  const visuallyDisabled =
+    other.disabled || labeledContext?.disabled || softDisabled;
 
   const { visualState, setRef: setVisualStateRef } = useVisualState(
     visualStateProp,
@@ -81,14 +93,22 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
     controlled: checkedProp,
     default: !!defaultChecked,
     name: 'Checkbox',
+    state: 'checked',
   });
+  const [indeterminate, setIndeterminate] = useControlledValue({
+    controlled: indeterminateProp,
+    default: !!defaultIndeterminate,
+    name: 'Checkbox',
+    state: 'indeterminate',
+  });
+
   const checked = checkedValue && !indeterminate;
   const selected = checked || indeterminate;
   const unselected = !selected;
 
   const wasChecked = usePrevious(checked) ?? false;
   const wasIndeterminate = usePrevious(indeterminate) ?? false;
-  const wasVisuallyDisabled = usePrevious(visuallyDisabled) ?? false;
+  const wasVisuallyDisabled = usePrevious(!!visuallyDisabled);
 
   const prevNone = !wasChecked && !wasIndeterminate;
   const prevUnselected = prevNone;
@@ -109,9 +129,12 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
             event.target.checked ? event.target.value : undefined,
           ) as void,
         setHandlingChange,
-      ).finally(() => setCheckedValue(!event.target.checked));
+      ).finally(() => {
+        setCheckedValue(!event.target.checked);
+        setIndeterminate(false);
+      });
     },
-    [handlingChange, onChange, setCheckedValue],
+    [handlingChange, onChange, setCheckedValue, setIndeterminate],
   );
 
   return (
@@ -119,124 +142,122 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
       {...sxf(
         checkboxTheme,
         componentTheme.overridenStyles,
-        'host',
-        selected && 'host$selected',
-        visuallyDisabled && 'host$disabled',
+        'container',
+        selected && 'container$selected',
+        visuallyDisabled && 'container$disabled',
         sx,
       )}
     >
-      <div {...sxf('container')}>
-        <Component
-          {...sxf('input')}
-          ref={handleRef}
-          type='checkbox'
-          aria-checked={indeterminate ? 'mixed' : undefined}
-          checked={checkedValue}
-          onChange={handleChange}
-          data-cy={dataCy}
-          {...other}
+      <Component
+        {...sxf('input')}
+        ref={handleRef}
+        type='checkbox'
+        aria-checked={indeterminate ? 'mixed' : undefined}
+        checked={checkedValue}
+        onChange={handleChange}
+        data-cy={dataCy}
+        id={labeledContext?.id}
+        required={labeledContext?.required}
+        {...other}
+      />
+
+      {loading ? (
+        <IndeterminateCircularProgressIndicator
+          styles={innerStyles?.circularProgressIndicator}
+          disabled
         />
-
-        {loading ? (
-          <IndeterminateCircularProgressIndicator
-            styles={innerStyles?.circularProgressIndicator}
-            disabled
+      ) : (
+        <>
+          <div
+            {...sxf(
+              'overlay',
+              'outline',
+              visuallyDisabled &&
+                (selected ? 'outline$disabled$selected' : 'outline$disabled'),
+            )}
           />
-        ) : (
-          <>
-            <div
-              {...sxf(
-                'overlay',
-                'outline',
-                visuallyDisabled &&
-                  (selected ? 'outline$disabled$selected' : 'outline$disabled'),
-              )}
-            />
-            <div
-              {...sxf(
-                'overlay',
-                'background',
-                'backgroundAndIcon',
-                selected && 'backgroundAndIcon$selected',
-                visuallyDisabled &&
-                  (selected
-                    ? 'background$disabled$selected'
-                    : 'background$disabled'),
-                prevDisabled && 'background$prevDisabled',
-              )}
-            />
+          <div
+            {...sxf(
+              'overlay',
+              'background',
+              'backgroundAndIcon',
+              selected && 'backgroundAndIcon$selected',
+              visuallyDisabled &&
+                (selected
+                  ? 'background$disabled$selected'
+                  : 'background$disabled'),
+              prevDisabled && 'background$prevDisabled',
+            )}
+          />
 
-            <StateLayer
+          <StateLayer
+            for={actionRef}
+            styles={[
+              checkboxStateLayerStyles,
+              ...asArray(innerStyles?.stateLayer),
+            ]}
+            disabled={visuallyDisabled}
+            visualState={visualState}
+          />
+          {visuallyDisabled ? null : (
+            <FocusRing
               for={actionRef}
               styles={[
-                checkboxStateLayerStyles,
-                ...asArray(innerStyles?.stateLayer),
+                checkboxFocusRingStyles,
+                ...asArray(innerStyles?.focusRing),
               ]}
-              disabled={visuallyDisabled}
               visualState={visualState}
             />
-            {visuallyDisabled ? null : (
-              <FocusRing
-                for={actionRef}
-                styles={[
-                  checkboxFocusRingStyles,
-                  ...asArray(innerStyles?.focusRing),
-                ]}
-                visualState={visualState}
-              />
-            )}
+          )}
 
-            <svg
+          <svg
+            {...sxf(
+              'overlay',
+              'icon',
+              visuallyDisabled && 'icon$disabled',
+              prevDisabled && 'icon$prevDisabled',
+              'backgroundAndIcon',
+              selected && 'backgroundAndIcon$selected',
+            )}
+            viewBox='0 0 18 18'
+            aria-hidden
+          >
+            <rect
               {...sxf(
-                'overlay',
-                'icon',
-                visuallyDisabled && 'icon$disabled',
-                prevDisabled && 'icon$prevDisabled',
-                'backgroundAndIcon',
-                selected && 'backgroundAndIcon$selected',
+                'mark',
+                'mark$short',
+                selected && 'mark$selected',
+                visuallyDisabled && 'mark$disabled',
+                prevDisabled && 'mark$prevDisabled',
+                prevUnselected && 'mark$prevUnselected',
+                (checked || (prevChecked && unselected)) && [
+                  'checkMark',
+                  'checkMark$short',
+                ],
+                (indeterminate || (prevIndeterminate && unselected)) &&
+                  'indeterminate',
               )}
-              viewBox='0 0 18 18'
-              aria-hidden
-            >
-              <rect
-                {...sxf(
-                  'mark',
-                  'mark$short',
-                  selected && 'mark$selected',
-                  visuallyDisabled && 'mark$disabled',
-                  prevDisabled && 'mark$prevDisabled',
-                  prevUnselected && 'mark$prevUnselected',
-                  (checked || (prevChecked && unselected)) && [
-                    'checkMark',
-                    'checkMark$short',
-                  ],
-                  (indeterminate || (prevIndeterminate && unselected)) &&
-                    'indeterminate',
-                )}
-              />
-              <rect
-                {...sxf(
-                  'mark',
-                  'mark$long',
-                  selected && 'mark$selected',
-                  visuallyDisabled && 'mark$disabled',
-                  prevDisabled && 'mark$prevDisabled',
-                  prevUnselected && 'mark$prevUnselected',
-                  (checked || (prevChecked && unselected)) && [
-                    'checkMark',
-                    'checkMark$long',
-                  ],
-                  (indeterminate || (prevIndeterminate && unselected)) &&
-                    'indeterminate',
-                  prevUnselected &&
-                    checked &&
-                    'mark$long$prevUnselected$checked',
-                )}
-              />
-            </svg>
-          </>
-        )}
-      </div>
+            />
+            <rect
+              {...sxf(
+                'mark',
+                'mark$long',
+                selected && 'mark$selected',
+                visuallyDisabled && 'mark$disabled',
+                prevDisabled && 'mark$prevDisabled',
+                prevUnselected && 'mark$prevUnselected',
+                (checked || (prevChecked && unselected)) && [
+                  'checkMark',
+                  'checkMark$long',
+                ],
+                (indeterminate || (prevIndeterminate && unselected)) &&
+                  'indeterminate',
+                prevUnselected && checked && 'mark$long$prevUnselected$checked',
+              )}
+            />
+          </svg>
+        </>
+      )}
     </div>
   );
 });

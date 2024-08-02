@@ -21,6 +21,7 @@ export const badgeStyles = stylex.create({
     transitionProperty: 'transform',
     transitionDuration: motionTokens.duration$short3,
     transitionTimingFunction: motionTokens.easing$emphasized,
+    whiteSpace: 'nowrap',
   },
   background: {
     position: 'absolute',
@@ -28,14 +29,9 @@ export const badgeStyles = stylex.create({
     borderRadius: 'inherit',
     backgroundColor: badgeTokens.containerColor,
   },
-  background$disabled: {
-    backgroundColor: badgeTokens.containerColor$disabled,
-    opacity: badgeTokens.containerOpacity$disabled,
-  },
   host$dot: {
     borderRadius: badgeTokens.containerShape$dot,
-    minWidth: badgeTokens.containerWidth$dot,
-    height: badgeTokens.containerHeight$dot,
+    transform: `scale(${badgeTokens.containerDotScaleX}, ${badgeTokens.containerDotScaleY})`,
     padding: 0,
   },
   host$invisible: {
@@ -49,9 +45,5 @@ export const badgeStyles = stylex.create({
     letterSpacing: badgeTokens.labelTextLetterSpacing,
     fontWeight: badgeTokens.labelTextWeight,
     color: badgeTokens.labelTextColor,
-  },
-  label$disabled: {
-    color: badgeTokens.labelTextColor$disabled,
-    opacity: badgeTokens.labelTextOpacity$disabled,
   },
 });

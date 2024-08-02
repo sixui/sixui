@@ -24,7 +24,7 @@ const prevUnselectedToCheckedKeyframes = stylex.keyframes({
 
 export type ICheckboxStylesKey = keyof typeof checkboxStyles;
 export const checkboxStyles = stylex.create({
-  host: {
+  container: {
     borderRadius: checkboxTokens.containerShape,
     display: 'inline-flex',
     justifyContent: 'center',
@@ -45,7 +45,7 @@ export const checkboxStyles = stylex.create({
     [checkboxStateTokens.stateLayerOpacity$pressed]:
       checkboxTokens.stateLayerOpacity$pressed,
   },
-  host$selected: {
+  container$selected: {
     [checkboxStateTokens.stateLayerColor$hover]:
       checkboxTokens.selectedStateLayerColor$hover,
     [checkboxStateTokens.stateLayerOpacity$hover]:
@@ -55,23 +55,14 @@ export const checkboxStyles = stylex.create({
     [checkboxStateTokens.stateLayerOpacity$pressed]:
       checkboxTokens.selectedStateLayerOpacity$pressed,
   },
-  host$disabled: {
+  container$disabled: {
     cursor: 'default',
     pointerEvents: 'none',
   },
-  container: {
-    borderRadius: 'inherit',
-    display: 'flex',
-    height: '100%',
-    placeContent: 'center',
-    placeItems: 'center',
-    position: 'relative',
-    width: '100%',
-  },
   input: {
     appearance: 'none',
-    width: 48,
-    height: 48,
+    width: checkboxTokens.stateLayerSize,
+    height: checkboxTokens.stateLayerSize,
     margin: 0,
     opacity: 0,
     outline: 'none',

@@ -15,6 +15,7 @@ import { StateLayer } from '~/components/StateLayer';
 import { FocusRing } from '~/components/FocusRing';
 import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
 import { RadioGroupContext } from '~/components/RadioGroup';
+import { LabeledContext } from '~/components/Labeled';
 import {
   RADIO_DEFAULT_TAG,
   type IRadioProps,
@@ -46,17 +47,19 @@ export const Radio: IRadio = forwardRef(function Radio<
     value,
     checked: checkedProp,
     name: nameProp,
-    loading,
+    loading: loadingProp,
     'data-cy': dataCy = 'radio',
     softDisabled: softDisabledProp,
     ...other
   } = props as IWithAsProp<IRadioOwnProps>;
 
+  const labeledContext = useContext(LabeledContext);
   const radioGroupContext = useContext(RadioGroupContext);
+  const loading = loadingProp || labeledContext?.loading;
   const softDisabled =
-    (softDisabledProp ?? radioGroupContext?.softDisabled) || loading;
+    (softDisabledProp ?? labeledContext?.softDisabled) || loading;
   const visuallyDisabled =
-    (other.disabled ?? radioGroupContext?.disabled) || softDisabled;
+    other.disabled || labeledContext?.disabled || softDisabled;
 
   const actionRef = useRef<HTMLInputElement>(null);
   const { visualState, setRef: setVisualStateRef } = useVisualState(
@@ -181,6 +184,7 @@ export const Radio: IRadio = forwardRef(function Radio<
           onChange={handleChange}
           value={value}
           data-cy={`${dataCy}-${value}`}
+          id={labeledContext?.id}
           {...other}
         />
       </div>

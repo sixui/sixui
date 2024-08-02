@@ -13,7 +13,7 @@ export type IDialogContentOwnProps = IContainerProps<IDialogContentStylesKey> &
     type?: 'alert';
     scrollable?: boolean;
     icon?: React.ReactNode;
-    headline?: React.ReactNode;
+    headline: React.ReactNode;
     children: React.ReactNode;
     actions:
       | React.ReactNode

@@ -10,7 +10,7 @@ import type {
 import { isFunction } from '~/helpers/isFunction';
 import { CardContent } from '~/components/CardContent';
 import { Card } from '~/components/Card';
-import { ElementWithLabel } from '~/components/ElementWithLabel';
+import { Labeled } from '~/components/Labeled';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
@@ -95,8 +95,8 @@ export const OptionCard: IOptionCard = forwardRef(function OptionCard<
       )}
 
       <CardContent sx={commonStyles.gap$md}>
-        <ElementWithLabel
-          orientation='horizontal'
+        <Labeled
+          labelPosition='right'
           label={label}
           supportingText={supportingText}
           disabled={other.disabled}
@@ -110,7 +110,7 @@ export const OptionCard: IOptionCard = forwardRef(function OptionCard<
               tabIndex={-1}
             />
           ) : null}
-        </ElementWithLabel>
+        </Labeled>
         {children ? (
           <div {...sxf(['text', other.disabled && 'text$disabled'])}>
             {isFunction(children) ? children({ checked }) : children}

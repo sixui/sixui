@@ -16,8 +16,8 @@ const defaultArgs = {} satisfies Partial<IElevationProps>;
 
 const placeholderStyles = stylex.create({
   host: {
-    width: '6rem',
-    height: '6rem',
+    width: 96,
+    height: 96,
   },
 });
 
@@ -27,6 +27,7 @@ export const Levels: IStory = {
       component={(variantArgs) => (
         <Placeholder
           styles={placeholderStyles}
+          corner='md'
           label={`Level ${variantArgs.level}`}
         >
           <Elevation {...props} {...variantArgs} />

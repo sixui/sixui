@@ -20,6 +20,7 @@ const vars = {
   // container
   containerShape: 'unset',
   containerColor: 'inherit',
+  containerMinHeight: '56px',
   // &:disabled
   containerColor$disabled: 'inherit',
   containerOpacity$disabled: 'unset',

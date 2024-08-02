@@ -12,6 +12,7 @@ export const standardIconButtonStyles = stylex.create({
     [iconButtonTokens.iconColor$focus]: colorSchemeTokens.onSurfaceVariant,
     [iconButtonTokens.iconColor$hover]: colorSchemeTokens.onSurfaceVariant,
     [iconButtonTokens.iconColor$pressed]: colorSchemeTokens.onSurfaceVariant,
+    [iconButtonTokens.iconColor$disabled]: colorSchemeTokens.onSurface,
 
     [iconButtonTokens.toggleIconColor]: colorSchemeTokens.onSurfaceVariant,
     [iconButtonTokens.toggleIconColor$focus]:

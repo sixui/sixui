@@ -2,29 +2,35 @@ import { useRef } from 'react';
 import stylex from '@stylexjs/stylex';
 import { FloatingDelayGroup } from '@floating-ui/react';
 
+import type { IStyleXStyles } from '~/helpers/types';
 import { darkColorSchemeTheme } from '~/themes/base/darkColorScheme.styles';
 import { themeProviderStyles, useThemeContext } from '~/components/Theme';
+import { colorSchemeTheme } from '~/themes/base/colorScheme.stylex';
 import {
   ColorSchemeContext,
   type IColorSchemeVariant,
 } from './ColorSchemeContext';
 import { colorSchemeProviderStyles } from './ColorSchemeProvider.styles';
+import { useColorScheme } from './useColorScheme';
 
 export type IColorSchemeProviderProps = {
   variant: IColorSchemeVariant;
   children: React.ReactNode;
+  sx?: IStyleXStyles;
 };
 
 export const ColorSchemeProvider: React.FC<IColorSchemeProviderProps> = (
   props,
 ) => {
-  const { variant, children } = props;
+  const { sx, variant, children } = props;
 
   const root = useRef<HTMLDivElement | null>(null);
   const themeContext = useThemeContext();
+  const currentColorScheme = useColorScheme();
 
   const isDark = variant === 'dark';
   const isLight = !isDark;
+  const shouldUpdatColorScheme = currentColorScheme.variant !== variant;
 
   return (
     <ColorSchemeContext.Provider value={{ variant, root }}>
@@ -38,14 +44,24 @@ export const ColorSchemeProvider: React.FC<IColorSchemeProviderProps> = (
           {...stylex.props(
             colorSchemeProviderStyles.host,
             isLight && colorSchemeProviderStyles.container$light,
-            isDark && [
-              colorSchemeProviderStyles.container$dark,
-              darkColorSchemeTheme,
-              themeContext.theme?.schemes &&
-                themeProviderStyles.dynamicScheme(
-                  themeContext.theme?.schemes.dark,
-                ),
-            ],
+            isLight &&
+              shouldUpdatColorScheme && [
+                colorSchemeTheme,
+                themeContext.theme?.schemes &&
+                  themeProviderStyles.dynamicScheme(
+                    themeContext.theme?.schemes.light,
+                  ),
+              ],
+            isDark && colorSchemeProviderStyles.container$dark,
+            isDark &&
+              shouldUpdatColorScheme && [
+                darkColorSchemeTheme,
+                themeContext.theme?.schemes &&
+                  themeProviderStyles.dynamicScheme(
+                    themeContext.theme?.schemes.dark,
+                  ),
+              ],
+            sx,
           )}
           ref={root}
           data-scheme={variant}

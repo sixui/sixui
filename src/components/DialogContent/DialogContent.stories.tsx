@@ -18,7 +18,20 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
+const styles = stylex.create({
+  host: {
+    width: 560,
+  },
+  host$scrollable: {
+    height: 300,
+  },
+  field: {
+    width: '100%',
+  },
+});
+
 const defaultArgs = {
+  sx: styles.host,
   headline: 'Permanently delete?',
   children:
     'Deleting the selected messages will also remove them from all synced devices.',
@@ -29,15 +42,6 @@ const defaultArgs = {
     </>
   ),
 } satisfies Partial<IDialogContentProps>;
-
-const styles = stylex.create({
-  scrollable: {
-    height: 300,
-  },
-  field: {
-    width: '100%',
-  },
-});
 
 export const Basic: IStory = {
   render: (props) => <DialogContent {...props} />,
@@ -85,7 +89,7 @@ export const Scrollable: IStory = {
       </>
     ),
     scrollable: true,
-    sx: styles.scrollable,
+    sx: [styles.host, styles.host$scrollable],
   },
 };
 

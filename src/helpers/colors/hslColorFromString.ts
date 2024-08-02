@@ -8,7 +8,7 @@ export const hslColorFromString = (
   let hash = 0;
   for (let i = 0; i < string.length; i++) {
     // eslint-disable-next-line no-bitwise
-    hash = string.charCodeAt(i) + ((hash << 5) - hash);
+    hash = (string.charCodeAt(i) + 10) ** 2 + ((hash << 5) - hash);
     // eslint-disable-next-line no-bitwise
     hash = hash & hash;
   }

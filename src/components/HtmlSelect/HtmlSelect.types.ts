@@ -25,7 +25,7 @@ export type IHtmlSelectProps = IContainerProps<IHtmlSelectStylesKey> &
      * `{ label?, value }` objects. If no `label` is supplied, `value`
      * will be used as the labÒel.
      */
-    options: ReadonlyArray<string | number | IHtmlSelectOption>;
+    items: ReadonlyArray<string | number | IHtmlSelectOption>;
 
     /**
      * Multiple select is not supported.

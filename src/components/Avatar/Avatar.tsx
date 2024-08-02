@@ -5,9 +5,7 @@ import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { useLoaded } from '~/hooks/useLoaded';
-import { SvgIcon } from '~/components/SvgIcon';
 import { hslColorFromString } from '~/helpers/colors/hslColorFromString';
-import { iconAvatarPlaceholder } from '~/assets/icons';
 import { avatarStyles, avatarDynamicStyles } from './Avatar.styles';
 import { avatarTheme } from './Avatar.stylex';
 import { avatarVariantStyles } from './variants';
@@ -59,7 +57,7 @@ export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
       src;
     const randomColor = useMemo(
       () =>
-        fallbackToRandomColor && randomColorSourceString !== undefined
+        fallbackToRandomColor && randomColorSourceString
           ? hslColorFromString(randomColorSourceString)
           : undefined,
       [fallbackToRandomColor, randomColorSourceString],
@@ -93,15 +91,7 @@ export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
           <div {...sxf('content')}>{children}</div>
         ) : hasImage && !!alt ? (
           <div {...sxf('content')}>{alt[0]}</div>
-        ) : (
-          <SvgIcon
-            sx={[
-              stylesCombinator('content'),
-              stylesCombinator('content$fallback'),
-            ]}
-            icon={iconAvatarPlaceholder}
-          />
-        )}
+        ) : null}
       </div>
     );
   },

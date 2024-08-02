@@ -27,6 +27,11 @@ const eslintConfig = {
     'import/resolver': {
       typescript: {
         alwaysTryTypes: true,
+        project: [
+          './tsconfig.json',
+          './tsconfig.node.json',
+          './tsconfig.app.json',
+        ],
       },
     },
     react: {
@@ -97,9 +102,10 @@ const eslintConfig = {
       parserOptions: {
         project: [
           './tsconfig.json',
-          './.storybook/tsconfig.json',
-          './cypress/tsconfig.json',
+          './tsconfig.node.json',
+          './tsconfig.app.json',
         ],
+        tsconfigRootDir: __dirname,
       },
       extends: [
         'plugin:@typescript-eslint/recommended-type-checked',

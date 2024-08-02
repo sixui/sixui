@@ -18,7 +18,7 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   host: {
-    width: 200,
+    width: 240,
   },
 });
 

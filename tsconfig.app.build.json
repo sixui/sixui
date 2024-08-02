@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "./dist",
+    "declarationMap": true,
+  },
+  "exclude": [
+    "src/**/*.test.ts*",
+    "src/**/*.stories.tsx",
+    "src/**/*.cy.tsx"
+  ]
+}

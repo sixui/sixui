@@ -4,18 +4,20 @@ import type { IPlaceholderProps } from './Placeholder.types';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { Paper } from '~/components/Paper';
 import { placeholderStyles } from './Placeholder.styles';
 import { placeholderTheme } from './Placeholder.stylex';
 
 export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
   function Placeholder(props, forwardedRef) {
     const {
+      innerStyles,
       styles,
       sx,
       label,
       children,
       crosshairs,
-      shape = 'rounded',
+      disabled,
       ...other
     } = props;
 
@@ -30,25 +32,21 @@ export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
     );
 
     return (
-      <div
-        {...sxf(
+      <Paper
+        sx={[
           placeholderTheme,
           componentTheme.overridenStyles,
-          'host',
-          shape === 'rectangular'
-            ? 'host$rectangular'
-            : shape === 'circular'
-              ? 'host$circular'
-              : null,
+          stylesCombinator('host', disabled && 'host$disabled'),
           sx,
-        )}
+        ]}
         ref={forwardedRef}
+        innerStyles={innerStyles}
         {...other}
       >
         {crosshairs ? <div {...sxf('crosshairs')} /> : null}
         {label ? <div {...sxf('label')}>{label}</div> : null}
         {children}
-      </div>
+      </Paper>
     );
   },
 );

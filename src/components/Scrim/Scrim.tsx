@@ -11,7 +11,7 @@ import { scrimTheme } from './Scrim.stylex';
 export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
   function Scrim(props, forwardedRef) {
     const {
-      context,
+      floatingContext,
       styles,
       sx,
       contained,
@@ -30,7 +30,7 @@ export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
       [stylesCombinator],
     );
 
-    const transitionStatus = useTransitionStatus(context, {
+    const transitionStatus = useTransitionStatus(floatingContext, {
       duration: 150, // motionTokens.duration$short3
     });
 

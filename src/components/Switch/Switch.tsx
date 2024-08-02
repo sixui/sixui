@@ -1,4 +1,11 @@
-import { forwardRef, useCallback, useMemo, useRef, useState } from 'react';
+import {
+  forwardRef,
+  useCallback,
+  useContext,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { asArray } from '@olivierpascal/helpers';
 import { useMergeRefs } from '@floating-ui/react';
 
@@ -17,6 +24,7 @@ import { IndeterminateCircularProgressIndicator } from '~/components/Indetermina
 import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { SvgIcon } from '~/components/SvgIcon';
 import { iconCheckMark, iconXMark } from '~/assets/icons';
+import { LabeledContext } from '~/components/Labeled';
 import {
   SWITCH_DEFAULT_TAG,
   type ISwitchOwnProps,
@@ -59,11 +67,14 @@ export const Switch: ISwitch = forwardRef(function Switch<
     ...other
   } = props as IWithAsProp<ISwitchOwnProps>;
 
+  const labeledContext = useContext(LabeledContext);
   const [handlingChange, setHandlingChange] = useState(false);
   const loading =
-    (loadingProp || handlingChange) && loadingAnimation === 'progressIndicator';
-  const softDisabled = softDisabledProp || loading;
-  const visuallyDisabled = other.disabled || softDisabled;
+    (loadingProp || handlingChange || labeledContext?.loading) &&
+    loadingAnimation === 'progressIndicator';
+  const softDisabled = softDisabledProp || loading || labeledContext?.disabled;
+  const visuallyDisabled =
+    other.disabled || labeledContext?.disabled || softDisabled;
 
   const actionRef = useRef<HTMLInputElement>(null);
   const { visualState, setRef: setVisualStateRef } = useVisualState(
@@ -130,6 +141,8 @@ export const Switch: ISwitch = forwardRef(function Switch<
           checked={checked}
           onChange={visuallyDisabled ? undefined : handleChange}
           data-cy={dataCy}
+          id={labeledContext?.id}
+          required={labeledContext?.required}
           {...other}
         />
         <FocusRing

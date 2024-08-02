@@ -28,9 +28,9 @@ const defaultArgs = {
 
 const states: Array<IComponentPresentation<IButtonOwnProps>> = [
   {
-    legend: 'Enabled',
+    legend: 'Normal',
     props: {
-      children: 'Enabled',
+      children: 'Normal',
     },
   },
   {

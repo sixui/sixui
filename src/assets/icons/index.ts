@@ -5,7 +5,6 @@ import type { IIcon } from './lib/my-icons.model';
 export type IIconNameSubset<T extends Readonly<Array<IIcon>>> =
   T[number]['name'];
 
-export * from './lib/icon-AvatarPlaceholder.icon';
 export * from './lib/icon-CheckMark.icon';
 export * from './lib/icon-ChevronDown.icon';
 export * from './lib/icon-ChevronRight.icon';

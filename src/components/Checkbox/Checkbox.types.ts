@@ -4,6 +4,7 @@ import type {
   ICompiledStyles,
   IMaybeAsync,
   IAny,
+  IOmit,
 } from '~/helpers/types';
 import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
 import type { ICheckboxStylesKey } from './Checkbox.styles';
@@ -14,34 +15,34 @@ import type { IVisualState } from '~/components/VisualState';
 
 export const CHECKBOX_DEFAULT_TAG = 'input';
 
-export type ICheckboxOwnProps = IContainerProps<ICheckboxStylesKey> & {
-  innerStyles?: {
-    stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStylesKey>>;
-    focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStylesKey>>;
-    circularProgressIndicator?: IZeroOrMore<
-      ICompiledStyles<ICircularProgressIndicatorStylesKey>
-    >;
-  };
-  visualState?: IVisualState;
-  required?: boolean;
-  disabled?: boolean;
-  id?: string;
-  name?: string;
-  checked?: boolean;
-  defaultChecked?: boolean;
-  indeterminate?: boolean;
-  onChange?: (
-    event: React.ChangeEvent<HTMLInputElement>,
-    value: React.InputHTMLAttributes<HTMLInputElement>['value'],
-  ) => IMaybeAsync<IAny>;
-  loading?: boolean;
+export type ICheckboxOwnProps = IContainerProps<ICheckboxStylesKey> &
+  IOmit<
+    React.ComponentPropsWithoutRef<'input'>,
+    'defaultValue' | 'onChange'
+  > & {
+    innerStyles?: {
+      stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStylesKey>>;
+      focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStylesKey>>;
+      circularProgressIndicator?: IZeroOrMore<
+        ICompiledStyles<ICircularProgressIndicatorStylesKey>
+      >;
+    };
+    visualState?: IVisualState;
+    indeterminate?: boolean;
+    defaultIndeterminate?: boolean;
+    onChange?: (
+      event: React.ChangeEvent<HTMLInputElement>,
+      value: React.InputHTMLAttributes<HTMLInputElement>['value'],
+    ) => IMaybeAsync<IAny>;
+    loading?: boolean;
+    defaultValue?: boolean;
 
-  /**
-   * If `true`, the component will be rendered in a disabled state, but will
-   * still be focusable.
-   */
-  softDisabled?: boolean;
-};
+    /**
+     * If `true`, the component will be rendered in a disabled state, but will
+     * still be focusable.
+     */
+    softDisabled?: boolean;
+  };
 
 export type ICheckboxProps<
   TRoot extends React.ElementType = typeof CHECKBOX_DEFAULT_TAG,

@@ -223,9 +223,9 @@ export const filterMovie: IFilterableListItemPredicate<IMovie> = (
 
   return exactMatch
     ? normalizedTitle === normalizedQuery
-    : `${movie.rank}. ${normalizedTitle} ${movie.year}`.indexOf(
+    : `${movie.rank}. ${normalizedTitle} ${movie.year}`.includes(
         normalizedQuery,
-      ) >= 0;
+      );
 };
 
 /**

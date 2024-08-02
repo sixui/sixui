@@ -7,14 +7,10 @@ import styleX from 'vite-plugin-stylex';
 
 // eslint-disable-next-line import/no-default-export
 export default defineConfig({
-  resolve: {
-    alias: [
-      {
-        find: '~',
-        // eslint-disable-next-line no-undef
-        replacement: resolve(__dirname, 'src'),
-      },
-    ],
-  },
   plugins: [react(), styleX()],
+  resolve: {
+    alias: {
+      '~': resolve(__dirname, 'src'),
+    },
+  },
 });

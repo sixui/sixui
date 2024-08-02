@@ -29,8 +29,8 @@ const defaultArgs = {
 
 const placeholderStyles = stylex.create({
   host: {
-    width: '6rem',
-    height: '6rem',
+    width: 96,
+    height: 96,
     outlineWidth: '1px',
     outlineStyle: 'solid',
     outlineColor: colorSchemeTokens.outline,
@@ -40,8 +40,8 @@ const placeholderStyles = stylex.create({
 
 const dashedPlaceholderStyles = stylex.create({
   host: {
-    width: '6rem',
-    height: '6rem',
+    width: 96,
+    height: 96,
     outlineWidth: '1px',
     outlineStyle: 'dashed',
     outlineColor: colorSchemeTokens.outline,
@@ -67,6 +67,7 @@ export const Variants: IStory = {
       component={(variantArgs) => (
         <Placeholder
           styles={placeholderStyles}
+          corner='md'
           label={variantArgs.inward ? 'Inward' : 'Outward'}
         >
           <FocusRing {...props} {...variantArgs} />

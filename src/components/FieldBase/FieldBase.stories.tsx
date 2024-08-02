@@ -10,8 +10,7 @@ import {
   ComponentShowcase,
 } from '~/components/ComponentShowcase';
 import { FieldBase } from './FieldBase';
-import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { stateTokens } from '~/themes/base/state.stylex';
+import { Placeholder } from '../Placeholder';
 
 // https://github.com/material-components/material-web/blob/main/field/demo/stories.ts
 
@@ -23,22 +22,13 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   host: {
-    width: 200,
-  },
-});
-
-const inputStyles = stylex.create({
-  placeholder: {
-    width: '100%',
-    height: 24,
-    backgroundColor: colorSchemeTokens.onSurface,
-    opacity: stateTokens.opacity$disabled,
+    width: 240,
   },
 });
 
 const defaultArgs = {
   sx: styles.host,
-  children: <div {...stylex.props(inputStyles.placeholder)} />,
+  children: <Placeholder surface='onSurface' expand disabled />,
 } satisfies Partial<IFieldBaseOwnProps>;
 
 const states: Array<IComponentPresentation<IFieldBaseOwnProps>> = [

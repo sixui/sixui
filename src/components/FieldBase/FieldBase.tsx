@@ -61,7 +61,7 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
     hasError,
     errorText,
     count = -1,
-    max = -1,
+    maxLength = -1,
     textArea,
     loading,
     forwardProps,
@@ -117,8 +117,8 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
   const hasEnd = !!trailingIcon || !!end;
   const hasLabel = !!label;
 
-  const wasFocused = usePrevious(focused);
-  const wasPopulated = usePrevious(populated);
+  const wasFocused = usePrevious(!!focused);
+  const wasPopulated = usePrevious(!!populated);
 
   const getLabelKeyframes = useCallback(() => {
     const floatingLabelEl = floatingLabelRef.current;
@@ -207,15 +207,15 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
       //
       // Re-calculating the animation each time will prevent any visual glitches
       // from appearing.
-      // TODO(b/241113345): use animation tokens
+      // TODO: use animation tokens
       labelAnimationRef.current = floatingLabelRef.current?.animate(
         getLabelKeyframes(),
         {
           duration: 150,
           easing: EASING.STANDARD,
-          // To avoid any glitch, the target will retain the computed values set by the last
-          // keyframe encountered during execution.
-          // See https://developer.mozilla.org/en-US/docs/Web/CSS/animation-fill-mode#forwards
+          // To avoid any glitch, the target will retain the computed values set
+          // by the last keyframe encountered during execution. See
+          // https://developer.mozilla.org/en-US/docs/Web/CSS/animation-fill-mode#forwards
           fill: 'forwards',
         },
       );
@@ -260,14 +260,14 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
 
   const getCounterText = useCallback(() => {
     const countAsNumber = count ?? -1;
-    const maxAsNumber = Number(max) ?? -1;
+    const maxLengthAsNumber = Number(maxLength) ?? -1;
     // Counter does not show if count is negative or 0, or max is negative or 0.
-    if (countAsNumber <= 0 || maxAsNumber <= 0) {
+    if (countAsNumber <= 0 || maxLengthAsNumber <= 0) {
       return undefined;
     }
 
-    return `${countAsNumber} / ${maxAsNumber}`;
-  }, [count, max]);
+    return `${countAsNumber} / ${maxLengthAsNumber}`;
+  }, [count, maxLength]);
 
   const renderLabel = useCallback(
     (floating = false): React.ReactNode | null => {
@@ -538,7 +538,6 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
         fieldBaseTheme,
         componentTheme.overridenStyles,
         'host',
-        !!supportingOrErrorText && 'host$withSupportingText',
         visuallyDisabled && 'host$disabled',
         sx,
       )}

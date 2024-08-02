@@ -3,7 +3,6 @@ import stylex from '@stylexjs/stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
-import { stateTokens } from '~/themes/base/state.stylex';
 
 const vars = {
   // container
@@ -12,12 +11,9 @@ const vars = {
   containerShape$dot: shapeTokens.corner$full,
   containerMinWidth: '16px',
   containerHeight: '16px',
-  containerWidth$dot: '8px',
-  containerHeight$dot: '8px',
+  containerDotScaleX: '0.5', // 8px
+  containerDotScaleY: '0.5', // 8px
   containerPadding: '4px',
-  // &:disabled
-  containerColor$disabled: colorSchemeTokens.onSurface,
-  containerOpacity$disabled: stateTokens.containerOpacity$disabled,
 
   // labelText
   labelTextColor: colorSchemeTokens.onError,
@@ -26,9 +22,6 @@ const vars = {
   labelTextSize: typeScaleTokens.labelSize$sm,
   labelTextLetterSpacing: typeScaleTokens.labelLetterSpacing$sm,
   labelTextWeight: typeScaleTokens.labelWeight$sm,
-  // &:disabled
-  labelTextColor$disabled: colorSchemeTokens.onSurface,
-  labelTextOpacity$disabled: stateTokens.opacity$disabled,
 };
 
 export const badgeTokens = stylex.defineVars(vars);

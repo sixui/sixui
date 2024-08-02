@@ -2,11 +2,8 @@ import type { IContainerProps } from '~/helpers/types';
 import type { IBadgeStylesKey } from './Badge.styles';
 
 export type IBadgeProps = IContainerProps<IBadgeStylesKey> & {
-  children?: React.ReactNode;
-  value?: number;
+  value?: string | number;
   maxValue?: number;
   showZero?: boolean;
   dot?: boolean;
-  invisible?: boolean;
-  disabled?: boolean;
 };

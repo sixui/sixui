@@ -9,9 +9,6 @@ export const dialogContentStyles = stylex.create({
   host: {
     borderRadius: dialogContentTokens.containerShape,
     display: 'contents',
-    maxHeight: 'min(560px, calc(100% - 48px))',
-    maxWidth: 'min(560px, calc(100% - 48px))',
-    minWidth: 280,
     height: 'fit-content',
     width: 'min-content',
   },
@@ -51,7 +48,7 @@ export const dialogContentStyles = stylex.create({
       position: 'absolute',
     },
   },
-  headline: {
+  header: {
     alignItems: 'center',
     color: dialogContentTokens.headlineColor,
     display: 'flex',
@@ -63,7 +60,7 @@ export const dialogContentStyles = stylex.create({
     letterSpacing: dialogContentTokens.headlineLetterSpacing,
     position: 'relative',
   },
-  header: {
+  headline: {
     alignSelf: 'stretch',
     // unset: all
     color: 'inherit',
@@ -133,7 +130,13 @@ export const dialogContentStyles = stylex.create({
   },
   contentSlot: {
     boxSizing: 'border-box',
-    padding: 24,
+    paddingLeft: 24,
+    paddingTop: 24,
+    paddingRight: 24,
+  },
+  contentSlot$hasHeadline: {
+    paddingTop: 16,
+    paddingBottom: 8,
   },
   contentSlot$scrollable: {
     paddingBottom: 8,
@@ -141,13 +144,14 @@ export const dialogContentStyles = stylex.create({
   contentSlot$scrollable$hasHeadline: {
     paddingTop: 8,
   },
-  contentSlot$hasActions: {
-    paddingBottom: 8,
+  footer: {
+    position: 'relative',
+    paddingBottom: 24,
+  },
+  footer$hasActions: {
+    paddingBottom: 0,
   },
   actions: {
-    position: 'relative',
-  },
-  actionsSlot: {
     boxSizing: 'border-box',
     display: 'flex',
     gap: 8,
