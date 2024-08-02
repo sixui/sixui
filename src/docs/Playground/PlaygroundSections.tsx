@@ -10,7 +10,6 @@ import { fixedForwardRef } from '~/helpers/fixedForwardRef';
 import { commonStyles } from '~/helpers/commonStyles';
 import { Disclosure } from '~/components/Disclosure';
 import { DisclosureButton } from '~/components/DisclosureButton';
-import { Typography } from '~/components/Typography';
 import { PlaygroundOption } from './PlaygroundOption';
 import { playgroundOptionDisclosureButtonStyles } from './PlaygroundSections.styles';
 
@@ -76,21 +75,14 @@ export const PlaygroundSections = fixedForwardRef(function PlaygroundSections<
         const sectionKey = key as keyof TSectionsProps;
         const section = sections[sectionKey];
 
-        return sectionIndex === 0 ? (
-          <div
-            {...stylex.props(commonStyles.verticalLayout)}
-            key={sectionIndex}
-          >
-            <Typography variant='title'>{section.title}</Typography>
-            {renderSection(section, sectionKey)}
-          </div>
-        ) : (
+        return (
           <Disclosure
             trigger={
               <DisclosureButton styles={playgroundOptionDisclosureButtonStyles}>
                 {section.title}
               </DisclosureButton>
             }
+            defaultExpanded={sectionIndex === 0}
             key={sectionIndex}
           >
             {renderSection(section, sectionKey)}

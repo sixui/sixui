@@ -27,6 +27,8 @@ export const playgroundStyles = stylex.create({
     padding: 24,
     flexGrow: 1,
     backgroundColor: colorSchemeTokens.surfaceContainerLowest,
+    backgroundImage: `radial-gradient(${colorSchemeTokens.outlineVariant} 0.5px, transparent 0)`,
+    backgroundSize: '10px 10px',
   },
   optionsPanel: {
     padding: 16,
