@@ -1,12 +1,12 @@
 {
-  "extends": "./tsconfig",
+  "extends": "./tsconfig.app.json",
   "compilerOptions": {
     "declaration": true,
     "declarationDir": "./dist",
-    "declarationMap": true
+    "declarationMap": true,
   },
   "exclude": [
-    "src/**/*.test.ts",
+    "src/**/*.test.ts*",
     "src/**/*.stories.tsx",
     "src/**/*.cy.tsx"
   ]
