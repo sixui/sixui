@@ -99,6 +99,7 @@ export * from './hooks/usePrevious';
 
 // helpers
 export * from './helpers/types';
+export * from './helpers/fixedForwardRef';
 export * from './helpers/colors/getTextContrastColor';
 export * from './helpers/colors/isValidHexColor';
 export * from './helpers/colors/generateThemeFromSourceColor';
