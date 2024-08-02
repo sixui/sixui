@@ -3,6 +3,7 @@ import { forwardRef } from 'react';
 import type { IPaperProps } from './Paper.types';
 import { PaperBase } from '~/components/PaperBase';
 import { getContainerTextColor, paperDynamicStyles } from './Paper.styles';
+import { commonStyles } from '~/helpers/commonStyles';
 
 // https://github.com/material-components/material-web/blob/main/labs/paper/internal/paper.ts
 
@@ -16,6 +17,8 @@ export const Paper = forwardRef<HTMLDivElement, IPaperProps>(
       corner,
       surface: surfaceProp = 'surfaceContainer',
       outlined,
+      fill,
+      expand,
       ...other
     } = props;
 
@@ -33,6 +36,8 @@ export const Paper = forwardRef<HTMLDivElement, IPaperProps>(
     return (
       <PaperBase
         sx={[
+          fill && commonStyles.fill,
+          expand && commonStyles.expand,
           surface && paperDynamicStyles.surfaceColor(surface),
           !!elevation && paperDynamicStyles.containerElevation(elevation),
           topLeftCorner &&

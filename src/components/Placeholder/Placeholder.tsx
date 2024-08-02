@@ -10,7 +10,16 @@ import { placeholderTheme } from './Placeholder.stylex';
 
 export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
   function Placeholder(props, forwardedRef) {
-    const { innerStyles, styles, sx, children, crosshairs, ...other } = props;
+    const {
+      innerStyles,
+      styles,
+      sx,
+      label,
+      children,
+      crosshairs,
+      disabled,
+      ...other
+    } = props;
 
     const componentTheme = useComponentTheme('Placeholder');
     const stylesCombinator = useMemo(
@@ -27,7 +36,7 @@ export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
         sx={[
           placeholderTheme,
           componentTheme.overridenStyles,
-          stylesCombinator('host'),
+          stylesCombinator('host', disabled && 'host$disabled'),
           sx,
         ]}
         ref={forwardedRef}
@@ -35,7 +44,8 @@ export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
         {...other}
       >
         {crosshairs ? <div {...sxf('crosshairs')} /> : null}
-        {children ? <div {...sxf('label')}>{children}</div> : null}
+        {label ? <div {...sxf('label')}>{label}</div> : null}
+        {children}
       </Paper>
     );
   },

@@ -122,12 +122,10 @@ export const DisclosureButton = forwardRef<
           checkable && 'button$checkable',
           toggleable && !checked && 'button$toggledOff',
         )}
+        styles={innerStyles?.listItem}
         innerStyles={{
-          ...innerStyles?.listItem,
-          item: [
-            disclosureButtonItemStyles,
-            ...asArray(innerStyles?.listItem?.item),
-          ],
+          ...innerStyles,
+          item: [disclosureButtonItemStyles, ...asArray(innerStyles?.item)],
         }}
         trailing={
           !toggleable && loading ? (

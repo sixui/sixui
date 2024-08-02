@@ -12,7 +12,10 @@ export const basicTemplateStyles = stylex.create({
     width: 'min-content',
     [paperBaseTokens.containerColor]: colorSchemeTokens.surfaceContainer,
     [paperBaseTokens.containerElevation]: elevationTokens.boxShadow$level2,
-    [paperBaseTokens.containerShape]: shapeTokens.corner$xs,
+    [paperBaseTokens.containerShape$topLeft]: shapeTokens.corner$xs,
+    [paperBaseTokens.containerShape$topRight]: shapeTokens.corner$xs,
+    [paperBaseTokens.containerShape$bottomRight]: shapeTokens.corner$xs,
+    [paperBaseTokens.containerShape$bottomLeft]: shapeTokens.corner$xs,
   },
   section: {
     padding: 12,

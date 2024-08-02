@@ -9,7 +9,7 @@ export type ILabeledPlaygroundDemoProps = {
 
 const styles = stylex.create({
   placeholder$field: {
-    width: 200,
+    width: 240,
     height: 56,
   },
   placeholder$control: {

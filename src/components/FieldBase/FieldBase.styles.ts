@@ -139,7 +139,6 @@ export const fieldBaseStyles = stylex.create({
   },
   section$end$withEnd: {
     minWidth: fieldBaseTokens.trailingContentMinWidth,
-    marginInlineStart: 4,
   },
   section$end$error: {
     color: {

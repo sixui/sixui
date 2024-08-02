@@ -33,7 +33,7 @@ export const colorSchemeStyles = stylex.create({
     rowGap: '1rem',
   },
   width$sm: {
-    width: 200,
+    width: 240,
   },
   width$lg: {
     width: 600,

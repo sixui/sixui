@@ -1,5 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
+import { stateTokens } from '~/themes/base/state.stylex';
 import { placeholderTokens } from './Placeholder.stylex';
 
 export type IPlaceholderStylesKey = keyof typeof placeholderStyles;
@@ -8,8 +9,9 @@ export const placeholderStyles = stylex.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: 64,
-    height: 64,
+  },
+  host$disabled: {
+    opacity: stateTokens.opacity$disabled,
   },
   crosshairs: {
     overflow: 'hidden',

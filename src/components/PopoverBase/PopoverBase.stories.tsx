@@ -32,19 +32,19 @@ const styles = stylex.create({
     backgroundColor: colorSchemeTokens.inverseSurface,
     color: colorSchemeTokens.inverseOnSurface,
     padding: 8,
-    maxWidth: 200,
+    maxWidth: 240,
   },
   cursor: {
     fill: colorSchemeTokens.inverseSurface,
   },
   paper: {
-    maxWidth: 200,
+    maxWidth: 240,
   },
   paperInner: {
     padding: '1rem',
   },
   padding: {
-    padding: 100,
+    padding: 120,
   },
 });
 

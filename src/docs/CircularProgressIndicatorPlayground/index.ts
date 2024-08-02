@@ -1,1 +1,1 @@
-export * from './TemplatePlayground';
+export * from './CircularProgressIndicatorPlayground';

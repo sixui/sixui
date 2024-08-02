@@ -15,7 +15,7 @@ export type IIconButtonVariant =
 
 export type IIconButtonOwnProps = IOmit<
   IButtonOwnProps,
-  'icon' | 'variant' | 'trailingIcon'
+  'icon' | 'variant' | 'trailingIcon' | 'loadingText'
 > &
   IContainerProps<IIconButtonStylesKey> &
   Pick<React.AriaAttributes, 'aria-label'> & {

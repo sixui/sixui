@@ -50,21 +50,29 @@ const PaperWithContent: React.FC<IPaperProps> = ({ children, ...props }) => (
   </Paper>
 );
 
+const corners: Array<IPaperProps['corner']> = [
+  undefined,
+  'xs',
+  'sm',
+  'md',
+  'lg',
+  'xl',
+  'full',
+];
+
 export const Corners: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={PaperWithContent}
       props={props}
-      rows={(
-        [undefined, 'xs', 'sm', 'md', 'lg', 'xl', 'full'] as Array<
-          IPaperProps['corner']
-        >
-      ).map((corner) => ({
-        legend: `Corner (${corner ?? 'none'})`,
+      rows={corners.map((corner) => ({
+        legend: `Corner (${(corner as string) ?? 'none'})`,
         props: {
           outlined: true,
           corner,
-          children: capitalizeFirstLetter(`Corner ${corner ?? 'square'}`),
+          children: capitalizeFirstLetter(
+            `Corner ${(corner as string) ?? 'square'}`,
+          ),
         },
       }))}
     />

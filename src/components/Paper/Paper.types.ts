@@ -33,4 +33,6 @@ export type IPaperProps = IContainerProps &
     corner?: IPaperCorner | Partial<Record<IPaperCornerPosition, IPaperCorner>>;
     surface?: IPaperColor;
     outlined?: boolean;
+    fill?: boolean;
+    expand?: boolean;
   };

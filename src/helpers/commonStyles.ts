@@ -61,4 +61,11 @@ export const commonStyles = stylex.create({
   gridTemplateColumns: (gridTemplateColumns: string) => ({
     gridTemplateColumns,
   }),
+  fill: {
+    flexGrow: 1,
+  },
+  expand: {
+    width: '100%',
+    height: '100%',
+  },
 });

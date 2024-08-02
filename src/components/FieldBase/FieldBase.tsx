@@ -117,8 +117,8 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
   const hasEnd = !!trailingIcon || !!end;
   const hasLabel = !!label;
 
-  const wasFocused = usePrevious(focused);
-  const wasPopulated = usePrevious(populated);
+  const wasFocused = usePrevious(!!focused);
+  const wasPopulated = usePrevious(!!populated);
 
   const getLabelKeyframes = useCallback(() => {
     const floatingLabelEl = floatingLabelRef.current;
@@ -207,15 +207,15 @@ export const FieldBase: IFieldBase = forwardRef(function FieldBase<
       //
       // Re-calculating the animation each time will prevent any visual glitches
       // from appearing.
-      // TODO(b/241113345): use animation tokens
+      // TODO: use animation tokens
       labelAnimationRef.current = floatingLabelRef.current?.animate(
         getLabelKeyframes(),
         {
           duration: 150,
           easing: EASING.STANDARD,
-          // To avoid any glitch, the target will retain the computed values set by the last
-          // keyframe encountered during execution.
-          // See https://developer.mozilla.org/en-US/docs/Web/CSS/animation-fill-mode#forwards
+          // To avoid any glitch, the target will retain the computed values set
+          // by the last keyframe encountered during execution. See
+          // https://developer.mozilla.org/en-US/docs/Web/CSS/animation-fill-mode#forwards
           fill: 'forwards',
         },
       );

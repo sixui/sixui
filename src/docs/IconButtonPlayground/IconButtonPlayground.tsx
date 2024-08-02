@@ -75,20 +75,6 @@ export const iconbuttonPlaygroundSections: IPlaygroundSections<IIconButtonPlaygr
             off: true,
           },
         },
-        {
-          label: 'Loading text',
-          input: {
-            type: 'string',
-            value: 'Wait...',
-            targetProp: 'loadingText',
-          },
-          modifiers: {
-            off: true,
-          },
-          getModifiers: (sectionProps) => ({
-            disabled: !sectionProps?.iconButton.loading,
-          }),
-        },
       ],
     },
   };

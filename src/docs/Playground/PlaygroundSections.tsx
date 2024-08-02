@@ -12,6 +12,7 @@ import { Disclosure } from '~/components/Disclosure';
 import { DisclosureButton } from '~/components/DisclosureButton';
 import { Typography } from '~/components/Typography';
 import { PlaygroundOption } from './PlaygroundOption';
+import { playgroundOptionDisclosureButtonStyles } from './PlaygroundSections.styles';
 
 export const PlaygroundSections = fixedForwardRef(function PlaygroundSections<
   TSectionsProps extends Record<string, object>,
@@ -85,7 +86,11 @@ export const PlaygroundSections = fixedForwardRef(function PlaygroundSections<
           </div>
         ) : (
           <Disclosure
-            trigger={<DisclosureButton>{section.title}</DisclosureButton>}
+            trigger={
+              <DisclosureButton styles={playgroundOptionDisclosureButtonStyles}>
+                {section.title}
+              </DisclosureButton>
+            }
             key={sectionIndex}
           >
             {renderSection(section, sectionKey)}

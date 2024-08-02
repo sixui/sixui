@@ -108,7 +108,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
 
   const wasChecked = usePrevious(checked) ?? false;
   const wasIndeterminate = usePrevious(indeterminate) ?? false;
-  const wasVisuallyDisabled = usePrevious(visuallyDisabled) ?? false;
+  const wasVisuallyDisabled = usePrevious(!!visuallyDisabled);
 
   const prevNone = !wasChecked && !wasIndeterminate;
   const prevUnselected = prevNone;

@@ -96,7 +96,7 @@ export const labeledPlaygroundSections: IPlaygroundSections<ILabeledPlaygroundDe
           }),
         },
         {
-          label: 'Error',
+          label: 'Has error',
           props: {
             hasError: true,
           },
