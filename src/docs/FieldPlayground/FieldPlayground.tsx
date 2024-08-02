@@ -1,9 +1,9 @@
 import type { IPlaygroundSections } from '~/docs/Playground';
 import { Playground } from '~/docs/Playground';
-import { fieldbasePlaygroundSections } from '~/docs/FieldBasePlayground';
+import { fieldBasePlaygroundSections } from '~/docs/FieldBasePlayground';
 import {
   FieldPlaygroundDemo,
-  IFieldPlaygroundDemoProps,
+  type IFieldPlaygroundDemoProps,
 } from './FieldPlaygroundDemo';
 
 export const fieldPlaygroundSections: IPlaygroundSections<IFieldPlaygroundDemoProps> =
@@ -24,7 +24,7 @@ export const fieldPlaygroundSections: IPlaygroundSections<IFieldPlaygroundDemoPr
         },
       ],
     },
-    ...fieldbasePlaygroundSections,
+    ...fieldBasePlaygroundSections,
   };
 
 export const FieldPlayground: React.FC = (props) => {

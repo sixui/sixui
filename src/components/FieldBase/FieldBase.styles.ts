@@ -53,7 +53,7 @@ export const fieldBaseStyles = stylex.create({
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: '0%',
-    minHeight: fieldBaseTokens.containerHeight,
+    minHeight: fieldBaseTokens.containerMinHeight,
     maxHeight: '100%',
     minWidth: 'min-content',
     position: 'relative',

@@ -35,7 +35,6 @@ export const TextAreaField = forwardRef<HTMLDivElement, ITextAreaFieldProps>(
       <TextFieldBase<HTMLTextAreaElement, ITextAreaFieldProps>
         {...other}
         textArea
-        resizable
         ref={forwardedRef}
         inputRef={inputHandleRef}
         onClear={() => {

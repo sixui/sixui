@@ -43,50 +43,46 @@ export type ITextFieldBaseRenderProps<
 
 export type ITextFieldBaseOwnProps<
   TElement extends HTMLElement,
-  TChildrenProps extends object,
-> = IControlledValueProps<string | number | ReadonlyArray<string>, TElement> & {
-  innerStyles?: {
-    fieldBase?: IZeroOrMore<ICompiledStyles<IFieldBaseStylesKey>>;
+  TChildrenProps extends object = object,
+> = IContainerProps<ITextFieldBaseStylesKey> &
+  IControlledValueProps<string | number | ReadonlyArray<string>, TElement> &
+  IOmit<IFieldBaseOwnProps, 'styles' | 'children'> &
+  IForwardableProps & {
+    innerStyles?: {
+      fieldBase?: IZeroOrMore<ICompiledStyles<IFieldBaseStylesKey>>;
+    };
+
+    /**
+     * When true, a clear icon button will appear on the right side of the input.
+     */
+    clearable?: boolean;
+
+    /**
+     * The icon of the clear icon button.
+     */
+    clearIcon?: React.ReactNode;
+
+    /**
+     * A ref to the input element, ie. a HTMLInputElement or
+     * HTMLTextAreaElement.
+     */
+    inputRef?: React.Ref<TElement>;
+
+    /**
+     * A callback that is called when the clear icon button is clicked.
+     */
+    onClear?: () => void;
+
+    /**
+     * Custom renderer for the input element.
+     */
+    inputRenderer: IRendererWithForwardedProps<
+      ITextFieldBaseRenderProps<TElement, TChildrenProps>,
+      React.InputHTMLAttributes<TElement>
+    >;
   };
-
-  /**
-   * When true, a clear icon button will appear on the right side of the input.
-   */
-  clearable?: boolean;
-
-  /**
-   * The icon of the clear icon button.
-   */
-  clearIcon?: React.ReactNode;
-
-  /**
-   * A ref to the input element, ie. a HTMLInputElement or
-   * HTMLTextAreaElement.
-   */
-  inputRef?: React.Ref<TElement>;
-
-  /**
-   * A callback that is called when the clear icon button is clicked.
-   */
-  onClear?: () => void;
-
-  /**
-   * Custom renderer for the input element.
-   */
-  inputRenderer: IRendererWithForwardedProps<
-    ITextFieldBaseRenderProps<TElement, TChildrenProps>,
-    React.InputHTMLAttributes<TElement>
-  >;
-};
-
-type ITextFieldBaseInheritedProps<TChildrenProps extends object> =
-  IContainerProps<ITextFieldBaseStylesKey> &
-    IForwardableProps &
-    IOmit<IFieldBaseOwnProps, 'styles' | 'children'> &
-    TChildrenProps;
 
 export type ITextFieldBaseProps<
   TElement extends HTMLElement,
   TChildrenProps extends object = object,
-> = ITextFieldBaseInheritedProps<TChildrenProps> &
-  ITextFieldBaseOwnProps<TElement, TChildrenProps>;
+> = ITextFieldBaseOwnProps<TElement, TChildrenProps>;

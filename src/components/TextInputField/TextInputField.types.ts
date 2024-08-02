@@ -66,7 +66,7 @@ export type ITextInputFieldOwnProps = IOmit<
 };
 
 export type ITextInputFieldProps = Omit<
-  React.InputHTMLAttributes<HTMLInputElement>,
+  React.ComponentPropsWithoutRef<'input'>,
   keyof ITextInputFieldOwnProps
 > &
   ITextInputFieldOwnProps;

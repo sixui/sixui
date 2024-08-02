@@ -6,14 +6,14 @@ import { Playground } from '~/docs/Playground';
 import { Placeholder, type IPlaceholderProps } from '~/components/Placeholder';
 import {
   FieldBasePlaygroundDemo,
-  IFieldBasePlaygroundDemoProps,
+  type IFieldBasePlaygroundDemoProps,
 } from './FieldBasePlaygroundDemo';
 
-const FieldBasePlaceholder: React.FC<IPlaceholderProps> = (props) => (
+export const FieldBasePlaceholder: React.FC<IPlaceholderProps> = (props) => (
   <Placeholder {...props} surface='onSurface' disabled expand />
 );
 
-export const fieldbasePlaygroundSections: IPlaygroundSections<IFieldBasePlaygroundDemoProps> =
+export const fieldBasePlaygroundSections: IPlaygroundSections<IFieldBasePlaygroundDemoProps> =
   {
     fieldBase: {
       title: 'Field Base',
@@ -170,7 +170,7 @@ export const FieldBasePlayground: React.FC = (props) => {
   return (
     <Playground<IFieldBasePlaygroundDemoProps>
       {...props}
-      defaultSections={fieldbasePlaygroundSections}
+      defaultSections={fieldBasePlaygroundSections}
       componentRenderer={(props) => <FieldBasePlaygroundDemo {...props} />}
     />
   );

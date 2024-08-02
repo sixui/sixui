@@ -2,7 +2,7 @@ import stylex from '@stylexjs/stylex';
 
 import type { IOmit } from '~/helpers/types';
 import type { IFieldBaseOwnProps } from '~/components/FieldBase';
-import { Field, type IFieldProps } from '~/components/Field';
+import { Field, type IFieldOwnProps } from '~/components/Field';
 
 const styles = stylex.create({
   host: {
@@ -12,7 +12,7 @@ const styles = stylex.create({
 
 export type IFieldPlaygroundDemoProps = {
   fieldBase: IOmit<IFieldBaseOwnProps, 'children' | 'styles'>;
-  field: IFieldProps;
+  field: IFieldOwnProps;
 };
 
 export const FieldPlaygroundDemo: React.FC<IFieldPlaygroundDemoProps> = (
