@@ -1,3 +1,19 @@
+# v0.0.402 (Fri Aug 02 2024)
+
+#### 🐛 Bug Fix
+
+- Feat/playground [#38](https://github.com/sixui/sixui/pull/38) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### ⚠️ Pushed to `main`
+
+- fix: using correct husky syntax for hook scripts ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.401 (Sun Jul 28 2024)
 
 #### ⚠️ Pushed to `main`
