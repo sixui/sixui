@@ -72,11 +72,12 @@ export const PlaygroundSections = fixedForwardRef(function PlaygroundSections<
               {section.options.map((option, optionIndex) => (
                 <PlaygroundOption<TSectionsProps>
                   key={optionIndex}
-                  sectionsProps={sectionsProps}
                   option={option}
                   onChange={(newOption) =>
                     handleOptionChange(option, newOption)
                   }
+                  sectionKey={sectionKey}
+                  sectionsProps={sectionsProps}
                 />
               ))}
             </div>

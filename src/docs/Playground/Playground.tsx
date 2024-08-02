@@ -30,7 +30,14 @@ export const Playground = fixedForwardRef(function Playground<
   props: IPlaygroundProps<TSectionsProps>,
   forwardedRef?: React.Ref<HTMLDivElement>,
 ) {
-  const { styles, sx, componentRenderer, defaultSections, ...other } = props;
+  const {
+    styles,
+    sx,
+    componentRenderer,
+    defaultSections,
+    initialProps,
+    ...other
+  } = props;
 
   const componentTheme = useComponentTheme('Playground');
   const stylesCombinator = useMemo(
@@ -48,6 +55,7 @@ export const Playground = fixedForwardRef(function Playground<
     (sectionPropsAcc, sectionKey) => {
       const section = sections[sectionKey];
       const sectionProps = {
+        ...initialProps?.[sectionKey],
         ...section.props,
         ...section.options.reduce((optionPropsAcc, option) => {
           if (option.modifiers?.disabled || option.modifiers?.off) {
@@ -63,7 +71,7 @@ export const Playground = fixedForwardRef(function Playground<
               ...sectionPropsAcc,
               [sectionKey]: optionPropsAcc,
             }),
-            ...(option.input
+            ...(option.input?.value
               ? {
                   [option.input.targetProp]: option.input.getValue
                     ? option.input.getValue(option.input.value)

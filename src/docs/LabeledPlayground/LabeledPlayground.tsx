@@ -25,7 +25,6 @@ export const labeledPlaygroundSections: IPlaygroundSections<ILabeledPlaygroundDe
           label: 'Label position',
           input: {
             type: 'string',
-            value: 'top',
             items: [
               {
                 label: 'Top',
@@ -171,6 +170,11 @@ export const LabeledPlayground: React.FC = (props) => {
       {...props}
       defaultSections={labeledPlaygroundSections}
       componentRenderer={(props) => <LabeledPlaygroundDemo {...props} />}
+      initialProps={{
+        labeled: {
+          labelPosition: 'top',
+        },
+      }}
     />
   );
 };

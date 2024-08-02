@@ -18,7 +18,7 @@ export const PlaygroundOption = fixedForwardRef(function PlaygroundOption<
   props: IPlaygroundOptionProps<TSectionsProps>,
   forwardedRef?: React.Ref<HTMLDivElement>,
 ) {
-  const { sx, sectionsProps, option, onChange, ...other } = props;
+  const { sx, option, onChange, sectionKey, sectionsProps, ...other } = props;
 
   const componentTheme = useComponentTheme('PlaygroundOption');
 
@@ -50,7 +50,11 @@ export const PlaygroundOption = fixedForwardRef(function PlaygroundOption<
           innerStyles={{
             fieldBase: playgroundOptionFieldBaseStyles,
           }}
-          value={input?.value ?? ''}
+          value={
+            input?.value ??
+            (sectionsProps[sectionKey][input.targetProp] as string) ??
+            ''
+          }
           onChange={(event) =>
             option.input ? handleValueChange(event.target.value) : undefined
           }

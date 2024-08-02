@@ -1,6 +1,9 @@
+import stylex from '@stylexjs/stylex';
+
 import type { IOmit } from '~/helpers/types';
 import { Checkbox, type ICheckboxOwnProps } from '~/components/Checkbox';
 import { Labeled, type ILabeledOwnProps } from '~/components/Labeled';
+import { commonStyles } from '~/helpers/commonStyles';
 
 export type ICheckboxPlaygroundDemoProps = {
   checkbox: IOmit<ICheckboxOwnProps, 'styles'>;
@@ -10,26 +13,19 @@ export type ICheckboxPlaygroundDemoProps = {
 export const CheckboxPlaygroundDemo: React.FC<ICheckboxPlaygroundDemoProps> = (
   props,
 ) => (
-  <Labeled label='Extras'>
+  <div {...stylex.props(commonStyles.verticalLayout, commonStyles.gap$xl)}>
+    <Labeled {...props.checkbox} {...props.labeled} as={Checkbox} />
     <Labeled
       {...props.checkbox}
       {...props.labeled}
-      label='Pickles'
-      as={Checkbox}
-    />
-    <Labeled
-      {...props.checkbox}
-      {...props.labeled}
-      label='Tomato'
       as={Checkbox}
       defaultIndeterminate
     />
     <Labeled
       {...props.checkbox}
       {...props.labeled}
-      label='Lettuce'
       as={Checkbox}
       defaultChecked
     />
-  </Labeled>
+  </div>
 );
