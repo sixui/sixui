@@ -31,7 +31,7 @@ export const radioPlaygroundSections: IPlaygroundSections<IRadioPlaygroundDemoPr
         },
       ],
     },
-    labeled: labeledPlaygroundSections.labeled,
+    ...labeledPlaygroundSections,
   };
 
 export const RadioPlayground: React.FC = (props) => {

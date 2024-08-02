@@ -31,7 +31,7 @@ export const checkboxPlaygroundSections: IPlaygroundSections<ICheckboxPlayground
         },
       ],
     },
-    labeled: labeledPlaygroundSections.labeled,
+    ...labeledPlaygroundSections,
   };
 
 export const CheckboxPlayground: React.FC = (props) => {

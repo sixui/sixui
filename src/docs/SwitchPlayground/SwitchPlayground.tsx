@@ -31,7 +31,7 @@ export const switchPlaygroundSections: IPlaygroundSections<ISwitchPlaygroundDemo
         },
       ],
     },
-    labeled: labeledPlaygroundSections.labeled,
+    ...labeledPlaygroundSections,
   };
 
 export const SwitchPlayground: React.FC = (props) => {

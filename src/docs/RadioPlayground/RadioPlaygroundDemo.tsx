@@ -1,14 +1,14 @@
 import stylex from '@stylexjs/stylex';
 
 import type { IOmit } from '~/helpers/types';
+import type { ILabeledPlaygroundDemoProps } from '~/docs/LabeledPlayground/LabeledPlaygroundDemo';
 import { RadioGroup } from '~/components/RadioGroup';
 import { Radio, type IRadioOwnProps } from '~/components/Radio';
-import { Labeled, type ILabeledOwnProps } from '~/components/Labeled';
+import { Labeled } from '~/components/Labeled';
 import { commonStyles } from '~/helpers/commonStyles';
 
-export type IRadioPlaygroundDemoProps = {
+export type IRadioPlaygroundDemoProps = ILabeledPlaygroundDemoProps & {
   radio: IOmit<IRadioOwnProps, 'styles'>;
-  labeled: IOmit<ILabeledOwnProps, 'styles'>;
 };
 
 export const RadioPlaygroundDemo: React.FC<IRadioPlaygroundDemoProps> = (
