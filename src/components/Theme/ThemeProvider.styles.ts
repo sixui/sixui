@@ -16,9 +16,11 @@ import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 export const themeProviderStyles = stylex.create({
   wrapper: {
     scrollbarWidth: 'thin',
-    scrollbarColor: {
-      '@media (pointer: fine)': `${colorSchemeTokens.primary} transparent`,
-    },
+    fontFamily: typeScaleTokens.bodyFont$md,
+    fontSize: typeScaleTokens.bodySize$md,
+    fontWeight: typeScaleTokens.bodyWeight$md,
+    lineHeight: typeScaleTokens.bodyLineHeight$md,
+    letterSpacing: typeScaleTokens.bodyLetterSpacing$md,
   },
   dynamicScheme: (roles: IColorScheme) => ({
     [colorSchemeTokens.primary]: roles.primary,

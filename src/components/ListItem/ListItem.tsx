@@ -198,6 +198,16 @@ export const ListItem: IListItem = forwardRef(function ListItem<
 
   return (
     <Component
+      role={role}
+      type={type === 'button' ? 'button' : undefined}
+      ref={handleRef}
+      tabIndex={disabled || !isInteractive ? -1 : 0}
+      disabled={disabled}
+      aria-current={selected}
+      href={href}
+      target={target}
+      onClick={onClick}
+      {...other}
       {...sxf(
         listItemTheme,
         componentTheme.overridenStyles,
@@ -210,16 +220,6 @@ export const ListItem: IListItem = forwardRef(function ListItem<
         !end && 'host$trailingSpace',
         sx,
       )}
-      role={role}
-      type={type === 'button' ? 'button' : undefined}
-      ref={handleRef}
-      tabIndex={disabled || !isInteractive ? -1 : 0}
-      disabled={disabled}
-      aria-current={selected}
-      href={href}
-      target={target}
-      onClick={onClick}
-      {...other}
     >
       <Item
         styles={[listItemItemStyles, ...asArray(innerStyles?.item)]}

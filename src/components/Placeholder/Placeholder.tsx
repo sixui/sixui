@@ -36,7 +36,7 @@ export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
         sx={[
           placeholderTheme,
           componentTheme.overridenStyles,
-          stylesCombinator('host', disabled && 'host$disabled'),
+          stylesCombinator('host', disabled ? 'host$disabled' : null),
           sx,
         ]}
         ref={forwardedRef}
