@@ -30,6 +30,7 @@ export const listStyles = stylex.create({
     flexDirection: 'column',
     borderRadius: 'inherit',
     overflowY: 'auto',
+    gap: listTokens.itemSpace,
   },
   content$empty: {
     paddingTop: 0,
