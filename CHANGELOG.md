@@ -1,3 +1,15 @@
+# v0.0.406 (Sat Aug 03 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(List): itemSpace token ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.405 (Sat Aug 03 2024)
 
 #### ⚠️ Pushed to `main`
