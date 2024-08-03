@@ -8,7 +8,8 @@
   "exports": {
     ".": "./dist/index.js",
     "./styles.css": "./dist/styles/main.css",
-    "./*.stylex": "./dist/*.stylex.js"
+    "./*.stylex": "./dist/*.stylex.js",
+    "./*.json": "./dist/*.json"
   },
   "type": "module",
   "types": "./dist/index.d.ts",
