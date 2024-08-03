@@ -1,3 +1,15 @@
+# v0.0.408 (Sat Aug 03 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: exporting json files ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.407 (Sat Aug 03 2024)
 
 #### ⚠️ Pushed to `main`
