@@ -1,3 +1,15 @@
+# v0.0.404 (Sat Aug 03 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: ...sxf() props are prevalent over other props ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.403 (Fri Aug 02 2024)
 
 #### ⚠️ Pushed to `main`
