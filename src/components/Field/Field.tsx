@@ -48,9 +48,9 @@ export const Field: IField = forwardRef(function Field<
     <FieldBase
       sx={[componentTheme.overridenStyles, sx]}
       styles={innerStyles?.fieldBase}
-      ref={forwardedRef}
       populated={populated}
       {...other}
+      ref={forwardedRef}
     >
       {children ? (
         <div {...sxf('value')} data-cy='value'>

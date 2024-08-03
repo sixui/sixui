@@ -27,6 +27,7 @@ export const CardContent = forwardRef<HTMLDivElement, ICardContentProps>(
 
     return (
       <div
+        {...other}
         {...sxf(
           cardContentTheme,
           componentTheme.overridenStyles,
@@ -35,7 +36,6 @@ export const CardContent = forwardRef<HTMLDivElement, ICardContentProps>(
           sx,
         )}
         ref={forwardedRef}
-        {...other}
       >
         {children}
       </div>

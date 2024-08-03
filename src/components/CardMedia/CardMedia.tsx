@@ -24,6 +24,8 @@ export const CardMedia = forwardRef<HTMLDivElement, ICardMediaProps>(
 
     return (
       <div
+        role='img'
+        {...other}
         {...sxf(
           cardMediaTheme,
           componentTheme.overridenStyles,
@@ -32,9 +34,7 @@ export const CardMedia = forwardRef<HTMLDivElement, ICardMediaProps>(
           src ? commonStyles.backgroundImage(src) : undefined,
           sx,
         )}
-        role='img'
         ref={forwardedRef}
-        {...other}
       >
         {children}
       </div>

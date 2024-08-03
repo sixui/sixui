@@ -54,8 +54,8 @@ export const Paper = forwardRef<HTMLDivElement, IPaperProps>(
         ]}
         styles={innerStyles?.paperBase}
         innerStyles={innerStyles}
-        ref={forwardedRef}
         {...other}
+        ref={forwardedRef}
       >
         {children}
       </PaperBase>

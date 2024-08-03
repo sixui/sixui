@@ -98,8 +98,8 @@ export const Playground = fixedForwardRef(function Playground<
 
   return (
     <div
-      {...sxf(componentTheme.overridenStyles, 'host', sx)}
       {...other}
+      {...sxf(componentTheme.overridenStyles, 'host', sx)}
       ref={forwardedRef}
     >
       <div {...sxf('componentPanel')}>

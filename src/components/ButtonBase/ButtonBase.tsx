@@ -65,6 +65,11 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
 
   return (
     <Component
+      href={href}
+      role='button'
+      tabIndex={visuallyDisabled ? -1 : 0}
+      type={type}
+      {...other}
       {...sxf(
         'host',
         visuallyDisabled && 'host$disabled',
@@ -72,11 +77,6 @@ export const ButtonBase: IButtonBase = forwardRef(function ButtonBase<
         sx,
       )}
       ref={handleRef}
-      href={href}
-      role='button'
-      tabIndex={visuallyDisabled ? -1 : 0}
-      type={type}
-      {...other}
     >
       <span {...sxf('touchTarget')} />
       <Elevation styles={innerStyles?.elevation} disabled={visuallyDisabled} />

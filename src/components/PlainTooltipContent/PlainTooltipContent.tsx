@@ -25,6 +25,7 @@ export const PlainTooltipContent = forwardRef<
 
   return (
     <div
+      {...other}
       {...sxf(
         plainTooltipContentTheme,
         componentTheme.overridenStyles,
@@ -32,7 +33,6 @@ export const PlainTooltipContent = forwardRef<
         sx,
       )}
       ref={forwardedRef}
-      {...other}
     >
       {renderCursor ? renderCursor(sxf('cursor')) : null}
       <div {...sxf('supportingText')}>{supportingText}</div>

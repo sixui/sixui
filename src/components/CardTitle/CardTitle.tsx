@@ -23,9 +23,9 @@ export const CardTitle = forwardRef<HTMLDivElement, ICardTitleProps>(
 
     return (
       <div
+        {...other}
         {...sxf(cardTitleTheme, componentTheme.overridenStyles, 'host', sx)}
         ref={forwardedRef}
-        {...other}
       >
         <div {...sxf('header')}>
           {headline ? <div {...sxf('headline')}>{headline}</div> : null}

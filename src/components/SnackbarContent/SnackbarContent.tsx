@@ -44,6 +44,7 @@ export const SnackbarContent = forwardRef<
 
   return (
     <div
+      {...other}
       {...sxf(
         snackbarContentTheme,
         componentTheme.overridenStyles,
@@ -56,7 +57,6 @@ export const SnackbarContent = forwardRef<
         sx,
       )}
       ref={forwardedRef}
-      {...other}
     >
       <Elevation
         styles={[

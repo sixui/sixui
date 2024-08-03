@@ -43,6 +43,7 @@ export const IndeterminateCircularProgressIndicator = forwardRef<
 
   return (
     <div
+      {...other}
       {...sxf(
         circularProgressIndicatorTheme,
         componentTheme.overridenStyles,
@@ -51,7 +52,6 @@ export const IndeterminateCircularProgressIndicator = forwardRef<
         sx,
       )}
       ref={forwardedRef}
-      {...other}
     >
       <div
         {...sxf('layer', 'progress', `progress$${size}`)}

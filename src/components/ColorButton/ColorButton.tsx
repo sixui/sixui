@@ -87,8 +87,8 @@ export const ColorButton: IColorButton = forwardRef(function ColorButton<
           ...asArray(innerStyles?.focusRing),
         ],
       }}
-      ref={forwardedRef}
       {...other}
+      ref={forwardedRef}
     >
       <ColorTag
         styles={[colorButtonColorTagStyles, ...asArray(innerStyles?.colorTag)]}

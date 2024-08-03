@@ -51,8 +51,8 @@ export const HtmlSelect = forwardRef<HTMLSelectElement, IHtmlSelectProps>(
         visualState={visualState}
       >
         <select
-          {...sxf('select')}
           {...other}
+          {...sxf('select')}
           ref={selectHandleRef}
           multiple={false}
         >

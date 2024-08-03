@@ -280,6 +280,12 @@ export const Chip: IChip = forwardRef(function Chip<
         ) : null}
 
         <Component
+          href={href}
+          onClick={(href ?? !onClick) ? undefined : handleClick}
+          role='button'
+          tabIndex={!interactive || other.disabled ? -1 : 0}
+          onKeyDown={handleKeyDown}
+          {...other}
           {...sxf(
             'action',
             'action$primary',
@@ -288,12 +294,6 @@ export const Chip: IChip = forwardRef(function Chip<
             avatar && 'action$primary$avatar',
           )}
           ref={primaryHandleRef}
-          href={href}
-          onClick={(href ?? !onClick) ? undefined : handleClick}
-          role='button'
-          tabIndex={!interactive || other.disabled ? -1 : 0}
-          onKeyDown={handleKeyDown}
-          {...other}
         >
           {hasLeading ? (
             <div

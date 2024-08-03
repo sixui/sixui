@@ -200,7 +200,6 @@ export const ListItem: IListItem = forwardRef(function ListItem<
     <Component
       role={role}
       type={type === 'button' ? 'button' : undefined}
-      ref={handleRef}
       tabIndex={disabled || !isInteractive ? -1 : 0}
       disabled={disabled}
       aria-current={selected}
@@ -220,6 +219,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
         !end && 'host$trailingSpace',
         sx,
       )}
+      ref={handleRef}
     >
       <Item
         styles={[listItemItemStyles, ...asArray(innerStyles?.item)]}

@@ -90,16 +90,7 @@ export const Card: ICard = forwardRef(function Card<
   return (
     <CardContext.Provider value={context}>
       <Component
-        {...sxf(
-          cardTheme,
-          componentTheme.overridenStyles,
-          'host',
-          actionable && 'host$actionable',
-          disabled && 'host$disabled',
-          sx,
-        )}
         sx={sx}
-        ref={handleRef}
         href={actionable && !dragged ? href : undefined}
         onClick={actionable && !dragged ? onClick : undefined}
         onKeyDown={(event: React.KeyboardEvent<HTMLElement>) => {
@@ -118,6 +109,15 @@ export const Card: ICard = forwardRef(function Card<
         tabIndex={disabled || !actionable ? -1 : 0}
         disabled={disabled}
         {...other}
+        {...sxf(
+          cardTheme,
+          componentTheme.overridenStyles,
+          'host',
+          actionable && 'host$actionable',
+          disabled && 'host$disabled',
+          sx,
+        )}
+        ref={handleRef}
       >
         <Elevation
           styles={[cardElevationStyles, ...asArray(innerStyles?.elevation)]}

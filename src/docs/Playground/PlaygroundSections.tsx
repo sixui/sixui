@@ -62,13 +62,13 @@ export const PlaygroundSections = fixedForwardRef(function PlaygroundSections<
 
   return (
     <div
+      {...other}
       {...stylex.props(
         componentTheme.overridenStyles,
         commonStyles.verticalLayout,
         commonStyles.gap$2xl,
         sx,
       )}
-      {...other}
       ref={forwardedRef}
     >
       {Object.keys(sections).map((key, sectionIndex) => {

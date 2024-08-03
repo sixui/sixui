@@ -176,8 +176,6 @@ export const Radio: IRadio = forwardRef(function Radio<
         </svg>
 
         <Component
-          {...sxf('input')}
-          ref={handleRef}
           name={name}
           type='radio'
           checked={checked}
@@ -186,6 +184,8 @@ export const Radio: IRadio = forwardRef(function Radio<
           data-cy={`${dataCy}-${value}`}
           id={labeledContext?.id}
           {...other}
+          {...sxf('input')}
+          ref={handleRef}
         />
       </div>
     </div>

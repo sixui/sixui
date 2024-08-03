@@ -48,13 +48,13 @@ export const PolymorphicTemplate: IPolymorphicTemplate = forwardRef(
 
     return (
       <Component
+        {...other}
         sx={[
           polymorphicTemplateTheme,
           componentTheme.overridenStyles,
           styleCombinator('host'),
           sx,
         ]}
-        {...other}
         ref={forwardedRef}
       >
         {children}

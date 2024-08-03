@@ -35,6 +35,7 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
         }}
       >
         <div
+          {...other}
           {...stylex.props([
             theme?.schemes &&
               themeProviderStyles.dynamicScheme(theme.schemes.light),
@@ -47,7 +48,6 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
             themeProviderStyles.wrapper,
             sx,
           ])}
-          {...other}
         >
           {children}
         </div>

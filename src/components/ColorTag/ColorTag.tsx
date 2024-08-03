@@ -51,6 +51,7 @@ export const ColorTag = forwardRef<HTMLDivElement, IColorTagProps>(
 
     return (
       <div
+        {...other}
         {...sxf(
           colorTagTheme,
           componentTheme.overridenStyles,
@@ -65,7 +66,6 @@ export const ColorTag = forwardRef<HTMLDivElement, IColorTagProps>(
             : undefined,
           sx,
         )}
-        {...other}
         ref={forwardedRef}
       >
         {icon ? (

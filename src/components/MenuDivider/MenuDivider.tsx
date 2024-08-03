@@ -18,8 +18,8 @@ export const MenuDivider = forwardRef<HTMLDivElement, IDividerProps>(
     return (
       <Divider
         sx={[componentTheme.overridenStyles, stylesCombinator('host'), sx]}
-        ref={forwardedRef}
         {...other}
+        ref={forwardedRef}
       />
     );
   },

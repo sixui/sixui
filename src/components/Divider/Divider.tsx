@@ -37,9 +37,9 @@ export const Divider = forwardRef<HTMLDivElement, IDividerProps>(
 
     return (
       <div
+        {...other}
         {...sxf(dividerTheme, componentTheme.overridenStyles, 'host', sx)}
         ref={forwardedRef}
-        {...other}
       >
         {children ? (
           <>

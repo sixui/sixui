@@ -45,6 +45,7 @@ export const FloatingTransition = forwardRef<
 
   return (
     <div
+      {...other}
       {...sxf(
         componentTheme.overridenStyles,
         pattern
@@ -64,7 +65,6 @@ export const FloatingTransition = forwardRef<
         ),
         sx,
       )}
-      {...other}
       ref={forwardedRef}
     >
       {children}

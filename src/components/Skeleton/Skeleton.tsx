@@ -48,6 +48,7 @@ export const Skeleton = forwardRef<HTMLDivElement, ISkeletonProps>(
       children
     ) : (
       <div
+        {...other}
         {...sxf(
           skeletonTheme,
           componentTheme.overridenStyles,
@@ -65,7 +66,6 @@ export const Skeleton = forwardRef<HTMLDivElement, ISkeletonProps>(
           sx,
         )}
         ref={forwardedRef}
-        {...other}
       >
         <div {...sxf('hidden')}>{children ?? '%'}</div>
       </div>

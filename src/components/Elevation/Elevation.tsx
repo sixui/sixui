@@ -23,6 +23,8 @@ export const Elevation = forwardRef<HTMLDivElement, IElevationProps>(
 
     return (
       <div
+        aria-hidden
+        {...other}
         {...sxf(
           elevationTheme,
           componentTheme.overridenStyles,
@@ -31,8 +33,6 @@ export const Elevation = forwardRef<HTMLDivElement, IElevationProps>(
           disabled && 'host$disabled',
           sx,
         )}
-        aria-hidden
-        {...other}
         ref={forwardedRef}
       />
     );

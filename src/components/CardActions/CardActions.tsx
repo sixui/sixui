@@ -22,9 +22,9 @@ export const CardActions = forwardRef<HTMLDivElement, ICardActionsProps>(
 
     return (
       <div
+        {...other}
         {...sxf(componentTheme.overridenStyles, 'host', sx)}
         ref={forwardedRef}
-        {...other}
       >
         {children}
       </div>

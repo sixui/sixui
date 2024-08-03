@@ -108,6 +108,7 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
 
     return (
       <div
+        {...other}
         {...sxf(
           stepConnectorTheme,
           componentTheme.overridenStyles,
@@ -116,7 +117,6 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
           sx,
         )}
         ref={forwardedRef}
-        {...other}
       >
         <div
           {...sxf(

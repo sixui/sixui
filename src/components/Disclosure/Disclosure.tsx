@@ -35,8 +35,8 @@ export const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
 
     return (
       <div
-        {...sxf(disclosureTheme, componentTheme.overridenStyles, 'host', sx)}
         {...other}
+        {...sxf(disclosureTheme, componentTheme.overridenStyles, 'host', sx)}
         ref={forwardedRef}
       >
         <Expandable

@@ -41,6 +41,7 @@ export const RichTooltipContent = forwardRef<
 
   return (
     <div
+      {...other}
       {...sxf(
         richTooltipContentTheme,
         componentTheme.overridenStyles,
@@ -48,7 +49,6 @@ export const RichTooltipContent = forwardRef<
         sx,
       )}
       ref={forwardedRef}
-      {...other}
     >
       <Elevation
         styles={[

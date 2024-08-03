@@ -23,11 +23,11 @@ export const TabList = forwardRef<HTMLInputElement, ITabListProps>(
 
     return (
       <div
-        {...sxf(componentTheme.overridenStyles, 'host', sx)}
         role='tablist'
         aria-orientation='horizontal'
-        ref={forwardedRef}
         {...other}
+        {...sxf(componentTheme.overridenStyles, 'host', sx)}
+        ref={forwardedRef}
       >
         <div {...sxf('tabList', fullWidth && 'tabList$fullWidth')}>
           {children}

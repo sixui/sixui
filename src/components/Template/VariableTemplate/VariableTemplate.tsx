@@ -45,13 +45,13 @@ export const VariableTemplate = forwardRef<
 
   return (
     <div
+      {...other}
       {...sxf(
         variableTemplateTheme,
         componentTheme.overridenStyles,
         'host',
         sx,
       )}
-      {...other}
       ref={handleRef}
     >
       {children}

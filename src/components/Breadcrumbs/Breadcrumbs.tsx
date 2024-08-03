@@ -150,9 +150,9 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
 
     return (
       <ol
+        {...other}
         {...sxf(breadscrumbsTheme, componentTheme.overridenStyles, 'host', sx)}
         ref={forwardedRef}
-        {...other}
       >
         {insertSeparators(
           expanded || (maxItems !== undefined && allItems.length <= maxItems)

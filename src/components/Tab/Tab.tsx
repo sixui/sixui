@@ -155,6 +155,13 @@ export const Tab: ITab = forwardRef(function Tab<
 
   return (
     <Component
+      sx={sx}
+      role='tab'
+      aria-controls={id}
+      aria-selected={active}
+      onClick={handleClick}
+      href={href}
+      {...other}
       {...sxf(
         tabTheme,
         componentTheme.overridenStyles,
@@ -163,14 +170,7 @@ export const Tab: ITab = forwardRef(function Tab<
         disabled && 'host$disabled',
         sx,
       )}
-      sx={sx}
       ref={handleRef}
-      role='tab'
-      aria-controls={id}
-      aria-selected={active}
-      onClick={handleClick}
-      href={href}
-      {...other}
     >
       <Elevation
         styles={[tabElevationStyles, ...asArray(innerStyles?.elevation)]}

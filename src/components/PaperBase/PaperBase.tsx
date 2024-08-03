@@ -27,9 +27,9 @@ export const PaperBase = forwardRef<HTMLDivElement, IPaperBaseProps>(
 
     return (
       <div
+        {...other}
         {...sxf(paperBaseTheme, componentTheme.overridenStyles, 'host', sx)}
         ref={forwardedRef}
-        {...other}
       >
         <Elevation
           styles={[

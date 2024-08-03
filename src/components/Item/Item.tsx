@@ -38,9 +38,9 @@ export const Item = forwardRef<HTMLDivElement, IItemProps>(
 
     return (
       <div
+        {...other}
         {...sxf(itemTheme, componentTheme.overridenStyles, 'host', sx)}
         ref={forwardedRef}
-        {...other}
       >
         {container ? <div {...sxf('container')}>{container}</div> : null}
 

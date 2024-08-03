@@ -156,6 +156,8 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
         >
           {(status) => (
             <div
+              aria-expanded={expanded}
+              {...other}
               {...sxf(
                 componentTheme.overridenStyles,
                 'host',
@@ -183,8 +185,6 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
                         : undefined,
                 sx,
               )}
-              aria-expanded={expanded}
-              {...other}
               ref={transitionNodeHandleRef}
             >
               <div

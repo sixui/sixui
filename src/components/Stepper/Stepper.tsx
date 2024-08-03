@@ -88,6 +88,7 @@ export const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
     return (
       <StepperContext.Provider value={contextValue}>
         <div
+          {...other}
           {...sxf(
             componentTheme.overridenStyles,
             'host',
@@ -96,7 +97,6 @@ export const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
             sx,
           )}
           ref={forwardedRef}
-          {...other}
         >
           {steps}
         </div>

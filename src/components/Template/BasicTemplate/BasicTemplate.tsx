@@ -22,8 +22,8 @@ export const BasicTemplate = forwardRef<HTMLDivElement, IBasicTemplateProps>(
 
     return (
       <div
-        {...sxf(componentTheme.overridenStyles, 'host', sx)}
         {...other}
+        {...sxf(componentTheme.overridenStyles, 'host', sx)}
         ref={forwardedRef}
       >
         {children}

@@ -9,8 +9,8 @@ export const SvgIcon: React.FC<ISvgIconProps> = (props) => {
   return (
     <div
       aria-hidden
-      {...stylex.props(svgIconStyles.host, sx)}
       {...other}
+      {...stylex.props(svgIconStyles.host, sx)}
       dangerouslySetInnerHTML={{ __html: icon.data }}
     />
   );

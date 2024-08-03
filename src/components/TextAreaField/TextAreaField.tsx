@@ -34,8 +34,8 @@ export const TextAreaField = forwardRef<HTMLDivElement, ITextAreaFieldProps>(
     return (
       <TextFieldBase<HTMLTextAreaElement, ITextAreaFieldProps>
         {...other}
-        textArea
         ref={forwardedRef}
+        textArea
         inputRef={inputHandleRef}
         onClear={() => {
           if (inputRef.current?.value) {

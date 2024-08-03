@@ -39,9 +39,9 @@ export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
           stylesCombinator('host', disabled ? 'host$disabled' : null),
           sx,
         ]}
-        ref={forwardedRef}
         innerStyles={innerStyles}
         {...other}
+        ref={forwardedRef}
       >
         {crosshairs ? <div {...sxf('crosshairs')} /> : null}
         {label ? <div {...sxf('label')}>{label}</div> : null}

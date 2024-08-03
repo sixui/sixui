@@ -149,8 +149,6 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
       )}
     >
       <Component
-        {...sxf('input')}
-        ref={handleRef}
         type='checkbox'
         aria-checked={indeterminate ? 'mixed' : undefined}
         checked={checkedValue}
@@ -159,6 +157,8 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
         id={labeledContext?.id}
         required={labeledContext?.required}
         {...other}
+        {...sxf('input')}
+        ref={handleRef}
       />
 
       {loading ? (

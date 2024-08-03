@@ -65,8 +65,8 @@ export const FluidButton: IFluidButton = forwardRef(function FluidButton<
           ...asArray(innerStyles?.focusRing),
         ],
       }}
-      ref={forwardedRef}
       {...other}
+      ref={forwardedRef}
     >
       <div {...sxf('textLabel', visuallyDisabled && 'textLabel$disabled')}>
         {children}

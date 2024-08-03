@@ -38,9 +38,9 @@ export const List = forwardRef<HTMLDivElement, IListProps>(
     return (
       <ListContext.Provider value={{ size, noFocusRing }}>
         <div
+          {...other}
           {...sxf(listTheme, componentTheme.overridenStyles, 'host', sx)}
           ref={forwardedRef}
-          {...other}
         >
           <div {...sxf('inner')}>
             <div {...sxf('header')}>{header}</div>

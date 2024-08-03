@@ -64,9 +64,9 @@ export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
           )}
         >
           <SnackbarContent
-            ref={handleRef}
             sx={[stylesCombinator('snackbarContent')]}
             {...other}
+            ref={handleRef}
             onClose={onClose}
           />
         </div>

@@ -66,6 +66,8 @@ export const Typography: ITypography = forwardRef(function Typography<
 
   return (
     <Component
+      sx={sx}
+      {...other}
       {...sxf(
         componentTheme.overridenStyles,
         'host',
@@ -73,9 +75,7 @@ export const Typography: ITypography = forwardRef(function Typography<
         `${variant}$${size}`,
         sx,
       )}
-      sx={sx}
       ref={forwardedRef}
-      {...other}
     >
       {children}
     </Component>

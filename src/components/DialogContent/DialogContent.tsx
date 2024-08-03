@@ -127,12 +127,12 @@ export const DialogContent: IDialogContent = forwardRef(function DialogContent<
 
   return (
     <Component
-      {...sxf(dialogContentTheme, componentTheme.overridenStyles, 'host', sx)}
       sx={sx}
       aria-labelledby={headline ? headlineId : undefined}
       aria-describedby={childrenId}
       role={type === 'alert' ? 'alertdialog' : undefined}
       {...other}
+      {...sxf(dialogContentTheme, componentTheme.overridenStyles, 'host', sx)}
       ref={handleRef}
     >
       <div {...sxf('dialog')}>

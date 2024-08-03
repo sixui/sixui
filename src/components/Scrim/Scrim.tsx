@@ -40,6 +40,7 @@ export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
 
     return (
       <FloatingOverlay
+        {...other}
         {...sxf(
           scrimTheme,
           componentTheme.overridenStyles,
@@ -49,7 +50,6 @@ export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
           sx,
         )}
         ref={forwardedRef}
-        {...other}
         style={contained ? { position: 'absolute' } : undefined}
       >
         {children}

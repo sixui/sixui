@@ -101,13 +101,13 @@ export const PlaygroundOption = fixedForwardRef(function PlaygroundOption<
 
   return (
     <div
+      {...other}
       {...stylex.props(
         componentTheme.overridenStyles,
         commonStyles.verticalLayout,
         commonStyles.gap$xl,
         sx,
       )}
-      {...other}
       ref={forwardedRef}
     >
       <div {...stylex.props(commonStyles.verticalLayout, commonStyles.gap$sm)}>

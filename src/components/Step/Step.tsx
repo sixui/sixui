@@ -212,6 +212,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
     return (
       <StepContext.Provider value={contextValue}>
         <div
+          {...other}
           {...sxf(
             stepTheme,
             componentTheme.overridenStyles,
@@ -220,7 +221,6 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
             sx,
           )}
           ref={forwardedRef}
-          {...other}
         >
           <div
             {...sxf(

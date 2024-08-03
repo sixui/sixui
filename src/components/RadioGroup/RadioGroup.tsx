@@ -85,12 +85,12 @@ export const RadioGroup: IRadioGroup = forwardRef(function RadioGroup<
   return (
     <RadioGroupContext.Provider value={contextValue}>
       <Component
-        {...stylex.props(sx)}
         sx={sx}
-        ref={handleRef}
         role='radiogroup'
         data-cy={dataCy}
         {...other}
+        {...stylex.props(sx)}
+        ref={handleRef}
       >
         {children}
       </Component>

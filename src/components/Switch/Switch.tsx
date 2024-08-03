@@ -134,8 +134,6 @@ export const Switch: ISwitch = forwardRef(function Switch<
     >
       <div {...sxf('switch', checked && 'switch$selected')}>
         <Component
-          {...sxf('input')}
-          ref={handleRef}
           type='checkbox'
           role='switch'
           checked={checked}
@@ -144,6 +142,8 @@ export const Switch: ISwitch = forwardRef(function Switch<
           id={labeledContext?.id}
           required={labeledContext?.required}
           {...other}
+          {...sxf('input')}
+          ref={handleRef}
         />
         <FocusRing
           styles={[switchFocusRingStyles, ...asArray(innerStyles?.focusRing)]}
