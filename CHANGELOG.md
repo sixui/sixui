@@ -1,3 +1,15 @@
+# v0.0.407 (Sat Aug 03 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(Typograhy): pass styles props depending of the final component ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.406 (Sat Aug 03 2024)
 
 #### ⚠️ Pushed to `main`
