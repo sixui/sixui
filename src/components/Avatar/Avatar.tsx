@@ -65,6 +65,7 @@ export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
 
     return (
       <div
+        {...other}
         {...sxf(
           avatarTheme,
           componentTheme.overridenStyles,
@@ -74,7 +75,6 @@ export const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
             : undefined,
           sx,
         )}
-        {...other}
         ref={forwardedRef}
       >
         {hasImageNotFailing ? (

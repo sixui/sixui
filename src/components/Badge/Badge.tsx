@@ -41,6 +41,7 @@ export const Badge = forwardRef<HTMLDivElement, IBadgeProps>(
 
     return (
       <div
+        {...other}
         {...sxf(
           badgeTheme,
           componentTheme.overridenStyles,
@@ -50,7 +51,6 @@ export const Badge = forwardRef<HTMLDivElement, IBadgeProps>(
           sx,
         )}
         ref={forwardedRef}
-        {...other}
       >
         <div {...sxf('background')} />
         <div {...sxf('label')}>{displayValue}</div>

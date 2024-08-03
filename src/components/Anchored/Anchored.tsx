@@ -51,9 +51,9 @@ export const Anchored = forwardRef<HTMLDivElement, IAnchoredProps>(
 
     return (
       <div
+        {...other}
         {...sxf(componentTheme.overridenStyles, 'host', sx)}
         ref={forwardedRef}
-        {...other}
       >
         {children}
 
