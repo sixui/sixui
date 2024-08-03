@@ -64,19 +64,30 @@ export const Typography: ITypography = forwardRef(function Typography<
 
   const Component = as ?? typographyTagMap[`${variant}$${size}`];
 
-  return (
-    <Component
-      sx={sx}
-      {...other}
-      {...sxf(
+  // TODO: make utility
+  const isReactComponent = typeof Component === 'function';
+  const styleProps = isReactComponent
+    ? {
+        sx: [
+          stylesCombinator(
+            componentTheme.overridenStyles,
+            'host',
+            gutterBottom && 'host$gutterBottom',
+            `${variant}$${size}`,
+          ),
+          sx,
+        ],
+      }
+    : sxf(
         componentTheme.overridenStyles,
         'host',
         gutterBottom && 'host$gutterBottom',
         `${variant}$${size}`,
         sx,
-      )}
-      ref={forwardedRef}
-    >
+      );
+
+  return (
+    <Component {...other} {...styleProps} ref={forwardedRef}>
       {children}
     </Component>
   );
