@@ -84,8 +84,10 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
       {(renderProps) => {
         const isGrid = other.cols !== undefined && other.cols > 1;
         const getInputProps = (
-          userProps?: IExtendedFloatingProps<React.HTMLProps<HTMLInputElement>>,
-        ): IExtendedFloatingProps<React.HTMLProps<HTMLInputElement>> => ({
+          userProps?: IExtendedFloatingProps<
+            React.ComponentPropsWithoutRef<'input'>
+          >,
+        ): IExtendedFloatingProps<React.ComponentPropsWithoutRef<'input'>> => ({
           ...userProps,
           onBlur: (event) => {
             userProps?.onBlur?.(event);

@@ -29,7 +29,7 @@ export const PolymorphicTemplate: IPolymorphicTemplate = forwardRef(
     forwardedRef?: IPolymorphicRef<TRoot>,
   ) {
     const {
-      as: Component = POLYMORPHIC_TEMPLATE_DEFAULT_TAG,
+      component: Component = POLYMORPHIC_TEMPLATE_DEFAULT_TAG,
       styles,
       sx,
       children,

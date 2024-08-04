@@ -233,8 +233,10 @@ export const FloatingFilterableListBase = fixedForwardRef(
 
     const isEnterKeyPressedRef = useRef(false);
     const getInputFilterProps = (
-      userProps?: IExtendedFloatingProps<React.HTMLProps<HTMLInputElement>>,
-    ): IExtendedFloatingProps<React.HTMLProps<HTMLInputElement>> => ({
+      userProps?: IExtendedFloatingProps<
+        React.ComponentPropsWithoutRef<'input'>
+      >,
+    ): IExtendedFloatingProps<React.ComponentPropsWithoutRef<'input'>> => ({
       ...userProps,
       value: userProps?.value ?? query,
       disabled,

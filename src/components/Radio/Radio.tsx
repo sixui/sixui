@@ -38,7 +38,7 @@ export const Radio: IRadio = forwardRef(function Radio<
   TRoot extends React.ElementType = typeof RADIO_DEFAULT_TAG,
 >(props: IRadioProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
-    as: Component = RADIO_DEFAULT_TAG,
+    component: Component = RADIO_DEFAULT_TAG,
     styles,
     sx,
     innerStyles,

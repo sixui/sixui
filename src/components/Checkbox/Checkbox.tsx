@@ -48,7 +48,7 @@ export const Checkbox: ICheckbox = forwardRef(function Checkbox<
   TRoot extends React.ElementType = typeof CHECKBOX_DEFAULT_TAG,
 >(props: ICheckboxProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
-    as: Component = CHECKBOX_DEFAULT_TAG,
+    component: Component = CHECKBOX_DEFAULT_TAG,
     styles,
     sx,
     innerStyles,

@@ -46,7 +46,7 @@ export const Chip: IChip = forwardRef(function Chip<
   TRoot extends React.ElementType = typeof CHIP_DEFAULT_TAG,
 >(props: IChipProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
-    as,
+    component,
     styles,
     sx,
     innerStyles,
@@ -105,7 +105,7 @@ export const Chip: IChip = forwardRef(function Chip<
   );
 
   const Component =
-    as ??
+    component ??
     (href
       ? (componentTheme.settings?.linkAs ?? 'a')
       : onClick

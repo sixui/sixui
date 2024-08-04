@@ -38,7 +38,7 @@ export const Card: ICard = forwardRef(function Card<
   TRoot extends React.ElementType = typeof CARD_DEFAULT_TAG,
 >(props: ICardProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
-    as,
+    component,
     styles,
     sx,
     innerStyles,
@@ -78,7 +78,7 @@ export const Card: ICard = forwardRef(function Card<
     asArray(styles).some((styles) => !!styles?.outline);
 
   const Component =
-    as ??
+    component ??
     (!dragged && href
       ? (componentTheme.settings?.linkAs ?? 'a')
       : CARD_DEFAULT_TAG);

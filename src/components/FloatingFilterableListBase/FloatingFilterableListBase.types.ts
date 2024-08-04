@@ -59,8 +59,8 @@ export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
    * or overwrite one of the Floating UI hooks' handlers.
    */
   getInputFilterProps: (
-    userProps?: IExtendedFloatingProps<React.HTMLProps<HTMLInputElement>>,
-  ) => IExtendedFloatingProps<React.HTMLProps<HTMLInputElement>>;
+    userProps?: IExtendedFloatingProps<React.ComponentPropsWithoutRef<'input'>>,
+  ) => IExtendedFloatingProps<React.ComponentPropsWithoutRef<'input'>>;
 
   afterItemsRemove: (
     items: Array<TItem>,

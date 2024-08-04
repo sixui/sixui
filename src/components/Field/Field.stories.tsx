@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
-import type { IFieldOwnProps } from './Field.types';
+import type { IFieldProps } from './Field.types';
 import {
   type IComponentPresentation,
   ComponentShowcase,
@@ -24,16 +24,16 @@ const styles = stylex.create({
 
 const defaultArgs = {
   sx: styles.host,
-} satisfies Partial<IFieldOwnProps>;
+} satisfies Partial<IFieldProps>;
 
-const states: Array<IComponentPresentation<IFieldOwnProps>> = [
+const states: Array<IComponentPresentation<IFieldProps>> = [
   { legend: 'Enabled' },
   { legend: 'Hovered', props: { visualState: { hovered: true } } },
   { legend: 'Focused', props: { visualState: { focused: true } } },
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const rows: Array<IComponentPresentation<IFieldOwnProps>> = [
+const rows: Array<IComponentPresentation<IFieldProps>> = [
   { legend: 'Empty' },
   { legend: 'Placeholder', props: { placeholder: 'Placeholder' } },
   {

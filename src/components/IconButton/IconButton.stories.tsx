@@ -3,11 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 
-import type {
-  IIconButtonProps,
-  IIconButtonOwnProps,
-  IIconButtonVariant,
-} from './IconButton.types';
+import type { IIconButtonProps, IIconButtonVariant } from './IconButton.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
@@ -31,7 +27,7 @@ const defaultArgs = {
   selectedIcon: <FontAwesomeIcon icon={faHeartSolid} />,
 } satisfies Partial<IIconButtonProps>;
 
-const states: Array<IComponentPresentation<IIconButtonOwnProps>> = [
+const states: Array<IComponentPresentation<IIconButtonProps>> = [
   { legend: 'Enabled' },
   { legend: 'Hovered', props: { visualState: { hovered: true } } },
   { legend: 'Focused', props: { visualState: { focused: true } } },
@@ -40,7 +36,7 @@ const states: Array<IComponentPresentation<IIconButtonOwnProps>> = [
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const rows: Array<IComponentPresentation<IIconButtonOwnProps>> = [
+const rows: Array<IComponentPresentation<IIconButtonProps>> = [
   { legend: 'Basic', props: { toggle: false } },
   { legend: 'Togglable', props: { toggle: true } },
   { legend: 'Toggled', props: { toggle: true, selected: true } },

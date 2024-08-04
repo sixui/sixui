@@ -5,7 +5,7 @@ import type {
   IOmit,
 } from '~/helpers/types';
 import type {
-  IFieldBaseOwnProps,
+  IFieldBaseProps,
   IFieldBaseStylesKey,
 } from '~/components/FieldBase';
 import type { ITextFieldBaseStylesKey } from './TextFieldBase.styles';
@@ -35,18 +35,15 @@ export type ITextFieldBaseRenderProps<
   sxf: IStyleProps<ITextFieldBaseStylesKey>;
   ref: React.RefObject<TElement> | React.RefCallback<TElement> | null;
   modifiers: ITextFieldBaseModifiers;
-  onValueChange: ITextFieldBaseOwnProps<
-    TElement,
-    TChildrenProps
-  >['onValueChange'];
+  onValueChange: ITextFieldBaseProps<TElement, TChildrenProps>['onValueChange'];
 };
 
-export type ITextFieldBaseOwnProps<
+export type ITextFieldBaseProps<
   TElement extends HTMLElement,
   TChildrenProps extends object = object,
 > = IContainerProps<ITextFieldBaseStylesKey> &
   IControlledValueProps<string | number | ReadonlyArray<string>, TElement> &
-  IOmit<IFieldBaseOwnProps, 'styles' | 'children'> &
+  IOmit<IFieldBaseProps, 'styles' | 'children'> &
   IForwardableProps & {
     innerStyles?: {
       fieldBase?: IZeroOrMore<ICompiledStyles<IFieldBaseStylesKey>>;
@@ -81,8 +78,3 @@ export type ITextFieldBaseOwnProps<
       React.InputHTMLAttributes<TElement>
     >;
   };
-
-export type ITextFieldBaseProps<
-  TElement extends HTMLElement,
-  TChildrenProps extends object = object,
-> = ITextFieldBaseOwnProps<TElement, TChildrenProps>;

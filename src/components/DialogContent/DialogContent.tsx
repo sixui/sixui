@@ -38,7 +38,7 @@ export const DialogContent: IDialogContent = forwardRef(function DialogContent<
   TRoot extends React.ElementType = typeof DIALOG_CONTENT_DEFAULT_TAG,
 >(props: IDialogContentProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
-    as: Component = DIALOG_CONTENT_DEFAULT_TAG,
+    component: Component = DIALOG_CONTENT_DEFAULT_TAG,
     styles,
     sx,
     type,

@@ -4,7 +4,7 @@ import { createContext } from 'react';
 export type IMenuContextValue = {
   isOpen: boolean;
   getTriggerProps: (
-    userProps?: React.HTMLProps<HTMLButtonElement>,
+    userProps?: React.ComponentPropsWithoutRef<'button'>,
   ) => Record<string, unknown>;
   triggerRef: React.Ref<HTMLButtonElement>;
   placement?: Placement;

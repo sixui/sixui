@@ -14,15 +14,20 @@ export type IPropsOf<
   React.ComponentPropsWithoutRef<TComponent>
 >;
 
-type IAsProp<TRoot extends React.ElementType> = {
+export type IWithAsProp<
+  TProps = object,
+  TRoot extends React.ElementType = React.ElementType,
+> = TProps & {
   /**
    * An override of the default HTML tag.
    * Can also be another React component.
    */
-  as?: TRoot;
-};
+  component?: TRoot;
 
-export type IWithAsProp<TProps = object> = TProps & IAsProp<React.ElementType>;
+  renderRoot?: (
+    props: TProps & { children?: React.ReactNode },
+  ) => React.ReactElement;
+};
 
 /**
  * Allows for extending a set of props (`TExtendedProps`) by an overriding set
@@ -51,7 +56,7 @@ export type IInheritableElementProps<
 export type IPolymorphicComponentProps<
   TRoot extends React.ElementType,
   TProps = object,
-> = IInheritableElementProps<TRoot, TProps & IAsProp<TRoot>>;
+> = IInheritableElementProps<TRoot, IWithAsProp<TProps, TRoot>>;
 
 /**
  * Utility type to extract the `ref` prop from a polymorphic component.
@@ -68,4 +73,32 @@ export type IPolymorphicComponentPropsWithRef<
   TProps = object,
 > = IPolymorphicComponentProps<TRoot, TProps> & {
   ref?: IPolymorphicRef<TRoot>;
+};
+
+export const createPolymorphicComponent = <
+  TDefaultRoot extends React.ElementType,
+  TProps,
+  TStaticProps = Record<string, never>,
+>(
+  component: IAny,
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+) => {
+  type IComponentProps<TRoot extends React.ElementType> =
+    IPolymorphicComponentPropsWithRef<TRoot, TProps>;
+
+  type IPolymorphicComponent = <TRoot extends React.ElementType = TDefaultRoot>(
+    props: IComponentProps<TRoot>,
+    forwardedRef: IPolymorphicRef<TRoot>,
+  ) => React.ReactElement;
+
+  type IFunctionComponentProps = Omit<
+    React.FunctionComponent<IComponentProps<IAny>>,
+    never
+  >;
+
+  type ICreatedPolymorphicComponent = IPolymorphicComponent &
+    IFunctionComponentProps &
+    TStaticProps;
+
+  return component as ICreatedPolymorphicComponent;
 };

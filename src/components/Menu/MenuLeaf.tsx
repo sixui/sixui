@@ -166,7 +166,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
     ]);
 
     const getTriggerProps = (
-      userProps?: React.HTMLProps<HTMLButtonElement>,
+      userProps?: React.ComponentPropsWithoutRef<'button'>,
     ): Record<string, unknown> =>
       interactions.getReferenceProps({
         ...userProps,

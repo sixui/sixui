@@ -1,5 +1,5 @@
 import type {
-  IFieldBaseOwnProps,
+  IFieldBaseProps,
   IFieldBaseStylesKey,
 } from '~/components/FieldBase';
 import type {
@@ -33,6 +33,6 @@ export type IHtmlSelectProps = IContainerProps<IHtmlSelectStylesKey> &
     multiple?: never;
 
     slotProps?: {
-      fieldBase?: IFieldBaseOwnProps;
+      fieldBase?: IFieldBaseProps;
     };
   };

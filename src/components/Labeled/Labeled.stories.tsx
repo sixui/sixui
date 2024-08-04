@@ -79,7 +79,7 @@ export const WithTextField: IStory = {
   args: {
     ...defaultArgs,
     orientation: 'vertical',
-    as: TextInputField,
+    component: TextInputField,
     trailingAction: 'Action',
     sx: styles.host$lg,
   },
@@ -98,7 +98,7 @@ export const WithCheckbox: IStory = {
   args: {
     ...defaultArgs,
     orientation: 'horizontal',
-    as: Checkbox,
+    component: Checkbox,
   },
 };
 
@@ -115,7 +115,7 @@ export const WithRadio: IStory = {
   args: {
     ...defaultArgs,
     orientation: 'horizontal',
-    as: Radio,
+    component: Radio,
   },
 };
 
@@ -132,7 +132,7 @@ export const WithSwitch: IStory = {
   args: {
     ...defaultArgs,
     orientation: 'horizontal',
-    as: Switch,
+    component: Switch,
   },
 };
 

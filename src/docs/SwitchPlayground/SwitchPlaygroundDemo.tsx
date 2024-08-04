@@ -14,12 +14,17 @@ export const SwitchPlaygroundDemo: React.FC<ISwitchPlaygroundDemoProps> = (
   props,
 ) => (
   <div {...stylex.props(commonStyles.verticalLayout, commonStyles.gap$lg)}>
-    <Labeled {...props.switch} {...props.labeled} as={Switch} />
-    <Labeled {...props.switch} {...props.labeled} as={Switch} defaultChecked />
+    <Labeled {...props.switch} {...props.labeled} component={Switch} />
     <Labeled
       {...props.switch}
       {...props.labeled}
-      as={Switch}
+      component={Switch}
+      defaultChecked
+    />
+    <Labeled
+      {...props.switch}
+      {...props.labeled}
+      component={Switch}
       defaultChecked
       icons
     />

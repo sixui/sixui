@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { FieldBase, type IFieldBaseOwnProps } from '~/components/FieldBase';
+import { FieldBase, type IFieldBaseProps } from '~/components/FieldBase';
 
 const styles = stylex.create({
   host: {
@@ -9,7 +9,7 @@ const styles = stylex.create({
 });
 
 export type IFieldBasePlaygroundDemoProps = {
-  fieldBase: IFieldBaseOwnProps;
+  fieldBase: IFieldBaseProps;
 };
 
 export const FieldBasePlaygroundDemo: React.FC<

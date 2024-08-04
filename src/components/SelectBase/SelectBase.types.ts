@@ -1,6 +1,6 @@
 import type { IContainerProps, IOmit } from '~/helpers/types';
 import type { IFieldBaseVariant } from '~/components/FieldBase';
-import type { IFieldStylesKey, IFieldOwnProps } from '~/components/Field';
+import type { IFieldStylesKey, IFieldProps } from '~/components/Field';
 import type { IUseSingleFilterableListBaseProps } from '~/components/FilterableListBase';
 import type {
   IFloatingFilterableListBaseProps,
@@ -18,14 +18,14 @@ export type ISelectBaseProps<TItem> = IContainerProps<IFieldStylesKey> &
       'onItemSelect' | 'renderer' | 'itemRenderer'
     >
   > &
-  IFieldOwnProps &
+  IFieldProps &
   IUseSingleFilterableListBaseProps<TItem, HTMLElement> & {
     itemLabel: (item: TItem) => React.ReactNode | undefined;
     canFilter?: boolean;
     getValueFieldProps?: (
       renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
       selectedItem?: TItem,
-    ) => IFieldOwnProps;
+    ) => IFieldProps;
     clearable?: boolean;
     variant?: IFieldBaseVariant | false;
   };

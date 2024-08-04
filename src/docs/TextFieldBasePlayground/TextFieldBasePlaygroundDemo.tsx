@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
 import type { IOmit } from '~/helpers/types';
-import type { IFieldBaseOwnProps } from '~/components/FieldBase';
+import type { IFieldBaseProps } from '~/components/FieldBase';
 import {
   TextFieldBase,
-  type ITextFieldBaseOwnProps,
+  type ITextFieldBaseProps,
 } from '~/components/TextFieldBase';
 
 const styles = stylex.create({
@@ -17,8 +17,8 @@ export type ITextFieldBasePlaygroundDemoProps<
   TElement extends HTMLElement,
   TChildrenProps extends object = object,
 > = {
-  fieldBase: IOmit<IFieldBaseOwnProps, 'children' | 'styles'>;
-  textFieldBase: ITextFieldBaseOwnProps<TElement, TChildrenProps>;
+  fieldBase: IOmit<IFieldBaseProps, 'children' | 'styles'>;
+  textFieldBase: ITextFieldBaseProps<TElement, TChildrenProps>;
 };
 
 export const TextFieldBasePlaygroundDemo: React.FC<

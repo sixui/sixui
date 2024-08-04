@@ -14,17 +14,17 @@ export const CheckboxPlaygroundDemo: React.FC<ICheckboxPlaygroundDemoProps> = (
   props,
 ) => (
   <div {...stylex.props(commonStyles.verticalLayout, commonStyles.gap$lg)}>
-    <Labeled {...props.checkbox} {...props.labeled} as={Checkbox} />
+    <Labeled {...props.checkbox} {...props.labeled} component={Checkbox} />
     <Labeled
       {...props.checkbox}
       {...props.labeled}
-      as={Checkbox}
+      component={Checkbox}
       defaultIndeterminate
     />
     <Labeled
       {...props.checkbox}
       {...props.labeled}
-      as={Checkbox}
+      component={Checkbox}
       defaultChecked
     />
   </div>

@@ -44,7 +44,7 @@ export const Dialog: IDialog = forwardRef(function Dialog<
   const {
     sx,
     innerStyles,
-    as,
+    component,
     trigger,
     isOpen: isOpenProp,
     disabled,
@@ -102,7 +102,7 @@ export const Dialog: IDialog = forwardRef(function Dialog<
                 origin='edge'
               >
                 <DialogContent
-                  as={as}
+                  component={component}
                   sx={[
                     componentTheme.overridenStyles,
                     dialogStyles.dialogContent,

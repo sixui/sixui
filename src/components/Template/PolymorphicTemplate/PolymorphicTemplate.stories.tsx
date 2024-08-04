@@ -22,7 +22,7 @@ export const AsHeader: IStory = {
   render: (props) => <PolymorphicTemplate {...props} />,
   args: {
     ...defaultArgs,
-    as: 'h1',
+    component: 'h1',
   },
 };
 

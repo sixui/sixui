@@ -3,14 +3,14 @@ import type {
   StyleXStyles,
 } from '@stylexjs/stylex/lib/StyleXTypes';
 
-import type { ICompiledStyles } from './types';
+import type { ICompiledStyles, IStyleXStyles } from './types';
 
 type IOptionalCompiledStyles<TStyleKey extends string> =
   | ICompiledStyles<TStyleKey>
   | undefined;
 
 export type IStylesCombinator<TStyleKey extends string> = (
-  ...classNames: Array<TStyleKey | StyleXStyles | null | undefined | false>
+  ...classNames: Array<TStyleKey | IStyleXStyles>
 ) => Array<StyleXStyles>;
 
 export const stylesCombinatorFactory =

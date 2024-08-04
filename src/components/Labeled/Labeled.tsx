@@ -22,7 +22,7 @@ export const Labeled: ILabeled = forwardRef(function Labeled<
   TRoot extends React.ElementType,
 >(props: ILabeledProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
-    as: Component,
+    component: Component,
     styles,
     sx,
     id: idProp,

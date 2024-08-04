@@ -28,7 +28,7 @@ export const OptionCard: IOptionCard = forwardRef(function OptionCard<
   TRoot extends React.ElementType,
 >(props: IOptionCardProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
-    as: Component,
+    component: Component,
     styles,
     sx,
     innerStyles,

@@ -42,7 +42,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
   TRoot extends React.ElementType = typeof LIST_ITEM_DEFAULT_TAG,
 >(props: IListItemProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
-    as,
+    component,
     styles,
     sx,
     innerStyles,
@@ -107,7 +107,7 @@ export const ListItem: IListItem = forwardRef(function ListItem<
   const noFocusRing = listContext?.noFocusRing ?? noFocusRingProp;
 
   const Component =
-    as ??
+    component ??
     (type == 'link'
       ? (componentTheme.settings?.linkAs ?? 'a')
       : type === 'button'

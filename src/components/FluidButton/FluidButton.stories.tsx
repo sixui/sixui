@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-regular-svg-icons';
 
-import type { IFluidButtonOwnProps } from './FluidButton.types';
+import type { IFluidButtonProps } from './FluidButton.types';
 import {
   ComponentShowcase,
   type IComponentPresentation,
@@ -18,16 +18,16 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   // disabled: true,
-} satisfies Partial<IFluidButtonOwnProps>;
+} satisfies Partial<IFluidButtonProps>;
 
-const FluidButtonInText: React.FC<IFluidButtonOwnProps> = (props) => (
+const FluidButtonInText: React.FC<IFluidButtonProps> = (props) => (
   <>
     Lorem ipsum dolor sit amet <FluidButton {...props} />, consectetur
     adipiscing elit
   </>
 );
 
-const rows: Array<IComponentPresentation<IFluidButtonOwnProps>> = [
+const rows: Array<IComponentPresentation<IFluidButtonProps>> = [
   {
     component: (props) => (
       <Typography variant='display'>

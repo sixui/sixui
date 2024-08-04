@@ -47,7 +47,7 @@ export const Tab: ITab = forwardRef(function Tab<
   TRoot extends React.ElementType = typeof TAB_DEFAULT_TAG,
 >(props: ITabProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
-    as,
+    component,
     styles,
     sx,
     innerStyles,
@@ -151,7 +151,8 @@ export const Tab: ITab = forwardRef(function Tab<
   );
 
   const Component =
-    as ?? (href ? (componentTheme.settings?.linkAs ?? 'a') : TAB_DEFAULT_TAG);
+    component ??
+    (href ? (componentTheme.settings?.linkAs ?? 'a') : TAB_DEFAULT_TAG);
 
   return (
     <Component

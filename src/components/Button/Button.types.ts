@@ -1,7 +1,6 @@
 import type { ICompiledStyles, IZeroOrMore } from '~/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
 import type { ICircularProgressIndicatorStylesKey } from '~/components/CircularProgressIndicator';
-import type { IButtonBaseOwnProps } from '~/components/ButtonBase';
+import type { IButtonBaseProps } from '~/components/ButtonBase';
 
 export type IButtonVariant =
   | 'elevated'
@@ -12,10 +11,8 @@ export type IButtonVariant =
   | 'danger'
   | 'snackbar';
 
-export const BUTTON_DEFAULT_TAG = 'button';
-
-export type IButtonOwnProps = IButtonBaseOwnProps & {
-  innerStyles?: IButtonBaseOwnProps['innerStyles'] & {
+export type IButtonProps = IButtonBaseProps & {
+  innerStyles?: IButtonBaseProps['innerStyles'] & {
     circularProgressIndicator?: IZeroOrMore<
       ICompiledStyles<ICircularProgressIndicatorStylesKey>
     >;
@@ -27,7 +24,3 @@ export type IButtonOwnProps = IButtonBaseOwnProps & {
   loadingAnimation?: 'progressIndicator' | 'halfSpin' | 'none';
   loadingText?: string;
 };
-
-export type IButtonProps<
-  TRoot extends React.ElementType = typeof BUTTON_DEFAULT_TAG,
-> = IPolymorphicComponentPropsWithRef<TRoot, IButtonOwnProps>;

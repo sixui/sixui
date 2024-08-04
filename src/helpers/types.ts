@@ -1,7 +1,5 @@
 import type {
   CompiledStyles,
-  InlineStyles,
-  StyleXArray,
   StyleXStyles,
   UserAuthoredStyles,
 } from '@stylexjs/stylex/lib/StyleXTypes';
@@ -47,13 +45,8 @@ export type IArrayElement<TArray> =
 
 export type IStyleXStyles =
   | StyleXStyles
-  | ReadonlyArray<
-      StyleXArray<
-        | (null | undefined | CompiledStyles)
-        | boolean
-        | Readonly<[CompiledStyles, InlineStyles]>
-      >
-    >;
+  | CompiledStyles
+  | Array<IStyleXStyles>;
 
 export type IContainerProps<TStyleKey extends string = never> = {
   styles?: IZeroOrMore<ICompiledStyles<TStyleKey>>;

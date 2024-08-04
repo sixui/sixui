@@ -54,13 +54,13 @@ export const Basic: IStory = {
         {
           legend: 'Switch control',
           props: {
-            as: Switch,
+            component: Switch,
           },
         },
         {
           legend: 'Checkbox control',
           props: {
-            as: Checkbox,
+            component: Checkbox,
           },
         },
       ]}
@@ -81,9 +81,9 @@ const OptionCardRadioGroup: React.FC<IOptionCardOwnProps> = (props) => {
       sx={styles.radioGroup}
       onChange={(...args) => void sbHandleEvent('change', args)}
     >
-      <OptionCard {...props} as={Radio} value='1' />
-      <OptionCard {...props} as={Radio} value='2' />
-      <OptionCard {...props} as={Radio} value='3' />
+      <OptionCard {...props} component={Radio} value='1' />
+      <OptionCard {...props} component={Radio} value='2' />
+      <OptionCard {...props} component={Radio} value='3' />
     </RadioGroup>
   );
 };

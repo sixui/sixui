@@ -6,7 +6,7 @@ export type IMenuTriggerRenderProps = {
   isOpen: boolean;
   placement: Placement;
   getProps: (
-    userProps?: React.HTMLProps<HTMLButtonElement>,
+    userProps?: React.ComponentPropsWithoutRef<'button'>,
   ) => Record<string, unknown>;
 };
 

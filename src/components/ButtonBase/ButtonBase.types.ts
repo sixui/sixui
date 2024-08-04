@@ -1,20 +1,17 @@
+import type { IBaseProps } from '~/components/Base';
 import type {
-  IContainerProps,
   IZeroOrMore,
   ICompiledStyles,
   IMaybeAsync,
   IAny,
 } from '~/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
 import type { IStateLayerStylesKey } from '~/components/StateLayer';
 import type { IFocusRingStylesKey } from '~/components/FocusRing';
 import type { IElevationStylesKey } from '~/components/Elevation';
 import type { IVisualState } from '~/components/VisualState';
 import type { IButtonBaseStylesKey } from './ButtonBase.styles';
 
-export const BUTTON_BASE_DEFAULT_TAG = 'button';
-
-export type IButtonBaseOwnProps = IContainerProps<IButtonBaseStylesKey> & {
+export type IButtonBaseProps = IBaseProps<IButtonBaseStylesKey> & {
   innerStyles?: {
     stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStylesKey>>;
     focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStylesKey>>;
@@ -36,7 +33,3 @@ export type IButtonBaseOwnProps = IContainerProps<IButtonBaseStylesKey> & {
 
   type?: string;
 };
-
-export type IButtonBaseProps<
-  TRoot extends React.ElementType = typeof BUTTON_BASE_DEFAULT_TAG,
-> = IPolymorphicComponentPropsWithRef<TRoot, IButtonBaseOwnProps>;

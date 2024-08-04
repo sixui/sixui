@@ -23,7 +23,7 @@ type ITabPanel = <
 export const TabPanel: ITabPanel = forwardRef(function TabPanel<
   TRoot extends React.ElementType = typeof TAB_PANEL_DEFAULT_TAG,
 >(props: ITabPanelProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
-  const { styles, sx, as, anchor, children } =
+  const { styles, sx, component, anchor, children } =
     props as IWithAsProp<ITabPanelOwnProps>;
 
   const componentTheme = useComponentTheme('TabPanel');
@@ -43,7 +43,7 @@ export const TabPanel: ITabPanel = forwardRef(function TabPanel<
   }
 
   const id = tabContext && anchor ? `${tabContext.id}-${anchor}` : undefined;
-  const Component = as ?? TAB_PANEL_DEFAULT_TAG;
+  const Component = component ?? TAB_PANEL_DEFAULT_TAG;
 
   return (
     <Component

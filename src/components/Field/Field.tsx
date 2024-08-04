@@ -1,69 +1,58 @@
 import { forwardRef, useMemo } from 'react';
 
-import type {
-  IPolymorphicRef,
-  IWithAsProp,
-} from '~/helpers/react/polymorphicComponentTypes';
-import type {
-  FIELD_DEFAULT_TAG,
-  IFieldOwnProps,
-  IFieldProps,
-} from './Field.types';
+import type { IFieldProps } from './Field.types';
+import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { FieldBase } from '~/components/FieldBase';
+import { FieldBase } from '../FieldBase';
 import { fieldStyles } from './Field.styles';
 
-type IField = <TRoot extends React.ElementType = typeof FIELD_DEFAULT_TAG>(
-  props: IFieldProps<TRoot>,
-) => React.ReactNode;
+export const Field = createPolymorphicComponent<'div', IFieldProps>(
+  forwardRef<HTMLDivElement, IFieldProps>(function Field(props, forwardedRef) {
+    const {
+      styles,
+      sx,
+      innerStyles,
+      populated: populatedProp,
+      placeholder,
+      children,
+      ...other
+    } = props;
 
-export const Field: IField = forwardRef(function Field<
-  TRoot extends React.ElementType = typeof FIELD_DEFAULT_TAG,
->(props: IFieldProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
-  const {
-    styles,
-    sx,
-    innerStyles,
-    populated: populatedProp,
-    placeholder,
-    children,
-    ...other
-  } = props as IWithAsProp<IFieldOwnProps>;
+    const componentTheme = useComponentTheme('Field');
+    const stylesCombinator = useMemo(
+      () => stylesCombinatorFactory(fieldStyles, styles),
+      [styles],
+    );
+    const sxf = useMemo(
+      () => stylePropsFactory(stylesCombinator),
+      [stylesCombinator],
+    );
 
-  const componentTheme = useComponentTheme('Field');
-  const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(fieldStyles, styles),
-    [styles],
-  );
-  const sxf = useMemo(
-    () => stylePropsFactory(stylesCombinator),
-    [stylesCombinator],
-  );
+    const populated = populatedProp ?? (!!children || !!placeholder);
 
-  const populated = populatedProp ?? (!!children || !!placeholder);
-
-  return (
-    <FieldBase
-      sx={[componentTheme.overridenStyles, sx]}
-      styles={innerStyles?.fieldBase}
-      populated={populated}
-      {...other}
-      ref={forwardedRef}
-    >
-      {children ? (
-        <div {...sxf('value')} data-cy='value'>
-          {children}
-        </div>
-      ) : placeholder ? (
-        <div
-          {...sxf('placeholder', other.disabled && 'placeholder$disabled')}
-          data-cy='placeholder'
-        >
-          {placeholder}
-        </div>
-      ) : null}
-    </FieldBase>
-  );
-});
+    return (
+      <FieldBase
+        styles={innerStyles?.fieldBase}
+        populated={populated}
+        {...other}
+        sx={[componentTheme.overridenStyles, sx]}
+        ref={forwardedRef}
+      >
+        {children ? (
+          <div {...sxf('value')} data-cy='value'>
+            {children}
+          </div>
+        ) : placeholder ? (
+          <div
+            {...sxf('placeholder', other.disabled && 'placeholder$disabled')}
+            data-cy='placeholder'
+          >
+            {placeholder}
+          </div>
+        ) : null}
+      </FieldBase>
+    );
+  }),
+);

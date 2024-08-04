@@ -48,7 +48,7 @@ export const Switch: ISwitch = forwardRef(function Switch<
   TRoot extends React.ElementType = typeof SWITCH_DEFAULT_TAG,
 >(props: ISwitchProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
-    as: Component = SWITCH_DEFAULT_TAG,
+    component: Component = SWITCH_DEFAULT_TAG,
     styles,
     sx,
     innerStyles,

@@ -10,7 +10,7 @@ import type {
   IFloatingFilterableListBaseProps,
   IFloatingFilterableListBaseTriggerRenderProps,
 } from '~/components/FloatingFilterableListBase';
-import type { ITextInputFieldOwnProps } from '~/components/TextInputField';
+import type { ITextInputFieldProps } from '~/components/TextInputField';
 import type { IInputChipProps } from '~/components/Chip';
 import type { ITextFieldBaseStylesKey } from '~/components/TextFieldBase';
 import type { IMultiSelectBaseStylesKey } from './MultiSelectBase.styles';
@@ -26,7 +26,7 @@ export type IMultiSelectBaseProps<TItem> =
       | 'itemRenderer'
       | 'children'
     > &
-    IOmit<ITextInputFieldOwnProps, 'styles'> & {
+    IOmit<ITextInputFieldProps, 'styles'> & {
       innerStyles?: {
         textInputField?: IZeroOrMore<ICompiledStyles<ITextFieldBaseStylesKey>>;
       };

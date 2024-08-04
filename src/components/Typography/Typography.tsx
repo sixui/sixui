@@ -42,7 +42,7 @@ export const Typography: ITypography = forwardRef(function Typography<
   TRoot extends React.ElementType = typeof TYPOGRAPHY_DEFAULT_TAG,
 >(props: ITypographyProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
-    as,
+    component,
     styles,
     sx,
     variant = 'body',
@@ -62,7 +62,7 @@ export const Typography: ITypography = forwardRef(function Typography<
     [stylesCombinator],
   );
 
-  const Component = as ?? typographyTagMap[`${variant}$${size}`];
+  const Component = component ?? typographyTagMap[`${variant}$${size}`];
 
   // TODO: make utility
   const isReactComponent = typeof Component === 'function';

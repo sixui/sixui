@@ -5,7 +5,7 @@ import type {
   IOmit,
 } from '~/helpers/types';
 import type {
-  IFluidButtonOwnProps,
+  IFluidButtonProps,
   IFluidButtonStylesKey,
 } from '~/components/FluidButton';
 import type { ICopyableTextStylesKey } from './CopyableText.styles';
@@ -16,7 +16,7 @@ export type ICopyableTextTriggerRenderProps = {
 };
 
 export type ICopyableTextProps = IContainerProps<ICopyableTextStylesKey> &
-  IOmit<IFluidButtonOwnProps, 'styles'> & {
+  IOmit<IFluidButtonProps, 'styles'> & {
     innerStyles?: {
       fluidButton?: IZeroOrMore<ICompiledStyles<IFluidButtonStylesKey>>;
     };
