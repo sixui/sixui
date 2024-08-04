@@ -1,26 +1,21 @@
 import { forwardRef, useMemo } from 'react';
 
 import type { IBadgeProps } from './Badge.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { isNumeric } from '~/helpers/isNumeric';
+import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { useStyles } from '~/hooks/useStyles';
+import { Base } from '../Base';
 import { badgeStyles } from './Badge.styles';
 import { badgeTheme } from './Badge.stylex';
-import { isNumeric } from '~/helpers/isNumeric';
 
-export const Badge = forwardRef<HTMLDivElement, IBadgeProps>(
-  function Badge(props, forwardedRef) {
+export const Badge = createPolymorphicComponent<'div', IBadgeProps>(
+  forwardRef<HTMLDivElement, IBadgeProps>(function Badge(props, forwardedRef) {
     const { styles, sx, value, maxValue, showZero, dot, ...other } = props;
 
-    const componentTheme = useComponentTheme('Badge');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(badgeStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+    const { combineStyles, getStyles, globalStyles } = useStyles({
+      name: 'Badge',
+      styles: [badgeStyles, styles],
+    });
 
     const valueAsNumber = isNumeric(value) ? Number(value) : undefined;
     const invisible =
@@ -40,21 +35,23 @@ export const Badge = forwardRef<HTMLDivElement, IBadgeProps>(
     );
 
     return (
-      <div
+      <Base
         {...other}
-        {...sxf(
+        sx={[
           badgeTheme,
-          componentTheme.overridenStyles,
-          'host',
-          invisible && 'host$invisible',
-          dot && 'host$dot',
+          globalStyles,
+          combineStyles(
+            'host',
+            invisible && 'host$invisible',
+            dot && 'host$dot',
+          ),
           sx,
-        )}
+        ]}
         ref={forwardedRef}
       >
-        <div {...sxf('background')} />
-        <div {...sxf('label')}>{displayValue}</div>
-      </div>
+        <div {...getStyles('background')} />
+        <div {...getStyles('label')}>{displayValue}</div>
+      </Base>
     );
-  },
+  }),
 );

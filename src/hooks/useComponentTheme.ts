@@ -6,6 +6,9 @@ export type IUseComponentThemeResult = {
   overridenStyles?: StyleXStyles;
 };
 
+/**
+ * @deprecated - use `useStyles()`
+ */
 export const useComponentTheme = (
   componentName: string,
 ): IUseComponentThemeResult => {

@@ -40,6 +40,8 @@ export type ICompiledStyles<TKey extends string> = {
 
 export type IZeroOrMore<T> = undefined | T | Array<T | undefined>;
 
+export type IOneOrMore<T> = T | Array<T | undefined>;
+
 export type IArrayElement<TArray> =
   TArray extends ReadonlyArray<infer TElementType> ? TElementType : TArray;
 
@@ -48,6 +50,9 @@ export type IStyleXStyles =
   | CompiledStyles
   | Array<IStyleXStyles>;
 
+/**
+ * @deprecated - use IBaseProps instead
+ */
 export type IContainerProps<TStyleKey extends string = never> = {
   styles?: IZeroOrMore<ICompiledStyles<TStyleKey>>;
   sx?: IStyleXStyles;

@@ -1,16 +1,21 @@
 import { useEffect, useState } from 'react';
 
-type IUseLoadedProps = Pick<
+export type IUseImageLoadedProps = Pick<
   React.ImgHTMLAttributes<HTMLImageElement>,
   'crossOrigin' | 'referrerPolicy' | 'src' | 'srcSet'
 >;
 
-export const useLoaded = ({
+export type IUseImageLoadedResult = {
+  loaded: boolean;
+  hasLoadingError: boolean;
+};
+
+export const useImageLoaded = ({
   crossOrigin,
   referrerPolicy,
   src,
   srcSet,
-}: IUseLoadedProps): { loaded: boolean; hasLoadingError: boolean } => {
+}: IUseImageLoadedProps): IUseImageLoadedResult => {
   const [loaded, setLoaded] = useState(false);
   const [hasLoadingError, setHasLoadingError] = useState(false);
 

@@ -94,7 +94,7 @@ export * from './components/VisualState';
 export * from './hooks/useControlledValue';
 export * from './hooks/useElementSize';
 export * from './hooks/useId';
-export * from './hooks/useLoaded';
+export * from './hooks/useImageLoaded';
 export * from './hooks/usePrevious';
 
 // helpers

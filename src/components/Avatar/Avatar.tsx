@@ -1,13 +1,11 @@
 import { forwardRef, useMemo } from 'react';
 
 import type { IAvatarProps } from './Avatar.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { useLoaded } from '~/hooks/useLoaded';
+import { useStyles } from '~/hooks/useStyles';
+import { useImageLoaded } from '~/hooks/useImageLoaded';
 import { hslColorFromString } from '~/helpers/colors/hslColorFromString';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
-import { Base } from '~/components/Base';
+import { Base } from '../Base';
 import { avatarStyles, avatarDynamicStyles } from './Avatar.styles';
 import { avatarTheme } from './Avatar.stylex';
 import { avatarVariantStyles } from './variants';
@@ -31,20 +29,14 @@ export const Avatar = createPolymorphicComponent<'div', IAvatarProps>(
         ...other
       } = props;
 
-      const componentTheme = useComponentTheme('Avatar');
-      const variantStyles = variant ? avatarVariantStyles[variant] : undefined;
+      const { combineStyles, getStyles, globalStyles } = useStyles({
+        name: 'Avatar',
+        styles: [avatarStyles, avatarVariantStyles[variant], styles],
+      });
 
-      const stylesCombinator = useMemo(
-        () => stylesCombinatorFactory(avatarStyles, variantStyles, styles),
-        [variantStyles, styles],
-      );
-      const sxf = useMemo(
-        () => stylePropsFactory(stylesCombinator),
-        [stylesCombinator],
-      );
-
-      // Use a hook instead of onError on the img element to support server-side rendering.
-      const { hasLoadingError } = useLoaded({
+      // Use a hook instead of onError on the img element to support server-side
+      // rendering.
+      const { hasLoadingError } = useImageLoaded({
         crossOrigin,
         referrerPolicy,
         src,
@@ -68,22 +60,21 @@ export const Avatar = createPolymorphicComponent<'div', IAvatarProps>(
 
       return (
         <Base
-          component='div'
           {...other}
-          sx={stylesCombinator(
+          sx={[
             avatarTheme,
-            componentTheme.overridenStyles,
-            'host',
+            globalStyles,
             randomColor
               ? avatarDynamicStyles.backgroundColor(randomColor)
               : undefined,
+            combineStyles('host'),
             sx,
-          )}
+          ]}
           ref={forwardedRef}
         >
           {hasImageNotFailing ? (
             <img
-              {...sxf('image')}
+              {...getStyles('image')}
               alt={alt}
               crossOrigin={crossOrigin}
               referrerPolicy={referrerPolicy}
@@ -92,9 +83,9 @@ export const Avatar = createPolymorphicComponent<'div', IAvatarProps>(
               sizes={sizes}
             />
           ) : children ? (
-            <div {...sxf('content')}>{children}</div>
+            <div {...getStyles('content')}>{children}</div>
           ) : hasImage && !!alt ? (
-            <div {...sxf('content')}>{alt[0]}</div>
+            <div {...getStyles('content')}>{alt[0]}</div>
           ) : null}
         </Base>
       );
