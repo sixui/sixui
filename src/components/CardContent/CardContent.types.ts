@@ -1,6 +1,6 @@
-import type { IContainerProps } from '~/helpers/types';
+import type { IBaseProps } from '../Base';
 import type { ICardContentStylesKey } from './CardContent.styles';
 
-export type ICardContentProps = IContainerProps<ICardContentStylesKey> & {
+export type ICardContentProps = IBaseProps<ICardContentStylesKey> & {
   children?: React.ReactNode;
 };

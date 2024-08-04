@@ -1,33 +1,32 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 
 import type { ICardActionsProps } from './CardActions.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { useStyles } from '~/hooks/useStyles';
+import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
 import { cardActionsStyles } from './CardActions.styles';
+import { Base } from '../Base';
 
-export const CardActions = forwardRef<HTMLDivElement, ICardActionsProps>(
-  function CardActions(props, forwardedRef) {
-    const { styles, sx, children, ...other } = props;
+// TODO: reduce overhead and avoid this component.
 
-    const componentTheme = useComponentTheme('CardActions');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(cardActionsStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+export const CardActions = createPolymorphicComponent<'div', ICardActionsProps>(
+  forwardRef<HTMLDivElement, ICardActionsProps>(
+    function CardActions(props, forwardedRef) {
+      const { styles, sx, children, ...other } = props;
 
-    return (
-      <div
-        {...other}
-        {...sxf(componentTheme.overridenStyles, 'host', sx)}
-        ref={forwardedRef}
-      >
-        {children}
-      </div>
-    );
-  },
+      const { combineStyles, globalStyles } = useStyles({
+        name: 'CardActions',
+        styles: [cardActionsStyles, styles],
+      });
+
+      return (
+        <Base
+          {...other}
+          sx={[globalStyles, combineStyles('host'), sx]}
+          ref={forwardedRef}
+        >
+          {children}
+        </Base>
+      );
+    },
+  ),
 );

@@ -1,43 +1,42 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 
 import type { ICardMediaProps } from './CardMedia.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { useStyles } from '~/hooks/useStyles';
 import { commonStyles } from '~/helpers/commonStyles';
+import { Base } from '../Base';
 import { cardMediaStyles } from './CardMedia.styles';
 import { cardMediaTheme } from './CardMedia.stylex';
 
-export const CardMedia = forwardRef<HTMLDivElement, ICardMediaProps>(
-  function CardMedia(props, forwardedRef) {
-    const { styles, sx, children, src, ...other } = props;
+export const CardMedia = createPolymorphicComponent<'div', ICardMediaProps>(
+  forwardRef<HTMLDivElement, ICardMediaProps>(
+    function CardMedia(props, forwardedRef) {
+      const { styles, sx, children, src, ...other } = props;
 
-    const componentTheme = useComponentTheme('CardMedia');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(cardMediaStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+      const { combineStyles, globalStyles } = useStyles({
+        name: 'CardMedia',
+        styles: [cardMediaStyles, styles],
+      });
 
-    return (
-      <div
-        role='img'
-        {...other}
-        {...sxf(
-          cardMediaTheme,
-          componentTheme.overridenStyles,
-          'host',
-          'host$image',
-          src ? commonStyles.backgroundImage(src) : undefined,
-          sx,
-        )}
-        ref={forwardedRef}
-      >
-        {children}
-      </div>
-    );
-  },
+      return (
+        <Base
+          role='img'
+          {...other}
+          sx={[
+            cardMediaTheme,
+            globalStyles,
+            combineStyles(
+              'host',
+              'host$image',
+              !!src && commonStyles.backgroundImage(src),
+            ),
+            sx,
+          ]}
+          ref={forwardedRef}
+        >
+          {children}
+        </Base>
+      );
+    },
+  ),
 );
