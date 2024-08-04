@@ -1,24 +1,19 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 import { useMergeRefs } from '@floating-ui/react';
 
-import type {
-  IPolymorphicRef,
-  IWithAsProp,
+import type { ICardProps } from './Card.types';
+import {
+  createPolymorphicComponent,
+  type IWithAsProp,
 } from '~/helpers/react/polymorphicComponentTypes';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { useForwardedRef } from '~/hooks/useForwardedRef';
+import { useStyles } from '~/hooks/useStyles';
+import { Base } from '../Base';
 import { useVisualState } from '../VisualState';
 import { Elevation } from '../Elevation';
 import { FocusRing } from '../FocusRing';
 import { StateLayer } from '../StateLayer';
-import {
-  type ICardOwnProps,
-  type ICardProps,
-  CARD_DEFAULT_TAG,
-} from './Card.types';
-import { CardContext, type ICardContextValue } from './CardContext';
 import { cardVariantStyles } from './variants';
 import {
   cardElevationStyles,
@@ -27,124 +22,121 @@ import {
   cardStyles,
 } from './Card.styles';
 import { cardTheme } from './Card.stylex';
+import { CardContext, type ICardContextValue } from './CardContext';
 
 // https://github.com/material-components/material-web/blob/main/labs/card/internal/card.ts
 
-type ICard = <TRoot extends React.ElementType = typeof CARD_DEFAULT_TAG>(
-  props: ICardProps<TRoot>,
-) => React.ReactNode;
+export const Card = createPolymorphicComponent<'div', ICardProps>(
+  forwardRef<HTMLDivElement, ICardProps>(function Badge(props, forwardedRef) {
+    const {
+      component,
+      styles,
+      sx,
+      innerStyles,
+      visualState: visualStateProp,
+      variant = 'filled',
+      children,
+      onClick,
+      href,
+      disabled,
+      ...other
+    } = props as IWithAsProp<ICardProps>;
 
-export const Card: ICard = forwardRef(function Card<
-  TRoot extends React.ElementType = typeof CARD_DEFAULT_TAG,
->(props: ICardProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
-  const {
-    component,
-    styles,
-    sx,
-    innerStyles,
-    visualState: visualStateProp,
-    variant = 'filled',
-    children,
-    onClick,
-    href,
-    disabled,
-    ...other
-  } = props as IWithAsProp<ICardOwnProps>;
+    const { visualState, setRef: setVisualStateRef } = useVisualState(
+      visualStateProp,
+      { disabled },
+    );
+    const handleRef = useMergeRefs([forwardedRef, setVisualStateRef]);
+    const innerRef = useForwardedRef(forwardedRef);
 
-  const { visualState, setRef: setVisualStateRef } = useVisualState(
-    visualStateProp,
-    { disabled },
-  );
-  const handleRef = useMergeRefs([forwardedRef, setVisualStateRef]);
+    const variantStyles = variant ? cardVariantStyles[variant] : undefined;
+    const { combineStyles, getStyles, globalStyles, settings } = useStyles({
+      name: 'Card',
+      styles: [cardStyles, variantStyles, styles],
+      visualState,
+    });
 
-  const componentTheme = useComponentTheme('Card');
-  const variantStyles = variant ? cardVariantStyles[variant] : undefined;
+    const actionable = !disabled && (!!href || !!onClick);
+    const dragged = visualState?.dragged;
 
-  const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(cardStyles, variantStyles, styles),
-    [variantStyles, styles],
-  );
-  const sxf = useMemo(
-    () => stylePropsFactory(stylesCombinator, visualState),
-    [stylesCombinator, visualState],
-  );
+    const hasOutline =
+      !!cardStyles.outline ||
+      !!variantStyles?.outline ||
+      asArray(styles).some((styles) => !!styles?.outline);
 
-  const actionable = !disabled && (!!href || !!onClick);
-  const dragged = visualState?.dragged;
+    const rootElement =
+      component ?? (!dragged && href ? (settings?.linkAs ?? 'a') : 'div');
 
-  const hasOutline =
-    !!cardStyles.outline ||
-    !!variantStyles?.outline ||
-    asArray(styles).some((styles) => !!styles?.outline);
+    const context: ICardContextValue = {
+      actionable,
+    };
 
-  const Component =
-    component ??
-    (!dragged && href
-      ? (componentTheme.settings?.linkAs ?? 'a')
-      : CARD_DEFAULT_TAG);
-
-  const context: ICardContextValue = {
-    actionable,
-  };
-
-  return (
-    <CardContext.Provider value={context}>
-      <Component
-        sx={sx}
-        href={actionable && !dragged ? href : undefined}
-        onClick={actionable && !dragged ? onClick : undefined}
-        onKeyDown={(event: React.KeyboardEvent<HTMLElement>) => {
-          // if Enter or Space, trigger onClick
-          if (
-            actionable &&
-            !dragged &&
-            (event.key === 'Enter' || event.key === ' ')
-          ) {
-            event.preventDefault();
-            onClick?.();
-          }
-          // actionable && !dragged ? onClick : undefined;
-        }}
-        role={actionable ? 'button' : undefined}
-        tabIndex={disabled || !actionable ? -1 : 0}
-        disabled={disabled}
-        {...other}
-        {...sxf(
-          cardTheme,
-          componentTheme.overridenStyles,
-          'host',
-          actionable && 'host$actionable',
-          disabled && 'host$disabled',
-          sx,
-        )}
-        ref={handleRef}
-      >
-        <Elevation
-          styles={[cardElevationStyles, ...asArray(innerStyles?.elevation)]}
+    return (
+      <CardContext.Provider value={context}>
+        <Base
+          component={rootElement}
+          href={actionable && !dragged ? href : undefined}
+          onClick={actionable && !dragged ? onClick : undefined}
+          onKeyDown={(event: React.KeyboardEvent<HTMLElement>) => {
+            // if Enter or Space, trigger onClick
+            if (
+              actionable &&
+              !dragged &&
+              (event.key === 'Enter' || event.key === ' ')
+            ) {
+              event.preventDefault();
+              onClick?.();
+            }
+            // actionable && !dragged ? onClick : undefined;
+          }}
+          role={actionable ? 'button' : undefined}
+          tabIndex={disabled || !actionable ? -1 : 0}
           disabled={disabled}
-        />
-        {actionable ? (
-          <>
-            <StateLayer
-              styles={[
-                cardStateLayerStyles,
-                ...asArray(innerStyles?.stateLayer),
-              ]}
-              for={forwardedRef}
-              disabled={disabled}
-              visualState={visualState}
-            />
-            <FocusRing
-              styles={[cardFocusRingStyles, ...asArray(innerStyles?.focusRing)]}
-              for={forwardedRef}
-              visualState={visualState}
-            />
-          </>
-        ) : null}
-        {hasOutline ? <div {...sxf('outline')} /> : null}
-        <div {...sxf('background', disabled && 'background$disabled')} />
-        {children}
-      </Component>
-    </CardContext.Provider>
-  );
-});
+          {...other}
+          sx={[
+            cardTheme,
+            globalStyles,
+            combineStyles(
+              'host',
+              actionable && 'host$actionable',
+              disabled && 'host$disabled',
+            ),
+            sx,
+          ]}
+          ref={handleRef}
+        >
+          <Elevation
+            styles={[cardElevationStyles, ...asArray(innerStyles?.elevation)]}
+            disabled={disabled}
+          />
+          {actionable ? (
+            <>
+              <StateLayer
+                styles={[
+                  cardStateLayerStyles,
+                  ...asArray(innerStyles?.stateLayer),
+                ]}
+                for={innerRef}
+                disabled={disabled}
+                visualState={visualState}
+              />
+              <FocusRing
+                styles={[
+                  cardFocusRingStyles,
+                  ...asArray(innerStyles?.focusRing),
+                ]}
+                for={innerRef}
+                visualState={visualState}
+              />
+            </>
+          ) : null}
+          {hasOutline ? <div {...getStyles('outline')} /> : null}
+          <div
+            {...getStyles('background', disabled && 'background$disabled')}
+          />
+          {children}
+        </Base>
+      </CardContext.Provider>
+    );
+  }),
+);

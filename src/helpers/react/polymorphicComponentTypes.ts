@@ -24,9 +24,7 @@ export type IWithAsProp<
    */
   component?: TRoot;
 
-  renderRoot?: (
-    props: TProps & { children?: React.ReactNode },
-  ) => React.ReactElement;
+  renderRoot?: (props: Omit<TProps, 'children'>) => React.ReactElement;
 };
 
 /**

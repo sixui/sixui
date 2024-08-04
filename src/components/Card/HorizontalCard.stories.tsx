@@ -1,18 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
-import type { ICardProps, ICardOwnProps } from './Card.types';
+import type { ICardProps } from './Card.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '../ComponentShowcase';
 import { Button } from '../Button';
-import { Card } from './Card';
 import { CardContent } from '../CardContent';
 import { CardMedia } from '../CardMedia';
 import { CardTitle } from '../CardTitle';
 import { CardActions } from '../CardActions';
+import { Card } from './Card';
 
 // https://m3.material.io/components/cards
 // https://github.com/material-components/material-web/blob/main/labs/card/demo/stories.ts
@@ -141,7 +141,7 @@ const ActionableContent: React.FC<{ headline?: string }> = ({ headline }) => (
   </>
 );
 
-const states: Array<IComponentPresentation<ICardOwnProps>> = [
+const states: Array<IComponentPresentation<ICardProps>> = [
   { legend: 'Enabled' },
   { legend: 'Focused', props: { visualState: { focused: true } } },
   { legend: 'Hovered', props: { visualState: { hovered: true } } },
@@ -150,7 +150,7 @@ const states: Array<IComponentPresentation<ICardOwnProps>> = [
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const cols: Array<IComponentPresentation<ICardOwnProps>> = [
+const cols: Array<IComponentPresentation<ICardProps>> = [
   {
     legend: 'Non-actionable',
     props: { children: <NonActionableContent /> },
@@ -164,7 +164,7 @@ const cols: Array<IComponentPresentation<ICardOwnProps>> = [
   },
 ];
 
-const variants: Array<IComponentPresentation<ICardOwnProps>> = [
+const variants: Array<IComponentPresentation<ICardProps>> = [
   {
     legend: 'Elevated',
     props: {
