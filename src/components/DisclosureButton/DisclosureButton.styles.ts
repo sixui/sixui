@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
-import { circularProgressIndicatorTokens } from '~/components/CircularProgressIndicator/CircularProgressIndicator.stylex';
-import { listItemTokens } from '~/components/ListItem/ListItem.stylex';
-import { itemTokens } from '~/components/Item/Item.stylex';
+import { circularProgressIndicatorTokens } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
+import { listItemTokens } from '../ListItem/ListItem.stylex';
+import { itemTokens } from '../Item/Item.stylex';
 import { motionTokens } from '~/themes/base/motion.stylex';
 import { disclosureButtonTokens } from './DisclosureButton.stylex';
 

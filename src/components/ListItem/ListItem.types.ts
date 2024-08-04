@@ -5,10 +5,10 @@ import type {
   IOmit,
 } from '~/helpers/types';
 import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
-import type { IItemProps, IItemStylesKey } from '~/components/Item';
-import type { IStateLayerStylesKey } from '~/components/StateLayer';
-import type { IFocusRingStylesKey } from '~/components/FocusRing';
-import type { IVisualState } from '~/components/VisualState';
+import type { IItemProps, IItemStylesKey } from '../Item';
+import type { IStateLayerStylesKey } from '../StateLayer';
+import type { IFocusRingStylesKey } from '../FocusRing';
+import type { IVisualState } from '../VisualState';
 import type { IListItemStylesKey } from './ListItem.styles';
 
 export const LIST_ITEM_DEFAULT_TAG = 'button';

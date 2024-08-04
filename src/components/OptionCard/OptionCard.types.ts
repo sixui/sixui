@@ -6,7 +6,7 @@ import type {
   IZeroOrMore,
 } from '~/helpers/types';
 import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
-import type { ICardStylesKey } from '~/components/Card';
+import type { ICardStylesKey } from '../Card';
 import type { IOptionCardStylesKey } from './OptionCard.styles';
 
 export type IOptionCardControlRenderProps = {

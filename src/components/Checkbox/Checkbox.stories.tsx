@@ -8,7 +8,7 @@ import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '~/components/ComponentShowcase';
+} from '../ComponentShowcase';
 import { Checkbox } from './Checkbox';
 
 // https://m3.material.io/components/checkbox/overview

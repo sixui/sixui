@@ -1,7 +1,4 @@
-import type {
-  IFieldBaseProps,
-  IFieldBaseStylesKey,
-} from '~/components/FieldBase';
+import type { IFieldBaseProps, IFieldBaseStylesKey } from '../FieldBase';
 import type {
   ICompiledStyles,
   IContainerProps,

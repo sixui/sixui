@@ -6,7 +6,7 @@ import type { ISnackbarProps } from './Snackbar.types';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { SnackbarContent } from '~/components/SnackbarContent';
+import { SnackbarContent } from '../SnackbarContent';
 import { useTimeout } from '~/hooks/useTimeout';
 import { snackbarStyles } from './Snackbar.styles';
 import { snackbarTheme } from './Snackbar.stylex';

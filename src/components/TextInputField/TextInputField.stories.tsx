@@ -3,12 +3,12 @@ import stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { ITextInputFieldProps } from './TextInputField.types';
-import type { IFieldBaseVariant } from '~/components/FieldBase';
+import type { IFieldBaseVariant } from '../FieldBase';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '~/components/ComponentShowcase';
+} from '../ComponentShowcase';
 import { TextInputField } from './TextInputField';
 
 const meta = {

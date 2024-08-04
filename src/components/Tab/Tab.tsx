@@ -13,16 +13,16 @@ import type {
   IPolymorphicRef,
   IWithAsProp,
 } from '~/helpers/react/polymorphicComponentTypes';
-import { Badge } from '~/components/Badge';
+import { Badge } from '../Badge';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { useVisualState } from '~/components/VisualState';
-import { Elevation } from '~/components/Elevation';
-import { FocusRing } from '~/components/FocusRing';
-import { StateLayer } from '~/components/StateLayer';
-import { Anchored } from '~/components/Anchored';
-import { TabContext } from '~/components/Tabs';
+import { useVisualState } from '../VisualState';
+import { Elevation } from '../Elevation';
+import { FocusRing } from '../FocusRing';
+import { StateLayer } from '../StateLayer';
+import { Anchored } from '../Anchored';
+import { TabContext } from '../Tabs';
 import {
   TAB_DEFAULT_TAG,
   type ITabOwnProps,

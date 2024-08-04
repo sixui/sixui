@@ -10,12 +10,12 @@ import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { useId } from '~/hooks/useId';
-import { useVisualState } from '~/components/VisualState';
-import { StateLayer } from '~/components/StateLayer';
-import { FocusRing } from '~/components/FocusRing';
-import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
-import { RadioGroupContext } from '~/components/RadioGroup';
-import { LabeledContext } from '~/components/Labeled';
+import { useVisualState } from '../VisualState';
+import { StateLayer } from '../StateLayer';
+import { FocusRing } from '../FocusRing';
+import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
+import { RadioGroupContext } from '../RadioGroup';
+import { LabeledContext } from '../Labeled';
 import {
   RADIO_DEFAULT_TAG,
   type IRadioProps,

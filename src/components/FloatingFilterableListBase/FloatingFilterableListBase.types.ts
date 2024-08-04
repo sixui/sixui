@@ -8,7 +8,7 @@ import type {
 import type {
   IFilterableListBaseProps,
   IFilterableListItemFocus,
-} from '~/components/FilterableListBase';
+} from '../FilterableListBase';
 import type {
   IExtendedFloatingProps,
   IExtendedHtmlFloatingProps,

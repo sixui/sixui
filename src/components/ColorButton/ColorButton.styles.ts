@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { focusRingTokens } from '~/components/FocusRing/FocusRing.stylex';
-import { stateLayerTokens } from '~/components/StateLayer/StateLayer.stylex';
+import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
+import { stateLayerTokens } from '../StateLayer/StateLayer.stylex';
 import { motionTokens } from '~/themes/base/motion.stylex';
 import { colorButtonTokens } from './ColorButton.stylex';
 import { colorButtonStateTokens } from './ColorButton.state.stylex';

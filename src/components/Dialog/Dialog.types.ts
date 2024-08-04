@@ -10,7 +10,7 @@ import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorp
 import type {
   IDialogContentOwnProps,
   IDialogContentStylesKey,
-} from '~/components/DialogContent';
+} from '../DialogContent';
 import type { IExtendedHtmlFloatingProps } from '~/helpers/extendFloatingProps';
 
 export const DIALOG_DEFAULT_TAG = 'div';

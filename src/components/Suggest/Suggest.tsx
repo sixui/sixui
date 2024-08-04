@@ -9,10 +9,10 @@ import {
   isFilterableListItemEmpty,
   renderFilterableListItem,
   type IFilterableListItem,
-} from '~/components/FilterableList';
-import { SuggestBase } from '~/components/SuggestBase';
-import { ListItem } from '~/components/ListItem';
-import { useSelect } from '~/components/Select/useSelect';
+} from '../FilterableList';
+import { SuggestBase } from '../SuggestBase';
+import { ListItem } from '../ListItem';
+import { useSelect } from '../Select/useSelect';
 
 export const Suggest = forwardRef<HTMLInputElement, ISuggestProps>(
   function Suggest(props, fowardedRef) {

@@ -1,11 +1,11 @@
 import type { IContainerProps, IOmit } from '~/helpers/types';
-import type { IFieldBaseVariant } from '~/components/FieldBase';
-import type { IFieldStylesKey, IFieldProps } from '~/components/Field';
-import type { IUseSingleFilterableListBaseProps } from '~/components/FilterableListBase';
+import type { IFieldBaseVariant } from '../FieldBase';
+import type { IFieldStylesKey, IFieldProps } from '../Field';
+import type { IUseSingleFilterableListBaseProps } from '../FilterableListBase';
 import type {
   IFloatingFilterableListBaseProps,
   IFloatingFilterableListBaseTriggerRenderProps,
-} from '~/components/FloatingFilterableListBase';
+} from '../FloatingFilterableListBase';
 
 export type ISelectBaseProps<TItem> = IContainerProps<IFieldStylesKey> &
   IOmit<

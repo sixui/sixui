@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import type { IVisualStateProps } from './VisualState.types';
-import { ButtonBase } from '~/components/ButtonBase';
+import { ButtonBase } from '../ButtonBase';
 import { useVisualState } from './useVisualState';
 import {
   visualStateFocusRingStyles,

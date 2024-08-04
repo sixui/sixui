@@ -16,14 +16,14 @@ import type {
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { useVisualState } from '~/components/VisualState';
+import { useVisualState } from '../VisualState';
 import { usePrevious } from '~/hooks/usePrevious';
 import { useControlledValue } from '~/hooks/useControlledValue';
-import { StateLayer } from '~/components/StateLayer';
-import { FocusRing } from '~/components/FocusRing';
-import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
+import { StateLayer } from '../StateLayer';
+import { FocusRing } from '../FocusRing';
+import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { executeLazyPromise } from '~/helpers/executeLazyPromise';
-import { LabeledContext } from '~/components/Labeled';
+import { LabeledContext } from '../Labeled';
 import {
   CHECKBOX_DEFAULT_TAG,
   type ICheckboxOwnProps,

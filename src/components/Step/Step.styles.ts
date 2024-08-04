@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { circularProgressIndicatorTokens } from '~/components/CircularProgressIndicator/CircularProgressIndicator.stylex';
-import { focusRingTokens } from '~/components/FocusRing/FocusRing.stylex';
+import { circularProgressIndicatorTokens } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
+import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
 import { stepTokens } from './Step.stylex';
 import { stepStateTokens } from './Step.state.stylex';
 

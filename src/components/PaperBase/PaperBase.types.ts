@@ -4,7 +4,7 @@ import type {
   ICompiledStyles,
 } from '~/helpers/types';
 import type { IPaperBaseStylesKey } from './PaperBase.styles';
-import type { IElevationStylesKey } from '~/components/Elevation';
+import type { IElevationStylesKey } from '../Elevation';
 
 export type IPaperBaseProps = IContainerProps<IPaperBaseStylesKey> &
   React.ComponentPropsWithoutRef<'div'> & {

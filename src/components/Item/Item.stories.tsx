@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
 import type { IItemProps } from './Item.types';
-import { ComponentShowcase } from '~/components/ComponentShowcase';
+import { ComponentShowcase } from '../ComponentShowcase';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { Item } from './Item';
 

@@ -2,10 +2,7 @@ import { forwardRef, useRef } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { ITextAreaFieldProps } from './TextAreaField.types';
-import {
-  TextFieldBase,
-  type ITextFieldBaseProps,
-} from '~/components/TextFieldBase';
+import { TextFieldBase, type ITextFieldBaseProps } from '../TextFieldBase';
 
 export const TextAreaField = forwardRef<HTMLDivElement, ITextAreaFieldProps>(
   function TextAreaField(props, forwardedRef) {

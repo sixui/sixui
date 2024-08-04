@@ -18,10 +18,10 @@ import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '~/components/ComponentShowcase';
+} from '../ComponentShowcase';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { Avatar } from '~/components/Avatar';
-import { Checkbox } from '~/components/Checkbox';
+import { Avatar } from '../Avatar';
+import { Checkbox } from '../Checkbox';
 import { ListItem } from './ListItem';
 
 // https://m3.material.io/components/items/overview

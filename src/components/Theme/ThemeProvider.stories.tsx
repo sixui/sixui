@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
 import type { IThemeProviderProps } from './ThemeProvider.types';
-import { ColorInputField } from '~/components/ColorInputField';
+import { ColorInputField } from '../ColorInputField';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { commonStyles } from '~/helpers/commonStyles';
 import { isValidHexColor } from '~/helpers/colors/isValidHexColor';

@@ -5,10 +5,10 @@ import stylex from '@stylexjs/stylex';
 import type { IColorButtonProps } from './ColorButton.types';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { ButtonBase } from '~/components/ButtonBase';
-import { SvgIcon } from '~/components/SvgIcon';
+import { ButtonBase } from '../ButtonBase';
+import { SvgIcon } from '../SvgIcon';
 import { iconCheckMark } from '~/assets/icons';
-import { ColorTag } from '~/components/ColorTag';
+import { ColorTag } from '../ColorTag';
 import {
   colorButtonButtonBaseStyles,
   colorButtonColorTagStyles,

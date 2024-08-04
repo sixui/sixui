@@ -8,7 +8,7 @@ import {
 
 import type { IExpandableProps } from './Expandable.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { IconButton } from '~/components/IconButton';
+import { IconButton } from '../IconButton';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { Expandable } from './Expandable';
 

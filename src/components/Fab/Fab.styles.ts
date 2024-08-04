@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { buttonTokens } from '~/components/Button/Button.stylex';
+import { buttonTokens } from '../Button/Button.stylex';
 import { fabTokens } from './Fab.stylex';
 
 // https://github.com/material-components/material-web/blob/main/fab/internal/_shared.scss

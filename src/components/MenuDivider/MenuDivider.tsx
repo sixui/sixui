@@ -1,6 +1,6 @@
 import { forwardRef, useMemo } from 'react';
 
-import { Divider, type IDividerProps } from '~/components/Divider';
+import { Divider, type IDividerProps } from '../Divider';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { menuDividerStyles } from './MenuDivider.styles';

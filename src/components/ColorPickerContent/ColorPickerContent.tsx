@@ -5,11 +5,11 @@ import type { IColorPickerContentProps } from './ColorPickerContent.types';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { PaperBase } from '~/components/PaperBase';
+import { PaperBase } from '../PaperBase';
 import { commonStyles } from '~/helpers/commonStyles';
-import { Divider } from '~/components/Divider';
-import { ColorButton } from '~/components/ColorButton';
-import { ColorPaletteGroupContext } from '~/components/ColorPaletteGroup';
+import { Divider } from '../Divider';
+import { ColorButton } from '../ColorButton';
+import { ColorPaletteGroupContext } from '../ColorPaletteGroup';
 import { basicTemplateStyles } from './ColorPickerContent.styles';
 
 export const ColorPickerContent = forwardRef<

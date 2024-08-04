@@ -5,12 +5,12 @@ import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
 import type { IStepperProps } from './Stepper.types';
 import { isFunction } from '~/helpers/isFunction';
-import { Step, type IStepProps } from '~/components/Step';
+import { Step, type IStepProps } from '../Step';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { ComponentShowcase } from '~/components/ComponentShowcase';
-import { stepTokens } from '~/components/Step/Step.stylex';
+import { ComponentShowcase } from '../ComponentShowcase';
+import { stepTokens } from '../Step/Step.stylex';
 import { createSequence } from '@olivierpascal/helpers';
-import { StepConnector } from '~/components/StepConnector';
+import { StepConnector } from '../StepConnector';
 import { Stepper } from './Stepper';
 
 const meta = {

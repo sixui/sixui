@@ -4,10 +4,7 @@ import type {
   ICompiledStyles,
   IOmit,
 } from '~/helpers/types';
-import type {
-  IPaperBaseProps,
-  IPaperBaseStylesKey,
-} from '~/components/PaperBase';
+import type { IPaperBaseProps, IPaperBaseStylesKey } from '../PaperBase';
 import type { IColorScheme } from '~/themes/base';
 
 export type IPaperVariant = 'filled' | 'outlined';

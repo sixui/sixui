@@ -5,10 +5,10 @@ import type {
   IAny,
   IMaybeAsync,
 } from '~/helpers/types';
-import type { IStateLayerStylesKey } from '~/components/StateLayer';
-import type { IFocusRingStylesKey } from '~/components/FocusRing';
-import type { ICircularProgressIndicatorStylesKey } from '~/components/CircularProgressIndicator';
-import type { IVisualState } from '~/components/VisualState';
+import type { IStateLayerStylesKey } from '../StateLayer';
+import type { IFocusRingStylesKey } from '../FocusRing';
+import type { ICircularProgressIndicatorStylesKey } from '../CircularProgressIndicator';
+import type { IVisualState } from '../VisualState';
 import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
 import type { ISwitchStylesKey } from './Switch.styles';
 

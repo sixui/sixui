@@ -6,9 +6,9 @@ import type { IHtmlSelectOption, IHtmlSelectProps } from './HtmlSelect.types';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useVisualState } from '~/components/VisualState';
-import { FieldBase } from '~/components/FieldBase';
-import { SvgIcon } from '~/components/SvgIcon';
+import { useVisualState } from '../VisualState';
+import { FieldBase } from '../FieldBase';
+import { SvgIcon } from '../SvgIcon';
 import {
   htmlSelectFieldBaseStyles,
   htmlSelectStyles,

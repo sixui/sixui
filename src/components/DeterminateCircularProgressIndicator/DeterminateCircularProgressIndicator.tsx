@@ -7,8 +7,8 @@ import { useComponentTheme } from '~/hooks/useComponentTheme';
 import {
   circularProgressIndicatorStyles,
   type ICircularProgressIndicatorStylesKey,
-} from '~/components/CircularProgressIndicator';
-import { circularProgressIndicatorTheme } from '~/components/CircularProgressIndicator/CircularProgressIndicator.stylex';
+} from '../CircularProgressIndicator';
+import { circularProgressIndicatorTheme } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
 import {
   determinateCircularProgressIndicatorStyles,
   type IDeterminateCircularProgressIndicatorStylesKey,

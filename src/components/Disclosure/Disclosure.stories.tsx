@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 
 import type { IDisclosureProps } from './Disclosure.types';
 import { Disclosure } from './Disclosure';
-import { DisclosureButton } from '~/components/DisclosureButton';
+import { DisclosureButton } from '../DisclosureButton';
 
 const meta = {
   component: Disclosure,

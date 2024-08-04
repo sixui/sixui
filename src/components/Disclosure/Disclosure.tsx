@@ -5,7 +5,7 @@ import type { IDisclosureProps } from './Disclosure.types';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { Expandable } from '~/components/Expandable';
+import { Expandable } from '../Expandable';
 import { disclosureStyles } from './Disclosure.styles';
 import { disclosureTheme } from './Disclosure.stylex';
 

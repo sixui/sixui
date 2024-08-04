@@ -1,4 +1,4 @@
-import type { IBaseProps } from '~/components/Base';
+import type { IBaseProps } from '../Base';
 import type { IAvatarStylesKey } from './Avatar.styles';
 
 export type IAvatarVariant = 'rounded' | 'squared';

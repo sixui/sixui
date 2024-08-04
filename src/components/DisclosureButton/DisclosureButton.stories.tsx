@@ -8,7 +8,7 @@ import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   ComponentShowcase,
   type IComponentPresentation,
-} from '~/components/ComponentShowcase';
+} from '../ComponentShowcase';
 import { DisclosureButton } from './DisclosureButton';
 
 const meta = {

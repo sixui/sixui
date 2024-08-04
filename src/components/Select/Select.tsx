@@ -9,9 +9,9 @@ import {
   isFilterableListItemDisabled,
   renderFilterableListItem,
   type IFilterableListItem,
-} from '~/components/FilterableList';
-import { SelectBase } from '~/components/SelectBase';
-import { ListItem } from '~/components/ListItem';
+} from '../FilterableList';
+import { SelectBase } from '../SelectBase';
+import { ListItem } from '../ListItem';
 import { useSelect } from './useSelect';
 
 export const Select = forwardRef<HTMLDivElement, ISelectProps>(

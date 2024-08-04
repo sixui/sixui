@@ -8,7 +8,7 @@ import type { IFieldBaseProps, IFieldBaseVariant } from './FieldBase.types';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '~/components/ComponentShowcase';
+} from '../ComponentShowcase';
 import { FieldBase } from './FieldBase';
 import { Placeholder } from '../Placeholder';
 

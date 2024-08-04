@@ -1,14 +1,14 @@
-import type { IBaseProps } from '~/components/Base';
+import type { IBaseProps } from '../Base';
 import type {
   IZeroOrMore,
   ICompiledStyles,
   IMaybeAsync,
   IAny,
 } from '~/helpers/types';
-import type { IStateLayerStylesKey } from '~/components/StateLayer';
-import type { IFocusRingStylesKey } from '~/components/FocusRing';
-import type { IElevationStylesKey } from '~/components/Elevation';
-import type { IVisualState } from '~/components/VisualState';
+import type { IStateLayerStylesKey } from '../StateLayer';
+import type { IFocusRingStylesKey } from '../FocusRing';
+import type { IElevationStylesKey } from '../Elevation';
+import type { IVisualState } from '../VisualState';
 import type { IButtonBaseStylesKey } from './ButtonBase.styles';
 
 export type IButtonBaseProps = IBaseProps<IButtonBaseStylesKey> & {

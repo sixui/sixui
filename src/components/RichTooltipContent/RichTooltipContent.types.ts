@@ -3,7 +3,7 @@ import type {
   IZeroOrMore,
   ICompiledStyles,
 } from '~/helpers/types';
-import type { IElevationStylesKey } from '~/components/Elevation';
+import type { IElevationStylesKey } from '../Elevation';
 import type { IRichTooltipContentStylesKey } from './RichTooltipContent.styles';
 
 export type IRichTooltipContentActionsRenderProps = {

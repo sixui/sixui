@@ -4,7 +4,7 @@ import type {
   IZeroOrMore,
 } from '~/helpers/types';
 import type { IColorPickerContentStylesKey } from './ColorPickerContent.styles';
-import type { IPaperBaseStylesKey } from '~/components/PaperBase';
+import type { IPaperBaseStylesKey } from '../PaperBase';
 
 export type IColorPickerContentProps =
   IContainerProps<IColorPickerContentStylesKey> & {

@@ -9,7 +9,7 @@ import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   ComponentShowcase,
   type IComponentPresentation,
-} from '~/components/ComponentShowcase';
+} from '../ComponentShowcase';
 import { Chip } from './Chip';
 
 // https://m3.material.io/components/chips/overview

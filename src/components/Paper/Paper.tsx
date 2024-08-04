@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
 import type { IPaperProps } from './Paper.types';
-import { PaperBase } from '~/components/PaperBase';
+import { PaperBase } from '../PaperBase';
 import { getContainerTextColor, paperDynamicStyles } from './Paper.styles';
 import { commonStyles } from '~/helpers/commonStyles';
 

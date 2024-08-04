@@ -3,9 +3,9 @@ import stylex from '@stylexjs/stylex';
 
 import type { IMenuListProps } from './MenuList.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { ListItem } from '~/components/ListItem';
+import { ListItem } from '../ListItem';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { MenuDivider } from '~/components/MenuDivider';
+import { MenuDivider } from '../MenuDivider';
 import { MenuList } from './MenuList';
 
 const meta = {

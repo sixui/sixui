@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { fieldBaseTokens } from '~/components/FieldBase/FieldBase.stylex';
+import { fieldBaseTokens } from '../FieldBase/FieldBase.stylex';
 
 export type IHtmlSelectStylesKey = keyof typeof htmlSelectStyles;
 export const htmlSelectStyles = stylex.create({

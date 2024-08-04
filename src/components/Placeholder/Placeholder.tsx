@@ -4,7 +4,7 @@ import type { IPlaceholderProps } from './Placeholder.types';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { Paper } from '~/components/Paper';
+import { Paper } from '../Paper';
 import { placeholderStyles } from './Placeholder.styles';
 import { placeholderTheme } from './Placeholder.stylex';
 

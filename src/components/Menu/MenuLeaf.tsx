@@ -27,9 +27,9 @@ import {
 } from '@floating-ui/react';
 
 import type { IMenuProps } from './Menu.types';
-import { MenuList } from '~/components/MenuList';
-import { Portal } from '~/components/Portal';
-import { FloatingTransition } from '~/components/FloatingTransition';
+import { MenuList } from '../MenuList';
+import { Portal } from '../Portal';
+import { FloatingTransition } from '../FloatingTransition';
 import { MenuItemContext } from './MenuItemContext';
 import { MenuContext } from './MenuContext';
 

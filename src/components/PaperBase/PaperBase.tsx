@@ -5,7 +5,7 @@ import type { IPaperBaseProps } from './PaperBase.types';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { Elevation } from '~/components/Elevation';
+import { Elevation } from '../Elevation';
 import { paperBaseElevationStyles, paperBaseStyles } from './PaperBase.styles';
 import { paperBaseTheme } from './PaperBase.stylex';
 

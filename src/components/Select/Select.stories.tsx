@@ -4,8 +4,8 @@ import stylex from '@stylexjs/stylex';
 
 import type { ISelectProps } from './Select.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { ListItem } from '~/components/ListItem';
-import { fruits, emptyItem } from '~/components/FilterableList/fruits';
+import { ListItem } from '../ListItem';
+import { fruits, emptyItem } from '../FilterableList/fruits';
 import { commonStyles } from '~/helpers/commonStyles';
 import { Select } from './Select';
 

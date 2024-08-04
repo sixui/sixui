@@ -6,8 +6,8 @@ import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '~/components/ComponentShowcase';
-import { Button } from '~/components/Button';
+} from '../ComponentShowcase';
+import { Button } from '../Button';
 import { Card } from './Card';
 import { CardContent } from '../CardContent';
 import { CardMedia } from '../CardMedia';

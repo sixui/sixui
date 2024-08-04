@@ -3,7 +3,7 @@ import { createSequence } from '@olivierpascal/helpers';
 
 import type { IHslColorPickerContentProps } from './HslColorPickerContent.types';
 import { generateAnalogousColorPalettes } from '~/helpers/colors/generateAnalogousPalettes';
-import { ColorPickerContent } from '~/components/ColorPickerContent';
+import { ColorPickerContent } from '../ColorPickerContent';
 import { generateAnalogousColorPalette } from '~/helpers/colors/generateAnalogousPalette';
 
 export const HslColorPickerContent = forwardRef<

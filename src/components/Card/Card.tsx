@@ -9,10 +9,10 @@ import type {
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { useVisualState } from '~/components/VisualState';
-import { Elevation } from '~/components/Elevation';
-import { FocusRing } from '~/components/FocusRing';
-import { StateLayer } from '~/components/StateLayer';
+import { useVisualState } from '../VisualState';
+import { Elevation } from '../Elevation';
+import { FocusRing } from '../FocusRing';
+import { StateLayer } from '../StateLayer';
 import {
   type ICardOwnProps,
   type ICardProps,

@@ -29,9 +29,10 @@ export const Avatar = createPolymorphicComponent<'div', IAvatarProps>(
         ...other
       } = props;
 
+      const variantStyles = avatarVariantStyles[variant];
       const { combineStyles, getStyles, globalStyles } = useStyles({
         name: 'Avatar',
-        styles: [avatarStyles, avatarVariantStyles[variant], styles],
+        styles: [avatarStyles, variantStyles, styles],
       });
 
       // Use a hook instead of onError on the img element to support server-side

@@ -2,10 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
 import type { ISkeletonProps } from './Skeleton.types';
-import { ComponentShowcase } from '~/components/ComponentShowcase';
+import { ComponentShowcase } from '../ComponentShowcase';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { Avatar } from '~/components/Avatar';
-import { Typography } from '~/components/Typography';
+import { Avatar } from '../Avatar';
+import { Typography } from '../Typography';
 import { Skeleton } from './Skeleton';
 
 const meta = {

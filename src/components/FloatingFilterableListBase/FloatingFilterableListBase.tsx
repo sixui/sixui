@@ -25,8 +25,8 @@ import {
   type IFilterableListItemRenderer,
   type IFilterableListBaseRenderer,
   type IFilterableListItemRendererProps,
-} from '~/components/FilterableListBase';
-import { Portal } from '~/components/Portal';
+} from '../FilterableListBase';
+import { Portal } from '../Portal';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { usePrevious } from '~/hooks/usePrevious';
 import {
@@ -37,7 +37,7 @@ import { fixedForwardRef } from '~/helpers/fixedForwardRef';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { FloatingTransition } from '~/components/FloatingTransition';
+import { FloatingTransition } from '../FloatingTransition';
 import { floatingFilterableListBaseStyles } from './FloatingFilterableListBase.styles';
 
 export const FloatingFilterableListBase = fixedForwardRef(

@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
 import { shapeTokens } from '~/themes/base/shape.stylex';
-import { colorButtonTokens } from '~/components/ColorButton/ColorButton.stylex';
-import { paperBaseTokens } from '~/components/PaperBase/PaperBase.stylex';
+import { colorButtonTokens } from '../ColorButton/ColorButton.stylex';
+import { paperBaseTokens } from '../PaperBase/PaperBase.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { elevationTokens } from '~/components/Elevation/Elevation.stylex';
+import { elevationTokens } from '../Elevation/Elevation.stylex';
 
 export type IColorPickerContentStylesKey = keyof typeof basicTemplateStyles;
 export const basicTemplateStyles = stylex.create({

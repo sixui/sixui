@@ -12,9 +12,9 @@ import {
 
 import type { IOmit } from '~/helpers/types';
 import type { IScrimProps, IScrimVariant } from './Scrim.types';
-import { ComponentShowcase } from '~/components/ComponentShowcase';
-import { Button } from '~/components/Button';
-import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
+import { ComponentShowcase } from '../ComponentShowcase';
+import { Button } from '../Button';
+import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { Scrim } from './Scrim';
 
 type IScrimDemoProps = IOmit<IScrimProps, 'floatingContext'>;

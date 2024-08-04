@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { cardTokens } from '~/components/Card/Card.stylex';
+import { cardTokens } from '../Card/Card.stylex';
 
 const vars = {
   // container

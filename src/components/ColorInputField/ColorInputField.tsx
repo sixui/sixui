@@ -8,17 +8,17 @@ import type {
 } from './ColorInputField.types';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { TextInputField } from '~/components/TextInputField';
-import { PopoverBase } from '~/components/PopoverBase';
+import { TextInputField } from '../TextInputField';
+import { PopoverBase } from '../PopoverBase';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
-import { ColorTag } from '~/components/ColorTag';
-import { HslColorPickerContent } from '~/components/HslColorPickerContent';
-import { IconButton } from '~/components/IconButton';
-import { SvgIcon } from '~/components/SvgIcon';
+import { ColorTag } from '../ColorTag';
+import { HslColorPickerContent } from '../HslColorPickerContent';
+import { IconButton } from '../IconButton';
+import { SvgIcon } from '../SvgIcon';
 import { iconPhoto } from '~/assets/icons';
 import { extractPaletteFromImage } from '~/helpers/colors/extractPaletteFromImage';
-import { ColorPaletteGroupContext } from '~/components/ColorPaletteGroup';
+import { ColorPaletteGroupContext } from '../ColorPaletteGroup';
 import { colorInputFieldStyles } from './ColorInputField.styles';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
 

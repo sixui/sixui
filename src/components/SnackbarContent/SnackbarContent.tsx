@@ -5,10 +5,10 @@ import type { ISnackbarContentProps } from './SnackbarContent.types';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { Elevation } from '~/components/Elevation';
-import { Button } from '~/components/Button';
-import { IconButton } from '~/components/IconButton';
-import { SvgIcon } from '~/components/SvgIcon';
+import { Elevation } from '../Elevation';
+import { Button } from '../Button';
+import { IconButton } from '../IconButton';
+import { SvgIcon } from '../SvgIcon';
 import { iconXMark } from '~/assets/icons';
 import {
   snackbarContentElevationStyles,

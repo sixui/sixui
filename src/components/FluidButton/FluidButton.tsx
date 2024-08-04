@@ -5,7 +5,7 @@ import type { IFluidButtonProps } from './FluidButton.types';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { ButtonBase } from '~/components/ButtonBase';
+import { ButtonBase } from '../ButtonBase';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import {
   fluidButtonButtonBaseStyles,

@@ -6,7 +6,7 @@ import type { IAvatarProps } from './Avatar.types';
 import {
   ComponentShowcase,
   type IComponentPresentation,
-} from '~/components/ComponentShowcase';
+} from '../ComponentShowcase';
 import { Avatar } from './Avatar';
 
 const meta = {

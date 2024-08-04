@@ -5,10 +5,10 @@ import type { IBadgeProps } from './Badge.types';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '~/components/ComponentShowcase';
-import { Placeholder } from '~/components/Placeholder';
+} from '../ComponentShowcase';
+import { Placeholder } from '../Placeholder';
 import { Badge } from './Badge';
-import { Anchored, IAnchoredProps } from '~/components/Anchored';
+import { Anchored, IAnchoredProps } from '../Anchored';
 
 // https://m3.material.io/components/badges/overview
 

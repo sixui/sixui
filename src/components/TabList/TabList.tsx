@@ -4,7 +4,7 @@ import type { ITabListProps } from './TabList.types';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { Divider } from '~/components/Divider';
+import { Divider } from '../Divider';
 import { tabListStyles } from './TabList.styles';
 
 export const TabList = forwardRef<HTMLInputElement, ITabListProps>(

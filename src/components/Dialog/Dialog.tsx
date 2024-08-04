@@ -21,13 +21,10 @@ import type {
 } from './Dialog.types';
 import { isFunction } from '~/helpers/isFunction';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
-import {
-  DialogContent,
-  type IDialogContentOwnProps,
-} from '~/components/DialogContent';
-import { Scrim } from '~/components/Scrim';
-import { Portal } from '~/components/Portal';
-import { FloatingTransition } from '~/components/FloatingTransition';
+import { DialogContent, type IDialogContentOwnProps } from '../DialogContent';
+import { Scrim } from '../Scrim';
+import { Portal } from '../Portal';
+import { FloatingTransition } from '../FloatingTransition';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { extendFloatingProps } from '~/helpers/extendFloatingProps';
 import { dialogStyles } from './Dialog.styles';

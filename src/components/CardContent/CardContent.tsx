@@ -4,7 +4,7 @@ import type { ICardContentProps } from './CardContent.types';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { CardContext } from '~/components/Card';
+import { CardContext } from '../Card';
 import { cardContentStyles } from './CardContent.styles';
 import { cardContentTheme } from './CardContent.stylex';
 

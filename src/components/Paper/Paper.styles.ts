@@ -1,9 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
 import type { IPaperColor, IPaperCorner, IPaperElevation } from './Paper.types';
-import { paperBaseTokens } from '~/components/PaperBase/PaperBase.stylex';
+import { paperBaseTokens } from '../PaperBase/PaperBase.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
-import { elevationTokens } from '~/components/Elevation/Elevation.stylex';
+import { elevationTokens } from '../Elevation/Elevation.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 
 export const getContainerTextColor = (surface?: IPaperColor): IPaperColor => {

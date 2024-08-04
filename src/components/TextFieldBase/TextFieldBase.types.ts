@@ -4,10 +4,7 @@ import type {
   ICompiledStyles,
   IOmit,
 } from '~/helpers/types';
-import type {
-  IFieldBaseProps,
-  IFieldBaseStylesKey,
-} from '~/components/FieldBase';
+import type { IFieldBaseProps, IFieldBaseStylesKey } from '../FieldBase';
 import type { ITextFieldBaseStylesKey } from './TextFieldBase.styles';
 import type { IStyleProps } from '~/helpers/stylePropsFactory';
 import type { IControlledValueProps } from '~/hooks/useControlledValue';

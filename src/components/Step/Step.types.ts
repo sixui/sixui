@@ -1,7 +1,7 @@
 import type { ICompiledStyles, IContainerProps } from '~/helpers/types';
-import type { IButtonBaseProps } from '~/components/ButtonBase';
-import type { ICircularProgressIndicatorStylesKey } from '~/components/CircularProgressIndicator';
-import type { IStepperContextValue } from '~/components/Stepper';
+import type { IButtonBaseProps } from '../ButtonBase';
+import type { ICircularProgressIndicatorStylesKey } from '../CircularProgressIndicator';
+import type { IStepperContextValue } from '../Stepper';
 import type { IStepStylesKey } from './Step.styles';
 
 export type IStepRenderProps = {

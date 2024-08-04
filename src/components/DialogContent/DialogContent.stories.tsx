@@ -5,8 +5,8 @@ import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
 
 import type { IDialogContentProps } from './DialogContent.types';
 import { DialogContent } from './DialogContent';
-import { Typography } from '~/components/Typography';
-import { Button } from '~/components/Button';
+import { Typography } from '../Typography';
+import { Button } from '../Button';
 
 // https://m3.material.io/components/dialogs/overview
 // https://material-web.dev/components/dialog/

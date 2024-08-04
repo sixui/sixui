@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { fieldBaseTokens } from '~/components/FieldBase/FieldBase.stylex';
+import { fieldBaseTokens } from '../FieldBase/FieldBase.stylex';
 import { textFieldBaseTokens } from './TextFieldBase.stylex';
 
 // https://github.com/material-components/material-web/blob/main/textfield/internal/_shared.scss

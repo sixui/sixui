@@ -7,7 +7,7 @@ import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '~/components/ComponentShowcase';
+} from '../ComponentShowcase';
 import { Fab } from './Fab';
 
 // https://m3.material.io/components/floating-action-button/overview

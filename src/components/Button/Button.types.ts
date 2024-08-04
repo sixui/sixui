@@ -1,6 +1,6 @@
 import type { ICompiledStyles, IZeroOrMore } from '~/helpers/types';
-import type { ICircularProgressIndicatorStylesKey } from '~/components/CircularProgressIndicator';
-import type { IButtonBaseProps } from '~/components/ButtonBase';
+import type { ICircularProgressIndicatorStylesKey } from '../CircularProgressIndicator';
+import type { IButtonBaseProps } from '../ButtonBase';
 
 export type IButtonVariant =
   | 'elevated'

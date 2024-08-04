@@ -14,12 +14,12 @@ import type {
 import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useVisualState } from '~/components/VisualState';
-import { StateLayer } from '~/components/StateLayer';
-import { FocusRing } from '~/components/FocusRing';
-import { Item } from '~/components/Item';
+import { useVisualState } from '../VisualState';
+import { StateLayer } from '../StateLayer';
+import { FocusRing } from '../FocusRing';
+import { Item } from '../Item';
 import { commonStyles } from '~/helpers/commonStyles';
-import { ListContext } from '~/components/List/ListContext';
+import { ListContext } from '../List/ListContext';
 import { listItemVariantStyles } from './variants';
 import {
   listItemFocusRingStyles,

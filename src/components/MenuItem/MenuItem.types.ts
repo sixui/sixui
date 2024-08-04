@@ -1,4 +1,4 @@
-import type { IListItemOwnProps } from '~/components/ListItem';
+import type { IListItemOwnProps } from '../ListItem';
 
 export type IMenuItemProps = IListItemOwnProps &
   React.ComponentPropsWithoutRef<'button'> & {

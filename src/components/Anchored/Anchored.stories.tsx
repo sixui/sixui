@@ -7,8 +7,8 @@ import {
   ComponentShowcase,
   type IComponentPresentation,
   type IComponentShowcaseProps,
-} from '~/components/ComponentShowcase';
-import { Placeholder } from '~/components/Placeholder';
+} from '../ComponentShowcase';
+import { Placeholder } from '../Placeholder';
 import { Anchored } from './Anchored';
 
 const meta = {

@@ -8,14 +8,14 @@ import type {
   IWithAsProp,
 } from '~/helpers/react/polymorphicComponentTypes';
 import { isFunction } from '~/helpers/isFunction';
-import { CardContent } from '~/components/CardContent';
-import { Card } from '~/components/Card';
-import { Labeled } from '~/components/Labeled';
+import { CardContent } from '../CardContent';
+import { Card } from '../Card';
+import { Labeled } from '../Labeled';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { RadioGroupContext } from '~/components/RadioGroup';
+import { RadioGroupContext } from '../RadioGroup';
 import { commonStyles } from '~/helpers/commonStyles';
 import { optionCardCardStyles, optionCardStyles } from './OptionCard.styles';
 import { optionCardTheme } from './OptionCard.stylex';

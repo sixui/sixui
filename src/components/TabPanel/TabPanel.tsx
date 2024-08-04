@@ -4,7 +4,7 @@ import type {
   IPolymorphicRef,
   IWithAsProp,
 } from '~/helpers/react/polymorphicComponentTypes';
-import { TabContext } from '~/components/Tabs';
+import { TabContext } from '../Tabs';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';

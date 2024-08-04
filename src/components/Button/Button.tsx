@@ -1,16 +1,14 @@
-import { forwardRef, useMemo, useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 import { useMergeRefs } from '@floating-ui/react';
 
-import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
 import type { IButtonProps } from './Button.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
-import { ButtonBase } from '~/components/ButtonBase';
+import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { useStyles } from '~/hooks/useStyles';
+import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
+import { ButtonBase } from '../ButtonBase';
 import { executeLazyPromise } from '~/helpers/executeLazyPromise';
-import { useVisualState } from '~/components/VisualState';
+import { useVisualState } from '../VisualState';
 import {
   buttonCircularProgressIndicatorStyles,
   buttonElevationStyles,
@@ -62,22 +60,13 @@ export const Button = createPolymorphicComponent<'button', IButtonProps>(
       );
       const handleRef = useMergeRefs([forwardedRef, setVisualStateRef]);
 
-      const componentTheme = useComponentTheme('Button');
       const variantStyles = variant ? buttonVariantStyles[variant] : undefined;
-
-      const stylesCombinator = useMemo(
-        () =>
-          stylesCombinatorFactory<IButtonStylesKey>(
-            buttonStyles,
-            variantStyles,
-            styles,
-          ),
-        [variantStyles, styles],
-      );
-      const sxf = useMemo(
-        () => stylePropsFactory(stylesCombinator, visualState),
-        [stylesCombinator, visualState],
-      );
+      const { combineStyles, getStyles, globalStyles } =
+        useStyles<IButtonStylesKey>({
+          name: 'Button',
+          styles: [buttonStyles, variantStyles, styles],
+          visualState,
+        });
 
       const handleAnimationIteration = (): void => setAnimating(handlingClick);
 
@@ -112,14 +101,6 @@ export const Button = createPolymorphicComponent<'button', IButtonProps>(
 
       return (
         <ButtonBase
-          sx={[
-            buttonTheme,
-            componentTheme.overridenStyles,
-            loading ? stylesCombinator('host$loading') : undefined,
-            hasLeadingIcon && stylesCombinator('host$withLeadingIcon'),
-            hasTrailingIcon && stylesCombinator('host$withTrailingIcon'),
-            sx,
-          ]}
           styles={[buttonStyles, variantStyles]}
           innerStyles={{
             ...innerStyles,
@@ -141,11 +122,21 @@ export const Button = createPolymorphicComponent<'button', IButtonProps>(
           visualState={visualState}
           softDisabled={softDisabled}
           {...other}
+          sx={[
+            buttonTheme,
+            globalStyles,
+            combineStyles(
+              loading && 'host$loading',
+              hasLeadingIcon && 'host$withLeadingIcon',
+              hasTrailingIcon && 'host$withTrailingIcon',
+            ),
+            sx,
+          ]}
           ref={handleRef}
         >
           {hasLeadingIcon ? (
             <div
-              {...sxf(
+              {...getStyles(
                 'icon',
                 visuallyDisabled && 'icon$disabled',
                 hasOverlay ? 'invisible' : null,
@@ -160,7 +151,10 @@ export const Button = createPolymorphicComponent<'button', IButtonProps>(
                 />
               ) : icon ? (
                 <div
-                  {...sxf('icon', iconAnimation && `icon$${iconAnimation}`)}
+                  {...getStyles(
+                    'icon',
+                    iconAnimation && `icon$${iconAnimation}`,
+                  )}
                   onAnimationIteration={handleAnimationIteration}
                 >
                   {icon}
@@ -171,7 +165,7 @@ export const Button = createPolymorphicComponent<'button', IButtonProps>(
 
           {children ? (
             <span
-              {...sxf(
+              {...getStyles(
                 'label',
                 visuallyDisabled && 'label$disabled',
                 hasOverlay ? 'invisible' : null,
@@ -182,13 +176,15 @@ export const Button = createPolymorphicComponent<'button', IButtonProps>(
           ) : null}
 
           {hasOverlay ? (
-            <div {...sxf('overlay')}>
+            <div {...getStyles('overlay')}>
               {loadingText ? (
-                <span {...sxf('label', visuallyDisabled && 'label$disabled')}>
+                <span
+                  {...getStyles('label', visuallyDisabled && 'label$disabled')}
+                >
                   {loadingText}
                 </span>
               ) : (
-                <div {...sxf(visuallyDisabled && 'icon$disabled')}>
+                <div {...getStyles(visuallyDisabled && 'icon$disabled')}>
                   <IndeterminateCircularProgressIndicator
                     styles={[
                       buttonCircularProgressIndicatorStyles,
@@ -203,7 +199,7 @@ export const Button = createPolymorphicComponent<'button', IButtonProps>(
           {icon && trailingIcon ? (
             loading ? (
               <div
-                {...sxf(
+                {...getStyles(
                   hasOverlay ? 'invisible' : null,
                   visuallyDisabled && 'icon$disabled',
                 )}
@@ -217,7 +213,7 @@ export const Button = createPolymorphicComponent<'button', IButtonProps>(
               </div>
             ) : (
               <div
-                {...sxf(
+                {...getStyles(
                   'icon',
                   visuallyDisabled && 'icon$disabled',
                   iconAnimation && `icon$${iconAnimation}`,

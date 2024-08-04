@@ -5,15 +5,15 @@ import type {
   IFilterableListItem,
   IFilterableListProps,
 } from './FilterableList.types';
-import { MenuList } from '~/components/MenuList';
-import { TextInputField } from '~/components/TextInputField';
-import { ListItem, type IListItemOwnProps } from '~/components/ListItem';
+import { MenuList } from '../MenuList';
+import { TextInputField } from '../TextInputField';
+import { ListItem, type IListItemOwnProps } from '../ListItem';
 import {
   FilterableListBase,
   type IFilterableListItemRenderer,
   type IFilterableListItemRendererProps,
   type IFilterableListPredicate,
-} from '~/components/FilterableListBase';
+} from '../FilterableListBase';
 import { createFilter } from '~/helpers/createFilter';
 import {
   filterableListItemFocusStyles,

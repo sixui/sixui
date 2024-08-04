@@ -17,7 +17,7 @@ import { isFunction } from '~/helpers/isFunction';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { Divider } from '~/components/Divider';
+import { Divider } from '../Divider';
 import {
   DIALOG_CONTENT_DEFAULT_TAG,
   type IDialogContentOwnProps,

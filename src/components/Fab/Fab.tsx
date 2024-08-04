@@ -5,7 +5,7 @@ import type { IFabProps } from './Fab.types';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { Button } from '~/components/Button';
+import { Button } from '../Button';
 import { fabStyles } from './Fab.styles';
 import { fabVariantStyles } from './variants';
 import { fabTheme } from './Fab.stylex';

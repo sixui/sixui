@@ -12,12 +12,12 @@ import type { IPopoverBaseProps } from './PopoverBase.types';
 import {
   ComponentShowcase,
   type IComponentPresentation,
-} from '~/components/ComponentShowcase';
+} from '../ComponentShowcase';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { IconButton } from '~/components/IconButton';
-import { Button } from '~/components/Button';
-import { Paper } from '~/components/Paper';
+import { IconButton } from '../IconButton';
+import { Button } from '../Button';
+import { Paper } from '../Paper';
 import { PopoverBase } from './PopoverBase';
 import { commonStyles } from '~/helpers/commonStyles';
 

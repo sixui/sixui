@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
 import type { IPaperProps } from './Paper.types';
-import { ComponentShowcase } from '~/components/ComponentShowcase';
-import { Typography } from '~/components/Typography';
+import { ComponentShowcase } from '../ComponentShowcase';
+import { Typography } from '../Typography';
 import { Paper } from './Paper';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 

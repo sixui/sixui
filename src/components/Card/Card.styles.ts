@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
-import { focusRingTokens } from '~/components/FocusRing/FocusRing.stylex';
-import { stateLayerTokens } from '~/components/StateLayer/StateLayer.stylex';
-import { elevationTokens } from '~/components/Elevation/Elevation.stylex';
+import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
+import { stateLayerTokens } from '../StateLayer/StateLayer.stylex';
+import { elevationTokens } from '../Elevation/Elevation.stylex';
 import { cardTokens } from './Card.stylex';
 import { cardStateTokens } from './Card.state.stylex';
 

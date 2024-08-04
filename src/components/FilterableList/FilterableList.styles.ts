@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { listItemTokens } from '~/components/ListItem/ListItem.stylex';
+import { listItemTokens } from '../ListItem/ListItem.stylex';
 
 export const filterableListItemStyles = stylex.create({
   content$iconFocus: {

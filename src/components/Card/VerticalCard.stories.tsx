@@ -8,10 +8,10 @@ import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '~/components/ComponentShowcase';
-import { Button } from '~/components/Button';
-import { Avatar } from '~/components/Avatar';
-import { IconButton } from '~/components/IconButton/IconButton';
+} from '../ComponentShowcase';
+import { Button } from '../Button';
+import { Avatar } from '../Avatar';
+import { IconButton } from '../IconButton/IconButton';
 import { Card } from './Card';
 import { ListItem } from '../ListItem';
 import { CardContent } from '../CardContent';

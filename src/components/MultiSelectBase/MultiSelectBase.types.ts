@@ -4,15 +4,15 @@ import type {
   IOmit,
   IZeroOrMore,
 } from '~/helpers/types';
-import type { IFieldBaseVariant } from '~/components/FieldBase';
-import type { IFilterableListItemRenderer } from '~/components/FilterableListBase';
+import type { IFieldBaseVariant } from '../FieldBase';
+import type { IFilterableListItemRenderer } from '../FilterableListBase';
 import type {
   IFloatingFilterableListBaseProps,
   IFloatingFilterableListBaseTriggerRenderProps,
-} from '~/components/FloatingFilterableListBase';
-import type { ITextInputFieldProps } from '~/components/TextInputField';
-import type { IInputChipProps } from '~/components/Chip';
-import type { ITextFieldBaseStylesKey } from '~/components/TextFieldBase';
+} from '../FloatingFilterableListBase';
+import type { ITextInputFieldProps } from '../TextInputField';
+import type { IInputChipProps } from '../Chip';
+import type { ITextFieldBaseStylesKey } from '../TextFieldBase';
 import type { IMultiSelectBaseStylesKey } from './MultiSelectBase.styles';
 
 export type IMultiSelectBaseProps<TItem> =

@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { focusRingTokens } from '~/components/FocusRing/FocusRing.stylex';
+import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
 import { breadcrumbsTokens } from './Breadcrumbs.stylex';
 
 export type IBreadcrumbsStylesKey = keyof typeof breadcrumbsStyles;

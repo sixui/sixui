@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
 import { checkboxTokens } from './Checkbox.stylex';
-import { stateLayerTokens } from '~/components/StateLayer/StateLayer.stylex';
-import { focusRingTokens } from '~/components/FocusRing/FocusRing.stylex';
+import { stateLayerTokens } from '../StateLayer/StateLayer.stylex';
+import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
 import { motionTokens } from '~/themes/base/motion.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
 import { checkboxStateTokens } from './Checkbox.state.stylex';

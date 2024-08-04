@@ -5,11 +5,11 @@ import type { ILabeledOwnProps } from './Labeled.types';
 import {
   ComponentShowcase,
   type IComponentPresentation,
-} from '~/components/ComponentShowcase';
-import { Checkbox } from '~/components/Checkbox';
-import { Switch } from '~/components/Switch';
-import { Radio } from '~/components/Radio';
-import { TextInputField } from '~/components/TextInputField';
+} from '../ComponentShowcase';
+import { Checkbox } from '../Checkbox';
+import { Switch } from '../Switch';
+import { Radio } from '../Radio';
+import { TextInputField } from '../TextInputField';
 import { Labeled } from './Labeled';
 
 const meta = {

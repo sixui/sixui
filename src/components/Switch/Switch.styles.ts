@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
-import { circularProgressIndicatorTokens } from '~/components/CircularProgressIndicator/CircularProgressIndicator.stylex';
-import { stateLayerTokens } from '~/components/StateLayer/StateLayer.stylex';
-import { focusRingTokens } from '~/components/FocusRing/FocusRing.stylex';
+import { circularProgressIndicatorTokens } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
+import { stateLayerTokens } from '../StateLayer/StateLayer.stylex';
+import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
 import { motionTokens } from '~/themes/base/motion.stylex';
 import { switchStateTokens } from './Switch.state.stylex';
 import { switchTokens } from './Switch.stylex';

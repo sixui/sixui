@@ -3,25 +3,23 @@ import {
   forwardRef,
   isValidElement,
   useCallback,
-  useMemo,
   useState,
 } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type { IBreadcrumbsProps } from './Breadcrumbs.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { isProduction } from '~/helpers/isProduction';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { isFragment } from '~/helpers/react/isFragment';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { ButtonBase } from '~/components/ButtonBase';
-import { SvgIcon } from '~/components/SvgIcon';
 import { iconEllipsisHorizontal } from '~/assets/icons';
+import { SvgIcon } from '../SvgIcon';
+import { Base } from '../Base';
+import { ButtonBase } from '../ButtonBase';
 import {
   breadcrumbsExpandButtonFocusRingStyles,
   breadcrumbsStyles,
 } from './Breadcrumbs.styles';
 import { breadscrumbsTheme } from './Breadcrumbs.stylex';
+import { useStyles } from '~/hooks/useStyles';
 
 export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
   function Breadcrumbs(props, forwardedRef) {
@@ -39,15 +37,10 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
       ...other
     } = props;
 
-    const componentTheme = useComponentTheme('Breadcrumbs');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(breadcrumbsStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+    const { combineStyles, getStyles, globalStyles } = useStyles({
+      name: 'Breadcrumbs',
+      styles: [breadcrumbsStyles, styles],
+    });
 
     const [expanded, setExpanded] = useState(false);
 
@@ -62,7 +55,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
                   <li
                     aria-hidden
                     key={`separator-${index}`}
-                    {...sxf('item', 'separator')}
+                    {...getStyles('item', 'separator')}
                   >
                     {separator}
                   </li>,
@@ -70,7 +63,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
               : [...acc, current],
           [] as Array<JSX.Element>,
         ),
-      [sxf, separator, trailing],
+      [getStyles, separator, trailing],
     );
 
     const renderItemsBeforeAndAfter = (
@@ -102,7 +95,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
 
       return [
         ...items.slice(0, itemCountBeforeCollapse),
-        <li key='ellipsis' {...sxf('item')}>
+        <li key='ellipsis' {...getStyles('item')}>
           <ButtonBase
             sx={breadcrumbsStyles.expandButton}
             styles={innerStyles?.expandButton}
@@ -116,10 +109,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
             key='ellipsis'
             onClick={handleClickExpand}
           >
-            <SvgIcon
-              sx={stylesCombinator('icon')}
-              icon={iconEllipsisHorizontal}
-            />
+            <SvgIcon sx={combineStyles('icon')} icon={iconEllipsisHorizontal} />
           </ButtonBase>
         </li>,
         ...items.slice(items.length - itemCountAfterCollapse, items.length),
@@ -143,15 +133,16 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
         return true;
       })
       .map((child, index) => (
-        <li {...sxf('item')} key={`child-${index}`}>
+        <li {...getStyles('item')} key={`child-${index}`}>
           {child}
         </li>
       ));
 
     return (
-      <ol
+      <Base
+        component='ol'
         {...other}
-        {...sxf(breadscrumbsTheme, componentTheme.overridenStyles, 'host', sx)}
+        sx={[breadscrumbsTheme, globalStyles, combineStyles('host'), sx]}
         ref={forwardedRef}
       >
         {insertSeparators(
@@ -159,7 +150,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
             ? allItems
             : renderItemsBeforeAndAfter(allItems),
         )}
-      </ol>
+      </Base>
     );
   },
 );

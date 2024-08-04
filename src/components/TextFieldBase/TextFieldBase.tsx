@@ -4,15 +4,15 @@ import { useMergeRefs } from '@floating-ui/react';
 
 import type { ITextFieldBaseProps } from './TextFieldBase.types';
 import { isFunction } from '~/helpers/isFunction';
-import { FieldBase } from '~/components/FieldBase';
+import { FieldBase } from '../FieldBase';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { useVisualState } from '~/components/VisualState';
+import { useVisualState } from '../VisualState';
 import { useControlledValue } from '~/hooks/useControlledValue';
-import { IconButton } from '~/components/IconButton';
+import { IconButton } from '../IconButton';
 import { fixedForwardRef } from '~/helpers/fixedForwardRef';
-import { SvgIcon } from '~/components/SvgIcon';
+import { SvgIcon } from '../SvgIcon';
 import { iconXMark } from '~/assets/icons';
 import {
   textFieldBaseFieldBaseStyles,

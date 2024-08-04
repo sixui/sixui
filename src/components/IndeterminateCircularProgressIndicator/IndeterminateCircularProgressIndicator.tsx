@@ -3,11 +3,11 @@ import { forwardRef, useMemo } from 'react';
 import type { IIndeterminateCircularProgressIndicatorProps } from './IndeterminateCircularProgressIndicator.types';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { circularProgressIndicatorTheme } from '~/components/CircularProgressIndicator/CircularProgressIndicator.stylex';
+import { circularProgressIndicatorTheme } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
 import {
   circularProgressIndicatorStyles,
   type ICircularProgressIndicatorStylesKey,
-} from '~/components/CircularProgressIndicator';
+} from '../CircularProgressIndicator';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
 import {
   indeterminateCircularProgressIndicatorStyles,

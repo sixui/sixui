@@ -1,13 +1,10 @@
-import type {
-  IContainerProps,
-  IZeroOrMore,
-  ICompiledStyles,
-} from '~/helpers/types';
-import type { IFocusRingStylesKey } from '~/components/FocusRing';
-import type { IButtonBaseStylesKey } from '~/components/ButtonBase';
+import type { IZeroOrMore, ICompiledStyles } from '~/helpers/types';
+import type { IBaseProps } from '../Base';
+import type { IFocusRingStylesKey } from '../FocusRing';
+import type { IButtonBaseStylesKey } from '../ButtonBase';
 import type { IBreadcrumbsStylesKey } from './Breadcrumbs.styles';
 
-export type IBreadcrumbsProps = IContainerProps<IBreadcrumbsStylesKey> & {
+export type IBreadcrumbsProps = IBaseProps<IBreadcrumbsStylesKey> & {
   innerStyles?: {
     expandButton?: IZeroOrMore<ICompiledStyles<IButtonBaseStylesKey>>;
     expandButtonFocusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStylesKey>>;

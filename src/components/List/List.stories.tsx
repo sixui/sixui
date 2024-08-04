@@ -9,12 +9,12 @@ import {
 import { createSequence } from '@olivierpascal/helpers';
 
 import type { IListProps } from './List.types';
-import { ListItem, type IListItemProps } from '~/components/ListItem';
+import { ListItem, type IListItemProps } from '../ListItem';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { ComponentShowcase } from '~/components/ComponentShowcase';
+import { ComponentShowcase } from '../ComponentShowcase';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { Avatar } from '~/components/Avatar';
-import { Checkbox } from '~/components/Checkbox';
+import { Avatar } from '../Avatar';
+import { Checkbox } from '../Checkbox';
 import { List } from './List';
 
 // https://m3.material.io/components/lists/overview

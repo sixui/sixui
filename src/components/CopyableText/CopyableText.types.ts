@@ -4,10 +4,7 @@ import type {
   IContainerProps,
   IOmit,
 } from '~/helpers/types';
-import type {
-  IFluidButtonProps,
-  IFluidButtonStylesKey,
-} from '~/components/FluidButton';
+import type { IFluidButtonProps, IFluidButtonStylesKey } from '../FluidButton';
 import type { ICopyableTextStylesKey } from './CopyableText.styles';
 
 export type ICopyableTextTriggerRenderProps = {

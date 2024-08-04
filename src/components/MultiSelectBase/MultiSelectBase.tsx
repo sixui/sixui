@@ -2,15 +2,15 @@ import { useMemo, useRef } from 'react';
 
 import type { IMultiSelectBaseProps } from './MultiSelectBase.types';
 import type { IExtendedFloatingProps } from '~/helpers/extendFloatingProps';
-import { ListItem } from '~/components/ListItem';
-import { TextInputField } from '~/components/TextInputField';
-import { MenuList } from '~/components/MenuList';
-import { InputChip } from '~/components/Chip';
+import { ListItem } from '../ListItem';
+import { TextInputField } from '../TextInputField';
+import { MenuList } from '../MenuList';
+import { InputChip } from '../Chip';
 import {
   useMultiFilterableListBase,
   FilterableListBaseFieldTrailingIcon,
-} from '~/components/FilterableListBase';
-import { FloatingFilterableListBase } from '~/components/FloatingFilterableListBase';
+} from '../FilterableListBase';
+import { FloatingFilterableListBase } from '../FloatingFilterableListBase';
 import { fixedForwardRef } from '~/helpers/fixedForwardRef';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';

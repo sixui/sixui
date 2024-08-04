@@ -4,8 +4,8 @@ import { asArray } from '@olivierpascal/helpers';
 import type { IMenuListProps } from './MenuList.types';
 import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { Elevation } from '~/components/Elevation';
-import { List } from '~/components/List';
+import { Elevation } from '../Elevation';
+import { List } from '../List';
 import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import {
   menuListElevationStyles,

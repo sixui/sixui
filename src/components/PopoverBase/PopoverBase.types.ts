@@ -12,7 +12,7 @@ import type {
   IForwardableProps,
 } from '~/helpers/react/forwardablePropsTypes';
 import type { IPopoverCursorType } from '~/hooks/usePopoverCursor';
-import type { IFloatingTransitionOrigin } from '~/components/FloatingTransition';
+import type { IFloatingTransitionOrigin } from '../FloatingTransition';
 import type { IPopoverBaseStylesKey } from './PopoverBase.styles';
 import type { IExtendedHtmlFloatingProps } from '~/helpers/extendFloatingProps';
 
