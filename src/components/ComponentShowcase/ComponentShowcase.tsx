@@ -1,12 +1,9 @@
-import { useMemo } from 'react';
-
 import type {
   IComponentPresentation,
   IComponentShowcaseProps,
 } from './ComponentShowcase.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { useStyles } from '~/hooks/useStyles';
+import { Base } from '../Base';
 import { componentShowcaseTheme } from './ComponentShowcase.stylex';
 import { componentShowcaseStyles } from './ComponentShowcase.styles';
 
@@ -31,15 +28,10 @@ export const ComponentShowcase = <
     fullWidth,
   } = props;
 
-  const componentTheme = useComponentTheme('ComponentShowcase');
-  const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(componentShowcaseStyles, styles),
-    [styles],
-  );
-  const sxf = useMemo(
-    () => stylePropsFactory(stylesCombinator),
-    [stylesCombinator],
-  );
+  const { combineStyles, getStyles, globalStyles } = useStyles({
+    name: 'ComponentShowcase',
+    styles: [componentShowcaseStyles, styles],
+  });
 
   const shouldShowRowLegends = rows?.some(({ legend }) => !!legend);
   const shouldShowColLegends = cols?.some(({ legend }) => !!legend);
@@ -51,33 +43,31 @@ export const ComponentShowcase = <
   const nonEmptyRows = rows ?? [placeholder];
 
   return (
-    <div
-      {...sxf(
+    <Base
+      sx={[
         componentShowcaseTheme,
-        componentTheme.overridenStyles,
-        'host',
-        'cols',
-        'gap$md',
+        globalStyles,
+        combineStyles('host', 'cols', 'gap$md'),
         sx,
-      )}
+      ]}
     >
       {shouldShowRowLegends && rowLegendPosition === 'start' ? (
-        <div {...sxf('rows', 'gap$lg')}>
+        <div {...getStyles('rows', 'gap$lg')}>
           {shouldShowColLegends ? (
-            <div {...sxf('legend', 'invisible')} aria-hidden>
+            <div {...getStyles('legend', 'invisible')} aria-hidden>
               {DUMMY_TEXT}
             </div>
           ) : null}
 
-          <div {...sxf('flex', 'groupRows')}>
+          <div {...getStyles('flex', 'groupRows')}>
             {nonEmptyGroups.map((_, groupIndex) => (
               <div
-                {...sxf('flex', 'rows', 'gap$lg')}
+                {...getStyles('flex', 'rows', 'gap$lg')}
                 key={`$legend-${groupIndex}`}
               >
                 {nonEmptyRows.map((row, rowIndex) => (
                   <div
-                    {...sxf(
+                    {...getStyles(
                       'flex',
                       'legendRow',
                       'justifyEnd',
@@ -96,16 +86,21 @@ export const ComponentShowcase = <
         </div>
       ) : null}
 
-      <div {...sxf('cols', 'gap$md', 'align$start', fullWidth && 'flex')}>
+      <div {...getStyles('cols', 'gap$md', 'align$start', fullWidth && 'flex')}>
         {nonEmptyCols.map((col, colIndex) => (
-          <div {...sxf('groupRows', fullWidth && 'flex')} key={colIndex}>
+          <div {...getStyles('groupRows', fullWidth && 'flex')} key={colIndex}>
             {nonEmptyGroups.map((group, groupIndex) => (
               <div
                 key={`${colIndex}-${groupIndex}`}
-                {...sxf('rows', 'gap$lg', `align$${horizontalAlign}`, 'flex')}
+                {...getStyles(
+                  'rows',
+                  'gap$lg',
+                  `align$${horizontalAlign}`,
+                  'flex',
+                )}
               >
                 {shouldShowColLegends && groupIndex === 0 ? (
-                  <div {...sxf('legend', !col.legend && 'invisible')}>
+                  <div {...getStyles('legend', !col.legend && 'invisible')}>
                     {col.legend ?? DUMMY_TEXT}
                   </div>
                 ) : null}
@@ -121,7 +116,7 @@ export const ComponentShowcase = <
                   return (
                     <div
                       key={`${colIndex}-${groupIndex}-${rowIndex}`}
-                      {...sxf(
+                      {...getStyles(
                         'flex',
                         'rows',
                         fullWidth && 'w100',
@@ -131,11 +126,11 @@ export const ComponentShowcase = <
                       {shouldShowRowLegends &&
                       rowLegendPosition === 'top' &&
                       row.legend ? (
-                        <div {...sxf('legend')}>{row.legend}</div>
+                        <div {...getStyles('legend')}>{row.legend}</div>
                       ) : null}
 
                       <div
-                        {...sxf(
+                        {...getStyles(
                           'flex',
                           'cols',
                           'gap$md',
@@ -159,21 +154,21 @@ export const ComponentShowcase = <
       </div>
 
       {shouldShowGroupLegends ? (
-        <div {...sxf('rows', 'gap$lg')}>
+        <div {...getStyles('rows', 'gap$lg')}>
           {shouldShowColLegends ? (
-            <div {...sxf('legend', 'invisible')} aria-hidden>
+            <div {...getStyles('legend', 'invisible')} aria-hidden>
               {DUMMY_TEXT}
             </div>
           ) : null}
 
-          <div {...sxf('flex', 'groupRows')}>
+          <div {...getStyles('flex', 'groupRows')}>
             {nonEmptyGroups.map((group, groupIndex) => (
               <div
-                {...sxf('flex', 'rows', 'gap$lg')}
+                {...getStyles('flex', 'rows', 'gap$lg')}
                 key={`$legend-${groupIndex}`}
               >
                 <div
-                  {...sxf(
+                  {...getStyles(
                     'flex',
                     'legendRow',
                     'justifyStart',
@@ -190,6 +185,6 @@ export const ComponentShowcase = <
           </div>
         </div>
       ) : null}
-    </div>
+    </Base>
   );
 };

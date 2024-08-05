@@ -1,14 +1,14 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import type { IColorTagProps } from './ColorTag.types';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { colorTagTokens, colorTagTheme } from './ColorTag.stylex';
 import { getTextContrastColor } from '~/helpers/colors/getTextContrastColor';
-import { colorTagStyles } from './ColorTag.styles';
+import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
 import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
+import { useStyles } from '~/hooks/useStyles';
+import { Base } from '../Base';
+import { colorTagTokens, colorTagTheme } from './ColorTag.stylex';
+import { colorTagStyles } from './ColorTag.styles';
 
 const localStyles = stylex.create({
   backgroundColor: (color: string) => ({
@@ -20,61 +20,60 @@ const localStyles = stylex.create({
   }),
 });
 
-export const ColorTag = forwardRef<HTMLDivElement, IColorTagProps>(
-  function ColorTag(props, forwardedRef) {
-    const {
-      styles,
-      sx,
-      children,
-      label,
-      icon,
-      backgroundColor,
-      foregroundColor,
-      ...other
-    } = props;
+export const ColorTag = createPolymorphicComponent<'div', IColorTagProps>(
+  forwardRef<HTMLDivElement, IColorTagProps>(
+    function ColorTag(props, forwardedRef) {
+      const {
+        styles,
+        sx,
+        children,
+        label,
+        icon,
+        backgroundColor,
+        foregroundColor,
+        ...other
+      } = props;
 
-    const componentTheme = useComponentTheme('ColorTag');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(colorTagStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+      const { combineStyles, getStyles, globalStyles } = useStyles({
+        name: 'ColorTag',
+        styles: [colorTagStyles, styles],
+      });
 
-    const foregroundColorHex =
-      foregroundColor ??
-      (backgroundColor ? getTextContrastColor(backgroundColor) : undefined);
-    const isEmpty = !backgroundColor;
-    const isInvalid = !!backgroundColor && !isValidHexColor(backgroundColor);
+      const foregroundColorHex =
+        foregroundColor ??
+        (backgroundColor ? getTextContrastColor(backgroundColor) : undefined);
+      const isEmpty = !backgroundColor;
+      const isInvalid = !!backgroundColor && !isValidHexColor(backgroundColor);
 
-    return (
-      <div
-        {...other}
-        {...sxf(
-          colorTagTheme,
-          componentTheme.overridenStyles,
-          'host',
-          isEmpty && 'host$empty',
-          isInvalid && 'host$invalid',
-          backgroundColor && isValidHexColor(backgroundColor)
-            ? localStyles.backgroundColor(backgroundColor)
-            : undefined,
-          foregroundColorHex
-            ? localStyles.foregroundColor(foregroundColorHex)
-            : undefined,
-          sx,
-        )}
-        ref={forwardedRef}
-      >
-        {icon ? (
-          <div {...sxf('icon')}>{icon}</div>
-        ) : label ? (
-          <div {...sxf('label')}>{label}</div>
-        ) : null}
-        {children}
-      </div>
-    );
-  },
+      return (
+        <Base
+          {...other}
+          sx={[
+            colorTagTheme,
+            globalStyles,
+            backgroundColor && isValidHexColor(backgroundColor)
+              ? localStyles.backgroundColor(backgroundColor)
+              : undefined,
+            foregroundColorHex
+              ? localStyles.foregroundColor(foregroundColorHex)
+              : undefined,
+            combineStyles(
+              'host',
+              isEmpty && 'host$empty',
+              isInvalid && 'host$invalid',
+            ),
+            sx,
+          ]}
+          ref={forwardedRef}
+        >
+          {icon ? (
+            <div {...getStyles('icon')}>{icon}</div>
+          ) : label ? (
+            <div {...getStyles('label')}>{label}</div>
+          ) : null}
+          {children}
+        </Base>
+      );
+    },
+  ),
 );

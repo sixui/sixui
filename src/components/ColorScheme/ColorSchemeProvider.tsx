@@ -4,7 +4,7 @@ import { FloatingDelayGroup } from '@floating-ui/react';
 
 import type { IStyleXStyles } from '~/helpers/types';
 import { darkColorSchemeTheme } from '~/themes/base/darkColorScheme.styles';
-import { themeProviderStyles, useThemeContext } from '../Theme';
+import { themeProviderStyles, useThemeContext } from '~/components/Theme';
 import { colorSchemeTheme } from '~/themes/base/colorScheme.stylex';
 import {
   ColorSchemeContext,
