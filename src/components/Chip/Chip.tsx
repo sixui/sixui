@@ -218,6 +218,7 @@ export const Chip = createPolymorphicComponent<'div', IChipProps>(
 
     return (
       <Base
+        visualState={visualState}
         sx={[
           chipTheme,
           globalStyles,
@@ -280,6 +281,7 @@ export const Chip = createPolymorphicComponent<'div', IChipProps>(
             tabIndex={!interactive || other.disabled ? -1 : 0}
             onKeyDown={handleKeyDown}
             {...other}
+            visualState={visualState}
             sx={combineStyles(
               'action',
               'action$primary',

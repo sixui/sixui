@@ -1,4 +1,3 @@
-import { IBaseProps } from '../Base';
 import type {
   IZeroOrMore,
   ICompiledStyles,
@@ -6,11 +5,12 @@ import type {
   IAny,
   IOmit,
 } from '~/helpers/types';
-import type { ICheckboxStylesKey } from './Checkbox.styles';
+import type { IBaseProps } from '../Base';
 import type { IStateLayerStylesKey } from '../StateLayer';
 import type { IFocusRingStylesKey } from '../FocusRing';
 import type { ICircularProgressIndicatorStylesKey } from '../CircularProgressIndicator';
 import type { IVisualState } from '../VisualState';
+import type { ICheckboxStylesKey } from './Checkbox.styles';
 
 export type ICheckboxProps = IBaseProps<ICheckboxStylesKey> &
   IOmit<

@@ -1,12 +1,9 @@
-import type {
-  IContainerProps,
-  IZeroOrMore,
-  ICompiledStyles,
-} from '~/helpers/types';
-import type { IPaperBaseStylesKey } from './PaperBase.styles';
+import type { IZeroOrMore, ICompiledStyles } from '~/helpers/types';
+import type { IBaseProps } from '../Base';
 import type { IElevationStylesKey } from '../Elevation';
+import type { IPaperBaseStylesKey } from './PaperBase.styles';
 
-export type IPaperBaseProps = IContainerProps<IPaperBaseStylesKey> &
+export type IPaperBaseProps = IBaseProps<IPaperBaseStylesKey> &
   React.ComponentPropsWithoutRef<'div'> & {
     innerStyles?: {
       elevation?: IZeroOrMore<ICompiledStyles<IElevationStylesKey>>;

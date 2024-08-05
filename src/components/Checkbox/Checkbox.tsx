@@ -114,6 +114,7 @@ export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
 
     return (
       <Base
+        visualState={visualState}
         sx={[
           checkboxTheme,
           globalStyles,
@@ -135,6 +136,7 @@ export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
           id={labeledContext?.id}
           required={labeledContext?.required}
           {...other}
+          visualState={visualState}
           sx={combineStyles('input')}
           ref={handleRef}
         />

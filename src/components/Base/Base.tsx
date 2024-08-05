@@ -7,18 +7,19 @@ import {
   type IWithAsProp,
 } from '~/helpers/react/polymorphicComponentTypes';
 import { isProduction } from '~/helpers/isProduction';
+import { dataProps } from '~/helpers/dataProps';
 
 export const Base = createPolymorphicComponent<'div', IBaseProps>(
   forwardRef<HTMLDivElement, IBaseProps>(function Base(props, forwardedRef) {
-    const { component, renderRoot, sx, ...other } =
+    const { component, renderRoot, sx, visualState, ...other } =
       props as IWithAsProp<IBaseProps>;
     const Element = component ?? 'div';
     const childrenProps = {
       ...other,
       ref: forwardedRef,
       ...(typeof Element === 'string' && !renderRoot
-        ? stylex.props(sx)
-        : { sx }),
+        ? { ...stylex.props(sx), ...dataProps(visualState) }
+        : { sx, visualState }),
     };
 
     if (!isProduction()) {

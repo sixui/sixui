@@ -1,16 +1,14 @@
-import { forwardRef, useContext, useMemo } from 'react';
+import { forwardRef, useContext } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import type { IColorPickerContentProps } from './ColorPickerContent.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { useStyles } from '~/hooks/useStyles';
 import { PaperBase } from '../PaperBase';
 import { commonStyles } from '~/helpers/commonStyles';
 import { Divider } from '../Divider';
 import { ColorButton } from '../ColorButton';
 import { ColorPaletteGroupContext } from '../ColorPaletteGroup';
-import { basicTemplateStyles } from './ColorPickerContent.styles';
+import { colorPickerContentStyles } from './ColorPickerContent.styles';
 
 export const ColorPickerContent = forwardRef<
   HTMLDivElement,
@@ -28,15 +26,10 @@ export const ColorPickerContent = forwardRef<
     ...other
   } = props;
 
-  const componentTheme = useComponentTheme('ColorPickerContent');
-  const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(basicTemplateStyles, styles),
-    [styles],
-  );
-  const sxf = useMemo(
-    () => stylePropsFactory(stylesCombinator),
-    [stylesCombinator],
-  );
+  const { combineStyles, getStyles, globalStyles } = useStyles({
+    name: 'ColorPickerContent',
+    styles: [colorPickerContentStyles, styles],
+  });
 
   const mergeColors = (colors: Array<string>): Array<string> =>
     [...new Set(colors)].slice(0, palettes.length);
@@ -50,15 +43,19 @@ export const ColorPickerContent = forwardRef<
 
   return (
     <PaperBase
-      sx={[componentTheme.overridenStyles, stylesCombinator('host'), sx]}
+      sx={[globalStyles, combineStyles('host'), sx]}
       styles={innerStyles?.paperBase}
       {...other}
       ref={forwardedRef}
     >
       <div
-        {...sxf(commonStyles.verticalLayout, commonStyles.gap$xl, 'section')}
+        {...getStyles(
+          commonStyles.verticalLayout,
+          commonStyles.gap$xl,
+          'section',
+        )}
       >
-        <div {...sxf('grid')}>
+        <div {...getStyles('grid')}>
           {palettes.map((palette, paletteIndex) => (
             <div
               key={paletteIndex}
@@ -67,7 +64,7 @@ export const ColorPickerContent = forwardRef<
                 commonStyles.gap$none,
               )}
             >
-              <div {...sxf('tones')}>
+              <div {...getStyles('tones')}>
                 {palette.map((color, colorIndex) => {
                   const isFirst = colorIndex === 0;
                   const isLast = colorIndex === palette.length - 1;
@@ -76,11 +73,11 @@ export const ColorPickerContent = forwardRef<
                     <ColorButton
                       key={colorIndex}
                       backgroundColor={color}
-                      sx={[
-                        stylesCombinator('colorButton'),
-                        isFirst && stylesCombinator('colorButton$first'),
-                        isLast && stylesCombinator('colorButton$last'),
-                      ]}
+                      sx={combineStyles(
+                        'colorButton',
+                        isFirst && 'colorButton$first',
+                        isLast && 'colorButton$last',
+                      )}
                       selected={
                         selectedColor ? color === selectedColor : undefined
                       }
@@ -103,7 +100,7 @@ export const ColorPickerContent = forwardRef<
         <>
           <Divider />
 
-          <div {...sxf(commonStyles.horizontalLayout, 'section')}>
+          <div {...getStyles(commonStyles.horizontalLayout, 'section')}>
             {customColors?.map((color, colorIndex) => (
               <ColorButton
                 key={colorIndex}

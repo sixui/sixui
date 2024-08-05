@@ -93,6 +93,7 @@ export const Card = createPolymorphicComponent<'div', ICardProps>(
           tabIndex={disabled || !actionable ? -1 : 0}
           disabled={disabled}
           {...other}
+          visualState={visualState}
           sx={[
             cardTheme,
             globalStyles,

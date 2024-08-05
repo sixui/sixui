@@ -6,8 +6,9 @@ import { paperBaseTokens } from '../PaperBase/PaperBase.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { elevationTokens } from '../Elevation/Elevation.stylex';
 
-export type IColorPickerContentStylesKey = keyof typeof basicTemplateStyles;
-export const basicTemplateStyles = stylex.create({
+export type IColorPickerContentStylesKey =
+  keyof typeof colorPickerContentStyles;
+export const colorPickerContentStyles = stylex.create({
   host: {
     width: 'min-content',
     [paperBaseTokens.containerColor]: colorSchemeTokens.surfaceContainer,

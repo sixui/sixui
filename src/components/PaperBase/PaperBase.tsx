@@ -1,46 +1,43 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type { IPaperBaseProps } from './PaperBase.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { useStyles } from '~/hooks/useStyles';
 import { Elevation } from '../Elevation';
 import { paperBaseElevationStyles, paperBaseStyles } from './PaperBase.styles';
 import { paperBaseTheme } from './PaperBase.stylex';
+import { Base } from '../Base';
 
 // https://github.com/material-components/material-web/blob/main/labs/paperBase/internal/paperBase.ts
 
-export const PaperBase = forwardRef<HTMLDivElement, IPaperBaseProps>(
-  function PaperBase(props, forwardedRef) {
-    const { styles, sx, innerStyles, children, ...other } = props;
+export const PaperBase = createPolymorphicComponent<'div', IPaperBaseProps>(
+  forwardRef<HTMLDivElement, IPaperBaseProps>(
+    function PaperBase(props, forwardedRef) {
+      const { styles, sx, innerStyles, children, ...other } = props;
 
-    const componentTheme = useComponentTheme('PaperBase');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(paperBaseStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+      const { combineStyles, getStyles, globalStyles } = useStyles({
+        name: 'PaperBase',
+        styles: [paperBaseStyles, styles],
+      });
 
-    return (
-      <div
-        {...other}
-        {...sxf(paperBaseTheme, componentTheme.overridenStyles, 'host', sx)}
-        ref={forwardedRef}
-      >
-        <Elevation
-          styles={[
-            paperBaseElevationStyles,
-            ...asArray(innerStyles?.elevation),
-          ]}
-        />
-        <div {...sxf('outline')} />
-        <div {...sxf('background')} />
-        {children}
-      </div>
-    );
-  },
+      return (
+        <Base
+          {...other}
+          sx={[paperBaseTheme, globalStyles, combineStyles('host'), sx]}
+          ref={forwardedRef}
+        >
+          <Elevation
+            styles={[
+              paperBaseElevationStyles,
+              ...asArray(innerStyles?.elevation),
+            ]}
+          />
+          <div {...getStyles('outline')} />
+          <div {...getStyles('background')} />
+          {children}
+        </Base>
+      );
+    },
+  ),
 );

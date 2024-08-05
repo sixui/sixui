@@ -60,6 +60,7 @@ export const ButtonBase = createPolymorphicComponent<
           tabIndex={visuallyDisabled ? -1 : 0}
           type={type}
           {...other}
+          visualState={visualState}
           sx={[
             globalStyles,
             combineStyles('host', visuallyDisabled && 'host$disabled'),

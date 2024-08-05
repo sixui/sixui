@@ -533,6 +533,7 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
 
       return (
         <Base
+          visualState={visualState}
           sx={stylesCombinator(
             fieldBaseTheme,
             componentTheme.overridenStyles,
