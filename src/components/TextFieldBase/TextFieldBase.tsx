@@ -1,19 +1,18 @@
-import { useCallback, useMemo, useRef } from 'react';
+import { useCallback, useRef } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { ITextFieldBaseProps } from './TextFieldBase.types';
 import { isFunction } from '~/helpers/isFunction';
-import { FieldBase } from '../FieldBase';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { useVisualState } from '../VisualState';
 import { useControlledValue } from '~/hooks/useControlledValue';
-import { IconButton } from '../IconButton';
 import { fixedForwardRef } from '~/helpers/fixedForwardRef';
-import { SvgIcon } from '../SvgIcon';
+import { useStyles } from '~/hooks/useStyles';
 import { iconXMark } from '~/assets/icons';
+import { FieldBase } from '../FieldBase';
+import { Base } from '../Base';
+import { useVisualState } from '../VisualState';
+import { IconButton } from '../IconButton';
+import { SvgIcon } from '../SvgIcon';
 import {
   textFieldBaseFieldBaseStyles,
   textFieldBaseStyles,
@@ -63,15 +62,10 @@ export const TextFieldBase = fixedForwardRef(function TextField<
     setInputVisualStateRef,
   ]);
 
-  const componentTheme = useComponentTheme('TextFieldBase');
-  const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(textFieldBaseStyles, styles),
-    [styles],
-  );
-  const sxf = useMemo(
-    () => stylePropsFactory(stylesCombinator, visualState),
-    [stylesCombinator, visualState],
-  );
+  const { combineStyles, getStyles, globalStyles } = useStyles({
+    name: 'TextFieldBase',
+    styles: [textFieldBaseStyles, styles],
+  });
 
   const [value, setValue] = useControlledValue({
     controlled: valueProp,
@@ -102,16 +96,15 @@ export const TextFieldBase = fixedForwardRef(function TextField<
 
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
-    <div
-      {...sxf(textFieldBaseTheme, componentTheme.overridenStyles, 'host', sx)}
-      onClick={(event) => {
+    <Base
+      onClick={(event: React.MouseEvent) => {
         const isSelf = event.target === inputRef.current;
         if (!isSelf) {
           event.stopPropagation();
           inputRef.current?.click();
         }
       }}
-      onFocus={(event) => {
+      onFocus={(event: React.FocusEvent) => {
         const isSelf = event.nativeEvent.target === inputRef.current;
         const isTargetInteractive = [
           'BUTTON',
@@ -126,9 +119,11 @@ export const TextFieldBase = fixedForwardRef(function TextField<
         }
       }}
       tabIndex={-1}
+      role='button'
+      sx={[textFieldBaseTheme, globalStyles, combineStyles('host'), sx]}
       ref={forwardedRef}
     >
-      <span {...sxf('textField')}>
+      <span {...getStyles('textField')}>
         <FieldBase
           styles={[
             textFieldBaseFieldBaseStyles,
@@ -165,7 +160,7 @@ export const TextFieldBase = fixedForwardRef(function TextField<
                     value,
                     ...forwardedProps,
                   },
-                  sxf,
+                  getStyles,
                   ref: inputHandleRef,
                   modifiers: {
                     hasError: other.hasError,
@@ -176,6 +171,6 @@ export const TextFieldBase = fixedForwardRef(function TextField<
             : inputRenderer}
         </FieldBase>
       </span>
-    </div>
+    </Base>
   );
 });

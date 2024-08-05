@@ -1,4 +1,5 @@
-import type { IContainerProps, IOmit } from '~/helpers/types';
+import type { IOmit } from '~/helpers/types';
+import type { IBaseProps } from '../Base';
 import type { IFieldBaseVariant } from '../FieldBase';
 import type { IFieldStylesKey, IFieldProps } from '../Field';
 import type { IUseSingleFilterableListBaseProps } from '../FilterableListBase';
@@ -7,7 +8,7 @@ import type {
   IFloatingFilterableListBaseTriggerRenderProps,
 } from '../FloatingFilterableListBase';
 
-export type ISelectBaseProps<TItem> = IContainerProps<IFieldStylesKey> &
+export type ISelectBaseProps<TItem> = IBaseProps<IFieldStylesKey> &
   IOmit<
     IFloatingFilterableListBaseProps<TItem, HTMLElement>,
     'onItemSelect' | 'renderer' | 'itemRenderer' | 'itemsEqual' | 'children'

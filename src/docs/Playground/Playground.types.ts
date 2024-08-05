@@ -1,4 +1,4 @@
-import type { IContainerProps } from '~/helpers/types';
+import type { IBaseProps } from '~/components/Base';
 import type { IHtmlSelectProps } from '~/components/HtmlSelect';
 import type { IPlaygroundStylesKey } from './Playground.styles';
 
@@ -55,7 +55,7 @@ export type IPlaygroundSections<TSectionsProps extends Record<string, object>> =
   };
 
 export type IPlaygroundProps<TSectionsProps extends Record<string, object>> =
-  IContainerProps<IPlaygroundStylesKey> & {
+  IBaseProps<IPlaygroundStylesKey> & {
     defaultSections: IPlaygroundSections<TSectionsProps>;
     componentRenderer: (sectionsProps: TSectionsProps) => JSX.Element;
     initialProps?: {

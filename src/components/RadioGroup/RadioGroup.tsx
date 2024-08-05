@@ -38,7 +38,6 @@ export const RadioGroup: IRadioGroup = forwardRef(function RadioGroup<
     value: valueProp,
     defaultValue,
     name: nameProp,
-    'data-cy': dataCy = 'radioGroup',
     ...other
   } = props as IWithAsProp<IRadioGroupOwnProps>;
 
@@ -87,7 +86,7 @@ export const RadioGroup: IRadioGroup = forwardRef(function RadioGroup<
       <Component
         sx={sx}
         role='radiogroup'
-        data-cy={dataCy}
+        data-cy='radioGroup'
         {...other}
         {...stylex.props(sx)}
         ref={handleRef}

@@ -50,15 +50,6 @@ export type IStyleXStyles =
   | CompiledStyles
   | Array<IStyleXStyles>;
 
-/**
- * @deprecated - use IBaseProps instead
- */
-export type IContainerProps<TStyleKey extends string = never> = {
-  styles?: IZeroOrMore<ICompiledStyles<TStyleKey>>;
-  sx?: IStyleXStyles;
-  'data-cy'?: string;
-};
-
 export type IRange = {
   min: number;
   max: number;

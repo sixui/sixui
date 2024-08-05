@@ -1,11 +1,10 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 import { isFunction } from '~/helpers/isFunction';
 
 import type { IRichTooltipContentProps } from './RichTooltipContent.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { useStyles } from '~/hooks/useStyles';
+import { Base } from '../Base';
 import { Elevation } from '../Elevation';
 import {
   richTooltipContentElevationStyles,
@@ -29,25 +28,15 @@ export const RichTooltipContent = forwardRef<
     ...other
   } = props;
 
-  const componentTheme = useComponentTheme('RichTooltipContent');
-  const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(richTooltipContentStyles, styles),
-    [styles],
-  );
-  const sxf = useMemo(
-    () => stylePropsFactory(stylesCombinator),
-    [stylesCombinator],
-  );
+  const { combineStyles, getStyles, globalStyles } = useStyles({
+    name: 'RichTooltipContent',
+    styles: [richTooltipContentStyles, styles],
+  });
 
   return (
-    <div
+    <Base
       {...other}
-      {...sxf(
-        richTooltipContentTheme,
-        componentTheme.overridenStyles,
-        'host',
-        sx,
-      )}
+      sx={[richTooltipContentTheme, globalStyles, ...combineStyles('host'), sx]}
       ref={forwardedRef}
     >
       <Elevation
@@ -56,18 +45,18 @@ export const RichTooltipContent = forwardRef<
           ...asArray(innerStyles?.elevation),
         ]}
       />
-      {renderCursor ? renderCursor(sxf('cursor')) : null}
-      <div {...sxf('content')}>
-        {subhead ? <div {...sxf('subhead')}>{subhead}</div> : null}
+      {renderCursor ? renderCursor(getStyles('cursor')) : null}
+      <div {...getStyles('content')}>
+        {subhead ? <div {...getStyles('subhead')}>{subhead}</div> : null}
         {supportingText ? (
-          <div {...sxf('supportingText')}>{supportingText}</div>
+          <div {...getStyles('supportingText')}>{supportingText}</div>
         ) : null}
       </div>
       {actions ? (
-        <div {...sxf('actions')}>
+        <div {...getStyles('actions')}>
           {isFunction(actions) ? actions({ onClose }) : actions}
         </div>
       ) : null}
-    </div>
+    </Base>
   );
 });

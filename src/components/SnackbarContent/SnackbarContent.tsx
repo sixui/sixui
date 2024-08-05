@@ -1,15 +1,14 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type { ISnackbarContentProps } from './SnackbarContent.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { useStyles } from '~/hooks/useStyles';
+import { iconXMark } from '~/assets/icons';
 import { Elevation } from '../Elevation';
 import { Button } from '../Button';
 import { IconButton } from '../IconButton';
 import { SvgIcon } from '../SvgIcon';
-import { iconXMark } from '~/assets/icons';
+import { Base } from '../Base';
 import {
   snackbarContentElevationStyles,
   snackbarContentStyles,
@@ -32,30 +31,27 @@ export const SnackbarContent = forwardRef<
     ...other
   } = props;
 
-  const componentTheme = useComponentTheme('SnackbarContent');
-  const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(snackbarContentStyles, styles),
-    [styles],
-  );
-  const sxf = useMemo(
-    () => stylePropsFactory(stylesCombinator),
-    [stylesCombinator],
-  );
+  const { combineStyles, getStyles, globalStyles } = useStyles({
+    name: 'SnackbarContent',
+    styles: [snackbarContentStyles, styles],
+  });
 
   return (
-    <div
+    <Base
       {...other}
-      {...sxf(
+      sx={[
         snackbarContentTheme,
-        componentTheme.overridenStyles,
-        'host',
-        actionLabel
-          ? 'host$trailingAction'
-          : onClose
-            ? 'host$trailingIcon'
-            : undefined,
+        globalStyles,
+        combineStyles(
+          'host',
+          actionLabel
+            ? 'host$trailingAction'
+            : onClose
+              ? 'host$trailingIcon'
+              : undefined,
+        ),
         sx,
-      )}
+      ]}
       ref={forwardedRef}
     >
       <Elevation
@@ -64,10 +60,10 @@ export const SnackbarContent = forwardRef<
           ...asArray(innerStyles?.elevation),
         ]}
       />
-      <div {...sxf('supportingText')}>{children}</div>
+      <div {...getStyles('supportingText')}>{children}</div>
 
       {(actionLabel ?? showCloseButton) ? (
-        <div {...sxf('actions')}>
+        <div {...getStyles('actions')}>
           {actionLabel ? (
             <Button variant='snackbar' onClick={onActionClick}>
               {actionLabel}
@@ -83,6 +79,6 @@ export const SnackbarContent = forwardRef<
           ) : null}
         </div>
       ) : null}
-    </div>
+    </Base>
   );
 });

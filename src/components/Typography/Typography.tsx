@@ -1,20 +1,22 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 
 import type {
-  IPolymorphicRef,
-  IWithAsProp,
-} from '~/helpers/react/polymorphicComponentTypes';
-import type {
-  TYPOGRAPHY_DEFAULT_TAG,
-  ITypographyOwnProps,
   ITypographyProps,
+  ITypographySize,
+  ITypographyVariant,
 } from './Typography.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
+import {
+  createPolymorphicComponent,
+  type IWithAsProp,
+} from '~/helpers/react/polymorphicComponentTypes';
+import { useStyles } from '~/hooks/useStyles';
 import { typographyStyles } from './Typography.styles';
+import { Base } from '../Base';
 
-export const typographyTagMap = {
+export const typographyTagMap: Record<
+  `${ITypographyVariant}$${ITypographySize}`,
+  React.ElementType
+> = {
   display$lg: 'span',
   display$md: 'span',
   display$sm: 'span',
@@ -32,63 +34,45 @@ export const typographyTagMap = {
   label$sm: 'span',
 };
 
-type ITypography = <
-  TRoot extends React.ElementType = typeof TYPOGRAPHY_DEFAULT_TAG,
->(
-  props: ITypographyProps<TRoot>,
-) => React.ReactNode;
-
-export const Typography: ITypography = forwardRef(function Typography<
-  TRoot extends React.ElementType = typeof TYPOGRAPHY_DEFAULT_TAG,
->(props: ITypographyProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
-  const {
-    component,
-    styles,
-    sx,
-    variant = 'body',
-    size = 'md',
-    children,
-    gutterBottom,
-    ...other
-  } = props as IWithAsProp<ITypographyOwnProps>;
-
-  const componentTheme = useComponentTheme('Typography');
-  const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(typographyStyles, styles),
-    [styles],
-  );
-  const sxf = useMemo(
-    () => stylePropsFactory(stylesCombinator),
-    [stylesCombinator],
-  );
-
-  const Component = component ?? typographyTagMap[`${variant}$${size}`];
-
-  // TODO: make utility
-  const isReactComponent = typeof Component === 'function';
-  const styleProps = isReactComponent
-    ? {
-        sx: [
-          stylesCombinator(
-            componentTheme.overridenStyles,
-            'host',
-            gutterBottom && 'host$gutterBottom',
-            `${variant}$${size}`,
-          ),
-          sx,
-        ],
-      }
-    : sxf(
-        componentTheme.overridenStyles,
-        'host',
-        gutterBottom && 'host$gutterBottom',
-        `${variant}$${size}`,
+export const Typography = createPolymorphicComponent<'span', ITypographyProps>(
+  forwardRef<HTMLDivElement, ITypographyProps>(
+    function Typography(props, forwardedRef) {
+      const {
+        component,
+        styles,
         sx,
-      );
+        variant = 'body',
+        size = 'md',
+        children,
+        gutterBottom,
+        ...other
+      } = props as IWithAsProp<ITypographyProps>;
 
-  return (
-    <Component {...other} {...styleProps} ref={forwardedRef}>
-      {children}
-    </Component>
-  );
-});
+      const { combineStyles, globalStyles } = useStyles({
+        name: 'Typography',
+        styles: [typographyStyles, styles],
+      });
+
+      const rootElement = component ?? typographyTagMap[`${variant}$${size}`];
+
+      return (
+        <Base
+          component={rootElement}
+          {...other}
+          sx={[
+            globalStyles,
+            combineStyles(
+              'host',
+              gutterBottom && 'host$gutterBottom',
+              `${variant}$${size}`,
+              sx,
+            ),
+          ]}
+          ref={forwardedRef}
+        >
+          {children}
+        </Base>
+      );
+    },
+  ),
+);

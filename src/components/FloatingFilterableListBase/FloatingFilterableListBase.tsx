@@ -37,7 +37,6 @@ import { fixedForwardRef } from '~/helpers/fixedForwardRef';
 import { useStyles } from '~/hooks/useStyles';
 import { FloatingTransition } from '../FloatingTransition';
 import { floatingFilterableListBaseStyles } from './FloatingFilterableListBase.styles';
-import { Base } from '../Base';
 
 export const FloatingFilterableListBase = fixedForwardRef(
   function FloatingFilterableListBase<TItem, TItemElement extends HTMLElement>(
@@ -81,7 +80,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
       ...other
     } = props;
 
-    const { combineStyles, globalStyles } = useStyles({
+    const { combineStyles, getStyles, globalStyles } = useStyles({
       name: 'FloatingFilterableListBase',
       styles: [floatingFilterableListBaseStyles, styles],
     });
@@ -387,9 +386,9 @@ export const FloatingFilterableListBase = fixedForwardRef(
               visuallyHiddenDismiss
               initialFocus={disabled ? -1 : initialFocus}
             >
-              <Base
+              <div
                 {...interactions.getFloatingProps()}
-                sx={[globalStyles, combineStyles('host'), sx]}
+                {...getStyles(globalStyles, 'host', sx)}
                 ref={floating.refs.setFloating}
                 style={floating.floatingStyles}
               >
@@ -425,7 +424,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
                     />
                   </FloatingList>
                 </FloatingTransition>
-              </Base>
+              </div>
             </FloatingFocusManager>
           </Portal>
         )}

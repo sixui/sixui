@@ -31,17 +31,22 @@ export const TextInputField = createPolymorphicComponent<
       const inputHandleRef = useMergeRefs([inputRef, inputRefProp]);
 
       const inputRenderer: ITextFieldBaseProps<HTMLInputElement>['inputRenderer'] =
-        ({ sxf, ref, forwardedProps, modifiers, onValueChange }) => (
+        ({ getStyles, ref, forwardedProps, modifiers, onValueChange }) => (
           <>
             {prefixText ? (
-              <span {...sxf('prefix', modifiers.disabled && 'prefix$disabled')}>
+              <span
+                {...getStyles(
+                  'prefix',
+                  modifiers.disabled && 'prefix$disabled',
+                )}
+              >
                 {prefixText}
               </span>
             ) : null}
 
-            <div {...sxf('inputWrapper')}>
+            <div {...getStyles('inputWrapper')}>
               <input
-                {...sxf(
+                {...getStyles(
                   'input',
                   modifiers.hasError && 'input$error',
                   modifiers.disabled && 'input$disabled',
@@ -62,7 +67,12 @@ export const TextInputField = createPolymorphicComponent<
             </div>
 
             {suffixText ? (
-              <span {...sxf('suffix', modifiers.disabled && 'suffix$disabled')}>
+              <span
+                {...getStyles(
+                  'suffix',
+                  modifiers.disabled && 'suffix$disabled',
+                )}
+              >
                 {suffixText}
               </span>
             ) : null}

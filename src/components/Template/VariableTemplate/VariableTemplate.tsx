@@ -1,11 +1,10 @@
-import { forwardRef, useMemo, useRef } from 'react';
+import { forwardRef, useRef } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { IVariableTemplateProps } from './VariableTemplate.types';
+import { useStyles } from '~/hooks/useStyles';
+import { Base } from '~/components/Base';
 import { useVisualState } from '../../VisualState';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { variableTemplateVariantStyles } from './variants';
 import { variableTemplateStyles } from './VariableTemplate.styles';
 import { variableTemplateTheme } from './VariableTemplate.stylex';
@@ -28,33 +27,23 @@ export const VariableTemplate = forwardRef<
     useVisualState(visualStateProp);
   const handleRef = useMergeRefs([forwardedRef, actionRef, setVisualStateRef]);
 
-  const componentTheme = useComponentTheme('VariableTemplate');
   const variantStyles = variant
     ? variableTemplateVariantStyles[variant]
     : undefined;
-
-  const stylesCombinator = useMemo(
-    () =>
-      stylesCombinatorFactory(variableTemplateStyles, variantStyles, styles),
-    [variantStyles, styles],
-  );
-  const sxf = useMemo(
-    () => stylePropsFactory(stylesCombinator, visualState),
-    [stylesCombinator, visualState],
-  );
+  const { combineStyles, globalStyles } = useStyles({
+    name: 'VariableTemplate',
+    styles: [variableTemplateStyles, variantStyles, styles],
+    visualState,
+  });
 
   return (
-    <div
+    <Base
       {...other}
-      {...sxf(
-        variableTemplateTheme,
-        componentTheme.overridenStyles,
-        'host',
-        sx,
-      )}
+      visualState={visualState}
+      sx={[variableTemplateTheme, globalStyles, combineStyles('host'), sx]}
       ref={handleRef}
     >
       {children}
-    </div>
+    </Base>
   );
 });

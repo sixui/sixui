@@ -1,39 +1,33 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 
 import type { ITabListProps } from './TabList.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { useStyles } from '~/hooks/useStyles';
 import { Divider } from '../Divider';
 import { tabListStyles } from './TabList.styles';
+import { Base } from '../Base';
 
 export const TabList = forwardRef<HTMLInputElement, ITabListProps>(
   function TabList(props, forwardedRef) {
     const { styles, sx, children, fullWidth, ...other } = props;
 
-    const componentTheme = useComponentTheme('TabList');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(tabListStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+    const { combineStyles, getStyles, globalStyles } = useStyles({
+      name: 'TabList',
+      styles: [tabListStyles, styles],
+    });
 
     return (
-      <div
+      <Base
         role='tablist'
         aria-orientation='horizontal'
         {...other}
-        {...sxf(componentTheme.overridenStyles, 'host', sx)}
+        sx={[globalStyles, combineStyles('host'), sx]}
         ref={forwardedRef}
       >
-        <div {...sxf('tabList', fullWidth && 'tabList$fullWidth')}>
+        <div {...getStyles('tabList', fullWidth && 'tabList$fullWidth')}>
           {children}
         </div>
         <Divider />
-      </div>
+      </Base>
     );
   },
 );

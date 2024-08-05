@@ -1,7 +1,8 @@
-import type { IContainerProps, IOrientation } from '~/helpers/types';
+import type { IOrientation } from '~/helpers/types';
+import type { IBaseProps } from '../Base';
 import type { IStepperStylesKey } from './Stepper.styles';
 
-export type IStepperProps = IContainerProps<IStepperStylesKey> & {
+export type IStepperProps = IBaseProps<IStepperStylesKey> & {
   children: React.ReactNode;
   activeStep?: number;
   loading?: boolean;

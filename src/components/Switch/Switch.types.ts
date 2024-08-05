@@ -1,20 +1,17 @@
 import type {
-  IContainerProps,
   IZeroOrMore,
   ICompiledStyles,
   IAny,
   IMaybeAsync,
 } from '~/helpers/types';
+import type { IBaseProps } from '../Base';
 import type { IStateLayerStylesKey } from '../StateLayer';
 import type { IFocusRingStylesKey } from '../FocusRing';
 import type { ICircularProgressIndicatorStylesKey } from '../CircularProgressIndicator';
 import type { IVisualState } from '../VisualState';
-import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
 import type { ISwitchStylesKey } from './Switch.styles';
 
-export const SWITCH_DEFAULT_TAG = 'input';
-
-export type ISwitchOwnProps = IContainerProps<ISwitchStylesKey> & {
+export type ISwitchProps = IBaseProps<ISwitchStylesKey> & {
   innerStyles?: {
     stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStylesKey>>;
     focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStylesKey>>;
@@ -50,7 +47,3 @@ export type ISwitchOwnProps = IContainerProps<ISwitchStylesKey> & {
   selectedIcon?: React.ReactNode;
   onClick?: React.MouseEventHandler<HTMLInputElement>;
 };
-
-export type ISwitchProps<
-  TRoot extends React.ElementType = typeof SWITCH_DEFAULT_TAG,
-> = IPolymorphicComponentPropsWithRef<TRoot, ISwitchOwnProps>;

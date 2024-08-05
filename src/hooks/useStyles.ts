@@ -2,16 +2,16 @@ import type { StyleXStyles } from '@stylexjs/stylex';
 import { useMemo } from 'react';
 
 import type { IVisualState } from '~/components/VisualState';
-import type { IStylesCombinator } from '~/helpers/stylesCombinatorFactory';
+import {
+  IStylesCombinator,
+  stylesCombinatorFactory,
+  type IStylesCombinatorStylesProp,
+} from '~/helpers/stylesCombinatorFactory';
 import { useThemeContext, type IThemeSettings } from '~/components/Theme';
 import {
   stylePropsFactory,
   type IStyleProps,
 } from '~/helpers/stylePropsFactory';
-import {
-  stylesCombinatorFactory,
-  type IStylesCombinatorStylesProp,
-} from '~/helpers/stylesCombinatorFactory2';
 
 export type IUseStylesProps<TStyleKey extends string> = {
   name: string;

@@ -1,9 +1,5 @@
-import type {
-  IContainerProps,
-  IZeroOrMore,
-  ICompiledStyles,
-  IOmit,
-} from '~/helpers/types';
+import type { IZeroOrMore, ICompiledStyles, IOmit } from '~/helpers/types';
+import type { IBaseProps } from '../Base';
 import type { IFieldBaseProps, IFieldBaseStylesKey } from '../FieldBase';
 import type { ITextFieldBaseStylesKey } from './TextFieldBase.styles';
 import type { IStyleProps } from '~/helpers/stylePropsFactory';
@@ -29,7 +25,7 @@ export type ITextFieldBaseRenderProps<
   TElement extends HTMLElement,
   TChildrenProps extends object,
 > = {
-  sxf: IStyleProps<ITextFieldBaseStylesKey>;
+  getStyles: IStyleProps<ITextFieldBaseStylesKey>;
   ref: React.RefObject<TElement> | React.RefCallback<TElement> | null;
   modifiers: ITextFieldBaseModifiers;
   onValueChange: ITextFieldBaseProps<TElement, TChildrenProps>['onValueChange'];
@@ -38,7 +34,7 @@ export type ITextFieldBaseRenderProps<
 export type ITextFieldBaseProps<
   TElement extends HTMLElement,
   TChildrenProps extends object = object,
-> = IContainerProps<ITextFieldBaseStylesKey> &
+> = IBaseProps<ITextFieldBaseStylesKey> &
   IControlledValueProps<string | number | ReadonlyArray<string>, TElement> &
   IOmit<IFieldBaseProps, 'styles' | 'children'> &
   IForwardableProps & {

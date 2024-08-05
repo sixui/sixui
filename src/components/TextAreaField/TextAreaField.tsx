@@ -11,9 +11,9 @@ export const TextAreaField = forwardRef<HTMLDivElement, ITextAreaFieldProps>(
     const inputHandleRef = useMergeRefs([inputRef, inputRefProp]);
 
     const inputRenderer: ITextFieldBaseProps<HTMLTextAreaElement>['inputRenderer'] =
-      ({ sxf, ref, forwardedProps, modifiers, onValueChange }) => (
+      ({ getStyles, ref, forwardedProps, modifiers, onValueChange }) => (
         <textarea
-          {...sxf(
+          {...getStyles(
             'input',
             modifiers.hasError && 'input$error',
             modifiers.disabled && 'input$disabled',

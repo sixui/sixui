@@ -1,14 +1,13 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { IStateLayerProps } from './StateLayer.types';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useStyles } from '~/hooks/useStyles';
 import { useRipple } from './useRipple';
 import { stateLayerStyles } from './StateLayer.styles';
 import { stateLayerTheme } from './StateLayer.stylex';
 import { useForwardedRef } from '~/helpers/useForwardedRef';
+import { Base } from '../Base';
 
 // https://github.com/material-components/material-web/blob/main/ripple/internal/ripple.ts
 
@@ -24,15 +23,10 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
       ...other
     } = props;
 
-    const componentTheme = useComponentTheme('StateLayer');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(stateLayerStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator, visualState),
-      [stylesCombinator, visualState],
-    );
+    const { combineStyles, getStyles, globalStyles } = useStyles({
+      name: 'StateLayer',
+      styles: [stateLayerStyles, styles],
+    });
 
     const innerRef = useForwardedRef(forElementRef);
     const { setHostRef, surfaceRef, pressed } = useRipple({
@@ -43,14 +37,14 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
     const handleRef = useMergeRefs([forwardedRef, setHostRef]);
 
     return (
-      <div
+      <Base
         aria-hidden
         {...other}
-        {...sxf(stateLayerTheme, componentTheme.overridenStyles, 'host', sx)}
+        sx={[stateLayerTheme, globalStyles, combineStyles('host'), sx]}
         ref={handleRef}
       >
         <div
-          {...sxf(
+          {...getStyles(
             'rippleSurface',
             visualState?.hovered && 'rippleSurface$hover',
             pressed && 'rippleSurface$pressed',
@@ -61,7 +55,7 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
         />
 
         {children}
-      </div>
+      </Base>
     );
   },
 );

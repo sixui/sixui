@@ -1,10 +1,9 @@
-import { forwardRef, useContext, useMemo } from 'react';
+import { forwardRef, useContext } from 'react';
 
 import type { IStepConnectorProps } from './StepConnector.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { useStyles } from '~/hooks/useStyles';
 import { StepContext } from '../Step/StepContext';
+import { Base } from '../Base';
 import { stepConnectorStyles } from './StepConnector.styles';
 import { stepConnectorTheme } from './StepConnector.stylex';
 
@@ -20,15 +19,10 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
       ...other
     } = props;
 
-    const componentTheme = useComponentTheme('StepConnector');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(stepConnectorStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+    const { combineStyles, getStyles, globalStyles } = useStyles({
+      name: 'StepConnector',
+      styles: [stepConnectorStyles, styles],
+    });
 
     const stepContext = useContext(StepContext);
 
@@ -44,7 +38,7 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
       cutEnd?: boolean;
     }): React.ReactElement => (
       <div
-        {...sxf(
+        {...getStyles(
           'line',
           orientation === 'horizontal' && [
             'line$horizontal',
@@ -72,7 +66,7 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
 
     const renderText = (): React.ReactElement => (
       <div
-        {...sxf(
+        {...getStyles(
           'text',
           orientation === 'horizontal' && `text$horizontal`,
           orientation === 'vertical' && `text$vertical`,
@@ -107,19 +101,21 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
       );
 
     return (
-      <div
+      <Base
         {...other}
-        {...sxf(
+        sx={[
           stepConnectorTheme,
-          componentTheme.overridenStyles,
-          'host',
-          `host$${orientation}$${stepLabelPosition}Label`,
+          globalStyles,
+          combineStyles(
+            'host',
+            `host$${orientation}$${stepLabelPosition}Label`,
+          ),
           sx,
-        )}
+        ]}
         ref={forwardedRef}
       >
         <div
-          {...sxf(
+          {...getStyles(
             'container',
             `container$${orientation}`,
             orientation === 'horizontal' &&
@@ -128,7 +124,7 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
         >
           {renderInner()}
         </div>
-      </div>
+      </Base>
     );
   },
 );

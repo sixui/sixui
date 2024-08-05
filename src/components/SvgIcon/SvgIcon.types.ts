@@ -1,6 +1,6 @@
-import type { IContainerProps } from '~/helpers/types';
+import { IBaseProps } from '../Base';
 
-export type ISvgIconProps = IContainerProps & {
+export type ISvgIconProps = IBaseProps & {
   icon: {
     name?: string;
     data: string;

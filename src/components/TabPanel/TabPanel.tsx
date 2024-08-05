@@ -1,59 +1,31 @@
-import { forwardRef, useContext, useMemo } from 'react';
+import { forwardRef, useContext } from 'react';
 
-import type {
-  IPolymorphicRef,
-  IWithAsProp,
-} from '~/helpers/react/polymorphicComponentTypes';
+import type { ITabPanelProps } from './TabPanel.types';
+import { Base } from '../Base';
 import { TabContext } from '../Tabs';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import {
-  TAB_PANEL_DEFAULT_TAG,
-  type ITabPanelProps,
-  type ITabPanelOwnProps,
-} from './TabPanel.types';
 
-type ITabPanel = <
-  TRoot extends React.ElementType = typeof TAB_PANEL_DEFAULT_TAG,
->(
-  props: ITabPanelProps<TRoot>,
-) => React.ReactNode;
+export const TabPanel = forwardRef<HTMLDivElement, ITabPanelProps>(
+  function TabPanel(props, forwardedRef) {
+    const { sx, anchor, children, ...other } = props;
 
-export const TabPanel: ITabPanel = forwardRef(function TabPanel<
-  TRoot extends React.ElementType = typeof TAB_PANEL_DEFAULT_TAG,
->(props: ITabPanelProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
-  const { styles, sx, component, anchor, children } =
-    props as IWithAsProp<ITabPanelOwnProps>;
+    const tabContext = useContext(TabContext);
 
-  const componentTheme = useComponentTheme('TabPanel');
-  const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(styles),
-    [styles],
-  );
-  const sxf = useMemo(
-    () => stylePropsFactory(stylesCombinator),
-    [stylesCombinator],
-  );
+    if (tabContext?.disabled || tabContext?.anchor !== anchor) {
+      return null;
+    }
 
-  const tabContext = useContext(TabContext);
+    const id = tabContext && anchor ? `${tabContext.id}-${anchor}` : undefined;
 
-  if (tabContext?.disabled || tabContext?.anchor !== anchor) {
-    return null;
-  }
-
-  const id = tabContext && anchor ? `${tabContext.id}-${anchor}` : undefined;
-  const Component = component ?? TAB_PANEL_DEFAULT_TAG;
-
-  return (
-    <Component
-      {...sxf(componentTheme.overridenStyles, 'host', sx)}
-      sx={[componentTheme.overridenStyles, stylesCombinator('host'), sx]}
-      ref={forwardedRef}
-      role='tabpanel'
-      aria-labelledby={id}
-    >
-      {children}
-    </Component>
-  );
-});
+    return (
+      <Base
+        role='tabpanel'
+        aria-labelledby={id}
+        {...other}
+        sx={sx}
+        ref={forwardedRef}
+      >
+        {children}
+      </Base>
+    );
+  },
+);

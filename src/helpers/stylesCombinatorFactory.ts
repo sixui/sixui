@@ -10,19 +10,17 @@ type IOptionalCompiledStyles<TStyleKey extends string> =
   | ICompiledStyles<TStyleKey>
   | undefined;
 
+export type IStylesCombinatorStylesProp<TStyleKey extends string> = Array<
+  IOptionalCompiledStyles<TStyleKey> | Array<IOptionalCompiledStyles<TStyleKey>>
+>;
+
 export type IStylesCombinator<TStyleKey extends string> = (
   ...classNames: Array<TStyleKey | IStyleXStyles>
 ) => Array<StyleXStyles>;
 
-/**
- * @deprecated - use `stylesCombinatorFactory()` from stylesCombinatorFactory2
- */
 export const stylesCombinatorFactory =
   <TStyleKey extends string>(
-    ...styles: Array<
-      | IOptionalCompiledStyles<TStyleKey>
-      | Array<IOptionalCompiledStyles<TStyleKey>>
-    >
+    styles: IStylesCombinatorStylesProp<TStyleKey>,
   ): IStylesCombinator<TStyleKey> =>
   (...styleKeys) => {
     const flatStyles = styles.flat() as Array<

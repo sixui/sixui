@@ -1,8 +1,5 @@
-import type {
-  IContainerProps,
-  IZeroOrMore,
-  ICompiledStyles,
-} from '~/helpers/types';
+import type { IZeroOrMore, ICompiledStyles } from '~/helpers/types';
+import type { IBaseProps } from '../Base';
 import type { IElevationStylesKey } from '../Elevation';
 import type { IRichTooltipContentStylesKey } from './RichTooltipContent.styles';
 
@@ -11,7 +8,7 @@ export type IRichTooltipContentActionsRenderProps = {
 };
 
 export type IRichTooltipContentProps =
-  IContainerProps<IRichTooltipContentStylesKey> & {
+  IBaseProps<IRichTooltipContentStylesKey> & {
     innerStyles?: {
       elevation?: IZeroOrMore<ICompiledStyles<IElevationStylesKey>>;
     };

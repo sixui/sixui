@@ -16,7 +16,6 @@ export * from './components/CircularProgressIndicator';
 export * from './components/ColorButton';
 export * from './components/ColorInputField';
 export * from './components/ColorPaletteGroup';
-export * from './components/ColorScheme';
 export * from './components/ColorTag';
 export * from './components/ComponentShowcase';
 export * from './components/CopyableText';
@@ -86,7 +85,6 @@ export * from './components/TextAreaField';
 export * from './components/TextFieldBase';
 export * from './components/TextInputField';
 export * from './components/Theme';
-export * from './components/TonalPalettes';
 export * from './components/Typography';
 export * from './components/VisualState';
 

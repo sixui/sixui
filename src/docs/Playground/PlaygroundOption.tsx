@@ -3,7 +3,6 @@ import { accumulate } from '@olivierpascal/helpers';
 
 import type { IPlaygroundOptionProps } from './PlaygroundOption.types';
 import type { IPlaygroundOption } from './Playground.types';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { TextInputField } from '~/components/TextInputField';
 import { Labeled, type ILabeledRenderProps } from '~/components/Labeled';
 import { Checkbox } from '~/components/Checkbox';
@@ -19,8 +18,6 @@ export const PlaygroundOption = fixedForwardRef(function PlaygroundOption<
   forwardedRef?: React.Ref<HTMLDivElement>,
 ) {
   const { sx, option, onChange, sectionKey, sectionsProps, ...other } = props;
-
-  const componentTheme = useComponentTheme('PlaygroundOption');
 
   const handleValueChange = (value: unknown): void =>
     onChange({
@@ -102,12 +99,7 @@ export const PlaygroundOption = fixedForwardRef(function PlaygroundOption<
   return (
     <div
       {...other}
-      {...stylex.props(
-        componentTheme.overridenStyles,
-        commonStyles.verticalLayout,
-        commonStyles.gap$xl,
-        sx,
-      )}
+      {...stylex.props(commonStyles.verticalLayout, commonStyles.gap$xl, sx)}
       ref={forwardedRef}
     >
       <div {...stylex.props(commonStyles.verticalLayout, commonStyles.gap$sm)}>

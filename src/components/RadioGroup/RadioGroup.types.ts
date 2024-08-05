@@ -1,10 +1,10 @@
-import type { IContainerProps, IOmit } from '~/helpers/types';
 import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
 import type { IRadioGroupContextValue } from './RadioGroupContext';
+import { IBaseProps } from '../Base';
 
 export const RADIO_GROUP_DEFAULT_TAG = 'div';
 
-export type IRadioGroupOwnProps = IOmit<IContainerProps, 'styles'> &
+export type IRadioGroupOwnProps = IBaseProps &
   IRadioGroupContextValue & {
     children?: React.ReactNode;
     defaultValue?: string;

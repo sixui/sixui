@@ -9,7 +9,7 @@ import {
 } from './VisualState.styles';
 
 export const VisualState: React.FC<IVisualStateProps> = (props) => {
-  const { visualState: visualStateProp, disabled, children } = props;
+  const { visualState: visualStateProp, disabled, children, ...other } = props;
 
   const { visualState, setRef } = useVisualState(visualStateProp, {
     disabled,
@@ -17,6 +17,8 @@ export const VisualState: React.FC<IVisualStateProps> = (props) => {
 
   return (
     <ButtonBase
+      {...other}
+      visualState={visualState}
       sx={visualStateStyles.host}
       ref={setRef}
       innerStyles={{ focusRing: visualStateFocusRingStyles }}

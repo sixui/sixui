@@ -1,33 +1,27 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 
 import type { IBasicTemplateProps } from './BasicTemplate.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { useStyles } from '~/hooks/useStyles';
+import { Base } from '~/components/Base';
 import { basicTemplateStyles } from './BasicTemplate.styles';
 
 export const BasicTemplate = forwardRef<HTMLDivElement, IBasicTemplateProps>(
   function BasicTemplate(props, forwardedRef) {
     const { styles, sx, children, ...other } = props;
 
-    const componentTheme = useComponentTheme('BasicTemplate');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(basicTemplateStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+    const { combineStyles, globalStyles } = useStyles({
+      name: 'BasicTemplate',
+      styles: [basicTemplateStyles, styles],
+    });
 
     return (
-      <div
+      <Base
         {...other}
-        {...sxf(componentTheme.overridenStyles, 'host', sx)}
+        sx={[globalStyles, combineStyles('host'), sx]}
         ref={forwardedRef}
       >
         {children}
-      </div>
+      </Base>
     );
   },
 );
