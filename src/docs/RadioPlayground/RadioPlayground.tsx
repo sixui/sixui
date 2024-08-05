@@ -16,17 +16,11 @@ export const radioPlaygroundSections: IPlaygroundSections<IRadioPlaygroundDemoPr
           props: {
             disabled: true,
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Loading',
           props: {
             loading: true,
-          },
-          modifiers: {
-            off: true,
           },
         },
       ],

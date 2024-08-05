@@ -34,6 +34,9 @@ export const chipPlaygroundSections: IPlaygroundSections<IAssistChipPlaygroundDe
           props: {
             icon: <FontAwesomeIcon icon={faCalendarPlus} />,
           },
+          modifiers: {
+            on: true,
+          },
         },
         {
           label: 'Image',
@@ -42,17 +45,11 @@ export const chipPlaygroundSections: IPlaygroundSections<IAssistChipPlaygroundDe
             targetProp: 'imageUrl',
             value: IMAGE_URL,
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Avatar',
           props: {
             avatar: true,
-          },
-          modifiers: {
-            off: true,
           },
           getModifiers: (sectionProps) => ({
             disabled: !sectionProps?.assistChip.imageUrl,
@@ -63,26 +60,17 @@ export const chipPlaygroundSections: IPlaygroundSections<IAssistChipPlaygroundDe
           props: {
             elevated: true,
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Disabled',
           props: {
             disabled: true,
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Loading',
           props: {
             loading: true,
-          },
-          modifiers: {
-            off: true,
           },
         },
         {
@@ -91,9 +79,6 @@ export const chipPlaygroundSections: IPlaygroundSections<IAssistChipPlaygroundDe
             type: 'string',
             value: 'Wait...',
             targetProp: 'loadingText',
-          },
-          modifiers: {
-            off: true,
           },
           getModifiers: (sectionProps) => ({
             disabled: !sectionProps?.assistChip.loading,

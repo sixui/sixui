@@ -1,4 +1,4 @@
 export * from './ColorSchemeProvider.styles';
 export * from './ColorSchemeProvider';
-export * from './ColorSchemeContext';
+export * from './ColorScheme.context';
 export * from './useColorScheme';

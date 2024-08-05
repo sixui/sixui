@@ -11,7 +11,7 @@ import { useControlledValue } from '~/hooks/useControlledValue';
 import {
   RadioGroupContext,
   type IRadioGroupContextValue,
-} from './RadioGroupContext';
+} from './RadioGroup.context';
 import {
   RADIO_GROUP_DEFAULT_TAG,
   type IRadioGroupOwnProps,

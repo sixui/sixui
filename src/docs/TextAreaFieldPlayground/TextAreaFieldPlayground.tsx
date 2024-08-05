@@ -18,17 +18,11 @@ export const textAreaFieldPlaygroundSections: IPlaygroundSections<ITextAreaField
             value: 'Placeholder',
             targetProp: 'placeholder',
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Resizable',
           props: {
             resizable: true,
-          },
-          modifiers: {
-            off: true,
           },
         },
       ],

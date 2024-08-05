@@ -1,6 +1,6 @@
 import type { IBaseProps } from '../Base';
 import type { IListStylesKey } from './List.styles';
-import type { IListContextValue } from './ListContext';
+import type { IListContextValue } from './List.context';
 
 export type IListProps = IBaseProps<IListStylesKey> &
   IListContextValue & {

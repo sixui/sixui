@@ -41,17 +41,11 @@ export const circularprogressindicatorPlaygroundSections: IPlaygroundSections<IC
             targetProp: 'value',
             getValue: (value) => Number(value) / 100,
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'With label',
           props: {
             withLabel: true,
-          },
-          modifiers: {
-            off: true,
           },
           getModifiers: (sectionsProps) => ({
             disabled:

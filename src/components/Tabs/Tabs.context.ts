@@ -3,7 +3,7 @@ import { createContext } from 'react';
 import type { IAny, IMaybeAsync } from '~/helpers/types';
 import type { ITabVariant } from '../Tab/Tab.types';
 
-export type ITabContextValue = {
+export type ITabsContextValue = {
   id?: string;
   anchor?: string;
   onTabActivated: (activeTab: HTMLElement, indicator: HTMLElement) => void;
@@ -12,6 +12,6 @@ export type ITabContextValue = {
   disabled?: boolean;
 };
 
-export const TabContext = createContext<ITabContextValue | undefined>(
+export const TabsContext = createContext<ITabsContextValue | undefined>(
   undefined,
 );

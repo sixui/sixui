@@ -29,17 +29,11 @@ export const chipPlaygroundSections: IPlaygroundSections<IFilterChipPlaygroundDe
           props: {
             selected: true,
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Elevated',
           props: {
             elevated: true,
-          },
-          modifiers: {
-            off: true,
           },
         },
         {
@@ -47,17 +41,11 @@ export const chipPlaygroundSections: IPlaygroundSections<IFilterChipPlaygroundDe
           props: {
             disabled: true,
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Loading',
           props: {
             loading: true,
-          },
-          modifiers: {
-            off: true,
           },
         },
         {
@@ -66,9 +54,6 @@ export const chipPlaygroundSections: IPlaygroundSections<IFilterChipPlaygroundDe
             type: 'string',
             value: 'Wait...',
             targetProp: 'loadingText',
-          },
-          modifiers: {
-            off: true,
           },
           getModifiers: (sectionProps) => ({
             disabled: !sectionProps?.filterChip.loading,

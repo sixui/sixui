@@ -4,7 +4,7 @@ import type { IListProps } from './List.types';
 import { commonStyles } from '~/helpers/commonStyles';
 import { useStyles } from '~/hooks/useStyles';
 import { Base } from '../Base';
-import { ListContext } from './ListContext';
+import { ListContext } from './List.context';
 import { listStyles } from './List.styles';
 import { listTheme } from './List.stylex';
 

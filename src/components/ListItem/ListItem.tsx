@@ -14,7 +14,7 @@ import { useVisualState } from '../VisualState';
 import { StateLayer } from '../StateLayer';
 import { FocusRing } from '../FocusRing';
 import { Item } from '../Item';
-import { ListContext } from '../List/ListContext';
+import { ListContext } from '../List';
 import { listItemVariantStyles } from './variants';
 import {
   listItemFocusRingStyles,

@@ -6,7 +6,7 @@ import { useStyles } from '~/hooks/useStyles';
 import { useId } from '~/hooks/useId';
 import { labeledStyles } from './Labeled.styles';
 import { labeledTheme } from './Labeled.stylex';
-import { LabeledContext } from './LabeledContext';
+import { LabeledContext } from './Labeled.context';
 import { Base } from '../Base';
 
 export const Labeled = forwardRef<HTMLDivElement, ILabeledProps>(

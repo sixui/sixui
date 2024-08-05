@@ -48,6 +48,9 @@ export const buttonPlaygroundSections: IPlaygroundSections<IButtonPlaygroundDemo
           props: {
             icon: <FontAwesomeIcon icon={faPaperPlane} />,
           },
+          modifiers: {
+            on: true,
+          },
         },
         {
           label: 'Icon in trailing position',
@@ -57,26 +60,17 @@ export const buttonPlaygroundSections: IPlaygroundSections<IButtonPlaygroundDemo
           getModifiers: (sectionProps) => ({
             disabled: !sectionProps?.button.icon,
           }),
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Disabled',
           props: {
             disabled: true,
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Loading',
           props: {
             loading: true,
-          },
-          modifiers: {
-            off: true,
           },
         },
         {
@@ -85,9 +79,6 @@ export const buttonPlaygroundSections: IPlaygroundSections<IButtonPlaygroundDemo
             type: 'string',
             value: 'Wait...',
             targetProp: 'loadingText',
-          },
-          modifiers: {
-            off: true,
           },
           getModifiers: (sectionProps) => ({
             disabled: !sectionProps?.button.loading,

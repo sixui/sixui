@@ -8,7 +8,7 @@ import type { ICssSizeValue, ISize } from '~/helpers/types';
 import {
   ExpandableContext,
   type IExpandableContextValue,
-} from './ExpandableContext';
+} from './Expandable.context';
 import { isFunction } from '~/helpers/isFunction';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { motionTokens } from '~/themes/base/motion.stylex';

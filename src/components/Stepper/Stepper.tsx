@@ -10,7 +10,7 @@ import type { IStepperProps } from './Stepper.types';
 import { Step, type IStepProps } from '../Step';
 import { StepConnector } from '../StepConnector';
 import { isElementLike } from '~/helpers/react/isElementLike';
-import { StepperContext, type IStepperContextValue } from './StepperContext';
+import { StepperContext, type IStepperContextValue } from './Stepper.context';
 import { stepperStyles } from './Stepper.styles';
 import { Base } from '../Base';
 import { useStyles } from '~/hooks/useStyles';

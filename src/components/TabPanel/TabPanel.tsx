@@ -2,19 +2,20 @@ import { forwardRef, useContext } from 'react';
 
 import type { ITabPanelProps } from './TabPanel.types';
 import { Base } from '../Base';
-import { TabContext } from '../Tabs';
+import { TabsContext } from '../Tabs';
 
 export const TabPanel = forwardRef<HTMLDivElement, ITabPanelProps>(
   function TabPanel(props, forwardedRef) {
     const { sx, anchor, children, ...other } = props;
 
-    const tabContext = useContext(TabContext);
+    const tabsContext = useContext(TabsContext);
 
-    if (tabContext?.disabled || tabContext?.anchor !== anchor) {
+    if (tabsContext?.disabled || tabsContext?.anchor !== anchor) {
       return null;
     }
 
-    const id = tabContext && anchor ? `${tabContext.id}-${anchor}` : undefined;
+    const id =
+      tabsContext && anchor ? `${tabsContext.id}-${anchor}` : undefined;
 
     return (
       <Base

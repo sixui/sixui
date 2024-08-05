@@ -5,7 +5,7 @@ import type { IStepProps } from './Step.types';
 import { isFunction } from '~/helpers/isFunction';
 import { useStyles } from '~/hooks/useStyles';
 import { iconCheckMark, iconExclamationTriangle } from '~/assets/icons';
-import { StepperContext } from '../Stepper/StepperContext';
+import { StepperContext } from '../Stepper';
 import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { ButtonBase } from '../ButtonBase';
 import { SvgIcon } from '../SvgIcon';
@@ -16,7 +16,7 @@ import {
   stepStyles,
 } from './Step.styles';
 import { stepTheme } from './Step.stylex';
-import { StepContext, type IStepContextValue } from './StepContext';
+import { StepContext, type IStepContextValue } from './Step.context';
 
 export const Step = forwardRef<HTMLDivElement, IStepProps>(
   function Step(props, forwardedRef) {

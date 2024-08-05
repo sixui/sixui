@@ -56,9 +56,6 @@ export const labeledPlaygroundSections: IPlaygroundSections<ILabeledPlaygroundDe
             value: 'Trailing action',
             targetProp: 'trailingAction',
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Supporting text',
@@ -66,9 +63,6 @@ export const labeledPlaygroundSections: IPlaygroundSections<ILabeledPlaygroundDe
             type: 'string',
             value: 'Supporting text',
             targetProp: 'supportingText',
-          },
-          modifiers: {
-            off: true,
           },
         },
         {
@@ -88,9 +82,6 @@ export const labeledPlaygroundSections: IPlaygroundSections<ILabeledPlaygroundDe
             ],
             targetProp: 'supportingTextPosition',
           },
-          modifiers: {
-            off: true,
-          },
           getModifiers: (sectionsProps) => ({
             disabled: !sectionsProps?.labeled.supportingText,
           }),
@@ -100,9 +91,6 @@ export const labeledPlaygroundSections: IPlaygroundSections<ILabeledPlaygroundDe
           props: {
             hasError: true,
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Error text',
@@ -110,9 +98,6 @@ export const labeledPlaygroundSections: IPlaygroundSections<ILabeledPlaygroundDe
             type: 'string',
             value: 'Error text',
             targetProp: 'errorText',
-          },
-          modifiers: {
-            off: true,
           },
           getModifiers: (sectionsProps) => ({
             disabled: !sectionsProps?.labeled.hasError,
@@ -135,9 +120,6 @@ export const labeledPlaygroundSections: IPlaygroundSections<ILabeledPlaygroundDe
             ],
             targetProp: 'errorTextPosition',
           },
-          modifiers: {
-            off: true,
-          },
           getModifiers: (sectionsProps) => ({
             disabled: !sectionsProps?.labeled.errorText,
           }),
@@ -147,17 +129,11 @@ export const labeledPlaygroundSections: IPlaygroundSections<ILabeledPlaygroundDe
           props: {
             required: true,
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Disabled',
           props: {
             disabled: true,
-          },
-          modifiers: {
-            off: true,
           },
         },
       ],

@@ -32,6 +32,9 @@ export const avatarPlaygroundSections: IPlaygroundSections<IAvatarPlaygroundDemo
             targetProp: 'src',
             value: 'https://avatars.githubusercontent.com/u/2182039',
           },
+          modifiers: {
+            on: true,
+          },
         },
         {
           label: 'Text fallback',
@@ -40,14 +43,14 @@ export const avatarPlaygroundSections: IPlaygroundSections<IAvatarPlaygroundDemo
             targetProp: 'children',
             value: 'OP',
           },
+          modifiers: {
+            on: true,
+          },
         },
         {
           label: 'Random color from text',
           props: {
             fallbackToRandomColor: true,
-          },
-          modifiers: {
-            off: true,
           },
         },
       ],

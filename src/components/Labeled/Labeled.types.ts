@@ -1,6 +1,6 @@
 import type { IBaseProps } from '../Base';
 import type { ILabeledStylesKey } from './Labeled.styles';
-import type { ILabeledContextValue } from './LabeledContext';
+import type { ILabeledContextValue } from './Labeled.context';
 
 export type ILabeledRenderProps = {
   id: string;

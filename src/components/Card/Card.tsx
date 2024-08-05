@@ -21,7 +21,7 @@ import {
   cardStyles,
 } from './Card.styles';
 import { cardTheme } from './Card.stylex';
-import { CardContext, type ICardContextValue } from './CardContext';
+import { CardContext, type ICardContextValue } from './Card.context';
 
 // https://github.com/material-components/material-web/blob/main/labs/card/internal/card.ts
 

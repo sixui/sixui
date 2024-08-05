@@ -2,12 +2,12 @@ import { useMemo, useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import type { IThemeProviderProps } from './ThemeProvider.types';
-import { ThemeContext } from './ThemeContext';
+import { ThemeContext } from './Theme.context';
 import { themeProviderStyles } from './ThemeProvider.styles';
 import {
   IThemeSetterContextValue,
   ThemeSetterContext,
-} from './ThemeSetterContext';
+} from './ThemeSetter.context';
 
 export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
   const {

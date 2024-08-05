@@ -1,6 +1,6 @@
 import type { ICssSizeValue, IOmit } from '~/helpers/types';
 import type { IBaseProps } from '../Base';
-import type { IExpandableContextValue } from './ExpandableContext';
+import type { IExpandableContextValue } from './Expandable.context';
 import type { IExpandableStylesKey } from './Expandable.styles';
 
 export type IExpandableTriggerRenderProps = {

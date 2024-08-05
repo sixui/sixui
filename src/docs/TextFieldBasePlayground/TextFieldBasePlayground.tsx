@@ -21,9 +21,6 @@ export const textFieldBasePlaygroundSections: IPlaygroundSections<
         props: {
           clearable: true,
         },
-        modifiers: {
-          off: true,
-        },
       },
     ],
   },

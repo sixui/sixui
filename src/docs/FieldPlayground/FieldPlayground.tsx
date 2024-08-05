@@ -18,9 +18,6 @@ export const fieldPlaygroundSections: IPlaygroundSections<IFieldPlaygroundDemoPr
             value: 'Placeholder',
             targetProp: 'placeholder',
           },
-          modifiers: {
-            off: true,
-          },
         },
       ],
     },

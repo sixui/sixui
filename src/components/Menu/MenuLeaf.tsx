@@ -30,8 +30,8 @@ import { useStyles } from '~/hooks/useStyles';
 import { MenuList } from '../MenuList';
 import { Portal } from '../Portal';
 import { FloatingTransition } from '../FloatingTransition';
-import { MenuItemContext } from './MenuItemContext';
-import { MenuContext } from './MenuContext';
+import { MenuItemContext } from '../MenuItem';
+import { MenuContext } from './Menu.context';
 import { menuStyles } from './Menu.styles';
 
 export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(

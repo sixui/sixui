@@ -31,9 +31,6 @@ export const scrimPlaygroundSections: IPlaygroundSections<IScrimPlaygroundDemoPr
             contained: true,
             lockScroll: false,
           },
-          modifiers: {
-            off: true,
-          },
         },
       ],
     },

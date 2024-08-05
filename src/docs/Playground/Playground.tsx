@@ -52,7 +52,10 @@ export const Playground = fixedForwardRef(function Playground<
         ...initialProps?.[sectionKey],
         ...section.props,
         ...section.options.reduce((optionPropsAcc, option) => {
-          if (option.modifiers?.disabled || option.modifiers?.off) {
+          if (
+            option.modifiers?.disabled ||
+            (!option.modifiers?.required && !option.modifiers?.on)
+          ) {
             return {
               ...optionPropsAcc,
             };

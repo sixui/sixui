@@ -18,17 +18,11 @@ export const snackbarcontentPlaygroundSections: IPlaygroundSections<ISnackbarCon
           props: {
             actionLabel: 'Undo',
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Close icon',
           props: {
             showCloseButton: true,
-          },
-          modifiers: {
-            off: true,
           },
         },
       ],

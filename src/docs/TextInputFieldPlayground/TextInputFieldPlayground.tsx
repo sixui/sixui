@@ -71,9 +71,6 @@ export const textInputFieldPlaygroundSections: IPlaygroundSections<ITextInputFie
             value: 'Placeholder',
             targetProp: 'placeholder',
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Prefix',
@@ -82,9 +79,6 @@ export const textInputFieldPlaygroundSections: IPlaygroundSections<ITextInputFie
             value: '$',
             targetProp: 'prefixText',
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Suffix',
@@ -92,9 +86,6 @@ export const textInputFieldPlaygroundSections: IPlaygroundSections<ITextInputFie
             type: 'string',
             value: '.00',
             targetProp: 'suffixText',
-          },
-          modifiers: {
-            off: true,
           },
         },
       ],

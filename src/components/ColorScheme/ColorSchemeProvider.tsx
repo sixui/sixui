@@ -9,7 +9,7 @@ import { colorSchemeTheme } from '~/themes/base/colorScheme.stylex';
 import {
   ColorSchemeContext,
   type IColorSchemeVariant,
-} from './ColorSchemeContext';
+} from './ColorScheme.context';
 import { colorSchemeProviderStyles } from './ColorSchemeProvider.styles';
 import { useColorScheme } from './useColorScheme';
 

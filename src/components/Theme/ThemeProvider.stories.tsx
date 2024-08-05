@@ -8,9 +8,9 @@ import { commonStyles } from '~/helpers/commonStyles';
 import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
 import { ColorScheme } from '~/docs/ColorScheme';
 import { generateThemeFromSourceColor } from '~/helpers/colors/generateThemeFromSourceColor';
-import { ThemeProvider } from './ThemeProvider';
 import { ColorInputField } from '../ColorInputField';
-import { ThemeSetterContext } from './ThemeSetterContext';
+import { ThemeProvider } from './ThemeProvider';
+import { ThemeSetterContext } from './ThemeSetter.context';
 
 const meta = {
   component: ThemeProvider,

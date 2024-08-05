@@ -1,5 +1,5 @@
 import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
-import type { IRadioGroupContextValue } from './RadioGroupContext';
+import type { IRadioGroupContextValue } from './RadioGroup.context';
 import { IBaseProps } from '../Base';
 
 export const RADIO_GROUP_DEFAULT_TAG = 'div';

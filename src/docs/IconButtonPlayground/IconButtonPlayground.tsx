@@ -41,17 +41,11 @@ export const iconbuttonPlaygroundSections: IPlaygroundSections<IIconButtonPlaygr
           props: {
             toggle: true,
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Toggled',
           props: {
             selected: true,
-          },
-          modifiers: {
-            off: true,
           },
           getModifiers: (sectionProps) => ({
             disabled: !sectionProps?.iconButton.toggle,
@@ -62,17 +56,11 @@ export const iconbuttonPlaygroundSections: IPlaygroundSections<IIconButtonPlaygr
           props: {
             disabled: true,
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Loading',
           props: {
             loading: true,
-          },
-          modifiers: {
-            off: true,
           },
         },
       ],

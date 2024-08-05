@@ -4,7 +4,7 @@ import type { IColorPaletteGroupProviderProps } from './ColorPaletteGroupProvide
 import {
   ColorPaletteGroupContext,
   type IColorPaletteGroupContextValue,
-} from './ColorPaletteGroupContext';
+} from './ColorPaletteGroup.context';
 
 export const ColorPaletteGroupProvider: React.FC<
   IColorPaletteGroupProviderProps

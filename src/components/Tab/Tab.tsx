@@ -20,7 +20,7 @@ import { Elevation } from '../Elevation';
 import { FocusRing } from '../FocusRing';
 import { StateLayer } from '../StateLayer';
 import { Anchored } from '../Anchored';
-import { TabContext } from '../Tabs';
+import { TabsContext } from '../Tabs';
 import { tabVariantStyles } from './variants';
 import {
   tabElevationStyles,
@@ -55,9 +55,9 @@ export const Tab = createPolymorphicComponent<'div', ITabProps>(
       ...other
     } = props as IWithAsProp<ITabProps>;
 
-    const tabContext = useContext(TabContext);
-    const variant = variantProp ?? tabContext?.variant ?? 'primary';
-    const disabled = disabledProp ?? tabContext?.disabled;
+    const tabsContext = useContext(TabsContext);
+    const variant = variantProp ?? tabsContext?.variant ?? 'primary';
+    const disabled = disabledProp ?? tabsContext?.disabled;
 
     const actionRef = useRef<HTMLButtonElement>(null);
     const { visualState, setRef: visualStateRef } = useVisualState(
@@ -79,22 +79,23 @@ export const Tab = createPolymorphicComponent<'div', ITabProps>(
     const stacked = variant === 'primary';
     const hasLabel = !!label;
     const active = !disabled
-      ? tabContext
-        ? tabContext.anchor !== undefined && tabContext.anchor === anchor
+      ? tabsContext
+        ? tabsContext.anchor !== undefined && tabsContext.anchor === anchor
         : activeProp
       : false;
     const hasIcon = active ? !!activeIcon || !!icon : !!icon;
-    const id = tabContext && anchor ? `${tabContext.id}-${anchor}` : undefined;
+    const id =
+      tabsContext && anchor ? `${tabsContext.id}-${anchor}` : undefined;
 
     const handleClick: React.MouseEventHandler<HTMLButtonElement> = useCallback(
       (event) => {
-        tabContext?.onChange(anchor);
+        tabsContext?.onChange(anchor);
 
         Promise.resolve(onClick?.(event)).catch((error: Error) => {
           throw error;
         });
       },
-      [onClick, tabContext, anchor],
+      [onClick, tabsContext, anchor],
     );
 
     const indicator = useMemo(
@@ -110,10 +111,10 @@ export const Tab = createPolymorphicComponent<'div', ITabProps>(
     useEffect(() => {
       const activeTab = actionRef.current;
       const indicator = indicatorRef.current;
-      if (tabContext && active && activeTab && indicator) {
-        tabContext.onTabActivated(activeTab, indicator);
+      if (tabsContext && active && activeTab && indicator) {
+        tabsContext.onTabActivated(activeTab, indicator);
       }
-    }, [active, anchor, tabContext]);
+    }, [active, anchor, tabsContext]);
 
     const renderIcon = useCallback(
       (): React.ReactNode | null =>
