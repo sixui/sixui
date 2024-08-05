@@ -1,11 +1,4 @@
-import {
-  forwardRef,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { forwardRef, useCallback, useEffect, useRef, useState } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { IFieldBaseProps } from './FieldBase.types';
@@ -13,11 +6,9 @@ import type { IFilledFieldBaseStylesKey } from './variants/FilledFieldBase.style
 import type { IOutlinedFieldBaseStylesKey } from './variants/OutlinedFieldBase.styles';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
 import { isFunction } from '~/helpers/isFunction';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { usePrevious } from '~/hooks/usePrevious';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import { EASING } from '~/helpers/animation';
+import { useStyles } from '~/hooks/useStyles';
 import { Base } from '../Base';
 import { useVisualState } from '../VisualState';
 import { CircularProgressIndicator } from '../CircularProgressIndicator';
@@ -71,24 +62,18 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
       );
       const handleRef = useMergeRefs([forwardedRef, setVisualStateRef]);
 
-      const componentTheme = useComponentTheme('FieldBase');
       const variantStyles = variant
         ? fieldBaseVariantStyles[variant]
         : undefined;
-
-      const stylesCombinator = useMemo(
-        () =>
-          stylesCombinatorFactory<
-            | IFieldBaseStylesKey
-            | IFilledFieldBaseStylesKey
-            | IOutlinedFieldBaseStylesKey
-          >(fieldBaseStyles, variantStyles, styles),
-        [variantStyles, styles],
-      );
-      const sxf = useMemo(
-        () => stylePropsFactory(stylesCombinator, visualState),
-        [stylesCombinator, visualState],
-      );
+      const { combineStyles, getStyles, globalStyles } = useStyles<
+        | IFieldBaseStylesKey
+        | IFilledFieldBaseStylesKey
+        | IOutlinedFieldBaseStylesKey
+      >({
+        name: 'FieldBase',
+        styles: [fieldBaseStyles, variantStyles, styles],
+        visualState,
+      });
 
       const trailingIcon = loading ? (
         <CircularProgressIndicator />
@@ -277,7 +262,7 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
 
           return (
             <span
-              {...sxf(
+              {...getStyles(
                 'label',
                 floating ? 'label$floating' : 'label$resting',
                 hasError && 'label$error',
@@ -300,7 +285,7 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
           hasLabel,
           populated,
           required,
-          sxf,
+          getStyles,
         ],
       );
 
@@ -322,7 +307,7 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
 
         return (
           <div
-            {...sxf(
+            {...getStyles(
               'supportingText',
               hasError && 'supportingText$error',
               visuallyDisabled && 'supportingText$disabled',
@@ -335,7 +320,7 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
             {/* Conditionally render counter so we don't render the extra `gap`. */}
             {/* TODO(b/244473435): add aria-label and announcements */}
             {counterText ? (
-              <span {...sxf('counter')}>{counterText}</span>
+              <span {...getStyles('counter')}>{counterText}</span>
             ) : null}
           </div>
         );
@@ -345,7 +330,7 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
         errorText,
         getCounterText,
         refreshErrorAlert,
-        sxf,
+        getStyles,
         supportingOrErrorText,
       ]);
 
@@ -353,10 +338,13 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
         (): React.ReactNode => (
           <>
             <div
-              {...sxf('background', visuallyDisabled && 'background$disabled')}
+              {...getStyles(
+                'background',
+                visuallyDisabled && 'background$disabled',
+              )}
             />
             <div
-              {...sxf(
+              {...getStyles(
                 'stateLayer',
                 hasError && 'stateLayer$error',
                 visuallyDisabled && 'stateLayer$disabled',
@@ -364,21 +352,21 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
             />
           </>
         ),
-        [sxf, visuallyDisabled, hasError],
+        [getStyles, visuallyDisabled, hasError],
       );
 
       const renderIndicator = useCallback(
         (): React.ReactNode => (
-          <div {...sxf('activeIndicator')}>
+          <div {...getStyles('activeIndicator')}>
             <div
-              {...sxf(
+              {...getStyles(
                 'activeIndicatorBackground',
                 hasError && 'activeIndicatorBackground$error',
                 visuallyDisabled && 'activeIndicatorBackground$disabled',
               )}
             />
             <div
-              {...sxf(
+              {...getStyles(
                 'activeIndicatorFocus',
                 hasError && 'activeIndicatorFocus$error',
                 hasError && 'activeIndicatorBackground$error',
@@ -386,20 +374,20 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
             />
           </div>
         ),
-        [sxf, visuallyDisabled, hasError],
+        [getStyles, visuallyDisabled, hasError],
       );
 
       const renderOutline = useCallback(
         (): React.ReactNode => (
           <div
-            {...sxf(
+            {...getStyles(
               'outline',
               hasError && 'outline$error',
               visuallyDisabled && 'outline$disabled',
             )}
           >
             <div
-              {...sxf(
+              {...getStyles(
                 'outlineSection',
                 'outlineSection$startEnd',
                 'outlineSection$start',
@@ -407,7 +395,7 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
               )}
             >
               <div
-                {...sxf(
+                {...getStyles(
                   'outlineBorder',
                   'outlineBorder$startEnd',
                   'outlineBorder$start',
@@ -419,7 +407,7 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
                 )}
               />
               <div
-                {...sxf(
+                {...getStyles(
                   'outlineBorder',
                   'outlineBorder$startEnd',
                   'outlineBorder$start',
@@ -430,10 +418,13 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
               />
             </div>
             <div
-              {...sxf('outlineNotch', !hasLabel && 'outlineNotch$withoutLabel')}
+              {...getStyles(
+                'outlineNotch',
+                !hasLabel && 'outlineNotch$withoutLabel',
+              )}
             >
               <div
-                {...sxf(
+                {...getStyles(
                   'outlineSection',
                   'outlineSection$panel',
                   'outlineSection$panel$inactive',
@@ -441,7 +432,7 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
                 )}
               >
                 <div
-                  {...sxf(
+                  {...getStyles(
                     'outlineBorder',
                     'outlineBorder$panel',
                     'outlineBorder$inactive',
@@ -453,7 +444,7 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
                   )}
                 />
                 <div
-                  {...sxf(
+                  {...getStyles(
                     'outlineBorder',
                     'outlineBorder$panel',
                     'outlineBorder$active',
@@ -466,14 +457,14 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
                 />
               </div>
               <div
-                {...sxf(
+                {...getStyles(
                   'outlineSection',
                   'outlineSection$panel',
                   'outlineSection$panel$active',
                 )}
               >
                 <div
-                  {...sxf(
+                  {...getStyles(
                     'outlineBorder',
                     'outlineBorder$panel',
                     'outlineBorder$inactive',
@@ -483,7 +474,7 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
                   )}
                 />
                 <div
-                  {...sxf(
+                  {...getStyles(
                     'outlineBorder',
                     'outlineBorder$panel',
                     'outlineBorder$active',
@@ -493,10 +484,10 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
                   )}
                 />
               </div>
-              <div {...sxf('outlineLabel')}>{floatingLabel}</div>
+              <div {...getStyles('outlineLabel')}>{floatingLabel}</div>
             </div>
             <div
-              {...sxf(
+              {...getStyles(
                 'outlineSection',
                 'outlineSection$startEnd',
                 'outlineSection$end',
@@ -504,7 +495,7 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
               )}
             >
               <div
-                {...sxf(
+                {...getStyles(
                   'outlineBorder',
                   'outlineBorder$startEnd',
                   'outlineBorder$end',
@@ -516,7 +507,7 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
                 )}
               />
               <div
-                {...sxf(
+                {...getStyles(
                   'outlineBorder',
                   'outlineBorder$startEnd',
                   'outlineBorder$end',
@@ -528,38 +519,44 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
             </div>
           </div>
         ),
-        [sxf, hasLabel, populated, visuallyDisabled, hasError, floatingLabel],
+        [
+          getStyles,
+          hasLabel,
+          populated,
+          visuallyDisabled,
+          hasError,
+          floatingLabel,
+        ],
       );
 
       return (
         <Base
-          visualState={visualState}
-          sx={stylesCombinator(
-            fieldBaseTheme,
-            componentTheme.overridenStyles,
-            'host',
-            visuallyDisabled && 'host$disabled',
-            sx,
-          )}
           aria-labelledby={labelId}
           data-cy='field'
           tabIndex={tabIndex}
           {...(forwardProps ? undefined : other)}
+          sx={[
+            fieldBaseTheme,
+            globalStyles,
+            combineStyles('host', visuallyDisabled && 'host$disabled'),
+            sx,
+          ]}
+          visualState={visualState}
           ref={handleRef}
         >
           <div
-            {...sxf(
+            {...getStyles(
               'field',
               textArea && 'field$textArea',
               visuallyDisabled && 'field$disabled',
             )}
           >
-            <div {...sxf('containerOverflow')} ref={containerRef}>
+            <div {...getStyles('containerOverflow')} ref={containerRef}>
               {variant === 'filled' ? renderBackground() : null}
               {variant === 'filled' ? renderIndicator() : null}
               {variant === 'filled' ? null : renderOutline()}
               <div
-                {...sxf(
+                {...getStyles(
                   'container',
                   resizable &&
                     (visuallyDisabled
@@ -569,7 +566,7 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
               >
                 {start || leadingIcon ? (
                   <div
-                    {...sxf(
+                    {...getStyles(
                       'section',
                       'section$start',
                       resizable && 'section$resizable',
@@ -579,7 +576,7 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
                     )}
                   >
                     {leadingIcon ? (
-                      <span {...sxf('icon', 'icon$leading')}>
+                      <span {...getStyles('icon', 'icon$leading')}>
                         {leadingIcon}
                       </span>
                     ) : (
@@ -589,14 +586,14 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
                 ) : null}
 
                 <div
-                  {...sxf(
+                  {...getStyles(
                     'section',
                     resizable && 'section$resizable',
                     'section$middle',
                   )}
                 >
                   <div
-                    {...sxf(
+                    {...getStyles(
                       'labelWrapper',
                       hasStart
                         ? 'labelWrapper$withStart'
@@ -610,7 +607,7 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
                     {variant === 'outlined' ? null : floatingLabel}
                   </div>
                   <div
-                    {...sxf(
+                    {...getStyles(
                       'content',
                       !hasLabel && 'content$noLabel',
                       populated && 'content$populated',
@@ -625,7 +622,7 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
                     )}
                   >
                     <div
-                      {...sxf(
+                      {...getStyles(
                         'contentSlot',
                         !hasStart && 'contentSlot$withoutStart',
                         !hasEnd && 'contentSlot$withoutEnd',
@@ -647,7 +644,7 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
 
                 {end || trailingIcon ? (
                   <div
-                    {...sxf(
+                    {...getStyles(
                       'section',
                       resizable && 'section$resizable',
                       'section$end',
@@ -657,7 +654,7 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
                     )}
                   >
                     {trailingIcon ? (
-                      <span {...sxf('icon', 'icon$trailing')}>
+                      <span {...getStyles('icon', 'icon$trailing')}>
                         {trailingIcon}
                       </span>
                     ) : (

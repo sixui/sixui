@@ -1,10 +1,8 @@
-import { forwardRef, useMemo } from 'react';
-import { asArray } from '@olivierpascal/helpers';
+import { forwardRef } from 'react';
 
 import type { IFabProps } from './Fab.types';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { useStyles } from '~/hooks/useStyles';
 import { Button } from '../Button';
 import { fabStyles } from './Fab.styles';
 import { fabVariantStyles } from './variants';
@@ -27,26 +25,24 @@ export const Fab = createPolymorphicComponent<'button', IFabProps>(
       ...other
     } = props;
 
-    const componentTheme = useComponentTheme('Fab');
     const variantStyles = variant ? fabVariantStyles[variant] : undefined;
-
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(fabStyles, variantStyles, styles),
-      [variantStyles, styles],
-    );
+    const { combineStyles, globalStyles } = useStyles({
+      name: 'Fab',
+      styles: [fabStyles, variantStyles, styles],
+    });
 
     const extended = !!label;
 
     return (
       <Button
         variant={false}
-        styles={asArray(innerStyles?.button)}
+        styles={innerStyles?.button}
         icon={children}
         {...other}
         sx={[
           fabTheme,
-          componentTheme.overridenStyles,
-          stylesCombinator(
+          globalStyles,
+          combineStyles(
             'host',
             extended ? 'host$md' : `host$${size}`,
             extended && 'host$extended',

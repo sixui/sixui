@@ -1,17 +1,17 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 
 import type { IItemProps } from './Item.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
 import { commonStyles } from '~/helpers/commonStyles';
+import { useStyles } from '~/hooks/useStyles';
+import { Base } from '../Base';
 import { itemStyles } from './Item.styles';
 import { itemTheme } from './Item.stylex';
 
 // https://github.com/material-components/material-web/blob/main/labs/item/item.ts
 
-export const Item = forwardRef<HTMLDivElement, IItemProps>(
-  function Item(props, forwardedRef) {
+export const Item = createPolymorphicComponent<'div', IItemProps>(
+  forwardRef<HTMLDivElement, IItemProps>(function Item(props, forwardedRef) {
     const {
       styles,
       sx,
@@ -26,49 +26,46 @@ export const Item = forwardRef<HTMLDivElement, IItemProps>(
       ...other
     } = props;
 
-    const componentTheme = useComponentTheme('Item');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(itemStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+    const { combineStyles, getStyles, globalStyles } = useStyles({
+      name: 'Item',
+      styles: [itemStyles, styles],
+    });
 
     return (
-      <div
+      <Base
         {...other}
-        {...sxf(itemTheme, componentTheme.overridenStyles, 'host', sx)}
+        sx={[itemTheme, globalStyles, combineStyles('host'), sx]}
         ref={forwardedRef}
       >
-        {container ? <div {...sxf('container')}>{container}</div> : null}
+        {container ? <div {...getStyles('container')}>{container}</div> : null}
 
-        {start ? <div {...sxf('nonText', 'nonText$start')}>{start}</div> : null}
+        {start ? (
+          <div {...getStyles('nonText', 'nonText$start')}>{start}</div>
+        ) : null}
 
-        <div {...sxf('content')}>
+        <div {...getStyles('content')}>
           <div
-            {...sxf(
+            {...getStyles(
               'text',
               maxLines ? commonStyles.truncateLines(maxLines) : undefined,
             )}
           >
-            {overline ? <div {...sxf('overline')}>{overline}</div> : null}
-            <div {...sxf('headline')}>{children}</div>
+            {overline ? <div {...getStyles('overline')}>{overline}</div> : null}
+            <div {...getStyles('headline')}>{children}</div>
             {supportingText ? (
-              <div {...sxf('supportingText')}>{supportingText}</div>
+              <div {...getStyles('supportingText')}>{supportingText}</div>
             ) : null}
           </div>
         </div>
 
         {trailingSupportingText ? (
-          <div {...sxf('nonText', 'nonText$trailingSupportingText')}>
+          <div {...getStyles('nonText', 'nonText$trailingSupportingText')}>
             {trailingSupportingText}
           </div>
         ) : null}
 
-        {end ? <div {...sxf('nonText', 'nonText$end')}>{end}</div> : null}
-      </div>
+        {end ? <div {...getStyles('nonText', 'nonText$end')}>{end}</div> : null}
+      </Base>
     );
-  },
+  }),
 );

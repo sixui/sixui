@@ -1,11 +1,10 @@
-import { forwardRef, useMemo, useRef } from 'react';
+import { forwardRef, useRef } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type { IHtmlSelectOption, IHtmlSelectProps } from './HtmlSelect.types';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useStyles } from '~/hooks/useStyles';
+import { iconTriangleDown } from '~/assets/icons';
 import { useVisualState } from '../VisualState';
 import { FieldBase } from '../FieldBase';
 import { SvgIcon } from '../SvgIcon';
@@ -13,21 +12,15 @@ import {
   htmlSelectFieldBaseStyles,
   htmlSelectStyles,
 } from './HtmlSelect.styles';
-import { iconTriangleDown } from '~/assets/icons';
 
 export const HtmlSelect = forwardRef<HTMLSelectElement, IHtmlSelectProps>(
   function HtmlSelect(props, forwardedRef) {
     const { styles, sx, innerStyles, items, slotProps, ...other } = props;
 
-    const componentTheme = useComponentTheme('HtmlSelect');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(htmlSelectStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+    const { getStyles, globalStyles } = useStyles({
+      name: 'HtmlSelect',
+      styles: [htmlSelectStyles, styles],
+    });
 
     const { visualState, setRef: setVisualStateRef } = useVisualState(
       slotProps?.fieldBase?.visualState,
@@ -43,7 +36,7 @@ export const HtmlSelect = forwardRef<HTMLSelectElement, IHtmlSelectProps>(
 
     return (
       <FieldBase
-        sx={[componentTheme.overridenStyles, sx]}
+        sx={[globalStyles, sx]}
         styles={[htmlSelectFieldBaseStyles, ...asArray(innerStyles?.fieldBase)]}
         disabled={other.disabled}
         trailingIcon={<SvgIcon icon={iconTriangleDown} />}
@@ -52,7 +45,7 @@ export const HtmlSelect = forwardRef<HTMLSelectElement, IHtmlSelectProps>(
       >
         <select
           {...other}
-          {...sxf('select')}
+          {...getStyles('select')}
           ref={selectHandleRef}
           multiple={false}
         >

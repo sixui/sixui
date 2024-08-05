@@ -1,10 +1,8 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 
 import type { IFieldProps } from './Field.types';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { useStyles } from '~/hooks/useStyles';
 import { FieldBase } from '../FieldBase';
 import { fieldStyles } from './Field.styles';
 
@@ -20,15 +18,10 @@ export const Field = createPolymorphicComponent<'div', IFieldProps>(
       ...other
     } = props;
 
-    const componentTheme = useComponentTheme('Field');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(fieldStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+    const { getStyles, globalStyles } = useStyles({
+      name: 'Field',
+      styles: [fieldStyles, styles],
+    });
 
     const populated = populatedProp ?? (!!children || !!placeholder);
 
@@ -37,16 +30,19 @@ export const Field = createPolymorphicComponent<'div', IFieldProps>(
         styles={innerStyles?.fieldBase}
         populated={populated}
         {...other}
-        sx={[componentTheme.overridenStyles, sx]}
+        sx={[globalStyles, sx]}
         ref={forwardedRef}
       >
         {children ? (
-          <div {...sxf('value')} data-cy='value'>
+          <div {...getStyles('value')} data-cy='value'>
             {children}
           </div>
         ) : placeholder ? (
           <div
-            {...sxf('placeholder', other.disabled && 'placeholder$disabled')}
+            {...getStyles(
+              'placeholder',
+              other.disabled && 'placeholder$disabled',
+            )}
             data-cy='placeholder'
           >
             {placeholder}

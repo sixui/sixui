@@ -16,24 +16,15 @@ export const RadioPlaygroundDemo: React.FC<IRadioPlaygroundDemoProps> = (
 ) => (
   <RadioGroup>
     <div {...stylex.props(commonStyles.verticalLayout, commonStyles.gap$lg)}>
-      <Labeled
-        {...props.radio}
-        {...props.labeled}
-        value='1'
-        component={Radio}
-      />
-      <Labeled
-        {...props.radio}
-        {...props.labeled}
-        value='2'
-        component={Radio}
-      />
-      <Labeled
-        {...props.radio}
-        {...props.labeled}
-        value='3'
-        component={Radio}
-      />
+      <Labeled {...props.radio} {...props.labeled}>
+        <Radio value='1' />
+      </Labeled>
+      <Labeled {...props.radio} {...props.labeled}>
+        <Radio value='2' />
+      </Labeled>
+      <Labeled {...props.radio} {...props.labeled}>
+        <Radio value='3' />
+      </Labeled>
     </div>
   </RadioGroup>
 );

@@ -1,9 +1,8 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 
 import type { IIconButtonProps } from './IconButton.types';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { useStyles } from '~/hooks/useStyles';
 import { Button } from '../Button';
 import { iconButtonStyles } from './IconButton.styles';
 import { iconButtonVariantStyles } from './variants';
@@ -30,22 +29,25 @@ export const IconButton = createPolymorphicComponent<
         ...other
       } = props;
 
-      const componentTheme = useComponentTheme('IconButton');
       const variantStyles = variant
         ? iconButtonVariantStyles[variant]
         : undefined;
-
-      const stylesCombinator = useMemo(
-        () => stylesCombinatorFactory(iconButtonStyles, variantStyles, styles),
-        [variantStyles, styles],
-      );
+      const { combineStyles, globalStyles } = useStyles({
+        name: 'IconButton',
+        styles: [iconButtonStyles, variantStyles, styles],
+      });
 
       return (
         <Button
+          icon={selected ? (selectedIcon ?? icon) : icon}
+          aria-label={
+            toggle && selected ? (ariaLabelSelected ?? ariaLabel) : ariaLabel
+          }
+          {...other}
           sx={[
             iconButtonTheme,
-            componentTheme.overridenStyles,
-            stylesCombinator(
+            globalStyles,
+            combineStyles(
               'host',
               toggle
                 ? selected
@@ -55,11 +57,6 @@ export const IconButton = createPolymorphicComponent<
             ),
             sx,
           ]}
-          icon={selected ? (selectedIcon ?? icon) : icon}
-          aria-label={
-            toggle && selected ? (ariaLabelSelected ?? ariaLabel) : ariaLabel
-          }
-          {...other}
           ref={forwardedRef}
         />
       );

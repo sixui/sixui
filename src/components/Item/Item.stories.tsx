@@ -56,7 +56,9 @@ const styles = stylex.create({
   },
 });
 
-const defaultArgs = { sx: styles.host } satisfies Partial<IItemProps>;
+const defaultArgs = {
+  sx: styles.host,
+} satisfies Partial<IItemProps>;
 
 export const Slots: IStory = {
   render: (props) => <ComponentShowcase component={Item} props={props} />,

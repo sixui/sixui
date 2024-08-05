@@ -1,13 +1,12 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 
 import type { IFloatingTransitionProps } from './FloatingTransition.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { commonStyles } from '~/helpers/commonStyles';
+import { useStyles } from '~/hooks/useStyles';
 import { floatingTransitionStyles } from './FloatingTransition.styles';
 import { getPlacementTransformOrigin } from './getPlacementTransformOrigin';
-import { getPlacementSideTransformOrigin as getPlacementEdgeTransformOrigin } from './getPlacementSideTransformOrigin';
+import { getPlacementSideTransformOrigin } from './getPlacementSideTransformOrigin';
+import { Base } from '../Base';
 
 export const FloatingTransition = forwardRef<
   HTMLDivElement,
@@ -26,15 +25,11 @@ export const FloatingTransition = forwardRef<
     ...other
   } = props;
 
-  const componentTheme = useComponentTheme('FloatingTransition');
-  const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(floatingTransitionStyles, styles),
-    [styles],
-  );
-  const sxf = useMemo(
-    () => stylePropsFactory(stylesCombinator),
-    [stylesCombinator],
-  );
+  const { combineStyles, globalStyles } = useStyles({
+    name: 'FloatingTransition',
+    styles: [floatingTransitionStyles, styles],
+  });
+
   const orientation =
     orientationProp ??
     (['top', 'bottom'].includes(placement)
@@ -44,30 +39,30 @@ export const FloatingTransition = forwardRef<
         : undefined);
 
   return (
-    <div
+    <Base
       {...other}
-      {...sxf(
-        componentTheme.overridenStyles,
-        pattern
-          ? [
-              `transition$${pattern}$${status}`,
-              orientation && `transition$${pattern}$${status}$${orientation}`,
-            ]
-          : undefined,
+      sx={[
+        globalStyles,
+        combineStyles(
+          !!pattern && `transition$${pattern}$${status}`,
+          !!pattern &&
+            !!orientation &&
+            `transition$${pattern}$${status}$${orientation}`,
+        ),
         commonStyles.transformOrigin(
           origin === 'corner'
             ? getPlacementTransformOrigin(placement)
             : origin === 'edge'
-              ? getPlacementEdgeTransformOrigin(placement)
+              ? getPlacementSideTransformOrigin(placement)
               : origin === 'cursor' && cursorTransformOrigin
                 ? cursorTransformOrigin
                 : 'center',
         ),
         sx,
-      )}
+      ]}
       ref={forwardedRef}
     >
       {children}
-    </div>
+    </Base>
   );
 });

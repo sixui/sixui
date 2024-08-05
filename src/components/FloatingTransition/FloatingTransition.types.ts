@@ -1,6 +1,7 @@
 import type { Placement } from '@floating-ui/react';
 
-import type { IContainerProps, IOrientation } from '~/helpers/types';
+import type { IOrientation } from '~/helpers/types';
+import type { IBaseProps } from '../Base';
 import type { IFloatingTransitionStylesKey } from './FloatingTransition.styles';
 
 export type IFloatingTransitionStatus =
@@ -12,7 +13,7 @@ export type IFloatingTransitionStatus =
 export type IFloatingTransitionOrigin = 'center' | 'corner' | 'edge' | 'cursor';
 
 export type IFloatingTransitionProps =
-  IContainerProps<IFloatingTransitionStylesKey> & {
+  IBaseProps<IFloatingTransitionStylesKey> & {
     children: React.ReactNode;
     placement: Placement;
     status: IFloatingTransitionStatus;

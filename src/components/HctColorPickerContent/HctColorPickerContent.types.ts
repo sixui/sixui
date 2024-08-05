@@ -1,15 +1,11 @@
-import type {
-  ICompiledStyles,
-  IContainerProps,
-  IOmit,
-  IZeroOrMore,
-} from '~/helpers/types';
+import type { ICompiledStyles, IOmit, IZeroOrMore } from '~/helpers/types';
+import type { IBaseProps } from '../Base';
 import type {
   IColorPickerContentProps,
   IColorPickerContentStylesKey,
 } from '../ColorPickerContent';
 
-export type IHctColorPickerContentProps = IContainerProps &
+export type IHctColorPickerContentProps = IBaseProps &
   IOmit<IColorPickerContentProps, 'styles' | 'innerStyles' | 'palettes'> & {
     innerStyles?: IColorPickerContentProps['innerStyles'] & {
       colorPickerContent?: IZeroOrMore<

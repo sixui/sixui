@@ -1,184 +1,170 @@
 import { forwardRef, useMemo } from 'react';
 
-import type {
-  IPolymorphicRef,
-  IWithAsProp,
-} from '~/helpers/react/polymorphicComponentTypes';
-import type { ILabeledProps, ILabeledOwnProps } from './Labeled.types';
+import type { ILabeledProps } from './Labeled.types';
 import { isFunction } from '~/helpers/isFunction';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { useStyles } from '~/hooks/useStyles';
 import { useId } from '~/hooks/useId';
-import { elementWithLabelStyles } from './Labeled.styles';
-import { elementWithLabelTheme } from './Labeled.stylex';
+import { labeledStyles } from './Labeled.styles';
+import { labeledTheme } from './Labeled.stylex';
 import { LabeledContext } from './LabeledContext';
+import { Base } from '../Base';
 
-type ILabeled = <TRoot extends React.ElementType>(
-  props: ILabeledProps<TRoot>,
-) => React.ReactNode;
+export const Labeled = forwardRef<HTMLDivElement, ILabeledProps>(
+  function Labeled(props, forwardedRef) {
+    const {
+      styles,
+      sx,
+      id: idProp,
+      label,
+      trailingAction,
+      required,
+      readOnly,
+      supportingText,
+      errorText: errorTextProp,
+      children,
+      hasError: hasErrorProp,
+      labelPosition = 'top',
+      supportingTextPosition: supportingTextPositionProp,
+      errorTextPosition: errorTextPositionProp,
+      disabled,
+      softDisabled: softDisabledProp,
+      loading,
+      ...other
+    } = props;
 
-export const Labeled: ILabeled = forwardRef(function Labeled<
-  TRoot extends React.ElementType,
->(props: ILabeledProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
-  const {
-    component: Component,
-    styles,
-    sx,
-    id: idProp,
-    label,
-    trailingAction,
-    required,
-    readOnly,
-    supportingText,
-    errorText: errorTextProp,
-    children,
-    hasError: hasErrorProp,
-    labelPosition = 'top',
-    supportingTextPosition: supportingTextPositionProp,
-    errorTextPosition: errorTextPositionProp,
-    disabled,
-    softDisabled: softDisabledProp,
-    loading,
-    ...other
-  } = props as IWithAsProp<ILabeledOwnProps>;
+    const { combineStyles, getStyles, globalStyles } = useStyles({
+      name: 'Labeled',
+      styles: [labeledStyles, styles],
+    });
 
-  const componentTheme = useComponentTheme('Labeled');
-  const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(elementWithLabelStyles, styles),
-    [styles],
-  );
-  const sxf = useMemo(
-    () => stylePropsFactory(stylesCombinator),
-    [stylesCombinator],
-  );
+    const softDisabled = softDisabledProp || readOnly || loading;
+    const visuallyDisabled = disabled || softDisabled;
 
-  const softDisabled = softDisabledProp || readOnly || loading;
-  const visuallyDisabled = disabled || softDisabled;
+    const id = useId(idProp);
+    const hasError = hasErrorProp && !visuallyDisabled;
+    const errorText = hasError ? errorTextProp : undefined;
+    const orientation = ['top', 'bottom'].includes(labelPosition)
+      ? 'vertical'
+      : 'horizontal';
+    const isLabelAtStart = ['top', 'left'].includes(labelPosition);
+    const supportingTextPosition =
+      labelPosition === 'top'
+        ? (supportingTextPositionProp ?? 'start')
+        : labelPosition === 'bottom'
+          ? (supportingTextPositionProp ?? 'end')
+          : labelPosition === 'left'
+            ? 'start'
+            : 'end';
+    const errorTextPosition = errorTextPositionProp ?? supportingTextPosition;
+    const hasLeading =
+      (!!label && isLabelAtStart) ||
+      ((!!supportingText || !!errorText) &&
+        supportingTextPosition === 'start') ||
+      (!!errorText && errorTextPosition === 'start');
+    const hasTrailing =
+      (!!label && !isLabelAtStart) ||
+      ((!!supportingText || !!errorText) && supportingTextPosition === 'end') ||
+      (!!errorText && errorTextPosition === 'end');
 
-  const id = useId(idProp);
-  const hasError = hasErrorProp && !visuallyDisabled;
-  const errorText = hasError ? errorTextProp : undefined;
-  const orientation = ['top', 'bottom'].includes(labelPosition)
-    ? 'vertical'
-    : 'horizontal';
-  const isLabelAtStart = ['top', 'left'].includes(labelPosition);
-  const supportingTextPosition =
-    labelPosition === 'top'
-      ? (supportingTextPositionProp ?? 'start')
-      : labelPosition === 'bottom'
-        ? (supportingTextPositionProp ?? 'end')
-        : labelPosition === 'left'
-          ? 'start'
-          : 'end';
-  const errorTextPosition = errorTextPositionProp ?? supportingTextPosition;
-  const hasLeading =
-    (!!label && isLabelAtStart) ||
-    ((!!supportingText || !!errorText) && supportingTextPosition === 'start') ||
-    (!!errorText && errorTextPosition === 'start');
-  const hasTrailing =
-    (!!label && !isLabelAtStart) ||
-    ((!!supportingText || !!errorText) && supportingTextPosition === 'end') ||
-    (!!errorText && errorTextPosition === 'end');
-
-  const renderLabelAndAction = (): React.ReactNode =>
-    label !== undefined ? (
-      <div {...sxf('labelAndActionContainer')}>
-        <div {...sxf('labelContainer')}>
-          <label
-            {...sxf(
-              'label',
-              visuallyDisabled
-                ? 'label$disabled'
-                : hasError && !errorText && 'label$error',
-            )}
-            htmlFor={id}
-          >
-            {label}
-            {required ? '*' : null}
-          </label>
-        </div>
-        {trailingAction ? (
-          <div {...sxf('action', visuallyDisabled && 'action$disabled')}>
-            {trailingAction}
+    const renderLabelAndAction = (): React.ReactNode =>
+      label !== undefined ? (
+        <div {...getStyles('labelAndActionContainer')}>
+          <div {...getStyles('labelContainer')}>
+            <label
+              {...getStyles(
+                'label',
+                visuallyDisabled
+                  ? 'label$disabled'
+                  : hasError && !errorText && 'label$error',
+              )}
+              htmlFor={id}
+            >
+              {label}
+              {required ? '*' : null}
+            </label>
           </div>
-        ) : null}
-      </div>
-    ) : null;
+          {trailingAction ? (
+            <div
+              {...getStyles('action', visuallyDisabled && 'action$disabled')}
+            >
+              {trailingAction}
+            </div>
+          ) : null}
+        </div>
+      ) : null;
 
-  const renderSupportingText = (): React.ReactNode =>
-    supportingText ? (
-      <div
-        {...sxf(
-          'supportingText',
-          visuallyDisabled && 'supportingText$disabled',
-        )}
-      >
-        {supportingText}
-      </div>
-    ) : null;
+    const renderSupportingText = (): React.ReactNode =>
+      supportingText ? (
+        <div
+          {...getStyles(
+            'supportingText',
+            visuallyDisabled && 'supportingText$disabled',
+          )}
+        >
+          {supportingText}
+        </div>
+      ) : null;
 
-  const renderErrorText = (): React.ReactNode =>
-    errorText ? (
-      <div
-        {...sxf(
-          'supportingText',
-          'supportingText$error',
-          visuallyDisabled && 'supportingText$disabled',
-        )}
-      >
-        {errorText}
-      </div>
-    ) : null;
+    const renderErrorText = (): React.ReactNode =>
+      errorText ? (
+        <div
+          {...getStyles(
+            'supportingText',
+            'supportingText$error',
+            visuallyDisabled && 'supportingText$disabled',
+          )}
+        >
+          {errorText}
+        </div>
+      ) : null;
 
-  const labeledContextValue = useMemo(
-    () => ({
-      id,
-      required,
-      disabled,
-      softDisabled,
-      readOnly,
-      hasError,
-      errorText,
-      loading,
-    }),
-    [
-      id,
-      required,
-      disabled,
-      softDisabled,
-      readOnly,
-      hasError,
-      errorText,
-      loading,
-    ],
-  );
+    const labeledContextValue = useMemo(
+      () => ({
+        id,
+        required,
+        disabled,
+        softDisabled,
+        readOnly,
+        hasError,
+        errorText,
+        loading,
+      }),
+      [
+        id,
+        required,
+        disabled,
+        softDisabled,
+        readOnly,
+        hasError,
+        errorText,
+        loading,
+      ],
+    );
 
-  return (
-    <LabeledContext.Provider value={labeledContextValue}>
-      <div
-        {...sxf(
-          elementWithLabelTheme,
-          componentTheme.overridenStyles,
-          orientation === 'horizontal' ? 'host$horizontal' : 'host$vertical',
+    return (
+      <Base
+        {...other}
+        sx={[
+          labeledTheme,
+          globalStyles,
+          ...combineStyles(
+            orientation === 'horizontal' ? 'host$horizontal' : 'host$vertical',
+          ),
           sx,
-        )}
+        ]}
         ref={forwardedRef}
-        {...(Component ? undefined : other)}
       >
         {hasLeading ? (
-          <div {...sxf('rows')}>
+          <div {...getStyles('rows')}>
             {isLabelAtStart ? renderLabelAndAction() : null}
             {supportingTextPosition === 'start' ? renderSupportingText() : null}
             {errorTextPosition === 'start' ? renderErrorText() : null}
           </div>
         ) : null}
 
-        <div {...sxf('content')}>
-          <div {...sxf('element')}>
-            {Component ? (
-              <Component {...other} />
-            ) : isFunction(children) ? (
+        <div {...getStyles('content')}>
+          <div {...getStyles('element')}>
+            {isFunction(children) ? (
               children({
                 id,
                 required,
@@ -188,12 +174,14 @@ export const Labeled: ILabeled = forwardRef(function Labeled<
                 loading,
               })
             ) : (
-              children
+              <LabeledContext.Provider value={labeledContextValue}>
+                {children}
+              </LabeledContext.Provider>
             )}
           </div>
 
           {hasTrailing && isLabelAtStart ? (
-            <div {...sxf('rows')}>
+            <div {...getStyles('rows')}>
               {supportingTextPosition === 'end' ? renderSupportingText() : null}
               {errorTextPosition === 'end' ? renderErrorText() : null}
             </div>
@@ -201,13 +189,13 @@ export const Labeled: ILabeled = forwardRef(function Labeled<
         </div>
 
         {hasTrailing && !isLabelAtStart ? (
-          <div {...sxf('rows')}>
+          <div {...getStyles('rows')}>
             {renderLabelAndAction()}
             {supportingTextPosition === 'end' ? renderSupportingText() : null}
             {errorTextPosition === 'end' ? renderErrorText() : null}
           </div>
         ) : null}
-      </div>
-    </LabeledContext.Provider>
-  );
-});
+      </Base>
+    );
+  },
+);

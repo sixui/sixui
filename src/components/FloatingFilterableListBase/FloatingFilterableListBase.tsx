@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   autoUpdate,
   flip,
@@ -34,11 +34,10 @@ import {
   type IExtendedFloatingProps,
 } from '~/helpers/extendFloatingProps';
 import { fixedForwardRef } from '~/helpers/fixedForwardRef';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useStyles } from '~/hooks/useStyles';
 import { FloatingTransition } from '../FloatingTransition';
 import { floatingFilterableListBaseStyles } from './FloatingFilterableListBase.styles';
+import { Base } from '../Base';
 
 export const FloatingFilterableListBase = fixedForwardRef(
   function FloatingFilterableListBase<TItem, TItemElement extends HTMLElement>(
@@ -82,15 +81,10 @@ export const FloatingFilterableListBase = fixedForwardRef(
       ...other
     } = props;
 
-    const componentTheme = useComponentTheme('FloatingFilterableListBase');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(floatingFilterableListBaseStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+    const { combineStyles, globalStyles } = useStyles({
+      name: 'FloatingFilterableListBase',
+      styles: [floatingFilterableListBaseStyles, styles],
+    });
 
     const [isOpen, setIsOpen] = useState(false);
     const [hasFocus, setHasFocus] = useState(false);
@@ -393,14 +387,14 @@ export const FloatingFilterableListBase = fixedForwardRef(
               visuallyHiddenDismiss
               initialFocus={disabled ? -1 : initialFocus}
             >
-              <div
-                {...sxf(componentTheme.overridenStyles, 'host', sx)}
+              <Base
                 {...interactions.getFloatingProps()}
+                sx={[globalStyles, combineStyles('host'), sx]}
                 ref={floating.refs.setFloating}
                 style={floating.floatingStyles}
               >
                 <FloatingTransition
-                  sx={stylesCombinator('container')}
+                  sx={combineStyles('container')}
                   placement={floating.placement}
                   status={transitionStatus.status}
                   origin='edge'
@@ -431,7 +425,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
                     />
                   </FloatingList>
                 </FloatingTransition>
-              </div>
+              </Base>
             </FloatingFocusManager>
           </Portal>
         )}

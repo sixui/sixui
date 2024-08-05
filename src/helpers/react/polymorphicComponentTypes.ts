@@ -14,6 +14,7 @@ export type IPropsOf<
   React.ComponentPropsWithoutRef<TComponent>
 >;
 
+// TODO: rename to IWithComponentProp
 export type IWithAsProp<
   TProps = object,
   TRoot extends React.ElementType = React.ElementType,

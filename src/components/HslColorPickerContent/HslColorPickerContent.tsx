@@ -41,8 +41,8 @@ export const HslColorPickerContent = forwardRef<
   return (
     <ColorPickerContent
       styles={other.innerStyles?.colorPickerContent}
-      {...other}
       palettes={palettes}
+      {...other}
       ref={forwardedRef}
     />
   );

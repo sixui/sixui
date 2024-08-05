@@ -1,12 +1,10 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type { IFluidButtonProps } from './FluidButton.types';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { useStyles } from '~/hooks/useStyles';
 import { ButtonBase } from '../ButtonBase';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import {
   fluidButtonButtonBaseStyles,
   fluidButtonFocusRingStyles,
@@ -23,21 +21,16 @@ export const FluidButton = createPolymorphicComponent<
     function FluidButton(props, forwardedRef) {
       const { styles, sx, innerStyles, children, ...other } = props;
 
-      const componentTheme = useComponentTheme('FluidButton');
-      const stylesCombinator = useMemo(
-        () => stylesCombinatorFactory(fluidButtonStyles, styles),
-        [styles],
-      );
-      const sxf = useMemo(
-        () => stylePropsFactory(stylesCombinator),
-        [stylesCombinator],
-      );
+      const { getStyles, globalStyles } = useStyles({
+        name: 'FluidButton',
+        styles: [fluidButtonStyles, styles],
+      });
 
       const visuallyDisabled = other.disabled || other.softDisabled;
 
       return (
         <ButtonBase
-          sx={[fluidButtonTheme, componentTheme.overridenStyles, sx]}
+          sx={[fluidButtonTheme, globalStyles, sx]}
           styles={[
             fluidButtonButtonBaseStyles,
             ...asArray(innerStyles?.buttonBase),
@@ -56,7 +49,12 @@ export const FluidButton = createPolymorphicComponent<
           {...other}
           ref={forwardedRef}
         >
-          <div {...sxf('textLabel', visuallyDisabled && 'textLabel$disabled')}>
+          <div
+            {...getStyles(
+              'textLabel',
+              visuallyDisabled && 'textLabel$disabled',
+            )}
+          >
             {children}
           </div>
         </ButtonBase>
