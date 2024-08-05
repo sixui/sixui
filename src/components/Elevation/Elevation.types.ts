@@ -1,7 +1,7 @@
-import type { IContainerProps } from '~/helpers/types';
+import type { IBaseProps } from '../Base';
 import type { IElevationStylesKey } from './Elevation.styles';
 
-export type IElevationProps = IContainerProps<IElevationStylesKey> & {
+export type IElevationProps = IBaseProps<IElevationStylesKey> & {
   level?: 0 | 1 | 2 | 3 | 4 | 5;
   disabled?: boolean;
 };

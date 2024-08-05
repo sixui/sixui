@@ -5,6 +5,7 @@ import type { IDisclosureButtonProps } from './DisclosureButton.types';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useStyles } from '~/hooks/useStyles';
 import { iconChevronDown } from '~/assets/icons';
+import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
 import { ListItem } from '../ListItem';
 import { Checkbox } from '../Checkbox';
 import { Switch } from '../Switch';
@@ -18,7 +19,6 @@ import {
   disclosureButtonStyles,
 } from './DisclosureButton.styles';
 import { disclosureButtonTheme } from './DisclosureButton.stylex';
-import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
 
 export const DisclosureButton = createPolymorphicComponent<
   'button',
