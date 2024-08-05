@@ -7,7 +7,7 @@ import type {
 } from './FilterableList.types';
 import { MenuList } from '../MenuList';
 import { TextInputField } from '../TextInputField';
-import { ListItem, type IListItemOwnProps } from '../ListItem';
+import { ListItem, type IListItemProps } from '../ListItem';
 import {
   FilterableListBase,
   type IFilterableListItemRenderer,
@@ -46,7 +46,7 @@ const highlightQueryInText = (
 const getFilterableListItemProps = <TElement extends HTMLElement>(
   item: IFilterableListItem,
   { modifiers, query, focus }: IFilterableListItemRendererProps<TElement>,
-): IListItemOwnProps => {
+): IListItemProps => {
   const text = item.label ?? item.value;
 
   return {

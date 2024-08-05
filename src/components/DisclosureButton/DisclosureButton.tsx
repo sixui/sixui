@@ -34,7 +34,6 @@ export const DisclosureButton = createPolymorphicComponent<
         expandIcon,
         children,
         disabled: disabledProp,
-        'data-cy': dataCy = 'disclosure-button',
         expanded: expandedProp,
         checkable,
         switchable,
@@ -131,7 +130,7 @@ export const DisclosureButton = createPolymorphicComponent<
               ) : undefined
             }
             trailingIcon={!toggleable && loading ? undefined : icon}
-            data-cy={dataCy}
+            data-cy='disclosure-button'
             disabled={disabled ?? (toggleable && !checked)}
             onClick={(event) => {
               expandableContext?.expand(!expanded);

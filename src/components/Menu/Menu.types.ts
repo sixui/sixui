@@ -1,6 +1,7 @@
 import type { Placement } from '@floating-ui/react';
 
-import type { IContainerProps, IOmit, IOrientation } from '~/helpers/types';
+import type { IOmit, IOrientation } from '~/helpers/types';
+import type { IBaseProps } from '../Base';
 
 export type IMenuTriggerRenderProps = {
   isOpen: boolean;
@@ -10,7 +11,7 @@ export type IMenuTriggerRenderProps = {
   ) => Record<string, unknown>;
 };
 
-export type IMenuProps = IOmit<IContainerProps, 'styles'> & {
+export type IMenuProps = IOmit<IBaseProps, 'styles'> & {
   trigger:
     | React.ReactNode
     | ((renderProps: IMenuTriggerRenderProps) => React.ReactNode);

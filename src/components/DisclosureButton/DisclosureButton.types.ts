@@ -7,14 +7,14 @@ import type {
 } from '~/helpers/types';
 import type { IBaseProps } from '../Base';
 import type { IDisclosureButtonStylesKey } from './DisclosureButton.styles';
-import type { IListItemOwnProps, IListItemStylesKey } from '../ListItem';
+import type { IListItemProps, IListItemStylesKey } from '../ListItem';
 import type { ICheckboxStylesKey } from '../Checkbox';
 import type { ISwitchStylesKey } from '../Switch';
 import type { ICircularProgressIndicatorStylesKey } from '../CircularProgressIndicator';
 
 export type IDisclosureButtonProps = IBaseProps<IDisclosureButtonStylesKey> &
-  IOmit<IListItemOwnProps, 'styles' | 'innerStyles'> & {
-    innerStyles?: IListItemOwnProps['innerStyles'] & {
+  IOmit<IListItemProps, 'styles' | 'innerStyles'> & {
+    innerStyles?: IListItemProps['innerStyles'] & {
       listItem?: IZeroOrMore<ICompiledStyles<IListItemStylesKey>>;
       checkbox?: IZeroOrMore<ICompiledStyles<ICheckboxStylesKey>>;
       switch?: IZeroOrMore<ICompiledStyles<ISwitchStylesKey>>;

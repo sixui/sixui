@@ -1,21 +1,14 @@
-import type {
-  IContainerProps,
-  IZeroOrMore,
-  ICompiledStyles,
-  IOmit,
-} from '~/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
+import type { IZeroOrMore, ICompiledStyles, IOmit } from '~/helpers/types';
+import type { IBaseProps } from '../Base';
 import type { IItemProps, IItemStylesKey } from '../Item';
 import type { IStateLayerStylesKey } from '../StateLayer';
 import type { IFocusRingStylesKey } from '../FocusRing';
 import type { IVisualState } from '../VisualState';
 import type { IListItemStylesKey } from './ListItem.styles';
 
-export const LIST_ITEM_DEFAULT_TAG = 'button';
-
 export type IListItemVariant = 'standard' | 'danger';
 
-export type IListItemOwnProps = IContainerProps<IListItemStylesKey> &
+export type IListItemProps = IBaseProps<IListItemStylesKey> &
   IOmit<IItemProps, 'container'> & {
     innerStyles?: {
       item?: IZeroOrMore<ICompiledStyles<IItemStylesKey>>;
@@ -44,7 +37,3 @@ export type IListItemOwnProps = IContainerProps<IListItemStylesKey> &
     noFocusRing?: boolean;
     maxLines?: number;
   };
-
-export type IListItemProps<
-  TRoot extends React.ElementType = typeof LIST_ITEM_DEFAULT_TAG,
-> = IPolymorphicComponentPropsWithRef<TRoot, IListItemOwnProps>;

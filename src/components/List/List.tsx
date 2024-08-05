@@ -1,10 +1,9 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 
 import type { IListProps } from './List.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { commonStyles } from '~/helpers/commonStyles';
+import { useStyles } from '~/hooks/useStyles';
+import { Base } from '../Base';
 import { ListContext } from './ListContext';
 import { listStyles } from './List.styles';
 import { listTheme } from './List.stylex';
@@ -23,29 +22,24 @@ export const List = forwardRef<HTMLDivElement, IListProps>(
       ...other
     } = props;
 
-    const componentTheme = useComponentTheme('List');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(listStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+    const { combineStyles, getStyles, globalStyles } = useStyles({
+      name: 'List',
+      styles: [listStyles, styles],
+    });
 
     const isGrid = cols > 1;
 
     return (
       <ListContext.Provider value={{ size, noFocusRing }}>
-        <div
+        <Base
           {...other}
-          {...sxf(listTheme, componentTheme.overridenStyles, 'host', sx)}
+          sx={[listTheme, globalStyles, combineStyles('host'), sx]}
           ref={forwardedRef}
         >
-          <div {...sxf('inner')}>
-            <div {...sxf('header')}>{header}</div>
+          <div {...getStyles('inner')}>
+            <div {...getStyles('header')}>{header}</div>
             <div
-              {...sxf(
+              {...getStyles(
                 'content',
                 isGrid && 'content$grid',
                 isGrid &&
@@ -55,9 +49,9 @@ export const List = forwardRef<HTMLDivElement, IListProps>(
             >
               {children}
             </div>
-            <div {...sxf('footer')}>{footer}</div>
+            <div {...getStyles('footer')}>{footer}</div>
           </div>
-        </div>
+        </Base>
       </ListContext.Provider>
     );
   },

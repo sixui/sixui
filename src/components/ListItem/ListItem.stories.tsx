@@ -9,11 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
-import type {
-  IListItemProps,
-  IListItemOwnProps,
-  IListItemVariant,
-} from './ListItem.types';
+import type { IListItemProps, IListItemVariant } from './ListItem.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
@@ -56,7 +52,7 @@ const styles = stylex.create({
 
 const defaultArgs = { sx: styles.host } satisfies Partial<IListItemProps>;
 
-const states: Array<IComponentPresentation<IListItemOwnProps>> = [
+const states: Array<IComponentPresentation<IListItemProps>> = [
   { legend: 'Enabled', props: { children: 'Enabled' } },
   {
     legend: 'Focused',
@@ -74,7 +70,7 @@ const states: Array<IComponentPresentation<IListItemOwnProps>> = [
   { legend: 'Disabled', props: { children: 'Disabled', disabled: true } },
 ];
 
-const rows: Array<IComponentPresentation<IListItemOwnProps>> = [
+const rows: Array<IComponentPresentation<IListItemProps>> = [
   { legend: 'Basic' },
   {
     legend: 'With leading icon',
