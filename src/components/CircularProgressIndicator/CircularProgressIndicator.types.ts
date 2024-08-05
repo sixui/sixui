@@ -1,4 +1,5 @@
-import type { IContainerProps, IOmit, IMakeOptional } from '~/helpers/types';
+import type { IBaseProps } from '../Base';
+import type { IOmit, IMakeOptional } from '~/helpers/types';
 import type {
   IDeterminateCircularProgressIndicatorProps,
   IDeterminateCircularProgressIndicatorStylesKey,
@@ -11,7 +12,7 @@ import type { ICircularProgressIndicatorStylesKey } from './CircularProgressIndi
 
 export type ICircularProgressIndicatorSize = 'md' | 'lg';
 
-export type ICircularProgressIndicatorProps = IContainerProps<
+export type ICircularProgressIndicatorProps = IBaseProps<
   | ICircularProgressIndicatorStylesKey
   | IDeterminateCircularProgressIndicatorStylesKey
   | IIndeterminateCircularProgressIndicatorStyleKey

@@ -46,6 +46,7 @@ export const ButtonBase = createPolymorphicComponent<
       const { combineStyles, getStyles, globalStyles, settings } = useStyles({
         name: 'ButtonBase',
         styles: [buttonBaseStyles, styles],
+        visualState,
       });
 
       const rootElement =

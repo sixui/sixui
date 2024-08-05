@@ -1,14 +1,14 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 import stylex from '@stylexjs/stylex';
 
 import type { IColorButtonProps } from './ColorButton.types';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { ButtonBase } from '../ButtonBase';
-import { SvgIcon } from '../SvgIcon';
+import { ButtonBase } from '~/components/ButtonBase';
+import { SvgIcon } from '~/components/SvgIcon';
 import { iconCheckMark } from '~/assets/icons';
-import { ColorTag } from '../ColorTag';
+import { ColorTag } from '~/components/ColorTag';
+import { useStyles } from '~/hooks/useStyles';
 import {
   colorButtonButtonBaseStyles,
   colorButtonColorTagStyles,
@@ -16,7 +16,6 @@ import {
   colorButtonStateLayerStyles,
   colorButtonStyles,
 } from './ColorButton.styles';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { colorButtonStateTokens } from './ColorButton.state.stylex';
 import { colorButtonTheme } from './ColorButton.stylex';
 
@@ -43,18 +42,17 @@ export const ColorButton = createPolymorphicComponent<
         ...other
       } = props;
 
-      const componentTheme = useComponentTheme('ColorButton');
-      const stylesCombinator = useMemo(
-        () => stylesCombinatorFactory(colorButtonStyles, styles),
-        [styles],
-      );
+      const { combineStyles, globalStyles } = useStyles({
+        name: 'ColorButton',
+        styles: [colorButtonStyles, styles],
+      });
 
       return (
         <ButtonBase
           sx={[
             colorButtonTheme,
-            componentTheme.overridenStyles,
-            stylesCombinator('host'),
+            globalStyles,
+            combineStyles('host'),
             backgroundColor
               ? localStyles.backgroundColor(backgroundColor)
               : undefined,

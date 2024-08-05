@@ -18,7 +18,7 @@ import {
 // https://github.com/material-components/material-web/blob/main/progress/internal/circular-progress.ts
 
 export const IndeterminateCircularProgressIndicator = forwardRef<
-  HTMLInputElement,
+  HTMLDivElement,
   IIndeterminateCircularProgressIndicatorProps
 >(function IndeterminateCircularProgressIndicator(props, forwardedRef) {
   const { styles, sx, size = 'md', disabled, children, ...other } = props;
