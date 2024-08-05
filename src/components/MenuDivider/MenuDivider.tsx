@@ -1,24 +1,22 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 
 import { Divider, type IDividerProps } from '../Divider';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
+import { useStyles } from '~/hooks/useStyles';
 import { menuDividerStyles } from './MenuDivider.styles';
 
 export const MenuDivider = forwardRef<HTMLDivElement, IDividerProps>(
   function MenuDivider(props, forwardedRef) {
     const { styles, sx, ...other } = props;
 
-    const componentTheme = useComponentTheme('MenuDivider');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(menuDividerStyles, styles),
-      [styles],
-    );
+    const { combineStyles, globalStyles } = useStyles({
+      name: 'MenuDivider',
+      styles: [menuDividerStyles, styles],
+    });
 
     return (
       <Divider
-        sx={[componentTheme.overridenStyles, stylesCombinator('host'), sx]}
         {...other}
+        sx={[globalStyles, combineStyles('host'), sx]}
         ref={forwardedRef}
       />
     );

@@ -7,7 +7,6 @@ import {
   IWithAsProp,
 } from '~/helpers/react/polymorphicComponentTypes';
 import { useVisualState } from '../VisualState';
-import { useForwardedRef } from '~/hooks/useForwardedRef';
 import { useStyles } from '~/hooks/useStyles';
 import { Elevation } from '../Elevation';
 import { FocusRing } from '../FocusRing';
@@ -35,7 +34,6 @@ export const ButtonBase = createPolymorphicComponent<
         ...other
       } = props as IWithAsProp<IButtonBaseProps>;
 
-      const innerRef = useForwardedRef(forwardedRef);
       const visuallyDisabled = other.disabled || softDisabled;
       const { visualState, setRef: setVisualStateRef } = useVisualState(
         visualStateProp,
@@ -85,14 +83,14 @@ export const ButtonBase = createPolymorphicComponent<
           {visuallyDisabled ? null : (
             <FocusRing
               styles={innerStyles?.focusRing}
-              for={innerRef}
+              for={forwardedRef}
               visualState={visualState}
               inward={inwardFocusRing}
             />
           )}
           <StateLayer
             styles={innerStyles?.stateLayer}
-            for={innerRef}
+            for={forwardedRef}
             disabled={visuallyDisabled}
             visualState={visualState}
           />

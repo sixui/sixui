@@ -7,7 +7,6 @@ import {
   createPolymorphicComponent,
   type IWithAsProp,
 } from '~/helpers/react/polymorphicComponentTypes';
-import { useForwardedRef } from '~/hooks/useForwardedRef';
 import { useStyles } from '~/hooks/useStyles';
 import { Base } from '../Base';
 import { useVisualState } from '../VisualState';
@@ -47,7 +46,6 @@ export const Card = createPolymorphicComponent<'div', ICardProps>(
       { disabled },
     );
     const handleRef = useMergeRefs([forwardedRef, setVisualStateRef]);
-    const innerRef = useForwardedRef(forwardedRef);
 
     const variantStyles = variant ? cardVariantStyles[variant] : undefined;
     const { combineStyles, getStyles, globalStyles, settings } = useStyles({
@@ -117,7 +115,7 @@ export const Card = createPolymorphicComponent<'div', ICardProps>(
                   cardStateLayerStyles,
                   ...asArray(innerStyles?.stateLayer),
                 ]}
-                for={innerRef}
+                for={forwardedRef}
                 disabled={disabled}
                 visualState={visualState}
               />
@@ -126,7 +124,7 @@ export const Card = createPolymorphicComponent<'div', ICardProps>(
                   cardFocusRingStyles,
                   ...asArray(innerStyles?.focusRing),
                 ]}
-                for={innerRef}
+                for={forwardedRef}
                 visualState={visualState}
               />
             </>

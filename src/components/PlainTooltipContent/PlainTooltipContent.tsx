@@ -1,11 +1,10 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 
 import type { IPlainTooltipContentProps } from './PlainTooltipContent.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { useStyles } from '~/hooks/useStyles';
 import { plainTooltipContentStyles } from './PlainTooltipContent.styles';
 import { plainTooltipContentTheme } from './PlainTooltipContent.stylex';
+import { Base } from '../Base';
 
 export const PlainTooltipContent = forwardRef<
   HTMLDivElement,
@@ -13,29 +12,24 @@ export const PlainTooltipContent = forwardRef<
 >(function PlainTooltipContent(props, forwardedRef) {
   const { styles, sx, supportingText, renderCursor, ...other } = props;
 
-  const componentTheme = useComponentTheme('PlainTooltipContent');
-  const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(plainTooltipContentStyles, styles),
-    [styles],
-  );
-  const sxf = useMemo(
-    () => stylePropsFactory(stylesCombinator),
-    [stylesCombinator],
-  );
+  const { combineStyles, getStyles, globalStyles } = useStyles({
+    name: 'PlainTooltipContent',
+    styles: [plainTooltipContentStyles, styles],
+  });
 
   return (
-    <div
+    <Base
       {...other}
-      {...sxf(
+      sx={[
         plainTooltipContentTheme,
-        componentTheme.overridenStyles,
-        'host',
+        globalStyles,
+        ...combineStyles('host'),
         sx,
-      )}
+      ]}
       ref={forwardedRef}
     >
-      {renderCursor ? renderCursor(sxf('cursor')) : null}
-      <div {...sxf('supportingText')}>{supportingText}</div>
-    </div>
+      {renderCursor ? renderCursor(getStyles('cursor')) : null}
+      <div {...getStyles('supportingText')}>{supportingText}</div>
+    </Base>
   );
 });

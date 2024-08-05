@@ -6,6 +6,7 @@ import { placeholderTokens } from './Placeholder.stylex';
 export type IPlaceholderStylesKey = keyof typeof placeholderStyles;
 export const placeholderStyles = stylex.create({
   host: {
+    position: 'relative',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

@@ -1,8 +1,8 @@
-import type { IContainerProps } from '~/helpers/types';
+import type { IBaseProps } from '../Base';
 import type { IPlainTooltipContentStylesKey } from './PlainTooltipContent.styles';
 
 export type IPlainTooltipContentProps =
-  IContainerProps<IPlainTooltipContentStylesKey> & {
+  IBaseProps<IPlainTooltipContentStylesKey> & {
     supportingText: React.ReactNode;
     renderCursor?: (
       userProps?: React.HTMLAttributes<SVGSVGElement>,

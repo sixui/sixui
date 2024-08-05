@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 // https://non-traditional.dev/how-to-use-the-forwarded-ref-in-react-1fb108f4e6af
 
 export const useForwardedRef = <T>(
-  ref: React.ForwardedRef<T>,
+  ref?: React.ForwardedRef<T>,
 ): React.RefObject<T> => {
   const innerRef = useRef<T>(null);
 

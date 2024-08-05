@@ -19,12 +19,12 @@ export const MenuNestedItem = forwardRef<
 
   return (
     <MenuItem
-      leading={
+      leadingIcon={
         menuContext.placement?.startsWith('left-') ? (
           <SvgIcon icon={iconTriangleLeft} />
         ) : undefined
       }
-      trailing={
+      trailingIcon={
         menuContext.placement?.startsWith('left-') ? undefined : (
           <SvgIcon icon={iconTriangleRight} />
         )

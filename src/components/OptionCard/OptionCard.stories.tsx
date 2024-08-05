@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
-import type { IOptionCardOwnProps } from './OptionCard.types';
+import type { IOptionCardProps } from './OptionCard.types';
 import { Switch } from '../Switch';
 import { ComponentShowcase } from '../ComponentShowcase';
 import { Checkbox } from '../Checkbox';
@@ -29,7 +29,7 @@ const styles = stylex.create({
 
 const defaultArgs = {
   sx: styles.card,
-} satisfies Partial<IOptionCardOwnProps>;
+} satisfies Partial<IOptionCardProps>;
 
 export const Basic: IStory = {
   render: (props) => (
@@ -75,7 +75,7 @@ export const Basic: IStory = {
   },
 };
 
-const OptionCardRadioGroup: React.FC<IOptionCardOwnProps> = (props) => {
+const OptionCardRadioGroup: React.FC<IOptionCardProps> = (props) => {
   return (
     <RadioGroup
       sx={styles.radioGroup}

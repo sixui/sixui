@@ -1,4 +1,3 @@
-import stylex from '@stylexjs/stylex';
 import { forwardRef, useContext, useEffect, useRef, useState } from 'react';
 import { isFunction } from '~/helpers/isFunction';
 import {
@@ -27,32 +26,24 @@ import {
 } from '@floating-ui/react';
 
 import type { IMenuProps } from './Menu.types';
+import { useStyles } from '~/hooks/useStyles';
 import { MenuList } from '../MenuList';
 import { Portal } from '../Portal';
 import { FloatingTransition } from '../FloatingTransition';
 import { MenuItemContext } from './MenuItemContext';
 import { MenuContext } from './MenuContext';
-
-// TODO: migrate in theme
-const styles = stylex.create({
-  host: {
-    zIndex: 499,
-  },
-  inner: {
-    display: 'flex',
-    flexGrow: 1,
-  },
-});
+import { menuStyles } from './Menu.styles';
 
 export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
   function MenuLeaf(props, forwardedRef) {
     const {
-      sx,
+      styles,
       trigger,
       children,
       placement = 'bottom-start',
       orientation = 'vertical',
       matchTargetWidth,
+      size: listItemSize = 'sm',
       ...other
     } = props;
 
@@ -128,6 +119,11 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
       listNavigation,
       typeahead,
     ]);
+
+    const { combineStyles, getStyles, globalStyles } = useStyles({
+      name: 'Menu',
+      styles: [menuStyles, styles],
+    });
 
     // Event emitter allows you to communicate across tree components.
     // This effect closes all menus when an item gets clicked anywhere
@@ -220,20 +216,20 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
                   returnFocus={!isNested}
                 >
                   <div
-                    {...stylex.props(styles.host)}
+                    {...getStyles(globalStyles, 'host')}
                     {...interactions.getFloatingProps()}
                     ref={floating.refs.setFloating}
                     style={floating.floatingStyles}
                   >
                     <FloatingTransition
-                      sx={styles.inner}
+                      sx={combineStyles('inner')}
                       placement={floating.placement}
                       status={transitionStatus.status}
                       origin='edge'
                       orientation={orientation}
                       pattern={parentId ? false : 'enterExit'}
                     >
-                      <MenuList sx={sx} noFocusRing {...other} size='sm'>
+                      <MenuList noFocusRing {...other} size={listItemSize}>
                         <FloatingList
                           elementsRef={elementsRef}
                           labelsRef={labelsRef}

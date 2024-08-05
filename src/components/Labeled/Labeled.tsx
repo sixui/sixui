@@ -162,31 +162,35 @@ export const Labeled = forwardRef<HTMLDivElement, ILabeledProps>(
           </div>
         ) : null}
 
-        <div {...getStyles('content')}>
-          <div {...getStyles('element')}>
-            {isFunction(children) ? (
-              children({
-                id,
-                required,
-                disabled,
-                softDisabled,
-                readOnly,
-                loading,
-              })
-            ) : (
-              <LabeledContext.Provider value={labeledContextValue}>
-                {children}
-              </LabeledContext.Provider>
-            )}
-          </div>
-
-          {hasTrailing && isLabelAtStart ? (
-            <div {...getStyles('rows')}>
-              {supportingTextPosition === 'end' ? renderSupportingText() : null}
-              {errorTextPosition === 'end' ? renderErrorText() : null}
+        {children ? (
+          <div {...getStyles('content')}>
+            <div {...getStyles('element')}>
+              {isFunction(children) ? (
+                children({
+                  id,
+                  required,
+                  disabled,
+                  softDisabled,
+                  readOnly,
+                  loading,
+                })
+              ) : (
+                <LabeledContext.Provider value={labeledContextValue}>
+                  {children}
+                </LabeledContext.Provider>
+              )}
             </div>
-          ) : null}
-        </div>
+
+            {hasTrailing && isLabelAtStart ? (
+              <div {...getStyles('rows')}>
+                {supportingTextPosition === 'end'
+                  ? renderSupportingText()
+                  : null}
+                {errorTextPosition === 'end' ? renderErrorText() : null}
+              </div>
+            ) : null}
+          </div>
+        ) : null}
 
         {hasTrailing && !isLabelAtStart ? (
           <div {...getStyles('rows')}>

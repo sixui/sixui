@@ -1,7 +1,9 @@
 import type { Placement } from '@floating-ui/react';
 
-import type { IOmit, IOrientation } from '~/helpers/types';
+import type { IOrientation } from '~/helpers/types';
 import type { IBaseProps } from '../Base';
+import type { IListItemProps } from '../ListItem';
+import type { IMenuStylesKey } from './Menu.styles';
 
 export type IMenuTriggerRenderProps = {
   isOpen: boolean;
@@ -11,7 +13,7 @@ export type IMenuTriggerRenderProps = {
   ) => Record<string, unknown>;
 };
 
-export type IMenuProps = IOmit<IBaseProps, 'styles'> & {
+export type IMenuProps = IBaseProps<IMenuStylesKey> & {
   trigger:
     | React.ReactNode
     | ((renderProps: IMenuTriggerRenderProps) => React.ReactNode);
@@ -19,4 +21,5 @@ export type IMenuProps = IOmit<IBaseProps, 'styles'> & {
   placement?: Placement;
   orientation?: IOrientation;
   matchTargetWidth?: boolean;
+  size?: IListItemProps['size'];
 };

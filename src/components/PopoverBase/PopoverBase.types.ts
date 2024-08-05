@@ -6,15 +6,16 @@ import type {
   UseRoleProps,
 } from '@floating-ui/react';
 
-import type { IContainerProps, IOrientation } from '~/helpers/types';
+import type { IOrientation } from '~/helpers/types';
 import type {
   IRendererWithForwardedProps,
   IForwardableProps,
 } from '~/helpers/react/forwardablePropsTypes';
 import type { IPopoverCursorType } from '~/hooks/usePopoverCursor';
+import type { IExtendedHtmlFloatingProps } from '~/helpers/extendFloatingProps';
+import type { IBaseProps } from '../Base';
 import type { IFloatingTransitionOrigin } from '../FloatingTransition';
 import type { IPopoverBaseStylesKey } from './PopoverBase.styles';
-import type { IExtendedHtmlFloatingProps } from '~/helpers/extendFloatingProps';
 
 export type IPopoverBaseContentRendererProps = {
   isOpen: boolean;
@@ -48,7 +49,7 @@ export type IPopoverBaseTriggerRendererProps = {
 };
 
 export type IPopoverBaseProps<TForwardedProps extends object = object> =
-  IContainerProps<IPopoverBaseStylesKey> &
+  IBaseProps<IPopoverBaseStylesKey> &
     IForwardableProps & {
       contentRenderer: IRendererWithForwardedProps<
         IPopoverBaseContentRendererProps,

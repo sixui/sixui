@@ -1,7 +1,8 @@
-import { useMemo, useRef } from 'react';
+import { useRef } from 'react';
 
 import type { IMultiSelectBaseProps } from './MultiSelectBase.types';
 import type { IExtendedFloatingProps } from '~/helpers/extendFloatingProps';
+import { useStyles } from '~/hooks/useStyles';
 import { ListItem } from '../ListItem';
 import { TextInputField } from '../TextInputField';
 import { MenuList } from '../MenuList';
@@ -12,8 +13,6 @@ import {
 } from '../FilterableListBase';
 import { FloatingFilterableListBase } from '../FloatingFilterableListBase';
 import { fixedForwardRef } from '~/helpers/fixedForwardRef';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import {
   multiSelectBaseFieldBaseStyles,
   multiSelectBaseStyles,
@@ -40,11 +39,10 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
     ...other
   } = props;
 
-  const componentTheme = useComponentTheme('MultiSelectBase');
-  const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(multiSelectBaseStyles, styles),
-    [styles],
-  );
+  const { combineStyles, globalStyles } = useStyles({
+    name: 'MultiSelectBase',
+    styles: [multiSelectBaseStyles, styles],
+  });
 
   const multiFilterableListBase = useMultiFilterableListBase({
     items,
@@ -223,7 +221,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
 
         return (
           <TextInputField
-            sx={[componentTheme.overridenStyles, sx]}
+            sx={[globalStyles, sx]}
             styles={innerStyles?.textInputField}
             trailingIcon={
               <FilterableListBaseFieldTrailingIcon
@@ -259,7 +257,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
                 ? multiFilterableListBase.selectedItems.map(
                     (selectedItem, index) => (
                       <InputChip
-                        sx={stylesCombinator('chip')}
+                        sx={combineStyles('chip')}
                         key={index}
                         visualState={{
                           focused:

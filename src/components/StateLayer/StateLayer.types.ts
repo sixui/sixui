@@ -4,7 +4,7 @@ import type { IStateLayerStylesKey } from './StateLayer.styles';
 
 export type IStateLayerProps = IContainerProps<IStateLayerStylesKey> & {
   visualState?: IVisualState;
-  for?: React.RefObject<HTMLElement>;
+  for?: React.Ref<HTMLElement>;
   disabled?: boolean;
   children?: React.ReactNode;
 };

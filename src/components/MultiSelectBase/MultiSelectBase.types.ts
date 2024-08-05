@@ -1,9 +1,5 @@
-import type {
-  ICompiledStyles,
-  IContainerProps,
-  IOmit,
-  IZeroOrMore,
-} from '~/helpers/types';
+import type { ICompiledStyles, IOmit, IZeroOrMore } from '~/helpers/types';
+import type { IBaseProps } from '../Base';
 import type { IFieldBaseVariant } from '../FieldBase';
 import type { IFilterableListItemRenderer } from '../FilterableListBase';
 import type {
@@ -16,7 +12,7 @@ import type { ITextFieldBaseStylesKey } from '../TextFieldBase';
 import type { IMultiSelectBaseStylesKey } from './MultiSelectBase.styles';
 
 export type IMultiSelectBaseProps<TItem> =
-  IContainerProps<IMultiSelectBaseStylesKey> &
+  IBaseProps<IMultiSelectBaseStylesKey> &
     IOmit<
       IFloatingFilterableListBaseProps<TItem, HTMLElement>,
       | 'styles'
