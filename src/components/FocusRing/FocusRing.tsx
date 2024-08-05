@@ -6,7 +6,6 @@ import { useStyles } from '~/hooks/useStyles';
 import { Base } from '../Base';
 import { focusRingStyles } from './FocusRing.styles';
 import { focusRingTheme } from './FocusRing.stylex';
-import { useForwardedRef } from '~/helpers/useForwardedRef';
 
 const HANDLED_BY_FOCUS_RING = Symbol('handledByFocusRing');
 
@@ -25,13 +24,12 @@ export const FocusRing = forwardRef<HTMLInputElement, IFocusRingProps>(
 
     const hostRef = useRef<HTMLDivElement>(null);
     const handleRef = useMergeRefs([forwardedRef, hostRef]);
-    const innerRef = useForwardedRef(forElementRef);
 
     const [visible, setVisible] = useState(false);
 
     const getControl = useCallback(
-      () => innerRef?.current ?? hostRef?.current?.parentElement,
-      [innerRef],
+      () => forElementRef?.current ?? hostRef?.current?.parentElement,
+      [forElementRef],
     );
 
     const handleEvent = useCallback(

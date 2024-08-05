@@ -23,4 +23,5 @@ export type ILabeledProps = IBaseProps<ILabeledStylesKey> &
     labelPosition?: 'top' | 'bottom' | 'left' | 'right';
     supportingTextPosition?: 'start' | 'end';
     errorTextPosition?: 'start' | 'end';
+    requiredSign?: React.ReactNode;
   };

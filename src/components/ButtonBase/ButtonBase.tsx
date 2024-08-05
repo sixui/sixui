@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, useRef } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { IButtonBaseProps } from './ButtonBase.types';
@@ -39,7 +39,13 @@ export const ButtonBase = createPolymorphicComponent<
         visualStateProp,
         { disabled: visuallyDisabled },
       );
-      const handleRef = useMergeRefs([forwardedRef, setVisualStateRef]);
+
+      const visualStateRef = useRef<HTMLElement>(null);
+      const handleRef = useMergeRefs([
+        forwardedRef,
+        setVisualStateRef,
+        visualStateRef,
+      ]);
 
       const { combineStyles, getStyles, globalStyles, settings } = useStyles({
         name: 'ButtonBase',
@@ -83,14 +89,14 @@ export const ButtonBase = createPolymorphicComponent<
           {visuallyDisabled ? null : (
             <FocusRing
               styles={innerStyles?.focusRing}
-              for={forwardedRef}
+              for={visualStateRef}
               visualState={visualState}
               inward={inwardFocusRing}
             />
           )}
           <StateLayer
             styles={innerStyles?.stateLayer}
-            for={forwardedRef}
+            for={visualStateRef}
             disabled={visuallyDisabled}
             visualState={visualState}
           />

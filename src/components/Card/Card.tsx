@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, useRef } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 import { useMergeRefs } from '@floating-ui/react';
 
@@ -45,7 +45,13 @@ export const Card = createPolymorphicComponent<'div', ICardProps>(
       visualStateProp,
       { disabled },
     );
-    const handleRef = useMergeRefs([forwardedRef, setVisualStateRef]);
+
+    const visualStateRef = useRef<HTMLElement>(null);
+    const handleRef = useMergeRefs([
+      forwardedRef,
+      setVisualStateRef,
+      visualStateRef,
+    ]);
 
     const variantStyles = variant ? cardVariantStyles[variant] : undefined;
     const { combineStyles, getStyles, globalStyles, settings } = useStyles({
@@ -115,7 +121,7 @@ export const Card = createPolymorphicComponent<'div', ICardProps>(
                   cardStateLayerStyles,
                   ...asArray(innerStyles?.stateLayer),
                 ]}
-                for={forwardedRef}
+                for={visualStateRef}
                 disabled={disabled}
                 visualState={visualState}
               />
@@ -124,7 +130,7 @@ export const Card = createPolymorphicComponent<'div', ICardProps>(
                   cardFocusRingStyles,
                   ...asArray(innerStyles?.focusRing),
                 ]}
-                for={forwardedRef}
+                for={visualStateRef}
                 visualState={visualState}
               />
             </>

@@ -6,7 +6,6 @@ import { useStyles } from '~/hooks/useStyles';
 import { useRipple } from './useRipple';
 import { stateLayerStyles } from './StateLayer.styles';
 import { stateLayerTheme } from './StateLayer.stylex';
-import { useForwardedRef } from '~/helpers/useForwardedRef';
 import { Base } from '../Base';
 
 // https://github.com/material-components/material-web/blob/main/ripple/internal/ripple.ts
@@ -28,10 +27,9 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
       styles: [stateLayerStyles, styles],
     });
 
-    const innerRef = useForwardedRef(forElementRef);
     const { setHostRef, surfaceRef, pressed } = useRipple({
       visualState,
-      for: innerRef,
+      for: forElementRef,
       disabled,
     });
     const handleRef = useMergeRefs([forwardedRef, setHostRef]);

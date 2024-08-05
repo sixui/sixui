@@ -4,6 +4,6 @@ import type { IFocusRingStylesKey } from './FocusRing.styles';
 
 export type IFocusRingProps = IBaseProps<IFocusRingStylesKey> & {
   visualState?: IVisualState;
-  for?: React.Ref<HTMLElement>;
+  for?: React.RefObject<HTMLElement>;
   inward?: boolean;
 };

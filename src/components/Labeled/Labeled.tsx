@@ -29,6 +29,7 @@ export const Labeled = forwardRef<HTMLDivElement, ILabeledProps>(
       disabled,
       softDisabled: softDisabledProp,
       loading,
+      requiredSign = '*',
       ...other
     } = props;
 
@@ -80,7 +81,7 @@ export const Labeled = forwardRef<HTMLDivElement, ILabeledProps>(
               htmlFor={id}
             >
               {label}
-              {required ? '*' : null}
+              {required ? requiredSign : null}
             </label>
           </div>
           {trailingAction ? (
