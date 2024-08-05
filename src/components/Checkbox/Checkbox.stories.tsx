@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { delay } from '@olivierpascal/helpers';
 
-import type { ICheckboxOwnProps } from './Checkbox.types';
+import type { ICheckboxProps } from './Checkbox.types';
 import type { IOmit } from '~/helpers/types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
@@ -23,9 +23,9 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   onChange: (...args) => sbHandleEvent('change', args),
-} satisfies Partial<ICheckboxOwnProps>;
+} satisfies Partial<ICheckboxProps>;
 
-const states: Array<IComponentPresentation<ICheckboxOwnProps>> = [
+const states: Array<IComponentPresentation<ICheckboxProps>> = [
   { legend: 'Enabled' },
   { legend: 'Hovered', props: { visualState: { hovered: true } } },
   { legend: 'Focused', props: { visualState: { focused: true } } },
@@ -41,7 +41,7 @@ export const Uncontrolled: IStory = {
       props={props}
       cols={[
         {},
-        { props: { defaultValue: true } },
+        { props: { defaultChecked: true } },
         { props: { defaultIndeterminate: true } },
       ]}
     />
@@ -49,7 +49,7 @@ export const Uncontrolled: IStory = {
   args: defaultArgs,
 };
 
-const ControlledCheckbox: React.FC<IOmit<ICheckboxOwnProps, 'checked'>> = (
+const ControlledCheckbox: React.FC<IOmit<ICheckboxProps, 'checked'>> = (
   props,
 ) => {
   const [checked, setChecked] = useState(props.defaultChecked ?? false);
@@ -98,7 +98,7 @@ export const Basic: IStory = {
       cols={states}
       rows={[
         { legend: 'Unchecked' },
-        { legend: 'Checked', props: { defaultValue: true } },
+        { legend: 'Checked', props: { defaultChecked: true } },
         { legend: 'Indeterminate', props: { indeterminate: true } },
       ]}
     />
