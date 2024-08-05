@@ -1,5 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
+export type IDialogStylesKey = keyof typeof dialogStyles;
 export const dialogStyles = stylex.create({
   dialogContent: {
     maxWidth: 'min(560px, calc(100% - 48px))',

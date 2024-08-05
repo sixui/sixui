@@ -1,13 +1,13 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 
 import type { IDeterminateCircularProgressIndicatorProps } from './DeterminateCircularProgressIndicator.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { useStyles } from '~/hooks/useStyles';
 import {
   circularProgressIndicatorStyles,
   type ICircularProgressIndicatorStylesKey,
 } from '../CircularProgressIndicator';
+import { Base } from '../Base';
 import { circularProgressIndicatorTheme } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
 import {
   determinateCircularProgressIndicatorStyles,
@@ -17,95 +17,99 @@ import {
 // https://github.com/material-components/material-web/blob/main/progress/internal/progress.ts
 // https://github.com/material-components/material-web/blob/main/progress/internal/circulardeterminate-progress.ts
 
-export const DeterminateCircularProgressIndicator = forwardRef<
-  HTMLDivElement,
+export const DeterminateCircularProgressIndicator = createPolymorphicComponent<
+  'div',
   IDeterminateCircularProgressIndicatorProps
->(function DeterminateCircularProgressIndicator(props, forwardedRef) {
-  const {
-    styles,
-    sx,
-    value,
-    withLabel,
-    min = 0,
-    max = 1,
-    zeroBased,
-    labelFormatter,
-    size = 'md',
-    disabled,
-    children,
-    ...other
-  } = props;
+>(
+  forwardRef<HTMLDivElement, IDeterminateCircularProgressIndicatorProps>(
+    function DeterminateCircularProgressIndicator(props, forwardedRef) {
+      const {
+        styles,
+        sx,
+        value,
+        withLabel,
+        min = 0,
+        max = 1,
+        zeroBased,
+        labelFormatter,
+        size = 'md',
+        disabled,
+        children,
+        ...other
+      } = props;
 
-  const componentTheme = useComponentTheme('CircularProgressIndicator');
-  const stylesCombinator = useMemo(
-    () =>
-      stylesCombinatorFactory<
+      const { combineStyles, getStyles, globalStyles } = useStyles<
         | ICircularProgressIndicatorStylesKey
         | IDeterminateCircularProgressIndicatorStylesKey
-      >(
-        circularProgressIndicatorStyles,
-        determinateCircularProgressIndicatorStyles,
-        styles,
-      ),
-    [styles],
-  );
-  const sxf = useMemo(
-    () => stylePropsFactory(stylesCombinator),
-    [stylesCombinator],
-  );
+      >({
+        name: 'CircularProgressIndicator',
+        styles: [
+          circularProgressIndicatorStyles,
+          determinateCircularProgressIndicatorStyles,
+          styles,
+        ],
+      });
 
-  const value0 = zeroBased ? 0 : min;
-  const pct = Math.max(Math.min((value - value0) / (max - value0), 1), 0);
-  const dashOffset = (1 - pct) * 100;
+      const value0 = zeroBased ? 0 : min;
+      const pct = Math.max(Math.min((value - value0) / (max - value0), 1), 0);
+      const dashOffset = (1 - pct) * 100;
 
-  return (
-    <div
-      {...other}
-      {...sxf(
-        circularProgressIndicatorTheme,
-        componentTheme.overridenStyles,
-        'host',
-        `host$${size}`,
-        sx,
-      )}
-      ref={forwardedRef}
-    >
-      <div
-        {...sxf('layer', 'progress', `progress$${size}`)}
-        role='progressbar'
-        aria-label={props['aria-label'] ?? undefined}
-        aria-valuemin={min}
-        aria-valuemax={max}
-        aria-valuenow={value}
-      >
-        {/* note, dash-array/offset are relative to Setting `pathLength` but Chrome seems to render this inaccurately and using a large viewbox
+      return (
+        <Base
+          {...other}
+          sx={[
+            circularProgressIndicatorTheme,
+            globalStyles,
+            combineStyles('host', `host$${size}`),
+            sx,
+          ]}
+          ref={forwardedRef}
+        >
+          <div
+            {...getStyles('layer', 'progress', `progress$${size}`)}
+            role='progressbar'
+            aria-label={props['aria-label'] ?? undefined}
+            aria-valuemin={min}
+            aria-valuemax={max}
+            aria-valuenow={value}
+          >
+            {/* note, dash-array/offset are relative to Setting `pathLength` but Chrome seems to render this inaccurately and using a large viewbox
         helps. */}
-        <svg viewBox='0 0 4800 4800' {...sxf('layer', 'svg')}>
-          <circle
-            {...sxf('layer', 'svgCircle', `svgCircle$${size}`, 'track')}
-            pathLength='100'
-          />
-          <circle
-            {...sxf(
-              'layer',
-              'svgCircle',
-              `svgCircle$${size}`,
-              'activeTrack',
-              disabled && 'activeTrack$disabled',
-            )}
-            pathLength='100'
-            strokeDashoffset={dashOffset}
-          />
-        </svg>
-        {(withLabel || children) && size === 'lg' ? (
-          <div {...sxf('layer', 'label', disabled && 'label$disabled')}>
-            {children ??
-              (labelFormatter
-                ? labelFormatter(value)
-                : `${Math.round(pct * 100)}%`)}
+            <svg viewBox='0 0 4800 4800' {...getStyles('layer', 'svg')}>
+              <circle
+                {...getStyles(
+                  'layer',
+                  'svgCircle',
+                  `svgCircle$${size}`,
+                  'track',
+                )}
+                pathLength='100'
+              />
+              <circle
+                {...getStyles(
+                  'layer',
+                  'svgCircle',
+                  `svgCircle$${size}`,
+                  'activeTrack',
+                  disabled && 'activeTrack$disabled',
+                )}
+                pathLength='100'
+                strokeDashoffset={dashOffset}
+              />
+            </svg>
+            {(withLabel || children) && size === 'lg' ? (
+              <div
+                {...getStyles('layer', 'label', disabled && 'label$disabled')}
+              >
+                {children ??
+                  (labelFormatter
+                    ? labelFormatter(value)
+                    : `${Math.round(pct * 100)}%`)}
+              </div>
+            ) : null}
           </div>
-        ) : null}
-      </div>
-    </div>
-  );
-});
+        </Base>
+      );
+    },
+  ),
+);

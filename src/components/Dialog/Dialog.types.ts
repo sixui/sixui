@@ -1,19 +1,13 @@
 import type { OpenChangeReason, ReferenceType } from '@floating-ui/react';
 
+import type { IOmit, IZeroOrMore, ICompiledStyles } from '~/helpers/types';
+import type { IExtendedHtmlFloatingProps } from '~/helpers/extendFloatingProps';
+import type { IBaseProps } from '../Base';
 import type {
-  IContainerProps,
-  IOmit,
-  IZeroOrMore,
-  ICompiledStyles,
-} from '~/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
-import type {
-  IDialogContentOwnProps,
+  IDialogContentProps,
   IDialogContentStylesKey,
 } from '../DialogContent';
-import type { IExtendedHtmlFloatingProps } from '~/helpers/extendFloatingProps';
-
-export const DIALOG_DEFAULT_TAG = 'div';
+import type { IDialogStylesKey } from './Dialog.styles';
 
 export type IDialogTriggerRenderProps = {
   /**
@@ -38,8 +32,8 @@ export type IDialogTriggerRenderProps = {
   ) => IExtendedHtmlFloatingProps;
 };
 
-export type IDialogOwnProps = IContainerProps &
-  IOmit<IDialogContentOwnProps, 'onClose' | 'styles'> &
+export type IDialogProps = IBaseProps<IDialogStylesKey> &
+  IOmit<IDialogContentProps, 'onClose' | 'styles'> &
   Pick<React.AriaAttributes, 'aria-label'> & {
     innerStyles?: {
       dialogContent?: IZeroOrMore<ICompiledStyles<IDialogContentStylesKey>>;
@@ -79,7 +73,3 @@ export type IDialogOwnProps = IContainerProps &
 
     nonDismissable?: boolean;
   };
-
-export type IDialogProps<
-  TRoot extends React.ElementType = typeof DIALOG_DEFAULT_TAG,
-> = IPolymorphicComponentPropsWithRef<TRoot, IDialogOwnProps>;
