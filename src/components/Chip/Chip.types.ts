@@ -1,11 +1,10 @@
+import type { IBaseProps } from '../Base';
 import type {
-  IContainerProps,
   IZeroOrMore,
   ICompiledStyles,
   IAny,
   IMaybeAsync,
 } from '~/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
 import type { IStateLayerStylesKey } from '../StateLayer';
 import type { IFocusRingStylesKey } from '../FocusRing';
 import type { IElevationStylesKey } from '../Elevation';
@@ -15,9 +14,7 @@ import type { IChipStylesKey } from './Chip.styles';
 
 export type IChipVariant = 'assist' | 'filter' | 'input' | 'suggestion';
 
-export const CHIP_DEFAULT_TAG = 'div';
-
-export type IChipOwnProps = IContainerProps<IChipStylesKey> & {
+export type IChipProps = IBaseProps<IChipStylesKey> & {
   innerStyles?: {
     stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStylesKey>>;
     focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStylesKey>>;
@@ -51,7 +48,3 @@ export type IChipOwnProps = IContainerProps<IChipStylesKey> & {
    */
   softDisabled?: boolean;
 };
-
-export type IChipProps<
-  TRoot extends React.ElementType = typeof CHIP_DEFAULT_TAG,
-> = IPolymorphicComponentPropsWithRef<TRoot, IChipOwnProps>;

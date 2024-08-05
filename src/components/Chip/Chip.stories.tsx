@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarDays, faImage } from '@fortawesome/free-solid-svg-icons';
 
 import type { IChipProps } from './Chip.types';
-import { IAny } from '~/helpers/types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   ComponentShowcase,
@@ -29,7 +28,7 @@ const defaultArgs = {
   label: 'Chip',
 } satisfies Partial<IChipProps>;
 
-const states: Array<IComponentPresentation<IChipProps<IAny>>> = [
+const states: Array<IComponentPresentation<IChipProps>> = [
   {
     legend: 'Enabled',
     props: {

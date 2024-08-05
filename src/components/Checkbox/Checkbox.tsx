@@ -3,13 +3,14 @@ import { asArray } from '@olivierpascal/helpers';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { ICheckboxProps } from './Checkbox.types';
-import { useVisualState } from '../VisualState';
 import { usePrevious } from '~/hooks/usePrevious';
 import { useControlledValue } from '~/hooks/useControlledValue';
+import { executeLazyPromise } from '~/helpers/executeLazyPromise';
+import { useStyles } from '~/hooks/useStyles';
+import { useVisualState } from '../VisualState';
 import { StateLayer } from '../StateLayer';
 import { FocusRing } from '../FocusRing';
 import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
-import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { LabeledContext } from '../Labeled';
 import {
   checkboxFocusRingStyles,
@@ -17,7 +18,6 @@ import {
   checkboxStyles,
 } from './Checkbox.styles';
 import { checkboxTheme } from './Checkbox.stylex';
-import { useStyles } from '~/hooks/useStyles';
 import { Base } from '../Base';
 
 // https://github.com/material-components/material-web/blob/main/checkbox/internal/checkbox.ts
@@ -113,15 +113,17 @@ export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
       );
 
     return (
-      <div
-        {...getStyles(
+      <Base
+        sx={[
           checkboxTheme,
           globalStyles,
-          'container',
-          selected && 'container$selected',
-          visuallyDisabled && 'container$disabled',
+          combineStyles(
+            'container',
+            selected && 'container$selected',
+            visuallyDisabled && 'container$disabled',
+          ),
           sx,
-        )}
+        ]}
       >
         <Base
           component='input'
@@ -236,7 +238,7 @@ export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
             </svg>
           </>
         )}
-      </div>
+      </Base>
     );
   },
 );
