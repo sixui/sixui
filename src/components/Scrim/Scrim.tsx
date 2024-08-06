@@ -12,7 +12,6 @@ export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
       floatingContext,
       styles,
       sx,
-      contained,
       variant = 'darken',
       children,
       ...other
@@ -43,7 +42,6 @@ export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
           sx,
         )}
         ref={forwardedRef}
-        style={contained ? { position: 'absolute' } : undefined}
       >
         {children}
       </FloatingOverlay>

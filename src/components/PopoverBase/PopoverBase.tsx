@@ -212,12 +212,9 @@ export const PopoverBase = <TForwardedProps extends object = object>(
       {transitionStatus.isMounted ? (
         <Portal>
           {scrim ? (
-            <Scrim floatingContext={floating.context} lockScroll>
-              {renderPopover()}
-            </Scrim>
-          ) : (
-            renderPopover()
-          )}
+            <Scrim floatingContext={floating.context} lockScroll />
+          ) : null}
+          {renderPopover()}
         </Portal>
       ) : null}
     </PopoverBaseContextProvider>

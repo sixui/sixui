@@ -8,7 +8,6 @@ export type IScrimVariant = 'darken' | 'lighten';
 export type IScrimProps = IBaseProps<IScrimStylesKey> &
   FloatingOverlayProps & {
     floatingContext: FloatingContext;
-    contained?: boolean;
     variant?: IScrimVariant;
-    children: React.ReactNode;
+    children?: React.ReactNode;
   };

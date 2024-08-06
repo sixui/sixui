@@ -2,6 +2,7 @@ import stylex from '@stylexjs/stylex';
 
 import { motionTokens } from '~/themes/base/motion.stylex';
 import { focusRingTokens } from './FocusRing.stylex';
+import { zIndexTokens } from '~/themes/base/zIndex.stylex';
 
 // https://github.com/material-components/material-web/blob/main/focus/internal/_focus-ring.scss
 
@@ -33,7 +34,7 @@ export const focusRingStyles = stylex.create({
     display: 'none',
     pointerEvents: 'none',
     position: 'absolute',
-    zIndex: 999,
+    zIndex: zIndexTokens.max,
   },
   host$visible: {
     display: 'flex',

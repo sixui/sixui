@@ -25,13 +25,6 @@ export const scrimPlaygroundSections: IPlaygroundSections<IScrimPlaygroundDemoPr
             required: true,
           },
         },
-        {
-          label: 'Contained',
-          props: {
-            contained: true,
-            lockScroll: false,
-          },
-        },
       ],
     },
   };

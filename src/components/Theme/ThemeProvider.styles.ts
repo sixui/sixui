@@ -239,13 +239,10 @@ export const themeProviderStyles = stylex.create({
     [stateTokens.outlineOpacity$disabled]: state.outlineOpacity$disabled,
   }),
   dynamicZIndex: (zIndex: IZIndexTheme) => ({
-    [zIndexTokens.mobileStepper]: zIndex.mobileStepper,
-    [zIndexTokens.fab]: zIndex.fab,
-    [zIndexTokens.speedDial]: zIndex.speedDial,
-    [zIndexTokens.appBar]: zIndex.appBar,
-    [zIndexTokens.drawer]: zIndex.drawer,
+    [zIndexTokens.app]: zIndex.app,
     [zIndexTokens.modal]: zIndex.modal,
-    [zIndexTokens.snackbar]: zIndex.snackbar,
-    [zIndexTokens.tooltip]: zIndex.tooltip,
+    [zIndexTokens.popover]: zIndex.popover,
+    [zIndexTokens.overlay]: zIndex.overlay,
+    [zIndexTokens.max]: zIndex.max,
   }),
 });

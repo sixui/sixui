@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 import {
   FloatingFocusManager,
@@ -18,14 +17,6 @@ import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircular
 import { Scrim } from './Scrim';
 
 type IScrimDemoProps = IOmit<IScrimProps, 'floatingContext'>;
-
-const styles = stylex.create({
-  host$contained: {
-    position: 'relative',
-    display: 'inline-block',
-    padding: 32,
-  },
-});
 
 const ScrimDemo: React.FC<IScrimDemoProps> = (props) => {
   const { children, ...other } = props;
@@ -51,16 +42,15 @@ const ScrimDemo: React.FC<IScrimDemoProps> = (props) => {
       >
         Show scrim
       </Button>
-      <Scrim floatingContext={floating.context} {...other}>
-        <FloatingFocusManager context={floating.context}>
-          <div
-            {...interactions.getFloatingProps()}
-            ref={floating.refs.setFloating}
-          >
-            {children}
-          </div>
-        </FloatingFocusManager>
-      </Scrim>
+      <Scrim floatingContext={floating.context} {...other} />
+      <FloatingFocusManager context={floating.context}>
+        <div
+          {...interactions.getFloatingProps()}
+          ref={floating.refs.setFloating}
+        >
+          {children}
+        </div>
+      </FloatingFocusManager>
     </>
   );
 };
@@ -92,18 +82,6 @@ export const Variants: IStory = {
 export const Basic: IStory = {
   render: (props) => <ScrimDemo {...props} />,
   args: defaultArgs,
-};
-
-export const Contained: IStory = {
-  render: (props) => (
-    <div {...stylex.props(styles.host$contained)}>
-      <ScrimDemo {...props} />
-    </div>
-  ),
-  args: {
-    ...defaultArgs,
-    contained: true,
-  },
 };
 
 export default meta;

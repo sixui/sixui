@@ -39,7 +39,7 @@ export const Dialog = createPolymorphicComponent<'div', IDialogProps>(
         ...other
       } = props;
 
-      const { combineStyles, globalStyles } = useStyles({
+      const { combineStyles, getStyles, globalStyles } = useStyles({
         name: 'Dialog',
         styles: [dialogStyles, styles],
       });
@@ -83,7 +83,8 @@ export const Dialog = createPolymorphicComponent<'div', IDialogProps>(
 
           {transitionStatus.isMounted ? (
             <Portal>
-              <Scrim floatingContext={floating.context} lockScroll>
+              <Scrim floatingContext={floating.context} lockScroll />
+              <div {...getStyles('host')}>
                 <FloatingFocusManager context={floating.context}>
                   <FloatingTransition
                     status={transitionStatus.status}
@@ -112,7 +113,7 @@ export const Dialog = createPolymorphicComponent<'div', IDialogProps>(
                     />
                   </FloatingTransition>
                 </FloatingFocusManager>
-              </Scrim>
+              </div>
             </Portal>
           ) : null}
         </>

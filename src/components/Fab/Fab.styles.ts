@@ -10,7 +10,7 @@ import { fabTokens } from './Fab.stylex';
 export type IFabStylesKey = keyof typeof fabStyles;
 export const fabStyles = stylex.create({
   host: {
-    zIndex: zIndexTokens.fab,
+    zIndex: zIndexTokens.overlay,
 
     [buttonTokens.leadingSpace]: '0',
     [buttonTokens.trailingSpace]: '0',
