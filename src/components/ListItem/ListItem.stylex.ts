@@ -1,8 +1,12 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
+
+const MIN_DENSITY_SCALE = -6;
+const MAX_DENSITY_SCALE = 0;
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-list-item.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-list.scss
@@ -23,10 +27,10 @@ const vars = {
   containerColor: 'unset',
   containerOpacity: '1',
   containerShape: shapeTokens.corner$none,
-  containerMinHeight$sm: '48px',
-  containerMinHeight$md: '56px',
-  containerMinHeight$lg: '72px',
-  containerMinHeight$xl: '80px',
+  containerMinHeight$sm: `calc(48px + ${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE}))`,
+  containerMinHeight$md: `calc(56px + ${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE}))`,
+  containerMinHeight$lg: `calc(72px + ${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE}))`,
+  containerMinHeight$xl: `calc(80px + ${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE}))`,
   // &:disabled
   containerColor$disabled: 'transparent',
   containerOpacity$disabled: stateTokens.containerOpacity$disabled,
@@ -130,11 +134,11 @@ const vars = {
   stateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
 
   // image
-  imageWidth: '56px',
-  imageHeight: '56px',
+  imageWidth: `calc(56px + ${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE}))`,
+  imageHeight: `calc(56px + ${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE}))`,
 
   // video
-  videoHeight: '64px',
+  videoHeight: `calc(64px + ${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE}))`,
 };
 
 export const listItemTokens = stylex.defineVars(vars);

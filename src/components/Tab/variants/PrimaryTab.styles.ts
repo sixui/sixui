@@ -2,6 +2,10 @@ import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { tabTokens } from '../Tab.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
+
+const MIN_DENSITY_SCALE = -4;
+const MAX_DENSITY_SCALE = 0;
 
 // https://github.com/material-components/material-web/blob/main/tabs/internal/_primary-tab.scss
 
@@ -17,7 +21,7 @@ export const primaryTabStyles = stylex.create({
     [tabTokens.activeStateLayerOpacity$pressed]:
       tabTokens.stateLayerOpacity$pressed,
 
-    [tabTokens.containerHeight$withIconAndLabelText]: '64px',
+    [tabTokens.containerHeight$withIconAndLabelText]: `calc(64px + ${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE}))`,
 
     [tabTokens.activeIconColor]: colorSchemeTokens.primary,
     [tabTokens.activeIconColor$focus]: colorSchemeTokens.primary,

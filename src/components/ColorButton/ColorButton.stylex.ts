@@ -7,8 +7,6 @@ import { stateTokens } from '~/themes/base/state.stylex';
 
 const vars = {
   // container
-  containerMinWidth: '40px',
-  containerHeight: '40px',
   containerColor: colorSchemeTokens.surfaceContainerHighest,
   containerShape: shapeTokens.corner$xs,
   containerShape$hover: shapeTokens.corner$xs,

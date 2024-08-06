@@ -386,13 +386,13 @@ export const Chip = createPolymorphicComponent<'div', IChipProps>(
               ) : null}
             </div>
 
-            <span {...getStyles('touchTarget')}></span>
+            <span {...getStyles('touchTarget')} />
           </Base>
 
           {isDeletable ? (
             <ButtonBase
               ref={trailingActionRef}
-              sx={[...combineStyles('action', 'action$trailing')]}
+              sx={combineStyles('action', 'action$trailing')}
               innerStyles={{
                 focusRing: [
                   chipTrailingActionFocusRingStyles,

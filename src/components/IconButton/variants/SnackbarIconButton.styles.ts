@@ -5,8 +5,7 @@ import { iconButtonTokens } from '../IconButton.stylex';
 
 export const snackbarIconButtonStyles = stylex.create({
   host: {
-    [iconButtonTokens.containerWidth]: '32px',
-    [iconButtonTokens.containerHeight]: '32px',
+    [iconButtonTokens.containerSize]: '32px',
     [iconButtonTokens.containerColor]: 'transparent',
     [iconButtonTokens.containerColor$disabled]: 'transparent',
 

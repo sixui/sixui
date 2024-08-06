@@ -10,7 +10,7 @@ import { iconButtonTokens } from './IconButton.stylex';
 export type IIconButtonStylesKey = keyof typeof iconButtonStyles;
 export const iconButtonStyles = stylex.create({
   host: {
-    width: iconButtonTokens.containerWidth,
+    width: iconButtonTokens.containerSize,
     flexShrink: 0,
 
     [buttonTokens.leadingSpace]: '0',
@@ -27,7 +27,7 @@ export const iconButtonStyles = stylex.create({
     [buttonTokens.containerElevation$hover]: elevationTokens.boxShadow$level0,
     [buttonTokens.containerElevation$pressed]: elevationTokens.boxShadow$level0,
 
-    [buttonTokens.containerHeight]: iconButtonTokens.containerHeight,
+    [buttonTokens.containerHeight]: iconButtonTokens.containerSize,
     [buttonTokens.containerShape]: iconButtonTokens.containerShape,
     [buttonTokens.containerOpacity$disabled]:
       iconButtonTokens.containerOpacity$disabled,

@@ -118,7 +118,6 @@ export const useVisualState = (
           ),
           ...(visualState?.strategy === 'override' ? visualState : undefined),
         };
-
   if (newVisualState.dragged) {
     return {
       visualState: {

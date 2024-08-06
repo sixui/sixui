@@ -5,6 +5,10 @@ import { shapeTokens } from '~/themes/base/shape.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
+
+const MIN_DENSITY_SCALE = -2;
+const MAX_DENSITY_SCALE = 3;
 
 const vars = {
   // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-assist-chip.scss#L93
@@ -22,7 +26,7 @@ const vars = {
   // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-suggestion-chip.scss
 
   // container
-  containerHeight: '32px',
+  containerHeight: `calc(32px + ${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE}))`,
   containerShape: shapeTokens.corner$sm,
 
   // flatContainer

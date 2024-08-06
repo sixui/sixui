@@ -13,8 +13,6 @@ export const snackbarButtonStyles = stylex.create({
     [buttonTokens.trailingIconLeadingSpace]: '16px',
     [buttonTokens.trailingIconTrailingSpace]: '12px',
 
-    [buttonTokens.touchTargetSpace]: '12px',
-
     [buttonTokens.containerHeight]: '32px',
     [buttonTokens.containerColor]: 'transparent',
     [buttonTokens.containerShape]: shapeTokens.corner$xs,

@@ -3,6 +3,10 @@ import stylex from '@stylexjs/stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
+
+const MIN_DENSITY_SCALE = -2;
+const MAX_DENSITY_SCALE = 0;
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-filled-text-field.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-filled-text-field.scss
@@ -13,14 +17,14 @@ const vars = {
   leadingSpace: '16px',
   trailingSpace: '16px',
   topSpace: '12px',
-  topSpace$withLabel: '8px',
+  topSpace$withLabel: '6px',
   bottomSpace: '12px',
-  bottomSpace$withLabel: '8px',
+  bottomSpace$withLabel: '6px',
 
   // container
   containerShape: 'unset',
   containerColor: 'inherit',
-  containerMinHeight: '56px',
+  containerMinHeight: `calc(56px + ${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE}))`,
   // &:disabled
   containerColor$disabled: 'inherit',
   containerOpacity$disabled: 'unset',
@@ -29,6 +33,9 @@ const vars = {
   // &:hover
   stateLayerColor$hover: 'inherit',
   stateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,
+  // &:pressed
+  stateLayerColor$pressed: 'inherit',
+  stateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
   // &:error
   stateLayerColor$error$hover: 'inherit',
   stateLayerOpacity$error$hover: 'unset',

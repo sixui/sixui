@@ -4,6 +4,10 @@ import { shapeTokens } from '~/themes/base/shape.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
+
+const MIN_DENSITY_SCALE = -3;
+const MAX_DENSITY_SCALE = 2;
 
 const vars = {
   gap: '8px',
@@ -29,7 +33,7 @@ const vars = {
   // container
   containerColor: 'unset',
   containerElevation: 'unset',
-  containerHeight: '40px',
+  containerHeight: `calc(40px + ${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE}))`,
   containerShape: shapeTokens.corner$full,
   // &:disabled
   containerColor$disabled: 'unset',
@@ -49,9 +53,6 @@ const vars = {
   // &:pressed
   stateLayerColor$pressed: 'unset',
   stateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
-
-  // touch
-  touchTargetSpace: '8px',
 
   // labelText
   labelTextColor: 'inherit',

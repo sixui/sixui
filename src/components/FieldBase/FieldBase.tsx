@@ -1,4 +1,11 @@
-import { forwardRef, useCallback, useEffect, useRef, useState } from 'react';
+import {
+  forwardRef,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { IFieldBaseProps } from './FieldBase.types';
@@ -12,6 +19,7 @@ import { useStyles } from '~/hooks/useStyles';
 import { Base } from '../Base';
 import { useVisualState } from '../VisualState';
 import { CircularProgressIndicator } from '../CircularProgressIndicator';
+import { LabeledContext } from '../Labeled';
 import { fieldBaseVariantStyles } from './variants';
 import { fieldBaseStyles, type IFieldBaseStylesKey } from './FieldBase.styles';
 import { fieldBaseTheme } from './FieldBase.stylex';
@@ -45,14 +53,18 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
         count = -1,
         maxLength = -1,
         textArea,
-        loading,
+        loading: loadingProp,
         forwardProps,
         tabIndex,
         containerRef,
         ...other
       } = props;
 
-      const visuallyDisabled = !!other.disabled || readOnly;
+      const labeledContext = useContext(LabeledContext);
+      const loading = loadingProp || labeledContext?.loading;
+
+      const visuallyDisabled =
+        other.disabled || labeledContext?.disabled || readOnly;
       const { visualState, setRef: setVisualStateRef } = useVisualState(
         visualStateProp,
         {

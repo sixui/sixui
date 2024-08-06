@@ -1,8 +1,12 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
+
+const MIN_DENSITY_SCALE = -1;
+const MAX_DENSITY_SCALE = 0;
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-switch.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-switch.scss
@@ -11,7 +15,7 @@ const vars = {
   // track
   trackShape: shapeTokens.corner$full,
   trackWidth: '52px',
-  trackHeight: '32px',
+  trackHeight: `calc(32px + ${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE}))`,
   trackColor: colorSchemeTokens.surfaceContainerHighest,
   // &:disabled
   trackColor$disabled: colorSchemeTokens.surfaceContainerHighest,
@@ -51,8 +55,8 @@ const vars = {
   handleColor: colorSchemeTokens.outline,
   handleWidth: '16px',
   handleHeight: '16px',
-  handleWidth$withIcon: '24px',
-  handleHeight$withIcon: '24px',
+  handleWidth$withIcon: `calc(24px + ${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE}))`,
+  handleHeight$withIcon: `calc(24px + ${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE}))`,
   // &:disabled
   handleColor$disabled: colorSchemeTokens.onSurfaceVariant,
   handleOpacity$disabled: stateTokens.opacity$disabled,
@@ -62,13 +66,13 @@ const vars = {
   handleColor$focus: colorSchemeTokens.onSurfaceVariant,
   // &:pressed
   handleColor$pressed: colorSchemeTokens.onSurfaceVariant,
-  handleWidth$pressed: '28px',
-  handleHeight$pressed: '28px',
+  handleWidth$pressed: `calc(28px + ${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE}))`,
+  handleHeight$pressed: `calc(28px + ${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE}))`,
 
   // selectedHandle
   selectedHandleColor: colorSchemeTokens.onPrimary,
-  selectedHandleWidth: '24px',
-  selectedHandleHeight: '24px',
+  selectedHandleWidth: `calc(24px + ${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE}))`,
+  selectedHandleHeight: `calc(24px + ${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE}))`,
   // &:disabled
   selectedHandleColor$disabled: colorSchemeTokens.surface,
   selectedHandleOpacity$disabled: '1',
@@ -107,7 +111,7 @@ const vars = {
 
   // stateLayer
   stateLayerShape: shapeTokens.corner$full,
-  stateLayerSize: '40px',
+  stateLayerSize: densityTokens.minTargetSize,
   // &:hover
   stateLayerColor$hover: colorSchemeTokens.onSurface,
   stateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,

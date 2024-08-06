@@ -44,7 +44,7 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
         <div
           {...getStyles(
             'rippleSurface',
-            visualState?.hovered && 'rippleSurface$hover',
+            (visualState?.hovered || pressed) && 'rippleSurface$hover',
             pressed && 'rippleSurface$pressed',
             !pressed && visualState?.pressed && 'rippleSurface$pressedStatic',
             visualState?.dragged && 'rippleSurface$dragged',

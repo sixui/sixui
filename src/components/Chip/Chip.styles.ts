@@ -7,6 +7,7 @@ import { circularProgressIndicatorTokens } from '../CircularProgressIndicator/Ci
 import { motionTokens } from '~/themes/base/motion.stylex';
 import { chipTokens } from './Chip.stylex';
 import { chipStateTokens } from './Chip.state.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
 
 // https://github.com/material-components/material-web/blob/main/chips/internal/_shared.scss
 // https://github.com/material-components/material-web/blob/main/chips/internal/_elevated.scss
@@ -199,11 +200,13 @@ export const chipStyles = stylex.create({
   touchTarget: {
     // Place content above background elements
     zIndex: 1,
-    height: 48,
-    inset: '50% 0 0',
+
     position: 'absolute',
-    transform: 'translateY(-50%)',
-    width: '100%',
+    top: '50%',
+    left: '50%',
+    width: `max(100%, ${densityTokens.minTargetSize})`,
+    height: `max(100%, ${densityTokens.minTargetSize})`,
+    transform: 'translate(-50%, -50%)',
   },
   outline: {
     borderWidth: chipTokens.outlineWidth,

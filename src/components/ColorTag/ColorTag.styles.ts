@@ -11,7 +11,6 @@ export const colorTagStyles = stylex.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 8,
     borderStyle: 'solid',
     backgroundColor: colorTagTokens.containerColor,
     borderWidth: colorTagTokens.containerOutlineWidth,
@@ -37,6 +36,7 @@ export const colorTagStyles = stylex.create({
     blockSize: colorTagTokens.iconSize,
   },
   label: {
+    padding: 8,
     position: 'relative',
     color: colorTagTokens.labelTextColor,
     fontFamily: colorTagTokens.labelTextFont,

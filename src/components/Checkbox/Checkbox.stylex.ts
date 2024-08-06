@@ -3,6 +3,7 @@ import stylex from '@stylexjs/stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-checkbox.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-checkbox.scss
@@ -92,7 +93,7 @@ const vars = {
 
   // stateLayer
   stateLayerShape: shapeTokens.corner$full,
-  stateLayerSize: '40px',
+  stateLayerSize: densityTokens.minTargetSize,
   // &:hover
   stateLayerColor$hover: colorSchemeTokens.onSurface,
   stateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,

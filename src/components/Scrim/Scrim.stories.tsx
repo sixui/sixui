@@ -42,15 +42,16 @@ const ScrimDemo: React.FC<IScrimDemoProps> = (props) => {
       >
         Show scrim
       </Button>
-      <Scrim floatingContext={floating.context} {...other} />
-      <FloatingFocusManager context={floating.context}>
-        <div
-          {...interactions.getFloatingProps()}
-          ref={floating.refs.setFloating}
-        >
-          {children}
-        </div>
-      </FloatingFocusManager>
+      <Scrim floatingContext={floating.context} {...other}>
+        <FloatingFocusManager context={floating.context}>
+          <div
+            {...interactions.getFloatingProps()}
+            ref={floating.refs.setFloating}
+          >
+            {children}
+          </div>
+        </FloatingFocusManager>
+      </Scrim>
     </>
   );
 };

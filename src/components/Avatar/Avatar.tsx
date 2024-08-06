@@ -65,10 +65,10 @@ export const Avatar = createPolymorphicComponent<'div', IAvatarProps>(
           sx={[
             avatarTheme,
             globalStyles,
+            combineStyles('host'),
             randomColor
               ? avatarDynamicStyles.backgroundColor(randomColor)
               : undefined,
-            combineStyles('host'),
             sx,
           ]}
           ref={forwardedRef}

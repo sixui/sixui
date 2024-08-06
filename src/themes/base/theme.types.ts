@@ -6,6 +6,7 @@ import type { ITypeFaceTheme } from './typeFace.types';
 import type { ITypeScaleTheme } from './typeScale.types';
 import type { IStateTheme } from './state.types';
 import type { IZIndexTheme } from './zIndex.types';
+import type { IDensityTheme } from './density.types';
 
 export type IThemeSchemes = Record<IColorSchemeVariant, IColorScheme>;
 
@@ -23,4 +24,5 @@ export type ITheme = {
   typeScale?: ITypeScaleTheme;
   state?: IStateTheme;
   zIndex?: IZIndexTheme;
+  density?: IDensityTheme;
 };

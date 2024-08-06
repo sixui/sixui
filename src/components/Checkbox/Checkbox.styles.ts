@@ -145,6 +145,7 @@ export const checkboxStyles = stylex.create({
     transform: 'scale(1)',
   },
   icon: {
+    position: 'relative',
     // The icon is created with two <rect> marks for animation:
     // 1. Short end
     //   - the smaller leading part of the checkmark

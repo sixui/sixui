@@ -82,14 +82,6 @@ export const buttonStyles = stylex.create({
     paddingInlineStart: buttonTokens.trailingIconLeadingSpace,
     paddingInlineEnd: buttonTokens.trailingIconTrailingSpace,
   },
-  touchTarget: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    width: `calc(100% + ${buttonTokens.touchTargetSpace})`,
-    height: `calc(100% + ${buttonTokens.touchTargetSpace})`,
-    transform: 'translate(-50%, -50%)',
-  },
   background: {
     backgroundColor: buttonTokens.containerColor,
   },

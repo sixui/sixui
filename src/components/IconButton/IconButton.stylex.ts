@@ -1,8 +1,12 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
+
+const MIN_DENSITY_SCALE = -3;
+const MAX_DENSITY_SCALE = 2;
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-icon-button.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-icon-button.scss
@@ -10,8 +14,7 @@ import { stateTokens } from '~/themes/base/state.stylex';
 const vars = {
   // container
   containerColor: 'unset',
-  containerWidth: '40px',
-  containerHeight: '40px',
+  containerSize: `calc(40px + ${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE}))`,
   containerShape: shapeTokens.corner$full,
   // &:disabled
   containerColor$disabled: 'unset',
