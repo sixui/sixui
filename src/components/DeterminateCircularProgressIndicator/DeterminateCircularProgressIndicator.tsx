@@ -32,7 +32,6 @@ export const DeterminateCircularProgressIndicator = createPolymorphicComponent<
         max = 1,
         zeroBased,
         labelFormatter,
-        size = 'md',
         disabled,
         children,
         ...other
@@ -60,13 +59,13 @@ export const DeterminateCircularProgressIndicator = createPolymorphicComponent<
           sx={[
             circularProgressIndicatorTheme,
             globalStyles,
-            combineStyles('host', `host$${size}`),
+            combineStyles('host'),
             sx,
           ]}
           ref={forwardedRef}
         >
           <div
-            {...getStyles('layer', 'progress', `progress$${size}`)}
+            {...getStyles('layer', 'progress')}
             role='progressbar'
             aria-label={props['aria-label'] ?? undefined}
             aria-valuemin={min}
@@ -77,19 +76,13 @@ export const DeterminateCircularProgressIndicator = createPolymorphicComponent<
         helps. */}
             <svg viewBox='0 0 4800 4800' {...getStyles('layer', 'svg')}>
               <circle
-                {...getStyles(
-                  'layer',
-                  'svgCircle',
-                  `svgCircle$${size}`,
-                  'track',
-                )}
+                {...getStyles('layer', 'svgCircle', 'track')}
                 pathLength='100'
               />
               <circle
                 {...getStyles(
                   'layer',
                   'svgCircle',
-                  `svgCircle$${size}`,
                   'activeTrack',
                   disabled && 'activeTrack$disabled',
                 )}
@@ -97,7 +90,7 @@ export const DeterminateCircularProgressIndicator = createPolymorphicComponent<
                 strokeDashoffset={dashOffset}
               />
             </svg>
-            {(withLabel || children) && size === 'lg' ? (
+            {withLabel || children ? (
               <div
                 {...getStyles('layer', 'label', disabled && 'label$disabled')}
               >

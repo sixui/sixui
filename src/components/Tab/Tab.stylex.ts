@@ -9,6 +9,7 @@ import { densityTokens } from '~/themes/base/density.stylex';
 
 const MIN_DENSITY_SCALE = -4;
 const MAX_DENSITY_SCALE = 0;
+const DENSITY_SCALE = `${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE})`;
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-primary-tab.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-primary-navigation-tab.scss
@@ -24,7 +25,7 @@ const vars = {
   // container
   containerColor: colorSchemeTokens.surface,
   containerElevation: elevationTokens.boxShadow$level0,
-  containerHeight: `calc(48px + ${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE}))`,
+  containerHeight: `calc(48px + ${DENSITY_SCALE})`,
   containerHeight$withIconAndLabelText: 'unset',
   containerShape: shapeTokens.corner$none,
   // &:disabled

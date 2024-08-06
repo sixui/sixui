@@ -4,25 +4,23 @@ import { shapeTokens } from '~/themes/base/shape.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { densityTokens } from '~/themes/base/density.stylex';
 
-const MIN_DENSITY_SCALE = -3;
-const MAX_DENSITY_SCALE = 2;
-
 const vars = {
-  gap: '8px',
+  gap: spacingTokens.padding$2,
 
   // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-elevated-button.scss#L84C19-L84C19
   // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-filled-button.scss#L84
   // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-filled-tonal-button.scss#L84
   // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-outlined-button.scss#L80
   // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-text-button.scss#L73
-  leadingSpace: '24px',
-  trailingSpace: '24px',
-  leadingIconLeadingSpace: '16px',
-  leadingIconTrailingSpace: '24px',
-  trailingIconLeadingSpace: '24px',
-  trailingIconTrailingSpace: '16px',
+  leadingSpace: spacingTokens.padding$6,
+  trailingSpace: spacingTokens.padding$6,
+  leadingIconLeadingSpace: spacingTokens.padding$4,
+  leadingIconTrailingSpace: spacingTokens.padding$6,
+  trailingIconLeadingSpace: spacingTokens.padding$6,
+  trailingIconTrailingSpace: spacingTokens.padding$4,
 
   // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-elevated-button.scss
   // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-filled-button.scss
@@ -33,7 +31,7 @@ const vars = {
   // container
   containerColor: 'unset',
   containerElevation: 'unset',
-  containerHeight: `calc(40px + ${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE}))`,
+  containerHeight: `calc(40px * ${densityTokens.scale})`,
   containerShape: shapeTokens.corner$full,
   // &:disabled
   containerColor$disabled: 'unset',
@@ -72,7 +70,7 @@ const vars = {
   labelTextOpacity$disabled: stateTokens.opacity$disabled,
 
   // icon
-  iconSize: '18px',
+  iconSize: `calc(18px * ${densityTokens.scale})`,
   iconColor: 'inherit',
   // &:focus
   iconColor$focus: 'inherit',

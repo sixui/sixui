@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { ICircularProgressIndicatorSize } from '../CircularProgressIndicator';
 import type { IIndeterminateCircularProgressIndicatorProps } from './IndeterminateCircularProgressIndicator.types';
-import { ComponentShowcase } from '../ComponentShowcase';
 import { IndeterminateCircularProgressIndicator } from './IndeterminateCircularProgressIndicator';
 
 // https://m3.material.io/components/progress-indicators/overview
@@ -18,16 +16,8 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs =
   {} satisfies Partial<IIndeterminateCircularProgressIndicatorProps>;
 
-export const Sizes: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={IndeterminateCircularProgressIndicator}
-      props={props}
-      cols={(['md', 'lg'] as Array<ICircularProgressIndicatorSize>).map(
-        (size) => ({ props: { size } }),
-      )}
-    />
-  ),
+export const Basic: IStory = {
+  render: (props) => <IndeterminateCircularProgressIndicator {...props} />,
   args: defaultArgs,
 };
 

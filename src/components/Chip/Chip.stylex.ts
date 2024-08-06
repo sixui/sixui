@@ -6,19 +6,17 @@ import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { densityTokens } from '~/themes/base/density.stylex';
-
-const MIN_DENSITY_SCALE = -2;
-const MAX_DENSITY_SCALE = 3;
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 
 const vars = {
   // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-assist-chip.scss#L93
   // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-filter-chip.scss#L135
   // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-input-chip.scss#L123
   // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-suggestion-chip.scss#L93
-  leadingSpace: '16px',
-  trailingSpace: '16px',
-  iconLabelSpace: '8px',
-  iconLeadingSpace: '8px',
+  leadingSpace: spacingTokens.padding$4,
+  trailingSpace: spacingTokens.padding$4,
+  iconLabelSpace: spacingTokens.padding$2,
+  iconLeadingSpace: spacingTokens.padding$2,
 
   // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-assist-chip.scss
   // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-filter-chip.scss
@@ -26,7 +24,7 @@ const vars = {
   // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-suggestion-chip.scss
 
   // container
-  containerHeight: `calc(32px + ${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE}))`,
+  containerHeight: `calc(32px * ${densityTokens.scale})`,
   containerShape: shapeTokens.corner$sm,
 
   // flatContainer
@@ -135,7 +133,7 @@ const vars = {
   selectedLabelTextColor$pressed: 'inherit',
 
   // icon
-  iconSize: '18px',
+  iconSize: `calc(18px * ${densityTokens.scale})`,
   iconColor: colorSchemeTokens.onSurfaceVariant,
   iconColor$interactive: colorSchemeTokens.primary,
   // &:disabled

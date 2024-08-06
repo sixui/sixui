@@ -7,6 +7,7 @@ import { densityTokens } from '~/themes/base/density.stylex';
 
 const MIN_DENSITY_SCALE = -2;
 const MAX_DENSITY_SCALE = 0;
+const DENSITY_SCALE = `${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE})`;
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-filled-text-field.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-filled-text-field.scss
@@ -24,7 +25,7 @@ const vars = {
   // container
   containerShape: 'unset',
   containerColor: 'inherit',
-  containerMinHeight: `calc(56px + ${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE}))`,
+  containerMinHeight: `calc(56px + ${DENSITY_SCALE})`,
   // &:disabled
   containerColor$disabled: 'inherit',
   containerOpacity$disabled: 'unset',

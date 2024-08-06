@@ -23,14 +23,9 @@ export const circularProgressIndicatorStyles = stylex.create({
     // their cpu consumption.
     contain: 'strict',
     contentVisibility: 'auto',
-  },
-  host$md: {
-    width: circularProgressIndicatorTokens.size$md,
-    height: circularProgressIndicatorTokens.size$md,
-  },
-  host$lg: {
-    width: circularProgressIndicatorTokens.size$lg,
-    height: circularProgressIndicatorTokens.size$lg,
+
+    width: circularProgressIndicatorTokens.size,
+    height: circularProgressIndicatorTokens.size,
   },
   layer: {
     position: 'absolute',
@@ -42,12 +37,8 @@ export const circularProgressIndicatorStyles = stylex.create({
     flexShrink: 1,
     flexBasis: '0%',
     alignSelf: 'stretch',
-  },
-  progress$md: {
-    margin: circularProgressIndicatorTokens.containerPadding$md,
-  },
-  progress$lg: {
-    margin: circularProgressIndicatorTokens.containerPadding$lg,
+
+    margin: circularProgressIndicatorTokens.containerPadding,
   },
   label: {
     display: 'flex',

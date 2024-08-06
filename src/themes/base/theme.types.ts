@@ -7,6 +7,7 @@ import type { ITypeScaleTheme } from './typeScale.types';
 import type { IStateTheme } from './state.types';
 import type { IZIndexTheme } from './zIndex.types';
 import type { IDensityTheme } from './density.types';
+import { ISpacingTheme } from './spacing.types';
 
 export type IThemeSchemes = Record<IColorSchemeVariant, IColorScheme>;
 
@@ -25,4 +26,5 @@ export type ITheme = {
   state?: IStateTheme;
   zIndex?: IZIndexTheme;
   density?: IDensityTheme;
+  spacing?: ISpacingTheme;
 };

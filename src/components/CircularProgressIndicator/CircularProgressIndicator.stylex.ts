@@ -5,23 +5,19 @@ import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-circular-progress-indicator.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-circular-progress-indicator.scss
 
-const width = 2; // px
+const DEFAULT_FONT_SIZE = 16;
 
-const size$md = 18; // px
-const containerPadding$md = 0; // px
+const WIDTH = 2; // px
 
-const size$lg = 40; // px
-const containerPadding$lg = 0; // px
+const SIZE = '1'; // em
+const CONTAINER_PADDING = 0; // px
 
 const vars = {
   color: colorSchemeTokens.primary,
   color$disabled: colorSchemeTokens.onSurface,
-  size$md: `${size$md}px`,
-  size$lg: `${size$lg}px`,
-  containerPadding$md: `${containerPadding$md}px`,
-  containerPadding$lg: `${containerPadding$lg}px`,
-  widthPct$md: `calc((${width} / (${size$md} - ${containerPadding$md} * 2)) * 100)`,
-  widthPct$lg: `calc((${width} / (${size$lg} - ${containerPadding$lg} * 2)) * 100)`,
+  size: `${SIZE}em`,
+  containerPadding: `${CONTAINER_PADDING}px`,
+  widthPct: `calc((${WIDTH} / (${SIZE} * ${DEFAULT_FONT_SIZE} - ${CONTAINER_PADDING} * 2)) * 100)`,
 };
 
 export const circularProgressIndicatorTokens = stylex.defineVars(vars);

@@ -10,8 +10,6 @@ import type {
 } from '../IndeterminateCircularProgressIndicator';
 import type { ICircularProgressIndicatorStylesKey } from './CircularProgressIndicator.styles';
 
-export type ICircularProgressIndicatorSize = 'md' | 'lg';
-
 export type ICircularProgressIndicatorProps = IBaseProps<
   | ICircularProgressIndicatorStylesKey
   | IDeterminateCircularProgressIndicatorStylesKey

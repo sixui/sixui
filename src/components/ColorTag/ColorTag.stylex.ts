@@ -7,11 +7,12 @@ import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 
 const MIN_DENSITY_SCALE = -3;
 const MAX_DENSITY_SCALE = 2;
+const DENSITY_SCALE = `${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE})`;
 
 const vars = {
   // container
-  containerMinWidth: `calc(40px + ${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE}))`,
-  containerHeight: `calc(40px + ${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE}))`,
+  containerMinWidth: `calc(40px + ${DENSITY_SCALE})`,
+  containerHeight: `calc(40px + ${DENSITY_SCALE})`,
   containerShape: shapeTokens.corner$xs,
   containerColor: colorSchemeTokens.surfaceContainerHighest,
   containerOutlineWidth: '0',

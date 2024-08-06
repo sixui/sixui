@@ -1,5 +1,4 @@
 import type { IBaseProps } from '../Base';
-import type { ICircularProgressIndicatorSize } from '../CircularProgressIndicator';
 import type { IDeterminateCircularProgressIndicatorStylesKey } from './DeterminateCircularProgressIndicator.styles';
 
 export type IDeterminateCircularProgressIndicatorProps =
@@ -11,7 +10,6 @@ export type IDeterminateCircularProgressIndicatorProps =
       max?: number;
       zeroBased?: boolean;
       labelFormatter?: (value: number) => string;
-      size?: ICircularProgressIndicatorSize;
       disabled?: boolean;
       children?: React.ReactNode;
     };

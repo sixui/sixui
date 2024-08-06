@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { ICircularProgressIndicatorSize } from '../CircularProgressIndicator';
 import type { IDeterminateCircularProgressIndicatorProps } from './DeterminateCircularProgressIndicator.types';
 import { ComponentShowcase } from '../ComponentShowcase';
 import { DeterminateCircularProgressIndicator } from './DeterminateCircularProgressIndicator';
@@ -131,21 +130,6 @@ export const ZeroBased: IStory = {
     max: 100,
     zeroBased: true,
   },
-};
-
-export const Sizes: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={DeterminateCircularProgressIndicator}
-      props={props}
-      cols={(['md', 'lg'] as Array<ICircularProgressIndicatorSize>).map(
-        (size) => ({
-          props: { size },
-        }),
-      )}
-    />
-  ),
-  args: defaultArgs,
 };
 
 export default meta;

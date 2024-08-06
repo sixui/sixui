@@ -20,7 +20,7 @@ export const IndeterminateCircularProgressIndicator = forwardRef<
   HTMLDivElement,
   IIndeterminateCircularProgressIndicatorProps
 >(function IndeterminateCircularProgressIndicator(props, forwardedRef) {
-  const { styles, sx, size = 'md', disabled, children, ...other } = props;
+  const { styles, sx, disabled, children, ...other } = props;
 
   const { combineStyles, getStyles, globalStyles } = useStyles<
     | ICircularProgressIndicatorStylesKey
@@ -40,13 +40,13 @@ export const IndeterminateCircularProgressIndicator = forwardRef<
       sx={[
         circularProgressIndicatorTheme,
         globalStyles,
-        combineStyles('host', `host$${size}`),
+        combineStyles('host'),
         sx,
       ]}
       ref={forwardedRef}
     >
       <div
-        {...getStyles('layer', 'progress', `progress$${size}`)}
+        {...getStyles('layer', 'progress')}
         role='progressbar'
         aria-label={props['aria-label'] ?? undefined}
       >
@@ -56,7 +56,6 @@ export const IndeterminateCircularProgressIndicator = forwardRef<
               {...getStyles(
                 'layer',
                 'circle',
-                `circle$${size}`,
                 'leftCircle',
                 disabled && 'circle$disabled',
               )}
@@ -67,7 +66,6 @@ export const IndeterminateCircularProgressIndicator = forwardRef<
               {...getStyles(
                 'layer',
                 'circle',
-                `circle$${size}`,
                 'rightCircle',
                 disabled && 'circle$disabled',
               )}

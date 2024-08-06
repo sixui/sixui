@@ -37,6 +37,7 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
         <div
           {...other}
           {...stylex.props([
+            theme?.density && themeProviderStyles.dynamicDensity(theme.density),
             theme?.schemes &&
               themeProviderStyles.dynamicScheme(theme.schemes.light),
             theme?.shape && themeProviderStyles.dynamicShape(theme.shape),
@@ -47,7 +48,6 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
               themeProviderStyles.dynamicTypeScale(theme.typeScale),
             theme?.state && themeProviderStyles.dynamicState(theme.state),
             theme?.zIndex && themeProviderStyles.dynamicZIndex(theme.zIndex),
-            theme?.density && themeProviderStyles.density(theme.density),
             themeProviderStyles.wrapper,
             sx,
           ])}

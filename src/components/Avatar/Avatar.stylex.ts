@@ -4,13 +4,10 @@ import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { densityTokens } from '~/themes/base/density.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 
-const MIN_DENSITY_SCALE = -2;
-const MAX_DENSITY_SCALE = 4;
-
 const vars = {
   // container
   containerShape: 'unset',
-  containerSize: `calc(40px + ${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE}))`,
+  containerSize: `calc(40px * ${densityTokens.scale})`,
   containerColor: colorSchemeTokens.primaryContainer,
 
   // label
