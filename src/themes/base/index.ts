@@ -7,3 +7,4 @@ export * from './shape.types';
 export * from './state.types';
 export * from './typeScale.types';
 export * from './typeFace.types';
+export * from './zIndex.types';

@@ -4,14 +4,18 @@ import type { IColorScheme } from '~/themes/base/colorScheme.types';
 import type {
   IMotionTheme,
   IShapeTheme,
+  IStateTheme,
   ITypeFaceTheme,
   ITypeScaleTheme,
+  IZIndexTheme,
 } from '~/themes/base';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
 import { motionTokens } from '~/themes/base/motion.stylex';
 import { typeFaceTokens } from '~/themes/base/typeFace.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
+import { stateTokens } from '~/themes/base/state.stylex';
+import { zIndexTokens } from '~/themes/base/zIndex.stylex';
 
 export const themeProviderStyles = stylex.create({
   wrapper: {
@@ -225,5 +229,23 @@ export const themeProviderStyles = stylex.create({
     [typeScaleTokens.labelSize$sm]: typeScale.labelSize$sm,
     [typeScaleTokens.labelLetterSpacing$sm]: typeScale.labelLetterSpacing$sm,
     [typeScaleTokens.labelWeight$sm]: typeScale.labelWeight$sm,
+  }),
+  dynamicState: (state: IStateTheme) => ({
+    [stateTokens.stateLayerOpacity$hover]: state.stateLayerOpacity$hover,
+    [stateTokens.stateLayerOpacity$pressed]: state.stateLayerOpacity$pressed,
+    [stateTokens.stateLayerOpacity$dragged]: state.stateLayerOpacity$dragged,
+    [stateTokens.opacity$disabled]: state.opacity$disabled,
+    [stateTokens.containerOpacity$disabled]: state.containerOpacity$disabled,
+    [stateTokens.outlineOpacity$disabled]: state.outlineOpacity$disabled,
+  }),
+  dynamicZIndex: (zIndex: IZIndexTheme) => ({
+    [zIndexTokens.mobileStepper]: zIndex.mobileStepper,
+    [zIndexTokens.fab]: zIndex.fab,
+    [zIndexTokens.speedDial]: zIndex.speedDial,
+    [zIndexTokens.appBar]: zIndex.appBar,
+    [zIndexTokens.drawer]: zIndex.drawer,
+    [zIndexTokens.modal]: zIndex.modal,
+    [zIndexTokens.snackbar]: zIndex.snackbar,
+    [zIndexTokens.tooltip]: zIndex.tooltip,
   }),
 });

@@ -1,5 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
+import { zIndexTokens } from '~/themes/base/zIndex.stylex';
 import { buttonTokens } from '../Button/Button.stylex';
 import { fabTokens } from './Fab.stylex';
 
@@ -9,6 +10,8 @@ import { fabTokens } from './Fab.stylex';
 export type IFabStylesKey = keyof typeof fabStyles;
 export const fabStyles = stylex.create({
   host: {
+    zIndex: zIndexTokens.fab,
+
     [buttonTokens.leadingSpace]: '0',
     [buttonTokens.trailingSpace]: '0',
     [buttonTokens.leadingIconLeadingSpace]: '0',

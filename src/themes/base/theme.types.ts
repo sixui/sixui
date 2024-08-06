@@ -4,6 +4,8 @@ import type { IMotionTheme } from './motion.types';
 import type { IShapeTheme } from './shape.types';
 import type { ITypeFaceTheme } from './typeFace.types';
 import type { ITypeScaleTheme } from './typeScale.types';
+import type { IStateTheme } from './state.types';
+import type { IZIndexTheme } from './zIndex.types';
 
 export type IThemeSchemes = Record<IColorSchemeVariant, IColorScheme>;
 
@@ -19,4 +21,6 @@ export type ITheme = {
   motion?: IMotionTheme;
   typeFace?: ITypeFaceTheme;
   typeScale?: ITypeScaleTheme;
+  state?: IStateTheme;
+  zIndex?: IZIndexTheme;
 };

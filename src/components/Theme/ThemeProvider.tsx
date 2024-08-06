@@ -45,6 +45,8 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
               themeProviderStyles.dynamicTypeFace(theme.typeFace),
             theme?.typeScale &&
               themeProviderStyles.dynamicTypeScale(theme.typeScale),
+            theme?.state && themeProviderStyles.dynamicState(theme.state),
+            theme?.zIndex && themeProviderStyles.dynamicZIndex(theme.zIndex),
             themeProviderStyles.wrapper,
             sx,
           ])}
