@@ -1,3 +1,15 @@
+# v0.0.413 (Wed Aug 07 2024)
+
+#### ⚠️ Pushed to `main`
+
+- refactor: softDisabled prop -> readOnly ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.412 (Wed Aug 07 2024)
 
 #### ⚠️ Pushed to `main`
