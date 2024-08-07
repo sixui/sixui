@@ -25,9 +25,5 @@ export const textButtonStyles = stylex.create({
     [buttonTokens.iconColor$focus]: colorSchemeTokens.primary,
     [buttonTokens.iconColor$hover]: colorSchemeTokens.primary,
     [buttonTokens.iconColor$pressed]: colorSchemeTokens.primary,
-
-    [buttonTokens.outlineColor]: colorSchemeTokens.outline,
-    [buttonTokens.outlineWidth]: '1px',
-    [buttonTokens.outlineColor$pressed]: colorSchemeTokens.outline,
   },
 });

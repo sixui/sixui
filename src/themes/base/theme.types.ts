@@ -9,6 +9,7 @@ import type { IZIndexTheme } from './zIndex.types';
 import type { IDensityTheme } from './density.types';
 import { ISpacingTheme } from './spacing.types';
 import { IScaleTheme } from './scale.types';
+import { IOutlineTheme } from './outline.types';
 
 export type IThemeSchemes = Record<IColorSchemeVariant, IColorScheme>;
 
@@ -29,4 +30,5 @@ export type ITheme = {
   zIndex?: IZIndexTheme;
   density?: IDensityTheme;
   spacing?: ISpacingTheme;
+  outline?: IOutlineTheme;
 };

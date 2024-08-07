@@ -18,42 +18,42 @@ const vars = {
   displayFont$md: typeFaceTokens.brand,
   displayLineHeight$md: `calc(3.25rem * ${scaleTokens.scale})`,
   displaySize$md: `calc(2.8125rem * ${scaleTokens.scale})`,
-  displayLetterSpacing$md: '0',
+  displayLetterSpacing$md: '0rem',
   displayWeight$md: typeFaceTokens.weightRegular,
 
   // display-small
   displayFont$sm: typeFaceTokens.brand,
   displayLineHeight$sm: `calc(2.75rem * ${scaleTokens.scale})`,
   displaySize$sm: `calc(2.25rem * ${scaleTokens.scale})`,
-  displayLetterSpacing$sm: '0',
+  displayLetterSpacing$sm: '0rem',
   displayWeight$sm: typeFaceTokens.weightRegular,
 
   // headline-large
   headlineFont$lg: typeFaceTokens.brand,
   headlineLineHeight$lg: `calc(2.5rem * ${scaleTokens.scale})`,
   headlineSize$lg: `calc(2rem * ${scaleTokens.scale})`,
-  headlineLetterSpacing$lg: '0',
+  headlineLetterSpacing$lg: '0rem',
   headlineWeight$lg: typeFaceTokens.weightRegular,
 
   // headline-medium
   headlineFont$md: typeFaceTokens.brand,
   headlineLineHeight$md: `calc(2.25rem * ${scaleTokens.scale})`,
   headlineSize$md: `calc(1.75rem * ${scaleTokens.scale})`,
-  headlineLetterSpacing$md: '0',
+  headlineLetterSpacing$md: '0rem',
   headlineWeight$md: typeFaceTokens.weightRegular,
 
   // headline-small
   headlineFont$sm: typeFaceTokens.brand,
   headlineLineHeight$sm: `calc(2rem * ${scaleTokens.scale})`,
   headlineSize$sm: `calc(1.5rem * ${scaleTokens.scale})`,
-  headlineLetterSpacing$sm: '0',
+  headlineLetterSpacing$sm: '0rem',
   headlineWeight$sm: typeFaceTokens.weightRegular,
 
   // title-large
   titleFont$lg: typeFaceTokens.brand,
   titleLineHeight$lg: `calc(1.75rem * ${scaleTokens.scale})`,
   titleSize$lg: `calc(1.375rem * ${scaleTokens.scale})`,
-  titleLetterSpacing$lg: '0',
+  titleLetterSpacing$lg: '0rem',
   titleWeight$lg: typeFaceTokens.weightRegular,
 
   // title-medium

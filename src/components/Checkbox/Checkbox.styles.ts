@@ -3,7 +3,6 @@ import stylex from '@stylexjs/stylex';
 import { checkboxTokens } from './Checkbox.stylex';
 import { motionTokens } from '~/themes/base/motion.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
-import { scaleTokens } from '~/themes/base/scale.stylex';
 import { densityTokens } from '~/themes/base/density.stylex';
 import { stateLayerTokens } from '../StateLayer/StateLayer.stylex';
 import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
@@ -27,12 +26,12 @@ const prevUnselectedToCheckedKeyframes = stylex.keyframes({
 export type ICheckboxStylesKey = keyof typeof checkboxStyles;
 export const checkboxStyles = stylex.create({
   container: {
-    borderRadius: `calc(${checkboxTokens.containerShape} * ${scaleTokens.scale})`,
+    borderRadius: checkboxTokens.containerShape,
     display: 'inline-flex',
     justifyContent: 'center',
     alignItems: 'center',
-    width: `calc(${checkboxTokens.containerSize} * ${scaleTokens.scale})`,
-    height: `calc(${checkboxTokens.containerSize} * ${scaleTokens.scale})`,
+    width: checkboxTokens.containerSize,
+    height: checkboxTokens.containerSize,
     position: 'relative',
     verticalAlign: 'top', // Fix extra space when placed inside display: block
     WebkitTapHighlightColor: 'transparent',
@@ -89,15 +88,15 @@ export const checkboxStyles = stylex.create({
       ':is([data-pressed])': checkboxTokens.outlineColor$pressed,
     },
     borderWidth: {
-      default: `calc(${checkboxTokens.outlineWidth} * ${scaleTokens.scale})`,
-      ':is([data-focused])': `calc(${checkboxTokens.outlineWidth$focus} * ${scaleTokens.scale})`,
-      ':is([data-hovered])': `calc(${checkboxTokens.outlineWidth$hover} * ${scaleTokens.scale})`,
-      ':is([data-pressed])': `calc(${checkboxTokens.outlineWidth$pressed} * ${scaleTokens.scale})`,
+      default: checkboxTokens.outlineWidth,
+      ':is([data-focused])': checkboxTokens.outlineWidth$focus,
+      ':is([data-hovered])': checkboxTokens.outlineWidth$hover,
+      ':is([data-pressed])': checkboxTokens.outlineWidth$pressed,
     },
   },
   outline$disabled: {
     borderColor: checkboxTokens.outlineColor$disabled,
-    borderWidth: `calc(${checkboxTokens.outlineWidth$disabled} * ${scaleTokens.scale})`,
+    borderWidth: checkboxTokens.outlineWidth$disabled,
     opacity: checkboxTokens.containerOpacity$disabled,
   },
   outline$disabled$selected: {
@@ -149,7 +148,7 @@ export const checkboxStyles = stylex.create({
     transform: 'scale(1)',
   },
   loading: {
-    fontSize: `calc(${checkboxTokens.containerSize} * ${scaleTokens.scale})`,
+    fontSize: checkboxTokens.containerSize,
   },
   icon: {
     position: 'relative',
@@ -160,8 +159,8 @@ export const checkboxStyles = stylex.create({
     // 2. Long end
     //   - the larger trailing part of the checkmark
     //   - the entirety of the indeterminate mark
-    width: `calc(${checkboxTokens.iconSize} * ${scaleTokens.scale})`,
-    height: `calc(${checkboxTokens.iconSize} * ${scaleTokens.scale})`,
+    width: checkboxTokens.iconSize,
+    height: checkboxTokens.iconSize,
 
     fill: {
       default: checkboxTokens.selectedIconColor,
@@ -260,9 +259,9 @@ export const checkboxStyles = stylex.create({
 
 export const checkboxStateLayerStyles = stylex.create({
   host: {
-    borderRadius: `calc(${checkboxTokens.containerShape} * ${scaleTokens.scale})`,
-    width: `calc(${checkboxTokens.containerSize} * ${scaleTokens.scale})`,
-    height: `calc(${checkboxTokens.containerSize} * ${scaleTokens.scale})`,
+    borderRadius: checkboxTokens.containerShape,
+    width: checkboxTokens.containerSize,
+    height: checkboxTokens.containerSize,
     inset: 'unset',
 
     [stateLayerTokens.color$hover]: checkboxStateTokens.stateLayerColor$hover,
@@ -277,8 +276,8 @@ export const checkboxStateLayerStyles = stylex.create({
 
 export const checkboxFocusRingStyles = stylex.create({
   host: {
-    width: `calc(${checkboxTokens.containerSize} * sqrt(2) * 1.8 * ${scaleTokens.scale})`,
-    height: `calc(${checkboxTokens.containerSize} * sqrt(2) * 1.8 * ${scaleTokens.scale})`,
+    width: checkboxTokens.containerSize,
+    height: checkboxTokens.containerSize,
     [focusRingTokens.shape]: shapeTokens.corner$full,
   },
   host$outward: {

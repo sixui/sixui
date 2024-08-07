@@ -5,6 +5,13 @@ import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
+
+const MIN_DENSITY = -4;
+const MAX_DENSITY = 0;
+const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityTokens.density}, ${MAX_DENSITY}) * ${scaleTokens.scale}`;
 
 const vars = {
   gap: spacingTokens.padding$2,
@@ -30,8 +37,8 @@ const vars = {
   // container
   containerColor: 'unset',
   containerElevation: 'unset',
-  containerHeight: '40px',
-  containerMinWidth: '64px',
+  containerHeight: `calc(40px * ${scaleTokens.scale} + ${DENSITY})`,
+  containerMinWidth: `calc(64px * ${scaleTokens.scale})`,
   containerShape: shapeTokens.corner$full,
   // &:disabled
   containerColor$disabled: 'unset',
@@ -84,7 +91,7 @@ const vars = {
 
   // outline
   outlineStyle: 'none',
-  outlineWidth: '1px',
+  outlineWidth: outlineTokens.width$1,
   outlineColor: colorSchemeTokens.outline,
   // &:disabled
   outlineColor$disabled: colorSchemeTokens.onSurface,

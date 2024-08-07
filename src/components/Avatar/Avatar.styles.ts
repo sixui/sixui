@@ -1,13 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import type { IHslColor } from '~/helpers/types';
-import { scaleTokens } from '~/themes/base/scale.stylex';
-import { densityTokens } from '~/themes/base/density.stylex';
 import { avatarTokens } from './Avatar.stylex';
-
-const MIN_DENSITY = -3;
-const MAX_DENSITY = 0;
-const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityTokens.density}, ${MAX_DENSITY}) * ${scaleTokens.scale}`;
 
 export type IAvatarStylesKey = keyof typeof avatarStyles;
 export const avatarStyles = stylex.create({
@@ -16,8 +10,8 @@ export const avatarStyles = stylex.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: `calc(${avatarTokens.containerSize} * ${scaleTokens.scale} + ${DENSITY})`,
-    height: `calc(${avatarTokens.containerSize} * ${scaleTokens.scale} + ${DENSITY})`,
+    width: avatarTokens.containerSize,
+    height: avatarTokens.containerSize,
     overflow: 'hidden',
     borderRadius: avatarTokens.containerShape,
     userSelect: 'none',

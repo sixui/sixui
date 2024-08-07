@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import { TextInputField } from '~/components/TextInputField';
 import { themeProviderStyles } from '~/components/Theme';
+import { outlineTheme } from '~/themes/base/outline.stylex';
 import { scaleTokens } from '~/themes/base/scale.stylex';
 import { shapeTheme } from '~/themes/base/shape.stylex';
 import { spacingTheme } from '~/themes/base/spacing.stylex';
@@ -43,6 +44,7 @@ export const ThemeControls: React.FC<IThemeControlsProps> = (props) => {
         spacingTheme,
         typeScaleTheme,
         shapeTheme,
+        outlineTheme,
       )}
     >
       <div {...stylex.props(styles.controls)}>

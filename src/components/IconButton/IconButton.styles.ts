@@ -13,12 +13,12 @@ export const iconButtonStyles = stylex.create({
     width: iconButtonTokens.containerSize,
     flexShrink: 0,
 
-    [buttonTokens.leadingSpace]: '0',
-    [buttonTokens.trailingSpace]: '0',
-    [buttonTokens.leadingIconLeadingSpace]: '0',
-    [buttonTokens.leadingIconTrailingSpace]: '0',
-    [buttonTokens.trailingIconLeadingSpace]: '0',
-    [buttonTokens.trailingIconTrailingSpace]: '0',
+    [buttonTokens.leadingSpace]: '0px',
+    [buttonTokens.trailingSpace]: '0px',
+    [buttonTokens.leadingIconLeadingSpace]: '0px',
+    [buttonTokens.leadingIconTrailingSpace]: '0px',
+    [buttonTokens.trailingIconLeadingSpace]: '0px',
+    [buttonTokens.trailingIconTrailingSpace]: '0px',
 
     [buttonTokens.containerElevation$disabled]:
       elevationTokens.boxShadow$level0,

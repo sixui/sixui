@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { shapeTokens } from '~/themes/base/shape.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
 import { chipTokens } from '../Chip.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-input-chip.scss
@@ -17,7 +17,7 @@ export const inputChipStyles = stylex.create({
     [chipTokens.selectedFlatContainerColor$disabled]:
       colorSchemeTokens.onSurface,
 
-    [chipTokens.selectedOutlineWidth]: '0',
+    [chipTokens.selectedOutlineWidth]: outlineTokens.width$none,
 
     [chipTokens.selectedLabelTextColor]: colorSchemeTokens.onSecondaryContainer,
     [chipTokens.selectedLabelTextColor$hover]:
@@ -56,8 +56,5 @@ export const inputChipStyles = stylex.create({
       colorSchemeTokens.onSecondaryContainer,
     [chipTokens.selectedTrailingIconColor$pressed]:
       colorSchemeTokens.onSecondaryContainer,
-
-    [chipTokens.avatarShape]: shapeTokens.corner$full,
-    [chipTokens.avatarSize]: '24px',
   },
 });

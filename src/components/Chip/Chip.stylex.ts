@@ -6,6 +6,13 @@ import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
+
+const MIN_DENSITY = -2;
+const MAX_DENSITY = 0;
+const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityTokens.density}, ${MAX_DENSITY}) * ${scaleTokens.scale}`;
 
 const vars = {
   // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-assist-chip.scss#L93
@@ -23,7 +30,7 @@ const vars = {
   // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-suggestion-chip.scss
 
   // container
-  containerHeight: '32px',
+  containerHeight: `calc(32px * ${scaleTokens.scale} + ${DENSITY})`,
   containerShape: shapeTokens.corner$sm,
 
   // flatContainer
@@ -72,7 +79,7 @@ const vars = {
   selectedElevatedContainerColor: 'inherit',
 
   // outline
-  outlineWidth: '1px',
+  outlineWidth: outlineTokens.width$1,
   outlineColor: colorSchemeTokens.outline,
   // &:disabled
   outlineColor$disabled: colorSchemeTokens.onSurface,
@@ -83,7 +90,7 @@ const vars = {
   outlineColor$pressed: colorSchemeTokens.outline,
 
   // selectedOutline
-  selectedOutlineWidth: 'unset',
+  selectedOutlineWidth: outlineTokens.width$none,
 
   // stateLayer
   // &:hover
@@ -132,7 +139,7 @@ const vars = {
   selectedLabelTextColor$pressed: 'inherit',
 
   // icon
-  iconSize: '18px',
+  iconSize: `calc(18px * ${scaleTokens.scale} + ${DENSITY})`,
   iconColor: colorSchemeTokens.onSurfaceVariant,
   iconColor$interactive: colorSchemeTokens.primary,
   // &:disabled
@@ -177,8 +184,8 @@ const vars = {
   selectedTrailingIconColor$pressed: 'inherit',
 
   // avatar
-  avatarShape: 'unset',
-  avatarSize: 'unset',
+  avatarShape: shapeTokens.corner$full,
+  avatarSize: `calc(24px * ${scaleTokens.scale} + ${DENSITY})`,
 };
 
 export const chipTokens = stylex.defineVars(vars);

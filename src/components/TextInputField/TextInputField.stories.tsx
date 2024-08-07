@@ -48,14 +48,14 @@ const rows: Array<IComponentPresentation<ITextInputFieldProps>> = [
   { legend: 'Empty' },
   { legend: 'Label', props: { label: 'Label' } },
   { legend: 'Placeholder', props: { placeholder: 'Placeholder' } },
-  // {
-  //   legend: 'Value',
-  //   props: {
-  //     defaultValue: 'Value',
-  //     prefixText: '$',
-  //     suffixText: '.00',
-  //   },
-  // },
+  {
+    legend: 'Value',
+    props: {
+      defaultValue: 'Value',
+      prefixText: '$',
+      suffixText: '.00',
+    },
+  },
   { legend: 'Clearable', props: { clearable: true } },
   {
     legend: 'Password',

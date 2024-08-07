@@ -12,12 +12,12 @@ export const fabStyles = stylex.create({
   host: {
     zIndex: zIndexTokens.overlay,
 
-    [buttonTokens.leadingSpace]: '0',
-    [buttonTokens.trailingSpace]: '0',
-    [buttonTokens.leadingIconLeadingSpace]: '0',
-    [buttonTokens.leadingIconTrailingSpace]: '0',
-    [buttonTokens.trailingIconLeadingSpace]: '0',
-    [buttonTokens.trailingIconTrailingSpace]: '0',
+    [buttonTokens.leadingSpace]: '0px',
+    [buttonTokens.trailingSpace]: '0px',
+    [buttonTokens.leadingIconLeadingSpace]: '0px',
+    [buttonTokens.leadingIconTrailingSpace]: '0px',
+    [buttonTokens.trailingIconLeadingSpace]: '0px',
+    [buttonTokens.trailingIconTrailingSpace]: '0px',
 
     [buttonTokens.gap]: '12px',
     [buttonTokens.containerElevation$disabled]:

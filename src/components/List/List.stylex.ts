@@ -4,7 +4,7 @@ const vars = {
   topSpace: '8px',
   bottomSpace: '8px',
   gridSpace: '4px',
-  itemSpace: '0',
+  itemSpace: '0px',
 };
 
 export const listTokens = stylex.defineVars(vars);

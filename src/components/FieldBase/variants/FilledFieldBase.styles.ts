@@ -1,9 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
-import { fieldBaseTokens } from '../FieldBase.stylex';
 import { motionTokens } from '~/themes/base/motion.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
+import { fieldBaseTokens } from '../FieldBase.stylex';
 
 // https://github.com/material-components/material-web/blob/main/field/internal/_filled-field.scss
 
@@ -102,7 +102,7 @@ export const filledFieldBaseStyles = stylex.create({
   },
   activeIndicatorBackground$disabled: {
     borderBottomWidth: fieldBaseTokens.activeIndicatorHeight$disabled,
-    borderBottomColor: fieldBaseTokens.activeIndicatorColor$disabled,
+    borderBottomColor: fieldBaseTokens.activeIndicatorHeight$disabled,
     opacity: fieldBaseTokens.activeIndicatorOpacity$disabled,
   },
   activeIndicatorBackground$error: {

@@ -1,8 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { densityTokens } from '~/themes/base/density.stylex';
 import { motionTokens } from '~/themes/base/motion.stylex';
-import { scaleTokens } from '~/themes/base/scale.stylex';
 import { elevationTokens } from '../Elevation/Elevation.stylex';
 import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
 import { stateLayerTokens } from '../StateLayer/StateLayer.stylex';
@@ -12,10 +10,6 @@ import { buttonStateTokens } from './Button.state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/button/internal/_shared.scss
 // https://github.com/material-components/material-web/blob/main/button/internal/_elevation.scss
-
-const MIN_DENSITY = -4;
-const MAX_DENSITY = 0;
-const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityTokens.density}, ${MAX_DENSITY}) * ${scaleTokens.scale}`;
 
 const halfSpinKeyframes = stylex.keyframes({
   '0%': {
@@ -52,12 +46,12 @@ export const buttonStyles = stylex.create({
     paddingInlineStart: buttonTokens.leadingSpace,
     paddingInlineEnd: buttonTokens.trailingSpace,
     // min-height instead of height so that label can wrap and expand height
-    minHeight: `calc(${buttonTokens.containerHeight} * ${scaleTokens.scale} + ${DENSITY})`,
+    minHeight: buttonTokens.containerHeight,
     // Add extra space between label and the edge for if the label text wraps.
     // The padding added should be relative to the height of the container and
     // the height of its content on a single line (label or icon, whichever is
     // bigger).
-    paddingBlock: `calc((${buttonTokens.containerHeight} * ${scaleTokens.scale} + ${DENSITY} - ${buttonTokens.labelTextLineHeight}) / 2)`,
+    paddingBlock: `calc((${buttonTokens.containerHeight} - ${buttonTokens.labelTextLineHeight}) / 2)`,
     minWidth: `calc(${buttonTokens.containerMinWidth} - ${buttonTokens.leadingSpace} - ${buttonTokens.trailingSpace})`,
 
     [buttonStateTokens.iconColor]: {
@@ -124,9 +118,9 @@ export const buttonStyles = stylex.create({
     flexShrink: 0,
     color: buttonStateTokens.iconColor,
 
-    fontSize: `calc(${buttonTokens.iconSize} * ${scaleTokens.scale})`,
-    inlineSize: `calc(${buttonTokens.iconSize} * ${scaleTokens.scale})`,
-    blockSize: `calc(${buttonTokens.iconSize} * ${scaleTokens.scale})`,
+    fontSize: buttonTokens.iconSize,
+    inlineSize: buttonTokens.iconSize,
+    blockSize: buttonTokens.iconSize,
   },
   icon$disabled: {
     [buttonStateTokens.iconColor]: buttonTokens.iconColor$disabled,

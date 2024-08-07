@@ -1,6 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-checkbox.scss
@@ -8,8 +10,8 @@ import { stateTokens } from '~/themes/base/state.stylex';
 
 const vars = {
   // container
-  containerShape: '2px',
-  containerSize: '18px',
+  containerShape: `calc(2px * ${scaleTokens.scale})`,
+  containerSize: `calc(18px * ${scaleTokens.scale})`,
   // &:disabled
   containerOpacity$disabled: stateTokens.opacity$disabled,
 
@@ -35,19 +37,19 @@ const vars = {
 
   // outline
   outlineColor: colorSchemeTokens.onSurfaceVariant,
-  outlineWidth: '2px',
+  outlineWidth: outlineTokens.width$2,
   // &:focus
   outlineColor$focus: colorSchemeTokens.onSurface,
-  outlineWidth$focus: '2px',
+  outlineWidth$focus: outlineTokens.width$2,
   // &:hover
   outlineColor$hover: colorSchemeTokens.onSurface,
-  outlineWidth$hover: '2px',
+  outlineWidth$hover: outlineTokens.width$2,
   // &:pressed
   outlineColor$pressed: colorSchemeTokens.onSurface,
-  outlineWidth$pressed: '2px',
+  outlineWidth$pressed: outlineTokens.width$2,
   // &:disabled
   outlineColor$disabled: colorSchemeTokens.onSurface,
-  outlineWidth$disabled: '2px',
+  outlineWidth$disabled: outlineTokens.width$2,
   // &:error
   outlineColor$error: colorSchemeTokens.error,
   // &:error:focus
@@ -58,7 +60,7 @@ const vars = {
   outlineColor$error$pressed: colorSchemeTokens.error,
 
   // icon
-  iconSize: '18px',
+  iconSize: `calc(18px * ${scaleTokens.scale})`,
 
   // selectedIcon
   selectedIconColor: colorSchemeTokens.onPrimary,

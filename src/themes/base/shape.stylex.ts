@@ -24,7 +24,7 @@ const vars = {
   cornerTop$xs: `calc(6px * ${scaleTokens.scale}) calc(6px * ${scaleTokens.scale}) 0 0`,
   cornerBottom$xs: `0 0 calc(6px * ${scaleTokens.scale}) calc(6px * ${scaleTokens.scale})`,
 
-  corner$none: '0',
+  corner$none: '0px',
 };
 
 export const shapeTokens = stylex.defineVars<IShapeTheme>(vars);

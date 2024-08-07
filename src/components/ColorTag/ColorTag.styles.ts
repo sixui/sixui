@@ -1,5 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { colorTagTokens } from './ColorTag.stylex';
 
 export type IColorTagStylesKey = keyof typeof colorTagStyles;
@@ -36,7 +37,7 @@ export const colorTagStyles = stylex.create({
     blockSize: colorTagTokens.iconSize,
   },
   label: {
-    padding: 8,
+    padding: spacingTokens.padding$2,
     position: 'relative',
     color: colorTagTokens.labelTextColor,
     fontFamily: colorTagTokens.labelTextFont,

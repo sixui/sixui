@@ -2,9 +2,17 @@ import stylex from '@stylexjs/stylex';
 
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+
+const MIN_DENSITY = -1;
+const MAX_DENSITY = 0;
+const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityTokens.density}, ${MAX_DENSITY}) * ${scaleTokens.scale}`;
 
 const vars = {
+  gap: spacingTokens.padding$2,
+
   // item
   itemColor: colorSchemeTokens.onSurface,
 
@@ -13,13 +21,13 @@ const vars = {
   separatorSize: typeScaleTokens.bodySize$md,
 
   // expandButton
-  expandButtonContainerShape: '2px',
+  expandButtonContainerShape: `calc(2px * ${scaleTokens.scale})`,
   expandButtonContainerColor: colorSchemeTokens.surfaceContainer,
-  expandButtonContainerWidth: '24px',
-  expandButtonContainerHeight: '16px',
+  expandButtonContainerWidth: `calc(24px * ${scaleTokens.scale})`,
+  expandButtonContainerHeight: `calc(16px * ${scaleTokens.scale} + ${DENSITY})`,
   expandButtonLeadingSpace: spacingTokens.padding$1,
   expandButtonTrailingSpace: spacingTokens.padding$1,
-  expandButtonIconSize: '18px',
+  expandButtonIconSize: `calc(18px * ${scaleTokens.scale})`,
 
   // expandButtonLabelText
   expandButtonLabelTextColor: colorSchemeTokens.onSurface,
