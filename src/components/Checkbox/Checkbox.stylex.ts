@@ -3,7 +3,6 @@ import stylex from '@stylexjs/stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
-import { densityTokens } from '~/themes/base/density.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-checkbox.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-checkbox.scss
@@ -18,7 +17,6 @@ const vars = {
   // selectedContainer
   selectedContainerColor: colorSchemeTokens.primary,
   // &:disabled
-  selectedContainerOutlineWidth$disabled: '0px',
   selectedContainerColor$disabled: colorSchemeTokens.onSurface,
   selectedContainerOpacity$disabled: stateTokens.opacity$disabled,
   // &:focus
@@ -39,9 +37,6 @@ const vars = {
   // outline
   outlineColor: colorSchemeTokens.onSurfaceVariant,
   outlineWidth: '2px',
-  // &:disabled
-  outlineColor$disabled: colorSchemeTokens.onSurface,
-  outlineWidth$disabled: '2px',
   // &:focus
   outlineColor$focus: colorSchemeTokens.onSurface,
   outlineWidth$focus: '2px',
@@ -51,6 +46,9 @@ const vars = {
   // &:pressed
   outlineColor$pressed: colorSchemeTokens.onSurface,
   outlineWidth$pressed: '2px',
+  // &:disabled
+  outlineColor$disabled: colorSchemeTokens.onSurface,
+  outlineWidth$disabled: '2px',
   // &:error
   outlineColor$error: colorSchemeTokens.error,
   // &:error:focus
@@ -59,15 +57,6 @@ const vars = {
   outlineColor$error$hover: colorSchemeTokens.error,
   // &:error:pressed
   outlineColor$error$pressed: colorSchemeTokens.error,
-
-  // selectedOutline
-  selectedOutlineWidth: '0px',
-  // &:focus
-  selectedOutlineWidth$focus: '0px',
-  // &:hover
-  selectedOutlineWidth$hover: '0px',
-  // &:pressed
-  selectedOutlineWidth$pressed: '0px',
 
   // icon
   iconSize: '18px',
@@ -92,8 +81,6 @@ const vars = {
   selectedIconColor$error$pressed: colorSchemeTokens.onError,
 
   // stateLayer
-  stateLayerShape: shapeTokens.corner$full,
-  stateLayerSize: densityTokens.minTargetSize,
   // &:hover
   stateLayerColor$hover: colorSchemeTokens.onSurface,
   stateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,

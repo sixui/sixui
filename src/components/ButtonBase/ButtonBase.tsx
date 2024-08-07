@@ -12,6 +12,7 @@ import { Elevation } from '../Elevation';
 import { FocusRing } from '../FocusRing';
 import { StateLayer } from '../StateLayer';
 import { Base } from '../Base';
+import { TouchTarget } from '../TouchTarget';
 import { buttonBaseStyles } from './ButtonBase.styles';
 
 export const ButtonBase = createPolymorphicComponent<
@@ -72,7 +73,7 @@ export const ButtonBase = createPolymorphicComponent<
           ]}
           ref={handleRef}
         >
-          <span {...getStyles('touchTarget')} />
+          <TouchTarget />
           <Elevation
             styles={innerStyles?.elevation}
             disabled={visuallyDisabled}

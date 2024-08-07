@@ -12,13 +12,13 @@ import { StateLayer } from '../StateLayer';
 import { FocusRing } from '../FocusRing';
 import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { LabeledContext } from '../Labeled';
+import { Base } from '../Base';
 import {
   checkboxFocusRingStyles,
   checkboxStateLayerStyles,
   checkboxStyles,
 } from './Checkbox.styles';
 import { checkboxTheme } from './Checkbox.stylex';
-import { Base } from '../Base';
 
 // https://github.com/material-components/material-web/blob/main/checkbox/internal/checkbox.ts
 

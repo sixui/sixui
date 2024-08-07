@@ -19,6 +19,7 @@ import { ButtonBase } from '../ButtonBase';
 import { Avatar } from '../Avatar';
 import { SvgIcon } from '../SvgIcon';
 import { Base } from '../Base';
+import { TouchTarget } from '../TouchTarget';
 import { chipVariantStyles } from './variants';
 import {
   chipCircularProgressIndicatorStyles,
@@ -291,6 +292,7 @@ export const Chip = createPolymorphicComponent<'div', IChipProps>(
             )}
             ref={primaryHandleRef}
           >
+            <TouchTarget />
             {hasLeading ? (
               <div
                 {...getStyles(
@@ -385,8 +387,6 @@ export const Chip = createPolymorphicComponent<'div', IChipProps>(
                 </div>
               ) : null}
             </div>
-
-            <span {...getStyles('touchTarget')} />
           </Base>
 
           {isDeletable ? (

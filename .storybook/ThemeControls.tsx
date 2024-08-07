@@ -27,6 +27,7 @@ export const ThemeControls: React.FC<IThemeControlsProps> = (props) => {
   const { children } = props;
   const [scale, setScale] = useState('1');
   const [density, setDensity] = useState('0');
+  const [minTargetSize, setMinTargetSize] = useState('48');
 
   return (
     <div
@@ -37,7 +38,7 @@ export const ThemeControls: React.FC<IThemeControlsProps> = (props) => {
         themeProviderStyles.dynamicDensity({
           density,
           interval: '4px',
-          minTargetSize: '48',
+          minTargetSize: minTargetSize ? `${minTargetSize}px` : '100%',
         }),
         spacingTheme,
         typeScaleTheme,
@@ -60,6 +61,14 @@ export const ThemeControls: React.FC<IThemeControlsProps> = (props) => {
           value={density}
           step='1'
           onChange={(event) => setDensity(event.target.value)}
+        />
+        <TextInputField
+          sx={styles.control}
+          label='Min Target Size'
+          type='number'
+          value={minTargetSize}
+          step='2'
+          onChange={(event) => setMinTargetSize(event.target.value)}
         />
       </div>
       {children}
