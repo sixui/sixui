@@ -20,7 +20,7 @@ export const outlinedCardStyles = stylex.create({
     [cardTokens.containerElevation$dragged]: elevationTokens.boxShadow$level3,
 
     [cardTokens.outlineColor]: colorSchemeTokens.outlineVariant,
-    [cardTokens.outlineWidth]: outlineTokens.width$1,
+    [cardTokens.outlineWidth]: outlineTokens.width$xs,
     [cardTokens.outlineColor$focus]: colorSchemeTokens.outlineVariant,
     [cardTokens.outlineColor$hover]: colorSchemeTokens.outlineVariant,
     [cardTokens.outlineColor$pressed]: colorSchemeTokens.outlineVariant,
@@ -32,7 +32,7 @@ export const outlinedCardStyles = stylex.create({
     inset: 0,
     pointerEvents: 'none',
     borderStyle: 'solid',
-    borderWidth: outlineTokens.width$1,
+    borderWidth: outlineTokens.width$xs,
     position: 'absolute',
     borderColor: cardTokens.outlineColor,
     borderRadius: 'inherit',

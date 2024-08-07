@@ -17,7 +17,8 @@ const vars = {
   color$disabled: colorSchemeTokens.onSurface,
   size: `${SIZE}em`,
   containerPadding: `${CONTAINER_PADDING}px`,
-  widthPct: `calc((${WIDTH} / (${SIZE} * ${DEFAULT_FONT_SIZE} - ${CONTAINER_PADDING} * 2)) * 100)`,
+  widthPct: `calc((${WIDTH} / (${SIZE} * ${DEFAULT_FONT_SIZE} -
+  ${CONTAINER_PADDING} * 2)) * 100)`,
 };
 
 export const circularProgressIndicatorTokens = stylex.defineVars(vars);

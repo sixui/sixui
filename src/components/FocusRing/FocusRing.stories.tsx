@@ -4,10 +4,13 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
 import type { IFocusRingProps } from './FocusRing.types';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { shapeTokens } from '~/themes/base/shape.stylex';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
 import { ComponentShowcase } from '../ComponentShowcase';
 import { Placeholder } from '../Placeholder';
-import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { shapeTokens } from '~/themes/base/shape.stylex';
 import { FocusRing } from './FocusRing';
 import { focusRingTokens } from './FocusRing.stylex';
 
@@ -27,34 +30,17 @@ const defaultArgs = {
   }),
 } satisfies Partial<IFocusRingProps>;
 
-const placeholderStyles = stylex.create({
-  host: {
-    width: 96,
-    height: 96,
-    outlineWidth: '1px',
-    outlineStyle: 'solid',
-    outlineColor: colorSchemeTokens.outline,
-    padding: '1rem',
-  },
-});
-
-const dashedPlaceholderStyles = stylex.create({
-  host: {
-    width: 96,
-    height: 96,
-    outlineWidth: '1px',
-    outlineStyle: 'dashed',
-    outlineColor: colorSchemeTokens.outline,
-    padding: '1rem',
-  },
-});
-
 const styles = stylex.create({
+  placeholder: {
+    width: `calc(96px * ${scaleTokens.scale})`,
+    height: `calc(96px * ${scaleTokens.scale})`,
+    padding: spacingTokens.padding$4,
+  },
   input: {
     width: '100%',
     height: '100%',
     textAlign: 'center',
-    borderWidth: '1px',
+    borderWidth: outlineTokens.width$sm,
     borderStyle: 'solid',
     borderColor: colorSchemeTokens.outline,
     borderRadius: shapeTokens.corner$md,
@@ -66,7 +52,7 @@ export const Variants: IStory = {
     <ComponentShowcase<IFocusRingProps>
       component={(variantArgs) => (
         <Placeholder
-          styles={placeholderStyles}
+          sx={styles.placeholder}
           corner='md'
           label={variantArgs.inward ? 'Inward' : 'Outward'}
         >
@@ -89,7 +75,12 @@ export const Outward: IStory = {
   render: (props) => (
     <ComponentShowcase<IFocusRingProps>
       component={(variantArgs) => (
-        <Placeholder styles={placeholderStyles} role='button' tabIndex={0}>
+        <Placeholder
+          sx={styles.placeholder}
+          corner='md'
+          role='button'
+          tabIndex={0}
+        >
           <FocusRing {...props} {...variantArgs} />
         </Placeholder>
       )}
@@ -104,7 +95,12 @@ export const Inward: IStory = {
   render: (props) => (
     <ComponentShowcase<IFocusRingProps>
       component={(variantArgs) => (
-        <Placeholder styles={placeholderStyles} role='button' tabIndex={0}>
+        <Placeholder
+          sx={styles.placeholder}
+          corner='md'
+          role='button'
+          tabIndex={0}
+        >
           <FocusRing {...props} {...variantArgs} />
         </Placeholder>
       )}
@@ -122,7 +118,7 @@ const AttachedComponent: React.FC<IFocusRingProps> = (props) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
-    <Placeholder styles={dashedPlaceholderStyles}>
+    <Placeholder sx={styles.placeholder} corner='md'>
       <FocusRing {...props} for={inputRef} />
       <input {...stylex.props(styles.input)} ref={inputRef} />
     </Placeholder>
@@ -146,7 +142,7 @@ const MultiActionComponent: React.FC<IFocusRingProps> = (props) => {
   const secondaryActionRef = useRef<HTMLInputElement>(null);
 
   return (
-    <Placeholder styles={placeholderStyles} role='button' tabIndex={0}>
+    <Placeholder sx={styles.placeholder} corner='md' role='button' tabIndex={0}>
       <FocusRing {...props} />
       <div style={{ position: 'relative', width: '100%', height: '100%' }}>
         <FocusRing {...props} for={secondaryActionRef} />

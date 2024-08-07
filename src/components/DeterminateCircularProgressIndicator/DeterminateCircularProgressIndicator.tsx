@@ -52,6 +52,7 @@ export const DeterminateCircularProgressIndicator = createPolymorphicComponent<
       const value0 = zeroBased ? 0 : min;
       const pct = Math.max(Math.min((value - value0) / (max - value0), 1), 0);
       const dashOffset = (1 - pct) * 100;
+      const hasContent = withLabel || !!children;
 
       return (
         <Base
@@ -90,7 +91,7 @@ export const DeterminateCircularProgressIndicator = createPolymorphicComponent<
                 strokeDashoffset={dashOffset}
               />
             </svg>
-            {withLabel || children ? (
+            {hasContent ? (
               <div
                 {...getStyles('layer', 'label', disabled && 'label$disabled')}
               >

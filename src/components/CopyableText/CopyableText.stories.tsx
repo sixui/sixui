@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { ICopyableTextProps } from './CopyableText.types';
-import { CopyableText } from './CopyableText';
 import {
   ComponentShowcase,
   type IComponentPresentation,
 } from '../ComponentShowcase';
+import { Typography } from '../Typography';
+import { CopyableText } from './CopyableText';
 
 const meta = {
   component: CopyableText,
@@ -28,9 +29,9 @@ const rows: Array<IComponentPresentation<ICopyableTextProps>> = [
   {
     legend: 'Icon and text',
     component: (props) => (
-      <span>
+      <Typography>
         You can reach me on <CopyableText {...props} />, or by email.
-      </span>
+      </Typography>
     ),
     props: {
       children: COPYABLE_TEXT,

@@ -30,7 +30,7 @@ export const CopyableText = createPolymorphicComponent<
         ...other
       } = props;
 
-      const { combineStyles, getStyles, globalStyles } = useStyles({
+      const { getStyles, globalStyles } = useStyles({
         name: 'CopyableText',
         styles: [copyableTextStyles, styles],
       });
@@ -73,12 +73,7 @@ export const CopyableText = createPolymorphicComponent<
             <div {...getStyles('inner')}>
               {children ? <div {...getStyles('text')}>{children}</div> : null}
               {isTriggerVisible
-                ? (icon ?? (
-                    <SvgIcon
-                      sx={combineStyles('icon')}
-                      icon={iconCopyToCliboard}
-                    />
-                  ))
+                ? (icon ?? <SvgIcon icon={iconCopyToCliboard} />)
                 : null}
             </div>
           </FluidButton>

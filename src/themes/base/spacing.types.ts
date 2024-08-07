@@ -9,6 +9,8 @@ export type ISpacingTheme = {
   padding$4: string;
   padding$5: string;
   padding$6: string;
+  padding$7: string;
+  padding$8: string;
 
   /**
    * Margin refers to the space between components.
@@ -20,4 +22,6 @@ export type ISpacingTheme = {
   margin$4: string;
   margin$5: string;
   margin$6: string;
+  margin$7: string;
+  margin$8: string;
 };

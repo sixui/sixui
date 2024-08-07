@@ -17,6 +17,8 @@ const vars = {
   padding$4: `calc(${PADDING_SCALE} * 4)`,
   padding$5: `calc(${PADDING_SCALE} * 5)`,
   padding$6: `calc(${PADDING_SCALE} * 6)`,
+  padding$7: `calc(${PADDING_SCALE} * 7)`,
+  padding$8: `calc(${PADDING_SCALE} * 8)`,
 
   marginScale: MARGIN_SCALE,
   margin$1: `calc(${MARGIN_SCALE} * 1)`,
@@ -25,6 +27,8 @@ const vars = {
   margin$4: `calc(${MARGIN_SCALE} * 4)`,
   margin$5: `calc(${MARGIN_SCALE} * 5)`,
   margin$6: `calc(${MARGIN_SCALE} * 6)`,
+  margin$7: `calc(${MARGIN_SCALE} * 7)`,
+  margin$8: `calc(${MARGIN_SCALE} * 8)`,
 };
 
 export const spacingTokens = stylex.defineVars<ISpacingTheme>(vars);

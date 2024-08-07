@@ -1,22 +1,23 @@
 import stylex from '@stylexjs/stylex';
 
-import { elevationTokens } from '../Elevation/Elevation.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { elevationTokens } from '../Elevation/Elevation.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-fab-primary.scss
 
 const vars = {
   // container
   containerColor: 'inherit',
-  containerWidth$sm: '40px',
-  containerHeight$sm: '40px',
-  containerWidth$md: '56px',
-  containerHeight$md: '56px',
-  containerWidth$lg: '96px',
-  containerHeight$lg: '96px',
+  containerWidth$sm: `calc(40px * ${scaleTokens.scale})`,
+  containerHeight$sm: `calc(40px * ${scaleTokens.scale})`,
+  containerWidth$md: `calc(56px * ${scaleTokens.scale})`,
+  containerHeight$md: `calc(56px * ${scaleTokens.scale})`,
+  containerWidth$lg: `calc(96px * ${scaleTokens.scale})`,
+  containerHeight$lg: `calc(96px * ${scaleTokens.scale})`,
   containerShape$sm: shapeTokens.corner$md,
   containerShape$md: shapeTokens.corner$lg,
   containerShape$lg: shapeTokens.corner$xl,
@@ -44,9 +45,9 @@ const vars = {
 
   // icon
   iconColor: 'inherit',
-  iconSize$sm: '24px',
-  iconSize$md: '24px',
-  iconSize$lg: '36px',
+  iconSize$sm: `calc(24px * ${scaleTokens.scale})`,
+  iconSize$md: `calc(24px * ${scaleTokens.scale})`,
+  iconSize$lg: `calc(36px * ${scaleTokens.scale})`,
   iconColor$disabled: colorSchemeTokens.onSurface,
   // &:hover
   iconColor$hover: 'inherit',

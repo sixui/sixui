@@ -261,9 +261,10 @@ export const themeProviderStyles = stylex.create({
   }),
   dynamicOutline: (outline: IOutlineTheme) => ({
     [outlineTokens.width$none]: outline.width$none,
-    [outlineTokens.width$1]: outline.width$1,
-    [outlineTokens.width$2]: outline.width$2,
-    [outlineTokens.width$3]: outline.width$3,
-    [outlineTokens.width$4]: outline.width$4,
+    [outlineTokens.width$xs]: outline.width$xs,
+    [outlineTokens.width$sm]: outline.width$sm,
+    [outlineTokens.width$md]: outline.width$md,
+    [outlineTokens.width$lg]: outline.width$lg,
+    [outlineTokens.width$xl]: outline.width$xl,
   }),
 });

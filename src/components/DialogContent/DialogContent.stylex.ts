@@ -5,6 +5,7 @@ import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 
 const vars = {
   // container
@@ -14,7 +15,7 @@ const vars = {
 
   // icon
   iconColor: colorSchemeTokens.secondary,
-  iconSize: '18px',
+  iconSize: `calc(18px * ${scaleTokens.scale})`,
 
   // headline
   headlineColor: colorSchemeTokens.onSurface,

@@ -3,6 +3,7 @@ import stylex from '@stylexjs/stylex';
 import { zIndexTokens } from '~/themes/base/zIndex.stylex';
 import { buttonTokens } from '../Button/Button.stylex';
 import { fabTokens } from './Fab.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 
 // https://github.com/material-components/material-web/blob/main/fab/internal/_shared.scss
 // https://github.com/material-components/material-web/blob/main/fab/internal/_fab.scss
@@ -19,7 +20,7 @@ export const fabStyles = stylex.create({
     [buttonTokens.trailingIconLeadingSpace]: '0px',
     [buttonTokens.trailingIconTrailingSpace]: '0px',
 
-    [buttonTokens.gap]: '12px',
+    [buttonTokens.gap]: spacingTokens.padding$3,
     [buttonTokens.containerElevation$disabled]:
       fabTokens.containerElevation$disabled,
     [buttonTokens.containerElevation]: fabTokens.containerElevation,
@@ -80,10 +81,10 @@ export const fabStyles = stylex.create({
   },
   host$extended: {
     width: 'inherit',
-    [buttonTokens.leadingSpace]: '24px',
-    [buttonTokens.trailingSpace]: '24px',
-    [buttonTokens.leadingIconLeadingSpace]: '16px',
-    [buttonTokens.leadingIconTrailingSpace]: '24px',
+    [buttonTokens.leadingSpace]: spacingTokens.padding$6,
+    [buttonTokens.trailingSpace]: spacingTokens.padding$6,
+    [buttonTokens.leadingIconLeadingSpace]: spacingTokens.padding$4,
+    [buttonTokens.leadingIconTrailingSpace]: spacingTokens.padding$6,
   },
   host$lowered: {
     [buttonTokens.containerElevation]: fabTokens.loweredContainerElevation,

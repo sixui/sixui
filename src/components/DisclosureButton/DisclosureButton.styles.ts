@@ -88,9 +88,11 @@ export const disclosureButtonStyles = stylex.create({
       disclosureButtonTokens.expandedIconColor$pressed,
   },
   button$checkable: {
+    // FIXME:
     [listItemTokens.leadingSpace]: 'calc(16px + 18px + 12px)',
   },
   button$switchable: {
+    // FIXME:
     [listItemTokens.leadingSpace]: 'calc(16px + 52px + 16px)',
   },
   button$toggledOff: {
@@ -126,6 +128,7 @@ export const disclosureButtonStyles = stylex.create({
     bottom: 0,
     display: 'flex',
     alignItems: 'center',
+    // FIXME:
     marginLeft: 16,
   },
 });

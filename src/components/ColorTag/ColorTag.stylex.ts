@@ -21,11 +21,11 @@ const vars = {
   containerOutlineColor: 'unset',
   // &:empty
   containerColor$empty: 'transparent',
-  containerOutlineWidth$empty: outlineTokens.width$1,
+  containerOutlineWidth$empty: outlineTokens.width$xs,
   containerOutlineColor$empty: colorSchemeTokens.outline,
   // &:invalid
   containerColor$invalid: 'transparent',
-  containerOutlineWidth$invalid: outlineTokens.width$1,
+  containerOutlineWidth$invalid: outlineTokens.width$xs,
   containerOutlineColor$invalid: colorSchemeTokens.outline,
 
   // labelText

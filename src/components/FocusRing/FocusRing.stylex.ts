@@ -2,18 +2,20 @@ import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { motionTokens } from '~/themes/base/motion.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-focus-ring.scss
 
 const vars = {
-  activeWidth: '8px',
+  activeWidth: outlineTokens.width$xl,
   color: colorSchemeTokens.secondary,
   duration: motionTokens.duration$long4,
   inwardOffset: '0px',
-  outwardOffset: '2px',
+  outwardOffset: `calc(2px * ${scaleTokens.scale})`,
   shape: shapeTokens.corner$none,
-  width: '3px',
+  width: outlineTokens.width$md,
 };
 
 export const focusRingTokens = stylex.defineVars(vars);

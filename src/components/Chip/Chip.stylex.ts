@@ -79,7 +79,7 @@ const vars = {
   selectedElevatedContainerColor: 'inherit',
 
   // outline
-  outlineWidth: outlineTokens.width$1,
+  outlineWidth: outlineTokens.width$xs,
   outlineColor: colorSchemeTokens.outline,
   // &:disabled
   outlineColor$disabled: colorSchemeTokens.onSurface,

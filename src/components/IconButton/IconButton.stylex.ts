@@ -2,12 +2,14 @@ import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { densityTokens } from '~/themes/base/density.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
 
-const MIN_DENSITY_SCALE = -3;
-const MAX_DENSITY_SCALE = 2;
-const DENSITY_SCALE = `${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE})`;
+const MIN_DENSITY = -3;
+const MAX_DENSITY = 0;
+const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityTokens.density}, ${MAX_DENSITY}) * ${scaleTokens.scale}`;
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-icon-button.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-icon-button.scss
@@ -15,7 +17,7 @@ const DENSITY_SCALE = `${densityTokens.interval} * clamp(${densityTokens.scale},
 const vars = {
   // container
   containerColor: 'unset',
-  containerSize: `calc(40px + ${DENSITY_SCALE})`,
+  containerSize: `calc(40px * ${scaleTokens.scale} + ${DENSITY})`,
   containerShape: shapeTokens.corner$full,
   // &:disabled
   containerColor$disabled: 'unset',
@@ -29,7 +31,7 @@ const vars = {
 
   // icon
   iconColor: 'inherit',
-  iconSize: '18px',
+  iconSize: `calc(18px * ${scaleTokens.scale})`,
   // &:hover
   iconColor$hover: 'inherit',
   // &:focus
@@ -80,7 +82,7 @@ const vars = {
 
   // outline
   outlineStyle: 'unset',
-  outlineWidth: 'unset',
+  outlineWidth: outlineTokens.width$none,
   outlineColor: 'unset',
   // &:focus
   outlineColor$focus: 'unset',

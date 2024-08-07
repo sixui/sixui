@@ -3,6 +3,7 @@ import stylex from '@stylexjs/stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
 import { iconButtonTokens } from '../IconButton.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
 
 export const outlinedIconButtonStyles = stylex.create({
   host: {
@@ -47,7 +48,7 @@ export const outlinedIconButtonStyles = stylex.create({
       colorSchemeTokens.inverseOnSurface,
 
     [iconButtonTokens.outlineStyle]: 'solid',
-    [iconButtonTokens.outlineWidth]: '1px',
+    [iconButtonTokens.outlineWidth]: outlineTokens.width$xs,
     [iconButtonTokens.outlineColor]: colorSchemeTokens.outline,
     [iconButtonTokens.outlineColor$disabled]: colorSchemeTokens.onSurface,
     [iconButtonTokens.outlineOpacity$disabled]:

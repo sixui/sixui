@@ -1,11 +1,12 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { iconButtonTokens } from '../IconButton.stylex';
 
 export const snackbarIconButtonStyles = stylex.create({
   host: {
-    [iconButtonTokens.containerSize]: '32px',
+    [iconButtonTokens.containerSize]: `calc(32px * ${scaleTokens.scale})`,
     [iconButtonTokens.containerColor]: 'transparent',
     [iconButtonTokens.containerColor$disabled]: 'transparent',
 

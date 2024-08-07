@@ -1,6 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import { dialogContentTokens } from './DialogContent.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 
 // https://github.com/material-components/material-web/blob/main/dialog/internal/_dialog.scss
 
@@ -76,18 +77,18 @@ export const dialogContentStyles = stylex.create({
     alignSelf: 'stretch',
     boxSizing: 'border-box',
     display: 'flex',
-    gap: 8,
-    paddingTop: 24,
+    gap: spacingTokens.padding$2,
+    paddingTop: spacingTokens.padding$6,
     paddingBottom: 0,
-    paddingLeft: 24,
-    paddingRight: 24,
+    paddingLeft: spacingTokens.padding$6,
+    paddingRight: spacingTokens.padding$6,
   },
   headlineSlot$scrollable: {
-    paddingBottom: 16,
+    paddingBottom: spacingTokens.padding$4,
   },
   headlineSlot$hasIcon: {
     justifyContent: 'center',
-    paddingTop: 16,
+    paddingTop: spacingTokens.padding$4,
   },
   icon: {
     display: 'flex',
@@ -96,7 +97,7 @@ export const dialogContentStyles = stylex.create({
     color: dialogContentTokens.iconColor,
     fill: 'currentColor',
     fontSize: dialogContentTokens.iconSize,
-    marginTop: 24,
+    marginTop: spacingTokens.padding$6,
     height: dialogContentTokens.iconSize,
     width: dialogContentTokens.iconSize,
   },
@@ -130,23 +131,23 @@ export const dialogContentStyles = stylex.create({
   },
   contentSlot: {
     boxSizing: 'border-box',
-    paddingLeft: 24,
-    paddingTop: 24,
-    paddingRight: 24,
+    paddingLeft: spacingTokens.padding$6,
+    paddingTop: spacingTokens.padding$6,
+    paddingRight: spacingTokens.padding$6,
   },
   contentSlot$hasHeadline: {
-    paddingTop: 16,
-    paddingBottom: 8,
+    paddingTop: spacingTokens.padding$4,
+    paddingBottom: spacingTokens.padding$2,
   },
   contentSlot$scrollable: {
-    paddingBottom: 8,
+    paddingBottom: spacingTokens.padding$2,
   },
   contentSlot$scrollable$hasHeadline: {
-    paddingTop: 8,
+    paddingTop: spacingTokens.padding$2,
   },
   footer: {
     position: 'relative',
-    paddingBottom: 24,
+    paddingBottom: spacingTokens.padding$6,
   },
   footer$hasActions: {
     paddingBottom: 0,
@@ -154,12 +155,12 @@ export const dialogContentStyles = stylex.create({
   actions: {
     boxSizing: 'border-box',
     display: 'flex',
-    gap: 8,
+    gap: spacingTokens.padding$2,
     justifyContent: 'flex-end',
-    paddingTop: 16,
-    paddingBottom: 24,
-    paddingLeft: 24,
-    paddingRight: 24,
+    paddingTop: spacingTokens.padding$4,
+    paddingBottom: spacingTokens.padding$6,
+    paddingLeft: spacingTokens.padding$6,
+    paddingRight: spacingTokens.padding$6,
   },
   divider: {
     display: 'none',

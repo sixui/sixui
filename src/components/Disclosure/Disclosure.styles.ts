@@ -11,6 +11,6 @@ export const disclosureStyles = stylex.create({
   },
   panel: {
     color: disclosureTokens.textColor,
-    marginTop: '1rem',
+    marginTop: disclosureTokens.panelSpacing,
   },
 });

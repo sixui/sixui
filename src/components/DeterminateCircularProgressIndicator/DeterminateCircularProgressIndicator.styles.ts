@@ -2,6 +2,8 @@ import stylex from '@stylexjs/stylex';
 
 import { stateTokens } from '~/themes/base/state.stylex';
 import { motionTokens } from '~/themes/base/motion.stylex';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 import { circularProgressIndicatorTokens } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
 
 // https://github.com/material-components/material-web/blob/main/progress/internal/_circulardeterminate-progress.scss
@@ -42,5 +44,21 @@ export const determinateCircularProgressIndicatorStyles = stylex.create({
   },
   activeTrack$disabled: {
     stroke: color$disabled,
+  },
+  label: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+    color: colorSchemeTokens.onSurface,
+    fontFamily: typeScaleTokens.labelFont$sm,
+    fontSize: typeScaleTokens.labelSize$sm,
+    fontWeight: typeScaleTokens.labelWeight$sm,
+    lineHeight: typeScaleTokens.labelLineHeight$sm,
+    letterSpacing: typeScaleTokens.labelLetterSpacing$sm,
+  },
+  label$disabled: {
+    opacity: stateTokens.opacity$disabled,
   },
 });

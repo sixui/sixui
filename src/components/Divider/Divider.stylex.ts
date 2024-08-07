@@ -3,22 +3,24 @@ import stylex from '@stylexjs/stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-divider.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-divider.scss
 
 const vars = {
-  thickness: '1px',
+  thickness: outlineTokens.width$xs,
   shape: shapeTokens.corner$none,
   color: colorSchemeTokens.outlineVariant,
 
   // inset
-  insetLeadingSpace: '16px',
-  insetTrailingSpace: '16px',
+  insetLeadingSpace: spacingTokens.padding$4,
+  insetTrailingSpace: spacingTokens.padding$4,
 
   // text
-  textLeadingSpace: '8px',
-  textTrailingSpace: '8px',
+  textLeadingSpace: spacingTokens.padding$2,
+  textTrailingSpace: spacingTokens.padding$2,
   textColor: colorSchemeTokens.outline,
   textFont: typeScaleTokens.bodyFont$sm,
   textSize: typeScaleTokens.bodySize$sm,

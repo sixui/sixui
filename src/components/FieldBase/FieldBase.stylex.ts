@@ -162,16 +162,16 @@ const vars = {
 
   // activeIndicator
   activeIndicatorColor: colorSchemeTokens.onSurfaceVariant,
-  activeIndicatorHeight: outlineTokens.width$1,
+  activeIndicatorHeight: outlineTokens.width$xs,
   // &:hover
   activeIndicatorColor$hover: colorSchemeTokens.onSurface,
-  activeIndicatorHeight$hover: outlineTokens.width$1,
+  activeIndicatorHeight$hover: outlineTokens.width$xs,
   // &:focus
   activeIndicatorColor$focus: colorSchemeTokens.primary,
   activeIndicatorHeight$focus: outlineTokens.width$3,
   // &:disabled
   activeIndicatorColor$disabled: colorSchemeTokens.onSurface,
-  activeIndicatorHeight$disabled: outlineTokens.width$1,
+  activeIndicatorHeight$disabled: outlineTokens.width$xs,
   activeIndicatorOpacity$disabled: stateTokens.opacity$disabled,
   // &:error
   activeIndicatorColor$error: colorSchemeTokens.error,
@@ -182,15 +182,15 @@ const vars = {
 
   // outline
   outlineColor: colorSchemeTokens.outline,
-  outlineWidth: outlineTokens.width$1,
+  outlineWidth: outlineTokens.width$xs,
   // &:hover
   outlineColor$hover: colorSchemeTokens.onSurface,
-  outlineWidth$hover: outlineTokens.width$1,
+  outlineWidth$hover: outlineTokens.width$xs,
   // &:focus
   outlineColor$focus: colorSchemeTokens.primary,
   outlineWidth$focus: outlineTokens.width$3,
   // &:disabled
-  outlineWidth$disabled: outlineTokens.width$1,
+  outlineWidth$disabled: outlineTokens.width$xs,
   outlineColor$disabled: colorSchemeTokens.onSurface,
   outlineOpacity$disabled: stateTokens.outlineOpacity$disabled,
   // &:error

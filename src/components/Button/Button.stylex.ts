@@ -91,7 +91,7 @@ const vars = {
 
   // outline
   outlineStyle: 'none',
-  outlineWidth: outlineTokens.width$1,
+  outlineWidth: outlineTokens.width$xs,
   outlineColor: colorSchemeTokens.outline,
   // &:disabled
   outlineColor$disabled: colorSchemeTokens.onSurface,

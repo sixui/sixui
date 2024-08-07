@@ -5,6 +5,7 @@ import { colorButtonTokens } from '../ColorButton/ColorButton.stylex';
 import { paperBaseTokens } from '../PaperBase/PaperBase.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { elevationTokens } from '../Elevation/Elevation.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 
 export type IColorPickerContentStylesKey =
   keyof typeof colorPickerContentStyles;
@@ -19,17 +20,15 @@ export const colorPickerContentStyles = stylex.create({
     [paperBaseTokens.containerShape$bottomLeft]: shapeTokens.corner$xs,
   },
   section: {
-    padding: 12,
+    padding: spacingTokens.padding$3,
   },
   grid: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    gap: 8,
+    gap: spacingTokens.padding$2,
   },
-  tones: {
-    minWidth: 40,
-  },
+  tones: {},
   colorButton: {
     [colorButtonTokens.containerShape]: shapeTokens.corner$none,
   },

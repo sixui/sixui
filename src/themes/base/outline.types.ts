@@ -1,7 +1,8 @@
 export type IOutlineTheme = {
   width$none: string;
-  width$1: string;
-  width$2: string;
-  width$3: string;
-  width$4: string;
+  width$xs: string;
+  width$sm: string;
+  width$md: string;
+  width$lg: string;
+  width$xl: string;
 };
