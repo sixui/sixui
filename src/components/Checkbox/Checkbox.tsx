@@ -143,6 +143,7 @@ export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
 
         {loading ? (
           <IndeterminateCircularProgressIndicator
+            sx={combineStyles('loading')}
             styles={innerStyles?.circularProgressIndicator}
             disabled
           />

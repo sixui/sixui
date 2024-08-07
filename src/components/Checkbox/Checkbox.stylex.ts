@@ -2,7 +2,6 @@ import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
-import { shapeTokens } from '~/themes/base/shape.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-checkbox.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-checkbox.scss

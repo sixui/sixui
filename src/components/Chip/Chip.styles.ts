@@ -1,22 +1,30 @@
 import stylex from '@stylexjs/stylex';
 
+import { motionTokens } from '~/themes/base/motion.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
+import { shapeTokens } from '~/themes/base/shape.stylex';
 import { elevationTokens } from '../Elevation/Elevation.stylex';
 import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
 import { stateLayerTokens } from '../StateLayer/StateLayer.stylex';
 import { circularProgressIndicatorTokens } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
-import { motionTokens } from '~/themes/base/motion.stylex';
-import { chipTokens } from './Chip.stylex';
 import { chipStateTokens } from './Chip.state.stylex';
+import { chipTokens } from './Chip.stylex';
 
 // https://github.com/material-components/material-web/blob/main/chips/internal/_shared.scss
 // https://github.com/material-components/material-web/blob/main/chips/internal/_elevated.scss
+
+const MIN_DENSITY = -2;
+const MAX_DENSITY = 0;
+const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityTokens.density}, ${MAX_DENSITY}) * ${scaleTokens.scale}`;
 
 export type IChipStylesKey = keyof typeof chipStyles;
 export const chipStyles = stylex.create({
   host: {
     borderRadius: chipStateTokens.containerShape,
     display: 'inline-flex',
-    height: chipTokens.containerHeight,
+    height: `calc(${chipTokens.containerHeight} * ${scaleTokens.scale} + ${DENSITY})`,
     cursor: 'default',
     [chipStateTokens.containerShape]: chipTokens.containerShape,
     [chipStateTokens.iconColor]: chipTokens.iconColor,
@@ -36,7 +44,7 @@ export const chipStyles = stylex.create({
     },
   },
   host$avatar: {
-    [chipStateTokens.containerShape]: `calc(${chipTokens.containerHeight} / 2)`,
+    [chipStateTokens.containerShape]: shapeTokens.corner$full,
   },
   host$disabled: {
     cursor: 'default',
@@ -194,7 +202,7 @@ export const chipStyles = stylex.create({
     paddingInlineEnd: 0,
   },
   action$primary$avatar: {
-    paddingInlineStart: 4,
+    paddingInlineStart: spacingTokens.padding$1,
   },
   outline: {
     borderWidth: chipTokens.outlineWidth,
@@ -294,23 +302,15 @@ export const chipStyles = stylex.create({
     position: 'relative',
     color: chipStateTokens.iconColor,
     marginInlineEnd: chipTokens.iconLabelSpace,
-    fontSize: chipTokens.iconSize,
-    height: chipTokens.iconSize,
-    width: chipTokens.iconSize,
-
-    transitionProperty: 'opacity, width',
-    transitionDuration: motionTokens.duration$medium4,
-    transitionTimingFunction: motionTokens.easing$emphasizedDecelerate,
+    fontSize: `calc(${chipTokens.iconSize} * ${scaleTokens.scale})`,
+    height: `calc(${chipTokens.iconSize} * ${scaleTokens.scale})`,
+    width: `calc(${chipTokens.iconSize} * ${scaleTokens.scale})`,
     opacity: 1,
   },
   iconContainer$collapsed: {
     marginInlineEnd: 0,
     width: 0,
     opacity: 0,
-
-    transitionProperty: 'opacity, width',
-    transitionDuration: motionTokens.duration$short2,
-    transitionTimingFunction: motionTokens.easing$emphasizedAccelerate,
   },
   icon: {
     position: 'absolute',
@@ -321,9 +321,9 @@ export const chipStyles = stylex.create({
   },
   iconContainer$trailing: {
     position: 'relative',
-    fontSize: chipTokens.iconSize,
-    height: chipTokens.iconSize,
-    width: chipTokens.iconSize,
+    fontSize: `calc(${chipTokens.iconSize} * ${scaleTokens.scale})`,
+    height: `calc(${chipTokens.iconSize} * ${scaleTokens.scale})`,
+    width: `calc(${chipTokens.iconSize} * ${scaleTokens.scale})`,
     color: chipTokens.trailingIconColor,
   },
   iconContainer$trailing$interactive: {
@@ -352,8 +352,8 @@ export const chipStyles = stylex.create({
   iconContainer$avatar: {
     flexShrink: 0,
     flexGrow: 0,
-    height: chipTokens.avatarSize,
-    width: chipTokens.avatarSize,
+    height: `calc(${chipTokens.avatarSize} * ${scaleTokens.scale} + ${DENSITY})`,
+    width: `calc(${chipTokens.avatarSize} * ${scaleTokens.scale} + ${DENSITY})`,
   },
   invisible: {
     visibility: 'hidden',
@@ -397,8 +397,8 @@ export const chipElevationStyles = stylex.create({
 export const chipTrailingActionFocusRingStyles = stylex.create({
   host: {
     [focusRingTokens.shape]: '50%',
-    height: `calc(4 / 3 * ${chipTokens.iconSize})`,
-    width: `calc(4 / 3 * ${chipTokens.iconSize})`,
+    height: `calc(4 / 3 * ${chipTokens.iconSize} * ${scaleTokens.scale})`,
+    width: `calc(4 / 3 * ${chipTokens.iconSize} * ${scaleTokens.scale})`,
   },
   host$outward: {
     inset: 'unset',
@@ -411,8 +411,8 @@ export const chipTrailingActionFocusRingStyles = stylex.create({
 export const chipTrailingActionStateLayerStyles = stylex.create({
   host: {
     borderRadius: '50%',
-    height: `calc(4 / 3 * ${chipTokens.iconSize})`,
-    width: `calc(4 / 3 * ${chipTokens.iconSize})`,
+    height: `calc(4 / 3 * ${chipTokens.iconSize} * ${scaleTokens.scale})`,
+    width: `calc(4 / 3 * ${chipTokens.iconSize} * ${scaleTokens.scale})`,
     inset: 'unset',
 
     [stateLayerTokens.color$hover]: chipTokens.stateLayerColor$hover,

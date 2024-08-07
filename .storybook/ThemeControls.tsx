@@ -68,6 +68,7 @@ export const ThemeControls: React.FC<IThemeControlsProps> = (props) => {
           type='number'
           value={minTargetSize}
           step='2'
+          suffixText='px'
           onChange={(event) => setMinTargetSize(event.target.value)}
         />
       </div>

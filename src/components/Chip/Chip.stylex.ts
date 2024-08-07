@@ -6,7 +6,6 @@ import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
-import { scaleTokens } from '~/themes/base/scale.stylex';
 
 const vars = {
   // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-assist-chip.scss#L93
@@ -24,7 +23,7 @@ const vars = {
   // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-suggestion-chip.scss
 
   // container
-  containerHeight: `calc(32px * ${scaleTokens.scale})`,
+  containerHeight: '32px',
   containerShape: shapeTokens.corner$sm,
 
   // flatContainer
@@ -133,7 +132,7 @@ const vars = {
   selectedLabelTextColor$pressed: 'inherit',
 
   // icon
-  iconSize: `calc(18px * ${scaleTokens.scale})`,
+  iconSize: '18px',
   iconColor: colorSchemeTokens.onSurfaceVariant,
   iconColor$interactive: colorSchemeTokens.primary,
   // &:disabled

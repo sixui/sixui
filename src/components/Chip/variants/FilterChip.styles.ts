@@ -1,6 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { motionTokens } from '~/themes/base/motion.stylex';
 import { chipTokens } from '../Chip.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-filter-chip.scss
@@ -59,5 +60,15 @@ export const filterChipStyles = stylex.create({
       colorSchemeTokens.onSecondaryContainer,
     [chipTokens.selectedTrailingIconColor$pressed]:
       colorSchemeTokens.onSecondaryContainer,
+  },
+  iconContainer$leading: {
+    transitionProperty: 'opacity, width',
+    transitionDuration: motionTokens.duration$medium4,
+    transitionTimingFunction: motionTokens.easing$emphasizedDecelerate,
+  },
+  iconContainer$collapsed: {
+    transitionProperty: 'opacity, width',
+    transitionDuration: motionTokens.duration$short2,
+    transitionTimingFunction: motionTokens.easing$emphasizedAccelerate,
   },
 });

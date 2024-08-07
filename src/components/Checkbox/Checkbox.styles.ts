@@ -148,6 +148,9 @@ export const checkboxStyles = stylex.create({
     transitionTimingFunction: `${motionTokens.easing$emphasizedDecelerate}, linear`, // Enter easing function for scale, linear for opacity
     transform: 'scale(1)',
   },
+  loading: {
+    fontSize: `calc(${checkboxTokens.containerSize} * ${scaleTokens.scale})`,
+  },
   icon: {
     position: 'relative',
     // The icon is created with two <rect> marks for animation:
@@ -274,8 +277,8 @@ export const checkboxStateLayerStyles = stylex.create({
 
 export const checkboxFocusRingStyles = stylex.create({
   host: {
-    width: `max(${densityTokens.minTargetSize}, calc(${checkboxTokens.containerSize} * sqrt(2) * 1.2 * ${scaleTokens.scale}))`,
-    height: `max(${densityTokens.minTargetSize}, calc(${checkboxTokens.containerSize} * sqrt(2) * 1.2 * ${scaleTokens.scale}))`,
+    width: `calc(${checkboxTokens.containerSize} * sqrt(2) * 1.8 * ${scaleTokens.scale})`,
+    height: `calc(${checkboxTokens.containerSize} * sqrt(2) * 1.8 * ${scaleTokens.scale})`,
     [focusRingTokens.shape]: shapeTokens.corner$full,
   },
   host$outward: {
