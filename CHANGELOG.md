@@ -1,3 +1,15 @@
+# v0.0.411 (Wed Aug 07 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: export Base ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.410 (Wed Aug 07 2024)
 
 #### ⚠️ Pushed to `main`
