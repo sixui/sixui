@@ -4,6 +4,7 @@ import { motionTokens } from '~/themes/base/motion.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
 import { fieldBaseTokens } from '../FieldBase.stylex';
+import { stateTokens } from '~/themes/base/state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/field/internal/_filled-field.scss
 
@@ -18,6 +19,8 @@ export const filledFieldBaseStyles = stylex.create({
     [fieldBaseTokens.stateLayerColor$hover]: colorSchemeTokens.onSurface,
     [fieldBaseTokens.stateLayerColor$pressed]: colorSchemeTokens.onSurface,
     [fieldBaseTokens.stateLayerColor$error$hover]: colorSchemeTokens.onSurface,
+    [fieldBaseTokens.stateLayerOpacity$error$hover]:
+      stateTokens.stateLayerOpacity$hover,
   },
   container$resizable: {
     // Move the container up so that the resize handle doesn't overlap the focus
