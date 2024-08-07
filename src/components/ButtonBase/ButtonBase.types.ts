@@ -29,7 +29,7 @@ export type IButtonBaseProps = IBaseProps<IButtonBaseStylesKey> & {
    * If `true`, the component will be rendered in a disabled state, but will
    * still be focusable.
    */
-  softDisabled?: boolean;
+  readOnly?: boolean;
 
   type?: string;
 };

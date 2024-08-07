@@ -29,13 +29,13 @@ export const ButtonBase = createPolymorphicComponent<
         visualState: visualStateProp,
         children,
         inwardFocusRing,
-        softDisabled,
+        readOnly,
         type = 'button',
         href,
         ...other
       } = props as IWithAsProp<IButtonBaseProps>;
 
-      const visuallyDisabled = other.disabled || softDisabled;
+      const visuallyDisabled = other.disabled || readOnly;
       const { visualState, setRef: setVisualStateRef } = useVisualState(
         visualStateProp,
         { disabled: visuallyDisabled },

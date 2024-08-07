@@ -36,7 +36,7 @@ export type ISwitchProps = IBaseProps<ISwitchStylesKey> & {
   showOnlySelectedIcon?: boolean;
 
   disabled?: boolean;
-  softDisabled?: boolean;
+  readOnly?: boolean;
   loading?: boolean;
   loadingAnimation?: 'progressIndicator' | 'none';
   onChange?: (

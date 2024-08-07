@@ -35,7 +35,7 @@ export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
       checked: checkedProp,
       defaultChecked,
       loading: loadingProp,
-      softDisabled: softDisabledProp,
+      readOnly: readOnlyProp,
       ...other
     } = props;
 
@@ -43,10 +43,9 @@ export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
     const actionRef = useRef<HTMLInputElement>(null);
     const [handlingChange, setHandlingChange] = useState(false);
     const loading = loadingProp || handlingChange || labeledContext?.loading;
-    const softDisabled =
-      softDisabledProp || loading || labeledContext?.softDisabled;
+    const readOnly = readOnlyProp || loading || labeledContext?.readOnly;
     const visuallyDisabled =
-      other.disabled || labeledContext?.disabled || softDisabled;
+      other.disabled || labeledContext?.disabled || readOnly;
 
     const { visualState, setRef: setVisualStateRef } = useVisualState(
       visualStateProp,

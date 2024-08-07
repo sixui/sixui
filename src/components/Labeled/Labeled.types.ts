@@ -6,7 +6,6 @@ export type ILabeledRenderProps = {
   id: string;
   required?: boolean;
   disabled?: boolean;
-  softDisabled?: boolean;
   readOnly?: boolean;
   hasError?: boolean;
   loading?: boolean;

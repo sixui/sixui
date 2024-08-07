@@ -26,7 +26,7 @@ export const FluidButton = createPolymorphicComponent<
         styles: [fluidButtonStyles, styles],
       });
 
-      const visuallyDisabled = other.disabled || other.softDisabled;
+      const visuallyDisabled = other.disabled || other.readOnly;
 
       return (
         <ButtonBase

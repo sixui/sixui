@@ -60,7 +60,7 @@ export const Chip = createPolymorphicComponent<'div', IChipProps>(
       href,
       avatar: avatarProp,
       'aria-label-remove': ariaLabelRemove,
-      softDisabled: softDisabledProp,
+      readOnly: readOnlyProp,
       ...other
     } = props as IWithAsProp<IChipProps>;
 
@@ -71,8 +71,8 @@ export const Chip = createPolymorphicComponent<'div', IChipProps>(
     const isDeletable = variant === 'input' && onDelete;
     const deleting =
       !loading && isDeletable && (deletingProp || handlingDelete);
-    const softDisabled = softDisabledProp || loading || deleting;
-    const visuallyDisabled = other.disabled || softDisabled;
+    const readOnly = readOnlyProp || loading || deleting;
+    const visuallyDisabled = other.disabled || readOnly;
 
     const primaryActionRef = useRef<HTMLElement>(null);
     const { visualState, setRef: setVisualStateRef } = useVisualState(
@@ -409,7 +409,7 @@ export const Chip = createPolymorphicComponent<'div', IChipProps>(
               onKeyDown={handleKeyDown}
               onFocus={handleTrailingActionFocus}
               disabled={other.disabled}
-              softDisabled={softDisabled}
+              readOnly={readOnly}
               data-cy='delete'
             >
               <span

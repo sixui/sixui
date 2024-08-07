@@ -43,7 +43,7 @@ export const Button = createPolymorphicComponent<'button', IButtonProps>(
         loading: loadingProp,
         loadingAnimation = 'progressIndicator',
         loadingText,
-        softDisabled: softDisabledProp,
+        readOnly: readOnlyProp,
         ...other
       } = props;
       const [handlingClick, setHandlingClick] = useState(false);
@@ -51,8 +51,8 @@ export const Button = createPolymorphicComponent<'button', IButtonProps>(
       const loading =
         (loadingProp || handlingClick) &&
         loadingAnimation === 'progressIndicator';
-      const softDisabled = softDisabledProp || loading;
-      const visuallyDisabled = other.disabled || softDisabled;
+      const readOnly = readOnlyProp || loading;
+      const visuallyDisabled = other.disabled || readOnly;
 
       const { visualState, setRef: setVisualStateRef } = useVisualState(
         visualStateProp,
@@ -120,7 +120,7 @@ export const Button = createPolymorphicComponent<'button', IButtonProps>(
           onClick={handleClick}
           data-cy='button'
           visualState={visualState}
-          softDisabled={softDisabled}
+          readOnly={readOnly}
           {...other}
           sx={[
             buttonTheme,

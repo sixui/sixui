@@ -40,7 +40,7 @@ export const Switch = forwardRef<HTMLInputElement, ISwitchProps>(
       onChange,
       icon,
       selectedIcon,
-      softDisabled: softDisabledProp,
+      readOnly: readOnlyProp,
       ...other
     } = props;
 
@@ -49,10 +49,9 @@ export const Switch = forwardRef<HTMLInputElement, ISwitchProps>(
     const loading =
       (loadingProp || handlingChange || labeledContext?.loading) &&
       loadingAnimation === 'progressIndicator';
-    const softDisabled =
-      softDisabledProp || loading || labeledContext?.disabled;
+    const readOnly = readOnlyProp || loading || labeledContext?.readOnly;
     const visuallyDisabled =
-      other.disabled || labeledContext?.disabled || softDisabled;
+      other.disabled || labeledContext?.disabled || readOnly;
 
     const actionRef = useRef<HTMLInputElement>(null);
     const { visualState, setRef: setVisualStateRef } = useVisualState(

@@ -18,7 +18,6 @@ export const Labeled = forwardRef<HTMLDivElement, ILabeledProps>(
       label,
       trailingAction,
       required,
-      readOnly,
       supportingText,
       errorText: errorTextProp,
       children,
@@ -27,7 +26,7 @@ export const Labeled = forwardRef<HTMLDivElement, ILabeledProps>(
       supportingTextPosition: supportingTextPositionProp,
       errorTextPosition: errorTextPositionProp,
       disabled,
-      softDisabled: softDisabledProp,
+      readOnly,
       loading,
       requiredSign = '*',
       ...other
@@ -38,8 +37,7 @@ export const Labeled = forwardRef<HTMLDivElement, ILabeledProps>(
       styles: [labeledStyles, styles],
     });
 
-    const softDisabled = softDisabledProp || readOnly || loading;
-    const visuallyDisabled = disabled || softDisabled;
+    const visuallyDisabled = disabled || readOnly || loading;
 
     const id = useId(idProp);
     const hasError = hasErrorProp && !visuallyDisabled;
@@ -124,22 +122,12 @@ export const Labeled = forwardRef<HTMLDivElement, ILabeledProps>(
         id,
         required,
         disabled,
-        softDisabled,
         readOnly,
         hasError,
         errorText,
         loading,
       }),
-      [
-        id,
-        required,
-        disabled,
-        softDisabled,
-        readOnly,
-        hasError,
-        errorText,
-        loading,
-      ],
+      [id, required, disabled, readOnly, hasError, errorText, loading],
     );
 
     return (
@@ -171,7 +159,6 @@ export const Labeled = forwardRef<HTMLDivElement, ILabeledProps>(
                   id,
                   required,
                   disabled,
-                  softDisabled,
                   readOnly,
                   loading,
                 })

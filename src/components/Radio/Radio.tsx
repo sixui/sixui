@@ -33,17 +33,16 @@ export const Radio = forwardRef<HTMLInputElement, IRadioProps>(
       checked: checkedProp,
       name: nameProp,
       loading: loadingProp,
-      softDisabled: softDisabledProp,
+      readOnly: readOnlyProp,
       ...other
     } = props;
 
     const labeledContext = useContext(LabeledContext);
     const radioGroupContext = useContext(RadioGroupContext);
     const loading = loadingProp || labeledContext?.loading;
-    const softDisabled =
-      (softDisabledProp ?? labeledContext?.softDisabled) || loading;
+    const readOnly = (readOnlyProp ?? labeledContext?.readOnly) || loading;
     const visuallyDisabled =
-      other.disabled || labeledContext?.disabled || softDisabled;
+      other.disabled || labeledContext?.disabled || readOnly;
 
     const actionRef = useRef<HTMLInputElement>(null);
     const { visualState, setRef: setVisualStateRef } = useVisualState(
