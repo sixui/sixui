@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useContext } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import type { IThemeProviderProps } from './ThemeProvider.types';
-import { ColorInputField } from '~/components/ColorInputField';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { commonStyles } from '~/helpers/commonStyles';
 import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
-import { ColorScheme } from '../ColorScheme';
+import { ColorScheme } from '~/docs/ColorScheme';
 import { generateThemeFromSourceColor } from '~/helpers/colors/generateThemeFromSourceColor';
+import { ColorInputField } from '../ColorInputField';
 import { ThemeProvider } from './ThemeProvider';
-import { useContext } from 'react';
-import { ThemeSetterContext } from './ThemeSetterContext';
+import { ThemeSetterContext } from './ThemeSetter.context';
 
 const meta = {
   component: ThemeProvider,

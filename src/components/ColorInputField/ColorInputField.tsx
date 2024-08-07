@@ -1,4 +1,4 @@
-import { forwardRef, useContext, useMemo, useRef, useState } from 'react';
+import { forwardRef, useContext, useRef, useState } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 import { asArray } from '@olivierpascal/helpers';
 
@@ -6,19 +6,18 @@ import type {
   IColorInputFieldColorPickerRendererProps,
   IColorInputFieldProps,
 } from './ColorInputField.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { TextInputField } from '~/components/TextInputField';
-import { PopoverBase } from '~/components/PopoverBase';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
-import { ColorTag } from '~/components/ColorTag';
-import { HslColorPickerContent } from '~/components/HslColorPickerContent';
-import { IconButton } from '~/components/IconButton';
-import { SvgIcon } from '~/components/SvgIcon';
-import { iconPhoto } from '~/assets/icons';
+import { useStyles } from '~/hooks/useStyles';
 import { extractPaletteFromImage } from '~/helpers/colors/extractPaletteFromImage';
-import { ColorPaletteGroupContext } from '~/components/ColorPaletteGroup';
+import { iconPhoto } from '~/assets/icons';
+import { HslColorPickerContent } from '../HslColorPickerContent';
+import { TextInputField } from '../TextInputField';
+import { PopoverBase } from '../PopoverBase';
+import { ColorTag } from '../ColorTag';
+import { IconButton } from '../IconButton';
+import { SvgIcon } from '../SvgIcon';
+import { ColorPaletteGroupContext } from '../ColorPaletteGroup';
 import { colorInputFieldStyles } from './ColorInputField.styles';
 
 const defaultColorPickerRenderer = (
@@ -28,7 +27,7 @@ const defaultColorPickerRenderer = (
 export const ColorInputField = forwardRef<
   HTMLInputElement,
   IColorInputFieldProps
->(function ColorInputField(props, forwardedRef) {
+>(function Field(props, forwardedRef) {
   const {
     styles,
     sx,
@@ -44,11 +43,10 @@ export const ColorInputField = forwardRef<
     ...other
   } = props;
 
-  const componentTheme = useComponentTheme('ColorInputField');
-  const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(colorInputFieldStyles, styles),
-    [styles],
-  );
+  const { combineStyles, globalStyles } = useStyles({
+    name: 'ColorInputField',
+    styles: [colorInputFieldStyles, styles],
+  });
 
   const [value, setValue] = useControlledValue({
     controlled: valueProp,
@@ -132,7 +130,7 @@ export const ColorInputField = forwardRef<
             start={
               <ColorTag
                 backgroundColor={value}
-                sx={stylesCombinator('colorTag')}
+                sx={combineStyles('colorTag')}
               />
             }
             end={
@@ -146,7 +144,7 @@ export const ColorInputField = forwardRef<
             }
             autoComplete='off'
             {...getProps(other)}
-            sx={(componentTheme.overridenStyles, 'host', sx)}
+            sx={[globalStyles, combineStyles('host'), sx]}
             value={value}
             hasError={(!!value && !isValidHexColor(value)) || other.hasError}
             onChange={(event) => setValue(event.target.value)}

@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
-import { IconButton } from '~/components/IconButton';
+import { IconButton } from '../IconButton';
 import { commonStyles } from '~/helpers/commonStyles';
-import { SvgIcon } from '~/components/SvgIcon';
+import { SvgIcon } from '../SvgIcon';
 import { iconTriangleDown, iconTriangleUp, iconXMark } from '~/assets/icons';
 
 export type IFilterableListBaseFieldTrailingIcon = {

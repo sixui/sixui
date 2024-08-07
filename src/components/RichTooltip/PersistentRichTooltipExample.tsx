@@ -4,7 +4,7 @@ import stylex from '@stylexjs/stylex';
 import type { IOmit } from '~/helpers/types';
 import type { IRichTooltipProps } from './RichTooltip.types';
 import { commonStyles } from '~/helpers/commonStyles';
-import { Button } from '~/components/Button';
+import { Button } from '../Button';
 import { RichTooltip } from './RichTooltip';
 
 export const PersistentRichTooltipExample: React.FC<

@@ -1,12 +1,11 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 
 import type { IPlaygroundProps } from './Playground.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { fixedForwardRef } from '~/helpers/fixedForwardRef';
 import { playgroundStyles } from './Playground.styles';
 import { PlaygroundSections } from './PlaygroundSections';
+import { useStyles } from '~/hooks/useStyles';
+import { Base } from '~/components/Base';
 
 const convertValue = (
   value: unknown,
@@ -39,15 +38,10 @@ export const Playground = fixedForwardRef(function Playground<
     ...other
   } = props;
 
-  const componentTheme = useComponentTheme('Playground');
-  const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(playgroundStyles, styles),
-    [styles],
-  );
-  const sxf = useMemo(
-    () => stylePropsFactory(stylesCombinator),
-    [stylesCombinator],
-  );
+  const { combineStyles, getStyles, globalStyles } = useStyles({
+    name: 'Playground',
+    styles: [playgroundStyles, styles],
+  });
 
   const [sections, setSections] = useState(defaultSections);
 
@@ -58,7 +52,10 @@ export const Playground = fixedForwardRef(function Playground<
         ...initialProps?.[sectionKey],
         ...section.props,
         ...section.options.reduce((optionPropsAcc, option) => {
-          if (option.modifiers?.disabled || option.modifiers?.off) {
+          if (
+            option.modifiers?.disabled ||
+            (!option.modifiers?.required && !option.modifiers?.on)
+          ) {
             return {
               ...optionPropsAcc,
             };
@@ -97,24 +94,24 @@ export const Playground = fixedForwardRef(function Playground<
   );
 
   return (
-    <div
+    <Base
       {...other}
-      {...sxf(componentTheme.overridenStyles, 'host', sx)}
+      sx={[globalStyles, combineStyles('host'), sx]}
       ref={forwardedRef}
     >
-      <div {...sxf('componentPanel')}>
-        <div {...sxf('componentWrapper')}>
+      <div {...getStyles('componentPanel')}>
+        <div {...getStyles('componentWrapper')}>
           {componentRenderer(sectionsProps)}
         </div>
       </div>
 
-      <div {...sxf(stylesCombinator('optionsPanel'))}>
+      <div {...getStyles('optionsPanel')}>
         <PlaygroundSections<TSectionsProps>
           sections={sections}
           onSectionsChange={setSections}
           sectionsProps={sectionsProps}
         />
       </div>
-    </div>
+    </Base>
   );
 });

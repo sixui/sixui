@@ -2,20 +2,20 @@ import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { buttonTokens } from '../Button.stylex';
 
 export const snackbarButtonStyles = stylex.create({
   host: {
-    [buttonTokens.leadingSpace]: '16px',
-    [buttonTokens.trailingSpace]: '16px',
-    [buttonTokens.leadingIconLeadingSpace]: '12px',
-    [buttonTokens.leadingIconTrailingSpace]: '16px',
-    [buttonTokens.trailingIconLeadingSpace]: '16px',
-    [buttonTokens.trailingIconTrailingSpace]: '12px',
+    [buttonTokens.leadingSpace]: spacingTokens.padding$4,
+    [buttonTokens.trailingSpace]: spacingTokens.padding$4,
+    [buttonTokens.leadingIconLeadingSpace]: spacingTokens.padding$3,
+    [buttonTokens.leadingIconTrailingSpace]: spacingTokens.padding$4,
+    [buttonTokens.trailingIconLeadingSpace]: spacingTokens.padding$4,
+    [buttonTokens.trailingIconTrailingSpace]: spacingTokens.padding$3,
 
-    [buttonTokens.touchTargetSpace]: '12px',
-
-    [buttonTokens.containerHeight]: '32px',
+    [buttonTokens.containerHeight]: `calc(32px * ${scaleTokens.scale})`,
     [buttonTokens.containerColor]: 'transparent',
     [buttonTokens.containerShape]: shapeTokens.corner$xs,
 
@@ -33,9 +33,5 @@ export const snackbarButtonStyles = stylex.create({
     [buttonTokens.iconColor$hover]: colorSchemeTokens.inversePrimary,
     [buttonTokens.iconColor$pressed]: colorSchemeTokens.inversePrimary,
     [buttonTokens.iconColor$disabled]: colorSchemeTokens.inversePrimary,
-
-    [buttonTokens.outlineColor]: colorSchemeTokens.outline,
-    [buttonTokens.outlineWidth]: '1px',
-    [buttonTokens.outlineColor$pressed]: colorSchemeTokens.outline,
   },
 });

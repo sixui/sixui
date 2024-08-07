@@ -2,7 +2,7 @@ import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
-import { focusRingTokens } from '~/components/FocusRing/FocusRing.stylex';
+import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
 
 export const visualStateStyles = stylex.create({

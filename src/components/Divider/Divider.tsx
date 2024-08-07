@@ -1,11 +1,10 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 
 import type { IDividerProps } from './Divider.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { dividerStyles } from './Divider.styles';
 import { dividerTheme } from './Divider.stylex';
+import { Base } from '../Base';
+import { useStyles } from '~/hooks/useStyles';
 
 // https://github.com/material-components/material-web/blob/main/divider/internal/divider.ts
 
@@ -14,19 +13,14 @@ export const Divider = forwardRef<HTMLDivElement, IDividerProps>(
     const { styles, sx, inset, insetStart, insetEnd, children, ...other } =
       props;
 
-    const componentTheme = useComponentTheme('Divider');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(dividerStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+    const { combineStyles, getStyles, globalStyles } = useStyles({
+      name: 'Divider',
+      styles: [dividerStyles, styles],
+    });
 
     const renderLine = (): React.ReactElement => (
       <div
-        {...sxf(
+        {...getStyles(
           'line',
           inset && 'line$inset',
           insetStart && 'line$insetStart',
@@ -36,23 +30,23 @@ export const Divider = forwardRef<HTMLDivElement, IDividerProps>(
     );
 
     return (
-      <div
+      <Base
         {...other}
-        {...sxf(dividerTheme, componentTheme.overridenStyles, 'host', sx)}
+        sx={[dividerTheme, globalStyles, combineStyles('host'), sx]}
         ref={forwardedRef}
       >
         {children ? (
           <>
             {renderLine()}
-            <div {...sxf('textContainer')}>
-              <div {...sxf('text')}>{children}</div>
+            <div {...getStyles('textContainer')}>
+              <div {...getStyles('text')}>{children}</div>
             </div>
             {renderLine()}
           </>
         ) : (
           renderLine()
         )}
-      </div>
+      </Base>
     );
   },
 );

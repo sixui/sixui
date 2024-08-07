@@ -15,8 +15,8 @@ import type { ITabListProps } from './TabList.types';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '~/components/ComponentShowcase';
-import { Tab } from '~/components/Tab';
+} from '../ComponentShowcase';
+import { Tab } from '../Tab';
 import { TabList } from './TabList';
 
 const meta = {

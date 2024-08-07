@@ -1,13 +1,6 @@
-import type {
-  IContainerProps,
-  IZeroOrMore,
-  ICompiledStyles,
-  IOmit,
-} from '~/helpers/types';
-import type {
-  IPaperBaseProps,
-  IPaperBaseStylesKey,
-} from '~/components/PaperBase';
+import type { IBaseProps } from '../Base';
+import type { IZeroOrMore, ICompiledStyles, IOmit } from '~/helpers/types';
+import type { IPaperBaseProps, IPaperBaseStylesKey } from '../PaperBase';
 import type { IColorScheme } from '~/themes/base';
 
 export type IPaperVariant = 'filled' | 'outlined';
@@ -24,7 +17,7 @@ export type IPaperCornerPosition =
   | 'bottomRight'
   | 'bottomLeft';
 
-export type IPaperProps = IContainerProps &
+export type IPaperProps = IBaseProps &
   IOmit<IPaperBaseProps, 'styles' | 'innerStyles'> & {
     innerStyles?: IPaperBaseProps['innerStyles'] & {
       paperBase?: IZeroOrMore<ICompiledStyles<IPaperBaseStylesKey>>;

@@ -1,13 +1,12 @@
-import { forwardRef, useMemo, useRef } from 'react';
+import { forwardRef, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { ISnackbarProps } from './Snackbar.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { SnackbarContent } from '~/components/SnackbarContent';
 import { useTimeout } from '~/hooks/useTimeout';
+import { useStyles } from '~/hooks/useStyles';
+import { SnackbarContent } from '../SnackbarContent';
+import { Base } from '../Base';
 import { snackbarStyles } from './Snackbar.styles';
 import { snackbarTheme } from './Snackbar.stylex';
 
@@ -23,15 +22,10 @@ export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
       ...other
     } = props;
 
-    const componentTheme = useComponentTheme('Snackbar');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(snackbarStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+    const { combineStyles, getStyles, globalStyles } = useStyles({
+      name: 'Snackbar',
+      styles: [snackbarStyles, styles],
+    });
 
     useTimeout(() => onClose?.(), open ? (autoHideDuration ?? null) : null);
 
@@ -44,32 +38,34 @@ export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
         in={open}
         timeout={550} // motionTokens.duration$long3
         classNames={{
-          enter: sxf('animation$enter').className,
-          enterActive: sxf('animation$enterActive').className,
-          exitActive: sxf('animation$exitActive').className,
+          enter: getStyles('animation$enter').className,
+          enterActive: getStyles('animation$enterActive').className,
+          exitActive: getStyles('animation$exitActive').className,
         }}
         unmountOnExit
       >
-        <div
-          {...sxf(
+        <Base
+          sx={[
             snackbarTheme,
-            componentTheme.overridenStyles,
-            'host',
-            horizontalOrigin === 'left'
-              ? 'host$left'
-              : horizontalOrigin === 'center'
-                ? 'host$center'
-                : undefined,
+            globalStyles,
+            combineStyles(
+              'host',
+              horizontalOrigin === 'left'
+                ? 'host$left'
+                : horizontalOrigin === 'center'
+                  ? 'host$center'
+                  : undefined,
+            ),
             sx,
-          )}
+          ]}
         >
           <SnackbarContent
-            sx={[stylesCombinator('snackbarContent')]}
+            sx={combineStyles('snackbarContent')}
             {...other}
             ref={handleRef}
             onClose={onClose}
           />
-        </div>
+        </Base>
       </CSSTransition>
     );
   },

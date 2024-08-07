@@ -1,7 +1,5 @@
 import type {
   CompiledStyles,
-  InlineStyles,
-  StyleXArray,
   StyleXStyles,
   UserAuthoredStyles,
 } from '@stylexjs/stylex/lib/StyleXTypes';
@@ -42,24 +40,15 @@ export type ICompiledStyles<TKey extends string> = {
 
 export type IZeroOrMore<T> = undefined | T | Array<T | undefined>;
 
+export type IOneOrMore<T> = T | Array<T | undefined>;
+
 export type IArrayElement<TArray> =
   TArray extends ReadonlyArray<infer TElementType> ? TElementType : TArray;
 
 export type IStyleXStyles =
   | StyleXStyles
-  | ReadonlyArray<
-      StyleXArray<
-        | (null | undefined | CompiledStyles)
-        | boolean
-        | Readonly<[CompiledStyles, InlineStyles]>
-      >
-    >;
-
-export type IContainerProps<TStyleKey extends string = never> = {
-  styles?: IZeroOrMore<ICompiledStyles<TStyleKey>>;
-  sx?: IStyleXStyles;
-  'data-cy'?: string;
-};
+  | CompiledStyles
+  | Array<IStyleXStyles>;
 
 export type IRange = {
   min: number;

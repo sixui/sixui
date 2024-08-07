@@ -2,8 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
 import type { IDisclosureProps } from './Disclosure.types';
+import { DisclosureButton } from '../DisclosureButton';
+import { Typography } from '../Typography';
 import { Disclosure } from './Disclosure';
-import { DisclosureButton } from '~/components/DisclosureButton';
 
 const meta = {
   component: Disclosure,
@@ -27,7 +28,7 @@ const TEXT =
 
 const defaultArgs = {
   trigger: <DisclosureButton>Advanced options</DisclosureButton>,
-  children: TEXT,
+  children: <Typography>{TEXT}</Typography>,
   sx: styles.host,
 } satisfies Partial<IDisclosureProps>;
 

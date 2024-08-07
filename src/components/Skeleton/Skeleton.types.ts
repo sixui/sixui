@@ -1,7 +1,8 @@
-import type { IContainerProps, IRange } from '~/helpers/types';
+import type { IBaseProps } from '../Base';
+import type { IRange } from '~/helpers/types';
 import type { ISkeletonStylesKey } from './Skeleton.styles';
 
-export type ISkeletonProps = IContainerProps<ISkeletonStylesKey> & {
+export type ISkeletonProps = IBaseProps<ISkeletonStylesKey> & {
   children?: React.ReactNode;
   loaded?: boolean;
   variant?: 'rectangular' | 'circular' | 'overlay';

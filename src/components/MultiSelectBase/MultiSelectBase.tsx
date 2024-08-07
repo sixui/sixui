@@ -1,19 +1,18 @@
-import { useMemo, useRef } from 'react';
+import { useRef } from 'react';
 
 import type { IMultiSelectBaseProps } from './MultiSelectBase.types';
 import type { IExtendedFloatingProps } from '~/helpers/extendFloatingProps';
-import { ListItem } from '~/components/ListItem';
-import { TextInputField } from '~/components/TextInputField';
-import { MenuList } from '~/components/MenuList';
-import { InputChip } from '~/components/Chip';
+import { useStyles } from '~/hooks/useStyles';
+import { ListItem } from '../ListItem';
+import { TextInputField } from '../TextInputField';
+import { MenuList } from '../MenuList';
+import { InputChip } from '../Chip';
 import {
   useMultiFilterableListBase,
   FilterableListBaseFieldTrailingIcon,
-} from '~/components/FilterableListBase';
-import { FloatingFilterableListBase } from '~/components/FloatingFilterableListBase';
+} from '../FilterableListBase';
+import { FloatingFilterableListBase } from '../FloatingFilterableListBase';
 import { fixedForwardRef } from '~/helpers/fixedForwardRef';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import {
   multiSelectBaseFieldBaseStyles,
   multiSelectBaseStyles,
@@ -40,11 +39,10 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
     ...other
   } = props;
 
-  const componentTheme = useComponentTheme('MultiSelectBase');
-  const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(multiSelectBaseStyles, styles),
-    [styles],
-  );
+  const { combineStyles, globalStyles } = useStyles({
+    name: 'MultiSelectBase',
+    styles: [multiSelectBaseStyles, styles],
+  });
 
   const multiFilterableListBase = useMultiFilterableListBase({
     items,
@@ -84,8 +82,10 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
       {(renderProps) => {
         const isGrid = other.cols !== undefined && other.cols > 1;
         const getInputProps = (
-          userProps?: IExtendedFloatingProps<React.HTMLProps<HTMLInputElement>>,
-        ): IExtendedFloatingProps<React.HTMLProps<HTMLInputElement>> => ({
+          userProps?: IExtendedFloatingProps<
+            React.ComponentPropsWithoutRef<'input'>
+          >,
+        ): IExtendedFloatingProps<React.ComponentPropsWithoutRef<'input'>> => ({
           ...userProps,
           onBlur: (event) => {
             userProps?.onBlur?.(event);
@@ -221,7 +221,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
 
         return (
           <TextInputField
-            sx={[componentTheme.overridenStyles, sx]}
+            sx={[globalStyles, sx]}
             styles={innerStyles?.textInputField}
             trailingIcon={
               <FilterableListBaseFieldTrailingIcon
@@ -257,7 +257,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
                 ? multiFilterableListBase.selectedItems.map(
                     (selectedItem, index) => (
                       <InputChip
-                        sx={stylesCombinator('chip')}
+                        sx={combineStyles('chip')}
                         key={index}
                         visualState={{
                           focused:

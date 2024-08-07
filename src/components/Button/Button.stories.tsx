@@ -3,12 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
-import type { IButtonOwnProps, IButtonVariant } from './Button.types';
+import type { IButtonProps, IButtonVariant } from './Button.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '~/components/ComponentShowcase';
+} from '../ComponentShowcase';
 import { Button } from './Button';
 
 // https://m3.material.io/components/buttons/overview
@@ -24,9 +24,9 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   onClick: (...args) => sbHandleEvent('click', args, 1000),
   children: 'Button',
-} satisfies Partial<IButtonOwnProps>;
+} satisfies Partial<IButtonProps>;
 
-const states: Array<IComponentPresentation<IButtonOwnProps>> = [
+const states: Array<IComponentPresentation<IButtonProps>> = [
   {
     legend: 'Normal',
     props: {
@@ -57,7 +57,7 @@ const states: Array<IComponentPresentation<IButtonOwnProps>> = [
   { legend: 'Disabled', props: { children: 'Disabled', disabled: true } },
 ];
 
-const rows: Array<IComponentPresentation<IButtonOwnProps>> = [
+const rows: Array<IComponentPresentation<IButtonProps>> = [
   { legend: 'Basic' },
   {
     legend: 'With leading icon',

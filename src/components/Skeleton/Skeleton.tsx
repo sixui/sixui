@@ -1,11 +1,10 @@
 import stylex from '@stylexjs/stylex';
-import { forwardRef, useMemo, useRef } from 'react';
+import { forwardRef, useRef } from 'react';
 
 import type { ISkeletonProps } from './Skeleton.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
 import { random } from '~/helpers/random';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { useStyles } from '~/hooks/useStyles';
+import { Base } from '../Base';
 import { skeletonStyles } from './Skeleton.styles';
 import { skeletonTheme } from './Skeleton.stylex';
 
@@ -29,15 +28,10 @@ export const Skeleton = forwardRef<HTMLDivElement, ISkeletonProps>(
       ...other
     } = props;
 
-    const componentTheme = useComponentTheme('Skeleton');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(skeletonStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+    const { combineStyles, getStyles, globalStyles } = useStyles({
+      name: 'Skeleton',
+      styles: [skeletonStyles, styles],
+    });
 
     const animation = hasError ? undefined : animationProp;
     const lengthRef = useRef(
@@ -47,14 +41,11 @@ export const Skeleton = forwardRef<HTMLDivElement, ISkeletonProps>(
     return loaded ? (
       children
     ) : (
-      <div
+      <Base
         {...other}
-        {...sxf(
+        sx={[
           skeletonTheme,
-          componentTheme.overridenStyles,
-          'host',
-          hasError ? 'host$error' : null,
-          `host$${variant}`,
+          globalStyles,
           variant === 'rectangular'
             ? lengthRef.current !== undefined
               ? staticStyles.length(lengthRef.current)
@@ -62,13 +53,18 @@ export const Skeleton = forwardRef<HTMLDivElement, ISkeletonProps>(
                 ? staticStyles.length()
                 : undefined
             : undefined,
-          animation ? `animation$${animation}` : undefined,
+          combineStyles(
+            'host',
+            hasError ? 'host$error' : null,
+            `host$${variant}`,
+            !!animation && `animation$${animation}`,
+          ),
           sx,
-        )}
+        ]}
         ref={forwardedRef}
       >
-        <div {...sxf('hidden')}>{children ?? '%'}</div>
-      </div>
+        <div {...getStyles('hidden')}>{children ?? '%'}</div>
+      </Base>
     );
   },
 );

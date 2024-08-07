@@ -1,21 +1,20 @@
-import { forwardRef, useMemo, useRef } from 'react';
+import { forwardRef, useRef } from 'react';
 import stylex from '@stylexjs/stylex';
 import { CSSTransition } from 'react-transition-group';
+import { useMergeRefs } from '@floating-ui/react';
 
 import type { IExpandableProps } from './Expandable.types';
 import type { ICssSizeValue, ISize } from '~/helpers/types';
 import {
   ExpandableContext,
   type IExpandableContextValue,
-} from './ExpandableContext';
+} from './Expandable.context';
 import { isFunction } from '~/helpers/isFunction';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { motionTokens } from '~/themes/base/motion.stylex';
-import { useMergeRefs } from '@floating-ui/react';
 import { useElementSize } from '~/hooks/useElementSize';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useStyles } from '~/hooks/useStyles';
+import { Base } from '../Base';
 import { expandableStyles } from './Expandable.styles';
 
 const localStyles = stylex.create({
@@ -84,15 +83,10 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
       ...other
     } = props;
 
-    const componentTheme = useComponentTheme('Expandable');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(expandableStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+    const { combineStyles, globalStyles } = useStyles({
+      name: 'Expandable',
+      styles: [expandableStyles, styles],
+    });
 
     const initiallyExpandedRef = useRef(initiallyExpandedProp);
     const defaultExpanded = initiallyExpandedRef.current ?? defaultExpandedProp;
@@ -155,13 +149,15 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
           timeout={550} // motionTokens.duration$long3
         >
           {(status) => (
-            <div
+            <Base
               aria-expanded={expanded}
               {...other}
-              {...sxf(
-                componentTheme.overridenStyles,
-                'host',
-                expanded && status === 'entered' ? 'host$expanded' : undefined,
+              sx={[
+                globalStyles,
+                combineStyles(
+                  'host',
+                  expanded && status === 'entered' && 'host$expanded',
+                ),
                 status === 'exited'
                   ? localStyles.animation$exited(
                       collapsedSize,
@@ -184,7 +180,7 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
                           )
                         : undefined,
                 sx,
-              )}
+              ]}
               ref={transitionNodeHandleRef}
             >
               <div
@@ -197,7 +193,7 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
               >
                 <div ref={contentWrapperRef}>{children}</div>
               </div>
-            </div>
+            </Base>
           )}
         </CSSTransition>
       </ExpandableContext.Provider>

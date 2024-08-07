@@ -3,21 +3,21 @@ import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 
-import type { ICardProps, ICardOwnProps } from './Card.types';
+import type { ICardProps } from './Card.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '~/components/ComponentShowcase';
-import { Button } from '~/components/Button';
-import { Avatar } from '~/components/Avatar';
-import { IconButton } from '~/components/IconButton/IconButton';
-import { Card } from './Card';
+} from '../ComponentShowcase';
+import { Button } from '../Button';
+import { Avatar } from '../Avatar';
+import { IconButton } from '../IconButton/IconButton';
 import { ListItem } from '../ListItem';
 import { CardContent } from '../CardContent';
 import { CardTitle } from '../CardTitle';
 import { CardMedia } from '../CardMedia';
 import { CardActions } from '../CardActions';
+import { Card } from './Card';
 
 // https://m3.material.io/components/cards
 // https://github.com/material-components/material-web/blob/main/labs/card/demo/stories.ts
@@ -135,7 +135,7 @@ const ActionableContent: React.FC<{ headline?: string }> = ({ headline }) => (
   </>
 );
 
-const states: Array<IComponentPresentation<ICardOwnProps>> = [
+const states: Array<IComponentPresentation<ICardProps>> = [
   { legend: 'Enabled' },
   { legend: 'Focused', props: { visualState: { focused: true } } },
   { legend: 'Hovered', props: { visualState: { hovered: true } } },
@@ -144,7 +144,7 @@ const states: Array<IComponentPresentation<ICardOwnProps>> = [
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const rows: Array<IComponentPresentation<ICardOwnProps>> = [
+const rows: Array<IComponentPresentation<ICardProps>> = [
   {
     legend: 'Non-actionable',
     props: {
@@ -160,7 +160,7 @@ const rows: Array<IComponentPresentation<ICardOwnProps>> = [
   },
 ];
 
-const variants: Array<IComponentPresentation<ICardOwnProps>> = [
+const variants: Array<IComponentPresentation<ICardProps>> = [
   {
     legend: 'Elevated',
     props: {

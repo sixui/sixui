@@ -1,12 +1,11 @@
-import type { IContainerProps } from '~/helpers/types';
-import type { IVisualState } from '~/components/VisualState';
+import type { IBaseProps } from '~/components/Base';
+import type { IVisualState } from '../../VisualState';
 import type { IVariableTemplateStylesKey } from './VariableTemplate.styles';
 
 export type IVariableTemplateVariant = 'primary' | 'secondary';
 
-export type IVariableTemplateProps =
-  IContainerProps<IVariableTemplateStylesKey> & {
-    visualState?: IVisualState;
-    variant?: IVariableTemplateVariant | false;
-    children?: React.ReactNode;
-  };
+export type IVariableTemplateProps = IBaseProps<IVariableTemplateStylesKey> & {
+  visualState?: IVisualState;
+  variant?: IVariableTemplateVariant | false;
+  children?: React.ReactNode;
+};

@@ -3,6 +3,7 @@ import stylex from '@stylexjs/stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
 
 const vars = {
   // container
@@ -10,7 +11,7 @@ const vars = {
 
   // selectedOutline
   selectedOutlineColor: colorSchemeTokens.primary,
-  selectedOutlineWidth: '3px',
+  selectedOutlineWidth: outlineTokens.width$md,
   // &:disabled
   selectedOutlineColor$disabled: colorSchemeTokens.outline,
   selectedOutlineOpacity$disabled: stateTokens.containerOpacity$disabled,

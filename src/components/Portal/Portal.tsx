@@ -1,7 +1,7 @@
 import { FloatingPortal } from '@floating-ui/react';
 
 import type { IPortalProps } from './Portal.types';
-import { useColorScheme } from '~/components/ColorScheme';
+import { useColorScheme } from '../ColorScheme';
 
 export const Portal: React.FC<IPortalProps> = (props) => {
   const { root: rootProp, children } = props;

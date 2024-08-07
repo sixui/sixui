@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { buttonTokens } from '~/components/Button/Button.stylex';
-import { elevationTokens } from '~/components/Elevation/Elevation.stylex';
+import { buttonTokens } from '../Button/Button.stylex';
+import { elevationTokens } from '../Elevation/Elevation.stylex';
 import { iconButtonTokens } from './IconButton.stylex';
 
 // https://github.com/material-components/material-web/blob/main/iconbutton/internal/_shared.scss
@@ -10,15 +10,15 @@ import { iconButtonTokens } from './IconButton.stylex';
 export type IIconButtonStylesKey = keyof typeof iconButtonStyles;
 export const iconButtonStyles = stylex.create({
   host: {
-    width: iconButtonTokens.containerWidth,
+    width: iconButtonTokens.containerSize,
     flexShrink: 0,
 
-    [buttonTokens.leadingSpace]: '0',
-    [buttonTokens.trailingSpace]: '0',
-    [buttonTokens.leadingIconLeadingSpace]: '0',
-    [buttonTokens.leadingIconTrailingSpace]: '0',
-    [buttonTokens.trailingIconLeadingSpace]: '0',
-    [buttonTokens.trailingIconTrailingSpace]: '0',
+    [buttonTokens.leadingSpace]: '0px',
+    [buttonTokens.trailingSpace]: '0px',
+    [buttonTokens.leadingIconLeadingSpace]: '0px',
+    [buttonTokens.leadingIconTrailingSpace]: '0px',
+    [buttonTokens.trailingIconLeadingSpace]: '0px',
+    [buttonTokens.trailingIconTrailingSpace]: '0px',
 
     [buttonTokens.containerElevation$disabled]:
       elevationTokens.boxShadow$level0,
@@ -27,7 +27,7 @@ export const iconButtonStyles = stylex.create({
     [buttonTokens.containerElevation$hover]: elevationTokens.boxShadow$level0,
     [buttonTokens.containerElevation$pressed]: elevationTokens.boxShadow$level0,
 
-    [buttonTokens.containerHeight]: iconButtonTokens.containerHeight,
+    [buttonTokens.containerHeight]: iconButtonTokens.containerSize,
     [buttonTokens.containerShape]: iconButtonTokens.containerShape,
     [buttonTokens.containerOpacity$disabled]:
       iconButtonTokens.containerOpacity$disabled,

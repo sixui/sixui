@@ -11,7 +11,7 @@ import { useControlledValue } from '~/hooks/useControlledValue';
 import {
   RadioGroupContext,
   type IRadioGroupContextValue,
-} from './RadioGroupContext';
+} from './RadioGroup.context';
 import {
   RADIO_GROUP_DEFAULT_TAG,
   type IRadioGroupOwnProps,
@@ -31,14 +31,13 @@ export const RadioGroup: IRadioGroup = forwardRef(function RadioGroup<
   TRoot extends React.ElementType = typeof RADIO_GROUP_DEFAULT_TAG,
 >(props: IRadioGroupProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
-    as,
+    component,
     sx,
     children,
     onChange,
     value: valueProp,
     defaultValue,
     name: nameProp,
-    'data-cy': dataCy = 'radioGroup',
     ...other
   } = props as IWithAsProp<IRadioGroupOwnProps>;
 
@@ -80,14 +79,14 @@ export const RadioGroup: IRadioGroup = forwardRef(function RadioGroup<
     } satisfies IRadioGroupContextValue;
   }, [name, onChange, value, setValue]);
 
-  const Component = as ?? RADIO_GROUP_DEFAULT_TAG;
+  const Component = component ?? RADIO_GROUP_DEFAULT_TAG;
 
   return (
     <RadioGroupContext.Provider value={contextValue}>
       <Component
         sx={sx}
         role='radiogroup'
-        data-cy={dataCy}
+        data-cy='radioGroup'
         {...other}
         {...stylex.props(sx)}
         ref={handleRef}

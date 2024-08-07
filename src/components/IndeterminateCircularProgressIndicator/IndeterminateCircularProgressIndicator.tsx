@@ -1,81 +1,71 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 
 import type { IIndeterminateCircularProgressIndicatorProps } from './IndeterminateCircularProgressIndicator.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { circularProgressIndicatorTheme } from '~/components/CircularProgressIndicator/CircularProgressIndicator.stylex';
+import { useStyles } from '~/hooks/useStyles';
+import { circularProgressIndicatorTheme } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
 import {
   circularProgressIndicatorStyles,
   type ICircularProgressIndicatorStylesKey,
-} from '~/components/CircularProgressIndicator';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
+} from '../CircularProgressIndicator';
 import {
   indeterminateCircularProgressIndicatorStyles,
   type IIndeterminateCircularProgressIndicatorStyleKey,
 } from './IndeterminateCircularProgressIndicator.styles';
+import { Base } from '../Base';
 
 // https://github.com/material-components/material-web/blob/main/progress/internal/progress.ts
 // https://github.com/material-components/material-web/blob/main/progress/internal/circular-progress.ts
 
 export const IndeterminateCircularProgressIndicator = forwardRef<
-  HTMLInputElement,
+  HTMLDivElement,
   IIndeterminateCircularProgressIndicatorProps
 >(function IndeterminateCircularProgressIndicator(props, forwardedRef) {
-  const { styles, sx, size = 'md', disabled, children, ...other } = props;
+  const { styles, sx, disabled, children, ...other } = props;
 
-  const componentTheme = useComponentTheme('CircularProgressIndicator');
-  const stylesCombinator = useMemo(
-    () =>
-      stylesCombinatorFactory<
-        | ICircularProgressIndicatorStylesKey
-        | IIndeterminateCircularProgressIndicatorStyleKey
-      >(
-        circularProgressIndicatorStyles,
-        indeterminateCircularProgressIndicatorStyles,
-        styles,
-      ),
-    [styles],
-  );
-  const sxf = useMemo(
-    () => stylePropsFactory(stylesCombinator),
-    [stylesCombinator],
-  );
+  const { combineStyles, getStyles, globalStyles } = useStyles<
+    | ICircularProgressIndicatorStylesKey
+    | IIndeterminateCircularProgressIndicatorStyleKey
+  >({
+    name: 'CircularProgressIndicator',
+    styles: [
+      circularProgressIndicatorStyles,
+      indeterminateCircularProgressIndicatorStyles,
+      styles,
+    ],
+  });
 
   return (
-    <div
+    <Base
       {...other}
-      {...sxf(
+      sx={[
         circularProgressIndicatorTheme,
-        componentTheme.overridenStyles,
-        'host',
-        `host$${size}`,
+        globalStyles,
+        combineStyles('host'),
         sx,
-      )}
+      ]}
       ref={forwardedRef}
     >
       <div
-        {...sxf('layer', 'progress', `progress$${size}`)}
+        {...getStyles('layer', 'progress')}
         role='progressbar'
         aria-label={props['aria-label'] ?? undefined}
       >
-        <div {...sxf('layer', 'spinner')}>
-          <div {...sxf('layer', 'left')}>
+        <div {...getStyles('layer', 'spinner')}>
+          <div {...getStyles('layer', 'left')}>
             <div
-              {...sxf(
+              {...getStyles(
                 'layer',
                 'circle',
-                `circle$${size}`,
                 'leftCircle',
                 disabled && 'circle$disabled',
               )}
             />
           </div>
-          <div {...sxf('layer', 'right')}>
+          <div {...getStyles('layer', 'right')}>
             <div
-              {...sxf(
+              {...getStyles(
                 'layer',
                 'circle',
-                `circle$${size}`,
                 'rightCircle',
                 disabled && 'circle$disabled',
               )}
@@ -83,11 +73,7 @@ export const IndeterminateCircularProgressIndicator = forwardRef<
           </div>
         </div>
       </div>
-      {children ? (
-        <div {...sxf('layer', 'label', disabled && 'label$disabled')}>
-          {children}
-        </div>
-      ) : null}
-    </div>
+      {children ? <div {...getStyles('layer')}>{children}</div> : null}
+    </Base>
   );
 });

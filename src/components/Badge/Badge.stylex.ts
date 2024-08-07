@@ -3,17 +3,19 @@ import stylex from '@stylexjs/stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 
 const vars = {
   // container
   containerColor: colorSchemeTokens.error,
   containerShape: shapeTokens.corner$full,
   containerShape$dot: shapeTokens.corner$full,
-  containerMinWidth: '16px',
-  containerHeight: '16px',
+  containerMinWidth: `max(16px, 16px * ${scaleTokens.scale})`,
+  containerHeight: `max(16px, 16px * ${scaleTokens.scale})`,
   containerDotScaleX: '0.5', // 8px
   containerDotScaleY: '0.5', // 8px
-  containerPadding: '4px',
+  containerPadding: spacingTokens.padding$1,
 
   // labelText
   labelTextColor: colorSchemeTokens.onError,

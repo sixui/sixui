@@ -1,8 +1,5 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
-import { stateTokens } from '~/themes/base/state.stylex';
 import { circularProgressIndicatorTokens } from './CircularProgressIndicator.stylex';
 
 // https://github.com/material-components/material-web/blob/main/progress/internal/_circulardeterminate-progress.scss
@@ -23,14 +20,9 @@ export const circularProgressIndicatorStyles = stylex.create({
     // their cpu consumption.
     contain: 'strict',
     contentVisibility: 'auto',
-  },
-  host$md: {
-    width: circularProgressIndicatorTokens.size$md,
-    height: circularProgressIndicatorTokens.size$md,
-  },
-  host$lg: {
-    width: circularProgressIndicatorTokens.size$lg,
-    height: circularProgressIndicatorTokens.size$lg,
+
+    width: circularProgressIndicatorTokens.size,
+    height: circularProgressIndicatorTokens.size,
   },
   layer: {
     position: 'absolute',
@@ -42,27 +34,7 @@ export const circularProgressIndicatorStyles = stylex.create({
     flexShrink: 1,
     flexBasis: '0%',
     alignSelf: 'stretch',
-  },
-  progress$md: {
-    margin: circularProgressIndicatorTokens.containerPadding$md,
-  },
-  progress$lg: {
-    margin: circularProgressIndicatorTokens.containerPadding$lg,
-  },
-  label: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    height: '100%',
-    color: colorSchemeTokens.onSurface,
-    fontFamily: typeScaleTokens.labelFont$sm,
-    fontSize: typeScaleTokens.labelSize$sm,
-    fontWeight: typeScaleTokens.labelWeight$sm,
-    lineHeight: typeScaleTokens.labelLineHeight$sm,
-    letterSpacing: typeScaleTokens.labelLetterSpacing$sm,
-  },
-  label$disabled: {
-    opacity: stateTokens.opacity$disabled,
+
+    margin: circularProgressIndicatorTokens.containerPadding,
   },
 });

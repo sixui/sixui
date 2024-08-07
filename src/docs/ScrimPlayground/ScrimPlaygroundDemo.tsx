@@ -53,16 +53,15 @@ export const ScrimPlaygroundDemo: React.FC<IScrimPlaygroundDemoProps> = (
         {...scrimProps}
         floatingContext={floating.context}
         ref={scrimRef}
-      >
-        <FloatingFocusManager context={floating.context}>
-          <div
-            {...interactions.getFloatingProps()}
-            ref={floating.refs.setFloating}
-          >
-            {children}
-          </div>
-        </FloatingFocusManager>
-      </Scrim>
+      />
+      <FloatingFocusManager context={floating.context}>
+        <div
+          {...interactions.getFloatingProps()}
+          ref={floating.refs.setFloating}
+        >
+          {children}
+        </div>
+      </FloatingFocusManager>
     </>
   );
 };

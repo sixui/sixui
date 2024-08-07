@@ -1,10 +1,8 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 import { FloatingOverlay, useTransitionStatus } from '@floating-ui/react';
 
 import type { IScrimProps } from './Scrim.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { useStyles } from '~/hooks/useStyles';
 import { scrimStyles } from './Scrim.styles';
 import { scrimTheme } from './Scrim.stylex';
 
@@ -14,21 +12,15 @@ export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
       floatingContext,
       styles,
       sx,
-      contained,
       variant = 'darken',
       children,
       ...other
     } = props;
 
-    const componentTheme = useComponentTheme('Scrim');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(scrimStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+    const { getStyles, globalStyles } = useStyles({
+      name: 'Scrim',
+      styles: [scrimStyles, styles],
+    });
 
     const transitionStatus = useTransitionStatus(floatingContext, {
       duration: 150, // motionTokens.duration$short3
@@ -41,16 +33,15 @@ export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
     return (
       <FloatingOverlay
         {...other}
-        {...sxf(
+        {...getStyles(
           scrimTheme,
-          componentTheme.overridenStyles,
+          globalStyles,
           'host',
           `host$${variant}`,
           `transition$${transitionStatus.status}`,
           sx,
         )}
         ref={forwardedRef}
-        style={contained ? { position: 'absolute' } : undefined}
       >
         {children}
       </FloatingOverlay>

@@ -1,4 +1,4 @@
-import type { IContainerProps } from '~/helpers/types';
+import type { IBaseProps } from '../Base';
 import type { IComponentShowcaseStylesKey } from './ComponentShowcase.styles';
 
 export type IComponentPresentation<TComponentProps> = {
@@ -10,7 +10,7 @@ export type IComponentPresentation<TComponentProps> = {
 
 export type IComponentShowcaseProps<
   TComponentProps extends object = Record<string, never>,
-> = IContainerProps<IComponentShowcaseStylesKey> & {
+> = IBaseProps<IComponentShowcaseStylesKey> & {
   component: React.FC<TComponentProps>;
   props: TComponentProps;
   groups?: Array<IComponentPresentation<TComponentProps>>;

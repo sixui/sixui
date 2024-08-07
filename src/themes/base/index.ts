@@ -7,3 +7,7 @@ export * from './shape.types';
 export * from './state.types';
 export * from './typeScale.types';
 export * from './typeFace.types';
+export * from './zIndex.types';
+export * from './density.types';
+export * from './scale.types';
+export * from './outline.types';

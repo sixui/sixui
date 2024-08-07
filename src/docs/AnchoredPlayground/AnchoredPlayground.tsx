@@ -60,9 +60,6 @@ export const anchoredPlaygroundSections: IPlaygroundSections<IAnchoredPlayground
           props: {
             invisible: true,
           },
-          modifiers: {
-            off: true,
-          },
         },
       ],
     },

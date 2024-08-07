@@ -1,9 +1,8 @@
-import type { IContainerProps } from '~/helpers/types';
-import type { ICircularProgressIndicatorSize } from '~/components/CircularProgressIndicator';
+import type { IBaseProps } from '../Base';
 import type { IDeterminateCircularProgressIndicatorStylesKey } from './DeterminateCircularProgressIndicator.styles';
 
 export type IDeterminateCircularProgressIndicatorProps =
-  IContainerProps<IDeterminateCircularProgressIndicatorStylesKey> &
+  IBaseProps<IDeterminateCircularProgressIndicatorStylesKey> &
     Pick<React.AriaAttributes, 'aria-label'> & {
       value: number;
       withLabel?: boolean;
@@ -11,7 +10,6 @@ export type IDeterminateCircularProgressIndicatorProps =
       max?: number;
       zeroBased?: boolean;
       labelFormatter?: (value: number) => string;
-      size?: ICircularProgressIndicatorSize;
       disabled?: boolean;
       children?: React.ReactNode;
     };

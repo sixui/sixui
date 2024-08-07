@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
-import { elevationTokens } from '~/components/Elevation/Elevation.stylex';
-import { focusRingTokens } from '~/components/FocusRing/FocusRing.stylex';
-import { stateLayerTokens } from '~/components/StateLayer/StateLayer.stylex';
-import { circularProgressIndicatorTokens } from '~/components/CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { motionTokens } from '~/themes/base/motion.stylex';
+import { elevationTokens } from '../Elevation/Elevation.stylex';
+import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
+import { stateLayerTokens } from '../StateLayer/StateLayer.stylex';
+import { circularProgressIndicatorTokens } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { buttonTokens } from './Button.stylex';
 import { buttonStateTokens } from './Button.state.stylex';
 
@@ -52,7 +52,7 @@ export const buttonStyles = stylex.create({
     // the height of its content on a single line (label or icon, whichever is
     // bigger).
     paddingBlock: `calc((${buttonTokens.containerHeight} - ${buttonTokens.labelTextLineHeight}) / 2)`,
-    minWidth: `calc(64px - ${buttonTokens.leadingSpace} - ${buttonTokens.trailingSpace})`,
+    minWidth: `calc(${buttonTokens.containerMinWidth} - ${buttonTokens.leadingSpace} - ${buttonTokens.trailingSpace})`,
 
     [buttonStateTokens.iconColor]: {
       default: buttonTokens.iconColor,
@@ -81,14 +81,6 @@ export const buttonStyles = stylex.create({
   host$withTrailingIcon: {
     paddingInlineStart: buttonTokens.trailingIconLeadingSpace,
     paddingInlineEnd: buttonTokens.trailingIconTrailingSpace,
-  },
-  touchTarget: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    width: `calc(100% + ${buttonTokens.touchTargetSpace})`,
-    height: `calc(100% + ${buttonTokens.touchTargetSpace})`,
-    transform: 'translate(-50%, -50%)',
   },
   background: {
     backgroundColor: buttonTokens.containerColor,

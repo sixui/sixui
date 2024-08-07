@@ -4,11 +4,11 @@ import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
 
-import type { IFieldBaseOwnProps, IFieldBaseVariant } from './FieldBase.types';
+import type { IFieldBaseProps, IFieldBaseVariant } from './FieldBase.types';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '~/components/ComponentShowcase';
+} from '../ComponentShowcase';
 import { FieldBase } from './FieldBase';
 import { Placeholder } from '../Placeholder';
 
@@ -29,16 +29,16 @@ const styles = stylex.create({
 const defaultArgs = {
   sx: styles.host,
   children: <Placeholder surface='onSurface' expand disabled />,
-} satisfies Partial<IFieldBaseOwnProps>;
+} satisfies Partial<IFieldBaseProps>;
 
-const states: Array<IComponentPresentation<IFieldBaseOwnProps>> = [
+const states: Array<IComponentPresentation<IFieldBaseProps>> = [
   { legend: 'Enabled' },
   { legend: 'Hovered', props: { visualState: { hovered: true } } },
   { legend: 'Focused', props: { visualState: { focused: true } } },
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const rows: Array<IComponentPresentation<IFieldBaseOwnProps>> = [
+const rows: Array<IComponentPresentation<IFieldBaseProps>> = [
   { legend: 'Empty' },
   {
     legend: 'Label',

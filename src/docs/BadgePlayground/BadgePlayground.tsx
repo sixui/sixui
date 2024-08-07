@@ -4,6 +4,7 @@ import {
   BadgePlaygroundDemo,
   IBadgePlaygroundDemoProps,
 } from './BadgePlaygroundDemo';
+import { anchoredPlaygroundSections } from '../AnchoredPlayground';
 
 export const badgePlaygroundSections: IPlaygroundSections<IBadgePlaygroundDemoProps> =
   {
@@ -17,6 +18,9 @@ export const badgePlaygroundSections: IPlaygroundSections<IBadgePlaygroundDemoPr
             value: '8',
             targetProp: 'value',
           },
+          modifiers: {
+            on: true,
+          },
         },
         {
           label: 'Max value',
@@ -25,17 +29,11 @@ export const badgePlaygroundSections: IPlaygroundSections<IBadgePlaygroundDemoPr
             value: 99,
             targetProp: 'maxValue',
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Dot',
           props: {
             dot: true,
-          },
-          modifiers: {
-            off: true,
           },
         },
         {
@@ -43,72 +41,10 @@ export const badgePlaygroundSections: IPlaygroundSections<IBadgePlaygroundDemoPr
           props: {
             showZero: true,
           },
-          modifiers: {
-            off: true,
-          },
         },
       ],
     },
-    anchored: {
-      // TODO: link to Anchored component
-      title: 'Anchored',
-      options: [
-        {
-          label: 'Overlap',
-          input: {
-            type: 'string',
-            targetProp: 'overlap',
-            value: 'circular',
-            items: [
-              { label: 'Circular', value: 'circular' },
-              { label: 'Rectangular', value: 'rectangular' },
-            ],
-          },
-          modifiers: {
-            required: true,
-          },
-        },
-        {
-          label: 'Vertical origin',
-          input: {
-            type: 'string',
-            targetProp: 'verticalOrigin',
-            value: 'top',
-            items: [
-              { label: 'Top', value: 'top' },
-              { label: 'Bottom', value: 'bottom' },
-            ],
-          },
-          modifiers: {
-            required: true,
-          },
-        },
-        {
-          label: 'Horizontal origin',
-          input: {
-            type: 'string',
-            targetProp: 'horizontalOrigin',
-            value: 'right',
-            items: [
-              { label: 'Right', value: 'right' },
-              { label: 'Left', value: 'left' },
-            ],
-          },
-          modifiers: {
-            required: true,
-          },
-        },
-        {
-          label: 'Invisible',
-          props: {
-            invisible: true,
-          },
-          modifiers: {
-            off: true,
-          },
-        },
-      ],
-    },
+    anchored: anchoredPlaygroundSections.anchored,
   };
 
 export const BadgePlayground: React.FC = (props) => {

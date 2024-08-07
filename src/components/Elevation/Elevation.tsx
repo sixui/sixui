@@ -1,38 +1,34 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 
 import type { IElevationProps } from './Elevation.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { Base } from '../Base';
 import { elevationStyles } from './Elevation.styles';
 import { elevationTheme } from './Elevation.stylex';
+import { useStyles } from '~/hooks/useStyles';
 
 export const Elevation = forwardRef<HTMLDivElement, IElevationProps>(
   function Elevation(props, forwardedRef) {
     const { styles, sx, level, disabled, ...other } = props;
 
-    const componentTheme = useComponentTheme('Elevation');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(elevationStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+    const { combineStyles, globalStyles } = useStyles({
+      name: 'Elevation',
+      styles: [elevationStyles, styles],
+    });
 
     return (
-      <div
+      <Base
         aria-hidden
         {...other}
-        {...sxf(
+        sx={[
           elevationTheme,
-          componentTheme.overridenStyles,
-          'host',
-          level !== undefined && `host$level${level}`,
-          disabled && 'host$disabled',
+          globalStyles,
+          combineStyles(
+            'host',
+            level !== undefined && `host$level${level}`,
+            disabled && 'host$disabled',
+          ),
           sx,
-        )}
+        ]}
         ref={forwardedRef}
       />
     );

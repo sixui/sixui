@@ -1,8 +1,9 @@
-import type { IContainerProps, IOmit } from '~/helpers/types';
+import type { IOmit } from '~/helpers/types';
+import type { IBaseProps } from '../Base';
 import type { IPlaceholderStylesKey } from './Placeholder.styles';
-import type { IPaperProps } from '~/components/Paper';
+import type { IPaperProps } from '../Paper';
 
-export type IPlaceholderProps = IContainerProps<IPlaceholderStylesKey> &
+export type IPlaceholderProps = IBaseProps<IPlaceholderStylesKey> &
   IOmit<IPaperProps, 'styles'> & {
     label?: string;
     innerStyles?: IPaperProps['innerStyles'];

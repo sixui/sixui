@@ -1,22 +1,18 @@
-import type {
-  ICompiledStyles,
-  IContainerProps,
-  IOmit,
-  IZeroOrMore,
-} from '~/helpers/types';
-import type { IFieldBaseVariant } from '~/components/FieldBase';
-import type { IFilterableListItemRenderer } from '~/components/FilterableListBase';
+import type { ICompiledStyles, IOmit, IZeroOrMore } from '~/helpers/types';
+import type { IBaseProps } from '../Base';
+import type { IFieldBaseVariant } from '../FieldBase';
+import type { IFilterableListItemRenderer } from '../FilterableListBase';
 import type {
   IFloatingFilterableListBaseProps,
   IFloatingFilterableListBaseTriggerRenderProps,
-} from '~/components/FloatingFilterableListBase';
-import type { ITextInputFieldOwnProps } from '~/components/TextInputField';
-import type { IInputChipProps } from '~/components/Chip';
-import type { ITextFieldBaseStylesKey } from '~/components/TextFieldBase';
+} from '../FloatingFilterableListBase';
+import type { ITextInputFieldProps } from '../TextInputField';
+import type { IInputChipProps } from '../Chip';
+import type { ITextFieldBaseStylesKey } from '../TextFieldBase';
 import type { IMultiSelectBaseStylesKey } from './MultiSelectBase.styles';
 
 export type IMultiSelectBaseProps<TItem> =
-  IContainerProps<IMultiSelectBaseStylesKey> &
+  IBaseProps<IMultiSelectBaseStylesKey> &
     IOmit<
       IFloatingFilterableListBaseProps<TItem, HTMLElement>,
       | 'styles'
@@ -26,7 +22,7 @@ export type IMultiSelectBaseProps<TItem> =
       | 'itemRenderer'
       | 'children'
     > &
-    IOmit<ITextInputFieldOwnProps, 'styles'> & {
+    IOmit<ITextInputFieldProps, 'styles'> & {
       innerStyles?: {
         textInputField?: IZeroOrMore<ICompiledStyles<ITextFieldBaseStylesKey>>;
       };

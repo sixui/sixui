@@ -1,8 +1,8 @@
 import type { IAny, IOmit, IMaybeAsync } from '~/helpers/types';
-import type { ITabContextValue } from './TabContext';
+import type { ITabsContextValue } from './Tabs.context';
 
 export type ITabsProps = IOmit<
-  ITabContextValue,
+  ITabsContextValue,
   'onChange' | 'onTabActivated'
 > & {
   onChange?: (anchor: string | undefined) => IMaybeAsync<IAny>;

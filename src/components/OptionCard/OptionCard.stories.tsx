@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
-import type { IOptionCardOwnProps } from './OptionCard.types';
-import { Switch } from '~/components/Switch';
-import { ComponentShowcase } from '~/components/ComponentShowcase';
-import { Checkbox } from '~/components/Checkbox';
+import type { IOptionCardProps } from './OptionCard.types';
+import { Switch } from '../Switch';
+import { ComponentShowcase } from '../ComponentShowcase';
+import { Checkbox } from '../Checkbox';
 import { OptionCard } from './OptionCard';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { RadioGroup } from '~/components/RadioGroup';
-import { Radio } from '~/components/Radio';
+import { RadioGroup } from '../RadioGroup';
+import { Radio } from '../Radio';
 
 const meta = {
   component: OptionCard,
@@ -29,7 +29,7 @@ const styles = stylex.create({
 
 const defaultArgs = {
   sx: styles.card,
-} satisfies Partial<IOptionCardOwnProps>;
+} satisfies Partial<IOptionCardProps>;
 
 export const Basic: IStory = {
   render: (props) => (
@@ -54,13 +54,13 @@ export const Basic: IStory = {
         {
           legend: 'Switch control',
           props: {
-            as: Switch,
+            component: Switch,
           },
         },
         {
           legend: 'Checkbox control',
           props: {
-            as: Checkbox,
+            component: Checkbox,
           },
         },
       ]}
@@ -75,15 +75,15 @@ export const Basic: IStory = {
   },
 };
 
-const OptionCardRadioGroup: React.FC<IOptionCardOwnProps> = (props) => {
+const OptionCardRadioGroup: React.FC<IOptionCardProps> = (props) => {
   return (
     <RadioGroup
       sx={styles.radioGroup}
       onChange={(...args) => void sbHandleEvent('change', args)}
     >
-      <OptionCard {...props} as={Radio} value='1' />
-      <OptionCard {...props} as={Radio} value='2' />
-      <OptionCard {...props} as={Radio} value='3' />
+      <OptionCard {...props} component={Radio} value='1' />
+      <OptionCard {...props} component={Radio} value='2' />
+      <OptionCard {...props} component={Radio} value='3' />
     </RadioGroup>
   );
 };

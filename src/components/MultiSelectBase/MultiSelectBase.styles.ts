@@ -1,9 +1,11 @@
 import stylex from '@stylexjs/stylex';
 
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+
 export type IMultiSelectBaseStylesKey = keyof typeof multiSelectBaseStyles;
 export const multiSelectBaseStyles = stylex.create({
   chip: {
-    marginRight: '0.5rem',
+    marginRight: spacingTokens.padding$2,
   },
 });
 
@@ -12,7 +14,7 @@ export const multiSelectBaseFieldBaseStyles = stylex.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    rowGap: '0.5rem',
+    rowGap: spacingTokens.padding$2,
     flexWrap: 'wrap',
   },
 });

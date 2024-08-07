@@ -1,10 +1,11 @@
 import stylex from '@stylexjs/stylex';
 
 import { checkboxTokens } from './Checkbox.stylex';
-import { stateLayerTokens } from '~/components/StateLayer/StateLayer.stylex';
-import { focusRingTokens } from '~/components/FocusRing/FocusRing.stylex';
 import { motionTokens } from '~/themes/base/motion.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
+import { stateLayerTokens } from '../StateLayer/StateLayer.stylex';
+import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
 import { checkboxStateTokens } from './Checkbox.state.stylex';
 
 // The stroke width of the icon marks.
@@ -36,6 +37,8 @@ export const checkboxStyles = stylex.create({
     WebkitTapHighlightColor: 'transparent',
     cursor: 'pointer',
 
+    [checkboxStateTokens.stateLayerSize]: densityTokens.minTargetSize,
+
     [checkboxStateTokens.stateLayerColor$hover]:
       checkboxTokens.stateLayerColor$hover,
     [checkboxStateTokens.stateLayerOpacity$hover]:
@@ -61,8 +64,8 @@ export const checkboxStyles = stylex.create({
   },
   input: {
     appearance: 'none',
-    width: checkboxTokens.stateLayerSize,
-    height: checkboxTokens.stateLayerSize,
+    width: densityTokens.minTargetSize,
+    height: densityTokens.minTargetSize,
     margin: 0,
     opacity: 0,
     outline: 'none',
@@ -144,7 +147,11 @@ export const checkboxStyles = stylex.create({
     transitionTimingFunction: `${motionTokens.easing$emphasizedDecelerate}, linear`, // Enter easing function for scale, linear for opacity
     transform: 'scale(1)',
   },
+  loading: {
+    fontSize: checkboxTokens.containerSize,
+  },
   icon: {
+    position: 'relative',
     // The icon is created with two <rect> marks for animation:
     // 1. Short end
     //   - the smaller leading part of the checkmark
@@ -252,9 +259,9 @@ export const checkboxStyles = stylex.create({
 
 export const checkboxStateLayerStyles = stylex.create({
   host: {
-    borderRadius: checkboxTokens.stateLayerShape,
-    width: checkboxTokens.stateLayerSize,
-    height: checkboxTokens.stateLayerSize,
+    borderRadius: shapeTokens.corner$full,
+    width: checkboxStateTokens.stateLayerSize,
+    height: checkboxStateTokens.stateLayerSize,
     inset: 'unset',
 
     [stateLayerTokens.color$hover]: checkboxStateTokens.stateLayerColor$hover,
@@ -269,8 +276,8 @@ export const checkboxStateLayerStyles = stylex.create({
 
 export const checkboxFocusRingStyles = stylex.create({
   host: {
-    width: 44,
-    height: 44,
+    width: `calc(${checkboxTokens.containerSize} * sqrt(2) * 1.8)`,
+    height: `calc(${checkboxTokens.containerSize} *sqrt(2) * 1.8)`,
     [focusRingTokens.shape]: shapeTokens.corner$full,
   },
   host$outward: {

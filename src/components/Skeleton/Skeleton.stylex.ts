@@ -2,9 +2,10 @@ import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
+import { zIndexTokens } from '~/themes/base/zIndex.stylex';
 
 const vars = {
-  zIndex: '9',
+  zIndex: `calc(${zIndexTokens.app} + 1)`,
 
   // container
   containerShape: `min(0.25em, ${shapeTokens.corner$xs})`,

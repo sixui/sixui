@@ -1,10 +1,16 @@
 import stylex from '@stylexjs/stylex';
 
-import { elevationTokens } from '~/components/Elevation/Elevation.stylex';
+import { elevationTokens } from '../Elevation/Elevation.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+
+const MIN_DENSITY = -4;
+const MAX_DENSITY = 0;
+const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityTokens.density}, ${MAX_DENSITY}) * ${scaleTokens.scale}`;
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-primary-tab.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-primary-navigation-tab.scss
@@ -20,7 +26,7 @@ const vars = {
   // container
   containerColor: colorSchemeTokens.surface,
   containerElevation: elevationTokens.boxShadow$level0,
-  containerHeight: '48px',
+  containerHeight: `calc(48px * ${scaleTokens.scale} + ${DENSITY})`,
   containerHeight$withIconAndLabelText: 'unset',
   containerShape: shapeTokens.corner$none,
   // &:disabled
@@ -92,7 +98,7 @@ const vars = {
   activeLabelTextColor$pressed: 'inherit',
 
   // icon
-  iconSize: '18px',
+  iconSize: `calc(18px * ${scaleTokens.scale})`,
 };
 
 export const tabTokens = stylex.defineVars(vars);

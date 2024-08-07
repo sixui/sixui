@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
-import { Labeled, type ILabeledOwnProps } from '~/components/Labeled';
+import { Labeled, type ILabeledProps } from '~/components/Labeled';
 import { Placeholder } from '~/components/Placeholder';
 
 export type ILabeledPlaygroundDemoProps = {
-  labeled: ILabeledOwnProps;
+  labeled: ILabeledProps;
 };
 
 const styles = stylex.create({

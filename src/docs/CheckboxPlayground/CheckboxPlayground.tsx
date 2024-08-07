@@ -16,17 +16,11 @@ export const checkboxPlaygroundSections: IPlaygroundSections<ICheckboxPlayground
           props: {
             disabled: true,
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Loading',
           props: {
             loading: true,
-          },
-          modifiers: {
-            off: true,
           },
         },
       ],

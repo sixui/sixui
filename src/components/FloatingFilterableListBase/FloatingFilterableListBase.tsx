@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   autoUpdate,
   flip,
@@ -25,8 +25,8 @@ import {
   type IFilterableListItemRenderer,
   type IFilterableListBaseRenderer,
   type IFilterableListItemRendererProps,
-} from '~/components/FilterableListBase';
-import { Portal } from '~/components/Portal';
+} from '../FilterableListBase';
+import { Portal } from '../Portal';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { usePrevious } from '~/hooks/usePrevious';
 import {
@@ -34,10 +34,8 @@ import {
   type IExtendedFloatingProps,
 } from '~/helpers/extendFloatingProps';
 import { fixedForwardRef } from '~/helpers/fixedForwardRef';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { FloatingTransition } from '~/components/FloatingTransition';
+import { useStyles } from '~/hooks/useStyles';
+import { FloatingTransition } from '../FloatingTransition';
 import { floatingFilterableListBaseStyles } from './FloatingFilterableListBase.styles';
 
 export const FloatingFilterableListBase = fixedForwardRef(
@@ -82,15 +80,10 @@ export const FloatingFilterableListBase = fixedForwardRef(
       ...other
     } = props;
 
-    const componentTheme = useComponentTheme('FloatingFilterableListBase');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(floatingFilterableListBaseStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+    const { combineStyles, getStyles, globalStyles } = useStyles({
+      name: 'FloatingFilterableListBase',
+      styles: [floatingFilterableListBaseStyles, styles],
+    });
 
     const [isOpen, setIsOpen] = useState(false);
     const [hasFocus, setHasFocus] = useState(false);
@@ -233,8 +226,10 @@ export const FloatingFilterableListBase = fixedForwardRef(
 
     const isEnterKeyPressedRef = useRef(false);
     const getInputFilterProps = (
-      userProps?: IExtendedFloatingProps<React.HTMLProps<HTMLInputElement>>,
-    ): IExtendedFloatingProps<React.HTMLProps<HTMLInputElement>> => ({
+      userProps?: IExtendedFloatingProps<
+        React.ComponentPropsWithoutRef<'input'>
+      >,
+    ): IExtendedFloatingProps<React.ComponentPropsWithoutRef<'input'>> => ({
       ...userProps,
       value: userProps?.value ?? query,
       disabled,
@@ -392,13 +387,13 @@ export const FloatingFilterableListBase = fixedForwardRef(
               initialFocus={disabled ? -1 : initialFocus}
             >
               <div
-                {...sxf(componentTheme.overridenStyles, 'host', sx)}
                 {...interactions.getFloatingProps()}
+                {...getStyles(globalStyles, 'host', sx)}
                 ref={floating.refs.setFloating}
                 style={floating.floatingStyles}
               >
                 <FloatingTransition
-                  sx={stylesCombinator('container')}
+                  sx={combineStyles('container')}
                   placement={floating.placement}
                   status={transitionStatus.status}
                   origin='edge'

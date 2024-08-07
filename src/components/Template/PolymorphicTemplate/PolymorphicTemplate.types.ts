@@ -1,14 +1,7 @@
-import type { IContainerProps } from '~/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
 import type { IPolymorphicTemplateStylesKey } from './PolymorphicTemplate.styles';
+import { IBaseProps } from '~/components/Base';
 
-export const POLYMORPHIC_TEMPLATE_DEFAULT_TAG = 'div';
-
-export type IPolymorphicTemplateOwnProps =
-  IContainerProps<IPolymorphicTemplateStylesKey> & {
+export type IPolymorphicTemplateProps =
+  IBaseProps<IPolymorphicTemplateStylesKey> & {
     children?: React.ReactNode;
   };
-
-export type IPolymorphicTemplateProps<
-  TRoot extends React.ElementType = typeof POLYMORPHIC_TEMPLATE_DEFAULT_TAG,
-> = IPolymorphicComponentPropsWithRef<TRoot, IPolymorphicTemplateOwnProps>;

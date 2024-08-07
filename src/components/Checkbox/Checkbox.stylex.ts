@@ -1,23 +1,23 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
-import { shapeTokens } from '~/themes/base/shape.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-checkbox.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-checkbox.scss
 
 const vars = {
   // container
-  containerShape: '2px',
-  containerSize: '18px',
+  containerShape: `calc(2px * ${scaleTokens.scale})`,
+  containerSize: `calc(18px * ${scaleTokens.scale})`,
   // &:disabled
   containerOpacity$disabled: stateTokens.opacity$disabled,
 
   // selectedContainer
   selectedContainerColor: colorSchemeTokens.primary,
   // &:disabled
-  selectedContainerOutlineWidth$disabled: '0px',
   selectedContainerColor$disabled: colorSchemeTokens.onSurface,
   selectedContainerOpacity$disabled: stateTokens.opacity$disabled,
   // &:focus
@@ -37,19 +37,19 @@ const vars = {
 
   // outline
   outlineColor: colorSchemeTokens.onSurfaceVariant,
-  outlineWidth: '2px',
-  // &:disabled
-  outlineColor$disabled: colorSchemeTokens.onSurface,
-  outlineWidth$disabled: '2px',
+  outlineWidth: outlineTokens.width$sm,
   // &:focus
   outlineColor$focus: colorSchemeTokens.onSurface,
-  outlineWidth$focus: '2px',
+  outlineWidth$focus: outlineTokens.width$sm,
   // &:hover
   outlineColor$hover: colorSchemeTokens.onSurface,
-  outlineWidth$hover: '2px',
+  outlineWidth$hover: outlineTokens.width$sm,
   // &:pressed
   outlineColor$pressed: colorSchemeTokens.onSurface,
-  outlineWidth$pressed: '2px',
+  outlineWidth$pressed: outlineTokens.width$sm,
+  // &:disabled
+  outlineColor$disabled: colorSchemeTokens.onSurface,
+  outlineWidth$disabled: outlineTokens.width$sm,
   // &:error
   outlineColor$error: colorSchemeTokens.error,
   // &:error:focus
@@ -59,17 +59,8 @@ const vars = {
   // &:error:pressed
   outlineColor$error$pressed: colorSchemeTokens.error,
 
-  // selectedOutline
-  selectedOutlineWidth: '0px',
-  // &:focus
-  selectedOutlineWidth$focus: '0px',
-  // &:hover
-  selectedOutlineWidth$hover: '0px',
-  // &:pressed
-  selectedOutlineWidth$pressed: '0px',
-
   // icon
-  iconSize: '18px',
+  iconSize: `calc(18px * ${scaleTokens.scale})`,
 
   // selectedIcon
   selectedIconColor: colorSchemeTokens.onPrimary,
@@ -91,8 +82,6 @@ const vars = {
   selectedIconColor$error$pressed: colorSchemeTokens.onError,
 
   // stateLayer
-  stateLayerShape: shapeTokens.corner$full,
-  stateLayerSize: '40px',
   // &:hover
   stateLayerColor$hover: colorSchemeTokens.onSurface,
   stateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,

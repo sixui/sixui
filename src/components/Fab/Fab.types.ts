@@ -1,11 +1,6 @@
-import type {
-  IContainerProps,
-  IZeroOrMore,
-  ICompiledStyles,
-  IOmit,
-} from '~/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
-import type { IButtonOwnProps, IButtonStylesKey } from '~/components/Button';
+import type { IBaseProps } from '../Base';
+import type { IZeroOrMore, ICompiledStyles, IOmit } from '~/helpers/types';
+import type { IButtonProps, IButtonStylesKey } from '../Button';
 import type { IFabStylesKey } from './Fab.styles';
 
 export type IFabVariant =
@@ -17,14 +12,12 @@ export type IFabVariant =
 
 export type IFabSize = 'sm' | 'md' | 'lg';
 
-export const FAB_DEFAULT_TAG = 'button';
-
-export type IFabOwnProps = IOmit<
-  IButtonOwnProps,
+export type IFabProps = IOmit<
+  IButtonProps,
   'variant' | 'icon' | 'trailingIcon'
 > &
-  IContainerProps<IFabStylesKey> & {
-    innerStyles?: IButtonOwnProps['innerStyles'] & {
+  IBaseProps<IFabStylesKey> & {
+    innerStyles?: IButtonProps['innerStyles'] & {
       button?: IZeroOrMore<ICompiledStyles<IButtonStylesKey>>;
     };
     children?: React.ReactNode;
@@ -33,7 +26,3 @@ export type IFabOwnProps = IOmit<
     label?: string;
     lowered?: boolean;
   };
-
-export type IFabProps<
-  TRoot extends React.ElementType = typeof FAB_DEFAULT_TAG,
-> = IPolymorphicComponentPropsWithRef<TRoot, IFabOwnProps>;

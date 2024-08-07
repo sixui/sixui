@@ -1,4 +1,4 @@
-import { IColorPaletteGroupContextValue } from './ColorPaletteGroupContext';
+import { IColorPaletteGroupContextValue } from './ColorPaletteGroup.context';
 
 export type IColorPaletteGroupProviderProps =
   Partial<IColorPaletteGroupContextValue> & {

@@ -9,11 +9,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import type { IMenuProps } from './Menu.types';
-import { Button } from '~/components/Button';
-import { IconButton } from '~/components/IconButton';
+import { Button } from '../Button';
+import { IconButton } from '../IconButton';
 import { commonStyles } from '~/helpers/commonStyles';
-import { MenuItem } from '~/components/MenuItem';
-import { MenuDivider } from '~/components/MenuDivider';
+import { MenuItem } from '../MenuItem';
+import { MenuDivider } from '../MenuDivider';
 import { Menu } from './Menu';
 
 const meta = {

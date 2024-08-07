@@ -2,13 +2,13 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 import stylex from '@stylexjs/stylex';
 
-import type { IFieldBaseVariant } from '~/components/FieldBase';
+import type { IFieldBaseVariant } from '../FieldBase';
 import type { IColorInputFieldProps } from './ColorInputField.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { ComponentShowcase } from '~/components/ComponentShowcase';
-import { HctColorPickerContent } from '~/components/HctColorPickerContent';
+import { ComponentShowcase } from '../ComponentShowcase';
+import { HctColorPickerContent } from '../HctColorPickerContent';
 import { commonStyles } from '~/helpers/commonStyles';
-import { ColorPaletteGroupProvider } from '~/components/ColorPaletteGroup';
+import { ColorPaletteGroupProvider } from '../ColorPaletteGroup';
 import { ColorInputField } from './ColorInputField';
 
 const meta = {

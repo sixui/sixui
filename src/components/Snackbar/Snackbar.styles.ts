@@ -1,6 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import { motionTokens } from '~/themes/base/motion.stylex';
+import { zIndexTokens } from '~/themes/base/zIndex.stylex';
 import { snackbarTokens } from './Snackbar.stylex';
 
 export type ISnackbarStylesKey = keyof typeof snackbarStyles;
@@ -9,7 +10,7 @@ export const snackbarStyles = stylex.create({
     display: 'flex',
     position: 'fixed',
     bottom: snackbarTokens.fixedBottomSpace,
-    zIndex: 499,
+    zIndex: zIndexTokens.overlay,
     minWidth: {
       default: 'unset',
       '@media (max-width: 600px)': `calc(100% - ${snackbarTokens.fixedHorizontalSpace$compact} * 2)`,

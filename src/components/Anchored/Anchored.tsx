@@ -1,10 +1,9 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 
 import type { IAnchoredProps } from './Anchored.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { anchoredStyles } from './Anchored.styles';
+import { Base } from '../Base';
+import { useStyles } from '~/hooks/useStyles';
 
 export const Anchored = forwardRef<HTMLDivElement, IAnchoredProps>(
   function Anchored(props, forwardedRef) {
@@ -20,53 +19,32 @@ export const Anchored = forwardRef<HTMLDivElement, IAnchoredProps>(
       ...other
     } = props;
 
-    const componentTheme = useComponentTheme('Anchored');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(anchoredStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+    const { combineStyles, getStyles, globalStyles } = useStyles({
+      name: 'Anchored',
+      styles: [anchoredStyles, styles],
+    });
 
     const invisible = invisibleProp || !content;
 
-    const contentPositionClassname =
-      overlap === 'rectangular'
-        ? verticalOrigin === 'top'
-          ? horizontalOrigin === 'right'
-            ? 'content$rectangular$top$right'
-            : 'content$rectangular$top$left'
-          : horizontalOrigin === 'right'
-            ? 'content$rectangular$bottom$right'
-            : 'content$rectangular$bottom$left'
-        : verticalOrigin === 'top'
-          ? horizontalOrigin === 'right'
-            ? 'content$circular$top$right'
-            : 'content$circular$top$left'
-          : horizontalOrigin === 'right'
-            ? 'content$circular$bottom$right'
-            : 'content$circular$bottom$left';
-
     return (
-      <div
+      <Base
         {...other}
-        {...sxf(componentTheme.overridenStyles, 'host', sx)}
+        sx={[globalStyles, combineStyles('host'), sx]}
         ref={forwardedRef}
       >
         {children}
 
         <div
-          {...sxf(
+          {...getStyles(
             'content',
-            contentPositionClassname,
-            invisible && `${contentPositionClassname}$invisible`,
+            `content$${overlap}$${verticalOrigin}$${horizontalOrigin}`,
+            invisible &&
+              `content$${overlap}$${verticalOrigin}$${horizontalOrigin}$invisible`,
           )}
         >
           {content}
         </div>
-      </div>
+      </Base>
     );
   },
 );

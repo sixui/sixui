@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import stylex from '@stylexjs/stylex';
 
-import type { ICircularProgressIndicatorSize } from '~/components/CircularProgressIndicator';
 import type { IDeterminateCircularProgressIndicatorProps } from './DeterminateCircularProgressIndicator.types';
-import { ComponentShowcase } from '~/components/ComponentShowcase';
+import { ComponentShowcase } from '../ComponentShowcase';
+import { Typography } from '../Typography';
 import { DeterminateCircularProgressIndicator } from './DeterminateCircularProgressIndicator';
 
 // https://m3.material.io/components/progress-indicators/overview
@@ -14,6 +15,13 @@ const meta = {
 } satisfies Meta<typeof DeterminateCircularProgressIndicator>;
 
 type IStory = StoryObj<typeof meta>;
+
+const styles = stylex.create({
+  host$withLabel: {
+    width: 48,
+    height: 48,
+  },
+});
 
 const defaultArgs = {
   value: 0.75,
@@ -40,7 +48,11 @@ export const Basic: IStory = {
 export const WithLabel: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={DeterminateCircularProgressIndicator}
+      component={(props) => (
+        <Typography>
+          <DeterminateCircularProgressIndicator {...props} />
+        </Typography>
+      )}
       props={props}
       cols={[
         { props: { value: 0 } },
@@ -54,15 +66,19 @@ export const WithLabel: IStory = {
   ),
   args: {
     ...defaultArgs,
-    size: 'lg',
     withLabel: true,
+    sx: styles.host$withLabel,
   },
 };
 
 export const WithLabelFormatter: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={DeterminateCircularProgressIndicator}
+      component={(props) => (
+        <Typography>
+          <DeterminateCircularProgressIndicator {...props} />
+        </Typography>
+      )}
       props={props}
       cols={[
         { props: { value: 0 } },
@@ -76,8 +92,8 @@ export const WithLabelFormatter: IStory = {
   ),
   args: {
     ...defaultArgs,
-    size: 'lg',
     withLabel: true,
+    sx: styles.host$withLabel,
     labelFormatter: (value) => `[${Math.round(value * 100)}]`,
   },
 };
@@ -85,7 +101,11 @@ export const WithLabelFormatter: IStory = {
 export const WithRange: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={DeterminateCircularProgressIndicator}
+      component={(props) => (
+        <Typography>
+          <DeterminateCircularProgressIndicator {...props} />
+        </Typography>
+      )}
       props={props}
       cols={[
         { props: { value: -64 } },
@@ -99,8 +119,8 @@ export const WithRange: IStory = {
   ),
   args: {
     ...defaultArgs,
-    size: 'lg',
     withLabel: true,
+    sx: styles.host$withLabel,
     labelFormatter: (value) => `${value}`,
     min: -64,
     max: 128,
@@ -110,7 +130,11 @@ export const WithRange: IStory = {
 export const ZeroBased: IStory = {
   render: (props) => (
     <ComponentShowcase
-      component={DeterminateCircularProgressIndicator}
+      component={(props) => (
+        <Typography>
+          <DeterminateCircularProgressIndicator {...props} />
+        </Typography>
+      )}
       props={props}
       cols={[
         { props: { value: -100 } },
@@ -124,28 +148,13 @@ export const ZeroBased: IStory = {
   ),
   args: {
     ...defaultArgs,
-    size: 'lg',
     withLabel: true,
+    sx: styles.host$withLabel,
     labelFormatter: (value) => `${value}`,
     min: -100,
     max: 100,
     zeroBased: true,
   },
-};
-
-export const Sizes: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={DeterminateCircularProgressIndicator}
-      props={props}
-      cols={(['md', 'lg'] as Array<ICircularProgressIndicatorSize>).map(
-        (size) => ({
-          props: { size },
-        }),
-      )}
-    />
-  ),
-  args: defaultArgs,
 };
 
 export default meta;

@@ -1,12 +1,11 @@
 import type {
   IAny,
   ICompiledStyles,
-  IContainerProps,
   IMaybeAsync,
   IZeroOrMore,
 } from '~/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
-import type { ICardStylesKey } from '~/components/Card';
+import type { IBaseProps } from '../Base';
+import type { ICardStylesKey } from '../Card';
 import type { IOptionCardStylesKey } from './OptionCard.styles';
 
 export type IOptionCardControlRenderProps = {
@@ -17,7 +16,7 @@ export type IOptionCardRenderProps = {
   checked?: boolean;
 };
 
-export type IOptionCardOwnProps = IContainerProps<IOptionCardStylesKey> & {
+export type IOptionCardProps = IBaseProps<IOptionCardStylesKey> & {
   innerStyles?: {
     card?: IZeroOrMore<ICompiledStyles<ICardStylesKey>>;
   };
@@ -35,6 +34,3 @@ export type IOptionCardOwnProps = IContainerProps<IOptionCardStylesKey> & {
   disabled?: boolean;
   value?: React.InputHTMLAttributes<HTMLInputElement>['value'];
 };
-
-export type IOptionCardProps<TRoot extends React.ElementType> =
-  IPolymorphicComponentPropsWithRef<TRoot, IOptionCardOwnProps>;

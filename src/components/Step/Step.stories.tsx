@@ -7,7 +7,7 @@ import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '~/components/ComponentShowcase';
+} from '../ComponentShowcase';
 import { Step } from './Step';
 
 const meta = {

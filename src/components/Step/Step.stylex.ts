@@ -4,34 +4,41 @@ import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
+
+const MIN_DENSITY = -1;
+const MAX_DENSITY = 0;
+const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityTokens.density}, ${MAX_DENSITY}) * ${scaleTokens.scale}`;
 
 const vars = {
-  gap: '8px',
-  leadingSpace: '8px',
-  trailingSpace: '8px',
+  gap: spacingTokens.padding$2,
+  leadingSpace: spacingTokens.padding$2,
+  trailingSpace: spacingTokens.padding$2,
 
   /**
    * For a proper rendering, should be at least (StepConnector.thickness / 2).
    */
-  topSpace: '8px',
+  topSpace: `calc(${spacingTokens.padding$2} + ${DENSITY})`,
 
   /**
    * For a proper rendering, should be at least (StepConnector.thickness / 2).
    */
-  bottomSpace: '8px',
+  bottomSpace: `calc(${spacingTokens.padding$2} + ${DENSITY})`,
 
   // bulletPoint
-  bulletPointSpace: '8px',
+  bulletPointSpace: spacingTokens.padding$2,
 
   // connector
   connectorShape: shapeTokens.corner$full,
-  connectorMinLength: '16px',
+  connectorMinLength: spacingTokens.padding$4,
 
   // container
   containerShape: shapeTokens.corner$md,
 
   // bulletPoint
-  bulletPointSize: '24px',
+  bulletPointSize: `calc(24px * ${scaleTokens.scale})`,
   bulletPointShape: shapeTokens.corner$full,
   bulletPointColor: colorSchemeTokens.primary,
   // &:inactive

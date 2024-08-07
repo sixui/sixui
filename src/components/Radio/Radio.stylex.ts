@@ -1,6 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-radio.scss
@@ -8,7 +10,7 @@ import { stateTokens } from '~/themes/base/state.stylex';
 
 const vars = {
   // icon
-  iconSize: '18px',
+  iconSize: `calc(18px * ${scaleTokens.scale})`,
   iconColor: colorSchemeTokens.onSurfaceVariant,
   // &:disabled
   iconColor$disabled: colorSchemeTokens.onSurface,
@@ -33,7 +35,7 @@ const vars = {
   selectedIconColor$pressed: colorSchemeTokens.primary,
 
   // stateLayer
-  stateLayerSize: '40px',
+  stateLayerSize: densityTokens.minTargetSize,
   // &:hover
   stateLayerColor$hover: colorSchemeTokens.onSurface,
   stateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,

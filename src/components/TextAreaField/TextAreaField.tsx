@@ -2,10 +2,7 @@ import { forwardRef, useRef } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { ITextAreaFieldProps } from './TextAreaField.types';
-import {
-  TextFieldBase,
-  type ITextFieldBaseProps,
-} from '~/components/TextFieldBase';
+import { TextFieldBase, type ITextFieldBaseProps } from '../TextFieldBase';
 
 export const TextAreaField = forwardRef<HTMLDivElement, ITextAreaFieldProps>(
   function TextAreaField(props, forwardedRef) {
@@ -14,9 +11,9 @@ export const TextAreaField = forwardRef<HTMLDivElement, ITextAreaFieldProps>(
     const inputHandleRef = useMergeRefs([inputRef, inputRefProp]);
 
     const inputRenderer: ITextFieldBaseProps<HTMLTextAreaElement>['inputRenderer'] =
-      ({ sxf, ref, forwardedProps, modifiers, onValueChange }) => (
+      ({ getStyles, ref, forwardedProps, modifiers, onValueChange }) => (
         <textarea
-          {...sxf(
+          {...getStyles(
             'input',
             modifiers.hasError && 'input$error',
             modifiers.disabled && 'input$disabled',

@@ -1,89 +1,84 @@
-import { forwardRef, useMemo, useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { ICopyableTextProps } from './CopyableText.types';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { copyToClipboard } from '~/helpers/copyToClipboard';
-import { PlainTooltip } from '~/components/PlainTooltip';
-import { FluidButton } from '~/components/FluidButton';
-import { SvgIcon } from '~/components/SvgIcon';
+import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
 import { iconCopyToCliboard } from '~/assets/icons';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { PlainTooltip } from '../PlainTooltip';
+import { FluidButton } from '../FluidButton';
+import { SvgIcon } from '../SvgIcon';
 import { copyableTextStyles } from './CopyableText.styles';
+import { useStyles } from '~/hooks/useStyles';
 
-export const CopyableText = forwardRef<HTMLElement, ICopyableTextProps>(
-  function CopyableText(props, forwardedRef) {
-    const {
-      styles,
-      sx,
-      innerStyles,
-      icon,
-      children,
-      text,
-      disabled,
-      copySupportingText = 'Copy',
-      copiedSupportingText = 'Copied!',
-      ...other
-    } = props;
+export const CopyableText = createPolymorphicComponent<
+  'button',
+  ICopyableTextProps
+>(
+  forwardRef<HTMLButtonElement, ICopyableTextProps>(
+    function CopyableText(props, forwardedRef) {
+      const {
+        styles,
+        sx,
+        innerStyles,
+        icon,
+        children,
+        text,
+        disabled,
+        copySupportingText = 'Copy',
+        copiedSupportingText = 'Copied!',
+        ...other
+      } = props;
 
-    const componentTheme = useComponentTheme('CopyableText');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(copyableTextStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+      const { getStyles, globalStyles } = useStyles({
+        name: 'CopyableText',
+        styles: [copyableTextStyles, styles],
+      });
 
-    const containerHandleRef = useMergeRefs([forwardedRef]);
-    const [copied, setCopied] = useState(false);
-    const isTriggerVisible = !disabled;
+      const containerHandleRef = useMergeRefs([forwardedRef]);
+      const [copied, setCopied] = useState(false);
+      const isTriggerVisible = !disabled;
 
-    const handleCopy = async (): Promise<void> => {
-      const textToCopy = text ?? children?.toString();
-      if (!textToCopy) {
-        return;
-      }
+      const handleCopy = async (): Promise<void> => {
+        const textToCopy = text ?? children?.toString();
+        if (!textToCopy) {
+          return;
+        }
 
-      await copyToClipboard(textToCopy);
+        await copyToClipboard(textToCopy);
 
-      setCopied(true);
-    };
+        setCopied(true);
+      };
 
-    const handleTooltipOpenChange = (open: boolean): void => {
-      if (open) {
-        setCopied(false);
-      }
-    };
+      const handleTooltipOpenChange = (open: boolean): void => {
+        if (open) {
+          setCopied(false);
+        }
+      };
 
-    return (
-      <PlainTooltip
-        supportingText={copied ? copiedSupportingText : copySupportingText}
-        onOpenChange={handleTooltipOpenChange}
-        disabled={disabled}
-      >
-        <FluidButton
-          onClick={handleCopy}
+      return (
+        <PlainTooltip
+          supportingText={copied ? copiedSupportingText : copySupportingText}
+          onOpenChange={handleTooltipOpenChange}
           disabled={disabled}
-          styles={innerStyles?.fluidButton}
-          {...other}
-          ref={containerHandleRef}
         >
-          <div {...sxf(componentTheme.overridenStyles, 'host', sx)}>
-            {children ? <div {...sxf('text')}>{children}</div> : null}
-            {isTriggerVisible
-              ? (icon ?? (
-                  <SvgIcon
-                    sx={stylesCombinator('icon')}
-                    icon={iconCopyToCliboard}
-                  />
-                ))
-              : null}
-          </div>
-        </FluidButton>
-      </PlainTooltip>
-    );
-  },
+          <FluidButton
+            onClick={handleCopy}
+            disabled={disabled}
+            styles={innerStyles?.fluidButton}
+            {...other}
+            sx={[globalStyles, sx]}
+            ref={containerHandleRef}
+          >
+            <div {...getStyles('inner')}>
+              {children ? <div {...getStyles('text')}>{children}</div> : null}
+              {isTriggerVisible
+                ? (icon ?? <SvgIcon icon={iconCopyToCliboard} />)
+                : null}
+            </div>
+          </FluidButton>
+        </PlainTooltip>
+      );
+    },
+  ),
 );

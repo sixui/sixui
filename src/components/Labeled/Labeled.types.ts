@@ -1,7 +1,6 @@
-import type { IContainerProps } from '~/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
+import type { IBaseProps } from '../Base';
 import type { ILabeledStylesKey } from './Labeled.styles';
-import type { ILabeledContextValue } from './LabeledContext';
+import type { ILabeledContextValue } from './Labeled.context';
 
 export type ILabeledRenderProps = {
   id: string;
@@ -13,7 +12,7 @@ export type ILabeledRenderProps = {
   loading?: boolean;
 };
 
-export type ILabeledOwnProps = IContainerProps<ILabeledStylesKey> &
+export type ILabeledProps = IBaseProps<ILabeledStylesKey> &
   ILabeledContextValue & {
     label: React.ReactNode;
     trailingAction?: React.ReactNode;
@@ -24,7 +23,5 @@ export type ILabeledOwnProps = IContainerProps<ILabeledStylesKey> &
     labelPosition?: 'top' | 'bottom' | 'left' | 'right';
     supportingTextPosition?: 'start' | 'end';
     errorTextPosition?: 'start' | 'end';
+    requiredSign?: React.ReactNode;
   };
-
-export type ILabeledProps<TRoot extends React.ElementType> =
-  IPolymorphicComponentPropsWithRef<TRoot, ILabeledOwnProps>;

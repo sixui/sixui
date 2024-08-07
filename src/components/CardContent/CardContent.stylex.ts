@@ -1,18 +1,25 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+
+const MIN_DENSITY = -1;
+const MAX_DENSITY = 0;
+const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityTokens.density}, ${MAX_DENSITY}) * ${scaleTokens.scale}`;
 
 const vars = {
-  leadingSpace: '16px',
-  trailingSpace: '16px',
-  topSpace: '16px',
-  bottomSpace: '16px',
+  leadingSpace: spacingTokens.padding$4,
+  trailingSpace: spacingTokens.padding$4,
+  topSpace: `calc(${spacingTokens.padding$4} + ${DENSITY})`,
+  bottomSpace: `calc(${spacingTokens.padding$4} + ${DENSITY})`,
   textColor: colorSchemeTokens.onSurface,
   // &:actionable
-  leadingSpace$actionable: '16px',
-  trailingSpace$actionable: '16px',
-  topSpace$actionable: '16px',
-  bottomSpace$actionable: '16px',
+  leadingSpace$actionable: spacingTokens.padding$4,
+  trailingSpace$actionable: spacingTokens.padding$4,
+  topSpace$actionable: `calc(${spacingTokens.padding$4} + ${DENSITY})`,
+  bottomSpace$actionable: `calc(${spacingTokens.padding$4} + ${DENSITY})`,
 };
 
 export const cardContentTokens = stylex.defineVars(vars);

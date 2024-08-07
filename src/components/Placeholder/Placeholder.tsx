@@ -1,10 +1,8 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 
 import type { IPlaceholderProps } from './Placeholder.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { Paper } from '~/components/Paper';
+import { useStyles } from '~/hooks/useStyles';
+import { Paper } from '../Paper';
 import { placeholderStyles } from './Placeholder.styles';
 import { placeholderTheme } from './Placeholder.stylex';
 
@@ -21,30 +19,25 @@ export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
       ...other
     } = props;
 
-    const componentTheme = useComponentTheme('Placeholder');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(placeholderStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+    const { combineStyles, getStyles, globalStyles } = useStyles({
+      name: 'Placeholder',
+      styles: [placeholderStyles, styles],
+    });
 
     return (
       <Paper
-        sx={[
-          placeholderTheme,
-          componentTheme.overridenStyles,
-          stylesCombinator('host', disabled ? 'host$disabled' : null),
-          sx,
-        ]}
         innerStyles={innerStyles}
         {...other}
+        sx={[
+          placeholderTheme,
+          globalStyles,
+          combineStyles('host', disabled ? 'host$disabled' : null),
+          sx,
+        ]}
         ref={forwardedRef}
       >
-        {crosshairs ? <div {...sxf('crosshairs')} /> : null}
-        {label ? <div {...sxf('label')}>{label}</div> : null}
+        {crosshairs ? <div {...getStyles('crosshairs')} /> : null}
+        {label ? <div {...getStyles('label')}>{label}</div> : null}
         {children}
       </Paper>
     );

@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { elevationTokens } from '~/components/Elevation/Elevation.stylex';
+import { elevationTokens } from '../Elevation/Elevation.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { richTooltipContentTokens } from './RichTooltipContent.stylex';
 

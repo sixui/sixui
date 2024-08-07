@@ -2,12 +2,12 @@ import { useMemo, useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import type { IThemeProviderProps } from './ThemeProvider.types';
-import { ThemeContext } from './ThemeContext';
+import { ThemeContext } from './Theme.context';
 import { themeProviderStyles } from './ThemeProvider.styles';
 import {
   IThemeSetterContextValue,
   ThemeSetterContext,
-} from './ThemeSetterContext';
+} from './ThemeSetter.context';
 
 export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
   const {
@@ -37,6 +37,8 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
         <div
           {...other}
           {...stylex.props([
+            theme?.scale && themeProviderStyles.dynamicScale(theme.scale),
+            theme?.density && themeProviderStyles.dynamicDensity(theme.density),
             theme?.schemes &&
               themeProviderStyles.dynamicScheme(theme.schemes.light),
             theme?.shape && themeProviderStyles.dynamicShape(theme.shape),
@@ -45,6 +47,9 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
               themeProviderStyles.dynamicTypeFace(theme.typeFace),
             theme?.typeScale &&
               themeProviderStyles.dynamicTypeScale(theme.typeScale),
+            theme?.state && themeProviderStyles.dynamicState(theme.state),
+            theme?.zIndex && themeProviderStyles.dynamicZIndex(theme.zIndex),
+            theme?.outline && themeProviderStyles.dynamicOutline(theme.outline),
             themeProviderStyles.wrapper,
             sx,
           ])}

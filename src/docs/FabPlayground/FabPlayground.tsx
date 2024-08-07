@@ -70,17 +70,11 @@ export const fabPlaygroundSections: IPlaygroundSections<IFabPlaygroundDemoProps>
           props: {
             disabled: true,
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Loading',
           props: {
             loading: true,
-          },
-          modifiers: {
-            off: true,
           },
         },
         {
@@ -89,9 +83,6 @@ export const fabPlaygroundSections: IPlaygroundSections<IFabPlaygroundDemoProps>
             type: 'string',
             value: 'Wait...',
             targetProp: 'loadingText',
-          },
-          modifiers: {
-            off: true,
           },
           getModifiers: (sectionProps) => ({
             disabled: !sectionProps?.fab.loading,

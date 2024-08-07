@@ -1,9 +1,7 @@
-import type { IContainerProps, IOmit } from '~/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
-import type { IButtonOwnProps } from '~/components/Button';
+import type { IBaseProps } from '../Base';
+import type { IOmit } from '~/helpers/types';
+import type { IButtonProps } from '../Button';
 import type { IIconButtonStylesKey } from './IconButton.styles';
-
-export const ICON_BUTTON_DEFAULT_TAG = 'button';
 
 export type IIconButtonVariant =
   | 'standard'
@@ -13,11 +11,11 @@ export type IIconButtonVariant =
   | 'danger'
   | 'snackbar';
 
-export type IIconButtonOwnProps = IOmit<
-  IButtonOwnProps,
+export type IIconButtonProps = IOmit<
+  IButtonProps,
   'icon' | 'variant' | 'trailingIcon' | 'loadingText'
 > &
-  IContainerProps<IIconButtonStylesKey> &
+  IBaseProps<IIconButtonStylesKey> &
   Pick<React.AriaAttributes, 'aria-label'> & {
     variant?: IIconButtonVariant | false;
     toggle?: boolean;
@@ -26,7 +24,3 @@ export type IIconButtonOwnProps = IOmit<
     selectedIcon?: React.ReactNode;
     'aria-label-selected'?: React.AriaAttributes['aria-label'];
   };
-
-export type IIconButtonProps<
-  TRoot extends React.ElementType = typeof ICON_BUTTON_DEFAULT_TAG,
-> = IPolymorphicComponentPropsWithRef<TRoot, IIconButtonOwnProps>;

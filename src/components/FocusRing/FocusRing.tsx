@@ -1,17 +1,9 @@
-import {
-  forwardRef,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { forwardRef, useCallback, useEffect, useRef, useState } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { IFocusRingProps } from './FocusRing.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { useStyles } from '~/hooks/useStyles';
+import { Base } from '../Base';
 import { focusRingStyles } from './FocusRing.styles';
 import { focusRingTheme } from './FocusRing.stylex';
 
@@ -25,15 +17,10 @@ export const FocusRing = forwardRef<HTMLInputElement, IFocusRingProps>(
   function FocusRing(props, forwardedRef) {
     const { styles, sx, visualState, for: forElementRef, inward } = props;
 
-    const componentTheme = useComponentTheme('FocusRing');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(focusRingStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+    const { combineStyles, globalStyles } = useStyles({
+      name: 'FocusRing',
+      styles: [focusRingStyles, styles],
+    });
 
     const hostRef = useRef<HTMLDivElement>(null);
     const handleRef = useMergeRefs([forwardedRef, hostRef]);
@@ -41,8 +28,7 @@ export const FocusRing = forwardRef<HTMLInputElement, IFocusRingProps>(
     const [visible, setVisible] = useState(false);
 
     const getControl = useCallback(
-      () =>
-        forElementRef ? forElementRef.current : hostRef?.current?.parentElement,
+      () => forElementRef?.current ?? hostRef?.current?.parentElement,
       [forElementRef],
     );
 
@@ -91,16 +77,18 @@ export const FocusRing = forwardRef<HTMLInputElement, IFocusRingProps>(
     const visibleOnInit = visualState?.focused;
 
     return (
-      <div
+      <Base
         ref={handleRef}
-        {...sxf(
+        sx={[
           focusRingTheme,
-          componentTheme.overridenStyles,
-          'host',
-          (visible || visibleOnInit) && 'host$visible',
-          inward ? 'host$inward' : 'host$outward',
+          globalStyles,
+          combineStyles(
+            'host',
+            (visible || visibleOnInit) && 'host$visible',
+            inward ? 'host$inward' : 'host$outward',
+          ),
           sx,
-        )}
+        ]}
       />
     );
   },

@@ -1,20 +1,28 @@
 import stylex from '@stylexjs/stylex';
 
-import { elevationTokens } from '~/components/Elevation/Elevation.stylex';
+import { elevationTokens } from '../Elevation/Elevation.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
+
+const MIN_DENSITY = -2;
+const MAX_DENSITY = 0;
+const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityTokens.density}, ${MAX_DENSITY}) * ${scaleTokens.scale}`;
 
 const vars = {
   // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-assist-chip.scss#L93
   // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-filter-chip.scss#L135
   // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-input-chip.scss#L123
   // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-suggestion-chip.scss#L93
-  leadingSpace: '16px',
-  trailingSpace: '16px',
-  iconLabelSpace: '8px',
-  iconLeadingSpace: '8px',
+  leadingSpace: spacingTokens.padding$4,
+  trailingSpace: spacingTokens.padding$4,
+  iconLabelSpace: spacingTokens.padding$2,
+  iconLeadingSpace: spacingTokens.padding$2,
 
   // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-assist-chip.scss
   // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-filter-chip.scss
@@ -22,7 +30,7 @@ const vars = {
   // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-suggestion-chip.scss
 
   // container
-  containerHeight: '32px',
+  containerHeight: `calc(32px * ${scaleTokens.scale} + ${DENSITY})`,
   containerShape: shapeTokens.corner$sm,
 
   // flatContainer
@@ -71,7 +79,7 @@ const vars = {
   selectedElevatedContainerColor: 'inherit',
 
   // outline
-  outlineWidth: '1px',
+  outlineWidth: outlineTokens.width$xs,
   outlineColor: colorSchemeTokens.outline,
   // &:disabled
   outlineColor$disabled: colorSchemeTokens.onSurface,
@@ -82,7 +90,7 @@ const vars = {
   outlineColor$pressed: colorSchemeTokens.outline,
 
   // selectedOutline
-  selectedOutlineWidth: 'unset',
+  selectedOutlineWidth: outlineTokens.width$none,
 
   // stateLayer
   // &:hover
@@ -131,7 +139,7 @@ const vars = {
   selectedLabelTextColor$pressed: 'inherit',
 
   // icon
-  iconSize: '18px',
+  iconSize: `calc(18px * ${scaleTokens.scale})`,
   iconColor: colorSchemeTokens.onSurfaceVariant,
   iconColor$interactive: colorSchemeTokens.primary,
   // &:disabled
@@ -176,8 +184,8 @@ const vars = {
   selectedTrailingIconColor$pressed: 'inherit',
 
   // avatar
-  avatarShape: 'unset',
-  avatarSize: 'unset',
+  avatarShape: shapeTokens.corner$full,
+  avatarSize: `calc(24px * ${scaleTokens.scale} + ${DENSITY})`,
 };
 
 export const chipTokens = stylex.defineVars(vars);

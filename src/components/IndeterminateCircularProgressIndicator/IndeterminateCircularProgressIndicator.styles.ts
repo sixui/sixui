@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import { stateTokens } from '~/themes/base/state.stylex';
-import { circularProgressIndicatorTokens } from '~/components/CircularProgressIndicator/CircularProgressIndicator.stylex';
+import { circularProgressIndicatorTokens } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
 
 // https://github.com/material-components/material-web/blob/main/progress/internal/_circular-progress.scss
 
@@ -111,18 +111,14 @@ export const indeterminateCircularProgressIndicatorStyles = stylex.create({
     animationFillMode: 'both',
     animationDuration: `${arcDuration}, ${cycleDuration}`,
     animationTimingFunction: indeterminateEasing,
+
+    borderWidth: `calc(${circularProgressIndicatorTokens.widthPct} / 100 * calc(${circularProgressIndicatorTokens.size} - (2 * ${circularProgressIndicatorTokens.containerPadding})))`,
   },
   circle$disabled: {
     borderTopColor: color$disabled,
     borderRightColor: color$disabled,
     borderBottomColor: 'transparent',
     borderLeftColor: 'transparent',
-  },
-  circle$md: {
-    borderWidth: `calc(${circularProgressIndicatorTokens.widthPct$md} / 100 * calc(${circularProgressIndicatorTokens.size$md} - (2 * ${circularProgressIndicatorTokens.containerPadding$md})))`,
-  },
-  circle$lg: {
-    borderWidth: `calc(${circularProgressIndicatorTokens.widthPct$lg} / 100 * calc(${circularProgressIndicatorTokens.size$lg} - (2 * ${circularProgressIndicatorTokens.containerPadding$lg})))`,
   },
   leftCircle: {
     rotate: '135deg',

@@ -4,13 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { delay } from '@olivierpascal/helpers';
 
-import type { ISwitchOwnProps } from './Switch.types';
+import type { ISwitchProps } from './Switch.types';
 import type { IOmit } from '~/helpers/types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '~/components/ComponentShowcase';
+} from '../ComponentShowcase';
 import { Switch } from './Switch';
 
 // https://m3.material.io/components/switch/overview
@@ -25,9 +25,9 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   onChange: (...args) => sbHandleEvent('change', args, 300),
-} satisfies Partial<ISwitchOwnProps>;
+} satisfies Partial<ISwitchProps>;
 
-const states: Array<IComponentPresentation<ISwitchOwnProps>> = [
+const states: Array<IComponentPresentation<ISwitchProps>> = [
   { legend: 'Enabled' },
   { legend: 'Hovered', props: { visualState: { hovered: true } } },
   { legend: 'Focused', props: { visualState: { focused: true } } },
@@ -47,7 +47,7 @@ export const Uncontrolled: IStory = {
           legend: 'With selected icon',
           props: {
             showOnlySelectedIcon: true,
-            defaultValue: true,
+            defaultChecked: true,
           },
         },
         { legend: 'With icons', props: { icons: true } },
@@ -57,9 +57,7 @@ export const Uncontrolled: IStory = {
   args: defaultArgs,
 };
 
-const ControlledSwitch: React.FC<IOmit<ISwitchOwnProps, 'checked'>> = (
-  props,
-) => {
+const ControlledSwitch: React.FC<IOmit<ISwitchProps, 'checked'>> = (props) => {
   const [checked, setChecked] = useState(props.defaultChecked ?? false);
 
   return (

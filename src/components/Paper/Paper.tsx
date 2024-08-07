@@ -1,14 +1,15 @@
 import { forwardRef } from 'react';
 
 import type { IPaperProps } from './Paper.types';
-import { PaperBase } from '~/components/PaperBase';
-import { getContainerTextColor, paperDynamicStyles } from './Paper.styles';
 import { commonStyles } from '~/helpers/commonStyles';
+import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { PaperBase } from '../PaperBase';
+import { getContainerTextColor, paperDynamicStyles } from './Paper.styles';
 
 // https://github.com/material-components/material-web/blob/main/labs/paper/internal/paper.ts
 
-export const Paper = forwardRef<HTMLDivElement, IPaperProps>(
-  function Paper(props, forwardedRef) {
+export const Paper = createPolymorphicComponent<'div', IPaperProps>(
+  forwardRef<HTMLDivElement, IPaperProps>(function Avatar(props, forwardedRef) {
     const {
       sx,
       innerStyles,
@@ -60,5 +61,5 @@ export const Paper = forwardRef<HTMLDivElement, IPaperProps>(
         {children}
       </PaperBase>
     );
-  },
+  }),
 );

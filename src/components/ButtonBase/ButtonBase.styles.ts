@@ -16,13 +16,6 @@ export const buttonBaseStyles = stylex.create({
     cursor: 'default',
     pointerEvents: 'none',
   },
-  touchTarget: {
-    position: 'absolute',
-    top: '50%',
-    left: 0,
-    right: 0,
-    transform: 'translateY(-50%)',
-  },
   background: {
     position: 'absolute',
     inset: 0,

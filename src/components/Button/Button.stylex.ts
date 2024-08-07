@@ -4,21 +4,29 @@ import { shapeTokens } from '~/themes/base/shape.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
+
+const MIN_DENSITY = -4;
+const MAX_DENSITY = 0;
+const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityTokens.density}, ${MAX_DENSITY}) * ${scaleTokens.scale}`;
 
 const vars = {
-  gap: '8px',
+  gap: spacingTokens.padding$2,
 
   // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-elevated-button.scss#L84C19-L84C19
   // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-filled-button.scss#L84
   // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-filled-tonal-button.scss#L84
   // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-outlined-button.scss#L80
   // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-text-button.scss#L73
-  leadingSpace: '24px',
-  trailingSpace: '24px',
-  leadingIconLeadingSpace: '16px',
-  leadingIconTrailingSpace: '24px',
-  trailingIconLeadingSpace: '24px',
-  trailingIconTrailingSpace: '16px',
+  leadingSpace: spacingTokens.padding$6,
+  trailingSpace: spacingTokens.padding$6,
+  leadingIconLeadingSpace: spacingTokens.padding$4,
+  leadingIconTrailingSpace: spacingTokens.padding$6,
+  trailingIconLeadingSpace: spacingTokens.padding$6,
+  trailingIconTrailingSpace: spacingTokens.padding$4,
 
   // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-elevated-button.scss
   // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-filled-button.scss
@@ -29,7 +37,8 @@ const vars = {
   // container
   containerColor: 'unset',
   containerElevation: 'unset',
-  containerHeight: '40px',
+  containerHeight: `calc(40px * ${scaleTokens.scale} + ${DENSITY})`,
+  containerMinWidth: `calc(64px * ${scaleTokens.scale})`,
   containerShape: shapeTokens.corner$full,
   // &:disabled
   containerColor$disabled: 'unset',
@@ -49,9 +58,6 @@ const vars = {
   // &:pressed
   stateLayerColor$pressed: 'unset',
   stateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
-
-  // touch
-  touchTargetSpace: '8px',
 
   // labelText
   labelTextColor: 'inherit',
@@ -85,7 +91,7 @@ const vars = {
 
   // outline
   outlineStyle: 'none',
-  outlineWidth: '1px',
+  outlineWidth: outlineTokens.width$xs,
   outlineColor: colorSchemeTokens.outline,
   // &:disabled
   outlineColor$disabled: colorSchemeTokens.onSurface,

@@ -1,32 +1,39 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
+
+const MIN_DENSITY = -4;
+const MAX_DENSITY = 0;
+const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityTokens.density}, ${MAX_DENSITY}) * ${scaleTokens.scale}`;
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-list-item.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-list.scss
 
 const vars = {
-  leadingSpace: '16px',
-  trailingSpace: '16px',
-  topSpace$sm: '4px',
-  bottomSpace$sm: '4px',
-  topSpace$md: '8px',
-  bottomSpace$md: '8px',
-  topSpace$lg: '8px',
-  bottomSpace$lg: '8px',
-  topSpace$xl: '12px',
-  bottomSpace$xl: '12px',
+  leadingSpace: spacingTokens.padding$4,
+  trailingSpace: spacingTokens.padding$4,
+  topSpace$sm: spacingTokens.padding$1,
+  bottomSpace$sm: spacingTokens.padding$1,
+  topSpace$md: spacingTokens.padding$2,
+  bottomSpace$md: spacingTokens.padding$2,
+  topSpace$lg: spacingTokens.padding$2,
+  bottomSpace$lg: spacingTokens.padding$2,
+  topSpace$xl: spacingTokens.padding$3,
+  bottomSpace$xl: spacingTokens.padding$3,
 
   // container
   containerColor: 'unset',
   containerOpacity: '1',
   containerShape: shapeTokens.corner$none,
-  containerMinHeight$sm: '48px',
-  containerMinHeight$md: '56px',
-  containerMinHeight$lg: '72px',
-  containerMinHeight$xl: '80px',
+  containerMinHeight$sm: `calc(48px * ${scaleTokens.scale} + ${DENSITY})`,
+  containerMinHeight$md: `calc(56px * ${scaleTokens.scale} + ${DENSITY})`,
+  containerMinHeight$lg: `calc(72px * ${scaleTokens.scale} + ${DENSITY})`,
+  containerMinHeight$xl: `calc(80px * ${scaleTokens.scale} + ${DENSITY})`,
   // &:disabled
   containerColor$disabled: 'transparent',
   containerOpacity$disabled: stateTokens.containerOpacity$disabled,
@@ -85,7 +92,7 @@ const vars = {
   leadingIconColor$focus: 'inherit',
   // &:pressed
   leadingIconColor$pressed: 'inherit',
-  leadingIconSize: '18px',
+  leadingIconSize: `calc(18px * ${scaleTokens.scale})`,
   // &:disabled
   leadingIconColor$disabled: colorSchemeTokens.onSurface,
   leadingIconOpacity$disabled: stateTokens.opacity$disabled,
@@ -101,7 +108,7 @@ const vars = {
 
   // trailingIcon
   trailingIconColor: 'inherit',
-  trailingIconSize: '18px',
+  trailingIconSize: `calc(18px * ${scaleTokens.scale})`,
   // &:hover
   trailingIconColor$hover: 'inherit',
   // &:focus
@@ -130,11 +137,11 @@ const vars = {
   stateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
 
   // image
-  imageWidth: '56px',
-  imageHeight: '56px',
+  imageWidth: `calc(56px * ${scaleTokens.scale} + ${DENSITY})`,
+  imageHeight: `calc(56px * ${scaleTokens.scale} + ${DENSITY})`,
 
   // video
-  videoHeight: '64px',
+  videoHeight: `calc(64px * ${scaleTokens.scale} + ${DENSITY})`,
 };
 
 export const listItemTokens = stylex.defineVars(vars);

@@ -50,7 +50,7 @@
     "cy": "cypress open"
   },
   "lint-staged": {
-    "src/**/*.(ts|js)?(x)": [
+    "**/*.(ts|js)?(x)": [
       "pnpm prettify:fix:file",
       "pnpm lint:fix:file"
     ]
@@ -130,23 +130,5 @@
   "peerDependencies": {
     "@stylexjs/stylex": "^0.7.5",
     "react": "^18"
-  },
-  "svg-to-ts": {
-    "conversionType": "files",
-    "generateType": true,
-    "typeName": "IIcons",
-    "srcFiles": [
-      "./src/assets/*.svg"
-    ],
-    "iconsFolderName": "lib",
-    "outputDirectory": "./src/assets/icons",
-    "interfaceName": "IIcon",
-    "prefix": "icon",
-    "svgoConfig": {
-      "plugins": [
-        "cleanupAttrs"
-      ]
-    },
-    "fileName": "icons.model"
   }
 }

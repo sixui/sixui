@@ -1,9 +1,9 @@
-import type { IContainerProps } from '~/helpers/types';
+import type { IBaseProps } from '../Base';
 import type { IAvatarStylesKey } from './Avatar.styles';
 
 export type IAvatarVariant = 'rounded' | 'squared';
 
-export type IAvatarProps = IContainerProps<IAvatarStylesKey> &
+export type IAvatarProps = IBaseProps<IAvatarStylesKey> &
   Pick<
     React.ImgHTMLAttributes<HTMLImageElement>,
     'alt' | 'crossOrigin' | 'referrerPolicy' | 'src' | 'srcSet' | 'sizes'
@@ -13,6 +13,7 @@ export type IAvatarProps = IContainerProps<IAvatarStylesKey> &
      * set. This can be an element, or just a string.
      */
     children?: React.ReactNode;
+
     fallbackToRandomColor?: boolean;
     randomColorSourceString?: string;
     variant?: IAvatarVariant;

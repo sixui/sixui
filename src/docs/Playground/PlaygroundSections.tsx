@@ -5,7 +5,6 @@ import type {
   IPlaygroundOption,
   IPlaygroundSections,
 } from './Playground.types';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
 import { fixedForwardRef } from '~/helpers/fixedForwardRef';
 import { commonStyles } from '~/helpers/commonStyles';
 import { Disclosure } from '~/components/Disclosure';
@@ -20,8 +19,6 @@ export const PlaygroundSections = fixedForwardRef(function PlaygroundSections<
   forwardedRef?: React.Ref<HTMLDivElement>,
 ) {
   const { sx, sections, onSectionsChange, sectionsProps, ...other } = props;
-
-  const componentTheme = useComponentTheme('PlaygroundOptions');
 
   const handleOptionChange = (
     targetOption: IPlaygroundOption<TSectionsProps>,
@@ -63,12 +60,7 @@ export const PlaygroundSections = fixedForwardRef(function PlaygroundSections<
   return (
     <div
       {...other}
-      {...stylex.props(
-        componentTheme.overridenStyles,
-        commonStyles.verticalLayout,
-        commonStyles.gap$2xl,
-        sx,
-      )}
+      {...stylex.props(commonStyles.verticalLayout, commonStyles.gap$2xl, sx)}
       ref={forwardedRef}
     >
       {Object.keys(sections).map((key, sectionIndex) => {

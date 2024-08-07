@@ -1,29 +1,22 @@
-import {
-  cloneElement,
-  forwardRef,
-  isValidElement,
-  useContext,
-  useMemo,
-} from 'react';
+import { cloneElement, forwardRef, isValidElement, useContext } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type { IStepProps } from './Step.types';
 import { isFunction } from '~/helpers/isFunction';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { StepperContext } from '~/components/Stepper/StepperContext';
-import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
-import { ButtonBase } from '~/components/ButtonBase';
-import { SvgIcon } from '~/components/SvgIcon';
+import { useStyles } from '~/hooks/useStyles';
 import { iconCheckMark, iconExclamationTriangle } from '~/assets/icons';
+import { StepperContext } from '../Stepper';
+import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
+import { ButtonBase } from '../ButtonBase';
+import { SvgIcon } from '../SvgIcon';
+import { Base } from '../Base';
 import {
   stepCircularProgressIndicatorStyles,
   stepFocusRingStyles,
   stepStyles,
 } from './Step.styles';
 import { stepTheme } from './Step.stylex';
-import { StepContext, type IStepContextValue } from './StepContext';
+import { StepContext, type IStepContextValue } from './Step.context';
 
 export const Step = forwardRef<HTMLDivElement, IStepProps>(
   function Step(props, forwardedRef) {
@@ -50,15 +43,10 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
       ...other
     } = props;
 
-    const componentTheme = useComponentTheme('Step');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(stepStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+    const { combineStyles, getStyles, globalStyles } = useStyles({
+      name: 'Step',
+      styles: [stepStyles, styles],
+    });
 
     const context = useContext(StepperContext);
 
@@ -106,15 +94,15 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
 
     const renderButtonInner = (isInteractive: boolean): React.ReactElement => (
       <div
-        {...sxf(
+        {...getStyles(
           'buttonInner',
           labelPosition === 'right' && 'buttonInner$rightLabel',
           labelPosition === 'bottom' && 'buttonInner$bottomLabel',
         )}
       >
         {loading || icon || hasError ? (
-          <div {...sxf('bulletPoint')}>
-            <div {...sxf('icon', state && `icon$${state}`)}>
+          <div {...getStyles('bulletPoint')}>
+            <div {...getStyles('icon', state && `icon$${state}`)}>
               {loading ? (
                 <IndeterminateCircularProgressIndicator
                   styles={[
@@ -129,9 +117,9 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
             </div>
           </div>
         ) : (
-          <div {...sxf('bulletPoint', 'bulletPoint$container')}>
-            <div {...sxf('background', state && `background$${state}`)} />
-            <div {...sxf('text', state && `text$${state}`)}>
+          <div {...getStyles('bulletPoint', 'bulletPoint$container')}>
+            <div {...getStyles('background', state && `background$${state}`)} />
+            <div {...getStyles('text', state && `text$${state}`)}>
               {completed ? <SvgIcon icon={iconCheckMark} /> : index + 1}
             </div>
           </div>
@@ -139,7 +127,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
 
         {hasText ? (
           <div
-            {...sxf(
+            {...getStyles(
               'labelContainer',
               labelPosition === 'right' && `labelContainer$rightLabel`,
               labelPosition === 'bottom' && `labelContainer$bottomLabel`,
@@ -147,7 +135,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
           >
             {label ? (
               <div
-                {...sxf(
+                {...getStyles(
                   'label',
                   isInteractive && 'label$interactive',
                   state && `label$${state}`,
@@ -158,7 +146,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
             ) : null}
             {supportingText ? (
               <div
-                {...sxf(
+                {...getStyles(
                   'supportingText',
                   isInteractive && 'supportingText$interactive',
                   state && `supportingText$${state}`,
@@ -194,7 +182,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
           <StepContext.Provider
             value={{ ...contextValue, completed: previousCompleted }}
           >
-            <div {...sxf('connectorContainer', 'connectorContainer$top')}>
+            <div {...getStyles('connectorContainer', 'connectorContainer$top')}>
               {renderConnectorWithoutChildren()}
             </div>
           </StepContext.Provider>
@@ -202,7 +190,9 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
 
         {/* Connect the bullet point to the next element, if any. */}
         {!isLast ? (
-          <div {...sxf('connectorContainer', 'connectorContainer$bottom')}>
+          <div
+            {...getStyles('connectorContainer', 'connectorContainer$bottom')}
+          >
             {renderConnectorWithoutChildren()}
           </div>
         ) : null}
@@ -211,19 +201,21 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
 
     return (
       <StepContext.Provider value={contextValue}>
-        <div
+        <Base
           {...other}
-          {...sxf(
+          sx={[
             stepTheme,
-            componentTheme.overridenStyles,
-            'host',
-            labelPosition === 'bottom' && `host$bottomLabel`,
+            globalStyles,
+            combineStyles(
+              'host',
+              labelPosition === 'bottom' && `host$bottomLabel`,
+            ),
             sx,
-          )}
+          ]}
           ref={forwardedRef}
         >
           <div
-            {...sxf(
+            {...getStyles(
               'buttonContainer',
               labelPosition === 'bottom' && 'buttonContainer$bottomLabel',
             )}
@@ -231,7 +223,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
             {orientation === 'vertical' ? renderInnerConnectors() : null}
             {onClick ? (
               <ButtonBase
-                sx={stylesCombinator('button')}
+                sx={combineStyles('button')}
                 innerStyles={{
                   ...innerStyles,
                   focusRing: [
@@ -245,21 +237,24 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
                 {renderButtonInner(true)}
               </ButtonBase>
             ) : (
-              <div {...sxf('button')}>{renderButtonInner(false)}</div>
+              <div {...getStyles('button')}>{renderButtonInner(false)}</div>
             )}
           </div>
 
           {expanded ? (
-            <div {...sxf('content')}>
+            <div {...getStyles('content')}>
               {/* Connect the content block to the next connector. */}
               {!isLast ? (
                 <div
-                  {...sxf('connectorContainer', 'connectorContainer$content')}
+                  {...getStyles(
+                    'connectorContainer',
+                    'connectorContainer$content',
+                  )}
                 >
                   {renderConnectorWithoutChildren()}
                 </div>
               ) : null}
-              <div {...sxf('contentText')}>
+              <div {...getStyles('contentText')}>
                 {isFunction(children)
                   ? children({
                       active: !!isActive,
@@ -275,7 +270,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
           orientation === 'horizontal' &&
           labelPosition === 'bottom' ? (
             <div
-              {...sxf(
+              {...getStyles(
                 'connectorContainer',
                 'connectorContainer$horizontal$bottomLabel',
               )}
@@ -283,11 +278,11 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
               {nextConnector}
             </div>
           ) : null}
-        </div>
+        </Base>
 
         {!isLast && labelPosition === 'right' ? (
           <div
-            {...sxf(
+            {...getStyles(
               'extensibleConnectorContainer',
               orientation === 'horizontal' &&
                 'extensibleConnectorContainer$horizontal',
@@ -296,7 +291,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
             )}
           >
             <div
-              {...sxf(
+              {...getStyles(
                 'connectorContainer',
                 orientation === 'horizontal' &&
                   'connectorContainer$horizontal$rightLabel',

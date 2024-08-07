@@ -4,14 +4,24 @@ import type { IColorScheme } from '~/themes/base/colorScheme.types';
 import type {
   IMotionTheme,
   IShapeTheme,
+  IStateTheme,
   ITypeFaceTheme,
   ITypeScaleTheme,
+  IZIndexTheme,
+  IDensityTheme,
+  IScaleTheme,
+  IOutlineTheme,
 } from '~/themes/base';
+import { densityTokens } from '~/themes/base/density.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
 import { motionTokens } from '~/themes/base/motion.stylex';
 import { typeFaceTokens } from '~/themes/base/typeFace.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
+import { stateTokens } from '~/themes/base/state.stylex';
+import { zIndexTokens } from '~/themes/base/zIndex.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
 
 export const themeProviderStyles = stylex.create({
   wrapper: {
@@ -225,5 +235,36 @@ export const themeProviderStyles = stylex.create({
     [typeScaleTokens.labelSize$sm]: typeScale.labelSize$sm,
     [typeScaleTokens.labelLetterSpacing$sm]: typeScale.labelLetterSpacing$sm,
     [typeScaleTokens.labelWeight$sm]: typeScale.labelWeight$sm,
+  }),
+  dynamicState: (state: IStateTheme) => ({
+    [stateTokens.stateLayerOpacity$hover]: state.stateLayerOpacity$hover,
+    [stateTokens.stateLayerOpacity$pressed]: state.stateLayerOpacity$pressed,
+    [stateTokens.stateLayerOpacity$dragged]: state.stateLayerOpacity$dragged,
+    [stateTokens.opacity$disabled]: state.opacity$disabled,
+    [stateTokens.containerOpacity$disabled]: state.containerOpacity$disabled,
+    [stateTokens.outlineOpacity$disabled]: state.outlineOpacity$disabled,
+  }),
+  dynamicZIndex: (zIndex: IZIndexTheme) => ({
+    [zIndexTokens.app]: zIndex.app,
+    [zIndexTokens.modal]: zIndex.modal,
+    [zIndexTokens.popover]: zIndex.popover,
+    [zIndexTokens.overlay]: zIndex.overlay,
+    [zIndexTokens.max]: zIndex.max,
+  }),
+  dynamicDensity: (density: IDensityTheme) => ({
+    [densityTokens.density]: density.density,
+    [densityTokens.interval]: density.interval,
+    [densityTokens.minTargetSize]: density.minTargetSize,
+  }),
+  dynamicScale: (scale: IScaleTheme) => ({
+    [scaleTokens.scale]: scale.scale,
+  }),
+  dynamicOutline: (outline: IOutlineTheme) => ({
+    [outlineTokens.width$none]: outline.width$none,
+    [outlineTokens.width$xs]: outline.width$xs,
+    [outlineTokens.width$sm]: outline.width$sm,
+    [outlineTokens.width$md]: outline.width$md,
+    [outlineTokens.width$lg]: outline.width$lg,
+    [outlineTokens.width$xl]: outline.width$xl,
   }),
 });

@@ -41,7 +41,7 @@ const vars = {
   supportingTextOpacity$disabled: stateTokens.opacity$disabled,
 };
 
-export const elementWithLabelTokens = stylex.defineVars(vars);
+export const labeledTokens = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that
@@ -49,7 +49,4 @@ export const elementWithLabelTokens = stylex.defineVars(vars);
  *
  * @see https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
  */
-export const elementWithLabelTheme = stylex.createTheme(
-  elementWithLabelTokens,
-  vars,
-);
+export const labeledTheme = stylex.createTheme(labeledTokens, vars);

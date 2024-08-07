@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react';
+import { useRef } from 'react';
 import {
   arrow,
   autoUpdate,
@@ -23,14 +23,13 @@ import {
 import type { IPopoverBaseProps } from './PopoverBase.types';
 import { isFunction } from '~/helpers/isFunction';
 import { useControlledValue } from '~/hooks/useControlledValue';
-import { Portal } from '~/components/Portal';
 import { usePopoverCursor } from '~/hooks/usePopoverCursor';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { FloatingTransition } from '~/components/FloatingTransition';
-import { Scrim } from '~/components/Scrim';
+import { useStyles } from '~/hooks/useStyles';
+import { FloatingTransition } from '../FloatingTransition';
+import { Scrim } from '../Scrim';
+import { Portal } from '../Portal';
 import { popoverBaseStyles } from './PopoverBase.styles';
+import { PopoverBaseContextProvider } from './PopoverBase.context';
 
 export const PopoverBase = <TForwardedProps extends object = object>(
   props: IPopoverBaseProps<TForwardedProps>,
@@ -61,15 +60,10 @@ export const PopoverBase = <TForwardedProps extends object = object>(
     ...other
   } = props;
 
-  const componentTheme = useComponentTheme('PopoverBase');
-  const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(popoverBaseStyles, styles),
-    [styles],
-  );
-  const sxf = useMemo(
-    () => stylePropsFactory(stylesCombinator),
-    [stylesCombinator],
-  );
+  const { getStyles, globalStyles } = useStyles({
+    name: 'PopoverBase',
+    styles: [popoverBaseStyles, styles],
+  });
 
   const [isOpen, setIsOpen] = useControlledValue({
     controlled: isOpenProp,
@@ -164,7 +158,7 @@ export const PopoverBase = <TForwardedProps extends object = object>(
 
   const renderPopover = (): JSX.Element => (
     <div
-      {...sxf(componentTheme.overridenStyles, 'host', sx)}
+      {...getStyles(globalStyles, 'host', sx)}
       {...interactions.getFloatingProps()}
       ref={floating.refs.setFloating}
       style={floating.floatingStyles}
@@ -204,20 +198,25 @@ export const PopoverBase = <TForwardedProps extends object = object>(
   );
 
   return (
-    <>
+    <PopoverBaseContextProvider
+      value={{
+        isOpen,
+        placement: floating.placement,
+        getTriggerProps: interactions.getReferenceProps,
+        setTriggerRef: floating.refs.setReference,
+        close: () => setIsOpen(false),
+      }}
+    >
       {triggerElement}
 
       {transitionStatus.isMounted ? (
         <Portal>
           {scrim ? (
-            <Scrim floatingContext={floating.context} lockScroll>
-              {renderPopover()}
-            </Scrim>
-          ) : (
-            renderPopover()
-          )}
+            <Scrim floatingContext={floating.context} lockScroll />
+          ) : null}
+          {renderPopover()}
         </Portal>
       ) : null}
-    </>
+    </PopoverBaseContextProvider>
   );
 };

@@ -1,6 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { motionTokens } from '~/themes/base/motion.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
 import { chipTokens } from '../Chip.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-filter-chip.scss
@@ -15,7 +17,7 @@ export const filterChipStyles = stylex.create({
     [chipTokens.selectedFlatContainerColor$disabled]:
       colorSchemeTokens.onSurface,
 
-    [chipTokens.selectedOutlineWidth]: '0',
+    [chipTokens.selectedOutlineWidth]: outlineTokens.width$none,
 
     [chipTokens.selectedElevatedContainerColor]:
       colorSchemeTokens.secondaryContainer,
@@ -59,5 +61,15 @@ export const filterChipStyles = stylex.create({
       colorSchemeTokens.onSecondaryContainer,
     [chipTokens.selectedTrailingIconColor$pressed]:
       colorSchemeTokens.onSecondaryContainer,
+  },
+  iconContainer$leading: {
+    transitionProperty: 'opacity, width',
+    transitionDuration: motionTokens.duration$medium4,
+    transitionTimingFunction: motionTokens.easing$emphasizedDecelerate,
+  },
+  iconContainer$collapsed: {
+    transitionProperty: 'opacity, width',
+    transitionDuration: motionTokens.duration$short2,
+    transitionTimingFunction: motionTokens.easing$emphasizedAccelerate,
   },
 });

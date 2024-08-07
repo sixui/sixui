@@ -35,6 +35,7 @@ export const useVisualState = (
   const handleMouseLeave = useCallback(() => {
     setHovered(false);
     setPressed(false);
+    activeTarget = null;
   }, []);
   const handleFocus = useCallback(() => {
     setFocused(
@@ -117,7 +118,6 @@ export const useVisualState = (
           ),
           ...(visualState?.strategy === 'override' ? visualState : undefined),
         };
-
   if (newVisualState.dragged) {
     return {
       visualState: {
@@ -132,6 +132,7 @@ export const useVisualState = (
   const result = {
     visualState: {
       ...newVisualState,
+      hovered: newVisualState.hovered && !newVisualState.pressed,
       focused: newVisualState.focused
         ? options?.retainFocusAfterClick
           ? newVisualState.focused

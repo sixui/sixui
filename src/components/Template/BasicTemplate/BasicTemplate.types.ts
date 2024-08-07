@@ -1,6 +1,6 @@
-import type { IContainerProps } from '~/helpers/types';
 import type { IBasicTemplateStylesKey } from './BasicTemplate.styles';
+import { IBaseProps } from '~/components/Base';
 
-export type IBasicTemplateProps = IContainerProps<IBasicTemplateStylesKey> & {
+export type IBasicTemplateProps = IBaseProps<IBasicTemplateStylesKey> & {
   children?: React.ReactNode;
 };

@@ -2,7 +2,9 @@ import stylex from '@stylexjs/stylex';
 
 import { stateTokens } from '~/themes/base/state.stylex';
 import { motionTokens } from '~/themes/base/motion.stylex';
-import { circularProgressIndicatorTokens } from '~/components/CircularProgressIndicator/CircularProgressIndicator.stylex';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
+import { circularProgressIndicatorTokens } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
 
 // https://github.com/material-components/material-web/blob/main/progress/internal/_circulardeterminate-progress.scss
 
@@ -23,20 +25,12 @@ export const determinateCircularProgressIndicatorStyles = stylex.create({
     // note, pathLength is set so this can be normalized
     strokeDasharray: '100',
     fill: 'transparent',
-  },
-  svgCircle$md: {
+
     // Unsupported attribute, see https://github.com/facebook/stylex/issues/266#issuecomment-1871930136
     // eslint-disable-next-line @stylexjs/valid-styles
-    r: `calc(50% * (1 - ${circularProgressIndicatorTokens.widthPct$md} / 100))`,
+    r: `calc(50% * (1 - ${circularProgressIndicatorTokens.widthPct} / 100))`,
     // match size to indeterminate border width
-    strokeWidth: `calc(${circularProgressIndicatorTokens.widthPct$md} * 1%)`,
-  },
-  svgCircle$lg: {
-    // Unsupported attribute, see https://github.com/facebook/stylex/issues/266#issuecomment-1871930136
-    // eslint-disable-next-line @stylexjs/valid-styles
-    r: `calc(50% * (1 - ${circularProgressIndicatorTokens.widthPct$lg} / 100))`,
-    // match size to indeterminate border width
-    strokeWidth: `calc(${circularProgressIndicatorTokens.widthPct$lg} * 1%)`,
+    strokeWidth: `calc(${circularProgressIndicatorTokens.widthPct} * 1%)`,
   },
   track: {
     stroke: 'transparent',
@@ -50,5 +44,21 @@ export const determinateCircularProgressIndicatorStyles = stylex.create({
   },
   activeTrack$disabled: {
     stroke: color$disabled,
+  },
+  label: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+    color: colorSchemeTokens.onSurface,
+    fontFamily: typeScaleTokens.labelFont$sm,
+    fontSize: typeScaleTokens.labelSize$sm,
+    fontWeight: typeScaleTokens.labelWeight$sm,
+    lineHeight: typeScaleTokens.labelLineHeight$sm,
+    letterSpacing: typeScaleTokens.labelLetterSpacing$sm,
+  },
+  label$disabled: {
+    opacity: stateTokens.opacity$disabled,
   },
 });

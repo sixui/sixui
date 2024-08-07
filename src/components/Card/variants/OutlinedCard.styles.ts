@@ -1,7 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { elevationTokens } from '~/components/Elevation/Elevation.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
+import { elevationTokens } from '../../Elevation/Elevation.stylex';
 import { cardTokens } from '../Card.stylex';
 
 // https://github.com/material-components/material-web/blob/main/labs/card/internal/_outlined-card.scss
@@ -19,7 +20,7 @@ export const outlinedCardStyles = stylex.create({
     [cardTokens.containerElevation$dragged]: elevationTokens.boxShadow$level3,
 
     [cardTokens.outlineColor]: colorSchemeTokens.outlineVariant,
-    [cardTokens.outlineWidth]: '1px',
+    [cardTokens.outlineWidth]: outlineTokens.width$xs,
     [cardTokens.outlineColor$focus]: colorSchemeTokens.outlineVariant,
     [cardTokens.outlineColor$hover]: colorSchemeTokens.outlineVariant,
     [cardTokens.outlineColor$pressed]: colorSchemeTokens.outlineVariant,
@@ -31,7 +32,7 @@ export const outlinedCardStyles = stylex.create({
     inset: 0,
     pointerEvents: 'none',
     borderStyle: 'solid',
-    borderWidth: cardTokens.outlineWidth,
+    borderWidth: outlineTokens.width$xs,
     position: 'absolute',
     borderColor: cardTokens.outlineColor,
     borderRadius: 'inherit',

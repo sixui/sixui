@@ -3,7 +3,7 @@ import { createContext } from 'react';
 
 export type IMenuItemContextValue = {
   getItemProps: (
-    userProps?: React.HTMLProps<HTMLButtonElement>,
+    userProps?: React.ComponentPropsWithoutRef<'button'>,
   ) => Record<string, unknown>;
   activeIndex: number | null;
   setActiveIndex: React.Dispatch<React.SetStateAction<number | null>>;

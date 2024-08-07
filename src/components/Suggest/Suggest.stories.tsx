@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
-import type { IFilterableListItem } from '~/components/FilterableList';
+import type { IFilterableListItem } from '../FilterableList';
 import type { ISuggestProps } from './Suggest.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { ListItem } from '~/components/ListItem';
-import { fruits, emptyItem } from '~/components/FilterableList/fruits';
+import { ListItem } from '../ListItem';
+import { fruits, emptyItem } from '../FilterableList/fruits';
 import { commonStyles } from '~/helpers/commonStyles';
 import { Suggest } from './Suggest';
 

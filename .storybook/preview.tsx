@@ -8,6 +8,7 @@ import { modes } from './modes';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { darkColorScheme } from '~/themes/base/darkColorScheme.styles';
 // import variantTheme from '~/themes/variant/theme.json';
+import { ThemeControls } from './ThemeControls';
 
 import '~/styles/main.css';
 import '~/styles/storybook.css';
@@ -61,21 +62,23 @@ export const decorators: Array<Decorator> = [
       <ThemeProvider
       // theme={variantTheme}
       >
-        {showLightMode ? (
-          <ColorSchemeProvider variant='light'>
-            <div {...stylex.props(styles.storyWrapper)}>
-              <Story />
-            </div>
-          </ColorSchemeProvider>
-        ) : null}
+        <ThemeControls>
+          {showLightMode ? (
+            <ColorSchemeProvider variant='light'>
+              <div {...stylex.props(styles.storyWrapper)}>
+                <Story />
+              </div>
+            </ColorSchemeProvider>
+          ) : null}
 
-        {showDarkMode ? (
-          <ColorSchemeProvider variant='dark'>
-            <div {...stylex.props(styles.storyWrapper)}>
-              <Story />
-            </div>
-          </ColorSchemeProvider>
-        ) : null}
+          {showDarkMode ? (
+            <ColorSchemeProvider variant='dark'>
+              <div {...stylex.props(styles.storyWrapper)}>
+                <Story />
+              </div>
+            </ColorSchemeProvider>
+          ) : null}
+        </ThemeControls>
       </ThemeProvider>
     );
   },

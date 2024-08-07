@@ -25,9 +25,6 @@ export const dialogcontentPlaygroundSections: IPlaygroundSections<IDialogContent
           props: {
             icon: <FontAwesomeIcon icon={faTrashCan} />,
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Actions',
@@ -38,6 +35,9 @@ export const dialogcontentPlaygroundSections: IPlaygroundSections<IDialogContent
                 <Button variant='danger'>Delete</Button>
               </>
             ),
+          },
+          modifiers: {
+            on: true,
           },
         },
         {
@@ -73,9 +73,6 @@ export const dialogcontentPlaygroundSections: IPlaygroundSections<IDialogContent
                 </Typography>
               </>
             ),
-          },
-          modifiers: {
-            off: true,
           },
         },
       ],

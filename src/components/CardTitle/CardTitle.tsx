@@ -1,40 +1,37 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 
 import type { ICardTitleProps } from './CardTitle.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
+import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { useStyles } from '~/hooks/useStyles';
+import { Base } from '../Base';
 import { cardTitleStyles } from './CardTitle.styles';
 import { cardTitleTheme } from './CardTitle.stylex';
 
-export const CardTitle = forwardRef<HTMLDivElement, ICardTitleProps>(
-  function CardTitle(props, forwardedRef) {
-    const { styles, sx, headline, subhead, supportingText, ...other } = props;
+export const CardTitle = createPolymorphicComponent<'div', ICardTitleProps>(
+  forwardRef<HTMLDivElement, ICardTitleProps>(
+    function CardTitle(props, forwardedRef) {
+      const { styles, sx, headline, subhead, supportingText, ...other } = props;
 
-    const componentTheme = useComponentTheme('CardTitle');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(cardTitleStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+      const { combineStyles, getStyles, globalStyles } = useStyles({
+        name: 'CardTitle',
+        styles: [cardTitleStyles, styles],
+      });
 
-    return (
-      <div
-        {...other}
-        {...sxf(cardTitleTheme, componentTheme.overridenStyles, 'host', sx)}
-        ref={forwardedRef}
-      >
-        <div {...sxf('header')}>
-          {headline ? <div {...sxf('headline')}>{headline}</div> : null}
-          {subhead ? <div {...sxf('subhead')}>{subhead}</div> : null}
-        </div>
-        {supportingText ? (
-          <div {...sxf('supportingText')}>{supportingText}</div>
-        ) : null}
-      </div>
-    );
-  },
+      return (
+        <Base
+          {...other}
+          sx={[cardTitleTheme, globalStyles, combineStyles('host'), sx]}
+          ref={forwardedRef}
+        >
+          <div {...getStyles('header')}>
+            {headline ? <div {...getStyles('headline')}>{headline}</div> : null}
+            {subhead ? <div {...getStyles('subhead')}>{subhead}</div> : null}
+          </div>
+          {supportingText ? (
+            <div {...getStyles('supportingText')}>{supportingText}</div>
+          ) : null}
+        </Base>
+      );
+    },
+  ),
 );

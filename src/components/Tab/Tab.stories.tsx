@@ -3,12 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope as faEnvelopeSolid } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
-import type { ITabOwnProps } from './Tab.types';
+import type { ITabProps } from './Tab.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '~/components/ComponentShowcase';
+} from '../ComponentShowcase';
 import { Tab } from './Tab';
 
 // https://m3.material.io/components/tabs/overview
@@ -23,9 +23,9 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   onClick: (...args) => sbHandleEvent('click', args),
-} satisfies Partial<ITabOwnProps>;
+} satisfies Partial<ITabProps>;
 
-const states: Array<IComponentPresentation<ITabOwnProps>> = [
+const states: Array<IComponentPresentation<ITabProps>> = [
   { legend: 'Enabled', props: { label: 'Enabled' } },
   {
     legend: 'Focused',
@@ -42,7 +42,7 @@ const states: Array<IComponentPresentation<ITabOwnProps>> = [
   { legend: 'Disabled', props: { label: 'Disabled', disabled: true } },
 ];
 
-const rows: Array<IComponentPresentation<ITabOwnProps>> = [
+const rows: Array<IComponentPresentation<ITabProps>> = [
   { legend: 'Label' },
   {
     legend: 'Icon',
@@ -61,7 +61,7 @@ const rows: Array<IComponentPresentation<ITabOwnProps>> = [
   },
 ];
 
-const groups: Array<IComponentPresentation<ITabOwnProps>> = [
+const groups: Array<IComponentPresentation<ITabProps>> = [
   { legend: 'Inactive' },
   { legend: 'Active', props: { active: true } },
 ];

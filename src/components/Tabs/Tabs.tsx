@@ -5,7 +5,7 @@ import { useControlledValue } from '~/hooks/useControlledValue';
 import { EASING } from '~/helpers/animation';
 import { shouldReduceMotion } from '~/helpers/shouldReduceAnimations';
 import { useId } from '~/hooks/useId';
-import { TabContext, type ITabContextValue } from './TabContext';
+import { TabsContext, type ITabsContextValue } from './Tabs.context';
 
 export const Tabs: React.FC<ITabsProps> = (props) => {
   const {
@@ -95,7 +95,7 @@ export const Tabs: React.FC<ITabsProps> = (props) => {
         onChange?.(anchor);
       },
       disabled,
-    } satisfies ITabContextValue;
+    } satisfies ITabsContextValue;
   }, [
     id,
     variant,
@@ -107,6 +107,6 @@ export const Tabs: React.FC<ITabsProps> = (props) => {
   ]);
 
   return (
-    <TabContext.Provider value={contextValue}>{children}</TabContext.Provider>
+    <TabsContext.Provider value={contextValue}>{children}</TabsContext.Provider>
   );
 };

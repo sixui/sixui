@@ -6,9 +6,9 @@ import type { IRichTooltipProps } from './RichTooltip.types';
 import {
   ComponentShowcase,
   type IComponentPresentation,
-} from '~/components/ComponentShowcase';
-import { IconButton } from '~/components/IconButton';
-import { Button } from '~/components/Button';
+} from '../ComponentShowcase';
+import { IconButton } from '../IconButton';
+import { Button } from '../Button';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { PersistentRichTooltipExample } from './PersistentRichTooltipExample';
 import { RichTooltip } from './RichTooltip';

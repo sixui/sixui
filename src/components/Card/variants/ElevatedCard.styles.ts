@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { elevationTokens } from '~/components/Elevation/Elevation.stylex';
+import { elevationTokens } from '../../Elevation/Elevation.stylex';
 import { cardTokens } from '../Card.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-elevated-card.scss

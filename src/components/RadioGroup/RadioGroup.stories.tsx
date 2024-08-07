@@ -4,9 +4,9 @@ import { useRef, useState } from 'react';
 
 import type { IRadioGroupOwnProps } from './RadioGroup.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { ComponentShowcase } from '~/components/ComponentShowcase';
-import { Radio } from '~/components/Radio';
-import { Button } from '~/components/Button';
+import { ComponentShowcase } from '../ComponentShowcase';
+import { Radio } from '../Radio';
+import { Button } from '../Button';
 import { RadioGroup } from './RadioGroup';
 
 const meta = {

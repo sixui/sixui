@@ -1,6 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import { componentShowcaseTokens } from './ComponentShowcase.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 
 export type IComponentShowcaseStylesKey = keyof typeof componentShowcaseStyles;
 export const componentShowcaseStyles = stylex.create({
@@ -34,17 +35,17 @@ export const componentShowcaseStyles = stylex.create({
   groupRows: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '3.5rem',
+    gap: spacingTokens.margin$8,
     alignSelf: 'stretch',
   },
   cols: {
     display: 'flex',
   },
   gap$md: {
-    gap: '2rem',
+    gap: spacingTokens.margin$4,
   },
   gap$lg: {
-    gap: '2.5rem',
+    gap: spacingTokens.margin$5,
   },
   rows: {
     display: 'flex',
@@ -67,7 +68,7 @@ export const componentShowcaseStyles = stylex.create({
     borderLeftWidth: 1,
     borderLeftStyle: 'solid',
     borderLeftColor: componentShowcaseTokens.groupBorderColor,
-    paddingLeft: '2rem',
+    paddingLeft: spacingTokens.margin$4,
   },
   invisible: {
     visibility: 'hidden',

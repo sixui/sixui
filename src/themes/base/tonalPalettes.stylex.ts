@@ -158,7 +158,7 @@ const errorPalette = {
   error100: '#fff',
 };
 
-export const tonalPalettesTokens = stylex.defineVars<ITonalPalettesThemeVars>({
+const vars = {
   white: '#fff',
   black: '#000',
 
@@ -168,4 +168,7 @@ export const tonalPalettesTokens = stylex.defineVars<ITonalPalettesThemeVars>({
   ...neutralPalette,
   ...neutralVariant,
   ...errorPalette,
-});
+};
+
+export const tonalPalettesTokens =
+  stylex.defineVars<ITonalPalettesThemeVars>(vars);

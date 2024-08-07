@@ -8,7 +8,7 @@ import { tabTokens } from '../Tab.stylex';
 export const secondaryTabStyles = stylex.create({
   host: {
     [tabTokens.activeIndicatorHeight]: '2px',
-    [tabTokens.activeIndicatorShape]: '0',
+    [tabTokens.activeIndicatorShape]: '0px',
 
     [tabTokens.activeLabelTextColor]: colorSchemeTokens.onSurface,
 

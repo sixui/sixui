@@ -4,8 +4,8 @@ import stylex from '@stylexjs/stylex';
 
 import type { IMultiSelectProps } from './MultiSelect.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { ListItem } from '~/components/ListItem';
-import { fruits } from '~/components/FilterableList/fruits';
+import { ListItem } from '../ListItem';
+import { fruits } from '../FilterableList/fruits';
 import { commonStyles } from '~/helpers/commonStyles';
 import { MultiSelect } from './MultiSelect';
 

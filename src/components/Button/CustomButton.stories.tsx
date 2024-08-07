@@ -13,7 +13,7 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   squared: {
-    [buttonTokens.containerShape]: '0',
+    [buttonTokens.containerShape]: '0px',
   },
 });
 

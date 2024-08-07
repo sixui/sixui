@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import type { IVisualState } from '~/components/VisualState';
+import type { IVisualState } from '../VisualState';
 import type { IPoint } from '~/helpers/types';
 import { EASING } from '~/helpers/animation';
 
@@ -157,7 +157,7 @@ export const useRipple = ({
 
       return true;
     },
-    [visualState, disabled],
+    [visualState?.dragged, disabled],
   );
 
   const determineRippleSize = useCallback(() => {
@@ -426,7 +426,13 @@ export const useRipple = ({
         void endPressAnimation();
       }
     },
-    [visualState, disabled, startPressAnimation, endPressAnimation],
+    [
+      visualState?.pressed,
+      visualState?.dragged,
+      disabled,
+      startPressAnimation,
+      endPressAnimation,
+    ],
   );
 
   const handleContextMenu = useCallback(() => {

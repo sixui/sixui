@@ -1,17 +1,19 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 
 const vars = {
-  thickness: '1px',
+  thickness: outlineTokens.width$xs,
   color: colorSchemeTokens.outlineVariant,
   // &:completed
   color$completed: colorSchemeTokens.primary,
 
   // text
-  textSpace$horizontal: '8px',
-  textSpace$vertical: '4px',
+  textSpace$horizontal: spacingTokens.padding$2,
+  textSpace$vertical: spacingTokens.padding$1,
   textColor: colorSchemeTokens.outline,
   textFont: typeScaleTokens.bodyFont$sm,
   textSize: typeScaleTokens.bodySize$sm,

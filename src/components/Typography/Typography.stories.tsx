@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
-import type { ITypographyOwnProps } from './Typography.types';
+import type { ITypographyProps } from './Typography.types';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '~/components/ComponentShowcase';
+} from '../ComponentShowcase';
 import { Typography, typographyTagMap } from './Typography';
 
 // https://m3.material.io/styles/typography/overview
@@ -18,7 +18,7 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {} satisfies Partial<ITypographyOwnProps>;
+const defaultArgs = {} satisfies Partial<ITypographyProps>;
 
 const LOREM$XS = 'Lorem ipsum dolor sit amet.';
 const LOREM$SM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
@@ -27,9 +27,9 @@ const LOREM$MD =
 const LOREM$LG =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lacinia ante et enim tempor pretium. Proin sed sem vehicula, dignissim velit vel, varius turpis. Ut vel ex non lectus iaculis pretium. Nunc at tempus enim. Donec commodo placerat libero.';
 
-const rows: Array<IComponentPresentation<ITypographyOwnProps>> = [
+const rows: Array<IComponentPresentation<ITypographyProps>> = [
   {
-    legend: `Display (lg) | ${typographyTagMap.display$lg}`,
+    legend: `Display (lg) | ${String(typographyTagMap.display$lg)}`,
     props: {
       variant: 'display',
       size: 'lg',
@@ -37,7 +37,7 @@ const rows: Array<IComponentPresentation<ITypographyOwnProps>> = [
     },
   },
   {
-    legend: `Display (md) | ${typographyTagMap.display$md}`,
+    legend: `Display (md) | ${String(typographyTagMap.display$md)}`,
     props: {
       variant: 'display',
       size: 'md',
@@ -45,7 +45,7 @@ const rows: Array<IComponentPresentation<ITypographyOwnProps>> = [
     },
   },
   {
-    legend: `Display (sm) | ${typographyTagMap.display$sm}`,
+    legend: `Display (sm) | ${String(typographyTagMap.display$sm)}`,
     props: {
       variant: 'display',
       size: 'sm',
@@ -53,7 +53,7 @@ const rows: Array<IComponentPresentation<ITypographyOwnProps>> = [
     },
   },
   {
-    legend: `Headline (lg) | ${typographyTagMap.headline$lg}`,
+    legend: `Headline (lg) | ${String(typographyTagMap.headline$lg)}`,
     props: {
       variant: 'headline',
       size: 'lg',
@@ -61,7 +61,7 @@ const rows: Array<IComponentPresentation<ITypographyOwnProps>> = [
     },
   },
   {
-    legend: `Headline (md) | ${typographyTagMap.headline$md}`,
+    legend: `Headline (md) | ${String(typographyTagMap.headline$md)}`,
     props: {
       variant: 'headline',
       size: 'md',
@@ -69,7 +69,7 @@ const rows: Array<IComponentPresentation<ITypographyOwnProps>> = [
     },
   },
   {
-    legend: `Headline (sm) | | ${typographyTagMap.headline$sm}`,
+    legend: `Headline (sm) | | ${String(typographyTagMap.headline$sm)}`,
     props: {
       variant: 'headline',
       size: 'sm',
@@ -77,7 +77,7 @@ const rows: Array<IComponentPresentation<ITypographyOwnProps>> = [
     },
   },
   {
-    legend: `Title (lg) | ${typographyTagMap.title$lg}`,
+    legend: `Title (lg) | ${String(typographyTagMap.title$lg)}`,
     props: {
       variant: 'title',
       size: 'lg',
@@ -85,7 +85,7 @@ const rows: Array<IComponentPresentation<ITypographyOwnProps>> = [
     },
   },
   {
-    legend: `Title (md) | ${typographyTagMap.title$md}`,
+    legend: `Title (md) | ${String(typographyTagMap.title$md)}`,
     props: {
       variant: 'title',
       size: 'md',
@@ -93,7 +93,7 @@ const rows: Array<IComponentPresentation<ITypographyOwnProps>> = [
     },
   },
   {
-    legend: `Title (sm) | ${typographyTagMap.title$sm}`,
+    legend: `Title (sm) | ${String(typographyTagMap.title$sm)}`,
     props: {
       variant: 'title',
       size: 'sm',
@@ -101,7 +101,7 @@ const rows: Array<IComponentPresentation<ITypographyOwnProps>> = [
     },
   },
   {
-    legend: `Body (lg) | ${typographyTagMap.body$lg}`,
+    legend: `Body (lg) | ${String(typographyTagMap.body$lg)}`,
     props: {
       variant: 'body',
       size: 'lg',
@@ -109,7 +109,7 @@ const rows: Array<IComponentPresentation<ITypographyOwnProps>> = [
     },
   },
   {
-    legend: `Body (md) | ${typographyTagMap.body$md}`,
+    legend: `Body (md) | ${String(typographyTagMap.body$md)}`,
     props: {
       variant: 'body',
       size: 'md',
@@ -117,7 +117,7 @@ const rows: Array<IComponentPresentation<ITypographyOwnProps>> = [
     },
   },
   {
-    legend: `Body (sm) | ${typographyTagMap.body$sm}`,
+    legend: `Body (sm) | ${String(typographyTagMap.body$sm)}`,
     props: {
       variant: 'body',
       size: 'sm',
@@ -125,7 +125,7 @@ const rows: Array<IComponentPresentation<ITypographyOwnProps>> = [
     },
   },
   {
-    legend: `Label (lg) | ${typographyTagMap.label$lg}`,
+    legend: `Label (lg) | ${String(typographyTagMap.label$lg)}`,
     props: {
       variant: 'label',
       size: 'lg',
@@ -133,7 +133,7 @@ const rows: Array<IComponentPresentation<ITypographyOwnProps>> = [
     },
   },
   {
-    legend: `Label (md) | ${typographyTagMap.label$md}`,
+    legend: `Label (md) | ${String(typographyTagMap.label$md)}`,
     props: {
       variant: 'label',
       size: 'md',
@@ -141,7 +141,7 @@ const rows: Array<IComponentPresentation<ITypographyOwnProps>> = [
     },
   },
   {
-    legend: `Label (sm) | ${typographyTagMap.label$sm}`,
+    legend: `Label (sm) | ${String(typographyTagMap.label$sm)}`,
     props: {
       variant: 'label',
       size: 'sm',

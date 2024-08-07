@@ -2,6 +2,7 @@ import stylex from '@stylexjs/stylex';
 
 const vars = {
   // stateLayer
+  stateLayerSize: 'unset',
   // &:hover
   stateLayerColor$hover: 'unset',
   stateLayerOpacity$hover: 'unset',

@@ -1,12 +1,6 @@
-import type {
-  IFieldBaseOwnProps,
-  IFieldBaseStylesKey,
-} from '~/components/FieldBase';
-import type {
-  ICompiledStyles,
-  IContainerProps,
-  IZeroOrMore,
-} from '~/helpers/types';
+import type { ICompiledStyles, IZeroOrMore } from '~/helpers/types';
+import type { IFieldBaseProps, IFieldBaseStylesKey } from '../FieldBase';
+import type { IBaseProps } from '../Base';
 import type { IHtmlSelectStylesKey } from './HtmlSelect.styles';
 
 export type IHtmlSelectOption = {
@@ -14,7 +8,7 @@ export type IHtmlSelectOption = {
   label?: string;
 };
 
-export type IHtmlSelectProps = IContainerProps<IHtmlSelectStylesKey> &
+export type IHtmlSelectProps = IBaseProps<IHtmlSelectStylesKey> &
   React.SelectHTMLAttributes<HTMLSelectElement> & {
     innerStyles?: {
       fieldBase?: IZeroOrMore<ICompiledStyles<IFieldBaseStylesKey>>;
@@ -33,6 +27,6 @@ export type IHtmlSelectProps = IContainerProps<IHtmlSelectStylesKey> &
     multiple?: never;
 
     slotProps?: {
-      fieldBase?: IFieldBaseOwnProps;
+      fieldBase?: IFieldBaseProps;
     };
   };

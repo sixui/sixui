@@ -1,13 +1,6 @@
-import type {
-  IZeroOrMore,
-  ICompiledStyles,
-  IContainerProps,
-  IOmit,
-} from '~/helpers/types';
-import type {
-  IFluidButtonOwnProps,
-  IFluidButtonStylesKey,
-} from '~/components/FluidButton';
+import type { IZeroOrMore, ICompiledStyles, IOmit } from '~/helpers/types';
+import type { IBaseProps } from '../Base';
+import type { IFluidButtonProps, IFluidButtonStylesKey } from '../FluidButton';
 import type { ICopyableTextStylesKey } from './CopyableText.styles';
 
 export type ICopyableTextTriggerRenderProps = {
@@ -15,8 +8,8 @@ export type ICopyableTextTriggerRenderProps = {
   disabled?: boolean;
 };
 
-export type ICopyableTextProps = IContainerProps<ICopyableTextStylesKey> &
-  IOmit<IFluidButtonOwnProps, 'styles'> & {
+export type ICopyableTextProps = IBaseProps<ICopyableTextStylesKey> &
+  IOmit<IFluidButtonProps, 'styles'> & {
     innerStyles?: {
       fluidButton?: IZeroOrMore<ICompiledStyles<IFluidButtonStylesKey>>;
     };

@@ -34,6 +34,9 @@ export const chipPlaygroundSections: IPlaygroundSections<IInputChipPlaygroundDem
           props: {
             icon: <FontAwesomeIcon icon={faUser} />,
           },
+          modifiers: {
+            on: true,
+          },
         },
         {
           label: 'Image',
@@ -42,17 +45,11 @@ export const chipPlaygroundSections: IPlaygroundSections<IInputChipPlaygroundDem
             targetProp: 'imageUrl',
             value: IMAGE_URL,
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Avatar',
           props: {
             avatar: true,
-          },
-          modifiers: {
-            off: true,
           },
           getModifiers: (sectionProps) => ({
             disabled: !sectionProps?.inputChip.imageUrl,
@@ -63,17 +60,11 @@ export const chipPlaygroundSections: IPlaygroundSections<IInputChipPlaygroundDem
           props: {
             onDelete: () => {},
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Selected',
           props: {
             selected: true,
-          },
-          modifiers: {
-            off: true,
           },
         },
         {
@@ -81,17 +72,11 @@ export const chipPlaygroundSections: IPlaygroundSections<IInputChipPlaygroundDem
           props: {
             disabled: true,
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Loading',
           props: {
             loading: true,
-          },
-          modifiers: {
-            off: true,
           },
         },
         {
@@ -100,9 +85,6 @@ export const chipPlaygroundSections: IPlaygroundSections<IInputChipPlaygroundDem
             type: 'string',
             value: 'Wait...',
             targetProp: 'loadingText',
-          },
-          modifiers: {
-            off: true,
           },
           getModifiers: (sectionProps) => ({
             disabled: !sectionProps?.inputChip.loading,

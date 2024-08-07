@@ -1,54 +1,50 @@
-import { forwardRef, useMemo } from 'react';
-import stylex from '@stylexjs/stylex';
+import { forwardRef } from 'react';
 
 import type { IDisclosureProps } from './Disclosure.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { Expandable } from '~/components/Expandable';
+import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { useStyles } from '~/hooks/useStyles';
+import { Expandable } from '../Expandable';
+import { Base } from '../Base';
 import { disclosureStyles } from './Disclosure.styles';
 import { disclosureTheme } from './Disclosure.stylex';
 
-export const Disclosure = forwardRef<HTMLDivElement, IDisclosureProps>(
-  function Disclosure(props, forwardedRef) {
-    const {
-      styles,
-      sx,
-      trigger,
-      children,
-      disabled,
-      expanded,
-      defaultExpanded,
-      initiallyExpanded,
-      ...other
-    } = props;
+export const Disclosure = createPolymorphicComponent<'div', IDisclosureProps>(
+  forwardRef<HTMLDivElement, IDisclosureProps>(
+    function Disclosure(props, forwardedRef) {
+      const {
+        styles,
+        sx,
+        trigger,
+        children,
+        disabled,
+        expanded,
+        defaultExpanded,
+        initiallyExpanded,
+        ...other
+      } = props;
 
-    const componentTheme = useComponentTheme('Disclosure');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(disclosureStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+      const { combineStyles, getStyles, globalStyles } = useStyles({
+        name: 'Disclosure',
+        styles: [disclosureStyles, styles],
+      });
 
-    return (
-      <div
-        {...other}
-        {...sxf(disclosureTheme, componentTheme.overridenStyles, 'host', sx)}
-        ref={forwardedRef}
-      >
-        <Expandable
-          trigger={trigger}
-          disabled={disabled}
-          expanded={expanded}
-          defaultExpanded={defaultExpanded}
-          initiallyExpanded={initiallyExpanded}
+      return (
+        <Base
+          {...other}
+          sx={[disclosureTheme, globalStyles, combineStyles('host'), sx]}
+          ref={forwardedRef}
         >
-          <div {...stylex.props(stylesCombinator('panel'))}>{children}</div>
-        </Expandable>
-      </div>
-    );
-  },
+          <Expandable
+            trigger={trigger}
+            disabled={disabled}
+            expanded={expanded}
+            defaultExpanded={defaultExpanded}
+            initiallyExpanded={initiallyExpanded}
+          >
+            <div {...getStyles('panel')}>{children}</div>
+          </Expandable>
+        </Base>
+      );
+    },
+  ),
 );

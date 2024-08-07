@@ -2,12 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
-import type { IFabProps, IFabOwnProps } from './Fab.types';
+import type { IFabProps } from './Fab.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
   ComponentShowcase,
-} from '~/components/ComponentShowcase';
+} from '../ComponentShowcase';
 import { Fab } from './Fab';
 
 // https://m3.material.io/components/floating-action-button/overview
@@ -34,7 +34,7 @@ const svgColorIcon = (
   </svg>
 );
 
-const states: Array<IComponentPresentation<IFabOwnProps>> = [
+const states: Array<IComponentPresentation<IFabProps>> = [
   { legend: 'Enabled', props: { label: 'Enabled' } },
   {
     legend: 'Hovered',
@@ -60,7 +60,7 @@ const states: Array<IComponentPresentation<IFabOwnProps>> = [
   { legend: 'Disabled', props: { label: 'Disabled', disabled: true } },
 ];
 
-const variants: Array<IComponentPresentation<IFabOwnProps>> = [
+const variants: Array<IComponentPresentation<IFabProps>> = [
   {
     legend: 'Surface',
     props: {
@@ -98,7 +98,7 @@ const variants: Array<IComponentPresentation<IFabOwnProps>> = [
   },
 ];
 
-const sizes: Array<IComponentPresentation<IFabOwnProps>> = [
+const sizes: Array<IComponentPresentation<IFabProps>> = [
   {
     legend: 'Small',
     props: { size: 'sm' },

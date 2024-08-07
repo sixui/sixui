@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 import {
   FloatingFocusManager,
@@ -12,20 +11,12 @@ import {
 
 import type { IOmit } from '~/helpers/types';
 import type { IScrimProps, IScrimVariant } from './Scrim.types';
-import { ComponentShowcase } from '~/components/ComponentShowcase';
-import { Button } from '~/components/Button';
-import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
+import { ComponentShowcase } from '../ComponentShowcase';
+import { Button } from '../Button';
+import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { Scrim } from './Scrim';
 
 type IScrimDemoProps = IOmit<IScrimProps, 'floatingContext'>;
-
-const styles = stylex.create({
-  host$contained: {
-    position: 'relative',
-    display: 'inline-block',
-    padding: 32,
-  },
-});
 
 const ScrimDemo: React.FC<IScrimDemoProps> = (props) => {
   const { children, ...other } = props;
@@ -72,7 +63,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  children: <IndeterminateCircularProgressIndicator size='lg' />,
+  children: <IndeterminateCircularProgressIndicator />,
 } satisfies Partial<IScrimProps>;
 
 export const Variants: IStory = {
@@ -92,18 +83,6 @@ export const Variants: IStory = {
 export const Basic: IStory = {
   render: (props) => <ScrimDemo {...props} />,
   args: defaultArgs,
-};
-
-export const Contained: IStory = {
-  render: (props) => (
-    <div {...stylex.props(styles.host$contained)}>
-      <ScrimDemo {...props} />
-    </div>
-  ),
-  args: {
-    ...defaultArgs,
-    contained: true,
-  },
 };
 
 export default meta;

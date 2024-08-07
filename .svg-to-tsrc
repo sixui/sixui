@@ -1,0 +1,31 @@
+{
+  "conversionType": "files",
+  "generateType": true,
+  "typeName": "IIcons",
+  "srcFiles": [
+    "./src/assets/*.svg"
+  ],
+  "iconsFolderName": "lib",
+  "outputDirectory": "./src/assets/icons",
+  "interfaceName": "IIcon",
+  "prefix": "icon",
+  "svgoConfig": {
+    "plugins": [
+      "cleanupAttrs",
+      {
+        "name": "addAttributesToSVGElement",
+        "params": {
+          "attributes": [
+            {
+              "width": "1em"
+            },
+            {
+              "height": "1em"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "fileName": "icons.model"
+}

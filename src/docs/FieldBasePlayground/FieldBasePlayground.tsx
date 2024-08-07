@@ -40,9 +40,6 @@ export const fieldBasePlaygroundSections: IPlaygroundSections<IFieldBasePlaygrou
             value: 'Label',
             targetProp: 'label',
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Focused',
@@ -51,26 +48,17 @@ export const fieldBasePlaygroundSections: IPlaygroundSections<IFieldBasePlaygrou
               focused: true,
             },
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Start slot',
           props: {
             start: <FieldBasePlaceholder />,
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Leading icon',
           props: {
             leadingIcon: <FontAwesomeIcon icon={faMagnifyingGlass} />,
-          },
-          modifiers: {
-            off: true,
           },
         },
         {
@@ -79,26 +67,17 @@ export const fieldBasePlaygroundSections: IPlaygroundSections<IFieldBasePlaygrou
             children: <FieldBasePlaceholder />,
             populated: true,
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Trailing icon',
           props: {
             trailingIcon: <FontAwesomeIcon icon={faXmark} />,
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'End slot',
           props: {
             end: <FieldBasePlaceholder />,
-          },
-          modifiers: {
-            off: true,
           },
         },
         {
@@ -108,17 +87,11 @@ export const fieldBasePlaygroundSections: IPlaygroundSections<IFieldBasePlaygrou
             value: 'Supporting Text',
             targetProp: 'supportingText',
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Has error',
           props: {
             hasError: true,
-          },
-          modifiers: {
-            off: true,
           },
         },
         {
@@ -127,9 +100,6 @@ export const fieldBasePlaygroundSections: IPlaygroundSections<IFieldBasePlaygrou
             type: 'string',
             value: 'Error text',
             targetProp: 'errorText',
-          },
-          modifiers: {
-            off: true,
           },
           getModifiers: (sectionsProps) => ({
             disabled: !sectionsProps?.fieldBase.hasError,
@@ -140,26 +110,17 @@ export const fieldBasePlaygroundSections: IPlaygroundSections<IFieldBasePlaygrou
           props: {
             loading: true,
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Required',
           props: {
             required: true,
           },
-          modifiers: {
-            off: true,
-          },
         },
         {
           label: 'Disabled',
           props: {
             disabled: true,
-          },
-          modifiers: {
-            off: true,
           },
         },
       ],

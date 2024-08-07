@@ -1,14 +1,10 @@
-import type { IContainerProps, IOmit, IOrientation } from '~/helpers/types';
 import type {
   OpenChangeReason,
   Placement,
   ReferenceType,
 } from '@floating-ui/react';
 
-import type {
-  IFilterableListBaseProps,
-  IFilterableListItemFocus,
-} from '~/components/FilterableListBase';
+import type { IOmit, IOrientation } from '~/helpers/types';
 import type {
   IExtendedFloatingProps,
   IExtendedHtmlFloatingProps,
@@ -17,6 +13,11 @@ import type {
   IRendererWithForwardedProps,
   IForwardableProps,
 } from '~/helpers/react/forwardablePropsTypes';
+import type { IBaseProps } from '../Base';
+import type {
+  IFilterableListBaseProps,
+  IFilterableListItemFocus,
+} from '../FilterableListBase';
 import type { IFloatingFilterableListBaseStylesKey } from './FloatingFilterableListBase.styles';
 
 export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
@@ -59,8 +60,8 @@ export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
    * or overwrite one of the Floating UI hooks' handlers.
    */
   getInputFilterProps: (
-    userProps?: IExtendedFloatingProps<React.HTMLProps<HTMLInputElement>>,
-  ) => IExtendedFloatingProps<React.HTMLProps<HTMLInputElement>>;
+    userProps?: IExtendedFloatingProps<React.ComponentPropsWithoutRef<'input'>>,
+  ) => IExtendedFloatingProps<React.ComponentPropsWithoutRef<'input'>>;
 
   afterItemsRemove: (
     items: Array<TItem>,
@@ -74,7 +75,7 @@ export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
 export type IFloatingFilterableListBaseProps<
   TItem,
   TElement extends HTMLElement,
-> = IContainerProps<IFloatingFilterableListBaseStylesKey> &
+> = IBaseProps<IFloatingFilterableListBaseStylesKey> &
   IOmit<IFilterableListBaseProps<TItem, TElement>, 'onItemSelect'> &
   IForwardableProps & {
     /**

@@ -2,8 +2,8 @@ import { useMergeRefs } from '@floating-ui/react';
 import { forwardRef, useContext } from 'react';
 
 import type { IMenuItemProps } from './MenuItem.types';
-import { MenuContext } from '~/components/Menu';
-import { SvgIcon } from '~/components/SvgIcon';
+import { MenuContext } from '../Menu';
+import { SvgIcon } from '../SvgIcon';
 import { MenuItem } from './MenuItem';
 import { iconTriangleLeft, iconTriangleRight } from '~/assets/icons';
 
@@ -19,12 +19,12 @@ export const MenuNestedItem = forwardRef<
 
   return (
     <MenuItem
-      leading={
+      leadingIcon={
         menuContext.placement?.startsWith('left-') ? (
           <SvgIcon icon={iconTriangleLeft} />
         ) : undefined
       }
-      trailing={
+      trailingIcon={
         menuContext.placement?.startsWith('left-') ? undefined : (
           <SvgIcon icon={iconTriangleRight} />
         )

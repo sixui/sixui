@@ -1,22 +1,23 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { elevationTokens } from '~/components/Elevation/Elevation.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
+import { elevationTokens } from '../../Elevation/Elevation.stylex';
 import { buttonTokens } from '../Button.stylex';
 
 export const elevatedButtonStyles = stylex.create({
   host: {
     [buttonTokens.containerColor]: colorSchemeTokens.surfaceContainerLow,
-    [buttonTokens.containerElevation]: elevationTokens.boxShadow$level1,
     [buttonTokens.containerColor$disabled]: colorSchemeTokens.onSurface,
-    [buttonTokens.containerElevation$disabled]:
-      elevationTokens.boxShadow$level0,
     [buttonTokens.containerOpacity$disabled]:
       stateTokens.containerOpacity$disabled,
+
+    [buttonTokens.containerElevation]: elevationTokens.boxShadow$level1,
     [buttonTokens.containerElevation$focus]: elevationTokens.boxShadow$level1,
     [buttonTokens.containerElevation$hover]: elevationTokens.boxShadow$level2,
     [buttonTokens.containerElevation$pressed]: elevationTokens.boxShadow$level1,
+    [buttonTokens.containerElevation$disabled]:
+      elevationTokens.boxShadow$level0,
 
     [buttonTokens.stateLayerColor$hover]: colorSchemeTokens.primary,
     [buttonTokens.stateLayerColor$pressed]: colorSchemeTokens.primary,

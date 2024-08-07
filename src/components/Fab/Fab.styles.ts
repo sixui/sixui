@@ -1,7 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
-import { buttonTokens } from '~/components/Button/Button.stylex';
+import { zIndexTokens } from '~/themes/base/zIndex.stylex';
+import { buttonTokens } from '../Button/Button.stylex';
 import { fabTokens } from './Fab.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 
 // https://github.com/material-components/material-web/blob/main/fab/internal/_shared.scss
 // https://github.com/material-components/material-web/blob/main/fab/internal/_fab.scss
@@ -9,14 +11,16 @@ import { fabTokens } from './Fab.stylex';
 export type IFabStylesKey = keyof typeof fabStyles;
 export const fabStyles = stylex.create({
   host: {
-    [buttonTokens.leadingSpace]: '0',
-    [buttonTokens.trailingSpace]: '0',
-    [buttonTokens.leadingIconLeadingSpace]: '0',
-    [buttonTokens.leadingIconTrailingSpace]: '0',
-    [buttonTokens.trailingIconLeadingSpace]: '0',
-    [buttonTokens.trailingIconTrailingSpace]: '0',
+    zIndex: zIndexTokens.overlay,
 
-    [buttonTokens.gap]: '12px',
+    [buttonTokens.leadingSpace]: '0px',
+    [buttonTokens.trailingSpace]: '0px',
+    [buttonTokens.leadingIconLeadingSpace]: '0px',
+    [buttonTokens.leadingIconTrailingSpace]: '0px',
+    [buttonTokens.trailingIconLeadingSpace]: '0px',
+    [buttonTokens.trailingIconTrailingSpace]: '0px',
+
+    [buttonTokens.gap]: spacingTokens.padding$3,
     [buttonTokens.containerElevation$disabled]:
       fabTokens.containerElevation$disabled,
     [buttonTokens.containerElevation]: fabTokens.containerElevation,
@@ -77,10 +81,10 @@ export const fabStyles = stylex.create({
   },
   host$extended: {
     width: 'inherit',
-    [buttonTokens.leadingSpace]: '24px',
-    [buttonTokens.trailingSpace]: '24px',
-    [buttonTokens.leadingIconLeadingSpace]: '16px',
-    [buttonTokens.leadingIconTrailingSpace]: '24px',
+    [buttonTokens.leadingSpace]: spacingTokens.padding$6,
+    [buttonTokens.trailingSpace]: spacingTokens.padding$6,
+    [buttonTokens.leadingIconLeadingSpace]: spacingTokens.padding$4,
+    [buttonTokens.leadingIconTrailingSpace]: spacingTokens.padding$6,
   },
   host$lowered: {
     [buttonTokens.containerElevation]: fabTokens.loweredContainerElevation,

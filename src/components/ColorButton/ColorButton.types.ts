@@ -1,22 +1,12 @@
-import type {
-  ICompiledStyles,
-  IContainerProps,
-  IOmit,
-  IZeroOrMore,
-} from '~/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
-import type {
-  IButtonBaseOwnProps,
-  IButtonBaseStylesKey,
-} from '~/components/ButtonBase';
-import type { IColorTagStylesKey } from '~/components/ColorTag';
+import type { IBaseProps } from '../Base';
+import type { ICompiledStyles, IOmit, IZeroOrMore } from '~/helpers/types';
+import type { IButtonBaseProps, IButtonBaseStylesKey } from '../ButtonBase';
+import type { IColorTagStylesKey } from '../ColorTag';
 import type { IColorButtonStylesKey } from './ColorButton.styles';
 
-export const COLOR_BUTTON_DEFAULT_TAG = 'button';
-
-export type IColorButtonOwnProps = IContainerProps<IColorButtonStylesKey> &
-  IOmit<IButtonBaseOwnProps, 'styles'> & {
-    innerStyles?: IButtonBaseOwnProps['innerStyles'] & {
+export type IColorButtonProps = IBaseProps<IColorButtonStylesKey> &
+  IOmit<IButtonBaseProps, 'styles'> & {
+    innerStyles?: IButtonBaseProps['innerStyles'] & {
       buttonBase?: IZeroOrMore<ICompiledStyles<IButtonBaseStylesKey>>;
       colorTag?: IZeroOrMore<ICompiledStyles<IColorTagStylesKey>>;
     };
@@ -25,7 +15,3 @@ export type IColorButtonOwnProps = IContainerProps<IColorButtonStylesKey> &
     backgroundColor?: string;
     foregroundColor?: string;
   };
-
-export type IColorButtonProps<
-  TRoot extends React.ElementType = typeof COLOR_BUTTON_DEFAULT_TAG,
-> = IPolymorphicComponentPropsWithRef<TRoot, IColorButtonOwnProps>;

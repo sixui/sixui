@@ -1,10 +1,11 @@
 import stylex from '@stylexjs/stylex';
 
-import { elevationTokens } from '~/components/Elevation/Elevation.stylex';
-import { focusRingTokens } from '~/components/FocusRing/FocusRing.stylex';
-import { stateLayerTokens } from '~/components/StateLayer/StateLayer.stylex';
+import { elevationTokens } from '../Elevation/Elevation.stylex';
+import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
+import { stateLayerTokens } from '../StateLayer/StateLayer.stylex';
 import { tabTokens } from './Tab.stylex';
 import { tabStateTokens } from './Tab.state.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tabs/internal/_tab.scss
 
@@ -19,7 +20,10 @@ export const tabStyles = stylex.create({
     alignItems: 'center',
     justifyContent: 'center',
     outline: 'none',
-    padding: '0 16px',
+    paddingTop: 0,
+    paddingBottom: 0,
+    paddingLeft: spacingTokens.padding$4,
+    paddingRight: spacingTokens.padding$4,
     position: 'relative',
     WebkitTapHighlightColor: 'transparent',
     verticalAlign: 'middle',

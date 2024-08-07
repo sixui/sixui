@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
-import { stateLayerTokens } from '~/components/StateLayer/StateLayer.stylex';
-import { focusRingTokens } from '~/components/FocusRing/FocusRing.stylex';
-import { itemTokens } from '~/components/Item/Item.stylex';
+import { stateLayerTokens } from '../StateLayer/StateLayer.stylex';
+import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
+import { itemTokens } from '../Item/Item.stylex';
 import { listItemStateTokens } from './ListItem.state.stylex';
 import { listItemTokens } from './ListItem.stylex';
 

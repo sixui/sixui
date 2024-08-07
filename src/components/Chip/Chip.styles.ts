@@ -1,12 +1,14 @@
 import stylex from '@stylexjs/stylex';
 
-import { elevationTokens } from '~/components/Elevation/Elevation.stylex';
-import { focusRingTokens } from '~/components/FocusRing/FocusRing.stylex';
-import { stateLayerTokens } from '~/components/StateLayer/StateLayer.stylex';
-import { circularProgressIndicatorTokens } from '~/components/CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { motionTokens } from '~/themes/base/motion.stylex';
-import { chipTokens } from './Chip.stylex';
+import { shapeTokens } from '~/themes/base/shape.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { elevationTokens } from '../Elevation/Elevation.stylex';
+import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
+import { stateLayerTokens } from '../StateLayer/StateLayer.stylex';
+import { circularProgressIndicatorTokens } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { chipStateTokens } from './Chip.state.stylex';
+import { chipTokens } from './Chip.stylex';
 
 // https://github.com/material-components/material-web/blob/main/chips/internal/_shared.scss
 // https://github.com/material-components/material-web/blob/main/chips/internal/_elevated.scss
@@ -36,7 +38,7 @@ export const chipStyles = stylex.create({
     },
   },
   host$avatar: {
-    [chipStateTokens.containerShape]: `calc(${chipTokens.containerHeight} / 2)`,
+    [chipStateTokens.containerShape]: shapeTokens.corner$full,
   },
   host$disabled: {
     cursor: 'default',
@@ -194,16 +196,7 @@ export const chipStyles = stylex.create({
     paddingInlineEnd: 0,
   },
   action$primary$avatar: {
-    paddingInlineStart: 4,
-  },
-  touchTarget: {
-    // Place content above background elements
-    zIndex: 1,
-    height: 48,
-    inset: '50% 0 0',
-    position: 'absolute',
-    transform: 'translateY(-50%)',
-    width: '100%',
+    paddingInlineStart: spacingTokens.padding$1,
   },
   outline: {
     borderWidth: chipTokens.outlineWidth,
@@ -306,20 +299,12 @@ export const chipStyles = stylex.create({
     fontSize: chipTokens.iconSize,
     height: chipTokens.iconSize,
     width: chipTokens.iconSize,
-
-    transitionProperty: 'opacity, width',
-    transitionDuration: motionTokens.duration$medium4,
-    transitionTimingFunction: motionTokens.easing$emphasizedDecelerate,
     opacity: 1,
   },
   iconContainer$collapsed: {
     marginInlineEnd: 0,
     width: 0,
     opacity: 0,
-
-    transitionProperty: 'opacity, width',
-    transitionDuration: motionTokens.duration$short2,
-    transitionTimingFunction: motionTokens.easing$emphasizedAccelerate,
   },
   icon: {
     position: 'absolute',

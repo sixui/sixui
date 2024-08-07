@@ -1,122 +1,117 @@
-import { forwardRef, useContext, useMemo, useRef } from 'react';
+import { forwardRef, useContext, useRef } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 import { asArray } from '@olivierpascal/helpers';
 
-import type { IOptionCardOwnProps, IOptionCardProps } from './OptionCard.types';
-import type {
-  IPolymorphicRef,
-  IWithAsProp,
+import type { IOptionCardProps } from './OptionCard.types';
+import {
+  createPolymorphicComponent,
+  type IWithAsProp,
 } from '~/helpers/react/polymorphicComponentTypes';
 import { isFunction } from '~/helpers/isFunction';
-import { CardContent } from '~/components/CardContent';
-import { Card } from '~/components/Card';
-import { Labeled } from '~/components/Labeled';
 import { useControlledValue } from '~/hooks/useControlledValue';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
-import { RadioGroupContext } from '~/components/RadioGroup';
 import { commonStyles } from '~/helpers/commonStyles';
+import { useStyles } from '~/hooks/useStyles';
+import { CardContent } from '../CardContent';
+import { Card } from '../Card';
+import { Labeled } from '../Labeled';
+import { RadioGroupContext } from '../RadioGroup';
 import { optionCardCardStyles, optionCardStyles } from './OptionCard.styles';
 import { optionCardTheme } from './OptionCard.stylex';
 
-type IOptionCard = <TRoot extends React.ElementType>(
-  props: IOptionCardProps<TRoot>,
-) => React.ReactNode;
-
-export const OptionCard: IOptionCard = forwardRef(function OptionCard<
-  TRoot extends React.ElementType,
->(props: IOptionCardProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
-  const {
-    as: Component,
-    styles,
-    sx,
-    innerStyles,
-    label,
-    supportingText,
-    checked: checkedProp,
-    defaultChecked,
-    children,
-    onChange,
-    ...other
-  } = props as IWithAsProp<IOptionCardOwnProps>;
-  const radioGroupContext = useContext(RadioGroupContext);
-
-  const componentTheme = useComponentTheme('OptionCard');
-  const stylesCombinator = useMemo(
-    () => stylesCombinatorFactory(optionCardStyles, styles),
-    [styles],
-  );
-  const sxf = useMemo(
-    () => stylePropsFactory(stylesCombinator),
-    [stylesCombinator],
-  );
-
-  const controlRef = useRef<HTMLInputElement>(null);
-  const controlHandleRef = useMergeRefs([controlRef, forwardedRef]);
-  const [checkedValue, setCheckedValue] = useControlledValue({
-    controlled: checkedProp,
-    default: !!defaultChecked,
-    name: 'OptionCard',
-  });
-  const checked = radioGroupContext
-    ? radioGroupContext.value === other.value
-    : checkedValue;
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    event.preventDefault();
-    setCheckedValue(event.target.checked);
-    onChange?.(event, event.target.checked ? event.target.value : undefined);
-  };
-
-  return (
-    <Card
-      variant='outlined'
-      onClick={() => controlRef.current?.click()}
-      disabled={other.disabled}
-      sx={[
-        optionCardTheme,
-        componentTheme.overridenStyles,
-        stylesCombinator('host'),
-        checked && stylesCombinator('host$selected'),
+export const OptionCard = createPolymorphicComponent<'div', IOptionCardProps>(
+  forwardRef<HTMLDivElement, IOptionCardProps>(
+    function OptionCard(props, forwardedRef) {
+      const {
+        component: Component,
+        styles,
         sx,
-      ]}
-      styles={[optionCardCardStyles, ...asArray(innerStyles?.card)]}
-    >
-      {Component ? null : (
-        <input
-          ref={controlHandleRef}
-          type='checkbox'
-          onChange={handleChange}
-          checked={checkedValue}
-          tabIndex={-1}
-          hidden
-        />
-      )}
+        innerStyles,
+        label,
+        supportingText,
+        checked: checkedProp,
+        defaultChecked,
+        children,
+        onChange,
+        ...other
+      } = props as IWithAsProp<IOptionCardProps>;
+      const radioGroupContext = useContext(RadioGroupContext);
 
-      <CardContent sx={commonStyles.gap$md}>
-        <Labeled
-          labelPosition='right'
-          label={label}
-          supportingText={supportingText}
+      const { combineStyles, getStyles, globalStyles } = useStyles({
+        name: 'OptionCard',
+        styles: [optionCardStyles, styles],
+      });
+
+      const controlRef = useRef<HTMLInputElement>(null);
+      const controlHandleRef = useMergeRefs([controlRef, forwardedRef]);
+      const [checkedValue, setCheckedValue] = useControlledValue({
+        controlled: checkedProp,
+        default: !!defaultChecked,
+        name: 'OptionCard',
+      });
+      const checked = radioGroupContext
+        ? radioGroupContext.value === other.value
+        : checkedValue;
+
+      const handleChange = (
+        event: React.ChangeEvent<HTMLInputElement>,
+      ): void => {
+        event.preventDefault();
+        setCheckedValue(event.target.checked);
+        onChange?.(
+          event,
+          event.target.checked ? event.target.value : undefined,
+        );
+      };
+
+      return (
+        <Card
+          variant='outlined'
+          onClick={() => controlRef.current?.click()}
           disabled={other.disabled}
+          sx={[
+            optionCardTheme,
+            globalStyles,
+            combineStyles('host', checked && 'host$selected'),
+            sx,
+          ]}
+          styles={[optionCardCardStyles, ...asArray(innerStyles?.card)]}
         >
-          {Component ? (
-            <Component
-              {...other}
+          {Component ? null : (
+            <input
               ref={controlHandleRef}
+              type='checkbox'
               onChange={handleChange}
-              checked={checked}
+              checked={checkedValue}
               tabIndex={-1}
+              hidden
             />
-          ) : null}
-        </Labeled>
-        {children ? (
-          <div {...sxf(['text', other.disabled && 'text$disabled'])}>
-            {isFunction(children) ? children({ checked }) : children}
-          </div>
-        ) : null}
-      </CardContent>
-    </Card>
-  );
-});
+          )}
+
+          <CardContent sx={commonStyles.gap$md}>
+            <Labeled
+              labelPosition='right'
+              label={label}
+              supportingText={supportingText}
+              disabled={other.disabled}
+            >
+              {Component ? (
+                <Component
+                  {...other}
+                  ref={controlHandleRef}
+                  onChange={handleChange}
+                  checked={checked}
+                  tabIndex={-1}
+                />
+              ) : null}
+            </Labeled>
+            {children ? (
+              <div {...getStyles('text', other.disabled && 'text$disabled')}>
+                {isFunction(children) ? children({ checked }) : children}
+              </div>
+            ) : null}
+          </CardContent>
+        </Card>
+      );
+    },
+  ),
+);

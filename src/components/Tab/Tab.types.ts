@@ -1,23 +1,20 @@
 import type {
-  IContainerProps,
   IZeroOrMore,
   ICompiledStyles,
   IAny,
   IMaybeAsync,
 } from '~/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
-import type { IStateLayerStylesKey } from '~/components/StateLayer';
-import type { IFocusRingStylesKey } from '~/components/FocusRing';
-import type { IElevationStylesKey } from '~/components/Elevation';
-import type { IVisualState } from '~/components/VisualState';
-import type { IBadgeProps } from '~/components/Badge';
+import type { IBaseProps } from '../Base';
+import type { IStateLayerStylesKey } from '../StateLayer';
+import type { IFocusRingStylesKey } from '../FocusRing';
+import type { IElevationStylesKey } from '../Elevation';
+import type { IVisualState } from '../VisualState';
+import type { IBadgeProps } from '../Badge';
 import type { ITabStylesKey } from './Tab.styles';
-
-export const TAB_DEFAULT_TAG = 'button';
 
 export type ITabVariant = 'primary' | 'secondary';
 
-export type ITabOwnProps = IContainerProps<ITabStylesKey> & {
+export type ITabProps = IBaseProps<ITabStylesKey> & {
   innerStyles?: {
     stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStylesKey>>;
     focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStylesKey>>;
@@ -40,7 +37,3 @@ export type ITabOwnProps = IContainerProps<ITabStylesKey> & {
   disabled?: boolean;
   badge?: IBadgeProps;
 };
-
-export type ITabProps<
-  TRoot extends React.ElementType = typeof TAB_DEFAULT_TAG,
-> = IPolymorphicComponentPropsWithRef<TRoot, ITabOwnProps>;

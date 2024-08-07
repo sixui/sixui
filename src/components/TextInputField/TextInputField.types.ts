@@ -1,7 +1,7 @@
 import type { IOmit } from '~/helpers/types';
-import type { ITextFieldBaseProps } from '~/components/TextFieldBase';
+import type { ITextFieldBaseProps } from '../TextFieldBase';
 
-export type ITextInputFieldOwnProps = IOmit<
+export type ITextInputFieldProps = IOmit<
   ITextFieldBaseProps<HTMLInputElement>,
   // Props that are controlled by the component and should not be overridden.
   'inputRenderer' | 'forwardProps' | 'textArea' | 'resizable'
@@ -63,10 +63,7 @@ export type ITextInputFieldOwnProps = IOmit<
    * fields.
    */
   unmaskIcon?: React.ReactNode;
-};
 
-export type ITextInputFieldProps = Omit<
-  React.ComponentPropsWithoutRef<'input'>,
-  keyof ITextInputFieldOwnProps
-> &
-  ITextInputFieldOwnProps;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  placeholder?: string;
+};

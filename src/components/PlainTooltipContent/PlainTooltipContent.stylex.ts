@@ -1,20 +1,22 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 
 const vars = {
-  topSpace: '8px',
-  bottomSpace: '8px',
-  leadingSpace: '8px',
-  trailingSpace: '8px',
+  topSpace: spacingTokens.padding$2,
+  bottomSpace: spacingTokens.padding$2,
+  leadingSpace: spacingTokens.padding$2,
+  trailingSpace: spacingTokens.padding$2,
 
   // container
   containerColor: colorSchemeTokens.inverseSurface,
   containerShape: shapeTokens.corner$xs,
-  containerMaxWidth: '215px',
-  containerMinHeight: '24px',
+  containerMaxWidth: `calc(215px * ${scaleTokens.scale})`,
+  containerMinHeight: `calc(24px * ${scaleTokens.scale})`,
 
   // supportingText
   supportingTextColor: colorSchemeTokens.inverseOnSurface,

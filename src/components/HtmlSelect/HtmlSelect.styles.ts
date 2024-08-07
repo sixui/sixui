@@ -1,6 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
-import { fieldBaseTokens } from '~/components/FieldBase/FieldBase.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { fieldBaseTokens } from '../FieldBase/FieldBase.stylex';
 
 export type IHtmlSelectStylesKey = keyof typeof htmlSelectStyles;
 export const htmlSelectStyles = stylex.create({
@@ -24,7 +26,7 @@ export const htmlSelectFieldBaseStyles = stylex.create({
     top: 0,
     left: 0,
     bottom: 0,
-    paddingInlineStart: 16,
+    paddingInlineStart: spacingTokens.padding$4,
     pointerEvents: 'none',
   },
   section$end: {
@@ -32,7 +34,7 @@ export const htmlSelectFieldBaseStyles = stylex.create({
     top: 0,
     right: 0,
     bottom: 0,
-    width: 40,
+    width: `calc(40px * ${scaleTokens.scale})`,
     justifyContent: 'center',
     pointerEvents: 'none',
   },

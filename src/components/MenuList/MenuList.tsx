@@ -1,12 +1,11 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type { IMenuListProps } from './MenuList.types';
-import { stylesCombinatorFactory } from '~/helpers/stylesCombinatorFactory';
-import { useComponentTheme } from '~/hooks/useComponentTheme';
-import { Elevation } from '~/components/Elevation';
-import { List } from '~/components/List';
-import { stylePropsFactory } from '~/helpers/stylePropsFactory';
+import { useStyles } from '~/hooks/useStyles';
+import { Elevation } from '../Elevation';
+import { List } from '../List';
+import { Base } from '../Base';
 import {
   menuListElevationStyles,
   menuListListStyles,
@@ -18,19 +17,14 @@ export const MenuList = forwardRef<HTMLDivElement, IMenuListProps>(
   function MenuList(props, forwardedRef) {
     const { styles, sx, innerStyles, children, ...other } = props;
 
-    const componentTheme = useComponentTheme('MenuList');
-    const stylesCombinator = useMemo(
-      () => stylesCombinatorFactory(menuListStyles, styles),
-      [styles],
-    );
-    const sxf = useMemo(
-      () => stylePropsFactory(stylesCombinator),
-      [stylesCombinator],
-    );
+    const { combineStyles, globalStyles } = useStyles({
+      name: 'MenuList',
+      styles: [menuListStyles, styles],
+    });
 
     return (
-      <div
-        {...sxf(menuListTheme, componentTheme.overridenStyles, 'host', sx)}
+      <Base
+        sx={[menuListTheme, globalStyles, combineStyles('host'), sx]}
         ref={forwardedRef}
       >
         <Elevation
@@ -42,7 +36,7 @@ export const MenuList = forwardRef<HTMLDivElement, IMenuListProps>(
         >
           {children}
         </List>
-      </div>
+      </Base>
     );
   },
 );

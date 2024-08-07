@@ -24,7 +24,7 @@ export const outlinedFieldBaseStyles = stylex.create({
     bottom: fieldBaseTokens.outlineWidth$focus,
     insetInlineEnd: fieldBaseTokens.outlineWidth$focus,
     // Ensures the container doesn't create an overhang that can be clicked on.
-    clipPath: `inset(${fieldBaseTokens.outlineWidth$focus}) 0 0 ${fieldBaseTokens.outlineWidth$focus})`,
+    clipPath: `inset(${fieldBaseTokens.outlineWidth$focus} 0 0 ${fieldBaseTokens.outlineWidth$focus})`,
   },
   section$resizable: {
     top: fieldBaseTokens.outlineWidth$focus,

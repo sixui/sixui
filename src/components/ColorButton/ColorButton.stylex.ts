@@ -4,11 +4,10 @@ import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 
 const vars = {
   // container
-  containerMinWidth: '40px',
-  containerHeight: '40px',
   containerColor: colorSchemeTokens.surfaceContainerHighest,
   containerShape: shapeTokens.corner$xs,
   containerShape$hover: shapeTokens.corner$xs,
@@ -29,7 +28,7 @@ const vars = {
   labelTextWeight: typeScaleTokens.labelWeight$md,
 
   // icon
-  iconSize: '18px',
+  iconSize: `calc(18px * ${scaleTokens.scale})`,
   iconColor: colorSchemeTokens.onSurface,
 };
 

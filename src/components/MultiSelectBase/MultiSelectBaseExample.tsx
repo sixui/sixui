@@ -10,7 +10,7 @@ import {
   renderMovieListItem,
   TOP_100_MOVIES,
   type IMovie,
-} from '~/components/FilterableListBase/movies';
+} from '../FilterableListBase/movies';
 import { MultiSelectBase } from './MultiSelectBase';
 
 export type IMultiSelectBaseExampleProps = IOmit<

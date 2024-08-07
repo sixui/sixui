@@ -1,10 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
-import { fieldBaseTokens } from '../FieldBase.stylex';
 import { motionTokens } from '~/themes/base/motion.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { stateTokens } from '~/themes/base/state.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
+import { fieldBaseTokens } from '../FieldBase.stylex';
 
 // https://github.com/material-components/material-web/blob/main/field/internal/_filled-field.scss
 
@@ -17,11 +16,8 @@ export const filledFieldBaseStyles = stylex.create({
     [fieldBaseTokens.containerOpacity$disabled]: '0.04',
 
     [fieldBaseTokens.stateLayerColor$hover]: colorSchemeTokens.onSurface,
-    [fieldBaseTokens.stateLayerOpacity$hover]:
-      stateTokens.stateLayerOpacity$hover,
+    [fieldBaseTokens.stateLayerColor$pressed]: colorSchemeTokens.onSurface,
     [fieldBaseTokens.stateLayerColor$error$hover]: colorSchemeTokens.onSurface,
-    [fieldBaseTokens.stateLayerOpacity$error$hover]:
-      stateTokens.stateLayerOpacity$hover,
   },
   container$resizable: {
     // Move the container up so that the resize handle doesn't overlap the focus
@@ -51,17 +47,15 @@ export const filledFieldBaseStyles = stylex.create({
     pointerEvents: 'none',
     position: 'absolute',
 
-    visibility: {
-      default: 'hidden',
-      ':is([data-hovered])': 'unset',
-    },
     backgroundColor: {
       default: 'unset',
       ':is([data-hovered])': fieldBaseTokens.stateLayerColor$hover,
+      ':is([data-pressed])': fieldBaseTokens.stateLayerColor$pressed,
     },
     opacity: {
       default: 1,
       ':is([data-hovered])': fieldBaseTokens.stateLayerOpacity$hover,
+      ':is([data-pressed])': fieldBaseTokens.stateLayerOpacity$pressed,
     },
   },
   stateLayer$disabled: {
@@ -108,7 +102,7 @@ export const filledFieldBaseStyles = stylex.create({
   },
   activeIndicatorBackground$disabled: {
     borderBottomWidth: fieldBaseTokens.activeIndicatorHeight$disabled,
-    borderBottomColor: fieldBaseTokens.activeIndicatorColor$disabled,
+    borderBottomColor: fieldBaseTokens.activeIndicatorHeight$disabled,
     opacity: fieldBaseTokens.activeIndicatorOpacity$disabled,
   },
   activeIndicatorBackground$error: {

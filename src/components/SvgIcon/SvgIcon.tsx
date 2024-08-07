@@ -1,16 +1,15 @@
-import stylex from '@stylexjs/stylex';
-
 import type { ISvgIconProps } from './SvgIcon.types';
+import { Base } from '../Base';
 import { svgIconStyles } from './SvgIcon.styles';
 
 export const SvgIcon: React.FC<ISvgIconProps> = (props) => {
   const { sx, icon, ...other } = props;
 
   return (
-    <div
+    <Base
       aria-hidden
       {...other}
-      {...stylex.props(svgIconStyles.host, sx)}
+      sx={[svgIconStyles.host, sx]}
       dangerouslySetInnerHTML={{ __html: icon.data }}
     />
   );

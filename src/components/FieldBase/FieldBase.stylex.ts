@@ -3,24 +3,32 @@ import stylex from '@stylexjs/stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-filled-text-field.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-filled-text-field.scss
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-outlined-text-field.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-outlined-text-field.scss
 
+const MIN_DENSITY = -2;
+const MAX_DENSITY = 0;
+const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityTokens.density}, ${MAX_DENSITY}) * ${scaleTokens.scale}`;
+
 const vars = {
-  leadingSpace: '16px',
-  trailingSpace: '16px',
-  topSpace: '12px',
-  topSpace$withLabel: '8px',
-  bottomSpace: '12px',
-  bottomSpace$withLabel: '8px',
+  leadingSpace: spacingTokens.padding$4,
+  trailingSpace: spacingTokens.padding$4,
+  topSpace: spacingTokens.padding$3,
+  topSpace$withLabel: spacingTokens.padding$2,
+  bottomSpace: spacingTokens.padding$3,
+  bottomSpace$withLabel: spacingTokens.padding$2,
 
   // container
   containerShape: 'unset',
   containerColor: 'inherit',
-  containerMinHeight: '56px',
+  containerMinHeight: `calc(56px * ${scaleTokens.scale} + ${DENSITY})`,
   // &:disabled
   containerColor$disabled: 'inherit',
   containerOpacity$disabled: 'unset',
@@ -29,6 +37,9 @@ const vars = {
   // &:hover
   stateLayerColor$hover: 'inherit',
   stateLayerOpacity$hover: stateTokens.stateLayerOpacity$hover,
+  // &:pressed
+  stateLayerColor$pressed: 'inherit',
+  stateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
   // &:error
   stateLayerColor$error$hover: 'inherit',
   stateLayerOpacity$error$hover: 'unset',
@@ -44,9 +55,9 @@ const vars = {
   contentWeight: typeScaleTokens.bodyWeight$lg,
   contentPlaceholderColor: colorSchemeTokens.onSurfaceVariant,
   contentPrefixColor: colorSchemeTokens.onSurfaceVariant,
-  contentPrefixTrailingSpace: '2px',
+  contentPrefixTrailingSpace: spacingTokens.padding$1,
   contentSuffixColor: colorSchemeTokens.onSurfaceVariant,
-  contentSuffixLeadingSpace: '2px',
+  contentSuffixLeadingSpace: spacingTokens.padding$1,
   // &:disabled
   contentColor$disabled: colorSchemeTokens.onSurface,
   contentOpacity$disabled: stateTokens.opacity$disabled,
@@ -70,7 +81,7 @@ const vars = {
   labelTextWeight: typeScaleTokens.bodyWeight$lg,
   labelTextPopulatedLineHeight: typeScaleTokens.bodyLineHeight$sm,
   labelTextPopulatedSize: typeScaleTokens.bodySize$sm,
-  labelTextPaddingBottom: '8px',
+  labelTextPaddingBottom: spacingTokens.padding$2,
   // &:hover
   labelTextColor$hover: colorSchemeTokens.onSurfaceVariant,
   // &:focus
@@ -87,7 +98,7 @@ const vars = {
 
   // leadingContent
   leadingContentColor: colorSchemeTokens.onSurfaceVariant,
-  leadingContentMinWidth: '48px',
+  leadingContentMinWidth: `calc(48px * ${scaleTokens.scale})`,
   // &:disabled
   leadingContentColor$disabled: colorSchemeTokens.onSurface,
   leadingContentOpacity$disabled: stateTokens.opacity$disabled,
@@ -103,11 +114,11 @@ const vars = {
   leadingContentColor$error$hover: colorSchemeTokens.onSurfaceVariant,
 
   // leadingIcon
-  leadingIconSize: '18px',
+  leadingIconSize: `calc(18px * ${scaleTokens.scale})`,
 
   // trailingContent
   trailingContentColor: colorSchemeTokens.onSurfaceVariant,
-  trailingContentMinWidth: '48px',
+  trailingContentMinWidth: `calc(48px * ${scaleTokens.scale})`,
   // &:disabled
   trailingContentColor$disabled: colorSchemeTokens.onSurface,
   trailingContentOpacity$disabled: stateTokens.opacity$disabled,
@@ -123,7 +134,7 @@ const vars = {
   trailingContentColor$error$hover: colorSchemeTokens.onErrorContainer,
 
   // trailingIcon
-  trailingIconSize: '18px',
+  trailingIconSize: `calc(18px * ${scaleTokens.scale})`,
 
   // supporting
   supportingTextColor: colorSchemeTokens.onSurfaceVariant,
@@ -132,9 +143,9 @@ const vars = {
   supportingTextLineHeight: typeScaleTokens.bodyLineHeight$sm,
   supportingTextLetterSpacing: typeScaleTokens.bodyLetterSpacing$sm,
   supportingTextWeight: typeScaleTokens.bodyWeight$sm,
-  supportingTextLeadingSpace: '16px',
-  supportingTextTopSpace: '4px',
-  supportingTextTrailingSpace: '16px',
+  supportingTextLeadingSpace: spacingTokens.padding$4,
+  supportingTextTopSpace: spacingTokens.padding$1,
+  supportingTextTrailingSpace: spacingTokens.padding$4,
   // &:disabled
   supportingTextColor$disabled: colorSchemeTokens.onSurface,
   supportingTextOpacity$disabled: stateTokens.opacity$disabled,
@@ -151,16 +162,16 @@ const vars = {
 
   // activeIndicator
   activeIndicatorColor: colorSchemeTokens.onSurfaceVariant,
-  activeIndicatorHeight: '1px',
+  activeIndicatorHeight: outlineTokens.width$xs,
   // &:hover
   activeIndicatorColor$hover: colorSchemeTokens.onSurface,
-  activeIndicatorHeight$hover: '1px',
+  activeIndicatorHeight$hover: outlineTokens.width$xs,
   // &:focus
   activeIndicatorColor$focus: colorSchemeTokens.primary,
-  activeIndicatorHeight$focus: '3px',
+  activeIndicatorHeight$focus: outlineTokens.width$md,
   // &:disabled
   activeIndicatorColor$disabled: colorSchemeTokens.onSurface,
-  activeIndicatorHeight$disabled: '1px',
+  activeIndicatorHeight$disabled: outlineTokens.width$xs,
   activeIndicatorOpacity$disabled: stateTokens.opacity$disabled,
   // &:error
   activeIndicatorColor$error: colorSchemeTokens.error,
@@ -171,15 +182,15 @@ const vars = {
 
   // outline
   outlineColor: colorSchemeTokens.outline,
-  outlineWidth: '1px',
+  outlineWidth: outlineTokens.width$xs,
   // &:hover
   outlineColor$hover: colorSchemeTokens.onSurface,
-  outlineWidth$hover: '1px',
+  outlineWidth$hover: outlineTokens.width$xs,
   // &:focus
   outlineColor$focus: colorSchemeTokens.primary,
-  outlineWidth$focus: '3px',
+  outlineWidth$focus: outlineTokens.width$md,
   // &:disabled
-  outlineWidth$disabled: '1px',
+  outlineWidth$disabled: outlineTokens.width$xs,
   outlineColor$disabled: colorSchemeTokens.onSurface,
   outlineOpacity$disabled: stateTokens.outlineOpacity$disabled,
   // &:error
@@ -190,7 +201,7 @@ const vars = {
   outlineColor$error$focus: colorSchemeTokens.error,
 
   // outlineLabel
-  outlineLabelPadding: '4px',
+  outlineLabelPadding: spacingTokens.padding$1,
 };
 
 export const fieldBaseTokens = stylex.defineVars(vars);

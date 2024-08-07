@@ -1,22 +1,19 @@
+import type { IBaseProps } from '../Base';
 import type {
-  IContainerProps,
   IZeroOrMore,
   ICompiledStyles,
   IMaybeAsync,
   IAny,
 } from '~/helpers/types';
-import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
-import type { IElevationStylesKey } from '~/components/Elevation';
-import type { IStateLayerStylesKey } from '~/components/StateLayer';
-import type { IFocusRingStylesKey } from '~/components/FocusRing';
-import type { IVisualState } from '~/components/VisualState';
+import type { IElevationStylesKey } from '../Elevation';
+import type { IStateLayerStylesKey } from '../StateLayer';
+import type { IFocusRingStylesKey } from '../FocusRing';
+import type { IVisualState } from '../VisualState';
 import type { ICardStylesKey } from './Card.styles';
 
 export type ICardVariant = 'elevated' | 'filled' | 'outlined';
 
-export const CARD_DEFAULT_TAG = 'div';
-
-export type ICardOwnProps = IContainerProps<ICardStylesKey> & {
+export type ICardProps = IBaseProps<ICardStylesKey> & {
   innerStyles?: {
     elevation?: IZeroOrMore<ICompiledStyles<IElevationStylesKey>>;
     stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStylesKey>>;
@@ -29,7 +26,3 @@ export type ICardOwnProps = IContainerProps<ICardStylesKey> & {
   href?: string;
   disabled?: boolean;
 };
-
-export type ICardProps<
-  TRoot extends React.ElementType = typeof CARD_DEFAULT_TAG,
-> = IPolymorphicComponentPropsWithRef<TRoot, ICardOwnProps>;

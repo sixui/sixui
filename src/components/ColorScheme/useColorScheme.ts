@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import {
   ColorSchemeContext,
   type IColorSchemeContextValue,
-} from './ColorSchemeContext';
+} from './ColorScheme.context';
 
 export const useColorScheme = (): IColorSchemeContextValue => {
   const context = useContext(ColorSchemeContext);

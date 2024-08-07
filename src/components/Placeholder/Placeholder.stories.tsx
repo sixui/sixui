@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
 import type { IPlaceholderProps } from './Placeholder.types';
-import { ComponentShowcase } from '~/components/ComponentShowcase';
+import { ComponentShowcase } from '../ComponentShowcase';
 import { Placeholder } from './Placeholder';
 
 const meta = {
@@ -32,7 +32,7 @@ export const Basic: IStory = {
   ),
   args: {
     ...defaultArgs,
-    children: 'Label',
+    label: 'Label',
     crosshairs: true,
   },
 };

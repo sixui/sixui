@@ -1,17 +1,14 @@
+import type { IBaseProps } from '../Base';
 import type {
   IForwardableProps,
   IRendererWithForwardedProps,
 } from '~/helpers/react/forwardablePropsTypes';
-import type { IPolymorphicComponentPropsWithRef } from '~/helpers/react/polymorphicComponentTypes';
-import type { IContainerProps } from '~/helpers/types';
-import type { IVisualState } from '~/components/VisualState';
+import type { IVisualState } from '../VisualState';
 import type { IFieldBaseStylesKey } from './FieldBase.styles';
-
-export const FIELD_BASE_DEFAULT_TAG = 'div';
 
 export type IFieldBaseVariant = 'filled' | 'outlined';
 
-export type IFieldBaseOwnProps = IContainerProps<IFieldBaseStylesKey> &
+export type IFieldBaseProps = IBaseProps<IFieldBaseStylesKey> &
   IForwardableProps & {
     visualState?: IVisualState;
     variant?: IFieldBaseVariant | false;
@@ -26,6 +23,7 @@ export type IFieldBaseOwnProps = IContainerProps<IFieldBaseStylesKey> &
     trailingIcon?: React.ReactNode;
     label?: string;
     max?: number | string;
+    maxLength?: number;
     populated?: boolean;
     required?: boolean;
     resizable?: boolean;
@@ -37,7 +35,3 @@ export type IFieldBaseOwnProps = IContainerProps<IFieldBaseStylesKey> &
     children?: IRendererWithForwardedProps;
     containerRef?: React.Ref<HTMLDivElement>;
   };
-
-export type IFieldBaseProps<
-  TRoot extends React.ElementType = typeof FIELD_BASE_DEFAULT_TAG,
-> = IPolymorphicComponentPropsWithRef<TRoot, IFieldBaseOwnProps>;

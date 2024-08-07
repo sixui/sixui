@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
-import type { ILabeledOwnProps } from './Labeled.types';
+import type { ILabeledProps } from './Labeled.types';
 import {
   ComponentShowcase,
   type IComponentPresentation,
-} from '~/components/ComponentShowcase';
-import { Checkbox } from '~/components/Checkbox';
-import { Switch } from '~/components/Switch';
-import { Radio } from '~/components/Radio';
-import { TextInputField } from '~/components/TextInputField';
+} from '../ComponentShowcase';
+import { Checkbox } from '../Checkbox';
+import { Switch } from '../Switch';
+import { Radio } from '../Radio';
+import { TextInputField } from '../TextInputField';
 import { Labeled } from './Labeled';
 
 const meta = {
@@ -30,19 +30,19 @@ const styles = stylex.create({
 const defaultArgs = {
   label: 'Label',
   sx: styles.host,
-} satisfies Partial<ILabeledOwnProps>;
+} satisfies Partial<ILabeledProps>;
 
-const colsHorizontal: Array<IComponentPresentation<ILabeledOwnProps>> = [
+const colsHorizontal: Array<IComponentPresentation<ILabeledProps>> = [
   { legend: 'Left', props: { labelPosition: 'left' } },
   { legend: 'Right', props: { labelPosition: 'right' } },
 ];
 
-const colsVertical: Array<IComponentPresentation<ILabeledOwnProps>> = [
+const colsVertical: Array<IComponentPresentation<ILabeledProps>> = [
   { legend: 'Top', props: { labelPosition: 'top' } },
   { legend: 'Bottom', props: { labelPosition: 'bottom' } },
 ];
 
-const rows: Array<IComponentPresentation<ILabeledOwnProps>> = [
+const rows: Array<IComponentPresentation<ILabeledProps>> = [
   { legend: 'With label' },
   {
     legend: 'With supporting text',
@@ -78,8 +78,7 @@ export const WithTextField: IStory = {
   ),
   args: {
     ...defaultArgs,
-    orientation: 'vertical',
-    as: TextInputField,
+    children: <TextInputField />,
     trailingAction: 'Action',
     sx: styles.host$lg,
   },
@@ -97,8 +96,7 @@ export const WithCheckbox: IStory = {
   ),
   args: {
     ...defaultArgs,
-    orientation: 'horizontal',
-    as: Checkbox,
+    children: <Checkbox />,
   },
 };
 
@@ -114,8 +112,7 @@ export const WithRadio: IStory = {
   ),
   args: {
     ...defaultArgs,
-    orientation: 'horizontal',
-    as: Radio,
+    children: <Radio />,
   },
 };
 
@@ -131,8 +128,7 @@ export const WithSwitch: IStory = {
   ),
   args: {
     ...defaultArgs,
-    orientation: 'horizontal',
-    as: Switch,
+    children: <Switch />,
   },
 };
 

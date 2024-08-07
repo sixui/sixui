@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { focusRingTokens } from '~/components/FocusRing/FocusRing.stylex';
+import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
 import { breadcrumbsTokens } from './Breadcrumbs.stylex';
 
 export type IBreadcrumbsStylesKey = keyof typeof breadcrumbsStyles;
@@ -12,7 +12,7 @@ export const breadcrumbsStyles = stylex.create({
     padding: 0,
     margin: 0,
     listStyle: 'none',
-    gap: 8,
+    gap: breadcrumbsTokens.gap,
   },
   item: {
     color: breadcrumbsTokens.itemColor,
@@ -24,7 +24,9 @@ export const breadcrumbsStyles = stylex.create({
     fontSize: breadcrumbsTokens.separatorSize,
   },
   icon: {
-    width: 18,
+    fontSize: breadcrumbsTokens.expandButtonIconSize,
+    inlineSize: breadcrumbsTokens.expandButtonIconSize,
+    blockSize: breadcrumbsTokens.expandButtonIconSize,
   },
   expandButton: {
     display: 'flex',

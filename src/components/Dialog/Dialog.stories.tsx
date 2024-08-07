@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
-import type { IDialogOwnProps, IDialogProps } from './Dialog.types';
+import type { IDialogProps } from './Dialog.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { commonStyles } from '~/helpers/commonStyles';
-import { Button } from '~/components/Button';
-import { TextInputField } from '~/components/TextInputField';
+import { Button } from '../Button';
+import { TextInputField } from '../TextInputField';
 import { Dialog } from './Dialog';
 
 // https://m3.material.io/components/dialogs/overview
@@ -15,13 +15,13 @@ import { Dialog } from './Dialog';
 
 const meta = {
   component: Dialog,
-} satisfies Meta<IDialogOwnProps>;
+} satisfies Meta<IDialogProps>;
 
-type IStory = StoryObj<IDialogOwnProps>;
+type IStory = StoryObj<IDialogProps>;
 
 const defaultArgs = {
   onOpenChange: (...args) => void sbHandleEvent('openChange', args),
-} satisfies Partial<IDialogOwnProps>;
+} satisfies Partial<IDialogProps>;
 
 export const Uncontrolled: IStory = {
   render: (props) => <Dialog {...props} />,
@@ -53,7 +53,7 @@ export const Uncontrolled: IStory = {
   },
 };
 
-const ControlledDialogDemo: React.FC<IDialogOwnProps> = (props) => {
+const ControlledDialogDemo: React.FC<IDialogProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -92,7 +92,7 @@ export const Controlled: IStory = {
   args: defaultArgs,
 };
 
-const FormDialogDemo: React.FC<IDialogProps<'form'>> = (props) => {
+const FormDialogDemo: React.FC<IDialogProps> = (props) => {
   const [name, setName] = useState<string>();
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -101,7 +101,7 @@ const FormDialogDemo: React.FC<IDialogProps<'form'>> = (props) => {
       <Dialog
         {...props}
         ref={formRef}
-        as='form'
+        component='form'
         trigger={({ setRef, getProps }) => (
           <Button {...getProps()} ref={setRef}>
             Open
