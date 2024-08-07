@@ -3,6 +3,7 @@ import stylex from '@stylexjs/stylex';
 
 import type { ICardProps } from './Card.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import {
   type IComponentPresentation,
   ComponentShowcase,
@@ -13,6 +14,7 @@ import { CardMedia } from '../CardMedia';
 import { CardTitle } from '../CardTitle';
 import { CardActions } from '../CardActions';
 import { Card } from './Card';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 
 // https://m3.material.io/components/cards
 // https://github.com/material-components/material-web/blob/main/labs/card/demo/stories.ts
@@ -25,20 +27,21 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   card: {
-    flexDirection: 'row',
-    width: 600,
-  },
-  content: {
     display: 'flex',
     flexDirection: 'row',
+    width: `calc(600px * ${scaleTokens.scale})`,
+  },
+  content$twoCols: {
+    display: 'grid',
+    gridTemplateColumns: 'min-content 1fr',
   },
   innerContent: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 8,
+    gap: spacingTokens.padding$2,
   },
   media: {
-    width: 156,
+    width: `calc(156px * ${scaleTokens.scale})`,
   },
   mediaInner: {
     height: '100%',
@@ -60,7 +63,7 @@ const NonActionableContent: React.FC<{ headline?: string }> = ({
   headline,
 }) => (
   <>
-    <CardContent sx={styles.content}>
+    <CardContent sx={styles.content$twoCols}>
       <CardMedia
         sx={styles.mediaInner}
         src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
@@ -96,7 +99,7 @@ const NonActionableContentVariant: React.FC<{ headline?: string }> = ({
       sx={styles.media}
       src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
     />
-    <CardContent sx={styles.content}>
+    <CardContent>
       <div {...stylex.props(styles.innerContent)}>
         <CardTitle
           headline={headline ?? 'Headline'}
@@ -121,7 +124,7 @@ const ActionableContent: React.FC<{ headline?: string }> = ({ headline }) => (
       sx={styles.media}
       src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
     />
-    <CardContent sx={styles.content}>
+    <CardContent>
       <div {...stylex.props(styles.innerContent)}>
         <CardTitle
           headline={headline ?? 'Headline'}
@@ -153,7 +156,9 @@ const states: Array<IComponentPresentation<ICardProps>> = [
 const cols: Array<IComponentPresentation<ICardProps>> = [
   {
     legend: 'Non-actionable',
-    props: { children: <NonActionableContent /> },
+    props: {
+      children: <NonActionableContent />,
+    },
   },
   {
     legend: 'Actionable',
@@ -193,10 +198,7 @@ export const Variants: IStory = {
   render: (props) => (
     <ComponentShowcase component={Card} props={props} rows={variants} />
   ),
-  args: {
-    ...defaultArgs,
-    sx: styles.card,
-  },
+  args: defaultArgs,
 };
 
 export const Elevated: IStory = {

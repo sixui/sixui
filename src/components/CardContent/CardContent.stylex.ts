@@ -1,18 +1,19 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 
 const vars = {
-  leadingSpace: '16px',
-  trailingSpace: '16px',
-  topSpace: '16px',
-  bottomSpace: '16px',
+  leadingSpace: spacingTokens.padding$4,
+  trailingSpace: spacingTokens.padding$4,
+  topSpace: spacingTokens.padding$4,
+  bottomSpace: spacingTokens.padding$4,
   textColor: colorSchemeTokens.onSurface,
   // &:actionable
-  leadingSpace$actionable: '16px',
-  trailingSpace$actionable: '16px',
-  topSpace$actionable: '16px',
-  bottomSpace$actionable: '16px',
+  leadingSpace$actionable: spacingTokens.padding$4,
+  trailingSpace$actionable: spacingTokens.padding$4,
+  topSpace$actionable: spacingTokens.padding$4,
+  bottomSpace$actionable: spacingTokens.padding$4,
 };
 
 export const cardContentTokens = stylex.defineVars(vars);

@@ -3,6 +3,9 @@ import { useState } from 'react';
 
 import { TextInputField } from '~/components/TextInputField';
 import { themeProviderStyles } from '~/components/Theme';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { shapeTheme } from '~/themes/base/shape.stylex';
+import { spacingTheme } from '~/themes/base/spacing.stylex';
 import { typeScaleTheme } from '~/themes/base/typeScale.stylex';
 
 export type IThemeControlsProps = {
@@ -15,7 +18,7 @@ const styles = stylex.create({
     gap: 1,
   },
   control: {
-    width: 150,
+    width: `calc(150px * ${scaleTokens.scale})`,
     flexGrow: 0,
   },
 });
@@ -30,15 +33,15 @@ export const ThemeControls: React.FC<IThemeControlsProps> = (props) => {
       {...stylex.props(
         themeProviderStyles.dynamicScale({
           scale,
-          minScale: '0.5',
-          maxScale: '2',
         }),
         themeProviderStyles.dynamicDensity({
           density,
           interval: '4px',
           minTargetSize: '48',
         }),
+        spacingTheme,
         typeScaleTheme,
+        shapeTheme,
       )}
     >
       <div {...stylex.props(styles.controls)}>

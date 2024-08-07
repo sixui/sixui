@@ -2,16 +2,17 @@ import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { buttonTokens } from '../Button.stylex';
 
 export const snackbarButtonStyles = stylex.create({
   host: {
-    [buttonTokens.leadingSpace]: '16px',
-    [buttonTokens.trailingSpace]: '16px',
-    [buttonTokens.leadingIconLeadingSpace]: '12px',
-    [buttonTokens.leadingIconTrailingSpace]: '16px',
-    [buttonTokens.trailingIconLeadingSpace]: '16px',
-    [buttonTokens.trailingIconTrailingSpace]: '12px',
+    [buttonTokens.leadingSpace]: spacingTokens.padding$4,
+    [buttonTokens.trailingSpace]: spacingTokens.padding$4,
+    [buttonTokens.leadingIconLeadingSpace]: spacingTokens.padding$3,
+    [buttonTokens.leadingIconTrailingSpace]: spacingTokens.padding$4,
+    [buttonTokens.trailingIconLeadingSpace]: spacingTokens.padding$4,
+    [buttonTokens.trailingIconTrailingSpace]: spacingTokens.padding$3,
 
     [buttonTokens.containerHeight]: '32px',
     [buttonTokens.containerColor]: 'transparent',

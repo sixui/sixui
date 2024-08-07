@@ -2,6 +2,7 @@ import stylex from '@stylexjs/stylex';
 
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 
 const vars = {
   // item
@@ -16,8 +17,9 @@ const vars = {
   expandButtonContainerColor: colorSchemeTokens.surfaceContainer,
   expandButtonContainerWidth: '24px',
   expandButtonContainerHeight: '16px',
-  expandButtonLeadingSpace: '4px',
-  expandButtonTrailingSpace: '4px',
+  expandButtonLeadingSpace: spacingTokens.padding$1,
+  expandButtonTrailingSpace: spacingTokens.padding$1,
+  expandButtonIconSize: '18px',
 
   // expandButtonLabelText
   expandButtonLabelTextColor: colorSchemeTokens.onSurface,

@@ -1,7 +1,14 @@
 import stylex from '@stylexjs/stylex';
 
 import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { breadcrumbsTokens } from './Breadcrumbs.stylex';
+
+const MIN_DENSITY = -1;
+const MAX_DENSITY = 0;
+const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityTokens.density}, ${MAX_DENSITY}) * ${scaleTokens.scale}`;
 
 export type IBreadcrumbsStylesKey = keyof typeof breadcrumbsStyles;
 export const breadcrumbsStyles = stylex.create({
@@ -12,7 +19,7 @@ export const breadcrumbsStyles = stylex.create({
     padding: 0,
     margin: 0,
     listStyle: 'none',
-    gap: 8,
+    gap: spacingTokens.padding$2,
   },
   item: {
     color: breadcrumbsTokens.itemColor,
@@ -24,7 +31,9 @@ export const breadcrumbsStyles = stylex.create({
     fontSize: breadcrumbsTokens.separatorSize,
   },
   icon: {
-    width: 18,
+    fontSize: `calc(18px * ${scaleTokens.scale})`,
+    inlineSize: `calc(18px * ${scaleTokens.scale})`,
+    blockSize: `calc(18px * ${scaleTokens.scale})`,
   },
   expandButton: {
     display: 'flex',
@@ -43,14 +52,14 @@ export const breadcrumbsStyles = stylex.create({
     },
     cursor: 'pointer',
     backgroundColor: breadcrumbsTokens.expandButtonContainerColor,
-    borderRadius: breadcrumbsTokens.expandButtonContainerShape,
-    width: breadcrumbsTokens.expandButtonContainerWidth,
-    height: breadcrumbsTokens.expandButtonContainerHeight,
+    borderRadius: `calc(${breadcrumbsTokens.expandButtonContainerShape} * ${scaleTokens.scale})`,
+    width: `calc(${breadcrumbsTokens.expandButtonContainerWidth} * ${scaleTokens.scale})`,
+    height: `calc(${breadcrumbsTokens.expandButtonContainerHeight} * ${scaleTokens.scale} + ${DENSITY})`,
   },
 });
 
 export const breadcrumbsExpandButtonFocusRingStyles = stylex.create({
   host: {
-    [focusRingTokens.shape]: breadcrumbsTokens.expandButtonContainerShape,
+    [focusRingTokens.shape]: `calc(${breadcrumbsTokens.expandButtonContainerShape} * ${scaleTokens.scale})`,
   },
 });

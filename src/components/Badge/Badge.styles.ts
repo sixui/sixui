@@ -1,6 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import { motionTokens } from '~/themes/base/motion.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { badgeTokens } from './Badge.stylex';
 
 export type IBadgeStylesKey = keyof typeof badgeStyles;
@@ -15,8 +16,8 @@ export const badgeStyles = stylex.create({
     alignItems: 'center',
     boxSizing: 'border-box',
     borderRadius: badgeTokens.containerShape,
-    minWidth: badgeTokens.containerMinWidth,
-    height: badgeTokens.containerHeight,
+    minWidth: `max(${badgeTokens.containerMinWidth}, calc(${badgeTokens.containerMinWidth} * ${scaleTokens.scale}))`,
+    height: `max(${badgeTokens.containerHeight}, calc(${badgeTokens.containerHeight} * ${scaleTokens.scale}))`,
     padding: badgeTokens.containerPadding,
     transitionProperty: 'transform',
     transitionDuration: motionTokens.duration$short3,
