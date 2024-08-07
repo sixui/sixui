@@ -1,3 +1,15 @@
+# v0.0.412 (Wed Aug 07 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(FilledFieldBase): style on error state ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.411 (Wed Aug 07 2024)
 
 #### ⚠️ Pushed to `main`
