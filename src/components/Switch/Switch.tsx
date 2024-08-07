@@ -68,6 +68,7 @@ export const Switch = forwardRef<HTMLInputElement, ISwitchProps>(
     const { combineStyles, getStyles, globalStyles } = useStyles({
       name: 'Switch',
       styles: [switchStyles, styles],
+      visualState,
     });
 
     const [checked, setChecked] = useControlledValue({

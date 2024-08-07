@@ -1,10 +1,13 @@
 import stylex from '@stylexjs/stylex';
 
+import { motionTokens } from '~/themes/base/motion.stylex';
 import { circularProgressIndicatorTokens } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { listItemTokens } from '../ListItem/ListItem.stylex';
 import { itemTokens } from '../Item/Item.stylex';
-import { motionTokens } from '~/themes/base/motion.stylex';
 import { disclosureButtonTokens } from './DisclosureButton.stylex';
+import { checkboxTokens } from '../Checkbox/Checkbox.stylex';
+import { switchTokens } from '../Switch/Switch.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 
 export type IDisclosureButtonStylesKey = keyof typeof disclosureButtonStyles;
 export const disclosureButtonStyles = stylex.create({
@@ -88,12 +91,10 @@ export const disclosureButtonStyles = stylex.create({
       disclosureButtonTokens.expandedIconColor$pressed,
   },
   button$checkable: {
-    // FIXME:
-    [listItemTokens.leadingSpace]: 'calc(16px + 18px + 12px)',
+    [listItemTokens.leadingSpace]: `calc(${disclosureButtonTokens.toggleLeadingSpace} + ${checkboxTokens.containerSize} * ${scaleTokens.scale} + ${disclosureButtonTokens.toggleTrailingSpace})`,
   },
   button$switchable: {
-    // FIXME:
-    [listItemTokens.leadingSpace]: 'calc(16px + 52px + 16px)',
+    [listItemTokens.leadingSpace]: `calc(${disclosureButtonTokens.toggleLeadingSpace} + ${switchTokens.trackWidth} * ${scaleTokens.scale} + ${disclosureButtonTokens.toggleTrailingSpace})`,
   },
   button$toggledOff: {
     [listItemTokens.containerColor]:
@@ -128,8 +129,7 @@ export const disclosureButtonStyles = stylex.create({
     bottom: 0,
     display: 'flex',
     alignItems: 'center',
-    // FIXME:
-    marginLeft: 16,
+    marginLeft: disclosureButtonTokens.toggleLeadingSpace,
   },
 });
 

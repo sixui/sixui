@@ -63,7 +63,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  children: <IndeterminateCircularProgressIndicator size='lg' />,
+  children: <IndeterminateCircularProgressIndicator />,
 } satisfies Partial<IScrimProps>;
 
 export const Variants: IStory = {

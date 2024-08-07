@@ -139,7 +139,7 @@ const vars = {
   selectedLabelTextColor$pressed: 'inherit',
 
   // icon
-  iconSize: `calc(18px * ${scaleTokens.scale} + ${DENSITY})`,
+  iconSize: `calc(18px * ${scaleTokens.scale})`,
   iconColor: colorSchemeTokens.onSurfaceVariant,
   iconColor$interactive: colorSchemeTokens.primary,
   // &:disabled

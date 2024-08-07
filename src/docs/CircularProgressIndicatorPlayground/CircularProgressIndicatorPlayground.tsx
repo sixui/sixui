@@ -11,27 +11,6 @@ export const circularprogressindicatorPlaygroundSections: IPlaygroundSections<IC
       title: 'Circular Progress Indicator',
       options: [
         {
-          label: 'Size',
-          input: {
-            type: 'string',
-            value: 'md',
-            items: [
-              {
-                label: 'Medium',
-                value: 'md',
-              },
-              {
-                label: 'Large',
-                value: 'lg',
-              },
-            ],
-            targetProp: 'size',
-          },
-          modifiers: {
-            required: true,
-          },
-        },
-        {
           label: 'Progress',
           input: {
             type: 'number',
@@ -49,7 +28,6 @@ export const circularprogressindicatorPlaygroundSections: IPlaygroundSections<IC
           },
           getModifiers: (sectionsProps) => ({
             disabled:
-              sectionsProps?.circularProgressIndicator.size !== 'lg' ||
               sectionsProps?.circularProgressIndicator.value === undefined,
           }),
         },

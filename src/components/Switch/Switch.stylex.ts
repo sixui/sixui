@@ -2,12 +2,14 @@ import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { densityTokens } from '~/themes/base/density.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
 
-const MIN_DENSITY_SCALE = -1;
-const MAX_DENSITY_SCALE = 0;
-const DENSITY_SCALE = `${densityTokens.interval} * clamp(${densityTokens.scale}, ${MIN_DENSITY_SCALE}, ${MAX_DENSITY_SCALE})`;
+const MIN_DENSITY = -2;
+const MAX_DENSITY = 0;
+const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityTokens.density}, ${MAX_DENSITY}) * ${scaleTokens.scale}`;
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-switch.scss
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-comp-switch.scss
@@ -15,8 +17,8 @@ const DENSITY_SCALE = `${densityTokens.interval} * clamp(${densityTokens.scale},
 const vars = {
   // track
   trackShape: shapeTokens.corner$full,
-  trackWidth: '52px',
-  trackHeight: `calc(32px + ${DENSITY_SCALE})`,
+  trackWidth: `calc(52px * ${scaleTokens.scale})`,
+  trackHeight: `calc(32px * ${scaleTokens.scale} + ${DENSITY})`,
   trackColor: colorSchemeTokens.surfaceContainerHighest,
   // &:disabled
   trackColor$disabled: colorSchemeTokens.surfaceContainerHighest,
@@ -40,7 +42,7 @@ const vars = {
   selectedTrackColor$pressed: colorSchemeTokens.primary,
 
   // trackOutline
-  trackOutlineWidth: '2px',
+  trackOutlineWidth: outlineTokens.width$sm,
   trackOutlineColor: colorSchemeTokens.outline,
   // &:disabled
   trackOutlineColor$disabled: colorSchemeTokens.onSurface,
@@ -54,10 +56,10 @@ const vars = {
   // handle
   handleShape: shapeTokens.corner$full,
   handleColor: colorSchemeTokens.outline,
-  handleWidth: '16px',
-  handleHeight: '16px',
-  handleWidth$withIcon: `calc(24px + ${DENSITY_SCALE})`,
-  handleHeight$withIcon: `calc(24px + ${DENSITY_SCALE})`,
+  handleWidth: `calc(16px * ${scaleTokens.scale})`,
+  handleHeight: `calc(16px * ${scaleTokens.scale})`,
+  handleWidth$withIcon: `calc(24px * ${scaleTokens.scale} + ${DENSITY})`,
+  handleHeight$withIcon: `calc(24px * ${scaleTokens.scale} + ${DENSITY})`,
   // &:disabled
   handleColor$disabled: colorSchemeTokens.onSurfaceVariant,
   handleOpacity$disabled: stateTokens.opacity$disabled,
@@ -67,13 +69,13 @@ const vars = {
   handleColor$focus: colorSchemeTokens.onSurfaceVariant,
   // &:pressed
   handleColor$pressed: colorSchemeTokens.onSurfaceVariant,
-  handleWidth$pressed: `calc(28px + ${DENSITY_SCALE})`,
-  handleHeight$pressed: `calc(28px + ${DENSITY_SCALE})`,
+  handleWidth$pressed: `calc(28px * ${scaleTokens.scale} + ${DENSITY})`,
+  handleHeight$pressed: `calc(28px * ${scaleTokens.scale} + ${DENSITY})`,
 
   // selectedHandle
   selectedHandleColor: colorSchemeTokens.onPrimary,
-  selectedHandleWidth: `calc(24px + ${DENSITY_SCALE})`,
-  selectedHandleHeight: `calc(24px + ${DENSITY_SCALE})`,
+  selectedHandleWidth: `calc(24px * ${scaleTokens.scale} + ${DENSITY})`,
+  selectedHandleHeight: `calc(24px * ${scaleTokens.scale} + ${DENSITY})`,
   // &:disabled
   selectedHandleColor$disabled: colorSchemeTokens.surface,
   selectedHandleOpacity$disabled: '1',
@@ -86,7 +88,7 @@ const vars = {
 
   // icon
   iconColor: colorSchemeTokens.surfaceContainerHighest,
-  iconSize: '16px',
+  iconSize: `calc(16px * ${scaleTokens.scale})`,
   // &:disabled
   iconColor$disabled: colorSchemeTokens.surface,
   iconOpacity$disabled: '0.76',
@@ -99,7 +101,7 @@ const vars = {
 
   // selectedIcon
   selectedIconColor: colorSchemeTokens.onPrimaryContainer,
-  selectedIconSize: '16px',
+  selectedIconSize: `calc(16px * ${scaleTokens.scale})`,
   // &:disabled
   selectedIconColor$disabled: colorSchemeTokens.onSurface,
   selectedIconOpacity$disabled: stateTokens.opacity$disabled,

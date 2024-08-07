@@ -168,7 +168,7 @@ const vars = {
   activeIndicatorHeight$hover: outlineTokens.width$xs,
   // &:focus
   activeIndicatorColor$focus: colorSchemeTokens.primary,
-  activeIndicatorHeight$focus: outlineTokens.width$3,
+  activeIndicatorHeight$focus: outlineTokens.width$md,
   // &:disabled
   activeIndicatorColor$disabled: colorSchemeTokens.onSurface,
   activeIndicatorHeight$disabled: outlineTokens.width$xs,
@@ -188,7 +188,7 @@ const vars = {
   outlineWidth$hover: outlineTokens.width$xs,
   // &:focus
   outlineColor$focus: colorSchemeTokens.primary,
-  outlineWidth$focus: outlineTokens.width$3,
+  outlineWidth$focus: outlineTokens.width$md,
   // &:disabled
   outlineWidth$disabled: outlineTokens.width$xs,
   outlineColor$disabled: colorSchemeTokens.onSurface,

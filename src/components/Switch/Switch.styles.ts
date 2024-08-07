@@ -6,6 +6,7 @@ import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
 import { motionTokens } from '~/themes/base/motion.stylex';
 import { switchStateTokens } from './Switch.state.stylex';
 import { switchTokens } from './Switch.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
 
 // https://github.com/material-components/material-web/blob/main/switch/internal/_switch.scss
 // https://github.com/material-components/material-web/blob/main/switch/internal/_track.scss
@@ -47,11 +48,11 @@ export const switchStyles = stylex.create({
   // Input is also touch target
   input: {
     appearance: 'none',
-    height: 48,
+    width: densityTokens.minTargetSize,
+    height: densityTokens.minTargetSize,
     outline: 'none',
     margin: 0,
     position: 'absolute',
-    width: '100%',
     zIndex: '1',
     cursor: 'inherit',
   },

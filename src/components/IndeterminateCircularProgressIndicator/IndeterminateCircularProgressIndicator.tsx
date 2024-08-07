@@ -73,11 +73,7 @@ export const IndeterminateCircularProgressIndicator = forwardRef<
           </div>
         </div>
       </div>
-      {children ? (
-        <div {...getStyles('layer', 'label', disabled && 'label$disabled')}>
-          {children}
-        </div>
-      ) : null}
+      {children ? <div {...getStyles('layer')}>{children}</div> : null}
     </Base>
   );
 });

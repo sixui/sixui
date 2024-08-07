@@ -1,5 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { fieldBaseTokens } from '../FieldBase/FieldBase.stylex';
 import { textFieldBaseTokens } from './TextFieldBase.stylex';
 
@@ -25,7 +26,7 @@ export const textFieldBaseStyles = stylex.create({
     overflowWrap: 'inherit',
     whiteSpace: 'inherit',
     resize: 'none',
-    minWidth: 30,
+    minWidth: `calc(30px * ${scaleTokens.scale})`,
     fontFamily: fieldBaseTokens.contentFont,
     fontSize: fieldBaseTokens.contentSize,
     fontWeight: fieldBaseTokens.contentWeight,

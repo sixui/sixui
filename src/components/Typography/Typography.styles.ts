@@ -1,4 +1,5 @@
 import stylex from '@stylexjs/stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 
@@ -8,7 +9,7 @@ export const typographyStyles = stylex.create({
     margin: 0,
   },
   host$gutterBottom: {
-    marginBottom: '0.35em',
+    marginBottom: spacingTokens.padding$1,
   },
   display$lg: {
     fontFamily: typeScaleTokens.displayFont$lg,
