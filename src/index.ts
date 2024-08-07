@@ -2,6 +2,7 @@
 export * from './components/Anchored';
 export * from './components/Avatar';
 export * from './components/Badge';
+export * from './components/Base';
 export * from './components/Breadcrumbs';
 export * from './components/Button';
 export * from './components/ButtonBase';
