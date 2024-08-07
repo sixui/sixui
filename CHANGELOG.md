@@ -1,3 +1,15 @@
+# v0.0.409 (Wed Aug 07 2024)
+
+#### 🐛 Bug Fix
+
+- Refactor/polymorphism [#39](https://github.com/sixui/sixui/pull/39) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.408 (Sat Aug 03 2024)
 
 #### ⚠️ Pushed to `main`
