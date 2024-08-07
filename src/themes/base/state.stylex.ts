@@ -4,7 +4,7 @@ import type { IStateTheme } from './state.types';
 
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-sys-state.scss
 
-export const stateTokens = stylex.defineVars<IStateTheme>({
+const vars = {
   // statelayer
   stateLayerOpacity$hover: '0.08',
   // stateLayerOpacity$focus: '0', // not implemented
@@ -19,4 +19,6 @@ export const stateTokens = stylex.defineVars<IStateTheme>({
 
   // outline
   outlineOpacity$disabled: '0.12',
-});
+};
+
+export const stateTokens = stylex.defineVars<IStateTheme>(vars);

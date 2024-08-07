@@ -4,7 +4,7 @@ import type { IShapeTheme } from './shape.types';
 
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-sys-shape.scss
 
-export const shapeTokens = stylex.defineVars<IShapeTheme>({
+const vars = {
   corner$full: '999px',
 
   corner$xl: '28px',
@@ -24,4 +24,6 @@ export const shapeTokens = stylex.defineVars<IShapeTheme>({
   cornerBottom$xs: '0 0 6px 6px',
 
   corner$none: '0',
-});
+};
+
+export const shapeTokens = stylex.defineVars<IShapeTheme>(vars);

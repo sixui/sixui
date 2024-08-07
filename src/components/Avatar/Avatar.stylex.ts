@@ -1,13 +1,18 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { densityTokens } from '~/themes/base/density.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
+
+const MIN_DENSITY = -3;
+const MAX_DENSITY = 0;
+const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityTokens.density}, ${MAX_DENSITY})`;
 
 const vars = {
   // container
   containerShape: 'unset',
-  containerSize: `calc(40px * ${densityTokens.scale})`,
+  containerSize: `calc((40px + ${DENSITY}) * ${scaleTokens.scale})`,
   containerColor: colorSchemeTokens.primaryContainer,
 
   // label

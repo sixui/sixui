@@ -9,6 +9,7 @@ import type {
   ITypeScaleTheme,
   IZIndexTheme,
   IDensityTheme,
+  IScaleTheme,
 } from '~/themes/base';
 import { densityTokens } from '~/themes/base/density.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
@@ -18,6 +19,7 @@ import { typeFaceTokens } from '~/themes/base/typeFace.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
 import { zIndexTokens } from '~/themes/base/zIndex.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 
 export const themeProviderStyles = stylex.create({
   wrapper: {
@@ -248,8 +250,13 @@ export const themeProviderStyles = stylex.create({
     [zIndexTokens.max]: zIndex.max,
   }),
   dynamicDensity: (density: IDensityTheme) => ({
+    [densityTokens.density]: density.density,
     [densityTokens.interval]: density.interval,
-    [densityTokens.scale]: density.scale,
     [densityTokens.minTargetSize]: density.minTargetSize,
+  }),
+  dynamicScale: (scale: IScaleTheme) => ({
+    [scaleTokens.scale]: scale.scale,
+    [scaleTokens.minScale]: scale.minScale,
+    [scaleTokens.maxScale]: scale.maxScale,
   }),
 });

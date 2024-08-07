@@ -5,7 +5,7 @@ import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
-import { densityTokens } from '~/themes/base/density.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 
 const vars = {
   gap: spacingTokens.padding$2,
@@ -31,7 +31,7 @@ const vars = {
   // container
   containerColor: 'unset',
   containerElevation: 'unset',
-  containerHeight: `calc(40px * ${densityTokens.scale})`,
+  containerHeight: `calc(40px * ${scaleTokens.scale})`,
   containerShape: shapeTokens.corner$full,
   // &:disabled
   containerColor$disabled: 'unset',
@@ -70,7 +70,7 @@ const vars = {
   labelTextOpacity$disabled: stateTokens.opacity$disabled,
 
   // icon
-  iconSize: `calc(18px * ${densityTokens.scale})`,
+  iconSize: `calc(18px * ${scaleTokens.scale})`,
   iconColor: 'inherit',
   // &:focus
   iconColor$focus: 'inherit',

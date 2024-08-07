@@ -50,7 +50,7 @@
     "cy": "cypress open"
   },
   "lint-staged": {
-    "src/**/*.(ts|js)?(x)": [
+    "**/*.(ts|js)?(x)": [
       "pnpm prettify:fix:file",
       "pnpm lint:fix:file"
     ]

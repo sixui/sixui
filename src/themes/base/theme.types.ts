@@ -8,6 +8,7 @@ import type { IStateTheme } from './state.types';
 import type { IZIndexTheme } from './zIndex.types';
 import type { IDensityTheme } from './density.types';
 import { ISpacingTheme } from './spacing.types';
+import { IScaleTheme } from './scale.types';
 
 export type IThemeSchemes = Record<IColorSchemeVariant, IColorScheme>;
 
@@ -19,6 +20,7 @@ export type ITheme = {
     contrast: number;
   };
   schemes?: IThemeSchemes;
+  scale?: IScaleTheme;
   shape?: IShapeTheme;
   motion?: IMotionTheme;
   typeFace?: ITypeFaceTheme;

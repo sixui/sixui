@@ -2,9 +2,10 @@ import stylex from '@stylexjs/stylex';
 
 import type { IDensityTheme } from './density.types';
 
-export const densityTokens = stylex.defineVars<IDensityTheme>({
-  scale: '0.75',
-  minScale: '0.5',
-  maxScale: '5',
+const vars = {
+  density: '0',
+  interval: '4px',
   minTargetSize: '48px',
-});
+};
+
+export const densityTokens = stylex.defineVars<IDensityTheme>(vars);

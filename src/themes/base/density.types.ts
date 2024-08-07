@@ -1,6 +1,5 @@
 export type IDensityTheme = {
-  scale: string;
-  minScale: string;
-  maxScale: string;
+  density: string;
+  interval: string;
   minTargetSize: string;
 };

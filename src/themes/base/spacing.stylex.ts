@@ -1,17 +1,17 @@
 import stylex from '@stylexjs/stylex';
 
 import type { ISpacingTheme } from './spacing.types';
-import { densityTokens } from './density.stylex';
+import { scaleTokens } from './scale.stylex';
 
-const DENSITY_SCALE = `clamp(${densityTokens.scale}, ${densityTokens.minScale}, ${densityTokens.maxScale})`;
+const SCALE = `clamp(${scaleTokens.minScale}, ${scaleTokens.scale}, ${scaleTokens.maxScale})`;
 
 const PADDING_UNIT = '4px';
-const PADDING_SCALE = `calc(${PADDING_UNIT} * ${DENSITY_SCALE})`;
+const PADDING_SCALE = `calc(${PADDING_UNIT} * ${SCALE})`;
 
 const MARGIN_UNIT = '8px';
-const MARGIN_SCALE = `calc(${MARGIN_UNIT} * ${DENSITY_SCALE})`;
+const MARGIN_SCALE = `calc(${MARGIN_UNIT} * ${SCALE})`;
 
-export const spacingTokens = stylex.defineVars<ISpacingTheme>({
+const vars = {
   paddingScale: PADDING_SCALE,
   padding$0: '0',
   padding$1: `calc(${PADDING_SCALE} * 1)`,
@@ -29,4 +29,14 @@ export const spacingTokens = stylex.defineVars<ISpacingTheme>({
   margin$4: `calc(${MARGIN_SCALE} * 4)`,
   margin$5: `calc(${MARGIN_SCALE} * 5)`,
   margin$6: `calc(${MARGIN_SCALE} * 6)`,
-});
+};
+
+export const spacingTokens = stylex.defineVars<ISpacingTheme>(vars);
+
+/**
+ * This is a workaround to allow reaplying vars at the component level so that
+ * it can uses themed vars.
+ *
+ * @see https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
+ */
+export const spacingTheme = stylex.createTheme(spacingTokens, vars);
