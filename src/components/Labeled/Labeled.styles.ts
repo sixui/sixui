@@ -1,5 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { labeledTokens } from './Labeled.stylex';
 
 export type ILabeledStylesKey = keyof typeof labeledStyles;
@@ -7,11 +8,11 @@ export const labeledStyles = stylex.create({
   host$vertical: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 8,
+    gap: spacingTokens.padding$2,
   },
   host$horizontal: {
     display: 'flex',
-    gridColumnGap: 12,
+    gridColumnGap: spacingTokens.padding$3,
     alignItems: 'center',
   },
   content: {
@@ -20,12 +21,12 @@ export const labeledStyles = stylex.create({
     display: 'flex',
     flexDirection: 'inherit',
     alignItems: 'normal',
-    gap: 4,
+    gap: spacingTokens.padding$1,
   },
   element: {
     display: 'flex',
     flexDirection: 'inherit',
-    gap: 12,
+    gap: spacingTokens.padding$3,
   },
   rows: {
     display: 'flex',
@@ -36,7 +37,7 @@ export const labeledStyles = stylex.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    gap: spacingTokens.padding$2,
   },
   labelContainer: {
     display: 'flex',
@@ -78,7 +79,7 @@ export const labeledStyles = stylex.create({
   supportingText: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '0.125rem',
+    gap: spacingTokens.padding$1,
     color: labeledTokens.supportingTextColor,
     fontFamily: labeledTokens.supportingTextFont,
     fontSize: labeledTokens.supportingTextSize,

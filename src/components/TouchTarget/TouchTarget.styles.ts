@@ -8,8 +8,8 @@ export const touchTargetStyles = stylex.create({
     position: 'absolute',
     top: '50%',
     left: '50%',
-    width: `max(100%, ${densityTokens.minTargetSize})`,
-    height: `max(100%, ${densityTokens.minTargetSize})`,
+    width: densityTokens.minTargetSize,
+    height: densityTokens.minTargetSize,
     transform: 'translate(-50%, -50%)',
   },
 });

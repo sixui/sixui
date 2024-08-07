@@ -3,6 +3,7 @@ import stylex from '@stylexjs/stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
 import { elevationTokens } from '../Elevation/Elevation.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
 
 const vars = {
   // container
@@ -16,7 +17,7 @@ const vars = {
   // outline
   outlineStyle: 'none',
   outlineColor: colorSchemeTokens.outlineVariant,
-  outlineWidth: '1px',
+  outlineWidth: outlineTokens.width$xs,
 
   // text
   textColor: colorSchemeTokens.onSurface,

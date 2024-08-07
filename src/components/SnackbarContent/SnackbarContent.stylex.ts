@@ -1,25 +1,27 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { elevationTokens } from '../Elevation/Elevation.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { elevationTokens } from '../Elevation/Elevation.stylex';
 
 const vars = {
-  gap: '12px',
-  topSpace: '14px',
-  bottomSpace: '14px',
-  leadingSpace: '16px',
-  trailingSpace: '16px',
-  actionTrailingSpace: '8px',
-  iconTrailingSpace: '12px',
+  gap: spacingTokens.padding$3,
+  topSpace: spacingTokens.padding$4,
+  bottomSpace: spacingTokens.padding$4,
+  leadingSpace: spacingTokens.padding$4,
+  trailingSpace: spacingTokens.padding$4,
+  actionTrailingSpace: spacingTokens.padding$2,
+  iconTrailingSpace: spacingTokens.padding$3,
 
   // container
   containerColor: colorSchemeTokens.onSurface,
   containerElevation: elevationTokens.boxShadow$level3,
   containerShape: shapeTokens.corner$xs,
-  containerMinWidth: '288px',
-  containerMinHeight: '48px',
+  containerMinWidth: `calc(288px * ${scaleTokens.scale})`,
+  containerMinHeight: `calc(48px * ${scaleTokens.scale})`,
 
   // supportingText
   supportingTextColor: colorSchemeTokens.inverseOnSurface,

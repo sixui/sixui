@@ -37,19 +37,19 @@ const vars = {
 
   // outline
   outlineColor: colorSchemeTokens.onSurfaceVariant,
-  outlineWidth: outlineTokens.width$2,
+  outlineWidth: outlineTokens.width$sm,
   // &:focus
   outlineColor$focus: colorSchemeTokens.onSurface,
-  outlineWidth$focus: outlineTokens.width$2,
+  outlineWidth$focus: outlineTokens.width$sm,
   // &:hover
   outlineColor$hover: colorSchemeTokens.onSurface,
-  outlineWidth$hover: outlineTokens.width$2,
+  outlineWidth$hover: outlineTokens.width$sm,
   // &:pressed
   outlineColor$pressed: colorSchemeTokens.onSurface,
-  outlineWidth$pressed: outlineTokens.width$2,
+  outlineWidth$pressed: outlineTokens.width$sm,
   // &:disabled
   outlineColor$disabled: colorSchemeTokens.onSurface,
-  outlineWidth$disabled: outlineTokens.width$2,
+  outlineWidth$disabled: outlineTokens.width$sm,
   // &:error
   outlineColor$error: colorSchemeTokens.error,
   // &:error:focus

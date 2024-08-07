@@ -1,10 +1,11 @@
 import stylex from '@stylexjs/stylex';
 
 import { radioTokens } from './Radio.stylex';
-import { stateLayerTokens } from '../StateLayer/StateLayer.stylex';
-import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
 import { motionTokens } from '~/themes/base/motion.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
+import { stateLayerTokens } from '../StateLayer/StateLayer.stylex';
+import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
 import { radioStateTokens } from './Radio.state.stylex';
 
 // https://github.com/material-components/material-web/blob/main/radio/internal/_radio.scss
@@ -64,10 +65,13 @@ export const radioStyles = stylex.create({
   input: {
     // <input> is also the touch target
     appearance: 'none',
-    width: 48,
-    height: 48,
+    width: densityTokens.minTargetSize,
+    height: densityTokens.minTargetSize,
     margin: 0,
+    opacity: 0,
+    outline: 'none',
     position: 'absolute',
+    zIndex: '1',
     cursor: 'inherit',
   },
   icon: {
@@ -125,9 +129,9 @@ export const radioStyles = stylex.create({
 
 export const radioStateLayerStyles = stylex.create({
   host: {
-    borderRadius: '50%',
-    width: radioTokens.stateLayerSize,
-    height: radioTokens.stateLayerSize,
+    borderRadius: shapeTokens.corner$full,
+    width: densityTokens.minTargetSize,
+    height: densityTokens.minTargetSize,
     inset: 'unset',
 
     [stateLayerTokens.color$hover]: radioStateTokens.stateLayerColor$hover,
@@ -140,8 +144,8 @@ export const radioStateLayerStyles = stylex.create({
 
 export const radioFocusRingStyles = stylex.create({
   host: {
-    width: 44,
-    height: 44,
+    width: `calc(${radioTokens.iconSize} * sqrt(2) * 1.8)`,
+    height: `calc(${radioTokens.iconSize} * sqrt(2) * 1.8)`,
     [focusRingTokens.shape]: shapeTokens.corner$full,
   },
   host$outward: {

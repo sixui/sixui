@@ -37,7 +37,7 @@ export const checkboxStyles = stylex.create({
     WebkitTapHighlightColor: 'transparent',
     cursor: 'pointer',
 
-    [checkboxStateTokens.stateLayerSize]: `max(100%, ${densityTokens.minTargetSize})`,
+    [checkboxStateTokens.stateLayerSize]: densityTokens.minTargetSize,
 
     [checkboxStateTokens.stateLayerColor$hover]:
       checkboxTokens.stateLayerColor$hover,
@@ -64,8 +64,8 @@ export const checkboxStyles = stylex.create({
   },
   input: {
     appearance: 'none',
-    width: `max(100%, ${densityTokens.minTargetSize})`,
-    height: `max(100%, ${densityTokens.minTargetSize})`,
+    width: densityTokens.minTargetSize,
+    height: densityTokens.minTargetSize,
     margin: 0,
     opacity: 0,
     outline: 'none',
@@ -259,9 +259,9 @@ export const checkboxStyles = stylex.create({
 
 export const checkboxStateLayerStyles = stylex.create({
   host: {
-    borderRadius: checkboxTokens.containerShape,
-    width: checkboxTokens.containerSize,
-    height: checkboxTokens.containerSize,
+    borderRadius: shapeTokens.corner$full,
+    width: checkboxStateTokens.stateLayerSize,
+    height: checkboxStateTokens.stateLayerSize,
     inset: 'unset',
 
     [stateLayerTokens.color$hover]: checkboxStateTokens.stateLayerColor$hover,
@@ -276,8 +276,8 @@ export const checkboxStateLayerStyles = stylex.create({
 
 export const checkboxFocusRingStyles = stylex.create({
   host: {
-    width: checkboxTokens.containerSize,
-    height: checkboxTokens.containerSize,
+    width: `calc(${checkboxTokens.containerSize} * sqrt(2) * 1.8)`,
+    height: `calc(${checkboxTokens.containerSize} *sqrt(2) * 1.8)`,
     [focusRingTokens.shape]: shapeTokens.corner$full,
   },
   host$outward: {

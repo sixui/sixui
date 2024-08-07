@@ -39,7 +39,7 @@ export const ThemeControls: React.FC<IThemeControlsProps> = (props) => {
         themeProviderStyles.dynamicDensity({
           density,
           interval: '4px',
-          minTargetSize: minTargetSize ? `${minTargetSize}px` : '100%',
+          minTargetSize: `max(100%, ${minTargetSize}px)`,
         }),
         spacingTheme,
         typeScaleTheme,

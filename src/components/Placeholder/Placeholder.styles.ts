@@ -2,6 +2,7 @@ import stylex from '@stylexjs/stylex';
 
 import { stateTokens } from '~/themes/base/state.stylex';
 import { placeholderTokens } from './Placeholder.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 
 export type IPlaceholderStylesKey = keyof typeof placeholderStyles;
 export const placeholderStyles = stylex.create({
@@ -43,7 +44,7 @@ export const placeholderStyles = stylex.create({
     },
   },
   label: {
-    padding: '0.5rem',
+    padding: spacingTokens.padding$2,
     fontFamily: placeholderTokens.labelTextFont,
     fontSize: placeholderTokens.labelTextSize,
     lineHeight: placeholderTokens.labelTextLineHeight,

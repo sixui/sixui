@@ -1,9 +1,11 @@
 import stylex from '@stylexjs/stylex';
 
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+
 const vars = {
-  topSpace: '8px',
-  bottomSpace: '8px',
-  gridSpace: '4px',
+  topSpace: spacingTokens.padding$2,
+  bottomSpace: spacingTokens.padding$2,
+  gridSpace: spacingTokens.padding$1,
   itemSpace: '0px',
 };
 

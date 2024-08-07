@@ -1,12 +1,13 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-item.scss
 
 const vars = {
-  gap: '12px',
+  gap: spacingTokens.padding$3,
 
   // text
   textColor: colorSchemeTokens.onSurface,
