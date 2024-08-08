@@ -1,3 +1,15 @@
+# v0.0.414 (Thu Aug 08 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(FieldBase): errorText can be a React component ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.413 (Wed Aug 07 2024)
 
 #### ⚠️ Pushed to `main`
