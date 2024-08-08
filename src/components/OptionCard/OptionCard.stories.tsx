@@ -2,13 +2,15 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
 import type { IOptionCardProps } from './OptionCard.types';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { Switch } from '../Switch';
 import { ComponentShowcase } from '../ComponentShowcase';
 import { Checkbox } from '../Checkbox';
 import { OptionCard } from './OptionCard';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { RadioGroup } from '../RadioGroup';
 import { Radio } from '../Radio';
+import { Stack } from '../Stack';
 
 const meta = {
   component: OptionCard,
@@ -18,12 +20,7 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   card: {
-    width: 300,
-  },
-  radioGroup: {
-    display: 'flex',
-    flexDirection: 'row',
-    gap: '1.5rem',
+    width: `calc(300px * ${scaleTokens.scale})`,
   },
 });
 
@@ -77,13 +74,12 @@ export const Basic: IStory = {
 
 const OptionCardRadioGroup: React.FC<IOptionCardProps> = (props) => {
   return (
-    <RadioGroup
-      sx={styles.radioGroup}
-      onChange={(...args) => void sbHandleEvent('change', args)}
-    >
-      <OptionCard {...props} component={Radio} value='1' />
-      <OptionCard {...props} component={Radio} value='2' />
-      <OptionCard {...props} component={Radio} value='3' />
+    <RadioGroup onChange={(...args) => void sbHandleEvent('change', args)}>
+      <Stack horizontal gap={6}>
+        <OptionCard {...props} component={Radio} value='1' />
+        <OptionCard {...props} component={Radio} value='2' />
+        <OptionCard {...props} component={Radio} value='3' />
+      </Stack>
     </RadioGroup>
   );
 };

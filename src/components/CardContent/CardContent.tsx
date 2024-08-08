@@ -4,7 +4,7 @@ import type { ICardContentProps } from './CardContent.types';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
 import { useStyles } from '~/hooks/useStyles';
 import { CardContext } from '../Card';
-import { Base } from '../Base';
+import { Stack } from '../Stack';
 import { cardContentStyles } from './CardContent.styles';
 import { cardContentTheme } from './CardContent.stylex';
 
@@ -22,7 +22,8 @@ export const CardContent = createPolymorphicComponent<'div', ICardContentProps>(
       const { actionable } = context ?? {};
 
       return (
-        <Base
+        <Stack
+          gap={4}
           {...other}
           sx={[
             cardContentTheme,
@@ -33,7 +34,7 @@ export const CardContent = createPolymorphicComponent<'div', ICardContentProps>(
           ref={forwardedRef}
         >
           {children}
-        </Base>
+        </Stack>
       );
     },
   ),

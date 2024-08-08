@@ -73,6 +73,7 @@ export * from './components/Skeleton';
 export * from './components/Snackbar';
 export * from './components/SnackbarContent';
 export * from './components/StateLayer';
+export * from './components/Stack';
 export * from './components/Step';
 export * from './components/StepConnector';
 export * from './components/Stepper';

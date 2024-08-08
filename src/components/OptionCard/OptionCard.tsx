@@ -86,7 +86,7 @@ export const OptionCard = createPolymorphicComponent<'div', IOptionCardProps>(
             />
           )}
 
-          <CardContent sx={combineStyles('cardContent')}>
+          <CardContent gap={2}>
             <Labeled
               labelPosition='right'
               label={label}
