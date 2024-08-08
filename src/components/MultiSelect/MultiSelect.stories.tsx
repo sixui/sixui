@@ -1,13 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import stylex from '@stylexjs/stylex';
 
 import type { IMultiSelectProps } from './MultiSelect.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { ListItem } from '../ListItem';
 import { fruits } from '../FilterableList/fruits';
-import { commonStyles } from '~/helpers/commonStyles';
 import { MultiSelect } from './MultiSelect';
+import { Stack } from '../Stack';
 
 const meta = {
   component: MultiSelect,
@@ -32,13 +31,13 @@ const MultiSelectDemo: React.FC<IMultiSelectProps> = (props) => {
   };
 
   return (
-    <div {...stylex.props(commonStyles.verticalLayout)}>
+    <Stack align='stretch' gap={2}>
       <MultiSelect {...props} onChange={handleChange} />
       <div>
         Values:{' '}
         {value === undefined ? <em>undefined</em> : JSON.stringify(value)}
       </div>
-    </div>
+    </Stack>
   );
 };
 

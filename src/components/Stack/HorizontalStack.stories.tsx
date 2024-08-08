@@ -55,7 +55,7 @@ const defaultArgs = {
     <BasePlaceholder key={2} sx={styles.placeholder$lg} label='Item 3' />,
   ],
   sx: styles.host,
-  orientation: 'horizontal',
+  horizontal: true,
   gap: 4,
 } satisfies Partial<IStackProps>;
 

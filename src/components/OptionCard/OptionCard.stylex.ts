@@ -11,7 +11,7 @@ const vars = {
 
   // selectedOutline
   selectedOutlineColor: colorSchemeTokens.primary,
-  selectedOutlineWidth: outlineTokens.width$md,
+  selectedOutlineWidth: outlineTokens.width$sm,
   // &:disabled
   selectedOutlineColor$disabled: colorSchemeTokens.outline,
   selectedOutlineOpacity$disabled: stateTokens.containerOpacity$disabled,

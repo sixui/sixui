@@ -67,8 +67,9 @@ export const PopoverBase = <TForwardedProps extends object = object>(
 
   const [isOpen, setIsOpen] = useControlledValue({
     controlled: isOpenProp,
-    default: defaultIsOpen ?? false,
+    default: defaultIsOpen || false,
     name: 'PopoverBase',
+    onValueChange: onOpenChange,
   });
   const arrowRef = useRef(null);
   const cursor = usePopoverCursor({ type: cursorType });

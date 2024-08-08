@@ -13,9 +13,9 @@ export const Stack = forwardRef<HTMLDivElement, IStackProps>(
       styles,
       sx,
       children,
-      orientation = 'vertical',
+      horizontal,
       gap,
-      align = 'center',
+      align = 'stretch',
       justify = 'start',
       wrap,
       divider,
@@ -28,6 +28,7 @@ export const Stack = forwardRef<HTMLDivElement, IStackProps>(
     });
 
     const filteredChildren = filterFalsyChildren(children);
+    const orientation = horizontal ? 'horizontal' : 'vertical';
 
     return (
       <Base
@@ -35,7 +36,7 @@ export const Stack = forwardRef<HTMLDivElement, IStackProps>(
         sx={[
           globalStyles,
           gap !== undefined &&
-            (orientation === 'horizontal'
+            (horizontal
               ? commonStyles.horizontalGap(gap)
               : commonStyles.verticalGap(gap)),
           commonStyles.justifyContent(justify),

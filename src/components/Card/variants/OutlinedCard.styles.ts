@@ -32,7 +32,7 @@ export const outlinedCardStyles = stylex.create({
     inset: 0,
     pointerEvents: 'none',
     borderStyle: 'solid',
-    borderWidth: outlineTokens.width$xs,
+    borderWidth: cardTokens.outlineWidth,
     position: 'absolute',
     borderColor: cardTokens.outlineColor,
     borderRadius: 'inherit',

@@ -1,14 +1,13 @@
 import { forwardRef, useContext } from 'react';
-import stylex from '@stylexjs/stylex';
 
 import type { IColorPickerContentProps } from './ColorPickerContent.types';
 import { useStyles } from '~/hooks/useStyles';
 import { PaperBase } from '../PaperBase';
-import { commonStyles } from '~/helpers/commonStyles';
 import { Divider } from '../Divider';
 import { ColorButton } from '../ColorButton';
 import { ColorPaletteGroupContext } from '../ColorPaletteGroup';
 import { colorPickerContentStyles } from './ColorPickerContent.styles';
+import { Stack } from '../Stack';
 
 export const ColorPickerContent = forwardRef<
   HTMLDivElement,
@@ -48,22 +47,10 @@ export const ColorPickerContent = forwardRef<
       {...other}
       ref={forwardedRef}
     >
-      <div
-        {...getStyles(
-          commonStyles.verticalLayout,
-          commonStyles.gap$xl,
-          'section',
-        )}
-      >
+      <Stack sx={combineStyles('section')} gap={4}>
         <div {...getStyles('grid')}>
           {palettes.map((palette, paletteIndex) => (
-            <div
-              key={paletteIndex}
-              {...stylex.props(
-                commonStyles.verticalLayout,
-                commonStyles.gap$none,
-              )}
-            >
+            <Stack key={paletteIndex}>
               <div {...getStyles('tones')}>
                 {palette.map((color, colorIndex) => {
                   const isFirst = colorIndex === 0;
@@ -91,16 +78,16 @@ export const ColorPickerContent = forwardRef<
                   );
                 })}
               </div>
-            </div>
+            </Stack>
           ))}
         </div>
-      </div>
+      </Stack>
 
       {customColors?.length ? (
         <>
           <Divider />
 
-          <div {...getStyles(commonStyles.horizontalLayout, 'section')}>
+          <Stack sx={combineStyles('section')} horizontal gap={2}>
             {customColors?.map((color, colorIndex) => (
               <ColorButton
                 key={colorIndex}
@@ -114,7 +101,7 @@ export const ColorPickerContent = forwardRef<
                 }
               />
             ))}
-          </div>
+          </Stack>
         </>
       ) : undefined}
       {children}

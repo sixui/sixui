@@ -13,12 +13,12 @@ export const RichTooltip = forwardRef<HTMLDivElement, IRichTooltipProps>(
     const { children, placement = 'bottom-end', persistent, ...other } = props;
 
     const renderContent: IPopoverBaseProps<IRichTooltipForwardedProps>['contentRenderer'] =
-      ({ renderCursor, forwardedProps, close: onClose }) => (
+      ({ renderCursor, forwardedProps, close }) => (
         <RichTooltipContent
           {...forwardedProps!}
           ref={forwardedRef}
           renderCursor={renderCursor}
-          onClose={onClose}
+          onClose={close}
         />
       );
 
@@ -35,7 +35,11 @@ export const RichTooltip = forwardRef<HTMLDivElement, IRichTooltipProps>(
         nonDismissable={persistent}
       >
         {(renderProps) => (
-          <span {...renderProps.getProps()} ref={renderProps.setRef}>
+          <span
+            style={{ display: 'inline-flex' }}
+            {...renderProps.getProps()}
+            ref={renderProps.setRef}
+          >
             {isFunction(children) ? children(renderProps) : children}
           </span>
         )}

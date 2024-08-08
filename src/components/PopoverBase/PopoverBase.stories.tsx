@@ -18,8 +18,10 @@ import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { IconButton } from '~/components/IconButton';
 import { Button } from '~/components/Button';
 import { Paper } from '~/components/Paper';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { Stack } from '../Stack';
 import { PopoverBase } from './PopoverBase';
-import { commonStyles } from '~/helpers/commonStyles';
 
 const meta = {
   component: PopoverBase,
@@ -31,20 +33,20 @@ const styles = stylex.create({
   tooltip: {
     backgroundColor: colorSchemeTokens.inverseSurface,
     color: colorSchemeTokens.inverseOnSurface,
-    padding: 8,
-    maxWidth: 240,
+    padding: spacingTokens.padding$2,
+    maxWidth: `calc(240px * ${scaleTokens.scale})`,
   },
   cursor: {
     fill: colorSchemeTokens.inverseSurface,
   },
   paper: {
-    maxWidth: 240,
+    maxWidth: `calc(240px * ${scaleTokens.scale})`,
   },
   paperInner: {
-    padding: '1rem',
+    padding: spacingTokens.padding$4,
   },
   padding: {
-    padding: 120,
+    padding: `calc(120px * ${scaleTokens.scale})`,
   },
 });
 
@@ -222,10 +224,12 @@ export const WithPaper: IStory = {
     contentRenderer: ({ renderCursor, close }) => (
       <Paper sx={styles.paper} elevation={2} corner='md'>
         <div {...stylex.props(styles.cursor)}>{renderCursor()}</div>
-        <div {...stylex.props(commonStyles.verticalLayout, styles.paperInner)}>
+        <Stack sx={styles.paperInner} gap={2}>
           <div>{TOOLTIP_CONTENT}</div>
-          <Button onClick={close}>Close</Button>
-        </div>
+          <Button onClick={close} variant='text'>
+            Close
+          </Button>
+        </Stack>
       </Paper>
     ),
   },

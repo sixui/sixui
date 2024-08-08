@@ -4,11 +4,11 @@ import stylex from '@stylexjs/stylex';
 
 import type { IThemeProviderProps } from './ThemeProvider.types';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { commonStyles } from '~/helpers/commonStyles';
 import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
 import { ColorScheme } from '~/docs/ColorScheme';
 import { generateThemeFromSourceColor } from '~/helpers/colors/generateThemeFromSourceColor';
 import { ColorInputField } from '../ColorInputField';
+import { Stack } from '../Stack';
 import { ThemeProvider } from './ThemeProvider';
 import { ThemeSetterContext } from './ThemeSetter.context';
 
@@ -39,13 +39,13 @@ const DynamicThemeProviderDemo: React.FC = () => {
   };
 
   return (
-    <div {...stylex.props(commonStyles.verticalLayout, commonStyles.gap$lg)}>
+    <Stack gap={2}>
       <ColorInputField onChange={handleChange} clearable />
 
       <div {...stylex.props(styles.inner)}>
         <ColorScheme />
       </div>
-    </div>
+    </Stack>
   );
 };
 

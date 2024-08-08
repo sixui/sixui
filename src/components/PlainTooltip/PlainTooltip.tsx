@@ -32,7 +32,11 @@ export const PlainTooltip = forwardRef<HTMLDivElement, IPlainTooltipProps>(
         openOnFocus
       >
         {(renderProps) => (
-          <span {...renderProps.getProps()} ref={renderProps.setRef}>
+          <span
+            style={{ display: 'inline-flex' }}
+            {...renderProps.getProps()}
+            ref={renderProps.setRef}
+          >
             {isFunction(children) ? children(renderProps) : children}
           </span>
         )}

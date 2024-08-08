@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
-import stylex from '@stylexjs/stylex';
 
 import type { IDialogProps } from './Dialog.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { commonStyles } from '~/helpers/commonStyles';
 import { Button } from '../Button';
 import { TextInputField } from '../TextInputField';
+import { Stack } from '../Stack';
 import { Dialog } from './Dialog';
 
 // https://m3.material.io/components/dialogs/overview
@@ -97,7 +96,7 @@ const FormDialogDemo: React.FC<IDialogProps> = (props) => {
   const formRef = useRef<HTMLFormElement>(null);
 
   return (
-    <div {...stylex.props(commonStyles.horizontalLayout, commonStyles.gap$xl)}>
+    <Stack horizontal gap={4} align='center'>
       <Dialog
         {...props}
         ref={formRef}
@@ -115,18 +114,22 @@ const FormDialogDemo: React.FC<IDialogProps> = (props) => {
             </Button>
             <Button
               type='submit'
-              onClick={(...args) =>
-                sbHandleEvent('save', args, 1000).then((args) => {
-                  const formData = formRef.current
-                    ? new FormData(formRef.current)
-                    : undefined;
-                  const formValues = formData
-                    ? Object.fromEntries(formData)
-                    : undefined;
-                  setName(formValues?.name.toString());
-                  close(...args);
-                })
-              }
+              onClick={(event, ...args) => {
+                event.preventDefault();
+
+                return sbHandleEvent('save', [event, ...args], 1000).then(
+                  () => {
+                    const formData = formRef.current
+                      ? new FormData(formRef.current)
+                      : undefined;
+                    const formValues = formData
+                      ? Object.fromEntries(formData)
+                      : undefined;
+                    setName(formValues?.name.toString());
+                    close(event);
+                  },
+                );
+              }}
             >
               Save
             </Button>
@@ -140,7 +143,7 @@ const FormDialogDemo: React.FC<IDialogProps> = (props) => {
           Hello, <strong>{name}</strong>!
         </div>
       ) : null}
-    </div>
+    </Stack>
   );
 };
 

@@ -1,9 +1,7 @@
-import stylex from '@stylexjs/stylex';
-
-import { IconButton } from '../IconButton';
-import { commonStyles } from '~/helpers/commonStyles';
-import { SvgIcon } from '../SvgIcon';
 import { iconTriangleDown, iconTriangleUp, iconXMark } from '~/assets/icons';
+import { IconButton } from '../IconButton';
+import { SvgIcon } from '../SvgIcon';
+import { Stack } from '../Stack';
 
 export type IFilterableListBaseFieldTrailingIcon = {
   isOpen?: boolean;
@@ -13,7 +11,7 @@ export type IFilterableListBaseFieldTrailingIcon = {
 export const FilterableListBaseFieldTrailingIcon = (
   props: IFilterableListBaseFieldTrailingIcon,
 ): React.ReactNode => (
-  <div {...stylex.props(commonStyles.horizontalLayout, commonStyles.gap$none)}>
+  <Stack horizontal gap={2}>
     {props.onClear ? (
       <IconButton icon={<SvgIcon icon={iconXMark} />} onClick={props.onClear} />
     ) : null}
@@ -27,5 +25,5 @@ export const FilterableListBaseFieldTrailingIcon = (
         )
       }
     />
-  </div>
+  </Stack>
 );

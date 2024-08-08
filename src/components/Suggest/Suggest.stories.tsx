@@ -1,13 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import stylex from '@stylexjs/stylex';
 
 import type { IFilterableListItem } from '../FilterableList';
 import type { ISuggestProps } from './Suggest.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { ListItem } from '../ListItem';
 import { fruits, emptyItem } from '../FilterableList/fruits';
-import { commonStyles } from '~/helpers/commonStyles';
+import { Stack } from '../Stack';
 import { Suggest } from './Suggest';
 
 const meta = {
@@ -33,13 +32,13 @@ const SuggestDemo: React.FC<ISuggestProps> = (props) => {
   };
 
   return (
-    <div {...stylex.props(commonStyles.verticalLayout)}>
+    <Stack gap={2}>
       <Suggest {...props} onChange={handleChange} />
       <div>
         Value:{' '}
         {value === undefined ? <em>undefined</em> : JSON.stringify(value)}
       </div>
-    </div>
+    </Stack>
   );
 };
 

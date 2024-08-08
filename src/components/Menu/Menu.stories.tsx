@@ -11,9 +11,9 @@ import {
 import type { IMenuProps } from './Menu.types';
 import { Button } from '../Button';
 import { IconButton } from '../IconButton';
-import { commonStyles } from '~/helpers/commonStyles';
 import { MenuItem } from '../MenuItem';
 import { MenuDivider } from '../MenuDivider';
+import { Stack } from '../Stack';
 import { Menu } from './Menu';
 
 const meta = {
@@ -86,12 +86,12 @@ const fromIconButtonStyles = stylex.create({
 
 export const FromIconButton: IStory = {
   render: (props) => (
-    <div {...stylex.props(commonStyles.horizontalLayout)}>
+    <Stack horizontal gap={4}>
       <div {...stylex.props(fromIconButtonStyles.label)}>
         Look right <FontAwesomeIcon icon={faArrowRight} />
       </div>
       <Menu sx={fromIconButtonStyles.menu} {...props} />
-    </div>
+    </Stack>
   ),
   args: {
     ...defaultArgs,

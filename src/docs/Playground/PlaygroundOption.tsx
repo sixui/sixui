@@ -1,4 +1,3 @@
-import stylex from '@stylexjs/stylex';
 import { accumulate } from '@olivierpascal/helpers';
 
 import type { IPlaygroundOptionProps } from './PlaygroundOption.types';
@@ -7,8 +6,8 @@ import { TextInputField } from '~/components/TextInputField';
 import { Labeled, type ILabeledRenderProps } from '~/components/Labeled';
 import { Checkbox } from '~/components/Checkbox';
 import { fixedForwardRef } from '~/helpers/fixedForwardRef';
-import { commonStyles } from '~/helpers/commonStyles';
 import { HtmlSelect } from '~/components/HtmlSelect';
+import { Stack } from '~/components/Stack';
 import { playgroundOptionFieldBaseStyles } from './PlaygroundOption.styles';
 
 export const PlaygroundOption = fixedForwardRef(function PlaygroundOption<
@@ -17,7 +16,7 @@ export const PlaygroundOption = fixedForwardRef(function PlaygroundOption<
   props: IPlaygroundOptionProps<TSectionsProps>,
   forwardedRef?: React.Ref<HTMLDivElement>,
 ) {
-  const { sx, option, onChange, sectionKey, sectionsProps, ...other } = props;
+  const { option, onChange, sectionKey, sectionsProps, ...other } = props;
 
   const handleValueChange = (value: unknown): void =>
     onChange({
@@ -97,48 +96,41 @@ export const PlaygroundOption = fixedForwardRef(function PlaygroundOption<
   }
 
   return (
-    <div
-      {...other}
-      {...stylex.props(commonStyles.verticalLayout, commonStyles.gap$xl, sx)}
-      ref={forwardedRef}
-    >
-      <div {...stylex.props(commonStyles.verticalLayout, commonStyles.gap$sm)}>
-        <Labeled
-          label={option.label}
-          sx={modifiers?.required ? commonStyles.gap$sm : undefined}
-          labelPosition={modifiers?.required ? 'top' : 'right'}
-          supportingText={option.supportingText}
-          required={modifiers?.required}
-          disabled={modifiers?.disabled}
-        >
-          {modifiers?.required ? (
-            renderInputField(option, {
-              disabled:
-                modifiers.disabled || (!modifiers.required && !modifiers.on),
-            })
-          ) : (
-            <Checkbox
-              checked={!!modifiers?.on}
-              onChange={(_event, checked) =>
-                onChange({
-                  ...option,
-                  modifiers: {
-                    ...option.modifiers,
-                    on: !!checked,
-                  },
-                })
-              }
-            />
-          )}
-        </Labeled>
+    <Stack gap={2} {...other} ref={forwardedRef}>
+      <Labeled
+        label={option.label}
+        labelPosition={modifiers?.required ? 'top' : 'right'}
+        supportingText={option.supportingText}
+        required={modifiers?.required}
+        disabled={modifiers?.disabled}
+      >
+        {modifiers?.required ? (
+          renderInputField(option, {
+            disabled:
+              modifiers.disabled || (!modifiers.required && !modifiers.on),
+          })
+        ) : (
+          <Checkbox
+            checked={!!modifiers?.on}
+            onChange={(_event, checked) =>
+              onChange({
+                ...option,
+                modifiers: {
+                  ...option.modifiers,
+                  on: !!checked,
+                },
+              })
+            }
+          />
+        )}
+      </Labeled>
 
-        {modifiers?.required
-          ? null
-          : renderInputField(option, {
-              disabled:
-                modifiers?.disabled || (!modifiers?.required && !modifiers?.on),
-            })}
-      </div>
-    </div>
+      {modifiers?.required
+        ? null
+        : renderInputField(option, {
+            disabled:
+              modifiers?.disabled || (!modifiers?.required && !modifiers?.on),
+          })}
+    </Stack>
   );
 });

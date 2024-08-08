@@ -9,7 +9,6 @@ import {
 } from '~/helpers/react/polymorphicComponentTypes';
 import { isFunction } from '~/helpers/isFunction';
 import { useControlledValue } from '~/hooks/useControlledValue';
-import { commonStyles } from '~/helpers/commonStyles';
 import { useStyles } from '~/hooks/useStyles';
 import { CardContent } from '../CardContent';
 import { Card } from '../Card';
@@ -87,7 +86,7 @@ export const OptionCard = createPolymorphicComponent<'div', IOptionCardProps>(
             />
           )}
 
-          <CardContent sx={commonStyles.gap$md}>
+          <CardContent sx={combineStyles('cardContent')}>
             <Labeled
               labelPosition='right'
               label={label}

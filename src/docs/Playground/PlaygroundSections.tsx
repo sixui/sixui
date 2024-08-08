@@ -1,16 +1,13 @@
-import stylex from '@stylexjs/stylex';
-
 import type { IPlaygroundSectionsProps } from './PlaygroundSections.types';
 import type {
   IPlaygroundOption,
   IPlaygroundSections,
 } from './Playground.types';
 import { fixedForwardRef } from '~/helpers/fixedForwardRef';
-import { commonStyles } from '~/helpers/commonStyles';
 import { Disclosure } from '~/components/Disclosure';
 import { DisclosureButton } from '~/components/DisclosureButton';
+import { Stack } from '~/components/Stack';
 import { PlaygroundOption } from './PlaygroundOption';
-import { playgroundOptionDisclosureButtonStyles } from './PlaygroundSections.styles';
 
 export const PlaygroundSections = fixedForwardRef(function PlaygroundSections<
   TSectionsProps extends Record<string, object>,
@@ -18,7 +15,7 @@ export const PlaygroundSections = fixedForwardRef(function PlaygroundSections<
   props: IPlaygroundSectionsProps<TSectionsProps>,
   forwardedRef?: React.Ref<HTMLDivElement>,
 ) {
-  const { sx, sections, onSectionsChange, sectionsProps, ...other } = props;
+  const { sections, onSectionsChange, sectionsProps, ...other } = props;
 
   const handleOptionChange = (
     targetOption: IPlaygroundOption<TSectionsProps>,
@@ -44,7 +41,7 @@ export const PlaygroundSections = fixedForwardRef(function PlaygroundSections<
     section: IPlaygroundSections<TSectionsProps>[keyof TSectionsProps],
     sectionKey: keyof TSectionsProps,
   ): JSX.Element => (
-    <div {...stylex.props(commonStyles.verticalLayout, commonStyles.gap$xl)}>
+    <Stack gap={4}>
       {section.options.map((option, optionIndex) => (
         <PlaygroundOption<TSectionsProps>
           key={optionIndex}
@@ -54,26 +51,18 @@ export const PlaygroundSections = fixedForwardRef(function PlaygroundSections<
           sectionsProps={sectionsProps}
         />
       ))}
-    </div>
+    </Stack>
   );
 
   return (
-    <div
-      {...other}
-      {...stylex.props(commonStyles.verticalLayout, commonStyles.gap$2xl, sx)}
-      ref={forwardedRef}
-    >
+    <Stack {...other} gap={6} ref={forwardedRef}>
       {Object.keys(sections).map((key, sectionIndex) => {
         const sectionKey = key as keyof TSectionsProps;
         const section = sections[sectionKey];
 
         return (
           <Disclosure
-            trigger={
-              <DisclosureButton styles={playgroundOptionDisclosureButtonStyles}>
-                {section.title}
-              </DisclosureButton>
-            }
+            trigger={<DisclosureButton>{section.title}</DisclosureButton>}
             defaultExpanded={sectionIndex === 0}
             key={sectionIndex}
           >
@@ -81,6 +70,6 @@ export const PlaygroundSections = fixedForwardRef(function PlaygroundSections<
           </Disclosure>
         );
       })}
-    </div>
+    </Stack>
   );
 });

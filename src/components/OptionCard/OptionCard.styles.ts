@@ -1,8 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
 import { optionCardTokens } from './OptionCard.stylex';
-import { cardTokens } from '../Card/Card.stylex';
 import { motionTokens } from '~/themes/base/motion.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { cardTokens } from '../Card/Card.stylex';
 
 export type IOptionCardStylesKey = keyof typeof optionCardStyles;
 export const optionCardStyles = stylex.create({
@@ -36,6 +37,9 @@ export const optionCardStyles = stylex.create({
   text$disabled: {
     color: optionCardTokens.textColor$disabled,
     opacity: optionCardTokens.textOpacity$disabled,
+  },
+  cardContent: {
+    gap: spacingTokens.padding$2,
   },
 });
 

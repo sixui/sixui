@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import stylex from '@stylexjs/stylex';
 
 import type { IOmit } from '~/helpers/types';
 import type { IRichTooltipProps } from './RichTooltip.types';
-import { commonStyles } from '~/helpers/commonStyles';
 import { Button } from '../Button';
 import { RichTooltip } from './RichTooltip';
 
@@ -13,15 +11,8 @@ export const PersistentRichTooltipExample: React.FC<
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div {...stylex.props(commonStyles.horizontalLayout)}>
-      <RichTooltip
-        isOpen={isOpen}
-        {...props}
-        onOpenChange={setIsOpen}
-        persistent
-      >
-        <Button onClick={() => setIsOpen(true)}>Show</Button>
-      </RichTooltip>
-    </div>
+    <RichTooltip isOpen={isOpen} {...props} onOpenChange={setIsOpen} persistent>
+      <Button onClick={() => setIsOpen(true)}>Show</Button>
+    </RichTooltip>
   );
 };

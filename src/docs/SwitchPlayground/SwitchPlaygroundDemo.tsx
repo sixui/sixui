@@ -1,10 +1,8 @@
-import stylex from '@stylexjs/stylex';
-
 import type { IOmit } from '~/helpers/types';
 import type { ILabeledPlaygroundDemoProps } from '~/docs/LabeledPlayground/LabeledPlaygroundDemo';
-import { commonStyles } from '~/helpers/commonStyles';
 import { Switch, type ISwitchProps } from '~/components/Switch';
 import { Labeled } from '~/components/Labeled';
+import { Stack } from '~/components/Stack';
 
 export type ISwitchPlaygroundDemoProps = ILabeledPlaygroundDemoProps & {
   switch: IOmit<ISwitchProps, 'styles'>;
@@ -13,7 +11,7 @@ export type ISwitchPlaygroundDemoProps = ILabeledPlaygroundDemoProps & {
 export const SwitchPlaygroundDemo: React.FC<ISwitchPlaygroundDemoProps> = (
   props,
 ) => (
-  <div {...stylex.props(commonStyles.verticalLayout, commonStyles.gap$lg)}>
+  <Stack gap={4}>
     <Labeled {...props.switch} {...props.labeled}>
       <Switch />
     </Labeled>
@@ -23,5 +21,5 @@ export const SwitchPlaygroundDemo: React.FC<ISwitchPlaygroundDemoProps> = (
     <Labeled {...props.switch} {...props.labeled}>
       <Switch defaultChecked icons />
     </Labeled>
-  </div>
+  </Stack>
 );

@@ -1,14 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
-import stylex from '@stylexjs/stylex';
 
 import type { IFieldBaseVariant } from '../FieldBase';
 import type { IColorInputFieldProps } from './ColorInputField.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { ComponentShowcase } from '../ComponentShowcase';
 import { HctColorPickerContent } from '../HctColorPickerContent';
-import { commonStyles } from '~/helpers/commonStyles';
 import { ColorPaletteGroupProvider } from '../ColorPaletteGroup';
+import { Stack } from '../Stack';
 import { ColorInputField } from './ColorInputField';
 
 const meta = {
@@ -85,13 +84,13 @@ export const WithErrorText: IStory = {
 
 export const PaletteGroup: IStory = {
   render: (props) => (
-    <div {...stylex.props(commonStyles.verticalLayout, commonStyles.gap$xl)}>
-      <ColorPaletteGroupProvider customColors={['#ff2d55']}>
+    <ColorPaletteGroupProvider customColors={['#ff2d55']}>
+      <Stack gap={2} align='start'>
         <ColorInputField {...props} />
         <ColorInputField {...props} customColors={['#000000']} />
         <ColorInputField {...props} />
-      </ColorPaletteGroupProvider>
-    </div>
+      </Stack>
+    </ColorPaletteGroupProvider>
   ),
   args: defaultArgs,
 };
