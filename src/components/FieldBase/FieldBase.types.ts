@@ -16,7 +16,7 @@ export type IFieldBaseProps = IBaseProps<IFieldBaseStylesKey> &
     disabled?: boolean;
     readOnly?: boolean;
     hasError?: boolean;
-    errorText?: string;
+    errorText?: React.ReactNode;
     start?: React.ReactNode;
     end?: React.ReactNode;
     leadingIcon?: React.ReactNode;
