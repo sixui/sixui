@@ -10,7 +10,7 @@ import {
 } from './FieldBasePlaygroundDemo';
 
 export const FieldBasePlaceholder: React.FC<IPlaceholderProps> = (props) => (
-  <Placeholder {...props} surface='onSurface' disabled expand />
+  <Placeholder {...props} surface='onSurface' disabled expand corner='none' />
 );
 
 export const fieldBasePlaygroundSections: IPlaygroundSections<IFieldBasePlaygroundDemoProps> =

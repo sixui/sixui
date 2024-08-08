@@ -19,8 +19,8 @@ const vars = {
   insetTrailingSpace: spacingTokens.padding$4,
 
   // text
-  textLeadingSpace: spacingTokens.padding$2,
-  textTrailingSpace: spacingTokens.padding$2,
+  textLeadingSpace: spacingTokens.padding$3,
+  textTrailingSpace: spacingTokens.padding$3,
   textColor: colorSchemeTokens.outline,
   textFont: typeScaleTokens.bodyFont$sm,
   textSize: typeScaleTokens.bodySize$sm,

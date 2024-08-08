@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
 
 import type { IElevationProps } from './Elevation.types';
 import { ComponentShowcase } from '../ComponentShowcase';
@@ -14,20 +13,13 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {} satisfies Partial<IElevationProps>;
 
-const placeholderStyles = stylex.create({
-  host: {
-    width: 96,
-    height: 96,
-  },
-});
-
 export const Levels: IStory = {
   render: (props) => (
     <ComponentShowcase<IElevationProps>
       component={(variantArgs) => (
         <Placeholder
-          styles={placeholderStyles}
-          corner='md'
+          width={96}
+          height={96}
           label={`Level ${variantArgs.level}`}
         >
           <Elevation {...props} {...variantArgs} />

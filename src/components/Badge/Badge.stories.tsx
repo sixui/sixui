@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
 
 import type { IBadgeProps } from './Badge.types';
 import {
@@ -20,13 +19,6 @@ type IStory = StoryObj<typeof meta>;
 
 type IExtendedBadgeProps = IBadgeProps & Pick<IAnchoredProps, 'overlap'>;
 
-const styles = stylex.create({
-  placeholder: {
-    width: 56,
-    height: 56,
-  },
-});
-
 const defaultArgs = {} satisfies Partial<IBadgeProps>;
 
 const cols: Array<IComponentPresentation<IExtendedBadgeProps>> = [
@@ -39,7 +31,8 @@ const BadgeDemo: React.FC<IExtendedBadgeProps> = ({ overlap, ...props }) =>
   overlap ? (
     <Anchored content={<Badge {...props} />} overlap={overlap}>
       <Placeholder
-        sx={styles.placeholder}
+        width={56}
+        height={56}
         corner={overlap === 'circular' ? 'full' : 'sm'}
       />
     </Anchored>

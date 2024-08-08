@@ -10,8 +10,16 @@ import { useStyles } from '~/hooks/useStyles';
 
 export const Divider = forwardRef<HTMLDivElement, IDividerProps>(
   function Divider(props, forwardedRef) {
-    const { styles, sx, inset, insetStart, insetEnd, children, ...other } =
-      props;
+    const {
+      styles,
+      sx,
+      orientation = 'horizontal',
+      inset,
+      insetStart,
+      insetEnd,
+      children,
+      ...other
+    } = props;
 
     const { combineStyles, getStyles, globalStyles } = useStyles({
       name: 'Divider',
@@ -22,9 +30,9 @@ export const Divider = forwardRef<HTMLDivElement, IDividerProps>(
       <div
         {...getStyles(
           'line',
-          inset && 'line$inset',
-          insetStart && 'line$insetStart',
-          insetEnd && 'line$insetEnd',
+          `line$${orientation}`,
+          (inset || insetStart) && `line$${orientation}$insetStart`,
+          (inset || insetEnd) && `line$${orientation}$insetEnd`,
         )}
       />
     );
@@ -32,13 +40,18 @@ export const Divider = forwardRef<HTMLDivElement, IDividerProps>(
     return (
       <Base
         {...other}
-        sx={[dividerTheme, globalStyles, combineStyles('host'), sx]}
+        sx={[
+          dividerTheme,
+          globalStyles,
+          combineStyles('host', `host$${orientation}`),
+          sx,
+        ]}
         ref={forwardedRef}
       >
         {children ? (
           <>
             {renderLine()}
-            <div {...getStyles('textContainer')}>
+            <div {...getStyles(`textContainer$${orientation}`)}>
               <div {...getStyles('text')}>{children}</div>
             </div>
             {renderLine()}

@@ -9,4 +9,6 @@ export type IPlaceholderProps = IBaseProps<IPlaceholderStylesKey> &
     innerStyles?: IPaperProps['innerStyles'];
     crosshairs?: boolean;
     disabled?: boolean;
+    width?: string | number;
+    height?: string | number;
   };

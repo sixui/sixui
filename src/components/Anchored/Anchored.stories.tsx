@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useEffect, useState } from 'react';
-import stylex from '@stylexjs/stylex';
 
 import type { IAnchoredProps } from './Anchored.types';
 import {
@@ -8,7 +7,7 @@ import {
   type IComponentPresentation,
   type IComponentShowcaseProps,
 } from '../ComponentShowcase';
-import { Placeholder } from '../Placeholder';
+import { Placeholder, type IPlaceholderProps } from '../Placeholder';
 import { Anchored } from './Anchored';
 
 const meta = {
@@ -19,27 +18,20 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {} satisfies Partial<IAnchoredProps>;
 
-const styles = stylex.create({
-  placeholder: {
-    width: 56,
-    height: 56,
-  },
-  badge$sm: {
-    height: 16,
-    width: 16,
-  },
-  badge$lg: {
-    height: 16,
-    width: 32,
-  },
-});
-
-const BadgePlaceholder: React.FC<{ size: 'sm' | 'lg' }> = ({ size }) => (
+const AnchoredPlaceholder: React.FC<
+  IPlaceholderProps & { size: 'sm' | 'lg' }
+> = ({ size, ...other }) => (
   <Placeholder
-    sx={[size === 'sm' ? styles.badge$sm : styles.badge$lg]}
+    {...other}
+    width={size === 'sm' ? 16 : 32}
+    height={16}
     corner='full'
     surface='primary'
   />
+);
+
+const BasePlaceholder: React.FC<IPlaceholderProps> = (props) => (
+  <Placeholder {...props} width={56} height={56} />
 );
 
 const anchors: Array<IComponentPresentation<IAnchoredProps>> = [
@@ -50,8 +42,8 @@ const anchors: Array<IComponentPresentation<IAnchoredProps>> = [
 ];
 
 const content: Array<IComponentPresentation<IAnchoredProps>> = [
-  { legend: 'Short', props: { content: <BadgePlaceholder size='sm' /> } },
-  { legend: 'Long', props: { content: <BadgePlaceholder size='lg' /> } },
+  { legend: 'Short', props: { content: <AnchoredPlaceholder size='sm' /> } },
+  { legend: 'Long', props: { content: <AnchoredPlaceholder size='lg' /> } },
 ];
 
 export const Variants: IStory = {
@@ -62,14 +54,14 @@ export const Variants: IStory = {
       cols={[
         {
           props: {
-            content: <BadgePlaceholder size='sm' />,
+            content: <AnchoredPlaceholder size='sm' />,
             verticalOrigin: 'top',
             horizontalOrigin: 'right',
           },
         },
         {
           props: {
-            content: <BadgePlaceholder size='lg' />,
+            content: <AnchoredPlaceholder size='lg' />,
             verticalOrigin: 'bottom',
             horizontalOrigin: 'left',
           },
@@ -80,14 +72,14 @@ export const Variants: IStory = {
           legend: 'Rectangular',
           props: {
             overlap: 'rectangular',
-            children: <Placeholder sx={styles.placeholder} corner='md' />,
+            children: <BasePlaceholder corner='md' />,
           },
         },
         {
           legend: 'Circular',
           props: {
             overlap: 'circular',
-            children: <Placeholder sx={styles.placeholder} corner='full' />,
+            children: <BasePlaceholder corner='full' />,
           },
         },
       ]}
@@ -128,7 +120,7 @@ export const RectangularOverlap: IStory = {
   args: {
     ...defaultArgs,
     overlap: 'rectangular',
-    children: <Placeholder sx={styles.placeholder} corner='md' />,
+    children: <Placeholder corner='md' width={56} height={56} />,
   } as IAnchoredProps,
 };
 
@@ -144,7 +136,7 @@ export const CircularOverlap: IStory = {
   args: {
     ...defaultArgs,
     overlap: 'circular',
-    children: <Placeholder sx={styles.placeholder} corner='full' />,
+    children: <Placeholder corner='full' width={56} height={56} />,
   } as IAnchoredProps,
 };
 

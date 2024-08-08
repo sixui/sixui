@@ -5,6 +5,8 @@ import { useStyles } from '~/hooks/useStyles';
 import { Paper } from '../Paper';
 import { placeholderStyles } from './Placeholder.styles';
 import { placeholderTheme } from './Placeholder.stylex';
+import { commonStyles } from '~/helpers/commonStyles';
+import { sizeToString } from '~/helpers/sizeToString';
 
 export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
   function Placeholder(props, forwardedRef) {
@@ -12,10 +14,14 @@ export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
       innerStyles,
       styles,
       sx,
+      surface = 'surfaceContainerHighest',
+      corner = 'sm',
       label,
       children,
       crosshairs,
       disabled,
+      width,
+      height,
       ...other
     } = props;
 
@@ -23,15 +29,25 @@ export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
       name: 'Placeholder',
       styles: [placeholderStyles, styles],
     });
+    const widthAsString = width !== undefined ? sizeToString(width) : undefined;
+    const heightAsString =
+      height !== undefined ? sizeToString(height) : undefined;
 
     return (
       <Paper
         innerStyles={innerStyles}
         {...other}
+        surface={surface}
+        corner={corner}
         sx={[
           placeholderTheme,
           globalStyles,
-          combineStyles('host', disabled ? 'host$disabled' : null),
+          combineStyles(
+            'host',
+            widthAsString !== undefined && commonStyles.width(widthAsString),
+            heightAsString !== undefined && commonStyles.height(heightAsString),
+            disabled ? 'host$disabled' : null,
+          ),
           sx,
         ]}
         ref={forwardedRef}

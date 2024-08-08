@@ -6,15 +6,23 @@ export type IDividerStylesKey = keyof typeof dividerStyles;
 export const dividerStyles = stylex.create({
   host: {
     display: 'flex',
+    color: dividerTokens.color,
+    position: 'relative',
+  },
+  host$horizontal: {
+    flexDirection: 'row',
     width: '100%',
     height: dividerTokens.thickness,
-    color: dividerTokens.color,
+  },
+  host$vertical: {
+    flexDirection: 'column',
+    width: dividerTokens.thickness,
+    alignSelf: 'stretch',
   },
   line: {
     display: 'flex',
     flexGrow: 1,
     color: 'inherit',
-    height: 'inherit',
 
     '::before': {
       background: 'currentColor',
@@ -24,23 +32,38 @@ export const dividerStyles = stylex.create({
       borderRadius: dividerTokens.shape,
     },
   },
-  line$inset: {
+  line$horizontal: {
+    flexDirection: 'row',
+    height: 'inherit',
+  },
+  line$vertical: {
+    flexDirection: 'column',
+    width: 'inherit',
+  },
+  line$horizontal$insetStart: {
     paddingInlineStart: dividerTokens.insetLeadingSpace,
+  },
+  line$vertical$insetStart: {
+    paddingBlockStart: dividerTokens.insetLeadingSpace,
+  },
+  line$horizontal$insetEnd: {
     paddingInlineEnd: dividerTokens.insetTrailingSpace,
   },
-  line$insetStart: {
-    paddingInlineStart: dividerTokens.insetLeadingSpace,
+  line$vertical$insetEnd: {
+    paddingBlockEnd: dividerTokens.insetTrailingSpace,
   },
-  line$insetEnd: {
-    paddingInlineEnd: dividerTokens.insetTrailingSpace,
-  },
-  textContainer: {
+  textContainer$horizontal: {
     marginInlineStart: dividerTokens.textLeadingSpace,
     marginInlineEnd: dividerTokens.textTrailingSpace,
   },
+  textContainer$vertical: {
+    marginBlockStart: dividerTokens.textLeadingSpace,
+    marginBlockEnd: dividerTokens.textTrailingSpace,
+  },
   text: {
+    position: 'absolute',
     textAlign: 'center',
-    transform: 'translateY(-50%)',
+    transform: 'translateX(-50%) translateY(-50%)',
 
     color: dividerTokens.textColor,
     fontFamily: dividerTokens.textFont,

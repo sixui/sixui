@@ -4,6 +4,13 @@ import stylex from '@stylexjs/stylex';
 import type { IDividerProps } from './Divider.types';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { Divider } from './Divider';
+import { outlineTokens } from '~/themes/base/outline.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import {
+  ComponentShowcase,
+  type IComponentPresentation,
+} from '../ComponentShowcase';
 
 // https://m3.material.io/components/divider/
 // https://material-web.dev/components/divider/
@@ -18,44 +25,82 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {} satisfies Partial<IDividerProps>;
 
 const styles = stylex.create({
-  ul: {
-    borderWidth: '1px',
+  list: {
+    borderWidth: outlineTokens.width$xs,
     borderStyle: 'dashed',
     borderColor: colorSchemeTokens.outlineVariant,
+    display: 'flex',
+    alignItems: 'center',
     margin: 0,
-    padding: 0,
-    width: '256px',
+    gap: spacingTokens.padding$4,
   },
-  li: {
-    color: colorSchemeTokens.onSurface,
-    fontFamily: 'system-ui',
-    listStyle: 'none',
-    margin: '16px',
+  list$horizontal: {
+    flexDirection: 'row',
+    paddingLeft: spacingTokens.padding$4,
+    paddingRight: spacingTokens.padding$4,
+    height: `calc(64px * ${scaleTokens.scale})`,
+  },
+  list$vertical: {
+    flexDirection: 'column',
+    paddingTop: spacingTokens.padding$4,
+    paddingBottom: spacingTokens.padding$4,
+    width: `calc(64px * ${scaleTokens.scale})`,
   },
 });
 
 const List: React.FC<IDividerProps> = (props) => (
-  <ul
-    {...stylex.props(styles.ul)}
-    aria-label='A list of items with decorative and non-decorative separators'
+  <div
+    {...stylex.props(
+      styles.list,
+      styles[
+        `list$${props.orientation === 'vertical' ? 'horizontal' : 'vertical'}`
+      ],
+    )}
   >
-    <li {...stylex.props(styles.li)}>List item one</li>
+    <div>One</div>
     <Divider {...props} />
-    <li {...stylex.props(styles.li)}>List item two</li>
+    <div>Two</div>
     <Divider {...props} />
-    <li {...stylex.props(styles.li)}>List item three</li>
+    <div>Three</div>
     <Divider {...props} />
-    <li {...stylex.props(styles.li)}>List item four</li>
-  </ul>
+    <div>Four</div>
+  </div>
 );
 
+const cols: Array<IComponentPresentation<IDividerProps>> = [
+  {
+    legend: 'Horizontal',
+    props: {
+      orientation: 'horizontal',
+    },
+  },
+  {
+    legend: 'Vertical',
+    props: {
+      orientation: 'vertical',
+    },
+  },
+];
+
 export const Basic: IStory = {
-  render: (props) => <List {...props} />,
+  render: (props) => (
+    <ComponentShowcase
+      component={(props) => <List {...props} />}
+      props={props}
+      cols={cols}
+    />
+  ),
   args: defaultArgs,
 };
 
 export const Inset: IStory = {
-  render: (props) => <List {...props} />,
+  render: (props) => (
+    <ComponentShowcase
+      component={(props) => <List {...props} />}
+      props={props}
+      cols={cols}
+    />
+  ),
   args: {
     ...defaultArgs,
     inset: true,
@@ -63,7 +108,13 @@ export const Inset: IStory = {
 };
 
 export const InsetStart: IStory = {
-  render: (props) => <List {...props} />,
+  render: (props) => (
+    <ComponentShowcase
+      component={(props) => <List {...props} />}
+      props={props}
+      cols={cols}
+    />
+  ),
   args: {
     ...defaultArgs,
     insetStart: true,
@@ -71,7 +122,13 @@ export const InsetStart: IStory = {
 };
 
 export const InsetEnd: IStory = {
-  render: (props) => <List {...props} />,
+  render: (props) => (
+    <ComponentShowcase
+      component={(props) => <List {...props} />}
+      props={props}
+      cols={cols}
+    />
+  ),
   args: {
     ...defaultArgs,
     insetEnd: true,
@@ -79,7 +136,13 @@ export const InsetEnd: IStory = {
 };
 
 export const WithText: IStory = {
-  render: (props) => <List {...props} />,
+  render: (props) => (
+    <ComponentShowcase
+      component={(props) => <List {...props} />}
+      props={props}
+      cols={cols}
+    />
+  ),
   args: {
     ...defaultArgs,
     children: 'or',

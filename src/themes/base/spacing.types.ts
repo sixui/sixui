@@ -3,6 +3,7 @@ export type ISpacingTheme = {
    * Padding refers to the space between UI elements within a component/
    */
   paddingScale: string;
+  'padding$0.5': string;
   padding$1: string;
   padding$2: string;
   padding$3: string;

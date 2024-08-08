@@ -11,6 +11,7 @@ const MARGIN_SCALE = `calc(${MARGIN_UNIT} * ${scaleTokens.scale})`;
 
 const vars = {
   paddingScale: PADDING_SCALE,
+  'padding$0.5': `calc(${PADDING_SCALE} * 0.5)`,
   padding$1: `calc(${PADDING_SCALE} * 1)`,
   padding$2: `calc(${PADDING_SCALE} * 2)`,
   padding$3: `calc(${PADDING_SCALE} * 3)`,

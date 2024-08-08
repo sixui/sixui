@@ -28,7 +28,7 @@ const styles = stylex.create({
 
 const defaultArgs = {
   sx: styles.host,
-  children: <Placeholder surface='onSurface' expand disabled />,
+  children: <Placeholder surface='onSurface' corner='none' expand disabled />,
 } satisfies Partial<IFieldBaseProps>;
 
 const states: Array<IComponentPresentation<IFieldBaseProps>> = [
