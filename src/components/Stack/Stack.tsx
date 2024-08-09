@@ -2,13 +2,14 @@ import { forwardRef } from 'react';
 
 import type { IStackProps } from './Stack.types';
 import { useStyles } from '~/hooks/useStyles';
+import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
 import { Base } from '~/components/Base';
 import { StackStyles } from './Stack.styles';
 import { filterFalsyChildren } from '~/helpers/react/filterFalsyChildren';
 import { commonStyles } from '~/helpers/commonStyles';
 
-export const Stack = forwardRef<HTMLDivElement, IStackProps>(
-  function Stack(props, forwardedRef) {
+export const Stack = createPolymorphicComponent<'div', IStackProps>(
+  forwardRef<HTMLDivElement, IStackProps>(function Stack(props, forwardedRef) {
     const {
       styles,
       sx,
@@ -59,5 +60,5 @@ export const Stack = forwardRef<HTMLDivElement, IStackProps>(
           : filteredChildren}
       </Base>
     );
-  },
+  }),
 );
