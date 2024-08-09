@@ -1,3 +1,15 @@
+# v0.0.417 (Fri Aug 09 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(Stack): default align center for horizontal and stretch for vertical ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.416 (Fri Aug 09 2024)
 
 #### ⚠️ Pushed to `main`
