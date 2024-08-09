@@ -104,6 +104,7 @@ export * from './helpers/fixedForwardRef';
 export * from './helpers/colors/getTextContrastColor';
 export * from './helpers/colors/isValidHexColor';
 export * from './helpers/colors/generateThemeFromSourceColor';
+export * from './helpers/react/polymorphicComponentTypes';
 
 // themes
 export * from './themes/base';
