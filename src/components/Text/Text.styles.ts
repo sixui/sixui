@@ -1,15 +1,24 @@
 import stylex from '@stylexjs/stylex';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
 
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 
-export type ITypographyStylesKey = keyof typeof typographyStyles;
-export const typographyStyles = stylex.create({
+export type ITextStylesKey = keyof typeof textStyles;
+export const textStyles = stylex.create({
   host: {
     margin: 0,
   },
   host$gutterBottom: {
     marginBottom: spacingTokens.padding$1,
+  },
+  host$dimmed: {
+    color: colorSchemeTokens.onSurfaceVariant,
+  },
+  host$truncted: {
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
   },
   display$lg: {
     fontFamily: typeScaleTokens.displayFont$lg,

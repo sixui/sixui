@@ -23,6 +23,11 @@ export type ICSSProperties = {
 };
 
 export const commonStyles = stylex.create({
+  truncate: {
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+  },
   truncateLines: (lineCount: number) => ({
     overflow: 'hidden',
     display: '-webkit-box',

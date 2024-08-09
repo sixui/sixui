@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 
 import type { IDeterminateCircularProgressIndicatorProps } from './DeterminateCircularProgressIndicator.types';
 import { ComponentShowcase } from '../ComponentShowcase';
-import { Typography } from '../Typography';
+import { Text } from '../Text';
 import { DeterminateCircularProgressIndicator } from './DeterminateCircularProgressIndicator';
 
 // https://m3.material.io/components/progress-indicators/overview
@@ -49,9 +49,9 @@ export const WithLabel: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={(props) => (
-        <Typography>
+        <Text>
           <DeterminateCircularProgressIndicator {...props} />
-        </Typography>
+        </Text>
       )}
       props={props}
       cols={[
@@ -75,9 +75,9 @@ export const WithLabelFormatter: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={(props) => (
-        <Typography>
+        <Text>
           <DeterminateCircularProgressIndicator {...props} />
-        </Typography>
+        </Text>
       )}
       props={props}
       cols={[
@@ -102,9 +102,9 @@ export const WithRange: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={(props) => (
-        <Typography>
+        <Text>
           <DeterminateCircularProgressIndicator {...props} />
-        </Typography>
+        </Text>
       )}
       props={props}
       cols={[
@@ -131,9 +131,9 @@ export const ZeroBased: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={(props) => (
-        <Typography>
+        <Text>
           <DeterminateCircularProgressIndicator {...props} />
-        </Typography>
+        </Text>
       )}
       props={props}
       cols={[

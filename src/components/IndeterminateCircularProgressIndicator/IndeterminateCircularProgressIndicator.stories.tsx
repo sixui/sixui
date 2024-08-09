@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IIndeterminateCircularProgressIndicatorProps } from './IndeterminateCircularProgressIndicator.types';
-import { Typography } from '../Typography';
+import { Text } from '../Text';
 import { IndeterminateCircularProgressIndicator } from './IndeterminateCircularProgressIndicator';
 
 // https://m3.material.io/components/progress-indicators/overview
@@ -19,9 +19,9 @@ const defaultArgs =
 
 export const Basic: IStory = {
   render: (props) => (
-    <Typography>
+    <Text>
       <IndeterminateCircularProgressIndicator {...props} />
-    </Typography>
+    </Text>
   ),
   args: defaultArgs,
 };

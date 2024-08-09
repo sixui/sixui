@@ -8,7 +8,7 @@ import { scaleTokens } from '~/themes/base/scale.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
 import { ComponentShowcase } from '../ComponentShowcase';
 import { Avatar } from '../Avatar';
-import { Typography } from '../Typography';
+import { Text } from '../Text';
 
 const meta = {
   component: Skeleton,
@@ -56,9 +56,9 @@ export const AsContainer: IStory = {
           legend: 'Text (large)',
           props: {
             children: (
-              <Typography variant='display' size='lg'>
+              <Text variant='display' size='lg'>
                 Large text
-              </Typography>
+              </Text>
             ),
           },
         },
@@ -66,9 +66,9 @@ export const AsContainer: IStory = {
           legend: 'Text (medium)',
           props: {
             children: (
-              <Typography variant='title' size='lg'>
+              <Text variant='title' size='lg'>
                 Medium text
-              </Typography>
+              </Text>
             ),
           },
         },
@@ -76,9 +76,9 @@ export const AsContainer: IStory = {
           legend: 'Text (small)',
           props: {
             children: (
-              <Typography variant='label' size='sm'>
+              <Text variant='label' size='sm'>
                 Small text
-              </Typography>
+              </Text>
             ),
           },
         },

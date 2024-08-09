@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import type { ICircularProgressIndicatorProps } from './CircularProgressIndicator.types';
 import { ComponentShowcase } from '../ComponentShowcase';
-import { Typography } from '../Typography';
+import { Text } from '../Text';
 import { CircularProgressIndicator } from './CircularProgressIndicator';
 
 // https://m3.material.io/components/progress-indicators/overview
@@ -21,9 +21,9 @@ export const Variants: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={(props) => (
-        <Typography>
+        <Text>
           <CircularProgressIndicator {...props} />
-        </Typography>
+        </Text>
       )}
       props={props}
       cols={[{ props: { value: undefined } }, { props: { value: 0.75 } }]}

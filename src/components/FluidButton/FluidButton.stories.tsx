@@ -7,7 +7,7 @@ import {
   ComponentShowcase,
   type IComponentPresentation,
 } from '../ComponentShowcase';
-import { Typography } from '../Typography';
+import { Text } from '../Text';
 import { FluidButton } from './FluidButton';
 
 const meta = {
@@ -30,42 +30,42 @@ const FluidButtonInText: React.FC<IFluidButtonProps> = (props) => (
 const rows: Array<IComponentPresentation<IFluidButtonProps>> = [
   {
     component: (props) => (
-      <Typography variant='display'>
+      <Text variant='display'>
         <FluidButtonInText {...props} />
-      </Typography>
+      </Text>
     ),
   },
   {
     component: (props) => (
-      <Typography variant='headline'>
+      <Text variant='headline'>
         <FluidButtonInText {...props} />
-      </Typography>
+      </Text>
     ),
   },
   {
     component: (props) => (
-      <Typography variant='title'>
+      <Text variant='title'>
         <FluidButtonInText {...props} />
-      </Typography>
+      </Text>
     ),
   },
   {
     component: (props) => (
-      <Typography variant='body'>
+      <Text variant='body'>
         <FluidButtonInText {...props} />
-      </Typography>
+      </Text>
     ),
   },
   {
     component: (props) => (
-      <Typography variant='label'>
+      <Text variant='label'>
         <FluidButtonInText {...props} />
-      </Typography>
+      </Text>
     ),
   },
 ];
 
-export const Text: IStory = {
+export const WithText: IStory = {
   render: (props) => (
     <ComponentShowcase
       horizontalAlign='start'
@@ -80,7 +80,7 @@ export const Text: IStory = {
   },
 };
 
-export const TextDisabled: IStory = {
+export const WithTextDisabled: IStory = {
   render: (props) => (
     <ComponentShowcase
       horizontalAlign='start'
@@ -96,7 +96,7 @@ export const TextDisabled: IStory = {
   },
 };
 
-export const Icon: IStory = {
+export const WithIcon: IStory = {
   render: (props) => (
     <ComponentShowcase
       horizontalAlign='start'

@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 
 import type { IPaperProps } from './Paper.types';
 import { ComponentShowcase } from '../ComponentShowcase';
-import { Typography } from '../Typography';
+import { Text } from '../Text';
 import { Paper } from './Paper';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
@@ -43,9 +43,9 @@ const defaultArgs = {
 const PaperWithContent: React.FC<IPaperProps> = ({ children, ...props }) => (
   <Paper {...props}>
     <div {...stylex.props(paperContentStyles.content)}>
-      <Typography variant='body' size='md'>
+      <Text variant='body' size='md'>
         {children}
-      </Typography>
+      </Text>
     </div>
   </Paper>
 );

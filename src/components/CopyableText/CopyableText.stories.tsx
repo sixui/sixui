@@ -5,7 +5,7 @@ import {
   ComponentShowcase,
   type IComponentPresentation,
 } from '../ComponentShowcase';
-import { Typography } from '../Typography';
+import { Text } from '../Text';
 import { CopyableText } from './CopyableText';
 
 const meta = {
@@ -29,9 +29,9 @@ const rows: Array<IComponentPresentation<ICopyableTextProps>> = [
   {
     legend: 'Icon and text',
     component: (props) => (
-      <Typography>
+      <Text>
         You can reach me on <CopyableText {...props} />, or by email.
-      </Typography>
+      </Text>
     ),
     props: {
       children: COPYABLE_TEXT,

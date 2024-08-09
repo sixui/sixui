@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 
 import type { IDisclosureProps } from './Disclosure.types';
 import { DisclosureButton } from '../DisclosureButton';
-import { Typography } from '../Typography';
+import { Text } from '../Text';
 import { Disclosure } from './Disclosure';
 
 const meta = {
@@ -28,7 +28,7 @@ const TEXT =
 
 const defaultArgs = {
   trigger: <DisclosureButton>Advanced options</DisclosureButton>,
-  children: <Typography>{TEXT}</Typography>,
+  children: <Text>{TEXT}</Text>,
   sx: styles.host,
 } satisfies Partial<IDisclosureProps>;
 

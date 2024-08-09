@@ -5,7 +5,7 @@ import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 
 const vars = {
   // legend
-  legendTextColor: colorSchemeTokens.secondary,
+  legendTextColor: colorSchemeTokens.onSurfaceVariant,
   legendTextFont: typeScaleTokens.labelFont$md,
   legendTextLineHeight: typeScaleTokens.labelLineHeight$md,
   legendTextSize: typeScaleTokens.labelSize$md,

@@ -84,11 +84,11 @@ export * from './components/Tab';
 export * from './components/TabList';
 export * from './components/TabPanel';
 export * from './components/Tabs';
+export * from './components/Text';
 export * from './components/TextAreaField';
 export * from './components/TextFieldBase';
 export * from './components/TextInputField';
 export * from './components/Theme';
-export * from './components/Typography';
 export * from './components/VisualState';
 
 // hooks
