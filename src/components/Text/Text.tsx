@@ -42,7 +42,7 @@ export const Text = createPolymorphicComponent<'span', ITextProps>(
       children,
       gutterBottom,
       dimmed,
-      truncated,
+      truncate,
       truncateLines,
       ...other
     } = props as IWithAsProp<ITextProps>;
@@ -63,7 +63,7 @@ export const Text = createPolymorphicComponent<'span', ITextProps>(
           combineStyles(
             'host',
             dimmed && 'host$dimmed',
-            truncated && commonStyles.truncate,
+            truncate && commonStyles.truncate,
             !!truncateLines &&
               truncateLines > 0 &&
               commonStyles.truncateLines(truncateLines),

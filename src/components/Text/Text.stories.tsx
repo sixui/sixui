@@ -195,7 +195,7 @@ export const TypeScale: IStory = {
   args: defaultArgs,
 };
 
-export const Truncated: IStory = {
+export const Truncate: IStory = {
   render: (props) => (
     <ComponentShowcase
       styles={componentShowcaseStyles}
@@ -236,11 +236,11 @@ export const Truncated: IStory = {
   args: {
     ...defaultArgs,
     children: LOREM$SM,
-    truncated: true,
+    truncate: true,
   },
 };
 
-export const LinesTruncated: IStory = {
+export const TruncateLines: IStory = {
   render: (props) => (
     <ComponentShowcase
       styles={componentShowcaseStyles}

@@ -11,6 +11,6 @@ export type ITextProps = IBaseProps<ITextStylesKey> & {
   children?: React.ReactNode;
   gutterBottom?: boolean;
   dimmed?: boolean;
-  truncated?: boolean;
+  truncate?: boolean;
   truncateLines?: number;
 };
