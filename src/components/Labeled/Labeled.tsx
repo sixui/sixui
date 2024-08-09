@@ -137,6 +137,7 @@ export const Labeled = forwardRef<HTMLDivElement, ILabeledProps>(
           labeledTheme,
           globalStyles,
           ...combineStyles(
+            disabled && 'host$disabled',
             orientation === 'horizontal' ? 'host$horizontal' : 'host$vertical',
           ),
           sx,

@@ -5,6 +5,9 @@ import { labeledTokens } from './Labeled.stylex';
 
 export type ILabeledStylesKey = keyof typeof labeledStyles;
 export const labeledStyles = stylex.create({
+  host$disabled: {
+    pointerEvents: 'none',
+  },
   host$vertical: {
     display: 'flex',
     flexDirection: 'column',
