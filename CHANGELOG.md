@@ -1,3 +1,15 @@
+# v0.0.421 (Fri Aug 09 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(Stack): optional children ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.420 (Fri Aug 09 2024)
 
 #### ⚠️ Pushed to `main`
