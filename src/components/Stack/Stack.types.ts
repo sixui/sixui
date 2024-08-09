@@ -3,7 +3,7 @@ import type { ICSSProperties, IGap } from '~/helpers/commonStyles';
 import type { IStackStylesKey } from './Stack.styles';
 
 export type IStackProps = IBaseProps<IStackStylesKey> & {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   horizontal?: boolean;
   gap?: IGap;
   align?: ICSSProperties['align'];
