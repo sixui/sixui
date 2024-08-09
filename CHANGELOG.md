@@ -1,3 +1,15 @@
+# v0.0.419 (Fri Aug 09 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(Skeleton): now polymorphic ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.418 (Fri Aug 09 2024)
 
 #### ⚠️ Pushed to `main`
