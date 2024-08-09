@@ -1,3 +1,15 @@
+# v0.0.416 (Fri Aug 09 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: correct theme applied when setTheme is called with undefined ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.415 (Thu Aug 08 2024)
 
 #### ⚠️ Pushed to `main`
