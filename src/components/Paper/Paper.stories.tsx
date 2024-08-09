@@ -1,11 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
+import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { IPaperProps } from './Paper.types';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { ComponentShowcase } from '../ComponentShowcase';
 import { Text } from '../Text';
 import { Paper } from './Paper';
-import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 // https://material.io/blog/tone-based-surface-color-m3
 // https://m3.material.io/styles/elevation/overview
@@ -18,7 +20,7 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   host: {
-    width: 192,
+    width: `calc(192px * ${scaleTokens.scale})`,
   },
 });
 
@@ -31,8 +33,8 @@ const paperContentStyles = stylex.create({
     flexShrink: 1,
     flexBasis: '0%',
     justifyContent: 'flex-end',
-    padding: '16px',
-    gap: '16px',
+    padding: spacingTokens.padding$4,
+    gap: spacingTokens.padding$4,
   },
 });
 

@@ -15,6 +15,7 @@ import {
 } from '@fortawesome/free-regular-svg-icons';
 
 import type { ITabsProps } from './Tabs.types';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { Tab } from '../Tab';
 import { TabList } from '../TabList';
 import { TabPanel } from '../TabPanel';
@@ -30,7 +31,7 @@ const defaultArgs = {} satisfies Partial<ITabsProps>;
 
 const styles = stylex.create({
   tabPanel: {
-    padding: '16px',
+    padding: spacingTokens.padding$4,
   },
 });
 

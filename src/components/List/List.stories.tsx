@@ -9,10 +9,12 @@ import {
 import { createSequence } from '@olivierpascal/helpers';
 
 import type { IListProps } from './List.types';
-import { ListItem, type IListItemProps } from '../ListItem';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { ComponentShowcase } from '../ComponentShowcase';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { ComponentShowcase } from '../ComponentShowcase';
+import { ListItem, type IListItemProps } from '../ListItem';
 import { Avatar } from '../Avatar';
 import { Checkbox } from '../Checkbox';
 import { List } from './List';
@@ -30,13 +32,13 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   host: {
-    outlineWidth: '1px',
+    outlineWidth: outlineTokens.width$xs,
     outlineStyle: 'dashed',
     outlineColor: colorSchemeTokens.outlineVariant,
   },
   host$fixedSize: {
-    width: 280,
-    height: 280,
+    width: `calc(280px * ${scaleTokens.scale})`,
+    height: `calc(280px * ${scaleTokens.scale})`,
     overflowX: 'hidden',
     overflowY: 'auto',
   },

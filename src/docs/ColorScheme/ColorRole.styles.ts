@@ -1,19 +1,27 @@
 import type { StyleXVar } from '@stylexjs/stylex/lib/StyleXTypes';
 import stylex from '@stylexjs/stylex';
 
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+
+const MIN_DENSITY = -5;
+const MAX_DENSITY = 0;
+const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityTokens.density}, ${MAX_DENSITY}) * ${scaleTokens.scale}`;
+
 export const colorRoleStyles = stylex.create({
   host: {
     flexGrow: 1,
-    paddingLeft: '0.75rem',
-    paddingRight: '0.75rem',
-    paddingTop: '0.5rem',
-    paddingBottom: '0.5rem',
+    paddingLeft: spacingTokens.padding$3,
+    paddingRight: spacingTokens.padding$3,
+    paddingTop: spacingTokens.padding$2,
+    paddingBottom: spacingTokens.padding$2,
   },
-  height$xs: { flexBasis: '30px' },
-  height$sm: { flexBasis: '40px' },
-  height$md: { flexBasis: '50px' },
-  height$lg: { flexBasis: '65px' },
-  height$xl: { flexBasis: '75px' },
+  height$xs: { flexBasis: `calc(30px * ${scaleTokens.scale} + ${DENSITY})` },
+  height$sm: { flexBasis: `calc(40px * ${scaleTokens.scale} + ${DENSITY})` },
+  height$md: { flexBasis: `calc(50px * ${scaleTokens.scale} + ${DENSITY})` },
+  height$lg: { flexBasis: `calc(65px * ${scaleTokens.scale} + ${DENSITY})` },
+  height$xl: { flexBasis: `calc(75px * ${scaleTokens.scale} + ${DENSITY})` },
   color: (
     bg: string | StyleXVar<string>,
     text: string | StyleXVar<string>,

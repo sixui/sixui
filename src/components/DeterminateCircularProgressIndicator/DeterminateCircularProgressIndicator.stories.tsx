@@ -5,6 +5,7 @@ import type { IDeterminateCircularProgressIndicatorProps } from './DeterminateCi
 import { ComponentShowcase } from '../ComponentShowcase';
 import { Text } from '../Text';
 import { DeterminateCircularProgressIndicator } from './DeterminateCircularProgressIndicator';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 
 // https://m3.material.io/components/progress-indicators/overview
 // https://material-web.dev/components/progress/
@@ -18,8 +19,8 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   host$withLabel: {
-    width: 48,
-    height: 48,
+    width: `calc(48px * ${scaleTokens.scale})`,
+    height: `calc(48px * ${scaleTokens.scale})`,
   },
 });
 

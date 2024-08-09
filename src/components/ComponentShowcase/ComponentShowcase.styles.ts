@@ -2,6 +2,8 @@ import stylex from '@stylexjs/stylex';
 
 import { componentShowcaseTokens } from './ComponentShowcase.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
 
 export type IComponentShowcaseStylesKey = keyof typeof componentShowcaseStyles;
 export const componentShowcaseStyles = stylex.create({
@@ -62,10 +64,10 @@ export const componentShowcaseStyles = stylex.create({
   legendRow: {
     display: 'flex',
     alignItems: 'center',
-    maxWidth: 120,
+    maxWidth: `calc(120px * ${scaleTokens.scale})`,
   },
   leftBorder: {
-    borderLeftWidth: 1,
+    borderLeftWidth: outlineTokens.width$xs,
     borderLeftStyle: 'solid',
     borderLeftColor: componentShowcaseTokens.groupBorderColor,
     paddingLeft: spacingTokens.margin$4,

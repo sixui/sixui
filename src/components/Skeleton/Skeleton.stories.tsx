@@ -3,12 +3,13 @@ import stylex from '@stylexjs/stylex';
 
 import type { ISkeletonProps } from './Skeleton.types';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { Skeleton } from './Skeleton';
 import { scaleTokens } from '~/themes/base/scale.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
 import { ComponentShowcase } from '../ComponentShowcase';
 import { Avatar } from '../Avatar';
 import { Text } from '../Text';
+import { Skeleton } from './Skeleton';
 
 const meta = {
   component: Skeleton,
@@ -27,7 +28,7 @@ const styles = stylex.create({
     alignItems: 'center',
     width: `calc(100px * ${scaleTokens.scale})`,
     height: `calc(100px * ${scaleTokens.scale})`,
-    borderWidth: 1,
+    borderWidth: outlineTokens.width$xs,
     borderStyle: 'solid',
     borderColor: colorSchemeTokens.outline,
     borderRadius: shapeTokens.corner$md,

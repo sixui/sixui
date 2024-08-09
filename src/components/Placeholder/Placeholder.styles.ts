@@ -1,8 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
 import { stateTokens } from '~/themes/base/state.stylex';
-import { placeholderTokens } from './Placeholder.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
+import { placeholderTokens } from './Placeholder.stylex';
 
 export type IPlaceholderStylesKey = keyof typeof placeholderStyles;
 export const placeholderStyles = stylex.create({
@@ -36,7 +37,7 @@ export const placeholderStyles = stylex.create({
       content: '',
       position: 'absolute',
       bottom: 0,
-      borderBottomWidth: 1,
+      borderBottomWidth: outlineTokens.width$xs,
       borderBottomStyle: 'solid',
       borderBottomColor: placeholderTokens.crosshairsColor,
       width: '150%',

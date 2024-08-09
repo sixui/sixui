@@ -5,6 +5,7 @@ import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 import type { ITextProps } from './Text.types';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { scaleTokens } from '~/themes/base/scale.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 import {
   type IComponentPresentation,
   ComponentShowcase,
@@ -157,7 +158,7 @@ const styles = stylex.create({
     borderWidth: 1,
     borderStyle: 'dashed',
     borderColor: colorSchemeTokens.outline,
-    padding: 16,
+    padding: spacingTokens.padding$4,
   },
   container$lg: {
     maxWidth: `calc(600px * ${scaleTokens.scale})`,
@@ -172,7 +173,7 @@ const styles = stylex.create({
 
 const componentShowcaseStyles = stylex.create({
   host: {
-    maxWidth: 1200,
+    maxWidth: `calc(1200px * ${scaleTokens.scale})`,
   },
 });
 

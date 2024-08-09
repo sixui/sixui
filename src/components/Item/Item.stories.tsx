@@ -2,8 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
 import type { IItemProps } from './Item.types';
-import { ComponentShowcase } from '../ComponentShowcase';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { ComponentShowcase } from '../ComponentShowcase';
 import { Item } from './Item';
 
 // https://m3.material.io/components/items/overview
@@ -21,15 +23,15 @@ const LOREM$SM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
 
 const styles = stylex.create({
   host: {
-    outlineWidth: '1px',
+    outlineWidth: outlineTokens.width$xs,
     outlineStyle: 'dashed',
     outlineColor: colorSchemeTokens.outlineVariant,
   },
   host$fixedWidth$sm: {
-    width: 320,
+    width: `calc(320px * ${scaleTokens.scale})`,
   },
   host$fixedWidth$xs: {
-    width: 160,
+    width: `calc(160px * ${scaleTokens.scale})`,
   },
   slot: {
     display: 'flex',

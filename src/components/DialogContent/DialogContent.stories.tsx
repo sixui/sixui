@@ -7,6 +7,7 @@ import type { IDialogContentProps } from './DialogContent.types';
 import { DialogContent } from './DialogContent';
 import { Text } from '../Text';
 import { Button } from '../Button';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 
 // https://m3.material.io/components/dialogs/overview
 // https://material-web.dev/components/dialog/
@@ -20,10 +21,10 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   host: {
-    width: 560,
+    width: `calc(560px * ${scaleTokens.scale})`,
   },
   host$scrollable: {
-    height: 300,
+    height: `calc(300px * ${scaleTokens.scale})`,
   },
   field: {
     width: '100%',

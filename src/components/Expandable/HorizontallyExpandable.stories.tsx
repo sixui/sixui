@@ -8,8 +8,11 @@ import {
 
 import type { IExpandableProps } from './Expandable.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { IconButton } from '../IconButton';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
+import { IconButton } from '../IconButton';
 import { Expandable } from './Expandable';
 
 const meta = {
@@ -28,16 +31,16 @@ const styles = stylex.create({
     flexDirection: 'row',
     flexGrow: 1,
     position: 'relative',
-    maxWidth: 800,
+    maxWidth: `calc(800px * ${scaleTokens.scale})`,
   },
   panel: {
-    paddingLeft: 16,
+    paddingLeft: spacingTokens.padding$4,
   },
   innerPanel: {
-    borderWidth: 1,
+    borderWidth: outlineTokens.width$xs,
     borderStyle: 'dashed',
     borderColor: colorSchemeTokens.outline,
-    padding: 16,
+    padding: spacingTokens.padding$4,
   },
 });
 

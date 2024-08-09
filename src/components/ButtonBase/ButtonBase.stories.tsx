@@ -9,6 +9,8 @@ import { shapeTokens } from '~/themes/base/shape.stylex';
 import { stateLayerTokens } from '../StateLayer/StateLayer.stylex';
 import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
 import { ButtonBase } from './ButtonBase';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
 
 const meta = {
   component: ButtonBase,
@@ -42,7 +44,7 @@ export const Unstyled: IStory = {
 
 const buttonStyles = stylex.create({
   host: {
-    padding: 8,
+    padding: spacingTokens.padding$2,
     borderRadius: shapeTokens.corner$md,
     color: {
       default: colorSchemeTokens.onSurface,
@@ -50,7 +52,7 @@ const buttonStyles = stylex.create({
     },
   },
   outline: {
-    borderWidth: 1,
+    borderWidth: outlineTokens.width$xs,
     borderStyle: 'solid',
     borderColor: colorSchemeTokens.outline,
   },

@@ -3,8 +3,10 @@ import stylex from '@stylexjs/stylex';
 
 import type { IMenuListProps } from './MenuList.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { ListItem } from '../ListItem';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { ListItem } from '../ListItem';
 import { MenuDivider } from '../MenuDivider';
 import { MenuList } from './MenuList';
 
@@ -16,12 +18,12 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   host$fixedWidth: {
-    width: 192,
+    width: `calc(192px * ${scaleTokens.scale})`,
   },
   section: {
     backgroundColor: colorSchemeTokens.primaryContainer,
     color: colorSchemeTokens.onPrimaryContainer,
-    padding: 8,
+    padding: spacingTokens.padding$2,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

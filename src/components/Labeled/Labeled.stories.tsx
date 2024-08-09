@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
 import type { ILabeledProps } from './Labeled.types';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import {
   ComponentShowcase,
   type IComponentPresentation,
@@ -20,10 +21,10 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   host: {
-    width: 120,
+    width: `calc(120px * ${scaleTokens.scale})`,
   },
   host$lg: {
-    width: 240,
+    width: `calc(240px * ${scaleTokens.scale})`,
   },
 });
 

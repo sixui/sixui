@@ -9,6 +9,8 @@ import {
 import type { IStateLayerProps } from './StateLayer.types';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { StateLayer } from './StateLayer';
 
 // https://material-web.dev/components/ripple/
@@ -37,15 +39,15 @@ const styles = stylex.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: 96,
-    height: 96,
-    outlineWidth: '1px',
+    width: `calc(96px * ${scaleTokens.scale})`,
+    height: `calc(96px * ${scaleTokens.scale})`,
+    outlineWidth: outlineTokens.width$xs,
     outlineColor: colorSchemeTokens.outline,
   },
   container$inner: {
     position: 'absolute',
-    width: 48,
-    height: 48,
+    width: `calc(48px * ${scaleTokens.scale})`,
+    height: `calc(48px * ${scaleTokens.scale})`,
     borderRadius: shapeTokens.corner$lg,
     outlineStyle: 'solid',
     inset: '50%',
@@ -68,12 +70,12 @@ const styles = stylex.create({
     borderRadius: '50%',
     position: 'relative',
     display: 'flex',
-    width: '1.5rem',
-    height: '1.5rem',
+    width: `calc(24px * ${scaleTokens.scale})`,
+    height: `calc(24px * ${scaleTokens.scale})`,
     placeContent: 'center',
     placeItems: 'center',
     backgroundColor: colorSchemeTokens.primaryContainer,
-    borderWidth: '1px',
+    borderWidth: outlineTokens.width$xs,
     borderStyle: 'solid',
     borderColor: colorSchemeTokens.outline,
   },
@@ -98,8 +100,8 @@ const unboundedStyles = stylex.create({
   host: {
     borderRadius: '50%',
     inset: 'none',
-    width: '4rem',
-    height: '4rem',
+    width: `calc(64px * ${scaleTokens.scale})`,
+    height: `calc(64px * ${scaleTokens.scale})`,
   },
 });
 

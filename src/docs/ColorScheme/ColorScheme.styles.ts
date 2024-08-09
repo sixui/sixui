@@ -1,5 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 
 export const colorSchemeStyles = stylex.create({
@@ -33,9 +34,9 @@ export const colorSchemeStyles = stylex.create({
     rowGap: '1rem',
   },
   width$sm: {
-    width: 240,
+    width: `calc(240px * ${scaleTokens.scale})`,
   },
   width$lg: {
-    width: 600,
+    width: `calc(600px * ${scaleTokens.scale})`,
   },
 });

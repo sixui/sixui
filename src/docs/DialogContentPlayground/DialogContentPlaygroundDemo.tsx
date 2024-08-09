@@ -4,6 +4,7 @@ import {
   DialogContent,
   type IDialogContentProps,
 } from '~/components/DialogContent';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 
 export type IDialogContentPlaygroundDemoProps = {
   dialogContent: IDialogContentProps;
@@ -11,10 +12,10 @@ export type IDialogContentPlaygroundDemoProps = {
 
 const styles = stylex.create({
   host: {
-    width: 400,
+    width: `calc(400px * ${scaleTokens.scale})`,
   },
   host$scrollable: {
-    height: 400,
+    height: `calc(400px * ${scaleTokens.scale})`,
   },
 });
 

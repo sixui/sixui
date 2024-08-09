@@ -2,14 +2,15 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { createSequence } from '@olivierpascal/helpers';
 
 import type { IStepperProps } from './Stepper.types';
 import { isFunction } from '~/helpers/isFunction';
-import { Step, type IStepProps } from '../Step';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { ComponentShowcase } from '../ComponentShowcase';
 import { stepTokens } from '../Step/Step.stylex';
-import { createSequence } from '@olivierpascal/helpers';
+import { Step, type IStepProps } from '../Step';
 import { StepConnector } from '../StepConnector';
 import { Stepper } from './Stepper';
 
@@ -26,10 +27,10 @@ const defaultArgs = {
 
 const styles = stylex.create({
   horizontal: {
-    minWidth: 750,
+    minWidth: `calc(750px * ${scaleTokens.scale})`,
   },
   vertical: {
-    minWidth: 128,
+    minWidth: `calc(128px * ${scaleTokens.scale})`,
   },
   step$noSpace: {
     // TODO: waiting for a fix

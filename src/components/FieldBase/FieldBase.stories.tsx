@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 import type { IFieldBaseProps, IFieldBaseVariant } from './FieldBase.types';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import {
   type IComponentPresentation,
   ComponentShowcase,
@@ -22,7 +23,7 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   host: {
-    width: 240,
+    width: `calc(240px * ${scaleTokens.scale})`,
   },
 });
 

@@ -2,17 +2,20 @@ import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
-import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
 import { stateTokens } from '~/themes/base/state.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
+import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
 
 export const visualStateStyles = stylex.create({
   host: {
     position: 'relative',
     boxSizing: 'content-box',
-    padding: '1rem',
-    minHeight: 96,
-    minWidth: 96,
-    outlineWidth: '1px',
+    padding: spacingTokens.padding$4,
+    minHeight: `calc(96px * ${scaleTokens.scale})`,
+    minWidth: `calc(96px * ${scaleTokens.scale})`,
+    outlineWidth: outlineTokens.width$xs,
     outlineColor: colorSchemeTokens.outline,
     borderRadius: shapeTokens.corner$xl,
     outlineStyle: 'solid',

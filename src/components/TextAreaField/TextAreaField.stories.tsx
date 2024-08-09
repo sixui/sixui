@@ -3,12 +3,13 @@ import stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { ITextAreaFieldProps } from './TextAreaField.types';
-import type { IFieldBaseVariant } from '../FieldBase';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '../ComponentShowcase';
+import type { IFieldBaseVariant } from '../FieldBase';
 import { TextAreaField } from './TextAreaField';
 
 const meta = {
@@ -19,7 +20,7 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   host: {
-    width: 260,
+    width: `calc(260px * ${scaleTokens.scale})`,
   },
 });
 

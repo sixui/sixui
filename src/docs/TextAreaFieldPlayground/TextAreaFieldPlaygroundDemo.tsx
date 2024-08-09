@@ -5,10 +5,11 @@ import {
   TextAreaField,
   type ITextAreaFieldProps,
 } from '~/components/TextAreaField';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 
 const styles = stylex.create({
   host: {
-    width: 240,
+    width: `calc(240px * ${scaleTokens.scale})`,
   },
 });
 

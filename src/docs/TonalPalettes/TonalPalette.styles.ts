@@ -1,10 +1,12 @@
 import type { StyleXVar } from '@stylexjs/stylex/lib/StyleXTypes';
 import stylex from '@stylexjs/stylex';
 
+import { scaleTokens } from '~/themes/base/scale.stylex';
+
 export const tonalPaletteStyles = stylex.create({
   host: {
     display: 'flex',
-    height: '72px',
+    height: `calc(72px * ${scaleTokens.scale})`,
     justifyContent: 'space-evenly',
   },
   tone: {

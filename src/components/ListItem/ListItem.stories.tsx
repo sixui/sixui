@@ -11,11 +11,13 @@ import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { IListItemProps, IListItemVariant } from './ListItem.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '../ComponentShowcase';
-import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { Avatar } from '../Avatar';
 import { Checkbox } from '../Checkbox';
 import { ListItem } from './ListItem';
@@ -35,18 +37,18 @@ const LOREM$SM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
 
 const styles = stylex.create({
   host: {
-    outlineWidth: '1px',
+    outlineWidth: outlineTokens.width$xs,
     outlineStyle: 'dashed',
     outlineColor: colorSchemeTokens.outlineVariant,
   },
   host$fixedWidth$xs: {
-    width: 160,
+    width: `calc(160px * ${scaleTokens.scale})`,
   },
   host$fixedWidth$sm: {
-    width: 240,
+    width: `calc(240px * ${scaleTokens.scale})`,
   },
   host$fixedWidth$md: {
-    width: 320,
+    width: `calc(320px * ${scaleTokens.scale})`,
   },
 });
 

@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
 import type { IDisclosureProps } from './Disclosure.types';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { DisclosureButton } from '../DisclosureButton';
 import { Text } from '../Text';
 import { Disclosure } from './Disclosure';
@@ -14,7 +15,7 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   host: {
-    width: 680,
+    width: `calc(680px * ${scaleTokens.scale})`,
   },
   container: {
     display: 'flex',

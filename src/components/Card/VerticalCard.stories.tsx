@@ -18,6 +18,7 @@ import { CardTitle } from '../CardTitle';
 import { CardMedia } from '../CardMedia';
 import { CardActions } from '../CardActions';
 import { Card } from './Card';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 
 // https://m3.material.io/components/cards
 // https://github.com/material-components/material-web/blob/main/labs/card/demo/stories.ts
@@ -30,10 +31,10 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   card: {
-    width: 300,
+    width: `calc(300px * ${scaleTokens.scale})`,
   },
   media: {
-    height: 200,
+    height: `calc(200px * ${scaleTokens.scale})`,
   },
 });
 

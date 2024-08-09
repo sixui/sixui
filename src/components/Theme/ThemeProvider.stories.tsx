@@ -7,6 +7,7 @@ import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
 import { ColorScheme } from '~/docs/ColorScheme';
 import { generateThemeFromSourceColor } from '~/helpers/colors/generateThemeFromSourceColor';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { ColorInputField } from '../ColorInputField';
 import { Stack } from '../Stack';
 import { ThemeProvider } from './ThemeProvider';
@@ -20,7 +21,7 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   inner: {
-    padding: '1rem',
+    padding: spacingTokens.padding$4,
     borderWidth: 1,
     borderStyle: 'dashed',
     borderColor: colorSchemeTokens.outlineVariant,

@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
 import type { IPlaceholderProps } from './Placeholder.types';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { ComponentShowcase } from '../ComponentShowcase';
 import { Placeholder } from './Placeholder';
 
@@ -13,8 +14,8 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   host: {
-    width: 96,
-    height: 96,
+    width: `calc(96px * ${scaleTokens.scale})`,
+    height: `calc(96px * ${scaleTokens.scale})`,
   },
 });
 

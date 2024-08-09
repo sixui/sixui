@@ -3,12 +3,13 @@ import stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { ITextFieldBaseProps } from './TextFieldBase.types';
-import type { IFieldBaseVariant } from '../FieldBase';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '../ComponentShowcase';
+import type { IFieldBaseVariant } from '../FieldBase';
 import { TextFieldBase } from './TextFieldBase';
 
 // https://m3.material.io/components/text-fields/overview
@@ -23,7 +24,7 @@ type IStory = StoryObj<ITextFieldBaseProps<HTMLElement>>;
 
 const styles = stylex.create({
   host: {
-    width: 260,
+    width: `calc(260px * ${scaleTokens.scale})`,
   },
 });
 

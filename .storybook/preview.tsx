@@ -7,6 +7,7 @@ import { modes } from './modes';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { darkColorScheme } from '~/themes/base/darkColorScheme.styles';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 // import variantTheme from '~/themes/variant/theme.json';
 import { ThemeControls } from './ThemeControls';
 
@@ -48,7 +49,7 @@ const styles = stylex.create({
   storyWrapper: {
     position: 'relative',
     backgroundColor: colorSchemeTokens.surfaceContainerLowest,
-    padding: '2rem',
+    padding: spacingTokens.padding$6,
     width: '100%',
   },
 });
