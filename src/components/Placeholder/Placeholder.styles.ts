@@ -8,6 +8,7 @@ export type IPlaceholderStylesKey = keyof typeof placeholderStyles;
 export const placeholderStyles = stylex.create({
   host: {
     position: 'relative',
+    overflow: 'hidden',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

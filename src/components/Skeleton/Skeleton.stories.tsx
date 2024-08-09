@@ -2,11 +2,13 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
 import type { ISkeletonProps } from './Skeleton.types';
-import { ComponentShowcase } from '../ComponentShowcase';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { Skeleton } from './Skeleton';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { shapeTokens } from '~/themes/base/shape.stylex';
+import { ComponentShowcase } from '../ComponentShowcase';
 import { Avatar } from '../Avatar';
 import { Typography } from '../Typography';
-import { Skeleton } from './Skeleton';
 
 const meta = {
   component: Skeleton,
@@ -23,11 +25,12 @@ const styles = stylex.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    width: 100,
-    height: 100,
+    width: `calc(100px * ${scaleTokens.scale})`,
+    height: `calc(100px * ${scaleTokens.scale})`,
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: colorSchemeTokens.outline,
+    borderRadius: shapeTokens.corner$md,
   },
 });
 
