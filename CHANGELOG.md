@@ -1,3 +1,15 @@
+# v0.0.424 (Fri Aug 09 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(Skeleton): polymorphic try ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.423 (Fri Aug 09 2024)
 
 #### ⚠️ Pushed to `main`
