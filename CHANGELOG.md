@@ -1,3 +1,15 @@
+# v0.0.420 (Fri Aug 09 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(Placeholder): no more overflow ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.419 (Fri Aug 09 2024)
 
 #### ⚠️ Pushed to `main`
