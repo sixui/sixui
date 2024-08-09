@@ -15,7 +15,7 @@ export const Stack = forwardRef<HTMLDivElement, IStackProps>(
       children,
       horizontal,
       gap,
-      align = 'stretch',
+      align: alignProp,
       justify = 'start',
       wrap,
       divider,
@@ -29,6 +29,7 @@ export const Stack = forwardRef<HTMLDivElement, IStackProps>(
 
     const filteredChildren = filterFalsyChildren(children);
     const orientation = horizontal ? 'horizontal' : 'vertical';
+    const align = alignProp ?? (horizontal ? 'center' : 'stretch');
 
     return (
       <Base

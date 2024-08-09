@@ -96,7 +96,7 @@ const FormDialogDemo: React.FC<IDialogProps> = (props) => {
   const formRef = useRef<HTMLFormElement>(null);
 
   return (
-    <Stack horizontal gap={4} align='center'>
+    <Stack horizontal gap={4}>
       <Dialog
         {...props}
         ref={formRef}
