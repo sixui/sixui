@@ -1,3 +1,15 @@
+# v0.0.423 (Fri Aug 09 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(Labeled): no pointer events if disabled ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.422 (Fri Aug 09 2024)
 
 #### ⚠️ Pushed to `main`
