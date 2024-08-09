@@ -1,3 +1,15 @@
+# v0.0.425 (Fri Aug 09 2024)
+
+#### ⚠️ Pushed to `main`
+
+- refactor: Typography -> Text ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.424 (Fri Aug 09 2024)
 
 #### ⚠️ Pushed to `main`
