@@ -13,15 +13,16 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
   const {
     sx,
     children,
-    theme: themeProp,
+    theme: defaultTheme,
     settings,
     componentsStyles,
     ...other
   } = props;
-  const [theme, setTheme] = useState(themeProp);
+  const [dynamicTheme, setDynamicTheme] = useState(defaultTheme);
+  const theme = dynamicTheme ?? defaultTheme;
 
   const themeSetterContextValue: IThemeSetterContextValue = useMemo(
-    () => ({ setTheme }),
+    () => ({ setTheme: setDynamicTheme }),
     [],
   );
 
@@ -29,7 +30,7 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
     <ThemeSetterContext.Provider value={themeSetterContextValue}>
       <ThemeContext.Provider
         value={{
-          theme: theme ?? themeProp,
+          theme,
           settings,
           componentsStyles,
         }}

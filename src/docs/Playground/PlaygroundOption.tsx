@@ -8,7 +8,6 @@ import { Checkbox } from '~/components/Checkbox';
 import { fixedForwardRef } from '~/helpers/fixedForwardRef';
 import { HtmlSelect } from '~/components/HtmlSelect';
 import { Stack } from '~/components/Stack';
-import { playgroundOptionFieldBaseStyles } from './PlaygroundOption.styles';
 
 export const PlaygroundOption = fixedForwardRef(function PlaygroundOption<
   TSectionsProps extends Record<string, object>,
@@ -43,9 +42,6 @@ export const PlaygroundOption = fixedForwardRef(function PlaygroundOption<
         <HtmlSelect
           {...elementProps}
           items={input.items}
-          innerStyles={{
-            fieldBase: playgroundOptionFieldBaseStyles,
-          }}
           value={
             input?.value ??
             (sectionsProps[sectionKey][input.targetProp] as string) ??
@@ -58,9 +54,6 @@ export const PlaygroundOption = fixedForwardRef(function PlaygroundOption<
       ) : (
         <TextInputField
           {...elementProps}
-          innerStyles={{
-            fieldBase: playgroundOptionFieldBaseStyles,
-          }}
           value={input?.value ?? ''}
           onChange={(event) =>
             option.input ? handleValueChange(event?.target.value) : undefined
@@ -71,9 +64,6 @@ export const PlaygroundOption = fixedForwardRef(function PlaygroundOption<
       return (
         <TextInputField
           {...elementProps}
-          innerStyles={{
-            fieldBase: playgroundOptionFieldBaseStyles,
-          }}
           value={input?.value ?? ''}
           onChange={(event) =>
             option.input ? handleValueChange(event?.target.value) : undefined
