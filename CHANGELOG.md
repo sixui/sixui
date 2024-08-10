@@ -1,3 +1,16 @@
+# v0.0.428 (Sat Aug 10 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(Checkbox): currently hovered checkbox has greater zIndex ([@olivierpascal](https://github.com/olivierpascal))
+- refactor: using Stack for all components when necessary ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.427 (Sat Aug 10 2024)
 
 #### ⚠️ Pushed to `main`
