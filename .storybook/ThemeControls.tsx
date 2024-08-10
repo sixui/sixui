@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Stack } from '~/components/Stack';
 import { TextInputField } from '~/components/TextInputField';
 import { themeProviderStyles } from '~/components/Theme';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { outlineTheme } from '~/themes/base/outline.stylex';
 import { scaleTokens } from '~/themes/base/scale.stylex';
 import { shapeTheme } from '~/themes/base/shape.stylex';
@@ -15,6 +16,9 @@ export type IThemeControlsProps = {
 };
 
 const styles = stylex.create({
+  controls: {
+    backgroundColor: colorSchemeTokens.surfaceContainerLowest,
+  },
   control: {
     width: `calc(150px * ${scaleTokens.scale})`,
     flexGrow: 0,
@@ -26,6 +30,7 @@ export const ThemeControls: React.FC<IThemeControlsProps> = (props) => {
   const [scale, setScale] = useState('1');
   const [density, setDensity] = useState('0');
   const [minTargetSize, setMinTargetSize] = useState('48');
+  const minTargetSizeDisabled = Number(density) < 0;
 
   return (
     <div
@@ -36,7 +41,9 @@ export const ThemeControls: React.FC<IThemeControlsProps> = (props) => {
         themeProviderStyles.dynamicDensity({
           density,
           interval: '4px',
-          minTargetSize: `max(100%, ${minTargetSize}px)`,
+          minTargetSize: minTargetSizeDisabled
+            ? '100%'
+            : `max(100%, ${minTargetSize}px)`,
         }),
         spacingTheme,
         typeScaleTheme,
@@ -44,7 +51,7 @@ export const ThemeControls: React.FC<IThemeControlsProps> = (props) => {
         outlineTheme,
       )}
     >
-      <Stack horizontal gap={1}>
+      <Stack horizontal gap={1} align='stretch' sx={styles.controls}>
         <TextInputField
           sx={styles.control}
           label='Scale'
@@ -69,6 +76,7 @@ export const ThemeControls: React.FC<IThemeControlsProps> = (props) => {
           step='2'
           suffixText='px'
           onChange={(event) => setMinTargetSize(event.target.value)}
+          disabled={minTargetSizeDisabled}
         />
       </Stack>
       {children}
