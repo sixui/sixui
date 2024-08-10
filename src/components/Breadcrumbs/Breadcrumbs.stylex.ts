@@ -11,8 +11,6 @@ const MAX_DENSITY = 0;
 const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityTokens.density}, ${MAX_DENSITY}) * ${scaleTokens.scale}`;
 
 const vars = {
-  gap: spacingTokens.padding$2,
-
   // item
   itemColor: colorSchemeTokens.onSurface,
 

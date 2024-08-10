@@ -135,7 +135,9 @@ export const Card = createPolymorphicComponent<'div', ICardProps>(
               />
             </>
           ) : null}
-          {hasOutline ? <div {...getStyles('outline')} /> : null}
+          {hasOutline ? (
+            <div {...getStyles('outline', disabled && 'outline$disabled')} />
+          ) : null}
           <div
             {...getStyles('background', disabled && 'background$disabled')}
           />

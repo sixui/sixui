@@ -68,6 +68,7 @@ export const cardStyles = stylex.create({
   outline: {
     zIndex: 1,
   },
+  outline$disabled: {},
 });
 
 export const cardElevationStyles = stylex.create({

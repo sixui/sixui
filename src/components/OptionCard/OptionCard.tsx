@@ -12,7 +12,7 @@ import { useControlledValue } from '~/hooks/useControlledValue';
 import { useStyles } from '~/hooks/useStyles';
 import { CardContent } from '../CardContent';
 import { Card } from '../Card';
-import { Labeled } from '../Labeled';
+import { Labeled, LabeledContext } from '../Labeled';
 import { RadioGroupContext } from '../RadioGroup';
 import { optionCardCardStyles, optionCardStyles } from './OptionCard.styles';
 import { optionCardTheme } from './OptionCard.stylex';
@@ -29,6 +29,7 @@ export const OptionCard = createPolymorphicComponent<'div', IOptionCardProps>(
         supportingText,
         checked: checkedProp,
         defaultChecked,
+        readOnly: readOnlyProp,
         children,
         onChange,
         ...other
@@ -40,6 +41,7 @@ export const OptionCard = createPolymorphicComponent<'div', IOptionCardProps>(
         styles: [optionCardStyles, styles],
       });
 
+      const labeledContext = useContext(LabeledContext);
       const controlRef = useRef<HTMLInputElement>(null);
       const controlHandleRef = useMergeRefs([controlRef, forwardedRef]);
       const [checkedValue, setCheckedValue] = useControlledValue({
@@ -50,6 +52,9 @@ export const OptionCard = createPolymorphicComponent<'div', IOptionCardProps>(
       const checked = radioGroupContext
         ? radioGroupContext.value === other.value
         : checkedValue;
+      const readOnly = readOnlyProp || labeledContext?.readOnly;
+      const visuallyDisabled =
+        other.disabled || labeledContext?.disabled || readOnly;
 
       const handleChange = (
         event: React.ChangeEvent<HTMLInputElement>,
@@ -66,7 +71,7 @@ export const OptionCard = createPolymorphicComponent<'div', IOptionCardProps>(
         <Card
           variant='outlined'
           onClick={() => controlRef.current?.click()}
-          disabled={other.disabled}
+          disabled={visuallyDisabled}
           sx={[
             optionCardTheme,
             globalStyles,
@@ -91,7 +96,7 @@ export const OptionCard = createPolymorphicComponent<'div', IOptionCardProps>(
               labelPosition='right'
               label={label}
               supportingText={supportingText}
-              disabled={other.disabled}
+              disabled={visuallyDisabled}
             >
               {Component ? (
                 <Component
@@ -104,7 +109,7 @@ export const OptionCard = createPolymorphicComponent<'div', IOptionCardProps>(
               ) : null}
             </Labeled>
             {children ? (
-              <div {...getStyles('text', other.disabled && 'text$disabled')}>
+              <div {...getStyles('text', visuallyDisabled && 'text$disabled')}>
                 {isFunction(children) ? children({ checked }) : children}
               </div>
             ) : null}

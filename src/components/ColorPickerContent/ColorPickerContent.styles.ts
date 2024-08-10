@@ -22,12 +22,6 @@ export const colorPickerContentStyles = stylex.create({
   section: {
     padding: spacingTokens.padding$3,
   },
-  grid: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    gap: spacingTokens.padding$2,
-  },
   tones: {},
   colorButton: {
     [colorButtonTokens.containerShape]: shapeTokens.corner$none,

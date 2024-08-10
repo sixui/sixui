@@ -4,7 +4,7 @@ import type { ICardActionsProps } from './CardActions.types';
 import { useStyles } from '~/hooks/useStyles';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
 import { cardActionsStyles } from './CardActions.styles';
-import { Base } from '../Base';
+import { Stack } from '../Stack';
 
 // TODO: reduce overhead and avoid this component.
 
@@ -19,13 +19,16 @@ export const CardActions = createPolymorphicComponent<'div', ICardActionsProps>(
       });
 
       return (
-        <Base
+        <Stack
+          horizontal
+          justify='end'
+          gap={2}
           {...other}
           sx={[globalStyles, combineStyles('host'), sx]}
           ref={forwardedRef}
         >
           {children}
-        </Base>
+        </Stack>
       );
     },
   ),

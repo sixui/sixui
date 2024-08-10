@@ -43,10 +43,22 @@ export const Basic: IStory = {
             disabled: true,
           },
         },
+        {
+          legend: 'Read-only',
+          props: {
+            readOnly: true,
+          },
+        },
       ]}
       cols={[
         {
           legend: 'No control',
+        },
+        {
+          legend: 'Checked',
+          props: {
+            checked: true,
+          },
         },
         {
           legend: 'Switch control',

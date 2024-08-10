@@ -1,6 +1,7 @@
 import stylex from '@stylexjs/stylex';
 import { useState } from 'react';
 
+import { Stack } from '~/components/Stack';
 import { TextInputField } from '~/components/TextInputField';
 import { themeProviderStyles } from '~/components/Theme';
 import { outlineTheme } from '~/themes/base/outline.stylex';
@@ -14,10 +15,6 @@ export type IThemeControlsProps = {
 };
 
 const styles = stylex.create({
-  controls: {
-    display: 'flex',
-    gap: 1,
-  },
   control: {
     width: `calc(150px * ${scaleTokens.scale})`,
     flexGrow: 0,
@@ -47,7 +44,7 @@ export const ThemeControls: React.FC<IThemeControlsProps> = (props) => {
         outlineTheme,
       )}
     >
-      <div {...stylex.props(styles.controls)}>
+      <Stack horizontal gap={1}>
         <TextInputField
           sx={styles.control}
           label='Scale'
@@ -73,7 +70,7 @@ export const ThemeControls: React.FC<IThemeControlsProps> = (props) => {
           suffixText='px'
           onChange={(event) => setMinTargetSize(event.target.value)}
         />
-      </div>
+      </Stack>
       {children}
     </div>
   );

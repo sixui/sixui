@@ -1,15 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
-import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { cardTitleTokens } from './CardTitle.stylex';
 
 export type ICardTitleStylesKey = keyof typeof cardTitleStyles;
 export const cardTitleStyles = stylex.create({
-  host: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: spacingTokens.padding$2,
-  },
   header: {
     display: 'flex',
     flexDirection: 'column',

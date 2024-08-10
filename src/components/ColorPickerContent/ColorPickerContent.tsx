@@ -47,8 +47,8 @@ export const ColorPickerContent = forwardRef<
       {...other}
       ref={forwardedRef}
     >
-      <Stack sx={combineStyles('section')} gap={4}>
-        <div {...getStyles('grid')}>
+      <Stack gap={4} sx={combineStyles('section')}>
+        <Stack horizontal gap={2} justify='space-between'>
           {palettes.map((palette, paletteIndex) => (
             <Stack key={paletteIndex}>
               <div {...getStyles('tones')}>
@@ -80,7 +80,7 @@ export const ColorPickerContent = forwardRef<
               </div>
             </Stack>
           ))}
-        </div>
+        </Stack>
       </Stack>
 
       {customColors?.length ? (

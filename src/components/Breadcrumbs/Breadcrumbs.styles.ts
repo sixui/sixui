@@ -6,13 +6,7 @@ import { breadcrumbsTokens } from './Breadcrumbs.stylex';
 export type IBreadcrumbsStylesKey = keyof typeof breadcrumbsStyles;
 export const breadcrumbsStyles = stylex.create({
   host: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    padding: 0,
-    margin: 0,
     listStyle: 'none',
-    gap: breadcrumbsTokens.gap,
   },
   item: {
     color: breadcrumbsTokens.itemColor,

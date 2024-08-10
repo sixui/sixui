@@ -12,7 +12,6 @@ import { isProduction } from '~/helpers/isProduction';
 import { isFragment } from '~/helpers/react/isFragment';
 import { iconEllipsisHorizontal } from '~/assets/icons';
 import { SvgIcon } from '../SvgIcon';
-import { Base } from '../Base';
 import { ButtonBase } from '../ButtonBase';
 import {
   breadcrumbsExpandButtonFocusRingStyles,
@@ -20,6 +19,7 @@ import {
 } from './Breadcrumbs.styles';
 import { breadscrumbsTheme } from './Breadcrumbs.stylex';
 import { useStyles } from '~/hooks/useStyles';
+import { Stack } from '../Stack';
 
 export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
   function Breadcrumbs(props, forwardedRef) {
@@ -139,8 +139,10 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
       ));
 
     return (
-      <Base
+      <Stack
         component='ol'
+        horizontal
+        gap={2}
         {...other}
         sx={[breadscrumbsTheme, globalStyles, combineStyles('host'), sx]}
         ref={forwardedRef}
@@ -150,7 +152,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
             ? allItems
             : renderItemsBeforeAndAfter(allItems),
         )}
-      </Base>
+      </Stack>
     );
   },
 );

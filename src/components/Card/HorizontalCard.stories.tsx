@@ -13,8 +13,8 @@ import { CardContent } from '../CardContent';
 import { CardMedia } from '../CardMedia';
 import { CardTitle } from '../CardTitle';
 import { CardActions } from '../CardActions';
+import { Stack } from '../Stack';
 import { Card } from './Card';
-import { spacingTokens } from '~/themes/base/spacing.stylex';
 
 // https://m3.material.io/components/cards
 // https://github.com/material-components/material-web/blob/main/labs/card/demo/stories.ts
@@ -35,11 +35,6 @@ const styles = stylex.create({
     display: 'grid',
     gridTemplateColumns: 'min-content 1fr',
   },
-  innerContent: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: spacingTokens.padding$2,
-  },
   media: {
     width: `calc(156px * ${scaleTokens.scale})`,
   },
@@ -48,8 +43,6 @@ const styles = stylex.create({
     aspectRatio: '1',
   },
   actions: {
-    display: 'flex',
-    justifyContent: 'flex-end',
     padding: 0,
   },
 });
@@ -68,7 +61,7 @@ const NonActionableContent: React.FC<{ headline?: string }> = ({
         sx={styles.mediaInner}
         src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
       />
-      <div {...stylex.props(styles.innerContent)}>
+      <Stack gap={2}>
         <CardTitle
           headline={headline ?? 'Headline'}
           supportingText='Explain more about the topic shown in the headline and subhead through supporting text.'
@@ -86,7 +79,7 @@ const NonActionableContent: React.FC<{ headline?: string }> = ({
             Primary
           </Button>
         </CardActions>
-      </div>
+      </Stack>
     </CardContent>
   </>
 );
@@ -100,7 +93,7 @@ const NonActionableContentVariant: React.FC<{ headline?: string }> = ({
       src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
     />
     <CardContent>
-      <div {...stylex.props(styles.innerContent)}>
+      <Stack gap={2}>
         <CardTitle
           headline={headline ?? 'Headline'}
           supportingText='Explain more about the topic shown in the headline and subhead through supporting text.'
@@ -113,7 +106,7 @@ const NonActionableContentVariant: React.FC<{ headline?: string }> = ({
             Primary
           </Button>
         </CardActions>
-      </div>
+      </Stack>
     </CardContent>
   </>
 );
@@ -125,7 +118,7 @@ const ActionableContent: React.FC<{ headline?: string }> = ({ headline }) => (
       src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
     />
     <CardContent>
-      <div {...stylex.props(styles.innerContent)}>
+      <Stack gap={2}>
         <CardTitle
           headline={headline ?? 'Headline'}
           supportingText='Explain more about the topic shown in the headline and subhead through supporting text.'
@@ -139,7 +132,7 @@ const ActionableContent: React.FC<{ headline?: string }> = ({ headline }) => (
             Secondary
           </Button>
         </CardActions>
-      </div>
+      </Stack>
     </CardContent>
   </>
 );

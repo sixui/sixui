@@ -17,11 +17,6 @@ const styles = stylex.create({
   host: {
     width: `calc(680px * ${scaleTokens.scale})`,
   },
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1rem',
-  },
 });
 
 const TEXT =

@@ -32,5 +32,6 @@ export type IOptionCardProps = IBaseProps<IOptionCardStylesKey> & {
     value: React.InputHTMLAttributes<HTMLInputElement>['value'],
   ) => IMaybeAsync<IAny>;
   disabled?: boolean;
+  readOnly?: boolean;
   value?: React.InputHTMLAttributes<HTMLInputElement>['value'];
 };

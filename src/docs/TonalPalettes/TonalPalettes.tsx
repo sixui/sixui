@@ -1,9 +1,8 @@
-import stylex from '@stylexjs/stylex';
-
 import type { ITone } from './TonalPalette.types';
 import type { ITonalPalettesProps } from './TonalPalettes.types';
 import { tonalPalettesTokens } from '~/themes/base/tonalPalettes.stylex';
-import { tonalPalettesStyles } from './TonalPalettes.styles';
+import { Stack } from '~/components/Stack';
+import { Text } from '~/components/Text';
 import { TonalPalette } from './TonalPalette';
 
 type ITonalPalette = {
@@ -136,15 +135,14 @@ const tonalPalettes: Array<ITonalPalette> = [
 ];
 
 export const TonalPalettes: React.FC<ITonalPalettesProps> = () => (
-  <div {...stylex.props(tonalPalettesStyles.host)}>
+  <Stack gap={6}>
     {tonalPalettes.map((palette) => (
-      <div
-        {...stylex.props(tonalPalettesStyles.tonalPalette)}
-        key={palette.title}
-      >
-        <div {...stylex.props(tonalPalettesStyles.title)}>{palette.title}</div>
+      <Stack key={palette.title} gap={2}>
+        <Text variant='label' size='lg'>
+          {palette.title}
+        </Text>
         <TonalPalette tones={palette.tones} key={palette.title} />
-      </div>
+      </Stack>
     ))}
-  </div>
+  </Stack>
 );
