@@ -8,16 +8,6 @@ export const labeledStyles = stylex.create({
   host$disabled: {
     pointerEvents: 'none',
   },
-  host$vertical: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: spacingTokens.padding$2,
-  },
-  host$horizontal: {
-    display: 'flex',
-    gridColumnGap: spacingTokens.padding$3,
-    alignItems: 'center',
-  },
   content: {
     flexGrow: 0,
     flexShrink: 0,

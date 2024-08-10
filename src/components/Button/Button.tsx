@@ -168,7 +168,7 @@ export const Button = createPolymorphicComponent<'button', IButtonProps>(
               {...getStyles(
                 'label',
                 visuallyDisabled && 'label$disabled',
-                hasOverlay ? 'invisible' : null,
+                hasOverlay && 'invisible',
               )}
             >
               {children}

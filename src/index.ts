@@ -21,6 +21,7 @@ export * from './components/ColorScheme';
 export * from './components/ColorTag';
 export * from './components/ComponentShowcase';
 export * from './components/CopyableText';
+export * from './components/Density';
 export * from './components/DeterminateCircularProgressIndicator';
 export * from './components/Dialog';
 export * from './components/DialogContent';

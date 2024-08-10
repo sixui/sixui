@@ -6,6 +6,7 @@ import { playgroundStyles } from './Playground.styles';
 import { PlaygroundSections } from './PlaygroundSections';
 import { useStyles } from '~/hooks/useStyles';
 import { Base } from '~/components/Base';
+import { Density } from '~/components/Density';
 
 const convertValue = (
   value: unknown,
@@ -105,13 +106,15 @@ export const Playground = fixedForwardRef(function Playground<
         </div>
       </div>
 
-      <div {...getStyles('optionsPanel')}>
-        <PlaygroundSections<TSectionsProps>
-          sections={sections}
-          onSectionsChange={setSections}
-          sectionsProps={sectionsProps}
-        />
-      </div>
+      <Density density={-2}>
+        <div {...getStyles('optionsPanel')}>
+          <PlaygroundSections<TSectionsProps>
+            sections={sections}
+            onSectionsChange={setSections}
+            sectionsProps={sectionsProps}
+          />
+        </div>
+      </Density>
     </Base>
   );
 });

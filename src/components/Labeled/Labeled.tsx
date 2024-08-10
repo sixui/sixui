@@ -7,7 +7,7 @@ import { useId } from '~/hooks/useId';
 import { labeledStyles } from './Labeled.styles';
 import { labeledTheme } from './Labeled.stylex';
 import { LabeledContext } from './Labeled.context';
-import { Base } from '../Base';
+import { Stack } from '../Stack';
 
 export const Labeled = forwardRef<HTMLDivElement, ILabeledProps>(
   function Labeled(props, forwardedRef) {
@@ -129,17 +129,17 @@ export const Labeled = forwardRef<HTMLDivElement, ILabeledProps>(
       }),
       [id, required, disabled, readOnly, hasError, errorText, loading],
     );
+    const horizontal = orientation === 'horizontal';
 
     return (
-      <Base
+      <Stack
         {...other}
+        horizontal={horizontal}
+        gap={horizontal ? 3 : 1}
         sx={[
           labeledTheme,
           globalStyles,
-          ...combineStyles(
-            disabled && 'host$disabled',
-            orientation === 'horizontal' ? 'host$horizontal' : 'host$vertical',
-          ),
+          ...combineStyles(disabled && 'host$disabled'),
           sx,
         ]}
         ref={forwardedRef}
@@ -188,7 +188,7 @@ export const Labeled = forwardRef<HTMLDivElement, ILabeledProps>(
             {errorTextPosition === 'end' ? renderErrorText() : null}
           </div>
         ) : null}
-      </Base>
+      </Stack>
     );
   },
 );
