@@ -73,7 +73,7 @@ export const ButtonBase = createPolymorphicComponent<
           ]}
           ref={handleRef}
         >
-          <TouchTarget />
+          <TouchTarget visualState={visualState} disabled={visuallyDisabled} />
           <Elevation
             styles={innerStyles?.elevation}
             disabled={visuallyDisabled}

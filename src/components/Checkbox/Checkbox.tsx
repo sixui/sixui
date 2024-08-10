@@ -118,9 +118,9 @@ export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
           checkboxTheme,
           globalStyles,
           combineStyles(
-            'container',
-            selected && 'container$selected',
-            visuallyDisabled && 'container$disabled',
+            'host',
+            selected && 'host$selected',
+            visuallyDisabled && 'host$disabled',
           ),
           sx,
         ]}

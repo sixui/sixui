@@ -292,7 +292,10 @@ export const Chip = createPolymorphicComponent<'div', IChipProps>(
             )}
             ref={primaryHandleRef}
           >
-            <TouchTarget />
+            <TouchTarget
+              visualState={visualState}
+              disabled={visuallyDisabled}
+            />
             {hasLeading ? (
               <div
                 {...getStyles(

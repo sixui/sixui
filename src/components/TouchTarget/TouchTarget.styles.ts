@@ -12,4 +12,7 @@ export const touchTargetStyles = stylex.create({
     height: densityTokens.minTargetSize,
     transform: 'translate(-50%, -50%)',
   },
+  host$hovered: {
+    zIndex: 4,
+  },
 });

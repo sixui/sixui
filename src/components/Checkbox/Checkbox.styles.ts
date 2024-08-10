@@ -4,6 +4,7 @@ import { checkboxTokens } from './Checkbox.stylex';
 import { motionTokens } from '~/themes/base/motion.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
 import { densityTokens } from '~/themes/base/density.stylex';
+import { zIndexTokens } from '~/themes/base/zIndex.stylex';
 import { stateLayerTokens } from '../StateLayer/StateLayer.stylex';
 import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
 import { checkboxStateTokens } from './Checkbox.state.stylex';
@@ -25,7 +26,7 @@ const prevUnselectedToCheckedKeyframes = stylex.keyframes({
 
 export type ICheckboxStylesKey = keyof typeof checkboxStyles;
 export const checkboxStyles = stylex.create({
-  container: {
+  host: {
     borderRadius: checkboxTokens.containerShape,
     display: 'inline-flex',
     justifyContent: 'center',
@@ -48,7 +49,7 @@ export const checkboxStyles = stylex.create({
     [checkboxStateTokens.stateLayerOpacity$pressed]:
       checkboxTokens.stateLayerOpacity$pressed,
   },
-  container$selected: {
+  host$selected: {
     [checkboxStateTokens.stateLayerColor$hover]:
       checkboxTokens.selectedStateLayerColor$hover,
     [checkboxStateTokens.stateLayerOpacity$hover]:
@@ -58,7 +59,7 @@ export const checkboxStyles = stylex.create({
     [checkboxStateTokens.stateLayerOpacity$pressed]:
       checkboxTokens.selectedStateLayerOpacity$pressed,
   },
-  container$disabled: {
+  host$disabled: {
     cursor: 'default',
     pointerEvents: 'none',
   },
@@ -70,7 +71,10 @@ export const checkboxStyles = stylex.create({
     opacity: 0,
     outline: 'none',
     position: 'absolute',
-    zIndex: '1',
+    zIndex: {
+      default: `calc(${zIndexTokens.app} + 1)`,
+      ':is([data-hovered])': `calc(${zIndexTokens.app} + 2)`,
+    },
     cursor: 'inherit',
   },
   overlay: {
