@@ -1,3 +1,16 @@
+# v0.0.427 (Sat Aug 10 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(OptionCard): support labeled context and read-only state ([@olivierpascal](https://github.com/olivierpascal))
+- feat: storybooks use scale tokens ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.426 (Fri Aug 09 2024)
 
 #### ⚠️ Pushed to `main`
