@@ -11,12 +11,4 @@ export const StackStyles = stylex.create({
   host$horizontal: {
     flexDirection: 'row',
   },
-  host$grow: {
-    display: 'grid',
-    gridAutoFlow: 'column',
-    gridAutoColumns: '1fr',
-  },
-  host$grow$preventGrowOverflow: {
-    gridAutoColumns: 'minmax(100px, 1fr)',
-  },
 });

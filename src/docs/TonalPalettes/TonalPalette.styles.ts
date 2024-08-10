@@ -4,16 +4,12 @@ import stylex from '@stylexjs/stylex';
 import { scaleTokens } from '~/themes/base/scale.stylex';
 
 export const tonalPaletteStyles = stylex.create({
-  host: {
-    display: 'flex',
-    height: `calc(72px * ${scaleTokens.scale})`,
-    justifyContent: 'space-evenly',
-  },
   tone: {
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: '0%',
     position: 'relative',
+    height: `calc(72px * ${scaleTokens.scale})`,
   },
   toneColor: (
     bg: string | StyleXVar<string>,

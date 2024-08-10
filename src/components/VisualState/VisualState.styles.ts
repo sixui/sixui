@@ -10,6 +10,7 @@ import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
 
 export const visualStateStyles = stylex.create({
   host: {
+    alignItems: 'center',
     position: 'relative',
     boxSizing: 'content-box',
     padding: spacingTokens.padding$4,
@@ -21,12 +22,6 @@ export const visualStateStyles = stylex.create({
     outlineStyle: 'solid',
     color: colorSchemeTokens.onSurface,
     justifyContent: 'center',
-  },
-  inner: {
-    display: 'flex',
-    flexDirection: 'row',
-    gap: '1rem',
-    alignItems: 'center',
   },
   states: {
     display: 'flex',

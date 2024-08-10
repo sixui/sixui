@@ -6,7 +6,6 @@ const vars = {
   topSpace: spacingTokens.padding$2,
   bottomSpace: spacingTokens.padding$2,
   gridSpace: spacingTokens.padding$1,
-  itemSpace: '0px',
 };
 
 export const listTokens = stylex.defineVars(vars);

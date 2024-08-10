@@ -8,7 +8,6 @@ import { scaleTokens } from '~/themes/base/scale.stylex';
 import { elevationTokens } from '../Elevation/Elevation.stylex';
 
 const vars = {
-  gap: spacingTokens.padding$3,
   topSpace: spacingTokens.padding$4,
   bottomSpace: spacingTokens.padding$4,
   leadingSpace: spacingTokens.padding$4,

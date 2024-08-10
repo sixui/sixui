@@ -3,12 +3,11 @@ import stylex from '@stylexjs/stylex';
 
 import type { IMenuListProps } from './MenuList.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { scaleTokens } from '~/themes/base/scale.stylex';
-import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { ListItem } from '../ListItem';
 import { MenuDivider } from '../MenuDivider';
 import { MenuList } from './MenuList';
+import { Placeholder } from '../Placeholder';
 
 const meta = {
   component: MenuList,
@@ -19,15 +18,6 @@ type IStory = StoryObj<typeof meta>;
 const styles = stylex.create({
   host$fixedWidth: {
     width: `calc(192px * ${scaleTokens.scale})`,
-  },
-  section: {
-    backgroundColor: colorSchemeTokens.primaryContainer,
-    color: colorSchemeTokens.onPrimaryContainer,
-    padding: spacingTokens.padding$2,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 'inherit',
   },
 });
 
@@ -68,17 +58,8 @@ export const WithHeaderAndFooter: IStory = {
   render: (props) => <MenuList {...props} />,
   args: {
     ...defaultArgs,
-    header: <div {...stylex.props(styles.section)}>Header</div>,
-    footer: <div {...stylex.props(styles.section)}>Footer</div>,
-  },
-};
-
-export const OnlyHeader: IStory = {
-  render: (props) => <MenuList {...props} />,
-  args: {
-    ...defaultArgs,
-    header: <div {...stylex.props(styles.section)}>Header</div>,
-    children: undefined,
+    header: <Placeholder label='Header' corner='none' />,
+    footer: <Placeholder label='Footer' corner='none' />,
   },
 };
 

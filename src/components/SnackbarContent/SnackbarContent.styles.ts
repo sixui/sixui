@@ -7,12 +7,7 @@ import { snackbarContentStateTokens } from './SnackbarContent.state.stylex';
 export type ISnackbarContentStylesKey = keyof typeof snackbarContentStyles;
 export const snackbarContentStyles = stylex.create({
   host: {
-    gap: snackbarContentTokens.gap,
     position: 'relative',
-    display: 'flex',
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    alignItems: 'center',
     paddingTop: snackbarContentTokens.topSpace,
     paddingBottom: snackbarContentTokens.bottomSpace,
     paddingLeft: snackbarContentTokens.leadingSpace,
@@ -47,10 +42,7 @@ export const snackbarContentStyles = stylex.create({
     letterSpacing: snackbarContentTokens.supportingTextLetterSpacing,
   },
   actions: {
-    display: 'flex',
-    flexDirection: 'row',
     marginLeft: 'auto',
-    gap: snackbarContentTokens.gap,
     alignItems: 'center',
     height: snackbarContentTokens.supportingTextLineHeight,
   },

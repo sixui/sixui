@@ -13,7 +13,6 @@ const MAX_DENSITY = 0;
 const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityTokens.density}, ${MAX_DENSITY}) * ${scaleTokens.scale}`;
 
 const vars = {
-  gap: spacingTokens.padding$2,
   leadingSpace: spacingTokens.padding$2,
   trailingSpace: spacingTokens.padding$2,
 

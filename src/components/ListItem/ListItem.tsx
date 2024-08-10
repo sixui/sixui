@@ -139,36 +139,29 @@ export const ListItem = createPolymorphicComponent<'button', IListItemProps>(
       const renderStart = (): React.ReactNode =>
         start ??
         (leadingIcon ? (
-          <div {...getStyles('leading')}>
-            <div
-              {...getStyles(
-                'icon',
-                'icon$leading',
-                disabled && 'icon$leading$disabled',
-                selected && 'icon$leading$selected',
-              )}
-            >
-              {leadingIcon}
-            </div>
+          <div
+            {...getStyles(
+              'icon',
+              'icon$leading',
+              disabled && 'icon$leading$disabled',
+              selected && 'icon$leading$selected',
+            )}
+          >
+            {leadingIcon}
           </div>
         ) : leadingImage ? (
-          <div {...getStyles('leading')}>
-            <div
-              {...getStyles(
-                'image',
-                commonStyles.backgroundImage(leadingImage),
-              )}
-            />
-          </div>
+          <div
+            {...getStyles('image', commonStyles.backgroundImage(leadingImage))}
+          />
         ) : leadingVideo ? (
           <video {...getStyles('video')} autoPlay={!disabled} loop muted>
             {leadingVideo.map((video, videoIndex) => (
               <source key={videoIndex} src={video.src} type={video.type} />
             ))}
           </video>
-        ) : leading ? (
-          <div {...getStyles('leading')}>{leading}</div>
-        ) : undefined);
+        ) : (
+          leading
+        ));
 
       const renderEnd = (): React.ReactNode =>
         end ??
@@ -183,9 +176,9 @@ export const ListItem = createPolymorphicComponent<'button', IListItemProps>(
           >
             {trailingIcon}
           </div>
-        ) : trailing ? (
-          <div {...getStyles('trailing')}>{trailing}</div>
-        ) : undefined);
+        ) : (
+          trailing
+        ));
 
       return (
         <Base

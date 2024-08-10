@@ -107,16 +107,6 @@ export const listItemStyles = stylex.create({
     backgroundColor: listItemTokens.containerColor$disabled,
     opacity: listItemTokens.containerOpacity$disabled,
   },
-  leading: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  trailing: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   icon: {},
   icon$leading: {
     fontSize: listItemTokens.leadingIconSize,

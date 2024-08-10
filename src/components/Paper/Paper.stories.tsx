@@ -26,7 +26,7 @@ const styles = stylex.create({
 
 const paperContentStyles = stylex.create({
   content: {
-    minHeight: '128px',
+    minHeight: `calc(128px * ${scaleTokens.scale})`,
     display: 'flex',
     flexDirection: 'column',
     flexGrow: 1,
@@ -34,7 +34,6 @@ const paperContentStyles = stylex.create({
     flexBasis: '0%',
     justifyContent: 'flex-end',
     padding: spacingTokens.padding$4,
-    gap: spacingTokens.padding$4,
   },
 });
 

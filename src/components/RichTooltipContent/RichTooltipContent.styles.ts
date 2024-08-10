@@ -3,6 +3,7 @@ import stylex from '@stylexjs/stylex';
 import { elevationTokens } from '../Elevation/Elevation.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { richTooltipContentTokens } from './RichTooltipContent.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 
 export type IRichTooltipContentStylesKey =
   keyof typeof richTooltipContentStyles;
@@ -17,9 +18,6 @@ export const richTooltipContentStyles = stylex.create({
     paddingRight: richTooltipContentTokens.trailingSpace,
   },
   content: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: richTooltipContentTokens.gap,
     paddingTop: richTooltipContentTokens.topSpace,
     paddingBottom: richTooltipContentTokens.bottomSpace,
   },
@@ -40,12 +38,8 @@ export const richTooltipContentStyles = stylex.create({
     letterSpacing: richTooltipContentTokens.supportingTextLetterSpacing,
   },
   actions: {
-    display: 'flex',
-    flexDirection: 'row',
-    gap: 8,
     paddingBottom: richTooltipContentTokens.actionsBottomSpace,
-    flexWrap: 'wrap',
-    marginLeft: -8,
+    marginLeft: `calc(-1 * ${spacingTokens.padding$2})`,
   },
   cursor: {
     fill: colorSchemeTokens.primary,

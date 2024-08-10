@@ -1,6 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 import { circularProgressIndicatorTokens } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
 import { stepTokens } from './Step.stylex';
 import { stepStateTokens } from './Step.state.stylex';
@@ -11,7 +12,6 @@ export const stepStyles = stylex.create({
     position: 'relative',
   },
   host$bottomLabel: {
-    display: 'flex',
     flexGrow: 1,
     justifyContent: 'center',
   },
@@ -33,11 +33,6 @@ export const stepStyles = stylex.create({
     paddingBottom: stepTokens.bottomSpace,
 
     [stepStateTokens.containerShape]: stepTokens.containerShape,
-  },
-  buttonInner: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: stepTokens.gap,
   },
   buttonInner$rightLabel: {
     flexDirection: 'row',
@@ -122,10 +117,6 @@ export const stepStyles = stylex.create({
   text$completed: {
     color: stepTokens.bulletPointTextColor$completed,
   },
-  labelContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
   labelContainer$rightLabel: { alignItems: 'start' },
   labelContainer$bottomLabel: { alignItems: 'center' },
   label: {
@@ -188,7 +179,7 @@ export const stepStyles = stylex.create({
     lineHeight: stepTokens.contentTextLineHeight,
     letterSpacing: stepTokens.contentTextLetterSpacing,
 
-    paddingLeft: `calc(${stepTokens.leadingSpace} + ${stepTokens.bulletPointSize} + ${stepTokens.gap})`,
+    paddingLeft: `calc(${stepTokens.leadingSpace} + ${stepTokens.bulletPointSize} + ${spacingTokens.padding$2})`,
     paddingRight: stepTokens.trailingSpace,
   },
   extensibleConnectorContainer: {

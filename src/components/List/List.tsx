@@ -7,6 +7,7 @@ import { Base } from '../Base';
 import { ListContext } from './List.context';
 import { listStyles } from './List.styles';
 import { listTheme } from './List.stylex';
+import { Stack } from '../Stack';
 
 export const List = forwardRef<HTMLDivElement, IListProps>(
   function List(props, forwardedRef) {
@@ -18,6 +19,7 @@ export const List = forwardRef<HTMLDivElement, IListProps>(
       children,
       header,
       footer,
+      divider,
       cols = 1,
       ...other
     } = props;
@@ -36,10 +38,11 @@ export const List = forwardRef<HTMLDivElement, IListProps>(
           sx={[listTheme, globalStyles, combineStyles('host'), sx]}
           ref={forwardedRef}
         >
-          <div {...getStyles('inner')}>
+          <Stack sx={combineStyles('inner')}>
             <div {...getStyles('header')}>{header}</div>
-            <div
-              {...getStyles(
+            <Stack
+              divider={divider}
+              sx={combineStyles(
                 'content',
                 isGrid && 'content$grid',
                 isGrid &&
@@ -48,9 +51,9 @@ export const List = forwardRef<HTMLDivElement, IListProps>(
               )}
             >
               {children}
-            </div>
+            </Stack>
             <div {...getStyles('footer')}>{footer}</div>
-          </div>
+          </Stack>
         </Base>
       </ListContext.Provider>
     );

@@ -10,6 +10,7 @@ import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircular
 import { ButtonBase } from '../ButtonBase';
 import { SvgIcon } from '../SvgIcon';
 import { Base } from '../Base';
+import { Stack } from '../Stack';
 import {
   stepCircularProgressIndicatorStyles,
   stepFocusRingStyles,
@@ -93,9 +94,10 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
     };
 
     const renderButtonInner = (isInteractive: boolean): React.ReactElement => (
-      <div
-        {...getStyles(
-          'buttonInner',
+      <Stack
+        horizontal
+        gap={2}
+        sx={combineStyles(
           labelPosition === 'right' && 'buttonInner$rightLabel',
           labelPosition === 'bottom' && 'buttonInner$bottomLabel',
         )}
@@ -126,9 +128,8 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
         )}
 
         {hasText ? (
-          <div
-            {...getStyles(
-              'labelContainer',
+          <Stack
+            sx={combineStyles(
               labelPosition === 'right' && `labelContainer$rightLabel`,
               labelPosition === 'bottom' && `labelContainer$bottomLabel`,
             )}
@@ -155,9 +156,9 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
                 {supportingText}
               </div>
             ) : null}
-          </div>
+          </Stack>
         ) : null}
-      </div>
+      </Stack>
     );
 
     const renderConnectorWithoutChildren = (): React.ReactNode =>

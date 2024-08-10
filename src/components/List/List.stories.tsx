@@ -18,6 +18,7 @@ import { ListItem, type IListItemProps } from '../ListItem';
 import { Avatar } from '../Avatar';
 import { Checkbox } from '../Checkbox';
 import { List } from './List';
+import { Placeholder } from '../Placeholder';
 
 // https://m3.material.io/components/lists/overview
 // https://material-web.dev/components/list/
@@ -46,6 +47,8 @@ const styles = stylex.create({
 
 const defaultArgs = {
   sx: styles.host,
+  header: <Placeholder expand corner='none' label='Header' />,
+  footer: <Placeholder expand corner='none' label='Footer' />,
 } satisfies Partial<IListProps>;
 
 const renderListItems = (props?: IListItemProps, count = 4): React.ReactNode =>

@@ -11,6 +11,7 @@ import {
   richTooltipContentStyles,
 } from './RichTooltipContent.styles';
 import { richTooltipContentTheme } from './RichTooltipContent.stylex';
+import { Stack } from '../Stack';
 
 export const RichTooltipContent = forwardRef<
   HTMLDivElement,
@@ -46,16 +47,16 @@ export const RichTooltipContent = forwardRef<
         ]}
       />
       {renderCursor ? renderCursor(getStyles('cursor')) : null}
-      <div {...getStyles('content')}>
+      <Stack gap={2} sx={combineStyles('content')}>
         {subhead ? <div {...getStyles('subhead')}>{subhead}</div> : null}
         {supportingText ? (
           <div {...getStyles('supportingText')}>{supportingText}</div>
         ) : null}
-      </div>
+      </Stack>
       {actions ? (
-        <div {...getStyles('actions')}>
+        <Stack horizontal gap={2} wrap sx={combineStyles('actions')}>
           {isFunction(actions) ? actions({ onClose }) : actions}
-        </div>
+        </Stack>
       ) : null}
     </Base>
   );

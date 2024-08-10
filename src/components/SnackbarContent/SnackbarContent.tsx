@@ -8,12 +8,12 @@ import { Elevation } from '../Elevation';
 import { Button } from '../Button';
 import { IconButton } from '../IconButton';
 import { SvgIcon } from '../SvgIcon';
-import { Base } from '../Base';
 import {
   snackbarContentElevationStyles,
   snackbarContentStyles,
 } from './SnackbarContent.styles';
 import { snackbarContentTheme } from './SnackbarContent.stylex';
+import { Stack } from '../Stack';
 
 export const SnackbarContent = forwardRef<
   HTMLDivElement,
@@ -37,8 +37,12 @@ export const SnackbarContent = forwardRef<
   });
 
   return (
-    <Base
+    <Stack
       {...other}
+      horizontal
+      align='center'
+      gap={3}
+      wrap
       sx={[
         snackbarContentTheme,
         globalStyles,
@@ -63,7 +67,7 @@ export const SnackbarContent = forwardRef<
       <div {...getStyles('supportingText')}>{children}</div>
 
       {(actionLabel ?? showCloseButton) ? (
-        <div {...getStyles('actions')}>
+        <Stack horizontal gap={2} sx={combineStyles('actions')}>
           {actionLabel ? (
             <Button variant='snackbar' onClick={onActionClick}>
               {actionLabel}
@@ -77,8 +81,8 @@ export const SnackbarContent = forwardRef<
               aria-label='close'
             />
           ) : null}
-        </div>
+        </Stack>
       ) : null}
-    </Base>
+    </Stack>
   );
 });

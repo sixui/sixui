@@ -17,14 +17,14 @@ const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityToke
 const vars = {
   leadingSpace: spacingTokens.padding$4,
   trailingSpace: spacingTokens.padding$4,
-  topSpace$sm: spacingTokens.padding$1,
-  bottomSpace$sm: spacingTokens.padding$1,
-  topSpace$md: spacingTokens.padding$2,
-  bottomSpace$md: spacingTokens.padding$2,
-  topSpace$lg: spacingTokens.padding$2,
-  bottomSpace$lg: spacingTokens.padding$2,
-  topSpace$xl: spacingTokens.padding$3,
-  bottomSpace$xl: spacingTokens.padding$3,
+  topSpace$sm: `calc(${spacingTokens.padding$1} + ${DENSITY})`,
+  bottomSpace$sm: `calc(${spacingTokens.padding$1} + ${DENSITY})`,
+  topSpace$md: `calc(${spacingTokens.padding$2} + ${DENSITY})`,
+  bottomSpace$md: `calc(${spacingTokens.padding$2} + ${DENSITY})`,
+  topSpace$lg: `calc(${spacingTokens.padding$2} + ${DENSITY})`,
+  bottomSpace$lg: `calc(${spacingTokens.padding$2} + ${DENSITY})`,
+  topSpace$xl: `calc(${spacingTokens.padding$3} + ${DENSITY})`,
+  bottomSpace$xl: `calc(${spacingTokens.padding$3} + ${DENSITY})`,
 
   // container
   containerColor: 'unset',

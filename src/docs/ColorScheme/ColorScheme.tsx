@@ -1,47 +1,21 @@
-import stylex from '@stylexjs/stylex';
-
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 
 import type { IColorSchemeProps } from './ColorScheme.types';
 import { tonalPalettesTokens } from '~/themes/base/tonalPalettes.stylex';
+import { Stack } from '~/components/Stack';
+import { Text } from '~/components/Text';
 import { ColorRole } from './ColorRole';
 import { colorSchemeStyles } from './ColorScheme.styles';
 
 export const ColorScheme: React.FC<IColorSchemeProps> = () => {
   return (
-    <div {...stylex.props(colorSchemeStyles.host)}>
-      <div
-        {...stylex.props(
-          colorSchemeStyles.flex,
-          colorSchemeStyles.flexCol,
-          colorSchemeStyles.gapY$lg,
-        )}
-      >
+    <Text component='div' variant='label' size='sm'>
+      <Stack gap={4}>
         {/* Row 1 */}
-        <div
-          {...stylex.props(
-            colorSchemeStyles.flex,
-            colorSchemeStyles.flexCol,
-            colorSchemeStyles.gapY$sm,
-          )}
-        >
-          <div
-            {...stylex.props(colorSchemeStyles.flex, colorSchemeStyles.gapX$lg)}
-          >
-            <div
-              {...stylex.props(
-                colorSchemeStyles.flex,
-                colorSchemeStyles.gapX$sm,
-                colorSchemeStyles.width$lg,
-              )}
-            >
-              <div
-                {...stylex.props(
-                  colorSchemeStyles.flex,
-                  colorSchemeStyles.flexCol,
-                  colorSchemeStyles.grow,
-                )}
-              >
+        <Stack gap={1}>
+          <Stack horizontal gap={4}>
+            <Stack horizontal gap={1} sx={colorSchemeStyles.width$lg}>
+              <Stack sx={colorSchemeStyles.grow}>
                 <ColorRole
                   label='Primary'
                   size='md'
@@ -54,14 +28,8 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   backgroundColor={colorSchemeTokens.onPrimary}
                   textColor={colorSchemeTokens.primary}
                 />
-              </div>
-              <div
-                {...stylex.props(
-                  colorSchemeStyles.flex,
-                  colorSchemeStyles.flexCol,
-                  colorSchemeStyles.grow,
-                )}
-              >
+              </Stack>
+              <Stack sx={colorSchemeStyles.grow}>
                 <ColorRole
                   label='Secondary'
                   size='md'
@@ -74,14 +42,8 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   backgroundColor={colorSchemeTokens.onSecondary}
                   textColor={colorSchemeTokens.secondary}
                 />
-              </div>
-              <div
-                {...stylex.props(
-                  colorSchemeStyles.flex,
-                  colorSchemeStyles.flexCol,
-                  colorSchemeStyles.grow,
-                )}
-              >
+              </Stack>
+              <Stack sx={colorSchemeStyles.grow}>
                 <ColorRole
                   label='Tertiary'
                   size='md'
@@ -94,15 +56,9 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   backgroundColor={colorSchemeTokens.onTertiary}
                   textColor={colorSchemeTokens.tertiary}
                 />
-              </div>
-            </div>
-            <div
-              {...stylex.props(
-                colorSchemeStyles.flex,
-                colorSchemeStyles.flexCol,
-                colorSchemeStyles.width$sm,
-              )}
-            >
+              </Stack>
+            </Stack>
+            <Stack sx={colorSchemeStyles.width$sm}>
               <ColorRole
                 label='Error'
                 size='md'
@@ -115,26 +71,12 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                 backgroundColor={colorSchemeTokens.onError}
                 textColor={colorSchemeTokens.error}
               />
-            </div>
-          </div>
+            </Stack>
+          </Stack>
 
-          <div
-            {...stylex.props(colorSchemeStyles.flex, colorSchemeStyles.gapX$lg)}
-          >
-            <div
-              {...stylex.props(
-                colorSchemeStyles.flex,
-                colorSchemeStyles.gapX$sm,
-                colorSchemeStyles.width$lg,
-              )}
-            >
-              <div
-                {...stylex.props(
-                  colorSchemeStyles.flex,
-                  colorSchemeStyles.flexCol,
-                  colorSchemeStyles.grow,
-                )}
-              >
+          <Stack horizontal gap={4}>
+            <Stack gap={1} horizontal sx={colorSchemeStyles.width$lg}>
+              <Stack sx={colorSchemeStyles.grow}>
                 <ColorRole
                   label='Primary Container'
                   size='md'
@@ -147,14 +89,8 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   backgroundColor={colorSchemeTokens.onPrimaryContainer}
                   textColor={colorSchemeTokens.primaryContainer}
                 />
-              </div>
-              <div
-                {...stylex.props(
-                  colorSchemeStyles.flex,
-                  colorSchemeStyles.flexCol,
-                  colorSchemeStyles.grow,
-                )}
-              >
+              </Stack>
+              <Stack sx={colorSchemeStyles.grow}>
                 <ColorRole
                   label='Secondary Container'
                   size='md'
@@ -167,14 +103,8 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   backgroundColor={colorSchemeTokens.onSecondaryContainer}
                   textColor={colorSchemeTokens.secondaryContainer}
                 />
-              </div>
-              <div
-                {...stylex.props(
-                  colorSchemeStyles.flex,
-                  colorSchemeStyles.flexCol,
-                  colorSchemeStyles.grow,
-                )}
-              >
+              </Stack>
+              <Stack sx={colorSchemeStyles.grow}>
                 <ColorRole
                   label='Tertiary Container'
                   size='md'
@@ -187,15 +117,9 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   backgroundColor={colorSchemeTokens.onTertiaryContainer}
                   textColor={colorSchemeTokens.tertiaryContainer}
                 />
-              </div>
-            </div>
-            <div
-              {...stylex.props(
-                colorSchemeStyles.flex,
-                colorSchemeStyles.flexCol,
-                colorSchemeStyles.width$sm,
-              )}
-            >
+              </Stack>
+            </Stack>
+            <Stack sx={colorSchemeStyles.width$sm}>
               <ColorRole
                 label='Error Container'
                 size='md'
@@ -208,37 +132,16 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                 backgroundColor={colorSchemeTokens.onErrorContainer}
                 textColor={colorSchemeTokens.errorContainer}
               />
-            </div>
-          </div>
-        </div>
+            </Stack>
+          </Stack>
+        </Stack>
 
         {/* Row 2 */}
-        <div
-          {...stylex.props(colorSchemeStyles.flex, colorSchemeStyles.flexCol)}
-        >
-          <div
-            {...stylex.props(colorSchemeStyles.flex, colorSchemeStyles.gapX$lg)}
-          >
-            <div
-              {...stylex.props(
-                colorSchemeStyles.flex,
-                colorSchemeStyles.gapX$sm,
-                colorSchemeStyles.width$lg,
-              )}
-            >
-              <div
-                {...stylex.props(
-                  colorSchemeStyles.flex,
-                  colorSchemeStyles.flexCol,
-                  colorSchemeStyles.grow,
-                )}
-              >
-                <div
-                  {...stylex.props(
-                    colorSchemeStyles.flex,
-                    colorSchemeStyles.grow,
-                  )}
-                >
+        <Stack>
+          <Stack horizontal gap={4}>
+            <Stack horizontal gap={1} sx={colorSchemeStyles.width$lg}>
+              <Stack sx={colorSchemeStyles.grow}>
+                <Stack horizontal sx={colorSchemeStyles.grow}>
                   <ColorRole
                     label='Primary Fixed'
                     size='md'
@@ -251,7 +154,7 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                     backgroundColor={colorSchemeTokens.primaryFixedDim}
                     textColor={colorSchemeTokens.onPrimaryFixed}
                   />
-                </div>
+                </Stack>
                 <ColorRole
                   label='On Primary Fixed'
                   size='xs'
@@ -264,20 +167,9 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   backgroundColor={colorSchemeTokens.onPrimaryFixedVariant}
                   textColor={colorSchemeTokens.primaryFixed}
                 />
-              </div>
-              <div
-                {...stylex.props(
-                  colorSchemeStyles.flex,
-                  colorSchemeStyles.flexCol,
-                  colorSchemeStyles.grow,
-                )}
-              >
-                <div
-                  {...stylex.props(
-                    colorSchemeStyles.flex,
-                    colorSchemeStyles.grow,
-                  )}
-                >
+              </Stack>
+              <Stack sx={colorSchemeStyles.grow}>
+                <Stack horizontal sx={colorSchemeStyles.grow}>
                   <ColorRole
                     label='Secondary Fixed'
                     size='md'
@@ -290,7 +182,7 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                     backgroundColor={colorSchemeTokens.secondaryFixedDim}
                     textColor={colorSchemeTokens.onSecondaryFixed}
                   />
-                </div>
+                </Stack>
                 <ColorRole
                   label='On Secondary Fixed'
                   size='xs'
@@ -303,20 +195,9 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   backgroundColor={colorSchemeTokens.onSecondaryFixedVariant}
                   textColor={colorSchemeTokens.secondaryFixed}
                 />
-              </div>
-              <div
-                {...stylex.props(
-                  colorSchemeStyles.flex,
-                  colorSchemeStyles.flexCol,
-                  colorSchemeStyles.grow,
-                )}
-              >
-                <div
-                  {...stylex.props(
-                    colorSchemeStyles.flex,
-                    colorSchemeStyles.grow,
-                  )}
-                >
+              </Stack>
+              <Stack sx={colorSchemeStyles.grow}>
+                <Stack horizontal sx={colorSchemeStyles.grow}>
                   <ColorRole
                     label='Tertiary Fixed'
                     size='md'
@@ -329,7 +210,7 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                     backgroundColor={colorSchemeTokens.tertiaryFixedDim}
                     textColor={colorSchemeTokens.onTertiaryFixed}
                   />
-                </div>
+                </Stack>
                 <ColorRole
                   label='On Tertiary Fixed'
                   size='xs'
@@ -342,172 +223,87 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   backgroundColor={colorSchemeTokens.onTertiaryFixedVariant}
                   textColor={colorSchemeTokens.tertiaryFixed}
                 />
-              </div>
-            </div>
-          </div>
-        </div>
+              </Stack>
+            </Stack>
+          </Stack>
+        </Stack>
 
         {/* Row 3 */}
-        <div
-          {...stylex.props(
-            colorSchemeStyles.flex,
-            colorSchemeStyles.flexCol,
-            colorSchemeStyles.gapY$sm,
-          )}
-        >
-          <div
-            {...stylex.props(colorSchemeStyles.flex, colorSchemeStyles.gapX$lg)}
-          >
-            <div
-              {...stylex.props(
-                colorSchemeStyles.flex,
-                colorSchemeStyles.flexCol,
-                colorSchemeStyles.gapY$sm,
-                colorSchemeStyles.width$lg,
-              )}
-            >
-              <div
-                {...stylex.props(
-                  colorSchemeStyles.flex,
-                  colorSchemeStyles.grow,
-                )}
-              >
-                <div
-                  {...stylex.props(
-                    colorSchemeStyles.flex,
-                    colorSchemeStyles.flexCol,
-                    colorSchemeStyles.grow,
-                  )}
-                >
+        <Stack gap={1}>
+          <Stack horizontal gap={4} align='stretch'>
+            <Stack gap={1} sx={colorSchemeStyles.width$lg}>
+              <Stack horizontal sx={colorSchemeStyles.grow}>
+                <Stack sx={colorSchemeStyles.grow}>
                   <ColorRole
                     label='Surface Dim'
                     size='lg'
                     backgroundColor={colorSchemeTokens.surfaceDim}
                     textColor={colorSchemeTokens.onSurface}
                   />
-                </div>
-                <div
-                  {...stylex.props(
-                    colorSchemeStyles.flex,
-                    colorSchemeStyles.flexCol,
-                    colorSchemeStyles.grow,
-                  )}
-                >
+                </Stack>
+                <Stack sx={colorSchemeStyles.grow}>
                   <ColorRole
                     label='Surface'
                     size='lg'
                     backgroundColor={colorSchemeTokens.surface}
                     textColor={colorSchemeTokens.onSurface}
                   />
-                </div>
-                <div
-                  {...stylex.props(
-                    colorSchemeStyles.flex,
-                    colorSchemeStyles.flexCol,
-                    colorSchemeStyles.grow,
-                  )}
-                >
+                </Stack>
+                <Stack sx={colorSchemeStyles.grow}>
                   <ColorRole
                     label='Surface Bright'
                     size='lg'
                     backgroundColor={colorSchemeTokens.surfaceBright}
                     textColor={colorSchemeTokens.onSurface}
                   />
-                </div>
-              </div>
-              <div
-                {...stylex.props(
-                  colorSchemeStyles.flex,
-                  colorSchemeStyles.grow,
-                )}
-              >
-                <div
-                  {...stylex.props(
-                    colorSchemeStyles.flex,
-                    colorSchemeStyles.flexCol,
-                    colorSchemeStyles.grow,
-                  )}
-                >
+                </Stack>
+              </Stack>
+              <Stack horizontal sx={colorSchemeStyles.grow}>
+                <Stack sx={colorSchemeStyles.grow}>
                   <ColorRole
                     label='Surface Container Lowest'
                     size='xl'
                     backgroundColor={colorSchemeTokens.surfaceContainerLowest}
                     textColor={colorSchemeTokens.onSurface}
                   />
-                </div>
-                <div
-                  {...stylex.props(
-                    colorSchemeStyles.flex,
-                    colorSchemeStyles.flexCol,
-                    colorSchemeStyles.grow,
-                  )}
-                >
+                </Stack>
+                <Stack sx={colorSchemeStyles.grow}>
                   <ColorRole
                     label='Surface Container Low'
                     size='xl'
                     backgroundColor={colorSchemeTokens.surfaceContainerLow}
                     textColor={colorSchemeTokens.onSurface}
                   />
-                </div>
-                <div
-                  {...stylex.props(
-                    colorSchemeStyles.flex,
-                    colorSchemeStyles.flexCol,
-                    colorSchemeStyles.grow,
-                  )}
-                >
+                </Stack>
+                <Stack sx={colorSchemeStyles.grow}>
                   <ColorRole
                     label='Surface Container'
                     size='xl'
                     backgroundColor={colorSchemeTokens.surfaceContainer}
                     textColor={colorSchemeTokens.onSurface}
                   />
-                </div>
-                <div
-                  {...stylex.props(
-                    colorSchemeStyles.flex,
-                    colorSchemeStyles.flexCol,
-                    colorSchemeStyles.grow,
-                  )}
-                >
+                </Stack>
+                <Stack sx={colorSchemeStyles.grow}>
                   <ColorRole
                     label='Surface Container High'
                     size='xl'
                     backgroundColor={colorSchemeTokens.surfaceContainerHigh}
                     textColor={colorSchemeTokens.onSurface}
                   />
-                </div>
-                <div
-                  {...stylex.props(
-                    colorSchemeStyles.flex,
-                    colorSchemeStyles.flexCol,
-                    colorSchemeStyles.grow,
-                  )}
-                >
+                </Stack>
+                <Stack sx={colorSchemeStyles.grow}>
                   <ColorRole
                     label='Surface Container Highest'
                     size='xl'
                     backgroundColor={colorSchemeTokens.surfaceContainerHighest}
                     textColor={colorSchemeTokens.onSurface}
                   />
-                </div>
-              </div>
-            </div>
+                </Stack>
+              </Stack>
+            </Stack>
 
-            <div
-              {...stylex.props(
-                colorSchemeStyles.flex,
-                colorSchemeStyles.flexCol,
-                colorSchemeStyles.gapY$sm,
-                colorSchemeStyles.width$sm,
-              )}
-            >
-              <div
-                {...stylex.props(
-                  colorSchemeStyles.flex,
-                  colorSchemeStyles.flexCol,
-                )}
-              >
+            <Stack gap={1} sx={colorSchemeStyles.width$sm}>
+              <Stack>
                 <ColorRole
                   label='Inverse Surface'
                   size='md'
@@ -520,7 +316,7 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                   backgroundColor={colorSchemeTokens.inverseOnSurface}
                   textColor={colorSchemeTokens.inverseSurface}
                 />
-              </div>
+              </Stack>
 
               <ColorRole
                 label='Inverse Primary'
@@ -528,123 +324,67 @@ export const ColorScheme: React.FC<IColorSchemeProps> = () => {
                 backgroundColor={colorSchemeTokens.inversePrimary}
                 textColor={colorSchemeTokens.onPrimaryContainer}
               />
-            </div>
-          </div>
+            </Stack>
+          </Stack>
 
-          <div
-            {...stylex.props(colorSchemeStyles.flex, colorSchemeStyles.gapX$lg)}
-          >
-            <div
-              {...stylex.props(
-                colorSchemeStyles.flex,
-                colorSchemeStyles.flexCol,
-                colorSchemeStyles.gapY$sm,
-                colorSchemeStyles.width$lg,
-              )}
-            >
-              <div
-                {...stylex.props(
-                  colorSchemeStyles.flex,
-                  colorSchemeStyles.grow,
-                )}
-              >
-                <div
-                  {...stylex.props(
-                    colorSchemeStyles.flex,
-                    colorSchemeStyles.flexCol,
-                    colorSchemeStyles.grow,
-                  )}
-                >
+          <Stack horizontal gap={4}>
+            <Stack gap={1} sx={colorSchemeStyles.width$lg}>
+              <Stack horizontal sx={colorSchemeStyles.grow}>
+                <Stack sx={colorSchemeStyles.grow}>
                   <ColorRole
                     label='On Surface'
                     size='sm'
                     backgroundColor={colorSchemeTokens.onSurface}
                     textColor={colorSchemeTokens.surface}
                   />
-                </div>
-                <div
-                  {...stylex.props(
-                    colorSchemeStyles.flex,
-                    colorSchemeStyles.flexCol,
-                    colorSchemeStyles.grow,
-                  )}
-                >
+                </Stack>
+                <Stack sx={colorSchemeStyles.grow}>
                   <ColorRole
                     label='On Surface Variant'
                     size='sm'
                     backgroundColor={colorSchemeTokens.onSurfaceVariant}
                     textColor={colorSchemeTokens.surface}
                   />
-                </div>
-                <div
-                  {...stylex.props(
-                    colorSchemeStyles.flex,
-                    colorSchemeStyles.flexCol,
-                    colorSchemeStyles.grow,
-                  )}
-                >
+                </Stack>
+                <Stack sx={colorSchemeStyles.grow}>
                   <ColorRole
                     label='Outline'
                     size='sm'
                     backgroundColor={colorSchemeTokens.outline}
                     textColor={colorSchemeTokens.surface}
                   />
-                </div>
-                <div
-                  {...stylex.props(
-                    colorSchemeStyles.flex,
-                    colorSchemeStyles.flexCol,
-                    colorSchemeStyles.grow,
-                  )}
-                >
+                </Stack>
+                <Stack sx={colorSchemeStyles.grow}>
                   <ColorRole
                     label='Outline Variant'
                     size='sm'
                     backgroundColor={colorSchemeTokens.outlineVariant}
                     textColor={colorSchemeTokens.onSurface}
                   />
-                </div>
-              </div>
-            </div>
-            <div
-              {...stylex.props(
-                colorSchemeStyles.flex,
-                colorSchemeStyles.gapX$lg,
-                colorSchemeStyles.width$sm,
-              )}
-            >
-              <div
-                {...stylex.props(
-                  colorSchemeStyles.flex,
-                  colorSchemeStyles.flexCol,
-                  colorSchemeStyles.grow,
-                )}
-              >
+                </Stack>
+              </Stack>
+            </Stack>
+            <Stack horizontal gap={4} sx={colorSchemeStyles.width$sm}>
+              <Stack sx={colorSchemeStyles.grow}>
                 <ColorRole
                   label='Scrim'
                   size='sm'
                   backgroundColor={colorSchemeTokens.scrim}
                   textColor={tonalPalettesTokens.white}
                 />
-              </div>
-              <div
-                {...stylex.props(
-                  colorSchemeStyles.flex,
-                  colorSchemeStyles.flexCol,
-                  colorSchemeStyles.grow,
-                )}
-              >
+              </Stack>
+              <Stack sx={colorSchemeStyles.grow}>
                 <ColorRole
                   label='Shadow'
                   size='sm'
                   backgroundColor={colorSchemeTokens.scrim}
                   textColor={tonalPalettesTokens.white}
                 />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+              </Stack>
+            </Stack>
+          </Stack>
+        </Stack>
+      </Stack>
+    </Text>
   );
 };

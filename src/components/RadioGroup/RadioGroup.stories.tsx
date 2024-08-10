@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
 import { useRef, useState } from 'react';
 
 import type { IRadioGroupOwnProps } from './RadioGroup.types';
@@ -8,6 +7,7 @@ import { ComponentShowcase } from '../ComponentShowcase';
 import { Radio } from '../Radio';
 import { Button } from '../Button';
 import { RadioGroup } from './RadioGroup';
+import { Stack } from '../Stack';
 
 const meta = {
   component: RadioGroup,
@@ -15,16 +15,7 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const styles = stylex.create({
-  host: {
-    display: 'flex',
-    flexDirection: 'row',
-    gap: '1.5rem',
-  },
-});
-
 const defaultArgs = {
-  sx: styles.host,
   onChange: (...args) => sbHandleEvent('change', args),
 } satisfies Partial<IRadioGroupOwnProps>;
 
@@ -33,9 +24,12 @@ const ControlledRadioGroup: React.FC<IRadioGroupOwnProps> = (props) => {
   const [value, setValue] = useState<string | undefined>('2');
 
   return (
-    <>
+    <Stack horizontal gap={6}>
       <RadioGroup
         {...props}
+        component={Stack}
+        horizontal
+        gap={6}
         value={value}
         onChange={(_, value) => setValue(value)}
         ref={ref}
@@ -47,7 +41,7 @@ const ControlledRadioGroup: React.FC<IRadioGroupOwnProps> = (props) => {
       </RadioGroup>
 
       <Button onClick={() => ref.current?.focus()}>Click to focus</Button>
-    </>
+    </Stack>
   );
 };
 

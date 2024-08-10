@@ -13,7 +13,6 @@ const vars = {
   actionsBottomSpace: spacingTokens.padding$2,
   leadingSpace: spacingTokens.padding$4,
   trailingSpace: spacingTokens.padding$4,
-  gap: spacingTokens.padding$2,
 
   // container
   containerColor: colorSchemeTokens.surfaceContainer,

@@ -3,12 +3,13 @@ import stylex from '@stylexjs/stylex';
 import type { ITonalPaletteProps } from './TonalPalette.types';
 import { tonalPalettesTokens } from '~/themes/base/tonalPalettes.stylex';
 import { tonalPaletteStyles } from './TonalPalette.styles';
+import { Stack } from '~/components/Stack';
 
 export const TonalPalette: React.FC<ITonalPaletteProps> = (props) => {
-  const { tones } = props;
+  const { sx, tones } = props;
 
   return (
-    <div {...stylex.props(tonalPaletteStyles.host)}>
+    <Stack horizontal sx={sx}>
       {tones.map(({ luminance, color }) => (
         <div
           {...stylex.props(
@@ -26,6 +27,6 @@ export const TonalPalette: React.FC<ITonalPaletteProps> = (props) => {
           <div {...stylex.props(tonalPaletteStyles.toneLabel)}>{luminance}</div>
         </div>
       ))}
-    </div>
+    </Stack>
   );
 };

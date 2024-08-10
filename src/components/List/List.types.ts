@@ -7,5 +7,6 @@ export type IListProps = IBaseProps<IListStylesKey> &
     children?: React.ReactNode;
     header?: React.ReactNode;
     footer?: React.ReactNode;
+    divider?: React.ReactNode;
     cols?: number;
   };
