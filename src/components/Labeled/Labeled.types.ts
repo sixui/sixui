@@ -14,7 +14,7 @@ export type ILabeledRenderProps = {
 };
 
 export type ILabeledProps = IBaseProps<ILabeledStylesKey> &
-  IOmit<IStackProps, 'styles'> &
+  IOmit<IStackProps, 'styles' | 'children'> &
   ILabeledContextValue & {
     label: React.ReactNode;
     trailingAction?: React.ReactNode;
