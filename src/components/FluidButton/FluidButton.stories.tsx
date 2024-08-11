@@ -68,8 +68,8 @@ const rows: Array<IComponentPresentation<IFluidButtonProps>> = [
 export const WithText: IStory = {
   render: (props) => (
     <ComponentShowcase
-      horizontalAlign='start'
       component={FluidButton}
+      horizontalAlign='start'
       props={props}
       rows={rows}
     />
@@ -83,8 +83,8 @@ export const WithText: IStory = {
 export const WithTextDisabled: IStory = {
   render: (props) => (
     <ComponentShowcase
-      horizontalAlign='start'
       component={FluidButton}
+      horizontalAlign='start'
       props={props}
       rows={rows}
     />
@@ -99,8 +99,8 @@ export const WithTextDisabled: IStory = {
 export const WithIcon: IStory = {
   render: (props) => (
     <ComponentShowcase
-      horizontalAlign='start'
       component={FluidButton}
+      horizontalAlign='start'
       props={props}
       rows={rows}
     />
@@ -114,8 +114,8 @@ export const WithIcon: IStory = {
 export const IconDisabled: IStory = {
   render: (props) => (
     <ComponentShowcase
-      horizontalAlign='start'
       component={FluidButton}
+      horizontalAlign='start'
       props={props}
       rows={rows}
     />

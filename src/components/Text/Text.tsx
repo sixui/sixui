@@ -34,7 +34,7 @@ export const textTagMap: Record<
 export const Text = createPolymorphicComponent<'span', ITextProps>(
   forwardRef<HTMLDivElement, ITextProps>(function Text(props, forwardedRef) {
     const {
-      component,
+      as,
       styles,
       sx,
       variant = 'body',
@@ -52,11 +52,11 @@ export const Text = createPolymorphicComponent<'span', ITextProps>(
       styles: [textStyles, styles],
     });
 
-    const rootElement = component ?? textTagMap[`${variant}$${size}`];
+    const rootElement = as ?? textTagMap[`${variant}$${size}`];
 
     return (
       <Base
-        component={rootElement}
+        as={rootElement}
         {...other}
         sx={[
           globalStyles,

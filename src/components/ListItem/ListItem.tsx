@@ -31,7 +31,7 @@ export const ListItem = createPolymorphicComponent<'button', IListItemProps>(
   forwardRef<HTMLButtonElement, IListItemProps>(
     function ListItem(props, forwardedRef) {
       const {
-        component,
+        as,
         styles,
         sx,
         innerStyles,
@@ -93,7 +93,7 @@ export const ListItem = createPolymorphicComponent<'button', IListItemProps>(
       const noFocusRing = listContext?.noFocusRing ?? noFocusRingProp;
 
       const rootElement =
-        component ??
+        as ??
         (type == 'link'
           ? (settings?.linkAs ?? 'a')
           : type === 'button'
@@ -182,7 +182,7 @@ export const ListItem = createPolymorphicComponent<'button', IListItemProps>(
 
       return (
         <Base
-          component={rootElement}
+          as={rootElement}
           role={role}
           type={type === 'button' ? 'button' : undefined}
           tabIndex={disabled || !isInteractive ? -1 : 0}

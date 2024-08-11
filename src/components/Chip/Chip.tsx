@@ -41,7 +41,7 @@ import { chipTheme } from './Chip.stylex';
 export const Chip = createPolymorphicComponent<'div', IChipProps>(
   forwardRef<HTMLDivElement, IChipProps>(function Chip(props, forwardedRef) {
     const {
-      component,
+      as,
       styles,
       sx,
       innerStyles,
@@ -95,8 +95,7 @@ export const Chip = createPolymorphicComponent<'div', IChipProps>(
     });
 
     const rootElement =
-      component ??
-      (href ? (settings?.linkAs ?? 'a') : onClick ? 'button' : 'div');
+      as ?? (href ? (settings?.linkAs ?? 'a') : onClick ? 'button' : 'div');
 
     const interactive = !!href || !!onClick;
     const elevated = variant !== 'input' && elevatedProp;
@@ -275,7 +274,7 @@ export const Chip = createPolymorphicComponent<'div', IChipProps>(
           ) : null}
 
           <Base
-            component={rootElement}
+            as={rootElement}
             href={href}
             onClick={(href ?? !onClick) ? undefined : handleClick}
             role='button'

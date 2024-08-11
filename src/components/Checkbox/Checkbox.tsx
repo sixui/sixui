@@ -126,7 +126,7 @@ export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
         ]}
       >
         <Base
-          component='input'
+          as='input'
           data-cy='checkbox'
           type='checkbox'
           aria-checked={indeterminate ? 'mixed' : undefined}

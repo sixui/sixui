@@ -42,8 +42,8 @@ const rows: Array<IComponentPresentation<ICopyableTextProps>> = [
 export const Configurations: IStory = {
   render: (props) => (
     <ComponentShowcase
-      horizontalAlign='start'
       component={CopyableText}
+      horizontalAlign='start'
       props={props}
       rows={rows}
     />

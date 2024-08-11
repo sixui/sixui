@@ -28,7 +28,7 @@ import { CardContext, type ICardContextValue } from './Card.context';
 export const Card = createPolymorphicComponent<'div', ICardProps>(
   forwardRef<HTMLDivElement, ICardProps>(function Badge(props, forwardedRef) {
     const {
-      component,
+      as,
       styles,
       sx,
       innerStyles,
@@ -69,7 +69,7 @@ export const Card = createPolymorphicComponent<'div', ICardProps>(
       asArray(styles).some((styles) => !!styles?.outline);
 
     const rootElement =
-      component ?? (!dragged && href ? (settings?.linkAs ?? 'a') : 'div');
+      as ?? (!dragged && href ? (settings?.linkAs ?? 'a') : 'div');
 
     const context: ICardContextValue = {
       actionable,
@@ -78,7 +78,7 @@ export const Card = createPolymorphicComponent<'div', ICardProps>(
     return (
       <CardContext.Provider value={context}>
         <Base
-          component={rootElement}
+          as={rootElement}
           href={actionable && !dragged ? href : undefined}
           onClick={actionable && !dragged ? onClick : undefined}
           onKeyDown={(event: React.KeyboardEvent<HTMLElement>) => {

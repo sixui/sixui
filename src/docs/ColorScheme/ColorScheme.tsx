@@ -9,7 +9,7 @@ import { colorSchemeStyles } from './ColorScheme.styles';
 
 export const ColorScheme: React.FC<IColorSchemeProps> = () => {
   return (
-    <Text component='div' variant='label' size='sm'>
+    <Text as='div' variant='label' size='sm'>
       <Stack gap={4}>
         {/* Row 1 */}
         <Stack gap={1}>

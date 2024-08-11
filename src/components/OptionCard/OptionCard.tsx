@@ -21,7 +21,7 @@ export const OptionCard = createPolymorphicComponent<'div', IOptionCardProps>(
   forwardRef<HTMLDivElement, IOptionCardProps>(
     function OptionCard(props, forwardedRef) {
       const {
-        component: Component,
+        as: Component,
         styles,
         sx,
         innerStyles,

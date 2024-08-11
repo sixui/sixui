@@ -88,9 +88,9 @@ const OptionCardRadioGroup: React.FC<IOptionCardProps> = (props) => {
   return (
     <RadioGroup onChange={(...args) => void sbHandleEvent('change', args)}>
       <Stack horizontal gap={6}>
-        <OptionCard {...props} component={Radio} value='1' />
-        <OptionCard {...props} component={Radio} value='2' />
-        <OptionCard {...props} component={Radio} value='3' />
+        <OptionCard {...props} as={Radio} value='1' />
+        <OptionCard {...props} as={Radio} value='2' />
+        <OptionCard {...props} as={Radio} value='3' />
       </Stack>
     </RadioGroup>
   );

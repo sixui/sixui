@@ -163,7 +163,7 @@ export const Radio = forwardRef<HTMLInputElement, IRadioProps>(
           </svg>
 
           <Base
-            component='input'
+            as='input'
             name={name}
             type='radio'
             checked={checked}

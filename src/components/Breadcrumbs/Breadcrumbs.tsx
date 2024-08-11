@@ -140,7 +140,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
 
     return (
       <Stack
-        component='ol'
+        as='ol'
         horizontal
         gap={2}
         {...other}

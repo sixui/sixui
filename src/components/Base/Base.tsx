@@ -11,9 +11,9 @@ import { dataProps } from '~/helpers/dataProps';
 
 export const Base = createPolymorphicComponent<'div', IBaseProps>(
   forwardRef<HTMLDivElement, IBaseProps>(function Base(props, forwardedRef) {
-    const { component, renderRoot, sx, visualState, ...other } =
+    const { as, renderRoot, sx, visualState, ...other } =
       props as IWithAsProp<IBaseProps>;
-    const Element = component ?? 'div';
+    const Element = as ?? 'div';
     const childrenProps = {
       ...other,
       ref: forwardedRef,

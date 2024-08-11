@@ -100,7 +100,7 @@ const FormDialogDemo: React.FC<IDialogProps> = (props) => {
       <Dialog
         {...props}
         ref={formRef}
-        component='form'
+        as='form'
         trigger={({ setRef, getProps }) => (
           <Button {...getProps()} ref={setRef}>
             Open

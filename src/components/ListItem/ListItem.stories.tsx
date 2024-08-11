@@ -195,8 +195,8 @@ export const Sizes: IStory = {
 export const Lengths: IStory = {
   render: (props) => (
     <ComponentShowcase
-      horizontalAlign='start'
       component={ListItem}
+      horizontalAlign='start'
       props={props}
       rows={[
         { legend: 'Basic', props: { children: LOREM$XS } },
@@ -238,8 +238,8 @@ export const Lengths: IStory = {
 export const Standard: IStory = {
   render: (props) => (
     <ComponentShowcase
-      horizontalAlign='start'
       component={ListItem}
+      horizontalAlign='start'
       props={props}
       cols={states}
       rows={rows}
@@ -257,8 +257,8 @@ export const Standard: IStory = {
 export const Danger: IStory = {
   render: (props) => (
     <ComponentShowcase
-      horizontalAlign='start'
       component={ListItem}
+      horizontalAlign='start'
       props={props}
       cols={states}
       rows={rows}

@@ -31,7 +31,7 @@ export const RadioGroup: IRadioGroup = forwardRef(function RadioGroup<
   TRoot extends React.ElementType = typeof RADIO_GROUP_DEFAULT_TAG,
 >(props: IRadioGroupProps<TRoot>, forwardedRef?: IPolymorphicRef<TRoot>) {
   const {
-    component,
+    as,
     sx,
     children,
     onChange,
@@ -79,7 +79,7 @@ export const RadioGroup: IRadioGroup = forwardRef(function RadioGroup<
     } satisfies IRadioGroupContextValue;
   }, [name, onChange, value, setValue]);
 
-  const Component = component ?? RADIO_GROUP_DEFAULT_TAG;
+  const Component = as ?? RADIO_GROUP_DEFAULT_TAG;
 
   return (
     <RadioGroupContext.Provider value={contextValue}>

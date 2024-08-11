@@ -37,7 +37,7 @@ import { useStyles } from '~/hooks/useStyles';
 export const Tab = createPolymorphicComponent<'div', ITabProps>(
   forwardRef<HTMLButtonElement, ITabProps>(function Tab(props, forwardedRef) {
     const {
-      component,
+      as,
       styles,
       sx,
       innerStyles,
@@ -140,12 +140,11 @@ export const Tab = createPolymorphicComponent<'div', ITabProps>(
       [active, icon, activeIcon, getStyles, disabled],
     );
 
-    const rootElement =
-      component ?? (href ? (settings?.linkAs ?? 'a') : 'button');
+    const rootElement = as ?? (href ? (settings?.linkAs ?? 'a') : 'button');
 
     return (
       <Base
-        component={rootElement}
+        as={rootElement}
         role='tab'
         aria-controls={id}
         aria-selected={active}

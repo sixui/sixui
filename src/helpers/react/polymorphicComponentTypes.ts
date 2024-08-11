@@ -23,7 +23,7 @@ export type IWithAsProp<
    * An override of the default HTML tag.
    * Can also be another React component.
    */
-  component?: TRoot;
+  as?: TRoot;
 
   renderRoot?: (props: Omit<TProps, 'children'>) => React.ReactElement;
 };

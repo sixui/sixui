@@ -38,8 +38,8 @@ const styles = stylex.create({
 export const AsContainer: IStory = {
   render: (props) => (
     <ComponentShowcase
-      horizontalAlign='start'
       component={Skeleton}
+      horizontalAlign='start'
       props={props}
       cols={[
         { legend: 'Loading (not animated)', props: { animation: false } },

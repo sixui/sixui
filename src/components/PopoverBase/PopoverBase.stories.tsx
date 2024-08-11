@@ -238,8 +238,8 @@ export const WithPaper: IStory = {
 export const Placement: IStory = {
   render: (props) => (
     <ComponentShowcase
-      sx={styles.padding}
       component={PopoverBase}
+      sx={styles.padding}
       props={props}
       rows={[
         {

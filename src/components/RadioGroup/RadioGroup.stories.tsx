@@ -27,7 +27,7 @@ const ControlledRadioGroup: React.FC<IRadioGroupOwnProps> = (props) => {
     <Stack horizontal gap={6}>
       <RadioGroup
         {...props}
-        component={Stack}
+        as={Stack}
         horizontal
         gap={6}
         value={value}

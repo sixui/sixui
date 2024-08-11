@@ -205,7 +205,7 @@ export const Truncate: IStory = {
       rows={[
         {
           props: {
-            component: (props) => (
+            as: (props) => (
               <div {...stylex.props(styles.container, styles.container$lg)}>
                 <Text {...props} />
               </div>
@@ -214,7 +214,7 @@ export const Truncate: IStory = {
         },
         {
           props: {
-            component: (props) => (
+            as: (props) => (
               <div {...stylex.props(styles.container, styles.container$md)}>
                 <Text {...props} />
               </div>
@@ -223,7 +223,7 @@ export const Truncate: IStory = {
         },
         {
           props: {
-            component: (props) => (
+            as: (props) => (
               <div {...stylex.props(styles.container, styles.container$sm)}>
                 <Text {...props} />
               </div>

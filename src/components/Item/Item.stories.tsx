@@ -90,8 +90,8 @@ export const Slots: IStory = {
 export const Lengths: IStory = {
   render: (props) => (
     <ComponentShowcase
-      horizontalAlign='start'
       component={Item}
+      horizontalAlign='start'
       props={props}
       rows={[
         { legend: 'Basic', props: { children: LOREM$XS } },

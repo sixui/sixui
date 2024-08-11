@@ -22,7 +22,7 @@ export const ButtonBase = createPolymorphicComponent<
   forwardRef<HTMLButtonElement, IButtonBaseProps>(
     function ButtonBase(props, forwardedRef) {
       const {
-        component,
+        as,
         styles,
         sx,
         innerStyles,
@@ -54,12 +54,11 @@ export const ButtonBase = createPolymorphicComponent<
         visualState,
       });
 
-      const rootElement =
-        component ?? (href ? (settings?.linkAs ?? 'a') : 'button');
+      const rootElement = as ?? (href ? (settings?.linkAs ?? 'a') : 'button');
 
       return (
         <Base
-          component={rootElement}
+          as={rootElement}
           href={href}
           role='button'
           tabIndex={visuallyDisabled ? -1 : 0}
