@@ -1,10 +1,16 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/_md-comp-item.scss
+
+const MIN_DENSITY = -1;
+const MAX_DENSITY = 0;
+const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityTokens.density}, ${MAX_DENSITY}) * ${scaleTokens.scale}`;
 
 const vars = {
   gap: spacingTokens.padding$3,
@@ -29,7 +35,7 @@ const vars = {
   // headlineText
   headlineTextColor: colorSchemeTokens.onSurface,
   headlineTextFont: typeScaleTokens.bodyFont$lg,
-  headlineTextLineHeight: typeScaleTokens.bodyLineHeight$lg,
+  headlineTextLineHeight: `calc(${typeScaleTokens.bodyLineHeight$sm} + ${DENSITY})`,
   headlineTextSize: typeScaleTokens.bodySize$lg,
   headlineTextLetterSpacing: typeScaleTokens.bodyLetterSpacing$lg,
   headlineTextWeight: typeScaleTokens.bodyWeight$lg,
