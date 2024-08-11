@@ -1,3 +1,15 @@
+# v0.0.430 (Sun Aug 11 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: density support for typescale ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.429 (Sat Aug 10 2024)
 
 #### ⚠️ Pushed to `main`
