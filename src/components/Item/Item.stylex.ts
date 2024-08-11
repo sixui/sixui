@@ -35,7 +35,7 @@ const vars = {
   // headlineText
   headlineTextColor: colorSchemeTokens.onSurface,
   headlineTextFont: typeScaleTokens.bodyFont$lg,
-  headlineTextLineHeight: `calc(${typeScaleTokens.bodyLineHeight$sm} + ${DENSITY})`,
+  headlineTextLineHeight: `calc(${typeScaleTokens.bodyLineHeight$lg} + ${DENSITY})`,
   headlineTextSize: typeScaleTokens.bodySize$lg,
   headlineTextLetterSpacing: typeScaleTokens.bodyLetterSpacing$lg,
   headlineTextWeight: typeScaleTokens.bodyWeight$lg,
