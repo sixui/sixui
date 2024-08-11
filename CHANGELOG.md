@@ -1,3 +1,15 @@
+# v0.0.434 (Sun Aug 11 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(ThemeProvider): setTheme extends current theme ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.433 (Sun Aug 11 2024)
 
 #### ⚠️ Pushed to `main`
