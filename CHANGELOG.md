@@ -1,3 +1,15 @@
+# v0.0.438 (Sun Aug 11 2024)
+
+#### ⚠️ Pushed to `main`
+
+- refactor: component prop -> as prop for polymorphic components ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.437 (Sun Aug 11 2024)
 
 #### ⚠️ Pushed to `main`
