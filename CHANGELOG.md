@@ -1,3 +1,15 @@
+# v0.0.437 (Sun Aug 11 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(Item): supports density ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.436 (Sun Aug 11 2024)
 
 #### ⚠️ Pushed to `main`
