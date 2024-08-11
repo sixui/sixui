@@ -3,6 +3,7 @@ import stylex from '@stylexjs/stylex';
 
 import type { IThemeProviderProps } from './ThemeProvider.types';
 import { ThemeContext } from './Theme.context';
+import type { ITheme } from '~/themes/base';
 import { themeProviderStyles } from './ThemeProvider.styles';
 import {
   IThemeSetterContextValue,
@@ -19,7 +20,10 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
     ...other
   } = props;
   const [dynamicTheme, setDynamicTheme] = useState(defaultTheme);
-  const theme = dynamicTheme ?? defaultTheme;
+  const theme = {
+    ...defaultTheme,
+    ...dynamicTheme,
+  } as ITheme | undefined;
 
   const themeSetterContextValue: IThemeSetterContextValue = useMemo(
     () => ({ setTheme: setDynamicTheme }),
