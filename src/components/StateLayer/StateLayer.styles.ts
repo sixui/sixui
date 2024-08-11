@@ -1,6 +1,5 @@
 import stylex from '@stylexjs/stylex';
 
-import { zIndexTokens } from '~/themes/base/zIndex.stylex';
 import { stateLayerTokens } from './StateLayer.stylex';
 
 // https://github.com/material-components/material-web/blob/main/ripple/internal/_ripple.scss
@@ -16,10 +15,6 @@ export const stateLayerStyles = stylex.create({
     inset: 0,
     overflow: 'hidden',
     pointerEvents: 'none',
-    zIndex: `calc(${zIndexTokens.app} + 1)`,
-  },
-  host$asTouchTarget$hover: {
-    zIndex: `calc(${zIndexTokens.app} + 2)`,
   },
   rippleSurface: {
     borderRadius: 'inherit',

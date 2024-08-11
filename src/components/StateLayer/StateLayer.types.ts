@@ -7,5 +7,4 @@ export type IStateLayerProps = IBaseProps<IStateLayerStylesKey> & {
   for?: React.RefObject<HTMLElement>;
   disabled?: boolean;
   children?: React.ReactNode;
-  asTouchTarget?: boolean;
 };

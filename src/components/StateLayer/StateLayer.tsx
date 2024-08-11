@@ -19,7 +19,6 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
       for: forElementRef,
       disabled,
       children,
-      asTouchTarget,
       ...other
     } = props;
 
@@ -39,15 +38,7 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
       <Base
         aria-hidden
         {...other}
-        sx={[
-          stateLayerTheme,
-          globalStyles,
-          combineStyles(
-            'host',
-            asTouchTarget && visualState?.hovered && 'host$asTouchTarget$hover',
-          ),
-          sx,
-        ]}
+        sx={[stateLayerTheme, globalStyles, combineStyles('host'), sx]}
         ref={handleRef}
       >
         <div
