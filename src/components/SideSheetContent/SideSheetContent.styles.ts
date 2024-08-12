@@ -47,7 +47,7 @@ export const sideSheetContentStyles = stylex.create({
     paddingTop: sideSheetContentTokens.topSpace,
     gap: sideSheetContentTokens.topElementsGap,
   },
-  header$withIcons: {
+  header$withLeadingActions: {
     paddingLeft: sideSheetContentTokens.leadingSpace$withIcons,
   },
   actions: {

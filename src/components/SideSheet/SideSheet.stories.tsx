@@ -35,7 +35,7 @@ const defaultArgs = {
   onOpenChange: (...args) => void sbHandleEvent('openChange', args),
   headline: 'Title',
   showCloseButton: true,
-  iconButtons: <IconButton icon={<FontAwesomeIcon icon={faArrowLeft} />} />,
+  leadingActions: <IconButton icon={<FontAwesomeIcon icon={faArrowLeft} />} />,
   trigger: ({ setRef, getProps }) => (
     <Button {...getProps()} ref={setRef}>
       Open

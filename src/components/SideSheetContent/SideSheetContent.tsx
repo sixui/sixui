@@ -22,8 +22,9 @@ export const SideSheetContent = forwardRef<
     onClose,
     children,
     placement = 'left',
-    iconButtons,
     headline,
+    leadingActions,
+    trailingActions,
     showCloseButton,
     closeIcon,
     ...other
@@ -35,7 +36,8 @@ export const SideSheetContent = forwardRef<
     styles: [sideSheetContentStyles, variantStyles, styles],
   });
 
-  const hasHeader = !!iconButtons || !!headline || showCloseButton;
+  const hasHeader =
+    !!leadingActions || !!trailingActions || !!headline || showCloseButton;
 
   return (
     <PaperBase
@@ -57,16 +59,24 @@ export const SideSheetContent = forwardRef<
       /> */}
 
       {hasHeader ? (
-        <div {...getStyles('header', !!iconButtons && 'header$withIcons')}>
-          {iconButtons ? (
-            <div {...getStyles('actions')}>{iconButtons}</div>
+        <div
+          {...getStyles(
+            'header',
+            !!leadingActions && 'header$withLeadingActions',
+          )}
+        >
+          {leadingActions ? (
+            <div {...getStyles('actions')}>{leadingActions}</div>
           ) : null}
           {headline ? <div {...getStyles('headline')}>{headline}</div> : null}
-          {showCloseButton ? (
-            <IconButton
-              icon={closeIcon ?? <SvgIcon icon={iconXMark} />}
-              onClick={onClose}
-            />
+          {trailingActions || showCloseButton ? (
+            <div {...getStyles('actions')}>
+              {trailingActions}
+              <IconButton
+                icon={closeIcon ?? <SvgIcon icon={iconXMark} />}
+                onClick={onClose}
+              />
+            </div>
           ) : null}
         </div>
       ) : null}
