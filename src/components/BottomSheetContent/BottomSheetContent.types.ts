@@ -1,5 +1,5 @@
+import type { IBaseProps } from '~/components/Base';
 import type { IBottomSheetContentStylesKey } from './BottomSheetContent.styles';
-import { IBaseProps } from '~/components/Base';
 
 export type IBottomSheetContentVariant = 'standard' | 'modal' | 'minimized';
 

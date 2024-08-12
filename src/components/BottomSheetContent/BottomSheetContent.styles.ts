@@ -4,8 +4,8 @@ import { paperBaseTokens } from '../PaperBase/PaperBase.stylex';
 import { bottomSheetContentTokens } from './BottomSheetContent.stylex';
 
 export type IBottomSheetContentStylesKey =
-  keyof typeof bottomsheetcontentStyles;
-export const bottomsheetcontentStyles = stylex.create({
+  keyof typeof bottomSheetContentStyles;
+export const bottomSheetContentStyles = stylex.create({
   host: {
     [paperBaseTokens.containerColor]: bottomSheetContentTokens.containerColor,
     [paperBaseTokens.containerElevation]:

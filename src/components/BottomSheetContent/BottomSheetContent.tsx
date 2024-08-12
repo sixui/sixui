@@ -3,9 +3,9 @@ import { forwardRef } from 'react';
 import type { IBottomSheetContentProps } from './BottomSheetContent.types';
 import { useStyles } from '~/hooks/useStyles';
 import { PaperBase } from '../PaperBase';
-import { bottomsheetcontentStyles } from './BottomSheetContent.styles';
+import { bottomSheetContentStyles } from './BottomSheetContent.styles';
 import { bottomSheetContentTheme } from './BottomSheetContent.stylex';
-import { bottomsheetVariantContentStyles } from './variants';
+import { bottomSheetVariantContentStyles } from './variants';
 import { isFunction } from '~/helpers/isFunction';
 
 export const BottomSheetContent = forwardRef<
@@ -22,10 +22,10 @@ export const BottomSheetContent = forwardRef<
     ...other
   } = props;
 
-  const variantStyles = bottomsheetVariantContentStyles[variant];
+  const variantStyles = bottomSheetVariantContentStyles[variant];
   const { combineStyles, getStyles, globalStyles } = useStyles({
     name: 'BottomSheetContent',
-    styles: [bottomsheetcontentStyles, variantStyles, styles],
+    styles: [bottomSheetContentStyles, variantStyles, styles],
   });
 
   return (

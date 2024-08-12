@@ -10,23 +10,24 @@ import {
   useTransitionStatus,
 } from '@floating-ui/react';
 
-import type { IBottomSheetProps } from './BottomSheet.types';
+import type { ISideSheetProps } from './SideSheet.types';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
 import { isFunction } from '~/helpers/isFunction';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useStyles } from '~/hooks/useStyles';
-import { BottomSheetContent } from '../BottomSheetContent';
+import { SideSheetContent } from '../SideSheetContent';
 import { Scrim } from '../Scrim';
 import { Portal } from '../Portal';
 import { FloatingTransition } from '../FloatingTransition';
-import { bottomSheetStyles } from './BottomSheet.styles';
-import { bottomSheetTheme } from './BottomSheet.stylex';
+import { sideSheetStyles } from './SideSheet.styles';
+import { sideSheetTheme } from './SideSheet.stylex';
+import { sideSheetVariantStyles } from './variants';
 
-// https://github.com/material-components/material-web/blob/main/bottomSheet/internal/bottomSheet.ts
+// https://github.com/material-components/material-web/blob/main/sideSheet/internal/sideSheet.ts
 
-export const BottomSheet = createPolymorphicComponent<'div', IBottomSheetProps>(
-  forwardRef<HTMLDivElement, IBottomSheetProps>(
-    function BottomSheet(props, forwardedRef) {
+export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
+  forwardRef<HTMLDivElement, ISideSheetProps>(
+    function SideSheet(props, forwardedRef) {
       const {
         styles,
         sx,
@@ -35,28 +36,29 @@ export const BottomSheet = createPolymorphicComponent<'div', IBottomSheetProps>(
         isOpen: isOpenProp,
         disabled,
         onOpenChange,
-        modal: modalProp,
-        minimized,
+        modal,
+        variant: variantProp = 'standard',
+        placement = 'left',
         ...other
       } = props;
 
+      const variant =
+        variantProp === 'detached' && !modal ? 'standard' : variantProp;
+      const contentVariant = modal
+        ? variant === 'detached'
+          ? 'detached'
+          : 'modal'
+        : variant;
+      const variantStyles = sideSheetVariantStyles[variant];
       const { combineStyles, getStyles, globalStyles } = useStyles({
-        name: 'BottomSheet',
-        styles: [bottomSheetStyles, styles],
+        name: 'SideSheet',
+        styles: [sideSheetStyles, variantStyles, styles],
       });
-
-      const variant = minimized
-        ? 'minimized'
-        : modalProp
-          ? 'modal'
-          : 'standard';
-      const modal = variant === 'modal';
-      const draggable = variant !== 'minimized';
 
       const [isOpen, setIsOpen] = useControlledValue({
         controlled: isOpenProp,
         default: !!isOpenProp,
-        name: 'BottomSheet',
+        name: 'SideSheet',
       });
       const floating = useFloating({
         open: isOpen && !disabled,
@@ -84,7 +86,7 @@ export const BottomSheet = createPolymorphicComponent<'div', IBottomSheetProps>(
           })
         : trigger;
 
-      const bottomSheetRef = useMergeRefs([
+      const sideSheetRef = useMergeRefs([
         forwardedRef,
         floating.refs.setFloating,
       ]);
@@ -98,26 +100,27 @@ export const BottomSheet = createPolymorphicComponent<'div', IBottomSheetProps>(
               {modal ? (
                 <Scrim floatingContext={floating.context} lockScroll />
               ) : null}
-              <div {...getStyles(bottomSheetTheme, globalStyles, 'host')}>
+              <div
+                {...getStyles(
+                  sideSheetTheme,
+                  globalStyles,
+                  'host',
+                  `host$${placement}`,
+                )}
+              >
                 <FloatingFocusManager
                   context={floating.context}
                   order={['reference', 'content']}
                 >
                   <FloatingTransition
                     status={transitionStatus.status}
-                    placement='top'
+                    placement={placement}
                     origin='edge'
                     pattern='enterExitOffScreen'
                   >
-                    <BottomSheetContent
-                      sx={[
-                        combineStyles(
-                          'bottomSheetContent',
-                          minimized && 'bottomSheetContent$minimized',
-                        ),
-                        sx,
-                      ]}
-                      styles={innerStyles?.bottomSheetContent}
+                    <SideSheetContent
+                      sx={[combineStyles('sideSheetContent'), sx]}
+                      styles={innerStyles?.sideSheetContent}
                       onClose={(event) =>
                         floating.context.onOpenChange(
                           false,
@@ -127,9 +130,8 @@ export const BottomSheet = createPolymorphicComponent<'div', IBottomSheetProps>(
                       }
                       {...other}
                       {...interactions.getFloatingProps()}
-                      draggable={draggable}
-                      variant={variant}
-                      ref={bottomSheetRef}
+                      variant={contentVariant}
+                      ref={sideSheetRef}
                     />
                   </FloatingTransition>
                 </FloatingFocusManager>

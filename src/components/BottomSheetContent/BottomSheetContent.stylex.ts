@@ -8,9 +8,7 @@ import { scaleTokens } from '~/themes/base/scale.stylex';
 const vars = {
   // container
   containerColor: colorSchemeTokens.surfaceContainerLow,
-  containerColor$modal: colorSchemeTokens.surfaceContainerLow,
   containerElevation: elevationTokens.boxShadow$level1,
-  containerElevation$modal: elevationTokens.boxShadow$level1,
   containerShape$topLeft: shapeTokens.corner$xl,
   containerShape$topRight: shapeTokens.corner$xl,
   containerShape$bottomLeft: shapeTokens.corner$none,
