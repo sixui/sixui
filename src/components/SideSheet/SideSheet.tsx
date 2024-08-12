@@ -46,9 +46,9 @@ export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
         variantProp === 'detached' && !modal ? 'standard' : variantProp;
       const contentVariant = modal
         ? variant === 'detached'
-          ? 'detached'
+          ? 'detachedModal'
           : 'modal'
-        : variant;
+        : 'standard';
       const variantStyles = sideSheetVariantStyles[variant];
       const { combineStyles, getStyles, globalStyles } = useStyles({
         name: 'SideSheet',
@@ -110,7 +110,9 @@ export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
               >
                 <FloatingFocusManager
                   context={floating.context}
-                  order={['reference', 'content']}
+                  visuallyHiddenDismiss={true}
+                  modal={modal}
+                  disabled={!modal}
                 >
                   <FloatingTransition
                     status={transitionStatus.status}

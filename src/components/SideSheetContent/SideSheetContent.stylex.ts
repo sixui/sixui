@@ -6,20 +6,21 @@ import { shapeTokens } from '~/themes/base/shape.stylex';
 import { scaleTokens } from '~/themes/base/scale.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
 
 const vars = {
   leadingSpace: spacingTokens.padding$6,
-  leadingSpace$withIcon: spacingTokens.padding$6,
+  leadingSpace$withIcons: spacingTokens.padding$6,
   trailingSpace: spacingTokens.padding$6,
   topSpace: spacingTokens.padding$4,
 
   // container
   containerColor: colorSchemeTokens.surface,
   containerElevation: elevationTokens.boxShadow$level0,
-  containerShape$topLeft: shapeTokens.corner$none,
-  containerShape$topRight: shapeTokens.corner$none,
-  containerShape$bottomLeft: shapeTokens.corner$none,
-  containerShape$bottomRight: shapeTokens.corner$none,
+  containerShape$topStart: shapeTokens.corner$none,
+  containerShape$topEnd: shapeTokens.corner$none,
+  containerShape$bottomEnd: shapeTokens.corner$none,
+  containerShape$bottomStart: shapeTokens.corner$none,
 
   // headline
   headlineColor: colorSchemeTokens.onSurfaceVariant,
@@ -30,6 +31,7 @@ const vars = {
   headlineWeight: typeScaleTokens.titleWeight$lg,
 
   // divider
+  dividerWidth: outlineTokens.width$xs,
   dividerColor: colorSchemeTokens.outline,
 
   // topElements

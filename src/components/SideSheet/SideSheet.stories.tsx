@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { createSequence } from '@olivierpascal/helpers';
 import stylex from '@stylexjs/stylex';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 import type { ISideSheetProps } from './SideSheet.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
@@ -9,6 +11,7 @@ import { scaleTokens } from '~/themes/base/scale.stylex';
 import { Button } from '../Button';
 import { ListItem } from '../ListItem';
 import { Stack } from '../Stack';
+import { IconButton } from '../IconButton';
 import { SideSheet } from './SideSheet';
 
 // https://m3.material.io/components/sideSheets/overview
@@ -23,13 +26,16 @@ type IStory = StoryObj<ISideSheetProps>;
 
 const styles = stylex.create({
   content: {
-    minWidth: `calc(300 * ${scaleTokens.scale})`,
+    minWidth: `calc(300px * ${scaleTokens.scale})`,
     padding: spacingTokens.padding$4,
   },
 });
 
 const defaultArgs = {
   onOpenChange: (...args) => void sbHandleEvent('openChange', args),
+  headline: 'Title',
+  showCloseButton: true,
+  iconButtons: <IconButton icon={<FontAwesomeIcon icon={faArrowLeft} />} />,
   trigger: ({ setRef, getProps }) => (
     <Button {...getProps()} ref={setRef}>
       Open

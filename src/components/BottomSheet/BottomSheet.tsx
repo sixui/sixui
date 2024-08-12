@@ -101,7 +101,9 @@ export const BottomSheet = createPolymorphicComponent<'div', IBottomSheetProps>(
               <div {...getStyles(bottomSheetTheme, globalStyles, 'host')}>
                 <FloatingFocusManager
                   context={floating.context}
-                  order={['reference', 'content']}
+                  visuallyHiddenDismiss={true}
+                  modal={modal}
+                  disabled={!modal}
                 >
                   <FloatingTransition
                     status={transitionStatus.status}
