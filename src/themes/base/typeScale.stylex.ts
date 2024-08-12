@@ -97,6 +97,7 @@ const vars = {
   labelSize$lg: `calc(14px * ${scaleTokens.scale})`,
   labelLetterSpacing$lg: `calc(0.1px * ${scaleTokens.scale})`,
   labelWeight$lg: typeFaceTokens.weightMedium,
+  labelWeight$lg$prominent: typeFaceTokens.weightBold,
 
   // label-medium
   labelFont$md: typeFaceTokens.plain,
@@ -104,6 +105,7 @@ const vars = {
   labelSize$md: `calc(12px * ${scaleTokens.scale})`,
   labelLetterSpacing$md: `calc(0.5px * ${scaleTokens.scale})`,
   labelWeight$md: typeFaceTokens.weightMedium,
+  labelWeight$md$prominent: typeFaceTokens.weightBold,
 
   // label-small
   labelFont$sm: typeFaceTokens.plain,

@@ -92,9 +92,8 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
             !!singleFilterableListBase.selectedItem ||
             !!renderProps.query
           }
-          {...renderProps.getInputFilterProps(
-            renderProps.getTriggerProps(renderProps.forwardedProps),
-          )}
+          {...renderProps.forwardedProps}
+          {...renderProps.getInputFilterProps(renderProps.getTriggerProps())}
           value={
             renderProps.isOpen || renderProps.hasFocus
               ? renderProps.query

@@ -184,7 +184,7 @@ export const MatchTargetWidth: IStory = {
   },
 };
 
-export const NonDismissable: IStory = {
+export const Modal: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={PopoverBase}
@@ -196,7 +196,7 @@ export const NonDismissable: IStory = {
   args: {
     ...defaultArgs,
     openOnClick: true,
-    nonDismissable: true,
+    modal: true,
     contentRenderer: ({ renderCursor, close }) => (
       <div {...stylex.props(styles.tooltip)}>
         <div {...stylex.props(styles.cursor)}>{renderCursor()}</div>

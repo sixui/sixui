@@ -22,6 +22,7 @@ export const FloatingTransition = forwardRef<
     cursorTransformOrigin,
     pattern = 'enterExit',
     orientation: orientationProp,
+    disabled,
     ...other
   } = props;
 
@@ -41,23 +42,24 @@ export const FloatingTransition = forwardRef<
   return (
     <Base
       {...other}
+      data-pattern={`${pattern}-${placement}`}
       sx={[
         globalStyles,
-        combineStyles(
-          !!pattern && `transition$${pattern}$${status}`,
-          !!pattern &&
-            !!orientation &&
-            `transition$${pattern}$${status}$${orientation}`,
-        ),
-        commonStyles.transformOrigin(
-          origin === 'corner'
-            ? getPlacementTransformOrigin(placement)
-            : origin === 'edge'
-              ? getPlacementSideTransformOrigin(placement)
-              : origin === 'cursor' && cursorTransformOrigin
-                ? cursorTransformOrigin
-                : 'center',
-        ),
+        !disabled &&
+          combineStyles(
+            `transition$${status}`,
+            !!orientation && `transition$${status}$${orientation}`,
+          ),
+        !disabled &&
+          commonStyles.transformOrigin(
+            origin === 'corner'
+              ? getPlacementTransformOrigin(placement)
+              : origin === 'edge'
+                ? getPlacementSideTransformOrigin(placement)
+                : origin === 'cursor' && cursorTransformOrigin
+                  ? cursorTransformOrigin
+                  : 'center',
+          ),
         sx,
       ]}
       ref={forwardedRef}

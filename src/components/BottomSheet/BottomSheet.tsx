@@ -10,23 +10,23 @@ import {
   useTransitionStatus,
 } from '@floating-ui/react';
 
-import type { IDialogProps } from './Dialog.types';
+import type { IBottomSheetProps } from './BottomSheet.types';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
 import { isFunction } from '~/helpers/isFunction';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useStyles } from '~/hooks/useStyles';
-import { DialogContent } from '../DialogContent';
+import { BottomSheetContent } from '../BottomSheetContent';
 import { Scrim } from '../Scrim';
 import { Portal } from '../Portal';
 import { FloatingTransition } from '../FloatingTransition';
-import { dialogStyles } from './Dialog.styles';
-import { dialogTheme } from './Dialog.stylex';
+import { bottomSheetStyles } from './BottomSheet.styles';
+import { bottomSheetTheme } from './BottomSheet.stylex';
 
-// https://github.com/material-components/material-web/blob/main/dialog/internal/dialog.ts
+// https://github.com/material-components/material-web/blob/main/bottomSheet/internal/bottomSheet.ts
 
-export const Dialog = createPolymorphicComponent<'div', IDialogProps>(
-  forwardRef<HTMLDivElement, IDialogProps>(
-    function Dialog(props, forwardedRef) {
+export const BottomSheet = createPolymorphicComponent<'div', IBottomSheetProps>(
+  forwardRef<HTMLDivElement, IBottomSheetProps>(
+    function BottomSheet(props, forwardedRef) {
       const {
         styles,
         sx,
@@ -36,18 +36,19 @@ export const Dialog = createPolymorphicComponent<'div', IDialogProps>(
         disabled,
         onOpenChange,
         modal,
+        children,
         ...other
       } = props;
 
       const { combineStyles, getStyles, globalStyles } = useStyles({
-        name: 'Dialog',
-        styles: [dialogStyles, styles],
+        name: 'BottomSheet',
+        styles: [bottomSheetStyles, styles],
       });
 
       const [isOpen, setIsOpen] = useControlledValue({
         controlled: isOpenProp,
         default: !!isOpenProp,
-        name: 'Dialog',
+        name: 'BottomSheet',
       });
       const floating = useFloating({
         open: isOpen && !disabled,
@@ -75,7 +76,10 @@ export const Dialog = createPolymorphicComponent<'div', IDialogProps>(
           })
         : trigger;
 
-      const dialogRef = useMergeRefs([forwardedRef, floating.refs.setFloating]);
+      const bottomSheetRef = useMergeRefs([
+        forwardedRef,
+        floating.refs.setFloating,
+      ]);
 
       return (
         <>
@@ -88,18 +92,19 @@ export const Dialog = createPolymorphicComponent<'div', IDialogProps>(
                 <FloatingFocusManager context={floating.context}>
                   <FloatingTransition
                     status={transitionStatus.status}
-                    placement='bottom'
+                    placement='top'
                     origin='edge'
                     pattern='enterExitOffScreen'
                   >
-                    <DialogContent
+                    <BottomSheetContent
                       sx={[
-                        dialogTheme,
+                        bottomSheetTheme,
                         globalStyles,
-                        combineStyles('dialogContent'),
+                        combineStyles('bottomSheetContent'),
                         sx,
                       ]}
-                      styles={innerStyles?.dialogContent}
+                      styles={innerStyles?.bottomSheetContent}
+                      variant={modal ? 'modal' : 'standard'}
                       onClose={(event) =>
                         floating.context.onOpenChange(
                           false,
@@ -108,9 +113,11 @@ export const Dialog = createPolymorphicComponent<'div', IDialogProps>(
                         )
                       }
                       {...other}
-                      {...interactions.getFloatingProps(other)}
-                      ref={dialogRef}
-                    />
+                      {...interactions.getFloatingProps()}
+                      ref={bottomSheetRef}
+                    >
+                      {isFunction(children) ? children({ close }) : children}
+                    </BottomSheetContent>
                   </FloatingTransition>
                 </FloatingFocusManager>
               </div>

@@ -1,7 +1,6 @@
 import type { OpenChangeReason, ReferenceType } from '@floating-ui/react';
 
 import type { IOmit, IZeroOrMore, ICompiledStyles } from '~/helpers/types';
-import type { IExtendedHtmlFloatingProps } from '~/helpers/extendFloatingProps';
 import type { IBaseProps } from '../Base';
 import type {
   IDialogContentProps,
@@ -22,19 +21,12 @@ export type IDialogTriggerRenderProps = {
 
   /**
    * A function that returns the props to apply to the trigger element.
-   *
-   * @param userProps - All event handlers you pass in should be done so through
-   * the this argument. This is because your handler may be either overwritten
-   * or overwrite one of the Floating UI hooks' handlers.
    */
-  getProps: (
-    userProps?: IExtendedHtmlFloatingProps,
-  ) => IExtendedHtmlFloatingProps;
+  getProps: () => Record<string, unknown>;
 };
 
 export type IDialogProps = IBaseProps<IDialogStylesKey> &
-  IOmit<IDialogContentProps, 'onClose' | 'styles'> &
-  Pick<React.AriaAttributes, 'aria-label'> & {
+  IOmit<IDialogContentProps, 'styles' | 'onClose'> & {
     innerStyles?: {
       dialogContent?: IZeroOrMore<ICompiledStyles<IDialogContentStylesKey>>;
     };
@@ -71,5 +63,5 @@ export type IDialogProps = IBaseProps<IDialogStylesKey> &
       reason?: OpenChangeReason,
     ) => void;
 
-    nonDismissable?: boolean;
+    modal?: boolean;
   };

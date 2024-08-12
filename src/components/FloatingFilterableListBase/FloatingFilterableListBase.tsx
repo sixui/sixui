@@ -29,10 +29,6 @@ import {
 import { Portal } from '../Portal';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { usePrevious } from '~/hooks/usePrevious';
-import {
-  extendFloatingProps,
-  type IExtendedFloatingProps,
-} from '~/helpers/extendFloatingProps';
 import { fixedForwardRef } from '~/helpers/fixedForwardRef';
 import { useStyles } from '~/hooks/useStyles';
 import { FloatingTransition } from '../FloatingTransition';
@@ -226,10 +222,8 @@ export const FloatingFilterableListBase = fixedForwardRef(
 
     const isEnterKeyPressedRef = useRef(false);
     const getInputFilterProps = (
-      userProps?: IExtendedFloatingProps<
-        React.ComponentPropsWithoutRef<'input'>
-      >,
-    ): IExtendedFloatingProps<React.ComponentPropsWithoutRef<'input'>> => ({
+      userProps?: React.ComponentPropsWithoutRef<'input'>,
+    ): Record<string, unknown> => ({
       ...userProps,
       value: userProps?.value ?? query,
       disabled,
@@ -358,7 +352,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
               hasFocus,
               setTriggerRef: buttonHandleRef,
               getTriggerProps: (userProps) => ({
-                ...extendFloatingProps(interactions.getReferenceProps, {
+                ...interactions.getReferenceProps({
                   ...userProps,
                   onFocus: (...args) => {
                     handleFocus();
@@ -398,6 +392,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
                   status={transitionStatus.status}
                   origin='edge'
                   orientation={orientation}
+                  pattern='enterExit'
                 >
                   <FloatingList elementsRef={elementsRef} labelsRef={labelsRef}>
                     <FilterableListBase

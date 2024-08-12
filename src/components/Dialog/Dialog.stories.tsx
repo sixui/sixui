@@ -152,7 +152,7 @@ export const Form: IStory = {
   args: defaultArgs,
 };
 
-export const NonDismissable: IStory = {
+export const Modal: IStory = {
   render: (props) => <Dialog {...props} />,
   args: {
     ...defaultArgs,
@@ -179,7 +179,7 @@ export const NonDismissable: IStory = {
         Open
       </Button>
     ),
-    nonDismissable: true,
+    modal: true,
   },
 };
 

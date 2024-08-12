@@ -1,8 +1,6 @@
 // Inspiration:
 // - https://github.com/palantir/blueprint/blob/develop/packages/select/src/common/itemListRenderer.ts
 
-import type { IExtendedFloatingProps } from '~/helpers/extendFloatingProps';
-
 export type IFilterableListBaseState<TItem> = {
   /**
    * Array of items filtered by `listPredicate` or `itemPredicate`. See `items`
@@ -246,10 +244,8 @@ export type IFilterableListBaseRendererProps<TItem> =
      * or overwrite one of the Floating UI hooks' handlers.
      */
     getInputFilterProps: (
-      userProps?: IExtendedFloatingProps<
-        React.ComponentPropsWithoutRef<'input'>
-      >,
-    ) => IExtendedFloatingProps<React.ComponentPropsWithoutRef<'input'>>;
+      userProps?: React.ComponentPropsWithoutRef<'input'>,
+    ) => Record<string, unknown>;
   };
 
 /**

@@ -32,7 +32,7 @@ export const RichTooltip = forwardRef<HTMLDivElement, IRichTooltipProps>(
         forwardProps
         openOnHover={!persistent}
         openOnFocus={!persistent}
-        nonDismissable={persistent}
+        modal={persistent}
       >
         {(renderProps) => (
           <span

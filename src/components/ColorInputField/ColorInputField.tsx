@@ -143,7 +143,8 @@ export const ColorInputField = forwardRef<
               />
             }
             autoComplete='off'
-            {...getProps(other)}
+            {...other}
+            {...getProps()}
             sx={[globalStyles, combineStyles('host'), sx]}
             value={value}
             hasError={(!!value && !isValidHexColor(value)) || other.hasError}

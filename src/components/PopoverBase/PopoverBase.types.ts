@@ -12,7 +12,6 @@ import type {
   IForwardableProps,
 } from '~/helpers/react/forwardablePropsTypes';
 import type { IPopoverCursorType } from '~/hooks/usePopoverCursor';
-import type { IExtendedHtmlFloatingProps } from '~/helpers/extendFloatingProps';
 import type { IBaseProps } from '../Base';
 import type { IFloatingTransitionOrigin } from '../FloatingTransition';
 import type { IPopoverBaseStylesKey } from './PopoverBase.styles';
@@ -38,14 +37,8 @@ export type IPopoverBaseTriggerRendererProps = {
 
   /**
    * A function that returns the props to apply to the trigger element.
-   *
-   * @param userProps - All event handlers you pass in should be done so through
-   * the this argument. This is because your handler may be either overwritten
-   * or overwrite one of the Floating UI hooks' handlers.
    */
-  getProps: (
-    userProps?: IExtendedHtmlFloatingProps,
-  ) => IExtendedHtmlFloatingProps;
+  getProps: () => Record<string, unknown>;
 };
 
 export type IPopoverBaseProps<TForwardedProps extends object = object> =
@@ -74,7 +67,7 @@ export type IPopoverBaseProps<TForwardedProps extends object = object> =
       openOnHover?: boolean;
       openOnFocus?: boolean;
       openOnClick?: boolean;
-      nonDismissable?: boolean;
+      modal?: boolean;
       trapFocus?: boolean;
       matchTargetWidth?: boolean;
       middleware?: Array<Middleware | null | undefined | false>;

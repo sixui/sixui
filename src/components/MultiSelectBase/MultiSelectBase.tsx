@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 
 import type { IMultiSelectBaseProps } from './MultiSelectBase.types';
-import type { IExtendedFloatingProps } from '~/helpers/extendFloatingProps';
 import { useStyles } from '~/hooks/useStyles';
 import { ListItem } from '../ListItem';
 import { TextInputField } from '../TextInputField';
@@ -82,10 +81,8 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
       {(renderProps) => {
         const isGrid = other.cols !== undefined && other.cols > 1;
         const getInputProps = (
-          userProps?: IExtendedFloatingProps<
-            React.ComponentPropsWithoutRef<'input'>
-          >,
-        ): IExtendedFloatingProps<React.ComponentPropsWithoutRef<'input'>> => ({
+          userProps?: React.ComponentPropsWithoutRef<'input'>,
+        ): React.ComponentPropsWithoutRef<'input'> => ({
           ...userProps,
           onBlur: (event) => {
             userProps?.onBlur?.(event);
@@ -245,10 +242,9 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
             innerStyles={{ fieldBase: multiSelectBaseFieldBaseStyles }}
             spellCheck='false'
             variant={variant}
+            {...renderProps.forwardedProps}
             {...getInputProps(
-              renderProps.getInputFilterProps(
-                renderProps.getTriggerProps(renderProps.forwardedProps),
-              ),
+              renderProps.getInputFilterProps(renderProps.getTriggerProps()),
             )}
             containerRef={renderProps.setTriggerRef}
             inputRef={renderProps.inputFilterRef}

@@ -227,7 +227,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
                       status={transitionStatus.status}
                       origin='edge'
                       orientation={orientation}
-                      pattern={parentId ? false : 'enterExit'}
+                      disabled={!!parentId}
                     >
                       <MenuList noFocusRing {...other} size={listItemSize}>
                         <FloatingList

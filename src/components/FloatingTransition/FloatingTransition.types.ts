@@ -12,6 +12,8 @@ export type IFloatingTransitionStatus =
 
 export type IFloatingTransitionOrigin = 'center' | 'corner' | 'edge' | 'cursor';
 
+export type IFloatingTransitionPattern = 'enterExit' | 'enterExitOffScreen';
+
 export type IFloatingTransitionProps =
   IBaseProps<IFloatingTransitionStylesKey> & {
     children: React.ReactNode;
@@ -20,5 +22,6 @@ export type IFloatingTransitionProps =
     origin?: IFloatingTransitionOrigin;
     orientation?: IOrientation;
     cursorTransformOrigin?: string;
-    pattern?: false | 'enterExit';
+    pattern?: IFloatingTransitionPattern;
+    disabled?: boolean;
   };

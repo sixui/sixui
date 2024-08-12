@@ -30,8 +30,8 @@ export const MenuNestedItem = forwardRef<
         )
       }
       keepOpenOnClick={true}
-      label={other.label}
-      {...menuContext.getTriggerProps(other)}
+      {...other}
+      {...menuContext.getTriggerProps()}
       ref={handleRef}
     />
   );

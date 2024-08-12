@@ -52,7 +52,7 @@ export const PopoverBase = <TForwardedProps extends object = object>(
     openOnHover,
     openOnFocus,
     openOnClick,
-    nonDismissable,
+    modal,
     trapFocus,
     matchTargetWidth,
     middleware,
@@ -126,7 +126,7 @@ export const PopoverBase = <TForwardedProps extends object = object>(
     enabled: !!openOnFocus && !disabled,
   });
   const dismiss = useDismiss(floating.context, {
-    enabled: !nonDismissable && !disabled,
+    enabled: !modal && !disabled,
   });
   const role = useRole(floating.context, { role: roleProp });
   const interactions = useInteractions([hover, focus, click, dismiss, role]);

@@ -6,10 +6,6 @@ import type {
 
 import type { IOmit, IOrientation } from '~/helpers/types';
 import type {
-  IExtendedFloatingProps,
-  IExtendedHtmlFloatingProps,
-} from '~/helpers/extendFloatingProps';
-import type {
   IRendererWithForwardedProps,
   IForwardableProps,
 } from '~/helpers/react/forwardablePropsTypes';
@@ -44,8 +40,8 @@ export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
    * or overwrite one of the Floating UI hooks' handlers.
    */
   getTriggerProps: (
-    userProps?: IExtendedHtmlFloatingProps,
-  ) => IExtendedHtmlFloatingProps;
+    userProps?: React.HTMLProps<Element>,
+  ) => Record<string, unknown>;
 
   /**
    * A reference to the input filter element.
@@ -60,8 +56,8 @@ export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
    * or overwrite one of the Floating UI hooks' handlers.
    */
   getInputFilterProps: (
-    userProps?: IExtendedFloatingProps<React.ComponentPropsWithoutRef<'input'>>,
-  ) => IExtendedFloatingProps<React.ComponentPropsWithoutRef<'input'>>;
+    userProps?: React.ComponentPropsWithoutRef<'input'>,
+  ) => Record<string, unknown>;
 
   afterItemsRemove: (
     items: Array<TItem>,
