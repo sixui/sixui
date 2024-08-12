@@ -27,7 +27,8 @@ type IStory = StoryObj<ISideSheetProps>;
 const styles = stylex.create({
   content: {
     minWidth: `calc(300px * ${scaleTokens.scale})`,
-    padding: spacingTokens.padding$4,
+    paddingLeft: spacingTokens.padding$4,
+    paddingRight: spacingTokens.padding$4,
   },
 });
 
@@ -36,6 +37,14 @@ const defaultArgs = {
   headline: 'Title',
   showCloseButton: true,
   leadingActions: <IconButton icon={<FontAwesomeIcon icon={faArrowLeft} />} />,
+  bottomActions: ({ close }) => (
+    <>
+      <Button onClick={close}>Save</Button>
+      <Button variant='outlined' onClick={close}>
+        Cancel
+      </Button>
+    </>
+  ),
   trigger: ({ setRef, getProps }) => (
     <Button {...getProps()} ref={setRef}>
       Open

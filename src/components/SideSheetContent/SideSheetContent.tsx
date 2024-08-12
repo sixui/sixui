@@ -27,6 +27,7 @@ export const SideSheetContent = forwardRef<
     trailingActions,
     showCloseButton,
     closeIcon,
+    bottomActions,
     ...other
   } = props;
 
@@ -80,9 +81,24 @@ export const SideSheetContent = forwardRef<
           ) : null}
         </div>
       ) : null}
-      {isFunction(children)
-        ? children({ close: (event) => onClose?.(event) })
-        : children}
+
+      {children ? (
+        <div {...getStyles('content')}>
+          {isFunction(children)
+            ? children({ close: (event) => onClose?.(event) })
+            : children}
+        </div>
+      ) : null}
+
+      {bottomActions ? (
+        <div {...getStyles('footer')}>
+          <div {...getStyles('actions')}>
+            {isFunction(bottomActions)
+              ? bottomActions({ close: (event) => onClose?.(event) })
+              : bottomActions}
+          </div>
+        </div>
+      ) : null}
     </PaperBase>
   );
 });

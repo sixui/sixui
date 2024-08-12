@@ -9,7 +9,8 @@ import { sideSheetContentTokens } from '../SideSheetContent.stylex';
 
 export const modalSideSheetContentStyles = stylex.create({
   host: {
-    [sideSheetContentTokens.leadingSpace$withIcon]: spacingTokens.padding$6,
+    [sideSheetContentTokens.headerLeadingSpace$withIcons]:
+      spacingTokens.padding$4,
     [sideSheetContentTokens.containerColor]:
       colorSchemeTokens.surfaceContainerLow,
     [sideSheetContentTokens.containerElevation]:

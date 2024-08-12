@@ -9,10 +9,10 @@ import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { outlineTokens } from '~/themes/base/outline.stylex';
 
 const vars = {
-  leadingSpace: spacingTokens.padding$6,
-  leadingSpace$withIcons: spacingTokens.padding$6,
-  trailingSpace: spacingTokens.padding$6,
-  topSpace: spacingTokens.padding$4,
+  // header
+  headerLeadingSpace: spacingTokens.padding$6,
+  headerLeadingSpace$withIcons: spacingTokens.padding$6,
+  headerTrailingSpace: spacingTokens.padding$6,
 
   // container
   containerColor: colorSchemeTokens.surface,
@@ -21,6 +21,9 @@ const vars = {
   containerShape$topEnd: shapeTokens.corner$none,
   containerShape$bottomEnd: shapeTokens.corner$none,
   containerShape$bottomStart: shapeTokens.corner$none,
+  containerTopSpace: spacingTokens.padding$4,
+  containerBottomSpace: spacingTokens.padding$4,
+  containerGap: spacingTokens.padding$4,
 
   // headline
   headlineColor: colorSchemeTokens.onSurfaceVariant,
