@@ -18,11 +18,12 @@ export const BottomSheetContent = forwardRef<
     variant = 'standard',
     onClose,
     children,
+    draggable,
     ...other
   } = props;
 
   const variantStyles = bottomsheetVariantContentStyles[variant];
-  const { combineStyles, globalStyles } = useStyles({
+  const { combineStyles, getStyles, globalStyles } = useStyles({
     name: 'BottomSheetContent',
     styles: [bottomsheetcontentStyles, variantStyles, styles],
   });
@@ -33,6 +34,7 @@ export const BottomSheetContent = forwardRef<
       sx={[bottomSheetContentTheme, globalStyles, combineStyles('host'), sx]}
       ref={forwardedRef}
     >
+      {draggable ? <div {...getStyles('dragHandle')} /> : null}
       {isFunction(children)
         ? children({ close: (event) => onClose?.(event) })
         : children}

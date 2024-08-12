@@ -1,7 +1,7 @@
 import type { IBottomSheetContentStylesKey } from './BottomSheetContent.styles';
 import { IBaseProps } from '~/components/Base';
 
-export type IBottomSheetContentVariant = 'standard' | 'modal';
+export type IBottomSheetContentVariant = 'standard' | 'modal' | 'minimized';
 
 export type IBottomSheetContentRenderProps = {
   close: (event: React.MouseEvent) => void;
@@ -14,4 +14,5 @@ export type IBottomSheetContentProps =
     children:
       | React.ReactNode
       | ((props: IBottomSheetContentRenderProps) => React.ReactNode);
+    draggable?: boolean;
   };

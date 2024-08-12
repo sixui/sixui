@@ -35,8 +35,8 @@ export const BottomSheet = createPolymorphicComponent<'div', IBottomSheetProps>(
         isOpen: isOpenProp,
         disabled,
         onOpenChange,
-        modal,
-        children,
+        modal: modalProp,
+        minimized,
         ...other
       } = props;
 
@@ -44,6 +44,14 @@ export const BottomSheet = createPolymorphicComponent<'div', IBottomSheetProps>(
         name: 'BottomSheet',
         styles: [bottomSheetStyles, styles],
       });
+
+      const variant = minimized
+        ? 'minimized'
+        : modalProp
+          ? 'modal'
+          : 'standard';
+      const modal = variant === 'modal';
+      const draggable = variant !== 'minimized';
 
       const [isOpen, setIsOpen] = useControlledValue({
         controlled: isOpenProp,
@@ -61,7 +69,7 @@ export const BottomSheet = createPolymorphicComponent<'div', IBottomSheetProps>(
       const role = useRole(floating.context);
       const dismiss = useDismiss(floating.context, {
         outsidePressEvent: 'pointerdown',
-        enabled: !modal,
+        enabled: !!modal,
       });
       const interactions = useInteractions([click, role, dismiss]);
       const transitionStatus = useTransitionStatus(floating.context, {
@@ -87,9 +95,14 @@ export const BottomSheet = createPolymorphicComponent<'div', IBottomSheetProps>(
 
           {transitionStatus.isMounted ? (
             <Portal>
-              <Scrim floatingContext={floating.context} lockScroll />
+              {modal ? (
+                <Scrim floatingContext={floating.context} lockScroll />
+              ) : null}
               <div {...getStyles('host')}>
-                <FloatingFocusManager context={floating.context}>
+                <FloatingFocusManager
+                  context={floating.context}
+                  order={['reference', 'content']}
+                >
                   <FloatingTransition
                     status={transitionStatus.status}
                     placement='top'
@@ -100,11 +113,13 @@ export const BottomSheet = createPolymorphicComponent<'div', IBottomSheetProps>(
                       sx={[
                         bottomSheetTheme,
                         globalStyles,
-                        combineStyles('bottomSheetContent'),
+                        combineStyles(
+                          'bottomSheetContent',
+                          minimized && 'bottomSheetContent$minimized',
+                        ),
                         sx,
                       ]}
                       styles={innerStyles?.bottomSheetContent}
-                      variant={modal ? 'modal' : 'standard'}
                       onClose={(event) =>
                         floating.context.onOpenChange(
                           false,
@@ -114,10 +129,10 @@ export const BottomSheet = createPolymorphicComponent<'div', IBottomSheetProps>(
                       }
                       {...other}
                       {...interactions.getFloatingProps()}
+                      draggable={draggable}
+                      variant={variant}
                       ref={bottomSheetRef}
-                    >
-                      {isFunction(children) ? children({ close }) : children}
-                    </BottomSheetContent>
+                    />
                   </FloatingTransition>
                 </FloatingFocusManager>
               </div>

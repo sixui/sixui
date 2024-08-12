@@ -44,4 +44,5 @@ export type IBottomSheetProps = IBaseProps<IBottomSheetStylesKey> &
     ) => void;
 
     modal?: boolean;
+    minimized?: boolean;
   };

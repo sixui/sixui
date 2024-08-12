@@ -11,8 +11,10 @@ const vars = {
   containerColor$modal: colorSchemeTokens.surfaceContainerLow,
   containerElevation: elevationTokens.boxShadow$level1,
   containerElevation$modal: elevationTokens.boxShadow$level1,
-  containerShape: shapeTokens.cornerTop$xl,
-  minimizedContainerShape: shapeTokens.corner$none,
+  containerShape$topLeft: shapeTokens.corner$xl,
+  containerShape$topRight: shapeTokens.corner$xl,
+  containerShape$bottomLeft: shapeTokens.corner$none,
+  containerShape$bottomRight: shapeTokens.corner$none,
 
   // dragHandle
   dragHandleColor: colorSchemeTokens.onSurfaceVariant,

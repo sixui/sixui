@@ -4,7 +4,7 @@ import { scaleTokens } from '~/themes/base/scale.stylex';
 
 const vars = {
   // container
-  containerMaxWidth: `calc(max(640px, calc(100% - 56px * 2)) * ${scaleTokens.scale})`,
+  containerSideMargin: `calc(56px * ${scaleTokens.scale})`,
   containerTopMargin: `calc(72px * ${scaleTokens.scale})`,
   containerInitialMaxHeight: '50vh',
 };

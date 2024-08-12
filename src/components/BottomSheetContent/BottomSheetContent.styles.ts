@@ -10,9 +10,17 @@ export const bottomsheetcontentStyles = stylex.create({
     [paperBaseTokens.containerColor]: bottomSheetContentTokens.containerColor,
     [paperBaseTokens.containerElevation]:
       bottomSheetContentTokens.containerElevation,
-    // [paperBaseTokens.containerShape$topLeft]: bottomsheetcontentTokens.corner$xs,
-    // [paperBaseTokens.containerShape$topRight]: bottomsheetcontentTokens.corner$xs,
-    // [paperBaseTokens.containerShape$bottomRight]: bottomsheetcontentTokens.corner$xs,
-    // [paperBaseTokens.containerShape$bottomLeft]: bottomsheetcontentTokens.corner$xs,
+    [paperBaseTokens.containerShape$topLeft]:
+      bottomSheetContentTokens.containerShape$topLeft,
+    [paperBaseTokens.containerShape$topRight]:
+      bottomSheetContentTokens.containerShape$topRight,
+    [paperBaseTokens.containerShape$bottomRight]:
+      bottomSheetContentTokens.containerShape$bottomRight,
+    [paperBaseTokens.containerShape$bottomLeft]:
+      bottomSheetContentTokens.containerShape$bottomLeft,
+  },
+  dragHandle: {
+    paddingTop: bottomSheetContentTokens.dragHandleTopSpace,
+    height: bottomSheetContentTokens.dragHandleHeight,
   },
 });
