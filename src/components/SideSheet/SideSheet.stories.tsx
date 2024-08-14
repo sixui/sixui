@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 import { createSequence } from '@olivierpascal/helpers';
 import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,11 +9,14 @@ import type { ISideSheetProps } from './SideSheet.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { scaleTokens } from '~/themes/base/scale.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
 import { Button } from '../Button';
 import { ListItem } from '../ListItem';
 import { Stack } from '../Stack';
 import { IconButton } from '../IconButton';
+import { Frame } from '../Frame';
 import { SideSheet } from './SideSheet';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 
 // https://m3.material.io/components/sideSheets/overview
 // https://material-web.dev/components/sideSheet/
@@ -25,6 +29,13 @@ const meta = {
 type IStory = StoryObj<ISideSheetProps>;
 
 const styles = stylex.create({
+  frame: {
+    width: '100%',
+    height: `calc(400px * ${scaleTokens.scale})`,
+    borderWidth: outlineTokens.width$xs,
+    borderColor: colorSchemeTokens.outlineVariant,
+    borderStyle: 'dashed',
+  },
   content: {
     minWidth: `calc(300px * ${scaleTokens.scale})`,
     paddingLeft: spacingTokens.padding$4,
@@ -61,8 +72,20 @@ const defaultArgs = {
   ),
 } satisfies Partial<ISideSheetProps>;
 
+const Test: React.FC<ISideSheetProps> = (props) => {
+  const [rootElement, setRootElement] = useState<HTMLDivElement | null>(null);
+
+  return (
+    <Frame importParentStyles sx={styles.frame}>
+      <div ref={setRootElement}>
+        <SideSheet {...props} root={rootElement} />
+      </div>
+    </Frame>
+  );
+};
+
 export const Standard: IStory = {
-  render: (props) => <SideSheet {...props} />,
+  render: (props) => <Test {...props} />,
   args: defaultArgs,
 };
 

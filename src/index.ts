@@ -41,6 +41,7 @@ export * from './components/FloatingFilterableListBase';
 export * from './components/FloatingTransition';
 export * from './components/FluidButton';
 export * from './components/FocusRing';
+export * from './components/Frame';
 export * from './components/HtmlSelect';
 export * from './components/HctColorPickerContent';
 export * from './components/HslColorPickerContent';

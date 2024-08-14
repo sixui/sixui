@@ -7,6 +7,7 @@ import type {
 } from '../SideSheetContent';
 import type { IBaseProps } from '../Base';
 import type { ISideSheetStylesKey } from './SideSheet.styles';
+import type { IPortalProps } from '../Portal';
 
 export type ISideSheetVariant = 'standard' | 'detached';
 
@@ -27,7 +28,8 @@ export type ISideSheetTriggerRenderProps = {
   getProps: () => Record<string, unknown>;
 };
 
-export type ISideSheetProps = IBaseProps<ISideSheetStylesKey> &
+export type ISideSheetProps = Pick<IPortalProps, 'root'> &
+  IBaseProps<ISideSheetStylesKey> &
   IOmit<ISideSheetContentProps, 'styles' | 'onClose' | 'variant'> & {
     innerStyles?: {
       sideSheetContent?: IZeroOrMore<

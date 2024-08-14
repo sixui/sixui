@@ -29,6 +29,7 @@ export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
   forwardRef<HTMLDivElement, ISideSheetProps>(
     function SideSheet(props, forwardedRef) {
       const {
+        root,
         styles,
         sx,
         innerStyles,
@@ -96,7 +97,7 @@ export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
           {triggerElement}
 
           {transitionStatus.isMounted ? (
-            <Portal>
+            <Portal root={root}>
               {modal ? (
                 <Scrim floatingContext={floating.context} lockScroll />
               ) : null}
