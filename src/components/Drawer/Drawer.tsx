@@ -9,6 +9,7 @@ import {
   useRole,
   useTransitionStatus,
 } from '@floating-ui/react';
+import stylex from '@stylexjs/stylex';
 
 import type { IDrawerProps } from './Drawer.types';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
@@ -19,7 +20,6 @@ import { Scrim } from '../Scrim';
 import { Portal } from '../Portal';
 import { FloatingTransition } from '../FloatingTransition';
 import { drawerStyles } from './Drawer.styles';
-import { drawerTheme } from './Drawer.stylex';
 import { drawerVariantStyles } from './variants';
 
 // https://github.com/material-components/material-web/blob/main/drawer/internal/drawer.ts
@@ -36,12 +36,12 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
         disabled,
         onOpenChange,
         variant = 'standard',
-        // FIXME: support top and bottom
         anchor = 'left',
         children,
         ...other
       } = props;
 
+      // FIXME: support detached
       const contentVariant = variant === 'detached' ? 'detachedModal' : 'modal';
       const variantStyles = drawerVariantStyles[variant];
       const { getStyles, globalStyles } = useStyles({
@@ -54,6 +54,7 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
         default: !!isOpenProp,
         name: 'Drawer',
       });
+      // FIXME: use PopoverBase?
       const floating = useFloating({
         open: isOpen && !disabled,
         onOpenChange: (isOpen, event, reason) => {
@@ -71,6 +72,9 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
       const transitionStatus = useTransitionStatus(floating.context, {
         duration: 150, // motionTokens.duration$short3
       });
+      const orientation = ['left', 'right'].includes(anchor)
+        ? 'horizontal'
+        : 'vertical';
 
       const triggerElement = isFunction(trigger)
         ? trigger({
@@ -91,9 +95,9 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
               <Scrim floatingContext={floating.context} lockScroll />
               <div
                 {...getStyles(
-                  drawerTheme,
                   globalStyles,
                   'host',
+                  `host$${orientation}`,
                   `host$${anchor}`,
                 )}
               >
@@ -109,8 +113,9 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
                     pattern='enterExitOffScreen'
                   >
                     <div
-                      {...getStyles('content', sx)}
+                      {...stylex.props(sx)}
                       {...interactions.getFloatingProps()}
+                      {...other}
                       ref={drawerRef}
                     >
                       {isFunction(children)

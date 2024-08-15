@@ -28,8 +28,8 @@ export const floatingTransitionStyles = stylex.create({
     transform: {
       default: 'unset',
       ':is([data-pattern^="enterExit"])': 'scaleY(0.75)',
-      ':is([data-pattern^="enterExitOffScreen-top"])': 'translateY(130%)',
-      ':is([data-pattern^="enterExitOffScreen-bottom"])': 'translateY(-30%)',
+      ':is([data-pattern^="enterExitOffScreen-top"])': 'translateY(-30%)',
+      ':is([data-pattern^="enterExitOffScreen-bottom"])': 'translateY(130%)',
     },
   },
   transition$open: {
@@ -86,8 +86,8 @@ export const floatingTransitionStyles = stylex.create({
     transform: {
       default: 'unset',
       ':is([data-pattern^="enterExit"])': 'scaleY(0.75)',
-      ':is([data-pattern^="enterExitOffScreen-top"])': 'translateY(30%)',
-      ':is([data-pattern^="enterExitOffScreen-bottom"])': 'translateY(-130%)',
+      ':is([data-pattern^="enterExitOffScreen-top"])': 'translateY(-130%)',
+      ':is([data-pattern^="enterExitOffScreen-bottom"])': 'translateY(30%)',
     },
   },
 });

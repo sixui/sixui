@@ -39,8 +39,7 @@ export type IDrawerProps = Pick<IPortalProps, 'root'> &
       event?: Event,
       reason?: OpenChangeReason,
     ) => void;
-
-    anchor?: 'left' | 'right';
+    anchor?: 'left' | 'right' | 'top' | 'bottom';
     variant?: IDrawerVariant;
     children:
       | ((renderProps: IDrawerChildrenRenderProps) => React.ReactNode)

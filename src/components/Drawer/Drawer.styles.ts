@@ -1,7 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
 import { zIndexTokens } from '~/themes/base/zIndex.stylex';
-import { drawerTokens } from './Drawer.stylex';
 
 export type IDrawerStylesKey = keyof typeof drawerStyles;
 export const drawerStyles = stylex.create({
@@ -9,17 +8,25 @@ export const drawerStyles = stylex.create({
     display: 'flex',
     position: 'fixed',
     zIndex: zIndexTokens.modal,
+  },
+  host$horizontal: {
     top: 0,
     bottom: 0,
   },
+  host$vertical: {
+    left: 0,
+    right: 0,
+  },
   host$left: {
-    left: drawerTokens.containerMargin,
+    left: 0,
   },
   host$right: {
-    right: drawerTokens.containerMargin,
+    right: 0,
   },
-  content: {
-    maxWidth: `min(100%, ${drawerTokens.containerMaxWidth})`,
-    height: `calc(${drawerTokens.containerHeight} - ${drawerTokens.containerMargin} * 2)`,
+  host$top: {
+    bottom: 0,
+  },
+  host$bottom: {
+    top: 0,
   },
 });
