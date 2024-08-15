@@ -19,8 +19,8 @@ import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { Button, IButtonProps } from '../Button';
 import { Stack } from '../Stack';
 import { Frame } from '../Frame';
-import { Placeholder } from '../Placeholder';
 import { Drawer } from './Drawer';
+import { Text } from '../Text';
 
 // https://m3.material.io/components/drawers/overview
 // https://material-web.dev/components/drawer/
@@ -44,19 +44,12 @@ const styles = stylex.create({
     height: '100%',
     padding: spacingTokens.padding$4,
   },
-  content: {
-    minWidth: `calc(300px * ${scaleTokens.scale})`,
-    paddingLeft: spacingTokens.padding$4,
-    paddingRight: spacingTokens.padding$4,
-  },
   column: {
     height: '100%',
   },
-  drawer: {
-    display: 'flex',
-    flexGrow: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+  content: {
+    padding: spacingTokens.padding$4,
+    backgroundColor: colorSchemeTokens.surface,
   },
 });
 
@@ -72,7 +65,6 @@ const DrawerDemo: React.FC<IDrawerDemo> = (props) => {
 
   return (
     <Drawer
-      sx={styles.drawer}
       {...other}
       anchor={anchor}
       trigger={({ setRef, getProps }) => (
@@ -86,14 +78,9 @@ const DrawerDemo: React.FC<IDrawerDemo> = (props) => {
           Open {props.anchor}
         </Button>
       )}
+      sx={styles.content}
     >
-      {({ close }) => (
-        <Placeholder corner='none' width={160} height={160}>
-          <Button onClick={close} variant='text'>
-            Close
-          </Button>
-        </Placeholder>
-      )}
+      <Text>Press escape to close the drawer.</Text>
     </Drawer>
   );
 };
@@ -141,14 +128,6 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
 export const Standard: IStory = {
   render: (props) => <DrawerFrame {...props} />,
   args: defaultArgs,
-};
-
-export const Detached: IStory = {
-  render: (props) => <DrawerFrame {...props} />,
-  args: {
-    ...defaultArgs,
-    variant: 'detached',
-  },
 };
 
 export default meta;

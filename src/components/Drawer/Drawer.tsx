@@ -38,7 +38,7 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
         ...other
       } = props;
 
-      const { getStyles, globalStyles } = useStyles({
+      const { combineStyles, getStyles, globalStyles } = useStyles({
         name: 'Drawer',
         styles: [drawerStyles, styles],
       });
@@ -105,14 +105,13 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
                     placement={anchor}
                     origin='edge'
                     pattern='enterExitOffScreen'
-                    sx={sx}
+                    sx={[combineStyles('content'), sx]}
                     {...interactions.getFloatingProps()}
                     {...other}
                     ref={drawerRef}
                   >
-                    {/* This is a workaround to prevent the first focusable
-                    element from being focused when the side sheet is opened.
-                    */}
+                    {/* This is a hack to prevent the first focusable element
+                    from being focused when the side sheet is opened. */}
                     <button
                       aria-hidden
                       type='button'

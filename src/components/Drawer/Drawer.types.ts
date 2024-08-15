@@ -4,8 +4,6 @@ import type { IBaseProps } from '../Base';
 import type { IPortalProps } from '../Portal';
 import type { IDrawerStylesKey } from './Drawer.styles';
 
-export type IDrawerVariant = 'standard' | 'detached';
-
 export type IDrawerTriggerRenderProps = {
   /**
    * Whether the bottom sheet is open.
@@ -40,7 +38,6 @@ export type IDrawerProps = Pick<IPortalProps, 'root'> &
       reason?: OpenChangeReason,
     ) => void;
     anchor?: 'left' | 'right' | 'top' | 'bottom';
-    variant?: IDrawerVariant;
     children:
       | ((renderProps: IDrawerChildrenRenderProps) => React.ReactNode)
       | React.ReactNode;

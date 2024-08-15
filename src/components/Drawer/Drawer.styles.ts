@@ -33,4 +33,8 @@ export const drawerStyles = stylex.create({
     position: 'absolute',
     left: '-9999px',
   },
+  content: {
+    display: 'flex',
+    flexGrow: 1,
+  },
 });
