@@ -42,6 +42,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
     const {
       styles,
       sx,
+      root,
       children,
       placement = 'bottom-start',
       orientation = 'vertical',
@@ -374,7 +375,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
           : children}
 
         {transitionStatus.isMounted && (
-          <Portal>
+          <Portal root={root}>
             <FloatingFocusManager
               context={floating.context}
               visuallyHiddenDismiss

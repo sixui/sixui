@@ -21,7 +21,7 @@ export const SideSheetContent = forwardRef<
     variant = 'standard',
     onClose,
     children,
-    placement = 'left',
+    anchor = 'left',
     headline,
     leadingActions,
     trailingActions,
@@ -46,7 +46,7 @@ export const SideSheetContent = forwardRef<
       sx={[
         sideSheetContentTheme,
         globalStyles,
-        combineStyles('host', `host$${placement}`),
+        combineStyles('host', `host$${anchor}`),
         sx,
       ]}
       ref={forwardedRef}

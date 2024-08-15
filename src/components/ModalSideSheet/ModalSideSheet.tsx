@@ -10,7 +10,7 @@ import {
   useTransitionStatus,
 } from '@floating-ui/react';
 
-import type { ISideSheetProps } from './SideSheet.types';
+import type { IModalSideSheetProps } from './ModalSideSheet.types';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
 import { isFunction } from '~/helpers/isFunction';
 import { useControlledValue } from '~/hooks/useControlledValue';
@@ -19,15 +19,18 @@ import { SideSheetContent } from '../SideSheetContent';
 import { Scrim } from '../Scrim';
 import { Portal } from '../Portal';
 import { FloatingTransition } from '../FloatingTransition';
-import { sideSheetStyles } from './SideSheet.styles';
-import { sideSheetTheme } from './SideSheet.stylex';
-import { sideSheetVariantStyles } from './variants';
+import { modalSideSheetStyles } from './ModalSideSheet.styles';
+import { modalSideSheetTheme } from './ModalSideSheet.stylex';
+import { modalSideSheetVariantStyles } from './variants';
 
-// https://github.com/material-components/material-web/blob/main/sideSheet/internal/sideSheet.ts
+// https://github.com/material-components/material-web/blob/main/modalSideSheet/internal/modalSideSheet.ts
 
-export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
-  forwardRef<HTMLDivElement, ISideSheetProps>(
-    function SideSheet(props, forwardedRef) {
+export const ModalSideSheet = createPolymorphicComponent<
+  'div',
+  IModalSideSheetProps
+>(
+  forwardRef<HTMLDivElement, IModalSideSheetProps>(
+    function ModalSideSheet(props, forwardedRef) {
       const {
         styles,
         sx,
@@ -37,29 +40,22 @@ export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
         isOpen: isOpenProp,
         disabled,
         onOpenChange,
-        modal,
-        variant: variantProp = 'standard',
+        variant = 'standard',
         anchor = 'left',
         ...other
       } = props;
 
-      const variant =
-        variantProp === 'detached' && !modal ? 'standard' : variantProp;
-      const contentVariant = modal
-        ? variant === 'detached'
-          ? 'detachedModal'
-          : 'modal'
-        : 'standard';
-      const variantStyles = sideSheetVariantStyles[variant];
+      const contentVariant = variant === 'detached' ? 'detachedModal' : 'modal';
+      const variantStyles = modalSideSheetVariantStyles[variant];
       const { combineStyles, getStyles, globalStyles } = useStyles({
-        name: 'SideSheet',
-        styles: [sideSheetStyles, variantStyles, styles],
+        name: 'ModalSideSheet',
+        styles: [modalSideSheetStyles, variantStyles, styles],
       });
 
       const [isOpen, setIsOpen] = useControlledValue({
         controlled: isOpenProp,
         default: !!isOpenProp,
-        name: 'SideSheet',
+        name: 'ModalSideSheet',
       });
       const floating = useFloating({
         open: isOpen && !disabled,
@@ -72,7 +68,7 @@ export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
       const role = useRole(floating.context);
       const dismiss = useDismiss(floating.context, {
         outsidePressEvent: 'pointerdown',
-        enabled: !!modal,
+        enabled: true,
       });
       const interactions = useInteractions([click, role, dismiss]);
       const transitionStatus = useTransitionStatus(floating.context, {
@@ -87,7 +83,7 @@ export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
           })
         : trigger;
 
-      const sideSheetRef = useMergeRefs([
+      const modalSideSheetRef = useMergeRefs([
         forwardedRef,
         floating.refs.setFloating,
       ]);
@@ -98,12 +94,10 @@ export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
 
           {transitionStatus.isMounted ? (
             <Portal root={root}>
-              {modal ? (
-                <Scrim floatingContext={floating.context} lockScroll />
-              ) : null}
+              <Scrim floatingContext={floating.context} lockScroll />
               <div
                 {...getStyles(
-                  sideSheetTheme,
+                  modalSideSheetTheme,
                   globalStyles,
                   'host',
                   `host$${anchor}`,
@@ -112,8 +106,7 @@ export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
                 <FloatingFocusManager
                   context={floating.context}
                   visuallyHiddenDismiss={true}
-                  modal={modal}
-                  disabled={!modal}
+                  modal
                 >
                   <FloatingTransition
                     status={transitionStatus.status}
@@ -122,8 +115,8 @@ export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
                     pattern='enterExitOffScreen'
                   >
                     <SideSheetContent
-                      sx={[combineStyles('sideSheetContent'), sx]}
-                      styles={innerStyles?.sideSheetContent}
+                      sx={[combineStyles('modalSideSheetContent'), sx]}
+                      styles={innerStyles?.modalSideSheetContent}
                       onClose={(event) =>
                         floating.context.onOpenChange(
                           false,
@@ -134,7 +127,7 @@ export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
                       {...other}
                       {...interactions.getFloatingProps()}
                       variant={contentVariant}
-                      ref={sideSheetRef}
+                      ref={modalSideSheetRef}
                     />
                   </FloatingTransition>
                 </FloatingFocusManager>

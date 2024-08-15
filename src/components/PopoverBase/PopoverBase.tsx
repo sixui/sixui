@@ -37,6 +37,7 @@ export const PopoverBase = <TForwardedProps extends object = object>(
   const {
     styles,
     sx,
+    root,
     contentRenderer,
     children,
     placement = 'top',
@@ -211,7 +212,7 @@ export const PopoverBase = <TForwardedProps extends object = object>(
       {triggerElement}
 
       {transitionStatus.isMounted ? (
-        <Portal>
+        <Portal root={root}>
           {scrim ? (
             <Scrim floatingContext={floating.context} lockScroll />
           ) : null}

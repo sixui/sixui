@@ -30,6 +30,7 @@ export const BottomSheet = createPolymorphicComponent<'div', IBottomSheetProps>(
       const {
         styles,
         sx,
+        root,
         innerStyles,
         trigger,
         isOpen: isOpenProp,
@@ -94,7 +95,7 @@ export const BottomSheet = createPolymorphicComponent<'div', IBottomSheetProps>(
           {triggerElement}
 
           {transitionStatus.isMounted ? (
-            <Portal>
+            <Portal root={root}>
               {modal ? (
                 <Scrim floatingContext={floating.context} lockScroll />
               ) : null}

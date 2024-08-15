@@ -7,11 +7,11 @@ import type {
 } from '../SideSheetContent';
 import type { IBaseProps } from '../Base';
 import type { IPortalProps } from '../Portal';
-import type { ISideSheetStylesKey } from './SideSheet.styles';
+import type { IModalSideSheetStylesKey } from './ModalSideSheet.styles';
 
-export type ISideSheetVariant = 'standard' | 'detached';
+export type IModalSideSheetVariant = 'standard' | 'detached';
 
-export type ISideSheetTriggerRenderProps = {
+export type IModalSideSheetTriggerRenderProps = {
   /**
    * Whether the bottom sheet is open.
    */
@@ -28,11 +28,11 @@ export type ISideSheetTriggerRenderProps = {
   getProps: () => Record<string, unknown>;
 };
 
-export type ISideSheetProps = Pick<IPortalProps, 'root'> &
-  IBaseProps<ISideSheetStylesKey> &
+export type IModalSideSheetProps = Pick<IPortalProps, 'root'> &
+  IBaseProps<IModalSideSheetStylesKey> &
   IOmit<ISideSheetContentProps, 'styles' | 'onClose' | 'variant'> & {
     innerStyles?: {
-      sideSheetContent?: IZeroOrMore<
+      modalSideSheetContent?: IZeroOrMore<
         ICompiledStyles<ISideSheetContentStylesKey>
       >;
     };
@@ -40,7 +40,7 @@ export type ISideSheetProps = Pick<IPortalProps, 'root'> &
     disabled?: boolean;
     trigger?:
       | React.ReactNode
-      | ((props: ISideSheetTriggerRenderProps) => React.ReactElement);
+      | ((props: IModalSideSheetTriggerRenderProps) => React.ReactElement);
     onOpenChange?: (
       open: boolean,
       event?: Event,
@@ -48,6 +48,5 @@ export type ISideSheetProps = Pick<IPortalProps, 'root'> &
     ) => void;
 
     anchor?: 'left' | 'right';
-    modal?: boolean;
-    variant?: ISideSheetVariant;
+    variant?: IModalSideSheetVariant;
   };

@@ -9,16 +9,17 @@ import { sideSheetContentTokens } from '../SideSheetContent.stylex';
 
 export const detachedModalSideSheetContentStyles = stylex.create({
   host: {
-    [sideSheetContentTokens.leadingSpace$withIcon]: spacingTokens.padding$6,
+    [sideSheetContentTokens.headerLeadingSpace$withIcons]:
+      spacingTokens.padding$6,
     [sideSheetContentTokens.containerColor]:
       colorSchemeTokens.surfaceContainerLow,
     [sideSheetContentTokens.containerElevation]:
       elevationTokens.boxShadow$level1,
     [sideSheetContentTokens.dividerWidth]: outlineTokens.width$none,
 
-    [sideSheetContentTokens.containerShape$topStart]: shapeTokens.corner$xl,
-    [sideSheetContentTokens.containerShape$topEnd]: shapeTokens.corner$xl,
-    [sideSheetContentTokens.containerShape$bottomStart]: shapeTokens.corner$xl,
-    [sideSheetContentTokens.containerShape$bottomEnd]: shapeTokens.corner$xl,
+    [sideSheetContentTokens.containerShape$topStart]: shapeTokens.corner$lg,
+    [sideSheetContentTokens.containerShape$topEnd]: shapeTokens.corner$lg,
+    [sideSheetContentTokens.containerShape$bottomStart]: shapeTokens.corner$lg,
+    [sideSheetContentTokens.containerShape$bottomEnd]: shapeTokens.corner$lg,
   },
 });

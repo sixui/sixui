@@ -4,6 +4,7 @@ import type { IOrientation } from '~/helpers/types';
 import type { IBaseProps } from '../Base';
 import type { IListItemProps } from '../ListItem';
 import type { IMenuStylesKey } from './Menu.styles';
+import type { IPortalProps } from '../Portal';
 
 export type IMenuTriggerRenderProps = {
   isOpen: boolean;
@@ -13,13 +14,14 @@ export type IMenuTriggerRenderProps = {
   ) => Record<string, unknown>;
 };
 
-export type IMenuProps = IBaseProps<IMenuStylesKey> & {
-  trigger:
-    | React.ReactNode
-    | ((renderProps: IMenuTriggerRenderProps) => React.ReactNode);
-  children: React.ReactNode;
-  placement?: Placement;
-  orientation?: IOrientation;
-  matchTargetWidth?: boolean;
-  size?: IListItemProps['size'];
-};
+export type IMenuProps = Pick<IPortalProps, 'root'> &
+  IBaseProps<IMenuStylesKey> & {
+    trigger:
+      | React.ReactNode
+      | ((renderProps: IMenuTriggerRenderProps) => React.ReactNode);
+    children: React.ReactNode;
+    placement?: Placement;
+    orientation?: IOrientation;
+    matchTargetWidth?: boolean;
+    size?: IListItemProps['size'];
+  };

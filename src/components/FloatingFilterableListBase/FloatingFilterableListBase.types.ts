@@ -14,6 +14,7 @@ import type {
   IFilterableListBaseProps,
   IFilterableListItemFocus,
 } from '../FilterableListBase';
+import type { IPortalProps } from '../Portal';
 import type { IFloatingFilterableListBaseStylesKey } from './FloatingFilterableListBase.styles';
 
 export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
@@ -71,7 +72,8 @@ export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
 export type IFloatingFilterableListBaseProps<
   TItem,
   TElement extends HTMLElement,
-> = IBaseProps<IFloatingFilterableListBaseStylesKey> &
+> = Pick<IPortalProps, 'root'> &
+  IBaseProps<IFloatingFilterableListBaseStylesKey> &
   IOmit<IFilterableListBaseProps<TItem, TElement>, 'onItemSelect'> &
   IForwardableProps & {
     /**

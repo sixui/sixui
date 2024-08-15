@@ -30,6 +30,7 @@ export const Dialog = createPolymorphicComponent<'div', IDialogProps>(
       const {
         styles,
         sx,
+        root,
         innerStyles,
         trigger,
         isOpen: isOpenProp,
@@ -82,7 +83,7 @@ export const Dialog = createPolymorphicComponent<'div', IDialogProps>(
           {triggerElement}
 
           {transitionStatus.isMounted ? (
-            <Portal>
+            <Portal root={root}>
               <Scrim floatingContext={floating.context} lockScroll />
               <div {...getStyles('host')}>
                 <FloatingFocusManager context={floating.context}>

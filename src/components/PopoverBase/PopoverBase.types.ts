@@ -14,6 +14,7 @@ import type {
 import type { IPopoverCursorType } from '~/hooks/usePopoverCursor';
 import type { IBaseProps } from '../Base';
 import type { IFloatingTransitionOrigin } from '../FloatingTransition';
+import type { IPortalProps } from '../Portal';
 import type { IPopoverBaseStylesKey } from './PopoverBase.styles';
 
 export type IPopoverBaseContentRendererProps = {
@@ -41,36 +42,39 @@ export type IPopoverBaseTriggerRendererProps = {
   getProps: () => Record<string, unknown>;
 };
 
-export type IPopoverBaseProps<TForwardedProps extends object = object> =
+export type IPopoverBaseProps<TForwardedProps extends object = object> = Pick<
+  IPortalProps,
+  'root'
+> &
   IBaseProps<IPopoverBaseStylesKey> &
-    IForwardableProps & {
-      contentRenderer: IRendererWithForwardedProps<
-        IPopoverBaseContentRendererProps,
-        TForwardedProps
-      >;
-      children?:
-        | ((props: IPopoverBaseTriggerRendererProps) => React.ReactNode)
-        | React.ReactNode;
-      placement?: Placement;
-      transitionOrientation?: IOrientation;
-      transitionOrigin?: IFloatingTransitionOrigin;
-      isOpen?: boolean;
-      defaultIsOpen?: boolean;
-      cursor?: IPopoverCursorType;
-      onOpenChange?: (
-        isOpen: boolean,
-        event?: Event,
-        reason?: OpenChangeReason,
-      ) => void;
-      disabled?: boolean;
-      role?: UseRoleProps['role'];
-      openOnHover?: boolean;
-      openOnFocus?: boolean;
-      openOnClick?: boolean;
-      modal?: boolean;
-      trapFocus?: boolean;
-      matchTargetWidth?: boolean;
-      middleware?: Array<Middleware | null | undefined | false>;
-      referenceRef?: React.RefObject<HTMLElement>;
-      scrim?: boolean;
-    };
+  IForwardableProps & {
+    contentRenderer: IRendererWithForwardedProps<
+      IPopoverBaseContentRendererProps,
+      TForwardedProps
+    >;
+    children?:
+      | ((props: IPopoverBaseTriggerRendererProps) => React.ReactNode)
+      | React.ReactNode;
+    placement?: Placement;
+    transitionOrientation?: IOrientation;
+    transitionOrigin?: IFloatingTransitionOrigin;
+    isOpen?: boolean;
+    defaultIsOpen?: boolean;
+    cursor?: IPopoverCursorType;
+    onOpenChange?: (
+      isOpen: boolean,
+      event?: Event,
+      reason?: OpenChangeReason,
+    ) => void;
+    disabled?: boolean;
+    role?: UseRoleProps['role'];
+    openOnHover?: boolean;
+    openOnFocus?: boolean;
+    openOnClick?: boolean;
+    modal?: boolean;
+    trapFocus?: boolean;
+    matchTargetWidth?: boolean;
+    middleware?: Array<Middleware | null | undefined | false>;
+    referenceRef?: React.RefObject<HTMLElement>;
+    scrim?: boolean;
+  };

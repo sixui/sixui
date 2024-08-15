@@ -31,7 +31,8 @@ export const Frame = forwardRef<HTMLIFrameElement, IFrameProps>(
         .map((parentStyleSheet) =>
           [...parentStyleSheet.cssRules].map((cssRule) => {
             const text = cssRule.cssText;
-            // @import and @charset rules must be on top of the CSS.
+            // @import and @charset rules must be on top of the CSS so they are
+            // moved.
             if (text.startsWith('@import') || text.startsWith('@charset')) {
               parentTopRules.push(text);
 
@@ -45,7 +46,7 @@ export const Frame = forwardRef<HTMLIFrameElement, IFrameProps>(
       const parentCssString = [...parentTopRules, ...parentRules].join('\n\n');
 
       const styles = iframeDocument.createElement('style');
-      styles.innerHTML = `${parentCssString}`;
+      styles.innerHTML = parentCssString;
       styles.setAttribute('type', 'text/css');
 
       const iframeHead = iframeDocument.getElementsByTagName('head')[0];

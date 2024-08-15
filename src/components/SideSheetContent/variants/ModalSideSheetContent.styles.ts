@@ -19,15 +19,15 @@ export const modalSideSheetContentStyles = stylex.create({
   },
   host$left: {
     [sideSheetContentTokens.containerShape$topStart]: shapeTokens.corner$none,
-    [sideSheetContentTokens.containerShape$topEnd]: shapeTokens.corner$xl,
+    [sideSheetContentTokens.containerShape$topEnd]: shapeTokens.corner$lg,
     [sideSheetContentTokens.containerShape$bottomStart]:
       shapeTokens.corner$none,
-    [sideSheetContentTokens.containerShape$bottomEnd]: shapeTokens.corner$xl,
+    [sideSheetContentTokens.containerShape$bottomEnd]: shapeTokens.corner$lg,
   },
   host$right: {
     [sideSheetContentTokens.containerShape$topEnd]: shapeTokens.corner$none,
-    [sideSheetContentTokens.containerShape$topStart]: shapeTokens.corner$xl,
+    [sideSheetContentTokens.containerShape$topStart]: shapeTokens.corner$lg,
     [sideSheetContentTokens.containerShape$bottomEnd]: shapeTokens.corner$none,
-    [sideSheetContentTokens.containerShape$bottomStart]: shapeTokens.corner$xl,
+    [sideSheetContentTokens.containerShape$bottomStart]: shapeTokens.corner$lg,
   },
 });

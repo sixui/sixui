@@ -38,6 +38,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
   function MenuLeaf(props, forwardedRef) {
     const {
       styles,
+      root,
       trigger,
       children,
       placement = 'bottom-start',
@@ -208,7 +209,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
                 placement: floating.placement,
               }}
             >
-              <Portal>
+              <Portal root={root}>
                 <FloatingFocusManager
                   context={floating.context}
                   modal={false}

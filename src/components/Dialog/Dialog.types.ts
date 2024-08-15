@@ -6,6 +6,7 @@ import type {
   IDialogContentProps,
   IDialogContentStylesKey,
 } from '../DialogContent';
+import type { IPortalProps } from '../Portal';
 import type { IDialogStylesKey } from './Dialog.styles';
 
 export type IDialogTriggerRenderProps = {
@@ -25,7 +26,8 @@ export type IDialogTriggerRenderProps = {
   getProps: () => Record<string, unknown>;
 };
 
-export type IDialogProps = IBaseProps<IDialogStylesKey> &
+export type IDialogProps = Pick<IPortalProps, 'root'> &
+  IBaseProps<IDialogStylesKey> &
   IOmit<IDialogContentProps, 'styles' | 'onClose'> & {
     innerStyles?: {
       dialogContent?: IZeroOrMore<ICompiledStyles<IDialogContentStylesKey>>;
