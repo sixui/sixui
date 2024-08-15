@@ -77,4 +77,12 @@ export const commonStyles = stylex.create({
   height: (height: string | number) => ({
     height: `calc(${height} * ${scaleTokens.scale})`,
   }),
+  position: (x: number, y: number) => ({
+    left: x,
+    top: y,
+  }),
+  outOfScreen: {
+    position: 'absolute',
+    left: '-9999px',
+  },
 });

@@ -1,8 +1,13 @@
 import type {
+  FlipOptions,
+  FloatingFocusManagerProps,
   Middleware,
   OpenChangeReason,
   Placement,
   ReferenceType,
+  ShiftOptions,
+  SizeOptions,
+  Strategy,
   UseRoleProps,
 } from '@floating-ui/react';
 
@@ -13,8 +18,12 @@ import type {
 } from '~/helpers/react/forwardablePropsTypes';
 import type { IPopoverCursorType } from '~/hooks/usePopoverCursor';
 import type { IBaseProps } from '../Base';
-import type { IFloatingTransitionOrigin } from '../FloatingTransition';
+import type {
+  IFloatingTransitionOrigin,
+  IFloatingTransitionProps,
+} from '../FloatingTransition';
 import type { IPortalProps } from '../Portal';
+import type { IScrimProps } from '../Scrim';
 import type { IPopoverBaseStylesKey } from './PopoverBase.styles';
 
 export type IPopoverBaseContentRendererProps = {
@@ -71,10 +80,24 @@ export type IPopoverBaseProps<TForwardedProps extends object = object> = Pick<
     openOnHover?: boolean;
     openOnFocus?: boolean;
     openOnClick?: boolean;
-    modal?: boolean;
     trapFocus?: boolean;
     matchTargetWidth?: boolean;
-    middleware?: Array<Middleware | null | undefined | false>;
     referenceRef?: React.RefObject<HTMLElement>;
-    scrim?: boolean;
+    withScrim?: boolean;
+    slotProps?: {
+      floatingFocusManager?: Partial<FloatingFocusManagerProps>;
+      floatingTransition?: Partial<IFloatingTransitionProps>;
+      scrim?: Partial<IScrimProps>;
+    };
+    floatingStrategy?: Strategy;
+    middlewares?: {
+      shift?: boolean | ShiftOptions;
+      flip?: boolean | FlipOptions;
+      size?: boolean | SizeOptions;
+    };
+    additionalMiddlewares?: Array<Middleware | null | undefined | false>;
+    closeOnClickOutside?: boolean;
+    closeOnEscape?: boolean;
+    closeOnFocusOut?: boolean;
+    reference?: 'trigger' | 'viewport';
   };

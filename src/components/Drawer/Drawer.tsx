@@ -1,23 +1,11 @@
 import { forwardRef } from 'react';
-import {
-  FloatingFocusManager,
-  useClick,
-  useDismiss,
-  useFloating,
-  useInteractions,
-  useMergeRefs,
-  useRole,
-  useTransitionStatus,
-} from '@floating-ui/react';
 
 import type { IDrawerProps } from './Drawer.types';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
 import { isFunction } from '~/helpers/isFunction';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useStyles } from '~/hooks/useStyles';
-import { Scrim } from '../Scrim';
-import { Portal } from '../Portal';
-import { FloatingTransition } from '../FloatingTransition';
+import { PopoverBase } from '../PopoverBase';
 import { drawerStyles } from './Drawer.styles';
 
 // https://github.com/material-components/material-web/blob/main/drawer/internal/drawer.ts
@@ -31,6 +19,7 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
         root,
         trigger,
         isOpen: isOpenProp,
+        defaultIsOpen,
         disabled,
         onOpenChange,
         anchor = 'left',
@@ -38,102 +27,60 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
         ...other
       } = props;
 
-      const { combineStyles, getStyles, globalStyles } = useStyles({
+      const { combineStyles, globalStyles } = useStyles({
         name: 'Drawer',
         styles: [drawerStyles, styles],
       });
 
       const [isOpen, setIsOpen] = useControlledValue({
         controlled: isOpenProp,
-        default: !!isOpenProp,
+        default: defaultIsOpen || false,
         name: 'Drawer',
-      });
-      // FIXME: use PopoverBase?
-      const floating = useFloating({
-        open: isOpen && !disabled,
-        onOpenChange: (isOpen, event, reason) => {
-          onOpenChange?.(isOpen, event, reason);
-          setIsOpen(isOpen);
-        },
-      });
-      const click = useClick(floating.context);
-      const role = useRole(floating.context);
-      const dismiss = useDismiss(floating.context, {
-        outsidePressEvent: 'pointerdown',
-        enabled: true,
-      });
-      const interactions = useInteractions([click, role, dismiss]);
-      const transitionStatus = useTransitionStatus(floating.context, {
-        duration: 150, // motionTokens.duration$short3
+        onValueChange: onOpenChange,
       });
       const orientation = ['left', 'right'].includes(anchor)
         ? 'horizontal'
         : 'vertical';
 
-      const triggerElement = isFunction(trigger)
-        ? trigger({
-            isOpen,
-            getProps: interactions.getReferenceProps,
-            setRef: floating.refs.setReference,
-          })
-        : trigger;
-
-      const drawerRef = useMergeRefs([forwardedRef, floating.refs.setFloating]);
-
       return (
-        <>
-          {triggerElement}
-
-          {transitionStatus.isMounted ? (
-            <Portal root={root}>
-              <Scrim floatingContext={floating.context} lockScroll />
-              <div
-                {...getStyles(
-                  globalStyles,
-                  'host',
-                  `host$${orientation}`,
-                  `host$${anchor}`,
-                )}
-              >
-                <FloatingFocusManager
-                  context={floating.context}
-                  visuallyHiddenDismiss={true}
-                  modal
-                >
-                  <FloatingTransition
-                    status={transitionStatus.status}
-                    placement={anchor}
-                    origin='edge'
-                    pattern='enterExitOffScreen'
-                    sx={[combineStyles('content'), sx]}
-                    {...interactions.getFloatingProps()}
-                    {...other}
-                    ref={drawerRef}
-                  >
-                    {/* This is a hack to prevent the first focusable element
-                    from being focused when the side sheet is opened. */}
-                    <button
-                      aria-hidden
-                      type='button'
-                      {...getStyles('outOfScreen')}
-                    />
-
-                    {isFunction(children)
-                      ? children({
-                          close: (event) =>
-                            floating.context.onOpenChange(
-                              false,
-                              event?.nativeEvent,
-                              'click',
-                            ),
-                        })
-                      : children}
-                  </FloatingTransition>
-                </FloatingFocusManager>
-              </div>
-            </Portal>
-          ) : null}
-        </>
+        <PopoverBase
+          sx={combineStyles(
+            globalStyles,
+            'host',
+            `host$${orientation}`,
+            `host$${anchor}`,
+          )}
+          isOpen={isOpen}
+          defaultIsOpen={defaultIsOpen}
+          onOpenChange={setIsOpen}
+          contentRenderer={children}
+          placement={anchor}
+          floatingStrategy='fixed'
+          openOnClick
+          trapFocus
+          slotProps={{
+            floatingFocusManager: {
+              visuallyHiddenDismiss: true,
+            },
+            floatingTransition: {
+              sx: [combineStyles('content'), sx],
+              ...other,
+            },
+          }}
+          root={root}
+          middlewares={{
+            flip: false,
+            shift: false,
+          }}
+          withScrim
+          reference='viewport'
+          disabled={disabled}
+          ref={forwardedRef}
+        >
+          {(renderProps) =>
+            isFunction(trigger) ? trigger(renderProps) : trigger
+          }
+        </PopoverBase>
       );
     },
   ),

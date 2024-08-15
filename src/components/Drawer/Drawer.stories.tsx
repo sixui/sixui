@@ -16,6 +16,7 @@ import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { scaleTokens } from '~/themes/base/scale.stylex';
 import { outlineTokens } from '~/themes/base/outline.stylex';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { commonStyles } from '~/helpers/commonStyles';
 import { Button, IButtonProps } from '../Button';
 import { Stack } from '../Stack';
 import { Frame } from '../Frame';
@@ -80,7 +81,24 @@ const DrawerDemo: React.FC<IDrawerDemo> = (props) => {
       )}
       sx={styles.content}
     >
-      <Text>Press escape to close the drawer.</Text>
+      {({ close }) => (
+        <>
+          {/* This is a hack to prevent the first focusable element
+                    from being focused when the side sheet is opened. */}
+          <button
+            aria-hidden
+            type='button'
+            {...stylex.props(commonStyles.outOfScreen)}
+          />
+
+          <Stack align='start'>
+            <Text>Press escape to close the drawer.</Text>
+            <Button onClick={close} variant='text'>
+              Close
+            </Button>
+          </Stack>
+        </>
+      )}
     </Drawer>
   );
 };

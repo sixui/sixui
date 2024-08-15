@@ -6,4 +6,10 @@ export const popoverBaseStyles = stylex.create({
   host: {
     zIndex: zIndexTokens.popover,
   },
+  host$absolute: {
+    position: 'absolute',
+  },
+  host$fixed: {
+    position: 'fixed',
+  },
 });

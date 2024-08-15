@@ -28,6 +28,7 @@ export type IDrawerChildrenRenderProps = {
 export type IDrawerProps = Pick<IPortalProps, 'root'> &
   IBaseProps<IDrawerStylesKey> & {
     isOpen?: boolean;
+    defaultIsOpen?: boolean;
     disabled?: boolean;
     trigger?:
       | React.ReactNode
