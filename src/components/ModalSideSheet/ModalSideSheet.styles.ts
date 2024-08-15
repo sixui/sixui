@@ -8,9 +8,10 @@ export const modalSideSheetStyles = stylex.create({
   host: {
     display: 'flex',
     position: 'fixed',
-    insetInline: 0,
     zIndex: zIndexTokens.modal,
-    inset: modalSideSheetTokens.containerMargin,
+    // inset: modalSideSheetTokens.containerMargin,
+    top: 0,
+    bottom: 0,
   },
   host$left: {
     left: modalSideSheetTokens.containerMargin,

@@ -126,6 +126,7 @@ export const ModalSideSheet = createPolymorphicComponent<
                       }
                       {...other}
                       {...interactions.getFloatingProps()}
+                      anchor={anchor}
                       variant={contentVariant}
                       ref={modalSideSheetRef}
                     />

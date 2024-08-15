@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { createSequence } from '@olivierpascal/helpers';
 import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 import type { IModalSideSheetProps } from './ModalSideSheet.types';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
@@ -36,6 +36,9 @@ const styles = stylex.create({
     borderColor: colorSchemeTokens.outlineVariant,
     borderStyle: 'dashed',
   },
+  frameInner: {
+    padding: spacingTokens.padding$4,
+  },
   content: {
     minWidth: `calc(300px * ${scaleTokens.scale})`,
     paddingLeft: spacingTokens.padding$4,
@@ -56,11 +59,6 @@ const defaultArgs = {
       </Button>
     </>
   ),
-  trigger: ({ setRef, getProps }) => (
-    <Button {...getProps()} ref={setRef}>
-      Open
-    </Button>
-  ),
   children: ({ close }) => (
     <Stack sx={styles.content}>
       {createSequence(5).map((index) => (
@@ -78,7 +76,42 @@ const ModalSideSheetFrame: React.FC<IModalSideSheetProps> = (props) => {
   return (
     <Frame importParentStyles sx={styles.frame}>
       <div ref={setRootElement}>
-        <ModalSideSheet {...props} root={rootElement} />
+        <Stack
+          horizontal
+          justify='space-between'
+          gap={2}
+          sx={styles.frameInner}
+        >
+          <ModalSideSheet
+            {...props}
+            anchor='left'
+            root={rootElement}
+            trigger={({ setRef, getProps }) => (
+              <Button
+                {...getProps()}
+                ref={setRef}
+                icon={<FontAwesomeIcon icon={faArrowLeft} />}
+              >
+                Open left
+              </Button>
+            )}
+          />
+          <ModalSideSheet
+            {...props}
+            anchor='right'
+            root={rootElement}
+            trigger={({ setRef, getProps }) => (
+              <Button
+                {...getProps()}
+                ref={setRef}
+                icon={<FontAwesomeIcon icon={faArrowRight} />}
+                trailingIcon
+              >
+                Open right
+              </Button>
+            )}
+          />
+        </Stack>
       </div>
     </Frame>
   );
