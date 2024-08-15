@@ -9,7 +9,6 @@ import {
   useRole,
   useTransitionStatus,
 } from '@floating-ui/react';
-import stylex from '@stylexjs/stylex';
 
 import type { IDrawerProps } from './Drawer.types';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
@@ -111,6 +110,15 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
                     {...other}
                     ref={drawerRef}
                   >
+                    {/* This is a workaround to prevent the first focusable
+                    element from being focused when the side sheet is opened.
+                    */}
+                    <button
+                      aria-hidden
+                      type='button'
+                      {...getStyles('outOfScreen')}
+                    />
+
                     {isFunction(children)
                       ? children({
                           close: (event) =>

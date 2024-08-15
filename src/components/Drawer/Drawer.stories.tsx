@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { createSequence } from '@olivierpascal/helpers';
 import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -18,12 +17,10 @@ import { scaleTokens } from '~/themes/base/scale.stylex';
 import { outlineTokens } from '~/themes/base/outline.stylex';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { Button, IButtonProps } from '../Button';
-import { ListItem } from '../ListItem';
 import { Stack } from '../Stack';
 import { Frame } from '../Frame';
-import { SideSheetContent } from '../SideSheetContent';
-import { Drawer } from './Drawer';
 import { Placeholder } from '../Placeholder';
+import { Drawer } from './Drawer';
 
 // https://m3.material.io/components/drawers/overview
 // https://material-web.dev/components/drawer/
@@ -90,12 +87,13 @@ const DrawerDemo: React.FC<IDrawerDemo> = (props) => {
         </Button>
       )}
     >
-      <Placeholder
-        label='Did you open the drawer?'
-        corner='none'
-        width={160}
-        height={160}
-      />
+      {({ close }) => (
+        <Placeholder corner='none' width={160} height={160}>
+          <Button onClick={close} variant='text'>
+            Close
+          </Button>
+        </Placeholder>
+      )}
     </Drawer>
   );
 };

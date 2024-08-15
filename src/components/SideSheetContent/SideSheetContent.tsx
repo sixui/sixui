@@ -51,14 +51,6 @@ export const SideSheetContent = forwardRef<
       ]}
       ref={forwardedRef}
     >
-      {/* FIXME: This is a workaround to prevent the first focusable element from being
-      focused when the side sheet is opened. */}
-      {/* <button
-        aria-hidden
-        type='button'
-        style={{ position: 'absolute', left: '-9999px' }}
-      /> */}
-
       {hasHeader ? (
         <div
           {...getStyles(

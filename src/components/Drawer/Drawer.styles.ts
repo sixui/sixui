@@ -29,4 +29,8 @@ export const drawerStyles = stylex.create({
   host$bottom: {
     bottom: 0,
   },
+  outOfScreen: {
+    position: 'absolute',
+    left: '-9999px',
+  },
 });
