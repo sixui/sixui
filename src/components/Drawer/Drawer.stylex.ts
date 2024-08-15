@@ -9,7 +9,7 @@ const vars = {
   containerMargin: '0px',
 };
 
-export const modalSideSheetTokens = stylex.defineVars(vars);
+export const drawerTokens = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that
@@ -17,7 +17,4 @@ export const modalSideSheetTokens = stylex.defineVars(vars);
  *
  * @see https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
  */
-export const modalSideSheetTheme = stylex.createTheme(
-  modalSideSheetTokens,
-  vars,
-);
+export const drawerTheme = stylex.createTheme(drawerTokens, vars);

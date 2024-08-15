@@ -51,7 +51,7 @@ export const SideSheetContent = forwardRef<
       ]}
       ref={forwardedRef}
     >
-      {/* This is a workaround to prevent the first focusable element from being
+      {/* FIXME: This is a workaround to prevent the first focusable element from being
       focused when the side sheet is opened. */}
       {/* <button
         aria-hidden

@@ -5,7 +5,8 @@ import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
-import type { IModalSideSheetProps } from './ModalSideSheet.types';
+import type { IDrawerProps } from './Drawer.types';
+import type { IOmit } from '~/helpers/types';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { scaleTokens } from '~/themes/base/scale.stylex';
@@ -16,17 +17,21 @@ import { ListItem } from '../ListItem';
 import { Stack } from '../Stack';
 import { IconButton } from '../IconButton';
 import { Frame } from '../Frame';
-import { ModalSideSheet } from './ModalSideSheet';
+import {
+  SideSheetContent,
+  type ISideSheetContentProps,
+} from '../SideSheetContent';
+import { Drawer } from './Drawer';
 
-// https://m3.material.io/components/modalSideSheets/overview
-// https://material-web.dev/components/modalSideSheet/
-// https://github.com/material-components/material-web/blob/main/modalSideSheet/demo/stories.ts
+// https://m3.material.io/components/drawers/overview
+// https://material-web.dev/components/drawer/
+// https://github.com/material-components/material-web/blob/main/drawer/demo/stories.ts
 
 const meta = {
-  component: ModalSideSheet,
-} satisfies Meta<IModalSideSheetProps>;
+  component: Drawer,
+} satisfies Meta<IDrawerProps>;
 
-type IStory = StoryObj<IModalSideSheetProps>;
+type IStory = StoryObj<IDrawerProps>;
 
 const styles = stylex.create({
   frame: {
@@ -48,18 +53,28 @@ const styles = stylex.create({
 
 const defaultArgs = {
   onOpenChange: (...args) => void sbHandleEvent('openChange', args),
-  headline: 'Title',
-  showCloseButton: true,
-  leadingActions: <IconButton icon={<FontAwesomeIcon icon={faArrowLeft} />} />,
-  bottomActions: ({ close }) => (
-    <>
-      <Button onClick={close}>Save</Button>
-      <Button variant='outlined' onClick={close}>
-        Cancel
-      </Button>
-    </>
-  ),
-  children: ({ close }) => (
+} satisfies Partial<IDrawerProps>;
+
+const DrawerContent: React.FC<IOmit<ISideSheetContentProps, 'children'>> = (
+  props,
+) => (
+  <SideSheetContent
+    {...props}
+    variant='modal'
+    headline='Title'
+    showCloseButton
+    leadingActions={
+      <IconButton icon={<FontAwesomeIcon icon={faArrowLeft} />} />
+    }
+    bottomActions={({ close }) => (
+      <>
+        <Button onClick={close}>Save</Button>
+        <Button variant='outlined' onClick={close}>
+          Cancel
+        </Button>
+      </>
+    )}
+  >
     <Stack sx={styles.content}>
       {createSequence(5).map((index) => (
         <ListItem key={index} onClick={close}>
@@ -67,10 +82,10 @@ const defaultArgs = {
         </ListItem>
       ))}
     </Stack>
-  ),
-} satisfies Partial<IModalSideSheetProps>;
+  </SideSheetContent>
+);
 
-const ModalSideSheetFrame: React.FC<IModalSideSheetProps> = (props) => {
+const DrawerFrame: React.FC<IDrawerProps> = (props) => {
   const [rootElement, setRootElement] = useState<HTMLDivElement | null>(null);
 
   return (
@@ -82,7 +97,7 @@ const ModalSideSheetFrame: React.FC<IModalSideSheetProps> = (props) => {
           gap={2}
           sx={styles.frameInner}
         >
-          <ModalSideSheet
+          <Drawer
             {...props}
             anchor='left'
             root={rootElement}
@@ -95,8 +110,10 @@ const ModalSideSheetFrame: React.FC<IModalSideSheetProps> = (props) => {
                 Open left
               </Button>
             )}
-          />
-          <ModalSideSheet
+          >
+            {({ close }) => <DrawerContent anchor='left' onClose={close} />}
+          </Drawer>
+          <Drawer
             {...props}
             anchor='right'
             root={rootElement}
@@ -110,7 +127,9 @@ const ModalSideSheetFrame: React.FC<IModalSideSheetProps> = (props) => {
                 Open right
               </Button>
             )}
-          />
+          >
+            {({ close }) => <DrawerContent anchor='right' onClose={close} />}
+          </Drawer>
         </Stack>
       </div>
     </Frame>
@@ -118,12 +137,12 @@ const ModalSideSheetFrame: React.FC<IModalSideSheetProps> = (props) => {
 };
 
 export const Standard: IStory = {
-  render: (props) => <ModalSideSheetFrame {...props} />,
+  render: (props) => <DrawerFrame {...props} />,
   args: defaultArgs,
 };
 
 export const Detached: IStory = {
-  render: (props) => <ModalSideSheetFrame {...props} />,
+  render: (props) => <DrawerFrame {...props} />,
   args: {
     ...defaultArgs,
     variant: 'detached',

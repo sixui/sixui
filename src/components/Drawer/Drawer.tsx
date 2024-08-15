@@ -10,52 +10,49 @@ import {
   useTransitionStatus,
 } from '@floating-ui/react';
 
-import type { IModalSideSheetProps } from './ModalSideSheet.types';
+import type { IDrawerProps } from './Drawer.types';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
 import { isFunction } from '~/helpers/isFunction';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useStyles } from '~/hooks/useStyles';
-import { SideSheetContent } from '../SideSheetContent';
 import { Scrim } from '../Scrim';
 import { Portal } from '../Portal';
 import { FloatingTransition } from '../FloatingTransition';
-import { modalSideSheetStyles } from './ModalSideSheet.styles';
-import { modalSideSheetTheme } from './ModalSideSheet.stylex';
-import { modalSideSheetVariantStyles } from './variants';
+import { drawerStyles } from './Drawer.styles';
+import { drawerTheme } from './Drawer.stylex';
+import { drawerVariantStyles } from './variants';
 
-// https://github.com/material-components/material-web/blob/main/modalSideSheet/internal/modalSideSheet.ts
+// https://github.com/material-components/material-web/blob/main/drawer/internal/drawer.ts
 
-export const ModalSideSheet = createPolymorphicComponent<
-  'div',
-  IModalSideSheetProps
->(
-  forwardRef<HTMLDivElement, IModalSideSheetProps>(
-    function ModalSideSheet(props, forwardedRef) {
+export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
+  forwardRef<HTMLDivElement, IDrawerProps>(
+    function Drawer(props, forwardedRef) {
       const {
         styles,
         sx,
         root,
-        innerStyles,
         trigger,
         isOpen: isOpenProp,
         disabled,
         onOpenChange,
         variant = 'standard',
+        // FIXME: support top and bottom
         anchor = 'left',
+        children,
         ...other
       } = props;
 
       const contentVariant = variant === 'detached' ? 'detachedModal' : 'modal';
-      const variantStyles = modalSideSheetVariantStyles[variant];
-      const { combineStyles, getStyles, globalStyles } = useStyles({
-        name: 'ModalSideSheet',
-        styles: [modalSideSheetStyles, variantStyles, styles],
+      const variantStyles = drawerVariantStyles[variant];
+      const { getStyles, globalStyles } = useStyles({
+        name: 'Drawer',
+        styles: [drawerStyles, variantStyles, styles],
       });
 
       const [isOpen, setIsOpen] = useControlledValue({
         controlled: isOpenProp,
         default: !!isOpenProp,
-        name: 'ModalSideSheet',
+        name: 'Drawer',
       });
       const floating = useFloating({
         open: isOpen && !disabled,
@@ -83,10 +80,7 @@ export const ModalSideSheet = createPolymorphicComponent<
           })
         : trigger;
 
-      const modalSideSheetRef = useMergeRefs([
-        forwardedRef,
-        floating.refs.setFloating,
-      ]);
+      const drawerRef = useMergeRefs([forwardedRef, floating.refs.setFloating]);
 
       return (
         <>
@@ -97,7 +91,7 @@ export const ModalSideSheet = createPolymorphicComponent<
               <Scrim floatingContext={floating.context} lockScroll />
               <div
                 {...getStyles(
-                  modalSideSheetTheme,
+                  drawerTheme,
                   globalStyles,
                   'host',
                   `host$${anchor}`,
@@ -114,22 +108,22 @@ export const ModalSideSheet = createPolymorphicComponent<
                     origin='edge'
                     pattern='enterExitOffScreen'
                   >
-                    <SideSheetContent
-                      sx={[combineStyles('modalSideSheetContent'), sx]}
-                      styles={innerStyles?.modalSideSheetContent}
-                      onClose={(event) =>
-                        floating.context.onOpenChange(
-                          false,
-                          event.nativeEvent,
-                          'click',
-                        )
-                      }
-                      {...other}
+                    <div
+                      {...getStyles('content', sx)}
                       {...interactions.getFloatingProps()}
-                      anchor={anchor}
-                      variant={contentVariant}
-                      ref={modalSideSheetRef}
-                    />
+                      ref={drawerRef}
+                    >
+                      {isFunction(children)
+                        ? children({
+                            close: (event) =>
+                              floating.context.onOpenChange(
+                                false,
+                                event?.nativeEvent,
+                                'click',
+                              ),
+                          })
+                        : children}
+                    </div>
                   </FloatingTransition>
                 </FloatingFocusManager>
               </div>
