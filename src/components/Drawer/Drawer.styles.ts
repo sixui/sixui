@@ -5,8 +5,8 @@ import { zIndexTokens } from '~/themes/base/zIndex.stylex';
 export type IDrawerStylesKey = keyof typeof drawerStyles;
 export const drawerStyles = stylex.create({
   host: {
-    display: 'flex',
     position: 'fixed',
+    display: 'flex',
     zIndex: zIndexTokens.modal,
   },
   host$horizontal: {
@@ -24,9 +24,9 @@ export const drawerStyles = stylex.create({
     right: 0,
   },
   host$top: {
-    bottom: 0,
+    top: 0,
   },
   host$bottom: {
-    top: 0,
+    bottom: 0,
   },
 });

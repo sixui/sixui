@@ -20,10 +20,10 @@ import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { Button, IButtonProps } from '../Button';
 import { ListItem } from '../ListItem';
 import { Stack } from '../Stack';
-import { IconButton } from '../IconButton';
 import { Frame } from '../Frame';
 import { SideSheetContent } from '../SideSheetContent';
 import { Drawer } from './Drawer';
+import { Placeholder } from '../Placeholder';
 
 // https://m3.material.io/components/drawers/overview
 // https://material-web.dev/components/drawer/
@@ -55,6 +55,12 @@ const styles = stylex.create({
   column: {
     height: '100%',
   },
+  drawer: {
+    display: 'flex',
+    flexGrow: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 
 const defaultArgs = {
@@ -65,11 +71,13 @@ type IDrawerDemo = IOmit<IDrawerProps, 'children'> &
   Pick<IButtonProps, 'icon' | 'trailingIcon'>;
 
 const DrawerDemo: React.FC<IDrawerDemo> = (props) => {
-  const { icon, trailingIcon, ...other } = props;
+  const { icon, trailingIcon, anchor = 'left', ...other } = props;
 
   return (
     <Drawer
+      sx={styles.drawer}
       {...other}
+      anchor={anchor}
       trigger={({ setRef, getProps }) => (
         <Button
           {...getProps()}
@@ -82,34 +90,12 @@ const DrawerDemo: React.FC<IDrawerDemo> = (props) => {
         </Button>
       )}
     >
-      {({ close }) => (
-        <SideSheetContent
-          anchor={props.anchor}
-          onClose={close}
-          variant='modal'
-          headline='Title'
-          showCloseButton
-          leadingActions={
-            <IconButton icon={<FontAwesomeIcon icon={faArrowLeft} />} />
-          }
-          bottomActions={({ close }) => (
-            <>
-              <Button onClick={close}>Save</Button>
-              <Button variant='outlined' onClick={close}>
-                Cancel
-              </Button>
-            </>
-          )}
-        >
-          <Stack sx={styles.content}>
-            {createSequence(5).map((index) => (
-              <ListItem key={index} onClick={close}>
-                Item {index + 1}
-              </ListItem>
-            ))}
-          </Stack>
-        </SideSheetContent>
-      )}
+      <Placeholder
+        label='Did you open the drawer?'
+        corner='none'
+        width={160}
+        height={160}
+      />
     </Drawer>
   );
 };

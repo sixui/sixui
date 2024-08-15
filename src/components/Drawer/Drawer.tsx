@@ -20,7 +20,6 @@ import { Scrim } from '../Scrim';
 import { Portal } from '../Portal';
 import { FloatingTransition } from '../FloatingTransition';
 import { drawerStyles } from './Drawer.styles';
-import { drawerVariantStyles } from './variants';
 
 // https://github.com/material-components/material-web/blob/main/drawer/internal/drawer.ts
 
@@ -35,18 +34,14 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
         isOpen: isOpenProp,
         disabled,
         onOpenChange,
-        variant = 'standard',
         anchor = 'left',
         children,
         ...other
       } = props;
 
-      // FIXME: support detached
-      const contentVariant = variant === 'detached' ? 'detachedModal' : 'modal';
-      const variantStyles = drawerVariantStyles[variant];
       const { getStyles, globalStyles } = useStyles({
         name: 'Drawer',
-        styles: [drawerStyles, variantStyles, styles],
+        styles: [drawerStyles, styles],
       });
 
       const [isOpen, setIsOpen] = useControlledValue({
@@ -111,24 +106,21 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
                     placement={anchor}
                     origin='edge'
                     pattern='enterExitOffScreen'
+                    sx={sx}
+                    {...interactions.getFloatingProps()}
+                    {...other}
+                    ref={drawerRef}
                   >
-                    <div
-                      {...stylex.props(sx)}
-                      {...interactions.getFloatingProps()}
-                      {...other}
-                      ref={drawerRef}
-                    >
-                      {isFunction(children)
-                        ? children({
-                            close: (event) =>
-                              floating.context.onOpenChange(
-                                false,
-                                event?.nativeEvent,
-                                'click',
-                              ),
-                          })
-                        : children}
-                    </div>
+                    {isFunction(children)
+                      ? children({
+                          close: (event) =>
+                            floating.context.onOpenChange(
+                              false,
+                              event?.nativeEvent,
+                              'click',
+                            ),
+                        })
+                      : children}
                   </FloatingTransition>
                 </FloatingFocusManager>
               </div>
