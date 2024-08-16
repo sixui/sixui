@@ -142,4 +142,12 @@ export const Standard: IStory = {
   args: defaultArgs,
 };
 
+export const Detached: IStory = {
+  render: (props) => <DrawerFrame {...props} />,
+  args: {
+    ...defaultArgs,
+    variant: 'detached',
+  },
+};
+
 export default meta;

@@ -6,6 +6,8 @@ import type { IPortalProps } from '../Portal';
 import type { IPopoverBaseTriggerRendererProps } from '../PopoverBase';
 import type { IDrawerStylesKey } from './Drawer.styles';
 
+export type IDrawerVariant = 'standard' | 'detached';
+
 export type IDrawerTriggerRenderProps = IOmit<
   IPopoverBaseTriggerRendererProps,
   'setRef' | 'getProps'
@@ -32,4 +34,5 @@ export type IDrawerProps = Pick<IPortalProps, 'root'> &
     children:
       | ((renderProps: IDrawerChildrenRenderProps) => React.ReactNode)
       | React.ReactNode;
+    variant?: IDrawerVariant;
   };
