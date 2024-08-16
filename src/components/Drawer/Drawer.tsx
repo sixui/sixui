@@ -45,6 +45,7 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
             'host',
             `host$${orientation}`,
             `host$${anchor}`,
+            sx,
           )}
           root={root}
           opened={opened}
@@ -60,7 +61,7 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
               visuallyHiddenDismiss: true,
             },
             floatingTransition: {
-              sx: [combineStyles('content'), sx],
+              sx: combineStyles('content'),
               ...other,
             },
           }}

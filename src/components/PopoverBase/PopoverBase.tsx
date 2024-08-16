@@ -236,14 +236,6 @@ export const PopoverBase = fixedForwardRef(function PopoverBase<
 
       {transitionStatus.isMounted ? (
         <Portal root={root}>
-          {withScrim ? (
-            <Scrim
-              floatingContext={floating.context}
-              lockScroll
-              {...slotProps?.scrim}
-            />
-          ) : null}
-
           <FloatingFocusManager
             disabled={!trapFocus}
             context={floating.context}
@@ -252,6 +244,14 @@ export const PopoverBase = fixedForwardRef(function PopoverBase<
             {...slotProps?.floatingFocusManager}
           >
             <div {...stylex.props(globalStyles, sx)}>
+              {withScrim ? (
+                <Scrim
+                  floatingContext={floating.context}
+                  lockScroll
+                  {...slotProps?.scrim}
+                />
+              ) : null}
+
               <div
                 {...getStyles(
                   'floating',

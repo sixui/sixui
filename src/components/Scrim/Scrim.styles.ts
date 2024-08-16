@@ -7,7 +7,6 @@ import { zIndexTokens } from '~/themes/base/zIndex.stylex';
 export type IScrimStylesKey = keyof typeof scrimStyles;
 export const scrimStyles = stylex.create({
   host: {
-    zIndex: zIndexTokens.modal,
     display: 'grid',
     placeItems: 'center',
   },

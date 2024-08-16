@@ -51,6 +51,7 @@ const styles = stylex.create({
   content: {
     padding: spacingTokens.padding$4,
     backgroundColor: colorSchemeTokens.surface,
+    flexGrow: 1,
   },
 });
 
@@ -62,9 +63,9 @@ const DrawerDemo: React.FC<IDrawerDemo> = (props) => {
   const { anchor = 'left', ...other } = props;
 
   return (
-    <Drawer {...other} anchor={anchor} sx={styles.content}>
+    <Drawer {...other} anchor={anchor}>
       {({ close }) => (
-        <>
+        <div {...stylex.props(styles.content)}>
           {/* This is a hack to prevent the first focusable element
                     from being focused when the side sheet is opened. */}
           <button
@@ -79,7 +80,7 @@ const DrawerDemo: React.FC<IDrawerDemo> = (props) => {
               Close
             </Button>
           </Stack>
-        </>
+        </div>
       )}
     </Drawer>
   );

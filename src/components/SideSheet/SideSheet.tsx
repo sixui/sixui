@@ -5,6 +5,7 @@ import { useMergeRefs } from '@floating-ui/react';
 import type { ISideSheetProps } from './SideSheet.types';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
 import { useStyles } from '~/hooks/useStyles';
+import { useMediaQuery } from '~/hooks/useMediaQuery';
 import {
   SideSheetContent,
   type ISideSheetContentProps,
@@ -39,13 +40,16 @@ export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
         transitionNodeRef,
         forwardedRef,
       ]);
-      console.log('_o', opened);
+
+      // FIXME: use token
+      const isModal = useMediaQuery('(max-width: 640px)');
+      const expanded = !isModal && opened;
 
       return (
         <>
           <CSSTransition
             nodeRef={transitionNodeRef}
-            in={opened}
+            in={expanded}
             timeout={550} // motionTokens.duration$long3
             classNames={{
               enter: getStyles('animation$enter').className,
@@ -64,27 +68,29 @@ export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
             />
           </CSSTransition>
 
-          {/* <Drawer
-            root={root}
-            opened={opened}
-            defaultOpened={defaultOpened}
-            onClose={onClose}
-            disabled={disabled}
-            anchor={anchor}
-            variant={variant}
-          >
-            {({ close }) => (
-              <SideSheetContent
-                sx={[globalStyles, sx]}
-                styles={innerStyles?.sideSheetContent}
-                anchor={anchor}
-                variant={variant === 'detached' ? 'detachedModal' : 'modal'}
-                onClose={close}
-                {...other}
-                ref={forwardedRef}
-              />
-            )}
-          </Drawer> */}
+          {isModal ? (
+            <Drawer
+              root={root}
+              opened={opened}
+              defaultOpened={defaultOpened}
+              onClose={onClose}
+              disabled={disabled}
+              anchor={anchor}
+              variant={variant}
+            >
+              {({ close }) => (
+                <SideSheetContent
+                  sx={[globalStyles, sx]}
+                  styles={innerStyles?.sideSheetContent}
+                  anchor={anchor}
+                  variant={variant === 'detached' ? 'detachedModal' : 'modal'}
+                  onClose={close}
+                  {...other}
+                  ref={forwardedRef}
+                />
+              )}
+            </Drawer>
+          ) : null}
         </>
       );
     },
