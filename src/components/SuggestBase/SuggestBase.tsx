@@ -84,25 +84,25 @@ export const SuggestBase = fixedForwardRef(function SuggestBase<TItem>(
                       )
                   : undefined
               }
-              isOpen={renderProps.isOpen}
+              opened={renderProps.opened}
             />
           }
           populated={
-            renderProps.isOpen ||
+            renderProps.opened ||
             !!singleFilterableListBase.selectedItem ||
             !!renderProps.query
           }
           {...renderProps.forwardedProps}
           {...renderProps.getInputFilterProps(renderProps.getTriggerProps())}
           value={
-            renderProps.isOpen || renderProps.hasFocus
+            renderProps.opened || renderProps.hasFocus
               ? renderProps.query
               : ((typeof selectedItemLabel === 'string'
                   ? selectedItemLabel
                   : undefined) ?? '')
           }
           placeholder={
-            (renderProps.isOpen || renderProps.hasFocus) && selectedItemLabel
+            (renderProps.opened || renderProps.hasFocus) && selectedItemLabel
               ? typeof selectedItemLabel === 'string'
                 ? selectedItemLabel
                 : undefined

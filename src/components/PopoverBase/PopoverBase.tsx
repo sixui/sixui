@@ -87,6 +87,7 @@ export const PopoverBase = fixedForwardRef(function PopoverBase<
     slotProps,
     middlewares: middlewaresProp,
     additionalMiddlewares,
+    additionalInteractions,
     floatingStrategy = 'absolute',
     openEvents: openEventsProp,
     closeEvents: closeEventsProp,
@@ -190,7 +191,14 @@ export const PopoverBase = fixedForwardRef(function PopoverBase<
     escapeKey: closeEvents.escapeKey,
   });
   const role = useRole(floating.context, { role: roleProp });
-  const interactions = useInteractions([hover, focus, click, dismiss, role]);
+  const interactions = useInteractions([
+    hover,
+    focus,
+    click,
+    dismiss,
+    role,
+    ...(additionalInteractions ?? []),
+  ]);
   const transitionStatus = useTransitionStatus(floating.context, {
     duration: 150, // motionTokens.duration$short3
   });

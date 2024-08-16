@@ -7,7 +7,7 @@ import type { IMenuStylesKey } from './Menu.styles';
 import type { IPortalProps } from '../Portal';
 
 export type IMenuTriggerRenderProps = {
-  isOpen: boolean;
+  opened: boolean;
   placement: Placement;
   getProps: (
     userProps?: React.ComponentPropsWithoutRef<'button'>,

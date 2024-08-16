@@ -20,11 +20,11 @@ type IScrimDemoProps = IOmit<IScrimProps, 'floatingContext'>;
 
 const ScrimDemo: React.FC<IScrimDemoProps> = (props) => {
   const { children, ...other } = props;
-  const [isOpen, setIsOpen] = useState(false);
+  const [opened, setOpened] = useState(false);
 
   const floating = useFloating<HTMLButtonElement>({
-    open: isOpen,
-    onOpenChange: setIsOpen,
+    open: opened,
+    onOpenChange: setOpened,
   });
   const click = useClick(floating.context);
   const dismiss = useDismiss(floating.context, {
@@ -37,7 +37,7 @@ const ScrimDemo: React.FC<IScrimDemoProps> = (props) => {
       <Button
         {...interactions.getReferenceProps({
           ref: floating.refs.setReference,
-          onClick: () => setIsOpen(true),
+          onClick: () => setOpened(true),
         })}
       >
         Show scrim

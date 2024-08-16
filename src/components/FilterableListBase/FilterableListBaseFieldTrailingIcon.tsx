@@ -4,7 +4,7 @@ import { SvgIcon } from '../SvgIcon';
 import { Stack } from '../Stack';
 
 export type IFilterableListBaseFieldTrailingIcon = {
-  isOpen?: boolean;
+  opened?: boolean;
   onClear?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
@@ -18,7 +18,7 @@ export const FilterableListBaseFieldTrailingIcon = (
     <IconButton
       tabIndex={-1}
       icon={
-        props.isOpen ? (
+        props.opened ? (
           <SvgIcon icon={iconTriangleUp} />
         ) : (
           <SvgIcon icon={iconTriangleDown} />

@@ -7,7 +7,7 @@ export type IMenuItemContextValue = {
   ) => Record<string, unknown>;
   activeIndex: number | null;
   setActiveIndex: React.Dispatch<React.SetStateAction<number | null>>;
-  isOpen: boolean;
+  opened: boolean;
   placement?: Placement;
 };
 
@@ -21,6 +21,6 @@ export const MenuItemContext = createContext<IMenuItemContextValue>({
   getItemProps: (userProps) => ({ ...userProps }),
   activeIndex: null,
   setActiveIndex: stub,
-  isOpen: false,
+  opened: false,
   placement: undefined,
 });

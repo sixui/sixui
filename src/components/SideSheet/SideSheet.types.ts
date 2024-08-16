@@ -15,7 +15,7 @@ export type ISideSheetTriggerRenderProps = {
   /**
    * Whether the bottom sheet is open.
    */
-  isOpen: boolean;
+  opened: boolean;
 
   /**
    * A callback to set the trigger element.
@@ -36,7 +36,7 @@ export type ISideSheetProps = Pick<IPortalProps, 'root'> &
         ICompiledStyles<ISideSheetContentStylesKey>
       >;
     };
-    isOpen?: boolean;
+    opened?: boolean;
     disabled?: boolean;
     trigger?:
       | React.ReactNode

@@ -34,7 +34,7 @@ export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
         root,
         innerStyles,
         trigger,
-        isOpen: isOpenProp,
+        opened: openedProp,
         disabled,
         onOpenChange,
         modal,
@@ -56,16 +56,16 @@ export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
         styles: [sideSheetStyles, variantStyles, styles],
       });
 
-      const [isOpen, setIsOpen] = useControlledValue({
-        controlled: isOpenProp,
-        default: !!isOpenProp,
+      const [opened, setOpened] = useControlledValue({
+        controlled: openedProp,
+        default: !!openedProp,
         name: 'SideSheet',
       });
       const floating = useFloating({
-        open: isOpen && !disabled,
-        onOpenChange: (isOpen, event, reason) => {
-          onOpenChange?.(isOpen, event, reason);
-          setIsOpen(isOpen);
+        open: opened && !disabled,
+        onOpenChange: (opened, event, reason) => {
+          onOpenChange?.(opened, event, reason);
+          setOpened(opened);
         },
       });
       const click = useClick(floating.context);
@@ -81,7 +81,7 @@ export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
 
       const triggerElement = isFunction(trigger)
         ? trigger({
-            isOpen,
+            opened,
             getProps: interactions.getReferenceProps,
             setRef: floating.refs.setReference,
           })

@@ -18,11 +18,11 @@ export const ScrimPlaygroundDemo: React.FC<IScrimPlaygroundDemoProps> = (
   props,
 ) => {
   const { children, ...scrimProps } = props.scrim;
-  const [isOpen, setIsOpen] = useState(false);
+  const [opened, setOpened] = useState(false);
   const scrimRef = useRef<HTMLDivElement>(null);
   const floating = useFloating<HTMLButtonElement>({
-    open: isOpen,
-    onOpenChange: setIsOpen,
+    open: opened,
+    onOpenChange: setOpened,
   });
   const click = useClick(floating.context);
   const dismiss = useDismiss(floating.context, {
@@ -43,7 +43,7 @@ export const ScrimPlaygroundDemo: React.FC<IScrimPlaygroundDemoProps> = (
       <Button
         {...interactions.getReferenceProps({
           ref: floating.refs.setReference,
-          onClick: () => setIsOpen(true),
+          onClick: () => setOpened(true),
         })}
       >
         Show scrim

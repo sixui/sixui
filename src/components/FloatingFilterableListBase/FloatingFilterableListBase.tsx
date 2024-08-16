@@ -42,7 +42,6 @@ export const FloatingFilterableListBase = fixedForwardRef(
     const {
       styles,
       sx,
-      root,
       children,
       placement = 'bottom-start',
       orientation = 'vertical',
@@ -82,7 +81,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
       styles: [floatingFilterableListBaseStyles, styles],
     });
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [opened, setOpened] = useState(false);
     const [hasFocus, setHasFocus] = useState(false);
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -90,10 +89,10 @@ export const FloatingFilterableListBase = fixedForwardRef(
     const labelsRef = useRef<Array<string | null>>([]);
     const floating = useFloating({
       placement: placement,
-      open: isOpen,
-      onOpenChange: (isOpen, event, reason) => {
-        setIsOpen(isOpen);
-        onOpenChange?.(isOpen, event, reason);
+      open: opened,
+      onOpenChange: (opened, event, reason) => {
+        setOpened(opened);
+        onOpenChange?.(opened, event, reason);
       },
       whileElementsMounted: autoUpdate,
       middleware: [
@@ -140,7 +139,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
       listRef: labelsRef,
       activeIndex,
       selectedIndex,
-      onMatch: isOpen ? setActiveIndex : setSelectedIndex,
+      onMatch: opened ? setActiveIndex : setSelectedIndex,
       enabled: !canFilter,
       findMatch: itemPredicate
         ? (list, typedString) => {
@@ -183,7 +182,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
       }
 
       if (closeOnSelect) {
-        setIsOpen(false);
+        setOpened(false);
       } else {
         inputFilterRef.current?.focus();
       }
@@ -200,7 +199,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
       }
 
       if (closeOnSelect) {
-        setIsOpen(false);
+        setOpened(false);
       }
     };
 
@@ -216,8 +215,8 @@ export const FloatingFilterableListBase = fixedForwardRef(
       onQueryChange?.(newQuery, event);
       setActiveIndex(null);
 
-      if (!isOpen) {
-        setIsOpen(true);
+      if (!opened) {
+        setOpened(true);
       }
     };
 
@@ -235,7 +234,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
       onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>): void => {
         switch (event.key) {
           case 'Enter':
-            if (isOpen) {
+            if (opened) {
               event.preventDefault();
               isEnterKeyPressedRef.current = true;
             } else {
@@ -252,7 +251,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
       },
       onKeyUp: (event: React.KeyboardEvent<HTMLInputElement>): void => {
         if (
-          isOpen &&
+          opened &&
           event.key === 'Enter' &&
           activeIndex != null &&
           isEnterKeyPressedRef.current
@@ -340,7 +339,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
     const handleBlur = (): void => {
       setHasFocus(false);
 
-      if (resetOnBlur && !isOpen) {
+      if (resetOnBlur && !opened) {
         setQuery('');
       }
     };
@@ -349,7 +348,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
       <>
         {isFunction(children)
           ? children({
-              isOpen,
+              opened,
               hasFocus,
               setTriggerRef: buttonHandleRef,
               getTriggerProps: (userProps) => ({
@@ -375,7 +374,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
           : children}
 
         {transitionStatus.isMounted && (
-          <Portal root={root}>
+          <Portal>
             <FloatingFocusManager
               context={floating.context}
               visuallyHiddenDismiss

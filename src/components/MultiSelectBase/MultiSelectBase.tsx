@@ -104,7 +104,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
             userProps?.onKeyUp?.(event);
           },
           onKeyDown: (event) => {
-            const { query, isOpen } = renderProps;
+            const { query, opened } = renderProps;
             const focusedChipIndex =
               multiFilterableListBase.getFocusedChipIndex();
             const inputElement = renderProps.inputFilterRef?.current;
@@ -160,7 +160,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
               case 'ArrowLeft':
                 if (
                   hasFocusedChip ||
-                  ((!isGrid || !isOpen) &&
+                  ((!isGrid || !opened) &&
                     (!query ||
                       (query &&
                         isTextCursorAtStart &&
@@ -183,7 +183,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
               case 'ArrowRight':
                 if (
                   hasFocusedChip ||
-                  ((!isGrid || !isOpen) &&
+                  ((!isGrid || !opened) &&
                     (!query ||
                       (query &&
                         isTextCursorAtEnd &&
@@ -231,11 +231,11 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
                         )
                     : undefined
                 }
-                isOpen={renderProps.isOpen}
+                opened={renderProps.opened}
               />
             }
             populated={
-              renderProps.isOpen ||
+              renderProps.opened ||
               !!multiFilterableListBase.selectedItems.length ||
               !!renderProps.query
             }

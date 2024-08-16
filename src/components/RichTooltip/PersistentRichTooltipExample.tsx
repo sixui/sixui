@@ -8,11 +8,11 @@ import { RichTooltip } from './RichTooltip';
 export const PersistentRichTooltipExample: React.FC<
   IOmit<IRichTooltipProps, 'onOpenChange'>
 > = (props) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [opened, setOpened] = useState(false);
 
   return (
-    <RichTooltip opened={isOpen} {...props} onOpenChange={setIsOpen} persistent>
-      <Button onClick={() => setIsOpen(true)}>Show</Button>
+    <RichTooltip opened={opened} {...props} onOpenChange={setOpened} persistent>
+      <Button onClick={() => setOpened(true)}>Show</Button>
     </RichTooltip>
   );
 };

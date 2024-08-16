@@ -21,7 +21,7 @@ export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
   /**
    * Whether the floating filterable list is open.
    */
-  isOpen: boolean;
+  opened: boolean;
 
   /**
    * Whether the trigger element has focus.
@@ -115,7 +115,7 @@ export type IFloatingFilterableListBaseProps<
     cols?: number;
     itemFocus?: IFilterableListItemFocus;
     onOpenChange?: (
-      isOpen: boolean,
+      opened: boolean,
       event?: Event,
       reason?: OpenChangeReason,
     ) => void;

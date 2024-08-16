@@ -1,4 +1,5 @@
 import type {
+  ElementProps,
   FlipOptions,
   FloatingFocusManagerProps,
   Middleware,
@@ -198,6 +199,8 @@ export type IPopoverBaseProps<TForwardedProps extends object = object> = Pick<
      * @see https://floating-ui.com/docs/usefloating#middleware
      */
     additionalMiddlewares?: Array<Middleware | null | undefined | false>;
+
+    additionalInteractions?: Array<ElementProps>;
 
     /**
      * The events that will open the popover.
