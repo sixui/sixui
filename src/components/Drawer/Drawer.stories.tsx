@@ -15,9 +15,9 @@ import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { scaleTokens } from '~/themes/base/scale.stylex';
 import { outlineTokens } from '~/themes/base/outline.stylex';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { commonStyles } from '~/helpers/commonStyles';
-import { Button, IButtonProps } from '../Button';
+import { useDisclosure } from '~/hooks/useDisclosure';
+import { Button } from '../Button';
 import { Stack } from '../Stack';
 import { Frame } from '../Frame';
 import { Drawer } from './Drawer';
@@ -54,27 +54,15 @@ const styles = stylex.create({
   },
 });
 
-const defaultArgs = {
-  onOpenChange: (...args) => void sbHandleEvent('openChange', args),
-} satisfies Partial<IDrawerProps>;
+const defaultArgs = {} satisfies Partial<IDrawerProps>;
 
-type IDrawerDemo = IOmit<IDrawerProps, 'children'> &
-  Pick<IButtonProps, 'icon' | 'trailingIcon'>;
+type IDrawerDemo = IOmit<IDrawerProps, 'children'>;
 
 const DrawerDemo: React.FC<IDrawerDemo> = (props) => {
-  const { icon, trailingIcon, anchor = 'left', ...other } = props;
+  const { anchor = 'left', ...other } = props;
 
   return (
-    <Drawer
-      {...other}
-      anchor={anchor}
-      trigger={
-        <Button icon={icon} trailingIcon={trailingIcon} variant='text'>
-          Open {props.anchor}
-        </Button>
-      }
-      sx={styles.content}
-    >
+    <Drawer {...other} anchor={anchor} sx={styles.content}>
       {({ close }) => (
         <>
           {/* This is a hack to prevent the first focusable element
@@ -99,38 +87,75 @@ const DrawerDemo: React.FC<IDrawerDemo> = (props) => {
 
 const DrawerFrame: React.FC<IDrawerProps> = (props) => {
   const [rootElement, setRootElement] = useState<HTMLDivElement | null>(null);
+  const [leftOpened, leftActions] = useDisclosure(false);
+  const [topOpened, topActions] = useDisclosure(false);
+  const [rightOpened, rightActions] = useDisclosure(false);
+  const [bottomOpened, bottomActions] = useDisclosure(false);
 
   return (
     <Frame importParentStyles sx={styles.frame}>
       <div ref={setRootElement}>
+        <DrawerDemo
+          {...props}
+          root={rootElement}
+          opened={leftOpened}
+          onClose={leftActions.close}
+          anchor='left'
+        />
+        <DrawerDemo
+          {...props}
+          root={rootElement}
+          opened={topOpened}
+          onClose={topActions.close}
+          anchor='top'
+        />
+        <DrawerDemo
+          {...props}
+          root={rootElement}
+          opened={rightOpened}
+          onClose={rightActions.close}
+          anchor='right'
+        />
+        <DrawerDemo
+          {...props}
+          root={rootElement}
+          opened={bottomOpened}
+          onClose={bottomActions.close}
+          anchor='bottom'
+        />
+
         <Stack horizontal justify='space-between' sx={styles.frameInner}>
-          <DrawerDemo
-            {...props}
-            root={rootElement}
-            anchor='left'
+          <Button
+            variant='text'
+            onClick={leftActions.open}
             icon={<FontAwesomeIcon icon={faArrowLeft} />}
-          />
+          >
+            Open left
+          </Button>
           <Stack justify='space-between' align='center' sx={styles.column}>
-            <DrawerDemo
-              {...props}
-              root={rootElement}
-              anchor='top'
+            <Button
+              variant='text'
+              onClick={topActions.open}
               icon={<FontAwesomeIcon icon={faArrowUp} />}
-            />
-            <DrawerDemo
-              {...props}
-              root={rootElement}
-              anchor='bottom'
+            >
+              Open top
+            </Button>
+            <Button
+              variant='text'
+              onClick={bottomActions.open}
               icon={<FontAwesomeIcon icon={faArrowDown} />}
-            />
+            >
+              Open bottom
+            </Button>
           </Stack>
-          <DrawerDemo
-            {...props}
-            root={rootElement}
-            anchor='right'
+          <Button
+            variant='text'
+            onClick={rightActions.open}
             icon={<FontAwesomeIcon icon={faArrowRight} />}
             trailingIcon
-          />
+          >
+            Open right
+          </Button>
         </Stack>
       </div>
     </Frame>

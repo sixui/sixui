@@ -2,8 +2,6 @@ import { forwardRef } from 'react';
 
 import type { IDialogProps } from './Dialog.types';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
-import { isFunction } from '~/helpers/isFunction';
-import { useControlledValue } from '~/hooks/useControlledValue';
 import { useStyles } from '~/hooks/useStyles';
 import { DialogContent } from '../DialogContent';
 import { dialogStyles } from './Dialog.styles';
@@ -20,10 +18,9 @@ export const Dialog = createPolymorphicComponent<'div', IDialogProps>(
         sx,
         root,
         innerStyles,
-        trigger,
-        opened: openedProp,
+        opened,
         disabled,
-        onOpenChange,
+        onClose,
         modal,
         ...other
       } = props;
@@ -33,19 +30,12 @@ export const Dialog = createPolymorphicComponent<'div', IDialogProps>(
         styles: [dialogStyles, styles],
       });
 
-      const [opened, setOpened] = useControlledValue({
-        controlled: openedProp,
-        default: !!openedProp,
-        name: 'Dialog',
-        onValueChange: onOpenChange,
-      });
-
       return (
         <PopoverBase
           sx={combineStyles('host')}
           root={root}
           opened={opened}
-          onOpenChange={setOpened}
+          onClose={onClose}
           contentRenderer={({ close }) => (
             <DialogContent
               sx={[
@@ -57,11 +47,11 @@ export const Dialog = createPolymorphicComponent<'div', IDialogProps>(
               styles={innerStyles?.dialogContent}
               onClose={close}
               {...other}
+              ref={forwardedRef}
             />
           )}
           floatingStrategy={false}
           placement='top'
-          openEvents={{ click: true }}
           closeEvents={{
             focusOut: false,
             clickOutside: !modal,
@@ -75,18 +65,7 @@ export const Dialog = createPolymorphicComponent<'div', IDialogProps>(
             size: false,
           }}
           disabled={disabled}
-          ref={forwardedRef}
-        >
-          {(renderProps) => (
-            <span
-              style={{ display: 'inline-flex' }}
-              {...renderProps.getProps()}
-              ref={renderProps.setRef}
-            >
-              {isFunction(trigger) ? trigger(renderProps) : trigger}
-            </span>
-          )}
-        </PopoverBase>
+        />
       );
     },
   ),

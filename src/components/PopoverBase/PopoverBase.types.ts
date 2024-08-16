@@ -3,7 +3,6 @@ import type {
   FlipOptions,
   FloatingFocusManagerProps,
   Middleware,
-  OpenChangeReason,
   Placement,
   ReferenceType,
   ShiftOptions,
@@ -134,13 +133,14 @@ export type IPopoverBaseProps<TForwardedProps extends object = object> = Pick<
     cursor?: IPopoverCursorType;
 
     /**
-     * A callback that is called when the open state of the popover changes.
+     * Called when the popover is closed.
      */
-    onOpenChange?: (
-      opened: boolean,
-      event?: Event,
-      reason?: OpenChangeReason,
-    ) => void;
+    onOpen?: () => void;
+
+    /**
+     * Called when the popover is closed.
+     */
+    onClose?: () => void;
 
     /**
      * If set, the popover will not be rendered.
@@ -206,7 +206,7 @@ export type IPopoverBaseProps<TForwardedProps extends object = object> = Pick<
      * The events that will open the popover.
      * @defaultValue `{ hover: false, focus: false, click: false, touch: false }`
      */
-    openEvents: IPopoverOpenEvents;
+    openEvents?: IPopoverOpenEvents;
 
     /**
      * The events that will close the popover.

@@ -99,6 +99,7 @@ export * from './hooks/useElementSize';
 export * from './hooks/useId';
 export * from './hooks/useImageLoaded';
 export * from './hooks/usePrevious';
+export * from './hooks/useDisclosure';
 
 // helpers
 export * from './helpers/types';

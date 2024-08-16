@@ -30,7 +30,11 @@ export const RichTooltip = forwardRef<HTMLDivElement, IRichTooltipProps>(
         placement={placement}
         contentRenderer={renderContent}
         forwardProps
-        openEvents={{ hover: !persistent, focus: !persistent }}
+        openEvents={{
+          click: !!persistent,
+          hover: !persistent,
+          focus: !persistent,
+        }}
         withScrim={persistent}
         closeEvents={{
           clickOutside: !persistent,

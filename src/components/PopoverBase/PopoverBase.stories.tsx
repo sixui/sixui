@@ -54,7 +54,8 @@ const TOOLTIP_CONTENT =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
 
 const defaultArgs = {
-  onOpenChange: (...args) => void sbHandleEvent('openChange', args),
+  onOpen: (...args) => void sbHandleEvent('open', args),
+  onClose: (...args) => void sbHandleEvent('close', args),
   contentRenderer: ({ renderCursor }) => (
     <div {...stylex.props(styles.tooltip)}>
       <div {...stylex.props(styles.cursor)}>{renderCursor()}</div>

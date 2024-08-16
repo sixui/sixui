@@ -1,25 +1,21 @@
 import stylex from '@stylexjs/stylex';
-
-import { zIndexTokens } from '~/themes/base/zIndex.stylex';
-import { sideSheetTokens } from './SideSheet.stylex';
+import { motionTokens } from '~/themes/base/motion.stylex';
 
 export type ISideSheetStylesKey = keyof typeof sideSheetStyles;
 export const sideSheetStyles = stylex.create({
-  host: {
-    display: 'flex',
-    position: 'fixed',
-    insetInline: 0,
-    zIndex: zIndexTokens.modal,
-    inset: sideSheetTokens.containerMargin,
+  animation$enter: {
+    transform: 'translateX(-100%)',
   },
-  host$left: {
-    left: sideSheetTokens.containerMargin,
+  animation$enterActive: {
+    transform: 'translateX(0)',
+    transitionProperty: 'transform',
+    transitionDuration: motionTokens.duration$long3,
+    transitionTimingFunction: motionTokens.easing$emphasizedDecelerate,
   },
-  host$right: {
-    right: sideSheetTokens.containerMargin,
-  },
-  sideSheetContent: {
-    maxWidth: `min(100%, ${sideSheetTokens.containerMaxWidth})`,
-    height: `calc(${sideSheetTokens.containerHeight} - ${sideSheetTokens.containerMargin} * 2)`,
+  animation$exitActive: {
+    transform: 'translateX(-100%)',
+    transitionProperty: 'transform',
+    transitionDuration: motionTokens.duration$short3,
+    transitionTimingFunction: motionTokens.easing$emphasizedAccelerate,
   },
 });

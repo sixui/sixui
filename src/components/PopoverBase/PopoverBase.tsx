@@ -18,7 +18,6 @@ import {
   useMergeRefs,
   useRole,
   useTransitionStatus,
-  type OpenChangeReason,
 } from '@floating-ui/react';
 import stylex from '@stylexjs/stylex';
 
@@ -77,7 +76,8 @@ export const PopoverBase = fixedForwardRef(function PopoverBase<
     opened: openedProp,
     defaultOpened,
     cursor: cursorType = false,
-    onOpenChange,
+    onOpen,
+    onClose,
     forwardProps,
     disabled,
     role: roleProp,
@@ -120,23 +120,22 @@ export const PopoverBase = fixedForwardRef(function PopoverBase<
     controlled: openedProp,
     default: defaultOpened || false,
     name: 'PopoverBase',
-    onValueChange: onOpenChange,
+    onValueChange: (newOpened) => {
+      if (newOpened !== opened) {
+        if (newOpened) {
+          onOpen?.();
+        } else {
+          onClose?.();
+        }
+      }
+    },
   });
   const arrowRef = useRef(null);
   const cursor = usePopoverCursor({ type: cursorType });
   const floating = useFloating({
     placement,
     open: opened,
-    onOpenChange: (
-      newOpened: boolean,
-      event?: Event,
-      reason?: OpenChangeReason,
-    ) => {
-      if (opened !== newOpened) {
-        setOpened(newOpened);
-        onOpenChange?.(newOpened, event, reason);
-      }
-    },
+    onOpenChange: setOpened,
     whileElementsMounted: autoUpdate,
     middleware: [
       offset(cursorType ? 4 + cursor.size.height : undefined),
@@ -174,16 +173,16 @@ export const PopoverBase = fixedForwardRef(function PopoverBase<
     id: openEvents.hover ? undefined : '__persistent',
   });
   const hover = useHover(floating.context, {
+    enabled: !!children && !!openEvents.hover && !disabled,
     move: false,
     delay: delayGroup.delay,
-    enabled: !!openEvents.hover && !disabled,
     mouseOnly: !openEvents.touch,
   });
   const click = useClick(floating.context, {
-    enabled: !!openEvents.click && !disabled,
+    enabled: !!children && !!openEvents.click && !disabled,
   });
   const focus = useFocus(floating.context, {
-    enabled: !!openEvents.focus && !disabled,
+    enabled: !!children && !!openEvents.focus && !disabled,
     visibleOnly: true,
   });
   const dismiss = useDismiss(floating.context, {

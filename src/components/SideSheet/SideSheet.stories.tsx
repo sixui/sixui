@@ -1,26 +1,24 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { createSequence } from '@olivierpascal/helpers';
 import stylex from '@stylexjs/stylex';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 import type { ISideSheetProps } from './SideSheet.types';
+import type { IOmit } from '~/helpers/types';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { scaleTokens } from '~/themes/base/scale.stylex';
+import { useToggle } from '~/hooks/useToggle';
 import { outlineTokens } from '~/themes/base/outline.stylex';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { commonStyles } from '~/helpers/commonStyles';
+import { useDisclosure } from '~/hooks/useDisclosure';
 import { Button } from '../Button';
-import { ListItem } from '../ListItem';
 import { Stack } from '../Stack';
-import { IconButton } from '../IconButton';
 import { Frame } from '../Frame';
 import { SideSheet } from './SideSheet';
+import { Text } from '../Text';
 
-// https://m3.material.io/components/sideSheets/overview
-// https://material-web.dev/components/sideSheet/
-// https://github.com/material-components/material-web/blob/main/sideSheet/demo/stories.ts
+// https://m3.material.io/components/sidesheets/overview
+// https://material-web.dev/components/sidesheet/
+// https://github.com/material-components/material-web/blob/main/sidesheet/demo/stories.ts
 
 const meta = {
   component: SideSheet,
@@ -36,49 +34,94 @@ const styles = stylex.create({
     borderColor: colorSchemeTokens.outlineVariant,
     borderStyle: 'dashed',
   },
-  content: {
-    minWidth: `calc(300px * ${scaleTokens.scale})`,
-    paddingLeft: spacingTokens.padding$4,
-    paddingRight: spacingTokens.padding$4,
+  frameInner: {
+    height: '100%',
+  },
+  sideSheet: {
+    flexGrow: 0,
+    height: '100%',
+  },
+  main: {
+    flexGrow: 1,
   },
 });
 
-const defaultArgs = {
-  onOpenChange: (...args) => void sbHandleEvent('openChange', args),
-  headline: 'Title',
-  showCloseButton: true,
-  leadingActions: <IconButton icon={<FontAwesomeIcon icon={faArrowLeft} />} />,
-  bottomActions: ({ close }) => (
-    <>
-      <Button onClick={close}>Save</Button>
-      <Button variant='outlined' onClick={close}>
-        Cancel
-      </Button>
-    </>
-  ),
-  trigger: ({ setRef, getProps }) => (
-    <Button {...getProps()} ref={setRef}>
-      Open
-    </Button>
-  ),
-  children: ({ close }) => (
-    <Stack sx={styles.content}>
-      {createSequence(5).map((index) => (
-        <ListItem key={index} onClick={close}>
-          Item {index + 1}
-        </ListItem>
-      ))}
-    </Stack>
-  ),
-} satisfies Partial<ISideSheetProps>;
+const defaultArgs = {} satisfies Partial<ISideSheetProps>;
+
+type ISideSheetDemo = IOmit<ISideSheetProps, 'children'>;
+
+const SideSheetDemo: React.FC<ISideSheetDemo> = (props) => {
+  const { anchor = 'left', ...other } = props;
+
+  return (
+    <SideSheet {...other} anchor={anchor}>
+      {({ close }) => (
+        <>
+          {/* This is a hack to prevent the first focusable element from being
+          focused when the side sheet is opened. */}
+          <button
+            aria-hidden
+            type='button'
+            {...stylex.props(commonStyles.outOfScreen)}
+          />
+
+          <Stack align='start'>
+            <Text>Press escape to close the sidesheet.</Text>
+            <Button onClick={close} variant='text'>
+              Close
+            </Button>
+          </Stack>
+        </>
+      )}
+    </SideSheet>
+  );
+};
 
 const SideSheetFrame: React.FC<ISideSheetProps> = (props) => {
   const [rootElement, setRootElement] = useState<HTMLDivElement | null>(null);
+  const [opened, { close, open }] = useDisclosure(true);
 
   return (
     <Frame importParentStyles sx={styles.frame}>
       <div ref={setRootElement}>
-        <SideSheet {...props} root={rootElement} />
+        {rootElement && (
+          <Stack
+            horizontal
+            justify='space-between'
+            align='start'
+            sx={styles.frameInner}
+          >
+            <SideSheetDemo
+              sx={styles.sideSheet}
+              {...props}
+              root={rootElement}
+              opened={opened}
+              onClose={close}
+              anchor='left'
+            />
+            <Stack sx={styles.main}>
+              <Button onClick={opened ? close : open}>Toggle</Button>
+            </Stack>
+
+            {/* <Stack horizontal justify='space-between' sx={styles.frameInner}>
+          <Button
+            variant='text'
+            onClick={leftActions.open}
+            icon={<FontAwesomeIcon icon={faArrowLeft} />}
+          >
+            Open left
+          </Button>
+          <Button
+            variant='text'
+            onClick={rightActions.open}
+            icon={<FontAwesomeIcon icon={faArrowRight} />}
+            trailingIcon
+          >
+            Open right
+          </Button>
+        </Stack> */}
+          </Stack>
+        )}
       </div>
     </Frame>
   );
@@ -89,19 +132,10 @@ export const Standard: IStory = {
   args: defaultArgs,
 };
 
-export const Modal: IStory = {
-  render: (props) => <SideSheetFrame {...props} />,
-  args: {
-    ...defaultArgs,
-    modal: true,
-  },
-};
-
 export const Detached: IStory = {
   render: (props) => <SideSheetFrame {...props} />,
   args: {
     ...defaultArgs,
-    modal: true,
     variant: 'detached',
   },
 };

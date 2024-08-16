@@ -2,8 +2,6 @@ import { forwardRef } from 'react';
 
 import type { IDrawerProps } from './Drawer.types';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
-import { isFunction } from '~/helpers/isFunction';
-import { useControlledValue } from '~/hooks/useControlledValue';
 import { useStyles } from '~/hooks/useStyles';
 import { PopoverBase } from '../PopoverBase';
 import { drawerStyles } from './Drawer.styles';
@@ -19,11 +17,10 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
         styles,
         sx,
         root,
-        trigger,
-        opened: openedProp,
+        opened,
         defaultOpened: defaultOpened,
         disabled,
-        onOpenChange,
+        onClose,
         anchor = 'left',
         children,
         variant = 'standard',
@@ -36,12 +33,6 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
         styles: [drawerStyles, variantStyles, styles],
       });
 
-      const [opened, setOpened] = useControlledValue({
-        controlled: openedProp,
-        default: defaultOpened || false,
-        name: 'Drawer',
-        onValueChange: onOpenChange,
-      });
       const orientation = ['left', 'right'].includes(anchor)
         ? 'vertical'
         : 'horizontal';
@@ -58,11 +49,10 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
           root={root}
           opened={opened}
           defaultOpened={defaultOpened}
-          onOpenChange={setOpened}
+          onClose={onClose}
           contentRenderer={children}
           floatingStrategy={false}
           placement={anchor}
-          openEvents={{ click: true }}
           trapFocus
           withScrim
           slotProps={{
@@ -80,17 +70,7 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
           }}
           disabled={disabled}
           ref={forwardedRef}
-        >
-          {(renderProps) => (
-            <span
-              style={{ display: 'inline-flex' }}
-              {...renderProps.getProps()}
-              ref={renderProps.setRef}
-            >
-              {isFunction(trigger) ? trigger(renderProps) : trigger}
-            </span>
-          )}
-        </PopoverBase>
+        />
       );
     },
   ),

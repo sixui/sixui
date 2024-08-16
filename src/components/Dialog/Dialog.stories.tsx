@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 
 import type { IDialogProps } from './Dialog.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { useDisclosure } from '~/hooks/useDisclosure';
 import { Button } from '../Button';
 import { TextInputField } from '../TextInputField';
 import { Stack } from '../Stack';
@@ -18,47 +19,19 @@ const meta = {
 
 type IStory = StoryObj<IDialogProps>;
 
-const defaultArgs = {
-  onOpenChange: (...args) => void sbHandleEvent('openChange', args),
-} satisfies Partial<IDialogProps>;
+const defaultArgs = {} satisfies Partial<IDialogProps>;
 
-export const Uncontrolled: IStory = {
-  render: (props) => <Dialog {...props} />,
-  args: {
-    ...defaultArgs,
-    headline: 'Permanently delete?',
-    children:
-      'Deleting the selected messages will also remove them from all synced devices.',
-    actions: ({ close }) => (
-      <>
-        <Button variant='text' onClick={close}>
-          Cancel
-        </Button>
-        <Button
-          variant='danger'
-          onClick={(...args) =>
-            sbHandleEvent('delete', args, 1000).then((args) => close(...args))
-          }
-        >
-          Delete
-        </Button>
-      </>
-    ),
-    trigger: <Button>Open</Button>,
-  },
-};
-
-const ControlledDialogDemo: React.FC<IDialogProps> = (props) => {
-  const [opened, setOpened] = useState(false);
+const DialogDemo: React.FC<IDialogProps> = (props) => {
+  const [opened, { open, close }] = useDisclosure(false);
 
   return (
     <>
-      <Button onClick={() => setOpened(true)}>Open</Button>
+      <Button onClick={open}>Open</Button>
       <Dialog
         {...props}
         opened={opened}
         headline='Permanently delete?'
-        onOpenChange={setOpened}
+        onClose={close}
         actions={({ close }) => (
           <>
             <Button variant='text' onClick={close}>
@@ -67,7 +40,7 @@ const ControlledDialogDemo: React.FC<IDialogProps> = (props) => {
             <Button
               type='submit'
               onClick={(...args) =>
-                sbHandleEvent('save', args, 1000).then((args) => close(...args))
+                sbHandleEvent('save', args, 1000).then(() => close())
               }
             >
               Delete
@@ -82,22 +55,24 @@ const ControlledDialogDemo: React.FC<IDialogProps> = (props) => {
   );
 };
 
-export const Controlled: IStory = {
-  render: (props) => <ControlledDialogDemo {...props} />,
+export const Standard: IStory = {
+  render: (props) => <DialogDemo {...props} />,
   args: defaultArgs,
 };
 
 const FormDialogDemo: React.FC<IDialogProps> = (props) => {
   const [name, setName] = useState<string>();
   const formRef = useRef<HTMLFormElement>(null);
+  const [opened, { open, close }] = useDisclosure(false);
 
   return (
-    <Stack horizontal gap={4}>
+    <>
       <Dialog
         {...props}
         ref={formRef}
         as='form'
-        trigger={<Button>Open</Button>}
+        opened={opened}
+        onClose={close}
         headline="What's your name?"
         actions={({ close }) => (
           <>
@@ -118,7 +93,7 @@ const FormDialogDemo: React.FC<IDialogProps> = (props) => {
                       ? Object.fromEntries(formData)
                       : undefined;
                     setName(formValues?.name.toString());
-                    close(event);
+                    close();
                   },
                 );
               }}
@@ -130,43 +105,28 @@ const FormDialogDemo: React.FC<IDialogProps> = (props) => {
       >
         <TextInputField name='name' />
       </Dialog>
-      {name ? (
-        <div>
-          Hello, <strong>{name}</strong>!
-        </div>
-      ) : null}
-    </Stack>
+
+      <Stack horizontal gap={4}>
+        <Button onClick={open}>Open</Button>
+        {name ? (
+          <div>
+            Hello, <strong>{name}</strong>!
+          </div>
+        ) : null}
+      </Stack>
+    </>
   );
 };
 
-export const Form: IStory = {
+export const StandardWithForm: IStory = {
   render: (props) => <FormDialogDemo {...props} />,
   args: defaultArgs,
 };
 
 export const Modal: IStory = {
-  render: (props) => <Dialog {...props} />,
+  render: (props) => <DialogDemo {...props} />,
   args: {
     ...defaultArgs,
-    headline: 'Permanently delete?',
-    children:
-      'Deleting the selected messages will also remove them from all synced devices.',
-    actions: ({ close }) => (
-      <>
-        <Button variant='text' onClick={close}>
-          Cancel
-        </Button>
-        <Button
-          variant='danger'
-          onClick={(...args) =>
-            sbHandleEvent('delete', args, 1000).then((args) => close(...args))
-          }
-        >
-          Delete
-        </Button>
-      </>
-    ),
-    trigger: <Button>Open</Button>,
     modal: true,
   },
 };

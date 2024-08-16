@@ -184,7 +184,7 @@ export const DialogContent = createPolymorphicComponent<
                 {actions ? (
                   <div {...getStyles('actions')}>
                     {isFunction(actions)
-                      ? actions({ close: (event) => onClose?.(event) })
+                      ? actions({ close: () => onClose?.() })
                       : actions}
                   </div>
                 ) : null}

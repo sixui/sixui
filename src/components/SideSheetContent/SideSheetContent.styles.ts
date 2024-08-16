@@ -20,11 +20,7 @@ export const sideSheetContentStyles = stylex.create({
     [paperBaseTokens.containerElevation]:
       sideSheetContentTokens.containerElevation,
 
-    position: 'sticky',
-    top: 0,
-    display: 'grid',
-    height: '100vh',
-    gridTemplateRows: 'repeat(1, min-content) 1fr repeat(2, min-content)',
+    gridTemplateRows: 'min-content 1fr min-content',
     gap: sideSheetContentTokens.containerGap,
     paddingTop: sideSheetContentTokens.containerTopSpace,
     paddingBottom: sideSheetContentTokens.containerBottomSpace,
@@ -70,6 +66,7 @@ export const sideSheetContentStyles = stylex.create({
   content: {
     overflowY: 'auto',
     overflowX: 'hidden',
+    height: ' 100%',
   },
   footer: {
     display: 'flex',

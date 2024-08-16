@@ -2,7 +2,7 @@ import type { IBaseProps } from '../Base';
 import type { IDialogContentStylesKey } from './DialogContent.styles';
 
 export type IDialogActionsRenderProps = {
-  close: (event: React.MouseEvent) => void;
+  close: () => void;
 };
 
 export type IDialogContentProps = IBaseProps<IDialogContentStylesKey> & {
@@ -14,5 +14,5 @@ export type IDialogContentProps = IBaseProps<IDialogContentStylesKey> & {
   actions:
     | React.ReactNode
     | ((props: IDialogActionsRenderProps) => React.ReactNode);
-  onClose?: (event: React.MouseEvent) => void;
+  onClose?: () => void;
 };
