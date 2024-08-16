@@ -1,5 +1,8 @@
 import type { IOmit } from '~/helpers/types';
-import type { IPopoverBaseProps } from '../PopoverBase';
+import type {
+  IPopoverBaseProps,
+  IPopoverBaseTriggerRendererProps,
+} from '../PopoverBase';
 import type { IPlainTooltipContentProps } from '../PlainTooltipContent';
 
 export type IPlainTooltipInheritedProps = IOmit<
@@ -7,10 +10,22 @@ export type IPlainTooltipInheritedProps = IOmit<
   'contentRenderer'
 >;
 
+export type IPlainTooltipTriggerRenderProps = IOmit<
+  IPopoverBaseTriggerRendererProps,
+  'setRef' | 'getProps'
+>;
+
 export type IPlainTooltipForwardedProps = IOmit<
   IPlainTooltipContentProps,
   'renderCursor'
 >;
 
-export type IPlainTooltipProps = IPlainTooltipInheritedProps &
-  IPlainTooltipForwardedProps;
+export type IPlainTooltipProps = IOmit<
+  IPlainTooltipInheritedProps,
+  'children'
+> &
+  IPlainTooltipForwardedProps & {
+    children:
+      | ((props: IPlainTooltipTriggerRenderProps) => React.ReactNode)
+      | React.ReactNode;
+  };

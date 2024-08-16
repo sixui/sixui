@@ -18,8 +18,8 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
         sx,
         root,
         trigger,
-        isOpen: isOpenProp,
-        defaultIsOpen,
+        opened: openedProp,
+        defaultOpened: defaultOpened,
         disabled,
         onOpenChange,
         anchor = 'left',
@@ -32,9 +32,9 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
         styles: [drawerStyles, styles],
       });
 
-      const [isOpen, setIsOpen] = useControlledValue({
-        controlled: isOpenProp,
-        default: defaultIsOpen || false,
+      const [opened, setOpened] = useControlledValue({
+        controlled: openedProp,
+        default: defaultOpened || false,
         name: 'Drawer',
         onValueChange: onOpenChange,
       });
@@ -50,14 +50,16 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
             `host$${orientation}`,
             `host$${anchor}`,
           )}
-          isOpen={isOpen}
-          defaultIsOpen={defaultIsOpen}
-          onOpenChange={setIsOpen}
+          root={root}
+          opened={opened}
+          defaultOpened={defaultOpened}
+          onOpenChange={setOpened}
           contentRenderer={children}
+          floatingStrategy={false}
           placement={anchor}
-          floatingStrategy='fixed'
-          openOnClick
+          openEvents={{ click: true }}
           trapFocus
+          withScrim
           slotProps={{
             floatingFocusManager: {
               visuallyHiddenDismiss: true,
@@ -67,19 +69,22 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
               ...other,
             },
           }}
-          root={root}
           middlewares={{
             flip: false,
             shift: false,
           }}
-          withScrim
-          reference='viewport'
           disabled={disabled}
           ref={forwardedRef}
         >
-          {(renderProps) =>
-            isFunction(trigger) ? trigger(renderProps) : trigger
-          }
+          {(renderProps) => (
+            <span
+              style={{ display: 'inline-flex' }}
+              {...renderProps.getProps()}
+              ref={renderProps.setRef}
+            >
+              {isFunction(trigger) ? trigger(renderProps) : trigger}
+            </span>
+          )}
         </PopoverBase>
       );
     },

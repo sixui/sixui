@@ -11,7 +11,7 @@ export const PersistentRichTooltipExample: React.FC<
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <RichTooltip isOpen={isOpen} {...props} onOpenChange={setIsOpen} persistent>
+    <RichTooltip opened={isOpen} {...props} onOpenChange={setIsOpen} persistent>
       <Button onClick={() => setIsOpen(true)}>Show</Button>
     </RichTooltip>
   );

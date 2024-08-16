@@ -3,13 +3,13 @@ import { zIndexTokens } from '~/themes/base/zIndex.stylex';
 
 export type IPopoverBaseStylesKey = keyof typeof popoverBaseStyles;
 export const popoverBaseStyles = stylex.create({
-  host: {
+  floating: {
     zIndex: zIndexTokens.popover,
   },
-  host$absolute: {
+  floating$absolute: {
     position: 'absolute',
   },
-  host$fixed: {
+  floating$fixed: {
     position: 'fixed',
   },
 });

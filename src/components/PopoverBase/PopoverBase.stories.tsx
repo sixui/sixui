@@ -25,7 +25,7 @@ import { PopoverBase } from './PopoverBase';
 
 const meta = {
   component: PopoverBase,
-} satisfies Meta<typeof PopoverBase>;
+} satisfies Meta<typeof PopoverBase<never>>;
 
 type IStory = StoryObj<typeof meta>;
 
@@ -118,7 +118,7 @@ const rows: Array<IComponentPresentation<IPopoverBaseProps>> = [
   {
     legend: 'With scrim',
     props: {
-      scrim: true,
+      withScrim: true,
     },
   },
 ];
@@ -134,7 +134,7 @@ export const OpenOnHover: IStory = {
   ),
   args: {
     ...defaultArgs,
-    openOnHover: true,
+    openEvents: { hover: true },
   },
 };
 
@@ -149,7 +149,7 @@ export const OpenOnClick: IStory = {
   ),
   args: {
     ...defaultArgs,
-    openOnClick: true,
+    openEvents: { click: true },
   },
 };
 
@@ -164,7 +164,7 @@ export const OpenOnFocus: IStory = {
   ),
   args: {
     ...defaultArgs,
-    openOnFocus: true,
+    openEvents: { focus: true },
   },
 };
 
@@ -174,37 +174,12 @@ export const MatchTargetWidth: IStory = {
   ),
   args: {
     ...defaultArgs,
-    openOnClick: true,
+    openEvents: { click: true },
     matchTargetWidth: true,
     children: ({ getProps, setRef }) => (
       <Button {...getProps()} ref={setRef}>
         Click to open
       </Button>
-    ),
-  },
-};
-
-export const Modal: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={PopoverBase}
-      props={props}
-      cols={cols}
-      rows={rows}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    openOnClick: true,
-    modal: true,
-    contentRenderer: ({ renderCursor, close }) => (
-      <div {...stylex.props(styles.tooltip)}>
-        <div {...stylex.props(styles.cursor)}>{renderCursor()}</div>
-        {TOOLTIP_CONTENT}
-        <Button onClick={close} variant='snackbar'>
-          Close
-        </Button>
-      </div>
     ),
   },
 };
@@ -220,11 +195,11 @@ export const WithPaper: IStory = {
   ),
   args: {
     ...defaultArgs,
-    openOnClick: true,
+    openEvents: { click: true },
     contentRenderer: ({ renderCursor, close }) => (
       <Paper sx={styles.paper} elevation={2} corner='md'>
         <div {...stylex.props(styles.cursor)}>{renderCursor()}</div>
-        <Stack sx={styles.paperInner} gap={2}>
+        <Stack align='start' sx={styles.paperInner} gap={2}>
           <div>{TOOLTIP_CONTENT}</div>
           <Button onClick={close} variant='text'>
             Close
@@ -319,8 +294,7 @@ export const Placement: IStory = {
   ),
   args: {
     ...defaultArgs,
-    openOnClick: true,
-    openOnFocus: true,
+    openEvents: { click: true },
     cursor: 'arrow',
     children: ({ getProps, setRef }) => (
       <IconButton
@@ -380,8 +354,7 @@ export const TransitionOrigin: IStory = {
   ),
   args: {
     ...defaultArgs,
-    openOnClick: true,
-    openOnFocus: true,
+    openEvents: { click: true, focus: true },
     placement: 'bottom-end',
     children: ({ getProps, setRef }) => (
       <IconButton

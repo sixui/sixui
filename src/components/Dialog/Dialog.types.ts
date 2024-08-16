@@ -1,4 +1,4 @@
-import type { OpenChangeReason, ReferenceType } from '@floating-ui/react';
+import type { OpenChangeReason } from '@floating-ui/react';
 
 import type { IOmit, IZeroOrMore, ICompiledStyles } from '~/helpers/types';
 import type { IBaseProps } from '../Base';
@@ -8,23 +8,12 @@ import type {
 } from '../DialogContent';
 import type { IPortalProps } from '../Portal';
 import type { IDialogStylesKey } from './Dialog.styles';
+import type { IPopoverBaseTriggerRendererProps } from '../PopoverBase';
 
-export type IDialogTriggerRenderProps = {
-  /**
-   * Whether the dialog is open.
-   */
-  isOpen: boolean;
-
-  /**
-   * A callback to set the trigger element.
-   */
-  setRef: ((node: ReferenceType | null) => void) | null;
-
-  /**
-   * A function that returns the props to apply to the trigger element.
-   */
-  getProps: () => Record<string, unknown>;
-};
+export type IDialogTriggerRenderProps = IOmit<
+  IPopoverBaseTriggerRendererProps,
+  'setRef' | 'getProps'
+>;
 
 export type IDialogProps = Pick<IPortalProps, 'root'> &
   IBaseProps<IDialogStylesKey> &
@@ -41,7 +30,7 @@ export type IDialogProps = Pick<IPortalProps, 'root'> &
      *
      * @defaultValue undefined
      */
-    isOpen?: boolean;
+    opened?: boolean;
 
     /**
      * Prevents the dialog from appearing when `true`.
@@ -52,15 +41,15 @@ export type IDialogProps = Pick<IPortalProps, 'root'> &
      * The trigger element that will open the dialog when interacted with.
      */
     trigger?:
-      | React.ReactNode
-      | ((props: IDialogTriggerRenderProps) => React.ReactElement);
+      | ((props: IDialogTriggerRenderProps) => React.ReactElement)
+      | React.ReactNode;
 
     /**
      * An event callback that is invoked when the floating element is opened or
      * closed in controlled mode.
      */
     onOpenChange?: (
-      open: boolean,
+      opened: boolean,
       event?: Event,
       reason?: OpenChangeReason,
     ) => void;

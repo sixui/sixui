@@ -68,17 +68,11 @@ const DrawerDemo: React.FC<IDrawerDemo> = (props) => {
     <Drawer
       {...other}
       anchor={anchor}
-      trigger={({ setRef, getProps }) => (
-        <Button
-          {...getProps()}
-          ref={setRef}
-          icon={icon}
-          trailingIcon={trailingIcon}
-          variant='text'
-        >
+      trigger={
+        <Button icon={icon} trailingIcon={trailingIcon} variant='text'>
           Open {props.anchor}
         </Button>
-      )}
+      }
       sx={styles.content}
     >
       {({ close }) => (

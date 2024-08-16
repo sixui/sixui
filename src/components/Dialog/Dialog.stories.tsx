@@ -44,25 +44,21 @@ export const Uncontrolled: IStory = {
         </Button>
       </>
     ),
-    trigger: ({ setRef, getProps }) => (
-      <Button {...getProps()} ref={setRef}>
-        Open
-      </Button>
-    ),
+    trigger: <Button>Open</Button>,
   },
 };
 
 const ControlledDialogDemo: React.FC<IDialogProps> = (props) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [opened, setOpened] = useState(false);
 
   return (
     <>
-      <Button onClick={() => setIsOpen(true)}>Open</Button>
+      <Button onClick={() => setOpened(true)}>Open</Button>
       <Dialog
         {...props}
-        isOpen={isOpen}
+        opened={opened}
         headline='Permanently delete?'
-        onOpenChange={setIsOpen}
+        onOpenChange={setOpened}
         actions={({ close }) => (
           <>
             <Button variant='text' onClick={close}>
@@ -101,11 +97,7 @@ const FormDialogDemo: React.FC<IDialogProps> = (props) => {
         {...props}
         ref={formRef}
         as='form'
-        trigger={({ setRef, getProps }) => (
-          <Button {...getProps()} ref={setRef}>
-            Open
-          </Button>
-        )}
+        trigger={<Button>Open</Button>}
         headline="What's your name?"
         actions={({ close }) => (
           <>
@@ -174,11 +166,7 @@ export const Modal: IStory = {
         </Button>
       </>
     ),
-    trigger: ({ setRef, getProps }) => (
-      <Button {...getProps()} ref={setRef}>
-        Open
-      </Button>
-    ),
+    trigger: <Button>Open</Button>,
     modal: true,
   },
 };

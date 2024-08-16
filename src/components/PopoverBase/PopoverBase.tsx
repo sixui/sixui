@@ -20,8 +20,14 @@ import {
   useTransitionStatus,
   type OpenChangeReason,
 } from '@floating-ui/react';
+import stylex from '@stylexjs/stylex';
 
-import type { IPopoverBaseProps } from './PopoverBase.types';
+import type {
+  IPopoverBaseProps,
+  IPopoverCloseEvents,
+  IPopoverMiddlewares,
+  IPopoverOpenEvents,
+} from './PopoverBase.types';
 import { isFunction } from '~/helpers/isFunction';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { usePopoverCursor } from '~/hooks/usePopoverCursor';
@@ -33,7 +39,25 @@ import { FloatingTransition } from '../FloatingTransition';
 import { Scrim } from '../Scrim';
 import { Portal } from '../Portal';
 import { popoverBaseStyles } from './PopoverBase.styles';
-import { PopoverBaseContextProvider } from './PopoverBase.context';
+
+const defaultOpenEvents: IPopoverOpenEvents = {
+  hover: false,
+  focus: false,
+  click: false,
+  touch: false,
+};
+
+const defaultCloseEvents: IPopoverCloseEvents = {
+  clickOutside: true,
+  focusOut: true,
+  escapeKey: true,
+};
+
+const defaultMiddlewares: IPopoverMiddlewares = {
+  shift: true,
+  flip: true,
+  size: true,
+};
 
 export const PopoverBase = fixedForwardRef(function PopoverBase<
   TForwardedProps extends object = object,
@@ -49,18 +73,14 @@ export const PopoverBase = fixedForwardRef(function PopoverBase<
     children,
     placement = 'top',
     transitionOrientation,
-    transitionOrigin = 'cursor',
-    isOpen: isOpenProp,
-    defaultIsOpen,
+    transitionOrigin: transitionOriginProp,
+    opened: openedProp,
+    defaultOpened,
     cursor: cursorType = false,
     onOpenChange,
     forwardProps,
     disabled,
     role: roleProp,
-    openOnHover,
-    openOnFocus,
-    openOnClick,
-    closeOnClickOutside = true,
     trapFocus,
     matchTargetWidth,
     withScrim,
@@ -68,48 +88,52 @@ export const PopoverBase = fixedForwardRef(function PopoverBase<
     middlewares: middlewaresProp,
     additionalMiddlewares,
     floatingStrategy = 'absolute',
-    closeOnEscape = true,
-    reference = 'trigger',
-    closeOnFocusOut = true,
+    openEvents: openEventsProp,
+    closeEvents: closeEventsProp,
     ...other
   } = props;
 
-  const defaultMiddlewares = {
-    shift: true,
-    flip: true,
-    size: true,
+  const openEvents = {
+    ...defaultOpenEvents,
+    ...openEventsProp,
   };
+
+  const closeEvents = {
+    ...defaultCloseEvents,
+    ...closeEventsProp,
+  };
+
   const middlewares = {
     ...defaultMiddlewares,
     ...middlewaresProp,
   };
+  const transitionOrigin =
+    transitionOriginProp ?? (cursorType ? 'cursor' : 'corner');
 
   const { getStyles, globalStyles } = useStyles({
     name: 'PopoverBase',
     styles: [popoverBaseStyles, styles],
   });
 
-  const [isOpen, setIsOpen] = useControlledValue({
-    controlled: isOpenProp,
-    default: defaultIsOpen || false,
+  const [opened, setOpened] = useControlledValue({
+    controlled: openedProp,
+    default: defaultOpened || false,
     name: 'PopoverBase',
     onValueChange: onOpenChange,
   });
   const arrowRef = useRef(null);
   const cursor = usePopoverCursor({ type: cursorType });
   const floating = useFloating({
-    strategy: floatingStrategy,
     placement,
-    open: isOpen,
+    open: opened,
     onOpenChange: (
-      newIsOpen: boolean,
+      newOpened: boolean,
       event?: Event,
       reason?: OpenChangeReason,
     ) => {
-      setIsOpen(newIsOpen);
-
-      if (isOpen !== newIsOpen) {
-        onOpenChange?.(newIsOpen, event, reason);
+      if (opened !== newOpened) {
+        setOpened(newOpened);
+        onOpenChange?.(newOpened, event, reason);
       }
     },
     whileElementsMounted: autoUpdate,
@@ -127,9 +151,10 @@ export const PopoverBase = fixedForwardRef(function PopoverBase<
           padding: 8,
           ...(isObject(middlewares.shift) ? middlewares.shift : undefined),
         }),
-      arrow({
-        element: arrowRef,
-      }),
+      !!cursorType &&
+        arrow({
+          element: arrowRef,
+        }),
       middlewares.size &&
         size({
           apply: matchTargetWidth
@@ -145,22 +170,24 @@ export const PopoverBase = fixedForwardRef(function PopoverBase<
     ],
   });
   const delayGroup = useDelayGroup(floating.context, {
-    id: openOnHover ? undefined : '__persistent',
+    id: openEvents.hover ? undefined : '__persistent',
   });
   const hover = useHover(floating.context, {
     move: false,
     delay: delayGroup.delay,
-    enabled: !!openOnHover && !disabled,
+    enabled: !!openEvents.hover && !disabled,
+    mouseOnly: !openEvents.touch,
   });
   const click = useClick(floating.context, {
-    enabled: !!openOnClick && !disabled,
+    enabled: !!openEvents.click && !disabled,
   });
   const focus = useFocus(floating.context, {
-    enabled: !!openOnFocus && !disabled,
+    enabled: !!openEvents.focus && !disabled,
+    visibleOnly: true,
   });
   const dismiss = useDismiss(floating.context, {
-    outsidePress: !!closeOnClickOutside,
-    escapeKey: closeOnEscape,
+    outsidePress: !!closeEvents.clickOutside,
+    escapeKey: closeEvents.escapeKey,
   });
   const role = useRole(floating.context, { role: roleProp });
   const interactions = useInteractions([hover, focus, click, dismiss, role]);
@@ -183,11 +210,11 @@ export const PopoverBase = fixedForwardRef(function PopoverBase<
 
   const triggerElement = isFunction(children)
     ? children({
-        isOpen,
+        opened,
         placement: floating.placement,
         getProps: interactions.getReferenceProps,
         setRef: floating.refs.setReference,
-        close: () => setIsOpen(false),
+        close: () => setOpened(false),
       })
     : children;
 
@@ -197,15 +224,7 @@ export const PopoverBase = fixedForwardRef(function PopoverBase<
   ]);
 
   return (
-    <PopoverBaseContextProvider
-      value={{
-        isOpen,
-        placement: floating.placement,
-        getTriggerProps: interactions.getReferenceProps,
-        setTriggerRef: floating.refs.setReference,
-        close: () => setIsOpen(false),
-      }}
-    >
+    <>
       {triggerElement}
 
       {transitionStatus.isMounted ? (
@@ -217,57 +236,57 @@ export const PopoverBase = fixedForwardRef(function PopoverBase<
               {...slotProps?.scrim}
             />
           ) : null}
+
           <FloatingFocusManager
             disabled={!trapFocus}
             context={floating.context}
             modal
-            closeOnFocusOut={closeOnFocusOut}
+            closeOnFocusOut={closeEvents.focusOut}
             {...slotProps?.floatingFocusManager}
           >
-            <div
-              {...getStyles(
-                globalStyles,
-                'host',
-                `host$${floatingStrategy}`,
-                reference === 'trigger' &&
-                  commonStyles.position(floating.x, floating.y),
-                sx,
-              )}
-              ref={floatingHandleRef}
-              {...interactions.getFloatingProps()}
-            >
-              <FloatingTransition
-                placement={floating.placement}
-                status={transitionStatus.status}
-                origin={transitionOrigin}
-                cursorTransformOrigin={cursor.getTransformOrigin(floating)}
-                orientation={transitionOrientation}
-                pattern={
-                  reference === 'trigger' ? 'enterExit' : 'enterExitOffScreen'
-                }
-                {...slotProps?.floatingTransition}
-              >
-                {isFunction(contentRenderer) ? (
-                  contentRenderer({
-                    isOpen,
-                    placement: floating.placement,
-                    close: () => setIsOpen(false),
-                    forwardedProps: forwardProps
-                      ? (other as TForwardedProps)
-                      : undefined,
-                    renderCursor,
-                  })
-                ) : (
-                  <>
-                    {renderCursor()}
-                    {contentRenderer}
-                  </>
+            <div {...stylex.props(globalStyles, sx)}>
+              <div
+                {...getStyles(
+                  'floating',
+                  floatingStrategy && `floating$${floatingStrategy}`,
+                  floatingStrategy &&
+                    commonStyles.position(floating.x, floating.y),
                 )}
-              </FloatingTransition>
+                ref={floatingHandleRef}
+                {...interactions.getFloatingProps()}
+              >
+                <FloatingTransition
+                  placement={floating.placement}
+                  status={transitionStatus.status}
+                  origin={transitionOrigin}
+                  cursorTransformOrigin={cursor.getTransformOrigin(floating)}
+                  orientation={transitionOrientation}
+                  pattern={
+                    floatingStrategy ? 'enterExit' : 'enterExitOffScreen'
+                  }
+                  {...slotProps?.floatingTransition}
+                >
+                  {isFunction(contentRenderer) ? (
+                    contentRenderer({
+                      placement: floating.placement,
+                      close: () => setOpened(false),
+                      forwardedProps: forwardProps
+                        ? (other as TForwardedProps)
+                        : undefined,
+                      renderCursor,
+                    })
+                  ) : (
+                    <>
+                      {renderCursor()}
+                      {contentRenderer}
+                    </>
+                  )}
+                </FloatingTransition>
+              </div>
             </div>
           </FloatingFocusManager>
         </Portal>
       ) : null}
-    </PopoverBaseContextProvider>
+    </>
   );
 });

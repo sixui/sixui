@@ -122,7 +122,7 @@ export const ColorInputField = forwardRef<
         }
         placement={placement}
         transitionOrientation={transitionOrientation}
-        openOnClick
+        openEvents={{ click: true }}
         trapFocus
       >
         {({ getProps, setRef }) => (

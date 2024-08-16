@@ -1,25 +1,15 @@
-import type { OpenChangeReason, ReferenceType } from '@floating-ui/react';
+import type { OpenChangeReason } from '@floating-ui/react';
 
+import type { IOmit } from '~/helpers/types';
 import type { IBaseProps } from '../Base';
 import type { IPortalProps } from '../Portal';
+import type { IPopoverBaseTriggerRendererProps } from '../PopoverBase';
 import type { IDrawerStylesKey } from './Drawer.styles';
 
-export type IDrawerTriggerRenderProps = {
-  /**
-   * Whether the bottom sheet is open.
-   */
-  isOpen: boolean;
-
-  /**
-   * A callback to set the trigger element.
-   */
-  setRef: ((node: ReferenceType | null) => void) | null;
-
-  /**
-   * A function that returns the props to apply to the trigger element.
-   */
-  getProps: () => Record<string, unknown>;
-};
+export type IDrawerTriggerRenderProps = IOmit<
+  IPopoverBaseTriggerRendererProps,
+  'setRef' | 'getProps'
+>;
 
 export type IDrawerChildrenRenderProps = {
   close: (event?: React.MouseEvent) => void;
@@ -27,12 +17,12 @@ export type IDrawerChildrenRenderProps = {
 
 export type IDrawerProps = Pick<IPortalProps, 'root'> &
   IBaseProps<IDrawerStylesKey> & {
-    isOpen?: boolean;
-    defaultIsOpen?: boolean;
+    opened?: boolean;
+    defaultOpened?: boolean;
     disabled?: boolean;
     trigger?:
-      | React.ReactNode
-      | ((props: IDrawerTriggerRenderProps) => React.ReactElement);
+      | ((props: IDrawerTriggerRenderProps) => React.ReactElement)
+      | React.ReactNode;
     onOpenChange?: (
       open: boolean,
       event?: Event,

@@ -28,8 +28,7 @@ export const PlainTooltip = forwardRef<HTMLDivElement, IPlainTooltipProps>(
         contentRenderer={renderContent}
         cursor='arrow'
         forwardProps
-        openOnHover
-        openOnFocus
+        openEvents={{ hover: true, focus: true }}
       >
         {(renderProps) => (
           <span
