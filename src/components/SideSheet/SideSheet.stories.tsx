@@ -99,7 +99,7 @@ const SideSheetFrame: React.FC<ISideSheetProps> = (props) => {
             horizontal
             justify='space-between'
             align='start'
-            sx={styles.frameInner}
+            // sx={styles.frameInner}
           >
             <div style={{ width: 200 }}>
               <SideSheetDemo
