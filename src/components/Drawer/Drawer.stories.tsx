@@ -57,9 +57,9 @@ const styles = stylex.create({
 
 const defaultArgs = {} satisfies Partial<IDrawerProps>;
 
-type IDrawerDemo = IOmit<IDrawerProps, 'children'>;
+type IDrawerDemoProps = IOmit<IDrawerProps, 'children'>;
 
-const DrawerDemo: React.FC<IDrawerDemo> = (props) => {
+const DrawerDemo: React.FC<IDrawerDemoProps> = (props) => {
   const { anchor = 'left', ...other } = props;
 
   return (

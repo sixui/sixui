@@ -1,5 +1,6 @@
 // atoms
 export * from './components/Anchored';
+export * from './components/AppShell';
 export * from './components/Avatar';
 export * from './components/Badge';
 export * from './components/Base';
@@ -28,6 +29,7 @@ export * from './components/DialogContent';
 export * from './components/Disclosure';
 export * from './components/DisclosureButton';
 export * from './components/Divider';
+export * from './components/Drawer';
 export * from './components/Labeled';
 export * from './components/Elevation';
 export * from './components/Expandable';
@@ -71,6 +73,7 @@ export * from './components/RichTooltipContent';
 export * from './components/Scrim';
 export * from './components/Select';
 export * from './components/SelectBase';
+export * from './components/SideSheet';
 export * from './components/Skeleton';
 export * from './components/Snackbar';
 export * from './components/SnackbarContent';

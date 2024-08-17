@@ -8,7 +8,6 @@ import { useStyles } from '~/hooks/useStyles';
 import { SideSheetContent } from '../SideSheetContent';
 import { Drawer } from '../Drawer';
 import { sideSheetStyles } from './SideSheet.styles';
-import { useSideSheet } from './useSideSheet';
 
 export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
   forwardRef<HTMLDivElement, ISideSheetProps>(
@@ -18,9 +17,10 @@ export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
         styles,
         sx,
         root,
-        opened,
+        isModal,
+        standardOpened,
+        modalOpened,
         onClose,
-        onOpen,
         disabled,
         anchor,
         variant,
@@ -38,16 +38,23 @@ export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
         forwardedRef,
       ]);
 
-      const state = useSideSheet(opened, {
-        onOpen,
-        onClose,
-      });
+      const renderContent = (
+        props?: Partial<React.ComponentPropsWithRef<typeof SideSheetContent>>,
+      ): JSX.Element => (
+        <SideSheetContent
+          styles={innerStyles?.sideSheetContent}
+          anchor={anchor}
+          {...other}
+          {...props}
+          sx={[globalStyles, combineStyles('host'), props?.sx, sx]}
+        />
+      );
 
       return (
         <>
           <CSSTransition
             nodeRef={transitionNodeRef}
-            in={state.standardOpened}
+            in={standardOpened}
             timeout={550} // motionTokens.duration$long3
             classNames={{
               enter: getStyles('animation$enter').className,
@@ -56,36 +63,28 @@ export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
             }}
             unmountOnExit
           >
-            <SideSheetContent
-              sx={[globalStyles, sx]}
-              styles={innerStyles?.sideSheetContent}
-              anchor={anchor}
-              onClose={onClose}
-              {...other}
-              ref={transitionNodeHandleRef}
-            />
+            {renderContent({
+              onClose,
+              ref: transitionNodeHandleRef,
+            })}
           </CSSTransition>
 
-          {state.isModal ? (
+          {isModal ? (
             <Drawer
               root={root}
-              opened={state.modalOpened}
+              opened={modalOpened}
               onClose={onClose}
               disabled={disabled}
               anchor={anchor}
               variant={variant}
             >
-              {({ close }) => (
-                <SideSheetContent
-                  sx={[globalStyles, sx]}
-                  styles={innerStyles?.sideSheetContent}
-                  anchor={anchor}
-                  variant={variant === 'detached' ? 'detachedModal' : 'modal'}
-                  onClose={close}
-                  {...other}
-                  ref={forwardedRef}
-                />
-              )}
+              {({ close }) =>
+                renderContent({
+                  onClose: close,
+                  variant: variant === 'detached' ? 'detachedModal' : 'modal',
+                  ref: forwardedRef,
+                })
+              }
             </Drawer>
           ) : null}
         </>

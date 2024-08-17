@@ -1,5 +1,5 @@
 import type { INavigationDrawerStylesKey } from './NavigationDrawer.styles';
-import { IBaseProps } from '~/components/Base';
+import type { IBaseProps } from '~/components/Base';
 
 export type INavigationDrawerVariant = 'standard' | 'modal';
 

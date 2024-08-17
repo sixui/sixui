@@ -14,19 +14,18 @@ export const useSideSheet = (
   callbacks?: { onOpen?: () => void; onClose?: () => void },
 ): IUseSideSheetResult => {
   const windowSizeClass = useWindowSizeClass();
-  const isCompact = !!windowSizeClass?.compact;
   const [modalOpened, setModalOpened] = useState(false);
-  const previousIsCompact = usePrevious(isCompact);
-  const savedOpenedRef = useRef(opened);
+  const savedStandardOpenedRef = useRef(opened);
   const previousOpened = usePrevious(opened);
-  const isModal = isCompact;
+  const isModal = !!windowSizeClass?.compact;
+  const previousIsModal = usePrevious(isModal);
 
   useEffect(() => {
     // This effect is triggered when the state of the side sheet changes
     // from opened to closed or vice versa. It is used to manage the state
     // of the modal side sheet, which is managed separately from the
     // standard side sheet.
-    if (previousOpened === opened || previousOpened === undefined) {
+    if (previousOpened === opened) {
       return;
     }
 
@@ -39,7 +38,7 @@ export const useSideSheet = (
     // This effect is triggered when the window size changes from compact to
     // non-compact or vice versa. It is used to manage the state of the standard
     // side sheet when the window size changes.
-    if (previousIsCompact === isCompact || previousIsCompact === undefined) {
+    if (previousIsModal === isModal) {
       return;
     }
 
@@ -49,20 +48,20 @@ export const useSideSheet = (
     // animation when the window size shrinks back to compact.
     setModalOpened(false);
 
-    if (isCompact) {
+    if (isModal) {
       // If the window size has shrunk from non-compact to compact, the side
       // sheet is closed. The next time it is opened, it should be displayed
       // as a modal side sheet.
       callbacks?.onClose?.();
       // The open state is saved in a ref to ensure that the modal side
       // sheet is re-opened when the window size grows back to non-compact.
-      savedOpenedRef.current = opened;
-    } else if (savedOpenedRef.current) {
+      savedStandardOpenedRef.current = opened;
+    } else if (savedStandardOpenedRef.current) {
       // If the window size has grown back to non-compact and the standard
       // side sheet was open, it should be re-opened.
       callbacks?.onOpen?.();
     }
-  }, [isCompact, previousIsCompact, callbacks, opened]);
+  }, [isModal, previousIsModal, callbacks, opened]);
 
   return {
     isModal,

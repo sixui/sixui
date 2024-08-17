@@ -14,8 +14,8 @@ export type IMenuTriggerRenderProps = {
   ) => Record<string, unknown>;
 };
 
-export type IMenuProps = Pick<IPortalProps, 'root'> &
-  IBaseProps<IMenuStylesKey> & {
+export type IMenuProps = IBaseProps<IMenuStylesKey> &
+  Pick<IPortalProps, 'root'> & {
     trigger:
       | React.ReactNode
       | ((renderProps: IMenuTriggerRenderProps) => React.ReactNode);

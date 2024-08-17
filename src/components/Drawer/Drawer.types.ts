@@ -8,8 +8,8 @@ export type IDrawerChildrenRenderProps = {
   close: (event?: React.MouseEvent) => void;
 };
 
-export type IDrawerProps = Pick<IPortalProps, 'root'> &
-  IBaseProps<IDrawerStylesKey> & {
+export type IDrawerProps = IBaseProps<IDrawerStylesKey> &
+  Pick<IPortalProps, 'root'> & {
     opened?: boolean;
     defaultOpened?: boolean;
     onClose?: () => void;

@@ -7,8 +7,8 @@ import type {
 import type { IPortalProps } from '../Portal';
 import type { IDialogStylesKey } from './Dialog.styles';
 
-export type IDialogProps = Pick<IPortalProps, 'root'> &
-  IBaseProps<IDialogStylesKey> &
+export type IDialogProps = IBaseProps<IDialogStylesKey> &
+  Pick<IPortalProps, 'root'> &
   IOmit<IDialogContentProps, 'styles' | 'onClose'> & {
     innerStyles?: {
       dialogContent?: IZeroOrMore<ICompiledStyles<IDialogContentStylesKey>>;

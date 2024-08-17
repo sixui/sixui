@@ -26,8 +26,8 @@ export type IBottomSheetTriggerRenderProps = {
   getProps: () => Record<string, unknown>;
 };
 
-export type IBottomSheetProps = Pick<IPortalProps, 'root'> &
-  IBaseProps<IBottomSheetStylesKey> &
+export type IBottomSheetProps = IBaseProps<IBottomSheetStylesKey> &
+  Pick<IPortalProps, 'root'> &
   IOmit<IBottomSheetContentProps, 'styles' | 'onClose' | 'variant'> & {
     innerStyles?: {
       bottomSheetContent?: IZeroOrMore<

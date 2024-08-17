@@ -41,7 +41,7 @@ export const useDisclosure = (
   }, [onClose]);
 
   const toggle = useCallback(
-    () => (opened ? close : open),
+    () => (opened ? close() : open()),
     [close, open, opened],
   );
 

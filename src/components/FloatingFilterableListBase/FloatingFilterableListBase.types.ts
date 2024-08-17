@@ -72,8 +72,8 @@ export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
 export type IFloatingFilterableListBaseProps<
   TItem,
   TElement extends HTMLElement,
-> = Pick<IPortalProps, 'root'> &
-  IBaseProps<IFloatingFilterableListBaseStylesKey> &
+> = IBaseProps<IFloatingFilterableListBaseStylesKey> &
+  Pick<IPortalProps, 'root'> &
   IOmit<IFilterableListBaseProps<TItem, TElement>, 'onItemSelect'> &
   IForwardableProps & {
     /**

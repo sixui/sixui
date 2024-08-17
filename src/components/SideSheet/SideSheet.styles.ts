@@ -3,9 +3,11 @@ import { motionTokens } from '~/themes/base/motion.stylex';
 
 export type ISideSheetStylesKey = keyof typeof sideSheetStyles;
 export const sideSheetStyles = stylex.create({
+  host: {},
   animation$enter: {
     transform: 'translateX(-100%)',
   },
+  // FIXME: take left/right anchor in consideration
   animation$enterActive: {
     transform: 'translateX(0)',
     transitionProperty: 'transform',

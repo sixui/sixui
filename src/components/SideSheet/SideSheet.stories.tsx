@@ -14,6 +14,7 @@ import { Stack } from '../Stack';
 import { Frame } from '../Frame';
 import { SideSheet } from './SideSheet';
 import { Text } from '../Text';
+import { motionTokens } from '~/themes/base/motion.stylex';
 
 // https://m3.material.io/components/sidesheets/overview
 // https://material-web.dev/components/sidesheet/
@@ -39,9 +40,19 @@ const styles = stylex.create({
   sideSheet: {
     flexGrow: 0,
     height: '100%',
+    width: 200,
   },
   main: {
     flexGrow: 1,
+    transitionProperty: 'margin',
+    transitionDuration: motionTokens.duration$long3,
+    transitionTimingFunction: motionTokens.easing$emphasizedDecelerate,
+  },
+  main$expanded: {
+    marginLeft: -200,
+    transitionProperty: 'margin',
+    transitionDuration: motionTokens.duration$short3,
+    transitionTimingFunction: motionTokens.easing$emphasizedAccelerate,
   },
 });
 
@@ -78,7 +89,7 @@ const SideSheetDemo: React.FC<ISideSheetDemo> = (props) => {
 
 const SideSheetFrame: React.FC<ISideSheetProps> = (props) => {
   const [rootElement, setRootElement] = useState<HTMLDivElement | null>(null);
-  const [opened, { close, open }] = useDisclosure(false);
+  const [opened, { open, close, toggle }] = useDisclosure(true);
 
   return (
     <Frame importParentStyles sx={styles.frame}>
@@ -90,36 +101,20 @@ const SideSheetFrame: React.FC<ISideSheetProps> = (props) => {
             align='start'
             sx={styles.frameInner}
           >
-            <SideSheetDemo
-              sx={styles.sideSheet}
-              {...props}
-              root={rootElement}
-              opened={opened}
-              onClose={close}
-              onOpen={open}
-              anchor='left'
-            />
-            <Stack sx={styles.main}>
-              <Button onClick={opened ? close : open}>Toggle</Button>
+            <div style={{ width: 200 }}>
+              <SideSheetDemo
+                sx={styles.sideSheet}
+                {...props}
+                root={rootElement}
+                opened={opened}
+                onClose={close}
+                onOpen={open}
+                anchor='left' // FIXME: 'right' is not working
+              />
+            </div>
+            <Stack sx={[styles.main, !opened && styles.main$expanded]}>
+              <Button onClick={toggle}>Toggle</Button>
             </Stack>
-
-            {/* <Stack horizontal justify='space-between' sx={styles.frameInner}>
-          <Button
-            variant='text'
-            onClick={leftActions.open}
-            icon={<FontAwesomeIcon icon={faArrowLeft} />}
-          >
-            Open left
-          </Button>
-          <Button
-            variant='text'
-            onClick={rightActions.open}
-            icon={<FontAwesomeIcon icon={faArrowRight} />}
-            trailingIcon
-          >
-            Open right
-          </Button>
-        </Stack> */}
           </Stack>
         )}
       </div>
