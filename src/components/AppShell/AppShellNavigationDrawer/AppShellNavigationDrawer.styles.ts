@@ -7,13 +7,25 @@ export type IAppShellNavigationDrawerStylesKey =
 export const appShellNavigationDrawerStyles = stylex.create({
   host: {
     height: '100vh',
-    width: `min(${appShellTokens.navigationDrawerWidth} * ${scaleTokens.scale}, 100vw)`,
+    width: {
+      default: `min(${appShellTokens.navigationDrawerWidth$expanded} * ${scaleTokens.scale}, 100vw)`,
+      '@container expanded (min-width: 0)':
+        appShellTokens.navigationDrawerWidth$expanded,
+      '@container largeAndUp (min-width: 0)':
+        appShellTokens.navigationDrawerWidth$largeAndUp,
+    },
     flexShrink: 0,
     position: 'sticky',
     top: 0,
   },
   sideSheet: {
     height: '100%',
-    width: `min(${appShellTokens.navigationDrawerWidth} * ${scaleTokens.scale}, 100vw)`,
+    width: {
+      default: `min(${appShellTokens.navigationDrawerWidth$expanded} * ${scaleTokens.scale}, 100vw)`,
+      '@container expanded (min-width: 0)':
+        appShellTokens.navigationDrawerWidth$expanded,
+      '@container largeAndUp (min-width: 0)':
+        appShellTokens.navigationDrawerWidth$largeAndUp,
+    },
   },
 });

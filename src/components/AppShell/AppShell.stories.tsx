@@ -11,7 +11,6 @@ import { useDisclosure } from '~/hooks/useDisclosure';
 import { Button } from '../Button';
 import { useSideSheet } from '../SideSheet/useSideSheet';
 import { Text } from '../Text';
-import { appShellTokens } from './AppShell.stylex';
 import { createSequence } from '@olivierpascal/helpers';
 
 const meta = {
@@ -32,9 +31,6 @@ const styles = stylex.create({
     borderColor: colorSchemeTokens.outlineVariant,
     borderStyle: 'dashed',
   },
-  appShell: {
-    // [appShellTokens.navigationDrawerWidth]: '200px',
-  },
 });
 
 const AppShellFrame: React.FC<IAppShellProps> = (props) => {
@@ -47,13 +43,16 @@ const AppShellFrame: React.FC<IAppShellProps> = (props) => {
         navigationDrawer={{
           sideSheet,
         }}
-        sx={styles.appShell}
         {...props}
       >
-        <AppShell.NavigationDrawer onClose={close}>
+        <AppShell.NavigationDrawer
+          onClose={close}
+          headline='Headline'
+          showCloseButton
+        >
           MAIN
         </AppShell.NavigationDrawer>
-        <AppShell.Main>
+        <AppShell.Body>
           <Button onClick={toggle}>
             TOGGLE{' '}
             {sideSheet.standardOpened || sideSheet.modalOpened
@@ -69,7 +68,7 @@ const AppShellFrame: React.FC<IAppShellProps> = (props) => {
               rhoncus massa.
             </Text>
           ))}
-        </AppShell.Main>
+        </AppShell.Body>
       </AppShell>
     </Frame>
   );

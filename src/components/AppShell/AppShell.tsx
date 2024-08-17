@@ -5,7 +5,7 @@ import type { IAppShellProps } from './AppShell.types';
 import { useStyles } from '~/hooks/useStyles';
 import { appShellStyles } from './AppShell.styles';
 import { AppShellNavigationDrawer } from './AppShellNavigationDrawer';
-import { AppShellMain } from './AppShellMain';
+import { AppShellBody } from './AppShellBody';
 import {
   AppShellProvider,
   type IAppShellContextValue,
@@ -40,7 +40,7 @@ const AppShell = forwardRef<HTMLDivElement, IAppShellProps>(
 
 const AppShellNamespace = Object.assign(AppShell, {
   NavigationDrawer: AppShellNavigationDrawer,
-  Main: AppShellMain,
+  Body: AppShellBody,
 });
 
 export { AppShellNamespace as AppShell };

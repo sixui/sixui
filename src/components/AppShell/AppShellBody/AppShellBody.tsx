@@ -1,19 +1,19 @@
 import { forwardRef } from 'react';
 
-import type { IAppShellMainProps } from './AppShellMain.types';
+import type { IAppShellBodyProps } from './AppShellBody.types';
 import { useStyles } from '~/hooks/useStyles';
 import { Base } from '~/components/Base';
 import { useAppShellContext } from '../AppShell.context';
-import { appShellMainStyles } from './AppShellMain.styles';
+import { appShellBodyStyles } from './AppShellBody.styles';
 
-export const AppShellMain = forwardRef<HTMLDivElement, IAppShellMainProps>(
-  function AppShellMain(props, forwardedRef) {
+export const AppShellBody = forwardRef<HTMLDivElement, IAppShellBodyProps>(
+  function AppShellBody(props, forwardedRef) {
     const { styles, sx, children, ...other } = props;
     const appShellContext = useAppShellContext();
 
     const { combineStyles, globalStyles } = useStyles({
-      name: 'AppShellMain',
-      styles: [appShellMainStyles, styles],
+      name: 'AppShellBody',
+      styles: [appShellBodyStyles, styles],
     });
 
     return (
