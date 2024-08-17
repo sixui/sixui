@@ -33,7 +33,7 @@ const styles = stylex.create({
     borderStyle: 'dashed',
   },
   appShell: {
-    [appShellTokens.navigationDrawerWidth]: '200px',
+    // [appShellTokens.navigationDrawerWidth]: '200px',
   },
 });
 

@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
 const vars = {
-  navigationDrawerWidth: '300px',
+  navigationDrawerWidth: '360px',
 };
 
 export const appShellTokens = stylex.defineVars(vars);
