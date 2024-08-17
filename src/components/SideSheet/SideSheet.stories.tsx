@@ -78,7 +78,7 @@ const SideSheetDemo: React.FC<ISideSheetDemo> = (props) => {
 
 const SideSheetFrame: React.FC<ISideSheetProps> = (props) => {
   const [rootElement, setRootElement] = useState<HTMLDivElement | null>(null);
-  const [opened, { close, open }] = useDisclosure(true);
+  const [opened, { close, open }] = useDisclosure(false);
 
   return (
     <Frame importParentStyles sx={styles.frame}>
@@ -96,6 +96,7 @@ const SideSheetFrame: React.FC<ISideSheetProps> = (props) => {
               root={rootElement}
               opened={opened}
               onClose={close}
+              onOpen={open}
               anchor='left'
             />
             <Stack sx={styles.main}>

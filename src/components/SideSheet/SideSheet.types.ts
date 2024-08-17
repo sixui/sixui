@@ -10,11 +10,12 @@ import type { ISideSheetStylesKey } from './SideSheet.styles';
 
 export type ISideSheetProps = Pick<IPortalProps, 'root'> &
   IBaseProps<ISideSheetStylesKey> &
-  IOmit<IDrawerProps, 'styles' | 'children'> &
+  IOmit<IDrawerProps, 'styles' | 'children' | 'defaultOpened'> &
   IOmit<ISideSheetContentProps, 'styles' | 'variant'> & {
     innerStyles?: {
       sideSheetContent?: IZeroOrMore<
         ICompiledStyles<ISideSheetContentStylesKey>
       >;
     };
+    onOpen?: () => void;
   };
