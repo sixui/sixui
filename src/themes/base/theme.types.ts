@@ -21,6 +21,7 @@ export type ITheme = {
     schemeVariant: string;
     contrast: number;
   };
+  windowSizeClasses: IWindowSizeClassesTheme;
   schemes?: IThemeSchemes;
   density?: IDensityTheme;
   motion?: IMotionTheme;
@@ -31,6 +32,5 @@ export type ITheme = {
   state?: IStateTheme;
   typeFace?: ITypeFaceTheme;
   typeScale?: ITypeScaleTheme;
-  windowSizeClasses?: IWindowSizeClassesTheme;
   zIndex?: IZIndexTheme;
 };

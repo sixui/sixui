@@ -6,7 +6,6 @@ import type { ISideSheetProps } from './SideSheet.types';
 import type { IOmit } from '~/helpers/types';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { scaleTokens } from '~/themes/base/scale.stylex';
-import { useToggle } from '~/hooks/useToggle';
 import { outlineTokens } from '~/themes/base/outline.stylex';
 import { commonStyles } from '~/helpers/commonStyles';
 import { useDisclosure } from '~/hooks/useDisclosure';

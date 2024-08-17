@@ -16,6 +16,7 @@ export const bottomSheetStyles = stylex.create({
     marginInline: 'auto',
     width: {
       default: `min(100%, 100% - ${bottomSheetTokens.containerSideMargin} * 2)`,
+      // FIXME: use window class size
       '@media (max-width: 640px)': '100%',
     },
     maxHeight: bottomSheetTokens.containerInitialMaxHeight,

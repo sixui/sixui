@@ -5,11 +5,8 @@ import { useMergeRefs } from '@floating-ui/react';
 import type { ISideSheetProps } from './SideSheet.types';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
 import { useStyles } from '~/hooks/useStyles';
-import { useMediaQuery } from '~/hooks/useMediaQuery';
-import {
-  SideSheetContent,
-  type ISideSheetContentProps,
-} from '../SideSheetContent';
+import { useWindowSizeClass } from '~/hooks/useWindowSizeClass';
+import { SideSheetContent } from '../SideSheetContent';
 import { Drawer } from '../Drawer';
 import { sideSheetStyles } from './SideSheet.styles';
 
@@ -41,8 +38,8 @@ export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
         forwardedRef,
       ]);
 
-      // FIXME: use token
-      const isModal = useMediaQuery('(max-width: 640px)');
+      const windowSizeClass = useWindowSizeClass();
+      const isModal = windowSizeClass?.compact;
       const expanded = !isModal && opened;
 
       return (

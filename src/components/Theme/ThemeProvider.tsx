@@ -3,12 +3,14 @@ import stylex from '@stylexjs/stylex';
 
 import type { IThemeProviderProps } from './ThemeProvider.types';
 import type { ITheme } from '~/themes/base';
+import baseTheme from '~/themes/base/theme.json';
 import { ThemeContext } from './Theme.context';
 import { themeProviderStyles } from './ThemeProvider.styles';
 import {
   IThemeSetterContextValue,
   ThemeSetterContext,
 } from './ThemeSetter.context';
+import { ResponsiveStyles } from './ResponsiveStyles';
 
 export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
   const {
@@ -19,13 +21,14 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
     componentsStyles,
     ...other
   } = props;
-  const [dynamicTheme, setDynamicTheme] = useState<Partial<ITheme> | undefined>(
-    defaultTheme,
-  );
-  const theme = {
+  const [dynamicTheme, setDynamicTheme] = useState<
+    Partial<ITheme> | undefined
+  >();
+  const theme: ITheme = {
+    ...baseTheme,
     ...defaultTheme,
     ...dynamicTheme,
-  } as ITheme | undefined;
+  };
 
   const themeSetterContextValue: IThemeSetterContextValue = useMemo(
     () => ({ setTheme: setDynamicTheme }),
@@ -61,6 +64,7 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
             sx,
           ])}
         >
+          <ResponsiveStyles />
           {children}
         </div>
       </ThemeContext.Provider>
