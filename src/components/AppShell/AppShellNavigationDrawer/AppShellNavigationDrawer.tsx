@@ -26,7 +26,7 @@ export const AppShellNavigationDrawer = forwardRef<
       <SideSheet
         anchor='left'
         root={appShellContext.root}
-        sx={[globalStyles, combineStyles('host'), sx]}
+        sx={[globalStyles, combineStyles('sideSheet'), sx]}
         isModal={appShellContext.navigationDrawer?.sideSheet?.isModal}
         standardOpened={
           appShellContext.navigationDrawer?.sideSheet?.standardOpened

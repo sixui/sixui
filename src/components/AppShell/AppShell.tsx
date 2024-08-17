@@ -15,7 +15,7 @@ const AppShell = forwardRef<HTMLDivElement, IAppShellProps>(
   function AppShell(props, forwardedRef) {
     const { styles, sx, children, navigationDrawer, ...other } = props;
 
-    const { combineStyles, globalStyles } = useStyles({
+    const { combineStyles, getStyles, globalStyles } = useStyles({
       name: 'AppShell',
       styles: [appShellStyles, styles],
     });
@@ -28,13 +28,10 @@ const AppShell = forwardRef<HTMLDivElement, IAppShellProps>(
 
     return (
       <AppShellProvider value={contextValue}>
-        <div
-          {...other}
-          {...stylex.props(globalStyles, combineStyles('host'), sx)}
-          ref={forwardedRef}
-        >
+        <div {...stylex.props(globalStyles, sx)} {...other} ref={forwardedRef}>
           <div ref={setRootElement} />
-          {children}
+          <div {...getStyles('main')}>{children}</div>
+          <div>FOOTER</div>
         </div>
       </AppShellProvider>
     );

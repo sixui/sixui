@@ -9,8 +9,10 @@ import { Frame } from '../Frame';
 import { AppShell } from './AppShell';
 import { useDisclosure } from '~/hooks/useDisclosure';
 import { Button } from '../Button';
-import { appShellTokens } from './AppShell.stylex';
 import { useSideSheet } from '../SideSheet/useSideSheet';
+import { Text } from '../Text';
+import { appShellTokens } from './AppShell.stylex';
+import { createSequence } from '@olivierpascal/helpers';
 
 const meta = {
   component: AppShell,
@@ -58,6 +60,15 @@ const AppShellFrame: React.FC<IAppShellProps> = (props) => {
               ? '(close)'
               : '(open)'}
           </Button>
+
+          {createSequence(20).map((i) => (
+            <Text key={i} gutterBottom>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a
+              ullamcorper nisl. In ut diam sapien. Proin orci mauris, pretium ac
+              ante ut, porta fermentum ipsum. Proin at lobortis turpis, a
+              rhoncus massa.
+            </Text>
+          ))}
         </AppShell.Main>
       </AppShell>
     </Frame>

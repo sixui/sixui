@@ -6,6 +6,7 @@ export type IAppShellMainStylesKey = keyof typeof appShellMainStyles;
 export const appShellMainStyles = stylex.create({
   host: {
     flexGrow: 1,
+    marginLeft: 0,
     transitionProperty: 'margin',
     transitionDuration: motionTokens.duration$long3,
     transitionTimingFunction: motionTokens.easing$emphasizedDecelerate,
