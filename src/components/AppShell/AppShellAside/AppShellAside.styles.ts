@@ -1,14 +1,19 @@
 import stylex from '@stylexjs/stylex';
+
 import { drawerTokens } from '~/components/Drawer/Drawer.stylex';
 import { appShellTokens } from '../AppShell.stylex';
 
 export type IAppShellAsideStylesKey = keyof typeof appShellAsideStyles;
 export const appShellAsideStyles = stylex.create({
   host: {
-    width: `min(${appShellTokens.asideWidth}, ${appShellTokens.asideMaxWidth})`,
-    height: `calc(100vh - 2 * ${drawerTokens.containerInset})`,
-    flexShrink: 0,
     position: 'sticky',
+    flexShrink: 0,
+    width: `min(${appShellTokens.asideWidth}, ${appShellTokens.asideWidth})`,
+    height: `calc(100vh - 2 * ${drawerTokens.containerInset} - ${appShellTokens.headerHeight})`,
+    top: appShellTokens.headerHeight,
+  },
+  host$fullHeight: {
+    height: `calc(100vh - 2 * ${drawerTokens.containerInset})`,
     top: 0,
   },
   host$collapsed: {

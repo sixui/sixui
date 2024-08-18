@@ -4,6 +4,9 @@ import { scaleTokens } from '~/themes/base/scale.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
 
 const vars = {
+  // header
+  headerHeight: `calc(64px * ${scaleTokens.scale})`,
+
   // navigationDrawer
   navigationDrawerMaxWidth: '100vw - 48px',
   navigationDrawerWidth: `calc(360px * ${scaleTokens.scale})`,
@@ -11,6 +14,9 @@ const vars = {
   // aside
   asideMaxWidth: '100vw - 48px',
   asideWidth: `calc(360px * ${scaleTokens.scale})`,
+
+  // footer
+  footerHeight: `calc(64px * ${scaleTokens.scale})`,
 
   // FIXME: in spacing tokens?
   windowHorizontalSpace$compact: spacingTokens.padding$4,

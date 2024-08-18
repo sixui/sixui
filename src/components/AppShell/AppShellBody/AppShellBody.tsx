@@ -8,7 +8,16 @@ import { appShellBodyStyles } from './AppShellBody.styles';
 
 export const AppShellBody = forwardRef<HTMLDivElement, IAppShellBodyProps>(
   function AppShellBody(props, forwardedRef) {
-    const { styles, sx, children, ...other } = props;
+    const {
+      styles,
+      sx,
+      children,
+      hasLeftSideSheet,
+      leftSideSheetOpened,
+      hasRightSideSheet,
+      rightSideSheetOpened,
+      ...other
+    } = props;
     const appShellContext = useAppShellContext();
 
     const { combineStyles, globalStyles } = useStyles({
@@ -16,23 +25,23 @@ export const AppShellBody = forwardRef<HTMLDivElement, IAppShellBodyProps>(
       styles: [appShellBodyStyles, styles],
     });
 
-    const isStandardNavigationDrawerOpened =
-      !appShellContext.navigationDrawer?.sideSheet?.isModal &&
-      appShellContext.navigationDrawer?.sideSheet?.standardOpened;
-    const isStandardAsideOpened =
-      !appShellContext.aside?.sideSheet?.isModal &&
-      appShellContext.aside?.sideSheet?.standardOpened;
-
     return (
       <Base
+        as='main'
         {...other}
         sx={[
           globalStyles,
           combineStyles(
             'host',
-            isStandardNavigationDrawerOpened &&
-              'host$standardNavigationDrawerOpened',
-            isStandardAsideOpened && 'host$standardAsideOpened',
+            hasLeftSideSheet && 'host$hasLeftSideSheet',
+            hasLeftSideSheet &&
+              leftSideSheetOpened &&
+              'host$hasLeftSideSheet$opened',
+            hasRightSideSheet && 'host$hasRightSideSheet',
+            hasRightSideSheet &&
+              rightSideSheetOpened &&
+              'host$hasRightSideSheet$opened',
+            !appShellContext.navigationDrawer?.fullHeight && 'host$withHeader',
           ),
           sx,
         ]}

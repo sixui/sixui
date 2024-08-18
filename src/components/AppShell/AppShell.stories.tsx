@@ -12,6 +12,7 @@ import { Button } from '../Button';
 import { useSideSheet } from '../SideSheet/useSideSheet';
 import { Text } from '../Text';
 import { createSequence } from '@olivierpascal/helpers';
+import { Stack } from '../Stack';
 
 const meta = {
   component: AppShell,
@@ -56,53 +57,84 @@ const AppShellFrame: React.FC<IAppShellProps> = (props) => {
             modalOpened: navigationDrawer.modalOpened,
             standardOpened: navigationDrawer.standardOpened,
           },
+          fullHeight: true,
         }}
         aside={{
           sideSheet: {
-            isModal: true,
-            modalOpened: aside.modalOpened || aside.standardOpened,
-            standardOpened: false,
+            isModal: aside.isModal,
+            modalOpened: aside.modalOpened,
+            standardOpened: aside.standardOpened,
           },
+          fullHeight: false,
         }}
         {...props}
       >
-        <AppShell.NavigationDrawer
-          onClose={navigationDrawerCallbacks.close}
-          headline='Headline'
-          showCloseButton
-        >
-          MAIN
-        </AppShell.NavigationDrawer>
-        <AppShell.Body>
-          <Button onClick={navigationDrawerCallbacks.toggle}>
-            TOGGLE NAV{' '}
-            {navigationDrawer.standardOpened || navigationDrawer.modalOpened
-              ? '(close)'
-              : '(open)'}
-          </Button>
+        {/* <Stack horizontal align='start'> */}
+        <AppShell.Main>
+          <AppShell.NavigationDrawer
+            onClose={navigationDrawerCallbacks.close}
+            headline='Headline'
+            showCloseButton
+          >
+            NAVIGATION
+          </AppShell.NavigationDrawer>
 
-          <Button onClick={asideCallbacks.toggle}>
-            TOGGLE ASIDE{' '}
-            {aside.standardOpened || aside.modalOpened ? '(close)' : '(open)'}
-          </Button>
+          <AppShell.Body
+            hasLeftSideSheet
+            leftSideSheetOpened={
+              !navigationDrawer.isModal && navigationDrawer.standardOpened
+            }
+          >
+            <AppShell.Header>
+              <div>Elements</div>
+              <div>Elements</div>
+            </AppShell.Header>
 
-          {createSequence(20).map((i) => (
-            <Text key={i} gutterBottom>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a
-              ullamcorper nisl. In ut diam sapien. Proin orci mauris, pretium ac
-              ante ut, porta fermentum ipsum. Proin at lobortis turpis, a
-              rhoncus massa.
-            </Text>
-          ))}
-        </AppShell.Body>
-        <AppShell.Aside
-          onClose={asideCallbacks.close}
-          headline='Headline'
-          showCloseButton
-          // variant='detached'
-        >
-          ASIDE
-        </AppShell.Aside>
+            <AppShell.Main>
+              <AppShell.Body
+                hasRightSideSheet
+                rightSideSheetOpened={!aside.isModal && aside.standardOpened}
+              >
+                <div>
+                  <Button onClick={navigationDrawerCallbacks.toggle}>
+                    TOGGLE NAV{' '}
+                    {navigationDrawer.standardOpened ||
+                    navigationDrawer.modalOpened
+                      ? '(close)'
+                      : '(open)'}
+                  </Button>
+
+                  <Button onClick={asideCallbacks.toggle}>
+                    TOGGLE ASIDE{' '}
+                    {aside.standardOpened || aside.modalOpened
+                      ? '(close)'
+                      : '(open)'}
+                  </Button>
+
+                  {createSequence(20).map((i) => (
+                    <Text key={i} gutterBottom>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Sed a ullamcorper nisl. In ut diam sapien. Proin orci
+                      mauris, pretium ac ante ut, porta fermentum ipsum. Proin
+                      at lobortis turpis, a rhoncus massa.
+                    </Text>
+                  ))}
+                </div>
+              </AppShell.Body>
+
+              <AppShell.Aside
+                onClose={asideCallbacks.close}
+                headline='Headline'
+                showCloseButton
+                // variant='detached'
+              >
+                ASIDE
+              </AppShell.Aside>
+            </AppShell.Main>
+          </AppShell.Body>
+        </AppShell.Main>
+        {/* </Stack> */}
+        <AppShell.Footer>FOOTER</AppShell.Footer>
       </AppShell>
     </Frame>
   );

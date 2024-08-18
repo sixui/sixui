@@ -6,8 +6,10 @@ export type IAppShellProps = IBaseProps<IAppShellStylesKey> & {
   children?: React.ReactNode;
   navigationDrawer?: {
     sideSheet?: IUseSideSheetResult;
+    fullHeight?: boolean;
   };
   aside?: {
     sideSheet?: IUseSideSheetResult;
+    fullHeight?: boolean;
   };
 };

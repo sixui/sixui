@@ -22,6 +22,7 @@ export const AppShellAside = forwardRef<HTMLDivElement, IAppShellAsideProps>(
       <div
         {...getStyles(
           'host',
+          appShellContext.aside?.fullHeight && 'host$fullHeight',
           !appShellContext.aside?.sideSheet?.standardOpened && 'host$collapsed',
         )}
       >

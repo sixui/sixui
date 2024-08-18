@@ -4,13 +4,16 @@ import stylex from '@stylexjs/stylex';
 import type { IAppShellProps } from './AppShell.types';
 import { useStyles } from '~/hooks/useStyles';
 import { appShellStyles } from './AppShell.styles';
+import { AppShellHeader } from './AppShellHeader';
 import { AppShellNavigationDrawer } from './AppShellNavigationDrawer';
+import { AppShellMain } from './AppShellMain';
 import { AppShellBody } from './AppShellBody';
 import {
   AppShellProvider,
   type IAppShellContextValue,
 } from './AppShell.context';
 import { AppShellAside } from './AppShellAside';
+import { AppShellFooter } from './AppShellFooter';
 
 const AppShell = forwardRef<HTMLDivElement, IAppShellProps>(
   function AppShell(props, forwardedRef) {
@@ -32,8 +35,7 @@ const AppShell = forwardRef<HTMLDivElement, IAppShellProps>(
       <AppShellProvider value={contextValue}>
         <div {...stylex.props(globalStyles, sx)} {...other} ref={forwardedRef}>
           <div ref={setRootElement} />
-          <div {...getStyles('main')}>{children}</div>
-          <div>FOOTER</div>
+          {children}
         </div>
       </AppShellProvider>
     );
@@ -41,9 +43,12 @@ const AppShell = forwardRef<HTMLDivElement, IAppShellProps>(
 );
 
 const AppShellNamespace = Object.assign(AppShell, {
+  Header: AppShellHeader,
   NavigationDrawer: AppShellNavigationDrawer,
+  Main: AppShellMain,
   Body: AppShellBody,
   Aside: AppShellAside,
+  Footer: AppShellFooter,
 });
 
 export { AppShellNamespace as AppShell };
