@@ -17,7 +17,7 @@ export const useSideSheet = (
   const [modalOpened, setModalOpened] = useState(false);
   const savedStandardOpenedRef = useRef(opened);
   const previousOpened = usePrevious(opened);
-  const isModal = !windowSizeClass?.expandedAndUp;
+  const isModal = !windowSizeClass?.largeAndUp;
   const previousIsModal = usePrevious(isModal);
 
   useEffect(() => {

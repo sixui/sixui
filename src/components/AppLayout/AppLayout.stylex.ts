@@ -17,13 +17,6 @@ const vars = {
 
   // footer
   footerHeight: `calc(64px * ${scaleTokens.scale})`,
-
-  // FIXME: in spacing tokens?
-  windowHorizontalSpace$compact: spacingTokens.padding$4,
-  windowHorizontalSpace$medium: spacingTokens.padding$6,
-  windowHorizontalSpace$expanded: spacingTokens.padding$6,
-  windowHorizontalSpace$large: spacingTokens.padding$6,
-  windowHorizontalSpace$extraLarge: spacingTokens.padding$6,
 };
 
 export const appShellTokens = stylex.defineVars(vars);

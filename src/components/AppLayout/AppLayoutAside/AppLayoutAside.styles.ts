@@ -19,7 +19,7 @@ export const appShellAsideStyles = stylex.create({
   host$collapsed: {
     pointerEvents: 'none',
   },
-  aside: {
+  sideSheet: {
     width: `min(${appShellTokens.asideWidth}, ${appShellTokens.asideMaxWidth})`,
     height: '100%',
   },

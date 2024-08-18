@@ -29,7 +29,7 @@ export const AppLayoutAside = forwardRef<HTMLDivElement, IAppLayoutAsideProps>(
         <SideSheet
           anchor='right'
           root={appShellContext.root}
-          sx={[globalStyles, combineStyles('aside'), sx]}
+          sx={[globalStyles, combineStyles('sideSheet'), sx]}
           isModal={appShellContext.aside?.sideSheet?.isModal}
           standardOpened={appShellContext.aside?.sideSheet?.standardOpened}
           modalOpened={appShellContext.aside?.sideSheet?.modalOpened}

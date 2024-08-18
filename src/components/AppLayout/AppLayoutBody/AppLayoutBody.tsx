@@ -14,7 +14,6 @@ export const AppLayoutBody = forwardRef<HTMLDivElement, IAppLayoutBodyProps>(
       children,
       followNavigationDrawer,
       followAside,
-      followHeader,
       ...other
     } = props;
     const appShellContext = useAppLayoutContext();
@@ -30,7 +29,6 @@ export const AppLayoutBody = forwardRef<HTMLDivElement, IAppLayoutBodyProps>(
     const standardAsideOpened =
       !appShellContext.aside?.sideSheet?.isModal &&
       appShellContext.aside?.sideSheet?.standardOpened;
-    const headerOpened = true;
 
     return (
       <Base
@@ -46,8 +44,6 @@ export const AppLayoutBody = forwardRef<HTMLDivElement, IAppLayoutBodyProps>(
               'host$followNavigationDrawer$opened',
             followAside && 'host$followAside',
             followAside && standardAsideOpened && 'host$followAside$opened',
-            followHeader && 'host$followHeader',
-            followHeader && headerOpened && 'host$followHeader$opened',
           ),
           sx,
         ]}

@@ -4,6 +4,7 @@ import { createPortal } from 'react-dom';
 
 import type { IFrameProps } from './Frame.types';
 import { Base } from '../Base';
+import { ResponsiveStyles } from '../Theme/ResponsiveStyles';
 
 export const Frame = forwardRef<HTMLIFrameElement, IFrameProps>(
   function Iframe(props, forwardedRef) {
@@ -55,7 +56,15 @@ export const Frame = forwardRef<HTMLIFrameElement, IFrameProps>(
 
     return (
       <Base as='iframe' {...other} ref={handleRef}>
-        {iframeDocument ? createPortal(children, iframeDocument.body) : null}
+        {iframeDocument
+          ? createPortal(
+              <div id='sixui-root'>
+                <ResponsiveStyles />
+                {children}
+              </div>,
+              iframeDocument.body,
+            )
+          : null}
       </Base>
     );
   },

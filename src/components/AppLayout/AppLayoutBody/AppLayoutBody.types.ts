@@ -5,5 +5,4 @@ export type IAppLayoutBodyProps = IBaseProps<IAppLayoutBodyStylesKey> & {
   children?: React.ReactNode;
   followNavigationDrawer?: boolean;
   followAside?: boolean;
-  followHeader?: boolean;
 };

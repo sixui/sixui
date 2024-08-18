@@ -8,6 +8,7 @@ export type IAppLayoutNavigationDrawerStylesKey =
 export const appShellNavigationDrawerStyles = stylex.create({
   host: {
     position: 'sticky',
+    overflowX: 'hidden',
     flexShrink: 0,
     width: `min(${appShellTokens.navigationDrawerWidth}, ${appShellTokens.navigationDrawerMaxWidth})`,
     height: `calc(100vh - 2 * ${drawerTokens.containerInset} - ${appShellTokens.headerHeight})`,

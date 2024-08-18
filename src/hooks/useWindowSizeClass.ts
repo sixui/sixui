@@ -11,6 +11,10 @@ type IWIndowSizeClassContainerMap = Partial<
   Record<IWindowSizeClassContainerName, true>
 >;
 
+export type IUseWindowSizeClassProps = {
+  window?: Window;
+};
+
 export type IUseWindowSizeClassResult =
   | IWIndowSizeClassContainerMap
   | undefined;
@@ -30,21 +34,26 @@ const arrayToMap = (
 
 const getInitialValue = (
   rules: Array<IResponsiveRule>,
+  customWindow?: Window,
 ): IUseWindowSizeClassResult => {
   if (typeof window === 'undefined' || !('matchMedia' in window)) {
     return undefined;
   }
 
+  const container = customWindow ?? window;
   const matchingRule = rules.find(
-    (rule) => window.matchMedia(rule.query).matches,
+    (rule) => container.matchMedia(rule.query).matches,
   );
 
   return matchingRule ? arrayToMap(matchingRule?.containerNames) : undefined;
 };
 
-export const useWindowSizeClass = (): IUseWindowSizeClassResult => {
+export const useWindowSizeClass = (
+  props?: IUseWindowSizeClassProps,
+): IUseWindowSizeClassResult => {
   const { theme } = useThemeContext();
   const windowSizeClasses = theme.windowSizeClasses;
+  const container = props?.window ?? window;
 
   const listenersRef = useRef<
     Array<{
@@ -62,12 +71,12 @@ export const useWindowSizeClass = (): IUseWindowSizeClassResult => {
   );
 
   useEffect(() => {
-    if (!('matchMedia' in window)) {
+    if (!('matchMedia' in container)) {
       return;
     }
 
     listenersRef.current = rules.map((rule) => {
-      const query = window.matchMedia(rule.query);
+      const query = container.matchMedia(rule.query);
       if (query.matches) {
         setMatches(arrayToMap(rule.containerNames));
       }
@@ -90,7 +99,7 @@ export const useWindowSizeClass = (): IUseWindowSizeClassResult => {
       listenersRef.current?.forEach((query) =>
         query.query.removeEventListener('change', query.callback),
       );
-  }, [rules]);
+  }, [rules, container]);
 
   return matches;
 };

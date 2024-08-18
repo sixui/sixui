@@ -12,6 +12,8 @@ import {
   type IAppLayoutContextValue,
 } from './AppLayout.context';
 import { AppLayoutAside } from './AppLayoutAside';
+import { AppLayoutPanes } from './AppLayoutPanes';
+import { AppLayoutPane } from './AppLayoutPane';
 import { AppLayoutFooter } from './AppLayoutFooter';
 
 const AppLayout = forwardRef<HTMLDivElement, IAppLayoutProps>(
@@ -32,7 +34,11 @@ const AppLayout = forwardRef<HTMLDivElement, IAppLayoutProps>(
 
     return (
       <AppLayoutProvider value={contextValue}>
-        <div {...stylex.props(globalStyles, sx)} {...other} ref={forwardedRef}>
+        <div
+          {...stylex.props(globalStyles, combineStyles('host'), sx)}
+          {...other}
+          ref={forwardedRef}
+        >
           <div ref={setRootElement} />
           {children}
         </div>
@@ -45,6 +51,8 @@ const AppLayoutNamespace = Object.assign(AppLayout, {
   Header: AppLayoutHeader,
   NavigationDrawer: AppLayoutNavigationDrawer,
   Body: AppLayoutBody,
+  Panes: AppLayoutPanes,
+  Pane: AppLayoutPane,
   Aside: AppLayoutAside,
   Footer: AppLayoutFooter,
 });

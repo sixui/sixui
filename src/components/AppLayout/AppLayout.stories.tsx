@@ -15,6 +15,8 @@ import { Text } from '../Text';
 import { createSequence } from '@olivierpascal/helpers';
 import { Stack } from '../Stack';
 import { IconButton } from '../IconButton';
+import { useWindowSizeClass } from '~/hooks/useWindowSizeClass';
+import { useRef } from 'react';
 
 const meta = {
   component: AppLayout,
@@ -78,8 +80,32 @@ const HeaderContent: React.FC<IHeaderContent> = (props) => {
   );
 };
 
-const BodyContent: React.FC = () =>
-  createSequence(20).map((i) => (
+type IBodyContentProps = {
+  customWindow?: Window;
+};
+
+const BodyContent: React.FC<IBodyContentProps> = (props) => {
+  const windowSizeClass = useWindowSizeClass({
+    window: props.customWindow,
+  });
+
+  return (
+    <AppLayout.Panes>
+      <AppLayout.Pane>Pane 1</AppLayout.Pane>
+
+      {windowSizeClass?.expandedAndUp ? (
+        <AppLayout.Pane>Pane 2</AppLayout.Pane>
+      ) : null}
+    </AppLayout.Panes>
+  );
+};
+
+const NavigationDrawerContent: React.FC = () => 'This is a navigation drawer.';
+
+const AsideContent: React.FC = () => 'This is an aside.';
+
+const FooterContent: React.FC = () =>
+  createSequence(2).map((i) => (
     <Text key={i} gutterBottom>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ullamcorper
       nisl. In ut diam sapien. Proin orci mauris, pretium ac ante ut, porta
@@ -101,8 +127,10 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
     onClose: asideCallbacks.close,
   });
 
+  const frameRef = useRef<HTMLIFrameElement>(null);
+
   return (
-    <Frame importParentStyles sx={styles.frame}>
+    <Frame importParentStyles sx={styles.frame} ref={frameRef}>
       <AppLayout
         navigationDrawer={{
           sideSheet: {
@@ -135,20 +163,30 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
           <Stack horizontal align='start'>
             <AppLayout.NavigationDrawer
               onClose={navigationDrawerCallbacks.close}
+              showCloseButton={navigationDrawer.isModal}
             >
-              NAVIGATION
+              <NavigationDrawerContent />
             </AppLayout.NavigationDrawer>
 
-            <AppLayout.Body followNavigationDrawer followHeader followAside>
-              <BodyContent />
+            <AppLayout.Body followNavigationDrawer followAside>
+              <BodyContent
+                customWindow={frameRef?.current?.contentWindow ?? undefined}
+              />
             </AppLayout.Body>
 
-            <AppLayout.Aside onClose={asideCallbacks.close} variant='detached'>
-              ASIDE
+            <AppLayout.Aside
+              onClose={asideCallbacks.close}
+              variant='detached'
+              showCloseButton={aside.isModal}
+            >
+              <AsideContent />
             </AppLayout.Aside>
           </Stack>
         </Stack>
-        <AppLayout.Footer>FOOTER</AppLayout.Footer>
+
+        <AppLayout.Footer>
+          <FooterContent />
+        </AppLayout.Footer>
       </AppLayout>
     </Frame>
   );
@@ -168,8 +206,10 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
     onClose: asideCallbacks.close,
   });
 
+  const frameRef = useRef<HTMLIFrameElement>(null);
+
   return (
-    <Frame importParentStyles sx={styles.frame}>
+    <Frame importParentStyles sx={styles.frame} ref={frameRef}>
       <AppLayout
         navigationDrawer={{
           sideSheet: {
@@ -193,13 +233,13 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
           <Stack horizontal align='start'>
             <AppLayout.NavigationDrawer
               onClose={navigationDrawerCallbacks.close}
-              headline='Headline'
+              headline='App name'
               showCloseButton
             >
-              NAVIGATION
+              <NavigationDrawerContent />
             </AppLayout.NavigationDrawer>
 
-            <AppLayout.Body followNavigationDrawer followHeader>
+            <AppLayout.Body followNavigationDrawer>
               <AppLayout.Header>
                 <HeaderContent
                   navigationDrawerOpened={navigationDrawerOpened}
@@ -215,21 +255,27 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
 
               <Stack horizontal align='start'>
                 <AppLayout.Body followAside>
-                  <BodyContent />
+                  <BodyContent
+                    customWindow={frameRef?.current?.contentWindow ?? undefined}
+                  />
                 </AppLayout.Body>
 
                 <AppLayout.Aside
                   onClose={asideCallbacks.close}
                   headline='Headline'
                   variant='detached'
+                  showCloseButton={aside.isModal}
                 >
-                  ASIDE
+                  <AsideContent />
                 </AppLayout.Aside>
               </Stack>
             </AppLayout.Body>
           </Stack>
         </Stack>
-        <AppLayout.Footer>FOOTER</AppLayout.Footer>
+
+        <AppLayout.Footer>
+          <FooterContent />
+        </AppLayout.Footer>
       </AppLayout>
     </Frame>
   );
