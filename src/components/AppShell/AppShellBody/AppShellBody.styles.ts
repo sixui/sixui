@@ -10,8 +10,8 @@ export const appShellBodyStyles = stylex.create({
     marginLeft: `calc(-1 * min(${appShellTokens.navigationDrawerWidth}, ${appShellTokens.navigationDrawerMaxWidth}))`,
     marginRight: `calc(-1 * min(${appShellTokens.asideWidth}, ${appShellTokens.asideMaxWidth}))`,
     transitionProperty: 'margin',
-    transitionDuration: motionTokens.duration$long3,
-    transitionTimingFunction: motionTokens.easing$emphasizedDecelerate,
+    transitionDuration: motionTokens.duration$short3,
+    transitionTimingFunction: motionTokens.easing$emphasizedAccelerate,
     backgroundColor: colorSchemeTokens.surface,
 
     paddingLeft: {
@@ -44,13 +44,13 @@ export const appShellBodyStyles = stylex.create({
   host$standardNavigationDrawerOpened: {
     marginLeft: 0,
     transitionProperty: 'margin',
-    transitionDuration: motionTokens.duration$short3,
-    transitionTimingFunction: motionTokens.easing$emphasizedAccelerate,
+    transitionDuration: motionTokens.duration$long3,
+    transitionTimingFunction: motionTokens.easing$emphasizedDecelerate,
   },
   host$standardAsideOpened: {
     marginRight: 0,
     transitionProperty: 'margin',
-    transitionDuration: motionTokens.duration$short3,
-    transitionTimingFunction: motionTokens.easing$emphasizedAccelerate,
+    transitionDuration: motionTokens.duration$long3,
+    transitionTimingFunction: motionTokens.easing$emphasizedDecelerate,
   },
 });

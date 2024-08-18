@@ -21,7 +21,13 @@ export const AppShellNavigationDrawer = forwardRef<
   });
 
   return (
-    <div {...getStyles('host')}>
+    <div
+      {...getStyles(
+        'host',
+        !appShellContext.navigationDrawer?.sideSheet?.standardOpened &&
+          'host$collapsed',
+      )}
+    >
       <SideSheet
         anchor='left'
         root={appShellContext.root}

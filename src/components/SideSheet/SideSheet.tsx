@@ -49,7 +49,6 @@ export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
           sx={[globalStyles, combineStyles('host'), props?.sx, sx]}
         />
       );
-      console.log('__anchor', anchor);
 
       return (
         <>

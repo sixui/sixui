@@ -41,7 +41,7 @@ const AppShellFrame: React.FC<IAppShellProps> = (props) => {
     onClose: navigationDrawerCallbacks.close,
   });
 
-  const [asideOpened, asideCallbacks] = useDisclosure(true);
+  const [asideOpened, asideCallbacks] = useDisclosure(false);
   const aside = useSideSheet(asideOpened, {
     onOpen: asideCallbacks.open,
     onClose: asideCallbacks.close,
@@ -51,10 +51,18 @@ const AppShellFrame: React.FC<IAppShellProps> = (props) => {
     <Frame importParentStyles sx={styles.frame}>
       <AppShell
         navigationDrawer={{
-          sideSheet: navigationDrawer,
+          sideSheet: {
+            isModal: navigationDrawer.isModal,
+            modalOpened: navigationDrawer.modalOpened,
+            standardOpened: navigationDrawer.standardOpened,
+          },
         }}
         aside={{
-          sideSheet: aside,
+          sideSheet: {
+            isModal: true,
+            modalOpened: aside.modalOpened || aside.standardOpened,
+            standardOpened: false,
+          },
         }}
         {...props}
       >
@@ -91,6 +99,7 @@ const AppShellFrame: React.FC<IAppShellProps> = (props) => {
           onClose={asideCallbacks.close}
           headline='Headline'
           showCloseButton
+          // variant='detached'
         >
           ASIDE
         </AppShell.Aside>

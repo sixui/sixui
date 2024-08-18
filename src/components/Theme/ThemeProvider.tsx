@@ -64,8 +64,10 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
             sx,
           ])}
         >
-          <ResponsiveStyles />
-          {children}
+          <div id='sixui-root'>
+            <ResponsiveStyles />
+            {children}
+          </div>
         </div>
       </ThemeContext.Provider>
     </ThemeSetterContext.Provider>

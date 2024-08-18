@@ -6,7 +6,7 @@ import { useThemeContext } from '../Theme';
 
 const serializeResponsiveRule = (rule: IResponsiveRule): string => `
     @media ${rule.query} {
-      body {
+      #sixui-root {
         container-type: inline-size;
         container-name: ${rule.containerNames.join(' ')};
       }

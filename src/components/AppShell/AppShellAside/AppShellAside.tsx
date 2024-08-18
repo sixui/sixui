@@ -19,7 +19,12 @@ export const AppShellAside = forwardRef<HTMLDivElement, IAppShellAsideProps>(
     });
 
     return (
-      <div {...getStyles('host')}>
+      <div
+        {...getStyles(
+          'host',
+          !appShellContext.aside?.sideSheet?.standardOpened && 'host$collapsed',
+        )}
+      >
         <SideSheet
           anchor='right'
           root={appShellContext.root}
