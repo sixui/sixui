@@ -1,6 +1,6 @@
 // atoms
 export * from './components/Anchored';
-export * from './components/AppShell';
+export * from './components/AppLayout';
 export * from './components/Avatar';
 export * from './components/Badge';
 export * from './components/Base';
