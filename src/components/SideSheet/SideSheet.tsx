@@ -49,6 +49,7 @@ export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
           sx={[globalStyles, combineStyles('host'), props?.sx, sx]}
         />
       );
+      console.log('__anchor', anchor);
 
       return (
         <>
@@ -56,17 +57,16 @@ export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
             nodeRef={transitionNodeRef}
             in={standardOpened}
             timeout={550} // motionTokens.duration$long3
-            classNames={{
-              enter: getStyles('animation$enter').className,
-              enterActive: getStyles('animation$enterActive').className,
-              exitActive: getStyles('animation$exitActive').className,
-            }}
             unmountOnExit
           >
-            {renderContent({
-              onClose,
-              ref: transitionNodeHandleRef,
-            })}
+            {(status) => (
+              <div {...getStyles(`animation$${status}`)} data-anchor={anchor}>
+                {renderContent({
+                  onClose,
+                  ref: transitionNodeHandleRef,
+                })}
+              </div>
+            )}
           </CSSTransition>
 
           {isModal ? (

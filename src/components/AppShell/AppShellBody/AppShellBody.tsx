@@ -16,6 +16,13 @@ export const AppShellBody = forwardRef<HTMLDivElement, IAppShellBodyProps>(
       styles: [appShellBodyStyles, styles],
     });
 
+    const isStandardNavigationDrawerOpened =
+      !appShellContext.navigationDrawer?.sideSheet?.isModal &&
+      appShellContext.navigationDrawer?.sideSheet?.standardOpened;
+    const isStandardAsideOpened =
+      !appShellContext.aside?.sideSheet?.isModal &&
+      appShellContext.aside?.sideSheet?.standardOpened;
+
     return (
       <Base
         {...other}
@@ -23,9 +30,9 @@ export const AppShellBody = forwardRef<HTMLDivElement, IAppShellBodyProps>(
           globalStyles,
           combineStyles(
             'host',
-            (appShellContext.navigationDrawer?.sideSheet?.isModal ||
-              !appShellContext.navigationDrawer?.sideSheet?.standardOpened) &&
-              'host$expanded',
+            isStandardNavigationDrawerOpened &&
+              'host$standardNavigationDrawerOpened',
+            isStandardAsideOpened && 'host$standardAsideOpened',
           ),
           sx,
         ]}

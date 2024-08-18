@@ -1,10 +1,12 @@
+import type { IAppShellProps } from './AppShell.types';
 import type { IPortalProps } from '../Portal';
-import type { IAppShellNavigationDrawerProps } from './AppShell.types';
 import { createSafeContext } from '~/helpers/createSafeContext';
 
-export type IAppShellContextValue = {
+export type IAppShellContextValue = Pick<
+  IAppShellProps,
+  'navigationDrawer' | 'aside'
+> & {
   root?: IPortalProps['root'];
-  navigationDrawer?: IAppShellNavigationDrawerProps;
 };
 
 export const [AppShellProvider, useAppShellContext] =

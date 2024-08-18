@@ -1,8 +1,23 @@
 import stylex from '@stylexjs/stylex';
 
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+
 const vars = {
-  navigationDrawerWidth$expanded: '360px',
-  navigationDrawerWidth$largeAndUp: '412px',
+  // navigationDrawer
+  navigationDrawerMaxWidth: '100vw - 48px',
+  navigationDrawerWidth: `calc(360px * ${scaleTokens.scale})`,
+
+  // aside
+  asideMaxWidth: '100vw - 48px',
+  asideWidth: `calc(360px * ${scaleTokens.scale})`,
+
+  // FIXME: in spacing tokens?
+  windowHorizontalSpace$compact: spacingTokens.padding$4,
+  windowHorizontalSpace$medium: spacingTokens.padding$6,
+  windowHorizontalSpace$expanded: spacingTokens.padding$6,
+  windowHorizontalSpace$large: spacingTokens.padding$6,
+  windowHorizontalSpace$extraLarge: spacingTokens.padding$6,
 };
 
 export const appShellTokens = stylex.defineVars(vars);

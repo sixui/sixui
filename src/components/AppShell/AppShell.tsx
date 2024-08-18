@@ -10,10 +10,11 @@ import {
   AppShellProvider,
   type IAppShellContextValue,
 } from './AppShell.context';
+import { AppShellAside } from './AppShellAside';
 
 const AppShell = forwardRef<HTMLDivElement, IAppShellProps>(
   function AppShell(props, forwardedRef) {
-    const { styles, sx, children, navigationDrawer, ...other } = props;
+    const { styles, sx, children, navigationDrawer, aside, ...other } = props;
 
     const { combineStyles, getStyles, globalStyles } = useStyles({
       name: 'AppShell',
@@ -24,6 +25,7 @@ const AppShell = forwardRef<HTMLDivElement, IAppShellProps>(
     const contextValue: IAppShellContextValue = {
       root: rootElement,
       navigationDrawer,
+      aside,
     };
 
     return (
@@ -41,6 +43,7 @@ const AppShell = forwardRef<HTMLDivElement, IAppShellProps>(
 const AppShellNamespace = Object.assign(AppShell, {
   NavigationDrawer: AppShellNavigationDrawer,
   Body: AppShellBody,
+  Aside: AppShellAside,
 });
 
 export { AppShellNamespace as AppShell };

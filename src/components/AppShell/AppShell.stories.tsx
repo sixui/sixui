@@ -34,30 +34,48 @@ const styles = stylex.create({
 });
 
 const AppShellFrame: React.FC<IAppShellProps> = (props) => {
-  const [opened, { open, close, toggle }] = useDisclosure(true);
-  const sideSheet = useSideSheet(opened, { onOpen: open, onClose: close });
+  const [navigationDrawerOpened, navigationDrawerCallbacks] =
+    useDisclosure(true);
+  const navigationDrawer = useSideSheet(navigationDrawerOpened, {
+    onOpen: navigationDrawerCallbacks.open,
+    onClose: navigationDrawerCallbacks.close,
+  });
+
+  const [asideOpened, asideCallbacks] = useDisclosure(true);
+  const aside = useSideSheet(asideOpened, {
+    onOpen: asideCallbacks.open,
+    onClose: asideCallbacks.close,
+  });
 
   return (
     <Frame importParentStyles sx={styles.frame}>
       <AppShell
         navigationDrawer={{
-          sideSheet,
+          sideSheet: navigationDrawer,
+        }}
+        aside={{
+          sideSheet: aside,
         }}
         {...props}
       >
         <AppShell.NavigationDrawer
-          onClose={close}
+          onClose={navigationDrawerCallbacks.close}
           headline='Headline'
           showCloseButton
         >
           MAIN
         </AppShell.NavigationDrawer>
         <AppShell.Body>
-          <Button onClick={toggle}>
-            TOGGLE{' '}
-            {sideSheet.standardOpened || sideSheet.modalOpened
+          <Button onClick={navigationDrawerCallbacks.toggle}>
+            TOGGLE NAV{' '}
+            {navigationDrawer.standardOpened || navigationDrawer.modalOpened
               ? '(close)'
               : '(open)'}
+          </Button>
+
+          <Button onClick={asideCallbacks.toggle}>
+            TOGGLE ASIDE{' '}
+            {aside.standardOpened || aside.modalOpened ? '(close)' : '(open)'}
           </Button>
 
           {createSequence(20).map((i) => (
@@ -69,6 +87,13 @@ const AppShellFrame: React.FC<IAppShellProps> = (props) => {
             </Text>
           ))}
         </AppShell.Body>
+        <AppShell.Aside
+          onClose={asideCallbacks.close}
+          headline='Headline'
+          showCloseButton
+        >
+          ASIDE
+        </AppShell.Aside>
       </AppShell>
     </Frame>
   );
