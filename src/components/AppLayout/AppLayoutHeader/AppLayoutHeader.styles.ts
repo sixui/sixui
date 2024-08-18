@@ -3,6 +3,7 @@ import stylex from '@stylexjs/stylex';
 import { outlineTokens } from '~/themes/base/outline.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { appShellTokens } from '../AppLayout.stylex';
+import { zIndexTokens } from '~/themes/base/zIndex.stylex';
 
 export type IAppLayoutHeaderStylesKey = keyof typeof appShellHeaderStyles;
 export const appShellHeaderStyles = stylex.create({
@@ -16,6 +17,6 @@ export const appShellHeaderStyles = stylex.create({
     borderBottomStyle: 'solid',
     borderBottomColor: colorSchemeTokens.outline,
     backgroundColor: '#ccc',
-    zIndex: 9000,
+    zIndex: zIndexTokens.app,
   },
 });

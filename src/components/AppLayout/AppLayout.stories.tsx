@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 import type { IAppLayoutProps } from './AppLayout.types';
 import { scaleTokens } from '~/themes/base/scale.stylex';
@@ -10,7 +10,6 @@ import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { Frame } from '../Frame';
 import { AppLayout } from './AppLayout';
 import { useDisclosure } from '~/hooks/useDisclosure';
-import { Button } from '../Button';
 import { useSideSheet } from '../SideSheet/useSideSheet';
 import { Text } from '../Text';
 import { createSequence } from '@olivierpascal/helpers';
@@ -36,6 +35,57 @@ const styles = stylex.create({
     borderStyle: 'dashed',
   },
 });
+
+type IHeaderContent = {
+  navigationDrawerOpened?: boolean;
+  toggleNavigationDrawer?: () => void;
+  asideOpened?: boolean;
+  toggleAside?: () => void;
+};
+
+const HeaderContent: React.FC<IHeaderContent> = (props) => {
+  const {
+    navigationDrawerOpened,
+    toggleNavigationDrawer,
+    asideOpened,
+    toggleAside,
+  } = props;
+
+  return (
+    <Stack horizontal gap={6} justify='space-between' grow>
+      <Stack horizontal gap={2}>
+        {toggleNavigationDrawer ? (
+          <IconButton
+            icon={
+              <FontAwesomeIcon
+                icon={navigationDrawerOpened ? faXmark : faBars}
+              />
+            }
+            onClick={toggleNavigationDrawer}
+          />
+        ) : null}
+      </Stack>
+
+      <Stack horizontal gap={2}>
+        {toggleAside ? (
+          <IconButton
+            icon={<FontAwesomeIcon icon={asideOpened ? faXmark : faBars} />}
+            onClick={toggleAside}
+          />
+        ) : null}
+      </Stack>
+    </Stack>
+  );
+};
+
+const BodyContent: React.FC = () =>
+  createSequence(20).map((i) => (
+    <Text key={i} gutterBottom>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ullamcorper
+      nisl. In ut diam sapien. Proin orci mauris, pretium ac ante ut, porta
+      fermentum ipsum. Proin at lobortis turpis, a rhoncus massa.
+    </Text>
+  ));
 
 const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
   const [navigationDrawerOpened, navigationDrawerCallbacks] =
@@ -74,52 +124,26 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
       >
         <Stack>
           <AppLayout.Header>
-            <div>
-              {!navigationDrawer.standardOpened ? (
-                <IconButton
-                  icon={<FontAwesomeIcon icon={faBars} />}
-                  onClick={navigationDrawerCallbacks.toggle}
-                />
-              ) : null}
-            </div>
-            <div>Elements</div>
+            <HeaderContent
+              navigationDrawerOpened={navigationDrawerOpened}
+              toggleNavigationDrawer={navigationDrawerCallbacks.toggle}
+              asideOpened={asideOpened}
+              toggleAside={asideCallbacks.toggle}
+            />
           </AppLayout.Header>
 
           <Stack horizontal align='start'>
             <AppLayout.NavigationDrawer
               onClose={navigationDrawerCallbacks.close}
-              headline='Headline'
-              showCloseButton
             >
               NAVIGATION
             </AppLayout.NavigationDrawer>
 
             <AppLayout.Body followNavigationDrawer followHeader followAside>
-              <div>
-                <Button onClick={asideCallbacks.toggle}>
-                  TOGGLE ASIDE{' '}
-                  {aside.standardOpened || aside.modalOpened
-                    ? '(close)'
-                    : '(open)'}
-                </Button>
-
-                {createSequence(20).map((i) => (
-                  <Text key={i} gutterBottom>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                    a ullamcorper nisl. In ut diam sapien. Proin orci mauris,
-                    pretium ac ante ut, porta fermentum ipsum. Proin at lobortis
-                    turpis, a rhoncus massa.
-                  </Text>
-                ))}
-              </div>
+              <BodyContent />
             </AppLayout.Body>
 
-            <AppLayout.Aside
-              onClose={asideCallbacks.close}
-              headline='Headline'
-              showCloseButton
-              // variant='detached'
-            >
+            <AppLayout.Aside onClose={asideCallbacks.close} variant='detached'>
               ASIDE
             </AppLayout.Aside>
           </Stack>
@@ -177,44 +201,27 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
 
             <AppLayout.Body followNavigationDrawer followHeader>
               <AppLayout.Header>
-                <div>Elements</div>
-                <div>Elements</div>
+                <HeaderContent
+                  navigationDrawerOpened={navigationDrawerOpened}
+                  toggleNavigationDrawer={
+                    navigationDrawerOpened
+                      ? undefined
+                      : navigationDrawerCallbacks.toggle
+                  }
+                  asideOpened={asideOpened}
+                  toggleAside={asideCallbacks.toggle}
+                />
               </AppLayout.Header>
 
               <Stack horizontal align='start'>
                 <AppLayout.Body followAside>
-                  <div>
-                    <Button onClick={navigationDrawerCallbacks.toggle}>
-                      TOGGLE NAV{' '}
-                      {navigationDrawer.standardOpened ||
-                      navigationDrawer.modalOpened
-                        ? '(close)'
-                        : '(open)'}
-                    </Button>
-
-                    <Button onClick={asideCallbacks.toggle}>
-                      TOGGLE ASIDE{' '}
-                      {aside.standardOpened || aside.modalOpened
-                        ? '(close)'
-                        : '(open)'}
-                    </Button>
-
-                    {createSequence(20).map((i) => (
-                      <Text key={i} gutterBottom>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Sed a ullamcorper nisl. In ut diam sapien. Proin orci
-                        mauris, pretium ac ante ut, porta fermentum ipsum. Proin
-                        at lobortis turpis, a rhoncus massa.
-                      </Text>
-                    ))}
-                  </div>
+                  <BodyContent />
                 </AppLayout.Body>
 
                 <AppLayout.Aside
                   onClose={asideCallbacks.close}
                   headline='Headline'
-                  showCloseButton
-                  // variant='detached'
+                  variant='detached'
                 >
                   ASIDE
                 </AppLayout.Aside>

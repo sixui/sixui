@@ -9,9 +9,9 @@ export const appShellBodyStyles = stylex.create({
     position: 'relative',
     flexGrow: 1,
     transitionProperty: 'margin',
+    backgroundColor: colorSchemeTokens.surface,
     transitionDuration: motionTokens.duration$short3,
     transitionTimingFunction: motionTokens.easing$emphasizedAccelerate,
-    backgroundColor: colorSchemeTokens.surface,
 
     // FIXME: delete
     // paddingLeft: {
@@ -45,8 +45,6 @@ export const appShellBodyStyles = stylex.create({
   },
   host$followNavigationDrawer: {
     marginLeft: `calc(-1 * min(${appShellTokens.navigationDrawerWidth}, ${appShellTokens.navigationDrawerMaxWidth}))`,
-    transitionDuration: motionTokens.duration$short3,
-    transitionTimingFunction: motionTokens.easing$emphasizedAccelerate,
   },
   host$followNavigationDrawer$opened: {
     marginLeft: 0,
@@ -55,8 +53,6 @@ export const appShellBodyStyles = stylex.create({
   },
   host$followAside: {
     marginRight: `calc(-1 * min(${appShellTokens.asideWidth}, ${appShellTokens.asideMaxWidth}))`,
-    transitionDuration: motionTokens.duration$short3,
-    transitionTimingFunction: motionTokens.easing$emphasizedAccelerate,
   },
   host$followAside$opened: {
     marginRight: 0,

@@ -71,6 +71,9 @@ export const commonStyles = stylex.create({
   flexWrap: (flexWrap: ICSSProperties['wrap']) => ({
     flexWrap,
   }),
+  flexGrow: (flexGrow: boolean) => ({
+    flexGrow: flexGrow ? 1 : 0,
+  }),
   width: (width: string | number) => ({
     width: `calc(${width} * ${scaleTokens.scale})`,
   }),
