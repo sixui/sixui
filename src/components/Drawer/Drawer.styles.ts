@@ -8,6 +8,7 @@ export const drawerStyles = stylex.create({
   host: {
     position: 'fixed',
     zIndex: zIndexTokens.modal,
+    height: `calc(100vh - 2 * ${drawerTokens.containerInset})`,
   },
   host$vertical: {
     top: drawerTokens.containerInset,

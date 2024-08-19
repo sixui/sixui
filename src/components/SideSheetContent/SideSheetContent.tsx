@@ -51,46 +51,48 @@ export const SideSheetContent = forwardRef<
       ]}
       ref={forwardedRef}
     >
-      {hasHeader ? (
-        <div
-          {...getStyles(
-            'header',
-            !!leadingActions && 'header$withLeadingActions',
-          )}
-        >
-          {leadingActions ? (
-            <div {...getStyles('actions')}>{leadingActions}</div>
-          ) : null}
-          {headline ? <div {...getStyles('headline')}>{headline}</div> : null}
-          {trailingActions || showCloseButton ? (
-            <div {...getStyles('actions')}>
-              {trailingActions}
-              <IconButton
-                icon={closeIcon ?? <SvgIcon icon={iconXMark} />}
-                onClick={onClose}
-              />
-            </div>
-          ) : null}
-        </div>
-      ) : null}
-
-      {children ? (
-        <div {...getStyles('content')}>
-          {isFunction(children)
-            ? children({ close: (event) => onClose?.(event) })
-            : children}
-        </div>
-      ) : null}
-
-      {bottomActions ? (
-        <div {...getStyles('footer')}>
-          <div {...getStyles('actions')}>
-            {isFunction(bottomActions)
-              ? bottomActions({ close: (event) => onClose?.(event) })
-              : bottomActions}
+      <div {...getStyles('inner')}>
+        {hasHeader ? (
+          <div
+            {...getStyles(
+              'header',
+              !!leadingActions && 'header$withLeadingActions',
+            )}
+          >
+            {leadingActions ? (
+              <div {...getStyles('actions')}>{leadingActions}</div>
+            ) : null}
+            {headline ? <div {...getStyles('headline')}>{headline}</div> : null}
+            {trailingActions || showCloseButton ? (
+              <div {...getStyles('actions')}>
+                {trailingActions}
+                <IconButton
+                  icon={closeIcon ?? <SvgIcon icon={iconXMark} />}
+                  onClick={onClose}
+                />
+              </div>
+            ) : null}
           </div>
-        </div>
-      ) : null}
+        ) : null}
+
+        {children ? (
+          <div {...getStyles('content')}>
+            {isFunction(children)
+              ? children({ close: (event) => onClose?.(event) })
+              : children}
+          </div>
+        ) : null}
+
+        {bottomActions ? (
+          <div {...getStyles('footer')}>
+            <div {...getStyles('actions')}>
+              {isFunction(bottomActions)
+                ? bottomActions({ close: (event) => onClose?.(event) })
+                : bottomActions}
+            </div>
+          </div>
+        ) : null}
+      </div>
     </PaperBase>
   );
 });

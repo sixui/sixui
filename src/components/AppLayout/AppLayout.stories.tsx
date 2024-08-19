@@ -67,6 +67,7 @@ const HeaderContent: React.FC<IHeaderContent> = (props) => {
             onClick={toggleNavigationDrawer}
           />
         ) : null}
+        <div>Header</div>
       </Stack>
 
       <Stack horizontal gap={2}>
@@ -103,9 +104,23 @@ const BodyContent: React.FC = () => {
   );
 };
 
-const NavigationDrawerContent: React.FC = () => 'This is a navigation drawer.';
+const NavigationDrawerContent: React.FC = () =>
+  createSequence(10).map((i) => (
+    <Text key={i} gutterBottom>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ullamcorper
+      nisl. In ut diam sapien. Proin orci mauris, pretium ac ante ut, porta
+      fermentum ipsum. Proin at lobortis turpis, a rhoncus massa.
+    </Text>
+  ));
 
-const AsideContent: React.FC = () => 'This is an aside.';
+const AsideContent: React.FC = () =>
+  createSequence(10).map((i) => (
+    <Text key={i} gutterBottom>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ullamcorper
+      nisl. In ut diam sapien. Proin orci mauris, pretium ac ante ut, porta
+      fermentum ipsum. Proin at lobortis turpis, a rhoncus massa.
+    </Text>
+  ));
 
 const FooterContent: React.FC = () =>
   createSequence(2).map((i) => (
@@ -128,9 +143,9 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
   const [asideOpened, asideCallbacks] = useDisclosure(true);
   const aside = useSideSheet({
     opened: asideOpened,
-    standardFromWindowSizeClass: 'extraLargeAndUp',
     onOpen: asideCallbacks.open,
     onClose: asideCallbacks.close,
+    standardFromWindowSizeClass: 'extraLargeAndUp',
   });
 
   const frameRef = useRef<HTMLIFrameElement>(null);
@@ -211,6 +226,7 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
     opened: asideOpened,
     onOpen: asideCallbacks.open,
     onClose: asideCallbacks.close,
+    standardFromWindowSizeClass: 'extraLargeAndUp',
   });
 
   const frameRef = useRef<HTMLIFrameElement>(null);

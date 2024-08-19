@@ -19,11 +19,6 @@ export const sideSheetContentStyles = stylex.create({
     [paperBaseTokens.containerColor]: sideSheetContentTokens.containerColor,
     [paperBaseTokens.containerElevation]:
       sideSheetContentTokens.containerElevation,
-
-    gridTemplateRows: 'min-content 1fr min-content',
-    gap: sideSheetContentTokens.containerGap,
-    paddingTop: sideSheetContentTokens.containerTopSpace,
-    paddingBottom: sideSheetContentTokens.containerBottomSpace,
   },
   host$left: {
     borderRightWidth: sideSheetContentTokens.dividerWidth,
@@ -35,7 +30,16 @@ export const sideSheetContentStyles = stylex.create({
     borderLeftColor: sideSheetContentTokens.dividerColor,
     borderLeftStyle: 'solid',
   },
+  inner: {
+    paddingTop: sideSheetContentTokens.containerTopSpace,
+    paddingBottom: sideSheetContentTokens.containerBottomSpace,
+    display: 'flex',
+    flexDirection: 'column',
+    gap: sideSheetContentTokens.containerGap,
+    height: '100%',
+  },
   header: {
+    flexGrow: 0,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -65,10 +69,9 @@ export const sideSheetContentStyles = stylex.create({
   },
   content: {
     overflowY: 'auto',
-    overflowX: 'hidden',
-    height: ' 100%',
   },
   footer: {
+    flexGrow: 0,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
