@@ -36,11 +36,11 @@ const defaultArgs = {
 const states: Array<IComponentPresentation<ITextFieldBaseProps<HTMLElement>>> =
   [
     { legend: 'Enabled' },
+    { legend: 'Focused', props: { visualState: { focused: true } } },
     {
       legend: 'Hovered',
       props: { visualState: { hovered: true } },
     },
-    { legend: 'Focused', props: { visualState: { focused: true } } },
     {
       legend: 'Disabled',
       props: {

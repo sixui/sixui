@@ -18,6 +18,7 @@ import {
   navigationRailDestinationStyles,
 } from './NavigationRailDestination.styles';
 import { navigationRailDestinationTheme } from './NavigationRailDestination.stylex';
+import { Anchored } from '../Anchored';
 
 export const NavigationRailDestination = createPolymorphicComponent<
   'button',
@@ -38,6 +39,7 @@ export const NavigationRailDestination = createPolymorphicComponent<
         activeIcon,
         label,
         active,
+        badge,
         ...other
       } = props as IWithAsProp<INavigationRailDestinationProps>;
 
@@ -113,11 +115,13 @@ export const NavigationRailDestination = createPolymorphicComponent<
               disabled={visuallyDisabled}
               visualState={visualState}
             />
-            <div
-              {...getStyles('icon', active ? `icon$active` : `icon$inactive`)}
-            >
-              {active ? activeIcon : icon}
-            </div>
+            <Anchored content={badge}>
+              <div
+                {...getStyles('icon', active ? `icon$active` : `icon$inactive`)}
+              >
+                {active ? activeIcon : icon}
+              </div>
+            </Anchored>
           </div>
 
           {label ? (

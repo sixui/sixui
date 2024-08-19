@@ -19,6 +19,7 @@ export type INavigationRailDestinationProps =
     icon: React.ReactNode;
     activeIcon?: React.ReactNode;
     label?: React.ReactNode;
+    badge?: React.ReactNode;
     active?: boolean;
     onClick?: () => void;
 

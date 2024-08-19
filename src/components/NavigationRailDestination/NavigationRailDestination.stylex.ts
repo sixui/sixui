@@ -4,14 +4,18 @@ import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { scaleTokens } from '~/themes/base/scale.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
 import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
-import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
 import { stateLayerTokens } from '../StateLayer/StateLayer.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+
+const MIN_DENSITY = -2;
+const MAX_DENSITY = 0;
+const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityTokens.density}, ${MAX_DENSITY}) * ${scaleTokens.scale}`;
 
 const vars = {
-  gap: spacingTokens.padding$1,
+  gap: `calc(${spacingTokens.padding$1} + ${DENSITY})`,
 
   // container
-  containerHeight: `calc(56px * ${scaleTokens.scale})`,
   containerShape: shapeTokens.corner$lg,
   containerShape$noLabel: shapeTokens.corner$full,
 
@@ -65,10 +69,10 @@ const vars = {
   // activeIndicator
   activeIndicatorColor: colorSchemeTokens.secondaryContainer,
   activeIndicatorWidth: `calc(56px * ${scaleTokens.scale})`,
-  activeIndicatorHeight: `calc(32px * ${scaleTokens.scale})`,
+  activeIndicatorHeight: `calc(32px * ${scaleTokens.scale} + ${DENSITY})`,
   activeIndicatorShape: shapeTokens.corner$full,
   // &:noLabel
-  activeIndicatorHeight$noLabel: `calc(56px * ${scaleTokens.scale})`,
+  activeIndicatorHeight$noLabel: `calc(56px * ${scaleTokens.scale} + ${DENSITY})`,
   activeIndicatorShape$noLabel: shapeTokens.corner$full,
 
   // activeStateLayer

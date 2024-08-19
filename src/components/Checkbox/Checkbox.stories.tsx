@@ -27,8 +27,8 @@ const defaultArgs = {
 
 const states: Array<IComponentPresentation<ICheckboxProps>> = [
   { legend: 'Enabled' },
-  { legend: 'Hovered', props: { visualState: { hovered: true } } },
   { legend: 'Focused', props: { visualState: { focused: true } } },
+  { legend: 'Hovered', props: { visualState: { hovered: true } } },
   { legend: 'Pressed', props: { visualState: { pressed: true } } },
   { legend: 'Disabled', props: { disabled: true } },
   { legend: 'Loading', props: { loading: true } },

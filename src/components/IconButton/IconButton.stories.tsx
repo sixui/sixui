@@ -29,8 +29,8 @@ const defaultArgs = {
 
 const states: Array<IComponentPresentation<IIconButtonProps>> = [
   { legend: 'Enabled' },
-  { legend: 'Hovered', props: { visualState: { hovered: true } } },
   { legend: 'Focused', props: { visualState: { focused: true } } },
+  { legend: 'Hovered', props: { visualState: { hovered: true } } },
   { legend: 'Pressed', props: { visualState: { pressed: true } } },
   { legend: 'Loading', props: { loading: true } },
   { legend: 'Disabled', props: { disabled: true } },

@@ -15,7 +15,6 @@ export const navigationRailDestinationStyles = stylex.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: navigationRailDestinationTokens.gap,
-    height: navigationRailDestinationTokens.containerHeight,
     [navigationRailDestinationStateTokens.containerShape]:
       navigationRailDestinationTokens.containerShape,
     borderRadius: navigationRailDestinationStateTokens.containerShape,
