@@ -1,11 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-regular-svg-icons';
+import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
 
 import type { INavigationRailDestinationProps } from './NavigationRailDestination.types';
 import { ComponentShowcase } from '../ComponentShowcase';
 import { NavigationRailDestination } from './NavigationRailDestination';
+import { Anchored } from '../Anchored';
+import { Badge } from '../Badge';
 
 const meta = {
   component: NavigationRailDestination,
@@ -28,8 +30,8 @@ export const Variants: IStory = {
   ),
   args: {
     ...defaultArgs,
-    icon: <FontAwesomeIcon icon={faHeart} />,
-    activeIcon: <FontAwesomeIcon icon={faHeartSolid} />,
+    icon: <FontAwesomeIcon icon={faStar} />,
+    activeIcon: <FontAwesomeIcon icon={faStarSolid} />,
   },
 };
 
@@ -50,8 +52,12 @@ export const Configurations: IStory = {
   ),
   args: {
     ...defaultArgs,
-    icon: <FontAwesomeIcon icon={faHeart} />,
-    activeIcon: <FontAwesomeIcon icon={faHeartSolid} />,
+    icon: (
+      <Anchored content={<Badge value={3} />}>
+        <FontAwesomeIcon icon={faStar} />
+      </Anchored>
+    ),
+    activeIcon: <FontAwesomeIcon icon={faStarSolid} />,
   },
 };
 

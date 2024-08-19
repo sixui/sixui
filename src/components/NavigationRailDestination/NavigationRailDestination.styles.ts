@@ -110,6 +110,7 @@ export const navigationRailDestinationStyles = stylex.create({
       ':is([data-pressed])':
         navigationRailDestinationTokens.activeLabelTextColor$pressed,
     },
+    fontWeight: navigationRailDestinationTokens.activeLabelTextWeight,
   },
   labelText$inactive: {
     color: {

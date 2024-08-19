@@ -24,6 +24,7 @@ const vars = {
 
   // activeLabelText
   activeLabelTextColor: colorSchemeTokens.onSurface,
+  activeLabelTextWeight: typeScaleTokens.labelWeight$md$prominent,
   // &:hover
   activeLabelTextColor$hover: colorSchemeTokens.onSurface,
   // &:focus
@@ -41,7 +42,7 @@ const vars = {
   inactiveLabelTextColor$pressed: colorSchemeTokens.onSurface,
 
   // icon
-  iconSize: `calc(24px * ${scaleTokens.scale})`,
+  iconSize: `calc(18px * ${scaleTokens.scale})`,
 
   // activeIcon
   activeIconColor: colorSchemeTokens.onSecondaryContainer,
