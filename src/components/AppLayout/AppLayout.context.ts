@@ -4,7 +4,7 @@ import { createSafeContext } from '~/helpers/createSafeContext';
 
 export type IAppLayoutContextValue = Pick<
   IAppLayoutProps,
-  'navigationDrawer' | 'aside'
+  'window' | 'navigationDrawer' | 'aside'
 > & {
   root?: IPortalProps['root'];
 };

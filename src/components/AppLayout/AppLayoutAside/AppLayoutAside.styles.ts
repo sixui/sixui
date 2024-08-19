@@ -8,7 +8,7 @@ export const appShellAsideStyles = stylex.create({
   host: {
     position: 'sticky',
     flexShrink: 0,
-    width: `min(${appShellTokens.asideWidth}, ${appShellTokens.asideWidth})`,
+    width: appShellTokens.asideWidth,
     height: `calc(100vh - 2 * ${drawerTokens.containerInset} - ${appShellTokens.headerHeight})`,
     top: appShellTokens.headerHeight,
   },

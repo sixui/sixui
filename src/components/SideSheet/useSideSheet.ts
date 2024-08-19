@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { usePrevious } from '~/hooks/usePrevious';
 
+import type { IWindowSizeClassContainerName } from '~/helpers/getResponsiveRules';
+import { usePrevious } from '~/hooks/usePrevious';
 import { useWindowSizeClass } from '~/hooks/useWindowSizeClass';
 
 export type IUseSideSheetResult = {
@@ -9,15 +10,28 @@ export type IUseSideSheetResult = {
   modalOpened: boolean;
 };
 
+export type IUseSideSheetProps = {
+  opened?: boolean;
+  standardFromWindowSizeClass?: IWindowSizeClassContainerName;
+  onOpen?: () => void;
+  onClose?: () => void;
+};
+
 export const useSideSheet = (
-  opened = false,
-  callbacks?: { onOpen?: () => void; onClose?: () => void },
+  props: IUseSideSheetProps,
 ): IUseSideSheetResult => {
+  const {
+    opened = false,
+    standardFromWindowSizeClass = 'largeAndUp',
+    onOpen,
+    onClose,
+  } = props;
+
   const windowSizeClass = useWindowSizeClass();
   const [modalOpened, setModalOpened] = useState(false);
   const savedStandardOpenedRef = useRef(opened);
   const previousOpened = usePrevious(opened);
-  const isModal = !windowSizeClass?.largeAndUp;
+  const isModal = !windowSizeClass?.[standardFromWindowSizeClass];
   const previousIsModal = usePrevious(isModal);
 
   useEffect(() => {
@@ -52,16 +66,16 @@ export const useSideSheet = (
       // If the window size has shrunk from non-compact to compact, the side
       // sheet is closed. The next time it is opened, it should be displayed
       // as a modal side sheet.
-      callbacks?.onClose?.();
+      onClose?.();
       // The open state is saved in a ref to ensure that the modal side
       // sheet is re-opened when the window size grows back to non-compact.
       savedStandardOpenedRef.current = opened;
     } else if (savedStandardOpenedRef.current) {
       // If the window size has grown back to non-compact and the standard
       // side sheet was open, it should be re-opened.
-      callbacks?.onOpen?.();
+      onOpen?.();
     }
-  }, [isModal, previousIsModal, callbacks, opened]);
+  }, [isModal, previousIsModal, opened, onOpen, onClose]);
 
   return {
     isModal,

@@ -7,7 +7,7 @@ import {
 } from '~/helpers/getResponsiveRules';
 import { useThemeContext } from '~/components/Theme';
 
-type IWIndowSizeClassContainerMap = Partial<
+export type IUseWindowSizeClassResult = Partial<
   Record<IWindowSizeClassContainerName, true>
 >;
 
@@ -15,15 +15,11 @@ export type IUseWindowSizeClassProps = {
   window?: Window;
 };
 
-export type IUseWindowSizeClassResult =
-  | IWIndowSizeClassContainerMap
-  | undefined;
-
 type IMediaQueryCallback = (event: { matches: boolean; media: string }) => void;
 
 const arrayToMap = (
   array: Array<IWindowSizeClassContainerName>,
-): IWIndowSizeClassContainerMap =>
+): IUseWindowSizeClassResult =>
   array.reduce(
     (acc, key) => ({
       ...acc,
@@ -35,7 +31,7 @@ const arrayToMap = (
 const getInitialValue = (
   rules: Array<IResponsiveRule>,
   customWindow?: Window,
-): IUseWindowSizeClassResult => {
+): IUseWindowSizeClassResult | undefined => {
   if (typeof window === 'undefined' || !('matchMedia' in window)) {
     return undefined;
   }
@@ -48,9 +44,10 @@ const getInitialValue = (
   return matchingRule ? arrayToMap(matchingRule?.containerNames) : undefined;
 };
 
+// FIXME: global state?
 export const useWindowSizeClass = (
   props?: IUseWindowSizeClassProps,
-): IUseWindowSizeClassResult => {
+): IUseWindowSizeClassResult | undefined => {
   const { theme } = useThemeContext();
   const windowSizeClasses = theme.windowSizeClasses;
   const container = props?.window ?? window;

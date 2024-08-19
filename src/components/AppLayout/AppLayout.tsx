@@ -12,21 +12,23 @@ import {
   type IAppLayoutContextValue,
 } from './AppLayout.context';
 import { AppLayoutAside } from './AppLayoutAside';
-import { AppLayoutPanes } from './AppLayoutPanes';
+import { AppLayoutListDetailBody } from './AppLayoutListDetailBody';
 import { AppLayoutPane } from './AppLayoutPane';
 import { AppLayoutFooter } from './AppLayoutFooter';
 
 const AppLayout = forwardRef<HTMLDivElement, IAppLayoutProps>(
   function AppLayout(props, forwardedRef) {
-    const { styles, sx, children, navigationDrawer, aside, ...other } = props;
+    const { styles, sx, children, window, navigationDrawer, aside, ...other } =
+      props;
 
-    const { combineStyles, getStyles, globalStyles } = useStyles({
+    const { combineStyles, globalStyles } = useStyles({
       name: 'AppLayout',
       styles: [appShellStyles, styles],
     });
     const [rootElement, setRootElement] = useState<HTMLDivElement | null>(null);
 
     const contextValue: IAppLayoutContextValue = {
+      window: window,
       root: rootElement,
       navigationDrawer,
       aside,
@@ -51,7 +53,7 @@ const AppLayoutNamespace = Object.assign(AppLayout, {
   Header: AppLayoutHeader,
   NavigationDrawer: AppLayoutNavigationDrawer,
   Body: AppLayoutBody,
-  Panes: AppLayoutPanes,
+  ListDetailBody: AppLayoutListDetailBody,
   Pane: AppLayoutPane,
   Aside: AppLayoutAside,
   Footer: AppLayoutFooter,

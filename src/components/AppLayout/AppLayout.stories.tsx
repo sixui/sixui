@@ -15,8 +15,9 @@ import { Text } from '../Text';
 import { createSequence } from '@olivierpascal/helpers';
 import { Stack } from '../Stack';
 import { IconButton } from '../IconButton';
-import { useWindowSizeClass } from '~/hooks/useWindowSizeClass';
 import { useRef } from 'react';
+import { useCanonicalLayout } from './useCanonicalLayout';
+import { Placeholder } from '../Placeholder';
 
 const meta = {
   component: AppLayout,
@@ -80,23 +81,25 @@ const HeaderContent: React.FC<IHeaderContent> = (props) => {
   );
 };
 
-type IBodyContentProps = {
-  customWindow?: Window;
-};
-
-const BodyContent: React.FC<IBodyContentProps> = (props) => {
-  const windowSizeClass = useWindowSizeClass({
-    window: props.customWindow,
-  });
+const BodyContent: React.FC = () => {
+  const canonicalLayout = useCanonicalLayout('listDetail');
+  const horizontal = canonicalLayout.orientation === 'horizontal';
 
   return (
-    <AppLayout.Panes>
-      <AppLayout.Pane>Pane 1</AppLayout.Pane>
-
-      {windowSizeClass?.expandedAndUp ? (
-        <AppLayout.Pane>Pane 2</AppLayout.Pane>
-      ) : null}
-    </AppLayout.Panes>
+    <Stack horizontal={horizontal}>
+      {canonicalLayout.panes.map((pane) => (
+        <Placeholder
+          key={pane.name}
+          style={
+            pane.fixedWidth ? { width: pane.fixedWidth } : { flex: '1 1 0px' }
+          }
+          expand
+          corner='none'
+        >
+          {pane.name} {pane.sheet && '(sheet)'}
+        </Placeholder>
+      ))}
+    </Stack>
   );
 };
 
@@ -116,13 +119,16 @@ const FooterContent: React.FC = () =>
 const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
   const [navigationDrawerOpened, navigationDrawerCallbacks] =
     useDisclosure(true);
-  const navigationDrawer = useSideSheet(navigationDrawerOpened, {
+  const navigationDrawer = useSideSheet({
+    opened: navigationDrawerOpened,
     onOpen: navigationDrawerCallbacks.open,
     onClose: navigationDrawerCallbacks.close,
   });
 
-  const [asideOpened, asideCallbacks] = useDisclosure(false);
-  const aside = useSideSheet(asideOpened, {
+  const [asideOpened, asideCallbacks] = useDisclosure(true);
+  const aside = useSideSheet({
+    opened: asideOpened,
+    standardFromWindowSizeClass: 'extraLargeAndUp',
     onOpen: asideCallbacks.open,
     onClose: asideCallbacks.close,
   });
@@ -132,6 +138,7 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
   return (
     <Frame importParentStyles sx={styles.frame} ref={frameRef}>
       <AppLayout
+        window={frameRef?.current?.contentWindow ?? undefined}
         navigationDrawer={{
           sideSheet: {
             isModal: navigationDrawer.isModal,
@@ -169,9 +176,7 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
             </AppLayout.NavigationDrawer>
 
             <AppLayout.Body followNavigationDrawer followAside>
-              <BodyContent
-                customWindow={frameRef?.current?.contentWindow ?? undefined}
-              />
+              <BodyContent />
             </AppLayout.Body>
 
             <AppLayout.Aside
@@ -195,13 +200,15 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
 const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
   const [navigationDrawerOpened, navigationDrawerCallbacks] =
     useDisclosure(true);
-  const navigationDrawer = useSideSheet(navigationDrawerOpened, {
+  const navigationDrawer = useSideSheet({
+    opened: navigationDrawerOpened,
     onOpen: navigationDrawerCallbacks.open,
     onClose: navigationDrawerCallbacks.close,
   });
 
-  const [asideOpened, asideCallbacks] = useDisclosure(false);
-  const aside = useSideSheet(asideOpened, {
+  const [asideOpened, asideCallbacks] = useDisclosure(true);
+  const aside = useSideSheet({
+    opened: asideOpened,
     onOpen: asideCallbacks.open,
     onClose: asideCallbacks.close,
   });
@@ -255,9 +262,7 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
 
               <Stack horizontal align='start'>
                 <AppLayout.Body followAside>
-                  <BodyContent
-                    customWindow={frameRef?.current?.contentWindow ?? undefined}
-                  />
+                  <BodyContent />
                 </AppLayout.Body>
 
                 <AppLayout.Aside

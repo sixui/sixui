@@ -11,7 +11,7 @@ export const appShellBodyStyles = stylex.create({
     transitionTimingFunction: motionTokens.easing$emphasizedAccelerate,
   },
   host$followNavigationDrawer: {
-    marginLeft: `calc(-1 * min(${appShellTokens.navigationDrawerWidth}, ${appShellTokens.navigationDrawerMaxWidth}))`,
+    marginLeft: `calc(-1 * ${appShellTokens.navigationDrawerWidth})`,
   },
   host$followNavigationDrawer$opened: {
     marginLeft: 0,
@@ -19,7 +19,7 @@ export const appShellBodyStyles = stylex.create({
     transitionTimingFunction: motionTokens.easing$emphasizedDecelerate,
   },
   host$followAside: {
-    marginRight: `calc(-1 * min(${appShellTokens.asideWidth}, ${appShellTokens.asideMaxWidth}))`,
+    marginRight: `calc(-1 * ${appShellTokens.asideWidth})`,
   },
   host$followAside$opened: {
     marginRight: 0,

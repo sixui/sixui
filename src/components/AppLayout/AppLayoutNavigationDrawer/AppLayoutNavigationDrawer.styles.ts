@@ -10,7 +10,7 @@ export const appShellNavigationDrawerStyles = stylex.create({
     position: 'sticky',
     overflowX: 'hidden',
     flexShrink: 0,
-    width: `min(${appShellTokens.navigationDrawerWidth}, ${appShellTokens.navigationDrawerMaxWidth})`,
+    width: appShellTokens.navigationDrawerWidth,
     height: `calc(100vh - 2 * ${drawerTokens.containerInset} - ${appShellTokens.headerHeight})`,
     top: appShellTokens.headerHeight,
   },

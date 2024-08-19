@@ -13,7 +13,7 @@ const vars = {
   windowHorizontalSpace$extraLarge: spacingTokens.padding$6,
 };
 
-export const appLayoutPanesTokens = stylex.defineVars(vars);
+export const appLayoutListDetailBodyTokens = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that
@@ -21,7 +21,7 @@ export const appLayoutPanesTokens = stylex.defineVars(vars);
  *
  * @see https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
  */
-export const appLayoutPanesTheme = stylex.createTheme(
-  appLayoutPanesTokens,
+export const appLayoutListDetailBodyTheme = stylex.createTheme(
+  appLayoutListDetailBodyTokens,
   vars,
 );

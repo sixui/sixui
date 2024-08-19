@@ -3,6 +3,7 @@ import type { IAppLayoutStylesKey } from './AppLayout.styles';
 import type { IUseSideSheetResult } from '../SideSheet/useSideSheet';
 
 export type IAppLayoutProps = IBaseProps<IAppLayoutStylesKey> & {
+  window?: Window;
   children?: React.ReactNode;
   navigationDrawer?: {
     sideSheet?: IUseSideSheetResult;
