@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -13,12 +14,14 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import type { INavigationRailProps } from './NavigationRail.types';
+import { IOmit } from '~/helpers/types';
 import { scaleTokens } from '~/themes/base/scale.stylex';
 import { outlineTokens } from '~/themes/base/outline.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { ComponentShowcase } from '../ComponentShowcase';
 import { NavigationRailDestination } from '../NavigationRailDestination';
 import { Placeholder } from '../Placeholder';
+import { Badge } from '../Badge';
 import { NavigationRail } from './NavigationRail';
 
 const meta = {
@@ -38,34 +41,49 @@ const styles = stylex.create({
 
 const defaultArgs = {
   sx: styles.host,
-  children: (
-    <>
+  leading: <Placeholder label='Leading' corner='none' />,
+  trailing: <Placeholder label='Trailing' corner='none' />,
+} satisfies Partial<INavigationRailProps>;
+
+const NavigationRailDemo: React.FC<IOmit<INavigationRailProps, 'children'>> = (
+  props,
+) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  return (
+    <NavigationRail {...props}>
       <NavigationRailDestination
         icon={<FontAwesomeIcon icon={faSquare} />}
         activeIcon={<FontAwesomeIcon icon={faSquareSolid} />}
         label='First'
+        onClick={() => setActiveIndex(0)}
+        active={activeIndex === 0}
+        badge={<Badge value='3' />}
       />
       <NavigationRailDestination
         icon={<FontAwesomeIcon icon={faCircle} />}
         activeIcon={<FontAwesomeIcon icon={faCircleSolid} />}
         label='Second'
+        onClick={() => setActiveIndex(1)}
+        active={activeIndex === 1}
+        badge={<Badge dot />}
       />
       <NavigationRailDestination
         icon={<FontAwesomeIcon icon={faHeart} />}
         activeIcon={<FontAwesomeIcon icon={faHeartSolid} />}
         label='Third'
+        onClick={() => setActiveIndex(2)}
+        active={activeIndex === 2}
       />
-    </>
-  ),
-  leading: <Placeholder label='Leading' corner='none' />,
-  trailing: <Placeholder label='Trailing' corner='none' />,
-} satisfies Partial<INavigationRailProps>;
+    </NavigationRail>
+  );
+};
 
 export const Configurations: IStory = {
   render: (props) => (
     <ComponentShowcase
       props={props}
-      component={NavigationRail}
+      component={NavigationRailDemo}
       cols={[
         { legend: 'Align top', props: { groupAlignment: 'start' } },
         {
