@@ -2,7 +2,6 @@ import stylex from '@stylexjs/stylex';
 
 import { navigationRailTokens } from './NavigationRail.stylex';
 import { paperBaseTokens } from '../PaperBase/PaperBase.stylex';
-import { spacingTokens } from '~/themes/base/spacing.stylex';
 
 export type INavigationRailStylesKey = keyof typeof navigationRailStyles;
 export const navigationRailStyles = stylex.create({
@@ -11,9 +10,7 @@ export const navigationRailStyles = stylex.create({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    paddingTop: navigationRailTokens.topSpace,
-    paddingBottom: navigationRailTokens.bottomSpace,
-    gap: spacingTokens.padding$3,
+    gap: navigationRailTokens.gap,
 
     [paperBaseTokens.containerColor]: navigationRailTokens.containerColor,
     [paperBaseTokens.containerShape$bottomLeft]:
@@ -32,7 +29,7 @@ export const navigationRailStyles = stylex.create({
     flexDirection: 'column',
     height: '100%',
     alignItems: 'center',
-    gap: navigationRailTokens.gap,
+    gap: navigationRailTokens.groupGap,
   },
   group$start: {
     justifyContent: 'start',

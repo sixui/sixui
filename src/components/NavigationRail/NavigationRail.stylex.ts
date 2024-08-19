@@ -7,19 +7,18 @@ import { elevationTokens } from '../Elevation/Elevation.stylex';
 import { densityTokens } from '~/themes/base/density.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
 
-const MIN_DENSITY = -2;
+const MIN_DENSITY = -1;
 const MAX_DENSITY = 0;
 const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityTokens.density}, ${MAX_DENSITY}) * ${scaleTokens.scale}`;
 
 const vars = {
-  gap: `calc(${spacingTokens.padding$3} * ${scaleTokens.scale} + ${DENSITY})`,
-  topSpace: `calc(40px * ${scaleTokens.scale})`,
-  bottomSpace: `calc(40px * ${scaleTokens.scale})`,
+  gap: `calc(40px * ${scaleTokens.scale} + ${DENSITY})`,
+  groupGap: `calc(${spacingTokens.padding$3} * ${scaleTokens.scale} + ${DENSITY})`,
 
   // container
   containerColor: colorSchemeTokens.surface,
   containerShape: shapeTokens.corner$none,
-  containerWidth: `calc(80px * ${scaleTokens.scale})`,
+  containerWidth: `calc(80px * ${scaleTokens.scale} + ${DENSITY} * 2)`,
   containerElevation: elevationTokens.boxShadow$level0,
 };
 

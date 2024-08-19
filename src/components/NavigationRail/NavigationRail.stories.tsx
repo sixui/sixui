@@ -29,7 +29,7 @@ type IStory = StoryObj<typeof meta>;
 
 const styles = stylex.create({
   host: {
-    height: `calc(400px * ${scaleTokens.scale})`,
+    height: `calc(480px * ${scaleTokens.scale})`,
     borderWidth: outlineTokens.width$xs,
     borderColor: colorSchemeTokens.outlineVariant,
     borderStyle: 'dashed',

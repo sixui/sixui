@@ -8,7 +8,7 @@ import { densityTokens } from '~/themes/base/density.stylex';
 import { stateLayerTokens } from '../StateLayer/StateLayer.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
 
-const MIN_DENSITY = -2;
+const MIN_DENSITY = -1;
 const MAX_DENSITY = 0;
 const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityTokens.density}, ${MAX_DENSITY}) * ${scaleTokens.scale}`;
 
