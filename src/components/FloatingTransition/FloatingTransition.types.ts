@@ -1,4 +1,5 @@
 import type { Placement } from '@floating-ui/react';
+import type { TransitionStatus } from 'react-transition-group';
 
 import type { IOrientation } from '~/helpers/types';
 import type { IBaseProps } from '../Base';
@@ -18,7 +19,7 @@ export type IFloatingTransitionProps =
   IBaseProps<IFloatingTransitionStylesKey> & {
     children: React.ReactNode;
     placement: Placement;
-    status: IFloatingTransitionStatus;
+    status: IFloatingTransitionStatus | TransitionStatus;
     origin?: IFloatingTransitionOrigin;
     orientation?: IOrientation;
     cursorTransformOrigin?: string;

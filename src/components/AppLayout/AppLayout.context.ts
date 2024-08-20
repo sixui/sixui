@@ -1,4 +1,7 @@
-import type { IAppLayoutProps } from './AppLayout.types';
+import type {
+  IAppLayoutComponentName,
+  IAppLayoutProps,
+} from './AppLayout.types';
 import type { IPortalProps } from '../Portal';
 import type { ICanonicalLayout } from './useCanonicalLayout';
 import type { ISideSheetType } from '../SideSheet';
@@ -9,7 +12,7 @@ export type IAppLayoutContextValue = Pick<
   'header' | 'window' | 'navigationRail' | 'aside' | 'preferredNavigationMode'
 > & {
   navigationDrawer?: IAppLayoutProps['navigationDrawer'] & {
-    state: {
+    state?: {
       opened: boolean;
       type: ISideSheetType;
       modalOpened: boolean;
@@ -21,6 +24,7 @@ export type IAppLayoutContextValue = Pick<
   };
   root?: IPortalProps['root'];
   canonicalLayout: ICanonicalLayout;
+  components: Array<IAppLayoutComponentName>;
 };
 
 export const [AppLayoutProvider, useAppLayoutContext] =

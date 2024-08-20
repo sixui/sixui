@@ -3,9 +3,10 @@ import stylex from '@stylexjs/stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { scaleTokens } from '~/themes/base/scale.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
-import { elevationTokens } from '../Elevation/Elevation.stylex';
 import { densityTokens } from '~/themes/base/density.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
+import { elevationTokens } from '../Elevation/Elevation.stylex';
 
 const MIN_DENSITY = -1;
 const MAX_DENSITY = 0;
@@ -16,6 +17,10 @@ const vars = {
   groupGap: `calc(${spacingTokens.padding$3} * ${scaleTokens.scale} + ${DENSITY})`,
   groupTopSpace: `calc(40px * ${scaleTokens.scale})`,
   groupBottomSpace: `calc(40px * ${scaleTokens.scale})`,
+
+  // divider
+  dividerWidth: outlineTokens.width$xs,
+  dividerColor: colorSchemeTokens.outline,
 
   // container
   containerColor: colorSchemeTokens.surface,

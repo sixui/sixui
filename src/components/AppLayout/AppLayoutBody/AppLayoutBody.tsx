@@ -24,22 +24,25 @@ export const AppLayoutBody = forwardRef<HTMLDivElement, IAppLayoutBodyProps>(
       styles: [appLayoutBodyStyles, styles],
     });
 
-    const hasHeader = !!appLayoutContext.header;
-    const hasHeaderOpened = true;
+    const hasHeader = appLayoutContext.components.includes('header');
+    const hasHeaderOpened = hasHeader;
 
     const hasNavigationRail =
-      !!appLayoutContext.navigationRail &&
+      appLayoutContext.components.includes('navigationRail');
+    const navigationRailOpened =
+      hasNavigationRail &&
       appLayoutContext.canonicalLayout.navigationMode === 'rail';
 
-    const hasNavigationDrawer = !!appLayoutContext.navigationDrawer;
-    const hasNavigationDrawerOpened =
+    const hasNavigationDrawer =
+      appLayoutContext.components.includes('navigationDrawer');
+    const standardNavigationDrawerOpened =
       hasNavigationDrawer &&
-      appLayoutContext.navigationDrawer?.state.standardOpened;
-    console.log('_x', { hasNavigationDrawer, hasNavigationDrawerOpened });
+      appLayoutContext.canonicalLayout.navigationMode === 'standard' &&
+      appLayoutContext.navigationDrawer?.state?.standardOpened;
 
-    const hasAside = !!appLayoutContext.aside;
-    const hasAsideOpened =
-      hasAside && appLayoutContext.aside?.sideSheet?.standardOpened;
+    // const hasAside = !!appLayoutContext.aside;
+    // const hasAsideOpened =
+    //   hasAside && appLayoutContext.aside?.sideSheet?.standardOpened;
 
     return (
       <Base
@@ -50,12 +53,17 @@ export const AppLayoutBody = forwardRef<HTMLDivElement, IAppLayoutBodyProps>(
           combineStyles(
             'host',
             hasHeader && 'host$hasHeader',
-            hasHeaderOpened && 'host$hasHeader$opened',
-            hasNavigationRail && 'host$hasNavigationRail',
-            hasNavigationDrawer && 'host$hasNavigationDrawer',
-            hasNavigationDrawerOpened && 'host$hasNavigationDrawer$opened',
-            hasAside && 'host$hasAside',
-            hasAsideOpened && 'host$followAside$opened',
+            standardNavigationDrawerOpened &&
+              'host$standardNavigationDrawerOpened',
+            navigationRailOpened && 'host$navigationRailOpened',
+            // hasHeaderOpened && 'host$hasHeader$opened',
+            // hasNavigationDrawer && 'host$hasNavigationDrawer',
+            // hasNavigationRail && 'host$hasNavigationRail',
+            // hasNavigationDrawerOpened && 'host$hasNavigationDrawer$opened',
+            // hasNavigationRailOpened && 'host$hasNavigationRail$opened',
+            // // hasNavigationRail && hasNavigationDrawer && 'host$hasBothNavigation$railOpened',
+            // hasAside && 'host$hasAside',
+            // hasAsideOpened && 'host$followAside$opened',
           ),
           sx,
         ]}

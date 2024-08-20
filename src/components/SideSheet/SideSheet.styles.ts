@@ -4,6 +4,7 @@ import { motionTokens } from '~/themes/base/motion.stylex';
 export type ISideSheetStylesKey = keyof typeof sideSheetStyles;
 export const sideSheetStyles = stylex.create({
   host: {},
+  // FIXME: factorize
   animation$entering: {
     transform: 'translateX(0)',
     transitionProperty: 'transform',

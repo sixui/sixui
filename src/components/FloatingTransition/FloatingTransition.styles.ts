@@ -9,7 +9,7 @@ export const floatingTransitionStyles = stylex.create({
   transition$unmounted$horizontal: {},
   transition$unmounted$vertical: {},
   transition$initial: {
-    opacity: 0.75,
+    opacity: 0,
     transform: {
       default: 'unset',
       ':is([data-pattern^="enterExit"])': 'scale(0.5)',
@@ -61,7 +61,7 @@ export const floatingTransitionStyles = stylex.create({
     },
   },
   transition$close: {
-    opacity: 0.75,
+    opacity: 0,
     transform: {
       default: 'unset',
       ':is([data-pattern^="enterExit"])': 'scale(0.5)',

@@ -8,20 +8,20 @@ export type IAppLayoutNavigationRailStylesKey =
   keyof typeof appLayoutNavigationRailStyles;
 export const appLayoutNavigationRailStyles = stylex.create({
   host: {
-    height: `calc(100vh - ${appLayoutTokens.headerHeight})`,
-    border: '1px solid red',
-
-    position: 'sticky',
-    flexShrink: 0,
-    width: appLayoutTokens.navigationRailWidth,
-    top: appLayoutTokens.headerHeight,
-
-    borderRightWidth: outlineTokens.width$xs,
-    borderRightStyle: 'solid',
-    borderRightColor: colorSchemeTokens.outline,
-  },
-  host$fullHeight: {
-    height: '100vh',
+    position: 'absolute',
     top: 0,
+    height: '100%',
+    width: appLayoutTokens.navigationRailWidth,
+  },
+  // host$hasHeader$opened: {
+  //   height: `calc(100vh - ${appLayoutTokens.headerHeight})`,
+  //   top: appLayoutTokens.headerHeight,
+  // },
+  // host$fullHeight: {
+  //   height: '100vh',
+  //   top: 0,
+  // },
+  inner: {
+    height: '100%',
   },
 });

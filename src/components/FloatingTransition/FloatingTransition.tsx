@@ -1,12 +1,35 @@
 import { forwardRef } from 'react';
+import type { TransitionStatus } from 'react-transition-group';
 
-import type { IFloatingTransitionProps } from './FloatingTransition.types';
+import type {
+  IFloatingTransitionProps,
+  IFloatingTransitionStatus,
+} from './FloatingTransition.types';
 import { commonStyles } from '~/helpers/commonStyles';
 import { useStyles } from '~/hooks/useStyles';
 import { floatingTransitionStyles } from './FloatingTransition.styles';
 import { getPlacementTransformOrigin } from './getPlacementTransformOrigin';
 import { getPlacementSideTransformOrigin } from './getPlacementSideTransformOrigin';
 import { Base } from '../Base';
+
+const resolveStatus = (
+  status: TransitionStatus | IFloatingTransitionStatus,
+): IFloatingTransitionStatus => {
+  switch (status) {
+    case 'entering':
+      return 'open';
+    case 'entered':
+      return 'open';
+    case 'exiting':
+      return 'close';
+    case 'exited':
+      return 'close';
+    case 'unmounted':
+      return 'unmounted';
+  }
+
+  return status;
+};
 
 export const FloatingTransition = forwardRef<
   HTMLDivElement,
@@ -38,6 +61,7 @@ export const FloatingTransition = forwardRef<
       : ['left', 'right'].includes(placement)
         ? 'horizontal'
         : undefined);
+  const resolvedStatus = resolveStatus(status);
 
   return (
     <Base
@@ -47,8 +71,8 @@ export const FloatingTransition = forwardRef<
         globalStyles,
         !disabled &&
           combineStyles(
-            `transition$${status}`,
-            !!orientation && `transition$${status}$${orientation}`,
+            `transition$${resolvedStatus}`,
+            !!orientation && `transition$${resolvedStatus}$${orientation}`,
           ),
         !disabled &&
           commonStyles.transformOrigin(

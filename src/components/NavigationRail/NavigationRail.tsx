@@ -15,7 +15,8 @@ const NavigationRail = forwardRef<HTMLDivElement, INavigationRailProps>(
       children,
       leading,
       trailing,
-      groupAlignment = 'center',
+      groupAlignment = 'start',
+      divider,
       ...other
     } = props;
 
@@ -27,7 +28,12 @@ const NavigationRail = forwardRef<HTMLDivElement, INavigationRailProps>(
     return (
       <PaperBase
         {...other}
-        sx={[globalStyles, navigationRailTheme, combineStyles('host'), sx]}
+        sx={[
+          globalStyles,
+          navigationRailTheme,
+          combineStyles('host', divider && 'host$divider'),
+          sx,
+        ]}
         ref={forwardedRef}
       >
         {leading}

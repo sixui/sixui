@@ -5,6 +5,7 @@ import type { IAppLayoutProps } from './AppLayout.types';
 import { useStyles } from '~/hooks/useStyles';
 import { isFunction } from '~/helpers/isFunction';
 import { useDisclosure } from '~/hooks/useDisclosure';
+import { useSideSheet } from '../SideSheet/useSideSheet';
 import { appLayoutStyles } from './AppLayout.styles';
 import { AppLayoutHeader } from './AppLayoutHeader';
 import { AppLayoutNavigationDrawer } from './AppLayoutNavigationDrawer';
@@ -14,7 +15,6 @@ import {
   type IAppLayoutContextValue,
 } from './AppLayout.context';
 import { AppLayoutAside } from './AppLayoutAside';
-import { AppLayoutListDetailBody } from './AppLayoutListDetailBody';
 import { AppLayoutPane } from './AppLayoutPane';
 import { AppLayoutFooter } from './AppLayoutFooter';
 import { AppLayoutNavigationRail } from './AppLayoutNavigationRail';
@@ -26,7 +26,7 @@ import {
   useCanonicalLayout,
   type ICanonicalLayoutType,
 } from './useCanonicalLayout';
-import { useSideSheet } from '../SideSheet/useSideSheet';
+import { AppLayoutNavigation } from './AppLayoutNavigation';
 
 const AppLayout = forwardRef<HTMLDivElement, IAppLayoutProps>(
   function AppLayout(props, forwardedRef) {
@@ -40,6 +40,7 @@ const AppLayout = forwardRef<HTMLDivElement, IAppLayoutProps>(
       aside,
       defaultCanonicalLayoutType,
       preferredNavigationMode = 'standard',
+      components,
       ...other
     } = props;
 
@@ -75,26 +76,31 @@ const AppLayout = forwardRef<HTMLDivElement, IAppLayoutProps>(
       onClose: navigationDrawerCallbacks.close,
     });
 
+    const hasNavigationDrawer = components.includes('navigationDrawer');
+
     const contextValue = useMemo<IAppLayoutContextValue>(() => {
       const value: IAppLayoutContextValue = {
         window: window,
         root: rootElement,
         navigationDrawer: {
           ...navigationDrawer,
-          state: {
-            opened: navigationDrawerOpened,
-            type: navigationDrawerType,
-            modalOpened: navigationDrawerState.modalOpened,
-            standardOpened: navigationDrawerState.standardOpened,
-            toggle: navigationDrawerCallbacks.toggle,
-            open: navigationDrawerCallbacks.open,
-            close: navigationDrawerCallbacks.close,
-          },
+          state: hasNavigationDrawer
+            ? {
+                opened: navigationDrawerOpened,
+                type: navigationDrawerType,
+                modalOpened: navigationDrawerState.modalOpened,
+                standardOpened: navigationDrawerState.standardOpened,
+                toggle: navigationDrawerCallbacks.toggle,
+                open: navigationDrawerCallbacks.open,
+                close: navigationDrawerCallbacks.close,
+              }
+            : undefined,
         },
         navigationRail,
         aside,
         canonicalLayout,
         preferredNavigationMode,
+        components,
       };
 
       return value;
@@ -106,6 +112,7 @@ const AppLayout = forwardRef<HTMLDivElement, IAppLayoutProps>(
       aside,
       canonicalLayout,
       preferredNavigationMode,
+      hasNavigationDrawer,
       navigationDrawerOpened,
       navigationDrawerType,
       navigationDrawerState.modalOpened,
@@ -113,6 +120,7 @@ const AppLayout = forwardRef<HTMLDivElement, IAppLayoutProps>(
       navigationDrawerCallbacks.toggle,
       navigationDrawerCallbacks.open,
       navigationDrawerCallbacks.close,
+      components,
     ]);
 
     return (
@@ -134,10 +142,10 @@ const AppLayout = forwardRef<HTMLDivElement, IAppLayoutProps>(
 
 const AppLayoutNamespace = Object.assign(AppLayout, {
   Header: AppLayoutHeader,
+  Navigation: AppLayoutNavigation,
   NavigationDrawer: AppLayoutNavigationDrawer,
   NavigationRail: AppLayoutNavigationRail,
   Body: AppLayoutBody,
-  ListDetailBody: AppLayoutListDetailBody,
   Pane: AppLayoutPane,
   Aside: AppLayoutAside,
   Footer: AppLayoutFooter,

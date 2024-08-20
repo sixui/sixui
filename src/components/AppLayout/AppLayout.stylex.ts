@@ -10,8 +10,8 @@ const vars = {
   navigationRailWidth: `calc(80px * ${scaleTokens.scale})`,
 
   // navigationDrawer
-  navigationDrawerMaxWidth: '100vw - 48px',
-  navigationDrawerWidth: `calc(360px * ${scaleTokens.scale})`,
+  standardNavigationDrawerWidth: `calc(360px * ${scaleTokens.scale})`,
+  modalNavigationDrawerWidth: `min(360px * ${scaleTokens.scale}, 100vw - 48px)`,
 
   // aside
   asideMaxWidth: '100vw - 48px',

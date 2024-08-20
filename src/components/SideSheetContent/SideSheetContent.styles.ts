@@ -20,12 +20,12 @@ export const sideSheetContentStyles = stylex.create({
     [paperBaseTokens.containerElevation]:
       sideSheetContentTokens.containerElevation,
   },
-  host$left: {
+  host$divider$left: {
     borderRightWidth: sideSheetContentTokens.dividerWidth,
     borderRightColor: sideSheetContentTokens.dividerColor,
     borderRightStyle: 'solid',
   },
-  host$right: {
+  host$divider$right: {
     borderLeftWidth: sideSheetContentTokens.dividerWidth,
     borderLeftColor: sideSheetContentTokens.dividerColor,
     borderLeftStyle: 'solid',

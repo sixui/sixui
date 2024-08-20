@@ -9,6 +9,12 @@ import { IAppLayoutContextValue } from './AppLayout.context';
 
 export type IAppLayoutRenderProps = IAppLayoutContextValue;
 
+export type IAppLayoutComponentName =
+  | 'header'
+  | 'navigationRail'
+  | 'navigationDrawer'
+  | 'aside';
+
 export type IAppLayoutProps = IBaseProps<IAppLayoutStylesKey> & {
   window?: Window;
   header?: {
@@ -30,4 +36,5 @@ export type IAppLayoutProps = IBaseProps<IAppLayoutStylesKey> & {
     fullHeight?: boolean;
   };
   preferredNavigationMode?: ICanonicalLayoutPreferredNavigationMode;
+  components: Array<IAppLayoutComponentName>;
 };

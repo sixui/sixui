@@ -24,6 +24,11 @@ export const navigationRailStyles = stylex.create({
     [paperBaseTokens.containerElevation]:
       navigationRailTokens.containerElevation,
   },
+  host$divider: {
+    borderRightWidth: navigationRailTokens.dividerWidth,
+    borderRightColor: navigationRailTokens.dividerColor,
+    borderRightStyle: 'solid',
+  },
   group: {
     display: 'flex',
     flexDirection: 'column',

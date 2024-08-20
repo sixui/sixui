@@ -16,6 +16,7 @@ import {
   faHeart,
 } from '@fortawesome/free-regular-svg-icons';
 
+import { IOmit } from '~/helpers/types';
 import type { IAppLayoutProps } from './AppLayout.types';
 import { scaleTokens } from '~/themes/base/scale.stylex';
 import { outlineTokens } from '~/themes/base/outline.stylex';
@@ -48,6 +49,10 @@ const styles = stylex.create({
     borderWidth: outlineTokens.width$xs,
     borderColor: colorSchemeTokens.outlineVariant,
     borderStyle: 'dashed',
+  },
+  // FIXME: delete
+  placeholder: {
+    margin: 24,
   },
 });
 
@@ -101,7 +106,13 @@ const BodyContent: React.FC = () => {
   return (
     <Stack horizontal={horizontal}>
       {canonicalLayout.panes.map((pane) => (
-        <Placeholder key={pane.name} expand corner='none'>
+        <Placeholder
+          key={pane.name}
+          expand
+          corner='none'
+          height={600}
+          sx={styles.placeholder}
+        >
           {pane.name} {pane.sheet && '(sheet)'}
         </Placeholder>
       ))}
@@ -120,22 +131,6 @@ const NavigationDrawerContent: React.FC = () =>
 
 const NavigationRailContent: React.FC = () => (
   <>
-    <NavigationRailDestination
-      icon={<FontAwesomeIcon icon={faSquare} />}
-      activeIcon={<FontAwesomeIcon icon={faSquareSolid} />}
-      label='First'
-    />
-    <NavigationRailDestination
-      icon={<FontAwesomeIcon icon={faCircle} />}
-      activeIcon={<FontAwesomeIcon icon={faCircleSolid} />}
-      label='Second'
-    />
-    <NavigationRailDestination
-      icon={<FontAwesomeIcon icon={faHeart} />}
-      activeIcon={<FontAwesomeIcon icon={faHeartSolid} />}
-      label='Third'
-    />
-
     <NavigationRailDestination
       icon={<FontAwesomeIcon icon={faSquare} />}
       activeIcon={<FontAwesomeIcon icon={faSquareSolid} />}
@@ -172,7 +167,9 @@ const FooterContent: React.FC = () =>
     </Text>
   ));
 
-const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
+const AppLayoutFrameA: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
+  props,
+) => {
   // const [asideOpened, asideCallbacks] = useDisclosure(true);
   // const aside = useSideSheet({
   //   opened: asideOpened,
@@ -186,11 +183,9 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
   return (
     <Frame importParentStyles sx={styles.frame} ref={frameRef}>
       <AppLayout
-        header={{}}
+        components={['header', 'navigationRail', 'navigationDrawer']}
+        preferredNavigationMode='standard'
         window={frameRef?.current?.contentWindow ?? undefined}
-        navigationDrawer={{
-          fullHeight: false,
-        }}
         navigationRail={{
           fullHeight: false,
         }}
@@ -202,7 +197,6 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
         //   },
         //   fullHeight: false,
         // }}
-        preferredNavigationMode='standard'
         {...props}
       >
         {({ navigationDrawer }) => (
@@ -210,21 +204,31 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
             <Stack>
               <AppLayout.Header>
                 <HeaderContent
-                  navigationDrawerOpened={navigationDrawer?.state.opened}
-                  toggleNavigationDrawer={navigationDrawer?.state.toggle}
+                  navigationDrawerOpened={navigationDrawer?.state?.opened}
+                  toggleNavigationDrawer={navigationDrawer?.state?.toggle}
                   // asideOpened={asideOpened}
                   // toggleAside={asideCallbacks.toggle}
                 />
               </AppLayout.Header>
 
               <Stack horizontal align='start'>
-                <AppLayout.NavigationDrawer headline='App name'>
-                  <NavigationDrawerContent />
-                </AppLayout.NavigationDrawer>
+                <AppLayout.Navigation>
+                  <AppLayout.NavigationRail divider>
+                    <NavigationRailContent />
+                  </AppLayout.NavigationRail>
+
+                  <AppLayout.NavigationDrawer divider>
+                    <NavigationDrawerContent />
+                  </AppLayout.NavigationDrawer>
+                </AppLayout.Navigation>
 
                 {/* <AppLayout.NavigationRail>
                   <NavigationRailContent />
-                </AppLayout.NavigationRail> */}
+                </AppLayout.NavigationRail>
+
+                <AppLayout.NavigationDrawer>
+                  <NavigationDrawerContent />
+                </AppLayout.NavigationDrawer> */}
 
                 <AppLayout.Body followNavigationDrawer followAside followHeader>
                   <BodyContent />
@@ -250,7 +254,9 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
   );
 };
 
-const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
+const AppLayoutFrameB: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
+  props,
+) => {
   // const [asideOpened, asideCallbacks] = useDisclosure(true);
   // const aside = useSideSheet({
   //   opened: asideOpened,
@@ -264,7 +270,7 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
   return (
     <Frame importParentStyles sx={styles.frame} ref={frameRef}>
       <AppLayout
-        header={{}}
+        components={['header', 'navigationRail', 'navigationDrawer']}
         window={frameRef?.current?.contentWindow ?? undefined}
         navigationDrawer={{
           fullHeight: true,
@@ -297,8 +303,8 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
                 <AppLayout.Body followNavigationDrawer>
                   <AppLayout.Header>
                     <HeaderContent
-                      navigationDrawerOpened={navigationDrawer?.state.opened}
-                      toggleNavigationDrawer={navigationDrawer?.state.toggle}
+                      navigationDrawerOpened={navigationDrawer?.state?.opened}
+                      toggleNavigationDrawer={navigationDrawer?.state?.toggle}
                       // asideOpened={asideOpened}
                       // toggleAside={asideCallbacks.toggle}
                     />

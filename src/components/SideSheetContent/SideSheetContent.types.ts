@@ -22,4 +22,5 @@ export type ISideSheetContentProps = IBaseProps<ISideSheetContentStylesKey> & {
     | React.ReactNode
     | ((props: ISideSheetContentRenderProps) => React.ReactNode);
   anchor?: 'left' | 'right';
+  divider?: boolean;
 };

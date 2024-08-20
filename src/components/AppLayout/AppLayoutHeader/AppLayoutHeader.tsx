@@ -18,6 +18,12 @@ export const AppLayoutHeader = forwardRef<
     styles: [appLayoutHeaderStyles, styles],
   });
 
+  const hasHeader = appLayoutContext.components.includes('header');
+  const hasHeaderOpened = hasHeader;
+  if (!hasHeaderOpened) {
+    return null;
+  }
+
   return (
     <Stack
       as='header'

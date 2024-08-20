@@ -6,4 +6,5 @@ export type INavigationRailProps = IBaseProps<INavigationRailStylesKey> & {
   leading?: React.ReactNode;
   trailing?: React.ReactNode;
   groupAlignment?: 'start' | 'center' | 'end';
+  divider?: boolean;
 };

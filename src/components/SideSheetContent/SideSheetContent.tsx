@@ -28,6 +28,7 @@ export const SideSheetContent = forwardRef<
     showCloseButton,
     closeIcon,
     bottomActions,
+    divider,
     ...other
   } = props;
 
@@ -46,7 +47,7 @@ export const SideSheetContent = forwardRef<
       sx={[
         sideSheetContentTheme,
         globalStyles,
-        combineStyles('host', `host$${anchor}`),
+        combineStyles('host', divider && `host$divider$${anchor}`),
         sx,
       ]}
       ref={forwardedRef}
