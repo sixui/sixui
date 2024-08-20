@@ -172,7 +172,7 @@ export const Detached: IStory = {
   render: (props) => <DrawerFrame {...props} />,
   args: {
     ...defaultArgs,
-    variant: 'detached',
+    detached: true,
   },
 };
 

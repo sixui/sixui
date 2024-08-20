@@ -1,16 +1,16 @@
 import stylex from '@stylexjs/stylex';
 
 import { drawerTokens } from '~/components/Drawer/Drawer.stylex';
-import { appShellTokens } from '../AppLayout.stylex';
+import { appLayoutTokens } from '../AppLayout.stylex';
 
-export type IAppLayoutAsideStylesKey = keyof typeof appShellAsideStyles;
-export const appShellAsideStyles = stylex.create({
+export type IAppLayoutAsideStylesKey = keyof typeof appLayoutAsideStyles;
+export const appLayoutAsideStyles = stylex.create({
   host: {
     position: 'sticky',
     flexShrink: 0,
-    width: appShellTokens.asideWidth,
-    height: `calc(100vh - 2 * ${drawerTokens.containerInset} - ${appShellTokens.headerHeight})`,
-    top: appShellTokens.headerHeight,
+    width: appLayoutTokens.asideWidth,
+    height: `calc(100vh - 2 * ${drawerTokens.containerInset} - ${appLayoutTokens.headerHeight})`,
+    top: appLayoutTokens.headerHeight,
   },
   host$fullHeight: {
     height: `calc(100vh - 2 * ${drawerTokens.containerInset})`,
@@ -20,7 +20,7 @@ export const appShellAsideStyles = stylex.create({
     pointerEvents: 'none',
   },
   sideSheet: {
-    width: `min(${appShellTokens.asideWidth}, ${appShellTokens.asideMaxWidth})`,
+    width: `min(${appLayoutTokens.asideWidth}, ${appLayoutTokens.asideMaxWidth})`,
     height: '100%',
   },
 });

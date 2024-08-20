@@ -8,21 +8,21 @@ import { isFunction } from '~/helpers/isFunction';
 import { Base } from '~/components/Base';
 import { useWindowSizeClass } from '~/hooks/useWindowSizeClass';
 import { useAppLayoutContext } from '../AppLayout.context';
-import { appShellListDetailBodyStyles } from './AppLayoutListDetailBody.styles';
+import { appLayoutListDetailBodyStyles } from './AppLayoutListDetailBody.styles';
 
 export const AppLayoutListDetailBody = forwardRef<
   HTMLDivElement,
   IAppLayoutListDetailBodyProps
 >(function AppLayoutListDetailBody(props, forwardedRef) {
   const { styles, sx, children, ...other } = props;
-  const appShellContext = useAppLayoutContext();
+  const appLayoutContext = useAppLayoutContext();
   const windowSizeClass = useWindowSizeClass({
-    window: appShellContext.window,
+    window: appLayoutContext.window,
   });
 
   const { combineStyles, globalStyles } = useStyles({
     name: 'AppLayoutListDetailBody',
-    styles: [appShellListDetailBodyStyles, styles],
+    styles: [appLayoutListDetailBodyStyles, styles],
   });
 
   const recommendedVisiblePanes = windowSizeClass?.mediumAndUp ? 2 : 1;

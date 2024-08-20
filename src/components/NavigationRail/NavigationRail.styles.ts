@@ -30,6 +30,9 @@ export const navigationRailStyles = stylex.create({
     height: '100%',
     alignItems: 'center',
     gap: navigationRailTokens.groupGap,
+    overflowY: 'auto',
+    paddingTop: navigationRailTokens.groupTopSpace,
+    paddingBottom: navigationRailTokens.groupBottomSpace,
   },
   group$start: {
     justifyContent: 'start',

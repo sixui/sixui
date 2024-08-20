@@ -8,6 +8,8 @@ import type { IPortalProps } from '../Portal';
 import type { IDrawerProps } from '../Drawer';
 import type { ISideSheetStylesKey } from './SideSheet.styles';
 
+export type ISideSheetType = 'standard' | 'modal';
+
 export type ISideSheetProps = IBaseProps<ISideSheetStylesKey> &
   Pick<IPortalProps, 'root'> &
   IOmit<IDrawerProps, 'styles' | 'children' | 'opened' | 'defaultOpened'> &
@@ -17,7 +19,8 @@ export type ISideSheetProps = IBaseProps<ISideSheetStylesKey> &
         ICompiledStyles<ISideSheetContentStylesKey>
       >;
     };
-    isModal?: boolean;
+    type?: ISideSheetType;
     standardOpened?: boolean;
     modalOpened?: boolean;
+    detached?: boolean;
   };

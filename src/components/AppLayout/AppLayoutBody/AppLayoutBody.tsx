@@ -4,7 +4,7 @@ import type { IAppLayoutBodyProps } from './AppLayoutBody.types';
 import { useStyles } from '~/hooks/useStyles';
 import { Base } from '~/components/Base';
 import { useAppLayoutContext } from '../AppLayout.context';
-import { appShellBodyStyles } from './AppLayoutBody.styles';
+import { appLayoutBodyStyles } from './AppLayoutBody.styles';
 
 export const AppLayoutBody = forwardRef<HTMLDivElement, IAppLayoutBodyProps>(
   function AppLayoutBody(props, forwardedRef) {
@@ -14,21 +14,32 @@ export const AppLayoutBody = forwardRef<HTMLDivElement, IAppLayoutBodyProps>(
       children,
       followNavigationDrawer,
       followAside,
+      followHeader,
       ...other
     } = props;
-    const appShellContext = useAppLayoutContext();
+    const appLayoutContext = useAppLayoutContext();
 
     const { combineStyles, globalStyles } = useStyles({
       name: 'AppLayoutBody',
-      styles: [appShellBodyStyles, styles],
+      styles: [appLayoutBodyStyles, styles],
     });
 
-    const standardNavigationDrawerOpened =
-      !appShellContext.navigationDrawer?.sideSheet?.isModal &&
-      appShellContext.navigationDrawer?.sideSheet?.standardOpened;
-    const standardAsideOpened =
-      !appShellContext.aside?.sideSheet?.isModal &&
-      appShellContext.aside?.sideSheet?.standardOpened;
+    const hasHeader = !!appLayoutContext.header;
+    const hasHeaderOpened = true;
+
+    const hasNavigationRail =
+      !!appLayoutContext.navigationRail &&
+      appLayoutContext.canonicalLayout.navigationMode === 'rail';
+
+    const hasNavigationDrawer = !!appLayoutContext.navigationDrawer;
+    const hasNavigationDrawerOpened =
+      hasNavigationDrawer &&
+      appLayoutContext.navigationDrawer?.state.standardOpened;
+    console.log('_x', { hasNavigationDrawer, hasNavigationDrawerOpened });
+
+    const hasAside = !!appLayoutContext.aside;
+    const hasAsideOpened =
+      hasAside && appLayoutContext.aside?.sideSheet?.standardOpened;
 
     return (
       <Base
@@ -38,12 +49,13 @@ export const AppLayoutBody = forwardRef<HTMLDivElement, IAppLayoutBodyProps>(
           globalStyles,
           combineStyles(
             'host',
-            followNavigationDrawer && 'host$followNavigationDrawer',
-            followNavigationDrawer &&
-              standardNavigationDrawerOpened &&
-              'host$followNavigationDrawer$opened',
-            followAside && 'host$followAside',
-            followAside && standardAsideOpened && 'host$followAside$opened',
+            hasHeader && 'host$hasHeader',
+            hasHeaderOpened && 'host$hasHeader$opened',
+            hasNavigationRail && 'host$hasNavigationRail',
+            hasNavigationDrawer && 'host$hasNavigationDrawer',
+            hasNavigationDrawerOpened && 'host$hasNavigationDrawer$opened',
+            hasAside && 'host$hasAside',
+            hasAsideOpened && 'host$followAside$opened',
           ),
           sx,
         ]}

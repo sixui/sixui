@@ -1,11 +1,13 @@
 import stylex from '@stylexjs/stylex';
 
 import { scaleTokens } from '~/themes/base/scale.stylex';
-import { spacingTokens } from '~/themes/base/spacing.stylex';
 
 const vars = {
   // header
   headerHeight: `calc(64px * ${scaleTokens.scale})`,
+
+  // navigationRail
+  navigationRailWidth: `calc(80px * ${scaleTokens.scale})`,
 
   // navigationDrawer
   navigationDrawerMaxWidth: '100vw - 48px',
@@ -19,7 +21,7 @@ const vars = {
   footerHeight: `calc(64px * ${scaleTokens.scale})`,
 };
 
-export const appShellTokens = stylex.defineVars(vars);
+export const appLayoutTokens = stylex.defineVars(vars);
 
 /**
  * This is a workaround to allow reaplying vars at the component level so that
@@ -27,4 +29,4 @@ export const appShellTokens = stylex.defineVars(vars);
  *
  * @see https://github.com/facebook/stylex/issues/162#issuecomment-1853775396
  */
-export const appShellTheme = stylex.createTheme(appShellTokens, vars);
+export const appLayoutTheme = stylex.createTheme(appLayoutTokens, vars);

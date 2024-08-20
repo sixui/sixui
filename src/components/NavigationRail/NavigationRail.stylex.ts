@@ -14,6 +14,8 @@ const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityToke
 const vars = {
   gap: `calc(40px * ${scaleTokens.scale} + ${DENSITY})`,
   groupGap: `calc(${spacingTokens.padding$3} * ${scaleTokens.scale} + ${DENSITY})`,
+  groupTopSpace: `calc(40px * ${scaleTokens.scale})`,
+  groupBottomSpace: `calc(40px * ${scaleTokens.scale})`,
 
   // container
   containerColor: colorSchemeTokens.surface,

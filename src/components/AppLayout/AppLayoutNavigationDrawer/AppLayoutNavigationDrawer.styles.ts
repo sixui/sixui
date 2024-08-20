@@ -1,27 +1,24 @@
 import stylex from '@stylexjs/stylex';
 
 import { drawerTokens } from '~/components/Drawer/Drawer.stylex';
-import { appShellTokens } from '../AppLayout.stylex';
+import { appLayoutTokens } from '../AppLayout.stylex';
 
 export type IAppLayoutNavigationDrawerStylesKey =
-  keyof typeof appShellNavigationDrawerStyles;
-export const appShellNavigationDrawerStyles = stylex.create({
+  keyof typeof appLayoutNavigationDrawerStyles;
+export const appLayoutNavigationDrawerStyles = stylex.create({
   host: {
+    height: `calc(100vh - ${appLayoutTokens.headerHeight} - 2 * ${drawerTokens.containerInset})`,
     position: 'sticky',
     flexShrink: 0,
-    width: appShellTokens.navigationDrawerWidth,
-    height: `calc(100vh - 2 * ${drawerTokens.containerInset} - ${appShellTokens.headerHeight})`,
-    top: appShellTokens.headerHeight,
+    width: appLayoutTokens.navigationDrawerWidth,
+    top: appLayoutTokens.headerHeight,
   },
   host$fullHeight: {
     height: `calc(100vh - 2 * ${drawerTokens.containerInset})`,
     top: 0,
   },
-  host$collapsed: {
-    pointerEvents: 'none',
-  },
   sideSheet: {
-    width: `min(${appShellTokens.navigationDrawerWidth}, ${appShellTokens.navigationDrawerMaxWidth})`,
+    width: `min(${appLayoutTokens.navigationDrawerWidth}, ${appLayoutTokens.navigationDrawerMaxWidth})`,
     height: '100%',
   },
 });

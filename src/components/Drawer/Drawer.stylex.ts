@@ -1,8 +1,11 @@
 import stylex from '@stylexjs/stylex';
 
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+
 const vars = {
   // container
   containerInset: '0px',
+  detachedContainerInset: spacingTokens.padding$4,
 };
 
 export const drawerTokens = stylex.defineVars(vars);

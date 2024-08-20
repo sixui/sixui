@@ -1,18 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 
-import type { IWindowSizeClassContainerName } from '~/helpers/getResponsiveRules';
+import type { ISideSheetType } from './SideSheet.types';
 import { usePrevious } from '~/hooks/usePrevious';
-import { useWindowSizeClass } from '~/hooks/useWindowSizeClass';
 
 export type IUseSideSheetResult = {
-  isModal: boolean;
   standardOpened: boolean;
   modalOpened: boolean;
 };
 
 export type IUseSideSheetProps = {
   opened?: boolean;
-  standardFromWindowSizeClass?: IWindowSizeClassContainerName;
+  type?: ISideSheetType;
   onOpen?: () => void;
   onClose?: () => void;
 };
@@ -20,19 +18,13 @@ export type IUseSideSheetProps = {
 export const useSideSheet = (
   props: IUseSideSheetProps,
 ): IUseSideSheetResult => {
-  const {
-    opened = false,
-    standardFromWindowSizeClass = 'largeAndUp',
-    onOpen,
-    onClose,
-  } = props;
+  const { opened, type, onOpen, onClose } = props;
 
-  const windowSizeClass = useWindowSizeClass();
+  const isModal = type === 'modal';
   const [modalOpened, setModalOpened] = useState(false);
   const savedStandardOpenedRef = useRef(opened);
-  const previousOpened = usePrevious(opened);
-  const isModal = !windowSizeClass?.[standardFromWindowSizeClass];
-  const previousIsModal = usePrevious(isModal);
+  const previousOpened = usePrevious(!!opened);
+  const previousIsModal = usePrevious(!!isModal);
 
   useEffect(() => {
     // This effect is triggered when the state of the side sheet changes
@@ -45,7 +37,7 @@ export const useSideSheet = (
 
     // If the window size is compact, the side sheet should be displayed as
     // a modal side sheet.
-    setModalOpened(isModal && !!opened);
+    setModalOpened(!!isModal && !!opened);
   }, [isModal, opened, previousOpened]);
 
   useEffect(() => {
@@ -78,8 +70,7 @@ export const useSideSheet = (
   }, [isModal, previousIsModal, opened, onOpen, onClose]);
 
   return {
-    isModal,
-    standardOpened: !isModal && opened,
+    standardOpened: !isModal && !!opened,
     modalOpened: modalOpened,
   };
 };

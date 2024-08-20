@@ -2,33 +2,39 @@ import stylex from '@stylexjs/stylex';
 
 import { zIndexTokens } from '~/themes/base/zIndex.stylex';
 import { drawerTokens } from './Drawer.stylex';
+import { drawerStateTokens } from './Drawer.state.stylex';
 
 export type IDrawerStylesKey = keyof typeof drawerStyles;
 export const drawerStyles = stylex.create({
   host: {
+    [drawerStateTokens.containerInset]: drawerTokens.containerInset,
+
     position: 'fixed',
     zIndex: zIndexTokens.modal,
-    height: `calc(100vh - 2 * ${drawerTokens.containerInset})`,
+    height: `calc(100vh - 2 * ${drawerStateTokens.containerInset})`,
+  },
+  host$detached: {
+    [drawerStateTokens.containerInset]: drawerTokens.detachedContainerInset,
   },
   host$vertical: {
-    top: drawerTokens.containerInset,
-    bottom: drawerTokens.containerInset,
+    top: drawerStateTokens.containerInset,
+    bottom: drawerStateTokens.containerInset,
   },
   host$horizontal: {
-    left: drawerTokens.containerInset,
-    right: drawerTokens.containerInset,
+    left: drawerStateTokens.containerInset,
+    right: drawerStateTokens.containerInset,
   },
   host$left: {
-    left: drawerTokens.containerInset,
+    left: drawerStateTokens.containerInset,
   },
   host$right: {
-    right: drawerTokens.containerInset,
+    right: drawerStateTokens.containerInset,
   },
   host$top: {
-    top: drawerTokens.containerInset,
+    top: drawerStateTokens.containerInset,
   },
   host$bottom: {
-    bottom: drawerTokens.containerInset,
+    bottom: drawerStateTokens.containerInset,
   },
   content: {
     display: 'flex',

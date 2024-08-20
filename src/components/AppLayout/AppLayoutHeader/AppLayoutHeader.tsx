@@ -4,18 +4,18 @@ import type { IAppLayoutHeaderProps } from './AppLayoutHeader.types';
 import { useStyles } from '~/hooks/useStyles';
 import { Stack } from '~/components/Stack';
 import { useAppLayoutContext } from '../AppLayout.context';
-import { appShellHeaderStyles } from './AppLayoutHeader.styles';
+import { appLayoutHeaderStyles } from './AppLayoutHeader.styles';
 
 export const AppLayoutHeader = forwardRef<
   HTMLDivElement,
   IAppLayoutHeaderProps
 >(function AppLayoutHeader(props, forwardedRef) {
   const { styles, sx, children, ...other } = props;
-  const appShellContext = useAppLayoutContext();
+  const appLayoutContext = useAppLayoutContext();
 
   const { combineStyles, globalStyles } = useStyles({
     name: 'AppLayoutHeader',
-    styles: [appShellHeaderStyles, styles],
+    styles: [appLayoutHeaderStyles, styles],
   });
 
   return (

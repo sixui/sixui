@@ -6,33 +6,33 @@ import { useStyles } from '~/hooks/useStyles';
 import { commonStyles } from '~/helpers/commonStyles';
 import { SideSheet } from '~/components/SideSheet';
 import { useAppLayoutContext } from '../AppLayout.context';
-import { appShellAsideStyles } from './AppLayoutAside.styles';
+import { appLayoutAsideStyles } from './AppLayoutAside.styles';
 
 export const AppLayoutAside = forwardRef<HTMLDivElement, IAppLayoutAsideProps>(
   function AppLayoutAside(props, forwardedRef) {
     const { styles, sx, children, ...other } = props;
-    const appShellContext = useAppLayoutContext();
+    const appLayoutContext = useAppLayoutContext();
 
     const { combineStyles, getStyles, globalStyles } = useStyles({
       name: 'AppLayoutAside',
-      styles: [appShellAsideStyles, styles],
+      styles: [appLayoutAsideStyles, styles],
     });
 
     return (
       <div
         {...getStyles(
           'host',
-          appShellContext.aside?.fullHeight && 'host$fullHeight',
-          !appShellContext.aside?.sideSheet?.standardOpened && 'host$collapsed',
+          appLayoutContext.aside?.fullHeight && 'host$fullHeight',
+          !appLayoutContext.aside?.sideSheet?.standardOpened && 'host$collapsed',
         )}
       >
         <SideSheet
           anchor='right'
-          root={appShellContext.root}
+          root={appLayoutContext.root}
           sx={[globalStyles, combineStyles('sideSheet'), sx]}
-          isModal={appShellContext.aside?.sideSheet?.isModal}
-          standardOpened={appShellContext.aside?.sideSheet?.standardOpened}
-          modalOpened={appShellContext.aside?.sideSheet?.modalOpened}
+          isModal={appLayoutContext.aside?.sideSheet?.isModal}
+          standardOpened={appLayoutContext.aside?.sideSheet?.standardOpened}
+          modalOpened={appLayoutContext.aside?.sideSheet?.modalOpened}
           {...other}
           ref={forwardedRef}
         >

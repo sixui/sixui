@@ -6,7 +6,6 @@ import { useStyles } from '~/hooks/useStyles';
 import { PopoverBase } from '../PopoverBase';
 import { drawerStyles } from './Drawer.styles';
 import { drawerTheme } from './Drawer.stylex';
-import { drawerVariantStyles } from './variants';
 
 // https://github.com/material-components/material-web/blob/main/drawer/internal/drawer.ts
 
@@ -23,14 +22,13 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
         onClose,
         anchor = 'left',
         children,
-        variant = 'standard',
+        detached,
         ...other
       } = props;
 
-      const variantStyles = drawerVariantStyles[variant];
       const { combineStyles, globalStyles } = useStyles({
         name: 'Drawer',
-        styles: [drawerStyles, variantStyles, styles],
+        styles: [drawerStyles, styles],
       });
 
       const orientation = ['left', 'right'].includes(anchor)
@@ -45,6 +43,7 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
             'host',
             `host$${orientation}`,
             `host$${anchor}`,
+            detached && 'host$detached',
             sx,
           )}
           root={root}

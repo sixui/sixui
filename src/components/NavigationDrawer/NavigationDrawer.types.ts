@@ -1,9 +1,8 @@
-import type { INavigationDrawerStylesKey } from './NavigationDrawer.styles';
 import type { IBaseProps } from '~/components/Base';
-
-export type INavigationDrawerVariant = 'standard' | 'modal';
+import type { ISideSheetType } from '../SideSheet';
+import type { INavigationDrawerStylesKey } from './NavigationDrawer.styles';
 
 export type INavigationDrawerProps = IBaseProps<INavigationDrawerStylesKey> & {
   children?: React.ReactNode;
-  variant?: INavigationDrawerVariant;
+  type?: ISideSheetType;
 };

@@ -1,73 +1,98 @@
-import { useWindowSizeClass } from '~/hooks/useWindowSizeClass';
-import { useAppLayoutContext } from './AppLayout.context';
+import {
+  IUseWindowSizeClassResult,
+  useWindowSizeClass,
+} from '~/hooks/useWindowSizeClass';
 
 export type ICanonicalLayoutType = 'listDetail' | 'supportingPane' | 'feed';
-
-export type ICanonicalLayoutNavigationType = 'bar' | 'rail' | 'standard';
+export type ICanonicalLayoutNavigationMode = 'bar' | 'rail' | 'standard';
+export type ICanonicalLayoutPreferredNavigationMode = 'rail' | 'standard';
 
 export type ICanonicalLayoutOptions = {
+  window?: Window;
   dense?: boolean;
+  preferredNavigationMode?: ICanonicalLayoutPreferredNavigationMode;
 };
 
 export type ICanonicalLayoutPane = {
-  name: 'main' | 'list' | 'detail' | 'focus' | 'supporting' | 'feed';
+  name: 'listDetail' | 'list' | 'detail' | 'focus' | 'supporting' | 'feed';
   sheet?: boolean;
   fixedWidth?: number;
   dismissible?: boolean;
   columns?: number;
 };
 
-export type ICanonicalLayoutNavigation = Partial<
-  Record<ICanonicalLayoutNavigationType, boolean>
->;
+const getNavigationMode = (
+  windowSizeClass: IUseWindowSizeClassResult | undefined,
+  preferredNavigationMode: ICanonicalLayoutPreferredNavigationMode,
+): ICanonicalLayoutNavigationMode => {
+  if (windowSizeClass?.compact) {
+    return 'bar';
+  }
 
-export type IUseCanonicalLayoutResult = {
-  navigation: ICanonicalLayoutNavigation;
+  if (windowSizeClass?.medium) {
+    return 'rail';
+  }
+
+  if (windowSizeClass?.expandedAndUp) {
+    return preferredNavigationMode;
+  }
+
+  return preferredNavigationMode;
+};
+
+export type ICanonicalLayout = {
+  navigationMode: ICanonicalLayoutNavigationMode;
   orientation: 'horizontal' | 'vertical';
   panes: Array<ICanonicalLayoutPane>;
 };
 
+const defaultOptions = {
+  preferredNavigationMode: 'standard' as 'rail' | 'standard',
+};
+
 export const useCanonicalLayout = (
   layout: ICanonicalLayoutType,
-  options?: ICanonicalLayoutOptions,
-): IUseCanonicalLayoutResult => {
-  const appShellContext = useAppLayoutContext();
+  optionsProp?: ICanonicalLayoutOptions,
+): ICanonicalLayout => {
+  const options = {
+    ...defaultOptions,
+    ...optionsProp,
+  };
   const windowSizeClass = useWindowSizeClass({
-    window: appShellContext.window,
+    window: options?.window ?? window,
   });
 
-  const navigation: ICanonicalLayoutNavigation = {
-    bar: windowSizeClass?.compact,
-    rail: windowSizeClass?.medium || windowSizeClass?.expanded,
-    standard: windowSizeClass?.largeAndUp,
-  };
+  const navigationMode = getNavigationMode(
+    windowSizeClass,
+    options.preferredNavigationMode,
+  );
 
   switch (layout) {
     case 'listDetail':
       if (windowSizeClass?.compact) {
         return {
-          navigation,
+          navigationMode,
           orientation: 'horizontal',
-          panes: [{ name: 'main' }],
+          panes: [{ name: 'listDetail' }],
         };
       }
 
       if (windowSizeClass?.medium) {
         return options?.dense
           ? {
-              navigation: { bar: true },
+              navigationMode: 'bar',
               orientation: 'horizontal',
               panes: [{ name: 'list' }, { name: 'detail' }],
             }
           : {
-              navigation,
+              navigationMode,
               orientation: 'horizontal',
-              panes: [{ name: 'main' }],
+              panes: [{ name: 'listDetail' }],
             };
       }
 
       return {
-        navigation,
+        navigationMode,
         orientation: 'horizontal',
         panes: [{ name: 'list' }, { name: 'detail' }],
       };
@@ -75,7 +100,7 @@ export const useCanonicalLayout = (
     case 'supportingPane':
       if (windowSizeClass?.compact) {
         return {
-          navigation,
+          navigationMode,
           orientation: 'vertical',
           panes: [{ name: 'focus' }, { name: 'supporting', sheet: true }],
         };
@@ -83,14 +108,14 @@ export const useCanonicalLayout = (
 
       if (windowSizeClass?.medium) {
         return {
-          navigation,
+          navigationMode,
           orientation: 'vertical',
           panes: [{ name: 'focus' }, { name: 'supporting' }],
         };
       }
 
       return {
-        navigation,
+        navigationMode,
         orientation: 'horizontal',
         panes: [
           { name: 'focus' },
@@ -101,7 +126,7 @@ export const useCanonicalLayout = (
     case 'feed':
       if (windowSizeClass?.compact) {
         return {
-          navigation,
+          navigationMode,
           orientation: 'vertical',
           panes: [{ name: 'feed', columns: 1 }],
         };
@@ -109,14 +134,14 @@ export const useCanonicalLayout = (
 
       if (windowSizeClass?.medium) {
         return {
-          navigation,
+          navigationMode,
           orientation: 'vertical',
           panes: [{ name: 'feed', columns: 2 }],
         };
       }
 
       return {
-        navigation,
+        navigationMode,
         orientation: 'horizontal',
         panes: [{ name: 'feed', columns: 3 }],
       };

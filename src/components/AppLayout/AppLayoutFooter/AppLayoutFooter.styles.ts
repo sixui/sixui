@@ -3,14 +3,14 @@ import stylex from '@stylexjs/stylex';
 import { zIndexTokens } from '~/themes/base/zIndex.stylex';
 import { outlineTokens } from '~/themes/base/outline.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { appShellTokens } from '../AppLayout.stylex';
+import { appLayoutTokens } from '../AppLayout.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
 
-export type IAppLayoutFooterStylesKey = keyof typeof appShellFooterStyles;
-export const appShellFooterStyles = stylex.create({
+export type IAppLayoutFooterStylesKey = keyof typeof appLayoutFooterStyles;
+export const appLayoutFooterStyles = stylex.create({
   host: {
     backgroundColor: colorSchemeTokens.surface,
-    height: appShellTokens.footerHeight,
+    height: appLayoutTokens.footerHeight,
     borderTopWidth: outlineTokens.width$xs,
     borderTopStyle: 'solid',
     borderTopColor: colorSchemeTokens.outline,

@@ -19,7 +19,6 @@ import { scaleTokens } from '~/themes/base/scale.stylex';
 import { outlineTokens } from '~/themes/base/outline.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { ComponentShowcase } from '../ComponentShowcase';
-import { NavigationRailDestination } from '../NavigationRailDestination';
 import { Placeholder } from '../Placeholder';
 import { Badge } from '../Badge';
 import { NavigationRail } from './NavigationRail';
@@ -52,7 +51,7 @@ const NavigationRailDemo: React.FC<IOmit<INavigationRailProps, 'children'>> = (
 
   return (
     <NavigationRail {...props}>
-      <NavigationRailDestination
+      <NavigationRail.Destination
         icon={<FontAwesomeIcon icon={faSquare} />}
         activeIcon={<FontAwesomeIcon icon={faSquareSolid} />}
         label='First'
@@ -60,7 +59,7 @@ const NavigationRailDemo: React.FC<IOmit<INavigationRailProps, 'children'>> = (
         active={activeIndex === 0}
         badge={<Badge value='3' />}
       />
-      <NavigationRailDestination
+      <NavigationRail.Destination
         icon={<FontAwesomeIcon icon={faCircle} />}
         activeIcon={<FontAwesomeIcon icon={faCircleSolid} />}
         label='Second'
@@ -68,7 +67,7 @@ const NavigationRailDemo: React.FC<IOmit<INavigationRailProps, 'children'>> = (
         active={activeIndex === 1}
         badge={<Badge dot />}
       />
-      <NavigationRailDestination
+      <NavigationRail.Destination
         icon={<FontAwesomeIcon icon={faHeart} />}
         activeIcon={<FontAwesomeIcon icon={faHeartSolid} />}
         label='Third'

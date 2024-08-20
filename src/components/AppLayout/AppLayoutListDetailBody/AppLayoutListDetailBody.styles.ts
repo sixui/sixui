@@ -3,8 +3,8 @@ import stylex from '@stylexjs/stylex';
 import { appLayoutListDetailBodyTokens } from './AppLayoutListDetailBody.stylex';
 
 export type IAppLayoutListDetailBodyStylesKey =
-  keyof typeof appShellListDetailBodyStyles;
-export const appShellListDetailBodyStyles = stylex.create({
+  keyof typeof appLayoutListDetailBodyStyles;
+export const appLayoutListDetailBodyStyles = stylex.create({
   host: {
     display: 'grid',
     gap: appLayoutListDetailBodyTokens.spacer,

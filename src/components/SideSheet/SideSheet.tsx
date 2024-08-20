@@ -9,7 +9,6 @@ import { SideSheetContent } from '../SideSheetContent';
 import { Drawer } from '../Drawer';
 import { sideSheetStyles } from './SideSheet.styles';
 
-// FIXME: rename to ResponsiveSideSheet?
 export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
   forwardRef<HTMLDivElement, ISideSheetProps>(
     function SideSheet(props, forwardedRef) {
@@ -18,13 +17,13 @@ export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
         styles,
         sx,
         root,
-        isModal,
+        type = 'standard',
         standardOpened,
         modalOpened,
         onClose,
         disabled,
         anchor,
-        variant,
+        detached,
         ...other
       } = props;
 
@@ -63,25 +62,27 @@ export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
               <div {...getStyles(`animation$${status}`)} data-anchor={anchor}>
                 {renderContent({
                   onClose,
+                  variant: 'standard',
                   ref: transitionNodeHandleRef,
                 })}
               </div>
             )}
           </CSSTransition>
 
-          {isModal ? (
+          {type === 'modal' ? (
             <Drawer
               root={root}
               opened={modalOpened}
               onClose={onClose}
               disabled={disabled}
               anchor={anchor}
-              variant={variant}
+              detached={detached}
             >
               {({ close }) =>
                 renderContent({
+                  showCloseButton: true,
                   onClose: close,
-                  variant: variant === 'detached' ? 'detachedModal' : 'modal',
+                  variant: detached ? 'detachedModal' : 'modal',
                   ref: forwardedRef,
                 })
               }

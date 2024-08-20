@@ -5,8 +5,9 @@ import { useStyles } from '~/hooks/useStyles';
 import { PaperBase } from '../PaperBase';
 import { navigationRailStyles } from './NavigationRail.styles';
 import { navigationRailTheme } from './NavigationRail.stylex';
+import { NavigationRailDestination } from '../NavigationRailDestination';
 
-export const NavigationRail = forwardRef<HTMLDivElement, INavigationRailProps>(
+const NavigationRail = forwardRef<HTMLDivElement, INavigationRailProps>(
   function NavigationRail(props, forwardedRef) {
     const {
       styles,
@@ -36,3 +37,9 @@ export const NavigationRail = forwardRef<HTMLDivElement, INavigationRailProps>(
     );
   },
 );
+
+const NavigationRailNamespace = Object.assign(NavigationRail, {
+  Destination: NavigationRailDestination,
+});
+
+export { NavigationRailNamespace as NavigationRail };
