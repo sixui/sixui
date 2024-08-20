@@ -97,6 +97,7 @@ export const AppLayoutNavigationDrawer = forwardRef<
             ref={transitionNodeHandleRef}
           >
             {renderContent({
+              onClose: appLayoutContext.navigationDrawer?.state?.close,
               variant: 'standard',
               ref: transitionNodeHandleRef,
             })}

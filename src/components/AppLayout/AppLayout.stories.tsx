@@ -168,49 +168,35 @@ const FooterContent: React.FC = () =>
 const AppLayoutFrameA: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
   props,
 ) => {
-  // const [asideOpened, asideCallbacks] = useDisclosure(true);
-  // const aside = useSideSheet({
-  //   opened: asideOpened,
-  //   onOpen: asideCallbacks.open,
-  //   onClose: asideCallbacks.close,
-  //   standardFromWindowSizeClass: 'extraLargeAndUp',
-  // });
-
   const frameRef = useRef<HTMLIFrameElement>(null);
+  // FIXME:
+  console.log('___-c', frameRef.current);
 
   return (
     <Frame importParentStyles sx={styles.frame} ref={frameRef}>
       <AppLayout
-        components={['header', 'navigationRail', 'navigationDrawer']}
-        // preferredNavigationMode='rail'
+        components={['header', 'navigationRail', 'navigationDrawer', 'aside']}
+        preferredNavigationMode='standard'
         window={frameRef?.current?.contentWindow ?? undefined}
         navigationRail={{
           fullHeight: false,
         }}
-        // aside={{
-        //   sideSheet: {
-        //     isModal: aside.isModal,
-        //     modalOpened: aside.modalOpened,
-        //     standardOpened: aside.standardOpened,
-        //   },
-        //   fullHeight: false,
-        // }}
         {...props}
       >
-        {({ navigationDrawer }) => (
+        {({ navigationDrawer, aside }) => (
           <>
             <Stack>
               <AppLayout.Header>
                 <HeaderContent
                   navigationDrawerOpened={navigationDrawer?.state?.opened}
                   toggleNavigationDrawer={navigationDrawer?.state?.toggle}
-                  // asideOpened={asideOpened}
-                  // toggleAside={asideCallbacks.toggle}
+                  asideOpened={aside?.state?.opened}
+                  toggleAside={aside?.state?.toggle}
                 />
               </AppLayout.Header>
 
               <Stack horizontal align='start'>
-                <AppLayout.Navigation>
+                <AppLayout.SideSheet>
                   <AppLayout.NavigationRail divider>
                     <NavigationRailContent />
                   </AppLayout.NavigationRail>
@@ -218,19 +204,17 @@ const AppLayoutFrameA: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
                   <AppLayout.NavigationDrawer divider>
                     <NavigationDrawerContent />
                   </AppLayout.NavigationDrawer>
-                </AppLayout.Navigation>
+                </AppLayout.SideSheet>
 
                 <AppLayout.Body>
                   <BodyContent />
                 </AppLayout.Body>
 
-                {/* <AppLayout.Aside
-                  onClose={asideCallbacks.close}
-                  variant='detached'
-                  showCloseButton={aside.isModal}
-                >
-                  <AsideContent />
-                </AppLayout.Aside> */}
+                <AppLayout.SideSheet anchor='right'>
+                  <AppLayout.Aside divider>
+                    <AsideContent />
+                  </AppLayout.Aside>
+                </AppLayout.SideSheet>
               </Stack>
             </Stack>
 
@@ -247,14 +231,6 @@ const AppLayoutFrameA: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
 const AppLayoutFrameB: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
   props,
 ) => {
-  // const [asideOpened, asideCallbacks] = useDisclosure(true);
-  // const aside = useSideSheet({
-  //   opened: asideOpened,
-  //   onOpen: asideCallbacks.open,
-  //   onClose: asideCallbacks.close,
-  //   standardFromWindowSizeClass: 'extraLargeAndUp',
-  // });
-
   const frameRef = useRef<HTMLIFrameElement>(null);
 
   return (
@@ -262,27 +238,13 @@ const AppLayoutFrameB: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
       <AppLayout
         components={['header', 'navigationRail', 'navigationDrawer']}
         window={frameRef?.current?.contentWindow ?? undefined}
-        navigationDrawer={{
-          fullHeight: true,
-        }}
-        navigationRail={{
-          fullHeight: true,
-        }}
-        // aside={{
-        //   sideSheet: {
-        //     isModal: aside.isModal,
-        //     modalOpened: aside.modalOpened,
-        //     standardOpened: aside.standardOpened,
-        //   },
-        //   fullHeight: false,
-        // }}
         {...props}
       >
         {({ navigationDrawer }) => (
           <>
             <Stack>
               <Stack horizontal align='start'>
-                <AppLayout.Navigation fullHeight>
+                <AppLayout.SideSheet fullHeight>
                   <AppLayout.NavigationRail divider>
                     <NavigationRailContent />
                   </AppLayout.NavigationRail>
@@ -294,7 +256,7 @@ const AppLayoutFrameB: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
                   >
                     <NavigationDrawerContent />
                   </AppLayout.NavigationDrawer>
-                </AppLayout.Navigation>
+                </AppLayout.SideSheet>
 
                 <AppLayout.Body>
                   <AppLayout.Header>

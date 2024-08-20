@@ -3,9 +3,9 @@ import { appLayoutTokens } from '../AppLayout.stylex';
 import { motionTokens } from '~/themes/base/motion.stylex';
 import { zIndexTokens } from '~/themes/base/zIndex.stylex';
 
-export type IAppLayoutNavigationStylesKey =
-  keyof typeof appLayoutNavigationStyles;
-export const appLayoutNavigationStyles = stylex.create({
+export type IAppLayoutSideSheetStylesKey =
+  keyof typeof appLayoutSideSheetStyles;
+export const appLayoutSideSheetStyles = stylex.create({
   host: {
     position: 'sticky',
     left: 0,
@@ -18,6 +18,14 @@ export const appLayoutNavigationStyles = stylex.create({
     transitionDuration: motionTokens.duration$short3,
     transitionTimingFunction: motionTokens.easing$emphasizedAccelerate,
   },
+  host$headerOpened: {
+    height: `calc(100vh - ${appLayoutTokens.headerHeight})`,
+    top: appLayoutTokens.headerHeight,
+  },
+  host$fullHeight: {
+    height: '100vh',
+    top: 0,
+  },
   host$navigationRailOpened: {
     width: appLayoutTokens.navigationRailWidth,
     transitionDuration: motionTokens.duration$long3,
@@ -28,13 +36,10 @@ export const appLayoutNavigationStyles = stylex.create({
     transitionDuration: motionTokens.duration$long3,
     transitionTimingFunction: motionTokens.easing$emphasizedDecelerate,
   },
-  host$headerOpened: {
-    height: `calc(100vh - ${appLayoutTokens.headerHeight})`,
-    top: appLayoutTokens.headerHeight,
-  },
-  host$fullHeight: {
-    height: '100vh',
-    top: 0,
+  host$standardAsideOpened: {
+    width: appLayoutTokens.standardAsideWidth,
+    transitionDuration: motionTokens.duration$long3,
+    transitionTimingFunction: motionTokens.easing$emphasizedDecelerate,
   },
   inner: {
     position: 'absolute',

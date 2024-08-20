@@ -26,7 +26,7 @@ import {
   useCanonicalLayout,
   type ICanonicalLayoutType,
 } from './useCanonicalLayout';
-import { AppLayoutNavigation } from './AppLayoutNavigation';
+import { AppLayoutSideSheet } from './AppLayoutSideSheet';
 
 const AppLayout = forwardRef<HTMLDivElement, IAppLayoutProps>(
   function AppLayout(props, forwardedRef) {
@@ -54,6 +54,7 @@ const AppLayout = forwardRef<HTMLDivElement, IAppLayoutProps>(
         defaultCanonicalLayoutType ?? 'listDetail',
       );
     const canonicalLayout = useCanonicalLayout(canonicalLayoutType, {
+      window,
       preferredNavigationMode,
     });
 
@@ -75,8 +76,17 @@ const AppLayout = forwardRef<HTMLDivElement, IAppLayoutProps>(
       onOpen: navigationDrawerCallbacks.open,
       onClose: navigationDrawerCallbacks.close,
     });
-
     const hasNavigationDrawer = components.includes('navigationDrawer');
+
+    const [asideOpened, asideCallbacks] = useDisclosure(!aside?.defaultClosed);
+    const asideType = canonicalLayout.standardAside ? 'standard' : 'modal';
+    const asideState = useSideSheet({
+      opened: asideOpened,
+      type: asideType,
+      onOpen: asideCallbacks.open,
+      onClose: asideCallbacks.close,
+    });
+    const hasAside = components.includes('aside');
 
     const contextValue = useMemo<IAppLayoutContextValue>(() => {
       const value: IAppLayoutContextValue = {
@@ -97,7 +107,20 @@ const AppLayout = forwardRef<HTMLDivElement, IAppLayoutProps>(
             : undefined,
         },
         navigationRail,
-        aside,
+        aside: {
+          ...aside,
+          state: hasAside
+            ? {
+                opened: asideOpened,
+                type: asideType,
+                modalOpened: asideState.modalOpened,
+                standardOpened: asideState.standardOpened,
+                toggle: asideCallbacks.toggle,
+                open: asideCallbacks.open,
+                close: asideCallbacks.close,
+              }
+            : undefined,
+        },
         canonicalLayout,
         preferredNavigationMode,
         components,
@@ -107,11 +130,11 @@ const AppLayout = forwardRef<HTMLDivElement, IAppLayoutProps>(
     }, [
       window,
       rootElement,
-      navigationDrawer,
       navigationRail,
-      aside,
+      components,
       canonicalLayout,
       preferredNavigationMode,
+      navigationDrawer,
       hasNavigationDrawer,
       navigationDrawerOpened,
       navigationDrawerType,
@@ -120,7 +143,15 @@ const AppLayout = forwardRef<HTMLDivElement, IAppLayoutProps>(
       navigationDrawerCallbacks.toggle,
       navigationDrawerCallbacks.open,
       navigationDrawerCallbacks.close,
-      components,
+      aside,
+      hasAside,
+      asideOpened,
+      asideType,
+      asideState.modalOpened,
+      asideState.standardOpened,
+      asideCallbacks.toggle,
+      asideCallbacks.open,
+      asideCallbacks.close,
     ]);
 
     return (
@@ -142,7 +173,7 @@ const AppLayout = forwardRef<HTMLDivElement, IAppLayoutProps>(
 
 const AppLayoutNamespace = Object.assign(AppLayout, {
   Header: AppLayoutHeader,
-  Navigation: AppLayoutNavigation,
+  SideSheet: AppLayoutSideSheet,
   NavigationDrawer: AppLayoutNavigationDrawer,
   NavigationRail: AppLayoutNavigationRail,
   Body: AppLayoutBody,

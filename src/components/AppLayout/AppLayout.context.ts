@@ -7,20 +7,25 @@ import type { ICanonicalLayout } from './useCanonicalLayout';
 import type { ISideSheetType } from '../SideSheet';
 import { createSafeContext } from '~/helpers/createSafeContext';
 
+export type IAppLayoutSideSheetState = {
+  opened: boolean;
+  type: ISideSheetType;
+  modalOpened: boolean;
+  standardOpened: boolean;
+  toggle: () => void;
+  open: () => void;
+  close: () => void;
+};
+
 export type IAppLayoutContextValue = Pick<
   IAppLayoutProps,
-  'header' | 'window' | 'navigationRail' | 'aside' | 'preferredNavigationMode'
+  'window' | 'navigationRail' | 'preferredNavigationMode'
 > & {
   navigationDrawer?: IAppLayoutProps['navigationDrawer'] & {
-    state?: {
-      opened: boolean;
-      type: ISideSheetType;
-      modalOpened: boolean;
-      standardOpened: boolean;
-      toggle: () => void;
-      open: () => void;
-      close: () => void;
-    };
+    state?: IAppLayoutSideSheetState;
+  };
+  aside?: IAppLayoutProps['aside'] & {
+    state?: IAppLayoutSideSheetState;
   };
   root?: IPortalProps['root'];
   canonicalLayout: ICanonicalLayout;

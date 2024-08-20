@@ -1,21 +1,21 @@
 import { forwardRef } from 'react';
 
-import type { IAppLayoutNavigationProps } from './AppLayoutNavigation.types';
+import type { IAppLayoutSideSheetProps } from './AppLayoutSideSheet.types';
 import { useStyles } from '~/hooks/useStyles';
 import { Base } from '~/components/Base';
 import { useAppLayoutContext } from '../AppLayout.context';
-import { appLayoutNavigationStyles } from './AppLayoutNavigation.styles';
+import { appLayoutSideSheetStyles } from './AppLayoutSideSheet.styles';
 
-export const AppLayoutNavigation = forwardRef<
+export const AppLayoutSideSheet = forwardRef<
   HTMLDivElement,
-  IAppLayoutNavigationProps
->(function AppLayoutNavigation(props, forwardedRef) {
-  const { styles, sx, children, fullHeight, ...other } = props;
+  IAppLayoutSideSheetProps
+>(function AppLayoutSideSheet(props, forwardedRef) {
+  const { styles, sx, children, fullHeight, anchor = 'left', ...other } = props;
   const appLayoutContext = useAppLayoutContext();
 
   const { combineStyles, getStyles, globalStyles } = useStyles({
-    name: 'AppLayoutNavigation',
-    styles: [appLayoutNavigationStyles, styles],
+    name: 'AppLayoutSideSheet',
+    styles: [appLayoutSideSheetStyles, styles],
   });
 
   const hasHeader = appLayoutContext.components.includes('header');
@@ -34,6 +34,15 @@ export const AppLayoutNavigation = forwardRef<
     appLayoutContext.canonicalLayout.navigationMode === 'standard' &&
     appLayoutContext.navigationDrawer?.state?.standardOpened;
 
+  const hasAside = appLayoutContext.components.includes('aside');
+  const standardAsideOpened =
+    hasAside &&
+    !!appLayoutContext.canonicalLayout.standardAside &&
+    appLayoutContext.aside?.state?.standardOpened;
+
+  const anchorRight = anchor === 'right';
+  const anchorLeft = !anchorRight;
+
   return (
     <Base
       {...other}
@@ -42,9 +51,11 @@ export const AppLayoutNavigation = forwardRef<
         combineStyles(
           'host',
           headerOpened && 'host$headerOpened',
-          navigationRailOpened && 'host$navigationRailOpened',
-          standardNavigationDrawerOpened &&
+          anchorLeft && navigationRailOpened && 'host$navigationRailOpened',
+          anchorLeft &&
+            standardNavigationDrawerOpened &&
             'host$standardNavigationDrawerOpened',
+          anchorRight && standardAsideOpened && 'host$standardAsideOpened',
           fullHeight && 'host$fullHeight',
         ),
         sx,

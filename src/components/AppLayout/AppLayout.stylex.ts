@@ -14,8 +14,8 @@ const vars = {
   modalNavigationDrawerWidth: `min(360px * ${scaleTokens.scale}, 100vw - 48px)`,
 
   // aside
-  asideMaxWidth: '100vw - 48px',
-  asideWidth: `calc(360px * ${scaleTokens.scale})`,
+  standardAsideWidth: `calc(400px * ${scaleTokens.scale})`,
+  modalAsideWidth: `min(400px * ${scaleTokens.scale}, 100vw - 48px)`,
 
   // footer
   footerHeight: `calc(64px * ${scaleTokens.scale})`,

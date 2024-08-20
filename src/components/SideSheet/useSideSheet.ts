@@ -15,6 +15,7 @@ export type IUseSideSheetProps = {
   onClose?: () => void;
 };
 
+// FIXME: rename to useSideSheetControl?
 export const useSideSheet = (
   props: IUseSideSheetProps,
 ): IUseSideSheetResult => {
