@@ -61,7 +61,6 @@ export const useCanonicalLayout = (
     ...defaultOptions,
     ...optionsProp,
   };
-  console.log('___-options', options.window);
   const windowSizeClass = useWindowSizeClass({
     window: options.window ?? window,
   });
@@ -100,6 +99,15 @@ export const useCanonicalLayout = (
               panes: [{ name: 'listDetail' }],
               standardAside,
             };
+      }
+
+      if (windowSizeClass?.expanded) {
+        return {
+          navigationMode: 'rail',
+          orientation: 'horizontal',
+          panes: [{ name: 'list' }, { name: 'detail' }],
+          standardAside,
+        };
       }
 
       return {

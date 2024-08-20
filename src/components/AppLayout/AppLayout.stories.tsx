@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -168,62 +168,62 @@ const FooterContent: React.FC = () =>
 const AppLayoutFrameA: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
   props,
 ) => {
-  const frameRef = useRef<HTMLIFrameElement>(null);
-  // FIXME:
-  console.log('___-c', frameRef.current);
+  const [frameRef, setFrameRef] = useState<HTMLIFrameElement | null>(null);
 
   return (
-    <Frame importParentStyles sx={styles.frame} ref={frameRef}>
-      <AppLayout
-        components={['header', 'navigationRail', 'navigationDrawer', 'aside']}
-        preferredNavigationMode='standard'
-        window={frameRef?.current?.contentWindow ?? undefined}
-        navigationRail={{
-          fullHeight: false,
-        }}
-        {...props}
-      >
-        {({ navigationDrawer, aside }) => (
-          <>
-            <Stack>
-              <AppLayout.Header>
-                <HeaderContent
-                  navigationDrawerOpened={navigationDrawer?.state?.opened}
-                  toggleNavigationDrawer={navigationDrawer?.state?.toggle}
-                  asideOpened={aside?.state?.opened}
-                  toggleAside={aside?.state?.toggle}
-                />
-              </AppLayout.Header>
+    <Frame importParentStyles sx={styles.frame} ref={setFrameRef}>
+      {frameRef ? (
+        <AppLayout
+          components={['header', 'navigationRail', 'navigationDrawer', 'aside']}
+          preferredNavigationMode='standard'
+          window={frameRef?.contentWindow ?? undefined}
+          navigationRail={{
+            fullHeight: false,
+          }}
+          {...props}
+        >
+          {({ navigationDrawer, aside }) => (
+            <>
+              <Stack>
+                <AppLayout.Header>
+                  <HeaderContent
+                    navigationDrawerOpened={navigationDrawer?.state?.opened}
+                    toggleNavigationDrawer={navigationDrawer?.state?.toggle}
+                    asideOpened={aside?.state?.opened}
+                    toggleAside={aside?.state?.toggle}
+                  />
+                </AppLayout.Header>
 
-              <Stack horizontal align='start'>
-                <AppLayout.SideSheet>
-                  <AppLayout.NavigationRail divider>
-                    <NavigationRailContent />
-                  </AppLayout.NavigationRail>
+                <Stack horizontal align='start'>
+                  <AppLayout.SideSheet>
+                    <AppLayout.NavigationRail divider>
+                      <NavigationRailContent />
+                    </AppLayout.NavigationRail>
 
-                  <AppLayout.NavigationDrawer divider>
-                    <NavigationDrawerContent />
-                  </AppLayout.NavigationDrawer>
-                </AppLayout.SideSheet>
+                    <AppLayout.NavigationDrawer divider>
+                      <NavigationDrawerContent />
+                    </AppLayout.NavigationDrawer>
+                  </AppLayout.SideSheet>
 
-                <AppLayout.Body>
-                  <BodyContent />
-                </AppLayout.Body>
+                  <AppLayout.Body>
+                    <BodyContent />
+                  </AppLayout.Body>
 
-                <AppLayout.SideSheet anchor='right'>
-                  <AppLayout.Aside divider>
-                    <AsideContent />
-                  </AppLayout.Aside>
-                </AppLayout.SideSheet>
+                  <AppLayout.SideSheet anchor='right'>
+                    <AppLayout.Aside divider>
+                      <AsideContent />
+                    </AppLayout.Aside>
+                  </AppLayout.SideSheet>
+                </Stack>
               </Stack>
-            </Stack>
 
-            <AppLayout.Footer>
-              <FooterContent />
-            </AppLayout.Footer>
-          </>
-        )}
-      </AppLayout>
+              <AppLayout.Footer>
+                <FooterContent />
+              </AppLayout.Footer>
+            </>
+          )}
+        </AppLayout>
+      ) : null}
     </Frame>
   );
 };
@@ -231,49 +231,50 @@ const AppLayoutFrameA: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
 const AppLayoutFrameB: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
   props,
 ) => {
-  const frameRef = useRef<HTMLIFrameElement>(null);
+  const [frameRef, setFrameRef] = useState<HTMLIFrameElement | null>(null);
 
   return (
-    <Frame importParentStyles sx={styles.frame} ref={frameRef}>
-      <AppLayout
-        components={['header', 'navigationRail', 'navigationDrawer']}
-        window={frameRef?.current?.contentWindow ?? undefined}
-        {...props}
-      >
-        {({ navigationDrawer }) => (
-          <>
-            <Stack>
-              <Stack horizontal align='start'>
-                <AppLayout.SideSheet fullHeight>
-                  <AppLayout.NavigationRail divider>
-                    <NavigationRailContent />
-                  </AppLayout.NavigationRail>
+    <Frame importParentStyles sx={styles.frame} ref={setFrameRef}>
+      {frameRef ? (
+        <AppLayout
+          components={['header', 'navigationRail', 'navigationDrawer']}
+          window={frameRef?.contentWindow ?? undefined}
+          {...props}
+        >
+          {({ navigationDrawer }) => (
+            <>
+              <Stack>
+                <Stack horizontal align='start'>
+                  <AppLayout.SideSheet fullHeight>
+                    <AppLayout.NavigationRail divider>
+                      <NavigationRailContent />
+                    </AppLayout.NavigationRail>
 
-                  <AppLayout.NavigationDrawer
-                    divider
-                    headline='App Name'
-                    showCloseButton
-                  >
-                    <NavigationDrawerContent />
-                  </AppLayout.NavigationDrawer>
-                </AppLayout.SideSheet>
+                    <AppLayout.NavigationDrawer
+                      divider
+                      headline='App Name'
+                      showCloseButton
+                    >
+                      <NavigationDrawerContent />
+                    </AppLayout.NavigationDrawer>
+                  </AppLayout.SideSheet>
 
-                <AppLayout.Body>
-                  <AppLayout.Header>
-                    <HeaderContent
-                      navigationDrawerOpened={navigationDrawer?.state?.opened}
-                      toggleNavigationDrawer={navigationDrawer?.state?.toggle}
-                      // asideOpened={asideOpened}
-                      // toggleAside={asideCallbacks.toggle}
-                    />
-                  </AppLayout.Header>
+                  <AppLayout.Body>
+                    <AppLayout.Header>
+                      <HeaderContent
+                        navigationDrawerOpened={navigationDrawer?.state?.opened}
+                        toggleNavigationDrawer={navigationDrawer?.state?.toggle}
+                        // asideOpened={asideOpened}
+                        // toggleAside={asideCallbacks.toggle}
+                      />
+                    </AppLayout.Header>
 
-                  <Stack horizontal align='start'>
-                    <AppLayout.Body>
-                      <BodyContent />
-                    </AppLayout.Body>
+                    <Stack horizontal align='start'>
+                      <AppLayout.Body>
+                        <BodyContent />
+                      </AppLayout.Body>
 
-                    {/* <AppLayout.Aside
+                      {/* <AppLayout.Aside
                       onClose={asideCallbacks.close}
                       headline='Headline'
                       variant='detached'
@@ -281,18 +282,18 @@ const AppLayoutFrameB: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
                     >
                       <AsideContent />
                     </AppLayout.Aside> */}
-                  </Stack>
-                </AppLayout.Body>
+                    </Stack>
+                  </AppLayout.Body>
+                </Stack>
               </Stack>
-            </Stack>
 
-            <AppLayout.Footer>
-              <FooterContent />
-            </AppLayout.Footer>
-          </>
-        )}
-      </AppLayout>
-      ;
+              <AppLayout.Footer>
+                <FooterContent />
+              </AppLayout.Footer>
+            </>
+          )}
+        </AppLayout>
+      ) : null}
     </Frame>
   );
 };
