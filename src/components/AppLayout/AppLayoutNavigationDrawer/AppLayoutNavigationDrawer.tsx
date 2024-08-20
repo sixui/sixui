@@ -5,18 +5,27 @@ import { useMergeRefs } from '@floating-ui/react';
 import type { IAppLayoutNavigationDrawerProps } from './AppLayoutNavigationDrawer.types';
 import { useStyles } from '~/hooks/useStyles';
 import { FloatingTransition } from '~/components/FloatingTransition';
-import { SideSheetContent } from '~/components/SideSheetContent';
+import {
+  SideSheetContent,
+  type ISideSheetContentStylesKey,
+} from '~/components/SideSheetContent';
+import { Drawer } from '~/components/Drawer';
 import { useAppLayoutContext } from '../AppLayout.context';
-import { appLayoutNavigationDrawerStyles } from './AppLayoutNavigationDrawer.styles';
+import {
+  appLayoutNavigationDrawerStyles,
+  type IAppLayoutNavigationDrawerStylesKey,
+} from './AppLayoutNavigationDrawer.styles';
 
 export const AppLayoutNavigationDrawer = forwardRef<
   HTMLDivElement,
   IAppLayoutNavigationDrawerProps
 >(function AppLayoutNavigationDrawer(props, forwardedRef) {
-  const { styles, sx, ...other } = props;
+  const { styles, sx, detached, ...other } = props;
   const appLayoutContext = useAppLayoutContext();
 
-  const { combineStyles, getStyles, globalStyles } = useStyles({
+  const { combineStyles, globalStyles } = useStyles<
+    ISideSheetContentStylesKey | IAppLayoutNavigationDrawerStylesKey
+  >({
     name: 'AppLayoutNavigationDrawer',
     styles: [appLayoutNavigationDrawerStyles, styles],
   });
@@ -36,67 +45,64 @@ export const AppLayoutNavigationDrawer = forwardRef<
   const standardNavigationDrawerOpened =
     appLayoutContext.canonicalLayout.navigationMode === 'standard' &&
     appLayoutContext.navigationDrawer?.state?.standardOpened;
-
-  // const contextProps = appLayoutContext.navigationDrawer;
+  const modalNavigationDrawerOpened =
+    appLayoutContext.navigationDrawer?.state?.modalOpened;
 
   const anchor = 'left';
 
-  return (
-    // <div
-    //   {...getStyles(
-    //     'host',
-    //     // contextProps?.state?.standardOpened && 'host$standard$opened',
-    //     // hasNavigationRail && 'host$hasNavigationRail',
-    //     // hasNavigationRailOpened && 'host$hasNavigationRail$opened',
-    //     // contextProps?.fullHeight && 'host$fullHeight',
-    //   )}
-    // >
-    <CSSTransition
-      nodeRef={transitionNodeRef}
-      in={standardNavigationDrawerOpened}
-      timeout={550} // motionTokens.duration$long3
-      unmountOnExit
-    >
-      {(status) => (
-        <FloatingTransition
-          status={status}
-          placement={anchor}
-          origin='edge'
-          pattern='enterExitOffScreen'
-          sx={combineStyles('host')}
-          ref={transitionNodeHandleRef}
-        >
-          <SideSheetContent
-            anchor={anchor}
-            {...other}
-            variant='standard'
-            sx={[globalStyles, combineStyles('inner'), sx]}
-          />
-        </FloatingTransition>
-      )}
-    </CSSTransition>
+  const renderContent = (
+    props?: Partial<React.ComponentPropsWithRef<typeof SideSheetContent>>,
+  ): JSX.Element => (
+    <SideSheetContent
+      anchor={anchor}
+      {...other}
+      {...props}
+      sx={[globalStyles, combineStyles('inner'), props?.sx, sx]}
+    />
   );
 
-  {
-    /* <SideSheet
-        as='nav'
-        anchor='left'
+  return (
+    <>
+      <Drawer
         root={appLayoutContext.root}
-        sx={[globalStyles, combineStyles('inner'), sx]}
-        type={contextProps?.state?.type}
-        standardOpened={contextProps?.state?.standardOpened}
-        modalOpened={contextProps?.state?.modalOpened}
-        onClose={contextProps?.state?.close}
-        divider
-        {...other}
-        ref={forwardedRef}
+        opened={modalNavigationDrawerOpened}
+        onClose={appLayoutContext.navigationDrawer?.state?.close}
+        anchor={anchor}
+        detached={detached}
       >
-        <>
+        {({ close }) =>
+          renderContent({
+            showCloseButton: true,
+            onClose: close,
+            variant: detached ? 'detachedModal' : 'modal',
+            sx: combineStyles('inner$modal'),
+            ref: forwardedRef,
+          })
+        }
+      </Drawer>
 
-
-          {children}
-        </>
-      </SideSheet> */
-  }
-  // </div>
+      <CSSTransition
+        nodeRef={transitionNodeRef}
+        in={standardNavigationDrawerOpened}
+        timeout={550} // motionTokens.duration$long3
+        unmountOnExit
+      >
+        {(status) => (
+          <FloatingTransition
+            status={status}
+            placement={anchor}
+            origin='edge'
+            pattern='enterExitOffScreen'
+            sx={combineStyles('host')}
+            ref={transitionNodeHandleRef}
+          >
+            {renderContent({
+              variant: 'standard',
+              ref: transitionNodeHandleRef,
+            })}
+          </FloatingTransition>
+        )}
+      </CSSTransition>
+    </>
+  );
 });

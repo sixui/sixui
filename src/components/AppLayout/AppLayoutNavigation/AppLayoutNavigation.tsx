@@ -18,9 +18,18 @@ export const AppLayoutNavigation = forwardRef<
     styles: [appLayoutNavigationStyles, styles],
   });
 
-  const isRail = appLayoutContext.canonicalLayout.navigationMode === 'rail';
-  const isStandard =
-    appLayoutContext.canonicalLayout.navigationMode === 'standard';
+  const hasNavigationRail =
+    appLayoutContext.components.includes('navigationRail');
+  const navigationRailOpened =
+    hasNavigationRail &&
+    appLayoutContext.canonicalLayout.navigationMode === 'rail';
+
+  const hasNavigationDrawer =
+    appLayoutContext.components.includes('navigationDrawer');
+  const standardNavigationDrawerOpened =
+    hasNavigationDrawer &&
+    appLayoutContext.canonicalLayout.navigationMode === 'standard' &&
+    appLayoutContext.navigationDrawer?.state?.standardOpened;
 
   return (
     <Base
@@ -29,8 +38,9 @@ export const AppLayoutNavigation = forwardRef<
         globalStyles,
         combineStyles(
           'host',
-          isRail && 'host$rail',
-          isStandard && 'host$standard',
+          navigationRailOpened && 'host$navigationRailOpened',
+          standardNavigationDrawerOpened &&
+            'host$standardNavigationDrawerOpened',
         ),
         sx,
       ]}

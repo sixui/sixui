@@ -9,6 +9,7 @@ import { SideSheetContent } from '../SideSheetContent';
 import { Drawer } from '../Drawer';
 import { sideSheetStyles } from './SideSheet.styles';
 
+// FIXME: delete? voir si on peut l'utiliser pour le aside layout?
 export const SideSheet = createPolymorphicComponent<'div', ISideSheetProps>(
   forwardRef<HTMLDivElement, ISideSheetProps>(
     function SideSheet(props, forwardedRef) {

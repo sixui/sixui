@@ -16,12 +16,12 @@ export const appLayoutNavigationStyles = stylex.create({
     transitionDuration: motionTokens.duration$short3,
     transitionTimingFunction: motionTokens.easing$emphasizedAccelerate,
   },
-  host$rail: {
+  host$navigationRailOpened: {
     width: appLayoutTokens.navigationRailWidth,
     transitionDuration: motionTokens.duration$long3,
     transitionTimingFunction: motionTokens.easing$emphasizedDecelerate,
   },
-  host$standard: {
+  host$standardNavigationDrawerOpened: {
     width: appLayoutTokens.standardNavigationDrawerWidth,
     transitionDuration: motionTokens.duration$long3,
     transitionTimingFunction: motionTokens.easing$emphasizedDecelerate,

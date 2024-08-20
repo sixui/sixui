@@ -222,14 +222,6 @@ const AppLayoutFrameA: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
                   </AppLayout.NavigationDrawer>
                 </AppLayout.Navigation>
 
-                {/* <AppLayout.NavigationRail>
-                  <NavigationRailContent />
-                </AppLayout.NavigationRail>
-
-                <AppLayout.NavigationDrawer>
-                  <NavigationDrawerContent />
-                </AppLayout.NavigationDrawer> */}
-
                 <AppLayout.Body followNavigationDrawer followAside followHeader>
                   <BodyContent />
                 </AppLayout.Body>

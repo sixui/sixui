@@ -47,7 +47,11 @@ export const SideSheetContent = forwardRef<
       sx={[
         sideSheetContentTheme,
         globalStyles,
-        combineStyles('host', divider && `host$divider$${anchor}`),
+        combineStyles(
+          'host',
+          `host$${anchor}`,
+          divider && `host$divider$${anchor}`,
+        ),
         sx,
       ]}
       ref={forwardedRef}

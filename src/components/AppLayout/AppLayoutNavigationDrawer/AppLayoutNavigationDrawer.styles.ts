@@ -32,4 +32,7 @@ export const appLayoutNavigationDrawerStyles = stylex.create({
   inner: {
     height: '100%',
   },
+  inner$modal: {
+    width: appLayoutTokens.modalNavigationDrawerWidth,
+  },
 });
