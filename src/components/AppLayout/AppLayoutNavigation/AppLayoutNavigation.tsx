@@ -10,13 +10,16 @@ export const AppLayoutNavigation = forwardRef<
   HTMLDivElement,
   IAppLayoutNavigationProps
 >(function AppLayoutNavigation(props, forwardedRef) {
-  const { styles, sx, children, ...other } = props;
+  const { styles, sx, children, fullHeight, ...other } = props;
   const appLayoutContext = useAppLayoutContext();
 
   const { combineStyles, getStyles, globalStyles } = useStyles({
     name: 'AppLayoutNavigation',
     styles: [appLayoutNavigationStyles, styles],
   });
+
+  const hasHeader = appLayoutContext.components.includes('header');
+  const headerOpened = hasHeader;
 
   const hasNavigationRail =
     appLayoutContext.components.includes('navigationRail');
@@ -38,9 +41,11 @@ export const AppLayoutNavigation = forwardRef<
         globalStyles,
         combineStyles(
           'host',
+          headerOpened && 'host$headerOpened',
           navigationRailOpened && 'host$navigationRailOpened',
           standardNavigationDrawerOpened &&
             'host$standardNavigationDrawerOpened',
+          fullHeight && 'host$fullHeight',
         ),
         sx,
       ]}

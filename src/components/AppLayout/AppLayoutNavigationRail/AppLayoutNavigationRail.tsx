@@ -1,23 +1,19 @@
 import { forwardRef, useRef } from 'react';
-import { asArray } from '@olivierpascal/helpers';
 import { CSSTransition } from 'react-transition-group';
+import { useMergeRefs } from '@floating-ui/react';
 
 import type { IAppLayoutNavigationRailProps } from './AppLayoutNavigationRail.types';
 import { useStyles } from '~/hooks/useStyles';
+import {
+  NavigationRail,
+  type INavigationRailStylesKey,
+} from '~/components/NavigationRail';
+import { FloatingTransition } from '~/components/FloatingTransition';
 import { useAppLayoutContext } from '../AppLayout.context';
 import {
   appLayoutNavigationRailStyles,
   type IAppLayoutNavigationRailStylesKey,
 } from './AppLayoutNavigationRail.styles';
-import {
-  NavigationRail,
-  type INavigationRailStylesKey,
-} from '~/components/NavigationRail';
-import {
-  FloatingTransition,
-  IFloatingTransitionStatus,
-} from '~/components/FloatingTransition';
-import { useMergeRefs } from '@floating-ui/react';
 
 export const AppLayoutNavigationRail = forwardRef<
   HTMLDivElement,
@@ -26,7 +22,7 @@ export const AppLayoutNavigationRail = forwardRef<
   const { styles, sx, ...other } = props;
   const appLayoutContext = useAppLayoutContext();
 
-  const { combineStyles, getStyles, globalStyles } = useStyles<
+  const { combineStyles, globalStyles } = useStyles<
     INavigationRailStylesKey | IAppLayoutNavigationRailStylesKey
   >({
     name: 'AppLayoutNavigationRail',
@@ -44,9 +40,6 @@ export const AppLayoutNavigationRail = forwardRef<
   if (!hasNavigationRail) {
     return null;
   }
-
-  // const hasHeader = appLayoutContext.components.includes('header');
-  // const hasHeaderOpened = hasHeader;
 
   const navigationRailOpened =
     appLayoutContext.canonicalLayout.navigationMode === 'rail';

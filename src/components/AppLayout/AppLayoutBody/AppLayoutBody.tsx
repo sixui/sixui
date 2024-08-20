@@ -8,15 +8,7 @@ import { appLayoutBodyStyles } from './AppLayoutBody.styles';
 
 export const AppLayoutBody = forwardRef<HTMLDivElement, IAppLayoutBodyProps>(
   function AppLayoutBody(props, forwardedRef) {
-    const {
-      styles,
-      sx,
-      children,
-      followNavigationDrawer,
-      followAside,
-      followHeader,
-      ...other
-    } = props;
+    const { styles, sx, children, ...other } = props;
     const appLayoutContext = useAppLayoutContext();
 
     const { combineStyles, globalStyles } = useStyles({
@@ -25,24 +17,6 @@ export const AppLayoutBody = forwardRef<HTMLDivElement, IAppLayoutBodyProps>(
     });
 
     const hasHeader = appLayoutContext.components.includes('header');
-    const hasHeaderOpened = hasHeader;
-
-    const hasNavigationRail =
-      appLayoutContext.components.includes('navigationRail');
-    const navigationRailOpened =
-      hasNavigationRail &&
-      appLayoutContext.canonicalLayout.navigationMode === 'rail';
-
-    const hasNavigationDrawer =
-      appLayoutContext.components.includes('navigationDrawer');
-    const standardNavigationDrawerOpened =
-      hasNavigationDrawer &&
-      appLayoutContext.canonicalLayout.navigationMode === 'standard' &&
-      appLayoutContext.navigationDrawer?.state?.standardOpened;
-
-    // const hasAside = !!appLayoutContext.aside;
-    // const hasAsideOpened =
-    //   hasAside && appLayoutContext.aside?.sideSheet?.standardOpened;
 
     return (
       <Base
@@ -50,21 +24,7 @@ export const AppLayoutBody = forwardRef<HTMLDivElement, IAppLayoutBodyProps>(
         {...other}
         sx={[
           globalStyles,
-          combineStyles(
-            'host',
-            hasHeader && 'host$hasHeader',
-            standardNavigationDrawerOpened &&
-              'host$standardNavigationDrawerOpened',
-            navigationRailOpened && 'host$navigationRailOpened',
-            // hasHeaderOpened && 'host$hasHeader$opened',
-            // hasNavigationDrawer && 'host$hasNavigationDrawer',
-            // hasNavigationRail && 'host$hasNavigationRail',
-            // hasNavigationDrawerOpened && 'host$hasNavigationDrawer$opened',
-            // hasNavigationRailOpened && 'host$hasNavigationRail$opened',
-            // // hasNavigationRail && hasNavigationDrawer && 'host$hasBothNavigation$railOpened',
-            // hasAside && 'host$hasAside',
-            // hasAsideOpened && 'host$followAside$opened',
-          ),
+          combineStyles('host', hasHeader && 'host$hasHeader'),
           sx,
         ]}
         ref={forwardedRef}

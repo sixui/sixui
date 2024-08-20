@@ -4,4 +4,5 @@ import type { IBaseProps } from '~/components/Base';
 export type IAppLayoutNavigationProps =
   IBaseProps<IAppLayoutNavigationStylesKey> & {
     children?: React.ReactNode;
+    fullHeight?: boolean;
   };

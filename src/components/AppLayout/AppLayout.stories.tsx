@@ -21,9 +21,7 @@ import type { IAppLayoutProps } from './AppLayout.types';
 import { scaleTokens } from '~/themes/base/scale.stylex';
 import { outlineTokens } from '~/themes/base/outline.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { useDisclosure } from '~/hooks/useDisclosure';
 import { Frame } from '../Frame';
-import { useSideSheet } from '../SideSheet/useSideSheet';
 import { Text } from '../Text';
 import { Stack } from '../Stack';
 import { IconButton } from '../IconButton';
@@ -184,7 +182,7 @@ const AppLayoutFrameA: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
     <Frame importParentStyles sx={styles.frame} ref={frameRef}>
       <AppLayout
         components={['header', 'navigationRail', 'navigationDrawer']}
-        preferredNavigationMode='standard'
+        // preferredNavigationMode='rail'
         window={frameRef?.current?.contentWindow ?? undefined}
         navigationRail={{
           fullHeight: false,
@@ -222,7 +220,7 @@ const AppLayoutFrameA: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
                   </AppLayout.NavigationDrawer>
                 </AppLayout.Navigation>
 
-                <AppLayout.Body followNavigationDrawer followAside followHeader>
+                <AppLayout.Body>
                   <BodyContent />
                 </AppLayout.Body>
 
@@ -284,15 +282,21 @@ const AppLayoutFrameB: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
           <>
             <Stack>
               <Stack horizontal align='start'>
-                <AppLayout.NavigationRail>
-                  <NavigationRailContent />
-                </AppLayout.NavigationRail>
+                <AppLayout.Navigation fullHeight>
+                  <AppLayout.NavigationRail divider>
+                    <NavigationRailContent />
+                  </AppLayout.NavigationRail>
 
-                <AppLayout.NavigationDrawer headline='App name' showCloseButton>
-                  <NavigationDrawerContent />
-                </AppLayout.NavigationDrawer>
+                  <AppLayout.NavigationDrawer
+                    divider
+                    headline='App Name'
+                    showCloseButton
+                  >
+                    <NavigationDrawerContent />
+                  </AppLayout.NavigationDrawer>
+                </AppLayout.Navigation>
 
-                <AppLayout.Body followNavigationDrawer>
+                <AppLayout.Body>
                   <AppLayout.Header>
                     <HeaderContent
                       navigationDrawerOpened={navigationDrawer?.state?.opened}
@@ -303,7 +307,7 @@ const AppLayoutFrameB: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
                   </AppLayout.Header>
 
                   <Stack horizontal align='start'>
-                    <AppLayout.Body followAside followHeader>
+                    <AppLayout.Body>
                       <BodyContent />
                     </AppLayout.Body>
 
