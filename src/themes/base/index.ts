@@ -11,4 +11,5 @@ export * from './theme.types';
 export * from './tonalPalettes.types';
 export * from './typeFace.types';
 export * from './typeScale.types';
+export * from './windowSizeClasses.types';
 export * from './zIndex.types';

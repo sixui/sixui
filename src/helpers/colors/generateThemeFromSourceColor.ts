@@ -105,7 +105,7 @@ export const generateThemeFromSourceColor = (
   sourceColor: string,
   schemeVariant = IDynamicSchemeVariant.sixui,
   contrast = 0.0,
-): ITheme => {
+): Partial<ITheme> => {
   const argbSourceColor = argbFromHex(sourceColor);
   const lightScheme = getMaterialSchemeFromSourceColor(
     argbSourceColor,
@@ -120,7 +120,7 @@ export const generateThemeFromSourceColor = (
     contrast,
   );
 
-  const theme: ITheme = {
+  const theme: Partial<ITheme> = {
     name: 'Dynamic Theme',
     source: {
       color: sourceColor,

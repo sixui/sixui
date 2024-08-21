@@ -4,7 +4,7 @@ import type { IThemeComponentStyles, IThemeSettings } from './Theme.context';
 
 export type IThemeProviderProps = IBaseProps & {
   children?: React.ReactNode;
-  theme?: ITheme;
+  theme?: Partial<ITheme>;
   settings?: IThemeSettings;
   componentsStyles?: IThemeComponentStyles;
 };

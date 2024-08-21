@@ -25,7 +25,7 @@ export type IWithAsProp<
    */
   as?: TRoot;
 
-  renderRoot?: (props: Omit<TProps, 'children'>) => React.ReactElement;
+  renderRoot?: (props: Record<string, IAny>) => React.ReactElement;
 };
 
 /**

@@ -7,9 +7,10 @@ import type { ITypeScaleTheme } from './typeScale.types';
 import type { IStateTheme } from './state.types';
 import type { IZIndexTheme } from './zIndex.types';
 import type { IDensityTheme } from './density.types';
-import { ISpacingTheme } from './spacing.types';
-import { IScaleTheme } from './scale.types';
-import { IOutlineTheme } from './outline.types';
+import type { ISpacingTheme } from './spacing.types';
+import type { IScaleTheme } from './scale.types';
+import type { IOutlineTheme } from './outline.types';
+import type { IWindowSizeClassesTheme } from './windowSizeClasses.types';
 
 export type IThemeSchemes = Record<IColorSchemeVariant, IColorScheme>;
 
@@ -20,15 +21,16 @@ export type ITheme = {
     schemeVariant: string;
     contrast: number;
   };
+  windowSizeClasses: IWindowSizeClassesTheme;
   schemes?: IThemeSchemes;
+  density?: IDensityTheme;
+  motion?: IMotionTheme;
+  outline?: IOutlineTheme;
   scale?: IScaleTheme;
   shape?: IShapeTheme;
-  motion?: IMotionTheme;
+  spacing?: ISpacingTheme;
+  state?: IStateTheme;
   typeFace?: ITypeFaceTheme;
   typeScale?: ITypeScaleTheme;
-  state?: IStateTheme;
   zIndex?: IZIndexTheme;
-  density?: IDensityTheme;
-  spacing?: ISpacingTheme;
-  outline?: IOutlineTheme;
 };

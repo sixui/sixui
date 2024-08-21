@@ -6,10 +6,6 @@ import type {
 
 import type { IOmit, IOrientation } from '~/helpers/types';
 import type {
-  IExtendedFloatingProps,
-  IExtendedHtmlFloatingProps,
-} from '~/helpers/extendFloatingProps';
-import type {
   IRendererWithForwardedProps,
   IForwardableProps,
 } from '~/helpers/react/forwardablePropsTypes';
@@ -18,13 +14,14 @@ import type {
   IFilterableListBaseProps,
   IFilterableListItemFocus,
 } from '../FilterableListBase';
+import type { IPortalProps } from '../Portal';
 import type { IFloatingFilterableListBaseStylesKey } from './FloatingFilterableListBase.styles';
 
 export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
   /**
    * Whether the floating filterable list is open.
    */
-  isOpen: boolean;
+  opened: boolean;
 
   /**
    * Whether the trigger element has focus.
@@ -44,8 +41,8 @@ export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
    * or overwrite one of the Floating UI hooks' handlers.
    */
   getTriggerProps: (
-    userProps?: IExtendedHtmlFloatingProps,
-  ) => IExtendedHtmlFloatingProps;
+    userProps?: React.HTMLProps<Element>,
+  ) => Record<string, unknown>;
 
   /**
    * A reference to the input filter element.
@@ -60,8 +57,8 @@ export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
    * or overwrite one of the Floating UI hooks' handlers.
    */
   getInputFilterProps: (
-    userProps?: IExtendedFloatingProps<React.ComponentPropsWithoutRef<'input'>>,
-  ) => IExtendedFloatingProps<React.ComponentPropsWithoutRef<'input'>>;
+    userProps?: React.ComponentPropsWithoutRef<'input'>,
+  ) => Record<string, unknown>;
 
   afterItemsRemove: (
     items: Array<TItem>,
@@ -76,6 +73,7 @@ export type IFloatingFilterableListBaseProps<
   TItem,
   TElement extends HTMLElement,
 > = IBaseProps<IFloatingFilterableListBaseStylesKey> &
+  Pick<IPortalProps, 'root'> &
   IOmit<IFilterableListBaseProps<TItem, TElement>, 'onItemSelect'> &
   IForwardableProps & {
     /**
@@ -117,7 +115,7 @@ export type IFloatingFilterableListBaseProps<
     cols?: number;
     itemFocus?: IFilterableListItemFocus;
     onOpenChange?: (
-      isOpen: boolean,
+      opened: boolean,
       event?: Event,
       reason?: OpenChangeReason,
     ) => void;

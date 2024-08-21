@@ -36,12 +36,12 @@ const states: Array<IComponentPresentation<IChipProps>> = [
     },
   },
   {
-    legend: 'Hovered',
-    props: { label: 'Hovered', visualState: { hovered: true } },
-  },
-  {
     legend: 'Focused',
     props: { label: 'Focused', visualState: { focused: true } },
+  },
+  {
+    legend: 'Hovered',
+    props: { label: 'Hovered', visualState: { hovered: true } },
   },
   {
     legend: 'Pressed',

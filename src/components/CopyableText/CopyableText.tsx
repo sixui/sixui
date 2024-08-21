@@ -50,16 +50,12 @@ export const CopyableText = createPolymorphicComponent<
         setCopied(true);
       };
 
-      const handleTooltipOpenChange = (open: boolean): void => {
-        if (open) {
-          setCopied(false);
-        }
-      };
+      const handleOpen = (): void => setCopied(false);
 
       return (
         <PlainTooltip
           supportingText={copied ? copiedSupportingText : copySupportingText}
-          onOpenChange={handleTooltipOpenChange}
+          onOpen={handleOpen}
           disabled={disabled}
         >
           <FluidButton

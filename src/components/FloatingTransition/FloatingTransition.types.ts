@@ -1,4 +1,5 @@
 import type { Placement } from '@floating-ui/react';
+import type { TransitionStatus } from 'react-transition-group';
 
 import type { IOrientation } from '~/helpers/types';
 import type { IBaseProps } from '../Base';
@@ -12,13 +13,16 @@ export type IFloatingTransitionStatus =
 
 export type IFloatingTransitionOrigin = 'center' | 'corner' | 'edge' | 'cursor';
 
+export type IFloatingTransitionPattern = 'enterExit' | 'enterExitOffScreen';
+
 export type IFloatingTransitionProps =
   IBaseProps<IFloatingTransitionStylesKey> & {
     children: React.ReactNode;
     placement: Placement;
-    status: IFloatingTransitionStatus;
+    status: IFloatingTransitionStatus | TransitionStatus;
     origin?: IFloatingTransitionOrigin;
     orientation?: IOrientation;
     cursorTransformOrigin?: string;
-    pattern?: false | 'enterExit';
+    pattern?: IFloatingTransitionPattern;
+    disabled?: boolean;
   };

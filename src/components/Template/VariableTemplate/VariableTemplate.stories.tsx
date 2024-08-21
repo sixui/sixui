@@ -23,8 +23,8 @@ const defaultArgs = {
 
 const states: Array<IComponentPresentation<IVariableTemplateProps>> = [
   { legend: 'Enabled' },
-  { legend: 'Hovered', props: { visualState: { hovered: true } } },
   { legend: 'Focused', props: { visualState: { focused: true } } },
+  { legend: 'Hovered', props: { visualState: { hovered: true } } },
   { legend: 'Pressed', props: { visualState: { pressed: true } } },
   { legend: 'Dragged', props: { visualState: { dragged: true } } },
 ];

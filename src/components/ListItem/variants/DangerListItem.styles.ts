@@ -43,6 +43,10 @@ export const dangerListItemStyles = stylex.create({
     [listItemTokens.stateLayerOpacity$pressed]:
       stateTokens.stateLayerOpacity$pressed,
 
+    [listItemTokens.selectedStateLayerColor$hover]:
+      colorSchemeTokens.errorContainer,
+    [listItemTokens.stateLayerColor$pressed]: colorSchemeTokens.error,
+
     [listItemTokens.leadingIconColor]: colorSchemeTokens.error,
     [listItemTokens.leadingIconColor$focus]: colorSchemeTokens.onErrorContainer,
     [listItemTokens.leadingIconColor$hover]: colorSchemeTokens.onErrorContainer,

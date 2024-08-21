@@ -9,5 +9,6 @@ export type IStackProps = IBaseProps<IStackStylesKey> & {
   align?: ICSSProperties['align'];
   justify?: ICSSProperties['justify'];
   wrap?: boolean;
+  grow?: boolean;
   divider?: React.ReactNode;
 };

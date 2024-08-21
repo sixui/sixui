@@ -71,10 +71,21 @@ export const commonStyles = stylex.create({
   flexWrap: (flexWrap: ICSSProperties['wrap']) => ({
     flexWrap,
   }),
+  flexGrow: (flexGrow: boolean) => ({
+    flexGrow: flexGrow ? 1 : 0,
+  }),
   width: (width: string | number) => ({
     width: `calc(${width} * ${scaleTokens.scale})`,
   }),
   height: (height: string | number) => ({
     height: `calc(${height} * ${scaleTokens.scale})`,
   }),
+  position: (x: number, y: number) => ({
+    left: x,
+    top: y,
+  }),
+  outOfScreen: {
+    position: 'absolute',
+    left: '-9999px',
+  },
 });

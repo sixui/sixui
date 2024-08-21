@@ -10,7 +10,7 @@ export type IThemeSettings = {
 export type IThemeComponentStyles = Record<string, StyleXStyles>;
 
 export type IThemeContextValue = {
-  theme?: ITheme;
+  theme: ITheme;
   settings?: IThemeSettings;
   componentsStyles?: IThemeComponentStyles;
 };

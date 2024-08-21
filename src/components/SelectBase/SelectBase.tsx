@@ -89,16 +89,17 @@ export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
                       )
                   : undefined
               }
-              isOpen={renderProps.isOpen}
+              opened={renderProps.opened}
             />
           }
           populated={
-            renderProps.isOpen || !!singleFilterableListBase.selectedItem
+            renderProps.opened || !!singleFilterableListBase.selectedItem
           }
           disabled={other.disabled}
           variant={variant}
           tabIndex={0}
-          {...renderProps.getTriggerProps(renderProps.forwardedProps)}
+          {...renderProps.forwardedProps}
+          {...renderProps.getTriggerProps()}
           {...getValueFieldProps?.(
             renderProps,
             singleFilterableListBase.selectedItem,

@@ -22,7 +22,7 @@ export const HctColorPickerContent = forwardRef<
 
   const sourceColor =
     sourceColorProp ??
-    themeContext.theme?.source.color ??
+    themeContext.theme.source.color ??
     baseTheme.source.color;
   const palettes = generateTonalColorPalettes(
     sourceColor,

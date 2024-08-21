@@ -2,7 +2,7 @@ import type { Placement } from '@floating-ui/react';
 import { createContext } from 'react';
 
 export type IMenuContextValue = {
-  isOpen: boolean;
+  opened: boolean;
   getTriggerProps: (
     userProps?: React.ComponentPropsWithoutRef<'button'>,
   ) => Record<string, unknown>;
@@ -17,7 +17,7 @@ const stub = (): never => {
 };
 
 export const MenuContext = createContext<IMenuContextValue>({
-  isOpen: false,
+  opened: false,
   getTriggerProps: stub,
   triggerRef: stub,
   placement: undefined,

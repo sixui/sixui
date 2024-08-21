@@ -58,11 +58,11 @@ export const FromButton: IStory = {
   render: (props) => <Menu {...props} />,
   args: {
     ...defaultArgs,
-    trigger: ({ isOpen, getProps }) => (
+    trigger: ({ opened, getProps }) => (
       <Button
         icon={
           <FontAwesomeIcon
-            icon={isOpen ? faChevronUp : faChevronDown}
+            icon={opened ? faChevronUp : faChevronDown}
             size='xs'
           />
         }

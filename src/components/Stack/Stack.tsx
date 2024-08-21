@@ -19,6 +19,7 @@ export const Stack = createPolymorphicComponent<'div', IStackProps>(
       align: alignProp,
       justify = 'start',
       wrap,
+      grow,
       divider,
       ...other
     } = props;
@@ -44,6 +45,7 @@ export const Stack = createPolymorphicComponent<'div', IStackProps>(
           commonStyles.justifyContent(justify),
           commonStyles.alignItems(align),
           commonStyles.flexWrap(wrap ? 'wrap' : 'nowrap'),
+          commonStyles.flexGrow(!!grow),
           combineStyles('host', `host$${orientation}`),
           sx,
         ]}

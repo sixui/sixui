@@ -47,18 +47,18 @@ export const ColorSchemeProvider: React.FC<IColorSchemeProviderProps> = (
             isLight &&
               shouldUpdatColorScheme && [
                 colorSchemeTheme,
-                themeContext.theme?.schemes &&
+                themeContext.theme.schemes &&
                   themeProviderStyles.dynamicScheme(
-                    themeContext.theme?.schemes.light,
+                    themeContext.theme.schemes.light,
                   ),
               ],
             isDark && colorSchemeProviderStyles.container$dark,
             isDark &&
               shouldUpdatColorScheme && [
                 darkColorSchemeTheme,
-                themeContext.theme?.schemes &&
+                themeContext.theme.schemes &&
                   themeProviderStyles.dynamicScheme(
-                    themeContext.theme?.schemes.dark,
+                    themeContext.theme.schemes.dark,
                   ),
               ],
             sx,

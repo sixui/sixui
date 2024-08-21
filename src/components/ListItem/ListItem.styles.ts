@@ -19,6 +19,11 @@ export const listItemStyles = stylex.create({
 
     [listItemStateTokens.nonTextColor]: listItemTokens.nonTextColor,
     [listItemStateTokens.textColor]: listItemTokens.textColor,
+
+    [listItemStateTokens.stateLayerColor$hover]:
+      listItemTokens.stateLayerColor$hover,
+    [listItemStateTokens.stateLayerColor$pressed]:
+      listItemTokens.stateLayerColor$pressed,
   },
   host$sm: {
     [listItemStateTokens.containerMinHeight]:
@@ -81,6 +86,11 @@ export const listItemStyles = stylex.create({
       ':is([data-hovered])': listItemTokens.selectedTextColor$hover,
       ':is([data-pressed])': listItemTokens.selectedTextColor$pressed,
     },
+
+    [listItemStateTokens.stateLayerColor$hover]:
+      listItemTokens.selectedStateLayerColor$hover,
+    [listItemStateTokens.stateLayerColor$pressed]:
+      listItemTokens.stateLayerColor$pressed,
   },
   host$disabled: {
     cursor: 'default',
@@ -184,7 +194,6 @@ export const listItemItemStyles = stylex.create({
     [itemTokens.overlineColor]: listItemStateTokens.textColor,
     [itemTokens.headlineTextColor]: listItemStateTokens.textColor,
     [itemTokens.supportingTextColor]: listItemStateTokens.textColor,
-    [itemTokens.trailingSupportingTextColor]: listItemStateTokens.textColor,
   },
   nonText: {
     opacity: listItemStateTokens.nonTextOpacity,
@@ -198,9 +207,10 @@ export const listItemStateLayerStyles = stylex.create({
   host: {
     borderRadius: 'inherit',
 
-    [stateLayerTokens.color$hover]: listItemTokens.stateLayerColor$hover,
+    [stateLayerTokens.color$hover]: listItemStateTokens.stateLayerColor$hover,
     [stateLayerTokens.opacity$hover]: listItemTokens.stateLayerOpacity$hover,
-    [stateLayerTokens.color$pressed]: listItemTokens.stateLayerColor$pressed,
+    [stateLayerTokens.color$pressed]:
+      listItemStateTokens.stateLayerColor$pressed,
     [stateLayerTokens.opacity$pressed]:
       listItemTokens.stateLayerOpacity$pressed,
   },

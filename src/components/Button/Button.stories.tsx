@@ -34,12 +34,12 @@ const states: Array<IComponentPresentation<IButtonProps>> = [
     },
   },
   {
-    legend: 'Hovered',
-    props: { children: 'Hovered', visualState: { hovered: true } },
-  },
-  {
     legend: 'Focused',
     props: { children: 'Focused', visualState: { focused: true } },
+  },
+  {
+    legend: 'Hovered',
+    props: { children: 'Hovered', visualState: { hovered: true } },
   },
   {
     legend: 'Pressed',

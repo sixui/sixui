@@ -1,5 +1,5 @@
 import type { IPolymorphicTemplateStylesKey } from './PolymorphicTemplate.styles';
-import { IBaseProps } from '~/components/Base';
+import type { IBaseProps } from '~/components/Base';
 
 export type IPolymorphicTemplateProps =
   IBaseProps<IPolymorphicTemplateStylesKey> & {

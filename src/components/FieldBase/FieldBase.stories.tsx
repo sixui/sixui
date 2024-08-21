@@ -34,8 +34,8 @@ const defaultArgs = {
 
 const states: Array<IComponentPresentation<IFieldBaseProps>> = [
   { legend: 'Enabled' },
-  { legend: 'Hovered', props: { visualState: { hovered: true } } },
   { legend: 'Focused', props: { visualState: { focused: true } } },
+  { legend: 'Hovered', props: { visualState: { hovered: true } } },
   { legend: 'Disabled', props: { disabled: true } },
 ];
 

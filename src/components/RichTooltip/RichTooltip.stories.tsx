@@ -10,7 +10,6 @@ import {
 import { IconButton } from '../IconButton';
 import { Button } from '../Button';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { PersistentRichTooltipExample } from './PersistentRichTooltipExample';
 import { RichTooltip } from './RichTooltip';
 
 const meta = {
@@ -31,7 +30,8 @@ const defaultArgs = {
       </Button>
     </>
   ),
-  onOpenChange: (...args) => void sbHandleEvent('openChange', args),
+  onOpen: (...args) => void sbHandleEvent('open', args),
+  onClose: (...args) => void sbHandleEvent('close', args),
 } satisfies Partial<IRichTooltipProps>;
 
 const cols: Array<IComponentPresentation<IRichTooltipProps>> = [
@@ -60,7 +60,11 @@ export const Basic: IStory = {
 };
 
 export const Persistent: IStory = {
-  render: (props) => <PersistentRichTooltipExample {...props} />,
+  render: (props) => (
+    <RichTooltip {...props} persistent>
+      <Button>Show</Button>
+    </RichTooltip>
+  ),
   args: defaultArgs,
 };
 

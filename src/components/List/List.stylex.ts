@@ -5,6 +5,7 @@ import { spacingTokens } from '~/themes/base/spacing.stylex';
 const vars = {
   topSpace: spacingTokens.padding$2,
   bottomSpace: spacingTokens.padding$2,
+  gap: 0,
   gridSpace: spacingTokens.padding$1,
 };
 

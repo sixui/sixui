@@ -37,12 +37,12 @@ const svgColorIcon = (
 const states: Array<IComponentPresentation<IFabProps>> = [
   { legend: 'Enabled', props: { label: 'Enabled' } },
   {
-    legend: 'Hovered',
-    props: { label: 'Hovered', visualState: { hovered: true } },
-  },
-  {
     legend: 'Focused',
     props: { label: 'Focused', visualState: { focused: true } },
+  },
+  {
+    legend: 'Hovered',
+    props: { label: 'Hovered', visualState: { hovered: true } },
   },
   {
     legend: 'Pressed',

@@ -2,12 +2,10 @@ import stylex from '@stylexjs/stylex';
 
 import { motionTokens } from '~/themes/base/motion.stylex';
 import { scrimTokens } from './Scrim.stylex';
-import { zIndexTokens } from '~/themes/base/zIndex.stylex';
 
 export type IScrimStylesKey = keyof typeof scrimStyles;
 export const scrimStyles = stylex.create({
   host: {
-    zIndex: zIndexTokens.modal,
     display: 'grid',
     placeItems: 'center',
   },

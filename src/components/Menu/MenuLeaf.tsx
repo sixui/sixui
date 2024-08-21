@@ -38,6 +38,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
   function MenuLeaf(props, forwardedRef) {
     const {
       styles,
+      root,
       trigger,
       children,
       placement = 'bottom-start',
@@ -47,7 +48,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
       ...other
     } = props;
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [opened, setOpened] = useState(false);
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
     const elementsRef = useRef<Array<HTMLButtonElement | null>>([]);
@@ -62,8 +63,8 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
 
     const floating = useFloating<HTMLButtonElement>({
       nodeId,
-      open: isOpen,
-      onOpenChange: setIsOpen,
+      open: opened,
+      onOpenChange: setOpened,
       placement: isNested ? 'right-start' : placement,
       middleware: [
         flip({
@@ -107,7 +108,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
     });
     const typeahead = useTypeahead(floating.context, {
       listRef: labelsRef,
-      onMatch: isOpen ? setActiveIndex : undefined,
+      onMatch: opened ? setActiveIndex : undefined,
       activeIndex,
     });
 
@@ -134,7 +135,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
       }
 
       const handleTreeClick = (): void => {
-        setIsOpen(false);
+        setOpened(false);
       };
 
       const onSubMenuOpen = (event: {
@@ -142,7 +143,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
         parentId: string;
       }): void => {
         if (event.nodeId !== nodeId && event.parentId === parentId) {
-          setIsOpen(false);
+          setOpened(false);
         }
       };
 
@@ -180,7 +181,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
 
     const triggerElement = isFunction(trigger)
       ? trigger({
-          isOpen,
+          opened,
           placement: floating.placement,
           getProps: getTriggerProps,
         })
@@ -190,7 +191,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
       <FloatingNode id={nodeId}>
         <MenuContext.Provider
           value={{
-            isOpen: transitionStatus.isMounted,
+            opened: transitionStatus.isMounted,
             getTriggerProps,
             triggerRef: triggerHandleRef,
             placement: floating.placement,
@@ -204,11 +205,11 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
                 activeIndex,
                 setActiveIndex,
                 getItemProps: interactions.getItemProps,
-                isOpen,
+                opened,
                 placement: floating.placement,
               }}
             >
-              <Portal>
+              <Portal root={root}>
                 <FloatingFocusManager
                   context={floating.context}
                   modal={false}
@@ -227,7 +228,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
                       status={transitionStatus.status}
                       origin='edge'
                       orientation={orientation}
-                      pattern={parentId ? false : 'enterExit'}
+                      disabled={!!parentId}
                     >
                       <MenuList noFocusRing {...other} size={listItemSize}>
                         <FloatingList
