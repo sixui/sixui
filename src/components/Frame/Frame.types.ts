@@ -1,7 +1,11 @@
 import type { IBaseProps } from '../Base';
 
-export type IFrameProps = IBaseProps &
-  React.ComponentPropsWithoutRef<'iframe'> & {
-    children: React.ReactNode;
+export type IFrameRenderProps = {
+  window: Window;
+};
+
+export type IFrameProps = Omit<IBaseProps, 'children'> &
+  Omit<React.ComponentPropsWithoutRef<'iframe'>, 'children'> & {
+    children: React.ReactNode | ((props: IFrameRenderProps) => React.ReactNode);
     importParentStyles?: boolean;
   };

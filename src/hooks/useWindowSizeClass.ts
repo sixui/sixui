@@ -44,7 +44,6 @@ const getInitialValue = (
   return matchingRule ? arrayToMap(matchingRule?.containerNames) : undefined;
 };
 
-// FIXME: global state?
 export const useWindowSizeClass = (
   props?: IUseWindowSizeClassProps,
 ): IUseWindowSizeClassResult | undefined => {

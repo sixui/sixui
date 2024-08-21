@@ -13,15 +13,14 @@ export const snackbarStyles = stylex.create({
     zIndex: zIndexTokens.overlay,
     minWidth: {
       default: 'unset',
-      // FIXME: use window class size
-      '@media (max-width: 600px)': `calc(100% - ${snackbarTokens.fixedHorizontalSpace$compact} * 2)`,
+      '@container compact (min-width: 0)': `calc(100% - ${snackbarTokens.fixedHorizontalSpace$compact} * 2)`,
     },
   },
   host$left: {
     left: {
       default: snackbarTokens.fixedHorizontalSpace,
-      // FIXME: use window class size
-      '@media (max-width: 600px)': snackbarTokens.fixedHorizontalSpace$compact,
+      '@container compact (min-width: 0)':
+        snackbarTokens.fixedHorizontalSpace$compact,
     },
     justifyContent: 'start',
   },

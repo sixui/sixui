@@ -19,13 +19,11 @@ export const snackbarContentStyles = stylex.create({
     minHeight: snackbarContentTokens.containerMinHeight,
     flexGrow: {
       default: 'initial',
-      // FIXME: use window class size
-      '@media (max-width: 600px)': 1,
+      '@container compact (min-width: 0)': 1,
     },
     minWidth: {
       default: snackbarContentTokens.containerMinWidth,
-      // FIXME: use window class size
-      '@media (max-width: 600px)': 'unset',
+      '@container compact (min-width: 0)': 'unset',
     },
   },
   host$trailingAction: {

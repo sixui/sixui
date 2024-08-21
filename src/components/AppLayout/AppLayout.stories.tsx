@@ -16,7 +16,6 @@ import {
   faHeart,
 } from '@fortawesome/free-regular-svg-icons';
 
-import { IOmit } from '~/helpers/types';
 import type { IAppLayoutProps } from './AppLayout.types';
 import { scaleTokens } from '~/themes/base/scale.stylex';
 import { outlineTokens } from '~/themes/base/outline.stylex';
@@ -52,10 +51,6 @@ const styles = stylex.create({
     borderWidth: outlineTokens.width$xs,
     borderColor: colorSchemeTokens.outlineVariant,
     borderStyle: 'dashed',
-  },
-  // FIXME: delete
-  placeholder: {
-    margin: 24,
   },
   placeholder$grow: {
     flexGrow: 1,
@@ -101,30 +96,36 @@ const HeaderContentDemo: React.FC = () => {
   );
 };
 
-type IBodyContentDemoProps = {
+type IBodyDemoProps = {
   canonicalLayoutType: ICanonicalLayoutType;
 };
 
-const BodyContentDemo: React.FC<IBodyContentDemoProps> = (props) => {
+const BodyDemo: React.FC<IBodyDemoProps> = (props) => {
   const { canonicalLayoutType } = props;
   const canonicalLayout = useCanonicalLayout(canonicalLayoutType);
   const horizontal = canonicalLayout.orientation === 'horizontal';
 
   return (
-    <Stack horizontal={horizontal} grow>
+    <AppLayout.Body horizontal={horizontal}>
       {canonicalLayout.panes.map((pane) => (
         <Placeholder
           key={pane.name}
           corner='none'
           height={200}
           width={pane.fixedWidth}
-          sx={[styles.placeholder, !pane.fixedWidth && styles.placeholder$grow]}
+          sx={[!pane.fixedWidth && styles.placeholder$grow]}
         >
           {pane.name} {pane.sheet && '(sheet)'}
           {pane.fixedWidth ? `(${pane.fixedWidth}px)` : null}
         </Placeholder>
       ))}
-    </Stack>
+
+      <AppLayout.SideSheet anchor='right'>
+        <AppLayout.Aside divider>
+          <AsideContent />
+        </AppLayout.Aside>
+      </AppLayout.SideSheet>
+    </AppLayout.Body>
   );
 };
 
@@ -212,20 +213,16 @@ const FooterContent: React.FC = () =>
     </Text>
   ));
 
-const AppLayoutFrameA: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
-  props,
-) => {
-  const [frameRef, setFrameRef] = useState<HTMLIFrameElement | null>(null);
+const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
   const [canonicalLayoutType, setCanonicalLayoutType] =
     useState<ICanonicalLayoutType>('listDetail');
 
   return (
-    <Frame importParentStyles sx={styles.frame} ref={setFrameRef}>
-      {frameRef ? (
+    <Frame importParentStyles sx={styles.frame}>
+      {({ window }) => (
         <AppLayout
-          components={['header', 'navigationRail', 'navigationDrawer', 'aside']}
           preferredNavigationMode='standard'
-          window={frameRef?.contentWindow ?? undefined}
+          window={window}
           navigationRail={{
             fullHeight: false,
           }}
@@ -250,15 +247,7 @@ const AppLayoutFrameA: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
                 </AppLayout.NavigationDrawer>
               </AppLayout.SideSheet>
 
-              <AppLayout.Body horizontal>
-                <BodyContentDemo canonicalLayoutType={canonicalLayoutType} />
-
-                <AppLayout.SideSheet anchor='right'>
-                  <AppLayout.Aside divider>
-                    <AsideContent />
-                  </AppLayout.Aside>
-                </AppLayout.SideSheet>
-              </AppLayout.Body>
+              <BodyDemo canonicalLayoutType={canonicalLayoutType} />
             </Stack>
           </Stack>
 
@@ -266,26 +255,19 @@ const AppLayoutFrameA: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
             <FooterContent />
           </AppLayout.Footer>
         </AppLayout>
-      ) : null}
+      )}
     </Frame>
   );
 };
 
-const AppLayoutFrameB: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
-  props,
-) => {
-  const [frameRef, setFrameRef] = useState<HTMLIFrameElement | null>(null);
+const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
   const [canonicalLayoutType, setCanonicalLayoutType] =
     useState<ICanonicalLayoutType>('listDetail');
 
   return (
-    <Frame importParentStyles sx={styles.frame} ref={setFrameRef}>
-      {frameRef ? (
-        <AppLayout
-          components={['header', 'navigationRail', 'navigationDrawer', 'aside']}
-          window={frameRef?.contentWindow ?? undefined}
-          {...props}
-        >
+    <Frame importParentStyles sx={styles.frame}>
+      {({ window }) => (
+        <AppLayout window={window} {...props}>
           <Stack>
             <Stack horizontal align='start'>
               <AppLayout.SideSheet fullHeight>
@@ -305,25 +287,15 @@ const AppLayoutFrameB: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
                 </AppLayout.NavigationDrawer>
               </AppLayout.SideSheet>
 
-              <AppLayout.Body align='stretch'>
+              <Stack align='stretch' grow>
                 <AppLayout.Header>
                   <HeaderContentDemo />
                 </AppLayout.Header>
 
                 <Stack horizontal align='start'>
-                  <AppLayout.Body horizontal>
-                    <BodyContentDemo
-                      canonicalLayoutType={canonicalLayoutType}
-                    />
-
-                    <AppLayout.SideSheet anchor='right'>
-                      <AppLayout.Aside divider>
-                        <AsideContent />
-                      </AppLayout.Aside>
-                    </AppLayout.SideSheet>
-                  </AppLayout.Body>
+                  <BodyDemo canonicalLayoutType={canonicalLayoutType} />
                 </Stack>
-              </AppLayout.Body>
+              </Stack>
             </Stack>
           </Stack>
 
@@ -331,19 +303,25 @@ const AppLayoutFrameB: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
             <FooterContent />
           </AppLayout.Footer>
         </AppLayout>
-      ) : null}
+      )}
     </Frame>
   );
 };
 
 export const TypeA: IStory = {
   render: (props) => <AppLayoutFrameA {...props} />,
-  args: defaultArgs,
+  args: {
+    ...defaultArgs,
+    components: ['header', 'navigationRail', 'navigationDrawer', 'aside'],
+  },
 };
 
 export const TypeB: IStory = {
   render: (props) => <AppLayoutFrameB {...props} />,
-  args: defaultArgs,
+  args: {
+    ...defaultArgs,
+    components: ['header', 'navigationRail', 'navigationDrawer', 'aside'],
+  },
 };
 
 export default meta;

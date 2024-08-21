@@ -14,9 +14,9 @@ const DENSITY = `${densityTokens.interval} * clamp(${MIN_DENSITY}, ${densityToke
 
 const vars = {
   gap: `calc(40px * ${scaleTokens.scale} + ${DENSITY})`,
-  groupGap: `calc(${spacingTokens.padding$3} * ${scaleTokens.scale} + ${DENSITY})`,
-  groupTopSpace: `calc(40px * ${scaleTokens.scale})`,
-  groupBottomSpace: `calc(40px * ${scaleTokens.scale})`,
+  groupGap: `calc(${spacingTokens.padding$3} + ${DENSITY})`,
+  groupTopSpace: spacingTokens.padding$3,
+  groupBottomSpace: spacingTokens.padding$3,
 
   // divider
   dividerWidth: outlineTokens.width$xs,

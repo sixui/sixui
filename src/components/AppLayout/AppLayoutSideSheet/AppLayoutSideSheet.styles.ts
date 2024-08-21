@@ -1,7 +1,6 @@
 import stylex from '@stylexjs/stylex';
 import { appLayoutTokens } from '../AppLayout.stylex';
 import { motionTokens } from '~/themes/base/motion.stylex';
-import { zIndexTokens } from '~/themes/base/zIndex.stylex';
 
 export type IAppLayoutSideSheetStylesKey =
   keyof typeof appLayoutSideSheetStyles;

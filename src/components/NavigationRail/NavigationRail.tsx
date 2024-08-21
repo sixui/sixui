@@ -15,7 +15,7 @@ const NavigationRail = forwardRef<HTMLDivElement, INavigationRailProps>(
       children,
       leading,
       trailing,
-      groupAlignment = 'start',
+      groupAlignment = 'center',
       divider,
       ...other
     } = props;

@@ -12,7 +12,7 @@ import {
   useWindowSizeClass,
   type IUseWindowSizeClassResult,
 } from '~/hooks/useWindowSizeClass';
-import { useSideSheet } from '../SideSheet/useSideSheet';
+import { useSideSheet } from '~/hooks/useSideSheet';
 import { appLayoutStyles } from './AppLayout.styles';
 import { AppLayoutHeader } from './AppLayoutHeader';
 import { AppLayoutNavigationDrawer } from './AppLayoutNavigationDrawer';

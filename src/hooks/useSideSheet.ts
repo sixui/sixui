@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 
-import type { ISideSheetType } from './SideSheet.types';
 import { usePrevious } from '~/hooks/usePrevious';
+
+export type ISideSheetType = 'standard' | 'modal';
 
 export type IUseSideSheetResult = {
   standardOpened: boolean;
@@ -15,7 +16,6 @@ export type IUseSideSheetProps = {
   onClose?: () => void;
 };
 
-// FIXME: rename to useSideSheetControl?
 export const useSideSheet = (
   props: IUseSideSheetProps,
 ): IUseSideSheetResult => {

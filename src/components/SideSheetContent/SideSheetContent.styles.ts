@@ -70,6 +70,10 @@ export const sideSheetContentStyles = stylex.create({
     paddingTop: tokens.contentTopSpace,
     paddingBottom: tokens.contentBottomSpace,
   },
+  innerContent: {
+    paddingLeft: spacingTokens.padding$7,
+    paddingRight: spacingTokens.padding$7,
+  },
   footer: {
     flexGrow: 0,
     display: 'flex',

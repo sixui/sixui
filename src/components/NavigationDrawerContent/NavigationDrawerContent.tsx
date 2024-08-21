@@ -1,5 +1,4 @@
 import { forwardRef } from 'react';
-import { isFunction } from '~/helpers/isFunction';
 
 import type { INavigationDrawerContentProps } from './NavigationDrawerContent.types';
 import { useStyles } from '~/hooks/useStyles';
@@ -19,14 +18,13 @@ const NavigationDrawerContent = forwardRef<
     styles,
     sx,
     innerStyles,
-    children,
     variant = 'standard',
     onClose,
     ...other
   } = props;
 
   const variantStyles = navigationDrawerContentVariantStyles[variant];
-  const { combineStyles, getStyles, globalStyles } = useStyles({
+  const { combineStyles, globalStyles } = useStyles({
     name: 'NavigationDrawerContent',
     styles: [navigationDrawerContentStyles, variantStyles, styles],
   });
@@ -43,13 +41,7 @@ const NavigationDrawerContent = forwardRef<
         sx,
       ]}
       ref={forwardedRef}
-    >
-      <div {...getStyles('inner')}>
-        {isFunction(children)
-          ? children({ close: () => onClose?.() })
-          : children}
-      </div>
-    </SideSheetContent>
+    />
   );
 });
 

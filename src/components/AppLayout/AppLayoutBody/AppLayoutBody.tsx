@@ -17,15 +17,21 @@ export const AppLayoutBody = forwardRef<HTMLDivElement, IAppLayoutBodyProps>(
     });
 
     const hasHeader = appLayoutContext.components.includes('header');
+    const hasAside = appLayoutContext.components.includes('aside');
 
     return (
       <Stack
         as='main'
         align='start'
+        horizontal
         {...other}
         sx={[
           globalStyles,
-          combineStyles('host', hasHeader && 'host$hasHeader'),
+          combineStyles(
+            'host',
+            hasHeader && 'host$hasHeader',
+            hasAside && 'host$hasAside',
+          ),
           sx,
         ]}
         ref={forwardedRef}

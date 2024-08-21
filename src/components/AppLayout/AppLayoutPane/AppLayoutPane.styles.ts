@@ -1,10 +1,15 @@
 import stylex from '@stylexjs/stylex';
 
-import { appLayoutPanesTokens } from './AppLayoutPanes.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 
 export type IAppLayoutPaneStylesKey = keyof typeof appLayoutPaneStyles;
 export const appLayoutPaneStyles = stylex.create({
   host: {
-    border: '1px solid blue',
+    margin: {
+      default: 'unset',
+      '@container compact (min-width: 0)': spacingTokens.padding$4,
+      '@container mediumAndUp (min-width: 0)': spacingTokens.padding$6,
+    },
+    flexGrow: 1,
   },
 });

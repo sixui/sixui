@@ -82,9 +82,11 @@ export const SideSheetContent = forwardRef<
 
         {children ? (
           <div {...getStyles('content')}>
-            {isFunction(children)
-              ? children({ close: (event) => onClose?.(event) })
-              : children}
+            <div {...getStyles('innerContent')}>
+              {isFunction(children)
+                ? children({ close: (event) => onClose?.(event) })
+                : children}
+            </div>
           </div>
         ) : null}
 

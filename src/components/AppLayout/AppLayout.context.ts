@@ -4,7 +4,7 @@ import type {
   IAppLayoutProps,
 } from './AppLayout.types';
 import type { IPortalProps } from '../Portal';
-import type { ISideSheetType } from '../SideSheet';
+import type { ISideSheetType } from '~/hooks/useSideSheet';
 import { createSafeContext } from '~/helpers/createSafeContext';
 
 export type IAppLayoutSideSheetState = {
