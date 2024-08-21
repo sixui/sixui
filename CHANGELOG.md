@@ -1,3 +1,15 @@
+# v0.0.440 (Wed Aug 21 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(Frame): FF issue ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.439 (Wed Aug 21 2024)
 
 #### 🐛 Bug Fix
