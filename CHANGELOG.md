@@ -1,3 +1,19 @@
+# v0.0.439 (Wed Aug 21 2024)
+
+#### 🐛 Bug Fix
+
+- Feat/navigation drawer [#40](https://github.com/sixui/sixui/pull/40) ([@olivierpascal](https://github.com/olivierpascal))
+
+#### ⚠️ Pushed to `main`
+
+- fix: ts types + storybook migration ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.438 (Sun Aug 11 2024)
 
 #### ⚠️ Pushed to `main`
