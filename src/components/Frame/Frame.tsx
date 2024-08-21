@@ -1,11 +1,12 @@
 import { useMergeRefs } from '@floating-ui/react';
-import { forwardRef, useEffect, useRef, useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import type { IFrameProps } from './Frame.types';
 import { isFunction } from '~/helpers/isFunction';
 import { Base } from '../Base';
 import { ResponsiveStyles } from '../Theme/ResponsiveStyles';
+import { useParentStyles } from './useParentStyles';
 
 export const Frame = forwardRef<HTMLIFrameElement, IFrameProps>(
   function Iframe(props, forwardedRef) {
@@ -17,58 +18,41 @@ export const Frame = forwardRef<HTMLIFrameElement, IFrameProps>(
       (element: HTMLIFrameElement | null) => setIframeElement(element),
     ]);
 
-    const iframeDocument = iframeElement?.contentWindow?.document;
-
-    const stylesInjected = useRef(false);
-    useEffect(() => {
-      if (!importParentStyles || stylesInjected.current || !iframeDocument) {
-        return;
-      }
-      stylesInjected.current = true;
-
-      const parentTopRules: Array<string> = [];
-
-      const parentStyleSheets = document.styleSheets;
-      const parentRules = [...parentStyleSheets]
-        .map((parentStyleSheet) =>
-          [...parentStyleSheet.cssRules].map((cssRule) => {
-            const text = cssRule.cssText;
-            // @import and @charset rules must be on top of the CSS so they are
-            // moved.
-            if (text.startsWith('@import') || text.startsWith('@charset')) {
-              parentTopRules.push(text);
-
-              return `/* Moved on top: ${text} */`;
-            }
-
-            return text;
-          }),
-        )
-        .flat();
-      const parentCssString = [...parentTopRules, ...parentRules].join('\n\n');
-
-      const styles = iframeDocument.createElement('style');
-      styles.innerHTML = parentCssString;
-      styles.setAttribute('type', 'text/css');
-
-      const iframeHead = iframeDocument.getElementsByTagName('head')[0];
-      iframeHead.appendChild(styles);
+    const parentStyles = useParentStyles({
+      disabled: !importParentStyles,
     });
 
+    const iframeDocument = iframeElement?.contentWindow?.document;
+    const iframeContentWindow = iframeElement?.contentWindow;
+
+    const [, setLoadedAt] = useState<number>(Date.now());
+    const handleLoad = (): void => setLoadedAt(Date.now());
+
     return (
-      <Base as='iframe' {...other} ref={handleRef}>
-        {iframeDocument
-          ? createPortal(
-              <div id='sixui-root'>
-                <ResponsiveStyles />
-                {isFunction(children)
-                  ? children({ window: iframeElement.contentWindow })
-                  : children}
-              </div>,
-              iframeDocument.body,
-            )
-          : null}
-      </Base>
+      <>
+        <Base as='iframe' {...other} ref={handleRef} onLoad={handleLoad}>
+          {iframeContentWindow && iframeDocument ? (
+            <>
+              {createPortal(
+                <div id='sixui-root'>
+                  <ResponsiveStyles />
+                  {isFunction(children)
+                    ? children({ window: iframeContentWindow })
+                    : children}
+                </div>,
+                iframeDocument.body,
+              )}
+
+              {parentStyles
+                ? createPortal(
+                    <style type='text/css'>{parentStyles}</style>,
+                    iframeDocument.head,
+                  )
+                : null}
+            </>
+          ) : null}
+        </Base>
+      </>
     );
   },
 );

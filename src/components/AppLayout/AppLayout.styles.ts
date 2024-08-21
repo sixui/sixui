@@ -6,6 +6,5 @@ export type IAppLayoutStylesKey = keyof typeof appLayoutStyles;
 export const appLayoutStyles = stylex.create({
   host: {
     backgroundColor: colorSchemeTokens.surface,
-    // height: '100%',
   },
 });

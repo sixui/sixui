@@ -84,7 +84,7 @@ export const AppLayoutNavigationDrawer = forwardRef<
       <CSSTransition
         nodeRef={transitionNodeRef}
         in={standardNavigationDrawerOpened}
-        timeout={550} // motionTokens.duration$long3
+        timeout={150} // motionTokens.duration$short3
         unmountOnExit
       >
         {(status) => (
