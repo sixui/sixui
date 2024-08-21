@@ -41,8 +41,7 @@ export const AppLayoutNavigationRail = forwardRef<
     return null;
   }
 
-  const navigationRailOpened =
-    appLayoutContext.canonicalLayout.navigationMode === 'rail';
+  const navigationRailOpened = appLayoutContext.navigationMode === 'rail';
 
   return (
     <CSSTransition

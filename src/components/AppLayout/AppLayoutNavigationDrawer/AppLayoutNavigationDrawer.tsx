@@ -43,7 +43,6 @@ export const AppLayoutNavigationDrawer = forwardRef<
   }
 
   const standardNavigationDrawerOpened =
-    appLayoutContext.canonicalLayout.navigationMode === 'standard' &&
     appLayoutContext.navigationDrawer?.state?.standardOpened;
   const modalNavigationDrawerOpened =
     appLayoutContext.navigationDrawer?.state?.modalOpened;

@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 
 import type { IAppLayoutBodyProps } from './AppLayoutBody.types';
 import { useStyles } from '~/hooks/useStyles';
-import { Base } from '~/components/Base';
+import { Stack } from '~/components/Stack';
 import { useAppLayoutContext } from '../AppLayout.context';
 import { appLayoutBodyStyles } from './AppLayoutBody.styles';
 
@@ -19,8 +19,9 @@ export const AppLayoutBody = forwardRef<HTMLDivElement, IAppLayoutBodyProps>(
     const hasHeader = appLayoutContext.components.includes('header');
 
     return (
-      <Base
+      <Stack
         as='main'
+        align='start'
         {...other}
         sx={[
           globalStyles,
@@ -30,7 +31,7 @@ export const AppLayoutBody = forwardRef<HTMLDivElement, IAppLayoutBodyProps>(
         ref={forwardedRef}
       >
         {children}
-      </Base>
+      </Stack>
     );
   },
 );

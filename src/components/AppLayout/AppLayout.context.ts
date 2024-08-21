@@ -1,9 +1,9 @@
 import type {
   IAppLayoutComponentName,
+  IAppLayoutNavigationMode,
   IAppLayoutProps,
 } from './AppLayout.types';
 import type { IPortalProps } from '../Portal';
-import type { ICanonicalLayout } from './useCanonicalLayout';
 import type { ISideSheetType } from '../SideSheet';
 import { createSafeContext } from '~/helpers/createSafeContext';
 
@@ -28,7 +28,7 @@ export type IAppLayoutContextValue = Pick<
     state?: IAppLayoutSideSheetState;
   };
   root?: IPortalProps['root'];
-  canonicalLayout: ICanonicalLayout;
+  navigationMode: IAppLayoutNavigationMode;
   components: Array<IAppLayoutComponentName>;
 };
 

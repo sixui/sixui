@@ -24,21 +24,18 @@ export const AppLayoutSideSheet = forwardRef<
   const hasNavigationRail =
     appLayoutContext.components.includes('navigationRail');
   const navigationRailOpened =
-    hasNavigationRail &&
-    appLayoutContext.canonicalLayout.navigationMode === 'rail';
+    hasNavigationRail && appLayoutContext.navigationMode === 'rail';
 
   const hasNavigationDrawer =
     appLayoutContext.components.includes('navigationDrawer');
   const standardNavigationDrawerOpened =
     hasNavigationDrawer &&
-    appLayoutContext.canonicalLayout.navigationMode === 'standard' &&
+    appLayoutContext.navigationMode === 'standard' &&
     appLayoutContext.navigationDrawer?.state?.standardOpened;
 
   const hasAside = appLayoutContext.components.includes('aside');
   const standardAsideOpened =
-    hasAside &&
-    !!appLayoutContext.canonicalLayout.standardAside &&
-    appLayoutContext.aside?.state?.standardOpened;
+    hasAside && appLayoutContext.aside?.state?.standardOpened;
 
   const anchorRight = anchor === 'right';
   const anchorLeft = !anchorRight;

@@ -1,10 +1,17 @@
 import { forwardRef, useMemo, useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
-import type { IAppLayoutProps } from './AppLayout.types';
+import type {
+  IAppLayoutNavigationMode,
+  IAppLayoutProps,
+} from './AppLayout.types';
 import { useStyles } from '~/hooks/useStyles';
 import { isFunction } from '~/helpers/isFunction';
 import { useDisclosure } from '~/hooks/useDisclosure';
+import {
+  useWindowSizeClass,
+  type IUseWindowSizeClassResult,
+} from '~/hooks/useWindowSizeClass';
 import { useSideSheet } from '../SideSheet/useSideSheet';
 import { appLayoutStyles } from './AppLayout.styles';
 import { AppLayoutHeader } from './AppLayoutHeader';
@@ -18,15 +25,26 @@ import { AppLayoutAside } from './AppLayoutAside';
 import { AppLayoutPane } from './AppLayoutPane';
 import { AppLayoutFooter } from './AppLayoutFooter';
 import { AppLayoutNavigationRail } from './AppLayoutNavigationRail';
-import {
-  AppLayoutSetterProvider,
-  IAppLayoutSetterContextValue,
-} from './AppLayoutSetter.context';
-import {
-  useCanonicalLayout,
-  type ICanonicalLayoutType,
-} from './useCanonicalLayout';
 import { AppLayoutSideSheet } from './AppLayoutSideSheet';
+
+const resolveNavigationMode = (
+  windowSizeClass: IUseWindowSizeClassResult | undefined,
+  preferredNavigationMode: IAppLayoutNavigationMode,
+): IAppLayoutNavigationMode => {
+  if (windowSizeClass?.compact) {
+    return 'bar';
+  }
+
+  if (windowSizeClass?.medium) {
+    return 'rail';
+  }
+
+  if (windowSizeClass?.expanded) {
+    return 'rail';
+  }
+
+  return preferredNavigationMode;
+};
 
 const AppLayout = forwardRef<HTMLDivElement, IAppLayoutProps>(
   function AppLayout(props, forwardedRef) {
@@ -34,11 +52,10 @@ const AppLayout = forwardRef<HTMLDivElement, IAppLayoutProps>(
       styles,
       sx,
       children,
-      window,
+      window: windowProp,
       navigationDrawer,
       navigationRail,
       aside,
-      defaultCanonicalLayoutType,
       preferredNavigationMode = 'standard',
       components,
       ...other
@@ -49,27 +66,20 @@ const AppLayout = forwardRef<HTMLDivElement, IAppLayoutProps>(
       styles: [appLayoutStyles, styles],
     });
     const [rootElement, setRootElement] = useState<HTMLDivElement | null>(null);
-    const [canonicalLayoutType, setCanonicalLayoutType] =
-      useState<ICanonicalLayoutType>(
-        defaultCanonicalLayoutType ?? 'listDetail',
-      );
-    const canonicalLayout = useCanonicalLayout(canonicalLayoutType, {
-      window,
-      preferredNavigationMode,
+    const windowSizeClass = useWindowSizeClass({
+      window: windowProp ?? window,
     });
 
-    const setterContextValue: IAppLayoutSetterContextValue = useMemo(
-      () => ({
-        setCanonicalLayoutType,
-      }),
-      [],
+    const navigationMode = resolveNavigationMode(
+      windowSizeClass,
+      preferredNavigationMode,
     );
 
     const [navigationDrawerOpened, navigationDrawerCallbacks] = useDisclosure(
       !navigationDrawer?.defaultClosed,
     );
     const navigationDrawerType =
-      canonicalLayout.navigationMode === 'standard' ? 'standard' : 'modal';
+      navigationMode === 'standard' ? 'standard' : 'modal';
     const navigationDrawerState = useSideSheet({
       opened: navigationDrawerOpened,
       type: navigationDrawerType,
@@ -79,7 +89,7 @@ const AppLayout = forwardRef<HTMLDivElement, IAppLayoutProps>(
     const hasNavigationDrawer = components.includes('navigationDrawer');
 
     const [asideOpened, asideCallbacks] = useDisclosure(!aside?.defaultClosed);
-    const asideType = canonicalLayout.standardAside ? 'standard' : 'modal';
+    const asideType = windowSizeClass?.extraLargeAndUp ? 'standard' : 'modal';
     const asideState = useSideSheet({
       opened: asideOpened,
       type: asideType,
@@ -121,18 +131,17 @@ const AppLayout = forwardRef<HTMLDivElement, IAppLayoutProps>(
               }
             : undefined,
         },
-        canonicalLayout,
+        navigationMode,
         preferredNavigationMode,
         components,
       };
 
       return value;
     }, [
-      window,
       rootElement,
       navigationRail,
       components,
-      canonicalLayout,
+      navigationMode,
       preferredNavigationMode,
       navigationDrawer,
       hasNavigationDrawer,
@@ -155,18 +164,16 @@ const AppLayout = forwardRef<HTMLDivElement, IAppLayoutProps>(
     ]);
 
     return (
-      <AppLayoutSetterProvider value={setterContextValue}>
-        <AppLayoutProvider value={contextValue}>
-          <div
-            {...stylex.props(globalStyles, combineStyles('host'), sx)}
-            {...other}
-            ref={forwardedRef}
-          >
-            <div ref={setRootElement} />
-            {isFunction(children) ? children(contextValue) : children}
-          </div>
-        </AppLayoutProvider>
-      </AppLayoutSetterProvider>
+      <AppLayoutProvider value={contextValue}>
+        <div
+          {...stylex.props(globalStyles, combineStyles('host'), sx)}
+          {...other}
+          ref={forwardedRef}
+        >
+          <div ref={setRootElement} />
+          {isFunction(children) ? children(contextValue) : children}
+        </div>
+      </AppLayoutProvider>
     );
   },
 );

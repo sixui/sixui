@@ -21,6 +21,20 @@ export type ICanonicalLayoutPane = {
   columns?: number;
 };
 
+export type ICanonicalLayout = {
+  windowSizeClass: IUseWindowSizeClassResult | undefined;
+  navigationMode: ICanonicalLayoutNavigationMode;
+  orientation: 'horizontal' | 'vertical';
+  panes: Array<ICanonicalLayoutPane>;
+  standardAside?: {
+    maxWidth?: number;
+  };
+};
+
+const defaultOptions = {
+  preferredNavigationMode: 'standard' as 'rail' | 'standard',
+};
+
 const getNavigationMode = (
   windowSizeClass: IUseWindowSizeClassResult | undefined,
   preferredNavigationMode: ICanonicalLayoutPreferredNavigationMode,
@@ -33,24 +47,11 @@ const getNavigationMode = (
     return 'rail';
   }
 
-  if (windowSizeClass?.expandedAndUp) {
-    return preferredNavigationMode;
+  if (windowSizeClass?.expanded) {
+    return 'rail';
   }
 
   return preferredNavigationMode;
-};
-
-export type ICanonicalLayout = {
-  navigationMode: ICanonicalLayoutNavigationMode;
-  orientation: 'horizontal' | 'vertical';
-  panes: Array<ICanonicalLayoutPane>;
-  standardAside?: {
-    maxWidth?: number;
-  };
-};
-
-const defaultOptions = {
-  preferredNavigationMode: 'standard' as 'rail' | 'standard',
 };
 
 export const useCanonicalLayout = (
@@ -78,6 +79,7 @@ export const useCanonicalLayout = (
     case 'listDetail':
       if (windowSizeClass?.compact) {
         return {
+          windowSizeClass,
           navigationMode,
           orientation: 'horizontal',
           panes: [{ name: 'listDetail' }],
@@ -88,12 +90,14 @@ export const useCanonicalLayout = (
       if (windowSizeClass?.medium) {
         return options?.dense
           ? {
-              navigationMode: 'bar',
+              windowSizeClass,
+              navigationMode,
               orientation: 'horizontal',
               panes: [{ name: 'list' }, { name: 'detail' }],
               standardAside,
             }
           : {
+              windowSizeClass,
               navigationMode,
               orientation: 'horizontal',
               panes: [{ name: 'listDetail' }],
@@ -103,7 +107,8 @@ export const useCanonicalLayout = (
 
       if (windowSizeClass?.expanded) {
         return {
-          navigationMode: 'rail',
+          windowSizeClass,
+          navigationMode,
           orientation: 'horizontal',
           panes: [{ name: 'list' }, { name: 'detail' }],
           standardAside,
@@ -111,6 +116,7 @@ export const useCanonicalLayout = (
       }
 
       return {
+        windowSizeClass,
         navigationMode,
         orientation: 'horizontal',
         panes: [{ name: 'list' }, { name: 'detail' }],
@@ -120,6 +126,7 @@ export const useCanonicalLayout = (
     case 'supportingPane':
       if (windowSizeClass?.compact) {
         return {
+          windowSizeClass,
           navigationMode,
           orientation: 'vertical',
           panes: [{ name: 'focus' }, { name: 'supporting', sheet: true }],
@@ -129,6 +136,7 @@ export const useCanonicalLayout = (
 
       if (windowSizeClass?.medium) {
         return {
+          windowSizeClass,
           navigationMode,
           orientation: 'vertical',
           panes: [{ name: 'focus' }, { name: 'supporting' }],
@@ -136,19 +144,28 @@ export const useCanonicalLayout = (
         };
       }
 
+      if (windowSizeClass?.expanded) {
+        return {
+          windowSizeClass,
+          navigationMode,
+          orientation: 'horizontal',
+          panes: [{ name: 'focus' }],
+          standardAside: { maxWidth: 360 },
+        };
+      }
+
       return {
+        windowSizeClass,
         navigationMode,
         orientation: 'horizontal',
-        panes: [
-          { name: 'focus' },
-          { name: 'supporting', fixedWidth: 360, dismissible: true },
-        ],
-        standardAside,
+        panes: [{ name: 'focus' }],
+        standardAside: { maxWidth: 360 },
       };
 
     case 'feed':
       if (windowSizeClass?.compact) {
         return {
+          windowSizeClass,
           navigationMode,
           orientation: 'vertical',
           panes: [{ name: 'feed', columns: 1 }],
@@ -158,6 +175,7 @@ export const useCanonicalLayout = (
 
       if (windowSizeClass?.medium) {
         return {
+          windowSizeClass,
           navigationMode,
           orientation: 'vertical',
           panes: [{ name: 'feed', columns: 2 }],
@@ -166,6 +184,7 @@ export const useCanonicalLayout = (
       }
 
       return {
+        windowSizeClass,
         navigationMode,
         orientation: 'horizontal',
         panes: [{ name: 'feed', columns: 3 }],

@@ -39,9 +39,7 @@ export const AppLayoutAside = forwardRef<HTMLDivElement, IAppLayoutAsideProps>(
       return null;
     }
 
-    const standardAsideOpened =
-      appLayoutContext.canonicalLayout.navigationMode === 'standard' &&
-      appLayoutContext.aside?.state?.standardOpened;
+    const standardAsideOpened = appLayoutContext.aside?.state?.standardOpened;
     const modalAsideOpened = appLayoutContext.aside?.state?.modalOpened;
 
     const anchor = 'right';

@@ -1,12 +1,10 @@
 import type { IBaseProps } from '~/components/Base';
 import type { IAppLayoutStylesKey } from './AppLayout.styles';
-import type {
-  ICanonicalLayoutPreferredNavigationMode,
-  ICanonicalLayoutType,
-} from './useCanonicalLayout';
 import { IAppLayoutContextValue } from './AppLayout.context';
 
 export type IAppLayoutRenderProps = IAppLayoutContextValue;
+
+export type IAppLayoutNavigationMode = 'bar' | 'rail' | 'standard';
 
 export type IAppLayoutComponentName =
   | 'header'
@@ -19,7 +17,6 @@ export type IAppLayoutProps = IBaseProps<IAppLayoutStylesKey> & {
   children?:
     | ((props: IAppLayoutRenderProps) => React.ReactNode)
     | React.ReactNode;
-  defaultCanonicalLayoutType?: ICanonicalLayoutType;
   navigationRail?: {
     fullHeight?: boolean;
   };
@@ -29,6 +26,6 @@ export type IAppLayoutProps = IBaseProps<IAppLayoutStylesKey> & {
   aside?: {
     defaultClosed?: boolean;
   };
-  preferredNavigationMode?: ICanonicalLayoutPreferredNavigationMode;
+  preferredNavigationMode?: IAppLayoutNavigationMode;
   components: Array<IAppLayoutComponentName>;
 };

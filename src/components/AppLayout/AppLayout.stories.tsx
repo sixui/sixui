@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -29,6 +29,10 @@ import { Placeholder } from '../Placeholder';
 import { NavigationRailDestination } from '../NavigationRailDestination';
 import { useAppLayoutContext } from './AppLayout.context';
 import { AppLayout } from './AppLayout';
+import {
+  useCanonicalLayout,
+  type ICanonicalLayoutType,
+} from './useCanonicalLayout';
 
 const meta = {
   component: AppLayout,
@@ -52,44 +56,43 @@ const styles = stylex.create({
   placeholder: {
     margin: 24,
   },
+  placeholder$grow: {
+    flexGrow: 1,
+  },
 });
 
-type IHeaderContent = {
-  navigationDrawerOpened?: boolean;
-  toggleNavigationDrawer?: () => void;
-  asideOpened?: boolean;
-  toggleAside?: () => void;
-};
-
-const HeaderContent: React.FC<IHeaderContent> = (props) => {
-  const {
-    navigationDrawerOpened,
-    toggleNavigationDrawer,
-    asideOpened,
-    toggleAside,
-  } = props;
+const HeaderContent: React.FC = () => {
+  const appLayoutContext = useAppLayoutContext();
 
   return (
     <Stack horizontal gap={6} justify='space-between' grow>
       <Stack horizontal gap={2}>
-        {toggleNavigationDrawer ? (
+        {appLayoutContext.navigationDrawer?.state?.toggle ? (
           <IconButton
             icon={
               <FontAwesomeIcon
-                icon={navigationDrawerOpened ? faXmark : faBars}
+                icon={
+                  appLayoutContext.navigationDrawer?.state?.opened
+                    ? faXmark
+                    : faBars
+                }
               />
             }
-            onClick={toggleNavigationDrawer}
+            onClick={appLayoutContext.navigationDrawer?.state?.toggle}
           />
         ) : null}
         <div>Header</div>
       </Stack>
 
       <Stack horizontal gap={2}>
-        {toggleAside ? (
+        {appLayoutContext.aside?.state?.toggle ? (
           <IconButton
-            icon={<FontAwesomeIcon icon={asideOpened ? faXmark : faBars} />}
-            onClick={toggleAside}
+            icon={
+              <FontAwesomeIcon
+                icon={appLayoutContext.aside?.state?.opened ? faXmark : faBars}
+              />
+            }
+            onClick={appLayoutContext.aside?.state?.toggle}
           />
         ) : null}
       </Stack>
@@ -97,21 +100,27 @@ const HeaderContent: React.FC<IHeaderContent> = (props) => {
   );
 };
 
-const BodyContent: React.FC = () => {
-  const { canonicalLayout } = useAppLayoutContext();
+type IBodyContentProps = {
+  canonicalLayoutType: ICanonicalLayoutType;
+};
+
+const BodyContent: React.FC<IBodyContentProps> = (props) => {
+  const { canonicalLayoutType } = props;
+  const canonicalLayout = useCanonicalLayout(canonicalLayoutType);
   const horizontal = canonicalLayout.orientation === 'horizontal';
 
   return (
-    <Stack horizontal={horizontal}>
+    <Stack horizontal={horizontal} grow>
       {canonicalLayout.panes.map((pane) => (
         <Placeholder
           key={pane.name}
-          expand
           corner='none'
-          height={600}
-          sx={styles.placeholder}
+          height={200}
+          width={pane.fixedWidth}
+          sx={[styles.placeholder, !pane.fixedWidth && styles.placeholder$grow]}
         >
           {pane.name} {pane.sheet && '(sheet)'}
+          {pane.fixedWidth ? `(${pane.fixedWidth}px)` : null}
         </Placeholder>
       ))}
     </Stack>
@@ -127,25 +136,42 @@ const NavigationDrawerContent: React.FC = () =>
     </Text>
   ));
 
-const NavigationRailContent: React.FC = () => (
-  <>
-    <NavigationRailDestination
-      icon={<FontAwesomeIcon icon={faSquare} />}
-      activeIcon={<FontAwesomeIcon icon={faSquareSolid} />}
-      label='First'
-    />
-    <NavigationRailDestination
-      icon={<FontAwesomeIcon icon={faCircle} />}
-      activeIcon={<FontAwesomeIcon icon={faCircleSolid} />}
-      label='Second'
-    />
-    <NavigationRailDestination
-      icon={<FontAwesomeIcon icon={faHeart} />}
-      activeIcon={<FontAwesomeIcon icon={faHeartSolid} />}
-      label='Third'
-    />
-  </>
-);
+type INavigationRailContentProps = {
+  canonicalLayoutType: ICanonicalLayoutType;
+  setCanonicalLayoutType: (type: ICanonicalLayoutType) => void;
+};
+
+const NavigationRailContent: React.FC<INavigationRailContentProps> = (
+  props,
+) => {
+  const { canonicalLayoutType, setCanonicalLayoutType } = props;
+
+  return (
+    <>
+      <NavigationRailDestination
+        icon={<FontAwesomeIcon icon={faSquare} />}
+        activeIcon={<FontAwesomeIcon icon={faSquareSolid} />}
+        label='List-detail'
+        onClick={() => setCanonicalLayoutType('listDetail')}
+        active={canonicalLayoutType === 'listDetail'}
+      />
+      <NavigationRailDestination
+        icon={<FontAwesomeIcon icon={faCircle} />}
+        activeIcon={<FontAwesomeIcon icon={faCircleSolid} />}
+        label='Supporting pane'
+        onClick={() => setCanonicalLayoutType('supportingPane')}
+        active={canonicalLayoutType === 'supportingPane'}
+      />
+      <NavigationRailDestination
+        icon={<FontAwesomeIcon icon={faHeart} />}
+        activeIcon={<FontAwesomeIcon icon={faHeartSolid} />}
+        label='Feed'
+        onClick={() => setCanonicalLayoutType('feed')}
+        active={canonicalLayoutType === 'feed'}
+      />
+    </>
+  );
+};
 
 const AsideContent: React.FC = () =>
   createSequence(10).map((i) => (
@@ -169,6 +195,8 @@ const AppLayoutFrameA: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
   props,
 ) => {
   const [frameRef, setFrameRef] = useState<HTMLIFrameElement | null>(null);
+  const [canonicalLayoutType, setCanonicalLayoutType] =
+    useState<ICanonicalLayoutType>('listDetail');
 
   return (
     <Frame importParentStyles sx={styles.frame} ref={setFrameRef}>
@@ -182,46 +210,40 @@ const AppLayoutFrameA: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
           }}
           {...props}
         >
-          {({ navigationDrawer, aside }) => (
-            <>
-              <Stack>
-                <AppLayout.Header>
-                  <HeaderContent
-                    navigationDrawerOpened={navigationDrawer?.state?.opened}
-                    toggleNavigationDrawer={navigationDrawer?.state?.toggle}
-                    asideOpened={aside?.state?.opened}
-                    toggleAside={aside?.state?.toggle}
+          <Stack>
+            <AppLayout.Header>
+              <HeaderContent />
+            </AppLayout.Header>
+
+            <Stack horizontal align='start'>
+              <AppLayout.SideSheet>
+                <AppLayout.NavigationRail divider>
+                  <NavigationRailContent
+                    canonicalLayoutType={canonicalLayoutType}
+                    setCanonicalLayoutType={setCanonicalLayoutType}
                   />
-                </AppLayout.Header>
+                </AppLayout.NavigationRail>
 
-                <Stack horizontal align='start'>
-                  <AppLayout.SideSheet>
-                    <AppLayout.NavigationRail divider>
-                      <NavigationRailContent />
-                    </AppLayout.NavigationRail>
+                <AppLayout.NavigationDrawer divider>
+                  <NavigationDrawerContent />
+                </AppLayout.NavigationDrawer>
+              </AppLayout.SideSheet>
 
-                    <AppLayout.NavigationDrawer divider>
-                      <NavigationDrawerContent />
-                    </AppLayout.NavigationDrawer>
-                  </AppLayout.SideSheet>
+              <AppLayout.Body horizontal>
+                <BodyContent canonicalLayoutType={canonicalLayoutType} />
 
-                  <AppLayout.Body>
-                    <BodyContent />
-                  </AppLayout.Body>
+                <AppLayout.SideSheet anchor='right'>
+                  <AppLayout.Aside divider>
+                    <AsideContent />
+                  </AppLayout.Aside>
+                </AppLayout.SideSheet>
+              </AppLayout.Body>
+            </Stack>
+          </Stack>
 
-                  <AppLayout.SideSheet anchor='right'>
-                    <AppLayout.Aside divider>
-                      <AsideContent />
-                    </AppLayout.Aside>
-                  </AppLayout.SideSheet>
-                </Stack>
-              </Stack>
-
-              <AppLayout.Footer>
-                <FooterContent />
-              </AppLayout.Footer>
-            </>
-          )}
+          <AppLayout.Footer>
+            <FooterContent />
+          </AppLayout.Footer>
         </AppLayout>
       ) : null}
     </Frame>
@@ -232,66 +254,59 @@ const AppLayoutFrameB: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
   props,
 ) => {
   const [frameRef, setFrameRef] = useState<HTMLIFrameElement | null>(null);
+  const [canonicalLayoutType, setCanonicalLayoutType] =
+    useState<ICanonicalLayoutType>('listDetail');
 
   return (
     <Frame importParentStyles sx={styles.frame} ref={setFrameRef}>
       {frameRef ? (
         <AppLayout
-          components={['header', 'navigationRail', 'navigationDrawer']}
+          components={['header', 'navigationRail', 'navigationDrawer', 'aside']}
           window={frameRef?.contentWindow ?? undefined}
           {...props}
         >
-          {({ navigationDrawer }) => (
-            <>
-              <Stack>
+          <Stack>
+            <Stack horizontal align='start'>
+              <AppLayout.SideSheet fullHeight>
+                <AppLayout.NavigationRail divider>
+                  <NavigationRailContent
+                    canonicalLayoutType={canonicalLayoutType}
+                    setCanonicalLayoutType={setCanonicalLayoutType}
+                  />
+                </AppLayout.NavigationRail>
+
+                <AppLayout.NavigationDrawer
+                  divider
+                  headline='App Name'
+                  showCloseButton
+                >
+                  <NavigationDrawerContent />
+                </AppLayout.NavigationDrawer>
+              </AppLayout.SideSheet>
+
+              <AppLayout.Body>
+                <AppLayout.Header>
+                  <HeaderContent />
+                </AppLayout.Header>
+
                 <Stack horizontal align='start'>
-                  <AppLayout.SideSheet fullHeight>
-                    <AppLayout.NavigationRail divider>
-                      <NavigationRailContent />
-                    </AppLayout.NavigationRail>
+                  <AppLayout.Body horizontal>
+                    <BodyContent canonicalLayoutType={canonicalLayoutType} />
 
-                    <AppLayout.NavigationDrawer
-                      divider
-                      headline='App Name'
-                      showCloseButton
-                    >
-                      <NavigationDrawerContent />
-                    </AppLayout.NavigationDrawer>
-                  </AppLayout.SideSheet>
-
-                  <AppLayout.Body>
-                    <AppLayout.Header>
-                      <HeaderContent
-                        navigationDrawerOpened={navigationDrawer?.state?.opened}
-                        toggleNavigationDrawer={navigationDrawer?.state?.toggle}
-                        // asideOpened={asideOpened}
-                        // toggleAside={asideCallbacks.toggle}
-                      />
-                    </AppLayout.Header>
-
-                    <Stack horizontal align='start'>
-                      <AppLayout.Body>
-                        <BodyContent />
-                      </AppLayout.Body>
-
-                      {/* <AppLayout.Aside
-                      onClose={asideCallbacks.close}
-                      headline='Headline'
-                      variant='detached'
-                      showCloseButton={aside.isModal}
-                    >
-                      <AsideContent />
-                    </AppLayout.Aside> */}
-                    </Stack>
+                    <AppLayout.SideSheet anchor='right'>
+                      <AppLayout.Aside divider>
+                        <AsideContent />
+                      </AppLayout.Aside>
+                    </AppLayout.SideSheet>
                   </AppLayout.Body>
                 </Stack>
-              </Stack>
+              </AppLayout.Body>
+            </Stack>
+          </Stack>
 
-              <AppLayout.Footer>
-                <FooterContent />
-              </AppLayout.Footer>
-            </>
-          )}
+          <AppLayout.Footer>
+            <FooterContent />
+          </AppLayout.Footer>
         </AppLayout>
       ) : null}
     </Frame>
