@@ -9,7 +9,7 @@ export type ISideSheetContentRenderProps = {
 
 export type ISideSheetContentProps = IBaseProps<ISideSheetContentStylesKey> & {
   variant?: ISideSheetContentVariant;
-  onClose?: (event: React.MouseEvent) => void;
+  onClose?: (event?: React.MouseEvent) => void;
   children:
     | React.ReactNode
     | ((props: ISideSheetContentRenderProps) => React.ReactNode);

@@ -44,6 +44,9 @@ export const standardListItemStyles = stylex.create({
     [listItemTokens.stateLayerOpacity$pressed]:
       stateTokens.stateLayerOpacity$pressed,
 
+    [listItemTokens.selectedStateLayerColor$hover]: colorSchemeTokens.onSurface,
+    [listItemTokens.stateLayerColor$pressed]: colorSchemeTokens.primary,
+
     [listItemTokens.leadingIconColor]: colorSchemeTokens.onSurfaceVariant,
     [listItemTokens.leadingIconColor$focus]: colorSchemeTokens.onSurfaceVariant,
     [listItemTokens.leadingIconColor$hover]: colorSchemeTokens.onSurfaceVariant,

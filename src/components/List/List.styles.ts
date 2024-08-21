@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
-import { listTokens } from './List.stylex';
+import { listTokens as tokens } from './List.stylex';
 
 // https://github.com/material-components/material-web/blob/main/list/internal/_list.scss
 
@@ -24,10 +24,11 @@ export const listStyles = stylex.create({
   header: {},
   footer: {},
   content: {
-    paddingTop: listTokens.topSpace,
-    paddingBottom: listTokens.bottomSpace,
+    paddingTop: tokens.topSpace,
+    paddingBottom: tokens.bottomSpace,
     borderRadius: 'inherit',
     overflowY: 'auto',
+    gap: tokens.gap,
   },
   content$empty: {
     paddingTop: 0,
@@ -36,6 +37,6 @@ export const listStyles = stylex.create({
   content$grid: {
     display: 'grid',
     gridAutoRows: '1fr',
-    gap: listTokens.gridSpace,
+    gap: tokens.gridSpace,
   },
 });

@@ -3,52 +3,50 @@ import stylex from '@stylexjs/stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { paperBaseTokens } from '../PaperBase/PaperBase.stylex';
 import { dividerTokens } from '../Divider/Divider.stylex';
-import { sideSheetContentTokens } from './SideSheetContent.stylex';
+import { sideSheetContentTokens as tokens } from './SideSheetContent.stylex';
 
 export type ISideSheetContentStylesKey = keyof typeof sideSheetContentStyles;
 export const sideSheetContentStyles = stylex.create({
   host: {
-    [paperBaseTokens.containerShape$topLeft]:
-      sideSheetContentTokens.containerShape$topStart,
-    [paperBaseTokens.containerShape$topRight]:
-      sideSheetContentTokens.containerShape$topEnd,
+    [paperBaseTokens.containerShape$topLeft]: tokens.containerShape$topStart,
+    [paperBaseTokens.containerShape$topRight]: tokens.containerShape$topEnd,
     [paperBaseTokens.containerShape$bottomRight]:
-      sideSheetContentTokens.containerShape$bottomEnd,
+      tokens.containerShape$bottomEnd,
     [paperBaseTokens.containerShape$bottomLeft]:
-      sideSheetContentTokens.containerShape$bottomStart,
-    [paperBaseTokens.containerColor]: sideSheetContentTokens.containerColor,
-    [paperBaseTokens.containerElevation]:
-      sideSheetContentTokens.containerElevation,
+      tokens.containerShape$bottomStart,
+    [paperBaseTokens.containerColor]: tokens.containerColor,
+    [paperBaseTokens.containerElevation]: tokens.containerElevation,
   },
+  host$left: {},
+  host$right: {},
   host$divider$left: {
-    borderRightWidth: sideSheetContentTokens.dividerWidth,
-    borderRightColor: sideSheetContentTokens.dividerColor,
+    borderRightWidth: tokens.dividerWidth,
+    borderRightColor: tokens.dividerColor,
     borderRightStyle: 'solid',
   },
   host$divider$right: {
-    borderLeftWidth: sideSheetContentTokens.dividerWidth,
-    borderLeftColor: sideSheetContentTokens.dividerColor,
+    borderLeftWidth: tokens.dividerWidth,
+    borderLeftColor: tokens.dividerColor,
     borderLeftStyle: 'solid',
   },
   inner: {
-    paddingTop: sideSheetContentTokens.containerTopSpace,
-    paddingBottom: sideSheetContentTokens.containerBottomSpace,
     display: 'flex',
     flexDirection: 'column',
-    gap: sideSheetContentTokens.containerGap,
     height: '100%',
   },
   header: {
+    height: tokens.headerHeight,
     flexGrow: 0,
+    flexShrink: 0,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingLeft: sideSheetContentTokens.headerLeadingSpace,
-    paddingRight: sideSheetContentTokens.headerTrailingSpace,
-    gap: sideSheetContentTokens.topElementsGap,
+    paddingLeft: tokens.headerLeadingSpace,
+    paddingRight: tokens.headerTrailingSpace,
+    gap: tokens.topElementsGap,
   },
   header$withLeadingActions: {
-    paddingLeft: sideSheetContentTokens.headerLeadingSpace$withIcons,
+    paddingLeft: tokens.headerLeadingSpace$withIcons,
   },
   actions: {
     display: 'flex',
@@ -60,15 +58,17 @@ export const sideSheetContentStyles = stylex.create({
   },
   headline: {
     flexGrow: 1,
-    color: sideSheetContentTokens.headlineColor,
-    fontFamily: sideSheetContentTokens.headlineFont,
-    lineHeight: sideSheetContentTokens.headlineLineHeight,
-    fontSize: sideSheetContentTokens.headlineSize,
-    letterSpacing: sideSheetContentTokens.headlineLetterSpacing,
-    fontWeight: sideSheetContentTokens.headlineWeight,
+    color: tokens.headlineColor,
+    fontFamily: tokens.headlineFont,
+    lineHeight: tokens.headlineLineHeight,
+    fontSize: tokens.headlineSize,
+    letterSpacing: tokens.headlineLetterSpacing,
+    fontWeight: tokens.headlineWeight,
   },
   content: {
     overflowY: 'auto',
+    paddingTop: tokens.contentTopSpace,
+    paddingBottom: tokens.contentBottomSpace,
   },
   footer: {
     flexGrow: 0,
@@ -76,10 +76,10 @@ export const sideSheetContentStyles = stylex.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingLeft: sideSheetContentTokens.headerLeadingSpace,
-    paddingRight: sideSheetContentTokens.headerTrailingSpace,
+    paddingLeft: tokens.headerLeadingSpace,
+    paddingRight: tokens.headerTrailingSpace,
   },
   divider: {
-    [dividerTokens.color]: sideSheetContentTokens.dividerColor,
+    [dividerTokens.color]: tokens.dividerColor,
   },
 });

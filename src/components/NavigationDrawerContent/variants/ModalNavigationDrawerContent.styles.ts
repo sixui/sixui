@@ -2,13 +2,13 @@ import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { elevationTokens } from '~/components/Elevation/Elevation.stylex';
-import { navigationDrawerTokens } from '../NavigationDrawer.stylex';
+import { navigationDrawerContentTokens } from '../NavigationDrawerContent.stylex';
 
-export const modalNavigationDrawerStyles = stylex.create({
+export const modalNavigationDrawerContentStyles = stylex.create({
   host: {
-    [navigationDrawerTokens.containerColor]:
+    [navigationDrawerContentTokens.containerColor]:
       colorSchemeTokens.surfaceContainerLow,
-    [navigationDrawerTokens.containerElevation]:
+    [navigationDrawerContentTokens.containerElevation]:
       elevationTokens.boxShadow$level1,
   },
 });

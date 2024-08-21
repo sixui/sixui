@@ -27,6 +27,7 @@ import { Stack } from '../Stack';
 import { IconButton } from '../IconButton';
 import { Placeholder } from '../Placeholder';
 import { NavigationRailDestination } from '../NavigationRailDestination';
+import { NavigationDrawerContent } from '../NavigationDrawerContent';
 import { useAppLayoutContext } from './AppLayout.context';
 import { AppLayout } from './AppLayout';
 import {
@@ -61,7 +62,7 @@ const styles = stylex.create({
   },
 });
 
-const HeaderContent: React.FC = () => {
+const HeaderContentDemo: React.FC = () => {
   const appLayoutContext = useAppLayoutContext();
 
   return (
@@ -100,11 +101,11 @@ const HeaderContent: React.FC = () => {
   );
 };
 
-type IBodyContentProps = {
+type IBodyContentDemoProps = {
   canonicalLayoutType: ICanonicalLayoutType;
 };
 
-const BodyContent: React.FC<IBodyContentProps> = (props) => {
+const BodyContentDemo: React.FC<IBodyContentDemoProps> = (props) => {
   const { canonicalLayoutType } = props;
   const canonicalLayout = useCanonicalLayout(canonicalLayoutType);
   const horizontal = canonicalLayout.orientation === 'horizontal';
@@ -127,14 +128,34 @@ const BodyContent: React.FC<IBodyContentProps> = (props) => {
   );
 };
 
-const NavigationDrawerContent: React.FC = () =>
-  createSequence(10).map((i) => (
-    <Text key={i} gutterBottom>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ullamcorper
-      nisl. In ut diam sapien. Proin orci mauris, pretium ac ante ut, porta
-      fermentum ipsum. Proin at lobortis turpis, a rhoncus massa.
-    </Text>
-  ));
+const NavigationDrawerContentDemo: React.FC = () => (
+  <Stack gap={6}>
+    <NavigationDrawerContent.DestinationList headline='Mail' endDivider>
+      <NavigationDrawerContent.Destination
+        onClick={() => {}}
+        active
+        trailingSupportingText='24'
+      >
+        XX
+      </NavigationDrawerContent.Destination>
+      <NavigationDrawerContent.Destination onClick={() => {}}>
+        YY
+      </NavigationDrawerContent.Destination>
+    </NavigationDrawerContent.DestinationList>
+
+    <NavigationDrawerContent.DestinationList headline='Labels'>
+      <NavigationDrawerContent.Destination
+        onClick={() => {}}
+        trailingSupportingText='24'
+      >
+        XX
+      </NavigationDrawerContent.Destination>
+      <NavigationDrawerContent.Destination onClick={() => {}}>
+        YY
+      </NavigationDrawerContent.Destination>
+    </NavigationDrawerContent.DestinationList>
+  </Stack>
+);
 
 type INavigationRailContentProps = {
   canonicalLayoutType: ICanonicalLayoutType;
@@ -212,7 +233,7 @@ const AppLayoutFrameA: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
         >
           <Stack>
             <AppLayout.Header>
-              <HeaderContent />
+              <HeaderContentDemo />
             </AppLayout.Header>
 
             <Stack horizontal align='start'>
@@ -225,12 +246,12 @@ const AppLayoutFrameA: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
                 </AppLayout.NavigationRail>
 
                 <AppLayout.NavigationDrawer divider>
-                  <NavigationDrawerContent />
+                  <NavigationDrawerContentDemo />
                 </AppLayout.NavigationDrawer>
               </AppLayout.SideSheet>
 
               <AppLayout.Body horizontal>
-                <BodyContent canonicalLayoutType={canonicalLayoutType} />
+                <BodyContentDemo canonicalLayoutType={canonicalLayoutType} />
 
                 <AppLayout.SideSheet anchor='right'>
                   <AppLayout.Aside divider>
@@ -280,18 +301,20 @@ const AppLayoutFrameB: React.FC<IOmit<IAppLayoutProps, 'components'>> = (
                   headline='App Name'
                   showCloseButton
                 >
-                  <NavigationDrawerContent />
+                  <NavigationDrawerContentDemo />
                 </AppLayout.NavigationDrawer>
               </AppLayout.SideSheet>
 
-              <AppLayout.Body>
+              <AppLayout.Body align='stretch'>
                 <AppLayout.Header>
-                  <HeaderContent />
+                  <HeaderContentDemo />
                 </AppLayout.Header>
 
                 <Stack horizontal align='start'>
                   <AppLayout.Body horizontal>
-                    <BodyContent canonicalLayoutType={canonicalLayoutType} />
+                    <BodyContentDemo
+                      canonicalLayoutType={canonicalLayoutType}
+                    />
 
                     <AppLayout.SideSheet anchor='right'>
                       <AppLayout.Aside divider>

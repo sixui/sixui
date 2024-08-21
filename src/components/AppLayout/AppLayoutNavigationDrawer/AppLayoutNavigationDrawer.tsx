@@ -5,6 +5,7 @@ import { useMergeRefs } from '@floating-ui/react';
 import type { IAppLayoutNavigationDrawerProps } from './AppLayoutNavigationDrawer.types';
 import { useStyles } from '~/hooks/useStyles';
 import { FloatingTransition } from '~/components/FloatingTransition';
+import { NavigationDrawerContent } from '~/components/NavigationDrawerContent';
 import {
   SideSheetContent,
   type ISideSheetContentStylesKey,
@@ -52,7 +53,7 @@ export const AppLayoutNavigationDrawer = forwardRef<
   const renderContent = (
     props?: Partial<React.ComponentPropsWithRef<typeof SideSheetContent>>,
   ): JSX.Element => (
-    <SideSheetContent
+    <NavigationDrawerContent
       anchor={anchor}
       {...other}
       {...props}

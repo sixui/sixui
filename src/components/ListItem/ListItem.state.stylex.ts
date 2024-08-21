@@ -10,6 +10,8 @@ const vars = {
   containerMinHeight: 'unset',
   topSpace: 'unset',
   bottomSpace: 'unset',
+  stateLayerColor$hover: 'unset',
+  stateLayerColor$pressed: 'unset',
 };
 
 export const listItemStateTokens = stylex.defineVars(vars);

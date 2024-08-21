@@ -136,6 +136,12 @@ const vars = {
   stateLayerColor$pressed: 'unset',
   stateLayerOpacity$pressed: stateTokens.stateLayerOpacity$pressed,
 
+  // selectedStateLayer
+  // &:hover
+  selectedStateLayerColor$hover: 'unset',
+  // &:pressed
+  selectedStateLayerColor$pressed: 'unset',
+
   // image
   imageWidth: `calc(56px * ${scaleTokens.scale} + ${DENSITY})`,
   imageHeight: `calc(56px * ${scaleTokens.scale} + ${DENSITY})`,

@@ -13,6 +13,7 @@ const vars = {
   headerLeadingSpace: spacingTokens.padding$6,
   headerLeadingSpace$withIcons: spacingTokens.padding$6,
   headerTrailingSpace: spacingTokens.padding$6,
+  headerHeight: `calc(64px * ${scaleTokens.scale})`,
 
   // container
   containerColor: colorSchemeTokens.surface,
@@ -21,9 +22,6 @@ const vars = {
   containerShape$topEnd: shapeTokens.corner$none,
   containerShape$bottomEnd: shapeTokens.corner$none,
   containerShape$bottomStart: shapeTokens.corner$none,
-  containerTopSpace: spacingTokens.padding$4,
-  containerBottomSpace: spacingTokens.padding$4,
-  containerGap: spacingTokens.padding$4,
 
   // headline
   headlineColor: colorSchemeTokens.onSurfaceVariant,
@@ -45,6 +43,10 @@ const vars = {
   bottomActionsTopSpace: spacingTokens.padding$4,
   bottomActionsBottomSpace: spacingTokens.padding$6,
   bottomActionsGap: spacingTokens.padding$6,
+
+  // content
+  contentTopSpace: spacingTokens.padding$4,
+  contentBottomSpace: spacingTokens.padding$4,
 };
 
 export const sideSheetContentTokens = stylex.defineVars(vars);
