@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "types": ["cypress", "node", "cypress-real-events"]
+    "types": ["cypress", "node", "cypress-real-events"],
   },
-  "extends": "../tsconfig.json",
+  "extends": "../tsconfig.app.json",
   "include": ["**/*.ts", "**/*.tsx", "../cypress.config.ts"]
 }

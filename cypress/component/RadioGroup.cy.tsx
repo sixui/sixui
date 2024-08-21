@@ -5,16 +5,11 @@ import '~/styles/main.css';
 
 import { RadioGroup } from '~/components/RadioGroup';
 import { Radio } from '~/components/Radio';
+import { Stack } from '~/components/Stack';
 
 const styles = stylex.create({
   host: {
-    display: 'flex',
-    padding: '1rem',
-  },
-  radioGroup: {
-    display: 'flex',
-    flexDirection: 'row',
-    gap: '1rem',
+    padding: 32,
   },
 });
 
@@ -22,7 +17,7 @@ describe('Uncontrolled RadioGroup', () => {
   it('should be unchecked by default', () => {
     cy.mount(
       <ThemeProvider sx={styles.host}>
-        <RadioGroup sx={styles.radioGroup}>
+        <RadioGroup as={Stack} horizontal gap={6}>
           <Radio value='1' />
           <Radio value='2' />
           <Radio value='3' />
@@ -39,7 +34,7 @@ describe('Uncontrolled RadioGroup', () => {
   it('should have a default checked item', () => {
     cy.mount(
       <ThemeProvider sx={styles.host}>
-        <RadioGroup sx={styles.radioGroup} defaultValue='2'>
+        <RadioGroup as={Stack} horizontal gap={6} defaultValue='2'>
           <Radio value='1' />
           <Radio value='2' />
           <Radio value='3' />
@@ -56,7 +51,7 @@ describe('Uncontrolled RadioGroup', () => {
   it('should select one item', () => {
     cy.mount(
       <ThemeProvider sx={styles.host}>
-        <RadioGroup sx={styles.radioGroup}>
+        <RadioGroup as={Stack} horizontal gap={6}>
           <Radio value='1' />
           <Radio value='2' />
           <Radio value='3' />
@@ -78,7 +73,7 @@ describe('Uncontrolled RadioGroup', () => {
   it('should use keyboard navigation', () => {
     cy.mount(
       <ThemeProvider sx={styles.host}>
-        <RadioGroup sx={styles.radioGroup}>
+        <RadioGroup as={Stack} horizontal gap={6}>
           <Radio value='1' />
           <Radio value='2' />
           <Radio value='3' />
@@ -114,7 +109,7 @@ describe('Controlled RadioGroup', () => {
     const onChange = cy.stub().as('onChange');
     cy.mount(
       <ThemeProvider sx={styles.host}>
-        <RadioGroup sx={styles.radioGroup} onChange={onChange} value='2'>
+        <RadioGroup as={Stack} horizontal gap={6} onChange={onChange} value='2'>
           <Radio value='1' />
           <Radio value='2' />
           <Radio value='3' />
