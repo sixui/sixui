@@ -8,6 +8,7 @@ import { sideSheetContentTokens as tokens } from './SideSheetContent.stylex';
 export type ISideSheetContentStylesKey = keyof typeof sideSheetContentStyles;
 export const sideSheetContentStyles = stylex.create({
   host: {
+    flexShrink: 0,
     [paperBaseTokens.containerShape$topLeft]: tokens.containerShape$topStart,
     [paperBaseTokens.containerShape$topRight]: tokens.containerShape$topEnd,
     [paperBaseTokens.containerShape$bottomRight]:
