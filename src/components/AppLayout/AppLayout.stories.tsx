@@ -226,7 +226,7 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
           {...props}
         >
           <Stack>
-            <AppLayout.Header>
+            <AppLayout.Header divider>
               <HeaderContentDemo />
             </AppLayout.Header>
 
@@ -285,7 +285,7 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
               </AppLayout.SideSheet>
 
               <Stack align='stretch' grow>
-                <AppLayout.Header>
+                <AppLayout.Header divider>
                   <HeaderContentDemo />
                 </AppLayout.Header>
 

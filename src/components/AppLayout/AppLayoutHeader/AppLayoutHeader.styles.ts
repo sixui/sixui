@@ -15,11 +15,13 @@ export const appLayoutHeaderStyles = stylex.create({
 
     backgroundColor: colorSchemeTokens.surface,
     height: appLayoutTokens.headerHeight,
-    borderBottomWidth: outlineTokens.width$xs,
-    borderBottomStyle: 'solid',
-    borderBottomColor: colorSchemeTokens.outline,
     zIndex: zIndexTokens.app,
     paddingLeft: spacingTokens.padding$3,
     paddingRight: spacingTokens.padding$3,
+  },
+  host$divider: {
+    borderBottomWidth: outlineTokens.width$xs,
+    borderBottomColor: colorSchemeTokens.outline,
+    borderBottomStyle: 'solid',
   },
 });

@@ -10,7 +10,7 @@ export const AppLayoutHeader = forwardRef<
   HTMLDivElement,
   IAppLayoutHeaderProps
 >(function AppLayoutHeader(props, forwardedRef) {
-  const { styles, sx, children, ...other } = props;
+  const { styles, sx, children, divider, ...other } = props;
   const appLayoutContext = useAppLayoutContext();
 
   const { combineStyles, globalStyles } = useStyles({
@@ -30,7 +30,7 @@ export const AppLayoutHeader = forwardRef<
       horizontal
       justify='space-between'
       {...other}
-      sx={[globalStyles, combineStyles('host'), sx]}
+      sx={[globalStyles, combineStyles('host', divider && 'host$divider'), sx]}
       ref={forwardedRef}
     >
       {children}
