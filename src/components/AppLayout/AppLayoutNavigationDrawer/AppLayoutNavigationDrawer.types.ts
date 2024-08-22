@@ -1,5 +1,5 @@
-import type { ISideSheetContentProps } from '~/components/SideSheetContent';
+import type { INavigationDrawerContentProps } from '~/components/NavigationDrawerContent';
 
-export type IAppLayoutNavigationDrawerProps = ISideSheetContentProps & {
+export type IAppLayoutNavigationDrawerProps = INavigationDrawerContentProps & {
   detached?: boolean;
 };
