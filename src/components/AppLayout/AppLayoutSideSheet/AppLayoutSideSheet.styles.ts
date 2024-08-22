@@ -11,6 +11,7 @@ export const appLayoutSideSheetStyles = stylex.create({
     top: 0,
     height: '100vh',
     width: 0,
+    flexShrink: 0,
 
     transitionProperty: 'width',
     transitionDuration: motionTokens.duration$short3,
