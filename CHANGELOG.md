@@ -1,3 +1,15 @@
+# v0.0.445 (Thu Aug 22 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(AppLayoutHeader): supports divider ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.444 (Thu Aug 22 2024)
 
 #### ⚠️ Pushed to `main`
