@@ -5,6 +5,6 @@ import type { INavigationDrawerContentDestinationStylesKey } from './NavigationD
 
 export type INavigationDrawerContentDestinationProps =
   IBaseProps<INavigationDrawerContentDestinationStylesKey> &
-    IOmit<IListItemProps, 'styles'> & {
+    IOmit<IListItemProps, 'styles' | 'selected'> & {
       active?: boolean;
     };

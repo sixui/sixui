@@ -62,6 +62,7 @@ export * from './components/MultiSelect';
 export * from './components/MultiSelectBase';
 export * from './components/NavigationDrawerContent';
 export * from './components/NavigationRail';
+export * from './components/NavigationRailDestination';
 export * from './components/OptionCard';
 export * from './components/Paper';
 export * from './components/PaperBase';
