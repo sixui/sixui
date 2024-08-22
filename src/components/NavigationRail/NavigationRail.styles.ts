@@ -29,6 +29,9 @@ export const navigationRailStyles = stylex.create({
     borderRightColor: navigationRailTokens.dividerColor,
     borderRightStyle: 'solid',
   },
+  header: {
+    flexShrink: 0,
+  },
   group: {
     display: 'flex',
     flexDirection: 'column',
@@ -47,5 +50,8 @@ export const navigationRailStyles = stylex.create({
   },
   group$end: {
     justifyContent: 'end',
+  },
+  footer: {
+    flexShrink: 0,
   },
 });

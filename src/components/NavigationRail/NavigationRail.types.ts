@@ -3,8 +3,8 @@ import type { IBaseProps } from '~/components/Base';
 
 export type INavigationRailProps = IBaseProps<INavigationRailStylesKey> & {
   children?: React.ReactNode;
-  leading?: React.ReactNode;
-  trailing?: React.ReactNode;
+  header?: React.ReactNode;
+  footer?: React.ReactNode;
   groupAlignment?: 'start' | 'center' | 'end';
   divider?: boolean;
 };

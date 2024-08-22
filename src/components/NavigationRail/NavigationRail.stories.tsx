@@ -40,8 +40,8 @@ const styles = stylex.create({
 
 const defaultArgs = {
   sx: styles.host,
-  leading: <Placeholder label='Leading' corner='none' />,
-  trailing: <Placeholder label='Trailing' corner='none' />,
+  header: <Placeholder label='Leading' corner='none' />,
+  footer: <Placeholder label='Trailing' corner='none' />,
 } satisfies Partial<INavigationRailProps>;
 
 const NavigationRailDemo: React.FC<IOmit<INavigationRailProps, 'children'>> = (

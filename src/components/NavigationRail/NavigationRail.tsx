@@ -13,8 +13,8 @@ const NavigationRail = forwardRef<HTMLDivElement, INavigationRailProps>(
       styles,
       sx,
       children,
-      leading,
-      trailing,
+      header,
+      footer,
       groupAlignment = 'center',
       divider,
       ...other
@@ -36,9 +36,9 @@ const NavigationRail = forwardRef<HTMLDivElement, INavigationRailProps>(
         ]}
         ref={forwardedRef}
       >
-        {leading}
+        {header ? <div {...getStyles('header')}>{header}</div> : null}
         <div {...getStyles('group', `group$${groupAlignment}`)}>{children}</div>
-        {trailing}
+        {footer ? <div {...getStyles('footer')}>{footer}</div> : null}
       </PaperBase>
     );
   },
