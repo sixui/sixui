@@ -8,6 +8,7 @@ import {
   navigationDrawerContentDestinationItemStyles,
   navigationDrawerContentDestinationStyles,
 } from './NavigationDrawerContentDestination.styles';
+import { navigationDrawerContentDestinationTheme } from './NavigationDrawerContentDestination.stylex';
 
 export const NavigationDrawerContentDestination = forwardRef<
   HTMLButtonElement,
@@ -23,7 +24,12 @@ export const NavigationDrawerContentDestination = forwardRef<
   return (
     <ListItem
       {...other}
-      sx={[globalStyles, combineStyles('host'), sx]}
+      sx={[
+        navigationDrawerContentDestinationTheme,
+        globalStyles,
+        combineStyles('host'),
+        sx,
+      ]}
       ref={forwardedRef}
       selected={active}
       innerStyles={{
