@@ -163,7 +163,7 @@ type INavigationRailContentProps = {
   setCanonicalLayoutType: (type: ICanonicalLayoutType) => void;
 };
 
-const NavigationRailContent: React.FC<INavigationRailContentProps> = (
+const NavigationRailContentDemo: React.FC<INavigationRailContentProps> = (
   props,
 ) => {
   const { canonicalLayoutType, setCanonicalLayoutType } = props;
@@ -233,7 +233,7 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
             <Stack horizontal align='start'>
               <AppLayout.SideSheet>
                 <AppLayout.NavigationRail divider>
-                  <NavigationRailContent
+                  <NavigationRailContentDemo
                     canonicalLayoutType={canonicalLayoutType}
                     setCanonicalLayoutType={setCanonicalLayoutType}
                   />
@@ -269,7 +269,7 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
             <Stack horizontal align='start'>
               <AppLayout.SideSheet fullHeight>
                 <AppLayout.NavigationRail divider>
-                  <NavigationRailContent
+                  <NavigationRailContentDemo
                     canonicalLayoutType={canonicalLayoutType}
                     setCanonicalLayoutType={setCanonicalLayoutType}
                   />
