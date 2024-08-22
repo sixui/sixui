@@ -106,6 +106,7 @@ export * from './hooks/useId';
 export * from './hooks/useImageLoaded';
 export * from './hooks/usePrevious';
 export * from './hooks/useDisclosure';
+export * from './hooks/useCanonicalLayout';
 
 // helpers
 export * from './helpers/types';

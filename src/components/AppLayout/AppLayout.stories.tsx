@@ -20,6 +20,10 @@ import type { IAppLayoutProps } from './AppLayout.types';
 import { scaleTokens } from '~/themes/base/scale.stylex';
 import { outlineTokens } from '~/themes/base/outline.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import {
+  useCanonicalLayout,
+  type ICanonicalLayoutType,
+} from '~/hooks/useCanonicalLayout';
 import { Frame } from '../Frame';
 import { Text } from '../Text';
 import { Stack } from '../Stack';
@@ -29,10 +33,6 @@ import { NavigationRailDestination } from '../NavigationRailDestination';
 import { NavigationDrawerContent } from '../NavigationDrawerContent';
 import { useAppLayoutContext } from './AppLayout.context';
 import { AppLayout } from './AppLayout';
-import {
-  useCanonicalLayout,
-  type ICanonicalLayoutType,
-} from './useCanonicalLayout';
 
 const meta = {
   component: AppLayout,
@@ -223,9 +223,6 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
         <AppLayout
           preferredNavigationMode='standard'
           window={window}
-          navigationRail={{
-            fullHeight: false,
-          }}
           {...props}
         >
           <Stack>

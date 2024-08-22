@@ -17,9 +17,6 @@ export type IAppLayoutProps = IBaseProps<IAppLayoutStylesKey> & {
   children?:
     | ((props: IAppLayoutRenderProps) => React.ReactNode)
     | React.ReactNode;
-  navigationRail?: {
-    fullHeight?: boolean;
-  };
   navigationDrawer?: {
     defaultClosed?: boolean;
   };

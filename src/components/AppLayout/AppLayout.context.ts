@@ -19,7 +19,7 @@ export type IAppLayoutSideSheetState = {
 
 export type IAppLayoutContextValue = Pick<
   IAppLayoutProps,
-  'window' | 'navigationRail' | 'preferredNavigationMode'
+  'window' | 'preferredNavigationMode'
 > & {
   navigationDrawer?: IAppLayoutProps['navigationDrawer'] & {
     state?: IAppLayoutSideSheetState;

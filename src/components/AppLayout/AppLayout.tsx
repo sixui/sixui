@@ -54,7 +54,6 @@ const AppLayout = forwardRef<HTMLDivElement, IAppLayoutProps>(
       children,
       window: windowProp,
       navigationDrawer,
-      navigationRail,
       aside,
       preferredNavigationMode = 'standard',
       components,
@@ -116,7 +115,6 @@ const AppLayout = forwardRef<HTMLDivElement, IAppLayoutProps>(
               }
             : undefined,
         },
-        navigationRail,
         aside: {
           ...aside,
           state: hasAside
@@ -139,7 +137,6 @@ const AppLayout = forwardRef<HTMLDivElement, IAppLayoutProps>(
       return value;
     }, [
       rootElement,
-      navigationRail,
       components,
       navigationMode,
       preferredNavigationMode,
