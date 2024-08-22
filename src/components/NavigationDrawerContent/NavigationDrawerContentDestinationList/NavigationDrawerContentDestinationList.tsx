@@ -20,7 +20,12 @@ export const NavigationDrawerContentDestinationList = forwardRef<
   });
 
   return (
-    <Stack {...other} gap={4} sx={[globalStyles, sx]} ref={forwardedRef}>
+    <Stack
+      {...other}
+      gap={4}
+      sx={[globalStyles, combineStyles('host'), sx]}
+      ref={forwardedRef}
+    >
       {headline ? <div {...getStyles('headline')}>{headline}</div> : null}
       <div>
         <List

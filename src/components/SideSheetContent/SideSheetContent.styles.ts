@@ -67,13 +67,13 @@ export const sideSheetContentStyles = stylex.create({
     fontWeight: tokens.headlineWeight,
   },
   content: {
+    height: '100%',
     overflowY: 'auto',
     paddingTop: tokens.contentTopSpace,
     paddingBottom: tokens.contentBottomSpace,
   },
   innerContent: {
-    paddingLeft: spacingTokens.padding$7,
-    paddingRight: spacingTokens.padding$7,
+    height: '100%',
   },
   footer: {
     flexGrow: 0,

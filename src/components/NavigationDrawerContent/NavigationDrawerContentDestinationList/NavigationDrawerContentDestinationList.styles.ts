@@ -8,6 +8,10 @@ import { dividerTokens } from '~/components/Divider/Divider.stylex';
 export type INavigationDrawerContentDestinationListStylesKey =
   keyof typeof navigationDrawerContentDestinationListStyles;
 export const navigationDrawerContentDestinationListStyles = stylex.create({
+  host: {
+    paddingLeft: spacingTokens.padding$7,
+    paddingRight: spacingTokens.padding$7,
+  },
   list: {
     marginLeft: `calc(-1 * ${spacingTokens.padding$4})`,
     marginRight: `calc(-1 * ${spacingTokens.padding$4})`,
