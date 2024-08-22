@@ -67,6 +67,7 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
           middlewares={{
             flip: false,
             shift: false,
+            size: false,
           }}
           disabled={disabled}
           ref={forwardedRef}
