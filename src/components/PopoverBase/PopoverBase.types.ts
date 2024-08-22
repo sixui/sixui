@@ -160,6 +160,12 @@ export type IPopoverBaseProps<TForwardedProps extends object = object> = Pick<
     trapFocus?: boolean;
 
     /**
+     * If set, the popover will not automatically focus the first focusable
+     * element within the popover.
+     */
+    preventAutoFocus?: boolean;
+
+    /**
      * If set, the popover will match the width of the trigger element.
      */
     matchTargetWidth?: boolean;

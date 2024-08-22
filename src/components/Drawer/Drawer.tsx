@@ -54,6 +54,7 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
           floatingStrategy={false}
           placement={anchor}
           trapFocus
+          preventAutoFocus
           withScrim
           slotProps={{
             floatingFocusManager: {

@@ -38,6 +38,7 @@ import { FloatingTransition } from '../FloatingTransition';
 import { Scrim } from '../Scrim';
 import { Portal } from '../Portal';
 import { popoverBaseStyles } from './PopoverBase.styles';
+import { PreventAutoFocus } from './PreventAutoFocus';
 
 const defaultOpenEvents: IPopoverOpenEvents = {
   hover: false,
@@ -91,6 +92,7 @@ export const PopoverBase = fixedForwardRef(function PopoverBase<
     floatingStrategy = 'absolute',
     openEvents: openEventsProp,
     closeEvents: closeEventsProp,
+    preventAutoFocus,
     ...other
   } = props;
 
@@ -273,6 +275,7 @@ export const PopoverBase = fixedForwardRef(function PopoverBase<
                   }
                   {...slotProps?.floatingTransition}
                 >
+                  {preventAutoFocus ? <PreventAutoFocus /> : null}
                   {isFunction(contentRenderer) ? (
                     contentRenderer({
                       placement: floating.placement,
