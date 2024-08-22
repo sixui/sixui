@@ -136,6 +136,7 @@ const NavigationDrawerContentDemo: React.FC = () => (
         onClick={() => {}}
         active
         trailingSupportingText='24'
+        leadingIcon='xx'
       >
         XX
       </NavigationDrawerContent.Destination>

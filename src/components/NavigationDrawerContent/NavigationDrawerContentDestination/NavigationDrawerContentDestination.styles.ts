@@ -58,6 +58,7 @@ export const navigationDrawerContentDestinationStyles = stylex.create({
 
 export const navigationDrawerContentDestinationItemStyles = stylex.create({
   host: {
+    [itemTokens.gap]: spacingTokens.padding$3,
     [itemTokens.headlineTextFont]: tokens.labelTextFont,
     [itemTokens.headlineTextLineHeight]: tokens.labelTextLineHeight,
     [itemTokens.headlineTextSize]: tokens.labelTextSize,
