@@ -61,7 +61,7 @@ export const AppLayoutNavigationRail = forwardRef<
         >
           <NavigationRail
             {...other}
-            sx={[globalStyles, combineStyles('inner'), sx]}
+            sx={[globalStyles, combineStyles('navigationRail'), sx]}
           />
         </FloatingTransition>
       )}

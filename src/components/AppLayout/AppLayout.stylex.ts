@@ -1,5 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
 import { scaleTokens } from '~/themes/base/scale.stylex';
 
 const vars = {
@@ -19,6 +21,10 @@ const vars = {
 
   // footer
   footerHeight: `calc(64px * ${scaleTokens.scale})`,
+
+  // divider
+  dividerWidth: outlineTokens.width$xs,
+  dividerColor: colorSchemeTokens.outline,
 };
 
 export const appLayoutTokens = stylex.defineVars(vars);

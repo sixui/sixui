@@ -1,5 +1,6 @@
 import stylex from '@stylexjs/stylex';
 
+import { navigationRailTokens } from '~/components/NavigationRail/NavigationRail.stylex';
 import { appLayoutTokens } from '../AppLayout.stylex';
 
 export type IAppLayoutNavigationRailStylesKey =
@@ -11,7 +12,9 @@ export const appLayoutNavigationRailStyles = stylex.create({
     height: '100%',
     width: appLayoutTokens.navigationRailWidth,
   },
-  inner: {
+  navigationRail: {
     height: '100%',
+    [navigationRailTokens.dividerColor]: appLayoutTokens.dividerColor,
+    [navigationRailTokens.dividerWidth]: appLayoutTokens.dividerWidth,
   },
 });

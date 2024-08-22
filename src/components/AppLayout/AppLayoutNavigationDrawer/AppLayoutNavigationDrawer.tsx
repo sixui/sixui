@@ -13,6 +13,7 @@ import {
 import { Drawer } from '~/components/Drawer';
 import { useAppLayoutContext } from '../AppLayout.context';
 import {
+  appLayoutNavigationDrawerSideSheetContentStyles,
   appLayoutNavigationDrawerStyles,
   type IAppLayoutNavigationDrawerStylesKey,
 } from './AppLayoutNavigationDrawer.styles';
@@ -55,9 +56,17 @@ export const AppLayoutNavigationDrawer = forwardRef<
   ): JSX.Element => (
     <NavigationDrawerContent
       anchor={anchor}
+      innerStyles={{
+        sideSheetContent: appLayoutNavigationDrawerSideSheetContentStyles,
+      }}
       {...other}
       {...props}
-      sx={[globalStyles, combineStyles('inner'), props?.sx, sx]}
+      sx={[
+        globalStyles,
+        combineStyles('navigationDrawerContent'),
+        props?.sx,
+        sx,
+      ]}
     />
   );
 

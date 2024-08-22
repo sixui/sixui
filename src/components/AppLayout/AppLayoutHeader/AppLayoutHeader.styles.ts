@@ -1,7 +1,5 @@
 import stylex from '@stylexjs/stylex';
 
-import { outlineTokens } from '~/themes/base/outline.stylex';
-import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { zIndexTokens } from '~/themes/base/zIndex.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { appLayoutTokens } from '../AppLayout.stylex';
@@ -19,8 +17,8 @@ export const appLayoutHeaderStyles = stylex.create({
     paddingRight: spacingTokens.padding$3,
   },
   host$divider: {
-    borderBottomWidth: outlineTokens.width$xs,
-    borderBottomColor: colorSchemeTokens.outline,
+    borderBottomWidth: appLayoutTokens.dividerWidth,
+    borderBottomColor: appLayoutTokens.dividerColor,
     borderBottomStyle: 'solid',
   },
 });

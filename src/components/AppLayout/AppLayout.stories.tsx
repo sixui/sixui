@@ -248,7 +248,7 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
             </Stack>
           </Stack>
 
-          <AppLayout.Footer>
+          <AppLayout.Footer divider>
             <FooterContent />
           </AppLayout.Footer>
         </AppLayout>
@@ -298,7 +298,7 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
             </Stack>
           </Stack>
 
-          <AppLayout.Footer>
+          <AppLayout.Footer divider>
             <FooterContent />
           </AppLayout.Footer>
         </AppLayout>

@@ -9,7 +9,7 @@ export const AppLayoutFooter = forwardRef<
   HTMLDivElement,
   IAppLayoutFooterProps
 >(function AppLayoutFooter(props, forwardedRef) {
-  const { styles, sx, children, ...other } = props;
+  const { styles, sx, children, divider, ...other } = props;
 
   const { combineStyles, globalStyles } = useStyles({
     name: 'AppLayoutFooter',
@@ -20,7 +20,7 @@ export const AppLayoutFooter = forwardRef<
     <Base
       as='footer'
       {...other}
-      sx={[globalStyles, combineStyles('host'), sx]}
+      sx={[globalStyles, combineStyles('host', divider && 'host$divider'), sx]}
       ref={forwardedRef}
     >
       {children}
