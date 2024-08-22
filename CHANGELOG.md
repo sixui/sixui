@@ -1,3 +1,15 @@
+# v0.0.462 (Thu Aug 22 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(PopoverBase): preventAutoFocus prop ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.461 (Thu Aug 22 2024)
 
 #### ⚠️ Pushed to `main`
