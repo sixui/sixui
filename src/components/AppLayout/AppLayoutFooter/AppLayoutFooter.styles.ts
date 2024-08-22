@@ -9,7 +9,6 @@ import { spacingTokens } from '~/themes/base/spacing.stylex';
 export type IAppLayoutFooterStylesKey = keyof typeof appLayoutFooterStyles;
 export const appLayoutFooterStyles = stylex.create({
   host: {
-    backgroundColor: colorSchemeTokens.surface,
     height: appLayoutTokens.footerHeight,
     borderTopWidth: outlineTokens.width$xs,
     borderTopStyle: 'solid',

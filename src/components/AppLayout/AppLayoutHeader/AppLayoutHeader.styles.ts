@@ -13,7 +13,6 @@ export const appLayoutHeaderStyles = stylex.create({
     top: 0,
     insetInline: 0,
 
-    backgroundColor: colorSchemeTokens.surface,
     height: appLayoutTokens.headerHeight,
     zIndex: zIndexTokens.app,
     paddingLeft: spacingTokens.padding$3,
