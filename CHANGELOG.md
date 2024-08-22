@@ -1,3 +1,15 @@
+# v0.0.442 (Thu Aug 22 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: exports useCanonicalLayout() hook ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.441 (Thu Aug 22 2024)
 
 #### ⚠️ Pushed to `main`
