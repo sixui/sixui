@@ -1,3 +1,15 @@
+# v0.0.452 (Thu Aug 22 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(SideSheetContent): supports header and footer ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.451 (Thu Aug 22 2024)
 
 #### ⚠️ Pushed to `main`
