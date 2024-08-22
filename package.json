@@ -1,7 +1,7 @@
 {
   "name": "@sixui/ui",
   "description": "Ready-to-use foundational React components with near zero-runtime style injection.",
-  "version": "0.0.457",
+  "version": "0.0.458",
   "author": "Olivier Pascal <olivier@pascal.re>",
   "main": "./dist/index.js",
   "sideEffects": false,
