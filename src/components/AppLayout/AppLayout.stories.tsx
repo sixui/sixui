@@ -47,7 +47,7 @@ const defaultArgs = {
 const styles = stylex.create({
   frame: {
     width: '100%',
-    height: `calc(400px * ${scaleTokens.scale})`,
+    height: `calc(600px * ${scaleTokens.scale})`,
     borderWidth: outlineTokens.width$xs,
     borderColor: colorSchemeTokens.outlineVariant,
     borderStyle: 'dashed',
