@@ -35,6 +35,12 @@ export const sideSheetContentStyles = stylex.create({
     flexDirection: 'column',
     height: '100%',
   },
+  headerContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    flexGrow: 0,
+    flexShrink: 0,
+  },
   header: {
     height: tokens.headerHeight,
     flexGrow: 0,
@@ -71,6 +77,12 @@ export const sideSheetContentStyles = stylex.create({
     overflowY: 'auto',
     paddingTop: tokens.contentTopSpace,
     paddingBottom: tokens.contentBottomSpace,
+  },
+  footerContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    flexGrow: 0,
+    flexShrink: 0,
   },
   footer: {
     flexGrow: 0,

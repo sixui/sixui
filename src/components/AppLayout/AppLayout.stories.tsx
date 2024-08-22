@@ -279,6 +279,8 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
                   divider
                   headline='App Name'
                   showCloseButton
+                  header={<Placeholder label='Header' corner='none' />}
+                  footer={<Placeholder label='Footer' corner='none' />}
                 >
                   <NavigationDrawerContentDemo />
                 </AppLayout.NavigationDrawer>

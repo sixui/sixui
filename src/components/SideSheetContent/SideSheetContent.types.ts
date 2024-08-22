@@ -18,6 +18,8 @@ export type ISideSheetContentProps = IBaseProps<ISideSheetContentStylesKey> & {
   trailingActions?: React.ReactNode;
   showCloseButton?: boolean;
   closeIcon?: React.ReactNode;
+  header?: React.ReactNode;
+  footer?: React.ReactNode;
   bottomActions?:
     | React.ReactNode
     | ((props: ISideSheetContentRenderProps) => React.ReactNode);

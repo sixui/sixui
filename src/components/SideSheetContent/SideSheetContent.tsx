@@ -29,6 +29,8 @@ export const SideSheetContent = forwardRef<
     closeIcon,
     bottomActions,
     divider,
+    header,
+    footer,
     ...other
   } = props;
 
@@ -39,7 +41,11 @@ export const SideSheetContent = forwardRef<
   });
 
   const hasHeader =
-    !!leadingActions || !!trailingActions || !!headline || showCloseButton;
+    !!header ||
+    !!leadingActions ||
+    !!trailingActions ||
+    !!headline ||
+    showCloseButton;
 
   return (
     <PaperBase
@@ -58,25 +64,31 @@ export const SideSheetContent = forwardRef<
     >
       <div {...getStyles('inner')}>
         {hasHeader ? (
-          <div
-            {...getStyles(
-              'header',
-              !!leadingActions && 'header$withLeadingActions',
-            )}
-          >
-            {leadingActions ? (
-              <div {...getStyles('actions')}>{leadingActions}</div>
-            ) : null}
-            {headline ? <div {...getStyles('headline')}>{headline}</div> : null}
-            {trailingActions || showCloseButton ? (
-              <div {...getStyles('actions')}>
-                {trailingActions}
-                <IconButton
-                  icon={closeIcon ?? <SvgIcon icon={iconXMark} />}
-                  onClick={onClose}
-                />
-              </div>
-            ) : null}
+          <div {...getStyles('headerContainer')}>
+            <div
+              {...getStyles(
+                'header',
+                !!leadingActions && 'header$withLeadingActions',
+              )}
+            >
+              {leadingActions ? (
+                <div {...getStyles('actions')}>{leadingActions}</div>
+              ) : null}
+              {headline ? (
+                <div {...getStyles('headline')}>{headline}</div>
+              ) : null}
+              {trailingActions || showCloseButton ? (
+                <div {...getStyles('actions')}>
+                  {trailingActions}
+                  <IconButton
+                    icon={closeIcon ?? <SvgIcon icon={iconXMark} />}
+                    onClick={onClose}
+                  />
+                </div>
+              ) : null}
+            </div>
+
+            {header}
           </div>
         ) : null}
 
@@ -88,13 +100,19 @@ export const SideSheetContent = forwardRef<
           </div>
         ) : null}
 
-        {bottomActions ? (
-          <div {...getStyles('footer')}>
-            <div {...getStyles('actions')}>
-              {isFunction(bottomActions)
-                ? bottomActions({ close: (event) => onClose?.(event) })
-                : bottomActions}
+        {(footer ?? bottomActions) ? (
+          <div {...getStyles('footerContainer')}>
+            <div {...getStyles('footer')}>
+              {bottomActions ? (
+                <div {...getStyles('actions')}>
+                  {isFunction(bottomActions)
+                    ? bottomActions({ close: (event) => onClose?.(event) })
+                    : bottomActions}
+                </div>
+              ) : null}
             </div>
+
+            {footer}
           </div>
         ) : null}
       </div>
