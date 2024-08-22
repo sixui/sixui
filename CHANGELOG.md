@@ -1,3 +1,15 @@
+# v0.0.441 (Thu Aug 22 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: temporarily remove container queries for responsive design ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.440 (Wed Aug 21 2024)
 
 #### ⚠️ Pushed to `main`
