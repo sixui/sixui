@@ -1,3 +1,15 @@
+# v0.0.447 (Thu Aug 22 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat(AppLayout): no background color ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.446 (Thu Aug 22 2024)
 
 #### ⚠️ Pushed to `main`
