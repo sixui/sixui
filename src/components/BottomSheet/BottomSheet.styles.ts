@@ -16,7 +16,9 @@ export const bottomSheetStyles = stylex.create({
     marginInline: 'auto',
     width: {
       default: `min(100%, 100% - ${bottomSheetTokens.containerSideMargin} * 2)`,
-      '@container compact (min-width: 0)': '100%',
+      // '@container compact (min-width: 0)': '100%',
+      // TODO: use better media queries
+      '@media (min-width: 0) and (max-width: 599)': '100%',
     },
     maxHeight: bottomSheetTokens.containerInitialMaxHeight,
     transitionProperty: 'width',

@@ -10,7 +10,7 @@ import {
   IThemeSetterContextValue,
   ThemeSetterContext,
 } from './ThemeSetter.context';
-import { ResponsiveStyles } from './ResponsiveStyles';
+// import { ResponsiveStyles } from './ResponsiveStyles';
 
 export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
   const {
@@ -65,7 +65,7 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
           ])}
         >
           <div id='sixui-root'>
-            <ResponsiveStyles />
+            {/* <ResponsiveStyles /> */}
             {children}
           </div>
         </div>
