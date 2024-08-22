@@ -27,7 +27,6 @@ export const listStyles = stylex.create({
     paddingTop: tokens.topSpace,
     paddingBottom: tokens.bottomSpace,
     borderRadius: 'inherit',
-    overflowY: 'auto',
     gap: tokens.gap,
   },
   content$empty: {
