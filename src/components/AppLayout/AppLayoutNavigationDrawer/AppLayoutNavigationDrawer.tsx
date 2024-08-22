@@ -78,6 +78,7 @@ export const AppLayoutNavigationDrawer = forwardRef<
         onClose={appLayoutContext.navigationDrawer?.state?.close}
         anchor={anchor}
         detached={detached}
+        sx={combineStyles('host')}
       >
         {({ close }) =>
           renderContent({
@@ -102,7 +103,7 @@ export const AppLayoutNavigationDrawer = forwardRef<
             placement={anchor}
             origin='edge'
             pattern='enterExitOffScreen'
-            sx={combineStyles('host')}
+            sx={combineStyles('transitionContainer')}
             ref={transitionNodeHandleRef}
           >
             {renderContent({

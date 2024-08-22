@@ -120,8 +120,8 @@ export const listItemStyles = stylex.create({
   icon: {},
   icon$leading: {
     fontSize: listItemTokens.leadingIconSize,
-    height: listItemTokens.leadingIconSize,
-    width: listItemTokens.leadingIconSize,
+    inlineSize: listItemTokens.leadingIconSize,
+    blockSize: listItemTokens.leadingIconSize,
     textAlign: 'center',
 
     color: {
