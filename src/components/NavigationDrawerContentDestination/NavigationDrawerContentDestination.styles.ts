@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
 import { spacingTokens } from '~/themes/base/spacing.stylex';
-import { listItemTokens } from '../../ListItem/ListItem.stylex';
-import { itemTokens } from '../../Item/Item.stylex';
+import { listItemTokens } from '../ListItem/ListItem.stylex';
+import { itemTokens } from '../Item/Item.stylex';
 import { navigationDrawerContentDestinationTokens as tokens } from './NavigationDrawerContentDestination.stylex';
 
 export type INavigationDrawerContentDestinationStylesKey =

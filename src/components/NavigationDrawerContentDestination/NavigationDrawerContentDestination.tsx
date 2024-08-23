@@ -3,7 +3,7 @@ import { asArray } from '@olivierpascal/helpers';
 
 import type { INavigationDrawerContentDestinationProps } from './NavigationDrawerContentDestination.types';
 import { useStyles } from '~/hooks/useStyles';
-import { ListItem } from '../../ListItem';
+import { ListItem } from '../ListItem';
 import {
   navigationDrawerContentDestinationItemStyles,
   navigationDrawerContentDestinationStyles,

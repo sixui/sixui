@@ -18,6 +18,7 @@ export const breadcrumbsStyles = stylex.create({
     fontSize: breadcrumbsTokens.separatorSize,
   },
   icon: {
+    textAlign: 'center',
     fontSize: breadcrumbsTokens.expandButtonIconSize,
     inlineSize: breadcrumbsTokens.expandButtonIconSize,
     blockSize: breadcrumbsTokens.expandButtonIconSize,

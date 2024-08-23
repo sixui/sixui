@@ -16,5 +16,6 @@ export const appLayoutNavigationRailStyles = stylex.create({
     height: '100%',
     [navigationRailTokens.dividerColor]: appLayoutTokens.dividerColor,
     [navigationRailTokens.dividerWidth]: appLayoutTokens.dividerWidth,
+    [navigationRailTokens.containerWidth]: appLayoutTokens.navigationRailWidth,
   },
 });

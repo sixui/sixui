@@ -66,6 +66,7 @@ export const navigationRailDestinationStyles = stylex.create({
   },
   icon: {
     position: 'relative',
+    textAlign: 'center',
     fontSize: navigationRailDestinationTokens.iconSize,
     inlineSize: navigationRailDestinationTokens.iconSize,
     blockSize: navigationRailDestinationTokens.iconSize,
