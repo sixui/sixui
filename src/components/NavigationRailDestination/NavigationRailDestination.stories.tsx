@@ -53,7 +53,7 @@ const states: Array<IComponentPresentation<INavigationRailDestinationProps>> = [
     legend: 'Pressed',
     props: { label: 'Pressed', visualState: { pressed: true } },
   },
-  { legend: 'Disabled', props: { children: 'Disabled', disabled: true } },
+  { legend: 'Disabled', props: { label: 'Disabled', disabled: true } },
 ];
 
 const NavigationRailDestinationDemo: React.FC<

@@ -1,4 +1,3 @@
-import stylex from '@stylexjs/stylex';
 import { useImperativeHandle, useMemo, useRef, forwardRef } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
@@ -76,7 +75,6 @@ export const RadioGroup = createPolymorphicComponent<'div', IRadioGroupProps>(
             role='radiogroup'
             data-cy='radioGroup'
             {...other}
-            {...stylex.props(sx)}
             ref={handleRef}
           >
             {children}
