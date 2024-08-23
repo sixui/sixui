@@ -1,3 +1,15 @@
+# v0.0.465 (Fri Aug 23 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix(RadioGroup): properly passing sx ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.464 (Fri Aug 23 2024)
 
 #### ⚠️ Pushed to `main`
