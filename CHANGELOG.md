@@ -1,3 +1,15 @@
+# v0.0.464 (Fri Aug 23 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: flatten NavigationDrawerContent sub components in tree ([@olivierpascal](https://github.com/olivierpascal))
+
+#### Authors: 1
+
+- Olivier Pascal ([@olivierpascal](https://github.com/olivierpascal))
+
+---
+
 # v0.0.463 (Fri Aug 23 2024)
 
 #### ⚠️ Pushed to `main`
