@@ -1,37 +1,93 @@
+import type { DOMAttributes } from '@react-types/shared';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { PressEvent, usePress } from 'react-aria';
 
-import type { IVisualState } from '../VisualState';
 import type { IPoint } from '~/helpers/types';
-import { EASING } from '~/helpers/animation';
 
-// https://github.com/material-components/material-web/blob/main/ripple/internal/ripple.ts
+export type IUSeRippleOptions = {
+  /**
+   * The delay in milliseconds after the touch start, to determine if the touch
+   * is a real press, or a swipe/scroll. If the touch is a press, the ripple
+   * will be shown. If the touch is a swipe or a scroll, the ripple will not be
+   * shown.
+   */
+  touchDelayMs?: number;
+
+  /**
+   * The duration in milliseconds for the ripple to grow to its full size.
+   */
+  pressGrowMs?: number;
+
+  /**
+   * The minimum duration in milliseconds for the ripple to be shown. If the
+   * press animation is less than this duration, the ripple will be shown for
+   * the remaining time.
+   */
+  minimumPressMs?: number;
+
+  /**
+   * The initial scale of the ripple. The ripple will grow from this scale to
+   * encompass the entire control.
+   */
+  initialOriginScale?: number;
+
+  /**
+   * The padding around the control to ensure the ripple is fully visible.
+   */
+  padding?: number;
+
+  /**
+   * The minimum size of the soft edge of the ripple. The soft edge is the
+   * transparent area around the ripple that fades out.
+   */
+  softEdgeMinimumSize?: number;
+
+  /**
+   * The ratio of the soft edge to the control size. The soft edge will be at
+   * least this size.
+   */
+  softEdgeContainerRatio?: number;
+
+  /**
+   * The pseudo element to apply the ripple to.
+   */
+  pressPseudo?: string;
+
+  /**
+   * The fill mode for the ripple animation.
+   */
+  animationFill?: FillMode;
+
+  /**
+   * The easing function for the ripple animation.
+   */
+  easing?: string;
+};
+
+const defaultOptions = {
+  touchDelayMs: 150,
+  pressGrowMs: 450,
+  minimumPressMs: 225,
+  initialOriginScale: 0.2,
+  padding: 10,
+  softEdgeMinimumSize: 75,
+  softEdgeContainerRatio: 0.35,
+  pressPseudo: '::after',
+  animationFill: 'forwards' as FillMode,
+  easing: 'cubic-bezier(0.2, 0, 0, 1)',
+};
 
 export type IUseRippleProps = {
-  for?: React.RefObject<HTMLElement>;
-  visualState?: IVisualState;
+  ref: React.RefObject<HTMLElement>;
   disabled?: boolean;
+  options?: IUSeRippleOptions;
 };
 
 export type IUseRippleResult = {
-  setHostRef: (host: HTMLDivElement | null) => void;
   surfaceRef: React.RefObject<HTMLDivElement>;
-  pressed: boolean;
+  pressProps: DOMAttributes;
+  animating: boolean;
 };
-
-const PRESS_GROW_MS = 450;
-const MINIMUM_PRESS_MS = 225;
-const INITIAL_ORIGIN_SCALE = 0.2;
-const PADDING = 10;
-const SOFT_EDGE_MINIMUM_SIZE = 75;
-const SOFT_EDGE_CONTAINER_RATIO = 0.35;
-const PRESS_PSEUDO = '::after';
-const ANIMATION_FILL = 'forwards';
-
-/**
- * Delay reacting to touch so that we do not show the ripple for a swipe or
- * scroll interaction.
- */
-const TOUCH_DELAY_MS = 150;
 
 /**
  * Interaction states for the ripple.
@@ -81,149 +137,83 @@ enum IState {
   WaitingForClick,
 }
 
-const isTouch = ({ pointerType }: PointerEvent): boolean =>
+const isTouch = ({ pointerType }: PressEvent | PointerEvent): boolean =>
   pointerType === 'touch';
 
 // Used to handle overlapping surfaces.
 let activeTarget: EventTarget | null = null;
 
-export const useRipple = ({
-  visualState,
-  for: forElementRef,
-  disabled,
-}: IUseRippleProps): IUseRippleResult => {
-  const [pressed, setPressed] = useState(false);
-  const [hostRef, setHostRef] = useState<HTMLDivElement | null>();
+export const useRipple = (props: IUseRippleProps): IUseRippleResult => {
+  const { ref, options: optionsProp, disabled } = props;
+  const options = { ...defaultOptions, ...optionsProp };
 
-  const rippleStartEventRef = useRef<PointerEvent>();
+  const [animating, setAnimating] = useState(false);
   const stateRef = useRef<IState>(IState.Inactive);
   const initialSizeRef = useRef(0);
   const rippleScaleRef = useRef(1);
   const rippleSizeRef = useRef(0);
   const surfaceRef = useRef<HTMLDivElement>(null);
-  const checkBoundsAfterContextMenuRef = useRef(false);
   const growAnimationRef = useRef<Animation>();
 
-  const getControl = useCallback(
-    () => forElementRef?.current ?? hostRef?.parentElement,
-    [forElementRef, hostRef],
-  );
-
-  const inBounds = useCallback(
-    (event: PointerEvent): boolean => {
-      if (!hostRef) {
-        return false;
-      }
-
-      const { top, left, bottom, right } = hostRef.getBoundingClientRect();
-      const x = event.clientX - left;
-      const y = event.clientY - top;
-
-      return x >= left && x <= right && y >= top && y <= bottom;
+  const { pressProps, isPressed: pressed } = usePress({
+    onPressStart: (e) => {
+      handlePointerDown(e);
     },
-    [hostRef],
-  );
-
-  /**
-   * Returns `true` if
-   *  - the ripple element is enabled
-   *  - the pointer is primary for the input type
-   *  - the pointer is the pointer that started the interaction, or will start
-   * the interaction
-   *  - the pointer is a touch, or the pointer state has the primary button
-   * held, or the pointer is hovering
-   */
-  const shouldReactToEvent = useCallback(
-    (event: PointerEvent) => {
-      if (visualState?.dragged || disabled || !event.isPrimary) {
-        return false;
-      }
-
-      if (
-        rippleStartEventRef.current &&
-        rippleStartEventRef.current.pointerId !== event.pointerId
-      ) {
-        return false;
-      }
-
-      if (event.type === 'pointerenter' || event.type === 'pointerleave') {
-        return !isTouch(event);
-      }
-
-      const isPrimaryButton = event.buttons === 1;
-      if (!isTouch(event) && !isPrimaryButton) {
-        return false;
-      }
-
-      return true;
+    onPressEnd: (e) => {
+      handlePointerUp(e);
     },
-    [visualState?.dragged, disabled],
-  );
+    onPress: (e) => handlePress(e),
+    ref,
+  });
 
   const determineRippleSize = useCallback(() => {
-    if (!hostRef) {
+    if (!ref.current) {
       return;
     }
 
-    const { height, width } = hostRef.getBoundingClientRect();
+    const { height, width } = ref.current.getBoundingClientRect();
     const maxDim = Math.max(height, width);
     const softEdgeSize = Math.max(
-      SOFT_EDGE_CONTAINER_RATIO * maxDim,
-      SOFT_EDGE_MINIMUM_SIZE,
+      options.softEdgeContainerRatio * maxDim,
+      options.softEdgeMinimumSize,
     );
 
-    const initialSize = Math.floor(maxDim * INITIAL_ORIGIN_SCALE);
+    const initialSize = Math.floor(maxDim * options.initialOriginScale);
     const hypotenuse = Math.sqrt(width ** 2 + height ** 2);
-    const maxRadius = hypotenuse + PADDING;
+    const maxRadius = hypotenuse + options.padding;
 
     initialSizeRef.current = initialSize;
     rippleScaleRef.current = (maxRadius + softEdgeSize) / initialSize;
     rippleSizeRef.current = initialSize;
-  }, [hostRef]);
-
-  const getNormalizedPointerEventCoords = useCallback(
-    (pointerEvent: PointerEvent): IPoint | null => {
-      if (!hostRef) {
-        return null;
-      }
-
-      const { scrollX, scrollY } = window;
-      const { left, top } = hostRef.getBoundingClientRect();
-      const documentX = scrollX + left;
-      const documentY = scrollY + top;
-      const { pageX, pageY } = pointerEvent;
-
-      return {
-        x: pageX - documentX,
-        y: pageY - documentY,
-      };
-    },
-    [hostRef],
-  );
+  }, [
+    ref,
+    options.padding,
+    options.softEdgeContainerRatio,
+    options.softEdgeMinimumSize,
+    options.initialOriginScale,
+  ]);
 
   const getTranslationCoordinates = useCallback(
     (
-      positionEvent?: PointerEvent | MouseEvent,
+      event: PressEvent,
     ): {
       startPoint: IPoint;
       endPoint: IPoint;
     } | null => {
-      if (!hostRef) {
+      if (!ref.current) {
         return null;
       }
 
-      const { width, height } = hostRef.getBoundingClientRect();
-      //Eend in the center
+      const { width, height } = ref.current.getBoundingClientRect();
+      // End in the center
       const endPoint = {
         x: (width - initialSizeRef.current) / 2,
         y: (height - initialSizeRef.current) / 2,
       };
 
-      const startPoint = (positionEvent
-        ? getNormalizedPointerEventCoords(positionEvent as PointerEvent)
-        : undefined) ?? {
-        x: width / 2,
-        y: height / 2,
+      const startPoint = {
+        x: event.x,
+        y: event.y,
       };
 
       // Center around start point
@@ -234,22 +224,19 @@ export const useRipple = ({
 
       return { startPoint: centeredStartPoint, endPoint };
     },
-    [hostRef, getNormalizedPointerEventCoords],
+    [ref],
   );
 
   const startPressAnimation = useCallback(
-    (
-      _: PointerEvent | MouseEvent,
-      positionEvent?: PointerEvent | MouseEvent,
-    ): void => {
+    (event: PressEvent): void => {
       if (!surfaceRef.current) {
         return;
       }
 
-      setPressed(true);
+      setAnimating(true);
       growAnimationRef.current?.cancel();
       determineRippleSize();
-      const translationCoordinates = getTranslationCoordinates(positionEvent);
+      const translationCoordinates = getTranslationCoordinates(event);
       if (!translationCoordinates) {
         return;
       }
@@ -271,14 +258,21 @@ export const useRipple = ({
           ],
         },
         {
-          pseudoElement: PRESS_PSEUDO,
-          duration: PRESS_GROW_MS,
-          easing: EASING.STANDARD,
-          fill: ANIMATION_FILL,
+          pseudoElement: options.pressPseudo,
+          duration: options.pressGrowMs,
+          easing: options.easing,
+          fill: options.animationFill,
         },
       );
     },
-    [getTranslationCoordinates, determineRippleSize],
+    [
+      getTranslationCoordinates,
+      determineRippleSize,
+      options.animationFill,
+      options.easing,
+      options.pressGrowMs,
+      options.pressPseudo,
+    ],
   );
 
   const endPressAnimation = useCallback(async () => {
@@ -293,14 +287,14 @@ export const useRipple = ({
           ? animation.currentTime.to('ms').value
           : Infinity;
 
-    if (pressAnimationPlayState >= MINIMUM_PRESS_MS) {
-      setPressed(false);
+    if (pressAnimationPlayState >= options.minimumPressMs) {
+      setAnimating(false);
 
       return;
     }
 
     await new Promise((resolve) => {
-      setTimeout(resolve, MINIMUM_PRESS_MS - pressAnimationPlayState);
+      setTimeout(resolve, options.minimumPressMs - pressAnimationPlayState);
     });
 
     if (growAnimationRef.current !== animation) {
@@ -309,12 +303,12 @@ export const useRipple = ({
       return;
     }
 
-    setPressed(false);
-  }, []);
+    setAnimating(false);
+  }, [options.minimumPressMs]);
 
   const handlePointerLeave = useCallback(
     (event: PointerEvent) => {
-      if (!shouldReactToEvent(event)) {
+      if (disabled || isTouch(event)) {
         return;
       }
 
@@ -323,57 +317,43 @@ export const useRipple = ({
         void endPressAnimation();
       }
     },
-    [shouldReactToEvent, endPressAnimation],
+    [disabled, endPressAnimation],
   );
 
   const handlePointerDown = useCallback(
-    (event: PointerEvent): void => {
-      if (
-        !!activeTarget ||
-        visualState?.pressed ||
-        !shouldReactToEvent(event)
-      ) {
+    (event: PressEvent): void => {
+      if (!!activeTarget || pressed || disabled) {
         return;
       }
 
       activeTarget = event.target;
 
-      rippleStartEventRef.current = event;
       if (!isTouch(event)) {
         stateRef.current = IState.WaitingForClick;
-        startPressAnimation(event, event);
+        startPressAnimation(event);
 
         return;
       }
 
-      // After a longpress contextmenu event, an extra `pointerdown` can be
-      // dispatched to the pressed element. Check that the down is within
-      // bounds of the element in this case.
-      if (checkBoundsAfterContextMenuRef.current && !inBounds(event)) {
-        return;
-      }
-
-      checkBoundsAfterContextMenuRef.current = false;
-
-      // Wait for a hold after touch delay
+      // Wait for a hold after touch delay.
       stateRef.current = IState.TouchDelay;
       void new Promise((resolve) => {
-        setTimeout(resolve, TOUCH_DELAY_MS);
+        setTimeout(resolve, options.touchDelayMs);
       }).then(() => {
         if (stateRef.current !== IState.TouchDelay) {
           return;
         }
 
         stateRef.current = IState.Holding;
-        startPressAnimation(event, event);
+        startPressAnimation(event);
       });
     },
-    [visualState?.pressed, shouldReactToEvent, startPressAnimation, inBounds],
+    [disabled, pressed, startPressAnimation, options.touchDelayMs],
   );
 
   const handlePointerUp = useCallback(
-    (event: PointerEvent) => {
-      if (!shouldReactToEvent(event)) {
+    (event: PressEvent) => {
+      if (disabled) {
         return;
       }
 
@@ -385,95 +365,56 @@ export const useRipple = ({
 
       if (stateRef.current === IState.TouchDelay) {
         stateRef.current = IState.WaitingForClick;
-        startPressAnimation(event, rippleStartEventRef.current);
-
-        return;
-      }
-    },
-    [shouldReactToEvent, startPressAnimation],
-  );
-
-  const handlePointerCancel = useCallback(
-    (event: PointerEvent): void => {
-      if (!shouldReactToEvent(event)) {
-        return;
-      }
-
-      void endPressAnimation();
-    },
-    [shouldReactToEvent, endPressAnimation],
-  );
-
-  const handleClick = useCallback(
-    (event: MouseEvent) => {
-      // Click is a MouseEvent in Firefox and Safari, so we cannot use
-      // `shouldReactToEvent`.
-      if (visualState?.pressed || visualState?.dragged || disabled) {
-        return;
-      }
-
-      if (stateRef.current === IState.WaitingForClick) {
-        void endPressAnimation();
-
-        return;
-      }
-
-      if (!!activeTarget && stateRef.current === IState.Inactive) {
-        activeTarget = event.target;
-
-        // Keyboard synthesized click event
         startPressAnimation(event);
-        void endPressAnimation();
+
+        return;
       }
     },
-    [
-      visualState?.pressed,
-      visualState?.dragged,
-      disabled,
-      startPressAnimation,
-      endPressAnimation,
-    ],
+    [disabled, startPressAnimation],
   );
+
+  const handlePointerCancel = useCallback((): void => {
+    if (disabled) {
+      return;
+    }
+
+    void endPressAnimation();
+  }, [disabled, endPressAnimation]);
 
   const handleContextMenu = useCallback(() => {
     if (disabled) {
       return;
     }
 
-    checkBoundsAfterContextMenuRef.current = true;
     void endPressAnimation();
   }, [disabled, endPressAnimation]);
 
+  const handlePress = useCallback(() => {
+    if (disabled) {
+      return;
+    }
+
+    if (stateRef.current === IState.WaitingForClick) {
+      void endPressAnimation();
+    }
+  }, [disabled, endPressAnimation]);
+
   useEffect(() => {
-    const control = getControl();
+    const control = ref.current;
     if (!control) {
       return;
     }
 
     control.addEventListener('pointerleave', handlePointerLeave);
-    control.addEventListener('pointerdown', handlePointerDown);
-    control.addEventListener('pointerup', handlePointerUp);
     control.addEventListener('pointercancel', handlePointerCancel);
-    control.addEventListener('click', handleClick);
     control.addEventListener('contextmenu', handleContextMenu);
 
     return () => {
       control.removeEventListener('pointerleave', handlePointerLeave);
-      control.removeEventListener('pointerdown', handlePointerDown);
-      control.removeEventListener('pointerup', handlePointerUp);
       control.removeEventListener('pointercancel', handlePointerCancel);
-      control.removeEventListener('click', handleClick);
       control.removeEventListener('contextmenu', handleContextMenu);
     };
-  }, [
-    getControl,
-    handlePointerLeave,
-    handlePointerDown,
-    handlePointerUp,
-    handlePointerCancel,
-    handleClick,
-    handleContextMenu,
-  ]);
+  }, [ref, handlePointerLeave, handlePointerCancel, handleContextMenu]);
 
-  return { setHostRef, surfaceRef, pressed };
+  return { pressProps, surfaceRef, animating };
 };

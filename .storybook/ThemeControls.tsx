@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { Stack } from '~/components/Stack';
 import { TextInputField } from '~/components/TextInputField';
-import { themeProviderStyles } from '~/components/Theme';
+import { themeProviderStyles } from '~/components/ThemeProvider';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { outlineTheme } from '~/themes/base/outline.stylex';
 import { scaleTokens } from '~/themes/base/scale.stylex';

@@ -1,15 +1,15 @@
 import type { Decorator, Preview } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
 
-import { ThemeProvider } from '~/components/Theme';
-import { ColorSchemeProvider } from '~/components/ColorScheme';
+import { ThemeProvider } from '~/components/ThemeProvider';
+import {
+  ColorSchemeProvider,
+  colorSchemeTokens,
+} from '~/components/ColorScheme';
 import { modes } from './modes';
 
-import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { darkColorScheme } from '~/themes/base/darkColorScheme.styles';
-import { spacingTokens } from '~/themes/base/spacing.stylex';
 // import variantTheme from '~/themes/variant/theme.json';
-import { ThemeControls } from './ThemeControls';
+// import { ThemeControls } from './ThemeControls';
+import * as styles from './preview.css';
 
 import '~/styles/main.css';
 import '~/styles/storybook.css';
@@ -36,7 +36,10 @@ const preview: Preview = {
       default: 'dark',
       values: [
         { name: 'light', value: colorSchemeTokens.surfaceContainerLowest },
-        { name: 'dark', value: darkColorScheme.surfaceContainerLowest },
+        {
+          name: 'dark',
+          value: colorSchemeTokens.surfaceContainerHighest,
+        },
       ],
     },
     chromatic: { modes },
@@ -44,15 +47,6 @@ const preview: Preview = {
     layout: 'none',
   },
 };
-
-const styles = stylex.create({
-  storyWrapper: {
-    position: 'relative',
-    backgroundColor: colorSchemeTokens.surfaceContainerLowest,
-    padding: spacingTokens.padding$6,
-    width: '100%',
-  },
-});
 
 export const decorators: Array<Decorator> = [
   (Story, context) => {
@@ -63,23 +57,23 @@ export const decorators: Array<Decorator> = [
       <ThemeProvider
       // theme={variantTheme}
       >
-        <ThemeControls>
-          {showLightMode ? (
-            <ColorSchemeProvider variant='light'>
-              <div {...stylex.props(styles.storyWrapper)}>
-                <Story />
-              </div>
-            </ColorSchemeProvider>
-          ) : null}
+        {/* <ThemeControls> */}
+        {showLightMode ? (
+          <ColorSchemeProvider variant='light'>
+            <div className={styles.storyWrapper}>
+              <Story />
+            </div>
+          </ColorSchemeProvider>
+        ) : null}
 
-          {showDarkMode ? (
-            <ColorSchemeProvider variant='dark'>
-              <div {...stylex.props(styles.storyWrapper)}>
-                <Story />
-              </div>
-            </ColorSchemeProvider>
-          ) : null}
-        </ThemeControls>
+        {showDarkMode ? (
+          <ColorSchemeProvider variant='dark'>
+            <div className={styles.storyWrapper}>
+              <Story />
+            </div>
+          </ColorSchemeProvider>
+        ) : null}
+        {/* </ThemeControls> */}
       </ThemeProvider>
     );
   },

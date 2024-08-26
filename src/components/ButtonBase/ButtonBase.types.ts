@@ -1,4 +1,4 @@
-import type { IBaseProps } from '../Base';
+import type { IBoxProps } from '../Box';
 import type {
   IZeroOrMore,
   ICompiledStyles,
@@ -9,9 +9,8 @@ import type { IStateLayerStylesKey } from '../StateLayer';
 import type { IFocusRingStylesKey } from '../FocusRing';
 import type { IElevationStylesKey } from '../Elevation';
 import type { IVisualState } from '../VisualState';
-import type { IButtonBaseStylesKey } from './ButtonBase.styles';
 
-export type IButtonBaseProps = IBaseProps<IButtonBaseStylesKey> & {
+export type IButtonBaseProps = IBoxProps & {
   innerStyles?: {
     stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStylesKey>>;
     focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStylesKey>>;

@@ -1,29 +1,32 @@
 {
   "name": "@sixui/ui",
-  "description": "Ready-to-use foundational React components with near zero-runtime style injection.",
   "version": "0.0.465",
-  "author": "Olivier Pascal <olivier@pascal.re>",
-  "main": "./dist/index.js",
-  "sideEffects": false,
-  "exports": {
-    ".": "./dist/index.js",
-    "./styles.css": "./dist/styles/main.css",
-    "./*.stylex": "./dist/*.stylex.js",
-    "./*.json": "./dist/*.json"
-  },
-  "type": "module",
-  "types": "./dist/index.d.ts",
+  "description": "Ready-to-use foundational React components with near zero-runtime style injection.",
   "repository": {
     "url": "git+https://github.com/sixui/sixui.git"
   },
+  "license": "MIT",
+  "author": "Olivier Pascal <olivier@pascal.re>",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": {
+        "import": "./dist/index.d.mts",
+        "require": "./dist/index.d.ts"
+      },
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "files": [
+    "dist",
     "dist/**/*"
   ],
-  "engines": {
-    "node": ">=20",
-    "pnpm": ">=9"
-  },
-  "license": "MIT",
   "scripts": {
     "prepare": "node .husky/install.mjs",
     "clean": "rimraf ./dist",
@@ -55,6 +58,21 @@
       "pnpm lint:fix:file"
     ]
   },
+  "dependencies": {
+    "@floating-ui/core": "^1.6.7",
+    "@floating-ui/react": "^0.26.22",
+    "@material/material-color-utilities": "^0.3.0",
+    "@olivierpascal/helpers": "^0.0.71",
+    "@vanilla-extract/css": "^1.15.5",
+    "@vanilla-extract/css-utils": "^0.1.4",
+    "clsx": "^2.1.1",
+    "highlight-words": "^1.2.2",
+    "modern-normalize": "^3.0.0",
+    "react-aria": "^3.34.3",
+    "react-aria-components": "^1.3.3",
+    "react-transition-group": "^4.4.5",
+    "type-fest": "^4.25.0"
+  },
   "devDependencies": {
     "@auto-it/npm": "^11.2.0",
     "@babel/cli": "^7.24.8",
@@ -69,6 +87,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@react-types/shared": "^3.24.1",
     "@storybook/addon-actions": "^8.2.9",
     "@storybook/addon-essentials": "^8.2.9",
     "@storybook/blocks": "^8.2.9",
@@ -84,6 +103,7 @@
     "@types/react-transition-group": "^4",
     "@typescript-eslint/eslint-plugin": "^8.2.0",
     "@typescript-eslint/parser": "^8.2.0",
+    "@vanilla-extract/vite-plugin": "^4.0.15",
     "@vitejs/plugin-react": "^4.3.1",
     "auto": "^11.2.0",
     "babel-plugin-module-resolver": "^5.0.2",
@@ -115,21 +135,17 @@
     "typescript": "^5.5.4",
     "validate-branch-name": "^1.3.1",
     "vite": "^5",
+    "vite-plugin-dts": "^4.0.3",
     "vite-plugin-stylex": "^0.10.1"
-  },
-  "packageManager": "pnpm@9.7.1",
-  "readme": "README.md",
-  "dependencies": {
-    "@floating-ui/core": "^1.6.7",
-    "@floating-ui/react": "^0.26.22",
-    "@material/material-color-utilities": "^0.3.0",
-    "@olivierpascal/helpers": "^0.0.71",
-    "highlight-words": "^1.2.2",
-    "modern-normalize": "^3.0.0",
-    "react-transition-group": "^4.4.5"
   },
   "peerDependencies": {
     "@stylexjs/stylex": "^0.7.5",
     "react": "^18"
-  }
+  },
+  "packageManager": "pnpm@9.7.1",
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "readme": "README.md"
 }

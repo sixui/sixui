@@ -2,7 +2,7 @@ import {
   getResponsiveRules,
   type IResponsiveRule,
 } from '~/helpers/getResponsiveRules';
-import { useThemeContext } from '../Theme';
+import { useThemeContext } from '../ThemeProvider';
 
 const serializeResponsiveRule = (rule: IResponsiveRule): string => `
     @media ${rule.query} {

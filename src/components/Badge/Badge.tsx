@@ -3,18 +3,30 @@ import { forwardRef, useMemo } from 'react';
 import type { IBadgeProps } from './Badge.types';
 import { isNumeric } from '~/helpers/isNumeric';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
-import { useStyles } from '~/hooks/useStyles';
-import { Base } from '../Base';
-import { badgeStyles } from './Badge.styles';
-import { badgeTheme } from './Badge.stylex';
+import { useStyles } from '~/hooks/useStyles2';
+import { Box } from '../Box';
+import { badgeTheme, badgeStyles } from './Badge.css';
 
 export const Badge = createPolymorphicComponent<'div', IBadgeProps>(
   forwardRef<HTMLDivElement, IBadgeProps>(function Badge(props, forwardedRef) {
-    const { styles, sx, value, maxValue, showZero, dot, ...other } = props;
+    const {
+      className,
+      classNames,
+      style,
+      value,
+      maxValue,
+      showZero,
+      dot,
+      ...other
+    } = props;
 
-    const { combineStyles, getStyles, globalStyles } = useStyles({
+    const { getStyles } = useStyles({
       name: 'Badge',
-      styles: [badgeStyles, styles],
+      className,
+      style,
+      classNames,
+      styles: badgeStyles,
+      theme: badgeTheme,
     });
 
     const valueAsNumber = isNumeric(value) ? Number(value) : undefined;
@@ -35,23 +47,18 @@ export const Badge = createPolymorphicComponent<'div', IBadgeProps>(
     );
 
     return (
-      <Base
+      <Box
         {...other}
-        sx={[
-          badgeTheme,
-          globalStyles,
-          combineStyles(
-            'host',
-            invisible && 'host$invisible',
-            dot && 'host$dot',
-          ),
-          sx,
-        ]}
+        {...getStyles([
+          'root',
+          invisible && 'root$invisible',
+          dot && 'root$dot',
+        ])}
         ref={forwardedRef}
       >
         <div {...getStyles('background')} />
         <div {...getStyles('label')}>{displayValue}</div>
-      </Base>
+      </Box>
     );
   }),
 );

@@ -1,27 +1,28 @@
 import { forwardRef, useMemo } from 'react';
 
 import type { IAvatarProps } from './Avatar.types';
-import { useStyles } from '~/hooks/useStyles';
+import type { IHslColor } from '~/helpers/types';
+import { useStyles } from '~/hooks/useStyles2';
 import { useImageLoaded } from '~/hooks/useImageLoaded';
 import { hslColorFromString } from '~/helpers/colors/hslColorFromString';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
-import { Base } from '../Base';
-import { avatarStyles, avatarDynamicStyles } from './Avatar.styles';
-import { avatarTheme } from './Avatar.stylex';
-import { avatarVariantStyles } from './variants';
+import { Box } from '../Box';
+import { avatarTheme, avatarStyles, avatarVariants } from './Avatar.css';
+
+// TODO: -> helper
+const hslToCss = (hsl: IHslColor): string =>
+  `hsl(${hsl.hue % 360}, ${hsl.saturation}%, ${hsl.lightness}%)`;
 
 export const Avatar = createPolymorphicComponent<'div', IAvatarProps>(
   forwardRef<HTMLDivElement, IAvatarProps>(
     function Avatar(props, forwardedRef) {
       const {
-        styles,
-        sx,
+        className,
+        style,
+        classNames,
         alt,
-        crossOrigin,
-        referrerPolicy,
         src,
-        srcSet,
-        sizes,
+        slotProps,
         children,
         fallbackToRandomColor,
         randomColorSourceString: randomColorSourceStringProp,
@@ -29,21 +30,25 @@ export const Avatar = createPolymorphicComponent<'div', IAvatarProps>(
         ...other
       } = props;
 
-      const variantStyles = avatarVariantStyles[variant];
-      const { combineStyles, getStyles, globalStyles } = useStyles({
+      const { getStyles } = useStyles({
         name: 'Avatar',
-        styles: [avatarStyles, variantStyles, styles],
+        className,
+        style,
+        classNames,
+        styles: avatarStyles,
+        theme: avatarTheme,
+        variants: avatarVariants,
+        variant,
       });
 
       // Use a hook instead of onError on the img element to support server-side
       // rendering.
       const { hasLoadingError } = useImageLoaded({
-        crossOrigin,
-        referrerPolicy,
         src,
-        srcSet,
+        ...slotProps?.img,
       });
-      const hasImage = !!src || !!srcSet;
+      const hasImage =
+        !!src || !!slotProps?.img?.src || !!slotProps?.img?.srcSet;
       const hasImageNotFailing = hasImage && !hasLoadingError;
 
       const randomColorSourceString =
@@ -51,7 +56,7 @@ export const Avatar = createPolymorphicComponent<'div', IAvatarProps>(
         (typeof children === 'string' ? children : undefined) ??
         alt ??
         src;
-      const randomColor = useMemo(
+      const randomColorHsl = useMemo(
         () =>
           fallbackToRandomColor && randomColorSourceString
             ? hslColorFromString(randomColorSourceString)
@@ -60,35 +65,31 @@ export const Avatar = createPolymorphicComponent<'div', IAvatarProps>(
       );
 
       return (
-        <Base
+        <Box
           {...other}
-          sx={[
-            avatarTheme,
-            globalStyles,
-            combineStyles('host'),
-            randomColor
-              ? avatarDynamicStyles.backgroundColor(randomColor)
+          {...getStyles('root', {
+            style: randomColorHsl
+              ? {
+                  backgroundColor: hslToCss(randomColorHsl),
+                  color: '#000',
+                }
               : undefined,
-            sx,
-          ]}
+          })}
           ref={forwardedRef}
         >
           {hasImageNotFailing ? (
             <img
               {...getStyles('image')}
-              alt={alt}
-              crossOrigin={crossOrigin}
-              referrerPolicy={referrerPolicy}
               src={src}
-              srcSet={srcSet}
-              sizes={sizes}
+              alt={alt}
+              {...slotProps?.img}
             />
           ) : children ? (
-            <div {...getStyles('content')}>{children}</div>
+            <div {...getStyles('placeholder')}>{children}</div>
           ) : hasImage && !!alt ? (
-            <div {...getStyles('content')}>{alt[0]}</div>
+            <div {...getStyles('placeholder')}>{alt[0]}</div>
           ) : null}
-        </Base>
+        </Box>
       );
     },
   ),

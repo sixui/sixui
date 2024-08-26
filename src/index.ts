@@ -6,6 +6,7 @@ export * from './components/Badge';
 export * from './components/Base';
 // export * from './components/BottomSheet';
 // export * from './components/BottomSheetContent';
+export * from './components/Box';
 export * from './components/Breadcrumbs';
 export * from './components/Button';
 export * from './components/ButtonBase';
@@ -81,6 +82,7 @@ export * from './components/RichTooltipContent';
 export * from './components/Scrim';
 export * from './components/Select';
 export * from './components/SelectBase';
+export * from './components/SideSheetContent';
 export * from './components/Skeleton';
 export * from './components/Snackbar';
 export * from './components/SnackbarContent';
@@ -100,7 +102,8 @@ export * from './components/Text';
 export * from './components/TextAreaField';
 export * from './components/TextFieldBase';
 export * from './components/TextInputField';
-export * from './components/Theme';
+export * from './components/ThemeProvider';
+export * from './components/TouchTarget';
 export * from './components/VisualState';
 
 // hooks

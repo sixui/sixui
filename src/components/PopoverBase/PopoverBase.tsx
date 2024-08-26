@@ -1,13 +1,9 @@
 import { useRef } from 'react';
+import { arrow, flip, offset, shift } from '@floating-ui/core';
 import {
-  arrow,
   autoUpdate,
-  flip,
   FloatingArrow,
   FloatingFocusManager,
-  offset,
-  shift,
-  size,
   useClick,
   useDelayGroup,
   useDismiss,
@@ -18,6 +14,7 @@ import {
   useMergeRefs,
   useRole,
   useTransitionStatus,
+  size,
 } from '@floating-ui/react';
 import stylex from '@stylexjs/stylex';
 

@@ -4,7 +4,10 @@ import { FloatingDelayGroup } from '@floating-ui/react';
 
 import type { IStyleXStyles } from '~/helpers/types';
 import { darkColorSchemeTheme } from '~/themes/base/darkColorScheme.styles';
-import { themeProviderStyles, useThemeContext } from '~/components/Theme';
+import {
+  themeProviderStyles,
+  useThemeContext,
+} from '~/components/ThemeProvider';
 import { colorSchemeTheme } from '~/themes/base/colorScheme.stylex';
 import {
   ColorSchemeContext,
@@ -12,6 +15,7 @@ import {
 } from './ColorScheme.context';
 import { colorSchemeProviderStyles } from './ColorSchemeProvider.styles';
 import { useColorScheme } from './useColorScheme';
+import * as styles from './ColorScheme.css';
 
 export type IColorSchemeProviderProps = {
   variant: IColorSchemeVariant;
@@ -41,32 +45,40 @@ export const ColorSchemeProvider: React.FC<IColorSchemeProviderProps> = (
         }}
       >
         <div
-          {...stylex.props(
-            colorSchemeProviderStyles.host,
-            isLight && colorSchemeProviderStyles.container$light,
-            isLight &&
-              shouldUpdatColorScheme && [
-                colorSchemeTheme,
-                themeContext.theme.schemes &&
-                  themeProviderStyles.dynamicScheme(
-                    themeContext.theme.schemes.light,
-                  ),
-              ],
-            isDark && colorSchemeProviderStyles.container$dark,
-            isDark &&
-              shouldUpdatColorScheme && [
-                darkColorSchemeTheme,
-                themeContext.theme.schemes &&
-                  themeProviderStyles.dynamicScheme(
-                    themeContext.theme.schemes.dark,
-                  ),
-              ],
-            sx,
-          )}
-          ref={root}
-          data-scheme={variant}
+          className={
+            isDark
+              ? styles.darkColorSchemeTheme2
+              : styles.lightColorSchemeTheme2
+          }
         >
-          {children}
+          <div
+            {...stylex.props(
+              colorSchemeProviderStyles.host,
+              isLight && colorSchemeProviderStyles.container$light,
+              isLight &&
+                shouldUpdatColorScheme && [
+                  colorSchemeTheme,
+                  themeContext.theme.schemes &&
+                    themeProviderStyles.dynamicScheme(
+                      themeContext.theme.schemes.light,
+                    ),
+                ],
+              isDark && colorSchemeProviderStyles.container$dark,
+              isDark &&
+                shouldUpdatColorScheme && [
+                  darkColorSchemeTheme,
+                  themeContext.theme.schemes &&
+                    themeProviderStyles.dynamicScheme(
+                      themeContext.theme.schemes.dark,
+                    ),
+                ],
+              sx,
+            )}
+            ref={root}
+            data-scheme={variant}
+          >
+            {children}
+          </div>
         </div>
       </FloatingDelayGroup>
     </ColorSchemeContext.Provider>

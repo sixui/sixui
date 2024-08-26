@@ -7,7 +7,10 @@ import {
   stylesCombinatorFactory,
   type IStylesCombinatorStylesProp,
 } from '~/helpers/stylesCombinatorFactory';
-import { useThemeContext, type IThemeSettings } from '~/components/Theme';
+import {
+  useThemeContext,
+  type IThemeSettings,
+} from '~/components/ThemeProvider';
 import {
   stylePropsFactory,
   type IStyleProps,

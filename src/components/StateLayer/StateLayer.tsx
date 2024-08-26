@@ -1,20 +1,20 @@
-import { forwardRef } from 'react';
+import { forwardRef, useRef, useState } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { IStateLayerProps } from './StateLayer.types';
-import { useStyles } from '~/hooks/useStyles';
+import { useStyles } from '~/hooks/useStyles2';
 import { useRipple } from './useRipple';
-import { stateLayerStyles } from './StateLayer.styles';
-import { stateLayerTheme } from './StateLayer.stylex';
-import { Base } from '../Base';
+import { stateLayerStyles, stateLayerTheme } from './StateLayer.css';
+import { Box } from '../Box';
 
 // https://github.com/material-components/material-web/blob/main/ripple/internal/ripple.ts
 
 export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
   function StateLayer(props, forwardedRef) {
     const {
-      styles,
-      sx,
+      className,
+      style,
+      classNames,
       visualState,
       for: forElementRef,
       disabled,
@@ -22,38 +22,54 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
       ...other
     } = props;
 
-    const { combineStyles, getStyles, globalStyles } = useStyles({
+    const { getStyles } = useStyles({
       name: 'StateLayer',
-      styles: [stateLayerStyles, styles],
+      className,
+      style,
+      classNames,
+      styles: stateLayerStyles,
+      theme: stateLayerTheme,
     });
 
-    const { setHostRef, surfaceRef, pressed } = useRipple({
-      visualState,
-      for: forElementRef,
-      disabled,
+    // const { combineStyles, getStyles, globalStyles } = useStyles({
+    //   name: 'StateLayer',
+    //   styles: [stateLayerStyles, styles],
+    // });
+
+    const rootRef = useRef<HTMLDivElement>(null);
+
+    const [hovered, setHovered] = useState(false);
+
+    const { surfaceRef, pressProps, animating } = useRipple({
+      ref: rootRef,
     });
-    const handleRef = useMergeRefs([forwardedRef, setHostRef]);
+    const handleRef = useMergeRefs([rootRef, forwardedRef]);
 
     return (
-      <Base
-        aria-hidden
+      <Box
+        as='button'
+        {...pressProps}
         {...other}
-        sx={[stateLayerTheme, globalStyles, combineStyles('host'), sx]}
+        {...getStyles('root')}
+        interactions={{
+          hover: {
+            onHoverChange: setHovered,
+          },
+        }}
         ref={handleRef}
       >
         <div
-          {...getStyles(
+          {...getStyles([
             'rippleSurface',
-            (visualState?.hovered || pressed) && 'rippleSurface$hover',
-            pressed && 'rippleSurface$pressed',
-            !pressed && visualState?.pressed && 'rippleSurface$pressedStatic',
+            (hovered || animating) && 'rippleSurface$hover',
+            animating && 'rippleSurface$pressed',
+            !animating && visualState?.pressed && 'rippleSurface$pressedStatic',
             visualState?.dragged && 'rippleSurface$dragged',
-          )}
+          ])}
           ref={surfaceRef}
         />
-
         {children}
-      </Base>
+      </Box>
     );
   },
 );

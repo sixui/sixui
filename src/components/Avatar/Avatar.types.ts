@@ -1,20 +1,20 @@
-import type { IBaseProps } from '../Base';
-import type { IAvatarStylesKey } from './Avatar.styles';
+import type { IBoxProps } from '../Box';
+import type { IAvatarClassName, IAvatarVariant } from './Avatar.css';
 
-export type IAvatarVariant = 'rounded' | 'squared';
-
-export type IAvatarProps = IBaseProps<IAvatarStylesKey> &
-  Pick<
-    React.ImgHTMLAttributes<HTMLImageElement>,
-    'alt' | 'crossOrigin' | 'referrerPolicy' | 'src' | 'srcSet' | 'sizes'
-  > & {
-    /**
-     * Used to render icon or text elements inside the Avatar if `src` is not
-     * set. This can be an element, or just a string.
-     */
-    children?: React.ReactNode;
-
-    fallbackToRandomColor?: boolean;
-    randomColorSourceString?: string;
-    variant?: IAvatarVariant;
+export type IAvatarProps = IBoxProps<IAvatarClassName> & {
+  src?: string;
+  alt?: string;
+  slotProps?: {
+    img?: React.ComponentPropsWithoutRef<'img'>;
   };
+
+  /**
+   * Used to render icon or text elements inside the Avatar if `src` is not
+   * set. This can be an element, or just a string.
+   */
+  children?: React.ReactNode;
+
+  fallbackToRandomColor?: boolean;
+  randomColorSourceString?: string;
+  variant?: IAvatarVariant;
+};
