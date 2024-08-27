@@ -1,26 +1,16 @@
-import { forwardRef, useRef, useState } from 'react';
-import { useMergeRefs } from '@floating-ui/react';
+import { forwardRef } from 'react';
 
 import type { IStateLayerProps } from './StateLayer.types';
 import { useStyles } from '~/hooks/useStyles2';
-import { useRipple } from './useRipple';
 import { stateLayerStyles, stateLayerTheme } from './StateLayer.css';
 import { Box } from '../Box';
+import { useMergeRefs } from '@floating-ui/react';
 
 // https://github.com/material-components/material-web/blob/main/ripple/internal/ripple.ts
 
 export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
   function StateLayer(props, forwardedRef) {
-    const {
-      className,
-      style,
-      classNames,
-      visualState,
-      for: forElementRef,
-      disabled,
-      children,
-      ...other
-    } = props;
+    const { className, style, classNames, context, ...other } = props;
 
     const { getStyles } = useStyles({
       name: 'StateLayer',
@@ -31,45 +21,22 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
       theme: stateLayerTheme,
     });
 
-    // const { combineStyles, getStyles, globalStyles } = useStyles({
-    //   name: 'StateLayer',
-    //   styles: [stateLayerStyles, styles],
-    // });
+    const modifiers = {
+      hovered: !context.animating && context.state?.hovered,
+      pressed: !context.animating && context.state?.pressed,
+      dragged: !context.animating && context.state?.dragged,
+      animating: context.animating,
+    };
 
-    const rootRef = useRef<HTMLDivElement>(null);
-
-    const [hovered, setHovered] = useState(false);
-
-    const { surfaceRef, pressProps, animating } = useRipple({
-      ref: rootRef,
-    });
-    const handleRef = useMergeRefs([rootRef, forwardedRef]);
+    const handleRef = useMergeRefs([forwardedRef, context.surfaceRef]);
 
     return (
       <Box
-        as='button'
-        {...pressProps}
         {...other}
         {...getStyles('root')}
-        interactions={{
-          hover: {
-            onHoverChange: setHovered,
-          },
-        }}
+        modifiers={modifiers}
         ref={handleRef}
-      >
-        <div
-          {...getStyles([
-            'rippleSurface',
-            (hovered || animating) && 'rippleSurface$hover',
-            animating && 'rippleSurface$pressed',
-            !animating && visualState?.pressed && 'rippleSurface$pressedStatic',
-            visualState?.dragged && 'rippleSurface$dragged',
-          ])}
-          ref={surfaceRef}
-        />
-        {children}
-      </Box>
+      />
     );
   },
 );

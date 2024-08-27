@@ -113,7 +113,7 @@ export const NavigationRailDestination = createPolymorphicComponent<
               ]}
               for={visualStateRef}
               disabled={visuallyDisabled}
-              visualState={visualState}
+              interactionState={visualState}
             />
             <Anchored content={badge}>
               <div

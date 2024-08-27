@@ -155,7 +155,7 @@ export const Switch = forwardRef<HTMLInputElement, ISwitchProps>(
                 ]}
                 for={actionRef}
                 disabled={visuallyDisabled}
-                visualState={visualState}
+                interactionState={visualState}
               />
               <span
                 {...getStyles(

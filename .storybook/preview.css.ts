@@ -5,6 +5,7 @@ import { colorSchemeTokens } from '~/components/ColorScheme';
 export const storyWrapper = style({
   position: 'relative',
   backgroundColor: colorSchemeTokens.surface,
+  padding: 80,
   // FIXME:
   // padding: spacingTokens.padding$6,
   width: '100%',

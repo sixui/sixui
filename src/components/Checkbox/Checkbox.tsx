@@ -177,7 +177,7 @@ export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
                 ...asArray(innerStyles?.stateLayer),
               ]}
               disabled={visuallyDisabled}
-              visualState={visualState}
+              interactionState={visualState}
             />
             {visuallyDisabled ? null : (
               <FocusRing

@@ -123,7 +123,7 @@ export const Card = createPolymorphicComponent<'div', ICardProps>(
                 ]}
                 for={visualStateRef}
                 disabled={disabled}
-                visualState={visualState}
+                interactionState={visualState}
               />
               <FocusRing
                 styles={[

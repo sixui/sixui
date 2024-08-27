@@ -269,7 +269,7 @@ export const Chip = createPolymorphicComponent<'div', IChipProps>(
               ]}
               for={primaryActionRef}
               disabled={visuallyDisabled}
-              visualState={visualState}
+              interactionState={visualState}
             />
           ) : null}
 

@@ -1,5 +1,4 @@
 import { forwardRef } from 'react';
-import { useFocusRing, useHover } from 'react-aria';
 
 import type { IBoxModifiers, IBoxProps } from './Box.types';
 import {
@@ -29,29 +28,13 @@ export const Box = createPolymorphicComponent<'div', IBoxProps>(
     const {
       as: Component = 'div',
       renderRoot,
-      interactions,
       modifiers,
       ...other
     } = props as IWithAsProp<IBoxProps>;
 
-    const { hoverProps, isHovered } = useHover({
-      ...(typeof interactions?.hover !== 'boolean' && interactions?.hover),
-      isDisabled: !interactions?.hover,
-    });
-    const { focusProps, isFocusVisible } = useFocusRing({
-      ...(typeof interactions?.focusVisible !== 'boolean' &&
-        interactions?.focusVisible),
-    });
-
     const childrenProps = {
       ...other,
-      ...hoverProps,
-      ...(interactions?.focusVisible ? focusProps : undefined),
-      ...getModifiers({
-        ...modifiers,
-        hovered: isHovered,
-        focusVisible: isFocusVisible,
-      }),
+      ...(modifiers ? getModifiers(modifiers) : {}),
       ref: forwardedRef,
     };
 

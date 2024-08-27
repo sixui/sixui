@@ -173,7 +173,7 @@ export const Tab = createPolymorphicComponent<'div', ITabProps>(
           styles={[tabStateLayerStyles, ...asArray(innerStyles?.stateLayer)]}
           for={actionRef}
           disabled={disabled}
-          visualState={visualState}
+          interactionState={visualState}
         />
         <FocusRing
           styles={[tabFocusRingStyles, ...asArray(innerStyles?.focusRing)]}

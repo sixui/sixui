@@ -117,7 +117,7 @@ export const ButtonBase = createPolymorphicComponent<
             styles={innerStyles?.stateLayer}
             for={visualStateRef}
             disabled={visuallyDisabled}
-            visualState={visualState}
+            interactionState={visualState}
           />
           {children}
         </Box>

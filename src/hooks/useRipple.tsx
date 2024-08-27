@@ -1,8 +1,8 @@
-import type { DOMAttributes } from '@react-types/shared';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { PressEvent, usePress } from 'react-aria';
+import type { PressEvent } from 'react-aria';
+import { useCallback, useRef, useState } from 'react';
 
 import type { IPoint } from '~/helpers/types';
+import { delay } from '@olivierpascal/helpers';
 
 export type IUSeRippleOptions = {
   /**
@@ -64,7 +64,7 @@ export type IUSeRippleOptions = {
   easing?: string;
 };
 
-const defaultOptions = {
+const DEFAULT_OPTIONS = {
   touchDelayMs: 150,
   pressGrowMs: 450,
   minimumPressMs: 225,
@@ -77,16 +77,21 @@ const defaultOptions = {
   easing: 'cubic-bezier(0.2, 0, 0, 1)',
 };
 
-export type IUseRippleProps = {
-  ref: React.RefObject<HTMLElement>;
+export type IUseRippleProps<TElement extends HTMLElement> = {
+  interactiveTargetRef: React.RefObject<TElement>;
+  surfaceRef: React.RefObject<HTMLDivElement>;
   disabled?: boolean;
   options?: IUSeRippleOptions;
 };
 
 export type IUseRippleResult = {
-  surfaceRef: React.RefObject<HTMLDivElement>;
-  pressProps: DOMAttributes;
   animating: boolean;
+  onPressStart: (event: PressEvent) => void;
+  onPressEnd: (event: PressEvent) => void;
+  onPress: () => void;
+  onPointerLeave: (event: PointerEvent) => void;
+  onPointerCancel: (event: PointerEvent) => void;
+  onContextMenu: (event: PointerEvent | MouseEvent) => void;
 };
 
 /**
@@ -143,35 +148,32 @@ const isTouch = ({ pointerType }: PressEvent | PointerEvent): boolean =>
 // Used to handle overlapping surfaces.
 let activeTarget: EventTarget | null = null;
 
-export const useRipple = (props: IUseRippleProps): IUseRippleResult => {
-  const { ref, options: optionsProp, disabled } = props;
-  const options = { ...defaultOptions, ...optionsProp };
+export const useRipple = <TElement extends HTMLElement>(
+  props: IUseRippleProps<TElement>,
+): IUseRippleResult => {
+  const {
+    interactiveTargetRef,
+    surfaceRef,
+    options: optionsProp,
+    disabled,
+  } = props;
+  const options = { ...DEFAULT_OPTIONS, ...optionsProp };
 
+  const [pressed, setPressed] = useState(false);
   const [animating, setAnimating] = useState(false);
   const stateRef = useRef<IState>(IState.Inactive);
   const initialSizeRef = useRef(0);
   const rippleScaleRef = useRef(1);
   const rippleSizeRef = useRef(0);
-  const surfaceRef = useRef<HTMLDivElement>(null);
   const growAnimationRef = useRef<Animation>();
 
-  const { pressProps, isPressed: pressed } = usePress({
-    onPressStart: (e) => {
-      handlePointerDown(e);
-    },
-    onPressEnd: (e) => {
-      handlePointerUp(e);
-    },
-    onPress: (e) => handlePress(e),
-    ref,
-  });
-
   const determineRippleSize = useCallback(() => {
-    if (!ref.current) {
+    if (!interactiveTargetRef.current) {
       return;
     }
 
-    const { height, width } = ref.current.getBoundingClientRect();
+    const { height, width } =
+      interactiveTargetRef.current.getBoundingClientRect();
     const maxDim = Math.max(height, width);
     const softEdgeSize = Math.max(
       options.softEdgeContainerRatio * maxDim,
@@ -186,7 +188,7 @@ export const useRipple = (props: IUseRippleProps): IUseRippleResult => {
     rippleScaleRef.current = (maxRadius + softEdgeSize) / initialSize;
     rippleSizeRef.current = initialSize;
   }, [
-    ref,
+    interactiveTargetRef,
     options.padding,
     options.softEdgeContainerRatio,
     options.softEdgeMinimumSize,
@@ -200,11 +202,13 @@ export const useRipple = (props: IUseRippleProps): IUseRippleResult => {
       startPoint: IPoint;
       endPoint: IPoint;
     } | null => {
-      if (!ref.current) {
+      if (!interactiveTargetRef.current || !surfaceRef.current) {
         return null;
       }
 
-      const { width, height } = ref.current.getBoundingClientRect();
+      const { width, height } =
+        interactiveTargetRef.current.getBoundingClientRect();
+
       // End in the center
       const endPoint = {
         x: (width - initialSizeRef.current) / 2,
@@ -212,8 +216,8 @@ export const useRipple = (props: IUseRippleProps): IUseRippleResult => {
       };
 
       const startPoint = {
-        x: event.x,
-        y: event.y,
+        x: event.x - surfaceRef.current.offsetLeft,
+        y: event.y - surfaceRef.current.offsetTop,
       };
 
       // Center around start point
@@ -224,12 +228,12 @@ export const useRipple = (props: IUseRippleProps): IUseRippleResult => {
 
       return { startPoint: centeredStartPoint, endPoint };
     },
-    [ref],
+    [interactiveTargetRef, surfaceRef],
   );
 
   const startPressAnimation = useCallback(
     (event: PressEvent): void => {
-      if (!surfaceRef.current) {
+      if (!surfaceRef?.current) {
         return;
       }
 
@@ -266,6 +270,7 @@ export const useRipple = (props: IUseRippleProps): IUseRippleResult => {
       );
     },
     [
+      surfaceRef,
       getTranslationCoordinates,
       determineRippleSize,
       options.animationFill,
@@ -275,7 +280,7 @@ export const useRipple = (props: IUseRippleProps): IUseRippleResult => {
     ],
   );
 
-  const endPressAnimation = useCallback(async () => {
+  const endPressAnimation = useCallback(() => {
     activeTarget = null;
     stateRef.current = IState.Inactive;
     const animation = growAnimationRef.current;
@@ -293,32 +298,16 @@ export const useRipple = (props: IUseRippleProps): IUseRippleResult => {
       return;
     }
 
-    await new Promise((resolve) => {
-      setTimeout(resolve, options.minimumPressMs - pressAnimationPlayState);
-    });
-
-    if (growAnimationRef.current !== animation) {
-      // A new press animation was started. The old animation was canceled and
-      // should not finish the pressed state.
-      return;
-    }
-
-    setAnimating(false);
-  }, [options.minimumPressMs]);
-
-  const handlePointerLeave = useCallback(
-    (event: PointerEvent) => {
-      if (disabled || isTouch(event)) {
+    void delay(options.minimumPressMs - pressAnimationPlayState).then(() => {
+      if (growAnimationRef.current !== animation) {
+        // A new press animation was started. The old animation was canceled and
+        // should not finish the pressed state.
         return;
       }
 
-      // Release a held mouse or pen press that moves outside the element.
-      if (stateRef.current !== IState.Inactive) {
-        void endPressAnimation();
-      }
-    },
-    [disabled, endPressAnimation],
-  );
+      setAnimating(false);
+    });
+  }, [options.minimumPressMs]);
 
   const handlePointerDown = useCallback(
     (event: PressEvent): void => {
@@ -337,9 +326,7 @@ export const useRipple = (props: IUseRippleProps): IUseRippleResult => {
 
       // Wait for a hold after touch delay.
       stateRef.current = IState.TouchDelay;
-      void new Promise((resolve) => {
-        setTimeout(resolve, options.touchDelayMs);
-      }).then(() => {
+      void delay(options.touchDelayMs).then(() => {
         if (stateRef.current !== IState.TouchDelay) {
           return;
         }
@@ -373,21 +360,19 @@ export const useRipple = (props: IUseRippleProps): IUseRippleResult => {
     [disabled, startPressAnimation],
   );
 
-  const handlePointerCancel = useCallback((): void => {
-    if (disabled) {
-      return;
-    }
+  const handlePointerLeave = useCallback(
+    (event: PointerEvent) => {
+      if (isTouch(event)) {
+        return;
+      }
 
-    void endPressAnimation();
-  }, [disabled, endPressAnimation]);
-
-  const handleContextMenu = useCallback(() => {
-    if (disabled) {
-      return;
-    }
-
-    void endPressAnimation();
-  }, [disabled, endPressAnimation]);
+      // Release a held mouse or pen press that moves outside the element.
+      if (stateRef.current !== IState.Inactive) {
+        endPressAnimation();
+      }
+    },
+    [endPressAnimation],
+  );
 
   const handlePress = useCallback(() => {
     if (disabled) {
@@ -399,22 +384,29 @@ export const useRipple = (props: IUseRippleProps): IUseRippleResult => {
     }
   }, [disabled, endPressAnimation]);
 
-  useEffect(() => {
-    const control = ref.current;
-    if (!control) {
-      return;
-    }
+  const handlePressStart = useCallback(
+    (event: PressEvent) => {
+      setPressed(true);
+      handlePointerDown(event);
+    },
+    [handlePointerDown],
+  );
 
-    control.addEventListener('pointerleave', handlePointerLeave);
-    control.addEventListener('pointercancel', handlePointerCancel);
-    control.addEventListener('contextmenu', handleContextMenu);
+  const handlePressEnd = useCallback(
+    (event: PressEvent) => {
+      setPressed(false);
+      handlePointerUp(event);
+    },
+    [handlePointerUp],
+  );
 
-    return () => {
-      control.removeEventListener('pointerleave', handlePointerLeave);
-      control.removeEventListener('pointercancel', handlePointerCancel);
-      control.removeEventListener('contextmenu', handleContextMenu);
-    };
-  }, [ref, handlePointerLeave, handlePointerCancel, handleContextMenu]);
-
-  return { pressProps, surfaceRef, animating };
+  return {
+    animating,
+    onPressStart: handlePressStart,
+    onPressEnd: handlePressEnd,
+    onPress: handlePress,
+    onPointerLeave: handlePointerLeave,
+    onPointerCancel: endPressAnimation,
+    onContextMenu: endPressAnimation,
+  };
 };

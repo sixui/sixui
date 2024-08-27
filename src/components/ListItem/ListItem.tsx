@@ -118,7 +118,7 @@ export const ListItem = createPolymorphicComponent<'button', IListItemProps>(
                 ]}
                 for={actionRef}
                 disabled={disabled}
-                visualState={visualState}
+                interactionState={visualState}
               />
               {noFocusRing ? null : (
                 <FocusRing
