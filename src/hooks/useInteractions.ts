@@ -4,7 +4,7 @@ import type {
   PressEvents,
 } from '@react-types/shared';
 import { accumulate } from '@olivierpascal/helpers';
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
 import { useFocusRing, useHover, usePress, type HoverEvents } from 'react-aria';
 
 export type IInteractionStatus =
@@ -17,9 +17,7 @@ export type IInteractionStatus =
 export type IInteractionState = Partial<Record<IInteractionStatus, boolean>>;
 
 export type IUseInteractionsProps = {
-  /**
-   * The static interaction state.
-   */
+  /** The static interaction state. */
   staticState?: IInteractionState;
 
   /**
@@ -34,29 +32,19 @@ export type IUseInteractionsProps = {
    */
   staticStateStrategy?: 'replace' | 'accumulate';
 
-  /**
-   * Events to handle hover interactions.
-   */
+  /** Events to handle hover interactions. */
   hoverEvents?: HoverEvents;
 
-  /**
-   * Events to handle press interactions.
-   */
+  /**  Events to handle press interactions. */
   pressEvents?: PressEvents;
 
-  /**
-   * Wether the element is currently dragged.
-   */
+  /** Wether the element is currently dragged. */
   dragged?: boolean;
 
-  /**
-   * Wether the element is disabled.
-   */
+  /** Wether the element is disabled. */
   disabled?: boolean;
 
-  /**
-   * Wether the element is a text input.
-   */
+  /** Wether the element is a text input. */
   isTextInput?: boolean;
 
   /**
@@ -67,29 +55,21 @@ export type IUseInteractionsProps = {
 };
 
 export type IInteractions = {
-  /**
-   * Props to spread on the target.
-   */
+  /** Props to spread on the target. */
   targetProps: DOMAttributes;
 
-  /**
-   * The current interaction state of the target.
-   */
+  /** The current interaction state of the target. */
   state: IInteractionState;
 
-  /**
-   * The static interaction state.
-   */
+  /** The static interaction state. */
   staticState?: IInteractionState;
 
-  /**
-   * The combined interaction state of the target.
-   */
+  /** The combined interaction state of the target. */
   combinedStatus?: IInteractionStatus;
 };
 
-// Used to handle nested surfaces.
-const activeTargets: Array<EventTarget> = [];
+/** Used to handle nested surfaces. */
+let activeTarget: EventTarget | null = null;
 
 export const useInteractions = (
   props?: IUseInteractionsProps,
@@ -103,21 +83,22 @@ export const useInteractions = (
     isTextInput,
   } = props ?? {};
 
-  console.log('__active target', activeTargets);
-
   const localStateReplaced = staticState && staticStateStrategy === 'replace';
   const { focusProps, isFocusVisible: focused } = useFocusRing({
     isTextInput,
   });
-  const { hoverProps, isHovered: hovered } = useHover({
+  const currentTarget = useRef<EventTarget | null>(null);
+  const { hoverProps, isHovered: hoveredWithin } = useHover({
     ...props?.hoverEvents,
     onHoverStart: (event: HoverEvent) => {
       props?.hoverEvents?.onHoverStart?.(event);
-      activeTargets.push(event.target);
+      currentTarget.current = event.target;
+      activeTarget = event.target;
     },
     onHoverEnd: (event: HoverEvent) => {
       props?.hoverEvents?.onHoverEnd?.(event);
-      activeTargets.pop();
+      currentTarget.current = null;
+      activeTarget = null;
     },
     isDisabled: disabled || localStateReplaced,
   });
@@ -125,6 +106,8 @@ export const useInteractions = (
     ...props?.pressEvents,
     isDisabled: disabled || localStateReplaced,
   });
+
+  const hovered = hoveredWithin && activeTarget === currentTarget.current;
 
   const targetProps = useMemo<DOMAttributes>(
     () => ({

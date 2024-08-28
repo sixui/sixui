@@ -5,24 +5,18 @@ import type { IPoint } from '~/helpers/types';
 import { delay } from '@olivierpascal/helpers';
 
 export type IUSeRippleOptions = {
-  /**
-   * The delay in milliseconds after the touch start, to determine if the touch
+  /** The delay in milliseconds after the touch start, to determine if the touch
    * is a real press, or a swipe/scroll. If the touch is a press, the ripple
    * will be shown. If the touch is a swipe or a scroll, the ripple will not be
-   * shown.
-   */
+   * shown. */
   touchDelayMs?: number;
 
-  /**
-   * The duration in milliseconds for the ripple to grow to its full size.
-   */
+  /** The duration in milliseconds for the ripple to grow to its full size. */
   pressGrowMs?: number;
 
-  /**
-   * The minimum duration in milliseconds for the ripple to be shown. If the
+  /** The minimum duration in milliseconds for the ripple to be shown. If the
    * press animation is less than this duration, the ripple will be shown for
-   * the remaining time.
-   */
+   * the remaining time. */
   minimumPressMs?: number;
 
   /**
@@ -31,36 +25,24 @@ export type IUSeRippleOptions = {
    */
   initialOriginScale?: number;
 
-  /**
-   * The padding around the control to ensure the ripple is fully visible.
-   */
+  /** The padding around the control to ensure the ripple is fully visible. */
   padding?: number;
 
-  /**
-   * The minimum size of the soft edge of the ripple. The soft edge is the
-   * transparent area around the ripple that fades out.
-   */
+  /** The minimum size of the soft edge of the ripple. The soft edge is the
+   * transparent area around the ripple that fades out. */
   softEdgeMinimumSize?: number;
 
-  /**
-   * The ratio of the soft edge to the control size. The soft edge will be at
-   * least this size.
-   */
+  /** The ratio of the soft edge to the control size. The soft edge will be at
+   * least this size. */
   softEdgeContainerRatio?: number;
 
-  /**
-   * The pseudo element to apply the ripple to.
-   */
+  /**The pseudo element to apply the ripple to. */
   pressPseudo?: string;
 
-  /**
-   * The fill mode for the ripple animation.
-   */
+  /** The fill mode for the ripple animation. */
   animationFill?: FillMode;
 
-  /**
-   * The easing function for the ripple animation.
-   */
+  /** The easing function for the ripple animation. */
   easing?: string;
 };
 
