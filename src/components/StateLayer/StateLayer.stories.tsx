@@ -17,7 +17,7 @@ import { useStateLayer } from './useStateLayer';
 // https://github.com/material-components/material-web/blob/main/ripple/demo/stories.ts
 
 type IDemoProps = {
-  interactionState?: IInteractionState;
+  staticInteractionState?: IInteractionState;
   disabled?: boolean;
 };
 
@@ -31,9 +31,9 @@ const defaultArgs = {} satisfies Partial<IDemoProps>;
 
 const states: Array<IComponentPresentation<IDemoProps>> = [
   { legend: 'Enabled' },
-  { legend: 'Hovered', props: { interactionState: { hovered: true } } },
-  { legend: 'Pressed', props: { interactionState: { pressed: true } } },
-  { legend: 'Dragged', props: { interactionState: { dragged: true } } },
+  { legend: 'Hovered', props: { staticInteractionState: { hovered: true } } },
+  { legend: 'Pressed', props: { staticInteractionState: { pressed: true } } },
+  { legend: 'Dragged', props: { staticInteractionState: { dragged: true } } },
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
@@ -42,8 +42,8 @@ const BoundedDemo: React.FC<IDemoProps> = (props) => {
 
   return (
     <div
-      {...stateLayer.targetProps}
       className={clsx(theme, styles.container, styles.container$bounded)}
+      {...stateLayer.interactiveTargetProps}
       ref={stateLayer.interactiveTargetRef}
     >
       <StateLayer context={stateLayer} />
@@ -67,8 +67,8 @@ const UnboundedDemo: React.FC<IDemoProps> = (props) => {
 
   return (
     <div
-      {...stateLayer.targetProps}
       className={clsx(theme, styles.container, styles.container$unbounded)}
+      {...stateLayer.interactiveTargetProps}
       ref={stateLayer.interactiveTargetRef}
     >
       <StateLayer
@@ -96,20 +96,20 @@ const NestedDemo: React.FC<IDemoProps> = (props) => {
 
   return (
     <div
-      {...stateLayer.targetProps}
       className={clsx(theme, styles.container, styles.container$bounded)}
+      {...stateLayer.interactiveTargetProps}
       ref={stateLayer.interactiveTargetRef}
     >
       <StateLayer context={stateLayer} />
 
       <div
-        {...nestedStateLayer.targetProps}
         className={clsx(
           theme,
           styles.container,
           styles.container$sm,
           styles.container$nested,
         )}
+        {...nestedStateLayer.interactiveTargetProps}
         ref={nestedStateLayer.interactiveTargetRef}
       >
         <StateLayer context={nestedStateLayer} />

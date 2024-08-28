@@ -88,7 +88,6 @@ export type IUseRippleResult = {
   animating: boolean;
   onPressStart: (event: PressEvent) => void;
   onPressEnd: (event: PressEvent) => void;
-  onPress: () => void;
   onPointerLeave: (event: PointerEvent) => void;
   onPointerCancel: (event: PointerEvent) => void;
   onContextMenu: (event: PointerEvent | MouseEvent) => void;
@@ -297,7 +296,6 @@ export const useRipple = <TElement extends HTMLElement>(
 
       return;
     }
-
     void delay(options.minimumPressMs - pressAnimationPlayState).then(() => {
       if (growAnimationRef.current !== animation) {
         // A new press animation was started. The old animation was canceled and
@@ -374,16 +372,6 @@ export const useRipple = <TElement extends HTMLElement>(
     [endPressAnimation],
   );
 
-  const handlePress = useCallback(() => {
-    if (disabled) {
-      return;
-    }
-
-    if (stateRef.current === IState.WaitingForClick) {
-      void endPressAnimation();
-    }
-  }, [disabled, endPressAnimation]);
-
   const handlePressStart = useCallback(
     (event: PressEvent) => {
       setPressed(true);
@@ -396,15 +384,18 @@ export const useRipple = <TElement extends HTMLElement>(
     (event: PressEvent) => {
       setPressed(false);
       handlePointerUp(event);
+
+      if (stateRef.current !== IState.Inactive) {
+        void endPressAnimation();
+      }
     },
-    [handlePointerUp],
+    [handlePointerUp, endPressAnimation],
   );
 
   return {
     animating,
     onPressStart: handlePressStart,
     onPressEnd: handlePressEnd,
-    onPress: handlePress,
     onPointerLeave: handlePointerLeave,
     onPointerCancel: endPressAnimation,
     onContextMenu: endPressAnimation,

@@ -23,8 +23,8 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
 
     const modifiers = {
       hovered: !context.animating && context.state?.hovered,
-      pressed: !context.animating && context.state?.pressed,
       dragged: !context.animating && context.state?.dragged,
+      staticPressed: context.staticState?.pressed,
       animating: context.animating,
     };
 

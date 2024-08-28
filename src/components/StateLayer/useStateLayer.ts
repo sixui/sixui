@@ -9,12 +9,13 @@ import {
 
 export type IUseStateLayerProps = {
   disabled?: boolean;
-  interactionState?: IInteractionState;
+  staticInteractionState?: IInteractionState;
 };
 
 export type IStateLayerContext<TElement extends HTMLElement = HTMLElement> = {
-  targetProps: DOMAttributes;
+  interactiveTargetProps: DOMAttributes;
   state: IInteractionState;
+  staticState?: IInteractionState;
   interactiveTargetRef: React.RefObject<TElement>;
   surfaceRef: React.RefObject<HTMLDivElement>;
   animating: boolean;
@@ -23,14 +24,13 @@ export type IStateLayerContext<TElement extends HTMLElement = HTMLElement> = {
 export const useStateLayer = <TElement extends HTMLElement>(
   props?: IUseStateLayerProps,
 ): IStateLayerContext<TElement> => {
-  const { disabled, interactionState } = props ?? {};
+  const { disabled, staticInteractionState } = props ?? {};
   const surfaceRef = useRef<HTMLDivElement>(null);
   const interactiveTargetRef = useRef<TElement>(null);
   const {
     animating,
     onPressStart,
     onPressEnd,
-    onPress,
     onPointerLeave,
     onPointerCancel,
     onContextMenu,
@@ -41,11 +41,10 @@ export const useStateLayer = <TElement extends HTMLElement>(
   });
 
   const interactions = useInteractions({
-    staticState: interactionState,
+    staticState: staticInteractionState,
     pressEvents: {
       onPressStart,
       onPressEnd,
-      onPress,
     },
     disabled,
   });
@@ -68,7 +67,8 @@ export const useStateLayer = <TElement extends HTMLElement>(
   }, [interactiveTargetRef, onPointerLeave, onPointerCancel, onContextMenu]);
 
   return {
-    targetProps: interactions.targetProps,
+    interactiveTargetProps: interactions.targetProps,
+    staticState: interactions.staticState,
     state: interactions.state,
     interactiveTargetRef,
     surfaceRef,

@@ -1,4 +1,8 @@
-import type { DOMAttributes, PressEvents } from '@react-types/shared';
+import type {
+  DOMAttributes,
+  HoverEvent,
+  PressEvents,
+} from '@react-types/shared';
 import { accumulate } from '@olivierpascal/helpers';
 import { useMemo } from 'react';
 import { useFocusRing, useHover, usePress, type HoverEvents } from 'react-aria';
@@ -74,10 +78,18 @@ export type IInteractions = {
   state: IInteractionState;
 
   /**
+   * The static interaction state.
+   */
+  staticState?: IInteractionState;
+
+  /**
    * The combined interaction state of the target.
    */
   combinedStatus?: IInteractionStatus;
 };
+
+// Used to handle nested surfaces.
+const activeTargets: Array<EventTarget> = [];
 
 export const useInteractions = (
   props?: IUseInteractionsProps,
@@ -91,12 +103,22 @@ export const useInteractions = (
     isTextInput,
   } = props ?? {};
 
+  console.log('__active target', activeTargets);
+
   const localStateReplaced = staticState && staticStateStrategy === 'replace';
   const { focusProps, isFocusVisible: focused } = useFocusRing({
     isTextInput,
   });
   const { hoverProps, isHovered: hovered } = useHover({
     ...props?.hoverEvents,
+    onHoverStart: (event: HoverEvent) => {
+      props?.hoverEvents?.onHoverStart?.(event);
+      activeTargets.push(event.target);
+    },
+    onHoverEnd: (event: HoverEvent) => {
+      props?.hoverEvents?.onHoverEnd?.(event);
+      activeTargets.pop();
+    },
     isDisabled: disabled || localStateReplaced,
   });
   const { pressProps, isPressed: pressed } = usePress({
@@ -141,7 +163,8 @@ export const useInteractions = (
 
   return {
     targetProps,
-    state: state,
+    staticState,
+    state,
     combinedStatus,
   };
 };
