@@ -41,7 +41,12 @@ const BoundedDemo: React.FC<IDemoProps> = (props) => {
 
   return (
     <Box
-      className={clsx(theme, styles.container, styles.container$bounded)}
+      className={clsx(
+        theme,
+        styles.root,
+        styles.container,
+        styles.container$bounded,
+      )}
       interactions={stateLayer.interactions}
     >
       <StateLayer context={stateLayer} />
@@ -65,7 +70,12 @@ const UnboundedDemo: React.FC<IDemoProps> = (props) => {
 
   return (
     <Box
-      className={clsx(theme, styles.container, styles.container$unbounded)}
+      className={clsx(
+        theme,
+        styles.root,
+        styles.container,
+        styles.container$unbounded,
+      )}
       interactions={stateLayer.interactions}
     >
       <StateLayer
@@ -93,14 +103,18 @@ const NestedDemo: React.FC<IDemoProps> = (props) => {
 
   return (
     <Box
-      className={clsx(theme, styles.container, styles.container$bounded)}
+      className={clsx(
+        theme,
+        styles.root,
+        styles.container,
+        styles.container$bounded,
+      )}
       interactions={stateLayer.interactions}
     >
       <StateLayer context={stateLayer} />
 
       <Box
         className={clsx(
-          theme,
           styles.container,
           styles.container$sm,
           styles.container$nested,
