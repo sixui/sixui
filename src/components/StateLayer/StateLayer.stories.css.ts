@@ -15,19 +15,22 @@ export const [stateLayerStoriesTheme, stateLayerStoriesTokens] = createTheme({
   },
 });
 
+const container = style({
+  position: 'relative',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: px(stateLayerStoriesTokens.container.size.md),
+  height: px(stateLayerStoriesTokens.container.size.md),
+  borderRadius: px(stateLayerStoriesTokens.container.shape),
+  outlineWidth: themeTokens.outline.width.xs,
+  outlineColor: colorSchemeTokens.outline,
+  outlineStyle: 'solid',
+  backgroundColor: colorSchemeTokens.surface,
+});
+
 export const stateLayerStoriesStyles = {
-  container: style({
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: px(stateLayerStoriesTokens.container.size.md),
-    height: px(stateLayerStoriesTokens.container.size.md),
-    borderRadius: px(stateLayerStoriesTokens.container.shape),
-    outlineWidth: themeTokens.outline.width.xs,
-    outlineColor: colorSchemeTokens.outline,
-    outlineStyle: 'solid',
-  }),
+  container,
   container$lg: style({
     width: px(stateLayerStoriesTokens.container.size.lg),
     height: px(stateLayerStoriesTokens.container.size.lg),

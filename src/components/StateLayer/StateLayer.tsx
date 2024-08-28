@@ -21,10 +21,14 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
       theme: stateLayerTheme,
     });
 
+    const { interactions } = context;
     const modifiers = {
-      hovered: !context.animating && context.state?.hovered,
-      dragged: !context.animating && context.state?.dragged,
-      staticPressed: context.staticState?.pressed,
+      hovered: !context.animating && interactions.state.hovered,
+      dragged:
+        !context.animating &&
+        !interactions.state.hovered &&
+        interactions.state.dragged,
+      'static-pressed': interactions.staticState?.pressed,
       animating: context.animating,
     };
 

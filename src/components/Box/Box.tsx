@@ -5,8 +5,11 @@ import {
   createPolymorphicComponent,
   type IWithAsProp,
 } from '~/helpers/react/polymorphicComponentTypes';
+import { useMergeRefs } from '@floating-ui/react';
 
-const getModifiers = (modifiers: IBoxModifiers): Record<string, string> =>
+const getTransformedModifiers = (
+  modifiers: IBoxModifiers,
+): Record<string, string> =>
   Object.entries(modifiers).reduce((acc, [key, value]) => {
     if (
       value === undefined ||
@@ -28,14 +31,22 @@ export const Box = createPolymorphicComponent<'div', IBoxProps>(
     const {
       as: Component = 'div',
       renderRoot,
+      interactions,
       modifiers,
       ...other
     } = props as IWithAsProp<IBoxProps>;
 
+    const handleRef = useMergeRefs([forwardedRef, interactions?.targetRef]);
     const childrenProps = {
       ...other,
-      ...(modifiers ? getModifiers(modifiers) : {}),
-      ref: forwardedRef,
+      ...interactions?.targetProps,
+      ...getTransformedModifiers({
+        ...(interactions?.combinedStatus
+          ? { [interactions.combinedStatus]: true }
+          : undefined),
+        ...modifiers,
+      }),
+      ref: handleRef,
     };
 
     return renderRoot ? (

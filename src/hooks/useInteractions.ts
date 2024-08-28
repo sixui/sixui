@@ -54,9 +54,12 @@ export type IUseInteractionsProps = {
   priorities?: Array<IInteractionStatus>;
 };
 
-export type IInteractions = {
+export type IInteractions<TElement extends HTMLElement = HTMLElement> = {
   /** Props to spread on the target. */
   targetProps: DOMAttributes;
+
+  /** Ref object for the target element. */
+  targetRef: React.RefObject<TElement>;
 
   /** The current interaction state of the target. */
   state: IInteractionState;
@@ -69,11 +72,11 @@ export type IInteractions = {
 };
 
 /** Used to handle nested surfaces. */
-let activeTarget: EventTarget | null = null;
+const activeTargets: Array<EventTarget> = [];
 
-export const useInteractions = (
+export const useInteractions = <TElement extends HTMLElement>(
   props?: IUseInteractionsProps,
-): IInteractions => {
+): IInteractions<TElement> => {
   const {
     staticState,
     staticStateStrategy = 'replace',
@@ -83,6 +86,7 @@ export const useInteractions = (
     isTextInput,
   } = props ?? {};
 
+  const targetRef = useRef<TElement>(null);
   const localStateReplaced = staticState && staticStateStrategy === 'replace';
   const { focusProps, isFocusVisible: focused } = useFocusRing({
     isTextInput,
@@ -93,12 +97,12 @@ export const useInteractions = (
     onHoverStart: (event: HoverEvent) => {
       props?.hoverEvents?.onHoverStart?.(event);
       currentTarget.current = event.target;
-      activeTarget = event.target;
+      activeTargets.unshift(event.target);
     },
     onHoverEnd: (event: HoverEvent) => {
       props?.hoverEvents?.onHoverEnd?.(event);
       currentTarget.current = null;
-      activeTarget = null;
+      activeTargets.shift();
     },
     isDisabled: disabled || localStateReplaced,
   });
@@ -107,7 +111,7 @@ export const useInteractions = (
     isDisabled: disabled || localStateReplaced,
   });
 
-  const hovered = hoveredWithin && activeTarget === currentTarget.current;
+  const hovered = hoveredWithin && currentTarget.current === activeTargets[0];
 
   const targetProps = useMemo<DOMAttributes>(
     () => ({
@@ -146,6 +150,7 @@ export const useInteractions = (
 
   return {
     targetProps,
+    targetRef,
     staticState,
     state,
     combinedStatus,

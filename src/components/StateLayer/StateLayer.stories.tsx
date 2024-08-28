@@ -6,6 +6,7 @@ import {
   type IComponentPresentation,
   ComponentShowcase,
 } from '../ComponentShowcase';
+import { Box } from '../Box';
 import { StateLayer } from './StateLayer';
 import {
   stateLayerStoriesStyles as styles,
@@ -20,8 +21,6 @@ type IDemoProps = {
   staticInteractionState?: IInteractionState;
   disabled?: boolean;
 };
-
-// FIXME: handle nested
 
 const meta = {} satisfies Meta<IDemoProps>;
 
@@ -41,13 +40,12 @@ const BoundedDemo: React.FC<IDemoProps> = (props) => {
   const stateLayer = useStateLayer<HTMLDivElement>(props);
 
   return (
-    <div
+    <Box
       className={clsx(theme, styles.container, styles.container$bounded)}
-      {...stateLayer.interactiveTargetProps}
-      ref={stateLayer.interactiveTargetRef}
+      interactions={stateLayer.interactions}
     >
       <StateLayer context={stateLayer} />
-    </div>
+    </Box>
   );
 };
 
@@ -66,16 +64,15 @@ const UnboundedDemo: React.FC<IDemoProps> = (props) => {
   const stateLayer = useStateLayer<HTMLDivElement>(props);
 
   return (
-    <div
+    <Box
       className={clsx(theme, styles.container, styles.container$unbounded)}
-      {...stateLayer.interactiveTargetProps}
-      ref={stateLayer.interactiveTargetRef}
+      interactions={stateLayer.interactions}
     >
       <StateLayer
         className={clsx(styles.container, styles.container$sm)}
         context={stateLayer}
       />
-    </div>
+    </Box>
   );
 };
 
@@ -95,26 +92,24 @@ const NestedDemo: React.FC<IDemoProps> = (props) => {
   const nestedStateLayer = useStateLayer<HTMLDivElement>();
 
   return (
-    <div
+    <Box
       className={clsx(theme, styles.container, styles.container$bounded)}
-      {...stateLayer.interactiveTargetProps}
-      ref={stateLayer.interactiveTargetRef}
+      interactions={stateLayer.interactions}
     >
       <StateLayer context={stateLayer} />
 
-      <div
+      <Box
         className={clsx(
           theme,
           styles.container,
           styles.container$sm,
           styles.container$nested,
         )}
-        {...nestedStateLayer.interactiveTargetProps}
-        ref={nestedStateLayer.interactiveTargetRef}
+        interactions={nestedStateLayer.interactions}
       >
         <StateLayer context={nestedStateLayer} />
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

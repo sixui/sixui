@@ -1,11 +1,12 @@
-import type { DOMAttributes } from '@react-types/shared';
 import { useEffect, useRef } from 'react';
 
 import { useRipple } from '~/hooks/useRipple';
 import {
   useInteractions,
+  type IInteractions,
   type IInteractionState,
 } from '~/hooks/useInteractions';
+import { PressEvent } from 'react-aria';
 
 export type IUseStateLayerProps = {
   disabled?: boolean;
@@ -13,10 +14,7 @@ export type IUseStateLayerProps = {
 };
 
 export type IStateLayerContext<TElement extends HTMLElement = HTMLElement> = {
-  interactiveTargetProps: DOMAttributes;
-  state: IInteractionState;
-  staticState?: IInteractionState;
-  interactiveTargetRef: React.RefObject<TElement>;
+  interactions: IInteractions<TElement>;
   surfaceRef: React.RefObject<HTMLDivElement>;
   animating: boolean;
 };
@@ -26,7 +24,19 @@ export const useStateLayer = <TElement extends HTMLElement>(
 ): IStateLayerContext<TElement> => {
   const { disabled, staticInteractionState } = props ?? {};
   const surfaceRef = useRef<HTMLDivElement>(null);
-  const interactiveTargetRef = useRef<TElement>(null);
+
+  const handlePressStart = (event: PressEvent): void => onPressStart?.(event);
+  const handlePressEnd = (event: PressEvent): void => onPressEnd?.(event);
+
+  const interactions = useInteractions<TElement>({
+    staticState: staticInteractionState,
+    pressEvents: {
+      onPressStart: handlePressStart,
+      onPressEnd: handlePressEnd,
+    },
+    disabled,
+  });
+
   const {
     animating,
     onPressStart,
@@ -35,22 +45,13 @@ export const useStateLayer = <TElement extends HTMLElement>(
     onPointerCancel,
     onContextMenu,
   } = useRipple({
-    interactiveTargetRef,
+    interactiveTargetRef: interactions.targetRef,
     surfaceRef,
     disabled,
   });
 
-  const interactions = useInteractions({
-    staticState: staticInteractionState,
-    pressEvents: {
-      onPressStart,
-      onPressEnd,
-    },
-    disabled,
-  });
-
   useEffect(() => {
-    const control = interactiveTargetRef.current;
+    const control = interactions.targetRef.current;
     if (!control) {
       return;
     }
@@ -64,13 +65,10 @@ export const useStateLayer = <TElement extends HTMLElement>(
       control.removeEventListener('pointercancel', onPointerCancel);
       control.removeEventListener('contextmenu', onContextMenu);
     };
-  }, [interactiveTargetRef, onPointerLeave, onPointerCancel, onContextMenu]);
+  }, [interactions.targetRef, onPointerLeave, onPointerCancel, onContextMenu]);
 
   return {
-    interactiveTargetProps: interactions.targetProps,
-    staticState: interactions.staticState,
-    state: interactions.state,
-    interactiveTargetRef,
+    interactions,
     surfaceRef,
     animating,
   };

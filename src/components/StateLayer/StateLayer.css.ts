@@ -68,11 +68,11 @@ const root = style({
       opacity: stateLayerTokens.opacity.pressed,
       transitionDuration: '105ms',
     },
-    [`${getModifierSelector('staticPressed')}::before`]: {
+    [`${getModifierSelector('static-pressed')}::before`]: {
       backgroundColor: stateLayerTokens.color.hover,
       opacity: stateLayerTokens.opacity.hover,
     },
-    [`${getModifierSelector('staticPressed')}::after`]: {
+    [`${getModifierSelector('static-pressed')}::after`]: {
       backgroundColor: stateLayerTokens.color.pressed,
       opacity: stateLayerTokens.opacity.pressed,
     },
