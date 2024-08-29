@@ -1,35 +1,65 @@
 import { createTheme, style } from '@vanilla-extract/css';
-import { calc } from '@vanilla-extract/css-utils';
 
 import { stylesFactory, type IStylesFactory } from '~/utils/stylesFactory';
-import { getDensity } from '~/helpers/styles/getDensity';
-import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { themeTokens } from '../ThemeProvider';
+import { elevationLevelPreset } from '../Elevation/Elevation.css';
+import { Elevation } from '../Elevation';
 
 export type IPaperBaseStyleName = keyof typeof paperBaseStyles;
 
 export const [tokensClassName, tokens] = createTheme({
   container: {
     color: themeTokens.colorScheme.surface,
-    // elevation:
+    elevation: elevationLevelPreset[0],
+    shape: {
+      topLeft: themeTokens.shape.corner.none,
+      topRight: themeTokens.shape.corner.none,
+      bottomRight: themeTokens.shape.corner.none,
+      bottomLeft: themeTokens.shape.corner.none,
+    },
   },
-  containerColor: themeTokens.colorScheme.surface,
-  containerElevation: elevationTokens.boxShadow$level0,
-  containerShape$topLeft: shapeTokens.corner$none,
-  containerShape$topRight: shapeTokens.corner$none,
-  containerShape$bottomRight: shapeTokens.corner$none,
-  containerShape$bottomLeft: shapeTokens.corner$none,
-
-  // outline
-  outlineStyle: 'none',
-  outlineColor: themeTokens.colorScheme.outlineVariant,
-  outlineWidth: outlineTokens.width$xs,
-
-  // text
-  textColor: themeTokens.colorScheme.onSurface,
+  outline: {
+    style: 'none',
+    color: themeTokens.colorScheme.outlineVariant,
+    width: themeTokens.outline.width.xs,
+  },
+  text: {
+    color: themeTokens.colorScheme.onSurface,
+  },
 });
+
+const classNames = {
+  root: style({
+    borderTopLeftRadius: px(tokens.container.shape.topLeft),
+    borderTopRightRadius: px(tokens.container.shape.topRight),
+    borderBottomRightRadius: px(tokens.container.shape.bottomRight),
+    borderBottomLeftRadius: px(tokens.container.shape.bottomLeft),
+    position: 'relative',
+    color: tokens.text.color,
+  }),
+  elevation: style({
+    vars: {
+      [Elevation.styles.tokens.level]: tokens.container.elevation,
+    },
+  }),
+  background: style({
+    backgroundColor: tokens.container.color,
+    borderRadius: 'inherit',
+    inset: 0,
+    position: 'absolute',
+  }),
+  outline: style({
+    zIndex: 1,
+    position: 'absolute',
+    inset: 0,
+    pointerEvents: 'none',
+    borderStyle: tokens.outline.style,
+    borderWidth: px(tokens.outline.width),
+    borderColor: tokens.outline.color,
+    borderRadius: 'inherit',
+  }),
+};
 
 export type IPaperBaseStylesFactory = IStylesFactory<{
   styleName: keyof typeof classNames;

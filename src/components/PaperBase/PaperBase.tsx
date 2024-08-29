@@ -1,43 +1,38 @@
-import { forwardRef } from 'react';
-import { asArray } from '@olivierpascal/helpers';
-
-import type { IPaperBaseProps } from './PaperBase.types';
-import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
-import { useStyles } from '~/hooks/useStyles';
+import type { IPaperBaseFactory } from './PaperBase.types';
+import { polymorphicComponentFactory } from '~/utils/polymorphicComponentFactory';
+import { useProps } from '~/hooks/useProps';
+import { useStyles } from '~/hooks/useStyles2';
 import { Elevation } from '../Elevation';
-import { paperBaseElevationStyles, paperBaseStyles } from './PaperBase.styles';
-import { paperBaseTheme } from './PaperBase.stylex';
-import { Base } from '../Base';
+import { Box } from '../Box';
+import { paperBaseStyles, type IPaperBaseStylesFactory } from './PaperBase.css';
 
-// https://github.com/material-components/material-web/blob/main/labs/paperBase/internal/paperBase.ts
+const COMPONENT_NAME = 'PaperBase';
 
-export const PaperBase = createPolymorphicComponent<'div', IPaperBaseProps>(
-  forwardRef<HTMLDivElement, IPaperBaseProps>(
-    function PaperBase(props, forwardedRef) {
-      const { styles, sx, innerStyles, children, ...other } = props;
+export const PaperBase = polymorphicComponentFactory<IPaperBaseFactory>(
+  (props, forwardedRef) => {
+    const { classNames, className, style, children, ...other } = useProps({
+      componentName: COMPONENT_NAME,
+      props,
+    });
 
-      const { combineStyles, getStyles, globalStyles } = useStyles({
-        componentName: 'PaperBase',
-        styles: [paperBaseStyles, styles],
-      });
+    const { getStyles } = useStyles<IPaperBaseStylesFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles: paperBaseStyles,
+      style,
+    });
 
-      return (
-        <Base
-          {...other}
-          sx={[paperBaseTheme, globalStyles, combineStyles('host'), sx]}
-          ref={forwardedRef}
-        >
-          <Elevation
-            styles={[
-              paperBaseElevationStyles,
-              ...asArray(innerStyles?.elevation),
-            ]}
-          />
-          <div {...getStyles('outline')} />
-          <div {...getStyles('background')} />
-          {children}
-        </Base>
-      );
-    },
-  ),
+    return (
+      <Box {...other} {...other} {...getStyles('root')} ref={forwardedRef}>
+        <Elevation {...getStyles('elevation')} />
+        <div {...getStyles('outline')} />
+        <div {...getStyles('background')} />
+        {children}
+      </Box>
+    );
+  },
 );
+
+PaperBase.styles = paperBaseStyles;
+PaperBase.displayName = `@sixui/${COMPONENT_NAME}`;

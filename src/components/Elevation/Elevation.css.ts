@@ -42,7 +42,7 @@ export const elevationLevelPreset = {
   5: getBoxShadow(themeTokens.elevation.level[5]),
 };
 
-export const [elevationTheme, elevationTokens] = createTheme({
+const [tokensClassName, tokens] = createTheme({
   transitionDuration: themeTokens.motion.duration.medium.$2,
   transitionTimingFunction: themeTokens.motion.easing.standard.normal,
   level: elevationLevelPreset[0],
@@ -53,9 +53,9 @@ const classNames = {
     display: 'flex',
     pointerEvents: 'none',
     transitionProperty: 'box-shadow',
-    boxShadow: elevationTokens.level,
-    transitionDuration: elevationTokens.transitionDuration,
-    transitionTimingFunction: elevationTokens.transitionTimingFunction,
+    boxShadow: tokens.level,
+    transitionDuration: tokens.transitionDuration,
+    transitionTimingFunction: tokens.transitionTimingFunction,
     borderRadius: 'inherit',
     inset: 0,
     position: 'absolute',
@@ -85,8 +85,11 @@ const classNames = {
 
 export type IElevationStylesFactory = IStylesFactory<{
   styleName: keyof typeof classNames;
+  tokens: typeof tokens;
 }>;
 
 export const elevationStyles = stylesFactory<IElevationStylesFactory>({
   classNames,
+  tokensClassName,
+  tokens,
 });
