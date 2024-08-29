@@ -10,6 +10,8 @@ import { getHslColor } from '~/helpers/styles/getHslColor';
 import { Box } from '../Box';
 import { avatarStyles, type IAvatarStylesFactory } from './Avatar.css';
 
+const COMPONENT_NAME = 'Avatar';
+
 export const Avatar = polymorphicComponentFactory<IAvatarFactory>(
   (props, forwardedRef) => {
     const {
@@ -24,10 +26,10 @@ export const Avatar = polymorphicComponentFactory<IAvatarFactory>(
       randomColorSourceString: randomColorSourceStringProp,
       variant = 'rounded',
       ...other
-    } = useProps({ componentName: 'Avatar', props });
+    } = useProps({ componentName: COMPONENT_NAME, props });
 
     const { getStyles } = useStyles<IAvatarStylesFactory>({
-      componentName: 'Avatar',
+      componentName: COMPONENT_NAME,
       classNames,
       className,
       styles: avatarStyles,
@@ -88,4 +90,4 @@ export const Avatar = polymorphicComponentFactory<IAvatarFactory>(
 );
 
 Avatar.styles = avatarStyles;
-Avatar.displayName = '@sixui/Avatar';
+Avatar.displayName = `@sixui/${COMPONENT_NAME}`;

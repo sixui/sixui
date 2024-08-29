@@ -5,7 +5,7 @@ import type { IThemeComponentValues } from '~/components/ThemeProvider';
 
 export type IComponentFactoryPayload = {
   props: Record<string, IAny>;
-  ref?: IAny;
+  ref: Element;
   styles?: IAny;
   staticComponents?: Record<string, IAny>;
 };

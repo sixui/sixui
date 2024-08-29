@@ -1,6 +1,6 @@
-import { forwardRef, useMemo } from 'react';
+import { useMemo } from 'react';
 
-import type { IBadgeFactory, IBadgeProps } from './Badge.types';
+import type { IBadgeFactory } from './Badge.types';
 import { polymorphicComponentFactory } from '~/utils/polymorphicComponentFactory';
 import { useProps } from '~/hooks/useProps';
 import { useStyles } from '~/hooks/useStyles2';
@@ -8,8 +8,10 @@ import { isNumeric } from '~/helpers/isNumeric';
 import { Box } from '../Box';
 import { badgeStyles, type IBadgeStylesFactory } from './Badge.css';
 
+const COMPONENT_NAME = 'Badge';
+
 export const Badge = polymorphicComponentFactory<IBadgeFactory>(
-  forwardRef<HTMLDivElement, IBadgeProps>(function Badge(props, forwardedRef) {
+  (props, forwardedRef) => {
     const {
       classNames,
       className,
@@ -19,10 +21,10 @@ export const Badge = polymorphicComponentFactory<IBadgeFactory>(
       showZero,
       dot,
       ...other
-    } = useProps({ componentName: 'Badge', props });
+    } = useProps({ componentName: COMPONENT_NAME, props });
 
     const { getStyles } = useStyles<IBadgeStylesFactory>({
-      componentName: 'Badge',
+      componentName: COMPONENT_NAME,
       classNames,
       className,
       styles: badgeStyles,
@@ -60,8 +62,8 @@ export const Badge = polymorphicComponentFactory<IBadgeFactory>(
         <div {...getStyles('label')}>{displayValue}</div>
       </Box>
     );
-  }),
+  },
 );
 
 Badge.styles = badgeStyles;
-Badge.displayName = '@sixui/Badge';
+Badge.displayName = `@sixui/${COMPONENT_NAME}`;

@@ -10,17 +10,17 @@ import {
   type IStateLayerStylesFactory,
 } from './StateLayer.css';
 
-// https://github.com/material-components/material-web/blob/main/ripple/internal/ripple.ts
+const COMPONENT_NAME = 'StateLayer';
 
 export const StateLayer = componentFactory<IStateLayerFactory>(
-  function StateLayer(props, forwardedRef) {
+  (props, forwardedRef) => {
     const { classNames, className, style, context, ...other } = useProps({
-      componentName: 'StateLayer',
+      componentName: COMPONENT_NAME,
       props,
     });
 
     const { getStyles } = useStyles<IStateLayerStylesFactory>({
-      componentName: 'StateLayer',
+      componentName: COMPONENT_NAME,
       classNames,
       className,
       styles: stateLayerStyles,
@@ -53,4 +53,4 @@ export const StateLayer = componentFactory<IStateLayerFactory>(
 );
 
 StateLayer.styles = stateLayerStyles;
-StateLayer.displayName = '@sixui/StateLayer';
+StateLayer.displayName = `@sixui/${COMPONENT_NAME}`;

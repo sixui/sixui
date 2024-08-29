@@ -12,7 +12,7 @@ export type IStyles<TPayload extends IStylesFactoryPayload> = IMakeOptional<
     tokensClassName?: string;
     tokens: TPayload['tokens'];
   },
-  TPayload['tokens'] extends undefined ? 'tokens' : never
+  TPayload['tokens'] extends undefined ? never : 'tokens'
 >;
 
 export type IStylesFactory<TPayload extends IStylesFactoryPayload> = TPayload;

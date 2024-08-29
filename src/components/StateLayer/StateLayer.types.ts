@@ -14,7 +14,6 @@ export type IStateLayerProps = IBoxProps &
 
 export type IStateLayerFactory = IComponentFactory<{
   props: IStateLayerProps;
-  defaultRef: HTMLDivElement;
-  defaultRoot: 'div';
+  ref: HTMLDivElement;
   styles: typeof stateLayerStyles;
 }>;

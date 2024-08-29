@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IElevationProps } from './Elevation.types';
-import { ComponentShowcase } from '../ComponentShowcase';
-import { Placeholder } from '../Placeholder';
+import { makeComponentShowcase } from '../ComponentShowcase';
+// import { Placeholder } from '../Placeholder';
 import { Elevation } from './Elevation';
 
 const meta = {
@@ -13,25 +13,27 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {} satisfies Partial<IElevationProps>;
 
+const ElevationShowcase = makeComponentShowcase((props: IElevationProps) => (
+  // FIXME: use Placeholder
+  <div
+    style={{
+      position: 'relative',
+      width: 96,
+      height: 96,
+      border: '1px solid gray',
+    }}
+    // width={96}
+    // height={96}
+    // label={`Level ${variantArgs.level}`}
+  >
+    <Elevation {...props} />
+    {`Level ${props.level}`}
+  </div>
+));
+
 export const Levels: IStory = {
   render: (props) => (
-    <ComponentShowcase<IElevationProps>
-      component={(variantArgs) => (
-        <div
-          style={{
-            position: 'relative',
-            width: 96,
-            height: 96,
-            border: '1px solid gray',
-          }}
-          // width={96}
-          // height={96}
-          // label={`Level ${variantArgs.level}`}
-        >
-          <Elevation {...props} {...variantArgs} />
-          {`Level ${variantArgs.level}`}
-        </div>
-      )}
+    <ElevationShowcase
       props={{}}
       cols={[
         { props: { level: 0 } },

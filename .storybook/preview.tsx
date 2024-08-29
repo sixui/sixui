@@ -7,6 +7,7 @@ import { modes } from './modes';
 // import { ThemeControls } from './ThemeControls';
 import * as styles from './preview.css';
 import { Avatar } from '~/components/Avatar';
+import { StateLayer } from '~/components/StateLayer';
 
 import '~/styles/main.css';
 import '~/styles/storybook.css';
@@ -60,6 +61,11 @@ export const decorators: Array<Decorator> = [
                   },
                   classNames: {
                     root: styles.testVariant,
+                  },
+                }),
+                StateLayer: StateLayer.extend({
+                  classNames: {
+                    root: styles.testBorder,
                   },
                 }),
               },

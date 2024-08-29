@@ -1,24 +1,26 @@
-import { forwardRef } from 'react';
-
-import type { IElevationProps } from './Elevation.types';
+import type { IElevationFactory } from './Elevation.types';
+import { componentFactory } from '~/utils/componentFactory';
+import { useProps } from '~/hooks/useProps';
 import { useStyles } from '~/hooks/useStyles2';
 import { Box } from '../Box';
-import {
-  elevationStyles,
-  elevationTheme,
-  type IElevationStyleName,
-} from './Elevation.css';
+import { elevationStyles, type IElevationStylesFactory } from './Elevation.css';
 
-export const Elevation = forwardRef<HTMLDivElement, IElevationProps>(
-  function Elevation(props, forwardedRef) {
-    const { className, styles, style, level, disabled, ...other } = props;
+const COMPONENT_NAME = 'Elevation';
 
-    const { getStyles } = useStyles({
-      name: 'Elevation',
+export const Elevation = componentFactory<IElevationFactory>(
+  (props, forwardedRef) => {
+    const { classNames, className, style, level, disabled, ...other } =
+      useProps({
+        componentName: COMPONENT_NAME,
+        props,
+      });
+
+    const { getStyles } = useStyles<IElevationStylesFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
       className,
+      styles: elevationStyles,
       style,
-      stylesList: [elevationStyles, styles],
-      theme: elevationTheme,
     });
 
     return (
@@ -32,3 +34,6 @@ export const Elevation = forwardRef<HTMLDivElement, IElevationProps>(
     );
   },
 );
+
+Elevation.styles = elevationStyles;
+Elevation.displayName = `@sixui/${COMPONENT_NAME}`;
