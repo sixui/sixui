@@ -63,10 +63,13 @@ export const componentFactory = <TPayload extends IComponentFactoryPayload>(
   >,
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 ) => {
-  type IComponentFromFactory = React.ForwardRefExoticComponent<
+  type IComponent = React.ForwardRefExoticComponent<
     TPayload['props'] & React.RefAttributes<TPayload['ref']>
-  > &
+  >;
+
+  type IComponentFromFactory = IComponent &
     IFactoryComponentThemeExtend<TPayload> &
+    IFactoryComponentStyles<TPayload> &
     IFactoryComponentWithProps<TPayload>;
 
   const ComponentFromFactory = forwardRef(

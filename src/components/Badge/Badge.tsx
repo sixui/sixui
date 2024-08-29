@@ -62,3 +62,6 @@ export const Badge = polymorphicComponentFactory<IBadgeFactory>(
     );
   }),
 );
+
+Badge.styles = badgeStyles;
+Badge.displayName = '@sixui/Badge';

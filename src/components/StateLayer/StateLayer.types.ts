@@ -1,7 +1,20 @@
-import type { IBoxProps } from '../Box';
-import type { IStateLayerStyleName } from './StateLayer.css';
+import type { IComponentFactory } from '~/utils/componentFactory';
+import type { IStylesProps } from '~/hooks/useStyles2';
 import type { IStateLayerContext } from './useStateLayer';
+import type { IBoxProps } from '../Box';
+import type {
+  stateLayerStyles,
+  IStateLayerStylesFactory,
+} from './StateLayer.css';
 
-export type IStateLayerProps = IBoxProps<IStateLayerStyleName> & {
-  context: IStateLayerContext;
-};
+export type IStateLayerProps = IBoxProps &
+  IStylesProps<IStateLayerStylesFactory> & {
+    context: IStateLayerContext;
+  };
+
+export type IStateLayerFactory = IComponentFactory<{
+  props: IStateLayerProps;
+  defaultRef: HTMLDivElement;
+  defaultRoot: 'div';
+  styles: typeof stateLayerStyles;
+}>;

@@ -2,9 +2,8 @@ import { createTheme, style } from '@vanilla-extract/css';
 
 import { px } from '~/helpers/styles/px';
 import { themeTokens } from '../ThemeProvider';
-import { colorSchemeTokens } from '../ColorScheme';
 
-export const [stateLayerStoriesTheme, stateLayerStoriesTokens] = createTheme({
+const [tokensClassName, tokens] = createTheme({
   container: {
     size: {
       sm: '48px',
@@ -15,34 +14,31 @@ export const [stateLayerStoriesTheme, stateLayerStoriesTokens] = createTheme({
   },
 });
 
-const root = style({});
-
-export const stateLayerStoriesStyles = {
-  root,
+const classNames = {
   container: style({
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: px(stateLayerStoriesTokens.container.size.md),
-    height: px(stateLayerStoriesTokens.container.size.md),
-    borderRadius: px(stateLayerStoriesTokens.container.shape),
+    width: px(tokens.container.size.md),
+    height: px(tokens.container.size.md),
+    borderRadius: px(tokens.container.shape),
     outlineWidth: themeTokens.outline.width.xs,
-    outlineColor: colorSchemeTokens.outline,
+    outlineColor: themeTokens.colorScheme.outline,
     outlineStyle: 'solid',
-    backgroundColor: colorSchemeTokens.surface,
+    backgroundColor: themeTokens.colorScheme.surface,
   }),
   container$lg: style({
-    width: px(stateLayerStoriesTokens.container.size.lg),
-    height: px(stateLayerStoriesTokens.container.size.lg),
+    width: px(tokens.container.size.lg),
+    height: px(tokens.container.size.lg),
   }),
   container$sm: style({
-    width: px(stateLayerStoriesTokens.container.size.sm),
-    height: px(stateLayerStoriesTokens.container.size.sm),
+    width: px(tokens.container.size.sm),
+    height: px(tokens.container.size.sm),
   }),
   container$nested: style({
     position: 'absolute',
-    borderRadius: px(stateLayerStoriesTokens.container.shape),
+    borderRadius: px(tokens.container.shape),
     outlineStyle: 'solid',
     inset: '50%',
     transform: 'translate(-50%, -50%)',
@@ -53,4 +49,10 @@ export const stateLayerStoriesStyles = {
   container$unbounded: style({
     outlineStyle: 'dashed',
   }),
+};
+
+export const stateLayerStoriesStyles = {
+  classNames,
+  tokensClassName,
+  tokens,
 };

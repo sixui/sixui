@@ -3,19 +3,18 @@ import clsx from 'clsx';
 
 import type { IInteractionState } from '~/hooks/useInteractions';
 import {
+  makeComponentShowcase,
   type IComponentPresentation,
-  ComponentShowcase,
 } from '../ComponentShowcase';
 import { Box } from '../Box';
 import { StateLayer } from './StateLayer';
-import {
-  stateLayerStoriesStyles as styles,
-  stateLayerStoriesTheme as theme,
-} from './StateLayer.stories.css';
+import { stateLayerStoriesStyles } from './StateLayer.stories.css';
 import { useStateLayer } from './useStateLayer';
 
 // https://material-web.dev/components/ripple/
 // https://github.com/material-components/material-web/blob/main/ripple/demo/stories.ts
+
+const { tokensClassName, classNames } = stateLayerStoriesStyles;
 
 type IDemoProps = {
   staticInteractionState?: IInteractionState;
@@ -42,10 +41,9 @@ const BoundedDemo: React.FC<IDemoProps> = (props) => {
   return (
     <Box
       className={clsx(
-        theme,
-        styles.root,
-        styles.container,
-        styles.container$bounded,
+        tokensClassName,
+        classNames.container,
+        classNames.container$bounded,
       )}
       interactions={stateLayer.interactions}
     >
@@ -54,14 +52,10 @@ const BoundedDemo: React.FC<IDemoProps> = (props) => {
   );
 };
 
+const BoundedShowcase = makeComponentShowcase(BoundedDemo);
+
 export const Bounded: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={(props) => <BoundedDemo {...props} />}
-      props={props}
-      cols={states}
-    />
-  ),
+  render: (props) => <BoundedShowcase props={props} cols={states} />,
   args: defaultArgs,
 };
 
@@ -71,29 +65,24 @@ const UnboundedDemo: React.FC<IDemoProps> = (props) => {
   return (
     <Box
       className={clsx(
-        theme,
-        styles.root,
-        styles.container,
-        styles.container$unbounded,
+        tokensClassName,
+        classNames.container,
+        classNames.container$unbounded,
       )}
       interactions={stateLayer.interactions}
     >
       <StateLayer
-        className={clsx(styles.container, styles.container$sm)}
+        className={clsx(classNames.container, classNames.container$sm)}
         context={stateLayer}
       />
     </Box>
   );
 };
 
+const UnboundedShowcase = makeComponentShowcase(UnboundedDemo);
+
 export const Unbounded: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={(props) => <UnboundedDemo {...props} />}
-      props={props}
-      cols={states}
-    />
-  ),
+  render: (props) => <UnboundedShowcase props={props} cols={states} />,
   args: defaultArgs,
 };
 
@@ -104,10 +93,9 @@ const NestedDemo: React.FC<IDemoProps> = (props) => {
   return (
     <Box
       className={clsx(
-        theme,
-        styles.root,
-        styles.container,
-        styles.container$bounded,
+        tokensClassName,
+        classNames.container,
+        classNames.container$bounded,
       )}
       interactions={stateLayer.interactions}
     >
@@ -115,9 +103,9 @@ const NestedDemo: React.FC<IDemoProps> = (props) => {
 
       <Box
         className={clsx(
-          styles.container,
-          styles.container$sm,
-          styles.container$nested,
+          classNames.container,
+          classNames.container$sm,
+          classNames.container$nested,
         )}
         interactions={nestedStateLayer.interactions}
       >
@@ -127,13 +115,10 @@ const NestedDemo: React.FC<IDemoProps> = (props) => {
   );
 };
 
+const NestedShowcase = makeComponentShowcase(NestedDemo);
+
 export const Nested: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={(props) => <NestedDemo {...props} />}
-      props={props}
-    />
-  ),
+  render: (props) => <NestedShowcase props={props} />,
   args: defaultArgs,
 };
 

@@ -1,23 +1,30 @@
-import { forwardRef } from 'react';
-
-import type { IStateLayerProps } from './StateLayer.types';
-import { useStyles } from '~/hooks/useStyles2';
-import { stateLayerStyles, stateLayerTheme } from './StateLayer.css';
-import { Box } from '../Box';
 import { useMergeRefs } from '@floating-ui/react';
+
+import type { IStateLayerFactory } from './StateLayer.types';
+import { componentFactory } from '~/utils/componentFactory';
+import { useProps } from '~/hooks/useProps';
+import { useStyles } from '~/hooks/useStyles2';
+import { Box } from '../Box';
+import {
+  stateLayerStyles,
+  type IStateLayerStylesFactory,
+} from './StateLayer.css';
 
 // https://github.com/material-components/material-web/blob/main/ripple/internal/ripple.ts
 
-export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
+export const StateLayer = componentFactory<IStateLayerFactory>(
   function StateLayer(props, forwardedRef) {
-    const { className, style, styles, context, ...other } = props;
+    const { classNames, className, style, context, ...other } = useProps({
+      componentName: 'StateLayer',
+      props,
+    });
 
-    const { getStyles } = useStyles({
-      name: 'StateLayer',
+    const { getStyles } = useStyles<IStateLayerStylesFactory>({
+      componentName: 'StateLayer',
+      classNames,
       className,
+      styles: stateLayerStyles,
       style,
-      stylesList: [stateLayerStyles, styles],
-      theme: stateLayerTheme,
     });
 
     const { interactions } = context;
@@ -44,3 +51,6 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
     );
   },
 );
+
+StateLayer.styles = stateLayerStyles;
+StateLayer.displayName = '@sixui/StateLayer';
