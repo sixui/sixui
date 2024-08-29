@@ -95,7 +95,7 @@ export const variants: Partial<
 
 export type IAvatarStylesFactory = IStylesFactory<{
   styleName: keyof typeof classNames;
-  tokens: object;
+  tokens: typeof tokens;
   variant: IAvatarVariant;
 }>;
 

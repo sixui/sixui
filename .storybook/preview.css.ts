@@ -15,12 +15,12 @@ export const storyWrapper = style({
 
 // FIXME: delete
 export const testVariant = style({
-  vars: {
-    // [Avatar.styles.tokens.container.color]: 'green',
-  },
   border: '4px solid green',
   selectors: {
     [getModifierSelector('variant="icon"')]: {
+      vars: {
+        [Avatar.styles.tokens.container.color]: 'green',
+      },
       border: '4px solid purple',
     },
   },
