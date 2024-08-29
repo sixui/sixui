@@ -56,10 +56,10 @@ export const decorators: Array<Decorator> = [
               components: {
                 Avatar: Avatar.extend({
                   defaultProps: {
-                    children: 'x',
+                    children: '☀️',
                   },
                   classNames: {
-                    root: 'xxxxxxx',
+                    root: styles.testVariant,
                   },
                 }),
               },

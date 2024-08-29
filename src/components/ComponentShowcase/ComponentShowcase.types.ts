@@ -1,6 +1,13 @@
 import type { IStylesProps } from '~/hooks/useStyles2';
 import type { IBoxProps } from '../Box';
 import type { IComponentShowcaseStylesFactory } from './ComponentShowcase.css';
+import { IComponentFactory } from '~/utils/componentFactory';
+
+export type IComponentShowcaseFactory<T> = IComponentFactory<{
+  props: IComponentShowcaseProps<T>;
+  ref: HTMLDivElement;
+  styles: IComponentShowcaseStylesFactory;
+}>;
 
 export type IComponentPresentation<TComponentProps = object> = {
   props?: Partial<TComponentProps>;

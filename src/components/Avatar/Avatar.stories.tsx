@@ -31,6 +31,7 @@ const defaultArgs = {} satisfies Partial<IAvatarProps>;
 const rows: Array<IComponentPresentation<IAvatarProps>> = [
   { legend: 'Rounded', props: { variant: 'rounded' } },
   { legend: 'Squared', props: { variant: 'squared' } },
+  { legend: 'Icon', props: { variant: 'icon' } },
 ];
 
 export const Variants: IStory = {

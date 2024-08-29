@@ -4,6 +4,7 @@ import clsx from 'clsx';
 
 import type { IStyles, IStylesFactoryPayload } from '~/utils/stylesFactory';
 import { useThemeContext } from '~/components/ThemeProvider';
+import { getDataAttributes } from '~/utils/getDataAttributes';
 
 export type IStylesProps<TPayload extends IStylesFactoryPayload> = {
   /** The class name to apply to the root selector. */
@@ -16,7 +17,7 @@ export type IStylesProps<TPayload extends IStylesFactoryPayload> = {
   style?: React.CSSProperties;
 
   /** The styles variant to use. */
-  variant?: TPayload['variant'];
+  variant?: string;
 };
 
 export type IUseStylesProps<TPayload extends IStylesFactoryPayload> =
@@ -92,6 +93,9 @@ export const useStyles = <TPayload extends IStylesFactoryPayload>(
         ...style,
         ...options?.style,
       },
+      ...(styleName === rootStyleName
+        ? getDataAttributes({ variant })
+        : undefined),
     }),
     [
       componentName,

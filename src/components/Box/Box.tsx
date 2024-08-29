@@ -2,30 +2,12 @@ import { useMergeRefs } from '@floating-ui/react';
 import { forwardRef } from 'react';
 import clsx from 'clsx';
 
-import type { IBoxModifiers, IBoxProps } from './Box.types';
+import type { IBoxProps } from './Box.types';
+import { getDataAttributes } from '~/utils/getDataAttributes';
 import {
   createPolymorphicComponent,
   type IWithAsProp,
 } from '~/utils/createPolymorphicComponent';
-
-const getTransformedModifiers = (
-  modifiers: IBoxModifiers,
-): Record<string, string> =>
-  Object.entries(modifiers).reduce((acc, [key, value]) => {
-    if (
-      value === undefined ||
-      value === '' ||
-      value === false ||
-      value === null
-    ) {
-      return acc;
-    }
-
-    return {
-      ...acc,
-      [`data-${key}`]: String(value),
-    };
-  }, {});
 
 export const Box = createPolymorphicComponent<'div', IBoxProps>(
   forwardRef<HTMLDivElement, IBoxProps>(function Box(props, forwardedRef) {
@@ -42,7 +24,7 @@ export const Box = createPolymorphicComponent<'div', IBoxProps>(
     const childrenProps = {
       ...other,
       ...interactions?.targetProps,
-      ...getTransformedModifiers({
+      ...getDataAttributes({
         ...(interactions?.combinedStatus
           ? { [interactions.combinedStatus]: true }
           : undefined),

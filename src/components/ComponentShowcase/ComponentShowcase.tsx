@@ -1,26 +1,14 @@
 import type {
+  IComponentShowcaseFactory,
   IComponentPresentation,
-  IComponentShowcaseProps,
 } from './ComponentShowcase.types';
 import { useProps } from '~/hooks/useProps';
-import {
-  componentFactory,
-  type IComponentFactory,
-} from '~/utils/componentFactory';
+import { componentFactory } from '~/utils/componentFactory';
 import { useStyles } from '~/hooks/useStyles2';
 import { Box } from '../Box';
-import {
-  componentShowcaseStyles,
-  type IComponentShowcaseStylesFactory,
-} from './ComponentShowcase.css';
+import { componentShowcaseStyles } from './ComponentShowcase.css';
 
 const DUMMY_TEXT = '.';
-
-type IComponentShowcaseFactory<T> = IComponentFactory<{
-  props: IComponentShowcaseProps<T>;
-  ref: HTMLDivElement;
-  styles: IComponentShowcaseStylesFactory;
-}>;
 
 export const makeComponentShowcase = <TComponentProps,>(
   component: React.FC<TComponentProps>,

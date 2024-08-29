@@ -10,14 +10,9 @@ export type IStyles<TPayload extends IStylesFactoryPayload> = {
   classNames: Partial<Record<TPayload['styleName'], string>>;
   tokensClassName?: string;
   tokens?: TPayload['tokens'];
-  variants?: TPayload['variant'] extends string
-    ? Partial<
-        Record<
-          TPayload['styleName'],
-          Partial<Record<TPayload['variant'], string>>
-        >
-      >
-    : never;
+  variants?: Partial<
+    Record<TPayload['styleName'], Partial<Record<string, string>>>
+  >;
 };
 
 export type IStylesFactory<TPayload extends IStylesFactoryPayload> = TPayload;

@@ -28,5 +28,4 @@ export type IAvatarProps = IBoxProps &
 
     fallbackToRandomColor?: boolean;
     randomColorSourceString?: string;
-    variant?: IAvatarVariant;
   };
