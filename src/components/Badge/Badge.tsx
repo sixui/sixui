@@ -1,31 +1,32 @@
 import { forwardRef, useMemo } from 'react';
 
-import type { IBadgeProps } from './Badge.types';
-import { isNumeric } from '~/helpers/isNumeric';
-import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import type { IBadgeFactory, IBadgeProps } from './Badge.types';
+import { polymorphicComponentFactory } from '~/utils/polymorphicComponentFactory';
+import { useProps } from '~/hooks/useProps';
 import { useStyles } from '~/hooks/useStyles2';
+import { isNumeric } from '~/helpers/isNumeric';
 import { Box } from '../Box';
-import { badgeTheme, badgeStyles } from './Badge.css';
+import { badgeStyles, type IBadgeStylesFactory } from './Badge.css';
 
-export const Badge = createPolymorphicComponent<'div', IBadgeProps>(
+export const Badge = polymorphicComponentFactory<IBadgeFactory>(
   forwardRef<HTMLDivElement, IBadgeProps>(function Badge(props, forwardedRef) {
     const {
+      classNames,
       className,
-      styles,
       style,
       value,
       maxValue,
       showZero,
       dot,
       ...other
-    } = props;
+    } = useProps({ componentName: 'Badge', props });
 
-    const { getStyles } = useStyles({
-      name: 'Badge',
+    const { getStyles } = useStyles<IBadgeStylesFactory>({
+      componentName: 'Badge',
+      classNames,
       className,
+      styles: badgeStyles,
       style,
-      stylesList: [badgeStyles, styles],
-      theme: badgeTheme,
     });
 
     const valueAsNumber = isNumeric(value) ? Number(value) : undefined;

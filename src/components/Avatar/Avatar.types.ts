@@ -5,13 +5,6 @@ import type { avatarStyles, IAvatarStylesFactory } from './Avatar.css';
 
 export type IAvatarVariant = 'rounded' | 'squared';
 
-export type IAvatarFactory = IPolymorphicComponentFactory<{
-  props: IAvatarProps;
-  defaultRef: HTMLDivElement;
-  defaultRoot: 'div';
-  styles: typeof avatarStyles;
-}>;
-
 export type IAvatarProps = IBoxProps &
   IStylesProps<IAvatarStylesFactory> & {
     src?: string;
@@ -29,3 +22,10 @@ export type IAvatarProps = IBoxProps &
     fallbackToRandomColor?: boolean;
     randomColorSourceString?: string;
   };
+
+export type IAvatarFactory = IPolymorphicComponentFactory<{
+  props: IAvatarProps;
+  defaultRef: HTMLDivElement;
+  defaultRoot: 'div';
+  styles: typeof avatarStyles;
+}>;

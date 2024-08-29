@@ -2,7 +2,7 @@ import { createTheme, createVar, style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import { stylesFactory, type IStylesFactory } from '~/utils/stylesFactory';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
+import { getVariantSelector } from '~/helpers/styles/getVariantSelector';
 import { getDensity } from '~/helpers/styles/getDensity';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
@@ -26,38 +26,36 @@ const vars = {
   shape: createVar(),
 };
 
-const root = style({
-  vars: {
-    [vars.size]: calc.add(px(tokens.container.size), tokens.density),
-    [vars.shape]: px(tokens.container.shape),
-  },
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: vars.size,
-  height: vars.size,
-  overflow: 'hidden',
-  borderRadius: vars.shape,
-  userSelect: 'none',
-  backgroundColor: tokens.container.color,
-
-  selectors: {
-    [getModifierSelector('variant="rounded"')]: {
-      vars: {
-        [tokens.container.shape]: themeTokens.shape.corner.full,
-      },
-    },
-    [getModifierSelector('variant="squared"')]: {
-      vars: {
-        [tokens.container.shape]: themeTokens.shape.corner.sm,
-      },
-    },
-  },
-});
-
 const classNames = {
-  root,
+  root: style({
+    vars: {
+      [vars.size]: calc.add(px(tokens.container.size), tokens.density),
+      [vars.shape]: px(tokens.container.shape),
+    },
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: vars.size,
+    height: vars.size,
+    overflow: 'hidden',
+    borderRadius: vars.shape,
+    userSelect: 'none',
+    backgroundColor: tokens.container.color,
+
+    selectors: {
+      [getVariantSelector('rounded')]: {
+        vars: {
+          [tokens.container.shape]: themeTokens.shape.corner.full,
+        },
+      },
+      [getVariantSelector('squared')]: {
+        vars: {
+          [tokens.container.shape]: themeTokens.shape.corner.sm,
+        },
+      },
+    },
+  }),
   image: style({
     width: '100%',
     height: '100%',
@@ -88,6 +86,6 @@ export type IAvatarStylesFactory = IStylesFactory<{
 
 export const avatarStyles = stylesFactory<IAvatarStylesFactory>({
   classNames,
-  tokensClassName: tokensClassName,
+  tokensClassName,
   tokens,
 });

@@ -2,12 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IBadgeProps } from './Badge.types';
 import {
+  makeComponentShowcase,
   type IComponentPresentation,
-  ComponentShowcase,
 } from '../ComponentShowcase';
 import { Placeholder } from '../Placeholder';
-import { Badge } from './Badge';
 import { Anchored, IAnchoredProps } from '../Anchored';
+import { Badge } from './Badge';
 
 // https://m3.material.io/components/badges/overview
 
@@ -17,17 +17,11 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-type IExtendedBadgeProps = IBadgeProps & Pick<IAnchoredProps, 'overlap'>;
-
 const defaultArgs = {} satisfies Partial<IBadgeProps>;
 
-const cols: Array<IComponentPresentation<IExtendedBadgeProps>> = [
-  {},
-  { props: { overlap: 'rectangular' } },
-  { props: { overlap: 'circular' } },
-];
+type IBadgeDemoProps = IBadgeProps & Pick<IAnchoredProps, 'overlap'>;
 
-const BadgeDemo: React.FC<IExtendedBadgeProps> = ({ overlap, ...props }) =>
+const BadgeDemo: React.FC<IBadgeDemoProps> = ({ overlap, ...props }) =>
   overlap ? (
     <Anchored content={<Badge {...props} />} overlap={overlap}>
       <Placeholder
@@ -40,10 +34,17 @@ const BadgeDemo: React.FC<IExtendedBadgeProps> = ({ overlap, ...props }) =>
     <Badge {...props} />
   );
 
+const cols: Array<IComponentPresentation<IBadgeDemoProps>> = [
+  {},
+  { props: { overlap: 'rectangular' } },
+  { props: { overlap: 'circular' } },
+];
+
+const BadgeShowcase = makeComponentShowcase(BadgeDemo);
+
 export const Variants: IStory = {
   render: (props) => (
-    <ComponentShowcase<IExtendedBadgeProps>
-      component={BadgeDemo}
+    <BadgeShowcase
       props={props}
       cols={[
         { props: { overlap: 'rectangular', dot: true } },
@@ -69,13 +70,7 @@ export const Variants: IStory = {
 };
 
 export const Dot: IStory = {
-  render: (props) => (
-    <ComponentShowcase<IExtendedBadgeProps>
-      component={(props) => <BadgeDemo {...props} />}
-      props={props}
-      cols={cols}
-    />
-  ),
+  render: (props) => <BadgeShowcase props={props} cols={cols} />,
   args: {
     ...defaultArgs,
     dot: true,
@@ -83,13 +78,7 @@ export const Dot: IStory = {
 };
 
 export const SingleDigit: IStory = {
-  render: (props) => (
-    <ComponentShowcase<IExtendedBadgeProps>
-      component={(props) => <BadgeDemo {...props} />}
-      props={props}
-      cols={cols}
-    />
-  ),
+  render: (props) => <BadgeShowcase props={props} cols={cols} />,
   args: {
     ...defaultArgs,
     value: 3,
@@ -97,13 +86,7 @@ export const SingleDigit: IStory = {
 };
 
 export const MultipleDigits: IStory = {
-  render: (props) => (
-    <ComponentShowcase<IExtendedBadgeProps>
-      component={(props) => <BadgeDemo {...props} />}
-      props={props}
-      cols={cols}
-    />
-  ),
+  render: (props) => <BadgeShowcase props={props} cols={cols} />,
   args: {
     ...defaultArgs,
     value: 32,
@@ -111,13 +94,7 @@ export const MultipleDigits: IStory = {
 };
 
 export const MultipleDigitsThresholded: IStory = {
-  render: (props) => (
-    <ComponentShowcase<IExtendedBadgeProps>
-      component={(props) => <BadgeDemo {...props} />}
-      props={props}
-      cols={cols}
-    />
-  ),
+  render: (props) => <BadgeShowcase props={props} cols={cols} />,
   args: {
     ...defaultArgs,
     value: 8000,
@@ -126,13 +103,7 @@ export const MultipleDigitsThresholded: IStory = {
 };
 
 export const ShowZeroValue: IStory = {
-  render: (props) => (
-    <ComponentShowcase<IExtendedBadgeProps>
-      component={(props) => <BadgeDemo {...props} />}
-      props={props}
-      cols={cols}
-    />
-  ),
+  render: (props) => <BadgeShowcase props={props} cols={cols} />,
   args: {
     ...defaultArgs,
     value: 0,
@@ -141,13 +112,7 @@ export const ShowZeroValue: IStory = {
 };
 
 export const HideZeroValue: IStory = {
-  render: (props) => (
-    <ComponentShowcase<IExtendedBadgeProps>
-      component={(props) => <BadgeDemo {...props} />}
-      props={props}
-      cols={cols}
-    />
-  ),
+  render: (props) => <BadgeShowcase props={props} cols={cols} />,
   args: {
     ...defaultArgs,
     value: 0,

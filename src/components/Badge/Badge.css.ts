@@ -1,17 +1,14 @@
 import { createTheme, createVar, style } from '@vanilla-extract/css';
 
+import { stylesFactory, type IStylesFactory } from '~/utils/stylesFactory';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
-import { themeTokens } from '../ThemeProvider';
-import { colorSchemeTokens } from '../ColorScheme';
 import { space } from '~/helpers/styles/space';
+import { themeTokens } from '../ThemeProvider';
 
-export type IBadgeVariant = 'rounded' | 'squared';
-export type IBadgeStyleName = keyof typeof badgeStyles;
-
-export const [badgeTheme, badgeTokens] = createTheme({
+const [tokensClassName, tokens] = createTheme({
   container: {
-    color: colorSchemeTokens.error,
+    color: themeTokens.colorScheme.error,
     shape: {
       normal: themeTokens.shape.corner.full,
       dot: themeTokens.shape.corner.full,
@@ -20,12 +17,12 @@ export const [badgeTheme, badgeTokens] = createTheme({
     dotScale: '0.5', // 8px
   },
   labelText: {
-    color: colorSchemeTokens.onError,
+    color: themeTokens.colorScheme.onError,
     typography: themeTokens.typeScale.label.sm,
   },
 });
 
-const localTokens = {
+const vars = {
   size: createVar(),
   shape: {
     normal: createVar(),
@@ -33,12 +30,12 @@ const localTokens = {
   },
 };
 
-export const badgeStyles = {
+const classNames = {
   root: style({
     vars: {
-      [localTokens.size]: `max(${badgeTokens.container.minSize}, ${px(badgeTokens.container.minSize)})`,
-      [localTokens.shape.normal]: px(badgeTokens.container.shape.normal),
-      [localTokens.shape.dot]: px(badgeTokens.container.shape.dot),
+      [vars.size]: `max(${tokens.container.minSize}, ${px(tokens.container.minSize)})`,
+      [vars.shape.normal]: px(tokens.container.shape.normal),
+      [vars.shape.dot]: px(tokens.container.shape.dot),
     },
     position: 'relative',
     display: 'inline-flex',
@@ -48,9 +45,9 @@ export const badgeStyles = {
     alignContent: 'center',
     alignItems: 'center',
     boxSizing: 'border-box',
-    borderRadius: localTokens.shape.normal,
-    minWidth: localTokens.size,
-    height: localTokens.size,
+    borderRadius: vars.shape.normal,
+    minWidth: vars.size,
+    height: vars.size,
     padding: px(space(1)),
     transitionProperty: 'transform',
     transitionDuration: themeTokens.motion.duration.short.$3,
@@ -58,8 +55,8 @@ export const badgeStyles = {
     whiteSpace: 'nowrap',
   }),
   root$dot: style({
-    borderRadius: localTokens.shape.dot,
-    transform: `scale(${badgeTokens.container.dotScale})`,
+    borderRadius: vars.shape.dot,
+    transform: `scale(${tokens.container.dotScale})`,
     padding: 0,
   }),
   root$invisible: style({
@@ -69,11 +66,22 @@ export const badgeStyles = {
     position: 'absolute',
     inset: 0,
     borderRadius: 'inherit',
-    backgroundColor: badgeTokens.container.color,
+    backgroundColor: tokens.container.color,
   }),
   label: style({
     position: 'relative',
-    color: badgeTokens.labelText.color,
-    ...getTypographyStyles(badgeTokens.labelText.typography),
+    color: tokens.labelText.color,
+    ...getTypographyStyles(tokens.labelText.typography),
   }),
 };
+
+export type IBadgeStylesFactory = IStylesFactory<{
+  styleName: keyof typeof classNames;
+  tokens: typeof tokens;
+}>;
+
+export const badgeStyles = stylesFactory<IBadgeStylesFactory>({
+  classNames,
+  tokensClassName,
+  tokens,
+});

@@ -8,7 +8,7 @@ import { useImageLoaded } from '~/hooks/useImageLoaded';
 import { hslColorFromString } from '~/helpers/colors/hslColorFromString';
 import { getHslColor } from '~/helpers/styles/getHslColor';
 import { Box } from '../Box';
-import { avatarStyles, IAvatarStylesFactory } from './Avatar.css';
+import { avatarStyles, type IAvatarStylesFactory } from './Avatar.css';
 
 export const Avatar = polymorphicComponentFactory<IAvatarFactory>(
   (props, forwardedRef) => {
