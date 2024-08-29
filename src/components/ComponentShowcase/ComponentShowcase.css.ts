@@ -1,9 +1,6 @@
 import { createTheme, style } from '@vanilla-extract/css';
 
-import {
-  componentStylesFactory,
-  type IComponentStylesFactory,
-} from '~/utils/componentStylesFactory';
+import { stylesFactory, type IStylesFactory } from '~/utils/stylesFactory';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { space } from '~/helpers/styles/space';
 import { px } from '~/helpers/styles/px';
@@ -92,13 +89,13 @@ const classNames = {
   }),
 };
 
-export type IComponentShowcaseStylesFactory = IComponentStylesFactory<{
+export type IComponentShowcaseStylesFactory = IStylesFactory<{
   styleName: keyof typeof classNames;
   tokens: object;
 }>;
 
 export const componentShowcaseStyles =
-  componentStylesFactory<IComponentShowcaseStylesFactory>({
+  stylesFactory<IComponentShowcaseStylesFactory>({
     classNames,
     tokensClassName: tokensClassName,
     tokens,

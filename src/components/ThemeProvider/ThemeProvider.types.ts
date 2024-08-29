@@ -322,6 +322,7 @@ export type IThemeElevationValues = {
 
 export type IThemeComponentValues = {
   defaultProps: ((theme: ITheme2) => object) | object;
+  classNames: Record<string, string>;
 };
 
 export type IThemeComponentsValues = Record<string, IThemeComponentValues>;

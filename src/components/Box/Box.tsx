@@ -1,3 +1,4 @@
+import { useMergeRefs } from '@floating-ui/react';
 import { forwardRef } from 'react';
 import clsx from 'clsx';
 
@@ -5,8 +6,7 @@ import type { IBoxModifiers, IBoxProps } from './Box.types';
 import {
   createPolymorphicComponent,
   type IWithAsProp,
-} from '~/helpers/react/polymorphicComponentTypes';
-import { useMergeRefs } from '@floating-ui/react';
+} from '~/utils/createPolymorphicComponent';
 
 const getTransformedModifiers = (
   modifiers: IBoxModifiers,

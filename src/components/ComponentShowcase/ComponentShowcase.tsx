@@ -6,7 +6,7 @@ import { useProps } from '~/hooks/useProps';
 import {
   componentFactory,
   type IComponentFactory,
-} from '~/helpers/react/componentFactory';
+} from '~/utils/componentFactory';
 import { useStyles } from '~/hooks/useStyles2';
 import { Box } from '../Box';
 import {

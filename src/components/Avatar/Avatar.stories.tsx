@@ -15,6 +15,8 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
+const AvatarShowcase = makeComponentShowcase(Avatar);
+
 // https://images.unsplash.com/photo-1557053910-d9eadeed1c58?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjQxfHxWaXNhZ2V8ZW58MHx8MHx8fDI%3D
 
 const AVATAR_IMAGE_URL_1 =
@@ -30,8 +32,6 @@ const rows: Array<IComponentPresentation<IAvatarProps>> = [
   { legend: 'Rounded', props: { variant: 'rounded' } },
   { legend: 'Squared', props: { variant: 'squared' } },
 ];
-
-const AvatarShowcase = makeComponentShowcase(Avatar);
 
 export const Variants: IStory = {
   render: (props) => (

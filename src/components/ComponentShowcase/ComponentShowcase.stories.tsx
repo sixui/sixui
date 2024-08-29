@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ComponentShowcase } from './ComponentShowcase';
+import { makeComponentShowcase } from './ComponentShowcase';
 import { DemoComponent, type IDemoComponentProps } from './DemoComponent';
 import { themeTokens } from '../ThemeProvider';
 
@@ -10,20 +10,20 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
+const DemoShowcase = makeComponentShowcase(DemoComponent);
+
 const defaultArgs = {
   color: themeTokens.colorScheme.primary,
 } satisfies Partial<IDemoComponentProps>;
 
 export const One: IStory = {
-  render: (props) => (
-    <ComponentShowcase component={DemoComponent} props={props} />
-  ),
+  render: (props) => <DemoShowcase props={props} />,
   args: defaultArgs,
 };
 
 export const OneRow: IStory = {
   render: (props) => (
-    <ComponentShowcase
+    <DemoShowcase
       component={DemoComponent}
       props={props}
       cols={[
@@ -38,7 +38,7 @@ export const OneRow: IStory = {
 
 export const OneRowWithLegend: IStory = {
   render: (props) => (
-    <ComponentShowcase
+    <DemoShowcase
       component={DemoComponent}
       props={props}
       cols={[
@@ -62,7 +62,7 @@ export const OneRowWithLegend: IStory = {
 
 export const OneCol: IStory = {
   render: (props) => (
-    <ComponentShowcase
+    <DemoShowcase
       component={DemoComponent}
       props={props}
       rows={[{ props: { size: 'sm' } }, {}, { props: { size: 'lg' } }]}
@@ -73,7 +73,7 @@ export const OneCol: IStory = {
 
 export const OneColWithLegend: IStory = {
   render: (props) => (
-    <ComponentShowcase
+    <DemoShowcase
       component={DemoComponent}
       props={props}
       rows={[
@@ -88,7 +88,7 @@ export const OneColWithLegend: IStory = {
 
 export const RowsAndCols: IStory = {
   render: (props) => (
-    <ComponentShowcase
+    <DemoShowcase
       component={DemoComponent}
       props={props}
       cols={[
@@ -117,7 +117,7 @@ export const RowsAndCols: IStory = {
 
 export const Groups: IStory = {
   render: (props) => (
-    <ComponentShowcase
+    <DemoShowcase
       component={DemoComponent}
       props={props}
       cols={[

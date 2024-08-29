@@ -1,4 +1,4 @@
-import type { IAny } from '../types';
+import type { IAny } from '~/helpers/types';
 
 // https://www.benmvp.com/blog/forwarding-refs-polymorphic-react-component-typescript/
 

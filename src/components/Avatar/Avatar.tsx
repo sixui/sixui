@@ -1,24 +1,14 @@
 import { useMemo } from 'react';
 
-import type { IAvatarProps } from './Avatar.types';
+import type { IAvatarFactory } from './Avatar.types';
+import { polymorphicComponentFactory } from '~/utils/polymorphicComponentFactory';
+import { useProps } from '~/hooks/useProps';
 import { useStyles } from '~/hooks/useStyles2';
 import { useImageLoaded } from '~/hooks/useImageLoaded';
 import { hslColorFromString } from '~/helpers/colors/hslColorFromString';
 import { getHslColor } from '~/helpers/styles/getHslColor';
 import { Box } from '../Box';
-import {
-  polymorphicComponentFactory,
-  type IPolymorphicComponentFactory,
-} from '~/helpers/react/polymorphicComponentFactory';
 import { avatarStyles, IAvatarStylesFactory } from './Avatar.css';
-import { useProps } from '~/hooks/useProps';
-
-export type IAvatarFactory = IPolymorphicComponentFactory<{
-  props: IAvatarProps;
-  defaultRef: HTMLDivElement;
-  defaultRoot: 'div';
-  styles: IAvatarStylesFactory;
-}>;
 
 export const Avatar = polymorphicComponentFactory<IAvatarFactory>(
   (props, forwardedRef) => {
@@ -99,5 +89,3 @@ export const Avatar = polymorphicComponentFactory<IAvatarFactory>(
 
 Avatar.styles = avatarStyles;
 Avatar.displayName = '@sixui/Avatar';
-
-// FIXME: test static components

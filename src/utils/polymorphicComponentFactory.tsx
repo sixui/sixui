@@ -1,16 +1,21 @@
 import { forwardRef } from 'react';
 
 import type { IAny } from '~/helpers/types';
-import type { IPolymorphicComponentProps } from './polymorphicComponentTypes';
+import type { IPolymorphicComponentProps } from './createPolymorphicComponent';
 import {
   identity,
   type IComponentFactoryPayload,
-  type IComponentStyles,
-  type IStaticComponents,
-  type IThemeExtend,
+  type IFactoryComponentStyles,
+  type IFactoryComponentStaticComponents,
+  type IFactoryComponentThemeExtend,
 } from './componentFactory';
 
-export type IPolymorphicComponentWithProps<
+export type IPolymorphicComponentFactoryPayload = IComponentFactoryPayload & {
+  defaultRef: IAny;
+  defaultRoot: IAny;
+};
+
+export type IFactoryPolymorphicComponentWithProps<
   TPayload extends IPolymorphicComponentFactoryPayload,
 > = {
   withProps: <TRoot extends React.ElementType = TPayload['defaultRoot']>(
@@ -19,6 +24,10 @@ export type IPolymorphicComponentWithProps<
     props: IPolymorphicComponentProps<TL, TPayload['props']>,
   ) => React.ReactElement;
 };
+
+export type IPolymorphicComponentFactory<
+  TPayload extends IPolymorphicComponentFactoryPayload,
+> = TPayload;
 
 export const polymorphicComponentFactory = <
   TPayload extends IPolymorphicComponentFactoryPayload,
@@ -45,10 +54,10 @@ export const polymorphicComponentFactory = <
 
   type IPolymorphicComponentFromFactory = IPolymorphicComponent &
     IFunctionComponentProps &
-    IThemeExtend<TPayload> &
-    IComponentStyles<TPayload> &
-    IStaticComponents<TPayload['staticComponents']> &
-    IPolymorphicComponentWithProps<TPayload>;
+    IFactoryComponentThemeExtend<TPayload> &
+    IFactoryComponentStyles<TPayload> &
+    IFactoryComponentStaticComponents<TPayload['staticComponents']> &
+    IFactoryPolymorphicComponentWithProps<TPayload>;
 
   const PolymorphicComponentFromFactory = forwardRef(
     renderFunction,
@@ -74,12 +83,3 @@ export const polymorphicComponentFactory = <
 
   return PolymorphicComponentFromFactory;
 };
-
-export type IPolymorphicComponentFactoryPayload = IComponentFactoryPayload & {
-  defaultRef: IAny;
-  defaultRoot: IAny;
-};
-
-export type IPolymorphicComponentFactory<
-  TPayload extends IPolymorphicComponentFactoryPayload,
-> = TPayload;

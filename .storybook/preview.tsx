@@ -58,8 +58,8 @@ export const decorators: Array<Decorator> = [
                   defaultProps: {
                     children: 'x',
                   },
-                  styleNames: {
-                    root: 'xxxxx',
+                  classNames: {
+                    root: 'xxxxxxx',
                   },
                 }),
               },

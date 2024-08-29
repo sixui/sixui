@@ -7,10 +7,7 @@ import {
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IAvatarVariant } from './Avatar.types';
-import {
-  componentStylesFactory,
-  type IComponentStylesFactory,
-} from '~/utils/componentStylesFactory';
+import { stylesFactory, type IStylesFactory } from '~/utils/stylesFactory';
 import { getDensity } from '~/helpers/styles/getDensity';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
@@ -96,13 +93,13 @@ export const variants: Partial<
   }),
 };
 
-export type IAvatarStylesFactory = IComponentStylesFactory<{
+export type IAvatarStylesFactory = IStylesFactory<{
   styleName: keyof typeof classNames;
   tokens: object;
   variant: IAvatarVariant;
 }>;
 
-export const avatarStyles = componentStylesFactory<IAvatarStylesFactory>({
+export const avatarStyles = stylesFactory<IAvatarStylesFactory>({
   classNames,
   tokensClassName: tokensClassName,
   tokens,

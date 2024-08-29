@@ -1,7 +1,14 @@
 import { forwardRef } from 'react';
 
+import type { IAny } from '~/helpers/types';
 import type { IThemeComponentValues } from '~/components/ThemeProvider';
-import type { IAny } from '../types';
+
+export type IComponentFactoryPayload = {
+  props: Record<string, IAny>;
+  ref?: IAny;
+  styles?: IAny;
+  staticComponents?: Record<string, IAny>;
+};
 
 export type IDataAttributes = Record<`data-${string}`, IAny>;
 
@@ -19,31 +26,35 @@ export type IFactoryComponentWithProps<
   >;
 };
 
-export type IComponentFactoryPayload = {
-  props: Record<string, IAny>;
-  ref?: IAny;
-  styles?: IAny;
-  staticComponents?: Record<string, IAny>;
-};
-
-export type IStaticComponents<TInput> =
+export type IFactoryComponentStaticComponents<TInput> =
   TInput extends Record<string, IAny> ? TInput : Record<string, never>;
 
-export type IComponentStyles<TPayload extends IComponentFactoryPayload> = {
-  styles: TPayload['styles'];
-};
+export type IFactoryComponentStyles<TPayload extends IComponentFactoryPayload> =
+  {
+    styles: TPayload['styles'];
+  };
 
-export type IExtendsRootComponent<TPayload extends IComponentFactoryPayload> = {
+export type IFactoryComponentExtendRootProps<
+  TPayload extends IComponentFactoryPayload,
+> = {
   defaultProps?: Partial<TPayload['props']> & IDataAttributes;
-  styles?: TPayload['styles'];
+  classNames?: TPayload['styles']['classNames'];
 };
 
-export type IExtendComponent<TPayload extends IComponentFactoryPayload> =
-  IExtendsRootComponent<TPayload>;
+export type IFactoryComponentExtendProps<
+  TPayload extends IComponentFactoryPayload,
+> = IFactoryComponentExtendRootProps<TPayload>;
 
-export type IThemeExtend<TPayload extends IComponentFactoryPayload> = {
-  extend: (input: IExtendComponent<TPayload>) => IThemeComponentValues;
+export type IFactoryComponentThemeExtend<
+  TPayload extends IComponentFactoryPayload,
+> = {
+  extend: (
+    input: IFactoryComponentExtendProps<TPayload>,
+  ) => IThemeComponentValues;
 };
+
+export type IComponentFactory<TPayload extends IComponentFactoryPayload> =
+  TPayload;
 
 export const componentFactory = <TPayload extends IComponentFactoryPayload>(
   renderFunction: React.ForwardRefRenderFunction<
@@ -55,7 +66,7 @@ export const componentFactory = <TPayload extends IComponentFactoryPayload>(
   type IComponentFromFactory = React.ForwardRefExoticComponent<
     TPayload['props'] & React.RefAttributes<TPayload['ref']>
   > &
-    IThemeExtend<TPayload> &
+    IFactoryComponentThemeExtend<TPayload> &
     IFactoryComponentWithProps<TPayload>;
 
   const ComponentFromFactory = forwardRef(
@@ -77,6 +88,3 @@ export const componentFactory = <TPayload extends IComponentFactoryPayload>(
 
   return ComponentFromFactory;
 };
-
-export type IComponentFactory<TPayload extends IComponentFactoryPayload> =
-  TPayload;

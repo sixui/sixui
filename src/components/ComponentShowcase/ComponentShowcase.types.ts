@@ -1,5 +1,6 @@
+import type { IStylesProps } from '~/hooks/useStyles2';
 import type { IBoxProps } from '../Box';
-import type { IComponentShowcaseStyleName } from './ComponentShowcase.css';
+import type { IComponentShowcaseStylesFactory } from './ComponentShowcase.css';
 
 export type IComponentPresentation<TComponentProps = object> = {
   props?: Partial<TComponentProps>;
@@ -8,8 +9,8 @@ export type IComponentPresentation<TComponentProps = object> = {
   component?: React.FC<TComponentProps>;
 };
 
-export type IComponentShowcaseProps<TComponentProps> =
-  IBoxProps<IComponentShowcaseStyleName> & {
+export type IComponentShowcaseProps<TComponentProps> = IBoxProps &
+  IStylesProps<IComponentShowcaseStylesFactory> & {
     props: TComponentProps;
     groups?: Array<IComponentPresentation<TComponentProps>>;
     cols?: Array<IComponentPresentation<TComponentProps>>;
