@@ -76,7 +76,7 @@ export const ListItem = createPolymorphicComponent<'button', IListItemProps>(
         : undefined;
       const { combineStyles, getStyles, globalStyles, settings } =
         useStyles<IListItemStylesKey>({
-          name: 'ListItem',
+          componentName: 'ListItem',
           styles: [listItemStyles, variantStyles, styles],
           visualState,
         });

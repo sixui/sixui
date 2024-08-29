@@ -22,7 +22,7 @@ export const Divider = forwardRef<HTMLDivElement, IDividerProps>(
     } = props;
 
     const { combineStyles, getStyles, globalStyles } = useStyles({
-      name: 'Divider',
+      componentName: 'Divider',
       styles: [dividerStyles, styles],
     });
 

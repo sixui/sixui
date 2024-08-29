@@ -1,7 +1,7 @@
 import type { IBoxProps } from '../Box';
-import type { IBadgeClassName } from './Badge.css';
+import type { IBadgeStyleName } from './Badge.css';
 
-export type IBadgeProps = IBoxProps<IBadgeClassName> & {
+export type IBadgeProps = IBoxProps<IBadgeStyleName> & {
   value?: string | number;
   maxValue?: number;
   showZero?: boolean;

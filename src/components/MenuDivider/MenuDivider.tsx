@@ -9,7 +9,7 @@ export const MenuDivider = forwardRef<HTMLDivElement, IDividerProps>(
     const { styles, sx, ...other } = props;
 
     const { combineStyles, globalStyles } = useStyles({
-      name: 'MenuDivider',
+      componentName: 'MenuDivider',
       styles: [menuDividerStyles, styles],
     });
 

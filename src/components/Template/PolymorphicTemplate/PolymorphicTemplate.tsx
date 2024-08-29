@@ -16,7 +16,7 @@ export const PolymorphicTemplate = createPolymorphicComponent<
       const { styles, sx, children, ...other } = props;
 
       const { combineStyles, globalStyles } = useStyles({
-        name: 'PolymorphicTemplate',
+        componentName: 'PolymorphicTemplate',
         styles: [polymorphicTemplateStyles, styles],
       });
 

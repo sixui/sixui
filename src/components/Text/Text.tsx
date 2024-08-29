@@ -48,7 +48,7 @@ export const Text = createPolymorphicComponent<'span', ITextProps>(
     } = props as IWithAsProp<ITextProps>;
 
     const { combineStyles, globalStyles } = useStyles({
-      name: 'Text',
+      componentName: 'Text',
       styles: [textStyles, styles],
     });
 

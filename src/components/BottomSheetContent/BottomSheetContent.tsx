@@ -24,7 +24,7 @@ export const BottomSheetContent = forwardRef<
 
   const variantStyles = bottomSheetVariantContentStyles[variant];
   const { combineStyles, getStyles, globalStyles } = useStyles({
-    name: 'BottomSheetContent',
+    componentName: 'BottomSheetContent',
     styles: [bottomSheetContentStyles, variantStyles, styles],
   });
 

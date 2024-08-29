@@ -1,18 +1,18 @@
 import { forwardRef } from 'react';
 
 import type { IStackProps } from './Stack.types';
-import { useStyles } from '~/hooks/useStyles';
+import { useStyles } from '~/hooks/useStyles2';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
-import { Base } from '~/components/Base';
-import { StackStyles } from './Stack.styles';
+import { Box } from '~/components/Box';
 import { filterFalsyChildren } from '~/helpers/react/filterFalsyChildren';
-import { commonStyles } from '~/helpers/commonStyles';
+import { stackStyles, stackVariants } from './Stack.css';
 
 export const Stack = createPolymorphicComponent<'div', IStackProps>(
   forwardRef<HTMLDivElement, IStackProps>(function Stack(props, forwardedRef) {
     const {
+      className,
+      style,
       styles,
-      sx,
       children,
       horizontal,
       gap,
@@ -24,9 +24,13 @@ export const Stack = createPolymorphicComponent<'div', IStackProps>(
       ...other
     } = props;
 
-    const { combineStyles, globalStyles } = useStyles({
+    const { getStyles } = useStyles({
       name: 'Stack',
-      styles: [StackStyles, styles],
+      className,
+      style,
+      stylesList: [stackStyles, styles],
+      variants: stackVariants,
+      variant: horizontal ? 'horizontal' : 'vertical',
     });
 
     const filteredChildren = filterFalsyChildren(children);
@@ -34,21 +38,22 @@ export const Stack = createPolymorphicComponent<'div', IStackProps>(
     const align = alignProp ?? (horizontal ? 'center' : 'stretch');
 
     return (
-      <Base
+      <Box
         {...other}
-        sx={[
-          globalStyles,
-          gap !== undefined &&
-            (horizontal
-              ? commonStyles.horizontalGap(gap)
-              : commonStyles.verticalGap(gap)),
-          commonStyles.justifyContent(justify),
-          commonStyles.alignItems(align),
-          commonStyles.flexWrap(wrap ? 'wrap' : 'nowrap'),
-          commonStyles.flexGrow(!!grow),
-          combineStyles('host', `host$${orientation}`),
-          sx,
-        ]}
+        {...getStyles('root')}
+        // sx={[
+        //   globalStyles,
+        //   gap !== undefined &&
+        //     (horizontal
+        //       ? commonStyles.horizontalGap(gap)
+        //       : commonStyles.verticalGap(gap)),
+        //   commonStyles.justifyContent(justify),
+        //   commonStyles.alignItems(align),
+        //   commonStyles.flexWrap(wrap ? 'wrap' : 'nowrap'),
+        //   commonStyles.flexGrow(!!grow),
+        //   combineStyles('host', `host$${orientation}`),
+        //   sx,
+        // ]}
         ref={forwardedRef}
       >
         {divider
@@ -60,7 +65,7 @@ export const Stack = createPolymorphicComponent<'div', IStackProps>(
               return [...acc, divider, child];
             }, [] as Array<React.ReactNode>)
           : filteredChildren}
-      </Base>
+      </Box>
     );
   }),
 );

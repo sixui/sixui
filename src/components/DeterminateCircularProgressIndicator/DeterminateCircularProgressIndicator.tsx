@@ -41,7 +41,7 @@ export const DeterminateCircularProgressIndicator = createPolymorphicComponent<
         | ICircularProgressIndicatorStylesKey
         | IDeterminateCircularProgressIndicatorStylesKey
       >({
-        name: 'CircularProgressIndicator',
+        componentName: 'CircularProgressIndicator',
         styles: [
           circularProgressIndicatorStyles,
           determinateCircularProgressIndicatorStyles,

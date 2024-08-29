@@ -1,80 +1,84 @@
-import { useMemo, useState } from 'react';
-import stylex from '@stylexjs/stylex';
+import { useMemo, useRef, useState } from 'react';
+import { assignInlineVars } from '@vanilla-extract/dynamic';
+import { FloatingDelayGroup } from '@floating-ui/react';
+import clsx from 'clsx';
 
-import type { IThemeProviderProps } from './ThemeProvider.types';
-import type { ITheme } from '~/themes/base';
-import baseTheme from '~/themes/base/theme.json';
-import { ThemeContext } from './Theme.context';
-import { themeProviderStyles } from './ThemeProvider.styles';
+import type {
+  IThemeOverride,
+  IThemeProviderProps,
+} from './ThemeProvider.types';
+import { deepMerge } from '~/helpers/deepMerge';
+import { Box } from '../Box';
+import { ThemeContext, type IThemeContextValue } from './Theme.context';
 import {
-  IThemeSetterContextValue,
   ThemeSetterContext,
+  type IThemeSetterContextValue,
 } from './ThemeSetter.context';
 import * as styles from './ThemeProvider.css';
+import { defaultTheme } from './defaultTheme';
 // import { ResponsiveStyles } from './ResponsiveStyles';
 
 export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
   const {
-    sx,
+    className,
+    style,
     children,
-    theme: defaultTheme,
+    theme,
     settings,
-    componentsStyles,
+    colorSchemeVariant = 'light',
     ...other
   } = props;
   const [dynamicTheme, setDynamicTheme] = useState<
-    Partial<ITheme> | undefined
+    IThemeOverride | undefined
   >();
-  const theme: ITheme = {
-    ...baseTheme,
-    ...defaultTheme,
-    ...dynamicTheme,
-  };
+  const mergedTheme = useMemo(
+    () => deepMerge(defaultTheme, theme, dynamicTheme),
+    [theme, dynamicTheme],
+  );
+
+  const root = useRef<HTMLDivElement | null>(null);
+  const themeContextValue: IThemeContextValue = useMemo(
+    () => ({
+      root,
+      theme: mergedTheme,
+      settings,
+    }),
+    [mergedTheme, settings],
+  );
 
   const themeSetterContextValue: IThemeSetterContextValue = useMemo(
     () => ({ setTheme: setDynamicTheme }),
     [],
   );
 
+  const isDark = colorSchemeVariant === 'dark';
+
   return (
     <ThemeSetterContext.Provider value={themeSetterContextValue}>
-      <ThemeContext.Provider
-        value={{
-          theme,
-          settings,
-          componentsStyles,
-        }}
-      >
-        <div className={styles.themeClass}>
-          <div
-            {...other}
-            {...stylex.props([
-              theme?.scale && themeProviderStyles.dynamicScale(theme.scale),
-              theme?.density &&
-                themeProviderStyles.dynamicDensity(theme.density),
-              theme?.schemes &&
-                themeProviderStyles.dynamicScheme(theme.schemes.light),
-              theme?.shape && themeProviderStyles.dynamicShape(theme.shape),
-              theme?.motion && themeProviderStyles.dynamicMotion(theme.motion),
-              theme?.typeFace &&
-                themeProviderStyles.dynamicTypeFace(theme.typeFace),
-              theme?.typeScale &&
-                themeProviderStyles.dynamicTypeScale(theme.typeScale),
-              theme?.state && themeProviderStyles.dynamicState(theme.state),
-              theme?.zIndex && themeProviderStyles.dynamicZIndex(theme.zIndex),
-              theme?.outline &&
-                themeProviderStyles.dynamicOutline(theme.outline),
-              themeProviderStyles.wrapper,
-              sx,
-            ])}
+      <ThemeContext.Provider value={themeContextValue}>
+        <Box
+          {...other}
+          className={clsx('sixui-root', styles.styles.root, className)}
+          style={{
+            ...style,
+            ...assignInlineVars(styles.themeTokens, {
+              ...mergedTheme.tokens,
+              colorScheme: isDark
+                ? mergedTheme.tokens.colorScheme.dark
+                : mergedTheme.tokens.colorScheme.light,
+            }),
+          }}
+        >
+          <FloatingDelayGroup
+            delay={{
+              open: 100,
+              close: 1500,
+            }}
           >
-            {/* TODO: allow multiple sixui-root */}
-            <div id='sixui-root'>
-              {/* <ResponsiveStyles /> */}
-              {children}
-            </div>
-          </div>
-        </div>
+            {/* <ResponsiveStyles /> */}
+            {children}
+          </FloatingDelayGroup>
+        </Box>
       </ThemeContext.Provider>
     </ThemeSetterContext.Provider>
   );

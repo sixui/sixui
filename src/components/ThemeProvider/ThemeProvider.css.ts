@@ -1,10 +1,21 @@
-import { createTheme, createThemeContract } from '@vanilla-extract/css';
+import { createThemeContract, style } from '@vanilla-extract/css';
 
 import { defaultTheme } from './defaultTheme';
 
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-const { colorScheme, ...other } = defaultTheme;
+const { colorScheme, ...otherTokens } = defaultTheme.tokens;
 
-export const themeTokens = createThemeContract(other);
+export const themeTokens = createThemeContract({
+  ...otherTokens,
+  colorScheme: colorScheme.light,
+});
 
-export const themeClass = createTheme(themeTokens, other);
+export const styles = {
+  root: style({
+    color: themeTokens.colorScheme.onSurface,
+    '@media': {
+      '(pointer: fine)': {
+        scrollbarColor: `${themeTokens.colorScheme.primary} transparent`,
+      },
+    },
+  }),
+};

@@ -1,8 +1,8 @@
-import type { IBaseProps } from '~/components/Base';
 import type { ICSSProperties, IGap } from '~/helpers/commonStyles';
-import type { IStackStylesKey } from './Stack.styles';
+import type { IBoxProps } from '../Box';
+import type { IStackStyleName } from './Stack.css';
 
-export type IStackProps = IBaseProps<IStackStylesKey> & {
+export type IStackProps = IBoxProps<IStackStyleName> & {
   children?: React.ReactNode;
   horizontal?: boolean;
   gap?: IGap;

@@ -53,7 +53,7 @@ export const ButtonBase = createPolymorphicComponent<
       ]);
 
       const { combineStyles, getStyles, globalStyles, settings } = useStyles({
-        name: 'ButtonBase',
+        componentName: 'ButtonBase',
         styles: [buttonBaseStyles, styles],
         visualState,
       });

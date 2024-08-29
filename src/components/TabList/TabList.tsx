@@ -11,7 +11,7 @@ export const TabList = forwardRef<HTMLInputElement, ITabListProps>(
     const { styles, sx, children, fullWidth, ...other } = props;
 
     const { combineStyles, getStyles, globalStyles } = useStyles({
-      name: 'TabList',
+      componentName: 'TabList',
       styles: [tabListStyles, styles],
     });
 

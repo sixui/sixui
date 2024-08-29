@@ -18,7 +18,7 @@ export const FocusRing = forwardRef<HTMLInputElement, IFocusRingProps>(
     const { styles, sx, visualState, for: forElementRef, inward } = props;
 
     const { combineStyles, globalStyles } = useStyles({
-      name: 'FocusRing',
+      componentName: 'FocusRing',
       styles: [focusRingStyles, styles],
     });
 

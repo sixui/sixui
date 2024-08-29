@@ -45,7 +45,7 @@ export const DisclosureButton = createPolymorphicComponent<
       } = props;
 
       const { combineStyles, getStyles, globalStyles } = useStyles({
-        name: 'DisclosureButton',
+        componentName: 'DisclosureButton',
         styles: [disclosureButtonStyles, styles],
       });
 

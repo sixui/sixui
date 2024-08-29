@@ -82,7 +82,7 @@ export const FieldBase = createPolymorphicComponent<'div', IFieldBaseProps>(
         | IFilledFieldBaseStylesKey
         | IOutlinedFieldBaseStylesKey
       >({
-        name: 'FieldBase',
+        componentName: 'FieldBase',
         styles: [fieldBaseStyles, variantStyles, styles],
         visualState,
       });

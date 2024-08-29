@@ -1,4 +1,5 @@
 import { forwardRef } from 'react';
+import clsx from 'clsx';
 
 import type { IBoxModifiers, IBoxProps } from './Box.types';
 import {
@@ -30,6 +31,7 @@ export const Box = createPolymorphicComponent<'div', IBoxProps>(
   forwardRef<HTMLDivElement, IBoxProps>(function Box(props, forwardedRef) {
     const {
       as: Component = 'div',
+      className,
       renderRoot,
       interactions,
       modifiers,
@@ -46,6 +48,7 @@ export const Box = createPolymorphicComponent<'div', IBoxProps>(
           : undefined),
         ...modifiers,
       }),
+      className: clsx(className),
       ref: handleRef,
     };
 

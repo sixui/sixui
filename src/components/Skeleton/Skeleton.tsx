@@ -29,7 +29,7 @@ export const Skeleton = forwardRef<HTMLDivElement, ISkeletonProps>(
     } = props;
 
     const { combineStyles, getStyles, globalStyles } = useStyles({
-      name: 'Skeleton',
+      componentName: 'Skeleton',
       styles: [skeletonStyles, styles],
     });
 

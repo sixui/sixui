@@ -18,7 +18,7 @@ export const MenuList = forwardRef<HTMLDivElement, IMenuListProps>(
     const { styles, sx, innerStyles, children, ...other } = props;
 
     const { combineStyles, globalStyles } = useStyles({
-      name: 'MenuList',
+      componentName: 'MenuList',
       styles: [menuListStyles, styles],
     });
 

@@ -6,55 +6,52 @@ import {
 } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
+import type { IAvatarVariant } from './Avatar.types';
+import {
+  componentStylesFactory,
+  type IComponentStylesFactory,
+} from '~/utils/componentStylesFactory';
 import { getDensity } from '~/helpers/styles/getDensity';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { themeTokens } from '../ThemeProvider';
-import { colorSchemeTokens } from '../ColorScheme';
 
-export type IAvatarVariant = 'rounded' | 'squared';
-export type IAvatarClassName = keyof typeof avatarStyles;
-
-export const [avatarTheme, avatarTokens] = createTheme({
+const [tokensClassName, tokens] = createTheme({
   density: getDensity({ min: -3, max: 0 }),
   container: {
     size: '40px',
     shape: themeTokens.shape.corner.full,
-    color: colorSchemeTokens.primaryContainer,
+    color: themeTokens.colorScheme.primaryContainer,
   },
   labelText: {
-    color: colorSchemeTokens.onPrimaryContainer,
+    color: themeTokens.colorScheme.onPrimaryContainer,
     typography: themeTokens.typeScale.title.md,
   },
 });
 
-const localTokens = {
+const vars = {
   size: createVar(),
   shape: createVar(),
 };
 
 const root = style({
   vars: {
-    [localTokens.size]: calc.add(
-      px(avatarTokens.container.size),
-      avatarTokens.density,
-    ),
-    [localTokens.shape]: px(avatarTokens.container.shape),
+    [vars.size]: calc.add(px(tokens.container.size), tokens.density),
+    [vars.shape]: px(tokens.container.shape),
   },
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  width: localTokens.size,
-  height: localTokens.size,
+  width: vars.size,
+  height: vars.size,
   overflow: 'hidden',
-  borderRadius: localTokens.shape,
+  borderRadius: vars.shape,
   userSelect: 'none',
-  backgroundColor: avatarTokens.container.color,
+  backgroundColor: tokens.container.color,
 });
 
-export const avatarStyles = {
+const classNames = {
   root,
   image: style({
     width: '100%',
@@ -74,31 +71,40 @@ export const avatarStyles = {
     justifyContent: 'center',
     flexShrink: 0,
     textTransform: 'uppercase',
-    color: avatarTokens.labelText.color,
-    ...getTypographyStyles(avatarTokens.labelText.typography),
-    selectors: {
-      [getModifierSelector('hovered', root)]: {
-        backgroundColor: 'red',
-        border: '2px solid red',
+    color: tokens.labelText.color,
+    ...getTypographyStyles(tokens.labelText.typography),
+  }),
+};
+
+export type IAvatarTokens = typeof tokens;
+
+// TODO: delete variants?
+export const variants: Partial<
+  Record<keyof typeof classNames, Partial<Record<IAvatarVariant, string>>>
+> = {
+  root: styleVariants({
+    rounded: {
+      vars: {
+        [vars.shape]: themeTokens.shape.corner.full,
+      },
+    },
+    squared: {
+      vars: {
+        [vars.shape]: themeTokens.shape.corner.sm,
       },
     },
   }),
 };
 
-// TODO: delete variants?
-export const avatarVariants: Partial<
-  Record<IAvatarClassName, Partial<Record<IAvatarVariant, string>>>
-> = {
-  root: styleVariants({
-    rounded: {
-      vars: {
-        [localTokens.shape]: themeTokens.shape.corner.full,
-      },
-    },
-    squared: {
-      vars: {
-        [localTokens.shape]: themeTokens.shape.corner.sm,
-      },
-    },
-  }),
-};
+export type IAvatarStylesFactory = IComponentStylesFactory<{
+  styleName: keyof typeof classNames;
+  tokens: object;
+  variant: IAvatarVariant;
+}>;
+
+export const avatarStyles = componentStylesFactory<IAvatarStylesFactory>({
+  classNames,
+  tokensClassName: tokensClassName,
+  tokens,
+  variants,
+});

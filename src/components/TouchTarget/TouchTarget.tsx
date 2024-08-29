@@ -24,7 +24,7 @@ export const TouchTarget = forwardRef<HTMLDivElement, ITouchTargetProps>(
     const handleRef = useMergeRefs([forwardedRef, setVisualStateRef]);
 
     const { combineStyles, globalStyles } = useStyles({
-      name: 'TouchTarget',
+      componentName: 'TouchTarget',
       styles: [touchTargetStyles, styles],
       visualState,
     });

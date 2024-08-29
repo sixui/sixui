@@ -35,7 +35,7 @@ export const ColorTag = createPolymorphicComponent<'div', IColorTagProps>(
       } = props;
 
       const { combineStyles, getStyles, globalStyles } = useStyles({
-        name: 'ColorTag',
+        componentName: 'ColorTag',
         styles: [colorTagStyles, styles],
       });
 

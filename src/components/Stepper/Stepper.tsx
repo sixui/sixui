@@ -33,7 +33,7 @@ export const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
     } = props;
 
     const { combineStyles, globalStyles } = useStyles({
-      name: 'Stepper',
+      componentName: 'Stepper',
       styles: [stepperStyles, styles],
     });
 

@@ -14,7 +14,7 @@ export const CardContent = createPolymorphicComponent<'div', ICardContentProps>(
       const { styles, sx, children, ...other } = props;
 
       const { combineStyles, globalStyles } = useStyles({
-        name: 'CardContent',
+        componentName: 'CardContent',
         styles: [cardContentStyles, styles],
       });
 

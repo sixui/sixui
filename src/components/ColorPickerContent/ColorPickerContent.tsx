@@ -26,7 +26,7 @@ export const ColorPickerContent = forwardRef<
   } = props;
 
   const { combineStyles, getStyles, globalStyles } = useStyles({
-    name: 'ColorPickerContent',
+    componentName: 'ColorPickerContent',
     styles: [colorPickerContentStyles, styles],
   });
 

@@ -23,7 +23,7 @@ export const Snackbar = forwardRef<HTMLDivElement, ISnackbarProps>(
     } = props;
 
     const { combineStyles, getStyles, globalStyles } = useStyles({
-      name: 'Snackbar',
+      componentName: 'Snackbar',
       styles: [snackbarStyles, styles],
     });
 

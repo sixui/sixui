@@ -40,7 +40,7 @@ export const Playground = fixedForwardRef(function Playground<
   } = props;
 
   const { combineStyles, getStyles, globalStyles } = useStyles({
-    name: 'Playground',
+    componentName: 'Playground',
     styles: [playgroundStyles, styles],
   });
 

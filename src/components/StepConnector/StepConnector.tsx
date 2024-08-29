@@ -20,7 +20,7 @@ export const StepConnector = forwardRef<HTMLDivElement, IStepConnectorProps>(
     } = props;
 
     const { combineStyles, getStyles, globalStyles } = useStyles({
-      name: 'StepConnector',
+      componentName: 'StepConnector',
       styles: [stepConnectorStyles, styles],
     });
 

@@ -13,7 +13,7 @@ export const PlainTooltipContent = forwardRef<
   const { styles, sx, supportingText, renderCursor, ...other } = props;
 
   const { combineStyles, getStyles, globalStyles } = useStyles({
-    name: 'PlainTooltipContent',
+    componentName: 'PlainTooltipContent',
     styles: [plainTooltipContentStyles, styles],
   });
 

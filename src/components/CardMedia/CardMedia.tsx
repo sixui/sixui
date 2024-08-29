@@ -14,7 +14,7 @@ export const CardMedia = createPolymorphicComponent<'div', ICardMediaProps>(
       const { styles, sx, children, src, ...other } = props;
 
       const { combineStyles, globalStyles } = useStyles({
-        name: 'CardMedia',
+        componentName: 'CardMedia',
         styles: [cardMediaStyles, styles],
       });
 

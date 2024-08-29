@@ -68,7 +68,7 @@ export const Tab = createPolymorphicComponent<'div', ITabProps>(
 
     const variantStyles = variant ? tabVariantStyles[variant] : undefined;
     const { combineStyles, getStyles, globalStyles, settings } = useStyles({
-      name: 'Tab',
+      componentName: 'Tab',
       styles: [tabStyles, variantStyles, styles],
       visualState,
     });

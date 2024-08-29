@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { ComponentShowcase } from './ComponentShowcase';
-import { type IDemoComponentProps, DemoComponent } from './DemoComponent';
-import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { DemoComponent, type IDemoComponentProps } from './DemoComponent';
+import { themeTokens } from '../ThemeProvider';
 
 const meta = {
   component: DemoComponent,
@@ -11,7 +11,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  color: colorSchemeTokens.primary,
+  color: themeTokens.colorScheme.primary,
 } satisfies Partial<IDemoComponentProps>;
 
 export const One: IStory = {
@@ -27,9 +27,9 @@ export const OneRow: IStory = {
       component={DemoComponent}
       props={props}
       cols={[
-        { props: { color: colorSchemeTokens.primary } },
-        { props: { color: colorSchemeTokens.secondary } },
-        { props: { color: colorSchemeTokens.tertiary } },
+        { props: { color: themeTokens.colorScheme.primary } },
+        { props: { color: themeTokens.colorScheme.secondary } },
+        { props: { color: themeTokens.colorScheme.tertiary } },
       ]}
     />
   ),
@@ -42,9 +42,18 @@ export const OneRowWithLegend: IStory = {
       component={DemoComponent}
       props={props}
       cols={[
-        { legend: 'Primary', props: { color: colorSchemeTokens.primary } },
-        { legend: 'Secondary', props: { color: colorSchemeTokens.secondary } },
-        { legend: 'Tertiary', props: { color: colorSchemeTokens.tertiary } },
+        {
+          legend: 'Primary',
+          props: { color: themeTokens.colorScheme.primary },
+        },
+        {
+          legend: 'Secondary',
+          props: { color: themeTokens.colorScheme.secondary },
+        },
+        {
+          legend: 'Tertiary',
+          props: { color: themeTokens.colorScheme.tertiary },
+        },
       ]}
     />
   ),
@@ -83,9 +92,18 @@ export const RowsAndCols: IStory = {
       component={DemoComponent}
       props={props}
       cols={[
-        { legend: 'Primary', props: { color: colorSchemeTokens.primary } },
-        { legend: 'Secondary', props: { color: colorSchemeTokens.secondary } },
-        { legend: 'Tertiary', props: { color: colorSchemeTokens.tertiary } },
+        {
+          legend: 'Primary',
+          props: { color: themeTokens.colorScheme.primary },
+        },
+        {
+          legend: 'Secondary',
+          props: { color: themeTokens.colorScheme.secondary },
+        },
+        {
+          legend: 'Tertiary',
+          props: { color: themeTokens.colorScheme.tertiary },
+        },
       ]}
       rows={[
         { legend: 'Small', props: { size: 'sm' } },
@@ -103,9 +121,18 @@ export const Groups: IStory = {
       component={DemoComponent}
       props={props}
       cols={[
-        { legend: 'Primary', props: { color: colorSchemeTokens.primary } },
-        { legend: 'Secondary', props: { color: colorSchemeTokens.secondary } },
-        { legend: 'Tertiary', props: { color: colorSchemeTokens.tertiary } },
+        {
+          legend: 'Primary',
+          props: { color: themeTokens.colorScheme.primary },
+        },
+        {
+          legend: 'Secondary',
+          props: { color: themeTokens.colorScheme.secondary },
+        },
+        {
+          legend: 'Tertiary',
+          props: { color: themeTokens.colorScheme.tertiary },
+        },
       ]}
       rows={[
         { legend: 'Small', props: { size: 'sm' } },

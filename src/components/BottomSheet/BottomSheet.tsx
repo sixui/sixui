@@ -42,7 +42,7 @@ export const BottomSheet = createPolymorphicComponent<'div', IBottomSheetProps>(
       } = props;
 
       const { combineStyles, getStyles, globalStyles } = useStyles({
-        name: 'BottomSheet',
+        componentName: 'BottomSheet',
         styles: [bottomSheetStyles, styles],
       });
 

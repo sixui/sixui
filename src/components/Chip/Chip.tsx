@@ -89,7 +89,7 @@ export const Chip = createPolymorphicComponent<'div', IChipProps>(
 
     const variantStyles = variant ? chipVariantStyles[variant] : undefined;
     const { combineStyles, getStyles, globalStyles, settings } = useStyles({
-      name: 'Avatar',
+      componentName: 'Avatar',
       styles: [chipStyles, variantStyles, styles],
       visualState,
     });

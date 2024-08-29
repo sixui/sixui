@@ -17,7 +17,7 @@ export const NavigationDrawerContentDestination = forwardRef<
   const { styles, sx, innerStyles, children, active, ...other } = props;
 
   const { combineStyles, globalStyles } = useStyles({
-    name: 'NavigationDrawerContentDestination',
+    componentName: 'NavigationDrawerContentDestination',
     styles: [navigationDrawerContentDestinationStyles, styles],
   });
 

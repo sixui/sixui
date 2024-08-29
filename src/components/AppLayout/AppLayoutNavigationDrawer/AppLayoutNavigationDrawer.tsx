@@ -28,7 +28,7 @@ export const AppLayoutNavigationDrawer = forwardRef<
   const { combineStyles, globalStyles } = useStyles<
     ISideSheetContentStylesKey | IAppLayoutNavigationDrawerStylesKey
   >({
-    name: 'AppLayoutNavigationDrawer',
+    componentName: 'AppLayoutNavigationDrawer',
     styles: [appLayoutNavigationDrawerStyles, styles],
   });
 

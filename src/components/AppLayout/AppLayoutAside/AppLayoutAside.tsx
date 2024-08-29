@@ -24,7 +24,7 @@ export const AppLayoutAside = forwardRef<HTMLDivElement, IAppLayoutAsideProps>(
     const { combineStyles, globalStyles } = useStyles<
       ISideSheetContentStylesKey | IAppLayoutAsideStylesKey
     >({
-      name: 'AppLayoutAside',
+      componentName: 'AppLayoutAside',
       styles: [appLayoutAsideStyles, styles],
     });
 

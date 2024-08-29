@@ -63,7 +63,7 @@ export const Button = createPolymorphicComponent<'button', IButtonProps>(
       const variantStyles = variant ? buttonVariantStyles[variant] : undefined;
       const { combineStyles, getStyles, globalStyles } =
         useStyles<IButtonStylesKey>({
-          name: 'Button',
+          componentName: 'Button',
           styles: [buttonStyles, variantStyles, styles],
           visualState,
         });

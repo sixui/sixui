@@ -13,7 +13,7 @@ export const CardTitle = createPolymorphicComponent<'div', ICardTitleProps>(
       const { styles, sx, headline, subhead, supportingText, ...other } = props;
 
       const { getStyles, globalStyles } = useStyles({
-        name: 'CardTitle',
+        componentName: 'CardTitle',
         styles: [cardTitleStyles, styles],
       });
 

@@ -57,7 +57,7 @@ export const NavigationRailDestination = createPolymorphicComponent<
       ]);
 
       const { combineStyles, getStyles, globalStyles, settings } = useStyles({
-        name: 'NavigationRailDestination',
+        componentName: 'NavigationRailDestination',
         styles: [navigationRailDestinationStyles, styles],
         visualState,
       });

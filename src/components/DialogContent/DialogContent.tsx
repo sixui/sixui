@@ -42,7 +42,7 @@ export const DialogContent = createPolymorphicComponent<
       const childrenId = useId();
 
       const { combineStyles, getStyles, globalStyles } = useStyles({
-        name: 'DialogContent',
+        componentName: 'DialogContent',
         styles: [dialogContentStyles, styles],
       });
 

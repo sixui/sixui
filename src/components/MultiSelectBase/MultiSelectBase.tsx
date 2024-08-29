@@ -39,7 +39,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
   } = props;
 
   const { combineStyles, globalStyles } = useStyles({
-    name: 'MultiSelectBase',
+    componentName: 'MultiSelectBase',
     styles: [multiSelectBaseStyles, styles],
   });
 

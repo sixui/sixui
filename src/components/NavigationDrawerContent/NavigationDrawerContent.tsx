@@ -25,7 +25,7 @@ const NavigationDrawerContent = forwardRef<
 
   const variantStyles = navigationDrawerContentVariantStyles[variant];
   const { combineStyles, globalStyles } = useStyles({
-    name: 'NavigationDrawerContent',
+    componentName: 'NavigationDrawerContent',
     styles: [navigationDrawerContentStyles, variantStyles, styles],
   });
 

@@ -26,7 +26,7 @@ export const IndeterminateCircularProgressIndicator = forwardRef<
     | ICircularProgressIndicatorStylesKey
     | IIndeterminateCircularProgressIndicatorStyleKey
   >({
-    name: 'CircularProgressIndicator',
+    componentName: 'CircularProgressIndicator',
     styles: [
       circularProgressIndicatorStyles,
       indeterminateCircularProgressIndicatorStyles,

@@ -14,7 +14,7 @@ export const AppLayoutSideSheet = forwardRef<
   const appLayoutContext = useAppLayoutContext();
 
   const { combineStyles, getStyles, globalStyles } = useStyles({
-    name: 'AppLayoutSideSheet',
+    componentName: 'AppLayoutSideSheet',
     styles: [appLayoutSideSheetStyles, styles],
   });
 

@@ -30,6 +30,9 @@ export type IStaticStyles<TKey extends string> = {
   [key in TKey]?: UserAuthoredStyles;
 };
 
+/**
+ * @deprectated - delete
+ */
 export type IStyles<TKey extends string> = {
   [key in TKey]?: UserAuthoredStyles | ((...props: IAny) => UserAuthoredStyles);
 };

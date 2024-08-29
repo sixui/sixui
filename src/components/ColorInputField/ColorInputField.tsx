@@ -44,7 +44,7 @@ export const ColorInputField = forwardRef<
   } = props;
 
   const { combineStyles, globalStyles } = useStyles({
-    name: 'ColorInputField',
+    componentName: 'ColorInputField',
     styles: [colorInputFieldStyles, styles],
   });
 

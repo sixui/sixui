@@ -12,7 +12,7 @@ export const NavigationDrawerContentDivider = forwardRef<
   const { styles, sx, ...other } = props;
 
   const { combineStyles, globalStyles } = useStyles({
-    name: 'NavigationDrawerContentDivider',
+    componentName: 'NavigationDrawerContentDivider',
     styles: [navigationDrawerContentDividerStyles, styles],
   });
 

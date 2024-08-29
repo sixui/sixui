@@ -12,7 +12,7 @@ export const AppLayoutBody = forwardRef<HTMLDivElement, IAppLayoutBodyProps>(
     const appLayoutContext = useAppLayoutContext();
 
     const { combineStyles, globalStyles } = useStyles({
-      name: 'AppLayoutBody',
+      componentName: 'AppLayoutBody',
       styles: [appLayoutBodyStyles, styles],
     });
 

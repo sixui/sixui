@@ -25,7 +25,7 @@ export const AppLayoutNavigationRail = forwardRef<
   const { combineStyles, globalStyles } = useStyles<
     INavigationRailStylesKey | IAppLayoutNavigationRailStylesKey
   >({
-    name: 'AppLayoutNavigationRail',
+    componentName: 'AppLayoutNavigationRail',
     styles: [appLayoutNavigationRailStyles, styles],
   });
 

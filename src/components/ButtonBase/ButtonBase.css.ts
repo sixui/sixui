@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 
-export type IButtonBaseClassName = keyof typeof buttonbaseStyles;
+export type IButtonBaseStyleName = keyof typeof buttonbaseStyles;
 
 const root = style({
   display: 'inline-flex',

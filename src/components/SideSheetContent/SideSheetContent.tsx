@@ -36,7 +36,7 @@ export const SideSheetContent = forwardRef<
 
   const variantStyles = sideSheetVariantContentStyles[variant];
   const { combineStyles, getStyles, globalStyles } = useStyles({
-    name: 'SideSheetContent',
+    componentName: 'SideSheetContent',
     styles: [sideSheetContentStyles, variantStyles, styles],
   });
 

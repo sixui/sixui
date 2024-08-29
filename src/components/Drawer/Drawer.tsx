@@ -27,7 +27,7 @@ export const Drawer = createPolymorphicComponent<'div', IDrawerProps>(
       } = props;
 
       const { combineStyles, globalStyles } = useStyles({
-        name: 'Drawer',
+        componentName: 'Drawer',
         styles: [drawerStyles, styles],
       });
 

@@ -21,7 +21,7 @@ const NavigationRail = forwardRef<HTMLDivElement, INavigationRailProps>(
     } = props;
 
     const { combineStyles, getStyles, globalStyles } = useStyles({
-      name: 'NavigationRail',
+      componentName: 'NavigationRail',
       styles: [navigationRailStyles, styles],
     });
 

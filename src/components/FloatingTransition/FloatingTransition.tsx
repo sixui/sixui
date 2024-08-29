@@ -50,7 +50,7 @@ export const FloatingTransition = forwardRef<
   } = props;
 
   const { combineStyles, globalStyles } = useStyles({
-    name: 'FloatingTransition',
+    componentName: 'FloatingTransition',
     styles: [floatingTransitionStyles, styles],
   });
 

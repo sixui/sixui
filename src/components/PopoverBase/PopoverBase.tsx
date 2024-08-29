@@ -111,7 +111,7 @@ export const PopoverBase = fixedForwardRef(function PopoverBase<
     transitionOriginProp ?? (cursorType ? 'cursor' : 'corner');
 
   const { getStyles, globalStyles } = useStyles({
-    name: 'PopoverBase',
+    componentName: 'PopoverBase',
     styles: [popoverBaseStyles, styles],
   });
 

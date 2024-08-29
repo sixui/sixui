@@ -33,7 +33,7 @@ export const IconButton = createPolymorphicComponent<
         ? iconButtonVariantStyles[variant]
         : undefined;
       const { combineStyles, globalStyles } = useStyles({
-        name: 'IconButton',
+        componentName: 'IconButton',
         styles: [iconButtonStyles, variantStyles, styles],
       });
 

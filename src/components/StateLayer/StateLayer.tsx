@@ -10,14 +10,13 @@ import { useMergeRefs } from '@floating-ui/react';
 
 export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
   function StateLayer(props, forwardedRef) {
-    const { className, style, classNames, context, ...other } = props;
+    const { className, style, styles, context, ...other } = props;
 
     const { getStyles } = useStyles({
       name: 'StateLayer',
       className,
       style,
-      classNames,
-      styles: stateLayerStyles,
+      stylesList: [stateLayerStyles, styles],
       theme: stateLayerTheme,
     });
 
@@ -38,6 +37,7 @@ export const StateLayer = forwardRef<HTMLDivElement, IStateLayerProps>(
       <Box
         {...other}
         {...getStyles('root')}
+        aria-hidden
         modifiers={modifiers}
         ref={handleRef}
       />

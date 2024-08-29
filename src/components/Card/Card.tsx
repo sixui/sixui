@@ -55,7 +55,7 @@ export const Card = createPolymorphicComponent<'div', ICardProps>(
 
     const variantStyles = variant ? cardVariantStyles[variant] : undefined;
     const { combineStyles, getStyles, globalStyles, settings } = useStyles({
-      name: 'Card',
+      componentName: 'Card',
       styles: [cardStyles, variantStyles, styles],
       visualState,
     });

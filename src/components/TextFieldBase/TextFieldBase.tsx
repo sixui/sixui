@@ -63,7 +63,7 @@ export const TextFieldBase = fixedForwardRef(function TextField<
   ]);
 
   const { combineStyles, getStyles, globalStyles } = useStyles({
-    name: 'TextFieldBase',
+    componentName: 'TextFieldBase',
     styles: [textFieldBaseStyles, styles],
   });
 

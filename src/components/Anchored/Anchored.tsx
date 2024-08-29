@@ -20,7 +20,7 @@ export const Anchored = forwardRef<HTMLDivElement, IAnchoredProps>(
     } = props;
 
     const { combineStyles, getStyles, globalStyles } = useStyles({
-      name: 'Anchored',
+      componentName: 'Anchored',
       styles: [anchoredStyles, styles],
     });
 

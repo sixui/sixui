@@ -1,72 +1,101 @@
+import { useCallback } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 import clsx from 'clsx';
 
+import type {
+  IComponentStyles,
+  IComponentStylesFactoryPayload,
+} from '~/utils/componentStylesFactory';
 import { useThemeContext } from '~/components/ThemeProvider';
 
-export type IUseStylesProps<
-  TSelector extends string,
-  TVariant extends string,
-> = {
-  name: string;
-  rootSelector?: string;
-  className?: string;
+export type IUseStylesProps<TPayload extends IComponentStylesFactoryPayload> = {
+  /** The name of the component. */
+  componentName: string;
+
+  /** The class name to apply to the root selector. */
+  className?: Parameters<typeof clsx>[0];
+
+  /** The class names to apply to the component. */
+  classNames?: Partial<Record<TPayload['styleName'], string>>;
+
+  /**
+   * The styles of the component.
+   */
+  styles: IComponentStyles<TPayload>;
+
+  /** CSS properties to apply to the root selector. */
   style?: React.CSSProperties;
-  classNames?: Partial<Record<TSelector, string>>;
-  styles?: Record<TSelector, string>;
-  theme?: string;
-  variants?: Partial<Record<TSelector, Partial<Record<TVariant, string>>>>;
-  variant?: TVariant;
+
+  /**
+   * The root style name to apply the tokens class to.
+   * @defaultValue 'root'
+   */
+  rootStyleName?: string;
+
+  /** The styles variant to use. */
+  variant?: TPayload['variant'];
 };
 
-export type IGetStylesProps = {
+export type IGetStylesOptions = {
   className?: string;
   style?: React.CSSProperties;
 };
 
-export type IUseStylesResult<TSelector extends string> = {
-  getStyles: (
-    selector: TSelector | Array<TSelector | false | undefined>,
-    options?: IGetStylesProps,
-  ) => {
-    className?: string;
-    style?: React.CSSProperties;
+export type IUseStylesResult<TPayload extends IComponentStylesFactoryPayload> =
+  {
+    getStyles: (
+      styleName:
+        | TPayload['styleName']
+        | Array<TPayload['styleName'] | false | undefined>,
+      options?: IGetStylesOptions,
+    ) => {
+      className?: string;
+      style?: React.CSSProperties;
+    };
   };
-};
 
-export const useStyles = <
-  TSelector extends string,
-  TVariant extends string = never,
->(
-  props: IUseStylesProps<TSelector, TVariant>,
-): IUseStylesResult<TSelector> => {
+export const useStyles = <TPayload extends IComponentStylesFactoryPayload>(
+  props: IUseStylesProps<TPayload>,
+): IUseStylesResult<TPayload> => {
   const {
-    name,
-    rootSelector = 'root',
-    theme,
-    styles,
-    variants,
-    variant,
+    componentName,
     classNames,
     className,
+    styles,
+    style,
+    variant,
+    rootStyleName = 'root',
   } = props;
   const themeContext = useThemeContext();
 
-  return {
-    getStyles: (selector, options) => ({
+  const getStyles: IUseStylesResult<TPayload>['getStyles'] = useCallback(
+    (styleName, options) => ({
       className: clsx(
-        asArray(selector).map((selector) =>
-          selector
+        asArray(styleName).map((styleName) =>
+          styleName
             ? [
-                selector === rootSelector && [theme, className],
-                styles?.[selector],
-                classNames?.[selector],
-                variant && variants?.[selector]?.[variant],
+                styleName === rootStyleName && [
+                  styles.tokensClassName,
+                  className,
+                ],
+                [styles.classNames, classNames].map(
+                  (classNames) => classNames?.[styleName],
+                ),
+                variant && styles.variants?.[styleName]?.[variant],
                 options?.className,
               ]
             : undefined,
         ),
       ),
-      styles: options?.style,
+      styles: {
+        ...style,
+        ...options?.style,
+      },
     }),
+    [className, classNames, rootStyleName, variant, style, styles],
+  );
+
+  return {
+    getStyles,
   };
 };

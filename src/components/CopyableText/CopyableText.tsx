@@ -31,7 +31,7 @@ export const CopyableText = createPolymorphicComponent<
       } = props;
 
       const { getStyles, globalStyles } = useStyles({
-        name: 'CopyableText',
+        componentName: 'CopyableText',
         styles: [copyableTextStyles, styles],
       });
 

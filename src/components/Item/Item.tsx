@@ -27,7 +27,7 @@ export const Item = createPolymorphicComponent<'div', IItemProps>(
     } = props;
 
     const { combineStyles, getStyles, globalStyles } = useStyles({
-      name: 'Item',
+      componentName: 'Item',
       styles: [itemStyles, styles],
     });
 

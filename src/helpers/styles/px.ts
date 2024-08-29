@@ -10,7 +10,7 @@ const getNumericValue = (value: number | string): number | undefined => {
     return Number(value);
   }
 
-  if (typeof value === 'string') {
+  if (typeof value === 'string' && /^[\d.]+(px|r?em)$/.test(value)) {
     if (value.endsWith('rem')) {
       return Number(value.replace('rem', '')) * 16;
     }

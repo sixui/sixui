@@ -12,7 +12,7 @@ export const AppLayoutFooter = forwardRef<
   const { styles, sx, children, divider, ...other } = props;
 
   const { combineStyles, globalStyles } = useStyles({
-    name: 'AppLayoutFooter',
+    componentName: 'AppLayoutFooter',
     styles: [appLayoutFooterStyles, styles],
   });
 

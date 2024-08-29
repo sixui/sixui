@@ -30,7 +30,7 @@ export const RichTooltipContent = forwardRef<
   } = props;
 
   const { combineStyles, getStyles, globalStyles } = useStyles({
-    name: 'RichTooltipContent',
+    componentName: 'RichTooltipContent',
     styles: [richTooltipContentStyles, styles],
   });
 

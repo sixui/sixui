@@ -56,7 +56,7 @@ export const Radio = forwardRef<HTMLInputElement, IRadioProps>(
     ]);
 
     const { combineStyles, getStyles, globalStyles } = useStyles({
-      name: 'Radio',
+      componentName: 'Radio',
       styles: [radioStyles, styles],
     });
 

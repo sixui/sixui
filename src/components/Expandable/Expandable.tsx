@@ -84,7 +84,7 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
     } = props;
 
     const { combineStyles, globalStyles } = useStyles({
-      name: 'Expandable',
+      componentName: 'Expandable',
       styles: [expandableStyles, styles],
     });
 

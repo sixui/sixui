@@ -17,13 +17,20 @@ export const Levels: IStory = {
   render: (props) => (
     <ComponentShowcase<IElevationProps>
       component={(variantArgs) => (
-        <Placeholder
-          width={96}
-          height={96}
-          label={`Level ${variantArgs.level}`}
+        <div
+          style={{
+            position: 'relative',
+            width: 96,
+            height: 96,
+            border: '1px solid gray',
+          }}
+          // width={96}
+          // height={96}
+          // label={`Level ${variantArgs.level}`}
         >
           <Elevation {...props} {...variantArgs} />
-        </Placeholder>
+          {`Level ${variantArgs.level}`}
+        </div>
       )}
       props={{}}
       cols={[

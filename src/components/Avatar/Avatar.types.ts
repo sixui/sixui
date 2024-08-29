@@ -1,7 +1,11 @@
 import type { IBoxProps } from '../Box';
-import type { IAvatarClassName, IAvatarVariant } from './Avatar.css';
+import type { IAvatarStyleName } from './Avatar.css';
 
-export type IAvatarProps = IBoxProps<IAvatarClassName> & {
+export type IAvatarVariant = 'rounded' | 'squared';
+
+// FIXME: use StylesApiProps
+
+export type IAvatarProps = IBoxProps<IAvatarStyleName> & {
   src?: string;
   alt?: string;
   slotProps?: {

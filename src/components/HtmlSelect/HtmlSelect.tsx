@@ -18,7 +18,7 @@ export const HtmlSelect = forwardRef<HTMLSelectElement, IHtmlSelectProps>(
     const { styles, sx, innerStyles, items, slotProps, ...other } = props;
 
     const { getStyles, globalStyles } = useStyles({
-      name: 'HtmlSelect',
+      componentName: 'HtmlSelect',
       styles: [htmlSelectStyles, styles],
     });
 

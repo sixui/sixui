@@ -22,7 +22,7 @@ export const FluidButton = createPolymorphicComponent<
       const { styles, sx, innerStyles, children, ...other } = props;
 
       const { getStyles, globalStyles } = useStyles({
-        name: 'FluidButton',
+        componentName: 'FluidButton',
         styles: [fluidButtonStyles, styles],
       });
 

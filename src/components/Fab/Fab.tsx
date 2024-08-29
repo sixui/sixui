@@ -27,7 +27,7 @@ export const Fab = createPolymorphicComponent<'button', IFabProps>(
 
     const variantStyles = variant ? fabVariantStyles[variant] : undefined;
     const { combineStyles, globalStyles } = useStyles({
-      name: 'Fab',
+      componentName: 'Fab',
       styles: [fabStyles, variantStyles, styles],
     });
 

@@ -32,7 +32,7 @@ export const SnackbarContent = forwardRef<
   } = props;
 
   const { combineStyles, getStyles, globalStyles } = useStyles({
-    name: 'SnackbarContent',
+    componentName: 'SnackbarContent',
     styles: [snackbarContentStyles, styles],
   });
 

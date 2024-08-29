@@ -199,13 +199,17 @@ const eslintConfig = {
               'PascalCase', // for React components
               'UPPER_CASE', // for constants
             ],
-            leadingUnderscore: 'forbid',
+            leadingUnderscore: 'allow',
             trailingUnderscore: 'forbid',
           },
           {
             selector: 'class',
             format: ['PascalCase'],
           },
+        ],
+        '@typescript-eslint/no-unused-vars': [
+          'error',
+          { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
         ],
       },
     },

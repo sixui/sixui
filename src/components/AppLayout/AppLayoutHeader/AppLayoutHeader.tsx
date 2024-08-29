@@ -14,7 +14,7 @@ export const AppLayoutHeader = forwardRef<
   const appLayoutContext = useAppLayoutContext();
 
   const { combineStyles, globalStyles } = useStyles({
-    name: 'AppLayoutHeader',
+    componentName: 'AppLayoutHeader',
     styles: [appLayoutHeaderStyles, styles],
   });
 

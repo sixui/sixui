@@ -8,6 +8,7 @@ import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { outlineTokens } from '~/themes/base/outline.stylex';
 import { Placeholder, type IPlaceholderProps } from '../Placeholder';
 import { ComponentShowcase } from '../ComponentShowcase';
+import { stackStyles as styles } from './Stack.stories.css';
 import { Stack } from './Stack';
 
 const meta = {
@@ -16,36 +17,9 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const styles = stylex.create({
-  host: {
-    borderWidth: outlineTokens.width$xs,
-    borderStyle: 'dashed',
-    borderColor: colorSchemeTokens.outlineVariant,
-
-    height: `calc(400px * ${scaleTokens.scale})`,
-    width: `calc(128px * ${scaleTokens.scale})`,
-  },
-  placeholder: {
-    width: `calc(64px * ${scaleTokens.scale})`,
-    paddingLeft: spacingTokens.padding$1,
-    paddingRight: spacingTokens.padding$1,
-  },
-  placeholder$sm: {
-    paddingTop: spacingTokens.padding$1,
-    paddingBottom: spacingTokens.padding$1,
-  },
-  placeholder$md: {
-    paddingTop: spacingTokens.padding$4,
-    paddingBottom: spacingTokens.padding$4,
-  },
-  placeholder$lg: {
-    paddingTop: spacingTokens.padding$6,
-    paddingBottom: spacingTokens.padding$6,
-  },
-});
-
 const BasePlaceholder: React.FC<IPlaceholderProps> = ({ sx, ...other }) => (
-  <Placeholder sx={[styles.placeholder, sx]} {...other} />
+  // <Placeholder sx={[stackStyles.placeholder, sx]} {...other} />
+  <div>XX</div>
 );
 
 const defaultArgs = {

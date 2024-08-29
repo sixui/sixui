@@ -25,7 +25,7 @@ export const List = forwardRef<HTMLDivElement, IListProps>(
     } = props;
 
     const { combineStyles, getStyles, globalStyles } = useStyles({
-      name: 'List',
+      componentName: 'List',
       styles: [listStyles, styles],
     });
 

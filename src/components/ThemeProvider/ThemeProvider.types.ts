@@ -1,10 +1,17 @@
 import type { PartialDeep } from 'type-fest';
 
-import type { IBaseProps } from '../Base';
-import type { ITheme as ILegacyTheme } from '~/themes/base';
-import type { IThemeComponentStyles, IThemeSettings } from './Theme.context';
+import type { IAny } from '~/helpers/types';
+import type { IThemeSettings } from './Theme.context';
+import type { IBoxProps } from '../Box';
 
 export type IThemeColorSchemeVariant = 'light' | 'dark';
+
+export type IThemeProviderProps = IBoxProps & {
+  children?: React.ReactNode;
+  theme?: IThemeOverride;
+  settings?: IThemeSettings;
+  colorSchemeVariant?: IThemeColorSchemeVariant;
+};
 
 export type IThemeColorScheme = {
   primary: string;
@@ -58,13 +65,6 @@ export type IThemeColorSchemeValues = Record<
   IThemeColorSchemeVariant,
   IThemeColorScheme
 >;
-
-export type IThemeProviderProps = IBaseProps & {
-  children?: React.ReactNode;
-  theme?: Partial<ILegacyTheme>;
-  settings?: IThemeSettings;
-  componentsStyles?: IThemeComponentStyles;
-};
 
 export type IThemeTypeFaceValues = {
   /**
@@ -222,7 +222,7 @@ export type IThemeMotionValues = {
   duration: IThemeMotionDurationValues;
 };
 
-type IThemeOutlineValues = {
+export type IThemeOutlineValues = {
   width: {
     none: string;
     xs: string;
@@ -299,63 +299,96 @@ export type IThemeWindowSizeClassesValues = Record<
   string
 >;
 
+export type IThemeElevationLevel = 1 | 2 | 3 | 4 | 5;
+
+export type IThemeElevationLevelAttributes = {
+  offsetX: string;
+  offsetY: string;
+  blurRadius: string;
+  spreadRadius: string;
+  colorOpacityPercentage: string;
+};
+
+export type IThemeElevationLevelValues = {
+  primary: IThemeElevationLevelAttributes;
+  secondary: IThemeElevationLevelAttributes;
+};
+
+export type IThemeElevationValues = {
+  transitionDuration: string;
+  transitionTimingFunction: string;
+  level: Record<IThemeElevationLevel, IThemeElevationLevelValues>;
+};
+
+export type IThemeComponentValues = {
+  defaultProps: ((theme: ITheme2) => object) | object;
+};
+
+export type IThemeComponentsValues = Record<string, IThemeComponentValues>;
+
 export type ITheme2 = {
-  scale: string;
+  tokens: {
+    scale: string;
 
-  colorScheme: IThemeColorSchemeValues;
+    colorScheme: IThemeColorSchemeValues;
 
-  /**
-   * Typography helps make writing legible and beautiful.
-   * @see https://m3.material.io/styles/typography/fonts
-   */
-  typeFace: IThemeTypeFaceValues;
+    /**
+     * Typography helps make writing legible and beautiful.
+     * @see https://m3.material.io/styles/typography/fonts
+     */
+    typeFace: IThemeTypeFaceValues;
 
-  /**
-   * A type scale is a selection of font styles that can be used across an app,
-   * ensuring a flexible, yet consistent, style that accommodates a range of
-   * purposes.
-   * @see https://m3.material.io/styles/typography/type-scale-tokens#425022ff-21dd-4fbe-9eca-9690d0fc8b16
-   */
-  typeScale: IThemeTypeScaleValues;
+    /**
+     * A type scale is a selection of font styles that can be used across an app,
+     * ensuring a flexible, yet consistent, style that accommodates a range of
+     * purposes.
+     * @see https://m3.material.io/styles/typography/type-scale-tokens#425022ff-21dd-4fbe-9eca-9690d0fc8b16
+     */
+    typeScale: IThemeTypeScaleValues;
 
-  /**
-   * Global density changes affect the spacing between all elements at a macro
-   * level
-   * @see https://m3.material.io/blog/material-density-web
-   */
-  density: IThemeDensityValues;
+    /**
+     * Global density changes affect the spacing between all elements at a macro
+     * level
+     * @see https://m3.material.io/blog/material-density-web
+     */
+    density: IThemeDensityValues;
 
-  /**
-   * Motion makes a UI expressive and easy to use. Easing and duration create
-   * responsive and expressive motion.
-   * @see https://m3.material.io/styles/motion/overview
-   */
-  motion: IThemeMotionValues;
+    /**
+     * Motion makes a UI expressive and easy to use. Easing and duration create
+     * responsive and expressive motion.
+     * @see https://m3.material.io/styles/motion/overview
+     */
+    motion: IThemeMotionValues;
 
-  /**
-   * Shape can direct attention, communicate state, and express brand.
-   * @see https://m3.material.io/styles/shape/overview
-   */
-  shape: IThemeShapeValues;
+    /**
+     * Shape can direct attention, communicate state, and express brand.
+     * @see https://m3.material.io/styles/shape/overview
+     */
+    shape: IThemeShapeValues;
 
-  outline: IThemeOutlineValues;
+    outline: IThemeOutlineValues;
 
-  spacing: IThemeSpacingValues;
+    spacing: IThemeSpacingValues;
 
-  /**
-   * States show the interaction status of a component or UI element
-   * @see https://m3.material.io/foundations/interaction/states/overview
-   */
-  state: IThemeStateValues;
+    /**
+     * States show the interaction status of a component or UI element
+     * @see https://m3.material.io/foundations/interaction/states/overview
+     */
+    state: IThemeStateValues;
 
-  zIndex: IThemeZIndexValues;
+    zIndex: IThemeZIndexValues;
 
-  /**
-   * Window size classes help create layouts that scale across devices of all
-   * shapes and sizes.
-   * @see https://m3.material.io/foundations/layout/applying-layout/window-size-classes
-   */
-  windowSizeClasses: IThemeWindowSizeClassesValues;
+    /**
+     * Window size classes help create layouts that scale across devices of all
+     * shapes and sizes.
+     * @see https://m3.material.io/foundations/layout/applying-layout/window-size-classes
+     */
+    windowSizeClasses: IThemeWindowSizeClassesValues;
+
+    elevation: IThemeElevationValues;
+  };
+
+  components?: IThemeComponentsValues;
 };
 
 export type IThemeOverride = PartialDeep<ITheme2>;

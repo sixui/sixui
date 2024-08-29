@@ -4,7 +4,7 @@ import { faStar, faBolt, faCloud } from '@fortawesome/free-solid-svg-icons';
 
 import type { IAvatarProps } from './Avatar.types';
 import {
-  ComponentShowcase,
+  makeComponentShowcase,
   type IComponentPresentation,
 } from '../ComponentShowcase';
 import { Avatar } from './Avatar';
@@ -31,10 +31,11 @@ const rows: Array<IComponentPresentation<IAvatarProps>> = [
   { legend: 'Squared', props: { variant: 'squared' } },
 ];
 
+const AvatarShowcase = makeComponentShowcase(Avatar);
+
 export const Variants: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={Avatar}
+    <AvatarShowcase
       props={props}
       cols={[
         {},
@@ -57,8 +58,7 @@ export const Variants: IStory = {
 
 export const Image: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={Avatar}
+    <AvatarShowcase
       props={props}
       cols={[
         {
@@ -88,8 +88,7 @@ export const Image: IStory = {
 
 export const Letter: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={Avatar}
+    <AvatarShowcase
       props={props}
       cols={[
         { props: { children: 'J' } },
@@ -103,8 +102,7 @@ export const Letter: IStory = {
 
 export const Icon: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={Avatar}
+    <AvatarShowcase
       props={props}
       cols={[
         { props: { children: <FontAwesomeIcon icon={faStar} /> } },
@@ -119,8 +117,7 @@ export const Icon: IStory = {
 
 export const Fallback: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={Avatar}
+    <AvatarShowcase
       props={props}
       cols={[
         { props: { src: '/broken-image.jpg', alt: 'John Doe' } },
@@ -135,8 +132,7 @@ export const Fallback: IStory = {
 
 export const Colors: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={Avatar}
+    <AvatarShowcase
       props={props}
       cols={[
         { props: { children: 'AB' } },

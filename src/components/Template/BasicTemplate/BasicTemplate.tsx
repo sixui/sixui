@@ -10,7 +10,7 @@ export const BasicTemplate = forwardRef<HTMLDivElement, IBasicTemplateProps>(
     const { styles, sx, children, ...other } = props;
 
     const { combineStyles, globalStyles } = useStyles({
-      name: 'BasicTemplate',
+      componentName: 'BasicTemplate',
       styles: [basicTemplateStyles, styles],
     });
 

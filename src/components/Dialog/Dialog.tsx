@@ -26,7 +26,7 @@ export const Dialog = createPolymorphicComponent<'div', IDialogProps>(
       } = props;
 
       const { combineStyles, globalStyles } = useStyles({
-        name: 'Dialog',
+        componentName: 'Dialog',
         styles: [dialogStyles, styles],
       });
 

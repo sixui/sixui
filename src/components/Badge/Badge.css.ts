@@ -7,7 +7,7 @@ import { colorSchemeTokens } from '../ColorScheme';
 import { space } from '~/helpers/styles/space';
 
 export type IBadgeVariant = 'rounded' | 'squared';
-export type IBadgeClassName = keyof typeof badgeStyles;
+export type IBadgeStyleName = keyof typeof badgeStyles;
 
 export const [badgeTheme, badgeTokens] = createTheme({
   container: {

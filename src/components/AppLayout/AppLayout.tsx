@@ -61,7 +61,7 @@ const AppLayout = forwardRef<HTMLDivElement, IAppLayoutProps>(
     } = props;
 
     const { combineStyles, globalStyles } = useStyles({
-      name: 'AppLayout',
+      componentName: 'AppLayout',
       styles: [appLayoutStyles, styles],
     });
     const [rootElement, setRootElement] = useState<HTMLDivElement | null>(null);

@@ -10,7 +10,7 @@ export const AppLayoutPane = forwardRef<HTMLDivElement, IAppLayoutPaneProps>(
     const { styles, sx, children, ...other } = props;
 
     const { combineStyles, globalStyles } = useStyles({
-      name: 'AppLayoutPane',
+      componentName: 'AppLayoutPane',
       styles: [appLayoutPaneStyles, styles],
     });
 

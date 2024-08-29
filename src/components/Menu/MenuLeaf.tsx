@@ -122,7 +122,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
     ]);
 
     const { combineStyles, getStyles, globalStyles } = useStyles({
-      name: 'Menu',
+      componentName: 'Menu',
       styles: [menuStyles, styles],
     });
 

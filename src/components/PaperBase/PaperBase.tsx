@@ -17,7 +17,7 @@ export const PaperBase = createPolymorphicComponent<'div', IPaperBaseProps>(
       const { styles, sx, innerStyles, children, ...other } = props;
 
       const { combineStyles, getStyles, globalStyles } = useStyles({
-        name: 'PaperBase',
+        componentName: 'PaperBase',
         styles: [paperBaseStyles, styles],
       });
 

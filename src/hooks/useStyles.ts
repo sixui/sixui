@@ -17,7 +17,7 @@ import {
 } from '~/helpers/stylePropsFactory';
 
 export type IUseStylesProps<TStyleKey extends string> = {
-  name: string;
+  componentName: string;
   styles: IStylesCombinatorStylesProp<TStyleKey>;
   visualState?: IVisualState;
 };
@@ -32,7 +32,7 @@ export type IUseStylesResult<TStyleKey extends string> = {
 export const useStyles = <TStyleKey extends string>(
   props: IUseStylesProps<TStyleKey>,
 ): IUseStylesResult<TStyleKey> => {
-  const { name, styles, visualState } = props;
+  const { componentName, styles, visualState } = props;
   const themeContext = useThemeContext();
 
   const combineStyles = useMemo(
@@ -46,7 +46,7 @@ export const useStyles = <TStyleKey extends string>(
 
   return {
     settings: themeContext.settings,
-    globalStyles: themeContext.componentsStyles?.[name],
+    globalStyles: themeContext.componentsStyles?.[componentName],
     combineStyles,
     getStyles,
   };

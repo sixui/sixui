@@ -45,7 +45,7 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
     } = props;
 
     const { combineStyles, getStyles, globalStyles } = useStyles({
-      name: 'Step',
+      componentName: 'Step',
       styles: [stepStyles, styles],
     });
 

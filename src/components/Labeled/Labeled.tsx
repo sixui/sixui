@@ -33,7 +33,7 @@ export const Labeled = forwardRef<HTMLDivElement, ILabeledProps>(
     } = props;
 
     const { combineStyles, getStyles, globalStyles } = useStyles({
-      name: 'Labeled',
+      componentName: 'Labeled',
       styles: [labeledStyles, styles],
     });
 

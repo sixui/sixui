@@ -26,7 +26,7 @@ export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
     } = props;
 
     const { combineStyles, getStyles, globalStyles } = useStyles({
-      name: 'Placeholder',
+      componentName: 'Placeholder',
       styles: [placeholderStyles, styles],
     });
     const widthAsString = width !== undefined ? sizeToString(width) : undefined;

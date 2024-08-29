@@ -11,7 +11,7 @@ import {
   argbFromHex,
 } from '@material/material-color-utilities';
 
-import type { ITheme } from '~/themes/base';
+import type { IThemeColorSchemeValues } from '~/components/ThemeProvider';
 import { getRolesFromMaterialScheme } from './getRolesFromMaterialScheme';
 import { getMaterialSchemeFromSourceColor } from './getMaterialSchemeFromSourceColor';
 import { SixuiMaterialDynamicScheme } from './materialDynamicSchemes';
@@ -105,7 +105,7 @@ export const generateThemeFromSourceColor = (
   sourceColor: string,
   schemeVariant = IDynamicSchemeVariant.sixui,
   contrast = 0.0,
-): Partial<ITheme> => {
+): Partial<IThemeColorSchemeValues> => {
   const argbSourceColor = argbFromHex(sourceColor);
   const lightScheme = getMaterialSchemeFromSourceColor(
     argbSourceColor,
@@ -120,18 +120,8 @@ export const generateThemeFromSourceColor = (
     contrast,
   );
 
-  const theme: Partial<ITheme> = {
-    name: 'Dynamic Theme',
-    source: {
-      color: sourceColor,
-      schemeVariant: IDynamicSchemeVariant[schemeVariant],
-      contrast,
-    },
-    schemes: {
-      light: getRolesFromMaterialScheme(lightScheme),
-      dark: getRolesFromMaterialScheme(darkScheme),
-    },
+  return {
+    light: getRolesFromMaterialScheme(lightScheme),
+    dark: getRolesFromMaterialScheme(darkScheme),
   };
-
-  return theme;
 };

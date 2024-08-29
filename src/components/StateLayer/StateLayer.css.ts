@@ -5,7 +5,7 @@ import { themeTokens } from '../ThemeProvider';
 import { colorSchemeTokens } from '../ColorScheme';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 
-export type IStateLayerClassName = keyof typeof stateLayerStyles;
+export type IStateLayerStyleName = keyof typeof stateLayerStyles;
 
 export const [stateLayerTheme, stateLayerTokens] = createTheme({
   color: {

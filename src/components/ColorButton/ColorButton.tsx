@@ -43,7 +43,7 @@ export const ColorButton = createPolymorphicComponent<
       } = props;
 
       const { combineStyles, globalStyles } = useStyles({
-        name: 'ColorButton',
+        componentName: 'ColorButton',
         styles: [colorButtonStyles, styles],
       });
 

@@ -1,15 +1,12 @@
 import type { Decorator, Preview } from '@storybook/react';
 
 import { ThemeProvider } from '~/components/ThemeProvider';
-import {
-  ColorSchemeProvider,
-  colorSchemeTokens,
-} from '~/components/ColorScheme';
 import { modes } from './modes';
 
 // import variantTheme from '~/themes/variant/theme.json';
 // import { ThemeControls } from './ThemeControls';
 import * as styles from './preview.css';
+import { Avatar } from '~/components/Avatar';
 
 import '~/styles/main.css';
 import '~/styles/storybook.css';
@@ -32,16 +29,6 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
-    backgrounds: {
-      default: 'dark',
-      values: [
-        { name: 'light', value: colorSchemeTokens.surfaceContainerLowest },
-        {
-          name: 'dark',
-          value: colorSchemeTokens.surfaceContainerHighest,
-        },
-      ],
-    },
     chromatic: { modes },
     // This allows custom storybook body padding.
     layout: 'none',
@@ -54,27 +41,46 @@ export const decorators: Array<Decorator> = [
     const showDarkMode = !context.tags.includes('light-mode-only');
 
     return (
-      <ThemeProvider
-      // theme={variantTheme}
-      >
-        {/* <ThemeControls> */}
+      <>
         {showLightMode ? (
-          <ColorSchemeProvider variant='light'>
-            <div className={styles.storyWrapper}>
-              <Story />
-            </div>
-          </ColorSchemeProvider>
+          <ThemeProvider
+            // theme={variantTheme}
+            theme={{
+              tokens: {
+                colorScheme: {
+                  light: {
+                    primaryContainer: 'red',
+                  },
+                },
+              },
+              components: {
+                Avatar: Avatar.extend({
+                  defaultProps: {
+                    children: 'x',
+                  },
+                  styleNames: {
+                    root: 'xxxxx',
+                  },
+                }),
+              },
+            }}
+            colorSchemeVariant='light'
+            className={styles.storyWrapper}
+          >
+            <Story />
+          </ThemeProvider>
         ) : null}
 
         {showDarkMode ? (
-          <ColorSchemeProvider variant='dark'>
-            <div className={styles.storyWrapper}>
-              <Story />
-            </div>
-          </ColorSchemeProvider>
+          <ThemeProvider
+            // theme={variantTheme}
+            colorSchemeVariant='dark'
+            className={styles.storyWrapper}
+          >
+            <Story />
+          </ThemeProvider>
         ) : null}
-        {/* </ThemeControls> */}
-      </ThemeProvider>
+      </>
     );
   },
 ];

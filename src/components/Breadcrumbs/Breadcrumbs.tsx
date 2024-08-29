@@ -38,7 +38,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
     } = props;
 
     const { combineStyles, getStyles, globalStyles } = useStyles({
-      name: 'Breadcrumbs',
+      componentName: 'Breadcrumbs',
       styles: [breadcrumbsStyles, styles],
     });
 

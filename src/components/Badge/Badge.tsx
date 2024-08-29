@@ -11,7 +11,7 @@ export const Badge = createPolymorphicComponent<'div', IBadgeProps>(
   forwardRef<HTMLDivElement, IBadgeProps>(function Badge(props, forwardedRef) {
     const {
       className,
-      classNames,
+      styles,
       style,
       value,
       maxValue,
@@ -24,8 +24,7 @@ export const Badge = createPolymorphicComponent<'div', IBadgeProps>(
       name: 'Badge',
       className,
       style,
-      classNames,
-      styles: badgeStyles,
+      stylesList: [badgeStyles, styles],
       theme: badgeTheme,
     });
 

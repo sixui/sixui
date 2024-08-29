@@ -18,7 +18,7 @@ export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
     } = props;
 
     const { getStyles, globalStyles } = useStyles({
-      name: 'Scrim',
+      componentName: 'Scrim',
       styles: [scrimStyles, styles],
     });
 

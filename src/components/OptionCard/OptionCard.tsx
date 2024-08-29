@@ -37,7 +37,7 @@ export const OptionCard = createPolymorphicComponent<'div', IOptionCardProps>(
       const radioGroupContext = useContext(RadioGroupContext);
 
       const { combineStyles, getStyles, globalStyles } = useStyles({
-        name: 'OptionCard',
+        componentName: 'OptionCard',
         styles: [optionCardStyles, styles],
       });
 

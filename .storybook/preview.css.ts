@@ -1,10 +1,10 @@
 import { style } from '@vanilla-extract/css';
 
-import { colorSchemeTokens } from '~/components/ColorScheme';
+import { themeTokens } from '~/components/ThemeProvider';
 
 export const storyWrapper = style({
   position: 'relative',
-  backgroundColor: colorSchemeTokens.surface,
+  backgroundColor: themeTokens.colorScheme.surface,
   padding: 80,
   // FIXME:
   // padding: spacingTokens.padding$6,

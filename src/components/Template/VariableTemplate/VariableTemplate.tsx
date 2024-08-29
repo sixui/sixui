@@ -31,7 +31,7 @@ export const VariableTemplate = forwardRef<
     ? variableTemplateVariantStyles[variant]
     : undefined;
   const { combineStyles, globalStyles } = useStyles({
-    name: 'VariableTemplate',
+    componentName: 'VariableTemplate',
     styles: [variableTemplateStyles, variantStyles, styles],
     visualState,
   });

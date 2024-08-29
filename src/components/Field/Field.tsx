@@ -19,7 +19,7 @@ export const Field = createPolymorphicComponent<'div', IFieldProps>(
     } = props;
 
     const { getStyles, globalStyles } = useStyles({
-      name: 'Field',
+      componentName: 'Field',
       styles: [fieldStyles, styles],
     });
 

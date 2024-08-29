@@ -65,7 +65,7 @@ export const Switch = forwardRef<HTMLInputElement, ISwitchProps>(
     ]);
 
     const { combineStyles, getStyles, globalStyles } = useStyles({
-      name: 'Switch',
+      componentName: 'Switch',
       styles: [switchStyles, styles],
       visualState,
     });

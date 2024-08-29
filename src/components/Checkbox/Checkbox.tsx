@@ -58,7 +58,7 @@ export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
     ]);
 
     const { combineStyles, getStyles, globalStyles } = useStyles({
-      name: 'Checkbox',
+      componentName: 'Checkbox',
       styles: [checkboxStyles, styles],
     });
 

@@ -77,7 +77,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
     } = props;
 
     const { combineStyles, getStyles, globalStyles } = useStyles({
-      name: 'FloatingFilterableListBase',
+      componentName: 'FloatingFilterableListBase',
       styles: [floatingFilterableListBaseStyles, styles],
     });
 
