@@ -1,13 +1,8 @@
-import {
-  createTheme,
-  createVar,
-  style,
-  styleVariants,
-} from '@vanilla-extract/css';
+import { createTheme, createVar, style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
-import type { IAvatarVariant } from './Avatar.types';
 import { stylesFactory, type IStylesFactory } from '~/utils/stylesFactory';
+import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { getDensity } from '~/helpers/styles/getDensity';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
@@ -46,6 +41,19 @@ const root = style({
   borderRadius: vars.shape,
   userSelect: 'none',
   backgroundColor: tokens.container.color,
+
+  selectors: {
+    [getModifierSelector('variant="rounded"')]: {
+      vars: {
+        [tokens.container.shape]: themeTokens.shape.corner.full,
+      },
+    },
+    [getModifierSelector('variant="squared"')]: {
+      vars: {
+        [tokens.container.shape]: themeTokens.shape.corner.sm,
+      },
+    },
+  },
 });
 
 const classNames = {
@@ -73,35 +81,13 @@ const classNames = {
   }),
 };
 
-export type IAvatarTokens = typeof tokens;
-
-// TODO: delete variants?
-export const variants: Partial<
-  Record<keyof typeof classNames, Partial<Record<IAvatarVariant, string>>>
-> = {
-  root: styleVariants({
-    rounded: {
-      vars: {
-        [vars.shape]: themeTokens.shape.corner.full,
-      },
-    },
-    squared: {
-      vars: {
-        [vars.shape]: themeTokens.shape.corner.sm,
-      },
-    },
-  }),
-};
-
 export type IAvatarStylesFactory = IStylesFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
-  variant: IAvatarVariant;
 }>;
 
 export const avatarStyles = stylesFactory<IAvatarStylesFactory>({
   classNames,
   tokensClassName: tokensClassName,
   tokens,
-  variants,
 });

@@ -11,9 +11,6 @@ export type IStyles<TPayload extends IStylesFactoryPayload> = IMakeOptional<
     classNames: Partial<Record<TPayload['styleName'], string>>;
     tokensClassName?: string;
     tokens: TPayload['tokens'];
-    variants?: Partial<
-      Record<TPayload['styleName'], Partial<Record<string, string>>>
-    >;
   },
   TPayload['tokens'] extends undefined ? 'tokens' : never
 >;
