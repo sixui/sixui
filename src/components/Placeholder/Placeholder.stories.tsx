@@ -3,9 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { IPlaceholderProps } from './Placeholder.types';
 import { makeComponentShowcase } from '../ComponentShowcase';
 import { Placeholder } from './Placeholder';
-import { textStoriesStyles } from './Placeholder.stories.css';
-
-const { classNames } = textStoriesStyles;
 
 const meta = {
   component: Placeholder,
@@ -14,7 +11,9 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  className: classNames.container,
+  width: 96,
+  height: 96,
+  surface: 'primary',
 } satisfies Partial<IPlaceholderProps>;
 
 const PlaceholderShowcase = makeComponentShowcase(Placeholder);
@@ -24,6 +23,10 @@ export const Basic: IStory = {
     <PlaceholderShowcase
       props={props}
       cols={[{}, { props: { corner: 'md' } }, { props: { corner: 'full' } }]}
+      rows={[
+        { legend: 'Normal' },
+        { legend: 'Disabled', props: { disabled: true } },
+      ]}
     />
   ),
   args: {

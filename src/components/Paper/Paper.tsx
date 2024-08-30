@@ -48,22 +48,22 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
     const textColor = getContainerTextColor(surface);
 
     const vars = {
-      [PaperBase.styles.tokens.container.color]: surface
+      [paperStyles.tokens.container.color]: surface
         ? themeTokens.colorScheme[surface]
         : undefined,
-      [PaperBase.styles.tokens.container.elevation]: elevation
+      [paperStyles.tokens.container.elevation]: elevation
         ? elevationLevelPreset[elevation]
         : undefined,
-      [PaperBase.styles.tokens.outline.style]: outlined ? 'solid' : undefined,
-      [PaperBase.styles.tokens.container.shape.topLeft]:
+      [paperStyles.tokens.outline.style]: outlined ? 'solid' : undefined,
+      [paperStyles.tokens.container.shape.topLeft]:
         topLeftCorner && themeTokens.shape.corner[topLeftCorner],
-      [PaperBase.styles.tokens.container.shape.topRight]:
+      [paperStyles.tokens.container.shape.topRight]:
         topRightCorner && themeTokens.shape.corner[topRightCorner],
-      [PaperBase.styles.tokens.container.shape.bottomRight]:
+      [paperStyles.tokens.container.shape.bottomRight]:
         bottomRightCorner && themeTokens.shape.corner[bottomRightCorner],
-      [PaperBase.styles.tokens.container.shape.bottomLeft]:
+      [paperStyles.tokens.container.shape.bottomLeft]:
         bottomLeftCorner && themeTokens.shape.corner[bottomLeftCorner],
-      [PaperBase.styles.tokens.text.color]: themeTokens.colorScheme[textColor],
+      [paperStyles.tokens.text.color]: themeTokens.colorScheme[textColor],
     };
 
     return (
@@ -77,3 +77,6 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
     );
   },
 );
+
+Paper.styles = paperStyles;
+Paper.displayName = `@sixui/${COMPONENT_NAME}`;

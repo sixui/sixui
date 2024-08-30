@@ -1,8 +1,10 @@
+import { assignInlineVars } from '@vanilla-extract/dynamic';
+
 import type { IPlaceholderFactory } from './Placeholder.types';
 import { componentFactory } from '~/utils/componentFactory';
 import { useProps } from '~/hooks/useProps';
 import { useStyles } from '~/hooks/useStyles2';
-// import { sizeToString } from '~/helpers/sizeToString';
+import { sizeToString } from '~/helpers/sizeToString';
 import { Paper } from '../Paper';
 import {
   placeholderStyles,
@@ -42,19 +44,19 @@ export const Placeholder = componentFactory<IPlaceholderFactory>(
       modifiers,
     });
 
-    // FIXME: handle scale
-    // const widthAsString = width !== undefined ? sizeToString(width) : undefined;
-    // const heightAsString =
-    //   height !== undefined ? sizeToString(height) : undefined;
-
-    // widthAsString !== undefined && commonStyles.width(widthAsString),
-    //         heightAsString !== undefined && commonStyles.height(heightAsString),
-    //         disabled ? 'host$disabled' : null,
+    const vars = {
+      [placeholderStyles.tokens.container.width]:
+        width !== undefined ? sizeToString(width) : undefined,
+      [placeholderStyles.tokens.container.height]:
+        height !== undefined ? sizeToString(height) : undefined,
+    };
 
     return (
       <Paper
         {...other}
-        {...getStyles('root')}
+        {...getStyles('root', {
+          style: assignInlineVars(vars),
+        })}
         surface={surface}
         corner={corner}
         ref={forwardedRef}
@@ -66,3 +68,6 @@ export const Placeholder = componentFactory<IPlaceholderFactory>(
     );
   },
 );
+
+Placeholder.styles = placeholderStyles;
+Placeholder.displayName = `@sixui/${COMPONENT_NAME}`;

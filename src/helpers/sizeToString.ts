@@ -1,2 +1,4 @@
+import { isNumeric } from './isNumeric';
+
 export const sizeToString = (size: string | number): string =>
-  typeof size === 'number' ? `${size}px` : size;
+  isNumeric(size) ? `${size}px` : size;

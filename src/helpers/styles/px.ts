@@ -28,6 +28,10 @@ const getNumericValue = (value: number | string): number | undefined => {
 };
 
 export const px = (value: number | string): string => {
+  if (value === 'auto' || value === 'unset') {
+    return value;
+  }
+
   const numericValue = getNumericValue(value);
 
   if (numericValue === 0) {

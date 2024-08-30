@@ -10,11 +10,14 @@ import { themeTokens } from '../ThemeProvider';
 type IModifier = 'disabled';
 
 const [tokensClassName, tokens] = createTheme({
+  container: {
+    width: 'unset',
+    height: 'unset',
+  },
   crosshairs: {
     color: themeTokens.colorScheme.outlineVariant,
   },
   label: {
-    color: themeTokens.colorScheme.onSurfaceVariant,
     typography: themeTokens.typeScale.label.sm,
   },
 });
@@ -26,6 +29,8 @@ const classNames = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    width: px(tokens.container.width),
+    height: px(tokens.container.height),
 
     selectors: {
       [getModifierSelector<IModifier>('disabled')]: {
@@ -71,6 +76,7 @@ const classNames = {
 export type IPlaceholderStylesFactory = IStylesFactory<{
   styleName: keyof typeof classNames;
   modifier: IModifier;
+  tokens: typeof tokens;
 }>;
 
 export const placeholderStyles = stylesFactory<IPlaceholderStylesFactory>({
