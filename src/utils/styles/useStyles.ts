@@ -3,7 +3,10 @@ import { asArray } from '@olivierpascal/helpers';
 import cx from 'clsx';
 
 import type { INestedArray } from '~/helpers/types';
-import type { IStyles, IStylesFactoryPayload } from '~/utils/stylesFactory';
+import type {
+  IStyles,
+  IStylesFactoryPayload,
+} from '~/utils/styles/stylesFactory';
 import { useThemeContext } from '~/components/ThemeProvider';
 import { getDataAttributes, IModifiers } from '~/utils/getDataAttributes';
 
@@ -73,7 +76,8 @@ export const useStyles = <TPayload extends IStylesFactoryPayload>(
     rootStyleName = 'root',
     modifiers,
   } = props;
-  const { theme } = useThemeContext();
+  const themeContext = useThemeContext();
+  const theme = themeContext?.theme;
 
   const getStyles: IUseStylesResult<TPayload>['getStyles'] = useCallback(
     (styleName, options) => {
@@ -94,7 +98,7 @@ export const useStyles = <TPayload extends IStylesFactoryPayload>(
                   [
                     styles.classNames,
                     classNames,
-                    theme.components?.[componentName]?.classNames,
+                    theme?.components?.[componentName]?.classNames,
                   ].map((classNames) => classNames?.[styleName]),
                   options?.className,
                 ]
@@ -116,7 +120,7 @@ export const useStyles = <TPayload extends IStylesFactoryPayload>(
     [
       componentName,
       className,
-      theme.components,
+      theme?.components,
       classNames,
       rootStyleName,
       modifiers,

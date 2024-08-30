@@ -1,5 +1,5 @@
-import type { IComponentFactory } from '~/utils/componentFactory';
-import type { IStylesProps } from '~/hooks/useStyles2';
+import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IStylesProps } from '~/utils/styles/useStyles';
 import type { IBoxProps } from '../Box';
 import type { elevationStyles, IElevationStylesFactory } from './Elevation.css';
 

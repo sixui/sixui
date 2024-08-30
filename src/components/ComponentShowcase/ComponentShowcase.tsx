@@ -3,8 +3,8 @@ import type {
   IComponentPresentation,
 } from './ComponentShowcase.types';
 import { useProps } from '~/hooks/useProps';
-import { componentFactory } from '~/utils/componentFactory';
-import { useStyles } from '~/hooks/useStyles2';
+import { componentFactory } from '~/utils/component/componentFactory';
+import { useStyles } from '~/utils/styles/useStyles';
 import { Box } from '../Box';
 import { componentShowcaseStyles } from './ComponentShowcase.css';
 

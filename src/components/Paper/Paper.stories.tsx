@@ -1,9 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { IPaperProps } from './Paper.types';
 import { makeComponentShowcase } from '../ComponentShowcase';
-import { Text } from '../Text';
 import { Paper } from './Paper';
 import { paperStoriesStyles } from './Paper.stories.css';
 
@@ -24,11 +22,7 @@ const defaultArgs = {
 
 const PaperDemo: React.FC<IPaperProps> = ({ children, ...props }) => (
   <Paper {...props}>
-    <div className={classNames.inner}>
-      <Text variant='body' size='md'>
-        {children}
-      </Text>
-    </div>
+    <div className={classNames.inner}>{children}</div>
   </Paper>
 );
 
@@ -53,9 +47,6 @@ export const Corners: IStory = {
         props: {
           outlined: true,
           corner,
-          children: capitalizeFirstLetter(
-            `Corner ${(corner as string) ?? 'square'}`,
-          ),
         },
       }))}
     />
@@ -72,7 +63,6 @@ export const Elevations: IStory = {
           legend: `Level (${elevation})`,
           props: {
             elevation,
-            children: capitalizeFirstLetter(`Level ${elevation ?? '0'}`),
           },
         }),
       )}
@@ -103,10 +93,9 @@ export const Surface: IStory = {
     <PaperShowcase
       props={props}
       rows={surfaces.map((surface) => ({
-        legend: `Surface (${surface})`,
+        legend: `Surface (${String(surface)})`,
         props: {
           surface,
-          children: capitalizeFirstLetter(surface ?? 'None'),
         },
       }))}
     />

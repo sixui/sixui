@@ -1,9 +1,9 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import type { IPlaceholderFactory } from './Placeholder.types';
-import { componentFactory } from '~/utils/componentFactory';
+import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/hooks/useProps';
-import { useStyles } from '~/hooks/useStyles2';
+import { useStyles } from '~/utils/styles/useStyles';
 import { sizeToString } from '~/helpers/sizeToString';
 import { Paper } from '../Paper';
 import {

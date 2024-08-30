@@ -1,22 +1,23 @@
 import { style } from '@vanilla-extract/css';
 
+import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
+import { themeTokens } from '../ThemeProvider';
 
 const classNames = {
   root: style({
-    width: px(192),
+    width: px(96),
   }),
   inner: style({
     position: 'relative',
-    minHeight: px(128),
+    minHeight: px(96),
     display: 'flex',
     flexDirection: 'column',
-    flexGrow: 1,
-    flexShrink: 1,
-    flexBasis: '0%',
-    justifyContent: 'flex-end',
+    alignItems: 'center',
+    justifyContent: 'center',
     padding: px(space(4)),
+    ...getTypographyStyles(themeTokens.typeScale.label.md),
   }),
 };
 

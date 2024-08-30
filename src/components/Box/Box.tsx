@@ -7,7 +7,7 @@ import { getDataAttributes } from '~/utils/getDataAttributes';
 import {
   createPolymorphicComponent,
   type IWithAsProp,
-} from '~/utils/createPolymorphicComponent';
+} from '~/utils/component/createPolymorphicComponent';
 
 export const Box = createPolymorphicComponent<'div', IBoxProps>(
   forwardRef<HTMLDivElement, IBoxProps>(function Box(props, forwardedRef) {

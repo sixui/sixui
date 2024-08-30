@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 
 import type { IAvatarFactory } from './Avatar.types';
-import { polymorphicComponentFactory } from '~/utils/polymorphicComponentFactory';
+import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/hooks/useProps';
-import { useStyles } from '~/hooks/useStyles2';
+import { useStyles } from '~/utils/styles/useStyles';
 import { useImageLoaded } from '~/hooks/useImageLoaded';
 import { hslColorFromString } from '~/helpers/colors/hslColorFromString';
 import { getHslColor } from '~/helpers/styles/getHslColor';

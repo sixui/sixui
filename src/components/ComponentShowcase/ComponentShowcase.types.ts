@@ -1,7 +1,7 @@
-import type { IStylesProps } from '~/hooks/useStyles2';
+import type { IStylesProps } from '~/utils/styles/useStyles';
 import type { IBoxProps } from '../Box';
 import type { IComponentShowcaseStylesFactory } from './ComponentShowcase.css';
-import { IComponentFactory } from '~/utils/componentFactory';
+import { IComponentFactory } from '~/utils/component/componentFactory';
 
 export type IComponentShowcaseFactory<T> = IComponentFactory<{
   props: IComponentShowcaseProps<T>;

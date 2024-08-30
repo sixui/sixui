@@ -1,5 +1,5 @@
-import type { IPolymorphicComponentFactory } from '~/utils/polymorphicComponentFactory';
-import type { IStylesProps } from '~/hooks/useStyles2';
+import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import type { IStylesProps } from '~/utils/styles/useStyles';
 import type { IBoxProps } from '../Box';
 import type { textStyles, ITextStylesFactory } from './Text.css';
 

@@ -1,7 +1,7 @@
 import type { IPaperBaseFactory } from './PaperBase.types';
-import { polymorphicComponentFactory } from '~/utils/polymorphicComponentFactory';
+import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/hooks/useProps';
-import { useStyles } from '~/hooks/useStyles2';
+import { useStyles } from '~/utils/styles/useStyles';
 import { Elevation } from '../Elevation';
 import { Box } from '../Box';
 import { paperBaseStyles, type IPaperBaseStylesFactory } from './PaperBase.css';

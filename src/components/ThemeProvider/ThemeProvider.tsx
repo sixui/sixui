@@ -4,7 +4,7 @@ import cx from 'clsx';
 
 import type { IThemeProviderProps } from './ThemeProvider.types';
 import { deepMerge } from '~/helpers/deepMerge';
-import { partialAssignInlineVars } from '~/utils/partialAssignInlineVars';
+import { partialAssignInlineVars } from '~/utils/styles/partialAssignInlineVars';
 import {
   ThemeContext,
   useThemeContext,

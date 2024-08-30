@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 
 import type { IBadgeFactory } from './Badge.types';
-import { polymorphicComponentFactory } from '~/utils/polymorphicComponentFactory';
+import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/hooks/useProps';
-import { useStyles } from '~/hooks/useStyles2';
+import { useStyles } from '~/utils/styles/useStyles';
 import { isNumeric } from '~/helpers/isNumeric';
 import { Box } from '../Box';
 import { badgeStyles, type IBadgeStylesFactory } from './Badge.css';

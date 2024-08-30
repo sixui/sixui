@@ -1,7 +1,10 @@
 import { createTheme, createVar, style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
-import { stylesFactory, type IStylesFactory } from '~/utils/stylesFactory';
+import {
+  stylesFactory,
+  type IStylesFactory,
+} from '~/utils/styles/stylesFactory';
 import { getVariantSelector } from '~/helpers/styles/getVariantSelector';
 import { getDensity } from '~/helpers/styles/getDensity';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';

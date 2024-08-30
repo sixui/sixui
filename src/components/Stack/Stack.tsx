@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
 import type { IStackProps } from './Stack.types';
-import { useStyles } from '~/hooks/useStyles2';
+import { useStyles } from '~/utils/styles/useStyles';
 import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
 import { Box } from '~/components/Box';
 import { filterFalsyChildren } from '~/helpers/react/filterFalsyChildren';

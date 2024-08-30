@@ -1,9 +1,9 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import type { ITextFactory, ITextSize, ITextVariant } from './Text.types';
-import { polymorphicComponentFactory } from '~/utils/polymorphicComponentFactory';
+import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/hooks/useProps';
-import { useStyles } from '~/hooks/useStyles2';
+import { useStyles } from '~/utils/styles/useStyles';
 import { Box } from '../Box';
 import { textStyles, type ITextStylesFactory } from './Text.css';
 

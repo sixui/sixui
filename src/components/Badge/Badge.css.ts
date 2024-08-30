@@ -1,6 +1,9 @@
 import { createTheme, createVar, style } from '@vanilla-extract/css';
 
-import { stylesFactory, type IStylesFactory } from '~/utils/stylesFactory';
+import {
+  stylesFactory,
+  type IStylesFactory,
+} from '~/utils/styles/stylesFactory';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
