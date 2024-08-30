@@ -50,7 +50,6 @@ const classNames = {
     position: 'absolute',
   }),
   outline: style({
-    zIndex: 1,
     position: 'absolute',
     inset: 0,
     pointerEvents: 'none',

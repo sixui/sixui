@@ -26,8 +26,8 @@ export const PaperBase = polymorphicComponentFactory<IPaperBaseFactory>(
     return (
       <Box {...other} {...other} {...getStyles('root')} ref={forwardedRef}>
         <Elevation {...getStyles('elevation')} />
-        <div {...getStyles('outline')} />
         <div {...getStyles('background')} />
+        <div {...getStyles('outline')} />
         {children}
       </Box>
     );

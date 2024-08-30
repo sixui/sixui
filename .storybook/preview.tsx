@@ -50,7 +50,8 @@ export const decorators: Array<Decorator> = [
               tokens: {
                 colorScheme: {
                   light: {
-                    primaryContainer: 'red',
+                    primaryContainer: 'blue',
+                    onPrimaryContainer: 'white',
                   },
                 },
               },

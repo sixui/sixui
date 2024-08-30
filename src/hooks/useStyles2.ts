@@ -80,6 +80,7 @@ export const useStyles = <TPayload extends IStylesFactoryPayload>(
       const styleNames = asArray(styleName).flat(Infinity as 1) as Array<
         TPayload['styleName'] | false | undefined
       >;
+      const isRoot = styleNames.includes(rootStyleName);
 
       return {
         className: cx(
@@ -101,10 +102,10 @@ export const useStyles = <TPayload extends IStylesFactoryPayload>(
           ),
         ),
         style: {
-          ...style,
+          ...(isRoot ? style : undefined),
           ...options?.style,
         },
-        ...(styleNames.includes(rootStyleName)
+        ...(isRoot
           ? getDataAttributes({
               variant,
               ...modifiers,

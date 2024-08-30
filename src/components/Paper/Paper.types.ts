@@ -11,8 +11,6 @@ import type { paperStyles, IPaperStylesFactory } from './Paper.css';
 
 export type IPaperVariant = 'filled' | 'outlined';
 
-export type IPaperColor = keyof IThemeColorScheme;
-
 export type IPaperCornerPosition =
   | 'topLeft'
   | 'topRight'
@@ -26,10 +24,8 @@ export type IPaperProps = IBoxProps &
     corner?:
       | IThemeShapeCornerSize
       | Partial<Record<IPaperCornerPosition, IThemeShapeCornerSize>>;
-    surface?: IPaperColor;
+    surface?: keyof IThemeColorScheme;
     outlined?: boolean;
-    fill?: boolean;
-    expand?: boolean;
   };
 
 export type IPaperFactory = IPolymorphicComponentFactory<{

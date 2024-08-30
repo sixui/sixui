@@ -7,7 +7,8 @@ const classNames = {
   root: style({
     width: px(192),
   }),
-  inner: {
+  inner: style({
+    position: 'relative',
     minHeight: px(128),
     display: 'flex',
     flexDirection: 'column',
@@ -16,7 +17,7 @@ const classNames = {
     flexBasis: '0%',
     justifyContent: 'flex-end',
     padding: px(space(4)),
-  },
+  }),
 };
 
 export const paperStoriesStyles = {
