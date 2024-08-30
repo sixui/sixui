@@ -1,22 +1,23 @@
-import { useMemo, useRef, useState } from 'react';
-import { assignInlineVars } from '@vanilla-extract/dynamic';
 import { FloatingDelayGroup } from '@floating-ui/react';
+import { useMemo, useRef, useState } from 'react';
 import cx from 'clsx';
 
-import type {
-  IThemeOverride,
-  IThemeProviderProps,
-} from './ThemeProvider.types';
+import type { IThemeProviderProps } from './ThemeProvider.types';
 import { deepMerge } from '~/helpers/deepMerge';
-import { Box } from '../Box';
-import { ThemeContext, type IThemeContextValue } from './Theme.context';
+import { partialAssignInlineVars } from '~/utils/partialAssignInlineVars';
+import {
+  ThemeContext,
+  useThemeContext,
+  type IThemeContextValue,
+} from './ThemeProvider.context';
+import type { IThemeOverride } from './theme.types';
 import {
   ThemeSetterContext,
   type IThemeSetterContextValue,
 } from './ThemeSetter.context';
-import * as styles from './ThemeProvider.css';
 import { defaultTheme } from './defaultTheme';
-// import { ResponsiveStyles } from './ResponsiveStyles';
+import { mergeTheme } from './mergeTheme';
+import * as styles from './ThemeProvider.css';
 
 export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
   const {
@@ -24,16 +25,24 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
     style,
     children,
     theme,
-    settings,
     colorSchemeVariant = 'light',
+    inherit = true,
     ...other
   } = props;
+
+  const themeContext = useThemeContext();
+  const parentTheme = themeContext?.theme;
+
   const [dynamicTheme, setDynamicTheme] = useState<
     IThemeOverride | undefined
   >();
   const mergedTheme = useMemo(
-    () => deepMerge(defaultTheme, theme, dynamicTheme),
-    [theme, dynamicTheme],
+    () =>
+      mergeTheme(
+        mergeTheme((inherit ? parentTheme : undefined) ?? defaultTheme, theme),
+        dynamicTheme,
+      ),
+    [inherit, parentTheme, theme, dynamicTheme],
   );
 
   const root = useRef<HTMLDivElement | null>(null);
@@ -41,9 +50,8 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
     () => ({
       root,
       theme: mergedTheme,
-      settings,
     }),
-    [mergedTheme, settings],
+    [mergedTheme],
   );
 
   const themeSetterContextValue: IThemeSetterContextValue = useMemo(
@@ -51,22 +59,40 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
     [],
   );
 
-  const isDark = colorSchemeVariant === 'dark';
+  const themeOverrideVars = useMemo(() => {
+    const tokensOverride = deepMerge(theme?.tokens ?? {}, dynamicTheme?.tokens);
+    const themeTokensOverride = {
+      ...tokensOverride,
+      colorScheme:
+        colorSchemeVariant === 'dark'
+          ? deepMerge(
+              mergedTheme.tokens.colorScheme.dark,
+              tokensOverride.colorScheme?.dark,
+            )
+          : tokensOverride.colorScheme?.light,
+    };
+
+    return themeTokensOverride;
+  }, [
+    theme?.tokens,
+    dynamicTheme?.tokens,
+    mergedTheme.tokens,
+    colorSchemeVariant,
+  ]);
 
   return (
-    <ThemeSetterContext.Provider value={themeSetterContextValue}>
-      <ThemeContext.Provider value={themeContextValue}>
-        <Box
+    <ThemeContext.Provider value={themeContextValue}>
+      <ThemeSetterContext.Provider value={themeSetterContextValue}>
+        <div
           {...other}
-          className={cx('sixui-root', styles.styles.root, className)}
+          className={cx(
+            styles.styles.root,
+            parentTheme ? undefined : styles.themeTokensClassName,
+            className,
+          )}
           style={{
             ...style,
-            ...assignInlineVars(styles.themeTokens, {
-              ...mergedTheme.tokens,
-              colorScheme: isDark
-                ? mergedTheme.tokens.colorScheme.dark
-                : mergedTheme.tokens.colorScheme.light,
-            }),
+            ...partialAssignInlineVars(styles.themeTokens, themeOverrideVars),
           }}
         >
           <FloatingDelayGroup
@@ -75,11 +101,10 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
               close: 1500,
             }}
           >
-            {/* <ResponsiveStyles /> */}
             {children}
           </FloatingDelayGroup>
-        </Box>
-      </ThemeContext.Provider>
-    </ThemeSetterContext.Provider>
+        </div>
+      </ThemeSetterContext.Provider>
+    </ThemeContext.Provider>
   );
 };

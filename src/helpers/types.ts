@@ -81,4 +81,8 @@ export type IHslColor = {
   lightness: number;
 };
 
-export type INested<T> = T | Array<INested<T>>;
+export type INestedArray<T> = T | Array<INestedArray<T>>;
+
+export type INestedObject<T> = {
+  [key: string]: T | INestedObject<T>;
+};

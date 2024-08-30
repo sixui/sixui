@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 import cx from 'clsx';
 
-import type { INested } from '~/helpers/types';
+import type { INestedArray } from '~/helpers/types';
 import type { IStyles, IStylesFactoryPayload } from '~/utils/stylesFactory';
 import { useThemeContext } from '~/components/ThemeProvider';
 import { getDataAttributes, IModifiers } from '~/utils/getDataAttributes';
@@ -52,7 +52,7 @@ export type IGetStylesOptions = {
 
 export type IUseStylesResult<TPayload extends IStylesFactoryPayload> = {
   getStyles: (
-    styleName: INested<TPayload['styleName'] | false | undefined>,
+    styleName: INestedArray<TPayload['styleName'] | false | undefined>,
     options?: IGetStylesOptions,
   ) => {
     className?: string;

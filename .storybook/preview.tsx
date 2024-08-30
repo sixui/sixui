@@ -1,8 +1,8 @@
 import type { Decorator, Preview } from '@storybook/react';
 
+import { SixuiProvider } from '~/components/SixuiProvider';
 import { ThemeProvider } from '~/components/ThemeProvider';
 import { modes } from './modes';
-
 // import variantTheme from '~/themes/variant/theme.json';
 // import { ThemeControls } from './ThemeControls';
 import * as styles from './preview.css';
@@ -42,36 +42,42 @@ export const decorators: Array<Decorator> = [
     const showDarkMode = !context.tags.includes('light-mode-only');
 
     return (
-      <>
+      <SixuiProvider
+        // FIXME: delete
+        theme={{
+          tokens: {
+            colorScheme: {
+              light: {
+                primaryContainer: 'blue',
+                onPrimaryContainer: 'white',
+              },
+              dark: {
+                primaryContainer: 'green',
+                onPrimaryContainer: 'white',
+              },
+            },
+          },
+          components: {
+            Avatar: Avatar.extend({
+              defaultProps: {
+                children: '☀️',
+              },
+              classNames: {
+                root: styles.testVariant,
+              },
+            }),
+            StateLayer: StateLayer.extend({
+              classNames: {
+                root: styles.testBorder,
+              },
+            }),
+          },
+        }}
+        colorSchemeVariant='light'
+      >
         {showLightMode ? (
           <ThemeProvider
             // theme={variantTheme}
-            theme={{
-              tokens: {
-                colorScheme: {
-                  light: {
-                    primaryContainer: 'blue',
-                    onPrimaryContainer: 'white',
-                  },
-                },
-              },
-              components: {
-                Avatar: Avatar.extend({
-                  defaultProps: {
-                    children: '☀️',
-                  },
-                  classNames: {
-                    root: styles.testVariant,
-                  },
-                }),
-                StateLayer: StateLayer.extend({
-                  classNames: {
-                    root: styles.testBorder,
-                  },
-                }),
-              },
-            }}
-            colorSchemeVariant='light'
             className={styles.storyWrapper}
           >
             <Story />
@@ -87,7 +93,7 @@ export const decorators: Array<Decorator> = [
             <Story />
           </ThemeProvider>
         ) : null}
-      </>
+      </SixuiProvider>
     );
   },
 ];

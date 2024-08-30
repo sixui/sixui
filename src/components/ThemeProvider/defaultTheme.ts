@@ -12,7 +12,7 @@ import type {
   IThemeTypeScaleValues,
   IThemeWindowSizeClassesValues,
   IThemeZIndexValues,
-} from './ThemeProvider.types';
+} from './theme.types';
 
 // You should always explicitly set values unit (ie. `px` or `rem`). Otherwise,
 // CSS calc() may not work as expected.

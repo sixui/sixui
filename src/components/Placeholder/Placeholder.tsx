@@ -20,7 +20,6 @@ export const Placeholder = componentFactory<IPlaceholderFactory>(
       className,
       style,
       surface = 'surfaceContainerHighest',
-      corner = 'sm',
       children,
       label,
       crosshairs,
@@ -58,7 +57,6 @@ export const Placeholder = componentFactory<IPlaceholderFactory>(
           style: assignInlineVars(vars),
         })}
         surface={surface}
-        corner={corner}
         ref={forwardedRef}
       >
         {crosshairs && <div {...getStyles('crosshairs')} />}

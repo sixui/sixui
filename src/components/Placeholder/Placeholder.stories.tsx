@@ -13,7 +13,6 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   width: 96,
   height: 96,
-  surface: 'primary',
 } satisfies Partial<IPlaceholderProps>;
 
 const PlaceholderShowcase = makeComponentShowcase(Placeholder);
@@ -22,7 +21,7 @@ export const Basic: IStory = {
   render: (props) => (
     <PlaceholderShowcase
       props={props}
-      cols={[{}, { props: { corner: 'md' } }, { props: { corner: 'full' } }]}
+      cols={[{}, { props: { corner: 'lg' } }, { props: { corner: 'full' } }]}
       rows={[
         { legend: 'Normal' },
         { legend: 'Disabled', props: { disabled: true } },
