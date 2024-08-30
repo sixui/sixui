@@ -1,15 +1,17 @@
-import type { IBaseProps } from '../Base';
-import type { IZeroOrMore, ICompiledStyles, IOmit } from '~/helpers/types';
-import type { IPaperBaseProps, IPaperBaseStylesKey } from '../PaperBase';
-import type { IColorScheme } from '~/themes/base';
+import type { IPolymorphicComponentFactory } from '~/utils/polymorphicComponentFactory';
+import type { IStylesProps } from '~/hooks/useStyles2';
+import type { IPaperBaseOwnProps } from '../PaperBase';
+import type {
+  IThemeColorScheme,
+  IThemeElevationLevel,
+  IThemeShapeCornerSize,
+} from '../ThemeProvider';
+import type { IBoxProps } from '../Box';
+import type { paperStyles, IPaperStylesFactory } from './Paper.css';
 
 export type IPaperVariant = 'filled' | 'outlined';
 
-export type IPaperElevation = 0 | 1 | 2 | 3 | 4 | 5;
-
-export type IPaperCorner = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
-
-export type IPaperColor = keyof IColorScheme;
+export type IPaperColor = keyof IThemeColorScheme;
 
 export type IPaperCornerPosition =
   | 'topLeft'
@@ -17,15 +19,22 @@ export type IPaperCornerPosition =
   | 'bottomRight'
   | 'bottomLeft';
 
-export type IPaperProps = IBaseProps &
-  IOmit<IPaperBaseProps, 'styles' | 'innerStyles'> & {
-    innerStyles?: IPaperBaseProps['innerStyles'] & {
-      paperBase?: IZeroOrMore<ICompiledStyles<IPaperBaseStylesKey>>;
-    };
-    elevation?: IPaperElevation;
-    corner?: IPaperCorner | Partial<Record<IPaperCornerPosition, IPaperCorner>>;
+export type IPaperProps = IBoxProps &
+  IStylesProps<IPaperStylesFactory> &
+  IPaperBaseOwnProps & {
+    elevation?: IThemeElevationLevel;
+    corner?:
+      | IThemeShapeCornerSize
+      | Partial<Record<IPaperCornerPosition, IThemeShapeCornerSize>>;
     surface?: IPaperColor;
     outlined?: boolean;
     fill?: boolean;
     expand?: boolean;
   };
+
+export type IPaperFactory = IPolymorphicComponentFactory<{
+  props: IPaperProps;
+  defaultRef: HTMLDivElement;
+  defaultRoot: 'div';
+  styles: typeof paperStyles;
+}>;

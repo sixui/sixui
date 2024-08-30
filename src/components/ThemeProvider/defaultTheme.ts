@@ -372,6 +372,22 @@ const elevation: IThemeElevationValues = {
   transitionDuration: motion.duration.medium.$2,
   transitionTimingFunction: motion.easing.standard.normal,
   level: {
+    0: {
+      primary: {
+        offsetX: '0px',
+        offsetY: '0px',
+        blurRadius: '0px',
+        spreadRadius: '0px',
+        colorOpacityPercentage: '30%',
+      },
+      secondary: {
+        offsetX: '0px',
+        offsetY: '0px',
+        blurRadius: '0px',
+        spreadRadius: '0px',
+        colorOpacityPercentage: '15%',
+      },
+    },
     1: {
       primary: {
         offsetX: '0px',

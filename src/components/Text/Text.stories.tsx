@@ -1,27 +1,23 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { ITextProps } from './Text.types';
-import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { scaleTokens } from '~/themes/base/scale.stylex';
-import { spacingTokens } from '~/themes/base/spacing.stylex';
-import {
-  type IComponentPresentation,
-  ComponentShowcase,
-} from '../ComponentShowcase';
+import { makeComponentShowcase } from '../ComponentShowcase';
 import { Text, textTagMap } from './Text';
+import { textStoriesStyles } from './Text.stories.css';
 
 // https://m3.material.io/styles/Text/overview
 // https://material-web.dev/theming/Text/
+
+const { classNames } = textStoriesStyles;
 
 const meta = {
   component: Text,
 } satisfies Meta<typeof Text>;
 
-type IStory = StoryObj<typeof meta>;
+type IStory = StoryObj<ITextProps>;
 
-const defaultArgs = { dimmed: true } satisfies Partial<ITextProps>;
+const defaultArgs = {} satisfies Partial<ITextProps>;
 
 const LOREM$XS = 'Lorem ipsum dolor sit amet.';
 const LOREM$SM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
@@ -30,165 +26,139 @@ const LOREM$MD =
 const LOREM$LG =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lacinia ante et enim tempor pretium. Proin sed sem vehicula, dignissim velit vel, varius turpis. Ut vel ex non lectus iaculis pretium. Nunc at tempus enim. Donec commodo placerat libero.';
 
-const rows: Array<IComponentPresentation<ITextProps>> = [
-  {
-    legend: `Display (lg) | ${String(textTagMap.display$lg)}`,
-    props: {
-      variant: 'display',
-      size: 'lg',
-      children: LOREM$SM,
-    },
-  },
-  {
-    legend: `Display (md) | ${String(textTagMap.display$md)}`,
-    props: {
-      variant: 'display',
-      size: 'md',
-      children: LOREM$SM,
-    },
-  },
-  {
-    legend: `Display (sm) | ${String(textTagMap.display$sm)}`,
-    props: {
-      variant: 'display',
-      size: 'sm',
-      children: LOREM$SM,
-    },
-  },
-  {
-    legend: `Headline (lg) | ${String(textTagMap.headline$lg)}`,
-    props: {
-      variant: 'headline',
-      size: 'lg',
-      children: LOREM$MD,
-    },
-  },
-  {
-    legend: `Headline (md) | ${String(textTagMap.headline$md)}`,
-    props: {
-      variant: 'headline',
-      size: 'md',
-      children: LOREM$MD,
-    },
-  },
-  {
-    legend: `Headline (sm) | | ${String(textTagMap.headline$sm)}`,
-    props: {
-      variant: 'headline',
-      size: 'sm',
-      children: LOREM$MD,
-    },
-  },
-  {
-    legend: `Title (lg) | ${String(textTagMap.title$lg)}`,
-    props: {
-      variant: 'title',
-      size: 'lg',
-      children: LOREM$MD,
-    },
-  },
-  {
-    legend: `Title (md) | ${String(textTagMap.title$md)}`,
-    props: {
-      variant: 'title',
-      size: 'md',
-      children: LOREM$MD,
-    },
-  },
-  {
-    legend: `Title (sm) | ${String(textTagMap.title$sm)}`,
-    props: {
-      variant: 'title',
-      size: 'sm',
-      children: LOREM$MD,
-    },
-  },
-  {
-    legend: `Body (lg) | ${String(textTagMap.body$lg)}`,
-    props: {
-      variant: 'body',
-      size: 'lg',
-      children: LOREM$LG,
-    },
-  },
-  {
-    legend: `Body (md) | ${String(textTagMap.body$md)}`,
-    props: {
-      variant: 'body',
-      size: 'md',
-      children: LOREM$LG,
-    },
-  },
-  {
-    legend: `Body (sm) | ${String(textTagMap.body$sm)}`,
-    props: {
-      variant: 'body',
-      size: 'sm',
-      children: LOREM$LG,
-    },
-  },
-  {
-    legend: `Label (lg) | ${String(textTagMap.label$lg)}`,
-    props: {
-      variant: 'label',
-      size: 'lg',
-      children: LOREM$XS,
-    },
-  },
-  {
-    legend: `Label (md) | ${String(textTagMap.label$md)}`,
-    props: {
-      variant: 'label',
-      size: 'md',
-      children: LOREM$XS,
-    },
-  },
-  {
-    legend: `Label (sm) | ${String(textTagMap.label$sm)}`,
-    props: {
-      variant: 'label',
-      size: 'sm',
-      children: LOREM$XS,
-    },
-  },
-];
-
-const styles = stylex.create({
-  container: {
-    borderWidth: 1,
-    borderStyle: 'dashed',
-    borderColor: colorSchemeTokens.outline,
-    padding: spacingTokens.padding$4,
-  },
-  container$lg: {
-    maxWidth: `calc(600px * ${scaleTokens.scale})`,
-  },
-  container$md: {
-    maxWidth: `calc(300px * ${scaleTokens.scale})`,
-  },
-  container$sm: {
-    maxWidth: `calc(150px * ${scaleTokens.scale})`,
-  },
-});
-
-const componentShowcaseStyles = stylex.create({
-  host: {
-    maxWidth: `calc(1200px * ${scaleTokens.scale})`,
-  },
-});
+const TypeScaleShowcase = makeComponentShowcase((props: ITextProps) => (
+  <Text {...props}>
+    {props.children ??
+      (props.variant ? capitalizeFirstLetter(props.variant) : null)}
+  </Text>
+));
 
 export const TypeScale: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      styles={componentShowcaseStyles}
-      component={(props) => (
-        <Text {...props}>
-          {props.children ??
-            (props.variant ? capitalizeFirstLetter(props.variant) : null)}
-        </Text>
-      )}
+    <TypeScaleShowcase
       props={props}
-      rows={rows}
+      rows={[
+        {
+          legend: `Display (lg) | ${String(textTagMap.display.lg)}`,
+          props: {
+            variant: 'display',
+            size: 'lg',
+            children: LOREM$SM,
+          },
+        },
+        {
+          legend: `Display (md) | ${String(textTagMap.display.md)}`,
+          props: {
+            variant: 'display',
+            size: 'md',
+            children: LOREM$SM,
+          },
+        },
+        {
+          legend: `Display (sm) | ${String(textTagMap.display.sm)}`,
+          props: {
+            variant: 'display',
+            size: 'sm',
+            children: LOREM$SM,
+          },
+        },
+        {
+          legend: `Headline (lg) | ${String(textTagMap.headline.lg)}`,
+          props: {
+            variant: 'headline',
+            size: 'lg',
+            children: LOREM$MD,
+          },
+        },
+        {
+          legend: `Headline (md) | ${String(textTagMap.headline.md)}`,
+          props: {
+            variant: 'headline',
+            size: 'md',
+            children: LOREM$MD,
+          },
+        },
+        {
+          legend: `Headline (sm) | | ${String(textTagMap.headline.sm)}`,
+          props: {
+            variant: 'headline',
+            size: 'sm',
+            children: LOREM$MD,
+          },
+        },
+        {
+          legend: `Title (lg) | ${String(textTagMap.title.lg)}`,
+          props: {
+            variant: 'title',
+            size: 'lg',
+            children: LOREM$MD,
+          },
+        },
+        {
+          legend: `Title (md) | ${String(textTagMap.title.md)}`,
+          props: {
+            variant: 'title',
+            size: 'md',
+            children: LOREM$MD,
+          },
+        },
+        {
+          legend: `Title (sm) | ${String(textTagMap.title.sm)}`,
+          props: {
+            variant: 'title',
+            size: 'sm',
+            children: LOREM$MD,
+          },
+        },
+        {
+          legend: `Body (lg) | ${String(textTagMap.body.lg)}`,
+          props: {
+            variant: 'body',
+            size: 'lg',
+            children: LOREM$LG,
+          },
+        },
+        {
+          legend: `Body (md) | ${String(textTagMap.body.md)}`,
+          props: {
+            variant: 'body',
+            size: 'md',
+            children: LOREM$LG,
+          },
+        },
+        {
+          legend: `Body (sm) | ${String(textTagMap.body.sm)}`,
+          props: {
+            variant: 'body',
+            size: 'sm',
+            children: LOREM$LG,
+          },
+        },
+        {
+          legend: `Label (lg) | ${String(textTagMap.label.lg)}`,
+          props: {
+            variant: 'label',
+            size: 'lg',
+            children: LOREM$XS,
+          },
+        },
+        {
+          legend: `Label (md) | ${String(textTagMap.label.md)}`,
+          props: {
+            variant: 'label',
+            size: 'md',
+            children: LOREM$XS,
+          },
+        },
+        {
+          legend: `Label (sm) | ${String(textTagMap.label.sm)}`,
+          props: {
+            variant: 'label',
+            size: 'sm',
+            children: LOREM$XS,
+          },
+        },
+      ]}
       horizontalAlign='start'
       rowLegendPosition='top'
     />
@@ -196,17 +166,18 @@ export const TypeScale: IStory = {
   args: defaultArgs,
 };
 
-export const Truncate: IStory = {
+const TruncatedShowcase = makeComponentShowcase(Text);
+
+export const Truncated: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      styles={componentShowcaseStyles}
-      component={Text}
+    <TruncatedShowcase
+      className={classNames.truncatedContainer}
       props={props}
       rows={[
         {
           props: {
             as: (props) => (
-              <div {...stylex.props(styles.container, styles.container$lg)}>
+              <div className={classNames.container} data-size='lg'>
                 <Text {...props} />
               </div>
             ),
@@ -215,7 +186,7 @@ export const Truncate: IStory = {
         {
           props: {
             as: (props) => (
-              <div {...stylex.props(styles.container, styles.container$md)}>
+              <div className={classNames.container} data-size='md'>
                 <Text {...props} />
               </div>
             ),
@@ -224,7 +195,7 @@ export const Truncate: IStory = {
         {
           props: {
             as: (props) => (
-              <div {...stylex.props(styles.container, styles.container$sm)}>
+              <div className={classNames.container} data-size='sm'>
                 <Text {...props} />
               </div>
             ),
@@ -241,33 +212,34 @@ export const Truncate: IStory = {
   },
 };
 
-export const TruncateLines: IStory = {
+const LineClampedShowcase = makeComponentShowcase((props: ITextProps) => (
+  <div className={classNames.container} data-size='sm'>
+    <Text {...props} />
+  </div>
+));
+
+export const LineClamped: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      styles={componentShowcaseStyles}
-      component={(props) => (
-        <div {...stylex.props(styles.container, styles.container$sm)}>
-          <Text {...props} />
-        </div>
-      )}
+    <LineClampedShowcase
+      className={classNames.truncatedContainer}
       props={props}
       rows={[
         {
           legend: 'One line',
           props: {
-            truncateLines: 1,
+            lineClamp: 1,
           },
         },
         {
           legend: 'Two lines',
           props: {
-            truncateLines: 2,
+            lineClamp: 2,
           },
         },
         {
           legend: 'Three lines',
           props: {
-            truncateLines: 3,
+            lineClamp: 3,
           },
         },
       ]}

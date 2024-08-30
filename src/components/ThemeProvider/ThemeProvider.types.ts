@@ -1,6 +1,5 @@
 import type { PartialDeep } from 'type-fest';
 
-import type { IAny } from '~/helpers/types';
 import type { IThemeSettings } from './Theme.context';
 import type { IBoxProps } from '../Box';
 
@@ -233,19 +232,20 @@ export type IThemeOutlineValues = {
   };
 };
 
+export type IThemeShapeCornerSize =
+  | 'none'
+  | 'xs'
+  | 'sm'
+  | 'md'
+  | 'lg'
+  | 'xl'
+  | 'full';
+
 export type IThemeShapeValues = {
   /**
    * @see https://m3.material.io/styles/shape/shape-scale-tokens#b09934f1-1b0f-4ce4-ade6-4a1f138add6c
    */
-  corner: {
-    none: string;
-    xs: string;
-    sm: string;
-    md: string;
-    lg: string;
-    xl: string;
-    full: string;
-  };
+  corner: Record<IThemeShapeCornerSize, string>;
 };
 
 export type IThemeSpacingGridSize = 'sm' | 'md' | 'lg';
@@ -299,7 +299,7 @@ export type IThemeWindowSizeClassesValues = Record<
   string
 >;
 
-export type IThemeElevationLevel = 1 | 2 | 3 | 4 | 5;
+export type IThemeElevationLevel = 0 | 1 | 2 | 3 | 4 | 5;
 
 export type IThemeElevationLevelAttributes = {
   offsetX: string;

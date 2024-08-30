@@ -1,7 +1,11 @@
 import { forwardRef } from 'react';
 
 import type { IAny } from '~/helpers/types';
-import type { IPolymorphicComponentProps } from './createPolymorphicComponent';
+import type {
+  IPolymorphicComponentProps,
+  IPolymorphicComponentPropsWithRef,
+  IWithAsProp,
+} from './createPolymorphicComponent';
 import {
   identity,
   type IComponentFactoryPayload,
@@ -34,12 +38,12 @@ export const polymorphicComponentFactory = <
 >(
   renderFunction: React.ForwardRefRenderFunction<
     TPayload['defaultRef'],
-    TPayload['props']
+    IWithAsProp<TPayload['props']>
   >,
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 ) => {
   type IComponentProps<TRoot extends React.ElementType> =
-    IPolymorphicComponentProps<TRoot, TPayload['props']>;
+    IPolymorphicComponentPropsWithRef<TRoot, TPayload['props']>;
 
   type IPolymorphicComponent = <
     TRoot extends React.ElementType = TPayload['defaultRoot'],

@@ -1,49 +1,30 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { IPaperProps } from './Paper.types';
-import { spacingTokens } from '~/themes/base/spacing.stylex';
-import { scaleTokens } from '~/themes/base/scale.stylex';
-import { ComponentShowcase } from '../ComponentShowcase';
+import { makeComponentShowcase } from '../ComponentShowcase';
 import { Text } from '../Text';
 import { Paper } from './Paper';
+import { paperStoriesStyles } from './Paper.stories.css';
 
 // https://material.io/blog/tone-based-surface-color-m3
 // https://m3.material.io/styles/elevation/overview
+
+const { classNames } = paperStoriesStyles;
 
 const meta = {
   component: Paper,
 } satisfies Meta<typeof Paper>;
 
-type IStory = StoryObj<typeof meta>;
-
-const styles = stylex.create({
-  host: {
-    width: `calc(192px * ${scaleTokens.scale})`,
-  },
-});
-
-const paperContentStyles = stylex.create({
-  content: {
-    minHeight: `calc(128px * ${scaleTokens.scale})`,
-    display: 'flex',
-    flexDirection: 'column',
-    flexGrow: 1,
-    flexShrink: 1,
-    flexBasis: '0%',
-    justifyContent: 'flex-end',
-    padding: spacingTokens.padding$4,
-  },
-});
+type IStory = StoryObj<IPaperProps>;
 
 const defaultArgs = {
-  sx: styles.host,
+  className: classNames.root,
 } satisfies Partial<IPaperProps>;
 
-const PaperWithContent: React.FC<IPaperProps> = ({ children, ...props }) => (
+const PaperDemo: React.FC<IPaperProps> = ({ children, ...props }) => (
   <Paper {...props}>
-    <div {...stylex.props(paperContentStyles.content)}>
+    <div className={classNames.inner}>
       <Text variant='body' size='md'>
         {children}
       </Text>
@@ -61,10 +42,11 @@ const corners: Array<IPaperProps['corner']> = [
   'full',
 ];
 
+const PaperShowcase = makeComponentShowcase(PaperDemo);
+
 export const Corners: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={PaperWithContent}
+    <PaperShowcase
       props={props}
       rows={corners.map((corner) => ({
         legend: `Corner (${(corner as string) ?? 'none'})`,
@@ -83,8 +65,7 @@ export const Corners: IStory = {
 
 export const Elevations: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={PaperWithContent}
+    <PaperShowcase
       props={props}
       rows={([undefined, 1, 2, 3, 4, 5] as Array<IPaperProps['elevation']>).map(
         (elevation) => ({
@@ -119,8 +100,7 @@ const surfaces: Array<IPaperProps['surface']> = [
 
 export const Surface: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={PaperWithContent}
+    <PaperShowcase
       props={props}
       rows={surfaces.map((surface) => ({
         legend: `Surface (${surface})`,

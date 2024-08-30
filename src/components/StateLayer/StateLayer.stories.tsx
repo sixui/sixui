@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import clsx from 'clsx';
+import cx from 'clsx';
 
 import type { IInteractionState } from '~/hooks/useInteractions';
 import {
@@ -40,7 +40,7 @@ const BoundedDemo: React.FC<IDemoProps> = (props) => {
 
   return (
     <Box
-      className={clsx(
+      className={cx(
         tokensClassName,
         classNames.container,
         classNames.container$bounded,
@@ -64,7 +64,7 @@ const UnboundedDemo: React.FC<IDemoProps> = (props) => {
 
   return (
     <Box
-      className={clsx(
+      className={cx(
         tokensClassName,
         classNames.container,
         classNames.container$unbounded,
@@ -72,7 +72,7 @@ const UnboundedDemo: React.FC<IDemoProps> = (props) => {
       interactions={stateLayer.interactions}
     >
       <StateLayer
-        className={clsx(classNames.container, classNames.container$sm)}
+        className={cx(classNames.container, classNames.container$sm)}
         context={stateLayer}
       />
     </Box>
@@ -92,7 +92,7 @@ const NestedDemo: React.FC<IDemoProps> = (props) => {
 
   return (
     <Box
-      className={clsx(
+      className={cx(
         tokensClassName,
         classNames.container,
         classNames.container$bounded,
@@ -102,7 +102,7 @@ const NestedDemo: React.FC<IDemoProps> = (props) => {
       <StateLayer context={stateLayer} />
 
       <Box
-        className={clsx(
+        className={cx(
           classNames.container,
           classNames.container$sm,
           classNames.container$nested,

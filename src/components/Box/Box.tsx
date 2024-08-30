@@ -1,6 +1,6 @@
 import { useMergeRefs } from '@floating-ui/react';
 import { forwardRef } from 'react';
-import clsx from 'clsx';
+import cx from 'clsx';
 
 import type { IBoxProps } from './Box.types';
 import { getDataAttributes } from '~/utils/getDataAttributes';
@@ -30,7 +30,7 @@ export const Box = createPolymorphicComponent<'div', IBoxProps>(
           : undefined),
         ...modifiers,
       }),
-      className: clsx(className),
+      className: cx(className),
       ref: handleRef,
     };
 

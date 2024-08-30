@@ -15,7 +15,7 @@ const meta = {
   component: Badge,
 } satisfies Meta<typeof Badge>;
 
-type IStory = StoryObj<typeof meta>;
+type IStory = StoryObj<IBadgeProps>;
 
 const defaultArgs = {} satisfies Partial<IBadgeProps>;
 

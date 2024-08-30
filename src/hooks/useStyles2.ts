@@ -1,14 +1,15 @@
 import { useCallback } from 'react';
 import { asArray } from '@olivierpascal/helpers';
-import clsx from 'clsx';
+import cx from 'clsx';
 
+import type { INested } from '~/helpers/types';
 import type { IStyles, IStylesFactoryPayload } from '~/utils/stylesFactory';
 import { useThemeContext } from '~/components/ThemeProvider';
-import { getDataAttributes } from '~/utils/getDataAttributes';
+import { getDataAttributes, IModifiers } from '~/utils/getDataAttributes';
 
 export type IStylesProps<TPayload extends IStylesFactoryPayload> = {
   /** The class name to apply to the root selector. */
-  className?: Parameters<typeof clsx>[0];
+  className?: Parameters<typeof cx>[0];
 
   /** The class names to apply to the component. */
   classNames?: Partial<Record<TPayload['styleName'], string>>;
@@ -35,6 +36,13 @@ export type IUseStylesProps<TPayload extends IStylesFactoryPayload> =
      * @defaultValue 'root'
      */
     rootStyleName?: string;
+
+    /**
+     * The modifiers to apply to the root selector.
+     */
+    modifiers?: TPayload['modifier'] extends string
+      ? IModifiers<TPayload['modifier']>
+      : never;
   };
 
 export type IGetStylesOptions = {
@@ -44,9 +52,7 @@ export type IGetStylesOptions = {
 
 export type IUseStylesResult<TPayload extends IStylesFactoryPayload> = {
   getStyles: (
-    styleName:
-      | TPayload['styleName']
-      | Array<TPayload['styleName'] | false | undefined>,
+    styleName: INested<TPayload['styleName'] | false | undefined>,
     options?: IGetStylesOptions,
   ) => {
     className?: string;
@@ -65,44 +71,54 @@ export const useStyles = <TPayload extends IStylesFactoryPayload>(
     style,
     variant,
     rootStyleName = 'root',
+    modifiers,
   } = props;
   const { theme } = useThemeContext();
 
   const getStyles: IUseStylesResult<TPayload>['getStyles'] = useCallback(
-    (styleName, options) => ({
-      className: clsx(
-        asArray(styleName).map((styleName) =>
-          styleName
-            ? [
-                styleName === rootStyleName && [
-                  styles.tokensClassName,
-                  className,
-                ],
-                [
-                  styles.classNames,
-                  classNames,
-                  theme.components?.[componentName]?.classNames,
-                ].map((classNames) => classNames?.[styleName]),
-                variant && styles.variants?.[styleName]?.[variant],
-                options?.className,
-              ]
-            : undefined,
+    (styleName, options) => {
+      const styleNames = asArray(styleName).flat(Infinity as 1) as Array<
+        TPayload['styleName'] | false | undefined
+      >;
+
+      return {
+        className: cx(
+          styleNames.map((styleName) =>
+            styleName
+              ? [
+                  styleName === rootStyleName && [
+                    styles.tokensClassName,
+                    className,
+                  ],
+                  [
+                    styles.classNames,
+                    classNames,
+                    theme.components?.[componentName]?.classNames,
+                  ].map((classNames) => classNames?.[styleName]),
+                  options?.className,
+                ]
+              : undefined,
+          ),
         ),
-      ),
-      style: {
-        ...style,
-        ...options?.style,
-      },
-      ...(styleName === rootStyleName
-        ? getDataAttributes({ variant })
-        : undefined),
-    }),
+        style: {
+          ...style,
+          ...options?.style,
+        },
+        ...(styleNames.includes(rootStyleName)
+          ? getDataAttributes({
+              variant,
+              ...modifiers,
+            })
+          : undefined),
+      };
+    },
     [
       componentName,
       className,
       theme.components,
       classNames,
       rootStyleName,
+      modifiers,
       variant,
       style,
       styles,

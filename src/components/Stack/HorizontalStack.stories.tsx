@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import clsx from 'clsx';
+import cx from 'clsx';
 
 import type { IStackProps } from './Stack.types';
 import { Placeholder, type IPlaceholderProps } from '../Placeholder';

@@ -1,4 +1,7 @@
-export type IModifiers = Record<string, string | number | boolean | undefined>;
+export type IModifiers<TModifier extends string = string> = Record<
+  TModifier,
+  string | number | boolean | undefined
+>;
 
 export const getDataAttributes = (
   modifiers: IModifiers,

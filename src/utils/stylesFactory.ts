@@ -3,6 +3,7 @@ import type { IAny } from '~/helpers/types';
 export type IStylesFactoryPayload = {
   styleName: string;
   tokens?: IAny;
+  modifier?: string;
   variant?: string;
 };
 

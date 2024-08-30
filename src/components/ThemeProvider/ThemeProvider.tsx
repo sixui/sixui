@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from 'react';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 import { FloatingDelayGroup } from '@floating-ui/react';
-import clsx from 'clsx';
+import cx from 'clsx';
 
 import type {
   IThemeOverride,
@@ -58,7 +58,7 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
       <ThemeContext.Provider value={themeContextValue}>
         <Box
           {...other}
-          className={clsx('sixui-root', styles.styles.root, className)}
+          className={cx('sixui-root', styles.styles.root, className)}
           style={{
             ...style,
             ...assignInlineVars(styles.themeTokens, {

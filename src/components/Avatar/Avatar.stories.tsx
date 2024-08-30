@@ -13,7 +13,7 @@ const meta = {
   component: Avatar,
 } satisfies Meta<typeof Avatar>;
 
-type IStory = StoryObj<typeof meta>;
+type IStory = StoryObj<IAvatarProps>;
 
 // https://images.unsplash.com/photo-1557053910-d9eadeed1c58?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjQxfHxWaXNhZ2V8ZW58MHx8MHx8fDI%3D
 

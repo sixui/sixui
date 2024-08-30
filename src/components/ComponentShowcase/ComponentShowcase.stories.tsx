@@ -8,7 +8,7 @@ const meta = {
   component: DemoComponent,
 } satisfies Meta<typeof DemoComponent>;
 
-type IStory = StoryObj<typeof meta>;
+type IStory = StoryObj<IDemoComponentProps>;
 
 const DemoShowcase = makeComponentShowcase(DemoComponent);
 

@@ -7,7 +7,7 @@ import { Elevation } from './Elevation';
 
 const meta = {
   component: Elevation,
-} satisfies Meta<typeof Elevation>;
+} satisfies Meta<IElevationProps>;
 
 type IStory = StoryObj<typeof meta>;
 

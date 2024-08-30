@@ -80,3 +80,5 @@ export type IHslColor = {
   saturation: number;
   lightness: number;
 };
+
+export type INested<T> = T | Array<INested<T>>;

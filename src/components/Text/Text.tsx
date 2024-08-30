@@ -1,81 +1,96 @@
-import { forwardRef } from 'react';
+import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import type { ITextProps, ITextSize, ITextVariant } from './Text.types';
-import {
-  createPolymorphicComponent,
-  type IWithAsProp,
-} from '~/helpers/react/polymorphicComponentTypes';
-import { useStyles } from '~/hooks/useStyles';
-import { textStyles } from './Text.styles';
-import { Base } from '../Base';
-import { commonStyles } from '~/helpers/commonStyles';
+import type { ITextFactory, ITextSize, ITextVariant } from './Text.types';
+import { polymorphicComponentFactory } from '~/utils/polymorphicComponentFactory';
+import { useProps } from '~/hooks/useProps';
+import { useStyles } from '~/hooks/useStyles2';
+import { Box } from '../Box';
+import { textStyles, type ITextStylesFactory } from './Text.css';
+
+const COMPONENT_NAME = 'Text';
 
 export const textTagMap: Record<
-  `${ITextVariant}$${ITextSize}`,
-  React.ElementType
+  ITextVariant,
+  Record<ITextSize, React.ElementType>
 > = {
-  display$lg: 'span',
-  display$md: 'span',
-  display$sm: 'span',
-  headline$lg: 'h1',
-  headline$md: 'h2',
-  headline$sm: 'h3',
-  title$lg: 'h4',
-  title$md: 'h5',
-  title$sm: 'h6',
-  body$lg: 'p',
-  body$md: 'p',
-  body$sm: 'p',
-  label$lg: 'span',
-  label$md: 'span',
-  label$sm: 'span',
+  display: {
+    sm: 'span',
+    md: 'span',
+    lg: 'span',
+  },
+  headline: {
+    sm: 'h3',
+    md: 'h2',
+    lg: 'h1',
+  },
+  title: {
+    sm: 'h5',
+    md: 'h4',
+    lg: 'h3',
+  },
+  body: {
+    sm: 'p',
+    md: 'p',
+    lg: 'p',
+  },
+  label: {
+    sm: 'span',
+    md: 'span',
+    lg: 'span',
+  },
 };
 
-export const Text = createPolymorphicComponent<'span', ITextProps>(
-  forwardRef<HTMLDivElement, ITextProps>(function Text(props, forwardedRef) {
+export const Text = polymorphicComponentFactory<ITextFactory>(
+  (props, forwardedRef) => {
     const {
       as,
-      styles,
-      sx,
+      classNames,
+      className,
+      style,
       variant = 'body',
       size = 'md',
-      children,
       gutterBottom,
       dimmed,
       truncate,
-      truncateLines,
+      lineClamp,
       ...other
-    } = props as IWithAsProp<ITextProps>;
+    } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const { combineStyles, globalStyles } = useStyles({
-      componentName: 'Text',
-      styles: [textStyles, styles],
+    const modifiers = {
+      dimmed,
+      truncate,
+      ['line-clamp']: lineClamp,
+      ['gutter-bottom']: gutterBottom,
+      variant,
+      size,
+    };
+
+    const { getStyles } = useStyles<ITextStylesFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles: textStyles,
+      style,
+      variant,
+      modifiers,
     });
 
-    const rootElement = as ?? textTagMap[`${variant}$${size}`];
+    const rootElement = as ?? textTagMap[variant][size];
 
     return (
-      <Base
-        as={rootElement}
+      <Box
         {...other}
-        sx={[
-          globalStyles,
-          combineStyles(
-            'host',
-            dimmed && 'host$dimmed',
-            truncate && commonStyles.truncate,
-            !!truncateLines &&
-              truncateLines > 0 &&
-              commonStyles.truncateLines(truncateLines),
-            gutterBottom && 'host$gutterBottom',
-            `${variant}$${size}`,
-            sx,
-          ),
-        ]}
+        as={rootElement}
+        {...getStyles('root', {
+          style:
+            !!lineClamp && lineClamp > 0
+              ? assignInlineVars({
+                  [textStyles.tokens.lineClamp]: String(lineClamp),
+                })
+              : undefined,
+        })}
         ref={forwardedRef}
-      >
-        {children}
-      </Base>
+      />
     );
-  }),
+  },
 );
