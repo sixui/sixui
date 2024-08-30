@@ -17,16 +17,18 @@ export type IPaperCornerPosition =
   | 'bottomRight'
   | 'bottomLeft';
 
+export type IPaperOwnProps = IPaperBaseOwnProps & {
+  elevation?: IThemeElevationLevel;
+  corner?:
+    | IThemeShapeCornerSize
+    | Partial<Record<IPaperCornerPosition, IThemeShapeCornerSize>>;
+  surface?: keyof IThemeColorScheme;
+  outlined?: boolean;
+};
+
 export type IPaperProps = IBoxProps &
   IStylesProps<IPaperStylesFactory> &
-  IPaperBaseOwnProps & {
-    elevation?: IThemeElevationLevel;
-    corner?:
-      | IThemeShapeCornerSize
-      | Partial<Record<IPaperCornerPosition, IThemeShapeCornerSize>>;
-    surface?: keyof IThemeColorScheme;
-    outlined?: boolean;
-  };
+  IPaperOwnProps;
 
 export type IPaperFactory = IPolymorphicComponentFactory<{
   props: IPaperProps;

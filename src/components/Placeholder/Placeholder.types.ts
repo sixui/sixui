@@ -1,14 +1,27 @@
-import type { IOmit } from '~/helpers/types';
-import type { IBaseProps } from '../Base';
-import type { IPlaceholderStylesKey } from './Placeholder.styles';
-import type { IPaperProps } from '../Paper';
+import type { IComponentFactory } from '~/utils/componentFactory';
+import type { IStylesProps } from '~/hooks/useStyles2';
+import type { IBoxProps } from '../Box';
+import type { IPaperOwnProps } from '../Paper';
+import type {
+  placeholderStyles,
+  IPlaceholderStylesFactory,
+} from './Placeholder.css';
 
-export type IPlaceholderProps = IBaseProps<IPlaceholderStylesKey> &
-  IOmit<IPaperProps, 'styles'> & {
-    label?: string;
-    innerStyles?: IPaperProps['innerStyles'];
-    crosshairs?: boolean;
-    disabled?: boolean;
-    width?: string | number;
-    height?: string | number;
-  };
+export type IPlaceholderOwnProps = {
+  label?: string;
+  crosshairs?: boolean;
+  disabled?: boolean;
+  width?: string | number;
+  height?: string | number;
+};
+
+export type IPlaceholderProps = IBoxProps &
+  IStylesProps<IPlaceholderStylesFactory> &
+  IPaperOwnProps &
+  IPlaceholderOwnProps;
+
+export type IPlaceholderFactory = IComponentFactory<{
+  props: IPlaceholderProps;
+  ref: HTMLDivElement;
+  styles: typeof placeholderStyles;
+}>;

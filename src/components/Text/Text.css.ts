@@ -7,10 +7,6 @@ import { space } from '~/helpers/styles/space';
 import { px } from '~/helpers/styles/px';
 import { themeTokens } from '../ThemeProvider';
 
-const [tokensClassName, tokens] = createTheme({
-  lineClamp: 'unset',
-});
-
 type IModifier =
   | 'variant'
   | 'size'
@@ -19,9 +15,14 @@ type IModifier =
   | 'line-clamp'
   | 'gutter-bottom';
 
+const [tokensClassName, tokens] = createTheme({
+  lineClamp: 'unset',
+});
+
 const classNames = {
   root: style({
     margin: 0,
+
     selectors: {
       [getModifierSelector<IModifier>('dimmed')]: {
         color: themeTokens.colorScheme.onSurfaceVariant,

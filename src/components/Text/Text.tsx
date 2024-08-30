@@ -83,7 +83,7 @@ export const Text = polymorphicComponentFactory<ITextFactory>(
         as={rootElement}
         {...getStyles('root', {
           style:
-            !!lineClamp && lineClamp > 0
+            typeof lineClamp === 'number'
               ? assignInlineVars({
                   [textStyles.tokens.lineClamp]: String(lineClamp),
                 })

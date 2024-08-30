@@ -16,7 +16,7 @@ const [tokensClassName, tokens] = createTheme({
     minSize: '16px',
     dotScale: '0.5', // 8px
   },
-  labelText: {
+  label: {
     color: themeTokens.colorScheme.onError,
     typography: themeTokens.typeScale.label.sm,
   },
@@ -70,8 +70,8 @@ const classNames = {
   }),
   label: style({
     position: 'relative',
-    color: tokens.labelText.color,
-    ...getTypographyStyles(tokens.labelText.typography),
+    color: tokens.label.color,
+    ...getTypographyStyles(tokens.label.typography),
   }),
 };
 

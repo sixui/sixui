@@ -1,10 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
 
 import type { IPlaceholderProps } from './Placeholder.types';
-import { scaleTokens } from '~/themes/base/scale.stylex';
-import { ComponentShowcase } from '../ComponentShowcase';
+import { makeComponentShowcase } from '../ComponentShowcase';
 import { Placeholder } from './Placeholder';
+import { textStoriesStyles } from './Placeholder.stories.css';
+
+const { classNames } = textStoriesStyles;
 
 const meta = {
   component: Placeholder,
@@ -12,21 +13,15 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const styles = stylex.create({
-  host: {
-    width: `calc(96px * ${scaleTokens.scale})`,
-    height: `calc(96px * ${scaleTokens.scale})`,
-  },
-});
-
 const defaultArgs = {
-  sx: styles.host,
+  className: classNames.container,
 } satisfies Partial<IPlaceholderProps>;
+
+const PlaceholderShowcase = makeComponentShowcase(Placeholder);
 
 export const Basic: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={Placeholder}
+    <PlaceholderShowcase
       props={props}
       cols={[{}, { props: { corner: 'md' } }, { props: { corner: 'full' } }]}
     />

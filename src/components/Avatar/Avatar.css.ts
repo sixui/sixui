@@ -15,7 +15,7 @@ const [tokensClassName, tokens] = createTheme({
     shape: themeTokens.shape.corner.full,
     color: themeTokens.colorScheme.primaryContainer,
   },
-  labelText: {
+  label: {
     color: themeTokens.colorScheme.onPrimaryContainer,
     typography: themeTokens.typeScale.title.md,
   },
@@ -74,8 +74,8 @@ const classNames = {
     justifyContent: 'center',
     flexShrink: 0,
     textTransform: 'uppercase',
-    color: tokens.labelText.color,
-    ...getTypographyStyles(tokens.labelText.typography),
+    color: tokens.label.color,
+    ...getTypographyStyles(tokens.label.typography),
   }),
 };
 

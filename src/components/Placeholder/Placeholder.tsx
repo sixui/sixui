@@ -1,59 +1,66 @@
-import { forwardRef } from 'react';
-
-import type { IPlaceholderProps } from './Placeholder.types';
-import { useStyles } from '~/hooks/useStyles';
+import type { IPlaceholderFactory } from './Placeholder.types';
+import { componentFactory } from '~/utils/componentFactory';
+import { useProps } from '~/hooks/useProps';
+import { useStyles } from '~/hooks/useStyles2';
+// import { sizeToString } from '~/helpers/sizeToString';
 import { Paper } from '../Paper';
-import { placeholderStyles } from './Placeholder.styles';
-import { placeholderTheme } from './Placeholder.stylex';
-import { commonStyles } from '~/helpers/commonStyles';
-import { sizeToString } from '~/helpers/sizeToString';
+import {
+  placeholderStyles,
+  type IPlaceholderStylesFactory,
+} from './Placeholder.css';
 
-export const Placeholder = forwardRef<HTMLDivElement, IPlaceholderProps>(
-  function Placeholder(props, forwardedRef) {
+const COMPONENT_NAME = 'Placeholder';
+
+export const Placeholder = componentFactory<IPlaceholderFactory>(
+  (props, forwardedRef) => {
     const {
-      innerStyles,
-      styles,
-      sx,
+      classNames,
+      className,
+      style,
       surface = 'surfaceContainerHighest',
       corner = 'sm',
-      label,
       children,
+      label,
       crosshairs,
       disabled,
       width,
       height,
       ...other
-    } = props;
+    } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const { combineStyles, getStyles, globalStyles } = useStyles({
-      componentName: 'Placeholder',
-      styles: [placeholderStyles, styles],
+    const modifiers = {
+      crosshairs,
+      disabled,
+    };
+
+    const { getStyles } = useStyles<IPlaceholderStylesFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles: placeholderStyles,
+      style,
+      modifiers,
     });
-    const widthAsString = width !== undefined ? sizeToString(width) : undefined;
-    const heightAsString =
-      height !== undefined ? sizeToString(height) : undefined;
+
+    // FIXME: handle scale
+    // const widthAsString = width !== undefined ? sizeToString(width) : undefined;
+    // const heightAsString =
+    //   height !== undefined ? sizeToString(height) : undefined;
+
+    // widthAsString !== undefined && commonStyles.width(widthAsString),
+    //         heightAsString !== undefined && commonStyles.height(heightAsString),
+    //         disabled ? 'host$disabled' : null,
 
     return (
       <Paper
-        innerStyles={innerStyles}
         {...other}
+        {...getStyles('root')}
         surface={surface}
         corner={corner}
-        sx={[
-          placeholderTheme,
-          globalStyles,
-          combineStyles(
-            'host',
-            widthAsString !== undefined && commonStyles.width(widthAsString),
-            heightAsString !== undefined && commonStyles.height(heightAsString),
-            disabled ? 'host$disabled' : null,
-          ),
-          sx,
-        ]}
         ref={forwardedRef}
       >
-        {crosshairs ? <div {...getStyles('crosshairs')} /> : null}
-        {label ? <div {...getStyles('label')}>{label}</div> : null}
+        {crosshairs && <div {...getStyles('crosshairs')} />}
+        {label && <div {...getStyles('label')}>{label}</div>}
         {children}
       </Paper>
     );
