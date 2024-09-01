@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import cx from 'clsx';
 
-import type { IInteractionState } from '~/hooks/useInteractions';
+import type { IInteractionsState } from '~/hooks/useInteractions';
 import {
   makeComponentShowcase,
   type IComponentPresentation,
@@ -17,7 +17,7 @@ import { useStateLayer } from './useStateLayer';
 const { tokensClassName, classNames } = stateLayerStoriesStyles;
 
 type IDemoProps = {
-  staticInteractionState?: IInteractionState;
+  staticInteractionState?: IInteractionsState;
   disabled?: boolean;
 };
 

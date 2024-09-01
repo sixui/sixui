@@ -1,9 +1,21 @@
-import type { IBaseProps } from '../Base';
-import type { IVisualState } from '../VisualState';
-import type { IFocusRingStylesKey } from './FocusRing.styles';
+import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IStylesProps } from '~/utils/styles/useStyles';
+import type { IInteractionsState } from '~/hooks/useInteractions';
+import type { IBoxProps } from '../Box';
+import type { focusRingStyles, IFocusRingStylesFactory } from './FocusRing.css';
 
-export type IFocusRingProps = IBaseProps<IFocusRingStylesKey> & {
-  visualState?: IVisualState;
-  for?: React.RefObject<HTMLElement>;
-  inward?: boolean;
+export type IFocusRingVariant = 'inward' | 'outward';
+
+export type IFocusRingOwnProps = {
+  interactionsState: IInteractionsState;
 };
+
+export type IFocusRingProps = IBoxProps &
+  IStylesProps<IFocusRingStylesFactory> &
+  IFocusRingOwnProps;
+
+export type IFocusRingFactory = IComponentFactory<{
+  props: IFocusRingProps;
+  ref: HTMLDivElement;
+  styles: typeof focusRingStyles;
+}>;

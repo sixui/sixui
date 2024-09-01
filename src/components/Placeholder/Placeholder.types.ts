@@ -1,4 +1,4 @@
-import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IStylesProps } from '~/utils/styles/useStyles';
 import type { IBoxProps } from '../Box';
 import type { IPaperOwnProps } from '../Paper';
@@ -7,7 +7,7 @@ import type {
   IPlaceholderStylesFactory,
 } from './Placeholder.css';
 
-export type IPlaceholderOwnProps = {
+export type IPlaceholderOwnProps = IPaperOwnProps & {
   label?: string;
   crosshairs?: boolean;
   disabled?: boolean;
@@ -17,11 +17,11 @@ export type IPlaceholderOwnProps = {
 
 export type IPlaceholderProps = IBoxProps &
   IStylesProps<IPlaceholderStylesFactory> &
-  IPaperOwnProps &
   IPlaceholderOwnProps;
 
-export type IPlaceholderFactory = IComponentFactory<{
+export type IPlaceholderFactory = IPolymorphicComponentFactory<{
   props: IPlaceholderProps;
-  ref: HTMLDivElement;
+  defaultRef: HTMLDivElement;
+  defaultRoot: 'div';
   styles: typeof placeholderStyles;
 }>;

@@ -14,11 +14,11 @@ export type IInteractionStatus =
   | 'dragged'
   | 'hovered';
 
-export type IInteractionState = Partial<Record<IInteractionStatus, boolean>>;
+export type IInteractionsState = Partial<Record<IInteractionStatus, boolean>>;
 
 export type IUseInteractionsProps = {
   /** The static interaction state. */
-  staticState?: IInteractionState;
+  staticState?: IInteractionsState;
 
   /**
    * This strategy describes how the local state should be combined with the
@@ -62,10 +62,10 @@ export type IInteractions<TElement extends HTMLElement = HTMLElement> = {
   targetRef: React.RefObject<TElement>;
 
   /** The current interaction state of the target. */
-  state: IInteractionState;
+  state: IInteractionsState;
 
   /** The static interaction state. */
-  staticState?: IInteractionState;
+  staticState?: IInteractionsState;
 
   /** The combined interaction state of the target. */
   combinedStatus?: IInteractionStatus;
@@ -87,10 +87,13 @@ export const useInteractions = <TElement extends HTMLElement>(
   } = props ?? {};
 
   const targetRef = useRef<TElement>(null);
+
   const localStateReplaced = staticState && staticStateStrategy === 'replace';
-  const { focusProps, isFocusVisible: focused } = useFocusRing({
+  const { focusProps, isFocusVisible } = useFocusRing({
     isTextInput,
   });
+  const focused = isFocusVisible && !disabled;
+
   const currentTarget = useRef<EventTarget | null>(null);
   const { hoverProps, isHovered: hoveredWithin } = useHover({
     ...props?.hoverEvents,
@@ -106,6 +109,7 @@ export const useInteractions = <TElement extends HTMLElement>(
     },
     isDisabled: disabled || localStateReplaced,
   });
+
   const { pressProps, isPressed: pressed } = usePress({
     ...props?.pressEvents,
     isDisabled: disabled || localStateReplaced,
@@ -122,8 +126,14 @@ export const useInteractions = <TElement extends HTMLElement>(
     [hoverProps, pressProps, focusProps],
   );
 
-  const state = useMemo<IInteractionState>(() => {
-    const localState = {
+  const state = useMemo<IInteractionsState>(() => {
+    if (disabled) {
+      return {
+        disabled,
+      };
+    }
+
+    const localState: IInteractionsState = {
       disabled,
       pressed,
       dragged,

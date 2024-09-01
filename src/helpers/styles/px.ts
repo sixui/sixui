@@ -28,7 +28,10 @@ const getNumericValue = (value: number | string): number | undefined => {
 };
 
 export const px = (value: number | string): string => {
-  if (value === 'auto' || value === 'unset') {
+  if (
+    typeof value === 'string' &&
+    ['auto', 'inherit', 'unset'].includes(value)
+  ) {
     return value;
   }
 

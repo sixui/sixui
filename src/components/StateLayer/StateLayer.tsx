@@ -2,7 +2,7 @@ import { useMergeRefs } from '@floating-ui/react';
 
 import type { IStateLayerFactory } from './StateLayer.types';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/hooks/useProps';
+import { useProps } from '~/utils/component/useProps';
 import { useStyles } from '~/utils/styles/useStyles';
 import { Box } from '../Box';
 import {

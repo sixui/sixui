@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import type { IAvatarFactory } from './Avatar.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useProps } from '~/hooks/useProps';
+import { useProps } from '~/utils/component/useProps';
 import { useStyles } from '~/utils/styles/useStyles';
 import { useImageLoaded } from '~/hooks/useImageLoaded';
 import { hslColorFromString } from '~/helpers/colors/hslColorFromString';

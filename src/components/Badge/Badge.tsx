@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import type { IBadgeFactory } from './Badge.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useProps } from '~/hooks/useProps';
+import { useProps } from '~/utils/component/useProps';
 import { useStyles } from '~/utils/styles/useStyles';
 import { isNumeric } from '~/helpers/isNumeric';
 import { Box } from '../Box';

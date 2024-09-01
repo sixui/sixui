@@ -1,6 +1,9 @@
 import { createTheme, style } from '@vanilla-extract/css';
 
-import { stylesFactory, type IStylesFactory } from '~/utils/styles/stylesFactory';
+import {
+  stylesFactory,
+  type IStylesFactory,
+} from '~/utils/styles/stylesFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
@@ -25,10 +28,10 @@ const [tokensClassName, tokens] = createTheme({
 const classNames = {
   root: style({
     position: 'relative',
-    overflow: 'hidden',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    textAlign: 'center',
     width: px(tokens.container.width),
     height: px(tokens.container.height),
 
@@ -75,8 +78,8 @@ const classNames = {
 
 export type IPlaceholderStylesFactory = IStylesFactory<{
   styleName: keyof typeof classNames;
-  modifier: IModifier;
   tokens: typeof tokens;
+  modifier: IModifier;
 }>;
 
 export const placeholderStyles = stylesFactory<IPlaceholderStylesFactory>({

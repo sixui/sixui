@@ -1,6 +1,6 @@
 import type { IElevationFactory } from './Elevation.types';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/hooks/useProps';
+import { useProps } from '~/utils/component/useProps';
 import { useStyles } from '~/utils/styles/useStyles';
 import { Box } from '../Box';
 import { elevationStyles, type IElevationStylesFactory } from './Elevation.css';

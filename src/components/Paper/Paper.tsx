@@ -2,7 +2,7 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import type { IPaperFactory } from './Paper.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useProps } from '~/hooks/useProps';
+import { useProps } from '~/utils/component/useProps';
 import { useStyles } from '~/utils/styles/useStyles';
 import { getContainerTextColor } from '~/utils/getContainerTextColor';
 import { PaperBase } from '../PaperBase';
@@ -11,6 +11,8 @@ import { elevationLevelPreset } from '../Elevation/Elevation.css';
 import { paperStyles, type IPaperStylesFactory } from './Paper.css';
 
 const COMPONENT_NAME = 'Paper';
+
+// FIXME: use sprinkles?
 
 export const Paper = polymorphicComponentFactory<IPaperFactory>(
   (props, forwardedRef) => {

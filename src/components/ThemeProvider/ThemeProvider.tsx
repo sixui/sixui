@@ -1,15 +1,11 @@
 import { FloatingDelayGroup } from '@floating-ui/react';
-import { useMemo, useRef, useState } from 'react';
+import { useContext, useMemo, useRef, useState } from 'react';
 import cx from 'clsx';
 
 import type { IThemeProviderProps } from './ThemeProvider.types';
 import { deepMerge } from '~/helpers/deepMerge';
 import { partialAssignInlineVars } from '~/utils/styles/partialAssignInlineVars';
-import {
-  ThemeContext,
-  useThemeContext,
-  type IThemeContextValue,
-} from './ThemeProvider.context';
+import { ThemeContext, type IThemeContextValue } from './ThemeProvider.context';
 import type { IThemeOverride } from './theme.types';
 import {
   ThemeSetterContext,
@@ -30,7 +26,7 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
     ...other
   } = props;
 
-  const themeContext = useThemeContext();
+  const themeContext = useContext(ThemeContext);
   const parentTheme = themeContext?.theme;
 
   const [dynamicTheme, setDynamicTheme] = useState<

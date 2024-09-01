@@ -11,8 +11,13 @@ export const ThemeContext = createContext<IThemeContextValue | undefined>(
   undefined,
 );
 
-export const useThemeContext = (): IThemeContextValue | undefined => {
+export const useThemeContext = (): IThemeContextValue => {
   const context = useContext(ThemeContext);
+  if (!context) {
+    throw new Error(
+      '[@sixui] You forgot to wrap your component in <ThemeProvider />.',
+    );
+  }
 
   return context;
 };

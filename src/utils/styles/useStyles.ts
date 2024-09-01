@@ -76,8 +76,7 @@ export const useStyles = <TPayload extends IStylesFactoryPayload>(
     rootStyleName = 'root',
     modifiers,
   } = props;
-  const themeContext = useThemeContext();
-  const theme = themeContext?.theme;
+  const { theme } = useThemeContext();
 
   const getStyles: IUseStylesResult<TPayload>['getStyles'] = useCallback(
     (styleName, options) => {
@@ -98,7 +97,7 @@ export const useStyles = <TPayload extends IStylesFactoryPayload>(
                   [
                     styles.classNames,
                     classNames,
-                    theme?.components?.[componentName]?.classNames,
+                    theme.components?.[componentName]?.classNames,
                   ].map((classNames) => classNames?.[styleName]),
                   options?.className,
                 ]
@@ -120,7 +119,7 @@ export const useStyles = <TPayload extends IStylesFactoryPayload>(
     [
       componentName,
       className,
-      theme?.components,
+      theme.components,
       classNames,
       rootStyleName,
       modifiers,

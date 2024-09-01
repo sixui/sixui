@@ -1,95 +1,66 @@
-import { forwardRef, useCallback, useEffect, useRef, useState } from 'react';
-import { useMergeRefs } from '@floating-ui/react';
+import type { IFocusRingFactory } from './FocusRing.types';
+import { componentFactory } from '~/utils/component/componentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { useStyles } from '~/utils/styles/useStyles';
+import { Box } from '../Box';
+import { focusRingStyles, type IFocusRingStylesFactory } from './FocusRing.css';
 
-import type { IFocusRingProps } from './FocusRing.types';
-import { useStyles } from '~/hooks/useStyles';
-import { Base } from '../Base';
-import { focusRingStyles } from './FocusRing.styles';
-import { focusRingTheme } from './FocusRing.stylex';
+const COMPONENT_NAME = 'FocusRing';
 
-const HANDLED_BY_FOCUS_RING = Symbol('handledByFocusRing');
-
-type IFocusRingEvent = Event & {
-  [HANDLED_BY_FOCUS_RING]?: true;
-};
-
-export const FocusRing = forwardRef<HTMLInputElement, IFocusRingProps>(
-  function FocusRing(props, forwardedRef) {
-    const { styles, sx, visualState, for: forElementRef, inward } = props;
-
-    const { combineStyles, globalStyles } = useStyles({
-      componentName: 'FocusRing',
-      styles: [focusRingStyles, styles],
+export const FocusRing = componentFactory<IFocusRingFactory>(
+  (props, forwardedRef) => {
+    const {
+      classNames,
+      className,
+      style,
+      variant = 'outward',
+      interactionsState,
+      ...other
+    } = useProps({
+      componentName: COMPONENT_NAME,
+      props,
     });
 
-    const hostRef = useRef<HTMLDivElement>(null);
-    const handleRef = useMergeRefs([forwardedRef, hostRef]);
+    const { getStyles } = useStyles<IFocusRingStylesFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles: focusRingStyles,
+      style,
+      variant,
+    });
 
-    const [visible, setVisible] = useState(false);
-
-    const getControl = useCallback(
-      () => forElementRef?.current ?? hostRef?.current?.parentElement,
-      [forElementRef],
-    );
-
-    const handleEvent = useCallback(
-      (event: IFocusRingEvent): void => {
-        if (event[HANDLED_BY_FOCUS_RING]) {
-          // This ensures the focus ring does not activate when multiple focus rings
-          // are used within a single component.
-          return;
-        }
-
-        const control = getControl();
-
-        switch (event.type) {
-          case 'focus':
-            setVisible(control?.matches(':focus-visible') ?? false);
-            break;
-
-          case 'blur':
-          case 'pointerdown':
-            setVisible(false);
-            break;
-        }
-
-        // eslint-disable-next-line no-param-reassign
-        event[HANDLED_BY_FOCUS_RING] = true;
-      },
-      [getControl],
-    );
-
-    useEffect(() => {
-      const control = getControl();
-      if (!control) {
-        return;
-      }
-
-      const events = ['focus', 'blur', 'pointerdown'] as const;
-      events.forEach((event) => control.addEventListener(event, handleEvent));
-
-      return () =>
-        events.forEach((event) =>
-          control.removeEventListener(event, handleEvent),
-        );
-    }, [getControl, handleEvent]);
-
-    const visibleOnInit = visualState?.focused;
+    const modifiers = {
+      visible: interactionsState.focused,
+    };
 
     return (
-      <Base
-        ref={handleRef}
-        sx={[
-          focusRingTheme,
-          globalStyles,
-          combineStyles(
-            'host',
-            (visible || visibleOnInit) && 'host$visible',
-            inward ? 'host$inward' : 'host$outward',
-          ),
-          sx,
-        ]}
+      <Box
+        {...other}
+        {...getStyles('root')}
+        aria-hidden
+        modifiers={modifiers}
+        ref={forwardedRef}
       />
     );
+
+    // return (
+    //   <Base
+    //     ref={handleRef}
+    //     sx={[
+    //       focusRingTheme,
+    //       globalStyles,
+    //       combineStyles(
+    //         'host',
+    //         (visible || visibleOnInit) && 'host$visible',
+    //         inward ? 'host$inward' : 'host$outward',
+    //       ),
+    //       sx,
+    //     ]}
+    //   />
+    // );
   },
 );
+
+FocusRing.styles = focusRingStyles;
+FocusRing.displayName = `@sixui/${COMPONENT_NAME}`;

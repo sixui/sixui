@@ -1,8 +1,8 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import type { IPlaceholderFactory } from './Placeholder.types';
-import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/hooks/useProps';
+import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import { useProps } from '~/utils/component/useProps';
 import { useStyles } from '~/utils/styles/useStyles';
 import { sizeToString } from '~/helpers/sizeToString';
 import { Paper } from '../Paper';
@@ -13,7 +13,7 @@ import {
 
 const COMPONENT_NAME = 'Placeholder';
 
-export const Placeholder = componentFactory<IPlaceholderFactory>(
+export const Placeholder = polymorphicComponentFactory<IPlaceholderFactory>(
   (props, forwardedRef) => {
     const {
       classNames,

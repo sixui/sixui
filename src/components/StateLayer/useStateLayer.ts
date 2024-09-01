@@ -4,13 +4,13 @@ import { useRipple } from '~/hooks/useRipple';
 import {
   useInteractions,
   type IInteractions,
-  type IInteractionState,
+  type IInteractionsState,
 } from '~/hooks/useInteractions';
 import { PressEvent } from 'react-aria';
 
 export type IUseStateLayerProps = {
   disabled?: boolean;
-  staticInteractionState?: IInteractionState;
+  staticInteractionState?: IInteractionsState;
 };
 
 export type IStateLayerContext<TElement extends HTMLElement = HTMLElement> = {

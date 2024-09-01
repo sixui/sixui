@@ -2,7 +2,7 @@ import type {
   IComponentShowcaseFactory,
   IComponentPresentation,
 } from './ComponentShowcase.types';
-import { useProps } from '~/hooks/useProps';
+import { useProps } from '~/utils/component/useProps';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useStyles } from '~/utils/styles/useStyles';
 import { Box } from '../Box';

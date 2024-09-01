@@ -1,154 +1,145 @@
-import { useRef } from 'react';
-
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
 
-import type { IFocusRingProps } from './FocusRing.types';
-import { shapeTokens } from '~/themes/base/shape.stylex';
-import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { spacingTokens } from '~/themes/base/spacing.stylex';
-import { outlineTokens } from '~/themes/base/outline.stylex';
-import { ComponentShowcase } from '../ComponentShowcase';
-import { Placeholder, type IPlaceholderProps } from '../Placeholder';
+import type { IFocusRingVariant } from './FocusRing.types';
+import { makeComponentShowcase } from '../ComponentShowcase';
+import { Placeholder, type IPlaceholderOwnProps } from '../Placeholder';
 import { FocusRing } from './FocusRing';
-import { focusRingTokens } from './FocusRing.stylex';
+import {
+  useInteractions,
+  type IInteractionsState,
+} from '~/hooks/useInteractions';
 
 // https://github.com/material-components/material-web/blob/main/focus/demo/stories.ts
 
+type IDemoProps = IPlaceholderOwnProps & {
+  className?: string;
+  staticInteractionState?: IInteractionsState;
+  variant?: IFocusRingVariant;
+  disabled?: boolean;
+  children?: React.ReactNode;
+};
+
+const FocusRingDemo: React.FC<IDemoProps> = (props) => {
+  const {
+    className,
+    label,
+    staticInteractionState,
+    variant,
+    disabled,
+    children,
+    ...other
+  } = props;
+  const interactions = useInteractions({
+    staticState: staticInteractionState,
+    disabled,
+  });
+
+  return (
+    <Placeholder
+      width={96}
+      height={96}
+      corner='sm'
+      role='button'
+      tabIndex={0}
+      className={className}
+      label={label}
+      interactions={interactions}
+      disabled={disabled}
+      {...other}
+    >
+      <FocusRing variant={variant} interactionsState={interactions.state} />
+      {children}
+    </Placeholder>
+  );
+};
+
 const meta = {
-  component: FocusRing,
-} satisfies Meta<typeof FocusRing>;
+  component: FocusRingDemo,
+} satisfies Meta<typeof FocusRingDemo>;
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {
-  styles: stylex.create({
-    host: {
-      [focusRingTokens.shape]: shapeTokens.corner$md,
-    },
-  }),
-} satisfies Partial<IFocusRingProps>;
+const defaultArgs = {} satisfies Partial<IDemoProps>;
 
-const styles = stylex.create({
-  placeholder: {
-    padding: spacingTokens.padding$4,
-  },
-  input: {
-    width: '100%',
-    height: '100%',
-    textAlign: 'center',
-    borderWidth: outlineTokens.width$sm,
-    borderStyle: 'solid',
-    borderColor: colorSchemeTokens.outline,
-    borderRadius: shapeTokens.corner$md,
-  },
-});
-
-const BasePlaceholder: React.FC<IPlaceholderProps> = (props) => (
-  <Placeholder {...props} sx={styles.placeholder} width={96} height={96} />
-);
+const FocusRingShowcase = makeComponentShowcase(FocusRingDemo);
 
 export const Variants: IStory = {
   render: (props) => (
-    <ComponentShowcase<IFocusRingProps>
-      component={(variantArgs) => (
-        <BasePlaceholder label={variantArgs.inward ? 'Inward' : 'Outward'}>
-          <FocusRing {...props} {...variantArgs} />
-        </BasePlaceholder>
-      )}
+    <FocusRingShowcase
       props={props}
-      cols={[{ props: { inward: false } }, { props: { inward: true } }]}
+      cols={[
+        { props: { label: 'Unfocused' } },
+        {
+          props: {
+            staticInteractionState: {
+              focused: true,
+            },
+            variant: 'inward',
+            label: 'Inward',
+          },
+        },
+        {
+          props: {
+            staticInteractionState: {
+              focused: true,
+            },
+            variant: 'outward',
+            label: 'Outward',
+          },
+        },
+      ]}
     />
   ),
-  args: {
-    ...defaultArgs,
-    visualState: {
-      focused: true,
-    },
-  },
+  args: defaultArgs,
 };
 
 export const Outward: IStory = {
   render: (props) => (
-    <ComponentShowcase<IFocusRingProps>
-      component={(variantArgs) => (
-        <BasePlaceholder role='button' tabIndex={0}>
-          <FocusRing {...props} {...variantArgs} />
-        </BasePlaceholder>
-      )}
+    <FocusRingShowcase
       props={props}
-      cols={[{}, {}, {}]}
-    />
-  ),
-  args: defaultArgs,
-};
-
-export const Inward: IStory = {
-  render: (props) => (
-    <ComponentShowcase<IFocusRingProps>
-      component={(variantArgs) => (
-        <BasePlaceholder role='button' tabIndex={0}>
-          <FocusRing {...props} {...variantArgs} />
-        </BasePlaceholder>
-      )}
-      props={props}
-      cols={[{}, {}, {}]}
+      cols={[
+        { props: { label: '1' } },
+        { props: { label: '2' } },
+        { props: { label: '3' } },
+      ]}
     />
   ),
   args: {
     ...defaultArgs,
-    inward: true,
+    variant: 'outward',
   },
 };
 
-const AttachedComponent: React.FC<IFocusRingProps> = (props) => {
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  return (
-    <BasePlaceholder>
-      <FocusRing {...props} for={inputRef} />
-      <input {...stylex.props(styles.input)} ref={inputRef} />
-    </BasePlaceholder>
-  );
-};
-
-export const Attached: IStory = {
+export const Inward: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={(variantArgs) => (
-        <AttachedComponent {...props} {...variantArgs} />
-      )}
+    <FocusRingShowcase
       props={props}
-      cols={[{}, {}, {}]}
+      cols={[
+        { props: { label: '1' } },
+        { props: { label: '2' } },
+        { props: { label: '3' } },
+      ]}
     />
   ),
-  args: defaultArgs,
+  args: {
+    ...defaultArgs,
+    variant: 'inward',
+  },
 };
 
-const MultiActionComponent: React.FC<IFocusRingProps> = (props) => {
-  const secondaryActionRef = useRef<HTMLInputElement>(null);
-
-  return (
-    <BasePlaceholder role='button' tabIndex={0}>
-      <FocusRing {...props} />
-      <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-        <FocusRing {...props} for={secondaryActionRef} />
-        <input {...stylex.props(styles.input)} ref={secondaryActionRef} />
-      </div>
-    </BasePlaceholder>
-  );
-};
+const FocusRingShowcase2 = makeComponentShowcase((props: IDemoProps) => (
+  <FocusRingDemo {...props}>
+    <FocusRingDemo
+      {...props}
+      surface='primaryContainer'
+      width='50%'
+      height='50%'
+    />
+  </FocusRingDemo>
+));
 
 export const MultiAction: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={(variantArgs) => (
-        <MultiActionComponent {...props} {...variantArgs} />
-      )}
-      props={props}
-      cols={[{}, {}, {}]}
-    />
-  ),
+  render: (props) => <FocusRingShowcase2 props={props} cols={[{}, {}, {}]} />,
   args: defaultArgs,
 };
 
