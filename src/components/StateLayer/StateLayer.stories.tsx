@@ -72,7 +72,7 @@ const UnboundedDemo: React.FC<IDemoProps> = (props) => {
         as={StateLayer}
         width='$12'
         height='$12'
-        surface='$surface'
+        surface='$transparent'
         corner='$sm'
         outline='$xs'
         context={stateLayer}

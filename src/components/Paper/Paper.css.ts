@@ -73,7 +73,10 @@ export type IPaperSprinkles = Parameters<typeof paperSprinkles>[0];
 
 const backgroundSprinklesProps = defineProperties({
   staticProperties: {
-    backgroundColor: themeTokens.colorScheme,
+    backgroundColor: {
+      ...themeTokens.colorScheme,
+      transparent: 'transparent',
+    },
   },
   shorthands: {
     surface: ['backgroundColor'],
