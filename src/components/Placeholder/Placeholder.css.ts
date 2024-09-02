@@ -1,4 +1,4 @@
-import { createTheme, style } from '@vanilla-extract/css';
+import { createTheme } from '@vanilla-extract/css';
 
 import {
   stylesFactory,
@@ -9,6 +9,7 @@ import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { themeTokens } from '../ThemeProvider';
+import { createStyles } from '~/utils/styles/createStyles';
 
 type IModifier = 'disabled';
 
@@ -21,8 +22,8 @@ const [tokensClassName, tokens] = createTheme({
   },
 });
 
-const classNames = {
-  root: style({
+const classNames = createStyles({
+  root: {
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
@@ -34,8 +35,8 @@ const classNames = {
         opacity: themeTokens.state.opacity.disabled,
       },
     },
-  }),
-  crosshairs: style({
+  },
+  crosshairs: {
     overflow: 'hidden',
     borderRadius: 'inherit',
     position: 'absolute',
@@ -64,13 +65,13 @@ const classNames = {
       transformOrigin: 'top left',
       transform: 'rotate(-45deg)',
     },
-  }),
-  label: style({
+  },
+  label: {
     position: 'relative',
     padding: px(space(2)),
     ...getTypographyStyles(tokens.label.typography),
-  }),
-};
+  },
+});
 
 export type IPlaceholderStylesFactory = IStylesFactory<{
   styleName: keyof typeof classNames;

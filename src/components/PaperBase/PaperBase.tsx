@@ -10,10 +10,11 @@ const COMPONENT_NAME = 'PaperBase';
 
 export const PaperBase = polymorphicComponentFactory<IPaperBaseFactory>(
   (props, forwardedRef) => {
-    const { classNames, className, style, children, ...other } = useProps({
-      componentName: COMPONENT_NAME,
-      props,
-    });
+    const { classNames, className, style, variant, children, ...other } =
+      useProps({
+        componentName: COMPONENT_NAME,
+        props,
+      });
 
     const { getStyles } = useStyles<IPaperBaseStylesFactory>({
       componentName: COMPONENT_NAME,
@@ -21,14 +22,15 @@ export const PaperBase = polymorphicComponentFactory<IPaperBaseFactory>(
       className,
       styles: paperBaseStyles,
       style,
+      variant,
     });
 
     return (
       <Box {...other} {...other} {...getStyles('root')} ref={forwardedRef}>
         <Elevation {...getStyles('elevation')} />
         <div {...getStyles('background')} />
-        <div {...getStyles('outline')} />
         {children}
+        <div {...getStyles('outline')} />
       </Box>
     );
   },

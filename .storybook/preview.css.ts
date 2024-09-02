@@ -15,18 +15,18 @@ export const storyWrapper = style({
 
 // FIXME: delete
 export const testVariant = style({
-  border: '4px solid green',
+  // border: '4px solid green',
   selectors: {
     [getModifierSelector('variant="icon"')]: {
       vars: {
         [Avatar.styles.tokens.container.color]: 'green',
       },
-      border: '4px solid purple',
+      // border: '4px solid purple',
     },
   },
 });
 
 // FIXME: delete
 export const testBorder = style({
-  border: '4px solid green',
+  // border: '4px solid green',
 });

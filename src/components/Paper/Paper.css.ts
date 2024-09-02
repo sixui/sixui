@@ -1,10 +1,10 @@
-import { style } from '@vanilla-extract/css';
 import { defineProperties, createRainbowSprinkles } from 'rainbow-sprinkles';
 
 import {
   stylesFactory,
   type IStylesFactory,
 } from '~/utils/styles/stylesFactory';
+import { createStyles } from '~/utils/styles/createStyles';
 import { px } from '~/helpers/styles/px';
 import {
   themeTokens,
@@ -15,9 +15,9 @@ import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
 export type IPaperStyleName = keyof typeof paperStyles;
 
-const classNames = {
-  root: style({}),
-};
+const classNames = createStyles({
+  root: {},
+});
 
 export type IPaperStylesFactory = IStylesFactory<{
   styleName: keyof typeof classNames;

@@ -61,6 +61,9 @@ export const decorators: Array<Decorator> = [
             Avatar: Avatar.extend({
               defaultProps: {
                 children: '☀️',
+                outline: '$md',
+                outlineStyle: 'solid',
+                outlineColor: '$primary',
               },
               classNames: {
                 root: styles.testVariant,

@@ -14,10 +14,11 @@ const COMPONENT_NAME = 'StateLayer';
 
 export const StateLayer = componentFactory<IStateLayerFactory>(
   (props, forwardedRef) => {
-    const { classNames, className, style, context, ...other } = useProps({
-      componentName: COMPONENT_NAME,
-      props,
-    });
+    const { classNames, className, style, variant, context, ...other } =
+      useProps({
+        componentName: COMPONENT_NAME,
+        props,
+      });
 
     const { getStyles } = useStyles<IStateLayerStylesFactory>({
       componentName: COMPONENT_NAME,
@@ -25,6 +26,7 @@ export const StateLayer = componentFactory<IStateLayerFactory>(
       className,
       styles: stateLayerStyles,
       style,
+      variant,
     });
 
     const { interactions } = context;

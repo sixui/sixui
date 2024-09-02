@@ -1,9 +1,10 @@
-import { createTheme, style } from '@vanilla-extract/css';
+import { createTheme } from '@vanilla-extract/css';
 
 import {
   stylesFactory,
   type IStylesFactory,
 } from '~/utils/styles/stylesFactory';
+import { createStyles } from '~/utils/styles/createStyles';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { space } from '~/helpers/styles/space';
 import { px } from '~/helpers/styles/px';
@@ -20,77 +21,75 @@ const [tokensClassName, tokens] = createTheme({
   },
 });
 
-const root = style({});
-
-const classNames = {
-  root,
-  flex: style({
+const classNames = createStyles({
+  root: {},
+  flex: {
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: '100%',
-  }),
-  justifyStart: style({
+  },
+  justifyStart: {
     justifyContent: 'flex-start',
-  }),
-  justifyEnd: style({
+  },
+  justifyEnd: {
     justifyContent: 'flex-end',
-  }),
-  align$start: style({
+  },
+  align$start: {
     alignItems: 'start',
-  }),
-  align$center: style({
+  },
+  align$center: {
     alignItems: 'center',
-  }),
-  align$end: style({
+  },
+  align$end: {
     alignItems: 'end',
-  }),
-  align$stretch: style({
+  },
+  align$stretch: {
     alignItems: 'stretch',
-  }),
-  textRight: style({
+  },
+  textRight: {
     textAlign: 'right',
-  }),
-  groupRows: style({
+  },
+  groupRows: {
     display: 'flex',
     flexDirection: 'column',
     gap: px(space(16)),
     alignSelf: 'stretch',
-  }),
-  cols: style({
+  },
+  cols: {
     display: 'flex',
-  }),
-  gap$md: style({
+  },
+  gap$md: {
     gap: px(space(8)),
-  }),
-  gap$lg: style({
+  },
+  gap$lg: {
     gap: px(space(10)),
-  }),
-  rows: style({
+  },
+  rows: {
     display: 'flex',
     flexDirection: 'column',
-  }),
-  legendText: style({
+  },
+  legendText: {
     color: tokens.legendText.color,
     ...getTypographyStyles(tokens.legendText.typography),
-  }),
-  legendRow: style({
+  },
+  legendRow: {
     display: 'flex',
     alignItems: 'center',
     maxWidth: px(120),
-  }),
-  leftBorder: style({
+  },
+  leftBorder: {
     borderLeftWidth: themeTokens.outline.width.xs,
     borderLeftStyle: 'solid',
     borderLeftColor: tokens.outline.color,
     paddingLeft: px(space(8)),
-  }),
-  invisible: style({
+  },
+  invisible: {
     visibility: 'hidden',
-  }),
-  w100: style({
+  },
+  w100: {
     width: '100%',
-  }),
-};
+  },
+});
 
 export type IComponentShowcaseStylesFactory = IStylesFactory<{
   styleName: keyof typeof classNames;

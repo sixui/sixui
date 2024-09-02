@@ -16,6 +16,7 @@ export const Badge = polymorphicComponentFactory<IBadgeFactory>(
       classNames,
       className,
       style,
+      variant,
       value,
       maxValue,
       showZero,
@@ -29,6 +30,7 @@ export const Badge = polymorphicComponentFactory<IBadgeFactory>(
       className,
       styles: badgeStyles,
       style,
+      variant,
     });
 
     const valueAsNumber = isNumeric(value) ? Number(value) : undefined;

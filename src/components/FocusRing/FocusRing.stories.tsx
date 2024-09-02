@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IFocusRingVariant } from './FocusRing.types';
+import type { IBoxProps } from '../Box';
 import { makeComponentShowcase } from '../ComponentShowcase';
 import { Placeholder, type IPlaceholderOwnProps } from '../Placeholder';
 import { FocusRing } from './FocusRing';
@@ -11,13 +12,14 @@ import {
 
 // https://github.com/material-components/material-web/blob/main/focus/demo/stories.ts
 
-type IDemoProps = IPlaceholderOwnProps & {
-  className?: string;
-  staticInteractionState?: IInteractionsState;
-  variant?: IFocusRingVariant;
-  disabled?: boolean;
-  children?: React.ReactNode;
-};
+type IDemoProps = IBoxProps &
+  IPlaceholderOwnProps & {
+    className?: string;
+    staticInteractionState?: IInteractionsState;
+    variant?: IFocusRingVariant;
+    disabled?: boolean;
+    children?: React.ReactNode;
+  };
 
 const FocusRingDemo: React.FC<IDemoProps> = (props) => {
   const {
@@ -36,9 +38,9 @@ const FocusRingDemo: React.FC<IDemoProps> = (props) => {
 
   return (
     <Placeholder
-      width={96}
-      height={96}
-      corner='sm'
+      width='$24'
+      height='$24'
+      corner='$md'
       role='button'
       tabIndex={0}
       className={className}
@@ -131,9 +133,10 @@ const FocusRingShowcase2 = makeComponentShowcase((props: IDemoProps) => (
   <FocusRingDemo {...props}>
     <FocusRingDemo
       {...props}
-      surface='primaryContainer'
-      width='50%'
-      height='50%'
+      surface='$primaryContainer'
+      width='$12'
+      height='$12'
+      corner='$sm'
     />
   </FocusRingDemo>
 ));

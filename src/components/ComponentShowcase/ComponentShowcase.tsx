@@ -21,6 +21,7 @@ export const makeComponentShowcase = <TComponentProps,>(
       classNames,
       className,
       style,
+      variant,
       props: componentProps,
       groups,
       cols,
@@ -38,6 +39,7 @@ export const makeComponentShowcase = <TComponentProps,>(
       className,
       styles: componentShowcaseStyles,
       style,
+      variant,
     });
 
     const shouldShowRowLegends = rows?.some(({ legend }) => !!legend);

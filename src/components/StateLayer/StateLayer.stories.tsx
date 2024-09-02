@@ -1,20 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import cx from 'clsx';
 
 import type { IInteractionsState } from '~/hooks/useInteractions';
 import {
   makeComponentShowcase,
   type IComponentPresentation,
 } from '../ComponentShowcase';
-import { Box } from '../Box';
+import { Placeholder } from '../Placeholder';
 import { StateLayer } from './StateLayer';
-import { stateLayerStoriesStyles } from './StateLayer.stories.css';
 import { useStateLayer } from './useStateLayer';
 
 // https://material-web.dev/components/ripple/
 // https://github.com/material-components/material-web/blob/main/ripple/demo/stories.ts
-
-const { tokensClassName, classNames } = stateLayerStoriesStyles;
 
 type IDemoProps = {
   staticInteractionState?: IInteractionsState;
@@ -39,16 +35,16 @@ const BoundedDemo: React.FC<IDemoProps> = (props) => {
   const stateLayer = useStateLayer<HTMLDivElement>(props);
 
   return (
-    <Box
-      className={cx(
-        tokensClassName,
-        classNames.container,
-        classNames.container$bounded,
-      )}
+    <Placeholder
+      width='$24'
+      height='$24'
+      surface='$surface'
+      corner='$md'
+      outline='$xs'
       interactions={stateLayer.interactions}
     >
       <StateLayer context={stateLayer} />
-    </Box>
+    </Placeholder>
   );
 };
 
@@ -63,19 +59,25 @@ const UnboundedDemo: React.FC<IDemoProps> = (props) => {
   const stateLayer = useStateLayer<HTMLDivElement>(props);
 
   return (
-    <Box
-      className={cx(
-        tokensClassName,
-        classNames.container,
-        classNames.container$unbounded,
-      )}
+    <Placeholder
+      width='$24'
+      height='$24'
+      surface='$surface'
+      corner='$md'
+      outline='$xs'
+      outlineStyle='dashed'
       interactions={stateLayer.interactions}
     >
-      <StateLayer
-        className={cx(classNames.container, classNames.container$sm)}
+      <Placeholder
+        as={StateLayer}
+        width='$12'
+        height='$12'
+        surface='$surface'
+        corner='$sm'
+        outline='$xs'
         context={stateLayer}
       />
-    </Box>
+    </Placeholder>
   );
 };
 
@@ -91,27 +93,27 @@ const NestedDemo: React.FC<IDemoProps> = (props) => {
   const nestedStateLayer = useStateLayer<HTMLDivElement>();
 
   return (
-    <Box
-      className={cx(
-        tokensClassName,
-        classNames.container,
-        classNames.container$bounded,
-      )}
+    <Placeholder
+      width='$24'
+      height='$24'
+      surface='$surface'
+      corner='$md'
+      outline='$xs'
       interactions={stateLayer.interactions}
     >
       <StateLayer context={stateLayer} />
 
-      <Box
-        className={cx(
-          classNames.container,
-          classNames.container$sm,
-          classNames.container$nested,
-        )}
+      <Placeholder
+        width='$12'
+        height='$12'
+        surface='$surface'
+        corner='$sm'
+        outline='$xs'
         interactions={nestedStateLayer.interactions}
       >
         <StateLayer context={nestedStateLayer} />
-      </Box>
-    </Box>
+      </Placeholder>
+    </Placeholder>
   );
 };
 

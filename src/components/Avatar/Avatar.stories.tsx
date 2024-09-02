@@ -24,11 +24,14 @@ const AVATAR_IMAGE_URL_2 =
 const AVATAR_IMAGE_URL_3 =
   'https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80';
 
-const defaultArgs = {} satisfies Partial<IAvatarProps>;
+const defaultArgs = {
+  w: '$24',
+  h: '$24',
+} satisfies Partial<IAvatarProps>;
 
 const rows: Array<IComponentPresentation<IAvatarProps>> = [
-  { legend: 'Rounded', props: { variant: 'rounded' } },
-  { legend: 'Squared', props: { variant: 'squared' } },
+  { legend: 'Rounded' },
+  { legend: 'Squared', props: { corner: '$sm' } },
   { legend: 'Icon', props: { variant: 'icon' } },
 ];
 
@@ -45,7 +48,7 @@ export const Variants: IStory = {
             src: AVATAR_IMAGE_URL_1,
           },
         },
-        { props: { children: 'OP' } },
+        { props: { children: 'op' } },
         { props: { children: <FontAwesomeIcon icon={faStar} /> } },
         { props: { src: '/broken-image.jpg', alt: 'Olivier' } },
       ]}

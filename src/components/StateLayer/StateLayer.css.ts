@@ -1,9 +1,10 @@
-import { createTheme, style } from '@vanilla-extract/css';
+import { createTheme } from '@vanilla-extract/css';
 
 import {
   stylesFactory,
   type IStylesFactory,
 } from '~/utils/styles/stylesFactory';
+import { createStyles } from '~/utils/styles/createStyles';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { themeTokens } from '../ThemeProvider';
@@ -21,8 +22,8 @@ const [tokensClassName, tokens] = createTheme({
   },
 });
 
-const classNames = {
-  root: style({
+const classNames = createStyles({
+  root: {
     borderRadius: 'inherit',
     position: 'absolute',
     inset: 0,
@@ -86,8 +87,8 @@ const classNames = {
         display: 'none',
       },
     },
-  }),
-};
+  },
+});
 
 export type IStateLayerStylesFactory = IStylesFactory<{
   styleName: keyof typeof classNames;

@@ -1,9 +1,10 @@
-import { createTheme, createVar, style } from '@vanilla-extract/css';
+import { createTheme, createVar } from '@vanilla-extract/css';
 
 import {
   stylesFactory,
   type IStylesFactory,
 } from '~/utils/styles/stylesFactory';
+import { createStyles } from '~/utils/styles/createStyles';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
@@ -33,8 +34,8 @@ const vars = {
   },
 };
 
-const classNames = {
-  root: style({
+const classNames = createStyles({
+  root: {
     vars: {
       [vars.size]: `max(${tokens.container.minSize}, ${px(tokens.container.minSize)})`,
       [vars.shape.normal]: px(tokens.container.shape.normal),
@@ -56,27 +57,27 @@ const classNames = {
     transitionDuration: themeTokens.motion.duration.short.$3,
     transitionTimingFunction: themeTokens.motion.easing.standard.normal,
     whiteSpace: 'nowrap',
-  }),
-  root$dot: style({
+  },
+  root$dot: {
     borderRadius: vars.shape.dot,
     transform: `scale(${tokens.container.dotScale})`,
     padding: 0,
-  }),
-  root$invisible: style({
+  },
+  root$invisible: {
     transform: 'scale(0)',
-  }),
-  background: style({
+  },
+  background: {
     position: 'absolute',
     inset: 0,
     borderRadius: 'inherit',
     backgroundColor: tokens.container.color,
-  }),
-  label: style({
+  },
+  label: {
     position: 'relative',
     color: tokens.label.color,
     ...getTypographyStyles(tokens.label.typography),
-  }),
-};
+  },
+});
 
 export type IBadgeStylesFactory = IStylesFactory<{
   styleName: keyof typeof classNames;

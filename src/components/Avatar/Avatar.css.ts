@@ -1,21 +1,27 @@
-import { createTheme, createVar, style } from '@vanilla-extract/css';
+import { createTheme, createVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import {
   stylesFactory,
   type IStylesFactory,
 } from '~/utils/styles/stylesFactory';
-import { getVariantSelector } from '~/helpers/styles/getVariantSelector';
+import { createStyles } from '~/utils/styles/createStyles';
 import { getDensity } from '~/helpers/styles/getDensity';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
 import { themeTokens } from '../ThemeProvider';
+import { PaperBase } from '../PaperBase';
 
 const [tokensClassName, tokens] = createTheme({
   density: getDensity({ min: -3, max: 0 }),
   container: {
     size: '40px',
-    shape: themeTokens.shape.corner.full,
+    shape: {
+      topLeft: themeTokens.shape.corner.full,
+      topRight: themeTokens.shape.corner.full,
+      bottomRight: themeTokens.shape.corner.full,
+      bottomLeft: themeTokens.shape.corner.full,
+    },
     color: themeTokens.colorScheme.primaryContainer,
   },
   label: {
@@ -26,40 +32,34 @@ const [tokensClassName, tokens] = createTheme({
 
 const vars = {
   size: createVar(),
-  shape: createVar(),
 };
 
-const classNames = {
-  root: style({
+const classNames = createStyles({
+  root: {
     vars: {
       [vars.size]: calc.add(px(tokens.container.size), tokens.density),
-      [vars.shape]: px(tokens.container.shape),
+      [PaperBase.styles.tokens.container.shape.topLeft]:
+        tokens.container.shape.topLeft,
+      [PaperBase.styles.tokens.container.shape.topRight]:
+        tokens.container.shape.topRight,
+      [PaperBase.styles.tokens.container.shape.bottomRight]:
+        tokens.container.shape.bottomRight,
+      [PaperBase.styles.tokens.container.shape.bottomLeft]:
+        tokens.container.shape.bottomLeft,
+      [PaperBase.styles.tokens.container.color]: tokens.container.color,
     },
-    position: 'relative',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     width: vars.size,
     height: vars.size,
     overflow: 'hidden',
-    borderRadius: vars.shape,
     userSelect: 'none',
-    backgroundColor: tokens.container.color,
-
-    selectors: {
-      [getVariantSelector('rounded')]: {
-        vars: {
-          [tokens.container.shape]: themeTokens.shape.corner.full,
-        },
-      },
-      [getVariantSelector('squared')]: {
-        vars: {
-          [tokens.container.shape]: themeTokens.shape.corner.sm,
-        },
-      },
-    },
-  }),
-  image: style({
+    textTransform: 'uppercase',
+    color: tokens.label.color,
+  },
+  image: {
+    position: 'relative',
     width: '100%',
     height: '100%',
     textAlign: 'center',
@@ -68,19 +68,18 @@ const classNames = {
     color: 'transparent',
     // Hide the image broken icon, only works on Chrome.
     textIndent: 10000,
-  }),
-  placeholder: style({
+  },
+  placeholder: {
+    position: 'relative',
     width: '70%',
     height: '70%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     flexShrink: 0,
-    textTransform: 'uppercase',
-    color: tokens.label.color,
     ...getTypographyStyles(tokens.label.typography),
-  }),
-};
+  },
+});
 
 export type IAvatarStylesFactory = IStylesFactory<{
   styleName: keyof typeof classNames;

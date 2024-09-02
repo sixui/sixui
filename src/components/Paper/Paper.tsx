@@ -16,10 +16,11 @@ const COMPONENT_NAME = 'Paper';
 
 export const Paper = polymorphicComponentFactory<IPaperFactory>(
   (props, forwardedRef) => {
-    const { classNames, className, style, ...otherWithSprinkles } = useProps({
-      componentName: COMPONENT_NAME,
-      props,
-    });
+    const { classNames, className, style, variant, ...otherWithSprinkles } =
+      useProps({
+        componentName: COMPONENT_NAME,
+        props,
+      });
 
     const sprinkles = paperSprinkles(otherWithSprinkles);
     const backgroundSprinkles = paperBackgroundSprinkles(sprinkles.otherProps);
@@ -37,6 +38,7 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
       className,
       styles: paperStyles,
       style,
+      variant,
     });
 
     return (

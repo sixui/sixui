@@ -9,7 +9,7 @@ const COMPONENT_NAME = 'Elevation';
 
 export const Elevation = componentFactory<IElevationFactory>(
   (props, forwardedRef) => {
-    const { classNames, className, style, level, disabled, ...other } =
+    const { classNames, className, style, variant, level, disabled, ...other } =
       useProps({
         componentName: COMPONENT_NAME,
         props,
@@ -21,6 +21,7 @@ export const Elevation = componentFactory<IElevationFactory>(
       className,
       styles: elevationStyles,
       style,
+      variant,
     });
 
     return (

@@ -1,6 +1,10 @@
-import { createTheme, style } from '@vanilla-extract/css';
+import { createTheme } from '@vanilla-extract/css';
 
-import { stylesFactory, type IStylesFactory } from '~/utils/styles/stylesFactory';
+import {
+  stylesFactory,
+  type IStylesFactory,
+} from '~/utils/styles/stylesFactory';
+import { createStyles } from '~/utils/styles/createStyles';
 import { px } from '~/helpers/styles/px';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { themeTokens, type IThemeElevationLevelValues } from '../ThemeProvider';
@@ -48,8 +52,8 @@ const [tokensClassName, tokens] = createTheme({
   level: elevationLevelPreset[0],
 });
 
-const classNames = {
-  root: style({
+const classNames = createStyles({
+  root: {
     display: 'flex',
     pointerEvents: 'none',
     transitionProperty: 'box-shadow',
@@ -80,8 +84,8 @@ const classNames = {
         transition: 'none',
       },
     },
-  }),
-};
+  },
+});
 
 export type IElevationStylesFactory = IStylesFactory<{
   styleName: keyof typeof classNames;

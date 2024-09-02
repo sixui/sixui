@@ -1,11 +1,10 @@
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IStylesProps } from '~/utils/styles/useStyles';
 import type { IBoxProps } from '../Box';
+import type { IPaperOwnProps } from '../Paper';
 import type { avatarStyles, IAvatarStylesFactory } from './Avatar.css';
 
-export type IAvatarVariant = 'rounded' | 'squared';
-
-export type IAvatarOwnprops = {
+export type IAvatarOwnprops = IPaperOwnProps & {
   src?: string;
   alt?: string;
   slotProps?: {

@@ -1,9 +1,10 @@
-import { createTheme, keyframes, style } from '@vanilla-extract/css';
+import { createTheme, keyframes } from '@vanilla-extract/css';
 
 import {
   stylesFactory,
   type IStylesFactory,
 } from '~/utils/styles/stylesFactory';
+import { createStyles } from '~/utils/styles/createStyles';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { themeTokens } from '../ThemeProvider';
@@ -42,8 +43,8 @@ const outwardShrinkKeyframes = keyframes({
   '0%': { outlineWidth: px(tokens.width.active) },
 });
 
-const classNames = {
-  root: style({
+const classNames = createStyles({
+  root: {
     animationDelay: `0s, calc(${tokens.animationDuration} * 0.25)`,
     animationDuration: `calc(${tokens.animationDuration} * 0.25), calc(${tokens.animationDuration} * 0.75)`,
     animationTimingFunction: themeTokens.motion.easing.standard.normal,
@@ -72,8 +73,8 @@ const classNames = {
         borderColor: 'currentColor',
       },
     },
-  }),
-};
+  },
+});
 
 export type IFocusRingStylesFactory = IStylesFactory<{
   styleName: keyof typeof classNames;

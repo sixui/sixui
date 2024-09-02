@@ -13,7 +13,8 @@ export type IStateLayerOwnProps = {
 
 export interface IStateLayerProps
   extends IBoxProps,
-    IStylesProps<IStateLayerStylesFactory> {}
+    IStylesProps<IStateLayerStylesFactory>,
+    IStateLayerOwnProps {}
 
 export type IStateLayerFactory = IComponentFactory<{
   props: IStateLayerProps;

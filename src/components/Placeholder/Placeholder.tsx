@@ -16,6 +16,7 @@ export const Placeholder = polymorphicComponentFactory<IPlaceholderFactory>(
       classNames,
       className,
       style,
+      variant,
       children,
       label,
       crosshairs,
@@ -35,6 +36,7 @@ export const Placeholder = polymorphicComponentFactory<IPlaceholderFactory>(
       className,
       styles: placeholderStyles,
       style,
+      variant,
       modifiers,
     });
 

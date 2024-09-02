@@ -7,7 +7,7 @@ import { useStyles } from '~/utils/styles/useStyles';
 import { useImageLoaded } from '~/hooks/useImageLoaded';
 import { hslColorFromString } from '~/helpers/colors/hslColorFromString';
 import { getHslColor } from '~/helpers/styles/getHslColor';
-import { Box } from '../Box';
+import { Paper } from '../Paper';
 import { avatarStyles, type IAvatarStylesFactory } from './Avatar.css';
 
 const COMPONENT_NAME = 'Avatar';
@@ -18,13 +18,13 @@ export const Avatar = polymorphicComponentFactory<IAvatarFactory>(
       classNames,
       className,
       style,
+      variant,
       alt,
       src,
       slotProps,
       children,
       fallbackToRandomColor,
       randomColorSourceString: randomColorSourceStringProp,
-      variant = 'rounded',
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -60,7 +60,7 @@ export const Avatar = polymorphicComponentFactory<IAvatarFactory>(
     );
 
     return (
-      <Box
+      <Paper
         {...other}
         {...getStyles('root', {
           style: randomColorHsl
@@ -84,7 +84,7 @@ export const Avatar = polymorphicComponentFactory<IAvatarFactory>(
         ) : hasImage && !!alt ? (
           <div {...getStyles('placeholder')}>{alt[0]}</div>
         ) : null}
-      </Box>
+      </Paper>
     );
   },
 );

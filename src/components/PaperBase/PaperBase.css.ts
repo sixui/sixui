@@ -1,4 +1,4 @@
-import { createTheme, style } from '@vanilla-extract/css';
+import { createTheme } from '@vanilla-extract/css';
 
 import {
   stylesFactory,
@@ -8,6 +8,7 @@ import { px } from '~/helpers/styles/px';
 import { themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 import { Elevation } from '../Elevation';
+import { createStyles } from '~/utils/styles/createStyles';
 
 export type IPaperBaseStyleName = keyof typeof paperBaseStyles;
 
@@ -23,33 +24,37 @@ export const [tokensClassName, tokens] = createTheme({
     },
   },
   outline: {
-    style: 'none',
+    style: 'solid',
     color: themeTokens.colorScheme.outlineVariant,
-    width: themeTokens.outline.width.xs,
+    width: themeTokens.outline.width.none,
   },
   text: {
     color: themeTokens.colorScheme.onSurface,
   },
 });
 
-const classNames = {
-  root: style({
+const classNames = createStyles({
+  root: {
     position: 'relative',
     color: tokens.text.color,
-  }),
-  elevation: style({
+    borderTopLeftRadius: tokens.container.shape.topLeft,
+    borderTopRightRadius: tokens.container.shape.topRight,
+    borderBottomRightRadius: tokens.container.shape.bottomRight,
+    borderBottomLeftRadius: tokens.container.shape.bottomLeft,
+  },
+  elevation: {
     vars: {
       [Elevation.styles.tokens.level]: tokens.container.elevation,
     },
-  }),
-  background: style({
+  },
+  background: {
     // Separate node to support opacity changes.
     backgroundColor: tokens.container.color,
     borderRadius: 'inherit',
-    inset: 0,
+    inset: px(tokens.outline.width),
     position: 'absolute',
-  }),
-  outline: style({
+  },
+  outline: {
     // Separate node to support opacity changes.
     position: 'absolute',
     inset: 0,
@@ -58,8 +63,8 @@ const classNames = {
     borderWidth: px(tokens.outline.width),
     borderColor: tokens.outline.color,
     borderRadius: 'inherit',
-  }),
-};
+  },
+});
 
 export type IPaperBaseStylesFactory = IStylesFactory<{
   styleName: keyof typeof classNames;
