@@ -1,26 +1,20 @@
+import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import type { IMaybeAsync, IAny } from '~/helpers/types';
+import type { IStylesProps } from '~/utils/styles/useStyles';
+import type { IInteractionsState } from '~/hooks/useInteractions';
 import type { IBoxProps } from '../Box';
 import type {
-  IZeroOrMore,
-  ICompiledStyles,
-  IMaybeAsync,
-  IAny,
-} from '~/helpers/types';
-import type { IStateLayerStylesKey } from '../StateLayer';
-import type { IFocusRingStylesKey } from '../FocusRing';
-import type { IElevationStylesKey } from '../Elevation';
-import type { IVisualState } from '../VisualState';
+  buttonBaseStyles,
+  IButtonBaseStylesFactory,
+} from './ButtonBase.css';
 
-export type IButtonBaseProps = IBoxProps & {
-  innerStyles?: {
-    stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStylesKey>>;
-    focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStylesKey>>;
-    elevation?: IZeroOrMore<ICompiledStyles<IElevationStylesKey>>;
-  };
-  visualState?: IVisualState;
+export type IButtonBaseOwnProps = {
   children?: React.ReactNode;
+  staticInteractionState?: IInteractionsState;
   inwardFocusRing?: boolean;
   href?: string;
   target?: React.AnchorHTMLAttributes<HTMLAnchorElement>['target'];
+  rel?: string;
   disabled?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => IMaybeAsync<IAny>;
 
@@ -32,3 +26,15 @@ export type IButtonBaseProps = IBoxProps & {
 
   type?: string;
 };
+
+export interface IButtonBaseProps
+  extends IBoxProps,
+    IButtonBaseOwnProps,
+    IStylesProps<IButtonBaseStylesFactory> {}
+
+export type IButtonBaseFactory = IPolymorphicComponentFactory<{
+  props: IButtonBaseProps;
+  defaultRef: HTMLDivElement;
+  defaultRoot: 'div';
+  styles: typeof buttonBaseStyles;
+}>;

@@ -25,6 +25,9 @@ const AVATAR_IMAGE_URL_3 =
   'https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80';
 
 const defaultArgs = {
+  // FIXME: should be applied
+  // TODO: apply default layer to components and sprinkles layer to sprinkles
+  // see: https://github.com/vanilla-extract-css/vanilla-extract/discussions/1472
   w: '$24',
   h: '$24',
 } satisfies Partial<IAvatarProps>;
@@ -32,7 +35,6 @@ const defaultArgs = {
 const rows: Array<IComponentPresentation<IAvatarProps>> = [
   { legend: 'Rounded' },
   { legend: 'Squared', props: { corner: '$sm' } },
-  { legend: 'Icon', props: { variant: 'icon' } },
 ];
 
 const AvatarShowcase = makeComponentShowcase(Avatar);

@@ -8,6 +8,7 @@ import { useStyles } from '~/utils/styles/useStyles';
 import { Box } from '../Box';
 import { componentShowcaseStyles } from './ComponentShowcase.css';
 
+const COMPONENT_NAME = 'ComponentShowcase';
 const DUMMY_TEXT = '.';
 
 export const makeComponentShowcase = <TComponentProps,>(
@@ -31,10 +32,10 @@ export const makeComponentShowcase = <TComponentProps,>(
       rowLegendPosition = 'start',
       fullWidth,
       ...other
-    } = useProps({ componentName: 'Avatar', props });
+    } = useProps({ componentName: COMPONENT_NAME, props });
 
     const { getStyles } = useStyles({
-      componentName: 'ComponentShowcase',
+      componentName: COMPONENT_NAME,
       classNames,
       className,
       styles: componentShowcaseStyles,
@@ -203,7 +204,7 @@ export const makeComponentShowcase = <TComponentProps,>(
     );
   });
 
-  ComponentShowcase.displayName = `@sixui/ComponentShowcase`;
+  ComponentShowcase.displayName = `@sixui/${COMPONENT_NAME}`;
 
   return ComponentShowcase;
 };

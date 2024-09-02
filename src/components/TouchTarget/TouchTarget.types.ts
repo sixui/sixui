@@ -1,9 +1,24 @@
-import type { ITouchTargetStylesKey } from './TouchTarget.styles';
-import type { IBaseProps } from '../Base';
-import type { IVisualState } from '../VisualState';
+import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IStylesProps } from '~/utils/styles/useStyles';
+import type { IInteractionsState } from '~/hooks/useInteractions';
+import type { IBoxProps } from '../Box';
+import type {
+  touchTargetStyles,
+  ITouchTargetStylesFactory,
+} from './TouchTarget.css';
 
-export type ITouchTargetProps = IBaseProps<ITouchTargetStylesKey> & {
-  visualState?: IVisualState;
-  disabled?: boolean;
+export type ITouchTargetOwnProps = {
   children?: React.ReactNode;
+  interactionsState?: IInteractionsState;
 };
+
+export interface ITouchTargetProps
+  extends IBoxProps,
+    IStylesProps<ITouchTargetStylesFactory>,
+    ITouchTargetOwnProps {}
+
+export type ITouchTargetFactory = IComponentFactory<{
+  props: ITouchTargetProps;
+  root: HTMLDivElement;
+  styles: typeof touchTargetStyles;
+}>;

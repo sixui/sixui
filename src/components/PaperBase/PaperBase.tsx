@@ -26,7 +26,7 @@ export const PaperBase = polymorphicComponentFactory<IPaperBaseFactory>(
     });
 
     return (
-      <Box {...other} {...other} {...getStyles('root')} ref={forwardedRef}>
+      <Box {...other} {...getStyles('root')} ref={forwardedRef}>
         <Elevation {...getStyles('elevation')} />
         <div {...getStyles('background')} aria-hidden />
         {children}

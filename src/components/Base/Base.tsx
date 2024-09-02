@@ -2,12 +2,12 @@ import { forwardRef } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import type { IBaseProps } from './Base.types';
-import {
-  createPolymorphicComponent,
-  type IWithAsProp,
-} from '~/helpers/react/polymorphicComponentTypes';
 import { isProduction } from '~/helpers/isProduction';
 import { dataProps } from '~/helpers/dataProps';
+import {
+  createPolymorphicComponent,
+  IWithAsProp,
+} from '~/utils/component/createPolymorphicComponent';
 
 export const Base = createPolymorphicComponent<'div', IBaseProps>(
   forwardRef<HTMLDivElement, IBaseProps>(function Base(props, forwardedRef) {

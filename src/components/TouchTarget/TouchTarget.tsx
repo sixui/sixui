@@ -1,44 +1,34 @@
-import { forwardRef } from 'react';
-
-import type { ITouchTargetProps } from './TouchTarget.types';
-import { useStyles } from '~/hooks/useStyles';
+import type { ITouchTargetFactory } from './TouchTarget.types';
+import { componentFactory } from '~/utils/component/componentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { useStyles } from '~/utils/styles/useStyles';
 import { Base } from '~/components/Base';
-import { touchTargetStyles } from './TouchTarget.styles';
-import { useVisualState } from '../VisualState';
-import { useMergeRefs } from '@floating-ui/react';
+import {
+  touchTargetStyles,
+  type ITouchTargetStylesFactory,
+} from './TouchTarget.css';
 
-export const TouchTarget = forwardRef<HTMLDivElement, ITouchTargetProps>(
-  function TouchTarget(props, forwardedRef) {
-    const {
-      styles,
-      sx,
-      visualState: visualStateProp,
-      disabled,
-      ...other
-    } = props;
+const COMPONENT_NAME = 'TouchTarget';
 
-    const { visualState, setRef: setVisualStateRef } = useVisualState(
-      visualStateProp,
-      { disabled },
-    );
-    const handleRef = useMergeRefs([forwardedRef, setVisualStateRef]);
-
-    const { combineStyles, globalStyles } = useStyles({
-      componentName: 'TouchTarget',
-      styles: [touchTargetStyles, styles],
-      visualState,
+export const TouchTarget = componentFactory<ITouchTargetFactory>(
+  (props, forwardedRef) => {
+    const { classNames, className, style, variant, ...other } = useProps({
+      componentName: COMPONENT_NAME,
+      props,
     });
 
-    return (
-      <Base
-        {...other}
-        sx={[
-          globalStyles,
-          combineStyles('host', visualState?.hovered && 'host$hovered'),
-          sx,
-        ]}
-        ref={handleRef}
-      />
-    );
+    const { getStyles } = useStyles<ITouchTargetStylesFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles: touchTargetStyles,
+      style,
+      variant,
+    });
+
+    return <Base {...other} {...getStyles('root')} ref={forwardedRef} />;
   },
 );
+
+TouchTarget.styles = touchTargetStyles;
+TouchTarget.displayName = `@sixui/${COMPONENT_NAME}`;
