@@ -4,12 +4,13 @@ import {
   stylesFactory,
   type IStylesFactory,
 } from '~/utils/styles/stylesFactory';
+import { createStyles } from '~/utils/styles/createStyles';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { themeTokens } from '../ThemeProvider';
-import { createStyles } from '~/utils/styles/createStyles';
+import { PaperBase } from '../PaperBase';
 
 type IModifier = 'disabled';
 
@@ -19,6 +20,8 @@ const [tokensClassName, tokens] = createTheme({
   },
   label: {
     typography: themeTokens.typeScale.label.sm,
+    color: themeTokens.colorScheme.onSurface,
+    opacity: '1',
   },
 });
 
@@ -29,14 +32,18 @@ const classNames = createStyles({
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
+    color: tokens.label.color,
 
     selectors: {
       [getModifierSelector<IModifier>('disabled')]: {
-        opacity: themeTokens.state.opacity.disabled,
+        vars: {
+          [PaperBase.styles.tokens.container.opacity]:
+            themeTokens.state.containerOpacity.disabled,
+        },
       },
     },
   },
-  crosshairs: {
+  crosshairs: ({ root }) => ({
     overflow: 'hidden',
     borderRadius: 'inherit',
     position: 'absolute',
@@ -65,12 +72,30 @@ const classNames = createStyles({
       transformOrigin: 'top left',
       transform: 'rotate(-45deg)',
     },
-  },
-  label: {
+
+    selectors: {
+      [`${getModifierSelector<IModifier>('disabled', root)}::before`]: {
+        opacity: themeTokens.state.opacity.disabled,
+      },
+      [`${getModifierSelector<IModifier>('disabled', root)}::after`]: {
+        opacity: themeTokens.state.opacity.disabled,
+      },
+    },
+  }),
+  label: ({ root }) => ({
     position: 'relative',
     padding: px(space(2)),
+    opacity: tokens.label.opacity,
     ...getTypographyStyles(tokens.label.typography),
-  },
+
+    selectors: {
+      [getModifierSelector<IModifier>('disabled', root)]: {
+        vars: {
+          [tokens.label.opacity]: themeTokens.state.opacity.disabled,
+        },
+      },
+    },
+  }),
 });
 
 export type IPlaceholderStylesFactory = IStylesFactory<{

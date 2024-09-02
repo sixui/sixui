@@ -54,6 +54,7 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
           },
         })}
         classNames={{
+          // FIXME: styles merger helper
           ...classNames,
           background: backgroundSprinkles.className,
           elevation: elevationSprinkles.className,

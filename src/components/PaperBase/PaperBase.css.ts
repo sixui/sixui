@@ -15,6 +15,7 @@ export type IPaperBaseStyleName = keyof typeof paperBaseStyles;
 export const [tokensClassName, tokens] = createTheme({
   container: {
     color: themeTokens.colorScheme.surface,
+    opacity: '1',
     elevation: elevationLevelPreset[0],
     shape: {
       topLeft: themeTokens.shape.corner.none,
@@ -50,6 +51,7 @@ const classNames = createStyles({
   background: {
     // Separate node to support opacity changes.
     backgroundColor: tokens.container.color,
+    opacity: tokens.container.opacity,
     borderRadius: 'inherit',
     inset: px(tokens.outline.width),
     position: 'absolute',

@@ -43,8 +43,8 @@ export const Placeholder = polymorphicComponentFactory<IPlaceholderFactory>(
     return (
       <Paper
         {...other}
-        surface={surface}
         {...getStyles('root')}
+        surface={surface}
         ref={forwardedRef}
       >
         {crosshairs && <div {...getStyles('crosshairs')} />}
