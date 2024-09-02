@@ -328,11 +328,7 @@ const outline: IThemeOutlineValues = {
 };
 
 const spacing: IThemeSpacingValues = {
-  grid: {
-    sm: '2px',
-    md: '4px',
-    lg: '8px',
-  },
+  gridSize: '4px',
 };
 
 const state: IThemeStateValues = {

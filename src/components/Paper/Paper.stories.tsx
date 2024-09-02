@@ -10,14 +10,15 @@ import { paperStoriesStyles } from './Paper.stories.css';
 
 const { classNames } = paperStoriesStyles;
 
-const meta = {
+const meta: Meta<typeof Paper> = {
   component: Paper,
-} satisfies Meta<typeof Paper>;
+};
 
 type IStory = StoryObj<IPaperProps>;
 
 const defaultArgs = {
   className: classNames.root,
+  cornerTopLeft: '$lg',
 } satisfies Partial<IPaperProps>;
 
 const PaperDemo: React.FC<IPaperProps> = ({ children, ...props }) => (

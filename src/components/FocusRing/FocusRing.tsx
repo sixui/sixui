@@ -43,22 +43,6 @@ export const FocusRing = componentFactory<IFocusRingFactory>(
         ref={forwardedRef}
       />
     );
-
-    // return (
-    //   <Base
-    //     ref={handleRef}
-    //     sx={[
-    //       focusRingTheme,
-    //       globalStyles,
-    //       combineStyles(
-    //         'host',
-    //         (visible || visibleOnInit) && 'host$visible',
-    //         inward ? 'host$inward' : 'host$outward',
-    //       ),
-    //       sx,
-    //     ]}
-    //   />
-    // );
   },
 );
 

@@ -1,6 +1,9 @@
 import { createTheme, style } from '@vanilla-extract/css';
 
-import { stylesFactory, type IStylesFactory } from '~/utils/styles/stylesFactory';
+import {
+  stylesFactory,
+  type IStylesFactory,
+} from '~/utils/styles/stylesFactory';
 import { px } from '~/helpers/styles/px';
 import { themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';

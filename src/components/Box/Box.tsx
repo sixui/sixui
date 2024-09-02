@@ -8,21 +8,24 @@ import {
   createPolymorphicComponent,
   type IWithAsProp,
 } from '~/utils/component/createPolymorphicComponent';
+import { boxSprinkles } from './Box.css';
 
 export const Box = createPolymorphicComponent<'div', IBoxProps>(
   forwardRef<HTMLDivElement, IBoxProps>(function Box(props, forwardedRef) {
     const {
       as: Component = 'div',
       className,
+      style,
       renderRoot,
       interactions,
       modifiers,
-      ...other
+      ...otherWithSprinkles
     } = props as IWithAsProp<IBoxProps>;
+    const sprinkles = boxSprinkles(otherWithSprinkles);
 
     const handleRef = useMergeRefs([forwardedRef, interactions?.targetRef]);
     const childrenProps = {
-      ...other,
+      ...sprinkles.otherProps,
       ...interactions?.targetProps,
       ...getDataAttributes({
         ...(interactions?.combinedStatus
@@ -30,7 +33,11 @@ export const Box = createPolymorphicComponent<'div', IBoxProps>(
           : undefined),
         ...modifiers,
       }),
-      className: cx(className),
+      className: cx(className, sprinkles.className),
+      style: {
+        ...style,
+        ...sprinkles.style,
+      },
       ref: handleRef,
     };
 

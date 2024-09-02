@@ -1,6 +1,10 @@
 import { createTheme, style } from '@vanilla-extract/css';
+import { defineProperties, createRainbowSprinkles } from 'rainbow-sprinkles';
 
-import { stylesFactory, type IStylesFactory } from '~/utils/styles/stylesFactory';
+import {
+  stylesFactory,
+  type IStylesFactory,
+} from '~/utils/styles/stylesFactory';
 import { themeTokens } from '../ThemeProvider';
 import { PaperBase } from '../PaperBase';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
@@ -55,3 +59,16 @@ export const paperStyles = stylesFactory<IPaperStylesFactory>({
   tokensClassName,
   tokens,
 });
+
+const sprinklesProps = defineProperties({
+  staticProperties: {
+    borderTopLeftRadius: themeTokens.shape.corner,
+  },
+  shorthands: {
+    cornerTopLeft: ['borderTopLeftRadius'],
+  },
+});
+
+export const paperSprinkles = createRainbowSprinkles(sprinklesProps);
+
+export type IPaperSprinkles = Parameters<typeof paperSprinkles>[0];

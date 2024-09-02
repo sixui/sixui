@@ -7,7 +7,11 @@ import type {
   IThemeShapeCornerSize,
 } from '../ThemeProvider';
 import type { IBoxProps } from '../Box';
-import type { paperStyles, IPaperStylesFactory } from './Paper.css';
+import type {
+  paperStyles,
+  IPaperStylesFactory,
+  IPaperSprinkles,
+} from './Paper.css';
 
 export type IPaperVariant = 'filled' | 'outlined';
 
@@ -17,14 +21,14 @@ export type IPaperCornerPosition =
   | 'bottomRight'
   | 'bottomLeft';
 
-export type IPaperOwnProps = IPaperBaseOwnProps & {
+export interface IPaperOwnProps extends IPaperBaseOwnProps, IPaperSprinkles {
   elevation?: IThemeElevationLevel;
   corner?:
     | IThemeShapeCornerSize
     | Partial<Record<IPaperCornerPosition, IThemeShapeCornerSize>>;
   surface?: keyof IThemeColorScheme;
   outlined?: boolean;
-};
+}
 
 export type IPaperProps = IBoxProps &
   IStylesProps<IPaperStylesFactory> &

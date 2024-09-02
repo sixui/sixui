@@ -8,11 +8,13 @@ import { getContainerTextColor } from '~/utils/getContainerTextColor';
 import { PaperBase } from '../PaperBase';
 import { themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
-import { paperStyles, type IPaperStylesFactory } from './Paper.css';
+import {
+  paperStyles,
+  paperSprinkles,
+  type IPaperStylesFactory,
+} from './Paper.css';
 
 const COMPONENT_NAME = 'Paper';
-
-// FIXME: use sprinkles?
 
 export const Paper = polymorphicComponentFactory<IPaperFactory>(
   (props, forwardedRef) => {
@@ -24,11 +26,14 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
       corner,
       surface: surfaceProp = 'surfaceContainer',
       outlined,
+      backgroundColor,
       ...other
     } = useProps({
       componentName: COMPONENT_NAME,
       props,
     });
+
+    const sprinkles = paperSprinkles({ backgroundColor });
 
     const { getStyles } = useStyles<IPaperStylesFactory>({
       componentName: COMPONENT_NAME,
@@ -72,7 +77,11 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
       <PaperBase
         {...other}
         {...getStyles('root', {
-          style: assignInlineVars(vars),
+          style: {
+            ...assignInlineVars(vars),
+            ...sprinkles.style,
+          },
+          className: sprinkles.className,
         })}
         ref={forwardedRef}
       />

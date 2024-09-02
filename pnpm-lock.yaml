@@ -29,6 +29,9 @@ importers:
       '@vanilla-extract/dynamic':
         specifier: ^2.1.2
         version: 2.1.2
+      '@vanilla-extract/sprinkles':
+        specifier: ^1.6.3
+        version: 1.6.3(@vanilla-extract/css@1.15.5)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -38,6 +41,9 @@ importers:
       modern-normalize:
         specifier: ^3.0.0
         version: 3.0.0
+      rainbow-sprinkles:
+        specifier: ^0.17.2
+        version: 0.17.2(@vanilla-extract/css@1.15.5)(@vanilla-extract/dynamic@2.1.2)
       react-aria:
         specifier: ^3.34.3
         version: 3.34.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -2677,6 +2683,11 @@ packages:
 
   '@vanilla-extract/private@1.0.6':
     resolution: {integrity: sha512-ytsG/JLweEjw7DBuZ/0JCN4WAQgM9erfSTdS1NQY778hFQSZ6cfCDEZZ0sgVm4k54uNz6ImKB33AYvSR//fjxw==}
+
+  '@vanilla-extract/sprinkles@1.6.3':
+    resolution: {integrity: sha512-oCHlQeYOBIJIA2yWy2GnY5wE2A7hGHDyJplJo4lb+KEIBcJWRnDJDg8ywDwQS5VfWJrBBO3drzYZPFpWQjAMiQ==}
+    peerDependencies:
+      '@vanilla-extract/css': ^1.0.0
 
   '@vanilla-extract/vite-plugin@4.0.15':
     resolution: {integrity: sha512-kl0EJ0DGRA3/cuZeXfBu4C9oPnkCr1PJIAr1/7Fu1mCrlE+fC6DCriPY2cRuGbbBE/ZhXryUSNT7rWjqAyHlkw==}
@@ -5486,6 +5497,12 @@ packages:
 
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
+
+  rainbow-sprinkles@0.17.2:
+    resolution: {integrity: sha512-rGnQO+jw2Dy7Z42qFolkp90atUZhpD2ImZQyl+ZC/7V/s+niZ6SI18i5Gw9hVX45OlJ6wqRPak9QGUV2hbTsrQ==}
+    peerDependencies:
+      '@vanilla-extract/css': ^1
+      '@vanilla-extract/dynamic': ^2
 
   range-parser@1.2.1:
     resolution: {integrity: sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==}
@@ -9942,6 +9959,10 @@ snapshots:
 
   '@vanilla-extract/private@1.0.6': {}
 
+  '@vanilla-extract/sprinkles@1.6.3(@vanilla-extract/css@1.15.5)':
+    dependencies:
+      '@vanilla-extract/css': 1.15.5
+
   '@vanilla-extract/vite-plugin@4.0.15(@types/node@22.5.0)(vite@5.4.2(@types/node@22.5.0))':
     dependencies:
       '@vanilla-extract/integration': 7.1.9(@types/node@22.5.0)
@@ -13043,6 +13064,11 @@ snapshots:
   queue-lit@1.5.2: {}
 
   queue-microtask@1.2.3: {}
+
+  rainbow-sprinkles@0.17.2(@vanilla-extract/css@1.15.5)(@vanilla-extract/dynamic@2.1.2):
+    dependencies:
+      '@vanilla-extract/css': 1.15.5
+      '@vanilla-extract/dynamic': 2.1.2
 
   range-parser@1.2.1: {}
 

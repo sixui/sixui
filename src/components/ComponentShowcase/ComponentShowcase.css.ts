@@ -1,6 +1,9 @@
 import { createTheme, style } from '@vanilla-extract/css';
 
-import { stylesFactory, type IStylesFactory } from '~/utils/styles/stylesFactory';
+import {
+  stylesFactory,
+  type IStylesFactory,
+} from '~/utils/styles/stylesFactory';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { space } from '~/helpers/styles/space';
 import { px } from '~/helpers/styles/px';
@@ -50,17 +53,17 @@ const classNames = {
   groupRows: style({
     display: 'flex',
     flexDirection: 'column',
-    gap: px(space(8, 'lg')),
+    gap: px(space(16)),
     alignSelf: 'stretch',
   }),
   cols: style({
     display: 'flex',
   }),
   gap$md: style({
-    gap: px(space(4, 'lg')),
+    gap: px(space(8)),
   }),
   gap$lg: style({
-    gap: px(space(5, 'lg')),
+    gap: px(space(10)),
   }),
   rows: style({
     display: 'flex',
@@ -79,7 +82,7 @@ const classNames = {
     borderLeftWidth: themeTokens.outline.width.xs,
     borderLeftStyle: 'solid',
     borderLeftColor: tokens.outline.color,
-    paddingLeft: px(space(4, 'lg')),
+    paddingLeft: px(space(8)),
   }),
   invisible: style({
     visibility: 'hidden',
