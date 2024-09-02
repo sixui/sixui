@@ -1,10 +1,7 @@
-import { assignInlineVars } from '@vanilla-extract/dynamic';
-
 import type { IPlaceholderFactory } from './Placeholder.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useStyles } from '~/utils/styles/useStyles';
-import { sizeToString } from '~/helpers/sizeToString';
 import { Paper } from '../Paper';
 import {
   placeholderStyles,
@@ -19,13 +16,11 @@ export const Placeholder = polymorphicComponentFactory<IPlaceholderFactory>(
       classNames,
       className,
       style,
-      surface = 'surfaceContainerHighest',
       children,
       label,
       crosshairs,
       disabled,
-      width,
-      height,
+      surface = '$surfaceContainerHighest',
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -43,20 +38,11 @@ export const Placeholder = polymorphicComponentFactory<IPlaceholderFactory>(
       modifiers,
     });
 
-    const vars = {
-      [placeholderStyles.tokens.container.width]:
-        width !== undefined ? sizeToString(width) : undefined,
-      [placeholderStyles.tokens.container.height]:
-        height !== undefined ? sizeToString(height) : undefined,
-    };
-
     return (
       <Paper
         {...other}
-        {...getStyles('root', {
-          style: assignInlineVars(vars),
-        })}
         surface={surface}
+        {...getStyles('root')}
         ref={forwardedRef}
       >
         {crosshairs && <div {...getStyles('crosshairs')} />}

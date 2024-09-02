@@ -11,13 +11,12 @@ export type IPlaceholderOwnProps = IPaperOwnProps & {
   label?: string;
   crosshairs?: boolean;
   disabled?: boolean;
-  width?: string | number;
-  height?: string | number;
 };
 
-export type IPlaceholderProps = IBoxProps &
-  IStylesProps<IPlaceholderStylesFactory> &
-  IPlaceholderOwnProps;
+export interface IPlaceholderProps
+  extends IBoxProps,
+    IStylesProps<IPlaceholderStylesFactory>,
+    IPlaceholderOwnProps {}
 
 export type IPlaceholderFactory = IPolymorphicComponentFactory<{
   props: IPlaceholderProps;

@@ -10,9 +10,10 @@ export type IFocusRingOwnProps = {
   interactionsState: IInteractionsState;
 };
 
-export type IFocusRingProps = IBoxProps &
-  IStylesProps<IFocusRingStylesFactory> &
-  IFocusRingOwnProps;
+export interface IFocusRingProps
+  extends IBoxProps,
+    IStylesProps<IFocusRingStylesFactory>,
+    IFocusRingOwnProps {}
 
 export type IFocusRingFactory = IComponentFactory<{
   props: IFocusRingProps;

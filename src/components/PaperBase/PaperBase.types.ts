@@ -7,9 +7,10 @@ export type IPaperBaseOwnProps = {
   children?: React.ReactNode;
 };
 
-export type IPaperBaseProps = IBoxProps &
-  IStylesProps<IPaperBaseStylesFactory> &
-  IPaperBaseOwnProps;
+export interface IPaperBaseProps
+  extends IBoxProps,
+    IStylesProps<IPaperBaseStylesFactory>,
+    IPaperBaseOwnProps {}
 
 export type IPaperBaseFactory = IComponentFactory<{
   props: IPaperBaseProps;

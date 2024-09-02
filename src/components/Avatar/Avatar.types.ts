@@ -22,9 +22,10 @@ export type IAvatarOwnprops = {
   randomColorSourceString?: string;
 };
 
-export type IAvatarProps = IBoxProps &
-  IStylesProps<IAvatarStylesFactory> &
-  IAvatarOwnprops;
+export interface IAvatarProps
+  extends IBoxProps,
+    IStylesProps<IAvatarStylesFactory>,
+    IAvatarOwnprops {}
 
 export type IAvatarFactory = IPolymorphicComponentFactory<{
   props: IAvatarProps;

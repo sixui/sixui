@@ -34,10 +34,6 @@ export const [tokensClassName, tokens] = createTheme({
 
 const classNames = {
   root: style({
-    borderTopLeftRadius: px(tokens.container.shape.topLeft),
-    borderTopRightRadius: px(tokens.container.shape.topRight),
-    borderBottomRightRadius: px(tokens.container.shape.bottomRight),
-    borderBottomLeftRadius: px(tokens.container.shape.bottomLeft),
     position: 'relative',
     color: tokens.text.color,
   }),
@@ -47,12 +43,14 @@ const classNames = {
     },
   }),
   background: style({
+    // Separate node to support opacity changes.
     backgroundColor: tokens.container.color,
     borderRadius: 'inherit',
     inset: 0,
     position: 'absolute',
   }),
   outline: style({
+    // Separate node to support opacity changes.
     position: 'absolute',
     inset: 0,
     pointerEvents: 'none',

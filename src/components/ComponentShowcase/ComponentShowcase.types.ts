@@ -16,14 +16,18 @@ export type IComponentPresentation<TComponentProps = object> = {
   component?: React.FC<TComponentProps>;
 };
 
-export type IComponentShowcaseProps<TComponentProps> = IBoxProps &
-  IStylesProps<IComponentShowcaseStylesFactory> & {
-    props: TComponentProps;
-    groups?: Array<IComponentPresentation<TComponentProps>>;
-    cols?: Array<IComponentPresentation<TComponentProps>>;
-    rows?: Array<IComponentPresentation<TComponentProps>>;
-    horizontalAlign?: 'start' | 'center' | 'end' | 'stretch';
-    verticalAlign?: 'start' | 'center' | 'end' | 'stretch';
-    rowLegendPosition?: 'start' | 'top' | 'bottom';
-    fullWidth?: boolean;
-  };
+export type IComponentShowcaseOwnProps<TComponentProps> = {
+  props: TComponentProps;
+  groups?: Array<IComponentPresentation<TComponentProps>>;
+  cols?: Array<IComponentPresentation<TComponentProps>>;
+  rows?: Array<IComponentPresentation<TComponentProps>>;
+  horizontalAlign?: 'start' | 'center' | 'end' | 'stretch';
+  verticalAlign?: 'start' | 'center' | 'end' | 'stretch';
+  rowLegendPosition?: 'start' | 'top' | 'bottom';
+  fullWidth?: boolean;
+};
+
+export interface IComponentShowcaseProps<TComponentProps>
+  extends IBoxProps,
+    IStylesProps<IComponentShowcaseStylesFactory>,
+    IComponentShowcaseOwnProps<TComponentProps> {}

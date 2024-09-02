@@ -21,11 +21,13 @@ export const Box = createPolymorphicComponent<'div', IBoxProps>(
       modifiers,
       ...otherWithSprinkles
     } = props as IWithAsProp<IBoxProps>;
+
     const sprinkles = boxSprinkles(otherWithSprinkles);
+    const other = sprinkles.otherProps;
 
     const handleRef = useMergeRefs([forwardedRef, interactions?.targetRef]);
     const childrenProps = {
-      ...sprinkles.otherProps,
+      ...other,
       ...interactions?.targetProps,
       ...getDataAttributes({
         ...(interactions?.combinedStatus

@@ -1,74 +1,142 @@
-import { createTheme, style } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 import { defineProperties, createRainbowSprinkles } from 'rainbow-sprinkles';
 
 import {
   stylesFactory,
   type IStylesFactory,
 } from '~/utils/styles/stylesFactory';
-import { themeTokens } from '../ThemeProvider';
-import { PaperBase } from '../PaperBase';
+import { px } from '~/helpers/styles/px';
+import {
+  themeTokens,
+  type IThemeShapeCornerSize,
+  type IThemeOutlineSize,
+} from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
 export type IPaperStyleName = keyof typeof paperStyles;
 
-const [tokensClassName, tokens] = createTheme({
-  container: {
-    color: themeTokens.colorScheme.surface,
-    elevation: elevationLevelPreset[0],
-    shape: {
-      topLeft: themeTokens.shape.corner.none,
-      topRight: themeTokens.shape.corner.none,
-      bottomRight: themeTokens.shape.corner.none,
-      bottomLeft: themeTokens.shape.corner.none,
-    },
-  },
-  outline: {
-    style: 'none',
-  },
-  text: {
-    color: themeTokens.colorScheme.onSurface,
-  },
-});
-
 const classNames = {
-  root: style({
-    vars: {
-      [PaperBase.styles.tokens.container.color]: tokens.container.color,
-      [PaperBase.styles.tokens.container.elevation]: tokens.container.elevation,
-      [PaperBase.styles.tokens.container.shape.topLeft]:
-        tokens.container.shape.topLeft,
-      [PaperBase.styles.tokens.container.shape.topRight]:
-        tokens.container.shape.topRight,
-      [PaperBase.styles.tokens.container.shape.bottomRight]:
-        tokens.container.shape.bottomRight,
-      [PaperBase.styles.tokens.container.shape.bottomLeft]:
-        tokens.container.shape.bottomLeft,
-      [PaperBase.styles.tokens.text.color]: tokens.text.color,
-      [PaperBase.styles.tokens.outline.style]: tokens.outline.style,
-    },
-  }),
+  root: style({}),
 };
 
 export type IPaperStylesFactory = IStylesFactory<{
   styleName: keyof typeof classNames;
-  tokens: typeof tokens;
 }>;
 
 export const paperStyles = stylesFactory<IPaperStylesFactory>({
   classNames,
-  tokensClassName,
-  tokens,
+  tokens: undefined,
 });
+
+const cornerSizes: Array<IThemeShapeCornerSize> = [
+  'none',
+  'xs',
+  'sm',
+  'md',
+  'lg',
+  'xl',
+  'full',
+] as const;
+const cornerVars = cornerSizes.reduce(
+  (acc, size) => ({ ...acc, [size]: px(themeTokens.shape.corner[size]) }),
+  {} as Record<IThemeShapeCornerSize, string>,
+);
 
 const sprinklesProps = defineProperties({
   staticProperties: {
-    borderTopLeftRadius: themeTokens.shape.corner,
+    borderTopLeftRadius: cornerVars,
+    borderTopRightRadius: cornerVars,
+    borderBottomRightRadius: cornerVars,
+    borderBottomLeftRadius: cornerVars,
   },
   shorthands: {
+    corner: [
+      'borderTopLeftRadius',
+      'borderTopRightRadius',
+      'borderBottomRightRadius',
+      'borderBottomLeftRadius',
+    ],
+    cornerTop: ['borderTopLeftRadius', 'borderTopRightRadius'],
+    cornerBottom: ['borderBottomRightRadius', 'borderBottomLeftRadius'],
+    cornerLeft: ['borderTopLeftRadius', 'borderBottomLeftRadius'],
+    cornerRight: ['borderTopRightRadius', 'borderBottomRightRadius'],
     cornerTopLeft: ['borderTopLeftRadius'],
+    cornerTopRight: ['borderTopRightRadius'],
+    cornerBottomLeft: ['borderBottomLeftRadius'],
+    cornerBottomRight: ['borderBottomRightRadius'],
   },
 });
 
 export const paperSprinkles = createRainbowSprinkles(sprinklesProps);
 
 export type IPaperSprinkles = Parameters<typeof paperSprinkles>[0];
+
+const backgroundSprinklesProps = defineProperties({
+  staticProperties: {
+    backgroundColor: themeTokens.colorScheme,
+  },
+  shorthands: {
+    surface: ['backgroundColor'],
+  },
+});
+
+export const paperBackgroundSprinkles = createRainbowSprinkles(
+  backgroundSprinklesProps,
+);
+
+export type IPaperBackgroundSprinkles = Parameters<
+  typeof paperBackgroundSprinkles
+>[0];
+
+const elevationSprinklesProps = defineProperties({
+  staticProperties: {
+    boxShadow: elevationLevelPreset,
+  },
+  shorthands: {
+    elevation: ['boxShadow'],
+  },
+});
+
+export const paperElevationSprinkles = createRainbowSprinkles(
+  elevationSprinklesProps,
+);
+
+export type IPaperElevationSprinkles = Parameters<
+  typeof paperElevationSprinkles
+>[0];
+
+const outlineSizes: Array<IThemeOutlineSize> = [
+  'none',
+  'xs',
+  'sm',
+  'md',
+  'lg',
+  'xl',
+] as const;
+const outlineVars = outlineSizes.reduce(
+  (acc, size) => ({ ...acc, [size]: px(themeTokens.outline.width[size]) }),
+  {} as Record<IThemeOutlineSize, string>,
+);
+
+const outlineSprinklesProps = defineProperties({
+  dynamicProperties: {
+    borderStyle: true,
+  },
+  staticProperties: {
+    borderWidth: outlineVars,
+    borderColor: themeTokens.colorScheme,
+  },
+  shorthands: {
+    outline: ['borderWidth'],
+    outlineColor: ['borderColor'],
+    outlineStyle: ['borderStyle'],
+  },
+});
+
+export const paperOutlineSprinkles = createRainbowSprinkles(
+  outlineSprinklesProps,
+);
+
+export type IPaperOutlineSprinkles = Parameters<
+  typeof paperOutlineSprinkles
+>[0];

@@ -7,10 +7,13 @@ import type {
   IStateLayerStylesFactory,
 } from './StateLayer.css';
 
-export type IStateLayerProps = IBoxProps &
-  IStylesProps<IStateLayerStylesFactory> & {
-    context: IStateLayerContext;
-  };
+export type IStateLayerOwnProps = {
+  context: IStateLayerContext;
+};
+
+export interface IStateLayerProps
+  extends IBoxProps,
+    IStylesProps<IStateLayerStylesFactory> {}
 
 export type IStateLayerFactory = IComponentFactory<{
   props: IStateLayerProps;

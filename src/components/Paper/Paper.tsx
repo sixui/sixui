@@ -1,16 +1,14 @@
-import { assignInlineVars } from '@vanilla-extract/dynamic';
-
 import type { IPaperFactory } from './Paper.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useStyles } from '~/utils/styles/useStyles';
-import { getContainerTextColor } from '~/utils/getContainerTextColor';
 import { PaperBase } from '../PaperBase';
-import { themeTokens } from '../ThemeProvider';
-import { elevationLevelPreset } from '../Elevation/Elevation.css';
 import {
   paperStyles,
   paperSprinkles,
+  paperBackgroundSprinkles,
+  paperElevationSprinkles,
+  paperOutlineSprinkles,
   type IPaperStylesFactory,
 } from './Paper.css';
 
@@ -18,22 +16,20 @@ const COMPONENT_NAME = 'Paper';
 
 export const Paper = polymorphicComponentFactory<IPaperFactory>(
   (props, forwardedRef) => {
-    const {
-      classNames,
-      className,
-      style,
-      elevation: elevationProp,
-      corner,
-      surface: surfaceProp = 'surfaceContainer',
-      outlined,
-      backgroundColor,
-      ...other
-    } = useProps({
+    const { classNames, className, style, ...otherWithSprinkles } = useProps({
       componentName: COMPONENT_NAME,
       props,
     });
 
-    const sprinkles = paperSprinkles({ backgroundColor });
+    const sprinkles = paperSprinkles(otherWithSprinkles);
+    const backgroundSprinkles = paperBackgroundSprinkles(sprinkles.otherProps);
+    const elevationSprinkles = paperElevationSprinkles(
+      backgroundSprinkles.otherProps,
+    );
+    const outlineSprinkles = paperOutlineSprinkles(
+      elevationSprinkles.otherProps,
+    );
+    const other = outlineSprinkles.otherProps;
 
     const { getStyles } = useStyles<IPaperStylesFactory>({
       componentName: COMPONENT_NAME,
@@ -43,46 +39,24 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
       style,
     });
 
-    const elevation = outlined ? 0 : elevationProp;
-    const surface = outlined ? undefined : surfaceProp;
-    const topLeftCorner = typeof corner === 'string' ? corner : corner?.topLeft;
-    const topRightCorner =
-      typeof corner === 'string' ? corner : corner?.topRight;
-    const bottomRightCorner =
-      typeof corner === 'string' ? corner : corner?.bottomRight;
-    const bottomLeftCorner =
-      typeof corner === 'string' ? corner : corner?.bottomLeft;
-    const textColor = getContainerTextColor(surface);
-
-    const vars = {
-      [paperStyles.tokens.container.color]: surface
-        ? themeTokens.colorScheme[surface]
-        : undefined,
-      [paperStyles.tokens.container.elevation]: elevation
-        ? elevationLevelPreset[elevation]
-        : undefined,
-      [paperStyles.tokens.outline.style]: outlined ? 'solid' : undefined,
-      [paperStyles.tokens.container.shape.topLeft]:
-        topLeftCorner && themeTokens.shape.corner[topLeftCorner],
-      [paperStyles.tokens.container.shape.topRight]:
-        topRightCorner && themeTokens.shape.corner[topRightCorner],
-      [paperStyles.tokens.container.shape.bottomRight]:
-        bottomRightCorner && themeTokens.shape.corner[bottomRightCorner],
-      [paperStyles.tokens.container.shape.bottomLeft]:
-        bottomLeftCorner && themeTokens.shape.corner[bottomLeftCorner],
-      [paperStyles.tokens.text.color]: themeTokens.colorScheme[textColor],
-    };
-
     return (
       <PaperBase
         {...other}
         {...getStyles('root', {
-          style: {
-            ...assignInlineVars(vars),
-            ...sprinkles.style,
-          },
           className: sprinkles.className,
+          style: {
+            ...sprinkles.style,
+            ...backgroundSprinkles.style,
+            ...elevationSprinkles.style,
+            ...outlineSprinkles.style,
+          },
         })}
+        classNames={{
+          ...classNames,
+          background: backgroundSprinkles.className,
+          elevation: elevationSprinkles.className,
+          outline: outlineSprinkles.className,
+        }}
         ref={forwardedRef}
       />
     );

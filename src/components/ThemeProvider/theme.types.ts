@@ -211,15 +211,10 @@ export type IThemeMotionValues = {
   duration: IThemeMotionDurationValues;
 };
 
+export type IThemeOutlineSize = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+
 export type IThemeOutlineValues = {
-  width: {
-    none: string;
-    xs: string;
-    sm: string;
-    md: string;
-    lg: string;
-    xl: string;
-  };
+  width: Record<IThemeOutlineSize, string>;
 };
 
 export type IThemeShapeCornerSize =

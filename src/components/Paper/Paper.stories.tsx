@@ -18,75 +18,48 @@ type IStory = StoryObj<IPaperProps>;
 
 const defaultArgs = {
   className: classNames.root,
-  cornerTopLeft: '$lg',
 } satisfies Partial<IPaperProps>;
 
 const PaperDemo: React.FC<IPaperProps> = ({ children, ...props }) => (
-  <Paper {...props}>
+  <Paper {...props} corner='$md'>
     <div className={classNames.inner}>{children}</div>
   </Paper>
 );
 
-const corners: Array<IPaperProps['corner']> = [
-  undefined,
-  'xs',
-  'sm',
-  'md',
-  'lg',
-  'xl',
-  'full',
-];
-
 const PaperShowcase = makeComponentShowcase(PaperDemo);
-
-export const Corners: IStory = {
-  render: (props) => (
-    <PaperShowcase
-      props={props}
-      rows={corners.map((corner) => ({
-        legend: `Corner (${(corner as string) ?? 'none'})`,
-        props: {
-          outlined: true,
-          corner,
-        },
-      }))}
-    />
-  ),
-  args: defaultArgs,
-};
 
 export const Elevations: IStory = {
   render: (props) => (
     <PaperShowcase
       props={props}
-      rows={([undefined, 1, 2, 3, 4, 5] as Array<IPaperProps['elevation']>).map(
-        (elevation) => ({
-          legend: `Level (${elevation})`,
-          props: {
-            elevation,
-          },
-        }),
-      )}
+      rows={(
+        ['$0', '$1', '$2', '$3', '$4', '$5'] as Array<IPaperProps['elevation']>
+      ).map((elevation) => ({
+        legend: `Level (${elevation})`,
+        props: {
+          elevation,
+        },
+      }))}
     />
   ),
   args: {
     ...defaultArgs,
-    corner: 'md',
+    surface: '$surfaceContainer',
+    corner: '$md',
   },
 };
 
 const surfaces: Array<IPaperProps['surface']> = [
-  undefined,
-  'surfaceContainerLowest',
-  'surfaceContainerLow',
-  'surfaceContainer',
-  'surfaceContainerHigh',
-  'surfaceContainerHighest',
-  'inverseSurface',
-  'primaryContainer',
-  'secondaryContainer',
-  'tertiaryContainer',
-  'errorContainer',
+  '$surfaceContainerLowest',
+  '$surfaceContainerLow',
+  '$surfaceContainer',
+  '$surfaceContainerHigh',
+  '$surfaceContainerHighest',
+  '$inverseSurface',
+  '$primaryContainer',
+  '$secondaryContainer',
+  '$tertiaryContainer',
+  '$errorContainer',
 ];
 
 export const Surface: IStory = {
@@ -103,7 +76,7 @@ export const Surface: IStory = {
   ),
   args: {
     ...defaultArgs,
-    corner: 'md',
+    corner: '$md',
   },
 };
 

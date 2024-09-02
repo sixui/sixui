@@ -13,10 +13,6 @@ import { themeTokens } from '../ThemeProvider';
 type IModifier = 'disabled';
 
 const [tokensClassName, tokens] = createTheme({
-  container: {
-    width: 'unset',
-    height: 'unset',
-  },
   crosshairs: {
     color: themeTokens.colorScheme.outlineVariant,
   },
@@ -32,8 +28,6 @@ const classNames = {
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
-    width: px(tokens.container.width),
-    height: px(tokens.container.height),
 
     selectors: {
       [getModifierSelector<IModifier>('disabled')]: {
@@ -50,6 +44,7 @@ const classNames = {
       content: '',
       position: 'absolute',
       top: 0,
+      left: 0,
       borderTopStyle: 'solid',
       borderTopWidth: px(themeTokens.outline.width.xs),
       borderTopColor: tokens.crosshairs.color,
@@ -61,6 +56,7 @@ const classNames = {
       content: '',
       position: 'absolute',
       bottom: 0,
+      left: 0,
       borderBottomStyle: 'solid',
       borderBottomWidth: px(themeTokens.outline.width.xs),
       borderBottomColor: tokens.crosshairs.color,
