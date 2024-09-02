@@ -1,7 +1,9 @@
 import type { IPaperFactory } from './Paper.types';
+import type { IPaperBaseStylesFactory } from '../PaperBase/PaperBase.css';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useStyles } from '~/utils/styles/useStyles';
+import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { PaperBase } from '../PaperBase';
 import {
   paperStyles,
@@ -53,13 +55,14 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
             ...outlineSprinkles.style,
           },
         })}
-        classNames={{
-          // FIXME: styles merger helper
-          ...classNames,
-          background: backgroundSprinkles.className,
-          elevation: elevationSprinkles.className,
-          outline: outlineSprinkles.className,
-        }}
+        classNames={mergeClassNames<IPaperBaseStylesFactory['styleName']>(
+          classNames,
+          {
+            background: backgroundSprinkles.className,
+            elevation: elevationSprinkles.className,
+            outline: outlineSprinkles.className,
+          },
+        )}
         ref={forwardedRef}
       />
     );

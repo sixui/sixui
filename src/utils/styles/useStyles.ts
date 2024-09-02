@@ -15,7 +15,7 @@ export type IStylesProps<TPayload extends IStylesFactoryPayload> = {
   className?: Parameters<typeof cx>[0];
 
   /** The class names to apply to the component. */
-  classNames?: Partial<Record<TPayload['styleName'], string>>;
+  classNames?: Partial<Record<TPayload['styleName'], Parameters<typeof cx>[0]>>;
 
   /** CSS properties to apply to the root selector. */
   style?: React.CSSProperties;
