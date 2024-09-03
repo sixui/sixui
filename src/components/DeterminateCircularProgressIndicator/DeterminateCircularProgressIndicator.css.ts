@@ -75,10 +75,7 @@ const classNames = createStyles({
     height: '100%',
     color: tokens.label.color.normal,
     ...getTypographyStyles(tokens.label.typography),
-    fontSize: calc.multiply(
-      calc.multiply(tokens.label.typography.size, 0.33),
-      themeTokens.scale,
-    ),
+    fontSize: calc.multiply(calc.multiply(0.25, '1em'), themeTokens.scale),
 
     selectors: {
       [getModifierSelector<IModifier>('disabled', root)]: {

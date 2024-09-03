@@ -41,7 +41,7 @@ export const DeterminateCircularProgressIndicator =
         });
 
       const value0 = zeroBased ? 0 : min;
-      const pct = Math.max(Math.min((value - value0) / (max - value0), 1), 0);
+      const pct = Math.min((value - value0) / (max - value0), 1);
       const dashOffset = (1 - pct) * 100;
       const hasContent = withLabel || !!children;
 
