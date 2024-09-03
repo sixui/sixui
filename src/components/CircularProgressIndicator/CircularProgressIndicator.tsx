@@ -19,10 +19,6 @@ export const CircularProgressIndicator =
         value={value}
       />
     );
-
-    return (
-      <IndeterminateCircularProgressIndicator {...props} ref={forwardedRef} />
-    );
   });
 
 CircularProgressIndicator.styles = circularProgressIndicatorStyles;

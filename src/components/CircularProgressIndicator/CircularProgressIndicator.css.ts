@@ -8,13 +8,6 @@ import {
 import { createStyles } from '~/utils/styles/createStyles';
 import { themeTokens } from '../ThemeProvider';
 
-const DEFAULT_FONT_SIZE = 16;
-
-const WIDTH = 2; // px
-
-const SIZE = '1'; // em
-const CONTAINER_PADDING = 0; // px
-
 const [tokensClassName, tokens] = createTheme({
   color: {
     normal: themeTokens.colorScheme.primary,
@@ -23,10 +16,9 @@ const [tokensClassName, tokens] = createTheme({
   opacity: {
     disabled: themeTokens.state.opacity.disabled,
   },
-  size: `${SIZE}em`,
-  containerPadding: `${CONTAINER_PADDING}px`,
-  widthPct: `calc((${WIDTH} / (${SIZE} * ${DEFAULT_FONT_SIZE} -
-  ${CONTAINER_PADDING} * 2)) * 100)`,
+  size: '1em',
+  containerPadding: '0px',
+  strokePct: '10',
 });
 
 const classNames = createStyles({

@@ -8,8 +8,8 @@ import {
 import { createStyles } from '~/utils/styles/createStyles';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
-import { px } from '~/helpers/styles/px';
 import { circularProgressIndicatorStyles } from '../CircularProgressIndicator/CircularProgressIndicator.css';
+import { px } from '~/helpers/styles/px';
 
 type IModifier = 'disabled';
 
@@ -116,15 +116,7 @@ const classNames = createStyles({
     animationDuration: `${arcDuration}, ${cycleDuration}`,
     animationTimingFunction: indeterminateEasing,
     borderWidth: px(
-      calc
-        .multiply(
-          calc.divide(parentStyles.tokens.widthPct, 100),
-          calc.subtract(
-            parentStyles.tokens.size,
-            calc.multiply(parentStyles.tokens.containerPadding, 2),
-          ),
-        )
-        .toString(),
+      calc.multiply('1em', calc.divide(parentStyles.tokens.strokePct, '100')),
     ),
 
     selectors: {

@@ -44,11 +44,11 @@ const classNames = createStyles({
       // Note, pathLength is set so this can be normalized.
       strokeDasharray: '100',
       fill: 'transparent',
-      r: calc.multiply(
+      r: calc.subtract(
         '50%',
-        calc.subtract(1, calc.divide(parentStyles.tokens.widthPct, 100)),
+        calc.divide(calc.multiply(parentStyles.tokens.strokePct, '1%'), 2),
       ),
-      strokeWidth: calc.multiply(parentStyles.tokens.widthPct, '1%'),
+      strokeWidth: calc.multiply(parentStyles.tokens.strokePct, '1%'),
     },
   },
   track: {

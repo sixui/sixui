@@ -26,6 +26,7 @@ const sprinklesProps = defineProperties({
     inset: true,
     display: true,
     flex: true,
+    fontSize: true,
   },
   staticProperties: {
     marginTop: spacingVars,
@@ -79,8 +80,10 @@ const sprinklesProps = defineProperties({
     mah: ['maxHeight'],
     ta: ['textAlign'],
     c: ['color'],
+    fz: ['fontSize'],
     tt: ['textTransform'],
     td: ['textDecoration'],
+    size: ['width', 'height'],
   },
 });
 
