@@ -83,10 +83,38 @@ const sprinklesProps = defineProperties({
     fz: ['fontSize'],
     tt: ['textTransform'],
     td: ['textDecoration'],
-    size: ['width', 'height'],
   },
 });
 
 export const boxSprinkles = createRainbowSprinkles(sprinklesProps);
 
-export type IBoxSprinkles = Parameters<typeof boxSprinkles>[0];
+export type IBoxSprinkles = Pick<
+  Parameters<typeof boxSprinkles>[0],
+  | 'm'
+  | 'mt'
+  | 'mb'
+  | 'ml'
+  | 'mr'
+  | 'ms'
+  | 'mx'
+  | 'my'
+  | 'p'
+  | 'pt'
+  | 'pb'
+  | 'pl'
+  | 'pr'
+  | 'ps'
+  | 'px'
+  | 'py'
+  | 'w'
+  | 'miw'
+  | 'maw'
+  | 'h'
+  | 'mih'
+  | 'mah'
+  | 'ta'
+  | 'c'
+  | 'fz'
+  | 'tt'
+  | 'td'
+>;

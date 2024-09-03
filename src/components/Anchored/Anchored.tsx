@@ -1,50 +1,60 @@
-import { forwardRef } from 'react';
+import type { IAnchoredFactory } from './Anchored.types';
+import { componentFactory } from '~/utils/component/componentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { useStyles } from '~/utils/styles/useStyles';
+import { Box } from '../Box';
+import { anchoredStyles, type IAnchoredStylesFactory } from './Anchored.css';
+import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import type { IAnchoredProps } from './Anchored.types';
-import { anchoredStyles } from './Anchored.styles';
-import { Base } from '../Base';
-import { useStyles } from '~/hooks/useStyles';
+const COMPONENT_NAME = 'Anchored';
 
-export const Anchored = forwardRef<HTMLDivElement, IAnchoredProps>(
-  function Anchored(props, forwardedRef) {
+export const Anchored = componentFactory<IAnchoredFactory>(
+  (props, forwardedRef) => {
     const {
-      styles,
-      sx,
-      horizontalOrigin = 'right',
-      verticalOrigin = 'top',
+      classNames,
+      className,
+      style,
+      variant,
+      position = 'top-right',
       overlap = 'rectangular',
       children,
       content,
       invisible: invisibleProp,
+      offsetX,
+      offsetY,
       ...other
-    } = props;
-
-    const { combineStyles, getStyles, globalStyles } = useStyles({
-      componentName: 'Anchored',
-      styles: [anchoredStyles, styles],
-    });
+    } = useProps({ componentName: COMPONENT_NAME, props });
 
     const invisible = invisibleProp || !content;
 
+    const { getStyles } = useStyles<IAnchoredStylesFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles: anchoredStyles,
+      style,
+      variant,
+      modifiers: {
+        position,
+        invisible,
+        overlap,
+      },
+    });
+
     return (
-      <Base
+      <Box
         {...other}
-        sx={[globalStyles, combineStyles('host'), sx]}
+        {...getStyles('root', {
+          style: assignInlineVars({
+            [anchoredStyles.tokens.offset.x]: offsetX,
+            [anchoredStyles.tokens.offset.y]: offsetY,
+          }),
+        })}
         ref={forwardedRef}
       >
         {children}
-
-        <div
-          {...getStyles(
-            'content',
-            `content$${overlap}$${verticalOrigin}$${horizontalOrigin}`,
-            invisible &&
-              `content$${overlap}$${verticalOrigin}$${horizontalOrigin}$invisible`,
-          )}
-        >
-          {content}
-        </div>
-      </Base>
+        <div {...getStyles('content')}>{content}</div>
+      </Box>
     );
   },
 );

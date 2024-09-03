@@ -1,7 +1,12 @@
 import { getDataAttributes, type IModifiers } from '~/utils/getDataAttributes';
 
+type IOperator = '=' | '^=' | '$=' | '~=' | '*=' | '|=' | '?=' | '!=';
+
 export const getModifierSelector = <TModifier extends string = string>(
-  modifier: TModifier | Partial<IModifiers<TModifier>>,
+  modifier:
+    | TModifier
+    | `${TModifier}${IOperator}${string}`
+    | Partial<IModifiers<TModifier>>,
   parent?: string,
 ): string => {
   const modifiers =

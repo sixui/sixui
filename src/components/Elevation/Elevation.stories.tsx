@@ -14,12 +14,7 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {} satisfies Partial<IElevationProps>;
 
 const ElevationShowcase = makeComponentShowcase((props: IElevationProps) => (
-  <Placeholder
-    width='$24'
-    height='$24'
-    corner='$md'
-    label={`Level ${props.level}`}
-  >
+  <Placeholder w='$24' h='$24' corner='$md' label={`Level ${props.level}`}>
     <Elevation {...props} />
   </Placeholder>
 ));

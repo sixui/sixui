@@ -42,8 +42,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0
       rainbow-sprinkles:
-        specifier: ^0.17.2
-        version: 0.17.2(@vanilla-extract/css@1.15.5)(@vanilla-extract/dynamic@2.1.2)
+        specifier: ^0.17.3
+        version: 0.17.3(@vanilla-extract/css@1.15.5)(@vanilla-extract/dynamic@2.1.2)
       react-aria:
         specifier: ^3.34.3
         version: 3.34.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -54,8 +54,8 @@ importers:
         specifier: ^4.4.5
         version: 4.4.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       type-fest:
-        specifier: ^4.25.0
-        version: 4.25.0
+        specifier: ^4.26.0
+        version: 4.26.0
     devDependencies:
       '@auto-it/npm':
         specifier: ^11.2.0
@@ -241,8 +241,8 @@ importers:
         specifier: ^5
         version: 5.4.2(@types/node@22.5.0)
       vite-plugin-dts:
-        specifier: ^4.0.3
-        version: 4.0.3(@types/node@22.5.0)(rollup@4.21.0)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.0))
+        specifier: ^4.1.0
+        version: 4.1.0(@types/node@22.5.0)(rollup@4.21.0)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.0))
       vite-plugin-stylex:
         specifier: ^0.10.1
         version: 0.10.1(@stylexjs/stylex@0.7.5)(vite@5.4.2(@types/node@22.5.0))
@@ -5498,8 +5498,8 @@ packages:
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
-  rainbow-sprinkles@0.17.2:
-    resolution: {integrity: sha512-rGnQO+jw2Dy7Z42qFolkp90atUZhpD2ImZQyl+ZC/7V/s+niZ6SI18i5Gw9hVX45OlJ6wqRPak9QGUV2hbTsrQ==}
+  rainbow-sprinkles@0.17.3:
+    resolution: {integrity: sha512-tu00bbDozceDz/ajL8YzDn5L0mf0uVHR93v2tfGKKbemKeuPk8R4mXUokleKsA24vzrPiw26iMK53HdRy6HLag==}
     peerDependencies:
       '@vanilla-extract/css': ^1
       '@vanilla-extract/dynamic': ^2
@@ -6222,8 +6222,8 @@ packages:
     resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
     engines: {node: '>=12.20'}
 
-  type-fest@4.25.0:
-    resolution: {integrity: sha512-bRkIGlXsnGBRBQRAY56UXBm//9qH4bmJfFvq83gSz41N282df+fjy8ofcEgc1sM8geNt5cl6mC2g9Fht1cs8Aw==}
+  type-fest@4.26.0:
+    resolution: {integrity: sha512-OduNjVJsFbifKb57UqZ2EMP1i4u64Xwow3NYXUtBbD4vIwJdQd4+xl8YDou1dlm4DVrtwT/7Ky8z8WyCULVfxw==}
     engines: {node: '>=16'}
 
   type-is@1.6.18:
@@ -6409,8 +6409,8 @@ packages:
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
 
-  vite-plugin-dts@4.0.3:
-    resolution: {integrity: sha512-+xnTsaONwU2kV6zhRjtbRJSGN41uFR/whqmcb4k4fftLFDJElxthp0PP5Fq8gMeM9ytWMt1yk5gGgekLREWYQQ==}
+  vite-plugin-dts@4.1.0:
+    resolution: {integrity: sha512-sRlmt9k2q8MrX4F2058N3KmB6WyJ3Ao6QaExOv1X99F3j0GhPziEz1zscWQ1q2r1PeFc96L7GIUu8Pl2DPr2Hg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       typescript: '*'
@@ -13065,7 +13065,7 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
-  rainbow-sprinkles@0.17.2(@vanilla-extract/css@1.15.5)(@vanilla-extract/dynamic@2.1.2):
+  rainbow-sprinkles@0.17.3(@vanilla-extract/css@1.15.5)(@vanilla-extract/dynamic@2.1.2):
     dependencies:
       '@vanilla-extract/css': 1.15.5
       '@vanilla-extract/dynamic': 2.1.2
@@ -13999,7 +13999,7 @@ snapshots:
 
   type-fest@2.19.0: {}
 
-  type-fest@4.25.0: {}
+  type-fest@4.26.0: {}
 
   type-is@1.6.18:
     dependencies:
@@ -14196,7 +14196,7 @@ snapshots:
       - supports-color
       - terser
 
-  vite-plugin-dts@4.0.3(@types/node@22.5.0)(rollup@4.21.0)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.0)):
+  vite-plugin-dts@4.1.0(@types/node@22.5.0)(rollup@4.21.0)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.0)):
     dependencies:
       '@microsoft/api-extractor': 7.47.4(@types/node@22.5.0)
       '@rollup/pluginutils': 5.1.0(rollup@4.21.0)

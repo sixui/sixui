@@ -36,8 +36,8 @@ const BoundedDemo: React.FC<IDemoProps> = (props) => {
 
   return (
     <Placeholder
-      width='$24'
-      height='$24'
+      w='$24'
+      h='$24'
       surface='$surface'
       corner='$md'
       outline='$xs'
@@ -61,8 +61,8 @@ const UnboundedDemo: React.FC<IDemoProps> = (props) => {
 
   return (
     <Placeholder
-      width='$24'
-      height='$24'
+      w='$24'
+      h='$24'
       surface='$surface'
       corner='$md'
       outline='$xs'
@@ -72,8 +72,8 @@ const UnboundedDemo: React.FC<IDemoProps> = (props) => {
     >
       <Placeholder
         as={StateLayer}
-        width='$12'
-        height='$12'
+        w='$12'
+        h='$12'
         surface='$transparent'
         corner='$sm'
         outline='$xs'
@@ -96,8 +96,8 @@ const NestedDemo: React.FC<IDemoProps> = (props) => {
 
   return (
     <Placeholder
-      width='$24'
-      height='$24'
+      w='$24'
+      h='$24'
       surface='$surface'
       corner='$md'
       outline='$xs'
@@ -107,8 +107,8 @@ const NestedDemo: React.FC<IDemoProps> = (props) => {
       <StateLayer context={stateLayer} />
 
       <Placeholder
-        width='$12'
-        height='$12'
+        w='$12'
+        h='$12'
         surface='$surface'
         corner='$sm'
         outline='$xs'

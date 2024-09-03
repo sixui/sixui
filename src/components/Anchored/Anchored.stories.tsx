@@ -3,11 +3,12 @@ import { useEffect, useState } from 'react';
 
 import type { IAnchoredProps } from './Anchored.types';
 import {
-  ComponentShowcase,
+  IComponentShowcaseProps,
+  makeComponentShowcase,
   type IComponentPresentation,
-  type IComponentShowcaseProps,
 } from '../ComponentShowcase';
 import { Placeholder, type IPlaceholderProps } from '../Placeholder';
+import { Paper } from '../Paper';
 import { Anchored } from './Anchored';
 
 const meta = {
@@ -18,52 +19,53 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {} satisfies Partial<IAnchoredProps>;
 
-const AnchoredPlaceholder: React.FC<
-  IPlaceholderProps & { size: 'sm' | 'lg' }
-> = ({ size, ...other }) => (
-  <Placeholder
+const BadgeDemo: React.FC<IPlaceholderProps & { size: 'sm' | 'lg' }> = ({
+  size,
+  ...other
+}) => (
+  <Paper
     {...other}
-    width={size === 'sm' ? 16 : 32}
-    height={16}
-    corner='full'
-    surface='primary'
+    w={size === 'sm' ? '$4' : '$8'}
+    h='$4'
+    corner='$full'
+    surface='$primary'
   />
 );
 
-const BasePlaceholder: React.FC<IPlaceholderProps> = (props) => (
-  <Placeholder {...props} width={56} height={56} />
-);
-
 const anchors: Array<IComponentPresentation<IAnchoredProps>> = [
-  { props: { verticalOrigin: 'top', horizontalOrigin: 'right' } },
-  { props: { verticalOrigin: 'bottom', horizontalOrigin: 'right' } },
-  { props: { verticalOrigin: 'top', horizontalOrigin: 'left' } },
-  { props: { verticalOrigin: 'bottom', horizontalOrigin: 'left' } },
+  { props: { position: 'top-start' } },
+  { props: { position: 'top-center' } },
+  { props: { position: 'top-end' } },
+  { props: { position: 'middle-start' } },
+  { props: { position: 'middle-center' } },
+  { props: { position: 'middle-end' } },
+  { props: { position: 'bottom-start' } },
+  { props: { position: 'bottom-center' } },
+  { props: { position: 'bottom-end' } },
 ];
 
 const content: Array<IComponentPresentation<IAnchoredProps>> = [
-  { legend: 'Short', props: { content: <AnchoredPlaceholder size='sm' /> } },
-  { legend: 'Long', props: { content: <AnchoredPlaceholder size='lg' /> } },
+  { legend: 'Short', props: { content: <BadgeDemo size='sm' /> } },
+  { legend: 'Long', props: { content: <BadgeDemo size='lg' /> } },
 ];
+
+const AnchoredShowcase = makeComponentShowcase(Anchored);
 
 export const Variants: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={Anchored}
+    <AnchoredShowcase
       props={props}
       cols={[
         {
           props: {
-            content: <AnchoredPlaceholder size='sm' />,
-            verticalOrigin: 'top',
-            horizontalOrigin: 'right',
+            content: <BadgeDemo size='sm' />,
+            position: 'top-end',
           },
         },
         {
           props: {
-            content: <AnchoredPlaceholder size='lg' />,
-            verticalOrigin: 'bottom',
-            horizontalOrigin: 'left',
+            content: <BadgeDemo size='lg' />,
+            position: 'top-end',
           },
         },
       ]}
@@ -72,14 +74,14 @@ export const Variants: IStory = {
           legend: 'Rectangular',
           props: {
             overlap: 'rectangular',
-            children: <BasePlaceholder corner='md' />,
+            children: <Placeholder w='$12' h='$12' />,
           },
         },
         {
           legend: 'Circular',
           props: {
             overlap: 'circular',
-            children: <BasePlaceholder corner='full' />,
+            children: <Placeholder w='$12' h='$12' corner='$full' />,
           },
         },
       ]}
@@ -88,7 +90,7 @@ export const Variants: IStory = {
   args: defaultArgs as IAnchoredProps,
 };
 
-const ComponentShowcaseAnimated: React.FC<
+const AnchoredAnimatedShowcase: React.FC<
   IComponentShowcaseProps<IAnchoredProps>
 > = (props) => {
   const [invisible, setInvisible] = useState(true);
@@ -98,7 +100,7 @@ const ComponentShowcaseAnimated: React.FC<
   }, []);
 
   return (
-    <ComponentShowcase
+    <AnchoredShowcase
       {...props}
       groups={[
         { legend: 'Static' },
@@ -110,34 +112,24 @@ const ComponentShowcaseAnimated: React.FC<
 
 export const RectangularOverlap: IStory = {
   render: (props) => (
-    <ComponentShowcaseAnimated
-      component={Anchored}
-      props={props}
-      rows={content}
-      cols={anchors}
-    />
+    <AnchoredAnimatedShowcase props={props} rows={content} cols={anchors} />
   ),
   args: {
     ...defaultArgs,
     overlap: 'rectangular',
-    children: <Placeholder corner='md' width={56} height={56} />,
-  } as IAnchoredProps,
+    children: <Placeholder w='$12' h='$12' />,
+  },
 };
 
 export const CircularOverlap: IStory = {
   render: (props) => (
-    <ComponentShowcaseAnimated
-      component={Anchored}
-      props={props}
-      rows={content}
-      cols={anchors}
-    />
+    <AnchoredAnimatedShowcase props={props} rows={content} cols={anchors} />
   ),
   args: {
     ...defaultArgs,
     overlap: 'circular',
-    children: <Placeholder corner='full' width={56} height={56} />,
-  } as IAnchoredProps,
+    children: <Placeholder w='$12' h='$12' corner='$full' />,
+  },
 };
 
 export default meta;

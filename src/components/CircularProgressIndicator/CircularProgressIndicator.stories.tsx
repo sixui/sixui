@@ -53,6 +53,10 @@ export const Sizes: IStory = {
     <CircularProgressIndicatorShowcase2
       props={props}
       rows={[
+        // FIXME: should be applied
+        // TODO: apply default layer to components and sprinkles layer to
+        // sprinkles see:
+        // https://github.com/vanilla-extract-css/vanilla-extract/discussions/1472
         { props: { fz: '1em' } },
         { props: { fz: '2em' } },
         { props: { fz: '3em' } },

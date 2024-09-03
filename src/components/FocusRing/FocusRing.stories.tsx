@@ -35,8 +35,8 @@ const FocusRingDemo: React.FC<IDemoProps> = (props) => {
 
   return (
     <Placeholder
-      width='$24'
-      height='$24'
+      w='$24'
+      h='$24'
       corner='$md'
       role='button'
       tabIndex={0}
@@ -131,8 +131,8 @@ const FocusRingShowcase2 = makeComponentShowcase((props: IDemoProps) => (
     <FocusRingDemo
       {...props}
       surface='$primaryContainer'
-      width='$12'
-      height='$12'
+      w='$12'
+      h='$12'
       corner='$sm'
     />
   </FocusRingDemo>
