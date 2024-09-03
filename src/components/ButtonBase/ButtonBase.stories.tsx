@@ -3,6 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 
 import type { IButtonBaseProps } from './ButtonBase.types';
+import {
+  makeComponentShowcase,
+  type IComponentPresentation,
+} from '../ComponentShowcase';
 import { ButtonBase } from './ButtonBase';
 
 const meta = {
@@ -11,68 +15,37 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-// const styles = stylex.create({
-//   host: {
-//     display: 'flex',
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//     gap: 8,
-//   },
-// });
-
 const defaultArgs = {
   children: (
-    <div>
+    <>
       <FontAwesomeIcon icon={faCartPlus} />
       <span>Add to cart</span>
-    </div>
+    </>
   ),
 } satisfies Partial<IButtonBaseProps>;
 
+const cols: Array<IComponentPresentation<IButtonBaseProps>> = [
+  { legend: 'Enabled' },
+  { legend: 'Disabled', props: { disabled: true } },
+];
+
+const ButtonBaseShowcase = makeComponentShowcase(ButtonBase);
+
 export const Unstyled: IStory = {
-  render: (props) => <ButtonBase {...props} />,
+  render: (props) => <ButtonBaseShowcase props={props} cols={cols} />,
   args: defaultArgs,
 };
 
-// const buttonStyles = stylex.create({
-//   host: {
-//     padding: spacingTokens.padding$2,
-//     borderRadius: shapeTokens.corner$md,
-//     color: {
-//       default: colorSchemeTokens.onSurface,
-//       ':is([data-pressed])': colorSchemeTokens.onSurface,
-//     },
-//   },
-//   outline: {
-//     borderWidth: outlineTokens.width$xs,
-//     borderStyle: 'solid',
-//     borderColor: colorSchemeTokens.outline,
-//   },
-// });
-
-// const stateLayerStyles = stylex.create({
-//   host: {
-//     [stateLayerTokens.color$pressed]: colorSchemeTokens.primary,
-//   },
-// });
-
-// const focusRingStyles = stylex.create({
-//   host: {
-//     [focusRingTokens.shape]: shapeTokens.corner$md,
-//   },
-// });
-
-// export const Styled: IStory = {
-//   render: (props) => <ButtonBase {...props} />,
-//   args: {
-//     ...defaultArgs,
-//     styles: buttonStyles,
-//     innerStyles: {
-//       stateLayer: stateLayerStyles,
-//       focusRing: focusRingStyles,
-//     },
-//   },
-// };
+export const Styled: IStory = {
+  render: (props) => <ButtonBaseShowcase props={props} cols={cols} />,
+  args: {
+    ...defaultArgs,
+    elevation: '$1',
+    p: '$2',
+    corner: '$sm',
+    surface: '$primaryContainer',
+    c: '$onPrimaryContainer',
+  },
+};
 
 export default meta;

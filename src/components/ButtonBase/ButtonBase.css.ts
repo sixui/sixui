@@ -7,7 +7,6 @@ import { createStyles } from '~/utils/styles/createStyles';
 
 export const classNames = createStyles({
   root: {
-    display: 'inline-flex',
     position: 'relative',
     cursor: 'pointer',
     userSelect: 'none',
@@ -28,10 +27,6 @@ export const classNames = createStyles({
       [getModifierSelector('disabled', root)]: {
         cursor: 'default',
         pointerEvents: 'none',
-
-        // FIXME:
-        backgroundColor: 'red',
-        border: '2px solid red',
       },
     },
   }),

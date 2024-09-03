@@ -4,10 +4,9 @@ import type { IButtonBaseFactory } from './ButtonBase.types';
 import { useProps } from '~/utils/component/useProps';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useStyles } from '~/utils/styles/useStyles';
-import { Box } from '../Box';
+import { Paper } from '../Paper';
 import { useSixuiContext } from '../SixuiProvider';
 import { useStateLayer } from '../StateLayer/useStateLayer';
-import { Elevation } from '../Elevation';
 import { FocusRing } from '../FocusRing';
 import { StateLayer } from '../StateLayer';
 import { TouchTarget } from '../TouchTarget';
@@ -79,7 +78,7 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
     const handleRef = useMergeRefs([forwardedRef, stateLayer.triggerRef]);
 
     return (
-      <Box
+      <Paper
         {...other}
         {...getStyles('root')}
         {...attributes}
@@ -87,11 +86,9 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
         ref={handleRef}
         as={rootElement}
         interactions={stateLayer.interactionsContext.state}
+        disabled={disabledOrReadOnly}
       >
         <TouchTarget interactions={stateLayer.interactionsContext.state} />
-        <Elevation disabled={disabledOrReadOnly} />
-        <div {...getStyles('outline')} />
-        <div {...getStyles('background')} />
         {!disabledOrReadOnly && (
           <FocusRing
             interactions={stateLayer.interactionsContext.state}
@@ -100,7 +97,7 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
         )}
         <StateLayer context={stateLayer} />
         {children}
-      </Box>
+      </Paper>
     );
   },
 );

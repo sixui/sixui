@@ -1,12 +1,12 @@
-import { style } from '@vanilla-extract/css';
-
+import { createStyles } from '~/utils/styles/createStyles';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { themeTokens } from '../ThemeProvider';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 
-const classNames = {
-  container: style({
+const classNames = createStyles({
+  root: {},
+  container: {
     borderWidth: 1,
     borderStyle: 'dashed',
     borderColor: themeTokens.colorScheme.outline,
@@ -22,11 +22,11 @@ const classNames = {
         maxWidth: px(600),
       },
     },
-  }),
-  truncatedContainer: style({
+  },
+  truncatedContainer: {
     maxWidth: px(1200),
-  }),
-};
+  },
+});
 
 export const textStoriesStyles = {
   classNames,

@@ -332,13 +332,13 @@ const spacing: IThemeSpacingValues = {
 };
 
 const state: IThemeStateValues = {
-  containerOpacity: {
-    disabled: '0.12',
-  },
   stateLayerOpacity: {
     hover: '0.08',
     pressed: '0.12',
     dragged: '0.16',
+  },
+  containerOpacity: {
+    disabled: '0.12',
   },
   opacity: {
     disabled: '0.38',

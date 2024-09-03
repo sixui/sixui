@@ -2,7 +2,7 @@ import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphic
 import type { IMaybeAsync, IAny } from '~/helpers/types';
 import type { IStylesProps } from '~/utils/styles/useStyles';
 import type { IInteractions } from '~/hooks/useInteractions';
-import type { IBoxProps } from '../Box';
+import type { IPaperOwnProps } from '../Paper';
 import type {
   buttonBaseStyles,
   IButtonBaseStylesFactory,
@@ -28,7 +28,7 @@ export type IButtonBaseOwnProps = {
 };
 
 export interface IButtonBaseProps
-  extends IBoxProps,
+  extends IPaperOwnProps,
     IButtonBaseOwnProps,
     IStylesProps<IButtonBaseStylesFactory> {}
 

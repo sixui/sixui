@@ -1,6 +1,10 @@
-import { createTheme, style } from '@vanilla-extract/css';
+import { createTheme } from '@vanilla-extract/css';
 
-import { stylesFactory, type IStylesFactory } from '~/utils/styles/stylesFactory';
+import { createStyles } from '~/utils/styles/createStyles';
+import {
+  stylesFactory,
+  type IStylesFactory,
+} from '~/utils/styles/stylesFactory';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { space } from '~/helpers/styles/space';
@@ -19,8 +23,8 @@ const [tokensClassName, tokens] = createTheme({
   lineClamp: 'unset',
 });
 
-const classNames = {
-  root: style({
+const classNames = createStyles({
+  root: {
     margin: 0,
 
     selectors: {
@@ -73,8 +77,8 @@ const classNames = {
       [getModifierSelector<IModifier>({ variant: 'label', size: 'sm' })]:
         getTypographyStyles(themeTokens.typeScale.label.sm),
     },
-  }),
-};
+  },
+});
 
 export type ITextStylesFactory = IStylesFactory<{
   styleName: keyof typeof classNames;

@@ -1,15 +1,14 @@
-import { style } from '@vanilla-extract/css';
-
+import { createStyles } from '~/utils/styles/createStyles';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { themeTokens } from '../ThemeProvider';
 
-const classNames = {
-  root: style({
+const classNames = createStyles({
+  root: {
     width: px(96),
-  }),
-  inner: style({
+  },
+  inner: {
     position: 'relative',
     minHeight: px(96),
     display: 'flex',
@@ -18,8 +17,8 @@ const classNames = {
     justifyContent: 'center',
     padding: px(space(4)),
     ...getTypographyStyles(themeTokens.typeScale.label.md),
-  }),
-};
+  },
+});
 
 export const paperStoriesStyles = {
   classNames,

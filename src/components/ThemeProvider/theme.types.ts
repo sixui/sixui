@@ -240,10 +240,6 @@ export type IThemeSpacingValues = {
 };
 
 export type IThemeStateValues = {
-  containerOpacity: {
-    disabled: string;
-  };
-
   /**
    * A state layer is a semi-transparent covering on an element that indicates
    * its state. State layers provide a systematic approach to visualizing states
@@ -253,6 +249,10 @@ export type IThemeStateValues = {
     hover: string;
     pressed: string;
     dragged: string;
+  };
+
+  containerOpacity: {
+    disabled: string;
   };
 
   opacity: {

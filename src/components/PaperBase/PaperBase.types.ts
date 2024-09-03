@@ -5,6 +5,7 @@ import type { paperBaseStyles, IPaperBaseStylesFactory } from './PaperBase.css';
 
 export type IPaperBaseOwnProps = {
   children?: React.ReactNode;
+  disabled?: boolean;
 };
 
 export interface IPaperBaseProps
