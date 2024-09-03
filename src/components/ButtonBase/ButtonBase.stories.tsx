@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 
 import type { IButtonBaseProps } from './ButtonBase.types';
+import { Box } from '../Box';
 import {
   makeComponentShowcase,
   type IComponentPresentation,
@@ -19,7 +20,9 @@ const defaultArgs = {
   children: (
     <>
       <FontAwesomeIcon icon={faCartPlus} />
-      <span>Add to cart</span>
+      <Box as='span' pl='$2'>
+        Add to cart
+      </Box>
     </>
   ),
 } satisfies Partial<IButtonBaseProps>;
@@ -42,12 +45,10 @@ export const Styled: IStory = {
   args: {
     ...defaultArgs,
     elevation: '$1',
-    p: '$2',
+    px: '$3',
+    h: '$10',
     corner: '$sm',
     surface: '$primaryContainer',
-    // FIXME: should be applied
-    // TODO: apply default layer to components and sprinkles layer to sprinkles
-    // see: https://github.com/vanilla-extract-css/vanilla-extract/discussions/1472
     c: '$onPrimaryContainer',
   },
 };

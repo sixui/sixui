@@ -33,7 +33,6 @@ export const [tokensClassName, tokens] = createTheme({
     width: themeTokens.outline.width.none,
   },
   text: {
-    color: themeTokens.colorScheme.onSurface,
     opacity: {
       disabled: themeTokens.state.opacity.disabled,
     },
@@ -44,7 +43,6 @@ const classNames = createStyles({
   root: {
     zIndex: 0,
     position: 'relative',
-    color: tokens.text.color,
     borderTopLeftRadius: tokens.container.shape.topLeft,
     borderTopRightRadius: tokens.container.shape.topRight,
     borderBottomRightRadius: tokens.container.shape.bottomRight,
@@ -52,7 +50,7 @@ const classNames = createStyles({
 
     selectors: {
       [getModifierSelector('disabled')]: {
-        color: `color-mix(in srgb, ${tokens.text.color} calc(${tokens.text.opacity.disabled} * 100%), transparent)`,
+        color: `color-mix(in srgb, currentColor calc(${tokens.text.opacity.disabled} * 100%), transparent)`,
       },
     },
   },
