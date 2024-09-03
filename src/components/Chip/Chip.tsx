@@ -6,7 +6,7 @@ import type { IChipProps } from './Chip.types';
 import {
   createPolymorphicComponent,
   IWithAsProp,
-} from '~/helpers/react/polymorphicComponentTypes';
+} from '~/utils/component/createPolymorphicComponent';
 import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { useStyles } from '~/hooks/useStyles';
 import { iconCheckMark, iconXMark } from '~/assets/icons';

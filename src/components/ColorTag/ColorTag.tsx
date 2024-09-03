@@ -3,7 +3,7 @@ import stylex from '@stylexjs/stylex';
 
 import type { IColorTagProps } from './ColorTag.types';
 import { getTextContrastColor } from '~/helpers/colors/getTextContrastColor';
-import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
 import { useStyles } from '~/hooks/useStyles';
 import { Base } from '../Base';

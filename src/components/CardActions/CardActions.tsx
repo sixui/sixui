@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 
 import type { ICardActionsProps } from './CardActions.types';
 import { useStyles } from '~/hooks/useStyles';
-import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { cardActionsStyles } from './CardActions.styles';
 import { Stack } from '../Stack';
 

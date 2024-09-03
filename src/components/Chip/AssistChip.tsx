@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
 import type { IAssistChipProps } from './AssistChip.types';
-import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { Chip } from './Chip';
 
 export const AssistChip = createPolymorphicComponent<'div', IAssistChipProps>(

@@ -5,17 +5,14 @@ import type { IBoxProps } from '../Box';
 import { makeComponentShowcase } from '../ComponentShowcase';
 import { Placeholder, type IPlaceholderOwnProps } from '../Placeholder';
 import { FocusRing } from './FocusRing';
-import {
-  useInteractions,
-  type IInteractionsState,
-} from '~/hooks/useInteractions';
+import { useInteractions, type IInteractions } from '~/hooks/useInteractions';
 
 // https://github.com/material-components/material-web/blob/main/focus/demo/stories.ts
 
 type IDemoProps = IBoxProps &
   IPlaceholderOwnProps & {
     className?: string;
-    staticInteractionState?: IInteractionsState;
+    interactions?: IInteractions;
     variant?: IFocusRingVariant;
     disabled?: boolean;
     children?: React.ReactNode;
@@ -25,14 +22,14 @@ const FocusRingDemo: React.FC<IDemoProps> = (props) => {
   const {
     className,
     label,
-    staticInteractionState,
+    interactions,
     variant,
     disabled,
     children,
     ...other
   } = props;
-  const interactions = useInteractions({
-    staticState: staticInteractionState,
+  const interactionsContext = useInteractions({
+    baseState: interactions,
     disabled,
   });
 
@@ -45,11 +42,11 @@ const FocusRingDemo: React.FC<IDemoProps> = (props) => {
       tabIndex={0}
       className={className}
       label={label}
-      interactions={interactions}
       disabled={disabled}
+      {...interactionsContext.triggerProps}
       {...other}
     >
-      <FocusRing variant={variant} interactionsState={interactions.state} />
+      <FocusRing variant={variant} interactions={interactionsContext.state} />
       {children}
     </Placeholder>
   );
@@ -73,7 +70,7 @@ export const Variants: IStory = {
         { props: { label: 'Unfocused' } },
         {
           props: {
-            staticInteractionState: {
+            interactions: {
               focused: true,
             },
             variant: 'inward',
@@ -82,7 +79,7 @@ export const Variants: IStory = {
         },
         {
           props: {
-            staticInteractionState: {
+            interactions: {
               focused: true,
             },
             variant: 'outward',

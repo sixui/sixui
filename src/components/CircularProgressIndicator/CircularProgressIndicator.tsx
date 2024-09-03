@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
 import type { ICircularProgressIndicatorProps } from './CircularProgressIndicator.types';
-import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { DeterminateCircularProgressIndicator } from '../DeterminateCircularProgressIndicator';
 import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 

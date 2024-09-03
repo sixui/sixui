@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
 import type { IItemProps } from './Item.types';
-import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { commonStyles } from '~/helpers/commonStyles';
 import { useStyles } from '~/hooks/useStyles';
 import { Base } from '../Base';

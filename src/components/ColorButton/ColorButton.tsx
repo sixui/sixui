@@ -3,7 +3,7 @@ import { asArray } from '@olivierpascal/helpers';
 import stylex from '@stylexjs/stylex';
 
 import type { IColorButtonProps } from './ColorButton.types';
-import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { ButtonBase } from '~/components/ButtonBase';
 import { SvgIcon } from '~/components/SvgIcon';
 import { iconCheckMark } from '~/assets/icons';

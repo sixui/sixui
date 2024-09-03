@@ -2,7 +2,7 @@ import type { ITouchTargetFactory } from './TouchTarget.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useStyles } from '~/utils/styles/useStyles';
-import { Base } from '~/components/Base';
+import { Box } from '~/components/Box';
 import {
   touchTargetStyles,
   type ITouchTargetStylesFactory,
@@ -26,7 +26,7 @@ export const TouchTarget = componentFactory<ITouchTargetFactory>(
       variant,
     });
 
-    return <Base {...other} {...getStyles('root')} ref={forwardedRef} />;
+    return <Box {...other} {...getStyles('root')} ref={forwardedRef} />;
   },
 );
 

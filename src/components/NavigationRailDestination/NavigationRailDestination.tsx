@@ -7,7 +7,7 @@ import { useStyles } from '~/hooks/useStyles';
 import {
   createPolymorphicComponent,
   type IWithAsProp,
-} from '~/helpers/react/polymorphicComponentTypes';
+} from '~/utils/component/createPolymorphicComponent';
 import { Base } from '../Base';
 import { useVisualState } from '../VisualState';
 import { StateLayer } from '../StateLayer';

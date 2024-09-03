@@ -13,7 +13,7 @@ import type { ITabProps } from './Tab.types';
 import {
   createPolymorphicComponent,
   type IWithAsProp,
-} from '~/helpers/react/polymorphicComponentTypes';
+} from '~/utils/component/createPolymorphicComponent';
 import { Badge } from '../Badge';
 import { useVisualState } from '../VisualState';
 import { Elevation } from '../Elevation';

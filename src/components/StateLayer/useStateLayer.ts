@@ -1,35 +1,36 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 
 import { useRipple } from '~/hooks/useRipple';
 import {
   useInteractions,
+  type IUseInteractionsResult,
   type IInteractions,
-  type IInteractionsState,
 } from '~/hooks/useInteractions';
-import { PressEvent } from 'react-aria';
+import { mergeProps, PressEvent } from 'react-aria';
 
 export type IUseStateLayerProps = {
   disabled?: boolean;
-  staticInteractionState?: IInteractionsState;
+  interactions?: IInteractions;
 };
 
-export type IStateLayerContext<TElement extends HTMLElement = HTMLElement> = {
-  interactions: IInteractions<TElement>;
+export type IUseStateLayerResult<TElement extends HTMLElement = HTMLElement> = {
+  triggerRef: React.RefObject<TElement>;
+  interactionsContext: IUseInteractionsResult<TElement>;
   surfaceRef: React.RefObject<HTMLDivElement>;
   animating: boolean;
 };
 
 export const useStateLayer = <TElement extends HTMLElement>(
   props?: IUseStateLayerProps,
-): IStateLayerContext<TElement> => {
-  const { disabled, staticInteractionState } = props ?? {};
+): IUseStateLayerResult<TElement> => {
+  const { disabled, interactions } = props ?? {};
   const surfaceRef = useRef<HTMLDivElement>(null);
 
   const handlePressStart = (event: PressEvent): void => onPressStart?.(event);
   const handlePressEnd = (event: PressEvent): void => onPressEnd?.(event);
 
-  const interactions = useInteractions<TElement>({
-    staticState: staticInteractionState,
+  const interactionsContext = useInteractions<TElement>({
+    baseState: interactions,
     pressEvents: {
       onPressStart: handlePressStart,
       onPressEnd: handlePressEnd,
@@ -37,6 +38,7 @@ export const useStateLayer = <TElement extends HTMLElement>(
     disabled,
   });
 
+  const triggerRef = useRef<TElement>(null);
   const {
     animating,
     onPressStart,
@@ -45,30 +47,21 @@ export const useStateLayer = <TElement extends HTMLElement>(
     onPointerCancel,
     onContextMenu,
   } = useRipple({
-    interactiveTargetRef: interactions.targetRef,
+    triggerRef,
     surfaceRef,
     disabled,
   });
 
-  useEffect(() => {
-    const control = interactions.targetRef.current;
-    if (!control) {
-      return;
-    }
-
-    control.addEventListener('pointerleave', onPointerLeave);
-    control.addEventListener('pointercancel', onPointerCancel);
-    control.addEventListener('contextmenu', onContextMenu);
-
-    return () => {
-      control.removeEventListener('pointerleave', onPointerLeave);
-      control.removeEventListener('pointercancel', onPointerCancel);
-      control.removeEventListener('contextmenu', onContextMenu);
-    };
-  }, [interactions.targetRef, onPointerLeave, onPointerCancel, onContextMenu]);
-
   return {
-    interactions,
+    triggerRef,
+    interactionsContext: {
+      ...interactionsContext,
+      triggerProps: mergeProps(interactionsContext.triggerProps, {
+        onPointerLeave,
+        onPointerCancel,
+        onContextMenu,
+      }),
+    },
     surfaceRef,
     animating,
   };

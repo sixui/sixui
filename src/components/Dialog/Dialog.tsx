@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
 import type { IDialogProps } from './Dialog.types';
-import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { useStyles } from '~/hooks/useStyles';
 import { DialogContent } from '../DialogContent';
 import { dialogStyles } from './Dialog.styles';

@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
 import type { IFabProps } from './Fab.types';
-import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { useStyles } from '~/hooks/useStyles';
 import { Button } from '../Button';
 import { fabStyles } from './Fab.styles';

@@ -11,7 +11,7 @@ import { useMergeRefs } from '@floating-ui/react';
 import type { IFieldBaseProps } from './FieldBase.types';
 import type { IFilledFieldBaseStylesKey } from './variants/FilledFieldBase.styles';
 import type { IOutlinedFieldBaseStylesKey } from './variants/OutlinedFieldBase.styles';
-import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { isFunction } from '~/helpers/isFunction';
 import { usePrevious } from '~/hooks/usePrevious';
 import { EASING } from '~/helpers/animation';

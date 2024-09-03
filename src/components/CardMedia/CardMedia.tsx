@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
 import type { ICardMediaProps } from './CardMedia.types';
-import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { useStyles } from '~/hooks/useStyles';
 import { commonStyles } from '~/helpers/commonStyles';
 import { Base } from '../Base';

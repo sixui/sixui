@@ -13,8 +13,8 @@ const classNames = createStyles({
     position: 'absolute',
     top: '50%',
     left: '50%',
-    width: px(themeTokens.density.minTargetSize),
-    height: px(themeTokens.density.minTargetSize),
+    width: `max(${px(themeTokens.density.minTargetSize)}, 100%)`,
+    height: `max(${px(themeTokens.density.minTargetSize)}, 100%)`,
     transform: 'translate(-50%, -50%)',
 
     selectors: {

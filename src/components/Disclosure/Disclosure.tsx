@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
 import type { IDisclosureProps } from './Disclosure.types';
-import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { useStyles } from '~/hooks/useStyles';
 import { Expandable } from '../Expandable';
 import { Base } from '../Base';

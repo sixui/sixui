@@ -6,7 +6,7 @@ import type { IListItemProps } from './ListItem.types';
 import {
   createPolymorphicComponent,
   type IWithAsProp,
-} from '~/helpers/react/polymorphicComponentTypes';
+} from '~/utils/component/createPolymorphicComponent';
 import { useStyles } from '~/hooks/useStyles';
 import { commonStyles } from '~/helpers/commonStyles';
 import { Base } from '../Base';

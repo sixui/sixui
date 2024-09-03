@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type { IFluidButtonProps } from './FluidButton.types';
-import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { useStyles } from '~/hooks/useStyles';
 import { ButtonBase } from '../ButtonBase';
 import {

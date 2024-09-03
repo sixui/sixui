@@ -1,3 +1,5 @@
+import { useMergeRefs } from '@floating-ui/react';
+
 import type { IButtonBaseFactory } from './ButtonBase.types';
 import { useProps } from '~/utils/component/useProps';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
@@ -29,7 +31,7 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
       disabled,
       readOnly,
       type = 'button',
-      staticInteractionState,
+      interactions,
       href,
       target,
       rel,
@@ -51,8 +53,8 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
 
     const disabledOrReadOnly = disabled || readOnly;
     const stateLayer = useStateLayer<HTMLDivElement>({
+      interactions,
       disabled: disabledOrReadOnly,
-      staticInteractionState,
     });
     const rootElement =
       as ?? (href ? (sixuiContext.settings?.linkAs ?? 'a') : 'button');
@@ -74,25 +76,25 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
             rel: rootElement === 'a' ? rel : undefined,
           };
 
+    const handleRef = useMergeRefs([forwardedRef, stateLayer.triggerRef]);
+
     return (
       <Box
         {...other}
         {...getStyles('root')}
         {...attributes}
+        {...stateLayer.interactionsContext.triggerProps}
+        ref={handleRef}
         as={rootElement}
-        interactions={stateLayer.interactions}
-        ref={forwardedRef}
-        modifiers={{
-          disabled: disabledOrReadOnly,
-        }}
+        interactions={stateLayer.interactionsContext.state}
       >
-        <TouchTarget interactionsState={stateLayer.interactions.state} />
+        <TouchTarget interactions={stateLayer.interactionsContext.state} />
         <Elevation disabled={disabledOrReadOnly} />
         <div {...getStyles('outline')} />
         <div {...getStyles('background')} />
         {!disabledOrReadOnly && (
           <FocusRing
-            interactionsState={stateLayer.interactions.state}
+            interactions={stateLayer.interactionsContext.state}
             variant={inwardFocusRing ? 'inward' : undefined}
           />
         )}

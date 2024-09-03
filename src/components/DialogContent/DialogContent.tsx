@@ -9,7 +9,7 @@ import {
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { IDialogContentProps } from './DialogContent.types';
-import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { isFunction } from '~/helpers/isFunction';
 import { useStyles } from '~/hooks/useStyles';
 import { Divider } from '../Divider';

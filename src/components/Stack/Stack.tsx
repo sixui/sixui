@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 
 import type { IStackProps } from './Stack.types';
 import { useStyles } from '~/utils/styles/useStyles';
-import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { Box } from '~/components/Box';
 import { filterFalsyChildren } from '~/helpers/react/filterFalsyChildren';
 import { stackStyles, stackVariants } from './Stack.css';

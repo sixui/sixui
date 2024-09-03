@@ -1,8 +1,16 @@
 import type { PressEvent } from 'react-aria';
-import { useCallback, useRef, useState } from 'react';
+import type { FocusableElement } from '@react-types/shared';
+import {
+  useCallback,
+  useRef,
+  useState,
+  type MouseEventHandler,
+  type PointerEvent,
+  type PointerEventHandler,
+} from 'react';
+import { delay } from '@olivierpascal/helpers';
 
 import type { IPoint } from '~/helpers/types';
-import { delay } from '@olivierpascal/helpers';
 
 export type IUSeRippleOptions = {
   /** The delay in milliseconds after the touch start, to determine if the touch
@@ -60,7 +68,7 @@ const DEFAULT_OPTIONS = {
 };
 
 export type IUseRippleProps<TElement extends HTMLElement> = {
-  interactiveTargetRef: React.RefObject<TElement>;
+  triggerRef: React.RefObject<TElement>;
   surfaceRef: React.RefObject<HTMLDivElement>;
   disabled?: boolean;
   options?: IUSeRippleOptions;
@@ -70,9 +78,9 @@ export type IUseRippleResult = {
   animating: boolean;
   onPressStart: (event: PressEvent) => void;
   onPressEnd: (event: PressEvent) => void;
-  onPointerLeave: (event: PointerEvent) => void;
-  onPointerCancel: (event: PointerEvent) => void;
-  onContextMenu: (event: PointerEvent | MouseEvent) => void;
+  onPointerLeave: PointerEventHandler<FocusableElement>;
+  onPointerCancel: PointerEventHandler<FocusableElement>;
+  onContextMenu: MouseEventHandler<FocusableElement>;
 };
 
 /**
@@ -132,12 +140,7 @@ let activeTarget: EventTarget | null = null;
 export const useRipple = <TElement extends HTMLElement>(
   props: IUseRippleProps<TElement>,
 ): IUseRippleResult => {
-  const {
-    interactiveTargetRef,
-    surfaceRef,
-    options: optionsProp,
-    disabled,
-  } = props;
+  const { triggerRef, surfaceRef, options: optionsProp, disabled } = props;
   const options = { ...DEFAULT_OPTIONS, ...optionsProp };
 
   const [pressed, setPressed] = useState(false);
@@ -149,12 +152,11 @@ export const useRipple = <TElement extends HTMLElement>(
   const growAnimationRef = useRef<Animation>();
 
   const determineRippleSize = useCallback(() => {
-    if (!interactiveTargetRef.current) {
+    if (!triggerRef.current) {
       return;
     }
 
-    const { height, width } =
-      interactiveTargetRef.current.getBoundingClientRect();
+    const { height, width } = triggerRef.current.getBoundingClientRect();
     const maxDim = Math.max(height, width);
     const softEdgeSize = Math.max(
       options.softEdgeContainerRatio * maxDim,
@@ -169,7 +171,7 @@ export const useRipple = <TElement extends HTMLElement>(
     rippleScaleRef.current = (maxRadius + softEdgeSize) / initialSize;
     rippleSizeRef.current = initialSize;
   }, [
-    interactiveTargetRef,
+    triggerRef,
     options.padding,
     options.softEdgeContainerRatio,
     options.softEdgeMinimumSize,
@@ -183,12 +185,11 @@ export const useRipple = <TElement extends HTMLElement>(
       startPoint: IPoint;
       endPoint: IPoint;
     } | null => {
-      if (!interactiveTargetRef.current || !surfaceRef.current) {
+      if (!triggerRef.current || !surfaceRef.current) {
         return null;
       }
 
-      const { width, height } =
-        interactiveTargetRef.current.getBoundingClientRect();
+      const { width, height } = triggerRef.current.getBoundingClientRect();
 
       // End in the center
       const endPoint = {
@@ -209,7 +210,7 @@ export const useRipple = <TElement extends HTMLElement>(
 
       return { startPoint: centeredStartPoint, endPoint };
     },
-    [interactiveTargetRef, surfaceRef],
+    [triggerRef, surfaceRef],
   );
 
   const startPressAnimation = useCallback(
@@ -340,8 +341,8 @@ export const useRipple = <TElement extends HTMLElement>(
     [disabled, startPressAnimation],
   );
 
-  const handlePointerLeave = useCallback(
-    (event: PointerEvent) => {
+  const handlePointerLeave: PointerEventHandler<FocusableElement> = useCallback(
+    (event) => {
       if (isTouch(event)) {
         return;
       }

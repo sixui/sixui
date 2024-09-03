@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
 import type { ICardTitleProps } from './CardTitle.types';
-import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { useStyles } from '~/hooks/useStyles';
 import { Stack } from '../Stack';
 import { cardTitleStyles } from './CardTitle.styles';

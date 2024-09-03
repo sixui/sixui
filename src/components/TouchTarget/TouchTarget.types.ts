@@ -1,6 +1,5 @@
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IStylesProps } from '~/utils/styles/useStyles';
-import type { IInteractionsState } from '~/hooks/useInteractions';
 import type { IBoxProps } from '../Box';
 import type {
   touchTargetStyles,
@@ -9,7 +8,6 @@ import type {
 
 export type ITouchTargetOwnProps = {
   children?: React.ReactNode;
-  interactionsState?: IInteractionsState;
 };
 
 export interface ITouchTargetProps
@@ -19,6 +17,6 @@ export interface ITouchTargetProps
 
 export type ITouchTargetFactory = IComponentFactory<{
   props: ITouchTargetProps;
-  root: HTMLDivElement;
+  ref: HTMLDivElement;
   styles: typeof touchTargetStyles;
 }>;

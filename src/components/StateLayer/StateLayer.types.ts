@@ -1,6 +1,6 @@
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IStylesProps } from '~/utils/styles/useStyles';
-import type { IStateLayerContext } from './useStateLayer';
+import type { IUseStateLayerResult } from './useStateLayer';
 import type { IBoxProps } from '../Box';
 import type {
   stateLayerStyles,
@@ -8,7 +8,7 @@ import type {
 } from './StateLayer.css';
 
 export type IStateLayerOwnProps = {
-  context: IStateLayerContext;
+  context: IUseStateLayerResult;
 };
 
 export interface IStateLayerProps

@@ -29,18 +29,15 @@ export const StateLayer = componentFactory<IStateLayerFactory>(
       variant,
     });
 
-    const { interactions } = context;
+    const { animating, interactionsContext, surfaceRef } = context;
     const modifiers = {
-      hovered: !context.animating && interactions.state.hovered,
-      dragged:
-        !context.animating &&
-        !interactions.state.hovered &&
-        interactions.state.dragged,
-      'static-pressed': interactions.staticState?.pressed,
-      animating: context.animating,
+      hovered: !animating && interactionsContext.state.hovered,
+      dragged: !animating && interactionsContext.state.dragged,
+      'static-pressed': interactionsContext.baseState?.pressed,
+      animating: animating,
     };
 
-    const handleRef = useMergeRefs([forwardedRef, context.surfaceRef]);
+    const handleRef = useMergeRefs([forwardedRef, surfaceRef]);
 
     return (
       <Box

@@ -1,7 +1,7 @@
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IMaybeAsync, IAny } from '~/helpers/types';
 import type { IStylesProps } from '~/utils/styles/useStyles';
-import type { IInteractionsState } from '~/hooks/useInteractions';
+import type { IInteractions } from '~/hooks/useInteractions';
 import type { IBoxProps } from '../Box';
 import type {
   buttonBaseStyles,
@@ -9,8 +9,8 @@ import type {
 } from './ButtonBase.css';
 
 export type IButtonBaseOwnProps = {
+  interactions?: IInteractions;
   children?: React.ReactNode;
-  staticInteractionState?: IInteractionsState;
   inwardFocusRing?: boolean;
   href?: string;
   target?: React.AnchorHTMLAttributes<HTMLAnchorElement>['target'];

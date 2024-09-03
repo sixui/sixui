@@ -6,7 +6,7 @@ import type { ICardProps } from './Card.types';
 import {
   createPolymorphicComponent,
   type IWithAsProp,
-} from '~/helpers/react/polymorphicComponentTypes';
+} from '~/utils/component/createPolymorphicComponent';
 import { useStyles } from '~/hooks/useStyles';
 import { Base } from '../Base';
 import { useVisualState } from '../VisualState';

@@ -7,30 +7,29 @@ import { accumulate } from '@olivierpascal/helpers';
 import { useMemo, useRef } from 'react';
 import { useFocusRing, useHover, usePress, type HoverEvents } from 'react-aria';
 
-export type IInteractionStatus =
+export type IInteraction =
   | 'disabled'
   | 'focused'
   | 'pressed'
   | 'dragged'
   | 'hovered';
 
-export type IInteractionsState = Partial<Record<IInteractionStatus, boolean>>;
+export type IInteractions = Partial<Record<IInteraction, boolean>>;
 
 export type IUseInteractionsProps = {
-  /** The static interaction state. */
-  staticState?: IInteractionsState;
+  /** The base interactions state of the trigger. */
+  baseState?: IInteractions;
 
   /**
-   * This strategy describes how the local state should be combined with the
-   * static state.
-   * - `replace`: The local state will be ignored and the combined state will
-   *  be equal to the static state.
-   * - `accumulate`: If the local state is true, the combined state will be
-   *   true. If the local state is not true, the combined state will be
-   *   equal to the static state.
+   * This strategy describes how the current state should be merged with the
+   * base state.
+   * - `replace`: The base state will replace the current state.
+   * - `accumulate`: If the current state is true, the merged state will be
+   *   true. If the current state is not true, the combined state will be
+   *   equal to the base state.
    * @defaultValue 'replace'
    */
-  staticStateStrategy?: 'replace' | 'accumulate';
+  mergeStrategy?: 'replace' | 'accumulate';
 
   /** Events to handle hover interactions. */
   hoverEvents?: HoverEvents;
@@ -46,78 +45,69 @@ export type IUseInteractionsProps = {
 
   /** Wether the element is a text input. */
   isTextInput?: boolean;
-
-  /**
-   * The ordered list of interaction status to determine the combined state.
-   * @defaultValue ['disabled', 'dragged', 'pressed', 'hovered', 'focused']
-   */
-  priorities?: Array<IInteractionStatus>;
 };
 
-export type IInteractions<TElement extends HTMLElement = HTMLElement> = {
-  /** Props to spread on the target. */
-  targetProps: DOMAttributes;
+export type IUseInteractionsResult<TElement extends HTMLElement = HTMLElement> =
+  {
+    /** Props to spread on the trigger. */
+    triggerProps: DOMAttributes;
 
-  /** Ref object for the target element. */
-  targetRef: React.RefObject<TElement>;
+    /** Ref object for the trigger element. */
+    triggerRef: React.RefObject<TElement>;
 
-  /** The current interaction state of the target. */
-  state: IInteractionsState;
+    /** The untouched base interaction state of the trigger. */
+    baseState?: IInteractions;
 
-  /** The static interaction state. */
-  staticState?: IInteractionsState;
-
-  /** The combined interaction state of the target. */
-  combinedStatus?: IInteractionStatus;
-};
+    /** The merged interaction state of the trigger. */
+    state: IInteractions;
+  };
 
 /** Used to handle nested surfaces. */
-const activeTargets: Array<EventTarget> = [];
+const activeTriggers: Array<EventTarget> = [];
 
 export const useInteractions = <TElement extends HTMLElement>(
   props?: IUseInteractionsProps,
-): IInteractions<TElement> => {
+): IUseInteractionsResult<TElement> => {
   const {
-    staticState,
-    staticStateStrategy = 'replace',
-    priorities = ['disabled', 'dragged', 'pressed', 'hovered', 'focused'],
+    baseState,
+    mergeStrategy = 'replace',
     disabled,
     dragged,
     isTextInput,
   } = props ?? {};
 
-  const targetRef = useRef<TElement>(null);
+  const triggerRef = useRef<TElement>(null);
 
-  const localStateReplaced = staticState && staticStateStrategy === 'replace';
+  const currentStateReplaced = baseState && mergeStrategy === 'replace';
   const { focusProps, isFocusVisible } = useFocusRing({
     isTextInput,
   });
   const focused = isFocusVisible && !disabled;
 
-  const currentTarget = useRef<EventTarget | null>(null);
+  const currentTrigger = useRef<EventTarget | null>(null);
   const { hoverProps, isHovered: hoveredWithin } = useHover({
     ...props?.hoverEvents,
     onHoverStart: (event: HoverEvent) => {
       props?.hoverEvents?.onHoverStart?.(event);
-      currentTarget.current = event.target;
-      activeTargets.unshift(event.target);
+      currentTrigger.current = event.target;
+      activeTriggers.unshift(event.target);
     },
     onHoverEnd: (event: HoverEvent) => {
       props?.hoverEvents?.onHoverEnd?.(event);
-      currentTarget.current = null;
-      activeTargets.shift();
+      currentTrigger.current = null;
+      activeTriggers.shift();
     },
-    isDisabled: disabled || localStateReplaced,
+    isDisabled: disabled || currentStateReplaced,
   });
 
   const { pressProps, isPressed: pressed } = usePress({
     ...props?.pressEvents,
-    isDisabled: disabled || localStateReplaced,
+    isDisabled: disabled || currentStateReplaced,
   });
 
-  const hovered = hoveredWithin && currentTarget.current === activeTargets[0];
+  const hovered = hoveredWithin && currentTrigger.current === activeTriggers[0];
 
-  const targetProps = useMemo<DOMAttributes>(
+  const triggerProps = useMemo<DOMAttributes>(
     () => ({
       ...hoverProps,
       ...pressProps,
@@ -126,43 +116,35 @@ export const useInteractions = <TElement extends HTMLElement>(
     [hoverProps, pressProps, focusProps],
   );
 
-  const state = useMemo<IInteractionsState>(() => {
+  const currentState: IInteractions = useMemo(
+    () => ({
+      disabled,
+      pressed,
+      dragged,
+      focused,
+      hovered,
+    }),
+    [disabled, pressed, dragged, focused, hovered],
+  );
+
+  const state = useMemo<IInteractions>(() => {
     if (disabled) {
       return {
         disabled,
       };
     }
 
-    const localState: IInteractionsState = {
-      disabled,
-      pressed,
-      dragged,
-      focused,
-      hovered,
-    };
-
-    return staticState
-      ? localStateReplaced
-        ? staticState
-        : accumulate(localState, staticState)
-      : localState;
-  }, [
-    staticState,
-    localStateReplaced,
-    disabled,
-    dragged,
-    pressed,
-    focused,
-    hovered,
-  ]);
-
-  const combinedStatus = priorities.find((status) => state[status]);
+    return baseState
+      ? currentStateReplaced
+        ? baseState
+        : accumulate(currentState, baseState)
+      : currentState;
+  }, [disabled, baseState, currentStateReplaced, currentState]);
 
   return {
-    targetProps,
-    targetRef,
-    staticState,
+    triggerProps,
+    triggerRef,
+    baseState,
     state,
-    combinedStatus,
   };
 };

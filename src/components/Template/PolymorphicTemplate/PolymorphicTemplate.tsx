@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
 import type { IPolymorphicTemplateProps } from './PolymorphicTemplate.types';
-import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { useStyles } from '~/hooks/useStyles';
 import { Base } from '~/components/Base';
 import { polymorphicTemplateTheme } from './PolymorphicTemplate.stylex';

@@ -1,5 +1,6 @@
 import { createTheme, keyframes } from '@vanilla-extract/css';
 
+import type { IInteraction } from '~/hooks/useInteractions';
 import {
   stylesFactory,
   type IStylesFactory,
@@ -10,7 +11,7 @@ import { px } from '~/helpers/styles/px';
 import { themeTokens } from '../ThemeProvider';
 import { calc } from '@vanilla-extract/css-utils';
 
-type IModifier = 'visible' | 'variant';
+type IModifier = 'visible' | IInteraction | 'variant';
 
 const [tokensClassName, tokens] = createTheme({
   color: themeTokens.colorScheme.secondary,
@@ -55,7 +56,7 @@ const classNames = createStyles({
     position: 'absolute',
 
     selectors: {
-      [getModifierSelector<IModifier>('visible')]: {
+      [getModifierSelector<IModifier>('focused')]: {
         display: 'block',
       },
       [getModifierSelector<IModifier>({ variant: 'outward' })]: {

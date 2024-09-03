@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IInteractionsState } from '~/hooks/useInteractions';
+import type { IInteractions } from '~/hooks/useInteractions';
 import {
   makeComponentShowcase,
   type IComponentPresentation,
@@ -13,7 +13,7 @@ import { useStateLayer } from './useStateLayer';
 // https://github.com/material-components/material-web/blob/main/ripple/demo/stories.ts
 
 type IDemoProps = {
-  staticInteractionState?: IInteractionsState;
+  interactions?: IInteractions;
   disabled?: boolean;
 };
 
@@ -25,9 +25,9 @@ const defaultArgs = {} satisfies Partial<IDemoProps>;
 
 const states: Array<IComponentPresentation<IDemoProps>> = [
   { legend: 'Enabled' },
-  { legend: 'Hovered', props: { staticInteractionState: { hovered: true } } },
-  { legend: 'Pressed', props: { staticInteractionState: { pressed: true } } },
-  { legend: 'Dragged', props: { staticInteractionState: { dragged: true } } },
+  { legend: 'Hovered', props: { interactions: { hovered: true } } },
+  { legend: 'Pressed', props: { interactions: { pressed: true } } },
+  { legend: 'Dragged', props: { interactions: { dragged: true } } },
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
@@ -41,7 +41,8 @@ const BoundedDemo: React.FC<IDemoProps> = (props) => {
       surface='$surface'
       corner='$md'
       outline='$xs'
-      interactions={stateLayer.interactions}
+      {...stateLayer.interactionsContext.triggerProps}
+      ref={stateLayer.triggerRef}
     >
       <StateLayer context={stateLayer} />
     </Placeholder>
@@ -66,7 +67,8 @@ const UnboundedDemo: React.FC<IDemoProps> = (props) => {
       corner='$md'
       outline='$xs'
       outlineStyle='dashed'
-      interactions={stateLayer.interactions}
+      {...stateLayer.interactionsContext.triggerProps}
+      ref={stateLayer.triggerRef}
     >
       <Placeholder
         as={StateLayer}
@@ -99,7 +101,8 @@ const NestedDemo: React.FC<IDemoProps> = (props) => {
       surface='$surface'
       corner='$md'
       outline='$xs'
-      interactions={stateLayer.interactions}
+      {...stateLayer.interactionsContext.triggerProps}
+      ref={stateLayer.triggerRef}
     >
       <StateLayer context={stateLayer} />
 
@@ -109,7 +112,8 @@ const NestedDemo: React.FC<IDemoProps> = (props) => {
         surface='$surface'
         corner='$sm'
         outline='$xs'
-        interactions={nestedStateLayer.interactions}
+        {...nestedStateLayer.interactionsContext.triggerProps}
+        ref={nestedStateLayer.triggerRef}
       >
         <StateLayer context={nestedStateLayer} />
       </Placeholder>

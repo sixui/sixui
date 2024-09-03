@@ -1,4 +1,3 @@
-import { useMergeRefs } from '@floating-ui/react';
 import { forwardRef } from 'react';
 import cx from 'clsx';
 
@@ -25,14 +24,12 @@ export const Box = createPolymorphicComponent<'div', IBoxProps>(
     const sprinkles = boxSprinkles(otherWithSprinkles);
     const other = sprinkles.otherProps;
 
-    const handleRef = useMergeRefs([forwardedRef, interactions?.targetRef]);
     const childrenProps = {
       ...other,
-      ...interactions?.targetProps,
       ...getDataAttributes({
-        ...(interactions?.combinedStatus
-          ? { [interactions.combinedStatus]: true }
-          : undefined),
+        // ...(combinedInteraction ? { [combinedInteraction]: true } :
+        // undefined),
+        ...interactions,
         ...modifiers,
       }),
       className: cx(className, sprinkles.className),
@@ -40,7 +37,7 @@ export const Box = createPolymorphicComponent<'div', IBoxProps>(
         ...style,
         ...sprinkles.style,
       },
-      ref: handleRef,
+      ref: forwardedRef,
     };
 
     return renderRoot ? (

@@ -3,7 +3,7 @@ import { useMergeRefs } from '@floating-ui/react';
 
 import type { ICopyableTextProps } from './CopyableText.types';
 import { copyToClipboard } from '~/helpers/copyToClipboard';
-import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { iconCopyToCliboard } from '~/assets/icons';
 import { PlainTooltip } from '../PlainTooltip';
 import { FluidButton } from '../FluidButton';

@@ -2,7 +2,7 @@ import { useImperativeHandle, useMemo, useRef, forwardRef } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { IRadioGroupProps } from './RadioGroup.types';
-import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { useId } from '~/hooks/useId';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { Base } from '../Base';

@@ -2,7 +2,7 @@ import { forwardRef, useRef, useState } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { ITextInputFieldProps } from './TextInputField.types';
-import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { IconButton } from '../IconButton';
 import { TextFieldBase, type ITextFieldBaseProps } from '../TextFieldBase';
 import { SvgIcon } from '../SvgIcon';

@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
 import type { IFieldProps } from './Field.types';
-import { createPolymorphicComponent } from '~/helpers/react/polymorphicComponentTypes';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { useStyles } from '~/hooks/useStyles';
 import { FieldBase } from '../FieldBase';
 import { fieldStyles } from './Field.styles';
