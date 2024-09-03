@@ -11,8 +11,6 @@ import type {
   IPaperOutlineSprinkles,
 } from './Paper.css';
 
-export type IPaperVariant = 'filled' | 'outlined';
-
 export interface IPaperOwnProps
   extends IPaperBaseOwnProps,
     IPaperSprinkles,
@@ -20,9 +18,10 @@ export interface IPaperOwnProps
     IPaperElevationSprinkles,
     IPaperOutlineSprinkles {}
 
-export type IPaperProps = IBoxProps &
-  IStylesProps<IPaperStylesFactory> &
-  IPaperOwnProps;
+export interface IPaperProps
+  extends IBoxProps,
+    IStylesProps<IPaperStylesFactory>,
+    IPaperOwnProps {}
 
 export type IPaperFactory = IPolymorphicComponentFactory<{
   props: IPaperProps;

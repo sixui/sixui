@@ -1,9 +1,15 @@
-import stylex from '@stylexjs/stylex';
+import { keyframes } from '@vanilla-extract/css';
 
-import { stateTokens } from '~/themes/base/state.stylex';
-import { circularProgressIndicatorTokens } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
+import {
+  stylesFactory,
+  type IStylesFactory,
+} from '~/utils/styles/stylesFactory';
+import { createStyles } from '~/utils/styles/createStyles';
+import { CircularProgressIndicator } from '../CircularProgressIndicator';
+import { themeTokens } from '../ThemeProvider';
+import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 
-// https://github.com/material-components/material-web/blob/main/progress/internal/_circular-progress.scss
+const { tokensClassName, tokens } = CircularProgressIndicator.styles;
 
 // note, these value come from the m2 version but match current gm3 values.
 // Constants:
@@ -37,7 +43,7 @@ const indeterminateEasing = 'cubic-bezier(0.4, 0, 0.2, 1)';
 // This is used on 2 divs which each represent half the desired
 // 270deg arc with one offset by 50%. This creates an arc which expands from
 // 10deg to 270deg.
-const expandArcKeyframes = stylex.keyframes({
+const expandArcKeyframes = keyframes({
   '0%': { transform: 'rotate(265deg)' },
   '50%': { transform: 'rotate(130deg)' },
   '100%': { transform: 'rotate(265deg)' },
@@ -50,7 +56,7 @@ const expandArcKeyframes = stylex.keyframes({
 // (3 * 360 = 1080).
 // This is sub-divided into increments of 135deg since the arc is rendered
 // with 2 divs acting together.
-const rotateArcKeyframes = stylex.keyframes({
+const rotateArcKeyframes = keyframes({
   '12.5%': { transform: 'rotate(135deg)' },
   '25%': { transform: 'rotate(270deg)' },
   '37.5%': { transform: 'rotate(405deg)' },
@@ -64,17 +70,15 @@ const rotateArcKeyframes = stylex.keyframes({
 // 3. linearRotate
 // The traveling expanding arc is linearly rotated to produce the spinner
 // effect.
-const linearRotateKeyframes = stylex.keyframes({
+const linearRotateKeyframes = keyframes({
   '100%': { transform: 'rotate(360deg)' },
 });
 
-const color$disabled = `color-mix(in srgb, ${circularProgressIndicatorTokens.color$disabled} calc(${stateTokens.opacity$disabled} * 100%), transparent)`;
+const color$disabled = `color-mix(in srgb, ${tokens.color$disabled} calc(${themeTokens.state.opacity.disabled} * 100%), transparent)`;
 
-export type IIndeterminateCircularProgressIndicatorStyleKey =
-  keyof typeof indeterminateCircularProgressIndicatorStyles;
-export const indeterminateCircularProgressIndicatorStyles = stylex.create({
-  host: {
-    borderColor: circularProgressIndicatorTokens.color,
+const classNames = createStyles({
+  root: {
+    borderColor: tokens.color,
   },
   progress: {
     animationTimingFunction: 'linear',
@@ -112,7 +116,7 @@ export const indeterminateCircularProgressIndicatorStyles = stylex.create({
     animationDuration: `${arcDuration}, ${cycleDuration}`,
     animationTimingFunction: indeterminateEasing,
 
-    borderWidth: `calc(${circularProgressIndicatorTokens.widthPct} / 100 * calc(${circularProgressIndicatorTokens.size} - (2 * ${circularProgressIndicatorTokens.containerPadding})))`,
+    borderWidth: `calc(${tokens.widthPct} / 100 * calc(${tokens.size} - (2 * ${tokens.containerPadding})))`,
   },
   circle$disabled: {
     borderTopColor: color$disabled,
@@ -130,3 +134,21 @@ export const indeterminateCircularProgressIndicatorStyles = stylex.create({
     animationDelay: `calc(-0.5 * ${arcDuration}), 0ms`,
   },
 });
+
+export type IIndeterminateCircularProgressIndicatorStylesFactory =
+  IStylesFactory<{
+    styleName:
+      | keyof typeof CircularProgressIndicator.styles.classNames
+      | keyof typeof classNames;
+    tokens: typeof tokens;
+  }>;
+
+export const indeterminateCircularProgressIndicatorStyles =
+  stylesFactory<IIndeterminateCircularProgressIndicatorStylesFactory>({
+    classNames: mergeClassNames(
+      CircularProgressIndicator.styles.classNames,
+      classNames,
+    ),
+    tokensClassName,
+    tokens,
+  });

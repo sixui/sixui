@@ -1,22 +1,17 @@
-import type { IBaseProps } from '../Base';
-import type { IOmit, IMakeOptional } from '~/helpers/types';
+import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IStylesProps } from '~/utils/styles/useStyles';
+import type { IBoxProps } from '../Box';
 import type {
-  IDeterminateCircularProgressIndicatorProps,
-  IDeterminateCircularProgressIndicatorStylesKey,
-} from '../DeterminateCircularProgressIndicator';
-import type {
-  IIndeterminateCircularProgressIndicatorProps,
-  IIndeterminateCircularProgressIndicatorStyleKey,
-} from '../IndeterminateCircularProgressIndicator';
-import type { ICircularProgressIndicatorStylesKey } from './CircularProgressIndicator.styles';
+  circularProgressIndicatorStyles,
+  ICircularProgressIndicatorStylesFactory,
+} from './CircularProgressIndicator.css';
 
-export type ICircularProgressIndicatorProps = IBaseProps<
-  | ICircularProgressIndicatorStylesKey
-  | IDeterminateCircularProgressIndicatorStylesKey
-  | IIndeterminateCircularProgressIndicatorStyleKey
-> &
-  IMakeOptional<
-    IOmit<IDeterminateCircularProgressIndicatorProps, 'styles'>,
-    'value'
-  > &
-  IOmit<IIndeterminateCircularProgressIndicatorProps, 'styles'>;
+export interface ICircularProgressIndicatorProps
+  extends IBoxProps,
+    IStylesProps<ICircularProgressIndicatorStylesFactory> {}
+
+export type ICircularProgressIndicatorFactory = IComponentFactory<{
+  props: ICircularProgressIndicatorProps;
+  ref: HTMLDivElement;
+  styles: typeof circularProgressIndicatorStyles;
+}>;

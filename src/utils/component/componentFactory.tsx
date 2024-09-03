@@ -8,6 +8,7 @@ export type IComponentFactoryPayload = {
   ref?: Element;
   styles?: IAny;
   staticComponents?: Record<string, IAny>;
+  variant?: string;
 };
 
 export type IDataAttributes = Record<`data-${string}`, IAny>;

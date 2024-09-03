@@ -88,16 +88,23 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
         interactions={stateLayer.interactionsContext.state}
         disabled={disabledOrReadOnly}
       >
-        <TouchTarget interactions={stateLayer.interactionsContext.state} />
+        {!disabledOrReadOnly && (
+          <>
+            <TouchTarget interactions={stateLayer.interactionsContext.state} />
+            <StateLayer context={stateLayer} />
+          </>
+        )}
         {!disabled && (
           <FocusRing
             interactions={stateLayer.interactionsContext.state}
             variant={inwardFocusRing ? 'inward' : undefined}
           />
         )}
-        <StateLayer context={stateLayer} />
         {children}
       </Paper>
     );
   },
 );
+
+ButtonBase.styles = buttonBaseStyles;
+ButtonBase.displayName = `@sixui/${COMPONENT_NAME}`;
