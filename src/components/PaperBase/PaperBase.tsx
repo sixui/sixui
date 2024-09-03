@@ -30,15 +30,11 @@ export const PaperBase = polymorphicComponentFactory<IPaperBaseFactory>(
       styles: paperBaseStyles,
       style,
       variant,
+      modifiers: { disabled },
     });
 
     return (
-      <Box
-        {...other}
-        modifiers={{ disabled }}
-        {...getStyles('root')}
-        ref={forwardedRef}
-      >
+      <Box {...other} {...getStyles('root')} ref={forwardedRef}>
         <Elevation {...getStyles('elevation')} disabled={disabled} />
         <div {...getStyles('background')} aria-hidden />
         {children}

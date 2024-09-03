@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
 
 import type { IDeterminateCircularProgressIndicatorProps } from './DeterminateCircularProgressIndicator.types';
-import { ComponentShowcase } from '../ComponentShowcase';
-import { Text } from '../Text';
+import {
+  makeComponentShowcase,
+  type IComponentPresentation,
+} from '../ComponentShowcase';
 import { DeterminateCircularProgressIndicator } from './DeterminateCircularProgressIndicator';
-import { scaleTokens } from '~/themes/base/scale.stylex';
 
 // https://m3.material.io/components/progress-indicators/overview
 // https://material-web.dev/components/progress/
@@ -17,21 +17,21 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const styles = stylex.create({
-  host$withLabel: {
-    width: `calc(48px * ${scaleTokens.scale})`,
-    height: `calc(48px * ${scaleTokens.scale})`,
-  },
-});
-
 const defaultArgs = {
   value: 0.75,
 } satisfies Partial<IDeterminateCircularProgressIndicatorProps>;
 
+const rows: Array<
+  IComponentPresentation<IDeterminateCircularProgressIndicatorProps>
+> = [{ legend: 'Enabled' }, { legend: 'Disabled', props: { disabled: true } }];
+
+const DeterminateCircularProgressIndicatorShowcase = makeComponentShowcase(
+  DeterminateCircularProgressIndicator,
+);
+
 export const Basic: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={DeterminateCircularProgressIndicator}
+    <DeterminateCircularProgressIndicatorShowcase
       props={props}
       cols={[
         { props: { value: 0 } },
@@ -40,7 +40,7 @@ export const Basic: IStory = {
         { props: { value: 0.75 } },
         { props: { value: 1 } },
       ]}
-      rows={[{}, { props: { disabled: true } }]}
+      rows={rows}
     />
   ),
   args: defaultArgs,
@@ -48,12 +48,7 @@ export const Basic: IStory = {
 
 export const WithLabel: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={(props) => (
-        <Text>
-          <DeterminateCircularProgressIndicator {...props} />
-        </Text>
-      )}
+    <DeterminateCircularProgressIndicatorShowcase
       props={props}
       cols={[
         { props: { value: 0 } },
@@ -62,24 +57,18 @@ export const WithLabel: IStory = {
         { props: { value: 0.75 } },
         { props: { value: 1 } },
       ]}
-      rows={[{}, { props: { disabled: true } }]}
+      rows={rows}
     />
   ),
   args: {
     ...defaultArgs,
     withLabel: true,
-    sx: styles.host$withLabel,
   },
 };
 
 export const WithLabelFormatter: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={(props) => (
-        <Text>
-          <DeterminateCircularProgressIndicator {...props} />
-        </Text>
-      )}
+    <DeterminateCircularProgressIndicatorShowcase
       props={props}
       cols={[
         { props: { value: 0 } },
@@ -88,25 +77,19 @@ export const WithLabelFormatter: IStory = {
         { props: { value: 0.75 } },
         { props: { value: 1 } },
       ]}
-      rows={[{}, { props: { disabled: true } }]}
+      rows={rows}
     />
   ),
   args: {
     ...defaultArgs,
     withLabel: true,
-    sx: styles.host$withLabel,
     labelFormatter: (value) => `[${Math.round(value * 100)}]`,
   },
 };
 
 export const WithRange: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={(props) => (
-        <Text>
-          <DeterminateCircularProgressIndicator {...props} />
-        </Text>
-      )}
+    <DeterminateCircularProgressIndicatorShowcase
       props={props}
       cols={[
         { props: { value: -64 } },
@@ -115,13 +98,12 @@ export const WithRange: IStory = {
         { props: { value: 80 } },
         { props: { value: 128 } },
       ]}
-      rows={[{}, { props: { disabled: true } }]}
+      rows={rows}
     />
   ),
   args: {
     ...defaultArgs,
     withLabel: true,
-    sx: styles.host$withLabel,
     labelFormatter: (value) => `${value}`,
     min: -64,
     max: 128,
@@ -130,12 +112,7 @@ export const WithRange: IStory = {
 
 export const ZeroBased: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={(props) => (
-        <Text>
-          <DeterminateCircularProgressIndicator {...props} />
-        </Text>
-      )}
+    <DeterminateCircularProgressIndicatorShowcase
       props={props}
       cols={[
         { props: { value: -100 } },
@@ -144,13 +121,12 @@ export const ZeroBased: IStory = {
         { props: { value: 50 } },
         { props: { value: 100 } },
       ]}
-      rows={[{}, { props: { disabled: true } }]}
+      rows={rows}
     />
   ),
   args: {
     ...defaultArgs,
     withLabel: true,
-    sx: styles.host$withLabel,
     labelFormatter: (value) => `${value}`,
     min: -100,
     max: 100,

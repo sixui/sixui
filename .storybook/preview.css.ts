@@ -28,5 +28,5 @@ export const testVariant = style({
 
 // FIXME: delete
 export const testBorder = style({
-  // border: '4px solid green',
+  border: '1px solid green',
 });

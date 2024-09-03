@@ -31,31 +31,23 @@ export const IndeterminateCircularProgressIndicator =
           styles: indeterminateCircularProgressIndicatorStyles,
           style,
           variant,
+          modifiers: { disabled },
         });
 
       return (
-        <Box {...other} {...getStyles('root')} ref={forwardedRef}>
-          <div {...getStyles(['layer', 'progress'])} role='progressbar'>
+        <Box
+          {...other}
+          {...getStyles('root')}
+          ref={forwardedRef}
+          role='progressbar'
+        >
+          <div {...getStyles(['layer', 'progress'])}>
             <div {...getStyles(['layer', 'spinner'])}>
               <div {...getStyles(['layer', 'left'])}>
-                <div
-                  {...getStyles([
-                    'layer',
-                    'circle',
-                    'leftCircle',
-                    disabled && 'circle$disabled',
-                  ])}
-                />
+                <div {...getStyles(['layer', 'circle', 'circle$left'])} />
               </div>
               <div {...getStyles(['layer', 'right'])}>
-                <div
-                  {...getStyles([
-                    'layer',
-                    'circle',
-                    'rightCircle',
-                    disabled && 'circle$disabled',
-                  ])}
-                />
+                <div {...getStyles(['layer', 'circle', 'circle$right'])} />
               </div>
             </div>
           </div>
@@ -64,3 +56,7 @@ export const IndeterminateCircularProgressIndicator =
       );
     },
   );
+
+IndeterminateCircularProgressIndicator.styles =
+  indeterminateCircularProgressIndicatorStyles;
+IndeterminateCircularProgressIndicator.displayName = `@sixui/${COMPONENT_NAME}`;

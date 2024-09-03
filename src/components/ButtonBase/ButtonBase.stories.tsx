@@ -27,7 +27,7 @@ const defaultArgs = {
   ),
 } satisfies Partial<IButtonBaseProps>;
 
-const cols: Array<IComponentPresentation<IButtonBaseProps>> = [
+const rows: Array<IComponentPresentation<IButtonBaseProps>> = [
   { legend: 'Enabled' },
   { legend: 'Read only', props: { readOnly: true } },
   { legend: 'Disabled', props: { disabled: true } },
@@ -36,12 +36,12 @@ const cols: Array<IComponentPresentation<IButtonBaseProps>> = [
 const ButtonBaseShowcase = makeComponentShowcase(ButtonBase);
 
 export const Unstyled: IStory = {
-  render: (props) => <ButtonBaseShowcase props={props} cols={cols} />,
+  render: (props) => <ButtonBaseShowcase props={props} rows={rows} />,
   args: defaultArgs,
 };
 
 export const Styled: IStory = {
-  render: (props) => <ButtonBaseShowcase props={props} cols={cols} />,
+  render: (props) => <ButtonBaseShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     elevation: '$1',

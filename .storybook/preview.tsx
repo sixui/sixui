@@ -8,6 +8,7 @@ import { modes } from './modes';
 import * as styles from './preview.css';
 import { Avatar } from '~/components/Avatar';
 import { StateLayer } from '~/components/StateLayer';
+import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
 
 import '~/styles/main.css';
 import '~/styles/storybook.css';
@@ -58,6 +59,12 @@ export const decorators: Array<Decorator> = [
             },
           },
           components: {
+            IndeterminateCircularProgressIndicator:
+              IndeterminateCircularProgressIndicator.extend({
+                classNames: {
+                  // root: styles.testBorder,
+                },
+              }),
             Avatar: Avatar.extend({
               defaultProps: {
                 children: '☀️',
@@ -71,7 +78,7 @@ export const decorators: Array<Decorator> = [
             }),
             StateLayer: StateLayer.extend({
               classNames: {
-                root: styles.testBorder,
+                // root: styles.testBorder,
               },
             }),
           },

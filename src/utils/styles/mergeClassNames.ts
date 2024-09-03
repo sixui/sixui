@@ -1,15 +1,17 @@
 import cx from 'clsx';
 
 export const mergeClassNames = <TStyleName extends string>(
-  currentClassNames: Partial<Record<TStyleName, Parameters<typeof cx>[0]>>,
+  currentClassNames:
+    | Partial<Record<TStyleName, Parameters<typeof cx>[0]>>
+    | undefined,
   extraClassNames: Partial<Record<TStyleName, Parameters<typeof cx>[0]>>,
 ): Partial<Record<TStyleName, string>> => ({
   ...extraClassNames,
-  ...Object.keys(currentClassNames).reduce(
+  ...Object.keys(currentClassNames ?? extraClassNames).reduce(
     (acc, key) => ({
       ...acc,
       [key]: cx([
-        currentClassNames[key as TStyleName],
+        currentClassNames?.[key as TStyleName],
         extraClassNames[key as TStyleName],
       ]),
     }),

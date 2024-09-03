@@ -6,7 +6,7 @@ import type {
   IIndeterminateCircularProgressIndicatorStylesFactory,
 } from './IndeterminateCircularProgressIndicator.css';
 
-export type IIndeterminateCircularProgressIndicatorOwnprops = {
+export type IIndeterminateCircularProgressIndicatorOwnProps = {
   disabled?: boolean;
   children?: React.ReactNode;
 };
@@ -14,7 +14,7 @@ export type IIndeterminateCircularProgressIndicatorOwnprops = {
 export interface IIndeterminateCircularProgressIndicatorProps
   extends IBoxProps,
     IStylesProps<IIndeterminateCircularProgressIndicatorStylesFactory>,
-    IIndeterminateCircularProgressIndicatorOwnprops {}
+    IIndeterminateCircularProgressIndicatorOwnProps {}
 
 export type IIndeterminateCircularProgressIndicatorFactory = IComponentFactory<{
   props: IIndeterminateCircularProgressIndicatorProps;

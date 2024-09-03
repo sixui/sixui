@@ -20,6 +20,7 @@ export const StateLayer = componentFactory<IStateLayerFactory>(
         props,
       });
 
+    const { animating, interactionsContext, surfaceRef } = context;
     const { getStyles } = useStyles<IStateLayerStylesFactory>({
       componentName: COMPONENT_NAME,
       classNames,
@@ -27,26 +28,18 @@ export const StateLayer = componentFactory<IStateLayerFactory>(
       styles: stateLayerStyles,
       style,
       variant,
+      modifiers: {
+        hovered: !animating && interactionsContext.state.hovered,
+        dragged: !animating && interactionsContext.state.dragged,
+        'static-pressed': interactionsContext.baseState?.pressed,
+        animating: animating,
+      },
     });
-
-    const { animating, interactionsContext, surfaceRef } = context;
-    const modifiers = {
-      hovered: !animating && interactionsContext.state.hovered,
-      dragged: !animating && interactionsContext.state.dragged,
-      'static-pressed': interactionsContext.baseState?.pressed,
-      animating: animating,
-    };
 
     const handleRef = useMergeRefs([forwardedRef, surfaceRef]);
 
     return (
-      <Box
-        {...other}
-        {...getStyles('root')}
-        aria-hidden
-        modifiers={modifiers}
-        ref={handleRef}
-      />
+      <Box {...other} {...getStyles('root')} aria-hidden ref={handleRef} />
     );
   },
 );

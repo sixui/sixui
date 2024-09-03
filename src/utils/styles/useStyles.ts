@@ -44,7 +44,7 @@ export type IUseStylesProps<TPayload extends IStylesFactoryPayload> =
      * The modifiers to apply to the root selector.
      */
     modifiers?: TPayload['modifier'] extends string
-      ? IModifiers<TPayload['modifier']>
+      ? Partial<IModifiers<TPayload['modifier']>>
       : never;
   };
 

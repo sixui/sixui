@@ -22,16 +22,11 @@ export const Elevation = componentFactory<IElevationFactory>(
       styles: elevationStyles,
       style,
       variant,
+      modifiers: { level, disabled },
     });
 
     return (
-      <Box
-        {...other}
-        {...getStyles('root')}
-        aria-hidden
-        modifiers={{ level, disabled }}
-        ref={forwardedRef}
-      />
+      <Box {...other} {...getStyles('root')} aria-hidden ref={forwardedRef} />
     );
   },
 );

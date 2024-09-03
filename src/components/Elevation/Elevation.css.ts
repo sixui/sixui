@@ -9,7 +9,7 @@ import { px } from '~/helpers/styles/px';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { themeTokens, type IThemeElevationLevelValues } from '../ThemeProvider';
 
-export type IElevationStyleName = keyof typeof elevationStyles;
+type IModifier = 'level' | 'disabled';
 
 const getBoxShadow = (level: IThemeElevationLevelValues): string =>
   [
@@ -65,19 +65,19 @@ const classNames = createStyles({
     position: 'absolute',
 
     selectors: {
-      [`${getModifierSelector('level="1"')}`]: {
+      [`${getModifierSelector<IModifier>({ level: 1 })}`]: {
         boxShadow: getBoxShadow(themeTokens.elevation.level[1]),
       },
-      [`${getModifierSelector('level="2"')}`]: {
+      [`${getModifierSelector({ level: 2 })}`]: {
         boxShadow: getBoxShadow(themeTokens.elevation.level[2]),
       },
-      [`${getModifierSelector('level="3"')}`]: {
+      [`${getModifierSelector({ level: 3 })}`]: {
         boxShadow: getBoxShadow(themeTokens.elevation.level[3]),
       },
-      [`${getModifierSelector('level="4"')}`]: {
+      [`${getModifierSelector({ level: 4 })}`]: {
         boxShadow: getBoxShadow(themeTokens.elevation.level[4]),
       },
-      [`${getModifierSelector('level="5"')}`]: {
+      [`${getModifierSelector({ level: 5 })}`]: {
         boxShadow: getBoxShadow(themeTokens.elevation.level[5]),
       },
       [`${getModifierSelector('disabled')}`]: {
@@ -90,6 +90,7 @@ const classNames = createStyles({
 export type IElevationStylesFactory = IStylesFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
+  modifier: IModifier;
 }>;
 
 export const elevationStyles = stylesFactory<IElevationStylesFactory>({

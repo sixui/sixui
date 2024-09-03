@@ -11,7 +11,7 @@ import { Elevation } from '../Elevation';
 import { createStyles } from '~/utils/styles/createStyles';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 
-export type IPaperBaseStyleName = keyof typeof paperBaseStyles;
+type IModifier = 'disabled';
 
 export const [tokensClassName, tokens] = createTheme({
   container: {
@@ -49,7 +49,7 @@ const classNames = createStyles({
     borderBottomLeftRadius: tokens.container.shape.bottomLeft,
 
     selectors: {
-      [getModifierSelector('disabled')]: {
+      [getModifierSelector<IModifier>('disabled')]: {
         color: `color-mix(in srgb, currentColor calc(${tokens.text.opacity.disabled} * 100%), transparent)`,
       },
     },
@@ -90,6 +90,7 @@ const classNames = createStyles({
 export type IPaperBaseStylesFactory = IStylesFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
+  modifier: IModifier;
 }>;
 
 export const paperBaseStyles = stylesFactory<IPaperBaseStylesFactory>({

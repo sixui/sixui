@@ -9,6 +9,8 @@ import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { themeTokens } from '../ThemeProvider';
 
+type IModifier = 'hovered' | 'dragged' | 'animating' | 'static-pressed';
+
 const [tokensClassName, tokens] = createTheme({
   color: {
     hover: themeTokens.colorScheme.onSurface,
@@ -93,6 +95,7 @@ const classNames = createStyles({
 export type IStateLayerStylesFactory = IStylesFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
+  modifier: IModifier;
 }>;
 
 export const stateLayerStyles = stylesFactory<IStateLayerStylesFactory>({

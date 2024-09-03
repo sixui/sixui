@@ -1,4 +1,5 @@
 import { createTheme } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import {
   stylesFactory,
@@ -15,8 +16,13 @@ const SIZE = '1'; // em
 const CONTAINER_PADDING = 0; // px
 
 const [tokensClassName, tokens] = createTheme({
-  color: themeTokens.colorScheme.primary,
-  color$disabled: themeTokens.colorScheme.onSurface,
+  color: {
+    normal: themeTokens.colorScheme.primary,
+    disabled: themeTokens.colorScheme.onSurface,
+  },
+  opacity: {
+    disabled: themeTokens.state.opacity.disabled,
+  },
   size: `${SIZE}em`,
   containerPadding: `${CONTAINER_PADDING}px`,
   widthPct: `calc((${WIDTH} / (${SIZE} * ${DEFAULT_FONT_SIZE} -
@@ -30,6 +36,8 @@ const classNames = createStyles({
     position: 'relative',
     alignItems: 'center',
     justifyContent: 'center',
+    color: tokens.color.normal,
+    borderColor: 'currentColor',
 
     // `contain` and `content-visibility` are performance optimizations
     // important here because progress indicators are often used when a cpu
@@ -38,8 +46,8 @@ const classNames = createStyles({
     contain: 'strict',
     contentVisibility: 'auto',
 
-    width: tokens.size,
-    height: tokens.size,
+    width: calc.multiply(tokens.size, themeTokens.scale),
+    height: calc.multiply(tokens.size, themeTokens.scale),
   },
   layer: {
     position: 'absolute',

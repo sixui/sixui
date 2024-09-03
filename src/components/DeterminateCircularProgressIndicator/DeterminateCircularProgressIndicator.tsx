@@ -1,31 +1,23 @@
-import { forwardRef } from 'react';
-
-import type { IDeterminateCircularProgressIndicatorProps } from './DeterminateCircularProgressIndicator.types';
-import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
-import { useStyles } from '~/hooks/useStyles';
-import {
-  circularProgressIndicatorStyles,
-  type ICircularProgressIndicatorStylesKey,
-} from '../CircularProgressIndicator';
-import { Base } from '../Base';
-import { circularProgressIndicatorTheme } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
+import type { IDeterminateCircularProgressIndicatorFactory } from './DeterminateCircularProgressIndicator.types';
+import { componentFactory } from '~/utils/component/componentFactory';
+import { useStyles } from '~/utils/styles/useStyles';
+import { useProps } from '~/utils/component/useProps';
+import { Box } from '../Box';
 import {
   determinateCircularProgressIndicatorStyles,
-  type IDeterminateCircularProgressIndicatorStylesKey,
-} from './DeterminateCircularProgressIndicator.styles';
+  type IDeterminateCircularProgressIndicatorStylesFactory,
+} from './DeterminateCircularProgressIndicator.css';
 
-// https://github.com/material-components/material-web/blob/main/progress/internal/progress.ts
-// https://github.com/material-components/material-web/blob/main/progress/internal/circulardeterminate-progress.ts
+const COMPONENT_NAME = 'DeterminateCircularProgressIndicator';
 
-export const DeterminateCircularProgressIndicator = createPolymorphicComponent<
-  'div',
-  IDeterminateCircularProgressIndicatorProps
->(
-  forwardRef<HTMLDivElement, IDeterminateCircularProgressIndicatorProps>(
-    function DeterminateCircularProgressIndicator(props, forwardedRef) {
+export const DeterminateCircularProgressIndicator =
+  componentFactory<IDeterminateCircularProgressIndicatorFactory>(
+    (props, forwardedRef) => {
       const {
-        styles,
-        sx,
+        classNames,
+        className,
+        style,
+        variant,
         value,
         withLabel,
         min = 0,
@@ -35,19 +27,18 @@ export const DeterminateCircularProgressIndicator = createPolymorphicComponent<
         disabled,
         children,
         ...other
-      } = props;
+      } = useProps({ componentName: COMPONENT_NAME, props });
 
-      const { combineStyles, getStyles, globalStyles } = useStyles<
-        | ICircularProgressIndicatorStylesKey
-        | IDeterminateCircularProgressIndicatorStylesKey
-      >({
-        componentName: 'CircularProgressIndicator',
-        styles: [
-          circularProgressIndicatorStyles,
-          determinateCircularProgressIndicatorStyles,
-          styles,
-        ],
-      });
+      const { getStyles } =
+        useStyles<IDeterminateCircularProgressIndicatorStylesFactory>({
+          componentName: COMPONENT_NAME,
+          classNames,
+          className,
+          styles: determinateCircularProgressIndicatorStyles,
+          style,
+          variant,
+          modifiers: { disabled },
+        });
 
       const value0 = zeroBased ? 0 : min;
       const pct = Math.max(Math.min((value - value0) / (max - value0), 1), 0);
@@ -55,46 +46,35 @@ export const DeterminateCircularProgressIndicator = createPolymorphicComponent<
       const hasContent = withLabel || !!children;
 
       return (
-        <Base
+        <Box
           {...other}
-          sx={[
-            circularProgressIndicatorTheme,
-            globalStyles,
-            combineStyles('host'),
-            sx,
-          ]}
+          {...getStyles('root')}
           ref={forwardedRef}
+          role='progressbar'
         >
           <div
-            {...getStyles('layer', 'progress')}
+            {...getStyles(['layer', 'progress'])}
             role='progressbar'
-            aria-label={props['aria-label'] ?? undefined}
             aria-valuemin={min}
             aria-valuemax={max}
             aria-valuenow={value}
           >
-            {/* note, dash-array/offset are relative to Setting `pathLength` but Chrome seems to render this inaccurately and using a large viewbox
-        helps. */}
-            <svg viewBox='0 0 4800 4800' {...getStyles('layer', 'svg')}>
+            {/* Note: dash-array/offset are relative to Setting `pathLength`
+            but Chrome seems to render this inaccurately and using a large
+            viewbox helps. */}
+            <svg viewBox='0 0 4800 4800' {...getStyles(['layer', 'svg'])}>
               <circle
-                {...getStyles('layer', 'svgCircle', 'track')}
+                {...getStyles(['layer', 'svgCircle', 'track'])}
                 pathLength='100'
               />
               <circle
-                {...getStyles(
-                  'layer',
-                  'svgCircle',
-                  'activeTrack',
-                  disabled && 'activeTrack$disabled',
-                )}
+                {...getStyles(['layer', 'svgCircle', 'activeTrack'])}
                 pathLength='100'
                 strokeDashoffset={dashOffset}
               />
             </svg>
             {hasContent ? (
-              <div
-                {...getStyles('layer', 'label', disabled && 'label$disabled')}
-              >
+              <div {...getStyles(['layer', 'label'])}>
                 {children ??
                   (labelFormatter
                     ? labelFormatter(value)
@@ -102,8 +82,7 @@ export const DeterminateCircularProgressIndicator = createPolymorphicComponent<
               </div>
             ) : null}
           </div>
-        </Base>
+        </Box>
       );
     },
-  ),
-);
+  );

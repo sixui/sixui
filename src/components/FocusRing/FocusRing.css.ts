@@ -11,7 +11,7 @@ import { px } from '~/helpers/styles/px';
 import { themeTokens } from '../ThemeProvider';
 import { calc } from '@vanilla-extract/css-utils';
 
-type IModifier = 'visible' | IInteraction | 'variant';
+type IModifier = IInteraction | 'visible' | 'variant';
 
 const [tokensClassName, tokens] = createTheme({
   color: themeTokens.colorScheme.secondary,

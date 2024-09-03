@@ -1,17 +1,21 @@
 import { keyframes } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import {
   stylesFactory,
   type IStylesFactory,
 } from '~/utils/styles/stylesFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { CircularProgressIndicator } from '../CircularProgressIndicator';
-import { themeTokens } from '../ThemeProvider';
+import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
+import { px } from '~/helpers/styles/px';
+import { circularProgressIndicatorStyles } from '../CircularProgressIndicator/CircularProgressIndicator.css';
 
-const { tokensClassName, tokens } = CircularProgressIndicator.styles;
+type IModifier = 'disabled';
 
-// note, these value come from the m2 version but match current gm3 values.
+const parentStyles = circularProgressIndicatorStyles;
+
+// Note, these value come from the m2 version but match current gm3 values.
 // Constants:
 //       ARCSIZE     = 270 degrees (amount of circle the arc takes up)
 //       ARCTIME     = 1333ms (time it takes to expand and contract arc)
@@ -74,12 +78,8 @@ const linearRotateKeyframes = keyframes({
   '100%': { transform: 'rotate(360deg)' },
 });
 
-const color$disabled = `color-mix(in srgb, ${tokens.color$disabled} calc(${themeTokens.state.opacity.disabled} * 100%), transparent)`;
-
 const classNames = createStyles({
-  root: {
-    borderColor: tokens.color,
-  },
+  root: {},
   progress: {
     animationTimingFunction: 'linear',
     animationIterationCount: 'infinite',
@@ -101,9 +101,9 @@ const classNames = createStyles({
     overflow: 'hidden',
     inset: '0 0 0 50%',
   },
-  circle: {
+  circle: ({ root }) => ({
     borderRadius: '50%',
-    // match size to svg stroke width, which is a fraction of the overall
+    // Match size to svg stroke width, which is a fraction of the overall
     // padding box width.
     borderStyle: 'solid',
     borderTopColor: 'inherit',
@@ -115,20 +115,33 @@ const classNames = createStyles({
     animationFillMode: 'both',
     animationDuration: `${arcDuration}, ${cycleDuration}`,
     animationTimingFunction: indeterminateEasing,
+    borderWidth: px(
+      calc
+        .multiply(
+          calc.divide(parentStyles.tokens.widthPct, 100),
+          calc.subtract(
+            parentStyles.tokens.size,
+            calc.multiply(parentStyles.tokens.containerPadding, 2),
+          ),
+        )
+        .toString(),
+    ),
 
-    borderWidth: `calc(${tokens.widthPct} / 100 * calc(${tokens.size} - (2 * ${tokens.containerPadding})))`,
-  },
-  circle$disabled: {
-    borderTopColor: color$disabled,
-    borderRightColor: color$disabled,
-    borderBottomColor: 'transparent',
-    borderLeftColor: 'transparent',
-  },
-  leftCircle: {
+    selectors: {
+      [getModifierSelector<IModifier>('disabled', root)]: {
+        borderTopColor: parentStyles.tokens.color.disabled,
+        borderRightColor: parentStyles.tokens.color.disabled,
+        borderBottomColor: 'transparent',
+        borderLeftColor: 'transparent',
+        opacity: parentStyles.tokens.opacity.disabled,
+      },
+    },
+  }),
+  circle$left: {
     rotate: '135deg',
     inset: '0 -100% 0 0',
   },
-  rightCircle: {
+  circle$right: {
     rotate: '100deg',
     inset: '0 0 0 -100%',
     animationDelay: `calc(-0.5 * ${arcDuration}), 0ms`,
@@ -137,18 +150,14 @@ const classNames = createStyles({
 
 export type IIndeterminateCircularProgressIndicatorStylesFactory =
   IStylesFactory<{
-    styleName:
-      | keyof typeof CircularProgressIndicator.styles.classNames
-      | keyof typeof classNames;
-    tokens: typeof tokens;
+    styleName: keyof typeof parentStyles.classNames | keyof typeof classNames;
+    tokens: typeof parentStyles.tokens;
+    modifier: IModifier;
   }>;
 
 export const indeterminateCircularProgressIndicatorStyles =
   stylesFactory<IIndeterminateCircularProgressIndicatorStylesFactory>({
-    classNames: mergeClassNames(
-      CircularProgressIndicator.styles.classNames,
-      classNames,
-    ),
-    tokensClassName,
-    tokens,
+    classNames: mergeClassNames(parentStyles.classNames, classNames),
+    tokensClassName: parentStyles.tokensClassName,
+    tokens: parentStyles.tokens,
   });
