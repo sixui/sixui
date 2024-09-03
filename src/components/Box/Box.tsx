@@ -27,8 +27,6 @@ export const Box = createPolymorphicComponent<'div', IBoxProps>(
     const childrenProps = {
       ...other,
       ...getDataAttributes({
-        // ...(combinedInteraction ? { [combinedInteraction]: true } :
-        // undefined),
         ...interactions,
         ...modifiers,
       }),

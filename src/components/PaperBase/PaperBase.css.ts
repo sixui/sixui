@@ -52,7 +52,7 @@ const classNames = createStyles({
 
     selectors: {
       [getModifierSelector('disabled')]: {
-        opacity: tokens.text.opacity.disabled,
+        color: `color-mix(in srgb, ${tokens.text.color} calc(${tokens.text.opacity.disabled} * 100%), transparent)`,
       },
     },
   },

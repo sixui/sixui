@@ -53,7 +53,7 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
     const disabledOrReadOnly = disabled || readOnly;
     const stateLayer = useStateLayer<HTMLDivElement>({
       interactions,
-      disabled: disabledOrReadOnly,
+      disabled,
     });
     const rootElement =
       as ?? (href ? (sixuiContext.settings?.linkAs ?? 'a') : 'button');
@@ -89,7 +89,7 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
         disabled={disabledOrReadOnly}
       >
         <TouchTarget interactions={stateLayer.interactionsContext.state} />
-        {!disabledOrReadOnly && (
+        {!disabled && (
           <FocusRing
             interactions={stateLayer.interactionsContext.state}
             variant={inwardFocusRing ? 'inward' : undefined}

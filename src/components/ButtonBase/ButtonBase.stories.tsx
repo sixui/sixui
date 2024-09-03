@@ -26,6 +26,7 @@ const defaultArgs = {
 
 const cols: Array<IComponentPresentation<IButtonBaseProps>> = [
   { legend: 'Enabled' },
+  { legend: 'Read only', props: { readOnly: true } },
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
@@ -44,6 +45,9 @@ export const Styled: IStory = {
     p: '$2',
     corner: '$sm',
     surface: '$primaryContainer',
+    // FIXME: should be applied
+    // TODO: apply default layer to components and sprinkles layer to sprinkles
+    // see: https://github.com/vanilla-extract-css/vanilla-extract/discussions/1472
     c: '$onPrimaryContainer',
   },
 };
