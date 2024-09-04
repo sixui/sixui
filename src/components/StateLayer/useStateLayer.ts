@@ -5,10 +5,14 @@ import {
   useInteractions,
   type IUseInteractionsResult,
   type IInteractions,
+  type IUseInteractionsProps,
 } from '~/hooks/useInteractions';
 import { mergeProps, PressEvent } from 'react-aria';
 
-export type IUseStateLayerProps = {
+export type IUseStateLayerProps = Pick<
+  IUseInteractionsProps,
+  'hoverEvents' | 'pressEvents'
+> & {
   disabled?: boolean;
   interactions?: IInteractions;
 };
@@ -23,7 +27,7 @@ export type IUseStateLayerResult<TElement extends HTMLElement = HTMLElement> = {
 export const useStateLayer = <TElement extends HTMLElement>(
   props?: IUseStateLayerProps,
 ): IUseStateLayerResult<TElement> => {
-  const { disabled, interactions } = props ?? {};
+  const { disabled, interactions, hoverEvents, pressEvents } = props ?? {};
   const surfaceRef = useRef<HTMLDivElement>(null);
 
   const handlePressStart = (event: PressEvent): void => onPressStart?.(event);
@@ -31,10 +35,11 @@ export const useStateLayer = <TElement extends HTMLElement>(
 
   const interactionsContext = useInteractions<TElement>({
     baseState: interactions,
-    pressEvents: {
+    hoverEvents,
+    pressEvents: mergeProps(pressEvents, {
       onPressStart: handlePressStart,
       onPressEnd: handlePressEnd,
-    },
+    }),
     disabled,
   });
 

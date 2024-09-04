@@ -13,13 +13,14 @@ import { getDensity } from '~/helpers/styles/getDensity';
 import { px } from '~/helpers/styles/px';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { themeTokens } from '../ThemeProvider';
+import { PaperBase } from '../PaperBase';
 
 type IModifier =
   | IInteraction
   | 'disabled'
   | 'loading'
-  | 'leading'
-  | 'trailing'
+  | 'with-leading-icon'
+  | 'with-trailing-icon'
   | 'icon-animation';
 
 const [tokensClassName, tokens] = createTheme({
@@ -43,12 +44,12 @@ const [tokensClassName, tokens] = createTheme({
     elevation: {
       normal: 'unset',
       disabled: 'unset',
-      focus: 'unset',
-      hover: 'unset',
+      focused: 'unset',
+      hovered: 'unset',
       pressed: 'unset',
     },
     opacity: {
-      disabled: 'unset',
+      disabled: themeTokens.state.containerOpacity.disabled,
     },
     height: '40px',
     minWidth: '64px',
@@ -116,6 +117,19 @@ const halfSpinKeyframes = keyframes({
 
 const classNames = createStyles({
   root: {
+    vars: {
+      [PaperBase.styles.tokens.container.color.normal]:
+        tokens.container.color.normal,
+      [PaperBase.styles.tokens.container.color.disabled]:
+        tokens.container.color.disabled,
+      [PaperBase.styles.tokens.container.opacity.disabled]:
+        tokens.container.opacity.disabled,
+      [PaperBase.styles.tokens.container.elevation.normal]:
+        tokens.container.elevation.normal,
+      [PaperBase.styles.tokens.container.elevation.disabled]:
+        tokens.container.elevation.disabled,
+    },
+
     alignContent: 'center',
     borderRadius: px(tokens.container.shape),
     cursor: 'pointer',
@@ -153,44 +167,44 @@ const classNames = createStyles({
       px(tokens.trailingSpace.normal),
     ),
 
-    // FIXME:
-    // [buttonStateTokens.elevation]: {
-    //   default: buttonTokens.containerElevation,
-    //   ':is([data-focused])': buttonTokens.containerElevation$focus,
-    //   ':is([data-hovered])': buttonTokens.containerElevation$hover,
-    //   ':is([data-pressed])': buttonTokens.containerElevation$pressed,
-    // },
-
     selectors: {
       [getModifierSelector<IModifier>('disabled')]: {
         cursor: 'default',
-        // FIXME:
-        // [buttonStateTokens.elevation]: buttonTokens.containerElevation$disabled,
       },
-      // FIXME:
-      // [getModifierSelector<IModifier>('loading')]: {
-      //   [buttonStateTokens.elevation]: buttonTokens.containerElevation$pressed,
-      // },
-      [getModifierSelector<IModifier>('leading')]: {
+      [getModifierSelector<IModifier>('focused')]: {
+        vars: {
+          [PaperBase.styles.tokens.container.elevation.normal]:
+            tokens.container.elevation.focused,
+        },
+      },
+      [getModifierSelector<IModifier>('hovered')]: {
+        vars: {
+          [PaperBase.styles.tokens.container.elevation.normal]:
+            tokens.container.elevation.hovered,
+        },
+      },
+      [getModifierSelector<IModifier>('pressed')]: {
+        vars: {
+          [PaperBase.styles.tokens.container.elevation.normal]:
+            tokens.container.elevation.pressed,
+        },
+      },
+      [getModifierSelector<IModifier>('loading')]: {
+        vars: {
+          [PaperBase.styles.tokens.container.elevation.normal]:
+            tokens.container.elevation.pressed,
+        },
+      },
+      [getModifierSelector<IModifier>('with-leading-icon')]: {
         paddingInlineStart: px(tokens.leadingSpace.withLeadingIcon),
         paddingInlineEnd: px(tokens.trailingSpace.withLeadingIcon),
       },
-      [getModifierSelector<IModifier>('trailing')]: {
+      [getModifierSelector<IModifier>('with-trailing-icon')]: {
         paddingInlineStart: px(tokens.leadingSpace.withTrailingIcon),
         paddingInlineEnd: px(tokens.trailingSpace.withTrailingIcon),
       },
     },
   },
-  background: ({ root }) => ({
-    backgroundColor: tokens.container.color.normal,
-
-    selectors: {
-      [getModifierSelector<IModifier>('disabled', root)]: {
-        backgroundColor: tokens.container.color.disabled,
-        opacity: tokens.container.opacity.disabled,
-      },
-    },
-  }),
   label: ({ root }) => ({
     position: 'relative',
     flexGrow: 1,
@@ -252,9 +266,6 @@ const classNames = createStyles({
         },
     },
   }),
-  invisible: {
-    visibility: 'hidden',
-  },
   overlay: {
     display: 'flex',
     position: 'absolute',
@@ -288,6 +299,9 @@ const classNames = createStyles({
       },
     },
   }),
+  invisible: {
+    visibility: 'hidden',
+  },
 });
 
 export type IButtonStylesFactory = IStylesFactory<{

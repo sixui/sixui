@@ -5,6 +5,8 @@ import {
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { createStyles } from '~/utils/styles/createStyles';
 
+type IModifier = 'disabled';
+
 export const classNames = createStyles({
   root: {
     position: 'relative',
@@ -40,6 +42,7 @@ export const classNames = createStyles({
 
 export type IButtonBaseStylesFactory = IStylesFactory<{
   styleName: keyof typeof classNames;
+  modifier: IModifier;
 }>;
 
 export const buttonBaseStyles = stylesFactory<IButtonBaseStylesFactory>({

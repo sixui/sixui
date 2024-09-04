@@ -31,6 +31,7 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
       readOnly,
       type = 'button',
       interactions,
+      onPress,
       href,
       target,
       rel,
@@ -40,6 +41,8 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
       props,
     });
 
+    const disabledOrReadOnly = disabled || readOnly;
+
     const sixuiContext = useSixuiContext();
     const { getStyles } = useStyles<IButtonBaseStylesFactory>({
       componentName: COMPONENT_NAME,
@@ -48,12 +51,15 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
       styles: buttonBaseStyles,
       style,
       variant,
+      modifiers: {
+        disabled: disabledOrReadOnly,
+      },
     });
 
-    const disabledOrReadOnly = disabled || readOnly;
     const stateLayer = useStateLayer<HTMLDivElement>({
       interactions,
-      disabled,
+      disabled: disabledOrReadOnly,
+      pressEvents: { onPress },
     });
     const rootElement =
       as ?? (href ? (sixuiContext.settings?.linkAs ?? 'a') : 'button');
@@ -86,7 +92,6 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
         ref={handleRef}
         as={rootElement}
         interactions={stateLayer.interactionsContext.state}
-        disabled={disabledOrReadOnly}
       >
         {!disabledOrReadOnly && (
           <>

@@ -15,11 +15,17 @@ type IModifier = 'disabled';
 
 export const [tokensClassName, tokens] = createTheme({
   container: {
-    color: themeTokens.colorScheme.surface,
+    color: {
+      normal: themeTokens.colorScheme.surface,
+      disabled: themeTokens.colorScheme.surface,
+    },
     opacity: {
       disabled: themeTokens.state.containerOpacity.disabled,
     },
-    elevation: elevationLevelPreset[0],
+    elevation: {
+      normal: elevationLevelPreset[0],
+      disabled: elevationLevelPreset[0],
+    },
     shape: {
       topLeft: themeTokens.shape.corner.none,
       topRight: themeTokens.shape.corner.none,
@@ -54,15 +60,23 @@ const classNames = createStyles({
       },
     },
   },
-  elevation: {
+  elevation: ({ root }) => ({
     vars: {
-      [Elevation.styles.tokens.level]: tokens.container.elevation,
+      [Elevation.styles.tokens.level]: tokens.container.elevation.normal,
     },
     zIndex: -1,
-  },
+
+    selectors: {
+      [getModifierSelector<IModifier>('disabled', root)]: {
+        vars: {
+          [Elevation.styles.tokens.level]: tokens.container.elevation.disabled,
+        },
+      },
+    },
+  }),
   background: ({ root }) => ({
     // Separate node to support opacity changes.
-    backgroundColor: tokens.container.color,
+    backgroundColor: tokens.container.color.normal,
     borderRadius: 'inherit',
     inset: px(tokens.outline.width),
     position: 'absolute',
@@ -70,6 +84,7 @@ const classNames = createStyles({
 
     selectors: {
       [getModifierSelector('disabled', root)]: {
+        backgroundColor: tokens.container.color.disabled,
         opacity: tokens.container.opacity.disabled,
       },
     },

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import type { PressEvent } from 'react-aria';
+import { MouseEventHandler, useState } from 'react';
 
 import type { IButtonFactory } from './Button.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
@@ -20,6 +21,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       variant = 'filled',
       children,
       onClick,
+      onPress,
       icon,
       trailingIcon,
       loading: loadingProp,
@@ -30,9 +32,9 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
     } = useProps({ componentName: COMPONENT_NAME, props });
 
     const [animating, setAnimating] = useState(false);
-    const [handlingClick, setHandlingClick] = useState(false);
+    const [handlingPress, setHandlingPress] = useState(false);
     const loading =
-      (loadingProp || handlingClick) &&
+      (loadingProp || handlingPress) &&
       loadingAnimation === 'progressIndicator';
     const readOnly = readOnlyProp || loading;
     const disabledOrReadOnly = other.disabled || readOnly;
@@ -42,7 +44,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
     const hasTrailingIcon = hasIcon && !!trailingIcon;
     const hasOverlay = loading && (!!loadingText || !hasIcon);
     const iconAnimation =
-      (loadingProp || handlingClick || animating) &&
+      (loadingProp || handlingPress || animating) &&
       loadingAnimation !== undefined &&
       loadingAnimation !== 'progressIndicator' &&
       loadingAnimation !== 'none'
@@ -52,8 +54,9 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
     const modifiers = {
       disabled: disabledOrReadOnly,
       loading,
-      leading: hasLeadingIcon,
-      trailing: hasTrailingIcon,
+      'with-leading-icon': hasLeadingIcon,
+      'with-trailing-icon': hasTrailingIcon,
+      'with-overlay': hasOverlay,
       'icon-animation': iconAnimation,
     };
 
@@ -67,23 +70,32 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       modifiers,
     });
 
-    const handleAnimationIteration = (): void => setAnimating(handlingClick);
+    const handleAnimationIteration = (): void => setAnimating(handlingPress);
 
-    const handleClick:
-      | React.MouseEventHandler<HTMLButtonElement>
-      | undefined = (event) => {
-      if (handlingClick) {
-        return;
-      }
-
-      if (!onClick) {
+    const handleClick: MouseEventHandler = (event) => {
+      if (handlingPress || !onClick) {
         return;
       }
 
       event.stopPropagation();
 
       setAnimating(true);
-      void executeLazyPromise(() => onClick(event) as void, setHandlingClick);
+      void executeLazyPromise(
+        () => onClick(event) as Promise<void>,
+        setHandlingPress,
+      );
+    };
+
+    const handlePress = (event: PressEvent): void => {
+      if (handlingPress || !onPress) {
+        return;
+      }
+
+      setAnimating(true);
+      void executeLazyPromise(
+        () => onPress(event) as Promise<void>,
+        setHandlingPress,
+      );
     };
 
     return (
@@ -91,22 +103,23 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
         {...other}
         {...getStyles('root')}
         onClick={handleClick}
+        onPress={handlePress}
         readOnly={readOnly}
         ref={forwardedRef}
       >
         {hasLeadingIcon ? (
-          <div {...getStyles(['icon', hasOverlay && 'invisible'])}>
-            {loading ? (
-              <IndeterminateCircularProgressIndicator />
-            ) : icon ? (
-              <div
-                {...getStyles('icon')}
-                onAnimationIteration={handleAnimationIteration}
-              >
-                {icon}
-              </div>
-            ) : null}
-          </div>
+          loading ? (
+            <IndeterminateCircularProgressIndicator
+              {...getStyles(['icon', hasOverlay && 'invisible'])}
+            />
+          ) : (
+            <div
+              {...getStyles(['icon', hasOverlay && 'invisible'])}
+              onAnimationIteration={handleAnimationIteration}
+            >
+              {icon}
+            </div>
+          )
         ) : null}
 
         {children ? (
@@ -120,21 +133,19 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
             {loadingText ? (
               <span {...getStyles('label')}>{loadingText}</span>
             ) : (
-              <div {...getStyles('icon')}>
-                <IndeterminateCircularProgressIndicator />
-              </div>
+              <IndeterminateCircularProgressIndicator {...getStyles('icon')} />
             )}
           </div>
         ) : null}
 
         {icon && trailingIcon ? (
           loading ? (
-            <div {...getStyles(['icon', hasOverlay && 'invisible'])}>
-              <IndeterminateCircularProgressIndicator />
-            </div>
+            <IndeterminateCircularProgressIndicator
+              {...getStyles(['icon', hasOverlay && 'invisible'])}
+            />
           ) : (
             <div
-              {...getStyles('icon')}
+              {...getStyles(['icon', hasOverlay && 'invisible'])}
               onAnimationIteration={handleAnimationIteration}
             >
               {icon}

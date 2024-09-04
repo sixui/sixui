@@ -22,7 +22,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onClick: (...args) => sbHandleEvent('click', args, 1000),
+  onPress: (...args) => sbHandleEvent('onPress', args, 1000),
   children: 'Button',
 } satisfies Partial<IButtonProps>;
 
@@ -35,15 +35,15 @@ const states: Array<IComponentPresentation<IButtonProps>> = [
   },
   {
     legend: 'Focused',
-    props: { children: 'Focused', visualState: { focused: true } },
+    props: { children: 'Focused', interactions: { focused: true } },
   },
   {
     legend: 'Hovered',
-    props: { children: 'Hovered', visualState: { hovered: true } },
+    props: { children: 'Hovered', interactions: { hovered: true } },
   },
   {
     legend: 'Pressed',
-    props: { children: 'Pressed', visualState: { pressed: true } },
+    props: { children: 'Pressed', interactions: { pressed: true } },
   },
   { legend: 'Loading', props: { children: 'Loading', loading: true } },
   {

@@ -7,12 +7,7 @@ import { accumulate } from '@olivierpascal/helpers';
 import { useMemo, useRef } from 'react';
 import { useFocusRing, useHover, usePress, type HoverEvents } from 'react-aria';
 
-export type IInteraction =
-  | 'disabled'
-  | 'focused'
-  | 'pressed'
-  | 'dragged'
-  | 'hovered';
+export type IInteraction = 'focused' | 'pressed' | 'dragged' | 'hovered';
 
 export type IInteractions = Partial<Record<IInteraction, boolean>>;
 
@@ -27,7 +22,7 @@ export type IUseInteractionsProps = {
    * - `accumulate`: If the current state is true, the merged state will be
    *   true. If the current state is not true, the combined state will be
    *   equal to the base state.
-   * @defaultValue 'replace'
+   * @defaultValue 'accumulate'
    */
   mergeStrategy?: 'replace' | 'accumulate';
 
@@ -70,7 +65,7 @@ export const useInteractions = <TElement extends HTMLElement>(
 ): IUseInteractionsResult<TElement> => {
   const {
     baseState,
-    mergeStrategy = 'replace',
+    mergeStrategy = 'accumulate',
     disabled,
     dragged,
     isTextInput,
@@ -79,10 +74,9 @@ export const useInteractions = <TElement extends HTMLElement>(
   const triggerRef = useRef<TElement>(null);
 
   const currentStateReplaced = baseState && mergeStrategy === 'replace';
-  const { focusProps, isFocusVisible } = useFocusRing({
+  const { focusProps, isFocusVisible: focused } = useFocusRing({
     isTextInput,
   });
-  const focused = isFocusVisible && !disabled;
 
   const currentTrigger = useRef<EventTarget | null>(null);
   const { hoverProps, isHovered: hoveredWithin } = useHover({
@@ -118,28 +112,23 @@ export const useInteractions = <TElement extends HTMLElement>(
 
   const currentState: IInteractions = useMemo(
     () => ({
-      disabled,
       pressed,
       dragged,
       focused,
       hovered,
     }),
-    [disabled, pressed, dragged, focused, hovered],
+    [pressed, dragged, focused, hovered],
   );
 
-  const state = useMemo<IInteractions>(() => {
-    if (disabled) {
-      return {
-        disabled,
-      };
-    }
-
-    return baseState
-      ? currentStateReplaced
-        ? baseState
-        : accumulate(currentState, baseState)
-      : currentState;
-  }, [disabled, baseState, currentStateReplaced, currentState]);
+  const state = useMemo<IInteractions>(
+    () =>
+      baseState
+        ? currentStateReplaced
+          ? baseState
+          : accumulate(currentState, baseState)
+        : currentState,
+    [baseState, currentStateReplaced, currentState],
+  );
 
   return {
     triggerProps,

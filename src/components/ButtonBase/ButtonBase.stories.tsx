@@ -33,15 +33,40 @@ const rows: Array<IComponentPresentation<IButtonBaseProps>> = [
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
+const interactionsStates: Array<IComponentPresentation<IButtonBaseProps>> = [
+  {
+    legend: 'Normal',
+    props: {
+      children: 'Normal',
+    },
+  },
+  {
+    legend: 'Focused',
+    props: { children: 'Focused', interactions: { focused: true } },
+  },
+  {
+    legend: 'Hovered',
+    props: { children: 'Hovered', interactions: { hovered: true } },
+  },
+  {
+    legend: 'Pressed',
+    props: { children: 'Pressed', interactions: { pressed: true } },
+  },
+];
+
 const ButtonBaseShowcase = makeComponentShowcase(ButtonBase);
 
 export const Unstyled: IStory = {
-  render: (props) => <ButtonBaseShowcase props={props} rows={rows} />,
+  render: (props) => (
+    <ButtonBaseShowcase props={props} cols={interactionsStates} rows={rows} />
+  ),
   args: defaultArgs,
 };
 
 export const Styled: IStory = {
-  render: (props) => <ButtonBaseShowcase props={props} rows={rows} />,
+  render: (props) => (
+    <ButtonBaseShowcase props={props} cols={interactionsStates} rows={rows} />
+  ),
   args: {
     ...defaultArgs,
     elevation: '$1',

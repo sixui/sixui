@@ -1,5 +1,4 @@
 import { createTheme } from '@vanilla-extract/css';
-import { calc } from '@vanilla-extract/css-utils';
 
 import {
   stylesFactory,
@@ -7,6 +6,7 @@ import {
 } from '~/utils/styles/stylesFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { themeTokens } from '../ThemeProvider';
+import { px } from '~/helpers/styles/px';
 
 const [tokensClassName, tokens] = createTheme({
   color: {
@@ -17,7 +17,7 @@ const [tokensClassName, tokens] = createTheme({
     disabled: themeTokens.state.opacity.disabled,
   },
   size: '1em',
-  containerPadding: '0px',
+  containerPadding: '0.05em',
   strokePct: '10',
 });
 
@@ -38,8 +38,8 @@ const classNames = createStyles({
     contain: 'strict',
     contentVisibility: 'auto',
 
-    width: calc.multiply(tokens.size, themeTokens.scale),
-    height: calc.multiply(tokens.size, themeTokens.scale),
+    width: px(tokens.size),
+    height: px(tokens.size),
   },
   layer: {
     position: 'absolute',
@@ -51,7 +51,7 @@ const classNames = createStyles({
     flexShrink: 1,
     flexBasis: '0%',
     alignSelf: 'stretch',
-    margin: tokens.containerPadding,
+    margin: px(tokens.containerPadding),
   },
 });
 

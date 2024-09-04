@@ -30,7 +30,7 @@ const classNames = createStyles({
     position: 'absolute',
     inset: 0,
     overflow: 'hidden',
-    pointerEvents: 'none',
+    // pointerEvents: 'none',
 
     '::before': {
       // This is the background color of the ripple.
@@ -40,10 +40,6 @@ const classNames = createStyles({
       opacity: 0,
       position: 'absolute',
       inset: 0,
-
-      transitionProperty: 'opacity, background-color',
-      transitionDuration: '15ms, 15ms',
-      transitionTimingFunction: 'linear, linear',
     },
     '::after': {
       // This is the ripple animation.
@@ -89,6 +85,9 @@ const classNames = createStyles({
         display: 'none',
       },
     },
+  },
+  root$hover: {
+    // border: '2px solid red',
   },
 });
 

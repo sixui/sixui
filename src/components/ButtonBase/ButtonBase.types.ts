@@ -1,3 +1,5 @@
+import type { PressEvent } from 'react-aria';
+
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IMaybeAsync, IAny } from '~/helpers/types';
 import type { IStylesProps } from '~/utils/styles/useStyles';
@@ -16,7 +18,12 @@ export type IButtonBaseOwnProps = {
   target?: React.AnchorHTMLAttributes<HTMLAnchorElement>['target'];
   rel?: string;
   disabled?: boolean;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => IMaybeAsync<IAny>;
+  onPress?: (event: PressEvent) => IMaybeAsync<IAny>;
+
+  /**
+   * @deprecated Use `onPress` instead.
+   */
+  onClick?: (event: React.MouseEvent<Element>) => IMaybeAsync<IAny>;
 
   /**
    * If `true`, the component will be rendered in a disabled state, but will
