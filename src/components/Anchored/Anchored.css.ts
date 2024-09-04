@@ -44,8 +44,8 @@ const classNames = createStyles({
   content: ({ root }) => ({
     vars: {
       [vars.scale]: '1',
-      [vars.offset.x]: '0px',
-      [vars.offset.y]: '0px',
+      [vars.offset.x]: tokens.offset.x,
+      [vars.offset.y]: tokens.offset.y,
       [vars.translate.x]: '0px',
       [vars.translate.y]: '0px',
     },
@@ -57,8 +57,6 @@ const classNames = createStyles({
     transitionTimingFunction: themeTokens.motion.easing.standard.normal,
     transform: `scale(${vars.scale}) translate(${vars.translate.x}, ${vars.translate.y})`,
     transformOrigin: `${px(vars.transformOrigin.x)} ${px(vars.transformOrigin.y)}`,
-    [vars.offset.x]: tokens.offset.x,
-    [vars.offset.y]: tokens.offset.y,
 
     selectors: {
       [getModifierSelector<IModifier>('invisible', root)]: {

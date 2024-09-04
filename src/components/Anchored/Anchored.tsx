@@ -5,6 +5,7 @@ import { useStyles } from '~/utils/styles/useStyles';
 import { Box } from '../Box';
 import { anchoredStyles, type IAnchoredStylesFactory } from './Anchored.css';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
+import { px } from '~/helpers/styles/px';
 
 const COMPONENT_NAME = 'Anchored';
 
@@ -46,8 +47,8 @@ export const Anchored = componentFactory<IAnchoredFactory>(
         {...other}
         {...getStyles('root', {
           style: assignInlineVars({
-            [anchoredStyles.tokens.offset.x]: offsetX,
-            [anchoredStyles.tokens.offset.y]: offsetY,
+            [anchoredStyles.tokens.offset.x]: offsetX ? px(offsetX) : undefined,
+            [anchoredStyles.tokens.offset.y]: offsetY ? px(offsetY) : undefined,
           }),
         })}
         ref={forwardedRef}

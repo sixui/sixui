@@ -20,8 +20,8 @@ export type IAnchoredOwnProps = {
   children: React.ReactNode;
   content?: React.ReactNode;
   invisible?: boolean;
-  offsetX?: string;
-  offsetY?: string;
+  offsetX?: string | number;
+  offsetY?: string | number;
 };
 
 export interface IAnchoredProps
