@@ -47,7 +47,7 @@ export const Variants: IStory = {
           legend: 'Rectangular overlap',
           props: {
             overlap: 'rectangular',
-            children: <Placeholder w='$12' h='$12' />,
+            children: <Placeholder w='$12' h='$12' corner='$sm' />,
           },
         },
         {
@@ -110,7 +110,7 @@ export const RectangularOverlap: IStory = {
   args: {
     ...defaultArgs,
     overlap: 'rectangular',
-    children: <Placeholder w='$12' h='$12' />,
+    children: <Placeholder w='$12' h='$12' corner='$sm' />,
   },
 };
 

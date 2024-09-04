@@ -1,6 +1,8 @@
-import type { ICompiledStyles, IZeroOrMore } from '~/helpers/types';
-import type { ICircularProgressIndicatorStylesKey } from '../CircularProgressIndicator';
-import type { IButtonBaseProps } from '../ButtonBase';
+import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import type { IStylesProps } from '~/utils/styles/useStyles';
+import type { IBoxProps } from '../Box';
+import type { IButtonBaseOwnProps } from '../ButtonBase';
+import type { buttonStyles, IButtonStylesFactory } from './Button.css';
 
 export type IButtonVariant =
   | 'elevated'
@@ -11,12 +13,7 @@ export type IButtonVariant =
   | 'danger'
   | 'snackbar';
 
-export type IButtonProps = IButtonBaseProps & {
-  innerStyles?: IButtonBaseProps['innerStyles'] & {
-    circularProgressIndicator?: IZeroOrMore<
-      ICompiledStyles<ICircularProgressIndicatorStylesKey>
-    >;
-  };
+export type IButtonOwnProps = {
   variant?: IButtonVariant | false;
   icon?: React.ReactNode;
   trailingIcon?: boolean;
@@ -24,3 +21,16 @@ export type IButtonProps = IButtonBaseProps & {
   loadingAnimation?: 'progressIndicator' | 'halfSpin' | 'none';
   loadingText?: string;
 };
+
+export interface IButtonProps
+  extends IBoxProps,
+    IStylesProps<IButtonStylesFactory>,
+    IButtonBaseOwnProps,
+    IButtonOwnProps {}
+
+export type IButtonFactory = IPolymorphicComponentFactory<{
+  props: IButtonProps;
+  defaultRef: HTMLDivElement;
+  defaultRoot: 'div';
+  styles: typeof buttonStyles;
+}>;

@@ -37,7 +37,7 @@ const vars = {
 const classNames = createStyles({
   root: {
     vars: {
-      [vars.size]: calc.add(px(tokens.container.size), tokens.density),
+      [vars.size]: calc.add(px(tokens.container.size), px(tokens.density)),
       [PaperBase.styles.tokens.container.shape.topLeft]:
         tokens.container.shape.topLeft,
       [PaperBase.styles.tokens.container.shape.topRight]:

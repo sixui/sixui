@@ -59,3 +59,6 @@ export const Anchored = componentFactory<IAnchoredFactory>(
     );
   },
 );
+
+Anchored.styles = anchoredStyles;
+Anchored.displayName = `@sixui/${COMPONENT_NAME}`;

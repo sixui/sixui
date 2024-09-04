@@ -38,3 +38,6 @@ export const Indicator = componentFactory<IIndicatorFactory>(
     );
   },
 );
+
+Indicator.styles = indicatorStyles;
+Indicator.displayName = `@sixui/${COMPONENT_NAME}`;

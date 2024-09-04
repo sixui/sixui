@@ -1,231 +1,150 @@
-import { forwardRef, useState } from 'react';
-import { asArray } from '@olivierpascal/helpers';
-import { useMergeRefs } from '@floating-ui/react';
+import { useState } from 'react';
 
-import type { IButtonProps } from './Button.types';
-import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
-import { useStyles } from '~/hooks/useStyles';
+import type { IButtonFactory } from './Button.types';
+import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { useStyles } from '~/utils/styles/useStyles';
 import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { ButtonBase } from '../ButtonBase';
 import { executeLazyPromise } from '~/helpers/executeLazyPromise';
-import { useVisualState } from '../VisualState';
-import {
-  buttonCircularProgressIndicatorStyles,
-  buttonElevationStyles,
-  buttonFocusRingStyles,
-  buttonStateLayerStyles,
-  buttonStyles,
-  type IButtonStylesKey,
-} from './Button.styles';
-import { buttonTheme } from './Button.stylex';
-import { buttonVariantStyles } from './variants';
+import { buttonStyles, type IButtonStylesFactory } from './Button.css';
 
-// https://github.com/material-components/material-web/blob/main/button/internal/button.ts
-// https://github.com/material-components/material-web/blob/main/button/internal/elevated-button.ts
-// https://github.com/material-components/material-web/blob/main/button/internal/filled-button.ts
-// https://github.com/material-components/material-web/blob/main/button/internal/filled-tonal-button.ts
-// https://github.com/material-components/material-web/blob/main/button/internal/outlined-button.ts
-// https://github.com/material-components/material-web/blob/main/button/internal/text-button.ts
+const COMPONENT_NAME = 'Button';
 
-export const Button = createPolymorphicComponent<'button', IButtonProps>(
-  forwardRef<HTMLButtonElement, IButtonProps>(
-    function Button(props, forwardedRef) {
-      const {
-        styles,
-        sx,
-        innerStyles,
-        visualState: visualStateProp,
-        children,
-        onClick,
-        variant = 'filled',
-        icon,
-        trailingIcon,
-        loading: loadingProp,
-        loadingAnimation = 'progressIndicator',
-        loadingText,
-        readOnly: readOnlyProp,
-        ...other
-      } = props;
-      const [handlingClick, setHandlingClick] = useState(false);
-      const [animating, setAnimating] = useState(false);
-      const loading =
-        (loadingProp || handlingClick) &&
-        loadingAnimation === 'progressIndicator';
-      const readOnly = readOnlyProp || loading;
-      const visuallyDisabled = other.disabled || readOnly;
+export const Button = polymorphicComponentFactory<IButtonFactory>(
+  (props, forwardedRef) => {
+    const {
+      classNames,
+      className,
+      style,
+      variant = 'filled',
+      children,
+      onClick,
+      icon,
+      trailingIcon,
+      loading: loadingProp,
+      loadingAnimation = 'progressIndicator',
+      loadingText,
+      readOnly: readOnlyProp,
+      ...other
+    } = useProps({ componentName: COMPONENT_NAME, props });
 
-      const { visualState, setRef: setVisualStateRef } = useVisualState(
-        visualStateProp,
-        { disabled: visuallyDisabled },
-      );
-      const handleRef = useMergeRefs([forwardedRef, setVisualStateRef]);
+    const [animating, setAnimating] = useState(false);
+    const [handlingClick, setHandlingClick] = useState(false);
+    const loading =
+      (loadingProp || handlingClick) &&
+      loadingAnimation === 'progressIndicator';
+    const readOnly = readOnlyProp || loading;
+    const disabledOrReadOnly = other.disabled || readOnly;
 
-      const variantStyles = variant ? buttonVariantStyles[variant] : undefined;
-      const { combineStyles, getStyles, globalStyles } =
-        useStyles<IButtonStylesKey>({
-          componentName: 'Button',
-          styles: [buttonStyles, variantStyles, styles],
-          visualState,
-        });
+    const hasIcon = !!icon;
+    const hasLeadingIcon = hasIcon && !trailingIcon;
+    const hasTrailingIcon = hasIcon && !!trailingIcon;
+    const hasOverlay = loading && (!!loadingText || !hasIcon);
+    const iconAnimation =
+      (loadingProp || handlingClick || animating) &&
+      loadingAnimation !== undefined &&
+      loadingAnimation !== 'progressIndicator' &&
+      loadingAnimation !== 'none'
+        ? loadingAnimation
+        : undefined;
 
-      const handleAnimationIteration = (): void => setAnimating(handlingClick);
+    const modifiers = {
+      disabled: disabledOrReadOnly,
+      loading,
+      leading: hasLeadingIcon,
+      trailing: hasTrailingIcon,
+      'icon-animation': iconAnimation,
+    };
 
-      const handleClick:
-        | React.MouseEventHandler<HTMLButtonElement>
-        | undefined = (event) => {
-        if (handlingClick) {
-          return;
-        }
+    const { getStyles } = useStyles<IButtonStylesFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles: buttonStyles,
+      style,
+      variant,
+      modifiers,
+    });
 
-        if (!onClick) {
-          return;
-        }
+    const handleAnimationIteration = (): void => setAnimating(handlingClick);
 
-        event.stopPropagation();
+    const handleClick:
+      | React.MouseEventHandler<HTMLButtonElement>
+      | undefined = (event) => {
+      if (handlingClick) {
+        return;
+      }
 
-        setAnimating(true);
-        void executeLazyPromise(() => onClick(event) as void, setHandlingClick);
-      };
+      if (!onClick) {
+        return;
+      }
 
-      const hasIcon = !!icon;
-      const hasLeadingIcon = hasIcon && !trailingIcon;
-      const hasTrailingIcon = hasIcon && !!trailingIcon;
-      const hasOverlay = loading && (!!loadingText || !hasIcon);
-      const iconAnimation =
-        (loadingProp || handlingClick || animating) &&
-        loadingAnimation !== undefined &&
-        loadingAnimation !== 'progressIndicator' &&
-        loadingAnimation !== 'none'
-          ? loadingAnimation
-          : undefined;
+      event.stopPropagation();
 
-      return (
-        <ButtonBase
-          styles={[buttonStyles, variantStyles]}
-          innerStyles={{
-            ...innerStyles,
-            stateLayer: [
-              buttonStateLayerStyles,
-              ...asArray(innerStyles?.stateLayer),
-            ],
-            focusRing: [
-              buttonFocusRingStyles,
-              ...asArray(innerStyles?.focusRing),
-            ],
-            elevation: [
-              buttonElevationStyles,
-              ...asArray(innerStyles?.elevation),
-            ],
-          }}
-          onClick={handleClick}
-          data-cy='button'
-          visualState={visualState}
-          readOnly={readOnly}
-          {...other}
-          sx={[
-            buttonTheme,
-            globalStyles,
-            combineStyles(
-              loading && 'host$loading',
-              hasLeadingIcon && 'host$withLeadingIcon',
-              hasTrailingIcon && 'host$withTrailingIcon',
-            ),
-            sx,
-          ]}
-          ref={handleRef}
-        >
-          {hasLeadingIcon ? (
-            <div
-              {...getStyles(
-                'icon',
-                visuallyDisabled && 'icon$disabled',
-                hasOverlay ? 'invisible' : null,
-              )}
-            >
-              {loading ? (
-                <IndeterminateCircularProgressIndicator
-                  styles={[
-                    buttonCircularProgressIndicatorStyles,
-                    ...asArray(innerStyles?.circularProgressIndicator),
-                  ]}
-                />
-              ) : icon ? (
-                <div
-                  {...getStyles(
-                    'icon',
-                    iconAnimation && `icon$${iconAnimation}`,
-                  )}
-                  onAnimationIteration={handleAnimationIteration}
-                >
-                  {icon}
-                </div>
-              ) : null}
-            </div>
-          ) : null}
+      setAnimating(true);
+      void executeLazyPromise(() => onClick(event) as void, setHandlingClick);
+    };
 
-          {children ? (
-            <span
-              {...getStyles(
-                'label',
-                visuallyDisabled && 'label$disabled',
-                hasOverlay && 'invisible',
-              )}
-            >
-              {children}
-            </span>
-          ) : null}
-
-          {hasOverlay ? (
-            <div {...getStyles('overlay')}>
-              {loadingText ? (
-                <span
-                  {...getStyles('label', visuallyDisabled && 'label$disabled')}
-                >
-                  {loadingText}
-                </span>
-              ) : (
-                <div {...getStyles(visuallyDisabled && 'icon$disabled')}>
-                  <IndeterminateCircularProgressIndicator
-                    styles={[
-                      buttonCircularProgressIndicatorStyles,
-                      ...asArray(innerStyles?.circularProgressIndicator),
-                    ]}
-                  />
-                </div>
-              )}
-            </div>
-          ) : null}
-
-          {icon && trailingIcon ? (
-            loading ? (
+    return (
+      <ButtonBase
+        {...other}
+        {...getStyles('root')}
+        onClick={handleClick}
+        readOnly={readOnly}
+        ref={forwardedRef}
+      >
+        {hasLeadingIcon ? (
+          <div {...getStyles(['icon', hasOverlay && 'invisible'])}>
+            {loading ? (
+              <IndeterminateCircularProgressIndicator />
+            ) : icon ? (
               <div
-                {...getStyles(
-                  hasOverlay ? 'invisible' : null,
-                  visuallyDisabled && 'icon$disabled',
-                )}
-              >
-                <IndeterminateCircularProgressIndicator
-                  styles={[
-                    buttonCircularProgressIndicatorStyles,
-                    ...asArray(innerStyles?.circularProgressIndicator),
-                  ]}
-                />
-              </div>
-            ) : (
-              <div
-                {...getStyles(
-                  'icon',
-                  visuallyDisabled && 'icon$disabled',
-                  iconAnimation && `icon$${iconAnimation}`,
-                )}
+                {...getStyles('icon')}
                 onAnimationIteration={handleAnimationIteration}
               >
                 {icon}
               </div>
-            )
-          ) : null}
-        </ButtonBase>
-      );
-    },
-  ),
+            ) : null}
+          </div>
+        ) : null}
+
+        {children ? (
+          <span {...getStyles(['label', hasOverlay && 'invisible'])}>
+            {children}
+          </span>
+        ) : null}
+
+        {hasOverlay ? (
+          <div {...getStyles('overlay')}>
+            {loadingText ? (
+              <span {...getStyles('label')}>{loadingText}</span>
+            ) : (
+              <div {...getStyles('icon')}>
+                <IndeterminateCircularProgressIndicator />
+              </div>
+            )}
+          </div>
+        ) : null}
+
+        {icon && trailingIcon ? (
+          loading ? (
+            <div {...getStyles(['icon', hasOverlay && 'invisible'])}>
+              <IndeterminateCircularProgressIndicator />
+            </div>
+          ) : (
+            <div
+              {...getStyles('icon')}
+              onAnimationIteration={handleAnimationIteration}
+            >
+              {icon}
+            </div>
+          )
+        ) : null}
+      </ButtonBase>
+    );
+  },
 );
+
+Button.styles = buttonStyles;
+Button.displayName = `@sixui/${COMPONENT_NAME}`;

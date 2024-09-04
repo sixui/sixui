@@ -1,7 +1,7 @@
 import type { Decorator, Preview } from '@storybook/react';
 
 import { SixuiProvider } from '~/components/SixuiProvider';
-import { ThemeProvider, themeTokens } from '~/components/ThemeProvider';
+import { ThemeProvider } from '~/components/ThemeProvider';
 import { modes } from './modes';
 // import variantTheme from '~/themes/variant/theme.json';
 // import { ThemeControls } from './ThemeControls';

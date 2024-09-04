@@ -7,7 +7,7 @@ import type { IButtonProps, IButtonVariant } from './Button.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
-  ComponentShowcase,
+  makeComponentShowcase,
 } from '../ComponentShowcase';
 import { Button } from './Button';
 
@@ -72,10 +72,11 @@ const rows: Array<IComponentPresentation<IButtonProps>> = [
   },
 ];
 
+const ButtonShowcase = makeComponentShowcase(Button);
+
 export const Variants: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={Button}
+    <ButtonShowcase
       props={props}
       cols={(
         [
@@ -99,108 +100,101 @@ export const Variants: IStory = {
 };
 
 export const Elevated: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={Button}
-      props={props}
-      cols={states}
-      rows={rows}
-    />
-  ),
+  render: (props) => <ButtonShowcase props={props} cols={states} rows={rows} />,
   args: {
     ...defaultArgs,
     variant: 'elevated',
   },
 };
 
-export const Filled: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={Button}
-      props={props}
-      cols={states}
-      rows={rows}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    variant: 'filled',
-  },
-};
+// export const Filled: IStory = {
+//   render: (props) => (
+//     <ComponentShowcase
+//       component={Button}
+//       props={props}
+//       cols={states}
+//       rows={rows}
+//     />
+//   ),
+//   args: {
+//     ...defaultArgs,
+//     variant: 'filled',
+//   },
+// };
 
-export const FilledTonal: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={Button}
-      props={props}
-      cols={states}
-      rows={rows}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    variant: 'filledTonal',
-  },
-};
+// export const FilledTonal: IStory = {
+//   render: (props) => (
+//     <ComponentShowcase
+//       component={Button}
+//       props={props}
+//       cols={states}
+//       rows={rows}
+//     />
+//   ),
+//   args: {
+//     ...defaultArgs,
+//     variant: 'filledTonal',
+//   },
+// };
 
-export const Outlined: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={Button}
-      props={props}
-      cols={states}
-      rows={rows}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    variant: 'outlined',
-  },
-};
+// export const Outlined: IStory = {
+//   render: (props) => (
+//     <ComponentShowcase
+//       component={Button}
+//       props={props}
+//       cols={states}
+//       rows={rows}
+//     />
+//   ),
+//   args: {
+//     ...defaultArgs,
+//     variant: 'outlined',
+//   },
+// };
 
-export const Text: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={Button}
-      props={props}
-      cols={states}
-      rows={rows}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    variant: 'text',
-  },
-};
+// export const Text: IStory = {
+//   render: (props) => (
+//     <ComponentShowcase
+//       component={Button}
+//       props={props}
+//       cols={states}
+//       rows={rows}
+//     />
+//   ),
+//   args: {
+//     ...defaultArgs,
+//     variant: 'text',
+//   },
+// };
 
-export const Danger: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={Button}
-      props={props}
-      cols={states}
-      rows={rows}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    variant: 'danger',
-  },
-};
+// export const Danger: IStory = {
+//   render: (props) => (
+//     <ComponentShowcase
+//       component={Button}
+//       props={props}
+//       cols={states}
+//       rows={rows}
+//     />
+//   ),
+//   args: {
+//     ...defaultArgs,
+//     variant: 'danger',
+//   },
+// };
 
-export const Snackbar: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={Button}
-      props={props}
-      cols={states}
-      rows={rows}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    variant: 'snackbar',
-  },
-};
+// export const Snackbar: IStory = {
+//   render: (props) => (
+//     <ComponentShowcase
+//       component={Button}
+//       props={props}
+//       cols={states}
+//       rows={rows}
+//     />
+//   ),
+//   args: {
+//     ...defaultArgs,
+//     variant: 'snackbar',
+//   },
+// };
 
 export default meta;
