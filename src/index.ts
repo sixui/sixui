@@ -51,6 +51,7 @@ export * from './components/HctColorPickerContent';
 export * from './components/HslColorPickerContent';
 export * from './components/IconButton';
 export * from './components/IndeterminateCircularProgressIndicator';
+export * from './components/Indicator';
 export * from './components/Item';
 export * from './components/List';
 export * from './components/ListItem';

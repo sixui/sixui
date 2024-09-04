@@ -20,10 +20,6 @@ const [tokensClassName, tokens] = createTheme({
 });
 
 const vars = {
-  top: createVar(),
-  bottom: createVar(),
-  left: createVar(),
-  right: createVar(),
   scale: createVar(),
   translate: {
     x: createVar(),
@@ -59,12 +55,10 @@ const classNames = createStyles({
     transitionProperty: 'transform',
     transitionDuration: themeTokens.motion.duration.short.$3,
     transitionTimingFunction: themeTokens.motion.easing.standard.normal,
-    top: calc.add(px(vars.top), px(vars.offset.y)),
-    bottom: calc.add(px(vars.bottom), px(vars.offset.y)),
-    left: calc.add(px(vars.left), px(vars.offset.x)),
-    right: calc.add(px(vars.right), px(vars.offset.x)),
     transform: `scale(${vars.scale}) translate(${vars.translate.x}, ${vars.translate.y})`,
     transformOrigin: `${px(vars.transformOrigin.x)} ${px(vars.transformOrigin.y)}`,
+    [vars.offset.x]: tokens.offset.x,
+    [vars.offset.y]: tokens.offset.y,
 
     selectors: {
       [getModifierSelector<IModifier>('invisible', root)]: {
@@ -72,13 +66,15 @@ const classNames = createStyles({
           [vars.scale]: '0',
         },
       },
-      [getModifierSelector<IModifier>({ overlap: 'rectangular' }, root)]: {
-        vars: {
-          [vars.offset.x]: tokens.offset.x,
-          [vars.offset.y]: tokens.offset.y,
-        },
-      },
-      [getModifierSelector<IModifier>({ overlap: 'circular' }, root)]: {
+      [getModifierSelector<IModifier>(
+        [
+          { overlap: 'circular', position: 'top-start' },
+          { overlap: 'circular', position: 'top-end' },
+          { overlap: 'circular', position: 'bottom-start' },
+          { overlap: 'circular', position: 'bottom-end' },
+        ],
+        root,
+      )]: {
         vars: {
           [vars.offset.x]: calc.add('14%', tokens.offset.x),
           [vars.offset.y]: calc.add('14%', tokens.offset.y),
@@ -86,42 +82,42 @@ const classNames = createStyles({
       },
       [getModifierSelector<IModifier>('position^=top-', root)]: {
         vars: {
-          [vars.top]: tokens.offset.y,
+          top: px(vars.offset.y),
           [vars.translate.y]: '-50%',
           [vars.transformOrigin.y]: '0%',
         },
       },
       [getModifierSelector<IModifier>('position^=middle-', root)]: {
         vars: {
-          [vars.top]: '50%',
+          top: '50%',
           [vars.translate.y]: '-50%',
-          [vars.transformOrigin.y]: '50%',
+          [vars.transformOrigin.y]: '0%',
         },
       },
       [getModifierSelector<IModifier>('position^=bottom-', root)]: {
         vars: {
-          [vars.bottom]: tokens.offset.y,
+          bottom: px(vars.offset.y),
           [vars.translate.y]: '50%',
           [vars.transformOrigin.y]: '100%',
         },
       },
       [getModifierSelector<IModifier>('position$=-start', root)]: {
         vars: {
-          [vars.left]: tokens.offset.x,
+          left: px(vars.offset.x),
           [vars.translate.x]: '-50%',
           [vars.transformOrigin.x]: '0%',
         },
       },
       [getModifierSelector<IModifier>('position$=-center', root)]: {
         vars: {
-          [vars.left]: '0%',
-          [vars.translate.x]: '50%',
+          left: '50%',
+          [vars.translate.x]: '-50%',
           [vars.transformOrigin.x]: '0%',
         },
       },
       [getModifierSelector<IModifier>('position$=-end', root)]: {
         vars: {
-          [vars.right]: tokens.offset.x,
+          right: px(vars.offset.x),
           [vars.translate.x]: '50%',
           [vars.transformOrigin.x]: '100%',
         },

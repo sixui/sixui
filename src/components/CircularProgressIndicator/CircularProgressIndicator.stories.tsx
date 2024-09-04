@@ -40,7 +40,7 @@ export const Variants: IStory = {
   args: defaultArgs,
 };
 
-const CircularProgressIndicatorShowcase2 = makeComponentShowcase(
+const CircularProgressIndicatorWithTextShowcase = makeComponentShowcase(
   ({ fz, ...other }: ICircularProgressIndicatorProps) => (
     <Text fz={fz}>
       {fz} <CircularProgressIndicator {...other} />
@@ -50,7 +50,7 @@ const CircularProgressIndicatorShowcase2 = makeComponentShowcase(
 
 export const Sizes: IStory = {
   render: (props) => (
-    <CircularProgressIndicatorShowcase2
+    <CircularProgressIndicatorWithTextShowcase
       props={props}
       rows={[
         // FIXME: should be applied

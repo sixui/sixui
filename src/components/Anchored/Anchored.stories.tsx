@@ -36,12 +36,11 @@ const anchors: Array<IComponentPresentation<IAnchoredProps>> = [
   { props: { position: 'top-start' } },
   { props: { position: 'top-center' } },
   { props: { position: 'top-end' } },
-  { props: { position: 'middle-start' } },
-  { props: { position: 'middle-center' } },
   { props: { position: 'middle-end' } },
-  { props: { position: 'bottom-start' } },
-  { props: { position: 'bottom-center' } },
   { props: { position: 'bottom-end' } },
+  { props: { position: 'bottom-center' } },
+  { props: { position: 'bottom-start' } },
+  { props: { position: 'middle-start' } },
 ];
 
 const content: Array<IComponentPresentation<IAnchoredProps>> = [
