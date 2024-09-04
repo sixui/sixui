@@ -34,7 +34,7 @@ const processingKeyframes = keyframes({
 const classNames = createStyles({
   root: {
     position: 'relative',
-    minWidth: px(tokens.container.size),
+    width: px(tokens.container.size),
     height: px(tokens.container.size),
     backgroundColor: tokens.container.color,
     borderRadius: px(tokens.container.shape),

@@ -16,7 +16,7 @@ export const Anchored = componentFactory<IAnchoredFactory>(
       className,
       style,
       variant,
-      position = 'top-right',
+      position = 'top-end',
       overlap = 'rectangular',
       children,
       content,

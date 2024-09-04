@@ -1,7 +1,7 @@
 import type { Decorator, Preview } from '@storybook/react';
 
 import { SixuiProvider } from '~/components/SixuiProvider';
-import { ThemeProvider } from '~/components/ThemeProvider';
+import { ThemeProvider, themeTokens } from '~/components/ThemeProvider';
 import { modes } from './modes';
 // import variantTheme from '~/themes/variant/theme.json';
 // import { ThemeControls } from './ThemeControls';
@@ -34,6 +34,10 @@ const preview: Preview = {
     chromatic: { modes },
     // This allows custom storybook body padding.
     layout: 'none',
+    backgrounds: {
+      default: 'dark',
+      values: [{ name: 'dark', value: '#141316' }],
+    },
   },
 };
 

@@ -7,10 +7,7 @@ import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 export const storyWrapper = style({
   position: 'relative',
   backgroundColor: themeTokens.colorScheme.surface,
-  padding: 80,
-  // FIXME:
-  // padding: spacingTokens.padding$6,
-  width: '100%',
+  padding: 48,
 });
 
 // FIXME: delete

@@ -32,22 +32,6 @@ const BadgeDemo: React.FC<IPlaceholderProps & { size: 'sm' | 'lg' }> = ({
   />
 );
 
-const anchors: Array<IComponentPresentation<IAnchoredProps>> = [
-  { props: { position: 'top-start' } },
-  { props: { position: 'top-center' } },
-  { props: { position: 'top-end' } },
-  { props: { position: 'middle-end' } },
-  { props: { position: 'bottom-end' } },
-  { props: { position: 'bottom-center' } },
-  { props: { position: 'bottom-start' } },
-  { props: { position: 'middle-start' } },
-];
-
-const content: Array<IComponentPresentation<IAnchoredProps>> = [
-  { legend: 'Short', props: { content: <BadgeDemo size='sm' /> } },
-  { legend: 'Long', props: { content: <BadgeDemo size='lg' /> } },
-];
-
 const AnchoredShowcase = makeComponentShowcase(Anchored);
 
 export const Variants: IStory = {
@@ -55,29 +39,19 @@ export const Variants: IStory = {
     <AnchoredShowcase
       props={props}
       cols={[
-        {
-          props: {
-            content: <BadgeDemo size='sm' />,
-            position: 'top-end',
-          },
-        },
-        {
-          props: {
-            content: <BadgeDemo size='lg' />,
-            position: 'top-end',
-          },
-        },
+        { props: { content: <BadgeDemo size='sm' /> } },
+        { props: { content: <BadgeDemo size='lg' /> } },
       ]}
       rows={[
         {
-          legend: 'Rectangular',
+          legend: 'Rectangular overlap',
           props: {
             overlap: 'rectangular',
             children: <Placeholder w='$12' h='$12' />,
           },
         },
         {
-          legend: 'Circular',
+          legend: 'Circular overlap',
           props: {
             overlap: 'circular',
             children: <Placeholder w='$12' h='$12' corner='$full' />,
@@ -109,9 +83,29 @@ const AnchoredAnimatedShowcase: React.FC<
   );
 };
 
+const colsPositions: Array<IComponentPresentation<IAnchoredProps>> = [
+  { props: { position: 'top-start' } },
+  { props: { position: 'top-center' } },
+  { props: { position: 'top-end' } },
+  { props: { position: 'middle-end' } },
+  { props: { position: 'bottom-end' } },
+  { props: { position: 'bottom-center' } },
+  { props: { position: 'bottom-start' } },
+  { props: { position: 'middle-start' } },
+];
+
+const rowsContentSizes: Array<IComponentPresentation<IAnchoredProps>> = [
+  { legend: 'Short', props: { content: <BadgeDemo size='sm' /> } },
+  { legend: 'Long', props: { content: <BadgeDemo size='lg' /> } },
+];
+
 export const RectangularOverlap: IStory = {
   render: (props) => (
-    <AnchoredAnimatedShowcase props={props} rows={content} cols={anchors} />
+    <AnchoredAnimatedShowcase
+      props={props}
+      rows={rowsContentSizes}
+      cols={colsPositions}
+    />
   ),
   args: {
     ...defaultArgs,
@@ -122,7 +116,11 @@ export const RectangularOverlap: IStory = {
 
 export const CircularOverlap: IStory = {
   render: (props) => (
-    <AnchoredAnimatedShowcase props={props} rows={content} cols={anchors} />
+    <AnchoredAnimatedShowcase
+      props={props}
+      rows={rowsContentSizes}
+      cols={colsPositions}
+    />
   ),
   args: {
     ...defaultArgs,

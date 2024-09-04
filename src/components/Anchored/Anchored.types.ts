@@ -14,9 +14,11 @@ export type IAnchorPosition =
   | 'middle-end'
   | 'middle-start';
 
+export type IAnchorOverlap = 'rectangular' | 'circular';
+
 export type IAnchoredOwnProps = {
   position?: IAnchorPosition;
-  overlap?: 'rectangular' | 'circular';
+  overlap?: IAnchorOverlap;
   children: React.ReactNode;
   content?: React.ReactNode;
   invisible?: boolean;
