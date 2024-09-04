@@ -5,10 +5,14 @@ import type { IButtonFactory } from './Button.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useStyles } from '~/utils/styles/useStyles';
+import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { ButtonBase } from '../ButtonBase';
-import { executeLazyPromise } from '~/helpers/executeLazyPromise';
-import { buttonStyles, type IButtonStylesFactory } from './Button.css';
+import {
+  buttonStyles,
+  buttonStylesVariants,
+  type IButtonStylesFactory,
+} from './Button.css';
 
 const COMPONENT_NAME = 'Button';
 
@@ -65,6 +69,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       classNames,
       className,
       styles: buttonStyles,
+      stylesVariants: buttonStylesVariants,
       style,
       variant,
       modifiers,
@@ -98,29 +103,33 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       );
     };
 
+    const renderIcon = (): JSX.Element =>
+      loading ? (
+        <IndeterminateCircularProgressIndicator
+          {...getStyles(['icon', hasOverlay && 'invisible'])}
+        />
+      ) : (
+        <div
+          {...getStyles(['icon', hasOverlay && 'invisible'])}
+          onAnimationIteration={handleAnimationIteration}
+        >
+          {icon}
+        </div>
+      );
+
     return (
       <ButtonBase
         {...other}
         {...getStyles('root')}
         onClick={handleClick}
+        classNames={{
+          stateLayer: getStyles('stateLayer').className,
+        }}
         onPress={handlePress}
         readOnly={readOnly}
         ref={forwardedRef}
       >
-        {hasLeadingIcon ? (
-          loading ? (
-            <IndeterminateCircularProgressIndicator
-              {...getStyles(['icon', hasOverlay && 'invisible'])}
-            />
-          ) : (
-            <div
-              {...getStyles(['icon', hasOverlay && 'invisible'])}
-              onAnimationIteration={handleAnimationIteration}
-            >
-              {icon}
-            </div>
-          )
-        ) : null}
+        {hasLeadingIcon && renderIcon()}
 
         {children ? (
           <span {...getStyles(['label', hasOverlay && 'invisible'])}>
@@ -138,20 +147,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
           </div>
         ) : null}
 
-        {icon && trailingIcon ? (
-          loading ? (
-            <IndeterminateCircularProgressIndicator
-              {...getStyles(['icon', hasOverlay && 'invisible'])}
-            />
-          ) : (
-            <div
-              {...getStyles(['icon', hasOverlay && 'invisible'])}
-              onAnimationIteration={handleAnimationIteration}
-            >
-              {icon}
-            </div>
-          )
-        ) : null}
+        {hasTrailingIcon && renderIcon()}
       </ButtonBase>
     );
   },

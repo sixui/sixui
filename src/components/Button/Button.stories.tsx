@@ -107,20 +107,13 @@ export const Elevated: IStory = {
   },
 };
 
-// export const Filled: IStory = {
-//   render: (props) => (
-//     <ComponentShowcase
-//       component={Button}
-//       props={props}
-//       cols={states}
-//       rows={rows}
-//     />
-//   ),
-//   args: {
-//     ...defaultArgs,
-//     variant: 'filled',
-//   },
-// };
+export const Filled: IStory = {
+  render: (props) => <ButtonShowcase props={props} cols={states} rows={rows} />,
+  args: {
+    ...defaultArgs,
+    variant: 'filled',
+  },
+};
 
 // export const FilledTonal: IStory = {
 //   render: (props) => (

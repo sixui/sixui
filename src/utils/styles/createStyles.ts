@@ -1,19 +1,22 @@
 import { style, type ComplexStyleRule } from '@vanilla-extract/css';
+
 import { isFunction } from '~/helpers/isFunction';
 
 export const createStyles = <TClassName extends string>(
-  stylesObject: Record<
-    'root' | TClassName,
-    ComplexStyleRule | (({ root }: { root: string }) => ComplexStyleRule)
+  stylesObject: Partial<
+    Record<
+      'root' | TClassName,
+      ComplexStyleRule | (({ root }: { root: string }) => ComplexStyleRule)
+    >
   >,
 ): Record<TClassName, string> => {
   if (isFunction(stylesObject.root)) {
     throw new Error(
-      'createStyles: root className cannot be a function. Please use a string.',
+      '[@sixui] createStyles: root className cannot be a function. Please use an object.',
     );
   }
 
-  const root = style(stylesObject.root);
+  const root = style(stylesObject.root ?? {});
 
   return Object.keys(stylesObject).reduce(
     (acc, key: string) => {
@@ -22,10 +25,20 @@ export const createStyles = <TClassName extends string>(
       }
 
       const styles = stylesObject[key as TClassName];
+      if (!styles) {
+        return acc;
+      }
+
+      if (isFunction(styles)) {
+        return {
+          ...acc,
+          [key]: style(styles({ root })),
+        };
+      }
 
       return {
         ...acc,
-        [key]: isFunction(styles) ? style(styles({ root })) : style(styles),
+        [key]: style(styles),
       };
     },
     { root } as Record<TClassName, string>,

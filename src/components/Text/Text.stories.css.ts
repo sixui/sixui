@@ -5,7 +5,6 @@ import { themeTokens } from '../ThemeProvider';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 
 const classNames = createStyles({
-  root: {},
   container: {
     borderWidth: 1,
     borderStyle: 'dashed',

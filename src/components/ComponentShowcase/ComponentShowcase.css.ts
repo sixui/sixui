@@ -22,7 +22,6 @@ const [tokensClassName, tokens] = createTheme({
 });
 
 const classNames = createStyles({
-  root: {},
   flex: {
     flexGrow: 1,
     flexShrink: 1,

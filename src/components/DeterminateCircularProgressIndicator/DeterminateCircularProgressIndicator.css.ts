@@ -7,7 +7,6 @@ import {
   type IStylesFactory,
 } from '~/utils/styles/stylesFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { deepMerge } from '~/helpers/deepMerge';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
@@ -32,7 +31,6 @@ const [tokensClassName, tokens] = createTheme({
 });
 
 const classNames = createStyles({
-  root: {},
   svg: {
     transform: 'rotate(-90deg)',
   },
@@ -95,7 +93,10 @@ export type IDeterminateCircularProgressIndicatorStylesFactory =
 
 export const determinateCircularProgressIndicatorStyles =
   stylesFactory<IDeterminateCircularProgressIndicatorStylesFactory>({
-    classNames: mergeClassNames(parentStyles.classNames, classNames),
+    classNames: {
+      ...parentStyles.classNames,
+      ...classNames,
+    },
     tokensClassName: cx(parentStyles.tokensClassName, tokensClassName),
     tokens: deepMerge(parentStyles.tokens, tokens),
   });

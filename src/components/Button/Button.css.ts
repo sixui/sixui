@@ -14,6 +14,17 @@ import { px } from '~/helpers/styles/px';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { themeTokens } from '../ThemeProvider';
 import { PaperBase } from '../PaperBase';
+import { elevationLevelPreset } from '../Elevation/Elevation.css';
+import { StateLayer } from '../StateLayer';
+
+export type IButtonVariant =
+  | 'elevated'
+  | 'filled'
+  | 'filledTonal'
+  | 'outlined'
+  | 'text'
+  | 'danger'
+  | 'snackbar';
 
 type IModifier =
   | IInteraction
@@ -130,7 +141,6 @@ const classNames = createStyles({
         tokens.container.elevation.disabled,
     },
 
-    alignContent: 'center',
     borderRadius: px(tokens.container.shape),
     cursor: 'pointer',
     display: 'inline-flex',
@@ -302,12 +312,22 @@ const classNames = createStyles({
   invisible: {
     visibility: 'hidden',
   },
+  stateLayer: {
+    vars: {
+      [StateLayer.styles.tokens.color.hover]: tokens.stateLayer.color.hover,
+      [StateLayer.styles.tokens.color.pressed]: tokens.stateLayer.color.pressed,
+      [StateLayer.styles.tokens.opacity.hover]: tokens.stateLayer.opacity.hover,
+      [StateLayer.styles.tokens.opacity.pressed]:
+        tokens.stateLayer.opacity.pressed,
+    },
+  },
 });
 
 export type IButtonStylesFactory = IStylesFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
+  variant: IButtonVariant;
 }>;
 
 export const buttonStyles = stylesFactory<IButtonStylesFactory>({
@@ -315,3 +335,33 @@ export const buttonStyles = stylesFactory<IButtonStylesFactory>({
   tokensClassName,
   tokens,
 });
+
+export const buttonStylesVariants = {
+  filled: createStyles({
+    root: {
+      vars: {
+        [tokens.container.color.normal]: themeTokens.colorScheme.primary,
+        [tokens.container.color.disabled]: themeTokens.colorScheme.onSurface,
+        [tokens.container.elevation.normal]: elevationLevelPreset[0],
+        [tokens.container.elevation.focused]: elevationLevelPreset[0],
+        [tokens.container.elevation.hovered]: elevationLevelPreset[1],
+        [tokens.container.elevation.pressed]: elevationLevelPreset[0],
+        [tokens.container.elevation.disabled]: elevationLevelPreset[0],
+        [tokens.label.color.normal]: themeTokens.colorScheme.onPrimary,
+        [tokens.label.color.focused]: themeTokens.colorScheme.onPrimary,
+        [tokens.label.color.hovered]: themeTokens.colorScheme.onPrimary,
+        [tokens.label.color.pressed]: themeTokens.colorScheme.onPrimary,
+        [tokens.icon.color.normal]: themeTokens.colorScheme.onPrimary,
+        [tokens.icon.color.focused]: themeTokens.colorScheme.onPrimary,
+        [tokens.icon.color.hovered]: themeTokens.colorScheme.onPrimary,
+        [tokens.icon.color.pressed]: themeTokens.colorScheme.onPrimary,
+      },
+    },
+    stateLayer: {
+      vars: {
+        [tokens.stateLayer.color.hover]: themeTokens.colorScheme.onPrimary,
+        [tokens.stateLayer.color.pressed]: themeTokens.colorScheme.onPrimary,
+      },
+    },
+  }),
+};

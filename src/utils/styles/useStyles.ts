@@ -21,7 +21,7 @@ export type IStylesProps<TPayload extends IStylesFactoryPayload> = {
   style?: React.CSSProperties;
 
   /** The styles variant to use. */
-  variant?: string;
+  variant?: TPayload['variant'];
 };
 
 export type IUseStylesProps<TPayload extends IStylesFactoryPayload> =
@@ -29,10 +29,13 @@ export type IUseStylesProps<TPayload extends IStylesFactoryPayload> =
     /** The name of the component. */
     componentName: string;
 
-    /**
-     * The styles of the component.
-     */
+    /** The styles of the component. */
     styles: IStyles<TPayload>;
+
+    /** The styles of the component variants. */
+    stylesVariants?: TPayload['variant'] extends string
+      ? Record<TPayload['variant'], IStyles<TPayload>['classNames']>
+      : never;
 
     /**
      * The root style name to apply the tokens class to.
@@ -71,6 +74,7 @@ export const useStyles = <TPayload extends IStylesFactoryPayload>(
     classNames,
     className,
     styles,
+    stylesVariants,
     style,
     variant,
     rootStyleName = 'root',
@@ -96,6 +100,7 @@ export const useStyles = <TPayload extends IStylesFactoryPayload>(
                   ],
                   [
                     styles.classNames,
+                    variant && stylesVariants?.[variant],
                     classNames,
                     theme.components?.[componentName]?.classNames,
                   ].map((classNames) => classNames?.[styleName]),
@@ -126,6 +131,7 @@ export const useStyles = <TPayload extends IStylesFactoryPayload>(
       variant,
       style,
       styles,
+      stylesVariants,
     ],
   );
 

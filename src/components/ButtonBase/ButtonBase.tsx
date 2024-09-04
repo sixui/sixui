@@ -94,13 +94,15 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
         interactions={stateLayer.interactionsContext.state}
       >
         {!disabledOrReadOnly && (
-          <>
-            <TouchTarget interactions={stateLayer.interactionsContext.state} />
-            <StateLayer context={stateLayer} />
-          </>
+          <TouchTarget
+            {...getStyles('touchTarget')}
+            interactions={stateLayer.interactionsContext.state}
+          />
         )}
+        <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
         {!disabled && (
           <FocusRing
+            {...getStyles('focusRing')}
             interactions={stateLayer.interactionsContext.state}
             variant={inwardFocusRing ? 'inward' : undefined}
           />

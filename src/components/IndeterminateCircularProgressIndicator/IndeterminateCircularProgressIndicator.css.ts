@@ -79,7 +79,6 @@ const linearRotateKeyframes = keyframes({
 });
 
 const classNames = createStyles({
-  root: {},
   progress: {
     animationTimingFunction: 'linear',
     animationIterationCount: 'infinite',

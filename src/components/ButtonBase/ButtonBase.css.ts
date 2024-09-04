@@ -38,6 +38,9 @@ export const classNames = createStyles({
     borderRadius: 'inherit',
     pointerEvents: 'none',
   },
+  touchTarget: {},
+  stateLayer: {},
+  focusRing: {},
 });
 
 export type IButtonBaseStylesFactory = IStylesFactory<{

@@ -4,17 +4,7 @@ import type { IBoxProps } from '../Box';
 import type { IButtonBaseOwnProps } from '../ButtonBase';
 import type { buttonStyles, IButtonStylesFactory } from './Button.css';
 
-export type IButtonVariant =
-  | 'elevated'
-  | 'filled'
-  | 'filledTonal'
-  | 'outlined'
-  | 'text'
-  | 'danger'
-  | 'snackbar';
-
 export type IButtonOwnProps = {
-  variant?: IButtonVariant | false;
   icon?: React.ReactNode;
   trailingIcon?: boolean;
   loading?: boolean;

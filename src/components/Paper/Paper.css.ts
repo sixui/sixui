@@ -15,9 +15,7 @@ import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
 export type IPaperStyleName = keyof typeof paperStyles;
 
-const classNames = createStyles({
-  root: {},
-});
+const classNames = createStyles({});
 
 export type IPaperStylesFactory = IStylesFactory<{
   styleName: keyof typeof classNames;
