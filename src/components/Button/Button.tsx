@@ -13,6 +13,7 @@ import {
   buttonStylesVariants,
   type IButtonStylesFactory,
 } from './Button.css';
+import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 
 const COMPONENT_NAME = 'Button';
 
@@ -122,9 +123,9 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
         {...other}
         {...getStyles('root')}
         onClick={handleClick}
-        classNames={{
+        classNames={mergeClassNames(classNames, {
           stateLayer: getStyles('stateLayer').className,
-        }}
+        })}
         onPress={handlePress}
         readOnly={readOnly}
         ref={forwardedRef}

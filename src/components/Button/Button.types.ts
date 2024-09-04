@@ -1,5 +1,6 @@
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IStylesProps } from '~/utils/styles/useStyles';
+import type { IPaperOwnProps } from '../Paper';
 import type { IBoxProps } from '../Box';
 import type { IButtonBaseOwnProps } from '../ButtonBase';
 import type { buttonStyles, IButtonStylesFactory } from './Button.css';
@@ -14,6 +15,7 @@ export type IButtonOwnProps = {
 
 export interface IButtonProps
   extends IBoxProps,
+    IPaperOwnProps,
     IStylesProps<IButtonStylesFactory>,
     IButtonBaseOwnProps,
     IButtonOwnProps {}

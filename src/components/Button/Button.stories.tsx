@@ -24,6 +24,7 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   onPress: (...args) => sbHandleEvent('onPress', args, 1000),
   children: 'Button',
+  corner: '$xs',
 } satisfies Partial<IButtonProps>;
 
 const states: Array<IComponentPresentation<IButtonProps>> = [

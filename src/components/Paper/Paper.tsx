@@ -39,20 +39,13 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
       styles: paperStyles,
       style,
       variant,
+      sprinkles,
     });
 
     return (
       <PaperBase
         {...other}
-        {...getStyles('root', {
-          className: sprinkles.className,
-          style: {
-            ...sprinkles.style,
-            ...backgroundSprinkles.style,
-            ...elevationSprinkles.style,
-            ...outlineSprinkles.style,
-          },
-        })}
+        {...getStyles('root')}
         classNames={{
           background: backgroundSprinkles.className,
           elevation: elevationSprinkles.className,

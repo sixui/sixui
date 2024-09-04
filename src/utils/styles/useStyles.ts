@@ -22,6 +22,8 @@ export type IStylesProps<TPayload extends IStylesFactoryPayload> = {
 
   /** The styles variant to use. */
   variant?: TPayload['variant'];
+
+  sprinkles?: { className?: string; style?: React.CSSProperties };
 };
 
 export type IUseStylesProps<TPayload extends IStylesFactoryPayload> =
@@ -77,6 +79,7 @@ export const useStyles = <TPayload extends IStylesFactoryPayload>(
     stylesVariants,
     style,
     variant,
+    sprinkles,
     rootStyleName = 'root',
     modifiers,
   } = props;
@@ -88,6 +91,8 @@ export const useStyles = <TPayload extends IStylesFactoryPayload>(
         TPayload['styleName'] | false | undefined
       >;
       const isRoot = styleNames.includes(rootStyleName);
+      const sprinklesClassName = sprinkles?.className;
+      const sprinklesStyles = sprinkles?.style;
 
       return {
         className: cx(
@@ -97,6 +102,7 @@ export const useStyles = <TPayload extends IStylesFactoryPayload>(
                   styleName === rootStyleName && [
                     styles.tokensClassName,
                     className,
+                    sprinklesClassName,
                   ],
                   [
                     styles.classNames,
@@ -112,6 +118,7 @@ export const useStyles = <TPayload extends IStylesFactoryPayload>(
         style: {
           ...(isRoot ? style : undefined),
           ...options?.style,
+          ...sprinklesStyles,
         },
         ...(isRoot
           ? getDataAttributes({
@@ -132,6 +139,7 @@ export const useStyles = <TPayload extends IStylesFactoryPayload>(
       style,
       styles,
       stylesVariants,
+      sprinkles,
     ],
   );
 
