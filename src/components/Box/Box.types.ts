@@ -9,4 +9,5 @@ export interface IBoxProps extends IBoxSprinkles {
   style?: React.CSSProperties;
   interactions?: IInteractions;
   modifiers?: IModifiers;
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 }

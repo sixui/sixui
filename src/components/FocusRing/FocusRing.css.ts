@@ -28,11 +28,11 @@ const [tokensClassName, tokens] = createTheme({
 
 const inwardGrowKeyframes = keyframes({
   '0%': { borderWidth: 0 },
-  '100%': { borderWidth: px(tokens.width.active) },
+  '100%': { borderWidth: `max(${px(tokens.width.active)}, 1px)` },
 });
 
 const inwardShrinkKeyframes = keyframes({
-  '0%': { borderWidth: px(tokens.width.active) },
+  '0%': { borderWidth: `max(${px(tokens.width.active)}, 1px)` },
 });
 
 const outwardGrowKeyframes = keyframes({
@@ -69,7 +69,7 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>({ variant: 'inward' })]: {
         animationName: `${inwardGrowKeyframes}, ${inwardShrinkKeyframes}`,
         inset: px(tokens.offset.inward),
-        borderWidth: px(tokens.width.normal),
+        borderWidth: `max(${px(tokens.width.normal)}, 1px)`,
         borderStyle: 'solid',
         borderColor: 'currentColor',
       },

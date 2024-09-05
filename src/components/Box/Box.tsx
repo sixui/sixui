@@ -7,7 +7,7 @@ import {
   createPolymorphicComponent,
   type IWithAsProp,
 } from '~/utils/component/createPolymorphicComponent';
-import { boxSprinkles } from './Box.css';
+import { boxRootClassName, boxSprinkles } from './Box.css';
 
 export const Box = createPolymorphicComponent<'div', IBoxProps>(
   forwardRef<HTMLDivElement, IBoxProps>(function Box(props, forwardedRef) {
@@ -18,6 +18,7 @@ export const Box = createPolymorphicComponent<'div', IBoxProps>(
       renderRoot,
       interactions,
       modifiers,
+      size = 'md',
       ...otherWithSprinkles
     } = props as IWithAsProp<IBoxProps>;
 
@@ -27,10 +28,11 @@ export const Box = createPolymorphicComponent<'div', IBoxProps>(
     const childrenProps = {
       ...other,
       ...getDataAttributes({
+        size,
         ...interactions,
         ...modifiers,
       }),
-      className: cx(className, sprinkles.className),
+      className: cx(boxRootClassName, className, sprinkles.className),
       style: {
         ...style,
         ...sprinkles.style,

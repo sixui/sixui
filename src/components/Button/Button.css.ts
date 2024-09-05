@@ -24,7 +24,8 @@ type IModifier =
   | 'loading'
   | 'with-leading-icon'
   | 'with-trailing-icon'
-  | 'icon-animation';
+  | 'icon-animation'
+  | 'size';
 
 const [tokensClassName, tokens] = createTheme({
   density: getDensity({ min: -4, max: 0 }),
@@ -331,7 +332,7 @@ const classNames = createStyles({
   },
   outline: ({ root }) => ({
     borderStyle: tokens.outline.style,
-    borderWidth: px(tokens.outline.width),
+    borderWidth: `max(${px(tokens.outline.width)}, 1px)`,
     borderColor: tokens.outline.color.normal,
 
     selectors: {

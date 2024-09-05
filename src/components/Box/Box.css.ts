@@ -3,6 +3,10 @@ import { defineProperties, createRainbowSprinkles } from 'rainbow-sprinkles';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { themeTokens } from '../ThemeProvider';
+import { style } from '@vanilla-extract/css';
+import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
+
+type IModifier = 'size';
 
 const spacingSizes = [
   0, 0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 20, 24, 28, 32, 36, 40, 44,
@@ -83,6 +87,31 @@ const sprinklesProps = defineProperties({
     fz: ['fontSize'],
     tt: ['textTransform'],
     td: ['textDecoration'],
+  },
+});
+
+export const boxRootClassName = style({
+  selectors: {
+    [getModifierSelector<IModifier>({ size: 'xs' })]: {
+      vars: {
+        [themeTokens.scale]: '0.6',
+      },
+    },
+    [getModifierSelector<IModifier>({ size: 'sm' })]: {
+      vars: {
+        [themeTokens.scale]: '0.8',
+      },
+    },
+    [getModifierSelector<IModifier>({ size: 'lg' })]: {
+      vars: {
+        [themeTokens.scale]: '1.2',
+      },
+    },
+    [getModifierSelector<IModifier>({ size: 'xl' })]: {
+      vars: {
+        [themeTokens.scale]: '1.4',
+      },
+    },
   },
 });
 

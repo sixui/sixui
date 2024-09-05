@@ -62,6 +62,22 @@ export const Variants: IStory = {
   },
 };
 
+export const Sizes: IStory = {
+  render: (props) => (
+    <AvatarShowcase
+      props={props}
+      cols={[
+        { legend: 'Extra small', props: { size: 'xs' } },
+        { legend: 'Small', props: { size: 'sm' } },
+        { legend: 'Medium', props: { size: 'md' } },
+        { legend: 'Large', props: { size: 'lg' } },
+        { legend: 'Extra large', props: { size: 'xl' } },
+      ]}
+    />
+  ),
+  args: defaultArgs,
+};
+
 export const Image: IStory = {
   render: (props) => (
     <AvatarShowcase

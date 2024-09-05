@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
-import type { IButtonProps } from './Button.types';
+import type { IButtonProps, IButtonVariant } from './Button.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
@@ -98,6 +98,25 @@ export const Variants: IStory = {
     />
   ),
   args: defaultArgs,
+};
+
+export const Sizes: IStory = {
+  render: (props) => (
+    <ButtonShowcase
+      props={props}
+      cols={[
+        { legend: 'Extra small', props: { size: 'xs' } },
+        { legend: 'Small', props: { size: 'sm' } },
+        { legend: 'Medium', props: { size: 'md' } },
+        { legend: 'Large', props: { size: 'lg' } },
+        { legend: 'Extra large', props: { size: 'xl' } },
+      ]}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'filled',
+  },
 };
 
 export const Elevated: IStory = {

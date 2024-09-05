@@ -96,7 +96,7 @@ const classNames = createStyles({
     inset: 0,
     pointerEvents: 'none',
     borderStyle: tokens.outline.style,
-    borderWidth: px(tokens.outline.width),
+    borderWidth: `max(${px(tokens.outline.width)}, 1px)`,
     borderColor: tokens.outline.color,
     borderRadius: 'inherit',
   },
