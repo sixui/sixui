@@ -132,49 +132,28 @@ export const Outlined: IStory = {
   },
 };
 
-// export const Text: IStory = {
-//   render: (props) => (
-//     <ComponentShowcase
-//       component={Button}
-//       props={props}
-//       cols={states}
-//       rows={rows}
-//     />
-//   ),
-//   args: {
-//     ...defaultArgs,
-//     variant: 'text',
-//   },
-// };
+export const Text: IStory = {
+  render: (props) => <ButtonShowcase props={props} cols={states} rows={rows} />,
+  args: {
+    ...defaultArgs,
+    variant: 'text',
+  },
+};
 
-// export const Danger: IStory = {
-//   render: (props) => (
-//     <ComponentShowcase
-//       component={Button}
-//       props={props}
-//       cols={states}
-//       rows={rows}
-//     />
-//   ),
-//   args: {
-//     ...defaultArgs,
-//     variant: 'danger',
-//   },
-// };
+export const Danger: IStory = {
+  render: (props) => <ButtonShowcase props={props} cols={states} rows={rows} />,
+  args: {
+    ...defaultArgs,
+    variant: 'danger',
+  },
+};
 
-// export const Snackbar: IStory = {
-//   render: (props) => (
-//     <ComponentShowcase
-//       component={Button}
-//       props={props}
-//       cols={states}
-//       rows={rows}
-//     />
-//   ),
-//   args: {
-//     ...defaultArgs,
-//     variant: 'snackbar',
-//   },
-// };
+export const Snackbar: IStory = {
+  render: (props) => <ButtonShowcase props={props} cols={states} rows={rows} />,
+  args: {
+    ...defaultArgs,
+    variant: 'snackbar',
+  },
+};
 
 export default meta;

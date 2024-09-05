@@ -342,11 +342,7 @@ export const buttonThemeVariants = {
       vars: {
         [tokens.container.color.normal]: themeTokens.colorScheme.primary,
         [tokens.container.color.disabled]: themeTokens.colorScheme.onSurface,
-        [tokens.container.elevation.normal]: elevationLevelPreset[0],
-        [tokens.container.elevation.focused]: elevationLevelPreset[0],
         [tokens.container.elevation.hovered]: elevationLevelPreset[1],
-        [tokens.container.elevation.pressed]: elevationLevelPreset[0],
-        [tokens.container.elevation.disabled]: elevationLevelPreset[0],
         [tokens.label.color.normal]: themeTokens.colorScheme.onPrimary,
         [tokens.label.color.focused]: themeTokens.colorScheme.onPrimary,
         [tokens.label.color.hovered]: themeTokens.colorScheme.onPrimary,
@@ -370,11 +366,7 @@ export const buttonThemeVariants = {
         [tokens.container.color.normal]:
           themeTokens.colorScheme.secondaryContainer,
         [tokens.container.color.disabled]: themeTokens.colorScheme.onSurface,
-        [tokens.container.elevation.normal]: elevationLevelPreset[0],
-        [tokens.container.elevation.focused]: elevationLevelPreset[0],
         [tokens.container.elevation.hovered]: elevationLevelPreset[1],
-        [tokens.container.elevation.pressed]: elevationLevelPreset[0],
-        [tokens.container.elevation.disabled]: elevationLevelPreset[0],
         [tokens.label.color.normal]:
           themeTokens.colorScheme.onSecondaryContainer,
         [tokens.label.color.focused]:
@@ -420,6 +412,88 @@ export const buttonThemeVariants = {
       vars: {
         [tokens.stateLayer.color.hover]: themeTokens.colorScheme.primary,
         [tokens.stateLayer.color.pressed]: themeTokens.colorScheme.primary,
+      },
+    },
+  }),
+  text: createStyles({
+    root: {
+      vars: {
+        [tokens.leadingSpace.normal]: px(space(3)),
+        [tokens.leadingSpace.withLeadingIcon]: px(space(3)),
+        [tokens.leadingSpace.withTrailingIcon]: px(space(4)),
+        [tokens.trailingSpace.normal]: px(space(3)),
+        [tokens.trailingSpace.withLeadingIcon]: px(space(4)),
+        [tokens.trailingSpace.withTrailingIcon]: px(space(3)),
+        [tokens.label.color.normal]: themeTokens.colorScheme.primary,
+        [tokens.label.color.focused]: themeTokens.colorScheme.primary,
+        [tokens.label.color.hovered]: themeTokens.colorScheme.primary,
+        [tokens.label.color.pressed]: themeTokens.colorScheme.primary,
+        [tokens.icon.color.normal]: themeTokens.colorScheme.primary,
+        [tokens.icon.color.focused]: themeTokens.colorScheme.primary,
+        [tokens.icon.color.hovered]: themeTokens.colorScheme.primary,
+        [tokens.icon.color.pressed]: themeTokens.colorScheme.primary,
+      },
+    },
+    stateLayer: {
+      vars: {
+        [tokens.stateLayer.color.hover]: themeTokens.colorScheme.primary,
+        [tokens.stateLayer.color.pressed]: themeTokens.colorScheme.primary,
+      },
+    },
+  }),
+  danger: createStyles({
+    root: {
+      vars: {
+        [tokens.container.color.normal]: themeTokens.colorScheme.errorContainer,
+        [tokens.container.color.disabled]: themeTokens.colorScheme.onSurface,
+        [tokens.container.elevation.hovered]: elevationLevelPreset[1],
+        [tokens.label.color.normal]: themeTokens.colorScheme.onErrorContainer,
+        [tokens.label.color.focused]: themeTokens.colorScheme.onErrorContainer,
+        [tokens.label.color.hovered]: themeTokens.colorScheme.onErrorContainer,
+        [tokens.label.color.pressed]: themeTokens.colorScheme.onErrorContainer,
+        [tokens.icon.color.normal]: themeTokens.colorScheme.onErrorContainer,
+        [tokens.icon.color.focused]: themeTokens.colorScheme.onErrorContainer,
+        [tokens.icon.color.hovered]: themeTokens.colorScheme.onErrorContainer,
+        [tokens.icon.color.pressed]: themeTokens.colorScheme.onErrorContainer,
+      },
+    },
+    stateLayer: {
+      vars: {
+        [tokens.stateLayer.color.hover]:
+          themeTokens.colorScheme.onSecondaryContainer,
+        [tokens.stateLayer.color.pressed]:
+          themeTokens.colorScheme.onSecondaryContainer,
+      },
+    },
+  }),
+  snackbar: createStyles({
+    root: {
+      vars: {
+        [tokens.leadingSpace.normal]: px(space(4)),
+        [tokens.leadingSpace.withLeadingIcon]: px(space(3)),
+        [tokens.leadingSpace.withTrailingIcon]: px(space(4)),
+        [tokens.trailingSpace.normal]: px(space(4)),
+        [tokens.trailingSpace.withLeadingIcon]: px(space(4)),
+        [tokens.trailingSpace.withTrailingIcon]: px(space(3)),
+        [tokens.container.height]: px(32),
+        [tokens.container.shape]: themeTokens.shape.corner.xs,
+        [tokens.label.color.normal]: themeTokens.colorScheme.inversePrimary,
+        [tokens.label.color.focused]: themeTokens.colorScheme.inversePrimary,
+        [tokens.label.color.hovered]: themeTokens.colorScheme.inversePrimary,
+        [tokens.label.color.pressed]: themeTokens.colorScheme.inversePrimary,
+        [tokens.label.color.disabled]: themeTokens.colorScheme.inversePrimary,
+        [tokens.icon.color.normal]: themeTokens.colorScheme.inversePrimary,
+        [tokens.icon.color.focused]: themeTokens.colorScheme.inversePrimary,
+        [tokens.icon.color.hovered]: themeTokens.colorScheme.inversePrimary,
+        [tokens.icon.color.pressed]: themeTokens.colorScheme.inversePrimary,
+        [tokens.icon.color.disabled]: themeTokens.colorScheme.inversePrimary,
+      },
+    },
+    stateLayer: {
+      vars: {
+        [tokens.stateLayer.color.hover]: themeTokens.colorScheme.inversePrimary,
+        [tokens.stateLayer.color.pressed]:
+          themeTokens.colorScheme.inversePrimary,
       },
     },
   }),
