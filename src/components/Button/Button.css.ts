@@ -1,7 +1,8 @@
-import { createTheme, keyframes } from '@vanilla-extract/css';
+import { createTheme, fallbackVar, keyframes } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IInteraction } from '~/hooks/useInteractions';
+import type { IButtonVariant } from './Button.types';
 import {
   componentThemeFactory,
   type IComponentThemeFactory,
@@ -16,15 +17,6 @@ import { themeTokens } from '../ThemeProvider';
 import { PaperBase } from '../PaperBase';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 import { StateLayer } from '../StateLayer';
-
-export type IButtonVariant =
-  | 'elevated'
-  | 'filled'
-  | 'filledTonal'
-  | 'outlined'
-  | 'text'
-  | 'danger'
-  | 'snackbar';
 
 type IModifier =
   | IInteraction
@@ -83,7 +75,7 @@ const [tokensClassName, tokens] = createTheme({
       focused: 'inherit',
       hovered: 'inherit',
       pressed: 'inherit',
-      disabled: themeTokens.colorScheme.onSurface,
+      disabled: 'inherit',
     },
     opacity: {
       disabled: themeTokens.state.opacity.disabled,
@@ -96,7 +88,7 @@ const [tokensClassName, tokens] = createTheme({
       focused: 'inherit',
       hovered: 'inherit',
       pressed: 'inherit',
-      disabled: themeTokens.colorScheme.onSurface,
+      disabled: 'inherit',
     },
     opacity: {
       disabled: themeTokens.state.opacity.disabled,
@@ -131,14 +123,18 @@ const classNames = createStyles({
     vars: {
       [PaperBase.theme.tokens.container.color.normal]:
         tokens.container.color.normal,
-      [PaperBase.theme.tokens.container.color.disabled]:
+      [PaperBase.theme.tokens.container.color.disabled]: fallbackVar(
         tokens.container.color.disabled,
+        tokens.container.color.normal,
+      ),
       [PaperBase.theme.tokens.container.opacity.disabled]:
         tokens.container.opacity.disabled,
       [PaperBase.theme.tokens.container.elevation.normal]:
         tokens.container.elevation.normal,
-      [PaperBase.theme.tokens.container.elevation.disabled]:
+      [PaperBase.theme.tokens.container.elevation.disabled]: fallbackVar(
         tokens.container.elevation.disabled,
+        tokens.container.elevation.normal,
+      ),
     },
 
     borderRadius: px(tokens.container.shape),
@@ -183,26 +179,34 @@ const classNames = createStyles({
       },
       [getModifierSelector<IModifier>('focused')]: {
         vars: {
-          [PaperBase.theme.tokens.container.elevation.normal]:
+          [PaperBase.theme.tokens.container.elevation.normal]: fallbackVar(
             tokens.container.elevation.focused,
+            tokens.container.elevation.normal,
+          ),
         },
       },
       [getModifierSelector<IModifier>('hovered')]: {
         vars: {
-          [PaperBase.theme.tokens.container.elevation.normal]:
+          [PaperBase.theme.tokens.container.elevation.normal]: fallbackVar(
             tokens.container.elevation.hovered,
+            tokens.container.elevation.normal,
+          ),
         },
       },
       [getModifierSelector<IModifier>('pressed')]: {
         vars: {
-          [PaperBase.theme.tokens.container.elevation.normal]:
+          [PaperBase.theme.tokens.container.elevation.normal]: fallbackVar(
             tokens.container.elevation.pressed,
+            tokens.container.elevation.normal,
+          ),
         },
       },
       [getModifierSelector<IModifier>('loading')]: {
         vars: {
-          [PaperBase.theme.tokens.container.elevation.normal]:
+          [PaperBase.theme.tokens.container.elevation.normal]: fallbackVar(
             tokens.container.elevation.pressed,
+            tokens.container.elevation.normal,
+          ),
         },
       },
       [getModifierSelector<IModifier>('with-leading-icon')]: {
@@ -227,16 +231,28 @@ const classNames = createStyles({
 
     selectors: {
       [getModifierSelector<IModifier>('focused', root)]: {
-        color: tokens.label.color.focused,
+        color: fallbackVar(
+          tokens.label.color.focused,
+          tokens.label.color.normal,
+        ),
       },
       [getModifierSelector<IModifier>('hovered', root)]: {
-        color: tokens.label.color.hovered,
+        color: fallbackVar(
+          tokens.label.color.hovered,
+          tokens.label.color.normal,
+        ),
       },
       [getModifierSelector<IModifier>('pressed', root)]: {
-        color: tokens.label.color.pressed,
+        color: fallbackVar(
+          tokens.label.color.pressed,
+          tokens.label.color.normal,
+        ),
       },
       [getModifierSelector<IModifier>('disabled', root)]: {
-        color: tokens.label.color.disabled,
+        color: fallbackVar(
+          tokens.label.color.disabled,
+          tokens.label.color.normal,
+        ),
         opacity: tokens.label.opacity.disabled,
       },
     },
@@ -255,16 +271,19 @@ const classNames = createStyles({
 
     selectors: {
       [getModifierSelector<IModifier>('focused', root)]: {
-        color: tokens.icon.color.focused,
+        color: fallbackVar(tokens.icon.color.focused, tokens.icon.color.normal),
       },
       [getModifierSelector<IModifier>('hovered', root)]: {
-        color: tokens.icon.color.hovered,
+        color: fallbackVar(tokens.icon.color.hovered, tokens.icon.color.normal),
       },
       [getModifierSelector<IModifier>('pressed', root)]: {
-        color: tokens.icon.color.pressed,
+        color: fallbackVar(tokens.icon.color.pressed, tokens.icon.color.normal),
       },
       [getModifierSelector<IModifier>('disabled', root)]: {
-        color: tokens.icon.color.disabled,
+        color: fallbackVar(
+          tokens.icon.color.disabled,
+          tokens.icon.color.normal,
+        ),
         opacity: tokens.icon.opacity.disabled,
       },
       [getModifierSelector<IModifier>({ 'icon-animation': 'halfSpin' }, root)]:
@@ -310,13 +329,22 @@ const classNames = createStyles({
 
     selectors: {
       [getModifierSelector<IModifier>('focused', root)]: {
-        borderColor: tokens.outline.color.focused,
+        borderColor: fallbackVar(
+          tokens.outline.color.focused,
+          tokens.outline.color.normal,
+        ),
       },
       [getModifierSelector<IModifier>('pressed', root)]: {
-        borderColor: tokens.outline.color.pressed,
+        borderColor: fallbackVar(
+          tokens.outline.color.pressed,
+          tokens.outline.color.normal,
+        ),
       },
       [getModifierSelector<IModifier>('disabled', root)]: {
-        borderColor: tokens.outline.color.disabled,
+        borderColor: fallbackVar(
+          tokens.outline.color.disabled,
+          tokens.outline.color.normal,
+        ),
         opacity: tokens.outline.opacity.disabled,
       },
     },
@@ -337,6 +365,30 @@ export const buttonTheme = componentThemeFactory<IButtonThemeFactory>({
 });
 
 export const buttonThemeVariants = {
+  elevated: createStyles({
+    root: {
+      vars: {
+        [tokens.container.color.normal]:
+          themeTokens.colorScheme.surfaceContainerLow,
+        [tokens.container.color.disabled]: themeTokens.colorScheme.onSurface,
+        [tokens.container.elevation.normal]: elevationLevelPreset[1],
+        [tokens.container.elevation.focused]: elevationLevelPreset[1],
+        [tokens.container.elevation.hovered]: elevationLevelPreset[2],
+        [tokens.container.elevation.pressed]: elevationLevelPreset[1],
+        [tokens.container.elevation.disabled]: elevationLevelPreset[0],
+        [tokens.label.color.normal]: themeTokens.colorScheme.primary,
+        [tokens.label.color.disabled]: themeTokens.colorScheme.onSurface,
+        [tokens.icon.color.normal]: themeTokens.colorScheme.primary,
+        [tokens.icon.color.disabled]: themeTokens.colorScheme.onSurface,
+      },
+    },
+    stateLayer: {
+      vars: {
+        [tokens.stateLayer.color.hover]: themeTokens.colorScheme.primary,
+        [tokens.stateLayer.color.pressed]: themeTokens.colorScheme.primary,
+      },
+    },
+  }),
   filled: createStyles({
     root: {
       vars: {
@@ -344,13 +396,9 @@ export const buttonThemeVariants = {
         [tokens.container.color.disabled]: themeTokens.colorScheme.onSurface,
         [tokens.container.elevation.hovered]: elevationLevelPreset[1],
         [tokens.label.color.normal]: themeTokens.colorScheme.onPrimary,
-        [tokens.label.color.focused]: themeTokens.colorScheme.onPrimary,
-        [tokens.label.color.hovered]: themeTokens.colorScheme.onPrimary,
-        [tokens.label.color.pressed]: themeTokens.colorScheme.onPrimary,
+        [tokens.label.color.disabled]: themeTokens.colorScheme.onSurface,
         [tokens.icon.color.normal]: themeTokens.colorScheme.onPrimary,
-        [tokens.icon.color.focused]: themeTokens.colorScheme.onPrimary,
-        [tokens.icon.color.hovered]: themeTokens.colorScheme.onPrimary,
-        [tokens.icon.color.pressed]: themeTokens.colorScheme.onPrimary,
+        [tokens.icon.color.disabled]: themeTokens.colorScheme.onSurface,
       },
     },
     stateLayer: {
@@ -369,20 +417,10 @@ export const buttonThemeVariants = {
         [tokens.container.elevation.hovered]: elevationLevelPreset[1],
         [tokens.label.color.normal]:
           themeTokens.colorScheme.onSecondaryContainer,
-        [tokens.label.color.focused]:
-          themeTokens.colorScheme.onSecondaryContainer,
-        [tokens.label.color.hovered]:
-          themeTokens.colorScheme.onSecondaryContainer,
-        [tokens.label.color.pressed]:
-          themeTokens.colorScheme.onSecondaryContainer,
+        [tokens.label.color.disabled]: themeTokens.colorScheme.onSurface,
         [tokens.icon.color.normal]:
           themeTokens.colorScheme.onSecondaryContainer,
-        [tokens.icon.color.focused]:
-          themeTokens.colorScheme.onSecondaryContainer,
-        [tokens.icon.color.hovered]:
-          themeTokens.colorScheme.onSecondaryContainer,
-        [tokens.icon.color.pressed]:
-          themeTokens.colorScheme.onSecondaryContainer,
+        [tokens.icon.color.disabled]: themeTokens.colorScheme.onSurface,
       },
     },
     stateLayer: {
@@ -398,13 +436,9 @@ export const buttonThemeVariants = {
     root: {
       vars: {
         [tokens.label.color.normal]: themeTokens.colorScheme.primary,
-        [tokens.label.color.focused]: themeTokens.colorScheme.primary,
-        [tokens.label.color.hovered]: themeTokens.colorScheme.primary,
-        [tokens.label.color.pressed]: themeTokens.colorScheme.primary,
+        [tokens.label.color.disabled]: themeTokens.colorScheme.onSurface,
         [tokens.icon.color.normal]: themeTokens.colorScheme.primary,
-        [tokens.icon.color.focused]: themeTokens.colorScheme.primary,
-        [tokens.icon.color.hovered]: themeTokens.colorScheme.primary,
-        [tokens.icon.color.pressed]: themeTokens.colorScheme.primary,
+        [tokens.icon.color.disabled]: themeTokens.colorScheme.onSurface,
         [tokens.outline.style]: 'solid',
       },
     },
@@ -425,13 +459,9 @@ export const buttonThemeVariants = {
         [tokens.trailingSpace.withLeadingIcon]: px(space(4)),
         [tokens.trailingSpace.withTrailingIcon]: px(space(3)),
         [tokens.label.color.normal]: themeTokens.colorScheme.primary,
-        [tokens.label.color.focused]: themeTokens.colorScheme.primary,
-        [tokens.label.color.hovered]: themeTokens.colorScheme.primary,
-        [tokens.label.color.pressed]: themeTokens.colorScheme.primary,
+        [tokens.label.color.disabled]: themeTokens.colorScheme.onSurface,
         [tokens.icon.color.normal]: themeTokens.colorScheme.primary,
-        [tokens.icon.color.focused]: themeTokens.colorScheme.primary,
-        [tokens.icon.color.hovered]: themeTokens.colorScheme.primary,
-        [tokens.icon.color.pressed]: themeTokens.colorScheme.primary,
+        [tokens.icon.color.disabled]: themeTokens.colorScheme.onSurface,
       },
     },
     stateLayer: {
@@ -448,13 +478,9 @@ export const buttonThemeVariants = {
         [tokens.container.color.disabled]: themeTokens.colorScheme.onSurface,
         [tokens.container.elevation.hovered]: elevationLevelPreset[1],
         [tokens.label.color.normal]: themeTokens.colorScheme.onErrorContainer,
-        [tokens.label.color.focused]: themeTokens.colorScheme.onErrorContainer,
-        [tokens.label.color.hovered]: themeTokens.colorScheme.onErrorContainer,
-        [tokens.label.color.pressed]: themeTokens.colorScheme.onErrorContainer,
+        [tokens.label.color.disabled]: themeTokens.colorScheme.onSurface,
         [tokens.icon.color.normal]: themeTokens.colorScheme.onErrorContainer,
-        [tokens.icon.color.focused]: themeTokens.colorScheme.onErrorContainer,
-        [tokens.icon.color.hovered]: themeTokens.colorScheme.onErrorContainer,
-        [tokens.icon.color.pressed]: themeTokens.colorScheme.onErrorContainer,
+        [tokens.icon.color.disabled]: themeTokens.colorScheme.onSurface,
       },
     },
     stateLayer: {
@@ -478,15 +504,7 @@ export const buttonThemeVariants = {
         [tokens.container.height]: px(32),
         [tokens.container.shape]: themeTokens.shape.corner.xs,
         [tokens.label.color.normal]: themeTokens.colorScheme.inversePrimary,
-        [tokens.label.color.focused]: themeTokens.colorScheme.inversePrimary,
-        [tokens.label.color.hovered]: themeTokens.colorScheme.inversePrimary,
-        [tokens.label.color.pressed]: themeTokens.colorScheme.inversePrimary,
-        [tokens.label.color.disabled]: themeTokens.colorScheme.inversePrimary,
         [tokens.icon.color.normal]: themeTokens.colorScheme.inversePrimary,
-        [tokens.icon.color.focused]: themeTokens.colorScheme.inversePrimary,
-        [tokens.icon.color.hovered]: themeTokens.colorScheme.inversePrimary,
-        [tokens.icon.color.pressed]: themeTokens.colorScheme.inversePrimary,
-        [tokens.icon.color.disabled]: themeTokens.colorScheme.inversePrimary,
       },
     },
     stateLayer: {

@@ -394,9 +394,9 @@ const elevation: IThemeElevationValues = {
       },
       secondary: {
         offsetX: '0px',
-        offsetY: '2px',
-        blurRadius: '6px',
-        spreadRadius: '2px',
+        offsetY: '1px',
+        blurRadius: '3px',
+        spreadRadius: '1px',
         colorOpacityPercentage: '15%',
       },
     },

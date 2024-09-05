@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
-import type { IButtonProps, IButtonVariant } from './Button.types';
+import type { IButtonProps } from './Button.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,

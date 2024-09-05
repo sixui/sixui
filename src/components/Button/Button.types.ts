@@ -5,6 +5,15 @@ import type { IBoxProps } from '../Box';
 import type { IButtonBaseOwnProps } from '../ButtonBase';
 import type { buttonTheme, IButtonThemeFactory } from './Button.css';
 
+export type IButtonVariant =
+  | 'elevated'
+  | 'filled'
+  | 'filledTonal'
+  | 'outlined'
+  | 'text'
+  | 'danger'
+  | 'snackbar';
+
 export type IButtonOwnProps = {
   icon?: React.ReactNode;
   trailingIcon?: boolean;
@@ -25,4 +34,5 @@ export type IButtonFactory = IPolymorphicComponentFactory<{
   defaultRef: HTMLDivElement;
   defaultRoot: 'div';
   theme: typeof buttonTheme;
+  variant: IButtonVariant;
 }>;
