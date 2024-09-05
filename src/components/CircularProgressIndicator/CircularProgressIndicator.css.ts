@@ -1,12 +1,13 @@
 import { createTheme } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import {
   componentThemeFactory,
   type IComponentThemeFactory,
 } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { themeTokens } from '../ThemeProvider';
 import { px } from '~/helpers/styles/px';
+import { themeTokens } from '../ThemeProvider';
 
 const [tokensClassName, tokens] = createTheme({
   color: {
@@ -16,7 +17,7 @@ const [tokensClassName, tokens] = createTheme({
   opacity: {
     disabled: themeTokens.state.opacity.disabled,
   },
-  size: '1em',
+  size: calc.multiply('1em', themeTokens.scale),
   containerPadding: '0.05em',
   strokePct: '10',
 });
@@ -38,8 +39,8 @@ const classNames = createStyles({
     contain: 'strict',
     contentVisibility: 'auto',
 
-    width: px(tokens.size),
-    height: px(tokens.size),
+    width: tokens.size,
+    height: tokens.size,
   },
   layer: {
     position: 'absolute',

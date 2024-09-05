@@ -1,4 +1,4 @@
-import { createTheme, createVar } from '@vanilla-extract/css';
+import { createTheme } from '@vanilla-extract/css';
 
 import {
   componentThemeFactory,
@@ -14,10 +14,10 @@ const [tokensClassName, tokens] = createTheme({
   container: {
     color: themeTokens.colorScheme.error,
     shape: {
-      normal: themeTokens.shape.corner.full,
-      dot: themeTokens.shape.corner.full,
+      normal: px(themeTokens.shape.corner.full),
+      dot: px(themeTokens.shape.corner.full),
     },
-    minSize: '16px',
+    minSize: px(16),
     dotScale: '0.5', // 8px
   },
   label: {
@@ -26,21 +26,8 @@ const [tokensClassName, tokens] = createTheme({
   },
 });
 
-const vars = {
-  size: createVar(),
-  shape: {
-    normal: createVar(),
-    dot: createVar(),
-  },
-};
-
 const classNames = createStyles({
   root: {
-    vars: {
-      [vars.size]: px(tokens.container.minSize),
-      [vars.shape.normal]: px(tokens.container.shape.normal),
-      [vars.shape.dot]: px(tokens.container.shape.dot),
-    },
     position: 'relative',
     display: 'inline-flex',
     flexDirection: 'row',
@@ -49,9 +36,9 @@ const classNames = createStyles({
     alignContent: 'center',
     alignItems: 'center',
     boxSizing: 'border-box',
-    borderRadius: vars.shape.normal,
-    minWidth: vars.size,
-    height: vars.size,
+    borderRadius: tokens.container.shape.normal,
+    minWidth: tokens.container.minSize,
+    height: tokens.container.minSize,
     padding: px(space(1)),
     transitionProperty: 'transform',
     transitionDuration: themeTokens.motion.duration.short.$3,
@@ -59,7 +46,7 @@ const classNames = createStyles({
     whiteSpace: 'nowrap',
   },
   root$dot: {
-    borderRadius: vars.shape.dot,
+    borderRadius: tokens.container.shape.dot,
     transform: `scale(${tokens.container.dotScale})`,
     padding: 0,
   },

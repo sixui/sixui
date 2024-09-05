@@ -43,7 +43,8 @@ export const Variants: IStory = {
 const CircularProgressIndicatorWithTextShowcase = makeComponentShowcase(
   ({ fz, ...other }: ICircularProgressIndicatorProps) => (
     <Text fz={fz}>
-      {fz} <CircularProgressIndicator {...other} />
+      {fz} <CircularProgressIndicator {...other} />{' '}
+      <CircularProgressIndicator {...other} value={0.75} />
     </Text>
   ),
 );
@@ -52,15 +53,12 @@ export const Sizes: IStory = {
   render: (props) => (
     <CircularProgressIndicatorWithTextShowcase
       props={props}
-      rows={[
-        // FIXME: should be applied
-        // TODO: apply default layer to components and sprinkles layer to
-        // sprinkles see:
-        // https://github.com/vanilla-extract-css/vanilla-extract/discussions/1472
-        { props: { fz: '1em' } },
-        { props: { fz: '2em' } },
-        { props: { fz: '3em' } },
-        { props: { fz: '4em' } },
+      cols={[
+        { legend: 'Extra small', props: { size: 'xs' } },
+        { legend: 'Small', props: { size: 'sm' } },
+        { legend: 'Medium', props: { size: 'md' } },
+        { legend: 'Large', props: { size: 'lg' } },
+        { legend: 'Extra large', props: { size: 'xl' } },
       ]}
     />
   ),

@@ -14,8 +14,8 @@ type IModifier = 'position' | 'invisible' | 'overlap';
 
 const [tokensClassName, tokens] = createTheme({
   offset: {
-    x: '0px',
-    y: '0px',
+    x: px(0),
+    y: px(0),
   },
 });
 
@@ -46,8 +46,8 @@ const classNames = createStyles({
       [vars.scale]: '1',
       [vars.offset.x]: tokens.offset.x,
       [vars.offset.y]: tokens.offset.y,
-      [vars.translate.x]: '0px',
-      [vars.translate.y]: '0px',
+      [vars.translate.x]: px(0),
+      [vars.translate.y]: px(0),
     },
 
     position: 'absolute',
@@ -56,7 +56,7 @@ const classNames = createStyles({
     transitionDuration: themeTokens.motion.duration.short.$3,
     transitionTimingFunction: themeTokens.motion.easing.standard.normal,
     transform: `scale(${vars.scale}) translate(${vars.translate.x}, ${vars.translate.y})`,
-    transformOrigin: `${px(vars.transformOrigin.x)} ${px(vars.transformOrigin.y)}`,
+    transformOrigin: `${vars.transformOrigin.x} ${vars.transformOrigin.y}`,
 
     selectors: {
       [getModifierSelector<IModifier>('invisible', root)]: {
@@ -80,7 +80,7 @@ const classNames = createStyles({
       },
       [getModifierSelector<IModifier>('position^=top-', root)]: {
         vars: {
-          top: px(vars.offset.y),
+          top: vars.offset.y,
           [vars.translate.y]: '-50%',
           [vars.transformOrigin.y]: '0%',
         },
@@ -94,14 +94,14 @@ const classNames = createStyles({
       },
       [getModifierSelector<IModifier>('position^=bottom-', root)]: {
         vars: {
-          bottom: px(vars.offset.y),
+          bottom: vars.offset.y,
           [vars.translate.y]: '50%',
           [vars.transformOrigin.y]: '100%',
         },
       },
       [getModifierSelector<IModifier>('position$=-start', root)]: {
         vars: {
-          left: px(vars.offset.x),
+          left: vars.offset.x,
           [vars.translate.x]: '-50%',
           [vars.transformOrigin.x]: '0%',
         },
@@ -115,7 +115,7 @@ const classNames = createStyles({
       },
       [getModifierSelector<IModifier>('position$=-end', root)]: {
         vars: {
-          right: px(vars.offset.x),
+          right: vars.offset.x,
           [vars.translate.x]: '50%',
           [vars.transformOrigin.x]: '100%',
         },

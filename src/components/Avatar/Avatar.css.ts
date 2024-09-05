@@ -13,14 +13,14 @@ import { themeTokens } from '../ThemeProvider';
 import { PaperBase } from '../PaperBase';
 
 const [tokensClassName, tokens] = createTheme({
-  density: getDensity({ min: -3, max: 0 }),
+  density: px(getDensity({ min: -3, max: 0 })),
   container: {
-    size: '40px',
+    size: px(40),
     shape: {
-      topLeft: themeTokens.shape.corner.full,
-      topRight: themeTokens.shape.corner.full,
-      bottomRight: themeTokens.shape.corner.full,
-      bottomLeft: themeTokens.shape.corner.full,
+      topLeft: px(themeTokens.shape.corner.full),
+      topRight: px(themeTokens.shape.corner.full),
+      bottomRight: px(themeTokens.shape.corner.full),
+      bottomLeft: px(themeTokens.shape.corner.full),
     },
     color: themeTokens.colorScheme.primaryContainer,
   },
@@ -37,7 +37,7 @@ const vars = {
 const classNames = createStyles({
   root: {
     vars: {
-      [vars.size]: calc.add(px(tokens.container.size), px(tokens.density)),
+      [vars.size]: calc.add(tokens.container.size, tokens.density),
       [PaperBase.theme.tokens.container.shape.topLeft]:
         tokens.container.shape.topLeft,
       [PaperBase.theme.tokens.container.shape.topRight]:

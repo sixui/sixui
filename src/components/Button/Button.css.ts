@@ -28,17 +28,17 @@ type IModifier =
   | 'size';
 
 const [tokensClassName, tokens] = createTheme({
-  density: getDensity({ min: -4, max: 0 }),
-  gap: space(2),
+  density: px(getDensity({ min: -4, max: 0 })),
+  gap: px(space(2)),
   leadingSpace: {
-    normal: space(6),
-    withLeadingIcon: space(4),
-    withTrailingIcon: space(6),
+    normal: px(space(6)),
+    withLeadingIcon: px(space(4)),
+    withTrailingIcon: px(space(6)),
   },
   trailingSpace: {
-    normal: space(6),
-    withLeadingIcon: space(6),
-    withTrailingIcon: space(4),
+    normal: px(space(6)),
+    withLeadingIcon: px(space(6)),
+    withTrailingIcon: px(space(4)),
   },
   container: {
     color: {
@@ -55,9 +55,9 @@ const [tokensClassName, tokens] = createTheme({
     opacity: {
       disabled: themeTokens.state.containerOpacity.disabled,
     },
-    height: '40px',
-    minWidth: '64px',
-    shape: themeTokens.shape.corner.full,
+    height: px(40),
+    minWidth: px(64),
+    shape: px(themeTokens.shape.corner.full),
   },
   stateLayer: {
     color: {
@@ -83,7 +83,7 @@ const [tokensClassName, tokens] = createTheme({
     },
   },
   icon: {
-    size: '18px',
+    size: px(18),
     color: {
       normal: 'inherit',
       focused: 'inherit',
@@ -97,7 +97,7 @@ const [tokensClassName, tokens] = createTheme({
   },
   outline: {
     style: 'none',
-    width: themeTokens.outline.width.xs,
+    width: px(themeTokens.outline.width.xs),
     color: {
       normal: themeTokens.colorScheme.outline,
       disabled: themeTokens.colorScheme.onSurface,
@@ -138,7 +138,7 @@ const classNames = createStyles({
       ),
     },
 
-    borderRadius: px(tokens.container.shape),
+    borderRadius: tokens.container.shape,
     cursor: 'pointer',
     display: 'inline-flex',
     outline: 'none',
@@ -153,25 +153,25 @@ const classNames = createStyles({
     verticalAlign: 'top',
 
     gap: tokens.gap,
-    paddingInlineStart: px(tokens.leadingSpace.normal),
-    paddingInlineEnd: px(tokens.trailingSpace.normal),
+    paddingInlineStart: tokens.leadingSpace.normal,
+    paddingInlineEnd: tokens.trailingSpace.normal,
     // min-height instead of height so that label can wrap and expand height
-    minHeight: calc.add(px(tokens.container.height), px(tokens.density)),
+    minHeight: calc.add(tokens.container.height, tokens.density),
     // Add extra space between label and the edge for if the label text wraps.
     // The padding added should be relative to the height of the container and
     // the height of its content on a single line (label or icon, whichever is
     // bigger).
     paddingBlock: calc.divide(
       calc.subtract(
-        px(tokens.container.height),
-        px(tokens.label.typography.lineHeight),
+        tokens.container.height,
+        tokens.label.typography.lineHeight,
       ),
       2,
     ),
     minWidth: calc.subtract(
-      px(tokens.container.minWidth),
-      px(tokens.leadingSpace.normal),
-      px(tokens.trailingSpace.normal),
+      tokens.container.minWidth,
+      tokens.leadingSpace.normal,
+      tokens.trailingSpace.normal,
     ),
 
     selectors: {
@@ -211,12 +211,12 @@ const classNames = createStyles({
         },
       },
       [getModifierSelector<IModifier>('with-leading-icon')]: {
-        paddingInlineStart: px(tokens.leadingSpace.withLeadingIcon),
-        paddingInlineEnd: px(tokens.trailingSpace.withLeadingIcon),
+        paddingInlineStart: tokens.leadingSpace.withLeadingIcon,
+        paddingInlineEnd: tokens.trailingSpace.withLeadingIcon,
       },
       [getModifierSelector<IModifier>('with-trailing-icon')]: {
-        paddingInlineStart: px(tokens.leadingSpace.withTrailingIcon),
-        paddingInlineEnd: px(tokens.trailingSpace.withTrailingIcon),
+        paddingInlineStart: tokens.leadingSpace.withTrailingIcon,
+        paddingInlineEnd: tokens.trailingSpace.withTrailingIcon,
       },
     },
   },
@@ -266,9 +266,9 @@ const classNames = createStyles({
     writingMode: 'horizontal-tb',
     flexShrink: 0,
     color: tokens.icon.color.normal,
-    fontSize: px(tokens.icon.size),
-    inlineSize: px(tokens.icon.size),
-    blockSize: px(tokens.icon.size),
+    fontSize: tokens.icon.size,
+    inlineSize: tokens.icon.size,
+    blockSize: tokens.icon.size,
 
     selectors: {
       [getModifierSelector<IModifier>('focused', root)]: {
@@ -308,8 +308,8 @@ const classNames = createStyles({
     whiteSpace: 'nowrap',
     textAlign: 'center',
     justifyContent: 'center',
-    paddingInlineStart: px(tokens.leadingSpace.normal),
-    paddingInlineEnd: px(tokens.trailingSpace.normal),
+    paddingInlineStart: tokens.leadingSpace.normal,
+    paddingInlineEnd: tokens.trailingSpace.normal,
   },
   invisible: {
     visibility: 'hidden',
@@ -332,7 +332,7 @@ const classNames = createStyles({
   },
   outline: ({ root }) => ({
     borderStyle: tokens.outline.style,
-    borderWidth: `max(${px(tokens.outline.width)}, 1px)`,
+    borderWidth: `max(${tokens.outline.width}, 1px)`,
     borderColor: tokens.outline.color.normal,
 
     selectors: {

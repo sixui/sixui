@@ -38,7 +38,7 @@ export const px = (value: number | string): string => {
   const numericValue = getNumericValue(value);
 
   if (numericValue === 0) {
-    return '0';
+    return '0px';
   }
 
   if (numericValue === undefined) {
