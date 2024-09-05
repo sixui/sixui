@@ -333,7 +333,7 @@ const spacing: IThemeSpacingValues = {
 
 const state: IThemeStateValues = {
   stateLayerOpacity: {
-    hover: '0.08',
+    hovered: '0.08',
     pressed: '0.12',
     dragged: '0.16',
   },

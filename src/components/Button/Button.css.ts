@@ -60,11 +60,11 @@ const [tokensClassName, tokens] = createTheme({
   },
   stateLayer: {
     color: {
-      hover: 'unset',
+      hovered: 'unset',
       pressed: 'unset',
     },
     opacity: {
-      hover: themeTokens.state.stateLayerOpacity.hover,
+      hovered: themeTokens.state.stateLayerOpacity.hovered,
       pressed: themeTokens.state.stateLayerOpacity.pressed,
     },
   },
@@ -315,9 +315,16 @@ const classNames = createStyles({
   },
   stateLayer: {
     vars: {
-      [StateLayer.theme.tokens.color.hover]: tokens.stateLayer.color.hover,
-      [StateLayer.theme.tokens.color.pressed]: tokens.stateLayer.color.pressed,
-      [StateLayer.theme.tokens.opacity.hover]: tokens.stateLayer.opacity.hover,
+      [StateLayer.theme.tokens.color.hovered]: fallbackVar(
+        tokens.stateLayer.color.hovered,
+        tokens.label.color.normal,
+      ),
+      [StateLayer.theme.tokens.color.pressed]: fallbackVar(
+        tokens.stateLayer.color.pressed,
+        tokens.label.color.normal,
+      ),
+      [StateLayer.theme.tokens.opacity.hovered]:
+        tokens.stateLayer.opacity.hovered,
       [StateLayer.theme.tokens.opacity.pressed]:
         tokens.stateLayer.opacity.pressed,
     },
@@ -382,12 +389,6 @@ export const buttonThemeVariants = {
         [tokens.icon.color.disabled]: themeTokens.colorScheme.onSurface,
       },
     },
-    stateLayer: {
-      vars: {
-        [tokens.stateLayer.color.hover]: themeTokens.colorScheme.primary,
-        [tokens.stateLayer.color.pressed]: themeTokens.colorScheme.primary,
-      },
-    },
   }),
   filled: createStyles({
     root: {
@@ -399,12 +400,6 @@ export const buttonThemeVariants = {
         [tokens.label.color.disabled]: themeTokens.colorScheme.onSurface,
         [tokens.icon.color.normal]: themeTokens.colorScheme.onPrimary,
         [tokens.icon.color.disabled]: themeTokens.colorScheme.onSurface,
-      },
-    },
-    stateLayer: {
-      vars: {
-        [tokens.stateLayer.color.hover]: themeTokens.colorScheme.onPrimary,
-        [tokens.stateLayer.color.pressed]: themeTokens.colorScheme.onPrimary,
       },
     },
   }),
@@ -423,14 +418,6 @@ export const buttonThemeVariants = {
         [tokens.icon.color.disabled]: themeTokens.colorScheme.onSurface,
       },
     },
-    stateLayer: {
-      vars: {
-        [tokens.stateLayer.color.hover]:
-          themeTokens.colorScheme.onSecondaryContainer,
-        [tokens.stateLayer.color.pressed]:
-          themeTokens.colorScheme.onSecondaryContainer,
-      },
-    },
   }),
   outlined: createStyles({
     root: {
@@ -440,12 +427,6 @@ export const buttonThemeVariants = {
         [tokens.icon.color.normal]: themeTokens.colorScheme.primary,
         [tokens.icon.color.disabled]: themeTokens.colorScheme.onSurface,
         [tokens.outline.style]: 'solid',
-      },
-    },
-    stateLayer: {
-      vars: {
-        [tokens.stateLayer.color.hover]: themeTokens.colorScheme.primary,
-        [tokens.stateLayer.color.pressed]: themeTokens.colorScheme.primary,
       },
     },
   }),
@@ -464,12 +445,6 @@ export const buttonThemeVariants = {
         [tokens.icon.color.disabled]: themeTokens.colorScheme.onSurface,
       },
     },
-    stateLayer: {
-      vars: {
-        [tokens.stateLayer.color.hover]: themeTokens.colorScheme.primary,
-        [tokens.stateLayer.color.pressed]: themeTokens.colorScheme.primary,
-      },
-    },
   }),
   danger: createStyles({
     root: {
@@ -483,14 +458,6 @@ export const buttonThemeVariants = {
         [tokens.icon.color.disabled]: themeTokens.colorScheme.onSurface,
       },
     },
-    stateLayer: {
-      vars: {
-        [tokens.stateLayer.color.hover]:
-          themeTokens.colorScheme.onSecondaryContainer,
-        [tokens.stateLayer.color.pressed]:
-          themeTokens.colorScheme.onSecondaryContainer,
-      },
-    },
   }),
   snackbar: createStyles({
     root: {
@@ -502,16 +469,9 @@ export const buttonThemeVariants = {
         [tokens.trailingSpace.withLeadingIcon]: px(space(4)),
         [tokens.trailingSpace.withTrailingIcon]: px(space(3)),
         [tokens.container.height]: px(32),
-        [tokens.container.shape]: themeTokens.shape.corner.xs,
+        [tokens.container.shape]: px(themeTokens.shape.corner.xs),
         [tokens.label.color.normal]: themeTokens.colorScheme.inversePrimary,
         [tokens.icon.color.normal]: themeTokens.colorScheme.inversePrimary,
-      },
-    },
-    stateLayer: {
-      vars: {
-        [tokens.stateLayer.color.hover]: themeTokens.colorScheme.inversePrimary,
-        [tokens.stateLayer.color.pressed]:
-          themeTokens.colorScheme.inversePrimary,
       },
     },
   }),

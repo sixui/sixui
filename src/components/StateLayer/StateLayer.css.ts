@@ -13,12 +13,12 @@ type IModifier = 'hovered' | 'dragged' | 'animating' | 'static-pressed';
 
 const [tokensClassName, tokens] = createTheme({
   color: {
-    hover: themeTokens.colorScheme.onSurface,
+    hovered: themeTokens.colorScheme.onSurface,
     pressed: themeTokens.colorScheme.onSurface,
     dragged: themeTokens.colorScheme.onSurface,
   },
   opacity: {
-    hover: themeTokens.state.stateLayerOpacity.hover,
+    hovered: themeTokens.state.stateLayerOpacity.hovered,
     pressed: themeTokens.state.stateLayerOpacity.pressed,
     dragged: themeTokens.state.stateLayerOpacity.dragged,
   },
@@ -58,20 +58,20 @@ const classNames = createStyles({
     },
     selectors: {
       [`${getModifierSelector('hovered')}::before`]: {
-        backgroundColor: tokens.color.hover,
-        opacity: tokens.opacity.hover,
+        backgroundColor: tokens.color.hovered,
+        opacity: tokens.opacity.hovered,
       },
       [`${getModifierSelector('animating')}::before`]: {
-        backgroundColor: tokens.color.hover,
-        opacity: tokens.opacity.hover,
+        backgroundColor: tokens.color.hovered,
+        opacity: tokens.opacity.hovered,
       },
       [`${getModifierSelector('animating')}::after`]: {
         opacity: tokens.opacity.pressed,
         transitionDuration: '105ms',
       },
       [`${getModifierSelector('static-pressed')}::before`]: {
-        backgroundColor: tokens.color.hover,
-        opacity: tokens.opacity.hover,
+        backgroundColor: tokens.color.hovered,
+        opacity: tokens.opacity.hovered,
       },
       [`${getModifierSelector('static-pressed')}::after`]: {
         backgroundColor: tokens.color.pressed,
