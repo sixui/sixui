@@ -34,7 +34,7 @@ export const [tokensClassName, tokens] = createTheme({
     },
   },
   outline: {
-    style: 'solid',
+    style: 'unset',
     color: themeTokens.colorScheme.outlineVariant,
     width: themeTokens.outline.width.none,
   },

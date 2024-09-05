@@ -37,7 +37,7 @@ const vars = {
 const classNames = createStyles({
   root: {
     vars: {
-      [vars.size]: `max(${tokens.container.minSize}, ${px(tokens.container.minSize)})`,
+      [vars.size]: px(tokens.container.minSize),
       [vars.shape.normal]: px(tokens.container.shape.normal),
       [vars.shape.dot]: px(tokens.container.shape.dot),
     },
