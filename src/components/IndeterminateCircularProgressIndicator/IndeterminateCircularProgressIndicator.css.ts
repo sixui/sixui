@@ -116,10 +116,7 @@ const classNames = createStyles({
     animationTimingFunction: indeterminateEasing,
     borderWidth: calc.multiply(
       '1em',
-      calc.multiply(
-        calc.divide(parentStyles.tokens.strokePct, '100'),
-        themeTokens.scale,
-      ),
+      calc.divide(parentStyles.tokens.strokePct, '100'),
     ),
     selectors: {
       [getModifierSelector<IModifier>('disabled', root)]: {

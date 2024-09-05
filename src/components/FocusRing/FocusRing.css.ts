@@ -17,31 +17,31 @@ const [tokensClassName, tokens] = createTheme({
   color: themeTokens.colorScheme.secondary,
   animationDuration: themeTokens.motion.duration.long.$4,
   offset: {
-    inward: '0px',
-    outward: '2px',
+    inward: px('0px'),
+    outward: px('2px'),
   },
   width: {
-    normal: themeTokens.outline.width.md,
-    active: themeTokens.outline.width.xl,
+    normal: px(themeTokens.outline.width.md),
+    active: px(themeTokens.outline.width.xl),
   },
 });
 
 const inwardGrowKeyframes = keyframes({
   '0%': { borderWidth: 0 },
-  '100%': { borderWidth: `max(${px(tokens.width.active)}, 1px)` },
+  '100%': { borderWidth: `max(${tokens.width.active}, 1px)` },
 });
 
 const inwardShrinkKeyframes = keyframes({
-  '0%': { borderWidth: `max(${px(tokens.width.active)}, 1px)` },
+  '0%': { borderWidth: `max(${tokens.width.active}, 1px)` },
 });
 
 const outwardGrowKeyframes = keyframes({
   '0%': { outlineWidth: 0 },
-  '100%': { outlineWidth: px(tokens.width.active) },
+  '100%': { outlineWidth: tokens.width.active },
 });
 
 const outwardShrinkKeyframes = keyframes({
-  '0%': { outlineWidth: px(tokens.width.active) },
+  '0%': { outlineWidth: tokens.width.active },
 });
 
 const classNames = createStyles({
@@ -61,15 +61,15 @@ const classNames = createStyles({
       },
       [getModifierSelector<IModifier>({ variant: 'outward' })]: {
         animationName: `${outwardGrowKeyframes}, ${outwardShrinkKeyframes}`,
-        inset: calc.negate(px(tokens.offset.outward)),
-        outlineWidth: px(tokens.width.normal),
+        inset: calc.negate(tokens.offset.outward),
+        outlineWidth: tokens.width.normal,
         outlineStyle: 'solid',
         outlineColor: 'currentColor',
       },
       [getModifierSelector<IModifier>({ variant: 'inward' })]: {
         animationName: `${inwardGrowKeyframes}, ${inwardShrinkKeyframes}`,
-        inset: px(tokens.offset.inward),
-        borderWidth: `max(${px(tokens.width.normal)}, 1px)`,
+        inset: tokens.offset.inward,
+        borderWidth: `max(${tokens.width.normal}, 1px)`,
         borderStyle: 'solid',
         borderColor: 'currentColor',
       },

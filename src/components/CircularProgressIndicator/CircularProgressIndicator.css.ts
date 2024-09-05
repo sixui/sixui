@@ -1,13 +1,12 @@
 import { createTheme } from '@vanilla-extract/css';
-import { calc } from '@vanilla-extract/css-utils';
 
 import {
   componentThemeFactory,
   type IComponentThemeFactory,
 } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { px } from '~/helpers/styles/px';
 import { themeTokens } from '../ThemeProvider';
+import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 
 const [tokensClassName, tokens] = createTheme({
   color: {
@@ -17,7 +16,7 @@ const [tokensClassName, tokens] = createTheme({
   opacity: {
     disabled: themeTokens.state.opacity.disabled,
   },
-  size: calc.multiply('1em', themeTokens.scale),
+  size: '1em',
   containerPadding: '0.05em',
   strokePct: '10',
 });
@@ -41,6 +40,21 @@ const classNames = createStyles({
 
     width: tokens.size,
     height: tokens.size,
+
+    selectors: {
+      [getModifierSelector({ size: 'xs' })]: {
+        fontSize: '0.6em',
+      },
+      [getModifierSelector({ size: 'sm' })]: {
+        fontSize: '0.8em',
+      },
+      [getModifierSelector({ size: 'lg' })]: {
+        fontSize: '1.2em',
+      },
+      [getModifierSelector({ size: 'xl' })]: {
+        fontSize: '1.4em',
+      },
+    },
   },
   layer: {
     position: 'absolute',
@@ -52,7 +66,7 @@ const classNames = createStyles({
     flexShrink: 1,
     flexBasis: '0%',
     alignSelf: 'stretch',
-    margin: px(tokens.containerPadding),
+    margin: tokens.containerPadding,
   },
 });
 
