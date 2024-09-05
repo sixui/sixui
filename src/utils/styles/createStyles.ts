@@ -9,7 +9,7 @@ export const createStyles = <TClassName extends string>(
       ComplexStyleRule | (({ root }: { root: string }) => ComplexStyleRule)
     >
   >,
-): Record<TClassName, string> => {
+): Record<'root' | TClassName, string> => {
   if (isFunction(stylesObject.root)) {
     throw new Error(
       '[@sixui] createStyles: root className cannot be a function. Please use an object.',
@@ -41,6 +41,6 @@ export const createStyles = <TClassName extends string>(
         [key]: style(styles),
       };
     },
-    { root } as Record<TClassName, string>,
+    { root } as Record<'root' | TClassName, string>,
   );
 };

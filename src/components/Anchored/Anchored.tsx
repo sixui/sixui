@@ -1,11 +1,12 @@
+import { assignInlineVars } from '@vanilla-extract/dynamic';
+
 import type { IAnchoredFactory } from './Anchored.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
-import { useStyles } from '~/utils/styles/useStyles';
-import { Box } from '../Box';
-import { anchoredStyles, type IAnchoredStylesFactory } from './Anchored.css';
-import { assignInlineVars } from '@vanilla-extract/dynamic';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { px } from '~/helpers/styles/px';
+import { Box } from '../Box';
+import { anchoredTheme, type IAnchoredThemeFactory } from './Anchored.css';
 
 const COMPONENT_NAME = 'Anchored';
 
@@ -14,6 +15,7 @@ export const Anchored = componentFactory<IAnchoredFactory>(
     const {
       classNames,
       className,
+      styles,
       style,
       variant,
       position = 'top-end',
@@ -28,12 +30,13 @@ export const Anchored = componentFactory<IAnchoredFactory>(
 
     const invisible = invisibleProp || !content;
 
-    const { getStyles } = useStyles<IAnchoredStylesFactory>({
+    const { getStyles } = useComponentTheme<IAnchoredThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
-      styles: anchoredStyles,
+      styles,
       style,
+      theme: anchoredTheme,
       variant,
       modifiers: {
         position,
@@ -47,8 +50,8 @@ export const Anchored = componentFactory<IAnchoredFactory>(
         {...other}
         {...getStyles('root', {
           style: assignInlineVars({
-            [anchoredStyles.tokens.offset.x]: offsetX ? px(offsetX) : undefined,
-            [anchoredStyles.tokens.offset.y]: offsetY ? px(offsetY) : undefined,
+            [anchoredTheme.tokens.offset.x]: offsetX ? px(offsetX) : undefined,
+            [anchoredTheme.tokens.offset.y]: offsetY ? px(offsetY) : undefined,
           }),
         })}
         ref={forwardedRef}
@@ -60,5 +63,5 @@ export const Anchored = componentFactory<IAnchoredFactory>(
   },
 );
 
-Anchored.styles = anchoredStyles;
+Anchored.theme = anchoredTheme;
 Anchored.displayName = `@sixui/${COMPONENT_NAME}`;

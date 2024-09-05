@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
 import type { IStackProps } from './Stack.types';
-import { useStyles } from '~/utils/styles/useStyles';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { Box } from '~/components/Box';
 import { filterFalsyChildren } from '~/helpers/react/filterFalsyChildren';
@@ -24,7 +24,7 @@ export const Stack = createPolymorphicComponent<'div', IStackProps>(
       ...other
     } = props;
 
-    const { getStyles } = useStyles({
+    const { getStyles } = useComponentTheme({
       name: 'Stack',
       className,
       style,

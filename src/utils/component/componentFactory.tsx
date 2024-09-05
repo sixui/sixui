@@ -6,7 +6,7 @@ import type { IThemeComponentValues } from '~/components/ThemeProvider';
 export type IComponentFactoryPayload = {
   props: Record<string, IAny>;
   ref?: Element;
-  styles?: IAny;
+  theme: IAny;
   staticComponents?: Record<string, IAny>;
   variant?: string;
 };
@@ -30,16 +30,16 @@ export type IFactoryComponentWithProps<
 export type IFactoryComponentStaticComponents<TInput> =
   TInput extends Record<string, IAny> ? TInput : Record<string, never>;
 
-export type IFactoryComponentStyles<TPayload extends IComponentFactoryPayload> =
+export type IFactoryComponentTheme<TPayload extends IComponentFactoryPayload> =
   {
-    styles: TPayload['styles'];
+    theme: TPayload['theme'];
   };
 
 export type IFactoryComponentExtendRootProps<
   TPayload extends IComponentFactoryPayload,
 > = {
   defaultProps?: Partial<TPayload['props']> & IDataAttributes;
-  classNames?: TPayload['styles']['classNames'];
+  classNames?: TPayload['theme']['classNames'];
 };
 
 export type IFactoryComponentExtendProps<
@@ -70,7 +70,7 @@ export const componentFactory = <TPayload extends IComponentFactoryPayload>(
 
   type IComponentFromFactory = IComponent &
     IFactoryComponentThemeExtend<TPayload> &
-    IFactoryComponentStyles<TPayload> &
+    IFactoryComponentTheme<TPayload> &
     IFactoryComponentWithProps<TPayload>;
 
   const ComponentFromFactory = forwardRef(

@@ -3,10 +3,10 @@ import { useMemo } from 'react';
 import type { IBadgeFactory } from './Badge.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
-import { useStyles } from '~/utils/styles/useStyles';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { isNumeric } from '~/helpers/isNumeric';
 import { Box } from '../Box';
-import { badgeStyles, type IBadgeStylesFactory } from './Badge.css';
+import { badgeTheme, type IBadgeThemeFactory } from './Badge.css';
 
 const COMPONENT_NAME = 'Badge';
 
@@ -15,6 +15,7 @@ export const Badge = polymorphicComponentFactory<IBadgeFactory>(
     const {
       classNames,
       className,
+      styles,
       style,
       variant,
       value,
@@ -24,12 +25,13 @@ export const Badge = polymorphicComponentFactory<IBadgeFactory>(
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const { getStyles } = useStyles<IBadgeStylesFactory>({
+    const { getStyles } = useComponentTheme<IBadgeThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
-      styles: badgeStyles,
+      styles,
       style,
+      theme: badgeTheme,
       variant,
     });
 
@@ -67,5 +69,5 @@ export const Badge = polymorphicComponentFactory<IBadgeFactory>(
   },
 );
 
-Badge.styles = badgeStyles;
+Badge.theme = badgeTheme;
 Badge.displayName = `@sixui/${COMPONENT_NAME}`;

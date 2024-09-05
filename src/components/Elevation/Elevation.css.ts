@@ -1,9 +1,9 @@
 import { createTheme } from '@vanilla-extract/css';
 
 import {
-  stylesFactory,
-  type IStylesFactory,
-} from '~/utils/styles/stylesFactory';
+  componentThemeFactory,
+  type IComponentThemeFactory,
+} from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { px } from '~/helpers/styles/px';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
@@ -87,13 +87,13 @@ const classNames = createStyles({
   },
 });
 
-export type IElevationStylesFactory = IStylesFactory<{
+export type IElevationThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
 }>;
 
-export const elevationStyles = stylesFactory<IElevationStylesFactory>({
+export const elevationTheme = componentThemeFactory<IElevationThemeFactory>({
   classNames,
   tokensClassName,
   tokens,

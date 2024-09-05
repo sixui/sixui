@@ -1,10 +1,10 @@
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IStylesProps } from '~/utils/styles/useStyles';
+import type { IStylesProps } from '~/utils/styles/useComponentTheme';
 import type { IUseStateLayerResult } from './useStateLayer';
 import type { IBoxProps } from '../Box';
 import type {
-  stateLayerStyles,
-  IStateLayerStylesFactory,
+  stateLayerTheme,
+  IStateLayerThemeFactory,
 } from './StateLayer.css';
 
 export type IStateLayerOwnProps = {
@@ -13,11 +13,11 @@ export type IStateLayerOwnProps = {
 
 export interface IStateLayerProps
   extends IBoxProps,
-    IStylesProps<IStateLayerStylesFactory>,
+    IStylesProps<IStateLayerThemeFactory>,
     IStateLayerOwnProps {}
 
 export type IStateLayerFactory = IComponentFactory<{
   props: IStateLayerProps;
   ref: HTMLDivElement;
-  styles: typeof stateLayerStyles;
+  theme: typeof stateLayerTheme;
 }>;

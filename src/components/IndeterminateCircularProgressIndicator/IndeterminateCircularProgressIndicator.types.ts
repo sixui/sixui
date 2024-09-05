@@ -1,9 +1,9 @@
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IStylesProps } from '~/utils/styles/useStyles';
+import type { IStylesProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type {
-  indeterminateCircularProgressIndicatorStyles,
-  IIndeterminateCircularProgressIndicatorStylesFactory,
+  indeterminateCircularProgressIndicatorTheme,
+  IIndeterminateCircularProgressIndicatorThemeFactory,
 } from './IndeterminateCircularProgressIndicator.css';
 
 export type IIndeterminateCircularProgressIndicatorOwnProps = {
@@ -13,11 +13,11 @@ export type IIndeterminateCircularProgressIndicatorOwnProps = {
 
 export interface IIndeterminateCircularProgressIndicatorProps
   extends IBoxProps,
-    IStylesProps<IIndeterminateCircularProgressIndicatorStylesFactory>,
+    IStylesProps<IIndeterminateCircularProgressIndicatorThemeFactory>,
     IIndeterminateCircularProgressIndicatorOwnProps {}
 
 export type IIndeterminateCircularProgressIndicatorFactory = IComponentFactory<{
   props: IIndeterminateCircularProgressIndicatorProps;
   ref: HTMLDivElement;
-  styles: typeof indeterminateCircularProgressIndicatorStyles;
+  theme: typeof indeterminateCircularProgressIndicatorTheme;
 }>;

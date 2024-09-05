@@ -1,9 +1,9 @@
 import { createTheme } from '@vanilla-extract/css';
 
 import {
-  stylesFactory,
-  type IStylesFactory,
-} from '~/utils/styles/stylesFactory';
+  componentThemeFactory,
+  type IComponentThemeFactory,
+} from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { themeTokens } from '../ThemeProvider';
 import { px } from '~/helpers/styles/px';
@@ -55,13 +55,13 @@ const classNames = createStyles({
   },
 });
 
-export type ICircularProgressIndicatorStylesFactory = IStylesFactory<{
+export type ICircularProgressIndicatorThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
 }>;
 
-export const circularProgressIndicatorStyles =
-  stylesFactory<ICircularProgressIndicatorStylesFactory>({
+export const circularProgressIndicatorTheme =
+  componentThemeFactory<ICircularProgressIndicatorThemeFactory>({
     classNames,
     tokensClassName,
     tokens,

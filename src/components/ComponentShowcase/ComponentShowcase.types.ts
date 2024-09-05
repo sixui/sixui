@@ -1,12 +1,12 @@
-import type { IStylesProps } from '~/utils/styles/useStyles';
+import type { IStylesProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type { IComponentShowcaseStylesFactory } from './ComponentShowcase.css';
+import type { IComponentShowcaseThemeFactory } from './ComponentShowcase.css';
 import { IComponentFactory } from '~/utils/component/componentFactory';
 
 export type IComponentShowcaseFactory<T> = IComponentFactory<{
   props: IComponentShowcaseProps<T>;
   ref: HTMLDivElement;
-  styles: IComponentShowcaseStylesFactory;
+  theme: IComponentShowcaseThemeFactory;
 }>;
 
 export type IComponentPresentation<TComponentProps = object> = {
@@ -29,5 +29,5 @@ export type IComponentShowcaseOwnProps<TComponentProps> = {
 
 export interface IComponentShowcaseProps<TComponentProps>
   extends IBoxProps,
-    IStylesProps<IComponentShowcaseStylesFactory>,
+    IStylesProps<IComponentShowcaseThemeFactory>,
     IComponentShowcaseOwnProps<TComponentProps> {}

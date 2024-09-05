@@ -1,7 +1,7 @@
 import {
-  stylesFactory,
-  type IStylesFactory,
-} from '~/utils/styles/stylesFactory';
+  componentThemeFactory,
+  type IComponentThemeFactory,
+} from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { createStyles } from '~/utils/styles/createStyles';
 
@@ -43,12 +43,12 @@ export const classNames = createStyles({
   focusRing: {},
 });
 
-export type IButtonBaseStylesFactory = IStylesFactory<{
+export type IButtonBaseThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   modifier: IModifier;
 }>;
 
-export const buttonBaseStyles = stylesFactory<IButtonBaseStylesFactory>({
+export const buttonBaseTheme = componentThemeFactory<IButtonBaseThemeFactory>({
   classNames,
   tokens: undefined,
 });

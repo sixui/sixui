@@ -1,8 +1,8 @@
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import type { IStylesProps } from '~/utils/styles/useStyles';
+import type { IStylesProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { IPaperOwnProps } from '../Paper';
-import type { avatarStyles, IAvatarStylesFactory } from './Avatar.css';
+import type { avatarTheme, IAvatarThemeFactory } from './Avatar.css';
 
 export type IAvatarOwnprops = IPaperOwnProps & {
   src?: string;
@@ -23,12 +23,12 @@ export type IAvatarOwnprops = IPaperOwnProps & {
 
 export interface IAvatarProps
   extends IBoxProps,
-    IStylesProps<IAvatarStylesFactory>,
+    IStylesProps<IAvatarThemeFactory>,
     IAvatarOwnprops {}
 
 export type IAvatarFactory = IPolymorphicComponentFactory<{
   props: IAvatarProps;
   defaultRef: HTMLDivElement;
   defaultRoot: 'div';
-  styles: typeof avatarStyles;
+  theme: typeof avatarTheme;
 }>;

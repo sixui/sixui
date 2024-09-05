@@ -1,28 +1,30 @@
 import type { ITouchTargetFactory } from './TouchTarget.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
-import { useStyles } from '~/utils/styles/useStyles';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '~/components/Box';
 import {
-  touchTargetStyles,
-  type ITouchTargetStylesFactory,
+  touchTargetTheme,
+  type ITouchTargetThemeFactory,
 } from './TouchTarget.css';
 
 const COMPONENT_NAME = 'TouchTarget';
 
 export const TouchTarget = componentFactory<ITouchTargetFactory>(
   (props, forwardedRef) => {
-    const { classNames, className, style, variant, ...other } = useProps({
-      componentName: COMPONENT_NAME,
-      props,
-    });
+    const { classNames, className, styles, style, variant, ...other } =
+      useProps({
+        componentName: COMPONENT_NAME,
+        props,
+      });
 
-    const { getStyles } = useStyles<ITouchTargetStylesFactory>({
+    const { getStyles } = useComponentTheme<ITouchTargetThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
-      styles: touchTargetStyles,
+      styles,
       style,
+      theme: touchTargetTheme,
       variant,
     });
 
@@ -30,5 +32,5 @@ export const TouchTarget = componentFactory<ITouchTargetFactory>(
   },
 );
 
-TouchTarget.styles = touchTargetStyles;
+TouchTarget.theme = touchTargetTheme;
 TouchTarget.displayName = `@sixui/${COMPONENT_NAME}`;

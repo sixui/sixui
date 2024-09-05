@@ -1,9 +1,9 @@
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IStylesProps } from '~/utils/styles/useStyles';
+import type { IStylesProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type {
-  touchTargetStyles,
-  ITouchTargetStylesFactory,
+  touchTargetTheme,
+  ITouchTargetThemeFactory,
 } from './TouchTarget.css';
 
 export type ITouchTargetOwnProps = {
@@ -12,11 +12,11 @@ export type ITouchTargetOwnProps = {
 
 export interface ITouchTargetProps
   extends IBoxProps,
-    IStylesProps<ITouchTargetStylesFactory>,
+    IStylesProps<ITouchTargetThemeFactory>,
     ITouchTargetOwnProps {}
 
 export type ITouchTargetFactory = IComponentFactory<{
   props: ITouchTargetProps;
   ref: HTMLDivElement;
-  styles: typeof touchTargetStyles;
+  theme: typeof touchTargetTheme;
 }>;

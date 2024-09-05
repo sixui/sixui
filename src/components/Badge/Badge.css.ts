@@ -1,9 +1,9 @@
 import { createTheme, createVar } from '@vanilla-extract/css';
 
 import {
-  stylesFactory,
-  type IStylesFactory,
-} from '~/utils/styles/stylesFactory';
+  componentThemeFactory,
+  type IComponentThemeFactory,
+} from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
@@ -79,12 +79,12 @@ const classNames = createStyles({
   },
 });
 
-export type IBadgeStylesFactory = IStylesFactory<{
+export type IBadgeThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
 }>;
 
-export const badgeStyles = stylesFactory<IBadgeStylesFactory>({
+export const badgeTheme = componentThemeFactory<IBadgeThemeFactory>({
   classNames,
   tokensClassName,
   tokens,

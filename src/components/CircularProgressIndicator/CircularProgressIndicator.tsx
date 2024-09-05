@@ -2,7 +2,7 @@ import type { ICircularProgressIndicatorFactory } from './CircularProgressIndica
 import { componentFactory } from '~/utils/component/componentFactory';
 import { DeterminateCircularProgressIndicator } from '../DeterminateCircularProgressIndicator';
 import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
-import { circularProgressIndicatorStyles } from './CircularProgressIndicator.css';
+import { circularProgressIndicatorTheme } from './CircularProgressIndicator.css';
 
 const COMPONENT_NAME = 'CircularProgressIndicator';
 
@@ -21,5 +21,5 @@ export const CircularProgressIndicator =
     );
   });
 
-CircularProgressIndicator.styles = circularProgressIndicatorStyles;
+CircularProgressIndicator.theme = circularProgressIndicatorTheme;
 CircularProgressIndicator.displayName = `@sixui/${COMPONENT_NAME}`;

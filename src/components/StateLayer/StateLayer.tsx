@@ -3,30 +3,31 @@ import { useMergeRefs } from '@floating-ui/react';
 import type { IStateLayerFactory } from './StateLayer.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
-import { useStyles } from '~/utils/styles/useStyles';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
 import {
-  stateLayerStyles,
-  type IStateLayerStylesFactory,
+  stateLayerTheme,
+  type IStateLayerThemeFactory,
 } from './StateLayer.css';
 
 const COMPONENT_NAME = 'StateLayer';
 
 export const StateLayer = componentFactory<IStateLayerFactory>(
   (props, forwardedRef) => {
-    const { classNames, className, style, variant, context, ...other } =
+    const { classNames, className, styles, style, variant, context, ...other } =
       useProps({
         componentName: COMPONENT_NAME,
         props,
       });
 
     const { animating, interactionsContext, surfaceRef } = context;
-    const { getStyles } = useStyles<IStateLayerStylesFactory>({
+    const { getStyles } = useComponentTheme<IStateLayerThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
-      styles: stateLayerStyles,
+      styles,
       style,
+      theme: stateLayerTheme,
       variant,
       modifiers: {
         hovered: !animating && interactionsContext.state.hovered,
@@ -52,5 +53,5 @@ export const StateLayer = componentFactory<IStateLayerFactory>(
   },
 );
 
-StateLayer.styles = stateLayerStyles;
+StateLayer.theme = stateLayerTheme;
 StateLayer.displayName = `@sixui/${COMPONENT_NAME}`;

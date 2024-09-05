@@ -1,7 +1,7 @@
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IStylesProps } from '~/utils/styles/useStyles';
+import type { IStylesProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type { paperBaseStyles, IPaperBaseStylesFactory } from './PaperBase.css';
+import type { paperBaseTheme, IPaperBaseThemeFactory } from './PaperBase.css';
 
 export type IPaperBaseOwnProps = {
   children?: React.ReactNode;
@@ -9,12 +9,12 @@ export type IPaperBaseOwnProps = {
 
 export interface IPaperBaseProps
   extends IBoxProps,
-    IStylesProps<IPaperBaseStylesFactory>,
+    IStylesProps<IPaperBaseThemeFactory>,
     IPaperBaseOwnProps {}
 
 export type IPaperBaseFactory = IComponentFactory<{
   props: IPaperBaseProps;
   defaultRef: HTMLDivElement;
   defaultRoot: 'div';
-  styles: typeof paperBaseStyles;
+  theme: typeof paperBaseTheme;
 }>;

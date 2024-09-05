@@ -3,9 +3,9 @@ import { calc } from '@vanilla-extract/css-utils';
 
 import type { IInteraction } from '~/hooks/useInteractions';
 import {
-  stylesFactory,
-  type IStylesFactory,
-} from '~/utils/styles/stylesFactory';
+  componentThemeFactory,
+  type IComponentThemeFactory,
+} from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { space } from '~/helpers/styles/space';
@@ -129,15 +129,15 @@ const halfSpinKeyframes = keyframes({
 const classNames = createStyles({
   root: {
     vars: {
-      [PaperBase.styles.tokens.container.color.normal]:
+      [PaperBase.theme.tokens.container.color.normal]:
         tokens.container.color.normal,
-      [PaperBase.styles.tokens.container.color.disabled]:
+      [PaperBase.theme.tokens.container.color.disabled]:
         tokens.container.color.disabled,
-      [PaperBase.styles.tokens.container.opacity.disabled]:
+      [PaperBase.theme.tokens.container.opacity.disabled]:
         tokens.container.opacity.disabled,
-      [PaperBase.styles.tokens.container.elevation.normal]:
+      [PaperBase.theme.tokens.container.elevation.normal]:
         tokens.container.elevation.normal,
-      [PaperBase.styles.tokens.container.elevation.disabled]:
+      [PaperBase.theme.tokens.container.elevation.disabled]:
         tokens.container.elevation.disabled,
     },
 
@@ -183,25 +183,25 @@ const classNames = createStyles({
       },
       [getModifierSelector<IModifier>('focused')]: {
         vars: {
-          [PaperBase.styles.tokens.container.elevation.normal]:
+          [PaperBase.theme.tokens.container.elevation.normal]:
             tokens.container.elevation.focused,
         },
       },
       [getModifierSelector<IModifier>('hovered')]: {
         vars: {
-          [PaperBase.styles.tokens.container.elevation.normal]:
+          [PaperBase.theme.tokens.container.elevation.normal]:
             tokens.container.elevation.hovered,
         },
       },
       [getModifierSelector<IModifier>('pressed')]: {
         vars: {
-          [PaperBase.styles.tokens.container.elevation.normal]:
+          [PaperBase.theme.tokens.container.elevation.normal]:
             tokens.container.elevation.pressed,
         },
       },
       [getModifierSelector<IModifier>('loading')]: {
         vars: {
-          [PaperBase.styles.tokens.container.elevation.normal]:
+          [PaperBase.theme.tokens.container.elevation.normal]:
             tokens.container.elevation.pressed,
         },
       },
@@ -314,23 +314,23 @@ const classNames = createStyles({
   },
   stateLayer: {
     vars: {
-      [StateLayer.styles.tokens.color.hover]: tokens.stateLayer.color.hover,
-      [StateLayer.styles.tokens.color.pressed]: tokens.stateLayer.color.pressed,
-      [StateLayer.styles.tokens.opacity.hover]: tokens.stateLayer.opacity.hover,
-      [StateLayer.styles.tokens.opacity.pressed]:
+      [StateLayer.theme.tokens.color.hover]: tokens.stateLayer.color.hover,
+      [StateLayer.theme.tokens.color.pressed]: tokens.stateLayer.color.pressed,
+      [StateLayer.theme.tokens.opacity.hover]: tokens.stateLayer.opacity.hover,
+      [StateLayer.theme.tokens.opacity.pressed]:
         tokens.stateLayer.opacity.pressed,
     },
   },
 });
 
-export type IButtonStylesFactory = IStylesFactory<{
+export type IButtonThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
   variant: IButtonVariant;
 }>;
 
-export const buttonStyles = stylesFactory<IButtonStylesFactory>({
+export const buttonTheme = componentThemeFactory<IButtonThemeFactory>({
   classNames,
   tokensClassName,
   tokens,

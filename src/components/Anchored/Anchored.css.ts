@@ -2,9 +2,9 @@ import { createTheme, createVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import {
-  stylesFactory,
-  type IStylesFactory,
-} from '~/utils/styles/stylesFactory';
+  componentThemeFactory,
+  type IComponentThemeFactory,
+} from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
@@ -124,13 +124,13 @@ const classNames = createStyles({
   }),
 });
 
-export type IAnchoredStylesFactory = IStylesFactory<{
+export type IAnchoredThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
 }>;
 
-export const anchoredStyles = stylesFactory<IAnchoredStylesFactory>({
+export const anchoredTheme = componentThemeFactory<IAnchoredThemeFactory>({
   classNames,
   tokensClassName,
   tokens,

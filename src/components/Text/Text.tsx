@@ -3,7 +3,7 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { ITextFactory, ITextSize, ITextVariant } from './Text.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
-import { useStyles } from '~/utils/styles/useStyles';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
 import { textStyles, type ITextStylesFactory } from './Text.css';
 
@@ -65,7 +65,7 @@ export const Text = polymorphicComponentFactory<ITextFactory>(
       size,
     };
 
-    const { getStyles } = useStyles<ITextStylesFactory>({
+    const { getStyles } = useComponentTheme<ITextStylesFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,

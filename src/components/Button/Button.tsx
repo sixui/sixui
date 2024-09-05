@@ -4,14 +4,14 @@ import { MouseEventHandler, useState } from 'react';
 import type { IButtonFactory } from './Button.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
-import { useStyles } from '~/utils/styles/useStyles';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { ButtonBase } from '../ButtonBase';
 import {
-  buttonStyles,
+  buttonTheme,
   buttonStylesVariants,
-  type IButtonStylesFactory,
+  type IButtonThemeFactory,
 } from './Button.css';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 
@@ -22,6 +22,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
     const {
       classNames,
       className,
+      styles,
       style,
       variant = 'filled',
       children,
@@ -65,13 +66,14 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       'icon-animation': iconAnimation,
     };
 
-    const { getStyles } = useStyles<IButtonStylesFactory>({
+    const { getStyles } = useComponentTheme<IButtonThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
-      styles: buttonStyles,
-      stylesVariants: buttonStylesVariants,
+      styles,
       style,
+      theme: buttonTheme,
+      themeVariants: buttonStylesVariants,
       variant,
       modifiers,
     });
@@ -124,6 +126,9 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
         {...getStyles('root')}
         onClick={handleClick}
         classNames={mergeClassNames(classNames, {
+          // delete sprinkles prop from useStyles
+          // create styles prop to spread style css properties
+          // check if any better solution
           stateLayer: getStyles('stateLayer').className,
         })}
         onPress={handlePress}
@@ -154,5 +159,5 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
   },
 );
 
-Button.styles = buttonStyles;
+Button.theme = buttonTheme;
 Button.displayName = `@sixui/${COMPONENT_NAME}`;

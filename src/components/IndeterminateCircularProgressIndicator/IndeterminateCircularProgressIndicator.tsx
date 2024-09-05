@@ -1,11 +1,11 @@
 import type { IIndeterminateCircularProgressIndicatorFactory } from './IndeterminateCircularProgressIndicator.types';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useStyles } from '~/utils/styles/useStyles';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { useProps } from '~/utils/component/useProps';
 import { Box } from '../Box';
 import {
-  indeterminateCircularProgressIndicatorStyles,
-  type IIndeterminateCircularProgressIndicatorStylesFactory,
+  indeterminateCircularProgressIndicatorTheme,
+  type IIndeterminateCircularProgressIndicatorThemeFactory,
 } from './IndeterminateCircularProgressIndicator.css';
 
 const COMPONENT_NAME = 'IndeterminateCircularProgressIndicator';
@@ -16,6 +16,7 @@ export const IndeterminateCircularProgressIndicator =
       const {
         classNames,
         className,
+        styles,
         style,
         variant,
         disabled,
@@ -24,12 +25,13 @@ export const IndeterminateCircularProgressIndicator =
       } = useProps({ componentName: COMPONENT_NAME, props });
 
       const { getStyles } =
-        useStyles<IIndeterminateCircularProgressIndicatorStylesFactory>({
+        useComponentTheme<IIndeterminateCircularProgressIndicatorThemeFactory>({
           componentName: COMPONENT_NAME,
           classNames,
           className,
-          styles: indeterminateCircularProgressIndicatorStyles,
+          styles,
           style,
+          theme: indeterminateCircularProgressIndicatorTheme,
           variant,
           modifiers: { disabled },
         });
@@ -57,6 +59,6 @@ export const IndeterminateCircularProgressIndicator =
     },
   );
 
-IndeterminateCircularProgressIndicator.styles =
-  indeterminateCircularProgressIndicatorStyles;
+IndeterminateCircularProgressIndicator.theme =
+  indeterminateCircularProgressIndicatorTheme;
 IndeterminateCircularProgressIndicator.displayName = `@sixui/${COMPONENT_NAME}`;

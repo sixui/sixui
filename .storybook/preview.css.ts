@@ -16,7 +16,7 @@ export const testVariant = style({
   selectors: {
     [getModifierSelector('variant="icon"')]: {
       vars: {
-        [Avatar.styles.tokens.container.color]: 'green',
+        [Avatar.theme.tokens.container.color]: 'green',
       },
       // border: '4px solid purple',
     },

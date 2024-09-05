@@ -1,16 +1,16 @@
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IStylesProps } from '~/utils/styles/useStyles';
+import type { IStylesProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type { focusRingStyles, IFocusRingStylesFactory } from './FocusRing.css';
+import type { focusRingTheme, IFocusRingThemeFactory } from './FocusRing.css';
 
 export type IFocusRingVariant = 'inward' | 'outward';
 
 export interface IFocusRingProps
   extends IBoxProps,
-    IStylesProps<IFocusRingStylesFactory> {}
+    IStylesProps<IFocusRingThemeFactory> {}
 
 export type IFocusRingFactory = IComponentFactory<{
   props: IFocusRingProps;
   ref: HTMLDivElement;
-  styles: typeof focusRingStyles;
+  theme: typeof focusRingTheme;
 }>;

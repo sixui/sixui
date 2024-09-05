@@ -1,11 +1,11 @@
 import type { IPlaceholderFactory } from './Placeholder.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
-import { useStyles } from '~/utils/styles/useStyles';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Paper } from '../Paper';
 import {
-  placeholderStyles,
-  type IPlaceholderStylesFactory,
+  placeholderTheme,
+  type IPlaceholderThemeFactory,
 } from './Placeholder.css';
 
 const COMPONENT_NAME = 'Placeholder';
@@ -15,6 +15,7 @@ export const Placeholder = polymorphicComponentFactory<IPlaceholderFactory>(
     const {
       classNames,
       className,
+      styles,
       style,
       variant,
       children,
@@ -30,12 +31,13 @@ export const Placeholder = polymorphicComponentFactory<IPlaceholderFactory>(
       disabled,
     };
 
-    const { getStyles } = useStyles<IPlaceholderStylesFactory>({
+    const { getStyles } = useComponentTheme<IPlaceholderThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
-      styles: placeholderStyles,
+      styles,
       style,
+      theme: placeholderTheme,
       variant,
       modifiers,
     });
@@ -55,5 +57,5 @@ export const Placeholder = polymorphicComponentFactory<IPlaceholderFactory>(
   },
 );
 
-Placeholder.styles = placeholderStyles;
+Placeholder.theme = placeholderTheme;
 Placeholder.displayName = `@sixui/${COMPONENT_NAME}`;

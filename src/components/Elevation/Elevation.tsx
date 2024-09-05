@@ -1,26 +1,35 @@
 import type { IElevationFactory } from './Elevation.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
-import { useStyles } from '~/utils/styles/useStyles';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
-import { elevationStyles, type IElevationStylesFactory } from './Elevation.css';
+import { elevationTheme, type IElevationThemeFactory } from './Elevation.css';
 
 const COMPONENT_NAME = 'Elevation';
 
 export const Elevation = componentFactory<IElevationFactory>(
   (props, forwardedRef) => {
-    const { classNames, className, style, variant, level, disabled, ...other } =
-      useProps({
-        componentName: COMPONENT_NAME,
-        props,
-      });
+    const {
+      classNames,
+      className,
+      styles,
+      style,
+      variant,
+      level,
+      disabled,
+      ...other
+    } = useProps({
+      componentName: COMPONENT_NAME,
+      props,
+    });
 
-    const { getStyles } = useStyles<IElevationStylesFactory>({
+    const { getStyles } = useComponentTheme<IElevationThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
-      styles: elevationStyles,
+      styles,
       style,
+      theme: elevationTheme,
       variant,
       modifiers: { level, disabled },
     });
@@ -31,5 +40,5 @@ export const Elevation = componentFactory<IElevationFactory>(
   },
 );
 
-Elevation.styles = elevationStyles;
+Elevation.theme = elevationTheme;
 Elevation.displayName = `@sixui/${COMPONENT_NAME}`;

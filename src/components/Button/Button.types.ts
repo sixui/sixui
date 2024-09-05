@@ -1,9 +1,9 @@
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import type { IStylesProps } from '~/utils/styles/useStyles';
+import type { IStylesProps } from '~/utils/styles/useComponentTheme';
 import type { IPaperOwnProps } from '../Paper';
 import type { IBoxProps } from '../Box';
 import type { IButtonBaseOwnProps } from '../ButtonBase';
-import type { buttonStyles, IButtonStylesFactory } from './Button.css';
+import type { buttonTheme, IButtonThemeFactory } from './Button.css';
 
 export type IButtonOwnProps = {
   icon?: React.ReactNode;
@@ -16,7 +16,7 @@ export type IButtonOwnProps = {
 export interface IButtonProps
   extends IBoxProps,
     IPaperOwnProps,
-    IStylesProps<IButtonStylesFactory>,
+    IStylesProps<IButtonThemeFactory>,
     IButtonBaseOwnProps,
     IButtonOwnProps {}
 
@@ -24,5 +24,5 @@ export type IButtonFactory = IPolymorphicComponentFactory<{
   props: IButtonProps;
   defaultRef: HTMLDivElement;
   defaultRoot: 'div';
-  styles: typeof buttonStyles;
+  theme: typeof buttonTheme;
 }>;

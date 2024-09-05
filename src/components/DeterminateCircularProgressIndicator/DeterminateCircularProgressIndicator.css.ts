@@ -3,19 +3,19 @@ import { calc } from '@vanilla-extract/css-utils';
 import cx from 'clsx';
 
 import {
-  stylesFactory,
-  type IStylesFactory,
-} from '~/utils/styles/stylesFactory';
+  componentThemeFactory,
+  type IComponentThemeFactory,
+} from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { deepMerge } from '~/helpers/deepMerge';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { themeTokens } from '../ThemeProvider';
-import { circularProgressIndicatorStyles } from '../CircularProgressIndicator/CircularProgressIndicator.css';
+import { circularProgressIndicatorTheme } from '../CircularProgressIndicator/CircularProgressIndicator.css';
 
 type IModifier = 'disabled';
 
-const parentStyles = circularProgressIndicatorStyles;
+const parentStyles = circularProgressIndicatorTheme;
 
 const [tokensClassName, tokens] = createTheme({
   label: {
@@ -84,15 +84,15 @@ const classNames = createStyles({
   }),
 });
 
-export type IDeterminateCircularProgressIndicatorStylesFactory =
-  IStylesFactory<{
+export type IDeterminateCircularProgressIndicatorThemeFactory =
+  IComponentThemeFactory<{
     styleName: keyof typeof parentStyles.classNames | keyof typeof classNames;
     tokens: typeof parentStyles.tokens | typeof tokens;
     modifier: IModifier;
   }>;
 
-export const determinateCircularProgressIndicatorStyles =
-  stylesFactory<IDeterminateCircularProgressIndicatorStylesFactory>({
+export const determinateCircularProgressIndicatorTheme =
+  componentThemeFactory<IDeterminateCircularProgressIndicatorThemeFactory>({
     classNames: {
       ...parentStyles.classNames,
       ...classNames,

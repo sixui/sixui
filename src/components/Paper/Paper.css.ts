@@ -1,9 +1,9 @@
 import { defineProperties, createRainbowSprinkles } from 'rainbow-sprinkles';
 
 import {
-  stylesFactory,
-  type IStylesFactory,
-} from '~/utils/styles/stylesFactory';
+  componentThemeFactory,
+  type IComponentThemeFactory,
+} from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { px } from '~/helpers/styles/px';
 import {
@@ -13,17 +13,17 @@ import {
 } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
-export type IPaperStyleName = keyof typeof paperStyles;
+export type IPaperStyleName = keyof typeof paperTheme;
 
 const classNames = createStyles({
   root: {},
 });
 
-export type IPaperStylesFactory = IStylesFactory<{
+export type IPaperThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
 }>;
 
-export const paperStyles = stylesFactory<IPaperStylesFactory>({
+export const paperTheme = componentThemeFactory<IPaperThemeFactory>({
   classNames,
   tokens: undefined,
 });

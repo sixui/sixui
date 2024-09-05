@@ -1,9 +1,9 @@
 import { createTheme, keyframes } from '@vanilla-extract/css';
 
 import {
-  stylesFactory,
-  type IStylesFactory,
-} from '~/utils/styles/stylesFactory';
+  componentThemeFactory,
+  type IComponentThemeFactory,
+} from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
@@ -57,13 +57,13 @@ const classNames = createStyles({
   },
 });
 
-export type IIndicatorStylesFactory = IStylesFactory<{
+export type IIndicatorThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
 }>;
 
-export const indicatorStyles = stylesFactory<IIndicatorStylesFactory>({
+export const indicatorTheme = componentThemeFactory<IIndicatorThemeFactory>({
   classNames,
   tokensClassName,
   tokens,

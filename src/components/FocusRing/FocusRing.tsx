@@ -1,9 +1,9 @@
 import type { IFocusRingFactory } from './FocusRing.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
-import { useStyles } from '~/utils/styles/useStyles';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
-import { focusRingStyles, type IFocusRingStylesFactory } from './FocusRing.css';
+import { focusRingTheme, type IFocusRingThemeFactory } from './FocusRing.css';
 
 const COMPONENT_NAME = 'FocusRing';
 
@@ -12,6 +12,7 @@ export const FocusRing = componentFactory<IFocusRingFactory>(
     const {
       classNames,
       className,
+      styles,
       style,
       variant = 'outward',
       interactions,
@@ -21,12 +22,13 @@ export const FocusRing = componentFactory<IFocusRingFactory>(
       props,
     });
 
-    const { getStyles } = useStyles<IFocusRingStylesFactory>({
+    const { getStyles } = useComponentTheme<IFocusRingThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
-      styles: focusRingStyles,
+      styles,
       style,
+      theme: focusRingTheme,
       variant,
       modifiers: {
         visible: interactions?.focused,
@@ -45,5 +47,5 @@ export const FocusRing = componentFactory<IFocusRingFactory>(
   },
 );
 
-FocusRing.styles = focusRingStyles;
+FocusRing.theme = focusRingTheme;
 FocusRing.displayName = `@sixui/${COMPONENT_NAME}`;

@@ -4,9 +4,9 @@ import type {
 } from './ComponentShowcase.types';
 import { useProps } from '~/utils/component/useProps';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useStyles } from '~/utils/styles/useStyles';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
-import { componentShowcaseStyles } from './ComponentShowcase.css';
+import { componentShowcaseTheme } from './ComponentShowcase.css';
 
 const COMPONENT_NAME = 'ComponentShowcase';
 const DUMMY_TEXT = '.';
@@ -21,6 +21,7 @@ export const makeComponentShowcase = <TComponentProps,>(
     const {
       classNames,
       className,
+      styles,
       style,
       variant,
       props: componentProps,
@@ -34,12 +35,13 @@ export const makeComponentShowcase = <TComponentProps,>(
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const { getStyles } = useStyles({
+    const { getStyles } = useComponentTheme({
       componentName: COMPONENT_NAME,
       classNames,
       className,
-      styles: componentShowcaseStyles,
+      styles,
       style,
+      theme: componentShowcaseTheme,
       variant,
     });
 

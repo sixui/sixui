@@ -1,7 +1,7 @@
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import type { IStylesProps } from '~/utils/styles/useStyles';
+import type { IStylesProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type { badgeStyles, IBadgeStylesFactory } from './Badge.css';
+import type { badgeTheme, IBadgeThemeFactory } from './Badge.css';
 
 export type IBadgeOwnProps = {
   value?: string | number;
@@ -12,12 +12,12 @@ export type IBadgeOwnProps = {
 
 export interface IBadgeProps
   extends IBoxProps,
-    IStylesProps<IBadgeStylesFactory>,
+    IStylesProps<IBadgeThemeFactory>,
     IBadgeOwnProps {}
 
 export type IBadgeFactory = IPolymorphicComponentFactory<{
   props: IBadgeProps;
   defaultRef: HTMLDivElement;
   defaultRoot: 'div';
-  styles: typeof badgeStyles;
+  theme: typeof badgeTheme;
 }>;

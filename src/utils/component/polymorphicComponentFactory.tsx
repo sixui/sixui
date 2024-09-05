@@ -9,7 +9,7 @@ import type {
 import {
   identity,
   type IComponentFactoryPayload,
-  type IFactoryComponentStyles,
+  type IFactoryComponentTheme,
   type IFactoryComponentStaticComponents,
   type IFactoryComponentThemeExtend,
 } from './componentFactory';
@@ -59,7 +59,7 @@ export const polymorphicComponentFactory = <
   type IPolymorphicComponentFromFactory = IPolymorphicComponent &
     IFunctionComponentProps &
     IFactoryComponentThemeExtend<TPayload> &
-    IFactoryComponentStyles<TPayload> &
+    IFactoryComponentTheme<TPayload> &
     IFactoryComponentStaticComponents<TPayload['staticComponents']> &
     IFactoryPolymorphicComponentWithProps<TPayload>;
 

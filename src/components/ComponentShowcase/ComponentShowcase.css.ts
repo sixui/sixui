@@ -1,9 +1,9 @@
 import { createTheme } from '@vanilla-extract/css';
 
 import {
-  stylesFactory,
-  type IStylesFactory,
-} from '~/utils/styles/stylesFactory';
+  componentThemeFactory,
+  type IComponentThemeFactory,
+} from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { space } from '~/helpers/styles/space';
@@ -90,13 +90,13 @@ const classNames = createStyles({
   },
 });
 
-export type IComponentShowcaseStylesFactory = IStylesFactory<{
+export type IComponentShowcaseThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: object;
 }>;
 
-export const componentShowcaseStyles =
-  stylesFactory<IComponentShowcaseStylesFactory>({
+export const componentShowcaseTheme =
+  componentThemeFactory<IComponentShowcaseThemeFactory>({
     classNames,
     tokensClassName: tokensClassName,
     tokens,

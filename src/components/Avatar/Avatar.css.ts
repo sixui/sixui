@@ -2,9 +2,9 @@ import { createTheme, createVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import {
-  stylesFactory,
-  type IStylesFactory,
-} from '~/utils/styles/stylesFactory';
+  componentThemeFactory,
+  type IComponentThemeFactory,
+} from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { getDensity } from '~/helpers/styles/getDensity';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
@@ -38,15 +38,15 @@ const classNames = createStyles({
   root: {
     vars: {
       [vars.size]: calc.add(px(tokens.container.size), px(tokens.density)),
-      [PaperBase.styles.tokens.container.shape.topLeft]:
+      [PaperBase.theme.tokens.container.shape.topLeft]:
         tokens.container.shape.topLeft,
-      [PaperBase.styles.tokens.container.shape.topRight]:
+      [PaperBase.theme.tokens.container.shape.topRight]:
         tokens.container.shape.topRight,
-      [PaperBase.styles.tokens.container.shape.bottomRight]:
+      [PaperBase.theme.tokens.container.shape.bottomRight]:
         tokens.container.shape.bottomRight,
-      [PaperBase.styles.tokens.container.shape.bottomLeft]:
+      [PaperBase.theme.tokens.container.shape.bottomLeft]:
         tokens.container.shape.bottomLeft,
-      [PaperBase.styles.tokens.container.color]: tokens.container.color,
+      [PaperBase.theme.tokens.container.color.normal]: tokens.container.color,
     },
     display: 'flex',
     alignItems: 'center',
@@ -81,12 +81,12 @@ const classNames = createStyles({
   },
 });
 
-export type IAvatarStylesFactory = IStylesFactory<{
+export type IAvatarThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
 }>;
 
-export const avatarStyles = stylesFactory<IAvatarStylesFactory>({
+export const avatarTheme = componentThemeFactory<IAvatarThemeFactory>({
   classNames,
   tokensClassName,
   tokens,

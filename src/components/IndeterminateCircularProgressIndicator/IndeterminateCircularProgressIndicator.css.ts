@@ -2,18 +2,18 @@ import { keyframes } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import {
-  stylesFactory,
-  type IStylesFactory,
-} from '~/utils/styles/stylesFactory';
+  componentThemeFactory,
+  type IComponentThemeFactory,
+} from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
-import { circularProgressIndicatorStyles } from '../CircularProgressIndicator/CircularProgressIndicator.css';
+import { circularProgressIndicatorTheme } from '../CircularProgressIndicator/CircularProgressIndicator.css';
 import { px } from '~/helpers/styles/px';
 
 type IModifier = 'disabled';
 
-const parentStyles = circularProgressIndicatorStyles;
+const parentStyles = circularProgressIndicatorTheme;
 
 // Note, these value come from the m2 version but match current gm3 values.
 // Constants:
@@ -139,15 +139,15 @@ const classNames = createStyles({
   },
 });
 
-export type IIndeterminateCircularProgressIndicatorStylesFactory =
-  IStylesFactory<{
+export type IIndeterminateCircularProgressIndicatorThemeFactory =
+  IComponentThemeFactory<{
     styleName: keyof typeof parentStyles.classNames | keyof typeof classNames;
     tokens: typeof parentStyles.tokens;
     modifier: IModifier;
   }>;
 
-export const indeterminateCircularProgressIndicatorStyles =
-  stylesFactory<IIndeterminateCircularProgressIndicatorStylesFactory>({
+export const indeterminateCircularProgressIndicatorTheme =
+  componentThemeFactory<IIndeterminateCircularProgressIndicatorThemeFactory>({
     classNames: mergeClassNames(parentStyles.classNames, classNames),
     tokensClassName: parentStyles.tokensClassName,
     tokens: parentStyles.tokens,

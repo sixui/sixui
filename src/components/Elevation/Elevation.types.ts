@@ -1,7 +1,7 @@
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IStylesProps } from '~/utils/styles/useStyles';
+import type { IStylesProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type { elevationStyles, IElevationStylesFactory } from './Elevation.css';
+import type { elevationTheme, IElevationThemeFactory } from './Elevation.css';
 
 export type IElevationOwnProps = {
   level?: 0 | 1 | 2 | 3 | 4 | 5;
@@ -10,11 +10,11 @@ export type IElevationOwnProps = {
 
 export interface IElevationProps
   extends IBoxProps,
-    IStylesProps<IElevationStylesFactory>,
+    IStylesProps<IElevationThemeFactory>,
     IElevationOwnProps {}
 
 export type IElevationFactory = IComponentFactory<{
   props: IElevationProps;
   ref: HTMLDivElement;
-  styles: typeof elevationStyles;
+  theme: typeof elevationTheme;
 }>;

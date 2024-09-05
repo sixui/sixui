@@ -1,26 +1,32 @@
 import type { IPaperFactory } from './Paper.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
-import { useStyles } from '~/utils/styles/useStyles';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { PaperBase } from '../PaperBase';
 import {
-  paperStyles,
+  paperTheme,
   paperSprinkles,
   paperBackgroundSprinkles,
   paperElevationSprinkles,
   paperOutlineSprinkles,
-  type IPaperStylesFactory,
+  type IPaperThemeFactory,
 } from './Paper.css';
 
 const COMPONENT_NAME = 'Paper';
 
 export const Paper = polymorphicComponentFactory<IPaperFactory>(
   (props, forwardedRef) => {
-    const { classNames, className, style, variant, ...otherWithSprinkles } =
-      useProps({
-        componentName: COMPONENT_NAME,
-        props,
-      });
+    const {
+      classNames,
+      className,
+      styles,
+      style,
+      variant,
+      ...otherWithSprinkles
+    } = useProps({
+      componentName: COMPONENT_NAME,
+      props,
+    });
 
     const sprinkles = paperSprinkles(otherWithSprinkles);
     const backgroundSprinkles = paperBackgroundSprinkles(sprinkles.otherProps);
@@ -32,20 +38,23 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
     );
     const other = outlineSprinkles.otherProps;
 
-    const { getStyles } = useStyles<IPaperStylesFactory>({
+    const { getStyles } = useComponentTheme<IPaperThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
-      styles: paperStyles,
+      styles,
       style,
+      theme: paperTheme,
       variant,
-      sprinkles,
     });
 
     return (
       <PaperBase
         {...other}
-        {...getStyles('root')}
+        {...getStyles('root', {
+          className: sprinkles.className,
+          style: sprinkles.style,
+        })}
         classNames={{
           background: backgroundSprinkles.className,
           elevation: elevationSprinkles.className,
@@ -57,5 +66,5 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
   },
 );
 
-Paper.styles = paperStyles;
+Paper.theme = paperTheme;
 Paper.displayName = `@sixui/${COMPONENT_NAME}`;

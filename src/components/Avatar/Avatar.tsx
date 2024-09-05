@@ -3,12 +3,12 @@ import { useMemo } from 'react';
 import type { IAvatarFactory } from './Avatar.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
-import { useStyles } from '~/utils/styles/useStyles';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { useImageLoaded } from '~/hooks/useImageLoaded';
 import { hslColorFromString } from '~/helpers/colors/hslColorFromString';
 import { getHslColor } from '~/helpers/styles/getHslColor';
 import { Paper } from '../Paper';
-import { avatarStyles, type IAvatarStylesFactory } from './Avatar.css';
+import { avatarTheme, type IAvatarThemeFactory } from './Avatar.css';
 
 const COMPONENT_NAME = 'Avatar';
 
@@ -17,6 +17,7 @@ export const Avatar = polymorphicComponentFactory<IAvatarFactory>(
     const {
       classNames,
       className,
+      styles,
       style,
       variant,
       alt,
@@ -28,12 +29,13 @@ export const Avatar = polymorphicComponentFactory<IAvatarFactory>(
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const { getStyles } = useStyles<IAvatarStylesFactory>({
+    const { getStyles } = useComponentTheme<IAvatarThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
-      styles: avatarStyles,
+      styles,
       style,
+      theme: avatarTheme,
       variant,
     });
 
@@ -89,5 +91,5 @@ export const Avatar = polymorphicComponentFactory<IAvatarFactory>(
   },
 );
 
-Avatar.styles = avatarStyles;
+Avatar.theme = avatarTheme;
 Avatar.displayName = `@sixui/${COMPONENT_NAME}`;

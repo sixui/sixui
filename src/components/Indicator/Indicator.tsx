@@ -1,9 +1,9 @@
 import type { IIndicatorFactory } from './Indicator.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
-import { useStyles } from '~/utils/styles/useStyles';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
-import { indicatorStyles, type IIndicatorStylesFactory } from './Indicator.css';
+import { indicatorTheme, type IIndicatorThemeFactory } from './Indicator.css';
 
 const COMPONENT_NAME = 'Indicator';
 
@@ -12,6 +12,7 @@ export const Indicator = componentFactory<IIndicatorFactory>(
     const {
       classNames,
       className,
+      styles,
       style,
       variant,
       processing,
@@ -19,12 +20,13 @@ export const Indicator = componentFactory<IIndicatorFactory>(
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const { getStyles } = useStyles<IIndicatorStylesFactory>({
+    const { getStyles } = useComponentTheme<IIndicatorThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
-      styles: indicatorStyles,
+      styles,
       style,
+      theme: indicatorTheme,
       variant,
       modifiers: {
         processing,
@@ -39,5 +41,5 @@ export const Indicator = componentFactory<IIndicatorFactory>(
   },
 );
 
-Indicator.styles = indicatorStyles;
+Indicator.theme = indicatorTheme;
 Indicator.displayName = `@sixui/${COMPONENT_NAME}`;

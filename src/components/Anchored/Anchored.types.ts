@@ -1,7 +1,7 @@
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IStylesProps } from '~/utils/styles/useStyles';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type { anchoredStyles, IAnchoredStylesFactory } from './Anchored.css';
+import type { anchoredTheme, IAnchoredThemeFactory } from './Anchored.css';
 
 export type IAnchorPosition =
   | 'bottom-end'
@@ -28,11 +28,11 @@ export type IAnchoredOwnProps = {
 
 export interface IAnchoredProps
   extends IBoxProps,
-    IStylesProps<IAnchoredStylesFactory>,
+    IComponentThemeProps<IAnchoredThemeFactory>,
     IAnchoredOwnProps {}
 
 export type IAnchoredFactory = IComponentFactory<{
   props: IAnchoredProps;
   ref: HTMLDivElement;
-  styles: typeof anchoredStyles;
+  theme: typeof anchoredTheme;
 }>;

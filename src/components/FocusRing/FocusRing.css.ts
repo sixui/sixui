@@ -2,9 +2,9 @@ import { createTheme, keyframes } from '@vanilla-extract/css';
 
 import type { IInteraction } from '~/hooks/useInteractions';
 import {
-  stylesFactory,
-  type IStylesFactory,
-} from '~/utils/styles/stylesFactory';
+  componentThemeFactory,
+  type IComponentThemeFactory,
+} from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
@@ -77,13 +77,13 @@ const classNames = createStyles({
   },
 });
 
-export type IFocusRingStylesFactory = IStylesFactory<{
+export type IFocusRingThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
 }>;
 
-export const focusRingStyles = stylesFactory<IFocusRingStylesFactory>({
+export const focusRingTheme = componentThemeFactory<IFocusRingThemeFactory>({
   classNames,
   tokensClassName,
   tokens,

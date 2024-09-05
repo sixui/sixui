@@ -1,27 +1,35 @@
 import type { IPaperBaseFactory } from './PaperBase.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
-import { useStyles } from '~/utils/styles/useStyles';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Elevation } from '../Elevation';
 import { Box } from '../Box';
-import { paperBaseStyles, type IPaperBaseStylesFactory } from './PaperBase.css';
+import { paperBaseTheme, type IPaperBaseThemeFactory } from './PaperBase.css';
 
 const COMPONENT_NAME = 'PaperBase';
 
 export const PaperBase = polymorphicComponentFactory<IPaperBaseFactory>(
   (props, forwardedRef) => {
-    const { classNames, className, style, variant, children, ...other } =
-      useProps({
-        componentName: COMPONENT_NAME,
-        props,
-      });
+    const {
+      classNames,
+      className,
+      styles,
+      style,
+      variant,
+      children,
+      ...other
+    } = useProps({
+      componentName: COMPONENT_NAME,
+      props,
+    });
 
-    const { getStyles } = useStyles<IPaperBaseStylesFactory>({
+    const { getStyles } = useComponentTheme<IPaperBaseThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
-      styles: paperBaseStyles,
+      styles,
       style,
+      theme: paperBaseTheme,
       variant,
     });
 
@@ -36,5 +44,5 @@ export const PaperBase = polymorphicComponentFactory<IPaperBaseFactory>(
   },
 );
 
-PaperBase.styles = paperBaseStyles;
+PaperBase.theme = paperBaseTheme;
 PaperBase.displayName = `@sixui/${COMPONENT_NAME}`;

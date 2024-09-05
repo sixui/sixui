@@ -1,9 +1,9 @@
 import { createTheme } from '@vanilla-extract/css';
 
 import {
-  stylesFactory,
-  type IStylesFactory,
-} from '~/utils/styles/stylesFactory';
+  componentThemeFactory,
+  type IComponentThemeFactory,
+} from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
@@ -37,7 +37,7 @@ const classNames = createStyles({
     selectors: {
       [getModifierSelector<IModifier>('disabled')]: {
         vars: {
-          [PaperBase.styles.tokens.container.opacity]:
+          [PaperBase.theme.tokens.container.opacity.disabled]:
             themeTokens.state.containerOpacity.disabled,
         },
       },
@@ -98,14 +98,16 @@ const classNames = createStyles({
   }),
 });
 
-export type IPlaceholderStylesFactory = IStylesFactory<{
+export type IPlaceholderThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
 }>;
 
-export const placeholderStyles = stylesFactory<IPlaceholderStylesFactory>({
-  classNames,
-  tokensClassName,
-  tokens,
-});
+export const placeholderTheme = componentThemeFactory<IPlaceholderThemeFactory>(
+  {
+    classNames,
+    tokensClassName,
+    tokens,
+  },
+);

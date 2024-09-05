@@ -1,9 +1,9 @@
 import { createTheme } from '@vanilla-extract/css';
 
 import {
-  stylesFactory,
-  type IStylesFactory,
-} from '~/utils/styles/stylesFactory';
+  componentThemeFactory,
+  type IComponentThemeFactory,
+} from '~/utils/styles/componentThemeFactory';
 import { px } from '~/helpers/styles/px';
 import { themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
@@ -62,14 +62,14 @@ const classNames = createStyles({
   },
   elevation: ({ root }) => ({
     vars: {
-      [Elevation.styles.tokens.level]: tokens.container.elevation.normal,
+      [Elevation.theme.tokens.level]: tokens.container.elevation.normal,
     },
     zIndex: -1,
 
     selectors: {
       [getModifierSelector<IModifier>('disabled', root)]: {
         vars: {
-          [Elevation.styles.tokens.level]: tokens.container.elevation.disabled,
+          [Elevation.theme.tokens.level]: tokens.container.elevation.disabled,
         },
       },
     },
@@ -102,13 +102,13 @@ const classNames = createStyles({
   },
 });
 
-export type IPaperBaseStylesFactory = IStylesFactory<{
+export type IPaperBaseThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
 }>;
 
-export const paperBaseStyles = stylesFactory<IPaperBaseStylesFactory>({
+export const paperBaseTheme = componentThemeFactory<IPaperBaseThemeFactory>({
   classNames,
   tokensClassName,
   tokens,

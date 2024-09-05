@@ -3,7 +3,7 @@ import { useMergeRefs } from '@floating-ui/react';
 import type { IButtonBaseFactory } from './ButtonBase.types';
 import { useProps } from '~/utils/component/useProps';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useStyles } from '~/utils/styles/useStyles';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Paper } from '../Paper';
 import { useSixuiContext } from '../SixuiProvider';
 import { useStateLayer } from '../StateLayer/useStateLayer';
@@ -11,8 +11,8 @@ import { FocusRing } from '../FocusRing';
 import { StateLayer } from '../StateLayer';
 import { TouchTarget } from '../TouchTarget';
 import {
-  buttonBaseStyles,
-  type IButtonBaseStylesFactory,
+  buttonBaseTheme,
+  type IButtonBaseThemeFactory,
 } from './ButtonBase.css';
 
 const COMPONENT_NAME = 'ButtonBase';
@@ -23,6 +23,7 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
       as,
       classNames,
       className,
+      styles,
       style,
       variant,
       children,
@@ -44,12 +45,13 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
     const disabledOrReadOnly = disabled || readOnly;
 
     const sixuiContext = useSixuiContext();
-    const { getStyles } = useStyles<IButtonBaseStylesFactory>({
+    const { getStyles } = useComponentTheme<IButtonBaseThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
-      styles: buttonBaseStyles,
+      styles,
       style,
+      theme: buttonBaseTheme,
       variant,
       modifiers: {
         disabled: disabledOrReadOnly,
@@ -113,5 +115,5 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
   },
 );
 
-ButtonBase.styles = buttonBaseStyles;
+ButtonBase.theme = buttonBaseTheme;
 ButtonBase.displayName = `@sixui/${COMPONENT_NAME}`;
