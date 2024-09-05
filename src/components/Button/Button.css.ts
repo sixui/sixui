@@ -291,6 +291,18 @@ const classNames = createStyles({
     paddingInlineStart: px(tokens.leadingSpace.normal),
     paddingInlineEnd: px(tokens.trailingSpace.normal),
   },
+  invisible: {
+    visibility: 'hidden',
+  },
+  stateLayer: {
+    vars: {
+      [StateLayer.theme.tokens.color.hover]: tokens.stateLayer.color.hover,
+      [StateLayer.theme.tokens.color.pressed]: tokens.stateLayer.color.pressed,
+      [StateLayer.theme.tokens.opacity.hover]: tokens.stateLayer.opacity.hover,
+      [StateLayer.theme.tokens.opacity.pressed]:
+        tokens.stateLayer.opacity.pressed,
+    },
+  },
   outline: ({ root }) => ({
     borderStyle: tokens.outline.style,
     borderWidth: px(tokens.outline.width),
@@ -309,18 +321,6 @@ const classNames = createStyles({
       },
     },
   }),
-  invisible: {
-    visibility: 'hidden',
-  },
-  stateLayer: {
-    vars: {
-      [StateLayer.theme.tokens.color.hover]: tokens.stateLayer.color.hover,
-      [StateLayer.theme.tokens.color.pressed]: tokens.stateLayer.color.pressed,
-      [StateLayer.theme.tokens.opacity.hover]: tokens.stateLayer.opacity.hover,
-      [StateLayer.theme.tokens.opacity.pressed]:
-        tokens.stateLayer.opacity.pressed,
-    },
-  },
 });
 
 export type IButtonThemeFactory = IComponentThemeFactory<{
@@ -336,7 +336,7 @@ export const buttonTheme = componentThemeFactory<IButtonThemeFactory>({
   tokens,
 });
 
-export const buttonStylesVariants = {
+export const buttonThemeVariants = {
   filled: createStyles({
     root: {
       vars: {
@@ -361,6 +361,65 @@ export const buttonStylesVariants = {
       vars: {
         [tokens.stateLayer.color.hover]: themeTokens.colorScheme.onPrimary,
         [tokens.stateLayer.color.pressed]: themeTokens.colorScheme.onPrimary,
+      },
+    },
+  }),
+  filledTonal: createStyles({
+    root: {
+      vars: {
+        [tokens.container.color.normal]:
+          themeTokens.colorScheme.secondaryContainer,
+        [tokens.container.color.disabled]: themeTokens.colorScheme.onSurface,
+        [tokens.container.elevation.normal]: elevationLevelPreset[0],
+        [tokens.container.elevation.focused]: elevationLevelPreset[0],
+        [tokens.container.elevation.hovered]: elevationLevelPreset[1],
+        [tokens.container.elevation.pressed]: elevationLevelPreset[0],
+        [tokens.container.elevation.disabled]: elevationLevelPreset[0],
+        [tokens.label.color.normal]:
+          themeTokens.colorScheme.onSecondaryContainer,
+        [tokens.label.color.focused]:
+          themeTokens.colorScheme.onSecondaryContainer,
+        [tokens.label.color.hovered]:
+          themeTokens.colorScheme.onSecondaryContainer,
+        [tokens.label.color.pressed]:
+          themeTokens.colorScheme.onSecondaryContainer,
+        [tokens.icon.color.normal]:
+          themeTokens.colorScheme.onSecondaryContainer,
+        [tokens.icon.color.focused]:
+          themeTokens.colorScheme.onSecondaryContainer,
+        [tokens.icon.color.hovered]:
+          themeTokens.colorScheme.onSecondaryContainer,
+        [tokens.icon.color.pressed]:
+          themeTokens.colorScheme.onSecondaryContainer,
+      },
+    },
+    stateLayer: {
+      vars: {
+        [tokens.stateLayer.color.hover]:
+          themeTokens.colorScheme.onSecondaryContainer,
+        [tokens.stateLayer.color.pressed]:
+          themeTokens.colorScheme.onSecondaryContainer,
+      },
+    },
+  }),
+  outlined: createStyles({
+    root: {
+      vars: {
+        [tokens.label.color.normal]: themeTokens.colorScheme.primary,
+        [tokens.label.color.focused]: themeTokens.colorScheme.primary,
+        [tokens.label.color.hovered]: themeTokens.colorScheme.primary,
+        [tokens.label.color.pressed]: themeTokens.colorScheme.primary,
+        [tokens.icon.color.normal]: themeTokens.colorScheme.primary,
+        [tokens.icon.color.focused]: themeTokens.colorScheme.primary,
+        [tokens.icon.color.hovered]: themeTokens.colorScheme.primary,
+        [tokens.icon.color.pressed]: themeTokens.colorScheme.primary,
+        [tokens.outline.style]: 'solid',
+      },
+    },
+    stateLayer: {
+      vars: {
+        [tokens.stateLayer.color.hover]: themeTokens.colorScheme.primary,
+        [tokens.stateLayer.color.pressed]: themeTokens.colorScheme.primary,
       },
     },
   }),

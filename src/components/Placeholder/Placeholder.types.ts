@@ -1,5 +1,5 @@
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import type { IStylesProps } from '~/utils/styles/useComponentTheme';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { IPaperOwnProps } from '../Paper';
 import type {
@@ -15,7 +15,7 @@ export type IPlaceholderOwnProps = IPaperOwnProps & {
 
 export interface IPlaceholderProps
   extends IBoxProps,
-    IStylesProps<IPlaceholderThemeFactory>,
+    IComponentThemeProps<IPlaceholderThemeFactory>,
     IPlaceholderOwnProps {}
 
 export type IPlaceholderFactory = IPolymorphicComponentFactory<{

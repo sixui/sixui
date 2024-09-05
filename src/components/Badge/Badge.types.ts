@@ -1,5 +1,5 @@
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import type { IStylesProps } from '~/utils/styles/useComponentTheme';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { badgeTheme, IBadgeThemeFactory } from './Badge.css';
 
@@ -12,7 +12,7 @@ export type IBadgeOwnProps = {
 
 export interface IBadgeProps
   extends IBoxProps,
-    IStylesProps<IBadgeThemeFactory>,
+    IComponentThemeProps<IBadgeThemeFactory>,
     IBadgeOwnProps {}
 
 export type IBadgeFactory = IPolymorphicComponentFactory<{

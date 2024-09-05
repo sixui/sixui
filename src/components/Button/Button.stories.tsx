@@ -116,35 +116,21 @@ export const Filled: IStory = {
   },
 };
 
-// export const FilledTonal: IStory = {
-//   render: (props) => (
-//     <ComponentShowcase
-//       component={Button}
-//       props={props}
-//       cols={states}
-//       rows={rows}
-//     />
-//   ),
-//   args: {
-//     ...defaultArgs,
-//     variant: 'filledTonal',
-//   },
-// };
+export const FilledTonal: IStory = {
+  render: (props) => <ButtonShowcase props={props} cols={states} rows={rows} />,
+  args: {
+    ...defaultArgs,
+    variant: 'filledTonal',
+  },
+};
 
-// export const Outlined: IStory = {
-//   render: (props) => (
-//     <ComponentShowcase
-//       component={Button}
-//       props={props}
-//       cols={states}
-//       rows={rows}
-//     />
-//   ),
-//   args: {
-//     ...defaultArgs,
-//     variant: 'outlined',
-//   },
-// };
+export const Outlined: IStory = {
+  render: (props) => <ButtonShowcase props={props} cols={states} rows={rows} />,
+  args: {
+    ...defaultArgs,
+    variant: 'outlined',
+  },
+};
 
 // export const Text: IStory = {
 //   render: (props) => (

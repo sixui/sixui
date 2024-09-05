@@ -9,7 +9,6 @@ import { createStyles } from '~/utils/styles/createStyles';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { circularProgressIndicatorTheme } from '../CircularProgressIndicator/CircularProgressIndicator.css';
-import { px } from '~/helpers/styles/px';
 
 type IModifier = 'disabled';
 
@@ -114,10 +113,10 @@ const classNames = createStyles({
     animationFillMode: 'both',
     animationDuration: `${arcDuration}, ${cycleDuration}`,
     animationTimingFunction: indeterminateEasing,
-    borderWidth: px(
-      calc.multiply('1em', calc.divide(parentStyles.tokens.strokePct, '100')),
+    borderWidth: calc.multiply(
+      '1em',
+      calc.divide(parentStyles.tokens.strokePct, '100'),
     ),
-
     selectors: {
       [getModifierSelector<IModifier>('disabled', root)]: {
         borderTopColor: parentStyles.tokens.color.disabled,

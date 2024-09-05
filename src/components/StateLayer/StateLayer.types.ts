@@ -1,5 +1,5 @@
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IStylesProps } from '~/utils/styles/useComponentTheme';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IUseStateLayerResult } from './useStateLayer';
 import type { IBoxProps } from '../Box';
 import type {
@@ -13,7 +13,7 @@ export type IStateLayerOwnProps = {
 
 export interface IStateLayerProps
   extends IBoxProps,
-    IStylesProps<IStateLayerThemeFactory>,
+    IComponentThemeProps<IStateLayerThemeFactory>,
     IStateLayerOwnProps {}
 
 export type IStateLayerFactory = IComponentFactory<{

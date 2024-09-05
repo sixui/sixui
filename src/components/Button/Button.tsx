@@ -6,14 +6,14 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { executeLazyPromise } from '~/helpers/executeLazyPromise';
+import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { ButtonBase } from '../ButtonBase';
 import {
   buttonTheme,
-  buttonStylesVariants,
+  buttonThemeVariants,
   type IButtonThemeFactory,
 } from './Button.css';
-import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 
 const COMPONENT_NAME = 'Button';
 
@@ -73,7 +73,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       styles,
       style,
       theme: buttonTheme,
-      themeVariants: buttonStylesVariants,
+      themeVariants: buttonThemeVariants,
       variant,
       modifiers,
     });
@@ -126,10 +126,8 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
         {...getStyles('root')}
         onClick={handleClick}
         classNames={mergeClassNames(classNames, {
-          // delete sprinkles prop from useStyles
-          // create styles prop to spread style css properties
-          // check if any better solution
           stateLayer: getStyles('stateLayer').className,
+          outline: getStyles('outline').className,
         })}
         onPress={handlePress}
         readOnly={readOnly}

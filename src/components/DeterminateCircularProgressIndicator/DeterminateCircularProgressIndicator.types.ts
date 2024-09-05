@@ -1,5 +1,5 @@
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IStylesProps } from '~/utils/styles/useComponentTheme';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type {
   determinateCircularProgressIndicatorTheme,
@@ -19,7 +19,7 @@ export type IDeterminateCircularProgressIndicatorOwnProps = {
 
 export interface IDeterminateCircularProgressIndicatorProps
   extends IBoxProps,
-    IStylesProps<IDeterminateCircularProgressIndicatorThemeFactory>,
+    IComponentThemeProps<IDeterminateCircularProgressIndicatorThemeFactory>,
     IDeterminateCircularProgressIndicatorOwnProps {}
 
 export type IDeterminateCircularProgressIndicatorFactory = IComponentFactory<{

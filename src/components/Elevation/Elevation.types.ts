@@ -1,5 +1,5 @@
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IStylesProps } from '~/utils/styles/useComponentTheme';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { elevationTheme, IElevationThemeFactory } from './Elevation.css';
 
@@ -10,7 +10,7 @@ export type IElevationOwnProps = {
 
 export interface IElevationProps
   extends IBoxProps,
-    IStylesProps<IElevationThemeFactory>,
+    IComponentThemeProps<IElevationThemeFactory>,
     IElevationOwnProps {}
 
 export type IElevationFactory = IComponentFactory<{

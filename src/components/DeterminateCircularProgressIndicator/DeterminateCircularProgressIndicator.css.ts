@@ -10,6 +10,7 @@ import { createStyles } from '~/utils/styles/createStyles';
 import { deepMerge } from '~/helpers/deepMerge';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
+import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { themeTokens } from '../ThemeProvider';
 import { circularProgressIndicatorTheme } from '../CircularProgressIndicator/CircularProgressIndicator.css';
 
@@ -93,10 +94,7 @@ export type IDeterminateCircularProgressIndicatorThemeFactory =
 
 export const determinateCircularProgressIndicatorTheme =
   componentThemeFactory<IDeterminateCircularProgressIndicatorThemeFactory>({
-    classNames: {
-      ...parentStyles.classNames,
-      ...classNames,
-    },
+    classNames: mergeClassNames(parentStyles.classNames, classNames),
     tokensClassName: cx(parentStyles.tokensClassName, tokensClassName),
     tokens: deepMerge(parentStyles.tokens, tokens),
   });

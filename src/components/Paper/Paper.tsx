@@ -2,6 +2,7 @@ import type { IPaperFactory } from './Paper.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { PaperBase } from '../PaperBase';
 import {
   paperTheme,
@@ -55,11 +56,11 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
           className: sprinkles.className,
           style: sprinkles.style,
         })}
-        classNames={{
+        classNames={mergeClassNames(classNames, {
           background: backgroundSprinkles.className,
           elevation: elevationSprinkles.className,
           outline: outlineSprinkles.className,
-        }}
+        })}
         ref={forwardedRef}
       />
     );

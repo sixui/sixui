@@ -1,5 +1,5 @@
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import type { IStylesProps } from '~/utils/styles/useComponentTheme';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { IPaperOwnProps } from '../Paper';
 import type { avatarTheme, IAvatarThemeFactory } from './Avatar.css';
@@ -23,7 +23,7 @@ export type IAvatarOwnprops = IPaperOwnProps & {
 
 export interface IAvatarProps
   extends IBoxProps,
-    IStylesProps<IAvatarThemeFactory>,
+    IComponentThemeProps<IAvatarThemeFactory>,
     IAvatarOwnprops {}
 
 export type IAvatarFactory = IPolymorphicComponentFactory<{

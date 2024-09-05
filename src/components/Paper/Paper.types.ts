@@ -1,5 +1,5 @@
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import type { IStylesProps } from '~/utils/styles/useComponentTheme';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IPaperBaseOwnProps } from '../PaperBase';
 import type { IBoxProps } from '../Box';
 import type {
@@ -20,7 +20,7 @@ export interface IPaperOwnProps
 
 export interface IPaperProps
   extends IBoxProps,
-    IStylesProps<IPaperThemeFactory>,
+    IComponentThemeProps<IPaperThemeFactory>,
     IPaperOwnProps {}
 
 export type IPaperFactory = IPolymorphicComponentFactory<{

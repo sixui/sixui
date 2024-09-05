@@ -1,4 +1,4 @@
-import type { IStylesProps } from '~/utils/styles/useComponentTheme';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { IComponentShowcaseThemeFactory } from './ComponentShowcase.css';
 import { IComponentFactory } from '~/utils/component/componentFactory';
@@ -29,5 +29,5 @@ export type IComponentShowcaseOwnProps<TComponentProps> = {
 
 export interface IComponentShowcaseProps<TComponentProps>
   extends IBoxProps,
-    IStylesProps<IComponentShowcaseThemeFactory>,
+    IComponentThemeProps<IComponentShowcaseThemeFactory>,
     IComponentShowcaseOwnProps<TComponentProps> {}

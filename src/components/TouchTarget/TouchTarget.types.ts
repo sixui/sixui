@@ -1,5 +1,5 @@
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IStylesProps } from '~/utils/styles/useComponentTheme';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type {
   touchTargetTheme,
@@ -12,7 +12,7 @@ export type ITouchTargetOwnProps = {
 
 export interface ITouchTargetProps
   extends IBoxProps,
-    IStylesProps<ITouchTargetThemeFactory>,
+    IComponentThemeProps<ITouchTargetThemeFactory>,
     ITouchTargetOwnProps {}
 
 export type ITouchTargetFactory = IComponentFactory<{

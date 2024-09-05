@@ -93,6 +93,7 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
         {...stateLayer.interactionsContext.triggerProps}
         ref={handleRef}
         as={rootElement}
+        classNames={classNames}
         interactions={stateLayer.interactionsContext.state}
       >
         {!disabledOrReadOnly && (

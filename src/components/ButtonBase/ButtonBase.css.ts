@@ -32,12 +32,6 @@ export const classNames = createStyles({
       },
     },
   }),
-  outline: {
-    position: 'absolute',
-    inset: 0,
-    borderRadius: 'inherit',
-    pointerEvents: 'none',
-  },
   touchTarget: {},
   stateLayer: {},
   focusRing: {},

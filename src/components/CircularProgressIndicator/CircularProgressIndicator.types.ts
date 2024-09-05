@@ -1,6 +1,6 @@
 import type { IMakeOptional } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IStylesProps } from '~/utils/styles/useComponentTheme';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type {
   circularProgressIndicatorTheme,
@@ -15,7 +15,7 @@ export interface ICircularProgressIndicatorOwnProps
 
 export interface ICircularProgressIndicatorProps
   extends IBoxProps,
-    IStylesProps<ICircularProgressIndicatorThemeFactory>,
+    IComponentThemeProps<ICircularProgressIndicatorThemeFactory>,
     ICircularProgressIndicatorOwnProps {}
 
 export type ICircularProgressIndicatorFactory = IComponentFactory<{

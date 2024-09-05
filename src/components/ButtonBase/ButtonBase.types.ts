@@ -2,7 +2,7 @@ import type { PressEvent } from 'react-aria';
 
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IMaybeAsync, IAny } from '~/helpers/types';
-import type { IStylesProps } from '~/utils/styles/useComponentTheme';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IInteractions } from '~/hooks/useInteractions';
 import type { IPaperOwnProps } from '../Paper';
 import type {
@@ -37,7 +37,7 @@ export type IButtonBaseOwnProps = {
 export interface IButtonBaseProps
   extends IPaperOwnProps,
     IButtonBaseOwnProps,
-    IStylesProps<IButtonBaseThemeFactory> {}
+    IComponentThemeProps<IButtonBaseThemeFactory> {}
 
 export type IButtonBaseFactory = IPolymorphicComponentFactory<{
   props: IButtonBaseProps;
