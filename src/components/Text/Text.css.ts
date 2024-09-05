@@ -80,13 +80,13 @@ const classNames = createStyles({
   },
 });
 
-export type ITextStylesFactory = IComponentThemeFactory<{
+export type ITextThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
 }>;
 
-export const textStyles = componentThemeFactory<ITextStylesFactory>({
+export const textTheme = componentThemeFactory<ITextThemeFactory>({
   classNames,
   tokensClassName,
   tokens,

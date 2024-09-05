@@ -66,7 +66,7 @@ export const Variants: IStory = {
 const AnchoredAnimatedShowcase: React.FC<
   IComponentShowcaseProps<IAnchoredProps>
 > = (props) => {
-  const [invisible, setInvisible] = useState(true);
+  const [invisible, setInvisible] = useState(false);
 
   useEffect(() => {
     setInterval(() => setInvisible((prev) => !prev), 2000);

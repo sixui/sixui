@@ -1,14 +1,14 @@
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type { textStyles, ITextStylesFactory } from './Text.css';
+import type { textTheme, ITextThemeFactory } from './Text.css';
 
 export type ITextVariant = 'display' | 'headline' | 'title' | 'body' | 'label';
 
 export type ITextSize = 'sm' | 'md' | 'lg';
 
 export type ITextProps = IBoxProps &
-  IComponentThemeProps<ITextStylesFactory> & {
+  IComponentThemeProps<ITextThemeFactory> & {
     children?: React.ReactNode;
     variant?: ITextVariant;
     size?: ITextSize;
@@ -22,5 +22,5 @@ export type ITextFactory = IPolymorphicComponentFactory<{
   props: ITextProps;
   defaultRef: HTMLDivElement;
   defaultRoot: 'div';
-  styles: typeof textStyles;
+  theme: typeof textTheme;
 }>;

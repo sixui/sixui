@@ -5,7 +5,7 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
-import { textStyles, type ITextStylesFactory } from './Text.css';
+import { textTheme, type ITextThemeFactory } from './Text.css';
 
 const COMPONENT_NAME = 'Text';
 
@@ -46,6 +46,7 @@ export const Text = polymorphicComponentFactory<ITextFactory>(
       as,
       classNames,
       className,
+      styles,
       style,
       variant = 'body',
       size = 'md',
@@ -65,12 +66,13 @@ export const Text = polymorphicComponentFactory<ITextFactory>(
       size,
     };
 
-    const { getStyles } = useComponentTheme<ITextStylesFactory>({
+    const { getStyles } = useComponentTheme<ITextThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
-      styles: textStyles,
+      styles,
       style,
+      theme: textTheme,
       variant,
       modifiers,
     });
@@ -85,7 +87,7 @@ export const Text = polymorphicComponentFactory<ITextFactory>(
           style:
             typeof lineClamp === 'number'
               ? assignInlineVars({
-                  [textStyles.tokens.lineClamp]: String(lineClamp),
+                  [textTheme.tokens.lineClamp]: String(lineClamp),
                 })
               : undefined,
         })}
@@ -94,3 +96,6 @@ export const Text = polymorphicComponentFactory<ITextFactory>(
     );
   },
 );
+
+Text.theme = textTheme;
+Text.displayName = `@sixui/${COMPONENT_NAME}`;

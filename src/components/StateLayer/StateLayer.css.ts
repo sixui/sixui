@@ -1,4 +1,4 @@
-import { createTheme } from '@vanilla-extract/css';
+import { createTheme, fallbackVar } from '@vanilla-extract/css';
 
 import {
   componentThemeFactory,
@@ -14,8 +14,8 @@ type IModifier = 'hovered' | 'dragged' | 'animating' | 'static-pressed';
 const [tokensClassName, tokens] = createTheme({
   color: {
     hovered: themeTokens.colorScheme.onSurface,
-    pressed: themeTokens.colorScheme.onSurface,
-    dragged: themeTokens.colorScheme.onSurface,
+    pressed: 'inherit',
+    dragged: 'inherit',
   },
   opacity: {
     hovered: themeTokens.state.stateLayerOpacity.hovered,
@@ -50,7 +50,10 @@ const classNames = createStyles({
       position: 'absolute',
       inset: 0,
 
-      backgroundImage: `radial-gradient(closest-side, ${tokens.color.pressed} max(calc(100% - ${px(70)}), 65%), transparent 100%)`,
+      backgroundImage: `radial-gradient(closest-side, ${fallbackVar(
+        tokens.color.pressed,
+        tokens.color.hovered,
+      )} max(calc(100% - ${px(70)}), 65%), transparent 100%)`,
       transformOrigin: 'center center',
       transitionProperty: 'opacity',
       transitionDuration: '375ms',
@@ -74,11 +77,17 @@ const classNames = createStyles({
         opacity: tokens.opacity.hovered,
       },
       [`${getModifierSelector('static-pressed')}::after`]: {
-        backgroundColor: tokens.color.pressed,
+        backgroundColor: fallbackVar(
+          tokens.color.pressed,
+          tokens.color.hovered,
+        ),
         opacity: tokens.opacity.pressed,
       },
       [`${getModifierSelector('dragged')}::before`]: {
-        backgroundColor: tokens.color.dragged,
+        backgroundColor: fallbackVar(
+          tokens.color.dragged,
+          tokens.color.hovered,
+        ),
         opacity: tokens.opacity.dragged,
       },
       [`${getModifierSelector('dragged')}::after`]: {
