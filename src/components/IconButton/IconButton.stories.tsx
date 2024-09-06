@@ -6,8 +6,8 @@ import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 import type { IIconButtonProps, IIconButtonVariant } from './IconButton.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
-  type IComponentPresentation,
   makeComponentShowcase,
+  type IComponentPresentation,
 } from '../ComponentShowcase';
 import { IconButton } from './IconButton';
 

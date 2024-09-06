@@ -44,10 +44,10 @@ export const IconButton = polymorphicComponentFactory<IIconButtonFactory>(
     return (
       <Button
         {...other}
-        icon={selected ? (selectedIcon ?? icon) : icon}
         {...getStyles('root')}
         variant={false}
         classNames={classNames}
+        icon={selected ? (selectedIcon ?? icon) : icon}
         ref={forwardedRef}
       />
     );

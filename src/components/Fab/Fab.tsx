@@ -1,59 +1,53 @@
-import { forwardRef } from 'react';
-
-import type { IFabProps } from './Fab.types';
-import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
-import { useStyles } from '~/hooks/useStyles';
+import type { IFabFactory } from './Fab.types';
+import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Button } from '../Button';
-import { fabStyles } from './Fab.styles';
-import { fabVariantStyles } from './variants';
-import { fabTheme } from './Fab.stylex';
+import { fabTheme, fabThemeVariants, type IFabThemeFactory } from './Fab.css';
 
-// https://github.com/material-components/material-web/blob/main/fab/internal/shared.ts
-// https://github.com/material-components/material-web/blob/main/fab/internal/fab.ts
+const COMPONENT_NAME = 'Fab';
 
-export const Fab = createPolymorphicComponent<'button', IFabProps>(
-  forwardRef<HTMLButtonElement, IFabProps>(function Fab(props, forwardedRef) {
+export const Fab = polymorphicComponentFactory<IFabFactory>(
+  (props, forwardedRef) => {
     const {
+      classNames,
+      className,
       styles,
-      sx,
-      innerStyles,
-      size = 'md',
+      style,
       variant = 'surface',
-      label,
       lowered,
       children,
       ...other
-    } = props;
+    } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const variantStyles = variant ? fabVariantStyles[variant] : undefined;
-    const { combineStyles, globalStyles } = useStyles({
-      componentName: 'Fab',
-      styles: [fabStyles, variantStyles, styles],
+    const { getStyles } = useComponentTheme<IFabThemeFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles,
+      style,
+      theme: fabTheme,
+      themeVariants: fabThemeVariants,
+      variant,
+      modifiers: {
+        extended: !!children,
+        lowered,
+      },
     });
-
-    const extended = !!label;
 
     return (
       <Button
-        variant={false}
-        styles={innerStyles?.button}
-        icon={children}
         {...other}
-        sx={[
-          fabTheme,
-          globalStyles,
-          combineStyles(
-            'host',
-            extended ? 'host$md' : `host$${size}`,
-            extended && 'host$extended',
-            lowered && 'host$lowered',
-          ),
-          sx,
-        ]}
+        {...getStyles('root')}
+        variant={false}
+        classNames={classNames}
         ref={forwardedRef}
       >
-        {label}
+        {children}
       </Button>
     );
-  }),
+  },
 );
+
+Fab.theme = fabTheme;
+Fab.displayName = `@sixui/${COMPONENT_NAME}`;

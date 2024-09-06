@@ -42,7 +42,7 @@ const [tokensClassName, tokens] = createTheme({
   },
   icon: {
     color: {
-      normal: 'inherit',
+      normal: themeTokens.colorScheme.onSurface,
       hovered: 'inherit',
       focused: 'inherit',
       pressed: 'inherit',

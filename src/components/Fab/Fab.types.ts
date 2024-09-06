@@ -1,7 +1,9 @@
-import type { IBaseProps } from '../Base';
-import type { IZeroOrMore, ICompiledStyles, IOmit } from '~/helpers/types';
-import type { IButtonProps, IButtonStylesKey } from '../Button';
-import type { IFabStylesKey } from './Fab.styles';
+import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IOmit } from '~/helpers/types';
+import type { IBoxProps } from '../Box';
+import type { IButtonOwnProps } from '../Button';
+import type { fabTheme, IFabThemeFactory } from './Fab.css';
 
 export type IFabVariant =
   | 'surface'
@@ -10,19 +12,20 @@ export type IFabVariant =
   | 'tertiary'
   | 'branded';
 
-export type IFabSize = 'sm' | 'md' | 'lg';
+export interface IFabOwnProps extends IOmit<IButtonOwnProps, 'trailingIcon'> {
+  lowered?: boolean;
+  children?: React.ReactNode;
+}
 
-export type IFabProps = IOmit<
-  IButtonProps,
-  'variant' | 'icon' | 'trailingIcon'
-> &
-  IBaseProps<IFabStylesKey> & {
-    innerStyles?: IButtonProps['innerStyles'] & {
-      button?: IZeroOrMore<ICompiledStyles<IButtonStylesKey>>;
-    };
-    children?: React.ReactNode;
-    size?: IFabSize;
-    variant?: IFabVariant | false;
-    label?: string;
-    lowered?: boolean;
-  };
+export interface IFabProps
+  extends IBoxProps,
+    IComponentThemeProps<IFabThemeFactory>,
+    IFabOwnProps {}
+
+export type IFabFactory = IPolymorphicComponentFactory<{
+  props: IFabProps;
+  defaultRef: HTMLButtonElement;
+  defaultRoot: 'button';
+  theme: typeof fabTheme;
+  variant: IFabVariant;
+}>;

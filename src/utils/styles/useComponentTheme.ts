@@ -26,7 +26,7 @@ export type IComponentThemeProps<
   styles?: Partial<Record<TPayload['styleName'], React.CSSProperties>>;
 
   /** The styles variant to use. */
-  variant?: TPayload['variant'];
+  variant?: TPayload['variant'] | false;
 };
 
 export type IUseComponentThemeProps<
@@ -112,7 +112,7 @@ export const useComponentTheme = <
                     ],
                     [
                       componentTheme.classNames,
-                      variant && themeVariants?.[variant],
+                      variant ? themeVariants?.[variant] : undefined,
                       classNames,
                       theme.components?.[componentName]?.classNames,
                     ].map((classNames) => classNames?.[styleName]),
