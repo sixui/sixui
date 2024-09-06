@@ -1,65 +1,63 @@
-import { forwardRef } from 'react';
+import type { IDividerFactory } from './Divider.types';
+import { componentFactory } from '~/utils/component/componentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { Box } from '../Box';
+import { dividerTheme, type IDividerThemeFactory } from './Divider.css';
 
-import type { IDividerProps } from './Divider.types';
-import { dividerStyles } from './Divider.styles';
-import { dividerTheme } from './Divider.stylex';
-import { Base } from '../Base';
-import { useStyles } from '~/hooks/useStyles';
+const COMPONENT_NAME = 'Divider';
 
-// https://github.com/material-components/material-web/blob/main/divider/internal/divider.ts
-
-export const Divider = forwardRef<HTMLDivElement, IDividerProps>(
-  function Divider(props, forwardedRef) {
+export const Divider = componentFactory<IDividerFactory>(
+  (props, forwardedRef) => {
     const {
+      classNames,
+      className,
       styles,
-      sx,
+      style,
+      variant,
       orientation = 'horizontal',
       inset,
       insetStart,
       insetEnd,
       children,
       ...other
-    } = props;
+    } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const { combineStyles, getStyles, globalStyles } = useStyles({
-      componentName: 'Divider',
-      styles: [dividerStyles, styles],
+    const hasInsetStart = !!inset || !!insetStart;
+    const hasInsetEnd = !!inset || !!insetEnd;
+
+    const { getStyles } = useComponentTheme<IDividerThemeFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles,
+      style,
+      theme: dividerTheme,
+      variant,
+      modifiers: {
+        orientation,
+        'inset-start': hasInsetStart,
+        'inset-end': hasInsetEnd,
+      },
     });
 
-    const renderLine = (): React.ReactElement => (
-      <div
-        {...getStyles(
-          'line',
-          `line$${orientation}`,
-          (inset || insetStart) && `line$${orientation}$insetStart`,
-          (inset || insetEnd) && `line$${orientation}$insetEnd`,
-        )}
-      />
-    );
-
     return (
-      <Base
-        {...other}
-        sx={[
-          dividerTheme,
-          globalStyles,
-          combineStyles('host', `host$${orientation}`),
-          sx,
-        ]}
-        ref={forwardedRef}
-      >
+      <Box {...other} {...getStyles('root')} ref={forwardedRef}>
         {children ? (
           <>
-            {renderLine()}
-            <div {...getStyles(`textContainer$${orientation}`)}>
+            <div {...getStyles('line')} />
+            <div {...getStyles('textContainer')}>
               <div {...getStyles('text')}>{children}</div>
             </div>
-            {renderLine()}
+            <div {...getStyles('line')} />
           </>
         ) : (
-          renderLine()
+          <div {...getStyles('line')} />
         )}
-      </Base>
+      </Box>
     );
   },
 );
+
+Divider.theme = dividerTheme;
+Divider.displayName = `@sixui/${COMPONENT_NAME}`;

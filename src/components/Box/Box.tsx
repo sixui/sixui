@@ -18,7 +18,7 @@ export const Box = createPolymorphicComponent<'div', IBoxProps>(
       renderRoot,
       interactions,
       modifiers,
-      size = 'md',
+      size,
       ...otherWithSprinkles
     } = props as IWithAsProp<IBoxProps>;
 

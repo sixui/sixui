@@ -8,7 +8,7 @@ export const createStyles = <TClassName extends string>(
       'root' | TClassName,
       ComplexStyleRule | (({ root }: { root: string }) => ComplexStyleRule)
     >
-  >,
+  > = {},
 ): Record<'root' | TClassName, string> => {
   if (isFunction(stylesObject.root)) {
     throw new Error(

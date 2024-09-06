@@ -61,6 +61,11 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
           elevation: elevationSprinkles.className,
           outline: outlineSprinkles.className,
         })}
+        styles={{
+          background: backgroundSprinkles.style,
+          elevation: elevationSprinkles.style,
+          outline: outlineSprinkles.style,
+        }}
         ref={forwardedRef}
       />
     );

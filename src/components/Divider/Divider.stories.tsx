@@ -1,16 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
 
 import type { IDividerProps } from './Divider.types';
-import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { makeComponentShowcase } from '../ComponentShowcase';
+import { Flex } from '../Flex';
+import { Paper } from '../Paper';
+import { Box, type IBoxProps } from '../Box';
 import { Divider } from './Divider';
-import { outlineTokens } from '~/themes/base/outline.stylex';
-import { spacingTokens } from '~/themes/base/spacing.stylex';
-import { scaleTokens } from '~/themes/base/scale.stylex';
-import {
-  ComponentShowcase,
-  type IComponentPresentation,
-} from '../ComponentShowcase';
 
 // https://m3.material.io/components/divider/
 // https://material-web.dev/components/divider/
@@ -24,128 +19,85 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {} satisfies Partial<IDividerProps>;
 
-const styles = stylex.create({
-  list: {
-    borderWidth: outlineTokens.width$xs,
-    borderStyle: 'dashed',
-    borderColor: colorSchemeTokens.outlineVariant,
-    display: 'flex',
-    alignItems: 'center',
-    margin: 0,
-    gap: spacingTokens.padding$4,
-  },
-  list$horizontal: {
-    flexDirection: 'row',
-    paddingLeft: spacingTokens.padding$4,
-    paddingRight: spacingTokens.padding$4,
-    height: `calc(64px * ${scaleTokens.scale})`,
-  },
-  list$vertical: {
-    flexDirection: 'column',
-    paddingTop: spacingTokens.padding$4,
-    paddingBottom: spacingTokens.padding$4,
-    width: `calc(64px * ${scaleTokens.scale})`,
-  },
-});
-
-const List: React.FC<IDividerProps> = (props) => (
-  <div
-    {...stylex.props(
-      styles.list,
-      styles[
-        `list$${props.orientation === 'vertical' ? 'horizontal' : 'vertical'}`
-      ],
-    )}
-  >
-    <div>One</div>
-    <Divider {...props} />
-    <div>Two</div>
-    <Divider {...props} />
-    <div>Three</div>
-    <Divider {...props} />
-    <div>Four</div>
-  </div>
+const BoxDemo: React.FC<IBoxProps> = (props) => (
+  <Box miw='$24' mih='$12' p='$2' ta='center' {...props} />
 );
 
-const cols: Array<IComponentPresentation<IDividerProps>> = [
-  {
-    legend: 'Horizontal',
-    props: {
-      orientation: 'horizontal',
-    },
-  },
-  {
-    legend: 'Vertical',
-    props: {
-      orientation: 'vertical',
-    },
-  },
-];
+const ListDemo: React.FC<IDividerProps> = (props) => (
+  <Paper outline='$xs' outlineStyle='solid' corner='$xs'>
+    <Flex
+      direction={props.orientation === 'horizontal' ? 'column' : 'row'}
+      divider={<Divider {...props} />}
+      justify='center'
+      align='center'
+      wrap='wrap'
+    >
+      <BoxDemo>One</BoxDemo>
+      <BoxDemo>Two</BoxDemo>
+      <BoxDemo>Three</BoxDemo>
+      <BoxDemo>Four</BoxDemo>
+    </Flex>
+  </Paper>
+);
 
-export const Basic: IStory = {
+const ListDemoShowcase = makeComponentShowcase(ListDemo);
+
+export const Variants: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={(props) => <List {...props} />}
+    <ListDemoShowcase
       props={props}
-      cols={cols}
+      cols={[
+        {
+          legend: 'Horizontal',
+          props: {
+            orientation: 'horizontal',
+          },
+        },
+        {
+          legend: 'Vertical',
+          props: {
+            orientation: 'vertical',
+          },
+        },
+      ]}
     />
   ),
   args: defaultArgs,
 };
 
-export const Inset: IStory = {
+export const Horizontal: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={(props) => <List {...props} />}
+    <ListDemoShowcase
       props={props}
-      cols={cols}
+      cols={[
+        { legend: 'Normal' },
+        { legend: 'Inset', props: { inset: true } },
+        { legend: 'Inset start', props: { insetStart: true } },
+        { legend: 'Inset end', props: { insetEnd: true } },
+        { legend: 'Text', props: { children: 'Text' } },
+      ]}
     />
   ),
   args: {
     ...defaultArgs,
-    inset: true,
+    orientation: 'horizontal',
   },
 };
 
-export const InsetStart: IStory = {
+export const Vertical: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={(props) => <List {...props} />}
+    <ListDemoShowcase
       props={props}
-      cols={cols}
+      rows={[
+        { legend: 'Normal' },
+        { legend: 'Inset', props: { inset: true } },
+        { legend: 'Text', props: { children: 'Text' } },
+      ]}
     />
   ),
   args: {
     ...defaultArgs,
-    insetStart: true,
-  },
-};
-
-export const InsetEnd: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={(props) => <List {...props} />}
-      props={props}
-      cols={cols}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    insetEnd: true,
-  },
-};
-
-export const WithText: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={(props) => <List {...props} />}
-      props={props}
-      cols={cols}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    children: 'or',
+    orientation: 'vertical',
   },
 };
 

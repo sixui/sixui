@@ -9,7 +9,6 @@ import { createStyles } from '~/utils/styles/createStyles';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { circularProgressIndicatorTheme } from '../CircularProgressIndicator/CircularProgressIndicator.css';
-import { themeTokens } from '../ThemeProvider';
 
 type IModifier = 'disabled';
 
