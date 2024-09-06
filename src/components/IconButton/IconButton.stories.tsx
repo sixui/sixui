@@ -7,7 +7,7 @@ import type { IIconButtonProps, IIconButtonVariant } from './IconButton.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import {
   type IComponentPresentation,
-  ComponentShowcase,
+  makeComponentShowcase,
 } from '../ComponentShowcase';
 import { IconButton } from './IconButton';
 
@@ -22,16 +22,16 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onClick: (...args) => sbHandleEvent('click', args, 300),
+  onPress: (...args) => sbHandleEvent('onPress', args, 1000),
   icon: <FontAwesomeIcon icon={faHeart} />,
   selectedIcon: <FontAwesomeIcon icon={faHeartSolid} />,
 } satisfies Partial<IIconButtonProps>;
 
 const states: Array<IComponentPresentation<IIconButtonProps>> = [
   { legend: 'Enabled' },
-  { legend: 'Focused', props: { visualState: { focused: true } } },
-  { legend: 'Hovered', props: { visualState: { hovered: true } } },
-  { legend: 'Pressed', props: { visualState: { pressed: true } } },
+  { legend: 'Focused', props: { interactions: { focused: true } } },
+  { legend: 'Hovered', props: { interactions: { hovered: true } } },
+  { legend: 'Pressed', props: { interactions: { pressed: true } } },
   { legend: 'Loading', props: { loading: true } },
   { legend: 'Disabled', props: { disabled: true } },
 ];
@@ -42,10 +42,11 @@ const rows: Array<IComponentPresentation<IIconButtonProps>> = [
   { legend: 'Toggled', props: { toggle: true, selected: true } },
 ];
 
+const IconButtonShowcase = makeComponentShowcase(IconButton);
+
 export const Variants: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={IconButton}
+    <IconButtonShowcase
       verticalAlign='center'
       props={props}
       cols={(
@@ -63,14 +64,28 @@ export const Variants: IStory = {
   args: defaultArgs,
 };
 
+export const Sizes: IStory = {
+  render: (props) => (
+    <IconButtonShowcase
+      props={props}
+      cols={[
+        { legend: 'Extra small', props: { size: 'xs' } },
+        { legend: 'Small', props: { size: 'sm' } },
+        { legend: 'Medium', props: { size: 'md' } },
+        { legend: 'Large', props: { size: 'lg' } },
+        { legend: 'Extra large', props: { size: 'xl' } },
+      ]}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'filled',
+  },
+};
+
 export const Standard: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={IconButton}
-      props={props}
-      cols={states}
-      rows={rows}
-    />
+    <IconButtonShowcase props={props} cols={states} rows={rows} />
   ),
   args: {
     ...defaultArgs,
@@ -80,12 +95,7 @@ export const Standard: IStory = {
 
 export const Filled: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={IconButton}
-      props={props}
-      cols={states}
-      rows={rows}
-    />
+    <IconButtonShowcase props={props} cols={states} rows={rows} />
   ),
   args: {
     ...defaultArgs,
@@ -95,12 +105,7 @@ export const Filled: IStory = {
 
 export const FilledTonal: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={IconButton}
-      props={props}
-      cols={states}
-      rows={rows}
-    />
+    <IconButtonShowcase props={props} cols={states} rows={rows} />
   ),
   args: {
     ...defaultArgs,
@@ -110,12 +115,7 @@ export const FilledTonal: IStory = {
 
 export const Outlined: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={IconButton}
-      props={props}
-      cols={states}
-      rows={rows}
-    />
+    <IconButtonShowcase props={props} cols={states} rows={rows} />
   ),
   args: {
     ...defaultArgs,
@@ -125,12 +125,7 @@ export const Outlined: IStory = {
 
 export const Danger: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={IconButton}
-      props={props}
-      cols={states}
-      rows={rows}
-    />
+    <IconButtonShowcase props={props} cols={states} rows={rows} />
   ),
   args: {
     ...defaultArgs,
@@ -140,12 +135,7 @@ export const Danger: IStory = {
 
 export const Snackbar: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={IconButton}
-      props={props}
-      cols={states}
-      rows={rows}
-    />
+    <IconButtonShowcase props={props} cols={states} rows={rows} />
   ),
   args: {
     ...defaultArgs,

@@ -28,12 +28,7 @@ const defaultArgs = {
 } satisfies Partial<IButtonProps>;
 
 const states: Array<IComponentPresentation<IButtonProps>> = [
-  {
-    legend: 'Normal',
-    props: {
-      children: 'Normal',
-    },
-  },
+  { legend: 'Enabled', props: { children: 'Enabled' } },
   {
     legend: 'Focused',
     props: { children: 'Focused', interactions: { focused: true } },

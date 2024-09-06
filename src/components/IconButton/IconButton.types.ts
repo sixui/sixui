@@ -1,7 +1,12 @@
-import type { IBaseProps } from '../Base';
+import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IOmit } from '~/helpers/types';
-import type { IButtonProps } from '../Button';
-import type { IIconButtonStylesKey } from './IconButton.styles';
+import type { IBoxProps } from '../Box';
+import type { IButtonOwnProps } from '../Button';
+import type {
+  iconButtonTheme,
+  IIconButtonThemeFactory,
+} from './IconButton.css';
 
 export type IIconButtonVariant =
   | 'standard'
@@ -11,16 +16,23 @@ export type IIconButtonVariant =
   | 'danger'
   | 'snackbar';
 
-export type IIconButtonProps = IOmit<
-  IButtonProps,
-  'icon' | 'variant' | 'trailingIcon' | 'loadingText'
-> &
-  IBaseProps<IIconButtonStylesKey> &
-  Pick<React.AriaAttributes, 'aria-label'> & {
-    variant?: IIconButtonVariant | false;
-    toggle?: boolean;
-    selected?: boolean;
-    icon: React.ReactNode;
-    selectedIcon?: React.ReactNode;
-    'aria-label-selected'?: React.AriaAttributes['aria-label'];
-  };
+export interface IIconButtonOwnProps
+  extends IOmit<IButtonOwnProps, 'icon' | 'trailingIcon' | 'loadingText'> {
+  toggle?: boolean;
+  selected?: boolean;
+  icon: React.ReactNode;
+  selectedIcon?: React.ReactNode;
+}
+
+export interface IIconButtonProps
+  extends IBoxProps,
+    IComponentThemeProps<IIconButtonThemeFactory>,
+    IIconButtonOwnProps {}
+
+export type IIconButtonFactory = IPolymorphicComponentFactory<{
+  props: IIconButtonProps;
+  defaultRef: HTMLButtonElement;
+  defaultRoot: 'button';
+  theme: typeof iconButtonTheme;
+  variant: IIconButtonVariant;
+}>;

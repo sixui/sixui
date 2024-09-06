@@ -14,25 +14,24 @@ export type IButtonVariant =
   | 'danger'
   | 'snackbar';
 
-export type IButtonOwnProps = {
+export interface IButtonOwnProps extends IButtonBaseOwnProps {
   icon?: React.ReactNode;
   trailingIcon?: boolean;
   loading?: boolean;
   loadingAnimation?: 'progressIndicator' | 'halfSpin' | 'none';
   loadingText?: string;
-};
+}
 
 export interface IButtonProps
   extends IBoxProps,
-    IPaperOwnProps,
     IComponentThemeProps<IButtonThemeFactory>,
-    IButtonBaseOwnProps,
+    IPaperOwnProps,
     IButtonOwnProps {}
 
 export type IButtonFactory = IPolymorphicComponentFactory<{
   props: IButtonProps;
-  defaultRef: HTMLDivElement;
-  defaultRoot: 'div';
+  defaultRef: HTMLButtonElement;
+  defaultRoot: 'button';
   theme: typeof buttonTheme;
-  variant: IButtonVariant;
+  variant: IButtonVariant | false;
 }>;

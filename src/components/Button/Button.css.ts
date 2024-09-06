@@ -96,7 +96,7 @@ const [tokensClassName, tokens] = createTheme({
     },
   },
   outline: {
-    style: 'none',
+    style: 'unset',
     width: px(themeTokens.outline.width.xs),
     color: {
       normal: themeTokens.colorScheme.outline,
@@ -319,10 +319,12 @@ const classNames = createStyles({
       [StateLayer.theme.tokens.color.hovered]: fallbackVar(
         tokens.stateLayer.color.hovered,
         tokens.label.color.normal,
+        tokens.icon.color.normal,
       ),
       [StateLayer.theme.tokens.color.pressed]: fallbackVar(
         tokens.stateLayer.color.pressed,
         tokens.label.color.normal,
+        tokens.icon.color.normal,
       ),
       [StateLayer.theme.tokens.opacity.hovered]:
         tokens.stateLayer.opacity.hovered,

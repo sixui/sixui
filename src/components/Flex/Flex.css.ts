@@ -11,7 +11,7 @@ import { createStyles } from '~/utils/styles/createStyles';
 import { createTheme } from '@vanilla-extract/css';
 
 const [tokensClassName, tokens] = createTheme({
-  density: px(getDensity({ min: -4, max: 0 })),
+  density: px(getDensity({ min: -9, max: 0 })),
 });
 
 const classNames = createStyles({

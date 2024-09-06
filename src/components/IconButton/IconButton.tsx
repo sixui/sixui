@@ -1,65 +1,58 @@
-import { forwardRef } from 'react';
-
-import type { IIconButtonProps } from './IconButton.types';
-import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
-import { useStyles } from '~/hooks/useStyles';
+import type { IIconButtonFactory } from './IconButton.types';
+import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Button } from '../Button';
-import { iconButtonStyles } from './IconButton.styles';
-import { iconButtonVariantStyles } from './variants';
-import { iconButtonTheme } from './IconButton.stylex';
+import {
+  iconButtonTheme,
+  iconButtonThemeVariants,
+  type IIconButtonThemeFactory,
+} from './IconButton.css';
 
-// https://github.com/material-components/material-web/blob/main/iconbutton/internal/icon-button.ts
+const COMPONENT_NAME = 'IconButton';
 
-export const IconButton = createPolymorphicComponent<
-  'button',
-  IIconButtonProps
->(
-  forwardRef<HTMLButtonElement, IIconButtonProps>(
-    function IconButton(props, forwardedRef) {
-      const {
-        styles,
-        sx,
-        variant = 'standard',
+export const IconButton = polymorphicComponentFactory<IIconButtonFactory>(
+  (props, forwardedRef) => {
+    const {
+      classNames,
+      className,
+      styles,
+      style,
+      variant = 'standard',
+      toggle,
+      selected,
+      icon,
+      selectedIcon,
+      ...other
+    } = useProps({ componentName: COMPONENT_NAME, props });
+
+    const { getStyles } = useComponentTheme<IIconButtonThemeFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles,
+      style,
+      theme: iconButtonTheme,
+      themeVariants: iconButtonThemeVariants,
+      variant,
+      modifiers: {
         toggle,
         selected,
-        icon,
-        selectedIcon,
-        'aria-label': ariaLabel,
-        'aria-label-selected': ariaLabelSelected,
-        ...other
-      } = props;
+      },
+    });
 
-      const variantStyles = variant
-        ? iconButtonVariantStyles[variant]
-        : undefined;
-      const { combineStyles, globalStyles } = useStyles({
-        componentName: 'IconButton',
-        styles: [iconButtonStyles, variantStyles, styles],
-      });
-
-      return (
-        <Button
-          icon={selected ? (selectedIcon ?? icon) : icon}
-          aria-label={
-            toggle && selected ? (ariaLabelSelected ?? ariaLabel) : ariaLabel
-          }
-          {...other}
-          sx={[
-            iconButtonTheme,
-            globalStyles,
-            combineStyles(
-              'host',
-              toggle
-                ? selected
-                  ? 'host$toggle$selected'
-                  : 'host$toggle'
-                : null,
-            ),
-            sx,
-          ]}
-          ref={forwardedRef}
-        />
-      );
-    },
-  ),
+    return (
+      <Button
+        {...other}
+        icon={selected ? (selectedIcon ?? icon) : icon}
+        {...getStyles('root')}
+        variant={false}
+        classNames={classNames}
+        ref={forwardedRef}
+      />
+    );
+  },
 );
+
+IconButton.theme = iconButtonTheme;
+IconButton.displayName = `@sixui/${COMPONENT_NAME}`;
