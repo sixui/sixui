@@ -3,7 +3,7 @@ import { style } from '@vanilla-extract/css';
 
 import { themeTokens } from '../ThemeProvider';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { spacingValues } from '~/helpers/styles/spacingValues';
+import { getSpacingValues } from '~/helpers/styles/getSpacingValues';
 
 type IModifier = 'size';
 
@@ -31,6 +31,8 @@ export const boxRootClassName = style({
     },
   },
 });
+
+const spacingValues = getSpacingValues();
 
 const sprinklesProps = defineProperties({
   dynamicProperties: {

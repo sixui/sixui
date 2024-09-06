@@ -1,17 +1,27 @@
 import { defineProperties, createRainbowSprinkles } from 'rainbow-sprinkles';
-import { spacingValues } from '~/helpers/styles/spacingValues';
 
 import {
   componentThemeFactory,
   type IComponentThemeFactory,
 } from '~/utils/styles/componentThemeFactory';
+import { getDensity } from '~/helpers/styles/getDensity';
+import { px } from '~/helpers/styles/px';
+import { getSpacingValues } from '~/helpers/styles/getSpacingValues';
 import { createStyles } from '~/utils/styles/createStyles';
+import { createTheme } from '@vanilla-extract/css';
+
+const [tokensClassName, tokens] = createTheme({
+  density: px(getDensity({ min: -4, max: 0 })),
+});
 
 const classNames = createStyles({
   root: {
     display: 'flex',
   },
 });
+
+const spacingValues = getSpacingValues();
+const spacingValuesWithDensity = getSpacingValues(tokens.density);
 
 const sprinklesProps = defineProperties({
   dynamicProperties: {
@@ -22,15 +32,13 @@ const sprinklesProps = defineProperties({
   },
   staticProperties: {
     columnGap: spacingValues,
-    rowGap: spacingValues,
+    rowGap: spacingValuesWithDensity,
     gap: spacingValues,
   },
   shorthands: {
     align: ['alignItems'],
-    columnGap: ['columnGap'],
     direction: ['flexDirection'],
     justify: ['justifyContent'],
-    rowGap: ['rowGap'],
     wrap: ['flexWrap'],
   },
 });
@@ -44,9 +52,11 @@ export type IFlexSprinkles = Pick<
 
 export type IFlexThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
+  tokens: typeof tokens;
 }>;
 
 export const flexTheme = componentThemeFactory<IFlexThemeFactory>({
   classNames,
-  tokens: undefined,
+  tokensClassName,
+  tokens,
 });

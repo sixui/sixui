@@ -24,7 +24,17 @@ export const Flex = polymorphicComponentFactory<IFlexFactory>(
       props,
     });
 
-    const sprinkles = flexSprinkles(otherWithSprinkles);
+    const sprinkles = flexSprinkles({
+      ...otherWithSprinkles,
+      gap:
+        otherWithSprinkles.direction === 'column'
+          ? undefined
+          : otherWithSprinkles.gap,
+      rowGap:
+        otherWithSprinkles.direction === 'column'
+          ? (otherWithSprinkles.rowGap ?? otherWithSprinkles.gap)
+          : undefined,
+    });
     const other = sprinkles.otherProps;
 
     const { getStyles } = useComponentTheme<IFlexThemeFactory>({
