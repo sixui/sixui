@@ -13,6 +13,7 @@ import { space } from '~/helpers/styles/space';
 import { getDensity } from '~/helpers/styles/getDensity';
 import { px } from '~/helpers/styles/px';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
+import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { themeTokens } from '../ThemeProvider';
 import { PaperBase } from '../PaperBase';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
@@ -265,25 +266,42 @@ const classNames = createStyles({
     position: 'relative',
     writingMode: 'horizontal-tb',
     flexShrink: 0,
-    color: tokens.icon.color.normal,
+    color: fallbackVar(tokens.icon.color.normal, tokens.label.color.normal),
     fontSize: tokens.icon.size,
     inlineSize: tokens.icon.size,
     blockSize: tokens.icon.size,
 
     selectors: {
       [getModifierSelector<IModifier>('focused', root)]: {
-        color: fallbackVar(tokens.icon.color.focused, tokens.icon.color.normal),
+        color: fallbackVar(
+          tokens.icon.color.focused,
+          tokens.icon.color.normal,
+          tokens.label.color.focused,
+          tokens.label.color.normal,
+        ),
       },
       [getModifierSelector<IModifier>('hovered', root)]: {
-        color: fallbackVar(tokens.icon.color.hovered, tokens.icon.color.normal),
+        color: fallbackVar(
+          tokens.icon.color.hovered,
+          tokens.icon.color.normal,
+          tokens.label.color.hovered,
+          tokens.label.color.normal,
+        ),
       },
       [getModifierSelector<IModifier>('pressed', root)]: {
-        color: fallbackVar(tokens.icon.color.pressed, tokens.icon.color.normal),
+        color: fallbackVar(
+          tokens.icon.color.pressed,
+          tokens.icon.color.normal,
+          tokens.label.color.pressed,
+          tokens.label.color.normal,
+        ),
       },
       [getModifierSelector<IModifier>('disabled', root)]: {
         color: fallbackVar(
           tokens.icon.color.disabled,
           tokens.icon.color.normal,
+          tokens.label.color.disabled,
+          tokens.label.color.normal,
         ),
         opacity: tokens.icon.opacity.disabled,
       },
@@ -377,105 +395,152 @@ export const buttonTheme = componentThemeFactory<IButtonThemeFactory>({
 export const buttonThemeVariants = {
   elevated: createStyles({
     root: {
-      vars: {
-        [tokens.container.color.normal]:
-          themeTokens.colorScheme.surfaceContainerLow,
-        [tokens.container.color.disabled]: themeTokens.colorScheme.onSurface,
-        [tokens.container.elevation.normal]: elevationLevelPreset[1],
-        [tokens.container.elevation.focused]: elevationLevelPreset[1],
-        [tokens.container.elevation.hovered]: elevationLevelPreset[2],
-        [tokens.container.elevation.pressed]: elevationLevelPreset[1],
-        [tokens.container.elevation.disabled]: elevationLevelPreset[0],
-        [tokens.label.color.normal]: themeTokens.colorScheme.primary,
-        [tokens.label.color.disabled]: themeTokens.colorScheme.onSurface,
-        [tokens.icon.color.normal]: themeTokens.colorScheme.primary,
-        [tokens.icon.color.disabled]: themeTokens.colorScheme.onSurface,
-      },
+      vars: createTokensVars(tokens, {
+        container: {
+          color: {
+            normal: themeTokens.colorScheme.surfaceContainerLow,
+            disabled: themeTokens.colorScheme.onSurface,
+          },
+          elevation: {
+            normal: elevationLevelPreset[1],
+            focused: elevationLevelPreset[1],
+            hovered: elevationLevelPreset[2],
+            pressed: elevationLevelPreset[1],
+            disabled: elevationLevelPreset[0],
+          },
+        },
+        label: {
+          color: {
+            normal: themeTokens.colorScheme.primary,
+            disabled: themeTokens.colorScheme.onSurface,
+          },
+        },
+      }),
     },
   }),
   filled: createStyles({
     root: {
-      vars: {
-        [tokens.container.color.normal]: themeTokens.colorScheme.primary,
-        [tokens.container.color.disabled]: themeTokens.colorScheme.onSurface,
-        [tokens.container.elevation.hovered]: elevationLevelPreset[1],
-        [tokens.label.color.normal]: themeTokens.colorScheme.onPrimary,
-        [tokens.label.color.disabled]: themeTokens.colorScheme.onSurface,
-        [tokens.icon.color.normal]: themeTokens.colorScheme.onPrimary,
-        [tokens.icon.color.disabled]: themeTokens.colorScheme.onSurface,
-      },
+      vars: createTokensVars(tokens, {
+        container: {
+          color: {
+            normal: themeTokens.colorScheme.primary,
+            disabled: themeTokens.colorScheme.onSurface,
+          },
+          elevation: {
+            hovered: elevationLevelPreset[1],
+          },
+        },
+        label: {
+          color: {
+            normal: themeTokens.colorScheme.onPrimary,
+            disabled: themeTokens.colorScheme.onSurface,
+          },
+        },
+      }),
     },
   }),
   filledTonal: createStyles({
     root: {
-      vars: {
-        [tokens.container.color.normal]:
-          themeTokens.colorScheme.secondaryContainer,
-        [tokens.container.color.disabled]: themeTokens.colorScheme.onSurface,
-        [tokens.container.elevation.hovered]: elevationLevelPreset[1],
-        [tokens.label.color.normal]:
-          themeTokens.colorScheme.onSecondaryContainer,
-        [tokens.label.color.disabled]: themeTokens.colorScheme.onSurface,
-        [tokens.icon.color.normal]:
-          themeTokens.colorScheme.onSecondaryContainer,
-        [tokens.icon.color.disabled]: themeTokens.colorScheme.onSurface,
-      },
+      vars: createTokensVars(tokens, {
+        container: {
+          color: {
+            normal: themeTokens.colorScheme.secondaryContainer,
+            disabled: themeTokens.colorScheme.onSurface,
+          },
+          elevation: {
+            hovered: elevationLevelPreset[1],
+          },
+        },
+        label: {
+          color: {
+            normal: themeTokens.colorScheme.onSecondaryContainer,
+            disabled: themeTokens.colorScheme.onSurface,
+          },
+        },
+      }),
     },
   }),
   outlined: createStyles({
     root: {
-      vars: {
-        [tokens.label.color.normal]: themeTokens.colorScheme.primary,
-        [tokens.label.color.disabled]: themeTokens.colorScheme.onSurface,
-        [tokens.icon.color.normal]: themeTokens.colorScheme.primary,
-        [tokens.icon.color.disabled]: themeTokens.colorScheme.onSurface,
-        [tokens.outline.style]: 'solid',
-      },
+      vars: createTokensVars(tokens, {
+        label: {
+          color: {
+            normal: themeTokens.colorScheme.primary,
+            disabled: themeTokens.colorScheme.onSurface,
+          },
+        },
+        outline: {
+          style: 'solid',
+        },
+      }),
     },
   }),
   text: createStyles({
     root: {
-      vars: {
-        [tokens.leadingSpace.normal]: px(space(3)),
-        [tokens.leadingSpace.withLeadingIcon]: px(space(3)),
-        [tokens.leadingSpace.withTrailingIcon]: px(space(4)),
-        [tokens.trailingSpace.normal]: px(space(3)),
-        [tokens.trailingSpace.withLeadingIcon]: px(space(4)),
-        [tokens.trailingSpace.withTrailingIcon]: px(space(3)),
-        [tokens.label.color.normal]: themeTokens.colorScheme.primary,
-        [tokens.label.color.disabled]: themeTokens.colorScheme.onSurface,
-        [tokens.icon.color.normal]: themeTokens.colorScheme.primary,
-        [tokens.icon.color.disabled]: themeTokens.colorScheme.onSurface,
-      },
+      vars: createTokensVars(tokens, {
+        leadingSpace: {
+          normal: px(space(3)),
+          withLeadingIcon: px(space(3)),
+          withTrailingIcon: px(space(4)),
+        },
+        trailingSpace: {
+          normal: px(space(3)),
+          withLeadingIcon: px(space(4)),
+          withTrailingIcon: px(space(3)),
+        },
+        label: {
+          color: {
+            normal: themeTokens.colorScheme.primary,
+            disabled: themeTokens.colorScheme.onSurface,
+          },
+        },
+      }),
     },
   }),
   danger: createStyles({
     root: {
-      vars: {
-        [tokens.container.color.normal]: themeTokens.colorScheme.errorContainer,
-        [tokens.container.color.disabled]: themeTokens.colorScheme.onSurface,
-        [tokens.container.elevation.hovered]: elevationLevelPreset[1],
-        [tokens.label.color.normal]: themeTokens.colorScheme.onErrorContainer,
-        [tokens.label.color.disabled]: themeTokens.colorScheme.onSurface,
-        [tokens.icon.color.normal]: themeTokens.colorScheme.onErrorContainer,
-        [tokens.icon.color.disabled]: themeTokens.colorScheme.onSurface,
-      },
+      vars: createTokensVars(tokens, {
+        container: {
+          color: {
+            normal: themeTokens.colorScheme.errorContainer,
+            disabled: themeTokens.colorScheme.onSurface,
+          },
+          elevation: {
+            hovered: elevationLevelPreset[1],
+          },
+        },
+        label: {
+          color: {
+            normal: themeTokens.colorScheme.onErrorContainer,
+            disabled: themeTokens.colorScheme.onSurface,
+          },
+        },
+      }),
     },
   }),
   snackbar: createStyles({
     root: {
-      vars: {
-        [tokens.leadingSpace.normal]: px(space(4)),
-        [tokens.leadingSpace.withLeadingIcon]: px(space(3)),
-        [tokens.leadingSpace.withTrailingIcon]: px(space(4)),
-        [tokens.trailingSpace.normal]: px(space(4)),
-        [tokens.trailingSpace.withLeadingIcon]: px(space(4)),
-        [tokens.trailingSpace.withTrailingIcon]: px(space(3)),
-        [tokens.container.height]: px(32),
-        [tokens.container.shape]: px(themeTokens.shape.corner.xs),
-        [tokens.label.color.normal]: themeTokens.colorScheme.inversePrimary,
-        [tokens.icon.color.normal]: themeTokens.colorScheme.inversePrimary,
-      },
+      vars: createTokensVars(tokens, {
+        leadingSpace: {
+          normal: px(space(4)),
+          withLeadingIcon: px(space(3)),
+          withTrailingIcon: px(space(4)),
+        },
+        trailingSpace: {
+          normal: px(space(4)),
+          withLeadingIcon: px(space(4)),
+          withTrailingIcon: px(space(3)),
+        },
+        container: {
+          height: px(32),
+          shape: px(themeTokens.shape.corner.xs),
+        },
+        label: {
+          color: {
+            normal: themeTokens.colorScheme.inversePrimary,
+          },
+        },
+      }),
     },
   }),
 };

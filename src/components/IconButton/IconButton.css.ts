@@ -9,6 +9,7 @@ import { createStyles } from '~/utils/styles/createStyles';
 import { getDensity } from '~/helpers/styles/getDensity';
 import { px } from '~/helpers/styles/px';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
+import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { themeTokens } from '../ThemeProvider';
 import { Button } from '../Button';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
@@ -208,106 +209,202 @@ export const iconButtonTheme = componentThemeFactory<IIconButtonThemeFactory>({
 export const iconButtonThemeVariants = {
   standard: createStyles({
     root: {
-      vars: {
-        [tokens.icon.color.normal]: themeTokens.colorScheme.onSurfaceVariant,
-        [tokens.icon.color.disabled]: themeTokens.colorScheme.onSurface,
-        [tokens.toggleIcon.color.normal]:
-          themeTokens.colorScheme.onSurfaceVariant,
-        [tokens.toggleSelectedIcon.color.normal]:
-          themeTokens.colorScheme.primary,
-        [tokens.toggleSelectedStateLayer.color.hovered]:
-          themeTokens.colorScheme.onSurfaceVariant,
-        [tokens.toggleSelectedStateLayer.color.pressed]:
-          themeTokens.colorScheme.onSurfaceVariant,
-      },
+      vars: createTokensVars(tokens, {
+        icon: {
+          color: {
+            normal: themeTokens.colorScheme.onSurfaceVariant,
+            disabled: themeTokens.colorScheme.onSurface,
+          },
+        },
+        toggleIcon: {
+          color: {
+            normal: themeTokens.colorScheme.onSurfaceVariant,
+          },
+        },
+        toggleSelectedIcon: {
+          color: {
+            normal: themeTokens.colorScheme.primary,
+          },
+        },
+        toggleSelectedStateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.onSurfaceVariant,
+            pressed: themeTokens.colorScheme.onSurfaceVariant,
+          },
+        },
+      }),
     },
   }),
   filled: createStyles({
     root: {
-      vars: {
-        [tokens.container.color.normal]: themeTokens.colorScheme.primary,
-        [tokens.container.color.disabled]: themeTokens.colorScheme.onSurface,
-        [tokens.unselectedContainer.color.normal]:
-          themeTokens.colorScheme.surfaceContainerHighest,
-        [tokens.selectedContainer.color.normal]:
-          themeTokens.colorScheme.primary,
-        [tokens.icon.color.normal]: themeTokens.colorScheme.onPrimary,
-        [tokens.icon.color.disabled]: themeTokens.colorScheme.onSurface,
-        [tokens.toggleIcon.color.normal]: themeTokens.colorScheme.primary,
-        [tokens.toggleSelectedIcon.color.normal]:
-          themeTokens.colorScheme.onPrimary,
-      },
+      vars: createTokensVars(tokens, {
+        container: {
+          color: {
+            normal: themeTokens.colorScheme.primary,
+            disabled: themeTokens.colorScheme.onSurface,
+          },
+        },
+        unselectedContainer: {
+          color: {
+            normal: themeTokens.colorScheme.surfaceContainerHighest,
+          },
+        },
+        selectedContainer: {
+          color: {
+            normal: themeTokens.colorScheme.primary,
+          },
+        },
+        icon: {
+          color: {
+            normal: themeTokens.colorScheme.onPrimary,
+            disabled: themeTokens.colorScheme.onSurface,
+          },
+        },
+        toggleIcon: {
+          color: {
+            normal: themeTokens.colorScheme.primary,
+          },
+        },
+        toggleSelectedIcon: {
+          color: {
+            normal: themeTokens.colorScheme.onPrimary,
+          },
+        },
+      }),
     },
   }),
   filledTonal: createStyles({
     root: {
-      vars: {
-        [tokens.container.color.normal]:
-          themeTokens.colorScheme.secondaryContainer,
-        [tokens.container.color.disabled]: themeTokens.colorScheme.onSurface,
-        [tokens.unselectedContainer.color.normal]:
-          themeTokens.colorScheme.surfaceContainerHighest,
-        [tokens.selectedContainer.color.normal]:
-          themeTokens.colorScheme.secondaryContainer,
-        [tokens.icon.color.normal]:
-          themeTokens.colorScheme.onSecondaryContainer,
-        [tokens.icon.color.disabled]: themeTokens.colorScheme.onSurface,
-        [tokens.toggleIcon.color.normal]:
-          themeTokens.colorScheme.onSurfaceVariant,
-        [tokens.toggleSelectedIcon.color.normal]:
-          themeTokens.colorScheme.onSecondaryContainer,
-      },
+      vars: createTokensVars(tokens, {
+        container: {
+          color: {
+            normal: themeTokens.colorScheme.secondaryContainer,
+            disabled: themeTokens.colorScheme.onSurface,
+          },
+        },
+        unselectedContainer: {
+          color: {
+            normal: themeTokens.colorScheme.surfaceContainerHighest,
+          },
+        },
+        selectedContainer: {
+          color: {
+            normal: themeTokens.colorScheme.secondaryContainer,
+          },
+        },
+        icon: {
+          color: {
+            normal: themeTokens.colorScheme.onSecondaryContainer,
+            disabled: themeTokens.colorScheme.onSurface,
+          },
+        },
+        toggleIcon: {
+          color: {
+            normal: themeTokens.colorScheme.onSurfaceVariant,
+          },
+        },
+        toggleSelectedIcon: {
+          color: {
+            normal: themeTokens.colorScheme.onSecondaryContainer,
+          },
+        },
+      }),
     },
   }),
   outlined: createStyles({
     root: {
-      vars: {
-        [tokens.selectedContainer.color.normal]:
-          themeTokens.colorScheme.inverseSurface,
-        [tokens.selectedContainer.color.disabled]: 'transparent',
-        [tokens.icon.color.normal]: themeTokens.colorScheme.onSurfaceVariant,
-        [tokens.icon.color.disabled]: themeTokens.colorScheme.onSurface,
-        [tokens.toggleIcon.color.normal]:
-          themeTokens.colorScheme.onSurfaceVariant,
-        [tokens.toggleSelectedIcon.color.normal]:
-          themeTokens.colorScheme.inverseOnSurface,
-        [tokens.outline.style]: 'solid',
-      },
+      vars: createTokensVars(tokens, {
+        selectedContainer: {
+          color: {
+            normal: themeTokens.colorScheme.inverseSurface,
+            disabled: 'transparent',
+          },
+        },
+        icon: {
+          color: {
+            normal: themeTokens.colorScheme.onSurfaceVariant,
+            disabled: themeTokens.colorScheme.onSurface,
+          },
+        },
+        toggleIcon: {
+          color: {
+            normal: themeTokens.colorScheme.onSurfaceVariant,
+          },
+        },
+        toggleSelectedIcon: {
+          color: {
+            normal: themeTokens.colorScheme.inverseOnSurface,
+          },
+        },
+        outline: {
+          style: 'solid',
+        },
+      }),
     },
   }),
   danger: createStyles({
     root: {
-      vars: {
-        [tokens.container.color.normal]: themeTokens.colorScheme.errorContainer,
-        [tokens.container.color.disabled]: themeTokens.colorScheme.onSurface,
-        [tokens.unselectedContainer.color.normal]:
-          themeTokens.colorScheme.surfaceContainerHighest,
-        [tokens.unselectedContainer.color.disabled]:
-          themeTokens.colorScheme.onSurface,
-        [tokens.selectedContainer.color.normal]:
-          themeTokens.colorScheme.errorContainer,
-        [tokens.selectedContainer.color.disabled]:
-          themeTokens.colorScheme.onSurface,
-        [tokens.icon.color.normal]: themeTokens.colorScheme.onErrorContainer,
-        [tokens.icon.color.disabled]: themeTokens.colorScheme.onSurface,
-        [tokens.toggleIcon.color.normal]:
-          themeTokens.colorScheme.onErrorContainer,
-        [tokens.toggleSelectedIcon.color.normal]:
-          themeTokens.colorScheme.onErrorContainer,
-      },
+      vars: createTokensVars(tokens, {
+        container: {
+          color: {
+            normal: themeTokens.colorScheme.errorContainer,
+            disabled: themeTokens.colorScheme.onSurface,
+          },
+        },
+        unselectedContainer: {
+          color: {
+            normal: themeTokens.colorScheme.surfaceContainerHighest,
+            disabled: themeTokens.colorScheme.onSurface,
+          },
+        },
+        selectedContainer: {
+          color: {
+            normal: themeTokens.colorScheme.errorContainer,
+            disabled: themeTokens.colorScheme.onSurface,
+          },
+        },
+        icon: {
+          color: {
+            normal: themeTokens.colorScheme.onErrorContainer,
+            disabled: themeTokens.colorScheme.onSurface,
+          },
+        },
+        toggleIcon: {
+          color: {
+            normal: themeTokens.colorScheme.onErrorContainer,
+          },
+        },
+        toggleSelectedIcon: {
+          color: {
+            normal: themeTokens.colorScheme.onErrorContainer,
+          },
+        },
+      }),
     },
   }),
   snackbar: createStyles({
     root: {
-      vars: {
-        [tokens.container.size]: px(32),
-        [tokens.icon.color.normal]: themeTokens.colorScheme.inverseOnSurface,
-        [tokens.icon.color.disabled]: themeTokens.colorScheme.onSurface,
-        [tokens.toggleIcon.color.normal]:
-          themeTokens.colorScheme.inverseOnSurface,
-        [tokens.toggleSelectedIcon.color.normal]:
-          themeTokens.colorScheme.inverseOnSurface,
-      },
+      vars: createTokensVars(tokens, {
+        container: {
+          size: px(32),
+        },
+        icon: {
+          color: {
+            normal: themeTokens.colorScheme.inverseOnSurface,
+            disabled: themeTokens.colorScheme.onSurface,
+          },
+        },
+        toggleIcon: {
+          color: {
+            normal: themeTokens.colorScheme.inverseOnSurface,
+          },
+        },
+        toggleSelectedIcon: {
+          color: {
+            normal: themeTokens.colorScheme.inverseOnSurface,
+          },
+        },
+      }),
     },
   }),
 };

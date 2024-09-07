@@ -8,6 +8,7 @@ import {
 import { createStyles } from '~/utils/styles/createStyles';
 import { px } from '~/helpers/styles/px';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
+import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { space } from '~/helpers/styles/space';
 import { themeTokens } from '../ThemeProvider';
 import { Button } from '../Button';
@@ -190,37 +191,37 @@ export const fabTheme = componentThemeFactory<IFabThemeFactory>({
 export const fabThemeVariants = {
   surface: createStyles({
     root: {
-      vars: {
+      vars: createTokensVars(tokens, {
         // TODO:
-      },
+      }),
     },
   }),
   primary: createStyles({
     root: {
-      vars: {
+      vars: createTokensVars(tokens, {
         // TODO:
-      },
+      }),
     },
   }),
   secondary: createStyles({
     root: {
-      vars: {
+      vars: createTokensVars(tokens, {
         // TODO:
-      },
+      }),
     },
   }),
   tertiary: createStyles({
     root: {
-      vars: {
+      vars: createTokensVars(tokens, {
         // TODO:
-      },
+      }),
     },
   }),
   branded: createStyles({
     root: {
-      vars: {
+      vars: createTokensVars(tokens, {
         // TODO:
-      },
+      }),
     },
   }),
 };
