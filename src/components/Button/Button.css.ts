@@ -25,8 +25,7 @@ type IModifier =
   | 'loading'
   | 'with-leading-icon'
   | 'with-trailing-icon'
-  | 'icon-animation'
-  | 'size';
+  | 'icon-animation';
 
 const [tokensClassName, tokens] = createTheme({
   density: px(getDensity({ min: -4, max: 0 })),
@@ -122,22 +121,27 @@ const halfSpinKeyframes = keyframes({
 
 const classNames = createStyles({
   root: {
-    vars: {
-      [PaperBase.theme.tokens.container.color.normal]:
-        tokens.container.color.normal,
-      [PaperBase.theme.tokens.container.color.disabled]: fallbackVar(
-        tokens.container.color.disabled,
-        tokens.container.color.normal,
-      ),
-      [PaperBase.theme.tokens.container.opacity.disabled]:
-        tokens.container.opacity.disabled,
-      [PaperBase.theme.tokens.container.elevation.normal]:
-        tokens.container.elevation.normal,
-      [PaperBase.theme.tokens.container.elevation.disabled]: fallbackVar(
-        tokens.container.elevation.disabled,
-        tokens.container.elevation.normal,
-      ),
-    },
+    vars: createTokensVars(PaperBase.theme.tokens, {
+      container: {
+        color: {
+          normal: tokens.container.color.normal,
+          disabled: fallbackVar(
+            tokens.container.color.disabled,
+            tokens.container.color.normal,
+          ),
+        },
+        opacity: {
+          disabled: tokens.container.opacity.disabled,
+        },
+        elevation: {
+          normal: tokens.container.elevation.normal,
+          disabled: fallbackVar(
+            tokens.container.elevation.disabled,
+            tokens.container.elevation.normal,
+          ),
+        },
+      },
+    }),
 
     borderRadius: tokens.container.shape,
     cursor: 'pointer',
@@ -180,36 +184,52 @@ const classNames = createStyles({
         cursor: 'default',
       },
       [getModifierSelector<IModifier>('focused')]: {
-        vars: {
-          [PaperBase.theme.tokens.container.elevation.normal]: fallbackVar(
-            tokens.container.elevation.focused,
-            tokens.container.elevation.normal,
-          ),
-        },
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            elevation: {
+              normal: fallbackVar(
+                tokens.container.elevation.focused,
+                tokens.container.elevation.normal,
+              ),
+            },
+          },
+        }),
       },
       [getModifierSelector<IModifier>('hovered')]: {
-        vars: {
-          [PaperBase.theme.tokens.container.elevation.normal]: fallbackVar(
-            tokens.container.elevation.hovered,
-            tokens.container.elevation.normal,
-          ),
-        },
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            elevation: {
+              normal: fallbackVar(
+                tokens.container.elevation.hovered,
+                tokens.container.elevation.normal,
+              ),
+            },
+          },
+        }),
       },
       [getModifierSelector<IModifier>('pressed')]: {
-        vars: {
-          [PaperBase.theme.tokens.container.elevation.normal]: fallbackVar(
-            tokens.container.elevation.pressed,
-            tokens.container.elevation.normal,
-          ),
-        },
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            elevation: {
+              normal: fallbackVar(
+                tokens.container.elevation.pressed,
+                tokens.container.elevation.normal,
+              ),
+            },
+          },
+        }),
       },
       [getModifierSelector<IModifier>('loading')]: {
-        vars: {
-          [PaperBase.theme.tokens.container.elevation.normal]: fallbackVar(
-            tokens.container.elevation.pressed,
-            tokens.container.elevation.normal,
-          ),
-        },
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            elevation: {
+              disabled: fallbackVar(
+                tokens.container.elevation.pressed,
+                tokens.container.elevation.normal,
+              ),
+            },
+          },
+        }),
       },
       [getModifierSelector<IModifier>('with-leading-icon')]: {
         paddingInlineStart: tokens.leadingSpace.withLeadingIcon,

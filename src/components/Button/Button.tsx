@@ -57,15 +57,6 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
         ? loadingAnimation
         : undefined;
 
-    const modifiers = {
-      disabled: disabledOrReadOnly,
-      loading,
-      'with-leading-icon': hasLeadingIcon,
-      'with-trailing-icon': hasTrailingIcon,
-      'with-overlay': hasOverlay,
-      'icon-animation': iconAnimation,
-    };
-
     const { getStyles } = useComponentTheme<IButtonThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
@@ -75,7 +66,13 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       theme: buttonTheme,
       themeVariants: buttonThemeVariants,
       variant,
-      modifiers,
+      modifiers: {
+        disabled: disabledOrReadOnly,
+        loading,
+        'with-leading-icon': hasLeadingIcon,
+        'with-trailing-icon': hasTrailingIcon,
+        'icon-animation': iconAnimation,
+      },
     });
 
     const handleAnimationIteration = (): void => setAnimating(handlingPress);

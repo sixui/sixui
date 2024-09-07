@@ -57,15 +57,6 @@ export const Text = polymorphicComponentFactory<ITextFactory>(
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const modifiers = {
-      dimmed,
-      truncate,
-      ['line-clamp']: lineClamp,
-      ['gutter-bottom']: gutterBottom,
-      variant,
-      size,
-    };
-
     const { getStyles } = useComponentTheme<ITextThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
@@ -74,7 +65,14 @@ export const Text = polymorphicComponentFactory<ITextFactory>(
       style,
       theme: textTheme,
       variant,
-      modifiers,
+      modifiers: {
+        dimmed,
+        truncate,
+        ['line-clamp']: lineClamp,
+        ['gutter-bottom']: gutterBottom,
+        variant,
+        size,
+      },
     });
 
     const rootElement = as ?? textTagMap[variant][size];

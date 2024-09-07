@@ -35,6 +35,7 @@ const classNames = createStyles({
     '::before': {
       // This is the background color of the ripple.
 
+      pointerEvents: 'none',
       borderRadius: 'inherit',
       content: '',
       opacity: 0,
@@ -44,6 +45,7 @@ const classNames = createStyles({
     '::after': {
       // This is the ripple animation.
 
+      pointerEvents: 'none',
       borderRadius: 'inherit',
       content: '',
       opacity: 0,

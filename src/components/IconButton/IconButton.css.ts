@@ -107,8 +107,6 @@ const [tokensClassName, tokens] = createTheme({
   },
 });
 
-const buttonTokens = Button.theme.tokens;
-
 const classNames = createStyles({
   root: {
     width: tokens.container.size,
@@ -145,14 +143,14 @@ const classNames = createStyles({
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>({ toggle: true })]: {
+      [getModifierSelector<IModifier>('toggle')]: {
         vars: createTokensVars(Button.theme.tokens, {
           stateLayer: tokens.toggleStateLayer,
           container: tokens.unselectedContainer,
           icon: tokens.toggleIcon,
         }),
       },
-      [getModifierSelector<IModifier>({ toggle: true, selected: true })]: {
+      [getModifierSelector<IModifier>(['toggle', 'selected'])]: {
         vars: createTokensVars(Button.theme.tokens, {
           stateLayer: tokens.toggleSelectedStateLayer,
           container: tokens.selectedContainer,

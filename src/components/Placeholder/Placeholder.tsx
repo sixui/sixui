@@ -26,11 +26,6 @@ export const Placeholder = polymorphicComponentFactory<IPlaceholderFactory>(
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const modifiers = {
-      crosshairs,
-      disabled,
-    };
-
     const { getStyles } = useComponentTheme<IPlaceholderThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
@@ -39,7 +34,9 @@ export const Placeholder = polymorphicComponentFactory<IPlaceholderFactory>(
       style,
       theme: placeholderTheme,
       variant,
-      modifiers,
+      modifiers: {
+        disabled,
+      },
     });
 
     return (
