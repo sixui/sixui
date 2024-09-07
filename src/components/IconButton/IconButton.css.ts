@@ -114,80 +114,50 @@ const classNames = createStyles({
     width: tokens.container.size,
     flexShrink: 0,
 
-    vars: {
-      [buttonTokens.leadingSpace.normal]: '0px',
-      [buttonTokens.trailingSpace.normal]: '0px',
-      [buttonTokens.leadingSpace.withLeadingIcon]: '0px',
-      [buttonTokens.leadingSpace.withTrailingIcon]: '0px',
-      [buttonTokens.trailingSpace.withLeadingIcon]: '0px',
-      [buttonTokens.trailingSpace.withTrailingIcon]: '0px',
-      [buttonTokens.container.elevation.normal]: elevationLevelPreset[0],
-      [buttonTokens.container.minWidth]: tokens.container.size,
-      [buttonTokens.container.height]: tokens.container.size,
-      [buttonTokens.container.shape]: tokens.container.shape,
-      [buttonTokens.container.opacity.disabled]:
-        tokens.container.opacity.disabled,
-      [buttonTokens.container.color.normal]: tokens.container.color.normal,
-      [buttonTokens.container.color.disabled]: tokens.container.color.disabled,
-      [buttonTokens.icon.size]: tokens.icon.size,
-      [buttonTokens.label.typography.lineHeight]: tokens.icon.size,
-      [buttonTokens.icon.color.disabled]: tokens.icon.color.disabled,
-      [buttonTokens.icon.opacity.disabled]: tokens.icon.opacity.disabled,
-      [buttonTokens.stateLayer.color.hovered]: tokens.stateLayer.color.hovered,
-      [buttonTokens.stateLayer.color.pressed]: tokens.stateLayer.color.pressed,
-      [buttonTokens.stateLayer.opacity.hovered]:
-        tokens.stateLayer.opacity.hovered,
-      [buttonTokens.stateLayer.opacity.pressed]:
-        tokens.stateLayer.opacity.pressed,
-      [buttonTokens.icon.color.normal]: tokens.icon.color.normal,
-      [buttonTokens.icon.color.hovered]: tokens.icon.color.hovered,
-      [buttonTokens.icon.color.focused]: tokens.icon.color.focused,
-      [buttonTokens.icon.color.pressed]: tokens.icon.color.pressed,
-      [buttonTokens.outline.style]: tokens.outline.style,
-      [buttonTokens.outline.width]: tokens.outline.width,
-      [buttonTokens.outline.color.normal]: tokens.outline.color.normal,
-      [buttonTokens.outline.color.disabled]: tokens.outline.color.disabled,
-      [buttonTokens.outline.opacity.disabled]: tokens.outline.opacity.disabled,
-      [buttonTokens.outline.color.focused]: tokens.outline.color.focused,
-      [buttonTokens.outline.color.pressed]: tokens.outline.color.pressed,
-    },
+    vars: createTokensVars(Button.theme.tokens, {
+      leadingSpace: {
+        normal: '0px',
+        withLeadingIcon: '0px',
+        withTrailingIcon: '0px',
+      },
+      trailingSpace: {
+        normal: '0px',
+        withLeadingIcon: '0px',
+        withTrailingIcon: '0px',
+      },
+      container: {
+        elevation: {
+          normal: elevationLevelPreset[0],
+        },
+        minWidth: tokens.container.size,
+        height: tokens.container.size,
+        shape: tokens.container.shape,
+        opacity: tokens.container.opacity,
+        color: tokens.container.color,
+      },
+      label: {
+        typography: {
+          lineHeight: tokens.icon.size,
+        },
+      },
+      icon: tokens.icon,
+      outline: tokens.outline,
+    }),
 
     selectors: {
       [getModifierSelector<IModifier>({ toggle: true })]: {
-        vars: {
-          [buttonTokens.stateLayer.color.hovered]:
-            tokens.toggleStateLayer.color.hovered,
-          [buttonTokens.stateLayer.color.pressed]:
-            tokens.toggleStateLayer.color.pressed,
-          [buttonTokens.container.color.normal]:
-            tokens.unselectedContainer.color.normal,
-          [buttonTokens.container.color.disabled]:
-            tokens.unselectedContainer.color.disabled,
-          [buttonTokens.icon.color.normal]: tokens.toggleIcon.color.normal,
-          [buttonTokens.icon.color.hovered]: tokens.toggleIcon.color.hovered,
-          [buttonTokens.icon.color.focused]: tokens.toggleIcon.color.focused,
-          [buttonTokens.icon.color.pressed]: tokens.toggleIcon.color.pressed,
-        },
+        vars: createTokensVars(Button.theme.tokens, {
+          stateLayer: tokens.toggleStateLayer,
+          container: tokens.unselectedContainer,
+          icon: tokens.toggleIcon,
+        }),
       },
       [getModifierSelector<IModifier>({ toggle: true, selected: true })]: {
-        vars: {
-          [buttonTokens.stateLayer.color.hovered]:
-            tokens.toggleSelectedStateLayer.color.hovered,
-          [buttonTokens.stateLayer.color.pressed]:
-            tokens.toggleSelectedStateLayer.color.pressed,
-          [buttonTokens.container.color.normal]:
-            tokens.selectedContainer.color.normal,
-          [buttonTokens.container.color.disabled]:
-            tokens.selectedContainer.color.disabled,
-          [buttonTokens.icon.color.normal]:
-            tokens.toggleSelectedIcon.color.normal,
-          [buttonTokens.icon.color.hovered]:
-            tokens.toggleSelectedIcon.color.hovered,
-          [buttonTokens.icon.color.focused]:
-            tokens.toggleSelectedIcon.color.focused,
-          [buttonTokens.icon.color.pressed]:
-            tokens.toggleSelectedIcon.color.pressed,
-        },
+        vars: createTokensVars(Button.theme.tokens, {
+          stateLayer: tokens.toggleSelectedStateLayer,
+          container: tokens.selectedContainer,
+          icon: tokens.toggleSelectedIcon,
+        }),
       },
     },
   },
