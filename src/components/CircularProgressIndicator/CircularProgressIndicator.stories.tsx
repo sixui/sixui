@@ -41,10 +41,10 @@ export const Variants: IStory = {
 };
 
 const CircularProgressIndicatorWithTextShowcase = makeComponentShowcase(
-  ({ fz, ...other }: ICircularProgressIndicatorProps) => (
-    <Text fz={fz}>
-      {fz} <CircularProgressIndicator {...other} />{' '}
-      <CircularProgressIndicator {...other} value={0.75} />
+  (props: ICircularProgressIndicatorProps) => (
+    <Text as='div'>
+      <CircularProgressIndicator {...props} />{' '}
+      <CircularProgressIndicator {...props} value={0.75} />
     </Text>
   ),
 );

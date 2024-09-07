@@ -53,12 +53,12 @@ export const decorators: Array<Decorator> = [
           tokens: {
             colorScheme: {
               light: {
-                primaryContainer: 'blue',
-                onPrimaryContainer: 'white',
+                // primaryContainer: 'blue',
+                // onPrimaryContainer: 'white',
               },
               dark: {
-                primaryContainer: 'green',
-                onPrimaryContainer: 'white',
+                // primaryContainer: 'green',
+                // onPrimaryContainer: 'white',
               },
             },
           },

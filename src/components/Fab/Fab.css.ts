@@ -1,4 +1,4 @@
-import { createTheme } from '@vanilla-extract/css';
+import { createTheme, fallbackVar } from '@vanilla-extract/css';
 
 import type { IFabVariant } from './Fab.types';
 import {
@@ -150,13 +150,31 @@ const classNames = createStyles({
         vars: createTokensVars(Button.theme.tokens, {
           container: {
             elevation: {
-              normal: tokens.container.elevation.normal.lowered,
-              focused: tokens.container.elevation.focused.lowered,
-              hovered: tokens.container.elevation.hovered.lowered,
-              pressed: tokens.container.elevation.pressed.lowered,
+              normal: fallbackVar(
+                tokens.container.elevation.normal.lowered,
+                tokens.container.elevation.normal.regular,
+              ),
+              focused: fallbackVar(
+                tokens.container.elevation.focused.lowered,
+                tokens.container.elevation.normal.lowered,
+                tokens.container.elevation.focused.regular,
+              ),
+              hovered: fallbackVar(
+                tokens.container.elevation.hovered.lowered,
+                tokens.container.elevation.normal.lowered,
+                tokens.container.elevation.hovered.regular,
+              ),
+              pressed: fallbackVar(
+                tokens.container.elevation.pressed.lowered,
+                tokens.container.elevation.normal.lowered,
+                tokens.container.elevation.pressed.regular,
+              ),
             },
             color: {
-              normal: tokens.container.color.normal.lowered,
+              normal: fallbackVar(
+                tokens.container.color.normal.lowered,
+                tokens.container.color.normal.regular,
+              ),
             },
           },
         }),
@@ -201,28 +219,76 @@ export const fabThemeVariants = {
   primary: createStyles({
     root: {
       vars: createTokensVars(tokens, {
-        // TODO:
+        container: {
+          color: {
+            normal: {
+              regular: themeTokens.colorScheme.primaryContainer,
+            },
+          },
+        },
+        label: {
+          color: {
+            normal: themeTokens.colorScheme.onPrimaryContainer,
+          },
+        },
       }),
     },
   }),
   secondary: createStyles({
     root: {
       vars: createTokensVars(tokens, {
-        // TODO:
+        container: {
+          color: {
+            normal: {
+              regular: themeTokens.colorScheme.secondaryContainer,
+            },
+          },
+        },
+        label: {
+          color: {
+            normal: themeTokens.colorScheme.onSecondaryContainer,
+          },
+        },
       }),
     },
   }),
   tertiary: createStyles({
     root: {
       vars: createTokensVars(tokens, {
-        // TODO:
+        container: {
+          color: {
+            normal: {
+              regular: themeTokens.colorScheme.tertiaryContainer,
+            },
+          },
+        },
+        label: {
+          color: {
+            normal: themeTokens.colorScheme.onTertiaryContainer,
+          },
+        },
       }),
     },
   }),
   branded: createStyles({
     root: {
       vars: createTokensVars(tokens, {
-        // TODO:
+        container: {
+          color: {
+            normal: {
+              regular: themeTokens.colorScheme.surfaceContainerHigh,
+              lowered: themeTokens.colorScheme.surfaceContainerLow,
+            },
+          },
+        },
+        label: {
+          color: {
+            normal: themeTokens.colorScheme.primary,
+          },
+        },
+        icon: {
+          size: px(36),
+        },
       }),
     },
   }),

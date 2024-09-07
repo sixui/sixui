@@ -179,7 +179,7 @@ export const Branded: IStory = {
   args: {
     ...defaultArgs,
     variant: 'branded',
-    children: svgColorIcon,
+    icon: svgColorIcon,
   },
 };
 
