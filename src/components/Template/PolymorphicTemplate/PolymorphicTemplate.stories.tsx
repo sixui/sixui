@@ -1,6 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IPolymorphicTemplateProps } from './PolymorphicTemplate.types';
+import {
+  makeComponentShowcase,
+  type IComponentPresentation,
+} from '../../ComponentShowcase';
 import { PolymorphicTemplate } from './PolymorphicTemplate';
 
 const meta = {
@@ -13,17 +17,23 @@ const defaultArgs = {
   children: 'PolymorphicTemplate',
 } satisfies Partial<IPolymorphicTemplateProps>;
 
-export const Basic: IStory = {
-  render: (props) => <PolymorphicTemplate {...props} />,
-  args: defaultArgs,
-};
+const variants: Array<IComponentPresentation<IPolymorphicTemplateProps>> = [
+  { legend: 'None', props: { variant: false } },
+  { legend: 'Primary', props: { variant: 'primary' } },
+];
 
-export const AsHeader: IStory = {
-  render: (props) => <PolymorphicTemplate {...props} />,
-  args: {
-    ...defaultArgs,
-    component: 'h1',
-  },
+const states: Array<IComponentPresentation<IPolymorphicTemplateProps>> = [
+  { legend: 'Normal' },
+  { legend: 'Disabled', props: { disabled: true } },
+];
+
+const PolymorphicTemplateShowcase = makeComponentShowcase(PolymorphicTemplate);
+
+export const Basic: IStory = {
+  render: (props) => (
+    <PolymorphicTemplateShowcase props={props} cols={states} rows={variants} />
+  ),
+  args: defaultArgs,
 };
 
 export default meta;

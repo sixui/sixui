@@ -1,6 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IBasicTemplateProps } from './BasicTemplate.types';
+import {
+  makeComponentShowcase,
+  type IComponentPresentation,
+} from '../../ComponentShowcase';
 import { BasicTemplate } from './BasicTemplate';
 
 const meta = {
@@ -13,8 +17,22 @@ const defaultArgs = {
   children: 'BasicTemplate',
 } satisfies Partial<IBasicTemplateProps>;
 
+const variants: Array<IComponentPresentation<IBasicTemplateProps>> = [
+  { legend: 'None', props: { variant: false } },
+  { legend: 'Primary', props: { variant: 'primary' } },
+];
+
+const states: Array<IComponentPresentation<IBasicTemplateProps>> = [
+  { legend: 'Normal' },
+  { legend: 'Disabled', props: { disabled: true } },
+];
+
+const BasicTemplateShowcase = makeComponentShowcase(BasicTemplate);
+
 export const Basic: IStory = {
-  render: (props) => <BasicTemplate {...props} />,
+  render: (props) => (
+    <BasicTemplateShowcase props={props} cols={states} rows={variants} />
+  ),
   args: defaultArgs,
 };
 

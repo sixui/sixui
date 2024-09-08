@@ -1,27 +1,50 @@
-import { forwardRef } from 'react';
+import type { IBasicTemplateFactory } from './BasicTemplate.types';
+import { componentFactory } from '~/utils/component/componentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { Box } from '../../Box';
+import {
+  polymorphicTemplateTheme,
+  polymorphicTemplateThemeVariants,
+  type IBasicTemplateThemeFactory,
+} from './BasicTemplate.css';
 
-import type { IBasicTemplateProps } from './BasicTemplate.types';
-import { useStyles } from '~/hooks/useStyles';
-import { Base } from '~/components/Base';
-import { basicTemplateStyles } from './BasicTemplate.styles';
+const COMPONENT_NAME = 'BasicTemplate';
 
-export const BasicTemplate = forwardRef<HTMLDivElement, IBasicTemplateProps>(
-  function BasicTemplate(props, forwardedRef) {
-    const { styles, sx, children, ...other } = props;
+export const BasicTemplate = componentFactory<IBasicTemplateFactory>(
+  (props, forwardedRef) => {
+    const {
+      classNames,
+      className,
+      styles,
+      style,
+      variant = 'primary',
+      children,
+      disabled,
+      ...other
+    } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const { combineStyles, globalStyles } = useStyles({
-      componentName: 'BasicTemplate',
-      styles: [basicTemplateStyles, styles],
+    const { getStyles } = useComponentTheme<IBasicTemplateThemeFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles,
+      style,
+      theme: polymorphicTemplateTheme,
+      themeVariants: polymorphicTemplateThemeVariants,
+      variant,
+      modifiers: {
+        disabled,
+      },
     });
 
     return (
-      <Base
-        {...other}
-        sx={[globalStyles, combineStyles('host'), sx]}
-        ref={forwardedRef}
-      >
+      <Box {...other} {...getStyles('root')} ref={forwardedRef}>
         {children}
-      </Base>
+      </Box>
     );
   },
 );
+
+BasicTemplate.theme = polymorphicTemplateTheme;
+BasicTemplate.displayName = `@sixui/${COMPONENT_NAME}`;

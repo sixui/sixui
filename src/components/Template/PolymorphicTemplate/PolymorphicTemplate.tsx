@@ -1,39 +1,53 @@
-import { forwardRef } from 'react';
+import type { IPolymorphicTemplateFactory } from './PolymorphicTemplate.types';
+import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { Box } from '../../Box';
+import {
+  polymorphicTemplateTheme,
+  polymorphicTemplateThemeVariants,
+  type IPolymorphicTemplateThemeFactory,
+} from './PolymorphicTemplate.css';
 
-import type { IPolymorphicTemplateProps } from './PolymorphicTemplate.types';
-import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
-import { useStyles } from '~/hooks/useStyles';
-import { Base } from '~/components/Base';
-import { polymorphicTemplateTheme } from './PolymorphicTemplate.stylex';
-import { polymorphicTemplateStyles } from './PolymorphicTemplate.styles';
+const COMPONENT_NAME = 'PolymorphicTemplate';
 
-export const PolymorphicTemplate = createPolymorphicComponent<
-  'div',
-  IPolymorphicTemplateProps
->(
-  forwardRef<HTMLDivElement, IPolymorphicTemplateProps>(
-    function PolymorphicTemplate(props, forwardedRef) {
-      const { styles, sx, children, ...other } = props;
+export const PolymorphicTemplate =
+  polymorphicComponentFactory<IPolymorphicTemplateFactory>(
+    (props, forwardedRef) => {
+      const {
+        classNames,
+        className,
+        styles,
+        style,
+        variant = 'primary',
+        children,
+        disabled,
+        ...other
+      } = useProps({ componentName: COMPONENT_NAME, props });
 
-      const { combineStyles, globalStyles } = useStyles({
-        componentName: 'PolymorphicTemplate',
-        styles: [polymorphicTemplateStyles, styles],
-      });
+      const { getStyles } = useComponentTheme<IPolymorphicTemplateThemeFactory>(
+        {
+          componentName: COMPONENT_NAME,
+          classNames,
+          className,
+          styles,
+          style,
+          theme: polymorphicTemplateTheme,
+          themeVariants: polymorphicTemplateThemeVariants,
+          variant,
+          modifiers: {
+            disabled,
+          },
+        },
+      );
 
       return (
-        <Base
-          {...other}
-          sx={[
-            polymorphicTemplateTheme,
-            globalStyles,
-            combineStyles('host'),
-            sx,
-          ]}
-          ref={forwardedRef}
-        >
+        <Box {...other} {...getStyles('root')} ref={forwardedRef}>
           {children}
-        </Base>
+        </Box>
       );
     },
-  ),
-);
+  );
+
+PolymorphicTemplate.theme = polymorphicTemplateTheme;
+PolymorphicTemplate.displayName = `@sixui/${COMPONENT_NAME}`;
