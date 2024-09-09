@@ -4,7 +4,7 @@ import type { IBoxProps } from '../Box';
 import type { IPaperOwnProps } from '../Paper';
 import type { avatarTheme, IAvatarThemeFactory } from './Avatar.css';
 
-export type IAvatarOwnprops = IPaperOwnProps & {
+export interface IAvatarOwnProps extends IPaperOwnProps {
   src?: string;
   alt?: string;
   slotProps?: {
@@ -19,12 +19,12 @@ export type IAvatarOwnprops = IPaperOwnProps & {
 
   fallbackToRandomColor?: boolean;
   randomColorSourceString?: string;
-};
+}
 
 export interface IAvatarProps
   extends IBoxProps,
     IComponentThemeProps<IAvatarThemeFactory>,
-    IAvatarOwnprops {}
+    IAvatarOwnProps {}
 
 export type IAvatarFactory = IPolymorphicComponentFactory<{
   props: IAvatarProps;

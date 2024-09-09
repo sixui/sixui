@@ -1,11 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
 
 import type { IItemProps } from './Item.types';
-import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { outlineTokens } from '~/themes/base/outline.stylex';
-import { scaleTokens } from '~/themes/base/scale.stylex';
-import { ComponentShowcase } from '../ComponentShowcase';
+import { makeComponentShowcase } from '../ComponentShowcase';
+import { Paper } from '../Paper';
 import { Item } from './Item';
 
 // https://m3.material.io/components/items/overview
@@ -21,76 +18,89 @@ type IStory = StoryObj<typeof meta>;
 const LOREM$XS = 'Lorem ipsum dolor sit amet.';
 const LOREM$SM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
 
-const styles = stylex.create({
-  host: {
-    outlineWidth: outlineTokens.width$xs,
-    outlineStyle: 'dashed',
-    outlineColor: colorSchemeTokens.outlineVariant,
-  },
-  host$fixedWidth$sm: {
-    width: `calc(320px * ${scaleTokens.scale})`,
-  },
-  host$fixedWidth$xs: {
-    width: `calc(160px * ${scaleTokens.scale})`,
-  },
-  slot: {
-    display: 'flex',
-    flexGrow: 1,
-  },
-  slot$start: {
-    backgroundColor: colorSchemeTokens.surfaceContainer,
-  },
-  slot$overline: {
-    backgroundColor: colorSchemeTokens.surfaceContainer,
-  },
-  slot$headline: {
-    backgroundColor: colorSchemeTokens.primaryContainer,
-    color: colorSchemeTokens.onPrimaryContainer,
-  },
-  slot$supportingText: {
-    backgroundColor: colorSchemeTokens.surfaceContainer,
-  },
-  slot$trailingSupportingText: {
-    backgroundColor: colorSchemeTokens.surfaceContainer,
-  },
-  slot$end: {
-    backgroundColor: colorSchemeTokens.surfaceContainer,
-  },
-});
+// const styles = stylex.create({
+//   host: {
+//     outlineWidth: outlineTokens.width$xs,
+//     outlineStyle: 'dashed',
+//     outlineColor: colorSchemeTokens.outlineVariant,
+//   },
+//   host$fixedWidth$sm: {
+//     width: `calc(320px * ${scaleTokens.scale})`,
+//   },
+//   host$fixedWidth$xs: {
+//     width: `calc(160px * ${scaleTokens.scale})`,
+//   },
+//   slot: {
+//     display: 'flex',
+//     flexGrow: 1,
+//   },
+//   slot$start: {
+//     backgroundColor: colorSchemeTokens.surfaceContainer,
+//   },
+//   slot$overline: {
+//     backgroundColor: colorSchemeTokens.surfaceContainer,
+//   },
+//   slot$headline: {
+//     backgroundColor: colorSchemeTokens.primaryContainer,
+//     color: colorSchemeTokens.onPrimaryContainer,
+//   },
+//   slot$supportingText: {
+//     backgroundColor: colorSchemeTokens.surfaceContainer,
+//   },
+//   slot$trailingSupportingText: {
+//     backgroundColor: colorSchemeTokens.surfaceContainer,
+//   },
+//   slot$end: {
+//     backgroundColor: colorSchemeTokens.surfaceContainer,
+//   },
+// });
 
 const defaultArgs = {
-  sx: styles.host,
+  outlineStyle: 'dashed',
 } satisfies Partial<IItemProps>;
 
+const ItemShowcase = makeComponentShowcase(Item);
+
 export const Slots: IStory = {
-  render: (props) => <ComponentShowcase component={Item} props={props} />,
+  render: (props) => <ItemShowcase props={props} />,
   args: {
     ...defaultArgs,
-    start: <div {...stylex.props(styles.slot, styles.slot$start)}>Start</div>,
+    start: (
+      <Paper surface='$surfaceContainer' c='$onSurface'>
+        Start
+      </Paper>
+    ),
     overline: (
-      <div {...stylex.props(styles.slot, styles.slot$overline)}>Overline</div>
+      <Paper surface='$surfaceContainer' c='$onSurface'>
+        Overline
+      </Paper>
     ),
     children: (
-      <div {...stylex.props(styles.slot, styles.slot$headline)}>Headline</div>
+      <Paper surface='$primaryContainer' c='$onPrimaryContainer'>
+        Headline
+      </Paper>
     ),
     supportingText: (
-      <div {...stylex.props(styles.slot, styles.slot$supportingText)}>
-        Supporting text
-      </div>
+      <Paper surface='$surfaceContainer' c='$onSurface'>
+        Supporting Text
+      </Paper>
     ),
     trailingSupportingText: (
-      <div {...stylex.props(styles.slot, styles.slot$trailingSupportingText)}>
-        Trailing supporting text
-      </div>
+      <Paper surface='$surfaceContainer' c='$onSurface'>
+        Trailing Supporting Text
+      </Paper>
     ),
-    end: <div {...stylex.props(styles.slot, styles.slot$end)}>End</div>,
+    end: (
+      <Paper surface='$surfaceContainer' c='$onSurface'>
+        End
+      </Paper>
+    ),
   },
 };
 
 export const Lengths: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={Item}
+    <ItemShowcase
       horizontalAlign='start'
       props={props}
       rows={[
@@ -105,23 +115,23 @@ export const Lengths: IStory = {
           legend: 'Fixed width',
           props: {
             children: LOREM$SM,
-            sx: [styles.host, styles.host$fixedWidth$sm],
-          },
-        },
-        {
-          legend: 'Fixed width, one line max',
-          props: {
-            children: LOREM$SM,
-            sx: [styles.host, styles.host$fixedWidth$xs],
-            maxLines: 1,
+            w: '$48',
           },
         },
         {
           legend: 'Fixed width, two lines max',
           props: {
             children: LOREM$SM,
-            sx: [styles.host, styles.host$fixedWidth$xs],
-            maxLines: 2,
+            w: '$48',
+            lineClamp: 2,
+          },
+        },
+        {
+          legend: 'Fixed width, one line max',
+          props: {
+            children: LOREM$SM,
+            w: '$48',
+            lineClamp: 1,
           },
         },
       ]}

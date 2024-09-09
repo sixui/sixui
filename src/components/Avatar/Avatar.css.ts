@@ -6,8 +6,8 @@ import {
   type IComponentThemeFactory,
 } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { getDensity } from '~/helpers/styles/getDensity';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
+import { getDensity } from '~/helpers/styles/getDensity';
 import { px } from '~/helpers/styles/px';
 import { themeTokens } from '../ThemeProvider';
 import { PaperBase } from '../PaperBase';

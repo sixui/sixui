@@ -1,57 +1,72 @@
-import { forwardRef } from 'react';
+import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import type { IItemProps } from './Item.types';
-import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
-import { commonStyles } from '~/helpers/commonStyles';
-import { useStyles } from '~/hooks/useStyles';
-import { Base } from '../Base';
-import { itemStyles } from './Item.styles';
-import { itemTheme } from './Item.stylex';
+import type { IItemFactory } from './Item.types';
+import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { Paper } from '../Paper';
+import { itemTheme, type IItemThemeFactory } from './Item.css';
 
-// https://github.com/material-components/material-web/blob/main/labs/item/item.ts
+const COMPONENT_NAME = 'Item';
 
-export const Item = createPolymorphicComponent<'div', IItemProps>(
-  forwardRef<HTMLDivElement, IItemProps>(function Item(props, forwardedRef) {
+export const Item = polymorphicComponentFactory<IItemFactory>(
+  (props, forwardedRef) => {
     const {
+      classNames,
+      className,
       styles,
-      sx,
-      container,
+      style,
+      variant,
       start,
       overline,
       children,
       supportingText,
       trailingSupportingText,
       end,
-      maxLines,
+      lineClamp,
       ...other
-    } = props;
+    } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const { combineStyles, getStyles, globalStyles } = useStyles({
-      componentName: 'Item',
-      styles: [itemStyles, styles],
+    const { getStyles } = useComponentTheme<IItemThemeFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles,
+      style,
+      theme: itemTheme,
+      variant,
+      modifiers: {
+        'line-clamp': lineClamp,
+      },
     });
 
     return (
-      <Base
+      <Paper
         {...other}
-        sx={[itemTheme, globalStyles, combineStyles('host'), sx]}
+        {...getStyles('root')}
+        classNames={classNames}
         ref={forwardedRef}
       >
-        {container ? <div {...getStyles('container')}>{container}</div> : null}
+        {start && (
+          <div {...getStyles('section')} data-section='start'>
+            {start}
+          </div>
+        )}
 
-        {start ? (
-          <div {...getStyles('nonText', 'nonText$start')}>{start}</div>
-        ) : null}
-
-        <div {...getStyles('content')}>
+        <div {...getStyles('section')} data-section='main'>
           <div
-            {...getStyles(
-              'text',
-              maxLines ? commonStyles.truncateLines(maxLines) : undefined,
-            )}
+            {...getStyles('main', {
+              style: lineClamp
+                ? assignInlineVars({
+                    [itemTheme.tokens.lineClamp]: String(lineClamp),
+                  })
+                : undefined,
+            })}
           >
-            {overline ? <div {...getStyles('overline')}>{overline}</div> : null}
-            <div {...getStyles('headline')}>{children}</div>
+            {overline ? (
+              <div {...getStyles('overlineText')}>{overline}</div>
+            ) : null}
+            <div {...getStyles('headlineText')}>{children}</div>
             {supportingText ? (
               <div {...getStyles('supportingText')}>{supportingText}</div>
             ) : null}
@@ -59,13 +74,20 @@ export const Item = createPolymorphicComponent<'div', IItemProps>(
         </div>
 
         {trailingSupportingText ? (
-          <div {...getStyles('nonText', 'nonText$trailingSupportingText')}>
+          <div {...getStyles('section')} data-section='trailingSupportingText'>
             {trailingSupportingText}
           </div>
         ) : null}
 
-        {end ? <div {...getStyles('nonText', 'nonText$end')}>{end}</div> : null}
-      </Base>
+        {end ? (
+          <div {...getStyles('section')} data-section='end'>
+            {end}
+          </div>
+        ) : null}
+      </Paper>
     );
-  }),
+  },
 );
+
+Item.theme = itemTheme;
+Item.displayName = `@sixui/${COMPONENT_NAME}`;

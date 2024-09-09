@@ -82,12 +82,11 @@ export const Text = polymorphicComponentFactory<ITextFactory>(
         {...other}
         as={rootElement}
         {...getStyles('root', {
-          style:
-            typeof lineClamp === 'number'
-              ? assignInlineVars({
-                  [textTheme.tokens.lineClamp]: String(lineClamp),
-                })
-              : undefined,
+          style: lineClamp
+            ? assignInlineVars({
+                [textTheme.tokens.lineClamp]: String(lineClamp),
+              })
+            : undefined,
         })}
         ref={forwardedRef}
       />
