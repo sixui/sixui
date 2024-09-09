@@ -19,8 +19,7 @@ export type IWithAsProp<
   TRoot extends React.ElementType = React.ElementType,
 > = TProps & {
   /**
-   * An override of the default HTML tag.
-   * Can also be another React component.
+   * An override of the default HTML tag. Can also be another React component.
    */
   as?: TRoot;
 
@@ -38,9 +37,9 @@ export type IExtendableProps<
 > = TOverrideProps & Omit<TExtendedProps, keyof TOverrideProps>;
 
 /**
- * Allows for inheriting the props from the specified element type so that
- * props like children, className & style work, as well as element-specific
- * attributes like aria roles. The component (`TRoot`) must be passed in.
+ * Allows for inheriting the props from the specified element type so that props
+ * like children, className & style work, as well as element-specific attributes
+ * like aria roles. The component (`TRoot`) must be passed in.
  */
 export type IInheritableElementProps<
   TRoot extends React.ElementType,

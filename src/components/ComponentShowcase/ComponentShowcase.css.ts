@@ -92,12 +92,12 @@ const classNames = createStyles({
 
 export type IComponentShowcaseThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
-  tokens: object;
+  tokens: typeof tokens;
 }>;
 
 export const componentShowcaseTheme =
   componentThemeFactory<IComponentShowcaseThemeFactory>({
     classNames,
-    tokensClassName: tokensClassName,
+    tokensClassName,
     tokens,
   });

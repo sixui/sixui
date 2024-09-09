@@ -19,7 +19,6 @@ export type IAnchorOverlap = 'rectangular' | 'circular';
 export type IAnchoredOwnProps = {
   position?: IAnchorPosition;
   overlap?: IAnchorOverlap;
-  children: React.ReactNode;
   content?: React.ReactNode;
   invisible?: boolean;
   offsetX?: string | number;

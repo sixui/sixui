@@ -51,14 +51,14 @@ export type IBasicTemplateThemeFactory = IComponentThemeFactory<{
   variant: IBasicTemplateVariant;
 }>;
 
-export const polymorphicTemplateTheme =
+export const basicTemplateTheme =
   componentThemeFactory<IBasicTemplateThemeFactory>({
     classNames,
     tokensClassName,
     tokens,
   });
 
-export const polymorphicTemplateThemeVariants = {
+export const basicTemplateThemeVariants = {
   primary: createStyles({
     root: {
       vars: createTokensVars(tokens, {

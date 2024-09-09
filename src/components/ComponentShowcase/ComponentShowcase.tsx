@@ -6,7 +6,10 @@ import { useProps } from '~/utils/component/useProps';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
-import { componentShowcaseTheme } from './ComponentShowcase.css';
+import {
+  componentShowcaseTheme,
+  type IComponentShowcaseThemeFactory,
+} from './ComponentShowcase.css';
 
 const COMPONENT_NAME = 'ComponentShowcase';
 const DUMMY_TEXT = '.';
@@ -35,7 +38,7 @@ export const makeComponentShowcase = <TComponentProps,>(
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const { getStyles } = useComponentTheme({
+    const { getStyles } = useComponentTheme<IComponentShowcaseThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
@@ -206,6 +209,7 @@ export const makeComponentShowcase = <TComponentProps,>(
     );
   });
 
+  ComponentShowcase.theme = componentShowcaseTheme;
   ComponentShowcase.displayName = `@sixui/${COMPONENT_NAME}`;
 
   return ComponentShowcase;

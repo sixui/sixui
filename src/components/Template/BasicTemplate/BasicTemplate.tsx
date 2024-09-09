@@ -4,8 +4,8 @@ import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../../Box';
 import {
-  polymorphicTemplateTheme,
-  polymorphicTemplateThemeVariants,
+  basicTemplateTheme,
+  basicTemplateThemeVariants,
   type IBasicTemplateThemeFactory,
 } from './BasicTemplate.css';
 
@@ -30,8 +30,8 @@ export const BasicTemplate = componentFactory<IBasicTemplateFactory>(
       className,
       styles,
       style,
-      theme: polymorphicTemplateTheme,
-      themeVariants: polymorphicTemplateThemeVariants,
+      theme: basicTemplateTheme,
+      themeVariants: basicTemplateThemeVariants,
       variant,
       modifiers: {
         disabled,
@@ -46,5 +46,5 @@ export const BasicTemplate = componentFactory<IBasicTemplateFactory>(
   },
 );
 
-BasicTemplate.theme = polymorphicTemplateTheme;
+BasicTemplate.theme = basicTemplateTheme;
 BasicTemplate.displayName = `@sixui/${COMPONENT_NAME}`;

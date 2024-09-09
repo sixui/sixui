@@ -2,7 +2,7 @@ import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../../Box';
 import type {
-  polymorphicTemplateTheme,
+  basicTemplateTheme,
   IBasicTemplateThemeFactory,
 } from './BasicTemplate.css';
 
@@ -22,6 +22,6 @@ export interface IBasicTemplateProps
 export type IBasicTemplateFactory = IComponentFactory<{
   props: IBasicTemplateProps;
   ref: HTMLDivElement;
-  theme: typeof polymorphicTemplateTheme;
+  theme: typeof basicTemplateTheme;
   variant: IBasicTemplateVariant | false;
 }>;

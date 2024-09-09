@@ -1,13 +1,10 @@
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IBoxProps } from '../Box';
-import type { IComponentShowcaseThemeFactory } from './ComponentShowcase.css';
-import { IComponentFactory } from '~/utils/component/componentFactory';
-
-export type IComponentShowcaseFactory<T> = IComponentFactory<{
-  props: IComponentShowcaseProps<T>;
-  ref: HTMLDivElement;
-  theme: IComponentShowcaseThemeFactory;
-}>;
+import type {
+  componentShowcaseTheme,
+  IComponentShowcaseThemeFactory,
+} from './ComponentShowcase.css';
 
 export type IComponentPresentation<TComponentProps = object> = {
   props?: Partial<TComponentProps>;
@@ -31,3 +28,9 @@ export interface IComponentShowcaseProps<TComponentProps>
   extends IBoxProps,
     IComponentThemeProps<IComponentShowcaseThemeFactory>,
     IComponentShowcaseOwnProps<TComponentProps> {}
+
+export type IComponentShowcaseFactory<T> = IComponentFactory<{
+  props: IComponentShowcaseProps<T>;
+  ref: HTMLDivElement;
+  theme: typeof componentShowcaseTheme;
+}>;
