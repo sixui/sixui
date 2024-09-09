@@ -1,228 +1,153 @@
-import { forwardRef, useContext, useRef } from 'react';
-import { asArray } from '@olivierpascal/helpers';
-import { useMergeRefs } from '@floating-ui/react';
-
-import type { IListItemProps } from './ListItem.types';
-import {
-  createPolymorphicComponent,
-  type IWithAsProp,
-} from '~/utils/component/createPolymorphicComponent';
-import { useStyles } from '~/hooks/useStyles';
-import { commonStyles } from '~/helpers/commonStyles';
-import { Base } from '../Base';
-import { useVisualState } from '../VisualState';
-import { StateLayer } from '../StateLayer';
-import { FocusRing } from '../FocusRing';
+import type { IListItemFactory } from './ListItem.types';
+import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { mergeClassNames } from '~/utils/styles/mergeClassNames';
+import { ButtonBase } from '../ButtonBase';
 import { Item } from '../Item';
-import { ListContext } from '../List';
-import { listItemVariantStyles } from './variants';
+import { Paper } from '../Paper';
 import {
-  listItemFocusRingStyles,
-  listItemItemStyles,
-  listItemStateLayerStyles,
-  listItemStyles,
-  type IListItemStylesKey,
-} from './ListItem.styles';
-import { listItemTheme } from './ListItem.stylex';
+  listItemTheme,
+  listItemVariants,
+  type IListItemThemeFactory,
+} from './ListItem.css';
 
-// https://github.com/material-components/material-web/blob/main/list/internal/listitem/list-item.ts
+const COMPONENT_NAME = 'ListItem';
 
-export const ListItem = createPolymorphicComponent<'button', IListItemProps>(
-  forwardRef<HTMLButtonElement, IListItemProps>(
-    function ListItem(props, forwardedRef) {
-      const {
-        as,
-        styles,
-        sx,
-        innerStyles,
-        variant = 'standard',
-        visualState: visualStateProp,
-        href,
-        overline,
-        start,
-        children,
-        supportingText,
-        trailingSupportingText,
-        end,
+export const ListItem = polymorphicComponentFactory<IListItemFactory>(
+  (props, forwardedRef) => {
+    const {
+      classNames,
+      className,
+      styles,
+      style,
+      variant = 'standard',
+      overline,
+      start,
+      children,
+      supportingText,
+      trailingSupportingText,
+      end,
+      disabled,
+      selected: selectedProp,
+      leading,
+      leadingIcon,
+      leadingImage,
+      leadingVideo,
+      trailing,
+      trailingIcon,
+      noFocusRing,
+      lineClamp,
+      ...other
+    } = useProps({ componentName: COMPONENT_NAME, props });
+
+    const selected = !disabled && selectedProp;
+    const hasLeading = !!start || !!leadingVideo;
+    const hasTrailing = !!end;
+
+    const { getStyles } = useComponentTheme<IListItemThemeFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles,
+      style,
+      theme: listItemTheme,
+      themeVariants: listItemVariants,
+      variant,
+      modifiers: {
+        selected,
         disabled,
-        selected: selectedProp,
-        target: targetProp,
-        leading,
-        leadingIcon,
-        leadingImage,
-        leadingVideo,
-        trailing,
-        trailingIcon,
-        onClick,
-        size: sizeProp = 'md',
-        noFocusRing: noFocusRingProp,
-        maxLines,
-        ...other
-      } = props as IWithAsProp<IListItemProps>;
+        'with-leading': hasLeading,
+        'with-trailing': hasTrailing,
+      },
+    });
 
-      const actionRef = useRef<HTMLButtonElement>(null);
-      const { visualState, setRef: setVisualStateRef } = useVisualState(
-        visualStateProp,
-        { disabled },
-      );
-      const handleRef = useMergeRefs([
-        forwardedRef,
-        setVisualStateRef,
-        actionRef,
-      ]);
+    // FIXME:
+    // const listContext = useContext(ListContext);
+    // const adaptedSize =
+    //   size === 'md' && (!!supportingText || !!leadingVideo) ? 'lg' : size;
+    // const noFocusRing = listContext?.noFocusRing ?? noFocusRingProp;
 
-      const variantStyles = variant
-        ? listItemVariantStyles[variant]
-        : undefined;
-      const { combineStyles, getStyles, globalStyles, settings } =
-        useStyles<IListItemStylesKey>({
-          componentName: 'ListItem',
-          styles: [listItemStyles, variantStyles, styles],
-          visualState,
-        });
+    const renderStart = (): React.ReactNode =>
+      start ??
+      (leadingIcon ? (
+        <div {...getStyles('icon', 'icon$leading')}>{leadingIcon}</div>
+      ) : leadingImage ? (
+        <div
+          {...getStyles(
+            'image',
+            // FIXME: commonStyles.backgroundImage(leadingImage)
+          )}
+        />
+      ) : leadingVideo ? (
+        <video {...getStyles('video')} autoPlay={!disabled} loop muted>
+          {leadingVideo.map((video, videoIndex) => (
+            <source key={videoIndex} src={video.src} type={video.type} />
+          ))}
+        </video>
+      ) : (
+        leading
+      ));
 
-      const listContext = useContext(ListContext);
-      const type = href !== undefined ? 'link' : onClick ? 'button' : 'text';
-      const role = type === 'text' ? 'listitem' : undefined;
-      const selected = !disabled && selectedProp;
-      const isInteractive = type !== 'text';
-      const target = type === 'link' && targetProp ? targetProp : undefined;
-      const size = listContext?.size ?? sizeProp;
-      const adaptedSize =
-        size === 'md' && (!!supportingText || !!leadingVideo) ? 'lg' : size;
-      const noFocusRing = listContext?.noFocusRing ?? noFocusRingProp;
+    const renderEnd = (): React.ReactNode =>
+      end ??
+      (trailingIcon ? (
+        <div {...getStyles(['icon', 'icon$trailing'])}>{trailingIcon}</div>
+      ) : (
+        trailing
+      ));
 
-      const rootElement =
-        as ??
-        (type == 'link'
-          ? (settings?.linkAs ?? 'a')
-          : type === 'button'
-            ? 'button'
-            : 'li');
+    const shouldRenderAsButton =
+      other.as === 'button' ||
+      other.as === 'a' ||
+      !!other.onPress ||
+      !!other.onClick ||
+      !!other.href;
 
-      const renderContainer = (): React.ReactNode => (
-        <>
-          <div
-            {...getStyles(
-              'background',
-              selected && 'background$selected',
-              disabled && 'background$disabled',
-            )}
-          />
-          {isInteractive ? (
-            <>
-              <StateLayer
-                styles={[
-                  listItemStateLayerStyles,
-                  ...asArray(innerStyles?.stateLayer),
-                ]}
-                for={actionRef}
-                disabled={disabled}
-                interactionState={visualState}
-              />
-              {noFocusRing ? null : (
-                <FocusRing
-                  styles={[
-                    listItemFocusRingStyles,
-                    ...asArray(innerStyles?.focusRing),
-                  ]}
-                  for={actionRef}
-                  visualState={visualState}
-                  inward
-                />
-              )}
-            </>
-          ) : null}
-        </>
-      );
+    const renderItem = (): JSX.Element => (
+      <Item
+        {...getStyles('item')}
+        overline={overline}
+        start={renderStart()}
+        supportingText={supportingText}
+        trailingSupportingText={trailingSupportingText}
+        end={renderEnd()}
+        lineClamp={lineClamp}
+      >
+        {children}
+      </Item>
+    );
 
-      const renderStart = (): React.ReactNode =>
-        start ??
-        (leadingIcon ? (
-          <div
-            {...getStyles(
-              'icon',
-              'icon$leading',
-              disabled && 'icon$leading$disabled',
-              selected && 'icon$leading$selected',
-            )}
-          >
-            {leadingIcon}
-          </div>
-        ) : leadingImage ? (
-          <div
-            {...getStyles('image', commonStyles.backgroundImage(leadingImage))}
-          />
-        ) : leadingVideo ? (
-          <video {...getStyles('video')} autoPlay={!disabled} loop muted>
-            {leadingVideo.map((video, videoIndex) => (
-              <source key={videoIndex} src={video.src} type={video.type} />
-            ))}
-          </video>
-        ) : (
-          leading
-        ));
-
-      const renderEnd = (): React.ReactNode =>
-        end ??
-        (trailingIcon ? (
-          <div
-            {...getStyles(
-              'icon',
-              'icon$trailing',
-              disabled && 'icon$trailing$disabled',
-              selected && 'icon$trailing$selected',
-            )}
-          >
-            {trailingIcon}
-          </div>
-        ) : (
-          trailing
-        ));
-
+    if (shouldRenderAsButton) {
       return (
-        <Base
-          as={rootElement}
-          role={role}
-          type={type === 'button' ? 'button' : undefined}
-          tabIndex={disabled || !isInteractive ? -1 : 0}
-          disabled={disabled}
-          aria-current={selected}
-          href={href}
-          target={target}
-          onClick={onClick}
+        <ButtonBase
           {...other}
-          visualState={visualState}
-          sx={[
-            listItemTheme,
-            globalStyles,
-            combineStyles(
-              'host',
-              `host$${adaptedSize}`,
-              isInteractive && 'host$interactive',
-              selected && 'host$selected',
-              disabled && 'host$disabled',
-              !start && !leadingVideo && 'host$leadingSpace',
-              !end && 'host$trailingSpace',
-            ),
-            sx,
-          ]}
-          ref={handleRef}
+          {...getStyles('root')}
+          classNames={mergeClassNames(classNames, {
+            stateLayer: getStyles('stateLayer').className,
+          })}
+          inwardFocusRing
+          ref={forwardedRef}
         >
-          <Item
-            styles={[listItemItemStyles, ...asArray(innerStyles?.item)]}
-            container={renderContainer()}
-            overline={overline}
-            start={renderStart()}
-            supportingText={supportingText}
-            trailingSupportingText={trailingSupportingText}
-            end={renderEnd()}
-            maxLines={maxLines}
-          >
-            {children}
-          </Item>
-        </Base>
+          {renderItem()}
+        </ButtonBase>
       );
-    },
-  ),
+    }
+
+    return (
+      <Paper
+        {...other}
+        {...getStyles('root')}
+        classNames={mergeClassNames(classNames, {
+          stateLayer: getStyles('stateLayer').className,
+        })}
+        ref={forwardedRef}
+      >
+        {renderItem()}
+      </Paper>
+    );
+  },
 );
+
+ListItem.theme = listItemTheme;
+ListItem.displayName = `@sixui/${COMPONENT_NAME}`;

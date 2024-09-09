@@ -18,84 +18,75 @@ type IStory = StoryObj<typeof meta>;
 const LOREM$XS = 'Lorem ipsum dolor sit amet.';
 const LOREM$SM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
 
-// const styles = stylex.create({
-//   host: {
-//     outlineWidth: outlineTokens.width$xs,
-//     outlineStyle: 'dashed',
-//     outlineColor: colorSchemeTokens.outlineVariant,
-//   },
-//   host$fixedWidth$sm: {
-//     width: `calc(320px * ${scaleTokens.scale})`,
-//   },
-//   host$fixedWidth$xs: {
-//     width: `calc(160px * ${scaleTokens.scale})`,
-//   },
-//   slot: {
-//     display: 'flex',
-//     flexGrow: 1,
-//   },
-//   slot$start: {
-//     backgroundColor: colorSchemeTokens.surfaceContainer,
-//   },
-//   slot$overline: {
-//     backgroundColor: colorSchemeTokens.surfaceContainer,
-//   },
-//   slot$headline: {
-//     backgroundColor: colorSchemeTokens.primaryContainer,
-//     color: colorSchemeTokens.onPrimaryContainer,
-//   },
-//   slot$supportingText: {
-//     backgroundColor: colorSchemeTokens.surfaceContainer,
-//   },
-//   slot$trailingSupportingText: {
-//     backgroundColor: colorSchemeTokens.surfaceContainer,
-//   },
-//   slot$end: {
-//     backgroundColor: colorSchemeTokens.surfaceContainer,
-//   },
-// });
-
 const defaultArgs = {
-  outlineStyle: 'dashed',
+  w: '$96',
 } satisfies Partial<IItemProps>;
+
+type ISlotDemoProps = {
+  label: string;
+  primary?: boolean;
+};
+
+const SlotDemo = ({ label, primary }: ISlotDemoProps): React.ReactNode => (
+  <Paper
+    surface={primary ? '$primaryContainer' : '$surfaceContainer'}
+    c={primary ? '$onPrimaryContainer' : '$onSurface'}
+  >
+    {label}
+  </Paper>
+);
 
 const ItemShowcase = makeComponentShowcase(Item);
 
-export const Slots: IStory = {
-  render: (props) => <ItemShowcase props={props} />,
-  args: {
-    ...defaultArgs,
-    start: (
-      <Paper surface='$surfaceContainer' c='$onSurface'>
-        Start
-      </Paper>
-    ),
-    overline: (
-      <Paper surface='$surfaceContainer' c='$onSurface'>
-        Overline
-      </Paper>
-    ),
-    children: (
-      <Paper surface='$primaryContainer' c='$onPrimaryContainer'>
-        Headline
-      </Paper>
-    ),
-    supportingText: (
-      <Paper surface='$surfaceContainer' c='$onSurface'>
-        Supporting Text
-      </Paper>
-    ),
-    trailingSupportingText: (
-      <Paper surface='$surfaceContainer' c='$onSurface'>
-        Trailing Supporting Text
-      </Paper>
-    ),
-    end: (
-      <Paper surface='$surfaceContainer' c='$onSurface'>
-        End
-      </Paper>
-    ),
-  },
+export const Configurations: IStory = {
+  render: (props) => (
+    <ItemShowcase
+      props={props}
+      rows={[
+        {
+          props: {
+            start: <SlotDemo label='Start' />,
+            overline: <SlotDemo label='Overline' />,
+            children: <SlotDemo label='Headline' primary />,
+            supportingText: <SlotDemo label='Supporting Text' />,
+            trailingSupportingText: (
+              <SlotDemo label='Trailing Supporting Text' />
+            ),
+            end: <SlotDemo label='End' />,
+          },
+        },
+        {
+          props: {
+            overline: <SlotDemo label='Overline' />,
+            children: <SlotDemo label='Headline' primary />,
+            supportingText: <SlotDemo label='Supporting Text' />,
+          },
+        },
+        {
+          props: {
+            start: <SlotDemo label='Start' />,
+            children: <SlotDemo label='Headline' primary />,
+            end: <SlotDemo label='End' />,
+          },
+        },
+        {
+          props: {
+            children: <SlotDemo label='Headline' primary />,
+            supportingText: <SlotDemo label='Supporting Text' />,
+            trailingSupportingText: (
+              <SlotDemo label='Trailing Supporting Text' />
+            ),
+          },
+        },
+        {
+          props: {
+            children: <SlotDemo label='Headline' primary />,
+          },
+        },
+      ]}
+    />
+  ),
+  args: defaultArgs,
 };
 
 export const Lengths: IStory = {

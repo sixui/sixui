@@ -1,39 +1,37 @@
-import type { IZeroOrMore, ICompiledStyles, IOmit } from '~/helpers/types';
-import type { IBaseProps } from '../Base';
-import type { IItemProps, IItemStylesKey } from '../Item';
-import type { IStateLayerStylesKey } from '../StateLayer';
-import type { IFocusRingStylesKey } from '../FocusRing';
-import type { IVisualState } from '../VisualState';
-import type { IListItemStylesKey } from './ListItem.styles';
+import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IBoxProps } from '../Box';
+import type { IItemOwnProps } from '../Item';
+import type { IButtonBaseOwnProps } from '../ButtonBase';
+import type { IPaperOwnProps } from '../Paper';
+import type { listItemTheme, IListItemThemeFactory } from './ListItem.css';
 
 export type IListItemVariant = 'standard' | 'danger';
 
-export type IListItemProps = IBaseProps<IListItemStylesKey> &
-  IOmit<IItemProps, 'container'> & {
-    innerStyles?: {
-      item?: IZeroOrMore<ICompiledStyles<IItemStylesKey>>;
-      stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStylesKey>>;
-      focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStylesKey>>;
-    };
-    variant?: IListItemVariant | false;
-    visualState?: IVisualState;
-    href?: string;
-    target?: React.AnchorHTMLAttributes<HTMLAnchorElement>['target'];
+export interface IListItemOwnProps
+  extends IItemOwnProps,
+    IPaperOwnProps,
+    IButtonBaseOwnProps {
+  selected?: boolean;
+  leading?: React.ReactNode;
+  leadingIcon?: React.ReactNode;
+  leadingImage?: string;
+  leadingVideo?: Array<{ type: string; src: string }>;
+  trailing?: React.ReactNode;
+  trailingIcon?: React.ReactNode;
+  noFocusRing?: boolean;
+  lineClamp?: number;
+}
 
-    /**
-     * Disables the item and makes it non-selectable and non-interactive.
-     */
-    disabled?: boolean;
+export interface IListItemProps
+  extends IBoxProps,
+    IComponentThemeProps<IListItemThemeFactory>,
+    IListItemOwnProps {}
 
-    selected?: boolean;
-    leading?: React.ReactNode;
-    leadingIcon?: React.ReactNode;
-    leadingImage?: string;
-    leadingVideo?: Array<{ type: string; src: string }>;
-    trailing?: React.ReactNode;
-    trailingIcon?: React.ReactNode;
-    onClick?: React.MouseEventHandler<HTMLElement>;
-    size?: 'sm' | 'md' | 'lg' | 'xl';
-    noFocusRing?: boolean;
-    maxLines?: number;
-  };
+export type IListItemFactory = IPolymorphicComponentFactory<{
+  props: IListItemProps;
+  defaultRef: HTMLButtonElement;
+  defaultRoot: 'button';
+  theme: typeof listItemTheme;
+  variant: IListItemVariant;
+}>;

@@ -6,7 +6,6 @@ import {
   type IComponentThemeFactory,
 } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { getDensity } from '~/helpers/styles/getDensity';
 import { px } from '~/helpers/styles/px';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
@@ -17,7 +16,6 @@ import { elevationLevelPreset } from '../Elevation/Elevation.css';
 type IModifier = 'toggle' | 'selected';
 
 const [tokensClassName, tokens] = createTheme({
-  density: px(getDensity({ min: -3, max: 0 })),
   container: {
     color: {
       normal: 'unset',

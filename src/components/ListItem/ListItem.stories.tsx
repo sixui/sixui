@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCalendarDays,
@@ -11,15 +10,11 @@ import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { IListItemProps, IListItemVariant } from './ListItem.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { outlineTokens } from '~/themes/base/outline.stylex';
-import { scaleTokens } from '~/themes/base/scale.stylex';
 import {
+  makeComponentShowcase,
   type IComponentPresentation,
-  ComponentShowcase,
 } from '../ComponentShowcase';
 import { Avatar } from '../Avatar';
-import { Checkbox } from '../Checkbox';
 import { ListItem } from './ListItem';
 
 // https://m3.material.io/components/items/overview
@@ -35,38 +30,42 @@ type IStory = StoryObj<typeof meta>;
 const LOREM$XS = 'Lorem ipsum dolor sit amet.';
 const LOREM$SM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
 
-const styles = stylex.create({
-  host: {
-    outlineWidth: outlineTokens.width$xs,
-    outlineStyle: 'dashed',
-    outlineColor: colorSchemeTokens.outlineVariant,
-  },
-  host$fixedWidth$xs: {
-    width: `calc(160px * ${scaleTokens.scale})`,
-  },
-  host$fixedWidth$sm: {
-    width: `calc(240px * ${scaleTokens.scale})`,
-  },
-  host$fixedWidth$md: {
-    width: `calc(320px * ${scaleTokens.scale})`,
-  },
-});
+// const styles = stylex.create({
+//   host: {
+//     outlineWidth: outlineTokens.width$xs,
+//     outlineStyle: 'dashed',
+//     outlineColor: colorSchemeTokens.outlineVariant,
+//   },
+//   host$fixedWidth$xs: {
+//     width: `calc(160px * ${scaleTokens.scale})`,
+//   },
+//   host$fixedWidth$sm: {
+//     width: `calc(240px * ${scaleTokens.scale})`,
+//   },
+//   host$fixedWidth$md: {
+//     width: `calc(320px * ${scaleTokens.scale})`,
+//   },
+// });
 
-const defaultArgs = { sx: styles.host } satisfies Partial<IListItemProps>;
+const defaultArgs = {
+  onPress: (...args) => sbHandleEvent('onPress', args, 1000),
+  outlineStyle: 'dashed',
+  w: '$40',
+} satisfies Partial<IListItemProps>;
 
 const states: Array<IComponentPresentation<IListItemProps>> = [
-  { legend: 'Enabled', props: { children: 'Enabled' } },
+  { legend: 'Normal', props: { children: 'Normal' } },
   {
     legend: 'Focused',
-    props: { children: 'Focused', visualState: { focused: true } },
+    props: { children: 'Focused', interactions: { focused: true } },
   },
   {
     legend: 'Hovered',
-    props: { children: 'Hovered', visualState: { hovered: true } },
+    props: { children: 'Hovered', interactions: { hovered: true } },
   },
   {
     legend: 'Pressed',
-    props: { children: 'Pressed', visualState: { pressed: true } },
+    props: { children: 'Pressed', interactions: { pressed: true } },
   },
   { legend: 'Selected', props: { children: 'Selected', selected: true } },
   { legend: 'Disabled', props: { children: 'Disabled', disabled: true } },
@@ -114,12 +113,13 @@ const rows: Array<IComponentPresentation<IListItemProps>> = [
       ],
     },
   },
-  {
-    legend: 'With trailing element',
-    props: {
-      trailing: <Checkbox checked />,
-    },
-  },
+  // FIXME:
+  // {
+  //   legend: 'With trailing element',
+  //   props: {
+  //     trailing: <Checkbox checked />,
+  //   },
+  // },
   {
     legend: 'With overline',
     props: {
@@ -140,105 +140,106 @@ const rows: Array<IComponentPresentation<IListItemProps>> = [
   },
 ];
 
-export const Variants: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={ListItem}
-      props={props}
-      cols={(['standard', 'danger'] as Array<IListItemVariant>).map(
-        (variant) => ({
-          props: {
-            variant,
-            children: capitalizeFirstLetter(variant),
-            leadingIcon: <FontAwesomeIcon icon={faCalendarDays} />,
-            trailingIcon: <FontAwesomeIcon icon={faChevronRight} />,
-            onClick: () => {},
-          },
-        }),
-      )}
-    />
-  ),
-  args: defaultArgs,
-};
+const ListItemShowcase = makeComponentShowcase(ListItem);
 
-export const Sizes: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={ListItem}
-      props={props}
-      cols={[
-        { legend: 'Small (sm)', props: { size: 'sm' } },
-        { legend: 'Medium (md)', props: { size: 'md' } },
-        {
-          legend: 'Large (lg)',
-          props: { size: 'lg', supportingText: 'Supporting text' },
-        },
-        {
-          legend: 'Extra large (xl)',
-          props: {
-            size: 'xl',
-            supportingText:
-              'Supporting text that is long enough to fill up multiple lines',
-          },
-        },
-      ]}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    sx: [styles.host, styles.host$fixedWidth$sm],
-    leading: <Avatar>A</Avatar>,
-    children: 'Label',
-  },
-};
+// export const Variants: IStory = {
+//   render: (props) => (
+//     <ComponentShowcase
+//       component={ListItem}
+//       props={props}
+//       cols={(['standard', 'danger'] as Array<IListItemVariant>).map(
+//         (variant) => ({
+//           props: {
+//             variant,
+//             children: capitalizeFirstLetter(variant),
+//             leadingIcon: <FontAwesomeIcon icon={faCalendarDays} />,
+//             trailingIcon: <FontAwesomeIcon icon={faChevronRight} />,
+//             onClick: () => {},
+//           },
+//         }),
+//       )}
+//     />
+//   ),
+//   args: defaultArgs,
+// };
 
-export const Lengths: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={ListItem}
-      horizontalAlign='start'
-      props={props}
-      rows={[
-        { legend: 'Basic', props: { children: LOREM$XS } },
-        {
-          legend: 'Long text',
-          props: {
-            children: LOREM$SM,
-          },
-        },
-        {
-          legend: 'Fixed width',
-          props: {
-            children: LOREM$SM,
-            sx: [styles.host, styles.host$fixedWidth$md],
-          },
-        },
-        {
-          legend: 'Fixed width, one line max',
-          props: {
-            children: LOREM$SM,
-            sx: [styles.host, styles.host$fixedWidth$xs],
-            maxLines: 1,
-          },
-        },
-        {
-          legend: 'Fixed width, two lines max',
-          props: {
-            children: LOREM$SM,
-            sx: [styles.host, styles.host$fixedWidth$xs],
-            maxLines: 2,
-          },
-        },
-      ]}
-    />
-  ),
-  args: defaultArgs,
-};
+// export const Sizes: IStory = {
+//   render: (props) => (
+//     <ComponentShowcase
+//       component={ListItem}
+//       props={props}
+//       cols={[
+//         { legend: 'Small (sm)', props: { size: 'sm' } },
+//         { legend: 'Medium (md)', props: { size: 'md' } },
+//         {
+//           legend: 'Large (lg)',
+//           props: { size: 'lg', supportingText: 'Supporting text' },
+//         },
+//         {
+//           legend: 'Extra large (xl)',
+//           props: {
+//             size: 'xl',
+//             supportingText:
+//               'Supporting text that is long enough to fill up multiple lines',
+//           },
+//         },
+//       ]}
+//     />
+//   ),
+//   args: {
+//     ...defaultArgs,
+//     sx: [styles.host, styles.host$fixedWidth$sm],
+//     leading: <Avatar>A</Avatar>,
+//     children: 'Label',
+//   },
+// };
+
+// export const Lengths: IStory = {
+//   render: (props) => (
+//     <ComponentShowcase
+//       component={ListItem}
+//       horizontalAlign='start'
+//       props={props}
+//       rows={[
+//         { legend: 'Basic', props: { children: LOREM$XS } },
+//         {
+//           legend: 'Long text',
+//           props: {
+//             children: LOREM$SM,
+//           },
+//         },
+//         {
+//           legend: 'Fixed width',
+//           props: {
+//             children: LOREM$SM,
+//             sx: [styles.host, styles.host$fixedWidth$md],
+//           },
+//         },
+//         {
+//           legend: 'Fixed width, one line max',
+//           props: {
+//             children: LOREM$SM,
+//             sx: [styles.host, styles.host$fixedWidth$xs],
+//             maxLines: 1,
+//           },
+//         },
+//         {
+//           legend: 'Fixed width, two lines max',
+//           props: {
+//             children: LOREM$SM,
+//             sx: [styles.host, styles.host$fixedWidth$xs],
+//             maxLines: 2,
+//           },
+//         },
+//       ]}
+//     />
+//   ),
+//   args: defaultArgs,
+// };
 
 export const Standard: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={ListItem}
+    <ListItemShowcase
       horizontalAlign='start'
       props={props}
       cols={states}
@@ -249,28 +250,26 @@ export const Standard: IStory = {
     ...defaultArgs,
     variant: 'standard',
     children: 'Label',
-    onClick: (...args) => void sbHandleEvent('click', args),
-    sx: [styles.host, styles.host$fixedWidth$xs],
   },
 };
 
-export const Danger: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={ListItem}
-      horizontalAlign='start'
-      props={props}
-      cols={states}
-      rows={rows}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    variant: 'danger',
-    children: 'Label',
-    onClick: (...args) => void sbHandleEvent('click', args),
-    sx: [styles.host, styles.host$fixedWidth$xs],
-  },
-};
+// export const Danger: IStory = {
+//   render: (props) => (
+//     <ComponentShowcase
+//       component={ListItem}
+//       horizontalAlign='start'
+//       props={props}
+//       cols={states}
+//       rows={rows}
+//     />
+//   ),
+//   args: {
+//     ...defaultArgs,
+//     variant: 'danger',
+//     children: 'Label',
+//     onClick: (...args) => void sbHandleEvent('click', args),
+//     sx: [styles.host, styles.host$fixedWidth$xs],
+//   },
+// };
 
 export default meta;

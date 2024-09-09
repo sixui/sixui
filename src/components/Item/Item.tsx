@@ -4,7 +4,7 @@ import type { IItemFactory } from './Item.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Paper } from '../Paper';
+import { Box } from '../Box';
 import { itemTheme, type IItemThemeFactory } from './Item.css';
 
 const COMPONENT_NAME = 'Item';
@@ -41,12 +41,7 @@ export const Item = polymorphicComponentFactory<IItemFactory>(
     });
 
     return (
-      <Paper
-        {...other}
-        {...getStyles('root')}
-        classNames={classNames}
-        ref={forwardedRef}
-      >
+      <Box {...other} {...getStyles('root')} ref={forwardedRef}>
         {start && (
           <div {...getStyles('section')} data-section='start'>
             {start}
@@ -84,7 +79,7 @@ export const Item = polymorphicComponentFactory<IItemFactory>(
             {end}
           </div>
         ) : null}
-      </Paper>
+      </Box>
     );
   },
 );

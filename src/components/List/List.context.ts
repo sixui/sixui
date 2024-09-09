@@ -1,9 +1,7 @@
 import { createContext } from 'react';
 
-import type { IListItemProps } from '../ListItem';
-
 export type IListContextValue = {
-  size?: IListItemProps['size'];
+  // size?: 'sm' | 'md' | 'lg' | 'xl';
   noFocusRing?: boolean;
 };
 

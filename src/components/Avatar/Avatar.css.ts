@@ -12,8 +12,9 @@ import { px } from '~/helpers/styles/px';
 import { themeTokens } from '../ThemeProvider';
 import { PaperBase } from '../PaperBase';
 
+const DENSITY = px(getDensity({ min: -3, max: 0 }));
+
 const [tokensClassName, tokens] = createTheme({
-  density: px(getDensity({ min: -3, max: 0 })),
   container: {
     size: px(40),
     shape: {
@@ -37,7 +38,7 @@ const vars = {
 const classNames = createStyles({
   root: {
     vars: {
-      [vars.size]: calc.add(tokens.container.size, tokens.density),
+      [vars.size]: calc.add(tokens.container.size, DENSITY),
       [PaperBase.theme.tokens.container.shape.topLeft]:
         tokens.container.shape.topLeft,
       [PaperBase.theme.tokens.container.shape.topRight]:

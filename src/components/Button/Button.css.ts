@@ -27,8 +27,9 @@ type IModifier =
   | 'with-trailing-icon'
   | 'icon-animation';
 
+const DENSITY = px(getDensity({ min: -4, max: 0 }));
+
 const [tokensClassName, tokens] = createTheme({
-  density: px(getDensity({ min: -4, max: 0 })),
   gap: px(space(2)),
   leadingSpace: {
     normal: px(space(6)),
@@ -61,8 +62,8 @@ const [tokensClassName, tokens] = createTheme({
   },
   stateLayer: {
     color: {
-      hovered: 'unset',
-      pressed: 'unset',
+      hovered: themeTokens.colorScheme.onSurface,
+      pressed: themeTokens.colorScheme.onSurface,
     },
     opacity: {
       hovered: themeTokens.state.stateLayerOpacity.hovered,
@@ -76,7 +77,7 @@ const [tokensClassName, tokens] = createTheme({
       focused: 'inherit',
       hovered: 'inherit',
       pressed: 'inherit',
-      disabled: 'inherit',
+      disabled: themeTokens.colorScheme.onSurface,
     },
     opacity: {
       disabled: themeTokens.state.opacity.disabled,
@@ -161,7 +162,7 @@ const classNames = createStyles({
     paddingInlineStart: tokens.leadingSpace.normal,
     paddingInlineEnd: tokens.trailingSpace.normal,
     // min-height instead of height so that label can wrap and expand height
-    minHeight: calc.add(tokens.container.height, tokens.density),
+    minHeight: calc.add(tokens.container.height, DENSITY),
     // Add extra space between label and the edge for if the label text wraps.
     // The padding added should be relative to the height of the container and
     // the height of its content on a single line (label or icon, whichever is
@@ -353,22 +354,12 @@ const classNames = createStyles({
     visibility: 'hidden',
   },
   stateLayer: {
-    vars: {
-      [StateLayer.theme.tokens.color.hovered]: fallbackVar(
-        tokens.stateLayer.color.hovered,
-        tokens.label.color.normal,
-        tokens.icon.color.normal,
-      ),
-      [StateLayer.theme.tokens.color.pressed]: fallbackVar(
-        tokens.stateLayer.color.pressed,
-        tokens.label.color.normal,
-        tokens.icon.color.normal,
-      ),
-      [StateLayer.theme.tokens.opacity.hovered]:
-        tokens.stateLayer.opacity.hovered,
-      [StateLayer.theme.tokens.opacity.pressed]:
-        tokens.stateLayer.opacity.pressed,
-    },
+    vars: createTokensVars(StateLayer.theme.tokens, {
+      color: {
+        hovered: tokens.stateLayer.color.hovered,
+        pressed: tokens.stateLayer.color.pressed,
+      },
+    }),
   },
   outline: ({ root }) => ({
     borderStyle: tokens.outline.style,
@@ -435,6 +426,12 @@ export const buttonThemeVariants = {
             disabled: themeTokens.colorScheme.onSurface,
           },
         },
+        stateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.primary,
+            pressed: themeTokens.colorScheme.primary,
+          },
+        },
       }),
     },
   }),
@@ -454,6 +451,12 @@ export const buttonThemeVariants = {
           color: {
             normal: themeTokens.colorScheme.onPrimary,
             disabled: themeTokens.colorScheme.onSurface,
+          },
+        },
+        stateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.onPrimary,
+            pressed: themeTokens.colorScheme.onPrimary,
           },
         },
       }),
@@ -477,6 +480,12 @@ export const buttonThemeVariants = {
             disabled: themeTokens.colorScheme.onSurface,
           },
         },
+        stateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.onSecondaryContainer,
+            pressed: themeTokens.colorScheme.onSecondaryContainer,
+          },
+        },
       }),
     },
   }),
@@ -491,6 +500,12 @@ export const buttonThemeVariants = {
         },
         outline: {
           style: 'solid',
+        },
+        stateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.primary,
+            pressed: themeTokens.colorScheme.primary,
+          },
         },
       }),
     },
@@ -514,6 +529,12 @@ export const buttonThemeVariants = {
             disabled: themeTokens.colorScheme.onSurface,
           },
         },
+        stateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.primary,
+            pressed: themeTokens.colorScheme.primary,
+          },
+        },
       }),
     },
   }),
@@ -533,6 +554,12 @@ export const buttonThemeVariants = {
           color: {
             normal: themeTokens.colorScheme.onErrorContainer,
             disabled: themeTokens.colorScheme.onSurface,
+          },
+        },
+        stateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.onErrorContainer,
+            pressed: themeTokens.colorScheme.onErrorContainer,
           },
         },
       }),
@@ -558,6 +585,12 @@ export const buttonThemeVariants = {
         label: {
           color: {
             normal: themeTokens.colorScheme.inversePrimary,
+          },
+        },
+        stateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.inversePrimary,
+            pressed: themeTokens.colorScheme.inversePrimary,
           },
         },
       }),

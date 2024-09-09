@@ -8,11 +8,8 @@ import { getDensity } from '~/helpers/styles/getDensity';
 import { px } from '~/helpers/styles/px';
 import { getSpacingValues } from '~/helpers/styles/getSpacingValues';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTheme } from '@vanilla-extract/css';
 
-const [tokensClassName, tokens] = createTheme({
-  density: px(getDensity({ min: -9, max: 0 })),
-});
+const DENSITY = px(getDensity({ min: -9, max: 0 }));
 
 const classNames = createStyles({
   root: {
@@ -21,7 +18,7 @@ const classNames = createStyles({
 });
 
 const spacingValues = getSpacingValues();
-const spacingValuesWithDensity = getSpacingValues(tokens.density);
+const spacingValuesWithDensity = getSpacingValues(DENSITY);
 
 const sprinklesProps = defineProperties({
   dynamicProperties: {
@@ -52,11 +49,9 @@ export type IFlexSprinkles = Pick<
 
 export type IFlexThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
-  tokens: typeof tokens;
 }>;
 
 export const flexTheme = componentThemeFactory<IFlexThemeFactory>({
   classNames,
-  tokensClassName,
-  tokens,
+  tokens: undefined,
 });
