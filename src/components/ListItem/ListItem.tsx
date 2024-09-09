@@ -62,6 +62,12 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
       },
     });
 
+    if (leadingImage) {
+      console.log(
+        getStyles('image', { style: { backgroundImage: leadingImage } }),
+      );
+    }
+
     // FIXME:
     // const listContext = useContext(ListContext);
     // const adaptedSize =
@@ -71,13 +77,12 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
     const renderStart = (): React.ReactNode =>
       start ??
       (leadingIcon ? (
-        <div {...getStyles('icon', 'icon$leading')}>{leadingIcon}</div>
+        <div {...getStyles(['icon', 'icon$leading'])}>{leadingIcon}</div>
       ) : leadingImage ? (
         <div
-          {...getStyles(
-            'image',
-            // FIXME: commonStyles.backgroundImage(leadingImage)
-          )}
+          {...getStyles('image', {
+            style: { backgroundImage: `url(${leadingImage})` },
+          })}
         />
       ) : leadingVideo ? (
         <video {...getStyles('video')} autoPlay={!disabled} loop muted>
@@ -126,8 +131,8 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
           classNames={mergeClassNames(classNames, {
             stateLayer: getStyles('stateLayer').className,
           })}
-          inwardFocusRing
           ref={forwardedRef}
+          inwardFocusRing
         >
           {renderItem()}
         </ButtonBase>

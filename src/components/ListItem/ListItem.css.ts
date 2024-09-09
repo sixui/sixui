@@ -181,10 +181,10 @@ const classNames = createStyles({
     WebkitTapHighlightColor: 'transparent',
 
     selectors: {
-      [getModifierSelector<IModifier>('with-leading')]: {
+      [getModifierSelector<IModifier>('with-leading', root)]: {
         paddingInlineStart: '0px',
       },
-      [getModifierSelector<IModifier>('with-trailing')]: {
+      [getModifierSelector<IModifier>('with-trailing', root)]: {
         paddingInlineEnd: '0px',
       },
       [getModifierSelector<IModifier>('selected')]: {
@@ -427,6 +427,15 @@ const classNames = createStyles({
         },
     },
   }),
+  image: {
+    width: tokens.leadingImage.width,
+    height: tokens.leadingImage.height,
+    backgroundSize: 'cover',
+  },
+  video: {
+    height: tokens.leadingVideo.height,
+    objectFit: 'cover',
+  },
 });
 
 export type IListItemThemeFactory = IComponentThemeFactory<{

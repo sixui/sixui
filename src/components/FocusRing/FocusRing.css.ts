@@ -46,6 +46,7 @@ const outwardShrinkKeyframes = keyframes({
 
 const classNames = createStyles({
   root: {
+    zIndex: 1,
     animationDelay: `0s, calc(${tokens.animationDuration} * 0.25)`,
     animationDuration: `calc(${tokens.animationDuration} * 0.25), calc(${tokens.animationDuration} * 0.75)`,
     animationTimingFunction: themeTokens.motion.easing.standard.normal,
