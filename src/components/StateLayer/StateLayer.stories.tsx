@@ -41,6 +41,7 @@ const BoundedDemo: React.FC<IDemoProps> = (props) => {
       surface='$surface'
       corner='$md'
       outline='$xs'
+      outlineStyle='solid'
       {...stateLayer.interactionsContext.triggerProps}
       ref={stateLayer.triggerRef}
     >

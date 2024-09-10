@@ -96,8 +96,14 @@ const [tokensClassName, tokens] = createTheme({
       },
     },
     opacity: {
-      hovered: themeTokens.state.stateLayerOpacity.hovered,
-      pressed: themeTokens.state.stateLayerOpacity.pressed,
+      hovered: {
+        regular: themeTokens.state.stateLayerOpacity.hovered,
+        selected: themeTokens.state.stateLayerOpacity.hovered,
+      },
+      pressed: {
+        regular: themeTokens.state.stateLayerOpacity.pressed,
+        selected: themeTokens.state.stateLayerOpacity.pressed,
+      },
     },
   },
   leadingImage: {
@@ -530,8 +536,8 @@ const classNames = createStyles({
         pressed: tokens.stateLayer.color.pressed.regular,
       },
       opacity: {
-        hovered: tokens.stateLayer.opacity.hovered,
-        pressed: tokens.stateLayer.opacity.pressed,
+        hovered: tokens.stateLayer.opacity.hovered.regular,
+        pressed: tokens.stateLayer.opacity.pressed.regular,
       },
     }),
 
@@ -543,8 +549,8 @@ const classNames = createStyles({
             pressed: tokens.stateLayer.color.pressed.selected,
           },
           opacity: {
-            hovered: tokens.stateLayer.opacity.hovered,
-            pressed: tokens.stateLayer.opacity.pressed,
+            hovered: tokens.stateLayer.opacity.hovered.selected,
+            pressed: tokens.stateLayer.opacity.pressed.selected,
           },
         }),
       },
@@ -783,7 +789,15 @@ export const listItemVariants = {
           color: {
             normal: {
               regular: themeTokens.colorScheme.error,
-              selected: themeTokens.colorScheme.onErrorContainer,
+              selected: themeTokens.colorScheme.error,
+            },
+            hovered: {
+              regular: themeTokens.colorScheme.onError,
+              selected: themeTokens.colorScheme.onError,
+            },
+            pressed: {
+              regular: themeTokens.colorScheme.onError,
+              selected: themeTokens.colorScheme.onError,
             },
           },
         },
@@ -791,23 +805,23 @@ export const listItemVariants = {
           color: {
             normal: {
               regular: themeTokens.colorScheme.error,
-              selected: themeTokens.colorScheme.onErrorContainer,
+              selected: themeTokens.colorScheme.error,
             },
             hovered: {
-              regular: themeTokens.colorScheme.onErrorContainer,
+              regular: themeTokens.colorScheme.onError,
               selected: themeTokens.colorScheme.onError,
             },
             pressed: {
-              regular: themeTokens.colorScheme.onErrorContainer,
-              selected: themeTokens.colorScheme.onErrorContainer,
+              regular: themeTokens.colorScheme.onError,
+              selected: themeTokens.colorScheme.onError,
             },
           },
         },
         stateLayer: {
           color: {
             hovered: {
-              regular: themeTokens.colorScheme.errorContainer,
-              selected: themeTokens.colorScheme.errorContainer,
+              regular: themeTokens.colorScheme.error,
+              selected: themeTokens.colorScheme.error,
             },
             pressed: {
               regular: themeTokens.colorScheme.error,
@@ -815,7 +829,14 @@ export const listItemVariants = {
             },
           },
           opacity: {
-            hovered: '1',
+            hovered: {
+              regular: '0.87',
+              selected: '0.87',
+            },
+            pressed: {
+              regular: '1',
+              selected: '1',
+            },
           },
         },
       }),
