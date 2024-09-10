@@ -585,23 +585,6 @@ const classNames = createStyles({
         ),
       },
 
-      [getModifierSelector<IModifier>('hovered', root)]: {
-        color: fallbackVar(
-          tokens.leadingIcon.color.hovered.regular,
-          tokens.leadingIcon.color.normal.regular,
-          tokens.nonText.color.hovered.regular,
-          tokens.nonText.color.normal.regular,
-        ),
-      },
-      [getModifierSelector<IModifier>(['hovered', 'selected'], root)]: {
-        color: fallbackVar(
-          tokens.leadingIcon.color.hovered.selected,
-          tokens.leadingIcon.color.normal.selected,
-          tokens.nonText.color.hovered.selected,
-          tokens.nonText.color.normal.selected,
-        ),
-      },
-
       [getModifierSelector<IModifier>('focused', root)]: {
         color: fallbackVar(
           tokens.leadingIcon.color.focused.regular,
@@ -615,6 +598,23 @@ const classNames = createStyles({
           tokens.leadingIcon.color.focused.selected,
           tokens.leadingIcon.color.normal.selected,
           tokens.nonText.color.focused.selected,
+          tokens.nonText.color.normal.selected,
+        ),
+      },
+
+      [getModifierSelector<IModifier>('hovered', root)]: {
+        color: fallbackVar(
+          tokens.leadingIcon.color.hovered.regular,
+          tokens.leadingIcon.color.normal.regular,
+          tokens.nonText.color.hovered.regular,
+          tokens.nonText.color.normal.regular,
+        ),
+      },
+      [getModifierSelector<IModifier>(['hovered', 'selected'], root)]: {
+        color: fallbackVar(
+          tokens.leadingIcon.color.hovered.selected,
+          tokens.leadingIcon.color.normal.selected,
+          tokens.nonText.color.hovered.selected,
           tokens.nonText.color.normal.selected,
         ),
       },
@@ -662,23 +662,6 @@ const classNames = createStyles({
         ),
       },
 
-      [getModifierSelector<IModifier>('hovered', root)]: {
-        color: fallbackVar(
-          tokens.trailingIcon.color.hovered.regular,
-          tokens.trailingIcon.color.normal.regular,
-          tokens.nonText.color.hovered.regular,
-          tokens.nonText.color.normal.regular,
-        ),
-      },
-      [getModifierSelector<IModifier>(['hovered', 'selected'], root)]: {
-        color: fallbackVar(
-          tokens.trailingIcon.color.hovered.selected,
-          tokens.trailingIcon.color.normal.selected,
-          tokens.nonText.color.hovered.selected,
-          tokens.nonText.color.normal.selected,
-        ),
-      },
-
       [getModifierSelector<IModifier>('focused', root)]: {
         color: fallbackVar(
           tokens.trailingIcon.color.focused.regular,
@@ -692,6 +675,23 @@ const classNames = createStyles({
           tokens.trailingIcon.color.focused.selected,
           tokens.trailingIcon.color.normal.selected,
           tokens.nonText.color.focused.selected,
+          tokens.nonText.color.normal.selected,
+        ),
+      },
+
+      [getModifierSelector<IModifier>('hovered', root)]: {
+        color: fallbackVar(
+          tokens.trailingIcon.color.hovered.regular,
+          tokens.trailingIcon.color.normal.regular,
+          tokens.nonText.color.hovered.regular,
+          tokens.nonText.color.normal.regular,
+        ),
+      },
+      [getModifierSelector<IModifier>(['hovered', 'selected'], root)]: {
+        color: fallbackVar(
+          tokens.trailingIcon.color.hovered.selected,
+          tokens.trailingIcon.color.normal.selected,
+          tokens.nonText.color.hovered.selected,
           tokens.nonText.color.normal.selected,
         ),
       },
