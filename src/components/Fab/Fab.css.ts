@@ -35,13 +35,13 @@ const [tokensClassName, tokens] = createTheme({
         regular: elevationLevelPreset[3],
         lowered: elevationLevelPreset[1],
       },
-      hovered: {
-        regular: elevationLevelPreset[4],
-        lowered: elevationLevelPreset[2],
-      },
       focused: {
         regular: elevationLevelPreset[3],
         lowered: elevationLevelPreset[1],
+      },
+      hovered: {
+        regular: elevationLevelPreset[4],
+        lowered: elevationLevelPreset[2],
       },
       pressed: {
         regular: elevationLevelPreset[3],
