@@ -7,12 +7,18 @@ import {
 import { createStyles } from '~/utils/styles/createStyles';
 import { space } from '~/helpers/styles/space';
 import { px } from '~/helpers/styles/px';
+import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
+
+type IModifier = 'grid' | 'empty';
 
 const [tokensClassName, tokens] = createTheme({
   topSpace: px(space(2)),
   bottomSpace: px(space(2)),
   gap: px(space(0)),
-  gridSpace: px(space(1)),
+  grid: {
+    space: px(space(1)),
+    templateColumns: 'unset',
+  },
 });
 
 const classNames = createStyles({
@@ -30,27 +36,33 @@ const classNames = createStyles({
     borderRadius: 'inherit',
   },
   header: {},
-  content: {
+  content: ({ root }) => ({
     paddingTop: tokens.topSpace,
     paddingBottom: tokens.bottomSpace,
     borderRadius: 'inherit',
     gap: tokens.gap,
-  },
-  content$empty: {
-    paddingTop: 0,
-    paddingBottom: 0,
-  },
-  content$grid: {
-    display: 'grid',
-    gridAutoRows: '1fr',
-    gap: tokens.gridSpace,
-  },
+
+    selectors: {
+      [getModifierSelector<IModifier>('grid', root)]: {
+        display: 'grid',
+        gridAutoRows: '1fr',
+        gap: tokens.grid.space,
+        gridTemplateColumns: tokens.grid.templateColumns,
+      },
+
+      [getModifierSelector<IModifier>('empty', root)]: {
+        paddingTop: 0,
+        paddingBottom: 0,
+      },
+    },
+  }),
   footer: {},
 });
 
 export type IListThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
+  modifier: IModifier;
 }>;
 
 export const listTheme = componentThemeFactory<IListThemeFactory>({

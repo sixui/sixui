@@ -1,61 +1,69 @@
-import { forwardRef } from 'react';
+import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import type { IListProps } from './List.types';
-import { commonStyles } from '~/helpers/commonStyles';
-import { useStyles } from '~/hooks/useStyles';
-import { Base } from '../Base';
+import type { IListFactory } from './List.types';
+import { componentFactory } from '~/utils/component/componentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { Paper } from '../Paper';
+import { Flex } from '../Flex';
 import { ListContext } from './List.context';
-import { listStyles } from './List.styles';
-import { listTheme } from './List.stylex';
-import { Stack } from '../Stack';
+import { listTheme, type IListThemeFactory } from './List.css';
 
-export const List = forwardRef<HTMLDivElement, IListProps>(
-  function List(props, forwardedRef) {
-    const {
-      styles,
-      sx,
-      size,
-      noFocusRing,
-      children,
-      header,
-      footer,
-      divider,
-      cols = 1,
-      ...other
-    } = props;
+const COMPONENT_NAME = 'List';
 
-    const { combineStyles, getStyles, globalStyles } = useStyles({
-      componentName: 'List',
-      styles: [listStyles, styles],
-    });
+export const List = componentFactory<IListFactory>((props, forwardedRef) => {
+  const {
+    classNames,
+    className,
+    styles,
+    style,
+    variant,
+    noFocusRing,
+    children,
+    header,
+    footer,
+    divider,
+    cols = 1,
+    ...other
+  } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const isGrid = cols > 1;
+  const isGrid = cols > 1;
 
-    return (
-      <ListContext.Provider value={{ size, noFocusRing }}>
-        <Base
-          {...other}
-          sx={[listTheme, globalStyles, combineStyles('host'), sx]}
-          ref={forwardedRef}
-        >
-          <Stack sx={combineStyles('inner')}>
-            <div {...getStyles('header')}>{header}</div>
-            <Stack
-              divider={divider}
-              sx={combineStyles(
-                'content',
-                isGrid && 'content$grid',
-                isGrid &&
-                  commonStyles.gridTemplateColumns(`repeat(${cols}, 1fr)`),
-                !children && 'content$empty',
-              )}
-            >
-              {children}
-            </Stack>
-            <div {...getStyles('footer')}>{footer}</div>
-          </Stack>
-        </Base>
-      </ListContext.Provider>
-    );
-  },
-);
+  const { getStyles } = useComponentTheme<IListThemeFactory>({
+    componentName: COMPONENT_NAME,
+    classNames,
+    className,
+    styles,
+    style,
+    theme: listTheme,
+    variant,
+    modifiers: {
+      grid: isGrid,
+      empty: !children,
+    },
+  });
+
+  return (
+    <ListContext.Provider value={{ noFocusRing }}>
+      <Paper {...other} {...getStyles('root')} ref={forwardedRef}>
+        <Flex {...getStyles('inner')} direction='column'>
+          {header && <header {...getStyles('header')}>{header}</header>}
+          <Flex
+            {...getStyles('content', {
+              style: assignInlineVars({
+                [listTheme.tokens.grid.templateColumns]: isGrid
+                  ? `repeat(${cols}, 1fr)`
+                  : undefined,
+              }),
+            })}
+            direction='column'
+            divider={divider}
+          >
+            {children}
+          </Flex>
+          {footer && <footer {...getStyles('footer')}>{footer}</footer>}
+        </Flex>
+      </Paper>
+    </ListContext.Provider>
+  );
+});

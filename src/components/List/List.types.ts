@@ -1,4 +1,4 @@
-import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { IPaperOwnProps } from '../Paper';
@@ -21,10 +21,9 @@ export interface IListProps
     IListOwnProps,
     IListOwnProps {}
 
-export type IListFactory = IPolymorphicComponentFactory<{
+export type IListFactory = IComponentFactory<{
   props: IListProps;
-  defaultRef: HTMLDivElement;
-  defaultRoot: 'div';
+  ref: HTMLDivElement;
   theme: typeof listTheme;
   variant: IListVariant | false;
 }>;

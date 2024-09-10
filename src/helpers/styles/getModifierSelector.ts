@@ -5,6 +5,7 @@ type IOperator = '=' | '^=' | '$=' | '~=' | '*=' | '|=' | '?=' | '!=';
 type IModifier<TModifier extends string = string> =
   | TModifier
   | `${TModifier}${IOperator}${string}`
+  | `!${TModifier}`
   | Partial<IModifiers<TModifier>>
   | Array<IModifier<TModifier>>;
 
@@ -12,7 +13,9 @@ const compileModifier = <TModifier extends string = string>(
   modifier: IModifier<TModifier>,
 ): string =>
   typeof modifier === 'string'
-    ? `[data-${modifier}]`
+    ? modifier.startsWith('!')
+      ? `:not([data-${modifier.slice(1)}])`
+      : `[data-${modifier}]`
     : Array.isArray(modifier)
       ? modifier.map((modifier) => compileModifier(modifier)).join('')
       : Object.entries(getDataAttributes(modifier)).reduce(

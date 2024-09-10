@@ -25,7 +25,7 @@ type IModifier =
   | 'with-leading'
   | 'with-trailing';
 
-const DENSITY = px(getDensity({ min: -4, max: 2 }));
+const DENSITY = px(getDensity({ min: -6, max: 2 }));
 
 const slotTokens = {
   color: {
@@ -156,13 +156,13 @@ const classNames = createStyles({
           tokens.text.color.normal.regular,
         ),
       },
-      overlineText: {
+      overline: {
         color: fallbackVar(
           tokens.overlineText.color.normal.regular,
           tokens.text.color.normal.regular,
         ),
       },
-      headlineText: {
+      label: {
         color: tokens.text.color.normal.regular,
       },
       supportingText: {
@@ -202,13 +202,13 @@ const classNames = createStyles({
               tokens.text.color.normal.selected,
             ),
           },
-          overlineText: {
+          overline: {
             color: fallbackVar(
               tokens.overlineText.color.normal.selected,
               tokens.text.color.normal.selected,
             ),
           },
-          headlineText: {
+          label: {
             color: tokens.text.color.normal.selected,
           },
           supportingText: {
@@ -237,7 +237,7 @@ const classNames = createStyles({
               tokens.text.opacity.disabled,
             ),
           },
-          overlineText: {
+          overline: {
             color: fallbackVar(
               tokens.overlineText.color.disabled,
               tokens.text.color.disabled,
@@ -247,7 +247,7 @@ const classNames = createStyles({
               tokens.text.opacity.disabled,
             ),
           },
-          headlineText: {
+          label: {
             color: tokens.text.color.disabled,
             opacity: tokens.text.opacity.disabled,
           },
@@ -284,7 +284,7 @@ const classNames = createStyles({
               tokens.text.color.normal.regular,
             ),
           },
-          overlineText: {
+          overline: {
             color: fallbackVar(
               tokens.overlineText.color.focused.regular,
               tokens.overlineText.color.normal.regular,
@@ -292,7 +292,7 @@ const classNames = createStyles({
               tokens.text.color.normal.regular,
             ),
           },
-          headlineText: {
+          label: {
             color: fallbackVar(
               tokens.text.color.focused.regular,
               tokens.text.color.normal.regular,
@@ -326,7 +326,7 @@ const classNames = createStyles({
               tokens.text.color.normal.selected,
             ),
           },
-          overlineText: {
+          overline: {
             color: fallbackVar(
               tokens.overlineText.color.focused.selected,
               tokens.overlineText.color.normal.selected,
@@ -334,7 +334,7 @@ const classNames = createStyles({
               tokens.text.color.normal.selected,
             ),
           },
-          headlineText: {
+          label: {
             color: fallbackVar(
               tokens.text.color.focused.selected,
               tokens.text.color.normal.selected,
@@ -369,7 +369,7 @@ const classNames = createStyles({
               tokens.text.color.normal.regular,
             ),
           },
-          overlineText: {
+          overline: {
             color: fallbackVar(
               tokens.overlineText.color.hovered.regular,
               tokens.overlineText.color.normal.regular,
@@ -377,7 +377,7 @@ const classNames = createStyles({
               tokens.text.color.normal.regular,
             ),
           },
-          headlineText: {
+          label: {
             color: fallbackVar(
               tokens.text.color.hovered.regular,
               tokens.text.color.normal.regular,
@@ -411,7 +411,7 @@ const classNames = createStyles({
               tokens.text.color.normal.selected,
             ),
           },
-          overlineText: {
+          overline: {
             color: fallbackVar(
               tokens.overlineText.color.hovered.selected,
               tokens.overlineText.color.normal.selected,
@@ -419,7 +419,7 @@ const classNames = createStyles({
               tokens.text.color.normal.selected,
             ),
           },
-          headlineText: {
+          label: {
             color: fallbackVar(
               tokens.text.color.hovered.selected,
               tokens.text.color.normal.selected,
@@ -454,7 +454,7 @@ const classNames = createStyles({
               tokens.text.color.normal.regular,
             ),
           },
-          overlineText: {
+          overline: {
             color: fallbackVar(
               tokens.overlineText.color.pressed.regular,
               tokens.overlineText.color.normal.regular,
@@ -462,7 +462,7 @@ const classNames = createStyles({
               tokens.text.color.normal.regular,
             ),
           },
-          headlineText: {
+          label: {
             color: fallbackVar(
               tokens.text.color.pressed.regular,
               tokens.text.color.normal.regular,
@@ -496,7 +496,7 @@ const classNames = createStyles({
               tokens.text.color.normal.selected,
             ),
           },
-          overlineText: {
+          overline: {
             color: fallbackVar(
               tokens.overlineText.color.pressed.selected,
               tokens.overlineText.color.pressed.selected,
@@ -504,7 +504,7 @@ const classNames = createStyles({
               tokens.text.color.normal.selected,
             ),
           },
-          headlineText: {
+          label: {
             color: fallbackVar(
               tokens.text.color.pressed.selected,
               tokens.text.color.normal.selected,

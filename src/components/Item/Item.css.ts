@@ -24,12 +24,12 @@ const [tokensClassName, tokens] = createTheme({
     color: 'inherit',
     opacity: 'unset',
   },
-  overlineText: {
+  overline: {
     color: themeTokens.colorScheme.onSurfaceVariant,
     opacity: 'unset',
     typography: themeTokens.typeScale.label.sm,
   },
-  headlineText: {
+  label: {
     color: themeTokens.colorScheme.onSurface,
     opacity: 'unset',
     typography: themeTokens.typeScale.body.lg,
@@ -102,23 +102,23 @@ const classNames = createStyles({
       },
     },
   }),
-  overlineText: {
-    color: tokens.overlineText.color,
-    opacity: tokens.overlineText.opacity,
-    ...getTypographyStyles(tokens.overlineText.typography),
+  overline: {
+    color: tokens.overline.color,
+    opacity: tokens.overline.opacity,
+    ...getTypographyStyles(tokens.overline.typography),
   },
-  headlineText: {
+  label: {
     // Needed since the default slot can have just text content, and ellipsis
     // need an inline display.
     display: 'inline',
 
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    color: tokens.headlineText.color,
-    opacity: tokens.headlineText.opacity,
+    color: tokens.label.color,
+    opacity: tokens.label.opacity,
     ...getTypographyStyles({
-      ...tokens.headlineText.typography,
-      lineHeight: calc.add(tokens.headlineText.typography.lineHeight, DENSITY),
+      ...tokens.label.typography,
+      lineHeight: calc.add(tokens.label.typography.lineHeight, DENSITY),
     }),
   },
   supportingText: {

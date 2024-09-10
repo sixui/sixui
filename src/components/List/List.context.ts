@@ -1,7 +1,6 @@
 import { createContext } from 'react';
 
 export type IListContextValue = {
-  // size?: 'sm' | 'md' | 'lg' | 'xl';
   noFocusRing?: boolean;
 };
 

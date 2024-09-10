@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCalendarDays,
@@ -10,15 +9,13 @@ import { createSequence } from '@olivierpascal/helpers';
 
 import type { IListProps } from './List.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { outlineTokens } from '~/themes/base/outline.stylex';
-import { scaleTokens } from '~/themes/base/scale.stylex';
-import { ComponentShowcase } from '../ComponentShowcase';
+import { makeComponentShowcase } from '../ComponentShowcase';
 import { ListItem, type IListItemProps } from '../ListItem';
 import { Avatar } from '../Avatar';
-import { Checkbox } from '../Checkbox';
 import { List } from './List';
 import { Placeholder } from '../Placeholder';
+import { Paper } from '../Paper';
+import { px } from '~/helpers/styles/px';
 
 // https://m3.material.io/components/lists/overview
 // https://material-web.dev/components/list/
@@ -31,55 +28,56 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const styles = stylex.create({
-  host: {
-    outlineWidth: outlineTokens.width$xs,
-    outlineStyle: 'dashed',
-    outlineColor: colorSchemeTokens.outlineVariant,
-  },
-  host$fixedSize: {
-    width: `calc(280px * ${scaleTokens.scale})`,
-    height: `calc(280px * ${scaleTokens.scale})`,
-    overflowX: 'hidden',
-    overflowY: 'auto',
-  },
-});
-
 const defaultArgs = {
-  sx: styles.host,
-  header: <Placeholder expand corner='none' label='Header' />,
-  footer: <Placeholder expand corner='none' label='Footer' />,
+  header: <Placeholder corner='$none' label='Header' />,
+  footer: <Placeholder corner='$none' label='Footer' />,
 } satisfies Partial<IListProps>;
+
+const ListDemo: React.FC<IListProps> = (props) => (
+  <Paper outline='$xs' outlineStyle='dashed'>
+    <div style={{ overflowY: 'auto' }}>
+      <List {...props} />
+    </div>
+  </Paper>
+);
 
 const renderListItems = (props?: IListItemProps, count = 4): React.ReactNode =>
   createSequence(count, 1).map((initials, index) => (
     <ListItem key={index} leading={<Avatar>{initials}</Avatar>} {...props}>
-      Headline
+      Label
     </ListItem>
   ));
 
+const ListDemoShowcase = makeComponentShowcase(ListDemo);
+
 export const Sizes: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={(props) => <List {...props} />}
+    <ListDemoShowcase
       verticalAlign='start'
       cols={[
         {
-          legend: 'Small (sm)',
+          legend: 'Extra small',
+          props: {
+            children: renderListItems(),
+            size: 'xs',
+          },
+        },
+        {
+          legend: 'Small',
           props: {
             children: renderListItems(),
             size: 'sm',
           },
         },
         {
-          legend: 'Medium (md)',
+          legend: 'Medium',
           props: {
             children: renderListItems(),
             size: 'md',
           },
         },
         {
-          legend: 'Large (lg)',
+          legend: 'Large',
           props: {
             children: renderListItems({
               supportingText: 'Supporting text',
@@ -88,7 +86,7 @@ export const Sizes: IStory = {
           },
         },
         {
-          legend: 'Extra large (xl)',
+          legend: 'Extra large',
           props: {
             children: renderListItems({
               supportingText:
@@ -103,96 +101,128 @@ export const Sizes: IStory = {
   ),
   args: {
     ...defaultArgs,
-    sx: [styles.host, styles.host$fixedSize],
+    maw: px(280),
+  },
+};
+
+export const Densities: IStory = {
+  render: (props) => (
+    <ListDemoShowcase
+      verticalAlign='start'
+      cols={[-6, -4, -2, 0, 2].map((density) => ({
+        legend: String(density),
+        props: {
+          children: renderListItems(),
+          density,
+        },
+      }))}
+      props={props}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    maw: px(280),
   },
 };
 
 export const Grid: IStory = {
-  render: (props) => <List {...props} />,
+  render: (props) => <ListDemoShowcase verticalAlign='start' props={props} />,
   args: {
     ...defaultArgs,
+    children: renderListItems({ supportingText: 'Supporting text' }, 8),
     cols: 3,
-    children: renderListItems(
-      {
-        supportingText: 'Supporting text',
-      },
-      8,
-    ),
   },
 };
 
 export const Configurations: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={(args) => (
-        <List {...args}>
-          <ListItem>Basic item</ListItem>
-          <ListItem leadingIcon={<FontAwesomeIcon icon={faCheck} />}>
-            Item with leading icon
-          </ListItem>
-          <ListItem
-            leadingIcon={<FontAwesomeIcon icon={faCheck} />}
-            supportingText='Supporting text that is long enough to fill up multiple lines'
-          >
-            Item with leading icon
-          </ListItem>
-          <ListItem trailingIcon={<FontAwesomeIcon icon={faLink} />}>
-            Item with trailing icon
-          </ListItem>
-          <ListItem leading={<Avatar>A</Avatar>}>
-            Item with leading element
-          </ListItem>
-          <ListItem
-            leading={
-              <Avatar src='https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' />
-            }
-            supportingText='Supporting text that is long enough to fill up multiple lines'
-          >
-            Item with leading element
-          </ListItem>
-          <ListItem leadingImage='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&h=168&w=168'>
-            Item with leading image
-          </ListItem>
-          <ListItem
-            leadingVideo={[
-              {
-                type: 'video/webm',
-                src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm',
-              },
-              {
-                type: 'video/mp4',
-                src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
-              },
-            ]}
-          >
-            Item with leading video
-          </ListItem>
-          <ListItem trailing={<Checkbox checked />}>
-            Item with trailing element
-          </ListItem>
-          <ListItem overline='Overline'>Item with overline</ListItem>
-          <ListItem supportingText='Supporting text'>
-            Item with supporting text
-          </ListItem>
-          <ListItem trailingSupportingText='100+'>
-            Item with trailing supporting text
-          </ListItem>
-          <ListItem selected>Selected item</ListItem>
-          <ListItem onClick={(...args) => sbHandleEvent('click', args)}>
-            Interactive item
-          </ListItem>
-          <ListItem
-            leadingIcon={<FontAwesomeIcon icon={faCalendarDays} />}
-            disabled
-          >
-            Disabled item
-          </ListItem>
-        </List>
-      )}
+    <ListDemoShowcase
       props={props}
+      cols={[
+        {
+          props: {
+            children: (
+              <>
+                <ListItem>Basic item</ListItem>
+                <ListItem leadingIcon={<FontAwesomeIcon icon={faCheck} />}>
+                  Item with leading icon
+                </ListItem>
+                <ListItem
+                  leadingIcon={<FontAwesomeIcon icon={faCheck} />}
+                  supportingText='Supporting text that is long enough to fill up multiple lines'
+                >
+                  Item with leading icon
+                </ListItem>
+                <ListItem trailingIcon={<FontAwesomeIcon icon={faLink} />}>
+                  Item with trailing icon
+                </ListItem>
+                <ListItem leading={<Avatar>A</Avatar>}>
+                  Item with leading element
+                </ListItem>
+                <ListItem
+                  leading={
+                    <Avatar src='https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' />
+                  }
+                  supportingText='Supporting text that is long enough to fill up multiple lines'
+                >
+                  Item with leading element
+                </ListItem>
+                <ListItem leadingImage='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&h=168&w=168'>
+                  Item with leading image
+                </ListItem>
+                <ListItem
+                  leadingVideo={[
+                    {
+                      type: 'video/webm',
+                      src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm',
+                    },
+                    {
+                      type: 'video/mp4',
+                      src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+                    },
+                  ]}
+                >
+                  Item with leading video
+                </ListItem>
+              </>
+            ),
+          },
+        },
+        {
+          props: {
+            children: (
+              <>
+                {/* FIXME: <ListItem trailing={<Checkbox checked />}>
+                  Item with trailing element
+                </ListItem> */}
+                <ListItem overline='Overline'>Item with overline</ListItem>
+                <ListItem supportingText='Supporting text'>
+                  Item with supporting text
+                </ListItem>
+                <ListItem trailingSupportingText='100+'>
+                  Item with trailing supporting text
+                </ListItem>
+                <ListItem selected>Selected item</ListItem>
+                <ListItem onClick={(...args) => sbHandleEvent('click', args)}>
+                  Interactive item
+                </ListItem>
+                <ListItem
+                  leadingIcon={<FontAwesomeIcon icon={faCalendarDays} />}
+                  disabled
+                >
+                  Disabled item
+                </ListItem>
+              </>
+            ),
+          },
+        },
+      ]}
     />
   ),
-  args: defaultArgs,
+  args: {
+    ...defaultArgs,
+    maw: px(280),
+  },
 };
 
 export default meta;

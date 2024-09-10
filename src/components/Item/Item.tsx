@@ -58,10 +58,8 @@ export const Item = polymorphicComponentFactory<IItemFactory>(
                 : undefined,
             })}
           >
-            {overline ? (
-              <div {...getStyles('overlineText')}>{overline}</div>
-            ) : null}
-            <div {...getStyles('headlineText')}>{children}</div>
+            {overline ? <div {...getStyles('overline')}>{overline}</div> : null}
+            <div {...getStyles('label')}>{children}</div>
             {supportingText ? (
               <div {...getStyles('supportingText')}>{supportingText}</div>
             ) : null}
