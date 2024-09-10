@@ -3,7 +3,7 @@ import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { focusRingTheme, IFocusRingThemeFactory } from './FocusRing.css';
 
-export type IFocusRingVariant = 'inward' | 'outward';
+export type IFocusRingVariant = 'outward' | 'inward';
 
 export interface IFocusRingProps
   extends IBoxProps,

@@ -562,15 +562,14 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
         <ButtonBase
           {...getStyles('container')}
           stateLayer={stateLayer}
-          ref={containerRef}
           as='div'
           classNames={mergeClassNames(classNames, {
             stateLayer: getStyles('stateLayer').className,
           })}
+          focusRing={false}
+          ref={containerRef}
         >
-          {/* RENDER BACKGROUND */}
           {renderIndicator()}
-          {/* RENDER OUTLINE */}
           <div {...getStyles('inner')}>
             {/* RENDER START SECTION */}
             <div {...getStyles('section')} data-section='main'>

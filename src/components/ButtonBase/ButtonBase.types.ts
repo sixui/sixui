@@ -6,6 +6,7 @@ import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IInteractions } from '~/hooks/useInteractions';
 import type { IUseStateLayerResult } from '../StateLayer';
 import type { IPaperOwnProps } from '../Paper';
+import type { IFocusRingVariant } from '../FocusRing';
 import type {
   buttonBaseTheme,
   IButtonBaseThemeFactory,
@@ -14,7 +15,7 @@ import type {
 export type IButtonBaseOwnProps = {
   interactions?: IInteractions;
   children?: React.ReactNode;
-  inwardFocusRing?: boolean;
+  focusRing?: IFocusRingVariant | false;
   href?: string;
   target?: React.AnchorHTMLAttributes<HTMLAnchorElement>['target'];
   rel?: string;

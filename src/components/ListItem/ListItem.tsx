@@ -119,7 +119,7 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
             stateLayer: getStyles('stateLayer').className,
           })}
           ref={forwardedRef}
-          inwardFocusRing
+          focusRing='inward'
         >
           {renderItem()}
         </ButtonBase>
