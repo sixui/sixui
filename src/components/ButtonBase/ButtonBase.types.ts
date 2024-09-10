@@ -4,6 +4,7 @@ import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphic
 import type { IMaybeAsync, IAny } from '~/helpers/types';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IInteractions } from '~/hooks/useInteractions';
+import type { IUseStateLayerResult } from '../StateLayer';
 import type { IPaperOwnProps } from '../Paper';
 import type {
   buttonBaseTheme,
@@ -32,6 +33,7 @@ export type IButtonBaseOwnProps = {
   readOnly?: boolean;
 
   type?: string;
+  stateLayer?: IUseStateLayerResult;
 };
 
 export interface IButtonBaseProps

@@ -31,6 +31,7 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
       disabled,
       readOnly,
       type = 'button',
+      stateLayer: stateLayerProp,
       interactions,
       onPress,
       href,
@@ -58,11 +59,13 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
       },
     });
 
-    const stateLayer = useStateLayer<HTMLDivElement>({
+    const ownStateLayer = useStateLayer<HTMLDivElement>({
       interactions,
-      disabled: disabledOrReadOnly,
+      disabled: !!stateLayerProp || disabledOrReadOnly,
       pressEvents: { onPress },
     });
+    const hasOwnStateLayer = !!stateLayerProp;
+    const stateLayer = stateLayerProp ?? ownStateLayer;
     const rootElement =
       as ?? (href ? (sixuiContext.settings?.linkAs ?? 'a') : 'button');
 

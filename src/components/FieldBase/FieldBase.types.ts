@@ -1,5 +1,5 @@
 import type { IOmit } from '~/helpers/types';
-import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type {
   IForwardableProps,
@@ -43,10 +43,9 @@ export interface IFieldBaseProps
     IComponentThemeProps<IFieldBaseThemeFactory>,
     IFieldBaseOwnProps {}
 
-export type IFieldBaseFactory = IPolymorphicComponentFactory<{
+export type IFieldBaseFactory = IComponentFactory<{
   props: IFieldBaseProps;
-  defaultRef: HTMLButtonElement;
-  defaultRoot: 'button';
+  ref: HTMLDivElement;
   theme: typeof fieldBaseTheme;
   variant: IFieldBaseVariant;
 }>;

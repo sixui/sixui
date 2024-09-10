@@ -284,12 +284,28 @@ const [tokensClassName, tokens] = createTheme({
 
 const classNames = createStyles({
   root: {
+    position: 'relative',
+    resize: 'inherit',
+    display: 'flex',
+    flexDirection: 'column',
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: '0%',
+    maxWidth: '100%',
+  },
+  container: {
+    position: 'relative',
+    resize: 'inherit',
+    display: 'flex',
+    height: '100%',
+
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
         color: {
           normal: tokens.container.color.normal,
           disabled: tokens.container.color.disabled,
         },
+        shape: tokens.container.shape,
       },
     }),
 
@@ -309,27 +325,7 @@ const classNames = createStyles({
       },
     },
   },
-  field: {
-    position: 'relative',
-    resize: 'inherit',
-    display: 'flex',
-    flexDirection: 'column',
-    flexGrow: 1,
-    flexShrink: 1,
-    flexBasis: '0%',
-    maxWidth: '100%',
-  },
-  containerOverflow: {
-    position: 'relative',
-    resize: 'inherit',
-    borderTopLeftRadius: tokens.container.shape.topLeft,
-    borderTopRightRadius: tokens.container.shape.topRight,
-    borderBottomRightRadius: tokens.container.shape.bottomRight,
-    borderBottomLeftRadius: tokens.container.shape.bottomLeft,
-    display: 'flex',
-    height: '100%',
-  },
-  container: {
+  inner: {
     alignItems: 'center',
     borderRadius: 'inherit',
     display: 'flex',
@@ -459,14 +455,12 @@ const classNames = createStyles({
     alignItems: 'center',
     flexWrap: 'wrap', // To make the input/textarea go to new line when needed
 
-    paddingTop: tokens.topSpace.normal,
-    paddingBottom: tokens.bottomSpace.normal,
-
     selectors: {
+      [getModifierSelector<IModifier>('!multiline', root)]: {
+        paddingTop: tokens.topSpace.normal,
+        paddingBottom: tokens.bottomSpace.normal,
+      },
       [getModifierSelector<IModifier>('multiline', root)]: {
-        paddingTop: 0,
-        paddingBottom: 0,
-
         // Use margin for textareas since they will scroll over the label if
         // not.
         marginTop: tokens.topSpace.normal,
@@ -501,6 +495,44 @@ const classNames = createStyles({
       },
     },
   }),
+  activeIndicator: {},
+  activeIndicatorBackground: {},
+  activeIndicatorFocus: {},
+  supportingText: ({ root }) => ({
+    display: 'flex',
+    ...getTypographyStyles(tokens.supportingText.typography),
+    gap: px(space(4)),
+    justifyContent: 'space-between',
+    paddingInlineStart: tokens.supportingText.leadingSpace,
+    paddingInlineEnd: tokens.supportingText.trailingSpace,
+    paddingTop: tokens.supportingText.topSpace,
+    color: tokens.supportingText.color.normal.regular,
+
+    selectors: {
+      [getModifierSelector<IModifier>('with-error', root)]: {
+        color: tokens.supportingText.color.normal.error,
+      },
+      [getModifierSelector<IModifier>('focused', root)]: {
+        color: tokens.supportingText.color.focused.regular,
+      },
+      [getModifierSelector<IModifier>(['focused', 'with-error'], root)]: {
+        color: tokens.supportingText.color.focused.error,
+      },
+      [getModifierSelector<IModifier>('hovered', root)]: {
+        color: tokens.supportingText.color.hovered.regular,
+      },
+      [getModifierSelector<IModifier>(['hovered', 'with-error'], root)]: {
+        color: tokens.supportingText.color.hovered.error,
+      },
+      [getModifierSelector<IModifier>('disabled', root)]: {
+        color: tokens.supportingText.color.disabled,
+        opacity: tokens.supportingText.opacity.disabled,
+      },
+    },
+  }),
+  counter: {
+    whiteSpace: 'nowrap',
+  },
 });
 
 export type IFieldBaseThemeFactory = IComponentThemeFactory<{
@@ -534,10 +566,12 @@ export const fieldBaseThemeVariants = {
     container: {
       selectors: {
         [getModifierSelector<IModifier>('resizable')]: {
-          // Move the container up so that the resize handle doesn't overlap the focus
+          // Move the container up so that the resize handle doesn't overlap the
+          // focus
           // indicator. Content is moved back the opposite direction.
           bottom: tokens.activeIndicator.height.focused,
-          // Ensures the container doesn't create an overhang that can be clicked on.
+          // Ensures the container doesn't create an overhang that can be
+          // clicked on.
           clipPath: `inset(${tokens.activeIndicator.height.focused} 0 0 0)`,
         },
       },
@@ -549,5 +583,93 @@ export const fieldBaseThemeVariants = {
         },
       },
     },
+    activeIndicator: {
+      inset: 'auto 0 0 0',
+      // Prevent click events on the indicator element since it has no width and
+      // causes bugs when handled by the foundation for updating
+      // transform-origin.
+      pointerEvents: 'none',
+      position: 'absolute',
+      width: '100%',
+      zIndex: 1,
+    },
+    activeIndicatorBackground: ({ root }) => ({
+      inset: 'auto 0 0 0',
+      position: 'absolute',
+      width: '100%',
+      borderBottomStyle: 'solid',
+      borderBottomWidth: tokens.activeIndicator.height.normal,
+      borderBottomColor: tokens.activeIndicator.color.normal.regular,
+
+      selectors: {
+        [getModifierSelector<IModifier>(['!focused', 'hovered'], root)]: {
+          borderBottomWidth: tokens.activeIndicator.height.hovered,
+          borderBottomColor: tokens.activeIndicator.color.hovered.regular,
+        },
+        [getModifierSelector<IModifier>(['with-error'], root)]: {
+          borderBottomColor: tokens.activeIndicator.color.normal.error,
+        },
+        [getModifierSelector<IModifier>(
+          ['with-error', '!focused', 'hovered'],
+          root,
+        )]: {
+          borderBottomColor: tokens.activeIndicator.color.hovered.error,
+        },
+        [getModifierSelector<IModifier>('disabled', root)]: {
+          borderBottomWidth: tokens.activeIndicator.height.disabled,
+          borderBottomColor: tokens.activeIndicator.color.disabled,
+          opacity: tokens.activeIndicator.opacity.disabled,
+        },
+      },
+    }),
+    activeIndicatorFocus: ({ root }) => ({
+      inset: 'auto 0 0 0',
+      position: 'absolute',
+      width: '100%',
+      borderBottomStyle: 'solid',
+      transitionProperty: 'opacity',
+      transitionDuration: themeTokens.motion.duration.short.$3,
+      transitionTimingFunction: themeTokens.motion.easing.standard.normal,
+      borderBottomWidth: tokens.activeIndicator.height.focused,
+      borderBottomColor: tokens.activeIndicator.color.focused.regular,
+      opacity: 0,
+
+      selectors: {
+        [getModifierSelector<IModifier>('focused', root)]: {
+          opacity: 1,
+        },
+        [getModifierSelector<IModifier>(['focused', 'with-error'], root)]: {
+          borderBottomColor: tokens.activeIndicator.color.focused.error,
+        },
+      },
+    }),
+    labelWrapper: ({ root }) => ({
+      selectors: {
+        [getModifierSelector<IModifier>('!with-start-section', root)]: {
+          marginInlineStart: tokens.leadingSpace,
+        },
+        [getModifierSelector<IModifier>('!with-end-section', root)]: {
+          marginInlineEnd: tokens.trailingSpace,
+        },
+      },
+    }),
+    contentSlot: ({ root }) => ({
+      selectors: {
+        [getModifierSelector<IModifier>('!with-start-section', root)]: {
+          paddingInlineStart: tokens.leadingSpace,
+        },
+        [getModifierSelector<IModifier>('!with-end-section', root)]: {
+          paddingInlineEnd: tokens.trailingSpace,
+        },
+        [getModifierSelector<IModifier>(['with-label', '!multiline'], root)]: {
+          paddingTop: `calc(${tokens.topSpace.withLabel} + ${tokens.label.typography.populated.lineHeight})`,
+          paddingBottom: tokens.bottomSpace.withLabel,
+        },
+        [getModifierSelector<IModifier>(['with-label', 'multiline'], root)]: {
+          marginTop: `calc(${tokens.topSpace.withLabel} + ${tokens.label.typography.populated.lineHeight})`,
+          marginBottom: tokens.bottomSpace.withLabel,
+        },
+      },
+    }),
   }),
 };

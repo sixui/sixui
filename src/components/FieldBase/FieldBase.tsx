@@ -9,7 +9,7 @@ import {
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { IFieldBaseFactory } from './FieldBase.types';
-import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { isFunction } from '~/helpers/isFunction';
@@ -28,10 +28,12 @@ import {
   fieldBaseThemeVariants,
   type IFieldBaseThemeFactory,
 } from './FieldBase.css';
+import { Box } from '../Box';
+import { useStateLayer } from '../StateLayer';
 
 const COMPONENT_NAME = 'FieldBase';
 
-export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
+export const FieldBase = componentFactory<IFieldBaseFactory>(
   (props, forwardedRef) => {
     const {
       classNames,
@@ -94,15 +96,15 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
       trailingIconProp
     );
 
-    // const [refreshErrorAlert, setRefreshErrorAlert] = useState(false);
+    const [refreshErrorAlert, setRefreshErrorAlert] = useState(false);
     // const labelAnimationRef = useRef<Animation>();
     // const floatingLabelRef = useRef<HTMLSpanElement>(null);
     // const restingLabelRef = useRef<HTMLSpanElement>(null);
     // const disableTransitionsRef = useRef(false);
     // const animatingRef = useRef(false);
 
-    // const supportingOrErrorText =
-    //   hasError && errorText ? errorText : supportingText;
+    const supportingOrErrorText =
+      hasError && errorText ? errorText : supportingText;
     // const focused = !other.disabled && visualState?.focused;
     const hasStartSection = !!leadingIcon || !!start;
     const hasEndSection = !!trailingIcon || !!end;
@@ -249,17 +251,6 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
     //   refreshErrorAlert,
     // ]);
 
-    // const getCounterText = useCallback(() => {
-    //   const countAsNumber = count ?? -1;
-    //   const maxLengthAsNumber = Number(maxLength) ?? -1;
-    //   // Counter does not show if count is negative or 0, or max is negative or 0.
-    //   if (countAsNumber <= 0 || maxLengthAsNumber <= 0) {
-    //     return undefined;
-    //   }
-
-    //   return `${countAsNumber} / ${maxLengthAsNumber}`;
-    // }, [count, maxLength]);
-
     // const renderLabel = useCallback(
     //   (floating = false): React.ReactNode | null => {
     //     if (!hasLabel) {
@@ -304,48 +295,6 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
 
     // const floatingLabel = renderLabel(true);
     // const restingLabel = renderLabel(false);
-
-    // const renderSupportingText = useCallback((): React.ReactNode | null => {
-    //   const counterText = getCounterText();
-    //   if (!supportingOrErrorText && !counterText) {
-    //     return null;
-    //   }
-
-    //   // Announce if there is an error and error text visible.
-    //   // If refreshErrorAlert is true, do not announce. This will remove the
-    //   // role="alert" attribute. Another render cycle will happen after an
-    //   // animation frame to re-add the role.
-    //   const shouldErrorAnnounce = hasError && errorText && !refreshErrorAlert;
-    //   const role = shouldErrorAnnounce ? 'alert' : undefined;
-
-    //   return (
-    //     <div
-    //       {...getStyles(
-    //         'supportingText',
-    //         hasError && 'supportingText$error',
-    //         visuallyDisabled && 'supportingText$disabled',
-    //       )}
-    //       role={role}
-    //     >
-    //       {/* Always render the supporting text span so that our `space-around` container puts the counter at the end. */}
-    //       <span>{supportingOrErrorText}</span>
-
-    //       {/* Conditionally render counter so we don't render the extra `gap`. */}
-    //       {/* TODO(b/244473435): add aria-label and announcements */}
-    //       {counterText ? (
-    //         <span {...getStyles('counter')}>{counterText}</span>
-    //       ) : null}
-    //     </div>
-    //   );
-    // }, [
-    //   visuallyDisabled,
-    //   hasError,
-    //   errorText,
-    //   getCounterText,
-    //   refreshErrorAlert,
-    //   getStyles,
-    //   supportingOrErrorText,
-    // ]);
 
     // const renderBackground = useCallback(
     //   (): React.ReactNode => (
@@ -539,61 +488,111 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
     });
 
     const renderIndicator = useCallback(
-      (): React.ReactNode => (
+      (): JSX.Element => (
         <div {...getStyles('activeIndicator')}>
-          <div
-            {...getStyles(
-              'activeIndicatorBackground',
-              // hasError && 'activeIndicatorBackground$error',
-              // visuallyDisabled && 'activeIndicatorBackground$disabled',
-            )}
-          />
-          <div
-            {...getStyles(
-              'activeIndicatorFocus',
-              // hasError && 'activeIndicatorFocus$error',
-              // hasError && 'activeIndicatorBackground$error',
-            )}
-          />
+          <div {...getStyles('activeIndicatorBackground')} />
+          <div {...getStyles('activeIndicatorFocus')} />
         </div>
       ),
       [getStyles],
     );
 
+    const getCounterText = useCallback(() => {
+      const countAsNumber = count ?? -1;
+      const maxLengthAsNumber = Number(maxLength) ?? -1;
+      // Counter does not show if count is negative or 0, or max is negative or 0.
+      if (countAsNumber <= 0 || maxLengthAsNumber <= 0) {
+        return undefined;
+      }
+
+      return `${countAsNumber} / ${maxLengthAsNumber}`;
+    }, [count, maxLength]);
+
+    const renderSupportingText = useCallback((): JSX.Element | null => {
+      const counterText = getCounterText();
+      if (!supportingOrErrorText && !counterText) {
+        return null;
+      }
+
+      // Announce if there is an error and error text visible. If
+      // `refreshErrorAlert` is true, do not announce. This will remove the
+      // `role="alert"` attribute. Another render cycle will happen after an
+      // animation frame to re-add the role.
+      const shouldErrorAnnounce = hasError && errorText && !refreshErrorAlert;
+      const role = shouldErrorAnnounce ? 'alert' : undefined;
+
+      return (
+        <div
+          {...getStyles(
+            'supportingText',
+            // hasError && 'supportingText$error',
+            // visuallyDisabled && 'supportingText$disabled',
+          )}
+          role={role}
+        >
+          <span>{supportingOrErrorText}</span>
+          {counterText && <span {...getStyles('counter')}>{counterText}</span>}
+        </div>
+      );
+    }, [
+      hasError,
+      errorText,
+      getCounterText,
+      refreshErrorAlert,
+      getStyles,
+      supportingOrErrorText,
+    ]);
+
+    const disabledOrReadOnly = other.disabled || readOnly;
+    const stateLayer = useStateLayer<HTMLDivElement>({
+      interactions: other.interactions,
+      disabled: disabledOrReadOnly,
+      pressEvents: { onPress: other.onPress },
+    });
+
     return (
-      <ButtonBase
+      <Box
         {...other}
+        {...stateLayer.interactionsContext.triggerProps}
         {...getStyles('root')}
-        classNames={mergeClassNames(classNames, {
-          stateLayer: getStyles('stateLayer').className,
-        })}
+        interactions={stateLayer.interactionsContext.state}
+        modifiers={{ disabled: disabledOrReadOnly }}
         ref={forwardedRef}
       >
-        <div {...getStyles('field')}>
-          <div {...getStyles('containerOverflow')} ref={containerRef}>
-            {/* RENDER BACKGROUND */}
-            {renderIndicator()}
-            {/* RENDER OUTLINE */}
-            <div {...getStyles('container')}>
-              <div {...getStyles('section')} data-section='main'>
-                <div {...getStyles('labelWrapper')}>
-                  {/* RENDER RESTING LABEL */}
-                  {/* RENDER FLOATING LABEL */}
-                </div>
-                <div {...getStyles('content')}>
-                  <div {...getStyles('contentSlot')}>
-                    {isFunction(children)
-                      ? children({
-                          forwardedProps: forwardProps ? other : undefined,
-                        })
-                      : children}
-                  </div>
+        <ButtonBase
+          {...getStyles('container')}
+          stateLayer={stateLayer}
+          ref={containerRef}
+          as='div'
+          classNames={mergeClassNames(classNames, {
+            stateLayer: getStyles('stateLayer').className,
+          })}
+        >
+          {/* RENDER BACKGROUND */}
+          {renderIndicator()}
+          {/* RENDER OUTLINE */}
+          <div {...getStyles('inner')}>
+            {/* RENDER START SECTION */}
+            <div {...getStyles('section')} data-section='main'>
+              <div {...getStyles('labelWrapper')}>
+                {/* RENDER RESTING LABEL */}
+                {/* RENDER FLOATING LABEL */}
+              </div>
+              <div {...getStyles('content')}>
+                <div {...getStyles('contentSlot')}>
+                  {isFunction(children)
+                    ? children({
+                        forwardedProps: forwardProps ? other : undefined,
+                      })
+                    : children}
                 </div>
               </div>
             </div>
+            {/* RENDER END SECTION */}
           </div>
-        </div>
-      </ButtonBase>
+        </ButtonBase>
+        {renderSupportingText()}
+      </Box>
     );
 
     return (
