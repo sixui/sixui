@@ -36,7 +36,6 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
       leadingVideo,
       trailing,
       trailingIcon,
-      noFocusRing,
       lineClamp,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
@@ -61,18 +60,6 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
         'with-trailing': hasTrailing,
       },
     });
-
-    if (leadingImage) {
-      console.log(
-        getStyles('image', { style: { backgroundImage: leadingImage } }),
-      );
-    }
-
-    // FIXME:
-    // const listContext = useContext(ListContext);
-    // const adaptedSize =
-    //   size === 'md' && (!!supportingText || !!leadingVideo) ? 'lg' : size;
-    // const noFocusRing = listContext?.noFocusRing ?? noFocusRingProp;
 
     const renderStart = (): React.ReactNode =>
       start ??

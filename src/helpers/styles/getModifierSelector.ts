@@ -14,7 +14,7 @@ const compileModifier = <TModifier extends string = string>(
   typeof modifier === 'string'
     ? `[data-${modifier}]`
     : Array.isArray(modifier)
-      ? modifier.map((modifier) => compileModifier(modifier)).join(', ')
+      ? modifier.map((modifier) => compileModifier(modifier)).join('')
       : Object.entries(getDataAttributes(modifier)).reduce(
           (acc, [key, value]) => `${acc}[${key}="${value}"]`,
           '',

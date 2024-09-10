@@ -11,7 +11,9 @@ import dts from 'vite-plugin-dts';
 export default defineConfig({
   plugins: [
     react(),
-    vanillaExtractPlugin(),
+    vanillaExtractPlugin({
+      // identifiers: ({ hash }) => `sixui_${hash}`,
+    }),
     styleX(),
     dts({
       tsconfigPath: 'tsconfig.app.build.json',

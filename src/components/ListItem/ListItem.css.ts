@@ -2,6 +2,7 @@ import { createTheme, fallbackVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IInteraction } from '~/hooks/useInteractions';
+import type { IListItemVariant } from './ListItem.types';
 import {
   componentThemeFactory,
   type IComponentThemeFactory,
@@ -187,40 +188,33 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>('with-trailing', root)]: {
         paddingInlineEnd: '0px',
       },
-      [getModifierSelector<IModifier>('selected')]: {
+      [getModifierSelector<IModifier>('selected', root)]: {
         vars: createTokensVars(Item.theme.tokens, {
           nonText: {
             color: fallbackVar(
               tokens.nonText.color.normal.selected,
               tokens.text.color.normal.selected,
-              tokens.text.color.normal.regular,
             ),
           },
           overlineText: {
             color: fallbackVar(
               tokens.overlineText.color.normal.selected,
               tokens.text.color.normal.selected,
-              tokens.text.color.normal.regular,
             ),
           },
           headlineText: {
-            color: fallbackVar(
-              tokens.text.color.normal.selected,
-              tokens.text.color.normal.regular,
-            ),
+            color: tokens.text.color.normal.selected,
           },
           supportingText: {
             color: fallbackVar(
               tokens.supportingText.color.normal.selected,
               tokens.text.color.normal.selected,
-              tokens.text.color.normal.regular,
             ),
           },
           trailingSupportingText: {
             color: fallbackVar(
               tokens.trailingSupportingText.color.normal.regular,
               tokens.text.color.normal.selected,
-              tokens.text.color.normal.regular,
             ),
           },
         }),
@@ -273,6 +267,260 @@ const classNames = createStyles({
           },
         }),
       },
+      [getModifierSelector<IModifier>('hovered', root)]: {
+        vars: createTokensVars(Item.theme.tokens, {
+          nonText: {
+            color: fallbackVar(
+              tokens.nonText.color.hovered.regular,
+              tokens.text.color.hovered.regular,
+              tokens.nonText.color.normal.regular,
+              tokens.text.color.normal.regular,
+            ),
+          },
+          overlineText: {
+            color: fallbackVar(
+              tokens.overlineText.color.hovered.regular,
+              tokens.text.color.hovered.regular,
+              tokens.overlineText.color.normal.regular,
+              tokens.text.color.normal.regular,
+            ),
+          },
+          headlineText: {
+            color: fallbackVar(
+              tokens.text.color.hovered.regular,
+              tokens.text.color.normal.regular,
+            ),
+          },
+          supportingText: {
+            color: fallbackVar(
+              tokens.supportingText.color.hovered.regular,
+              tokens.text.color.hovered.regular,
+              tokens.supportingText.color.normal.regular,
+              tokens.text.color.normal.regular,
+            ),
+          },
+          trailingSupportingText: {
+            color: fallbackVar(
+              tokens.trailingSupportingText.color.hovered.regular,
+              tokens.text.color.hovered.regular,
+              tokens.trailingSupportingText.color.normal.regular,
+              tokens.text.color.normal.regular,
+            ),
+          },
+        }),
+      },
+      [getModifierSelector<IModifier>(['hovered', 'selected'], root)]: {
+        vars: createTokensVars(Item.theme.tokens, {
+          nonText: {
+            color: fallbackVar(
+              tokens.nonText.color.hovered.selected,
+              tokens.text.color.hovered.selected,
+              tokens.nonText.color.normal.selected,
+              tokens.text.color.normal.selected,
+            ),
+          },
+          overlineText: {
+            color: fallbackVar(
+              tokens.overlineText.color.hovered.selected,
+              tokens.text.color.hovered.selected,
+              tokens.overlineText.color.normal.selected,
+              tokens.text.color.normal.selected,
+            ),
+          },
+          headlineText: {
+            color: fallbackVar(
+              tokens.text.color.hovered.selected,
+              tokens.text.color.normal.selected,
+            ),
+          },
+          supportingText: {
+            color: fallbackVar(
+              tokens.supportingText.color.hovered.selected,
+              tokens.text.color.hovered.selected,
+              tokens.supportingText.color.normal.selected,
+              tokens.text.color.normal.selected,
+            ),
+          },
+          trailingSupportingText: {
+            color: fallbackVar(
+              tokens.trailingSupportingText.color.hovered.selected,
+              tokens.text.color.hovered.selected,
+              tokens.trailingSupportingText.color.normal.selected,
+              tokens.text.color.normal.selected,
+            ),
+          },
+        }),
+      },
+
+      [getModifierSelector<IModifier>('focused', root)]: {
+        vars: createTokensVars(Item.theme.tokens, {
+          nonText: {
+            color: fallbackVar(
+              tokens.nonText.color.focused.regular,
+              tokens.text.color.focused.regular,
+              tokens.nonText.color.normal.regular,
+              tokens.text.color.normal.regular,
+            ),
+          },
+          overlineText: {
+            color: fallbackVar(
+              tokens.overlineText.color.focused.regular,
+              tokens.text.color.focused.regular,
+              tokens.overlineText.color.normal.regular,
+              tokens.text.color.normal.regular,
+            ),
+          },
+          headlineText: {
+            color: fallbackVar(
+              tokens.text.color.focused.regular,
+              tokens.text.color.normal.regular,
+            ),
+          },
+          supportingText: {
+            color: fallbackVar(
+              tokens.supportingText.color.focused.regular,
+              tokens.text.color.focused.regular,
+              tokens.supportingText.color.normal.regular,
+              tokens.text.color.normal.regular,
+            ),
+          },
+          trailingSupportingText: {
+            color: fallbackVar(
+              tokens.trailingSupportingText.color.focused.regular,
+              tokens.text.color.focused.regular,
+              tokens.trailingSupportingText.color.normal.regular,
+              tokens.text.color.normal.regular,
+            ),
+          },
+        }),
+      },
+      [getModifierSelector<IModifier>(['focused', 'selected'], root)]: {
+        vars: createTokensVars(Item.theme.tokens, {
+          nonText: {
+            color: fallbackVar(
+              tokens.nonText.color.focused.selected,
+              tokens.text.color.focused.selected,
+              tokens.nonText.color.normal.selected,
+              tokens.text.color.normal.selected,
+            ),
+          },
+          overlineText: {
+            color: fallbackVar(
+              tokens.overlineText.color.focused.selected,
+              tokens.text.color.focused.selected,
+              tokens.overlineText.color.normal.selected,
+              tokens.text.color.normal.selected,
+            ),
+          },
+          headlineText: {
+            color: fallbackVar(
+              tokens.text.color.focused.selected,
+              tokens.text.color.normal.selected,
+            ),
+          },
+          supportingText: {
+            color: fallbackVar(
+              tokens.supportingText.color.focused.selected,
+              tokens.text.color.focused.selected,
+              tokens.supportingText.color.normal.selected,
+              tokens.text.color.normal.selected,
+            ),
+          },
+          trailingSupportingText: {
+            color: fallbackVar(
+              tokens.trailingSupportingText.color.focused.selected,
+              tokens.text.color.focused.selected,
+              tokens.trailingSupportingText.color.normal.selected,
+              tokens.text.color.normal.selected,
+            ),
+          },
+        }),
+      },
+
+      [getModifierSelector<IModifier>('pressed', root)]: {
+        vars: createTokensVars(Item.theme.tokens, {
+          nonText: {
+            color: fallbackVar(
+              tokens.nonText.color.pressed.regular,
+              tokens.text.color.pressed.regular,
+              tokens.nonText.color.normal.regular,
+              tokens.text.color.normal.regular,
+            ),
+          },
+          overlineText: {
+            color: fallbackVar(
+              tokens.overlineText.color.pressed.regular,
+              tokens.text.color.pressed.regular,
+              tokens.overlineText.color.normal.regular,
+              tokens.text.color.normal.regular,
+            ),
+          },
+          headlineText: {
+            color: fallbackVar(
+              tokens.text.color.pressed.regular,
+              tokens.text.color.normal.regular,
+            ),
+          },
+          supportingText: {
+            color: fallbackVar(
+              tokens.supportingText.color.pressed.regular,
+              tokens.text.color.pressed.regular,
+              tokens.supportingText.color.normal.regular,
+              tokens.text.color.normal.regular,
+            ),
+          },
+          trailingSupportingText: {
+            color: fallbackVar(
+              tokens.trailingSupportingText.color.pressed.regular,
+              tokens.text.color.pressed.regular,
+              tokens.trailingSupportingText.color.normal.regular,
+              tokens.text.color.normal.regular,
+            ),
+          },
+        }),
+      },
+      [getModifierSelector<IModifier>(['pressed', 'selected'], root)]: {
+        vars: createTokensVars(Item.theme.tokens, {
+          nonText: {
+            color: fallbackVar(
+              tokens.nonText.color.pressed.selected,
+              tokens.text.color.pressed.selected,
+              tokens.nonText.color.normal.selected,
+              tokens.text.color.normal.selected,
+            ),
+          },
+          overlineText: {
+            color: fallbackVar(
+              tokens.overlineText.color.pressed.selected,
+              tokens.text.color.pressed.selected,
+              tokens.overlineText.color.pressed.selected,
+              tokens.text.color.normal.selected,
+            ),
+          },
+          headlineText: {
+            color: fallbackVar(
+              tokens.text.color.pressed.selected,
+              tokens.text.color.normal.selected,
+            ),
+          },
+          supportingText: {
+            color: fallbackVar(
+              tokens.supportingText.color.pressed.selected,
+              tokens.text.color.pressed.selected,
+              tokens.supportingText.color.normal.selected,
+              tokens.text.color.normal.selected,
+            ),
+          },
+          trailingSupportingText: {
+            color: fallbackVar(
+              tokens.trailingSupportingText.color.pressed.selected,
+              tokens.text.color.pressed.selected,
+              tokens.trailingSupportingText.color.normal.selected,
+              tokens.text.color.normal.selected,
+            ),
+          },
+        }),
+      },
     },
   }),
   stateLayer: ({ root }) => ({
@@ -280,6 +528,10 @@ const classNames = createStyles({
       color: {
         hovered: tokens.stateLayer.color.hovered.regular,
         pressed: tokens.stateLayer.color.pressed.regular,
+      },
+      opacity: {
+        hovered: tokens.stateLayer.opacity.hovered,
+        pressed: tokens.stateLayer.opacity.pressed,
       },
     }),
 
@@ -290,6 +542,10 @@ const classNames = createStyles({
             hovered: tokens.stateLayer.color.hovered.selected,
             pressed: tokens.stateLayer.color.pressed.selected,
           },
+          opacity: {
+            hovered: tokens.stateLayer.opacity.hovered,
+            pressed: tokens.stateLayer.opacity.pressed,
+          },
         }),
       },
     },
@@ -298,7 +554,10 @@ const classNames = createStyles({
     display: 'flex',
   },
   icon$leading: ({ root }) => ({
-    color: tokens.leadingIcon.color.normal.regular,
+    color: fallbackVar(
+      tokens.leadingIcon.color.normal.regular,
+      tokens.nonText.color.normal.regular,
+    ),
     fontSize: tokens.leadingIcon.size,
     inlineSize: tokens.leadingIcon.size,
     blockSize: tokens.leadingIcon.size,
@@ -306,64 +565,76 @@ const classNames = createStyles({
 
     selectors: {
       [getModifierSelector<IModifier>('disabled', root)]: {
-        color: tokens.leadingIcon.color.disabled,
+        color: fallbackVar(
+          tokens.leadingIcon.color.disabled,
+          tokens.nonText.color.disabled,
+        ),
       },
 
       [getModifierSelector<IModifier>('selected', root)]: {
         color: fallbackVar(
           tokens.leadingIcon.color.normal.selected,
-          tokens.leadingIcon.color.normal.regular,
+          tokens.nonText.color.normal.selected,
         ),
       },
 
       [getModifierSelector<IModifier>('hovered', root)]: {
         color: fallbackVar(
           tokens.leadingIcon.color.hovered.regular,
+          tokens.nonText.color.hovered.regular,
           tokens.leadingIcon.color.normal.regular,
+          tokens.nonText.color.normal.regular,
         ),
       },
-      [getModifierSelector<IModifier>({ hovered: true, selected: true }, root)]:
-        {
-          color: fallbackVar(
-            tokens.leadingIcon.color.hovered.selected,
-            tokens.leadingIcon.color.normal.selected,
-            tokens.leadingIcon.color.normal.regular,
-          ),
-        },
+      [getModifierSelector<IModifier>(['hovered', 'selected'], root)]: {
+        color: fallbackVar(
+          tokens.leadingIcon.color.hovered.selected,
+          tokens.nonText.color.hovered.selected,
+          tokens.leadingIcon.color.normal.selected,
+          tokens.nonText.color.normal.selected,
+        ),
+      },
 
       [getModifierSelector<IModifier>('focused', root)]: {
         color: fallbackVar(
           tokens.leadingIcon.color.focused.regular,
+          tokens.nonText.color.focused.regular,
           tokens.leadingIcon.color.normal.regular,
+          tokens.nonText.color.normal.regular,
         ),
       },
-      [getModifierSelector<IModifier>({ focused: true, selected: true }, root)]:
-        {
-          color: fallbackVar(
-            tokens.leadingIcon.color.focused.selected,
-            tokens.leadingIcon.color.normal.selected,
-            tokens.leadingIcon.color.normal.regular,
-          ),
-        },
+      [getModifierSelector<IModifier>(['focused', 'selected'], root)]: {
+        color: fallbackVar(
+          tokens.leadingIcon.color.focused.selected,
+          tokens.nonText.color.focused.selected,
+          tokens.leadingIcon.color.normal.selected,
+          tokens.nonText.color.normal.selected,
+        ),
+      },
 
       [getModifierSelector<IModifier>('pressed', root)]: {
         color: fallbackVar(
           tokens.leadingIcon.color.pressed.regular,
+          tokens.nonText.color.pressed.regular,
           tokens.leadingIcon.color.normal.regular,
+          tokens.nonText.color.normal.regular,
         ),
       },
-      [getModifierSelector<IModifier>({ pressed: true, selected: true }, root)]:
-        {
-          color: fallbackVar(
-            tokens.leadingIcon.color.pressed.selected,
-            tokens.leadingIcon.color.normal.selected,
-            tokens.leadingIcon.color.normal.regular,
-          ),
-        },
+      [getModifierSelector<IModifier>(['pressed', 'selected'], root)]: {
+        color: fallbackVar(
+          tokens.leadingIcon.color.pressed.selected,
+          tokens.nonText.color.pressed.selected,
+          tokens.leadingIcon.color.normal.selected,
+          tokens.nonText.color.normal.selected,
+        ),
+      },
     },
   }),
   icon$trailing: ({ root }) => ({
-    color: tokens.trailingIcon.color.normal.regular,
+    color: fallbackVar(
+      tokens.trailingIcon.color.normal.regular,
+      tokens.nonText.color.normal.regular,
+    ),
     fontSize: tokens.trailingIcon.size,
     inlineSize: tokens.trailingIcon.size,
     blockSize: tokens.trailingIcon.size,
@@ -371,60 +642,69 @@ const classNames = createStyles({
 
     selectors: {
       [getModifierSelector<IModifier>('disabled', root)]: {
-        color: tokens.trailingIcon.color.disabled,
+        color: fallbackVar(
+          tokens.trailingIcon.color.disabled,
+          tokens.nonText.color.disabled,
+        ),
       },
 
       [getModifierSelector<IModifier>('selected', root)]: {
         color: fallbackVar(
           tokens.trailingIcon.color.normal.selected,
-          tokens.trailingIcon.color.normal.regular,
+          tokens.nonText.color.normal.selected,
         ),
       },
 
       [getModifierSelector<IModifier>('hovered', root)]: {
         color: fallbackVar(
           tokens.trailingIcon.color.hovered.regular,
+          tokens.nonText.color.hovered.regular,
           tokens.trailingIcon.color.normal.regular,
+          tokens.nonText.color.normal.regular,
         ),
       },
-      [getModifierSelector<IModifier>({ hovered: true, selected: true }, root)]:
-        {
-          color: fallbackVar(
-            tokens.trailingIcon.color.hovered.selected,
-            tokens.trailingIcon.color.normal.selected,
-            tokens.trailingIcon.color.normal.regular,
-          ),
-        },
+      [getModifierSelector<IModifier>(['hovered', 'selected'], root)]: {
+        color: fallbackVar(
+          tokens.trailingIcon.color.hovered.selected,
+          tokens.nonText.color.hovered.selected,
+          tokens.trailingIcon.color.normal.selected,
+          tokens.nonText.color.normal.selected,
+        ),
+      },
 
       [getModifierSelector<IModifier>('focused', root)]: {
         color: fallbackVar(
           tokens.trailingIcon.color.focused.regular,
+          tokens.nonText.color.focused.regular,
           tokens.trailingIcon.color.normal.regular,
+          tokens.nonText.color.normal.regular,
         ),
       },
-      [getModifierSelector<IModifier>({ focused: true, selected: true }, root)]:
-        {
-          color: fallbackVar(
-            tokens.trailingIcon.color.focused.selected,
-            tokens.trailingIcon.color.normal.selected,
-            tokens.trailingIcon.color.normal.regular,
-          ),
-        },
+      [getModifierSelector<IModifier>(['focused', 'selected'], root)]: {
+        color: fallbackVar(
+          tokens.trailingIcon.color.focused.selected,
+          tokens.nonText.color.focused.selected,
+          tokens.trailingIcon.color.normal.selected,
+          tokens.nonText.color.normal.selected,
+        ),
+      },
 
       [getModifierSelector<IModifier>('pressed', root)]: {
         color: fallbackVar(
           tokens.trailingIcon.color.pressed.regular,
+          tokens.nonText.color.pressed.regular,
           tokens.trailingIcon.color.normal.regular,
+          tokens.nonText.color.normal.regular,
         ),
       },
-      [getModifierSelector<IModifier>({ pressed: true, selected: true }, root)]:
-        {
-          color: fallbackVar(
-            tokens.trailingIcon.color.pressed.selected,
-            tokens.trailingIcon.color.normal.selected,
-            tokens.trailingIcon.color.normal.regular,
-          ),
-        },
+      [getModifierSelector<IModifier>(['pressed', 'selected'], root)]: {
+        color: fallbackVar(
+          tokens.trailingIcon.color.pressed.selected,
+          tokens.nonText.color.pressed.selected,
+          tokens.trailingIcon.color.normal.selected,
+          tokens.nonText.color.normal.selected,
+        ),
+      },
     },
   }),
   image: {
@@ -442,6 +722,7 @@ export type IListItemThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
+  variant: IListItemVariant;
 }>;
 
 export const listItemTheme = componentThemeFactory<IListItemThemeFactory>({
@@ -483,6 +764,58 @@ export const listItemVariants = {
               regular: themeTokens.colorScheme.primary,
               selected: themeTokens.colorScheme.primary,
             },
+          },
+        },
+      }),
+    },
+  }),
+  danger: createStyles({
+    root: {
+      vars: createTokensVars(tokens, {
+        container: {
+          color: {
+            normal: {
+              selected: themeTokens.colorScheme.errorContainer,
+            },
+          },
+        },
+        nonText: {
+          color: {
+            normal: {
+              regular: themeTokens.colorScheme.error,
+              selected: themeTokens.colorScheme.onErrorContainer,
+            },
+          },
+        },
+        text: {
+          color: {
+            normal: {
+              regular: themeTokens.colorScheme.error,
+              selected: themeTokens.colorScheme.onErrorContainer,
+            },
+            hovered: {
+              regular: themeTokens.colorScheme.onErrorContainer,
+              selected: themeTokens.colorScheme.onError,
+            },
+            pressed: {
+              regular: themeTokens.colorScheme.onErrorContainer,
+              selected: themeTokens.colorScheme.onErrorContainer,
+            },
+          },
+        },
+        stateLayer: {
+          color: {
+            hovered: {
+              regular: themeTokens.colorScheme.errorContainer,
+              selected: themeTokens.colorScheme.errorContainer,
+            },
+            pressed: {
+              regular: themeTokens.colorScheme.error,
+              selected: themeTokens.colorScheme.error,
+            },
+          },
+          opacity: {
+            hovered: '1',
           },
         },
       }),

@@ -113,13 +113,6 @@ const rows: Array<IComponentPresentation<IListItemProps>> = [
       ],
     },
   },
-  // FIXME:
-  // {
-  //   legend: 'With trailing element',
-  //   props: {
-  //     trailing: <Checkbox checked />,
-  //   },
-  // },
   {
     legend: 'With overline',
     props: {
@@ -253,23 +246,20 @@ export const Standard: IStory = {
   },
 };
 
-// export const Danger: IStory = {
-//   render: (props) => (
-//     <ComponentShowcase
-//       component={ListItem}
-//       horizontalAlign='start'
-//       props={props}
-//       cols={states}
-//       rows={rows}
-//     />
-//   ),
-//   args: {
-//     ...defaultArgs,
-//     variant: 'danger',
-//     children: 'Label',
-//     onClick: (...args) => void sbHandleEvent('click', args),
-//     sx: [styles.host, styles.host$fixedWidth$xs],
-//   },
-// };
+export const Danger: IStory = {
+  render: (props) => (
+    <ListItemShowcase
+      horizontalAlign='start'
+      props={props}
+      cols={states}
+      rows={rows}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'danger',
+    children: 'Label',
+  },
+};
 
 export default meta;
