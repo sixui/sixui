@@ -267,7 +267,7 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
         const wasFocused = previousState.wasFocused ?? focused;
         const wasPopulated = previousState.wasPopulated ?? populated;
         const wasFloating = wasFocused || wasPopulated;
-        const shouldBeFloating = focused || populated;
+        const shouldBeFloating = Boolean(focused || populated);
         if (wasFloating === shouldBeFloating) {
           return;
         }
@@ -286,6 +286,7 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
         //
         // Re-calculating the animation each time will prevent any visual
         // glitches from appearing.
+        console.log('__ANIMATE');
         labelAnimationRef.current = floatingLabelRef.current?.animate(
           getLabelKeyframes(
             floatingLabelRef,
@@ -490,3 +491,6 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
     );
   },
 );
+
+FieldBase.theme = fieldBaseTheme;
+FieldBase.displayName = `@sixui/${COMPONENT_NAME}`;
