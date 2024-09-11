@@ -30,8 +30,7 @@ export interface IFieldBaseOwnProps
   required?: boolean;
   resizable?: boolean;
   supportingText?: React.ReactNode;
-  textArea?: boolean;
-  labelId?: string;
+  multiline?: boolean;
   loading?: boolean;
   tabIndex?: number;
   children?: IRendererWithForwardedProps;

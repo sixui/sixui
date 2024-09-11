@@ -391,6 +391,7 @@ const classNames = createStyles({
       },
       [getModifierSelector<IModifier>('disabled', root)]: {
         color: tokens.leadingContent.color.disabled,
+        opacity: tokens.leadingContent.opacity.disabled,
       },
     },
   }),
@@ -419,6 +420,7 @@ const classNames = createStyles({
       },
       [getModifierSelector<IModifier>('disabled', root)]: {
         color: tokens.trailingContent.color.disabled,
+        opacity: tokens.trailingContent.opacity.disabled,
       },
     },
   }),
