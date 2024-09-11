@@ -9,8 +9,8 @@ import {
   makeComponentShowcase,
   type IComponentPresentation,
 } from '../ComponentShowcase';
-import { FieldBase } from './FieldBase';
 import { Placeholder } from '../Placeholder';
+import { FieldBase } from './FieldBase';
 
 // https://github.com/material-components/material-web/blob/main/field/demo/stories.ts
 
@@ -22,7 +22,7 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   w: px(240),
-  children: <Placeholder surface='$onSurface' disabled />,
+  children: <Placeholder surface='$onSurface' expanded disabled />,
 } satisfies Partial<IFieldBaseProps>;
 
 const states: Array<IComponentPresentation<IFieldBaseProps>> = [

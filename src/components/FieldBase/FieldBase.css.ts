@@ -24,7 +24,6 @@ type IModifier =
   | 'with-start-section'
   | 'with-end-section'
   | 'with-label'
-  | 'section'
   | 'populated'
   | 'with-error'
   | 'multiline';
@@ -150,8 +149,8 @@ const [tokensClassName, tokens] = createTheme({
       disabled: themeTokens.state.opacity.disabled,
     },
     typography: {
-      regular: themeTokens.typeScale.body.lg,
-      populated: themeTokens.typeScale.body.sm,
+      resting: themeTokens.typeScale.body.lg,
+      floating: themeTokens.typeScale.body.sm,
     },
     bottomSpace: px(space(2)),
   },
@@ -292,6 +291,13 @@ const classNames = createStyles({
     flexShrink: 1,
     flexBasis: '0%',
     maxWidth: '100%',
+
+    selectors: {
+      [getModifierSelector('disabled')]: {
+        cursor: 'default',
+        pointerEvents: 'none',
+      },
+    },
   },
   container: {
     position: 'relative',
@@ -359,24 +365,80 @@ const classNames = createStyles({
     // Relative position for absolutely positioned labels (to avoid interfering
     // with baseline alignment).
     position: 'relative',
+  },
+  section$start: ({ root }) => ({
+    alignItems: 'center',
+    justifyContent: 'start',
+    paddingInlineStart: 8,
+    color: tokens.leadingContent.color.normal.regular,
+    minWidth: tokens.leadingContent.minWidth,
 
     selectors: {
-      [getModifierSelector<IModifier>({ section: 'main' })]: {
-        alignItems: 'stretch',
-        // The container of the field aligns sections by "center". Only the middle
-        // section opts in to baseline alignment.
-        //
-        // Labels are absolutely positioned, which leaves only the content as the
-        // evaluated baseline for the field.
-        //
-        // See https://www.w3.org/TR/css-flexbox-1/#baseline-participation
-        alignSelf: 'baseline',
-        flexGrow: 1,
-        flexShrink: 1,
-        flexBasis: '0%',
+      [getModifierSelector<IModifier>('with-error', root)]: {
+        color: tokens.leadingContent.color.normal.error,
+      },
+      [getModifierSelector<IModifier>('focused', root)]: {
+        color: tokens.leadingContent.color.focused.regular,
+      },
+      [getModifierSelector<IModifier>(['focused', 'with-error'], root)]: {
+        color: tokens.leadingContent.color.focused.error,
+      },
+      [getModifierSelector<IModifier>('hovered', root)]: {
+        color: tokens.leadingContent.color.hovered.regular,
+      },
+      [getModifierSelector<IModifier>(['hovered', 'with-error'], root)]: {
+        color: tokens.leadingContent.color.hovered.error,
+      },
+      [getModifierSelector<IModifier>('disabled', root)]: {
+        color: tokens.leadingContent.color.disabled,
       },
     },
+  }),
+  section$end: ({ root }) => ({
+    alignItems: 'center',
+    justifyContent: 'end',
+    paddingInlineEnd: px(space(2)),
+    color: tokens.trailingContent.color.normal.regular,
+    minWidth: tokens.trailingContent.minWidth,
+
+    selectors: {
+      [getModifierSelector<IModifier>('with-error', root)]: {
+        color: tokens.trailingContent.color.normal.error,
+      },
+      [getModifierSelector<IModifier>('focused', root)]: {
+        color: tokens.trailingContent.color.focused.regular,
+      },
+      [getModifierSelector<IModifier>(['focused', 'with-error'], root)]: {
+        color: tokens.trailingContent.color.focused.error,
+      },
+      [getModifierSelector<IModifier>('hovered', root)]: {
+        color: tokens.trailingContent.color.hovered.regular,
+      },
+      [getModifierSelector<IModifier>(['hovered', 'with-error'], root)]: {
+        color: tokens.trailingContent.color.hovered.error,
+      },
+      [getModifierSelector<IModifier>('disabled', root)]: {
+        color: tokens.trailingContent.color.disabled,
+      },
+    },
+  }),
+  section$main: {
+    alignItems: 'stretch',
+    // The container of the field aligns sections by "center". Only the middle
+    // section opts in to baseline alignment.
+    //
+    // Labels are absolutely positioned, which leaves only the content as the
+    // evaluated baseline for the field.
+    //
+    // See https://www.w3.org/TR/css-flexbox-1/#baseline-participation
+    alignSelf: 'baseline',
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: '0%',
   },
+  // Labels need start/end padding when there isn't start/end content so they
+  // don't sit on the edge of the field. We use a wrapper element around the
+  // labels so as not to affect the dimensions used in the label keyframes.
   labelWrapper: {
     inset: 0,
     // The resting label at 100% height can block pointer events to the content
@@ -390,6 +452,53 @@ const classNames = createStyles({
     // Don't let setting text-align on the field change the label's alignment.
     // It should only impact content text.
     textAlign: 'initial',
+  },
+  label: ({ root }) => ({
+    overflow: 'hidden',
+    maxWidth: '100%',
+    // Check with design, should there be any transition from resting to
+    // floating when there is a mismatch between ellipsis, such as opacity
+    // transition?
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    zIndex: 1,
+    ...getTypographyStyles(tokens.label.typography.resting),
+    width: 'min-content',
+    color: tokens.label.color.normal.regular,
+
+    selectors: {
+      [getModifierSelector<IModifier>('with-error', root)]: {
+        color: tokens.label.color.normal.error,
+      },
+      [getModifierSelector<IModifier>('focused', root)]: {
+        color: tokens.label.color.focused.regular,
+      },
+      [getModifierSelector<IModifier>(['focused', 'with-error'], root)]: {
+        color: tokens.label.color.focused.error,
+      },
+      [getModifierSelector<IModifier>('hovered', root)]: {
+        color: tokens.label.color.hovered.regular,
+      },
+      [getModifierSelector<IModifier>(['hovered', 'with-error'], root)]: {
+        color: tokens.label.color.hovered.error,
+      },
+      [getModifierSelector<IModifier>('disabled', root)]: {
+        color: tokens.label.color.disabled,
+        opacity: tokens.label.opacity.disabled,
+      },
+    },
+  }),
+  label$resting: {
+    position: 'absolute',
+    insetBlockStart: '50%',
+    transform: 'translateY(-50%)',
+  },
+  label$floating: {
+    ...getTypographyStyles(tokens.label.typography.floating),
+    transformOrigin: 'top left',
+  },
+  label$invisible: {
+    visibility: 'hidden',
   },
   content: ({ root }) => ({
     display: 'flex',
@@ -533,6 +642,23 @@ const classNames = createStyles({
   counter: {
     whiteSpace: 'nowrap',
   },
+  icon: {
+    color: 'currentColor',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexGrow: 1,
+  },
+  icon$leading: {
+    fontSize: tokens.leadingIcon.size,
+    width: tokens.leadingIcon.size,
+    height: tokens.leadingIcon.size,
+  },
+  icon$trailing: {
+    fontSize: tokens.trailingIcon.size,
+    width: tokens.trailingIcon.size,
+    height: tokens.trailingIcon.size,
+  },
 });
 
 export type IFieldBaseThemeFactory = IComponentThemeFactory<{
@@ -662,14 +788,18 @@ export const fieldBaseThemeVariants = {
           paddingInlineEnd: tokens.trailingSpace,
         },
         [getModifierSelector<IModifier>(['with-label', '!multiline'], root)]: {
-          paddingTop: `calc(${tokens.topSpace.withLabel} + ${tokens.label.typography.populated.lineHeight})`,
+          paddingTop: `calc(${tokens.topSpace.withLabel} + ${tokens.label.typography.floating.lineHeight})`,
           paddingBottom: tokens.bottomSpace.withLabel,
         },
         [getModifierSelector<IModifier>(['with-label', 'multiline'], root)]: {
-          marginTop: `calc(${tokens.topSpace.withLabel} + ${tokens.label.typography.populated.lineHeight})`,
+          marginTop: `calc(${tokens.topSpace.withLabel} + ${tokens.label.typography.floating.lineHeight})`,
           marginBottom: tokens.bottomSpace.withLabel,
         },
       },
     }),
+    label$floating: {
+      position: 'absolute',
+      top: tokens.topSpace.withLabel,
+    },
   }),
 };

@@ -5,6 +5,7 @@ import type { paperBaseTheme, IPaperBaseThemeFactory } from './PaperBase.css';
 
 export type IPaperBaseOwnProps = {
   children?: React.ReactNode;
+  expanded?: boolean;
 };
 
 export interface IPaperBaseProps

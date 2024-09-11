@@ -17,6 +17,7 @@ export const PaperBase = polymorphicComponentFactory<IPaperBaseFactory>(
       style,
       variant,
       children,
+      expanded,
       ...other
     } = useProps({
       componentName: COMPONENT_NAME,
@@ -31,6 +32,9 @@ export const PaperBase = polymorphicComponentFactory<IPaperBaseFactory>(
       style,
       theme: paperBaseTheme,
       variant,
+      modifiers: {
+        expanded,
+      },
     });
 
     return (

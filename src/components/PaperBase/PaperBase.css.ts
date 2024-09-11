@@ -1,4 +1,4 @@
-import { createTheme } from '@vanilla-extract/css';
+import { createTheme, fallbackVar } from '@vanilla-extract/css';
 
 import {
   componentThemeFactory,
@@ -11,13 +11,13 @@ import { Elevation } from '../Elevation';
 import { createStyles } from '~/utils/styles/createStyles';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 
-type IModifier = 'disabled';
+type IModifier = 'disabled' | 'expanded';
 
 export const [tokensClassName, tokens] = createTheme({
   container: {
     color: {
       normal: themeTokens.colorScheme.surface,
-      disabled: themeTokens.colorScheme.surface,
+      disabled: 'inherit',
     },
     opacity: {
       disabled: themeTokens.state.containerOpacity.disabled,
@@ -58,6 +58,10 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>('disabled')]: {
         color: `color-mix(in srgb, currentColor calc(${tokens.text.opacity.disabled} * 100%), transparent)`,
       },
+      [getModifierSelector<IModifier>('expanded')]: {
+        width: '100%',
+        height: '100%',
+      },
     },
   },
   elevation: ({ root }) => ({
@@ -84,7 +88,10 @@ const classNames = createStyles({
 
     selectors: {
       [getModifierSelector('disabled', root)]: {
-        backgroundColor: tokens.container.color.disabled,
+        backgroundColor: fallbackVar(
+          tokens.container.color.disabled,
+          tokens.container.color.normal,
+        ),
         opacity: tokens.container.opacity.disabled,
       },
     },

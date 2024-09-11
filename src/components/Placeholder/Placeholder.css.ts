@@ -10,7 +10,6 @@ import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { themeTokens } from '../ThemeProvider';
-import { PaperBase } from '../PaperBase';
 
 type IModifier = 'disabled';
 
@@ -33,15 +32,6 @@ const classNames = createStyles({
     justifyContent: 'center',
     textAlign: 'center',
     color: tokens.label.color,
-
-    selectors: {
-      [getModifierSelector<IModifier>('disabled')]: {
-        vars: {
-          [PaperBase.theme.tokens.container.opacity.disabled]:
-            themeTokens.state.containerOpacity.disabled,
-        },
-      },
-    },
   },
   crosshairs: ({ root }) => ({
     overflow: 'hidden',
