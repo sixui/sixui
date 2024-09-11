@@ -365,7 +365,10 @@ const classNames = createStyles({
     vars: createTokensVars(StateLayer.theme.tokens, {
       color: {
         hovered: tokens.stateLayer.color.hovered,
-        pressed: tokens.stateLayer.color.pressed,
+        pressed: fallbackVar(
+          tokens.stateLayer.color.pressed,
+          tokens.stateLayer.color.hovered,
+        ),
       },
     }),
   },

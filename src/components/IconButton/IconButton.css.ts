@@ -121,6 +121,7 @@ const classNames = createStyles({
         withLeadingIcon: '0px',
         withTrailingIcon: '0px',
       },
+      stateLayer: tokens.stateLayer,
       container: {
         elevation: {
           normal: elevationLevelPreset[0],
@@ -192,10 +193,15 @@ export const iconButtonThemeVariants = {
             normal: themeTokens.colorScheme.primary,
           },
         },
-        toggleSelectedStateLayer: {
+        stateLayer: {
           color: {
             hovered: themeTokens.colorScheme.onSurfaceVariant,
             pressed: themeTokens.colorScheme.onSurfaceVariant,
+          },
+        },
+        toggleSelectedStateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.onSurfaceVariant,
           },
         },
       }),
@@ -236,6 +242,16 @@ export const iconButtonThemeVariants = {
             normal: themeTokens.colorScheme.onPrimary,
           },
         },
+        stateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.onPrimary,
+          },
+        },
+        toggleSelectedStateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.onPrimary,
+          },
+        },
       }),
     },
   }),
@@ -274,6 +290,16 @@ export const iconButtonThemeVariants = {
             normal: themeTokens.colorScheme.onSecondaryContainer,
           },
         },
+        stateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.onSecondaryContainer,
+          },
+        },
+        toggleSelectedStateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.onSurfaceVariant,
+          },
+        },
       }),
     },
   }),
@@ -300,6 +326,16 @@ export const iconButtonThemeVariants = {
         toggleSelectedIcon: {
           color: {
             normal: themeTokens.colorScheme.inverseOnSurface,
+          },
+        },
+        stateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.onSurfaceVariant,
+          },
+        },
+        toggleSelectedStateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.onSurfaceVariant,
           },
         },
         outline: {
@@ -345,6 +381,16 @@ export const iconButtonThemeVariants = {
             normal: themeTokens.colorScheme.onErrorContainer,
           },
         },
+        stateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.onErrorContainer,
+          },
+        },
+        toggleSelectedStateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.error,
+          },
+        },
       }),
     },
   }),
@@ -368,6 +414,16 @@ export const iconButtonThemeVariants = {
         toggleSelectedIcon: {
           color: {
             normal: themeTokens.colorScheme.inverseOnSurface,
+          },
+        },
+        stateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.inverseOnSurface,
+          },
+        },
+        toggleSelectedStateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.inverseOnSurface,
           },
         },
       }),

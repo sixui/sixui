@@ -76,6 +76,8 @@ export const useInteractions = <TElement extends HTMLElement>(
   const currentStateReplaced = baseState && mergeStrategy === 'replace';
   const { focusProps, isFocusVisible: focused } = useFocusRing({
     isTextInput,
+    // FIXME:
+    within: true,
   });
 
   const currentTrigger = useRef<EventTarget | null>(null);
@@ -84,6 +86,7 @@ export const useInteractions = <TElement extends HTMLElement>(
     onHoverStart: (event: HoverEvent) => {
       props?.hoverEvents?.onHoverStart?.(event);
       currentTrigger.current = event.target;
+      console.log('__hover', event.target);
       activeTriggers.unshift(event.target);
     },
     onHoverEnd: (event: HoverEvent) => {

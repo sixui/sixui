@@ -10,6 +10,7 @@ import {
   type IComponentPresentation,
 } from '../ComponentShowcase';
 import { Placeholder } from '../Placeholder';
+import { IconButton } from '../IconButton';
 import { FieldBase } from './FieldBase';
 
 // https://github.com/material-components/material-web/blob/main/field/demo/stories.ts
@@ -22,7 +23,8 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   w: px(240),
-  children: <Placeholder surface='$onSurface' expanded disabled />,
+  // children: <Placeholder surface='$onSurface' expanded disabled />,
+  children: <input style={{ width: '100%' }} />,
 } satisfies Partial<IFieldBaseProps>;
 
 const states: Array<IComponentPresentation<IFieldBaseProps>> = [
@@ -58,7 +60,7 @@ const rows: Array<IComponentPresentation<IFieldBaseProps>> = [
       count: 2,
       max: 10,
       leadingIcon: <FontAwesomeIcon icon={faMagnifyingGlass} />,
-      trailingIcon: <FontAwesomeIcon icon={faXmark} />,
+      end: <IconButton icon={<FontAwesomeIcon icon={faXmark} />} />,
     },
   },
   { legend: 'Loading', props: { loading: true } },

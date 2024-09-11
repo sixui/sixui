@@ -488,7 +488,7 @@ const classNames = createStyles({
     color: tokens.content.color.normal.regular,
     WebkitTextFillColor: tokens.content.color.normal.regular,
     opacity: 0,
-    transitionDelay: 'none',
+    transitionDelay: 'unset',
 
     selectors: {
       [getModifierSelector<IModifier>('with-error', root)]: {
