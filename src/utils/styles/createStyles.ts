@@ -6,7 +6,8 @@ export const createStyles = <TClassName extends string>(
   stylesObject: Partial<
     Record<
       'root' | TClassName,
-      ComplexStyleRule | (({ root }: { root: string }) => ComplexStyleRule)
+      | ComplexStyleRule
+      | ((styleNames: Record<'root' | TClassName, string>) => ComplexStyleRule)
     >
   > = {},
 ): Record<'root' | TClassName, string> => {
@@ -32,7 +33,7 @@ export const createStyles = <TClassName extends string>(
       if (isFunction(styles)) {
         return {
           ...acc,
-          [key]: style(styles({ root })),
+          [key]: style(styles(acc)),
         };
       }
 

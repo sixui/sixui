@@ -2,6 +2,7 @@ import { createTheme } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IInteraction } from '~/hooks/useInteractions';
+import type { IFieldBaseVariant } from './FieldBase.types';
 import {
   componentThemeFactory,
   type IComponentThemeFactory,
@@ -16,6 +17,7 @@ import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { themeTokens } from '../ThemeProvider';
 import { StateLayer } from '../StateLayer';
 import { PaperBase } from '../PaperBase';
+import { FieldBaseOutline } from '../FieldBaseOutline';
 
 type IModifier =
   | IInteraction
@@ -153,6 +155,7 @@ const [tokensClassName, tokens] = createTheme({
       floating: themeTokens.typeScale.body.sm,
     },
     bottomSpace: px(space(2)),
+    padding: px(space(1)),
   },
   leadingContent: {
     minWidth: px(48),
@@ -251,33 +254,6 @@ const [tokensClassName, tokens] = createTheme({
       hovered: themeTokens.outline.width.xs,
       disabled: themeTokens.outline.width.xs,
     },
-  },
-  outline: {
-    color: {
-      normal: {
-        regular: themeTokens.colorScheme.outline,
-        error: themeTokens.colorScheme.error,
-      },
-      focused: {
-        regular: themeTokens.colorScheme.primary,
-        error: themeTokens.colorScheme.error,
-      },
-      hovered: {
-        regular: themeTokens.colorScheme.onSurface,
-        error: themeTokens.colorScheme.onErrorContainer,
-      },
-      disabled: themeTokens.colorScheme.onSurface,
-    },
-    opacity: {
-      disabled: themeTokens.state.outlineOpacity.disabled,
-    },
-    width: {
-      normal: themeTokens.outline.width.xs,
-      focused: themeTokens.outline.width.md,
-      hovered: themeTokens.outline.width.xs,
-      disabled: themeTokens.outline.width.xs,
-    },
-    labelPadding: px(space(1)),
   },
 });
 
@@ -577,6 +553,9 @@ const classNames = createStyles({
         marginTop: tokens.topSpace.normal,
         marginBottom: tokens.bottomSpace.normal,
       },
+      [getModifierSelector<IModifier>('!with-end-section', root)]: {
+        paddingInlineEnd: tokens.trailingSpace,
+      },
     },
   }),
   stateLayer: ({ root }) => ({
@@ -661,12 +640,14 @@ const classNames = createStyles({
     width: tokens.trailingIcon.size,
     height: tokens.trailingIcon.size,
   },
+  outline: {},
 });
 
 export type IFieldBaseThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
+  variant: IFieldBaseVariant;
 }>;
 
 export const fieldBaseTheme = componentThemeFactory<IFieldBaseThemeFactory>({
@@ -678,18 +659,16 @@ export const fieldBaseTheme = componentThemeFactory<IFieldBaseThemeFactory>({
 export const fieldBaseThemeVariants = {
   filled: createStyles({
     root: {
-      vars: {
-        ...createTokensVars(tokens, {
-          container: {
-            color: {
-              normal: themeTokens.colorScheme.surfaceContainerHighest,
-            },
-            opacity: {
-              disabled: '0.04',
-            },
+      vars: createTokensVars(tokens, {
+        container: {
+          color: {
+            normal: themeTokens.colorScheme.surfaceContainerHighest,
           },
-        }),
-      },
+          opacity: {
+            disabled: '0.04',
+          },
+        },
+      }),
     },
     container: {
       selectors: {
@@ -803,5 +782,43 @@ export const fieldBaseThemeVariants = {
       position: 'absolute',
       top: tokens.topSpace.withLabel,
     },
+  }),
+  outlined: createStyles({
+    root: {
+      vars: createTokensVars(tokens, {
+        container: {
+          shape: {
+            topLeft: themeTokens.shape.corner.xs,
+            topRight: themeTokens.shape.corner.xs,
+            bottomRight: themeTokens.shape.corner.xs,
+            bottomLeft: themeTokens.shape.corner.xs,
+          },
+        },
+      }),
+    },
+    outline: {
+      vars: createTokensVars(FieldBaseOutline.theme.tokens, {
+        leadingSpace: tokens.leadingSpace,
+        trailingSpace: tokens.trailingSpace,
+        label: {
+          padding: tokens.label.padding,
+          bottomSpace: tokens.label.bottomSpace,
+        },
+      }),
+    },
+    contentSlot: ({ root }) => ({
+      selectors: {
+        [getModifierSelector<IModifier>('!with-start-section', root)]: {
+          paddingInlineStart: `max(${tokens.leadingSpace}, ${tokens.label.padding})`,
+        },
+      },
+    }),
+    labelWrapper: ({ root }) => ({
+      selectors: {
+        [getModifierSelector<IModifier>('!with-start-section', root)]: {
+          paddingInlineStart: `max(${tokens.leadingSpace}, ${tokens.label.padding})`,
+        },
+      },
+    }),
   }),
 };

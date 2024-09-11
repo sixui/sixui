@@ -17,7 +17,7 @@ const [tokensClassName, tokens] = createTheme({
     disabled: themeTokens.state.opacity.disabled,
   },
   size: '1em',
-  containerPadding: '0.05em',
+  containerPadding: '0px',
   strokePct: '10',
 });
 

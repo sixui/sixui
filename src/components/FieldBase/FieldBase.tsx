@@ -19,6 +19,7 @@ import { CircularProgressIndicator } from '../CircularProgressIndicator';
 import { LabeledContext } from '../Labeled/Labeled.context';
 import { Box } from '../Box';
 import { useStateLayer } from '../StateLayer';
+import { FieldBaseOutline } from '../FieldBaseOutline';
 import {
   fieldBaseTheme,
   fieldBaseThemeVariants,
@@ -87,6 +88,7 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
       modifiers: {
         resizable,
         populated,
+        disabled: disabledOrReadOnly,
         'with-start-section': hasStartSection,
         'with-end-section': hasEndSection,
         'with-label': hasLabel,
@@ -107,156 +109,6 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
 
     const wasFocused = usePrevious(!!focused);
     const wasPopulated = usePrevious(!!populated);
-
-    // const renderOutline = useCallback(
-    //   (): React.ReactNode => (
-    //     <div
-    //       {...getStyles(
-    //         'outline',
-    //         hasError && 'outline$error',
-    //         visuallyDisabled && 'outline$disabled',
-    //       )}
-    //     >
-    //       <div
-    //         {...getStyles(
-    //           'outlineSection',
-    //           'outlineSection$startEnd',
-    //           'outlineSection$start',
-    //           visuallyDisabled && 'outlineSection$startEnd$disabled',
-    //         )}
-    //       >
-    //         <div
-    //           {...getStyles(
-    //             'outlineBorder',
-    //             'outlineBorder$startEnd',
-    //             'outlineBorder$start',
-    //             'outlineBorder$inactive',
-    //             'outlineBorder$inactive$startEnd',
-    //             'outlineBorder$inactive$start',
-    //             visuallyDisabled && 'outlineBorder$inactive$startEnd$disabled',
-    //           )}
-    //         />
-    //         <div
-    //           {...getStyles(
-    //             'outlineBorder',
-    //             'outlineBorder$startEnd',
-    //             'outlineBorder$start',
-    //             'outlineBorder$active',
-    //             'outlineBorder$active$startEnd',
-    //             'outlineBorder$active$end',
-    //           )}
-    //         />
-    //       </div>
-    //       <div
-    //         {...getStyles(
-    //           'outlineNotch',
-    //           !hasLabel && 'outlineNotch$withoutLabel',
-    //         )}
-    //       >
-    //         <div
-    //           {...getStyles(
-    //             'outlineSection',
-    //             'outlineSection$panel',
-    //             'outlineSection$panel$inactive',
-    //             visuallyDisabled && 'outlineSection$panel$inactive$disabled',
-    //           )}
-    //         >
-    //           <div
-    //             {...getStyles(
-    //               'outlineBorder',
-    //               'outlineBorder$panel',
-    //               'outlineBorder$inactive',
-    //               'outlineBorder$inactive$panel',
-    //               'outlineBorder$inactive$panel$inactive',
-    //               populated && 'outlineBorder$panel$populated',
-    //               visuallyDisabled &&
-    //                 'outlineBorder$inactive$panel$inactive$disabled',
-    //             )}
-    //           />
-    //           <div
-    //             {...getStyles(
-    //               'outlineBorder',
-    //               'outlineBorder$panel',
-    //               'outlineBorder$active',
-    //               'outlineBorder$active$panel',
-    //               'outlineBorder$active$panel$inactive',
-    //               populated && 'outlineBorder$panel$populated',
-    //               visuallyDisabled &&
-    //                 'outlineBorder$active$panel$inactive$disabled',
-    //             )}
-    //           />
-    //         </div>
-    //         <div
-    //           {...getStyles(
-    //             'outlineSection',
-    //             'outlineSection$panel',
-    //             'outlineSection$panel$active',
-    //           )}
-    //         >
-    //           <div
-    //             {...getStyles(
-    //               'outlineBorder',
-    //               'outlineBorder$panel',
-    //               'outlineBorder$inactive',
-    //               'outlineBorder$inactive$panel',
-    //               'outlineBorder$inactive$panel$active',
-    //               populated && 'outlineBorder$panel$populated',
-    //             )}
-    //           />
-    //           <div
-    //             {...getStyles(
-    //               'outlineBorder',
-    //               'outlineBorder$panel',
-    //               'outlineBorder$active',
-    //               'outlineBorder$active$panel',
-    //               'outlineBorder$active$panel$active',
-    //               populated && 'outlineBorder$panel$populated',
-    //             )}
-    //           />
-    //         </div>
-    //         <div {...getStyles('outlineLabel')}>{floatingLabel}</div>
-    //       </div>
-    //       <div
-    //         {...getStyles(
-    //           'outlineSection',
-    //           'outlineSection$startEnd',
-    //           'outlineSection$end',
-    //           visuallyDisabled && 'outlineSection$startEnd$disabled',
-    //         )}
-    //       >
-    //         <div
-    //           {...getStyles(
-    //             'outlineBorder',
-    //             'outlineBorder$startEnd',
-    //             'outlineBorder$end',
-    //             'outlineBorder$inactive',
-    //             'outlineBorder$inactive$startEnd',
-    //             'outlineBorder$inactive$end',
-    //             visuallyDisabled && 'outlineBorder$inactive$startEnd$disabled',
-    //           )}
-    //         />
-    //         <div
-    //           {...getStyles(
-    //             'outlineBorder',
-    //             'outlineBorder$startEnd',
-    //             'outlineBorder$end',
-    //             'outlineBorder$active',
-    //             'outlineBorder$active$startEnd',
-    //             'outlineBorder$active$end',
-    //           )}
-    //         />
-    //       </div>
-    //     </div>
-    //   ),
-    //   [
-    //     getStyles,
-    //     hasLabel,
-    //     populated,
-    //     visuallyDisabled,
-    //     hasError,
-    //     floatingLabel,
-    //   ],
-    // );
 
     const animateLabelIfNeeded = useCallback(
       (previousState: { wasFocused?: boolean; wasPopulated?: boolean }) => {
@@ -286,7 +138,6 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
         //
         // Re-calculating the animation each time will prevent any visual
         // glitches from appearing.
-        console.log('__ANIMATE');
         labelAnimationRef.current = floatingLabelRef.current?.animate(
           getLabelKeyframes(
             floatingLabelRef,
@@ -300,7 +151,7 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
             // To avoid any glitch, the target will retain the computed values
             // set by the last keyframe encountered during execution. See
             // https://developer.mozilla.org/en-US/docs/Web/CSS/animation-fill-mode#forwards
-            fill: 'forwards',
+            fill: 'both',
           },
         );
 
@@ -430,7 +281,6 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
         {...other}
         {...getStyles('root')}
         interactions={stateLayer.interactionsContext.state}
-        modifiers={{ disabled: disabledOrReadOnly }}
         ref={forwardedRef}
       >
         <ButtonBase
@@ -444,8 +294,20 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
           ref={containerRef}
         >
           {renderIndicator()}
+          {variant === 'outlined' && (
+            <FieldBaseOutline
+              {...getStyles('outline')}
+              interactions={stateLayer.interactionsContext.state}
+              hasLabel={hasLabel}
+              hasError={hasError}
+              populated={populated}
+              disabled={disabledOrReadOnly}
+            >
+              {floatingLabel}
+            </FieldBaseOutline>
+          )}
           <div {...getStyles('inner')}>
-            {hasStartSection ? (
+            {hasStartSection && (
               <div {...getStyles(['section', 'section$start'])}>
                 {leadingIcon ? (
                   <span {...getStyles(['icon', 'icon$leading'])}>
@@ -455,12 +317,12 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
                   start
                 )}
               </div>
-            ) : null}
+            )}
 
             <div {...getStyles(['section', 'section$main'])}>
               <div {...getStyles('labelWrapper')}>
                 {restingLabel}
-                {variant === 'outlined' ? null : floatingLabel}
+                {variant === 'filled' && floatingLabel}
               </div>
               <div {...getStyles('content')}>
                 <div {...getStyles('contentSlot')}>
@@ -473,7 +335,7 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
               </div>
             </div>
 
-            {hasEndSection ? (
+            {hasEndSection && (
               <div {...getStyles(['section', 'section$end'])}>
                 {loading || trailingIcon ? (
                   <span {...getStyles(['icon', 'icon$trailing'])}>
@@ -483,7 +345,7 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
                   end
                 )}
               </div>
-            ) : null}
+            )}
           </div>
         </ButtonBase>
         {renderSupportingText()}
