@@ -609,6 +609,11 @@ export const buttonThemeVariants = {
             height: px(32),
             shape: px(themeTokens.shape.corner.xs),
           },
+          icon: {
+            color: {
+              normal: themeTokens.colorScheme.inversePrimary,
+            },
+          },
           label: {
             color: {
               normal: themeTokens.colorScheme.inversePrimary,
