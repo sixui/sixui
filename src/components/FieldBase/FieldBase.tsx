@@ -47,7 +47,7 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
       readOnly,
       label,
       required,
-      populated,
+      populated: populatedProp,
       resizable,
       supportingText,
       hasError,
@@ -58,23 +58,29 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
       loading: loadingProp,
       forwardProps,
       containerRef,
+      disabled,
+      onPress,
+      interactions,
+      placeholder,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
     const labeledContext = useContext(LabeledContext);
     const loading = loadingProp || labeledContext?.loading;
 
-    const disabledOrReadOnly = other.disabled || readOnly;
+    const disabledOrReadOnly = disabled || readOnly;
     const stateLayer = useStateLayer<HTMLDivElement>({
-      interactions: other.interactions,
+      interactions,
       disabled: disabledOrReadOnly,
-      pressEvents: { onPress: other.onPress },
+      pressEvents: { onPress },
     });
 
-    const focused = stateLayer.interactionsContext.state.focused;
+    const focused =
+      stateLayer.interactionsContext.state.focused || !!placeholder;
     const hasStartSection = !!leadingIcon || !!start;
     const hasEndSection = !!loading || !!trailingIcon || !!end;
     const hasLabel = !!label;
+    const populated = populatedProp || !!placeholder;
 
     const { getStyles } = useComponentTheme<IFieldBaseThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -291,6 +297,8 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
             stateLayer: getStyles('stateLayer').className,
           })}
           focusRing={false}
+          disabled={disabled}
+          readOnly={readOnly}
           ref={containerRef}
         >
           {renderIndicator()}
@@ -326,11 +334,17 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
               </div>
               <div {...getStyles('content')}>
                 <div {...getStyles('contentSlot')}>
-                  {isFunction(children)
-                    ? children({
+                  {children ? (
+                    isFunction(children) ? (
+                      children({
                         forwardedProps: forwardProps ? other : undefined,
                       })
-                    : children}
+                    ) : (
+                      children
+                    )
+                  ) : placeholder ? (
+                    <div {...getStyles('placeholder')}>{placeholder}</div>
+                  ) : null}
                 </div>
               </div>
             </div>

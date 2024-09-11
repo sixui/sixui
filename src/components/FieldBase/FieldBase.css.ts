@@ -640,6 +640,18 @@ const classNames = createStyles({
     height: tokens.trailingIcon.size,
   },
   outline: {},
+  placeholder: ({ root }) => ({
+    WebkitTextFillColor: tokens.placeholder.color,
+    color: tokens.placeholder.color,
+    opacity: 1,
+
+    selectors: {
+      [getModifierSelector<IModifier>('disabled', root)]: {
+        WebkitTextFillColor: 'currentColor',
+        color: 'currentColor',
+      },
+    },
+  }),
 });
 
 export type IFieldBaseThemeFactory = IComponentThemeFactory<{

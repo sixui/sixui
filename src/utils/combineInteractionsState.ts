@@ -9,7 +9,6 @@ export const combineInteractionsState = (
    * @defaultValue ['disabled', 'dragged', 'pressed', 'hovered', 'focused']
    */
   priorities: Array<IInteraction> = [
-    'disabled',
     'dragged',
     'pressed',
     'hovered',

@@ -32,7 +32,7 @@ export interface IFieldBaseOwnProps
   supportingText?: React.ReactNode;
   multiline?: boolean;
   loading?: boolean;
-  tabIndex?: number;
+  placeholder?: React.ReactNode;
   children?: IRendererWithForwardedProps;
   containerRef?: React.Ref<HTMLDivElement>;
 }
