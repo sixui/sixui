@@ -29,6 +29,7 @@ const states: Array<IComponentPresentation<IFieldBaseProps>> = [
   { legend: 'Enabled' },
   { legend: 'Focused', props: { interactions: { focused: true } } },
   { legend: 'Hovered', props: { interactions: { hovered: true } } },
+  { legend: 'Read only', props: { readOnly: true } },
   { legend: 'Disabled', props: { disabled: true } },
 ];
 

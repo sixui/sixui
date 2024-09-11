@@ -64,7 +64,6 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
       disabled: !!stateLayerProp || disabledOrReadOnly,
       pressEvents: { onPress },
     });
-    const hasOwnStateLayer = !!stateLayerProp;
     const stateLayer = stateLayerProp ?? ownStateLayer;
     const rootElement =
       as ?? (href ? (sixuiContext.settings?.linkAs ?? 'a') : 'button');
@@ -77,7 +76,7 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
           }
         : {
             role: 'button',
-            tabIndex: disabled ? undefined : readOnly ? -1 : 0,
+            tabIndex: disabled ? undefined : 0,
             href,
             target: rootElement === 'a' ? target : undefined,
             type: rootElement === 'input' ? type : undefined,

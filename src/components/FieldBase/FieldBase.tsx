@@ -71,7 +71,7 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
     const disabledOrReadOnly = disabled || readOnly;
     const stateLayer = useStateLayer<HTMLDivElement>({
       interactions,
-      disabled: disabledOrReadOnly,
+      disabled,
       pressEvents: { onPress },
     });
 
