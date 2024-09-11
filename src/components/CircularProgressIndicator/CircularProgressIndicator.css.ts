@@ -18,7 +18,7 @@ const [tokensClassName, tokens] = createTheme({
   },
   size: '1em',
   containerPadding: '0px',
-  strokePct: '10',
+  strokePct: '12',
 });
 
 const classNames = createStyles({

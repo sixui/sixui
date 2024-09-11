@@ -51,7 +51,7 @@ const [tokensClassName, tokens] = createTheme({
   trailingSpace: px(space(4)),
   topSpace: {
     normal: px(space(3)),
-    withLabel: px(space(2)),
+    withLabel: px(space(1)),
   },
   bottomSpace: {
     normal: px(space(3)),
@@ -60,10 +60,10 @@ const [tokensClassName, tokens] = createTheme({
   container: {
     minHeight: calc.add(px(56), DENSITY),
     shape: {
-      topLeft: themeTokens.shape.corner.xs,
-      topRight: themeTokens.shape.corner.xs,
-      bottomRight: themeTokens.shape.corner.none,
-      bottomLeft: themeTokens.shape.corner.none,
+      topLeft: px(themeTokens.shape.corner.xs),
+      topRight: px(themeTokens.shape.corner.xs),
+      bottomRight: px(themeTokens.shape.corner.none),
+      bottomLeft: px(themeTokens.shape.corner.none),
     },
     color: {
       normal: 'inherit',
@@ -154,7 +154,6 @@ const [tokensClassName, tokens] = createTheme({
       resting: themeTokens.typeScale.body.lg,
       floating: themeTokens.typeScale.body.sm,
     },
-    bottomSpace: px(space(2)),
     padding: px(space(1)),
   },
   leadingContent: {
@@ -249,10 +248,10 @@ const [tokensClassName, tokens] = createTheme({
       disabled: themeTokens.state.opacity.disabled,
     },
     height: {
-      normal: themeTokens.outline.width.xs,
-      focused: themeTokens.outline.width.md,
-      hovered: themeTokens.outline.width.xs,
-      disabled: themeTokens.outline.width.xs,
+      normal: px(themeTokens.outline.width.xs),
+      focused: px(themeTokens.outline.width.md),
+      hovered: px(themeTokens.outline.width.xs),
+      disabled: px(themeTokens.outline.width.xs),
     },
   },
 });
@@ -345,7 +344,7 @@ const classNames = createStyles({
   section$start: ({ root }) => ({
     alignItems: 'center',
     justifyContent: 'start',
-    paddingInlineStart: 8,
+    paddingInlineStart: px(space(2)),
     color: tokens.leadingContent.color.normal.regular,
     minWidth: tokens.leadingContent.minWidth,
 
@@ -769,11 +768,23 @@ export const fieldBaseThemeVariants = {
           paddingInlineEnd: tokens.trailingSpace,
         },
         [getModifierSelector<IModifier>(['with-label', '!multiline'], root)]: {
-          paddingTop: `calc(${tokens.topSpace.withLabel} + ${tokens.label.typography.floating.lineHeight})`,
+          paddingTop: calc.add(
+            tokens.topSpace.withLabel,
+            calc.multiply(
+              tokens.label.typography.floating.lineHeight,
+              themeTokens.scale,
+            ),
+          ),
           paddingBottom: tokens.bottomSpace.withLabel,
         },
         [getModifierSelector<IModifier>(['with-label', 'multiline'], root)]: {
-          marginTop: `calc(${tokens.topSpace.withLabel} + ${tokens.label.typography.floating.lineHeight})`,
+          marginTop: calc.add(
+            tokens.topSpace.withLabel,
+            calc.multiply(
+              tokens.label.typography.floating.lineHeight,
+              themeTokens.scale,
+            ),
+          ),
           marginBottom: tokens.bottomSpace.withLabel,
         },
       },
@@ -788,10 +799,10 @@ export const fieldBaseThemeVariants = {
       vars: createTokensVars(tokens, {
         container: {
           shape: {
-            topLeft: themeTokens.shape.corner.xs,
-            topRight: themeTokens.shape.corner.xs,
-            bottomRight: themeTokens.shape.corner.xs,
-            bottomLeft: themeTokens.shape.corner.xs,
+            topLeft: px(themeTokens.shape.corner.xs),
+            topRight: px(themeTokens.shape.corner.xs),
+            bottomRight: px(themeTokens.shape.corner.xs),
+            bottomLeft: px(themeTokens.shape.corner.xs),
           },
         },
       }),
@@ -802,7 +813,6 @@ export const fieldBaseThemeVariants = {
         trailingSpace: tokens.trailingSpace,
         label: {
           padding: tokens.label.padding,
-          bottomSpace: tokens.label.bottomSpace,
         },
       }),
     },

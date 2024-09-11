@@ -16,9 +16,7 @@ export interface IPaperOwnProps
     IPaperSprinkles,
     IPaperBackgroundSprinkles,
     IPaperElevationSprinkles,
-    IPaperOutlineSprinkles {
-  density?: number;
-}
+    IPaperOutlineSprinkles {}
 
 export interface IPaperProps
   extends IBoxProps,

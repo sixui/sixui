@@ -11,4 +11,5 @@ export interface IBoxProps extends IBoxSprinkles {
   interactions?: IInteractions;
   modifiers?: IModifiers;
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  density?: number;
 }

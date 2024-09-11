@@ -80,6 +80,45 @@ export const Variants: IStory = {
   args: defaultArgs,
 };
 
+export const Sizes: IStory = {
+  render: (props) => (
+    <FieldBaseShowcase
+      props={props}
+      cols={[
+        { legend: 'Extra small', props: { size: 'xs' } },
+        { legend: 'Small', props: { size: 'sm' } },
+        { legend: 'Medium', props: { size: 'md' } },
+        { legend: 'Large', props: { size: 'lg' } },
+        { legend: 'Extra large', props: { size: 'xl' } },
+      ]}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'filled',
+    label: 'Label',
+  },
+};
+
+export const Densities: IStory = {
+  render: (props) => (
+    <FieldBaseShowcase
+      cols={[-2, -1, 0].map((density) => ({
+        legend: String(density),
+        props: {
+          density,
+        },
+      }))}
+      props={props}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'filled',
+    label: 'Label',
+  },
+};
+
 export const Filled: IStory = {
   render: (props) => (
     <FieldBaseShowcase props={props} cols={states} rows={rows} />

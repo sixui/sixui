@@ -1,12 +1,9 @@
-import { assignInlineVars } from '@vanilla-extract/dynamic';
-
 import type { IPaperFactory } from './Paper.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { PaperBase } from '../PaperBase';
-import { themeTokens } from '../ThemeProvider';
 import {
   paperTheme,
   paperSprinkles,
@@ -26,7 +23,6 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
       styles,
       style,
       variant,
-      density,
       ...otherWithSprinkles
     } = useProps({
       componentName: COMPONENT_NAME,
@@ -58,14 +54,7 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
         {...other}
         {...getStyles('root', {
           className: sprinkles.className,
-          style: {
-            ...sprinkles.style,
-            ...assignInlineVars({
-              [themeTokens.density.scale]: density
-                ? String(density)
-                : undefined,
-            }),
-          },
+          style: sprinkles.style,
         })}
         classNames={mergeClassNames(classNames, {
           background: backgroundSprinkles.className,
