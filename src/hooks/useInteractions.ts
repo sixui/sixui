@@ -4,7 +4,7 @@ import type {
   PressEvents,
 } from '@react-types/shared';
 import { accumulate } from '@olivierpascal/helpers';
-import { useMemo, useRef } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import { useFocusRing, useHover, usePress, type HoverEvents } from 'react-aria';
 
 export type IInteraction = 'focused' | 'pressed' | 'dragged' | 'hovered';
@@ -58,7 +58,11 @@ export type IUseInteractionsResult<TElement extends HTMLElement = HTMLElement> =
   };
 
 /** Used to handle nested surfaces. */
-const activeTriggers: Array<EventTarget> = [];
+const activeTriggers: Array<{
+  target: EventTarget;
+  onHoverStart: (event: HoverEvent) => void;
+  onHoverEnd: (event: HoverEvent) => void;
+}> = [];
 
 export const useInteractions = <TElement extends HTMLElement>(
   props?: IUseInteractionsProps,
@@ -80,29 +84,46 @@ export const useInteractions = <TElement extends HTMLElement>(
     within: true,
   });
 
-  const currentTrigger = useRef<EventTarget | null>(null);
-  const { hoverProps, isHovered: hoveredWithin } = useHover({
+  const { hoverProps } = useHover({
     ...props?.hoverEvents,
     onHoverStart: (event: HoverEvent) => {
-      props?.hoverEvents?.onHoverStart?.(event);
-      currentTrigger.current = event.target;
-      console.log('__hover', event.target);
-      activeTriggers.unshift(event.target);
+      handleHoverStart(event);
+      activeTriggers[0]?.onHoverEnd(event);
+      activeTriggers.unshift({
+        target: event.target,
+        onHoverStart: handleHoverStart,
+        onHoverEnd: handleHoverEnd,
+      });
     },
     onHoverEnd: (event: HoverEvent) => {
-      props?.hoverEvents?.onHoverEnd?.(event);
-      currentTrigger.current = null;
+      handleHoverEnd(event);
       activeTriggers.shift();
+      activeTriggers[0]?.onHoverStart(event);
     },
     isDisabled: disabled || currentStateReplaced,
   });
+
+  const [hovered, setHovered] = useState(false);
+  const handleHoverStart = useCallback(
+    (event: HoverEvent) => {
+      props?.hoverEvents?.onHoverStart?.(event);
+      setHovered(true);
+    },
+    [props?.hoverEvents],
+  );
+
+  const handleHoverEnd = useCallback(
+    (event: HoverEvent) => {
+      props?.hoverEvents?.onHoverEnd?.(event);
+      setHovered(false);
+    },
+    [props?.hoverEvents],
+  );
 
   const { pressProps, isPressed: pressed } = usePress({
     ...props?.pressEvents,
     isDisabled: disabled || currentStateReplaced,
   });
-
-  const hovered = hoveredWithin && currentTrigger.current === activeTriggers[0];
 
   const triggerProps = useMemo<DOMAttributes>(
     () => ({
