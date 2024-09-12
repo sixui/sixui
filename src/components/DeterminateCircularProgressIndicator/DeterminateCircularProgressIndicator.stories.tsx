@@ -23,7 +23,7 @@ const defaultArgs = {
 
 const rows: Array<
   IComponentPresentation<IDeterminateCircularProgressIndicatorProps>
-> = [{ legend: 'Enabled' }, { legend: 'Disabled', props: { disabled: true } }];
+> = [{ legend: 'Normal' }, { legend: 'Disabled', props: { disabled: true } }];
 
 const DeterminateCircularProgressIndicatorShowcase = makeComponentShowcase(
   DeterminateCircularProgressIndicator,

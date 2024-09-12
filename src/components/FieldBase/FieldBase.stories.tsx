@@ -23,20 +23,18 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   w: px(240),
-  // children: <Placeholder surface='$onSurface' expanded disabled />,
-  children: <input style={{ width: '100%' }} />,
+  children: <Placeholder surface='$onSurface' expanded disabled />,
 } satisfies Partial<IFieldBaseProps>;
 
 const states: Array<IComponentPresentation<IFieldBaseProps>> = [
-  { legend: 'Enabled' },
-  { legend: 'Focused', props: { interactions: { focused: true } } },
+  { legend: 'Normal' },
   { legend: 'Hovered', props: { interactions: { hovered: true } } },
+  { legend: 'Focused', props: { interactions: { focused: true } } },
   { legend: 'Read only', props: { readOnly: true } },
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
 const rows: Array<IComponentPresentation<IFieldBaseProps>> = [
-  { legend: 'Empty' },
   {
     legend: 'Label',
     props: { label: 'Label' },
@@ -61,6 +59,8 @@ const rows: Array<IComponentPresentation<IFieldBaseProps>> = [
       max: 10,
       leadingIcon: <FontAwesomeIcon icon={faMagnifyingGlass} />,
       end: <IconButton icon={<FontAwesomeIcon icon={faXmark} />} />,
+      prefix: '$',
+      suffix: '.00',
     },
   },
   { legend: 'Loading', props: { loading: true } },
@@ -98,6 +98,10 @@ export const Sizes: IStory = {
         { legend: 'Large', props: { size: 'lg' } },
         { legend: 'Extra large', props: { size: 'xl' } },
       ]}
+      rows={[
+        { legend: 'Filled', props: { variant: 'filled' } },
+        { legend: 'Outlined', props: { variant: 'outlined' } },
+      ]}
     />
   ),
   args: {
@@ -116,7 +120,34 @@ export const Densities: IStory = {
           density,
         },
       }))}
+      rows={[
+        { legend: 'Filled', props: { variant: 'filled' } },
+        { legend: 'Outlined', props: { variant: 'outlined' } },
+      ]}
       props={props}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'filled',
+    label: 'Label',
+  },
+};
+
+export const States: IStory = {
+  render: (props) => (
+    <FieldBaseShowcase
+      props={props}
+      cols={[
+        { legend: 'Normal' },
+        { legend: 'Focused', props: { interactions: { focused: true } } },
+        { legend: 'Loading', props: { loading: true } },
+        { legend: 'Disabled', props: { disabled: true } },
+      ]}
+      rows={[
+        { legend: 'Filled', props: { variant: 'filled' } },
+        { legend: 'Outlined', props: { variant: 'outlined' } },
+      ]}
     />
   ),
   args: {

@@ -1,11 +1,14 @@
 import type { IOmit } from '~/helpers/types';
-import type { ITextFieldBaseProps } from '../TextFieldBase';
+import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IFieldBaseOwnProps } from '../FieldBase';
+import type { IBoxProps } from '../Box';
+import type {
+  textInputFieldTheme,
+  ITextInputFieldThemeFactory,
+} from './TextInputField.css';
 
-export type ITextInputFieldProps = IOmit<
-  ITextFieldBaseProps<HTMLInputElement>,
-  // Props that are controlled by the component and should not be overridden.
-  'inputRenderer' | 'forwardProps' | 'textArea' | 'resizable'
-> & {
+export interface ITextInputFieldOwnProps extends IFieldBaseOwnProps {
   /**
    * The `<input />` type to use, defaults to "text". The type greatly changes
    * how the text field behaves.
@@ -28,16 +31,6 @@ export type ITextInputFieldProps = IOmit<
    * @defaultValue 'text'
    */
   type?: string;
-
-  /**
-   * An optional prefix to display before the input value.
-   */
-  prefixText?: string;
-
-  /**
-   * An optional suffix to display after the input value.
-   */
-  suffixText?: string;
 
   /**
    * When true, hide the spinner for `type="number"` input fields.
@@ -66,4 +59,15 @@ export type ITextInputFieldProps = IOmit<
 
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   placeholder?: string;
-};
+}
+
+export interface ITextInputFieldProps
+  extends IOmit<IBoxProps, 'children'>,
+    IComponentThemeProps<ITextInputFieldThemeFactory>,
+    ITextInputFieldOwnProps {}
+
+export type ITextInputFieldFactory = IComponentFactory<{
+  props: ITextInputFieldProps;
+  ref: HTMLDivElement;
+  theme: typeof textInputFieldTheme;
+}>;

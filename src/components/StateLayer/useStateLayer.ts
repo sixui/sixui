@@ -15,6 +15,7 @@ export type IUseStateLayerProps = Pick<
 > & {
   disabled?: boolean;
   interactions?: IInteractions;
+  focusWithin?: boolean;
 };
 
 export type IUseStateLayerResult<TElement extends HTMLElement = HTMLElement> = {
@@ -27,7 +28,8 @@ export type IUseStateLayerResult<TElement extends HTMLElement = HTMLElement> = {
 export const useStateLayer = <TElement extends HTMLElement>(
   props?: IUseStateLayerProps,
 ): IUseStateLayerResult<TElement> => {
-  const { disabled, interactions, hoverEvents, pressEvents } = props ?? {};
+  const { disabled, interactions, hoverEvents, pressEvents, focusWithin } =
+    props ?? {};
   const surfaceRef = useRef<HTMLDivElement>(null);
 
   const handlePressStart = (event: PressEvent): void => onPressStart?.(event);
@@ -35,12 +37,14 @@ export const useStateLayer = <TElement extends HTMLElement>(
 
   const interactionsContext = useInteractions<TElement>({
     baseState: interactions,
+    mergeStrategy: 'replace',
     hoverEvents,
     pressEvents: mergeProps(pressEvents, {
       onPressStart: handlePressStart,
       onPressEnd: handlePressEnd,
     }),
     disabled,
+    focusWithin,
   });
 
   const triggerRef = useRef<TElement>(null);

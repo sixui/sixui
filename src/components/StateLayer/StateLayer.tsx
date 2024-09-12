@@ -14,13 +14,21 @@ const COMPONENT_NAME = 'StateLayer';
 
 export const StateLayer = componentFactory<IStateLayerFactory>(
   (props, forwardedRef) => {
-    const { classNames, className, styles, style, variant, context, ...other } =
-      useProps({
-        componentName: COMPONENT_NAME,
-        props,
-      });
+    const {
+      classNames,
+      className,
+      styles,
+      style,
+      variant,
+      context,
+      interactions: interactionsProp,
+      ...other
+    } = useProps({
+      componentName: COMPONENT_NAME,
+      props,
+    });
 
-    const { animating, interactionsContext, surfaceRef } = context;
+    const interactions = interactionsProp ?? context?.interactionsContext.state;
     const { getStyles } = useComponentTheme<IStateLayerThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
@@ -30,22 +38,21 @@ export const StateLayer = componentFactory<IStateLayerFactory>(
       theme: stateLayerTheme,
       variant,
       modifiers: {
-        hovered: !animating && interactionsContext.state.hovered,
-        dragged: !animating && interactionsContext.state.dragged,
-        'static-pressed': interactionsContext.baseState?.pressed,
-        animating: animating,
+        hovered: !context?.animating && interactions?.hovered,
+        dragged: !context?.animating && interactions?.dragged,
+        'static-pressed':
+          (!context && interactions?.pressed) ||
+          context?.interactionsContext.baseState?.pressed,
+        animating: context?.animating,
       },
     });
 
-    const handleRef = useMergeRefs([forwardedRef, surfaceRef]);
+    const handleRef = useMergeRefs([forwardedRef, context?.surfaceRef]);
 
     return (
       <Box
         {...other}
-        {...getStyles([
-          'root',
-          interactionsContext.state.hovered && 'root$hover',
-        ])}
+        {...getStyles(['root', interactions?.hovered && 'root$hover'])}
         aria-hidden
         ref={handleRef}
       />

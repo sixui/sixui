@@ -1,15 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 import type { ITextInputFieldProps } from './TextInputField.types';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { scaleTokens } from '~/themes/base/scale.stylex';
-import {
-  type IComponentPresentation,
-  ComponentShowcase,
-} from '../ComponentShowcase';
 import type { IFieldBaseVariant } from '../FieldBase';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { px } from '~/helpers/styles/px';
+import {
+  makeComponentShowcase,
+  type IComponentPresentation,
+} from '../ComponentShowcase';
+import { IconButton } from '../IconButton';
 import { TextInputField } from './TextInputField';
 
 const meta = {
@@ -18,24 +20,18 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const styles = stylex.create({
-  host: {
-    width: `calc(260px * ${scaleTokens.scale})`,
-  },
-});
-
 const defaultArgs = {
-  sx: styles.host,
+  w: px(260),
   onChange: (...args) => void sbHandleEvent('change', args),
   onValueChange: (...args) => void sbHandleEvent('valueChange', args),
 } satisfies Partial<ITextInputFieldProps>;
 
 const states: Array<IComponentPresentation<ITextInputFieldProps>> = [
-  { legend: 'Enabled' },
-  { legend: 'Focused', props: { visualState: { focused: true } } },
+  { legend: 'Normal' },
+  { legend: 'Focused', props: { interactions: { focused: true } } },
   {
     legend: 'Hovered',
-    props: { visualState: { hovered: true } },
+    props: { interactions: { hovered: true } },
   },
   {
     legend: 'Disabled',
@@ -73,10 +69,33 @@ const rows: Array<IComponentPresentation<ITextInputFieldProps>> = [
   { legend: 'Error', props: { defaultValue: 'Value', hasError: true } },
 ];
 
+const TextInputFieldShowcase = makeComponentShowcase(TextInputField);
+
+// FIXME: delete
+export const Test: IStory = {
+  render: (props) => (
+    <TextInputFieldShowcase
+      props={props}
+      cols={(['filled', 'outlined'] as Array<IFieldBaseVariant>).map(
+        (variant) => ({
+          props: {
+            variant,
+            placeholder: capitalizeFirstLetter(variant),
+          },
+        }),
+      )}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    label: 'test',
+    end: <IconButton icon={<FontAwesomeIcon icon={faXmark} />} />,
+  },
+};
+
 export const Variants: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={TextInputField}
+    <TextInputFieldShowcase
       props={props}
       cols={(['filled', 'outlined'] as Array<IFieldBaseVariant>).map(
         (variant) => ({
@@ -91,34 +110,34 @@ export const Variants: IStory = {
   args: defaultArgs,
 };
 
-export const Filled: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={TextInputField}
-      props={props}
-      cols={states}
-      rows={rows}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    variant: 'filled',
-  },
-};
+// export const Filled: IStory = {
+//   render: (props) => (
+//     <ComponentShowcase
+//       component={TextInputField}
+//       props={props}
+//       cols={states}
+//       rows={rows}
+//     />
+//   ),
+//   args: {
+//     ...defaultArgs,
+//     variant: 'filled',
+//   },
+// };
 
-export const Outlined: IStory = {
-  render: (props) => (
-    <ComponentShowcase
-      component={TextInputField}
-      props={props}
-      cols={states}
-      rows={rows}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    variant: 'outlined',
-  },
-};
+// export const Outlined: IStory = {
+//   render: (props) => (
+//     <ComponentShowcase
+//       component={TextInputField}
+//       props={props}
+//       cols={states}
+//       rows={rows}
+//     />
+//   ),
+//   args: {
+//     ...defaultArgs,
+//     variant: 'outlined',
+//   },
+// };
 
 export default meta;

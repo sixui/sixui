@@ -16,7 +16,7 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {} satisfies Partial<IVisualStateProps>;
 
 const states: Array<IComponentPresentation<IVisualStateProps>> = [
-  { legend: 'Enabled' },
+  { legend: 'Normal' },
   { legend: 'Focused', props: { visualState: { focused: true } } },
   { legend: 'Hovered', props: { visualState: { hovered: true } } },
   { legend: 'Pressed', props: { visualState: { pressed: true } } },
@@ -28,7 +28,7 @@ export const Basic: IStory = {
     <ComponentShowcase
       component={VisualState}
       cols={[
-        { legend: 'Enabled' },
+        { legend: 'Normal' },
         { legend: 'Disabled', props: { disabled: true } },
       ]}
       props={props}

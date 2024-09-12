@@ -26,7 +26,7 @@ const defaultArgs = {
 } satisfies Partial<ICheckboxProps>;
 
 const states: Array<IComponentPresentation<ICheckboxProps>> = [
-  { legend: 'Enabled' },
+  { legend: 'Normal' },
   { legend: 'Focused', props: { visualState: { focused: true } } },
   { legend: 'Hovered', props: { visualState: { hovered: true } } },
   { legend: 'Pressed', props: { visualState: { pressed: true } } },

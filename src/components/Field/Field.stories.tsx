@@ -28,7 +28,7 @@ const defaultArgs = {
 } satisfies Partial<IFieldProps>;
 
 const states: Array<IComponentPresentation<IFieldProps>> = [
-  { legend: 'Enabled' },
+  { legend: 'Normal' },
   { legend: 'Focused', props: { visualState: { focused: true } } },
   { legend: 'Hovered', props: { visualState: { hovered: true } } },
   { legend: 'Disabled', props: { disabled: true } },

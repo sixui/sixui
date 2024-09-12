@@ -13,12 +13,10 @@ import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { isFunction } from '~/helpers/isFunction';
 import { usePrevious } from '~/hooks/usePrevious';
-import { mergeClassNames } from '~/utils/styles/mergeClassNames';
-import { ButtonBase } from '../ButtonBase';
+import { PaperBase } from '../PaperBase';
 import { CircularProgressIndicator } from '../CircularProgressIndicator';
 import { LabeledContext } from '../Labeled/Labeled.context';
 import { Box } from '../Box';
-import { useStateLayer } from '../StateLayer';
 import { FieldBaseOutline } from '../FieldBaseOutline';
 import {
   fieldBaseTheme,
@@ -26,6 +24,7 @@ import {
   type IFieldBaseThemeFactory,
 } from './FieldBase.css';
 import { getLabelKeyframes } from './getLabelKeyframes';
+import { StateLayer } from '../StateLayer';
 
 const COMPONENT_NAME = 'FieldBase';
 
@@ -59,24 +58,17 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
       forwardProps,
       containerRef,
       disabled,
-      onPress,
       interactions,
       placeholder,
+      prefix,
+      suffix,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
     const labeledContext = useContext(LabeledContext);
     const loading = loadingProp || labeledContext?.loading;
-
     const disabledOrReadOnly = disabled || readOnly;
-    const stateLayer = useStateLayer<HTMLDivElement>({
-      interactions,
-      disabled,
-      pressEvents: { onPress },
-    });
-
-    const focused =
-      stateLayer.interactionsContext.state.focused || !!placeholder;
+    const focused = interactions?.focused || !!placeholder;
     const hasStartSection = !!leadingIcon || !!start;
     const hasEndSection = !!loading || !!trailingIcon || !!end;
     const hasLabel = !!label;
@@ -286,26 +278,17 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
       <Box
         {...other}
         {...getStyles('root')}
-        interactions={stateLayer.interactionsContext.state}
+        interactions={interactions}
         ref={forwardedRef}
       >
-        <ButtonBase
-          {...getStyles('container')}
-          stateLayer={stateLayer}
-          as='div'
-          classNames={mergeClassNames(classNames, {
-            stateLayer: getStyles('stateLayer').className,
-          })}
-          focusRing={false}
-          disabled={disabled}
-          readOnly={readOnly}
-          ref={containerRef}
-        >
+        <PaperBase {...getStyles('container')} ref={containerRef}>
+          <StateLayer interactions={interactions} />
           {renderIndicator()}
+
           {variant === 'outlined' && (
             <FieldBaseOutline
               {...getStyles('outline')}
-              interactions={stateLayer.interactionsContext.state}
+              interactions={interactions}
               hasLabel={hasLabel}
               hasError={hasError}
               populated={populated}
@@ -314,6 +297,7 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
               {floatingLabel}
             </FieldBaseOutline>
           )}
+
           <div {...getStyles('inner')}>
             {hasStartSection && (
               <div {...getStyles(['section', 'section$start'])}>
@@ -334,6 +318,8 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
               </div>
               <div {...getStyles('content')}>
                 <div {...getStyles('contentSlot')}>
+                  {prefix && <span {...getStyles('prefix')}>{prefix}</span>}
+
                   {children ? (
                     isFunction(children) ? (
                       children({
@@ -345,6 +331,8 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
                   ) : placeholder ? (
                     <div {...getStyles('placeholder')}>{placeholder}</div>
                   ) : null}
+
+                  {suffix && <span {...getStyles('suffix')}>{suffix}</span>}
                 </div>
               </div>
             </div>
@@ -361,7 +349,8 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
               </div>
             )}
           </div>
-        </ButtonBase>
+        </PaperBase>
+
         {renderSupportingText()}
       </Box>
     );

@@ -21,7 +21,7 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {} satisfies Partial<ICircularProgressIndicatorProps>;
 
 const rows: Array<IComponentPresentation<ICircularProgressIndicatorProps>> = [
-  { legend: 'Enabled' },
+  { legend: 'Normal' },
   { legend: 'Disabled', props: { disabled: true } },
 ];
 

@@ -24,7 +24,7 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {} satisfies Partial<IDemoProps>;
 
 const states: Array<IComponentPresentation<IDemoProps>> = [
-  { legend: 'Enabled' },
+  { legend: 'Normal' },
   { legend: 'Hovered', props: { interactions: { hovered: true } } },
   { legend: 'Pressed', props: { interactions: { pressed: true } } },
   { legend: 'Dragged', props: { interactions: { dragged: true } } },
@@ -102,6 +102,7 @@ const NestedDemo: React.FC<IDemoProps> = (props) => {
       surface='$surface'
       corner='$md'
       outline='$xs'
+      outlineStyle='solid'
       {...stateLayer.interactionsContext.triggerProps}
       ref={stateLayer.triggerRef}
     >
@@ -113,6 +114,7 @@ const NestedDemo: React.FC<IDemoProps> = (props) => {
         surface='$surface'
         corner='$sm'
         outline='$xs'
+        outlineStyle='solid'
         {...nestedStateLayer.interactionsContext.triggerProps}
         ref={nestedStateLayer.triggerRef}
       >

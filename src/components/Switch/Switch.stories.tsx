@@ -28,7 +28,7 @@ const defaultArgs = {
 } satisfies Partial<ISwitchProps>;
 
 const states: Array<IComponentPresentation<ISwitchProps>> = [
-  { legend: 'Enabled' },
+  { legend: 'Normal' },
   { legend: 'Focused', props: { visualState: { focused: true } } },
   { legend: 'Hovered', props: { visualState: { hovered: true } } },
   { legend: 'Pressed', props: { visualState: { pressed: true } } },

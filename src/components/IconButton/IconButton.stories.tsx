@@ -28,7 +28,7 @@ const defaultArgs = {
 } satisfies Partial<IIconButtonProps>;
 
 const states: Array<IComponentPresentation<IIconButtonProps>> = [
-  { legend: 'Enabled' },
+  { legend: 'Normal' },
   { legend: 'Focused', props: { interactions: { focused: true } } },
   { legend: 'Hovered', props: { interactions: { hovered: true } } },
   { legend: 'Pressed', props: { interactions: { pressed: true } } },

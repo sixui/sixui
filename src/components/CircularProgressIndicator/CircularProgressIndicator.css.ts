@@ -10,7 +10,7 @@ import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 
 const [tokensClassName, tokens] = createTheme({
   color: {
-    normal: themeTokens.colorScheme.primary,
+    normal: 'currentColor',
     disabled: themeTokens.colorScheme.onSurface,
   },
   opacity: {

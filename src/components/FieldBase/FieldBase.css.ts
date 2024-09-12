@@ -652,6 +652,30 @@ const classNames = createStyles({
       },
     },
   }),
+  prefix: ({ root }) => ({
+    color: tokens.prefix.color,
+    textWrap: 'nowrap',
+    width: 'min-content',
+    paddingInlineEnd: tokens.prefix.trailingSpace,
+
+    selectors: {
+      [getModifierSelector<IModifier>('disabled', root)]: {
+        color: 'inherit',
+      },
+    },
+  }),
+  suffix: ({ root }) => ({
+    color: tokens.suffix.color,
+    textWrap: 'nowrap',
+    width: 'min-content',
+    paddingInlineStart: tokens.suffix.leadingSpace,
+
+    selectors: {
+      [getModifierSelector<IModifier>('disabled', root)]: {
+        color: 'inherit',
+      },
+    },
+  }),
 });
 
 export type IFieldBaseThemeFactory = IComponentThemeFactory<{

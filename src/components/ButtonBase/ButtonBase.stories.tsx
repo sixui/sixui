@@ -28,7 +28,7 @@ const defaultArgs = {
 } satisfies Partial<IButtonBaseProps>;
 
 const rows: Array<IComponentPresentation<IButtonBaseProps>> = [
-  { legend: 'Enabled' },
+  { legend: 'Normal' },
   { legend: 'Read only', props: { readOnly: true } },
   { legend: 'Disabled', props: { disabled: true } },
 ];

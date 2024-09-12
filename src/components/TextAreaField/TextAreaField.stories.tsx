@@ -30,7 +30,7 @@ const defaultArgs = {
 } satisfies Partial<ITextAreaFieldProps>;
 
 const states: Array<IComponentPresentation<ITextAreaFieldProps>> = [
-  { legend: 'Enabled' },
+  { legend: 'Normal' },
   { legend: 'Focused', props: { visualState: { focused: true } } },
   {
     legend: 'Hovered',

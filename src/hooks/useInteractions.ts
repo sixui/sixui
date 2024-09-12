@@ -40,6 +40,8 @@ export type IUseInteractionsProps = {
 
   /** Wether the element is a text input. */
   isTextInput?: boolean;
+
+  focusWithin?: boolean;
 };
 
 export type IUseInteractionsResult<TElement extends HTMLElement = HTMLElement> =
@@ -73,6 +75,7 @@ export const useInteractions = <TElement extends HTMLElement>(
     disabled,
     dragged,
     isTextInput,
+    focusWithin,
   } = props ?? {};
 
   const triggerRef = useRef<TElement>(null);
@@ -80,8 +83,7 @@ export const useInteractions = <TElement extends HTMLElement>(
   const currentStateReplaced = baseState && mergeStrategy === 'replace';
   const { focusProps, isFocusVisible: focused } = useFocusRing({
     isTextInput,
-    // FIXME:
-    within: true,
+    within: focusWithin,
   });
 
   const { hoverProps } = useHover({

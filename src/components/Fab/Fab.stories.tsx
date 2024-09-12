@@ -36,7 +36,7 @@ const svgColorIcon = (
 );
 
 const states: Array<IComponentPresentation<IFabProps>> = [
-  { legend: 'Enabled' },
+  { legend: 'Normal' },
   { legend: 'Focused', props: { interactions: { focused: true } } },
   { legend: 'Hovered', props: { interactions: { hovered: true } } },
   { legend: 'Pressed', props: { interactions: { pressed: true } } },

@@ -83,14 +83,6 @@ const classNames = createStyles({
         borderColor: tokens.color.normal.error,
         color: tokens.color.normal.error,
       },
-      [getModifierSelector<IModifier>('focused')]: {
-        borderColor: tokens.color.focused.regular,
-        color: tokens.color.focused.regular,
-      },
-      [getModifierSelector<IModifier>(['focused', 'with-error'])]: {
-        borderColor: tokens.color.focused.error,
-        color: tokens.color.focused.error,
-      },
       [getModifierSelector<IModifier>('hovered')]: {
         borderColor: tokens.color.hovered.regular,
         color: tokens.color.hovered.regular,
@@ -98,6 +90,14 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>(['hovered', 'with-error'])]: {
         borderColor: tokens.color.hovered.error,
         color: tokens.color.hovered.error,
+      },
+      [getModifierSelector<IModifier>('focused')]: {
+        borderColor: tokens.color.focused.regular,
+        color: tokens.color.focused.regular,
+      },
+      [getModifierSelector<IModifier>(['focused', 'with-error'])]: {
+        borderColor: tokens.color.focused.error,
+        color: tokens.color.focused.error,
       },
       [getModifierSelector<IModifier>('disabled')]: {
         borderColor: tokens.color.disabled,

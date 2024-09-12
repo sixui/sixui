@@ -8,7 +8,7 @@ import type {
 } from './StateLayer.css';
 
 export type IStateLayerOwnProps = {
-  context: IUseStateLayerResult;
+  context?: IUseStateLayerResult;
 };
 
 export interface IStateLayerProps

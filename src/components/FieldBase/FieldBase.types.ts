@@ -6,14 +6,11 @@ import type {
   IRendererWithForwardedProps,
 } from '~/helpers/react/forwardablePropsTypes';
 import type { IBoxProps } from '../Box';
-import type { IButtonBaseOwnProps } from '../ButtonBase';
 import type { fieldBaseTheme, IFieldBaseThemeFactory } from './FieldBase.css';
 
 export type IFieldBaseVariant = 'filled' | 'outlined';
 
-export interface IFieldBaseOwnProps
-  extends IOmit<IButtonBaseOwnProps, 'children'>,
-    IForwardableProps {
+export interface IFieldBaseOwnProps extends IForwardableProps {
   count?: number;
   disabled?: boolean;
   readOnly?: boolean;
@@ -23,6 +20,8 @@ export interface IFieldBaseOwnProps
   end?: React.ReactNode;
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
+  prefix?: React.ReactNode;
+  suffix?: React.ReactNode;
   label?: string;
   max?: number | string;
   maxLength?: number;
