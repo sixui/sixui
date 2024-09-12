@@ -1,17 +1,28 @@
-import type {
-  DOMAttributes,
-  HoverEvent,
-  PressEvents,
-} from '@react-types/shared';
+import type { DOMAttributes, HoverEvent } from '@react-types/shared';
 import { accumulate } from '@olivierpascal/helpers';
 import { useCallback, useMemo, useRef, useState } from 'react';
-import { useFocusRing, useHover, usePress, type HoverEvents } from 'react-aria';
+import {
+  useFocusRing,
+  useHover,
+  usePress,
+  type HoverProps,
+  type PressProps,
+  type AriaFocusRingProps,
+} from 'react-aria';
 
 export type IInteraction = 'focused' | 'pressed' | 'dragged' | 'hovered';
+
+export type IInteractionEvent = 'focus' | 'press' | 'hover';
 
 export type IInteractions = Partial<Record<IInteraction, boolean>>;
 
 export type IUseInteractionsProps = {
+  events: {
+    hover?: boolean | HoverProps;
+    focus?: boolean | AriaFocusRingProps;
+    press?: boolean | PressProps;
+  };
+
   /** The base interactions state of the trigger. */
   baseState?: IInteractions;
 
@@ -26,22 +37,11 @@ export type IUseInteractionsProps = {
    */
   mergeStrategy?: 'replace' | 'accumulate';
 
-  /** Events to handle hover interactions. */
-  hoverEvents?: HoverEvents;
-
-  /**  Events to handle press interactions. */
-  pressEvents?: PressEvents;
-
   /** Wether the element is currently dragged. */
   dragged?: boolean;
 
   /** Wether the element is disabled. */
   disabled?: boolean;
-
-  /** Wether the element is a text input. */
-  isTextInput?: boolean;
-
-  focusWithin?: boolean;
 };
 
 export type IUseInteractionsResult<TElement extends HTMLElement = HTMLElement> =
@@ -67,27 +67,30 @@ const activeTriggers: Array<{
 }> = [];
 
 export const useInteractions = <TElement extends HTMLElement>(
-  props?: IUseInteractionsProps,
+  props: IUseInteractionsProps,
 ): IUseInteractionsResult<TElement> => {
   const {
+    events,
     baseState,
     mergeStrategy = 'accumulate',
     disabled,
     dragged,
-    isTextInput,
-    focusWithin,
   } = props ?? {};
 
   const triggerRef = useRef<TElement>(null);
 
+  const focusOptions =
+    typeof events.focus !== 'boolean' ? events.focus : undefined;
+  const hoverOptions =
+    typeof events.hover !== 'boolean' ? events.hover : undefined;
+  const pressOptions =
+    typeof events.press !== 'boolean' ? events.press : undefined;
+
   const currentStateReplaced = baseState && mergeStrategy === 'replace';
-  const { focusProps, isFocusVisible: focused } = useFocusRing({
-    isTextInput,
-    within: focusWithin,
-  });
+  const { focusProps, isFocusVisible: focused } = useFocusRing(focusOptions);
 
   const { hoverProps } = useHover({
-    ...props?.hoverEvents,
+    ...hoverOptions,
     onHoverStart: (event: HoverEvent) => {
       handleHoverStart(event);
       activeTriggers[0]?.onHoverEnd(event);
@@ -102,38 +105,38 @@ export const useInteractions = <TElement extends HTMLElement>(
       activeTriggers.shift();
       activeTriggers[0]?.onHoverStart(event);
     },
-    isDisabled: disabled || currentStateReplaced,
+    isDisabled: hoverOptions?.isDisabled || disabled || currentStateReplaced,
   });
 
   const [hovered, setHovered] = useState(false);
   const handleHoverStart = useCallback(
     (event: HoverEvent) => {
-      props?.hoverEvents?.onHoverStart?.(event);
+      hoverOptions?.onHoverStart?.(event);
       setHovered(true);
     },
-    [props?.hoverEvents],
+    [hoverOptions],
   );
 
   const handleHoverEnd = useCallback(
     (event: HoverEvent) => {
-      props?.hoverEvents?.onHoverEnd?.(event);
+      hoverOptions?.onHoverEnd?.(event);
       setHovered(false);
     },
-    [props?.hoverEvents],
+    [hoverOptions],
   );
 
   const { pressProps, isPressed: pressed } = usePress({
-    ...props?.pressEvents,
-    isDisabled: disabled || currentStateReplaced,
+    ...pressOptions,
+    isDisabled: pressOptions?.isDisabled || disabled || currentStateReplaced,
   });
 
   const triggerProps = useMemo<DOMAttributes>(
     () => ({
-      ...hoverProps,
-      ...pressProps,
-      ...focusProps,
+      ...(events.hover ? hoverProps : undefined),
+      ...(events.press ? pressProps : undefined),
+      ...(events.focus ? focusProps : undefined),
     }),
-    [hoverProps, pressProps, focusProps],
+    [events, hoverProps, pressProps, focusProps],
   );
 
   const currentState: IInteractions = useMemo(

@@ -5,17 +5,20 @@ import {
   useInteractions,
   type IUseInteractionsResult,
   type IInteractions,
-  type IUseInteractionsProps,
 } from '~/hooks/useInteractions';
-import { mergeProps, PressEvent } from 'react-aria';
+import {
+  mergeProps,
+  type HoverEvents,
+  type PressEvent,
+  type PressEvents,
+} from 'react-aria';
 
-export type IUseStateLayerProps = Pick<
-  IUseInteractionsProps,
-  'hoverEvents' | 'pressEvents'
-> & {
+export type IUseStateLayerProps = {
   disabled?: boolean;
   interactions?: IInteractions;
   focusWithin?: boolean;
+  hoverEvents?: HoverEvents;
+  pressEvents?: PressEvents;
 };
 
 export type IUseStateLayerResult<TElement extends HTMLElement = HTMLElement> = {
@@ -36,15 +39,20 @@ export const useStateLayer = <TElement extends HTMLElement>(
   const handlePressEnd = (event: PressEvent): void => onPressEnd?.(event);
 
   const interactionsContext = useInteractions<TElement>({
+    events: {
+      hover: hoverEvents ?? true,
+      press:
+        mergeProps(pressEvents, {
+          onPressStart: handlePressStart,
+          onPressEnd: handlePressEnd,
+        }) ?? true,
+      focus: {
+        within: focusWithin,
+      },
+    },
     baseState: interactions,
     mergeStrategy: 'replace',
-    hoverEvents,
-    pressEvents: mergeProps(pressEvents, {
-      onPressStart: handlePressStart,
-      onPressEnd: handlePressEnd,
-    }),
     disabled,
-    focusWithin,
   });
 
   const triggerRef = useRef<TElement>(null);

@@ -137,79 +137,58 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
     };
 
     return (
-      <>
-        <Box
-          // {...focus.focusProps}
-          // {...(focus.isFocused ? undefined : wrapperPress.pressProps)}
-          // {...wrapperPress.pressProps}
-          {...hover.hoverProps}
-          onClick={() => inputRef.current?.focus()}
-        >
-          {/* <ButtonBase
-        stateLayer={stateLayer}
-        as='div'
-        // classNames={mergeClassNames(classNames, {
-        //   stateLayer: getStyles('stateLayer').className,
-        // })}
-        // focusRing={false}
-        // disabled={disabled}
-        // readOnly={readOnly}
-      > */}
-          <FieldBase
-            {...other}
-            {...getStyles('root')}
-            classNames={classNames}
-            interactions={{
-              focused: focus.isFocused,
-              hovered: hover.isHovered,
-            }}
-            variant={variant}
-            ref={forwardedRef}
-            end={
-              (other.end ?? unmaskable) ? (
-                <>
-                  {other.end}
-                  {unmaskable ? (
-                    <IconButton
-                      onPress={() => setUnmasked((unmasked) => !unmasked)}
-                      icon={unmaskIcon}
-                      selectedIcon={maskIcon}
-                      selected={unmasked}
-                      toggle
-                    />
-                  ) : undefined}
-                </>
-              ) : undefined
-            }
-            // inputRef={inputHandleRef}
-            // onClear={handleClear}
-            forwardProps
-            // inputRenderer={inputRenderer}
-          >
-            <input
-              {...getStyles(
-                'input',
-                // modifiers.hasError && 'input$error',
-                // modifiers.disabled && 'input$disabled',
-                // noSpinner && 'input$noSpinner',
-                // type === 'number' && 'input$number',
-              )}
-              {...focus.focusProps}
-              type={
-                type === 'password' ? (unmasked ? 'text' : 'password') : type
-              }
-              // disabled={modifiers.disabled}
-              // {...forwardedProps}
-              // onChange={(event) => {
-              //   forwardedProps?.onChange?.(event);
-              //   onValueChange?.(event.target.value, event.target);
-              // }}
-              ref={inputHandleRef}
-            />
-          </FieldBase>
-          {/* </ButtonBase> */}
-        </Box>
-      </>
+      <FieldBase
+        {...other}
+        {...getStyles('root')}
+        {...hover.hoverProps}
+        classNames={classNames}
+        ref={forwardedRef}
+        onClick={() => inputRef.current?.focus()}
+        interactions={{
+          focused: focus.isFocused,
+          hovered: hover.isHovered,
+        }}
+        variant={variant}
+        end={
+          (other.end ?? unmaskable) ? (
+            <>
+              {other.end}
+              {unmaskable ? (
+                <IconButton
+                  onPress={() => setUnmasked((unmasked) => !unmasked)}
+                  icon={unmaskIcon}
+                  selectedIcon={maskIcon}
+                  selected={unmasked}
+                  toggle
+                />
+              ) : undefined}
+            </>
+          ) : undefined
+        }
+        // inputRef={inputHandleRef}
+        // onClear={handleClear}
+        forwardProps
+        // inputRenderer={inputRenderer}
+      >
+        <input
+          {...getStyles(
+            'input',
+            // modifiers.hasError && 'input$error',
+            // modifiers.disabled && 'input$disabled',
+            // noSpinner && 'input$noSpinner',
+            // type === 'number' && 'input$number',
+          )}
+          {...focus.focusProps}
+          type={type === 'password' ? (unmasked ? 'text' : 'password') : type}
+          // disabled={modifiers.disabled}
+          // {...forwardedProps}
+          // onChange={(event) => {
+          //   forwardedProps?.onChange?.(event);
+          //   onValueChange?.(event.target.value, event.target);
+          // }}
+          ref={inputHandleRef}
+        />
+      </FieldBase>
     );
   },
 );

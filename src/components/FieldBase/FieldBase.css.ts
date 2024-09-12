@@ -676,6 +676,13 @@ const classNames = createStyles({
       },
     },
   }),
+  inputWrapper: {
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: '0%',
+    display: 'flex',
+    height: '100%',
+  },
 });
 
 export type IFieldBaseThemeFactory = IComponentThemeFactory<{

@@ -29,6 +29,9 @@ const FocusRingDemo: React.FC<IDemoProps> = (props) => {
     ...other
   } = props;
   const interactionsContext = useInteractions({
+    events: {
+      focus: true,
+    },
     baseState: interactions,
     disabled,
   });

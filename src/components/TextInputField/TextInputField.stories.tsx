@@ -80,7 +80,6 @@ export const Test: IStory = {
         (variant) => ({
           props: {
             variant,
-            placeholder: capitalizeFirstLetter(variant),
           },
         }),
       )}

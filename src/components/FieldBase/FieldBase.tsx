@@ -72,7 +72,7 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
     const hasStartSection = !!leadingIcon || !!start;
     const hasEndSection = !!loading || !!trailingIcon || !!end;
     const hasLabel = !!label;
-    const populated = populatedProp || !!placeholder;
+    const populated = populatedProp ?? !!placeholder;
 
     const { getStyles } = useComponentTheme<IFieldBaseThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -320,17 +320,19 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
                 <div {...getStyles('contentSlot')}>
                   {prefix && <span {...getStyles('prefix')}>{prefix}</span>}
 
-                  {children ? (
-                    isFunction(children) ? (
-                      children({
-                        forwardedProps: forwardProps ? other : undefined,
-                      })
-                    ) : (
-                      children
-                    )
-                  ) : placeholder ? (
-                    <div {...getStyles('placeholder')}>{placeholder}</div>
-                  ) : null}
+                  <div {...getStyles('inputWrapper')}>
+                    {children ? (
+                      isFunction(children) ? (
+                        children({
+                          forwardedProps: forwardProps ? other : undefined,
+                        })
+                      ) : (
+                        children
+                      )
+                    ) : placeholder ? (
+                      <div {...getStyles('placeholder')}>{placeholder}</div>
+                    ) : null}
+                  </div>
 
                   {suffix && <span {...getStyles('suffix')}>{suffix}</span>}
                 </div>
