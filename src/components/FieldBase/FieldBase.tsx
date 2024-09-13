@@ -14,7 +14,7 @@ import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { isFunction } from '~/helpers/isFunction';
 import { usePrevious } from '~/hooks/usePrevious';
 import { useInteractions } from '~/hooks/useInteractions';
-import { useForwardedProps } from '~/hooks/useForwardedProps';
+import { extractBoxProps } from '~/hooks/extractBoxProps';
 import { PaperBase } from '../PaperBase';
 import { CircularProgressIndicator } from '../CircularProgressIndicator';
 import { LabeledContext } from '../Labeled/Labeled.context';
@@ -65,7 +65,7 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const { rootProps, forwardedProps } = useForwardedProps(other);
+    const { boxProps, other: forwardedProps } = extractBoxProps(other);
 
     const interactionsContext = useInteractions({
       baseState: interactionsProp,
@@ -378,7 +378,7 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
     return (
       <Box
         {...wrapperProps}
-        {...rootProps}
+        {...boxProps}
         {...getStyles('root')}
         {...interactionsContext.triggerProps}
         interactions={interactionsContext.state}

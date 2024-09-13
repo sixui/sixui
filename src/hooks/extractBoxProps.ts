@@ -1,17 +1,19 @@
+import { IBoxProps } from '~/components/Box';
+
 export type IUseForwardedPropsResult = {
-  rootProps?: Record<string, unknown>;
-  forwardedProps?: Record<string, unknown>;
+  boxProps?: IBoxProps;
+  other?: Record<string, unknown>;
 };
 
-export const useForwardedProps = (
-  props: Record<string, unknown>,
+export const extractBoxProps = <TProps extends IBoxProps>(
+  props: TProps,
 ): IUseForwardedPropsResult => {
   const {
     className,
     style,
     interactions,
     modifiers,
-    size,
+    scale,
     density,
     m,
     mt,
@@ -44,12 +46,12 @@ export const useForwardedProps = (
     ...other
   } = props;
 
-  const boxProps = {
+  const boxProps: IBoxProps = {
     className,
     style,
     interactions,
     modifiers,
-    size,
+    scale,
     density,
     m,
     mt,
@@ -80,11 +82,8 @@ export const useForwardedProps = (
     td,
   };
 
-  const rootProps = boxProps;
-  const forwardedProps = other;
-
   return {
-    rootProps,
-    forwardedProps,
+    boxProps,
+    other,
   };
 };

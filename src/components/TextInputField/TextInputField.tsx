@@ -110,40 +110,39 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
       }
     };
 
+    const renderEndSection = (): JSX.Element | null =>
+      hasEnd ? (
+        <>
+          {other.end}
+          {clearable && (
+            <IconButton
+              data-cy='clearButton'
+              icon={clearIcon}
+              onPress={handleClear}
+            />
+          )}
+          {unmaskable && (
+            <IconButton
+              onPress={() => setUnmasked((unmasked) => !unmasked)}
+              icon={unmaskIcon}
+              selectedIcon={maskIcon}
+              selected={unmasked}
+              toggle
+            />
+          )}
+        </>
+      ) : null;
+
     return (
       <FieldBase<'input'>
         {...other}
         {...getStyles('root')}
-        wrapperProps={{
-          onClick: handleClick,
-        }}
+        wrapperProps={{ onClick: handleClick }}
         classNames={classNames}
         interactions={{ focused, ...other.interactions }}
         populated={populated}
         variant={variant}
-        end={
-          hasEnd && (
-            <>
-              {other.end}
-              {clearable && (
-                <IconButton
-                  data-cy='clearButton'
-                  icon={clearIcon}
-                  onPress={handleClear}
-                />
-              )}
-              {unmaskable && (
-                <IconButton
-                  onPress={() => setUnmasked((unmasked) => !unmasked)}
-                  icon={unmaskIcon}
-                  selectedIcon={maskIcon}
-                  selected={unmasked}
-                  toggle
-                />
-              )}
-            </>
-          )
-        }
+        end={renderEndSection()}
       >
         {({ forwardedProps }) => (
           <input

@@ -102,31 +102,30 @@ export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
       }
     };
 
+    const renderEndSection = (): JSX.Element | null =>
+      hasEnd ? (
+        <>
+          {other.end}
+          {clearable && (
+            <IconButton
+              data-cy='clearButton'
+              icon={clearIcon}
+              onPress={handleClear}
+            />
+          )}
+        </>
+      ) : null;
+
     return (
       <FieldBase<'textarea'>
         {...other}
         {...getStyles('root')}
-        wrapperProps={{
-          onClick: handleClick,
-        }}
+        wrapperProps={{ onClick: handleClick }}
         classNames={classNames}
         interactions={{ focused, ...other.interactions }}
         populated={populated}
         variant={variant}
-        end={
-          hasEnd && (
-            <>
-              {other.end}
-              {clearable && (
-                <IconButton
-                  data-cy='clearButton'
-                  icon={clearIcon}
-                  onPress={handleClear}
-                />
-              )}
-            </>
-          )
-        }
+        end={renderEndSection()}
         multiline
       >
         {({ forwardedProps }) => (
