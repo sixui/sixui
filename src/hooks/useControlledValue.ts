@@ -2,10 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { isProduction } from '~/helpers/isProduction';
 
-export interface IControlledValueProps<
-  TValue,
-  TTargetElement extends HTMLElement = HTMLElement,
-> {
+export interface IControlledValueProps<TValue> {
   /**
    * Initial value for uncontrolled usage. Mutually exclusive with `value` prop.
    */
@@ -20,7 +17,7 @@ export interface IControlledValueProps<
    * Callback invoked when the component value changes, typically via user
    * interaction, in both controlled and uncontrolled mode.
    */
-  onValueChange?: (value: TValue, targetElement: TTargetElement | null) => void;
+  onValueChange?: (value: TValue) => void;
 }
 
 type IUseControlledProps<TValue> = {

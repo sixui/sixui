@@ -19,6 +19,21 @@ import {
 
 const COMPONENT_NAME = 'TextInputField';
 
+// Warning: this function uses React internals that may change in the future.
+const triggerChangeEvent = (
+  input: HTMLInputElement & {
+    _valueTracker?: { setValue: (value: string) => void };
+  },
+): void => {
+  // https://stackoverflow.com/a/78712814/7628220
+  const tracker = input._valueTracker;
+  if (tracker) {
+    tracker.setValue('some-unlikely-fake-value');
+  }
+  const event = new Event('change', { bubbles: true });
+  input.dispatchEvent(event);
+};
+
 export const TextInputField =
   polymorphicComponentFactory<ITextInputFieldFactory>((props, forwardedRef) => {
     const {
@@ -63,6 +78,7 @@ export const TextInputField =
       controlled: valueProp,
       default: defaultValue ?? '',
       name: COMPONENT_NAME,
+      onValueChange,
     });
 
     const populated = other.populated ?? !!value;
@@ -71,38 +87,20 @@ export const TextInputField =
     const [unmasked, setUnmasked] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
     const inputHandleRef = useMergeRefs([inputRef, inputRefProp]);
-
-    // const inputRenderer: ITextFieldBaseProps<HTMLInputElement>['inputRenderer'] =
-    //   ({ getStyles, ref, forwardedProps, modifiers, onValueChange }) => (
-    // <input
-    //   {...getStyles(
-    //     'input',
-    //     modifiers.hasError && 'input$error',
-    //     modifiers.disabled && 'input$disabled',
-    //     noSpinner && 'input$noSpinner',
-    //     type === 'number' && 'input$number',
-    //   )}
-    //   type={type === 'password' ? (unmasked ? 'text' : 'password') : type}
-    //   disabled={modifiers.disabled}
-    //   {...forwardedProps}
-    //   onChange={(event) => {
-    //     forwardedProps?.onChange?.(event);
-    //     onValueChange?.(event.target.value, event.target);
-    //   }}
-    //   ref={ref}
-    // />
-    //   );
+    const hasEnd = !!other.end || clearable || unmaskable;
 
     const [focused, setFocused] = useState(false);
     const focus = useFocus({ onFocusChange: setFocused });
 
     const handleClear = (): void => {
-      if (inputRef.current?.value) {
-        inputRef.current.value = '';
+      if (!inputRef.current) {
+        return;
       }
-      other.onChange?.({
-        target: inputRef.current,
-      } as React.ChangeEvent<HTMLInputElement>);
+
+      inputRef.current.value = '';
+      setValue('');
+      triggerChangeEvent(inputRef.current);
+      inputRef.current.focus();
     };
 
     // TODO: prevents the input from being blurred when the user clicks outside
@@ -134,10 +132,17 @@ export const TextInputField =
         populated={populated}
         variant={variant}
         end={
-          (other.end ?? unmaskable) ? (
+          hasEnd ? (
             <>
               {other.end}
-              {unmaskable ? (
+              {clearable && (
+                <IconButton
+                  data-cy='clearButton'
+                  icon={clearIcon}
+                  onPress={handleClear}
+                />
+              )}
+              {unmaskable && (
                 <IconButton
                   onPress={() => setUnmasked((unmasked) => !unmasked)}
                   icon={unmaskIcon}
@@ -145,7 +150,7 @@ export const TextInputField =
                   selected={unmasked}
                   toggle
                 />
-              ) : undefined}
+              )}
             </>
           ) : undefined
         }
@@ -169,7 +174,6 @@ export const TextInputField =
             value={value}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               setValue(event.target.value);
-              onValueChange?.(value, event.target);
               onChange?.(event);
             }}
             ref={inputHandleRef}
