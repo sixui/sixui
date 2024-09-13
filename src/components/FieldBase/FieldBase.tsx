@@ -8,7 +8,7 @@ import {
 } from 'react';
 
 import type { IFieldBaseFactory } from './FieldBase.types';
-import { componentFactory } from '~/utils/component/componentFactory';
+import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { isFunction } from '~/helpers/isFunction';
@@ -31,7 +31,7 @@ const COMPONENT_NAME = 'FieldBase';
 
 const EASING_STANDARD = 'cubic-bezier(0.2, 0, 0, 1)';
 
-export const FieldBase = componentFactory<IFieldBaseFactory>(
+export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
   (props, forwardedRef) => {
     const {
       classNames,

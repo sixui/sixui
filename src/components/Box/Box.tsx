@@ -20,7 +20,7 @@ export const Box = createPolymorphicComponent<'div', IBoxProps>(
       renderRoot,
       interactions,
       modifiers,
-      size,
+      scale,
       density,
       ...otherWithSprinkles
     } = props as IWithAsProp<IBoxProps>;
@@ -31,7 +31,7 @@ export const Box = createPolymorphicComponent<'div', IBoxProps>(
     const childrenProps = {
       ...other,
       ...getDataAttributes({
-        size,
+        size: scale,
         ...interactions,
         ...modifiers,
       }),

@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 import type { ITextInputFieldProps } from './TextInputField.types';
 import type { IFieldBaseVariant } from '../FieldBase';
@@ -11,7 +9,6 @@ import {
   makeComponentShowcase,
   type IComponentPresentation,
 } from '../ComponentShowcase';
-import { IconButton } from '../IconButton';
 import { TextInputField } from './TextInputField';
 
 const meta = {
@@ -50,7 +47,7 @@ const rows: Array<IComponentPresentation<ITextInputFieldProps>> = [
     props: { label: 'Label', placeholder: 'Placeholder' },
   },
   {
-    legend: 'Value',
+    legend: 'Default value',
     props: {
       defaultValue: 'Value',
       prefixText: '$',
@@ -75,31 +72,6 @@ const rows: Array<IComponentPresentation<ITextInputFieldProps>> = [
 
 const TextInputFieldShowcase = makeComponentShowcase(TextInputField);
 
-// FIXME: delete
-export const Test: IStory = {
-  render: (props) => (
-    <TextInputFieldShowcase
-      props={props}
-      cols={(['filled', 'outlined'] as Array<IFieldBaseVariant>).map(
-        (variant) => ({
-          props: {
-            variant,
-          },
-        }),
-      )}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    label: 'test',
-    end: <IconButton icon={<FontAwesomeIcon icon={faXmark} />} />,
-    as: 'textarea',
-    resizable: true,
-    multiline: true,
-    // type: 'number',
-  },
-};
-
 export const Variants: IStory = {
   render: (props) => (
     <TextInputFieldShowcase
@@ -108,7 +80,7 @@ export const Variants: IStory = {
         (variant) => ({
           props: {
             variant,
-            placeholder: capitalizeFirstLetter(variant),
+            label: capitalizeFirstLetter(variant),
           },
         }),
       )}
@@ -127,19 +99,14 @@ export const Filled: IStory = {
   },
 };
 
-// export const Outlined: IStory = {
-//   render: (props) => (
-//     <ComponentShowcase
-//       component={TextInputField}
-//       props={props}
-//       cols={states}
-//       rows={rows}
-//     />
-//   ),
-//   args: {
-//     ...defaultArgs,
-//     variant: 'outlined',
-//   },
-// };
+export const Outlined: IStory = {
+  render: (props) => (
+    <TextInputFieldShowcase props={props} cols={states} rows={rows} />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'outlined',
+  },
+};
 
 export default meta;

@@ -196,7 +196,11 @@ export const iconButtonThemeVariants = {
         stateLayer: {
           color: {
             hovered: themeTokens.colorScheme.onSurfaceVariant,
-            pressed: themeTokens.colorScheme.onSurfaceVariant,
+          },
+        },
+        toggleStateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.onSurfaceVariant,
           },
         },
         toggleSelectedStateLayer: {
@@ -247,6 +251,11 @@ export const iconButtonThemeVariants = {
             hovered: themeTokens.colorScheme.onPrimary,
           },
         },
+        toggleStateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.primary,
+          },
+        },
         toggleSelectedStateLayer: {
           color: {
             hovered: themeTokens.colorScheme.onPrimary,
@@ -292,6 +301,11 @@ export const iconButtonThemeVariants = {
         },
         stateLayer: {
           color: {
+            hovered: themeTokens.colorScheme.onSurfaceVariant,
+          },
+        },
+        toggleStateLayer: {
+          color: {
             hovered: themeTokens.colorScheme.onSecondaryContainer,
           },
         },
@@ -333,9 +347,14 @@ export const iconButtonThemeVariants = {
             hovered: themeTokens.colorScheme.onSurfaceVariant,
           },
         },
-        toggleSelectedStateLayer: {
+        toggleStateLayer: {
           color: {
             hovered: themeTokens.colorScheme.onSurfaceVariant,
+          },
+        },
+        toggleSelectedStateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.inverseOnSurface,
           },
         },
         outline: {
@@ -386,6 +405,11 @@ export const iconButtonThemeVariants = {
             hovered: themeTokens.colorScheme.onErrorContainer,
           },
         },
+        toggleStateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.onErrorContainer,
+          },
+        },
         toggleSelectedStateLayer: {
           color: {
             hovered: themeTokens.colorScheme.error,
@@ -417,6 +441,11 @@ export const iconButtonThemeVariants = {
           },
         },
         stateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.inverseOnSurface,
+          },
+        },
+        toggleStateLayer: {
           color: {
             hovered: themeTokens.colorScheme.inverseOnSurface,
           },

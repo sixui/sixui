@@ -230,7 +230,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
                       orientation={orientation}
                       disabled={!!parentId}
                     >
-                      <MenuList noFocusRing {...other} size={listItemSize}>
+                      <MenuList noFocusRing {...other} scale={listItemSize}>
                         <FloatingList
                           elementsRef={elementsRef}
                           labelsRef={labelsRef}

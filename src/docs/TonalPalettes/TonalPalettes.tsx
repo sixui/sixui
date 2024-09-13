@@ -138,7 +138,7 @@ export const TonalPalettes: React.FC<ITonalPalettesProps> = () => (
   <Stack gap={6}>
     {tonalPalettes.map((palette) => (
       <Stack key={palette.title} gap={2}>
-        <Text variant='label' size='lg'>
+        <Text variant='label' scale='lg'>
           {palette.title}
         </Text>
         <TonalPalette tones={palette.tones} key={palette.title} />

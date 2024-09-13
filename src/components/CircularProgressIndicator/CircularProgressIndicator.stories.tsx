@@ -49,16 +49,16 @@ const CircularProgressIndicatorWithTextShowcase = makeComponentShowcase(
   ),
 );
 
-export const Sizes: IStory = {
+export const Scales: IStory = {
   render: (props) => (
     <CircularProgressIndicatorWithTextShowcase
       props={props}
       cols={[
-        { legend: 'Extra small', props: { size: 'xs' } },
-        { legend: 'Small', props: { size: 'sm' } },
-        { legend: 'Medium', props: { size: 'md' } },
-        { legend: 'Large', props: { size: 'lg' } },
-        { legend: 'Extra large', props: { size: 'xl' } },
+        { legend: 'Extra small', props: { scale: 'xs' } },
+        { legend: 'Small', props: { scale: 'sm' } },
+        { legend: 'Medium', props: { scale: 'md' } },
+        { legend: 'Large', props: { scale: 'lg' } },
+        { legend: 'Extra large', props: { scale: 'xl' } },
       ]}
     />
   ),

@@ -1,15 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { ITextAreaFieldProps } from './TextAreaField.types';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { scaleTokens } from '~/themes/base/scale.stylex';
-import {
-  type IComponentPresentation,
-  ComponentShowcase,
-} from '../ComponentShowcase';
 import type { IFieldBaseVariant } from '../FieldBase';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { px } from '~/helpers/styles/px';
+import {
+  makeComponentShowcase,
+  type IComponentPresentation,
+} from '../ComponentShowcase';
 import { TextAreaField } from './TextAreaField';
 
 const meta = {
@@ -18,24 +17,20 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const styles = stylex.create({
-  host: {
-    width: `calc(260px * ${scaleTokens.scale})`,
-  },
-});
-
 const defaultArgs = {
-  sx: styles.host,
-  onValueChange: (...args) => void sbHandleEvent('valueChange', args),
+  w: px(260),
+  onChange: (...args) => void sbHandleEvent('onChange', args),
+  onValueChange: (...args) => void sbHandleEvent('onValueChange', args),
 } satisfies Partial<ITextAreaFieldProps>;
 
 const states: Array<IComponentPresentation<ITextAreaFieldProps>> = [
   { legend: 'Normal' },
-  { legend: 'Focused', props: { visualState: { focused: true } } },
+  { legend: 'Focused', props: { interactions: { focused: true } } },
   {
     legend: 'Hovered',
-    props: { visualState: { hovered: true } },
+    props: { interactions: { hovered: true } },
   },
+  { legend: 'Read only', props: { readOnly: true } },
   {
     legend: 'Disabled',
     props: {
@@ -47,21 +42,31 @@ const states: Array<IComponentPresentation<ITextAreaFieldProps>> = [
 const rows: Array<IComponentPresentation<ITextAreaFieldProps>> = [
   { legend: 'Empty' },
   { legend: 'Label', props: { label: 'Label' } },
-  { legend: 'Placeholder', props: { placeholder: 'Placeholder' } },
+  {
+    legend: 'Placeholder',
+    props: { label: 'Label', placeholder: 'Placeholder' },
+  },
+  {
+    legend: 'Default value',
+    props: {
+      defaultValue: 'Value',
+    },
+  },
   { legend: 'Clearable', props: { clearable: true } },
   { legend: 'Error', props: { defaultValue: 'Value', hasError: true } },
 ];
 
+const TextAreaFieldShowcase = makeComponentShowcase(TextAreaField);
+
 export const Variants: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={TextAreaField}
+    <TextAreaFieldShowcase
       props={props}
       cols={(['filled', 'outlined'] as Array<IFieldBaseVariant>).map(
         (variant) => ({
           props: {
             variant,
-            placeholder: capitalizeFirstLetter(variant),
+            label: capitalizeFirstLetter(variant),
           },
         }),
       )}
@@ -72,12 +77,7 @@ export const Variants: IStory = {
 
 export const Filled: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={TextAreaField}
-      props={props}
-      cols={states}
-      rows={rows}
-    />
+    <TextAreaFieldShowcase props={props} cols={states} rows={rows} />
   ),
   args: {
     ...defaultArgs,
@@ -87,12 +87,7 @@ export const Filled: IStory = {
 
 export const Outlined: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={TextAreaField}
-      props={props}
-      cols={states}
-      rows={rows}
-    />
+    <TextAreaFieldShowcase props={props} cols={states} rows={rows} />
   ),
   args: {
     ...defaultArgs,

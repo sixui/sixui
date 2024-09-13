@@ -42,7 +42,7 @@ export const TypeScale: IStory = {
           legend: `Display (lg) | ${String(textTagMap.display.lg)}`,
           props: {
             variant: 'display',
-            size: 'lg',
+            scale: 'lg',
             children: LOREM$SM,
           },
         },
@@ -50,7 +50,7 @@ export const TypeScale: IStory = {
           legend: `Display (md) | ${String(textTagMap.display.md)}`,
           props: {
             variant: 'display',
-            size: 'md',
+            scale: 'md',
             children: LOREM$SM,
           },
         },
@@ -58,7 +58,7 @@ export const TypeScale: IStory = {
           legend: `Display (sm) | ${String(textTagMap.display.sm)}`,
           props: {
             variant: 'display',
-            size: 'sm',
+            scale: 'sm',
             children: LOREM$SM,
           },
         },
@@ -66,7 +66,7 @@ export const TypeScale: IStory = {
           legend: `Headline (lg) | ${String(textTagMap.headline.lg)}`,
           props: {
             variant: 'headline',
-            size: 'lg',
+            scale: 'lg',
             children: LOREM$MD,
           },
         },
@@ -74,7 +74,7 @@ export const TypeScale: IStory = {
           legend: `Headline (md) | ${String(textTagMap.headline.md)}`,
           props: {
             variant: 'headline',
-            size: 'md',
+            scale: 'md',
             children: LOREM$MD,
           },
         },
@@ -82,7 +82,7 @@ export const TypeScale: IStory = {
           legend: `Headline (sm) | | ${String(textTagMap.headline.sm)}`,
           props: {
             variant: 'headline',
-            size: 'sm',
+            scale: 'sm',
             children: LOREM$MD,
           },
         },
@@ -90,7 +90,7 @@ export const TypeScale: IStory = {
           legend: `Title (lg) | ${String(textTagMap.title.lg)}`,
           props: {
             variant: 'title',
-            size: 'lg',
+            scale: 'lg',
             children: LOREM$MD,
           },
         },
@@ -98,7 +98,7 @@ export const TypeScale: IStory = {
           legend: `Title (md) | ${String(textTagMap.title.md)}`,
           props: {
             variant: 'title',
-            size: 'md',
+            scale: 'md',
             children: LOREM$MD,
           },
         },
@@ -106,7 +106,7 @@ export const TypeScale: IStory = {
           legend: `Title (sm) | ${String(textTagMap.title.sm)}`,
           props: {
             variant: 'title',
-            size: 'sm',
+            scale: 'sm',
             children: LOREM$MD,
           },
         },
@@ -114,7 +114,7 @@ export const TypeScale: IStory = {
           legend: `Body (lg) | ${String(textTagMap.body.lg)}`,
           props: {
             variant: 'body',
-            size: 'lg',
+            scale: 'lg',
             children: LOREM$LG,
           },
         },
@@ -122,7 +122,7 @@ export const TypeScale: IStory = {
           legend: `Body (md) | ${String(textTagMap.body.md)}`,
           props: {
             variant: 'body',
-            size: 'md',
+            scale: 'md',
             children: LOREM$LG,
           },
         },
@@ -130,7 +130,7 @@ export const TypeScale: IStory = {
           legend: `Body (sm) | ${String(textTagMap.body.sm)}`,
           props: {
             variant: 'body',
-            size: 'sm',
+            scale: 'sm',
             children: LOREM$LG,
           },
         },
@@ -138,7 +138,7 @@ export const TypeScale: IStory = {
           legend: `Label (lg) | ${String(textTagMap.label.lg)}`,
           props: {
             variant: 'label',
-            size: 'lg',
+            scale: 'lg',
             children: LOREM$XS,
           },
         },
@@ -146,7 +146,7 @@ export const TypeScale: IStory = {
           legend: `Label (md) | ${String(textTagMap.label.md)}`,
           props: {
             variant: 'label',
-            size: 'md',
+            scale: 'md',
             children: LOREM$XS,
           },
         },
@@ -154,7 +154,7 @@ export const TypeScale: IStory = {
           legend: `Label (sm) | ${String(textTagMap.label.sm)}`,
           props: {
             variant: 'label',
-            size: 'sm',
+            scale: 'sm',
             children: LOREM$XS,
           },
         },

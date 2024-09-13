@@ -50,7 +50,7 @@ const renderListItems = (props?: IListItemProps, count = 4): React.ReactNode =>
 
 const ListDemoShowcase = makeComponentShowcase(ListDemo);
 
-export const Sizes: IStory = {
+export const Scales: IStory = {
   render: (props) => (
     <ListDemoShowcase
       verticalAlign='start'
@@ -59,21 +59,21 @@ export const Sizes: IStory = {
           legend: 'Extra small',
           props: {
             children: renderListItems(),
-            size: 'xs',
+            scale: 'xs',
           },
         },
         {
           legend: 'Small',
           props: {
             children: renderListItems(),
-            size: 'sm',
+            scale: 'sm',
           },
         },
         {
           legend: 'Medium',
           props: {
             children: renderListItems(),
-            size: 'md',
+            scale: 'md',
           },
         },
         {
@@ -82,7 +82,7 @@ export const Sizes: IStory = {
             children: renderListItems({
               supportingText: 'Supporting text',
             }),
-            size: 'lg',
+            scale: 'lg',
           },
         },
         {
@@ -92,7 +92,7 @@ export const Sizes: IStory = {
               supportingText:
                 'Supporting text that is long enough to fill up multiple lines',
             }),
-            size: 'xl',
+            scale: 'xl',
           },
         },
       ]}

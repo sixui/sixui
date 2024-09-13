@@ -49,7 +49,7 @@ export const Text = polymorphicComponentFactory<ITextFactory>(
       styles,
       style,
       variant = 'body',
-      size = 'md',
+      scale: size = 'md',
       gutterBottom,
       dimmed,
       truncate,

@@ -157,7 +157,7 @@ export const FilterableList: React.FC<IFilterableListProps> = (
     <FilterableListBase<IFilterableListItem>
       renderer={(listProps) => (
         <MenuList
-          size='sm'
+          scale='sm'
           header={
             canFilter ? (
               <TextInputField

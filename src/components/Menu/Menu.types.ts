@@ -23,5 +23,5 @@ export type IMenuProps = IBaseProps<IMenuStylesKey> &
     placement?: Placement;
     orientation?: IOrientation;
     matchTargetWidth?: boolean;
-    size?: IListItemProps['size'];
+    size?: IListItemProps['scale'];
   };

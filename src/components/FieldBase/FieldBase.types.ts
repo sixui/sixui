@@ -1,5 +1,5 @@
 import type { IOmit } from '~/helpers/types';
-import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IRendererWithForwardedProps } from '~/helpers/react/forwardablePropsTypes';
 import type { IBoxProps } from '../Box';
@@ -38,9 +38,10 @@ export interface IFieldBaseProps
     IComponentThemeProps<IFieldBaseThemeFactory>,
     IFieldBaseOwnProps {}
 
-export type IFieldBaseFactory = IComponentFactory<{
+export type IFieldBaseFactory = IPolymorphicComponentFactory<{
   props: IFieldBaseProps;
-  ref: HTMLDivElement;
+  defaultRef: HTMLDivElement;
+  defaultRoot: 'div';
   theme: typeof fieldBaseTheme;
   variant: IFieldBaseVariant;
 }>;

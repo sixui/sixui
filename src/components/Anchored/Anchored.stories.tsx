@@ -20,7 +20,7 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {} satisfies Partial<IAnchoredProps>;
 
 const BadgeDemo: React.FC<IPlaceholderProps & { size: 'sm' | 'lg' }> = ({
-  size,
+  scale: size,
   ...other
 }) => (
   <Paper
@@ -39,8 +39,8 @@ export const Variants: IStory = {
     <AnchoredShowcase
       props={props}
       cols={[
-        { props: { content: <BadgeDemo size='sm' /> } },
-        { props: { content: <BadgeDemo size='lg' /> } },
+        { props: { content: <BadgeDemo scale='sm' /> } },
+        { props: { content: <BadgeDemo scale='lg' /> } },
       ]}
       rows={[
         {
@@ -95,8 +95,8 @@ const colsPositions: Array<IComponentPresentation<IAnchoredProps>> = [
 ];
 
 const rowsContentSizes: Array<IComponentPresentation<IAnchoredProps>> = [
-  { legend: 'Short', props: { content: <BadgeDemo size='sm' /> } },
-  { legend: 'Long', props: { content: <BadgeDemo size='lg' /> } },
+  { legend: 'Short', props: { content: <BadgeDemo scale='sm' /> } },
+  { legend: 'Long', props: { content: <BadgeDemo scale='lg' /> } },
 ];
 
 export const RectangularOverlap: IStory = {

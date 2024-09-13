@@ -57,7 +57,7 @@ export const AsContainer: IStory = {
           legend: 'Text (large)',
           props: {
             children: (
-              <Text variant='display' size='lg'>
+              <Text variant='display' scale='lg'>
                 Large text
               </Text>
             ),
@@ -67,7 +67,7 @@ export const AsContainer: IStory = {
           legend: 'Text (medium)',
           props: {
             children: (
-              <Text variant='title' size='lg'>
+              <Text variant='title' scale='lg'>
                 Medium text
               </Text>
             ),
@@ -77,7 +77,7 @@ export const AsContainer: IStory = {
           legend: 'Text (small)',
           props: {
             children: (
-              <Text variant='label' size='sm'>
+              <Text variant='label' scale='sm'>
                 Small text
               </Text>
             ),

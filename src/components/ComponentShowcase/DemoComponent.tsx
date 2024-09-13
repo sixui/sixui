@@ -9,7 +9,7 @@ export type IDemoComponentProps = IBoxProps & {
 };
 
 export const DemoComponent: React.FC<IDemoComponentProps> = (props) => {
-  const { size, icon = 'shirt', ...other } = props;
+  const { scale: size, icon = 'shirt', ...other } = props;
 
   return (
     <Box {...other}>

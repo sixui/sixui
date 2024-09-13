@@ -3,15 +3,15 @@ import { useMergeRefs } from '@floating-ui/react';
 import { useFocus } from 'react-aria';
 
 import type { ITextInputFieldFactory } from './TextInputField.types';
-import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { iconEye, iconEyeSlash, iconXMark } from '~/assets/icons';
 import { useControlledValue } from '~/hooks/useControlledValue';
+import { triggerChangeEvent } from '~/utils/triggerChangeEvent';
 import { IconButton } from '../IconButton';
 import { SvgIcon } from '../SvgIcon';
 import { FieldBase } from '../FieldBase';
-import { Box } from '../Box';
 import {
   textInputFieldTheme,
   type ITextInputFieldThemeFactory,
@@ -19,23 +19,8 @@ import {
 
 const COMPONENT_NAME = 'TextInputField';
 
-// Warning: this function uses React internals that may change in the future.
-const triggerChangeEvent = (
-  input: HTMLInputElement & {
-    _valueTracker?: { setValue: (value: string) => void };
-  },
-): void => {
-  // https://stackoverflow.com/a/78712814/7628220
-  const tracker = input._valueTracker;
-  if (tracker) {
-    tracker.setValue('some-unlikely-fake-value');
-  }
-  const event = new Event('change', { bubbles: true });
-  input.dispatchEvent(event);
-};
-
-export const TextInputField =
-  polymorphicComponentFactory<ITextInputFieldFactory>((props, forwardedRef) => {
+export const TextInputField = componentFactory<ITextInputFieldFactory>(
+  (props, forwardedRef) => {
     const {
       classNames,
       className,
@@ -52,7 +37,6 @@ export const TextInputField =
       unmaskable: unmaskableProp = true,
       maskIcon = <SvgIcon icon={iconEyeSlash} />,
       unmaskIcon = <SvgIcon icon={iconEye} />,
-      inputRef: inputRefProp,
       onChange,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
@@ -86,7 +70,7 @@ export const TextInputField =
     const unmaskable = type === 'password' && unmaskableProp;
     const [unmasked, setUnmasked] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
-    const inputHandleRef = useMergeRefs([inputRef, inputRefProp]);
+    const inputHandleRef = useMergeRefs([inputRef, forwardedRef]);
     const hasEnd = !!other.end || clearable || unmaskable;
 
     const [focused, setFocused] = useState(false);
@@ -97,9 +81,15 @@ export const TextInputField =
         return;
       }
 
+      // Clicking on the clear button will blur the input. When a floating label
+      // is present, we prevent the label from switching to the resting state by
+      // forcing the focus state as we will focus it again later.
+      setFocused(true);
+
       inputRef.current.value = '';
       setValue('');
       triggerChangeEvent(inputRef.current);
+
       inputRef.current.focus();
     };
 
@@ -121,7 +111,7 @@ export const TextInputField =
     };
 
     return (
-      <FieldBase
+      <FieldBase<'input'>
         {...other}
         {...getStyles('root')}
         wrapperProps={{
@@ -132,7 +122,7 @@ export const TextInputField =
         populated={populated}
         variant={variant}
         end={
-          hasEnd ? (
+          hasEnd && (
             <>
               {other.end}
               {clearable && (
@@ -152,22 +142,15 @@ export const TextInputField =
                 />
               )}
             </>
-          ) : undefined
+          )
         }
-        ref={forwardedRef}
       >
         {({ forwardedProps }) => (
-          <Box
-            as='input'
+          <input
             {...forwardedProps}
             {...focus.focusProps}
             {...getStyles('input')}
             placeholder={other.placeholder}
-            modifiers={{
-              disabled: disabledOrReadOnly,
-              'with-error': !!other.hasError,
-              'no-spinner': noSpinner,
-            }}
             type={type === 'password' ? (unmasked ? 'text' : 'password') : type}
             disabled={other.disabled}
             readOnly={other.readOnly}
@@ -181,7 +164,8 @@ export const TextInputField =
         )}
       </FieldBase>
     );
-  });
+  },
+);
 
 TextInputField.theme = textInputFieldTheme;
 TextInputField.displayName = `@sixui/${COMPONENT_NAME}`;

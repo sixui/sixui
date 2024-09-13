@@ -61,7 +61,7 @@ export const OneCol: IStory = {
   render: (props) => (
     <DemoShowcase
       props={props}
-      rows={[{ props: { size: 'sm' } }, {}, { props: { size: 'lg' } }]}
+      rows={[{ props: { scale: 'sm' } }, {}, { props: { scale: 'lg' } }]}
     />
   ),
   args: defaultArgs,
@@ -72,9 +72,9 @@ export const OneColWithLegend: IStory = {
     <DemoShowcase
       props={props}
       rows={[
-        { legend: 'Small', props: { size: 'sm' } },
-        { legend: 'Medium', props: { size: 'md' } },
-        { legend: 'Big', props: { size: 'lg' } },
+        { legend: 'Small', props: { scale: 'sm' } },
+        { legend: 'Medium', props: { scale: 'md' } },
+        { legend: 'Big', props: { scale: 'lg' } },
       ]}
     />
   ),
@@ -100,9 +100,9 @@ export const RowsAndCols: IStory = {
         },
       ]}
       rows={[
-        { legend: 'Small', props: { size: 'sm' } },
-        { legend: 'Medium', props: { size: 'md' } },
-        { legend: 'Big', props: { size: 'lg' } },
+        { legend: 'Small', props: { scale: 'sm' } },
+        { legend: 'Medium', props: { scale: 'md' } },
+        { legend: 'Big', props: { scale: 'lg' } },
       ]}
     />
   ),
@@ -128,9 +128,9 @@ export const Groups: IStory = {
         },
       ]}
       rows={[
-        { legend: 'Small', props: { size: 'sm' } },
-        { legend: 'Medium', props: { size: 'md' } },
-        { legend: 'Big', props: { size: 'lg' } },
+        { legend: 'Small', props: { scale: 'sm' } },
+        { legend: 'Medium', props: { scale: 'md' } },
+        { legend: 'Big', props: { scale: 'lg' } },
       ]}
       groups={[
         { legend: 'Shirts', props: { icon: 'shirt' } },

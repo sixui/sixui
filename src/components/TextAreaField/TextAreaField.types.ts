@@ -1,14 +1,38 @@
 import type { IOmit } from '~/helpers/types';
-import type { ITextFieldBaseProps } from '../TextFieldBase';
+import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IFieldBaseOwnProps } from '../FieldBase';
+import type { IBoxProps, IElementProps } from '../Box';
+import type {
+  textAreaFieldTheme,
+  ITextAreaFieldThemeFactory,
+} from './TextAreaField.css';
+import type { IControlledValueProps } from '~/hooks/useControlledValue';
 
-export type ITextAreaFieldOwnProps = IOmit<
-  ITextFieldBaseProps<HTMLTextAreaElement>,
-  // Props that are controlled by the component and should not be overridden.
-  'inputRenderer' | 'forwardProps' | 'textArea'
->;
+export interface ITextAreaFieldOwnProps
+  extends IFieldBaseOwnProps,
+    IControlledValueProps<string | number | ReadonlyArray<string>>,
+    IElementProps<'textarea', 'className' | 'children'> {
+  textAreaRef?: React.Ref<HTMLTextAreaElement>;
 
-export type ITextAreaFieldProps = Omit<
-  React.ComponentPropsWithoutRef<'textarea'>,
-  keyof ITextAreaFieldOwnProps
-> &
-  ITextAreaFieldOwnProps;
+  /**
+   * When true, a clear icon button will appear on the right side of the input.
+   */
+  clearable?: boolean;
+
+  /**
+   * The icon of the clear icon button.
+   */
+  clearIcon?: React.ReactNode;
+}
+
+export interface ITextAreaFieldProps
+  extends IOmit<IBoxProps, 'children'>,
+    IComponentThemeProps<ITextAreaFieldThemeFactory>,
+    ITextAreaFieldOwnProps {}
+
+export type ITextAreaFieldFactory = IComponentFactory<{
+  props: ITextAreaFieldProps;
+  ref: HTMLTextAreaElement;
+  theme: typeof textAreaFieldTheme;
+}>;

@@ -10,11 +10,11 @@ export interface IBoxProps extends IBoxSprinkles {
   style?: React.CSSProperties;
   interactions?: IInteractions;
   modifiers?: IModifiers;
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  scale?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   density?: number;
 }
 
 export type IElementProps<
   TElementType extends React.ElementType,
   TPropsToOmit extends string = never,
-> = Omit<React.ComponentPropsWithoutRef<TElementType>, 'style' | TPropsToOmit>;
+> = Omit<React.ComponentPropsWithoutRef<TElementType>, TPropsToOmit>;

@@ -23,7 +23,7 @@ export const FilterableListBaseExample: React.FC<
       items={TOP_100_MOVIES}
       renderer={(listProps) => (
         <MenuList
-          size='sm'
+          scale='sm'
           header={
             canFilter ? (
               <TextInputField
