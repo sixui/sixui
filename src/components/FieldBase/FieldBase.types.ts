@@ -1,16 +1,13 @@
 import type { IOmit } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type {
-  IForwardableProps,
-  IRendererWithForwardedProps,
-} from '~/helpers/react/forwardablePropsTypes';
+import type { IRendererWithForwardedProps } from '~/helpers/react/forwardablePropsTypes';
 import type { IBoxProps } from '../Box';
 import type { fieldBaseTheme, IFieldBaseThemeFactory } from './FieldBase.css';
 
 export type IFieldBaseVariant = 'filled' | 'outlined';
 
-export interface IFieldBaseOwnProps extends IForwardableProps {
+export interface IFieldBaseOwnProps {
   count?: number;
   disabled?: boolean;
   readOnly?: boolean;
@@ -20,8 +17,8 @@ export interface IFieldBaseOwnProps extends IForwardableProps {
   end?: React.ReactNode;
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
-  prefix?: React.ReactNode;
-  suffix?: React.ReactNode;
+  prefixText?: React.ReactNode;
+  suffixText?: React.ReactNode;
   label?: string;
   max?: number | string;
   maxLength?: number;
@@ -34,6 +31,7 @@ export interface IFieldBaseOwnProps extends IForwardableProps {
   placeholder?: React.ReactNode;
   children?: IRendererWithForwardedProps;
   containerRef?: React.Ref<HTMLDivElement>;
+  wrapperProps?: React.HTMLAttributes<HTMLDivElement>;
 }
 
 export interface IFieldBaseProps

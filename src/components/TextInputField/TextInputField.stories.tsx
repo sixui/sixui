@@ -89,6 +89,7 @@ export const Test: IStory = {
     ...defaultArgs,
     label: 'test',
     end: <IconButton icon={<FontAwesomeIcon icon={faXmark} />} />,
+    type: 'number',
   },
 };
 

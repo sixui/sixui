@@ -1,6 +1,7 @@
 import { createTheme, createVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
+import type { IFieldBaseVariant } from '../FieldBase';
 import {
   componentThemeFactory,
   type IComponentThemeFactory,
@@ -18,13 +19,14 @@ const [tokensClassName, tokens] = createTheme({
 
 const classNames = createStyles({
   root: {
-    //
+    cursor: 'text',
   },
 });
 
 export type ITextInputFieldThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
+  variant: IFieldBaseVariant;
 }>;
 
 export const textInputFieldTheme =

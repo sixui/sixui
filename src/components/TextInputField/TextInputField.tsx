@@ -1,33 +1,25 @@
 import { useRef, useState } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
+import { useFocus } from 'react-aria';
 
 import type { ITextInputFieldFactory } from './TextInputField.types';
-import { componentFactory } from '~/utils/component/componentFactory';
+import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { iconEye, iconEyeSlash } from '~/assets/icons';
 import { IconButton } from '../IconButton';
 import { SvgIcon } from '../SvgIcon';
+import { FieldBase } from '../FieldBase';
+import { Box } from '../Box';
 import {
   textInputFieldTheme,
   type ITextInputFieldThemeFactory,
 } from './TextInputField.css';
-import { FieldBase } from '../FieldBase';
-import { ButtonBase } from '../ButtonBase';
-import { useStateLayer } from '../StateLayer';
-import {
-  useFocus,
-  useFocusRing,
-  useFocusVisible,
-  useHover,
-  usePress,
-} from 'react-aria';
-import { Box } from '../Box';
 
 const COMPONENT_NAME = 'TextInputField';
 
-export const TextInputField = componentFactory<ITextInputFieldFactory>(
-  (props, forwardedRef) => {
+export const TextInputField =
+  polymorphicComponentFactory<ITextInputFieldFactory>((props, forwardedRef) => {
     const {
       classNames,
       className,
@@ -58,24 +50,6 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
     const inputRef = useRef<HTMLInputElement>(null);
     const inputHandleRef = useMergeRefs([inputRef, inputRefProp]);
 
-    const stateLayer = useStateLayer<HTMLDivElement>({
-      // interactions,
-      // disabled,
-      pressEvents: {
-        onPress: (event) => {
-          console.log('___', event.target);
-          const isSelf = event.target === inputRef.current;
-          console.log('__isSelf', isSelf);
-          if (isSelf) {
-            event.continuePropagation();
-          } else {
-            inputRef.current?.focus();
-          }
-        },
-      },
-      // focusWithin: true,
-    });
-
     // const inputRenderer: ITextFieldBaseProps<HTMLInputElement>['inputRenderer'] =
     //   ({ getStyles, ref, forwardedProps, modifiers, onValueChange }) => (
     // <input
@@ -97,35 +71,8 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
     // />
     //   );
 
-    const inputPress = usePress({
-      onPress: (event) => {
-        console.log('_input press');
-        event.continuePropagation();
-      },
-      allowTextSelectionOnPress: true,
-    });
-
-    const [inputFocused, setInputFocused] = useState(false);
-
-    const wrapperPress = usePress({
-      onPress: () => {
-        inputRef.current?.focus();
-      },
-    });
-
-    const hover = useHover({
-      // onHoverStart: (event) => {
-      //   console.log('__hover start');
-      // },
-    });
-
-    const focus = useFocusRing({
-      // onFocusChange: (focused) => {
-      //   console.log('input focused:', focused);
-      //   setInputFocused(focused);
-      // },
-      isTextInput: true,
-    });
+    const [focused, setFocused] = useState(false);
+    const focus = useFocus({ onFocusChange: setFocused });
 
     const handleClear = (): void => {
       if (inputRef.current?.value) {
@@ -136,18 +83,44 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
       } as React.ChangeEvent<HTMLInputElement>);
     };
 
+    // Prevents the input from being blurred when the user clicks outside of
+    // the input.
+    const handleMouseDown: React.MouseEventHandler<HTMLDivElement> = (
+      event,
+    ) => {
+      if (!focused) {
+        return;
+      }
+
+      const isInput = event.target === inputRef.current;
+      if (!isInput) {
+        event.preventDefault();
+      }
+    };
+
+    // Focus the input when the user clicks on the field.
+    const handleClick: React.MouseEventHandler<HTMLDivElement> = (event) => {
+      if (focused) {
+        return;
+      }
+
+      const isInput = event.target === inputRef.current;
+      if (!isInput) {
+        event.stopPropagation();
+        inputRef.current?.focus();
+      }
+    };
+
     return (
       <FieldBase
         {...other}
         {...getStyles('root')}
-        {...hover.hoverProps}
-        classNames={classNames}
-        ref={forwardedRef}
-        onClick={() => inputRef.current?.focus()}
-        interactions={{
-          focused: focus.isFocused,
-          hovered: hover.isHovered,
+        wrapperProps={{
+          onMouseDown: handleMouseDown,
+          onClick: handleClick,
         }}
+        classNames={classNames}
+        interactions={{ focused }}
         variant={variant}
         end={
           (other.end ?? unmaskable) ? (
@@ -165,33 +138,33 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
             </>
           ) : undefined
         }
-        // inputRef={inputHandleRef}
-        // onClear={handleClear}
-        forwardProps
-        // inputRenderer={inputRenderer}
+        ref={forwardedRef}
       >
-        <input
-          {...getStyles(
-            'input',
-            // modifiers.hasError && 'input$error',
-            // modifiers.disabled && 'input$disabled',
-            // noSpinner && 'input$noSpinner',
-            // type === 'number' && 'input$number',
-          )}
-          {...focus.focusProps}
-          type={type === 'password' ? (unmasked ? 'text' : 'password') : type}
-          // disabled={modifiers.disabled}
-          // {...forwardedProps}
-          // onChange={(event) => {
-          //   forwardedProps?.onChange?.(event);
-          //   onValueChange?.(event.target.value, event.target);
-          // }}
-          ref={inputHandleRef}
-        />
+        {({ forwardedProps }) => (
+          <Box
+            as='input'
+            {...forwardedProps}
+            {...focus.focusProps}
+            {...getStyles(
+              'input',
+              // modifiers.hasError && 'input$error',
+              // modifiers.disabled && 'input$disabled',
+              // noSpinner && 'input$noSpinner',
+              // type === 'number' && 'input$number',
+            )}
+            type={type === 'password' ? (unmasked ? 'text' : 'password') : type}
+            // disabled={modifiers.disabled}
+            // {...forwardedProps}
+            // onChange={(event) => {
+            //   forwardedProps?.onChange?.(event);
+            //   onValueChange?.(event.target.value, event.target);
+            // }}
+            ref={inputHandleRef}
+          />
+        )}
       </FieldBase>
     );
-  },
-);
+  });
 
 TextInputField.theme = textInputFieldTheme;
 TextInputField.displayName = `@sixui/${COMPONENT_NAME}`;

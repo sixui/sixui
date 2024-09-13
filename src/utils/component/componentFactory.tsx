@@ -65,57 +65,9 @@ export const componentFactory = <TPayload extends IComponentFactoryPayload>(
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 ) => {
   type IComponent = React.ForwardRefExoticComponent<
-    TPayload['props'] & React.RefAttributes<TPayload['ref']>
-  >;
-
-  type IComponentFromFactory = IComponent &
-    IFactoryComponentThemeExtend<TPayload> &
-    IFactoryComponentTheme<TPayload> &
-    IFactoryComponentWithProps<TPayload>;
-
-  const ComponentFromFactory = forwardRef(
-    renderFunction,
-  ) as IComponentFromFactory;
-
-  ComponentFromFactory.extend = identity as IAny;
-  ComponentFromFactory.withProps = (fixedProps: IAny) => {
-    const Extended = forwardRef(function Extended(props, ref) {
-      return (
-        <ComponentFromFactory {...fixedProps} {...props} ref={ref as IAny} />
-      );
-    }) as unknown as IComponentFromFactory;
-    Extended.extend = ComponentFromFactory.extend;
-    Extended.displayName = `WithProps(${ComponentFromFactory.displayName})`;
-
-    return Extended;
-  };
-
-  return ComponentFromFactory;
-};
-
-////////////////////////////////////////////////////////////////////////////////
-// FIXME:
-////////////////////////////////////////////////////////////////////////////////
-
-type IWithComponentProp<
-  TProps = object,
-  TRoot extends React.ElementType = React.ElementType,
-> = TProps & {
-  component: TRoot;
-  props: TProps;
-};
-
-export const genericComponentFactory = <
-  TPayload extends IComponentFactoryPayload,
->(
-  renderFunction: React.ForwardRefRenderFunction<
-    TPayload['ref'],
-    IWithComponentProp<TPayload['props']>
-  >,
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-) => {
-  type IComponent = React.ForwardRefExoticComponent<
-    TPayload['props'] & React.RefAttributes<TPayload['ref']>
+    TPayload['props'] &
+      Omit<React.HTMLAttributes<TPayload['ref']>, keyof TPayload['props']> &
+      React.RefAttributes<TPayload['ref']>
   >;
 
   type IComponentFromFactory = IComponent &

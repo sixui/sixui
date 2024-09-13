@@ -1,5 +1,5 @@
 import type { IOmit } from '~/helpers/types';
-import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IFieldBaseOwnProps } from '../FieldBase';
 import type { IBoxProps } from '../Box';
@@ -57,8 +57,7 @@ export interface ITextInputFieldOwnProps extends IFieldBaseOwnProps {
    */
   unmaskIcon?: React.ReactNode;
 
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  placeholder?: string;
+  inputRef?: React.Ref<HTMLInputElement>;
 }
 
 export interface ITextInputFieldProps
@@ -66,8 +65,9 @@ export interface ITextInputFieldProps
     IComponentThemeProps<ITextInputFieldThemeFactory>,
     ITextInputFieldOwnProps {}
 
-export type ITextInputFieldFactory = IComponentFactory<{
+export type ITextInputFieldFactory = IPolymorphicComponentFactory<{
   props: ITextInputFieldProps;
-  ref: HTMLDivElement;
+  defaultRef: HTMLInputElement;
+  defaultRoot: 'input';
   theme: typeof textInputFieldTheme;
 }>;

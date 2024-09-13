@@ -138,31 +138,6 @@ const classNames = createStyles({
         '-moz-appearance': 'textfield',
       },
     },
-    inputWrapper: {
-      flexGrow: 1,
-      flexShrink: 1,
-      flexBasis: '0%',
-      display: 'flex',
-      height: '100%',
-    },
-    prefix: {
-      color: FieldBase.theme.tokens.prefix.color,
-      textWrap: 'nowrap',
-      width: 'min-content',
-      paddingInlineEnd: FieldBase.theme.tokens.prefix.trailingSpace,
-    },
-    prefix$disabled: {
-      color: 'inherit',
-    },
-    suffix: {
-      color: FieldBase.theme.tokens.suffix.color,
-      textWrap: 'nowrap',
-      width: 'min-content',
-      paddingInlineStart: FieldBase.theme.tokens.suffix.leadingSpace,
-    },
-    suffix$disabled: {
-      color: 'inherit',
-    },
   }),
 });
 

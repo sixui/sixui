@@ -13,6 +13,8 @@ import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { isFunction } from '~/helpers/isFunction';
 import { usePrevious } from '~/hooks/usePrevious';
+import { useInteractions } from '~/hooks/useInteractions';
+import { useForwardedProps } from '~/hooks/useForwardedProps';
 import { PaperBase } from '../PaperBase';
 import { CircularProgressIndicator } from '../CircularProgressIndicator';
 import { LabeledContext } from '../Labeled/Labeled.context';
@@ -55,20 +57,29 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
       maxLength = -1,
       multiline,
       loading: loadingProp,
-      forwardProps,
       containerRef,
       disabled,
-      interactions,
+      interactions: interactionsProp,
       placeholder,
-      prefix,
-      suffix,
+      prefixText,
+      suffixText,
+      wrapperProps,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
+
+    const { rootProps, forwardedProps } = useForwardedProps(other);
+
+    const interactionsContext = useInteractions({
+      baseState: interactionsProp,
+      events: {
+        hover: true,
+      },
+    });
 
     const labeledContext = useContext(LabeledContext);
     const loading = loadingProp || labeledContext?.loading;
     const disabledOrReadOnly = disabled || readOnly;
-    const focused = interactions?.focused || !!placeholder;
+    const focused = interactionsContext.state.focused || !!placeholder;
     const hasStartSection = !!leadingIcon || !!start;
     const hasEndSection = !!loading || !!trailingIcon || !!end;
     const hasLabel = !!label;
@@ -276,19 +287,21 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
 
     return (
       <Box
-        {...other}
+        {...wrapperProps}
+        {...rootProps}
         {...getStyles('root')}
-        interactions={interactions}
+        {...interactionsContext.triggerProps}
+        interactions={interactionsContext.state}
         ref={forwardedRef}
       >
         <PaperBase {...getStyles('container')} ref={containerRef}>
-          <StateLayer interactions={interactions} />
+          <StateLayer interactions={interactionsContext.state} />
           {renderIndicator()}
 
           {variant === 'outlined' && (
             <FieldBaseOutline
               {...getStyles('outline')}
-              interactions={interactions}
+              interactions={interactionsContext.state}
               hasLabel={hasLabel}
               hasError={hasError}
               populated={populated}
@@ -318,14 +331,14 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
               </div>
               <div {...getStyles('content')}>
                 <div {...getStyles('contentSlot')}>
-                  {prefix && <span {...getStyles('prefix')}>{prefix}</span>}
+                  {prefixText && (
+                    <span {...getStyles('prefix')}>{prefixText}</span>
+                  )}
 
                   <div {...getStyles('inputWrapper')}>
                     {children ? (
                       isFunction(children) ? (
-                        children({
-                          forwardedProps: forwardProps ? other : undefined,
-                        })
+                        children({ forwardedProps })
                       ) : (
                         children
                       )
@@ -334,7 +347,9 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
                     ) : null}
                   </div>
 
-                  {suffix && <span {...getStyles('suffix')}>{suffix}</span>}
+                  {suffixText && (
+                    <span {...getStyles('suffix')}>{suffixText}</span>
+                  )}
                 </div>
               </div>
             </div>
