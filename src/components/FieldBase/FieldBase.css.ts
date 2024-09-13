@@ -697,6 +697,7 @@ const classNames = createStyles({
     flexBasis: '0%',
     display: 'flex',
     height: '100%',
+    minWidth: px(30),
   },
   outline: ({ root }) => ({
     borderRadius: 'inherit',

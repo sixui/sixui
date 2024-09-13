@@ -5,7 +5,6 @@ import {
   type IComponentThemeFactory,
 } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { px } from '~/helpers/styles/px';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { FieldBase, type IFieldBaseVariant } from '../FieldBase';
 import { themeTokens } from '../ThemeProvider';
@@ -39,7 +38,6 @@ const classNames = createStyles({
     overflowWrap: 'inherit',
     whiteSpace: 'inherit',
     resize: 'none',
-    minWidth: px(30),
     fontFamily: 'inherit',
     fontSize: 'inherit',
     fontWeight: 'inherit',
