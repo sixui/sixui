@@ -50,7 +50,7 @@ const [tokensClassName, tokens] = createTheme({
   trailingSpace: px(space(4)),
   topSpace: {
     normal: px(space(3)),
-    withLabel: px(space(1)),
+    withLabel: px(space(2)),
   },
   bottomSpace: {
     normal: px(space(3)),
@@ -119,9 +119,6 @@ const [tokensClassName, tokens] = createTheme({
       disabled: themeTokens.state.opacity.disabled,
     },
   },
-  placeholder: {
-    color: themeTokens.colorScheme.onSurfaceVariant,
-  },
   prefix: {
     color: themeTokens.colorScheme.onSurfaceVariant,
     trailingSpace: px(space(1)),
@@ -137,7 +134,7 @@ const [tokensClassName, tokens] = createTheme({
         error: themeTokens.colorScheme.error,
       },
       focused: {
-        regular: themeTokens.colorScheme.onSurfaceVariant,
+        regular: themeTokens.colorScheme.primary,
         error: themeTokens.colorScheme.error,
       },
       hovered: {
@@ -478,17 +475,17 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>('with-error', root)]: {
         color: tokens.label.color.normal.error,
       },
-      [getModifierSelector<IModifier>('focused', root)]: {
-        color: tokens.label.color.focused.regular,
-      },
-      [getModifierSelector<IModifier>(['focused', 'with-error'], root)]: {
-        color: tokens.label.color.focused.error,
-      },
       [getModifierSelector<IModifier>('hovered', root)]: {
         color: tokens.label.color.hovered.regular,
       },
       [getModifierSelector<IModifier>(['hovered', 'with-error'], root)]: {
         color: tokens.label.color.hovered.error,
+      },
+      [getModifierSelector<IModifier>('focused', root)]: {
+        color: tokens.label.color.focused.regular,
+      },
+      [getModifierSelector<IModifier>(['focused', 'with-error'], root)]: {
+        color: tokens.label.color.focused.error,
       },
       [getModifierSelector<IModifier>('disabled', root)]: {
         color: tokens.label.color.disabled,
@@ -526,14 +523,6 @@ const classNames = createStyles({
         color: tokens.content.color.focused.error,
         WebkitTextFillColor: tokens.content.color.focused.error,
       },
-      [getModifierSelector<IModifier>('focused', root)]: {
-        color: tokens.content.color.focused.regular,
-        WebkitTextFillColor: tokens.content.color.focused.regular,
-      },
-      [getModifierSelector<IModifier>(['focused', 'with-error'], root)]: {
-        color: tokens.content.color.focused.error,
-        WebkitTextFillColor: tokens.content.color.focused.error,
-      },
       [getModifierSelector<IModifier>('hovered', root)]: {
         color: tokens.content.color.hovered.regular,
         WebkitTextFillColor: tokens.content.color.hovered.regular,
@@ -541,6 +530,14 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>(['hovered', 'with-error'], root)]: {
         color: tokens.content.color.hovered.error,
         WebkitTextFillColor: tokens.content.color.hovered.error,
+      },
+      [getModifierSelector<IModifier>('focused', root)]: {
+        color: tokens.content.color.focused.regular,
+        WebkitTextFillColor: tokens.content.color.focused.regular,
+      },
+      [getModifierSelector<IModifier>(['focused', 'with-error'], root)]: {
+        color: tokens.content.color.focused.error,
+        WebkitTextFillColor: tokens.content.color.focused.error,
       },
       [[
         getModifierSelector<IModifier>('focused', root),
@@ -632,17 +629,17 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>('with-error', root)]: {
         color: tokens.supportingText.color.normal.error,
       },
-      [getModifierSelector<IModifier>('focused', root)]: {
-        color: tokens.supportingText.color.focused.regular,
-      },
-      [getModifierSelector<IModifier>(['focused', 'with-error'], root)]: {
-        color: tokens.supportingText.color.focused.error,
-      },
       [getModifierSelector<IModifier>('hovered', root)]: {
         color: tokens.supportingText.color.hovered.regular,
       },
       [getModifierSelector<IModifier>(['hovered', 'with-error'], root)]: {
         color: tokens.supportingText.color.hovered.error,
+      },
+      [getModifierSelector<IModifier>('focused', root)]: {
+        color: tokens.supportingText.color.focused.regular,
+      },
+      [getModifierSelector<IModifier>(['focused', 'with-error'], root)]: {
+        color: tokens.supportingText.color.focused.error,
       },
       [getModifierSelector<IModifier>('disabled', root)]: {
         color: tokens.supportingText.color.disabled,
@@ -670,18 +667,6 @@ const classNames = createStyles({
     width: tokens.trailingIcon.size,
     height: tokens.trailingIcon.size,
   },
-  placeholder: ({ root }) => ({
-    WebkitTextFillColor: tokens.placeholder.color,
-    color: tokens.placeholder.color,
-    opacity: 1,
-
-    selectors: {
-      [getModifierSelector<IModifier>('disabled', root)]: {
-        WebkitTextFillColor: 'currentColor',
-        color: 'currentColor',
-      },
-    },
-  }),
   prefix: ({ root }) => ({
     color: tokens.prefix.color,
     textWrap: 'nowrap',
@@ -713,7 +698,7 @@ const classNames = createStyles({
     display: 'flex',
     height: '100%',
   },
-  outline: {
+  outline: ({ root }) => ({
     borderRadius: 'inherit',
     display: 'flex',
     // Allow events to target elements underneath the outline, such as icons.
@@ -727,32 +712,32 @@ const classNames = createStyles({
     color: tokens.outline.color.normal.regular,
 
     selectors: {
-      [getModifierSelector<IModifier>('with-error')]: {
+      [getModifierSelector<IModifier>('with-error', root)]: {
         borderColor: tokens.outline.color.normal.error,
         color: tokens.outline.color.normal.error,
       },
-      [getModifierSelector<IModifier>('hovered')]: {
+      [getModifierSelector<IModifier>('hovered', root)]: {
         borderColor: tokens.outline.color.hovered.regular,
         color: tokens.outline.color.hovered.regular,
       },
-      [getModifierSelector<IModifier>(['hovered', 'with-error'])]: {
+      [getModifierSelector<IModifier>(['hovered', 'with-error'], root)]: {
         borderColor: tokens.outline.color.hovered.error,
         color: tokens.outline.color.hovered.error,
       },
-      [getModifierSelector<IModifier>('focused')]: {
+      [getModifierSelector<IModifier>('focused', root)]: {
         borderColor: tokens.outline.color.focused.regular,
         color: tokens.outline.color.focused.regular,
       },
-      [getModifierSelector<IModifier>(['focused', 'with-error'])]: {
+      [getModifierSelector<IModifier>(['focused', 'with-error'], root)]: {
         borderColor: tokens.outline.color.focused.error,
         color: tokens.outline.color.focused.error,
       },
-      [getModifierSelector<IModifier>('disabled')]: {
+      [getModifierSelector<IModifier>('disabled', root)]: {
         borderColor: tokens.outline.color.disabled,
         color: tokens.outline.color.disabled,
       },
     },
-  },
+  }),
   outlineSection$startEnd: ({ root }) => ({
     borderWidth: 'inherit',
     borderStyle: 'inherit',

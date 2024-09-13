@@ -50,12 +50,7 @@ export const StateLayer = componentFactory<IStateLayerFactory>(
     const handleRef = useMergeRefs([forwardedRef, context?.surfaceRef]);
 
     return (
-      <Box
-        {...other}
-        {...getStyles(['root', interactions?.hovered && 'root$hover'])}
-        aria-hidden
-        ref={handleRef}
-      />
+      <Box {...other} {...getStyles('root')} aria-hidden ref={handleRef} />
     );
   },
 );

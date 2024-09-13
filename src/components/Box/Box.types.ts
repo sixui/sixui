@@ -13,3 +13,8 @@ export interface IBoxProps extends IBoxSprinkles {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   density?: number;
 }
+
+export type IElementProps<
+  TElementType extends React.ElementType,
+  TPropsToOmit extends string = never,
+> = Omit<React.ComponentPropsWithoutRef<TElementType>, 'style' | TPropsToOmit>;

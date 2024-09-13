@@ -18,6 +18,7 @@ export const PaperBase = polymorphicComponentFactory<IPaperBaseFactory>(
       variant,
       children,
       expanded,
+      disabled,
       ...other
     } = useProps({
       componentName: COMPONENT_NAME,
@@ -34,6 +35,7 @@ export const PaperBase = polymorphicComponentFactory<IPaperBaseFactory>(
       variant,
       modifiers: {
         expanded,
+        disabled,
       },
     });
 

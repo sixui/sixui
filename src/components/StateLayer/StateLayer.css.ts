@@ -97,9 +97,6 @@ const classNames = createStyles({
       },
     },
   },
-  root$hover: {
-    // border: '2px solid red',
-  },
 });
 
 export type IStateLayerThemeFactory = IComponentThemeFactory<{

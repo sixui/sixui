@@ -1,8 +1,3 @@
-export type IUseForwardedPropsOptions = {
-  forwardBoxProps?: boolean;
-  forwardComponentThemeProps?: boolean;
-};
-
 export type IUseForwardedPropsResult = {
   rootProps?: Record<string, unknown>;
   forwardedProps?: Record<string, unknown>;
@@ -10,10 +5,10 @@ export type IUseForwardedPropsResult = {
 
 export const useForwardedProps = (
   props: Record<string, unknown>,
-  options?: IUseForwardedPropsOptions,
 ): IUseForwardedPropsResult => {
   const {
-    // IBoxProps
+    className,
+    style,
     interactions,
     modifiers,
     size,
@@ -45,17 +40,13 @@ export const useForwardedProps = (
     fz,
     tt,
     td,
-    // IComponentThemeProps
-    className,
-    style,
-    classNames,
-    styles,
-    variant,
     // other
     ...other
   } = props;
 
   const boxProps = {
+    className,
+    style,
     interactions,
     modifiers,
     size,
@@ -89,24 +80,8 @@ export const useForwardedProps = (
     td,
   };
 
-  const componentThemeProps = {
-    className,
-    style,
-    classNames,
-    styles,
-    variant,
-  };
-
-  const rootProps = {
-    ...(options?.forwardBoxProps ? undefined : boxProps),
-    ...(options?.forwardComponentThemeProps ? undefined : componentThemeProps),
-  };
-
-  const forwardedProps = {
-    ...other,
-    ...(options?.forwardBoxProps ? boxProps : undefined),
-    ...(options?.forwardComponentThemeProps ? componentThemeProps : undefined),
-  };
+  const rootProps = boxProps;
+  const forwardedProps = other;
 
   return {
     rootProps,

@@ -22,8 +22,7 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   w: px(260),
-  onChange: (...args) => void sbHandleEvent('change', args),
-  onValueChange: (...args) => void sbHandleEvent('valueChange', args),
+  onChange: (...args) => void sbHandleEvent('onChange', args),
 } satisfies Partial<ITextInputFieldProps>;
 
 const states: Array<IComponentPresentation<ITextInputFieldProps>> = [
@@ -33,6 +32,7 @@ const states: Array<IComponentPresentation<ITextInputFieldProps>> = [
     legend: 'Hovered',
     props: { interactions: { hovered: true } },
   },
+  { legend: 'Read only', props: { readOnly: true } },
   {
     legend: 'Disabled',
     props: {
@@ -44,7 +44,10 @@ const states: Array<IComponentPresentation<ITextInputFieldProps>> = [
 const rows: Array<IComponentPresentation<ITextInputFieldProps>> = [
   { legend: 'Empty' },
   { legend: 'Label', props: { label: 'Label' } },
-  { legend: 'Placeholder', props: { placeholder: 'Placeholder' } },
+  {
+    legend: 'Placeholder',
+    props: { label: 'Label', placeholder: 'Placeholder' },
+  },
   {
     legend: 'Value',
     props: {
@@ -113,20 +116,15 @@ export const Variants: IStory = {
   args: defaultArgs,
 };
 
-// export const Filled: IStory = {
-//   render: (props) => (
-//     <ComponentShowcase
-//       component={TextInputField}
-//       props={props}
-//       cols={states}
-//       rows={rows}
-//     />
-//   ),
-//   args: {
-//     ...defaultArgs,
-//     variant: 'filled',
-//   },
-// };
+export const Filled: IStory = {
+  render: (props) => (
+    <TextInputFieldShowcase props={props} cols={states} rows={rows} />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'filled',
+  },
+};
 
 // export const Outlined: IStory = {
 //   render: (props) => (

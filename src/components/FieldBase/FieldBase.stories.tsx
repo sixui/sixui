@@ -40,10 +40,6 @@ const rows: Array<IComponentPresentation<IFieldBaseProps>> = [
     props: { label: 'Label' },
   },
   {
-    legend: 'Placeholder',
-    props: { label: 'Label', placeholder: 'Placeholder', children: undefined },
-  },
-  {
     legend: 'Populated',
     props: {
       label: 'Label',

@@ -59,7 +59,6 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
       containerRef,
       disabled,
       interactions: interactionsProp,
-      placeholder,
       prefixText,
       suffixText,
       wrapperProps,
@@ -78,11 +77,11 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
     const labeledContext = useContext(LabeledContext);
     const loading = loadingProp || labeledContext?.loading;
     const disabledOrReadOnly = disabled || readOnly;
-    const focused = interactionsContext.state.focused || !!placeholder;
+    const focused = interactionsContext.state.focused;
     const hasStartSection = !!leadingIcon || !!start;
     const hasEndSection = !!loading || !!trailingIcon || !!end;
     const hasLabel = !!label;
-    const populated = populatedProp ?? !!placeholder;
+    const populated = populatedProp;
 
     const { getStyles } = useComponentTheme<IFieldBaseThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -385,7 +384,11 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
         interactions={interactionsContext.state}
         ref={forwardedRef}
       >
-        <PaperBase {...getStyles('container')} ref={containerRef}>
+        <PaperBase
+          {...getStyles('container')}
+          disabled={disabled}
+          ref={containerRef}
+        >
           <StateLayer interactions={interactionsContext.state} />
           {renderIndicator()}
 
@@ -415,17 +418,13 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
                     <span {...getStyles('prefix')}>{prefixText}</span>
                   )}
 
-                  <div {...getStyles('inputWrapper')}>
-                    {children ? (
-                      isFunction(children) ? (
-                        children({ forwardedProps })
-                      ) : (
-                        children
-                      )
-                    ) : placeholder ? (
-                      <div {...getStyles('placeholder')}>{placeholder}</div>
-                    ) : null}
-                  </div>
+                  {children && (
+                    <div {...getStyles('inputWrapper')}>
+                      {isFunction(children)
+                        ? children({ forwardedProps })
+                        : children}
+                    </div>
+                  )}
 
                   {suffixText && (
                     <span {...getStyles('suffix')}>{suffixText}</span>

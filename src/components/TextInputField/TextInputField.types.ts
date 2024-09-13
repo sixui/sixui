@@ -2,13 +2,17 @@ import type { IOmit } from '~/helpers/types';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IFieldBaseOwnProps } from '../FieldBase';
-import type { IBoxProps } from '../Box';
+import type { IBoxProps, IElementProps } from '../Box';
 import type {
   textInputFieldTheme,
   ITextInputFieldThemeFactory,
 } from './TextInputField.css';
+import type { IControlledValueProps } from '~/hooks/useControlledValue';
 
-export interface ITextInputFieldOwnProps extends IFieldBaseOwnProps {
+export interface ITextInputFieldOwnProps
+  extends IFieldBaseOwnProps,
+    IControlledValueProps<string | number | ReadonlyArray<string>>,
+    IElementProps<'input', 'children'> {
   /**
    * The `<input />` type to use, defaults to "text". The type greatly changes
    * how the text field behaves.
@@ -58,6 +62,16 @@ export interface ITextInputFieldOwnProps extends IFieldBaseOwnProps {
   unmaskIcon?: React.ReactNode;
 
   inputRef?: React.Ref<HTMLInputElement>;
+
+  /**
+   * When true, a clear icon button will appear on the right side of the input.
+   */
+  clearable?: boolean;
+
+  /**
+   * The icon of the clear icon button.
+   */
+  clearIcon?: React.ReactNode;
 }
 
 export interface ITextInputFieldProps
