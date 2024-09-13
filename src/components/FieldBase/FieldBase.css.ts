@@ -17,7 +17,6 @@ import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { themeTokens } from '../ThemeProvider';
 import { StateLayer } from '../StateLayer';
 import { PaperBase } from '../PaperBase';
-import { FieldBaseOutline } from '../FieldBaseOutline';
 
 type IModifier =
   | IInteraction
@@ -254,6 +253,38 @@ const [tokensClassName, tokens] = createTheme({
       disabled: px(themeTokens.outline.width.xs),
     },
   },
+  outline: {
+    leadingSpace: px(space(4)),
+    trailingSpace: px(space(4)),
+    color: {
+      normal: {
+        regular: themeTokens.colorScheme.outline,
+        error: themeTokens.colorScheme.error,
+      },
+      focused: {
+        regular: themeTokens.colorScheme.primary,
+        error: themeTokens.colorScheme.error,
+      },
+      hovered: {
+        regular: themeTokens.colorScheme.onSurface,
+        error: themeTokens.colorScheme.onErrorContainer,
+      },
+      disabled: themeTokens.colorScheme.onSurface,
+    },
+    opacity: {
+      disabled: themeTokens.state.outlineOpacity.disabled,
+    },
+    width: {
+      normal: themeTokens.outline.width.xs,
+      focused: themeTokens.outline.width.md,
+      hovered: themeTokens.outline.width.xs,
+      disabled: themeTokens.outline.width.xs,
+    },
+    label: {
+      padding: px(space(1)),
+      bottomSpace: px(space(2)),
+    },
+  },
 });
 
 const classNames = createStyles({
@@ -306,7 +337,7 @@ const classNames = createStyles({
       },
     },
   },
-  inner: {
+  inner: ({ root }) => ({
     alignItems: 'center',
     borderRadius: 'inherit',
     display: 'flex',
@@ -319,7 +350,7 @@ const classNames = createStyles({
     position: 'relative',
 
     selectors: {
-      [getModifierSelector<IModifier>(['resizable', '!disabled'])]: {
+      [getModifierSelector<IModifier>(['resizable', '!disabled'], root)]: {
         // `resize` is inherited from the host, but only applies to the
         // container when resizable.
         resize: 'inherit',
@@ -333,7 +364,7 @@ const classNames = createStyles({
         overflow: 'visible',
       },
     },
-  },
+  }),
   section: {
     display: 'flex',
     height: '100%',
@@ -639,7 +670,6 @@ const classNames = createStyles({
     width: tokens.trailingIcon.size,
     height: tokens.trailingIcon.size,
   },
-  outline: {},
   placeholder: ({ root }) => ({
     WebkitTextFillColor: tokens.placeholder.color,
     color: tokens.placeholder.color,
@@ -683,6 +713,250 @@ const classNames = createStyles({
     display: 'flex',
     height: '100%',
   },
+  outline: {
+    borderRadius: 'inherit',
+    display: 'flex',
+    // Allow events to target elements underneath the outline, such as icons.
+    pointerEvents: 'none',
+    height: '100%',
+    position: 'absolute',
+    width: '100%',
+    zIndex: 1,
+    borderColor: tokens.outline.color.normal.regular,
+    // Needed for Firefox HCM
+    color: tokens.outline.color.normal.regular,
+
+    selectors: {
+      [getModifierSelector<IModifier>('with-error')]: {
+        borderColor: tokens.outline.color.normal.error,
+        color: tokens.outline.color.normal.error,
+      },
+      [getModifierSelector<IModifier>('hovered')]: {
+        borderColor: tokens.outline.color.hovered.regular,
+        color: tokens.outline.color.hovered.regular,
+      },
+      [getModifierSelector<IModifier>(['hovered', 'with-error'])]: {
+        borderColor: tokens.outline.color.hovered.error,
+        color: tokens.outline.color.hovered.error,
+      },
+      [getModifierSelector<IModifier>('focused')]: {
+        borderColor: tokens.outline.color.focused.regular,
+        color: tokens.outline.color.focused.regular,
+      },
+      [getModifierSelector<IModifier>(['focused', 'with-error'])]: {
+        borderColor: tokens.outline.color.focused.error,
+        color: tokens.outline.color.focused.error,
+      },
+      [getModifierSelector<IModifier>('disabled')]: {
+        borderColor: tokens.outline.color.disabled,
+        color: tokens.outline.color.disabled,
+      },
+    },
+  },
+  outlineSection$startEnd: ({ root }) => ({
+    borderWidth: 'inherit',
+    borderStyle: 'inherit',
+    borderColor: 'inherit',
+    borderRadius: 'inherit',
+    position: 'relative',
+
+    selectors: {
+      [getModifierSelector<IModifier>('disabled', root)]: {
+        opacity: tokens.outline.opacity.disabled,
+      },
+    },
+  }),
+  outlineSection$start: {
+    // Add padding that will grow to compensate for the outline's shape. This is
+    // needed to prevent the outline border from clipping with the label and is
+    // mirrored in the container padding to align the content and resting label
+    // with the adjusted floating label.
+    paddingInlineStart: `max(${tokens.outline.leadingSpace}, ${tokens.outline.label.padding})`,
+  },
+  outlineSection$end: {
+    flexGrow: 1,
+    marginInlineStart: calc.negate(tokens.outline.label.padding),
+  },
+  outlineSection$panel: {
+    borderWidth: 'inherit',
+    borderColor: 'inherit',
+    borderTopStyle: 'none',
+    borderRightStyle: 'none',
+    borderBottomStyle: 'solid',
+    borderLeftStyle: 'none',
+    inset: 0,
+    position: 'absolute',
+  },
+  outlineSection$panel$inactive: ({ root }) => ({
+    borderWidth: tokens.outline.width.normal,
+
+    selectors: {
+      [getModifierSelector<IModifier>('hovered', root)]: {
+        borderWidth: tokens.outline.width.hovered,
+      },
+      [getModifierSelector<IModifier>('disabled', root)]: {
+        borderWidth: tokens.outline.width.disabled,
+        opacity: tokens.outline.opacity.disabled,
+      },
+    },
+  }),
+  outlineSection$panel$active: ({ root }) => ({
+    transitionProperty: 'opacity',
+    transitionDuration: themeTokens.motion.duration.short.$3,
+    transitionTimingFunction: themeTokens.motion.easing.standard.normal,
+    borderWidth: tokens.outline.width.focused,
+    opacity: 0,
+
+    selectors: {
+      [getModifierSelector<IModifier>('focused', root)]: {
+        opacity: 1,
+      },
+    },
+  }),
+  outlineBorder: {
+    borderWidth: 'inherit',
+    borderStyle: 'inherit',
+    borderColor: 'inherit',
+    inset: 0,
+    position: 'absolute',
+  },
+  outlineBorder$startEnd: {
+    borderTopStyle: 'solid',
+    borderBottomStyle: 'solid',
+  },
+  outlineBorder$start: {
+    borderInlineStartStyle: 'solid',
+    borderInlineEndStyle: 'none',
+    borderStartStartRadius: 'inherit',
+    borderStartEndRadius: 0,
+    borderEndStartRadius: 'inherit',
+    borderEndEndRadius: 0,
+    marginInlineEnd: tokens.outline.label.padding,
+  },
+  outlineBorder$inactive$startEnd: ({ root }) => ({
+    borderWidth: tokens.outline.width.normal,
+
+    selectors: {
+      [getModifierSelector<IModifier>('hovered', root)]: {
+        borderWidth: tokens.outline.width.hovered,
+      },
+      [getModifierSelector<IModifier>('disabled', root)]: {
+        borderWidth: tokens.outline.width.disabled,
+      },
+    },
+  }),
+  outlineBorder$active$startEnd: ({ root }) => ({
+    transitionProperty: 'opacity',
+    transitionDuration: themeTokens.motion.duration.short.$3,
+    transitionTimingFunction: themeTokens.motion.easing.standard.normal,
+    borderWidth: tokens.outline.width.focused,
+    opacity: 0,
+
+    selectors: {
+      [getModifierSelector<IModifier>('focused', root)]: {
+        opacity: 1,
+      },
+    },
+  }),
+  outlineBorder$active$panel$active: {
+    borderWidth: tokens.outline.width.focused,
+  },
+  outlineBorder$panel: ({ root }) => ({
+    borderTopStyle: 'solid',
+    borderBottomStyle: 'unset',
+    bottom: 'auto',
+    transitionProperty: 'transform',
+    transitionDuration: themeTokens.motion.duration.short.$3,
+    transitionTimingFunction: themeTokens.motion.easing.standard.normal,
+    transform: 'scaleX(1)',
+
+    selectors: {
+      [[
+        getModifierSelector<IModifier>('focused', root),
+        getModifierSelector<IModifier>('populated', root),
+      ].join(', ')]: {
+        transform: 'scaleX(0)',
+      },
+    },
+  }),
+  outlineBorder$inactive$panel: {
+    // Note: no need to do any RTL flipping here. If RTLCSS flips this, it's
+    // also ok, we just need one to be left and one to be right.
+    right: '50%',
+    transformOrigin: 'top left',
+  },
+  outlineBorder$inactive$panel$active: {
+    borderWidth: tokens.outline.width.focused,
+  },
+  outlineBorder$inactive$panel$inactive: ({ root }) => ({
+    borderWidth: tokens.outline.width.normal,
+
+    selectors: {
+      [getModifierSelector<IModifier>('hovered', root)]: {
+        borderWidth: tokens.outline.width.hovered,
+      },
+      [getModifierSelector<IModifier>('disabled', root)]: {
+        borderWidth: tokens.outline.width.disabled,
+      },
+      [getModifierSelector<IModifier>('populated', root)]: {
+        transform: 'scaleX(0)',
+      },
+    },
+  }),
+  outlineBorder$active$panel: {
+    // Note: no need to do any RTL flipping here. If RTLCSS flips this, it's
+    // also ok, we just need one to be left and one to be right.
+    left: '50%',
+    transformOrigin: 'top right',
+  },
+  outlineBorder$active$panel$inactive: ({ root }) => ({
+    borderWidth: tokens.outline.width.normal,
+
+    selectors: {
+      [getModifierSelector<IModifier>('hovered', root)]: {
+        borderWidth: tokens.outline.width.hovered,
+      },
+    },
+  }),
+  outlineBorder$end: {
+    borderInlineStartStyle: 'none',
+    borderInlineEndStyle: 'solid',
+    borderStartStartRadius: 0,
+    borderStartEndRadius: 'inherit',
+    borderEndStartRadius: 0,
+    borderEndEndRadius: 'inherit',
+  },
+  outlineNotch: ({ root }) => ({
+    alignItems: 'flex-start',
+    borderWidth: 'inherit',
+    borderStyle: 'inherit',
+    borderColor: 'inherit',
+    display: 'flex',
+    marginInlineStart: calc.negate(tokens.outline.label.padding),
+    marginInlineEnd: tokens.outline.label.padding,
+    maxWidth: calc.subtract(
+      '100%',
+      tokens.outline.leadingSpace,
+      tokens.outline.trailingSpace,
+    ),
+    paddingTop: 0,
+    paddingBottom: 0,
+    paddingLeft: tokens.outline.label.padding,
+    paddingRight: tokens.outline.label.padding,
+    position: 'relative',
+
+    selectors: {
+      [getModifierSelector<IModifier>('!with-label', root)]: {
+        display: 'none',
+      },
+    },
+  }),
+  outlineLabel: {
+    display: 'flex',
+    maxWidth: '100%',
+    // Center the floating label within the outline stroke
+    transform: `translateY(${calc.add('-100%', tokens.outline.label.bottomSpace)})`,
+  },
 });
 
 export type IFieldBaseThemeFactory = IComponentThemeFactory<{
@@ -712,26 +986,25 @@ export const fieldBaseThemeVariants = {
         },
       }),
     },
-    container: {
+    inner: ({ root }) => ({
       selectors: {
-        [getModifierSelector<IModifier>('resizable')]: {
+        [getModifierSelector<IModifier>('resizable', root)]: {
           // Move the container up so that the resize handle doesn't overlap the
-          // focus
-          // indicator. Content is moved back the opposite direction.
+          // focus indicator. Content is moved back the opposite direction.
           bottom: tokens.activeIndicator.height.focused,
           // Ensures the container doesn't create an overhang that can be
           // clicked on.
           clipPath: `inset(${tokens.activeIndicator.height.focused} 0 0 0)`,
         },
       },
-    },
-    section: {
+    }),
+    section: ({ root }) => ({
       selectors: {
-        [getModifierSelector<IModifier>('resizable')]: {
+        [getModifierSelector<IModifier>('resizable', root)]: {
           top: tokens.activeIndicator.height.focused,
         },
       },
-    },
+    }),
     activeIndicator: {
       inset: 'auto 0 0 0',
       // Prevent click events on the indicator element since it has no width and
@@ -850,8 +1123,28 @@ export const fieldBaseThemeVariants = {
         },
       }),
     },
+    inner: ({ root }) => ({
+      selectors: {
+        [getModifierSelector<IModifier>('resizable', root)]: {
+          // Move the container up and to the left so that the resize handle doesn't
+          // overlap the focus outline. Content is moved back the opposite direction.
+          bottom: tokens.outline.width.focused,
+          insetInlineEnd: tokens.outline.width.focused,
+          // Ensures the container doesn't create an overhang that can be clicked on.
+          clipPath: `inset(${tokens.outline.width.focused} 0 0 ${tokens.outline.width.focused})`,
+        },
+      },
+    }),
+    section: ({ root }) => ({
+      selectors: {
+        [getModifierSelector<IModifier>('resizable', root)]: {
+          top: tokens.outline.width.focused,
+          insetInlineStart: tokens.outline.width.focused,
+        },
+      },
+    }),
     outline: {
-      vars: createTokensVars(FieldBaseOutline.theme.tokens, {
+      vars: createTokensVars(tokens.outline, {
         leadingSpace: tokens.leadingSpace,
         trailingSpace: tokens.trailingSpace,
         label: {

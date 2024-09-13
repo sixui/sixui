@@ -19,7 +19,6 @@ import { PaperBase } from '../PaperBase';
 import { CircularProgressIndicator } from '../CircularProgressIndicator';
 import { LabeledContext } from '../Labeled/Labeled.context';
 import { Box } from '../Box';
-import { FieldBaseOutline } from '../FieldBaseOutline';
 import {
   fieldBaseTheme,
   fieldBaseThemeVariants,
@@ -285,6 +284,98 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
       supportingOrErrorText,
     ]);
 
+    const renderOutline = (): JSX.Element => (
+      <div {...getStyles('outline')}>
+        <div
+          {...getStyles(['outlineSection$startEnd', 'outlineSection$start'])}
+        >
+          <div
+            {...getStyles([
+              'outlineBorder',
+              'outlineBorder$startEnd',
+              'outlineBorder$start',
+              'outlineBorder$inactive$startEnd',
+            ])}
+          />
+          <div
+            {...getStyles([
+              'outlineBorder',
+              'outlineBorder$startEnd',
+              'outlineBorder$start',
+              'outlineBorder$active$startEnd',
+            ])}
+          />
+        </div>
+        <div {...getStyles('outlineNotch')}>
+          <div
+            {...getStyles([
+              'outlineSection$panel',
+              'outlineSection$panel$inactive',
+            ])}
+          >
+            <div
+              {...getStyles([
+                'outlineBorder',
+                'outlineBorder$panel',
+                'outlineBorder$inactive$panel',
+                'outlineBorder$inactive$panel$inactive',
+              ])}
+            />
+            <div
+              {...getStyles([
+                'outlineBorder',
+                'outlineBorder$panel',
+                'outlineBorder$active$panel',
+                'outlineBorder$active$panel$inactive',
+              ])}
+            />
+          </div>
+          <div
+            {...getStyles([
+              'outlineSection$panel',
+              'outlineSection$panel$active',
+            ])}
+          >
+            <div
+              {...getStyles([
+                'outlineBorder',
+                'outlineBorder$panel',
+                'outlineBorder$inactive$panel',
+                'outlineBorder$inactive$panel$active',
+              ])}
+            />
+            <div
+              {...getStyles([
+                'outlineBorder',
+                'outlineBorder$panel',
+                'outlineBorder$active$panel',
+                'outlineBorder$active$panel$active',
+              ])}
+            />
+          </div>
+          <div {...getStyles('outlineLabel')}>{floatingLabel}</div>
+        </div>
+        <div {...getStyles(['outlineSection$startEnd', 'outlineSection$end'])}>
+          <div
+            {...getStyles([
+              'outlineBorder',
+              'outlineBorder$startEnd',
+              'outlineBorder$end',
+              'outlineBorder$inactive$startEnd',
+            ])}
+          />
+          <div
+            {...getStyles([
+              'outlineBorder',
+              'outlineBorder$startEnd',
+              'outlineBorder$end',
+              'outlineBorder$active$startEnd',
+            ])}
+          />
+        </div>
+      </div>
+    );
+
     return (
       <Box
         {...wrapperProps}
@@ -298,18 +389,7 @@ export const FieldBase = componentFactory<IFieldBaseFactory>(
           <StateLayer interactions={interactionsContext.state} />
           {renderIndicator()}
 
-          {variant === 'outlined' && (
-            <FieldBaseOutline
-              {...getStyles('outline')}
-              interactions={interactionsContext.state}
-              hasLabel={hasLabel}
-              hasError={hasError}
-              populated={populated}
-              disabled={disabledOrReadOnly}
-            >
-              {floatingLabel}
-            </FieldBaseOutline>
-          )}
+          {variant === 'outlined' && renderOutline()}
 
           <div {...getStyles('inner')}>
             {hasStartSection && (

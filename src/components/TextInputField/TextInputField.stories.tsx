@@ -89,7 +89,10 @@ export const Test: IStory = {
     ...defaultArgs,
     label: 'test',
     end: <IconButton icon={<FontAwesomeIcon icon={faXmark} />} />,
-    type: 'number',
+    as: 'textarea',
+    resizable: true,
+    multiline: true,
+    // type: 'number',
   },
 };
 
