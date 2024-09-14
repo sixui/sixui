@@ -36,6 +36,7 @@ const spacingValues = getSpacingValues();
 
 const sprinklesProps = defineProperties({
   dynamicProperties: {
+    margin: spacingValues,
     marginTop: spacingValues,
     marginBottom: spacingValues,
     marginLeft: spacingValues,
@@ -44,6 +45,7 @@ const sprinklesProps = defineProperties({
     marginInlineEnd: spacingValues,
     marginInline: spacingValues,
     marginBlock: spacingValues,
+    padding: spacingValues,
     paddingTop: spacingValues,
     paddingBottom: spacingValues,
     paddingLeft: spacingValues,
@@ -75,7 +77,7 @@ const sprinklesProps = defineProperties({
     color: themeTokens.colorScheme,
   },
   shorthands: {
-    m: ['marginTop', 'marginBottom', 'marginLeft', 'marginRight'],
+    m: ['margin'],
     mt: ['marginTop'],
     mb: ['marginBottom'],
     ml: ['marginLeft'],
@@ -84,7 +86,7 @@ const sprinklesProps = defineProperties({
     me: ['marginInlineEnd'],
     mx: ['marginInline'],
     my: ['marginBlock'],
-    p: ['paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight'],
+    p: ['padding'],
     pt: ['paddingTop'],
     pb: ['paddingBottom'],
     pl: ['paddingLeft'],

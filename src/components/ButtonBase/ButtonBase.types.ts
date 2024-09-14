@@ -7,12 +7,13 @@ import type { IInteractions } from '~/hooks/useInteractions';
 import type { IUseStateLayerResult } from '../StateLayer';
 import type { IPaperOwnProps } from '../Paper';
 import type { IFocusRingVariant } from '../FocusRing';
+import type { IBoxProps } from '../Box';
 import type {
   buttonBaseTheme,
   IButtonBaseThemeFactory,
 } from './ButtonBase.css';
 
-export type IButtonBaseOwnProps = {
+export interface IButtonBaseOwnProps {
   interactions?: IInteractions;
   children?: React.ReactNode;
   focusRing?: IFocusRingVariant | false;
@@ -35,10 +36,11 @@ export type IButtonBaseOwnProps = {
 
   type?: string;
   stateLayer?: IUseStateLayerResult;
-};
+}
 
 export interface IButtonBaseProps
-  extends IPaperOwnProps,
+  extends IBoxProps,
+    IPaperOwnProps,
     IButtonBaseOwnProps,
     IComponentThemeProps<IButtonBaseThemeFactory> {}
 

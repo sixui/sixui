@@ -6,14 +6,14 @@ import type {
   IComponentShowcaseThemeFactory,
 } from './ComponentShowcase.css';
 
-export type IComponentPresentation<TComponentProps = object> = {
+export interface IComponentPresentation<TComponentProps = object> {
   props?: Partial<TComponentProps>;
   legend?: React.ReactNode;
   hiddenIndexes?: Array<number>;
   component?: React.FC<TComponentProps>;
-};
+}
 
-export type IComponentShowcaseOwnProps<TComponentProps> = {
+export interface IComponentShowcaseOwnProps<TComponentProps> {
   props: TComponentProps;
   groups?: Array<IComponentPresentation<TComponentProps>>;
   cols?: Array<IComponentPresentation<TComponentProps>>;
@@ -22,7 +22,7 @@ export type IComponentShowcaseOwnProps<TComponentProps> = {
   verticalAlign?: 'start' | 'center' | 'end' | 'stretch';
   rowLegendPosition?: 'start' | 'top' | 'bottom';
   fullWidth?: boolean;
-};
+}
 
 export interface IComponentShowcaseProps<TComponentProps>
   extends IBoxProps,

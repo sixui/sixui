@@ -3,11 +3,11 @@ import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { paperBaseTheme, IPaperBaseThemeFactory } from './PaperBase.css';
 
-export type IPaperBaseOwnProps = {
+export interface IPaperBaseOwnProps {
   children?: React.ReactNode;
   expanded?: boolean;
   disabled?: boolean;
-};
+}
 
 export interface IPaperBaseProps
   extends IBoxProps,

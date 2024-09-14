@@ -24,7 +24,8 @@ export type IFactoryComponentWithProps<
         component?: IAny;
         renderRoot?: (props: Record<string, IAny>) => React.ReactNode;
       }
-  >;
+  > &
+    IFactoryComponentTheme<TPayload>;
 };
 
 export type IFactoryComponentStaticComponents<TInput> =

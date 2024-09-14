@@ -14,11 +14,11 @@ import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { isFunction } from '~/helpers/isFunction';
 import { usePrevious } from '~/hooks/usePrevious';
 import { useInteractions } from '~/hooks/useInteractions';
-import { extractBoxProps } from '~/hooks/extractBoxProps';
 import { PaperBase } from '../PaperBase';
 import { CircularProgressIndicator } from '../CircularProgressIndicator';
 import { LabeledContext } from '../Labeled/Labeled.context';
 import { Box } from '../Box';
+import { extractBoxProps } from '../Box/extractBoxProps';
 import {
   fieldBaseTheme,
   fieldBaseThemeVariants,

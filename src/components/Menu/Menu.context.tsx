@@ -1,5 +1,6 @@
 import type { Placement } from '@floating-ui/react';
-import { createContext } from 'react';
+
+import { createSafeContext } from '~/helpers/createSafeContext';
 
 export type IMenuContextValue = {
   opened: boolean;
@@ -10,15 +11,7 @@ export type IMenuContextValue = {
   placement?: Placement;
 };
 
-const stub = (): never => {
-  throw new Error(
-    'You forgot to wrap your component in <MenuContext.Provider />.',
+export const [MenuContextProvider, useMenuContext] =
+  createSafeContext<IMenuContextValue>(
+    'You forgot to wrap your component in <MenuContextProvider />.',
   );
-};
-
-export const MenuContext = createContext<IMenuContextValue>({
-  opened: false,
-  getTriggerProps: stub,
-  triggerRef: stub,
-  placement: undefined,
-});

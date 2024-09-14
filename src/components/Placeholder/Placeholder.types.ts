@@ -7,11 +7,11 @@ import type {
   IPlaceholderThemeFactory,
 } from './Placeholder.css';
 
-export type IPlaceholderOwnProps = IPaperOwnProps & {
+export interface IPlaceholderOwnProps extends IPaperOwnProps {
   label?: string;
   crosshairs?: boolean;
   disabled?: boolean;
-};
+}
 
 export interface IPlaceholderProps
   extends IBoxProps,

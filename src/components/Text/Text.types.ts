@@ -7,16 +7,19 @@ export type ITextVariant = 'display' | 'headline' | 'title' | 'body' | 'label';
 
 export type ITextSize = 'sm' | 'md' | 'lg';
 
-export type ITextProps = IBoxProps &
-  IComponentThemeProps<ITextThemeFactory> & {
-    children?: React.ReactNode;
-    variant?: ITextVariant;
-    size?: ITextSize;
-    gutterBottom?: boolean;
-    dimmed?: boolean;
-    truncate?: boolean;
-    lineClamp?: number;
-  };
+export interface ITextOwnProps {
+  children?: React.ReactNode;
+  variant?: ITextVariant;
+  size?: ITextSize;
+  gutterBottom?: boolean;
+  dimmed?: boolean;
+  truncate?: boolean;
+  lineClamp?: number;
+}
+
+export interface ITextProps
+  extends IBoxProps,
+    IComponentThemeProps<ITextThemeFactory> {}
 
 export type ITextFactory = IPolymorphicComponentFactory<{
   props: ITextProps;

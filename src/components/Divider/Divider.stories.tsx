@@ -20,7 +20,15 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {} satisfies Partial<IDividerProps>;
 
 const BoxDemo: React.FC<IBoxProps> = (props) => (
-  <Box miw='$24' mih='$12' p='$2' ta='center' {...props} />
+  <Flex
+    align='center'
+    justify='center'
+    miw='$24'
+    mih='$12'
+    p='$2'
+    ta='center'
+    {...props}
+  />
 );
 
 const ListDemo: React.FC<IDividerProps> = (props) => (
@@ -28,8 +36,6 @@ const ListDemo: React.FC<IDividerProps> = (props) => (
     <Flex
       direction={props.orientation === 'horizontal' ? 'column' : 'row'}
       divider={<Divider {...props} />}
-      justify='center'
-      align='center'
       wrap='wrap'
     >
       <BoxDemo>One</BoxDemo>

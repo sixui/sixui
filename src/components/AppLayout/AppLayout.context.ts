@@ -3,8 +3,8 @@ import type {
   IAppLayoutNavigationMode,
   IAppLayoutProps,
 } from './AppLayout.types';
-import type { IPortalProps } from '../Portal';
 import type { ISideSheetType } from '~/hooks/useSideSheet';
+import type { IPortalProps } from '../Portal';
 import { createSafeContext } from '~/helpers/createSafeContext';
 
 export type IAppLayoutSideSheetState = {

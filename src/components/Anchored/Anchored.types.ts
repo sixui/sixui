@@ -16,14 +16,14 @@ export type IAnchorPosition =
 
 export type IAnchorOverlap = 'rectangular' | 'circular';
 
-export type IAnchoredOwnProps = {
+export interface IAnchoredOwnProps {
   position?: IAnchorPosition;
   overlap?: IAnchorOverlap;
   content?: React.ReactNode;
   invisible?: boolean;
   offsetX?: string | number;
   offsetY?: string | number;
-};
+}
 
 export interface IAnchoredProps
   extends IBoxProps,

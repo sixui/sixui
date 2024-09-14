@@ -5,7 +5,7 @@ import type { IMenuProps } from './Menu.types';
 import { MenuLeaf } from './MenuLeaf';
 
 export const Menu = forwardRef<HTMLButtonElement, IMenuProps>(
-  function MenuParent(props, forwardedRef) {
+  function Menu(props, forwardedRef) {
     const parentId = useFloatingParentNodeId();
 
     if (parentId === null) {

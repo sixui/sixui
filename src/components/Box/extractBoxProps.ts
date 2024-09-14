@@ -1,4 +1,4 @@
-import { IBoxProps } from '~/components/Box';
+import type { IBoxProps } from './Box.types';
 
 export type IUseForwardedPropsResult = {
   boxProps?: IBoxProps;

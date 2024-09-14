@@ -6,10 +6,10 @@ import type {
   IIndeterminateCircularProgressIndicatorThemeFactory,
 } from './IndeterminateCircularProgressIndicator.css';
 
-export type IIndeterminateCircularProgressIndicatorOwnProps = {
+export interface IIndeterminateCircularProgressIndicatorOwnProps {
   disabled?: boolean;
   children?: React.ReactNode;
-};
+}
 
 export interface IIndeterminateCircularProgressIndicatorProps
   extends IBoxProps,

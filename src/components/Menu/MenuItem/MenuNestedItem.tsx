@@ -1,11 +1,11 @@
 import { useMergeRefs } from '@floating-ui/react';
-import { forwardRef, useContext } from 'react';
+import { forwardRef } from 'react';
 
 import type { IMenuItemProps } from './MenuItem.types';
-import { MenuContext } from '../Menu';
-import { SvgIcon } from '../SvgIcon';
-import { MenuItem } from './MenuItem';
 import { iconTriangleLeft, iconTriangleRight } from '~/assets/icons';
+import { SvgIcon } from '../../SvgIcon';
+import { useMenuContext } from '../Menu.context';
+import { MenuItem } from './MenuItem';
 
 export type IMenuNestedItemProps = IMenuItemProps;
 
@@ -14,7 +14,7 @@ export const MenuNestedItem = forwardRef<
   IMenuNestedItemProps
 >(function MenuNestedItem(props, forwardedRef) {
   const { ...other } = props;
-  const menuContext = useContext(MenuContext);
+  const menuContext = useMenuContext;
   const handleRef = useMergeRefs([menuContext.triggerRef, forwardedRef]);
 
   return (

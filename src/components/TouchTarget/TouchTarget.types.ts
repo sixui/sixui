@@ -6,9 +6,9 @@ import type {
   ITouchTargetThemeFactory,
 } from './TouchTarget.css';
 
-export type ITouchTargetOwnProps = {
+export interface ITouchTargetOwnProps {
   children?: React.ReactNode;
-};
+}
 
 export interface ITouchTargetProps
   extends IBoxProps,

@@ -16,7 +16,7 @@ type IModifier = 'disabled' | 'expanded';
 export const [tokensClassName, tokens] = createTheme({
   container: {
     color: {
-      normal: themeTokens.colorScheme.surface,
+      normal: 'inherit',
       disabled: 'inherit',
     },
     opacity: {
