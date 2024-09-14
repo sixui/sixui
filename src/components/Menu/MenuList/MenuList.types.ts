@@ -1,14 +1,17 @@
-import type { IZeroOrMore, ICompiledStyles, IOmit } from '~/helpers/types';
-import type { IBaseProps } from '../Base';
-import type { IElevationStylesKey } from '../Elevation';
-import type { IListProps } from '../List';
-import type { IMenuListStylesKey } from './MenuList.styles';
+import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IBoxProps } from '~/components/Box';
+import type { IPaperBaseOwnProps } from '~/components/PaperBase';
+import type { IMenuListThemeFactory, menuListTheme } from './MenuList.css';
 
-export type IMenuListProps = IBaseProps<IMenuListStylesKey> &
-  IOmit<IListProps, 'styles'> & {
-    innerStyles?: {
-      list?: IZeroOrMore<ICompiledStyles<IMenuListStylesKey>>;
-      elevation?: IZeroOrMore<ICompiledStyles<IElevationStylesKey>>;
-    };
-    children?: React.ReactNode;
-  };
+export interface IMenuListProps
+  extends IBoxProps,
+    IPaperBaseOwnProps,
+    IComponentThemeProps<IMenuListThemeFactory> {}
+
+export type IMenuListFactory = IPolymorphicComponentFactory<{
+  props: IMenuListProps;
+  defaultRef: HTMLDivElement;
+  defaultRoot: 'div';
+  theme: typeof menuListTheme;
+}>;

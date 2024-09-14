@@ -1,13 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
 
 import type { IMenuListProps } from './MenuList.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { scaleTokens } from '~/themes/base/scale.stylex';
-import { ListItem } from '../ListItem';
+import { makeComponentShowcase } from '~/components/ComponentShowcase';
+import { ListItem } from '../../ListItem';
+import { Placeholder } from '../../Placeholder';
 import { MenuDivider } from '../MenuDivider';
 import { MenuList } from './MenuList';
-import { Placeholder } from '../Placeholder';
 
 const meta = {
   component: MenuList,
@@ -15,28 +14,22 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const styles = stylex.create({
-  host$fixedWidth: {
-    width: `calc(192px * ${scaleTokens.scale})`,
-  },
-});
-
 const defaultArgs = {
   children: (
     <>
-      <ListItem onClick={(...args) => sbHandleEvent('click', args)}>
+      <ListItem onPress={(...args) => sbHandleEvent('onPress', args)}>
         Apple
       </ListItem>
-      <ListItem onClick={(...args) => sbHandleEvent('click', args)}>
+      <ListItem onPress={(...args) => sbHandleEvent('onPress', args)}>
         Banana
       </ListItem>
-      <ListItem onClick={(...args) => sbHandleEvent('click', args)}>
+      <ListItem onPress={(...args) => sbHandleEvent('onPress', args)}>
         This is a very long and unexpected item
       </ListItem>
       <MenuDivider />
       <ListItem
         onClick={(...args) => sbHandleEvent('click', args)}
-        maxLines={1}
+        lineClamp={1}
       >
         This item will never wrap
       </ListItem>
@@ -44,13 +37,51 @@ const defaultArgs = {
   ),
 } satisfies Partial<IMenuListProps>;
 
+const MenuListShowcase = makeComponentShowcase(MenuList);
+
+export const Scales: IStory = {
+  render: (props) => (
+    <MenuListShowcase
+      props={props}
+      verticalAlign='start'
+      cols={[
+        { legend: 'Extra small', props: { scale: 'xs' } },
+        { legend: 'Small', props: { scale: 'sm' } },
+        { legend: 'Medium', props: { scale: 'md' } },
+        { legend: 'Large', props: { scale: 'lg' } },
+        { legend: 'Extra large', props: { scale: 'xl' } },
+      ]}
+    />
+  ),
+  args: defaultArgs,
+};
+
+export const Densities: IStory = {
+  render: (props) => (
+    <MenuListShowcase
+      verticalAlign='start'
+      cols={[-6, -4, -2, 0, 2].map((density) => ({
+        legend: String(density),
+        props: {
+          density,
+        },
+      }))}
+      props={props}
+    />
+  ),
+  args: defaultArgs,
+};
+
 export const AutoWidth: IStory = {
   render: (props) => <MenuList {...props} />,
   args: defaultArgs,
 };
 
 export const FixedWidth: IStory = {
-  render: (props) => <MenuList sx={styles.host$fixedWidth} {...props} />,
+  // FIXME: with should be applied
+  // TODO: apply default layer to components and sprinkles layer to sprinkles
+  // see: https://github.com/vanilla-extract-css/vanilla-extract/discussions/1472
+  render: (props) => <MenuList w='$48' {...props} />,
   args: defaultArgs,
 };
 
@@ -58,8 +89,8 @@ export const WithHeaderAndFooter: IStory = {
   render: (props) => <MenuList {...props} />,
   args: {
     ...defaultArgs,
-    header: <Placeholder label='Header' corner='none' />,
-    footer: <Placeholder label='Footer' corner='none' />,
+    header: <Placeholder label='Header' />,
+    footer: <Placeholder label='Footer' />,
   },
 };
 

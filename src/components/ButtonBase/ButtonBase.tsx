@@ -14,6 +14,7 @@ import {
   buttonBaseTheme,
   type IButtonBaseThemeFactory,
 } from './ButtonBase.css';
+import { mergeProps } from 'react-aria';
 
 const COMPONENT_NAME = 'ButtonBase';
 
@@ -89,10 +90,9 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
 
     return (
       <Paper
-        {...other}
+        {...mergeProps(other, stateLayer.interactionsContext.triggerProps)}
         {...getStyles('root')}
         {...attributes}
-        {...stateLayer.interactionsContext.triggerProps}
         ref={handleRef}
         as={rootElement}
         classNames={classNames}

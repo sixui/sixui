@@ -12,14 +12,14 @@ import type {
 } from './Paper.css';
 
 export interface IPaperOwnProps
-  extends IPaperBaseOwnProps,
-    IPaperSprinkles,
+  extends IPaperSprinkles,
     IPaperBackgroundSprinkles,
     IPaperElevationSprinkles,
     IPaperOutlineSprinkles {}
 
 export interface IPaperProps
   extends IBoxProps,
+    IPaperBaseOwnProps,
     IComponentThemeProps<IPaperThemeFactory>,
     IPaperOwnProps {}
 

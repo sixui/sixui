@@ -1,11 +1,10 @@
 import type { Placement } from '@floating-ui/react';
 
-import type { IElementProps } from '~/components/Box';
 import { createSafeContext } from '~/helpers/createSafeContext';
 
 export type IMenuItemContextValue = {
   getItemProps: (
-    userProps?: IElementProps<'button'>,
+    userProps?: Record<string, unknown>,
   ) => Record<string, unknown>;
   activeIndex: number | null;
   setActiveIndex: React.Dispatch<React.SetStateAction<number | null>>;

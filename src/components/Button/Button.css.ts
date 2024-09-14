@@ -64,7 +64,12 @@ const defaultTokens = {
     },
     height: px(40),
     minWidth: px(64),
-    shape: px(themeTokens.shape.corner.full),
+    shape: {
+      topLeft: px(themeTokens.shape.corner.full),
+      topRight: px(themeTokens.shape.corner.full),
+      bottomRight: px(themeTokens.shape.corner.full),
+      bottomLeft: px(themeTokens.shape.corner.full),
+    },
   },
   stateLayer: {
     color: {
@@ -149,10 +154,10 @@ const classNames = createStyles({
             tokens.container.elevation.normal,
           ),
         },
+        shape: tokens.container.shape,
       },
     }),
 
-    borderRadius: tokens.container.shape,
     cursor: 'pointer',
     display: 'inline-flex',
     outline: 'none',
@@ -610,7 +615,12 @@ export const buttonThemeVariants = {
           },
           container: {
             height: px(32),
-            shape: px(themeTokens.shape.corner.xs),
+            shape: {
+              topLeft: px(themeTokens.shape.corner.xs),
+              topRight: px(themeTokens.shape.corner.xs),
+              bottomRight: px(themeTokens.shape.corner.xs),
+              bottomLeft: px(themeTokens.shape.corner.xs),
+            },
           },
           icon: {
             color: {
