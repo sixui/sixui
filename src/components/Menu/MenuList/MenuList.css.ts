@@ -45,7 +45,6 @@ const classNames = createStyles({
     flexGrow: 1,
     userSelect: 'none',
     height: 'inherit',
-    width: 'fit-content',
   },
   list: {
     height: '100%',

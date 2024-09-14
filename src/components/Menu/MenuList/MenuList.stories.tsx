@@ -15,6 +15,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
+  w: '$48',
   children: (
     <>
       <ListItem onPress={(...args) => sbHandleEvent('onPress', args)}>
@@ -28,7 +29,7 @@ const defaultArgs = {
       </ListItem>
       <MenuDivider />
       <ListItem
-        onClick={(...args) => sbHandleEvent('click', args)}
+        onPress={(...args) => sbHandleEvent('onPress', args)}
         lineClamp={1}
       >
         This item will never wrap
@@ -74,15 +75,10 @@ export const Densities: IStory = {
 
 export const AutoWidth: IStory = {
   render: (props) => <MenuList {...props} />,
-  args: defaultArgs,
-};
-
-export const FixedWidth: IStory = {
-  // FIXME: with should be applied
-  // TODO: apply default layer to components and sprinkles layer to sprinkles
-  // see: https://github.com/vanilla-extract-css/vanilla-extract/discussions/1472
-  render: (props) => <MenuList w='$48' {...props} />,
-  args: defaultArgs,
+  args: {
+    ...defaultArgs,
+    w: 'fit-content',
+  },
 };
 
 export const WithHeaderAndFooter: IStory = {
