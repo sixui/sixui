@@ -8,15 +8,16 @@ export type ICreateOptionalContextResult<TContextValue> = [
     value: TContextValue;
     children: React.ReactNode;
   }) => JSX.Element,
-  () => TContextValue | null,
+  () => TContextValue | undefined,
 ];
 
 export const createOptionalContext = <TContextValue,>(
-  initialValue: TContextValue | null = null,
+  initialValue: TContextValue | undefined = undefined,
 ): ICreateOptionalContextResult<TContextValue> => {
-  const Context = createContext<TContextValue | null>(initialValue);
+  const Context = createContext<TContextValue | undefined>(initialValue);
 
-  const useOptionalContext = (): TContextValue | null => useContext(Context);
+  const useOptionalContext = (): TContextValue | undefined =>
+    useContext(Context);
 
   const Provider = ({
     children,

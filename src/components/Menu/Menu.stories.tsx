@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChevronUp,
@@ -11,9 +10,9 @@ import {
 import type { IMenuProps } from './Menu.types';
 import { Button } from '../Button';
 import { IconButton } from '../IconButton';
-import { MenuItem } from '../MenuItem';
-import { MenuDivider } from '../MenuDivider';
-import { Stack } from '../Stack';
+import { MenuItem } from './MenuItem';
+import { MenuDivider } from './MenuDivider';
+import { Flex } from '../Flex';
 import { Menu } from './Menu';
 
 const meta = {
@@ -75,23 +74,23 @@ export const FromButton: IStory = {
   },
 };
 
-const fromIconButtonStyles = stylex.create({
-  label: {
-    flexGrow: 1,
-  },
-  menu: {
-    flexGrow: 0,
-  },
-});
+// const fromIconButtonStyles = stylex.create({
+//   label: {
+//     flexGrow: 1,
+//   },
+//   menu: {
+//     flexGrow: 0,
+//   },
+// });
 
 export const FromIconButton: IStory = {
   render: (props) => (
-    <Stack horizontal gap={4}>
-      <div {...stylex.props(fromIconButtonStyles.label)}>
+    <Flex gap='$2'>
+      <div>
         Look right <FontAwesomeIcon icon={faArrowRight} />
       </div>
-      <Menu sx={fromIconButtonStyles.menu} {...props} />
-    </Stack>
+      <Menu {...props} />
+    </Flex>
   ),
   args: {
     ...defaultArgs,

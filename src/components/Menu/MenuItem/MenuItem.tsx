@@ -1,34 +1,39 @@
 import { useFloatingTree, useListItem, useMergeRefs } from '@floating-ui/react';
 
 import type { IMenuItemFactory } from './MenuItem.types';
-import { componentFactory } from '~/utils/component/componentFactory';
+import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { iconTriangleLeft, iconTriangleRight } from '~/assets/icons';
 import { ListItem } from '../../ListItem';
-import { Menu } from '../Menu';
+import { SvgIcon } from '../../SvgIcon';
 import { useMenuItemContext } from './MenuItem.context';
-import { NestedMenuItem } from './NestedMenuItem';
+import { useMenuContext } from '../Menu.context';
 
 const COMPONENT_NAME = 'MenuItem';
 
-export const MenuItem = componentFactory<IMenuItemFactory>(
+export const MenuItem = polymorphicComponentFactory<IMenuItemFactory>(
   (props, forwardedRef) => {
-    const { children, label, keepOpenOnClick, ...other } = useProps({
+    const { as, children, label, keepOpenOnClick, ...other } = useProps({
       componentName: COMPONENT_NAME,
       props,
     });
 
+    const menuContext = useMenuContext();
     const menuItemContext = useMenuItemContext();
     const item = useListItem({ label: props.disabled ? null : undefined });
     const tree = useFloatingTree();
     const handleRef = useMergeRefs([item.ref, forwardedRef]);
-    const isActive = item.index === menuItemContext.activeIndex;
+    const isActive =
+      menuItemContext !== undefined &&
+      item.index === menuItemContext.activeIndex;
 
-    const renderListItem = (): React.ReactNode => (
+    const renderListItem = (): JSX.Element => (
       <ListItem
+        as={as}
         role='menuitem'
         tabIndex={isActive ? 0 : -1}
         interactions={{ hovered: isActive }}
-        {...menuItemContext.getItemProps({
+        {...menuItemContext?.getItemProps({
           ...other,
           onClick: (event: React.MouseEvent<HTMLButtonElement>) => {
             other.onClick?.(event);
@@ -43,13 +48,29 @@ export const MenuItem = componentFactory<IMenuItemFactory>(
       </ListItem>
     );
 
-    return children ? (
-      <Menu trigger={() => <NestedMenuItem label={label} {...other} />}>
+    const renderNestedMenuItem = (): JSX.Element => (
+      <MenuItem
+        as={as}
+        leadingIcon={
+          menuContext.placement?.startsWith('left-') && (
+            <SvgIcon icon={iconTriangleLeft} />
+          )
+        }
+        trailingIcon={
+          menuContext.placement?.startsWith('left-') ? undefined : (
+            <SvgIcon icon={iconTriangleRight} />
+          )
+        }
+        keepOpenOnClick={true}
+        {...menuContext.getTriggerProps(other)}
+        label={label}
+        ref={handleRef}
+      >
         {children}
-      </Menu>
-    ) : (
-      renderListItem()
+      </MenuItem>
     );
+
+    return children ? renderNestedMenuItem() : renderListItem();
   },
 );
 

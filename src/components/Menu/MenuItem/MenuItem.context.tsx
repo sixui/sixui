@@ -1,6 +1,6 @@
 import type { Placement } from '@floating-ui/react';
 
-import { createSafeContext } from '~/helpers/createSafeContext';
+import { createOptionalContext } from '~/helpers/createOptionalContext';
 
 export type IMenuItemContextValue = {
   getItemProps: (
@@ -13,6 +13,4 @@ export type IMenuItemContextValue = {
 };
 
 export const [MenuItemContextProvider, useMenuItemContext] =
-  createSafeContext<IMenuItemContextValue>(
-    'You forgot to wrap your component in <MenuItemContextProvider />.',
-  );
+  createOptionalContext<IMenuItemContextValue>();
