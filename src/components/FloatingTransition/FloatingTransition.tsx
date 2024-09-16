@@ -34,6 +34,7 @@ export const FloatingTransition = componentFactory<IFloatingTransitionFactory>(
       cursorTransformOrigin,
       pattern = 'enterExit',
       orientation: orientationProp,
+      anchored,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -67,6 +68,7 @@ export const FloatingTransition = componentFactory<IFloatingTransitionFactory>(
         alignment,
         orientation,
         pattern,
+        anchored,
       },
     });
 

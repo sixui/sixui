@@ -83,6 +83,11 @@ export interface IFloatingTransitionOwnProps {
    * @defaultValue 'enterExit'
    */
   pattern?: IFloatingTransitionPattern;
+
+  /**
+   * Whether the element should be absolutely positioned relative to its parent.
+   */
+  anchored?: boolean;
 }
 
 export interface IFloatingTransitionProps
