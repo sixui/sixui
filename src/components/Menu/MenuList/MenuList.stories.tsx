@@ -18,18 +18,18 @@ const defaultArgs = {
   w: '$48',
   children: (
     <>
-      <ListItem onPress={(...args) => sbHandleEvent('onPress', args)}>
+      <ListItem onClick={(...args) => sbHandleEvent('onClick', args)}>
         Apple
       </ListItem>
-      <ListItem onPress={(...args) => sbHandleEvent('onPress', args)}>
+      <ListItem onClick={(...args) => sbHandleEvent('onClick', args)}>
         Banana
       </ListItem>
-      <ListItem onPress={(...args) => sbHandleEvent('onPress', args)}>
+      <ListItem onClick={(...args) => sbHandleEvent('onClick', args)}>
         This is a very long and unexpected item
       </ListItem>
       <MenuDivider />
       <ListItem
-        onPress={(...args) => sbHandleEvent('onPress', args)}
+        onClick={(...args) => sbHandleEvent('onClick', args)}
         lineClamp={1}
       >
         This item will never wrap

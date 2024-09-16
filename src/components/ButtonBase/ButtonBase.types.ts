@@ -1,5 +1,3 @@
-import type { PressEvent } from 'react-aria';
-
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IMaybeAsync, IAny } from '~/helpers/types';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
@@ -21,11 +19,7 @@ export interface IButtonBaseOwnProps {
   target?: React.AnchorHTMLAttributes<HTMLAnchorElement>['target'];
   rel?: string;
   disabled?: boolean;
-  onPress?: (event: PressEvent) => IMaybeAsync<IAny>;
 
-  /**
-   * @deprecated Use `onPress` instead.
-   */
   onClick?: (event: React.MouseEvent<Element>) => IMaybeAsync<IAny>;
 
   /**

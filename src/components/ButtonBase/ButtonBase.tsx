@@ -34,7 +34,6 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
       type = 'button',
       stateLayer: stateLayerProp,
       interactions,
-      onPress,
       href,
       target,
       rel,
@@ -63,7 +62,6 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
     const ownStateLayer = useStateLayer<HTMLDivElement>({
       interactions,
       disabled: !!stateLayerProp || disabledOrReadOnly,
-      pressEvents: { onPress },
     });
     const stateLayer = stateLayerProp ?? ownStateLayer;
     const rootElement =

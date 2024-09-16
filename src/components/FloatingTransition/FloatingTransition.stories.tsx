@@ -3,6 +3,7 @@ import { CSSTransition } from 'react-transition-group';
 import { useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFaceSmile } from '@fortawesome/free-regular-svg-icons';
+import { faFaceSmile as faFaceSmileSolid } from '@fortawesome/free-solid-svg-icons';
 
 import type { IFloatingTransitionProps } from './FloatingTransition.types';
 import type { IOmit } from '~/helpers/types';
@@ -65,7 +66,10 @@ const FloatingTransitionAnchoredDemo: React.FC<IFloatingTransitionDemoProps> = (
     <div style={{ position: 'relative' }}>
       <IconButton
         icon={<FontAwesomeIcon icon={faFaceSmile} />}
-        onPress={() => toggle()}
+        selectedIcon={<FontAwesomeIcon icon={faFaceSmileSolid} />}
+        toggle
+        selected={transitioning}
+        onClick={() => toggle()}
       />
 
       <FloatingTransitionDemo {...props} transitioning={transitioning} />
@@ -82,11 +86,11 @@ const FloatingTransitionUnanchoredDemo: React.FC<
     <>
       <IconButton
         icon={<FontAwesomeIcon icon={faFaceSmile} />}
-        onPress={() => toggle()}
+        onClick={() => toggle()}
       />
       <div
         style={{
-          position: 'fixed',
+          position: 'absolute',
           inset: 0,
           display: 'grid',
           placeItems: 'center',

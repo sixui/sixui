@@ -1,4 +1,3 @@
-import type { PressEvent } from 'react-aria';
 import { MouseEventHandler, useState } from 'react';
 
 import type { IButtonFactory } from './Button.types';
@@ -27,7 +26,6 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       variant = 'filled',
       children,
       onClick,
-      onPress,
       icon,
       trailingIcon,
       loading: loadingProp,
@@ -91,18 +89,6 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       );
     };
 
-    const handlePress = (event: PressEvent): void => {
-      if (handlingPress || !onPress) {
-        return;
-      }
-
-      setAnimating(true);
-      void executeLazyPromise(
-        () => onPress(event) as Promise<void>,
-        setHandlingPress,
-      );
-    };
-
     const renderIcon = (): JSX.Element =>
       loading ? (
         <IndeterminateCircularProgressIndicator
@@ -126,7 +112,6 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
           stateLayer: getStyles('stateLayer').className,
           outline: getStyles('outline').className,
         })}
-        onPress={handlePress}
         readOnly={readOnly}
         ref={forwardedRef}
       >

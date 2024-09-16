@@ -110,7 +110,7 @@ export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
             <IconButton
               data-cy='clearButton'
               icon={clearIcon}
-              onPress={handleClear}
+              onClick={handleClear}
             />
           )}
         </>

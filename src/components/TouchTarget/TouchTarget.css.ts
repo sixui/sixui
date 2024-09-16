@@ -14,6 +14,7 @@ const classNames = createStyles({
     width: `max(${px(themeTokens.density.minTargetSize)}, 100%)`,
     height: `max(${px(themeTokens.density.minTargetSize)}, 100%)`,
     transform: 'translate(-50%, -50%)',
+    zIndex: 1,
   },
 });
 

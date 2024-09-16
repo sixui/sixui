@@ -118,12 +118,12 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
             <IconButton
               data-cy='clearButton'
               icon={clearIcon}
-              onPress={handleClear}
+              onClick={handleClear}
             />
           )}
           {unmaskable && (
             <IconButton
-              onPress={() => setUnmasked((unmasked) => !unmasked)}
+              onClick={() => setUnmasked((unmasked) => !unmasked)}
               icon={unmaskIcon}
               selectedIcon={maskIcon}
               selected={unmasked}
