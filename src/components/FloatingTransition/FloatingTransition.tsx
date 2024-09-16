@@ -1,94 +1,84 @@
-import { forwardRef } from 'react';
-import type { TransitionStatus } from 'react-transition-group';
+import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import type {
-  IFloatingTransitionProps,
-  IFloatingTransitionStatus,
-} from './FloatingTransition.types';
-import { commonStyles } from '~/helpers/commonStyles';
-import { useStyles } from '~/hooks/useStyles';
-import { floatingTransitionStyles } from './FloatingTransition.styles';
+import type { IFloatingTransitionFactory } from './FloatingTransition.types';
+import { componentFactory } from '~/utils/component/componentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { Box } from '../Box';
 import { getPlacementTransformOrigin } from './getPlacementTransformOrigin';
 import { getPlacementSideTransformOrigin } from './getPlacementSideTransformOrigin';
-import { Base } from '../Base';
+import {
+  floatingTransitionTheme,
+  type IFloatingTransitionThemeFactory,
+} from './FloatingTransition.css';
+import { resolveRtgStatus } from './resolveRtgStatus';
 
-const resolveStatus = (
-  status: TransitionStatus | IFloatingTransitionStatus,
-): IFloatingTransitionStatus => {
-  switch (status) {
-    case 'entering':
-      return 'open';
-    case 'entered':
-      return 'open';
-    case 'exiting':
-      return 'close';
-    case 'exited':
-      return 'close';
-    case 'unmounted':
-      return 'unmounted';
-  }
+const COMPONENT_NAME = 'FloatingTransition';
 
-  return status;
-};
+export const FloatingTransition = componentFactory<IFloatingTransitionFactory>(
+  (props, forwardedRef) => {
+    const {
+      classNames,
+      className,
+      styles,
+      style,
+      variant,
+      children,
+      placement,
+      status,
+      origin = 'center',
+      cursorTransformOrigin,
+      pattern = 'enterExit',
+      orientation: orientationProp,
+      ...other
+    } = useProps({ componentName: COMPONENT_NAME, props });
 
-export const FloatingTransition = forwardRef<
-  HTMLDivElement,
-  IFloatingTransitionProps
->(function FloatingTransition(props, forwardedRef) {
-  const {
-    styles,
-    sx,
-    children,
-    placement,
-    status,
-    origin = 'center',
-    cursorTransformOrigin,
-    pattern = 'enterExit',
-    orientation: orientationProp,
-    disabled,
-    ...other
-  } = props;
+    const orientation =
+      orientationProp ??
+      (['top', 'bottom'].includes(placement)
+        ? 'vertical'
+        : ['left', 'right'].includes(placement)
+          ? 'horizontal'
+          : undefined);
+    const resolvedStatus = resolveRtgStatus(status);
 
-  const { combineStyles, globalStyles } = useStyles({
-    componentName: 'FloatingTransition',
-    styles: [floatingTransitionStyles, styles],
-  });
+    const { getStyles } = useComponentTheme<IFloatingTransitionThemeFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles,
+      style,
+      theme: floatingTransitionTheme,
+      variant,
+      modifiers: {
+        status: resolvedStatus,
+        orientation,
+        pattern: `${pattern}-${placement}`,
+      },
+    });
 
-  const orientation =
-    orientationProp ??
-    (['top', 'bottom'].includes(placement)
-      ? 'vertical'
-      : ['left', 'right'].includes(placement)
-        ? 'horizontal'
-        : undefined);
-  const resolvedStatus = resolveStatus(status);
+    return (
+      <Box
+        {...other}
+        {...getStyles(['root', `root$${resolvedStatus}`], {
+          style: assignInlineVars({
+            [floatingTransitionTheme.tokens.transformOrigin]:
+              origin === 'corner'
+                ? getPlacementTransformOrigin(placement)
+                : origin === 'edge'
+                  ? getPlacementSideTransformOrigin(placement)
+                  : origin === 'cursor' && cursorTransformOrigin
+                    ? cursorTransformOrigin
+                    : 'center',
+          }),
+        })}
+        ref={forwardedRef}
+      >
+        {children}
+      </Box>
+    );
+  },
+);
 
-  return (
-    <Base
-      {...other}
-      data-pattern={`${pattern}-${placement}`}
-      sx={[
-        globalStyles,
-        !disabled &&
-          combineStyles(
-            `transition$${resolvedStatus}`,
-            !!orientation && `transition$${resolvedStatus}$${orientation}`,
-          ),
-        !disabled &&
-          commonStyles.transformOrigin(
-            origin === 'corner'
-              ? getPlacementTransformOrigin(placement)
-              : origin === 'edge'
-                ? getPlacementSideTransformOrigin(placement)
-                : origin === 'cursor' && cursorTransformOrigin
-                  ? cursorTransformOrigin
-                  : 'center',
-          ),
-        sx,
-      ]}
-      ref={forwardedRef}
-    >
-      {children}
-    </Base>
-  );
-});
+FloatingTransition.theme = floatingTransitionTheme;
+FloatingTransition.displayName = `@sixui/${COMPONENT_NAME}`;
