@@ -128,7 +128,12 @@ const classNames = createStyles({
         },
         minWidth: tokens.container.size,
         height: tokens.container.size,
-        shape: tokens.container.shape,
+        shape: {
+          topLeft: px(tokens.container.shape),
+          topRight: px(tokens.container.shape),
+          bottomRight: px(tokens.container.shape),
+          bottomLeft: px(tokens.container.shape),
+        },
         opacity: tokens.container.opacity,
         color: tokens.container.color,
       },

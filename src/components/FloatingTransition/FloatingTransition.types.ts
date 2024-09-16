@@ -1,4 +1,4 @@
-import type { Placement } from '@floating-ui/react';
+import type { Alignment, Placement, Side } from '@floating-ui/react';
 import type { TransitionStatus } from 'react-transition-group';
 
 import type { IComponentFactory } from '~/utils/component/componentFactory';
@@ -33,8 +33,23 @@ export interface IFloatingTransitionOwnProps {
    * Possible values are: `top-start`, `top`, `top-end`, `right-start`, `right`,
    * `right-end`, `bottom-end`, `bottom`, `bottom-start`, `left-end`, `left`,
    * `left-start`.
+   * @defaultValue 'top'
    */
-  placement: Placement;
+  placement?: Placement;
+
+  /**
+   * The side of the element relative to a reference element. This is an
+   * alternative way to specify the placement. Possible values are: `top`,
+   * `right`, `bottom`, `left`.
+   */
+  side?: Side;
+
+  /**
+   * The alignment of the element relative to a reference element. This is an
+   * alternative way to specify the placement. Possible values are: `start`,
+   * `end`.
+   */
+  alignment?: Alignment;
 
   /**
    * The origin of the transition animation. Possible values are:
@@ -45,6 +60,7 @@ export interface IFloatingTransitionOwnProps {
    *   the placement.
    * - `cursor`: The transition origin is `cursorTransformOrigin` if provided,
    *   otherwise it is the center of the element.
+   * @defaultValue 'center'
    */
   origin?: IFloatingTransitionOrigin;
 
@@ -64,6 +80,7 @@ export interface IFloatingTransitionOwnProps {
    * The pattern of the transition animation. Possible values are:
    * - `enterExit`: The animated element comes from a reference element.
    * - `enterExitOffScreen`: The animated element comes from outside the screen.
+   * @defaultValue 'enterExit'
    */
   pattern?: IFloatingTransitionPattern;
 }

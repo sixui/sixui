@@ -19,7 +19,6 @@ const [tokensClassName, tokens] = createTheme({
   },
   label: {
     typography: themeTokens.typeScale.label.sm,
-    color: themeTokens.colorScheme.onSurface,
     opacity: '1',
   },
 });
@@ -31,7 +30,6 @@ const classNames = createStyles({
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
-    color: tokens.label.color,
   },
   crosshairs: ({ root }) => ({
     overflow: 'hidden',

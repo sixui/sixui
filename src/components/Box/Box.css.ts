@@ -72,6 +72,7 @@ const sprinklesProps = defineProperties({
     display: true,
     flex: true,
     fontSize: true,
+    zIndex: themeTokens.zIndex,
   },
   staticProperties: {
     color: themeTokens.colorScheme,
@@ -106,6 +107,7 @@ const sprinklesProps = defineProperties({
     fz: ['fontSize'],
     tt: ['textTransform'],
     td: ['textDecoration'],
+    z: ['zIndex'],
   },
 });
 
@@ -140,4 +142,5 @@ export type IBoxSprinkles = Pick<
   | 'fz'
   | 'tt'
   | 'td'
+  | 'z'
 >;
