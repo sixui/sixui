@@ -1,14 +1,84 @@
-import type { FocusableElement } from '@react-types/shared';
-import type {
-  MouseEventHandler,
-  PointerEvent,
-  PointerEventHandler,
-} from 'react';
-import type { PressEvent } from 'react-aria';
 import { useCallback, useRef, useState } from 'react';
 import { delay } from '@olivierpascal/helpers';
 
 import type { IPoint } from '~/helpers/types';
+
+const getNormalizedPointerEventCoords = (
+  triggerElement: HTMLElement,
+  surfaceElement: HTMLElement,
+  pointerEvent: React.PointerEvent,
+): IPoint => {
+  const { scrollX, scrollY } = window;
+
+  const triggerRect = triggerElement.getBoundingClientRect();
+  const triggerDocumentX = scrollX + triggerRect.left;
+  const triggerDocumentY = scrollY + triggerRect.top;
+
+  const surfaceRect = surfaceElement.getBoundingClientRect();
+  const surfaceDocumentX = scrollX + surfaceRect.left;
+  const surfaceDocumentY = scrollY + surfaceRect.top;
+
+  const deltaX = surfaceDocumentX - triggerDocumentX;
+  const deltaY = surfaceDocumentY - triggerDocumentY;
+
+  const { pageX, pageY } = pointerEvent;
+  const coords = {
+    x: pageX - triggerDocumentX - deltaX,
+    y: pageY - triggerDocumentY - deltaY,
+  };
+
+  return coords;
+};
+
+type ITranslationCoordinates = {
+  startPoint: IPoint;
+  endPoint: IPoint;
+};
+
+const getTranslationCoordinates = (
+  triggerElement: HTMLElement,
+  surfaceElement: HTMLElement,
+  event: React.PointerEvent | React.MouseEvent,
+  initialSize: number,
+): ITranslationCoordinates => {
+  const { width, height } = triggerElement.getBoundingClientRect();
+
+  // End in the center
+  const endPoint = {
+    x: (width - initialSize) / 2,
+    y: (height - initialSize) / 2,
+  };
+
+  const startPoint = (event
+    ? getNormalizedPointerEventCoords(
+        triggerElement,
+        surfaceElement,
+        event as React.PointerEvent,
+      )
+    : undefined) ?? {
+    x: width / 2,
+    y: height / 2,
+  };
+
+  // Center around start point
+  const centeredStartPoint = {
+    x: startPoint.x - initialSize / 2,
+    y: startPoint.y - initialSize / 2,
+  };
+
+  return { startPoint: centeredStartPoint, endPoint };
+};
+
+const inBounds = (
+  triggerElement: HTMLElement,
+  event: React.PointerEvent,
+): boolean => {
+  const { top, left, bottom, right } = triggerElement.getBoundingClientRect();
+  const x = event.clientX - left;
+  const y = event.clientY - top;
+
+  return x >= left && x <= right && y >= top && y <= bottom;
+};
 
 export type IUSeRippleOptions = {
   /** The delay in milliseconds after the touch start, to determine if the touch
@@ -74,11 +144,12 @@ export type IUseRippleProps<TElement extends HTMLElement> = {
 
 export type IUseRippleResult = {
   animating: boolean;
-  onPressStart: (event: PressEvent) => void;
-  onPressEnd: (event: PressEvent) => void;
-  onPointerLeave: PointerEventHandler<FocusableElement>;
-  onPointerCancel: PointerEventHandler<FocusableElement>;
-  onContextMenu: MouseEventHandler<FocusableElement>;
+  onPointerDown: React.PointerEventHandler;
+  onPointerUp: React.PointerEventHandler;
+  onPointerLeave: React.PointerEventHandler;
+  onPointerCancel: React.PointerEventHandler;
+  onClick: React.MouseEventHandler;
+  onContextMenu: React.MouseEventHandler;
 };
 
 /**
@@ -129,7 +200,7 @@ enum IState {
   WaitingForClick,
 }
 
-const isTouch = ({ pointerType }: PressEvent | PointerEvent): boolean =>
+const isTouch = ({ pointerType }: React.PointerEvent): boolean =>
   pointerType === 'touch';
 
 // Used to handle overlapping surfaces.
@@ -141,13 +212,50 @@ export const useRipple = <TElement extends HTMLElement>(
   const { triggerRef, surfaceRef, options: optionsProp, disabled } = props;
   const options = { ...DEFAULT_OPTIONS, ...optionsProp };
 
-  const [pressed, setPressed] = useState(false);
   const [animating, setAnimating] = useState(false);
+  const rippleStartEventRef = useRef<React.PointerEvent>();
   const stateRef = useRef<IState>(IState.Inactive);
   const initialSizeRef = useRef(0);
   const rippleScaleRef = useRef(1);
   const rippleSizeRef = useRef(0);
   const growAnimationRef = useRef<Animation>();
+  const checkBoundsAfterContextMenuRef = useRef(false);
+
+  /**
+   * Returns `true` if:
+   *  - the ripple element is enabled
+   *  - the pointer is primary for the input type
+   *  - the pointer is the pointer that started the interaction, or will start
+   *    the interaction
+   *  - the pointer is a touch, or the pointer state has the primary button
+   *    held, or the pointer is hovering
+   */
+  const shouldReactToEvent = useCallback(
+    (event: React.PointerEvent) => {
+      if (disabled || !event.isPrimary) {
+        return false;
+      }
+
+      if (
+        rippleStartEventRef.current &&
+        rippleStartEventRef.current.pointerId !== event.pointerId
+      ) {
+        return false;
+      }
+
+      if (event.type === 'pointerenter' || event.type === 'pointerleave') {
+        return !isTouch(event);
+      }
+
+      const isPrimaryButton = event.buttons === 1;
+      if (!isTouch(event) && !isPrimaryButton) {
+        return false;
+      }
+
+      return true;
+    },
+    [disabled],
+  );
 
   const determineRippleSize = useCallback(() => {
     if (!triggerRef.current) {
@@ -176,54 +284,25 @@ export const useRipple = <TElement extends HTMLElement>(
     options.initialOriginScale,
   ]);
 
-  const getTranslationCoordinates = useCallback(
-    (
-      event: PressEvent,
-    ): {
-      startPoint: IPoint;
-      endPoint: IPoint;
-    } | null => {
-      if (!triggerRef.current || !surfaceRef.current) {
-        return null;
-      }
-
-      const { width, height } = triggerRef.current.getBoundingClientRect();
-
-      // End in the center
-      const endPoint = {
-        x: (width - initialSizeRef.current) / 2,
-        y: (height - initialSizeRef.current) / 2,
-      };
-
-      const startPoint = {
-        x: event.x - surfaceRef.current.offsetLeft,
-        y: event.y - surfaceRef.current.offsetTop,
-      };
-
-      // Center around start point
-      const centeredStartPoint = {
-        x: startPoint.x - initialSizeRef.current / 2,
-        y: startPoint.y - initialSizeRef.current / 2,
-      };
-
-      return { startPoint: centeredStartPoint, endPoint };
-    },
-    [triggerRef, surfaceRef],
-  );
-
   const startPressAnimation = useCallback(
-    (event: PressEvent): void => {
-      if (!surfaceRef?.current) {
+    (event: React.PointerEvent | React.MouseEvent): void => {
+      if (!surfaceRef.current) {
         return;
       }
 
       setAnimating(true);
       growAnimationRef.current?.cancel();
       determineRippleSize();
-      const translationCoordinates = getTranslationCoordinates(event);
-      if (!translationCoordinates) {
+
+      if (!triggerRef.current || !initialSizeRef.current) {
         return;
       }
+      const translationCoordinates = getTranslationCoordinates(
+        triggerRef.current,
+        surfaceRef.current,
+        event,
+        initialSizeRef.current,
+      );
 
       const { startPoint, endPoint } = translationCoordinates;
       const translateStart = `${startPoint.x}px, ${startPoint.y}px`;
@@ -250,8 +329,9 @@ export const useRipple = <TElement extends HTMLElement>(
       );
     },
     [
+      triggerRef,
       surfaceRef,
-      getTranslationCoordinates,
+      initialSizeRef,
       determineRippleSize,
       options.animationFill,
       options.easing,
@@ -277,6 +357,7 @@ export const useRipple = <TElement extends HTMLElement>(
 
       return;
     }
+
     void delay(options.minimumPressMs - pressAnimationPlayState).then(() => {
       if (growAnimationRef.current !== animation) {
         // A new press animation was started. The old animation was canceled and
@@ -288,20 +369,33 @@ export const useRipple = <TElement extends HTMLElement>(
     });
   }, [options.minimumPressMs]);
 
-  const handlePointerDown = useCallback(
-    (event: PressEvent): void => {
-      if (!!activeTarget || pressed || disabled) {
+  const handlePointerDown: React.PointerEventHandler = useCallback(
+    (event): void => {
+      if (!!activeTarget || !shouldReactToEvent(event)) {
         return;
       }
 
       activeTarget = event.target;
 
+      rippleStartEventRef.current = event;
       if (!isTouch(event)) {
         stateRef.current = IState.WaitingForClick;
         startPressAnimation(event);
 
         return;
       }
+
+      // After a longpress contextmenu event, an extra `pointerdown` can be
+      // dispatched to the pressed element. Check that the down is within bounds
+      // of the element in this case.
+      if (
+        checkBoundsAfterContextMenuRef.current &&
+        (!triggerRef.current || !inBounds(triggerRef.current, event))
+      ) {
+        return;
+      }
+
+      checkBoundsAfterContextMenuRef.current = false;
 
       // Wait for a hold after touch delay.
       stateRef.current = IState.TouchDelay;
@@ -314,12 +408,12 @@ export const useRipple = <TElement extends HTMLElement>(
         startPressAnimation(event);
       });
     },
-    [disabled, pressed, startPressAnimation, options.touchDelayMs],
+    [shouldReactToEvent, triggerRef, startPressAnimation, options.touchDelayMs],
   );
 
-  const handlePointerUp = useCallback(
-    (event: PressEvent) => {
-      if (disabled) {
+  const handlePointerUp: React.PointerEventHandler = useCallback(
+    (event) => {
+      if (!shouldReactToEvent(event)) {
         return;
       }
 
@@ -331,17 +425,19 @@ export const useRipple = <TElement extends HTMLElement>(
 
       if (stateRef.current === IState.TouchDelay) {
         stateRef.current = IState.WaitingForClick;
-        startPressAnimation(event);
+        if (rippleStartEventRef.current) {
+          startPressAnimation(rippleStartEventRef.current);
+        }
 
         return;
       }
     },
-    [disabled, startPressAnimation],
+    [shouldReactToEvent, startPressAnimation],
   );
 
-  const handlePointerLeave: PointerEventHandler<FocusableElement> = useCallback(
+  const handlePointerLeave: React.PointerEventHandler = useCallback(
     (event) => {
-      if (isTouch(event)) {
+      if (!shouldReactToEvent(event)) {
         return;
       }
 
@@ -350,35 +446,61 @@ export const useRipple = <TElement extends HTMLElement>(
         endPressAnimation();
       }
     },
-    [endPressAnimation],
+    [shouldReactToEvent, endPressAnimation],
   );
 
-  const handlePressStart = useCallback(
-    (event: PressEvent) => {
-      setPressed(true);
-      handlePointerDown(event);
+  const handlePointerCancel: React.PointerEventHandler = useCallback(
+    (event) => {
+      if (!shouldReactToEvent(event)) {
+        return;
+      }
+
+      endPressAnimation();
     },
-    [handlePointerDown],
+    [shouldReactToEvent, endPressAnimation],
   );
 
-  const handlePressEnd = useCallback(
-    (event: PressEvent) => {
-      setPressed(false);
-      handlePointerUp(event);
+  const handleClick: React.MouseEventHandler = useCallback(
+    (event) => {
+      // Click is a MouseEvent in Firefox and Safari, so we cannot use
+      // `shouldReactToEvent`.
+      if (disabled) {
+        return;
+      }
 
-      if (stateRef.current !== IState.Inactive) {
+      if (stateRef.current === IState.WaitingForClick) {
+        void endPressAnimation();
+
+        return;
+      }
+
+      if (!!activeTarget && stateRef.current === IState.Inactive) {
+        activeTarget = event.target;
+
+        // Keyboard synthesized click event
+        startPressAnimation(event);
         void endPressAnimation();
       }
     },
-    [handlePointerUp, endPressAnimation],
+    [disabled, startPressAnimation, endPressAnimation],
   );
+
+  const handleContextMenu = useCallback(() => {
+    if (disabled) {
+      return;
+    }
+
+    checkBoundsAfterContextMenuRef.current = true;
+    void endPressAnimation();
+  }, [disabled, endPressAnimation]);
 
   return {
     animating,
-    onPressStart: handlePressStart,
-    onPressEnd: handlePressEnd,
+    onPointerDown: handlePointerDown,
+    onPointerUp: handlePointerUp,
     onPointerLeave: handlePointerLeave,
-    onPointerCancel: endPressAnimation,
-    onContextMenu: endPressAnimation,
+    onPointerCancel: handlePointerCancel,
+    onClick: handleClick,
+    onContextMenu: handleContextMenu,
   };
 };

@@ -86,7 +86,7 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
 
     return (
       <Paper
-        {...mergeProps(other, stateLayer.interactionsContext.triggerProps)}
+        {...mergeProps(stateLayer.interactionsContext.triggerProps, other)}
         {...getStyles('root')}
         {...attributes}
         ref={handleRef}

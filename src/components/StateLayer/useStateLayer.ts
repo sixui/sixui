@@ -1,4 +1,4 @@
-import type { HoverEvents, PressEvent, PressEvents } from 'react-aria';
+import type { HoverEvents, PressEvents } from 'react-aria';
 import { useRef } from 'react';
 import { mergeProps } from 'react-aria';
 
@@ -27,21 +27,12 @@ export type IUseStateLayerResult<TElement extends HTMLElement = HTMLElement> = {
 export const useStateLayer = <TElement extends HTMLElement>(
   props?: IUseStateLayerProps,
 ): IUseStateLayerResult<TElement> => {
-  const { disabled, interactions, hoverEvents, pressEvents, focusWithin } =
-    props ?? {};
+  const { disabled, interactions, hoverEvents, focusWithin } = props ?? {};
   const surfaceRef = useRef<HTMLDivElement>(null);
-
-  const handlePressStart = (event: PressEvent): void => onPressStart?.(event);
-  const handlePressEnd = (event: PressEvent): void => onPressEnd?.(event);
 
   const interactionsContext = useInteractions<TElement>({
     events: {
       hover: hoverEvents ?? true,
-      press:
-        mergeProps(pressEvents, {
-          onPressStart: handlePressStart,
-          onPressEnd: handlePressEnd,
-        }) ?? true,
       focus: {
         within: focusWithin,
       },
@@ -54,10 +45,11 @@ export const useStateLayer = <TElement extends HTMLElement>(
   const triggerRef = useRef<TElement>(null);
   const {
     animating,
-    onPressStart,
-    onPressEnd,
+    onPointerDown,
+    onPointerUp,
     onPointerLeave,
     onPointerCancel,
+    onClick,
     onContextMenu,
   } = useRipple({
     triggerRef,
@@ -70,8 +62,11 @@ export const useStateLayer = <TElement extends HTMLElement>(
     interactionsContext: {
       ...interactionsContext,
       triggerProps: mergeProps(interactionsContext.triggerProps, {
+        onPointerDown,
+        onPointerUp,
         onPointerLeave,
         onPointerCancel,
+        onClick,
         onContextMenu,
       }),
     },
