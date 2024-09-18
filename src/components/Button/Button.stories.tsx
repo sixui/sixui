@@ -20,7 +20,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onPress: (...args) => sbHandleEvent('onPress', args, 1000),
+  onClick: (...args) => sbHandleEvent('onClick', args, 1000),
   children: 'Button',
 } satisfies Partial<IButtonProps>;
 

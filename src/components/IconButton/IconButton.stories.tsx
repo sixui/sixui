@@ -20,7 +20,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onPress: (...args) => sbHandleEvent('onPress', args, 1000),
+  onClick: (...args) => sbHandleEvent('onClick', args, 1000),
   icon: <FontAwesomeIcon icon={faHeart} />,
   selectedIcon: <FontAwesomeIcon icon={faHeartSolid} />,
 } satisfies Partial<IIconButtonProps>;
@@ -45,7 +45,7 @@ const IconButtonShowcase = makeComponentShowcase(IconButton);
 export const Variants: IStory = {
   render: (props) => (
     <IconButtonShowcase
-      verticalAlign="center"
+      verticalAlign='center'
       props={props}
       cols={(
         [

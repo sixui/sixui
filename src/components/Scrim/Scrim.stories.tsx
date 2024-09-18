@@ -36,12 +36,7 @@ const AnimatedScrimDemo: React.FC<IAnimatedScrimDemoProps> = (props) => {
 
   return (
     <>
-      <Button
-        onClick={() => {
-          console.log('__X');
-          toggleIsVisible();
-        }}
-      >
+      <Button onClick={() => toggleIsVisible()}>
         {isVisible ? 'Click on the scrim to dismiss' : 'Show scrim'}
       </Button>
 

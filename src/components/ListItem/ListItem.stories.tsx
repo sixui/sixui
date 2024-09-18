@@ -26,7 +26,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onPress: (...args) => sbHandleEvent('onPress', args, 1000),
+  onClick: (...args) => sbHandleEvent('onClick', args, 1000),
   outlineStyle: 'dashed',
   w: '$40',
 } satisfies Partial<IListItemProps>;
@@ -136,7 +136,7 @@ export const Variants: IStory = {
 export const Standard: IStory = {
   render: (props) => (
     <ListItemShowcase
-      horizontalAlign="start"
+      horizontalAlign='start'
       props={props}
       cols={states}
       rows={rows}
@@ -152,7 +152,7 @@ export const Standard: IStory = {
 export const Danger: IStory = {
   render: (props) => (
     <ListItemShowcase
-      horizontalAlign="start"
+      horizontalAlign='start'
       props={props}
       cols={states}
       rows={rows}
