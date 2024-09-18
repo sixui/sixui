@@ -1,15 +1,12 @@
-import type { FloatingContext, FloatingOverlayProps } from '@floating-ui/react';
-
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { IScrimThemeFactory, scrimTheme } from './Scrim.css';
 
-export type IScrimVariant = 'darken' | 'lighten';
-
-export interface IScrimOwnProps extends FloatingOverlayProps {
-  floatingContext: FloatingContext;
+export interface IScrimOwnProps {
   children?: React.ReactNode;
+  fixed?: boolean;
+  center?: boolean;
 }
 
 export interface IScrimProps

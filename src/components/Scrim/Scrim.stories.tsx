@@ -1,57 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
-import {
-  FloatingFocusManager,
-  useClick,
-  useDismiss,
-  useFloating,
-  useInteractions,
-} from '@floating-ui/react';
-import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
-import type { IOmit } from '~/helpers/types';
-import type { IScrimProps, IScrimVariant } from './Scrim.types';
+import type { IScrimProps } from './Scrim.types';
 import { Button } from '../Button';
 import { makeComponentShowcase } from '../ComponentShowcase';
 import { Scrim } from './Scrim';
+import { useToggle } from '~/hooks/useToggle';
+import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-type IScrimDemoProps = IOmit<IScrimProps, 'floatingContext'>;
+type IScrimDemoProps = IScrimProps;
 
 const ScrimDemo: React.FC<IScrimDemoProps> = (props) => {
-  const { children, ...other } = props;
-  const [opened, setOpened] = useState(false);
-
-  const floating = useFloating<HTMLButtonElement>({
-    open: opened,
-    onOpenChange: setOpened,
-  });
-  const click = useClick(floating.context);
-  const dismiss = useDismiss(floating.context, {
-    outsidePressEvent: 'pointerdown',
-  });
-  const interactions = useInteractions([click, dismiss]);
+  const { ...other } = props;
+  const [isVisible, toggleIsVisible] = useToggle([false, true]);
 
   return (
     <>
-      <Button
-        {...interactions.getReferenceProps({
-          ref: floating.refs.setReference,
-          onClick: () => setOpened(true),
-        })}
-      >
-        Show scrim
-      </Button>
-
-      <Scrim floatingContext={floating.context} {...other}>
-        <FloatingFocusManager context={floating.context}>
-          <div
-            {...interactions.getFloatingProps()}
-            ref={floating.refs.setFloating}
-          >
-            {children}
-          </div>
-        </FloatingFocusManager>
-      </Scrim>
+      <Button onClick={() => toggleIsVisible()}>Show scrim</Button>
+      {isVisible && <Scrim {...other} onClick={() => toggleIsVisible(false)} />}
     </>
   );
 };
@@ -66,17 +31,19 @@ const defaultArgs = {} satisfies Partial<IScrimProps>;
 
 const ScrimDemoShowcase = makeComponentShowcase(ScrimDemo);
 
-export const Variants: IStory = {
-  render: (props) => (
-    <ScrimDemoShowcase
-      props={props}
-      cols={(['darken', 'lighten'] as Array<IScrimVariant>).map((variant) => ({
-        legend: capitalizeFirstLetter(variant),
-        props: { variant },
-      }))}
-    />
-  ),
+export const Basic: IStory = {
+  render: (props) => <ScrimDemoShowcase props={props} />,
   args: defaultArgs,
+};
+
+export const Blurred: IStory = {
+  render: (props) => <ScrimDemoShowcase props={props} />,
+  args: {
+    ...defaultArgs,
+    style: assignInlineVars({
+      [Scrim.theme.tokens.container.filter]: 'blur(2px)',
+    }),
+  },
 };
 
 export default meta;

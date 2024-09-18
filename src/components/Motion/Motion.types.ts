@@ -11,7 +11,7 @@ export type IMotionStatus = 'unmounted' | 'initial' | 'open' | 'close';
 
 export type IMotionOrigin = 'center' | 'corner' | 'edge' | 'cursor';
 
-export type IMotionPattern = 'enterExit' | 'enterExitOffScreen';
+export type IMotionPattern = 'enterExit' | 'enterExitOffScreen' | 'fade';
 
 export interface IMotionOwnProps {
   /**

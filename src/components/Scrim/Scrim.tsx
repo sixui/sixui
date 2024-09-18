@@ -1,11 +1,10 @@
-import { FloatingOverlay, useTransitionStatus } from '@floating-ui/react';
-
 import type { IScrimThemeFactory } from './Scrim.css';
 import type { IScrimFactory } from './Scrim.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { scrimTheme } from './Scrim.css';
+import { Box } from '../Box';
 
 const COMPONENT_NAME = 'Scrim';
 
@@ -17,14 +16,11 @@ export const Scrim = polymorphicComponentFactory<IScrimFactory>(
       styles,
       style,
       variant = 'darken',
-      floatingContext,
       children,
+      fixed,
+      center,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-
-    const transitionStatus = useTransitionStatus(floatingContext, {
-      duration: 150, // motionTokens.duration$short3
-    });
 
     const { getStyles } = useComponentTheme<IScrimThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -35,18 +31,18 @@ export const Scrim = polymorphicComponentFactory<IScrimFactory>(
       theme: scrimTheme,
       variant,
       modifiers: {
-        status: transitionStatus.status,
+        fixed,
+        center,
       },
     });
 
-    if (!transitionStatus.isMounted) {
-      return null;
-    }
-
     return (
-      <FloatingOverlay {...other} {...getStyles('root')} ref={forwardedRef}>
+      <Box {...other} {...getStyles('root')} ref={forwardedRef}>
         {children}
-      </FloatingOverlay>
+      </Box>
     );
   },
 );
+
+Scrim.theme = scrimTheme;
+Scrim.displayName = `@sixui/${COMPONENT_NAME}`;

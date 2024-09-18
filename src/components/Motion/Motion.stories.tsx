@@ -30,14 +30,14 @@ const MotionDemo: React.FC<IMotionDemoProps> = (props) => {
       unmountOnExit
     >
       {(status) => (
-        <Motion {...other} status={status} ref={transitionNodeRef} z="$overlay">
+        <Motion {...other} status={status} ref={transitionNodeRef} z='$overlay'>
           <Placeholder
-            surface="$primary"
-            c="$onPrimary"
-            w="$16"
-            h="$16"
-            corner="$sm"
-            label="Hi!"
+            surface='$primary'
+            c='$onPrimary'
+            w='$16'
+            h='$16'
+            corner='$sm'
+            label='Hi!'
           />
         </Motion>
       )}

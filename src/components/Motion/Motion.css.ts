@@ -40,13 +40,16 @@ const classNames = createStyles({
   },
   root$unmounted: {},
   root$initial: {
-    opacity: 0,
-
     selectors: {
+      [getModifierSelector<IModifier>({ pattern: 'fade' })]: {
+        opacity: 0,
+      },
       [getModifierSelector<IModifier>({ pattern: 'enterExit' })]: {
+        opacity: 0,
         transform: 'scale(0.5)',
       },
       [getModifierSelector<IModifier>({ pattern: 'enterExitOffScreen' })]: {
+        opacity: 0,
         transform: 'translate(-130%, -130%)',
       },
       [[
@@ -92,16 +95,20 @@ const classNames = createStyles({
     },
   },
   root$open: {
-    opacity: 1,
     transitionProperty: 'opacity, transform',
     transitionDuration: themeTokens.motion.duration.long.$3,
     transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
 
     selectors: {
+      [getModifierSelector<IModifier>({ pattern: 'fade' })]: {
+        opacity: 1,
+      },
       [getModifierSelector<IModifier>({ pattern: 'enterExit' })]: {
+        opacity: 1,
         transform: 'scale(1)',
       },
       [getModifierSelector<IModifier>({ pattern: 'enterExitOffScreen' })]: {
+        opacity: 1,
         transform: 'translate(0)',
       },
       [[
@@ -131,16 +138,20 @@ const classNames = createStyles({
     },
   },
   root$close: {
-    opacity: 0,
     transitionProperty: 'opacity, transform',
     transitionDuration: themeTokens.motion.duration.short.$3,
     transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
 
     selectors: {
+      [getModifierSelector<IModifier>({ pattern: 'fade' })]: {
+        opacity: 0,
+      },
       [getModifierSelector<IModifier>({ pattern: 'enterExit' })]: {
+        opacity: 0,
         transform: 'scale(0.5)',
       },
       [getModifierSelector<IModifier>({ pattern: 'enterExitOffScreen' })]: {
+        opacity: 0,
         transform: 'translate(-130%, -130%)',
       },
       [[
