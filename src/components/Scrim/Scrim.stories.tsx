@@ -6,6 +6,7 @@ import { makeComponentShowcase } from '../ComponentShowcase';
 import { Scrim } from './Scrim';
 import { useToggle } from '~/hooks/useToggle';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
+import { themeTokens } from '../ThemeProvider';
 
 type IScrimDemoProps = IScrimProps;
 
@@ -15,7 +16,9 @@ const ScrimDemo: React.FC<IScrimDemoProps> = (props) => {
 
   return (
     <>
-      <Button onClick={() => toggleIsVisible()}>Show scrim</Button>
+      <Button onClick={() => toggleIsVisible()}>
+        {isVisible ? 'Click on the scrim to dismiss' : 'Show scrim'}
+      </Button>
       {isVisible && <Scrim {...other} onClick={() => toggleIsVisible(false)} />}
     </>
   );
@@ -42,6 +45,17 @@ export const Blurred: IStory = {
     ...defaultArgs,
     style: assignInlineVars({
       [Scrim.theme.tokens.container.filter]: 'blur(2px)',
+    }),
+  },
+};
+
+export const Colorized: IStory = {
+  render: (props) => <ScrimDemoShowcase props={props} />,
+  args: {
+    ...defaultArgs,
+    style: assignInlineVars({
+      [Scrim.theme.tokens.container.color]:
+        `color-mix(in srgb, ${themeTokens.colorScheme.error} 30%, transparent)`,
     }),
   },
 };
