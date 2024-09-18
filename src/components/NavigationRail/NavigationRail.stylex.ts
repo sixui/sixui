@@ -1,11 +1,11 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
 import { scaleTokens } from '~/themes/base/scale.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
-import { densityTokens } from '~/themes/base/density.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
-import { outlineTokens } from '~/themes/base/outline.stylex';
 import { elevationTokens } from '../Elevation/Elevation.stylex';
 
 const MIN_DENSITY = -1;

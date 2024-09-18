@@ -2,10 +2,10 @@ import { forwardRef } from 'react';
 
 import type { INavigationDrawerContentProps } from './NavigationDrawerContent.types';
 import { useStyles } from '~/hooks/useStyles';
-import { SideSheetContent } from '../SideSheetContent';
 import { NavigationDrawerContentDestination } from '../NavigationDrawerContentDestination';
-import { NavigationDrawerContentDivider } from '../NavigationDrawerContentDivider';
 import { NavigationDrawerContentDestinationList } from '../NavigationDrawerContentDestinationList';
+import { NavigationDrawerContentDivider } from '../NavigationDrawerContentDivider';
+import { SideSheetContent } from '../SideSheetContent';
 import { navigationDrawerContentStyles } from './NavigationDrawerContent.styles';
 import { navigationDrawerContentTheme } from './NavigationDrawerContent.stylex';
 import { navigationDrawerContentVariantStyles } from './variants';

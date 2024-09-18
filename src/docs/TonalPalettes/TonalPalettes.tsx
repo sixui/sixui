@@ -1,8 +1,8 @@
 import type { ITone } from './TonalPalette.types';
 import type { ITonalPalettesProps } from './TonalPalettes.types';
-import { tonalPalettesTokens } from '~/themes/base/tonalPalettes.stylex';
 import { Stack } from '~/components/Stack';
 import { Text } from '~/components/Text';
+import { tonalPalettesTokens } from '~/themes/base/tonalPalettes.stylex';
 import { TonalPalette } from './TonalPalette';
 
 type ITonalPalette = {
@@ -138,7 +138,7 @@ export const TonalPalettes: React.FC<ITonalPalettesProps> = () => (
   <Stack gap={6}>
     {tonalPalettes.map((palette) => (
       <Stack key={palette.title} gap={2}>
-        <Text variant='label' scale='lg'>
+        <Text variant="label" scale="lg">
           {palette.title}
         </Text>
         <TonalPalette tones={palette.tones} key={palette.title} />

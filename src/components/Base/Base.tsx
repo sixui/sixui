@@ -2,8 +2,8 @@ import { forwardRef } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import type { IBaseProps } from './Base.types';
-import { isProduction } from '~/helpers/isProduction';
 import { dataProps } from '~/helpers/dataProps';
+import { isProduction } from '~/helpers/isProduction';
 import {
   createPolymorphicComponent,
   IWithAsProp,

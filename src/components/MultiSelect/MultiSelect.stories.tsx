@@ -3,10 +3,10 @@ import { useState } from 'react';
 
 import type { IMultiSelectProps } from './MultiSelect.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { ListItem } from '../ListItem';
 import { fruits } from '../FilterableList/fruits';
-import { MultiSelect } from './MultiSelect';
+import { ListItem } from '../ListItem';
 import { Stack } from '../Stack';
+import { MultiSelect } from './MultiSelect';
 
 const meta = {
   component: MultiSelect,
@@ -31,7 +31,7 @@ const MultiSelectDemo: React.FC<IMultiSelectProps> = (props) => {
   };
 
   return (
-    <Stack align='stretch' gap={2}>
+    <Stack align="stretch" gap={2}>
       <MultiSelect {...props} onChange={handleChange} />
       <div>
         Values:{' '}

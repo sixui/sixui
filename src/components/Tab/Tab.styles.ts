@@ -1,11 +1,11 @@
 import stylex from '@stylexjs/stylex';
 
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { elevationTokens } from '../Elevation/Elevation.stylex';
 import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
 import { stateLayerTokens } from '../StateLayer/StateLayer.stylex';
-import { tabTokens } from './Tab.stylex';
 import { tabStateTokens } from './Tab.state.stylex';
-import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { tabTokens } from './Tab.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tabs/internal/_tab.scss
 

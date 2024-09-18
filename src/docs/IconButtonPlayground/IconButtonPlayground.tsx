@@ -1,13 +1,11 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IPlaygroundSections } from '~/docs/Playground';
+import type { IIconButtonPlaygroundDemoProps } from './IconButtonPlaygroundDemo';
 import { Playground } from '~/docs/Playground';
-import {
-  IconButtonPlaygroundDemo,
-  type IIconButtonPlaygroundDemoProps,
-} from './IconButtonPlaygroundDemo';
+import { IconButtonPlaygroundDemo } from './IconButtonPlaygroundDemo';
 
 export const iconbuttonPlaygroundSections: IPlaygroundSections<IIconButtonPlaygroundDemoProps> =
   {

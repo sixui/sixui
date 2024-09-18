@@ -2,9 +2,9 @@ import { forwardRef } from 'react';
 import { createSequence } from '@olivierpascal/helpers';
 
 import type { IHslColorPickerContentProps } from './HslColorPickerContent.types';
+import { generateAnalogousColorPalette } from '~/helpers/colors/generateAnalogousPalette';
 import { generateAnalogousColorPalettes } from '~/helpers/colors/generateAnalogousPalettes';
 import { ColorPickerContent } from '../ColorPickerContent';
-import { generateAnalogousColorPalette } from '~/helpers/colors/generateAnalogousPalette';
 
 export const HslColorPickerContent = forwardRef<
   HTMLDivElement,

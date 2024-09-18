@@ -1,11 +1,12 @@
 import { useCallback, useMemo, useRef } from 'react';
 
+import type { ITabsContextValue } from './Tabs.context';
 import type { ITabsProps } from './Tabs.types';
-import { useControlledValue } from '~/hooks/useControlledValue';
 import { EASING } from '~/helpers/animation';
 import { shouldReduceMotion } from '~/helpers/shouldReduceAnimations';
+import { useControlledValue } from '~/hooks/useControlledValue';
 import { useId } from '~/hooks/useId';
-import { TabsContext, type ITabsContextValue } from './Tabs.context';
+import { TabsContext } from './Tabs.context';
 
 export const Tabs: React.FC<ITabsProps> = (props) => {
   const {

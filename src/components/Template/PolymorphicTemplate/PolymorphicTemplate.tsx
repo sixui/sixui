@@ -1,3 +1,4 @@
+import type { IPolymorphicTemplateThemeFactory } from './PolymorphicTemplate.css';
 import type { IPolymorphicTemplateFactory } from './PolymorphicTemplate.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
@@ -6,7 +7,6 @@ import { Box } from '../../Box';
 import {
   polymorphicTemplateTheme,
   polymorphicTemplateThemeVariants,
-  type IPolymorphicTemplateThemeFactory,
 } from './PolymorphicTemplate.css';
 
 const COMPONENT_NAME = 'PolymorphicTemplate';

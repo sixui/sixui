@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
 import type {
-  IFilterableListItemModifiers,
   IFilterableListBaseInternalRenderer,
   IFilterableListBaseProps,
+  IFilterableListItemModifiers,
 } from './FilterableListBase.types';
 import { isFunction } from '~/helpers/isFunction';
 import { useControlledValue } from '~/hooks/useControlledValue';

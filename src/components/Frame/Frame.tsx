@@ -1,5 +1,5 @@
-import { useMergeRefs } from '@floating-ui/react';
 import { forwardRef, useState } from 'react';
+import { useMergeRefs } from '@floating-ui/react';
 import { createPortal } from 'react-dom';
 
 import type { IFrameProps } from './Frame.types';
@@ -30,11 +30,11 @@ export const Frame = forwardRef<HTMLIFrameElement, IFrameProps>(
 
     return (
       <>
-        <Base as='iframe' {...other} ref={handleRef} onLoad={handleLoad}>
+        <Base as="iframe" {...other} ref={handleRef} onLoad={handleLoad}>
           {iframeContentWindow && iframeDocument ? (
             <>
               {createPortal(
-                <div id='sixui-root'>
+                <div id="sixui-root">
                   {/* <ResponsiveStyles /> */}
                   {isFunction(children)
                     ? children({ window: iframeContentWindow })
@@ -45,7 +45,7 @@ export const Frame = forwardRef<HTMLIFrameElement, IFrameProps>(
 
               {parentStyles
                 ? createPortal(
-                    <style type='text/css'>{parentStyles}</style>,
+                    <style type="text/css">{parentStyles}</style>,
                     iframeDocument.head,
                   )
                 : null}

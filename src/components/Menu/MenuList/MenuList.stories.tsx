@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IMenuListProps } from './MenuList.types';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { makeComponentShowcase } from '~/components/ComponentShowcase';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { ListItem } from '../../ListItem';
 import { Placeholder } from '../../Placeholder';
 import { MenuDivider } from '../MenuDivider';
@@ -44,7 +44,7 @@ export const Scales: IStory = {
   render: (props) => (
     <MenuListShowcase
       props={props}
-      verticalAlign='start'
+      verticalAlign="start"
       cols={[
         { legend: 'Extra small', props: { scale: 'xs' } },
         { legend: 'Small', props: { scale: 'sm' } },
@@ -60,7 +60,7 @@ export const Scales: IStory = {
 export const Densities: IStory = {
   render: (props) => (
     <MenuListShowcase
-      verticalAlign='start'
+      verticalAlign="start"
       cols={[-6, -4, -2, 0, 2].map((density) => ({
         legend: String(density),
         props: {
@@ -85,8 +85,8 @@ export const WithHeaderAndFooter: IStory = {
   render: (props) => <MenuList {...props} />,
   args: {
     ...defaultArgs,
-    header: <Placeholder label='Header' />,
-    footer: <Placeholder label='Footer' />,
+    header: <Placeholder label="Header" />,
+    footer: <Placeholder label="Footer" />,
   },
 };
 

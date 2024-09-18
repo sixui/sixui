@@ -1,13 +1,11 @@
 import { createTheme } from '@vanilla-extract/css';
 
-import {
-  componentThemeFactory,
-  type IComponentThemeFactory,
-} from '~/utils/styles/componentThemeFactory';
-import { createStyles } from '~/utils/styles/createStyles';
+import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
-import { space } from '~/helpers/styles/space';
 import { px } from '~/helpers/styles/px';
+import { space } from '~/helpers/styles/space';
+import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createStyles } from '~/utils/styles/createStyles';
 import { themeTokens } from '../ThemeProvider';
 
 const [tokensClassName, tokens] = createTheme({

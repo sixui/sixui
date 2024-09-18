@@ -1,14 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IButtonProps, IButtonVariant } from './Button.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import {
-  type IComponentPresentation,
-  makeComponentShowcase,
-} from '../ComponentShowcase';
+import { makeComponentShowcase } from '../ComponentShowcase';
 import { Button } from './Button';
 
 // https://m3.material.io/components/buttons/overview

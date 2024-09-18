@@ -3,10 +3,10 @@ import stylex from '@stylexjs/stylex';
 
 import type { ISideSheetContentProps } from './SideSheetContent.types';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { scaleTokens } from '~/themes/base/scale.stylex';
 import { outlineTokens } from '~/themes/base/outline.stylex';
-import { SideSheetContent } from './SideSheetContent';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { Frame } from '../Frame';
+import { SideSheetContent } from './SideSheetContent';
 
 const meta = {
   component: SideSheetContent,

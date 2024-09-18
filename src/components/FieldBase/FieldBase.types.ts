@@ -1,7 +1,7 @@
+import type { IRendererWithForwardedProps } from '~/helpers/react/forwardablePropsTypes';
 import type { IOmit } from '~/helpers/types';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { IRendererWithForwardedProps } from '~/helpers/react/forwardablePropsTypes';
 import type { IBoxProps } from '../Box';
 import type { fieldBaseTheme, IFieldBaseThemeFactory } from './FieldBase.css';
 

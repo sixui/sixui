@@ -3,12 +3,12 @@ import stylex from '@stylexjs/stylex';
 
 import type { IColorTagProps } from './ColorTag.types';
 import { getTextContrastColor } from '~/helpers/colors/getTextContrastColor';
-import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
 import { useStyles } from '~/hooks/useStyles';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { Base } from '../Base';
-import { colorTagTokens, colorTagTheme } from './ColorTag.stylex';
 import { colorTagStyles } from './ColorTag.styles';
+import { colorTagTheme, colorTagTokens } from './ColorTag.stylex';
 
 const localStyles = stylex.create({
   backgroundColor: (color: string) => ({

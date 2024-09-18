@@ -1,15 +1,13 @@
 import { createTheme, keyframes } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import type { IInteraction } from '~/hooks/useInteractions';
-import {
-  componentThemeFactory,
-  type IComponentThemeFactory,
-} from '~/utils/styles/componentThemeFactory';
-import { createStyles } from '~/utils/styles/createStyles';
+import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
+import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createStyles } from '~/utils/styles/createStyles';
 import { themeTokens } from '../ThemeProvider';
-import { calc } from '@vanilla-extract/css-utils';
 
 type IModifier = IInteraction | 'visible' | 'variant';
 

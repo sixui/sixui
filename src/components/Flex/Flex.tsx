@@ -1,10 +1,11 @@
+import type { IFlexThemeFactory } from './Flex.css';
 import type { IFlexFactory } from './Flex.types';
+import { Box } from '~/components/Box';
+import { filterFalsyChildren } from '~/helpers/react/filterFalsyChildren';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '~/components/Box';
-import { filterFalsyChildren } from '~/helpers/react/filterFalsyChildren';
-import { flexTheme, flexSprinkles, type IFlexThemeFactory } from './Flex.css';
+import { flexSprinkles, flexTheme } from './Flex.css';
 
 const COMPONENT_NAME = 'Flex';
 

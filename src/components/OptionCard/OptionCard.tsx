@@ -2,16 +2,14 @@ import { forwardRef, useContext, useRef } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 import { asArray } from '@olivierpascal/helpers';
 
+import type { IWithAsProp } from '~/utils/component/createPolymorphicComponent';
 import type { IOptionCardProps } from './OptionCard.types';
-import {
-  createPolymorphicComponent,
-  type IWithAsProp,
-} from '~/utils/component/createPolymorphicComponent';
 import { isFunction } from '~/helpers/isFunction';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useStyles } from '~/hooks/useStyles';
-import { CardContent } from '../CardContent';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { Card } from '../Card';
+import { CardContent } from '../CardContent';
 import { Labeled, LabeledContext } from '../Labeled';
 import { RadioGroupContext } from '../RadioGroup';
 import { optionCardCardStyles, optionCardStyles } from './OptionCard.styles';
@@ -69,7 +67,7 @@ export const OptionCard = createPolymorphicComponent<'div', IOptionCardProps>(
 
       return (
         <Card
-          variant='outlined'
+          variant="outlined"
           onClick={() => controlRef.current?.click()}
           disabled={visuallyDisabled}
           sx={[
@@ -83,7 +81,7 @@ export const OptionCard = createPolymorphicComponent<'div', IOptionCardProps>(
           {Component ? null : (
             <input
               ref={controlHandleRef}
-              type='checkbox'
+              type="checkbox"
               onChange={handleChange}
               checked={checkedValue}
               tabIndex={-1}
@@ -93,7 +91,7 @@ export const OptionCard = createPolymorphicComponent<'div', IOptionCardProps>(
 
           <CardContent gap={2}>
             <Labeled
-              labelPosition='right'
+              labelPosition="right"
               label={label}
               supportingText={supportingText}
               disabled={visuallyDisabled}

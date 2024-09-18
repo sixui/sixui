@@ -1,26 +1,25 @@
 import { forwardRef, useCallback, useRef, useState } from 'react';
-import { asArray } from '@olivierpascal/helpers';
 import { useMergeRefs } from '@floating-ui/react';
+import { asArray } from '@olivierpascal/helpers';
 
 import type { IChipProps } from './Chip.types';
+import { iconCheckMark, iconXMark } from '~/assets/icons';
+import { executeLazyPromise } from '~/helpers/executeLazyPromise';
+import { useStyles } from '~/hooks/useStyles';
 import {
   createPolymorphicComponent,
   IWithAsProp,
 } from '~/utils/component/createPolymorphicComponent';
-import { executeLazyPromise } from '~/helpers/executeLazyPromise';
-import { useStyles } from '~/hooks/useStyles';
-import { iconCheckMark, iconXMark } from '~/assets/icons';
-import { useVisualState } from '../VisualState';
+import { Avatar } from '../Avatar';
+import { Base } from '../Base';
+import { ButtonBase } from '../ButtonBase';
 import { Elevation } from '../Elevation';
 import { FocusRing } from '../FocusRing';
-import { StateLayer } from '../StateLayer';
 import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
-import { ButtonBase } from '../ButtonBase';
-import { Avatar } from '../Avatar';
+import { StateLayer } from '../StateLayer';
 import { SvgIcon } from '../SvgIcon';
-import { Base } from '../Base';
 import { TouchTarget } from '../TouchTarget';
-import { chipVariantStyles } from './variants';
+import { useVisualState } from '../VisualState';
 import {
   chipCircularProgressIndicatorStyles,
   chipElevationStyles,
@@ -31,6 +30,7 @@ import {
   chipTrailingActionStateLayerStyles,
 } from './Chip.styles';
 import { chipTheme } from './Chip.stylex';
+import { chipVariantStyles } from './variants';
 
 // https://github.com/material-components/material-web/blob/main/chips/internal/chip.ts
 // https://github.com/material-components/material-web/blob/main/chips/internal/assist-chip.ts
@@ -277,7 +277,7 @@ export const Chip = createPolymorphicComponent<'div', IChipProps>(
             as={rootElement}
             href={href}
             onClick={(href ?? !onClick) ? undefined : handleClick}
-            role='button'
+            role="button"
             tabIndex={!interactive || other.disabled ? -1 : 0}
             onKeyDown={handleKeyDown}
             {...other}
@@ -412,7 +412,7 @@ export const Chip = createPolymorphicComponent<'div', IChipProps>(
               onFocus={handleTrailingActionFocus}
               disabled={other.disabled}
               readOnly={readOnly}
-              data-cy='delete'
+              data-cy="delete"
             >
               <span
                 {...getStyles(

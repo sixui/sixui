@@ -1,14 +1,14 @@
 import { forwardRef } from 'react';
 
 import type { ISideSheetContentProps } from './SideSheetContent.types';
-import { useStyles } from '~/hooks/useStyles';
-import { isFunction } from '~/helpers/isFunction';
 import { iconXMark } from '~/assets/icons';
+import { isFunction } from '~/helpers/isFunction';
+import { useStyles } from '~/hooks/useStyles';
+import { IconButton } from '../IconButton';
 import { PaperBase } from '../PaperBase';
+import { SvgIcon } from '../SvgIcon';
 import { sideSheetContentStyles } from './SideSheetContent.styles';
 import { sideSheetContentTheme } from './SideSheetContent.stylex';
-import { IconButton } from '../IconButton';
-import { SvgIcon } from '../SvgIcon';
 import { sideSheetVariantContentStyles } from './variants';
 
 export const SideSheetContent = forwardRef<

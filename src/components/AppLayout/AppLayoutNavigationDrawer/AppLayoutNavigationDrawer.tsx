@@ -1,21 +1,19 @@
 import { forwardRef, useRef } from 'react';
-import { CSSTransition } from 'react-transition-group';
 import { useMergeRefs } from '@floating-ui/react';
+import { CSSTransition } from 'react-transition-group';
 
+import type { ISideSheetContentStylesKey } from '~/components/SideSheetContent';
+import type { IAppLayoutNavigationDrawerStylesKey } from './AppLayoutNavigationDrawer.styles';
 import type { IAppLayoutNavigationDrawerProps } from './AppLayoutNavigationDrawer.types';
-import { useStyles } from '~/hooks/useStyles';
+import { Drawer } from '~/components/Drawer';
 import { FloatingTransition } from '~/components/FloatingTransition';
 import { NavigationDrawerContent } from '~/components/NavigationDrawerContent';
-import {
-  SideSheetContent,
-  type ISideSheetContentStylesKey,
-} from '~/components/SideSheetContent';
-import { Drawer } from '~/components/Drawer';
+import { SideSheetContent } from '~/components/SideSheetContent';
+import { useStyles } from '~/hooks/useStyles';
 import { useAppLayoutContext } from '../AppLayout.context';
 import {
   appLayoutNavigationDrawerSideSheetContentStyles,
   appLayoutNavigationDrawerStyles,
-  type IAppLayoutNavigationDrawerStylesKey,
 } from './AppLayoutNavigationDrawer.styles';
 
 export const AppLayoutNavigationDrawer = forwardRef<
@@ -101,8 +99,8 @@ export const AppLayoutNavigationDrawer = forwardRef<
           <FloatingTransition
             status={status}
             placement={anchor}
-            origin='edge'
-            pattern='enterExitOffScreen'
+            origin="edge"
+            pattern="enterExitOffScreen"
             sx={combineStyles('transitionContainer')}
             ref={transitionNodeHandleRef}
           >

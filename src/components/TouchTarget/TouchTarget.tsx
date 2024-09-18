@@ -1,12 +1,10 @@
+import type { ITouchTargetThemeFactory } from './TouchTarget.css';
 import type { ITouchTargetFactory } from './TouchTarget.types';
+import { Box } from '~/components/Box';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '~/components/Box';
-import {
-  touchTargetTheme,
-  type ITouchTargetThemeFactory,
-} from './TouchTarget.css';
+import { touchTargetTheme } from './TouchTarget.css';
 
 const COMPONENT_NAME = 'TouchTarget';
 

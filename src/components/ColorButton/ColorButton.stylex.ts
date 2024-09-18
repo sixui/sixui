@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { shapeTokens } from '~/themes/base/shape.stylex';
-import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
-import { stateTokens } from '~/themes/base/state.stylex';
 import { scaleTokens } from '~/themes/base/scale.stylex';
+import { shapeTokens } from '~/themes/base/shape.stylex';
+import { stateTokens } from '~/themes/base/state.stylex';
+import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
 
 const vars = {
   // container

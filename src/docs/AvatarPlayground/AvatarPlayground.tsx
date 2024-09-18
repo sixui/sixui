@@ -1,9 +1,7 @@
 import type { IPlaygroundSections } from '~/docs/Playground';
+import type { IAvatarPlaygroundDemoProps } from './AvatarPlaygroundDemo';
 import { Playground } from '~/docs/Playground';
-import {
-  AvatarPlaygroundDemo,
-  type IAvatarPlaygroundDemoProps,
-} from './AvatarPlaygroundDemo';
+import { AvatarPlaygroundDemo } from './AvatarPlaygroundDemo';
 
 export const avatarPlaygroundSections: IPlaygroundSections<IAvatarPlaygroundDemoProps> =
   {

@@ -2,9 +2,9 @@ import { forwardRef } from 'react';
 
 import type { ITabListProps } from './TabList.types';
 import { useStyles } from '~/hooks/useStyles';
+import { Base } from '../Base';
 import { Divider } from '../Divider';
 import { tabListStyles } from './TabList.styles';
-import { Base } from '../Base';
 
 export const TabList = forwardRef<HTMLInputElement, ITabListProps>(
   function TabList(props, forwardedRef) {
@@ -17,8 +17,8 @@ export const TabList = forwardRef<HTMLInputElement, ITabListProps>(
 
     return (
       <Base
-        role='tablist'
-        aria-orientation='horizontal'
+        role="tablist"
+        aria-orientation="horizontal"
         {...other}
         sx={[globalStyles, combineStyles('host'), sx]}
         ref={forwardedRef}

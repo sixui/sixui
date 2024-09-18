@@ -8,18 +8,18 @@ import {
 import { asArray } from '@olivierpascal/helpers';
 
 import type { IBreadcrumbsProps } from './Breadcrumbs.types';
+import { iconEllipsisHorizontal } from '~/assets/icons';
 import { isProduction } from '~/helpers/isProduction';
 import { isFragment } from '~/helpers/react/isFragment';
-import { iconEllipsisHorizontal } from '~/assets/icons';
-import { SvgIcon } from '../SvgIcon';
+import { useStyles } from '~/hooks/useStyles';
 import { ButtonBase } from '../ButtonBase';
+import { Stack } from '../Stack';
+import { SvgIcon } from '../SvgIcon';
 import {
   breadcrumbsExpandButtonFocusRingStyles,
   breadcrumbsStyles,
 } from './Breadcrumbs.styles';
 import { breadscrumbsTheme } from './Breadcrumbs.stylex';
-import { useStyles } from '~/hooks/useStyles';
-import { Stack } from '../Stack';
 
 export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
   function Breadcrumbs(props, forwardedRef) {
@@ -95,7 +95,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
 
       return [
         ...items.slice(0, itemCountBeforeCollapse),
-        <li key='ellipsis' {...getStyles('item')}>
+        <li key="ellipsis" {...getStyles('item')}>
           <ButtonBase
             sx={breadcrumbsStyles.expandButton}
             styles={innerStyles?.expandButton}
@@ -106,7 +106,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
               ],
             }}
             aria-label={expandText}
-            key='ellipsis'
+            key="ellipsis"
             onClick={handleClickExpand}
           >
             <SvgIcon sx={combineStyles('icon')} icon={iconEllipsisHorizontal} />
@@ -140,7 +140,7 @@ export const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
 
     return (
       <Stack
-        as='ol'
+        as="ol"
         horizontal
         gap={2}
         {...other}

@@ -1,14 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useEffect, useState } from 'react';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
+import type { IPlaceholderProps } from '../Placeholder';
 import type { IAnchoredProps } from './Anchored.types';
 import {
   IComponentShowcaseProps,
   makeComponentShowcase,
-  type IComponentPresentation,
 } from '../ComponentShowcase';
-import { Placeholder, type IPlaceholderProps } from '../Placeholder';
 import { Paper } from '../Paper';
+import { Placeholder } from '../Placeholder';
 import { Anchored } from './Anchored';
 
 const meta = {
@@ -26,9 +27,9 @@ const BadgeDemo: React.FC<IPlaceholderProps & { size: 'sm' | 'lg' }> = ({
   <Paper
     {...other}
     w={size === 'sm' ? '$4' : '$8'}
-    h='$4'
-    corner='$full'
-    surface='$primary'
+    h="$4"
+    corner="$full"
+    surface="$primary"
   />
 );
 
@@ -39,22 +40,22 @@ export const Variants: IStory = {
     <AnchoredShowcase
       props={props}
       cols={[
-        { props: { content: <BadgeDemo scale='sm' /> } },
-        { props: { content: <BadgeDemo scale='lg' /> } },
+        { props: { content: <BadgeDemo scale="sm" /> } },
+        { props: { content: <BadgeDemo scale="lg" /> } },
       ]}
       rows={[
         {
           legend: 'Rectangular overlap',
           props: {
             overlap: 'rectangular',
-            children: <Placeholder w='$12' h='$12' corner='$sm' />,
+            children: <Placeholder w="$12" h="$12" corner="$sm" />,
           },
         },
         {
           legend: 'Circular overlap',
           props: {
             overlap: 'circular',
-            children: <Placeholder w='$12' h='$12' corner='$full' />,
+            children: <Placeholder w="$12" h="$12" corner="$full" />,
           },
         },
       ]}
@@ -95,8 +96,8 @@ const colsPositions: Array<IComponentPresentation<IAnchoredProps>> = [
 ];
 
 const rowsContentSizes: Array<IComponentPresentation<IAnchoredProps>> = [
-  { legend: 'Short', props: { content: <BadgeDemo scale='sm' /> } },
-  { legend: 'Long', props: { content: <BadgeDemo scale='lg' /> } },
+  { legend: 'Short', props: { content: <BadgeDemo scale="sm" /> } },
+  { legend: 'Long', props: { content: <BadgeDemo scale="lg" /> } },
 ];
 
 export const RectangularOverlap: IStory = {
@@ -110,7 +111,7 @@ export const RectangularOverlap: IStory = {
   args: {
     ...defaultArgs,
     overlap: 'rectangular',
-    children: <Placeholder w='$12' h='$12' corner='$sm' />,
+    children: <Placeholder w="$12" h="$12" corner="$sm" />,
   },
 };
 
@@ -125,7 +126,7 @@ export const CircularOverlap: IStory = {
   args: {
     ...defaultArgs,
     overlap: 'circular',
-    children: <Placeholder w='$12' h='$12' corner='$full' />,
+    children: <Placeholder w="$12" h="$12" corner="$full" />,
   },
 };
 

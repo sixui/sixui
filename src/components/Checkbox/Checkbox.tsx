@@ -1,18 +1,18 @@
 import { forwardRef, useCallback, useContext, useRef, useState } from 'react';
-import { asArray } from '@olivierpascal/helpers';
 import { useMergeRefs } from '@floating-ui/react';
+import { asArray } from '@olivierpascal/helpers';
 
 import type { ICheckboxProps } from './Checkbox.types';
-import { usePrevious } from '~/hooks/usePrevious';
-import { useControlledValue } from '~/hooks/useControlledValue';
 import { executeLazyPromise } from '~/helpers/executeLazyPromise';
+import { useControlledValue } from '~/hooks/useControlledValue';
+import { usePrevious } from '~/hooks/usePrevious';
 import { useStyles } from '~/hooks/useStyles';
-import { useVisualState } from '../VisualState';
-import { StateLayer } from '../StateLayer';
+import { Base } from '../Base';
 import { FocusRing } from '../FocusRing';
 import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { LabeledContext } from '../Labeled';
-import { Base } from '../Base';
+import { StateLayer } from '../StateLayer';
+import { useVisualState } from '../VisualState';
 import {
   checkboxFocusRingStyles,
   checkboxStateLayerStyles,
@@ -126,9 +126,9 @@ export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
         ]}
       >
         <Base
-          as='input'
-          data-cy='checkbox'
-          type='checkbox'
+          as="input"
+          data-cy="checkbox"
+          type="checkbox"
           aria-checked={indeterminate ? 'mixed' : undefined}
           checked={checkedValue}
           onChange={handleChange}
@@ -199,7 +199,7 @@ export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
                 'backgroundAndIcon',
                 selected && 'backgroundAndIcon$selected',
               )}
-              viewBox='0 0 18 18'
+              viewBox="0 0 18 18"
               aria-hidden
             >
               <rect

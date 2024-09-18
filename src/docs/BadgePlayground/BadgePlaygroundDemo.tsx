@@ -1,5 +1,7 @@
-import { Badge, type IBadgeProps } from '~/components/Badge';
-import { Anchored, type IAnchoredProps } from '~/components/Anchored';
+import type { IAnchoredProps } from '~/components/Anchored';
+import type { IBadgeProps } from '~/components/Badge';
+import { Anchored } from '~/components/Anchored';
+import { Badge } from '~/components/Badge';
 import { Placeholder } from '~/components/Placeholder';
 
 export type IBadgePlaygroundDemoProps = {

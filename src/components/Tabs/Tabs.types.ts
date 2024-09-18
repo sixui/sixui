@@ -1,4 +1,4 @@
-import type { IAny, IOmit, IMaybeAsync } from '~/helpers/types';
+import type { IAny, IMaybeAsync, IOmit } from '~/helpers/types';
 import type { ITabsContextValue } from './Tabs.context';
 
 export type ITabsProps = IOmit<

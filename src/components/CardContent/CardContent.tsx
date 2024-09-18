@@ -1,8 +1,8 @@
 import { forwardRef, useContext } from 'react';
 
 import type { ICardContentProps } from './CardContent.types';
-import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { useStyles } from '~/hooks/useStyles';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { CardContext } from '../Card';
 import { Stack } from '../Stack';
 import { cardContentStyles } from './CardContent.styles';

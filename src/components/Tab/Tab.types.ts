@@ -1,15 +1,15 @@
 import type {
-  IZeroOrMore,
-  ICompiledStyles,
   IAny,
+  ICompiledStyles,
   IMaybeAsync,
+  IZeroOrMore,
 } from '~/helpers/types';
-import type { IBaseProps } from '../Base';
-import type { IStateLayerStylesKey } from '../StateLayer';
-import type { IFocusRingStylesKey } from '../FocusRing';
-import type { IElevationStylesKey } from '../Elevation';
-import type { IVisualState } from '../VisualState';
 import type { IBadgeProps } from '../Badge';
+import type { IBaseProps } from '../Base';
+import type { IElevationStylesKey } from '../Elevation';
+import type { IFocusRingStylesKey } from '../FocusRing';
+import type { IStateLayerStylesKey } from '../StateLayer';
+import type { IVisualState } from '../VisualState';
 import type { ITabStylesKey } from './Tab.styles';
 
 export type ITabVariant = 'primary' | 'secondary';

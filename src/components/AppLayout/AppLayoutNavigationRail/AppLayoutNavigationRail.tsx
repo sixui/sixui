@@ -1,19 +1,15 @@
 import { forwardRef, useRef } from 'react';
-import { CSSTransition } from 'react-transition-group';
 import { useMergeRefs } from '@floating-ui/react';
+import { CSSTransition } from 'react-transition-group';
 
+import type { INavigationRailStylesKey } from '~/components/NavigationRail';
+import type { IAppLayoutNavigationRailStylesKey } from './AppLayoutNavigationRail.styles';
 import type { IAppLayoutNavigationRailProps } from './AppLayoutNavigationRail.types';
-import { useStyles } from '~/hooks/useStyles';
-import {
-  NavigationRail,
-  type INavigationRailStylesKey,
-} from '~/components/NavigationRail';
 import { FloatingTransition } from '~/components/FloatingTransition';
+import { NavigationRail } from '~/components/NavigationRail';
+import { useStyles } from '~/hooks/useStyles';
 import { useAppLayoutContext } from '../AppLayout.context';
-import {
-  appLayoutNavigationRailStyles,
-  type IAppLayoutNavigationRailStylesKey,
-} from './AppLayoutNavigationRail.styles';
+import { appLayoutNavigationRailStyles } from './AppLayoutNavigationRail.styles';
 
 export const AppLayoutNavigationRail = forwardRef<
   HTMLDivElement,
@@ -53,9 +49,9 @@ export const AppLayoutNavigationRail = forwardRef<
       {(status) => (
         <FloatingTransition
           status={status}
-          placement='left'
-          origin='edge'
-          pattern='enterExitOffScreen'
+          placement="left"
+          origin="edge"
+          pattern="enterExitOffScreen"
           sx={combineStyles('host')}
           ref={transitionNodeHandleRef}
         >

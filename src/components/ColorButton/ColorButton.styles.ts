@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
+import { motionTokens } from '~/themes/base/motion.stylex';
 import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
 import { stateLayerTokens } from '../StateLayer/StateLayer.stylex';
-import { motionTokens } from '~/themes/base/motion.stylex';
-import { colorButtonTokens } from './ColorButton.stylex';
 import { colorButtonStateTokens } from './ColorButton.state.stylex';
+import { colorButtonTokens } from './ColorButton.stylex';
 
 export type IColorButtonStylesKey = keyof typeof colorButtonStyles;
 export const colorButtonStyles = stylex.create({

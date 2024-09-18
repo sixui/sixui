@@ -1,4 +1,5 @@
 import type { TransitionStatus } from 'react-transition-group';
+
 import type { IMotionStatus } from './Motion.types';
 
 export const resolveRtgStatus = (

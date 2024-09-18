@@ -1,4 +1,5 @@
 import {
+  argbFromHex,
   SchemeContent,
   SchemeExpressive,
   SchemeFidelity,
@@ -8,12 +9,11 @@ import {
   SchemeRainbow,
   SchemeTonalSpot,
   SchemeVibrant,
-  argbFromHex,
 } from '@material/material-color-utilities';
 
 import type { IThemeColorSchemeValues } from '~/components/ThemeProvider';
-import { getRolesFromMaterialScheme } from './getRolesFromMaterialScheme';
 import { getMaterialSchemeFromSourceColor } from './getMaterialSchemeFromSourceColor';
+import { getRolesFromMaterialScheme } from './getRolesFromMaterialScheme';
 import { SixuiMaterialDynamicScheme } from './materialDynamicSchemes';
 
 export enum IDynamicSchemeVariant {

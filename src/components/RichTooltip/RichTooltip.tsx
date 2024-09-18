@@ -1,12 +1,13 @@
 import { forwardRef } from 'react';
 
+import type { IPopoverBaseProps } from '../PopoverBase';
 import type {
   IRichTooltipForwardedProps,
   IRichTooltipProps,
 } from './RichTooltip.types';
-import { PopoverBase, type IPopoverBaseProps } from '../PopoverBase';
-import { RichTooltipContent } from '../RichTooltipContent';
 import { isFunction } from '~/helpers/isFunction';
+import { PopoverBase } from '../PopoverBase';
+import { RichTooltipContent } from '../RichTooltipContent';
 
 export const RichTooltip = forwardRef<HTMLDivElement, IRichTooltipProps>(
   function RichTooltip(props, forwardedRef) {
@@ -24,9 +25,9 @@ export const RichTooltip = forwardRef<HTMLDivElement, IRichTooltipProps>(
 
     return (
       <PopoverBase<IRichTooltipForwardedProps>
-        cursor='dot'
+        cursor="dot"
         {...other}
-        role='tooltip'
+        role="tooltip"
         placement={placement}
         contentRenderer={renderContent}
         forwardProps

@@ -2,20 +2,18 @@ import { useRef, useState } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 import { useFocus } from 'react-aria';
 
+import type { ITextInputFieldThemeFactory } from './TextInputField.css';
 import type { ITextInputFieldFactory } from './TextInputField.types';
+import { iconEye, iconEyeSlash, iconXMark } from '~/assets/icons';
+import { useControlledValue } from '~/hooks/useControlledValue';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { iconEye, iconEyeSlash, iconXMark } from '~/assets/icons';
-import { useControlledValue } from '~/hooks/useControlledValue';
 import { triggerChangeEvent } from '~/utils/triggerChangeEvent';
+import { FieldBase } from '../FieldBase';
 import { IconButton } from '../IconButton';
 import { SvgIcon } from '../SvgIcon';
-import { FieldBase } from '../FieldBase';
-import {
-  textInputFieldTheme,
-  type ITextInputFieldThemeFactory,
-} from './TextInputField.css';
+import { textInputFieldTheme } from './TextInputField.css';
 
 const COMPONENT_NAME = 'TextInputField';
 
@@ -116,7 +114,7 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
           {other.end}
           {clearable && (
             <IconButton
-              data-cy='clearButton'
+              data-cy="clearButton"
               icon={clearIcon}
               onClick={handleClear}
             />

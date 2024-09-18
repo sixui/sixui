@@ -1,5 +1,5 @@
-import { accumulate } from '@olivierpascal/helpers';
 import { useCallback, useRef, useState } from 'react';
+import { accumulate } from '@olivierpascal/helpers';
 
 export type IVisualState = {
   hovered?: boolean;

@@ -1,7 +1,5 @@
-import {
-  getResponsiveRules,
-  type IResponsiveRule,
-} from '~/helpers/getResponsiveRules';
+import type { IResponsiveRule } from '~/helpers/getResponsiveRules';
+import { getResponsiveRules } from '~/helpers/getResponsiveRules';
 import { useThemeContext } from '../ThemeProvider';
 
 const serializeResponsiveRule = (rule: IResponsiveRule): string => `
@@ -29,7 +27,7 @@ export const ResponsiveStyles: React.FC = () => {
 
   return (
     <style
-      type='text/css'
+      type="text/css"
       dangerouslySetInnerHTML={{ __html: serializedRules }}
     />
   );

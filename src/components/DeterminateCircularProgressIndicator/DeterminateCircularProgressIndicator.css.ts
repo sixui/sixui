@@ -2,17 +2,15 @@ import { createTheme } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 import cx from 'clsx';
 
-import {
-  componentThemeFactory,
-  type IComponentThemeFactory,
-} from '~/utils/styles/componentThemeFactory';
-import { createStyles } from '~/utils/styles/createStyles';
+import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { deepMerge } from '~/helpers/deepMerge';
-import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
+import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
+import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createStyles } from '~/utils/styles/createStyles';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
-import { themeTokens } from '../ThemeProvider';
 import { circularProgressIndicatorTheme } from '../CircularProgressIndicator/CircularProgressIndicator.css';
+import { themeTokens } from '../ThemeProvider';
 
 type IModifier = 'disabled';
 

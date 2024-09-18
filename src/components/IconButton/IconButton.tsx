@@ -1,13 +1,10 @@
+import type { IIconButtonThemeFactory } from './IconButton.css';
 import type { IIconButtonFactory } from './IconButton.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Button } from '../Button';
-import {
-  iconButtonTheme,
-  iconButtonThemeVariants,
-  type IIconButtonThemeFactory,
-} from './IconButton.css';
+import { iconButtonTheme, iconButtonThemeVariants } from './IconButton.css';
 
 const COMPONENT_NAME = 'IconButton';
 

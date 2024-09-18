@@ -2,21 +2,19 @@ import { createTheme, fallbackVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IInteraction } from '~/hooks/useInteractions';
+import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { IListItemVariant } from './ListItem.types';
-import {
-  componentThemeFactory,
-  type IComponentThemeFactory,
-} from '~/utils/styles/componentThemeFactory';
-import { createStyles } from '~/utils/styles/createStyles';
-import { space } from '~/helpers/styles/space';
 import { getDensity } from '~/helpers/styles/getDensity';
-import { px } from '~/helpers/styles/px';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { themeTokens } from '../ThemeProvider';
+import { px } from '~/helpers/styles/px';
+import { space } from '~/helpers/styles/space';
+import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createStyles } from '~/utils/styles/createStyles';
+import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { Item } from '../Item';
 import { PaperBase } from '../PaperBase';
 import { StateLayer } from '../StateLayer';
+import { themeTokens } from '../ThemeProvider';
 
 type IModifier =
   | IInteraction

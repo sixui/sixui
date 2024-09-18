@@ -1,5 +1,5 @@
-import type { IBaseProps } from '../Base';
 import type { ICompiledStyles, IOmit, IZeroOrMore } from '~/helpers/types';
+import type { IBaseProps } from '../Base';
 import type { IButtonBaseProps, IButtonBaseStylesKey } from '../ButtonBase';
 import type { IColorTagStylesKey } from '../ColorTag';
 import type { IColorButtonStylesKey } from './ColorButton.styles';

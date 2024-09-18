@@ -21,7 +21,7 @@ const defaultArgs = {
 } satisfies Partial<IPaperProps>;
 
 const PaperDemo: React.FC<IPaperProps> = ({ children, ...props }) => (
-  <Paper {...props} corner='$md'>
+  <Paper {...props} corner="$md">
     <div className={classNames.inner}>{children}</div>
   </Paper>
 );

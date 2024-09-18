@@ -1,15 +1,15 @@
 import type { IOmit } from '~/helpers/types';
+import type { IMovie } from '../FilterableListBase/movies';
 import type { ISuggestBaseProps } from './SuggestBase.types';
 import {
   areMoviesEqual,
   createMovie,
   filterMovie,
+  getMovieLabel,
   isMovieDisabled,
   renderCreateMovieListItem,
-  getMovieLabel,
   renderMovieListItem,
   TOP_100_MOVIES,
-  type IMovie,
 } from '../FilterableListBase/movies';
 import { SuggestBase } from './SuggestBase';
 

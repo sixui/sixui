@@ -7,25 +7,22 @@ import {
   useState,
 } from 'react';
 
+import type { IFieldBaseThemeFactory } from './FieldBase.css';
 import type { IFieldBaseFactory } from './FieldBase.types';
+import { isFunction } from '~/helpers/isFunction';
+import { useInteractions } from '~/hooks/useInteractions';
+import { usePrevious } from '~/hooks/usePrevious';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { isFunction } from '~/helpers/isFunction';
-import { usePrevious } from '~/hooks/usePrevious';
-import { useInteractions } from '~/hooks/useInteractions';
-import { PaperBase } from '../PaperBase';
-import { CircularProgressIndicator } from '../CircularProgressIndicator';
-import { LabeledContext } from '../Labeled/Labeled.context';
 import { Box } from '../Box';
 import { extractBoxProps } from '../Box/extractBoxProps';
-import {
-  fieldBaseTheme,
-  fieldBaseThemeVariants,
-  type IFieldBaseThemeFactory,
-} from './FieldBase.css';
-import { getLabelKeyframes } from './getLabelKeyframes';
+import { CircularProgressIndicator } from '../CircularProgressIndicator';
+import { LabeledContext } from '../Labeled/Labeled.context';
+import { PaperBase } from '../PaperBase';
 import { StateLayer } from '../StateLayer';
+import { fieldBaseTheme, fieldBaseThemeVariants } from './FieldBase.css';
+import { getLabelKeyframes } from './getLabelKeyframes';
 
 const COMPONENT_NAME = 'FieldBase';
 

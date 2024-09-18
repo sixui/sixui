@@ -2,17 +2,17 @@ import { forwardRef, useContext, useEffect } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type { IDisclosureButtonProps } from './DisclosureButton.types';
+import { iconChevronDown } from '~/assets/icons';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useStyles } from '~/hooks/useStyles';
-import { iconChevronDown } from '~/assets/icons';
 import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
-import { ListItem } from '../ListItem';
-import { Checkbox } from '../Checkbox';
-import { Switch } from '../Switch';
-import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
-import { ExpandableContext } from '../Expandable';
-import { SvgIcon } from '../SvgIcon';
 import { Base } from '../Base';
+import { Checkbox } from '../Checkbox';
+import { ExpandableContext } from '../Expandable';
+import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
+import { ListItem } from '../ListItem';
+import { SvgIcon } from '../SvgIcon';
+import { Switch } from '../Switch';
 import {
   disclosureButtonCircularProgressIndicatorStyles,
   disclosureButtonItemStyles,
@@ -130,7 +130,7 @@ export const DisclosureButton = createPolymorphicComponent<
               ) : undefined
             }
             trailingIcon={!toggleable && loading ? undefined : icon}
-            data-cy='disclosure-button'
+            data-cy="disclosure-button"
             disabled={disabled ?? (toggleable && !checked)}
             onClick={(event) => {
               expandableContext?.expand(!expanded);
@@ -153,7 +153,7 @@ export const DisclosureButton = createPolymorphicComponent<
                   onChange={handleChange}
                   disabled={disabled}
                   loading={loading}
-                  data-cy='disclosure-switch'
+                  data-cy="disclosure-switch"
                 />
               ) : (
                 <Checkbox
@@ -163,7 +163,7 @@ export const DisclosureButton = createPolymorphicComponent<
                   onChange={handleChange}
                   disabled={disabled}
                   loading={loading}
-                  data-cy='disclosure-checkbox'
+                  data-cy="disclosure-checkbox"
                 />
               )}
             </div>

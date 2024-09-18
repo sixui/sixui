@@ -1,7 +1,8 @@
 import type { IFilterableListBaseExampleProps } from './FilterableListBaseExample.types';
+import type { IMovie } from './movies';
 import { ListItem } from '../ListItem';
-import { TextInputField } from '../TextInputField';
 import { MenuList } from '../MenuList';
+import { TextInputField } from '../TextInputField';
 import { FilterableListBase } from './FilterableListBase';
 import {
   areMoviesEqual,
@@ -10,7 +11,6 @@ import {
   renderCreateMovieListItem,
   renderMovieListItem,
   TOP_100_MOVIES,
-  type IMovie,
 } from './movies';
 
 export const FilterableListBaseExample: React.FC<
@@ -23,7 +23,7 @@ export const FilterableListBaseExample: React.FC<
       items={TOP_100_MOVIES}
       renderer={(listProps) => (
         <MenuList
-          scale='sm'
+          scale="sm"
           header={
             canFilter ? (
               <TextInputField

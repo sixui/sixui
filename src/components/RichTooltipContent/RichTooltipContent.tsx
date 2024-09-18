@@ -1,17 +1,17 @@
 import { forwardRef } from 'react';
 import { asArray } from '@olivierpascal/helpers';
-import { isFunction } from '~/helpers/isFunction';
 
 import type { IRichTooltipContentProps } from './RichTooltipContent.types';
+import { isFunction } from '~/helpers/isFunction';
 import { useStyles } from '~/hooks/useStyles';
 import { Base } from '../Base';
 import { Elevation } from '../Elevation';
+import { Stack } from '../Stack';
 import {
   richTooltipContentElevationStyles,
   richTooltipContentStyles,
 } from './RichTooltipContent.styles';
 import { richTooltipContentTheme } from './RichTooltipContent.stylex';
-import { Stack } from '../Stack';
 
 export const RichTooltipContent = forwardRef<
   HTMLDivElement,

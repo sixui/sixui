@@ -1,8 +1,8 @@
 import type { IPlaygroundSections } from '~/docs/Playground';
 import { Playground } from '~/docs/Playground';
 import {
-  TemplatePlaygroundDemo,
   ITemplatePlaygroundDemoProps,
+  TemplatePlaygroundDemo,
 } from './TemplatePlaygroundDemo';
 
 export const templatePlaygroundSections: IPlaygroundSections<ITemplatePlaygroundDemoProps> =

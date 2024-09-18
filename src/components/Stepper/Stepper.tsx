@@ -6,14 +6,16 @@ import {
   useMemo,
 } from 'react';
 
+import type { IStepProps } from '../Step';
+import type { IStepperContextValue } from './Stepper.context';
 import type { IStepperProps } from './Stepper.types';
-import { Step, type IStepProps } from '../Step';
-import { StepConnector } from '../StepConnector';
 import { isElementLike } from '~/helpers/react/isElementLike';
-import { StepperContext, type IStepperContextValue } from './Stepper.context';
-import { stepperStyles } from './Stepper.styles';
-import { Base } from '../Base';
 import { useStyles } from '~/hooks/useStyles';
+import { Base } from '../Base';
+import { Step } from '../Step';
+import { StepConnector } from '../StepConnector';
+import { StepperContext } from './Stepper.context';
+import { stepperStyles } from './Stepper.styles';
 
 const defaultConnector = <StepConnector />;
 

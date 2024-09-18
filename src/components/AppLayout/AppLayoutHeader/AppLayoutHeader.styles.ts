@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { zIndexTokens } from '~/themes/base/zIndex.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { zIndexTokens } from '~/themes/base/zIndex.stylex';
 import { appLayoutTokens } from '../AppLayout.stylex';
 
 export type IAppLayoutHeaderStylesKey = keyof typeof appLayoutHeaderStyles;

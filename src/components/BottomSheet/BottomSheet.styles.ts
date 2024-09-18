@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
+import { motionTokens } from '~/themes/base/motion.stylex';
 import { zIndexTokens } from '~/themes/base/zIndex.stylex';
 import { bottomSheetTokens } from './BottomSheet.stylex';
-import { motionTokens } from '~/themes/base/motion.stylex';
 
 export type IBottomSheetStylesKey = keyof typeof bottomSheetStyles;
 export const bottomSheetStyles = stylex.create({

@@ -1,9 +1,10 @@
+import type { IFabThemeFactory } from './Fab.css';
 import type { IFabFactory } from './Fab.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Button } from '../Button';
-import { fabTheme, fabThemeVariants, type IFabThemeFactory } from './Fab.css';
+import { fabTheme, fabThemeVariants } from './Fab.css';
 
 const COMPONENT_NAME = 'Fab';
 

@@ -1,8 +1,8 @@
+import type { DynamicScheme } from '@material/material-color-utilities';
 import {
+  DynamicColor,
   hexFromArgb,
   MaterialDynamicColors,
-  DynamicColor,
-  type DynamicScheme,
 } from '@material/material-color-utilities';
 
 export type IMaterialDynamicSchemeToken =

@@ -1,12 +1,13 @@
+import type { IMenuListThemeFactory } from './MenuList.css';
 import type { IMenuListFactory } from './MenuList.types';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { PaperBase } from '~/components/PaperBase';
 import { extractBoxProps } from '~/components/Box/extractBoxProps';
-import { List } from '../../List';
-import { menuListTheme, type IMenuListThemeFactory } from './MenuList.css';
+import { PaperBase } from '~/components/PaperBase';
+import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import { useProps } from '~/utils/component/useProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { List } from '../../List';
+import { menuListTheme } from './MenuList.css';
 
 const COMPONENT_NAME = 'MenuList';
 

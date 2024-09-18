@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 import {
   FloatingFocusManager,
   useClick,
@@ -8,11 +7,12 @@ import {
   useFloating,
   useInteractions,
 } from '@floating-ui/react';
+import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { IOmit } from '~/helpers/types';
 import type { IScrimProps, IScrimVariant } from './Scrim.types';
-import { makeComponentShowcase } from '../ComponentShowcase';
 import { Button } from '../Button';
+import { makeComponentShowcase } from '../ComponentShowcase';
 import { Scrim } from './Scrim';
 
 type IScrimDemoProps = IOmit<IScrimProps, 'floatingContext'>;

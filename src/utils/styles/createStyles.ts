@@ -1,4 +1,5 @@
-import { style, type ComplexStyleRule } from '@vanilla-extract/css';
+import type { ComplexStyleRule } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 
 import { isFunction } from '~/helpers/isFunction';
 

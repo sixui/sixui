@@ -1,7 +1,5 @@
-import {
-  BasicTemplate,
-  type IBasicTemplateProps,
-} from '~/components/Template/BasicTemplate';
+import type { IBasicTemplateProps } from '~/components/Template/BasicTemplate';
+import { BasicTemplate } from '~/components/Template/BasicTemplate';
 
 export type ITemplatePlaygroundDemoProps = {
   template: IBasicTemplateProps;

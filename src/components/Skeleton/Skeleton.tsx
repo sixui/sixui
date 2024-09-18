@@ -1,5 +1,5 @@
-import stylex from '@stylexjs/stylex';
 import { forwardRef, useRef } from 'react';
+import stylex from '@stylexjs/stylex';
 
 import type { ISkeletonProps } from './Skeleton.types';
 import { random } from '~/helpers/random';

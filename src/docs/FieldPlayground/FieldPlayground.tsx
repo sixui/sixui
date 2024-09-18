@@ -1,10 +1,8 @@
 import type { IPlaygroundSections } from '~/docs/Playground';
-import { Playground } from '~/docs/Playground';
+import type { IFieldPlaygroundDemoProps } from './FieldPlaygroundDemo';
 import { fieldBasePlaygroundSections } from '~/docs/FieldBasePlayground';
-import {
-  FieldPlaygroundDemo,
-  type IFieldPlaygroundDemoProps,
-} from './FieldPlaygroundDemo';
+import { Playground } from '~/docs/Playground';
+import { FieldPlaygroundDemo } from './FieldPlaygroundDemo';
 
 export const fieldPlaygroundSections: IPlaygroundSections<IFieldPlaygroundDemoProps> =
   {

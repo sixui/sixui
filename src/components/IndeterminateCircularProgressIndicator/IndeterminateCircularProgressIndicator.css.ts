@@ -1,12 +1,10 @@
 import { keyframes } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
-import {
-  componentThemeFactory,
-  type IComponentThemeFactory,
-} from '~/utils/styles/componentThemeFactory';
-import { createStyles } from '~/utils/styles/createStyles';
+import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
+import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createStyles } from '~/utils/styles/createStyles';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { circularProgressIndicatorTheme } from '../CircularProgressIndicator/CircularProgressIndicator.css';
 

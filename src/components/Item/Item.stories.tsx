@@ -45,42 +45,42 @@ export const Configurations: IStory = {
       rows={[
         {
           props: {
-            start: <SlotDemo label='Start' />,
-            overline: <SlotDemo label='Overline' />,
-            children: <SlotDemo label='Headline' primary />,
-            supportingText: <SlotDemo label='Supporting Text' />,
+            start: <SlotDemo label="Start" />,
+            overline: <SlotDemo label="Overline" />,
+            children: <SlotDemo label="Headline" primary />,
+            supportingText: <SlotDemo label="Supporting Text" />,
             trailingSupportingText: (
-              <SlotDemo label='Trailing Supporting Text' />
+              <SlotDemo label="Trailing Supporting Text" />
             ),
-            end: <SlotDemo label='End' />,
+            end: <SlotDemo label="End" />,
           },
         },
         {
           props: {
-            overline: <SlotDemo label='Overline' />,
-            children: <SlotDemo label='Headline' primary />,
-            supportingText: <SlotDemo label='Supporting Text' />,
+            overline: <SlotDemo label="Overline" />,
+            children: <SlotDemo label="Headline" primary />,
+            supportingText: <SlotDemo label="Supporting Text" />,
           },
         },
         {
           props: {
-            start: <SlotDemo label='Start' />,
-            children: <SlotDemo label='Headline' primary />,
-            end: <SlotDemo label='End' />,
+            start: <SlotDemo label="Start" />,
+            children: <SlotDemo label="Headline" primary />,
+            end: <SlotDemo label="End" />,
           },
         },
         {
           props: {
-            children: <SlotDemo label='Headline' primary />,
-            supportingText: <SlotDemo label='Supporting Text' />,
+            children: <SlotDemo label="Headline" primary />,
+            supportingText: <SlotDemo label="Supporting Text" />,
             trailingSupportingText: (
-              <SlotDemo label='Trailing Supporting Text' />
+              <SlotDemo label="Trailing Supporting Text" />
             ),
           },
         },
         {
           props: {
-            children: <SlotDemo label='Headline' primary />,
+            children: <SlotDemo label="Headline" primary />,
           },
         },
       ]}
@@ -92,7 +92,7 @@ export const Configurations: IStory = {
 export const Lengths: IStory = {
   render: (props) => (
     <ItemShowcase
-      horizontalAlign='start'
+      horizontalAlign="start"
       props={props}
       rows={[
         { legend: 'Basic', props: { children: LOREM$XS } },

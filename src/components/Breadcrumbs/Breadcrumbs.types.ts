@@ -1,7 +1,7 @@
-import type { IZeroOrMore, ICompiledStyles, IOmit } from '~/helpers/types';
+import type { ICompiledStyles, IOmit, IZeroOrMore } from '~/helpers/types';
 import type { IBaseProps } from '../Base';
-import type { IFocusRingStylesKey } from '../FocusRing';
 import type { IButtonBaseStylesKey } from '../ButtonBase';
+import type { IFocusRingStylesKey } from '../FocusRing';
 import type { IBreadcrumbsStylesKey } from './Breadcrumbs.styles';
 import { IStackProps } from '../Stack';
 

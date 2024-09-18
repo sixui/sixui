@@ -1,15 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { INavigationRailDestinationProps } from './NavigationRailDestination.types';
-import {
-  ComponentShowcase,
-  type IComponentPresentation,
-} from '../ComponentShowcase';
-import { Badge } from '../Badge';
 import { useToggle } from '~/hooks/useToggle';
+import { Badge } from '../Badge';
+import { ComponentShowcase } from '../ComponentShowcase';
 import { NavigationRailDestination } from './NavigationRailDestination';
 
 const meta = {

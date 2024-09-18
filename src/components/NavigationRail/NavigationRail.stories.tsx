@@ -1,26 +1,26 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import stylex from '@stylexjs/stylex';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faSquare,
   faCircle,
   faHeart,
+  faSquare,
 } from '@fortawesome/free-regular-svg-icons';
 import {
-  faSquare as faSquareSolid,
   faCircle as faCircleSolid,
   faHeart as faHeartSolid,
+  faSquare as faSquareSolid,
 } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import stylex from '@stylexjs/stylex';
 
 import type { INavigationRailProps } from './NavigationRail.types';
 import { IOmit } from '~/helpers/types';
-import { scaleTokens } from '~/themes/base/scale.stylex';
-import { outlineTokens } from '~/themes/base/outline.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { Badge } from '../Badge';
 import { ComponentShowcase } from '../ComponentShowcase';
 import { Placeholder } from '../Placeholder';
-import { Badge } from '../Badge';
 import { NavigationRail } from './NavigationRail';
 
 const meta = {
@@ -40,8 +40,8 @@ const styles = stylex.create({
 
 const defaultArgs = {
   sx: styles.host,
-  header: <Placeholder label='Leading' corner='none' />,
-  footer: <Placeholder label='Trailing' corner='none' />,
+  header: <Placeholder label="Leading" corner="none" />,
+  footer: <Placeholder label="Trailing" corner="none" />,
 } satisfies Partial<INavigationRailProps>;
 
 const NavigationRailDemo: React.FC<IOmit<INavigationRailProps, 'children'>> = (
@@ -54,15 +54,15 @@ const NavigationRailDemo: React.FC<IOmit<INavigationRailProps, 'children'>> = (
       <NavigationRail.Destination
         icon={<FontAwesomeIcon icon={faSquare} />}
         activeIcon={<FontAwesomeIcon icon={faSquareSolid} />}
-        label='First'
+        label="First"
         onClick={() => setActiveIndex(0)}
         active={activeIndex === 0}
-        badge={<Badge value='3' />}
+        badge={<Badge value="3" />}
       />
       <NavigationRail.Destination
         icon={<FontAwesomeIcon icon={faCircle} />}
         activeIcon={<FontAwesomeIcon icon={faCircleSolid} />}
-        label='Second'
+        label="Second"
         onClick={() => setActiveIndex(1)}
         active={activeIndex === 1}
         badge={<Badge dot />}
@@ -70,7 +70,7 @@ const NavigationRailDemo: React.FC<IOmit<INavigationRailProps, 'children'>> = (
       <NavigationRail.Destination
         icon={<FontAwesomeIcon icon={faHeart} />}
         activeIcon={<FontAwesomeIcon icon={faHeartSolid} />}
-        label='Third'
+        label="Third"
         onClick={() => setActiveIndex(2)}
         active={activeIndex === 2}
       />

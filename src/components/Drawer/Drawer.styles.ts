@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
 import { zIndexTokens } from '~/themes/base/zIndex.stylex';
-import { drawerTokens } from './Drawer.stylex';
 import { drawerStateTokens } from './Drawer.state.stylex';
+import { drawerTokens } from './Drawer.stylex';
 
 export type IDrawerStylesKey = keyof typeof drawerStyles;
 export const drawerStyles = stylex.create({

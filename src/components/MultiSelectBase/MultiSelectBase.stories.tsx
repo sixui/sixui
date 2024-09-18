@@ -1,12 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { IMultiSelectBaseExampleProps } from './MultiSelectBaseExample';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { ListItem } from '../ListItem';
 import { TOP_100_MOVIES } from '../FilterableListBase/movies';
-import {
-  MultiSelectBaseExample,
-  type IMultiSelectBaseExampleProps,
-} from './MultiSelectBaseExample';
+import { ListItem } from '../ListItem';
+import { MultiSelectBaseExample } from './MultiSelectBaseExample';
 
 const meta = {
   component: MultiSelectBaseExample,

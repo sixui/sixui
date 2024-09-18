@@ -1,12 +1,12 @@
 import { forwardRef } from 'react';
 
 import type { IBottomSheetContentProps } from './BottomSheetContent.types';
+import { isFunction } from '~/helpers/isFunction';
 import { useStyles } from '~/hooks/useStyles';
 import { PaperBase } from '../PaperBase';
 import { bottomSheetContentStyles } from './BottomSheetContent.styles';
 import { bottomSheetContentTheme } from './BottomSheetContent.stylex';
 import { bottomSheetVariantContentStyles } from './variants';
-import { isFunction } from '~/helpers/isFunction';
 
 export const BottomSheetContent = forwardRef<
   HTMLDivElement,

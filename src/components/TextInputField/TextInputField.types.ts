@@ -1,13 +1,13 @@
 import type { IOmit } from '~/helpers/types';
+import type { IControlledValueProps } from '~/hooks/useControlledValue';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { IFieldBaseOwnProps } from '../FieldBase';
 import type { IBoxProps, IElementProps } from '../Box';
+import type { IFieldBaseOwnProps } from '../FieldBase';
 import type {
-  textInputFieldTheme,
   ITextInputFieldThemeFactory,
+  textInputFieldTheme,
 } from './TextInputField.css';
-import type { IControlledValueProps } from '~/hooks/useControlledValue';
 
 export interface ITextInputFieldOwnProps
   extends IFieldBaseOwnProps,

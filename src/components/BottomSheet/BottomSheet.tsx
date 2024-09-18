@@ -11,14 +11,14 @@ import {
 } from '@floating-ui/react';
 
 import type { IBottomSheetProps } from './BottomSheet.types';
-import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { isFunction } from '~/helpers/isFunction';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useStyles } from '~/hooks/useStyles';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { BottomSheetContent } from '../BottomSheetContent';
-import { Scrim } from '../Scrim';
-import { Portal } from '../Portal';
 import { FloatingTransition } from '../FloatingTransition';
+import { Portal } from '../Portal';
+import { Scrim } from '../Scrim';
 import { bottomSheetStyles } from './BottomSheet.styles';
 import { bottomSheetTheme } from './BottomSheet.stylex';
 
@@ -108,9 +108,9 @@ export const BottomSheet = createPolymorphicComponent<'div', IBottomSheetProps>(
                 >
                   <FloatingTransition
                     status={transitionStatus.status}
-                    placement='top'
-                    origin='edge'
-                    pattern='enterExitOffScreen'
+                    placement="top"
+                    origin="edge"
+                    pattern="enterExitOffScreen"
                   >
                     <BottomSheetContent
                       sx={[

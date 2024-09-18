@@ -1,14 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IIconButtonProps, IIconButtonVariant } from './IconButton.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import {
-  makeComponentShowcase,
-  type IComponentPresentation,
-} from '../ComponentShowcase';
+import { makeComponentShowcase } from '../ComponentShowcase';
 import { IconButton } from './IconButton';
 
 // https://m3.material.io/components/icon-buttons/overview
@@ -47,7 +45,7 @@ const IconButtonShowcase = makeComponentShowcase(IconButton);
 export const Variants: IStory = {
   render: (props) => (
     <IconButtonShowcase
-      verticalAlign='center'
+      verticalAlign="center"
       props={props}
       cols={(
         [

@@ -3,12 +3,13 @@ import { asArray } from '@olivierpascal/helpers';
 import stylex from '@stylexjs/stylex';
 
 import type { IColorButtonProps } from './ColorButton.types';
-import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
-import { ButtonBase } from '~/components/ButtonBase';
-import { SvgIcon } from '~/components/SvgIcon';
 import { iconCheckMark } from '~/assets/icons';
+import { ButtonBase } from '~/components/ButtonBase';
 import { ColorTag } from '~/components/ColorTag';
+import { SvgIcon } from '~/components/SvgIcon';
 import { useStyles } from '~/hooks/useStyles';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
+import { colorButtonStateTokens } from './ColorButton.state.stylex';
 import {
   colorButtonButtonBaseStyles,
   colorButtonColorTagStyles,
@@ -16,7 +17,6 @@ import {
   colorButtonStateLayerStyles,
   colorButtonStyles,
 } from './ColorButton.styles';
-import { colorButtonStateTokens } from './ColorButton.state.stylex';
 import { colorButtonTheme } from './ColorButton.stylex';
 
 const localStyles = stylex.create({

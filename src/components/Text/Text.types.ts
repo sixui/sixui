@@ -1,7 +1,7 @@
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type { textTheme, ITextThemeFactory } from './Text.css';
+import type { ITextThemeFactory, textTheme } from './Text.css';
 
 export type ITextVariant = 'display' | 'headline' | 'title' | 'body' | 'label';
 

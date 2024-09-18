@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { IDemoComponentProps } from './DemoComponent';
 import { makeComponentShowcase } from './ComponentShowcase';
-import { DemoComponent, type IDemoComponentProps } from './DemoComponent';
+import { DemoComponent } from './DemoComponent';
 
 const meta = {
   component: DemoComponent,

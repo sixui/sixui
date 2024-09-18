@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
-import type { IAny } from '~/helpers/types';
 import type { IThemeComponentValues } from '~/components/ThemeProvider';
+import type { IAny } from '~/helpers/types';
 
 export type IComponentFactoryPayload = {
   props: Record<string, IAny>;

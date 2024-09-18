@@ -1,9 +1,7 @@
 import type { IPlaygroundSections } from '~/docs/Playground';
+import type { IFilterChipPlaygroundDemoProps } from './FilterChipPlaygroundDemo';
 import { Playground } from '~/docs/Playground';
-import {
-  FilterChipPlaygroundDemo,
-  type IFilterChipPlaygroundDemoProps,
-} from './FilterChipPlaygroundDemo';
+import { FilterChipPlaygroundDemo } from './FilterChipPlaygroundDemo';
 
 export const chipPlaygroundSections: IPlaygroundSections<IFilterChipPlaygroundDemoProps> =
   {

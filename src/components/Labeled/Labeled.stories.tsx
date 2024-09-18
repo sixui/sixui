@@ -1,15 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { ILabeledProps } from './Labeled.types';
 import { scaleTokens } from '~/themes/base/scale.stylex';
-import {
-  ComponentShowcase,
-  type IComponentPresentation,
-} from '../ComponentShowcase';
 import { Checkbox } from '../Checkbox';
-import { Switch } from '../Switch';
+import { ComponentShowcase } from '../ComponentShowcase';
 import { Radio } from '../Radio';
+import { Switch } from '../Switch';
 import { TextInputField } from '../TextInputField';
 import { Labeled } from './Labeled';
 
@@ -74,7 +72,7 @@ export const WithTextField: IStory = {
       props={props}
       cols={colsVertical}
       rows={rows}
-      horizontalAlign='start'
+      horizontalAlign="start"
     />
   ),
   args: {
@@ -92,7 +90,7 @@ export const WithCheckbox: IStory = {
       props={props}
       cols={colsHorizontal}
       rows={rows}
-      horizontalAlign='start'
+      horizontalAlign="start"
     />
   ),
   args: {
@@ -108,7 +106,7 @@ export const WithRadio: IStory = {
       props={props}
       cols={colsHorizontal}
       rows={rows}
-      horizontalAlign='start'
+      horizontalAlign="start"
     />
   ),
   args: {
@@ -124,7 +122,7 @@ export const WithSwitch: IStory = {
       props={props}
       cols={colsHorizontal}
       rows={rows}
-      horizontalAlign='start'
+      horizontalAlign="start"
     />
   ),
   args: {

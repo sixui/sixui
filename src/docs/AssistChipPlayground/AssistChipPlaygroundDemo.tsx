@@ -1,4 +1,5 @@
-import { AssistChip, type IAssistChipProps } from '~/components/Chip';
+import type { IAssistChipProps } from '~/components/Chip';
+import { AssistChip } from '~/components/Chip';
 
 export type IAssistChipPlaygroundDemoProps = {
   assistChip: IAssistChipProps;

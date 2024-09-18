@@ -1,12 +1,12 @@
 import type {
-  IZeroOrMore,
+  IAny,
   ICompiledStyles,
   IMaybeAsync,
-  IAny,
+  IZeroOrMore,
 } from '~/helpers/types';
 import type { IBaseProps } from '../Base';
-import type { ISnackbarContentStylesKey } from './SnackbarContent.styles';
 import type { IElevationStylesKey } from '../Elevation';
+import type { ISnackbarContentStylesKey } from './SnackbarContent.styles';
 
 export type ISnackbarContentProps = IBaseProps<ISnackbarContentStylesKey> & {
   innerStyles?: {

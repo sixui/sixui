@@ -1,17 +1,15 @@
 import { createTheme } from '@vanilla-extract/css';
 
+import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { IIconButtonVariant } from './IconButton.types';
-import {
-  componentThemeFactory,
-  type IComponentThemeFactory,
-} from '~/utils/styles/componentThemeFactory';
-import { createStyles } from '~/utils/styles/createStyles';
-import { px } from '~/helpers/styles/px';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
+import { px } from '~/helpers/styles/px';
+import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { themeTokens } from '../ThemeProvider';
 import { Button } from '../Button';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
+import { themeTokens } from '../ThemeProvider';
 
 type IModifier = 'toggle' | 'selected';
 

@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { appLayoutTokens } from '../AppLayout.stylex';
 import { sideSheetContentTokens } from '~/components/SideSheetContent/SideSheetContent.stylex';
+import { appLayoutTokens } from '../AppLayout.stylex';
 
 export type IAppLayoutNavigationDrawerStylesKey =
   keyof typeof appLayoutNavigationDrawerStyles;

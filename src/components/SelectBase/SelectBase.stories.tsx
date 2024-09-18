@@ -1,12 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { ISelectBaseExampleProps } from './SelectBaseExample';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { ListItem } from '../ListItem';
 import { TOP_100_MOVIES } from '../FilterableListBase/movies';
-import {
-  SelectBaseExample,
-  type ISelectBaseExampleProps,
-} from './SelectBaseExample';
+import { ListItem } from '../ListItem';
+import { SelectBaseExample } from './SelectBaseExample';
 
 const meta = {
   component: SelectBaseExample,

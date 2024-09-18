@@ -1,4 +1,4 @@
-import type { IZeroOrMore, ICompiledStyles } from '~/helpers/types';
+import type { ICompiledStyles, IZeroOrMore } from '~/helpers/types';
 import type { IBaseProps } from '../Base';
 import type { IElevationStylesKey } from '../Elevation';
 import type { IRichTooltipContentStylesKey } from './RichTooltipContent.styles';

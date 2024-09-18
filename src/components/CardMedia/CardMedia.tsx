@@ -1,9 +1,9 @@
 import { forwardRef } from 'react';
 
 import type { ICardMediaProps } from './CardMedia.types';
-import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
-import { useStyles } from '~/hooks/useStyles';
 import { commonStyles } from '~/helpers/commonStyles';
+import { useStyles } from '~/hooks/useStyles';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { Base } from '../Base';
 import { cardMediaStyles } from './CardMedia.styles';
 import { cardMediaTheme } from './CardMedia.stylex';
@@ -20,7 +20,7 @@ export const CardMedia = createPolymorphicComponent<'div', ICardMediaProps>(
 
       return (
         <Base
-          role='img'
+          role="img"
           {...other}
           sx={[
             cardMediaTheme,

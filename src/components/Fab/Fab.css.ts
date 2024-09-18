@@ -1,18 +1,16 @@
 import { createTheme, fallbackVar } from '@vanilla-extract/css';
 
+import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { IFabVariant } from './Fab.types';
-import {
-  componentThemeFactory,
-  type IComponentThemeFactory,
-} from '~/utils/styles/componentThemeFactory';
-import { createStyles } from '~/utils/styles/createStyles';
-import { px } from '~/helpers/styles/px';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
-import { themeTokens } from '../ThemeProvider';
+import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createStyles } from '~/utils/styles/createStyles';
+import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { Button } from '../Button';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
+import { themeTokens } from '../ThemeProvider';
 
 type IModifier = 'extended' | 'lowered';
 

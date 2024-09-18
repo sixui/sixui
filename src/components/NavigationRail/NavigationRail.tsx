@@ -2,10 +2,10 @@ import { forwardRef } from 'react';
 
 import type { INavigationRailProps } from './NavigationRail.types';
 import { useStyles } from '~/hooks/useStyles';
+import { NavigationRailDestination } from '../NavigationRailDestination';
 import { PaperBase } from '../PaperBase';
 import { navigationRailStyles } from './NavigationRail.styles';
 import { navigationRailTheme } from './NavigationRail.stylex';
-import { NavigationRailDestination } from '../NavigationRailDestination';
 
 const NavigationRail = forwardRef<HTMLDivElement, INavigationRailProps>(
   function NavigationRail(props, forwardedRef) {

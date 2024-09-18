@@ -7,8 +7,9 @@ import {
   useInteractions,
 } from '@floating-ui/react';
 
-import { Scrim, type IScrimProps } from '~/components/Scrim';
+import type { IScrimProps } from '~/components/Scrim';
 import { Button } from '~/components/Button';
+import { Scrim } from '~/components/Scrim';
 
 export type IScrimPlaygroundDemoProps = {
   scrim: IScrimProps;

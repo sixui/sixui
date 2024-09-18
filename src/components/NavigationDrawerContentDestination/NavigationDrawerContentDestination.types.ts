@@ -1,5 +1,5 @@
-import type { IOmit } from '~/helpers/types';
 import type { IBaseProps } from '~/components/Base';
+import type { IOmit } from '~/helpers/types';
 import type { IListItemProps } from '../ListItem';
 import type { INavigationDrawerContentDestinationStylesKey } from './NavigationDrawerContentDestination.styles';
 

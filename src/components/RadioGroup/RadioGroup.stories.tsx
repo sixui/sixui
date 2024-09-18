@@ -3,11 +3,11 @@ import { useRef, useState } from 'react';
 
 import type { IRadioGroupProps } from './RadioGroup.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { Button } from '../Button';
 import { ComponentShowcase } from '../ComponentShowcase';
 import { Radio } from '../Radio';
-import { Button } from '../Button';
-import { RadioGroup } from './RadioGroup';
 import { Stack } from '../Stack';
+import { RadioGroup } from './RadioGroup';
 
 const meta = {
   component: RadioGroup,
@@ -34,10 +34,10 @@ const ControlledRadioGroup: React.FC<IRadioGroupProps> = (props) => {
         onChange={(_, value) => setValue(value)}
         ref={ref}
       >
-        <Radio value='1' />
-        <Radio value='2' />
-        <Radio value='3' disabled />
-        <Radio value='4' />
+        <Radio value="1" />
+        <Radio value="2" />
+        <Radio value="3" disabled />
+        <Radio value="4" />
       </RadioGroup>
 
       <Button onClick={() => ref.current?.focus()}>Click to focus</Button>
@@ -50,11 +50,11 @@ const UncontrolledRadioGroup: React.FC<IRadioGroupProps> = (props) => {
 
   return (
     <>
-      <RadioGroup {...props} defaultValue='2' ref={ref}>
-        <Radio value='1' />
-        <Radio value='2' />
-        <Radio value='3' disabled />
-        <Radio value='4' />
+      <RadioGroup {...props} defaultValue="2" ref={ref}>
+        <Radio value="1" />
+        <Radio value="2" />
+        <Radio value="3" disabled />
+        <Radio value="4" />
       </RadioGroup>
 
       <Button onClick={() => ref.current?.focus()}>Click to focus</Button>

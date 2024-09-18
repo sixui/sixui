@@ -4,6 +4,7 @@ import {
   autoUpdate,
   FloatingArrow,
   FloatingFocusManager,
+  size,
   useClick,
   useDelayGroup,
   useDismiss,
@@ -14,7 +15,6 @@ import {
   useMergeRefs,
   useRole,
   useTransitionStatus,
-  size,
 } from '@floating-ui/react';
 import stylex from '@stylexjs/stylex';
 
@@ -24,16 +24,16 @@ import type {
   IPopoverMiddlewares,
   IPopoverOpenEvents,
 } from './PopoverBase.types';
+import { commonStyles } from '~/helpers/commonStyles';
+import { fixedForwardRef } from '~/helpers/fixedForwardRef';
 import { isFunction } from '~/helpers/isFunction';
+import { isObject } from '~/helpers/isObject';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { usePopoverCursor } from '~/hooks/usePopoverCursor';
 import { useStyles } from '~/hooks/useStyles';
-import { isObject } from '~/helpers/isObject';
-import { commonStyles } from '~/helpers/commonStyles';
-import { fixedForwardRef } from '~/helpers/fixedForwardRef';
 import { FloatingTransition } from '../FloatingTransition';
-import { Scrim } from '../Scrim';
 import { Portal } from '../Portal';
+import { Scrim } from '../Scrim';
 import { popoverBaseStyles } from './PopoverBase.styles';
 import { PreventAutoFocus } from './PreventAutoFocus';
 

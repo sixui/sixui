@@ -1,9 +1,9 @@
-import { defineProperties, createRainbowSprinkles } from 'rainbow-sprinkles';
 import { style } from '@vanilla-extract/css';
+import { createRainbowSprinkles, defineProperties } from 'rainbow-sprinkles';
 
-import { themeTokens } from '../ThemeProvider';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { getSpacingValues } from '~/helpers/styles/getSpacingValues';
+import { themeTokens } from '../ThemeProvider';
 
 type IModifier = 'size';
 

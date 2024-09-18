@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
 import type { IColorScheme } from './colorScheme.types';
-import { tonalPalettesTokens } from './tonalPalettes.stylex';
 import { colorSchemeTokens as baseColorSchemeTokens } from './colorScheme.stylex';
+import { tonalPalettesTokens } from './tonalPalettes.stylex';
 
 export const darkColorScheme: IColorScheme = {
   primary: tonalPalettesTokens.primary80,

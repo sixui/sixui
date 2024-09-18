@@ -1,13 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IFabProps } from './Fab.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import {
-  makeComponentShowcase,
-  type IComponentPresentation,
-} from '../ComponentShowcase';
+import { makeComponentShowcase } from '../ComponentShowcase';
 import { Fab } from './Fab';
 
 // https://m3.material.io/components/floating-action-button/overview
@@ -26,12 +24,12 @@ const defaultArgs = {
 } satisfies Partial<IFabProps>;
 
 const svgColorIcon = (
-  <svg viewBox='0 0 36 36'>
-    <path fill='#4285F4' d='M30 16H20l-4 4h14z' />
-    <path fill='#FBBC05' d='M6 16v4h10l4-4z' />
-    <path fill='#34A853' d='M16 16v14h4V20z' />
-    <path fill='#EA4335' d='M20 16V6h-4v14z' />
-    <path fill='none' d='M0 0h36v36H0z' />
+  <svg viewBox="0 0 36 36">
+    <path fill="#4285F4" d="M30 16H20l-4 4h14z" />
+    <path fill="#FBBC05" d="M6 16v4h10l4-4z" />
+    <path fill="#34A853" d="M16 16v14h4V20z" />
+    <path fill="#EA4335" d="M20 16V6h-4v14z" />
+    <path fill="none" d="M0 0h36v36H0z" />
   </svg>
 );
 

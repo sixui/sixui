@@ -1,13 +1,14 @@
 import { accumulate } from '@olivierpascal/helpers';
 
-import type { IPlaygroundOptionProps } from './PlaygroundOption.types';
+import type { ILabeledRenderProps } from '~/components/Labeled';
 import type { IPlaygroundOption } from './Playground.types';
-import { TextInputField } from '~/components/TextInputField';
-import { Labeled, type ILabeledRenderProps } from '~/components/Labeled';
+import type { IPlaygroundOptionProps } from './PlaygroundOption.types';
 import { Checkbox } from '~/components/Checkbox';
-import { fixedForwardRef } from '~/helpers/fixedForwardRef';
 import { HtmlSelect } from '~/components/HtmlSelect';
+import { Labeled } from '~/components/Labeled';
 import { Stack } from '~/components/Stack';
+import { TextInputField } from '~/components/TextInputField';
+import { fixedForwardRef } from '~/helpers/fixedForwardRef';
 
 export const PlaygroundOption = fixedForwardRef(function PlaygroundOption<
   TSectionsProps extends Record<string, object>,
@@ -68,7 +69,7 @@ export const PlaygroundOption = fixedForwardRef(function PlaygroundOption<
           onChange={(event) =>
             option.input ? handleValueChange(event?.target.value) : undefined
           }
-          type='number'
+          type="number"
           min={input.min}
           max={input.max}
         />

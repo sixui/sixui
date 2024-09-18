@@ -1,6 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { FieldBase, type IFieldBaseProps } from '~/components/FieldBase';
+import type { IFieldBaseProps } from '~/components/FieldBase';
+import { FieldBase } from '~/components/FieldBase';
 import { scaleTokens } from '~/themes/base/scale.stylex';
 
 const styles = stylex.create({

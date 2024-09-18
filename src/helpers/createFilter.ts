@@ -1,9 +1,7 @@
 import { filterUndefineds } from '@olivierpascal/helpers';
 
-import {
-  normalizeString,
-  type INormalizeStringOptions,
-} from './normalizeString';
+import type { INormalizeStringOptions } from './normalizeString';
+import { normalizeString } from './normalizeString';
 
 export type ICreateFilterOptions<TItem> = INormalizeStringOptions & {
   limit?: number;

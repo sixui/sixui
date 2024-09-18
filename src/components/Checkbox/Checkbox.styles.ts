@@ -1,13 +1,13 @@
 import stylex from '@stylexjs/stylex';
 
-import { checkboxTokens } from './Checkbox.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
 import { motionTokens } from '~/themes/base/motion.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
-import { densityTokens } from '~/themes/base/density.stylex';
 import { zIndexTokens } from '~/themes/base/zIndex.stylex';
-import { stateLayerTokens } from '../StateLayer/StateLayer.stylex';
 import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
+import { stateLayerTokens } from '../StateLayer/StateLayer.stylex';
 import { checkboxStateTokens } from './Checkbox.state.stylex';
+import { checkboxTokens } from './Checkbox.stylex';
 
 // The stroke width of the icon marks.
 const markStroke = '2px';

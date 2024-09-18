@@ -1,13 +1,13 @@
 import { useFloatingTree, useListItem, useMergeRefs } from '@floating-ui/react';
 
 import type { IMenuItemFactory } from './MenuItem.types';
+import { iconTriangleLeft, iconTriangleRight } from '~/assets/icons';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
-import { iconTriangleLeft, iconTriangleRight } from '~/assets/icons';
 import { ListItem } from '../../ListItem';
 import { SvgIcon } from '../../SvgIcon';
-import { useMenuItemContext } from './MenuItem.context';
 import { useMenuContext } from '../Menu.context';
+import { useMenuItemContext } from './MenuItem.context';
 
 const COMPONENT_NAME = 'MenuItem';
 
@@ -30,7 +30,7 @@ export const MenuItem = polymorphicComponentFactory<IMenuItemFactory>(
     const renderListItem = (): JSX.Element => (
       <ListItem
         as={as}
-        role='menuitem'
+        role="menuitem"
         tabIndex={isActive ? 0 : -1}
         interactions={{ hovered: isActive }}
         {...menuItemContext?.getItemProps({

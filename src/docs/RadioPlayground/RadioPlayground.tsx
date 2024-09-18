@@ -1,10 +1,8 @@
 import type { IPlaygroundSections } from '~/docs/Playground';
-import { Playground } from '~/docs/Playground';
+import type { IRadioPlaygroundDemoProps } from './RadioPlaygroundDemo';
 import { labeledPlaygroundSections } from '~/docs/LabeledPlayground';
-import {
-  RadioPlaygroundDemo,
-  type IRadioPlaygroundDemoProps,
-} from './RadioPlaygroundDemo';
+import { Playground } from '~/docs/Playground';
+import { RadioPlaygroundDemo } from './RadioPlaygroundDemo';
 
 export const radioPlaygroundSections: IPlaygroundSections<IRadioPlaygroundDemoProps> =
   {

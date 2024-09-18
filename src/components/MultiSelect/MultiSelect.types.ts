@@ -1,6 +1,6 @@
 import type { IOmit } from '~/helpers/types';
-import type { IMultiSelectBaseProps } from '../MultiSelectBase';
 import type { IFilterableListItem } from '../FilterableList';
+import type { IMultiSelectBaseProps } from '../MultiSelectBase';
 
 export type IMultiSelectOwnProps = {
   value?: Array<string>;

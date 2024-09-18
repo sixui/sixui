@@ -1,16 +1,13 @@
+import type { IListItemThemeFactory } from './ListItem.css';
 import type { IListItemFactory } from './ListItem.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { ButtonBase } from '../ButtonBase';
 import { Item } from '../Item';
 import { Paper } from '../Paper';
-import {
-  listItemTheme,
-  listItemVariants,
-  type IListItemThemeFactory,
-} from './ListItem.css';
+import { listItemTheme, listItemVariants } from './ListItem.css';
 
 const COMPONENT_NAME = 'ListItem';
 
@@ -119,7 +116,7 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
             stateLayer: getStyles('stateLayer').className,
           })}
           ref={forwardedRef}
-          focusRing='inward'
+          focusRing="inward"
         >
           {renderItem()}
         </ButtonBase>

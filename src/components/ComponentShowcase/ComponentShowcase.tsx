@@ -1,15 +1,13 @@
+import type { IComponentShowcaseThemeFactory } from './ComponentShowcase.css';
 import type {
-  IComponentShowcaseFactory,
   IComponentPresentation,
+  IComponentShowcaseFactory,
 } from './ComponentShowcase.types';
-import { useProps } from '~/utils/component/useProps';
 import { componentFactory } from '~/utils/component/componentFactory';
+import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
-import {
-  componentShowcaseTheme,
-  type IComponentShowcaseThemeFactory,
-} from './ComponentShowcase.css';
+import { componentShowcaseTheme } from './ComponentShowcase.css';
 
 const COMPONENT_NAME = 'ComponentShowcase';
 const DUMMY_TEXT = '.';

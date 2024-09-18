@@ -1,23 +1,23 @@
 import { forwardRef, useCallback, useContext, useRef } from 'react';
-import { asArray } from '@olivierpascal/helpers';
 import { useMergeRefs } from '@floating-ui/react';
+import { asArray } from '@olivierpascal/helpers';
 
 import type { IRadioProps } from './Radio.types';
 import { useId } from '~/hooks/useId';
 import { useStyles } from '~/hooks/useStyles';
-import { useVisualState } from '../VisualState';
-import { StateLayer } from '../StateLayer';
+import { Base } from '../Base';
 import { FocusRing } from '../FocusRing';
 import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
-import { RadioGroupContext } from '../RadioGroup';
 import { LabeledContext } from '../Labeled';
+import { RadioGroupContext } from '../RadioGroup';
+import { StateLayer } from '../StateLayer';
+import { useVisualState } from '../VisualState';
 import {
   radioFocusRingStyles,
   radioStateLayerStyles,
   radioStyles,
 } from './Radio.styles';
 import { radioTheme } from './Radio.stylex';
-import { Base } from '../Base';
 
 // https://github.com/material-components/material-web/blob/main/radio/internal/radio.ts
 
@@ -130,22 +130,22 @@ export const Radio = forwardRef<HTMLInputElement, IRadioProps>(
               visuallyDisabled &&
                 (checked ? 'icon$checked$disabled' : 'icon$disabled'),
             )}
-            viewBox='0 0 20 20'
+            viewBox="0 0 20 20"
           >
             {loading ? null : (
               <>
                 <mask id={maskId}>
-                  <rect width='100%' height='100%' fill='white' />
-                  <circle cx='10' cy='10' r='8' fill='black' />
+                  <rect width="100%" height="100%" fill="white" />
+                  <circle cx="10" cy="10" r="8" fill="black" />
                 </mask>
                 <circle
                   {...getStyles(
                     'circle$outer',
                     visuallyDisabled && 'circle$disabled',
                   )}
-                  cx='10'
-                  cy='10'
-                  r='10'
+                  cx="10"
+                  cy="10"
+                  r="10"
                   mask={`url(#${maskId})`}
                 />
               </>
@@ -156,16 +156,16 @@ export const Radio = forwardRef<HTMLInputElement, IRadioProps>(
                 checked && 'circle$inner$checked',
                 visuallyDisabled && 'circle$disabled',
               )}
-              cx='10'
-              cy='10'
-              r='5'
+              cx="10"
+              cy="10"
+              r="5"
             />
           </svg>
 
           <Base
-            as='input'
+            as="input"
             name={name}
-            type='radio'
+            type="radio"
             checked={checked}
             onChange={handleChange}
             value={value}

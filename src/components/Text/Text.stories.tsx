@@ -159,8 +159,8 @@ export const TypeScale: IStory = {
           },
         },
       ]}
-      horizontalAlign='start'
-      rowLegendPosition='top'
+      horizontalAlign="start"
+      rowLegendPosition="top"
     />
   ),
   args: defaultArgs,
@@ -177,7 +177,7 @@ export const Truncated: IStory = {
         {
           props: {
             as: (props) => (
-              <div className={classNames.container} data-size='lg'>
+              <div className={classNames.container} data-size="lg">
                 <Text {...props} />
               </div>
             ),
@@ -186,7 +186,7 @@ export const Truncated: IStory = {
         {
           props: {
             as: (props) => (
-              <div className={classNames.container} data-size='md'>
+              <div className={classNames.container} data-size="md">
                 <Text {...props} />
               </div>
             ),
@@ -195,14 +195,14 @@ export const Truncated: IStory = {
         {
           props: {
             as: (props) => (
-              <div className={classNames.container} data-size='sm'>
+              <div className={classNames.container} data-size="sm">
                 <Text {...props} />
               </div>
             ),
           },
         },
       ]}
-      horizontalAlign='start'
+      horizontalAlign="start"
     />
   ),
   args: {
@@ -213,7 +213,7 @@ export const Truncated: IStory = {
 };
 
 const LineClampedShowcase = makeComponentShowcase((props: ITextProps) => (
-  <div className={classNames.container} data-size='sm'>
+  <div className={classNames.container} data-size="sm">
     <Text {...props} />
   </div>
 ));
@@ -243,7 +243,7 @@ export const LineClamped: IStory = {
           },
         },
       ]}
-      horizontalAlign='start'
+      horizontalAlign="start"
     />
   ),
   args: {

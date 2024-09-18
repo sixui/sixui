@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { dialogContentTokens } from './DialogContent.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { dialogContentTokens } from './DialogContent.stylex';
 
 // https://github.com/material-components/material-web/blob/main/dialog/internal/_dialog.scss
 

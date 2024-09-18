@@ -2,8 +2,8 @@ import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphic
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../../Box';
 import type {
-  polymorphicTemplateTheme,
   IPolymorphicTemplateThemeFactory,
+  polymorphicTemplateTheme,
 } from './PolymorphicTemplate.css';
 
 export type IPolymorphicTemplateVariant = 'primary';

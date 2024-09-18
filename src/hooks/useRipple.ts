@@ -1,13 +1,11 @@
-import type { PressEvent } from 'react-aria';
 import type { FocusableElement } from '@react-types/shared';
-import {
-  useCallback,
-  useRef,
-  useState,
-  type MouseEventHandler,
-  type PointerEvent,
-  type PointerEventHandler,
+import type {
+  MouseEventHandler,
+  PointerEvent,
+  PointerEventHandler,
 } from 'react';
+import type { PressEvent } from 'react-aria';
+import { useCallback, useRef, useState } from 'react';
 import { delay } from '@olivierpascal/helpers';
 
 import type { IPoint } from '~/helpers/types';

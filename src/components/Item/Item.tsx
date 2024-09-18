@@ -1,11 +1,12 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
+import type { IItemThemeFactory } from './Item.css';
 import type { IItemFactory } from './Item.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
-import { itemTheme, type IItemThemeFactory } from './Item.css';
+import { itemTheme } from './Item.css';
 
 const COMPONENT_NAME = 'Item';
 
@@ -43,12 +44,12 @@ export const Item = polymorphicComponentFactory<IItemFactory>(
     return (
       <Box {...other} {...getStyles('root')} ref={forwardedRef}>
         {start && (
-          <div {...getStyles('section')} data-section='start'>
+          <div {...getStyles('section')} data-section="start">
             {start}
           </div>
         )}
 
-        <div {...getStyles('section')} data-section='main'>
+        <div {...getStyles('section')} data-section="main">
           <div
             {...getStyles('main', {
               style: lineClamp
@@ -67,13 +68,13 @@ export const Item = polymorphicComponentFactory<IItemFactory>(
         </div>
 
         {trailingSupportingText ? (
-          <div {...getStyles('section')} data-section='trailingSupportingText'>
+          <div {...getStyles('section')} data-section="trailingSupportingText">
             {trailingSupportingText}
           </div>
         ) : null}
 
         {end ? (
-          <div {...getStyles('section')} data-section='end'>
+          <div {...getStyles('section')} data-section="end">
             {end}
           </div>
         ) : null}

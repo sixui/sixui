@@ -3,10 +3,10 @@ import { useContext } from 'react';
 import stylex from '@stylexjs/stylex';
 
 import type { IThemeProviderProps } from './ThemeProvider.types';
-import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
 import { ColorScheme } from '~/docs/ColorScheme';
 import { generateThemeFromSourceColor } from '~/helpers/colors/generateThemeFromSourceColor';
+import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { ColorInputField } from '../ColorInputField';
 import { Stack } from '../Stack';

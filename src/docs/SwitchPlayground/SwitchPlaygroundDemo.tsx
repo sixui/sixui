@@ -1,8 +1,9 @@
-import type { IOmit } from '~/helpers/types';
+import type { ISwitchProps } from '~/components/Switch';
 import type { ILabeledPlaygroundDemoProps } from '~/docs/LabeledPlayground/LabeledPlaygroundDemo';
-import { Switch, type ISwitchProps } from '~/components/Switch';
+import type { IOmit } from '~/helpers/types';
 import { Labeled } from '~/components/Labeled';
 import { Stack } from '~/components/Stack';
+import { Switch } from '~/components/Switch';
 
 export type ISwitchPlaygroundDemoProps = ILabeledPlaygroundDemoProps & {
   switch: IOmit<ISwitchProps, 'styles'>;

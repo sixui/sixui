@@ -1,10 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IVisualStateProps } from './VisualState.types';
-import {
-  ComponentShowcase,
-  type IComponentPresentation,
-} from '../ComponentShowcase';
+import { ComponentShowcase } from '../ComponentShowcase';
 import { VisualState } from './VisualState';
 
 const meta = {

@@ -1,15 +1,13 @@
-import { useImperativeHandle, useMemo, useRef, forwardRef } from 'react';
+import { forwardRef, useImperativeHandle, useMemo, useRef } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
+import type { IRadioGroupContextValue } from './RadioGroup.context';
 import type { IRadioGroupProps } from './RadioGroup.types';
-import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
-import { useId } from '~/hooks/useId';
 import { useControlledValue } from '~/hooks/useControlledValue';
+import { useId } from '~/hooks/useId';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { Base } from '../Base';
-import {
-  RadioGroupContext,
-  type IRadioGroupContextValue,
-} from './RadioGroup.context';
+import { RadioGroupContext } from './RadioGroup.context';
 
 // https://github.com/mui/material-ui/blob/master/packages/mui-material/src/RadioGroup/RadioGroup.js
 // https://github.com/mui/material-ui/blob/master/packages/mui-material/src/RadioGroup/RadioGroup.d.ts
@@ -72,8 +70,8 @@ export const RadioGroup = createPolymorphicComponent<'div', IRadioGroupProps>(
         <RadioGroupContext.Provider value={contextValue}>
           <Base
             sx={sx}
-            role='radiogroup'
-            data-cy='radioGroup'
+            role="radiogroup"
+            data-cy="radioGroup"
             {...other}
             ref={handleRef}
           >

@@ -1,11 +1,11 @@
 import type { Alignment, Placement, Side } from '@floating-ui/react';
 import type { TransitionStatus } from 'react-transition-group';
 
+import type { IOrientation } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { IOrientation } from '~/helpers/types';
 import type { IBoxProps } from '../Box';
-import { motionTheme, IMotionThemeFactory } from './Motion.css';
+import { IMotionThemeFactory, motionTheme } from './Motion.css';
 
 export type IMotionStatus = 'unmounted' | 'initial' | 'open' | 'close';
 

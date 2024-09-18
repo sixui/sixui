@@ -1,13 +1,11 @@
 import { createTheme } from '@vanilla-extract/css';
 
-import {
-  componentThemeFactory,
-  type IComponentThemeFactory,
-} from '~/utils/styles/componentThemeFactory';
-import { createStyles } from '~/utils/styles/createStyles';
-import { px } from '~/helpers/styles/px';
-import { themeTokens } from '~/components/ThemeProvider';
+import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
+import { themeTokens } from '~/components/ThemeProvider';
+import { px } from '~/helpers/styles/px';
+import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { PaperBase } from '../../PaperBase';
 

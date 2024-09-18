@@ -1,12 +1,10 @@
+import type { IPlaceholderThemeFactory } from './Placeholder.css';
 import type { IPlaceholderFactory } from './Placeholder.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Paper } from '../Paper';
-import {
-  placeholderTheme,
-  type IPlaceholderThemeFactory,
-} from './Placeholder.css';
+import { placeholderTheme } from './Placeholder.css';
 
 const COMPONENT_NAME = 'Placeholder';
 

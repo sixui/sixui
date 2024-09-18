@@ -6,11 +6,11 @@ import type {
   IZeroOrMore,
 } from '~/helpers/types';
 import type { IBaseProps } from '../Base';
-import type { IDisclosureButtonStylesKey } from './DisclosureButton.styles';
-import type { IListItemProps, IListItemStylesKey } from '../ListItem';
 import type { ICheckboxStylesKey } from '../Checkbox';
-import type { ISwitchStylesKey } from '../Switch';
 import type { ICircularProgressIndicatorStylesKey } from '../CircularProgressIndicator';
+import type { IListItemProps, IListItemStylesKey } from '../ListItem';
+import type { ISwitchStylesKey } from '../Switch';
+import type { IDisclosureButtonStylesKey } from './DisclosureButton.styles';
 
 export type IDisclosureButtonProps = IBaseProps<IDisclosureButtonStylesKey> &
   IOmit<IListItemProps, 'styles' | 'innerStyles'> & {

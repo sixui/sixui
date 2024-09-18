@@ -1,12 +1,12 @@
 import { forwardRef, useRef } from 'react';
-import { CSSTransition } from 'react-transition-group';
 import { useMergeRefs } from '@floating-ui/react';
+import { CSSTransition } from 'react-transition-group';
 
 import type { ISnackbarProps } from './Snackbar.types';
-import { useTimeout } from '~/hooks/useTimeout';
 import { useStyles } from '~/hooks/useStyles';
-import { SnackbarContent } from '../SnackbarContent';
+import { useTimeout } from '~/hooks/useTimeout';
 import { Base } from '../Base';
+import { SnackbarContent } from '../SnackbarContent';
 import { snackbarStyles } from './Snackbar.styles';
 import { snackbarTheme } from './Snackbar.stylex';
 

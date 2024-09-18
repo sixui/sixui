@@ -1,10 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { IComponentPresentation } from '../../ComponentShowcase';
 import type { IPolymorphicTemplateProps } from './PolymorphicTemplate.types';
-import {
-  makeComponentShowcase,
-  type IComponentPresentation,
-} from '../../ComponentShowcase';
+import { makeComponentShowcase } from '../../ComponentShowcase';
 import { PolymorphicTemplate } from './PolymorphicTemplate';
 
 const meta = {

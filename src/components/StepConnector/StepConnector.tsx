@@ -2,8 +2,8 @@ import { forwardRef, useContext } from 'react';
 
 import type { IStepConnectorProps } from './StepConnector.types';
 import { useStyles } from '~/hooks/useStyles';
-import { StepContext } from '../Step';
 import { Base } from '../Base';
+import { StepContext } from '../Step';
 import { stepConnectorStyles } from './StepConnector.styles';
 import { stepConnectorTheme } from './StepConnector.stylex';
 

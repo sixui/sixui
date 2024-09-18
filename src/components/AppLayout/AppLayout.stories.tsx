@@ -1,38 +1,36 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import stylex from '@stylexjs/stylex';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faBars,
-  faXmark,
-  faSquare as faSquareSolid,
-  faCircle as faCircleSolid,
-  faHeart as faHeartSolid,
-} from '@fortawesome/free-solid-svg-icons';
-import { createSequence } from '@olivierpascal/helpers';
-import {
-  faSquare,
   faCircle,
   faHeart,
+  faSquare,
 } from '@fortawesome/free-regular-svg-icons';
-
-import type { IAppLayoutProps } from './AppLayout.types';
-import { scaleTokens } from '~/themes/base/scale.stylex';
-import { outlineTokens } from '~/themes/base/outline.stylex';
-import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import {
-  useCanonicalLayout,
-  type ICanonicalLayoutType,
-} from '~/hooks/useCanonicalLayout';
+  faBars,
+  faCircle as faCircleSolid,
+  faHeart as faHeartSolid,
+  faSquare as faSquareSolid,
+  faXmark,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { createSequence } from '@olivierpascal/helpers';
+import stylex from '@stylexjs/stylex';
+
+import type { ICanonicalLayoutType } from '~/hooks/useCanonicalLayout';
+import type { IAppLayoutProps } from './AppLayout.types';
+import { useCanonicalLayout } from '~/hooks/useCanonicalLayout';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { Frame } from '../Frame';
-import { Text } from '../Text';
-import { Stack } from '../Stack';
 import { IconButton } from '../IconButton';
-import { Placeholder } from '../Placeholder';
-import { NavigationRailDestination } from '../NavigationRailDestination';
 import { NavigationDrawerContent } from '../NavigationDrawerContent';
-import { useAppLayoutContext } from './AppLayout.context';
+import { NavigationRailDestination } from '../NavigationRailDestination';
+import { Placeholder } from '../Placeholder';
+import { Stack } from '../Stack';
+import { Text } from '../Text';
 import { AppLayout } from './AppLayout';
+import { useAppLayoutContext } from './AppLayout.context';
 
 const meta = {
   component: AppLayout,
@@ -61,7 +59,7 @@ const HeaderContentDemo: React.FC = () => {
   const appLayoutContext = useAppLayoutContext();
 
   return (
-    <Stack horizontal gap={6} justify='space-between' grow>
+    <Stack horizontal gap={6} justify="space-between" grow>
       <Stack horizontal gap={2}>
         {appLayoutContext.navigationDrawer?.state?.toggle ? (
           <IconButton
@@ -110,7 +108,7 @@ const BodyDemo: React.FC<IBodyDemoProps> = (props) => {
       {canonicalLayout.panes.map((pane) => (
         <Placeholder
           key={pane.name}
-          corner='none'
+          corner="none"
           height={200}
           width={pane.fixedWidth}
           sx={[!pane.fixedWidth && styles.placeholder$grow]}
@@ -120,7 +118,7 @@ const BodyDemo: React.FC<IBodyDemoProps> = (props) => {
         </Placeholder>
       ))}
 
-      <AppLayout.SideSheet anchor='right'>
+      <AppLayout.SideSheet anchor="right">
         <AppLayout.Aside divider>
           <AsideContent />
         </AppLayout.Aside>
@@ -131,12 +129,12 @@ const BodyDemo: React.FC<IBodyDemoProps> = (props) => {
 
 const NavigationDrawerContentDemo: React.FC = () => (
   <Stack gap={6}>
-    <NavigationDrawerContent.DestinationList headline='Mail' endDivider>
+    <NavigationDrawerContent.DestinationList headline="Mail" endDivider>
       <NavigationDrawerContent.Destination
         onClick={() => {}}
         active
-        trailingSupportingText='24'
-        leadingIcon='xx'
+        trailingSupportingText="24"
+        leadingIcon="xx"
       >
         XX
       </NavigationDrawerContent.Destination>
@@ -145,10 +143,10 @@ const NavigationDrawerContentDemo: React.FC = () => (
       </NavigationDrawerContent.Destination>
     </NavigationDrawerContent.DestinationList>
 
-    <NavigationDrawerContent.DestinationList headline='Labels'>
+    <NavigationDrawerContent.DestinationList headline="Labels">
       <NavigationDrawerContent.Destination
         onClick={() => {}}
-        trailingSupportingText='24'
+        trailingSupportingText="24"
       >
         XX
       </NavigationDrawerContent.Destination>
@@ -174,21 +172,21 @@ const NavigationRailContentDemo: React.FC<INavigationRailContentProps> = (
       <NavigationRailDestination
         icon={<FontAwesomeIcon icon={faSquare} />}
         activeIcon={<FontAwesomeIcon icon={faSquareSolid} />}
-        label='List-detail'
+        label="List-detail"
         onClick={() => setCanonicalLayoutType('listDetail')}
         active={canonicalLayoutType === 'listDetail'}
       />
       <NavigationRailDestination
         icon={<FontAwesomeIcon icon={faCircle} />}
         activeIcon={<FontAwesomeIcon icon={faCircleSolid} />}
-        label='Supporting pane'
+        label="Supporting pane"
         onClick={() => setCanonicalLayoutType('supportingPane')}
         active={canonicalLayoutType === 'supportingPane'}
       />
       <NavigationRailDestination
         icon={<FontAwesomeIcon icon={faHeart} />}
         activeIcon={<FontAwesomeIcon icon={faHeartSolid} />}
-        label='Feed'
+        label="Feed"
         onClick={() => setCanonicalLayoutType('feed')}
         active={canonicalLayoutType === 'feed'}
       />
@@ -222,7 +220,7 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
     <Frame importParentStyles sx={styles.frame}>
       {({ window }) => (
         <AppLayout
-          preferredNavigationMode='standard'
+          preferredNavigationMode="standard"
           window={window}
           {...props}
         >
@@ -231,7 +229,7 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
               <HeaderContentDemo />
             </AppLayout.Header>
 
-            <Stack horizontal align='start'>
+            <Stack horizontal align="start">
               <AppLayout.SideSheet>
                 <AppLayout.NavigationRail divider>
                   <NavigationRailContentDemo
@@ -267,7 +265,7 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
       {({ window }) => (
         <AppLayout window={window} {...props}>
           <Stack>
-            <Stack horizontal align='start'>
+            <Stack horizontal align="start">
               <AppLayout.SideSheet fullHeight>
                 <AppLayout.NavigationRail divider>
                   <NavigationRailContentDemo
@@ -278,21 +276,21 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
 
                 <AppLayout.NavigationDrawer
                   divider
-                  headline='App Name'
+                  headline="App Name"
                   showCloseButton
-                  header={<Placeholder label='Header' corner='none' />}
-                  footer={<Placeholder label='Footer' corner='none' />}
+                  header={<Placeholder label="Header" corner="none" />}
+                  footer={<Placeholder label="Footer" corner="none" />}
                 >
                   <NavigationDrawerContentDemo />
                 </AppLayout.NavigationDrawer>
               </AppLayout.SideSheet>
 
-              <Stack align='stretch' grow>
+              <Stack align="stretch" grow>
                 <AppLayout.Header divider>
                   <HeaderContentDemo />
                 </AppLayout.Header>
 
-                <Stack horizontal align='start'>
+                <Stack horizontal align="start">
                   <BodyDemo canonicalLayoutType={canonicalLayoutType} />
                 </Stack>
               </Stack>

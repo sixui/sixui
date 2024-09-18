@@ -1,3 +1,4 @@
+import type { ReferenceType } from '@floating-ui/react';
 import { useEffect, useRef, useState } from 'react';
 import {
   autoUpdate,
@@ -14,24 +15,23 @@ import {
   useRole,
   useTransitionStatus,
   useTypeahead,
-  type ReferenceType,
 } from '@floating-ui/react';
 
-import type { IFloatingFilterableListBaseProps } from './FloatingFilterableListBase.types';
-import { isFunction } from '~/helpers/isFunction';
-import {
-  FilterableListBase,
-  type IFilterableCreateNewListItemRenderer,
-  type IFilterableListItemRenderer,
-  type IFilterableListBaseRenderer,
-  type IFilterableListItemRendererProps,
+import type {
+  IFilterableCreateNewListItemRenderer,
+  IFilterableListBaseRenderer,
+  IFilterableListItemRenderer,
+  IFilterableListItemRendererProps,
 } from '../FilterableListBase';
-import { Portal } from '../Portal';
+import type { IFloatingFilterableListBaseProps } from './FloatingFilterableListBase.types';
+import { fixedForwardRef } from '~/helpers/fixedForwardRef';
+import { isFunction } from '~/helpers/isFunction';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { usePrevious } from '~/hooks/usePrevious';
-import { fixedForwardRef } from '~/helpers/fixedForwardRef';
 import { useStyles } from '~/hooks/useStyles';
+import { FilterableListBase } from '../FilterableListBase';
 import { FloatingTransition } from '../FloatingTransition';
+import { Portal } from '../Portal';
 import { floatingFilterableListBaseStyles } from './FloatingFilterableListBase.styles';
 
 export const FloatingFilterableListBase = fixedForwardRef(
@@ -390,9 +390,9 @@ export const FloatingFilterableListBase = fixedForwardRef(
                   sx={combineStyles('container')}
                   placement={floating.placement}
                   status={transitionStatus.status}
-                  origin='edge'
+                  origin="edge"
                   orientation={orientation}
-                  pattern='enterExit'
+                  pattern="enterExit"
                 >
                   <FloatingList elementsRef={elementsRef} labelsRef={labelsRef}>
                     <FilterableListBase

@@ -1,9 +1,7 @@
 import type { IPlaygroundSections } from '~/docs/Playground';
+import type { IScrimPlaygroundDemoProps } from './ScrimPlaygroundDemo';
 import { Playground } from '~/docs/Playground';
-import {
-  ScrimPlaygroundDemo,
-  type IScrimPlaygroundDemoProps,
-} from './ScrimPlaygroundDemo';
+import { ScrimPlaygroundDemo } from './ScrimPlaygroundDemo';
 
 export const scrimPlaygroundSections: IPlaygroundSections<IScrimPlaygroundDemoProps> =
   {

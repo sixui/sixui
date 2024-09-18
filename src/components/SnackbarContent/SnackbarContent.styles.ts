@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
 import { elevationTokens } from '../Elevation/Elevation.stylex';
-import { snackbarContentTokens } from './SnackbarContent.stylex';
 import { snackbarContentStateTokens } from './SnackbarContent.state.stylex';
+import { snackbarContentTokens } from './SnackbarContent.stylex';
 
 export type ISnackbarContentStylesKey = keyof typeof snackbarContentStyles;
 export const snackbarContentStyles = stylex.create({

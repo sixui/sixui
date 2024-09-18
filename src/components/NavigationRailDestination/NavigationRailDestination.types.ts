@@ -1,7 +1,7 @@
 import type { IBaseProps } from '~/components/Base';
 import type { ICompiledStyles, IZeroOrMore } from '~/helpers/types';
-import type { IStateLayerStylesKey } from '../StateLayer';
 import type { IFocusRingStylesKey } from '../FocusRing';
+import type { IStateLayerStylesKey } from '../StateLayer';
 import type { IVisualState } from '../VisualState';
 import type { INavigationRailDestinationStylesKey } from './NavigationRailDestination.styles';
 

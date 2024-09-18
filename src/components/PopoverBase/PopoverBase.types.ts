@@ -11,11 +11,11 @@ import type {
   UseRoleProps,
 } from '@floating-ui/react';
 
-import type { IOrientation } from '~/helpers/types';
 import type {
-  IRendererWithForwardedProps,
   IForwardableProps,
+  IRendererWithForwardedProps,
 } from '~/helpers/react/forwardablePropsTypes';
+import type { IOrientation } from '~/helpers/types';
 import type { IPopoverCursorType } from '~/hooks/usePopoverCursor';
 import type { IBaseProps } from '../Base';
 import type {

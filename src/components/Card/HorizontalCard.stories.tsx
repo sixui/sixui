@@ -1,18 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { ICardProps } from './Card.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { scaleTokens } from '~/themes/base/scale.stylex';
-import {
-  type IComponentPresentation,
-  ComponentShowcase,
-} from '../ComponentShowcase';
 import { Button } from '../Button';
+import { CardActions } from '../CardActions';
 import { CardContent } from '../CardContent';
 import { CardMedia } from '../CardMedia';
 import { CardTitle } from '../CardTitle';
-import { CardActions } from '../CardActions';
+import { ComponentShowcase } from '../ComponentShowcase';
 import { Stack } from '../Stack';
 import { Card } from './Card';
 
@@ -59,16 +57,16 @@ const NonActionableContent: React.FC<{ headline?: string }> = ({
     <CardContent sx={styles.content$twoCols}>
       <CardMedia
         sx={styles.mediaInner}
-        src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
+        src="https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600"
       />
       <Stack gap={2}>
         <CardTitle
           headline={headline ?? 'Headline'}
-          supportingText='Explain more about the topic shown in the headline and subhead through supporting text.'
+          supportingText="Explain more about the topic shown in the headline and subhead through supporting text."
         />
         <CardActions sx={styles.actions}>
           <Button
-            variant='outlined'
+            variant="outlined"
             onClick={(...args) => sbHandleEvent('click:secondaryAction', args)}
           >
             Secondary
@@ -90,18 +88,18 @@ const NonActionableContentVariant: React.FC<{ headline?: string }> = ({
   <>
     <CardMedia
       sx={styles.media}
-      src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
+      src="https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600"
     />
     <CardContent>
       <Stack gap={2}>
         <CardTitle
           headline={headline ?? 'Headline'}
-          supportingText='Explain more about the topic shown in the headline and subhead through supporting text.'
+          supportingText="Explain more about the topic shown in the headline and subhead through supporting text."
         />
         <CardActions sx={styles.actions}>
           <Button
             onClick={(...args) => sbHandleEvent('click:primaryAction', args)}
-            type='submit'
+            type="submit"
           >
             Primary
           </Button>
@@ -115,19 +113,19 @@ const ActionableContent: React.FC<{ headline?: string }> = ({ headline }) => (
   <>
     <CardMedia
       sx={styles.media}
-      src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
+      src="https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600"
     />
     <CardContent>
       <Stack gap={2}>
         <CardTitle
           headline={headline ?? 'Headline'}
-          supportingText='Explain more about the topic shown in the headline and subhead through supporting text.'
+          supportingText="Explain more about the topic shown in the headline and subhead through supporting text."
         />
         <CardActions sx={styles.actions}>
           <Button
             onClick={(...args) => sbHandleEvent('click:secondaryAction', args)}
-            type='submit'
-            variant='outlined'
+            type="submit"
+            variant="outlined"
           >
             Secondary
           </Button>
@@ -167,14 +165,14 @@ const variants: Array<IComponentPresentation<ICardProps>> = [
     legend: 'Elevated',
     props: {
       variant: 'elevated',
-      children: <NonActionableContent headline='Non-actionable' />,
+      children: <NonActionableContent headline="Non-actionable" />,
     },
   },
   {
     legend: 'Filled',
     props: {
       variant: 'filled',
-      children: <ActionableContent headline='Actionable' />,
+      children: <ActionableContent headline="Actionable" />,
       onClick: (...args) => sbHandleEvent('click:card', args),
     },
   },
@@ -182,7 +180,7 @@ const variants: Array<IComponentPresentation<ICardProps>> = [
     legend: 'Outlined',
     props: {
       variant: 'outlined',
-      children: <NonActionableContentVariant headline='Non-actionable' />,
+      children: <NonActionableContentVariant headline="Non-actionable" />,
     },
   },
 ];

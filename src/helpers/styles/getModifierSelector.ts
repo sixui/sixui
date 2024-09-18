@@ -1,4 +1,5 @@
-import { getDataAttributes, type IModifiers } from '~/utils/getDataAttributes';
+import type { IModifiers } from '~/utils/getDataAttributes';
+import { getDataAttributes } from '~/utils/getDataAttributes';
 
 type IOperator = '=' | '^=' | '$=' | '~=' | '*=' | '|=' | '?=' | '!=';
 

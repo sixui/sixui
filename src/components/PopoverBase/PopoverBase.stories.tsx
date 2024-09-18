@@ -1,25 +1,23 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faStar,
   faBolt,
   faCloud,
   faSmile,
+  faStar,
 } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import stylex from '@stylexjs/stylex';
 
+import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IPopoverBaseProps } from './PopoverBase.types';
-import {
-  ComponentShowcase,
-  type IComponentPresentation,
-} from '~/components/ComponentShowcase';
-import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { IconButton } from '~/components/IconButton';
 import { Button } from '~/components/Button';
+import { ComponentShowcase } from '~/components/ComponentShowcase';
+import { IconButton } from '~/components/IconButton';
 import { Paper } from '~/components/Paper';
-import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { scaleTokens } from '~/themes/base/scale.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { Stack } from '../Stack';
 import { PopoverBase } from './PopoverBase';
 
@@ -198,11 +196,11 @@ export const WithPaper: IStory = {
     ...defaultArgs,
     openEvents: { click: true },
     contentRenderer: ({ renderCursor, close }) => (
-      <Paper sx={styles.paper} elevation={2} corner='md'>
+      <Paper sx={styles.paper} elevation={2} corner="md">
         <div {...stylex.props(styles.cursor)}>{renderCursor()}</div>
-        <Stack align='start' sx={styles.paperInner} gap={2}>
+        <Stack align="start" sx={styles.paperInner} gap={2}>
           <div>{TOOLTIP_CONTENT}</div>
-          <Button onClick={close} variant='text'>
+          <Button onClick={close} variant="text">
             Close
           </Button>
         </Stack>

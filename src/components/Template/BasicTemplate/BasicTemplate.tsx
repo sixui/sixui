@@ -1,3 +1,4 @@
+import type { IBasicTemplateThemeFactory } from './BasicTemplate.css';
 import type { IBasicTemplateFactory } from './BasicTemplate.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
@@ -6,7 +7,6 @@ import { Box } from '../../Box';
 import {
   basicTemplateTheme,
   basicTemplateThemeVariants,
-  type IBasicTemplateThemeFactory,
 } from './BasicTemplate.css';
 
 const COMPONENT_NAME = 'BasicTemplate';

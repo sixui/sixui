@@ -1,8 +1,8 @@
 import type { IPlaygroundSections } from '~/docs/Playground';
 import { Playground } from '~/docs/Playground';
 import {
-  SnackbarContentPlaygroundDemo,
   ISnackbarContentPlaygroundDemoProps,
+  SnackbarContentPlaygroundDemo,
 } from './SnackbarContentPlaygroundDemo';
 
 export const snackbarcontentPlaygroundSections: IPlaygroundSections<ISnackbarContentPlaygroundDemoProps> =

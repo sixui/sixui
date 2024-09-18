@@ -1,12 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IFluidButtonProps } from './FluidButton.types';
-import {
-  ComponentShowcase,
-  type IComponentPresentation,
-} from '../ComponentShowcase';
+import { ComponentShowcase } from '../ComponentShowcase';
 import { Text } from '../Text';
 import { FluidButton } from './FluidButton';
 
@@ -30,35 +28,35 @@ const FluidButtonInText: React.FC<IFluidButtonProps> = (props) => (
 const rows: Array<IComponentPresentation<IFluidButtonProps>> = [
   {
     component: (props) => (
-      <Text variant='display'>
+      <Text variant="display">
         <FluidButtonInText {...props} />
       </Text>
     ),
   },
   {
     component: (props) => (
-      <Text variant='headline'>
+      <Text variant="headline">
         <FluidButtonInText {...props} />
       </Text>
     ),
   },
   {
     component: (props) => (
-      <Text variant='title'>
+      <Text variant="title">
         <FluidButtonInText {...props} />
       </Text>
     ),
   },
   {
     component: (props) => (
-      <Text variant='body'>
+      <Text variant="body">
         <FluidButtonInText {...props} />
       </Text>
     ),
   },
   {
     component: (props) => (
-      <Text variant='label'>
+      <Text variant="label">
         <FluidButtonInText {...props} />
       </Text>
     ),
@@ -69,7 +67,7 @@ export const WithText: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={FluidButton}
-      horizontalAlign='start'
+      horizontalAlign="start"
       props={props}
       rows={rows}
     />
@@ -84,7 +82,7 @@ export const WithTextDisabled: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={FluidButton}
-      horizontalAlign='start'
+      horizontalAlign="start"
       props={props}
       rows={rows}
     />
@@ -100,7 +98,7 @@ export const WithIcon: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={FluidButton}
-      horizontalAlign='start'
+      horizontalAlign="start"
       props={props}
       rows={rows}
     />
@@ -115,7 +113,7 @@ export const IconDisabled: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={FluidButton}
-      horizontalAlign='start'
+      horizontalAlign="start"
       props={props}
       rows={rows}
     />

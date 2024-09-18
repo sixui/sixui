@@ -1,4 +1,5 @@
-import { Anchored, type IAnchoredProps } from '~/components/Anchored';
+import type { IAnchoredProps } from '~/components/Anchored';
+import { Anchored } from '~/components/Anchored';
 import { Placeholder } from '~/components/Placeholder';
 
 export type IAnchoredPlaygroundDemoProps = {
@@ -11,7 +12,7 @@ export const AnchoredPlaygroundDemo: React.FC<IAnchoredPlaygroundDemoProps> = (
   <Anchored
     {...props.anchored}
     content={
-      <Placeholder width={16} height={16} corner='full' surface='primary' />
+      <Placeholder width={16} height={16} corner="full" surface="primary" />
     }
   >
     <Placeholder

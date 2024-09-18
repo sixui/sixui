@@ -1,15 +1,13 @@
 import { createTheme } from '@vanilla-extract/css';
 
+import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { IPolymorphicTemplateVariant } from './PolymorphicTemplate.types';
-import {
-  componentThemeFactory,
-  type IComponentThemeFactory,
-} from '~/utils/styles/componentThemeFactory';
-import { createStyles } from '~/utils/styles/createStyles';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { space } from '~/helpers/styles/space';
 import { px } from '~/helpers/styles/px';
+import { space } from '~/helpers/styles/space';
+import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createStyles } from '~/utils/styles/createStyles';
+import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { themeTokens } from '../../ThemeProvider';
 
 type IModifier = 'disabled';

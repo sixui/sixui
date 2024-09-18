@@ -1,16 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { createSequence } from '@olivierpascal/helpers';
+import stylex from '@stylexjs/stylex';
 
+import type { IStepProps } from '../Step';
 import type { IStepperProps } from './Stepper.types';
 import { isFunction } from '~/helpers/isFunction';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { scaleTokens } from '~/themes/base/scale.stylex';
 import { ComponentShowcase } from '../ComponentShowcase';
+import { Step } from '../Step';
 import { stepTokens } from '../Step/Step.stylex';
-import { Step, type IStepProps } from '../Step';
 import { StepConnector } from '../StepConnector';
 import { Stepper } from './Stepper';
 
@@ -146,7 +147,7 @@ export const Horizontal: IStory = {
           },
         },
       ]}
-      horizontalAlign='start'
+      horizontalAlign="start"
     />
   ),
   args: {
@@ -215,15 +216,15 @@ export const Vertical: IStory = {
               <Step
                 key={0}
                 onClick={(...args) => void sbHandleEvent('click', args)}
-                label='Lorem ipsum'
+                label="Lorem ipsum"
               >
                 Lorem ipsum dolor sit amet.
               </Step>,
               <Step
                 key={1}
                 onClick={(...args) => void sbHandleEvent('click', args)}
-                label='Lorem ipsum'
-                supportingText='Supporting text'
+                label="Lorem ipsum"
+                supportingText="Supporting text"
                 nextConnector={<StepConnector>Lorem ipsum</StepConnector>}
               >
                 Lorem ipsum dolor sit amet.
@@ -235,7 +236,7 @@ export const Vertical: IStory = {
               <Step
                 key={2}
                 onClick={(...args) => void sbHandleEvent('click', args)}
-                label='Lorem ipsum'
+                label="Lorem ipsum"
               >
                 Lorem ipsum dolor sit amet.
               </Step>,
@@ -254,9 +255,9 @@ export const Vertical: IStory = {
               <Step
                 key={1}
                 onClick={(...args) => void sbHandleEvent('click', args)}
-                label='Lorem ipsum'
+                label="Lorem ipsum"
                 sx={styles.step$noSpace}
-                supportingText='Supporting text'
+                supportingText="Supporting text"
                 nextConnector={<StepConnector>Lorem ipsum</StepConnector>}
               >
                 Lorem ipsum dolor sit amet.
@@ -268,7 +269,7 @@ export const Vertical: IStory = {
               <Step
                 key={2}
                 onClick={(...args) => void sbHandleEvent('click', args)}
-                label='Lorem ipsum'
+                label="Lorem ipsum"
                 sx={styles.step$noSpace}
               >
                 Lorem ipsum dolor sit amet.
@@ -277,8 +278,8 @@ export const Vertical: IStory = {
           },
         },
       ]}
-      verticalAlign='stretch'
-      horizontalAlign='start'
+      verticalAlign="stretch"
+      horizontalAlign="start"
     />
   ),
   args: {

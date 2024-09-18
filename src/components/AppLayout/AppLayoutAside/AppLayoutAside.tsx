@@ -1,20 +1,16 @@
 import { forwardRef, useRef } from 'react';
-import { CSSTransition } from 'react-transition-group';
 import { useMergeRefs } from '@floating-ui/react';
+import { CSSTransition } from 'react-transition-group';
 
+import type { ISideSheetContentStylesKey } from '~/components/SideSheetContent';
+import type { IAppLayoutAsideStylesKey } from './AppLayoutAside.styles';
 import type { IAppLayoutAsideProps } from './AppLayoutAside.types';
-import { useStyles } from '~/hooks/useStyles';
-import { FloatingTransition } from '~/components/FloatingTransition';
-import {
-  SideSheetContent,
-  type ISideSheetContentStylesKey,
-} from '~/components/SideSheetContent';
 import { Drawer } from '~/components/Drawer';
+import { FloatingTransition } from '~/components/FloatingTransition';
+import { SideSheetContent } from '~/components/SideSheetContent';
+import { useStyles } from '~/hooks/useStyles';
 import { useAppLayoutContext } from '../AppLayout.context';
-import {
-  appLayoutAsideStyles,
-  type IAppLayoutAsideStylesKey,
-} from './AppLayoutAside.styles';
+import { appLayoutAsideStyles } from './AppLayoutAside.styles';
 
 export const AppLayoutAside = forwardRef<HTMLDivElement, IAppLayoutAsideProps>(
   function AppLayoutAside(props, forwardedRef) {
@@ -86,8 +82,8 @@ export const AppLayoutAside = forwardRef<HTMLDivElement, IAppLayoutAsideProps>(
             <FloatingTransition
               status={status}
               placement={anchor}
-              origin='edge'
-              pattern='enterExitOffScreen'
+              origin="edge"
+              pattern="enterExitOffScreen"
               sx={combineStyles('transitionContainer')}
               ref={transitionNodeHandleRef}
             >

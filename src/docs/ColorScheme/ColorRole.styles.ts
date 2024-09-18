@@ -1,8 +1,8 @@
 import type { StyleXVar } from '@stylexjs/stylex/lib/StyleXTypes';
 import stylex from '@stylexjs/stylex';
 
-import { scaleTokens } from '~/themes/base/scale.stylex';
 import { densityTokens } from '~/themes/base/density.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
 
 const MIN_DENSITY = -5;

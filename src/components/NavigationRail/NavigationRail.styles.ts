@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { navigationRailTokens } from './NavigationRail.stylex';
 import { paperBaseTokens } from '../PaperBase/PaperBase.stylex';
+import { navigationRailTokens } from './NavigationRail.stylex';
 
 export type INavigationRailStylesKey = keyof typeof navigationRailStyles;
 export const navigationRailStyles = stylex.create({

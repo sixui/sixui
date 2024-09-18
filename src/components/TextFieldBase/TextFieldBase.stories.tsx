@@ -1,15 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
+import stylex from '@stylexjs/stylex';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
+import type { IFieldBaseVariant } from '../FieldBase';
 import type { ITextFieldBaseProps } from './TextFieldBase.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { scaleTokens } from '~/themes/base/scale.stylex';
-import {
-  type IComponentPresentation,
-  ComponentShowcase,
-} from '../ComponentShowcase';
-import type { IFieldBaseVariant } from '../FieldBase';
+import { ComponentShowcase } from '../ComponentShowcase';
 import { TextFieldBase } from './TextFieldBase';
 
 // https://m3.material.io/components/text-fields/overview

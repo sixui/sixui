@@ -4,9 +4,9 @@ import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 import type { IFieldBaseVariant } from '../FieldBase';
 import type { IColorInputFieldProps } from './ColorInputField.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { ColorPaletteGroupProvider } from '../ColorPaletteGroup';
 import { ComponentShowcase } from '../ComponentShowcase';
 import { HctColorPickerContent } from '../HctColorPickerContent';
-import { ColorPaletteGroupProvider } from '../ColorPaletteGroup';
 import { Stack } from '../Stack';
 import { ColorInputField } from './ColorInputField';
 
@@ -85,7 +85,7 @@ export const WithErrorText: IStory = {
 export const PaletteGroup: IStory = {
   render: (props) => (
     <ColorPaletteGroupProvider customColors={['#ff2d55']}>
-      <Stack gap={2} align='start'>
+      <Stack gap={2} align="start">
         <ColorInputField {...props} />
         <ColorInputField {...props} customColors={['#000000']} />
         <ColorInputField {...props} />

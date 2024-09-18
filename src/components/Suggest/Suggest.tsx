@@ -1,5 +1,6 @@
 import { forwardRef } from 'react';
 
+import type { IFilterableListItem } from '../FilterableList';
 import type { ISuggestProps } from './Suggest.types';
 import {
   areFilterableListItemsEqual,
@@ -8,11 +9,10 @@ import {
   isFilterableListItemDisabled,
   isFilterableListItemEmpty,
   renderFilterableListItem,
-  type IFilterableListItem,
 } from '../FilterableList';
-import { SuggestBase } from '../SuggestBase';
 import { ListItem } from '../ListItem';
 import { useSelect } from '../Select/useSelect';
+import { SuggestBase } from '../SuggestBase';
 
 export const Suggest = forwardRef<HTMLInputElement, ISuggestProps>(
   function Suggest(props, fowardedRef) {

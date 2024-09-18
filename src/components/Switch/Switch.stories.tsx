@@ -1,16 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { delay } from '@olivierpascal/helpers';
 
-import type { ISwitchProps } from './Switch.types';
 import type { IOmit } from '~/helpers/types';
+import type { IComponentPresentation } from '../ComponentShowcase';
+import type { ISwitchProps } from './Switch.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import {
-  type IComponentPresentation,
-  ComponentShowcase,
-} from '../ComponentShowcase';
+import { ComponentShowcase } from '../ComponentShowcase';
 import { Switch } from './Switch';
 
 // https://m3.material.io/components/switch/overview

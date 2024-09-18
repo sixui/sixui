@@ -1,7 +1,7 @@
+import type { IBaseProps } from '~/components/Base';
 import type { IListStylesKey } from '~/components/List';
 import type { ICompiledStyles, IZeroOrMore } from '~/helpers/types';
 import type { INavigationDrawerContentDestinationListStylesKey } from './NavigationDrawerContentDestinationList.styles';
-import type { IBaseProps } from '~/components/Base';
 
 export type INavigationDrawerContentDestinationListProps =
   IBaseProps<INavigationDrawerContentDestinationListStylesKey> & {

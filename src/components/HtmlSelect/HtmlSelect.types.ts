@@ -1,6 +1,6 @@
 import type { ICompiledStyles, IZeroOrMore } from '~/helpers/types';
-import type { IFieldBaseProps, IFieldBaseStylesKey } from '../FieldBase';
 import type { IBaseProps } from '../Base';
+import type { IFieldBaseProps, IFieldBaseStylesKey } from '../FieldBase';
 import type { IHtmlSelectStylesKey } from './HtmlSelect.styles';
 
 export type IHtmlSelectOption = {

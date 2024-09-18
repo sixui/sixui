@@ -5,8 +5,8 @@ import type { IDialogProps } from './Dialog.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { useDisclosure } from '~/hooks/useDisclosure';
 import { Button } from '../Button';
-import { TextInputField } from '../TextInputField';
 import { Stack } from '../Stack';
+import { TextInputField } from '../TextInputField';
 import { Dialog } from './Dialog';
 
 // https://m3.material.io/components/dialogs/overview
@@ -30,15 +30,15 @@ const DialogDemo: React.FC<IDialogProps> = (props) => {
       <Dialog
         {...props}
         opened={opened}
-        headline='Permanently delete?'
+        headline="Permanently delete?"
         onClose={close}
         actions={({ close }) => (
           <>
-            <Button variant='text' onClick={close}>
+            <Button variant="text" onClick={close}>
               Cancel
             </Button>
             <Button
-              type='submit'
+              type="submit"
               onClick={(...args) =>
                 sbHandleEvent('save', args, 1000).then(() => close())
               }
@@ -70,17 +70,17 @@ const FormDialogDemo: React.FC<IDialogProps> = (props) => {
       <Dialog
         {...props}
         ref={formRef}
-        as='form'
+        as="form"
         opened={opened}
         onClose={close}
         headline="What's your name?"
         actions={({ close }) => (
           <>
-            <Button variant='text' onClick={close}>
+            <Button variant="text" onClick={close}>
               Cancel
             </Button>
             <Button
-              type='submit'
+              type="submit"
               onClick={(event, ...args) => {
                 event.preventDefault();
 
@@ -103,7 +103,7 @@ const FormDialogDemo: React.FC<IDialogProps> = (props) => {
           </>
         )}
       >
-        <TextInputField name='name' />
+        <TextInputField name="name" />
       </Dialog>
 
       <Stack horizontal gap={4}>

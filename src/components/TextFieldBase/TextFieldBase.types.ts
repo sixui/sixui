@@ -1,13 +1,13 @@
-import type { IZeroOrMore, ICompiledStyles, IOmit } from '~/helpers/types';
+import type {
+  IForwardableProps,
+  IRendererWithForwardedProps,
+} from '~/helpers/react/forwardablePropsTypes';
+import type { IStyleProps } from '~/helpers/stylePropsFactory';
+import type { ICompiledStyles, IOmit, IZeroOrMore } from '~/helpers/types';
+import type { IControlledValueProps } from '~/hooks/useControlledValue';
 import type { IBaseProps } from '../Base';
 import type { IFieldBaseProps, IFieldBaseStylesKey } from '../FieldBase';
 import type { ITextFieldBaseStylesKey } from './TextFieldBase.styles';
-import type { IStyleProps } from '~/helpers/stylePropsFactory';
-import type { IControlledValueProps } from '~/hooks/useControlledValue';
-import type {
-  IRendererWithForwardedProps,
-  IForwardableProps,
-} from '~/helpers/react/forwardablePropsTypes';
 
 export type ITextFieldBaseModifiers = {
   /**

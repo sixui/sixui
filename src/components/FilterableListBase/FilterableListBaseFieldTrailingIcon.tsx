@@ -1,7 +1,7 @@
 import { iconTriangleDown, iconTriangleUp, iconXMark } from '~/assets/icons';
 import { IconButton } from '../IconButton';
-import { SvgIcon } from '../SvgIcon';
 import { Stack } from '../Stack';
+import { SvgIcon } from '../SvgIcon';
 
 export type IFilterableListBaseFieldTrailingIcon = {
   opened?: boolean;

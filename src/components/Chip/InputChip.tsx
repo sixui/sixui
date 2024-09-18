@@ -7,7 +7,7 @@ import { Chip } from './Chip';
 export const InputChip = createPolymorphicComponent<'div', IInputChipProps>(
   forwardRef<HTMLDivElement, IInputChipProps>(
     function InputChip(props, forwardedRef) {
-      return <Chip {...props} ref={forwardedRef} variant='input' />;
+      return <Chip {...props} ref={forwardedRef} variant="input" />;
     },
   ),
 );

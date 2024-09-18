@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { elevationTokens } from '~/components/Elevation/Elevation.stylex';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
 import { bottomSheetContentTokens } from '../BottomSheetContent.stylex';
 
 export const modalBottomSheetContentStyles = stylex.create({

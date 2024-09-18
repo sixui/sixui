@@ -1,10 +1,10 @@
+import type { IBoxProps } from '~/components/Box';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { IBoxProps } from '~/components/Box';
 import type { IListItemOwnProps } from '../../ListItem';
 import type {
-  listItemTheme,
   IListItemThemeFactory,
+  listItemTheme,
 } from '../../ListItem/ListItem.css';
 
 export interface IMenuItemOwnProps extends IListItemOwnProps {

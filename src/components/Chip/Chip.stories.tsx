@@ -1,14 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarDays, faImage } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IChipProps } from './Chip.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import {
-  ComponentShowcase,
-  type IComponentPresentation,
-} from '../ComponentShowcase';
+import { ComponentShowcase } from '../ComponentShowcase';
 import { Chip } from './Chip';
 
 // https://m3.material.io/components/chips/overview

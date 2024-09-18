@@ -7,8 +7,8 @@ import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { Button } from '../Button';
 import { ListItem } from '../ListItem';
-import { BottomSheet } from './BottomSheet';
 import { Stack } from '../Stack';
+import { BottomSheet } from './BottomSheet';
 
 // https://m3.material.io/components/bottomSheets/overview
 // https://material-web.dev/components/bottomSheet/

@@ -1,17 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChevronCircleDown,
   faChevronCircleUp,
 } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import stylex from '@stylexjs/stylex';
 
 import type { IExpandableProps } from './Expandable.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { spacingTokens } from '~/themes/base/spacing.stylex';
-import { scaleTokens } from '~/themes/base/scale.stylex';
 import { outlineTokens } from '~/themes/base/outline.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { IconButton } from '../IconButton';
 import { Expandable } from './Expandable';
 

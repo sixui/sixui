@@ -1,7 +1,5 @@
-import {
-  CircularProgressIndicator,
-  type ICircularProgressIndicatorProps,
-} from '~/components/CircularProgressIndicator';
+import type { ICircularProgressIndicatorProps } from '~/components/CircularProgressIndicator';
+import { CircularProgressIndicator } from '~/components/CircularProgressIndicator';
 
 export type ICircularProgressIndicatorPlaygroundDemoProps = {
   circularProgressIndicator: ICircularProgressIndicatorProps;

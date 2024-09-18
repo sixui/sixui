@@ -1,4 +1,5 @@
-import { Button, type IButtonProps } from '~/components/Button';
+import type { IButtonProps } from '~/components/Button';
+import { Button } from '~/components/Button';
 
 export type IButtonPlaygroundDemoProps = {
   button: IButtonProps;

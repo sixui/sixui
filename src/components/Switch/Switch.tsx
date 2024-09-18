@@ -1,26 +1,26 @@
 import { forwardRef, useCallback, useContext, useRef, useState } from 'react';
-import { asArray } from '@olivierpascal/helpers';
 import { useMergeRefs } from '@floating-ui/react';
+import { asArray } from '@olivierpascal/helpers';
 
 import type { ISwitchProps } from './Switch.types';
-import { useControlledValue } from '~/hooks/useControlledValue';
-import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { iconCheckMark, iconXMark } from '~/assets/icons';
-import { useVisualState } from '../VisualState';
+import { executeLazyPromise } from '~/helpers/executeLazyPromise';
+import { useControlledValue } from '~/hooks/useControlledValue';
+import { useStyles } from '~/hooks/useStyles';
+import { Base } from '../Base';
 import { FocusRing } from '../FocusRing';
-import { StateLayer } from '../StateLayer';
 import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
-import { SvgIcon } from '../SvgIcon';
 import { LabeledContext } from '../Labeled';
-import { switchTheme } from './Switch.stylex';
+import { StateLayer } from '../StateLayer';
+import { SvgIcon } from '../SvgIcon';
+import { useVisualState } from '../VisualState';
 import {
   switchCircularProgressIndicatorStyles,
   switchFocusRingStyles,
   switchStateLayerStyles,
   switchStyles,
 } from './Switch.styles';
-import { useStyles } from '~/hooks/useStyles';
-import { Base } from '../Base';
+import { switchTheme } from './Switch.stylex';
 
 // https://github.com/material-components/material-web/blob/main/switch/internal/switch.ts
 
@@ -111,11 +111,11 @@ export const Switch = forwardRef<HTMLInputElement, ISwitchProps>(
       >
         <div {...getStyles('switch', checked && 'switch$selected')}>
           <input
-            type='checkbox'
-            role='switch'
+            type="checkbox"
+            role="switch"
             checked={checked}
             onChange={visuallyDisabled ? undefined : handleChange}
-            data-cy='switch'
+            data-cy="switch"
             id={labeledContext?.id}
             required={labeledContext?.required}
             {...other}

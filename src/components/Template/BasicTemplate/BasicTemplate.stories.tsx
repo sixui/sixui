@@ -1,10 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { IComponentPresentation } from '../../ComponentShowcase';
 import type { IBasicTemplateProps } from './BasicTemplate.types';
-import {
-  makeComponentShowcase,
-  type IComponentPresentation,
-} from '../../ComponentShowcase';
+import { makeComponentShowcase } from '../../ComponentShowcase';
 import { BasicTemplate } from './BasicTemplate';
 
 const meta = {

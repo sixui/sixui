@@ -1,4 +1,5 @@
-import { SuggestionChip, type ISuggestionChipProps } from '~/components/Chip';
+import type { ISuggestionChipProps } from '~/components/Chip';
+import { SuggestionChip } from '~/components/Chip';
 
 export type ISuggestionChipPlaygroundDemoProps = {
   suggestionChip: ISuggestionChipProps;

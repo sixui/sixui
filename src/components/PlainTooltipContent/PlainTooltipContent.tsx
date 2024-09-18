@@ -2,9 +2,9 @@ import { forwardRef } from 'react';
 
 import type { IPlainTooltipContentProps } from './PlainTooltipContent.types';
 import { useStyles } from '~/hooks/useStyles';
+import { Base } from '../Base';
 import { plainTooltipContentStyles } from './PlainTooltipContent.styles';
 import { plainTooltipContentTheme } from './PlainTooltipContent.stylex';
-import { Base } from '../Base';
 
 export const PlainTooltipContent = forwardRef<
   HTMLDivElement,

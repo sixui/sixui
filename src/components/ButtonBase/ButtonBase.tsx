@@ -1,20 +1,18 @@
 import { useMergeRefs } from '@floating-ui/react';
+import { mergeProps } from 'react-aria';
 
+import type { IButtonBaseThemeFactory } from './ButtonBase.css';
 import type { IButtonBaseFactory } from './ButtonBase.types';
-import { useProps } from '~/utils/component/useProps';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { FocusRing } from '../FocusRing';
 import { Paper } from '../Paper';
 import { useSixuiContext } from '../SixuiProvider';
-import { useStateLayer } from '../StateLayer/useStateLayer';
-import { FocusRing } from '../FocusRing';
 import { StateLayer } from '../StateLayer';
+import { useStateLayer } from '../StateLayer/useStateLayer';
 import { TouchTarget } from '../TouchTarget';
-import {
-  buttonBaseTheme,
-  type IButtonBaseThemeFactory,
-} from './ButtonBase.css';
-import { mergeProps } from 'react-aria';
+import { buttonBaseTheme } from './ButtonBase.css';
 
 const COMPONENT_NAME = 'ButtonBase';
 

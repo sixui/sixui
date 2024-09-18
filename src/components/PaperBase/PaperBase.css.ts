@@ -1,15 +1,13 @@
 import { createTheme, fallbackVar } from '@vanilla-extract/css';
 
-import {
-  componentThemeFactory,
-  type IComponentThemeFactory,
-} from '~/utils/styles/componentThemeFactory';
-import { px } from '~/helpers/styles/px';
-import { themeTokens } from '../ThemeProvider';
-import { elevationLevelPreset } from '../Elevation/Elevation.css';
-import { Elevation } from '../Elevation';
-import { createStyles } from '~/utils/styles/createStyles';
+import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
+import { px } from '~/helpers/styles/px';
+import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createStyles } from '~/utils/styles/createStyles';
+import { Elevation } from '../Elevation';
+import { elevationLevelPreset } from '../Elevation/Elevation.css';
+import { themeTokens } from '../ThemeProvider';
 
 type IModifier = 'disabled' | 'expanded';
 

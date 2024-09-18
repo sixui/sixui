@@ -1,7 +1,7 @@
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type { indicatorTheme, IIndicatorThemeFactory } from './Indicator.css';
+import type { IIndicatorThemeFactory, indicatorTheme } from './Indicator.css';
 
 export interface IIndicatorOwnProps {
   children?: React.ReactNode;

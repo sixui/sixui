@@ -1,20 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCalendarDays,
-  faChevronRight,
   faCheck,
+  faChevronRight,
   faLink,
 } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IListItemProps, IListItemVariant } from './ListItem.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import {
-  makeComponentShowcase,
-  type IComponentPresentation,
-} from '../ComponentShowcase';
 import { Avatar } from '../Avatar';
+import { makeComponentShowcase } from '../ComponentShowcase';
 import { ListItem } from './ListItem';
 
 // https://m3.material.io/components/items/overview
@@ -138,7 +136,7 @@ export const Variants: IStory = {
 export const Standard: IStory = {
   render: (props) => (
     <ListItemShowcase
-      horizontalAlign='start'
+      horizontalAlign="start"
       props={props}
       cols={states}
       rows={rows}
@@ -154,7 +152,7 @@ export const Standard: IStory = {
 export const Danger: IStory = {
   render: (props) => (
     <ListItemShowcase
-      horizontalAlign='start'
+      horizontalAlign="start"
       props={props}
       cols={states}
       rows={rows}

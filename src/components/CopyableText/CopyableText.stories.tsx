@@ -1,10 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { ICopyableTextProps } from './CopyableText.types';
-import {
-  ComponentShowcase,
-  type IComponentPresentation,
-} from '../ComponentShowcase';
+import { ComponentShowcase } from '../ComponentShowcase';
 import { Text } from '../Text';
 import { CopyableText } from './CopyableText';
 
@@ -43,7 +41,7 @@ export const Configurations: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={CopyableText}
-      horizontalAlign='start'
+      horizontalAlign="start"
       props={props}
       rows={rows}
     />

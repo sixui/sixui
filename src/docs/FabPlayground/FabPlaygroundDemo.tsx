@@ -1,4 +1,5 @@
-import { Fab, type IFabProps } from '~/components/Fab';
+import type { IFabProps } from '~/components/Fab';
+import { Fab } from '~/components/Fab';
 
 export type IFabPlaygroundDemoProps = {
   fab: IFabProps;

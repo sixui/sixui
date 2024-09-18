@@ -6,18 +6,18 @@ import type {
   IColorInputFieldColorPickerRendererProps,
   IColorInputFieldProps,
 } from './ColorInputField.types';
-import { useControlledValue } from '~/hooks/useControlledValue';
-import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
-import { useStyles } from '~/hooks/useStyles';
-import { extractPaletteFromImage } from '~/helpers/colors/extractPaletteFromImage';
 import { iconPhoto } from '~/assets/icons';
-import { HslColorPickerContent } from '../HslColorPickerContent';
-import { TextInputField } from '../TextInputField';
-import { PopoverBase } from '../PopoverBase';
-import { ColorTag } from '../ColorTag';
-import { IconButton } from '../IconButton';
-import { SvgIcon } from '../SvgIcon';
+import { extractPaletteFromImage } from '~/helpers/colors/extractPaletteFromImage';
+import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
+import { useControlledValue } from '~/hooks/useControlledValue';
+import { useStyles } from '~/hooks/useStyles';
 import { ColorPaletteGroupContext } from '../ColorPaletteGroup';
+import { ColorTag } from '../ColorTag';
+import { HslColorPickerContent } from '../HslColorPickerContent';
+import { IconButton } from '../IconButton';
+import { PopoverBase } from '../PopoverBase';
+import { SvgIcon } from '../SvgIcon';
+import { TextInputField } from '../TextInputField';
 import { colorInputFieldStyles } from './ColorInputField.styles';
 
 const defaultColorPickerRenderer = (
@@ -102,9 +102,9 @@ export const ColorInputField = forwardRef<
   return (
     <>
       <input
-        type='file'
+        type="file"
         ref={inputFileRef}
-        accept='image/*'
+        accept="image/*"
         style={{ display: 'none' }}
         onChange={handleFileChange}
       />
@@ -142,7 +142,7 @@ export const ColorInputField = forwardRef<
                 loading={isQuantizing}
               />
             }
-            autoComplete='off'
+            autoComplete="off"
             {...other}
             {...getProps()}
             sx={[globalStyles, combineStyles('host'), sx]}

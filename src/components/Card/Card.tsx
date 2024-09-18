@@ -1,19 +1,18 @@
 import { forwardRef, useRef } from 'react';
-import { asArray } from '@olivierpascal/helpers';
 import { useMergeRefs } from '@floating-ui/react';
+import { asArray } from '@olivierpascal/helpers';
 
+import type { IWithAsProp } from '~/utils/component/createPolymorphicComponent';
+import type { ICardContextValue } from './Card.context';
 import type { ICardProps } from './Card.types';
-import {
-  createPolymorphicComponent,
-  type IWithAsProp,
-} from '~/utils/component/createPolymorphicComponent';
 import { useStyles } from '~/hooks/useStyles';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { Base } from '../Base';
-import { useVisualState } from '../VisualState';
 import { Elevation } from '../Elevation';
 import { FocusRing } from '../FocusRing';
 import { StateLayer } from '../StateLayer';
-import { cardVariantStyles } from './variants';
+import { useVisualState } from '../VisualState';
+import { CardContext } from './Card.context';
 import {
   cardElevationStyles,
   cardFocusRingStyles,
@@ -21,7 +20,7 @@ import {
   cardStyles,
 } from './Card.styles';
 import { cardTheme } from './Card.stylex';
-import { CardContext, type ICardContextValue } from './Card.context';
+import { cardVariantStyles } from './variants';
 
 // https://github.com/material-components/material-web/blob/main/labs/card/internal/card.ts
 

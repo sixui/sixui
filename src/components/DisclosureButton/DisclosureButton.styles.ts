@@ -1,13 +1,13 @@
 import stylex from '@stylexjs/stylex';
 
 import { motionTokens } from '~/themes/base/motion.stylex';
-import { circularProgressIndicatorTokens } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
-import { listItemTokens } from '../ListItem/ListItem.stylex';
-import { itemTokens } from '../Item/Item.stylex';
-import { disclosureButtonTokens } from './DisclosureButton.stylex';
-import { checkboxTokens } from '../Checkbox/Checkbox.stylex';
-import { switchTokens } from '../Switch/Switch.stylex';
 import { scaleTokens } from '~/themes/base/scale.stylex';
+import { checkboxTokens } from '../Checkbox/Checkbox.stylex';
+import { circularProgressIndicatorTokens } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
+import { itemTokens } from '../Item/Item.stylex';
+import { listItemTokens } from '../ListItem/ListItem.stylex';
+import { switchTokens } from '../Switch/Switch.stylex';
+import { disclosureButtonTokens } from './DisclosureButton.stylex';
 
 export type IDisclosureButtonStylesKey = keyof typeof disclosureButtonStyles;
 export const disclosureButtonStyles = stylex.create({

@@ -2,14 +2,14 @@ import { forwardRef, useState } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { ICopyableTextProps } from './CopyableText.types';
-import { copyToClipboard } from '~/helpers/copyToClipboard';
-import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { iconCopyToCliboard } from '~/assets/icons';
-import { PlainTooltip } from '../PlainTooltip';
+import { copyToClipboard } from '~/helpers/copyToClipboard';
+import { useStyles } from '~/hooks/useStyles';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { FluidButton } from '../FluidButton';
+import { PlainTooltip } from '../PlainTooltip';
 import { SvgIcon } from '../SvgIcon';
 import { copyableTextStyles } from './CopyableText.styles';
-import { useStyles } from '~/hooks/useStyles';
 
 export const CopyableText = createPolymorphicComponent<
   'button',

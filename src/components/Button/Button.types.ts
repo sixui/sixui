@@ -1,8 +1,8 @@
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { IPaperOwnProps } from '../Paper';
 import type { IBoxProps } from '../Box';
 import type { IButtonBaseOwnProps } from '../ButtonBase';
+import type { IPaperOwnProps } from '../Paper';
 import type { buttonTheme, IButtonThemeFactory } from './Button.css';
 
 export type IButtonVariant =

@@ -1,19 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faChevronUp,
-  faChevronDown,
-  faEllipsisVertical,
   faArrowRight,
+  faChevronDown,
+  faChevronUp,
+  faEllipsisVertical,
 } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IMenuProps } from './Menu.types';
 import { Button } from '../Button';
-import { IconButton } from '../IconButton';
-import { MenuItem } from './MenuItem';
-import { MenuDivider } from './MenuDivider';
 import { Flex } from '../Flex';
+import { IconButton } from '../IconButton';
 import { Menu } from './Menu';
+import { MenuDivider } from './MenuDivider';
+import { MenuItem } from './MenuItem';
 
 const meta = {
   component: Menu,
@@ -23,9 +23,9 @@ type IStory = StoryObj<typeof meta>;
 
 const items = (
   <>
-    <MenuItem label='Apple' />
-    <MenuItem label='Banana' />
-    <MenuItem label='Dragonfruit' disabled />
+    <MenuItem label="Apple" />
+    <MenuItem label="Banana" />
+    <MenuItem label="Dragonfruit" disabled />
   </>
 );
 
@@ -33,16 +33,16 @@ const nestedItems = (
   <>
     {items}
     <MenuDivider />
-    <MenuItem label='Other fruits'>
+    <MenuItem label="Other fruits">
       {items}
       <MenuDivider />
-      <MenuItem label='Some fruits again'>
+      <MenuItem label="Some fruits again">
         {items}
         <MenuDivider />
-        <MenuItem label='Even more fruits'>
+        <MenuItem label="Even more fruits">
           {items}
           <MenuDivider />
-          <MenuItem label='Too many fruits'>{items}</MenuItem>
+          <MenuItem label="Too many fruits">{items}</MenuItem>
         </MenuItem>
       </MenuItem>
     </MenuItem>
@@ -62,7 +62,7 @@ export const FromButton: IStory = {
         icon={
           <FontAwesomeIcon
             icon={opened ? faChevronUp : faChevronDown}
-            size='xs'
+            size="xs"
           />
         }
         trailingIcon
@@ -85,7 +85,7 @@ export const FromButton: IStory = {
 
 export const FromIconButton: IStory = {
   render: (props) => (
-    <Flex gap='$2'>
+    <Flex gap="$2">
       <div>
         Look right <FontAwesomeIcon icon={faArrowRight} />
       </div>

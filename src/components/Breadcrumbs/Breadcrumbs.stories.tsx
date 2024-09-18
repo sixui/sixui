@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { createSequence } from '@olivierpascal/helpers';
 
 import type { IBreadcrumbsProps } from './Breadcrumbs.types';
@@ -19,7 +19,7 @@ export const Variants: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={Breadcrumbs}
-      horizontalAlign='start'
+      horizontalAlign="start"
       rows={[
         {
           legend: 'Default',
@@ -31,7 +31,7 @@ export const Variants: IStory = {
         {
           legend: 'Custom Separator',
           props: {
-            separator: <FontAwesomeIcon icon={faChevronRight} size='2xs' />,
+            separator: <FontAwesomeIcon icon={faChevronRight} size="2xs" />,
           },
         },
         {

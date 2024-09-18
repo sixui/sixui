@@ -2,13 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { delay } from '@olivierpascal/helpers';
 
-import type { ICheckboxProps } from './Checkbox.types';
 import type { IOmit } from '~/helpers/types';
+import type { IComponentPresentation } from '../ComponentShowcase';
+import type { ICheckboxProps } from './Checkbox.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import {
-  type IComponentPresentation,
-  ComponentShowcase,
-} from '../ComponentShowcase';
+import { ComponentShowcase } from '../ComponentShowcase';
 import { Checkbox } from './Checkbox';
 
 // https://m3.material.io/components/checkbox/overview

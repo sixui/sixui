@@ -3,8 +3,8 @@ import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { IPaperOwnProps } from '../Paper';
 import type {
-  placeholderTheme,
   IPlaceholderThemeFactory,
+  placeholderTheme,
 } from './Placeholder.css';
 
 export interface IPlaceholderOwnProps extends IPaperOwnProps {

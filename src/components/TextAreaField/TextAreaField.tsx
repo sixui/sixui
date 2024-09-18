@@ -2,20 +2,18 @@ import { useRef, useState } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 import { useFocus } from 'react-aria';
 
+import type { ITextAreaFieldThemeFactory } from './TextAreaField.css';
 import type { ITextAreaFieldFactory } from './TextAreaField.types';
+import { iconXMark } from '~/assets/icons';
+import { useControlledValue } from '~/hooks/useControlledValue';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { iconXMark } from '~/assets/icons';
-import { useControlledValue } from '~/hooks/useControlledValue';
 import { triggerChangeEvent } from '~/utils/triggerChangeEvent';
+import { FieldBase } from '../FieldBase';
 import { IconButton } from '../IconButton';
 import { SvgIcon } from '../SvgIcon';
-import { FieldBase } from '../FieldBase';
-import {
-  textAreaFieldTheme,
-  type ITextAreaFieldThemeFactory,
-} from './TextAreaField.css';
+import { textAreaFieldTheme } from './TextAreaField.css';
 
 const COMPONENT_NAME = 'TextAreaField';
 
@@ -108,7 +106,7 @@ export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
           {other.end}
           {clearable && (
             <IconButton
-              data-cy='clearButton'
+              data-cy="clearButton"
               icon={clearIcon}
               onClick={handleClear}
             />

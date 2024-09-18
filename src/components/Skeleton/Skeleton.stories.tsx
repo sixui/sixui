@@ -3,11 +3,11 @@ import stylex from '@stylexjs/stylex';
 
 import type { ISkeletonProps } from './Skeleton.types';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
 import { scaleTokens } from '~/themes/base/scale.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
-import { outlineTokens } from '~/themes/base/outline.stylex';
-import { ComponentShowcase } from '../ComponentShowcase';
 import { Avatar } from '../Avatar';
+import { ComponentShowcase } from '../ComponentShowcase';
 import { Text } from '../Text';
 import { Skeleton } from './Skeleton';
 
@@ -39,7 +39,7 @@ export const AsContainer: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={Skeleton}
-      horizontalAlign='start'
+      horizontalAlign="start"
       props={props}
       cols={[
         { legend: 'Loading (not animated)', props: { animation: false } },
@@ -57,7 +57,7 @@ export const AsContainer: IStory = {
           legend: 'Text (large)',
           props: {
             children: (
-              <Text variant='display' scale='lg'>
+              <Text variant="display" scale="lg">
                 Large text
               </Text>
             ),
@@ -67,7 +67,7 @@ export const AsContainer: IStory = {
           legend: 'Text (medium)',
           props: {
             children: (
-              <Text variant='title' scale='lg'>
+              <Text variant="title" scale="lg">
                 Medium text
               </Text>
             ),
@@ -77,7 +77,7 @@ export const AsContainer: IStory = {
           legend: 'Text (small)',
           props: {
             children: (
-              <Text variant='label' scale='sm'>
+              <Text variant="label" scale="sm">
                 Small text
               </Text>
             ),

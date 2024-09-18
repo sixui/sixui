@@ -1,20 +1,21 @@
-import highlightWords from 'highlight-words';
 import stylex from '@stylexjs/stylex';
+import highlightWords from 'highlight-words';
 
+import type {
+  IFilterableListItemRenderer,
+  IFilterableListItemRendererProps,
+  IFilterableListPredicate,
+} from '../FilterableListBase';
+import type { IListItemProps } from '../ListItem';
 import type {
   IFilterableListItem,
   IFilterableListProps,
 } from './FilterableList.types';
+import { createFilter } from '~/helpers/createFilter';
+import { FilterableListBase } from '../FilterableListBase';
+import { ListItem } from '../ListItem';
 import { MenuList } from '../MenuList';
 import { TextInputField } from '../TextInputField';
-import { ListItem, type IListItemProps } from '../ListItem';
-import {
-  FilterableListBase,
-  type IFilterableListItemRenderer,
-  type IFilterableListItemRendererProps,
-  type IFilterableListPredicate,
-} from '../FilterableListBase';
-import { createFilter } from '~/helpers/createFilter';
 import {
   filterableListItemFocusStyles,
   filterableListItemStyles,
@@ -157,7 +158,7 @@ export const FilterableList: React.FC<IFilterableListProps> = (
     <FilterableListBase<IFilterableListItem>
       renderer={(listProps) => (
         <MenuList
-          scale='sm'
+          scale="sm"
           header={
             canFilter ? (
               <TextInputField

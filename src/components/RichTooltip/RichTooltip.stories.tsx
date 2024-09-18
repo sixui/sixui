@@ -1,15 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { faBolt, faCloud, faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faBolt, faCloud } from '@fortawesome/free-solid-svg-icons';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IRichTooltipProps } from './RichTooltip.types';
-import {
-  ComponentShowcase,
-  type IComponentPresentation,
-} from '../ComponentShowcase';
-import { IconButton } from '../IconButton';
-import { Button } from '../Button';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { Button } from '../Button';
+import { ComponentShowcase } from '../ComponentShowcase';
+import { IconButton } from '../IconButton';
 import { RichTooltip } from './RichTooltip';
 
 const meta = {
@@ -24,8 +22,8 @@ const defaultArgs = {
     'Grant value is calculated using the closing stock price from the day before the grant date. Amounts do not reflect tax withholding.',
   actions: ({ onClose }) => (
     <>
-      <Button variant='text'>Action 1</Button>
-      <Button variant='text' onClick={onClose}>
+      <Button variant="text">Action 1</Button>
+      <Button variant="text" onClick={onClose}>
         Dismiss
       </Button>
     </>

@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { createSequence } from '@olivierpascal/helpers';
 
 import type { IDensityProps } from './Density.types';
-import { ComponentShowcase } from '../ComponentShowcase';
-import { IListItemProps, ListItem } from '../ListItem';
 import { Avatar } from '../Avatar';
-import { Density } from './Density';
+import { ComponentShowcase } from '../ComponentShowcase';
 import { List } from '../List';
+import { IListItemProps, ListItem } from '../ListItem';
+import { Density } from './Density';
 
 const meta = {
   component: Density,
@@ -29,7 +29,7 @@ export const Basic: IStory = {
   render: (props) => (
     <ComponentShowcase
       component={(props) => <Density {...props} />}
-      verticalAlign='start'
+      verticalAlign="start"
       cols={[
         {
           legend: 'Normal (0)',

@@ -1,14 +1,12 @@
 import type { IPlaygroundSections } from '~/docs/Playground';
 import type { IAny } from '~/helpers/types';
-import { Playground } from '~/docs/Playground';
+import type { ITextFieldBasePlaygroundDemoProps } from './TextFieldBasePlaygroundDemo';
 import {
   FieldBasePlaceholder,
   fieldBasePlaygroundSections,
 } from '~/docs/FieldBasePlayground';
-import {
-  TextFieldBasePlaygroundDemo,
-  type ITextFieldBasePlaygroundDemoProps,
-} from './TextFieldBasePlaygroundDemo';
+import { Playground } from '~/docs/Playground';
+import { TextFieldBasePlaygroundDemo } from './TextFieldBasePlaygroundDemo';
 
 export const textFieldBasePlaygroundSections: IPlaygroundSections<
   ITextFieldBasePlaygroundDemoProps<IAny>

@@ -1,10 +1,8 @@
 import type { StyleRule } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
-import {
-  themeTokens,
-  type IThemeTypeScaleStyle,
-} from '~/components/ThemeProvider';
+import type { IThemeTypeScaleStyle } from '~/components/ThemeProvider';
+import { themeTokens } from '~/components/ThemeProvider';
 
 export const getTypographyStyles = (
   typography: IThemeTypeScaleStyle,

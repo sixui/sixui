@@ -1,4 +1,4 @@
-import type { IInteractions, IInteraction } from '~/hooks/useInteractions';
+import type { IInteraction, IInteractions } from '~/hooks/useInteractions';
 
 export const combineInteractionsState = (
   /** The current interaction state of the trigger. */

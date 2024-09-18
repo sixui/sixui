@@ -1,14 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope as faEnvelopeSolid } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { faEnvelope as faEnvelopeSolid } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { ITabProps } from './Tab.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import {
-  type IComponentPresentation,
-  ComponentShowcase,
-} from '../ComponentShowcase';
+import { ComponentShowcase } from '../ComponentShowcase';
 import { Tab } from './Tab';
 
 // https://m3.material.io/components/tabs/overview
@@ -75,14 +73,14 @@ export const Variants: IStory = {
             {...props}
             icon={<FontAwesomeIcon icon={faEnvelope} />}
             activeIcon={<FontAwesomeIcon icon={faEnvelopeSolid} />}
-            label='Primary'
+            label="Primary"
           />
           <Tab
             {...props}
-            variant='secondary'
+            variant="secondary"
             icon={<FontAwesomeIcon icon={faEnvelope} />}
             activeIcon={<FontAwesomeIcon icon={faEnvelopeSolid} />}
-            label='Secondary'
+            label="Secondary"
           />
         </>
       )}

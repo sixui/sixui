@@ -1,16 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { capitalizeFirstLetter } from '@olivierpascal/helpers';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IFieldBaseProps, IFieldBaseVariant } from './FieldBase.types';
 import { px } from '~/helpers/styles/px';
-import {
-  makeComponentShowcase,
-  type IComponentPresentation,
-} from '../ComponentShowcase';
-import { Placeholder } from '../Placeholder';
+import { makeComponentShowcase } from '../ComponentShowcase';
 import { IconButton } from '../IconButton';
+import { Placeholder } from '../Placeholder';
 import { FieldBase } from './FieldBase';
 
 // https://github.com/material-components/material-web/blob/main/field/demo/stories.ts
@@ -23,7 +21,7 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   w: px(240),
-  children: <Placeholder surface='$onSurface' expanded disabled />,
+  children: <Placeholder surface="$onSurface" expanded disabled />,
 } satisfies Partial<IFieldBaseProps>;
 
 const states: Array<IComponentPresentation<IFieldBaseProps>> = [

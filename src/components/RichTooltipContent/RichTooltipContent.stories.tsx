@@ -34,7 +34,7 @@ export const WithAction: IStory = {
   render: (props) => <RichTooltipContent {...props} />,
   args: {
     ...defaultArgs,
-    actions: <Button variant='text'>Action</Button>,
+    actions: <Button variant="text">Action</Button>,
   },
 };
 
@@ -45,8 +45,8 @@ export const WithSubheadAndActions: IStory = {
     subhead: 'Rich tooltip',
     actions: (
       <>
-        <Button variant='text'>Action 1</Button>
-        <Button variant='text'>Action 2</Button>
+        <Button variant="text">Action 1</Button>
+        <Button variant="text">Action 2</Button>
       </>
     ),
   },

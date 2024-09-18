@@ -2,12 +2,12 @@ import stylex from '@stylexjs/stylex';
 
 import type { IVisualStateProps } from './VisualState.types';
 import { ButtonBase } from '../ButtonBase';
+import { Stack } from '../Stack';
 import { useVisualState } from './useVisualState';
 import {
   visualStateFocusRingStyles,
   visualStateStyles,
 } from './VisualState.styles';
-import { Stack } from '../Stack';
 
 export const VisualState: React.FC<IVisualStateProps> = (props) => {
   const { visualState: visualStateProp, disabled, children, ...other } = props;

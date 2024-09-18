@@ -6,22 +6,21 @@ import {
   useMemo,
   useRef,
 } from 'react';
-import { asArray } from '@olivierpascal/helpers';
 import { useMergeRefs } from '@floating-ui/react';
+import { asArray } from '@olivierpascal/helpers';
 
+import type { IWithAsProp } from '~/utils/component/createPolymorphicComponent';
 import type { ITabProps } from './Tab.types';
-import {
-  createPolymorphicComponent,
-  type IWithAsProp,
-} from '~/utils/component/createPolymorphicComponent';
+import { useStyles } from '~/hooks/useStyles';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
+import { Anchored } from '../Anchored';
 import { Badge } from '../Badge';
-import { useVisualState } from '../VisualState';
+import { Base } from '../Base';
 import { Elevation } from '../Elevation';
 import { FocusRing } from '../FocusRing';
 import { StateLayer } from '../StateLayer';
-import { Anchored } from '../Anchored';
 import { TabsContext } from '../Tabs';
-import { tabVariantStyles } from './variants';
+import { useVisualState } from '../VisualState';
 import {
   tabElevationStyles,
   tabFocusRingStyles,
@@ -29,8 +28,7 @@ import {
   tabStyles,
 } from './Tab.styles';
 import { tabTheme } from './Tab.stylex';
-import { Base } from '../Base';
-import { useStyles } from '~/hooks/useStyles';
+import { tabVariantStyles } from './variants';
 
 // https://github.com/material-components/material-web/blob/main/tabs/internal/tab.ts
 
@@ -145,7 +143,7 @@ export const Tab = createPolymorphicComponent<'div', ITabProps>(
     return (
       <Base
         as={rootElement}
-        role='tab'
+        role="tab"
         aria-controls={id}
         aria-selected={active}
         onClick={handleClick}
@@ -189,7 +187,7 @@ export const Tab = createPolymorphicComponent<'div', ITabProps>(
               hasLabel &&
               'content$stacked$hasIcon$hasLabel',
           )}
-          role='presentation'
+          role="presentation"
         >
           {hasIcon ? (
             badge && (variant === 'primary' || !hasLabel) ? (

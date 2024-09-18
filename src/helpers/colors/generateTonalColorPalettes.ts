@@ -1,7 +1,7 @@
 import { createSequence } from '@olivierpascal/helpers';
 
-import { hctFromHexColor } from './hctFromHexColor';
 import { generateTonalColorPalette } from './generateTonalColorPalette';
+import { hctFromHexColor } from './hctFromHexColor';
 
 export const generateTonalColorPalettes = (
   sourceColor: string,

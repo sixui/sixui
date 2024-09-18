@@ -2,12 +2,12 @@ import { forwardRef, useMemo } from 'react';
 
 import type { ILabeledProps } from './Labeled.types';
 import { isFunction } from '~/helpers/isFunction';
-import { useStyles } from '~/hooks/useStyles';
 import { useId } from '~/hooks/useId';
+import { useStyles } from '~/hooks/useStyles';
+import { Stack } from '../Stack';
+import { LabeledContext } from './Labeled.context';
 import { labeledStyles } from './Labeled.styles';
 import { labeledTheme } from './Labeled.stylex';
-import { LabeledContext } from './Labeled.context';
-import { Stack } from '../Stack';
 
 export const Labeled = forwardRef<HTMLDivElement, ILabeledProps>(
   function Labeled(props, forwardedRef) {

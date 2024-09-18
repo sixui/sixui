@@ -1,10 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
+import type { ITextAreaFieldProps } from '~/components/TextAreaField';
 import type { ITextFieldBasePlaygroundDemoProps } from '~/docs/TextFieldBasePlayground/TextFieldBasePlaygroundDemo';
-import {
-  TextAreaField,
-  type ITextAreaFieldProps,
-} from '~/components/TextAreaField';
+import { TextAreaField } from '~/components/TextAreaField';
 import { scaleTokens } from '~/themes/base/scale.stylex';
 
 const styles = stylex.create({

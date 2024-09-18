@@ -1,23 +1,24 @@
 import { cloneElement, forwardRef, isValidElement, useContext } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
+import type { IStepContextValue } from './Step.context';
 import type { IStepProps } from './Step.types';
+import { iconCheckMark, iconExclamationTriangle } from '~/assets/icons';
 import { isFunction } from '~/helpers/isFunction';
 import { useStyles } from '~/hooks/useStyles';
-import { iconCheckMark, iconExclamationTriangle } from '~/assets/icons';
-import { StepperContext } from '../Stepper';
-import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
-import { ButtonBase } from '../ButtonBase';
-import { SvgIcon } from '../SvgIcon';
 import { Base } from '../Base';
+import { ButtonBase } from '../ButtonBase';
+import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { Stack } from '../Stack';
+import { StepperContext } from '../Stepper';
+import { SvgIcon } from '../SvgIcon';
+import { StepContext } from './Step.context';
 import {
   stepCircularProgressIndicatorStyles,
   stepFocusRingStyles,
   stepStyles,
 } from './Step.styles';
 import { stepTheme } from './Step.stylex';
-import { StepContext, type IStepContextValue } from './Step.context';
 
 export const Step = forwardRef<HTMLDivElement, IStepProps>(
   function Step(props, forwardedRef) {

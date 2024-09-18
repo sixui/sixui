@@ -1,18 +1,18 @@
 import { useCallback, useRef } from 'react';
-import { asArray } from '@olivierpascal/helpers';
 import { useMergeRefs } from '@floating-ui/react';
+import { asArray } from '@olivierpascal/helpers';
 
 import type { ITextFieldBaseProps } from './TextFieldBase.types';
+import { iconXMark } from '~/assets/icons';
+import { fixedForwardRef } from '~/helpers/fixedForwardRef';
 import { isFunction } from '~/helpers/isFunction';
 import { useControlledValue } from '~/hooks/useControlledValue';
-import { fixedForwardRef } from '~/helpers/fixedForwardRef';
 import { useStyles } from '~/hooks/useStyles';
-import { iconXMark } from '~/assets/icons';
-import { FieldBase } from '../FieldBase';
 import { Base } from '../Base';
-import { useVisualState } from '../VisualState';
+import { FieldBase } from '../FieldBase';
 import { IconButton } from '../IconButton';
 import { SvgIcon } from '../SvgIcon';
+import { useVisualState } from '../VisualState';
 import {
   textFieldBaseFieldBaseStyles,
   textFieldBaseStyles,
@@ -119,7 +119,7 @@ export const TextFieldBase = fixedForwardRef(function TextField<
         }
       }}
       tabIndex={-1}
-      role='button'
+      role="button"
       sx={[textFieldBaseTheme, globalStyles, combineStyles('host'), sx]}
       ref={forwardedRef}
     >
@@ -140,7 +140,7 @@ export const TextFieldBase = fixedForwardRef(function TextField<
               <>
                 {clearable ? (
                   <IconButton
-                    data-cy='clearButton'
+                    data-cy="clearButton"
                     ref={iconButtonRef}
                     icon={clearIcon}
                     onClick={handleClearInput}

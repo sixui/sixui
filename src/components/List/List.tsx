@@ -1,13 +1,14 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
+import type { IListThemeFactory } from './List.css';
 import type { IListFactory } from './List.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Paper } from '../Paper';
 import { Flex } from '../Flex';
+import { Paper } from '../Paper';
 import { ListContext } from './List.context';
-import { listTheme, type IListThemeFactory } from './List.css';
+import { listTheme } from './List.css';
 
 const COMPONENT_NAME = 'List';
 
@@ -46,7 +47,7 @@ export const List = componentFactory<IListFactory>((props, forwardedRef) => {
   return (
     <ListContext.Provider value={{ noFocusRing }}>
       <Paper {...other} {...getStyles('root')} ref={forwardedRef}>
-        <Flex {...getStyles('inner')} direction='column'>
+        <Flex {...getStyles('inner')} direction="column">
           {header && <header {...getStyles('header')}>{header}</header>}
           <Flex
             {...getStyles('content', {
@@ -56,7 +57,7 @@ export const List = componentFactory<IListFactory>((props, forwardedRef) => {
                   : undefined,
               }),
             })}
-            direction='column'
+            direction="column"
             divider={divider}
           >
             {children}

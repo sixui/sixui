@@ -1,9 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
-import { spacingTokens } from '~/themes/base/spacing.stylex';
-import { listTokens } from '~/components/List/List.stylex';
-import { navigationDrawerContentDestinationListTokens as tokens } from './NavigationDrawerContentDestinationList.stylex';
 import { dividerTokens } from '~/components/Divider/Divider.stylex';
+import { listTokens } from '~/components/List/List.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { navigationDrawerContentDestinationListTokens as tokens } from './NavigationDrawerContentDestinationList.stylex';
 
 export type INavigationDrawerContentDestinationListStylesKey =
   keyof typeof navigationDrawerContentDestinationListStyles;

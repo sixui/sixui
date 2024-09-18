@@ -1,27 +1,27 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import stylex from '@stylexjs/stylex';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faArrowDown,
   faArrowLeft,
   faArrowRight,
   faArrowUp,
 } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import stylex from '@stylexjs/stylex';
 
-import type { IDrawerProps } from './Drawer.types';
 import type { IOmit } from '~/helpers/types';
-import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { spacingTokens } from '~/themes/base/spacing.stylex';
-import { scaleTokens } from '~/themes/base/scale.stylex';
-import { outlineTokens } from '~/themes/base/outline.stylex';
+import type { IDrawerProps } from './Drawer.types';
 import { commonStyles } from '~/helpers/commonStyles';
 import { useDisclosure } from '~/hooks/useDisclosure';
+import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
+import { outlineTokens } from '~/themes/base/outline.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { Button } from '../Button';
-import { Stack } from '../Stack';
 import { Frame } from '../Frame';
-import { Drawer } from './Drawer';
+import { Stack } from '../Stack';
 import { Text } from '../Text';
+import { Drawer } from './Drawer';
 
 // https://m3.material.io/components/drawers/overview
 // https://material-web.dev/components/drawer/
@@ -70,13 +70,13 @@ const DrawerDemo: React.FC<IDrawerDemoProps> = (props) => {
                     from being focused when the side sheet is opened. */}
           <button
             aria-hidden
-            type='button'
+            type="button"
             {...stylex.props(commonStyles.outOfScreen)}
           />
 
-          <Stack align='start'>
+          <Stack align="start">
             <Text>Press escape to close the drawer.</Text>
-            <Button onClick={close} variant='text'>
+            <Button onClick={close} variant="text">
               Close
             </Button>
           </Stack>
@@ -101,48 +101,48 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
           root={rootElement}
           opened={leftOpened}
           onClose={leftActions.close}
-          anchor='left'
+          anchor="left"
         />
         <DrawerDemo
           {...props}
           root={rootElement}
           opened={topOpened}
           onClose={topActions.close}
-          anchor='top'
+          anchor="top"
         />
         <DrawerDemo
           {...props}
           root={rootElement}
           opened={rightOpened}
           onClose={rightActions.close}
-          anchor='right'
+          anchor="right"
         />
         <DrawerDemo
           {...props}
           root={rootElement}
           opened={bottomOpened}
           onClose={bottomActions.close}
-          anchor='bottom'
+          anchor="bottom"
         />
 
-        <Stack horizontal justify='space-between' sx={styles.frameInner}>
+        <Stack horizontal justify="space-between" sx={styles.frameInner}>
           <Button
-            variant='text'
+            variant="text"
             onClick={leftActions.open}
             icon={<FontAwesomeIcon icon={faArrowLeft} />}
           >
             Open left
           </Button>
-          <Stack justify='space-between' align='center' sx={styles.column}>
+          <Stack justify="space-between" align="center" sx={styles.column}>
             <Button
-              variant='text'
+              variant="text"
               onClick={topActions.open}
               icon={<FontAwesomeIcon icon={faArrowUp} />}
             >
               Open top
             </Button>
             <Button
-              variant='text'
+              variant="text"
               onClick={bottomActions.open}
               icon={<FontAwesomeIcon icon={faArrowDown} />}
             >
@@ -150,7 +150,7 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
             </Button>
           </Stack>
           <Button
-            variant='text'
+            variant="text"
             onClick={rightActions.open}
             icon={<FontAwesomeIcon icon={faArrowRight} />}
             trailingIcon

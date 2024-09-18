@@ -1,21 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faEnvelope as faEnvelopeSolid,
-  faUser as faUserSolid,
-  faBookmark as faBookmarkSolid,
-} from '@fortawesome/free-solid-svg-icons';
-import {
+  faBookmark,
   faEnvelope,
   faUser,
-  faBookmark,
 } from '@fortawesome/free-regular-svg-icons';
-
-import type { ITabListProps } from './TabList.types';
 import {
-  type IComponentPresentation,
-  ComponentShowcase,
-} from '../ComponentShowcase';
+  faBookmark as faBookmarkSolid,
+  faEnvelope as faEnvelopeSolid,
+  faUser as faUserSolid,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import type { IComponentPresentation } from '../ComponentShowcase';
+import type { ITabListProps } from './TabList.types';
+import { ComponentShowcase } from '../ComponentShowcase';
 import { Tab } from '../Tab';
 import { TabList } from './TabList';
 
@@ -93,7 +91,7 @@ export const Primary: IStory = {
       component={(props) => <TabListDemo {...props} />}
       props={{ ...props, tab: Tab }}
       rows={rows}
-      horizontalAlign='start'
+      horizontalAlign="start"
     />
   ),
   args: defaultArgs,
@@ -105,7 +103,7 @@ export const Secondary: IStory = {
       component={(props) => <TabListDemo {...props} />}
       props={{ ...props, tab: Tab, variant: 'secondary' }}
       rows={rows}
-      horizontalAlign='start'
+      horizontalAlign="start"
     />
   ),
   args: defaultArgs,

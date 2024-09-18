@@ -1,11 +1,12 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
+import type { ITextThemeFactory } from './Text.css';
 import type { ITextFactory, ITextSize, ITextVariant } from './Text.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
-import { textTheme, type ITextThemeFactory } from './Text.css';
+import { textTheme } from './Text.css';
 
 const COMPONENT_NAME = 'Text';
 

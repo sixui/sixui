@@ -1,18 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faEnvelope as faEnvelopeSolid,
-  faUser as faUserSolid,
-  faBookmark as faBookmarkSolid,
-  faCalendar as faCalendarSolid,
-} from '@fortawesome/free-solid-svg-icons';
-import {
-  faEnvelope,
-  faUser,
   faBookmark,
   faCalendar,
+  faEnvelope,
+  faUser,
 } from '@fortawesome/free-regular-svg-icons';
+import {
+  faBookmark as faBookmarkSolid,
+  faCalendar as faCalendarSolid,
+  faEnvelope as faEnvelopeSolid,
+  faUser as faUserSolid,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import stylex from '@stylexjs/stylex';
 
 import type { ITabsProps } from './Tabs.types';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
@@ -37,45 +37,45 @@ const styles = stylex.create({
 
 const TabsDemo: React.FC<ITabsProps> = (props) => (
   <div style={{ width: '600px' }}>
-    <Tabs {...props} defaultAnchor='tab-2'>
-      <TabList aria-label='Tabs example'>
+    <Tabs {...props} defaultAnchor="tab-2">
+      <TabList aria-label="Tabs example">
         <Tab
-          label='Item one'
-          anchor='tab-1'
+          label="Item one"
+          anchor="tab-1"
           icon={<FontAwesomeIcon icon={faEnvelope} />}
           activeIcon={<FontAwesomeIcon icon={faEnvelopeSolid} />}
         />
         <Tab
-          label='Item two'
-          anchor='tab-2'
+          label="Item two"
+          anchor="tab-2"
           icon={<FontAwesomeIcon icon={faUser} />}
           activeIcon={<FontAwesomeIcon icon={faUserSolid} />}
         />
         <Tab
-          label='Item three'
-          anchor='tab-3'
+          label="Item three"
+          anchor="tab-3"
           icon={<FontAwesomeIcon icon={faBookmark} />}
           activeIcon={<FontAwesomeIcon icon={faBookmarkSolid} />}
         />
         <Tab
-          label='Item four'
-          anchor='tab-4'
+          label="Item four"
+          anchor="tab-4"
           icon={<FontAwesomeIcon icon={faCalendar} />}
           activeIcon={<FontAwesomeIcon icon={faCalendarSolid} />}
           disabled
         />
       </TabList>
 
-      <TabPanel sx={styles.tabPanel} anchor='tab-1'>
+      <TabPanel sx={styles.tabPanel} anchor="tab-1">
         Content A
       </TabPanel>
-      <TabPanel sx={styles.tabPanel} anchor='tab-2'>
+      <TabPanel sx={styles.tabPanel} anchor="tab-2">
         Content B
       </TabPanel>
-      <TabPanel sx={styles.tabPanel} anchor='tab-3'>
+      <TabPanel sx={styles.tabPanel} anchor="tab-3">
         Content C
       </TabPanel>
-      <TabPanel sx={styles.tabPanel} anchor='tab-4'>
+      <TabPanel sx={styles.tabPanel} anchor="tab-4">
         Content D
       </TabPanel>
     </Tabs>

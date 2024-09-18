@@ -1,7 +1,7 @@
 import type { IAny } from '~/helpers/types';
 import type {
-  IFilterableListItemsEqualProp,
   IFilterableListBaseInternalRendererProps,
+  IFilterableListItemsEqualProp,
 } from './FilterableListBase.types';
 import { isFunction } from '~/helpers/isFunction';
 

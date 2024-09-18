@@ -1,15 +1,15 @@
 import type { IOmit } from '~/helpers/types';
+import type { IMovie } from '../FilterableListBase/movies';
 import type { ISelectBaseProps } from './SelectBase.types';
 import {
   areMoviesEqual,
   createMovie,
   filterMovie,
-  isMovieDisabled,
   getMovieLabel,
+  isMovieDisabled,
   renderCreateMovieListItem,
   renderMovieListItem,
   TOP_100_MOVIES,
-  type IMovie,
 } from '../FilterableListBase/movies';
 import { SelectBase } from './SelectBase';
 

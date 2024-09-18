@@ -1,14 +1,14 @@
 import stylex from '@stylexjs/stylex';
 
-import { elevationTokens } from '../Elevation/Elevation.stylex';
-import { shapeTokens } from '~/themes/base/shape.stylex';
-import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
-import { stateTokens } from '~/themes/base/state.stylex';
 import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { densityTokens } from '~/themes/base/density.stylex';
-import { scaleTokens } from '~/themes/base/scale.stylex';
 import { outlineTokens } from '~/themes/base/outline.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { shapeTokens } from '~/themes/base/shape.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { stateTokens } from '~/themes/base/state.stylex';
+import { typeScaleTokens } from '~/themes/base/typeScale.stylex';
+import { elevationTokens } from '../Elevation/Elevation.stylex';
 
 const MIN_DENSITY = -2;
 const MAX_DENSITY = 0;

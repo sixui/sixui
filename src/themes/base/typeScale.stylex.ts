@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
 import type { ITypeScaleTheme } from './typeScale.types';
-import { typeFaceTokens } from './typeFace.stylex';
 import { scaleTokens } from './scale.stylex';
+import { typeFaceTokens } from './typeFace.stylex';
 
 // https://github.com/material-components/material-web/blob/main/tokens/v0_192/_md-sys-typescale.scss
 

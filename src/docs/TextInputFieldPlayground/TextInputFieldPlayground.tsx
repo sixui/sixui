@@ -1,10 +1,8 @@
 import type { IPlaygroundSections } from '~/docs/Playground';
+import type { ITextInputFieldPlaygroundDemoProps } from './TextInputFieldPlaygroundDemo';
 import { Playground } from '~/docs/Playground';
 import { textFieldBasePlaygroundSections } from '~/docs/TextFieldBasePlayground';
-import {
-  TextInputFieldPlaygroundDemo,
-  type ITextInputFieldPlaygroundDemoProps,
-} from './TextInputFieldPlaygroundDemo';
+import { TextInputFieldPlaygroundDemo } from './TextInputFieldPlaygroundDemo';
 
 export const textInputFieldPlaygroundSections: IPlaygroundSections<ITextInputFieldPlaygroundDemoProps> =
   {

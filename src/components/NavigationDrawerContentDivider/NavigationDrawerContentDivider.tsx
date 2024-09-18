@@ -1,7 +1,8 @@
 import { forwardRef } from 'react';
 
+import type { IDividerProps } from '~/components/Divider';
+import { Divider } from '~/components/Divider';
 import { useStyles } from '~/hooks/useStyles';
-import { Divider, type IDividerProps } from '~/components/Divider';
 import { navigationDrawerContentDividerStyles } from './NavigationDrawerContentDivider.styles';
 import { navigationDrawerContentDividerTheme } from './NavigationDrawerContentDivider.stylex';
 

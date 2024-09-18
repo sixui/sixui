@@ -1,9 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
-import { navigationRailDestinationTokens } from './NavigationRailDestination.stylex';
 import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
 import { stateLayerTokens } from '../StateLayer/StateLayer.stylex';
 import { navigationRailDestinationStateTokens } from './NavigationRailDestination.state.stylex';
+import { navigationRailDestinationTokens } from './NavigationRailDestination.stylex';
 
 export type INavigationRailDestinationStylesKey =
   keyof typeof navigationRailDestinationStyles;

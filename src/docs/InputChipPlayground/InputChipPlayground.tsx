@@ -1,12 +1,10 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IPlaygroundSections } from '~/docs/Playground';
+import type { IInputChipPlaygroundDemoProps } from './InputChipPlaygroundDemo';
 import { Playground } from '~/docs/Playground';
-import {
-  InputChipPlaygroundDemo,
-  type IInputChipPlaygroundDemoProps,
-} from './InputChipPlaygroundDemo';
+import { InputChipPlaygroundDemo } from './InputChipPlaygroundDemo';
 
 const IMAGE_URL = 'https://avatars.githubusercontent.com/u/2182039?v=4&s=48';
 

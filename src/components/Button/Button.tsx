@@ -1,18 +1,15 @@
 import { MouseEventHandler, useState } from 'react';
 
+import type { IButtonThemeFactory } from './Button.css';
 import type { IButtonFactory } from './Button.types';
+import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
-import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { ButtonBase } from '../ButtonBase';
-import {
-  buttonTheme,
-  buttonThemeVariants,
-  type IButtonThemeFactory,
-} from './Button.css';
+import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
+import { buttonTheme, buttonThemeVariants } from './Button.css';
 
 const COMPONENT_NAME = 'Button';
 

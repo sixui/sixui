@@ -1,9 +1,9 @@
 import type { IOmit } from '~/helpers/types';
+import type { IPlainTooltipContentProps } from '../PlainTooltipContent';
 import type {
   IPopoverBaseProps,
   IPopoverBaseTriggerRendererProps,
 } from '../PopoverBase';
-import type { IPlainTooltipContentProps } from '../PlainTooltipContent';
 
 export type IPlainTooltipInheritedProps = IOmit<
   IPopoverBaseProps,

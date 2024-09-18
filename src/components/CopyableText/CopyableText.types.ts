@@ -1,4 +1,4 @@
-import type { IZeroOrMore, ICompiledStyles, IOmit } from '~/helpers/types';
+import type { ICompiledStyles, IOmit, IZeroOrMore } from '~/helpers/types';
 import type { IBaseProps } from '../Base';
 import type { IFluidButtonProps, IFluidButtonStylesKey } from '../FluidButton';
 import type { ICopyableTextStylesKey } from './CopyableText.styles';

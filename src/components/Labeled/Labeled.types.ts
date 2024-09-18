@@ -1,8 +1,8 @@
 import type { IOmit } from '~/helpers/types';
 import type { IBaseProps } from '../Base';
 import type { IStackProps } from '../Stack';
-import type { ILabeledStylesKey } from './Labeled.styles';
 import type { ILabeledContextValue } from './Labeled.context';
+import type { ILabeledStylesKey } from './Labeled.styles';
 
 export type ILabeledRenderProps = {
   id: string;

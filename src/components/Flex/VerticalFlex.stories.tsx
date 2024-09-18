@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { IPlaceholderProps } from '../Placeholder';
 import type { IFlexProps } from './Flex.types';
-import { Placeholder, type IPlaceholderProps } from '../Placeholder';
 import { makeComponentShowcase } from '../ComponentShowcase';
-import { Flex } from './Flex';
-import { Paper } from '../Paper';
 import { Divider } from '../Divider';
+import { Paper } from '../Paper';
+import { Placeholder } from '../Placeholder';
+import { Flex } from './Flex';
 
 const meta = {
   component: Flex,
@@ -14,14 +15,14 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const BoxDemo: React.FC<IPlaceholderProps> = (props) => (
-  <Placeholder miw='$16' corner='$xs' {...props} />
+  <Placeholder miw="$16" corner="$xs" {...props} />
 );
 
 const defaultArgs = {
   children: [
-    <BoxDemo key={0} label='Item 1' />,
-    <BoxDemo key={1} label='Item 2' miw='$24' />,
-    <BoxDemo key={2} label='Item 3' miw='$32' />,
+    <BoxDemo key={0} label="Item 1" />,
+    <BoxDemo key={1} label="Item 2" miw="$24" />,
+    <BoxDemo key={2} label="Item 3" miw="$32" />,
   ],
   gap: '$4',
   justify: 'flex-start',
@@ -32,7 +33,7 @@ const defaultArgs = {
 } satisfies Partial<IFlexProps>;
 
 const FlexShowcase = makeComponentShowcase((props: IFlexProps) => (
-  <Paper outline='$xs' outlineStyle='solid' p='$2' corner='$xs'>
+  <Paper outline="$xs" outlineStyle="solid" p="$2" corner="$xs">
     <Flex {...props} />
   </Paper>
 ));

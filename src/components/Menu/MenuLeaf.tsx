@@ -1,11 +1,10 @@
 import { forwardRef, useEffect, useRef, useState } from 'react';
-import { isFunction } from '~/helpers/isFunction';
 import {
+  autoUpdate,
+  flip,
   FloatingFocusManager,
   FloatingList,
   FloatingNode,
-  autoUpdate,
-  flip,
   safePolygon,
   shift,
   size,
@@ -26,13 +25,14 @@ import {
 } from '@floating-ui/react';
 
 import type { IMenuProps } from './Menu.types';
+import { isFunction } from '~/helpers/isFunction';
 import { useStyles } from '~/hooks/useStyles';
-import { MenuList } from './MenuList';
-import { Portal } from '../Portal';
 import { FloatingTransition } from '../FloatingTransition';
+import { Portal } from '../Portal';
 import { MenuContextProvider } from './Menu.context';
 import { menuStyles } from './Menu.styles';
 import { MenuItemContextProvider, useMenuItemContext } from './MenuItem';
+import { MenuList } from './MenuList';
 
 export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
   function MenuLeaf(props, forwardedRef) {
@@ -227,7 +227,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
                       sx={combineStyles('inner')}
                       placement={floating.placement}
                       status={transitionStatus.status}
-                      origin='edge'
+                      origin="edge"
                       orientation={orientation}
                       disabled={!!parentId}
                     >

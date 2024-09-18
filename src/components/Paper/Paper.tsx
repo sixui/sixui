@@ -1,16 +1,16 @@
+import type { IPaperThemeFactory } from './Paper.css';
 import type { IPaperFactory } from './Paper.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { PaperBase } from '../PaperBase';
 import {
-  paperTheme,
-  paperSprinkles,
   paperBackgroundSprinkles,
   paperElevationSprinkles,
   paperOutlineSprinkles,
-  type IPaperThemeFactory,
+  paperSprinkles,
+  paperTheme,
 } from './Paper.css';
 
 const COMPONENT_NAME = 'Paper';

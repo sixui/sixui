@@ -4,8 +4,8 @@ import { useState } from 'react';
 import type { IFilterableListItem } from '../FilterableList';
 import type { ISuggestProps } from './Suggest.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { emptyItem, fruits } from '../FilterableList/fruits';
 import { ListItem } from '../ListItem';
-import { fruits, emptyItem } from '../FilterableList/fruits';
 import { Stack } from '../Stack';
 import { Suggest } from './Suggest';
 

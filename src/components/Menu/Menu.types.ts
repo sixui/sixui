@@ -3,8 +3,8 @@ import type { Placement } from '@floating-ui/react';
 import type { IOrientation } from '~/helpers/types';
 import type { IBaseProps } from '../Base';
 import type { IListItemProps } from '../ListItem';
-import type { IMenuStylesKey } from './Menu.styles';
 import type { IPortalProps } from '../Portal';
+import type { IMenuStylesKey } from './Menu.styles';
 
 export type IMenuTriggerRenderProps = {
   opened: boolean;

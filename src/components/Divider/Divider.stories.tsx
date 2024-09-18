@@ -1,10 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { IBoxProps } from '../Box';
 import type { IDividerProps } from './Divider.types';
+import { Box } from '../Box';
 import { makeComponentShowcase } from '../ComponentShowcase';
 import { Flex } from '../Flex';
 import { Paper } from '../Paper';
-import { Box, type IBoxProps } from '../Box';
 import { Divider } from './Divider';
 
 // https://m3.material.io/components/divider/
@@ -21,22 +22,22 @@ const defaultArgs = {} satisfies Partial<IDividerProps>;
 
 const BoxDemo: React.FC<IBoxProps> = (props) => (
   <Flex
-    align='center'
-    justify='center'
-    miw='$24'
-    mih='$12'
-    p='$2'
-    ta='center'
+    align="center"
+    justify="center"
+    miw="$24"
+    mih="$12"
+    p="$2"
+    ta="center"
     {...props}
   />
 );
 
 const ListDemo: React.FC<IDividerProps> = (props) => (
-  <Paper outline='$xs' outlineStyle='solid' corner='$xs'>
+  <Paper outline="$xs" outlineStyle="solid" corner="$xs">
     <Flex
       direction={props.orientation === 'horizontal' ? 'column' : 'row'}
       divider={<Divider {...props} />}
-      wrap='wrap'
+      wrap="wrap"
     >
       <BoxDemo>One</BoxDemo>
       <BoxDemo>Two</BoxDemo>

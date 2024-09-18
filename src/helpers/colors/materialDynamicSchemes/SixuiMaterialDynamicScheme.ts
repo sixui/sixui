@@ -2,9 +2,9 @@
 // https://github.com/material-foundation/material-color-utilities/blob/61bdf870fa96912abeb34ba2b05725f51bac625d/typescript/scheme/scheme_vibrant.ts
 
 import {
+  DynamicScheme,
   Hct,
   TonalPalette,
-  DynamicScheme,
 } from '@material/material-color-utilities';
 
 /**

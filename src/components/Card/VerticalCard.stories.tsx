@@ -1,24 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import stylex from '@stylexjs/stylex';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { ICardProps } from './Card.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import {
-  type IComponentPresentation,
-  ComponentShowcase,
-} from '../ComponentShowcase';
-import { Button } from '../Button';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { Avatar } from '../Avatar';
+import { Button } from '../Button';
+import { CardActions } from '../CardActions';
+import { CardContent } from '../CardContent';
+import { CardMedia } from '../CardMedia';
+import { CardTitle } from '../CardTitle';
+import { ComponentShowcase } from '../ComponentShowcase';
 import { IconButton } from '../IconButton/IconButton';
 import { ListItem } from '../ListItem';
-import { CardContent } from '../CardContent';
-import { CardTitle } from '../CardTitle';
-import { CardMedia } from '../CardMedia';
-import { CardActions } from '../CardActions';
 import { Card } from './Card';
-import { scaleTokens } from '~/themes/base/scale.stylex';
 
 // https://m3.material.io/components/cards
 // https://github.com/material-components/material-web/blob/main/labs/card/demo/stories.ts
@@ -49,9 +47,9 @@ const NonActionableContent: React.FC<{ headline?: string }> = ({
   <>
     <ListItem
       leading={
-        <Avatar src='https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' />
+        <Avatar src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" />
       }
-      supportingText='February 21, 2024'
+      supportingText="February 21, 2024"
       trailing={
         <IconButton icon={<FontAwesomeIcon icon={faEllipsisVertical} />} />
       }
@@ -62,22 +60,22 @@ const NonActionableContent: React.FC<{ headline?: string }> = ({
       <CardTitle headline={headline ?? 'Headline'} />
       <CardMedia
         sx={styles.media}
-        src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
+        src="https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600"
       />
       <CardTitle
-        subhead='Subhead'
-        supportingText='Explain more about the topic shown in the headline and subhead through supporting text.'
+        subhead="Subhead"
+        supportingText="Explain more about the topic shown in the headline and subhead through supporting text."
       />
     </CardContent>
     <CardActions>
       <Button
-        variant='filled'
+        variant="filled"
         onClick={(...args) => sbHandleEvent('click:primaryAction', args)}
       >
         Primary
       </Button>
       <Button
-        variant='outlined'
+        variant="outlined"
         onClick={(...args) => sbHandleEvent('click:secondaryAction', args)}
       >
         Secondary
@@ -92,18 +90,18 @@ const NonActionableContentVariant: React.FC<{ headline?: string }> = ({
   <>
     <CardMedia
       sx={styles.media}
-      src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
+      src="https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600"
     />
     <CardContent>
       <CardTitle
         headline={headline ?? 'Headline'}
-        subhead='Subhead'
-        supportingText='Explain more about the topic shown in the headline and subhead through supporting text.'
+        subhead="Subhead"
+        supportingText="Explain more about the topic shown in the headline and subhead through supporting text."
       />
     </CardContent>
     <CardActions>
       <Button
-        variant='filled'
+        variant="filled"
         onClick={(...args) => sbHandleEvent('click:primaryAction', args)}
       >
         Primary
@@ -116,18 +114,18 @@ const ActionableContent: React.FC<{ headline?: string }> = ({ headline }) => (
   <>
     <CardMedia
       sx={styles.media}
-      src='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600'
+      src="https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600"
     />
     <CardContent>
       <CardTitle
         headline={headline ?? 'Headline'}
-        subhead='Subhead'
-        supportingText='Explain more about the topic shown in the headline and subhead through supporting text.'
+        subhead="Subhead"
+        supportingText="Explain more about the topic shown in the headline and subhead through supporting text."
       />
     </CardContent>
     <CardActions>
       <Button
-        variant='outlined'
+        variant="outlined"
         onClick={(...args) => sbHandleEvent('click:secondaryAction', args)}
       >
         Secondary
@@ -166,14 +164,14 @@ const variants: Array<IComponentPresentation<ICardProps>> = [
     legend: 'Elevated',
     props: {
       variant: 'elevated',
-      children: <NonActionableContent headline='Non-actionable' />,
+      children: <NonActionableContent headline="Non-actionable" />,
     },
   },
   {
     legend: 'Filled',
     props: {
       variant: 'filled',
-      children: <ActionableContent headline='Actionable' />,
+      children: <ActionableContent headline="Actionable" />,
       onClick: (...args) => sbHandleEvent('click:card', args),
     },
   },
@@ -181,7 +179,7 @@ const variants: Array<IComponentPresentation<ICardProps>> = [
     legend: 'Outlined',
     props: {
       variant: 'outlined',
-      children: <NonActionableContentVariant headline='Non-actionable' />,
+      children: <NonActionableContentVariant headline="Non-actionable" />,
     },
   },
 ];

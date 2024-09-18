@@ -1,5 +1,6 @@
-import type { IArrayElement, IZeroOrMore } from './types';
 import { asArray } from '@olivierpascal/helpers';
+
+import type { IArrayElement, IZeroOrMore } from './types';
 
 export const asFlatArray = <T>(
   zeroOrMore: Array<IZeroOrMore<IArrayElement<T>>>,

@@ -1,16 +1,15 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import type { IPlaceholderProps } from '~/components/Placeholder';
 import type { IPlaygroundSections } from '~/docs/Playground';
+import type { IFieldBasePlaygroundDemoProps } from './FieldBasePlaygroundDemo';
+import { Placeholder } from '~/components/Placeholder';
 import { Playground } from '~/docs/Playground';
-import { Placeholder, type IPlaceholderProps } from '~/components/Placeholder';
-import {
-  FieldBasePlaygroundDemo,
-  type IFieldBasePlaygroundDemoProps,
-} from './FieldBasePlaygroundDemo';
+import { FieldBasePlaygroundDemo } from './FieldBasePlaygroundDemo';
 
 export const FieldBasePlaceholder: React.FC<IPlaceholderProps> = (props) => (
-  <Placeholder {...props} surface='onSurface' disabled expand corner='none' />
+  <Placeholder {...props} surface="onSurface" disabled expand corner="none" />
 );
 
 export const fieldBasePlaygroundSections: IPlaygroundSections<IFieldBasePlaygroundDemoProps> =

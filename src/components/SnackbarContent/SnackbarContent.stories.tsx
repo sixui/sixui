@@ -1,11 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { ISnackbarContentProps } from './SnackbarContent.types';
-import {
-  type IComponentPresentation,
-  ComponentShowcase,
-} from '../ComponentShowcase';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { ComponentShowcase } from '../ComponentShowcase';
 import { SnackbarContent } from './SnackbarContent';
 
 // https://m3.material.io/components/snackbar
@@ -58,7 +56,7 @@ export const Short: IStory = {
       component={SnackbarContent}
       props={props}
       rows={rows}
-      horizontalAlign='start'
+      horizontalAlign="start"
     />
   ),
   args: {
@@ -73,7 +71,7 @@ export const Long: IStory = {
       component={SnackbarContent}
       props={props}
       rows={rows}
-      horizontalAlign='start'
+      horizontalAlign="start"
     />
   ),
   args: {

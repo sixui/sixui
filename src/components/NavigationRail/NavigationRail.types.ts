@@ -1,5 +1,5 @@
-import type { INavigationRailStylesKey } from './NavigationRail.styles';
 import type { IBaseProps } from '~/components/Base';
+import type { INavigationRailStylesKey } from './NavigationRail.styles';
 
 export type INavigationRailProps = IBaseProps<INavigationRailStylesKey> & {
   children?: React.ReactNode;

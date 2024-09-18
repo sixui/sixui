@@ -1,8 +1,9 @@
 import stylex from '@stylexjs/stylex';
 
-import type { IOmit } from '~/helpers/types';
+import type { IFieldProps } from '~/components/Field';
 import type { IFieldBaseProps } from '~/components/FieldBase';
-import { Field, type IFieldProps } from '~/components/Field';
+import type { IOmit } from '~/helpers/types';
+import { Field } from '~/components/Field';
 import { scaleTokens } from '~/themes/base/scale.stylex';
 
 const styles = stylex.create({

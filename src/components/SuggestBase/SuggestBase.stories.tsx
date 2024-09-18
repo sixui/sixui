@@ -1,12 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { ISuggestBaseExampleProps } from './SuggestBaseExample';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { ListItem } from '../ListItem';
 import { TOP_100_MOVIES } from '../FilterableListBase/movies';
-import {
-  SuggestBaseExample,
-  type ISuggestBaseExampleProps,
-} from './SuggestBaseExample';
+import { ListItem } from '../ListItem';
+import { SuggestBaseExample } from './SuggestBaseExample';
 
 const meta = {
   component: SuggestBaseExample,

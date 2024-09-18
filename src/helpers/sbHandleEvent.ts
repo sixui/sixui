@@ -1,6 +1,7 @@
-import type { IAny } from './types';
-import { action } from '@storybook/addon-actions';
 import { delay } from '@olivierpascal/helpers';
+import { action } from '@storybook/addon-actions';
+
+import type { IAny } from './types';
 
 export const sbHandleEvent = <TArgs extends IAny>(
   name: string,

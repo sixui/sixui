@@ -1,9 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import {
-  DialogContent,
-  type IDialogContentProps,
-} from '~/components/DialogContent';
+import type { IDialogContentProps } from '~/components/DialogContent';
+import { DialogContent } from '~/components/DialogContent';
 import { scaleTokens } from '~/themes/base/scale.stylex';
 
 export type IDialogContentPlaygroundDemoProps = {

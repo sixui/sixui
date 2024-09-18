@@ -1,11 +1,11 @@
-import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import type { IMaybeAsync, IAny } from '~/helpers/types';
-import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IAny, IMaybeAsync } from '~/helpers/types';
 import type { IInteractions } from '~/hooks/useInteractions';
-import type { IUseStateLayerResult } from '../StateLayer';
-import type { IPaperOwnProps } from '../Paper';
-import type { IFocusRingVariant } from '../FocusRing';
+import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
+import type { IFocusRingVariant } from '../FocusRing';
+import type { IPaperOwnProps } from '../Paper';
+import type { IUseStateLayerResult } from '../StateLayer';
 import type {
   buttonBaseTheme,
   IButtonBaseThemeFactory,

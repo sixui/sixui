@@ -1,12 +1,12 @@
 import stylex from '@stylexjs/stylex';
 
-import { circularProgressIndicatorTokens } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
-import { stateLayerTokens } from '../StateLayer/StateLayer.stylex';
-import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
+import { densityTokens } from '~/themes/base/density.stylex';
 import { motionTokens } from '~/themes/base/motion.stylex';
+import { circularProgressIndicatorTokens } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
+import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
+import { stateLayerTokens } from '../StateLayer/StateLayer.stylex';
 import { switchStateTokens } from './Switch.state.stylex';
 import { switchTokens } from './Switch.stylex';
-import { densityTokens } from '~/themes/base/density.stylex';
 
 // https://github.com/material-components/material-web/blob/main/switch/internal/_switch.scss
 // https://github.com/material-components/material-web/blob/main/switch/internal/_track.scss

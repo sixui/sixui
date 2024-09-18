@@ -3,10 +3,10 @@ import stylex from '@stylexjs/stylex';
 import { motionTokens } from '~/themes/base/motion.stylex';
 import { shapeTokens } from '~/themes/base/shape.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { circularProgressIndicatorTokens } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { elevationTokens } from '../Elevation/Elevation.stylex';
 import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
 import { stateLayerTokens } from '../StateLayer/StateLayer.stylex';
-import { circularProgressIndicatorTokens } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { chipStateTokens } from './Chip.state.stylex';
 import { chipTokens } from './Chip.stylex';
 

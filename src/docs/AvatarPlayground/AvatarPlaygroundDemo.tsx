@@ -1,4 +1,5 @@
-import { Avatar, type IAvatarProps } from '~/components/Avatar';
+import type { IAvatarProps } from '~/components/Avatar';
+import { Avatar } from '~/components/Avatar';
 
 export type IAvatarPlaygroundDemoProps = {
   avatar: IAvatarProps;

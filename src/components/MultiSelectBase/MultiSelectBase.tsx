@@ -1,17 +1,17 @@
 import { useRef } from 'react';
 
 import type { IMultiSelectBaseProps } from './MultiSelectBase.types';
+import { fixedForwardRef } from '~/helpers/fixedForwardRef';
 import { useStyles } from '~/hooks/useStyles';
-import { ListItem } from '../ListItem';
-import { TextInputField } from '../TextInputField';
-import { MenuList } from '../MenuList';
 import { InputChip } from '../Chip';
 import {
-  useMultiFilterableListBase,
   FilterableListBaseFieldTrailingIcon,
+  useMultiFilterableListBase,
 } from '../FilterableListBase';
 import { FloatingFilterableListBase } from '../FloatingFilterableListBase';
-import { fixedForwardRef } from '~/helpers/fixedForwardRef';
+import { ListItem } from '../ListItem';
+import { MenuList } from '../MenuList';
+import { TextInputField } from '../TextInputField';
 import {
   multiSelectBaseFieldBaseStyles,
   multiSelectBaseStyles,
@@ -240,7 +240,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
               !!renderProps.query
             }
             innerStyles={{ fieldBase: multiSelectBaseFieldBaseStyles }}
-            spellCheck='false'
+            spellCheck="false"
             variant={variant}
             {...renderProps.forwardedProps}
             {...getInputProps(
@@ -276,7 +276,7 @@ export const MultiSelectBase = fixedForwardRef(function MultiSelectBase<TItem>(
                   )
                 : undefined
             }
-            autoComplete='off'
+            autoComplete="off"
           />
         );
       }}

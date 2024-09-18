@@ -1,8 +1,9 @@
-import type { IOmit } from '~/helpers/types';
+import type { IRadioProps } from '~/components/Radio';
 import type { ILabeledPlaygroundDemoProps } from '~/docs/LabeledPlayground/LabeledPlaygroundDemo';
-import { RadioGroup } from '~/components/RadioGroup';
-import { Radio, type IRadioProps } from '~/components/Radio';
+import type { IOmit } from '~/helpers/types';
 import { Labeled } from '~/components/Labeled';
+import { Radio } from '~/components/Radio';
+import { RadioGroup } from '~/components/RadioGroup';
 import { Stack } from '~/components/Stack';
 
 export type IRadioPlaygroundDemoProps = ILabeledPlaygroundDemoProps & {
@@ -15,13 +16,13 @@ export const RadioPlaygroundDemo: React.FC<IRadioPlaygroundDemoProps> = (
   <RadioGroup>
     <Stack gap={4}>
       <Labeled {...props.radio} {...props.labeled}>
-        <Radio value='1' />
+        <Radio value="1" />
       </Labeled>
       <Labeled {...props.radio} {...props.labeled}>
-        <Radio value='2' />
+        <Radio value="2" />
       </Labeled>
       <Labeled {...props.radio} {...props.labeled}>
-        <Radio value='3' />
+        <Radio value="3" />
       </Labeled>
     </Stack>
   </RadioGroup>

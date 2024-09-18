@@ -1,9 +1,10 @@
+import type { IDividerThemeFactory } from './Divider.css';
 import type { IDividerFactory } from './Divider.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
-import { dividerTheme, type IDividerThemeFactory } from './Divider.css';
+import { dividerTheme } from './Divider.css';
 
 const COMPONENT_NAME = 'Divider';
 

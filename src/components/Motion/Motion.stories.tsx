@@ -1,20 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { CSSTransition } from 'react-transition-group';
 import { useRef } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFaceSmile } from '@fortawesome/free-regular-svg-icons';
 import { faFaceSmile as faFaceSmileSolid } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { CSSTransition } from 'react-transition-group';
 
-import type { IMotionProps } from './Motion.types';
 import type { IOmit } from '~/helpers/types';
+import type { IComponentPresentation } from '../ComponentShowcase';
+import type { IMotionProps } from './Motion.types';
 import { useToggle } from '~/hooks/useToggle';
-import {
-  makeComponentShowcase,
-  type IComponentPresentation,
-} from '../ComponentShowcase';
-import { Motion } from './Motion';
+import { makeComponentShowcase } from '../ComponentShowcase';
 import { IconButton } from '../IconButton';
 import { Placeholder } from '../Placeholder';
+import { Motion } from './Motion';
 
 type IMotionDemoProps = IOmit<IMotionProps, 'status'> & {
   transitioning?: boolean;
@@ -32,14 +30,14 @@ const MotionDemo: React.FC<IMotionDemoProps> = (props) => {
       unmountOnExit
     >
       {(status) => (
-        <Motion {...other} status={status} ref={transitionNodeRef} z='$overlay'>
+        <Motion {...other} status={status} ref={transitionNodeRef} z="$overlay">
           <Placeholder
-            surface='$primary'
-            c='$onPrimary'
-            w='$16'
-            h='$16'
-            corner='$sm'
-            label='Hi!'
+            surface="$primary"
+            c="$onPrimary"
+            w="$16"
+            h="$16"
+            corner="$sm"
+            label="Hi!"
           />
         </Motion>
       )}

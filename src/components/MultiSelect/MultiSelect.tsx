@@ -1,5 +1,6 @@
 import { forwardRef } from 'react';
 
+import type { IFilterableListItem } from '../FilterableList';
 import type { IMultiSelectProps } from './MultiSelect.types';
 import {
   areFilterableListItemsEqual,
@@ -7,10 +8,9 @@ import {
   getFilterableListItemLabel,
   isFilterableListItemDisabled,
   renderFilterableListItem,
-  type IFilterableListItem,
 } from '../FilterableList';
-import { MultiSelectBase } from '../MultiSelectBase';
 import { ListItem } from '../ListItem';
+import { MultiSelectBase } from '../MultiSelectBase';
 import { useMultiSelect } from './useMultiSelect';
 
 export const MultiSelect = forwardRef<HTMLInputElement, IMultiSelectProps>(

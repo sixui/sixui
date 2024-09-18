@@ -1,30 +1,26 @@
 import { forwardRef, useMemo, useState } from 'react';
 import stylex from '@stylexjs/stylex';
 
+import type { IUseWindowSizeClassResult } from '~/hooks/useWindowSizeClass';
+import type { IAppLayoutContextValue } from './AppLayout.context';
 import type {
   IAppLayoutNavigationMode,
   IAppLayoutProps,
 } from './AppLayout.types';
-import { useStyles } from '~/hooks/useStyles';
 import { isFunction } from '~/helpers/isFunction';
 import { useDisclosure } from '~/hooks/useDisclosure';
-import {
-  useWindowSizeClass,
-  type IUseWindowSizeClassResult,
-} from '~/hooks/useWindowSizeClass';
 import { useSideSheet } from '~/hooks/useSideSheet';
+import { useStyles } from '~/hooks/useStyles';
+import { useWindowSizeClass } from '~/hooks/useWindowSizeClass';
+import { AppLayoutProvider } from './AppLayout.context';
 import { appLayoutStyles } from './AppLayout.styles';
+import { AppLayoutAside } from './AppLayoutAside';
+import { AppLayoutBody } from './AppLayoutBody';
+import { AppLayoutFooter } from './AppLayoutFooter';
 import { AppLayoutHeader } from './AppLayoutHeader';
 import { AppLayoutNavigationDrawer } from './AppLayoutNavigationDrawer';
-import { AppLayoutBody } from './AppLayoutBody';
-import {
-  AppLayoutProvider,
-  type IAppLayoutContextValue,
-} from './AppLayout.context';
-import { AppLayoutAside } from './AppLayoutAside';
-import { AppLayoutPane } from './AppLayoutPane';
-import { AppLayoutFooter } from './AppLayoutFooter';
 import { AppLayoutNavigationRail } from './AppLayoutNavigationRail';
+import { AppLayoutPane } from './AppLayoutPane';
 import { AppLayoutSideSheet } from './AppLayoutSideSheet';
 
 const resolveNavigationMode = (

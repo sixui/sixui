@@ -1,6 +1,7 @@
 import type { Alignment, Placement, Side } from '@floating-ui/core';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
+import type { IMotionThemeFactory } from './Motion.css';
 import type { IMotionFactory } from './Motion.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
@@ -9,7 +10,7 @@ import { Box } from '../Box';
 import { getCornerTransformOriginFromPlacement } from './getCornerTransformOriginFromPlacement';
 import { getEdgeTransformOriginFromPlacement } from './getEdgeTransformOriginFromPlacement';
 import { getPositionFromPlacement } from './getPositionFromPlacement';
-import { motionTheme, type IMotionThemeFactory } from './Motion.css';
+import { motionTheme } from './Motion.css';
 import { resolveRtgStatus } from './resolveRtgStatus';
 
 const COMPONENT_NAME = 'Motion';

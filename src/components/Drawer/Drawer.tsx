@@ -1,8 +1,8 @@
 import { forwardRef } from 'react';
 
 import type { IDrawerProps } from './Drawer.types';
-import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { useStyles } from '~/hooks/useStyles';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { PopoverBase } from '../PopoverBase';
 import { drawerStyles } from './Drawer.styles';
 import { drawerTheme } from './Drawer.stylex';

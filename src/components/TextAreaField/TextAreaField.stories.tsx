@@ -1,14 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
-import type { ITextAreaFieldProps } from './TextAreaField.types';
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IFieldBaseVariant } from '../FieldBase';
+import type { ITextAreaFieldProps } from './TextAreaField.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { px } from '~/helpers/styles/px';
-import {
-  makeComponentShowcase,
-  type IComponentPresentation,
-} from '../ComponentShowcase';
+import { makeComponentShowcase } from '../ComponentShowcase';
 import { TextAreaField } from './TextAreaField';
 
 const meta = {

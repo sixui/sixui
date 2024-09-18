@@ -1,17 +1,13 @@
+import type { HoverEvents, PressEvent, PressEvents } from 'react-aria';
 import { useRef } from 'react';
+import { mergeProps } from 'react-aria';
 
-import { useRipple } from '~/hooks/useRipple';
-import {
-  useInteractions,
-  type IUseInteractionsResult,
-  type IInteractions,
+import type {
+  IInteractions,
+  IUseInteractionsResult,
 } from '~/hooks/useInteractions';
-import {
-  mergeProps,
-  type HoverEvents,
-  type PressEvent,
-  type PressEvents,
-} from 'react-aria';
+import { useInteractions } from '~/hooks/useInteractions';
+import { useRipple } from '~/hooks/useRipple';
 
 export type IUseStateLayerProps = {
   disabled?: boolean;

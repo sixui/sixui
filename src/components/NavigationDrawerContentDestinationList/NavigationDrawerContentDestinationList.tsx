@@ -1,11 +1,11 @@
 import { forwardRef } from 'react';
 
 import type { INavigationDrawerContentDestinationListProps } from './NavigationDrawerContentDestinationList.types';
-import { useStyles } from '~/hooks/useStyles';
+import { Divider } from '~/components/Divider';
 import { List } from '~/components/List';
 import { Stack } from '~/components/Stack';
+import { useStyles } from '~/hooks/useStyles';
 import { navigationDrawerContentDestinationListStyles } from './NavigationDrawerContentDestinationList.styles';
-import { Divider } from '~/components/Divider';
 
 export const NavigationDrawerContentDestinationList = forwardRef<
   HTMLDivElement,

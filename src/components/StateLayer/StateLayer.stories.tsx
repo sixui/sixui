@@ -1,10 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IInteractions } from '~/hooks/useInteractions';
-import {
-  makeComponentShowcase,
-  type IComponentPresentation,
-} from '../ComponentShowcase';
+import type { IComponentPresentation } from '../ComponentShowcase';
+import { makeComponentShowcase } from '../ComponentShowcase';
 import { Placeholder } from '../Placeholder';
 import { StateLayer } from './StateLayer';
 import { useStateLayer } from './useStateLayer';
@@ -36,12 +34,12 @@ const BoundedDemo: React.FC<IDemoProps> = (props) => {
 
   return (
     <Placeholder
-      w='$24'
-      h='$24'
-      surface='$surface'
-      corner='$md'
-      outline='$xs'
-      outlineStyle='solid'
+      w="$24"
+      h="$24"
+      surface="$surface"
+      corner="$md"
+      outline="$xs"
+      outlineStyle="solid"
       {...stateLayer.interactionsContext.triggerProps}
       ref={stateLayer.triggerRef}
     >
@@ -62,22 +60,22 @@ const UnboundedDemo: React.FC<IDemoProps> = (props) => {
 
   return (
     <Placeholder
-      w='$24'
-      h='$24'
-      surface='$surface'
-      corner='$md'
-      outline='$xs'
-      outlineStyle='dashed'
+      w="$24"
+      h="$24"
+      surface="$surface"
+      corner="$md"
+      outline="$xs"
+      outlineStyle="dashed"
       {...stateLayer.interactionsContext.triggerProps}
       ref={stateLayer.triggerRef}
     >
       <Placeholder
         as={StateLayer}
-        w='$12'
-        h='$12'
-        surface='$transparent'
-        corner='$sm'
-        outline='$xs'
+        w="$12"
+        h="$12"
+        surface="$transparent"
+        corner="$sm"
+        outline="$xs"
         context={stateLayer}
       />
     </Placeholder>
@@ -97,24 +95,24 @@ const NestedDemo: React.FC<IDemoProps> = (props) => {
 
   return (
     <Placeholder
-      w='$24'
-      h='$24'
-      surface='$surface'
-      corner='$md'
-      outline='$xs'
-      outlineStyle='solid'
+      w="$24"
+      h="$24"
+      surface="$surface"
+      corner="$md"
+      outline="$xs"
+      outlineStyle="solid"
       {...stateLayer.interactionsContext.triggerProps}
       ref={stateLayer.triggerRef}
     >
       <StateLayer context={stateLayer} />
 
       <Placeholder
-        w='$12'
-        h='$12'
-        surface='$surface'
-        corner='$sm'
-        outline='$xs'
-        outlineStyle='solid'
+        w="$12"
+        h="$12"
+        surface="$surface"
+        corner="$sm"
+        outline="$xs"
+        outlineStyle="solid"
         {...nestedStateLayer.interactionsContext.triggerProps}
         ref={nestedStateLayer.triggerRef}
       >

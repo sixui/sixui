@@ -1,11 +1,11 @@
 import type { OpenChangeReason, ReferenceType } from '@floating-ui/react';
 
 import type { ICompiledStyles, IOmit, IZeroOrMore } from '~/helpers/types';
+import type { IBaseProps } from '../Base';
 import type {
   IBottomSheetContentProps,
   IBottomSheetContentStylesKey,
 } from '../BottomSheetContent';
-import type { IBaseProps } from '../Base';
 import type { IPortalProps } from '../Portal';
 import type { IBottomSheetStylesKey } from './BottomSheet.styles';
 

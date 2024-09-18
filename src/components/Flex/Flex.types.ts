@@ -1,7 +1,7 @@
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type { flexTheme, IFlexThemeFactory, IFlexSprinkles } from './Flex.css';
+import type { flexTheme, IFlexSprinkles, IFlexThemeFactory } from './Flex.css';
 
 export interface IFlexOwnProps extends IFlexSprinkles {
   children?: React.ReactNode;

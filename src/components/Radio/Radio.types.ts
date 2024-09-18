@@ -1,14 +1,14 @@
 import type {
-  IZeroOrMore,
-  ICompiledStyles,
   IAny,
+  ICompiledStyles,
   IMaybeAsync,
   IOmit,
+  IZeroOrMore,
 } from '~/helpers/types';
 import type { IBaseProps } from '../Base';
-import type { IStateLayerStylesKey } from '../StateLayer';
-import type { IFocusRingStylesKey } from '../FocusRing';
 import type { ICircularProgressIndicatorStylesKey } from '../CircularProgressIndicator';
+import type { IFocusRingStylesKey } from '../FocusRing';
+import type { IStateLayerStylesKey } from '../StateLayer';
 import type { IVisualState } from '../VisualState';
 import type { IRadioStylesKey } from './Radio.styles';
 

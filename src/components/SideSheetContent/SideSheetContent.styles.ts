@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
 import { spacingTokens } from '~/themes/base/spacing.stylex';
-import { paperBaseTokens } from '../PaperBase/PaperBase.stylex';
 import { dividerTokens } from '../Divider/Divider.stylex';
+import { paperBaseTokens } from '../PaperBase/PaperBase.stylex';
 import { sideSheetContentTokens as tokens } from './SideSheetContent.stylex';
 
 export type ISideSheetContentStylesKey = keyof typeof sideSheetContentStyles;

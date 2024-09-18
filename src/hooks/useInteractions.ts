@@ -1,14 +1,8 @@
 import type { DOMAttributes, HoverEvent } from '@react-types/shared';
-import { accumulate } from '@olivierpascal/helpers';
+import type { AriaFocusRingProps, HoverProps, PressProps } from 'react-aria';
 import { useCallback, useMemo, useRef, useState } from 'react';
-import {
-  useFocusRing,
-  useHover,
-  usePress,
-  type HoverProps,
-  type PressProps,
-  type AriaFocusRingProps,
-} from 'react-aria';
+import { accumulate } from '@olivierpascal/helpers';
+import { useFocusRing, useHover, usePress } from 'react-aria';
 
 export type IInteraction = 'focused' | 'pressed' | 'dragged' | 'hovered';
 

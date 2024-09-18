@@ -1,10 +1,8 @@
 import type { IPlaygroundSections } from '~/docs/Playground';
-import { Playground } from '~/docs/Playground';
+import type { ISwitchPlaygroundDemoProps } from './SwitchPlaygroundDemo';
 import { labeledPlaygroundSections } from '~/docs/LabeledPlayground';
-import {
-  SwitchPlaygroundDemo,
-  type ISwitchPlaygroundDemoProps,
-} from './SwitchPlaygroundDemo';
+import { Playground } from '~/docs/Playground';
+import { SwitchPlaygroundDemo } from './SwitchPlaygroundDemo';
 
 export const switchPlaygroundSections: IPlaygroundSections<ISwitchPlaygroundDemoProps> =
   {

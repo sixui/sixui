@@ -1,8 +1,8 @@
 import { forwardRef } from 'react';
 
 import type { IAppLayoutBodyProps } from './AppLayoutBody.types';
-import { useStyles } from '~/hooks/useStyles';
 import { Stack } from '~/components/Stack';
+import { useStyles } from '~/hooks/useStyles';
 import { useAppLayoutContext } from '../AppLayout.context';
 import { appLayoutBodyStyles } from './AppLayoutBody.styles';
 
@@ -21,8 +21,8 @@ export const AppLayoutBody = forwardRef<HTMLDivElement, IAppLayoutBodyProps>(
 
     return (
       <Stack
-        as='main'
-        align='start'
+        as="main"
+        align="start"
         horizontal
         {...other}
         sx={[

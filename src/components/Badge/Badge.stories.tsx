@@ -1,12 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IBadgeProps } from './Badge.types';
-import {
-  makeComponentShowcase,
-  type IComponentPresentation,
-} from '../ComponentShowcase';
-import { Placeholder } from '../Placeholder';
 import { Anchored, IAnchoredProps } from '../Anchored';
+import { makeComponentShowcase } from '../ComponentShowcase';
+import { Placeholder } from '../Placeholder';
 import { Badge } from './Badge';
 
 // https://m3.material.io/components/badges/overview
@@ -25,8 +23,8 @@ const BadgeDemo: React.FC<IBadgeDemoProps> = ({ overlap, ...props }) =>
   overlap ? (
     <Anchored content={<Badge {...props} />} overlap={overlap}>
       <Placeholder
-        w='$14'
-        h='$14'
+        w="$14"
+        h="$14"
         corner={overlap === 'circular' ? '$full' : '$sm'}
       />
     </Anchored>

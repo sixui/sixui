@@ -1,14 +1,12 @@
 import { useMergeRefs } from '@floating-ui/react';
 
+import type { IStateLayerThemeFactory } from './StateLayer.css';
 import type { IStateLayerFactory } from './StateLayer.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
-import {
-  stateLayerTheme,
-  type IStateLayerThemeFactory,
-} from './StateLayer.css';
+import { stateLayerTheme } from './StateLayer.css';
 
 const COMPONENT_NAME = 'StateLayer';
 

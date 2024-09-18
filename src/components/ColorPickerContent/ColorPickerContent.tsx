@@ -2,12 +2,12 @@ import { forwardRef, useContext } from 'react';
 
 import type { IColorPickerContentProps } from './ColorPickerContent.types';
 import { useStyles } from '~/hooks/useStyles';
-import { PaperBase } from '../PaperBase';
-import { Divider } from '../Divider';
 import { ColorButton } from '../ColorButton';
 import { ColorPaletteGroupContext } from '../ColorPaletteGroup';
-import { colorPickerContentStyles } from './ColorPickerContent.styles';
+import { Divider } from '../Divider';
+import { PaperBase } from '../PaperBase';
 import { Stack } from '../Stack';
+import { colorPickerContentStyles } from './ColorPickerContent.styles';
 
 export const ColorPickerContent = forwardRef<
   HTMLDivElement,
@@ -48,7 +48,7 @@ export const ColorPickerContent = forwardRef<
       ref={forwardedRef}
     >
       <Stack gap={4} sx={combineStyles('section')}>
-        <Stack horizontal gap={2} justify='space-between'>
+        <Stack horizontal gap={2} justify="space-between">
           {palettes.map((palette, paletteIndex) => (
             <Stack key={paletteIndex}>
               <div {...getStyles('tones')}>

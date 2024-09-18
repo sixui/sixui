@@ -1,8 +1,8 @@
 import stylex from '@stylexjs/stylex';
 
-import { spacingTokens } from '~/themes/base/spacing.stylex';
-import { scaleTokens } from '~/themes/base/scale.stylex';
 import { densityTokens } from '~/themes/base/density.stylex';
+import { scaleTokens } from '~/themes/base/scale.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 
 export type IGap = 0 | 0.5 | 1 | 2 | 3 | 4 | 5 | 6;
 

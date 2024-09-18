@@ -1,4 +1,5 @@
-import { Labeled, type ILabeledProps } from '~/components/Labeled';
+import type { ILabeledProps } from '~/components/Labeled';
+import { Labeled } from '~/components/Labeled';
 import { Placeholder } from '~/components/Placeholder';
 
 export type ILabeledPlaygroundDemoProps = {
@@ -17,7 +18,7 @@ export const LabeledPlaygroundDemo: React.FC<ILabeledPlaygroundDemoProps> = (
         corner={{ topLeft: 'sm', topRight: 'sm' }}
       />
     ) : (
-      <Placeholder width={52} height={32} corner='full' />
+      <Placeholder width={52} height={32} corner="full" />
     )}
   </Labeled>
 );

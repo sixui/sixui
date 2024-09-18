@@ -1,20 +1,18 @@
 import { forwardRef, useRef } from 'react';
+import { useMergeRefs } from '@floating-ui/react';
 import stylex from '@stylexjs/stylex';
 import { CSSTransition } from 'react-transition-group';
-import { useMergeRefs } from '@floating-ui/react';
 
-import type { IExpandableProps } from './Expandable.types';
 import type { ICssSizeValue, ISize } from '~/helpers/types';
-import {
-  ExpandableContext,
-  type IExpandableContextValue,
-} from './Expandable.context';
+import type { IExpandableContextValue } from './Expandable.context';
+import type { IExpandableProps } from './Expandable.types';
 import { isFunction } from '~/helpers/isFunction';
 import { useControlledValue } from '~/hooks/useControlledValue';
-import { motionTokens } from '~/themes/base/motion.stylex';
 import { useElementSize } from '~/hooks/useElementSize';
 import { useStyles } from '~/hooks/useStyles';
+import { motionTokens } from '~/themes/base/motion.stylex';
 import { Base } from '../Base';
+import { ExpandableContext } from './Expandable.context';
 import { expandableStyles } from './Expandable.styles';
 
 const localStyles = stylex.create({

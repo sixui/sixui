@@ -1,15 +1,15 @@
-import type { IBaseProps } from '../Base';
 import type {
-  IZeroOrMore,
-  ICompiledStyles,
   IAny,
+  ICompiledStyles,
   IMaybeAsync,
+  IZeroOrMore,
 } from '~/helpers/types';
-import type { IStateLayerStylesKey } from '../StateLayer';
-import type { IFocusRingStylesKey } from '../FocusRing';
-import type { IElevationStylesKey } from '../Elevation';
-import type { IVisualState } from '../VisualState';
+import type { IBaseProps } from '../Base';
 import type { ICircularProgressIndicatorStylesKey } from '../CircularProgressIndicator';
+import type { IElevationStylesKey } from '../Elevation';
+import type { IFocusRingStylesKey } from '../FocusRing';
+import type { IStateLayerStylesKey } from '../StateLayer';
+import type { IVisualState } from '../VisualState';
 import type { IChipStylesKey } from './Chip.styles';
 
 export type IChipVariant = 'assist' | 'filter' | 'input' | 'suggestion';

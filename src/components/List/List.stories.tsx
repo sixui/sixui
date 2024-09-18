@@ -1,21 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCalendarDays,
   faCheck,
   faLink,
 } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { createSequence } from '@olivierpascal/helpers';
 
+import type { IListItemProps } from '../ListItem';
 import type { IListProps } from './List.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { makeComponentShowcase } from '../ComponentShowcase';
-import { ListItem, type IListItemProps } from '../ListItem';
-import { Avatar } from '../Avatar';
-import { List } from './List';
-import { Placeholder } from '../Placeholder';
-import { Paper } from '../Paper';
 import { px } from '~/helpers/styles/px';
+import { Avatar } from '../Avatar';
+import { makeComponentShowcase } from '../ComponentShowcase';
+import { ListItem } from '../ListItem';
+import { Paper } from '../Paper';
+import { Placeholder } from '../Placeholder';
+import { List } from './List';
 
 // https://m3.material.io/components/lists/overview
 // https://material-web.dev/components/list/
@@ -29,12 +30,12 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  header: <Placeholder corner='$none' label='Header' />,
-  footer: <Placeholder corner='$none' label='Footer' />,
+  header: <Placeholder corner="$none" label="Header" />,
+  footer: <Placeholder corner="$none" label="Footer" />,
 } satisfies Partial<IListProps>;
 
 const ListDemo: React.FC<IListProps> = (props) => (
-  <Paper outline='$xs' outlineStyle='dashed'>
+  <Paper outline="$xs" outlineStyle="dashed">
     <div style={{ overflowY: 'auto' }}>
       <List {...props} />
     </div>
@@ -53,7 +54,7 @@ const ListDemoShowcase = makeComponentShowcase(ListDemo);
 export const Scales: IStory = {
   render: (props) => (
     <ListDemoShowcase
-      verticalAlign='start'
+      verticalAlign="start"
       cols={[
         {
           legend: 'Extra small',
@@ -108,7 +109,7 @@ export const Scales: IStory = {
 export const Densities: IStory = {
   render: (props) => (
     <ListDemoShowcase
-      verticalAlign='start'
+      verticalAlign="start"
       cols={[-6, -4, -2, 0, 2].map((density) => ({
         legend: String(density),
         props: {
@@ -126,7 +127,7 @@ export const Densities: IStory = {
 };
 
 export const Grid: IStory = {
-  render: (props) => <ListDemoShowcase verticalAlign='start' props={props} />,
+  render: (props) => <ListDemoShowcase verticalAlign="start" props={props} />,
   args: {
     ...defaultArgs,
     children: renderListItems({ supportingText: 'Supporting text' }, 8),
@@ -149,7 +150,7 @@ export const Configurations: IStory = {
                 </ListItem>
                 <ListItem
                   leadingIcon={<FontAwesomeIcon icon={faCheck} />}
-                  supportingText='Supporting text that is long enough to fill up multiple lines'
+                  supportingText="Supporting text that is long enough to fill up multiple lines"
                 >
                   Item with leading icon
                 </ListItem>
@@ -161,13 +162,13 @@ export const Configurations: IStory = {
                 </ListItem>
                 <ListItem
                   leading={
-                    <Avatar src='https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' />
+                    <Avatar src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" />
                   }
-                  supportingText='Supporting text that is long enough to fill up multiple lines'
+                  supportingText="Supporting text that is long enough to fill up multiple lines"
                 >
                   Item with leading element
                 </ListItem>
-                <ListItem leadingImage='https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&h=168&w=168'>
+                <ListItem leadingImage="https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&h=168&w=168">
                   Item with leading image
                 </ListItem>
                 <ListItem
@@ -195,11 +196,11 @@ export const Configurations: IStory = {
                 {/* FIXME: <ListItem trailing={<Checkbox checked />}>
                   Item with trailing element
                 </ListItem> */}
-                <ListItem overline='Overline'>Item with overline</ListItem>
-                <ListItem supportingText='Supporting text'>
+                <ListItem overline="Overline">Item with overline</ListItem>
+                <ListItem supportingText="Supporting text">
                   Item with supporting text
                 </ListItem>
-                <ListItem trailingSupportingText='100+'>
+                <ListItem trailingSupportingText="100+">
                   Item with trailing supporting text
                 </ListItem>
                 <ListItem selected>Selected item</ListItem>

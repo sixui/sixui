@@ -2,23 +2,21 @@ import { forwardRef, useRef } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 import { asArray } from '@olivierpascal/helpers';
 
+import type { IWithAsProp } from '~/utils/component/createPolymorphicComponent';
 import type { INavigationRailDestinationProps } from './NavigationRailDestination.types';
 import { useStyles } from '~/hooks/useStyles';
-import {
-  createPolymorphicComponent,
-  type IWithAsProp,
-} from '~/utils/component/createPolymorphicComponent';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
+import { Anchored } from '../Anchored';
 import { Base } from '../Base';
-import { useVisualState } from '../VisualState';
-import { StateLayer } from '../StateLayer';
 import { FocusRing } from '../FocusRing';
+import { StateLayer } from '../StateLayer';
+import { useVisualState } from '../VisualState';
 import {
   navigationRailDestinationFocusRingStyles,
   navigationRailDestinationStateLayerStyles,
   navigationRailDestinationStyles,
 } from './NavigationRailDestination.styles';
 import { navigationRailDestinationTheme } from './NavigationRailDestination.stylex';
-import { Anchored } from '../Anchored';
 
 export const NavigationRailDestination = createPolymorphicComponent<
   'button',
@@ -68,7 +66,7 @@ export const NavigationRailDestination = createPolymorphicComponent<
         <Base
           as={rootElement}
           href={href}
-          role='button'
+          role="button"
           tabIndex={visuallyDisabled ? -1 : 0}
           {...other}
           visualState={visualState}

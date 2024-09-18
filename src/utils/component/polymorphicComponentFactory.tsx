@@ -2,17 +2,17 @@ import { forwardRef } from 'react';
 
 import type { IAny } from '~/helpers/types';
 import type {
+  IComponentFactoryPayload,
+  IFactoryComponentStaticComponents,
+  IFactoryComponentTheme,
+  IFactoryComponentThemeExtend,
+} from './componentFactory';
+import type {
   IPolymorphicComponentProps,
   IPolymorphicComponentPropsWithRef,
   IWithAsProp,
 } from './createPolymorphicComponent';
-import {
-  identity,
-  type IComponentFactoryPayload,
-  type IFactoryComponentTheme,
-  type IFactoryComponentStaticComponents,
-  type IFactoryComponentThemeExtend,
-} from './componentFactory';
+import { identity } from './componentFactory';
 
 export type IPolymorphicComponentFactoryPayload = IComponentFactoryPayload & {
   defaultRef: IAny;

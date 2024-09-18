@@ -1,8 +1,8 @@
 import { useMergeRefs } from '@floating-ui/react';
 
 import type { IMenuItemFactory } from './MenuItem.types';
-import { componentFactory } from '~/utils/component/componentFactory';
 import { iconTriangleLeft, iconTriangleRight } from '~/assets/icons';
+import { componentFactory } from '~/utils/component/componentFactory';
 import { SvgIcon } from '../../SvgIcon';
 import { useMenuContext } from '../Menu.context';
 import { MenuItem } from './MenuItem';

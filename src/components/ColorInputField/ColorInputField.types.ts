@@ -1,9 +1,9 @@
 import type { Placement } from '@floating-ui/react';
 
-import type { IBaseProps } from '../Base';
 import type { IOmit, IOrientation } from '~/helpers/types';
-import type { IColorInputFieldStylesKey } from './ColorInputField.styles';
+import type { IBaseProps } from '../Base';
 import type { ITextInputFieldProps } from '../TextInputField';
+import type { IColorInputFieldStylesKey } from './ColorInputField.styles';
 
 export type IColorInputFieldColorPickerRendererProps = {
   onClick: (event: React.MouseEvent<HTMLButtonElement>, color: string) => void;

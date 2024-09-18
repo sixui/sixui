@@ -3,11 +3,11 @@ import { useMergeRefs } from '@floating-ui/react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type { IHtmlSelectOption, IHtmlSelectProps } from './HtmlSelect.types';
-import { useStyles } from '~/hooks/useStyles';
 import { iconTriangleDown } from '~/assets/icons';
-import { useVisualState } from '../VisualState';
+import { useStyles } from '~/hooks/useStyles';
 import { FieldBase } from '../FieldBase';
 import { SvgIcon } from '../SvgIcon';
+import { useVisualState } from '../VisualState';
 import {
   htmlSelectFieldBaseStyles,
   htmlSelectStyles,

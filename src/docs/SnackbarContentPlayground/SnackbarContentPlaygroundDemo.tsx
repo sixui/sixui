@@ -1,7 +1,5 @@
-import {
-  SnackbarContent,
-  type ISnackbarContentProps,
-} from '~/components/SnackbarContent';
+import type { ISnackbarContentProps } from '~/components/SnackbarContent';
+import { SnackbarContent } from '~/components/SnackbarContent';
 
 export type ISnackbarContentPlaygroundDemoProps = {
   snackbarContent: ISnackbarContentProps;

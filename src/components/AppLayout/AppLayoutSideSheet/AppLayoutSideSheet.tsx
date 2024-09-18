@@ -1,8 +1,8 @@
 import { forwardRef } from 'react';
 
 import type { IAppLayoutSideSheetProps } from './AppLayoutSideSheet.types';
-import { useStyles } from '~/hooks/useStyles';
 import { Base } from '~/components/Base';
+import { useStyles } from '~/hooks/useStyles';
 import { useAppLayoutContext } from '../AppLayout.context';
 import { appLayoutSideSheetStyles } from './AppLayoutSideSheet.styles';
 

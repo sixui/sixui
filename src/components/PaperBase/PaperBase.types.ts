@@ -1,7 +1,7 @@
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type { paperBaseTheme, IPaperBaseThemeFactory } from './PaperBase.css';
+import type { IPaperBaseThemeFactory, paperBaseTheme } from './PaperBase.css';
 
 export interface IPaperBaseOwnProps {
   children?: React.ReactNode;

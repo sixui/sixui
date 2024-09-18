@@ -1,8 +1,8 @@
 import { forwardRef } from 'react';
 
 import type { IAppLayoutHeaderProps } from './AppLayoutHeader.types';
-import { useStyles } from '~/hooks/useStyles';
 import { Stack } from '~/components/Stack';
+import { useStyles } from '~/hooks/useStyles';
 import { useAppLayoutContext } from '../AppLayout.context';
 import { appLayoutHeaderStyles } from './AppLayoutHeader.styles';
 
@@ -26,9 +26,9 @@ export const AppLayoutHeader = forwardRef<
 
   return (
     <Stack
-      as='header'
+      as="header"
       horizontal
-      justify='space-between'
+      justify="space-between"
       {...other}
       sx={[globalStyles, combineStyles('host', divider && 'host$divider'), sx]}
       ref={forwardedRef}

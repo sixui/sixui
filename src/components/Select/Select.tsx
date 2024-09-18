@@ -1,17 +1,17 @@
 import { forwardRef } from 'react';
 
+import type { IFilterableListItem } from '../FilterableList';
 import type { ISelectProps } from './Select.types';
 import {
   areFilterableListItemsEqual,
-  isFilterableListItemEmpty,
   filterFilterableList,
   getFilterableListItemLabel,
   isFilterableListItemDisabled,
+  isFilterableListItemEmpty,
   renderFilterableListItem,
-  type IFilterableListItem,
 } from '../FilterableList';
-import { SelectBase } from '../SelectBase';
 import { ListItem } from '../ListItem';
+import { SelectBase } from '../SelectBase';
 import { useSelect } from './useSelect';
 
 export const Select = forwardRef<HTMLDivElement, ISelectProps>(

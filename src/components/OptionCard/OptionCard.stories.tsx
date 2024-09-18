@@ -2,15 +2,15 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
 import type { IOptionCardProps } from './OptionCard.types';
-import { scaleTokens } from '~/themes/base/scale.stylex';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { Switch } from '../Switch';
-import { ComponentShowcase } from '../ComponentShowcase';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { Checkbox } from '../Checkbox';
-import { OptionCard } from './OptionCard';
-import { RadioGroup } from '../RadioGroup';
+import { ComponentShowcase } from '../ComponentShowcase';
 import { Radio } from '../Radio';
+import { RadioGroup } from '../RadioGroup';
 import { Stack } from '../Stack';
+import { Switch } from '../Switch';
+import { OptionCard } from './OptionCard';
 
 const meta = {
   component: OptionCard,
@@ -88,9 +88,9 @@ const OptionCardRadioGroup: React.FC<IOptionCardProps> = (props) => {
   return (
     <RadioGroup onChange={(...args) => void sbHandleEvent('change', args)}>
       <Stack horizontal gap={6}>
-        <OptionCard {...props} as={Radio} value='1' />
-        <OptionCard {...props} as={Radio} value='2' />
-        <OptionCard {...props} as={Radio} value='3' />
+        <OptionCard {...props} as={Radio} value="1" />
+        <OptionCard {...props} as={Radio} value="2" />
+        <OptionCard {...props} as={Radio} value="3" />
       </Stack>
     </RadioGroup>
   );

@@ -1,4 +1,5 @@
 import { createSequence } from '@olivierpascal/helpers';
+
 import { generateAnalogousColorPalette } from './generateAnalogousPalette';
 
 export const generateAnalogousColorPalettes = (

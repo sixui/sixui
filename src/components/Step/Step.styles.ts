@@ -1,10 +1,10 @@
 import stylex from '@stylexjs/stylex';
 
-import { circularProgressIndicatorTokens } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { circularProgressIndicatorTokens } from '../CircularProgressIndicator/CircularProgressIndicator.stylex';
 import { focusRingTokens } from '../FocusRing/FocusRing.stylex';
-import { stepTokens } from './Step.stylex';
 import { stepStateTokens } from './Step.state.stylex';
+import { stepTokens } from './Step.stylex';
 
 export type IStepStylesKey = keyof typeof stepStyles;
 export const stepStyles = stylex.create({

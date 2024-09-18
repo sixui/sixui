@@ -1,12 +1,12 @@
 import { forwardRef } from 'react';
 
 import type { IDialogProps } from './Dialog.types';
-import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { useStyles } from '~/hooks/useStyles';
+import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { DialogContent } from '../DialogContent';
+import { PopoverBase } from '../PopoverBase';
 import { dialogStyles } from './Dialog.styles';
 import { dialogTheme } from './Dialog.stylex';
-import { PopoverBase } from '../PopoverBase';
 
 // https://github.com/material-components/material-web/blob/main/dialog/internal/dialog.ts
 
@@ -51,7 +51,7 @@ export const Dialog = createPolymorphicComponent<'div', IDialogProps>(
             />
           )}
           floatingStrategy={false}
-          placement='top'
+          placement="top"
           closeEvents={{
             focusOut: false,
             clickOutside: !modal,

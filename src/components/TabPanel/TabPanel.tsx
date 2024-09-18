@@ -19,7 +19,7 @@ export const TabPanel = forwardRef<HTMLDivElement, ITabPanelProps>(
 
     return (
       <Base
-        role='tabpanel'
+        role="tabpanel"
         aria-labelledby={id}
         {...other}
         sx={sx}

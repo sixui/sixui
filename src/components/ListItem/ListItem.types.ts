@@ -1,10 +1,10 @@
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type { IItemOwnProps } from '../Item';
 import type { IButtonBaseOwnProps } from '../ButtonBase';
+import type { IItemOwnProps } from '../Item';
 import type { IPaperOwnProps } from '../Paper';
-import type { listItemTheme, IListItemThemeFactory } from './ListItem.css';
+import type { IListItemThemeFactory, listItemTheme } from './ListItem.css';
 
 export type IListItemVariant = 'standard' | 'danger';
 

@@ -1,7 +1,7 @@
 import type { IOmit } from '~/helpers/types';
 import type { IBaseProps } from '../Base';
+import type { IFieldProps, IFieldStylesKey } from '../Field';
 import type { IFieldBaseVariant } from '../FieldBase';
-import type { IFieldStylesKey, IFieldProps } from '../Field';
 import type { IUseSingleFilterableListBaseProps } from '../FilterableListBase';
 import type {
   IFloatingFilterableListBaseProps,

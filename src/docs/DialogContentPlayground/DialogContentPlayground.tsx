@@ -2,9 +2,9 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IPlaygroundSections } from '~/docs/Playground';
-import { Playground } from '~/docs/Playground';
 import { Button } from '~/components/Button';
 import { Text } from '~/components/Text';
+import { Playground } from '~/docs/Playground';
 import {
   DialogContentPlaygroundDemo,
   IDialogContentPlaygroundDemoProps,
@@ -31,8 +31,8 @@ export const dialogcontentPlaygroundSections: IPlaygroundSections<IDialogContent
           props: {
             actions: (
               <>
-                <Button variant='text'>Cancel</Button>
-                <Button variant='danger'>Delete</Button>
+                <Button variant="text">Cancel</Button>
+                <Button variant="danger">Delete</Button>
               </>
             ),
           },

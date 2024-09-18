@@ -1,4 +1,5 @@
-import { InputChip, type IInputChipProps } from '~/components/Chip';
+import type { IInputChipProps } from '~/components/Chip';
+import { InputChip } from '~/components/Chip';
 
 export type IInputChipPlaygroundDemoProps = {
   inputChip: IInputChipProps;

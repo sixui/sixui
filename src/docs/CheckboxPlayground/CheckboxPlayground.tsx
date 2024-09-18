@@ -1,10 +1,8 @@
 import type { IPlaygroundSections } from '~/docs/Playground';
-import { Playground } from '~/docs/Playground';
+import type { ICheckboxPlaygroundDemoProps } from './CheckboxPlaygroundDemo';
 import { labeledPlaygroundSections } from '~/docs/LabeledPlayground';
-import {
-  CheckboxPlaygroundDemo,
-  type ICheckboxPlaygroundDemoProps,
-} from './CheckboxPlaygroundDemo';
+import { Playground } from '~/docs/Playground';
+import { CheckboxPlaygroundDemo } from './CheckboxPlaygroundDemo';
 
 export const checkboxPlaygroundSections: IPlaygroundSections<ICheckboxPlaygroundDemoProps> =
   {

@@ -1,10 +1,8 @@
 import { useState } from 'react';
 
+import type { IColorPaletteGroupContextValue } from './ColorPaletteGroup.context';
 import type { IColorPaletteGroupProviderProps } from './ColorPaletteGroupProvider.types';
-import {
-  ColorPaletteGroupContext,
-  type IColorPaletteGroupContextValue,
-} from './ColorPaletteGroup.context';
+import { ColorPaletteGroupContext } from './ColorPaletteGroup.context';
 
 export const ColorPaletteGroupProvider: React.FC<
   IColorPaletteGroupProviderProps

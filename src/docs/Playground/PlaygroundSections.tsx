@@ -1,12 +1,12 @@
-import type { IPlaygroundSectionsProps } from './PlaygroundSections.types';
 import type {
   IPlaygroundOption,
   IPlaygroundSections,
 } from './Playground.types';
-import { fixedForwardRef } from '~/helpers/fixedForwardRef';
+import type { IPlaygroundSectionsProps } from './PlaygroundSections.types';
 import { Disclosure } from '~/components/Disclosure';
 import { DisclosureButton } from '~/components/DisclosureButton';
 import { Stack } from '~/components/Stack';
+import { fixedForwardRef } from '~/helpers/fixedForwardRef';
 import { PlaygroundOption } from './PlaygroundOption';
 
 export const PlaygroundSections = fixedForwardRef(function PlaygroundSections<

@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { appLayoutTokens } from '../AppLayout.stylex';
 import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { appLayoutTokens } from '../AppLayout.stylex';
 
 export type IAppLayoutBodyStylesKey = keyof typeof appLayoutBodyStyles;
 export const appLayoutBodyStyles = stylex.create({

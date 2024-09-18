@@ -1,17 +1,15 @@
-import { defineProperties, createRainbowSprinkles } from 'rainbow-sprinkles';
+import { createRainbowSprinkles, defineProperties } from 'rainbow-sprinkles';
 
-import {
-  componentThemeFactory,
-  type IComponentThemeFactory,
-} from '~/utils/styles/componentThemeFactory';
-import { createStyles } from '~/utils/styles/createStyles';
-import { px } from '~/helpers/styles/px';
-import {
-  themeTokens,
-  type IThemeShapeCornerSize,
-  type IThemeOutlineSize,
+import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type {
+  IThemeOutlineSize,
+  IThemeShapeCornerSize,
 } from '../ThemeProvider';
+import { px } from '~/helpers/styles/px';
+import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createStyles } from '~/utils/styles/createStyles';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
+import { themeTokens } from '../ThemeProvider';
 
 export type IPaperStyleName = keyof typeof paperTheme;
 

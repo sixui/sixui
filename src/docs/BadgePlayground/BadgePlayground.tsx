@@ -1,10 +1,10 @@
 import type { IPlaygroundSections } from '~/docs/Playground';
 import { Playground } from '~/docs/Playground';
+import { anchoredPlaygroundSections } from '../AnchoredPlayground';
 import {
   BadgePlaygroundDemo,
   IBadgePlaygroundDemoProps,
 } from './BadgePlaygroundDemo';
-import { anchoredPlaygroundSections } from '../AnchoredPlayground';
 
 export const badgePlaygroundSections: IPlaygroundSections<IBadgePlaygroundDemoProps> =
   {

@@ -1,20 +1,16 @@
 import type { StyleXStyles } from '@stylexjs/stylex';
 import { useMemo } from 'react';
 
+import type { IThemeSettings } from '~/components/ThemeProvider';
 import type { IVisualState } from '~/components/VisualState';
+import type { IStyleProps } from '~/helpers/stylePropsFactory';
+import type { IStylesCombinatorStylesProp } from '~/helpers/stylesCombinatorFactory';
+import { useThemeContext } from '~/components/ThemeProvider';
+import { stylePropsFactory } from '~/helpers/stylePropsFactory';
 import {
   IStylesCombinator,
   stylesCombinatorFactory,
-  type IStylesCombinatorStylesProp,
 } from '~/helpers/stylesCombinatorFactory';
-import {
-  useThemeContext,
-  type IThemeSettings,
-} from '~/components/ThemeProvider';
-import {
-  stylePropsFactory,
-  type IStyleProps,
-} from '~/helpers/stylePropsFactory';
 
 export type IUseStylesProps<TStyleKey extends string> = {
   componentName: string;

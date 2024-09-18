@@ -1,13 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IButtonBaseProps } from './ButtonBase.types';
 import { Box } from '../Box';
-import {
-  makeComponentShowcase,
-  type IComponentPresentation,
-} from '../ComponentShowcase';
+import { makeComponentShowcase } from '../ComponentShowcase';
 import { ButtonBase } from './ButtonBase';
 
 const meta = {
@@ -20,7 +18,7 @@ const defaultArgs = {
   children: (
     <>
       <FontAwesomeIcon icon={faCartPlus} />
-      <Box as='span' pl='$2'>
+      <Box as="span" pl="$2">
         Add to cart
       </Box>
     </>

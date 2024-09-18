@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
 import type { IPlaygroundProps } from './Playground.types';
-import { fixedForwardRef } from '~/helpers/fixedForwardRef';
-import { playgroundStyles } from './Playground.styles';
-import { PlaygroundSections } from './PlaygroundSections';
-import { useStyles } from '~/hooks/useStyles';
 import { Base } from '~/components/Base';
 import { Density } from '~/components/Density';
+import { fixedForwardRef } from '~/helpers/fixedForwardRef';
+import { useStyles } from '~/hooks/useStyles';
+import { playgroundStyles } from './Playground.styles';
+import { PlaygroundSections } from './PlaygroundSections';
 
 const convertValue = (
   value: unknown,

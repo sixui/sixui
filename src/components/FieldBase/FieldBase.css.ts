@@ -2,21 +2,19 @@ import { createTheme } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IInteraction } from '~/hooks/useInteractions';
+import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { IFieldBaseVariant } from './FieldBase.types';
-import {
-  componentThemeFactory,
-  type IComponentThemeFactory,
-} from '~/utils/styles/componentThemeFactory';
-import { createStyles } from '~/utils/styles/createStyles';
-import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { getDensity } from '~/helpers/styles/getDensity';
+import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
+import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
+import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { themeTokens } from '../ThemeProvider';
-import { StateLayer } from '../StateLayer';
 import { PaperBase } from '../PaperBase';
+import { StateLayer } from '../StateLayer';
+import { themeTokens } from '../ThemeProvider';
 
 type IModifier =
   | IInteraction

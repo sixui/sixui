@@ -1,14 +1,14 @@
 import type { ICompiledStyles, IOmit, IZeroOrMore } from '~/helpers/types';
 import type { IBaseProps } from '../Base';
+import type { IInputChipProps } from '../Chip';
 import type { IFieldBaseVariant } from '../FieldBase';
 import type { IFilterableListItemRenderer } from '../FilterableListBase';
 import type {
   IFloatingFilterableListBaseProps,
   IFloatingFilterableListBaseTriggerRenderProps,
 } from '../FloatingFilterableListBase';
-import type { ITextInputFieldProps } from '../TextInputField';
-import type { IInputChipProps } from '../Chip';
 import type { ITextFieldBaseStylesKey } from '../TextFieldBase';
+import type { ITextInputFieldProps } from '../TextInputField';
 import type { IMultiSelectBaseStylesKey } from './MultiSelectBase.styles';
 
 export type IMultiSelectBaseProps<TItem> =

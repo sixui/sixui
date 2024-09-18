@@ -3,8 +3,8 @@ import { useState } from 'react';
 
 import type { ISelectProps } from './Select.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { emptyItem, fruits } from '../FilterableList/fruits';
 import { ListItem } from '../ListItem';
-import { fruits, emptyItem } from '../FilterableList/fruits';
 import { Stack } from '../Stack';
 import { Select } from './Select';
 

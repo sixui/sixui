@@ -1,4 +1,4 @@
-import type { IOmit, IZeroOrMore, ICompiledStyles } from '~/helpers/types';
+import type { ICompiledStyles, IOmit, IZeroOrMore } from '~/helpers/types';
 import type { IBaseProps } from '../Base';
 import type {
   IDialogContentProps,

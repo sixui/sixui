@@ -1,12 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { faBolt, faCloud, faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faBolt, faCloud } from '@fortawesome/free-solid-svg-icons';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IPlainTooltipProps } from './PlainTooltip.types';
-import {
-  ComponentShowcase,
-  type IComponentPresentation,
-} from '../ComponentShowcase';
+import { ComponentShowcase } from '../ComponentShowcase';
 import { IconButton } from '../IconButton';
 import { PlainTooltip } from './PlainTooltip';
 

@@ -1,5 +1,5 @@
-import type { IBaseProps } from '../Base';
 import type { IRange } from '~/helpers/types';
+import type { IBaseProps } from '../Base';
 import type { ISkeletonStylesKey } from './Skeleton.styles';
 
 export type ISkeletonProps = IBaseProps<ISkeletonStylesKey> & {

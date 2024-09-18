@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import stylex from '@stylexjs/stylex';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import stylex from '@stylexjs/stylex';
 
 import type { IDialogContentProps } from './DialogContent.types';
-import { DialogContent } from './DialogContent';
-import { Text } from '../Text';
-import { Button } from '../Button';
 import { scaleTokens } from '~/themes/base/scale.stylex';
+import { Button } from '../Button';
+import { Text } from '../Text';
+import { DialogContent } from './DialogContent';
 
 // https://m3.material.io/components/dialogs/overview
 // https://material-web.dev/components/dialog/
@@ -38,8 +38,8 @@ const defaultArgs = {
     'Deleting the selected messages will also remove them from all synced devices.',
   actions: (
     <>
-      <Button variant='text'>Cancel</Button>
-      <Button variant='danger'>Delete</Button>
+      <Button variant="text">Cancel</Button>
+      <Button variant="danger">Delete</Button>
     </>
   ),
 } satisfies Partial<IDialogContentProps>;

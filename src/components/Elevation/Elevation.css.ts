@@ -1,13 +1,12 @@
 import { createTheme } from '@vanilla-extract/css';
 
-import {
-  componentThemeFactory,
-  type IComponentThemeFactory,
-} from '~/utils/styles/componentThemeFactory';
-import { createStyles } from '~/utils/styles/createStyles';
-import { px } from '~/helpers/styles/px';
+import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IThemeElevationLevelValues } from '../ThemeProvider';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { themeTokens, type IThemeElevationLevelValues } from '../ThemeProvider';
+import { px } from '~/helpers/styles/px';
+import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createStyles } from '~/utils/styles/createStyles';
+import { themeTokens } from '../ThemeProvider';
 
 type IModifier = 'level' | 'disabled';
 

@@ -1,4 +1,5 @@
 import stylex from '@stylexjs/stylex';
+
 import { spacingTokens } from '~/themes/base/spacing.stylex';
 
 export type IColorInputFieldStylesKey = keyof typeof colorInputFieldStyles;

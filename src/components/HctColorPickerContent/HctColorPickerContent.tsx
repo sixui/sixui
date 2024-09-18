@@ -1,10 +1,10 @@
 import { forwardRef } from 'react';
 
 import type { IHctColorPickerContentProps } from './HctColorPickerContent.types';
-import baseTheme from '~/themes/base/theme.json';
 import { generateTonalColorPalettes } from '~/helpers/colors/generateTonalColorPalettes';
-import { useThemeContext } from '../ThemeProvider';
+import baseTheme from '~/themes/base/theme.json';
 import { ColorPickerContent } from '../ColorPickerContent';
+import { useThemeContext } from '../ThemeProvider';
 
 export const HctColorPickerContent = forwardRef<
   HTMLDivElement,

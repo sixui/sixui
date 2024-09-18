@@ -1,17 +1,18 @@
 // Inspiration:
 // - https://github.com/palantir/blueprint/blob/develop/packages/select/src/__examples__/films.tsx
 
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import highlightWords from 'highlight-words';
 
+import type { IListItemProps } from '../ListItem';
 import type {
   IFilterableCreateNewListItemRenderer,
   IFilterableListItemPredicate,
   IFilterableListItemRenderer,
   IFilterableListItemRendererProps,
 } from './FilterableListBase.types';
-import { ListItem, type IListItemProps } from '../ListItem';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { ListItem } from '../ListItem';
 
 export type IMovie = {
   /**

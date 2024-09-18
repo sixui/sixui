@@ -1,8 +1,8 @@
 import { forwardRef } from 'react';
 
 import type { IAppLayoutFooterProps } from './AppLayoutFooter.types';
-import { useStyles } from '~/hooks/useStyles';
 import { Base } from '~/components/Base';
+import { useStyles } from '~/hooks/useStyles';
 import { appLayoutFooterStyles } from './AppLayoutFooter.styles';
 
 export const AppLayoutFooter = forwardRef<
@@ -18,7 +18,7 @@ export const AppLayoutFooter = forwardRef<
 
   return (
     <Base
-      as='footer'
+      as="footer"
       {...other}
       sx={[globalStyles, combineStyles('host', divider && 'host$divider'), sx]}
       ref={forwardedRef}

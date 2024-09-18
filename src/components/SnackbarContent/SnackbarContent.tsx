@@ -2,18 +2,18 @@ import { forwardRef } from 'react';
 import { asArray } from '@olivierpascal/helpers';
 
 import type { ISnackbarContentProps } from './SnackbarContent.types';
-import { useStyles } from '~/hooks/useStyles';
 import { iconXMark } from '~/assets/icons';
-import { Elevation } from '../Elevation';
+import { useStyles } from '~/hooks/useStyles';
 import { Button } from '../Button';
+import { Elevation } from '../Elevation';
 import { IconButton } from '../IconButton';
+import { Stack } from '../Stack';
 import { SvgIcon } from '../SvgIcon';
 import {
   snackbarContentElevationStyles,
   snackbarContentStyles,
 } from './SnackbarContent.styles';
 import { snackbarContentTheme } from './SnackbarContent.stylex';
-import { Stack } from '../Stack';
 
 export const SnackbarContent = forwardRef<
   HTMLDivElement,
@@ -40,7 +40,7 @@ export const SnackbarContent = forwardRef<
     <Stack
       {...other}
       horizontal
-      align='center'
+      align="center"
       gap={3}
       wrap
       sx={[
@@ -69,16 +69,16 @@ export const SnackbarContent = forwardRef<
       {(actionLabel ?? showCloseButton) ? (
         <Stack horizontal gap={2} sx={combineStyles('actions')}>
           {actionLabel ? (
-            <Button variant='snackbar' onClick={onActionClick}>
+            <Button variant="snackbar" onClick={onActionClick}>
               {actionLabel}
             </Button>
           ) : null}
           {showCloseButton ? (
             <IconButton
-              variant='snackbar'
+              variant="snackbar"
               icon={<SvgIcon icon={iconXMark} />}
               onClick={onClose}
-              aria-label='close'
+              aria-label="close"
             />
           ) : null}
         </Stack>

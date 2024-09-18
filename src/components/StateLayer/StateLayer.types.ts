@@ -1,11 +1,11 @@
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { IUseStateLayerResult } from './useStateLayer';
 import type { IBoxProps } from '../Box';
 import type {
-  stateLayerTheme,
   IStateLayerThemeFactory,
+  stateLayerTheme,
 } from './StateLayer.css';
+import type { IUseStateLayerResult } from './useStateLayer';
 
 export type IStateLayerOwnProps = {
   context?: IUseStateLayerResult;

@@ -1,6 +1,7 @@
-import type { IOmit } from '~/helpers/types';
+import type { ICheckboxProps } from '~/components/Checkbox';
 import type { ILabeledPlaygroundDemoProps } from '~/docs/LabeledPlayground/LabeledPlaygroundDemo';
-import { Checkbox, type ICheckboxProps } from '~/components/Checkbox';
+import type { IOmit } from '~/helpers/types';
+import { Checkbox } from '~/components/Checkbox';
 import { Labeled } from '~/components/Labeled';
 import { Stack } from '~/components/Stack';
 

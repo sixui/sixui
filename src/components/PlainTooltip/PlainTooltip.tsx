@@ -1,12 +1,13 @@
 import { forwardRef } from 'react';
 
-import { PopoverBase, type IPopoverBaseProps } from '../PopoverBase';
+import type { IPopoverBaseProps } from '../PopoverBase';
 import type {
   IPlainTooltipForwardedProps,
   IPlainTooltipProps,
 } from './PlainTooltip.types';
-import { PlainTooltipContent } from '../PlainTooltipContent';
 import { isFunction } from '~/helpers/isFunction';
+import { PlainTooltipContent } from '../PlainTooltipContent';
+import { PopoverBase } from '../PopoverBase';
 
 export const PlainTooltip = forwardRef<HTMLDivElement, IPlainTooltipProps>(
   function PlainTooltip(props, forwardedRef) {
@@ -24,9 +25,9 @@ export const PlainTooltip = forwardRef<HTMLDivElement, IPlainTooltipProps>(
     return (
       <PopoverBase<IPlainTooltipForwardedProps>
         {...other}
-        role='tooltip'
+        role="tooltip"
         contentRenderer={renderContent}
-        cursor='arrow'
+        cursor="arrow"
         forwardProps
         openEvents={{ hover: true, focus: true }}
       >

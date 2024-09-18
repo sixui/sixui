@@ -1,9 +1,7 @@
 import type { IPlaygroundSections } from '~/docs/Playground';
+import type { ISuggestionChipPlaygroundDemoProps } from './SuggestionChipPlaygroundDemo';
 import { Playground } from '~/docs/Playground';
-import {
-  SuggestionChipPlaygroundDemo,
-  type ISuggestionChipPlaygroundDemoProps,
-} from './SuggestionChipPlaygroundDemo';
+import { SuggestionChipPlaygroundDemo } from './SuggestionChipPlaygroundDemo';
 
 export const chipPlaygroundSections: IPlaygroundSections<ISuggestionChipPlaygroundDemoProps> =
   {

@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import stylex from '@stylexjs/stylex';
 
 import type { IStepConnectorProps } from './StepConnector.types';
+import { scaleTokens } from '~/themes/base/scale.stylex';
 import { ComponentShowcase } from '../ComponentShowcase';
 import { StepConnector } from './StepConnector';
-import { scaleTokens } from '~/themes/base/scale.stylex';
 
 const meta = {
   component: StepConnector,
@@ -80,7 +80,7 @@ export const Vertical: IStory = {
           props: { textPosition: 'middle', children: 'Lorem ipsum' },
         },
       ]}
-      horizontalAlign='start'
+      horizontalAlign="start"
     />
   ),
   args: {

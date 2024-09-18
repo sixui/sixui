@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 
-import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { scaleTokens } from '~/themes/base/scale.stylex';
+import { spacingTokens } from '~/themes/base/spacing.stylex';
 import { fieldBaseTokens } from '../FieldBase/FieldBase.stylex';
 
 export type IHtmlSelectStylesKey = keyof typeof htmlSelectStyles;

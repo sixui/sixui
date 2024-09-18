@@ -1,4 +1,5 @@
-import { FilterChip, type IFilterChipProps } from '~/components/Chip';
+import type { IFilterChipProps } from '~/components/Chip';
+import { FilterChip } from '~/components/Chip';
 
 export type IFilterChipPlaygroundDemoProps = {
   filterChip: IFilterChipProps;
