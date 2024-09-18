@@ -1,29 +1,42 @@
-import { forwardRef } from 'react';
 import { FloatingOverlay, useTransitionStatus } from '@floating-ui/react';
 
-import type { IScrimProps } from './Scrim.types';
-import { useStyles } from '~/hooks/useStyles';
-import { scrimStyles } from './Scrim.styles';
-import { scrimTheme } from './Scrim.stylex';
+import type { IScrimThemeFactory } from './Scrim.css';
+import type { IScrimFactory } from './Scrim.types';
+import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { scrimTheme } from './Scrim.css';
 
-export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
-  function Scrim(props, forwardedRef) {
+const COMPONENT_NAME = 'Scrim';
+
+export const Scrim = polymorphicComponentFactory<IScrimFactory>(
+  (props, forwardedRef) => {
     const {
-      floatingContext,
+      classNames,
+      className,
       styles,
-      sx,
+      style,
       variant = 'darken',
+      floatingContext,
       children,
       ...other
-    } = props;
-
-    const { getStyles, globalStyles } = useStyles({
-      componentName: 'Scrim',
-      styles: [scrimStyles, styles],
-    });
+    } = useProps({ componentName: COMPONENT_NAME, props });
 
     const transitionStatus = useTransitionStatus(floatingContext, {
       duration: 150, // motionTokens.duration$short3
+    });
+
+    const { getStyles } = useComponentTheme<IScrimThemeFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles,
+      style,
+      theme: scrimTheme,
+      variant,
+      modifiers: {
+        status: transitionStatus.status,
+      },
     });
 
     if (!transitionStatus.isMounted) {
@@ -31,18 +44,7 @@ export const Scrim = forwardRef<HTMLDivElement, IScrimProps>(
     }
 
     return (
-      <FloatingOverlay
-        {...other}
-        {...getStyles(
-          scrimTheme,
-          globalStyles,
-          'host',
-          `host$${variant}`,
-          `transition$${transitionStatus.status}`,
-          sx,
-        )}
-        ref={forwardedRef}
-      >
+      <FloatingOverlay {...other} {...getStyles('root')} ref={forwardedRef}>
         {children}
       </FloatingOverlay>
     );

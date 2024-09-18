@@ -11,9 +11,8 @@ import {
 
 import type { IOmit } from '~/helpers/types';
 import type { IScrimProps, IScrimVariant } from './Scrim.types';
-import { ComponentShowcase } from '../ComponentShowcase';
+import { makeComponentShowcase } from '../ComponentShowcase';
 import { Button } from '../Button';
-import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { Scrim } from './Scrim';
 
 type IScrimDemoProps = IOmit<IScrimProps, 'floatingContext'>;
@@ -42,6 +41,7 @@ const ScrimDemo: React.FC<IScrimDemoProps> = (props) => {
       >
         Show scrim
       </Button>
+
       <Scrim floatingContext={floating.context} {...other}>
         <FloatingFocusManager context={floating.context}>
           <div
@@ -62,14 +62,13 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {
-  children: <IndeterminateCircularProgressIndicator />,
-} satisfies Partial<IScrimProps>;
+const defaultArgs = {} satisfies Partial<IScrimProps>;
+
+const ScrimDemoShowcase = makeComponentShowcase(ScrimDemo);
 
 export const Variants: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={(props) => <ScrimDemo {...props} />}
+    <ScrimDemoShowcase
       props={props}
       cols={(['darken', 'lighten'] as Array<IScrimVariant>).map((variant) => ({
         legend: capitalizeFirstLetter(variant),
@@ -77,11 +76,6 @@ export const Variants: IStory = {
       }))}
     />
   ),
-  args: defaultArgs,
-};
-
-export const Basic: IStory = {
-  render: (props) => <ScrimDemo {...props} />,
   args: defaultArgs,
 };
 

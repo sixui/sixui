@@ -1,7 +1,7 @@
 import type { Alignment, Placement, Side } from '@floating-ui/core';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import type { IFloatingTransitionFactory } from './FloatingTransition.types';
+import type { IMotionFactory } from './Motion.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
@@ -9,15 +9,12 @@ import { Box } from '../Box';
 import { getCornerTransformOriginFromPlacement } from './getCornerTransformOriginFromPlacement';
 import { getEdgeTransformOriginFromPlacement } from './getEdgeTransformOriginFromPlacement';
 import { getPositionFromPlacement } from './getPositionFromPlacement';
-import {
-  floatingTransitionTheme,
-  type IFloatingTransitionThemeFactory,
-} from './FloatingTransition.css';
+import { motionTheme, type IMotionThemeFactory } from './Motion.css';
 import { resolveRtgStatus } from './resolveRtgStatus';
 
-const COMPONENT_NAME = 'FloatingTransition';
+const COMPONENT_NAME = 'Motion';
 
-export const FloatingTransition = componentFactory<IFloatingTransitionFactory>(
+export const Motion = componentFactory<IMotionFactory>(
   (props, forwardedRef) => {
     const {
       classNames,
@@ -34,7 +31,7 @@ export const FloatingTransition = componentFactory<IFloatingTransitionFactory>(
       cursorTransformOrigin,
       pattern = 'enterExit',
       orientation: orientationProp,
-      anchored,
+      positioned,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -54,13 +51,13 @@ export const FloatingTransition = componentFactory<IFloatingTransitionFactory>(
         : undefined);
     const resolvedStatus = resolveRtgStatus(status);
 
-    const { getStyles } = useComponentTheme<IFloatingTransitionThemeFactory>({
+    const { getStyles } = useComponentTheme<IMotionThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
       styles,
       style,
-      theme: floatingTransitionTheme,
+      theme: motionTheme,
       variant,
       modifiers: {
         status: resolvedStatus,
@@ -68,7 +65,7 @@ export const FloatingTransition = componentFactory<IFloatingTransitionFactory>(
         alignment,
         orientation,
         pattern,
-        anchored,
+        anchored: positioned,
       },
     });
 
@@ -79,7 +76,7 @@ export const FloatingTransition = componentFactory<IFloatingTransitionFactory>(
         {...other}
         {...getStyles(['root', `root$${resolvedStatus}`], {
           style: assignInlineVars({
-            [floatingTransitionTheme.tokens.transformOrigin]:
+            [motionTheme.tokens.transformOrigin]:
               origin === 'corner'
                 ? getCornerTransformOriginFromPlacement(placement)
                 : origin === 'edge'
@@ -87,10 +84,10 @@ export const FloatingTransition = componentFactory<IFloatingTransitionFactory>(
                   : origin === 'cursor' && cursorTransformOrigin
                     ? cursorTransformOrigin
                     : 'center',
-            [floatingTransitionTheme.tokens.position.top]: position.top,
-            [floatingTransitionTheme.tokens.position.bottom]: position.bottom,
-            [floatingTransitionTheme.tokens.position.left]: position.left,
-            [floatingTransitionTheme.tokens.position.right]: position.right,
+            [motionTheme.tokens.position.top]: position.top,
+            [motionTheme.tokens.position.bottom]: position.bottom,
+            [motionTheme.tokens.position.left]: position.left,
+            [motionTheme.tokens.position.right]: position.right,
           }),
         })}
         ref={forwardedRef}
@@ -101,5 +98,5 @@ export const FloatingTransition = componentFactory<IFloatingTransitionFactory>(
   },
 );
 
-FloatingTransition.theme = floatingTransitionTheme;
-FloatingTransition.displayName = `@sixui/${COMPONENT_NAME}`;
+Motion.theme = motionTheme;
+Motion.displayName = `@sixui/${COMPONENT_NAME}`;

@@ -1,14 +1,15 @@
 import { useMemo } from 'react';
 
+import type { IAvatarThemeFactory } from './Avatar.css';
 import type { IAvatarFactory } from './Avatar.types';
+import { hslColorFromString } from '~/helpers/colors/hslColorFromString';
+import { getHslColor } from '~/helpers/styles/getHslColor';
+import { useImageLoaded } from '~/hooks/useImageLoaded';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { useImageLoaded } from '~/hooks/useImageLoaded';
-import { hslColorFromString } from '~/helpers/colors/hslColorFromString';
-import { getHslColor } from '~/helpers/styles/getHslColor';
 import { Paper } from '../Paper';
-import { avatarTheme, type IAvatarThemeFactory } from './Avatar.css';
+import { avatarTheme } from './Avatar.css';
 
 const COMPONENT_NAME = 'Avatar';
 

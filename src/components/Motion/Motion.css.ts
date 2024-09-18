@@ -189,15 +189,14 @@ const classNames = createStyles({
   },
 });
 
-export type IFloatingTransitionThemeFactory = IComponentThemeFactory<{
+export type IMotionThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
 }>;
 
-export const floatingTransitionTheme =
-  componentThemeFactory<IFloatingTransitionThemeFactory>({
-    classNames,
-    tokensClassName,
-    tokens,
-  });
+export const motionTheme = componentThemeFactory<IMotionThemeFactory>({
+  classNames,
+  tokensClassName,
+  tokens,
+});

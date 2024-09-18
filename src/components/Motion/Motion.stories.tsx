@@ -5,27 +5,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFaceSmile } from '@fortawesome/free-regular-svg-icons';
 import { faFaceSmile as faFaceSmileSolid } from '@fortawesome/free-solid-svg-icons';
 
-import type { IFloatingTransitionProps } from './FloatingTransition.types';
+import type { IMotionProps } from './Motion.types';
 import type { IOmit } from '~/helpers/types';
 import { useToggle } from '~/hooks/useToggle';
 import {
   makeComponentShowcase,
   type IComponentPresentation,
 } from '../ComponentShowcase';
-import { FloatingTransition } from './FloatingTransition';
+import { Motion } from './Motion';
 import { IconButton } from '../IconButton';
 import { Placeholder } from '../Placeholder';
 
-type IFloatingTransitionDemoProps = IOmit<
-  IFloatingTransitionProps,
-  'status'
-> & {
+type IMotionDemoProps = IOmit<IMotionProps, 'status'> & {
   transitioning?: boolean;
 };
 
-const FloatingTransitionDemo: React.FC<IFloatingTransitionDemoProps> = (
-  props,
-) => {
+const MotionDemo: React.FC<IMotionDemoProps> = (props) => {
   const { transitioning, ...other } = props;
   const transitionNodeRef = useRef<HTMLDivElement>(null);
 
@@ -37,12 +32,7 @@ const FloatingTransitionDemo: React.FC<IFloatingTransitionDemoProps> = (
       unmountOnExit
     >
       {(status) => (
-        <FloatingTransition
-          {...other}
-          status={status}
-          ref={transitionNodeRef}
-          z='$overlay'
-        >
+        <Motion {...other} status={status} ref={transitionNodeRef} z='$overlay'>
           <Placeholder
             surface='$primary'
             c='$onPrimary'
@@ -51,15 +41,13 @@ const FloatingTransitionDemo: React.FC<IFloatingTransitionDemoProps> = (
             corner='$sm'
             label='Hi!'
           />
-        </FloatingTransition>
+        </Motion>
       )}
     </CSSTransition>
   );
 };
 
-const FloatingTransitionAnchoredDemo: React.FC<IFloatingTransitionDemoProps> = (
-  props,
-) => {
+const MotionAnchoredDemo: React.FC<IMotionDemoProps> = (props) => {
   const [transitioning, toggle] = useToggle([false, true]);
 
   return (
@@ -72,14 +60,12 @@ const FloatingTransitionAnchoredDemo: React.FC<IFloatingTransitionDemoProps> = (
         onClick={() => toggle()}
       />
 
-      <FloatingTransitionDemo {...props} transitioning={transitioning} />
+      <MotionDemo {...props} transitioning={transitioning} />
     </div>
   );
 };
 
-const FloatingTransitionUnanchoredDemo: React.FC<
-  IFloatingTransitionDemoProps
-> = (props) => {
+const MotionUnanchoredDemo: React.FC<IMotionDemoProps> = (props) => {
   const [transitioning, toggle] = useToggle([false, true]);
 
   return (
@@ -99,51 +85,44 @@ const FloatingTransitionUnanchoredDemo: React.FC<
           zIndex: 999,
         }}
       >
-        <FloatingTransitionDemo {...props} transitioning={transitioning} />
+        <MotionDemo {...props} transitioning={transitioning} />
       </div>
     </>
   );
 };
 
 const meta = {
-  component: FloatingTransitionAnchoredDemo,
-} satisfies Meta<typeof FloatingTransitionAnchoredDemo>;
+  component: MotionAnchoredDemo,
+} satisfies Meta<typeof MotionAnchoredDemo>;
 
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  children: 'FloatingTransition',
-} satisfies Partial<IFloatingTransitionProps>;
+  children: 'Motion',
+} satisfies Partial<IMotionProps>;
 
-const alignments: Array<IComponentPresentation<IFloatingTransitionDemoProps>> =
-  [
-    { legend: 'Start', props: { alignment: 'start' } },
-    { legend: 'Center' },
-    { legend: 'End', props: { alignment: 'end' } },
-  ];
+const alignments: Array<IComponentPresentation<IMotionDemoProps>> = [
+  { legend: 'Start', props: { alignment: 'start' } },
+  { legend: 'Center' },
+  { legend: 'End', props: { alignment: 'end' } },
+];
 
-const sides: Array<IComponentPresentation<IFloatingTransitionDemoProps>> = [
+const sides: Array<IComponentPresentation<IMotionDemoProps>> = [
   { legend: 'Top', props: { side: 'top' } },
   { legend: 'Left', props: { side: 'left' } },
   { legend: 'Right', props: { side: 'right' } },
   { legend: 'Bottom', props: { side: 'bottom' } },
 ];
 
-const FloatingTransitionAnchoredDemoShowcase = makeComponentShowcase(
-  FloatingTransitionAnchoredDemo,
-);
+const MotionAnchoredDemoShowcase = makeComponentShowcase(MotionAnchoredDemo);
 
 export const AnchoredToCorner: IStory = {
   render: (props) => (
-    <FloatingTransitionAnchoredDemoShowcase
-      props={props}
-      cols={alignments}
-      rows={sides}
-    />
+    <MotionAnchoredDemoShowcase props={props} cols={alignments} rows={sides} />
   ),
   args: {
     ...defaultArgs,
-    anchored: true,
+    positioned: true,
     origin: 'corner',
     pattern: 'enterExit',
   },
@@ -151,30 +130,22 @@ export const AnchoredToCorner: IStory = {
 
 export const Anchored: IStory = {
   render: (props) => (
-    <FloatingTransitionAnchoredDemoShowcase
-      props={props}
-      cols={alignments}
-      rows={sides}
-    />
+    <MotionAnchoredDemoShowcase props={props} cols={alignments} rows={sides} />
   ),
   args: {
     ...defaultArgs,
-    anchored: true,
+    positioned: true,
     pattern: 'enterExit',
   },
 };
 
 export const AnchoredToEdge: IStory = {
   render: (props) => (
-    <FloatingTransitionAnchoredDemoShowcase
-      props={props}
-      cols={alignments}
-      rows={sides}
-    />
+    <MotionAnchoredDemoShowcase props={props} cols={alignments} rows={sides} />
   ),
   args: {
     ...defaultArgs,
-    anchored: true,
+    positioned: true,
     origin: 'edge',
     pattern: 'enterExit',
   },
@@ -182,26 +153,21 @@ export const AnchoredToEdge: IStory = {
 
 export const AnchoredFromOffScreen: IStory = {
   render: (props) => (
-    <FloatingTransitionAnchoredDemoShowcase
-      props={props}
-      cols={alignments}
-      rows={sides}
-    />
+    <MotionAnchoredDemoShowcase props={props} cols={alignments} rows={sides} />
   ),
   args: {
     ...defaultArgs,
-    anchored: true,
+    positioned: true,
     origin: 'edge',
     pattern: 'enterExitOffScreen',
   },
 };
 
-const FloatingTransitionUnanchoredDemoShowcase = makeComponentShowcase(
-  FloatingTransitionUnanchoredDemo,
-);
+const MotionUnanchoredDemoShowcase =
+  makeComponentShowcase(MotionUnanchoredDemo);
 
 export const Unanchored: IStory = {
-  render: (props) => <FloatingTransitionUnanchoredDemoShowcase props={props} />,
+  render: (props) => <MotionUnanchoredDemoShowcase props={props} />,
   args: {
     ...defaultArgs,
     pattern: 'enterExit',
@@ -210,7 +176,7 @@ export const Unanchored: IStory = {
 
 export const UnanchoredFromOffScreen: IStory = {
   render: (props) => (
-    <FloatingTransitionUnanchoredDemoShowcase props={props} rows={sides} />
+    <MotionUnanchoredDemoShowcase props={props} rows={sides} />
   ),
   args: {
     ...defaultArgs,

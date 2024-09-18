@@ -1,9 +1,9 @@
 import type { TransitionStatus } from 'react-transition-group';
-import type { IFloatingTransitionStatus } from './FloatingTransition.types';
+import type { IMotionStatus } from './Motion.types';
 
 export const resolveRtgStatus = (
-  status: TransitionStatus | IFloatingTransitionStatus,
-): IFloatingTransitionStatus => {
+  status: TransitionStatus | IMotionStatus,
+): IMotionStatus => {
   switch (status) {
     case 'entering':
       return 'open';
