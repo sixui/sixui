@@ -7,7 +7,12 @@ const getNormalizedPointerEventCoords = (
   triggerElement: HTMLElement,
   surfaceElement: HTMLElement,
   pointerEvent: React.PointerEvent,
-): IPoint => {
+): IPoint | undefined => {
+  const { pageX, pageY } = pointerEvent;
+  if (!pageX || !pageY) {
+    return undefined;
+  }
+
   const { scrollX, scrollY } = window;
 
   const triggerRect = triggerElement.getBoundingClientRect();
@@ -21,7 +26,6 @@ const getNormalizedPointerEventCoords = (
   const deltaX = surfaceDocumentX - triggerDocumentX;
   const deltaY = surfaceDocumentY - triggerDocumentY;
 
-  const { pageX, pageY } = pointerEvent;
   const coords = {
     x: pageX - triggerDocumentX - deltaX,
     y: pageY - triggerDocumentY - deltaY,
@@ -49,13 +53,11 @@ const getTranslationCoordinates = (
     y: (height - initialSize) / 2,
   };
 
-  const startPoint = (event
-    ? getNormalizedPointerEventCoords(
-        triggerElement,
-        surfaceElement,
-        event as React.PointerEvent,
-      )
-    : undefined) ?? {
+  const startPoint = getNormalizedPointerEventCoords(
+    triggerElement,
+    surfaceElement,
+    event as React.PointerEvent,
+  ) ?? {
     x: width / 2,
     y: height / 2,
   };
@@ -474,7 +476,7 @@ export const useRipple = <TElement extends HTMLElement>(
         return;
       }
 
-      if (!!activeTarget && stateRef.current === IState.Inactive) {
+      if (!activeTarget && stateRef.current === IState.Inactive) {
         activeTarget = event.target;
 
         // Keyboard synthesized click event
