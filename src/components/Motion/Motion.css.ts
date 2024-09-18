@@ -47,6 +47,7 @@ const classNames = createStyles({
     selectors: {
       [getModifierSelector<IModifier>({ pattern: 'fade' })]: {
         opacity: 1,
+        transitionTimingFunction: themeTokens.motion.easing.linear,
       },
       [getModifierSelector<IModifier>({ pattern: 'enterExit' })]: {
         opacity: 1,
@@ -90,6 +91,7 @@ const classNames = createStyles({
     selectors: {
       [getModifierSelector<IModifier>({ pattern: 'fade' })]: {
         opacity: 0,
+        transitionTimingFunction: themeTokens.motion.easing.linear,
       },
       [getModifierSelector<IModifier>({ pattern: 'enterExit' })]: {
         opacity: 0,
