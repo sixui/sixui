@@ -1,10 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import stylex from '@stylexjs/stylex';
 
 import type { IDialogContentProps } from './DialogContent.types';
-import { scaleTokens } from '~/themes/base/scale.stylex';
 import { Button } from '../Button';
 import { Text } from '../Text';
 import { DialogContent } from './DialogContent';
@@ -19,20 +17,9 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const styles = stylex.create({
-  host: {
-    width: `calc(560px * ${scaleTokens.scale})`,
-  },
-  host$scrollable: {
-    height: `calc(300px * ${scaleTokens.scale})`,
-  },
-  field: {
-    width: '100%',
-  },
-});
-
 const defaultArgs = {
-  sx: styles.host,
+  w: '$96',
+  h: 'fit-content',
   headline: 'Permanently delete?',
   children:
     'Deleting the selected messages will also remove them from all synced devices.',
@@ -90,7 +77,7 @@ export const Scrollable: IStory = {
       </>
     ),
     scrollable: true,
-    sx: [styles.host, styles.host$scrollable],
+    h: '$72',
   },
 };
 

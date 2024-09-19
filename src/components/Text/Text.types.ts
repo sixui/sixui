@@ -9,7 +9,6 @@ export type ITextSize = 'sm' | 'md' | 'lg';
 
 export interface ITextOwnProps {
   children?: React.ReactNode;
-  variant?: ITextVariant;
   size?: ITextSize;
   gutterBottom?: boolean;
   dimmed?: boolean;
@@ -19,7 +18,8 @@ export interface ITextOwnProps {
 
 export interface ITextProps
   extends IBoxProps,
-    IComponentThemeProps<ITextThemeFactory> {}
+    IComponentThemeProps<ITextThemeFactory>,
+    ITextOwnProps {}
 
 export type ITextFactory = IPolymorphicComponentFactory<{
   props: ITextProps;

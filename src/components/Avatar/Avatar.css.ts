@@ -7,6 +7,7 @@ import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
+import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { PaperBase } from '../PaperBase';
 import { themeTokens } from '../ThemeProvider';
 
@@ -37,15 +38,14 @@ const classNames = createStyles({
   root: {
     vars: {
       [vars.size]: calc.add(tokens.container.size, DENSITY),
-      [PaperBase.theme.tokens.container.shape.topLeft]:
-        tokens.container.shape.topLeft,
-      [PaperBase.theme.tokens.container.shape.topRight]:
-        tokens.container.shape.topRight,
-      [PaperBase.theme.tokens.container.shape.bottomRight]:
-        tokens.container.shape.bottomRight,
-      [PaperBase.theme.tokens.container.shape.bottomLeft]:
-        tokens.container.shape.bottomLeft,
-      [PaperBase.theme.tokens.container.color.normal]: tokens.container.color,
+      ...createTokensVars(PaperBase.theme.tokens, {
+        container: {
+          color: {
+            normal: tokens.container.color,
+          },
+          shape: tokens.container.shape,
+        },
+      }),
     },
     display: 'flex',
     alignItems: 'center',

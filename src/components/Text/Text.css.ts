@@ -1,6 +1,7 @@
 import { createTheme } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { ITextVariant } from './Text.types';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
@@ -82,6 +83,7 @@ export type ITextThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
+  variant: ITextVariant;
 }>;
 
 export const textTheme = componentThemeFactory<ITextThemeFactory>({

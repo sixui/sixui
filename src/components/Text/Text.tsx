@@ -50,7 +50,7 @@ export const Text = polymorphicComponentFactory<ITextFactory>(
       styles,
       style,
       variant = 'body',
-      scale: size = 'md',
+      size = 'md',
       gutterBottom,
       dimmed,
       truncate,
@@ -71,12 +71,11 @@ export const Text = polymorphicComponentFactory<ITextFactory>(
         truncate,
         ['line-clamp']: lineClamp,
         ['gutter-bottom']: gutterBottom,
-        variant,
         size,
       },
     });
 
-    const rootElement = as ?? textTagMap[variant][size];
+    const rootElement = as ?? (variant ? textTagMap[variant][size] : 'div');
 
     return (
       <Box

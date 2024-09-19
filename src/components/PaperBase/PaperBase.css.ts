@@ -45,7 +45,6 @@ export const [tokensClassName, tokens] = createTheme({
 
 const classNames = createStyles({
   root: {
-    zIndex: 0,
     position: 'relative',
     borderTopLeftRadius: tokens.container.shape.topLeft,
     borderTopRightRadius: tokens.container.shape.topRight,
@@ -66,7 +65,6 @@ const classNames = createStyles({
     vars: {
       [Elevation.theme.tokens.level]: tokens.container.elevation.normal,
     },
-    zIndex: -1,
 
     selectors: {
       [getModifierSelector<IModifier>('disabled', root)]: {
@@ -82,7 +80,6 @@ const classNames = createStyles({
     borderRadius: 'inherit',
     inset: px(tokens.outline.width),
     position: 'absolute',
-    zIndex: -1,
 
     selectors: {
       [getModifierSelector('disabled', root)]: {
@@ -96,7 +93,6 @@ const classNames = createStyles({
   }),
   outline: {
     // Separate node to support opacity changes.
-    zIndex: 1,
     position: 'absolute',
     inset: 0,
     pointerEvents: 'none',

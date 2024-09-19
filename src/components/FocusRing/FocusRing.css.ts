@@ -44,6 +44,7 @@ const outwardShrinkKeyframes = keyframes({
 
 const classNames = createStyles({
   root: {
+    position: 'absolute',
     zIndex: 1,
     animationDelay: `0s, calc(${tokens.animationDuration} * 0.25)`,
     animationDuration: `calc(${tokens.animationDuration} * 0.25), calc(${tokens.animationDuration} * 0.75)`,
@@ -52,7 +53,6 @@ const classNames = createStyles({
     borderRadius: 'inherit',
     display: 'none',
     pointerEvents: 'none',
-    position: 'absolute',
 
     selectors: {
       [getModifierSelector<IModifier>('focused')]: {

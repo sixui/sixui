@@ -657,13 +657,13 @@ const classNames = createStyles({
   },
   icon$leading: {
     fontSize: tokens.leadingIcon.size,
-    width: tokens.leadingIcon.size,
-    height: tokens.leadingIcon.size,
+    blockSize: tokens.leadingIcon.size,
+    inlineSize: tokens.leadingIcon.size,
   },
   icon$trailing: {
     fontSize: tokens.trailingIcon.size,
-    width: tokens.trailingIcon.size,
-    height: tokens.trailingIcon.size,
+    blockSize: tokens.trailingIcon.size,
+    inlineSize: tokens.trailingIcon.size,
   },
   prefix: ({ root }) => ({
     color: tokens.prefix.color,
