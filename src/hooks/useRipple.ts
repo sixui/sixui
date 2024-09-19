@@ -292,6 +292,8 @@ export const useRipple = <TElement extends HTMLElement>(
         return;
       }
 
+      activeTarget = event.target;
+
       setAnimating(true);
       growAnimationRef.current?.cancel();
       determineRippleSize();
@@ -376,8 +378,6 @@ export const useRipple = <TElement extends HTMLElement>(
       if (!!activeTarget || !shouldReactToEvent(event)) {
         return;
       }
-
-      activeTarget = event.target;
 
       rippleStartEventRef.current = event;
       if (!isTouch(event)) {
@@ -464,6 +464,8 @@ export const useRipple = <TElement extends HTMLElement>(
 
   const handleClick: React.MouseEventHandler = useCallback(
     (event) => {
+      event.stopPropagation();
+
       // Click is a MouseEvent in Firefox and Safari, so we cannot use
       // `shouldReactToEvent`.
       if (disabled) {
@@ -476,9 +478,7 @@ export const useRipple = <TElement extends HTMLElement>(
         return;
       }
 
-      if (!activeTarget && stateRef.current === IState.Inactive) {
-        activeTarget = event.target;
-
+      if (stateRef.current === IState.Inactive) {
         // Keyboard synthesized click event
         startPressAnimation(event);
         void endPressAnimation();

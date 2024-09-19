@@ -2,6 +2,7 @@
 /** @type {import("@ianvs/prettier-plugin-sort-imports").PrettierConfig} */
 const config = {
   singleQuote: true,
+  jsxSingleQuote: false,
   semi: true,
   trailingComma: 'all',
   plugins: ['@ianvs/prettier-plugin-sort-imports'],
