@@ -66,7 +66,7 @@ export const Motion = componentFactory<IMotionFactory>(
         alignment,
         orientation,
         pattern,
-        anchored: positioned,
+        positioned,
       },
     });
 

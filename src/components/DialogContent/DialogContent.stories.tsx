@@ -3,6 +3,8 @@ import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IDialogContentProps } from './DialogContent.types';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { px } from '~/helpers/styles/px';
 import { Button } from '../Button';
 import { Text } from '../Text';
 import { DialogContent } from './DialogContent';
@@ -18,14 +20,17 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  w: '$96',
+  w: px(480),
   h: 'fit-content',
   headline: 'Permanently delete?',
   children:
     'Deleting the selected messages will also remove them from all synced devices.',
-  actions: (
+  onClose: () => sbHandleEvent('onClose', undefined, 1000),
+  actions: ({ close }) => (
     <>
-      <Button variant="text">Cancel</Button>
+      <Button variant="text" onClick={close}>
+        Cancel
+      </Button>
       <Button variant="danger">Delete</Button>
     </>
   ),

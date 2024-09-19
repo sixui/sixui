@@ -6,6 +6,8 @@ export const resolveRtgStatus = (
   status: TransitionStatus | IMotionStatus,
 ): IMotionStatus => {
   switch (status) {
+    case 'initial':
+      return 'close';
     case 'entering':
       return 'open';
     case 'entered':
@@ -15,7 +17,7 @@ export const resolveRtgStatus = (
     case 'exited':
       return 'close';
     case 'unmounted':
-      return 'unmounted';
+      return 'close';
   }
 
   return status;

@@ -4,14 +4,14 @@ import type { IPortalProps } from './Portal.types';
 import { useThemeContext } from '../ThemeProvider';
 
 export const Portal: React.FC<IPortalProps> = (props) => {
-  const { root: rootProp, children, disabled } = props;
-  const { root: rootColorScheme } = useThemeContext();
+  const { target: targetProp, children, disabled } = props;
+  const { rootRef: colorSchemeRootRef } = useThemeContext();
 
-  const root = rootProp ?? rootColorScheme;
+  const target = targetProp ?? colorSchemeRootRef.current;
 
   return disabled ? (
     children
   ) : (
-    <FloatingPortal root={root}>{children}</FloatingPortal>
+    <FloatingPortal root={target}>{children}</FloatingPortal>
   );
 };

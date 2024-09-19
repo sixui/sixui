@@ -40,10 +40,10 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
     [inherit, parentTheme, theme, dynamicTheme],
   );
 
-  const root = useRef<HTMLDivElement | null>(null);
+  const rootRef = useRef<HTMLDivElement | null>(null);
   const themeContextValue: IThemeContextValue = useMemo(
     () => ({
-      root,
+      rootRef,
       theme: mergedTheme,
     }),
     [mergedTheme],
@@ -89,6 +89,7 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
             ...style,
             ...partialAssignInlineVars(styles.themeTokens, themeOverrideVars),
           }}
+          ref={rootRef}
         >
           <FloatingDelayGroup
             delay={{

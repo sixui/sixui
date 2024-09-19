@@ -1,3 +1,4 @@
+import type { IAny, IMaybeAsync } from '~/helpers/types';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
@@ -8,7 +9,7 @@ import type {
 } from './DialogContent.css';
 
 export type IDialogActionsRenderProps = {
-  close: () => void;
+  close: () => IMaybeAsync<IAny>;
 };
 
 export interface IDialogContentOwnProps extends IPaperOwnProps {
@@ -20,7 +21,7 @@ export interface IDialogContentOwnProps extends IPaperOwnProps {
   actions:
     | React.ReactNode
     | ((props: IDialogActionsRenderProps) => React.ReactNode);
-  onClose?: () => void;
+  onClose?: () => IMaybeAsync<IAny>;
 }
 
 export interface IDialogContentProps

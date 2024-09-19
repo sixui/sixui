@@ -68,55 +68,32 @@ const classNames = createStyles({
         shape: tokens.container.shape,
       },
     }),
-  },
-  dialog: {
-    background: 'transparent',
-    borderStyle: 'unset',
-    borderRadius: 'inherit',
-    flexDirection: 'column',
-    height: 'inherit',
-    margin: 'inherit',
-    maxHeight: 'inherit',
-    maxWidth: 'inherit',
-    minHeight: 'inherit',
-    minWidth: 'inherit',
-    outline: 'none',
-    overflow: 'visible',
-    padding: 0,
-    width: 'inherit',
-    display: 'flex',
-  },
-  container: {
-    borderRadius: 'inherit',
+
     display: 'flex',
     flexDirection: 'column',
-    // Safari won't show content with "flex: 1", but container needs to grow if
-    // height is set on the dialog, so use flex-grow instead.
-    flexGrow: 1,
-    overflow: 'hidden',
+  },
+  header: ({ root }) => ({
     position: 'relative',
-    transformOrigin: 'top',
-  },
-  header: {
+    display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
     color: tokens.headline.color,
-    display: 'flex',
-    flexDirection: 'column',
-    position: 'relative',
-    ...getTypographyStyles(tokens.headline.typography),
+
+    selectors: {
+      [getModifierSelector<IModifier>('!with-headline', root)]: {
+        paddingTop: px(space(6)),
+      },
+    },
+  }),
+  icon: {
+    color: tokens.icon.color,
+    fill: 'currentColor',
+    fontSize: tokens.icon.size,
+    blockSize: tokens.icon.size,
+    inlineSize: tokens.icon.size,
+    marginTop: px(space(6)),
   },
-  headline: {
-    alignSelf: 'stretch',
-    // unset: all
-    color: 'inherit',
-    fontFamily: 'inherit',
-    fontSize: 'inherit',
-    fontWeight: 'inherit',
-    lineHeight: 'inherit',
-    letterSpacing: 'inherit',
-    margin: 0,
-  },
-  headlineSlot: ({ root }) => ({
+  headline: ({ root }) => ({
     alignItems: 'center',
     alignSelf: 'stretch',
     boxSizing: 'border-box',
@@ -126,6 +103,7 @@ const classNames = createStyles({
     paddingBottom: 0,
     paddingLeft: px(space(6)),
     paddingRight: px(space(6)),
+    ...getTypographyStyles(tokens.headline.typography),
 
     selectors: {
       [getModifierSelector<IModifier>('scrollable', root)]: {
@@ -137,17 +115,6 @@ const classNames = createStyles({
       },
     },
   }),
-  icon: {
-    display: 'flex',
-  },
-  iconSlot: {
-    color: tokens.icon.color,
-    fill: 'currentColor',
-    fontSize: tokens.icon.size,
-    blockSize: tokens.icon.size,
-    inlineSize: tokens.icon.size,
-    marginTop: px(space(6)),
-  },
   scroller: ({ root }) => ({
     display: 'flex',
     flexGrow: 1,
@@ -170,17 +137,14 @@ const classNames = createStyles({
       },
     },
   }),
-  content: {
+  content: ({ root }) => ({
+    paddingLeft: px(space(6)),
+    paddingTop: px(space(6)),
+    paddingRight: px(space(6)),
     color: tokens.supportingText.color,
     ...getTypographyStyles(tokens.supportingText.typography),
     height: 'min-content', // Needed for Safari
     position: 'relative',
-  },
-  contentSlot: ({ root }) => ({
-    boxSizing: 'border-box',
-    paddingLeft: px(space(6)),
-    paddingTop: px(space(6)),
-    paddingRight: px(space(6)),
 
     selectors: {
       [getModifierSelector<IModifier>('with-headline', root)]: {
@@ -188,6 +152,7 @@ const classNames = createStyles({
         paddingBottom: px(space(2)),
       },
       [getModifierSelector<IModifier>('scrollable', root)]: {
+        paddingTop: 0,
         paddingBottom: px(space(2)),
       },
       [[

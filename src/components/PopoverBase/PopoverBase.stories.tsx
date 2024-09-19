@@ -11,14 +11,12 @@ import stylex from '@stylexjs/stylex';
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IPopoverBaseProps } from './PopoverBase.types';
 import { Button } from '~/components/Button';
-import { ComponentShowcase } from '~/components/ComponentShowcase';
+import { makeComponentShowcase } from '~/components/ComponentShowcase';
 import { IconButton } from '~/components/IconButton';
 import { Paper } from '~/components/Paper';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { scaleTokens } from '~/themes/base/scale.stylex';
-import { spacingTokens } from '~/themes/base/spacing.stylex';
-import { Stack } from '../Stack';
+import { Box } from '../Box';
+import { Flex } from '../Flex';
 import { PopoverBase } from './PopoverBase';
 
 const meta = {
@@ -27,26 +25,26 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const styles = stylex.create({
-  tooltip: {
-    backgroundColor: colorSchemeTokens.inverseSurface,
-    color: colorSchemeTokens.inverseOnSurface,
-    padding: spacingTokens.padding$2,
-    maxWidth: `calc(240px * ${scaleTokens.scale})`,
-  },
-  cursor: {
-    fill: colorSchemeTokens.inverseSurface,
-  },
-  paper: {
-    maxWidth: `calc(240px * ${scaleTokens.scale})`,
-  },
-  paperInner: {
-    padding: spacingTokens.padding$4,
-  },
-  padding: {
-    padding: `calc(120px * ${scaleTokens.scale})`,
-  },
-});
+// const styles = stylex.create({
+//   tooltip: {
+//     backgroundColor: colorSchemeTokens.inverseSurface,
+//     color: colorSchemeTokens.inverseOnSurface,
+//     padding: spacingTokens.padding$2,
+//     maxWidth: `calc(240px * ${scaleTokens.scale})`,
+//   },
+//   cursor: {
+//     fill: colorSchemeTokens.inverseSurface,
+//   },
+//   paper: {
+//     maxWidth: `calc(240px * ${scaleTokens.scale})`,
+//   },
+//   paperInner: {
+//     padding: spacingTokens.padding$4,
+//   },
+//   padding: {
+//     padding: `calc(120px * ${scaleTokens.scale})`,
+//   },
+// });
 
 const TOOLTIP_CONTENT =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
@@ -55,10 +53,10 @@ const defaultArgs = {
   onOpen: (...args) => void sbHandleEvent('open', args),
   onClose: (...args) => void sbHandleEvent('close', args),
   contentRenderer: ({ renderCursor }) => (
-    <div {...stylex.props(styles.tooltip)}>
-      <div {...stylex.props(styles.cursor)}>{renderCursor()}</div>
+    <Paper surface="$inverseSurface" c="$inverseOnSurface" p="$2" maw="$60">
+      <div>{renderCursor()}</div>
       {TOOLTIP_CONTENT}
-    </div>
+    </Paper>
   ),
 } satisfies Partial<IPopoverBaseProps>;
 
@@ -99,37 +97,17 @@ const cols: Array<IComponentPresentation<IPopoverBaseProps>> = [
 ];
 
 const rows: Array<IComponentPresentation<IPopoverBaseProps>> = [
-  {
-    legend: 'Basic',
-  },
-  {
-    legend: 'With arrow',
-    props: {
-      cursor: 'arrow',
-    },
-  },
-  {
-    legend: 'With dot',
-    props: {
-      cursor: 'dot',
-    },
-  },
-  {
-    legend: 'With scrim',
-    props: {
-      withScrim: true,
-    },
-  },
+  { legend: 'Basic' },
+  { legend: 'With arrow', props: { cursor: 'arrow' } },
+  { legend: 'With dot', props: { cursor: 'dot' } },
+  { legend: 'With scrim', props: { withScrim: true } },
 ];
+
+const PopoverBaseShowcase = makeComponentShowcase(PopoverBase);
 
 export const OpenOnHover: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={PopoverBase}
-      props={props}
-      cols={cols}
-      rows={rows}
-    />
+    <PopoverBaseShowcase props={props} cols={cols} rows={rows} />
   ),
   args: {
     ...defaultArgs,
@@ -139,12 +117,7 @@ export const OpenOnHover: IStory = {
 
 export const OpenOnClick: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={PopoverBase}
-      props={props}
-      cols={cols}
-      rows={rows}
-    />
+    <PopoverBaseShowcase props={props} cols={cols} rows={rows} />
   ),
   args: {
     ...defaultArgs,
@@ -154,12 +127,7 @@ export const OpenOnClick: IStory = {
 
 export const OpenOnFocus: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={PopoverBase}
-      props={props}
-      cols={cols}
-      rows={rows}
-    />
+    <PopoverBaseShowcase props={props} cols={cols} rows={rows} />
   ),
   args: {
     ...defaultArgs,
@@ -168,9 +136,7 @@ export const OpenOnFocus: IStory = {
 };
 
 export const MatchTargetWidth: IStory = {
-  render: (props) => (
-    <ComponentShowcase component={PopoverBase} props={props} />
-  ),
+  render: (props) => <PopoverBaseShowcase props={props} />,
   args: {
     ...defaultArgs,
     openEvents: { click: true },
@@ -185,25 +151,20 @@ export const MatchTargetWidth: IStory = {
 
 export const WithPaper: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={PopoverBase}
-      props={props}
-      cols={cols}
-      rows={rows}
-    />
+    <PopoverBaseShowcase props={props} cols={cols} rows={rows} />
   ),
   args: {
     ...defaultArgs,
     openEvents: { click: true },
     contentRenderer: ({ renderCursor, close }) => (
-      <Paper sx={styles.paper} elevation={2} corner="md">
+      <Paper sx={styles.paper} elevation="$2" corner="$md">
         <div {...stylex.props(styles.cursor)}>{renderCursor()}</div>
-        <Stack align="start" sx={styles.paperInner} gap={2}>
+        <Flex direction="column" align="start" sx={styles.paperInner} gap="$2">
           <div>{TOOLTIP_CONTENT}</div>
           <Button onClick={close} variant="text">
             Close
           </Button>
-        </Stack>
+        </Flex>
       </Paper>
     ),
   },
@@ -211,9 +172,9 @@ export const WithPaper: IStory = {
 
 export const Placement: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={PopoverBase}
-      sx={styles.padding}
+    <PopoverBaseShowcase
+      // FIXME:
+      // sx={styles.padding}
       props={props}
       rows={[
         {
@@ -315,8 +276,7 @@ export const Placement: IStory = {
 
 export const TransitionOrigin: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={PopoverBase}
+    <PopoverBaseShowcase
       props={props}
       rows={[
         {

@@ -12,7 +12,7 @@ type IModifier =
   | 'pattern'
   | 'side'
   | 'alignment'
-  | 'anchored';
+  | 'positioned';
 
 const [tokensClassName, tokens] = createTheme({
   transformOrigin: 'unset',
@@ -29,7 +29,7 @@ const classNames = createStyles({
     transformOrigin: tokens.transformOrigin,
 
     selectors: {
-      [getModifierSelector<IModifier>('anchored')]: {
+      [getModifierSelector<IModifier>('positioned')]: {
         position: 'absolute',
         top: tokens.position.top,
         bottom: tokens.position.bottom,
@@ -39,6 +39,7 @@ const classNames = createStyles({
     },
   },
   root$unmounted: {},
+  root$initial: {},
   root$open: {
     transitionProperty: 'opacity, transform',
     transitionDuration: themeTokens.motion.duration.short.$3,

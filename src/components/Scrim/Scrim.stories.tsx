@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useRef } from 'react';
+import { assignInlineVars } from '@vanilla-extract/dynamic';
+import { CSSTransition } from 'react-transition-group';
 
 import type { IScrimProps } from './Scrim.types';
+import { useToggle } from '~/hooks/useToggle';
 import { Button } from '../Button';
 import { makeComponentShowcase } from '../ComponentShowcase';
-import { Scrim } from './Scrim';
-import { useToggle } from '~/hooks/useToggle';
-import { assignInlineVars } from '@vanilla-extract/dynamic';
-import { themeTokens } from '../ThemeProvider';
-import { CSSTransition } from 'react-transition-group';
-import { useRef } from 'react';
 import { Motion } from '../Motion';
+import { themeTokens } from '../ThemeProvider';
+import { Scrim } from './Scrim';
 
 type IScrimDemoProps = IScrimProps;
 
@@ -47,7 +47,7 @@ const AnimatedScrimDemo: React.FC<IAnimatedScrimDemoProps> = (props) => {
         unmountOnExit
       >
         {(status) => (
-          <Motion status={status} ref={transitionNodeRef} pattern='fade'>
+          <Motion status={status} ref={transitionNodeRef} pattern="fade">
             <Scrim {...other} onClick={() => toggleIsVisible(false)} />
           </Motion>
         )}

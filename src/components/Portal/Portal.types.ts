@@ -1,5 +1,5 @@
 export type IPortalProps = {
-  root?: HTMLElement | null | React.MutableRefObject<HTMLElement | null>;
+  target?: HTMLElement;
   children?: React.ReactNode;
   disabled?: boolean;
 };

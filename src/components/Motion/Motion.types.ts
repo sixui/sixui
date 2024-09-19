@@ -7,7 +7,7 @@ import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import { IMotionThemeFactory, motionTheme } from './Motion.css';
 
-export type IMotionStatus = 'unmounted' | 'open' | 'close';
+export type IMotionStatus = 'initial' | 'unmounted' | 'open' | 'close';
 
 export type IMotionOrigin = 'center' | 'corner' | 'edge' | 'cursor';
 

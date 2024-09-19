@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
-import { useMergeRefs } from '@floating-ui/react';
 
+import type { IAny, IMaybeAsync } from '~/helpers/types';
 import type { IDialogContentThemeFactory } from './DialogContent.css';
 import type { IDialogContentFactory } from './DialogContent.types';
 import { isFunction } from '~/helpers/isFunction';
@@ -108,9 +108,6 @@ export const DialogContent = polymorphicComponentFactory<IDialogContentFactory>(
     // TODO: Reset scroll position if re-opening a dialog with the same content.
     // See https://github.com/material-components/material-web/blob/main/dialog/internal/dialog.ts#L193C8-L193C75
 
-    const nodeRef = useRef<HTMLDivElement>(null);
-    const handleRef = useMergeRefs([nodeRef, forwardedRef]);
-
     return (
       <Paper
         {...other}
@@ -118,61 +115,50 @@ export const DialogContent = polymorphicComponentFactory<IDialogContentFactory>(
         aria-labelledby={headline ? headlineId : undefined}
         aria-describedby={childrenId}
         role={type === 'alert' ? 'alertdialog' : undefined}
-        ref={handleRef}
+        ref={forwardedRef}
       >
-        <div {...getStyles('dialog')}>
-          <div {...getStyles('container')}>
-            <div {...getStyles('header')}>
-              {icon ? (
-                <div {...getStyles('icon')}>
-                  <div {...getStyles('iconSlot')}>{icon}</div>
-                </div>
-              ) : null}
+        <div {...getStyles('header')}>
+          {icon && <div {...getStyles('icon')}>{icon}</div>}
 
-              <h2
-                {...getStyles('headline')}
-                id={headlineId}
-                aria-hidden={headline ? undefined : true}
-              >
-                <div {...getStyles('headlineSlot')}>{headline}</div>
-              </h2>
+          {headline && (
+            <h2 {...getStyles('headline')} id={headlineId}>
+              {headline}
+            </h2>
+          )}
 
-              <Divider
-                {...getStyles([
-                  'divider',
-                  'headlineDivider',
-                  showTopDivider && 'headlineDivider$showTopDivider',
-                ])}
-              />
-            </div>
+          <Divider
+            {...getStyles([
+              'divider',
+              'headlineDivider',
+              showTopDivider && 'headlineDivider$showTopDivider',
+            ])}
+          />
+        </div>
 
-            <div ref={scrollerRef} {...getStyles('scroller')}>
-              <div {...getStyles('content')}>
-                <div {...getStyles('contentSlot')} id={childrenId}>
-                  <div ref={topAnchorRef} />
-                  {children}
-                  <div ref={bottomAnchorRef} />
-                </div>
-              </div>
-            </div>
-
-            <div {...getStyles('footer')}>
-              <Divider
-                {...getStyles([
-                  'divider',
-                  'actionsDivider',
-                  showBottomDivider && 'actionsDivider$showBottomDivider',
-                ])}
-              />
-              {actions ? (
-                <div {...getStyles('actions')}>
-                  {isFunction(actions)
-                    ? actions({ close: () => onClose?.() })
-                    : actions}
-                </div>
-              ) : null}
-            </div>
+        <div ref={scrollerRef} {...getStyles('scroller')}>
+          <div {...getStyles('content')} id={childrenId}>
+            <div ref={topAnchorRef} />
+            {children}
+            <div ref={bottomAnchorRef} />
           </div>
+        </div>
+
+        <div {...getStyles('footer')}>
+          <Divider
+            {...getStyles([
+              'divider',
+              'actionsDivider',
+              showBottomDivider && 'actionsDivider$showBottomDivider',
+            ])}
+          />
+
+          {actions && (
+            <div {...getStyles('actions')}>
+              {isFunction(actions)
+                ? actions({ close: (): IMaybeAsync<IAny> => onClose?.() })
+                : actions}
+            </div>
+          )}
         </div>
       </Paper>
     );
