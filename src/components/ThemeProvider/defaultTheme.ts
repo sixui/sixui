@@ -322,7 +322,7 @@ const outline: IThemeOutlineValues = {
     xs: '1px',
     sm: '2px',
     md: '3px',
-    lg: '5px',
+    lg: '6px',
     xl: '8px',
   },
 };

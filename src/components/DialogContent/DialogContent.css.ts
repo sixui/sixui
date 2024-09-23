@@ -8,9 +8,9 @@ import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { elevationLevelPreset } from '../Elevation/Elevation.css';
 import { PaperBase } from '../PaperBase';
 import { themeTokens } from '../ThemeProvider';
+import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
 type IModifier = 'scrollable' | 'with-icon' | 'with-headline' | 'with-actions';
 

@@ -20,7 +20,7 @@ const [tokensClassName, tokens] = createTheme({
   },
   width: {
     normal: px(themeTokens.outline.width.md),
-    active: px(themeTokens.outline.width.xl),
+    active: px(themeTokens.outline.width.lg),
   },
 });
 

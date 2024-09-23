@@ -6,8 +6,8 @@ import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { Elevation } from '../Elevation';
-import { elevationLevelPreset } from '../Elevation/Elevation.css';
 import { themeTokens } from '../ThemeProvider';
+import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
 type IModifier = 'disabled' | 'expanded';
 
@@ -50,6 +50,7 @@ const classNames = createStyles({
     borderTopRightRadius: tokens.container.shape.topRight,
     borderBottomRightRadius: tokens.container.shape.bottomRight,
     borderBottomLeftRadius: tokens.container.shape.bottomLeft,
+    zIndex: 0,
 
     selectors: {
       [getModifierSelector<IModifier>('disabled')]: {
@@ -80,6 +81,7 @@ const classNames = createStyles({
     borderRadius: 'inherit',
     inset: px(tokens.outline.width),
     position: 'absolute',
+    zIndex: -1,
 
     selectors: {
       [getModifierSelector('disabled', root)]: {
