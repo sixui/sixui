@@ -2,11 +2,11 @@ import { createTheme } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
+import { px } from '~/helpers/styles/px';
+import { shapeTokens } from '~/themes/base/shape.stylex';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { themeTokens } from '../ThemeProvider';
-import { shapeTokens } from '~/themes/base/shape.stylex';
-import { px } from '~/helpers/styles/px';
 
 type IModifier = 'fixed' | 'center';
 
@@ -23,7 +23,6 @@ const classNames = createStyles({
     inset: 0,
     position: 'absolute',
     borderRadius: tokens.container.shape,
-    zIndex: themeTokens.zIndex.overlay,
     backdropFilter: tokens.container.filter,
     backgroundColor: tokens.container.color,
 

@@ -21,13 +21,12 @@ const [tokensClassName, tokens] = createTheme({
     bottom: 'unset',
     left: 'unset',
     right: 'unset',
+    transform: '',
   },
 });
 
 const classNames = createStyles({
   root: {
-    transformOrigin: tokens.transformOrigin,
-
     selectors: {
       [getModifierSelector<IModifier>('positioned')]: {
         position: 'absolute',
@@ -35,115 +34,133 @@ const classNames = createStyles({
         bottom: tokens.position.bottom,
         left: tokens.position.left,
         right: tokens.position.right,
+        transform: tokens.position.transform,
       },
     },
   },
-  root$unmounted: {},
-  root$initial: {},
-  root$open: {
-    transitionProperty: 'opacity, transform',
-    transitionDuration: themeTokens.motion.duration.short.$3,
-    transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
-
-    selectors: {
-      [getModifierSelector<IModifier>({ pattern: 'fade' })]: {
-        opacity: 1,
-        transitionTimingFunction: themeTokens.motion.easing.linear,
-      },
-      [getModifierSelector<IModifier>({ pattern: 'enterExit' })]: {
-        opacity: 1,
-        transform: 'scale(1)',
-      },
-      [getModifierSelector<IModifier>({ pattern: 'enterExitOffScreen' })]: {
-        opacity: 1,
-        transform: 'translate(0)',
-      },
-      [[
-        getModifierSelector<IModifier>({ orientation: 'horizontal' }),
-        getModifierSelector<IModifier>({ pattern: 'enterExit' }),
-      ].join('')]: {
-        transform: 'scaleX(1)',
-      },
-      [[
-        getModifierSelector<IModifier>({ orientation: 'vertical' }),
-        getModifierSelector<IModifier>({ pattern: 'enterExit' }),
-      ].join('')]: {
-        transform: 'scaleY(1)',
-      },
-      [[
-        getModifierSelector<IModifier>({ orientation: 'horizontal' }),
-        getModifierSelector<IModifier>({ pattern: 'enterExitOffScreen' }),
-      ].join('')]: {
-        transform: 'translateX(0)',
-      },
-      [[
-        getModifierSelector<IModifier>({ orientation: 'vertical' }),
-        getModifierSelector<IModifier>({ pattern: 'enterExitOffScreen' }),
-      ].join('')]: {
-        transform: 'translateY(0)',
-      },
-    },
+  motion: {
+    transformOrigin: tokens.transformOrigin,
   },
-  root$close: {
+  motion$unmounted: {},
+  motion$initial: {},
+  motion$open: ({ root }) => ({
     transitionProperty: 'opacity, transform',
     transitionDuration: themeTokens.motion.duration.long.$3,
     transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
 
     selectors: {
-      [getModifierSelector<IModifier>({ pattern: 'fade' })]: {
+      [getModifierSelector<IModifier>({ pattern: 'fade' }, root)]: {
+        opacity: 1,
+        transitionTimingFunction: themeTokens.motion.easing.linear,
+      },
+      [getModifierSelector<IModifier>({ pattern: 'enterExit' }, root)]: {
+        opacity: 1,
+        transform: 'scale(1)',
+      },
+      [getModifierSelector<IModifier>({ pattern: 'enterExitOffScreen' }, root)]:
+        {
+          opacity: 1,
+          transform: 'translate(0)',
+        },
+      [getModifierSelector<IModifier>(
+        { orientation: 'horizontal', pattern: 'enterExit' },
+        root,
+      )]: {
+        transform: 'scaleX(1)',
+      },
+      [getModifierSelector<IModifier>(
+        { orientation: 'vertical', pattern: 'enterExit' },
+        root,
+      )]: {
+        transform: 'scaleY(1)',
+      },
+      [getModifierSelector<IModifier>(
+        { orientation: 'horizontal', pattern: 'enterExitOffScreen' },
+        root,
+      )]: {
+        transform: 'translateX(0)',
+      },
+      [getModifierSelector<IModifier>(
+        { orientation: 'vertical', pattern: 'enterExitOffScreen' },
+        root,
+      )]: {
+        transform: 'translateY(0)',
+      },
+    },
+  }),
+  motion$close: ({ root }) => ({
+    transitionProperty: 'opacity, transform',
+    transitionDuration: themeTokens.motion.duration.short.$3,
+    transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
+
+    selectors: {
+      [getModifierSelector<IModifier>({ pattern: 'fade' }, root)]: {
         opacity: 0,
         transitionTimingFunction: themeTokens.motion.easing.linear,
       },
-      [getModifierSelector<IModifier>({ pattern: 'enterExit' })]: {
+      [getModifierSelector<IModifier>({ pattern: 'enterExit' }, root)]: {
         opacity: 0,
         transform: 'scale(0.5)',
       },
-      [getModifierSelector<IModifier>({ pattern: 'enterExitOffScreen' })]: {
-        opacity: 0,
-        transform: 'translate(-130%, -130%)',
-      },
-      [[
-        getModifierSelector<IModifier>({ orientation: 'horizontal' }),
-        getModifierSelector<IModifier>({ pattern: 'enterExit' }),
-      ].join('')]: {
+      [getModifierSelector<IModifier>({ pattern: 'enterExitOffScreen' }, root)]:
+        {
+          opacity: 0,
+          transform: 'translate(-130%, -130%)',
+        },
+      [getModifierSelector<IModifier>(
+        { orientation: 'horizontal', pattern: 'enterExit' },
+        root,
+      )]: {
         transform: 'scaleX(0.5)',
       },
-      [[
-        getModifierSelector<IModifier>({ orientation: 'horizontal' }),
-        getModifierSelector<IModifier>({ pattern: 'enterExitOffScreen' }),
-        getModifierSelector<IModifier>({ side: 'left' }),
-      ].join('')]: {
+      [getModifierSelector<IModifier>(
+        {
+          orientation: 'horizontal',
+          pattern: 'enterExitOffScreen',
+          side: 'left',
+        },
+        root,
+      )]: {
         transform: 'translateX(-130%)',
       },
-      [[
-        getModifierSelector<IModifier>({ orientation: 'horizontal' }),
-        getModifierSelector<IModifier>({ pattern: 'enterExitOffScreen' }),
-        getModifierSelector<IModifier>({ side: 'right' }),
-      ].join('')]: {
+      [getModifierSelector<IModifier>(
+        {
+          orientation: 'horizontal',
+          pattern: 'enterExitOffScreen',
+          side: 'right',
+        },
+        root,
+      )]: {
         transform: 'translateX(130%)',
       },
-      [[
-        getModifierSelector<IModifier>({ orientation: 'vertical' }),
-        getModifierSelector<IModifier>({ pattern: 'enterExit' }),
-      ].join('')]: {
+      [getModifierSelector<IModifier>(
+        { orientation: 'vertical', pattern: 'enterExit' },
+        root,
+      )]: {
         transform: 'scaleY(0.75)',
       },
-      [[
-        getModifierSelector<IModifier>({ orientation: 'vertical' }),
-        getModifierSelector<IModifier>({ pattern: 'enterExitOffScreen' }),
-        getModifierSelector<IModifier>({ side: 'top' }),
-      ].join('')]: {
+      [getModifierSelector<IModifier>(
+        {
+          orientation: 'vertical',
+          pattern: 'enterExitOffScreen',
+          side: 'top',
+        },
+        root,
+      )]: {
         transform: 'translateY(-130%)',
       },
-      [[
-        getModifierSelector<IModifier>({ orientation: 'vertical' }),
-        getModifierSelector<IModifier>({ pattern: 'enterExitOffScreen' }),
-        getModifierSelector<IModifier>({ side: 'bottom' }),
-      ].join('')]: {
+      [getModifierSelector<IModifier>(
+        {
+          orientation: 'vertical',
+          pattern: 'enterExitOffScreen',
+          side: 'bottom',
+        },
+        root,
+      )]: {
         transform: 'translateY(130%)',
       },
     },
-  },
+  }),
 });
 
 export type IMotionThemeFactory = IComponentThemeFactory<{

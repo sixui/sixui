@@ -30,14 +30,14 @@ const MotionDemo: React.FC<IMotionDemoProps> = (props) => {
       unmountOnExit
     >
       {(status) => (
-        <Motion {...other} status={status} ref={transitionNodeRef} z='$overlay'>
+        <Motion {...other} status={status} ref={transitionNodeRef} z="$overlay">
           <Placeholder
-            surface='$primary'
-            c='$onPrimary'
-            w='$16'
-            h='$16'
-            corner='$sm'
-            label='Hi!'
+            surface="$primary"
+            c="$onPrimary"
+            w="$24"
+            h="$24"
+            corner="$sm"
+            label="Hi!"
           />
         </Motion>
       )}
@@ -45,7 +45,7 @@ const MotionDemo: React.FC<IMotionDemoProps> = (props) => {
   );
 };
 
-const MotionAnchoredDemo: React.FC<IMotionDemoProps> = (props) => {
+const MotionPositionedDemo: React.FC<IMotionDemoProps> = (props) => {
   const [transitioning, toggle] = useToggle([false, true]);
 
   return (
@@ -63,7 +63,7 @@ const MotionAnchoredDemo: React.FC<IMotionDemoProps> = (props) => {
   );
 };
 
-const MotionUnanchoredDemo: React.FC<IMotionDemoProps> = (props) => {
+const MotionUnpositionedDemo: React.FC<IMotionDemoProps> = (props) => {
   const [transitioning, toggle] = useToggle([false, true]);
 
   return (
@@ -90,8 +90,8 @@ const MotionUnanchoredDemo: React.FC<IMotionDemoProps> = (props) => {
 };
 
 const meta = {
-  component: MotionAnchoredDemo,
-} satisfies Meta<typeof MotionAnchoredDemo>;
+  component: MotionPositionedDemo,
+} satisfies Meta<typeof MotionPositionedDemo>;
 
 type IStory = StoryObj<typeof meta>;
 
@@ -100,23 +100,45 @@ const defaultArgs = {
 } satisfies Partial<IMotionProps>;
 
 const alignments: Array<IComponentPresentation<IMotionDemoProps>> = [
-  { legend: 'Start', props: { alignment: 'start' } },
+  { legend: 'Start', props: { placement: { alignment: 'start' } } },
   { legend: 'Center' },
-  { legend: 'End', props: { alignment: 'end' } },
+  { legend: 'End', props: { placement: { alignment: 'end' } } },
 ];
 
 const sides: Array<IComponentPresentation<IMotionDemoProps>> = [
-  { legend: 'Top', props: { side: 'top' } },
-  { legend: 'Left', props: { side: 'left' } },
-  { legend: 'Right', props: { side: 'right' } },
-  { legend: 'Bottom', props: { side: 'bottom' } },
+  { legend: 'Top', props: { placement: { side: 'top' } } },
+  { legend: 'Left', props: { placement: { side: 'left' } } },
+  { legend: 'Right', props: { placement: { side: 'right' } } },
+  { legend: 'Bottom', props: { placement: { side: 'bottom' } } },
 ];
 
-const MotionAnchoredDemoShowcase = makeComponentShowcase(MotionAnchoredDemo);
+const MotionPositionedDemoShowcase =
+  makeComponentShowcase(MotionPositionedDemo);
 
-export const AnchoredToCorner: IStory = {
+export const Positioned: IStory = {
   render: (props) => (
-    <MotionAnchoredDemoShowcase props={props} cols={alignments} rows={sides} />
+    <MotionPositionedDemoShowcase
+      props={props}
+      cols={alignments}
+      rows={sides}
+      propsCombinationStrategy="merge"
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    positioned: true,
+    pattern: 'enterExit',
+  },
+};
+
+export const PositionedFromCorner: IStory = {
+  render: (props) => (
+    <MotionPositionedDemoShowcase
+      props={props}
+      cols={alignments}
+      rows={sides}
+      propsCombinationStrategy="merge"
+    />
   ),
   args: {
     ...defaultArgs,
@@ -126,20 +148,14 @@ export const AnchoredToCorner: IStory = {
   },
 };
 
-export const Anchored: IStory = {
+export const PositionedFromEdge: IStory = {
   render: (props) => (
-    <MotionAnchoredDemoShowcase props={props} cols={alignments} rows={sides} />
-  ),
-  args: {
-    ...defaultArgs,
-    positioned: true,
-    pattern: 'enterExit',
-  },
-};
-
-export const AnchoredToEdge: IStory = {
-  render: (props) => (
-    <MotionAnchoredDemoShowcase props={props} cols={alignments} rows={sides} />
+    <MotionPositionedDemoShowcase
+      props={props}
+      cols={alignments}
+      rows={sides}
+      propsCombinationStrategy="merge"
+    />
   ),
   args: {
     ...defaultArgs,
@@ -149,9 +165,14 @@ export const AnchoredToEdge: IStory = {
   },
 };
 
-export const AnchoredFromOffScreen: IStory = {
+export const PositionedFromOffScreen: IStory = {
   render: (props) => (
-    <MotionAnchoredDemoShowcase props={props} cols={alignments} rows={sides} />
+    <MotionPositionedDemoShowcase
+      props={props}
+      cols={alignments}
+      rows={sides}
+      propsCombinationStrategy="merge"
+    />
   ),
   args: {
     ...defaultArgs,
@@ -161,20 +182,21 @@ export const AnchoredFromOffScreen: IStory = {
   },
 };
 
-const MotionUnanchoredDemoShowcase =
-  makeComponentShowcase(MotionUnanchoredDemo);
+const MotionUnpositionedDemoShowcase = makeComponentShowcase(
+  MotionUnpositionedDemo,
+);
 
-export const Unanchored: IStory = {
-  render: (props) => <MotionUnanchoredDemoShowcase props={props} />,
+export const Unpositioned: IStory = {
+  render: (props) => <MotionUnpositionedDemoShowcase props={props} />,
   args: {
     ...defaultArgs,
     pattern: 'enterExit',
   },
 };
 
-export const UnanchoredFromOffScreen: IStory = {
+export const UnpositionedFromOffScreen: IStory = {
   render: (props) => (
-    <MotionUnanchoredDemoShowcase props={props} rows={sides} />
+    <MotionUnpositionedDemoShowcase props={props} rows={sides} />
   ),
   args: {
     ...defaultArgs,

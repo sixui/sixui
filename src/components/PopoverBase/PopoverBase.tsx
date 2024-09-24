@@ -16,6 +16,7 @@ import {
   useRole,
   useTransitionStatus,
 } from '@floating-ui/react';
+import { mergeProps } from 'react-aria';
 
 import type { IPopoverBaseThemeFactory } from './PopoverBase.css';
 import type {
@@ -144,7 +145,12 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       onOpenChange: setOpened,
       whileElementsMounted: autoUpdate,
       middleware: [
-        offset(cursorType ? 4 + cursor.size.height : undefined),
+        // For the floating element to stay open when the mouse is hover, the
+        // mouse leave event must be triggered on the reference element, and the
+        // mouse enter event must be triggered on the floating element. To do
+        // so, we must ensure that the floating element and the reference
+        // element have a minimum distance between them.
+        offset(cursorType ? 6 + cursor.size.height : 8),
         middlewares.flip &&
           flip({
             crossAxis: placement.includes('-'),
@@ -225,7 +231,8 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       ? children({
           opened,
           placement: floating.placement,
-          getProps: interactions.getReferenceProps,
+          getProps: (props) =>
+            mergeProps(interactions.getReferenceProps(), props),
           setRef: floating.refs.setReference,
           close: () => setOpened(false),
         })
@@ -295,7 +302,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
                         forwardedProps: forwardProps
                           ? (other as TForwardedProps)
                           : undefined,
-                        renderCursor,
+                        renderCursor: cursorType ? renderCursor : undefined,
                       })
                     ) : (
                       <>

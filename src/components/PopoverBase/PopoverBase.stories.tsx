@@ -9,7 +9,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import stylex from '@stylexjs/stylex';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
-import type { IPopoverBaseProps } from './PopoverBase.types';
+import type {
+  IPopoverBaseContentRendererProps,
+  IPopoverBaseProps,
+} from './PopoverBase.types';
 import { Button } from '~/components/Button';
 import { makeComponentShowcase } from '~/components/ComponentShowcase';
 import { IconButton } from '~/components/IconButton';
@@ -17,47 +20,41 @@ import { Paper } from '~/components/Paper';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { Box } from '../Box';
 import { Flex } from '../Flex';
+import { Text } from '../Text';
+import { themeTokens } from '../ThemeProvider';
 import { PopoverBase } from './PopoverBase';
 
 const meta = {
   component: PopoverBase,
-} satisfies Meta<typeof PopoverBase<never>>;
+} satisfies Meta<typeof PopoverBase>;
 
 type IStory = StoryObj<typeof meta>;
 
-// const styles = stylex.create({
-//   tooltip: {
-//     backgroundColor: colorSchemeTokens.inverseSurface,
-//     color: colorSchemeTokens.inverseOnSurface,
-//     padding: spacingTokens.padding$2,
-//     maxWidth: `calc(240px * ${scaleTokens.scale})`,
-//   },
-//   cursor: {
-//     fill: colorSchemeTokens.inverseSurface,
-//   },
-//   paper: {
-//     maxWidth: `calc(240px * ${scaleTokens.scale})`,
-//   },
-//   paperInner: {
-//     padding: spacingTokens.padding$4,
-//   },
-//   padding: {
-//     padding: `calc(120px * ${scaleTokens.scale})`,
-//   },
-// });
-
-const TOOLTIP_CONTENT =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+const contentRenderer = (
+  props: IPopoverBaseContentRendererProps,
+): JSX.Element => (
+  <Paper
+    surface="$inverseSurface"
+    c="$inverseOnSurface"
+    p="$2"
+    maw="$60"
+    corner="$sm"
+  >
+    {props.renderCursor && (
+      <div style={{ fill: themeTokens.colorScheme.inverseSurface }}>
+        {props.renderCursor()}
+      </div>
+    )}
+    <Text variant="body" size="md">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </Text>
+  </Paper>
+);
 
 const defaultArgs = {
-  onOpen: (...args) => void sbHandleEvent('open', args),
-  onClose: (...args) => void sbHandleEvent('close', args),
-  contentRenderer: ({ renderCursor }) => (
-    <Paper surface="$inverseSurface" c="$inverseOnSurface" p="$2" maw="$60">
-      <div>{renderCursor()}</div>
-      {TOOLTIP_CONTENT}
-    </Paper>
-  ),
+  onOpen: (...args) => void sbHandleEvent('onOpen', args),
+  onClose: (...args) => void sbHandleEvent('onClose', args),
+  contentRenderer,
 } satisfies Partial<IPopoverBaseProps>;
 
 const cols: Array<IComponentPresentation<IPopoverBaseProps>> = [
@@ -149,32 +146,25 @@ export const MatchTargetWidth: IStory = {
   },
 };
 
-export const WithPaper: IStory = {
-  render: (props) => (
-    <PopoverBaseShowcase props={props} cols={cols} rows={rows} />
-  ),
-  args: {
-    ...defaultArgs,
-    openEvents: { click: true },
-    contentRenderer: ({ renderCursor, close }) => (
-      <Paper sx={styles.paper} elevation="$2" corner="$md">
-        <div {...stylex.props(styles.cursor)}>{renderCursor()}</div>
-        <Flex direction="column" align="start" sx={styles.paperInner} gap="$2">
-          <div>{TOOLTIP_CONTENT}</div>
-          <Button onClick={close} variant="text">
-            Close
-          </Button>
-        </Flex>
-      </Paper>
-    ),
-  },
-};
+const alignments: Array<IComponentPresentation<IPopoverBaseProps>> = [
+  { legend: 'Start', props: { alignment: 'start' } },
+  { legend: 'Center' },
+  { legend: 'End', props: { alignment: 'end' } },
+];
+
+const sides: Array<IComponentPresentation<IPopoverBaseProps>> = [
+  { legend: 'Top', props: { side: 'top' } },
+  { legend: 'Left', props: { side: 'left' } },
+  { legend: 'Right', props: { side: 'right' } },
+  { legend: 'Bottom', props: { side: 'bottom' } },
+];
 
 export const Placement: IStory = {
   render: (props) => (
     <PopoverBaseShowcase
       // FIXME:
       // sx={styles.padding}
+      pl="$24"
       props={props}
       rows={[
         {
@@ -262,14 +252,6 @@ export const Placement: IStory = {
         ref={setRef}
         icon={<FontAwesomeIcon icon={faStar} />}
       />
-    ),
-    contentRenderer: ({ renderCursor }) => (
-      <div {...stylex.props(styles.tooltip)}>
-        <div {...stylex.props(styles.cursor)}>{renderCursor()}</div>
-        Hello <FontAwesomeIcon icon={faSmile} />
-        <br />I am a popover.
-        <br />I can be placed anywhere.
-      </div>
     ),
   },
 };

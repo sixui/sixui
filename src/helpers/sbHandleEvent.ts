@@ -5,9 +5,9 @@ import type { IAny } from './types';
 
 export const sbHandleEvent = <TArgs extends IAny>(
   name: string,
-  args: TArgs,
+  args?: TArgs,
   delayInMs?: number,
-): Promise<TArgs> => {
+): Promise<TArgs | undefined> => {
   if (!delayInMs) {
     return Promise.resolve(void action(name)(args)).then(() => args);
   }

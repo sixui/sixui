@@ -31,7 +31,7 @@ import type {
 export type IPopoverBaseContentRendererProps = {
   placement: Placement;
   close: (event?: React.MouseEvent) => void;
-  renderCursor: (
+  renderCursor?: (
     userProps?: React.HTMLAttributes<SVGSVGElement>,
   ) => React.ReactNode;
 };
@@ -49,7 +49,7 @@ export type IPopoverBaseTriggerRendererProps = {
   /**
    * A function that returns the props to apply to the trigger element.
    */
-  getProps: () => Record<string, unknown>;
+  getProps: (props?: Record<string, unknown>) => Record<string, unknown>;
 };
 
 export type IPopoverOpenEvent = 'hover' | 'focus' | 'click' | 'touch';

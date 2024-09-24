@@ -155,10 +155,7 @@ const classNames = createStyles({
         paddingTop: 0,
         paddingBottom: px(space(2)),
       },
-      [[
-        getModifierSelector<IModifier>('scrollable', root),
-        getModifierSelector<IModifier>('with-headline', root),
-      ].join('')]: {
+      [getModifierSelector<IModifier>(['scrollable', 'with-headline'], root)]: {
         paddingBottom: px(space(2)),
       },
     },

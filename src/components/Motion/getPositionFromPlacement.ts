@@ -5,6 +5,7 @@ type IPosition = {
   bottom?: string;
   left?: string;
   right?: string;
+  transform?: string;
 };
 
 export const getPositionFromPlacement = (placement: Placement): IPosition => {
@@ -12,7 +13,8 @@ export const getPositionFromPlacement = (placement: Placement): IPosition => {
     case 'bottom':
       return {
         top: '100%',
-        left: '-25%',
+        left: '50%',
+        transform: 'translateX(-50%)',
       };
     case 'bottom-start':
       return {
@@ -27,8 +29,9 @@ export const getPositionFromPlacement = (placement: Placement): IPosition => {
 
     case 'left':
       return {
-        top: '-25%',
+        top: '50%',
         right: '100%',
+        transform: 'translateY(-50%)',
       };
     case 'left-start':
       return {
@@ -43,8 +46,9 @@ export const getPositionFromPlacement = (placement: Placement): IPosition => {
 
     case 'right':
       return {
-        top: '-25%',
+        top: '50%',
         left: '100%',
+        transform: 'translateY(-50%)',
       };
     case 'right-start':
       return {
@@ -60,7 +64,8 @@ export const getPositionFromPlacement = (placement: Placement): IPosition => {
     case 'top':
       return {
         bottom: '100%',
-        left: '-25%',
+        left: '50%',
+        transform: 'translateX(-50%)',
       };
     case 'top-start':
       return {

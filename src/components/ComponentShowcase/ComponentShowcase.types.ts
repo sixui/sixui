@@ -15,6 +15,7 @@ export interface IComponentPresentation<TComponentProps = object> {
 
 export interface IComponentShowcaseOwnProps<TComponentProps> {
   props: TComponentProps;
+  propsCombinationStrategy?: 'replace' | 'merge';
   groups?: Array<IComponentPresentation<TComponentProps>>;
   cols?: Array<IComponentPresentation<TComponentProps>>;
   rows?: Array<IComponentPresentation<TComponentProps>>;

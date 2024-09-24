@@ -18,10 +18,10 @@ export const deepMerge = <T extends object>(
 
       Object.keys(anySource).forEach((key) => {
         if (isObject(anySource[key])) {
-          if (!(key in target)) {
-            result[key] = anySource[key];
-          } else {
+          if (key in result) {
             result[key] = deepMerge(result[key], anySource[key]);
+          } else {
+            result[key] = anySource[key];
           }
         } else {
           result[key] = anySource[key];

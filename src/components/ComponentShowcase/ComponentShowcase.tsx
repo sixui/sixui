@@ -3,6 +3,7 @@ import type {
   IComponentPresentation,
   IComponentShowcaseFactory,
 } from './ComponentShowcase.types';
+import { deepMerge } from '~/helpers/deepMerge';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
@@ -12,7 +13,7 @@ import { componentShowcaseTheme } from './ComponentShowcase.css';
 const COMPONENT_NAME = 'ComponentShowcase';
 const DUMMY_TEXT = '.';
 
-export const makeComponentShowcase = <TComponentProps,>(
+export const makeComponentShowcase = <TComponentProps extends object>(
   component: React.FC<TComponentProps>,
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 ) => {
@@ -33,6 +34,7 @@ export const makeComponentShowcase = <TComponentProps,>(
       verticalAlign = 'end',
       rowLegendPosition = 'start',
       fullWidth,
+      propsCombinationStrategy = 'replace',
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -156,10 +158,19 @@ export const makeComponentShowcase = <TComponentProps,>(
                           ])}
                         >
                           <Component
-                            {...componentProps}
-                            {...group.props}
-                            {...col.props}
-                            {...row.props}
+                            {...(propsCombinationStrategy === 'merge'
+                              ? deepMerge(
+                                  componentProps,
+                                  group.props,
+                                  col.props,
+                                  row.props,
+                                )
+                              : {
+                                  ...componentProps,
+                                  ...group.props,
+                                  ...col.props,
+                                  ...row.props,
+                                })}
                           />
                         </div>
                       </div>

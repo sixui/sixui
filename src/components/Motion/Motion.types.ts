@@ -13,6 +13,22 @@ export type IMotionOrigin = 'center' | 'corner' | 'edge' | 'cursor';
 
 export type IMotionPattern = 'enterExit' | 'enterExitOffScreen' | 'fade';
 
+export type IPlacementObject = {
+  /**
+   * The side of the element relative to a reference element. This is an
+   * alternative way to specify the placement. Possible values are: `top`,
+   * `right`, `bottom`, `left`.
+   */
+  side?: Side;
+
+  /**
+   * The alignment of the element relative to a reference element. This is an
+   * alternative way to specify the placement. Possible values are: `start`,
+   * `end`.
+   */
+  alignment?: Alignment;
+};
+
 export interface IMotionOwnProps {
   /**
    * The status of the transition. Possible values are: `unmounted`, `initial`,
@@ -28,21 +44,7 @@ export interface IMotionOwnProps {
    * `left-start`.
    * @defaultValue 'top'
    */
-  placement?: Placement;
-
-  /**
-   * The side of the element relative to a reference element. This is an
-   * alternative way to specify the placement. Possible values are: `top`,
-   * `right`, `bottom`, `left`.
-   */
-  side?: Side;
-
-  /**
-   * The alignment of the element relative to a reference element. This is an
-   * alternative way to specify the placement. Possible values are: `start`,
-   * `end`.
-   */
-  alignment?: Alignment;
+  placement?: Placement | IPlacementObject;
 
   /**
    * The origin of the transition animation. Possible values are:
