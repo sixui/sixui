@@ -19,6 +19,7 @@ export const Scrim = polymorphicComponentFactory<IScrimFactory>(
       children,
       fixed,
       center,
+      disabled,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -35,6 +36,10 @@ export const Scrim = polymorphicComponentFactory<IScrimFactory>(
         center,
       },
     });
+
+    if (disabled) {
+      return null;
+    }
 
     return (
       <Box {...other} {...getStyles('root')} ref={forwardedRef}>

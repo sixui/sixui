@@ -7,6 +7,7 @@ export interface IScrimOwnProps {
   children?: React.ReactNode;
   fixed?: boolean;
   center?: boolean;
+  disabled?: boolean;
 }
 
 export interface IScrimProps

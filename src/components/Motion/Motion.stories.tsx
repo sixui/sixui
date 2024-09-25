@@ -16,10 +16,11 @@ import { Motion } from './Motion';
 
 type IMotionDemoProps = IOmit<IMotionProps, 'status'> & {
   transitioning?: boolean;
+  onClose?: () => void;
 };
 
 const MotionDemo: React.FC<IMotionDemoProps> = (props) => {
-  const { transitioning, ...other } = props;
+  const { transitioning, onClose: _onClose, ...other } = props;
   const transitionNodeRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -59,7 +60,11 @@ const MotionPositionedDemo: React.FC<IMotionDemoProps> = (props) => {
         onClick={() => toggle()}
       />
 
-      <MotionDemo {...props} transitioning={transitioning} />
+      <MotionDemo
+        {...props}
+        transitioning={transitioning}
+        onClose={() => toggle(false)}
+      />
     </div>
   );
 };
@@ -71,6 +76,9 @@ const MotionUnpositionedDemo: React.FC<IMotionDemoProps> = (props) => {
     <>
       <IconButton
         icon={<FontAwesomeIcon icon={faStar} />}
+        selectedIcon={<FontAwesomeIcon icon={faStarSolid} />}
+        toggle
+        selected={transitioning}
         onClick={() => toggle()}
       />
       <div
@@ -84,7 +92,11 @@ const MotionUnpositionedDemo: React.FC<IMotionDemoProps> = (props) => {
           zIndex: 999,
         }}
       >
-        <MotionDemo {...props} transitioning={transitioning} />
+        <MotionDemo
+          {...props}
+          transitioning={transitioning}
+          onClose={() => toggle(false)}
+        />
       </div>
     </>
   );
