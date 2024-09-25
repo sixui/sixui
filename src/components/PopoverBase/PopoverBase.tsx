@@ -17,6 +17,7 @@ import {
   useTransitionStatus,
 } from '@floating-ui/react';
 import { mergeProps } from 'react-aria';
+import { RemoveScroll } from 'react-remove-scroll';
 
 import type { IPopoverBaseThemeFactory } from './PopoverBase.css';
 import type {
@@ -26,13 +27,13 @@ import type {
   IPopoverOpenEvents,
 } from './PopoverBase.types';
 import { isFunction } from '~/helpers/isFunction';
-import { isObject } from '~/helpers/isObject';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { usePopoverCursor } from '~/hooks/usePopoverCursor';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { objectFromPlacement } from '~/utils/objectFromPlacement';
+import { stringFromPlacement } from '~/utils/stringFromPlacement';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
 import { Motion } from '../Motion';
 import { Portal } from '../Portal';
 import { Scrim } from '../Scrim';
@@ -53,6 +54,7 @@ const defaultCloseEvents: IPopoverCloseEvents = {
 };
 
 const defaultMiddlewares: IPopoverMiddlewares = {
+  offset: true,
   shift: true,
   flip: true,
   size: true,
@@ -71,9 +73,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       target,
       contentRenderer,
       children,
-      placement = 'top',
-      transitionOrientation,
-      transitionOrigin: transitionOriginProp,
+      placement = { side: 'top' },
       opened: openedProp,
       defaultOpened,
       cursor: cursorType = false,
@@ -89,10 +89,11 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       middlewares: middlewaresProp,
       additionalMiddlewares,
       additionalInteractions,
-      floatingStrategy = 'absolute',
+      positioned,
       openEvents: openEventsProp,
       closeEvents: closeEventsProp,
       preventAutoFocus,
+      lockScroll,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -110,8 +111,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       ...defaultMiddlewares,
       ...middlewaresProp,
     };
-    const transitionOrigin =
-      transitionOriginProp ?? (cursorType ? 'cursor' : 'corner');
+    const transitionOrigin = cursorType ? 'custom' : 'corner';
 
     const { getStyles } = useComponentTheme<IPopoverBaseThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -137,37 +137,53 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
         }
       },
     });
+
     const arrowRef = useRef(null);
     const cursor = usePopoverCursor({ type: cursorType });
     const floating = useFloating({
-      placement,
+      placement: stringFromPlacement(placement),
       open: opened,
       onOpenChange: setOpened,
       whileElementsMounted: autoUpdate,
       middleware: [
-        // For the floating element to stay open when the mouse is hover, the
-        // mouse leave event must be triggered on the reference element, and the
-        // mouse enter event must be triggered on the floating element. To do
-        // so, we must ensure that the floating element and the reference
-        // element have a minimum distance between them.
-        offset(cursorType ? 6 + cursor.size.height : 8),
-        middlewares.flip &&
-          flip({
-            crossAxis: placement.includes('-'),
-            fallbackAxisSideDirection: 'start',
-            padding: 5,
-            ...(isObject(middlewares.flip) ? middlewares.flip : undefined),
+        !!middlewares.offset &&
+          offset({
+            // For the floating element to stay open when the mouse is hover,
+            // the mouse leave event must be triggered on the reference element,
+            // and the mouse enter event must be triggered on the floating
+            // element. To do so, we must ensure that the floating element and
+            // the reference element have a minimum distance between them.
+            mainAxis: cursorType ? 6 + cursor.size.height : 8,
+            ...(typeof middlewares.offset === 'boolean'
+              ? undefined
+              : typeof middlewares.offset === 'number'
+                ? { mainAxis: middlewares.offset }
+                : middlewares.offset),
           }),
-        middlewares.shift &&
+        !!middlewares.flip &&
+          flip({
+            crossAxis: !!placement.alignment,
+            fallbackAxisSideDirection: 'start',
+            padding: 4,
+            ...(typeof middlewares.flip === 'boolean'
+              ? undefined
+              : middlewares.flip),
+          }),
+        !!middlewares.shift &&
           shift({
             padding: 8,
-            ...(isObject(middlewares.shift) ? middlewares.shift : undefined),
+            ...(typeof middlewares.shift === 'boolean'
+              ? undefined
+              : middlewares.shift),
           }),
-        !!cursorType &&
+        (!!cursorType || !!middlewares.arrow) &&
           arrow({
             element: arrowRef.current,
+            ...(typeof middlewares.arrow === 'boolean'
+              ? undefined
+              : middlewares.arrow),
           }),
-        middlewares.size &&
+        !!middlewares.size &&
           size({
             apply: matchTargetWidth
               ? ({ rects, elements }) => {
@@ -176,7 +192,9 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
                   });
                 }
               : undefined,
-            ...(isObject(middlewares.size) ? middlewares.size : undefined),
+            ...(typeof middlewares.size === 'boolean'
+              ? undefined
+              : middlewares.size),
           }),
         ...(additionalMiddlewares ?? []),
       ],
@@ -230,7 +248,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
     const triggerElement = isFunction(children)
       ? children({
           opened,
-          placement: floating.placement,
+          placement: objectFromPlacement(floating.placement),
           getProps: (props) =>
             mergeProps(interactions.getReferenceProps(), props),
           setRef: floating.refs.setReference,
@@ -243,12 +261,24 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       forwardedRef,
     ]);
 
+    const finalPlacement = objectFromPlacement(floating.placement);
+
     return (
       <>
         {triggerElement}
 
         {transitionStatus.isMounted && (
           <Portal target={target}>
+            {withScrim && (
+              <Motion
+                status={transitionStatus.status}
+                pattern="fade"
+                {...slotProps?.scrimMotion}
+              >
+                <Scrim {...slotProps?.scrim} />
+              </Motion>
+            )}
+
             <FloatingFocusManager
               disabled={!trapFocus}
               context={floating.context}
@@ -256,63 +286,40 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
               closeOnFocusOut={closeEvents.focusOut}
               {...slotProps?.floatingFocusManager}
             >
-              <Box {...getStyles('root')}>
-                {withScrim && (
-                  <Motion status={transitionStatus.status} pattern="fade">
-                    <Scrim
-                      // FIXME:
-                      // floatingContext={floating.context}
-                      // lockScroll
-                      {...slotProps?.scrim}
-                    />
-                  </Motion>
-                )}
+              <Motion
+                {...getStyles('root', {
+                  style: positioned
+                    ? { left: floating.x, top: floating.y }
+                    : undefined,
+                })}
+                {...interactions.getFloatingProps()}
+                ref={floatingHandleRef}
+                status={transitionStatus.status}
+                placement={finalPlacement}
+                origin={transitionOrigin}
+                customTransformOrigin={cursor.getTransformOrigin(floating)}
+                pattern={positioned ? 'enterExit' : 'enterExitOffScreen'}
+                {...slotProps?.floatingMotion}
+              >
+                <RemoveScroll enabled={lockScroll} {...slotProps?.removeScroll}>
+                  {preventAutoFocus && <PreventAutoFocus />}
 
-                <div
-                  {...getStyles(
-                    [
-                      'floating',
-                      floatingStrategy && `floating$${floatingStrategy}`,
-                    ],
-                    {
-                      style: floatingStrategy
-                        ? { left: floating.x, top: floating.y }
-                        : undefined,
-                    },
+                  {isFunction(contentRenderer) ? (
+                    contentRenderer({
+                      parentProps: props,
+                      placement: finalPlacement,
+                      close: () => setOpened(false),
+                      forwardedProps: forwardProps ? other : undefined,
+                      renderCursor: cursorType ? renderCursor : undefined,
+                    })
+                  ) : (
+                    <>
+                      {cursorType && renderCursor()}
+                      {contentRenderer}
+                    </>
                   )}
-                  {...interactions.getFloatingProps()}
-                  ref={floatingHandleRef}
-                >
-                  <Motion
-                    placement={floating.placement}
-                    status={transitionStatus.status}
-                    origin={transitionOrigin}
-                    cursorTransformOrigin={cursor.getTransformOrigin(floating)}
-                    orientation={transitionOrientation}
-                    pattern={
-                      floatingStrategy ? 'enterExit' : 'enterExitOffScreen'
-                    }
-                    {...slotProps?.floatingTransition}
-                  >
-                    {preventAutoFocus && <PreventAutoFocus />}
-                    {isFunction(contentRenderer) ? (
-                      contentRenderer({
-                        placement: floating.placement,
-                        close: () => setOpened(false),
-                        forwardedProps: forwardProps
-                          ? (other as TForwardedProps)
-                          : undefined,
-                        renderCursor: cursorType ? renderCursor : undefined,
-                      })
-                    ) : (
-                      <>
-                        {renderCursor()}
-                        {contentRenderer}
-                      </>
-                    )}
-                  </Motion>
-                </div>
-              </Box>
+                </RemoveScroll>
+              </Motion>
             </FloatingFocusManager>
           </Portal>
         )}

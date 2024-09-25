@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useRef } from 'react';
-import { faFaceSmile } from '@fortawesome/free-regular-svg-icons';
-import { faFaceSmile as faFaceSmileSolid } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-regular-svg-icons';
+import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CSSTransition } from 'react-transition-group';
 
-import type { IOmit } from '~/helpers/types';
+import type { IOmit, IPlacement } from '~/helpers/types';
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IMotionProps } from './Motion.types';
 import { useToggle } from '~/hooks/useToggle';
@@ -36,6 +36,7 @@ const MotionDemo: React.FC<IMotionDemoProps> = (props) => {
             c="$onPrimary"
             w="$24"
             h="$24"
+            p="$2"
             corner="$sm"
             label="Hi!"
           />
@@ -51,8 +52,8 @@ const MotionPositionedDemo: React.FC<IMotionDemoProps> = (props) => {
   return (
     <div style={{ position: 'relative' }}>
       <IconButton
-        icon={<FontAwesomeIcon icon={faFaceSmile} />}
-        selectedIcon={<FontAwesomeIcon icon={faFaceSmileSolid} />}
+        icon={<FontAwesomeIcon icon={faStar} />}
+        selectedIcon={<FontAwesomeIcon icon={faStarSolid} />}
         toggle
         selected={transitioning}
         onClick={() => toggle()}
@@ -69,7 +70,7 @@ const MotionUnpositionedDemo: React.FC<IMotionDemoProps> = (props) => {
   return (
     <>
       <IconButton
-        icon={<FontAwesomeIcon icon={faFaceSmile} />}
+        icon={<FontAwesomeIcon icon={faStar} />}
         onClick={() => toggle()}
       />
       <div
@@ -100,9 +101,12 @@ const defaultArgs = {
 } satisfies Partial<IMotionProps>;
 
 const alignments: Array<IComponentPresentation<IMotionDemoProps>> = [
-  { legend: 'Start', props: { placement: { alignment: 'start' } } },
+  {
+    legend: 'Start',
+    props: { placement: { alignment: 'start' } as IPlacement },
+  },
   { legend: 'Center' },
-  { legend: 'End', props: { placement: { alignment: 'end' } } },
+  { legend: 'End', props: { placement: { alignment: 'end' } as IPlacement } },
 ];
 
 const sides: Array<IComponentPresentation<IMotionDemoProps>> = [

@@ -1,7 +1,6 @@
-import type { Alignment, Placement, Side } from '@floating-ui/react';
 import type { TransitionStatus } from 'react-transition-group';
 
-import type { IOrientation } from '~/helpers/types';
+import type { IOrientation, IPlacement } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
@@ -9,25 +8,9 @@ import { IMotionThemeFactory, motionTheme } from './Motion.css';
 
 export type IMotionStatus = 'initial' | 'unmounted' | 'open' | 'close';
 
-export type IMotionOrigin = 'center' | 'corner' | 'edge' | 'cursor';
+export type IMotionOrigin = 'center' | 'corner' | 'edge' | 'custom';
 
 export type IMotionPattern = 'enterExit' | 'enterExitOffScreen' | 'fade';
-
-export type IPlacementObject = {
-  /**
-   * The side of the element relative to a reference element. This is an
-   * alternative way to specify the placement. Possible values are: `top`,
-   * `right`, `bottom`, `left`.
-   */
-  side?: Side;
-
-  /**
-   * The alignment of the element relative to a reference element. This is an
-   * alternative way to specify the placement. Possible values are: `start`,
-   * `end`.
-   */
-  alignment?: Alignment;
-};
 
 export interface IMotionOwnProps {
   /**
@@ -44,7 +27,7 @@ export interface IMotionOwnProps {
    * `left-start`.
    * @defaultValue 'top'
    */
-  placement?: Placement | IPlacementObject;
+  placement?: IPlacement;
 
   /**
    * The origin of the transition animation. Possible values are:
@@ -53,7 +36,7 @@ export interface IMotionOwnProps {
    *   on the placement.
    * - `edge`: The transition origin is the edge of the element, depending on
    *   the placement.
-   * - `cursor`: The transition origin is `cursorTransformOrigin` if provided,
+   * - `custom`: The transition origin is `customTransformOrigin` if provided,
    *   otherwise it is the center of the element.
    * @defaultValue 'center'
    */
@@ -67,9 +50,10 @@ export interface IMotionOwnProps {
   orientation?: IOrientation;
 
   /**
-   * The transform origin of the transition animation when `origin` is `cursor`.
+   * A custom transform origin of the transition animation when `origin` is
+   * `custom`.
    */
-  cursorTransformOrigin?: string;
+  customTransformOrigin?: string;
 
   /**
    * The pattern of the transition animation. Possible values are:
@@ -80,7 +64,8 @@ export interface IMotionOwnProps {
   pattern?: IMotionPattern;
 
   /**
-   * Whether the element should be absolutely positioned relative to its parent.
+   * Whether the element should be positioned relative to its nearest positioned
+   * ancestor.
    */
   positioned?: boolean;
 }

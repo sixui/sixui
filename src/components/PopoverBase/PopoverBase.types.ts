@@ -1,26 +1,27 @@
 import type {
+  ArrowOptions,
   ElementProps,
   FlipOptions,
   FloatingFocusManagerProps,
   Middleware,
-  Placement,
+  OffsetOptions,
   ReferenceType,
   ShiftOptions,
   SizeOptions,
-  Strategy,
   UseRoleProps,
 } from '@floating-ui/react';
+import type { IRemoveScrollSelfProps } from 'react-remove-scroll/dist/es5/types';
 
 import type {
   IForwardableProps,
   IRendererWithForwardedProps,
 } from '~/helpers/react/forwardablePropsTypes';
-import type { IOmit, IOrientation } from '~/helpers/types';
+import type { IOmit, IPlacement } from '~/helpers/types';
 import type { IPopoverCursorType } from '~/hooks/usePopoverCursor';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type { IMotionOrigin, IMotionPattern, IMotionProps } from '../Motion';
+import type { IMotionProps } from '../Motion';
 import type { IPortalProps } from '../Portal';
 import type { IScrimProps } from '../Scrim';
 import type {
@@ -29,7 +30,8 @@ import type {
 } from './PopoverBase.css';
 
 export type IPopoverBaseContentRendererProps = {
-  placement: Placement;
+  parentProps: IPopoverBaseProps;
+  placement: IPlacement;
   close: (event?: React.MouseEvent) => void;
   renderCursor?: (
     userProps?: React.HTMLAttributes<SVGSVGElement>,
@@ -38,7 +40,7 @@ export type IPopoverBaseContentRendererProps = {
 
 export type IPopoverBaseTriggerRendererProps = {
   opened: boolean;
-  placement: Placement;
+  placement: IPlacement;
   close: (event?: React.MouseEvent) => void;
 
   /**
@@ -59,9 +61,11 @@ export type IPopoverCloseEvent = 'clickOutside' | 'focusOut' | 'escapeKey';
 export type IPopoverCloseEvents = Partial<Record<IPopoverCloseEvent, boolean>>;
 
 export type IPopoverMiddlewares = {
+  offset?: boolean | OffsetOptions;
   shift?: boolean | ShiftOptions;
   flip?: boolean | FlipOptions;
   size?: boolean | SizeOptions;
+  arrow?: boolean | ArrowOptions;
 };
 
 export type IPopoverBaseOwnProps<TForwardedProps extends object = object> =
@@ -87,33 +91,7 @@ export type IPopoverBaseOwnProps<TForwardedProps extends object = object> =
        * @defaultValue `top`
        * @see https://floating-ui.com/docs/usefloating#placement
        */
-      placement?: Placement;
-
-      /**
-       * The orientation of the transition. If not provided, the orientation will
-       * be determined by the placement. If the placement is top or bottom, the
-       * transition orientation will be vertical. If the placement is left or
-       * right, the transition orientation will be horizontal.
-       */
-      transitionOrientation?: IOrientation;
-
-      /**
-       * The origin of the transition. Possible values are:
-       * - `center`: The transition will originate from the center of the content.
-       * - `corner`: The transition will originate from the corner of the content.
-       *   The corner is determined by the placement.
-       * - `edge`: The transition will originate from the edge of the content. The
-       *  edge is determined by the placement.
-       * - `cursor`: The transition will originate from the cursor.
-       * @defaultValue `cursor`
-       */
-      transitionOrigin?: IMotionOrigin;
-
-      /**
-       * The pattern of the transition.
-       * @defaultValue `enterExit`
-       */
-      transitionPattern?: IMotionPattern;
+      placement?: IPlacement;
 
       /**
        * Controls the open state of the popover.
@@ -179,16 +157,17 @@ export type IPopoverBaseOwnProps<TForwardedProps extends object = object> =
        */
       slotProps?: {
         floatingFocusManager?: Partial<FloatingFocusManagerProps>;
-        floatingTransition?: Partial<IMotionProps>;
+        scrimMotion?: Partial<IMotionProps>;
+        floatingMotion?: Partial<IMotionProps>;
         scrim?: Partial<IScrimProps>;
+        removeScroll?: Partial<IRemoveScrollSelfProps>;
       };
 
       /**
-       * The positoning strategy of the floating element.
-       * @defaultValue `absolute`
-       * @see https://floating-ui.com/docs/usefloating#strategy
+       * Whether the element should be positioned relative to its nearest
+       * positioned ancestor.
        */
-      floatingStrategy?: Strategy | false;
+      positioned?: boolean;
 
       /**
        * Floating UI middlewares to apply th change the position of the floating
@@ -217,6 +196,12 @@ export type IPopoverBaseOwnProps<TForwardedProps extends object = object> =
        * @defaultValue `{ clickOutside: true, focusOut: true, escapeKey: true }`
        */
       closeEvents?: IPopoverCloseEvents;
+
+      /**
+       * Whether the <body> is prevented from scrolling while the overlay is
+       * rendered.
+       */
+      lockScroll?: boolean;
     };
 
 export interface IPopoverBaseProps

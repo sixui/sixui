@@ -1,3 +1,4 @@
+import type { Alignment, Side } from '@floating-ui/core';
 import type {
   CompiledStyles,
   StyleXStyles,
@@ -85,4 +86,20 @@ export type INestedArray<T> = T | Array<INestedArray<T>>;
 
 export type INestedObject<T> = {
   [key: string]: T | INestedObject<T>;
+};
+
+export type IPlacement = {
+  /**
+   * The side of the element relative to a reference element. This is an
+   * alternative way to specify the placement. Possible values are: `top`,
+   * `right`, `bottom`, `left`.
+   */
+  side: Side;
+
+  /**
+   * The alignment of the element relative to a reference element. This is an
+   * alternative way to specify the placement. Possible values are: `start`,
+   * `end`.
+   */
+  alignment?: Alignment;
 };

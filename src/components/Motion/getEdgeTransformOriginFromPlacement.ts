@@ -1,9 +1,12 @@
-import type { Placement } from '@floating-ui/react';
+import type { IPlacement } from '~/helpers/types';
+import { stringFromPlacement } from '~/utils/stringFromPlacement';
 
 export const getEdgeTransformOriginFromPlacement = (
-  placement: Placement,
+  placement: IPlacement,
 ): string => {
-  switch (placement) {
+  const placementString = stringFromPlacement(placement);
+
+  switch (placementString) {
     case 'bottom':
     case 'bottom-start':
     case 'bottom-end':

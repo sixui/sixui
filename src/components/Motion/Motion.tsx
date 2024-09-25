@@ -1,8 +1,7 @@
-import type { Alignment, Placement, Side } from '@floating-ui/core';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import type { IMotionThemeFactory } from './Motion.css';
-import type { IMotionFactory, IPlacementObject } from './Motion.types';
+import type { IMotionFactory } from './Motion.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
@@ -15,22 +14,6 @@ import { motionTheme } from './Motion.css';
 
 const COMPONENT_NAME = 'Motion';
 
-const getObjectFromPlacement = (
-  placement: Placement | IPlacementObject,
-): IPlacementObject => {
-  if (typeof placement === 'string') {
-    const side = placement.split('-')[0] as Side;
-    const alignment = placement.split('-')[1] as Alignment | undefined;
-
-    return {
-      side,
-      alignment,
-    };
-  }
-
-  return placement;
-};
-
 export const Motion = componentFactory<IMotionFactory>(
   (props, forwardedRef) => {
     const {
@@ -40,22 +23,17 @@ export const Motion = componentFactory<IMotionFactory>(
       style,
       variant,
       children,
-      placement: placementProp = 'top',
+      placement = { side: 'top' },
       status,
       origin = 'center',
-      cursorTransformOrigin,
+      customTransformOrigin,
       pattern = 'enterExit',
       orientation: orientationProp,
       positioned,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const placementObject = getObjectFromPlacement(placementProp);
-    const alignment = placementObject.alignment;
-    const side = placementObject.side ?? 'top';
-    const placement: Placement = placementObject.alignment
-      ? `${side}-${placementObject.alignment}`
-      : side;
+    const { side, alignment } = placement;
 
     const orientation =
       orientationProp ??
@@ -112,8 +90,8 @@ export const Motion = componentFactory<IMotionFactory>(
                   ? getCornerTransformOriginFromPlacement(placement)
                   : origin === 'edge'
                     ? getEdgeTransformOriginFromPlacement(placement)
-                    : origin === 'cursor' && cursorTransformOrigin
-                      ? cursorTransformOrigin
+                    : origin === 'custom' && customTransformOrigin
+                      ? customTransformOrigin
                       : 'center',
             }),
           })}

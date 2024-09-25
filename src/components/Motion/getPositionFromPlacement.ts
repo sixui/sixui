@@ -1,4 +1,5 @@
-import type { Placement } from '@floating-ui/react';
+import type { IPlacement } from '~/helpers/types';
+import { stringFromPlacement } from '~/utils/stringFromPlacement';
 
 type IPosition = {
   top?: string;
@@ -8,8 +9,10 @@ type IPosition = {
   transform?: string;
 };
 
-export const getPositionFromPlacement = (placement: Placement): IPosition => {
-  switch (placement) {
+export const getPositionFromPlacement = (placement: IPlacement): IPosition => {
+  const placementString = stringFromPlacement(placement);
+
+  switch (placementString) {
     case 'bottom':
       return {
         top: '100%',
