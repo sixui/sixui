@@ -34,7 +34,6 @@ export const Dialog = componentFactory<IDialogFactory>(
 
     return (
       <PopoverBase
-        {...other}
         {...getStyles('root')}
         contentRenderer={({ close, forwardedProps }) => (
           <DialogContent
@@ -58,7 +57,10 @@ export const Dialog = componentFactory<IDialogFactory>(
           size: false,
         }}
         forwardProps
+        lockScroll
         ref={forwardedRef}
+        // FIXME: tjrs other à la fin dans les autres components
+        {...other}
       />
     );
   },
