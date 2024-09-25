@@ -33,8 +33,8 @@ const MotionDemo: React.FC<IMotionDemoProps> = (props) => {
       {(status) => (
         <Motion {...other} status={status} ref={transitionNodeRef} z="$overlay">
           <Placeholder
-            surface="$primary"
-            c="$onPrimary"
+            surface="$inverseSurface"
+            c="$inverseOnSurface"
             w="$24"
             h="$24"
             p="$2"

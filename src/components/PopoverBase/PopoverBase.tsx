@@ -261,7 +261,9 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       forwardedRef,
     ]);
 
-    const finalPlacement = objectFromPlacement(floating.placement);
+    const finalPlacement = positioned
+      ? objectFromPlacement(floating.placement)
+      : placement;
 
     return (
       <>
@@ -269,58 +271,63 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
 
         {transitionStatus.isMounted && (
           <Portal target={target}>
-            {withScrim && (
-              <Motion
-                status={transitionStatus.status}
-                pattern="fade"
-                {...slotProps?.scrimMotion}
-              >
-                <Scrim {...slotProps?.scrim} />
-              </Motion>
-            )}
+            <div {...getStyles('root')}>
+              {withScrim && (
+                <Motion
+                  status={transitionStatus.status}
+                  pattern="fade"
+                  {...slotProps?.scrimMotion}
+                >
+                  <Scrim {...slotProps?.scrim} />
+                </Motion>
+              )}
 
-            <FloatingFocusManager
-              disabled={!trapFocus}
-              context={floating.context}
-              modal
-              closeOnFocusOut={closeEvents.focusOut}
-              {...slotProps?.floatingFocusManager}
-            >
-              <Motion
-                {...getStyles('root', {
-                  style: positioned
-                    ? { left: floating.x, top: floating.y }
-                    : undefined,
-                })}
-                {...interactions.getFloatingProps()}
-                ref={floatingHandleRef}
-                status={transitionStatus.status}
-                placement={finalPlacement}
-                origin={transitionOrigin}
-                customTransformOrigin={cursor.getTransformOrigin(floating)}
-                pattern={positioned ? 'enterExit' : 'enterExitOffScreen'}
-                {...slotProps?.floatingMotion}
+              <FloatingFocusManager
+                disabled={!trapFocus}
+                context={floating.context}
+                modal
+                closeOnFocusOut={closeEvents.focusOut}
+                {...slotProps?.floatingFocusManager}
               >
-                <RemoveScroll enabled={lockScroll} {...slotProps?.removeScroll}>
-                  {preventAutoFocus && <PreventAutoFocus />}
+                <Motion
+                  {...getStyles('floating', {
+                    style: positioned
+                      ? { left: floating.x, top: floating.y }
+                      : undefined,
+                  })}
+                  {...interactions.getFloatingProps()}
+                  ref={floatingHandleRef}
+                  status={transitionStatus.status}
+                  placement={finalPlacement}
+                  origin={transitionOrigin}
+                  customTransformOrigin={cursor.getTransformOrigin(floating)}
+                  pattern={positioned ? 'enterExit' : 'enterExitOffScreen'}
+                  {...slotProps?.floatingMotion}
+                >
+                  <RemoveScroll
+                    enabled={!!lockScroll}
+                    {...slotProps?.removeScroll}
+                  >
+                    {preventAutoFocus && <PreventAutoFocus />}
 
-                  {isFunction(contentRenderer) ? (
-                    contentRenderer({
-                      parentProps: props,
-                      placement: finalPlacement,
-                      close: () => setOpened(false),
-                      forwardedProps: forwardProps ? other : undefined,
-                      renderCursor: cursorType ? renderCursor : undefined,
-                    })
-                  ) : (
-                    <>
-                      {cursorType && renderCursor()}
-                      {contentRenderer}
-                    </>
-                  )}
-                </RemoveScroll>
-              </Motion>
-            </FloatingFocusManager>
+                    {isFunction(contentRenderer) ? (
+                      contentRenderer({
+                        parentProps: props,
+                        placement: finalPlacement,
+                        close: () => setOpened(false),
+                        forwardedProps: forwardProps ? other : undefined,
+                        renderCursor: cursorType ? renderCursor : undefined,
+                      })
+                    ) : (
+                      <>
+                        {cursorType && renderCursor()}
+                        {contentRenderer}
+                      </>
+                    )}
+                  </RemoveScroll>
+                </Motion>
+              </FloatingFocusManager>
+            </div>
           </Portal>
         )}
       </>

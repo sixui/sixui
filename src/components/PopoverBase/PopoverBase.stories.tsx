@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-regular-svg-icons';
+import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IPlacement } from '~/helpers/types';
@@ -46,11 +47,14 @@ const defaultArgs = {
   onOpen: (...args) => void sbHandleEvent('onOpen', args),
   onClose: (...args) => void sbHandleEvent('onClose', args),
   contentRenderer,
-  children: ({ getProps, setRef }) => (
+  children: ({ getProps, setRef, opened }) => (
     <IconButton
       {...getProps()}
       ref={setRef}
       icon={<FontAwesomeIcon icon={faStar} />}
+      selectedIcon={<FontAwesomeIcon icon={faStarSolid} />}
+      toggle
+      selected={opened}
     />
   ),
   positioned: true,
@@ -170,6 +174,37 @@ export const Placement: IStory = {
     ...defaultArgs,
     openEvents: { hover: true },
     cursor: 'arrow',
+  },
+};
+
+export const FromOffScreen: IStory = {
+  render: (props) => (
+    <PopoverBaseShowcase
+      props={props}
+      rows={sides}
+      propsCombinationStrategy="merge"
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    openEvents: { click: true },
+    style: {
+      position: 'absolute',
+      inset: 0,
+      display: 'grid',
+      placeItems: 'center',
+      overflow: 'auto',
+      pointerEvents: 'none',
+      zIndex: 999,
+    },
+    slotProps: {
+      floatingMotion: {
+        origin: 'edge',
+        pattern: 'enterExitOffScreen',
+      },
+    },
+    positioned: false,
+    withScrim: true,
   },
 };
 

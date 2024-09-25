@@ -4,7 +4,8 @@ import { createStyles } from '~/utils/styles/createStyles';
 import { themeTokens } from '../ThemeProvider';
 
 const classNames = createStyles({
-  root: {
+  root: {},
+  floating: {
     zIndex: themeTokens.zIndex.popover,
     width: 'inherit',
     height: 'inherit',
