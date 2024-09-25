@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
-import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
+import {
+  faStar as faStarSolid,
+  faXmark,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IPlacement } from '~/helpers/types';
@@ -23,23 +26,29 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const contentRenderer = (
-  props: IPopoverBaseContentRendererProps,
-): JSX.Element => (
+const contentRenderer = ({
+  parentProps,
+  renderCursor,
+  close,
+}: IPopoverBaseContentRendererProps): JSX.Element => (
   <Placeholder
     surface="$inverseSurface"
     c="$inverseOnSurface"
-    h={props.parentProps.matchTargetWidth ? undefined : '$24'}
-    w={props.parentProps.matchTargetWidth ? undefined : '$24'}
+    h={parentProps.matchTargetWidth ? undefined : '$24'}
+    w={parentProps.matchTargetWidth ? undefined : '$24'}
     p="$2"
     corner="$sm"
-    label="Hi!"
   >
-    {props.renderCursor && (
+    {renderCursor && (
       <div style={{ fill: themeTokens.colorScheme.inverseSurface }}>
-        {props.renderCursor()}
+        {renderCursor()}
       </div>
     )}
+    <IconButton
+      variant="snackbar"
+      icon={<FontAwesomeIcon icon={faXmark} />}
+      onClick={close}
+    />
   </Placeholder>
 );
 
@@ -177,7 +186,7 @@ export const Placement: IStory = {
   },
 };
 
-export const FromOffScreen: IStory = {
+export const ModalStyle: IStory = {
   render: (props) => (
     <PopoverBaseShowcase
       props={props}
@@ -194,8 +203,6 @@ export const FromOffScreen: IStory = {
       display: 'grid',
       placeItems: 'center',
       overflow: 'auto',
-      pointerEvents: 'none',
-      zIndex: 999,
     },
     slotProps: {
       floatingMotion: {
@@ -205,6 +212,8 @@ export const FromOffScreen: IStory = {
     },
     positioned: false,
     withScrim: true,
+    trapFocus: true,
+    lockScroll: true,
   },
 };
 
