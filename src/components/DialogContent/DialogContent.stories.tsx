@@ -25,13 +25,18 @@ const defaultArgs = {
   headline: 'Permanently delete?',
   children:
     'Deleting the selected messages will also remove them from all synced devices.',
-  onClose: () => sbHandleEvent('onClose', undefined, 1000),
+  onClose: () => sbHandleEvent('onClose', undefined, 500),
   actions: ({ close }) => (
     <>
       <Button variant="text" onClick={close}>
         Cancel
       </Button>
-      <Button variant="danger">Delete</Button>
+      <Button
+        variant="danger"
+        onClick={() => sbHandleEvent('onClick', undefined, 500)}
+      >
+        Delete
+      </Button>
     </>
   ),
 } satisfies Partial<IDialogContentProps>;

@@ -198,7 +198,7 @@ export const ModalStyle: IStory = {
     ...defaultArgs,
     openEvents: { click: true },
     style: {
-      position: 'absolute',
+      position: 'fixed',
       inset: 0,
       display: 'grid',
       placeItems: 'center',

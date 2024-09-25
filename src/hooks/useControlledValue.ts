@@ -2,25 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { isProduction } from '~/helpers/isProduction';
 
-export interface IControlledValueProps<TValue> {
-  /**
-   * Initial value for uncontrolled usage. Mutually exclusive with `value` prop.
-   */
-  defaultValue?: TValue;
-
-  /**
-   * Controlled value. Mutually exclusive with `defaultValue` prop.
-   */
-  value?: TValue;
-
-  /**
-   * Callback invoked when the component value changes, typically via user
-   * interaction, in both controlled and uncontrolled mode.
-   */
-  onValueChange?: (value: TValue) => void;
-}
-
-type IUseControlledProps<TValue> = {
+export type IUseControlledProps<TValue> = {
   /**
    * Holds the component value when it's controlled.
    */
@@ -43,7 +25,7 @@ type IUseControlledProps<TValue> = {
 
   /**
    * Callback invoked when the component value changes, typically via user
-   * interaction, in both controlled and uncontrolled mode.
+   * interaction in uncontrolled mode.
    */
   onValueChange?: (value: TValue) => void;
 };

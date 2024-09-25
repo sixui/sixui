@@ -5,7 +5,7 @@ import type { IDialogProps } from './Dialog.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { useDisclosure } from '~/hooks/useDisclosure';
 import { Button } from '../Button';
-import { Stack } from '../Stack';
+import { makeComponentShowcase } from '../ComponentShowcase';
 import { TextInputField } from '../TextInputField';
 import { Dialog } from './Dialog';
 
@@ -40,7 +40,7 @@ const DialogDemo: React.FC<IDialogProps> = (props) => {
             <Button
               type="submit"
               onClick={(...args) =>
-                sbHandleEvent('save', args, 1000).then(() => close())
+                sbHandleEvent('save', args, 500).then(() => void close())
               }
             >
               Delete
@@ -55,80 +55,82 @@ const DialogDemo: React.FC<IDialogProps> = (props) => {
   );
 };
 
+const DialogDemoShowcase = makeComponentShowcase(DialogDemo);
+
 export const Standard: IStory = {
-  render: (props) => <DialogDemo {...props} />,
+  render: (props) => <DialogDemoShowcase props={props} />,
   args: defaultArgs,
 };
 
-const FormDialogDemo: React.FC<IDialogProps> = (props) => {
-  const [name, setName] = useState<string>();
-  const formRef = useRef<HTMLFormElement>(null);
-  const [opened, { open, close }] = useDisclosure(false);
+// const FormDialogDemo: React.FC<IDialogProps> = (props) => {
+//   const [name, setName] = useState<string>();
+//   const formRef = useRef<HTMLFormElement>(null);
+//   const [opened, { open, close }] = useDisclosure(false);
 
-  return (
-    <>
-      <Dialog
-        {...props}
-        ref={formRef}
-        as="form"
-        opened={opened}
-        onClose={close}
-        headline="What's your name?"
-        actions={({ close }) => (
-          <>
-            <Button variant="text" onClick={close}>
-              Cancel
-            </Button>
-            <Button
-              type="submit"
-              onClick={(event, ...args) => {
-                event.preventDefault();
+//   return (
+//     <>
+//       <Dialog
+//         {...props}
+//         ref={formRef}
+//         as="form"
+//         opened={opened}
+//         onClose={close}
+//         headline="What's your name?"
+//         actions={({ close }) => (
+//           <>
+//             <Button variant="text" onClick={close}>
+//               Cancel
+//             </Button>
+//             <Button
+//               type="submit"
+//               onClick={(event, ...args) => {
+//                 event.preventDefault();
 
-                return sbHandleEvent('save', [event, ...args], 1000).then(
-                  () => {
-                    const formData = formRef.current
-                      ? new FormData(formRef.current)
-                      : undefined;
-                    const formValues = formData
-                      ? Object.fromEntries(formData)
-                      : undefined;
-                    setName(formValues?.name.toString());
-                    close();
-                  },
-                );
-              }}
-            >
-              Save
-            </Button>
-          </>
-        )}
-      >
-        <TextInputField name="name" />
-      </Dialog>
+//                 return sbHandleEvent('save', [event, ...args], 1000).then(
+//                   () => {
+//                     const formData = formRef.current
+//                       ? new FormData(formRef.current)
+//                       : undefined;
+//                     const formValues = formData
+//                       ? Object.fromEntries(formData)
+//                       : undefined;
+//                     setName(formValues?.name.toString());
+//                     close();
+//                   },
+//                 );
+//               }}
+//             >
+//               Save
+//             </Button>
+//           </>
+//         )}
+//       >
+//         <TextInputField name="name" />
+//       </Dialog>
 
-      <Stack horizontal gap={4}>
-        <Button onClick={open}>Open</Button>
-        {name ? (
-          <div>
-            Hello, <strong>{name}</strong>!
-          </div>
-        ) : null}
-      </Stack>
-    </>
-  );
-};
+//       <Stack horizontal gap={4}>
+//         <Button onClick={open}>Open</Button>
+//         {name ? (
+//           <div>
+//             Hello, <strong>{name}</strong>!
+//           </div>
+//         ) : null}
+//       </Stack>
+//     </>
+//   );
+// };
 
-export const StandardWithForm: IStory = {
-  render: (props) => <FormDialogDemo {...props} />,
-  args: defaultArgs,
-};
+// export const StandardWithForm: IStory = {
+//   render: (props) => <FormDialogDemo {...props} />,
+//   args: defaultArgs,
+// };
 
-export const Modal: IStory = {
-  render: (props) => <DialogDemo {...props} />,
-  args: {
-    ...defaultArgs,
-    modal: true,
-  },
-};
+// export const Modal: IStory = {
+//   render: (props) => <DialogDemo {...props} />,
+//   args: {
+//     ...defaultArgs,
+//     modal: true,
+//   },
+// };
 
 export default meta;

@@ -155,6 +155,7 @@ export type IPopoverBaseOwnProps<TForwardedProps extends object = object> =
         floatingMotion?: Partial<IMotionProps>;
         scrim?: Partial<IScrimProps>;
         removeScroll?: Partial<IRemoveScrollSelfProps>;
+        portal?: Partial<IPortalProps>;
       };
 
       /**

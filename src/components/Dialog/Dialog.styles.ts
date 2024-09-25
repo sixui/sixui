@@ -1,6 +1,3 @@
-import stylex from '@stylexjs/stylex';
-
-import { zIndexTokens } from '~/themes/base/zIndex.stylex';
 import { dialogTokens } from './Dialog.stylex';
 
 export type IDialogStylesKey = keyof typeof dialogStyles;
@@ -11,7 +8,6 @@ export const dialogStyles = stylex.create({
     display: 'grid',
     placeItems: 'center',
     overflow: 'auto',
-    zIndex: zIndexTokens.modal,
   },
   dialogContent: {
     maxWidth: dialogTokens.containerMaxWidth,

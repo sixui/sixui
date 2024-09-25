@@ -124,7 +124,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
     const [opened, setOpened] = useControlledValue({
       controlled: openedProp,
       default: defaultOpened || false,
-      name: 'PopoverBase',
+      name: COMPONENT_NAME,
       onValueChange: (newOpened) => {
         if (newOpened !== opened) {
           if (newOpened) {
@@ -268,7 +268,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
         {triggerElement}
 
         {transitionStatus.isMounted && (
-          <Portal target={target}>
+          <Portal target={target} {...slotProps?.portal}>
             <div {...getStyles('root')}>
               {withScrim && (
                 <Motion
