@@ -91,7 +91,7 @@ const classNames = createStyles({
     marginRight: calc.negate(px(space(3))),
   },
   cursor: {
-    fill: tokens.container.color,
+    fill: themeTokens.colorScheme.primary,
   },
 });
 

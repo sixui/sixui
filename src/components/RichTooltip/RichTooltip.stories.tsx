@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { faBolt, faCloud, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IRichTooltipProps } from './RichTooltip.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { Button } from '../Button';
-import { ComponentShowcase } from '../ComponentShowcase';
+import { makeComponentShowcase } from '../ComponentShowcase';
 import { IconButton } from '../IconButton';
 import { RichTooltip } from './RichTooltip';
 
@@ -40,30 +40,33 @@ const cols: Array<IComponentPresentation<IRichTooltipProps>> = [
   },
   {
     props: {
-      children: <IconButton icon={<FontAwesomeIcon icon={faBolt} />} />,
+      children: <IconButton icon={<FontAwesomeIcon icon={faStar} />} />,
     },
   },
   {
     props: {
-      children: <IconButton icon={<FontAwesomeIcon icon={faCloud} />} />,
+      children: <IconButton icon={<FontAwesomeIcon icon={faStar} />} />,
     },
   },
 ];
 
-export const Basic: IStory = {
-  render: (props) => (
-    <ComponentShowcase component={RichTooltip} props={props} cols={cols} />
-  ),
-  args: defaultArgs,
+const RichTooltipShowcase = makeComponentShowcase(RichTooltip);
+
+export const Standard: IStory = {
+  render: (props) => <RichTooltipShowcase props={props} cols={cols} />,
+  args: defaultArgs as IRichTooltipProps,
 };
 
 export const Persistent: IStory = {
   render: (props) => (
-    <RichTooltip {...props} persistent>
+    <RichTooltip {...props}>
       <Button>Show</Button>
     </RichTooltip>
   ),
-  args: defaultArgs,
+  args: {
+    ...(defaultArgs as IRichTooltipProps),
+    persistent: true,
+  },
 };
 
 export default meta;

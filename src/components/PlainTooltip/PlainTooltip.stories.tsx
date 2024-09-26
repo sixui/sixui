@@ -39,7 +39,7 @@ const cols: Array<IComponentPresentation<IPlainTooltipProps>> = [
 
 const PlainTooltipShowcase = makeComponentShowcase(PlainTooltip);
 
-export const Basic: IStory = {
+export const Standard: IStory = {
   render: (props) => <PlainTooltipShowcase props={props} cols={cols} />,
   args: defaultArgs as IPlainTooltipProps,
 };

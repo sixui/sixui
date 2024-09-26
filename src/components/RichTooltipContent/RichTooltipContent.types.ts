@@ -19,7 +19,7 @@ export type IRichTooltipContentOwnProps = {
   renderCursor?: (
     userProps?: React.HTMLAttributes<SVGSVGElement>,
   ) => React.ReactNode;
-  onClose?: (event?: React.MouseEvent) => void;
+  onClose?: () => void;
 };
 
 export interface IRichTooltipContentProps

@@ -56,11 +56,7 @@ export const PlainTooltip = componentFactory<IPlainTooltipFactory>(
         {...other}
       >
         {(renderProps) => (
-          <span
-            style={{ display: 'inline-flex' }}
-            {...renderProps.getProps()}
-            ref={renderProps.setRef}
-          >
+          <span {...renderProps.getProps()} ref={renderProps.setRef}>
             {isFunction(children) ? children(renderProps) : children}
           </span>
         )}
@@ -69,4 +65,5 @@ export const PlainTooltip = componentFactory<IPlainTooltipFactory>(
   },
 );
 
+PlainTooltip.theme = plainTooltipTheme;
 PlainTooltip.displayName = `@sixui/${COMPONENT_NAME}`;
