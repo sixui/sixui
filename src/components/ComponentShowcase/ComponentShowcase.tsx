@@ -59,9 +59,9 @@ export const makeComponentShowcase = <TComponentProps extends object>(
 
     return (
       <Box
-        {...other}
         {...getStyles(['root', 'cols', 'gap$md'])}
         ref={forwardedRef}
+        {...other}
       >
         {shouldShowRowLegends && rowLegendPosition === 'start' ? (
           <div {...getStyles(['rows', 'gap$lg'])}>

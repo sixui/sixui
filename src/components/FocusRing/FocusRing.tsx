@@ -38,11 +38,11 @@ export const FocusRing = componentFactory<IFocusRingFactory>(
 
     return (
       <Box
-        {...other}
         {...getStyles('root')}
         interactions={interactions}
         aria-hidden
         ref={forwardedRef}
+        {...other}
       />
     );
   },

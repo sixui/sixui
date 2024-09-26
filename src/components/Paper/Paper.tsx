@@ -51,7 +51,6 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
 
     return (
       <PaperBase
-        {...other}
         {...getStyles('root', {
           className: sprinkles.className,
           style: sprinkles.style,
@@ -67,6 +66,7 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
           outline: outlineSprinkles.style,
         }}
         ref={forwardedRef}
+        {...other}
       />
     );
   },

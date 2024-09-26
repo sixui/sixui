@@ -42,7 +42,7 @@ export const Item = polymorphicComponentFactory<IItemFactory>(
     });
 
     return (
-      <Box {...other} {...getStyles('root')} ref={forwardedRef}>
+      <Box {...getStyles('root')} ref={forwardedRef} {...other}>
         {start && (
           <div {...getStyles('section')} data-section="start">
             {start}

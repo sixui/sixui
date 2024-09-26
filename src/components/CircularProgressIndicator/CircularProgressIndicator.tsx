@@ -8,15 +8,15 @@ const COMPONENT_NAME = 'CircularProgressIndicator';
 
 export const CircularProgressIndicator =
   componentFactory<ICircularProgressIndicatorFactory>((props, forwardedRef) => {
-    const { value } = props;
+    const { value, ...other } = props;
 
     return value === undefined ? (
-      <IndeterminateCircularProgressIndicator {...props} ref={forwardedRef} />
+      <IndeterminateCircularProgressIndicator ref={forwardedRef} {...other} />
     ) : (
       <DeterminateCircularProgressIndicator
-        {...props}
         ref={forwardedRef}
         value={value}
+        {...other}
       />
     );
   });

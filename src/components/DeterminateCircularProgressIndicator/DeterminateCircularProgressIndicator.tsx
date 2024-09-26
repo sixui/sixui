@@ -47,10 +47,10 @@ export const DeterminateCircularProgressIndicator =
 
       return (
         <Box
-          {...other}
           {...getStyles('root')}
           ref={forwardedRef}
           role="progressbar"
+          {...other}
         >
           <div
             {...getStyles(['layer', 'progress'])}

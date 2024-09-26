@@ -42,7 +42,7 @@ export const Scrim = polymorphicComponentFactory<IScrimFactory>(
     }
 
     return (
-      <Box {...other} {...getStyles('root')} ref={forwardedRef}>
+      <Box {...getStyles('root')} ref={forwardedRef} {...other}>
         {children}
       </Box>
     );

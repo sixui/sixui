@@ -36,7 +36,7 @@ export const Elevation = componentFactory<IElevationFactory>(
     });
 
     return (
-      <Box {...other} {...getStyles('root')} aria-hidden ref={forwardedRef} />
+      <Box {...getStyles('root')} aria-hidden ref={forwardedRef} {...other} />
     );
   },
 );

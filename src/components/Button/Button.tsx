@@ -102,7 +102,6 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
 
     return (
       <ButtonBase
-        {...other}
         {...getStyles('root')}
         onClick={handleClick}
         classNames={mergeClassNames(classNames, {
@@ -111,6 +110,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
         })}
         readOnly={readOnly}
         ref={forwardedRef}
+        {...other}
       >
         {hasLeadingIcon && renderIcon()}
 

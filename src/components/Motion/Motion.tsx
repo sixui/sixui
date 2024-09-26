@@ -2,19 +2,18 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import type { IMotionThemeFactory } from './Motion.css';
 import type { IMotionFactory } from './Motion.types';
-import { componentFactory } from '~/utils/component/componentFactory';
+import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
 import { getCornerTransformOriginFromPlacement } from './getCornerTransformOriginFromPlacement';
 import { getEdgeTransformOriginFromPlacement } from './getEdgeTransformOriginFromPlacement';
-import { getPositionFromPlacement } from './getPositionFromPlacement';
 import { resolveRtgStatus } from './resolveRtgStatus';
 import { motionTheme } from './Motion.css';
 
 const COMPONENT_NAME = 'Motion';
 
-export const Motion = componentFactory<IMotionFactory>(
+export const Motion = polymorphicComponentFactory<IMotionFactory>(
   (props, forwardedRef) => {
     const {
       classNames,
@@ -29,7 +28,6 @@ export const Motion = componentFactory<IMotionFactory>(
       customTransformOrigin,
       pattern = 'enterExit',
       orientation: orientationProp,
-      positioned,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -60,44 +58,27 @@ export const Motion = componentFactory<IMotionFactory>(
         alignment,
         orientation,
         pattern,
-        positioned,
       },
     });
 
-    const position = getPositionFromPlacement(placement);
-
     return (
       <Box
-        {...other}
-        {...getStyles('root', {
-          style: positioned
-            ? assignInlineVars({
-                [motionTheme.tokens.position.top]: position.top,
-                [motionTheme.tokens.position.bottom]: position.bottom,
-                [motionTheme.tokens.position.left]: position.left,
-                [motionTheme.tokens.position.right]: position.right,
-                [motionTheme.tokens.position.transform]: position.transform,
-              })
-            : undefined,
+        {...getStyles(['root', `root$${resolvedStatus}`], {
+          style: assignInlineVars({
+            [motionTheme.tokens.transformOrigin]:
+              origin === 'corner'
+                ? getCornerTransformOriginFromPlacement(placement)
+                : origin === 'edge'
+                  ? getEdgeTransformOriginFromPlacement(placement)
+                  : origin === 'custom' && customTransformOrigin
+                    ? customTransformOrigin
+                    : 'center',
+          }),
         })}
         ref={forwardedRef}
+        {...other}
       >
-        <div
-          {...getStyles(['motion', `motion$${resolvedStatus}`], {
-            style: assignInlineVars({
-              [motionTheme.tokens.transformOrigin]:
-                origin === 'corner'
-                  ? getCornerTransformOriginFromPlacement(placement)
-                  : origin === 'edge'
-                    ? getEdgeTransformOriginFromPlacement(placement)
-                    : origin === 'custom' && customTransformOrigin
-                      ? customTransformOrigin
-                      : 'center',
-            }),
-          })}
-        >
-          {children}
-        </div>
+        {children}
       </Box>
     );
   },

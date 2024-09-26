@@ -55,13 +55,13 @@ export const Badge = polymorphicComponentFactory<IBadgeFactory>(
 
     return (
       <Box
-        {...other}
         {...getStyles([
           'root',
           invisible && 'root$invisible',
           dot && 'root$dot',
         ])}
         ref={forwardedRef}
+        {...other}
       >
         <div {...getStyles('background')} />
         <div {...getStyles('label')}>{displayValue}</div>

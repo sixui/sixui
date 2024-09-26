@@ -38,11 +38,11 @@ export const Fab = polymorphicComponentFactory<IFabFactory>(
 
     return (
       <Button
-        {...other}
         {...getStyles('root')}
         variant={false}
         classNames={classNames}
         ref={forwardedRef}
+        {...other}
       >
         {children}
       </Button>

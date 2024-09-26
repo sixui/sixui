@@ -6,6 +6,7 @@ import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { useDisclosure } from '~/hooks/useDisclosure';
 import { Button } from '../Button';
 import { makeComponentShowcase } from '../ComponentShowcase';
+import { Flex } from '../Flex';
 import { TextInputField } from '../TextInputField';
 import { Dialog } from './Dialog';
 
@@ -62,75 +63,73 @@ export const Standard: IStory = {
   args: defaultArgs,
 };
 
-// const FormDialogDemo: React.FC<IDialogProps> = (props) => {
-//   const [name, setName] = useState<string>();
-//   const formRef = useRef<HTMLFormElement>(null);
-//   const [opened, { open, close }] = useDisclosure(false);
+export const Modal: IStory = {
+  render: (props) => <DialogDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    modal: true,
+  },
+};
 
-//   return (
-//     <>
-//       <Dialog
-//         {...props}
-//         ref={formRef}
-//         as="form"
-//         opened={opened}
-//         onClose={close}
-//         headline="What's your name?"
-//         actions={({ close }) => (
-//           <>
-//             <Button variant="text" onClick={close}>
-//               Cancel
-//             </Button>
-//             <Button
-//               type="submit"
-//               onClick={(event, ...args) => {
-//                 event.preventDefault();
+const FormDialogDemo: React.FC<IDialogProps> = (props) => {
+  const [name, setName] = useState<string>();
+  const formRef = useRef<HTMLFormElement>(null);
+  const [opened, { open, close }] = useDisclosure(false);
 
-//                 return sbHandleEvent('save', [event, ...args], 1000).then(
-//                   () => {
-//                     const formData = formRef.current
-//                       ? new FormData(formRef.current)
-//                       : undefined;
-//                     const formValues = formData
-//                       ? Object.fromEntries(formData)
-//                       : undefined;
-//                     setName(formValues?.name.toString());
-//                     close();
-//                   },
-//                 );
-//               }}
-//             >
-//               Save
-//             </Button>
-//           </>
-//         )}
-//       >
-//         <TextInputField name="name" />
-//       </Dialog>
+  return (
+    <>
+      <Dialog
+        {...props}
+        ref={formRef}
+        as="form"
+        opened={opened}
+        onClose={close}
+        headline="What's your name?"
+        actions={({ close }) => (
+          <>
+            <Button variant="text" onClick={close}>
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              onClick={(event, ...args) => {
+                event.preventDefault();
 
-//       <Stack horizontal gap={4}>
-//         <Button onClick={open}>Open</Button>
-//         {name ? (
-//           <div>
-//             Hello, <strong>{name}</strong>!
-//           </div>
-//         ) : null}
-//       </Stack>
-//     </>
-//   );
-// };
+                return sbHandleEvent('save', [event, ...args], 500).then(() => {
+                  const formData = formRef.current
+                    ? new FormData(formRef.current)
+                    : undefined;
+                  const formValues = formData
+                    ? Object.fromEntries(formData)
+                    : undefined;
+                  setName(formValues?.name.toString());
+                  close();
+                });
+              }}
+            >
+              Save
+            </Button>
+          </>
+        )}
+      >
+        <TextInputField name="name" />
+      </Dialog>
 
-// export const StandardWithForm: IStory = {
-//   render: (props) => <FormDialogDemo {...props} />,
-//   args: defaultArgs,
-// };
+      <Flex direction="row" gap="$4" align="center">
+        <Button onClick={open}>Open</Button>
+        {name ? (
+          <div>
+            Hello, <strong>{name}</strong>!
+          </div>
+        ) : null}
+      </Flex>
+    </>
+  );
+};
 
-// export const Modal: IStory = {
-//   render: (props) => <DialogDemo {...props} />,
-//   args: {
-//     ...defaultArgs,
-//     modal: true,
-//   },
-// };
+export const WithForm: IStory = {
+  render: (props) => <FormDialogDemo {...props} />,
+  args: defaultArgs,
+};
 
 export default meta;

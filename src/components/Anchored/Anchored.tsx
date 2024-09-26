@@ -48,7 +48,6 @@ export const Anchored = componentFactory<IAnchoredFactory>(
 
     return (
       <Box
-        {...other}
         {...getStyles('root', {
           style: assignInlineVars({
             [anchoredTheme.tokens.offset.x]: offsetX ? px(offsetX) : undefined,
@@ -56,6 +55,7 @@ export const Anchored = componentFactory<IAnchoredFactory>(
           }),
         })}
         ref={forwardedRef}
+        {...other}
       >
         {children}
         <div {...getStyles('content')}>{content}</div>

@@ -28,7 +28,6 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
       type = 'text',
       defaultValue,
       value: valueProp,
-      onValueChange,
       noSpinner,
       clearable: clearableProp,
       clearIcon = <SvgIcon icon={iconXMark} />,
@@ -60,7 +59,6 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
       controlled: valueProp,
       default: defaultValue ?? '',
       name: COMPONENT_NAME,
-      onValueChange,
     });
 
     const populated = other.populated ?? !!value;

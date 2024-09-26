@@ -110,13 +110,13 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
     if (shouldRenderAsButton) {
       return (
         <ButtonBase
-          {...other}
           {...getStyles('root')}
           classNames={mergeClassNames(classNames, {
             stateLayer: getStyles('stateLayer').className,
           })}
-          ref={forwardedRef}
           focusRing="inward"
+          ref={forwardedRef}
+          {...other}
         >
           {renderItem()}
         </ButtonBase>

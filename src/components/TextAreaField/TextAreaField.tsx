@@ -27,7 +27,6 @@ export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
       variant,
       defaultValue,
       value: valueProp,
-      onValueChange,
       clearable: clearableProp,
       clearIcon = <SvgIcon icon={iconXMark} />,
       onChange,
@@ -54,7 +53,6 @@ export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
       controlled: valueProp,
       default: defaultValue ?? '',
       name: COMPONENT_NAME,
-      onValueChange,
     });
 
     const populated = other.populated ?? !!value;

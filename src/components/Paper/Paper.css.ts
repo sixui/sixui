@@ -8,8 +8,8 @@ import type {
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { elevationLevelPreset } from '../Elevation/Elevation.css';
 import { themeTokens } from '../ThemeProvider';
+import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
 export type IPaperStyleName = keyof typeof paperTheme;
 

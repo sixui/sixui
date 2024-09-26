@@ -39,7 +39,7 @@ export const BasicTemplate = componentFactory<IBasicTemplateFactory>(
     });
 
     return (
-      <Box {...other} {...getStyles('root')} ref={forwardedRef}>
+      <Box {...getStyles('root')} ref={forwardedRef} {...other}>
         {children}
       </Box>
     );

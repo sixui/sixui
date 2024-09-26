@@ -269,14 +269,16 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
 
         {transitionStatus.isMounted && (
           <Portal target={target} {...slotProps?.portal}>
-            <div {...getStyles('root')}>
+            <div {...getStyles('root')} {...(forwardProps ? undefined : other)}>
               {withScrim && (
                 <Motion
                   status={transitionStatus.status}
                   pattern="fade"
+                  as={Scrim}
                   {...slotProps?.scrimMotion}
+                  {...slotProps?.scrim}
                 >
-                  <Scrim {...slotProps?.scrim} />
+                  {/* <Scrim {...slotProps?.scrim} /> */}
                 </Motion>
               )}
 

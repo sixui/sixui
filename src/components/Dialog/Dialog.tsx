@@ -1,6 +1,6 @@
 import type { IDialogThemeFactory } from './Dialog.css';
 import type { IDialogFactory } from './Dialog.types';
-import { componentFactory } from '~/utils/component/componentFactory';
+import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { DialogContent, IDialogContentOwnProps } from '../DialogContent';
@@ -9,7 +9,7 @@ import { dialogTheme } from './Dialog.css';
 
 const COMPONENT_NAME = 'Dialog';
 
-export const Dialog = componentFactory<IDialogFactory>(
+export const Dialog = polymorphicComponentFactory<IDialogFactory>(
   (props, forwardedRef) => {
     const {
       classNames,
@@ -19,6 +19,7 @@ export const Dialog = componentFactory<IDialogFactory>(
       variant,
       modal,
       children,
+      slotProps,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -38,11 +39,14 @@ export const Dialog = componentFactory<IDialogFactory>(
         contentRenderer={({ close, forwardedProps }) => (
           <DialogContent
             onClose={close}
+            ref={forwardedRef}
             {...(forwardedProps as IDialogContentOwnProps)}
+            {...slotProps?.dialogContent}
           >
             {children}
           </DialogContent>
         )}
+        slotProps={slotProps}
         placement={{ side: 'top' }}
         closeEvents={{
           focusOut: false,
@@ -58,8 +62,6 @@ export const Dialog = componentFactory<IDialogFactory>(
         }}
         forwardProps
         lockScroll
-        ref={forwardedRef}
-        // FIXME: tjrs other à la fin dans les autres components
         {...other}
       />
     );

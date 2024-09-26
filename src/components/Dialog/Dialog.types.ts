@@ -1,15 +1,25 @@
 import type { IOmit } from '~/helpers/types';
-import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type { IDialogContentOwnProps } from '../DialogContent';
+import type {
+  IDialogContentOwnProps,
+  IDialogContentProps,
+} from '../DialogContent';
 import type { IPopoverBaseOwnProps } from '../PopoverBase';
 import type { dialogTheme, IDialogThemeFactory } from './Dialog.css';
+import { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 
 export interface IDialogOwnProps
   extends IOmit<IPopoverBaseOwnProps, 'children' | 'contentRenderer'>,
     IOmit<IDialogContentOwnProps, 'onClose'> {
   modal?: boolean;
+
+  /**
+   * Contains the props for all slots within the component.
+   */
+  slotProps?: IPopoverBaseOwnProps['slotProps'] & {
+    dialogContent?: Partial<IDialogContentProps>;
+  };
 }
 
 export interface IDialogProps
@@ -17,8 +27,9 @@ export interface IDialogProps
     IComponentThemeProps<IDialogThemeFactory>,
     IDialogOwnProps {}
 
-export type IDialogFactory = IComponentFactory<{
+export type IDialogFactory = IPolymorphicComponentFactory<{
   props: IDialogProps;
-  ref: HTMLDivElement;
+  defaultRef: HTMLDivElement;
+  defaultRoot: 'div';
   theme: typeof dialogTheme;
 }>;

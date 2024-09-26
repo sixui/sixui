@@ -64,7 +64,6 @@ export const Avatar = polymorphicComponentFactory<IAvatarFactory>(
 
     return (
       <Paper
-        {...other}
         {...getStyles('root', {
           style: randomColorHsl
             ? {
@@ -75,6 +74,7 @@ export const Avatar = polymorphicComponentFactory<IAvatarFactory>(
         })}
         classNames={classNames}
         ref={forwardedRef}
+        {...other}
       >
         {hasImageNotFailing ? (
           <img

@@ -52,12 +52,12 @@ export const Flex = polymorphicComponentFactory<IFlexFactory>(
 
     return (
       <Box
-        {...other}
         {...getStyles('root', {
           className: sprinkles.className,
           style: sprinkles.style,
         })}
         ref={forwardedRef}
+        {...other}
       >
         {divider
           ? filteredChildren.reduce((acc, child, index) => {

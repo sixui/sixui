@@ -21,8 +21,8 @@ import { CircularProgressIndicator } from '../CircularProgressIndicator';
 import { LabeledContext } from '../Labeled/Labeled.context';
 import { PaperBase } from '../PaperBase';
 import { StateLayer } from '../StateLayer';
-import { fieldBaseTheme, fieldBaseThemeVariants } from './FieldBase.css';
 import { getLabelKeyframes } from './getLabelKeyframes';
+import { fieldBaseTheme, fieldBaseThemeVariants } from './FieldBase.css';
 
 const COMPONENT_NAME = 'FieldBase';
 

@@ -26,7 +26,7 @@ export const TouchTarget = componentFactory<ITouchTargetFactory>(
       variant,
     });
 
-    return <Box {...other} {...getStyles('root')} ref={forwardedRef} />;
+    return <Box {...getStyles('root')} ref={forwardedRef} {...other} />;
   },
 );
 

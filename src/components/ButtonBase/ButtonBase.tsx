@@ -86,13 +86,13 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
 
     return (
       <Paper
-        {...mergeProps(stateLayer.interactionsContext.triggerProps, other)}
         {...getStyles('root')}
         {...attributes}
         ref={handleRef}
         as={rootElement}
         classNames={classNames}
         interactions={stateLayer.interactionsContext.state}
+        {...mergeProps(stateLayer.interactionsContext.triggerProps, other)}
       >
         {!disabledOrReadOnly && (
           <TouchTarget

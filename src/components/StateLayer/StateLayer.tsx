@@ -48,7 +48,7 @@ export const StateLayer = componentFactory<IStateLayerFactory>(
     const handleRef = useMergeRefs([forwardedRef, context?.surfaceRef]);
 
     return (
-      <Box {...other} {...getStyles('root')} aria-hidden ref={handleRef} />
+      <Box {...getStyles('root')} aria-hidden ref={handleRef} {...other} />
     );
   },
 );

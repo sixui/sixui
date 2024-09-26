@@ -5,7 +5,7 @@ import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CSSTransition } from 'react-transition-group';
 
-import type { IOmit, IPlacement } from '~/helpers/types';
+import type { IOmit } from '~/helpers/types';
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IMotionProps } from './Motion.types';
 import { useToggle } from '~/hooks/useToggle';
@@ -47,28 +47,6 @@ const MotionDemo: React.FC<IMotionDemoProps> = (props) => {
   );
 };
 
-const MotionPositionedDemo: React.FC<IMotionDemoProps> = (props) => {
-  const [transitioning, toggle] = useToggle([false, true]);
-
-  return (
-    <div style={{ position: 'relative' }}>
-      <IconButton
-        icon={<FontAwesomeIcon icon={faStar} />}
-        selectedIcon={<FontAwesomeIcon icon={faStarSolid} />}
-        toggle
-        selected={transitioning}
-        onClick={() => toggle()}
-      />
-
-      <MotionDemo
-        {...props}
-        transitioning={transitioning}
-        onClose={() => toggle(false)}
-      />
-    </div>
-  );
-};
-
 const MotionUnpositionedDemo: React.FC<IMotionDemoProps> = (props) => {
   const [transitioning, toggle] = useToggle([false, true]);
 
@@ -103,23 +81,14 @@ const MotionUnpositionedDemo: React.FC<IMotionDemoProps> = (props) => {
 };
 
 const meta = {
-  component: MotionPositionedDemo,
-} satisfies Meta<typeof MotionPositionedDemo>;
+  component: MotionDemo,
+} satisfies Meta<typeof MotionDemo>;
 
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   children: 'Motion',
 } satisfies Partial<IMotionProps>;
-
-const alignments: Array<IComponentPresentation<IMotionDemoProps>> = [
-  {
-    legend: 'Start',
-    props: { placement: { alignment: 'start' } as IPlacement },
-  },
-  { legend: 'Center' },
-  { legend: 'End', props: { placement: { alignment: 'end' } as IPlacement } },
-];
 
 const sides: Array<IComponentPresentation<IMotionDemoProps>> = [
   { legend: 'Top', props: { placement: { side: 'top' } } },
@@ -128,81 +97,11 @@ const sides: Array<IComponentPresentation<IMotionDemoProps>> = [
   { legend: 'Bottom', props: { placement: { side: 'bottom' } } },
 ];
 
-const MotionPositionedDemoShowcase =
-  makeComponentShowcase(MotionPositionedDemo);
-
-export const Positioned: IStory = {
-  render: (props) => (
-    <MotionPositionedDemoShowcase
-      props={props}
-      cols={alignments}
-      rows={sides}
-      propsCombinationStrategy="merge"
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    positioned: true,
-    pattern: 'enterExit',
-  },
-};
-
-export const PositionedFromCorner: IStory = {
-  render: (props) => (
-    <MotionPositionedDemoShowcase
-      props={props}
-      cols={alignments}
-      rows={sides}
-      propsCombinationStrategy="merge"
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    positioned: true,
-    origin: 'corner',
-    pattern: 'enterExit',
-  },
-};
-
-export const PositionedFromEdge: IStory = {
-  render: (props) => (
-    <MotionPositionedDemoShowcase
-      props={props}
-      cols={alignments}
-      rows={sides}
-      propsCombinationStrategy="merge"
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    positioned: true,
-    origin: 'edge',
-    pattern: 'enterExit',
-  },
-};
-
-export const PositionedFromOffScreen: IStory = {
-  render: (props) => (
-    <MotionPositionedDemoShowcase
-      props={props}
-      cols={alignments}
-      rows={sides}
-      propsCombinationStrategy="merge"
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    positioned: true,
-    origin: 'edge',
-    pattern: 'enterExitOffScreen',
-  },
-};
-
 const MotionUnpositionedDemoShowcase = makeComponentShowcase(
   MotionUnpositionedDemo,
 );
 
-export const Unpositioned: IStory = {
+export const EnterExit: IStory = {
   render: (props) => <MotionUnpositionedDemoShowcase props={props} />,
   args: {
     ...defaultArgs,
@@ -210,7 +109,7 @@ export const Unpositioned: IStory = {
   },
 };
 
-export const UnpositionedFromOffScreen: IStory = {
+export const EnterExitOffScreen: IStory = {
   render: (props) => (
     <MotionUnpositionedDemoShowcase props={props} rows={sides} />
   ),

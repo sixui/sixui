@@ -1,10 +1,10 @@
 import type { TransitionStatus } from 'react-transition-group';
 
 import type { IOrientation, IPlacement } from '~/helpers/types';
-import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import { IMotionThemeFactory, motionTheme } from './Motion.css';
+import type { IMotionThemeFactory, motionTheme } from './Motion.css';
 
 export type IMotionStatus = 'initial' | 'unmounted' | 'open' | 'close';
 
@@ -62,12 +62,6 @@ export interface IMotionOwnProps {
    * @defaultValue 'enterExit'
    */
   pattern?: IMotionPattern;
-
-  /**
-   * Whether the element should be positioned relative to its nearest positioned
-   * ancestor.
-   */
-  positioned?: boolean;
 }
 
 export interface IMotionProps
@@ -75,8 +69,9 @@ export interface IMotionProps
     IComponentThemeProps<IMotionThemeFactory>,
     IMotionOwnProps {}
 
-export type IMotionFactory = IComponentFactory<{
+export type IMotionFactory = IPolymorphicComponentFactory<{
   props: IMotionProps;
-  ref: HTMLDivElement;
+  defaultRef: HTMLDivElement;
+  defaultRoot: 'div';
   theme: typeof motionTheme;
 }>;

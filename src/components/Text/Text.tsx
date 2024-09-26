@@ -79,7 +79,6 @@ export const Text = polymorphicComponentFactory<ITextFactory>(
 
     return (
       <Box
-        {...other}
         as={rootElement}
         {...getStyles('root', {
           style: lineClamp
@@ -89,6 +88,7 @@ export const Text = polymorphicComponentFactory<ITextFactory>(
             : undefined,
         })}
         ref={forwardedRef}
+        {...other}
       />
     );
   },
