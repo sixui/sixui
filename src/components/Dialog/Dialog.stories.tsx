@@ -85,6 +85,7 @@ const FormDialogDemo: React.FC<IDialogProps> = (props) => {
         opened={opened}
         onClose={close}
         headline="What's your name?"
+        size="md"
         actions={({ close }) => (
           <>
             <Button variant="text" onClick={close}>
