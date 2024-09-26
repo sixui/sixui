@@ -46,7 +46,12 @@ export const List = componentFactory<IListFactory>((props, forwardedRef) => {
 
   return (
     <ListContext.Provider value={{ noFocusRing }}>
-      <Paper {...getStyles('root')} ref={forwardedRef} {...other}>
+      <Paper
+        {...getStyles('root')}
+        classNames={classNames}
+        ref={forwardedRef}
+        {...other}
+      >
         <Flex {...getStyles('inner')} direction="column">
           {header && <header {...getStyles('header')}>{header}</header>}
           <Flex

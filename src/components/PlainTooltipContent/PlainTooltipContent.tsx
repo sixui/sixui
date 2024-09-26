@@ -1,35 +1,48 @@
-import { forwardRef } from 'react';
+import type { IPlainTooltipContentThemeFactory } from './PlainTooltipContent.css';
+import type { IPlainTooltipContentFactory } from './PlainTooltipContent.types';
+import { componentFactory } from '~/utils/component/componentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { Paper } from '../Paper';
+import { plainTooltipContentTheme } from './PlainTooltipContent.css';
 
-import type { IPlainTooltipContentProps } from './PlainTooltipContent.types';
-import { useStyles } from '~/hooks/useStyles';
-import { Base } from '../Base';
-import { plainTooltipContentStyles } from './PlainTooltipContent.styles';
-import { plainTooltipContentTheme } from './PlainTooltipContent.stylex';
+const COMPONENT_NAME = 'PlainTooltipContent';
 
-export const PlainTooltipContent = forwardRef<
-  HTMLDivElement,
-  IPlainTooltipContentProps
->(function PlainTooltipContent(props, forwardedRef) {
-  const { styles, sx, supportingText, renderCursor, ...other } = props;
+export const PlainTooltipContent =
+  componentFactory<IPlainTooltipContentFactory>((props, forwardedRef) => {
+    const {
+      classNames,
+      className,
+      styles,
+      style,
+      variant,
+      supportingText,
+      renderCursor,
+      ...other
+    } = useProps({ componentName: COMPONENT_NAME, props });
 
-  const { combineStyles, getStyles, globalStyles } = useStyles({
-    componentName: 'PlainTooltipContent',
-    styles: [plainTooltipContentStyles, styles],
+    const { getStyles } = useComponentTheme<IPlainTooltipContentThemeFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles,
+      style,
+      theme: plainTooltipContentTheme,
+      variant,
+    });
+
+    return (
+      <Paper
+        {...getStyles('root')}
+        classNames={classNames}
+        ref={forwardedRef}
+        {...other}
+      >
+        {renderCursor?.(getStyles('cursor'))}
+        <div {...getStyles('supportingText')}>{supportingText}</div>
+      </Paper>
+    );
   });
 
-  return (
-    <Base
-      {...other}
-      sx={[
-        plainTooltipContentTheme,
-        globalStyles,
-        ...combineStyles('host'),
-        sx,
-      ]}
-      ref={forwardedRef}
-    >
-      {renderCursor ? renderCursor(getStyles('cursor')) : null}
-      <div {...getStyles('supportingText')}>{supportingText}</div>
-    </Base>
-  );
-});
+PlainTooltipContent.theme = plainTooltipContentTheme;
+PlainTooltipContent.displayName = `@sixui/${COMPONENT_NAME}`;

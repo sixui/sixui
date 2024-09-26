@@ -46,7 +46,6 @@ export const Dialog = polymorphicComponentFactory<IDialogFactory>(
           </DialogContent>
         )}
         slotProps={slotProps}
-        placement={{ side: 'top' }}
         closeEvents={{ focusOut: false }}
         trapFocus
         withScrim

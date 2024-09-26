@@ -18,6 +18,8 @@ export interface IDialogOwnProps
   slotProps?: IPopoverBaseOwnProps['slotProps'] & {
     dialogContent?: Partial<IDialogContentProps>;
   };
+
+  children?: React.ReactNode;
 }
 
 export interface IDialogProps

@@ -23,6 +23,7 @@ export interface IAnchoredOwnProps {
   invisible?: boolean;
   offsetX?: string | number;
   offsetY?: string | number;
+  children: React.ReactNode;
 }
 
 export interface IAnchoredProps

@@ -6,7 +6,6 @@ import type { IModifiers } from '~/utils/getDataAttributes';
 import type { IBoxSprinkles } from './Box.css';
 
 export interface IBoxProps extends IBoxSprinkles {
-  children?: React.ReactNode;
   className?: Parameters<typeof cx>[0];
   style?: React.CSSProperties;
   interactions?: IInteractions;

@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { faBolt, faCloud, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IPlainTooltipProps } from './PlainTooltip.types';
-import { ComponentShowcase } from '../ComponentShowcase';
+import { makeComponentShowcase } from '../ComponentShowcase';
 import { IconButton } from '../IconButton';
 import { PlainTooltip } from './PlainTooltip';
 
@@ -27,20 +27,20 @@ const cols: Array<IComponentPresentation<IPlainTooltipProps>> = [
   },
   {
     props: {
-      children: <IconButton icon={<FontAwesomeIcon icon={faBolt} />} />,
+      children: <IconButton icon={<FontAwesomeIcon icon={faStar} />} />,
     },
   },
   {
     props: {
-      children: <IconButton icon={<FontAwesomeIcon icon={faCloud} />} />,
+      children: <IconButton icon={<FontAwesomeIcon icon={faStar} />} />,
     },
   },
 ];
 
+const PlainTooltipShowcase = makeComponentShowcase(PlainTooltip);
+
 export const Basic: IStory = {
-  render: (props) => (
-    <ComponentShowcase component={PlainTooltip} props={props} cols={cols} />
-  ),
+  render: (props) => <PlainTooltipShowcase props={props} cols={cols} />,
   args: defaultArgs as IPlainTooltipProps,
 };
 
