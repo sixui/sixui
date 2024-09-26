@@ -43,7 +43,7 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const themeContextValue: IThemeContextValue = useMemo(
     () => ({
-      rootRef,
+      getRoot: () => rootRef.current,
       theme: mergedTheme,
     }),
     [mergedTheme],

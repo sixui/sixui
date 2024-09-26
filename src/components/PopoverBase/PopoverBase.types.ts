@@ -16,7 +16,7 @@ import type {
   IForwardableProps,
   IRendererWithForwardedProps,
 } from '~/helpers/react/forwardablePropsTypes';
-import type { IOmit, IPlacement } from '~/helpers/types';
+import type { IPlacement } from '~/helpers/types';
 import type { IPopoverCursorType } from '~/hooks/usePopoverCursor';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
@@ -69,145 +69,144 @@ export type IPopoverMiddlewares = {
 };
 
 export type IPopoverBaseOwnProps<TForwardedProps extends object = object> =
-  Pick<IPortalProps, 'target'> &
-    IForwardableProps & {
-      /**
-       * The content renderer for the popover.
-       */
-      contentRenderer: IRendererWithForwardedProps<
-        IPopoverBaseContentRendererProps,
-        TForwardedProps
-      >;
+  IForwardableProps & {
+    /**
+     * The content renderer for the popover.
+     */
+    contentRenderer: IRendererWithForwardedProps<
+      IPopoverBaseContentRendererProps,
+      TForwardedProps
+    >;
 
-      /**
-       * The trigger element for the popover.
-       */
-      children?:
-        | ((props: IPopoverBaseTriggerRendererProps) => React.ReactNode)
-        | React.ReactNode;
+    /**
+     * The trigger element for the popover.
+     */
+    children?:
+      | ((props: IPopoverBaseTriggerRendererProps) => React.ReactNode)
+      | React.ReactNode;
 
-      /**
-       * The placement of the popover relative to the reference element.
-       * @defaultValue `top`
-       * @see https://floating-ui.com/docs/usefloating#placement
-       */
-      placement?: IPlacement;
+    /**
+     * The placement of the popover relative to the reference element.
+     * @defaultValue `top`
+     * @see https://floating-ui.com/docs/usefloating#placement
+     */
+    placement?: IPlacement;
 
-      /**
-       * Controls the open state of the popover.
-       */
-      opened?: boolean;
+    /**
+     * Controls the open state of the popover.
+     */
+    opened?: boolean;
 
-      /**
-       * The initial opened state of the popover.
-       */
-      defaultOpened?: boolean;
+    /**
+     * The initial opened state of the popover.
+     */
+    defaultOpened?: boolean;
 
-      /**
-       * The type of cursor to use for the popover to point to the trigger element.
-       */
-      cursor?: IPopoverCursorType;
+    /**
+     * The type of cursor to use for the popover to point to the trigger element.
+     */
+    cursor?: IPopoverCursorType;
 
-      /**
-       * Called when the popover is closed.
-       */
-      onOpen?: () => void;
+    /**
+     * Called when the popover is closed.
+     */
+    onOpen?: () => void;
 
-      /**
-       * Called when the popover is closed.
-       */
-      onClose?: () => void;
+    /**
+     * Called when the popover is closed.
+     */
+    onClose?: () => void;
 
-      /**
-       * If set, the popover will not be rendered.
-       */
-      disabled?: boolean;
+    /**
+     * If set, the popover will not be rendered.
+     */
+    disabled?: boolean;
 
-      /**
-       * The accessible role of the popover.
-       */
-      role?: UseRoleProps['role'];
+    /**
+     * The accessible role of the popover.
+     */
+    role?: UseRoleProps['role'];
 
-      /**
-       * If set, the popover will trap focus within the popover when it is
-       * open.
-       * @see https://floating-ui.com/docs/floatingfocusmanager
-       */
-      trapFocus?: boolean;
+    /**
+     * If set, the popover will trap focus within the popover when it is
+     * open.
+     * @see https://floating-ui.com/docs/floatingfocusmanager
+     */
+    trapFocus?: boolean;
 
-      /**
-       * If set, the popover will match the width of the trigger element.
-       */
-      matchTargetWidth?: boolean;
+    /**
+     * If set, the popover will match the width of the trigger element.
+     */
+    matchTargetWidth?: boolean;
 
-      /**
-       * If set, a temporary overlay will be rendered behind the popover to make
-       * it more prominent.
-       */
-      withScrim?: boolean;
+    /**
+     * If set, a temporary overlay will be rendered behind the popover to make
+     * it more prominent.
+     */
+    withScrim?: boolean;
 
-      /**
-       * Contains the props for all slots within the component.
-       */
-      slotProps?: {
-        floatingFocusManager?: Partial<FloatingFocusManagerProps>;
-        scrimMotion?: Partial<IMotionProps>;
-        floatingMotion?: Partial<IMotionProps>;
-        scrim?: Partial<IScrimProps>;
-        removeScroll?: Partial<IRemoveScrollSelfProps>;
-        portal?: Partial<IPortalProps>;
-      };
-
-      /**
-       * Whether the element should be positioned relative to its nearest
-       * positioned ancestor.
-       */
-      positioned?: boolean;
-
-      /**
-       * Floating UI middlewares to apply th change the position of the floating
-       * element.
-       * @defaultValue `{ flip: true, shift: true, size: true }`
-       * @see https://floating-ui.com/docs/usefloating#middleware
-       */
-      middlewares?: IPopoverMiddlewares;
-
-      /**
-       * Additional middlewares to apply to the floating element.
-       * @see https://floating-ui.com/docs/usefloating#middleware
-       */
-      additionalMiddlewares?: Array<Middleware | null | undefined | false>;
-
-      additionalInteractions?: Array<ElementProps>;
-
-      /**
-       * The events that will open the popover.
-       * @defaultValue `{ hover: false, focus: false, click: false, touch: false }`
-       */
-      openEvents?: IPopoverOpenEvents;
-
-      /**
-       * The events that will close the popover.
-       * @defaultValue `{ clickOutside: true, focusOut: true, escapeKey: true }`
-       */
-      closeEvents?: IPopoverCloseEvents;
-
-      /**
-       * Whether the <body> is prevented from scrolling while the overlay is
-       * rendered.
-       */
-      lockScroll?: boolean;
-
-      /**
-       * Modal popovers interrupt interaction with the rest of the page being
-       * inert, while non-modal popovers allow interaction with the rest of
-       * the page.
-       */
-      modal?: boolean;
+    /**
+     * Contains the props for all slots within the component.
+     */
+    slotProps?: {
+      floatingFocusManager?: Partial<FloatingFocusManagerProps>;
+      scrimMotion?: Partial<IMotionProps>;
+      floatingMotion?: Partial<IMotionProps>;
+      scrim?: Partial<IScrimProps>;
+      removeScroll?: Partial<IRemoveScrollSelfProps>;
+      portal?: Partial<IPortalProps>;
     };
 
+    /**
+     * Whether the element should be positioned relative to its nearest
+     * positioned ancestor.
+     */
+    positioned?: boolean;
+
+    /**
+     * Floating UI middlewares to apply th change the position of the floating
+     * element.
+     * @defaultValue `{ flip: true, shift: true, size: true }`
+     * @see https://floating-ui.com/docs/usefloating#middleware
+     */
+    middlewares?: IPopoverMiddlewares;
+
+    /**
+     * Additional middlewares to apply to the floating element.
+     * @see https://floating-ui.com/docs/usefloating#middleware
+     */
+    additionalMiddlewares?: Array<Middleware | null | undefined | false>;
+
+    additionalInteractions?: Array<ElementProps>;
+
+    /**
+     * The events that will open the popover.
+     * @defaultValue `{ hover: false, focus: false, click: false, touch: false }`
+     */
+    openEvents?: IPopoverOpenEvents;
+
+    /**
+     * The events that will close the popover.
+     * @defaultValue `{ clickOutside: true, focusOut: true, escapeKey: true }`
+     */
+    closeEvents?: IPopoverCloseEvents;
+
+    /**
+     * Whether the <body> is prevented from scrolling while the overlay is
+     * rendered.
+     */
+    lockScroll?: boolean;
+
+    /**
+     * Modal popovers interrupt interaction with the rest of the page being
+     * inert, while non-modal popovers allow interaction with the rest of
+     * the page.
+     */
+    modal?: boolean;
+  };
+
 export interface IPopoverBaseProps
-  extends IOmit<IBoxProps, 'children'>,
+  extends IBoxProps,
     IComponentThemeProps<IPopoverBaseThemeFactory>,
     IPopoverBaseOwnProps {}
 

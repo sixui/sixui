@@ -69,7 +69,6 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       styles,
       style,
       variant,
-      target,
       contentRenderer,
       children,
       placement = { side: 'top' },
@@ -274,7 +273,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
         {triggerElement}
 
         {transitionStatus.isMounted && (
-          <Portal target={target} {...slotProps?.portal}>
+          <Portal {...slotProps?.portal}>
             <div {...getStyles('root')} {...(forwardProps ? undefined : other)}>
               {withScrim && (
                 <Motion

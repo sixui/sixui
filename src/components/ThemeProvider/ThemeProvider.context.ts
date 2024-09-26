@@ -3,7 +3,7 @@ import { createContext, useContext } from 'react';
 import type { ITheme2 } from './theme.types';
 
 export type IThemeContextValue = {
-  rootRef: React.RefObject<HTMLDivElement>;
+  getRoot: () => HTMLDivElement | null;
   theme: ITheme2;
 };
 
