@@ -18,7 +18,8 @@ const shakeKeyframes = keyframes({
 
 const classNames = createStyles({
   root: {
-    position: 'relative',
+    position: 'fixed',
+    inset: 0,
     zIndex: themeTokens.zIndex.popover,
   },
   floating: ({ root }) => ({

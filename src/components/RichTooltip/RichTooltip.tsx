@@ -1,7 +1,6 @@
 import type { IRichTooltipContentOwnProps } from '../RichTooltipContent';
 import type { IRichTooltipThemeFactory } from './RichTooltip.css';
 import type { IRichTooltipFactory } from './RichTooltip.types';
-import { isFunction } from '~/helpers/isFunction';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { PopoverBase } from '../PopoverBase';
@@ -61,7 +60,9 @@ export const RichTooltip = componentFactory<IRichTooltipFactory>(
           focus: !persistent,
         }}
         positioned
+        trapFocus={persistent}
         withScrim={persistent}
+        lockScroll={persistent}
         closeEvents={{
           clickOutside: !persistent,
           focusOut: !persistent,
@@ -71,7 +72,8 @@ export const RichTooltip = componentFactory<IRichTooltipFactory>(
       >
         {(renderProps) => (
           <span {...renderProps.getProps()} ref={renderProps.setRef}>
-            {isFunction(children) ? children(renderProps) : children}
+            {/* {isFunction(children) ? children(renderProps) : children} */}
+            XX
           </span>
         )}
       </PopoverBase>
