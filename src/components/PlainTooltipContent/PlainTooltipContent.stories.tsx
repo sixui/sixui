@@ -17,6 +17,7 @@ const PlainTooltipContentShowcase = makeComponentShowcase(PlainTooltipContent);
 const defaultArgs = {
   supportingText:
     'Grant value is calculated using the closing stock price from the day before the grant date. Amounts do not reflect tax withholding.',
+  corner: '$none',
 } satisfies Partial<IPlainTooltipContentProps>;
 
 export const Standard: IStory = {
