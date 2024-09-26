@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IRichTooltipContentProps } from './RichTooltipContent.types';
 import { Button } from '../Button';
+import { makeComponentShowcase } from '../ComponentShowcase';
 import { RichTooltipContent } from './RichTooltipContent';
 
 // https://m3.material.io/components/richtooltips/overview
@@ -12,6 +13,8 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
+const RichTooltipContentShowcase = makeComponentShowcase(RichTooltipContent);
+
 const defaultArgs = {
   supportingText:
     "Rich tooltips bring attention to a particular element of feature that warrants the user's focus.",
@@ -19,6 +22,22 @@ const defaultArgs = {
 
 export const Basic: IStory = {
   render: (props) => <RichTooltipContent {...props} />,
+  args: defaultArgs,
+};
+
+export const Scales: IStory = {
+  render: (props) => (
+    <RichTooltipContentShowcase
+      props={props}
+      cols={[
+        { legend: 'Extra small', props: { scale: 'xs' } },
+        { legend: 'Small', props: { scale: 'sm' } },
+        { legend: 'Medium', props: { scale: 'md' } },
+        { legend: 'Large', props: { scale: 'lg' } },
+        { legend: 'Extra large', props: { scale: 'xl' } },
+      ]}
+    />
+  ),
   args: defaultArgs,
 };
 

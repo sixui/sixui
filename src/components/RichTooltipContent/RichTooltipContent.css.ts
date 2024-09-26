@@ -1,6 +1,8 @@
 import { createTheme } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
@@ -11,21 +13,30 @@ import { PaperBase } from '../PaperBase';
 import { themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
+type IModifier = 'with-actions';
+
 const [tokensClassName, tokens] = createTheme({
   container: {
-    color: themeTokens.colorScheme.inverseSurface,
-    shape: px(themeTokens.shape.corner.xs),
-    maxWidth: px(215),
-    minHeight: px(24),
-    topSpace: px(space(2)),
-    bottomSpace: px(space(2)),
-    leadingSpace: px(space(2)),
-    trailingSpace: px(space(2)),
-    elevation: elevationLevelPreset[0],
+    color: themeTokens.colorScheme.surfaceContainer,
+    shape: themeTokens.shape.corner.md,
+    maxWidth: px(315),
+    elevation: elevationLevelPreset[2],
+    topSpace: px(space(3)),
+    bottomSpace: {
+      normal: px(space(3)),
+      withActions: px(space(1)),
+    },
+    leadingSpace: px(space(4)),
+    trailingSpace: px(space(4)),
+    actionsBottomSpace: px(space(2)),
+  },
+  subhead: {
+    color: themeTokens.colorScheme.onSurfaceVariant,
+    typography: themeTokens.typeScale.title.sm,
   },
   supportingText: {
-    color: themeTokens.colorScheme.inverseOnSurface,
-    typography: themeTokens.typeScale.body.sm,
+    color: themeTokens.colorScheme.onSurfaceVariant,
+    typography: themeTokens.typeScale.body.md,
   },
 });
 
@@ -52,29 +63,46 @@ const classNames = createStyles({
     display: 'flex',
     alignItems: 'center',
     width: 'max-content',
-    paddingTop: tokens.container.topSpace,
-    paddingBottom: tokens.container.bottomSpace,
     paddingLeft: tokens.container.leadingSpace,
     paddingRight: tokens.container.trailingSpace,
     maxWidth: tokens.container.maxWidth,
-    minHeight: tokens.container.minHeight,
+  },
+  content: ({ root }) => ({
+    paddingTop: tokens.container.topSpace,
+    paddingBottom: tokens.container.bottomSpace.normal,
+
+    selectors: {
+      [getModifierSelector<IModifier>('with-actions', root)]: {
+        paddingBottom: tokens.container.bottomSpace.withActions,
+      },
+    },
+  }),
+  subhead: {
+    color: tokens.subhead.color,
+    ...getTypographyStyles(tokens.subhead.typography),
   },
   supportingText: {
     color: tokens.supportingText.color,
     ...getTypographyStyles(tokens.supportingText.typography),
+  },
+  actions: {
+    paddingBottom: tokens.container.actionsBottomSpace,
+    marginLeft: calc.negate(px(space(3))),
+    marginRight: calc.negate(px(space(3))),
   },
   cursor: {
     fill: tokens.container.color,
   },
 });
 
-export type IPlainTooltipContentThemeFactory = IComponentThemeFactory<{
+export type IRichTooltipContentThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
+  modifier: IModifier;
 }>;
 
-export const plainTooltipContentTheme =
-  componentThemeFactory<IPlainTooltipContentThemeFactory>({
+export const richTooltipContentTheme =
+  componentThemeFactory<IRichTooltipContentThemeFactory>({
     classNames,
     tokensClassName,
     tokens,
