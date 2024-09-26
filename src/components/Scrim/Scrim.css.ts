@@ -8,12 +8,13 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { themeTokens } from '../ThemeProvider';
 
-type IModifier = 'fixed' | 'center';
+type IModifier = 'fixed' | 'center' | 'blurred';
 
 const [tokensClassName, tokens] = createTheme({
   container: {
     shape: px(shapeTokens.corner$none),
     filter: 'none',
+    blurredFilter: 'blur(2px)',
     color: `color-mix(in srgb, ${themeTokens.colorScheme.scrim} 50%, transparent)`,
   },
 });
@@ -33,6 +34,9 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>('center')]: {
         display: 'grid',
         placeItems: 'center',
+      },
+      [getModifierSelector<IModifier>('blurred')]: {
+        backdropFilter: tokens.container.blurredFilter,
       },
     },
   },

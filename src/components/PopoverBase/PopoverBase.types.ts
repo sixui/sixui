@@ -197,6 +197,13 @@ export type IPopoverBaseOwnProps<TForwardedProps extends object = object> =
        * rendered.
        */
       lockScroll?: boolean;
+
+      /**
+       * Modal popovers interrupt interaction with the rest of the page being
+       * inert, while non-modal popovers allow interaction with the rest of
+       * the page.
+       */
+      modal?: boolean;
     };
 
 export interface IPopoverBaseProps

@@ -12,8 +12,6 @@ import { IPolymorphicComponentFactory } from '~/utils/component/polymorphicCompo
 export interface IDialogOwnProps
   extends IOmit<IPopoverBaseOwnProps, 'children' | 'contentRenderer'>,
     IOmit<IDialogContentOwnProps, 'onClose'> {
-  modal?: boolean;
-
   /**
    * Contains the props for all slots within the component.
    */

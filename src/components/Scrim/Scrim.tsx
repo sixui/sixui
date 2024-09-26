@@ -20,6 +20,7 @@ export const Scrim = polymorphicComponentFactory<IScrimFactory>(
       fixed,
       center,
       disabled,
+      blurred,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -34,6 +35,7 @@ export const Scrim = polymorphicComponentFactory<IScrimFactory>(
       modifiers: {
         fixed,
         center,
+        blurred,
       },
     });
 

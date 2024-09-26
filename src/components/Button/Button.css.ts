@@ -18,10 +18,10 @@ import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { elevationLevelPreset } from '../Elevation/Elevation.css';
 import { PaperBase } from '../PaperBase';
 import { StateLayer } from '../StateLayer';
 import { themeTokens } from '../ThemeProvider';
+import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
 type IModifier =
   | IInteraction
@@ -123,12 +123,8 @@ const defaultTokens = {
 const tokens = createThemeContract(defaultTokens);
 
 const halfSpinKeyframes = keyframes({
-  '0%': {
-    transform: 'rotate(0deg)',
-  },
-  '100%': {
-    transform: 'rotate(180deg)',
-  },
+  '0%': { transform: 'rotate(0deg)' },
+  '100%': { transform: 'rotate(180deg)' },
 });
 
 const classNames = createStyles({

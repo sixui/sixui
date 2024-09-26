@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { arrow, flip, offset, shift } from '@floating-ui/core';
 import {
   autoUpdate,
@@ -92,6 +92,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       openEvents: openEventsProp,
       closeEvents: closeEventsProp,
       lockScroll,
+      modal,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -111,6 +112,8 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
     };
     const transitionOrigin = cursorType ? 'custom' : 'corner';
 
+    const [isShaking, setIsShaking] = useState(false);
+    const shakingTimeout = useRef<NodeJS.Timeout>();
     const { getStyles } = useComponentTheme<IPopoverBaseThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
@@ -119,6 +122,9 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       style,
       theme: popoverBaseTheme,
       variant,
+      modifiers: {
+        shake: isShaking,
+      },
     });
 
     const [opened, setOpened] = useControlledValue({
@@ -214,8 +220,8 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       visibleOnly: true,
     });
     const dismiss = useDismiss(floating.context, {
-      outsidePress: !!closeEvents.clickOutside,
-      escapeKey: closeEvents.escapeKey,
+      outsidePress: !modal && !!closeEvents.clickOutside,
+      escapeKey: !modal && closeEvents.escapeKey,
     });
     const role = useRole(floating.context, { role: roleProp });
     const interactions = useInteractions([
@@ -275,11 +281,20 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
                   status={transitionStatus.status}
                   pattern="fade"
                   as={Scrim}
+                  onClick={() => {
+                    if (modal) {
+                      setIsShaking(true);
+                      clearTimeout(shakingTimeout.current);
+                      shakingTimeout.current = setTimeout(
+                        () => setIsShaking(false),
+                        300,
+                      );
+                    }
+                  }}
+                  blurred={modal}
                   {...slotProps?.scrimMotion}
                   {...slotProps?.scrim}
-                >
-                  {/* <Scrim {...slotProps?.scrim} /> */}
-                </Motion>
+                />
               )}
 
               <FloatingFocusManager

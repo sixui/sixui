@@ -8,6 +8,7 @@ export interface IScrimOwnProps {
   fixed?: boolean;
   center?: boolean;
   disabled?: boolean;
+  blurred?: boolean;
 }
 
 export interface IScrimProps
