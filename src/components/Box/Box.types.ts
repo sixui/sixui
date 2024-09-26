@@ -1,5 +1,6 @@
 import type cx from 'clsx';
 
+import type { ISixuiSize } from '~/helpers/types';
 import type { IInteractions } from '~/hooks/useInteractions';
 import type { IModifiers } from '~/utils/getDataAttributes';
 import type { IBoxSprinkles } from './Box.css';
@@ -10,7 +11,7 @@ export interface IBoxProps extends IBoxSprinkles {
   style?: React.CSSProperties;
   interactions?: IInteractions;
   modifiers?: IModifiers;
-  scale?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  scale?: ISixuiSize;
   density?: number;
 }
 

@@ -5,26 +5,26 @@ import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { getSpacingValues } from '~/helpers/styles/getSpacingValues';
 import { themeTokens } from '../ThemeProvider';
 
-type IModifier = 'size';
+type IModifier = 'scale';
 
 export const boxRootClassName = style({
   selectors: {
-    [getModifierSelector<IModifier>({ size: 'xs' })]: {
+    [getModifierSelector<IModifier>({ scale: 'xs' })]: {
       vars: {
         [themeTokens.scale]: '0.6',
       },
     },
-    [getModifierSelector<IModifier>({ size: 'sm' })]: {
+    [getModifierSelector<IModifier>({ scale: 'sm' })]: {
       vars: {
         [themeTokens.scale]: '0.8',
       },
     },
-    [getModifierSelector<IModifier>({ size: 'lg' })]: {
+    [getModifierSelector<IModifier>({ scale: 'lg' })]: {
       vars: {
         [themeTokens.scale]: '1.2',
       },
     },
-    [getModifierSelector<IModifier>({ size: 'xl' })]: {
+    [getModifierSelector<IModifier>({ scale: 'xl' })]: {
       vars: {
         [themeTokens.scale]: '1.4',
       },

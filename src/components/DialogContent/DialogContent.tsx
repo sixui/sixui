@@ -22,6 +22,7 @@ export const DialogContent = polymorphicComponentFactory<IDialogContentFactory>(
       style,
       variant,
       type,
+      size,
       scrollable,
       headline,
       icon,
@@ -40,6 +41,7 @@ export const DialogContent = polymorphicComponentFactory<IDialogContentFactory>(
       theme: dialogContentTheme,
       variant,
       modifiers: {
+        size,
         scrollable,
         'with-icon': !!icon,
         'with-headline': !!headline,

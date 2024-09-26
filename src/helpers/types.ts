@@ -103,3 +103,5 @@ export type IPlacement = {
    */
   alignment?: Alignment;
 };
+
+export type ISixuiSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';

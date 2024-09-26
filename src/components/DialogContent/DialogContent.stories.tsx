@@ -6,6 +6,7 @@ import type { IDialogContentProps } from './DialogContent.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { px } from '~/helpers/styles/px';
 import { Button } from '../Button';
+import { makeComponentShowcase } from '../ComponentShowcase';
 import { Text } from '../Text';
 import { DialogContent } from './DialogContent';
 
@@ -41,8 +42,49 @@ const defaultArgs = {
   ),
 } satisfies Partial<IDialogContentProps>;
 
+const DialogContentShowcase = makeComponentShowcase(DialogContent);
+
 export const Basic: IStory = {
   render: (props) => <DialogContent {...props} />,
+  args: defaultArgs,
+};
+
+export const Sizes: IStory = {
+  render: (props) => (
+    <DialogContentShowcase
+      props={props}
+      horizontalAlign="start"
+      rows={[
+        { legend: 'Extra small', props: { size: 'xs' } },
+        { legend: 'Small', props: { size: 'sm' } },
+        { legend: 'Medium', props: { size: 'md' } },
+        { legend: 'Large', props: { size: 'lg' } },
+        { legend: 'Extra large', props: { size: 'xl' } },
+      ]}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    headline: 'Headline',
+    children: 'Content',
+    actions: undefined,
+  },
+};
+
+export const Scales: IStory = {
+  render: (props) => (
+    <DialogContentShowcase
+      props={props}
+      horizontalAlign="start"
+      rows={[
+        { legend: 'Extra small', props: { scale: 'xs' } },
+        { legend: 'Small', props: { scale: 'sm' } },
+        { legend: 'Medium', props: { scale: 'md' } },
+        { legend: 'Large', props: { scale: 'lg' } },
+        { legend: 'Extra large', props: { scale: 'xl' } },
+      ]}
+    />
+  ),
   args: defaultArgs,
 };
 

@@ -1,4 +1,4 @@
-import type { IAny, IMaybeAsync } from '~/helpers/types';
+import type { IAny, IMaybeAsync, ISixuiSize } from '~/helpers/types';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
@@ -22,6 +22,7 @@ export interface IDialogContentOwnProps extends IPaperOwnProps {
     | React.ReactNode
     | ((props: IDialogActionsRenderProps) => React.ReactNode);
   onClose?: () => IMaybeAsync<IAny>;
+  size?: ISixuiSize;
 }
 
 export interface IDialogContentProps

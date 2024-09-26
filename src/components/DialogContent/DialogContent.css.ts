@@ -1,4 +1,5 @@
 import { createTheme } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
@@ -12,7 +13,12 @@ import { PaperBase } from '../PaperBase';
 import { themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
-type IModifier = 'scrollable' | 'with-icon' | 'with-headline' | 'with-actions';
+type IModifier =
+  | 'size'
+  | 'scrollable'
+  | 'with-icon'
+  | 'with-headline'
+  | 'with-actions';
 
 const [tokensClassName, tokens] = createTheme({
   container: {
@@ -23,6 +29,13 @@ const [tokensClassName, tokens] = createTheme({
       topRight: px(themeTokens.shape.corner.xl),
       bottomRight: px(themeTokens.shape.corner.xl),
       bottomLeft: px(themeTokens.shape.corner.xl),
+    },
+    width: {
+      xs: px(160),
+      sm: px(200),
+      md: px(340),
+      lg: px(400),
+      xl: px(500),
     },
   },
   icon: {
@@ -71,6 +84,25 @@ const classNames = createStyles({
 
     display: 'flex',
     flexDirection: 'column',
+    maxWidth: calc.subtract('100vw', px(space(8))),
+
+    selectors: {
+      [getModifierSelector<IModifier>({ size: 'xs' })]: {
+        width: tokens.container.width.xs,
+      },
+      [getModifierSelector<IModifier>({ size: 'sm' })]: {
+        width: tokens.container.width.sm,
+      },
+      [getModifierSelector<IModifier>({ size: 'md' })]: {
+        width: tokens.container.width.md,
+      },
+      [getModifierSelector<IModifier>({ size: 'lg' })]: {
+        width: tokens.container.width.lg,
+      },
+      [getModifierSelector<IModifier>({ size: 'xl' })]: {
+        width: tokens.container.width.xl,
+      },
+    },
   },
   header: ({ root }) => ({
     position: 'relative',
