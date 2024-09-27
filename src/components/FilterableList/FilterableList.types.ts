@@ -1,4 +1,6 @@
 import type { IOmit } from '~/helpers/types';
+import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import type { IBoxProps } from '../Box';
 import type { IFilterableListBaseProps } from '../FilterableListBase';
 
 export type IFilterableListItem = {
@@ -12,13 +14,24 @@ export type IFilterableListItem = {
   trailingSupportingText?: string;
   value: string;
   disabled?: boolean;
-  onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  onClick?: (event: React.MouseEvent<Element, MouseEvent>) => void;
   href?: string;
 };
 
-export type IFilterableListProps = IOmit<
-  IFilterableListBaseProps<IFilterableListItem, HTMLElement>,
-  'renderer' | 'itemRenderer'
-> & {
+export interface IFilterableListOwnProps {
   canFilter?: boolean;
-};
+}
+
+export interface IFilterableListProps
+  extends IBoxProps,
+    IOmit<
+      IFilterableListBaseProps<IFilterableListItem, HTMLElement>,
+      'renderer' | 'itemRenderer'
+    >,
+    IFilterableListOwnProps {}
+
+export type IFilterableListFactory = IPolymorphicComponentFactory<{
+  props: IFilterableListProps;
+  defaultRef: HTMLDivElement;
+  defaultRoot: 'div';
+}>;

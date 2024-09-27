@@ -4,9 +4,9 @@ import type { IMenuItemFactory } from './MenuItem.types';
 import { iconTriangleLeft, iconTriangleRight } from '~/assets/icons';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
-import { ListItem } from '../../ListItem';
-import { SvgIcon } from '../../SvgIcon';
-import { useMenuContext } from '../Menu.context';
+import { ListItem } from '../ListItem';
+import { useMenuContext } from '../Menu';
+import { SvgIcon } from '../SvgIcon';
 import { useMenuItemContext } from './MenuItem.context';
 
 const COMPONENT_NAME = 'MenuItem';

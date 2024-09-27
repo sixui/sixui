@@ -3,55 +3,20 @@ import { useEffect, useState } from 'react';
 import type {
   IFilterableListBaseFactory,
   IFilterableListBaseInternalRenderer,
-  IFilterableListBaseProps,
   IFilterableListItemModifiers,
 } from './FilterableListBase.types';
-import { isFunction } from '~/helpers/isFunction';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import { useProps } from '~/utils/component/useProps';
 import { Box } from '../Box';
 import {
   executeFilterableItemsEqual,
   renderFilterableItems,
 } from './FilterableListBaseUtils';
+import { getFilterableItems } from './utils/getFilterableItems';
+import { isItemDisabled } from './utils/isItemDisabled';
 
 const COMPONENT_NAME = 'FilterableListBase';
-
-const getFilterableItems = <TItem, TElement extends HTMLElement>(
-  query: string | undefined,
-  itemsProps: Pick<
-    IFilterableListBaseProps<TItem, TElement>,
-    'items' | 'itemPredicate' | 'listPredicate'
-  >,
-): Array<TItem> => {
-  if (!query) {
-    return itemsProps.items;
-  }
-
-  if (itemsProps.listPredicate) {
-    // note that implementations can reorder the items here
-    return itemsProps.listPredicate(itemsProps.items, query);
-  } else if (itemsProps.itemPredicate) {
-    return itemsProps.items.filter((item, index) =>
-      itemsProps.itemPredicate?.(item, query, index),
-    );
-  }
-
-  return itemsProps.items;
-};
-
-const isItemDisabled = <TItem, TElement extends HTMLElement>(
-  item: TItem | null,
-  index: number,
-  itemDisabled?: IFilterableListBaseProps<TItem, TElement>['itemDisabled'],
-): boolean => {
-  if (itemDisabled == null || item == null) {
-    return false;
-  } else if (isFunction(itemDisabled)) {
-    return itemDisabled(item, index);
-  }
-  return !!item[itemDisabled];
-};
 
 export const filterableListBaseFactory = <
   TItem,
@@ -82,13 +47,16 @@ export const filterableListBaseFactory = <
       cols = 1,
       listRenderer,
       ...other
-    } = props;
+    } = useProps({
+      componentName: COMPONENT_NAME,
+      props,
+    });
     const isCreateItemFirst = createNewItemPosition === 'first';
     const canCreateItems = !!createNewItemFromQuery && !!createNewItemRenderer;
     const [query, setQuery] = useControlledValue({
       controlled: queryProp,
       default: defaultQuery ?? '',
-      name: 'FilterableListBase',
+      name: COMPONENT_NAME,
     });
     const [filteredItems, setFilteredItems] = useState<Array<TItem>>(
       getFilterableItems(query, {

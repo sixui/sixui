@@ -3,9 +3,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { IMenuListProps } from './MenuList.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { ListItem } from '../../ListItem';
-import { Placeholder } from '../../Placeholder';
+import { ListItem } from '../ListItem';
 import { MenuDivider } from '../MenuDivider';
+import { Placeholder } from '../Placeholder';
 import { MenuList } from './MenuList';
 
 const meta = {

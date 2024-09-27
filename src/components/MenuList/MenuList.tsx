@@ -6,7 +6,7 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { useProps } from '~/utils/component/useProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { List } from '../../List';
+import { List } from '../List';
 import { menuListTheme } from './MenuList.css';
 
 const COMPONENT_NAME = 'MenuList';

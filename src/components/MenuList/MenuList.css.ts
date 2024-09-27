@@ -1,13 +1,13 @@
 import { createTheme } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
-import { themeTokens } from '~/components/ThemeProvider';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { PaperBase } from '../../PaperBase';
+import { PaperBase } from '../PaperBase';
+import { themeTokens } from '../ThemeProvider';
+import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
 const [tokensClassName, tokens] = createTheme({
   container: {

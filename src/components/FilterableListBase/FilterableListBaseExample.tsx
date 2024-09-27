@@ -1,7 +1,7 @@
 import type { IFilterableListBaseExampleProps } from './FilterableListBaseExample.types';
 import type { IMovie } from './movies';
 import { ListItem } from '../ListItem';
-import { MenuList } from '../Menu/MenuList';
+import { MenuList } from '../MenuList';
 import { TextInputField } from '../TextInputField';
 import { filterableListBaseFactory } from './FilterableListBase';
 import {

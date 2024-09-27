@@ -1,11 +1,11 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { IListItemOwnProps } from '../../ListItem';
+import type { IListItemOwnProps } from '../ListItem';
 import type {
   IListItemThemeFactory,
   listItemTheme,
-} from '../../ListItem/ListItem.css';
+} from '../ListItem/ListItem.css';
 
 export interface IMenuItemOwnProps extends IListItemOwnProps {
   label: React.ReactNode;
@@ -19,7 +19,7 @@ export interface IMenuItemProps
 
 export type IMenuItemFactory = IPolymorphicComponentFactory<{
   props: IMenuItemProps;
-  defaultRef: HTMLDivElement;
-  defaultRoot: 'div';
+  defaultRef: HTMLButtonElement;
+  defaultRoot: 'button';
   theme: typeof listItemTheme;
 }>;
