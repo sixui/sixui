@@ -16,7 +16,6 @@ import {
   useRole,
   useTransitionStatus,
 } from '@floating-ui/react';
-import { mergeProps } from 'react-aria';
 import { RemoveScroll } from 'react-remove-scroll';
 
 import type { IPopoverBaseThemeFactory } from './PopoverBase.css';
@@ -252,8 +251,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       ? children({
           opened,
           placement: objectFromPlacement(floating.placement),
-          getProps: (props) =>
-            mergeProps(interactions.getReferenceProps(), props),
+          getProps: (props) => interactions.getReferenceProps(props),
           setRef: floating.refs.setReference,
           close: () => setOpened(false),
         })

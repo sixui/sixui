@@ -60,7 +60,7 @@ export const Standard: IStory = {
 export const Persistent: IStory = {
   render: (props) => (
     <RichTooltip {...props}>
-      <Button>Show</Button>
+      <Button>Click to show</Button>
     </RichTooltip>
   ),
   args: {

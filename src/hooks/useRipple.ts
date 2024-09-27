@@ -464,7 +464,9 @@ export const useRipple = <TElement extends HTMLElement>(
 
   const handleClick: React.MouseEventHandler = useCallback(
     (event) => {
-      event.stopPropagation();
+      if (event.target !== activeTarget) {
+        return;
+      }
 
       // Click is a MouseEvent in Firefox and Safari, so we cannot use
       // `shouldReactToEvent`.

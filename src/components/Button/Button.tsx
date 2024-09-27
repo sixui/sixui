@@ -33,9 +33,9 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
     } = useProps({ componentName: COMPONENT_NAME, props });
 
     const [animating, setAnimating] = useState(false);
-    const [handlingPress, setHandlingPress] = useState(false);
+    const [handlingClick, setHandlingClick] = useState(false);
     const loading =
-      (loadingProp || handlingPress) &&
+      (loadingProp || handlingClick) &&
       loadingAnimation === 'progressIndicator';
     const readOnly = readOnlyProp || loading;
     const disabledOrReadOnly = other.disabled || readOnly;
@@ -45,7 +45,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
     const hasTrailingIcon = hasIcon && !!trailingIcon;
     const hasOverlay = loading && (!!loadingText || !hasIcon);
     const iconAnimation =
-      (loadingProp || handlingPress || animating) &&
+      (loadingProp || handlingClick || animating) &&
       loadingAnimation !== undefined &&
       loadingAnimation !== 'progressIndicator' &&
       loadingAnimation !== 'none'
@@ -70,19 +70,17 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       },
     });
 
-    const handleAnimationIteration = (): void => setAnimating(handlingPress);
+    const handleAnimationIteration = (): void => setAnimating(handlingClick);
 
     const handleClick: MouseEventHandler = (event) => {
-      if (handlingPress || !onClick) {
+      if (handlingClick || !onClick) {
         return;
       }
-
-      event.stopPropagation();
 
       setAnimating(true);
       void executeLazyPromise(
         () => onClick(event) as Promise<void>,
-        setHandlingPress,
+        setHandlingClick,
       );
     };
 
