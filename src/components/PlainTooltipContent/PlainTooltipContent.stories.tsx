@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IPlainTooltipContentProps } from './PlainTooltipContent.types';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { PlainTooltipContent } from './PlainTooltipContent';
 
 // https://m3.material.io/components/plaintooltips/overview
@@ -12,7 +12,7 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const PlainTooltipContentShowcase = makeComponentShowcase(PlainTooltipContent);
+const PlainTooltipContentShowcase = componentShowcaseFactory(PlainTooltipContent);
 
 const defaultArgs = {
   supportingText:

@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IButtonBaseProps } from './ButtonBase.types';
 import { Box } from '../Box';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { ButtonBase } from './ButtonBase';
 
 const meta = {
@@ -52,7 +52,7 @@ const interactionsStates: Array<IComponentPresentation<IButtonBaseProps>> = [
   },
 ];
 
-const ButtonBaseShowcase = makeComponentShowcase(ButtonBase);
+const ButtonBaseShowcase = componentShowcaseFactory(ButtonBase);
 
 export const Unstyled: IStory = {
   render: (props) => (

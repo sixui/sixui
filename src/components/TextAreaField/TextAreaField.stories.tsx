@@ -6,7 +6,7 @@ import type { IFieldBaseVariant } from '../FieldBase';
 import type { ITextAreaFieldProps } from './TextAreaField.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { px } from '~/helpers/styles/px';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { TextAreaField } from './TextAreaField';
 
 const meta = {
@@ -54,7 +54,7 @@ const rows: Array<IComponentPresentation<ITextAreaFieldProps>> = [
   { legend: 'Error', props: { defaultValue: 'Value', hasError: true } },
 ];
 
-const TextAreaFieldShowcase = makeComponentShowcase(TextAreaField);
+const TextAreaFieldShowcase = componentShowcaseFactory(TextAreaField);
 
 export const Variants: IStory = {
   render: (props) => (

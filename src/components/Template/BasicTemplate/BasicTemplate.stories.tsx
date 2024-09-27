@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IComponentPresentation } from '../../ComponentShowcase';
 import type { IBasicTemplateProps } from './BasicTemplate.types';
-import { makeComponentShowcase } from '../../ComponentShowcase';
+import { componentShowcaseFactory } from '../../ComponentShowcase';
 import { BasicTemplate } from './BasicTemplate';
 
 const meta = {
@@ -25,7 +25,7 @@ const states: Array<IComponentPresentation<IBasicTemplateProps>> = [
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const BasicTemplateShowcase = makeComponentShowcase(BasicTemplate);
+const BasicTemplateShowcase = componentShowcaseFactory(BasicTemplate);
 
 export const Basic: IStory = {
   render: (props) => (

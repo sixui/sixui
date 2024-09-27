@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { ITextProps } from './Text.types';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Text, textTagMap } from './Text';
 import { textStoriesStyles } from './Text.stories.css';
 
@@ -26,7 +26,7 @@ const LOREM$MD =
 const LOREM$LG =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lacinia ante et enim tempor pretium. Proin sed sem vehicula, dignissim velit vel, varius turpis. Ut vel ex non lectus iaculis pretium. Nunc at tempus enim. Donec commodo placerat libero.';
 
-const TypeScaleShowcase = makeComponentShowcase((props: ITextProps) => (
+const TypeScaleShowcase = componentShowcaseFactory((props: ITextProps) => (
   <Text {...props}>
     {props.children ??
       (props.variant ? capitalizeFirstLetter(props.variant) : null)}
@@ -166,7 +166,7 @@ export const TypeScale: IStory = {
   args: defaultArgs,
 };
 
-const TruncatedShowcase = makeComponentShowcase(Text);
+const TruncatedShowcase = componentShowcaseFactory(Text);
 
 export const Truncated: IStory = {
   render: (props) => (
@@ -212,7 +212,7 @@ export const Truncated: IStory = {
   },
 };
 
-const LineClampedShowcase = makeComponentShowcase((props: ITextProps) => (
+const LineClampedShowcase = componentShowcaseFactory((props: ITextProps) => (
   <div className={classNames.container} data-size="sm">
     <Text {...props} />
   </div>

@@ -14,7 +14,7 @@ import type {
 } from './PopoverBase.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { Button } from '../Button';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { IconButton } from '../IconButton';
 import { Placeholder } from '../Placeholder';
 import { themeTokens } from '../ThemeProvider';
@@ -78,7 +78,7 @@ const rows: Array<IComponentPresentation<IPopoverBaseProps>> = [
   { legend: 'With scrim', props: { withScrim: true } },
 ];
 
-const PopoverBaseShowcase = makeComponentShowcase(PopoverBase);
+const PopoverBaseShowcase = componentShowcaseFactory(PopoverBase);
 
 export const OpenOnHover: IStory = {
   render: (props) => (

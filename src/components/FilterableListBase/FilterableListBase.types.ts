@@ -1,3 +1,5 @@
+import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+
 // Inspiration:
 // - https://github.com/palantir/blueprint/blob/develop/packages/select/src/common/itemListRenderer.ts
 
@@ -6,8 +8,8 @@ export type IFilterableListBaseState<TItem> = {
    * Array of items filtered by `listPredicate` or `itemPredicate`. See `items`
    * for the full list of items.
    *
-   * Use `renderFilterableItems()` utility function from this library to map each
-   * item in this array through `renderItem`, with support for optional
+   * Use `renderFilterableItems()` utility function from this library to map
+   * each item in this array through `renderItem`, with support for optional
    * `noResults` and `initialContent` states.
    */
   filteredItems: Array<TItem>;
@@ -20,7 +22,8 @@ export type IFilterableListBaseState<TItem> = {
 
 /**
  * An object describing how to render the filtered list of items. An
- * `IFilterableListBaseInternalRenderer` receives this object as its sole argument.
+ * `IFilterableListBaseInternalRenderer` receives this object as its sole
+ * argument.
  *
  * @typeParam TItem - List item data type
  */
@@ -188,8 +191,8 @@ export type IFilterableListItemPredicate<TItem> = (
 // - https://github.com/palantir/blueprint/blob/develop/packages/select/src/common/listItemsProps.ts
 
 /**
- * Equality test comparator to determine if two {@link IFilterableListBaseProps} items
- * are equivalent.
+ * Equality test comparator to determine if two {@link IFilterableListBaseProps}
+ * items are equivalent.
  *
  * @returns `true` if the two items are equivalent.
  */
@@ -239,9 +242,9 @@ export type IFilterableListBaseRendererProps<TItem> =
     /**
      * A function that returns the props to apply to the input filter element.
      *
-     * @param userProps - All event handlers you pass in should be done so through
-     * the this argument. This is because your handler may be either overwritten
-     * or overwrite one of the Floating UI hooks' handlers.
+     * @param userProps - All event handlers you pass in should be done so
+     * through the this argument. This is because your handler may be either
+     * overwritten or overwrite one of the Floating UI hooks' handlers.
      */
     getInputFilterProps: (
       userProps?: React.ComponentPropsWithoutRef<'input'>,
@@ -249,7 +252,8 @@ export type IFilterableListBaseRendererProps<TItem> =
   };
 
 /**
- * Type alias for a function that renders the entire `FilterableListBase` component.
+ * Type alias for a function that renders the entire `FilterableListBase`
+ * component.
  *
  * @typeParam TItem - List item data type
  */
@@ -429,3 +433,12 @@ export type IFilterableListBaseProps<
 
   cols?: number;
 };
+
+export type IFilterableListBaseFactory<
+  TItem,
+  TElement extends HTMLElement,
+> = IPolymorphicComponentFactory<{
+  props: IFilterableListBaseProps<TItem, TElement>;
+  defaultRef: HTMLDivElement;
+  defaultRoot: 'div';
+}>;

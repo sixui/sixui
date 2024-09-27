@@ -5,7 +5,7 @@ import type { IDialogProps } from './Dialog.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { useDisclosure } from '~/hooks/useDisclosure';
 import { Button } from '../Button';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Flex } from '../Flex';
 import { TextInputField } from '../TextInputField';
 import { Dialog } from './Dialog';
@@ -56,7 +56,7 @@ const DialogDemo: React.FC<IDialogProps> = (props) => {
   );
 };
 
-const DialogDemoShowcase = makeComponentShowcase(DialogDemo);
+const DialogDemoShowcase = componentShowcaseFactory(DialogDemo);
 
 export const Standard: IStory = {
   render: (props) => <DialogDemoShowcase props={props} />,

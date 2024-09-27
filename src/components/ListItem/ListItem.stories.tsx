@@ -12,7 +12,7 @@ import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IListItemProps, IListItemVariant } from './ListItem.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { Avatar } from '../Avatar';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { ListItem } from './ListItem';
 
 // https://m3.material.io/components/items/overview
@@ -111,7 +111,7 @@ const rows: Array<IComponentPresentation<IListItemProps>> = [
   },
 ];
 
-const ListItemShowcase = makeComponentShowcase(ListItem);
+const ListItemShowcase = componentShowcaseFactory(ListItem);
 
 export const Variants: IStory = {
   render: (props) => (

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { ICircularProgressIndicatorProps } from './CircularProgressIndicator.types';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Text } from '../Text';
 import { CircularProgressIndicator } from './CircularProgressIndicator';
 
@@ -23,7 +23,7 @@ const rows: Array<IComponentPresentation<ICircularProgressIndicatorProps>> = [
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const CircularProgressIndicatorShowcase = makeComponentShowcase(
+const CircularProgressIndicatorShowcase = componentShowcaseFactory(
   CircularProgressIndicator,
 );
 
@@ -38,7 +38,7 @@ export const Variants: IStory = {
   args: defaultArgs,
 };
 
-const CircularProgressIndicatorWithTextShowcase = makeComponentShowcase(
+const CircularProgressIndicatorWithTextShowcase = componentShowcaseFactory(
   (props: ICircularProgressIndicatorProps) => (
     <Text as="div">
       <CircularProgressIndicator {...props} />{' '}

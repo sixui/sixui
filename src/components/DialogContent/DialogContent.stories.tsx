@@ -6,7 +6,7 @@ import type { IDialogContentProps } from './DialogContent.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { px } from '~/helpers/styles/px';
 import { Button } from '../Button';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Text } from '../Text';
 import { DialogContent } from './DialogContent';
 
@@ -42,7 +42,7 @@ const defaultArgs = {
   ),
 } satisfies Partial<IDialogContentProps>;
 
-const DialogContentShowcase = makeComponentShowcase(DialogContent);
+const DialogContentShowcase = componentShowcaseFactory(DialogContent);
 
 export const Basic: IStory = {
   render: (props) => <DialogContent {...props} />,

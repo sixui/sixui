@@ -9,7 +9,7 @@ import type { IOmit } from '~/helpers/types';
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IMotionProps } from './Motion.types';
 import { useToggle } from '~/hooks/useToggle';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { IconButton } from '../IconButton';
 import { Placeholder } from '../Placeholder';
 import { Motion } from './Motion';
@@ -97,7 +97,7 @@ const sides: Array<IComponentPresentation<IMotionDemoProps>> = [
   { legend: 'Bottom', props: { placement: { side: 'bottom' } } },
 ];
 
-const MotionUnpositionedDemoShowcase = makeComponentShowcase(
+const MotionUnpositionedDemoShowcase = componentShowcaseFactory(
   MotionUnpositionedDemo,
 );
 

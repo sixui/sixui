@@ -184,7 +184,7 @@ export const renderMovieListItem: IFilterableListItemRenderer<
     <ListItem
       {...getMovieItemProps(movie, props)}
       key={props.index}
-      visualState={{ hovered: props.modifiers.active, strategy: 'replace' }}
+      interactions={{ hovered: props.modifiers.active }}
       selected={props.modifiers.selected}
       disabled={props.modifiers.disabled}
       {...props.getButtonAttributes()}
@@ -201,7 +201,7 @@ export const renderCreateMovieListItem: IFilterableCreateNewListItemRenderer<
 > = (props): React.JSX.Element => (
   <ListItem
     key={props.index}
-    visualState={{ hovered: props.modifiers.active, strategy: 'replace' }}
+    interactions={{ hovered: props.modifiers.active }}
     leadingIcon={<FontAwesomeIcon icon={faPlus} />}
     {...props.getButtonAttributes()}
     ref={props.buttonRef}

@@ -6,7 +6,7 @@ import type { IFieldBaseVariant } from '../FieldBase';
 import type { ITextInputFieldProps } from './TextInputField.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { px } from '~/helpers/styles/px';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { TextInputField } from './TextInputField';
 
 const meta = {
@@ -68,7 +68,7 @@ const rows: Array<IComponentPresentation<ITextInputFieldProps>> = [
   { legend: 'Error', props: { defaultValue: 'Value', hasError: true } },
 ];
 
-const TextInputFieldShowcase = makeComponentShowcase(TextInputField);
+const TextInputFieldShowcase = componentShowcaseFactory(TextInputField);
 
 export const Variants: IStory = {
   render: (props) => (

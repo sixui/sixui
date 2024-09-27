@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IIndicatorProps } from './Indicator.types';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Indicator } from './Indicator';
 
 const meta = {
@@ -18,7 +18,7 @@ const rows: Array<IComponentPresentation<IIndicatorProps>> = [
   { legend: 'Processing', props: { processing: true } },
 ];
 
-const IndicatorShowcase = makeComponentShowcase(Indicator);
+const IndicatorShowcase = componentShowcaseFactory(Indicator);
 
 export const Variants: IStory = {
   render: (props) => <IndicatorShowcase props={props} rows={rows} />,

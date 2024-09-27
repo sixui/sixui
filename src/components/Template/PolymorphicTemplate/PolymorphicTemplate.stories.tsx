@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IComponentPresentation } from '../../ComponentShowcase';
 import type { IPolymorphicTemplateProps } from './PolymorphicTemplate.types';
-import { makeComponentShowcase } from '../../ComponentShowcase';
+import { componentShowcaseFactory } from '../../ComponentShowcase';
 import { PolymorphicTemplate } from './PolymorphicTemplate';
 
 const meta = {
@@ -25,7 +25,7 @@ const states: Array<IComponentPresentation<IPolymorphicTemplateProps>> = [
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const PolymorphicTemplateShowcase = makeComponentShowcase(PolymorphicTemplate);
+const PolymorphicTemplateShowcase = componentShowcaseFactory(PolymorphicTemplate);
 
 export const Basic: IStory = {
   render: (props) => (

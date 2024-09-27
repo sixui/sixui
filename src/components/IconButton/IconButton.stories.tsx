@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IIconButtonProps, IIconButtonVariant } from './IconButton.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { IconButton } from './IconButton';
 
 // https://m3.material.io/components/icon-buttons/overview
@@ -40,7 +40,7 @@ const rows: Array<IComponentPresentation<IIconButtonProps>> = [
   { legend: 'Toggled', props: { toggle: true, selected: true } },
 ];
 
-const IconButtonShowcase = makeComponentShowcase(IconButton);
+const IconButtonShowcase = componentShowcaseFactory(IconButton);
 
 export const Variants: IStory = {
   render: (props) => (

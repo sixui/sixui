@@ -6,7 +6,7 @@ import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IFieldBaseProps, IFieldBaseVariant } from './FieldBase.types';
 import { px } from '~/helpers/styles/px';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { IconButton } from '../IconButton';
 import { Placeholder } from '../Placeholder';
 import { FieldBase } from './FieldBase';
@@ -62,7 +62,7 @@ const rows: Array<IComponentPresentation<IFieldBaseProps>> = [
   { legend: 'Resizable', props: { resizable: true } },
 ];
 
-const FieldBaseShowcase = makeComponentShowcase(FieldBase);
+const FieldBaseShowcase = componentShowcaseFactory(FieldBase);
 
 export const Variants: IStory = {
   render: (props) => (

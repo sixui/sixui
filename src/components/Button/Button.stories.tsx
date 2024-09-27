@@ -6,7 +6,7 @@ import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IButtonProps, IButtonVariant } from './Button.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Button } from './Button';
 
 // https://m3.material.io/components/buttons/overview
@@ -65,7 +65,7 @@ const rows: Array<IComponentPresentation<IButtonProps>> = [
   },
 ];
 
-const ButtonShowcase = makeComponentShowcase(Button);
+const ButtonShowcase = componentShowcaseFactory(Button);
 
 export const Variants: IStory = {
   render: (props) => (

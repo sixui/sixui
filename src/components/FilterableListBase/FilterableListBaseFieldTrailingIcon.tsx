@@ -1,17 +1,17 @@
 import { iconTriangleDown, iconTriangleUp, iconXMark } from '~/assets/icons';
+import { Flex } from '../Flex';
 import { IconButton } from '../IconButton';
-import { Stack } from '../Stack';
 import { SvgIcon } from '../SvgIcon';
 
 export type IFilterableListBaseFieldTrailingIcon = {
   opened?: boolean;
-  onClear?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
+  onClear?: () => void;
 };
 
 export const FilterableListBaseFieldTrailingIcon = (
   props: IFilterableListBaseFieldTrailingIcon,
 ): React.ReactNode => (
-  <Stack horizontal gap={2}>
+  <Flex direction="row" gap="$2">
     {props.onClear ? (
       <IconButton icon={<SvgIcon icon={iconXMark} />} onClick={props.onClear} />
     ) : null}
@@ -25,5 +25,5 @@ export const FilterableListBaseFieldTrailingIcon = (
         )
       }
     />
-  </Stack>
+  </Flex>
 );

@@ -13,7 +13,7 @@ import { componentShowcaseTheme } from './ComponentShowcase.css';
 const COMPONENT_NAME = 'ComponentShowcase';
 const DUMMY_TEXT = '.';
 
-export const makeComponentShowcase = <TComponentProps extends object>(
+export const componentShowcaseFactory = <TComponentProps extends object>(
   component: React.FC<TComponentProps>,
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 ) => {

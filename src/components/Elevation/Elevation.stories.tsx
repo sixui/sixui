@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IElevationProps } from './Elevation.types';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Placeholder } from '../Placeholder';
 import { Elevation } from './Elevation';
 
@@ -13,7 +13,7 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {} satisfies Partial<IElevationProps>;
 
-const ElevationShowcase = makeComponentShowcase((props: IElevationProps) => (
+const ElevationShowcase = componentShowcaseFactory((props: IElevationProps) => (
   <Placeholder w="$24" h="$24" corner="$md" label={`Level ${props.level}`}>
     <Elevation {...props} />
   </Placeholder>

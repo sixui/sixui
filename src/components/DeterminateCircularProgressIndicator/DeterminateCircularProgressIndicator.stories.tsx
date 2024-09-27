@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IDeterminateCircularProgressIndicatorProps } from './DeterminateCircularProgressIndicator.types';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { DeterminateCircularProgressIndicator } from './DeterminateCircularProgressIndicator';
 
 // https://m3.material.io/components/progress-indicators/overview
@@ -23,7 +23,7 @@ const rows: Array<
   IComponentPresentation<IDeterminateCircularProgressIndicatorProps>
 > = [{ legend: 'Normal' }, { legend: 'Disabled', props: { disabled: true } }];
 
-const DeterminateCircularProgressIndicatorShowcase = makeComponentShowcase(
+const DeterminateCircularProgressIndicatorShowcase = componentShowcaseFactory(
   DeterminateCircularProgressIndicator,
 );
 

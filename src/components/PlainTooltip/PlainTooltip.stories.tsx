@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IPlainTooltipProps } from './PlainTooltip.types';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { IconButton } from '../IconButton';
 import { PlainTooltip } from './PlainTooltip';
 
@@ -37,7 +37,7 @@ const cols: Array<IComponentPresentation<IPlainTooltipProps>> = [
   },
 ];
 
-const PlainTooltipShowcase = makeComponentShowcase(PlainTooltip);
+const PlainTooltipShowcase = componentShowcaseFactory(PlainTooltip);
 
 export const Standard: IStory = {
   render: (props) => <PlainTooltipShowcase props={props} cols={cols} />,

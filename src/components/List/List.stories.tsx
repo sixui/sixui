@@ -12,7 +12,7 @@ import type { IListProps } from './List.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { px } from '~/helpers/styles/px';
 import { Avatar } from '../Avatar';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { ListItem } from '../ListItem';
 import { Paper } from '../Paper';
 import { Placeholder } from '../Placeholder';
@@ -49,7 +49,7 @@ const renderListItems = (props?: IListItemProps, count = 4): React.ReactNode =>
     </ListItem>
   ));
 
-const ListDemoShowcase = makeComponentShowcase(ListDemo);
+const ListDemoShowcase = componentShowcaseFactory(ListDemo);
 
 export const Scales: IStory = {
   render: (props) => (

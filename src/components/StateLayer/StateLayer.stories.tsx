@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IInteractions } from '~/hooks/useInteractions';
 import type { IComponentPresentation } from '../ComponentShowcase';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Placeholder } from '../Placeholder';
 import { StateLayer } from './StateLayer';
 import { useStateLayer } from './useStateLayer';
@@ -48,7 +48,7 @@ const BoundedDemo: React.FC<IDemoProps> = (props) => {
   );
 };
 
-const BoundedShowcase = makeComponentShowcase(BoundedDemo);
+const BoundedShowcase = componentShowcaseFactory(BoundedDemo);
 
 export const Bounded: IStory = {
   render: (props) => <BoundedShowcase props={props} cols={states} />,
@@ -82,7 +82,7 @@ const UnboundedDemo: React.FC<IDemoProps> = (props) => {
   );
 };
 
-const UnboundedShowcase = makeComponentShowcase(UnboundedDemo);
+const UnboundedShowcase = componentShowcaseFactory(UnboundedDemo);
 
 export const Unbounded: IStory = {
   render: (props) => <UnboundedShowcase props={props} cols={states} />,
@@ -122,7 +122,7 @@ const NestedDemo: React.FC<IDemoProps> = (props) => {
   );
 };
 
-const NestedShowcase = makeComponentShowcase(NestedDemo);
+const NestedShowcase = componentShowcaseFactory(NestedDemo);
 
 export const Nested: IStory = {
   render: (props) => <NestedShowcase props={props} />,

@@ -6,7 +6,7 @@ import type { IPlaceholderProps } from '../Placeholder';
 import type { IAnchoredProps } from './Anchored.types';
 import {
   IComponentShowcaseProps,
-  makeComponentShowcase,
+  componentShowcaseFactory,
 } from '../ComponentShowcase';
 import { Paper } from '../Paper';
 import { Placeholder } from '../Placeholder';
@@ -33,7 +33,7 @@ const BadgeDemo: React.FC<IPlaceholderProps & { size: 'sm' | 'lg' }> = ({
   />
 );
 
-const AnchoredShowcase = makeComponentShowcase(Anchored);
+const AnchoredShowcase = componentShowcaseFactory(Anchored);
 
 export const Variants: IStory = {
   render: (props) => (

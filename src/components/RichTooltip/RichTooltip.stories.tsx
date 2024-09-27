@@ -6,7 +6,7 @@ import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IRichTooltipProps } from './RichTooltip.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { Button } from '../Button';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { IconButton } from '../IconButton';
 import { RichTooltip } from './RichTooltip';
 
@@ -50,7 +50,7 @@ const cols: Array<IComponentPresentation<IRichTooltipProps>> = [
   },
 ];
 
-const RichTooltipShowcase = makeComponentShowcase(RichTooltip);
+const RichTooltipShowcase = componentShowcaseFactory(RichTooltip);
 
 export const Standard: IStory = {
   render: (props) => <RichTooltipShowcase props={props} cols={cols} />,

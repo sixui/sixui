@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IAvatarProps } from './Avatar.types';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Avatar } from './Avatar';
 
 const meta = {
@@ -35,7 +35,7 @@ const rows: Array<IComponentPresentation<IAvatarProps>> = [
   { legend: 'Squared', props: { corner: '$sm' } },
 ];
 
-const AvatarShowcase = makeComponentShowcase(Avatar);
+const AvatarShowcase = componentShowcaseFactory(Avatar);
 
 export const Variants: IStory = {
   render: (props) => (

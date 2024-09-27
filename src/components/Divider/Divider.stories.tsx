@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { IBoxProps } from '../Box';
 import type { IDividerProps } from './Divider.types';
 import { Box } from '../Box';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Flex } from '../Flex';
 import { Paper } from '../Paper';
 import { Divider } from './Divider';
@@ -47,7 +47,7 @@ const ListDemo: React.FC<IDividerProps> = (props) => (
   </Paper>
 );
 
-const ListDemoShowcase = makeComponentShowcase(ListDemo);
+const ListDemoShowcase = componentShowcaseFactory(ListDemo);
 
 export const Variants: IStory = {
   render: (props) => (

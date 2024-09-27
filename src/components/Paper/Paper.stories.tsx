@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IPaperProps } from './Paper.types';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Paper } from './Paper';
 import { paperStoriesStyles } from './Paper.stories.css';
 
@@ -26,7 +26,7 @@ const PaperDemo: React.FC<IPaperProps> = ({ children, ...props }) => (
   </Paper>
 );
 
-const PaperShowcase = makeComponentShowcase(PaperDemo);
+const PaperShowcase = componentShowcaseFactory(PaperDemo);
 
 export const Elevations: IStory = {
   render: (props) => (

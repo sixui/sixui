@@ -5,7 +5,7 @@ import type { IBoxProps } from '../Box';
 import type { IPlaceholderOwnProps } from '../Placeholder';
 import type { IFocusRingVariant } from './FocusRing.types';
 import { useInteractions } from '~/hooks/useInteractions';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Placeholder } from '../Placeholder';
 import { FocusRing } from './FocusRing';
 
@@ -65,7 +65,7 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {} satisfies Partial<IDemoProps>;
 
-const FocusRingShowcase = makeComponentShowcase(FocusRingDemo);
+const FocusRingShowcase = componentShowcaseFactory(FocusRingDemo);
 
 export const Variants: IStory = {
   render: (props) => (
@@ -131,7 +131,7 @@ export const Inward: IStory = {
   },
 };
 
-const FocusRingShowcase2 = makeComponentShowcase((props: IDemoProps) => (
+const FocusRingShowcase2 = componentShowcaseFactory((props: IDemoProps) => (
   <FocusRingDemo {...props}>
     <FocusRingDemo
       {...props}

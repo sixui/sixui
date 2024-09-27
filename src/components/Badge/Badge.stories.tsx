@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IBadgeProps } from './Badge.types';
 import { Anchored, IAnchoredProps } from '../Anchored';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Placeholder } from '../Placeholder';
 import { Badge } from './Badge';
 
@@ -38,7 +38,7 @@ const cols: Array<IComponentPresentation<IBadgeDemoProps>> = [
   { props: { overlap: 'circular' } },
 ];
 
-const BadgeShowcase = makeComponentShowcase(BadgeDemo);
+const BadgeShowcase = componentShowcaseFactory(BadgeDemo);
 
 export const Variants: IStory = {
   render: (props) => (

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IMenuListProps } from './MenuList.types';
-import { makeComponentShowcase } from '~/components/ComponentShowcase';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { ListItem } from '../../ListItem';
 import { Placeholder } from '../../Placeholder';
@@ -38,7 +38,7 @@ const defaultArgs = {
   ),
 } satisfies Partial<IMenuListProps>;
 
-const MenuListShowcase = makeComponentShowcase(MenuList);
+const MenuListShowcase = componentShowcaseFactory(MenuList);
 
 export const Scales: IStory = {
   render: (props) => (

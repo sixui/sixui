@@ -6,7 +6,7 @@ import { CSSTransition } from 'react-transition-group';
 import type { IScrimProps } from './Scrim.types';
 import { useToggle } from '~/hooks/useToggle';
 import { Button } from '../Button';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Motion } from '../Motion';
 import { themeTokens } from '../ThemeProvider';
 import { Scrim } from './Scrim';
@@ -64,8 +64,8 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {} satisfies Partial<IScrimProps>;
 
-const ScrimDemoShowcase = makeComponentShowcase(ScrimDemo);
-const AnimatedScrimDemoShowcase = makeComponentShowcase(AnimatedScrimDemo);
+const ScrimDemoShowcase = componentShowcaseFactory(ScrimDemo);
+const AnimatedScrimDemoShowcase = componentShowcaseFactory(AnimatedScrimDemo);
 
 export const Basic: IStory = {
   render: (props) => <ScrimDemoShowcase props={props} />,

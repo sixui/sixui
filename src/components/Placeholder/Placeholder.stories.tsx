@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IPlaceholderProps } from './Placeholder.types';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Placeholder } from './Placeholder';
 
 const meta = {
@@ -15,7 +15,7 @@ const defaultArgs = {
   height: '$24',
 } satisfies Partial<IPlaceholderProps>;
 
-const PlaceholderShowcase = makeComponentShowcase(Placeholder);
+const PlaceholderShowcase = componentShowcaseFactory(Placeholder);
 
 export const Basic: IStory = {
   render: (props) => (

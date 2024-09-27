@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IPlaceholderProps } from '../Placeholder';
 import type { IFlexProps } from './Flex.types';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Divider } from '../Divider';
 import { Paper } from '../Paper';
 import { Placeholder } from '../Placeholder';
@@ -33,7 +33,7 @@ const defaultArgs = {
   h: '$16',
 } satisfies Partial<IFlexProps>;
 
-const FlexShowcase = makeComponentShowcase((props: IFlexProps) => (
+const FlexShowcase = componentShowcaseFactory((props: IFlexProps) => (
   <Paper outline="$xs" outlineStyle="solid" p="$2" corner="$xs">
     <Flex {...props} />
   </Paper>

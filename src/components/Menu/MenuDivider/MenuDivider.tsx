@@ -1,5 +1,5 @@
-import { dividerTheme } from '~/components/Divider/Divider.css';
 import { Divider } from '../../Divider';
+import { dividerTheme } from '~/components/Divider/Divider.css';
 
 const COMPONENT_NAME = 'MenuDivider';
 

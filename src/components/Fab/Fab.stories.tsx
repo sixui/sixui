@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IFabProps } from './Fab.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Fab } from './Fab';
 
 // https://m3.material.io/components/floating-action-button/overview
@@ -42,7 +42,7 @@ const states: Array<IComponentPresentation<IFabProps>> = [
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const FabShowcase = makeComponentShowcase(Fab);
+const FabShowcase = componentShowcaseFactory(Fab);
 
 export const Variants: IStory = {
   render: (props) => (

@@ -30,8 +30,8 @@ export interface IComponentShowcaseProps<TComponentProps>
     IComponentThemeProps<IComponentShowcaseThemeFactory>,
     IComponentShowcaseOwnProps<TComponentProps> {}
 
-export type IComponentShowcaseFactory<T> = IComponentFactory<{
-  props: IComponentShowcaseProps<T>;
+export type IComponentShowcaseFactory<TComponentProps> = IComponentFactory<{
+  props: IComponentShowcaseProps<TComponentProps>;
   ref: HTMLDivElement;
   theme: typeof componentShowcaseTheme;
 }>;

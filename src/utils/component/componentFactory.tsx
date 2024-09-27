@@ -6,7 +6,7 @@ import type { IAny } from '~/helpers/types';
 export type IComponentFactoryPayload = {
   props: Record<string, IAny>;
   ref?: Element;
-  theme: IAny;
+  theme?: IAny;
   staticComponents?: Record<string, IAny>;
   variant?: string | false;
 };

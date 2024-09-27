@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IDemoComponentProps } from './DemoComponent';
-import { makeComponentShowcase } from './ComponentShowcase';
+import { componentShowcaseFactory } from './ComponentShowcase';
 import { DemoComponent } from './DemoComponent';
 
 const meta = {
@@ -10,7 +10,7 @@ const meta = {
 
 type IStory = StoryObj<IDemoComponentProps>;
 
-const DemoShowcase = makeComponentShowcase(DemoComponent);
+const DemoShowcase = componentShowcaseFactory(DemoComponent);
 
 const defaultArgs = {
   c: '$primary',

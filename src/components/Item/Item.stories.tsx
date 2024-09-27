@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IItemProps } from './Item.types';
-import { makeComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Paper } from '../Paper';
 import { Item } from './Item';
 
@@ -36,7 +36,7 @@ const SlotDemo = ({ label, primary }: ISlotDemoProps): React.ReactNode => (
   </Paper>
 );
 
-const ItemShowcase = makeComponentShowcase(Item);
+const ItemShowcase = componentShowcaseFactory(Item);
 
 export const Configurations: IStory = {
   render: (props) => (
