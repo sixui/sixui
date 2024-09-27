@@ -16,7 +16,6 @@ export interface IPolymorphicTemplateOwnProps {
 export interface IPolymorphicTemplateProps
   extends IBoxProps,
     IComponentThemeProps<IPolymorphicTemplateThemeFactory>,
-    IPolymorphicTemplateOwnProps,
     IPolymorphicTemplateOwnProps {}
 
 export type IPolymorphicTemplateFactory = IPolymorphicComponentFactory<{

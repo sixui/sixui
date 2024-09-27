@@ -29,8 +29,9 @@ import { isFunction } from '~/helpers/isFunction';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { usePrevious } from '~/hooks/usePrevious';
 import { useStyles } from '~/hooks/useStyles';
+import { objectFromPlacement } from '~/utils/objectFromPlacement';
 import { FilterableListBase } from '../FilterableListBase';
-import { FloatingTransition } from '../FloatingTransition';
+import { Motion } from '../Motion';
 import { Portal } from '../Portal';
 import { floatingFilterableListBaseStyles } from './FloatingFilterableListBase.styles';
 
@@ -386,9 +387,9 @@ export const FloatingFilterableListBase = fixedForwardRef(
                 ref={floating.refs.setFloating}
                 style={floating.floatingStyles}
               >
-                <FloatingTransition
+                <Motion
                   sx={combineStyles('container')}
-                  placement={floating.placement}
+                  placement={objectFromPlacement(floating.placement)}
                   status={transitionStatus.status}
                   origin="edge"
                   orientation={orientation}
@@ -418,7 +419,7 @@ export const FloatingFilterableListBase = fixedForwardRef(
                       {...(forwardProps ? undefined : other)}
                     />
                   </FloatingList>
-                </FloatingTransition>
+                </Motion>
               </div>
             </FloatingFocusManager>
           </Portal>

@@ -16,7 +16,6 @@ export interface IBasicTemplateOwnProps {
 export interface IBasicTemplateProps
   extends IBoxProps,
     IComponentThemeProps<IBasicTemplateThemeFactory>,
-    IBasicTemplateOwnProps,
     IBasicTemplateOwnProps {}
 
 export type IBasicTemplateFactory = IComponentFactory<{
