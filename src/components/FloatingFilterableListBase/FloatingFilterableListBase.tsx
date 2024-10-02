@@ -1,4 +1,3 @@
-import type { ReferenceType } from '@floating-ui/react';
 import { useEffect, useRef, useState } from 'react';
 import {
   autoUpdate,
@@ -23,26 +22,36 @@ import type {
   IFilterableListItemRenderer,
   IFilterableListItemRendererProps,
 } from '../FilterableListBase';
-import type { IFloatingFilterableListBaseProps } from './FloatingFilterableListBase.types';
-import { fixedForwardRef } from '~/helpers/fixedForwardRef';
+import type { IFloatingFilterableListBaseThemeFactory } from './FloatingFilterableListBase.css';
+import type { IFloatingFilterableListBaseFactory } from './FloatingFilterableListBase.types';
 import { isFunction } from '~/helpers/isFunction';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { usePrevious } from '~/hooks/usePrevious';
-import { useStyles } from '~/hooks/useStyles';
+import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import { useProps } from '~/utils/component/useProps';
 import { objectFromPlacement } from '~/utils/objectFromPlacement';
-import { FilterableListBase } from '../FilterableListBase';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { filterableListBaseFactory } from '../FilterableListBase';
 import { Motion } from '../Motion';
 import { Portal } from '../Portal';
-import { floatingFilterableListBaseStyles } from './FloatingFilterableListBase.styles';
+import { floatingFilterableListBaseTheme } from './FloatingFilterableListBase.css';
 
-export const FloatingFilterableListBase = fixedForwardRef(
-  function FloatingFilterableListBase<TItem, TItemElement extends HTMLElement>(
-    props: IFloatingFilterableListBaseProps<TItem, TItemElement>,
-    forwardedRef?: React.Ref<ReferenceType>,
-  ) {
+const COMPONENT_NAME = 'FloatingFilterableListBase';
+
+export const floatingFilterableListBaseFactory = <
+  TItem,
+  TItemElement extends HTMLElement = HTMLElement,
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+>() => {
+  const FloatingFilterableListBase = polymorphicComponentFactory<
+    IFloatingFilterableListBaseFactory<TItem, TItemElement>
+  >((props, forwardedRef) => {
     const {
+      classNames,
+      className,
       styles,
-      sx,
+      style,
+      variant,
       children,
       placement = 'bottom-start',
       orientation = 'vertical',
@@ -74,13 +83,23 @@ export const FloatingFilterableListBase = fixedForwardRef(
       cols = 1,
       itemFocus,
       onOpenChange,
+      slotProps,
       ...other
-    } = props;
-
-    const { combineStyles, getStyles, globalStyles } = useStyles({
-      componentName: 'FloatingFilterableListBase',
-      styles: [floatingFilterableListBaseStyles, styles],
+    } = useProps({
+      componentName: COMPONENT_NAME,
+      props,
     });
+
+    const { getStyles } =
+      useComponentTheme<IFloatingFilterableListBaseThemeFactory>({
+        componentName: COMPONENT_NAME,
+        classNames,
+        className,
+        styles,
+        style,
+        theme: floatingFilterableListBaseTheme,
+        variant,
+      });
 
     const [opened, setOpened] = useState(false);
     const [hasFocus, setHasFocus] = useState(false);
@@ -345,6 +364,8 @@ export const FloatingFilterableListBase = fixedForwardRef(
       }
     };
 
+    const FilterableListBase = filterableListBaseFactory<TItem>();
+
     return (
       <>
         {isFunction(children)
@@ -375,25 +396,26 @@ export const FloatingFilterableListBase = fixedForwardRef(
           : children}
 
         {transitionStatus.isMounted && (
-          <Portal>
-            <FloatingFocusManager
-              context={floating.context}
-              visuallyHiddenDismiss
-              initialFocus={disabled ? -1 : initialFocus}
-            >
-              <div
-                {...interactions.getFloatingProps()}
-                {...getStyles(globalStyles, 'host', sx)}
-                ref={floating.refs.setFloating}
-                style={floating.floatingStyles}
+          <Portal {...slotProps?.portal}>
+            <div {...getStyles('root')} {...(forwardProps ? undefined : other)}>
+              <FloatingFocusManager
+                context={floating.context}
+                visuallyHiddenDismiss
+                initialFocus={disabled ? -1 : initialFocus}
+                {...slotProps?.floatingFocusManager}
               >
                 <Motion
-                  sx={combineStyles('container')}
+                  {...getStyles('floating', {
+                    style: { left: floating.x, top: floating.y },
+                  })}
+                  {...interactions.getFloatingProps()}
+                  ref={floating.refs.setFloating}
                   placement={objectFromPlacement(floating.placement)}
                   status={transitionStatus.status}
                   origin="edge"
                   orientation={orientation}
                   pattern="enterExit"
+                  {...slotProps?.floatingMotion}
                 >
                   <FloatingList elementsRef={elementsRef} labelsRef={labelsRef}>
                     <FilterableListBase
@@ -420,11 +442,15 @@ export const FloatingFilterableListBase = fixedForwardRef(
                     />
                   </FloatingList>
                 </Motion>
-              </div>
-            </FloatingFocusManager>
+              </FloatingFocusManager>
+            </div>
           </Portal>
         )}
       </>
     );
-  },
-);
+  });
+
+  FloatingFilterableListBase.displayName = `@sixui/${COMPONENT_NAME}`;
+
+  return FloatingFilterableListBase;
+};

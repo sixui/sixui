@@ -1,4 +1,5 @@
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import { IBoxProps } from '../Box';
 
 // Inspiration:
 // - https://github.com/palantir/blueprint/blob/develop/packages/select/src/common/itemListRenderer.ts
@@ -101,68 +102,73 @@ export type IFilterableListItemFocus = 'icon';
  * `itemRenderer` receives the item as its first argument, and this object as
  * its second argument.
  *
- * @typeParam TElement - Type of the DOM element rendered
+ * @typeParam TItemElement - Type of the DOM element rendered
  */
-export type IFilterableListItemRendererProps<TElement extends HTMLElement> = {
-  /**
-   * Click event handler to select this item.
-   */
-  handleClick: React.MouseEventHandler<TElement>;
+export type IFilterableListItemRendererProps<TItemElement extends HTMLElement> =
+  {
+    /**
+     * Click event handler to select this item.
+     */
+    handleClick: React.MouseEventHandler<TItemElement>;
 
-  /**
-   * Index of the item in the `filteredItems` array.
-   */
-  index: number;
+    /**
+     * Index of the item in the `filteredItems` array.
+     */
+    index: number;
 
-  /**
-   * Modifiers that describe how to render this item, such as `active` or
-   * `disabled`.
-   */
-  modifiers: IFilterableListItemModifiers;
+    /**
+     * Modifiers that describe how to render this item, such as `active` or
+     * `disabled`.
+     */
+    modifiers: IFilterableListItemModifiers;
 
-  /**
-   * The current query string used to filter the items.
-   */
-  query: string;
+    /**
+     * The current query string used to filter the items.
+     */
+    query: string;
 
-  /**
-   * Reference to the button element that renders this item. Use this to focus
-   * the button.
-   */
-  buttonRef?: React.Ref<HTMLButtonElement>;
+    /**
+     * Reference to the button element that renders this item. Use this to focus
+     * the button.
+     */
+    buttonRef?: React.Ref<HTMLButtonElement>;
 
-  /**
-   * Get the attributes to apply to the button element that renders this item.
-   */
-  getButtonAttributes: (
-    userProps?: React.HTMLProps<TElement>,
-  ) => Record<string, unknown>;
+    /**
+     * Get the attributes to apply to the button element that renders this item.
+     */
+    getButtonAttributes: (
+      userProps?: React.HTMLProps<TItemElement>,
+    ) => Record<string, unknown>;
 
-  focus?: IFilterableListItemFocus;
-};
+    focus?: IFilterableListItemFocus;
+  };
 
 /**
  * Type alias for a function that receives an item and props and renders a JSX
  * element (or `null`).
  *
  * @typeParam TItem - Tist item data type
- * @typeParam TElement - Type of the DOM element rendered
+ * @typeParam TItemElement - Type of the DOM element rendered
  */
-export type IFilterableListItemRenderer<TItem, TElement extends HTMLElement> = (
+export type IFilterableListItemRenderer<
+  TItem,
+  TItemElement extends HTMLElement,
+> = (
   item: TItem,
-  itemProps: IFilterableListItemRendererProps<TElement>,
+  itemProps: IFilterableListItemRendererProps<TItemElement>,
 ) => React.JSX.Element | null;
 
 /**
  * Type alias for a function that receives item props and renders a JSX element
  * for creating a new item.
  *
- * @typeParam TElement - Type of the DOM element rendered
+ * @typeParam TItemElement - Type of the DOM element rendered
  */
-export type IFilterableCreateNewListItemRenderer<TElement extends HTMLElement> =
-  (
-    itemProps: IFilterableListItemRendererProps<TElement>,
-  ) => React.JSX.Element | undefined;
+export type IFilterableCreateNewListItemRenderer<
+  TItemElement extends HTMLElement,
+> = (
+  itemProps: IFilterableListItemRendererProps<TItemElement>,
+) => React.JSX.Element | undefined;
 
 // Inspiration:
 // - https://github.com/palantir/blueprint/blob/develop/packages/select/src/common/predicate.ts
@@ -266,10 +272,10 @@ export type IFilterableListBaseRenderer<TItem> = (
  *
  * @typeParam TItem - List item data type
  */
-export type IFilterableListBaseProps<
+export interface IFilterableListBaseOwnProps<
   TItem,
-  TElement extends HTMLElement = HTMLElement,
-> = {
+  TItemElement extends HTMLElement = HTMLElement,
+> {
   /**
    * Unfiltered list of items to render in the list.
    */
@@ -326,7 +332,7 @@ export type IFilterableListBaseProps<
   /**
    * Custom renderer for an item in the filtered list.
    */
-  itemRenderer: IFilterableListItemRenderer<TItem, TElement>;
+  itemRenderer: IFilterableListItemRenderer<TItem, TItemElement>;
 
   /**
    * Custom renderer for the contents of the list.
@@ -391,7 +397,7 @@ export type IFilterableListBaseProps<
    * the end of the list of items. If this function is not provided, a "Create
    * Item" option will not be displayed.
    */
-  createNewItemRenderer?: IFilterableCreateNewListItemRenderer<TElement>;
+  createNewItemRenderer?: IFilterableCreateNewListItemRenderer<TItemElement>;
 
   /**
    * Determines the position of the `createNewItem` within the list: first or
@@ -432,13 +438,19 @@ export type IFilterableListBaseProps<
   disabled?: boolean;
 
   cols?: number;
-};
+}
+
+export interface IFilterableListBaseProps<
+  TItem,
+  TItemElement extends HTMLElement = HTMLElement,
+> extends IBoxProps,
+    IFilterableListBaseOwnProps<TItem, TItemElement> {}
 
 export type IFilterableListBaseFactory<
   TItem,
-  TElement extends HTMLElement,
+  TItemElement extends HTMLElement,
 > = IPolymorphicComponentFactory<{
-  props: IFilterableListBaseProps<TItem, TElement>;
+  props: IFilterableListBaseProps<TItem, TItemElement>;
   defaultRef: HTMLDivElement;
   defaultRoot: 'div';
 }>;

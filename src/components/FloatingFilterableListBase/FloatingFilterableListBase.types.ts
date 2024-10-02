@@ -1,7 +1,7 @@
 import type {
+  FloatingFocusManagerProps,
   OpenChangeReason,
   Placement,
-  ReferenceType,
 } from '@floating-ui/react';
 
 import type {
@@ -9,13 +9,16 @@ import type {
   IRendererWithForwardedProps,
 } from '~/helpers/react/forwardablePropsTypes';
 import type { IOmit, IOrientation } from '~/helpers/types';
-import type { IBaseProps } from '../Base';
+import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IBoxProps } from '../Box';
 import type {
   IFilterableListBaseProps,
   IFilterableListItemFocus,
 } from '../FilterableListBase';
+import type { IMotionProps } from '../Motion';
 import type { IPortalProps } from '../Portal';
-import type { IFloatingFilterableListBaseStylesKey } from './FloatingFilterableListBase.styles';
+import type { IFloatingFilterableListBaseThemeFactory } from './FloatingFilterableListBase.css';
 
 export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
   /**
@@ -31,7 +34,7 @@ export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
   /**
    * A callback to set the trigger element.
    */
-  setTriggerRef: ((node: ReferenceType | null) => void) | null;
+  setTriggerRef: ((node: HTMLElement | null) => void) | null;
 
   /**
    * A function that returns the props to apply to the trigger element.
@@ -69,54 +72,77 @@ export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
   query: string;
 };
 
-export type IFloatingFilterableListBaseProps<
+export interface IFloatingFilterableListBaseOwnProps<
   TItem,
-  TElement extends HTMLElement,
-> = IBaseProps<IFloatingFilterableListBaseStylesKey> &
-  Pick<IPortalProps, 'root'> &
-  IOmit<IFilterableListBaseProps<TItem, TElement>, 'onItemSelect'> &
-  IForwardableProps & {
-    /**
-     * Element which triggers the select popover. In most cases, you should display
-     * the name or label of the curently selected item here.
-     */
-    children: IRendererWithForwardedProps<
-      IFloatingFilterableListBaseTriggerRenderProps<TItem>
-    >;
+  TItemElement extends HTMLElement,
+> extends IOmit<IFilterableListBaseProps<TItem, TItemElement>, 'onItemSelect'>,
+    IForwardableProps {
+  /**
+   * Element which triggers the select popover. In most cases, you should display
+   * the name or label of the curently selected item here.
+   */
+  children: IRendererWithForwardedProps<
+    IFloatingFilterableListBaseTriggerRenderProps<TItem>
+  >;
 
-    onItemSelect: (
-      item: TItem,
-      event?: React.SyntheticEvent<HTMLElement>,
-    ) => number | undefined;
+  onItemSelect: (
+    item: TItem,
+    event?: React.SyntheticEvent<HTMLElement>,
+  ) => number | undefined;
 
-    placement?: Placement;
-    orientation?: IOrientation;
-    matchTargetWidth?: boolean;
-    closeOnSelect?: boolean;
+  placement?: Placement;
+  orientation?: IOrientation;
+  matchTargetWidth?: boolean;
+  closeOnSelect?: boolean;
 
-    /**
-     * Whether the active item should be reset to the first matching item _when
-     * an item is selected_. The query will also be reset to the empty string.
-     *
-     * @defaultvalue false
-     */
-    resetOnSelect?: boolean;
+  /**
+   * Whether the active item should be reset to the first matching item _when
+   * an item is selected_. The query will also be reset to the empty string.
+   *
+   * @defaultvalue false
+   */
+  resetOnSelect?: boolean;
 
-    /**
-     * Whether the active item should be reset to the first matching item _when
-     * the popover closes_. The query will also be reset to the empty string.
-     *
-     * @defaultValue false
-     */
-    resetOnClose?: boolean;
+  /**
+   * Whether the active item should be reset to the first matching item _when
+   * the popover closes_. The query will also be reset to the empty string.
+   *
+   * @defaultValue false
+   */
+  resetOnClose?: boolean;
 
-    resetOnBlur?: boolean;
-    initialFocus?: number;
-    cols?: number;
-    itemFocus?: IFilterableListItemFocus;
-    onOpenChange?: (
-      opened: boolean,
-      event?: Event,
-      reason?: OpenChangeReason,
-    ) => void;
+  /**
+   * Contains the props for all slots within the component.
+   */
+  slotProps?: {
+    floatingFocusManager?: Partial<FloatingFocusManagerProps>;
+    floatingMotion?: Partial<IMotionProps>;
+    portal?: Partial<IPortalProps>;
   };
+
+  resetOnBlur?: boolean;
+  initialFocus?: number;
+  cols?: number;
+  itemFocus?: IFilterableListItemFocus;
+  onOpenChange?: (
+    opened: boolean,
+    event?: Event,
+    reason?: OpenChangeReason,
+  ) => void;
+}
+
+export interface IFloatingFilterableListBaseProps<
+  TItem,
+  TItemElement extends HTMLElement = HTMLElement,
+> extends IBoxProps,
+    IComponentThemeProps<IFloatingFilterableListBaseThemeFactory>,
+    IFloatingFilterableListBaseOwnProps<TItem, TItemElement> {}
+
+export type IFloatingFilterableListBaseFactory<
+  TItem,
+  TItemElement extends HTMLElement,
+> = IPolymorphicComponentFactory<{
+  props: IFloatingFilterableListBaseProps<TItem, TItemElement>;
+  defaultRef: HTMLDivElement;
+  defaultRoot: 'div';
+}>;
