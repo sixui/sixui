@@ -8,8 +8,10 @@ const classNames = createStyles({
     zIndex: themeTokens.zIndex.popover,
   },
   floating: {
-    display: 'flex',
-    flexGrow: 1,
+    width: 'inherit',
+    height: 'inherit',
+    position: 'absolute',
+    zIndex: themeTokens.zIndex.popover,
   },
 });
 

@@ -8,6 +8,7 @@ export type IFilterableListBaseFieldTrailingIcon = {
   onClear?: () => void;
 };
 
+// FIXME:
 export const FilterableListBaseFieldTrailingIcon = (
   props: IFilterableListBaseFieldTrailingIcon,
 ): React.ReactNode => (

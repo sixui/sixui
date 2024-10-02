@@ -31,6 +31,7 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { useProps } from '~/utils/component/useProps';
 import { objectFromPlacement } from '~/utils/objectFromPlacement';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { extractBoxProps } from '../Box/extractBoxProps';
 import { filterableListBaseFactory } from '../FilterableListBase';
 import { Motion } from '../Motion';
 import { Portal } from '../Portal';
@@ -89,6 +90,8 @@ export const floatingFilterableListBaseFactory = <
       componentName: COMPONENT_NAME,
       props,
     });
+
+    const { boxProps, other: forwardedProps } = extractBoxProps(other);
 
     const { getStyles } =
       useComponentTheme<IFloatingFilterableListBaseThemeFactory>({
@@ -374,6 +377,7 @@ export const floatingFilterableListBaseFactory = <
               hasFocus,
               setTriggerRef: buttonHandleRef,
               getTriggerProps: (userProps) => ({
+                ...boxProps,
                 ...interactions.getReferenceProps({
                   ...userProps,
                   onFocus: (...args) => {
@@ -391,7 +395,7 @@ export const floatingFilterableListBaseFactory = <
               query,
               inputFilterRef: inputFilterRef,
               getInputFilterProps,
-              forwardedProps: forwardProps ? other : undefined,
+              forwardedProps: forwardProps ? forwardedProps : undefined,
             })
           : children}
 

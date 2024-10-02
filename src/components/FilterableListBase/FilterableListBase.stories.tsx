@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IFilterableListBaseExampleProps } from './FilterableListBaseExample.types';
+import type { IFilterableListBaseExampleProps } from './FilterableListBaseExample';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { ListItem } from '../ListItem';
 import { FilterableListBaseExample } from './FilterableListBaseExample';
@@ -13,7 +13,8 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onItemSelect: (...args) => void sbHandleEvent('itemSelect', args),
+  onItemSelect: (...args) => void sbHandleEvent('onItemSelect', args),
+  w: 'max-content',
 } satisfies Partial<IFilterableListBaseExampleProps>;
 
 export const Basic: IStory = {

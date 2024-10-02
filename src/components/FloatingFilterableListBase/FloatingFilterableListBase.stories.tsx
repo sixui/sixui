@@ -1,28 +1,28 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IFilterableListBaseExampleProps } from './FilterableListBaseExample.types';
+import type { IFloatingFilterableListBaseExampleProps } from './FloatingFilterableListBaseExample';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { TOP_100_MOVIES } from '../FilterableListBase/movies';
 import { ListItem } from '../ListItem';
-import { FilterableListBaseExample } from './FilterableListBaseExample';
-import { TOP_100_MOVIES } from './movies';
+import { FloatingFilterableListBaseExample } from './FloatingFilterableListBaseExample';
 
 const meta = {
-  component: FilterableListBaseExample,
-} satisfies Meta<typeof FilterableListBaseExample>;
+  component: FloatingFilterableListBaseExample,
+} satisfies Meta<typeof FloatingFilterableListBaseExample>;
 
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onItemSelect: (...args) => void sbHandleEvent('itemSelect', args),
-} satisfies Partial<IFilterableListBaseExampleProps>;
+  w: '480px',
+} satisfies Partial<IFloatingFilterableListBaseExampleProps>;
 
 export const Basic: IStory = {
-  render: (props) => <FilterableListBaseExample {...props} />,
+  render: (props) => <FloatingFilterableListBaseExample {...props} />,
   args: defaultArgs,
 };
 
 export const CanFilter: IStory = {
-  render: (props) => <FilterableListBaseExample {...props} />,
+  render: (props) => <FloatingFilterableListBaseExample {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -30,7 +30,7 @@ export const CanFilter: IStory = {
 };
 
 export const DefaultQuery: IStory = {
-  render: (props) => <FilterableListBaseExample {...props} />,
+  render: (props) => <FloatingFilterableListBaseExample {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -39,7 +39,7 @@ export const DefaultQuery: IStory = {
 };
 
 export const CanCreate: IStory = {
-  render: (props) => <FilterableListBaseExample {...props} />,
+  render: (props) => <FloatingFilterableListBaseExample {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -49,7 +49,7 @@ export const CanCreate: IStory = {
 };
 
 export const NoResults: IStory = {
-  render: (props) => <FilterableListBaseExample {...props} />,
+  render: (props) => <FloatingFilterableListBaseExample {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -58,7 +58,7 @@ export const NoResults: IStory = {
 };
 
 export const InitialContent: IStory = {
-  render: (props) => <FilterableListBaseExample {...props} />,
+  render: (props) => <FloatingFilterableListBaseExample {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -69,7 +69,7 @@ export const InitialContent: IStory = {
 };
 
 export const Disabled: IStory = {
-  render: (props) => <FilterableListBaseExample {...props} />,
+  render: (props) => <FloatingFilterableListBaseExample {...props} />,
   args: {
     ...defaultArgs,
     canFilter: true,
