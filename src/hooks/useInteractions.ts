@@ -16,6 +16,8 @@ export type IInteractionEvents = {
   press?: boolean;
 };
 
+export type IInteractionsMergeStrategy = 'replace' | 'accumulate';
+
 export type IUseInteractionsProps = {
   events?: IInteractionEvents;
 
@@ -31,7 +33,7 @@ export type IUseInteractionsProps = {
    *   equal to the base state.
    * @defaultValue 'accumulate'
    */
-  mergeStrategy?: 'replace' | 'accumulate';
+  mergeStrategy?: IInteractionsMergeStrategy;
 
   /** Wether the element is currently dragged. */
   dragged?: boolean;

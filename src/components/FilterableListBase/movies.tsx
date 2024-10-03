@@ -187,6 +187,7 @@ export const renderMovieListItem: IFilterableListItemRenderer<
       {...getMovieItemProps(movie, props)}
       key={props.index}
       interactions={{ hovered: props.modifiers.active }}
+      interactionsMergeStrategy="replace"
       selected={props.modifiers.selected}
       disabled={props.modifiers.disabled}
       {...buttonAttributes}

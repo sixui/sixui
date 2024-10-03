@@ -1,5 +1,8 @@
 import type { IAny, IMaybeAsync } from '~/helpers/types';
-import type { IInteractions } from '~/hooks/useInteractions';
+import type {
+  IInteractions,
+  IInteractionsMergeStrategy,
+} from '~/hooks/useInteractions';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
@@ -13,6 +16,7 @@ import type {
 
 export interface IButtonBaseOwnProps {
   interactions?: IInteractions;
+  interactionsMergeStrategy?: IInteractionsMergeStrategy;
   children?: React.ReactNode;
   focusRing?: IFocusRingVariant | false;
   href?: string;

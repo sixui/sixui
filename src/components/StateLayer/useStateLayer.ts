@@ -4,6 +4,7 @@ import { mergeProps } from 'react-aria';
 
 import type {
   IInteractions,
+  IInteractionsMergeStrategy,
   IUseInteractionsResult,
 } from '~/hooks/useInteractions';
 import { useInteractions } from '~/hooks/useInteractions';
@@ -12,6 +13,7 @@ import { useRipple } from '~/hooks/useRipple';
 export type IUseStateLayerProps = {
   disabled?: boolean;
   interactions?: IInteractions;
+  interactionsMergeStrategy?: IInteractionsMergeStrategy;
   focusWithin?: boolean;
   hoverEvents?: HoverEvents;
   pressEvents?: PressEvents;
@@ -27,8 +29,17 @@ export type IUseStateLayerResult<TElement extends HTMLElement = HTMLElement> = {
 export const useStateLayer = <TElement extends HTMLElement>(
   props?: IUseStateLayerProps,
 ): IUseStateLayerResult<TElement> => {
-  const { disabled, interactions, hoverEvents, focusWithin } = props ?? {};
+  const {
+    disabled,
+    interactions,
+    interactionsMergeStrategy,
+    hoverEvents,
+    focusWithin,
+  } = props ?? {};
   const surfaceRef = useRef<HTMLDivElement>(null);
+
+  const currentStateReplaced =
+    interactions && interactionsMergeStrategy === 'replace';
 
   const interactionsContext = useInteractions<TElement>({
     events: {
@@ -38,6 +49,7 @@ export const useStateLayer = <TElement extends HTMLElement>(
       },
     },
     baseState: interactions,
+    mergeStrategy: interactionsMergeStrategy,
     disabled,
   });
 
@@ -60,14 +72,16 @@ export const useStateLayer = <TElement extends HTMLElement>(
     triggerRef,
     interactionsContext: {
       ...interactionsContext,
-      triggerProps: mergeProps(interactionsContext.triggerProps, {
-        onPointerDown,
-        onPointerUp,
-        onPointerLeave,
-        onPointerCancel,
-        onClick,
-        onContextMenu,
-      }),
+      triggerProps: currentStateReplaced
+        ? {}
+        : mergeProps(interactionsContext.triggerProps, {
+            onPointerDown,
+            onPointerUp,
+            onPointerLeave,
+            onPointerCancel,
+            onClick,
+            onContextMenu,
+          }),
     },
     surfaceRef,
     animating,
