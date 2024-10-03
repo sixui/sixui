@@ -319,7 +319,6 @@ export const floatingFilterableListBaseFactory = <
           elementsRef.current[itemProps.index] = node;
           labelsRef.current[itemProps.index] = node?.textContent ?? null;
         },
-        // FIXME: voir pourquoi c'est lent
         getButtonAttributes: (userProps) =>
           interactions.getItemProps({
             ...userProps,
@@ -422,7 +421,10 @@ export const floatingFilterableListBaseFactory = <
               >
                 <Motion
                   {...getStyles('floating', {
-                    style: { left: floating.x, top: floating.y },
+                    style: {
+                      left: floating.x,
+                      top: floating.y,
+                    },
                   })}
                   {...interactions.getFloatingProps()}
                   ref={floating.refs.setFloating}

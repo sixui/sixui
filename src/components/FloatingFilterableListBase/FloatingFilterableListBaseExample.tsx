@@ -97,6 +97,7 @@ export const FloatingFilterableListBaseExample: React.FC<
       createNewItemRenderer={canCreate ? renderCreateMovieListItem : undefined}
       onItemSelect={singleFilterableListBase.handleItemSelect}
       closeOnSelect
+      // FIXME: delete keepMounted
       {...other}
     >
       {(renderProps) => (

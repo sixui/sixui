@@ -62,6 +62,8 @@ export interface IMotionOwnProps {
    * @defaultValue 'enterExit'
    */
   pattern?: IMotionPattern;
+
+  children?: React.ReactNode;
 }
 
 export interface IMotionProps
