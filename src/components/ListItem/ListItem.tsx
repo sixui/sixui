@@ -6,6 +6,7 @@ import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { ButtonBase } from '../ButtonBase';
 import { Item } from '../Item';
+import { useListContext } from '../List/List.context';
 import { Paper } from '../Paper';
 import { listItemTheme, listItemVariants } from './ListItem.css';
 
@@ -34,8 +35,12 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
       trailing,
       trailingIcon,
       lineClamp,
+      noFocusRing: noFocusRingProp,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
+
+    const listContext = useListContext();
+    const noFocusRing = listContext?.noFocusRing ?? noFocusRingProp;
 
     const selected = !disabled && selectedProp;
     const hasLeading = !!start || !!leadingVideo;
@@ -89,7 +94,6 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
     const shouldRenderAsButton =
       other.as === 'button' ||
       other.as === 'a' ||
-      !!other.onPress ||
       !!other.onClick ||
       !!other.href;
 
@@ -114,7 +118,7 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
           classNames={mergeClassNames(classNames, {
             stateLayer: getStyles('stateLayer').className,
           })}
-          focusRing="inward"
+          focusRing={noFocusRing ? false : 'inward'}
           ref={forwardedRef}
           {...other}
         >
@@ -125,12 +129,12 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
 
     return (
       <Paper
-        {...other}
         {...getStyles('root')}
         classNames={mergeClassNames(classNames, {
           stateLayer: getStyles('stateLayer').className,
         })}
         ref={forwardedRef}
+        {...other}
       >
         {renderItem()}
       </Paper>

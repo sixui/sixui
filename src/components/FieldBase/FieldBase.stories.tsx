@@ -132,13 +132,14 @@ export const States: IStory = {
   render: (props) => (
     <FieldBaseShowcase
       props={props}
-      cols={[
+      rows={[
         { legend: 'Normal' },
+        { legend: 'Hovered', props: { interactions: { hovered: true } } },
         { legend: 'Focused', props: { interactions: { focused: true } } },
         { legend: 'Loading', props: { loading: true } },
         { legend: 'Disabled', props: { disabled: true } },
       ]}
-      rows={[
+      cols={[
         { legend: 'Filled', props: { variant: 'filled' } },
         { legend: 'Outlined', props: { variant: 'outlined' } },
       ]}

@@ -92,6 +92,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       closeEvents: closeEventsProp,
       lockScroll,
       modal,
+      keepMounted,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -275,37 +276,39 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       <>
         {triggerElement}
 
-        {transitionStatus.isMounted && (
+        {(transitionStatus.isMounted || keepMounted) && (
           <Portal {...slotProps?.portal}>
-            <div {...getStyles('root')} {...(forwardProps ? undefined : other)}>
-              {withScrim && (
-                <Motion
-                  status={transitionStatus.status}
-                  pattern="fade"
-                  as={Scrim}
-                  onClick={() => {
-                    if (modal) {
-                      setIsShaking(true);
-                      clearTimeout(shakingTimeout.current);
-                      shakingTimeout.current = setTimeout(
-                        () => setIsShaking(false),
-                        300,
-                      );
-                    }
-                  }}
-                  blurred={modal}
-                  {...slotProps?.scrimMotion}
-                  {...slotProps?.scrim}
-                />
-              )}
-
-              <FloatingFocusManager
-                disabled={!trapFocus}
-                context={floating.context}
-                modal={!!trapFocus}
-                closeOnFocusOut={closeEvents.focusOut}
-                {...slotProps?.floatingFocusManager}
+            <FloatingFocusManager
+              disabled={!trapFocus}
+              context={floating.context}
+              modal={!!trapFocus}
+              closeOnFocusOut={closeEvents.focusOut}
+              {...slotProps?.floatingFocusManager}
+            >
+              <div
+                {...getStyles('root')}
+                {...(forwardProps ? undefined : other)}
               >
+                {withScrim && (
+                  <Motion
+                    status={transitionStatus.status}
+                    pattern="fade"
+                    as={Scrim}
+                    onClick={() => {
+                      if (modal) {
+                        setIsShaking(true);
+                        clearTimeout(shakingTimeout.current);
+                        shakingTimeout.current = setTimeout(
+                          () => setIsShaking(false),
+                          300,
+                        );
+                      }
+                    }}
+                    blurred={modal}
+                    {...slotProps?.scrimMotion}
+                    {...slotProps?.scrim}
+                  />
+                )}
                 <Motion
                   {...getStyles('floating', {
                     style: positioned
@@ -341,8 +344,8 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
                     )}
                   </RemoveScroll>
                 </Motion>
-              </FloatingFocusManager>
-            </div>
+              </div>
+            </FloatingFocusManager>
           </Portal>
         )}
       </>

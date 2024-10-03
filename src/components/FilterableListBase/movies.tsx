@@ -180,6 +180,8 @@ export const renderMovieListItem: IFilterableListItemRenderer<
     return null;
   }
 
+  const buttonAttributes = props.getButtonAttributes();
+
   return (
     <ListItem
       {...getMovieItemProps(movie, props)}
@@ -187,7 +189,7 @@ export const renderMovieListItem: IFilterableListItemRenderer<
       interactions={{ hovered: props.modifiers.active }}
       selected={props.modifiers.selected}
       disabled={props.modifiers.disabled}
-      {...props.getButtonAttributes()}
+      {...buttonAttributes}
       ref={props.buttonRef}
     />
   );

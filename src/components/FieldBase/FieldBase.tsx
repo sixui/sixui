@@ -6,11 +6,12 @@ import {
   useRef,
   useState,
 } from 'react';
+import { useMergeRefs } from '@floating-ui/react';
+import { mergeProps } from 'react-aria';
 
 import type { IFieldBaseThemeFactory } from './FieldBase.css';
 import type { IFieldBaseFactory } from './FieldBase.types';
 import { isFunction } from '~/helpers/isFunction';
-import { useInteractions } from '~/hooks/useInteractions';
 import { usePrevious } from '~/hooks/usePrevious';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
@@ -20,7 +21,7 @@ import { extractBoxProps } from '../Box/extractBoxProps';
 import { CircularProgressIndicator } from '../CircularProgressIndicator';
 import { LabeledContext } from '../Labeled/Labeled.context';
 import { PaperBase } from '../PaperBase';
-import { StateLayer } from '../StateLayer';
+import { StateLayer, useStateLayer } from '../StateLayer';
 import { getLabelKeyframes } from './getLabelKeyframes';
 import { fieldBaseTheme, fieldBaseThemeVariants } from './FieldBase.css';
 
@@ -35,6 +36,7 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
       styles,
       style,
       variant = 'filled',
+      forwardProps,
       children,
       start,
       end,
@@ -58,26 +60,26 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
       prefixText,
       suffixText,
       wrapperProps,
+      rippleEffect,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
     const { boxProps, other: forwardedProps } = extractBoxProps(other);
 
-    const interactionsContext = useInteractions({
-      baseState: interactionsProp,
-      events: {
-        hover: true,
-      },
-    });
-
     const labeledContext = useContext(LabeledContext);
     const loading = loadingProp || labeledContext?.loading;
     const disabledOrReadOnly = disabled || readOnly;
-    const focused = interactionsContext.state.focused;
     const hasStartSection = !!leadingIcon || !!start;
     const hasEndSection = !!loading || !!trailingIcon || !!end;
     const hasLabel = !!label;
     const populated = populatedProp;
+
+    const stateLayer = useStateLayer({
+      interactions: interactionsProp,
+      disabled: disabledOrReadOnly,
+    });
+
+    const focused = stateLayer.interactionsContext.state.focused;
 
     const { getStyles } = useComponentTheme<IFieldBaseThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -371,23 +373,32 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
       </div>
     );
 
+    const handleRef = useMergeRefs([forwardedRef, stateLayer.triggerRef]);
+
     return (
       <Box
         {...boxProps}
-        {...wrapperProps}
+        {...mergeProps(
+          stateLayer.interactionsContext.triggerProps,
+          wrapperProps,
+          forwardProps ? undefined : forwardedProps,
+        )}
         {...getStyles('root')}
-        {...interactionsContext.triggerProps}
-        interactions={interactionsContext.state}
-        ref={forwardedRef}
+        interactions={stateLayer.interactionsContext.state}
+        ref={handleRef}
       >
         <PaperBase
           {...getStyles('container')}
           disabled={disabled}
           ref={containerRef}
         >
-          <StateLayer interactions={interactionsContext.state} />
+          <StateLayer
+            context={rippleEffect ? stateLayer : undefined}
+            interactions={
+              rippleEffect ? undefined : stateLayer.interactionsContext.state
+            }
+          />
           {renderIndicator()}
-
           {variant === 'outlined' && renderOutline()}
 
           <div {...getStyles('inner')}>
@@ -417,7 +428,11 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
                   {children && (
                     <div {...getStyles('inputWrapper')}>
                       {isFunction(children)
-                        ? children({ forwardedProps })
+                        ? children({
+                            forwardedProps: forwardProps
+                              ? forwardedProps
+                              : undefined,
+                          })
                         : children}
                     </div>
                   )}

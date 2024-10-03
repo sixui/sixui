@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   autoUpdate,
   flip,
@@ -85,6 +85,7 @@ export const floatingFilterableListBaseFactory = <
       itemFocus,
       onOpenChange,
       slotProps,
+      keepMounted,
       ...other
     } = useProps({
       componentName: COMPONENT_NAME,
@@ -136,6 +137,7 @@ export const floatingFilterableListBaseFactory = <
     });
     const click = useClick(floating.context, {
       event: 'click',
+      keyboardHandlers: false,
     });
     const role = useRole(floating.context, { role: 'listbox' });
     const inputFilterRef = useRef<HTMLInputElement>(null);
@@ -317,6 +319,7 @@ export const floatingFilterableListBaseFactory = <
           elementsRef.current[itemProps.index] = node;
           labelsRef.current[itemProps.index] = node?.textContent ?? null;
         },
+        // FIXME: voir pourquoi c'est lent
         getButtonAttributes: (userProps) =>
           interactions.getItemProps({
             ...userProps,
@@ -367,7 +370,10 @@ export const floatingFilterableListBaseFactory = <
       }
     };
 
-    const FilterableListBase = filterableListBaseFactory<TItem>();
+    const FilterableListBase = useMemo(
+      () => filterableListBaseFactory<TItem>(),
+      [],
+    );
 
     return (
       <>
@@ -399,14 +405,20 @@ export const floatingFilterableListBaseFactory = <
             })
           : children}
 
-        {transitionStatus.isMounted && (
+        {(transitionStatus.isMounted || keepMounted) && (
           <Portal {...slotProps?.portal}>
-            <div {...getStyles('root')} {...(forwardProps ? undefined : other)}>
-              <FloatingFocusManager
-                context={floating.context}
-                visuallyHiddenDismiss
-                initialFocus={disabled ? -1 : initialFocus}
-                {...slotProps?.floatingFocusManager}
+            <FloatingFocusManager
+              context={floating.context}
+              initialFocus={disabled ? -1 : initialFocus}
+              returnFocus
+              restoreFocus
+              modal
+              visuallyHiddenDismiss
+              {...slotProps?.floatingFocusManager}
+            >
+              <div
+                {...getStyles('root')}
+                {...(forwardProps ? undefined : other)}
               >
                 <Motion
                   {...getStyles('floating', {
@@ -446,8 +458,8 @@ export const floatingFilterableListBaseFactory = <
                     />
                   </FloatingList>
                 </Motion>
-              </FloatingFocusManager>
-            </div>
+              </div>
+            </FloatingFocusManager>
           </Portal>
         )}
       </>

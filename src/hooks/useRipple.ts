@@ -4,31 +4,25 @@ import { delay } from '@olivierpascal/helpers';
 import type { IPoint } from '~/helpers/types';
 
 const getNormalizedPointerEventCoords = (
-  triggerElement: HTMLElement,
   surfaceElement: HTMLElement,
   pointerEvent: React.PointerEvent,
-): IPoint | undefined => {
+): IPoint => {
+  const surfaceRect = surfaceElement.getBoundingClientRect();
+
   const { pageX, pageY } = pointerEvent;
   if (!pageX || !pageY) {
-    return undefined;
+    return {
+      x: surfaceRect.width / 2,
+      y: surfaceRect.height / 2,
+    };
   }
 
-  const { scrollX, scrollY } = window;
-
-  const triggerRect = triggerElement.getBoundingClientRect();
-  const triggerDocumentX = scrollX + triggerRect.left;
-  const triggerDocumentY = scrollY + triggerRect.top;
-
-  const surfaceRect = surfaceElement.getBoundingClientRect();
-  const surfaceDocumentX = scrollX + surfaceRect.left;
-  const surfaceDocumentY = scrollY + surfaceRect.top;
-
-  const deltaX = surfaceDocumentX - triggerDocumentX;
-  const deltaY = surfaceDocumentY - triggerDocumentY;
+  const surfaceDocumentX = surfaceRect.left;
+  const surfaceDocumentY = surfaceRect.top;
 
   const coords = {
-    x: pageX - triggerDocumentX - deltaX,
-    y: pageY - triggerDocumentY - deltaY,
+    x: pageX - surfaceDocumentX,
+    y: pageY - surfaceDocumentY,
   };
 
   return coords;
@@ -45,24 +39,19 @@ const getTranslationCoordinates = (
   event: React.PointerEvent | React.MouseEvent,
   initialSize: number,
 ): ITranslationCoordinates => {
-  const { width, height } = triggerElement.getBoundingClientRect();
+  const triggerRect = triggerElement.getBoundingClientRect();
 
   // End in the center
   const endPoint = {
-    x: (width - initialSize) / 2,
-    y: (height - initialSize) / 2,
+    x: (triggerRect.width - initialSize) / 2,
+    y: (triggerRect.height - initialSize) / 2,
   };
 
   const startPoint = getNormalizedPointerEventCoords(
-    triggerElement,
     surfaceElement,
     event as React.PointerEvent,
-  ) ?? {
-    x: width / 2,
-    y: height / 2,
-  };
+  );
 
-  // Center around start point
   const centeredStartPoint = {
     x: startPoint.x - initialSize / 2,
     y: startPoint.y - initialSize / 2,
@@ -205,9 +194,6 @@ enum IState {
 const isTouch = ({ pointerType }: React.PointerEvent): boolean =>
   pointerType === 'touch';
 
-// Used to handle overlapping surfaces.
-let activeTarget: EventTarget | null = null;
-
 export const useRipple = <TElement extends HTMLElement>(
   props: IUseRippleProps<TElement>,
 ): IUseRippleResult => {
@@ -292,8 +278,6 @@ export const useRipple = <TElement extends HTMLElement>(
         return;
       }
 
-      activeTarget = event.target;
-
       setAnimating(true);
       growAnimationRef.current?.cancel();
       determineRippleSize();
@@ -345,7 +329,6 @@ export const useRipple = <TElement extends HTMLElement>(
   );
 
   const endPressAnimation = useCallback(() => {
-    activeTarget = null;
     stateRef.current = IState.Inactive;
     const animation = growAnimationRef.current;
 
@@ -374,8 +357,10 @@ export const useRipple = <TElement extends HTMLElement>(
   }, [options.minimumPressMs]);
 
   const handlePointerDown: React.PointerEventHandler = useCallback(
-    (event): void => {
-      if (!!activeTarget || !shouldReactToEvent(event)) {
+    (event) => {
+      event.stopPropagation();
+
+      if (!shouldReactToEvent(event)) {
         return;
       }
 
@@ -415,6 +400,8 @@ export const useRipple = <TElement extends HTMLElement>(
 
   const handlePointerUp: React.PointerEventHandler = useCallback(
     (event) => {
+      event.stopPropagation();
+
       if (!shouldReactToEvent(event)) {
         return;
       }
@@ -439,6 +426,8 @@ export const useRipple = <TElement extends HTMLElement>(
 
   const handlePointerLeave: React.PointerEventHandler = useCallback(
     (event) => {
+      event.stopPropagation();
+
       if (!shouldReactToEvent(event)) {
         return;
       }
@@ -453,6 +442,8 @@ export const useRipple = <TElement extends HTMLElement>(
 
   const handlePointerCancel: React.PointerEventHandler = useCallback(
     (event) => {
+      event.stopPropagation();
+
       if (!shouldReactToEvent(event)) {
         return;
       }
@@ -464,9 +455,7 @@ export const useRipple = <TElement extends HTMLElement>(
 
   const handleClick: React.MouseEventHandler = useCallback(
     (event) => {
-      if (event.target !== activeTarget) {
-        return;
-      }
+      event.stopPropagation();
 
       // Click is a MouseEvent in Firefox and Safari, so we cannot use
       // `shouldReactToEvent`.

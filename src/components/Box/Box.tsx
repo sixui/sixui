@@ -1,6 +1,7 @@
 import { forwardRef } from 'react';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 import cx from 'clsx';
+import { mergeProps } from 'react-aria';
 
 import type { IWithAsProp } from '~/utils/component/createPolymorphicComponent';
 import type { IBoxProps } from './Box.types';
@@ -27,7 +28,21 @@ export const Box = createPolymorphicComponent<'div', IBoxProps>(
     const other = sprinkles.otherProps;
 
     const childrenProps = {
-      ...other,
+      ...mergeProps(other, {
+        onKeyDown: (event: React.KeyboardEvent<HTMLElement>) => {
+          // When using a different element than a button, we want to allow
+          // the Enter or Space key to trigger the click event for
+          // accessibility purpose.
+          if (
+            (other.role === 'button' && event.key === 'Enter') ||
+            event.key === ' '
+          ) {
+            event.preventDefault();
+            event.stopPropagation();
+            event.currentTarget.click();
+          }
+        },
+      }),
       ...getDataAttributes({
         scale,
         ...interactions,

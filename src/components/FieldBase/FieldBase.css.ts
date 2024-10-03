@@ -294,9 +294,12 @@ const classNames = createStyles({
     maxWidth: '100%',
 
     selectors: {
-      [getModifierSelector('disabled')]: {
+      [getModifierSelector<IModifier>('disabled')]: {
         cursor: 'default',
         pointerEvents: 'none',
+      },
+      [getModifierSelector<IModifier>('hovered')]: {
+        cursor: 'pointer',
       },
     },
   },
@@ -694,6 +697,7 @@ const classNames = createStyles({
     flexShrink: 1,
     flexBasis: '0%',
     display: 'flex',
+    alignItems: 'center',
     height: '100%',
     minWidth: px(30),
   },

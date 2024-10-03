@@ -122,6 +122,7 @@ export interface IFloatingFilterableListBaseOwnProps<
 
   resetOnBlur?: boolean;
   initialFocus?: number;
+  keepMounted?: boolean;
   cols?: number;
   itemFocus?: IFilterableListItemFocus;
   onOpenChange?: (

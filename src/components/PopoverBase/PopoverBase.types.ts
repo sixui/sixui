@@ -203,6 +203,8 @@ export type IPopoverBaseOwnProps<TForwardedProps extends object = object> =
      * the page.
      */
     modal?: boolean;
+
+    keepMounted?: boolean;
   };
 
 export interface IPopoverBaseProps

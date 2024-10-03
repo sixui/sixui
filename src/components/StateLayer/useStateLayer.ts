@@ -38,7 +38,6 @@ export const useStateLayer = <TElement extends HTMLElement>(
       },
     },
     baseState: interactions,
-    mergeStrategy: 'replace',
     disabled,
   });
 

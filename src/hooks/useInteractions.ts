@@ -1,21 +1,23 @@
 import type { DOMAttributes, HoverEvent } from '@react-types/shared';
-import type { AriaFocusRingProps, HoverProps, PressProps } from 'react-aria';
+import type { AriaFocusRingProps, HoverProps } from 'react-aria';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { accumulate } from '@olivierpascal/helpers';
-import { useFocusRing, useHover, usePress } from 'react-aria';
+import { mergeProps, useFocusRing, useHover } from 'react-aria';
 
 export type IInteraction = 'focused' | 'pressed' | 'dragged' | 'hovered';
 
-export type IInteractionEvent = 'focus' | 'press' | 'hover';
-
 export type IInteractions = Partial<Record<IInteraction, boolean>>;
 
+export type IInteractionEvent = 'focus' | 'press' | 'hover';
+
+export type IInteractionEvents = {
+  hover?: boolean | HoverProps;
+  focus?: boolean | AriaFocusRingProps;
+  press?: boolean;
+};
+
 export type IUseInteractionsProps = {
-  events: {
-    hover?: boolean | HoverProps;
-    focus?: boolean | AriaFocusRingProps;
-    press?: boolean | PressProps;
-  };
+  events?: IInteractionEvents;
 
   /** The base interactions state of the trigger. */
   baseState?: IInteractions;
@@ -74,11 +76,9 @@ export const useInteractions = <TElement extends HTMLElement>(
   const triggerRef = useRef<TElement>(null);
 
   const focusOptions =
-    typeof events.focus !== 'boolean' ? events.focus : undefined;
+    typeof events?.focus !== 'boolean' ? events?.focus : undefined;
   const hoverOptions =
-    typeof events.hover !== 'boolean' ? events.hover : undefined;
-  const pressOptions =
-    typeof events.press !== 'boolean' ? events.press : undefined;
+    typeof events?.hover !== 'boolean' ? events?.hover : undefined;
 
   const currentStateReplaced = baseState && mergeStrategy === 'replace';
   const { focusProps, isFocusVisible: focused } = useFocusRing(focusOptions);
@@ -119,26 +119,32 @@ export const useInteractions = <TElement extends HTMLElement>(
     [hoverOptions],
   );
 
-  const { pressProps, isPressed: pressed } = usePress({
-    ...pressOptions,
-    isDisabled: pressOptions?.isDisabled || disabled || currentStateReplaced,
-  });
+  const [pressed, setPressed] = useState(false);
+  const pressProps = useMemo(
+    () => ({
+      onPointerDown: () => setPressed(true),
+      onPointerUp: () => setPressed(false),
+      onPointerLeave: () => setPressed(false),
+    }),
+    [],
+  );
 
   const triggerProps = useMemo<DOMAttributes>(
-    () => ({
-      ...(events.hover ? hoverProps : undefined),
-      ...(events.press ? pressProps : undefined),
-      ...(events.focus ? focusProps : undefined),
-    }),
+    () =>
+      mergeProps({
+        ...(events?.hover ? hoverProps : undefined),
+        ...(events?.press ? pressProps : undefined),
+        ...(events?.focus ? focusProps : undefined),
+      }),
     [events, hoverProps, pressProps, focusProps],
   );
 
   const currentState: IInteractions = useMemo(
     () => ({
-      pressed: events.hover ? pressed : undefined,
+      pressed: events?.hover ? pressed : undefined,
       dragged,
-      focused: events.focus ? focused : undefined,
-      hovered: events.hover ? hovered : undefined,
+      focused: events?.focus ? focused : undefined,
+      hovered: events?.hover ? hovered : undefined,
     }),
     [events, pressed, dragged, focused, hovered],
   );

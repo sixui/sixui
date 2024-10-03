@@ -1,9 +1,8 @@
-import { createContext } from 'react';
+import { createOptionalContext } from '~/helpers/createOptionalContext';
 
 export type IListContextValue = {
   noFocusRing?: boolean;
 };
 
-export const ListContext = createContext<IListContextValue | undefined>(
-  undefined,
-);
+export const [ListContextProvider, useListContext] =
+  createOptionalContext<IListContextValue>();

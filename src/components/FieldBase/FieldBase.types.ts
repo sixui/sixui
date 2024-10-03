@@ -1,5 +1,7 @@
-import type { IRendererWithForwardedProps } from '~/helpers/react/forwardablePropsTypes';
-import type { IOmit } from '~/helpers/types';
+import type {
+  IForwardableProps,
+  IRendererWithForwardedProps,
+} from '~/helpers/react/forwardablePropsTypes';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
@@ -7,7 +9,7 @@ import type { fieldBaseTheme, IFieldBaseThemeFactory } from './FieldBase.css';
 
 export type IFieldBaseVariant = 'filled' | 'outlined';
 
-export interface IFieldBaseOwnProps {
+export interface IFieldBaseOwnProps extends IForwardableProps {
   count?: number;
   disabled?: boolean;
   readOnly?: boolean;
@@ -31,10 +33,11 @@ export interface IFieldBaseOwnProps {
   children?: IRendererWithForwardedProps;
   containerRef?: React.Ref<HTMLDivElement>;
   wrapperProps?: React.HTMLAttributes<HTMLDivElement>;
+  rippleEffect?: boolean;
 }
 
 export interface IFieldBaseProps
-  extends IOmit<IBoxProps, 'children'>,
+  extends IBoxProps,
     IComponentThemeProps<IFieldBaseThemeFactory>,
     IFieldBaseOwnProps {}
 

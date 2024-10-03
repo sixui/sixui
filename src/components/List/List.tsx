@@ -7,7 +7,7 @@ import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Flex } from '../Flex';
 import { Paper } from '../Paper';
-import { ListContext } from './List.context';
+import { ListContextProvider } from './List.context';
 import { listTheme } from './List.css';
 
 const COMPONENT_NAME = 'List';
@@ -45,7 +45,7 @@ export const List = componentFactory<IListFactory>((props, forwardedRef) => {
   });
 
   return (
-    <ListContext.Provider value={{ noFocusRing }}>
+    <ListContextProvider value={{ noFocusRing }}>
       <Paper
         {...getStyles('root')}
         classNames={classNames}
@@ -70,6 +70,6 @@ export const List = componentFactory<IListFactory>((props, forwardedRef) => {
           {footer && <footer {...getStyles('footer')}>{footer}</footer>}
         </Flex>
       </Paper>
-    </ListContext.Provider>
+    </ListContextProvider>
   );
 });

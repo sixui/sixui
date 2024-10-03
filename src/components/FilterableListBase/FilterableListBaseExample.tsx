@@ -29,18 +29,18 @@ export type IFilterableListBaseExampleProps = IOmit<
   canCreate?: boolean;
 };
 
+const MovieFilterableListBase = filterableListBaseFactory<
+  IMovie,
+  HTMLDivElement
+>();
+
 export const FilterableListBaseExample: React.FC<
   IFilterableListBaseExampleProps
 > = (props) => {
   const { canFilter, canCreate, ...other } = props;
 
-  const FilterableListBase = filterableListBaseFactory<
-    IMovie,
-    HTMLDivElement
-  >();
-
   return (
-    <FilterableListBase
+    <MovieFilterableListBase
       items={TOP_100_MOVIES}
       renderer={(listProps) => (
         <MenuList

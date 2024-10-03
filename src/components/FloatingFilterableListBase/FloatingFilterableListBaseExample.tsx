@@ -31,6 +31,7 @@ export type IFloatingFilterableListBaseExampleProps = IOmit<
   | 'createNewItemFromQuery'
   | 'createNewItemRenderer'
   | 'onItemSelect'
+  | 'children'
 > & {
   canFilter?: boolean;
   canCreate?: boolean;
@@ -39,6 +40,11 @@ export type IFloatingFilterableListBaseExampleProps = IOmit<
   itemEmpty?: (item: IMovie) => boolean;
   onItemChange?: (item?: IMovie) => void;
 };
+
+const MovieFloatingFilterableListBase = floatingFilterableListBaseFactory<
+  IMovie,
+  HTMLDivElement
+>();
 
 export const FloatingFilterableListBaseExample: React.FC<
   IFloatingFilterableListBaseExampleProps
@@ -53,11 +59,6 @@ export const FloatingFilterableListBaseExample: React.FC<
     ...other
   } = props;
 
-  const FloatingFilterableListBase = floatingFilterableListBaseFactory<
-    IMovie,
-    HTMLDivElement
-  >();
-
   const singleFilterableListBase = useSingleFilterableListBase({
     items: TOP_100_MOVIES,
     itemRenderer: renderMovieListItem,
@@ -69,10 +70,11 @@ export const FloatingFilterableListBaseExample: React.FC<
   });
 
   return (
-    <FloatingFilterableListBase
+    <MovieFloatingFilterableListBase
       items={singleFilterableListBase.items}
       renderer={(listProps) => (
         <MenuList
+          noFocusRing
           header={
             canFilter ? (
               <TextInputField
@@ -94,10 +96,12 @@ export const FloatingFilterableListBaseExample: React.FC<
       createNewItemFromQuery={canCreate ? createMovie : undefined}
       createNewItemRenderer={canCreate ? renderCreateMovieListItem : undefined}
       onItemSelect={singleFilterableListBase.handleItemSelect}
+      closeOnSelect
       {...other}
     >
       {(renderProps) => (
         <FieldBase
+          role="button"
           trailingIcon={
             <FilterableListBaseFieldTrailingIcon opened={renderProps.opened} />
           }
@@ -105,9 +109,10 @@ export const FloatingFilterableListBaseExample: React.FC<
             renderProps.opened || !!singleFilterableListBase.selectedItem
           }
           disabled={other.disabled}
-          tabIndex={0}
           wrapperProps={renderProps.getTriggerProps()}
           containerRef={renderProps.setTriggerRef}
+          tabIndex={0}
+          rippleEffect
           {...renderProps.forwardedProps}
         >
           {singleFilterableListBase.selectedItem
@@ -115,6 +120,6 @@ export const FloatingFilterableListBaseExample: React.FC<
             : null}
         </FieldBase>
       )}
-    </FloatingFilterableListBase>
+    </MovieFloatingFilterableListBase>
   );
 };

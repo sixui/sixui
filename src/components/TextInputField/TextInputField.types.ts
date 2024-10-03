@@ -1,5 +1,4 @@
-import type { IOmit } from '~/helpers/types';
-import type { IControlledValueProps } from '~/hooks/useControlledValue';
+import type { IUseControlledProps } from '~/hooks/useControlledValue';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps, IElementProps } from '../Box';
@@ -11,8 +10,8 @@ import type {
 
 export interface ITextInputFieldOwnProps
   extends IFieldBaseOwnProps,
-    IControlledValueProps<string | number | ReadonlyArray<string>>,
-    IElementProps<'input', 'className' | 'children'> {
+    IUseControlledProps<string | number | ReadonlyArray<string>>,
+    IElementProps<'input', 'className' | 'children' | 'name'> {
   /**
    * When true, hide the spinner for `type="number"` input fields.
    */
@@ -50,7 +49,7 @@ export interface ITextInputFieldOwnProps
 }
 
 export interface ITextInputFieldProps
-  extends IOmit<IBoxProps, 'children'>,
+  extends IBoxProps,
     IComponentThemeProps<ITextInputFieldThemeFactory>,
     ITextInputFieldOwnProps {}
 

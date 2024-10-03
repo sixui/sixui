@@ -122,6 +122,7 @@ export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
         populated={populated}
         variant={variant}
         end={renderEndSection()}
+        forwardProps
         multiline
       >
         {({ forwardedProps }) => (

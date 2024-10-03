@@ -91,7 +91,9 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
         ref={handleRef}
         as={rootElement}
         classNames={classNames}
+        tabIndex={disabledOrReadOnly ? -1 : 0}
         interactions={stateLayer.interactionsContext.state}
+        role="button"
         {...mergeProps(stateLayer.interactionsContext.triggerProps, other)}
       >
         {!disabledOrReadOnly && (

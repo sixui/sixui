@@ -18,7 +18,6 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   w: px(260),
   onChange: (...args) => void sbHandleEvent('onChange', args),
-  onValueChange: (...args) => void sbHandleEvent('onValueChange', args),
 } satisfies Partial<ITextAreaFieldProps>;
 
 const states: Array<IComponentPresentation<ITextAreaFieldProps>> = [

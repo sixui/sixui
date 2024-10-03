@@ -14,13 +14,14 @@ import { renderFilterableListItem } from './utils/renderFilterableListItem';
 
 const COMPONENT_NAME = 'FilterableList';
 
+const FilterableListBase = filterableListBaseFactory<IFilterableListItem>();
+
 export const FilterableList =
   polymorphicComponentFactory<IFilterableListFactory>((props, forwardedRef) => {
     const { canFilter, ...other } = useProps({
       componentName: COMPONENT_NAME,
       props,
     });
-    const FilterableListBase = filterableListBaseFactory<IFilterableListItem>();
 
     return (
       <FilterableListBase

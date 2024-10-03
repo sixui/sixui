@@ -81,12 +81,11 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
       // is present, we prevent the label from switching to the resting state by
       // forcing the focus state as we will focus it again later.
       setFocused(true);
+      inputRef.current.focus();
 
       inputRef.current.value = '';
       setValue('');
       triggerChangeEvent(inputRef.current);
-
-      inputRef.current.focus();
     };
 
     // TODO: prevents the input from being blurred when the user clicks outside
@@ -102,7 +101,6 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
       if (!isInput) {
         event.stopPropagation();
         inputRef.current?.focus();
-        inputRef.current?.click();
       }
     };
 
@@ -123,6 +121,7 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
               icon={unmaskIcon}
               selectedIcon={maskIcon}
               selected={unmasked}
+              disabled={disabledOrReadOnly}
               toggle
             />
           )}
@@ -139,6 +138,7 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
         populated={populated}
         variant={variant}
         end={renderEndSection()}
+        forwardProps
       >
         {({ forwardedProps }) => (
           <input
