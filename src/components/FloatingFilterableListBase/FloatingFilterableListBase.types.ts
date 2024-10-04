@@ -10,7 +10,6 @@ import type {
 } from '~/helpers/react/forwardablePropsTypes';
 import type { IOmit, IOrientation } from '~/helpers/types';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type {
   IFilterableListBaseProps,
@@ -18,7 +17,6 @@ import type {
 } from '../FilterableListBase';
 import type { IMotionProps } from '../Motion';
 import type { IPortalProps } from '../Portal';
-import type { IFloatingFilterableListBaseThemeFactory } from './FloatingFilterableListBase.css';
 
 export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
   /**
@@ -136,7 +134,6 @@ export interface IFloatingFilterableListBaseProps<
   TItem,
   TItemElement extends HTMLElement = HTMLElement,
 > extends IBoxProps,
-    IComponentThemeProps<IFloatingFilterableListBaseThemeFactory>,
     IFloatingFilterableListBaseOwnProps<TItem, TItemElement> {}
 
 export type IFloatingFilterableListBaseFactory<

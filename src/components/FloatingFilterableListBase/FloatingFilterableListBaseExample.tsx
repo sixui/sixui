@@ -1,7 +1,7 @@
 import type { IOmit } from '~/helpers/types';
 import type { IMovie } from '../FilterableListBase/movies';
 import type { IFloatingFilterableListBaseProps } from '../FloatingFilterableListBase';
-import { FieldBase } from '../FieldBase';
+import { FieldBase, IFieldBaseProps } from '../FieldBase';
 import {
   FilterableListBaseFieldTrailingIcon,
   useSingleFilterableListBase,
@@ -32,14 +32,15 @@ export type IFloatingFilterableListBaseExampleProps = IOmit<
   | 'createNewItemRenderer'
   | 'onItemSelect'
   | 'children'
-> & {
-  canFilter?: boolean;
-  canCreate?: boolean;
-  selectedItem?: IMovie;
-  defaultItem?: IMovie;
-  itemEmpty?: (item: IMovie) => boolean;
-  onItemChange?: (item?: IMovie) => void;
-};
+> &
+  IFieldBaseProps & {
+    canFilter?: boolean;
+    canCreate?: boolean;
+    selectedItem?: IMovie;
+    defaultItem?: IMovie;
+    itemEmpty?: (item: IMovie) => boolean;
+    onItemChange?: (item?: IMovie) => void;
+  };
 
 const MovieFloatingFilterableListBase = floatingFilterableListBaseFactory<
   IMovie,
@@ -78,10 +79,11 @@ export const FloatingFilterableListBaseExample: React.FC<
           header={
             canFilter ? (
               <TextInputField
-                onChange={listProps.handleQueryChange}
-                value={listProps.query}
-                disabled={listProps.disabled}
                 clearable
+                {...listProps.getInputFilterProps()}
+                type="text"
+                ref={listProps.inputFilterRef}
+                spellCheck="false"
               />
             ) : undefined
           }
@@ -97,6 +99,8 @@ export const FloatingFilterableListBaseExample: React.FC<
       createNewItemRenderer={canCreate ? renderCreateMovieListItem : undefined}
       onItemSelect={singleFilterableListBase.handleItemSelect}
       closeOnSelect
+      matchTargetWidth
+      forwardProps
       // FIXME:  keepMounted
       // FIXME: make focused state on floating open
       {...other}
@@ -115,6 +119,7 @@ export const FloatingFilterableListBaseExample: React.FC<
           containerRef={renderProps.setTriggerRef}
           tabIndex={0}
           withoutRippleEffect
+          interactions={{ focused: renderProps.opened && !canFilter }}
           {...renderProps.forwardedProps}
         >
           {singleFilterableListBase.selectedItem

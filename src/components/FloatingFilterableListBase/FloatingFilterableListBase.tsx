@@ -22,7 +22,6 @@ import type {
   IFilterableListItemRenderer,
   IFilterableListItemRendererProps,
 } from '../FilterableListBase';
-import type { IFloatingFilterableListBaseThemeFactory } from './FloatingFilterableListBase.css';
 import type { IFloatingFilterableListBaseFactory } from './FloatingFilterableListBase.types';
 import { isFunction } from '~/helpers/isFunction';
 import { useControlledValue } from '~/hooks/useControlledValue';
@@ -30,12 +29,10 @@ import { usePrevious } from '~/hooks/usePrevious';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { objectFromPlacement } from '~/utils/objectFromPlacement';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { extractBoxProps } from '../Box/extractBoxProps';
 import { filterableListBaseFactory } from '../FilterableListBase';
 import { Motion } from '../Motion';
 import { Portal } from '../Portal';
-import { floatingFilterableListBaseTheme } from './FloatingFilterableListBase.css';
+import { floatingFilterableListBaseClassNames } from './FloatingFilterableListBase.css';
 
 const COMPONENT_NAME = 'FloatingFilterableListBase';
 
@@ -48,11 +45,6 @@ export const floatingFilterableListBaseFactory = <
     IFloatingFilterableListBaseFactory<TItem, TItemElement>
   >((props, forwardedRef) => {
     const {
-      classNames,
-      className,
-      styles,
-      style,
-      variant,
       children,
       placement = 'bottom-start',
       orientation = 'vertical',
@@ -69,7 +61,6 @@ export const floatingFilterableListBaseFactory = <
       onQueryChange,
       resetOnClose,
       resetOnBlur,
-      forwardProps,
       disabled,
       items,
       itemsEqual,
@@ -86,24 +77,12 @@ export const floatingFilterableListBaseFactory = <
       onOpenChange,
       slotProps,
       keepMounted,
+      forwardProps,
       ...other
     } = useProps({
       componentName: COMPONENT_NAME,
       props,
     });
-
-    const { boxProps, other: forwardedProps } = extractBoxProps(other);
-
-    const { getStyles } =
-      useComponentTheme<IFloatingFilterableListBaseThemeFactory>({
-        componentName: COMPONENT_NAME,
-        classNames,
-        className,
-        styles,
-        style,
-        theme: floatingFilterableListBaseTheme,
-        variant,
-      });
 
     const [opened, setOpened] = useState(false);
     const [hasFocus, setHasFocus] = useState(false);
@@ -382,7 +361,6 @@ export const floatingFilterableListBaseFactory = <
               hasFocus,
               setTriggerRef: buttonHandleRef,
               getTriggerProps: (userProps) => ({
-                ...boxProps,
                 ...interactions.getReferenceProps({
                   ...userProps,
                   onFocus: (...args) => {
@@ -400,7 +378,7 @@ export const floatingFilterableListBaseFactory = <
               query,
               inputFilterRef: inputFilterRef,
               getInputFilterProps,
-              forwardedProps: forwardProps ? forwardedProps : undefined,
+              forwardedProps: forwardProps ? other : undefined,
             })
           : children}
 
@@ -415,17 +393,10 @@ export const floatingFilterableListBaseFactory = <
               visuallyHiddenDismiss
               {...slotProps?.floatingFocusManager}
             >
-              <div
-                {...getStyles('root')}
-                {...(forwardProps ? undefined : other)}
-              >
+              <div className={floatingFilterableListBaseClassNames.root}>
                 <Motion
-                  {...getStyles('floating', {
-                    style: {
-                      left: floating.x,
-                      top: floating.y,
-                    },
-                  })}
+                  className={floatingFilterableListBaseClassNames.floating}
+                  style={{ left: floating.x, top: floating.y }}
                   {...interactions.getFloatingProps()}
                   ref={floating.refs.setFloating}
                   placement={objectFromPlacement(floating.placement)}

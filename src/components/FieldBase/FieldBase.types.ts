@@ -2,6 +2,7 @@ import type {
   IForwardableProps,
   IRendererWithForwardedProps,
 } from '~/helpers/react/forwardablePropsTypes';
+import type { IInteractionsMergeStrategy } from '~/hooks/useInteractions';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
@@ -34,6 +35,7 @@ export interface IFieldBaseOwnProps extends IForwardableProps {
   containerRef?: React.Ref<HTMLDivElement>;
   wrapperProps?: React.HTMLAttributes<HTMLDivElement>;
   withoutRippleEffect?: boolean;
+  interactionsMergeStrategy?: IInteractionsMergeStrategy;
 }
 
 export interface IFieldBaseProps

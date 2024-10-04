@@ -57,6 +57,7 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
       containerRef,
       disabled,
       interactions: interactionsProp,
+      interactionsMergeStrategy,
       prefixText,
       suffixText,
       wrapperProps,
@@ -78,6 +79,7 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
       baseState: interactionsProp,
       disabled: disabledOrReadOnly,
       withoutRippleEffect,
+      mergeStrategy: interactionsMergeStrategy,
     });
 
     const focused = stateLayer.interactionsContext.state.focused;

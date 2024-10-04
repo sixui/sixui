@@ -14,7 +14,7 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   w: '480px',
-  variant: 'outlined', // FIXME:
+  onItemChange: (...args) => void sbHandleEvent('onItemChange', args),
 } satisfies Partial<IFloatingFilterableListBaseExampleProps>;
 
 export const Basic: IStory = {

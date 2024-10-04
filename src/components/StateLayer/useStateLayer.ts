@@ -26,7 +26,7 @@ export const useStateLayer = <TElement extends HTMLElement>(
   const {
     events,
     baseState,
-    mergeStrategy = 'replace',
+    mergeStrategy,
     dragged,
     disabled,
     withoutRippleEffect,
