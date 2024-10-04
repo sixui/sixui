@@ -559,6 +559,9 @@ const classNames = createStyles({
     display: 'flex',
   },
   icon$leading: ({ root }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     color: fallbackVar(
       tokens.leadingIcon.color.normal.regular,
       tokens.nonText.color.normal.regular,
@@ -566,7 +569,6 @@ const classNames = createStyles({
     fontSize: tokens.leadingIcon.size,
     inlineSize: tokens.leadingIcon.size,
     blockSize: tokens.leadingIcon.size,
-    textAlign: 'center',
 
     selectors: {
       [getModifierSelector<IModifier>('disabled', root)]: {
@@ -636,6 +638,9 @@ const classNames = createStyles({
     },
   }),
   icon$trailing: ({ root }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     color: fallbackVar(
       tokens.trailingIcon.color.normal.regular,
       tokens.nonText.color.normal.regular,
@@ -643,7 +648,6 @@ const classNames = createStyles({
     fontSize: tokens.trailingIcon.size,
     inlineSize: tokens.trailingIcon.size,
     blockSize: tokens.trailingIcon.size,
-    textAlign: 'center',
 
     selectors: {
       [getModifierSelector<IModifier>('disabled', root)]: {

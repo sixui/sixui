@@ -71,7 +71,7 @@ const sprinklesProps = defineProperties({
     inset: true,
     display: true,
     flex: true,
-    fontSize: true,
+    fontSize: spacingValues,
     zIndex: themeTokens.zIndex,
     opacity: true,
   },

@@ -13,6 +13,7 @@ import type {
   IFilterableListItemRendererProps,
 } from './FilterableListBase.types';
 import { ListItem } from '../ListItem';
+import { Text } from '../Text';
 
 export type IMovie = {
   /**
@@ -152,7 +153,11 @@ export const getMovieItemProps = <TElement extends HTMLElement>(
 
   return {
     disabled: modifiers.disabled,
-    leading: movie.rank ? `${movie.rank.toString()}.` : undefined,
+    leading: (
+      <Text variant="body" size="sm">
+        {movie.rank ? `${movie.rank.toString()}.` : undefined}
+      </Text>
+    ),
     trailingSupportingText: movie.year.toString(),
     children: query
       ? highlightWords({

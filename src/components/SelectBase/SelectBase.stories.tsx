@@ -13,7 +13,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  w: '480px',
+  w: '$96',
   onItemChange: (...args) => void sbHandleEvent('onItemChange', args),
 } satisfies Partial<ISelectBaseExampleProps>;
 

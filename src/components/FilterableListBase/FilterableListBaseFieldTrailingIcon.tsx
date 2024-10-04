@@ -16,7 +16,7 @@ export const FilterableListBaseFieldTrailingIcon = (
     {props.onClear ? (
       <IconButton icon={<SvgIcon icon={iconXMark} />} onClick={props.onClear} />
     ) : null}
-    <Flex w="$6" align="center">
+    <Flex w="$6" justify="center" fz="$4">
       {props.opened ? (
         <SvgIcon icon={iconTriangleUp} />
       ) : (

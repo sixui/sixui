@@ -20,7 +20,7 @@ export type ISelectBaseExampleProps = IOmit<
   canCreate?: boolean;
 };
 
-const SelectBase = selectBaseFactory<IMovie, HTMLButtonElement>();
+const SelectBase = selectBaseFactory<IMovie>();
 
 export const SelectBaseExample = (
   props: ISelectBaseExampleProps,
