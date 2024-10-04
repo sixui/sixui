@@ -395,7 +395,7 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
           disabled={disabled}
           ref={containerRef}
         >
-          <StateLayer context={stateLayer} />
+          <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
           {renderIndicator()}
           {variant === 'outlined' && renderOutline()}
 

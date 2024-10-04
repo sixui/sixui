@@ -115,7 +115,7 @@ export const floatingFilterableListBaseFactory = <
       ],
     });
     const click = useClick(floating.context, {
-      event: 'click',
+      event: 'mousedown',
       keyboardHandlers: false,
     });
     const role = useRole(floating.context, { role: 'listbox' });

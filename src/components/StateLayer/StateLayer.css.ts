@@ -16,7 +16,7 @@ type IModifier =
 
 const [tokensClassName, tokens] = createTheme({
   color: {
-    hovered: themeTokens.colorScheme.onSurface,
+    hovered: 'inherit',
     pressed: 'inherit',
     dragged: 'inherit',
   },

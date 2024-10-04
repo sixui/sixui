@@ -77,8 +77,8 @@ const [tokensClassName, tokens] = createTheme({
         error: themeTokens.colorScheme.onSurface,
       },
       pressed: {
-        regular: themeTokens.colorScheme.onSurface,
-        error: themeTokens.colorScheme.onSurface,
+        regular: 'none',
+        error: 'none',
       },
     },
     opacity: {
@@ -87,8 +87,8 @@ const [tokensClassName, tokens] = createTheme({
         error: themeTokens.state.stateLayerOpacity.hovered,
       },
       pressed: {
-        regular: themeTokens.state.stateLayerOpacity.pressed,
-        error: themeTokens.state.stateLayerOpacity.pressed,
+        regular: themeTokens.state.stateLayerOpacity.hovered,
+        error: themeTokens.state.stateLayerOpacity.hovered,
       },
     },
   },
@@ -1109,6 +1109,14 @@ export const fieldBaseThemeVariants = {
             bottomRight: px(themeTokens.shape.corner.xs),
             bottomLeft: px(themeTokens.shape.corner.xs),
           },
+        },
+      }),
+    },
+    stateLayer: {
+      vars: createTokensVars(StateLayer.theme.tokens, {
+        color: {
+          hovered: 'unset',
+          pressed: 'unset',
         },
       }),
     },
