@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import type {
   IFilterableListItemRenderer,
@@ -6,7 +6,6 @@ import type {
 } from './FilterableListBase.types';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import {
-  arrayContainsItem,
   executeFilterableItemsEqual,
   maybeAddCreatedItemToArrays,
   maybeDeleteCreatedItemFromArrays,
@@ -14,10 +13,10 @@ import {
 
 export type IUseSingleFilterableListBaseProps<
   TItem,
-  TElement extends HTMLElement,
+  TItemElement extends HTMLElement,
 > = {
   items: Array<TItem>;
-  itemRenderer: IFilterableListItemRenderer<TItem, TElement>;
+  itemRenderer: IFilterableListItemRenderer<TItem, TItemElement>;
   selectedItem?: TItem;
   defaultItem?: TItem;
   itemEmpty?: (item: TItem) => boolean;
@@ -27,16 +26,16 @@ export type IUseSingleFilterableListBaseProps<
 
 export type IUseSingleFilterableListBaseResult<
   TItem,
-  TElement extends HTMLElement,
+  TItemElement extends HTMLElement,
 > = {
-  itemRenderer: IFilterableListItemRenderer<TItem, TElement>;
+  itemRenderer: IFilterableListItemRenderer<TItem, TItemElement>;
   handleItemSelect: (newSelectedItem: TItem) => number | undefined;
   handleClear: (
     afterItemsRemove: (
       items: Array<TItem>,
       event?: React.SyntheticEvent<HTMLElement>,
     ) => void,
-    event?: React.MouseEvent<HTMLElement>,
+    event?: React.MouseEvent<Element>,
   ) => void;
   items: Array<TItem>;
   selectedItem?: TItem;
@@ -44,10 +43,10 @@ export type IUseSingleFilterableListBaseResult<
 
 export const useSingleFilterableListBase = <
   TItem,
-  TElement extends HTMLElement,
+  TItemElement extends HTMLElement,
 >(
-  props: IUseSingleFilterableListBaseProps<TItem, TElement>,
-): IUseSingleFilterableListBaseResult<TItem, TElement> => {
+  props: IUseSingleFilterableListBaseProps<TItem, TItemElement>,
+): IUseSingleFilterableListBaseResult<TItem, TItemElement> => {
   const {
     selectedItem: selectedItemProp,
     defaultItem,
@@ -64,7 +63,7 @@ export const useSingleFilterableListBase = <
     name: 'useSingleFilterableListBase',
   });
 
-  const itemRenderer: IFilterableListItemRenderer<TItem, TElement> = (
+  const itemRenderer: IFilterableListItemRenderer<TItem, TItemElement> = (
     item,
     itemProps,
   ): React.JSX.Element | null => {
@@ -133,6 +132,17 @@ export const useSingleFilterableListBase = <
     },
     [selectedItem, itemEmpty, setSelectedItem, onItemChange, items],
   );
+
+  // FIXME: delete if not used
+  // useEffect(() => {
+  //   if (
+  //     selectedItem &&
+  //     !itemEmpty?.(selectedItem) &&
+  //     !arrayContainsItem(itemsEqual, items, selectedItem)
+  //   ) {
+  //     handleClear();
+  //   }
+  // }, [itemEmpty, items, itemsEqual, selectedItem, handleClear]);
 
   return {
     itemRenderer,

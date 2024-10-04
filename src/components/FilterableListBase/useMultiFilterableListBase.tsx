@@ -13,10 +13,10 @@ import {
 
 export type IUseMultiFilterableListBaseProps<
   TItem,
-  TElement extends HTMLElement,
+  TItemElement extends HTMLElement,
 > = {
   items: Array<TItem>;
-  itemRenderer: IFilterableListItemRenderer<TItem, TElement>;
+  itemRenderer: IFilterableListItemRenderer<TItem, TItemElement>;
   selectedItems?: Array<TItem>;
   defaultItems?: Array<TItem>;
   itemsEqual?: IFilterableListItemsEqualProp<TItem>;
@@ -25,9 +25,9 @@ export type IUseMultiFilterableListBaseProps<
 
 export type IUseMultiFilterableListBaseResult<
   TItem,
-  TElement extends HTMLElement,
+  TItemElement extends HTMLElement,
 > = {
-  itemRenderer: IFilterableListItemRenderer<TItem, TElement>;
+  itemRenderer: IFilterableListItemRenderer<TItem, TItemElement>;
   handleItemSelect: (newSelectedItem: TItem) => number | undefined;
   handleRemoveFocusedChip: () => void;
   handleFocusPreviousChip: () => boolean;
@@ -48,9 +48,12 @@ export type IUseMultiFilterableListBaseResult<
   deselectItemAtIndex: (index: number) => Array<TItem>;
 };
 
-export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
-  props: IUseMultiFilterableListBaseProps<TItem, TElement>,
-): IUseMultiFilterableListBaseResult<TItem, TElement> => {
+export const useMultiFilterableListBase = <
+  TItem,
+  TItemElement extends HTMLElement,
+>(
+  props: IUseMultiFilterableListBaseProps<TItem, TItemElement>,
+): IUseMultiFilterableListBaseResult<TItem, TItemElement> => {
   const {
     selectedItems: selectedItemsProp,
     defaultItems,
@@ -68,7 +71,7 @@ export const useMultiFilterableListBase = <TItem, TElement extends HTMLElement>(
   const [focusedSelectedItemIndex, setFocusedSelectedItemIndex] =
     useState<number>();
 
-  const itemRenderer: IFilterableListItemRenderer<TItem, TElement> = (
+  const itemRenderer: IFilterableListItemRenderer<TItem, TItemElement> = (
     item,
     itemProps,
   ): React.JSX.Element | null => {

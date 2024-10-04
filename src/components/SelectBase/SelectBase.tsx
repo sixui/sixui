@@ -1,118 +1,133 @@
-import type { ISelectBaseProps } from './SelectBase.types';
-import { fixedForwardRef } from '~/helpers/fixedForwardRef';
-import { Field } from '../Field';
+import type { ISelectBaseFactory } from './SelectBase.types';
+import { componentFactory } from '~/utils/component/componentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { FieldBase } from '../FieldBase';
 import {
   FilterableListBaseFieldTrailingIcon,
   useSingleFilterableListBase,
 } from '../FilterableListBase';
-import { FloatingFilterableListBase } from '../FloatingFilterableListBase';
+import { floatingFilterableListBaseFactory } from '../FloatingFilterableListBase';
 import { ListItem } from '../ListItem';
 import { MenuList } from '../MenuList';
 import { TextInputField } from '../TextInputField';
 
-export const SelectBase = fixedForwardRef(function SelectBase<TItem>(
-  props: ISelectBaseProps<TItem>,
-  forwardedRef?: React.Ref<HTMLElement>,
-) {
-  const {
-    sx,
-    styles,
-    items,
-    itemRenderer,
-    itemLabel,
-    selectedItem,
-    defaultItem,
-    itemEmpty,
-    onItemChange,
-    canFilter,
-    getValueFieldProps,
-    clearable,
-    variant,
-    noResults,
-    ...other
-  } = props;
+const COMPONENT_NAME = 'SelectBase';
 
-  const singleFilterableListBase = useSingleFilterableListBase({
-    items,
-    itemRenderer,
-    selectedItem,
-    defaultItem,
-    itemEmpty,
-    itemsEqual: other.itemsEqual,
-    onItemChange,
-  });
+export const selectBaseFactory = <
+  TItem,
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+>() => {
+  const FloatingFilterableListBase = floatingFilterableListBaseFactory<
+    TItem,
+    HTMLButtonElement
+  >();
 
-  return (
-    <FloatingFilterableListBase<TItem, HTMLElement>
-      items={singleFilterableListBase.items}
-      onItemSelect={singleFilterableListBase.handleItemSelect}
-      renderer={(listProps) => (
-        <MenuList
-          noFocusRing
-          header={
-            canFilter ? (
-              <TextInputField
-                clearable
-                {...listProps.getInputFilterProps()}
-                type="text"
-                inputRef={listProps.inputFilterRef}
-                spellCheck="false"
-              />
-            ) : undefined
-          }
-          cols={listProps.filteredItems.length > 0 ? other.cols : undefined}
-        >
-          {listProps.filteredList}
-        </MenuList>
-      )}
-      itemRenderer={singleFilterableListBase.itemRenderer}
-      matchTargetWidth
-      closeOnSelect
-      resetOnClose={canFilter}
-      {...other}
-      forwardProps
-      noResults={noResults ?? <ListItem disabled>No results.</ListItem>}
-      ref={forwardedRef}
-    >
-      {(renderProps) => (
-        <Field
-          trailingIcon={
-            <FilterableListBaseFieldTrailingIcon
-              onClear={
-                clearable &&
-                singleFilterableListBase.selectedItem &&
-                !itemEmpty?.(singleFilterableListBase.selectedItem)
-                  ? (event) =>
-                      singleFilterableListBase.handleClear(
-                        renderProps.afterItemsRemove,
-                        event,
-                      )
-                  : undefined
+  const SelectBase = componentFactory<ISelectBaseFactory<TItem>>(
+    (props, forwardedRef) => {
+      const {
+        items,
+        itemRenderer,
+        itemLabel,
+        selectedItem,
+        defaultItem,
+        itemEmpty,
+        onItemChange,
+        canFilter,
+        getValueFieldProps,
+        clearable,
+        noResults,
+        ...other
+      } = useProps({ componentName: COMPONENT_NAME, props });
+
+      const singleFilterableListBase = useSingleFilterableListBase<
+        TItem,
+        HTMLButtonElement
+      >({
+        items,
+        itemRenderer,
+        selectedItem,
+        defaultItem,
+        itemEmpty,
+        itemsEqual: other.itemsEqual,
+        onItemChange,
+      });
+
+      return (
+        <FloatingFilterableListBase
+          items={singleFilterableListBase.items}
+          onItemSelect={singleFilterableListBase.handleItemSelect}
+          renderer={(listProps) => (
+            <MenuList
+              noFocusRing
+              header={
+                canFilter && (
+                  <TextInputField
+                    {...listProps.getInputFilterProps()}
+                    clearable
+                    type="text"
+                    ref={listProps.inputFilterRef}
+                    spellCheck="false"
+                  />
+                )
               }
-              opened={renderProps.opened}
-            />
-          }
-          populated={
-            renderProps.opened || !!singleFilterableListBase.selectedItem
-          }
-          disabled={other.disabled}
-          variant={variant}
-          tabIndex={0}
-          {...renderProps.forwardedProps}
-          {...renderProps.getTriggerProps()}
-          {...getValueFieldProps?.(
-            renderProps,
-            singleFilterableListBase.selectedItem,
+              cols={listProps.filteredItems.length > 0 ? other.cols : undefined}
+            >
+              {listProps.filteredList}
+            </MenuList>
           )}
-          sx={sx}
-          styles={styles}
-          containerRef={renderProps.setTriggerRef}
+          itemRenderer={singleFilterableListBase.itemRenderer}
+          matchTargetWidth
+          closeOnSelect
+          resetOnClose={canFilter}
+          forwardProps
+          noResults={noResults ?? <ListItem disabled>No results.</ListItem>}
+          {...other}
         >
-          {singleFilterableListBase.selectedItem
-            ? itemLabel(singleFilterableListBase.selectedItem)
-            : null}
-        </Field>
-      )}
-    </FloatingFilterableListBase>
+          {(renderProps) => (
+            <FieldBase
+              end={
+                <FilterableListBaseFieldTrailingIcon
+                  onClear={
+                    clearable &&
+                    singleFilterableListBase.selectedItem &&
+                    !itemEmpty?.(singleFilterableListBase.selectedItem)
+                      ? (event) =>
+                          singleFilterableListBase.handleClear(
+                            renderProps.afterItemsRemove,
+                            event,
+                          )
+                      : undefined
+                  }
+                  opened={renderProps.opened}
+                />
+              }
+              populated={
+                renderProps.opened || !!singleFilterableListBase.selectedItem
+              }
+              disabled={other.disabled}
+              tabIndex={0}
+              withoutRippleEffect
+              wrapperProps={renderProps.getTriggerProps()}
+              containerRef={renderProps.setTriggerRef}
+              interactions={{ focused: renderProps.opened && !canFilter }}
+              ref={forwardedRef}
+              {...renderProps.forwardedProps}
+              {...getValueFieldProps?.(
+                renderProps,
+                singleFilterableListBase.selectedItem,
+              )}
+            >
+              {singleFilterableListBase.selectedItem
+                ? itemLabel(singleFilterableListBase.selectedItem)
+                : null}
+            </FieldBase>
+          )}
+        </FloatingFilterableListBase>
+      );
+    },
   );
-});
+
+  SelectBase.displayName = `@sixui/${COMPONENT_NAME}`;
+
+  return SelectBase;
+};

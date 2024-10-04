@@ -13,8 +13,8 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onItemChange: (...args) => void sbHandleEvent('itemChange', args),
-  matchTargetWidth: true,
+  w: '480px',
+  onItemChange: (...args) => void sbHandleEvent('onItemChange', args),
 } satisfies Partial<ISelectBaseExampleProps>;
 
 export const Basic: IStory = {

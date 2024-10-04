@@ -11,7 +11,7 @@ import {
   renderMovieListItem,
   TOP_100_MOVIES,
 } from '../FilterableListBase/movies';
-import { SelectBase } from './SelectBase';
+import { selectBaseFactory } from './SelectBase';
 
 export type ISelectBaseExampleProps = IOmit<
   ISelectBaseProps<IMovie>,
@@ -20,13 +20,15 @@ export type ISelectBaseExampleProps = IOmit<
   canCreate?: boolean;
 };
 
+const SelectBase = selectBaseFactory<IMovie, HTMLButtonElement>();
+
 export const SelectBaseExample = (
   props: ISelectBaseExampleProps,
 ): React.ReactNode => {
   const { canCreate, ...other } = props;
 
   return (
-    <SelectBase<IMovie>
+    <SelectBase
       items={TOP_100_MOVIES}
       itemRenderer={renderMovieListItem}
       itemLabel={getMovieLabel}

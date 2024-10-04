@@ -144,7 +144,7 @@ export const TOP_100_MOVIES: Array<IMovie> = [
  * the common menu item props for that item instead of the rendered element
  * itself. This is useful for implementing custom item renderers.
  */
-export const getMovieItemProps = <TElement extends HTMLDivElement>(
+export const getMovieItemProps = <TElement extends HTMLElement>(
   movie: IMovie,
   { modifiers, query }: IFilterableListItemRendererProps<TElement>,
 ): IListItemProps & React.Attributes => {
@@ -174,7 +174,7 @@ export const getMovieItemProps = <TElement extends HTMLDivElement>(
  */
 export const renderMovieListItem: IFilterableListItemRenderer<
   IMovie,
-  HTMLDivElement
+  HTMLButtonElement
 > = (movie, props) => {
   if (!props.modifiers.matchesPredicate) {
     return null;
@@ -200,7 +200,7 @@ export const renderMovieListItem: IFilterableListItemRenderer<
  * Renders a list item to create a single movie from a given query string.
  */
 export const renderCreateMovieListItem: IFilterableCreateNewListItemRenderer<
-  HTMLDivElement
+  HTMLButtonElement
 > = (props): React.JSX.Element => (
   <ListItem
     key={props.index}

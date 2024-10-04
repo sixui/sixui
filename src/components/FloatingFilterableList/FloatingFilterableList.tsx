@@ -1,6 +1,7 @@
-import type { IFloatingFilterableListProps } from './FloatingFilterableList.types';
-import { FloatingFilterableListBase } from '../FloatingFilterableListBase';
+import type { IFilterableListItem } from '../FilterableList';
+import { floatingFilterableListBaseFactory } from '../FloatingFilterableListBase';
 
-export const FloatingFilterableList: React.FC<IFloatingFilterableListProps> = (
-  props,
-) => <FloatingFilterableListBase {...props} />;
+export const FloatingFilterableList = floatingFilterableListBaseFactory<
+  IFilterableListItem,
+  HTMLButtonElement
+>();

@@ -1,7 +1,8 @@
-import type { IOmit } from '~/helpers/types';
+import type { IFieldBaseProps } from '../FieldBase';
+import type { IUseSingleFilterableListBaseProps } from '../FilterableListBase';
 import type { IMovie } from '../FilterableListBase/movies';
 import type { IFloatingFilterableListBaseProps } from '../FloatingFilterableListBase';
-import { FieldBase, IFieldBaseProps } from '../FieldBase';
+import { FieldBase } from '../FieldBase';
 import {
   FilterableListBaseFieldTrailingIcon,
   useSingleFilterableListBase,
@@ -20,26 +21,13 @@ import { ListItem } from '../ListItem';
 import { MenuList } from '../MenuList';
 import { TextInputField } from '../TextInputField';
 
-export type IFloatingFilterableListBaseExampleProps = IOmit<
-  IFloatingFilterableListBaseProps<IMovie, HTMLDivElement>,
-  | 'items'
-  | 'renderer'
-  | 'itemRenderer'
-  | 'itemsEqual'
-  | 'itemPredicate'
-  | 'noResults'
-  | 'createNewItemFromQuery'
-  | 'createNewItemRenderer'
-  | 'onItemSelect'
-  | 'children'
+export type IFloatingFilterableListBaseExampleProps = Partial<
+  IFloatingFilterableListBaseProps<IMovie, HTMLDivElement>
 > &
+  Partial<IUseSingleFilterableListBaseProps<IMovie, HTMLElement>> &
   IFieldBaseProps & {
     canFilter?: boolean;
     canCreate?: boolean;
-    selectedItem?: IMovie;
-    defaultItem?: IMovie;
-    itemEmpty?: (item: IMovie) => boolean;
-    onItemChange?: (item?: IMovie) => void;
   };
 
 const MovieFloatingFilterableListBase = floatingFilterableListBaseFactory<
@@ -77,7 +65,7 @@ export const FloatingFilterableListBaseExample: React.FC<
         <MenuList
           noFocusRing
           header={
-            canFilter ? (
+            canFilter && (
               <TextInputField
                 {...listProps.getInputFilterProps()}
                 clearable
@@ -85,7 +73,7 @@ export const FloatingFilterableListBaseExample: React.FC<
                 ref={listProps.inputFilterRef}
                 spellCheck="false"
               />
-            ) : undefined
+            )
           }
         >
           {listProps.filteredList}
@@ -98,6 +86,7 @@ export const FloatingFilterableListBaseExample: React.FC<
       createNewItemFromQuery={canCreate ? createMovie : undefined}
       createNewItemRenderer={canCreate ? renderCreateMovieListItem : undefined}
       onItemSelect={singleFilterableListBase.handleItemSelect}
+      resetOnClose={canFilter}
       closeOnSelect
       matchTargetWidth
       forwardProps
@@ -113,10 +102,10 @@ export const FloatingFilterableListBaseExample: React.FC<
             renderProps.opened || !!singleFilterableListBase.selectedItem
           }
           disabled={other.disabled}
-          wrapperProps={renderProps.getTriggerProps()}
-          containerRef={renderProps.setTriggerRef}
           tabIndex={0}
           withoutRippleEffect
+          wrapperProps={renderProps.getTriggerProps()}
+          containerRef={renderProps.setTriggerRef}
           interactions={{ focused: renderProps.opened && !canFilter }}
           {...renderProps.forwardedProps}
         >

@@ -1,9 +1,9 @@
-import { defineConfig } from 'vite';
 import { resolve } from 'path';
-import react from '@vitejs/plugin-react';
-import styleX from 'vite-plugin-stylex';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
+import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
+import styleX from 'vite-plugin-stylex';
 
 // https://vitejs.dev/config/
 
@@ -11,9 +11,7 @@ import dts from 'vite-plugin-dts';
 export default defineConfig({
   plugins: [
     react(),
-    vanillaExtractPlugin({
-      // identifiers: ({ hash }) => `sixui_${hash}`,
-    }),
+    vanillaExtractPlugin(),
     styleX(),
     dts({
       tsconfigPath: 'tsconfig.app.build.json',
