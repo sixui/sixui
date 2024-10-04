@@ -79,8 +79,8 @@ export const FloatingFilterableListBaseExample: React.FC<
           header={
             canFilter ? (
               <TextInputField
-                clearable
                 {...listProps.getInputFilterProps()}
+                clearable
                 type="text"
                 ref={listProps.inputFilterRef}
                 spellCheck="false"
@@ -101,8 +101,6 @@ export const FloatingFilterableListBaseExample: React.FC<
       closeOnSelect
       matchTargetWidth
       forwardProps
-      // FIXME:  keepMounted
-      // FIXME: make focused state on floating open
       {...other}
     >
       {(renderProps) => (

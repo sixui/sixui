@@ -120,6 +120,7 @@ export interface IFloatingFilterableListBaseOwnProps<
 
   resetOnBlur?: boolean;
   initialFocus?: number;
+  // FIXME: does not work
   keepMounted?: boolean;
   cols?: number;
   itemFocus?: IFilterableListItemFocus;

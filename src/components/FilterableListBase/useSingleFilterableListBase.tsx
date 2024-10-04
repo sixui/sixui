@@ -134,16 +134,6 @@ export const useSingleFilterableListBase = <
     [selectedItem, itemEmpty, setSelectedItem, onItemChange, items],
   );
 
-  useEffect(() => {
-    if (
-      selectedItem &&
-      !itemEmpty?.(selectedItem) &&
-      !arrayContainsItem(itemsEqual, items, selectedItem)
-    ) {
-      handleClear();
-    }
-  }, [itemEmpty, items, itemsEqual, selectedItem, handleClear]);
-
   return {
     itemRenderer,
     handleItemSelect,
