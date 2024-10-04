@@ -38,7 +38,8 @@ export const useStateLayer = <TElement extends HTMLElement>(
       ...events,
       hover: events?.hover ?? true,
       focus: events?.focus ?? true,
-      press: events?.press ?? withoutRippleEffect,
+      press:
+        events?.press ?? (withoutRippleEffect && !disabled && !isStaticState),
     },
     baseState,
     mergeStrategy,

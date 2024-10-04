@@ -366,8 +366,6 @@ export const useRipple = <TElement extends HTMLElement>(
         return;
       }
 
-      event.stopPropagation();
-
       // Release a held mouse or pen press that moves outside the element.
       if (stateRef.current !== IState.Inactive) {
         endPressAnimation();
@@ -382,7 +380,6 @@ export const useRipple = <TElement extends HTMLElement>(
         return;
       }
 
-      event.stopPropagation();
       endPressAnimation();
     },
     [shouldReactToEvent, endPressAnimation],

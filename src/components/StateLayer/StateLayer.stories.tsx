@@ -26,6 +26,11 @@ const states: Array<IComponentPresentation<IDemoProps>> = [
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
+const rows: Array<IComponentPresentation<IDemoProps>> = [
+  { legend: 'With ripple effect' },
+  { legend: 'Without ripple effect', props: { withoutRippleEffect: true } },
+];
+
 const BoundedDemo: React.FC<IDemoProps> = (props) => {
   const stateLayer = useStateLayer<HTMLDivElement>(props);
 
@@ -52,7 +57,9 @@ const BoundedDemo: React.FC<IDemoProps> = (props) => {
 const BoundedShowcase = componentShowcaseFactory(BoundedDemo);
 
 export const Bounded: IStory = {
-  render: (props) => <BoundedShowcase props={props} cols={states} />,
+  render: (props) => (
+    <BoundedShowcase props={props} cols={states} rows={rows} />
+  ),
   args: defaultArgs,
 };
 
@@ -90,13 +97,15 @@ const UnboundedDemo: React.FC<IDemoProps> = (props) => {
 const UnboundedShowcase = componentShowcaseFactory(UnboundedDemo);
 
 export const Unbounded: IStory = {
-  render: (props) => <UnboundedShowcase props={props} cols={states} />,
+  render: (props) => (
+    <UnboundedShowcase props={props} cols={states} rows={rows} />
+  ),
   args: defaultArgs,
 };
 
 const NestedDemo: React.FC<IDemoProps> = (props) => {
   const stateLayer = useStateLayer<HTMLDivElement>(props);
-  const nestedStateLayer = useStateLayer<HTMLDivElement>();
+  const nestedStateLayer = useStateLayer<HTMLDivElement>(props);
 
   return (
     <Placeholder
@@ -139,9 +148,36 @@ const NestedDemo: React.FC<IDemoProps> = (props) => {
 
 const NestedShowcase = componentShowcaseFactory(NestedDemo);
 
-// FIXME: quand la souris bouge trop vite, ça bug
 export const Nested: IStory = {
-  render: (props) => <NestedShowcase props={props} />,
+  render: (props) => (
+    <NestedShowcase
+      props={props}
+      cols={[
+        { legend: 'Normal' },
+        {
+          legend: 'Hover within',
+          props: {
+            events: {
+              hover: {
+                within: true,
+              },
+            },
+          },
+        },
+        {
+          legend: 'Focus within',
+          props: {
+            events: {
+              focus: {
+                within: true,
+              },
+            },
+          },
+        },
+      ]}
+      rows={rows}
+    />
+  ),
   args: defaultArgs,
 };
 

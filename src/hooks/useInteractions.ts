@@ -1,18 +1,30 @@
-import type { DOMAttributes, HoverEvent } from '@react-types/shared';
-import type { AriaFocusRingProps, HoverProps } from 'react-aria';
+import type { DOMAttributes } from '@react-types/shared';
+import type { AriaFocusRingProps } from 'react-aria';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { accumulate } from '@olivierpascal/helpers';
-import { mergeProps, useFocusRing, useHover } from 'react-aria';
+import { mergeProps, useFocusRing } from 'react-aria';
 
 export type IInteraction = 'focused' | 'pressed' | 'dragged' | 'hovered';
 
 export type IInteractions = Partial<Record<IInteraction, boolean>>;
 
-export type IInteractionEvent = 'focus' | 'press' | 'hover';
+export type IHoverProps = {
+  onHoverStart?: (event: React.PointerEvent) => void;
+  onHoverEnd?: (event: React.PointerEvent) => void;
+
+  /**
+   * Whether to trigger hover events when something inside the container element
+   * is hovered (true), or only if the container itself is hovered (false).
+   * @defaultValue false
+   * */
+  within?: boolean;
+};
+
+export type IFocusProps = AriaFocusRingProps;
 
 export type IInteractionEvents = {
-  hover?: boolean | HoverProps;
-  focus?: boolean | AriaFocusRingProps;
+  hover?: boolean | IHoverProps;
+  focus?: boolean | IFocusProps;
   press?: boolean;
 };
 
@@ -63,8 +75,8 @@ export type IUseInteractionsResult<TElement extends HTMLElement = HTMLElement> =
 /** Used to handle nested surfaces. */
 const activeTriggers: Array<{
   target: EventTarget;
-  onHoverStart: (event: HoverEvent) => void;
-  onHoverEnd: (event: HoverEvent) => void;
+  onHoverStart: (event: React.PointerEvent) => void;
+  onHoverEnd: (event: React.PointerEvent) => void;
 }> = [];
 
 export const useInteractions = <TElement extends HTMLElement>(
@@ -80,68 +92,89 @@ export const useInteractions = <TElement extends HTMLElement>(
 
   const triggerRef = useRef<TElement>(null);
 
-  const focusOptions =
-    typeof events?.focus !== 'boolean' ? events?.focus : undefined;
   const hoverOptions =
     typeof events?.hover !== 'boolean' ? events?.hover : undefined;
+  const focusOptions =
+    typeof events?.focus !== 'boolean' ? events?.focus : undefined;
 
   const currentStateReplaced = baseState && mergeStrategy === 'replace';
   const { focusProps, isFocusVisible: focused } = useFocusRing(focusOptions);
 
-  const { hoverProps } = useHover({
-    ...hoverOptions,
-    onHoverStart: (event: HoverEvent) => {
-      handleHoverStart(event);
-      activeTriggers[0]?.onHoverEnd(event);
-      activeTriggers.unshift({
-        target: event.target,
-        onHoverStart: handleHoverStart,
-        onHoverEnd: handleHoverEnd,
-      });
-    },
-    onHoverEnd: (event: HoverEvent) => {
-      handleHoverEnd(event);
-      activeTriggers.shift();
-      activeTriggers[0]?.onHoverStart(event);
-    },
-    isDisabled: hoverOptions?.isDisabled || disabled || currentStateReplaced,
-  });
+  const [pressed, setPressed] = useState(false);
+  const pressProps = useMemo<DOMAttributes | undefined>(
+    () => ({
+      onPointerDown: (event) => {
+        event.stopPropagation();
+        setPressed(true);
+      },
+      onPointerUp: (event) => {
+        event.stopPropagation();
+        setPressed(false);
+      },
+      onPointerLeave: () => setPressed(false),
+      onKeyDown: (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          event.stopPropagation();
+          setPressed(true);
+        }
+      },
+      onKeyUp: () => setPressed(false),
+    }),
+    [],
+  );
 
   const [hovered, setHovered] = useState(false);
   const handleHoverStart = useCallback(
-    (event: HoverEvent) => {
+    (event: React.PointerEvent) => {
       hoverOptions?.onHoverStart?.(event);
       setHovered(true);
     },
     [hoverOptions],
   );
-
   const handleHoverEnd = useCallback(
-    (event: HoverEvent) => {
+    (event: React.PointerEvent) => {
       hoverOptions?.onHoverEnd?.(event);
       setHovered(false);
     },
     [hoverOptions],
   );
-
-  const [pressed, setPressed] = useState(false);
-  const pressProps = useMemo<DOMAttributes>(
+  const hoverProps = useMemo<DOMAttributes | undefined>(
     () => ({
-      onPointerDown: () => setPressed(true),
-      onPointerUp: () => setPressed(false),
-      onPointerLeave: () => setPressed(false),
+      onPointerEnter: (event) => {
+        setHovered(true);
+
+        if (!hoverOptions?.within) {
+          activeTriggers[0]?.onHoverEnd(event);
+          activeTriggers.unshift({
+            target: event.target,
+            onHoverStart: handleHoverStart,
+            onHoverEnd: handleHoverEnd,
+          });
+        }
+      },
+      onPointerLeave: (event) => {
+        setHovered(false);
+
+        if (!hoverOptions?.within) {
+          activeTriggers.shift();
+          activeTriggers[0]?.onHoverStart(event);
+        }
+      },
     }),
-    [],
+    [hoverOptions, handleHoverStart, handleHoverEnd],
   );
 
-  const triggerProps = useMemo<DOMAttributes>(
+  const triggerProps = useMemo<DOMAttributes | undefined>(
     () =>
-      mergeProps({
-        ...(events?.press ? pressProps : undefined),
-        ...(events?.hover ? hoverProps : undefined),
-        ...(events?.focus ? focusProps : undefined),
-      }),
-    [events, hoverProps, pressProps, focusProps],
+      disabled
+        ? undefined
+        : mergeProps(
+            events?.press ? pressProps : undefined,
+            events?.hover ? hoverProps : undefined,
+            events?.focus ? focusProps : undefined,
+          ),
+    [disabled, events, hoverProps, pressProps, focusProps],
   );
 
   const currentState: IInteractions = useMemo(
