@@ -60,7 +60,7 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
       prefixText,
       suffixText,
       wrapperProps,
-      rippleEffect,
+      withoutRippleEffect,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -75,8 +75,9 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
     const populated = populatedProp;
 
     const stateLayer = useStateLayer({
-      interactions: interactionsProp,
+      baseState: interactionsProp,
       disabled: disabledOrReadOnly,
+      withoutRippleEffect,
     });
 
     const focused = stateLayer.interactionsContext.state.focused;
@@ -392,12 +393,7 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
           disabled={disabled}
           ref={containerRef}
         >
-          <StateLayer
-            context={rippleEffect ? stateLayer : undefined}
-            interactions={
-              rippleEffect ? undefined : stateLayer.interactionsContext.state
-            }
-          />
+          <StateLayer context={stateLayer} />
           {renderIndicator()}
           {variant === 'outlined' && renderOutline()}
 

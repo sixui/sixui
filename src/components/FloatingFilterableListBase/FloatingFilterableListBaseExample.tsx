@@ -97,7 +97,8 @@ export const FloatingFilterableListBaseExample: React.FC<
       createNewItemRenderer={canCreate ? renderCreateMovieListItem : undefined}
       onItemSelect={singleFilterableListBase.handleItemSelect}
       closeOnSelect
-      // FIXME: delete keepMounted
+      // FIXME:  keepMounted
+      // FIXME: make focused state on floating open
       {...other}
     >
       {(renderProps) => (
@@ -113,7 +114,7 @@ export const FloatingFilterableListBaseExample: React.FC<
           wrapperProps={renderProps.getTriggerProps()}
           containerRef={renderProps.setTriggerRef}
           tabIndex={0}
-          rippleEffect
+          withoutRippleEffect
           {...renderProps.forwardedProps}
         >
           {singleFilterableListBase.selectedItem

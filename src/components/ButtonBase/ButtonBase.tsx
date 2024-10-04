@@ -59,8 +59,8 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
     });
 
     const ownStateLayer = useStateLayer<HTMLDivElement>({
-      interactions,
-      interactionsMergeStrategy,
+      baseState: interactions,
+      mergeStrategy: interactionsMergeStrategy,
       disabled: !!stateLayerProp || disabledOrReadOnly,
     });
     const stateLayer = stateLayerProp ?? ownStateLayer;

@@ -15,7 +15,7 @@ export const [tokensClassName, tokens] = createTheme({
   container: {
     color: {
       normal: 'inherit',
-      disabled: 'inherit',
+      disabled: themeTokens.colorScheme.onSurface,
     },
     opacity: {
       disabled: themeTokens.state.containerOpacity.disabled,

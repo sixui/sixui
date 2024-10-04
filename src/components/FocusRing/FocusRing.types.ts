@@ -5,9 +5,14 @@ import type { focusRingTheme, IFocusRingThemeFactory } from './FocusRing.css';
 
 export type IFocusRingVariant = 'outward' | 'inward';
 
+export interface IFocusRingOwnProps {
+  visible?: boolean;
+}
+
 export interface IFocusRingProps
   extends IBoxProps,
-    IComponentThemeProps<IFocusRingThemeFactory> {}
+    IComponentThemeProps<IFocusRingThemeFactory>,
+    IFocusRingOwnProps {}
 
 export type IFocusRingFactory = IComponentFactory<{
   props: IFocusRingProps;

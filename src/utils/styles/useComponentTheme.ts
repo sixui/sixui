@@ -100,7 +100,6 @@ export const useComponentTheme = <
           TPayload['styleName'] | false | undefined
         >;
         const isRoot = styleNames.includes(rootStyleName);
-        console.log('___X', styleNames.length);
 
         return {
           className: cx(

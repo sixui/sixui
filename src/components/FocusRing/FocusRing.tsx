@@ -16,6 +16,7 @@ export const FocusRing = componentFactory<IFocusRingFactory>(
       styles,
       style,
       variant = 'outward',
+      visible,
       interactions,
       ...other
     } = useProps({
@@ -32,16 +33,16 @@ export const FocusRing = componentFactory<IFocusRingFactory>(
       theme: focusRingTheme,
       variant,
       modifiers: {
-        visible: interactions?.focused,
+        visible: visible ?? interactions?.focused,
       },
     });
 
     return (
       <Box
         {...getStyles('root')}
-        interactions={interactions}
         aria-hidden
         ref={forwardedRef}
+        interactions={interactions}
         {...other}
       />
     );

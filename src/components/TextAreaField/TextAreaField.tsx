@@ -124,6 +124,7 @@ export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
         end={renderEndSection()}
         forwardProps
         multiline
+        withoutRippleEffect
       >
         {({ forwardedProps }) => (
           <textarea

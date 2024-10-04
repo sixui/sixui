@@ -16,7 +16,7 @@ export type IInteractionEvents = {
   press?: boolean;
 };
 
-export type IInteractionsMergeStrategy = 'replace' | 'accumulate';
+export type IInteractionsMergeStrategy = 'replace' | 'accumulate' | 'override';
 
 export type IUseInteractionsProps = {
   events?: IInteractionEvents;
@@ -29,8 +29,11 @@ export type IUseInteractionsProps = {
    * base state.
    * - `replace`: The base state will replace the current state.
    * - `accumulate`: If the current state is true, the merged state will be
-   *   true. If the current state is not true, the combined state will be
-   *   equal to the base state.
+   *   true. If the current state is not true, the combined state will be equal
+   *   to the base state.
+   * - `override`: If the current state is defined, the merged state will be the
+   *   current state. If the current state is not defined, the combined state
+   *   will be equal to the base state.
    * @defaultValue 'accumulate'
    */
   mergeStrategy?: IInteractionsMergeStrategy;
@@ -45,7 +48,7 @@ export type IUseInteractionsProps = {
 export type IUseInteractionsResult<TElement extends HTMLElement = HTMLElement> =
   {
     /** Props to spread on the trigger. */
-    triggerProps: DOMAttributes;
+    triggerProps?: DOMAttributes;
 
     /** Ref object for the trigger element. */
     triggerRef: React.RefObject<TElement>;
@@ -122,7 +125,7 @@ export const useInteractions = <TElement extends HTMLElement>(
   );
 
   const [pressed, setPressed] = useState(false);
-  const pressProps = useMemo(
+  const pressProps = useMemo<DOMAttributes>(
     () => ({
       onPointerDown: () => setPressed(true),
       onPointerUp: () => setPressed(false),
@@ -134,8 +137,8 @@ export const useInteractions = <TElement extends HTMLElement>(
   const triggerProps = useMemo<DOMAttributes>(
     () =>
       mergeProps({
-        ...(events?.hover ? hoverProps : undefined),
         ...(events?.press ? pressProps : undefined),
+        ...(events?.hover ? hoverProps : undefined),
         ...(events?.focus ? focusProps : undefined),
       }),
     [events, hoverProps, pressProps, focusProps],
@@ -156,9 +159,14 @@ export const useInteractions = <TElement extends HTMLElement>(
       baseState
         ? currentStateReplaced
           ? baseState
-          : accumulate(currentState, baseState)
+          : mergeStrategy === 'accumulate'
+            ? accumulate(currentState, baseState)
+            : {
+                ...currentState,
+                ...baseState,
+              }
         : currentState,
-    [baseState, currentStateReplaced, currentState],
+    [mergeStrategy, baseState, currentStateReplaced, currentState],
   );
 
   return {

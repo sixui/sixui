@@ -7,7 +7,12 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { themeTokens } from '../ThemeProvider';
 
-type IModifier = 'hovered' | 'dragged' | 'animating' | 'static-pressed';
+type IModifier =
+  | 'hovered'
+  | 'dragged'
+  | 'animating'
+  | 'static-pressed'
+  | 'no-ripple-effect';
 
 const [tokensClassName, tokens] = createTheme({
   color: {
@@ -28,11 +33,9 @@ const classNames = createStyles({
     position: 'absolute',
     inset: 0,
     overflow: 'hidden',
-    // pointerEvents: 'none',
 
     '::before': {
       // This is the background color of the ripple.
-
       pointerEvents: 'none',
       borderRadius: 'inherit',
       content: '',
@@ -42,7 +45,6 @@ const classNames = createStyles({
     },
     '::after': {
       // This is the ripple animation.
-
       pointerEvents: 'none',
       borderRadius: 'inherit',
       content: '',
@@ -82,6 +84,10 @@ const classNames = createStyles({
           tokens.color.hovered,
         ),
         opacity: tokens.opacity.pressed,
+      },
+      [`${getModifierSelector('no-ripple-effect')}::after`]: {
+        backgroundImage: 'none',
+        transition: 'none',
       },
       [`${getModifierSelector('dragged')}::before`]: {
         backgroundColor: fallbackVar(

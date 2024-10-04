@@ -1,75 +1,8 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import { delay } from '@olivierpascal/helpers';
 
-import type { IPoint } from '~/helpers/types';
-
-const getNormalizedPointerEventCoords = (
-  surfaceElement: HTMLElement,
-  pointerEvent: React.PointerEvent,
-): IPoint => {
-  const surfaceRect = surfaceElement.getBoundingClientRect();
-
-  const { pageX, pageY } = pointerEvent;
-  if (!pageX || !pageY) {
-    return {
-      x: surfaceRect.width / 2,
-      y: surfaceRect.height / 2,
-    };
-  }
-
-  const surfaceDocumentX = surfaceRect.left;
-  const surfaceDocumentY = surfaceRect.top;
-
-  const coords = {
-    x: pageX - surfaceDocumentX,
-    y: pageY - surfaceDocumentY,
-  };
-
-  return coords;
-};
-
-type ITranslationCoordinates = {
-  startPoint: IPoint;
-  endPoint: IPoint;
-};
-
-const getTranslationCoordinates = (
-  triggerElement: HTMLElement,
-  surfaceElement: HTMLElement,
-  event: React.PointerEvent | React.MouseEvent,
-  initialSize: number,
-): ITranslationCoordinates => {
-  const triggerRect = triggerElement.getBoundingClientRect();
-
-  // End in the center
-  const endPoint = {
-    x: (triggerRect.width - initialSize) / 2,
-    y: (triggerRect.height - initialSize) / 2,
-  };
-
-  const startPoint = getNormalizedPointerEventCoords(
-    surfaceElement,
-    event as React.PointerEvent,
-  );
-
-  const centeredStartPoint = {
-    x: startPoint.x - initialSize / 2,
-    y: startPoint.y - initialSize / 2,
-  };
-
-  return { startPoint: centeredStartPoint, endPoint };
-};
-
-const inBounds = (
-  triggerElement: HTMLElement,
-  event: React.PointerEvent,
-): boolean => {
-  const { top, left, bottom, right } = triggerElement.getBoundingClientRect();
-  const x = event.clientX - left;
-  const y = event.clientY - top;
-
-  return x >= left && x <= right && y >= top && y <= bottom;
-};
+import { getTranslationCoordinates } from './getTranslationCoordinates';
+import { isEventInElementBounds } from './isEventInElementBounds';
 
 export type IUSeRippleOptions = {
   /** The delay in milliseconds after the touch start, to determine if the touch
@@ -135,12 +68,14 @@ export type IUseRippleProps<TElement extends HTMLElement> = {
 
 export type IUseRippleResult = {
   animating: boolean;
-  onPointerDown: React.PointerEventHandler;
-  onPointerUp: React.PointerEventHandler;
-  onPointerLeave: React.PointerEventHandler;
-  onPointerCancel: React.PointerEventHandler;
-  onClick: React.MouseEventHandler;
-  onContextMenu: React.MouseEventHandler;
+  triggerProps?: {
+    onPointerDown?: React.PointerEventHandler;
+    onPointerUp?: React.PointerEventHandler;
+    onPointerLeave?: React.PointerEventHandler;
+    onPointerCancel?: React.PointerEventHandler;
+    onClick?: React.MouseEventHandler;
+    onContextMenu?: React.MouseEventHandler;
+  };
 };
 
 /**
@@ -358,11 +293,11 @@ export const useRipple = <TElement extends HTMLElement>(
 
   const handlePointerDown: React.PointerEventHandler = useCallback(
     (event) => {
-      event.stopPropagation();
-
       if (!shouldReactToEvent(event)) {
         return;
       }
+
+      event.stopPropagation();
 
       rippleStartEventRef.current = event;
       if (!isTouch(event)) {
@@ -377,7 +312,8 @@ export const useRipple = <TElement extends HTMLElement>(
       // of the element in this case.
       if (
         checkBoundsAfterContextMenuRef.current &&
-        (!triggerRef.current || !inBounds(triggerRef.current, event))
+        (!triggerRef.current ||
+          !isEventInElementBounds(event, triggerRef.current))
       ) {
         return;
       }
@@ -400,11 +336,11 @@ export const useRipple = <TElement extends HTMLElement>(
 
   const handlePointerUp: React.PointerEventHandler = useCallback(
     (event) => {
-      event.stopPropagation();
-
       if (!shouldReactToEvent(event)) {
         return;
       }
+
+      event.stopPropagation();
 
       if (stateRef.current === IState.Holding) {
         stateRef.current = IState.WaitingForClick;
@@ -426,11 +362,11 @@ export const useRipple = <TElement extends HTMLElement>(
 
   const handlePointerLeave: React.PointerEventHandler = useCallback(
     (event) => {
-      event.stopPropagation();
-
       if (!shouldReactToEvent(event)) {
         return;
       }
+
+      event.stopPropagation();
 
       // Release a held mouse or pen press that moves outside the element.
       if (stateRef.current !== IState.Inactive) {
@@ -442,12 +378,11 @@ export const useRipple = <TElement extends HTMLElement>(
 
   const handlePointerCancel: React.PointerEventHandler = useCallback(
     (event) => {
-      event.stopPropagation();
-
       if (!shouldReactToEvent(event)) {
         return;
       }
 
+      event.stopPropagation();
       endPressAnimation();
     },
     [shouldReactToEvent, endPressAnimation],
@@ -455,13 +390,13 @@ export const useRipple = <TElement extends HTMLElement>(
 
   const handleClick: React.MouseEventHandler = useCallback(
     (event) => {
-      event.stopPropagation();
-
       // Click is a MouseEvent in Firefox and Safari, so we cannot use
       // `shouldReactToEvent`.
       if (disabled) {
         return;
       }
+
+      event.stopPropagation();
 
       if (stateRef.current === IState.WaitingForClick) {
         void endPressAnimation();
@@ -487,13 +422,31 @@ export const useRipple = <TElement extends HTMLElement>(
     void endPressAnimation();
   }, [disabled, endPressAnimation]);
 
+  const triggerProps = useMemo(
+    () =>
+      disabled
+        ? undefined
+        : {
+            onPointerDown: handlePointerDown,
+            onPointerUp: handlePointerUp,
+            onPointerLeave: handlePointerLeave,
+            onPointerCancel: handlePointerCancel,
+            onClick: handleClick,
+            onContextMenu: handleContextMenu,
+          },
+    [
+      disabled,
+      handlePointerDown,
+      handlePointerUp,
+      handlePointerLeave,
+      handlePointerCancel,
+      handleClick,
+      handleContextMenu,
+    ],
+  );
+
   return {
     animating,
-    onPointerDown: handlePointerDown,
-    onPointerUp: handlePointerUp,
-    onPointerLeave: handlePointerLeave,
-    onPointerCancel: handlePointerCancel,
-    onClick: handleClick,
-    onContextMenu: handleContextMenu,
+    triggerProps,
   };
 };

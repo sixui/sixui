@@ -51,7 +51,10 @@ const FocusRingDemo: React.FC<IDemoProps> = (props) => {
       {...interactionsContext.triggerProps}
       {...other}
     >
-      <FocusRing variant={variant} interactions={interactionsContext.state} />
+      <FocusRing
+        variant={variant}
+        visible={interactionsContext.state.focused}
+      />
       {children}
     </Placeholder>
   );

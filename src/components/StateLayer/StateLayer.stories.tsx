@@ -1,20 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IInteractions } from '~/hooks/useInteractions';
 import type { IComponentPresentation } from '../ComponentShowcase';
 import { componentShowcaseFactory } from '../ComponentShowcase';
 import { FocusRing } from '../FocusRing';
 import { Placeholder } from '../Placeholder';
 import { StateLayer } from './StateLayer';
-import { useStateLayer } from './useStateLayer';
+import { IUseStateLayerProps, useStateLayer } from './useStateLayer';
 
 // https://material-web.dev/components/ripple/
 // https://github.com/material-components/material-web/blob/main/ripple/demo/stories.ts
 
-type IDemoProps = {
-  interactions?: IInteractions;
-  disabled?: boolean;
-};
+type IDemoProps = IUseStateLayerProps;
 
 const meta = {} satisfies Meta<IDemoProps>;
 
@@ -24,9 +20,9 @@ const defaultArgs = {} satisfies Partial<IDemoProps>;
 
 const states: Array<IComponentPresentation<IDemoProps>> = [
   { legend: 'Normal' },
-  { legend: 'Hovered', props: { interactions: { hovered: true } } },
-  { legend: 'Pressed', props: { interactions: { pressed: true } } },
-  { legend: 'Dragged', props: { interactions: { dragged: true } } },
+  { legend: 'Hovered', props: { baseState: { hovered: true } } },
+  { legend: 'Pressed', props: { baseState: { pressed: true } } },
+  { legend: 'Dragged', props: { baseState: { dragged: true } } },
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
@@ -41,14 +37,14 @@ const BoundedDemo: React.FC<IDemoProps> = (props) => {
       corner="$md"
       outline="$xs"
       outlineStyle="solid"
-      role="button"
-      tabIndex={props.disabled ? -1 : 0}
-      data-disabled={props.disabled}
-      {...stateLayer.interactionsContext.triggerProps}
+      role={props.disabled || props.baseState ? undefined : 'button'}
+      tabIndex={props.disabled || props.baseState ? -1 : 0}
+      disabled={props.disabled}
       ref={stateLayer.triggerRef}
+      {...stateLayer.interactionsContext.triggerProps}
     >
       <StateLayer context={stateLayer} />
-      <FocusRing interactions={stateLayer.interactionsContext.state} />
+      <FocusRing visible={stateLayer.interactionsContext.state.focused} />
     </Placeholder>
   );
 };
@@ -72,8 +68,8 @@ const UnboundedDemo: React.FC<IDemoProps> = (props) => {
       outline="$xs"
       outlineStyle="dashed"
       role="button"
-      tabIndex={props.disabled ? -1 : 0}
-      data-disabled={props.disabled}
+      tabIndex={props.disabled || props.baseState ? -1 : 0}
+      disabled={props.disabled}
       {...stateLayer.interactionsContext.triggerProps}
       ref={stateLayer.triggerRef}
     >
@@ -86,7 +82,7 @@ const UnboundedDemo: React.FC<IDemoProps> = (props) => {
         outline="$xs"
         context={stateLayer}
       />
-      <FocusRing interactions={stateLayer.interactionsContext.state} />
+      <FocusRing visible={stateLayer.interactionsContext.state.focused} />
     </Placeholder>
   );
 };
@@ -111,13 +107,13 @@ const NestedDemo: React.FC<IDemoProps> = (props) => {
       outline="$xs"
       outlineStyle="solid"
       role="button"
-      tabIndex={props.disabled ? -1 : 0}
-      data-disabled={props.disabled}
+      tabIndex={props.disabled || props.baseState ? -1 : 0}
+      disabled={props.disabled}
       {...stateLayer.interactionsContext.triggerProps}
       ref={stateLayer.triggerRef}
     >
       <StateLayer context={stateLayer} />
-      <FocusRing interactions={stateLayer.interactionsContext.state} />
+      <FocusRing visible={stateLayer.interactionsContext.state.focused} />
 
       <Placeholder
         w="$12"
@@ -127,13 +123,15 @@ const NestedDemo: React.FC<IDemoProps> = (props) => {
         outline="$xs"
         outlineStyle="solid"
         role="button"
-        tabIndex={props.disabled ? -1 : 0}
-        data-disabled={props.disabled}
+        tabIndex={props.disabled || props.baseState ? -1 : 0}
+        disabled={props.disabled}
         {...nestedStateLayer.interactionsContext.triggerProps}
         ref={nestedStateLayer.triggerRef}
       >
         <StateLayer context={nestedStateLayer} />
-        <FocusRing interactions={nestedStateLayer.interactionsContext.state} />
+        <FocusRing
+          visible={nestedStateLayer.interactionsContext.state.focused}
+        />
       </Placeholder>
     </Placeholder>
   );
@@ -141,6 +139,7 @@ const NestedDemo: React.FC<IDemoProps> = (props) => {
 
 const NestedShowcase = componentShowcaseFactory(NestedDemo);
 
+// FIXME: quand la souris bouge trop vite, ça bug
 export const Nested: IStory = {
   render: (props) => <NestedShowcase props={props} />,
   args: defaultArgs,

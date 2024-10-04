@@ -33,7 +33,7 @@ export interface IFieldBaseOwnProps extends IForwardableProps {
   children?: IRendererWithForwardedProps;
   containerRef?: React.Ref<HTMLDivElement>;
   wrapperProps?: React.HTMLAttributes<HTMLDivElement>;
-  rippleEffect?: boolean;
+  withoutRippleEffect?: boolean;
 }
 
 export interface IFieldBaseProps

@@ -1,89 +1,69 @@
-import type { HoverEvents, PressEvents } from 'react-aria';
 import { useRef } from 'react';
 import { mergeProps } from 'react-aria';
 
 import type {
-  IInteractions,
-  IInteractionsMergeStrategy,
+  IUseInteractionsProps,
   IUseInteractionsResult,
 } from '~/hooks/useInteractions';
 import { useInteractions } from '~/hooks/useInteractions';
 import { useRipple } from '~/hooks/useRipple';
 
-export type IUseStateLayerProps = {
-  disabled?: boolean;
-  interactions?: IInteractions;
-  interactionsMergeStrategy?: IInteractionsMergeStrategy;
-  focusWithin?: boolean;
-  hoverEvents?: HoverEvents;
-  pressEvents?: PressEvents;
+export type IUseStateLayerProps = IUseInteractionsProps & {
+  withoutRippleEffect?: boolean;
 };
 
 export type IUseStateLayerResult<TElement extends HTMLElement = HTMLElement> = {
   triggerRef: React.RefObject<TElement>;
   interactionsContext: IUseInteractionsResult<TElement>;
   surfaceRef: React.RefObject<HTMLDivElement>;
-  animating: boolean;
+  animating?: boolean;
+  withoutRippleEffect?: boolean;
 };
 
 export const useStateLayer = <TElement extends HTMLElement>(
-  props?: IUseStateLayerProps,
+  props: IUseStateLayerProps = {},
 ): IUseStateLayerResult<TElement> => {
   const {
+    events,
+    baseState,
+    mergeStrategy = 'replace',
+    dragged,
     disabled,
-    interactions,
-    interactionsMergeStrategy,
-    hoverEvents,
-    focusWithin,
-  } = props ?? {};
+    withoutRippleEffect,
+  } = props;
   const surfaceRef = useRef<HTMLDivElement>(null);
-
-  const currentStateReplaced =
-    interactions && interactionsMergeStrategy === 'replace';
-
+  const isStaticState = baseState && mergeStrategy === 'replace';
   const interactionsContext = useInteractions<TElement>({
     events: {
-      hover: hoverEvents ?? true,
-      focus: {
-        within: focusWithin,
-      },
+      ...events,
+      hover: events?.hover ?? true,
+      focus: events?.focus ?? true,
+      press: events?.press ?? withoutRippleEffect,
     },
-    baseState: interactions,
-    mergeStrategy: interactionsMergeStrategy,
+    baseState,
+    mergeStrategy,
+    dragged,
     disabled,
   });
 
   const triggerRef = useRef<TElement>(null);
-  const {
-    animating,
-    onPointerDown,
-    onPointerUp,
-    onPointerLeave,
-    onPointerCancel,
-    onClick,
-    onContextMenu,
-  } = useRipple({
+  const ripple = useRipple({
     triggerRef,
     surfaceRef,
-    disabled,
+    disabled: withoutRippleEffect || disabled || isStaticState,
   });
 
   return {
     triggerRef,
     interactionsContext: {
       ...interactionsContext,
-      triggerProps: currentStateReplaced
-        ? {}
-        : mergeProps(interactionsContext.triggerProps, {
-            onPointerDown,
-            onPointerUp,
-            onPointerLeave,
-            onPointerCancel,
-            onClick,
-            onContextMenu,
-          }),
+      triggerProps: mergeProps(
+        interactionsContext.triggerProps,
+        ripple.triggerProps,
+      ),
     },
     surfaceRef,
-    animating,
+    animating: ripple.animating,
+    withoutRippleEffect,
   };
 };

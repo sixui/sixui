@@ -40,7 +40,10 @@ export const StateLayer = componentFactory<IStateLayerFactory>(
         dragged: !context?.animating && interactions?.dragged,
         'static-pressed':
           (!context && interactions?.pressed) ||
-          context?.interactionsContext.baseState?.pressed,
+          (context?.withoutRippleEffect
+            ? context.interactionsContext.state.pressed
+            : context?.interactionsContext.baseState?.pressed),
+        'no-ripple-effect': context?.withoutRippleEffect,
         animating: context?.animating,
       },
     });

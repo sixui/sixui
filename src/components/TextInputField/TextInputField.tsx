@@ -139,6 +139,7 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
         variant={variant}
         end={renderEndSection()}
         forwardProps
+        withoutRippleEffect
       >
         {({ forwardedProps }) => (
           <input
