@@ -36,6 +36,7 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
       trailingIcon,
       lineClamp,
       noFocusRing: noFocusRingProp,
+      interactionsMergeStrategy,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -120,6 +121,7 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
           })}
           focusRing={noFocusRing ? false : 'inward'}
           ref={forwardedRef}
+          interactionsMergeStrategy={interactionsMergeStrategy}
           {...other}
         >
           {renderItem()}

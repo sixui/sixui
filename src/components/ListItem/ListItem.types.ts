@@ -5,6 +5,7 @@ import type { IButtonBaseOwnProps } from '../ButtonBase';
 import type { IItemOwnProps } from '../Item';
 import type { IPaperOwnProps } from '../Paper';
 import type { IListItemThemeFactory, listItemTheme } from './ListItem.css';
+import { IInteractionsMergeStrategy } from '~/hooks/useInteractions';
 
 export type IListItemVariant = 'standard' | 'danger';
 
@@ -12,6 +13,7 @@ export interface IListItemOwnProps
   extends IItemOwnProps,
     IPaperOwnProps,
     IButtonBaseOwnProps {
+  interactionsMergeStrategy?: IInteractionsMergeStrategy;
   selected?: boolean;
   leading?: React.ReactNode;
   leadingIcon?: React.ReactNode;

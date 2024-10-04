@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IInteractions } from '~/hooks/useInteractions';
 import type { IBoxProps } from '../Box';
 import type { IPlaceholderOwnProps } from '../Placeholder';
 import type { IFocusRingVariant } from './FocusRing.types';
@@ -14,7 +13,6 @@ import { FocusRing } from './FocusRing';
 type IDemoProps = IBoxProps &
   IPlaceholderOwnProps & {
     className?: string;
-    interactions?: IInteractions;
     variant?: IFocusRingVariant;
     disabled?: boolean;
     children?: React.ReactNode;
