@@ -31,7 +31,6 @@ const [tokensClassName, tokens] = createTheme({
 const classNames = createStyles({
   root: {
     cursor: 'text',
-    resize: 'vertical',
   },
   input: ({ root }) => ({
     overflowWrap: 'inherit',
