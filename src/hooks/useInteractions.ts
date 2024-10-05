@@ -115,9 +115,13 @@ export const useInteractions = <TElement extends HTMLElement>(
       },
       onPointerLeave: () => setPressed(false),
       onKeyDown: (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          event.stopPropagation();
+        // When using a different element than a button, we want to allow the
+        // Enter or Space key to trigger the click event for accessibility
+        // purpose.
+        if (
+          (event.target as HTMLElement).tagName !== 'INPUT' &&
+          (event.key === 'Enter' || event.key === ' ')
+        ) {
           setPressed(true);
         }
       },

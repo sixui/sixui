@@ -11,6 +11,12 @@ import { ListItem } from '../ListItem';
 import { MenuList } from '../MenuList';
 import { TextInputField } from '../TextInputField';
 
+// FIXME:
+// - open select base / clearable
+// - click on clear button
+// -> error in console
+// FIXME: keepmounted option
+
 const COMPONENT_NAME = 'SelectBase';
 
 export const selectBaseFactory = <

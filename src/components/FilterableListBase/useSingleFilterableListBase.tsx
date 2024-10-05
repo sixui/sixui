@@ -35,7 +35,7 @@ export type IUseSingleFilterableListBaseResult<
       items: Array<TItem>,
       event?: React.SyntheticEvent<HTMLElement>,
     ) => void,
-    event?: React.MouseEvent<Element>,
+    event?: React.MouseEvent<HTMLElement>,
   ) => void;
   items: Array<TItem>;
   selectedItem?: TItem;

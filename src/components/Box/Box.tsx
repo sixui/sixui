@@ -34,8 +34,9 @@ export const Box = createPolymorphicComponent<'div', IBoxProps>(
           // the Enter or Space key to trigger the click event for
           // accessibility purpose.
           if (
-            other.role === 'button' &&
-            other.as !== 'input' &&
+            (event.target as HTMLElement).tagName !== 'BUTTON' &&
+            typeof other.role === 'string' &&
+            ['button', 'combobox', 'listbox'].includes(other.role) &&
             (event.key === 'Enter' || event.key === ' ')
           ) {
             event.preventDefault();

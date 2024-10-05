@@ -37,6 +37,7 @@ export const SelectBaseExample = (
       itemDisabled={isMovieDisabled}
       createNewItemFromQuery={createMovie}
       createNewItemRenderer={canCreate ? renderCreateMovieListItem : undefined}
+      keepMounted
       {...other}
     />
   );

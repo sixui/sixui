@@ -1,11 +1,14 @@
 import { createTheme } from '@vanilla-extract/css';
 
+
+
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
+
 
 type IModifier = 'grid' | 'empty';
 
@@ -31,14 +34,18 @@ const classNames = createStyles({
   inner: {
     maxHeight: 'inherit',
     borderRadius: 'inherit',
-    overflow: 'hidden',
   },
-  header: {},
+  header: {
+    overflow: 'hidden',
+    borderTopLeftRadius: 'inherit',
+    borderTopRightRadius: 'inherit',
+  },
   content: ({ root }) => ({
     paddingTop: tokens.topSpace,
     paddingBottom: tokens.bottomSpace,
     borderRadius: 'inherit',
     gap: tokens.gap,
+    overflow: 'auto',
 
     selectors: {
       [getModifierSelector<IModifier>('grid', root)]: {
@@ -54,7 +61,11 @@ const classNames = createStyles({
       },
     },
   }),
-  footer: {},
+  footer: {
+    overflow: 'hidden',
+    borderBottomLeftRadius: 'inherit',
+    borderBottomRightRadius: 'inherit',
+  },
 });
 
 export type IListThemeFactory = IComponentThemeFactory<{

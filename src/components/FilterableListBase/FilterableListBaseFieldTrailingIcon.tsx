@@ -5,14 +5,14 @@ import { SvgIcon } from '../SvgIcon';
 
 export type IFilterableListBaseFieldTrailingIcon = {
   opened?: boolean;
-  onClear?: (event?: React.MouseEvent<Element>) => void;
+  onClear?: (event?: React.MouseEvent<HTMLElement>) => void;
 };
 
 // FIXME:
 export const FilterableListBaseFieldTrailingIcon = (
   props: IFilterableListBaseFieldTrailingIcon,
 ): React.ReactNode => (
-  <Flex direction="row" gap="$2" align="center">
+  <Flex direction="row" gap="$1" align="center">
     {props.onClear ? (
       <IconButton icon={<SvgIcon icon={iconXMark} />} onClick={props.onClear} />
     ) : null}

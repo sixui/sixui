@@ -308,7 +308,6 @@ const classNames = createStyles({
     resize: 'inherit',
     display: 'flex',
     height: '100%',
-    overflow: 'hidden',
 
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
@@ -665,7 +664,6 @@ const classNames = createStyles({
     inlineSize: tokens.leadingIcon.size,
   },
   icon$trailing: {
-    border: '2px solid red',
     fontSize: tokens.trailingIcon.size,
     blockSize: tokens.trailingIcon.size,
     inlineSize: tokens.trailingIcon.size,
