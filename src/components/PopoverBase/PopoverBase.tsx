@@ -12,7 +12,6 @@ import {
   useFocus,
   useHover,
   useInteractions,
-  useMergeRefs,
   useRole,
   useTransitionStatus,
 } from '@floating-ui/react';
@@ -28,9 +27,11 @@ import type {
 import { isFunction } from '~/helpers/isFunction';
 import { px } from '~/helpers/styles/px';
 import { useControlledValue } from '~/hooks/useControlledValue';
+import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { usePopoverCursor } from '~/hooks/usePopoverCursor';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { mergeProps } from '~/utils/mergeProps';
 import { objectFromPlacement } from '~/utils/objectFromPlacement';
 import { stringFromPlacement } from '~/utils/stringFromPlacement';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
@@ -83,7 +84,12 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       trapFocus,
       matchTargetWidth,
       withScrim,
-      slotProps,
+      floatingFocusManagerProps,
+      scrimMotionProps,
+      floatingMotionProps,
+      scrimProps,
+      removeScrollProps,
+      portalProps,
       middlewares: middlewaresProp,
       additionalMiddlewares,
       additionalInteractions,
@@ -263,10 +269,10 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
         })
       : children;
 
-    const floatingHandleRef = useMergeRefs([
+    const floatingHandleRef = useMergeRefs(
       floating.refs.setFloating,
       forwardedRef,
-    ]);
+    );
 
     const finalPlacement = positioned
       ? objectFromPlacement(floating.placement)
@@ -277,13 +283,13 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
         {triggerElement}
 
         {(transitionStatus.isMounted || keepMounted) && (
-          <Portal {...slotProps?.portal}>
+          <Portal {...portalProps}>
             <FloatingFocusManager
               disabled={!trapFocus}
               context={floating.context}
               modal={!!trapFocus}
               closeOnFocusOut={closeEvents.focusOut}
-              {...slotProps?.floatingFocusManager}
+              {...floatingFocusManagerProps}
             >
               <div
                 {...getStyles('root')}
@@ -294,40 +300,43 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
                     status={transitionStatus.status}
                     pattern="fade"
                     as={Scrim}
-                    onClick={() => {
-                      if (modal) {
-                        setIsShaking(true);
-                        clearTimeout(shakingTimeout.current);
-                        shakingTimeout.current = setTimeout(
-                          () => setIsShaking(false),
-                          300,
-                        );
-                      }
-                    }}
                     blurred={modal}
-                    {...slotProps?.scrimMotion}
-                    {...slotProps?.scrim}
+                    {...mergeProps(
+                      {
+                        onClick: () => {
+                          if (modal) {
+                            setIsShaking(true);
+                            clearTimeout(shakingTimeout.current);
+                            shakingTimeout.current = setTimeout(
+                              () => setIsShaking(false),
+                              300,
+                            );
+                          }
+                        },
+                      },
+                      scrimMotionProps,
+                      scrimProps,
+                    )}
                   />
                 )}
                 <Motion
-                  {...getStyles('floating', {
-                    style: positioned
-                      ? { left: floating.x, top: floating.y }
-                      : undefined,
-                  })}
-                  {...interactions.getFloatingProps()}
-                  ref={floatingHandleRef}
                   status={transitionStatus.status}
                   placement={finalPlacement}
                   origin={transitionOrigin}
                   customTransformOrigin={cursor.getTransformOrigin(floating)}
                   pattern={positioned ? 'enterExit' : 'enterExitOffScreen'}
-                  {...slotProps?.floatingMotion}
+                  {...mergeProps(
+                    { ref: floatingHandleRef },
+                    interactions.getFloatingProps(),
+                    getStyles('floating', {
+                      style: positioned
+                        ? { left: floating.x, top: floating.y }
+                        : undefined,
+                    }),
+                    floatingMotionProps,
+                  )}
                 >
-                  <RemoveScroll
-                    enabled={!!lockScroll}
-                    {...slotProps?.removeScroll}
-                  >
+                  <RemoveScroll enabled={!!lockScroll} {...removeScrollProps}>
                     {isFunction(contentRenderer) ? (
                       contentRenderer({
                         parentProps: props,

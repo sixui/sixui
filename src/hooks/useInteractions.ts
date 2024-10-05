@@ -2,7 +2,9 @@ import type { DOMAttributes } from '@react-types/shared';
 import type { AriaFocusRingProps } from 'react-aria';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { accumulate } from '@olivierpascal/helpers';
-import { mergeProps, useFocusRing } from 'react-aria';
+import { useFocusRing } from 'react-aria';
+
+import { mergeProps } from '~/utils/mergeProps';
 
 export type IInteraction = 'focused' | 'pressed' | 'dragged' | 'hovered';
 

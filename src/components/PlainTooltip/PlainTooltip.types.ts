@@ -13,11 +13,7 @@ import type { plainTooltipTheme } from './PlainTooltip.css';
 export interface IPlainTooltipOwnProps
   extends IOmit<IPopoverBaseOwnProps, 'children' | 'contentRenderer'>,
     IPlainTooltipContentOwnProps {
-  /** Contains the props for all slots within the component. */
-  slotProps?: IPopoverBaseOwnProps['slotProps'] & {
-    plainTooltipContent?: Partial<IPlainTooltipContentProps>;
-  };
-
+  plainTooltipContentProps?: Partial<IPlainTooltipContentProps>;
   children: React.ReactNode;
 }
 

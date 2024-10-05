@@ -109,14 +109,9 @@ export interface IFloatingFilterableListBaseOwnProps<
    */
   resetOnClose?: boolean;
 
-  /**
-   * Contains the props for all slots within the component.
-   */
-  slotProps?: {
-    floatingFocusManager?: Partial<FloatingFocusManagerProps>;
-    floatingMotion?: Partial<IMotionProps>;
-    portal?: Partial<IPortalProps>;
-  };
+  floatingFocusManagerProps?: Partial<FloatingFocusManagerProps>;
+  floatingMotionProps?: Partial<IMotionProps>;
+  portalProps?: Partial<IPortalProps>;
 
   resetOnBlur?: boolean;
   initialFocus?: number;

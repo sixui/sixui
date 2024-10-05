@@ -36,6 +36,7 @@ export const selectBaseFactory = <
         getValueFieldProps,
         clearable,
         noResults,
+        menuListProps,
         ...other
       } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -71,6 +72,7 @@ export const selectBaseFactory = <
                 )
               }
               cols={listProps.filteredItems.length > 0 ? other.cols : undefined}
+              {...menuListProps}
             >
               {listProps.filteredList}
             </MenuList>

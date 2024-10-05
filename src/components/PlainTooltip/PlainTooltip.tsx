@@ -4,6 +4,7 @@ import type { IPlainTooltipFactory } from './PlainTooltip.types';
 import { isFunction } from '~/helpers/isFunction';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { PlainTooltipContent } from '../PlainTooltipContent';
 import { PopoverBase } from '../PopoverBase';
@@ -20,7 +21,7 @@ export const PlainTooltip = componentFactory<IPlainTooltipFactory>(
       style,
       variant,
       children,
-      slotProps,
+      plainTooltipContentProps,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -39,15 +40,16 @@ export const PlainTooltip = componentFactory<IPlainTooltipFactory>(
         {...getStyles('root')}
         contentRenderer={({ forwardedProps, renderCursor }) => (
           <PlainTooltipContent
-            ref={forwardedRef}
             renderCursor={renderCursor}
-            {...(forwardedProps as IPlainTooltipContentOwnProps)}
-            {...slotProps?.plainTooltipContent}
+            {...mergeProps(
+              { ref: forwardedRef },
+              forwardedProps as IPlainTooltipContentOwnProps,
+              plainTooltipContentProps,
+            )}
           >
             {children}
           </PlainTooltipContent>
         )}
-        slotProps={slotProps}
         role="tooltip"
         cursor="arrow"
         forwardProps

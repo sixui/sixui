@@ -7,6 +7,7 @@ import { getHslColor } from '~/helpers/styles/getHslColor';
 import { useImageLoaded } from '~/hooks/useImageLoaded';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Paper } from '../Paper';
 import { avatarTheme } from './Avatar.css';
@@ -23,7 +24,7 @@ export const Avatar = polymorphicComponentFactory<IAvatarFactory>(
       variant,
       alt,
       src,
-      slotProps,
+      imgProps,
       children,
       fallbackToRandomColor,
       randomColorSourceString: randomColorSourceStringProp,
@@ -44,9 +45,9 @@ export const Avatar = polymorphicComponentFactory<IAvatarFactory>(
     // rendering.
     const { hasLoadingError } = useImageLoaded({
       src,
-      ...slotProps?.img,
+      ...imgProps,
     });
-    const hasImage = !!src || !!slotProps?.img?.src || !!slotProps?.img?.srcSet;
+    const hasImage = !!src || !!imgProps?.src || !!imgProps?.srcSet;
     const hasImageNotFailing = hasImage && !hasLoadingError;
 
     const randomColorSourceString =
@@ -78,10 +79,9 @@ export const Avatar = polymorphicComponentFactory<IAvatarFactory>(
       >
         {hasImageNotFailing ? (
           <img
-            {...getStyles('image')}
             src={src}
             alt={alt}
-            {...slotProps?.img}
+            {...mergeProps(getStyles('image'), imgProps)}
           />
         ) : children ? (
           <div {...getStyles('placeholder')}>{children}</div>

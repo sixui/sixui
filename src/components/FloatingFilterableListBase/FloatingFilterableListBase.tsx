@@ -10,7 +10,6 @@ import {
   useFloating,
   useInteractions,
   useListNavigation,
-  useMergeRefs,
   useRole,
   useTransitionStatus,
   useTypeahead,
@@ -25,9 +24,11 @@ import type {
 import type { IFloatingFilterableListBaseFactory } from './FloatingFilterableListBase.types';
 import { isFunction } from '~/helpers/isFunction';
 import { useControlledValue } from '~/hooks/useControlledValue';
+import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { usePrevious } from '~/hooks/usePrevious';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { mergeProps } from '~/utils/mergeProps';
 import { objectFromPlacement } from '~/utils/objectFromPlacement';
 import { filterableListBaseFactory } from '../FilterableListBase';
 import { Motion } from '../Motion';
@@ -75,7 +76,9 @@ export const floatingFilterableListBaseFactory = <
       cols = 1,
       itemFocus,
       onOpenChange,
-      slotProps,
+      floatingFocusManagerProps,
+      floatingMotionProps,
+      portalProps,
       keepMounted,
       forwardProps,
       ...other
@@ -121,11 +124,11 @@ export const floatingFilterableListBaseFactory = <
     const role = useRole(floating.context, { role: 'listbox' });
     const inputFilterRef = useRef<HTMLInputElement>(null);
     const buttonRef = useRef<HTMLElement>(null);
-    const buttonHandleRef = useMergeRefs([
+    const buttonHandleRef = useMergeRefs(
       buttonRef,
       floating.refs.setReference,
       forwardedRef,
-    ]);
+    );
     const dismiss = useDismiss(floating.context);
     const canFilter = !!inputFilterRef.current;
     const isGrid = cols > 1;
@@ -383,7 +386,7 @@ export const floatingFilterableListBaseFactory = <
           : children}
 
         {(transitionStatus.isMounted || keepMounted) && (
-          <Portal {...slotProps?.portal}>
+          <Portal {...portalProps}>
             <FloatingFocusManager
               context={floating.context}
               initialFocus={disabled ? -1 : initialFocus}
@@ -391,20 +394,24 @@ export const floatingFilterableListBaseFactory = <
               restoreFocus
               modal
               visuallyHiddenDismiss
-              {...slotProps?.floatingFocusManager}
+              {...floatingFocusManagerProps}
             >
               <div className={floatingFilterableListBaseClassNames.root}>
                 <Motion
-                  className={floatingFilterableListBaseClassNames.floating}
-                  style={{ left: floating.x, top: floating.y }}
-                  {...interactions.getFloatingProps()}
-                  ref={floating.refs.setFloating}
                   placement={objectFromPlacement(floating.placement)}
                   status={transitionStatus.status}
                   origin="edge"
                   orientation={orientation}
                   pattern="enterExit"
-                  {...slotProps?.floatingMotion}
+                  {...mergeProps(
+                    {
+                      className: floatingFilterableListBaseClassNames.floating,
+                      style: { left: floating.x, top: floating.y },
+                      ref: floating.refs.setFloating,
+                    },
+                    interactions.getFloatingProps(),
+                    floatingMotionProps,
+                  )}
                 >
                   <FloatingList elementsRef={elementsRef} labelsRef={labelsRef}>
                     <FilterableListBase

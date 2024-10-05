@@ -18,7 +18,6 @@ import {
   useInteractions,
   useListItem,
   useListNavigation,
-  useMergeRefs,
   useRole,
   useTransitionStatus,
   useTypeahead,
@@ -26,6 +25,7 @@ import {
 
 import type { IMenuProps } from './Menu.types';
 import { isFunction } from '~/helpers/isFunction';
+import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { useStyles } from '~/hooks/useStyles';
 import { FloatingTransition } from '../FloatingTransition';
 import { Portal } from '../Portal';
@@ -156,11 +156,11 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
       };
     }, [tree, nodeId, parentId]);
 
-    const triggerHandleRef = useMergeRefs([
+    const triggerHandleRef = useMergeRefs(
       floating.refs.setReference,
       item.ref,
       forwardedRef,
-    ]);
+    );
 
     const getTriggerProps = (
       userProps?: Record<string, unknown>,

@@ -27,11 +27,11 @@ const classNames = createStyles({
     paddingLeft: 0,
     paddingRight: 0,
     maxHeight: 'inherit',
-    borderRadius: 'inherit',
   },
   inner: {
     maxHeight: 'inherit',
     borderRadius: 'inherit',
+    overflow: 'hidden',
   },
   header: {},
   content: ({ root }) => ({

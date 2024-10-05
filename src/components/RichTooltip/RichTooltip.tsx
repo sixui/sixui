@@ -3,6 +3,7 @@ import type { IRichTooltipThemeFactory } from './RichTooltip.css';
 import type { IRichTooltipFactory } from './RichTooltip.types';
 import { isFunction } from '~/helpers/isFunction';
 import { componentFactory } from '~/utils/component/componentFactory';
+import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { PopoverBase } from '../PopoverBase';
 import { RichTooltipContent } from '../RichTooltipContent';
@@ -19,7 +20,7 @@ export const RichTooltip = componentFactory<IRichTooltipFactory>(
       style,
       variant,
       children,
-      slotProps,
+      richTooltipContentProps,
       placement = { side: 'bottom', alignment: 'end' },
       persistent,
       ...other
@@ -40,16 +41,19 @@ export const RichTooltip = componentFactory<IRichTooltipFactory>(
         {...getStyles('root')}
         contentRenderer={({ forwardedProps, close, renderCursor }) => (
           <RichTooltipContent
-            ref={forwardedRef}
             renderCursor={renderCursor}
-            onClose={close}
-            {...(forwardedProps as IRichTooltipContentOwnProps)}
-            {...slotProps?.richTooltipContent}
+            {...mergeProps(
+              {
+                onClose: close,
+                ref: forwardedRef,
+              },
+              forwardedProps as IRichTooltipContentOwnProps,
+              richTooltipContentProps,
+            )}
           >
             {children}
           </RichTooltipContent>
         )}
-        slotProps={slotProps}
         role="tooltip"
         cursor="dot"
         forwardProps

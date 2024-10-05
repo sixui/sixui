@@ -14,8 +14,7 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   w: '$96',
-  // variant: 'outlined',
-  label: 'Label',
+  label: 'Movie',
   onItemChange: (...args) => void sbHandleEvent('onItemChange', args),
 } satisfies Partial<ISelectBaseExampleProps>;
 

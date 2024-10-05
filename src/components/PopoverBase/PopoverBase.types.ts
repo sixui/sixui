@@ -148,14 +148,12 @@ export type IPopoverBaseOwnProps<TForwardedProps extends object = object> =
     /**
      * Contains the props for all slots within the component.
      */
-    slotProps?: {
-      floatingFocusManager?: Partial<FloatingFocusManagerProps>;
-      scrimMotion?: Partial<IMotionProps>;
-      floatingMotion?: Partial<IMotionProps>;
-      scrim?: Partial<IScrimProps>;
-      removeScroll?: Partial<IRemoveScrollSelfProps>;
-      portal?: Partial<IPortalProps>;
-    };
+    floatingFocusManagerProps?: Partial<FloatingFocusManagerProps>;
+    scrimMotionProps?: Partial<IMotionProps>;
+    floatingMotionProps?: Partial<IMotionProps>;
+    scrimProps?: Partial<IScrimProps>;
+    removeScrollProps?: Partial<IRemoveScrollSelfProps>;
+    portalProps?: Partial<IPortalProps>;
 
     /**
      * Whether the element should be positioned relative to its nearest

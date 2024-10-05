@@ -7,6 +7,7 @@ import type {
   IFloatingFilterableListBaseProps,
   IFloatingFilterableListBaseTriggerRenderProps,
 } from '../FloatingFilterableListBase';
+import type { IMenuListProps } from '../MenuList';
 
 export interface ISelectBaseOwnProps<TItem>
   extends IOmit<
@@ -22,6 +23,7 @@ export interface ISelectBaseOwnProps<TItem>
     selectedItem?: TItem,
   ) => Partial<IFieldBaseProps>;
   clearable?: boolean;
+  menuListProps?: Partial<IMenuListProps>;
 }
 
 export interface ISelectBaseProps<TItem>

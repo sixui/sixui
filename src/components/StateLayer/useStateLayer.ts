@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import { mergeProps } from 'react-aria';
 
 import type {
   IUseInteractionsProps,
@@ -7,6 +6,7 @@ import type {
 } from '~/hooks/useInteractions';
 import { useInteractions } from '~/hooks/useInteractions';
 import { useRipple } from '~/hooks/useRipple';
+import { mergeProps } from '~/utils/mergeProps';
 
 export type IUseStateLayerProps = IUseInteractionsProps & {
   withoutRippleEffect?: boolean;

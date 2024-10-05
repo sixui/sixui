@@ -7,9 +7,7 @@ import type { avatarTheme, IAvatarThemeFactory } from './Avatar.css';
 export interface IAvatarOwnProps extends IPaperOwnProps {
   src?: string;
   alt?: string;
-  slotProps?: {
-    img?: React.ComponentPropsWithoutRef<'img'>;
-  };
+  imgProps?: React.ComponentPropsWithoutRef<'img'>;
 
   /**
    * Used to render icon or text elements inside the Avatar if `src` is not

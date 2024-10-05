@@ -1,11 +1,11 @@
 import { useRef, useState } from 'react';
-import { useMergeRefs } from '@floating-ui/react';
 import { useFocus } from 'react-aria';
 
 import type { ITextInputFieldThemeFactory } from './TextInputField.css';
 import type { ITextInputFieldFactory } from './TextInputField.types';
 import { iconEye, iconEyeSlash, iconXMark } from '~/assets/icons';
 import { useControlledValue } from '~/hooks/useControlledValue';
+import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
@@ -66,7 +66,7 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
     const unmaskable = type === 'password' && unmaskableProp;
     const [unmasked, setUnmasked] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
-    const inputHandleRef = useMergeRefs([inputRef, forwardedRef]);
+    const inputHandleRef = useMergeRefs(inputRef, forwardedRef);
     const hasEnd = !!other.end || clearable || unmaskable;
 
     const [focused, setFocused] = useState(false);

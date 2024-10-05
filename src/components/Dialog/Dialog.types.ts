@@ -12,13 +12,7 @@ import { IPolymorphicComponentFactory } from '~/utils/component/polymorphicCompo
 export interface IDialogOwnProps
   extends IOmit<IPopoverBaseOwnProps, 'children' | 'contentRenderer'>,
     IOmit<IDialogContentOwnProps, 'onClose'> {
-  /**
-   * Contains the props for all slots within the component.
-   */
-  slotProps?: IPopoverBaseOwnProps['slotProps'] & {
-    dialogContent?: Partial<IDialogContentProps>;
-  };
-
+  dialogContentProps?: Partial<IDialogContentProps>;
   children?: React.ReactNode;
 }
 

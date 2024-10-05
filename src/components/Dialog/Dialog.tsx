@@ -2,6 +2,7 @@ import type { IDialogThemeFactory } from './Dialog.css';
 import type { IDialogFactory } from './Dialog.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { DialogContent, IDialogContentOwnProps } from '../DialogContent';
 import { PopoverBase } from '../PopoverBase';
@@ -18,7 +19,7 @@ export const Dialog = polymorphicComponentFactory<IDialogFactory>(
       style,
       variant,
       children,
-      slotProps,
+      dialogContentProps,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -37,15 +38,16 @@ export const Dialog = polymorphicComponentFactory<IDialogFactory>(
         {...getStyles('root')}
         contentRenderer={({ close, forwardedProps }) => (
           <DialogContent
-            onClose={close}
             ref={forwardedRef}
-            {...(forwardedProps as IDialogContentOwnProps)}
-            {...slotProps?.dialogContent}
+            {...mergeProps(
+              { onClose: close },
+              forwardedProps as IDialogContentOwnProps,
+              dialogContentProps,
+            )}
           >
             {children}
           </DialogContent>
         )}
-        slotProps={slotProps}
         closeEvents={{ focusOut: false }}
         trapFocus
         withScrim

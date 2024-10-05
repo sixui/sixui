@@ -1,11 +1,11 @@
 import { useRef, useState } from 'react';
-import { useMergeRefs } from '@floating-ui/react';
 import { useFocus } from 'react-aria';
 
 import type { ITextAreaFieldThemeFactory } from './TextAreaField.css';
 import type { ITextAreaFieldFactory } from './TextAreaField.types';
 import { iconXMark } from '~/assets/icons';
 import { useControlledValue } from '~/hooks/useControlledValue';
+import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
@@ -58,7 +58,7 @@ export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
     const populated = other.populated ?? !!value;
     const clearable = clearableProp && !disabledOrReadOnly && populated;
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
-    const textAreaHandleRef = useMergeRefs([textAreaRef, forwardedRef]);
+    const textAreaHandleRef = useMergeRefs(textAreaRef, forwardedRef);
     const hasEnd = !!other.end || clearable;
 
     const [focused, setFocused] = useState(false);

@@ -13,11 +13,7 @@ import type { richTooltipTheme } from './RichTooltip.css';
 export interface IRichTooltipOwnProps
   extends IOmit<IPopoverBaseOwnProps, 'children' | 'contentRenderer'>,
     IRichTooltipContentOwnProps {
-  /** Contains the props for all slots within the component. */
-  slotProps?: IPopoverBaseOwnProps['slotProps'] & {
-    richTooltipContent?: Partial<IRichTooltipContentProps>;
-  };
-
+  richTooltipContentProps?: Partial<IRichTooltipContentProps>;
   persistent?: boolean;
   children: React.ReactNode;
 }

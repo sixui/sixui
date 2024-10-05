@@ -1,7 +1,8 @@
-import { useFloatingTree, useListItem, useMergeRefs } from '@floating-ui/react';
+import { useFloatingTree, useListItem } from '@floating-ui/react';
 
 import type { IMenuItemFactory } from './MenuItem.types';
 import { iconTriangleLeft, iconTriangleRight } from '~/assets/icons';
+import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { ListItem } from '../ListItem';
@@ -22,7 +23,7 @@ export const MenuItem = polymorphicComponentFactory<IMenuItemFactory>(
     const menuItemContext = useMenuItemContext();
     const item = useListItem({ label: props.disabled ? null : undefined });
     const tree = useFloatingTree();
-    const handleRef = useMergeRefs([item.ref, forwardedRef]);
+    const handleRef = useMergeRefs(item.ref, forwardedRef);
     const isActive =
       menuItemContext !== undefined &&
       item.index === menuItemContext.activeIndex;

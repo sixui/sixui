@@ -9,6 +9,7 @@ import type {
 } from '~/utils/styles/componentThemeFactory';
 import { useThemeContext } from '~/components/ThemeProvider';
 import { getDataAttributes, IModifiers } from '~/utils/getDataAttributes';
+import { isTruthy } from '~/utils/isTruthy';
 
 export type IComponentThemeProps<
   TPayload extends IComponentThemeFactoryPayload,
@@ -27,6 +28,8 @@ export type IComponentThemeProps<
 
   /** The styles variant to use. */
   variant?: TPayload['variant'] | false;
+
+  otherProps?: Record<string, unknown>;
 };
 
 export type IUseComponentThemeProps<
@@ -99,30 +102,28 @@ export const useComponentTheme = <
         const styleNames = asArray(styleName).flat(Infinity as 1) as Array<
           TPayload['styleName'] | false | undefined
         >;
-        const isRoot = styleNames.includes(rootStyleName);
+        const includesRoot = styleNames.includes(rootStyleName);
 
         return {
           className: cx(
-            styleNames.map((styleName) =>
-              styleName
-                ? [
-                    styleName === rootStyleName && [
-                      componentTheme.tokensClassName,
-                      className,
-                    ],
-                    [
-                      componentTheme.classNames,
-                      variant ? themeVariants?.[variant] : undefined,
-                      classNames,
-                      theme.components?.[componentName]?.classNames,
-                    ].map((classNames) => classNames?.[styleName]),
-                    options?.className,
-                  ]
-                : undefined,
-            ),
+            styleNames
+              .filter(isTruthy)
+              .map((styleName) => [
+                styleName === rootStyleName && [
+                  componentTheme.tokensClassName,
+                  className,
+                ],
+                [
+                  componentTheme.classNames,
+                  variant ? themeVariants?.[variant] : undefined,
+                  classNames,
+                  theme.components?.[componentName]?.classNames,
+                ].map((classNames) => classNames?.[styleName]),
+                options?.className,
+              ]),
           ),
           style: {
-            ...(isRoot ? style : undefined),
+            ...(includesRoot ? style : undefined),
             ...styleNames.reduce(
               (acc, styleName) => ({
                 ...acc,
@@ -132,7 +133,7 @@ export const useComponentTheme = <
             ),
             ...options?.style,
           },
-          ...(isRoot
+          ...(includesRoot
             ? getDataAttributes({
                 variant,
                 ...modifiers,

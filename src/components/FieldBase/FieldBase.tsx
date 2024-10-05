@@ -6,21 +6,21 @@ import {
   useRef,
   useState,
 } from 'react';
-import { useMergeRefs } from '@floating-ui/react';
-import { mergeProps } from 'react-aria';
 
 import type { IFieldBaseThemeFactory } from './FieldBase.css';
 import type { IFieldBaseFactory } from './FieldBase.types';
 import { isFunction } from '~/helpers/isFunction';
+import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { usePrevious } from '~/hooks/usePrevious';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
 import { extractBoxProps } from '../Box/extractBoxProps';
 import { CircularProgressIndicator } from '../CircularProgressIndicator';
 import { LabeledContext } from '../Labeled/Labeled.context';
-import { PaperBase } from '../PaperBase';
+import { Paper } from '../Paper';
 import { StateLayer, useStateLayer } from '../StateLayer';
 import { getLabelKeyframes } from './getLabelKeyframes';
 import { fieldBaseTheme, fieldBaseThemeVariants } from './FieldBase.css';
@@ -62,6 +62,7 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
       suffixText,
       wrapperProps,
       withoutRippleEffect,
+      containerProps,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -376,7 +377,7 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
       </div>
     );
 
-    const handleRef = useMergeRefs([forwardedRef, stateLayer.triggerRef]);
+    const handleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
 
     return (
       <Box
@@ -390,15 +391,14 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
         interactions={stateLayer.interactionsContext.state}
         ref={handleRef}
       >
-        <PaperBase
-          {...getStyles('container')}
+        <Paper
+          {...mergeProps(getStyles('container'), containerProps)}
           disabled={disabled}
           ref={containerRef}
         >
           <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
           {renderIndicator()}
           {variant === 'outlined' && renderOutline()}
-
           <div {...getStyles('inner')}>
             {hasStartSection && (
               <div {...getStyles(['section', 'section$start'])}>
@@ -453,7 +453,7 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
               </div>
             )}
           </div>
-        </PaperBase>
+        </Paper>
 
         {renderSupportingText()}
       </Box>

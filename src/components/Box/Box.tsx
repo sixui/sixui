@@ -1,12 +1,12 @@
 import { forwardRef } from 'react';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 import cx from 'clsx';
-import { mergeProps } from 'react-aria';
 
 import type { IWithAsProp } from '~/utils/component/createPolymorphicComponent';
 import type { IBoxProps } from './Box.types';
 import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { getDataAttributes } from '~/utils/getDataAttributes';
+import { mergeProps } from '~/utils/mergeProps';
 import { themeTokens } from '../ThemeProvider';
 import { boxRootClassName, boxSprinkles } from './Box.css';
 

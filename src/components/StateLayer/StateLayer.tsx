@@ -1,7 +1,6 @@
-import { useMergeRefs } from '@floating-ui/react';
-
 import type { IStateLayerThemeFactory } from './StateLayer.css';
 import type { IStateLayerFactory } from './StateLayer.types';
+import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
@@ -48,7 +47,7 @@ export const StateLayer = componentFactory<IStateLayerFactory>(
       },
     });
 
-    const handleRef = useMergeRefs([forwardedRef, context?.surfaceRef]);
+    const handleRef = useMergeRefs(forwardedRef, context?.surfaceRef);
 
     return (
       <Box {...getStyles('root')} aria-hidden ref={handleRef} {...other} />

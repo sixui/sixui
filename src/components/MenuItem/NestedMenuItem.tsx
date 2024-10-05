@@ -1,7 +1,6 @@
-import { useMergeRefs } from '@floating-ui/react';
-
 import type { IMenuItemFactory } from './MenuItem.types';
 import { iconTriangleLeft, iconTriangleRight } from '~/assets/icons';
+import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useMenuContext } from '../Menu';
 import { SvgIcon } from '../SvgIcon';
@@ -13,7 +12,7 @@ export const NestedMenuItem = polymorphicComponentFactory<IMenuItemFactory>(
   (props, forwardedRef) => {
     const { ...other } = props;
     const menuContext = useMenuContext();
-    const handleRef = useMergeRefs([menuContext.triggerRef, forwardedRef]);
+    const handleRef = useMergeRefs(menuContext.triggerRef, forwardedRef);
 
     return (
       <MenuItem

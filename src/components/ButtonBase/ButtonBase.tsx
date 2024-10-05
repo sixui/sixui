@@ -1,10 +1,9 @@
-import { useMergeRefs } from '@floating-ui/react';
-import { mergeProps } from 'react-aria';
-
 import type { IButtonBaseThemeFactory } from './ButtonBase.css';
 import type { IButtonBaseFactory } from './ButtonBase.types';
+import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { FocusRing } from '../FocusRing';
 import { Paper } from '../Paper';
@@ -84,7 +83,7 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
             rel: rootElement === 'a' ? rel : undefined,
           };
 
-    const handleRef = useMergeRefs([forwardedRef, stateLayer.triggerRef]);
+    const handleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
 
     return (
       <Paper
