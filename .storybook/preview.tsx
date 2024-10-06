@@ -98,7 +98,7 @@ export const decorators: Array<Decorator> = [
           </ThemeProvider>
         ) : null}
 
-        {showDarkMode ? (
+        {/* FIXME: {showDarkMode ? (
           <ThemeProvider
             // theme={variantTheme}
             colorSchemeVariant='dark'
@@ -106,7 +106,7 @@ export const decorators: Array<Decorator> = [
           >
             <Story />
           </ThemeProvider>
-        ) : null}
+        ) : null} */}
       </SixuiProvider>
     );
   },

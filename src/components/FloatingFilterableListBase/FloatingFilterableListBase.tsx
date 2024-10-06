@@ -167,7 +167,7 @@ export const floatingFilterableListBaseFactory = <
     const [query, setQuery] = useControlledValue({
       controlled: queryProp,
       default: defaultQuery ?? '',
-      name: 'FloatingFilterableListBase',
+      name: COMPONENT_NAME,
     });
     const interactions = useInteractions([
       click,
@@ -379,7 +379,7 @@ export const floatingFilterableListBaseFactory = <
               }),
               afterItemsRemove: handleAfterItemsRemove,
               query,
-              inputFilterRef: inputFilterRef,
+              inputFilterRef,
               getInputFilterProps,
               forwardedProps: forwardProps ? other : undefined,
             })
@@ -404,10 +404,15 @@ export const floatingFilterableListBaseFactory = <
               // is not focusable because of the `aria-hidden` attribute. To fix
               // this, we need to disable the FloatingFocusManager immediately when the
               // floating element is closed.
-              disabled={!opened}
+              // disabled={!opened}
               {...floatingFocusManagerProps}
             >
-              <div className={floatingFilterableListBaseClassNames.root}>
+              <div
+                className={floatingFilterableListBaseClassNames.root}
+                style={{
+                  display: opened ? undefined : 'none',
+                }}
+              >
                 <Motion
                   placement={objectFromPlacement(floating.placement)}
                   status={transitionStatus.status}

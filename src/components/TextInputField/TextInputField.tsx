@@ -70,7 +70,9 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
     const hasEnd = !!other.end || clearable || unmaskable;
 
     const [focused, setFocused] = useState(false);
-    const focus = useFocus({ onFocusChange: setFocused });
+    const focus = useFocus({
+      onFocusChange: setFocused,
+    });
 
     const handleClear = (): void => {
       if (!inputRef.current) {
