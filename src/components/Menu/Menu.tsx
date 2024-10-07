@@ -10,15 +10,15 @@ const COMPONENT_NAME = 'Menu';
 export const Menu = componentFactory<IMenuFactory>((props, forwardedRef) => {
   const parentId = useFloatingParentNodeId();
 
-  if (parentId === null) {
-    return (
-      <FloatingTree>
-        <MenuLeaf {...props} ref={forwardedRef} />
-      </FloatingTree>
-    );
+  if (parentId !== null) {
+    return <MenuLeaf {...props} ref={forwardedRef} />;
   }
 
-  return <MenuLeaf {...props} ref={forwardedRef} />;
+  return (
+    <FloatingTree>
+      <MenuLeaf {...props} ref={forwardedRef} />
+    </FloatingTree>
+  );
 });
 
 MenuLeaf.theme = menuLeafTheme;

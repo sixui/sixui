@@ -17,14 +17,11 @@ const shakeKeyframes = keyframes({
 });
 
 const classNames = createStyles({
-  root: {
-    zIndex: themeTokens.zIndex.popover,
-  },
   floating: ({ root }) => ({
+    zIndex: themeTokens.zIndex.popover,
     width: 'inherit',
     height: 'inherit',
     position: 'absolute',
-    zIndex: themeTokens.zIndex.popover,
 
     selectors: {
       [getModifierSelector<IModifier>('shake', root)]: {

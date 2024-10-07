@@ -4,8 +4,11 @@ import { createStyles } from '~/utils/styles/createStyles';
 import { themeTokens } from '../ThemeProvider';
 
 const classNames = createStyles({
-  root: {
+  floating: {
+    position: 'absolute',
     zIndex: themeTokens.zIndex.popover,
+    display: 'flex',
+    flexGrow: 1,
   },
 });
 

@@ -189,7 +189,7 @@ export const MenuLeaf = componentFactory<IMenuFactory>(
       interactions.getReferenceProps({
         ...userProps,
         ...(transitionStatus.isMounted
-          ? { visualState: { hovered: true, strategy: 'replace' } }
+          ? { interactions: { hovered: true } }
           : undefined),
         tabIndex: isNested
           ? menuItemContext !== undefined &&
@@ -228,8 +228,8 @@ export const MenuLeaf = componentFactory<IMenuFactory>(
               value={{
                 activeIndex,
                 setActiveIndex,
-                getItemProps: interactions.getItemProps,
                 opened,
+                getItemProps: interactions.getItemProps,
                 placement: floating.placement,
               }}
             >
@@ -243,23 +243,20 @@ export const MenuLeaf = componentFactory<IMenuFactory>(
                 >
                   <div {...getStyles('root')}>
                     <Motion
-                      status={transitionStatus.status}
                       placement={finalPlacement}
+                      status={transitionStatus.status}
                       origin="edge"
                       orientation={orientation}
                       // FIXME: disabled={!!parentId}
                       {...mergeProps(
                         { ref: floating.refs.setFloating },
                         interactions.getFloatingProps(),
+                        getStyles('floating', {
+                          style: { left: floating.x, top: floating.y },
+                        }),
                         motionProps,
                       )}
                     >
-                      {/* <div
-                    {...getStyles(globalStyles, 'host')}
-                    {...interactions.getFloatingProps()}
-                    ref={floating.refs.setFloating}
-                    style={floating.floatingStyles}
-                  > */}
                       <MenuList noFocusRing {...other}>
                         <FloatingList
                           elementsRef={elementsRef}

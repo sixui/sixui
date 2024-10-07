@@ -32,7 +32,7 @@ const items = (
 const nestedItems = (
   <>
     {items}
-    <MenuDivider />
+    {/* FIXME: <MenuDivider />
     <MenuItem label="Other fruits">
       {items}
       <MenuDivider />
@@ -45,7 +45,7 @@ const nestedItems = (
           <MenuItem label="Too many fruits">{items}</MenuItem>
         </MenuItem>
       </MenuItem>
-    </MenuItem>
+    </MenuItem> */}
   </>
 );
 

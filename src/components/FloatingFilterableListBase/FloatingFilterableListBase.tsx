@@ -417,7 +417,6 @@ export const floatingFilterableListBaseFactory = <
                   status={transitionStatus.status}
                   origin="edge"
                   orientation={orientation}
-                  pattern="enterExit"
                   {...mergeProps(
                     {
                       className: floatingFilterableListBaseClassNames.floating,
