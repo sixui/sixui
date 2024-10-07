@@ -1,21 +1,25 @@
-import { forwardRef } from 'react';
 import { FloatingTree, useFloatingParentNodeId } from '@floating-ui/react';
 
-import type { IMenuProps } from './Menu.types';
+import type { IMenuFactory } from './Menu.types';
+import { componentFactory } from '~/utils/component/componentFactory';
 import { MenuLeaf } from './MenuLeaf';
+import { menuLeafTheme } from './MenuLeaf.css';
 
-export const Menu = forwardRef<HTMLButtonElement, IMenuProps>(
-  function Menu(props, forwardedRef) {
-    const parentId = useFloatingParentNodeId();
+const COMPONENT_NAME = 'Menu';
 
-    if (parentId === null) {
-      return (
-        <FloatingTree>
-          <MenuLeaf {...props} ref={forwardedRef} />
-        </FloatingTree>
-      );
-    }
+export const Menu = componentFactory<IMenuFactory>((props, forwardedRef) => {
+  const parentId = useFloatingParentNodeId();
 
-    return <MenuLeaf {...props} ref={forwardedRef} />;
-  },
-);
+  if (parentId === null) {
+    return (
+      <FloatingTree>
+        <MenuLeaf {...props} ref={forwardedRef} />
+      </FloatingTree>
+    );
+  }
+
+  return <MenuLeaf {...props} ref={forwardedRef} />;
+});
+
+MenuLeaf.theme = menuLeafTheme;
+MenuLeaf.displayName = `@sixui/${COMPONENT_NAME}`;

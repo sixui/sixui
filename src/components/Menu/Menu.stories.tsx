@@ -11,9 +11,9 @@ import type { IMenuProps } from './Menu.types';
 import { Button } from '../Button';
 import { Flex } from '../Flex';
 import { IconButton } from '../IconButton';
+import { MenuDivider } from '../MenuDivider';
+import { MenuItem } from '../MenuItem';
 import { Menu } from './Menu';
-import { MenuDivider } from './MenuDivider';
-import { MenuItem } from './MenuItem';
 
 const meta = {
   component: Menu,
@@ -100,7 +100,10 @@ export const FromIconButton: IStory = {
         {...getProps()}
       />
     ),
-    placement: 'bottom-end',
+    placement: {
+      side: 'bottom',
+      alignment: 'end',
+    },
   },
 };
 

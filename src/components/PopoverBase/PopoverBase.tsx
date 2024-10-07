@@ -285,10 +285,10 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
         {(transitionStatus.isMounted || keepMounted) && (
           <Portal {...portalProps}>
             <FloatingFocusManager
-              disabled={!trapFocus}
               context={floating.context}
               modal={!!trapFocus}
               closeOnFocusOut={closeEvents.focusOut}
+              disabled={!trapFocus}
               {...floatingFocusManagerProps}
             >
               <div

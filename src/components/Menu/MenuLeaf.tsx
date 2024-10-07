@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   autoUpdate,
   flip,
@@ -23,30 +23,46 @@ import {
   useTypeahead,
 } from '@floating-ui/react';
 
-import type { IMenuProps } from './Menu.types';
+import type { IMenuFactory } from './Menu.types';
+import type { IMenuLeafThemeFactory } from './MenuLeaf.css';
 import { isFunction } from '~/helpers/isFunction';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
-import { useStyles } from '~/hooks/useStyles';
-import { FloatingTransition } from '../FloatingTransition';
+import { componentFactory } from '~/utils/component/componentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { mergeProps } from '~/utils/mergeProps';
+import { objectFromPlacement } from '~/utils/objectFromPlacement';
+import { stringFromPlacement } from '~/utils/stringFromPlacement';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { MenuItemContextProvider, useMenuItemContext } from '../MenuItem';
+import { MenuList } from '../MenuList';
+import { Motion } from '../Motion';
 import { Portal } from '../Portal';
 import { MenuContextProvider } from './Menu.context';
-import { menuStyles } from './Menu.styles';
-import { MenuItemContextProvider, useMenuItemContext } from './MenuItem';
-import { MenuList } from './MenuList';
+import { menuLeafTheme } from './MenuLeaf.css';
 
-export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
-  function MenuLeaf(props, forwardedRef) {
+const COMPONENT_NAME = 'MenuLeaf';
+
+export const MenuLeaf = componentFactory<IMenuFactory>(
+  (props, forwardedRef) => {
     const {
+      classNames,
+      className,
       styles,
-      root,
-      trigger,
+      style,
+      variant,
       children,
-      placement = 'bottom-start',
+      trigger,
+      placement = {
+        side: 'bottom',
+        alignment: 'start',
+      },
       orientation = 'vertical',
       matchTargetWidth,
-      size: listItemSize = 'sm',
+      floatingFocusManagerProps,
+      motionProps,
+      portalProps,
       ...other
-    } = props;
+    } = useProps({ componentName: COMPONENT_NAME, props });
 
     const [opened, setOpened] = useState(false);
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -65,7 +81,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
       nodeId,
       open: opened,
       onOpenChange: setOpened,
-      placement: isNested ? 'right-start' : placement,
+      placement: isNested ? 'right-start' : stringFromPlacement(placement),
       middleware: [
         flip({
           padding: 48,
@@ -121,9 +137,14 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
       typeahead,
     ]);
 
-    const { combineStyles, getStyles, globalStyles } = useStyles({
-      componentName: 'Menu',
-      styles: [menuStyles, styles],
+    const { getStyles } = useComponentTheme<IMenuLeafThemeFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles,
+      style,
+      theme: menuLeafTheme,
+      variant,
     });
 
     // Event emitter allows you to communicate across tree components.
@@ -188,6 +209,8 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
         })
       : trigger;
 
+    const finalPlacement = objectFromPlacement(floating.placement);
+
     return (
       <FloatingNode id={nodeId}>
         <MenuContextProvider
@@ -210,28 +233,34 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
                 placement: floating.placement,
               }}
             >
-              <Portal root={root}>
+              <Portal {...portalProps}>
                 <FloatingFocusManager
                   context={floating.context}
                   modal={false}
                   initialFocus={isNested ? -1 : 0}
                   returnFocus={!isNested}
+                  {...floatingFocusManagerProps}
                 >
-                  <div
+                  <div {...getStyles('root')}>
+                    <Motion
+                      status={transitionStatus.status}
+                      placement={finalPlacement}
+                      origin="edge"
+                      orientation={orientation}
+                      // FIXME: disabled={!!parentId}
+                      {...mergeProps(
+                        { ref: floating.refs.setFloating },
+                        interactions.getFloatingProps(),
+                        motionProps,
+                      )}
+                    >
+                      {/* <div
                     {...getStyles(globalStyles, 'host')}
                     {...interactions.getFloatingProps()}
                     ref={floating.refs.setFloating}
                     style={floating.floatingStyles}
-                  >
-                    <FloatingTransition
-                      sx={combineStyles('inner')}
-                      placement={floating.placement}
-                      status={transitionStatus.status}
-                      origin="edge"
-                      orientation={orientation}
-                      disabled={!!parentId}
-                    >
-                      <MenuList noFocusRing {...other} scale={listItemSize}>
+                  > */}
+                      <MenuList noFocusRing {...other}>
                         <FloatingList
                           elementsRef={elementsRef}
                           labelsRef={labelsRef}
@@ -239,7 +268,7 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
                           {children}
                         </FloatingList>
                       </MenuList>
-                    </FloatingTransition>
+                    </Motion>
                   </div>
                 </FloatingFocusManager>
               </Portal>
@@ -250,3 +279,6 @@ export const MenuLeaf = forwardRef<HTMLButtonElement, IMenuProps>(
     );
   },
 );
+
+MenuLeaf.theme = menuLeafTheme;
+MenuLeaf.displayName = `@sixui/${COMPONENT_NAME}`;

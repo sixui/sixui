@@ -3,16 +3,11 @@ import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { anchoredTheme, IAnchoredThemeFactory } from './Anchored.css';
 
-export type IAnchorPosition =
-  | 'bottom-end'
-  | 'bottom-start'
-  | 'top-end'
-  | 'top-start'
-  | 'bottom-center'
-  | 'top-center'
-  | 'middle-center'
-  | 'middle-end'
-  | 'middle-start';
+type IVerticalPosition = 'top' | 'middle' | 'bottom';
+
+type IHorizontalPosition = 'start' | 'center' | 'end';
+
+export type IAnchorPosition = `${IVerticalPosition}-${IHorizontalPosition}`;
 
 export type IAnchorOverlap = 'rectangular' | 'circular';
 

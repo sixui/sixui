@@ -88,6 +88,8 @@ export type INestedObject<T> = {
   [key: string]: T | INestedObject<T>;
 };
 
+export type ISide = Side;
+
 export type IPlacement = {
   /**
    * The side of the element relative to a reference element. This is an
