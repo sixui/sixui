@@ -1,14 +1,14 @@
 import type { Decorator, Preview } from '@storybook/react';
 
+import { Avatar } from '~/components/Avatar';
+import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
 import { SixuiProvider } from '~/components/SixuiProvider';
+import { StateLayer } from '~/components/StateLayer';
 import { ThemeProvider } from '~/components/ThemeProvider';
 import { modes } from './modes';
 // import variantTheme from '~/themes/variant/theme.json';
 // import { ThemeControls } from './ThemeControls';
 import * as styles from './preview.css';
-import { Avatar } from '~/components/Avatar';
-import { StateLayer } from '~/components/StateLayer';
-import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
 
 import '~/styles/main.css';
 import '~/styles/storybook.css';
@@ -87,7 +87,7 @@ export const decorators: Array<Decorator> = [
             }),
           },
         }}
-        colorSchemeVariant='light'
+        colorSchemeVariant="light"
       >
         {showLightMode ? (
           <ThemeProvider
@@ -98,15 +98,15 @@ export const decorators: Array<Decorator> = [
           </ThemeProvider>
         ) : null}
 
-        {/* FIXME: {showDarkMode ? (
+        {showDarkMode ? (
           <ThemeProvider
             // theme={variantTheme}
-            colorSchemeVariant='dark'
+            colorSchemeVariant="dark"
             className={styles.storyWrapper}
           >
             <Story />
           </ThemeProvider>
-        ) : null} */}
+        ) : null}
       </SixuiProvider>
     );
   },

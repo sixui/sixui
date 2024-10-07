@@ -410,7 +410,10 @@ export const floatingFilterableListBaseFactory = <
               <div
                 className={floatingFilterableListBaseClassNames.root}
                 style={{
-                  display: opened ? undefined : 'none',
+                  display:
+                    !keepMounted && !transitionStatus.isMounted
+                      ? 'none'
+                      : undefined,
                 }}
               >
                 <Motion
