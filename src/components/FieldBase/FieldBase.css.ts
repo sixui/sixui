@@ -735,6 +735,14 @@ const classNames = createStyles({
         borderColor: tokens.outline.color.focused.error,
         color: tokens.outline.color.focused.error,
       },
+      [getModifierSelector<IModifier>('pressed', root)]: {
+        borderColor: tokens.outline.color.focused.regular,
+        color: tokens.outline.color.focused.regular,
+      },
+      [getModifierSelector<IModifier>(['pressed', 'with-error'], root)]: {
+        borderColor: tokens.outline.color.focused.error,
+        color: tokens.outline.color.focused.error,
+      },
       [getModifierSelector<IModifier>('disabled', root)]: {
         borderColor: tokens.outline.color.disabled,
         color: tokens.outline.color.disabled,
@@ -799,6 +807,9 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>('focused', root)]: {
         opacity: 1,
       },
+      [getModifierSelector<IModifier>('pressed', root)]: {
+        opacity: 1,
+      },
     },
   }),
   outlineBorder: {
@@ -842,6 +853,9 @@ const classNames = createStyles({
 
     selectors: {
       [getModifierSelector<IModifier>('focused', root)]: {
+        opacity: 1,
+      },
+      [getModifierSelector<IModifier>('pressed', root)]: {
         opacity: 1,
       },
     },
@@ -1048,7 +1062,13 @@ export const fieldBaseThemeVariants = {
         [getModifierSelector<IModifier>('focused', root)]: {
           opacity: 1,
         },
+        [getModifierSelector<IModifier>('pressed', root)]: {
+          opacity: 1,
+        },
         [getModifierSelector<IModifier>(['focused', 'with-error'], root)]: {
+          borderBottomColor: tokens.activeIndicator.color.focused.error,
+        },
+        [getModifierSelector<IModifier>(['pressed', 'with-error'], root)]: {
           borderBottomColor: tokens.activeIndicator.color.focused.error,
         },
       },
@@ -1107,6 +1127,9 @@ export const fieldBaseThemeVariants = {
             topRight: px(themeTokens.shape.corner.xs),
             bottomRight: px(themeTokens.shape.corner.xs),
             bottomLeft: px(themeTokens.shape.corner.xs),
+          },
+          color: {
+            disabled: 'unset',
           },
         },
       }),

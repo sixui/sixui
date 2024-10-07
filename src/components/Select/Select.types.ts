@@ -1,4 +1,5 @@
 import type { IOmit } from '~/helpers/types';
+import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IFilterableListItem } from '../FilterableList';
 import type { ISelectBaseProps } from '../SelectBase';
 
@@ -21,3 +22,8 @@ export type ISelectProps = Omit<
   keyof ISelectOwnProps
 > &
   ISelectOwnProps;
+
+export type ISelectFactory = IComponentFactory<{
+  props: ISelectProps;
+  ref: HTMLDivElement;
+}>;

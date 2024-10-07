@@ -1,4 +1,4 @@
-import type { IFilterableListItem } from './FilterableList.types';
+import type { IFilterableListItem } from '../FilterableList.types';
 
 /**
  * Checks if a list item is a placeholder for an empty value. Used, for example,

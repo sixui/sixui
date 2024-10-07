@@ -11,10 +11,10 @@ import type { IMenuListProps } from '../MenuList';
 
 export interface ISelectBaseOwnProps<TItem>
   extends IOmit<
-      IFloatingFilterableListBaseProps<TItem, HTMLButtonElement>,
+      IFloatingFilterableListBaseProps<TItem, HTMLElement>,
       'onItemSelect' | 'renderer' | 'children'
     >,
-    IUseSingleFilterableListBaseProps<TItem, HTMLButtonElement>,
+    IUseSingleFilterableListBaseProps<TItem, HTMLElement>,
     IOmit<IFieldBaseProps, 'children'> {
   itemLabel: (item: TItem) => React.ReactNode | undefined;
   canFilter?: boolean;

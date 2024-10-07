@@ -1,11 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { ISelectProps } from './Select.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { emptyItem, fruits } from '../FilterableList/fruits';
+import { Flex } from '../Flex';
 import { ListItem } from '../ListItem';
-import { Stack } from '../Stack';
 import { Select } from './Select';
 
 const meta = {
@@ -17,10 +19,13 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   onChange: (...args) => void sbHandleEvent('change', args),
   items: fruits,
-  matchTargetWidth: true,
+  w: '$96',
+  keepMounted: true,
 } satisfies Partial<ISelectProps>;
 
-const SelectDemo: React.FC<ISelectProps> = (props) => {
+type ISelectDemoProps = ISelectProps;
+
+const SelectDemo: React.FC<ISelectDemoProps> = (props) => {
   const [value, setValue] = useState<string | undefined>(
     props.value ?? props.defaultValue,
   );
@@ -31,23 +36,30 @@ const SelectDemo: React.FC<ISelectProps> = (props) => {
   };
 
   return (
-    <Stack gap={2}>
+    <Flex direction="column" gap="$2">
       <Select {...props} onChange={handleChange} />
       <div>
         Value:{' '}
         {value === undefined ? <em>undefined</em> : JSON.stringify(value)}
       </div>
-    </Stack>
+    </Flex>
   );
 };
 
+const rows: Array<IComponentPresentation<ISelectDemoProps>> = [
+  { legend: 'Filled' },
+  { legend: 'Outlined', props: { variant: 'outlined' } },
+];
+
+const SelectDemoShowcase = componentShowcaseFactory(SelectDemo);
+
 export const Basic: IStory = {
-  render: (props) => <SelectDemo {...props} />,
+  render: (props) => <SelectDemoShowcase props={props} rows={rows} />,
   args: defaultArgs,
 };
 
 export const Empty: IStory = {
-  render: (props) => <SelectDemo {...props} />,
+  render: (props) => <SelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     items: [],
@@ -55,7 +67,7 @@ export const Empty: IStory = {
 };
 
 export const WithEmptyItem: IStory = {
-  render: (props) => <SelectDemo {...props} />,
+  render: (props) => <SelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     items: [emptyItem, ...fruits],
@@ -63,7 +75,7 @@ export const WithEmptyItem: IStory = {
 };
 
 export const DefaultValue: IStory = {
-  render: (props) => <SelectDemo {...props} />,
+  render: (props) => <SelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     defaultValue: fruits[1].value,
@@ -71,7 +83,7 @@ export const DefaultValue: IStory = {
 };
 
 export const Clearable: IStory = {
-  render: (props) => <SelectDemo {...props} />,
+  render: (props) => <SelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     defaultValue: fruits[1].value,
@@ -80,7 +92,7 @@ export const Clearable: IStory = {
 };
 
 export const ClearableWithEmptyItem: IStory = {
-  render: (props) => <SelectDemo {...props} />,
+  render: (props) => <SelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     defaultValue: fruits[1].value,
@@ -90,7 +102,7 @@ export const ClearableWithEmptyItem: IStory = {
 };
 
 export const CanFilter: IStory = {
-  render: (props) => <SelectDemo {...props} />,
+  render: (props) => <SelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -98,7 +110,7 @@ export const CanFilter: IStory = {
 };
 
 export const DefaultQuery: IStory = {
-  render: (props) => <SelectDemo {...props} />,
+  render: (props) => <SelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -107,7 +119,7 @@ export const DefaultQuery: IStory = {
 };
 
 export const NoResults: IStory = {
-  render: (props) => <SelectDemo {...props} />,
+  render: (props) => <SelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -116,7 +128,7 @@ export const NoResults: IStory = {
 };
 
 export const InitialContent: IStory = {
-  render: (props) => <SelectDemo {...props} />,
+  render: (props) => <SelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -125,7 +137,7 @@ export const InitialContent: IStory = {
 };
 
 export const Disabled: IStory = {
-  render: (props) => <SelectDemo {...props} />,
+  render: (props) => <SelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -133,7 +145,9 @@ export const Disabled: IStory = {
   },
 };
 
-const ControlledSelectDemo: React.FC<ISelectProps> = (props) => {
+type IControlledSelectDemoProps = ISelectProps;
+
+const ControlledSelectDemo: React.FC<IControlledSelectDemoProps> = (props) => {
   const [value, setValue] = useState<string>(props.defaultValue ?? '');
 
   const handleChange = (newValue?: string): void => {
@@ -144,13 +158,16 @@ const ControlledSelectDemo: React.FC<ISelectProps> = (props) => {
   return <SelectDemo {...props} value={value} onChange={handleChange} />;
 };
 
+const ControlledSelectDemoShowcase =
+  componentShowcaseFactory(ControlledSelectDemo);
+
 export const Controlled: IStory = {
-  render: (props) => <ControlledSelectDemo {...props} />,
+  render: (props) => <ControlledSelectDemoShowcase props={props} rows={rows} />,
   args: defaultArgs,
 };
 
 export const ControlledWithEmptyItem: IStory = {
-  render: (props) => <ControlledSelectDemo {...props} />,
+  render: (props) => <ControlledSelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     items: [emptyItem, ...fruits],
@@ -158,7 +175,7 @@ export const ControlledWithEmptyItem: IStory = {
 };
 
 export const ControlledAndClearable: IStory = {
-  render: (props) => <ControlledSelectDemo {...props} />,
+  render: (props) => <ControlledSelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     defaultValue: fruits[1].value,
@@ -167,7 +184,7 @@ export const ControlledAndClearable: IStory = {
 };
 
 export const ControlledAndClearableWithEmptyItem: IStory = {
-  render: (props) => <ControlledSelectDemo {...props} />,
+  render: (props) => <ControlledSelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     defaultValue: fruits[1].value,
@@ -177,7 +194,7 @@ export const ControlledAndClearableWithEmptyItem: IStory = {
 };
 
 export const WithErrorText: IStory = {
-  render: (props) => <ControlledSelectDemo {...props} />,
+  render: (props) => <ControlledSelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     hasError: true,
@@ -186,7 +203,7 @@ export const WithErrorText: IStory = {
 };
 
 export const Grid: IStory = {
-  render: (props) => <SelectDemo {...props} />,
+  render: (props) => <SelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     cols: 3,

@@ -19,7 +19,7 @@ export const selectBaseFactory = <
 >() => {
   const FloatingFilterableListBase = floatingFilterableListBaseFactory<
     TItem,
-    HTMLButtonElement
+    HTMLElement
   >();
 
   const SelectBase = componentFactory<ISelectBaseFactory<TItem>>(
@@ -42,7 +42,7 @@ export const selectBaseFactory = <
 
       const singleFilterableListBase = useSingleFilterableListBase<
         TItem,
-        HTMLButtonElement
+        HTMLElement
       >({
         items,
         itemRenderer,
@@ -107,7 +107,6 @@ export const selectBaseFactory = <
                 renderProps.opened || !!singleFilterableListBase.selectedItem
               }
               disabled={other.disabled}
-              tabIndex={0}
               withoutRippleEffect
               wrapperProps={renderProps.getTriggerProps()}
               containerRef={renderProps.setTriggerRef}

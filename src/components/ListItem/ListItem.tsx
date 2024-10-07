@@ -122,6 +122,7 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
           focusRing={noFocusRing ? false : 'inward'}
           ref={forwardedRef}
           interactionsMergeStrategy={interactionsMergeStrategy}
+          disabled={disabled}
           {...other}
         >
           {renderItem()}

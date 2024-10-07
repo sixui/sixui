@@ -1,6 +1,7 @@
 import type { IFilterableListItemRendererProps } from '../../FilterableListBase';
 import type { IListItemProps } from '../../ListItem';
 import type { IFilterableListItem } from '../FilterableList.types';
+import { Box } from '~/components/Box';
 import { highlightQueryInText } from './highlightQueryInText';
 
 /**
@@ -20,24 +21,13 @@ export const getFilterableListItemProps = <TElement extends HTMLElement>(
     href: item.href,
     ...(focus === 'icon'
       ? {
-          // FIXME:
-          // -> fontSize: listItemTokens.leadingIconSize,
-          // innerStyles: { item: filterableListItemFocusStyles },
           leading: undefined,
           leadingIcon: undefined,
           leadingImage: undefined,
           leadingVideo: undefined,
           supportingText: undefined,
           trailingSupportingText: undefined,
-          // FIXME:
-          // -> content: { textAlign: 'center' }
-          // -> supportingText: { textAlign: 'center' }
-          children: item.icon
-            ? // <div {...stylex.props(filterableListItemStyles.content$iconFocus)}>
-              //   {item.icon}
-              // </div>
-              item.icon
-            : item.label,
+          children: <Box ta="center">{item.icon ?? item.label}</Box>,
         }
       : {
           leading: item.leading,

@@ -1,5 +1,5 @@
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { IBoxProps } from '../Box';
+import type { IBoxProps } from '../Box';
 
 // Inspiration:
 // - https://github.com/palantir/blueprint/blob/develop/packages/select/src/common/itemListRenderer.ts

@@ -3,5 +3,5 @@ import type { IFloatingFilterableListBaseProps } from '../FloatingFilterableList
 
 export type IFloatingFilterableListProps = IFloatingFilterableListBaseProps<
   IFilterableListItem,
-  HTMLButtonElement
+  HTMLElement
 >;

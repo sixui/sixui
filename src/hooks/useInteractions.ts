@@ -178,7 +178,12 @@ export const useInteractions = <TElement extends HTMLElement>(
         : mergeProps(
             events?.press ? pressProps : undefined,
             events?.hover ? hoverProps : undefined,
-            events?.focus ? focusProps : undefined,
+            events?.focus
+              ? {
+                  ...focusProps,
+                  tabIndex: 0,
+                }
+              : undefined,
           ),
     [disabled, events, hoverProps, pressProps, focusProps],
   );

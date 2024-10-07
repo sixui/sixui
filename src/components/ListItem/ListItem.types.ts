@@ -1,3 +1,4 @@
+import type { IInteractionsMergeStrategy } from '~/hooks/useInteractions';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
@@ -5,7 +6,6 @@ import type { IButtonBaseOwnProps } from '../ButtonBase';
 import type { IItemOwnProps } from '../Item';
 import type { IPaperOwnProps } from '../Paper';
 import type { IListItemThemeFactory, listItemTheme } from './ListItem.css';
-import { IInteractionsMergeStrategy } from '~/hooks/useInteractions';
 
 export type IListItemVariant = 'standard' | 'danger';
 
@@ -32,8 +32,8 @@ export interface IListItemProps
 
 export type IListItemFactory = IPolymorphicComponentFactory<{
   props: IListItemProps;
-  defaultRef: HTMLButtonElement;
-  defaultRoot: 'button';
+  defaultRef: HTMLDivElement;
+  defaultRoot: 'div';
   theme: typeof listItemTheme;
   variant: IListItemVariant;
 }>;

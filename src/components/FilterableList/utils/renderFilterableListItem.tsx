@@ -1,6 +1,6 @@
-import type { IFilterableListItemRenderer } from '~/components/FilterableListBase';
+import type { IFilterableListItemRenderer } from '../..//FilterableListBase';
 import type { IFilterableListItem } from '../FilterableList.types';
-import { ListItem } from '~/components/ListItem';
+import { ListItem } from '../../ListItem';
 import { getFilterableListItemProps } from './getFilterableListItemProps';
 
 /**
@@ -8,7 +8,7 @@ import { getFilterableListItemProps } from './getFilterableListItemProps';
  */
 export const renderFilterableListItem: IFilterableListItemRenderer<
   IFilterableListItem,
-  HTMLElement
+  HTMLButtonElement
 > = (item, props) => {
   if (!props.modifiers.matchesPredicate) {
     return null;
@@ -19,6 +19,7 @@ export const renderFilterableListItem: IFilterableListItemRenderer<
   return (
     <ListItem
       {...listItemProps}
+      as="button"
       key={props.index}
       interactions={{ hovered: props.modifiers.active }}
       selected={props.modifiers.selected}

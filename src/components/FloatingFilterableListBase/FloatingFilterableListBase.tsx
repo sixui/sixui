@@ -118,7 +118,7 @@ export const floatingFilterableListBaseFactory = <
       ],
     });
     const click = useClick(floating.context, {
-      event: 'mousedown',
+      event: 'click',
       keyboardHandlers: false,
     });
     const role = useRole(floating.context, { role: 'listbox' });
@@ -393,27 +393,23 @@ export const floatingFilterableListBaseFactory = <
               returnFocus
               restoreFocus
               modal
-              visuallyHiddenDismiss
-              // When the floating element is opened, floating-ui immediately set
-              // `aria-hidden` on the reference element. When the floating
+              // When the floating element is opened, floating-ui immediately
+              // set `aria-hidden` on the reference element. When the floating
               // element is closed, floating-ui remove `aria-hidden` from the
               // reference element once the transition is finished. In the
               // meantime, the FloatingFocusManager immediately try to focus
               // return the focus to reference element. This is problematic
-              // because during the closing transition, the reference element
-              // is not focusable because of the `aria-hidden` attribute. To fix
-              // this, we need to disable the FloatingFocusManager immediately when the
-              // floating element is closed.
-              // disabled={!opened}
+              // because during the closing transition, the reference element is
+              // not focusable because of the `aria-hidden` attribute. To fix
+              // this, we need to disable the FloatingFocusManager immediately
+              // when the floating element is closed.
+              disabled={keepMounted ? !opened : undefined}
               {...floatingFocusManagerProps}
             >
               <div
                 className={floatingFilterableListBaseClassNames.root}
                 style={{
-                  display:
-                    !keepMounted && !transitionStatus.isMounted
-                      ? 'none'
-                      : undefined,
+                  display: !transitionStatus.isMounted ? 'none' : undefined,
                 }}
               >
                 <Motion

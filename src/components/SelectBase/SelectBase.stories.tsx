@@ -1,7 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { ISelectBaseExampleProps } from './SelectBaseExample';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { TOP_100_MOVIES } from '../FilterableListBase/movies';
 import { ListItem } from '../ListItem';
 import { SelectBaseExample } from './SelectBaseExample';
@@ -15,16 +17,24 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   w: '$96',
   label: 'Movie',
+  keepMounted: true,
   onItemChange: (...args) => void sbHandleEvent('onItemChange', args),
 } satisfies Partial<ISelectBaseExampleProps>;
 
+const rows: Array<IComponentPresentation<ISelectBaseExampleProps>> = [
+  { legend: 'Filled' },
+  { legend: 'Outlined', props: { variant: 'outlined' } },
+];
+
+const SelectBaseExampleShowcase = componentShowcaseFactory(SelectBaseExample);
+
 export const Basic: IStory = {
-  render: (props) => <SelectBaseExample {...props} />,
+  render: (props) => <SelectBaseExampleShowcase props={props} rows={rows} />,
   args: defaultArgs,
 };
 
 export const DefaultValue: IStory = {
-  render: (props) => <SelectBaseExample {...props} />,
+  render: (props) => <SelectBaseExampleShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     defaultItem: TOP_100_MOVIES[2],
@@ -32,7 +42,7 @@ export const DefaultValue: IStory = {
 };
 
 export const Clearable: IStory = {
-  render: (props) => <SelectBaseExample {...props} />,
+  render: (props) => <SelectBaseExampleShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     defaultItem: TOP_100_MOVIES[2],
@@ -41,7 +51,7 @@ export const Clearable: IStory = {
 };
 
 export const CanFilter: IStory = {
-  render: (props) => <SelectBaseExample {...props} />,
+  render: (props) => <SelectBaseExampleShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -49,7 +59,7 @@ export const CanFilter: IStory = {
 };
 
 export const DefaultQuery: IStory = {
-  render: (props) => <SelectBaseExample {...props} />,
+  render: (props) => <SelectBaseExampleShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -58,7 +68,7 @@ export const DefaultQuery: IStory = {
 };
 
 export const CanCreate: IStory = {
-  render: (props) => <SelectBaseExample {...props} />,
+  render: (props) => <SelectBaseExampleShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -68,7 +78,7 @@ export const CanCreate: IStory = {
 };
 
 export const NoResults: IStory = {
-  render: (props) => <SelectBaseExample {...props} />,
+  render: (props) => <SelectBaseExampleShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -77,7 +87,7 @@ export const NoResults: IStory = {
 };
 
 export const InitialContent: IStory = {
-  render: (props) => <SelectBaseExample {...props} />,
+  render: (props) => <SelectBaseExampleShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -88,7 +98,7 @@ export const InitialContent: IStory = {
 };
 
 export const Disabled: IStory = {
-  render: (props) => <SelectBaseExample {...props} />,
+  render: (props) => <SelectBaseExampleShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     canFilter: true,
@@ -97,7 +107,7 @@ export const Disabled: IStory = {
 };
 
 export const WithErrorText: IStory = {
-  render: (props) => <SelectBaseExample {...props} />,
+  render: (props) => <SelectBaseExampleShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     hasError: true,

@@ -1,6 +1,6 @@
 import type { IBaseProps } from '~/components/Base';
+import type { IAppLayoutContextValue } from './AppLayout.context';
 import type { IAppLayoutStylesKey } from './AppLayout.styles';
-import { IAppLayoutContextValue } from './AppLayout.context';
 
 export type IAppLayoutRenderProps = IAppLayoutContextValue;
 

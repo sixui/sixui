@@ -1,4 +1,5 @@
 import type { IOmit } from '~/helpers/types';
+import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type {
@@ -7,7 +8,6 @@ import type {
 } from '../DialogContent';
 import type { IPopoverBaseOwnProps } from '../PopoverBase';
 import type { dialogTheme, IDialogThemeFactory } from './Dialog.css';
-import { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 
 export interface IDialogOwnProps
   extends IOmit<IPopoverBaseOwnProps, 'children' | 'contentRenderer'>,

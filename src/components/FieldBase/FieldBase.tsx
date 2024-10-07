@@ -83,8 +83,6 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
       mergeStrategy: interactionsMergeStrategy,
     });
 
-    const focused = stateLayer.interactionsContext.state.focused;
-
     const { getStyles } = useComponentTheme<IFieldBaseThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
@@ -116,6 +114,7 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
     const supportingOrErrorText =
       hasError && errorText ? errorText : supportingText;
 
+    const focused = stateLayer.interactionsContext.state.focused;
     const wasFocused = usePrevious(!!focused);
     const wasPopulated = usePrevious(!!populated);
 
@@ -382,23 +381,24 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
     return (
       <Box
         {...boxProps}
-        {...mergeProps(
-          stateLayer.interactionsContext.triggerProps,
-          wrapperProps,
-          forwardProps ? undefined : forwardedProps,
-        )}
         {...getStyles('root')}
         interactions={stateLayer.interactionsContext.state}
         ref={handleRef}
+        {...mergeProps(wrapperProps, forwardProps ? undefined : forwardedProps)}
       >
         <Paper
-          {...mergeProps(getStyles('container'), containerProps)}
           disabled={disabled}
           ref={containerRef}
+          {...mergeProps(
+            getStyles('container'),
+            stateLayer.interactionsContext.triggerProps,
+            containerProps,
+          )}
         >
           <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
           {renderIndicator()}
           {variant === 'outlined' && renderOutline()}
+
           <div {...getStyles('inner')}>
             {hasStartSection && (
               <div {...getStyles(['section', 'section$start'])}>

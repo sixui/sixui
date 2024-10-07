@@ -1,4 +1,4 @@
-import type { IFilterableListItem } from './FilterableList.types';
+import type { IFilterableListItem } from '../FilterableList.types';
 
 export const isFilterableListItemDisabled = (
   item: IFilterableListItem,

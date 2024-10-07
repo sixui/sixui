@@ -1,5 +1,5 @@
-import type { IFilterableListPredicate } from '../FilterableListBase';
-import type { IFilterableListItem } from './FilterableList.types';
+import type { IFilterableListPredicate } from '../../FilterableListBase';
+import type { IFilterableListItem } from '../FilterableList.types';
 import { createFilter } from '~/helpers/createFilter';
 
 export const filterFilterableList: IFilterableListPredicate<IFilterableListItem> =

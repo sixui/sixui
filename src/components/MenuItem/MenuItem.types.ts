@@ -19,7 +19,7 @@ export interface IMenuItemProps
 
 export type IMenuItemFactory = IPolymorphicComponentFactory<{
   props: IMenuItemProps;
-  defaultRef: HTMLButtonElement;
-  defaultRoot: 'button';
+  defaultRef: HTMLDivElement;
+  defaultRoot: 'div';
   theme: typeof listItemTheme;
 }>;
