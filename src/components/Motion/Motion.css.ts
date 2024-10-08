@@ -13,12 +13,12 @@ const [tokensClassName, tokens] = createTheme({
 });
 
 const classNames = createStyles({
-  root: {
+  motion: {
     transformOrigin: tokens.transformOrigin,
   },
-  root$unmounted: {},
-  root$initial: {},
-  root$open: {
+  motion$unmounted: {},
+  motion$initial: {},
+  motion$open: {
     transitionProperty: 'opacity, transform',
     transitionDuration: themeTokens.motion.duration.long.$3,
     transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
@@ -61,7 +61,7 @@ const classNames = createStyles({
       },
     },
   },
-  root$close: {
+  motion$close: {
     transitionProperty: 'opacity, transform',
     transitionDuration: themeTokens.motion.duration.short.$3,
     transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,

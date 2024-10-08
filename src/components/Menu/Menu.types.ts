@@ -19,7 +19,7 @@ export interface IMenuOwnProps {
     | React.ReactNode
     | ((renderProps: IMenuTriggerRenderProps) => React.ReactNode);
   children: React.ReactNode;
-  placement: IPlacement;
+  placement?: IPlacement;
   orientation?: IOrientation;
   matchTargetWidth?: boolean;
   floatingFocusManagerProps?: Partial<FloatingFocusManagerProps>;

@@ -1,12 +1,13 @@
 import { useFloatingTree, useListItem } from '@floating-ui/react';
 
 import type { IMenuItemFactory } from './MenuItem.types';
-import { iconTriangleLeft, iconTriangleRight } from '~/assets/icons';
+import { iconTriangleRight } from '~/assets/icons';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { mergeProps } from '~/utils/mergeProps';
 import { ListItem } from '../ListItem';
-import { useMenuContext } from '../Menu';
+import { Menu } from '../Menu';
 import { SvgIcon } from '../SvgIcon';
 import { useMenuItemContext } from './MenuItem.context';
 
@@ -14,12 +15,11 @@ const COMPONENT_NAME = 'MenuItem';
 
 export const MenuItem = polymorphicComponentFactory<IMenuItemFactory>(
   (props, forwardedRef) => {
-    const { as, children, label, keepOpenOnClick, ...other } = useProps({
+    const { children, label, keepOpenOnClick, ...other } = useProps({
       componentName: COMPONENT_NAME,
       props,
     });
 
-    const menuContext = useMenuContext();
     const menuItemContext = useMenuItemContext();
     const item = useListItem({ label: props.disabled ? null : undefined });
     const tree = useFloatingTree();
@@ -30,10 +30,10 @@ export const MenuItem = polymorphicComponentFactory<IMenuItemFactory>(
 
     const renderListItem = (): JSX.Element => (
       <ListItem
-        as={as}
         role="menuitem"
         tabIndex={isActive ? 0 : -1}
         interactions={{ hovered: isActive }}
+        interactionsMergeStrategy="override"
         {...menuItemContext?.getItemProps({
           ...other,
           onClick: (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -50,25 +50,19 @@ export const MenuItem = polymorphicComponentFactory<IMenuItemFactory>(
     );
 
     const renderNestedMenuItem = (): JSX.Element => (
-      <MenuItem
-        as={as}
-        leadingIcon={
-          menuContext.placement?.startsWith('left-') && (
-            <SvgIcon icon={iconTriangleLeft} />
-          )
-        }
-        trailingIcon={
-          menuContext.placement?.startsWith('left-') ? undefined : (
-            <SvgIcon icon={iconTriangleRight} />
-          )
-        }
-        keepOpenOnClick={true}
-        {...menuContext.getTriggerProps(other)}
-        label={label}
-        ref={handleRef}
+      <Menu
+        trigger={(renderProps) => (
+          <MenuItem
+            trailingIcon={<SvgIcon icon={iconTriangleRight} fz="$4" />}
+            keepOpenOnClick
+            label={label}
+            ref={handleRef}
+            {...mergeProps(renderProps.getProps(), other)}
+          />
+        )}
       >
         {children}
-      </MenuItem>
+      </Menu>
     );
 
     return children ? renderNestedMenuItem() : renderListItem();

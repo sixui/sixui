@@ -37,7 +37,6 @@ import { MenuItemContextProvider, useMenuItemContext } from '../MenuItem';
 import { MenuList } from '../MenuList';
 import { Motion } from '../Motion';
 import { Portal } from '../Portal';
-import { MenuContextProvider } from './Menu.context';
 import { menuLeafTheme } from './MenuLeaf.css';
 
 const COMPONENT_NAME = 'MenuLeaf';
@@ -213,65 +212,56 @@ export const MenuLeaf = componentFactory<IMenuFactory>(
 
     return (
       <FloatingNode id={nodeId}>
-        <MenuContextProvider
-          value={{
-            opened: transitionStatus.isMounted,
-            getTriggerProps,
-            triggerRef: triggerHandleRef,
-            placement: floating.placement,
-          }}
-        >
-          {triggerElement}
+        {triggerElement}
 
-          {transitionStatus.isMounted ? (
-            <MenuItemContextProvider
-              value={{
-                activeIndex,
-                setActiveIndex,
-                opened,
-                getItemProps: interactions.getItemProps,
-                placement: floating.placement,
-              }}
-            >
-              <Portal {...portalProps}>
-                <FloatingFocusManager
-                  context={floating.context}
-                  modal={false}
-                  initialFocus={isNested ? -1 : 0}
-                  returnFocus={!isNested}
-                  {...floatingFocusManagerProps}
-                >
-                  <div {...getStyles('root')}>
-                    <Motion
-                      placement={finalPlacement}
-                      status={transitionStatus.status}
-                      origin="edge"
-                      orientation={orientation}
-                      // FIXME: disabled={!!parentId}
-                      {...mergeProps(
-                        { ref: floating.refs.setFloating },
-                        interactions.getFloatingProps(),
-                        getStyles('floating', {
-                          style: { left: floating.x, top: floating.y },
-                        }),
-                        motionProps,
-                      )}
-                    >
-                      <MenuList noFocusRing {...other}>
-                        <FloatingList
-                          elementsRef={elementsRef}
-                          labelsRef={labelsRef}
-                        >
-                          {children}
-                        </FloatingList>
-                      </MenuList>
-                    </Motion>
-                  </div>
-                </FloatingFocusManager>
-              </Portal>
-            </MenuItemContextProvider>
-          ) : null}
-        </MenuContextProvider>
+        {transitionStatus.isMounted ? (
+          <MenuItemContextProvider
+            value={{
+              activeIndex,
+              setActiveIndex,
+              opened,
+              getItemProps: interactions.getItemProps,
+              placement: floating.placement,
+            }}
+          >
+            <Portal {...portalProps}>
+              <FloatingFocusManager
+                context={floating.context}
+                modal={false}
+                initialFocus={isNested ? -1 : 0}
+                returnFocus={!isNested}
+                {...floatingFocusManagerProps}
+              >
+                <div {...getStyles('root')}>
+                  <Motion
+                    placement={finalPlacement}
+                    status={transitionStatus.status}
+                    origin="edge"
+                    orientation={orientation}
+                    disabled={!!parentId}
+                    {...mergeProps(
+                      { ref: floating.refs.setFloating },
+                      interactions.getFloatingProps(),
+                      getStyles('floating', {
+                        style: { left: floating.x, top: floating.y },
+                      }),
+                      motionProps,
+                    )}
+                  >
+                    <MenuList noFocusRing {...other}>
+                      <FloatingList
+                        elementsRef={elementsRef}
+                        labelsRef={labelsRef}
+                      >
+                        {children}
+                      </FloatingList>
+                    </MenuList>
+                  </Motion>
+                </div>
+              </FloatingFocusManager>
+            </Portal>
+          </MenuItemContextProvider>
+        ) : null}
       </FloatingNode>
     );
   },

@@ -21,13 +21,13 @@ export const Motion = polymorphicComponentFactory<IMotionFactory>(
       styles,
       style,
       variant,
-      children,
       placement = { side: 'top' },
       status,
       origin = 'center',
       customTransformOrigin,
       pattern = 'enterExit',
       orientation: orientationProp,
+      disabled,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -61,9 +61,13 @@ export const Motion = polymorphicComponentFactory<IMotionFactory>(
       },
     });
 
+    if (disabled) {
+      return <Box {...getStyles('root')} ref={forwardedRef} {...other} />;
+    }
+
     return (
       <Box
-        {...getStyles(['root', `root$${resolvedStatus}`], {
+        {...getStyles(['root', 'motion', `motion$${resolvedStatus}`], {
           style: assignInlineVars({
             [motionTheme.tokens.transformOrigin]:
               origin === 'corner'
@@ -77,9 +81,7 @@ export const Motion = polymorphicComponentFactory<IMotionFactory>(
         })}
         ref={forwardedRef}
         {...other}
-      >
-        {children}
-      </Box>
+      />
     );
   },
 );

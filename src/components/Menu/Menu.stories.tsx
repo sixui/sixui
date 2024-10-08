@@ -8,6 +8,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IMenuProps } from './Menu.types';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { Button } from '../Button';
 import { Flex } from '../Flex';
 import { IconButton } from '../IconButton';
@@ -23,16 +24,23 @@ type IStory = StoryObj<typeof meta>;
 
 const items = (
   <>
-    <MenuItem label="Apple" />
-    <MenuItem label="Banana" />
-    <MenuItem label="Dragonfruit" disabled />
+    <MenuItem label="Apple" onClick={() => sbHandleEvent('onClick', 'Apple')} />
+    <MenuItem
+      label="Banana"
+      onClick={() => sbHandleEvent('onClick', 'Banana')}
+    />
+    <MenuItem
+      label="Dragonfruit"
+      onClick={() => sbHandleEvent('onClick', 'Dragonfruit')}
+      disabled
+    />
   </>
 );
 
 const nestedItems = (
   <>
     {items}
-    {/* FIXME: <MenuDivider />
+    <MenuDivider />
     <MenuItem label="Other fruits">
       {items}
       <MenuDivider />
@@ -45,7 +53,7 @@ const nestedItems = (
           <MenuItem label="Too many fruits">{items}</MenuItem>
         </MenuItem>
       </MenuItem>
-    </MenuItem> */}
+    </MenuItem>
   </>
 );
 
@@ -85,10 +93,10 @@ export const FromButton: IStory = {
 
 export const FromIconButton: IStory = {
   render: (props) => (
-    <Flex gap="$2">
-      <div>
+    <Flex gap="$2" align="center">
+      <Flex align="center" gap="$2" grow>
         Look right <FontAwesomeIcon icon={faArrowRight} />
-      </div>
+      </Flex>
       <Menu {...props} />
     </Flex>
   ),

@@ -63,6 +63,8 @@ export interface IMotionOwnProps {
    */
   pattern?: IMotionPattern;
 
+  disabled?: boolean;
+
   children?: React.ReactNode;
 }
 

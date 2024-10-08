@@ -12,6 +12,7 @@ export interface IBoxProps extends IBoxSprinkles {
   modifiers?: IModifiers;
   scale?: ISixuiSize;
   density?: number;
+  grow?: boolean;
 }
 
 export type IElementProps<
