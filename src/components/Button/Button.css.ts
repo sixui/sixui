@@ -1,15 +1,9 @@
-import {
-  createTheme,
-  createThemeContract,
-  fallbackVar,
-  keyframes,
-} from '@vanilla-extract/css';
+import { createTheme, fallbackVar, keyframes } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IInteraction } from '~/hooks/useInteractions';
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { IButtonVariant } from './Button.types';
-import { deepMerge } from '~/helpers/deepMerge';
 import { getDensity } from '~/helpers/styles/getDensity';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
@@ -33,7 +27,7 @@ type IModifier =
 
 const DENSITY = px(getDensity({ min: -4, max: 0 }));
 
-const defaultTokens = {
+const [tokensClassName, tokens] = createTheme({
   gap: px(space(2)),
   leadingSpace: {
     normal: px(space(6)),
@@ -118,9 +112,7 @@ const defaultTokens = {
       disabled: themeTokens.state.outlineOpacity.disabled,
     },
   },
-};
-
-const tokens = createThemeContract(defaultTokens);
+});
 
 const halfSpinKeyframes = keyframes({
   '0%': { transform: 'rotate(0deg)' },
@@ -409,231 +401,211 @@ export type IButtonThemeFactory = IComponentThemeFactory<{
 
 export const buttonTheme = componentThemeFactory<IButtonThemeFactory>({
   classNames,
+  tokensClassName,
   tokens,
 });
 
 export const buttonThemeVariants = {
   elevated: createStyles({
-    root: [
-      createTheme(
-        tokens,
-        deepMerge(defaultTokens, {
-          container: {
-            color: {
-              normal: themeTokens.colorScheme.surfaceContainerLow,
-              disabled: themeTokens.colorScheme.onSurface,
-            },
-            elevation: {
-              normal: elevationLevelPreset[1],
-              focused: elevationLevelPreset[1],
-              hovered: elevationLevelPreset[2],
-              pressed: elevationLevelPreset[1],
-              disabled: elevationLevelPreset[0],
-            },
+    root: {
+      vars: createTokensVars(tokens, {
+        container: {
+          color: {
+            normal: themeTokens.colorScheme.surfaceContainerLow,
+            disabled: themeTokens.colorScheme.onSurface,
           },
-          label: {
-            color: {
-              normal: themeTokens.colorScheme.primary,
-              disabled: themeTokens.colorScheme.onSurface,
-            },
+          elevation: {
+            normal: elevationLevelPreset[1],
+            focused: elevationLevelPreset[1],
+            hovered: elevationLevelPreset[2],
+            pressed: elevationLevelPreset[1],
+            disabled: elevationLevelPreset[0],
           },
-          stateLayer: {
-            color: {
-              hovered: themeTokens.colorScheme.primary,
-              pressed: themeTokens.colorScheme.primary,
-            },
+        },
+        label: {
+          color: {
+            normal: themeTokens.colorScheme.primary,
+            disabled: themeTokens.colorScheme.onSurface,
           },
-        }),
-      ),
-    ],
+        },
+        stateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.primary,
+            pressed: themeTokens.colorScheme.primary,
+          },
+        },
+      }),
+    },
   }),
   filled: createStyles({
-    root: [
-      createTheme(
-        tokens,
-        deepMerge(defaultTokens, {
-          container: {
-            color: {
-              normal: themeTokens.colorScheme.primary,
-              disabled: themeTokens.colorScheme.onSurface,
-            },
-            elevation: {
-              hovered: elevationLevelPreset[1],
-            },
+    root: {
+      vars: createTokensVars(tokens, {
+        container: {
+          color: {
+            normal: themeTokens.colorScheme.primary,
+            disabled: themeTokens.colorScheme.onSurface,
           },
-          label: {
-            color: {
-              normal: themeTokens.colorScheme.onPrimary,
-              disabled: themeTokens.colorScheme.onSurface,
-            },
+          elevation: {
+            hovered: elevationLevelPreset[1],
           },
-          stateLayer: {
-            color: {
-              hovered: themeTokens.colorScheme.onPrimary,
-              pressed: themeTokens.colorScheme.onPrimary,
-            },
+        },
+        label: {
+          color: {
+            normal: themeTokens.colorScheme.onPrimary,
+            disabled: themeTokens.colorScheme.onSurface,
           },
-        }),
-      ),
-    ],
+        },
+        stateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.onPrimary,
+            pressed: themeTokens.colorScheme.onPrimary,
+          },
+        },
+      }),
+    },
   }),
   filledTonal: createStyles({
-    root: [
-      createTheme(
-        tokens,
-        deepMerge(defaultTokens, {
-          container: {
-            color: {
-              normal: themeTokens.colorScheme.secondaryContainer,
-              disabled: themeTokens.colorScheme.onSurface,
-            },
-            elevation: {
-              hovered: elevationLevelPreset[1],
-            },
+    root: {
+      vars: createTokensVars(tokens, {
+        container: {
+          color: {
+            normal: themeTokens.colorScheme.secondaryContainer,
+            disabled: themeTokens.colorScheme.onSurface,
           },
-          label: {
-            color: {
-              normal: themeTokens.colorScheme.onSecondaryContainer,
-              disabled: themeTokens.colorScheme.onSurface,
-            },
+          elevation: {
+            hovered: elevationLevelPreset[1],
           },
-          stateLayer: {
-            color: {
-              hovered: themeTokens.colorScheme.onSecondaryContainer,
-              pressed: themeTokens.colorScheme.onSecondaryContainer,
-            },
+        },
+        label: {
+          color: {
+            normal: themeTokens.colorScheme.onSecondaryContainer,
+            disabled: themeTokens.colorScheme.onSurface,
           },
-        }),
-      ),
-    ],
+        },
+        stateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.onSecondaryContainer,
+            pressed: themeTokens.colorScheme.onSecondaryContainer,
+          },
+        },
+      }),
+    },
   }),
   outlined: createStyles({
-    root: [
-      createTheme(
-        tokens,
-        deepMerge(defaultTokens, {
-          label: {
-            color: {
-              normal: themeTokens.colorScheme.primary,
-              disabled: themeTokens.colorScheme.onSurface,
-            },
+    root: {
+      vars: createTokensVars(tokens, {
+        label: {
+          color: {
+            normal: themeTokens.colorScheme.primary,
+            disabled: themeTokens.colorScheme.onSurface,
           },
-          outline: {
-            style: 'solid',
+        },
+        outline: {
+          style: 'solid',
+        },
+        stateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.primary,
+            pressed: themeTokens.colorScheme.primary,
           },
-          stateLayer: {
-            color: {
-              hovered: themeTokens.colorScheme.primary,
-              pressed: themeTokens.colorScheme.primary,
-            },
-          },
-        }),
-      ),
-    ],
+        },
+      }),
+    },
   }),
   text: createStyles({
-    root: [
-      createTheme(
-        tokens,
-        deepMerge(defaultTokens, {
-          leadingSpace: {
-            normal: px(space(3)),
-            withLeadingIcon: px(space(3)),
-            withTrailingIcon: px(space(4)),
+    root: {
+      vars: createTokensVars(tokens, {
+        leadingSpace: {
+          normal: px(space(3)),
+          withLeadingIcon: px(space(3)),
+          withTrailingIcon: px(space(4)),
+        },
+        trailingSpace: {
+          normal: px(space(3)),
+          withLeadingIcon: px(space(4)),
+          withTrailingIcon: px(space(3)),
+        },
+        label: {
+          color: {
+            normal: themeTokens.colorScheme.primary,
+            disabled: themeTokens.colorScheme.onSurface,
           },
-          trailingSpace: {
-            normal: px(space(3)),
-            withLeadingIcon: px(space(4)),
-            withTrailingIcon: px(space(3)),
+        },
+        stateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.primary,
+            pressed: themeTokens.colorScheme.primary,
           },
-          label: {
-            color: {
-              normal: themeTokens.colorScheme.primary,
-              disabled: themeTokens.colorScheme.onSurface,
-            },
-          },
-          stateLayer: {
-            color: {
-              hovered: themeTokens.colorScheme.primary,
-              pressed: themeTokens.colorScheme.primary,
-            },
-          },
-        }),
-      ),
-    ],
+        },
+      }),
+    },
   }),
   danger: createStyles({
-    root: [
-      createTheme(
-        tokens,
-        deepMerge(defaultTokens, {
-          container: {
-            color: {
-              normal: themeTokens.colorScheme.errorContainer,
-              disabled: themeTokens.colorScheme.onSurface,
-            },
-            elevation: {
-              hovered: elevationLevelPreset[1],
-            },
+    root: {
+      vars: createTokensVars(tokens, {
+        container: {
+          color: {
+            normal: themeTokens.colorScheme.errorContainer,
+            disabled: themeTokens.colorScheme.onSurface,
           },
-          label: {
-            color: {
-              normal: themeTokens.colorScheme.onErrorContainer,
-              disabled: themeTokens.colorScheme.onSurface,
-            },
+          elevation: {
+            hovered: elevationLevelPreset[1],
           },
-          stateLayer: {
-            color: {
-              hovered: themeTokens.colorScheme.onErrorContainer,
-              pressed: themeTokens.colorScheme.onErrorContainer,
-            },
+        },
+        label: {
+          color: {
+            normal: themeTokens.colorScheme.onErrorContainer,
+            disabled: themeTokens.colorScheme.onSurface,
           },
-        }),
-      ),
-    ],
+        },
+        stateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.onErrorContainer,
+            pressed: themeTokens.colorScheme.onErrorContainer,
+          },
+        },
+      }),
+    },
   }),
   snackbar: createStyles({
-    root: [
-      createTheme(
-        tokens,
-        deepMerge(defaultTokens, {
-          leadingSpace: {
-            normal: px(space(4)),
-            withLeadingIcon: px(space(3)),
-            withTrailingIcon: px(space(4)),
+    root: {
+      vars: createTokensVars(tokens, {
+        leadingSpace: {
+          normal: px(space(4)),
+          withLeadingIcon: px(space(3)),
+          withTrailingIcon: px(space(4)),
+        },
+        trailingSpace: {
+          normal: px(space(4)),
+          withLeadingIcon: px(space(4)),
+          withTrailingIcon: px(space(3)),
+        },
+        container: {
+          height: px(32),
+          shape: {
+            topLeft: px(themeTokens.shape.corner.xs),
+            topRight: px(themeTokens.shape.corner.xs),
+            bottomRight: px(themeTokens.shape.corner.xs),
+            bottomLeft: px(themeTokens.shape.corner.xs),
           },
-          trailingSpace: {
-            normal: px(space(4)),
-            withLeadingIcon: px(space(4)),
-            withTrailingIcon: px(space(3)),
+        },
+        icon: {
+          color: {
+            normal: themeTokens.colorScheme.inversePrimary,
           },
-          container: {
-            height: px(32),
-            shape: {
-              topLeft: px(themeTokens.shape.corner.xs),
-              topRight: px(themeTokens.shape.corner.xs),
-              bottomRight: px(themeTokens.shape.corner.xs),
-              bottomLeft: px(themeTokens.shape.corner.xs),
-            },
+        },
+        label: {
+          color: {
+            normal: themeTokens.colorScheme.inversePrimary,
           },
-          icon: {
-            color: {
-              normal: themeTokens.colorScheme.inversePrimary,
-            },
+        },
+        stateLayer: {
+          color: {
+            hovered: themeTokens.colorScheme.inversePrimary,
+            pressed: themeTokens.colorScheme.inversePrimary,
           },
-          label: {
-            color: {
-              normal: themeTokens.colorScheme.inversePrimary,
-            },
-          },
-          stateLayer: {
-            color: {
-              hovered: themeTokens.colorScheme.inversePrimary,
-              pressed: themeTokens.colorScheme.inversePrimary,
-            },
-          },
-        }),
-      ),
-    ],
+        },
+      }),
+    },
   }),
 };

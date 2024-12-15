@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IChipProps } from './Chip.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { ComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Chip } from './Chip';
 
 // https://m3.material.io/components/chips/overview
@@ -23,44 +23,45 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   onClick: (...args) => sbHandleEvent('click', args, 1000),
-  label: 'Chip',
+  children: 'Chip',
 } satisfies Partial<IChipProps>;
 
 const states: Array<IComponentPresentation<IChipProps>> = [
   {
     legend: 'Enabled',
     props: {
-      label: 'Enabled',
+      children: 'Enabled',
     },
   },
   {
     legend: 'Focused',
-    props: { label: 'Focused', visualState: { focused: true } },
+    props: { children: 'Focused', interactions: { focused: true } },
   },
   {
     legend: 'Hovered',
-    props: { label: 'Hovered', visualState: { hovered: true } },
+    props: { children: 'Hovered', interactions: { hovered: true } },
   },
   {
     legend: 'Pressed',
-    props: { label: 'Pressed', visualState: { pressed: true } },
+    props: { children: 'Pressed', interactions: { pressed: true } },
   },
-  { legend: 'Loading', props: { label: 'Loading', loading: true } },
+  { legend: 'Loading', props: { children: 'Loading', loading: true } },
   {
     legend: 'Loading text',
     props: {
-      label: 'Loading',
+      children: 'Loading',
       loading: true,
       loadingText: '…',
     },
   },
-  { legend: 'Disabled', props: { label: 'Disabled', disabled: true } },
+  { legend: 'Disabled', props: { children: 'Disabled', disabled: true } },
 ];
+
+const ChipShowcase = componentShowcaseFactory(Chip);
 
 export const Variants: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={Chip}
+    <ChipShowcase
       props={props}
       cols={[
         {
@@ -104,8 +105,7 @@ export const Variants: IStory = {
 
 export const Assist: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={Chip}
+    <ChipShowcase
       props={props}
       cols={states}
       rows={[
@@ -137,8 +137,7 @@ export const Assist: IStory = {
 
 export const Filter: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={Chip}
+    <ChipShowcase
       props={props}
       cols={states}
       rows={[
@@ -166,10 +165,11 @@ const StatefulChip: React.FC<IChipProps> = (props) => {
   );
 };
 
+const StatefulChipShowcase = componentShowcaseFactory(StatefulChip);
+
 export const FilterStateful: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={StatefulChip}
+    <StatefulChipShowcase
       props={props}
       cols={states}
       rows={[
@@ -186,8 +186,7 @@ export const FilterStateful: IStory = {
 
 export const Input: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={Chip}
+    <ChipShowcase
       props={props}
       cols={[
         ...states,
@@ -211,8 +210,7 @@ export const Input: IStory = {
 
 export const InputStateful: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={StatefulChip}
+    <ChipShowcase
       props={props}
       cols={states}
       rows={[
@@ -229,8 +227,7 @@ export const InputStateful: IStory = {
 
 export const InputWithIconOrImage: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={Chip}
+    <ChipShowcase
       props={props}
       cols={[
         ...states,
@@ -269,8 +266,7 @@ export const InputWithIconOrImage: IStory = {
 
 export const Suggestion: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={Chip}
+    <ChipShowcase
       props={props}
       cols={states}
       rows={[

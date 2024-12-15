@@ -34,18 +34,18 @@ const vars = {
   containerShape: shapeTokens.corner$sm,
 
   // flatContainer
-  flatContainerColor: 'inherit',
-  flatContainerElevation: elevationTokens.boxShadow$level0,
+  // flatContainerColor: 'inherit',
+  // flatContainerElevation: elevationTokens.boxShadow$level0,
   // &:hover
-  flatContainerElevation$hover: 'unset',
+  // flatContainerElevation$hover: 'unset',
   // &:focus
-  flatContainerElevation$focus: 'unset',
+  // flatContainerElevation$focus: 'unset',
   // &:pressed
-  flatContainerElevation$pressed: 'unset',
+  // flatContainerElevation$pressed: 'unset',
   // &:disabled
-  flatContainerColor$disabled: 'inherit',
-  flatContainerElevation$disabled: 'unset',
-  flatContainerOpacity$disabled: stateTokens.containerOpacity$disabled,
+  // flatContainerColor$disabled: 'inherit',
+  // flatContainerElevation$disabled: 'unset',
+  // flatContainerOpacity$disabled: stateTokens.containerOpacity$disabled,
 
   // selectedFlatContainer
   selectedFlatContainerColor: 'inherit',
@@ -62,35 +62,35 @@ const vars = {
   selectedFlatContainerOpacity$disabled: stateTokens.containerOpacity$disabled,
 
   // elevatedContainer
-  elevatedContainerColor: colorSchemeTokens.surfaceContainerLow,
-  elevatedContainerElevation: elevationTokens.boxShadow$level1,
+  // elevatedContainerColor: colorSchemeTokens.surfaceContainerLow,
+  // elevatedContainerElevation: elevationTokens.boxShadow$level1,
   // &:disabled
-  elevatedContainerColor$disabled: colorSchemeTokens.onSurface,
-  elevatedContainerElevation$disabled: elevationTokens.boxShadow$level0,
-  elevatedContainerOpacity$disabled: stateTokens.containerOpacity$disabled,
+  // elevatedContainerColor$disabled: colorSchemeTokens.onSurface,
+  // elevatedContainerElevation$disabled: elevationTokens.boxShadow$level0,
+  // elevatedContainerOpacity$disabled: stateTokens.containerOpacity$disabled,
   // &:focus
-  elevatedContainerElevation$focus: elevationTokens.boxShadow$level1,
+  // elevatedContainerElevation$focus: elevationTokens.boxShadow$level1,
   // &:hover
-  elevatedContainerElevation$hover: elevationTokens.boxShadow$level2,
+  // elevatedContainerElevation$hover: elevationTokens.boxShadow$level2,
   // &:pressed
-  elevatedContainerElevation$pressed: elevationTokens.boxShadow$level1,
+  // elevatedContainerElevation$pressed: elevationTokens.boxShadow$level1,
 
   // selectedElevatedContainer
-  selectedElevatedContainerColor: 'inherit',
+  // selectedElevatedContainerColor: 'inherit',
 
   // outline
-  outlineWidth: outlineTokens.width$xs,
-  outlineColor: colorSchemeTokens.outline,
+  // outlineWidth: outlineTokens.width$xs,
+  // outlineColor: colorSchemeTokens.outline,
   // &:disabled
-  outlineColor$disabled: colorSchemeTokens.onSurface,
-  outlineOpacity$disabled: stateTokens.outlineOpacity$disabled,
+  // outlineColor$disabled: colorSchemeTokens.onSurface,
+  // outlineOpacity$disabled: stateTokens.outlineOpacity$disabled,
   // &:focus
-  outlineColor$focus: colorSchemeTokens.outline,
+  // outlineColor$focus: colorSchemeTokens.outline,
   // &:pressed
-  outlineColor$pressed: colorSchemeTokens.outline,
+  // outlineColor$pressed: colorSchemeTokens.outline,
 
   // selectedOutline
-  selectedOutlineWidth: outlineTokens.width$none,
+  // selectedOutlineWidth: outlineTokens.width$none,
 
   // stateLayer
   // &:hover

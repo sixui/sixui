@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { MouseEventHandler, useState } from 'react';
 
 import type { IButtonThemeFactory } from './Button.css';

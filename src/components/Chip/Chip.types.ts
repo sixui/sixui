@@ -1,50 +1,35 @@
-import type {
-  IAny,
-  ICompiledStyles,
-  IMaybeAsync,
-  IZeroOrMore,
-} from '~/helpers/types';
-import type { IBaseProps } from '../Base';
-import type { ICircularProgressIndicatorStylesKey } from '../CircularProgressIndicator';
-import type { IElevationStylesKey } from '../Elevation';
-import type { IFocusRingStylesKey } from '../FocusRing';
-import type { IStateLayerStylesKey } from '../StateLayer';
-import type { IVisualState } from '../VisualState';
-import type { IChipStylesKey } from './Chip.styles';
+import type { IAny, IMaybeAsync } from '~/helpers/types';
+import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IBoxProps } from '../Box';
+import type { IButtonBaseOwnProps } from '../ButtonBase';
+import type { IPaperOwnProps } from '../Paper';
+import type { chipTheme, IChipThemeFactory } from './Chip.css';
 
 export type IChipVariant = 'assist' | 'filter' | 'input' | 'suggestion';
 
-export type IChipProps = IBaseProps<IChipStylesKey> & {
-  innerStyles?: {
-    stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStylesKey>>;
-    focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStylesKey>>;
-    elevation?: IZeroOrMore<ICompiledStyles<IElevationStylesKey>>;
-    trailingActionFocusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStylesKey>>;
-    trailingActionStateLayer?: IZeroOrMore<
-      ICompiledStyles<IStateLayerStylesKey>
-    >;
-    circularProgressIndicator?: ICompiledStyles<ICircularProgressIndicatorStylesKey>;
-  };
-  visualState?: IVisualState;
-  onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
-  onDelete?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
-  variant?: IChipVariant | false;
-  label?: React.ReactNode;
-  disabled?: boolean;
+export interface IChipOwnProps extends IButtonBaseOwnProps {
+  onDelete?: (event: React.MouseEvent<Element>) => IMaybeAsync<IAny>;
   elevated?: boolean;
   selected?: boolean;
   icon?: React.ReactNode;
-  href?: string;
   imageUrl?: string;
   loading?: boolean;
   loadingText?: string;
   deleting?: boolean;
   avatar?: boolean;
-  'aria-label-remove'?: React.AriaAttributes['aria-label'];
+}
 
-  /**
-   * If `true`, the component will be rendered in a disabled state, but will
-   * still be focusable.
-   */
-  readOnly?: boolean;
-};
+export interface IChipProps
+  extends IBoxProps,
+    IComponentThemeProps<IChipThemeFactory>,
+    IPaperOwnProps,
+    IChipOwnProps {}
+
+export type IChipFactory = IPolymorphicComponentFactory<{
+  props: IChipProps;
+  defaultRef: HTMLButtonElement;
+  defaultRoot: 'button';
+  theme: typeof chipTheme;
+  variant: IChipVariant | false;
+}>;

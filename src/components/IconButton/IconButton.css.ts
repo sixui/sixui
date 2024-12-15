@@ -25,13 +25,13 @@ const [tokensClassName, tokens] = createTheme({
     size: px(40),
     shape: px(themeTokens.shape.corner.full),
   },
-  selectedContainer: {
+  container$selected: {
     color: {
       normal: 'unset',
       disabled: 'unset',
     },
   },
-  unselectedContainer: {
+  container$unselected: {
     color: {
       normal: 'unset',
       disabled: 'unset',
@@ -50,7 +50,7 @@ const [tokensClassName, tokens] = createTheme({
     },
     size: px(18),
   },
-  toggleIcon: {
+  icon$toggle: {
     color: {
       normal: 'inherit',
       hovered: 'inherit',
@@ -58,7 +58,7 @@ const [tokensClassName, tokens] = createTheme({
       pressed: 'inherit',
     },
   },
-  toggleSelectedIcon: {
+  icon$toggle$selected: {
     color: {
       normal: 'inherit',
       hovered: 'inherit',
@@ -76,13 +76,13 @@ const [tokensClassName, tokens] = createTheme({
       pressed: themeTokens.state.stateLayerOpacity.pressed,
     },
   },
-  toggleStateLayer: {
+  stateLayer$toggle: {
     color: {
       hovered: 'unset',
       pressed: 'unset',
     },
   },
-  toggleSelectedStateLayer: {
+  stateLayer$toggle$selected: {
     color: {
       hovered: 'unset',
       pressed: 'unset',
@@ -147,16 +147,16 @@ const classNames = createStyles({
     selectors: {
       [getModifierSelector<IModifier>('toggle')]: {
         vars: createTokensVars(Button.theme.tokens, {
-          stateLayer: tokens.toggleStateLayer,
-          container: tokens.unselectedContainer,
-          icon: tokens.toggleIcon,
+          stateLayer: tokens.stateLayer$toggle,
+          container: tokens.container$unselected,
+          icon: tokens.icon$toggle,
         }),
       },
       [getModifierSelector<IModifier>(['toggle', 'selected'])]: {
         vars: createTokensVars(Button.theme.tokens, {
-          stateLayer: tokens.toggleSelectedStateLayer,
-          container: tokens.selectedContainer,
-          icon: tokens.toggleSelectedIcon,
+          stateLayer: tokens.stateLayer$toggle$selected,
+          container: tokens.container$selected,
+          icon: tokens.icon$toggle$selected,
         }),
       },
     },
@@ -186,12 +186,12 @@ export const iconButtonThemeVariants = {
             disabled: themeTokens.colorScheme.onSurface,
           },
         },
-        toggleIcon: {
+        icon$toggle: {
           color: {
             normal: themeTokens.colorScheme.onSurfaceVariant,
           },
         },
-        toggleSelectedIcon: {
+        icon$toggle$selected: {
           color: {
             normal: themeTokens.colorScheme.primary,
           },
@@ -201,12 +201,12 @@ export const iconButtonThemeVariants = {
             hovered: themeTokens.colorScheme.onSurfaceVariant,
           },
         },
-        toggleStateLayer: {
+        stateLayer$toggle: {
           color: {
             hovered: themeTokens.colorScheme.onSurfaceVariant,
           },
         },
-        toggleSelectedStateLayer: {
+        stateLayer$toggle$selected: {
           color: {
             hovered: themeTokens.colorScheme.onSurfaceVariant,
           },
@@ -223,12 +223,12 @@ export const iconButtonThemeVariants = {
             disabled: themeTokens.colorScheme.onSurface,
           },
         },
-        unselectedContainer: {
+        container$unselected: {
           color: {
             normal: themeTokens.colorScheme.surfaceContainerHighest,
           },
         },
-        selectedContainer: {
+        container$selected: {
           color: {
             normal: themeTokens.colorScheme.primary,
           },
@@ -239,12 +239,12 @@ export const iconButtonThemeVariants = {
             disabled: themeTokens.colorScheme.onSurface,
           },
         },
-        toggleIcon: {
+        icon$toggle: {
           color: {
             normal: themeTokens.colorScheme.primary,
           },
         },
-        toggleSelectedIcon: {
+        icon$toggle$selected: {
           color: {
             normal: themeTokens.colorScheme.onPrimary,
           },
@@ -254,12 +254,12 @@ export const iconButtonThemeVariants = {
             hovered: themeTokens.colorScheme.onPrimary,
           },
         },
-        toggleStateLayer: {
+        stateLayer$toggle: {
           color: {
             hovered: themeTokens.colorScheme.primary,
           },
         },
-        toggleSelectedStateLayer: {
+        stateLayer$toggle$selected: {
           color: {
             hovered: themeTokens.colorScheme.onPrimary,
           },
@@ -276,12 +276,12 @@ export const iconButtonThemeVariants = {
             disabled: themeTokens.colorScheme.onSurface,
           },
         },
-        unselectedContainer: {
+        container$unselected: {
           color: {
             normal: themeTokens.colorScheme.surfaceContainerHighest,
           },
         },
-        selectedContainer: {
+        container$selected: {
           color: {
             normal: themeTokens.colorScheme.secondaryContainer,
           },
@@ -292,12 +292,12 @@ export const iconButtonThemeVariants = {
             disabled: themeTokens.colorScheme.onSurface,
           },
         },
-        toggleIcon: {
+        icon$toggle: {
           color: {
             normal: themeTokens.colorScheme.onSurfaceVariant,
           },
         },
-        toggleSelectedIcon: {
+        icon$toggle$selected: {
           color: {
             normal: themeTokens.colorScheme.onSecondaryContainer,
           },
@@ -307,12 +307,12 @@ export const iconButtonThemeVariants = {
             hovered: themeTokens.colorScheme.onSurfaceVariant,
           },
         },
-        toggleStateLayer: {
+        stateLayer$toggle: {
           color: {
             hovered: themeTokens.colorScheme.onSecondaryContainer,
           },
         },
-        toggleSelectedStateLayer: {
+        stateLayer$toggle$selected: {
           color: {
             hovered: themeTokens.colorScheme.onSurfaceVariant,
           },
@@ -323,7 +323,7 @@ export const iconButtonThemeVariants = {
   outlined: createStyles({
     root: {
       vars: createTokensVars(tokens, {
-        selectedContainer: {
+        container$selected: {
           color: {
             normal: themeTokens.colorScheme.inverseSurface,
             disabled: 'transparent',
@@ -335,12 +335,12 @@ export const iconButtonThemeVariants = {
             disabled: themeTokens.colorScheme.onSurface,
           },
         },
-        toggleIcon: {
+        icon$toggle: {
           color: {
             normal: themeTokens.colorScheme.onSurfaceVariant,
           },
         },
-        toggleSelectedIcon: {
+        icon$toggle$selected: {
           color: {
             normal: themeTokens.colorScheme.inverseOnSurface,
           },
@@ -350,12 +350,12 @@ export const iconButtonThemeVariants = {
             hovered: themeTokens.colorScheme.onSurfaceVariant,
           },
         },
-        toggleStateLayer: {
+        stateLayer$toggle: {
           color: {
             hovered: themeTokens.colorScheme.onSurfaceVariant,
           },
         },
-        toggleSelectedStateLayer: {
+        stateLayer$toggle$selected: {
           color: {
             hovered: themeTokens.colorScheme.inverseOnSurface,
           },
@@ -375,13 +375,13 @@ export const iconButtonThemeVariants = {
             disabled: themeTokens.colorScheme.onSurface,
           },
         },
-        unselectedContainer: {
+        container$unselected: {
           color: {
             normal: themeTokens.colorScheme.surfaceContainerHighest,
             disabled: themeTokens.colorScheme.onSurface,
           },
         },
-        selectedContainer: {
+        container$selected: {
           color: {
             normal: themeTokens.colorScheme.errorContainer,
             disabled: themeTokens.colorScheme.onSurface,
@@ -393,12 +393,12 @@ export const iconButtonThemeVariants = {
             disabled: themeTokens.colorScheme.onSurface,
           },
         },
-        toggleIcon: {
+        icon$toggle: {
           color: {
             normal: themeTokens.colorScheme.onErrorContainer,
           },
         },
-        toggleSelectedIcon: {
+        icon$toggle$selected: {
           color: {
             normal: themeTokens.colorScheme.onErrorContainer,
           },
@@ -408,12 +408,12 @@ export const iconButtonThemeVariants = {
             hovered: themeTokens.colorScheme.onErrorContainer,
           },
         },
-        toggleStateLayer: {
+        stateLayer$toggle: {
           color: {
             hovered: themeTokens.colorScheme.onErrorContainer,
           },
         },
-        toggleSelectedStateLayer: {
+        stateLayer$toggle$selected: {
           color: {
             hovered: themeTokens.colorScheme.error,
           },
@@ -433,12 +433,12 @@ export const iconButtonThemeVariants = {
             disabled: themeTokens.colorScheme.onSurface,
           },
         },
-        toggleIcon: {
+        icon$toggle: {
           color: {
             normal: themeTokens.colorScheme.inverseOnSurface,
           },
         },
-        toggleSelectedIcon: {
+        icon$toggle$selected: {
           color: {
             normal: themeTokens.colorScheme.inverseOnSurface,
           },
@@ -448,12 +448,12 @@ export const iconButtonThemeVariants = {
             hovered: themeTokens.colorScheme.inverseOnSurface,
           },
         },
-        toggleStateLayer: {
+        stateLayer$toggle: {
           color: {
             hovered: themeTokens.colorScheme.inverseOnSurface,
           },
         },
-        toggleSelectedStateLayer: {
+        stateLayer$toggle$selected: {
           color: {
             hovered: themeTokens.colorScheme.inverseOnSurface,
           },
