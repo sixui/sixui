@@ -65,7 +65,7 @@ export type IUseInteractionsResult<TElement extends HTMLElement = HTMLElement> =
     triggerProps?: DOMAttributes;
 
     /** Ref object for the trigger element. */
-    triggerRef: React.RefObject<TElement>;
+    triggerRef: React.RefObject<TElement | null>;
 
     /** The untouched base interaction state of the trigger. */
     baseState?: IInteractions;
@@ -173,18 +173,16 @@ export const useInteractions = <TElement extends HTMLElement>(
 
   const triggerProps = useMemo<DOMAttributes | undefined>(
     () =>
-      disabled
-        ? undefined
-        : mergeProps(
-            events?.press ? pressProps : undefined,
-            events?.hover ? hoverProps : undefined,
-            events?.focus
-              ? {
-                  ...focusProps,
-                  tabIndex: 0,
-                }
-              : undefined,
-          ),
+      mergeProps(
+        !disabled && events?.press ? pressProps : undefined,
+        !disabled && events?.hover ? hoverProps : undefined,
+        events?.focus
+          ? {
+              ...focusProps,
+              tabIndex: 0,
+            }
+          : undefined,
+      ),
     [disabled, events, hoverProps, pressProps, focusProps],
   );
 
@@ -192,10 +190,10 @@ export const useInteractions = <TElement extends HTMLElement>(
     () => ({
       pressed: events?.hover ? pressed : undefined,
       dragged,
-      focused: events?.focus ? focused && !disabled : undefined,
+      focused: events?.focus ? focused : undefined,
       hovered: events?.hover ? hovered : undefined,
     }),
-    [events, pressed, dragged, focused, disabled, hovered],
+    [events, pressed, dragged, focused, hovered],
   );
 
   const state = useMemo<IInteractions>(
