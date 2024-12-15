@@ -25,7 +25,8 @@ const states: Array<IComponentPresentation<IPolymorphicTemplateProps>> = [
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const PolymorphicTemplateShowcase = componentShowcaseFactory(PolymorphicTemplate);
+const PolymorphicTemplateShowcase =
+  componentShowcaseFactory(PolymorphicTemplate);
 
 export const Basic: IStory = {
   render: (props) => (

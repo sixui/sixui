@@ -9,8 +9,8 @@ import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
-import { circularProgressIndicatorTheme } from '../CircularProgressIndicator/CircularProgressIndicator.css';
 import { themeTokens } from '../ThemeProvider';
+import { circularProgressIndicatorTheme } from '../CircularProgressIndicator/CircularProgressIndicator.css';
 
 type IModifier = 'disabled';
 

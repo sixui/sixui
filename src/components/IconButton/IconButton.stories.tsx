@@ -45,7 +45,7 @@ const IconButtonShowcase = componentShowcaseFactory(IconButton);
 export const Variants: IStory = {
   render: (props) => (
     <IconButtonShowcase
-      verticalAlign='center'
+      verticalAlign="center"
       props={props}
       cols={(
         [

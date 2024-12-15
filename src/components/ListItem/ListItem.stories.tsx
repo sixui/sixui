@@ -136,7 +136,7 @@ export const Variants: IStory = {
 export const Standard: IStory = {
   render: (props) => (
     <ListItemShowcase
-      horizontalAlign='start'
+      horizontalAlign="start"
       props={props}
       cols={states}
       rows={rows}
@@ -152,7 +152,7 @@ export const Standard: IStory = {
 export const Danger: IStory = {
   render: (props) => (
     <ListItemShowcase
-      horizontalAlign='start'
+      horizontalAlign="start"
       props={props}
       cols={states}
       rows={rows}

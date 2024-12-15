@@ -12,7 +12,8 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const PlainTooltipContentShowcase = componentShowcaseFactory(PlainTooltipContent);
+const PlainTooltipContentShowcase =
+  componentShowcaseFactory(PlainTooltipContent);
 
 const defaultArgs = {
   supportingText:

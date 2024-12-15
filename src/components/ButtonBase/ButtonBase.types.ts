@@ -20,7 +20,7 @@ export interface IButtonBaseOwnProps {
   rel?: string;
   disabled?: boolean;
 
-  onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
+  onClick?: (event: React.MouseEvent<Element>) => IMaybeAsync<IAny>;
 
   /**
    * If `true`, the component will be rendered in a disabled state, but will
