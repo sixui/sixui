@@ -17,6 +17,10 @@ export const createTokensVars = <TTokens extends ITokens>(
       const tokenValue = tokens[key as keyof TTokens];
 
       if (typeof value === 'string') {
+        if (!tokenValue) {
+          return acc;
+        }
+
         return {
           ...acc,
           [tokenValue as string]: value,

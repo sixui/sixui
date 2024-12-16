@@ -3,18 +3,20 @@ import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 
-type IModifier = 'disabled';
+type IModifier = 'disabled' | 'interactive';
 
 export const classNames = createStyles({
   root: {
     position: 'relative',
-    cursor: 'pointer',
-    userSelect: 'none',
     textDecoration: 'none',
     selectors: {
-      [getModifierSelector('disabled')]: {
+      [getModifierSelector<IModifier>('disabled')]: {
         cursor: 'default',
         pointerEvents: 'none',
+      },
+      [getModifierSelector<IModifier>('interactive')]: {
+        cursor: 'pointer',
+        userSelect: 'none',
       },
     },
   },

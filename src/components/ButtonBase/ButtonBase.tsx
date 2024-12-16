@@ -41,9 +41,10 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
       props,
     });
 
-    const disabledOrReadOnly = disabled || readOnly;
-
     const sixuiContext = useSixuiContext();
+    const disabledOrReadOnly = disabled || readOnly;
+    const isInteractive = !!href || !!other.onClick || as === 'input';
+
     const { getStyles } = useComponentTheme<IButtonBaseThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
@@ -54,20 +55,26 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
       variant,
       modifiers: {
         disabled: disabledOrReadOnly,
+        interactive: isInteractive,
       },
     });
 
     const ownStateLayer = useStateLayer<HTMLDivElement>({
       baseState: interactions,
       mergeStrategy: interactionsMergeStrategy,
-      disabled: !!stateLayerProp || disabledOrReadOnly,
+      disabled: !isInteractive || !!stateLayerProp || disabledOrReadOnly,
     });
     const stateLayer = stateLayerProp ?? ownStateLayer;
     const rootElement =
-      as ?? (href ? (sixuiContext.settings?.linkAs ?? 'a') : 'button');
+      as ??
+      (isInteractive
+        ? href
+          ? (sixuiContext.settings?.linkAs ?? 'a')
+          : 'button'
+        : 'div');
 
-    const attributes =
-      rootElement === 'button'
+    const attributes = isInteractive
+      ? rootElement === 'button'
         ? {
             type,
             disabled,
@@ -81,7 +88,10 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
             disabled: rootElement === 'input' ? disabled : undefined,
             'aria-disabled': disabledOrReadOnly || undefined,
             rel: rootElement === 'a' ? rel : undefined,
-          };
+          }
+      : {
+          'aria-disabled': disabledOrReadOnly || undefined,
+        };
 
     const handleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
 
@@ -92,9 +102,8 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
         ref={handleRef}
         as={rootElement}
         classNames={classNames}
-        tabIndex={disabledOrReadOnly ? -1 : 0}
+        tabIndex={isInteractive ? (disabledOrReadOnly ? -1 : 0) : undefined}
         interactions={stateLayer.interactionsContext.state}
-        role="button"
         {...mergeProps(stateLayer.interactionsContext.triggerProps, other)}
       >
         {!disabledOrReadOnly && (

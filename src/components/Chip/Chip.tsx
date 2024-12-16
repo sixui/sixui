@@ -8,6 +8,7 @@ import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { useStyles } from '~/hooks/useStyles';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Avatar } from '../Avatar';
 import { Base } from '../Base';
@@ -41,7 +42,7 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
       styles,
       style,
       variant = 'assist',
-      selected: selectedProp,
+      selected,
       elevated: elevatedProp,
       loading: loadingProp,
       deleting: deletingProp,
@@ -57,33 +58,15 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const { getStyles } = useComponentTheme<IChipThemeFactory>({
-      componentName: COMPONENT_NAME,
-      classNames,
-      className,
-      styles,
-      style,
-      theme: chipTheme,
-      themeVariants: chipThemeVariants,
-      variant,
-      modifiers: {
-        // disabled: disabledOrReadOnly,
-        // loading,
-        // 'with-leading-icon': hasLeadingIcon,
-        // 'with-trailing-icon': hasTrailingIcon,
-        // 'icon-animation': iconAnimation,
-      },
-    });
+    const [handlingClick, setHandlingClick] = useState(false);
+    const [handlingDelete, setHandlingDelete] = useState(false);
 
-    // const [handlingClick, setHandlingClick] = useState(false);
-    // const [handlingDelete, setHandlingDelete] = useState(false);
-
-    // const loading = loadingProp || handlingClick;
-    // const isDeletable = variant === 'input' && onDelete;
-    // const deleting =
-    //   !loading && isDeletable && (deletingProp || handlingDelete);
-    // const readOnly = readOnlyProp || loading || deleting;
-    // const visuallyDisabled = other.disabled || readOnly;
+    const loading = loadingProp || handlingClick;
+    const isDeletable = variant === 'input' && onDelete;
+    const deleting =
+      !loading && isDeletable && (deletingProp || handlingDelete);
+    const readOnly = readOnlyProp || loading || deleting;
+    const disabledOrReadOnly = other.disabled || readOnly;
 
     // const primaryActionRef = useRef<HTMLElement>(null);
     // const { visualState, setRef: setVisualStateRef } = useVisualState(
@@ -108,21 +91,42 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
     // const rootElement =
     //   as ?? (href ? (settings?.linkAs ?? 'a') : onClick ? 'button' : 'div');
 
-    // const interactive = !!href || !!onClick;
-    // const elevated = variant !== 'input' && elevatedProp;
+    const isInteractive = !!href || !!onClick;
+    const elevated = variant !== 'input' && elevatedProp;
     // const hasIcon = !!imageUrl || !!icon;
-    // const isSelectable =
-    //   variant !== false && ['input', 'filter'].includes(variant);
-    // const selected = selectedProp;
+    const isToggle = variant !== false && ['input', 'filter'].includes(variant);
     // const hasLeading =
     //   (variant === 'filter' && (loading || selected)) || hasIcon;
     // const hasTrailing = isDeletable;
     // const hasOverlay = loading && (loadingText ?? !hasLeading);
-    // const avatar =
-    //   variant !== false &&
-    //   ['assist', 'input'].includes(variant) &&
-    //   !!imageUrl &&
-    //   avatarProp;
+    const isAvatar =
+      variant !== false &&
+      ['assist', 'input'].includes(variant) &&
+      !!imageUrl &&
+      avatarProp;
+
+    const { getStyles } = useComponentTheme<IChipThemeFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles,
+      style,
+      theme: chipTheme,
+      themeVariants: chipThemeVariants,
+      variant,
+      modifiers: {
+        interactive: isInteractive,
+        disabled: disabledOrReadOnly,
+        elevated,
+        avatar: isAvatar,
+        toggle: isToggle,
+        selected,
+        // loading,
+        // 'with-leading-icon': hasLeadingIcon,
+        // 'with-trailing-icon': hasTrailingIcon,
+        // 'icon-animation': iconAnimation,
+      },
+    });
 
     // const handleClick: React.MouseEventHandler<HTMLButtonElement> = useCallback(
     //   (event) => {
@@ -226,6 +230,22 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
     //   : elevated
     //     ? 'elevatedContainer'
     //     : 'flatContainer';
+
+    return (
+      <ButtonBase
+        {...getStyles('root')}
+        // onClick={handleClick}
+        classNames={mergeClassNames(classNames, {
+          stateLayer: getStyles('stateLayer').className,
+          outline: getStyles('outline').className,
+        })}
+        readOnly={readOnly}
+        ref={forwardedRef}
+        {...other}
+      >
+        XX
+      </ButtonBase>
+    );
 
     // return (
     //   <Base

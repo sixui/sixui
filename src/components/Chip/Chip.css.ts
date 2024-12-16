@@ -13,10 +13,19 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { PaperBase } from '../PaperBase';
+import { StateLayer } from '../StateLayer';
 import { themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
-type IModifier = IInteraction;
+type IModifier =
+  | IInteraction
+  | 'toggle'
+  | 'disabled'
+  | 'elevated'
+  | 'selected'
+  | 'loading'
+  | 'interactive'
+  | 'avatar';
 
 const DENSITY = px(getDensity({ min: -4, max: 0 }));
 
@@ -53,6 +62,13 @@ const [tokensClassName, tokens] = createTheme({
       normal: 'inherit',
       disabled: 'inherit',
     },
+    elevation: {
+      normal: elevationLevelPreset[0],
+      focused: 'unset',
+      hovered: 'unset',
+      pressed: 'unset',
+      disabled: 'unset',
+    },
   },
   container$elevated: {
     color: {
@@ -69,18 +85,28 @@ const [tokensClassName, tokens] = createTheme({
   },
   container$elevated$selected: {
     color: {
-      normal: 'inherit',
-      disabled: 'inherit',
+      normal: themeTokens.colorScheme.surfaceContainerLow,
+      disabled: themeTokens.colorScheme.onSurface,
+    },
+    elevation: {
+      normal: elevationLevelPreset[1],
+      focused: elevationLevelPreset[1],
+      hovered: elevationLevelPreset[2],
+      pressed: elevationLevelPreset[1],
+      disabled: elevationLevelPreset[0],
     },
   },
   outline: {
-    style: 'unset',
+    style: 'solid',
     width: px(themeTokens.outline.width.xs),
     color: {
       normal: themeTokens.colorScheme.outline,
       disabled: themeTokens.colorScheme.onSurface,
       focused: themeTokens.colorScheme.outline,
       pressed: themeTokens.colorScheme.outline,
+    },
+    opacity: {
+      disabled: themeTokens.state.outlineOpacity.disabled,
     },
   },
   outline$selected: {
@@ -189,9 +215,88 @@ const [tokensClassName, tokens] = createTheme({
 const classNames = createStyles({
   root: {
     vars: createTokensVars(PaperBase.theme.tokens, {
-      //
+      container: tokens.container,
+    }),
+
+    display: 'inline-flex',
+    height: calc.add(tokens.container.height, DENSITY),
+    transitionProperty: 'border-radius',
+    transitionDuration: themeTokens.motion.duration.medium.$4,
+    transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
+
+    selectors: {
+      [getModifierSelector<IModifier>({
+        elevated: false,
+      })]: {
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: tokens.container$flat,
+        }),
+      },
+      [getModifierSelector<IModifier>({
+        elevated: false,
+        toggle: true,
+        selected: true,
+      })]: {
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: tokens.container$flat$selected,
+        }),
+      },
+      [getModifierSelector<IModifier>({
+        elevated: true,
+      })]: {
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: tokens.container$elevated,
+        }),
+      },
+      [getModifierSelector<IModifier>({
+        elevated: true,
+        toggle: true,
+        selected: true,
+      })]: {
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: tokens.container$elevated$selected,
+        }),
+      },
+    },
+  },
+  stateLayer: {
+    vars: createTokensVars(StateLayer.theme.tokens, {
+      color: {
+        hovered: tokens.stateLayer.color.hovered,
+        pressed: fallbackVar(
+          tokens.stateLayer.color.pressed,
+          tokens.stateLayer.color.hovered,
+        ),
+      },
     }),
   },
+  outline: ({ root }) => ({
+    borderStyle: tokens.outline.style,
+    borderWidth: `max(${tokens.outline.width}, 1px)`,
+    borderColor: tokens.outline.color.normal,
+
+    selectors: {
+      [getModifierSelector<IModifier>('focused', root)]: {
+        borderColor: fallbackVar(
+          tokens.outline.color.focused,
+          tokens.outline.color.normal,
+        ),
+      },
+      [getModifierSelector<IModifier>('pressed', root)]: {
+        borderColor: fallbackVar(
+          tokens.outline.color.pressed,
+          tokens.outline.color.normal,
+        ),
+      },
+      [getModifierSelector<IModifier>('disabled', root)]: {
+        borderColor: fallbackVar(
+          tokens.outline.color.disabled,
+          tokens.outline.color.normal,
+        ),
+        opacity: tokens.outline.opacity.disabled,
+      },
+    },
+  }),
 });
 
 export type IChipThemeFactory = IComponentThemeFactory<{

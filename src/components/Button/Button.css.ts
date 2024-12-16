@@ -125,26 +125,19 @@ const classNames = createStyles({
       container: {
         color: {
           normal: tokens.container.color.normal,
-          disabled: fallbackVar(
-            tokens.container.color.disabled,
-            tokens.container.color.normal,
-          ),
+          disabled: tokens.container.color.disabled,
         },
         opacity: {
           disabled: tokens.container.opacity.disabled,
         },
         elevation: {
           normal: tokens.container.elevation.normal,
-          disabled: fallbackVar(
-            tokens.container.elevation.disabled,
-            tokens.container.elevation.normal,
-          ),
+          disabled: tokens.container.elevation.disabled,
         },
         shape: tokens.container.shape,
       },
     }),
 
-    cursor: 'pointer',
     display: 'inline-flex',
     outline: 'none',
     justifyContent: 'center',
