@@ -1,4 +1,4 @@
-import { createTheme, fallbackVar } from '@vanilla-extract/css';
+import { createTheme, fallbackVar, style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IInteraction } from '~/hooks/useInteractions';
@@ -12,6 +12,7 @@ import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { Button } from '../Button';
 import { PaperBase } from '../PaperBase';
 import { StateLayer } from '../StateLayer';
 import { themeTokens } from '../ThemeProvider';
@@ -19,7 +20,6 @@ import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
 type IModifier =
   | IInteraction
-  | 'toggle'
   | 'disabled'
   | 'elevated'
   | 'selected'
@@ -31,50 +31,28 @@ const DENSITY = px(getDensity({ min: -4, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
   container: {
-    leadingSpace: px(space(4)),
-    trailingSpace: px(space(4)),
+    leadingSpace: {
+      normal: px(space(4)),
+      withLeadingIcon: px(space(2)),
+    },
+    trailingSpace: {
+      normal: px(space(4)),
+      withLeadingIcon: px(space(4)),
+    },
+    color: {
+      normal: themeTokens.colorScheme.surfaceContainerLow,
+      disabled: themeTokens.colorScheme.onSurface,
+    },
     height: px(32),
+    minWidth: px(0),
     shape: {
       topLeft: px(themeTokens.shape.corner.sm),
       topRight: px(themeTokens.shape.corner.sm),
       bottomRight: px(themeTokens.shape.corner.sm),
       bottomLeft: px(themeTokens.shape.corner.sm),
     },
-    opacity: {
-      disabled: themeTokens.state.containerOpacity.disabled,
-    },
-  },
-  container$flat: {
-    color: {
-      normal: 'inherit',
-      disabled: 'inherit',
-    },
-    elevation: {
-      normal: elevationLevelPreset[0],
-      focused: 'unset',
-      hovered: 'unset',
-      pressed: 'unset',
-      disabled: 'unset',
-    },
-  },
-  container$flat$selected: {
-    color: {
-      normal: 'inherit',
-      disabled: 'inherit',
-    },
-    elevation: {
-      normal: elevationLevelPreset[0],
-      focused: 'unset',
-      hovered: 'unset',
-      pressed: 'unset',
-      disabled: 'unset',
-    },
   },
   container$elevated: {
-    color: {
-      normal: themeTokens.colorScheme.surfaceContainerLow,
-      disabled: themeTokens.colorScheme.onSurface,
-    },
     elevation: {
       normal: elevationLevelPreset[1],
       focused: elevationLevelPreset[1],
@@ -83,18 +61,8 @@ const [tokensClassName, tokens] = createTheme({
       disabled: elevationLevelPreset[0],
     },
   },
-  container$elevated$selected: {
-    color: {
-      normal: themeTokens.colorScheme.surfaceContainerLow,
-      disabled: themeTokens.colorScheme.onSurface,
-    },
-    elevation: {
-      normal: elevationLevelPreset[1],
-      focused: elevationLevelPreset[1],
-      hovered: elevationLevelPreset[2],
-      pressed: elevationLevelPreset[1],
-      disabled: elevationLevelPreset[0],
-    },
+  container$selected: {
+    //
   },
   outline: {
     style: 'solid',
@@ -109,8 +77,11 @@ const [tokensClassName, tokens] = createTheme({
       disabled: themeTokens.state.outlineOpacity.disabled,
     },
   },
+  outline$elevated: {
+    style: 'unset',
+  },
   outline$selected: {
-    width: px(themeTokens.outline.width.none),
+    style: 'unset',
   },
   stateLayer: {
     color: {
@@ -214,127 +185,44 @@ const [tokensClassName, tokens] = createTheme({
 
 const classNames = createStyles({
   root: {
-    vars: createTokensVars(PaperBase.theme.tokens, {
-      container: {
-        color: {
-          normal: 'blue',
-        },
-      },
-      // container: {
-      //   color: {
-      //     normal: 'red',
-      //     disabled: themeTokens.colorScheme.onSurface,
-      //   },
-      //   opacity: {
-      //     disabled: themeTokens.state.containerOpacity.disabled,
-      //   },
-      //   elevation: {
-      //     normal: elevationLevelPreset[4],
-      //     disabled: elevationLevelPreset[0],
-      //   },
-      //   shape: {
-      //     topLeft: themeTokens.shape.corner.none,
-      //     topRight: themeTokens.shape.corner.none,
-      //     bottomRight: themeTokens.shape.corner.none,
-      //     bottomLeft: themeTokens.shape.corner.none,
-      //   },
-      // },
-      // outline: {
-      //   style: 'unset',
-      //   color: themeTokens.colorScheme.outlineVariant,
-      //   width: themeTokens.outline.width.none,
-      // },
-      // text: {
-      //   opacity: {
-      //     disabled: themeTokens.state.opacity.disabled,
-      //   },
-      // },
+    vars: createTokensVars(Button.theme.tokens, {
+      container: tokens.container,
+      outline: tokens.outline,
     }),
 
-    display: 'inline-flex',
-    height: calc.add(tokens.container.height, DENSITY),
     transitionProperty: 'border-radius',
     transitionDuration: themeTokens.motion.duration.medium.$4,
     transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
 
     selectors: {
       [getModifierSelector<IModifier>({
-        elevated: false,
+        elevated: true,
       })]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
-          // container: tokens.container$flat,
-          container: {
-            color: {
-              normal: 'green',
-            },
-          },
+        vars: createTokensVars(Button.theme.tokens, {
+          container: tokens.container$elevated,
+          outline: tokens.outline$elevated,
         }),
       },
-      //   [getModifierSelector<IModifier>({
-      //     elevated: false,
-      //     toggle: true,
-      //     selected: true,
-      //   })]: {
-      //     vars: createTokensVars(PaperBase.theme.tokens, {
-      //       container: tokens.container$flat$selected,
-      //     }),
-      //   },
-      //   [getModifierSelector<IModifier>({
-      //     elevated: true,
-      //   })]: {
-      //     vars: createTokensVars(PaperBase.theme.tokens, {
-      //       container: tokens.container$elevated,
-      //     }),
-      //   },
-      //   [getModifierSelector<IModifier>({
-      //     elevated: true,
-      //     toggle: true,
-      //     selected: true,
-      //   })]: {
-      //     vars: createTokensVars(PaperBase.theme.tokens, {
-      //       container: tokens.container$elevated$selected,
-      //     }),
-      //   },
+      [getModifierSelector<IModifier>({
+        elevated: false,
+        selected: true,
+      })]: {
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: tokens.container$selected,
+          outline: tokens.outline$selected,
+        }),
+      },
+      // [getModifierSelector<IModifier>({
+      //   elevated: true,
+      //   toggle: true,
+      //   selected: true,
+      // })]: {
+      //   vars: createTokensVars(PaperBase.theme.tokens, {
+      //     container: tokens.container$elevated$selected,
+      //   }),
+      // },
     },
   },
-  stateLayer: {
-    vars: createTokensVars(StateLayer.theme.tokens, {
-      color: {
-        hovered: tokens.stateLayer.color.hovered,
-        pressed: fallbackVar(
-          tokens.stateLayer.color.pressed,
-          tokens.stateLayer.color.hovered,
-        ),
-      },
-    }),
-  },
-  outline: ({ root }) => ({
-    borderStyle: tokens.outline.style,
-    borderWidth: `max(${tokens.outline.width}, 1px)`,
-    borderColor: tokens.outline.color.normal,
-
-    selectors: {
-      [getModifierSelector<IModifier>('focused', root)]: {
-        borderColor: fallbackVar(
-          tokens.outline.color.focused,
-          tokens.outline.color.normal,
-        ),
-      },
-      [getModifierSelector<IModifier>('pressed', root)]: {
-        borderColor: fallbackVar(
-          tokens.outline.color.pressed,
-          tokens.outline.color.normal,
-        ),
-      },
-      [getModifierSelector<IModifier>('disabled', root)]: {
-        borderColor: fallbackVar(
-          tokens.outline.color.disabled,
-          tokens.outline.color.normal,
-        ),
-        opacity: tokens.outline.opacity.disabled,
-      },
-    },
-  }),
 });
 
 export type IChipThemeFactory = IComponentThemeFactory<{
@@ -351,89 +239,89 @@ export const chipTheme = componentThemeFactory<IChipThemeFactory>({
 });
 
 export const chipThemeVariants = {
-  assist: createStyles({
-    root: {
-      vars: createTokensVars(tokens, {
-        container$flat: {
-          color: {
-            normal: themeTokens.colorScheme.surfaceContainerLow,
-          },
-        },
-        stateLayer: {
-          color: {
-            hovered: themeTokens.colorScheme.onSurface,
-            pressed: themeTokens.colorScheme.onSurface,
-          },
-        },
-      }),
-    },
-  }),
-  filter: createStyles({
-    root: {
-      vars: createTokensVars(tokens, {
-        container$flat: {
-          color: {
-            normal: themeTokens.colorScheme.surfaceContainerLow,
-          },
-        },
-        container$flat$selected: {
-          color: {
-            normal: themeTokens.colorScheme.secondaryContainer,
-            disabled: themeTokens.colorScheme.onSurface,
-          },
-        },
-        container$elevated$selected: {
-          color: {
-            normal: themeTokens.colorScheme.secondaryContainer,
-          },
-        },
-        outline: {
-          width: px(themeTokens.outline.width.none),
-        },
-        label$selected: {
-          color: {
-            normal: themeTokens.colorScheme.onSecondaryContainer,
-          },
-        },
-        stateLayer: {
-          color: {
-            hovered: themeTokens.colorScheme.onSurfaceVariant,
-            pressed: themeTokens.colorScheme.onSecondaryContainer,
-          },
-        },
-        stateLayer$selected: {
-          color: {
-            hovered: themeTokens.colorScheme.onSecondaryContainer,
-            pressed: themeTokens.colorScheme.onSurfaceVariant,
-          },
-        },
-        icon$selected: {
-          color: {
-            normal: themeTokens.colorScheme.onSecondaryContainer,
-          },
-        },
-        trailingIcon: {
-          color: {
-            normal: themeTokens.colorScheme.onSurfaceVariant,
-            disabled: themeTokens.colorScheme.onSurface,
-          },
-        },
-        trailingIcon$selected: {
-          color: {
-            normal: themeTokens.colorScheme.onSecondaryContainer,
-          },
-        },
-      }),
-    },
-    iconContainer$leading: {
-      transitionProperty: 'opacity, width',
-      transitionDuration: themeTokens.motion.duration.medium.$4,
-      transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
-    },
-    iconContainer$collapsed: {
-      transitionProperty: 'opacity, width',
-      transitionDuration: themeTokens.motion.duration.short.$2,
-      transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
-    },
-  }),
+  // assist: createStyles({
+  //   root: {
+  //     vars: createTokensVars(tokens, {
+  //       container$flat: {
+  //         color: {
+  //           normal: themeTokens.colorScheme.surfaceContainerLow,
+  //         },
+  //       },
+  //       stateLayer: {
+  //         color: {
+  //           hovered: themeTokens.colorScheme.onSurface,
+  //           pressed: themeTokens.colorScheme.onSurface,
+  //         },
+  //       },
+  //     }),
+  //   },
+  // }),
+  // filter: createStyles({
+  //   root: {
+  //     vars: createTokensVars(tokens, {
+  //       container$flat: {
+  //         color: {
+  //           normal: themeTokens.colorScheme.surfaceContainerLow,
+  //         },
+  //       },
+  //       container$flat$selected: {
+  //         color: {
+  //           normal: themeTokens.colorScheme.secondaryContainer,
+  //           disabled: themeTokens.colorScheme.onSurface,
+  //         },
+  //       },
+  //       container$elevated$selected: {
+  //         color: {
+  //           normal: themeTokens.colorScheme.secondaryContainer,
+  //         },
+  //       },
+  //       outline: {
+  //         width: px(themeTokens.outline.width.none),
+  //       },
+  //       label$selected: {
+  //         color: {
+  //           normal: themeTokens.colorScheme.onSecondaryContainer,
+  //         },
+  //       },
+  //       stateLayer: {
+  //         color: {
+  //           hovered: themeTokens.colorScheme.onSurfaceVariant,
+  //           pressed: themeTokens.colorScheme.onSecondaryContainer,
+  //         },
+  //       },
+  //       stateLayer$selected: {
+  //         color: {
+  //           hovered: themeTokens.colorScheme.onSecondaryContainer,
+  //           pressed: themeTokens.colorScheme.onSurfaceVariant,
+  //         },
+  //       },
+  //       icon$selected: {
+  //         color: {
+  //           normal: themeTokens.colorScheme.onSecondaryContainer,
+  //         },
+  //       },
+  //       trailingIcon: {
+  //         color: {
+  //           normal: themeTokens.colorScheme.onSurfaceVariant,
+  //           disabled: themeTokens.colorScheme.onSurface,
+  //         },
+  //       },
+  //       trailingIcon$selected: {
+  //         color: {
+  //           normal: themeTokens.colorScheme.onSecondaryContainer,
+  //         },
+  //       },
+  //     }),
+  //   },
+  //   iconContainer$leading: {
+  //     transitionProperty: 'opacity, width',
+  //     transitionDuration: themeTokens.motion.duration.medium.$4,
+  //     transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
+  //   },
+  //   iconContainer$collapsed: {
+  //     transitionProperty: 'opacity, width',
+  //     transitionDuration: themeTokens.motion.duration.short.$2,
+  //     transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
+  //   },
+  // }),
 };

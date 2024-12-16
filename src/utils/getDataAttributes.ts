@@ -5,7 +5,7 @@ export type IModifiers<TModifier extends string = string> = Record<
 
 export const getDataAttributes = (
   modifiers: IModifiers,
-): Record<string, string | number | boolean | undefined> =>
+): Record<string, string> =>
   Object.entries(modifiers).reduce((acc, [key, value]) => {
     if (
       value === undefined ||

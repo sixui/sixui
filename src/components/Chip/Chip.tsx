@@ -12,6 +12,7 @@ import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Avatar } from '../Avatar';
 import { Base } from '../Base';
+import { Button } from '../Button';
 import { ButtonBase } from '../ButtonBase';
 import { Elevation } from '../Elevation';
 import { FocusRing } from '../FocusRing';
@@ -46,7 +47,6 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
       elevated: elevatedProp,
       loading: loadingProp,
       deleting: deletingProp,
-      children,
       onClick,
       onDelete,
       icon,
@@ -94,7 +94,7 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
     const isInteractive = !!href || !!onClick;
     const elevated = variant !== 'input' && elevatedProp;
     // const hasIcon = !!imageUrl || !!icon;
-    const isToggle = variant !== false && ['input', 'filter'].includes(variant);
+    // const isToggle = variant !== false && ['input', 'filter'].includes(variant);
     // const hasLeading =
     //   (variant === 'filter' && (loading || selected)) || hasIcon;
     // const hasTrailing = isDeletable;
@@ -119,7 +119,6 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
         disabled: disabledOrReadOnly,
         elevated,
         avatar: isAvatar,
-        toggle: isToggle,
         selected,
         // loading,
         // 'with-leading-icon': hasLeadingIcon,
@@ -128,19 +127,16 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
       },
     });
 
-    // const handleClick: React.MouseEventHandler<HTMLButtonElement> = useCallback(
-    //   (event) => {
-    //     if (handlingClick) {
-    //       return;
-    //     }
+    const handleClick: React.MouseEventHandler<Element> = useCallback(
+      (event) => {
+        if (handlingClick || !onClick) {
+          return;
+        }
 
-    //     void executeLazyPromise(
-    //       () => onClick?.(event) as void,
-    //       setHandlingClick,
-    //     );
-    //   },
-    //   [handlingClick, onClick],
-    // );
+        void executeLazyPromise(() => onClick(event) as void, setHandlingClick);
+      },
+      [handlingClick, onClick],
+    );
 
     // const handleDelete: React.MouseEventHandler<HTMLButtonElement> | undefined =
     //   onDelete
@@ -232,19 +228,15 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
     //     : 'flatContainer';
 
     return (
-      <ButtonBase
+      <Button
         {...getStyles('root')}
-        // onClick={handleClick}
-        classNames={mergeClassNames(classNames, {
-          stateLayer: getStyles('stateLayer').className,
-          outline: getStyles('outline').className,
-        })}
-        readOnly={readOnly}
+        onClick={handleClick}
+        variant={false}
+        classNames={classNames}
+        // icon={selected ? (selectedIcon ?? icon) : icon}
         ref={forwardedRef}
         {...other}
-      >
-        XX
-      </ButtonBase>
+      />
     );
 
     // return (
@@ -482,3 +474,6 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
     return 'ok';
   },
 );
+
+Chip.theme = chipTheme;
+Chip.displayName = `@sixui/${COMPONENT_NAME}`;

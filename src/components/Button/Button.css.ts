@@ -28,18 +28,18 @@ type IModifier =
 const DENSITY = px(getDensity({ min: -4, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
-  gap: px(space(2)),
-  leadingSpace: {
-    normal: px(space(6)),
-    withLeadingIcon: px(space(4)),
-    withTrailingIcon: px(space(6)),
-  },
-  trailingSpace: {
-    normal: px(space(6)),
-    withLeadingIcon: px(space(6)),
-    withTrailingIcon: px(space(4)),
-  },
   container: {
+    gap: px(space(2)),
+    leadingSpace: {
+      normal: px(space(6)),
+      withLeadingIcon: px(space(4)),
+      withTrailingIcon: px(space(6)),
+    },
+    trailingSpace: {
+      normal: px(space(6)),
+      withLeadingIcon: px(space(6)),
+      withTrailingIcon: px(space(4)),
+    },
     color: {
       normal: 'unset',
       disabled: 'unset',
@@ -150,9 +150,9 @@ const classNames = createStyles({
     // other if one button has an icon and the other does not.
     verticalAlign: 'top',
 
-    gap: tokens.gap,
-    paddingInlineStart: tokens.leadingSpace.normal,
-    paddingInlineEnd: tokens.trailingSpace.normal,
+    gap: tokens.container.gap,
+    paddingInlineStart: tokens.container.leadingSpace.normal,
+    paddingInlineEnd: tokens.container.trailingSpace.normal,
     // min-height instead of height so that label can wrap and expand height
     minHeight: calc.add(tokens.container.height, DENSITY),
     // Add extra space between label and the edge for if the label text wraps.
@@ -168,8 +168,8 @@ const classNames = createStyles({
     ),
     minWidth: calc.subtract(
       tokens.container.minWidth,
-      tokens.leadingSpace.normal,
-      tokens.trailingSpace.normal,
+      tokens.container.leadingSpace.normal,
+      tokens.container.trailingSpace.normal,
     ),
 
     selectors: {
@@ -225,12 +225,12 @@ const classNames = createStyles({
         }),
       },
       [getModifierSelector<IModifier>('with-leading-icon')]: {
-        paddingInlineStart: tokens.leadingSpace.withLeadingIcon,
-        paddingInlineEnd: tokens.trailingSpace.withLeadingIcon,
+        paddingInlineStart: tokens.container.leadingSpace.withLeadingIcon,
+        paddingInlineEnd: tokens.container.trailingSpace.withLeadingIcon,
       },
       [getModifierSelector<IModifier>('with-trailing-icon')]: {
-        paddingInlineStart: tokens.leadingSpace.withTrailingIcon,
-        paddingInlineEnd: tokens.trailingSpace.withTrailingIcon,
+        paddingInlineStart: tokens.container.leadingSpace.withTrailingIcon,
+        paddingInlineEnd: tokens.container.trailingSpace.withTrailingIcon,
       },
     },
   },
@@ -339,8 +339,8 @@ const classNames = createStyles({
     whiteSpace: 'nowrap',
     textAlign: 'center',
     justifyContent: 'center',
-    paddingInlineStart: tokens.leadingSpace.normal,
-    paddingInlineEnd: tokens.trailingSpace.normal,
+    paddingInlineStart: tokens.container.leadingSpace.normal,
+    paddingInlineEnd: tokens.container.trailingSpace.normal,
   },
   invisible: {
     visibility: 'hidden',
@@ -508,15 +508,17 @@ export const buttonThemeVariants = {
   text: createStyles({
     root: {
       vars: createTokensVars(tokens, {
-        leadingSpace: {
-          normal: px(space(3)),
-          withLeadingIcon: px(space(3)),
-          withTrailingIcon: px(space(4)),
-        },
-        trailingSpace: {
-          normal: px(space(3)),
-          withLeadingIcon: px(space(4)),
-          withTrailingIcon: px(space(3)),
+        container: {
+          leadingSpace: {
+            normal: px(space(3)),
+            withLeadingIcon: px(space(3)),
+            withTrailingIcon: px(space(4)),
+          },
+          trailingSpace: {
+            normal: px(space(3)),
+            withLeadingIcon: px(space(4)),
+            withTrailingIcon: px(space(3)),
+          },
         },
         label: {
           color: {
@@ -563,17 +565,17 @@ export const buttonThemeVariants = {
   snackbar: createStyles({
     root: {
       vars: createTokensVars(tokens, {
-        leadingSpace: {
-          normal: px(space(4)),
-          withLeadingIcon: px(space(3)),
-          withTrailingIcon: px(space(4)),
-        },
-        trailingSpace: {
-          normal: px(space(4)),
-          withLeadingIcon: px(space(4)),
-          withTrailingIcon: px(space(3)),
-        },
         container: {
+          leadingSpace: {
+            normal: px(space(4)),
+            withLeadingIcon: px(space(3)),
+            withTrailingIcon: px(space(4)),
+          },
+          trailingSpace: {
+            normal: px(space(4)),
+            withLeadingIcon: px(space(4)),
+            withTrailingIcon: px(space(3)),
+          },
           height: px(32),
           shape: {
             topLeft: px(themeTokens.shape.corner.xs),

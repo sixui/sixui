@@ -1,5 +1,4 @@
 import type { IModifiers } from '~/utils/getDataAttributes';
-import { getDataAttributes } from '~/utils/getDataAttributes';
 
 type IOperator = '=' | '^=' | '$=' | '~=' | '*=' | '|=' | '?=' | '!=';
 
@@ -19,8 +18,21 @@ const compileModifier = <TModifier extends string = string>(
       : `[data-${modifier}]`
     : Array.isArray(modifier)
       ? modifier.map((modifier) => compileModifier(modifier)).join('')
-      : Object.entries(getDataAttributes(modifier)).reduce(
-          (acc, [key, value]) => `${acc}[${key}="${value}"]`,
+      : Object.entries(
+          Object.entries(modifier).reduce(
+            (acc, [key, value]) => ({
+              ...acc,
+              [`data-${key}`]: value,
+            }),
+            {},
+          ),
+        ).reduce(
+          (acc, [key, value]) =>
+            typeof value === 'string' ||
+            typeof value === 'number' ||
+            value === true
+              ? `${acc}[${key}="${value}"]`
+              : `${acc}:not([${key}])`,
           '',
         );
 export const getModifierSelector = <TModifier extends string = string>(
