@@ -9,15 +9,15 @@ import { Badge } from './Badge';
 
 // https://m3.material.io/components/badges/overview
 
+type IBadgeDemoProps = IBadgeProps & Pick<IAnchoredProps, 'overlap'>;
+
 const meta = {
   component: Badge,
 } satisfies Meta<typeof Badge>;
 
-type IStory = StoryObj<IBadgeProps>;
+type IStory = StoryObj<IBadgeDemoProps>;
 
 const defaultArgs = {} satisfies Partial<IBadgeProps>;
-
-type IBadgeDemoProps = IBadgeProps & Pick<IAnchoredProps, 'overlap'>;
 
 const BadgeDemo: React.FC<IBadgeDemoProps> = ({ overlap, ...props }) =>
   overlap ? (
@@ -38,11 +38,11 @@ const cols: Array<IComponentPresentation<IBadgeDemoProps>> = [
   { props: { overlap: 'circular' } },
 ];
 
-const BadgeShowcase = componentShowcaseFactory(BadgeDemo);
+const BadgeDemoShowcase = componentShowcaseFactory(BadgeDemo);
 
 export const Variants: IStory = {
   render: (props) => (
-    <BadgeShowcase
+    <BadgeDemoShowcase
       props={props}
       cols={[
         { props: { overlap: 'rectangular', dot: true } },
@@ -69,7 +69,7 @@ export const Variants: IStory = {
 
 export const Scales: IStory = {
   render: (props) => (
-    <BadgeShowcase
+    <BadgeDemoShowcase
       props={props}
       cols={[
         { legend: 'Extra small', props: { scale: 'xs' } },
@@ -87,7 +87,7 @@ export const Scales: IStory = {
 };
 
 export const Dot: IStory = {
-  render: (props) => <BadgeShowcase props={props} cols={cols} />,
+  render: (props) => <BadgeDemoShowcase props={props} cols={cols} />,
   args: {
     ...defaultArgs,
     dot: true,
@@ -95,7 +95,7 @@ export const Dot: IStory = {
 };
 
 export const SingleDigit: IStory = {
-  render: (props) => <BadgeShowcase props={props} cols={cols} />,
+  render: (props) => <BadgeDemoShowcase props={props} cols={cols} />,
   args: {
     ...defaultArgs,
     value: 3,
@@ -103,7 +103,7 @@ export const SingleDigit: IStory = {
 };
 
 export const MultipleDigits: IStory = {
-  render: (props) => <BadgeShowcase props={props} cols={cols} />,
+  render: (props) => <BadgeDemoShowcase props={props} cols={cols} />,
   args: {
     ...defaultArgs,
     value: 32,
@@ -111,7 +111,7 @@ export const MultipleDigits: IStory = {
 };
 
 export const MultipleDigitsThresholded: IStory = {
-  render: (props) => <BadgeShowcase props={props} cols={cols} />,
+  render: (props) => <BadgeDemoShowcase props={props} cols={cols} />,
   args: {
     ...defaultArgs,
     value: 8000,
@@ -120,7 +120,7 @@ export const MultipleDigitsThresholded: IStory = {
 };
 
 export const ShowZeroValue: IStory = {
-  render: (props) => <BadgeShowcase props={props} cols={cols} />,
+  render: (props) => <BadgeDemoShowcase props={props} cols={cols} />,
   args: {
     ...defaultArgs,
     value: 0,
@@ -129,7 +129,7 @@ export const ShowZeroValue: IStory = {
 };
 
 export const HideZeroValue: IStory = {
-  render: (props) => <BadgeShowcase props={props} cols={cols} />,
+  render: (props) => <BadgeDemoShowcase props={props} cols={cols} />,
   args: {
     ...defaultArgs,
     value: 0,

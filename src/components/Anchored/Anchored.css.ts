@@ -8,7 +8,7 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { themeTokens } from '../ThemeProvider';
 
-type IModifier = 'position' | 'invisible' | 'overlap';
+type IModifier = 'position' | 'invisible';
 
 const [tokensClassName, tokens] = createTheme({
   offset: {
@@ -39,11 +39,21 @@ const classNames = createStyles({
     display: 'inline-flex',
     verticalAlign: 'middle',
   },
+  content$rectangularOverlap: {
+    vars: {
+      [vars.offset.x]: tokens.offset.x,
+      [vars.offset.y]: tokens.offset.y,
+    },
+  },
+  content$circularOverlap: {
+    vars: {
+      [vars.offset.x]: calc.add('14%', tokens.offset.x),
+      [vars.offset.y]: calc.add('14%', tokens.offset.y),
+    },
+  },
   content: ({ root }) => ({
     vars: {
       [vars.scale]: '1',
-      [vars.offset.x]: tokens.offset.x,
-      [vars.offset.y]: tokens.offset.y,
       [vars.translate.x]: px(0),
       [vars.translate.y]: px(0),
     },
@@ -60,20 +70,6 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>('invisible', root)]: {
         vars: {
           [vars.scale]: '0',
-        },
-      },
-      [getModifierSelector<IModifier>(
-        [
-          { overlap: 'circular', position: 'top-start' },
-          { overlap: 'circular', position: 'top-end' },
-          { overlap: 'circular', position: 'bottom-start' },
-          { overlap: 'circular', position: 'bottom-end' },
-        ],
-        root,
-      )]: {
-        vars: {
-          [vars.offset.x]: calc.add('14%', tokens.offset.x),
-          [vars.offset.y]: calc.add('14%', tokens.offset.y),
         },
       },
       [getModifierSelector<IModifier>('position^=top-', root)]: {

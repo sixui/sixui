@@ -215,7 +215,40 @@ const [tokensClassName, tokens] = createTheme({
 const classNames = createStyles({
   root: {
     vars: createTokensVars(PaperBase.theme.tokens, {
-      container: tokens.container,
+      container: {
+        color: {
+          normal: 'blue',
+        },
+      },
+      // container: {
+      //   color: {
+      //     normal: 'red',
+      //     disabled: themeTokens.colorScheme.onSurface,
+      //   },
+      //   opacity: {
+      //     disabled: themeTokens.state.containerOpacity.disabled,
+      //   },
+      //   elevation: {
+      //     normal: elevationLevelPreset[4],
+      //     disabled: elevationLevelPreset[0],
+      //   },
+      //   shape: {
+      //     topLeft: themeTokens.shape.corner.none,
+      //     topRight: themeTokens.shape.corner.none,
+      //     bottomRight: themeTokens.shape.corner.none,
+      //     bottomLeft: themeTokens.shape.corner.none,
+      //   },
+      // },
+      // outline: {
+      //   style: 'unset',
+      //   color: themeTokens.colorScheme.outlineVariant,
+      //   width: themeTokens.outline.width.none,
+      // },
+      // text: {
+      //   opacity: {
+      //     disabled: themeTokens.state.opacity.disabled,
+      //   },
+      // },
     }),
 
     display: 'inline-flex',
@@ -229,34 +262,39 @@ const classNames = createStyles({
         elevated: false,
       })]: {
         vars: createTokensVars(PaperBase.theme.tokens, {
-          container: tokens.container$flat,
+          // container: tokens.container$flat,
+          container: {
+            color: {
+              normal: 'green',
+            },
+          },
         }),
       },
-      [getModifierSelector<IModifier>({
-        elevated: false,
-        toggle: true,
-        selected: true,
-      })]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
-          container: tokens.container$flat$selected,
-        }),
-      },
-      [getModifierSelector<IModifier>({
-        elevated: true,
-      })]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
-          container: tokens.container$elevated,
-        }),
-      },
-      [getModifierSelector<IModifier>({
-        elevated: true,
-        toggle: true,
-        selected: true,
-      })]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
-          container: tokens.container$elevated$selected,
-        }),
-      },
+      //   [getModifierSelector<IModifier>({
+      //     elevated: false,
+      //     toggle: true,
+      //     selected: true,
+      //   })]: {
+      //     vars: createTokensVars(PaperBase.theme.tokens, {
+      //       container: tokens.container$flat$selected,
+      //     }),
+      //   },
+      //   [getModifierSelector<IModifier>({
+      //     elevated: true,
+      //   })]: {
+      //     vars: createTokensVars(PaperBase.theme.tokens, {
+      //       container: tokens.container$elevated,
+      //     }),
+      //   },
+      //   [getModifierSelector<IModifier>({
+      //     elevated: true,
+      //     toggle: true,
+      //     selected: true,
+      //   })]: {
+      //     vars: createTokensVars(PaperBase.theme.tokens, {
+      //       container: tokens.container$elevated$selected,
+      //     }),
+      //   },
     },
   },
   stateLayer: {

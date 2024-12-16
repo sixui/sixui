@@ -1,5 +1,3 @@
-import type { JSX } from 'react';
-
 import type { IAny } from '~/helpers/types';
 
 // https://www.benmvp.com/blog/forwarding-refs-polymorphic-react-component-typescript/
@@ -9,9 +7,9 @@ import type { IAny } from '~/helpers/types';
  */
 export type IPropsOf<
   TComponent extends
-    | keyof JSX.IntrinsicElements
+    | keyof React.JSX.IntrinsicElements
     | React.JSXElementConstructor<IAny>,
-> = JSX.LibraryManagedAttributes<
+> = React.JSX.LibraryManagedAttributes<
   TComponent,
   React.ComponentPropsWithoutRef<TComponent>
 >;
@@ -87,7 +85,6 @@ export const createPolymorphicComponent = <
 
   type IPolymorphicComponent = <TRoot extends React.ElementType = TDefaultRoot>(
     props: IComponentProps<TRoot>,
-    forwardedRef: IPolymorphicRef<TRoot>,
   ) => React.ReactElement;
 
   type IFunctionComponentProps = Omit<

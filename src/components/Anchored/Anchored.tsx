@@ -42,7 +42,6 @@ export const Anchored = componentFactory<IAnchoredFactory>(
       modifiers: {
         position,
         invisible,
-        overlap,
       },
     });
 
@@ -58,7 +57,16 @@ export const Anchored = componentFactory<IAnchoredFactory>(
         {...other}
       >
         {children}
-        <div {...getStyles('content')}>{content}</div>
+        <div
+          {...getStyles([
+            'content',
+            overlap === 'rectangular'
+              ? 'content$rectangularOverlap'
+              : 'content$circularOverlap',
+          ])}
+        >
+          {content}
+        </div>
       </Box>
     );
   },

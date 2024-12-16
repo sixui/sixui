@@ -1,4 +1,3 @@
-import type { JSX } from 'react';
 import { MouseEventHandler, useState } from 'react';
 
 import type { IButtonThemeFactory } from './Button.css';
@@ -85,7 +84,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       );
     };
 
-    const renderIcon = (): JSX.Element =>
+    const renderIcon = (): React.JSX.Element =>
       loading ? (
         <IndeterminateCircularProgressIndicator
           {...getStyles(['icon', hasOverlay && 'invisible'])}
