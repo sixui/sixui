@@ -83,6 +83,19 @@ const [tokensClassName, tokens] = createTheme({
   outline$selected: {
     style: 'unset',
   },
+  icon: {
+    color: {
+      normal: themeTokens.colorScheme.onSurfaceVariant,
+    },
+  },
+  icon$interactive: {
+    color: {
+      normal: themeTokens.colorScheme.primary,
+    },
+  },
+  icon$selected: {
+    //
+  },
   stateLayer: {
     color: {
       hovered: 'inherit',
@@ -115,32 +128,6 @@ const [tokensClassName, tokens] = createTheme({
   label$selected: {
     color: {
       normal: 'inherit',
-      focused: 'inherit',
-      hovered: 'inherit',
-      pressed: 'inherit',
-      disabled: 'inherit',
-    },
-  },
-  icon: {
-    leadingSpace: px(space(2)),
-    trailingSpace: px(space(2)),
-    size: px(18),
-    color: {
-      normal: themeTokens.colorScheme.onSurfaceVariant,
-      interactive: themeTokens.colorScheme.primary,
-      focused: themeTokens.colorScheme.primary,
-      hovered: themeTokens.colorScheme.primary,
-      pressed: themeTokens.colorScheme.primary,
-      disabled: themeTokens.colorScheme.primary,
-    },
-    opacity: {
-      disabled: themeTokens.state.opacity.disabled,
-    },
-  },
-  icon$selected: {
-    color: {
-      normal: 'inherit',
-      interactive: 'inherit',
       focused: 'inherit',
       hovered: 'inherit',
       pressed: 'inherit',
@@ -188,6 +175,7 @@ const classNames = createStyles({
     vars: createTokensVars(Button.theme.tokens, {
       container: tokens.container,
       outline: tokens.outline,
+      icon: tokens.icon,
     }),
 
     transitionProperty: 'border-radius',
@@ -195,6 +183,13 @@ const classNames = createStyles({
     transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
 
     selectors: {
+      [getModifierSelector<IModifier>({
+        interactive: true,
+      })]: {
+        vars: createTokensVars(Button.theme.tokens, {
+          icon: tokens.icon$interactive,
+        }),
+      },
       [getModifierSelector<IModifier>({
         elevated: true,
       })]: {
@@ -212,15 +207,6 @@ const classNames = createStyles({
           outline: tokens.outline$selected,
         }),
       },
-      // [getModifierSelector<IModifier>({
-      //   elevated: true,
-      //   toggle: true,
-      //   selected: true,
-      // })]: {
-      //   vars: createTokensVars(PaperBase.theme.tokens, {
-      //     container: tokens.container$elevated$selected,
-      //   }),
-      // },
     },
   },
 });

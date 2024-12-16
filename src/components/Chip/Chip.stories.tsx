@@ -22,7 +22,6 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onClick: (...args) => sbHandleEvent('click', args, 1000),
   children: 'Chip',
 } satisfies Partial<IChipProps>;
 
@@ -100,7 +99,10 @@ export const Variants: IStory = {
       ]}
     />
   ),
-  args: defaultArgs,
+  args: {
+    ...defaultArgs,
+    onClick: (...args) => sbHandleEvent('click', args, 1000),
+  },
 };
 
 export const Assist: IStory = {
@@ -132,6 +134,39 @@ export const Assist: IStory = {
   args: {
     ...defaultArgs,
     variant: 'assist',
+  },
+};
+
+export const AssistInteractive: IStory = {
+  render: (props) => (
+    <ChipShowcase
+      props={props}
+      cols={states}
+      rows={[
+        { legend: 'Basic' },
+        { legend: 'Elevated', props: { elevated: true } },
+      ]}
+      groups={[
+        {},
+        {
+          legend: 'With Icon',
+          props: { icon: <FontAwesomeIcon icon={faCalendarDays} /> },
+        },
+        { legend: 'With Image', props: { imageUrl: IMAGE_URL } },
+        {
+          legend: 'With Avatar',
+          props: {
+            imageUrl: IMAGE_URL,
+            avatar: true,
+          },
+        },
+      ]}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'assist',
+    onClick: (...args) => sbHandleEvent('click', args, 1000),
   },
 };
 

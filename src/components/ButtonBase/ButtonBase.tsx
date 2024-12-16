@@ -113,7 +113,7 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
           />
         )}
         <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
-        {!disabled && focusRing !== false && (
+        {isInteractive && !disabled && focusRing !== false && (
           <FocusRing
             {...getStyles('focusRing')}
             interactions={stateLayer.interactionsContext.state}

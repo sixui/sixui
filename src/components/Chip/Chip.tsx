@@ -47,9 +47,7 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
       elevated: elevatedProp,
       loading: loadingProp,
       deleting: deletingProp,
-      onClick,
       onDelete,
-      icon,
       imageUrl,
       loadingText,
       href,
@@ -91,7 +89,7 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
     // const rootElement =
     //   as ?? (href ? (settings?.linkAs ?? 'a') : onClick ? 'button' : 'div');
 
-    const isInteractive = !!href || !!onClick;
+    // const isInteractive = !!href || !!onClick;
     const elevated = variant !== 'input' && elevatedProp;
     // const hasIcon = !!imageUrl || !!icon;
     // const isToggle = variant !== false && ['input', 'filter'].includes(variant);
@@ -115,7 +113,7 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
       themeVariants: chipThemeVariants,
       variant,
       modifiers: {
-        interactive: isInteractive,
+        // interactive: isInteractive,
         disabled: disabledOrReadOnly,
         elevated,
         avatar: isAvatar,
@@ -127,16 +125,16 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
       },
     });
 
-    const handleClick: React.MouseEventHandler<Element> = useCallback(
-      (event) => {
-        if (handlingClick || !onClick) {
-          return;
-        }
+    // const handleClick: React.MouseEventHandler<Element> = useCallback(
+    //   (event) => {
+    //     if (handlingClick || !onClick) {
+    //       return;
+    //     }
 
-        void executeLazyPromise(() => onClick(event) as void, setHandlingClick);
-      },
-      [handlingClick, onClick],
-    );
+    //     void executeLazyPromise(() => onClick(event) as void, setHandlingClick);
+    //   },
+    //   [handlingClick, onClick],
+    // );
 
     // const handleDelete: React.MouseEventHandler<HTMLButtonElement> | undefined =
     //   onDelete
@@ -230,7 +228,6 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
     return (
       <Button
         {...getStyles('root')}
-        onClick={handleClick}
         variant={false}
         classNames={classNames}
         // icon={selected ? (selectedIcon ?? icon) : icon}
