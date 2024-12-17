@@ -1,4 +1,4 @@
-import { createTheme } from '@vanilla-extract/css';
+import { createTheme, fallbackVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IInteraction } from '~/hooks/useInteractions';
@@ -144,31 +144,6 @@ const [tokensClassName, tokens] = createTheme({
       disabled: 'inherit',
     },
   },
-  trailingIcon: {
-    leadingSpace: px(space(2)),
-    trailingSpace: px(space(2)),
-    size: px(18),
-    color: {
-      normal: 'inherit',
-      focused: 'inherit',
-      hovered: 'inherit',
-      pressed: 'inherit',
-      disabled: 'inherit',
-    },
-    opacity: {
-      disabled: themeTokens.state.opacity.disabled,
-    },
-  },
-  trailingIcon$selected: {
-    color: {
-      normal: 'inherit',
-      interactive: 'inherit',
-      focused: 'inherit',
-      hovered: 'inherit',
-      pressed: 'inherit',
-      disabled: 'inherit',
-    },
-  },
   avatar: {
     size: px(24),
     shape: {
@@ -218,7 +193,30 @@ const classNames = createStyles({
           container: tokens.container$selected,
           outline: tokens.outline$selected,
           icon: tokens.icon$selected,
-          label: tokens.label$selected,
+          label: {
+            color: {
+              normal: fallbackVar(
+                tokens.label$selected.color.normal,
+                tokens.label.color.normal,
+              ),
+              focused: fallbackVar(
+                tokens.label$selected.color.focused,
+                tokens.label.color.focused,
+              ),
+              hovered: fallbackVar(
+                tokens.label$selected.color.hovered,
+                tokens.label.color.hovered,
+              ),
+              pressed: fallbackVar(
+                tokens.label$selected.color.pressed,
+                tokens.label.color.pressed,
+              ),
+              disabled: fallbackVar(
+                tokens.label$selected.color.disabled,
+                tokens.label.color.disabled,
+              ),
+            },
+          },
         }),
       },
       [getModifierSelector<IModifier>({
