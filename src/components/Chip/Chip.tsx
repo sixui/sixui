@@ -244,19 +244,19 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
         {...getStyles('root')}
         variant={false}
         classNames={classNames}
-        icon={icon}
-        hasLeading={hasLeading}
+        leadingIcon={icon}
         onClick={onClick ? handleClick : undefined}
         loading={loading}
         ref={forwardedRef}
-        end={
-          <div style={{ zIndex: 1 }}>
-            <IconButton
-              icon={<SvgIcon icon={iconXMark} />}
-              onClick={() => {}}
-            />
-          </div>
-        }
+        hasLeading={hasLeading}
+        // end={
+        //   <div style={{ zIndex: 1, marginLeft: -2, marginRight: -18 }}>
+        //     <IconButton
+        //       icon={<SvgIcon icon={iconXMark} />}
+        //       onClick={() => {}}
+        //     />
+        //   </div>
+        // }
         {...other}
       />
     );

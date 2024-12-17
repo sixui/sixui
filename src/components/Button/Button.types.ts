@@ -15,13 +15,14 @@ export type IButtonVariant =
   | 'snackbar';
 
 export interface IButtonOwnProps extends IButtonBaseOwnProps {
-  icon?: React.ReactNode;
-  trailingIcon?: boolean;
   loading?: boolean;
   loadingAnimation?: 'progressIndicator' | 'halfSpin' | 'none';
   loadingText?: string;
+  leadingIcon?: React.ReactNode;
+  trailingIcon?: React.ReactNode;
   hasLeading?: boolean;
   hasTrailing?: boolean;
+  start?: React.ReactNode;
   end?: React.ReactNode;
 }
 

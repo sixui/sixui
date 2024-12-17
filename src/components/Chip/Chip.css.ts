@@ -34,11 +34,13 @@ const [tokensClassName, tokens] = createTheme({
   container: {
     leadingSpace: {
       normal: px(space(4)),
-      withLeadingIcon: px(space(2)),
+      withStartSlot: px(space(2)),
+      withEndSlot: px(space(4)),
     },
     trailingSpace: {
       normal: px(space(4)),
-      withLeadingIcon: px(space(4)),
+      withStartSlot: px(space(4)),
+      withEndSlot: px(space(2)),
     },
     color: {
       normal: themeTokens.colorScheme.surfaceContainerLow,
@@ -73,7 +75,7 @@ const [tokensClassName, tokens] = createTheme({
   },
   container$avatar: {
     leadingSpace: {
-      withLeadingIcon: px(space(1)),
+      withStartSlot: px(space(1)),
     },
     shape: {
       topLeft: px(themeTokens.shape.corner.full),

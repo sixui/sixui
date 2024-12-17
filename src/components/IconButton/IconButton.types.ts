@@ -17,7 +17,10 @@ export type IIconButtonVariant =
   | 'snackbar';
 
 export interface IIconButtonOwnProps
-  extends IOmit<IButtonOwnProps, 'icon' | 'trailingIcon' | 'loadingText'> {
+  extends IOmit<
+    IButtonOwnProps,
+    'start' | 'end' | 'leadingIcon' | 'trailingIcon' | 'loadingText'
+  > {
   toggle?: boolean;
   selected?: boolean;
   icon: React.ReactNode;

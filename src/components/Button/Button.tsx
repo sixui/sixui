@@ -1,4 +1,4 @@
-import { MouseEventHandler, useState } from 'react';
+import { MouseEventHandler, useCallback, useState } from 'react';
 
 import type { IButtonThemeFactory } from './Button.css';
 import type { IButtonFactory } from './Button.types';
@@ -23,7 +23,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       variant = 'filled',
       children,
       onClick,
-      icon,
+      leadingIcon,
       trailingIcon,
       loading: loadingProp,
       loadingAnimation = 'progressIndicator',
@@ -31,6 +31,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       readOnly: readOnlyProp,
       hasLeading: hasLeadingProp,
       hasTrailing: hasTrailingProp,
+      start,
       end,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
@@ -43,11 +44,10 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
     const readOnly = readOnlyProp || loading;
     const disabledOrReadOnly = other.disabled || readOnly;
 
-    const hasIcon = !!icon;
-    const hasLeading = hasLeadingProp ?? (hasIcon && !trailingIcon);
-    const hasTrailing =
-      hasTrailingProp ?? ((hasIcon && !!trailingIcon) || !!end);
-    const hasOverlay = loading && (!!loadingText || !hasLeading);
+    const hasLeading = hasLeadingProp ?? (!!start || !!leadingIcon);
+    const hasTrailing = hasTrailingProp ?? (!!end || !!trailingIcon);
+    const hasOverlay =
+      loading && (!!loadingText || (!hasLeading && !hasTrailing));
     const iconAnimation =
       (loadingProp || handlingClick || animating) &&
       loadingAnimation !== undefined &&
@@ -68,13 +68,16 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       modifiers: {
         disabled: disabledOrReadOnly,
         loading,
-        'with-leading-icon': hasLeading,
-        'with-trailing-icon': hasTrailing,
+        'with-leading-slot': !!hasLeading,
+        'with-trailing-slot': !!hasTrailing,
         'icon-animation': iconAnimation,
       },
     });
 
-    const handleAnimationIteration = (): void => setAnimating(handlingClick);
+    const handleAnimationIteration = useCallback(
+      (): void => setAnimating(handlingClick),
+      [handlingClick, setAnimating],
+    );
 
     const handleClick: MouseEventHandler = (event) => {
       if (handlingClick || !onClick) {
@@ -88,51 +91,97 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       );
     };
 
-    const renderLeading = (): React.JSX.Element =>
-      hasLeading ? (
-        <div {...getStyles(['iconContainer', 'iconContainer$leading'])}>
-          {loading ? (
-            <IndeterminateCircularProgressIndicator
-              {...getStyles(['icon', hasOverlay && 'invisible'])}
-            />
+    const renderStartSlot = useCallback(
+      (): React.ReactNode =>
+        hasLeading ? (
+          start ? (
+            <div {...getStyles(['slot', 'slot$start'])}>{start}</div>
           ) : (
-            <div
-              {...getStyles(['icon', hasOverlay && 'invisible'])}
-              onAnimationIteration={handleAnimationIteration}
-            >
-              {icon}
+            <div {...getStyles(['slot', 'slot$start', 'slot$icon'])}>
+              {loading ? (
+                <IndeterminateCircularProgressIndicator
+                  {...getStyles(['icon', hasOverlay && 'invisible'])}
+                />
+              ) : (
+                <div
+                  {...getStyles(['icon', hasOverlay && 'invisible'])}
+                  onAnimationIteration={handleAnimationIteration}
+                >
+                  {leadingIcon}
+                </div>
+              )}
             </div>
+          )
+        ) : (
+          <div {...getStyles(['slot', 'slot$icon', 'slot$icon$collapsed'])} />
+        ),
+      [
+        start,
+        getStyles,
+        hasOverlay,
+        hasLeading,
+        loading,
+        leadingIcon,
+        handleAnimationIteration,
+      ],
+    );
+
+    const renderEndSlot = useCallback(
+      (): React.ReactNode =>
+        hasTrailing ? (
+          end ? (
+            <div {...getStyles(['slot', 'slot$end'])}>{end}</div>
+          ) : (
+            <div {...getStyles(['slot', 'slot$end', 'slot$icon'])}>
+              {loading && !leadingIcon ? (
+                <IndeterminateCircularProgressIndicator
+                  {...getStyles(['icon', hasOverlay && 'invisible'])}
+                />
+              ) : (
+                <div
+                  {...getStyles(['icon', hasOverlay && 'invisible'])}
+                  onAnimationIteration={handleAnimationIteration}
+                >
+                  {trailingIcon}
+                </div>
+              )}
+            </div>
+          )
+        ) : (
+          <div {...getStyles(['slot', 'slot$icon', 'slot$icon$collapsed'])} />
+        ),
+      [
+        end,
+        getStyles,
+        hasOverlay,
+        hasTrailing,
+        loading,
+        trailingIcon,
+        handleAnimationIteration,
+      ],
+    );
+
+    const renderLabelSlot = useCallback(
+      () => (
+        <span {...getStyles(['label', hasOverlay && 'invisible'])}>
+          {children}
+        </span>
+      ),
+      [children, getStyles, hasOverlay],
+    );
+
+    const renderOverlay = useCallback(
+      (): React.ReactNode => (
+        <div {...getStyles('overlay')}>
+          {loadingText ? (
+            <span {...getStyles('label')}>{loadingText}</span>
+          ) : (
+            <IndeterminateCircularProgressIndicator {...getStyles('icon')} />
           )}
         </div>
-      ) : (
-        <div
-          {...getStyles(['iconContainer$leading', 'iconContainer$collapsed'])}
-        />
-      );
-
-    const renderTrailing = (): React.ReactNode =>
-      hasTrailing ? (
-        (end ?? (
-          <div {...getStyles(['iconContainer', 'iconContainer$trailing'])}>
-            {loading ? (
-              <IndeterminateCircularProgressIndicator
-                {...getStyles(['icon', hasOverlay && 'invisible'])}
-              />
-            ) : (
-              <div
-                {...getStyles(['icon', hasOverlay && 'invisible'])}
-                onAnimationIteration={handleAnimationIteration}
-              >
-                {icon}
-              </div>
-            )}
-          </div>
-        ))
-      ) : (
-        <div
-          {...getStyles(['iconContainer$trailing', 'iconContainer$collapsed'])}
-        />
-      );
+      ),
+      [getStyles, loadingText],
+    );
 
     return (
       <ButtonBase
@@ -146,25 +195,10 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
         ref={forwardedRef}
         {...other}
       >
-        {renderLeading()}
-
-        {children ? (
-          <span {...getStyles(['label', hasOverlay && 'invisible'])}>
-            {children}
-          </span>
-        ) : null}
-
-        {hasOverlay ? (
-          <div {...getStyles('overlay')}>
-            {loadingText ? (
-              <span {...getStyles('label')}>{loadingText}</span>
-            ) : (
-              <IndeterminateCircularProgressIndicator {...getStyles('icon')} />
-            )}
-          </div>
-        ) : null}
-
-        {renderTrailing()}
+        {renderStartSlot()}
+        {children && renderLabelSlot()}
+        {hasOverlay && renderOverlay()}
+        {renderEndSlot()}
       </ButtonBase>
     );
   },

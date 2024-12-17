@@ -114,13 +114,13 @@ const classNames = createStyles({
       container: {
         leadingSpace: {
           normal: '0px',
-          withLeadingIcon: '0px',
-          withTrailingIcon: '0px',
+          withStartSlot: '0px',
+          withEndSlot: '0px',
         },
         trailingSpace: {
           normal: '0px',
-          withLeadingIcon: '0px',
-          withTrailingIcon: '0px',
+          withStartSlot: '0px',
+          withEndSlot: '0px',
         },
         elevation: {
           normal: elevationLevelPreset[0],

@@ -21,8 +21,8 @@ type IModifier =
   | IInteraction
   | 'disabled'
   | 'loading'
-  | 'with-leading-icon'
-  | 'with-trailing-icon'
+  | 'with-leading-slot'
+  | 'with-trailing-slot'
   | 'icon-animation';
 
 const DENSITY = px(getDensity({ min: -4, max: 0 }));
@@ -31,13 +31,13 @@ const [tokensClassName, tokens] = createTheme({
   container: {
     leadingSpace: {
       normal: px(space(6)),
-      withLeadingIcon: px(space(4)),
-      withTrailingIcon: px(space(6)),
+      withStartSlot: px(space(4)),
+      withEndSlot: px(space(6)),
     },
     trailingSpace: {
       normal: px(space(6)),
-      withLeadingIcon: px(space(6)),
-      withTrailingIcon: px(space(4)),
+      withStartSlot: px(space(6)),
+      withEndSlot: px(space(4)),
     },
     color: {
       normal: 'unset',
@@ -223,13 +223,20 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>('with-leading-icon')]: {
-        paddingInlineStart: tokens.container.leadingSpace.withLeadingIcon,
-        paddingInlineEnd: tokens.container.trailingSpace.withLeadingIcon,
+      [getModifierSelector<IModifier>('with-leading-slot')]: {
+        paddingInlineStart: tokens.container.leadingSpace.withStartSlot,
+        paddingInlineEnd: tokens.container.trailingSpace.withStartSlot,
       },
-      [getModifierSelector<IModifier>('with-trailing-icon')]: {
-        paddingInlineStart: tokens.container.leadingSpace.withTrailingIcon,
-        paddingInlineEnd: tokens.container.trailingSpace.withTrailingIcon,
+      [getModifierSelector<IModifier>('with-trailing-slot')]: {
+        paddingInlineStart: tokens.container.leadingSpace.withEndSlot,
+        paddingInlineEnd: tokens.container.trailingSpace.withEndSlot,
+      },
+      [getModifierSelector<IModifier>([
+        'with-leading-slot',
+        'with-trailing-slot',
+      ])]: {
+        paddingInlineStart: tokens.container.leadingSpace.withStartSlot,
+        paddingInlineEnd: tokens.container.trailingSpace.withEndSlot,
       },
     },
   },
@@ -278,6 +285,9 @@ const classNames = createStyles({
     position: 'relative',
     writingMode: 'horizontal-tb',
     flexShrink: 0,
+    fontSize: tokens.icon.size,
+    inlineSize: tokens.icon.size,
+    blockSize: tokens.icon.size,
 
     selectors: {
       [getModifierSelector<IModifier>('focused', root)]: {
@@ -322,33 +332,36 @@ const classNames = createStyles({
         },
     },
   }),
-  iconContainer: {
+  slot: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
+  },
+  slot$start: {
+    marginInlineEnd: tokens.icon.labelSpace,
+  },
+  slot$end: {
+    marginInlineStart: tokens.icon.labelSpace,
+  },
+  slot$icon: {
     color: fallbackVar(tokens.icon.color.normal, tokens.label.color.normal),
-    fontSize: tokens.icon.size,
     width: tokens.icon.size,
     opacity: 1,
-  },
-  iconContainer$leading: {
-    marginInlineEnd: tokens.icon.labelSpace,
+
     transitionProperty: 'opacity, width',
     transitionDuration: themeTokens.motion.duration.medium.$4,
     transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
   },
-  iconContainer$trailing: {
-    marginInlineStart: tokens.icon.labelSpace,
-    transitionProperty: 'opacity, width',
-    transitionDuration: themeTokens.motion.duration.short.$2,
-    transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
-  },
-  iconContainer$collapsed: {
+  slot$icon$collapsed: {
     marginInlineStart: 0,
     marginInlineEnd: 0,
     width: 0,
     opacity: 0,
+
+    transitionProperty: 'opacity, width',
+    transitionDuration: themeTokens.motion.duration.short.$2,
+    transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
   },
   overlay: {
     display: 'flex',
@@ -534,13 +547,13 @@ export const buttonThemeVariants = {
         container: {
           leadingSpace: {
             normal: px(space(3)),
-            withLeadingIcon: px(space(3)),
-            withTrailingIcon: px(space(4)),
+            withStartSlot: px(space(3)),
+            withEndSlot: px(space(4)),
           },
           trailingSpace: {
             normal: px(space(3)),
-            withLeadingIcon: px(space(4)),
-            withTrailingIcon: px(space(3)),
+            withStartSlot: px(space(4)),
+            withEndSlot: px(space(3)),
           },
         },
         label: {
@@ -591,13 +604,13 @@ export const buttonThemeVariants = {
         container: {
           leadingSpace: {
             normal: px(space(4)),
-            withLeadingIcon: px(space(3)),
-            withTrailingIcon: px(space(4)),
+            withStartSlot: px(space(3)),
+            withEndSlot: px(space(4)),
           },
           trailingSpace: {
             normal: px(space(4)),
-            withLeadingIcon: px(space(4)),
-            withTrailingIcon: px(space(3)),
+            withStartSlot: px(space(4)),
+            withEndSlot: px(space(3)),
           },
           height: px(32),
           shape: {

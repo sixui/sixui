@@ -6,6 +6,7 @@ import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IButtonProps, IButtonVariant } from './Button.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { Badge } from '../Badge';
 import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Button } from './Button';
 
@@ -54,13 +55,35 @@ const rows: Array<IComponentPresentation<IButtonProps>> = [
   { legend: 'Basic' },
   {
     legend: 'With leading icon',
-    props: { icon: <FontAwesomeIcon icon={faPlus} /> },
+    props: {
+      leadingIcon: <FontAwesomeIcon icon={faPlus} />,
+    },
   },
   {
     legend: 'With trailing icon',
     props: {
-      icon: <FontAwesomeIcon icon={faPlus} />,
-      trailingIcon: true,
+      trailingIcon: <FontAwesomeIcon icon={faPlus} />,
+    },
+  },
+  {
+    legend: 'With leading and trailing icon',
+    props: {
+      leadingIcon: <FontAwesomeIcon icon={faPlus} />,
+      trailingIcon: <FontAwesomeIcon icon={faPlus} />,
+    },
+  },
+  {
+    legend: 'With leading icon and end slot',
+    props: {
+      leadingIcon: <FontAwesomeIcon icon={faPlus} />,
+      end: <Badge value="2" />,
+    },
+  },
+  {
+    legend: 'With start slot and trailing icon',
+    props: {
+      start: <Badge value="2" />,
+      trailingIcon: <FontAwesomeIcon icon={faPlus} />,
     },
   },
 ];
