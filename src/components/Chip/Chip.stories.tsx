@@ -22,7 +22,6 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  children: 'Chip',
   onClick: (...args) => sbHandleEvent('click', args, 1000),
 } satisfies Partial<IChipProps>;
 
@@ -74,26 +73,26 @@ export const Variants: IStory = {
         {
           props: {
             variant: 'assist',
-            label: 'Assist',
+            children: 'Assist',
             icon: <FontAwesomeIcon icon={faCalendarDays} />,
           },
         },
         {
-          props: { variant: 'filter', label: 'Filter', selected: true },
+          props: { variant: 'filter', children: 'Filter', selected: true },
         },
         {
           props: {
             variant: 'input',
-            label: 'Input',
-            onDelete: () => sbHandleEvent('delete', undefined, 300),
+            children: 'Input',
+            onDelete: () => sbHandleEvent('delete', undefined, 1000),
             imageUrl: IMAGE_URL,
           },
         },
         {
           props: {
             variant: 'input',
-            label: 'Avatar',
-            onDelete: () => sbHandleEvent('delete', undefined, 300),
+            children: 'Avatar',
+            onDelete: () => sbHandleEvent('delete', undefined, 1000),
             imageUrl: IMAGE_URL,
             avatar: true,
           },
@@ -101,7 +100,7 @@ export const Variants: IStory = {
         {
           props: {
             variant: 'suggestion',
-            label: 'Suggestion',
+            children: 'Suggestion',
           },
         },
       ]}
@@ -200,13 +199,13 @@ export const Input: IStory = {
       props={props}
       cols={[
         ...states,
-        { legend: 'Deleting', props: { label: 'Deleting', deleting: true } },
+        { legend: 'Deleting', props: { children: 'Deleting', deleting: true } },
       ]}
       rows={[
         { legend: 'Basic', hiddenIndexes: [8] },
         {
           legend: 'Deletable',
-          props: { onDelete: () => sbHandleEvent('delete', undefined, 300) },
+          props: { onDelete: () => sbHandleEvent('delete', undefined, 1000) },
         },
       ]}
       groups={[{}, { legend: 'Selected', props: { selected: true } }]}
@@ -241,26 +240,26 @@ export const InputWithIconOrImage: IStory = {
       props={props}
       cols={[
         ...states,
-        { legend: 'Deleting', props: { label: 'Deleting', deleting: true } },
+        { legend: 'Deleting', props: { children: 'Deleting', deleting: true } },
       ]}
       rows={[
         {
           legend: 'With Icon',
-          hiddenIndexes: [7],
+          hiddenIndexes: [8],
           props: { icon: <FontAwesomeIcon icon={faImage} /> },
         },
         {
           legend: 'With Image',
           props: {
             imageUrl: IMAGE_URL,
-            onDelete: () => sbHandleEvent('delete', undefined, 300),
+            onDelete: () => sbHandleEvent('delete', undefined, 1000),
           },
         },
         {
           legend: 'With avatar',
           props: {
             imageUrl: IMAGE_URL,
-            onDelete: () => sbHandleEvent('delete', undefined, 300),
+            onDelete: () => sbHandleEvent('delete', undefined, 1000),
             avatar: true,
           },
         },

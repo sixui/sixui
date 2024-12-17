@@ -102,7 +102,7 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
       (variant === 'filter' && (loading || selected)) || hasIcon;
     // const hasTrailing = isDeletable;
     // const hasOverlay = loading && (loadingText ?? !hasLeading);
-    const isAvatar = !selectable && !!imageUrl && avatarProp;
+    const isAvatar = !!imageUrl && avatarProp;
 
     const { getStyles } = useComponentTheme<IChipThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -258,7 +258,7 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
         onClick={onClick ? handleClick : undefined}
         loading={loading}
         ref={forwardedRef}
-        hasLeading={false}
+        hasLeading={hasLeading}
         end={canDelete && renderDeleteButton()}
         {...other}
       />
