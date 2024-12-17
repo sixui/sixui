@@ -91,6 +91,7 @@ const [tokensClassName, tokens] = createTheme({
   icon$interactive: {
     color: {
       normal: themeTokens.colorScheme.primary,
+      disabled: themeTokens.colorScheme.onSurface,
     },
   },
   icon$selected: {
