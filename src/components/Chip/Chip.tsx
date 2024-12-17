@@ -63,9 +63,8 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
     const [handlingDelete, setHandlingDelete] = useState(false);
 
     const loading = loadingProp || handlingClick;
-    const isDeletable = variant === 'input' && onDelete;
-    const deleting =
-      !loading && isDeletable && (deletingProp || handlingDelete);
+    const canDelete = variant === 'input' && onDelete;
+    const deleting = !loading && canDelete && (deletingProp || handlingDelete);
     const readOnly = readOnlyProp || loading || deleting;
     const disabledOrReadOnly = other.disabled || readOnly;
 
@@ -239,6 +238,18 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
     //     ? 'elevatedContainer'
     //     : 'flatContainer';
 
+    const renderDeleteButton = useCallback(
+      () => (
+        <IconButton
+          as="div"
+          icon={<SvgIcon icon={iconXMark} />}
+          onClick={() => {}}
+          {...getStyles('deleteButton')}
+        />
+      ),
+      [],
+    );
+
     return (
       <Button
         {...getStyles('root')}
@@ -249,14 +260,7 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
         loading={loading}
         ref={forwardedRef}
         hasLeading={hasLeading}
-        // end={
-        //   <div style={{ zIndex: 1, marginLeft: -2, marginRight: -18 }}>
-        //     <IconButton
-        //       icon={<SvgIcon icon={iconXMark} />}
-        //       onClick={() => {}}
-        //     />
-        //   </div>
-        // }
+        end={canDelete && renderDeleteButton()}
         {...other}
       />
     );

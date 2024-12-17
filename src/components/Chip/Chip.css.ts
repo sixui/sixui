@@ -255,6 +255,11 @@ const classNames = createStyles({
       },
     },
   }),
+  deleteButton: {
+    zIndex: 1,
+    marginLeft: px(-12),
+    marginRight: px(-12),
+  },
 });
 
 export type IChipThemeFactory = IComponentThemeFactory<{
