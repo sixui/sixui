@@ -29,7 +29,6 @@ const DENSITY = px(getDensity({ min: -4, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
   container: {
-    gap: px(space(2)),
     leadingSpace: {
       normal: px(space(6)),
       withLeadingIcon: px(space(4)),
@@ -88,6 +87,7 @@ const [tokensClassName, tokens] = createTheme({
   },
   icon: {
     size: px(18),
+    labelSpace: px(space(2)),
     color: {
       normal: 'inherit',
       focused: 'inherit',
@@ -150,7 +150,6 @@ const classNames = createStyles({
     // other if one button has an icon and the other does not.
     verticalAlign: 'top',
 
-    gap: tokens.container.gap,
     paddingInlineStart: tokens.container.leadingSpace.normal,
     paddingInlineEnd: tokens.container.trailingSpace.normal,
     // min-height instead of height so that label can wrap and expand height
@@ -279,10 +278,6 @@ const classNames = createStyles({
     position: 'relative',
     writingMode: 'horizontal-tb',
     flexShrink: 0,
-    color: fallbackVar(tokens.icon.color.normal, tokens.label.color.normal),
-    fontSize: tokens.icon.size,
-    inlineSize: tokens.icon.size,
-    blockSize: tokens.icon.size,
 
     selectors: {
       [getModifierSelector<IModifier>('focused', root)]: {
@@ -327,6 +322,34 @@ const classNames = createStyles({
         },
     },
   }),
+  iconContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+    color: fallbackVar(tokens.icon.color.normal, tokens.label.color.normal),
+    fontSize: tokens.icon.size,
+    width: tokens.icon.size,
+    opacity: 1,
+  },
+  iconContainer$leading: {
+    marginInlineEnd: tokens.icon.labelSpace,
+    transitionProperty: 'opacity, width',
+    transitionDuration: themeTokens.motion.duration.medium.$4,
+    transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
+  },
+  iconContainer$trailing: {
+    marginInlineStart: tokens.icon.labelSpace,
+    transitionProperty: 'opacity, width',
+    transitionDuration: themeTokens.motion.duration.short.$2,
+    transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
+  },
+  iconContainer$collapsed: {
+    marginInlineStart: 0,
+    marginInlineEnd: 0,
+    width: 0,
+    opacity: 0,
+  },
   overlay: {
     display: 'flex',
     position: 'absolute',

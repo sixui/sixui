@@ -2,22 +2,21 @@ import type { IAny, IMaybeAsync } from '~/helpers/types';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type { IButtonBaseOwnProps } from '../ButtonBase';
+import type { IButtonOwnProps } from '../Button';
 import type { IPaperOwnProps } from '../Paper';
 import type { chipTheme, IChipThemeFactory } from './Chip.css';
 
 export type IChipVariant = 'assist' | 'filter' | 'input' | 'suggestion';
 
-export interface IChipOwnProps extends IButtonBaseOwnProps {
+export interface IChipOwnProps extends IButtonOwnProps {
   onDelete?: (event: React.MouseEvent<Element>) => IMaybeAsync<IAny>;
   elevated?: boolean;
   selected?: boolean;
-  icon?: React.ReactNode;
   imageUrl?: string;
-  loading?: boolean;
   loadingText?: string;
   deleting?: boolean;
   avatar?: boolean;
+  selectedIcon?: React.ReactNode;
 }
 
 export interface IChipProps

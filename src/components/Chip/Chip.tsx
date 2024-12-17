@@ -43,15 +43,16 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
       styles,
       style,
       variant = 'assist',
-      selected,
+      selected: selectedProp,
       elevated: elevatedProp,
-      // loading: loadingProp,
+      loading: loadingProp,
       deleting: deletingProp,
       onDelete,
       imageUrl,
-      icon,
+      icon: iconProp,
       // loadingText,
       // href,
+      onClick,
       avatar: avatarProp,
       readOnly: readOnlyProp,
       ...other
@@ -60,7 +61,7 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
     const [handlingClick, setHandlingClick] = useState(false);
     const [handlingDelete, setHandlingDelete] = useState(false);
 
-    const loading = other.loading || handlingClick;
+    const loading = loadingProp || handlingClick;
     const isDeletable = variant === 'input' && onDelete;
     const deleting =
       !loading && isDeletable && (deletingProp || handlingDelete);
@@ -92,10 +93,11 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
 
     // const isInteractive = !!href || !!onClick;
     const elevated = variant !== 'input' && elevatedProp;
-    // const hasIcon = !!imageUrl || !!icon;
-    // const isToggle = variant !== false && ['input', 'filter'].includes(variant);
-    // const hasLeading =
-    //   (variant === 'filter' && (loading || selected)) || hasIcon;
+    const hasIcon = !!imageUrl || !!iconProp;
+    // const isToggle = variant !== false && ['input',
+    // 'filter'].includes(variant);
+    const selected = variant === 'filter' && selectedProp;
+    const hasLeading = (variant === 'filter' && loading) || selected || hasIcon;
     // const hasTrailing = isDeletable;
     // const hasOverlay = loading && (loadingText ?? !hasLeading);
     const isAvatar =
@@ -126,16 +128,24 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
       },
     });
 
-    // const handleClick: React.MouseEventHandler<Element> = useCallback(
-    //   (event) => {
-    //     if (handlingClick || !onClick) {
-    //       return;
-    //     }
+    const icon = selected ? (
+      <SvgIcon icon={iconCheckMark} />
+    ) : imageUrl ? (
+      <Avatar {...getStyles('avatar')} src={imageUrl} />
+    ) : (
+      iconProp
+    );
 
-    //     void executeLazyPromise(() => onClick(event) as void, setHandlingClick);
-    //   },
-    //   [handlingClick, onClick],
-    // );
+    const handleClick: React.MouseEventHandler<Element> = useCallback(
+      (event) => {
+        if (handlingClick || !onClick) {
+          return;
+        }
+
+        void executeLazyPromise(() => onClick(event) as void, setHandlingClick);
+      },
+      [handlingClick, onClick],
+    );
 
     // const handleDelete: React.MouseEventHandler<HTMLButtonElement> | undefined =
     //   onDelete
@@ -231,11 +241,11 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
         {...getStyles('root')}
         variant={false}
         classNames={classNames}
-        // icon={selected ? (selectedIcon ?? icon) : icon}
+        icon={icon}
+        hasLeading={hasLeading}
+        onClick={handleClick}
+        loading={loading}
         ref={forwardedRef}
-        icon={
-          imageUrl ? <Avatar {...getStyles('avatar')} src={imageUrl} /> : icon
-        }
         {...other}
       />
     );

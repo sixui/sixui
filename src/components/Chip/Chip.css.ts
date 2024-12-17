@@ -12,6 +12,7 @@ import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { Avatar } from '../Avatar';
 import { Button } from '../Button';
 import { PaperBase } from '../PaperBase';
 import { StateLayer } from '../StateLayer';
@@ -65,7 +66,10 @@ const [tokensClassName, tokens] = createTheme({
     },
   },
   container$selected: {
-    //
+    color: {
+      normal: themeTokens.colorScheme.secondaryContainer,
+      disabled: themeTokens.colorScheme.onSurface,
+    },
   },
   container$avatar: {
     leadingSpace: {
@@ -110,7 +114,9 @@ const [tokensClassName, tokens] = createTheme({
     },
   },
   icon$selected: {
-    //
+    color: {
+      normal: themeTokens.colorScheme.onSurfaceVariant,
+    },
   },
   icon$avatar: {
     size: px(24),
@@ -207,12 +213,12 @@ const classNames = createStyles({
         }),
       },
       [getModifierSelector<IModifier>({
-        elevated: false,
         selected: true,
       })]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+        vars: createTokensVars(Button.theme.tokens, {
           container: tokens.container$selected,
           outline: tokens.outline$selected,
+          icon: tokens.icon$selected,
         }),
       },
       [getModifierSelector<IModifier>({
@@ -225,10 +231,28 @@ const classNames = createStyles({
       },
     },
   },
-  avatar: {
-    width: '100%',
-    height: '100%',
-  },
+  avatar: ({ root }) => ({
+    vars: createTokensVars(Avatar.theme.tokens, {
+      container: {
+        size: px(18),
+      },
+    }),
+
+    selectors: {
+      [getModifierSelector<IModifier>(
+        {
+          avatar: true,
+        },
+        root,
+      )]: {
+        vars: createTokensVars(Avatar.theme.tokens, {
+          container: {
+            size: px(24),
+          },
+        }),
+      },
+    },
+  }),
 });
 
 export type IChipThemeFactory = IComponentThemeFactory<{
@@ -320,14 +344,14 @@ export const chipThemeVariants = {
   //     }),
   //   },
   //   iconContainer$leading: {
-  //     transitionProperty: 'opacity, width',
-  //     transitionDuration: themeTokens.motion.duration.medium.$4,
-  //     transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
+  // transitionProperty: 'opacity, width',
+  // transitionDuration: themeTokens.motion.duration.medium.$4,
+  // transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
   //   },
   //   iconContainer$collapsed: {
-  //     transitionProperty: 'opacity, width',
-  //     transitionDuration: themeTokens.motion.duration.short.$2,
-  //     transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
+  // transitionProperty: 'opacity, width',
+  // transitionDuration: themeTokens.motion.duration.short.$2,
+  // transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
   //   },
   // }),
 };

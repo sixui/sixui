@@ -20,6 +20,8 @@ export interface IButtonOwnProps extends IButtonBaseOwnProps {
   loading?: boolean;
   loadingAnimation?: 'progressIndicator' | 'halfSpin' | 'none';
   loadingText?: string;
+  hasLeading?: boolean;
+  hasTrailing?: boolean;
 }
 
 export interface IButtonProps
