@@ -50,7 +50,7 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
       deleting: deletingProp,
       onDelete,
       imageUrl,
-      icon: iconProp,
+      icon,
       // loadingText,
       // href,
       onClick,
@@ -93,20 +93,16 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
 
     // const isInteractive = !!href || !!onClick;
     const elevated = variant !== 'input' && elevatedProp;
-    const hasIcon = !!imageUrl || !!iconProp;
+    const hasIcon = !!imageUrl || !!icon;
     // const isToggle = variant !== false && ['input',
     // 'filter'].includes(variant);
-    const selected =
-      (variant === 'filter' || variant === 'input') && selectedProp;
+    const selectable = variant === 'filter' || variant === 'input';
+    const selected = selectable && selectedProp;
     const hasLeading =
       (variant === 'filter' && (loading || selected)) || hasIcon;
     // const hasTrailing = isDeletable;
     // const hasOverlay = loading && (loadingText ?? !hasLeading);
-    const isAvatar =
-      variant !== false &&
-      ['assist', 'input'].includes(variant) &&
-      !!imageUrl &&
-      avatarProp;
+    const isAvatar = !selectable && !!imageUrl && avatarProp;
 
     const { getStyles } = useComponentTheme<IChipThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -130,13 +126,14 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
       },
     });
 
-    const icon = selected ? (
-      <SvgIcon icon={iconCheckMark} />
-    ) : imageUrl ? (
-      <Avatar {...getStyles('avatar')} src={imageUrl} />
-    ) : (
-      iconProp
-    );
+    const leadingIcon =
+      variant === 'filter' && selected ? (
+        <SvgIcon icon={iconCheckMark} />
+      ) : imageUrl ? (
+        <Avatar {...getStyles('avatar')} src={imageUrl} />
+      ) : (
+        icon
+      );
 
     const handleClick: React.MouseEventHandler<Element> = useCallback(
       (event) => {
@@ -149,20 +146,20 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
       [handlingClick, onClick],
     );
 
-    // const handleDelete: React.MouseEventHandler<HTMLButtonElement> | undefined =
-    //   onDelete
-    //     ? (event) => {
-    //         if (handlingDelete) {
-    //           return;
-    //         }
-    //         setHandlingDelete(true);
-    //         Promise.resolve(onDelete(event))
-    //           .finally(() => setHandlingDelete(false))
-    //           .catch((error: Error) => {
-    //             throw error;
-    //           });
-    //       }
-    //     : undefined;
+    const handleDelete = useCallback(
+      (event: React.MouseEvent<Element>) => {
+        if (handlingDelete) {
+          return;
+        }
+        setHandlingDelete(true);
+        Promise.resolve(onDelete?.(event))
+          .finally(() => setHandlingDelete(false))
+          .catch((error: Error) => {
+            throw error;
+          });
+      },
+      [onDelete, handlingDelete],
+    );
 
     // // https://github.com/material-components/material-web/blob/035d1553662812e2dcc12aea8d70ea8bf26b164b/chips/internal/multi-action-chip.ts#L74
     // const handleKeyDown = useCallback(
@@ -243,11 +240,13 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
         <IconButton
           as="div"
           icon={<SvgIcon icon={iconXMark} />}
-          onClick={() => {}}
+          onClick={handleDelete}
+          loading={deleting}
+          disabled={disabledOrReadOnly}
           {...getStyles('deleteButton')}
         />
       ),
-      [],
+      [getStyles, handleDelete, deleting, disabledOrReadOnly],
     );
 
     return (
@@ -255,11 +254,11 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
         {...getStyles('root')}
         variant={false}
         classNames={classNames}
-        leadingIcon={icon}
+        leadingIcon={leadingIcon}
         onClick={onClick ? handleClick : undefined}
         loading={loading}
         ref={forwardedRef}
-        hasLeading={hasLeading}
+        hasLeading={false}
         end={canDelete && renderDeleteButton()}
         {...other}
       />

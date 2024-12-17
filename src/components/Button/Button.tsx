@@ -44,10 +44,12 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
     const readOnly = readOnlyProp || loading;
     const disabledOrReadOnly = other.disabled || readOnly;
 
-    const hasLeading = hasLeadingProp ?? (!!start || !!leadingIcon);
-    const hasTrailing = hasTrailingProp ?? (!!end || !!trailingIcon);
+    const hasLeadingIcon = !!leadingIcon;
+    const hasTrailingIcon = !!trailingIcon;
+    const hasStartSlot = hasLeadingProp ?? (!!start || !!leadingIcon);
+    const hasEndSlot = hasTrailingProp ?? (!!end || !!trailingIcon);
     const hasOverlay =
-      loading && (!!loadingText || (!hasLeading && !hasTrailing));
+      loading && (!!loadingText || (!hasLeadingIcon && !hasTrailingIcon));
     const iconAnimation =
       (loadingProp || handlingClick || animating) &&
       loadingAnimation !== undefined &&
@@ -68,8 +70,8 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       modifiers: {
         disabled: disabledOrReadOnly,
         loading,
-        'with-leading-slot': !!hasLeading,
-        'with-trailing-slot': !!hasTrailing,
+        'with-leading-slot': !!hasStartSlot,
+        'with-trailing-slot': !!hasEndSlot,
         'icon-animation': iconAnimation,
       },
     });
@@ -93,7 +95,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
 
     const renderStartSlot = useCallback(
       (): React.ReactNode =>
-        hasLeading ? (
+        hasStartSlot ? (
           start ? (
             <div {...getStyles(['slot', 'slot$start'])}>{start}</div>
           ) : (
@@ -119,7 +121,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
         start,
         getStyles,
         hasOverlay,
-        hasLeading,
+        hasStartSlot,
         loading,
         leadingIcon,
         handleAnimationIteration,
@@ -128,7 +130,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
 
     const renderEndSlot = useCallback(
       (): React.ReactNode =>
-        hasTrailing ? (
+        hasEndSlot ? (
           end ? (
             <div {...getStyles(['slot', 'slot$end'])}>{end}</div>
           ) : (
@@ -154,8 +156,9 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
         end,
         getStyles,
         hasOverlay,
-        hasTrailing,
+        hasEndSlot,
         loading,
+        leadingIcon,
         trailingIcon,
         handleAnimationIteration,
       ],
