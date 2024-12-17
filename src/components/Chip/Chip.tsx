@@ -243,7 +243,7 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
         classNames={classNames}
         icon={icon}
         hasLeading={hasLeading}
-        onClick={handleClick}
+        onClick={onClick ? handleClick : undefined}
         loading={loading}
         ref={forwardedRef}
         {...other}
