@@ -44,7 +44,6 @@ const [tokensClassName, tokens] = createTheme({
       disabled: 'inherit',
     },
     height: px(32),
-    minWidth: px(0),
     shape: {
       topLeft: px(themeTokens.shape.corner.sm),
       topRight: px(themeTokens.shape.corner.sm),
@@ -68,6 +67,17 @@ const [tokensClassName, tokens] = createTheme({
   container$selected: {
     //
   },
+  container$avatar: {
+    leadingSpace: {
+      withLeadingIcon: px(space(1)),
+    },
+    shape: {
+      topLeft: px(themeTokens.shape.corner.full),
+      topRight: px(themeTokens.shape.corner.full),
+      bottomRight: px(themeTokens.shape.corner.full),
+      bottomLeft: px(themeTokens.shape.corner.full),
+    },
+  },
   outline: {
     style: 'solid',
     width: px(themeTokens.outline.width.xs),
@@ -88,6 +98,7 @@ const [tokensClassName, tokens] = createTheme({
     style: 'unset',
   },
   icon: {
+    size: px(18),
     color: {
       normal: themeTokens.colorScheme.onSurfaceVariant,
     },
@@ -100,6 +111,12 @@ const [tokensClassName, tokens] = createTheme({
   },
   icon$selected: {
     //
+  },
+  icon$avatar: {
+    size: px(24),
+    color: {
+      normal: themeTokens.colorScheme.onSurfaceVariant,
+    },
   },
   label: {
     typography: themeTokens.typeScale.label.lg,
@@ -167,6 +184,8 @@ const classNames = createStyles({
       icon: tokens.icon,
     }),
 
+    minWidth: 'unset',
+    height: tokens.container.height,
     transitionProperty: 'border-radius',
     transitionDuration: themeTokens.motion.duration.medium.$4,
     transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
@@ -194,6 +213,14 @@ const classNames = createStyles({
         vars: createTokensVars(PaperBase.theme.tokens, {
           container: tokens.container$selected,
           outline: tokens.outline$selected,
+        }),
+      },
+      [getModifierSelector<IModifier>({
+        avatar: true,
+      })]: {
+        vars: createTokensVars(Button.theme.tokens, {
+          container: tokens.container$avatar,
+          icon: tokens.icon$avatar,
         }),
       },
     },
