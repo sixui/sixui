@@ -45,12 +45,12 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
       variant = 'assist',
       selected,
       elevated: elevatedProp,
-      loading: loadingProp,
+      // loading: loadingProp,
       deleting: deletingProp,
       onDelete,
       imageUrl,
-      loadingText,
-      href,
+      // loadingText,
+      // href,
       avatar: avatarProp,
       readOnly: readOnlyProp,
       ...other
@@ -59,7 +59,7 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
     const [handlingClick, setHandlingClick] = useState(false);
     const [handlingDelete, setHandlingDelete] = useState(false);
 
-    const loading = loadingProp || handlingClick;
+    const loading = other.loading || handlingClick;
     const isDeletable = variant === 'input' && onDelete;
     const deleting =
       !loading && isDeletable && (deletingProp || handlingDelete);

@@ -13,9 +13,9 @@ export type IUseStateLayerProps = IUseInteractionsProps & {
 };
 
 export type IUseStateLayerResult<TElement extends HTMLElement = HTMLElement> = {
-  triggerRef: React.RefObject<TElement>;
+  triggerRef: React.RefObject<TElement | null>;
   interactionsContext: IUseInteractionsResult<TElement>;
-  surfaceRef: React.RefObject<HTMLDivElement>;
+  surfaceRef: React.RefObject<HTMLDivElement | null>;
   animating?: boolean;
   withoutRippleEffect?: boolean;
 };
@@ -38,8 +38,7 @@ export const useStateLayer = <TElement extends HTMLElement>(
       ...events,
       hover: events?.hover ?? true,
       focus: events?.focus ?? true,
-      press:
-        events?.press ?? (withoutRippleEffect && !disabled && !isStaticState),
+      press: events?.press ?? (withoutRippleEffect && !isStaticState),
     },
     baseState,
     mergeStrategy,

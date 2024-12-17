@@ -81,7 +81,6 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
           }
         : {
             role: 'button',
-            tabIndex: disabled ? undefined : 0,
             href,
             target: rootElement === 'a' ? target : undefined,
             type: rootElement === 'input' ? type : undefined,
@@ -113,7 +112,7 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
           />
         )}
         <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
-        {isInteractive && !disabled && focusRing !== false && (
+        {!disabled && focusRing !== false && (
           <FocusRing
             {...getStyles('focusRing')}
             interactions={stateLayer.interactionsContext.state}

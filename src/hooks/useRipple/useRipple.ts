@@ -60,8 +60,8 @@ const DEFAULT_OPTIONS = {
 };
 
 export type IUseRippleProps<TElement extends HTMLElement> = {
-  triggerRef: React.RefObject<TElement>;
-  surfaceRef: React.RefObject<HTMLDivElement>;
+  triggerRef: React.RefObject<TElement | null>;
+  surfaceRef: React.RefObject<HTMLDivElement | null>;
   disabled?: boolean;
   options?: IUSeRippleOptions;
 };
@@ -136,12 +136,12 @@ export const useRipple = <TElement extends HTMLElement>(
   const options = { ...DEFAULT_OPTIONS, ...optionsProp };
 
   const [animating, setAnimating] = useState(false);
-  const rippleStartEventRef = useRef<React.PointerEvent>();
+  const rippleStartEventRef = useRef<React.PointerEvent>(null);
   const stateRef = useRef<IState>(IState.Inactive);
   const initialSizeRef = useRef(0);
   const rippleScaleRef = useRef(1);
   const rippleSizeRef = useRef(0);
-  const growAnimationRef = useRef<Animation>();
+  const growAnimationRef = useRef<Animation>(null);
   const checkBoundsAfterContextMenuRef = useRef(false);
 
   /**
