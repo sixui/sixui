@@ -63,28 +63,28 @@ export const decorators: Array<Decorator> = [
             },
           },
           components: {
-            IndeterminateCircularProgressIndicator:
-              IndeterminateCircularProgressIndicator.extend({
-                classNames: {
-                  // root: styles.testBorder,
-                },
-              }),
-            Avatar: Avatar.extend({
-              defaultProps: {
-                children: '☀️',
-                outline: '$md',
-                outlineStyle: 'solid',
-                outlineColor: '$primary',
-              },
-              classNames: {
-                root: styles.testVariant,
-              },
-            }),
-            StateLayer: StateLayer.extend({
-              classNames: {
-                // root: styles.testBorder,
-              },
-            }),
+            // IndeterminateCircularProgressIndicator:
+            //   IndeterminateCircularProgressIndicator.extend({
+            //     classNames: {
+            //       // root: styles.testBorder,
+            //     },
+            //   }),
+            // Avatar: Avatar.extend({
+            //   defaultProps: {
+            //     children: '☀️',
+            //     outline: '$md',
+            //     outlineStyle: 'solid',
+            //     outlineColor: '$primary',
+            //   },
+            //   classNames: {
+            //     root: styles.testVariant,
+            //   },
+            // }),
+            // StateLayer: StateLayer.extend({
+            //   classNames: {
+            //     // root: styles.testBorder,
+            //   },
+            // }),
           },
         }}
         colorSchemeVariant="light"
@@ -112,5 +112,4 @@ export const decorators: Array<Decorator> = [
   },
 ];
 
-// eslint-disable-next-line import/no-default-export
 export default preview;

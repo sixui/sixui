@@ -49,6 +49,7 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
       deleting: deletingProp,
       onDelete,
       imageUrl,
+      icon,
       // loadingText,
       // href,
       avatar: avatarProp,
@@ -232,6 +233,9 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
         classNames={classNames}
         // icon={selected ? (selectedIcon ?? icon) : icon}
         ref={forwardedRef}
+        icon={
+          imageUrl ? <Avatar {...getStyles('avatar')} src={imageUrl} /> : icon
+        }
         {...other}
       />
     );
@@ -342,10 +346,10 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
     //             ) : selected && variant === 'filter' ? (
     //               <SvgIcon sx={combineStyles('icon')} icon={iconCheckMark} />
     //             ) : imageUrl ? (
-    //               <Avatar
-    //                 sx={combineStyles('icon', 'icon$avatar')}
-    //                 src={imageUrl}
-    //               />
+    // <Avatar
+    //   sx={combineStyles('icon', 'icon$avatar')}
+    //   src={imageUrl}
+    // />
     //             ) : icon ? (
     //               icon
     //             ) : null}

@@ -3,11 +3,14 @@ import { useState } from 'react';
 import { faCalendarDays, faImage } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+
+
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IChipProps } from './Chip.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Chip } from './Chip';
+
 
 // https://m3.material.io/components/chips/overview
 // https://material-web.dev/components/chip/
@@ -23,9 +26,17 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   children: 'Chip',
+  onClick: (...args) => sbHandleEvent('click', args, 1000),
 } satisfies Partial<IChipProps>;
 
 const states: Array<IComponentPresentation<IChipProps>> = [
+  {
+    legend: 'Static',
+    props: {
+      children: 'Static',
+      onClick: undefined,
+    },
+  },
   {
     legend: 'Enabled',
     props: {
@@ -134,39 +145,6 @@ export const Assist: IStory = {
   args: {
     ...defaultArgs,
     variant: 'assist',
-  },
-};
-
-export const AssistInteractive: IStory = {
-  render: (props) => (
-    <ChipShowcase
-      props={props}
-      cols={states}
-      rows={[
-        { legend: 'Basic' },
-        { legend: 'Elevated', props: { elevated: true } },
-      ]}
-      groups={[
-        {},
-        {
-          legend: 'With Icon',
-          props: { icon: <FontAwesomeIcon icon={faCalendarDays} /> },
-        },
-        { legend: 'With Image', props: { imageUrl: IMAGE_URL } },
-        {
-          legend: 'With Avatar',
-          props: {
-            imageUrl: IMAGE_URL,
-            avatar: true,
-          },
-        },
-      ]}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    variant: 'assist',
-    onClick: (...args) => sbHandleEvent('click', args, 1000),
   },
 };
 

@@ -41,7 +41,7 @@ const [tokensClassName, tokens] = createTheme({
     },
     color: {
       normal: themeTokens.colorScheme.surfaceContainerLow,
-      disabled: themeTokens.colorScheme.onSurface,
+      disabled: 'inherit',
     },
     height: px(32),
     minWidth: px(0),
@@ -59,6 +59,10 @@ const [tokensClassName, tokens] = createTheme({
       hovered: elevationLevelPreset[2],
       pressed: elevationLevelPreset[1],
       disabled: elevationLevelPreset[0],
+    },
+    color: {
+      normal: themeTokens.colorScheme.surfaceContainerLow,
+      disabled: themeTokens.colorScheme.onSurface,
     },
   },
   container$selected: {
@@ -96,22 +100,6 @@ const [tokensClassName, tokens] = createTheme({
   },
   icon$selected: {
     //
-  },
-  stateLayer: {
-    color: {
-      hovered: 'inherit',
-      pressed: 'inherit',
-    },
-    opacity: {
-      hovered: themeTokens.state.stateLayerOpacity.hovered,
-      pressed: themeTokens.state.stateLayerOpacity.pressed,
-    },
-  },
-  stateLayer$selected: {
-    color: {
-      hovered: 'inherit',
-      pressed: 'inherit',
-    },
   },
   label: {
     typography: themeTokens.typeScale.label.lg,
@@ -209,6 +197,10 @@ const classNames = createStyles({
         }),
       },
     },
+  },
+  avatar: {
+    width: '100%',
+    height: '100%',
   },
 });
 

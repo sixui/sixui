@@ -109,18 +109,18 @@ const classNames = createStyles({
     flexShrink: 0,
 
     vars: createTokensVars(Button.theme.tokens, {
-      leadingSpace: {
-        normal: '0px',
-        withLeadingIcon: '0px',
-        withTrailingIcon: '0px',
-      },
-      trailingSpace: {
-        normal: '0px',
-        withLeadingIcon: '0px',
-        withTrailingIcon: '0px',
-      },
       stateLayer: tokens.stateLayer,
       container: {
+        leadingSpace: {
+          normal: '0px',
+          withLeadingIcon: '0px',
+          withTrailingIcon: '0px',
+        },
+        trailingSpace: {
+          normal: '0px',
+          withLeadingIcon: '0px',
+          withTrailingIcon: '0px',
+        },
         elevation: {
           normal: elevationLevelPreset[0],
         },
