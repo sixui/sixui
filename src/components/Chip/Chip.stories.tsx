@@ -220,7 +220,7 @@ export const Input: IStory = {
 
 export const InputStateful: IStory = {
   render: (props) => (
-    <ChipShowcase
+    <StatefulChipShowcase
       props={props}
       cols={states}
       rows={[
