@@ -203,7 +203,7 @@ export const Input: IStory = {
         { legend: 'Deleting', props: { label: 'Deleting', deleting: true } },
       ]}
       rows={[
-        { legend: 'Basic', hiddenIndexes: [7] },
+        { legend: 'Basic', hiddenIndexes: [8] },
         {
           legend: 'Deletable',
           props: { onDelete: () => sbHandleEvent('delete', undefined, 300) },

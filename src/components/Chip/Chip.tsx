@@ -16,6 +16,7 @@ import { Button } from '../Button';
 import { ButtonBase } from '../ButtonBase';
 import { Elevation } from '../Elevation';
 import { FocusRing } from '../FocusRing';
+import { IconButton } from '../IconButton';
 import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { StateLayer } from '../StateLayer';
 import { SvgIcon } from '../SvgIcon';
@@ -96,8 +97,10 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
     const hasIcon = !!imageUrl || !!iconProp;
     // const isToggle = variant !== false && ['input',
     // 'filter'].includes(variant);
-    const selected = variant === 'filter' && selectedProp;
-    const hasLeading = (variant === 'filter' && loading) || selected || hasIcon;
+    const selected =
+      (variant === 'filter' || variant === 'input') && selectedProp;
+    const hasLeading =
+      (variant === 'filter' && (loading || selected)) || hasIcon;
     // const hasTrailing = isDeletable;
     // const hasOverlay = loading && (loadingText ?? !hasLeading);
     const isAvatar =
@@ -246,6 +249,14 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
         onClick={onClick ? handleClick : undefined}
         loading={loading}
         ref={forwardedRef}
+        end={
+          <div style={{ zIndex: 1 }}>
+            <IconButton
+              icon={<SvgIcon icon={iconXMark} />}
+              onClick={() => {}}
+            />
+          </div>
+        }
         {...other}
       />
     );

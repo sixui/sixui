@@ -38,6 +38,7 @@ const [tokensClassName, tokens] = createTheme({
     },
   },
   icon: {
+    labelSpace: px(0),
     color: {
       normal: themeTokens.colorScheme.onSurface,
       hovered: 'inherit',

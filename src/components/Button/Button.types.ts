@@ -22,6 +22,7 @@ export interface IButtonOwnProps extends IButtonBaseOwnProps {
   loadingText?: string;
   hasLeading?: boolean;
   hasTrailing?: boolean;
+  end?: React.ReactNode;
 }
 
 export interface IButtonProps

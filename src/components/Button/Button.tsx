@@ -31,6 +31,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       readOnly: readOnlyProp,
       hasLeading: hasLeadingProp,
       hasTrailing: hasTrailingProp,
+      end,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -44,7 +45,8 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
 
     const hasIcon = !!icon;
     const hasLeading = hasLeadingProp ?? (hasIcon && !trailingIcon);
-    const hasTrailing = hasTrailingProp ?? (hasIcon && !!trailingIcon);
+    const hasTrailing =
+      hasTrailingProp ?? ((hasIcon && !!trailingIcon) || !!end);
     const hasOverlay = loading && (!!loadingText || !hasLeading);
     const iconAnimation =
       (loadingProp || handlingClick || animating) &&
@@ -86,7 +88,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       );
     };
 
-    const renderLeadingIcon = (): React.JSX.Element =>
+    const renderLeading = (): React.JSX.Element =>
       hasLeading ? (
         <div {...getStyles(['iconContainer', 'iconContainer$leading'])}>
           {loading ? (
@@ -108,22 +110,24 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
         />
       );
 
-    const renderTrailingIcon = (): React.JSX.Element =>
+    const renderTrailing = (): React.ReactNode =>
       hasTrailing ? (
-        <div {...getStyles(['iconContainer', 'iconContainer$trailing'])}>
-          {loading ? (
-            <IndeterminateCircularProgressIndicator
-              {...getStyles(['icon', hasOverlay && 'invisible'])}
-            />
-          ) : (
-            <div
-              {...getStyles(['icon', hasOverlay && 'invisible'])}
-              onAnimationIteration={handleAnimationIteration}
-            >
-              {icon}
-            </div>
-          )}
-        </div>
+        (end ?? (
+          <div {...getStyles(['iconContainer', 'iconContainer$trailing'])}>
+            {loading ? (
+              <IndeterminateCircularProgressIndicator
+                {...getStyles(['icon', hasOverlay && 'invisible'])}
+              />
+            ) : (
+              <div
+                {...getStyles(['icon', hasOverlay && 'invisible'])}
+                onAnimationIteration={handleAnimationIteration}
+              >
+                {icon}
+              </div>
+            )}
+          </div>
+        ))
       ) : (
         <div
           {...getStyles(['iconContainer$trailing', 'iconContainer$collapsed'])}
@@ -142,7 +146,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
         ref={forwardedRef}
         {...other}
       >
-        {renderLeadingIcon()}
+        {renderLeading()}
 
         {children ? (
           <span {...getStyles(['label', hasOverlay && 'invisible'])}>
@@ -160,7 +164,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
           </div>
         ) : null}
 
-        {renderTrailingIcon()}
+        {renderTrailing()}
       </ButtonBase>
     );
   },
