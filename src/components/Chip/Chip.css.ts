@@ -1,4 +1,4 @@
-import { createTheme, fallbackVar, style } from '@vanilla-extract/css';
+import { createTheme } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IInteraction } from '~/hooks/useInteractions';
@@ -6,7 +6,6 @@ import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactor
 import type { IChipVariant } from './Chip.types';
 import { getDensity } from '~/helpers/styles/getDensity';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
@@ -14,21 +13,18 @@ import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { Avatar } from '../Avatar';
 import { Button } from '../Button';
-import { PaperBase } from '../PaperBase';
-import { StateLayer } from '../StateLayer';
 import { themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
 type IModifier =
   | IInteraction
-  | 'disabled'
   | 'elevated'
   | 'selected'
   | 'loading'
   | 'interactive'
   | 'avatar';
 
-const DENSITY = px(getDensity({ min: -4, max: 0 }));
+const DENSITY = px(getDensity({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
   container: {
@@ -190,10 +186,11 @@ const classNames = createStyles({
       container: tokens.container,
       outline: tokens.outline,
       icon: tokens.icon,
+      label: tokens.label,
     }),
 
     minWidth: 'unset',
-    height: tokens.container.height,
+    height: calc.add(tokens.container.height, DENSITY),
     transitionProperty: 'border-radius',
     transitionDuration: themeTokens.motion.duration.medium.$4,
     transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
@@ -221,6 +218,7 @@ const classNames = createStyles({
           container: tokens.container$selected,
           outline: tokens.outline$selected,
           icon: tokens.icon$selected,
+          label: tokens.label$selected,
         }),
       },
       [getModifierSelector<IModifier>({
@@ -236,22 +234,22 @@ const classNames = createStyles({
   avatar: ({ root }) => ({
     vars: createTokensVars(Avatar.theme.tokens, {
       container: {
-        size: px(18),
+        size: tokens.icon.size,
       },
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>(
-        {
-          avatar: true,
-        },
-        root,
-      )]: {
+      [getModifierSelector<IModifier>({ avatar: true }, root)]: {
         vars: createTokensVars(Avatar.theme.tokens, {
           container: {
             size: px(24),
           },
         }),
+      },
+      [getModifierSelector<IModifier>({ avatar: false }, root)]: {
+        vars: {
+          [themeTokens.density.interval]: '0',
+        },
       },
     },
   }),
@@ -274,91 +272,3 @@ export const chipTheme = componentThemeFactory<IChipThemeFactory>({
   tokensClassName,
   tokens,
 });
-
-export const chipThemeVariants = {
-  // assist: createStyles({
-  //   root: {
-  //     vars: createTokensVars(tokens, {
-  //       container$flat: {
-  //         color: {
-  //           normal: themeTokens.colorScheme.surfaceContainerLow,
-  //         },
-  //       },
-  //       stateLayer: {
-  //         color: {
-  //           hovered: themeTokens.colorScheme.onSurface,
-  //           pressed: themeTokens.colorScheme.onSurface,
-  //         },
-  //       },
-  //     }),
-  //   },
-  // }),
-  // filter: createStyles({
-  //   root: {
-  //     vars: createTokensVars(tokens, {
-  //       container$flat: {
-  //         color: {
-  //           normal: themeTokens.colorScheme.surfaceContainerLow,
-  //         },
-  //       },
-  //       container$flat$selected: {
-  //         color: {
-  //           normal: themeTokens.colorScheme.secondaryContainer,
-  //           disabled: themeTokens.colorScheme.onSurface,
-  //         },
-  //       },
-  //       container$elevated$selected: {
-  //         color: {
-  //           normal: themeTokens.colorScheme.secondaryContainer,
-  //         },
-  //       },
-  //       outline: {
-  //         width: px(themeTokens.outline.width.none),
-  //       },
-  //       label$selected: {
-  //         color: {
-  //           normal: themeTokens.colorScheme.onSecondaryContainer,
-  //         },
-  //       },
-  //       stateLayer: {
-  //         color: {
-  //           hovered: themeTokens.colorScheme.onSurfaceVariant,
-  //           pressed: themeTokens.colorScheme.onSecondaryContainer,
-  //         },
-  //       },
-  //       stateLayer$selected: {
-  //         color: {
-  //           hovered: themeTokens.colorScheme.onSecondaryContainer,
-  //           pressed: themeTokens.colorScheme.onSurfaceVariant,
-  //         },
-  //       },
-  //       icon$selected: {
-  //         color: {
-  //           normal: themeTokens.colorScheme.onSecondaryContainer,
-  //         },
-  //       },
-  //       trailingIcon: {
-  //         color: {
-  //           normal: themeTokens.colorScheme.onSurfaceVariant,
-  //           disabled: themeTokens.colorScheme.onSurface,
-  //         },
-  //       },
-  //       trailingIcon$selected: {
-  //         color: {
-  //           normal: themeTokens.colorScheme.onSecondaryContainer,
-  //         },
-  //       },
-  //     }),
-  //   },
-  //   iconContainer$leading: {
-  // transitionProperty: 'opacity, width',
-  // transitionDuration: themeTokens.motion.duration.medium.$4,
-  // transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
-  //   },
-  //   iconContainer$collapsed: {
-  // transitionProperty: 'opacity, width',
-  // transitionDuration: themeTokens.motion.duration.short.$2,
-  // transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
-  //   },
-  // }),
-};
