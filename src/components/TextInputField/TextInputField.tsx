@@ -8,6 +8,7 @@ import { useControlledValue } from '~/hooks/useControlledValue';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { triggerChangeEvent } from '~/utils/triggerChangeEvent';
 import { FieldBase } from '../FieldBase';
@@ -150,8 +151,7 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
           <>
             {children}
             <input
-              {...forwardedProps}
-              {...focus.focusProps}
+              {...mergeProps(focus.focusProps, forwardedProps)}
               {...getStyles('input')}
               placeholder={other.placeholder}
               type={
