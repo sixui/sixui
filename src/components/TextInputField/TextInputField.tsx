@@ -37,6 +37,7 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
       unmaskIcon = <SvgIcon icon={iconEye} />,
       onChange,
       children,
+      loading,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -142,6 +143,7 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
         interactions={{ focused, ...other.interactions }}
         populated={populated}
         variant={variant}
+        loading={loading}
         end={renderEndSection()}
         forwardProps
         withoutRippleEffect

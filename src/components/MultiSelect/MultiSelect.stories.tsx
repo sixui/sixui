@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IMultiSelectProps } from './MultiSelect.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { fruits } from '../FilterableList/fruits';
 import { Flex } from '../Flex';
 import { ListItem } from '../ListItem';
@@ -44,13 +46,20 @@ const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
   );
 };
 
+const rows: Array<IComponentPresentation<IMultiSelectDemoProps>> = [
+  { legend: 'Filled' },
+  { legend: 'Outlined', props: { variant: 'outlined' } },
+];
+
+const MultiSelectDemoShowcase = componentShowcaseFactory(MultiSelectDemo);
+
 export const Basic: IStory = {
-  render: (props) => <MultiSelectDemo {...props} />,
+  render: (props) => <MultiSelectDemoShowcase props={props} rows={rows} />,
   args: defaultArgs,
 };
 
 export const Empty: IStory = {
-  render: (props) => <MultiSelectDemo {...props} />,
+  render: (props) => <MultiSelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     items: [],
@@ -58,7 +67,7 @@ export const Empty: IStory = {
 };
 
 export const DefaultValue: IStory = {
-  render: (props) => <MultiSelectDemo {...props} />,
+  render: (props) => <MultiSelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     defaultValue: ['lemon', 'flowers'],
@@ -66,7 +75,7 @@ export const DefaultValue: IStory = {
 };
 
 export const Clearable: IStory = {
-  render: (props) => <MultiSelectDemo {...props} />,
+  render: (props) => <MultiSelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     defaultValue: [fruits[1].value, fruits[3].value],
@@ -75,7 +84,7 @@ export const Clearable: IStory = {
 };
 
 export const DefaultQuery: IStory = {
-  render: (props) => <MultiSelectDemo {...props} />,
+  render: (props) => <MultiSelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     defaultQuery: 'app',
@@ -83,7 +92,7 @@ export const DefaultQuery: IStory = {
 };
 
 export const NoResults: IStory = {
-  render: (props) => <MultiSelectDemo {...props} />,
+  render: (props) => <MultiSelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     defaultQuery: 'Papaya',
@@ -91,7 +100,7 @@ export const NoResults: IStory = {
 };
 
 export const InitialContent: IStory = {
-  render: (props) => <MultiSelectDemo {...props} />,
+  render: (props) => <MultiSelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     initialContent: <ListItem disabled>{fruits.length} items loaded.</ListItem>,
@@ -99,7 +108,7 @@ export const InitialContent: IStory = {
 };
 
 export const Disabled: IStory = {
-  render: (props) => <MultiSelectDemo {...props} />,
+  render: (props) => <MultiSelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
     disabled: true,
@@ -117,13 +126,21 @@ const ControlledMultiSelectDemo: React.FC<IMultiSelectProps> = (props) => {
   return <MultiSelectDemo {...props} value={value} onChange={handleChange} />;
 };
 
+const ControlledMultiSelectDemoShowcase = componentShowcaseFactory(
+  ControlledMultiSelectDemo,
+);
+
 export const Controlled: IStory = {
-  render: (props) => <ControlledMultiSelectDemo {...props} />,
+  render: (props) => (
+    <ControlledMultiSelectDemoShowcase props={props} rows={rows} />
+  ),
   args: defaultArgs,
 };
 
 export const ControlledAndClearable: IStory = {
-  render: (props) => <ControlledMultiSelectDemo {...props} />,
+  render: (props) => (
+    <ControlledMultiSelectDemoShowcase props={props} rows={rows} />
+  ),
   args: {
     ...defaultArgs,
     defaultValue: [fruits[1].value],
@@ -132,7 +149,9 @@ export const ControlledAndClearable: IStory = {
 };
 
 export const WithErrorText: IStory = {
-  render: (props) => <ControlledMultiSelectDemo {...props} />,
+  render: (props) => (
+    <ControlledMultiSelectDemoShowcase props={props} rows={rows} />
+  ),
   args: {
     ...defaultArgs,
     hasError: true,
@@ -141,7 +160,9 @@ export const WithErrorText: IStory = {
 };
 
 export const Grid: IStory = {
-  render: (props) => <ControlledMultiSelectDemo {...props} />,
+  render: (props) => (
+    <ControlledMultiSelectDemoShowcase props={props} rows={rows} />
+  ),
   args: {
     ...defaultArgs,
     cols: 3,

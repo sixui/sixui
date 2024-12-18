@@ -449,12 +449,11 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
             {hasEndSection && (
               <div {...getStyles(['section', 'section$end'])}>
                 {end}
-                {loading ||
-                  (trailingIcon && (
-                    <span {...getStyles(['icon', 'icon$trailing'])}>
-                      {loading ? <CircularProgressIndicator /> : trailingIcon}
-                    </span>
-                  ))}
+                {(loading || trailingIcon) && (
+                  <span {...getStyles(['icon', 'icon$trailing'])}>
+                    {loading ? <CircularProgressIndicator /> : trailingIcon}
+                  </span>
+                )}
               </div>
             )}
           </div>
